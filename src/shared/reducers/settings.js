@@ -80,9 +80,7 @@ const settingsReducer = (state = initialState, action) => {
         case ActionTypes.ADD_CUSTOM_POW_NODE:
             return {
                 ...state,
-                nodes: state.availablePoWNodes.includes(action.payload)
-                    ? state.availablePoWNodes
-                    : [].concat(state.availablePoWNodes, action.payload),
+                nodes: state.nodes.includes(action.payload) ? state.nodes : [].concat(state.nodes, action.payload),
             };
         case ActionTypes.SET_MODE:
             return {

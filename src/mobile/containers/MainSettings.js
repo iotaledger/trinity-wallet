@@ -11,6 +11,7 @@ import { setSetting, clearWalletData, setPassword } from 'iota-wallet-shared-mod
 import LogoutConfirmationModalComponent from '../components/LogoutConfirmationModal';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons';
+import { isAndroid } from '../utils/device';
 
 const styles = StyleSheet.create({
     container: {
@@ -306,7 +307,7 @@ export class MainSettings extends Component {
                     style={{ alignItems: 'center' }}
                     isVisible={this.state.isModalActive}
                     onBackButtonPress={this.toggleModalDisplay}
-                    useNativeDriver
+                    useNativeDriver={isAndroid ? true : false}
                     hideModalContentWhileAnimating
                 >
                     {this.renderModalContent()}
