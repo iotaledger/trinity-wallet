@@ -19,7 +19,7 @@
         "invalidResponse": "無效的回應",
         "invalidResponseExplanation": "節點回傳無效回應。",
         "invalidResponsePollingExplanation": "節點於輪詢程序時回傳無效回應。",
-        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information. Try changing node.",
+        "invalidResponseFetchingAccount": "在取得您的帳戶訊息時，節點回傳無效回應。請嘗試更換節點。",
         "invalidResponseSendingTransfer": "在交易傳送時節點傳回無效的回覆",
         "seed": "種子碼",
         "back": "返回",
@@ -53,8 +53,8 @@
         "syncInProgress": "同步進行中",
         "syncInProgressExplanation": "請等候至同步完成",
         "somethingWentWrong": "出現錯誤",
-        "somethingWentWrongRestart": "Please restart the app.",
-        "somethingWentWrongTryAgain": "Please try again.",
+        "somethingWentWrongRestart": "請重新啟動應用程式。",
+        "somethingWentWrongTryAgain": "請再試一次。",
         "node": "節點",
         "cannotPerformAction": "無法執行操作",
         "cannotPerformActionExplanation": "轉到進階設定中重置錢包。",
@@ -217,8 +217,8 @@
         "amount": "金額",
         "max": "最大值",
         "message": "訊息",
-        "invalidMessage": "Invalid message",
-        "invalidMessageExplanation": "Your message contains invalid characters.",
+        "invalidMessage": "無效訊息",
+        "invalidMessageExplanation": "您的訊息包含無效字元。",
         "send": "傳送",
         "invalidAmount": "錯誤數額填入",
         "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
@@ -290,7 +290,7 @@
         "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}.",
         "undo": "Undo",
         "redo": "Redo",
-        "about": "About Trinity"
+        "about": "關於 Trinity"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "輸入密碼以重設您的錢包。",
@@ -305,7 +305,7 @@
         "keepSafe": "請妥善保存您的種子碼"
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity.",
+        "thankYou": "感謝您下載 Trinity。",
         "weWillSpend": "接下來幾分鐘我們將為您設置您的錢包。",
         "reminder": "您或許希望跳過一些步驟，但我們建議您按完整程序設置。"
     },
