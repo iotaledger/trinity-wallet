@@ -171,6 +171,7 @@ class Login extends React.Component {
                     <div />
                     <section>
                         <PasswordInput
+                            focus
                             value={this.state.password}
                             label={t('password')}
                             name="password"
@@ -191,20 +192,23 @@ class Login extends React.Component {
                     <form onSubmit={(e) => this.handleSubmit(e)}>
                         <Text
                             value={code}
+                            focus={verifyTwoFA}
                             label={t('twoFA:code')}
                             onChange={(value) => this.setState({ code: value })}
                         />
-                        <Button
-                            onClick={() => {
-                                this.setState({ verifyTwoFA: false });
-                            }}
-                            variant="secondary"
-                        >
-                            {t('back')}
-                        </Button>
-                        <Button type="submit" variant="primary">
-                            {t('glboal:done')}
-                        </Button>
+                        <footer>
+                            <Button
+                                onClick={() => {
+                                    this.setState({ verifyTwoFA: false });
+                                }}
+                                variant="secondary"
+                            >
+                                {t('back')}
+                            </Button>
+                            <Button type="submit" variant="primary">
+                                {t('login:login')}
+                            </Button>
+                        </footer>
                     </form>
                 </Modal>
             </React.Fragment>

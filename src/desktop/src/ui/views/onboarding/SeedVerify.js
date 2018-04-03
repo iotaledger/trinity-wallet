@@ -51,7 +51,9 @@ class SeedVerify extends React.PureComponent {
     };
 
     componentDidMount() {
-        Electron.clipboard('');
+        if (this.props.onboarding.isGenerated) {
+            Electron.clipboard('');
+        }
     }
 
     onChange = (value) => {
@@ -106,7 +108,7 @@ class SeedVerify extends React.PureComponent {
         return (
             <form onSubmit={(e) => this.setSeed(e)}>
                 <section>
-                    <SeedInput seed={seed} onChange={this.onChange} label={t('seed')} closeLabel={t('back')} />
+                    <SeedInput seed={seed} focus onChange={this.onChange} label={t('seed')} closeLabel={t('back')} />
                     <Infobox>
                         {onboarding.isGenerated ? (
                             <React.Fragment>

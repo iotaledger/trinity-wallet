@@ -82,6 +82,7 @@ class AccountName extends React.PureComponent {
                 <section>
                     <Input
                         value={name}
+                        focus
                         label={t('addAdditionalSeed:accountName')}
                         onChange={(value) => this.setState({ name: value })}
                     />
