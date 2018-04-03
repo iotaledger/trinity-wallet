@@ -389,8 +389,8 @@
         "hideSeed": "OCULTAR SEED"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "Eu tenho guardado minha seed",
-        "reenter": "Agora você será solicitado a redigitar sua semente.",
+        "alreadyHave": "Eu tenho minha Seed armazenada",
+        "reenter": "Agora você precisará redigitar sua Seed.",
         "reenterWarning": "Se seu dispositivo falhar e você não salvar sua Seed, você perderá o acesso à suas IOTAs."
     },
     "walletResetConfirmation": {
