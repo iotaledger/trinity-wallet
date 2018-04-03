@@ -87,9 +87,9 @@
         "pleaseWaitTransferExplanation": "Il tuo saldo disponibile è attualmente in uso in altri trasferimenti. Si prega di attendere la conferma di uno di questi prima di riprovare.",
         "snapshotTransitionInProgress": "Passaggio allo snapshot in corso",
         "snapshotTransitionInProgressExplanation": "Si prega di attendere fino a quando il passaggio allo snapshot sarà completato.",
-        "checkForUpdates": "Check for Updates",
+        "checkForUpdates": "Controlla Aggiornamenti",
         "account": "Account",
-        "enterPasswordToAccessSettings": "Enter your password to access account settings"
+        "enterPasswordToAccessSettings": "Inserisci la tua password per accedere alle impostazioni account"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
