@@ -89,7 +89,7 @@
         "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete.",
         "checkForUpdates": "Check for Updates",
         "account": "Cuenta",
-        "enterPasswordToAccessSettings": "Enter your password to access account settings"
+        "enterPasswordToAccessSettings": "Introduzca su contraseña para acceder a la configuración de su cuenta"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contiene caracteres inválidos",
@@ -164,7 +164,7 @@
     "loading": {
         "loadingFirstTime": "Cargando la seed por primera vez.",
         "thisMayTake": "Esto puede tardar un rato.",
-        "doNotMinimise": "Do not minimise or close the app.",
+        "doNotMinimise": "No minimizar ni cerrar la aplicación.",
         "youMayNotice": "Puedes notar que se alenta tu dispositivo."
     },
     "newSeedSetup": {
@@ -244,7 +244,7 @@
         "expert": "Expert",
         "standard": "Standard",
         "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
-        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
+        "modesExplanation": "Sólo active el modo experto si es un usuario experimentado con Tangle. De lo contrario, puede encontrarlo confuso."
     },
     "settings": {
         "transferSending": "Transferencia en envío",
@@ -288,9 +288,9 @@
         "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
         "fetchedConversionRates": "Fetched conversion rates",
         "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}.",
-        "undo": "Undo",
-        "redo": "Redo",
-        "about": "About Trinity"
+        "undo": "Deshacer",
+        "redo": "Rehacer",
+        "about": "Acerca de Trinity"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Ingresa tu contraseña para reiniciar la cartera.",
@@ -305,7 +305,7 @@
         "keepSafe": "Por favor guarda tu seed de manera segura."
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity.",
+        "thankYou": "Gracias por descargar Trinity.",
         "weWillSpend": "Vamos a pasar unos pocos minutos configurando tu cartera.",
         "reminder": "Puede tentarte saltar algunos pasos, pero te sugerimos seguir el proceso completo."
     },
