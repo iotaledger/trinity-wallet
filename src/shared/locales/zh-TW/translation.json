@@ -89,7 +89,7 @@
         "snapshotTransitionInProgressExplanation": "請等待轉換完成。",
         "checkForUpdates": "檢查更新",
         "account": "帳戶",
-        "enterPasswordToAccessSettings": "Enter your password to access account settings"
+        "enterPasswordToAccessSettings": "請輸入密碼才能行帳戶設定"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
