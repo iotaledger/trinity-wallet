@@ -243,8 +243,8 @@
     "modeSelection": {
         "expert": "Expert",
         "standard": "Standard",
-        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
-        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
+        "expertModeExplanation": "Modo experto dará acceso a características adicionales como la promoción y revinculacion manuales.",
+        "modesExplanation": "Sólo activar el modo experto si eres un usuario experimentado de IOTA. puede resultar confuso de lo contrario."
     },
     "settings": {
         "transferSending": "Transfer sending",
@@ -255,7 +255,7 @@
         "theme": "Theme",
         "currency": "Currency",
         "language": "Idioma",
-        "accountManagement": "Account management",
+        "accountManagement": "Administración de cuenta",
         "addNewSeed": "Añadir nueva seed",
         "twoFA": "Two-factor authentication",
         "changePassword": "Cambiar contraseña",
@@ -340,7 +340,7 @@
         "selectNode": "Select node",
         "addCustomNode": "Add custom node",
         "manualSync": "Manual sync",
-        "snapshotTransition": "Snapshot transition"
+        "snapshotTransition": "Transicion de snapshot"
     },
     "advancedThemeCustomisation": {
         "background": "Background",
@@ -364,16 +364,16 @@
         "billion": "Billion",
         "million": "Million",
         "thousand": "Thousand",
-        "one": "One"
+        "one": "Uno"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete {{accountName}}?",
+        "areYouSure": "¿Seguro que quieres eliminar la cuenta {{accountName}}?",
         "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
         "thisAction": "This action cannot be undone.",
         "enterPassword": "Enter your password to delete this account."
     },
     "manualSync": {
-        "outOfSync": "Does your transaction history look like it may be out of sync?",
+        "outOfSync": "Parece que su historial de transacciones no está sincronizado.",
         "pressToSync": "Press the button below to sync your account.",
         "thisMayTake": "This may take a while. You may notice your device slowing down.",
         "doNotClose": "Please note, minimising the app will cancel the sync.",
