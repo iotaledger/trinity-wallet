@@ -447,7 +447,7 @@
         "localOrRemote": "Bevis på arbete kan antingen slutföras lokalt på din enhet eller avlastas till en nod.",
         "local": "Lokal",
         "remote": "Avlägsen",
-        "powUpdated": "PoW-inställning",
+        "powUpdated": "PoW-konfiguration",
         "powUpdatedExplanation": "Din PoW-konfiguration har blivit uppdaterad."
     },
     "progressSteps": {
