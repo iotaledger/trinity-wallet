@@ -164,7 +164,7 @@
     "loading": {
         "loadingFirstTime": "Laadin esimest korda seemet.",
         "thisMayTake": "See võib aega võtta.",
-        "doNotMinimise": "Ära välju rakendusest.",
+        "doNotMinimise": "Ärge väljuge rakendusest.",
         "youMayNotice": "Sa võid märgata seadme aeglustumist."
     },
     "newSeedSetup": {
