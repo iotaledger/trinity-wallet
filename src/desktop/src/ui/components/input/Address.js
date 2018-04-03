@@ -17,6 +17,8 @@ export default class AddressInput extends React.PureComponent {
         address: PropTypes.string.isRequired,
         /** Address input label */
         label: PropTypes.string.isRequired,
+        /** Should input focus when changed to true */
+        focus: PropTypes.bool,
         /** Camera modal close button label */
         closeLabel: PropTypes.string.isRequired,
         /** Address change event function
@@ -30,6 +32,18 @@ export default class AddressInput extends React.PureComponent {
     state = {
         showScanner: false,
     };
+
+    componentDidMount() {
+        if (this.props.focus) {
+            this.input.focus();
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (!this.props.focus && nextProps.focus) {
+            this.input.focus();
+        }
+    }
 
     onScanEvent = (data) => {
         if (data !== null) {
@@ -65,6 +79,9 @@ export default class AddressInput extends React.PureComponent {
                     </a>
                     <input
                         type="text"
+                        ref={(input) => {
+                            this.input = input;
+                        }}
                         value={address}
                         onChange={(e) => this.props.onChange(e.target.value)}
                         maxLength={ADDRESS_LENGTH}
