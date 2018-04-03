@@ -1,8 +1,8 @@
 {
     "global": {
-        "send": "SEND",
-        "cancel": "CANCEL",
-        "continue?": "Are you sure you want to continue?",
+        "send": "SIŲSTI",
+        "cancel": "ATŠAUKTI",
+        "continue?": "Ar tikrai norite tęsti?",
         "noTransactions": "NO RECENT HISTORY",
         "refresh": "REFRESH",
         "qr": "QR",
