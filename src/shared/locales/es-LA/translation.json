@@ -7,7 +7,7 @@
         "refresh": "ACTUALIZAR",
         "qr": "QR",
         "balanceError": "No hay suficiente balance",
-        "balanceErrorMessage": "No tienes suficiente IOTA para completar esta transferencia.",
+        "balanceErrorMessage": "No tienes suficientes IOTA para completar esta transferencia.",
         "transferError": "Error de transferencia",
         "transferErrorMessage": "Algo salió mal al enviar tu transferencia. Por favor, inténtalo de nuevo.",
         "transferSent": "Transferencia enviada",
@@ -389,20 +389,20 @@
         "hideSeed": "OCULTAR SEMILLA"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "I have saved my seed",
-        "reenter": "You will now be asked to re-enter your seed.",
-        "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
+        "alreadyHave": "He guardado mi semilla",
+        "reenter": "Ahora se te pedirá volver a introducir tu semilla.",
+        "reenterWarning": "Si tu dispositivo falla y no has guardado tu semilla, perderás todos tus IOTA."
     },
     "walletResetConfirmation": {
-        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
+        "cannotUndo": "ESTA ACCIÓN NO SE PUEDE DESHACER.",
         "warning": "<0><0>Todo de los datos de tu cartera, incluyendo tus </0><1> seeds, contraseña,</1><2> y </2><3>otra información de la cuenta</3><4> serán eliminados.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
-        "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
-        "fingerprintAuthEnabled": "Fingerprint authentication enabled",
-        "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
-        "fingerprintAuthDisabled": "Fingerprint authentication disabled",
+        "instructionsEnable": "Toca el lector de huella dactilar para activar la autenticación de huella dactilar.",
+        "instructionsDisable": "Toca el lector de huella dactilar para desactivar la autenticación de huella dactilar.",
+        "fingerprintAuthEnabled": "Autenticación de huella dactilar habilitada",
+        "fingerprintAuthEnabledExplanation": "La autenticación de huella dactilar se ha habilitado con éxito.",
+        "fingerprintAuthDisabled": "Autenticación de huella dactilar deshabilitada",
         "fingerprintAuthDisabledExplanation": "La autenticación de huella dactilar se ha deshabilitado con éxito.",
         "fingerprintAuthFailed": "Autenticación de huella dactilar errónea",
         "fingerprintAuthFailedExplanation": "Autenticación de huella dactilar errónea. Inténtalo de nuevo.",
@@ -440,7 +440,7 @@
     },
     "rootDetection": {
         "warning": "ALERTA",
-        "rootDetected": "Al parecer tu dispositivo esta rooteado. Esto puede significar un riesgo considerable para tu billetera. Deseas continuar de todas formas?"
+        "rootDetected": "Al parecer tu dispositivo esta rooteado. Esto puede significar un riesgo considerable para tu billetera. ¿Deseas continuar de todas formas?"
     },
     "pow": {
         "feeless": "Es necesario realizar un pequeño PoW para enviar una transaccion sin comisiones en IOTA.",
