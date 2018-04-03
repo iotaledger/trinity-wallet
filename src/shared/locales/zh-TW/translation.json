@@ -70,23 +70,23 @@
         "bundleHash": "Bundle Hash",
         "addresses": "位址",
         "reattach": "重新連接",
-        "promote": "宣傳",
+        "promote": "促進",
         "rebroadcast": "重新廣播",
         "pressBackAgain": "再按一次返回鍵退出",
         "autoreattaching": "自動重新連接",
-        "autoreattachingExplanation": "使用雜湊值 {{hash}} 重新連接",
-        "autopromoting": "Autopromoting transfer",
-        "autopromotingExplanation": "Promoting transaction with hash {{hash}}",
-        "promoting": "Promoting transfer",
-        "promotionError": "無法宣傳交易",
+        "autoreattachingExplanation": "使用雜湊值 {{hash}} 重新連接交易",
+        "autopromoting": "自動宣傳交易",
+        "autopromotingExplanation": "使用雜湊值 {{hash}} 促進交易",
+        "promoting": "促進交易",
+        "promotionError": "無法促進交易",
         "noLongerValid": "The bundle you are trying to promote is no longer valid",
         "cannotSendToOwn": "Sending to own address",
-        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses.",
+        "cannotSendToOwnExplanation": "您無法轉帳到自己的地址。",
         "pleaseWait": "請稍候",
-        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
-        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again.",
-        "snapshotTransitionInProgress": "Snapshot transition in progress",
-        "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete.",
+        "pleaseWaitExplanation": "Trinity 正在執行其他功能，請稍後再試。",
+        "pleaseWaitTransferExplanation": "您目前可用餘額正用於其他交易中，請等待確認後再試一次。",
+        "snapshotTransitionInProgress": "快照轉換處理中",
+        "snapshotTransitionInProgressExplanation": "請等待轉換完成。",
         "checkForUpdates": "檢查更新",
         "account": "帳戶",
         "enterPasswordToAccessSettings": "Enter your password to access account settings"
@@ -190,7 +190,7 @@
         "message": "選擇性訊息",
         "removeMessage": "移除訊息",
         "noAddresses": "無地址",
-        "spent": "Spent"
+        "spent": "已支出"
     },
     "saveYourSeed": {
         "seedCleared": "種子已清除",
@@ -319,7 +319,7 @@
         "addressCopied": "已複製地址",
         "addressCopiedExplanation": "您的地址已複製到剪貼簿。",
         "send": "SEND",
-        "receive": "RECEIVE"
+        "receive": "收款"
     },
     "accountManagement": {
         "viewSeed": "查看種子",
@@ -340,7 +340,7 @@
         "selectNode": "選擇節點",
         "addCustomNode": "增加自訂節點",
         "manualSync": "手動同步",
-        "snapshotTransition": "Snapshot transition"
+        "snapshotTransition": "快照轉換"
     },
     "advancedThemeCustomisation": {
         "background": "背景",
@@ -431,11 +431,11 @@
         "twoFAEnabled": "2FA is now enabled",
         "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
         "enterCode": "Enter the code from your 2FA app",
-        "code": "Code"
+        "code": "驗證碼"
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change",
+        "change": "變化率",
         "volume": "交易量(24h)"
     },
     "rootDetection": {
@@ -445,13 +445,13 @@
     "pow": {
         "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
         "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
-        "local": "Local",
-        "remote": "Remote",
-        "powUpdated": "Proof of work settings",
-        "powUpdatedExplanation": "Your proof of work configuration has been updated."
+        "local": "本地",
+        "remote": "遠端",
+        "powUpdated": "工作量證明設定",
+        "powUpdatedExplanation": "您的工作量證明設定已更新。"
     },
     "progressSteps": {
-        "validatingReceiveAddress": "Validating receive address",
+        "validatingReceiveAddress": "驗證收款地址",
         "syncingAccount": "正在同步帳戶中",
         "preparingInputs": "正在準備交易來源資訊",
         "preparingTransfers": "正在準備交易資訊",
@@ -460,9 +460,9 @@
         "broadcasting": "廣播中"
     },
     "snapshotTransition": {
-        "cannotCompleteTransition": "Cannot complete snapshot transition",
-        "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
-        "transitionComplete": "Snapshot transition complete",
-        "transitionCompleteExplanation": "The snapshot transition has completed successfully."
+        "cannotCompleteTransition": "無法完成快照轉換",
+        "cannotCompleteTransitionExplanation": "您的餘額必須大於零才能完成交易。",
+        "transitionComplete": "快照轉換完成",
+        "transitionCompleteExplanation": "快照轉換已成功處理完成。"
     }
 }
