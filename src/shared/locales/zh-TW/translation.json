@@ -71,7 +71,7 @@
         "addresses": "位址",
         "reattach": "重新連接",
         "promote": "PROMOTE",
-        "rebroadcast": "REBROADCAST",
+        "rebroadcast": "重新廣播",
         "pressBackAgain": "再按一次返回鍵退出",
         "autoreattaching": "自動重新連接",
         "autoreattachingExplanation": "Reattaching transaction with hash {{hash}}",
@@ -87,8 +87,8 @@
         "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again.",
         "snapshotTransitionInProgress": "Snapshot transition in progress",
         "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete.",
-        "checkForUpdates": "Check for Updates",
-        "account": "Account",
+        "checkForUpdates": "檢查更新",
+        "account": "帳戶",
         "enterPasswordToAccessSettings": "Enter your password to access account settings"
     },
     "addAdditionalSeed": {
@@ -186,10 +186,10 @@
     "receive": {
         "addressCopied": "已複製地址",
         "addressCopiedExplanation": "您的地址已複製到剪貼簿。",
-        "generateNewAddress": "NEW ADDRESS",
+        "generateNewAddress": "新地址",
         "message": "選擇性訊息",
         "removeMessage": "移除訊息",
-        "noAddresses": "NO ADDRESSES",
+        "noAddresses": "無地址",
         "spent": "Spent"
     },
     "saveYourSeed": {
@@ -404,10 +404,10 @@
         "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
         "fingerprintAuthDisabled": "Fingerprint authentication disabled",
         "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
-        "fingerprintAuthFailed": "Fingerprint authentication failed",
+        "fingerprintAuthFailed": "指紋驗證失敗",
         "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
-        "status": "Status",
-        "enabled": "Enabled",
+        "status": "狀態",
+        "enabled": "已啟用",
         "disabled": "Disabled",
         "fingerprintUnavailable": "Fingerprint sensor unavailable",
         "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
@@ -457,7 +457,7 @@
         "preparingTransfers": "正在準備交易資訊",
         "gettingTransactionsToApprove": "Getting transactions to approve",
         "proofOfWork": "Completing proof of work",
-        "broadcasting": "Broadcasting"
+        "broadcasting": "廣播中"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Cannot complete snapshot transition",
