@@ -440,7 +440,7 @@
     },
     "rootDetection": {
         "warning": "ALERTA",
-        "rootDetected": "Al parecer tu dispositivo esta rooteado. Esto puede significar un riesgo considerable para tu billetera. ¿Deseas continuar de todas formas?"
+        "rootDetected": "<0>Al parecer tu dispositivo esta rooteado. </0><1>Esto puede significar un riesgo considerable para tu billetera.</1> <2>¿Deseas continuar de todas formas?</2>"
     },
     "pow": {
         "feeless": "Es necesario realizar un pequeño PoW para enviar una transaccion sin comisiones en IOTA.",
