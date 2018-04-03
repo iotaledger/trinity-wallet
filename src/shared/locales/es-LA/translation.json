@@ -4,7 +4,7 @@
         "cancel": "CANCELAR",
         "continue?": "¿Seguro que quieres continuar?",
         "noTransactions": "NO HAY HISTORIAL RECIENTE",
-        "refresh": "REFRESH",
+        "refresh": "ACTUALIZAR",
         "qr": "QR",
         "balanceError": "No hay suficiente balance",
         "balanceErrorMessage": "No tienes suficiente IOTA para completar esta transferencia.",
@@ -131,7 +131,7 @@
         "clickToCopy": "Haz click en el botón y copia tu seed a un administrador de contraseñas.",
         "doNotStore": "No almacenes tu seed en texto plano.",
         "copyToClipboard": "Copiar semilla",
-        "shareSeed": "Share your seed to a secure password manager"
+        "shareSeed": "Compartir tu semilla con un gestor de contraseñas seguro"
     },
     "enterSeed": {
         "invalidCharacters": "La seed contiene caracteres inválidos",
@@ -158,19 +158,19 @@
         "useSeed": "USAR SEED",
         "login": "INICIAR SESIÓN",
         "selectDifferentNode": "Quieres seleccionar un nodo diferente?",
-        "setNode": "SET NODE",
+        "setNode": "ESTABLECER NODO",
         "cannotConnect": "Cannot connect to IOTA node."
     },
     "loading": {
         "loadingFirstTime": "Cargando la seed por primera vez.",
         "thisMayTake": "Esto puede tomar un tiempo.",
-        "doNotMinimise": "Do not minimise or close the app.",
+        "doNotMinimise": "No minimizar o cerrar la aplicación.",
         "youMayNotice": "Puedes notar que se alenta tu dispositivo."
     },
     "newSeedSetup": {
-        "seedNotGenerated": "Seed has not been generated",
-        "seedNotGeneratedExplanation": "Please generate a new seed.",
-        "pressForNewSeed": "PRESS FOR NEW SEED",
+        "seedNotGenerated": "La semilla no se ha generado",
+        "seedNotGeneratedExplanation": "Por favor haz click en el botón generar nueva semilla.",
+        "pressForNewSeed": "PULSAR PARA NUEVA SEED",
         "individualLetters": "Haz clic en letras individuales para aleatorizarlas."
     },
     "onboardingComplete": {
@@ -185,12 +185,12 @@
     },
     "receive": {
         "addressCopied": "Dirección Copiada",
-        "addressCopiedExplanation": "Your address has been copied to the clipboard.",
-        "generateNewAddress": "NEW ADDRESS",
+        "addressCopiedExplanation": "Tu dirección se ha copiado en el portapapeles.",
+        "generateNewAddress": "NUEVA DIRECCIÓN",
         "message": "Mensaje opcional",
         "removeMessage": "ELIMINAR MENSAJE",
-        "noAddresses": "NO ADDRESSES",
-        "spent": "Spent"
+        "noAddresses": "SIN DIRECCIONES",
+        "spent": "Gastar"
     },
     "saveYourSeed": {
         "seedCleared": "Seed removida",
@@ -207,23 +207,23 @@
         "invalidAddress": "Dirección inválida",
         "invalidAddressExplanation1": "Address should be {{maxLength}} characters long and should have a checksum.",
         "invalidAddressExplanation2": "La dirección contiene caracteres inválidos.",
-        "invalidAddressExplanation3": "Address contains an invalid checksum.",
-        "invalidAddressExplanationGeneric": "Valid addresses should be 90 characters and contain only A-Z or 9.",
+        "invalidAddressExplanation3": "La dirección contiene un checksum no válido.",
+        "invalidAddressExplanationGeneric": "Direcciones validas deben ser de 90 caracteres y contener solo A-Z o 9.",
         "notEnoughFunds": "Insufficient funds",
         "notEnoughFundsExplanation": "No tienes suficiente IOTA para completar esta transferencia.",
         "keyReuse": "Key reuse",
         "keyReuseExplanation": "The address you are trying to send to has already been used. Please try another address.",
         "recipientAddress": "Dirección del destinatario",
         "amount": "Cantidad",
-        "max": "MAX",
+        "max": "MAXIMO",
         "message": "Mensaje",
         "invalidMessage": "Invalid message",
-        "invalidMessageExplanation": "Your message contains invalid characters.",
+        "invalidMessageExplanation": "Tu mensaje contiene caracteres invalidos.",
         "send": "ENVIAR",
         "invalidAmount": "Incorrect amount entered",
-        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
+        "invalidAmountExplanation": "Por favor introduce un monto valido. Puede ser útil ver la explicación de unidades IOTA en la parte inferior de esta página.",
         "maximumSelected": "MAXIMUM amount selected",
-        "iotaUnits": "IOTA units explained",
+        "iotaUnits": "Explicacion de unidades IOTA",
         "sendMax": "SEND MAX"
     },
     "setPassword": {
@@ -232,7 +232,7 @@
         "passwordMismatch": "Las contraseñas no coinciden",
         "passwordMismatchExplanation": "Las contraseñas introducidas no coinciden. Por favor, inténtalo de nuevo.",
         "nowWeNeedTo": "Ahora tenemos que configurar una contraseña.",
-        "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
+        "anEncryptedCopy": "Se almacenará en tu dispositivo una copia encriptada de la Seed. Esta contraseña será la que utilizarás para acceder a tu cartera en futuros ingresos.",
         "ensure": "Asegúrete que utilizas una contraseña segura con al menos 12 caracteres.",
         "retypePassword": "Retype Password"
     },
