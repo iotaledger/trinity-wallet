@@ -439,7 +439,7 @@
         "volume": "Volumen (24h)"
     },
     "rootDetection": {
-        "warning": "ALERTA",
+        "warning": "ADVERTENCIA",
         "rootDetected": "<0>Al parecer tu dispositivo esta rooteado. </0><1>Esto puede significar un riesgo considerable para tu billetera.</1> <2>¿Deseas continuar de todas formas?</2>"
     },
     "pow": {
