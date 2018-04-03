@@ -271,7 +271,7 @@
         "cannotPerformAction": "無法執行操作",
         "cannotPerformActionExplanation": "請到進階設定重置錢包。",
         "poorConnection": "連線不穩",
-        "poorConnectionExplanation": "由於連接不良, 無法更改幣別。",
+        "poorConnectionExplanation": "由於連接不穩，無法更改幣別。",
         "hide": "隱藏",
         "hideOthers": "隱藏其他",
         "show": "顯示",
@@ -281,7 +281,7 @@
         "cut": "剪下",
         "copy": "複製",
         "paste": "貼上",
-        "selectAll": "選擇所有",
+        "selectAll": "選擇全部",
         "securitySettings": "安全設定",
         "fingerprint": "生物識別驗證",
         "couldNotFetchRates": "無法取得匯率",
@@ -298,9 +298,9 @@
         "reset": "重設"
     },
     "walletSetup": {
-        "okay": "好囉。來建置您的錢包！",
-        "doYouAlreadyHaveASeed": "您是否已有希望使用的種子碼?",
-        "seedExplanation": "IOTA種子碼是由您帳戶的名稱和密碼結合成為81個字元長的字串。",
+        "okay": "好囉，現在來設置您的錢包！",
+        "doYouAlreadyHaveASeed": "您是否希望使用已擁有的種子碼?",
+        "seedExplanation": "IOTA 種子碼是由您帳戶的名稱和密碼結合成為 81 個字元長的字串。",
         "explanation": "<0><0>您可以用它來取得您的資金，這可以是</0><1>任何錢包</1><2>和</2><3>任何裝置</3><4>。但如果您遺失種子碼的話，就代表您損失您所有的 IOTA。</4></0>",
         "keepSafe": "請妥善保存您的種子碼"
     },
@@ -316,15 +316,15 @@
     "history": {
         "bundleHashCopied": "交易組雜湊值已複製",
         "bundleHashCopiedExplanation": "交易組的雜湊值已複製到剪貼簿。",
-        "addressCopied": "已複製地址",
+        "addressCopied": "地址已複製",
         "addressCopiedExplanation": "您的地址已複製到剪貼簿。",
         "send": "轉帳",
         "receive": "收款"
     },
     "accountManagement": {
-        "viewSeed": "查看種子",
+        "viewSeed": "檢視種子",
         "viewAddresses": "檢視地址",
-        "editAccountName": "修改帳戶名",
+        "editAccountName": "編輯帳戶名稱",
         "deleteAccount": "刪除帳戶",
         "addNewAccount": "新增帳戶"
     },
@@ -333,12 +333,12 @@
         "add": "新增"
     },
     "addNewAccount": {
-        "useExistingSeed": "使用現有的種子",
-        "createNewSeed": "創建新種子"
+        "useExistingSeed": "使用現有的種子碼",
+        "createNewSeed": "建立新的種子碼"
     },
     "advancedSettings": {
         "selectNode": "選擇節點",
-        "addCustomNode": "增加自訂節點",
+        "addCustomNode": "新增自訂節點",
         "manualSync": "手動同步",
         "snapshotTransition": "快照轉換"
     },
@@ -363,14 +363,14 @@
         "trillion": "兆",
         "billion": "十億",
         "million": "百萬",
-        "thousand": "一千",
-        "one": "一個"
+        "thousand": "千",
+        "one": "一"
     },
     "deleteAccount": {
         "areYouSure": "您確定要刪除 {{accountName}}？",
         "yourSeedWillBeRemoved": "您的種子和交易記錄將被移除。",
-        "thisAction": "此向操作無法復原",
-        "enterPassword": "請輸入密碼以刪除這個帳號。"
+        "thisAction": "此動作無法復原。",
+        "enterPassword": "請輸入密碼以刪除此帳戶。"
     },
     "manualSync": {
         "outOfSync": "您的交易紀錄是否看起來可能不同步？",
@@ -381,20 +381,20 @@
         "syncingYourAccount": "同步您的帳戶。"
     },
     "useExistingSeed": {
-        "title": "輸入種子和帳戶名稱。"
+        "title": "輸入種子碼和帳戶名稱。"
     },
     "viewSeed": {
-        "enterPassword": "輸入密碼查看您的種子。",
-        "viewSeed": "查看種子",
-        "hideSeed": "隱藏種子"
+        "enterPassword": "輸入密碼查看您的種子碼。",
+        "viewSeed": "檢視種子碼",
+        "hideSeed": "隱藏種子碼"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "我已儲存我的種子",
-        "reenter": "現在, 您將被要求重新輸入您的種子。",
+        "alreadyHave": "我已儲存我的種子碼",
+        "reenter": "現在您將必須重新輸入您的種子碼。",
         "reenterWarning": "如果您的裝置失效而且您沒有儲存種子碼的話，您將損失您的 IOTA。"
     },
     "walletResetConfirmation": {
-        "cannotUndo": "此動作將無法撤銷。",
+        "cannotUndo": "此動作將無法復原。",
         "warning": "<0><0>所有的錢包資訊包含您的</0><1>種子碼、密碼</1><2>以及</2><3>其他帳戶訊息</3><4>都將遺失。</4></0>"
     },
     "fingerprintSetup": {
@@ -452,9 +452,9 @@
     },
     "progressSteps": {
         "validatingReceiveAddress": "驗證收款地址",
-        "syncingAccount": "正在同步帳戶中",
-        "preparingInputs": "正在準備交易來源資訊",
-        "preparingTransfers": "正在準備交易資訊",
+        "syncingAccount": "同步帳戶中",
+        "preparingInputs": "準備交易輸入",
+        "preparingTransfers": "準備交易資訊",
         "gettingTransactionsToApprove": "取得交易確認",
         "proofOfWork": "完成工作量證明",
         "broadcasting": "廣播中"
