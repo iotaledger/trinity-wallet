@@ -86,10 +86,10 @@
         "pleaseWaitExplanation": "Trinity esta ocupada. Por favor espere un poco e intente nuevamente.",
         "pleaseWaitTransferExplanation": "Su saldo disponible se está utilizando actualmente en otras transferencias. Por favor, espere a que una de ellas se confirme antes de volver a intentarlo.",
         "snapshotTransitionInProgress": "Transicion de snapshot en progreso",
-        "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete.",
-        "checkForUpdates": "Check for Updates",
-        "account": "Account",
-        "enterPasswordToAccessSettings": "Enter your password to access account settings"
+        "snapshotTransitionInProgressExplanation": "Porfavor espere a que la transicion este completa.",
+        "checkForUpdates": "Buscar actualizaciones",
+        "account": "Cuenta",
+        "enterPasswordToAccessSettings": "Ingrese su contraseña para acceder a las configuraciones de cuentas"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contiene caracteres inválidos",
@@ -130,7 +130,7 @@
         "seedCopiedExplanation": "La seed será borrada al presionar “Listo” o al osar 60 segundos.",
         "clickToCopy": "Haz click en el botón y copia tu seed a un administrador de contraseñas.",
         "doNotStore": "No almacenes tu seed en texto plano.",
-        "copyToClipboard": "Copy seed",
+        "copyToClipboard": "Copiar semilla",
         "shareSeed": "Share your seed to a secure password manager"
     },
     "enterSeed": {
