@@ -49,7 +49,7 @@
         "password": "Slaptažodis",
         "passwordOrFingerprint": "Slaptažodis arba piršto antspaudas",
         "unrecognisedPassword": "Slaptažodis neatpažintas",
-        "unrecognisedPasswordExplanation": "The password was not recognised. Please try again.",
+        "unrecognisedPasswordExplanation": "Slaptažodis neatpažintas. Bandykite dar kartą.",
         "syncInProgress": "Syncing in progress",
         "syncInProgressExplanation": "Please wait until syncing is complete.",
         "somethingWentWrong": "Something went wrong",
