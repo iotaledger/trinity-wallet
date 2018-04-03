@@ -24,7 +24,7 @@
         "seed": "Seeme",
         "back": "TAGASI",
         "backLowercase": "Tagasi",
-        "done": "TEHTUD",
+        "done": "VALMIS",
         "doneLowercase": "Valmis",
         "next": "JÄRGMINE",
         "apply": "Rakenda",
@@ -118,7 +118,7 @@
         "passwordTooShortExplanation": "Sinu parool peab olema vähemalt 12 tähemärki pikk. Palun proovi uuesti.",
         "oldPassword": "Ei saa kasutada vana parooli",
         "oldPasswordExplanation": "You cannot use the old password as your new password. Please try again with a new password.",
-        "ensureStrongPassword": "Ensure you use a strong password of at least 12 characters.",
+        "ensureStrongPassword": "Veenduge, et kasutate vähemalt 12 tähemärgi pikkust tugevat parooli.",
         "currentPassword": "Praegune parool",
         "newPassword": "Uus parool",
         "confirmPassword": "Kinnita uus parool"
@@ -138,7 +138,7 @@
         "invalidCharactersExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
         "seedTooShort": "Seeme on liiga ühike",
         "seedTooShortExplanation": "Seemned peavad olema {{maxLength}} tähemärki pikad. Teie seeme on praegu {{currentLength}} tähemärgi pikkune. Palun proovige uuesti.",
-        "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
+        "seedExplanation": "Seemned peaksid olema {{maxLength}} tähemärki pikad ja peaksid sisaldama suuri tähti A-Z või numbrit 9. Te ei saa kasutada seemneid, mis on lühemad kui {{maxLength}} tähemärki.",
         "neverShare": "ÄRA JAGA KUNAGI OMA SEEMET KELLEGAGI"
     },
     "home": {
@@ -232,12 +232,12 @@
         "passwordMismatch": "Paroolid ei kattu",
         "passwordMismatchExplanation": "The passwords you have entered do not match. Please try again.",
         "nowWeNeedTo": "Nüüd peame me parooli panema.",
-        "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
-        "ensure": "Ensure you use a strong password of at least 12 characters.",
-        "retypePassword": "Retype Password"
+        "anEncryptedCopy": "Seemne krüpteeritud koopia salvestatakse teie seadmesse. Seda parooli kasutate edaspidi oma rahakotti sisenemiseks.",
+        "ensure": "Veenduge, et kasutate vähemalt 12 tähemärgi pikkust tugevat parooli.",
+        "retypePassword": "Parool uuesti"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "You can use multiple seeds with this wallet. Each seed requires an account name.",
+        "canUseMultipleSeeds": "Te saate selle rahakotiga kasutada mitut seemet. Iga seeme vajab konto nime.",
         "youCanAdd": "You can add more seeds in the Settings menu."
     },
     "modeSelection": {
@@ -301,13 +301,13 @@
         "okay": "Okei. Seadistame sinu rahakoti ära!",
         "doYouAlreadyHaveASeed": "Kas teil on juba seeme, mida te sooviksite kasutada?",
         "seedExplanation": "IOTA seeme on nagu teie konto kasutajanimi ja parool, aga ühes tükis ja 81 tähemärki pikk.",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
+        "explanation": "<0><0>Selle abil saate oma rahale ligi pääseda</0> <1>igast rahakotist</1> <2>,</2> <3>mis tahes seadmest</3> <4>. Kuid kui te kaotate oma seemne, kaotate oma IOTA.</4></0>",
         "keepSafe": "Palun hoidke oma seemne turvalisust."
     },
     "welcome": {
-        "thankYou": "Täname Trinity alla laadimise eest.",
-        "weWillSpend": "Me veedame teie rahakoti üles seadmiseks järgmised paar minutit.",
-        "reminder": "You may be tempted to skip some steps, but we urge you to follow the complete process."
+        "thankYou": "Täname teid Trinity alla laadimise eest.",
+        "weWillSpend": "Me veedame järgmised paar minutit teie rahakoti üles seadmiseks.",
+        "reminder": "Teil võib tekkida kiusatus mõni samm vahele jätta, kuid me soovitame tungivalt kogu protsessi täielikult läbida."
     },
     "writeSeedDown": {
         "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
