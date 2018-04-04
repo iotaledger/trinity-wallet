@@ -45,9 +45,15 @@ class AccountName extends PureComponent {
     /** Change account name in state and in vault */
     setAccountName() {
         const { accountName, changeAccountName, accountInfo, generateAlert, t } = this.props;
-        const { newAccountName } = this.state;
 
         const accountNames = Object.keys(accountInfo);
+
+        const newAccountName = this.state.newAccountName.replace(/^\s+|\s+$/g, '');
+
+        if (newAccountName.length < 1) {
+            generateAlert('error', t('addAdditionalSeed:noNickname'), t('addAdditionalSeed:noNicknameExplanation'));
+            return;
+        }
 
         if (accountNames.indexOf(newAccountName) > -1) {
             generateAlert('error', t('addAdditionalSeed:nameInUse'), t('addAdditionalSeed:nameInUseExplanation'));
@@ -79,7 +85,7 @@ class AccountName extends PureComponent {
                     onChange={(value) => this.setState({ newAccountName: value })}
                 />
                 <fieldset>
-                    <Button disabled={newAccountName === accountName} type="submit">
+                    <Button disabled={newAccountName.replace(/^\s+|\s+$/g, '') === accountName} type="submit">
                         {t('save')}
                     </Button>
                 </fieldset>

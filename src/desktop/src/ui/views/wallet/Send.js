@@ -7,7 +7,7 @@ import { getVault } from 'libs/crypto';
 
 import AddressInput from 'ui/components/input/Address';
 import AmountInput from 'ui/components/input/Amount';
-import MessageInput from 'ui/components/input/Message';
+import TextInput from 'ui/components/input/Text';
 import Button from 'ui/components/Button';
 import Confirm from 'ui/components/modal/Confirm';
 import withSendData from 'containers/wallet/Send';
@@ -167,8 +167,8 @@ class Send extends React.PureComponent {
                         balance={balance}
                         onChange={(value) => this.setState({ amount: value })}
                     />
-                    <MessageInput
-                        message={message}
+                    <TextInput
+                        value={message}
                         label={t('send:message')}
                         onChange={(value) => this.setState({ message: value })}
                     />
