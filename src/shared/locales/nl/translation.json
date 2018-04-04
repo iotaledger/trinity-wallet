@@ -22,7 +22,7 @@
         "invalidResponseFetchingAccount": "De node gaf een ongeldig antwoord bij het opvragen van uw accountinformatie. Probeer het opnieuw.",
         "invalidResponseSendingTransfer": "De node heeft een ongeldige reactie teruggestuurd tijdens het verzenden van de transactie.",
         "seed": "Sleutel",
-        "back": "Terug",
+        "back": "TERUG",
         "backLowercase": "Terug",
         "done": "Gereed",
         "doneLowercase": "Gereed",
@@ -38,14 +38,14 @@
         "notAvailableExplanation": "Dit zal in een later stadium worden toegevoegd.",
         "enterSeed": "Voer uw sleutel in.",
         "mainWallet": "Hoofdaccount",
-        "secondWallet": "Tweede account",
-        "thirdWallet": "Derde account",
-        "fourthWallet": "Vierde account",
+        "secondWallet": "TWEEDE ACCOUNT",
+        "thirdWallet": "DERDE ACCOUNT",
+        "fourthWallet": "VIERDE ACCOUNT",
         "fifthWallet": "Vijfde account",
         "sixthWallet": "Zesde account",
         "otherWallet": "Andere account",
         "yes": "Ja",
-        "no": "Nee",
+        "no": "NEE",
         "password": "Wachtwoord",
         "passwordOrFingerprint": "Wachtwoord of vingerafdruk",
         "unrecognisedPassword": "Onjuist wachtwoord",
@@ -95,15 +95,15 @@
         "seedInvalidChars": "De seed bevat ongeldige tekens",
         "seedInvalidCharsExplanation": "Sleutels kunnen alleen de hoofdletters A-Z en het getal 9 bevatten. Uw sleutel bevat ongeldige tekens. Probeer het opnieuw.",
         "seedTooShort": "Sleutel is te kort",
-        "seedTooShortExplanation": "Uw sleutel moet minstens {{maxLength}} tekens lang zijn. Het is momenteel {{currentLength}} tekens lang. Probeer het opnieuw.",
+        "seedTooShortExplanation": "Sleutel moet minstens {{maxLength}} tekens lang zijn. Uw sleutel is momenteel {{currentLength}} tekens lang. Probeer het opnieuw.",
         "nameInUse": "Deze accountnaam is al in gebruik",
         "nameInUseExplanation": "Gebruik een unieke accountnaam voor uw sleutel.",
         "enterAccountName": "Voer een accountnaam in.",
         "accountName": "Accountnaam",
         "noNickname": "Geen accountnaam ingevoerd",
-        "noNicknameExplanation": "Voer een account naam in voor uw sleutel.",
+        "noNicknameExplanation": "Voer een accountnaam in voor uw sleutel.",
         "seedInUse": "Sleutel al in gebruik",
-        "seedInUseExplanation": "Deze sleutel is al gekoppeld aan uw wallet. Gebruik een andere."
+        "seedInUseExplanation": "Deze sleutel is al gekoppeld aan uw wallet. Gebruik een andere sleutel."
     },
     "changePassword": {
         "oops": "Oeps! Er is iets mis gegaan",
@@ -156,7 +156,7 @@
         "emptyPasswordExplanation": "Voer een wachtwoord in om u aan te melden. Probeer het opnieuw.",
         "enterPassword": "Voor uw wachtwoord in.",
         "useSeed": "GEBRUIK SLEUTEL",
-        "login": "Aanmelden",
+        "login": "AANMELDEN",
         "selectDifferentNode": "Wilt u een andere node selecteren?",
         "setNode": "SELECTEER NODE",
         "cannotConnect": "Kan niet verbinden IOTA node."
@@ -234,7 +234,7 @@
         "nowWeNeedTo": "Nu gaan we een wachtwoord instellen.",
         "anEncryptedCopy": "Een gecodeerde kopie van uw sleutel wordt opgeslagen op uw apparaat. U gebruikt dit wachtwoord voor toegang tot uw wallet in de toekomst.",
         "ensure": "Zorg ervoor u een sterk wachtwoord gebruikt van ten minste 12 karakters.",
-        "retypePassword": "Wachtwoord herhalen"
+        "retypePassword": "Herhaal wachtwoord"
     },
     "setSeedName": {
         "canUseMultipleSeeds": "U kunt in deze wallet meerdere seeds gebruiken. Elke seed vereist een accountnaam.",
@@ -298,7 +298,7 @@
         "reset": "RESET"
     },
     "walletSetup": {
-        "okay": "Oke. We gaan uw wallet instellen!",
+        "okay": "Oke. Laten we uw wallet instellen!",
         "doYouAlreadyHaveASeed": "Heeft u al een sleutel die u zou willen gebruiken?",
         "seedExplanation": "De IOTA-sleutel is als een gebruikersnaam en wachtwoord voor uw account, samengevoegd in een tekenreeks van 81 karakters.",
         "explanation": "<0><0>U krijgt hiermee toegang tot uw saldo vanuit</0><1>elke wallet</1><2>, op</2><3>elk apparaat</3><4>. Maar als u uw sleutel verliest, verliest u daarmee ook uw IOTA.</4></0>",
@@ -367,7 +367,7 @@
         "one": "Een"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete {{accountName}}?",
+        "areYouSure": "Weet u zeker dat u {{accountName}} wilt verwijderen?",
         "yourSeedWillBeRemoved": "Uw sleutel en transactiegeschiedenis zullen worden verwijderd.",
         "thisAction": "Deze actie kan niet ongedaan worden gemaakt.",
         "enterPassword": "Typ uw wachtwoord als u deze account wilt verwijderen."
