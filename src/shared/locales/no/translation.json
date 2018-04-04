@@ -89,7 +89,7 @@
         "snapshotTransitionInProgressExplanation": "Vent til synkroniseringen er fullført.",
         "checkForUpdates": "Søk etter oppdateringer",
         "account": "Konto",
-        "enterPasswordToAccessSettings": "Enter your password to access account settings"
+        "enterPasswordToAccessSettings": "Skriv inn passordet ditt for å endre kontoinnstillinger"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøkkelen inneholder ugyldige tegn",
@@ -274,7 +274,7 @@
         "poorConnectionExplanation": "Kan ikke endre valuta på grunn av en dårlig forbindelse.",
         "hide": "Skjul",
         "hideOthers": "Skjul andre",
-        "show": "Show",
+        "show": "Vis",
         "showAll": "Vis alle",
         "quit": "Avslutt",
         "edit": "Rediger",
@@ -288,9 +288,9 @@
         "couldNotFetchRatesExplanation": "Valutakurser kunne ikke hentes for {{currency}}.",
         "fetchedConversionRates": "Mottatte valutakurser",
         "fetchedConversionRatesExplanation": "Henting av valutakurs for {{currency}} var vellykket.",
-        "undo": "Undo",
-        "redo": "Redo",
-        "about": "About Trinity"
+        "undo": "Angre",
+        "redo": "Gjenta",
+        "about": "Om Trinity"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Skriv inn passordet for å tilbakestille lommeboken.",
@@ -300,7 +300,7 @@
     "walletSetup": {
         "okay": "OK. La oss sette opp lommeboken din!",
         "doYouAlreadyHaveASeed": "Har du allerede en hovednøkkel du ønsker å bruke?",
-        "seedExplanation": "IOTA hovednøkkel er som et brukernavn og passord til kontoen, kombinert i en streng på 81 tegn.",
+        "seedExplanation": "IOTA hovednøkkelen er som et brukernavn og passord til kontoen, kombinert i en streng på 81 tegn.",
         "explanation": "<0><0>Du kan bruke den til å få tilgang til midler fra</0> <1>enhver lommebok</1> <2>, på</2> <3>enhver enhet</3> <4>. Men hvis du mister din nøkkel, du også miste din IOTA.</4></0>",
         "keepSafe": "Vennligst sikre din hovednøkkel godt."
     },
@@ -367,7 +367,7 @@
         "one": "En"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete {{accountName}}?",
+        "areYouSure": "Er du sikker på at du vil slette {{accountName}}?",
         "yourSeedWillBeRemoved": "Din nøkkel og transaksjonsloggen vil bli fjernet.",
         "thisAction": "Denne handlingen kan ikke angres.",
         "enterPassword": "Skriv inn passordet for å slette kontoen."
