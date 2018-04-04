@@ -269,6 +269,20 @@
 			remoteGlobalIDString = 8926D8C49D7F71B16EF71429B52E1590;
 			remoteInfo = "ART-tvOS";
 		};
+		6097DB402073E11400709F08 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 33AC314FF1C9CE4F19E8E899E79675B4 /* React.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EBF21BDC1FC498900052F4D5;
+			remoteInfo = jsinspector;
+		};
+		6097DB422073E11400709F08 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 33AC314FF1C9CE4F19E8E899E79675B4 /* React.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EBF21BFA1FC4989A0052F4D5;
+			remoteInfo = "jsinspector-tvOS";
+		};
 		67F735F37D9C96FFCC1469292012988C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 79A46F4458348360C0DFE21018DAAF14 /* RCTGeolocation.xcodeproj */;
@@ -1119,6 +1133,8 @@
 				CBE688352073021A00F0FFFD /* libcxxreact.a */,
 				4638EBE17A0D3826A792DF9563570526 /* libjschelpers.a */,
 				CBE688372073021A00F0FFFD /* libjschelpers.a */,
+				6097DB412073E11400709F08 /* libjsinspector.a */,
+				6097DB432073E11400709F08 /* libjsinspector-tvOS.a */,
 				A449CDAA92C2C98ABDF0AE5690864303 /* libthird-party.a */,
 				CBE688392073021A00F0FFFD /* libthird-party.a */,
 				CBE6883B2073021A00F0FFFD /* libdouble-conversion.a */,
@@ -1739,6 +1755,20 @@
 			fileType = archive.ar;
 			path = "libRNDeviceInfo-tvOS.a";
 			remoteRef = 5A109CA5CC18A16B6414EEC4BBD87090 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6097DB412073E11400709F08 /* libjsinspector.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libjsinspector.a;
+			remoteRef = 6097DB402073E11400709F08 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6097DB432073E11400709F08 /* libjsinspector-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libjsinspector-tvOS.a";
+			remoteRef = 6097DB422073E11400709F08 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		667F57494F99C69927244B789F08BA39 /* Lottie.framework */ = {

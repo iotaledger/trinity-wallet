@@ -89,7 +89,7 @@
         "snapshotTransitionInProgressExplanation": "Počkejte prosím na dokončení aktualizace údajů po Snapshotu.",
         "checkForUpdates": "Kontrola aktualizací",
         "account": "Účet",
-        "enterPasswordToAccessSettings": "Enter your password to access account settings"
+        "enterPasswordToAccessSettings": "Zadejte Vaše heslo pro přístup k nastavení účtu"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
@@ -274,7 +274,7 @@
         "poorConnectionExplanation": "Nezdařilo se změnit měnu - špatné spojení.",
         "hide": "Skrýt",
         "hideOthers": "Skrýt ostatní",
-        "show": "Show",
+        "show": "Zobrazit",
         "showAll": "Zobrazit vše",
         "quit": "Ukončit",
         "edit": "Upravit",
@@ -288,9 +288,9 @@
         "couldNotFetchRatesExplanation": "Došlo k chybě při načítání kurzu pro {{currency}}.",
         "fetchedConversionRates": "Načítám kurzy",
         "fetchedConversionRatesExplanation": "Úspěšně načtené nejnovější kurzy pro {{currency}}.",
-        "undo": "Undo",
-        "redo": "Redo",
-        "about": "About Trinity"
+        "undo": "Zrušit",
+        "redo": "Znovu",
+        "about": "O Trinity"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Pro smazání peněženky zadejte Vaše heslo.",
@@ -367,7 +367,7 @@
         "one": "Jedna"
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete {{accountName}}?",
+        "areYouSure": "Opravdu chcete smazat účet s názvem {{accountName}}?",
         "yourSeedWillBeRemoved": "Váš Seed a transakční historie budou odebrány.",
         "thisAction": "Tuto akci nelze vrátit zpět.",
         "enterPassword": "Pro smazání účtu, zadejte Vaše heslo."

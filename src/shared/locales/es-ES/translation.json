@@ -19,7 +19,7 @@
         "invalidResponse": "Respuesta inválida",
         "invalidResponseExplanation": "El servidor devuelve una respuesta inválida.",
         "invalidResponsePollingExplanation": "El servidor devolvió una respuesta inválida durante la obtención de datos de cartera.",
-        "invalidResponseFetchingAccount": "The node returned an invalid response while fetching your account information. Try changing node.",
+        "invalidResponseFetchingAccount": "El servidor devolvió una respuesta inválida mientras obtenía la información de su cuenta. Intenta cambiar el nodo.",
         "invalidResponseSendingTransfer": "El servidor devolvió una respuesta inválida mientras enviaba la transferencia.",
         "seed": "Seed",
         "back": "ATRÁS",
@@ -53,8 +53,8 @@
         "syncInProgress": "Sincronización en progreso",
         "syncInProgressExplanation": "Por favor espera a que la sincronización esté completa.",
         "somethingWentWrong": "Algo salió mal",
-        "somethingWentWrongRestart": "Please restart the app.",
-        "somethingWentWrongTryAgain": "Please try again.",
+        "somethingWentWrongRestart": "Por favor, reinicie la aplicación.",
+        "somethingWentWrongTryAgain": "Por favor, inténtelo otra vez.",
         "node": "Nodo",
         "cannotPerformAction": "No se puede realizar la acción",
         "cannotPerformActionExplanation": "Ve a opciones avanzadas para restaurar la cartera.",
@@ -69,27 +69,27 @@
         "pending": "Pendiente",
         "bundleHash": "Hash de Paquete",
         "addresses": "Direcciones",
-        "reattach": "REATTACH",
-        "promote": "PROMOTE",
-        "rebroadcast": "REBROADCAST",
+        "reattach": "REVINCULAR",
+        "promote": "PROMOVER",
+        "rebroadcast": "RETRANSMISIÓN",
         "pressBackAgain": "Pulsa atrás otra vez para cerrar la app",
         "autoreattaching": "Auto-revinculando al Tangle",
         "autoreattachingExplanation": "Revinculando la transacción con hash {{hash}}",
         "autopromoting": "Auto-promoviendo la transferencia",
         "autopromotingExplanation": "Promoviendo la transacción con hash {{hash}}",
-        "promoting": "Promoting transfer",
-        "promotionError": "Could not promote transaction",
-        "noLongerValid": "The bundle you are trying to promote is no longer valid",
-        "cannotSendToOwn": "Sending to own address",
-        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses.",
-        "pleaseWait": "Please wait",
-        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
-        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again.",
-        "snapshotTransitionInProgress": "Snapshot transition in progress",
-        "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete.",
-        "checkForUpdates": "Check for Updates",
+        "promoting": "Promoviendo transferencia",
+        "promotionError": "No se pudo promover la transaccion",
+        "noLongerValid": "El paquete que esta intentando promover ya no es valido",
+        "cannotSendToOwn": "Enviando a una direccion propia",
+        "cannotSendToOwnExplanation": "No puedes hacer una transferencia de valor a una dirección propia.",
+        "pleaseWait": "Espere por favor",
+        "pleaseWaitExplanation": "Trinity está ejecutando otra función. Por Favor espere un poco e intente devuelta.",
+        "pleaseWaitTransferExplanation": "Tu balance disponible está siendo usado en otra transferencia. Por favor espere a que dicha transferencia se confirme e intente devuelta.",
+        "snapshotTransitionInProgress": "Transición de snapshot en progreso",
+        "snapshotTransitionInProgressExplanation": "Por favor espere hasta que la transición se complete.",
+        "checkForUpdates": "Comprobar Actualizaciones",
         "account": "Cuenta",
-        "enterPasswordToAccessSettings": "Enter your password to access account settings"
+        "enterPasswordToAccessSettings": "Introduzca su contraseña para acceder a la configuración de su cuenta"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contiene caracteres inválidos",
@@ -130,8 +130,8 @@
         "seedCopiedExplanation": "La seed será borrada al presionar “Listo” o pasados 60 segundos.",
         "clickToCopy": "Pulsa en el botón de abajo y copia tu seed en un administrador de contraseñas.",
         "doNotStore": "No almacenes tu seed en texto plano.",
-        "copyToClipboard": "Copy seed",
-        "shareSeed": "Share your seed to a secure password manager"
+        "copyToClipboard": "Copiar semilla",
+        "shareSeed": "Compartir su semilla en un administrador de contraseñas seguro"
     },
     "enterSeed": {
         "invalidCharacters": "La seed contiene caracteres inválidos",
@@ -164,12 +164,12 @@
     "loading": {
         "loadingFirstTime": "Cargando la seed por primera vez.",
         "thisMayTake": "Esto puede tardar un rato.",
-        "doNotMinimise": "Do not minimise or close the app.",
+        "doNotMinimise": "No minimizar ni cerrar la aplicación.",
         "youMayNotice": "Puedes notar que se alenta tu dispositivo."
     },
     "newSeedSetup": {
         "seedNotGenerated": "La semilla no se ha generado",
-        "seedNotGeneratedExplanation": "Please generate a new seed.",
+        "seedNotGeneratedExplanation": "Por favor genere una nueva semilla.",
         "pressForNewSeed": "PULSAR PARA NUEVA SEED",
         "individualLetters": "Pulsa letras individuales para que el proceso sea aleatorio."
     },
@@ -190,7 +190,7 @@
         "message": "Mensaje opcional",
         "removeMessage": "ELIMINAR MENSAJE",
         "noAddresses": "SIN DIRECCIONES",
-        "spent": "Spent"
+        "spent": "Gastado"
     },
     "saveYourSeed": {
         "seedCleared": "Seed removida",
@@ -244,7 +244,7 @@
         "expert": "Expert",
         "standard": "Standard",
         "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
-        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
+        "modesExplanation": "Sólo active el modo experto si es un usuario experimentado con Tangle. De lo contrario, puede encontrarlo confuso."
     },
     "settings": {
         "transferSending": "Transferencia en envío",
@@ -288,9 +288,9 @@
         "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
         "fetchedConversionRates": "Fetched conversion rates",
         "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}.",
-        "undo": "Undo",
-        "redo": "Redo",
-        "about": "About Trinity"
+        "undo": "Deshacer",
+        "redo": "Rehacer",
+        "about": "Acerca de Trinity"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Ingresa tu contraseña para reiniciar la cartera.",
@@ -305,7 +305,7 @@
         "keepSafe": "Por favor guarda tu seed de manera segura."
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity.",
+        "thankYou": "Gracias por descargar Trinity.",
         "weWillSpend": "Vamos a pasar unos pocos minutos configurando tu cartera.",
         "reminder": "Puede tentarte saltar algunos pasos, pero te sugerimos seguir el proceso completo."
     },
