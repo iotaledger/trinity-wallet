@@ -174,6 +174,10 @@ class Home extends Component {
     };
 
     keyboardWillShow = (event) => {
+        const { inactive } = this.props;
+        if (inactive) {
+            return;
+        }
         this.handleCloseTopBar();
         this.setState({ isIOSKeyboardActive: true });
         Animated.timing(this.viewFlex, {
