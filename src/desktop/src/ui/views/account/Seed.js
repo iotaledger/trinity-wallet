@@ -53,7 +53,7 @@ class Seed extends PureComponent {
                 </p>
                 <fieldset>
                     <Button onClick={() => this.setState({ hidden: !hidden })}>
-                        {hidden ? t('settings:show') : t('hide')}
+                        {hidden ? t('settings:show') : t('settings:hide')}
                     </Button>
                 </fieldset>
             </form>

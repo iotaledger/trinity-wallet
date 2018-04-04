@@ -77,7 +77,7 @@ class List extends React.PureComponent {
                                     !transfers || !transfers.length ? css.disabled : null,
                                 )}
                             >
-                                {item}
+                                {item === 'All' ? 'All' : t(item.toLowerCase())}
                             </a>
                         );
                     })}
@@ -96,8 +96,8 @@ class List extends React.PureComponent {
                             const isConfirmed = transfer.persistence;
 
                             if (
-                                (filter === 'Sent' && isReceived) ||
-                                (filter === 'Received' && !isReceived) ||
+                                (filter === 'Sent' && (isReceived || !isConfirmed)) ||
+                                (filter === 'Received' && (!isReceived || !isConfirmed)) ||
                                 (filter === 'Pending' && isConfirmed)
                             ) {
                                 return null;
@@ -126,7 +126,7 @@ class List extends React.PureComponent {
                             );
                         })
                     ) : (
-                        <p className={css.empty}>No recent history</p>
+                        <p className={css.empty}>{t('noTransactions')}</p>
                     )}
                 </div>
                 <div className={classNames(css.popup, activeTransfer ? css.on : null)} onClick={() => setItem(null)}>
@@ -157,7 +157,7 @@ class List extends React.PureComponent {
                                         <em>{formatModalTime(convertUnixTimeToJSDate(activeTransfer.timestamp))}</em>
                                     </small>
                                 </p>
-                                <h6>Bundle Hash:</h6>
+                                <h6>{t('bundleHash')}:</h6>
                                 <p className={css.hash}>
                                     <Clipboard
                                         text={activeTransfer.bundle}

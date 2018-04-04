@@ -69,7 +69,7 @@ class TwoFA extends React.Component {
                 passwordConfirm: true,
             });
         } else {
-            generateAlert('error', t('Incorrect code'), t('Incorrect code'));
+            generateAlert('error', t('twoFA:wrongCode'), t('twoFA:wrongCodeExplanation'));
         }
     }
 
@@ -167,15 +167,16 @@ class TwoFA extends React.Component {
                 <h2>{t('twoFA:addKey')}</h2>
                 <QRCode size={180} value={authenticator.generateTotpUri(key, 'Trinity desktop wallet')} />
                 <p>
-                    Key:{' '}
+                    {t('twoFA:key')}:{' '}
                     <Clipboard text={key} title={t('twoFA:keyCopied')} success={t('twoFA:keyCopiedExplanation')}>
                         <strong>{key}</strong>
                     </Clipboard>
                 </p>
+                <hr />
                 <h2>{t('twoFA:enterCode')}:</h2>
                 <Text value={code} onChange={(value) => this.setState({ code: value })} />
                 <Button type="submit" variant="primary">
-                    {t('Enable')}
+                    {t('apply')}
                 </Button>
             </form>
         );
