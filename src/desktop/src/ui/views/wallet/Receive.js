@@ -6,7 +6,9 @@ import { connect } from 'react-redux';
 import QRCode from 'qrcode.react';
 import { selectAccountInfo, getSelectedAccountName } from 'selectors/accounts';
 import { runTask } from 'worker';
+
 import { setReceiveAddress } from 'actions/wallet';
+import { generateAlert } from 'actions/alerts';
 
 import { getSeed } from 'libs/crypto';
 
@@ -31,6 +33,10 @@ class Receive extends React.PureComponent {
         seedIndex: PropTypes.number,
         /** Current password value */
         password: PropTypes.string,
+        /** Is the wallet currently syncing */
+        isSyncing: PropTypes.bool.isRequired,
+        /** Is the wallet currently transitioning */
+        isTransitioning: PropTypes.bool.isRequired,
         /** Is wallet generating receive address state */
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
         /** Set receive address
@@ -38,6 +44,13 @@ class Receive extends React.PureComponent {
          * @ignore
          */
         setReceiveAddress: PropTypes.func.isRequired,
+        /** Create a notification message
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
+         * @ignore
+         */
+        generateAlert: PropTypes.func.isRequired,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
@@ -56,7 +69,11 @@ class Receive extends React.PureComponent {
     }
 
     onGeneratePress = async () => {
-        const { password, accountName, account, seedIndex } = this.props;
+        const { password, accountName, account, seedIndex, isSyncing, isTransitioning, generateAlert, t } = this.props;
+
+        if (isSyncing || isTransitioning) {
+            return generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
+        }
 
         const seed = await getSeed(seedIndex, password);
 
@@ -94,6 +111,8 @@ class Receive extends React.PureComponent {
 const mapStateToProps = (state) => ({
     receiveAddress: state.wallet.receiveAddress,
     isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
+    isSyncing: state.ui.isSyncing,
+    isTransitioning: state.ui.isTransitioning,
     account: selectAccountInfo(state),
     accountName: getSelectedAccountName(state),
     password: state.wallet.password,
@@ -102,6 +121,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     setReceiveAddress,
+    generateAlert,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate()(Receive));
