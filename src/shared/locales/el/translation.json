@@ -78,7 +78,7 @@
         "autopromoting": "Αυτόματη προώθηση συναλλαγής",
         "autopromotingExplanation": "Επανατοποθέτηση συναλλαγής με κατατεμαχισμό ",
         "promoting": "Αυτόματη προώθηση συναλλαγής",
-        "promotionError": "Could not promote transaction",
+        "promotionError": "Η συναλλαγή δεν προωθήθηκε",
         "noLongerValid": "Η δέσμη που προσπαθείτε να προωθήσετε δεν είναι πλέον έγκυρη",
         "cannotSendToOwn": "Αποστολή σε ιδιωτική διεύθυνση",
         "cannotSendToOwnExplanation": "Δεν μπορείτε να κάνετε μια τιμή μεταφοράς σε μία από τις δικές  σας διευθύνσεις ",
@@ -453,11 +453,11 @@
     "progressSteps": {
         "validatingReceiveAddress": "Επαληθεύοντας τη διεύθυνση λήψης",
         "syncingAccount": "Συγχρονισμός Λογαριασμού",
-        "preparingInputs": "Preparing inputs",
-        "preparingTransfers": "Ετοιμάζοντας μεταφορές",
-        "gettingTransactionsToApprove": "Getting transactions to approve",
-        "proofOfWork": "Completing proof of work",
-        "broadcasting": "Broadcasting"
+        "preparingInputs": "Προετοιμασία εισόδων",
+        "preparingTransfers": "Ετοιμάζοντας τις μεταφορές",
+        "gettingTransactionsToApprove": "Προσπαθώντας να επικυρώσουμε τις συναλλαγές",
+        "proofOfWork": "Τελειώνοντας το Proof of Work",
+        "broadcasting": "Μεταδίδοντας"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Δεν μπορεί να ολοκληρώσει τη μετάβαση στιγμιότυπο",
