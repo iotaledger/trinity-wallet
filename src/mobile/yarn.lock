@@ -5275,9 +5275,9 @@ react-native-drawer-layout@1.3.2:
   dependencies:
     react-native-dismiss-keyboard "1.0.0"
 
-"react-native-dropdownalert@git+https://git@github.com/rajivshah3/react-native-dropdownalert":
-  version "3.1.2"
-  resolved "git+https://git@github.com/rajivshah3/react-native-dropdownalert#4e6355398d74b64210acac23cd69a2aace3e1bfd"
+"react-native-dropdownalert@https://github.com/rajivshah3/react-native-dropdownalert#3.4.0":
+  version "3.4.0"
+  resolved "https://github.com/rajivshah3/react-native-dropdownalert#4c3054cffd5cdf505da3ae1d7279ed6fe663c9bf"
   dependencies:
     prop-types "15.5.10"
 
