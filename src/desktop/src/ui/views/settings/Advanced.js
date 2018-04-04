@@ -24,11 +24,6 @@ class Advanced extends PureComponent {
          * @ignore
          */
         updatePowSettings: PropTypes.func.isRequired,
-        /** Update local PoW settings state
-         * @param {Bool} state - Error notification content
-         * @ignore
-         */
-
         /** Create a notification message
          * @param {String} type - notification type - success, error
          * @param {String} title - notification title
