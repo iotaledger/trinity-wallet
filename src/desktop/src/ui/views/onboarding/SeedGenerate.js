@@ -133,7 +133,7 @@ class GenerateSeed extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    newSeed: state.onboarding.ui.seed,
+    newSeed: state.ui.onboarding.seed,
 });
 
 const mapDispatchToProps = {

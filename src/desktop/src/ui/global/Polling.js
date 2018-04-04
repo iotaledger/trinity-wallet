@@ -6,16 +6,21 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getSelectedAccountName } from 'selectors/accounts';
 import { removeBundleFromUnconfirmedBundleTails } from 'actions/accounts';
-import { fetchMarketData, fetchChartData, fetchPrice, setPollFor, promoteTransfer } from 'actions/polling';
-
-import { runTask } from 'worker';
-import { getSeed } from 'libs/crypto';
+import {
+    fetchMarketData,
+    fetchChartData,
+    fetchPrice,
+    setPollFor,
+    promoteTransfer,
+    getAccountInfo,
+} from 'actions/polling';
 
 /** Background wallet polling component */
 class Polling extends React.PureComponent {
     static propTypes = {
         wallet: PropTypes.object.isRequired,
         pollFor: PropTypes.string.isRequired,
+        getAccountInfo: PropTypes.func.isRequired,
         allPollingServices: PropTypes.array.isRequired,
         selectedAccountName: PropTypes.string.isRequired,
         unconfirmedBundleTails: PropTypes.object.isRequired,
@@ -75,11 +80,7 @@ class Polling extends React.PureComponent {
     };
 
     fetchLatestAccountInfo = async () => {
-        const { wallet, selectedAccountName } = this.props;
-        try {
-            const seed = await getSeed(wallet.seedIndex, wallet.password);
-            runTask('getAccountInfo', [seed, selectedAccountName]);
-        } catch (err) {}
+        this.props.getAccountInfo(this.props.selectedAccountName);
     };
 
     promote = () => {
@@ -129,6 +130,7 @@ const mapDispatchToProps = {
     fetchPrice,
     setPollFor,
     promoteTransfer,
+    getAccountInfo,
     removeBundleFromUnconfirmedBundleTails,
 };
 
