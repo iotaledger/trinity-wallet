@@ -1,5 +1,6 @@
 import get from 'lodash/get';
-import filter from 'lodash/filter';
+import each from 'lodash/each';
+import map from 'lodash/map';
 import { formatChartData, getUrlTimeFormat, getUrlNumberFormat } from '../libs/utils';
 
 // FIXME: Hacking no-console linting.
@@ -82,45 +83,49 @@ export function getChartData() {
         const currencies = ['USD', 'EUR', 'BTC', 'ETH'];
         const timeframes = ['24h', '7d', '1m', '1h'];
         const chartData = {};
-        const arrayPromises = [];
 
-        currencies.forEach((itemCurrency) => {
+        each(currencies, (itemCurrency) => {
             chartData[itemCurrency] = {};
-            filter(timeframes, (timeFrameItem) => {
+            each(timeframes, (timeFrameItem) => {
                 arrayCurrenciesTimeFrames.push({ currency: itemCurrency, timeFrame: timeFrameItem });
             });
         });
 
-        arrayCurrenciesTimeFrames.forEach((currencyTimeFrameArrayItem) => {
+        const urls = [];
+        const grabContent = (url) => fetch(url).then((response) => response.json());
+
+        each(arrayCurrenciesTimeFrames, (currencyTimeFrameArrayItem) => {
             const url = `https://min-api.cryptocompare.com/data/histo${getUrlTimeFormat(
                 currencyTimeFrameArrayItem.timeFrame,
             )}?fsym=IOT&tsym=${currencyTimeFrameArrayItem.currency}&limit=${getUrlNumberFormat(
                 currencyTimeFrameArrayItem.timeFrame,
             )}`;
-            arrayPromises.push(
-                fetch(url).then((response) => {
-                    return response.json();
-                }),
-            );
+
+            urls.push(url);
         });
 
-        Promise.all(arrayPromises).then((results) => {
-            const chartData = { USD: {}, EUR: {}, BTC: {}, ETH: {} };
-            let actualCurrency = '';
-            let currentTimeFrame = '';
-            let currentCurrency = '';
-            results.forEach((resultItem, index) => {
-                currentTimeFrame = arrayCurrenciesTimeFrames[index].timeFrame;
-                currentCurrency = arrayCurrenciesTimeFrames[index].currency;
-                const formatedData = formatChartData(resultItem, currentCurrency, currentTimeFrame);
+        Promise.all(map(urls, grabContent))
+            .then((results) => {
+                const chartData = { USD: {}, EUR: {}, BTC: {}, ETH: {} };
+                let actualCurrency = '';
+                let currentTimeFrame = '';
+                let currentCurrency = '';
 
-                if (actualCurrency !== currentCurrency) {
-                    actualCurrency = currentCurrency;
-                }
-                chartData[currentCurrency][currentTimeFrame] = formatedData;
-            });
-            dispatch(setChartData(chartData));
-        });
+                each(results, (resultItem, index) => {
+                    currentTimeFrame = arrayCurrenciesTimeFrames[index].timeFrame;
+                    currentCurrency = arrayCurrenciesTimeFrames[index].currency;
+                    const formatedData = formatChartData(resultItem, currentCurrency, currentTimeFrame);
+
+                    if (actualCurrency !== currentCurrency) {
+                        actualCurrency = currentCurrency;
+                    }
+
+                    chartData[currentCurrency][currentTimeFrame] = formatedData;
+                });
+
+                dispatch(setChartData(chartData));
+            })
+            .catch((err) => console.log(err));
     };
 }
 
