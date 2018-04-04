@@ -213,7 +213,7 @@ class Home extends Component {
                 checkInterval={3000}
                 onInactivity={this.handleInactivity}
             >
-                <View style={{ flex: 1 }}>
+                <View style={{ flex: 1, backgroundColor: body.bg }}>
                     <DynamicStatusBar backgroundColor={bar.bg} />
                     {!inactive &&
                         !minimised && (
@@ -223,7 +223,7 @@ class Home extends Component {
                                     behavior={isAndroid ? null : 'padding'}
                                 >
                                     <Animated.View useNativeDriver style={{ flex: this.viewFlex }} />
-                                    <View style={{ flex: 4.72, backgroundColor: body.bg }}>
+                                    <View style={{ flex: 4.72 }}>
                                         <TabContent
                                             navigator={navigator}
                                             onTabSwitch={(name) => this.onTabSwitch(name)}
