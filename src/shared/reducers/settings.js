@@ -112,7 +112,7 @@ const settingsReducer = (state = initialState, action) => {
         case ActionTypes.SET_RANDOMLY_SELECTED_NODE:
             return {
                 ...state,
-                fullNode: action.payload,
+                node: action.payload,
                 hasRandomizedNode: true,
             };
         case ActionTypes.SET_UPDATE_ERROR:
