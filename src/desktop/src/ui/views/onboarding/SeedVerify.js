@@ -120,10 +120,9 @@ class SeedVerify extends React.PureComponent {
                             </React.Fragment>
                         ) : (
                             <React.Fragment>
+                                <p>{t('enterSeed:seedExplanation', { maxLength: MAX_SEED_LENGTH })}</p>
                                 <p>
-                                    {t('seedExplanation', { maxLength: MAX_SEED_LENGTH })}
-                                    <br />
-                                    {t('enterSeed:neverShare')}
+                                    <strong>{t('enterSeed:neverShare')}</strong>
                                 </p>
                             </React.Fragment>
                         )}

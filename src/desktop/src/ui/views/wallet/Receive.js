@@ -99,7 +99,11 @@ class Receive extends React.PureComponent {
                         {content}
                     </Clipboard>
                 </p>
-                <Text value={message} label="Custom message" onChange={(value) => this.setState({ message: value })} />
+                <Text
+                    value={message}
+                    label={t('receive:message')}
+                    onChange={(value) => this.setState({ message: value })}
+                />
                 <Button onClick={this.onGeneratePress} loading={isGeneratingReceiveAddress}>
                     {t('receive:generateNewAddress')}
                 </Button>
