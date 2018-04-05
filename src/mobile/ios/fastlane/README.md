@@ -20,13 +20,9 @@ or alternatively using `brew cask install fastlane`
 fastlane screenshots
 ```
 
-
-----
-
-## iOS
-### ios beta
+### refresh_dsyms
 ```
-fastlane ios beta
+fastlane refresh_dsyms
 ```
 
 
