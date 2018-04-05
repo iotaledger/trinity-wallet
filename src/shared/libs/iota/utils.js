@@ -66,7 +66,7 @@ export const formatValue = (value) => {
         case value < 1000000000000:
             value /= 1000000000;
             break;
-        case value < 1000000000000000:
+        default:
             value /= 1000000000000;
             break;
     }
@@ -92,7 +92,7 @@ export const formatUnit = (value) => {
             return 'Mi';
         case value < 1000000000000:
             return 'Gi';
-        case value < 1000000000000000:
+        default:
             return 'Ti';
     }
 };
@@ -149,7 +149,7 @@ export const isValidAmount = (amount, multiplier, isFiat = false) => {
  * @typedef {Object} ParsedURL
  * @property {string} address The parsed address
  * @property {string} message The parsed message
- * @property {number} ammount The parsed ammount
+ * @property {number} amount The parsed amount
  */
 
 /** Parse an IOTA address input
@@ -160,7 +160,7 @@ export const parseAddress = (input) => {
     const result = {
         address: null,
         message: null,
-        ammount: null,
+        amount: null,
     };
 
     if (!input || typeof input !== 'string') {
@@ -176,14 +176,14 @@ export const parseAddress = (input) => {
         let parsed = {
             address: null,
             message: null,
-            ammount: null,
+            amount: null,
         };
 
         if (input.toLowerCase().indexOf('iota://') === 0) {
             const url = new URL(input, true);
             parsed.address = url.hostname.toUpperCase();
             parsed.message = url.query.message;
-            parsed.ammount = url.query.ammount;
+            parsed.amount = url.query.amount;
         } else {
             parsed = JSON.parse(input);
         }
@@ -196,8 +196,8 @@ export const parseAddress = (input) => {
         if (parsed.message && typeof parsed.message === 'string') {
             result.message = parsed.message;
         }
-        if (parsed.ammount && parsed.ammount === parseInt(parsed.ammount, 10)) {
-            result.ammount = parseInt(parsed.ammount, 10);
+        if (parsed.amount && parsed.amount == parseInt(parsed.amount, 10)) {
+            result.amount = parseInt(parsed.amount, 10);
         }
     } catch (error) {
         return null;
