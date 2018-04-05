@@ -150,7 +150,7 @@ class App extends React.Component {
         const parsedData = parseAddress(data);
 
         if (parsedData) {
-            this.props.sendAmount(parsedData.ammount || 0, parsedData.address, parsedData.message || null);
+            this.props.sendAmount(parsedData.amount || 0, parsedData.address, parsedData.message || null);
             if (this.props.wallet.ready === true) {
                 this.props.history.push('/wallet/send');
             }

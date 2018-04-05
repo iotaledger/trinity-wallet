@@ -51,7 +51,7 @@ export default class AddressInput extends React.PureComponent {
                 showScanner: false,
             }));
             const input = parseAddress(data);
-            this.props.onChange(input.address, input.message, input.ammount);
+            this.props.onChange(input.address, input.message, input.amount);
         }
     };
 
