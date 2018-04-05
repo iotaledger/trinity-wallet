@@ -19,15 +19,15 @@ public class CryptoModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void generateAddresses(String seed, int index, int security, int total, Promise promise) {
-          int start = 0;
           WritableNativeArray addresses = new WritableNativeArray();
+          int i = 0;
 
           do {
               String address = Interface.generateAddress(seed, index, security);
               addresses.pushString(address);
-              start++;
+              i++;
               index++;
-          } while (start < total);
+          } while (i < total);
 
           promise.resolve(addresses);
     }
