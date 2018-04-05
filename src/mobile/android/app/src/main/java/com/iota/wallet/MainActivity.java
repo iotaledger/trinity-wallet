@@ -14,7 +14,7 @@ import com.facebook.react.modules.storage.ReactDatabaseSupplier;
 
 public class MainActivity extends SplashActivity {
     @Override
-    protected void onCreate(Bundle savedInstanceState) {c
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Fabric.with(this, new Crashlytics());
         long size = 50L * 1024L * 1024L; // 50 MB
