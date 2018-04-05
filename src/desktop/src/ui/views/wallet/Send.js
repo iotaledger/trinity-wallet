@@ -64,7 +64,7 @@ class Send extends React.PureComponent {
 
     state = {
         address: '',
-        amount: '0',
+        amount: 0,
         message: '',
         isModalVisible: false,
     };
@@ -87,9 +87,9 @@ class Send extends React.PureComponent {
     refreshDeepLinkValues = (props) => {
         if (props.address.length > 0 && props.address !== this.state.address) {
             this.setState({
-                amount: props.amount,
                 address: props.address,
-                message: props.message,
+                amount: props.amount || this.state.amount,
+                message: props.message || this.state.message,
             });
             this.props.sendAmount(0, '', '');
         }
@@ -136,7 +136,7 @@ class Send extends React.PureComponent {
         const vault = await getVault(password);
         const seed = vault.seeds[seedIndex];
 
-        sendTransfer(seed, address, parseInt(amount), message, null, powFn);
+        sendTransfer(seed, address, amount, message, null, powFn);
     };
 
     render() {
@@ -171,7 +171,7 @@ class Send extends React.PureComponent {
                         closeLabel={t('back')}
                     />
                     <AmountInput
-                        amount={amount.toString()}
+                        amount={amount}
                         settings={settings}
                         label={t('send:amount')}
                         labelMax={t('send:max')}
