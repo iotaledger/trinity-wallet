@@ -7,6 +7,7 @@ import { Provider as Redux } from 'react-redux';
 import { MemoryRouter as Router } from 'react-router';
 import i18next from 'libs/i18next';
 import store, { persistStore } from 'store';
+import persistElectronStorage from 'libs/storage';
 import { changeIotaNode } from 'libs/iota';
 import createPlugin from 'bugsnag-react';
 
@@ -20,6 +21,7 @@ export const bugsnagClient = bugsnag({
 const ErrorBoundary = bugsnagClient.use(createPlugin(React));
 
 const persistConfig = {
+    storage: persistElectronStorage,
     blacklist: ['wallet', 'polling', 'ui', 'deepLinks'],
 };
 

@@ -2,6 +2,7 @@ const { ipcRenderer: ipc, shell, clipboard } = require('electron');
 const packageFile = require('../package.json');
 const machineUuid = require('machine-uuid');
 const keytar = require('keytar');
+const settings = require('electron-settings');
 
 const capitalize = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
@@ -40,6 +41,26 @@ const Electron = {
             attribute: attribute,
             value: value,
         });
+    },
+
+    getStorage(key) {
+        return settings.get(`persist-${key}`);
+    },
+
+    setStorage(key, item) {
+        return settings.set(`persist-${key}`, item);
+    },
+
+    removeStorage(key) {
+        return settings.delete(`persist-${key}`);
+    },
+
+    getAllStorage() {
+        const data = settings.getAll();
+        const keys = Object.keys(data)
+            .filter((key) => key.indexOf('persist-') === 0)
+            .map((key) => key.replace('persist-', ''));
+        return keys;
     },
 
     readKeychain: () => {
