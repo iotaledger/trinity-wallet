@@ -9,6 +9,7 @@ import Icon from 'ui/components/Icon';
 import css from './input.css';
 
 const units = ['i', 'Ki', 'Mi', 'Gi', 'Ti', '$'];
+const decimals = [0, 3, 6, 9, 12, 2];
 
 /**
  * Ammount input component
@@ -16,7 +17,7 @@ const units = ['i', 'Ki', 'Mi', 'Gi', 'Ti', '$'];
 export default class AddressInput extends React.PureComponent {
     static propTypes = {
         /** Current ammount value */
-        amount: PropTypes.string.isRequired,
+        amount: PropTypes.number.isRequired,
         /** Max available ammount */
         balance: PropTypes.number.isRequired,
         /** Fiat currency settings
@@ -41,22 +42,45 @@ export default class AddressInput extends React.PureComponent {
 
     state = {
         unit: 'Mi',
+        value: '0',
+        iotas: 0,
     };
 
-    onChange = (value) => {
-        value = value.replace(/,/g, '.');
+    componentWillReceiveProps(nextProps) {
+        if (this.state.iotas !== nextProps.amount) {
+            this.setState({
+                iotas: nextProps.amount,
+                value: this.toUnits(nextProps.amount, this.state.unit),
+            });
+        }
+    }
 
-        if (this.state.unit === 'i' && value.indexOf('.') > -1) {
+    onChange = (value) => {
+        // Replace , with . and remove leading zeros
+        value = value.replace(/,/g, '.').replace(/^0+(?=\d)/, '');
+
+        // Ignore invalid or empty input
+        if (!value.length) {
+            value = '0';
+        } else if (!value.match(/^\d+(\.\d{0,20})?$/g)) {
             return;
         }
 
-        const trailingDot = value[value.length - 1] === '.' && value.match(/^\d+(\.\d{0,20})?$/g) ? '.' : '';
-        value =
-            !value.length || value.match(/^\d+(\.\d{0,20})?$/g)
-                ? round(value * this.getUnitMultiplier())
-                : this.props.amount;
+        // Strip to max allowed decimals
+        if (value.indexOf('.') > 0) {
+            value = value.substr(0, value.indexOf('.') + decimals[units.indexOf(this.state.unit)] + 1);
+        }
 
-        this.props.onChange(value + trailingDot);
+        // Convert to iotas
+        const iotas = round(value * this.getUnitMultiplier());
+
+        this.setState(
+            {
+                value: value,
+                iotas: iotas,
+            },
+            () => this.props.onChange(iotas),
+        );
     };
 
     getUnitMultiplier(unit) {
@@ -86,28 +110,36 @@ export default class AddressInput extends React.PureComponent {
 
     maxAmount = () => {
         const { amount, balance } = this.props;
-
-        const total = balance === parseInt(amount) ? '0' : balance.toString();
-
+        const total = balance === parseInt(amount) ? 0 : balance;
         this.props.onChange(total);
     };
 
-    unitChange = (unit) => {
-        const { amount, settings } = this.props;
+    toUnits = (iotas, unit) => {
+        let value = (round(iotas / this.getUnitMultiplier(unit) * 1000000000000) / 1000000000000)
+            .toFixed(decimals[units.indexOf(unit)])
+            .toString();
 
-        if (unit === '$') {
-            const fiat = round(amount * settings.usdPrice / 1000000 * settings.conversionRate * 100) / 100;
-            this.props.onChange(round(fiat / settings.usdPrice));
+        if (value.indexOf('.') > 0) {
+            // Remove reailing zeros and/or dot
+            value = value.replace(/(?=\d)0+$/, '').replace(/\.$/, '');
+        }
+        return value;
+    };
+
+    unitChange = (unit) => {
+        if (unit === this.state.unit) {
+            return;
         }
 
         this.setState({
             unit: unit,
+            value: this.toUnits(this.props.amount, unit),
         });
     };
 
     render() {
         const { amount, balance, settings, label, labelMax } = this.props;
-        const { unit } = this.state;
+        const { value, unit } = this.state;
 
         return (
             <div className={css.input}>
@@ -122,7 +154,7 @@ export default class AddressInput extends React.PureComponent {
                                         <li
                                             key={item}
                                             className={item === unit ? css.selected : null}
-                                            onClick={() => this.setState({ unit: item })}
+                                            onClick={() => this.unitChange(item)}
                                         >
                                             {item === '$' ? getCurrencySymbol(settings.currency) : item}
                                         </li>
@@ -140,14 +172,7 @@ export default class AddressInput extends React.PureComponent {
                         ) : null}
                         {amount > 0 && unit === '$' ? <p>= {formatIota(amount)}</p> : null}
                     </a>
-                    <input
-                        type="text"
-                        value={
-                            round(amount / this.getUnitMultiplier() * 1000000) / 1000000 +
-                            (amount[amount.length - 1] === '.' ? '.' : '')
-                        }
-                        onChange={(e) => this.onChange(e.target.value)}
-                    />
+                    <input type="text" value={value} onChange={(e) => this.onChange(e.target.value)} />
                     <small>{label}</small>
                 </fieldset>
                 {balance > 0 && (
