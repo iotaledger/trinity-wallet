@@ -119,7 +119,7 @@ export class ManualSync extends Component {
                     let genFn = null;
 
                     if (isAndroid) {
-                        //  genFn = Android multiAddress function
+                        genFn = NativeModules.EntangledAndroid.generateAddress;
                     } else if (isIOS) {
                         genFn = NativeModules.EntangledIOS.generateAddress;
                     }
