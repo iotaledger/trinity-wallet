@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
+import sjcl from 'sjcl';
 
 import { generateAlert } from 'actions/alerts';
 
@@ -60,16 +61,17 @@ class ModalPassword extends PureComponent {
         }
     }
 
-    onSubmit(e) {
+    onSubmit = async (e) => {
         const { password } = this.state;
         const { onSuccess, generateAlert, t } = this.props;
 
         e.preventDefault();
 
         let vault = null;
+        const passwordHash = sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(password));
 
         try {
-            vault = getVault(password);
+            vault = await getVault(passwordHash);
         } catch (err) {
             generateAlert(
                 'error',
@@ -80,9 +82,9 @@ class ModalPassword extends PureComponent {
         }
 
         if (vault) {
-            onSuccess(password, vault);
+            onSuccess(passwordHash, vault);
         }
-    }
+    };
 
     render() {
         const { content, category, isOpen, isForced, inline, onClose, t } = this.props;

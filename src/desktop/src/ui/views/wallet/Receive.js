@@ -8,6 +8,8 @@ import { selectAccountInfo, getSelectedAccountName } from 'selectors/accounts';
 import { runTask } from 'worker';
 import { setReceiveAddress } from 'actions/wallet';
 
+import { getSeed } from 'libs/crypto';
+
 import Button from 'ui/components/Button';
 import Clipboard from 'ui/components/Clipboard';
 import Text from 'ui/components/input/Text.js';
@@ -25,8 +27,10 @@ class Receive extends React.PureComponent {
         accountName: PropTypes.string.isRequired,
         /** Current receive address */
         receiveAddress: PropTypes.string.isRequired,
-        /** Current seed value */
-        seed: PropTypes.string,
+        /** Current active seed index */
+        seedIndex: PropTypes.number,
+        /** Current password value */
+        password: PropTypes.string,
         /** Is wallet generating receive address state */
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
         /** Set receive address
@@ -51,8 +55,11 @@ class Receive extends React.PureComponent {
         }
     }
 
-    onGeneratePress = () => {
-        const { seed, accountName, account } = this.props;
+    onGeneratePress = async () => {
+        const { password, accountName, account, seedIndex } = this.props;
+
+        const seed = await getSeed(seedIndex, password);
+
         runTask('generateNewAddress', [seed, accountName, account]);
     };
 
@@ -86,10 +93,11 @@ class Receive extends React.PureComponent {
 
 const mapStateToProps = (state) => ({
     receiveAddress: state.wallet.receiveAddress,
-    isGeneratingReceiveAddress: state.wallet.isGeneratingReceiveAddress,
+    isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
     account: selectAccountInfo(state),
     accountName: getSelectedAccountName(state),
-    seed: state.seeds.seeds[state.wallet.seedIndex],
+    password: state.wallet.password,
+    seedIndex: state.wallet.seedIndex,
 });
 
 const mapDispatchToProps = {

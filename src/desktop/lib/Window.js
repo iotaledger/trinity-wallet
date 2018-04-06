@@ -1,6 +1,7 @@
 const { ipcRenderer: ipc, shell, clipboard } = require('electron');
 const packageFile = require('../package.json');
 const machineUuid = require('machine-uuid');
+const keytar = require('keytar');
 
 const capitalize = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
@@ -39,6 +40,14 @@ const Electron = {
             attribute: attribute,
             value: value,
         });
+    },
+
+    readKeychain: () => {
+        return keytar.getPassword('Trinity desktop wallet', 'trinity');
+    },
+
+    setKeychain: (content) => {
+        return keytar.setPassword('Trinity desktop wallet', 'trinity', content);
     },
 
     changeLanguage: (t) => {

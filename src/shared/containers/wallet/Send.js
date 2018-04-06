@@ -22,7 +22,6 @@ export default function withSendData(SendComponent) {
             accountName: PropTypes.string.isRequired,
             wallet: PropTypes.object.isRequired,
             ui: PropTypes.object.isRequired,
-            seed: PropTypes.string.isRequired,
             settings: PropTypes.object.isRequired,
             marketData: PropTypes.object.isRequired,
             generateAlert: PropTypes.func.isRequired,
@@ -99,10 +98,12 @@ export default function withSendData(SendComponent) {
         };
 
         render() {
-            const { balance, seed, settings, marketData, wallet, theme, t, deepLinks, sendAmount } = this.props;
+            const { balance, settings, marketData, wallet, ui, theme, t, deepLinks, sendAmount } = this.props;
 
             const sendProps = {
-                isSending: wallet.isSendingTransfer,
+                isSending: ui.isSendingTransfer,
+                password: wallet.password,
+                seedIndex: wallet.seedIndex,
                 validateInputs: this.validateInputs,
                 sendTransfer: this.sendTransfer,
                 settings: {
@@ -111,7 +112,6 @@ export default function withSendData(SendComponent) {
                     usdPrice: marketData.usdPrice,
                 },
                 balance,
-                seed,
                 theme,
                 t,
                 deepLinkAmount: deepLinks,
@@ -131,7 +131,6 @@ export default function withSendData(SendComponent) {
         settings: state.settings,
         marketData: state.marketData,
         accounts: state.accounts,
-        seed: state.seeds.seeds[state.wallet.seedIndex],
         theme: state.settings.theme,
         ui: state.ui,
         deepLinks: state.deepLinks,
