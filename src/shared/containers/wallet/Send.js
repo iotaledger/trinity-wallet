@@ -42,8 +42,8 @@ export default function withSendData(SendComponent) {
 
         validadeDeepLink(address) {
             if (address !== '') {
-                const { generateAlert } = this.props;
-                generateAlert('success', 'Autofill', 'Transaction data autofilled from link.');
+                const { generateAlert, t } = this.props;
+                generateAlert('success', t('autofill'), t('autofillExplanation'));
             }
         }
 
