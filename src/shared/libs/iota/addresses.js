@@ -12,6 +12,7 @@ import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import findKey from 'lodash/findKey';
 import size from 'lodash/size';
+import pick from 'lodash/pick';
 import pickBy from 'lodash/pickBy';
 import omitBy from 'lodash/omitBy';
 import { iota } from './index';
@@ -158,6 +159,7 @@ export const formatAddressesAndBalance = (addresses) => {
                         index,
                         spent: cached.wereSpent[index],
                         balance: cached.balances[index],
+                        checksum: iota.utils.addChecksum(address).slice(address.length),
                     };
 
                     acc.balance = acc.balance + cached.balances[index];
@@ -243,17 +245,14 @@ export const getUnspentAddressesSync = (addressData) => {
  *   @param {object} addressData
  *   @returns {array} - Array of spent addresses with pending transfers
  **/
-export const getSpentAddressesWithPendingTransfersSync = (pendingTransfers, addressData) => {
+export const getSpentAddressesWithPendingTransfersSync = (pendingTransactions, addressData) => {
     const spentAddresses = pickBy(addressData, (addressObject) => addressObject.spent);
     const spentAddressesWithPendingTransfers = new Set();
 
-    each(pendingTransfers, (pendingBundle) => {
-        each(pendingBundle, (transactionObject) => {
-            const isRemainder =
-                transactionObject.currentIndex === transactionObject.lastIndex && transactionObject.lastIndex !== 0;
-
-            if (transactionObject.address in spentAddresses && transactionObject.value < 0 && !isRemainder) {
-                spentAddressesWithPendingTransfers.add(transactionObject.address);
+    each(pendingTransactions, (transaction) => {
+        each(transaction.inputs, (input) => {
+            if (input.address in spentAddresses) {
+                spentAddressesWithPendingTransfers.add(input.address);
             }
         });
     });
@@ -416,6 +415,30 @@ export const syncAddresses = (seed, accountData, genFn, addNewAddress = false) =
         thisAccountDataCopy.addresses = updatedAddresses;
         return thisAccountDataCopy;
     });
+};
+
+export const getAddressesMetaFromBundle = (bundle) => {
+    return transform(
+        bundle,
+        (acc, tx) => {
+            const meta = {
+                ...pick(tx, ['address', 'value']),
+                checksum: iota.utils.addChecksum(tx.address).slice(tx.address.length),
+            };
+
+            const isRemainder = tx.currentIndex === tx.lastIndex && tx.lastIndex !== 0;
+
+            if (tx.value < 0 && !isRemainder) {
+                acc.inputs.push(meta);
+            } else {
+                acc.outputs.push(meta);
+            }
+        },
+        {
+            inputs: [],
+            outputs: [],
+        },
+    );
 };
 
 /**
