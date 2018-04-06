@@ -175,13 +175,13 @@ class Loading extends Component {
 
         if (firstUse || addingAdditionalAccount) {
             if (isAndroid) {
-                //  genFn = Android address function
+                genFn = NativeModules.EntangledAndroid.generateAddresses;
             } else if (isIOS) {
                 genFn = NativeModules.EntangledIOS.generateAddresses;
             }
         } else {
             if (isAndroid) {
-                //  genFn = Android multiAddress function
+                genFn = NativeModules.EntangledAndroid.generateAddress;
             } else if (isIOS) {
                 genFn = NativeModules.EntangledIOS.generateAddress;
             }

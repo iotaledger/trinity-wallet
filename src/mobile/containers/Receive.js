@@ -187,7 +187,7 @@ class Receive extends Component {
         let genFn = null;
 
         if (isAndroid) {
-            //  genFn = address function
+            genFn = NativeModules.EntangledAndroid.generateAddress;
         } else if (isIOS) {
             genFn = NativeModules.EntangledIOS.generateAddress;
         }
