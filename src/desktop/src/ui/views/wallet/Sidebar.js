@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 
+import { formatIota } from 'libs/iota/utils';
+
 import { clearWalletData, setSeedIndex } from 'actions/wallet';
 
 import Logo from 'ui/components/Logo';
@@ -25,7 +27,7 @@ class Sidebar extends React.PureComponent {
             push: PropTypes.func.isRequired,
         }).isRequired,
         /** Accounts state data */
-        accounts: PropTypes.array,
+        accounts: PropTypes.object,
         /** Set seed index state
          *  @param {Number} Index - Seed index
          */
@@ -79,7 +81,7 @@ class Sidebar extends React.PureComponent {
                             <Icon icon="wallet" size={20} />
                         </a>
                         <ul>
-                            {accounts.map((account, index) => {
+                            {accounts.accountNames.map((account, index) => {
                                 return (
                                     <a
                                         aria-current={index === seedIndex}
@@ -90,6 +92,7 @@ class Sidebar extends React.PureComponent {
                                         }}
                                     >
                                         <strong>{account}</strong>
+                                        <small>{formatIota(accounts.accountInfo[account].balance)}</small>
                                     </a>
                                 );
                             })}
@@ -128,7 +131,7 @@ class Sidebar extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    accounts: state.accounts.accountNames,
+    accounts: state.accounts,
     seedIndex: state.wallet.seedIndex,
 });
 
