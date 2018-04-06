@@ -388,6 +388,12 @@
         "thousand": "Thousand",
         "one": "One"
     },
+    "usedAddressModal": {
+        "cantSpendFullBalanceQuestion": "Why can't I spend my full balance?",
+        "spentAddressExplanation":
+            "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
+        "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
+    },
     "deleteAccount": {
         "areYouSure": "Are you sure you want to delete",
         "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
