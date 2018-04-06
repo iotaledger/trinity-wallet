@@ -189,7 +189,7 @@ class Receive extends Component {
         if (isAndroid) {
             //  genFn = address function
         } else if (isIOS) {
-            genFn = NativeModules.Iota.address;
+            genFn = NativeModules.EntangledIOS.generateAddress;
         }
 
         this.props.getFromKeychainRequest('receive', 'addressGeneration');
