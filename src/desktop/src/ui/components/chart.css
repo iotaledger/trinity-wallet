@@ -14,17 +14,10 @@
         margin-bottom: 21px;
         button,
         p {
-            line-height: 24px;
+            line-height: 30px;
             font-size: 24px;
             text-align: center;
             margin: -4px 0;
-
-            strong {
-                display: block;
-                font-weight: 300;
-                font-size: 16px;
-                margin: 0 0 4px;
-            }
         }
         button {
             display: block;
@@ -34,7 +27,6 @@
             min-width: 60px;
             background: none;
             border-radius: 24px;
-            margin-top: -4px;
         }
     }
     ul {
@@ -46,6 +38,10 @@
             list-style: none;
             text-align: left;
             width: 33.33%;
+            font-weight: 300;
+            strong {
+                font-weight: 200;
+            }
             &:nth-child(2) {
                 text-align: center;
             }
