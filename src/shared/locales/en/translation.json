@@ -80,7 +80,8 @@
         "autopromoting": "Autopromoting transfer",
         "autopromotingExplanation": "Promoting transaction with hash {{hash}}",
         "promoting": "Promoting transfer",
-        "promotionError": "Could not promote transaction",
+        "promotionError": "Could not promote transfer",
+        "promotionErrorExplanation": "Something went wrong while promoting your transaction. Please try again.",
         "noLongerValid": "The bundle you are trying to promote is no longer valid",
         "cannotSendToOwn": "Sending to own address",
         "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses.",
@@ -94,7 +95,9 @@
         "account": "Account",
         "enterPasswordToAccessSettings": "Enter your password to access account settings",
         "changeNode": "Change node",
-        "addCustomNode": "Add custom node"
+        "addCustomNode": "Add custom node",
+        "nodeChanged": "Node changed",
+        "nodeChangedExpalantion": "The node has been changed successfully."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
@@ -489,5 +492,9 @@
         "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
         "transitionComplete": "Snapshot transition complete",
         "transitionCompleteExplanation": "The snapshot transition has completed successfully."
+    },
+    "deepLink": {
+      "autofill": "Autofill",
+      "autofillExplanation": "Transaction data autofilled from link."
     }
 }
