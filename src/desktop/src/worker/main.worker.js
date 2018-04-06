@@ -6,7 +6,7 @@ import { defaultNode } from 'config';
 
 let state = {
     settings: {
-        fullNode: defaultNode,
+        node: defaultNode,
     },
 };
 
@@ -37,8 +37,8 @@ self.onmessage = ({ data }) => {
 
     switch (type) {
         case 'setState':
-            if (state.settings.fullNode !== payload.settings.fullNode) {
-                changeIotaNode(payload.settings.fullNode);
+            if (state.settings.node !== payload.settings.node) {
+                changeIotaNode(payload.settings.node);
             }
             state = payload;
             break;
