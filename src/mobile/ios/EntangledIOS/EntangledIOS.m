@@ -22,16 +22,20 @@ RCT_EXPORT_METHOD(generateAddress:(NSString *)seed index:(int)index security:(in
 }
 
 // Multi address generation
-RCT_EXPORT_METHOD(generateAddresses:(NSString *)seed index:(int)index security:(int)security total:(nonnull NSNumber *)total resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+RCT_EXPORT_METHOD(generateAddresses:(NSString *)seed index:(int)index security:(int)security total:(int)total resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
-  int idx = index;
   char * seedChars = [seed cStringUsingEncoding:NSUTF8StringEncoding];
-  NSMutableArray* addresses = [NSMutableArray array];
-  for (int i = 0; i < total; ++ i, ++ idx) {
-    char * address = generate_address(seedChars, idx, security);
-    NSString * addressObj = @[[NSString stringWithFormat:@"%s", address]];
+  NSMutableArray *addresses = [NSMutableArray array];
+  int i = 0;
+  
+  do {
+    char * address = generate_address(seedChars, index, security);
+    NSString * addressObj = [NSString stringWithFormat:@"%s", address];
     [addresses addObject:addressObj];
-  }
+    i++;
+    index++;
+  } while (i < total);
+  
   resolve(addresses);
 }
 

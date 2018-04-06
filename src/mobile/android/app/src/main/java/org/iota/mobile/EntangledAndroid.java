@@ -4,6 +4,7 @@ import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.WritableNativeArray;
 
 public class EntangledAndroid extends ReactContextBaseJavaModule {
     public EntangledAndroid(ReactApplicationContext reactContext) {
@@ -20,6 +21,22 @@ public class EntangledAndroid extends ReactContextBaseJavaModule {
       String address = Interface.generateAddress(seed, index, security);
       promise.resolve(address);
     }
+
+    @ReactMethod
+    public void generateAddresses(String seed, int index, int security, int total, Promise promise) {
+        WritableNativeArray addresses = new WritableNativeArray();
+        int i = 0;
+
+        do {
+            String address = Interface.generateAddress(seed, index, security);
+            addresses.pushString(address);
+            i++;
+            index++;
+        } while (i < total);
+
+        promise.resolve(addresses);
+    }
+
 
     @ReactMethod
     public void generateSignature(String trytes, int index, int security, String bundleHash, Promise promise) {
