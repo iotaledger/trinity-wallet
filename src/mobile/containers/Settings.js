@@ -49,6 +49,9 @@ class Settings extends Component {
             nodeSelection: {
                 backPress: () => this.props.setSetting('advancedSettings'),
             },
+            addCustomNode: {
+                backPress: () => this.props.setSetting('advancedSettings'),
+            },
             addExistingSeed: {
                 navigator: this.props.navigator,
             },
