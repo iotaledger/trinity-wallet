@@ -4,7 +4,6 @@ import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Key
 import { connect } from 'react-redux';
 import { changeIotaNode, checkNode } from 'iota-wallet-shared-modules/libs/iota';
 import { setFullNode, addCustomPoWNode } from 'iota-wallet-shared-modules/actions/settings';
-import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { translate } from 'react-i18next';
 import { width, height } from '../utils/dimensions';
@@ -72,10 +71,8 @@ class AddCustomNode extends Component {
          * @param {string} node
          */
         setFullNode: PropTypes.func.isRequired,
-        /** Change current setting
-         * @param {string} setting
-         */
-        setSetting: PropTypes.func.isRequired,
+        /** Navigate to previous screen */
+        backPress: PropTypes.func.isRequired,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          */
@@ -143,7 +140,6 @@ class AddCustomNode extends Component {
         if (customNode.startsWith('http://')) {
             return this.onAddHttpNodeError();
         }
-        console.log(nodes);
 
         if (!nodes.includes(customNode.replace(/ /g, ''))) {
             this.setNode(customNode);
@@ -154,7 +150,7 @@ class AddCustomNode extends Component {
                     this.setNode(node);
                 } else {
                     this.onAddNodeSuccess(customNode);
-                    this.props.setSetting('advancedSettings');
+                    this.props.backPress();
                 }
             });
         } else {
@@ -181,13 +177,12 @@ class AddCustomNode extends Component {
                             enablesReturnKeyAutomatically
                             returnKeyType="done"
                             onSubmitEditing={() => this.addNode()}
-                            value={this.state.accountName}
                             theme={theme}
                         />
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity
-                            onPress={() => this.props.setSetting('advancedSettings')}
+                            onPress={() => this.props.backPress()}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>
@@ -221,7 +216,6 @@ const mapDispatchToProps = {
     setFullNode,
     generateAlert,
     addCustomPoWNode,
-    setSetting,
 };
 
 export default translate(['addCustomNode', 'global'])(connect(mapStateToProps, mapDispatchToProps)(AddCustomNode));
