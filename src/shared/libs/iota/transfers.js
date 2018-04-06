@@ -248,9 +248,8 @@ export const filterInvalidTransfersAsync = (transfers) => {
  **/
 export const filterZeroValueTransfers = (transfers) => {
     const keepValueTransfers = (acc, bundle) => {
-        const tailTransaction = find(bundle, { currentIndex: 0 });
-
-        if (tailTransaction.value !== 0) {
+        // Check if any transaction object has a negative (spent) value
+        if (!some(bundle, (tx) => tx.value < 0)) {
             acc.push(bundle);
         }
 
