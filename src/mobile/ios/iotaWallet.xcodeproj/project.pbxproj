@@ -34,6 +34,8 @@
 		5403F0AF99C33584CC25CA8D4422B333 /* Inconsolata-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 60C4FCE77138FA022DBAD917D3C8B8C1 /* Inconsolata-Regular.ttf */; };
 		54D44899635E65A34FCEAC3EA412BE26 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFA2B84C183CC39F995C8E04CC713DDB /* Images.xcassets */; };
 		5613EA5FACE7DF227C991290F2E89D02 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE06912F32A64660367B379A5FA9B59C /* libRCTAnimation.a */; };
+		60F0D8F52077A67E00426A47 /* ios_bindings-fl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F0D8F42077A67D00426A47 /* ios_bindings-fl.a */; };
+		60F0D8FA2077AB8C00426A47 /* Entangled.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F0D8F92077AB8C00426A47 /* Entangled.m */; };
 		6271062A9C4773BE282CDC0CF95480D8 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B655981D53B5AE618EDBD102EA41BF51 /* libReact.a */; };
 		6E9CC66B45FB093ECF765004AFED349E /* IotaKitEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE52C6768ACF193E25BFCE2B5EA7832 /* IotaKitEmitter.swift */; };
 		6ED5CBEF7B1A39258C560F6CDCD36254 /* libKCKeepAwake.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4F418B6A7C158123D272588757B8B5E /* libKCKeepAwake.a */; };
@@ -646,6 +648,10 @@
 		5C64D2219E425907A910B0F3A28CD9F1 /* iotaWalletTests-debug-config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "iotaWalletTests-debug-config.xcconfig"; sourceTree = "<group>"; };
 		5D730345CF75A62E99A5B317731440D2 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		60C4FCE77138FA022DBAD917D3C8B8C1 /* Inconsolata-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inconsolata-Regular.ttf"; path = "../../shared/custom-fonts/Inconsolata-Regular.ttf"; sourceTree = "<group>"; };
+		60F0D8F42077A67D00426A47 /* ios_bindings-fl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "ios_bindings-fl.a"; path = "../../../../../../var/tmp/_bazel_rajiv/f375e5a0d7be270644e1885aff9a8d6e/execroot/org_iota_entangled/bazel-out/ios-x86_64-min9.0-applebin_ios-ios_x86_64-fastbuild/bin/mobile/interface/ios_bindings-fl.a"; sourceTree = "<group>"; };
+		60F0D8F72077AAC600426A47 /* bindings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bindings.h; sourceTree = "<group>"; };
+		60F0D8F82077AB1700426A47 /* Entangled.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Entangled.h; sourceTree = "<group>"; };
+		60F0D8F92077AB8C00426A47 /* Entangled.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Entangled.m; sourceTree = "<group>"; };
 		64A04B0E69E2398FF12B202BA93DEFED /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		65A85C473D819AC477AA9D6A95E7EDAB /* Pods-iotaWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iotaWallet.release.xcconfig"; path = "Pods/Target Support Files/Pods-iotaWallet/Pods-iotaWallet.release.xcconfig"; sourceTree = "<group>"; };
 		66A2C53DEF25AEDEB72FDC924EBABB8D /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -728,6 +734,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60F0D8F52077A67E00426A47 /* ios_bindings-fl.a in Frameworks */,
 				1601D2D3FEE3505B87365030187ECFDB /* Lottie.framework in Frameworks */,
 				2AC2F1F0512232323EB95A607D2CAD17 /* Pods_iotaWallet.framework in Frameworks */,
 				EA2AFB6E4462A57FCC1E22B307422A84 /* Pods_iotaWallet.framework in Frameworks */,
@@ -846,6 +853,7 @@
 		0FE432859717DE312B0951A32FFC9F0C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				60F0D8F42077A67D00426A47 /* ios_bindings-fl.a */,
 				17CA5D008909F6DE556BFE8A8C82B425 /* Pods_iotaWallet.framework */,
 				37923EC4118D1C65B69F5BC4BDC089A2 /* Pods_iotaWalletTests.framework */,
 				C8421A5DED2B8CE3EBA55E450E3CAC59 /* libPods-iotaWallet-tvOS.a */,
@@ -906,6 +914,7 @@
 		3FA554CD0D5061D20FBDC112457CF26E = {
 			isa = PBXGroup;
 			children = (
+				60F0D8F62077AA8800426A47 /* Entangled */,
 				5DA47AA1F43DF8347817216AFD81E3B8 /* Config */,
 				0FE432859717DE312B0951A32FFC9F0C /* Frameworks */,
 				D25810A0B3A9B6C48CA4B14EA6FEC8D2 /* IotaKit */,
@@ -987,6 +996,16 @@
 				40E70A189B0FFF62EE8AE0E04401F815 /* iotaWalletTests-release-config.xcconfig */,
 			);
 			path = Config;
+			sourceTree = "<group>";
+		};
+		60F0D8F62077AA8800426A47 /* Entangled */ = {
+			isa = PBXGroup;
+			children = (
+				60F0D8F72077AAC600426A47 /* bindings.h */,
+				60F0D8F82077AB1700426A47 /* Entangled.h */,
+				60F0D8F92077AB8C00426A47 /* Entangled.m */,
+			);
+			path = Entangled;
 			sourceTree = "<group>";
 		};
 		6C07637C2BD02779C4E072737C53A2E3 /* Libraries */ = {
@@ -2432,6 +2451,7 @@
 			files = (
 				962469C90FA6C9D7DB8B0F1D49DD98E7 /* AppDelegate.m in Sources */,
 				009513FCBFA797A40A555F3084ED0B8D /* Iota.m in Sources */,
+				60F0D8FA2077AB8C00426A47 /* Entangled.m in Sources */,
 				6E9CC66B45FB093ECF765004AFED349E /* IotaKitEmitter.swift in Sources */,
 				3E58EC90CE11629FBA816AAD96D16464 /* main.m in Sources */,
 			);
