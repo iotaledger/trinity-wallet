@@ -406,6 +406,7 @@ export class Send extends Component {
                     <UnitInfoModal
                         hideModal={() => this.hideModal()}
                         textColor={{ color: bar.color }}
+                        lineColor={{ borderLeftColor: bar.color }}
                         borderColor={{ borderColor: bar.color }}
                         bar={bar}
                     />
