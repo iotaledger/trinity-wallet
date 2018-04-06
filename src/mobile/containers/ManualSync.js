@@ -121,7 +121,7 @@ export class ManualSync extends Component {
                     if (isAndroid) {
                         //  genFn = Android multiAddress function
                     } else if (isIOS) {
-                        genFn = NativeModules.Iota.multiAddress;
+                        genFn = NativeModules.EntangledIOS.generateAddress;
                     }
 
                     this.props.manuallySyncAccount(seed, selectedAccountName, genFn);

@@ -356,7 +356,7 @@ export const getBalancesSync = (addresses, addressData) => {
 
 export const getLatestAddresses = (seed, index, genFn) => {
     return new Promise((resolve, reject) => {
-        const options = { checksum: false, index, returnAll: true };
+        const options = { index, returnAll: true };
         return getNewAddress(seed, options, genFn, (err, addresses) => {
             if (err) {
                 reject(err);
@@ -475,7 +475,6 @@ export const filterAddressesWithIncomingTransfers = (inputs, pendingValueTransfe
  *   @param {string} seed
  *   @param {object} options
  *       @property   {int} index         Key index to start search from
- *       @property   {bool} checksum     add 9-tryte checksum
  *       @property   {int} total         Total number of addresses to return
  *       @property   {int} security      Security level to be used for the private key / address. Can be 1, 2 or 3
  *       @property   {bool} returnAll    return all searched addresses
@@ -518,7 +517,6 @@ export const getNewAddress = (seed, options, genFn = null, callback) => {
         }
     }
 
-    var checksum = options.checksum || false;
     var total = options.total || null;
     // If no user defined security, use the standard value of 2
     var security = 2;
@@ -540,7 +538,7 @@ export const getNewAddress = (seed, options, genFn = null, callback) => {
     // and return the list of all addresses
     if (total) {
         // Increase index with each iteration
-        return genFn(seed, index, total, security, checksum).then((addresses) => {
+        return genFn(seed, index, security, total).then((addresses) => {
             allAddresses = addresses;
             return callback(null, allAddresses);
         });
@@ -554,7 +552,7 @@ export const getNewAddress = (seed, options, genFn = null, callback) => {
             (callback) => {
                 // Iteratee function
                 var newAddress = '';
-                return genFn(seed, index, security, checksum).then((address) => {
+                return genFn(seed, index, security).then((address) => {
                     newAddress = address;
                     if (options.returnAll) {
                         allAddresses.push(newAddress);
