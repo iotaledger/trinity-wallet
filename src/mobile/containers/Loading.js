@@ -177,13 +177,13 @@ class Loading extends Component {
             if (isAndroid) {
                 //  genFn = Android address function
             } else if (isIOS) {
-                genFn = NativeModules.Iota.multiAddress;
+                genFn = NativeModules.EntangledIOS.generateAddresses;
             }
         } else {
             if (isAndroid) {
                 //  genFn = Android multiAddress function
             } else if (isIOS) {
-                genFn = NativeModules.Iota.address;
+                genFn = NativeModules.EntangledIOS.generateAddress;
             }
         }
 
