@@ -5,7 +5,7 @@ import { translate } from 'react-i18next';
 import QRCode from 'qrcode.react';
 import authenticator from 'authenticator';
 
-import { getTwoFA, setTwoFA, removeTwoFA, getVault } from 'libs/crypto';
+import { getTwoFA, setTwoFA, removeTwoFA } from 'libs/crypto';
 
 import { set2FAStatus } from 'actions/settings';
 import { generateAlert } from 'actions/alerts';
