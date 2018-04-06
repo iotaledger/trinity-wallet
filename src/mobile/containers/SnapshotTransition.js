@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator, NativeModules } from 'react-native';
 import { round } from 'iota-wallet-shared-modules/libs/utils';
 import {
     setSetting,
@@ -22,7 +22,7 @@ import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 import CtaButton from '../components/CtaButton';
 import InfoBox from '../components/InfoBox';
-import { isAndroid } from '../utils/device';
+import { isIOS, isAndroid } from '../utils/device';
 
 const styles = StyleSheet.create({
     modalContent: {
@@ -195,7 +195,12 @@ class SnapshotTransition extends Component {
 
     onBalanceIncompletePress() {
         this.hideModal();
-
+        let genFn = null;
+        if (isAndroid) {
+            genFn = NativeModules.EntangledAndroid.generateAddresses;
+        } else if (isIOS) {
+            genFn = NativeModules.EntangledIOS.generateAddresses;
+        }
         const { transitionAddresses, password, selectedAccountName } = this.props;
         const currentIndex = transitionAddresses.length;
         setTimeout(() => {
@@ -203,7 +208,7 @@ class SnapshotTransition extends Component {
                 if (seed === null) {
                     throw new Error('Error');
                 } else {
-                    this.props.generateAddressesAndGetBalance(seed, currentIndex);
+                    this.props.generateAddressesAndGetBalance(seed, currentIndex, genFn);
                 }
             });
         }, 300);
