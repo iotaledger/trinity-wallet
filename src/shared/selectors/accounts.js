@@ -167,17 +167,13 @@ export const selectAccountInfo = createSelector(
 );
 
 /**
- *   Selects transfers array from accountInfo object.
- *   Deduplicates tranfsers to keep only a single bundle i.e. remove reattachments
+ *   Selects transfers from accountInfo object.
  *
- *   @method getDeduplicatedTransfersForSelectedAccount
+ *   @method getTransfersForSelectedAccount
  *   @param {object} state
  *   @returns {array}
  **/
-export const getDeduplicatedTransfersForSelectedAccount = createSelector(
-    selectAccountInfo,
-    (account) => deduplicateTransferBundles(account.transfers) || [],
-);
+export const getTransfersForSelectedAccount = createSelector(selectAccountInfo, (account) => account.transfers || []);
 
 /**
  *   Selects addresses from accountInfo object.
