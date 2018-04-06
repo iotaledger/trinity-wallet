@@ -198,8 +198,13 @@ export const getFullAccountInfoFirstSeed = (seed, accountName, navigator = null,
             .then((data) => dispatch(fullAccountInfoFirstSeedFetchSuccess(data)))
             .catch((err) => {
                 pushScreen(navigator, 'login');
-                dispatch(generateAccountInfoErrorAlert(err));
                 dispatch(fullAccountInfoFirstSeedFetchError());
+
+                // Add a slight delay to allow Login component and
+                // StatefulDropdownAlert component (mobile) to instantiate properly.
+                setTimeout(() => {
+                    dispatch(generateAccountInfoErrorAlert(err));
+                }, 500);
             });
     };
 };
