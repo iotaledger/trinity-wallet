@@ -7,7 +7,7 @@ import themes from 'themes/themes';
 
 import { updatePowSettings } from 'actions/settings';
 import { generateAlert } from 'actions/alerts';
-import { getVault } from 'libs/crypto';
+import { setVault } from 'libs/crypto';
 
 import Button from 'ui/components/Button';
 import ModalPassword from 'ui/components/modal/Password';
@@ -47,11 +47,11 @@ class Advanced extends PureComponent {
         resetConfirm: false,
     };
 
-    resetWallet = (password) => {
+    resetWallet = async (password) => {
         const { t, generateAlert } = this.props;
 
         try {
-            getVault(password);
+            await setVault(password, {}, true);
             localStorage.clear();
             location.reload();
 

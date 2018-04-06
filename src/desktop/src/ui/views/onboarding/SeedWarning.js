@@ -6,7 +6,7 @@ import Button from 'ui/components/Button';
 import Info from 'ui/components/Info';
 
 /**
- * Onboarding, Seed warnging
+ * Onboarding, Seed warning
  */
 class SeedWarning extends React.PureComponent {
     static propTypes = {
