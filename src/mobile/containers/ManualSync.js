@@ -119,9 +119,9 @@ export class ManualSync extends Component {
                     let genFn = null;
 
                     if (isAndroid) {
-                        genFn = NativeModules.EntangledAndroid.generateAddress;
+                        genFn = NativeModules.EntangledAndroid.generateAddresses;
                     } else if (isIOS) {
-                        genFn = NativeModules.EntangledIOS.generateAddress;
+                        genFn = NativeModules.EntangledIOS.generateAddresses;
                     }
 
                     this.props.manuallySyncAccount(seed, selectedAccountName, genFn);

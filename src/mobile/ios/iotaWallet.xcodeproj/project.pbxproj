@@ -34,7 +34,6 @@
 		5403F0AF99C33584CC25CA8D4422B333 /* Inconsolata-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 60C4FCE77138FA022DBAD917D3C8B8C1 /* Inconsolata-Regular.ttf */; };
 		54D44899635E65A34FCEAC3EA412BE26 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFA2B84C183CC39F995C8E04CC713DDB /* Images.xcassets */; };
 		5613EA5FACE7DF227C991290F2E89D02 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE06912F32A64660367B379A5FA9B59C /* libRCTAnimation.a */; };
-		60F0D8FA2077AB8C00426A47 /* EntangledIOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F0D8F92077AB8C00426A47 /* EntangledIOS.m */; };
 		6271062A9C4773BE282CDC0CF95480D8 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B655981D53B5AE618EDBD102EA41BF51 /* libReact.a */; };
 		6E9CC66B45FB093ECF765004AFED349E /* IotaKitEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE52C6768ACF193E25BFCE2B5EA7832 /* IotaKitEmitter.swift */; };
 		6ED5CBEF7B1A39258C560F6CDCD36254 /* libKCKeepAwake.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4F418B6A7C158123D272588757B8B5E /* libKCKeepAwake.a */; };
@@ -63,7 +62,8 @@
 		C51860C3A5258461508F6E3006EA337D /* Inconsolata-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA20221A44EBECD2DE04895A475187C4 /* Inconsolata-Bold.ttf */; };
 		C63F4449914D3D19E3C83C38F602BFB5 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F4F16E746AE853607E2E4D649F9E40 /* libRNDeviceInfo.a */; };
 		CA8AF202D45B7B9C48CB844FE4029B34 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38822DC4E60A1BDF9DF917E7C1541B3D /* libRCTLinking.a */; };
-		CB510201207803F900EB3D2E /* ios_bindings_lipo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB510200207803F900EB3D2E /* ios_bindings_lipo.a */; };
+		CB51020820780B7E00EB3D2E /* EntangledIOS.m in Sources */ = {isa = PBXBuildFile; fileRef = CB51020420780B7D00EB3D2E /* EntangledIOS.m */; };
+		CB51020D2078118B00EB3D2E /* ios_bindings_lipo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB51020C2078118B00EB3D2E /* ios_bindings_lipo.a */; };
 		CBE68855207304F100F0FFFD /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBE68854207304F100F0FFFD /* Launch Screen.storyboard */; };
 		CDC76600A03C06457F99259512D7F713 /* libRNIsDeviceRooted.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0431CEEC099BC4CE1F43E0550C4CC291 /* libRNIsDeviceRooted.a */; };
 		D51793D4E78BCB702D9FFAA1A3356153 /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48E60D4ABEBFCB6EC7FCE9538A5FF83F /* libRNSVG.a */; };
@@ -635,9 +635,6 @@
 		5D730345CF75A62E99A5B317731440D2 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		60C4FCE77138FA022DBAD917D3C8B8C1 /* Inconsolata-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inconsolata-Regular.ttf"; path = "../../shared/custom-fonts/Inconsolata-Regular.ttf"; sourceTree = "<group>"; };
 		60F0D8F42077A67D00426A47 /* ios_bindings-fl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "ios_bindings-fl.a"; path = "../../../../../../var/tmp/_bazel_rajiv/f375e5a0d7be270644e1885aff9a8d6e/execroot/org_iota_entangled/bazel-out/ios-x86_64-min9.0-applebin_ios-ios_x86_64-fastbuild/bin/mobile/interface/ios_bindings-fl.a"; sourceTree = "<group>"; };
-		60F0D8F72077AAC600426A47 /* bindings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bindings.h; sourceTree = "<group>"; };
-		60F0D8F82077AB1700426A47 /* EntangledIOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EntangledIOS.h; sourceTree = "<group>"; };
-		60F0D8F92077AB8C00426A47 /* EntangledIOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EntangledIOS.m; sourceTree = "<group>"; };
 		64A04B0E69E2398FF12B202BA93DEFED /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		65A85C473D819AC477AA9D6A95E7EDAB /* Pods-iotaWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iotaWallet.release.xcconfig"; path = "Pods/Target Support Files/Pods-iotaWallet/Pods-iotaWallet.release.xcconfig"; sourceTree = "<group>"; };
 		66A2C53DEF25AEDEB72FDC924EBABB8D /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -684,7 +681,10 @@
 		C95BBF78A0A4EBD898EABC433D7C624A /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Bold.ttf"; path = "../../shared/custom-fonts/Lato-Bold.ttf"; sourceTree = "<group>"; };
 		C989B5B2E21BB76597A51E0EFEA9B547 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CB12F2DB8E6D3A4CD653968A6281A586 /* Lato-Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Heavy.ttf"; path = "../../shared/custom-fonts/Lato-Heavy.ttf"; sourceTree = "<group>"; };
-		CB510200207803F900EB3D2E /* ios_bindings_lipo.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = ios_bindings_lipo.a; sourceTree = "<group>"; };
+		CB51020420780B7D00EB3D2E /* EntangledIOS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntangledIOS.m; sourceTree = "<group>"; };
+		CB51020520780B7D00EB3D2E /* bindings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bindings.h; sourceTree = "<group>"; };
+		CB51020620780B7D00EB3D2E /* EntangledIOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntangledIOS.h; sourceTree = "<group>"; };
+		CB51020C2078118B00EB3D2E /* ios_bindings_lipo.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = ios_bindings_lipo.a; sourceTree = "<group>"; };
 		CBE68854207304F100F0FFFD /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		CFA2B84C183CC39F995C8E04CC713DDB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = iotaWallet/Images.xcassets; sourceTree = "<group>"; };
 		D2C796029F4A68C167C1F1F5176A5819 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -721,7 +721,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB510201207803F900EB3D2E /* ios_bindings_lipo.a in Frameworks */,
+				CB51020D2078118B00EB3D2E /* ios_bindings_lipo.a in Frameworks */,
 				1601D2D3FEE3505B87365030187ECFDB /* Lottie.framework in Frameworks */,
 				2AC2F1F0512232323EB95A607D2CAD17 /* Pods_iotaWallet.framework in Frameworks */,
 				EA2AFB6E4462A57FCC1E22B307422A84 /* Pods_iotaWallet.framework in Frameworks */,
@@ -901,7 +901,7 @@
 		3FA554CD0D5061D20FBDC112457CF26E = {
 			isa = PBXGroup;
 			children = (
-				60F0D8F62077AA8800426A47 /* Entangled */,
+				CB51020220780B7D00EB3D2E /* EntangledIOS */,
 				5DA47AA1F43DF8347817216AFD81E3B8 /* Config */,
 				0FE432859717DE312B0951A32FFC9F0C /* Frameworks */,
 				D25810A0B3A9B6C48CA4B14EA6FEC8D2 /* IotaKit */,
@@ -983,17 +983,6 @@
 				40E70A189B0FFF62EE8AE0E04401F815 /* iotaWalletTests-release-config.xcconfig */,
 			);
 			path = Config;
-			sourceTree = "<group>";
-		};
-		60F0D8F62077AA8800426A47 /* Entangled */ = {
-			isa = PBXGroup;
-			children = (
-				60F0D8F72077AAC600426A47 /* bindings.h */,
-				60F0D8F82077AB1700426A47 /* EntangledIOS.h */,
-				60F0D8F92077AB8C00426A47 /* EntangledIOS.m */,
-				CB510200207803F900EB3D2E /* ios_bindings_lipo.a */,
-			);
-			path = Entangled;
 			sourceTree = "<group>";
 		};
 		6C07637C2BD02779C4E072737C53A2E3 /* Libraries */ = {
@@ -1168,6 +1157,17 @@
 				BDAF54583946132D35A957921197D3E8 /* libReactNativeFingerprintScanner.a */,
 			);
 			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		CB51020220780B7D00EB3D2E /* EntangledIOS */ = {
+			isa = PBXGroup;
+			children = (
+				CB51020C2078118B00EB3D2E /* ios_bindings_lipo.a */,
+				CB51020420780B7D00EB3D2E /* EntangledIOS.m */,
+				CB51020520780B7D00EB3D2E /* bindings.h */,
+				CB51020620780B7D00EB3D2E /* EntangledIOS.h */,
+			);
+			path = EntangledIOS;
 			sourceTree = "<group>";
 		};
 		CC4DA02F315C59DE24560F554539A682 /* Products */ = {
@@ -2423,7 +2423,7 @@
 			files = (
 				962469C90FA6C9D7DB8B0F1D49DD98E7 /* AppDelegate.m in Sources */,
 				009513FCBFA797A40A555F3084ED0B8D /* Iota.m in Sources */,
-				60F0D8FA2077AB8C00426A47 /* EntangledIOS.m in Sources */,
+				CB51020820780B7E00EB3D2E /* EntangledIOS.m in Sources */,
 				6E9CC66B45FB093ECF765004AFED349E /* IotaKitEmitter.swift in Sources */,
 				3E58EC90CE11629FBA816AAD96D16464 /* main.m in Sources */,
 			);
@@ -2643,6 +2643,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Entangled",
+					"$(PROJECT_DIR)/EntangledIOS",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -2943,6 +2944,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Entangled",
+					"$(PROJECT_DIR)/EntangledIOS",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
