@@ -10,11 +10,10 @@ import { setFullNode } from 'iota-wallet-shared-modules/actions/settings';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
 import { setPassword, setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { setUserActivity, setLoginPasswordField } from 'iota-wallet-shared-modules/actions/ui';
-import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import WithBackPressCloseApp from '../components/BackPressCloseApp';
 import DynamicStatusBar from '../components/DynamicStatusBar';
-import NodeSelection from './NodeSelection';
+import NodeSelectionOnLogin from './NodeSelectionOnLogin';
 import EnterPasswordOnLoginComponent from '../components/EnterPasswordOnLogin';
 import Enter2FA from '../components/Enter2FA';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
@@ -47,10 +46,6 @@ const styles = StyleSheet.create({
 /** Login component */
 class Login extends Component {
     static propTypes = {
-        /** Currently selected IRI node */
-        node: PropTypes.string.isRequired,
-        /** Available IRI nodes */
-        nodes: PropTypes.array.isRequired,
         /** Application version number and version name */
         versions: PropTypes.object.isRequired,
         /** Set new password hash
@@ -87,10 +82,6 @@ class Login extends Component {
         pwdHash: PropTypes.string.isRequired,
         /** Set new IRI node
          * @param {string} node
-         */
-        setFullNode: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
          */
         t: PropTypes.func.isRequired,
         /** Navigation object */
@@ -225,22 +216,7 @@ class Login extends Component {
                         <Enter2FA verify={this.onComplete2FA} cancel={this.onBackPress} theme={theme} />
                     )}
                 {this.state.changingNode && (
-                    <View>
-                        <View style={{ flex: 0.8 }} />
-                        <View style={{ flex: 4.62 }}>
-                            <NodeSelection
-                                setNode={(selectedNode) => {
-                                    changeIotaNode(selectedNode);
-                                    this.props.setFullNode(selectedNode);
-                                }}
-                                node={this.props.node}
-                                nodes={this.props.nodes}
-                                backPress={() => this.setState({ changingNode: false })}
-                                body={body}
-                            />
-                        </View>
-                        <View style={{ flex: 0.2 }} />
-                    </View>
+                    <NodeSelectionOnLogin backPress={() => this.setState({ changingNode: false })} />
                 )}
                 <StatefulDropdownAlert backgroundColor={body.bg} />
             </View>
