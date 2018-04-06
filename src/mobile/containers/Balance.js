@@ -14,7 +14,7 @@ import {
 } from 'iota-wallet-shared-modules/libs/iota/transfers';
 import {
     getAddressesForSelectedAccount,
-    getDeduplicatedTransfersForSelectedAccount,
+    getTransfersForSelectedAccount,
     getBalanceForSelectedAccount,
 } from 'iota-wallet-shared-modules/selectors/accounts';
 import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
@@ -80,7 +80,7 @@ export class Balance extends Component {
         /** Addresses for currently selected account */
         addresses: PropTypes.array.isRequired,
         /** Transactions for currently selected account */
-        transfers: PropTypes.array.isRequired,
+        transfers: PropTypes.object.isRequired,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          */
@@ -148,7 +148,7 @@ export class Balance extends Component {
 
     prepTransactions() {
         const { transfers, addresses, t, primary, secondary, body } = this.props;
-        const orderedTransfers = orderBy(transfers, (tx) => tx[0].timestamp, ['desc']);
+        const orderedTransfers = orderBy(transfers, (tx) => tx.timestamp, ['desc']);
         const recentTransactions = orderedTransfers.slice(0, 4);
 
         const computeConfirmationStatus = (persistence, incoming) => {
@@ -253,7 +253,7 @@ const mapStateToProps = (state) => ({
     seedIndex: state.wallet.seedIndex,
     balance: getBalanceForSelectedAccount(state),
     addresses: getAddressesForSelectedAccount(state),
-    transfers: getDeduplicatedTransfersForSelectedAccount(state),
+    transfers: getTransfersForSelectedAccount(state),
     currency: state.settings.currency,
     conversionRate: state.settings.conversionRate,
     primary: state.settings.theme.primary,

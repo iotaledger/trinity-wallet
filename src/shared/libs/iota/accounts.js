@@ -49,16 +49,18 @@ const organizeAccountState = (accountName, data) => {
         pendingTxHashesForSpentAddresses: [],
     };
 
+    console.log('Data', data);
     return formatAddressesAndBalance(data.addresses)
         .then(({ addresses, balance }) => {
             organizedState.addresses = addresses;
             organizedState.balance = balance;
 
-            return getBundleTailsForPendingValidTransfers(
-                organizedState.transfers,
-                organizedState.addresses,
-                accountName,
-            );
+            // return getBundleTailsForPendingValidTransfers(
+            //     organizedState.transfers,
+            //     organizedState.addresses,
+            //     accountName,
+            // );
+            return Promise.resolve({});
         })
         .then((unconfirmedBundleTails) => {
             organizedState.unconfirmedBundleTails = unconfirmedBundleTails;
@@ -69,6 +71,7 @@ const organizeAccountState = (accountName, data) => {
             organizedState.txHashesForUnspentAddresses = txHashesForUnspentAddresses;
             organizedState.pendingTxHashesForSpentAddresses = pendingTxHashesForSpentAddresses;
 
+            console.log('Organized state', organizedState);
             return organizedState;
         });
 };
@@ -127,7 +130,12 @@ export const getAccountData = (seed, accountName, genFn) => {
             return getLatestInclusionAsync(map(cached.tailTransactions, (tx) => tx.hash));
         })
         .then((states) => {
-            data.transfers = bundlesFromTransactionObjects(cached.tailTransactions, cached.transactionObjects, states);
+            data.transfers = bundlesFromTransactionObjects(
+                cached.tailTransactions,
+                cached.transactionObjects,
+                states,
+                data.addresses,
+            );
 
             return organizeAccountState(accountName, data);
         });
