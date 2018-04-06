@@ -46,6 +46,7 @@
             input,
             textarea {
                 background: var(--body-bg);
+                color: var(--body);
             }
 
             ul li {
