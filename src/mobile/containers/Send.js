@@ -611,10 +611,11 @@ export class Send extends Component {
                 let genFn = null;
 
                 if (isAndroid) {
-                    powFn = NativeModules.PoWModule.doPoW;
+                    powFn = NativeModules.EntangledAndroid.doPoW;
+                    genFn = NativeModules.EntangledAndroid.generateAddress;
                 } else if (isIOS) {
                     powFn = NativeModules.Iota.doPoW;
-                    genFn = NativeModules.Iota.address;
+                    genFn = NativeModules.EntangledIOS.generateAddress;
                 }
 
                 return this.props.makeTransaction(seed, address, value, message, selectedAccountName, powFn, genFn);
