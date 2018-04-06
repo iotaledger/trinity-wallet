@@ -15,6 +15,7 @@ public class IOTAMobilePackage implements ReactPackage {
         List<NativeModule> modules = new ArrayList<>();
 
         modules.add(new PoWModule(reactContext));
+        modules.add(new CryptoModule(reactContext));
 
         return modules;
     }
