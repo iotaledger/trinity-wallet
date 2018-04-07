@@ -196,62 +196,69 @@ export const getRelevantTransfer = (bundle, addresses) => {
     return extractTailTransferFromBundle(bundle);
 };
 
-export const getTransferValue = (bundle, addresses) => {
-    let value = 0;
-    let j = 0;
-    for (let i = 0; i < bundle.length; i++) {
-        if (addresses.indexOf(bundle[i].address) > -1) {
-            const isRemainder = bundle[i].currentIndex === bundle[i].lastIndex && bundle[i].lastIndex !== 0;
-            if (bundle[i].value < 0 && !isRemainder) {
-                value = bundle[0].value;
-                return value;
-            } else if (bundle[i].value >= 0 && !isRemainder) {
-                value += bundle[i].value;
-                j++;
-            }
-        }
-    }
-    if (j === 0) {
-        return extractTailTransferFromBundle(bundle).value;
-    }
-    return value;
-};
-
+/**
+ *   Check if transaction input addresses still have enough balance locally.
+ *
+ *   @method isValidTransactionSync
+ *   @param {object} transaction
+ *   @param {object} addressData
+ *   @returns {boolean}
+ **/
 export const isValidTransactionSync = (transaction, addressData) => {
-    const transactionBalance = transaction.transferValue;
-    const transactionAddresses = filter(transaction.addresses, (meta) => meta.spent);
+    const knownTransactionBalance = transaction.transferValue;
 
-    const balances = getBalancesSync(transactionAddresses, addressData);
+    const balances = getBalancesSync(transaction.inputs, addressData);
     const latestBalance = accumulateBalance(balances);
 
-    return transactionBalance <= latestBalance;
+    return knownTransactionBalance <= latestBalance;
 };
 
+/**
+ *   Check if transaction input addresses still have enough balance.
+ *
+ *   @method isValidTransactionAsync
+ *   @param {object} transaction
+ *   @returns {boolean}
+ **/
 export const isValidTransactionAsync = (transaction) => {
-    const transactionBalance = transaction.transferValue;
-    const transactionAddresses = transaction.addreses.inputs;
+    const knownTransactionBalance = transaction.transferValue;
 
-    return getBalancesAsync(transactionAddresses, DEFAULT_BALANCES_THRESHOLD).then((balances) => {
+    return getBalancesAsync(transaction.inputs, DEFAULT_BALANCES_THRESHOLD).then((balances) => {
         const latestBalance = accumulateBalance(map(balances.balances, Number));
 
-        return transactionBalance <= latestBalance;
+        return knownTransactionBalance <= latestBalance;
     });
 };
 
+/**
+ *   Filters out invalid transactions (Transactions that no longer have enough balance on their input addresses)
+ *
+ *   @method filterInvalidTransactionsSync
+ *   @param {array} transactions
+ *   @param {object} addressData
+ *   @returns {array}
+ **/
 export const filterInvalidTransactionsSync = (transactions, addressData) => {
     const validTransactions = [];
 
     each(transactions, (transaction) => {
-        const isValidBundle = isValidTransactionSync(transaction, addressData);
+        const isValidTransaction = isValidTransactionSync(transaction, addressData);
 
-        if (isValidBundle) {
-            validTransactions.push(bundle);
+        if (isValidTransaction) {
+            validTransactions.push(transaction);
         }
     });
 
     return validTransactions;
 };
 
+/**
+ *   Filters out invalid transactions (Transactions that no longer have enough balance on their input addresses)
+ *
+ *   @method filterInvalidTransactionsAsync
+ *   @param {array} transactions
+ *   @returns {array}
+ **/
 export const filterInvalidTransactionsAsync = (transactions) => {
     return reduce(
         transactions,
@@ -259,7 +266,7 @@ export const filterInvalidTransactionsAsync = (transactions) => {
             return promise.then((result) => {
                 return isValidTransactionAsync(transaction).then((isValid) => {
                     if (isValid) {
-                        result.push(bundle);
+                        result.push(transaction);
                     }
 
                     return result;
@@ -268,26 +275,6 @@ export const filterInvalidTransactionsAsync = (transactions) => {
         },
         Promise.resolve([]),
     );
-};
-
-/**
- *   Accepts transfers and filters zero value transfers if any
- *
- *   @method filterZeroValueTransfers
- *   @param {array} transfers
- *   @returns {array} - Value transfers
- **/
-export const filterZeroValueTransfers = (transfers) => {
-    const keepValueTransfers = (acc, bundle) => {
-        // Check if any transaction object has a negative (spent) value
-        if (!some(bundle, (tx) => tx.value < 0)) {
-            acc.push(bundle);
-        }
-
-        return acc;
-    };
-
-    return reduce(transfers, keepValueTransfers, []);
 };
 
 /**
@@ -301,11 +288,9 @@ export const accumulateBalanceFromBundle = (bundle) => {
     return reduce(bundle, (acc, tx) => (tx.value < 0 ? acc + Math.abs(tx.value) : acc), 0);
 };
 
-export const filterConfirmedTransfers = (transfers) => filter(transfers, (tx) => !tx.persistence);
-
 export const getBundleTailsForPendingValidTransfers = (transfers, addressData, account) => {
     const addresses = keys(addressData);
-    const pendingTransfers = filterConfirmedTransfers(transfers);
+    const pendingTransfers = filter(transfers, (tx) => !tx.persistence);
 
     if (isEmpty(pendingTransfers)) {
         return Promise.resolve({});
@@ -357,35 +342,6 @@ export const getFirstConsistentTail = (tails, idx) => {
             return getFirstConsistentTail(tails, idx);
         })
         .catch(() => false);
-};
-
-/**
- *   Takes in transfer bundles and only keep a single copy
- *
- *   @method deduplicateTransferBundles
- *   @param {array} transfers - transfers array
- *
- *   @returns {array} - filtered transfers array
- **/
-export const deduplicateTransferBundles = (transfers) => {
-    const deduplicate = (res, transfer) => {
-        const tail = find(transfer, (tx) => tx.currentIndex === 0);
-        const bundle = tail.bundle;
-        const persistence = tail.persistence;
-
-        if (bundle in res) {
-            if (persistence) {
-                res[bundle] = transfer;
-            }
-        } else {
-            res = { ...res, ...{ [bundle]: transfer } };
-        }
-
-        return res;
-    };
-
-    const aggregated = reduce(transfers, deduplicate, {});
-    return map(aggregated, (v) => v);
 };
 
 /**
@@ -743,7 +699,7 @@ export const getHashesDiff = (
  *   @returns {Promise<array>}
  **/
 export const filterInvalidPendingTransfers = (transfers, addressData) => {
-    const pendingTransfers = filterConfirmedTransfers(transfers);
+    const pendingTransfers = filter(transfers, (tx) => !tx.persistence);;
 
     if (isEmpty(pendingTransfers)) {
         return Promise.resolve([]);
@@ -886,7 +842,7 @@ export const getTransactionHashesForUnspentAddresses = (addressData) => {
  *   @returns {Promise<array>}
  **/
 export const getPendingTransactionHashesForSpentAddresses = (transfers, addressData) => {
-    const pendingTransfers = filterConfirmedTransfers(transfers);
+    const pendingTransfers = filter(transfers, (tx) => !tx.persistence);
 
     const spentAddressesWithPendingTransfers = getSpentAddressesWithPendingTransfersSync(pendingTransfers, addressData);
 
