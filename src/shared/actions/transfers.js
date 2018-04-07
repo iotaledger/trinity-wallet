@@ -1,8 +1,9 @@
 import head from 'lodash/head';
 import find from 'lodash/find';
 import get from 'lodash/get';
+import map from 'lodash/map';
+import filter from 'lodash/filter';
 import some from 'lodash/some';
-import sample from 'lodash/sample';
 import { iota } from '../libs/iota';
 import {
     broadcastBundleAsync,
@@ -25,8 +26,7 @@ import {
     isStillAValidTransaction,
     getFirstConsistentTail,
     prepareTransferArray,
-    filterInvalidPendingTransfers,
-    filterZeroValueTransfers,
+    filterInvalidPendingTransactions,
     performPow,
 } from '../libs/iota/transfers';
 import { syncAccountAfterReattachment, syncAccount, syncAccountAfterSpending } from '../libs/iota/accounts';
@@ -254,8 +254,12 @@ export const makeTransaction = (seed, address, value, message, accountName, powF
                 // Update local store with the latest account information
                 dispatch(accountInfoFetchSuccess(accountState));
 
-                const valueTransfers = filterZeroValueTransfers(accountState.transfers);
-                return filterInvalidPendingTransfers(valueTransfers, accountState.addresses);
+                const valueTransfers = filter(
+                    map(accountState.transfers, (tx) => tx),
+                    (tx) => tx.transferValue !== 0
+                );
+
+                return filterInvalidPendingTransactions(valueTransfers, accountState.addresses);
             })
             .then((filteredTransfers) => {
                 const { addresses } = accountState;
@@ -355,7 +359,7 @@ export const makeTransaction = (seed, address, value, message, accountName, powF
             })
             .then(() =>
                 syncAccountAfterSpending(accountName, cached.transactionObjects, accountState, !isZeroValue),
-            )
+        )
             .then(({ newState }) => {
                 // Progress summary
                 dispatch(setNextStepAsActive());
