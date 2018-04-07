@@ -22,6 +22,7 @@ import union from 'lodash/union';
 import unionBy from 'lodash/unionBy';
 import flatten from 'lodash/flatten';
 import orderBy from 'lodash/orderBy';
+import sample from 'lodash/sample';
 import { DEFAULT_TAG, DEFAULT_BALANCES_THRESHOLD, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../../config';
 import { iota } from './index';
 import {
@@ -60,6 +61,20 @@ export const getTransferValue = (bundle, addresses) => {
         return extractTailTransferFromBundle(bundle).value;
     }
     return value;
+};
+
+export const getRelevantTransfer = (bundle, addresses) => {
+    for (let i = 0; i < bundle.length; i++) {
+        if (addresses.indexOf(bundle[i].address) > -1) {
+            const isRemainder = bundle[i].currentIndex === bundle[i].lastIndex && bundle[i].lastIndex !== 0;
+            if (bundle[i].value < 0 && !isRemainder) {
+                return bundle[0];
+            } else if (bundle[i].value >= 0 && !isRemainder) {
+                return bundle[i];
+            }
+        }
+    }
+    return extractTailTransferFromBundle(bundle);
 };
 
 /**
@@ -205,20 +220,6 @@ export const isSentTransfer = (bundle, addresses) => {
  **/
 export const isReceivedTransfer = (bundle, addresses) => !isSentTransfer(bundle, addresses);
 
-export const getRelevantTransfer = (bundle, addresses) => {
-    for (let i = 0; i < bundle.length; i++) {
-        if (addresses.indexOf(bundle[i].address) > -1) {
-            const isRemainder = bundle[i].currentIndex === bundle[i].lastIndex && bundle[i].lastIndex !== 0;
-            if (bundle[i].value < 0 && !isRemainder) {
-                return bundle[0];
-            } else if (bundle[i].value >= 0 && !isRemainder) {
-                return bundle[i];
-            }
-        }
-    }
-    return extractTailTransferFromBundle(bundle);
-};
-
 /**
  *   Check if transaction input addresses still have enough balance locally.
  *
@@ -356,26 +357,16 @@ export const getFirstConsistentTail = (tails, idx) => {
         .catch(() => false);
 };
 
-/**
- *   Takes in transfer bundles and grab hashes for transfer objects that are unconfirmed.
- *
- *   @method getPendingTxTailsHashes
- *   @param {array} bundles - Transfer bundles
- *
- *   @returns {array} - array of transfer hashes
- **/
-export const getPendingTxTailsHashes = (bundles) => {
-    const grabHashesFromTails = (acc, transfers) => {
-        each(transfers, (tx) => {
-            if (tx.currentIndex === 0 && !tx.persistence) {
-                acc.push(tx.hash);
-            }
-        });
+export const getTailTransactionsHashesForPendingTransfers = (transfers) => {
+    const grabHashes = (acc, transfer) => {
+        if (!transfer.persistence) {
+            acc.push(...transfer.tailTransactionsHashes);
+        }
 
         return acc;
     };
 
-    return reduce(bundles, grabHashesFromTails, []);
+    return reduce(transfers, grabHashes, []);
 };
 
 /**
@@ -388,23 +379,13 @@ export const getPendingTxTailsHashes = (bundles) => {
  *
  *   @returns {array} - bundles
  **/
-export const markTransfersConfirmed = (bundles, confirmedTransfersTailsHashes) => {
-    return map(bundles, (transfers) => {
-        const tailTransaction = find(transfers, { currentIndex: 0 });
-
-        // Safety check to see if tail transaction was actually found.
-        // Very unlikely to happen unless and until state is messed up.
-        // If tail transaction was found, check if its hash includes in the confirmed trasfers tails hashes list.
-        const isConfirmedTailTransaction =
-            tailTransaction && includes(confirmedTransfersTailsHashes, tailTransaction.hash);
-
-        // Invert persistence on all transfer objects if transaction is confirmed.
-        if (isConfirmedTailTransaction) {
-            return map(transfers, (transfer) => ({ ...transfer, persistence: true }));
-        }
-
-        return transfers;
-    });
+export const markTransfersConfirmed = (transfers, confirmedTransactionsHashes) => {
+    return map(transfers, (transfer) => ({
+        ...transfer,
+        persistence: transfer.persistence ?
+            transfer.persistence :
+            some(transfer.tailTransactionsHashes, (hash) => includes(confirmedTransactionsHashes, hash))
+    }));
 };
 
 export const isAboveMaxDepth = (timestamp) => {
@@ -487,9 +468,9 @@ export const hasNewTransfers = (existingHashes, newHashes) =>
  *
  *   @returns {Promise<array>}
  **/
-export const getConfirmedTransactionHashes = (pendingTxTailHashes) => {
-    return getLatestInclusionAsync(pendingTxTailHashes).then((states) =>
-        filter(pendingTxTailHashes, (hash, idx) => states[idx]),
+export const getConfirmedTransactionHashes = (pendingTransactionsHashes) => {
+    return getLatestInclusionAsync(pendingTransactionsHashes).then((states) =>
+        filter(pendingTransactionsHashes, (hash, idx) => states[idx]),
     );
 };
 
@@ -546,7 +527,12 @@ const normalizeBundle = (bundle, addresses, tailTransactions, persistence) => {
         incoming: isReceivedTransfer(bundle, addresses),
         transferValue: getTransferValue(bundle, addresses),
         message: convertFromTrytes(transfer.signatureMessageFragment),
-        tailTransactionsHashes: map(filter(tailTransactions, (tx) => tx.bundle === bundleHash), (tx) => tx.hash),
+        tailTransactionsHashes: map(
+            filter(tailTransactions, (tx) => tx.bundle === bundleHash),
+            (tx) => ({
+                hash: tx.hash,
+                attachmentTimestamp: tx.attachmentTimestamp
+            })),
     };
 };
 
@@ -597,7 +583,7 @@ export const syncTransfers = (diff, accountState) => {
             );
 
             let transfers = cloneDeep(accountState.transfers);
-            
+
             // Check if new transfer found is a reattachment i.e. there is already a bundle instance stored locally.
             // If its a reattachment, just add its tail transaction hash
             // Otherwise, add it as a new transfer
@@ -605,7 +591,7 @@ export const syncTransfers = (diff, accountState) => {
                 const bundle = transfer.bundle;
                 if (bundle in accountState.transfers) {
                     transfers[bundle] = assign({}, transfers[bundle], {
-                        tailTransactionsHashes: union(transfers[bundle].tailTransactionsHashes, transfer.tailTransactionsHashes) 
+                        tailTransactionsHashes: union(transfers[bundle].tailTransactionsHashes, transfer.tailTransactionsHashes)
                     });
                 } else {
                     transfers[bundle] = transfer;
@@ -620,42 +606,23 @@ export const syncTransfers = (diff, accountState) => {
 };
 
 /**
- *   Accepts a bundle hash and transfers and returns
- *   all bundles matching the bundle hash
- *
- *   @method findBundlesFromTransfers
- *   @param {string} bundleHash
- *   @param {array} transfers
- *   @param {array} transfers - Transfers matching the bundle hash
- *
- *   @returns {Promise<object>} - { transfers (Updated transfers), newTransfers }
- **/
-export const findBundlesFromTransfers = (bundleHash, transfers) => {
-    return filter(transfers, (bundle) => {
-        const topTx = head(bundle);
-
-        return topTx.bundle === bundleHash;
-    });
-};
-
-/**
  *   Accepts tail transaction object categorized by bundles and a list of tail transaction hashes
  *   Returns all relevant bundle hashes for tail transaction hashes
  *
- *   @method getBundleHashesForTailTransactionHashes
+ *   @method getBundleHashesForNewlyConfirmedTransactions
  *   @param {object} bundleTails - { bundleHash: [{}, {}]}
  *   @param {array} tailTransactionHashes - List of tail transaction hashes
  *
  *   @returns {array} bundleHashes - List of bundle hashes
  **/
-export const getBundleHashesForTailTransactionHashes = (bundleTails, tailTransactionHashes) => {
+export const getBundleHashesForNewlyConfirmedTransactions = (unconfirmedBundleTails, confirmedTransactionsHashes) => {
     const grabBundleHashes = (acc, tailTransactions, bundleHash) => {
-        if (some(tailTransactions, (tailTransaction) => includes(tailTransactionHashes, tailTransaction.hash))) {
+        if (some(tailTransactions, (tailTransaction) => includes(confirmedTransactionsHashes, tailTransaction.hash))) {
             acc.push(bundleHash);
         }
     };
 
-    return transform(bundleTails, grabBundleHashes, []);
+    return transform(unconfirmedBundleTails, grabBundleHashes, []);
 };
 
 /**
@@ -669,21 +636,10 @@ export const getBundleHashesForTailTransactionHashes = (bundleTails, tailTransac
  *
  *   @returns {Promise<boolean>} - Promise that resolves whether the bundle is valid or not
  **/
-export const isValidForPromotion = (bundleHash, transfers, addressData) => {
-    const bundles = findBundlesFromTransfers(bundleHash, transfers);
-    const firstBundle = head(bundles);
-
-    // If no bundles found, something in the state is messed up
-    if (!firstBundle) {
-        return Promise.resolve(false);
-    }
-
-    const addresses = keys(addressData);
-    const incomingTransfer = isReceivedTransfer(firstBundle, addresses);
-
-    return incomingTransfer
-        ? isValidBundleAsync(firstBundle)
-        : Promise.resolve(isValidBundleSync(firstBundle, addressData));
+export const isStillAValidTransaction = (transaction, addressData) => {
+    return transaction.incoming
+        ? isValidTransactionAsync(transaction)
+        : Promise.resolve(isValidTransactionSync(transaction, addressData));
 };
 
 /**
@@ -754,25 +710,7 @@ export const filterInvalidPendingTransfers = (transfers, addressData) => {
  *   @param {array} transfers
  *   @returns {object}
  **/
-export const getTailTransactionForBundle = (bundleHash, transfers) => {
-    const bundles = findBundlesFromTransfers(bundleHash, transfers);
-
-    return find(flatten(bundles), { currentIndex: 0 });
-};
-
-/**
- *   Finds all tail transaction objects from transfers
- *
- *   @method getAllTailTransactionsForBundle
- *   @param {string} bundleHash
- *   @param {array} transfers
- *   @returns {array}
- **/
-export const getAllTailTransactionsForBundle = (bundleHash, transfers) => {
-    const bundles = findBundlesFromTransfers(bundleHash, transfers);
-
-    return filter(flatten(bundles), { currentIndex: 0 });
-};
+export const getAnyTailTransaction = (transaction) => sample(transaction.tailTransactionsHashes);
 
 /**
  *   Performs proof of work and updates trytes and transaction objects with nonce
