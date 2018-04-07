@@ -37,6 +37,7 @@ import {
     findTransactionObjectsAsync,
     findTransactionsAsync,
 } from './extendedApi';
+import { convertFromTrytes } from './utils';
 import Errors from './../errors';
 
 /**
@@ -532,6 +533,7 @@ const normalizeBundle = (bundle, addresses, tailTransactions, persistence) => {
         persistence,
         incoming: isReceivedTransfer(bundle, addresses),
         transferValue: accumulateBalanceFromBundle(bundle),
+        message: convertFromTrytes(transfer.signatureMessageFragment),
         tailTransactionsHashes: map(filter(tailTransactions, (tx) => tx.bundle === bundleHash), (tx) => tx.hash),
     };
 };
