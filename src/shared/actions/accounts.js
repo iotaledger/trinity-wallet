@@ -197,7 +197,6 @@ export const getFullAccountInfoFirstSeed = (seed, accountName, navigator = null,
         getAccountData(seed, accountName, genFn)
             .then((data) => dispatch(fullAccountInfoFirstSeedFetchSuccess(data)))
             .catch((err) => {
-                console.log('Err', err);
                 pushScreen(navigator, 'login');
                 dispatch(fullAccountInfoFirstSeedFetchError());
 
@@ -238,7 +237,6 @@ export const getAccountInfo = (seed, accountName, navigator = null, genFn) => {
             })
             .then((newAccountData) => dispatch(accountInfoFetchSuccess(newAccountData)))
             .catch((err) => {
-                console.log('Err', err);
                 if (navigator) {
                     navigator.pop({ animated: false });
                 }

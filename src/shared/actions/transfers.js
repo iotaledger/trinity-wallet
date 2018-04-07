@@ -114,8 +114,8 @@ export const broadcastBundle = (bundleHash, accountName) => (dispatch, getState)
 
                 throw new Error(Errors.BUNDLE_NO_LONGER_VALID);
             }
-            
-            return broadcastBundleAsync(tailTransaction.hash)
+
+            return broadcastBundleAsync(tailTransaction.hash);
         })
         .then(() => {
             dispatch(
@@ -141,7 +141,7 @@ export const broadcastBundle = (bundleHash, accountName) => (dispatch, getState)
                     ),
                 );
             }
-        
+
             return dispatch(broadcastBundleError());
         });
 };
@@ -273,10 +273,7 @@ export const makeTransaction = (seed, address, value, message, accountName, powF
                 // Update local store with the latest account information
                 dispatch(accountInfoFetchSuccess(accountState));
 
-                const valueTransfers = filter(
-                    map(accountState.transfers, (tx) => tx),
-                    (tx) => tx.transferValue !== 0
-                );
+                const valueTransfers = filter(map(accountState.transfers, (tx) => tx), (tx) => tx.transferValue !== 0);
 
                 return filterInvalidPendingTransactions(valueTransfers, accountState.addresses);
             })
@@ -376,9 +373,7 @@ export const makeTransaction = (seed, address, value, message, accountName, powF
 
                 return storeAndBroadcastAsync(cached.trytes);
             })
-            .then(() =>
-                syncAccountAfterSpending(accountName, cached.transactionObjects, accountState, !isZeroValue),
-        )
+            .then(() => syncAccountAfterSpending(accountName, cached.transactionObjects, accountState, !isZeroValue))
             .then(({ newState }) => {
                 // Progress summary
                 dispatch(setNextStepAsActive());
