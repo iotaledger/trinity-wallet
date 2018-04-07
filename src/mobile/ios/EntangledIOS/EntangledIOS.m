@@ -18,6 +18,7 @@ RCT_EXPORT_METHOD(generateAddress:(NSString *)seed index:(int)index security:(in
 {
   char * seedChars = [seed cStringUsingEncoding:NSUTF8StringEncoding];
   char * address = generate_address(seedChars, index, security);
+  memset(seedChars, 0, strlen(seedChars));
   resolve([NSString stringWithFormat:@"%s", address]);
 }
 
@@ -25,7 +26,7 @@ RCT_EXPORT_METHOD(generateAddress:(NSString *)seed index:(int)index security:(in
 RCT_EXPORT_METHOD(generateAddresses:(NSString *)seed index:(int)index security:(int)security total:(int)total resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
   char * seedChars = [seed cStringUsingEncoding:NSUTF8StringEncoding];
-  NSMutableArray *addresses = [NSMutableArray array];
+  NSMutableArray * addresses = [NSMutableArray array];
   int i = 0;
   
   do {
@@ -35,7 +36,7 @@ RCT_EXPORT_METHOD(generateAddresses:(NSString *)seed index:(int)index security:(
     i++;
     index++;
   } while (i < total);
-  
+  memset(seedChars, 0, strlen(seedChars));
   resolve(addresses);
 }
 
@@ -46,6 +47,7 @@ RCT_EXPORT_METHOD(generateSignature:(NSString *)seed index:(int)index security:(
   char * bundleHashChars = [bundleHash cStringUsingEncoding:NSUTF8StringEncoding];
   
   char * signature = generate_signature(seedChars, index, security, bundleHashChars);
+  memset(seedChars, 0, strlen(seedChars));
   resolve(@[[NSString stringWithFormat:@"%s", signature]]);
 }
 
