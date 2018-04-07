@@ -300,7 +300,7 @@ class Home extends Component {
                         </View>
                     )}
                     {minimised && <View />}
-                    {/* <PollComponent /> */}
+                    <PollComponent />
                     <StatefulDropdownAlert backgroundColor={bar.bg} />
                 </View>
             </UserInactivity>
