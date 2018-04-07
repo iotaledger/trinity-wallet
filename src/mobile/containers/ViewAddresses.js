@@ -119,7 +119,7 @@ export class ViewAddresses extends Component {
             ...data,
             balance: round(formatValue(data.balance), 1),
             unit: formatUnit(data.balance),
-            address: iota.utils.addChecksum(address, 9, true),
+            address: `${address}${data.checksum}`,
         }));
 
         return orderBy(preparedAddresses, 'index', ['desc']);
