@@ -20,7 +20,6 @@ import difference from 'lodash/difference';
 import union from 'lodash/union';
 import unionBy from 'lodash/unionBy';
 import orderBy from 'lodash/orderBy';
-import sample from 'lodash/sample';
 import { DEFAULT_TAG, DEFAULT_BALANCES_THRESHOLD, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../../config';
 import { iota } from './index';
 import {
@@ -277,10 +276,10 @@ export const isReceivedTransfer = (bundle, addresses) => !isSentTransfer(bundle,
 
 /**
  *   Checks if transaction's input addresses still have enough balance.
- *  
+ *
  *   IMPORTANT: Since, inputs balances would be checked against locally stored addresses data,
  *   this function should only be used after account is synced.
- * 
+ *
  *   @method isValidTransactionSync
  *   @param {object} transaction
  *   @param {object} addressData
@@ -297,7 +296,7 @@ export const isValidTransactionSync = (transaction, addressData) => {
 
 /**
  *   Communicates with the tangle and checks if transaction's input addresses still have enough balance.
- * 
+ *
  *   @method isValidTransactionAsync
  *   @param {object} transaction
  *   @returns {boolean}
@@ -305,26 +304,21 @@ export const isValidTransactionSync = (transaction, addressData) => {
 export const isValidTransactionAsync = (transaction) => {
     const knownTransactionBalanceOnInputs = reduce(transaction.inputs, (acc, input) => acc + Math.abs(input.value), 0);
 
-    return getBalancesAsync(
-        map(
-            transaction.inputs,
-            (input) => input.address
-        ),
-        DEFAULT_BALANCES_THRESHOLD
-    )
-        .then((balances) => {
+    return getBalancesAsync(map(transaction.inputs, (input) => input.address), DEFAULT_BALANCES_THRESHOLD).then(
+        (balances) => {
             const latestBalanceOnInputs = accumulateBalance(map(balances.balances, Number));
 
             return knownTransactionBalanceOnInputs <= latestBalanceOnInputs;
-        });
+        },
+    );
 };
 
 /**
  *   Filters out invalid transactions (Transactions that no longer have enough balance on their input addresses)
- * 
+ *
  *   IMPORTANT: Since, inputs balances would be checked against locally stored addresses data,
  *   this function should only be used after account is synced.
- * 
+ *
  *   @method filterInvalidTransactionsSync
  *   @param {array} transactions
  *   @param {object} addressData
@@ -374,10 +368,10 @@ export const filterInvalidTransactionsAsync = (transactions) => {
  *  Filters out transactions that are:
  *     - Pending
  *     - Zero value
- *     - No longer valid (Input addresses don't have enough balance) 
- * 
- *  Transforms filtered transactions by bundle hashes so that they can be picked up for promotion 
- * 
+ *     - No longer valid (Input addresses don't have enough balance)
+ *
+ *  Transforms filtered transactions by bundle hashes so that they can be picked up for promotion
+ *
  *   @method prepareForAutoPromotion
  *   @param {array} transfers
  *   @param {object} addressData
@@ -424,7 +418,7 @@ export const prepareForAutoPromotion = (transfers, addressData, account) => {
 
 /**
  *  Get all tail transactions hashes for pending transactions.
- * 
+ *
  *   @method getTailTransactionsHashesForPendingTransfers
  *   @param {object} normalizedTransactions
  *
@@ -454,9 +448,9 @@ export const getTailTransactionsHashesForPendingTransfers = (normalizedTransacti
 export const markTransfersConfirmed = (transfers, confirmedTransactionsHashes) => {
     return map(transfers, (transfer) => ({
         ...transfer,
-        persistence: transfer.persistence ?
-            transfer.persistence :
-            some(transfer.tailTransactions, (tx) => includes(confirmedTransactionsHashes, tx.hash))
+        persistence: transfer.persistence
+            ? transfer.persistence
+            : some(transfer.tailTransactions, (tx) => includes(confirmedTransactionsHashes, tx.hash)),
     }));
 };
 
@@ -557,7 +551,12 @@ export const getConfirmedTransactionHashes = (pendingTransactionsHashes) => {
  *
  *   @returns {array}
  **/
-export const normalizedBundlesFromTransactionObjects = (tailTransactions, transactionObjects, inclusionStates, addresses) => {
+export const normalizedBundlesFromTransactionObjects = (
+    tailTransactions,
+    transactionObjects,
+    inclusionStates,
+    addresses,
+) => {
     const { unconfirmed, confirmed } = categorizeTransactionsByPersistence(tailTransactions, inclusionStates);
 
     const normalizedUnconfirmedTransfers = transformTransactionsByBundleHash(unconfirmed);
@@ -610,12 +609,10 @@ export const normalizeBundle = (bundle, addresses, tailTransactions, persistence
         incoming: isReceivedTransfer(bundle, addresses),
         transferValue: getTransferValue(bundle, addresses),
         message: convertFromTrytes(transfer.signatureMessageFragment),
-        tailTransactions: map(
-            filter(tailTransactions, (tx) => tx.bundle === bundleHash),
-            (tx) => ({
-                hash: tx.hash,
-                attachmentTimestamp: tx.attachmentTimestamp
-            })),
+        tailTransactions: map(filter(tailTransactions, (tx) => tx.bundle === bundleHash), (tx) => ({
+            hash: tx.hash,
+            attachmentTimestamp: tx.attachmentTimestamp,
+        })),
     };
 };
 
@@ -662,7 +659,7 @@ export const syncTransfers = (diff, accountState) => {
                 cached.tailTransactions,
                 cached.transactionObjects,
                 states,
-                keys(accountState.addresses)
+                keys(accountState.addresses),
             );
 
             const transfers = mergeNewTransfers(newNormalizedTransfers, accountState.transfers);
@@ -688,8 +685,8 @@ export const mergeNewTransfers = (newTransfers, existingTransfers) => {
                 tailTransactions: unionBy(
                     existingTransfers[bundle].tailTransactions,
                     transfer.tailTransactions,
-                    'hash'
-                )
+                    'hash',
+                ),
             });
         } else {
             transfers[bundle] = transfer;
@@ -780,7 +777,7 @@ export const getHashesDiff = (
  *   @returns {Promise<array>}
  **/
 export const filterInvalidPendingTransactions = (transactions, addressData) => {
-    const pendingTransactions = filter(transactions, (tx) => !tx.persistence);;
+    const pendingTransactions = filter(transactions, (tx) => !tx.persistence);
 
     if (isEmpty(pendingTransactions)) {
         return Promise.resolve([]);
@@ -896,7 +893,10 @@ export const getTransactionHashesForUnspentAddresses = (addressData) => {
 export const getPendingTransactionHashesForSpentAddresses = (transactions, addressData) => {
     const pendingTransactions = filter(transactions, (tx) => !tx.persistence);
 
-    const spentAddressesWithPendingTransactions = getSpentAddressesWithPendingTransfersSync(pendingTransactions, addressData);
+    const spentAddressesWithPendingTransactions = getSpentAddressesWithPendingTransfersSync(
+        pendingTransactions,
+        addressData,
+    );
 
     if (isEmpty(spentAddressesWithPendingTransactions)) {
         return Promise.resolve([]);
