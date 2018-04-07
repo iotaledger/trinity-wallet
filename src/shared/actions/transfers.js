@@ -2,6 +2,7 @@ import head from 'lodash/head';
 import find from 'lodash/find';
 import get from 'lodash/get';
 import some from 'lodash/some';
+import sample from 'lodash/sample';
 import { iota } from '../libs/iota';
 import {
     broadcastBundleAsync,
@@ -20,9 +21,8 @@ import {
 import { setNextStepAsActive } from './progress';
 import { clearSendFields } from './ui';
 import {
-    getTailTransactionForBundle,
-    getAllTailTransactionsForBundle,
-    isValidForPromotion,
+    getAnyTailTransaction,
+    isStillAValidTransaction,
     getFirstConsistentTail,
     prepareTransferArray,
     filterInvalidPendingTransfers,
@@ -102,7 +102,7 @@ export const broadcastBundle = (bundleHash, accountName) => (dispatch, getState)
     dispatch(broadcastBundleRequest());
 
     const accountState = selectedAccountStateFactory(accountName)(getState());
-    const tailTransaction = getTailTransactionForBundle(bundleHash, accountState.transfers);
+    const tailTransaction = getAnyTailTransaction(accountState.transfers[bundleHash]);
 
     return broadcastBundleAsync(tailTransaction.hash)
         .then(() => {
@@ -133,10 +133,10 @@ export const promoteTransaction = (bundleHash, accountName) => (dispatch, getSta
     dispatch(promoteTransactionRequest());
 
     const accountState = selectedAccountStateFactory(accountName)(getState());
-    const tailTransactions = getAllTailTransactionsForBundle(bundleHash, accountState.transfers);
+    const tailTransactions = accountState.transfers[bundleHash].tailTransactions;
     let chainBrokenInternally = false;
 
-    return isValidForPromotion(bundleHash, accountState.transfers, accountState.addresses)
+    return isStillAValidTransaction(accountState.transfers[bundleHash], accountState.addresses)
         .then((isValid) => {
             if (!isValid) {
                 chainBrokenInternally = true;
