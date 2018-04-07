@@ -7,14 +7,11 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { broadcastBundle, promoteTransaction } from 'iota-wallet-shared-modules/actions/transfers';
-import {
-    getTransfersForSelectedAccount,
-    getSelectedAccountName,
-} from 'iota-wallet-shared-modules/selectors/accounts';
+import { getTransfersForSelectedAccount, getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
 import { getAccountInfo } from 'iota-wallet-shared-modules/actions/accounts';
 import { OptimizedFlatList } from 'react-native-optimized-flatlist';
 import { round } from 'iota-wallet-shared-modules/libs/utils';
-import { convertFromTrytes, formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/iota/utils';
+import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/iota/utils';
 import tinycolor from 'tinycolor2';
 import TransactionRow from '../components/TransactionRow';
 import { width, height } from '../utils/dimensions';
