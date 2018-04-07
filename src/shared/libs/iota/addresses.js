@@ -3,7 +3,6 @@ import cloneDeep from 'lodash/cloneDeep';
 import each from 'lodash/each';
 import filter from 'lodash/filter';
 import head from 'lodash/head';
-import find from 'lodash/find';
 import isEmpty from 'lodash/isEmpty';
 import transform from 'lodash/transform';
 import isNumber from 'lodash/isNumber';
@@ -12,11 +11,11 @@ import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import findKey from 'lodash/findKey';
 import size from 'lodash/size';
-import pick from 'lodash/pick';
 import pickBy from 'lodash/pickBy';
 import omitBy from 'lodash/omitBy';
 import { iota } from './index';
 import { getBalancesAsync, wereAddressesSpentFromAsync } from './extendedApi';
+import { categorizeTransactions } from './transfers';
 
 const errors = require('iota.lib.js/lib/errors/inputErrors');
 const async = require('async');
@@ -127,7 +126,7 @@ export const getAllAddresses = (seed, genFn) => {
  *   Accepts addresses as an array.
  *   Finds latest balances on those addresses.
  *   Finds latest spent statuses on addresses.
- *   Transforms addresses array to a dictionary. [{ address: { index: 0, spent: false, balance: 0 }}]
+ *   Transforms addresses array to a dictionary. [{ address: { index: 0, spent: false, balance: 0, checksum: address-checksum }}]
  *
  *   @method formatAddressesAndBalance
  *   @param {array} addresses
@@ -405,40 +404,27 @@ export const syncAddresses = (seed, accountData, genFn, addNewAddress = false) =
             // In case the newly created address is not part of the addresses object
             // Add that as a key with a 0 balance.
             if (size(updatedAddresses) === 0) {
-                updatedAddresses[newAddress] = { index, balance: 0, spent: false };
+                updatedAddresses[newAddress] = {
+                    index,
+                    balance: 0,
+                    spent: false,
+                    checksum: iota.utils.addChecksum(newAddress).slice(newAddress.length)
+                };
+
                 index += 1;
             } else if (!(newAddress in thisAccountDataCopy.addresses)) {
                 index += 1;
-                updatedAddresses[newAddress] = { index, balance: 0, spent: false };
+                updatedAddresses[newAddress] = {
+                    index,
+                    balance: 0,
+                    spent: false,
+                    checksum: iota.utils.addChecksum(newAddress).slice(newAddress.length)
+                };
             }
         });
         thisAccountDataCopy.addresses = updatedAddresses;
         return thisAccountDataCopy;
     });
-};
-
-export const getAddressesMetaFromBundle = (bundle) => {
-    return transform(
-        bundle,
-        (acc, tx) => {
-            const meta = {
-                ...pick(tx, ['address', 'value']),
-                checksum: iota.utils.addChecksum(tx.address).slice(tx.address.length),
-            };
-
-            const isRemainder = tx.currentIndex === tx.lastIndex && tx.lastIndex !== 0;
-
-            if (tx.value < 0 && !isRemainder) {
-                acc.inputs.push(meta);
-            } else {
-                acc.outputs.push(meta);
-            }
-        },
-        {
-            inputs: [],
-            outputs: [],
-        },
-    );
 };
 
 /**
@@ -463,27 +449,14 @@ export const filterAddressesWithIncomingTransfers = (inputs, pendingValueTransfe
         {},
     );
 
-    const { sent, received } = iota.utils.categorizeTransfers(
-        pendingValueTransfers,
-        map(inputsByAddress, (input, address) => address),
-    );
+    const { incoming, outgoing } = categorizeTransactions(pendingValueTransfers);
 
     const addressesWithIncomingTransfers = new Set();
 
-    each(sent, (bundle) => {
-        const remainder = find(bundle, (tx) => tx.currentIndex === tx.lastIndex && tx.lastIndex !== 0);
-
-        if (remainder && remainder.address in inputsByAddress) {
-            addressesWithIncomingTransfers.add(remainder.address);
+    each([...outgoing.outputs, ...incoming.outputs], (output) => {
+        if (output.address in inputsByAddress && output.value > 0) {
+            addressesWithIncomingTransfers.add(output.address);
         }
-    });
-
-    each(received, (bundle) => {
-        each(bundle, (tx) => {
-            if (tx.address in inputsByAddress && tx.value > 0) {
-                addressesWithIncomingTransfers.add(tx.address);
-            }
-        });
     });
 
     return map(
