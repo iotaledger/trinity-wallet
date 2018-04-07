@@ -20,7 +20,7 @@ import {
     getBundleHashesForNewlyConfirmedTransactions,
     getHashesDiff,
     getLatestTransactionHashes,
-    bundlesFromTransactionObjects,
+    normalizedBundlesFromTransactionObjects,
     normalizeBundle,
     mergeNewTransfers
 } from './transfers';
@@ -130,7 +130,7 @@ export const getAccountData = (seed, accountName, genFn) => {
             return getLatestInclusionAsync(map(cached.tailTransactions, (tx) => tx.hash));
         })
         .then((states) => {
-            data.transfers = bundlesFromTransactionObjects(
+            data.transfers = normalizedBundlesFromTransactionObjects(
                 cached.tailTransactions,
                 cached.transactionObjects,
                 states,

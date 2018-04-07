@@ -97,16 +97,6 @@ export const isAboveMaxDepth = (timestamp) => {
 };
 
 /**
- *   Finds a tail transaction object from transfers
- *
- *   @method getTailTransactionForBundle
- *   @param {string} bundleHash
- *   @param {array} transfers
- *   @returns {object}
- **/
-export const getAnyTailTransaction = (transaction) => sample(transaction.tailTransactionsHashes);
-
-/**
  *   Returns a transfer array
  *   Converts message to trytes. Basically preparing an array of transfer objects before making a transfer.
  *   Since zero value transfers have no inputs, after a sync with ledger, these transfers would not be detected.
@@ -299,7 +289,7 @@ export const isReceivedTransfer = (bundle, addresses) => !isSentTransfer(bundle,
 export const isValidTransactionSync = (transaction, addressData) => {
     const knownTransactionBalanceOnInputs = reduce(transaction.inputs, (acc, input) => acc + Math.abs(input.value), 0);
 
-    const balances = getBalancesSync(transaction.inputs, addressData);
+    const balances = getBalancesSync(map(transaction.inputs, (input) => input.address), addressData);
     const latestBalanceOnInputs = accumulateBalance(balances);
 
     return knownTransactionBalanceOnInputs <= latestBalanceOnInputs;
@@ -315,11 +305,18 @@ export const isValidTransactionSync = (transaction, addressData) => {
 export const isValidTransactionAsync = (transaction) => {
     const knownTransactionBalanceOnInputs = reduce(transaction.inputs, (acc, input) => acc + Math.abs(input.value), 0);
 
-    return getBalancesAsync(transaction.inputs, DEFAULT_BALANCES_THRESHOLD).then((balances) => {
-        const latestBalanceOnInputs = accumulateBalance(map(balances.balances, Number));
+    return getBalancesAsync(
+        map(
+            transaction.inputs,
+            (input) => input.address
+        ),
+        DEFAULT_BALANCES_THRESHOLD
+    )
+        .then((balances) => {
+            const latestBalanceOnInputs = accumulateBalance(map(balances.balances, Number));
 
-        return knownTransactionBalanceOnInputs <= latestBalanceOnInputs;
-    });
+            return knownTransactionBalanceOnInputs <= latestBalanceOnInputs;
+        });
 };
 
 /**
@@ -401,7 +398,7 @@ export const prepareForAutoPromotion = (transfers, addressData, account) => {
         if (isValueTransfer) {
             const bundle = transaction.bundle;
 
-            acc[bundle] = map(transaction.tailTransactionHashes, (meta) => ({ ...meta, account }));
+            acc[bundle] = map(transaction.tailTransactions, (meta) => ({ ...meta, account }));
         }
     };
 
@@ -436,7 +433,7 @@ export const prepareForAutoPromotion = (transfers, addressData, account) => {
 export const getTailTransactionsHashesForPendingTransfers = (normalizedTransactions) => {
     const grabHashes = (acc, transaction) => {
         if (!transaction.persistence) {
-            acc.push(...transaction.tailTransactionsHashes);
+            acc.push(...map(transaction.tailTransactions, (tx) => tx.hash));
         }
 
         return acc;
@@ -459,7 +456,7 @@ export const markTransfersConfirmed = (transfers, confirmedTransactionsHashes) =
         ...transfer,
         persistence: transfer.persistence ?
             transfer.persistence :
-            some(transfer.tailTransactionsHashes, (hash) => includes(confirmedTransactionsHashes, hash))
+            some(transfer.tailTransactions, (tx) => includes(confirmedTransactionsHashes, tx.hash))
     }));
 };
 
@@ -540,6 +537,10 @@ export const hasNewTransfers = (existingHashes, newHashes) =>
  *   @returns {Promise<array>}
  **/
 export const getConfirmedTransactionHashes = (pendingTransactionsHashes) => {
+    if (isEmpty(pendingTransactionsHashes)) {
+        return Promise.resolve([]);
+    }
+
     return getLatestInclusionAsync(pendingTransactionsHashes).then((states) =>
         filter(pendingTransactionsHashes, (hash, idx) => states[idx]),
     );
@@ -609,7 +610,7 @@ export const normalizeBundle = (bundle, addresses, tailTransactions, persistence
         incoming: isReceivedTransfer(bundle, addresses),
         transferValue: getTransferValue(bundle, addresses),
         message: convertFromTrytes(transfer.signatureMessageFragment),
-        tailTransactionsHashes: map(
+        tailTransactions: map(
             filter(tailTransactions, (tx) => tx.bundle === bundleHash),
             (tx) => ({
                 hash: tx.hash,
@@ -677,14 +678,18 @@ export const mergeNewTransfers = (newTransfers, existingTransfers) => {
     const transfers = {};
 
     // Check if new transfer found is a reattachment i.e. there is already a bundle instance stored locally.
-    // If its a reattachment, just add its tail transaction hash
+    // If its a reattachment, just add its tail transaction hash and attachmentTimestamp
     // Otherwise, add it as a new transfer
     each(newTransfers, (transfer) => {
         const bundle = transfer.bundle;
-        
+
         if (bundle in existingTransfers) {
             transfers[bundle] = assign({}, existingTransfers[bundle], {
-                tailTransactionsHashes: union(existingTransfers[bundle].tailTransactionsHashes, transfer.tailTransactionsHashes)
+                tailTransactions: unionBy(
+                    existingTransfers[bundle].tailTransactions,
+                    transfer.tailTransactions,
+                    'hash'
+                )
             });
         } else {
             transfers[bundle] = transfer;
