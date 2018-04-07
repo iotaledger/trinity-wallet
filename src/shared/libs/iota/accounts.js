@@ -15,10 +15,10 @@ import { getNodeInfoAsync, findTransactionObjectsAsync, getLatestInclusionAsync 
 import {
     getBundleTailsForPendingValidTransfers,
     syncTransfers,
-    getPendingTxTailsHashes,
+    getTailTransactionsHashesForPendingTransfers,
     getConfirmedTransactionHashes,
     markTransfersConfirmed,
-    getBundleHashesForTailTransactionHashes,
+    getBundleHashesForNewlyConfirmedTransactions,
     getHashesDiff,
     getLatestTransactionHashes,
     bundlesFromTransactionObjects,
@@ -199,20 +199,20 @@ export const syncAccount = (existingAccountState) => {
                 newUnconfirmedBundleTails,
             );
 
-            // Grab all hashes for pending transactions
-            const pendingTxTailsHashes = getPendingTxTailsHashes(thisStateCopy.transfers);
+            // Grab all tail transactions hashes for pending transactions
+            const tailTransactionsHashesForPendingTransfers = getTailTransactionsHashesForPendingTransfers(thisStateCopy.transfers);
 
-            return getConfirmedTransactionHashes(pendingTxTailsHashes);
+            return getConfirmedTransactionHashes(tailTransactionsHashesForPendingTransfers);
         })
-        .then((confirmedTransactionHashes) => {
-            if (!isEmpty(confirmedTransactionHashes)) {
-                thisStateCopy.transfers = markTransfersConfirmed(thisStateCopy.transfers, confirmedTransactionHashes);
+        .then((confirmedTransactionsHashes) => {
+            if (!isEmpty(confirmedTransactionsHashes)) {
+                thisStateCopy.transfers = markTransfersConfirmed(thisStateCopy.transfers, confirmedTransactionsHashes);
 
                 // Grab all bundle hashes for confirmed transaction hashes
                 // At this point unconfirmedBundleTails (for promotion) should be updated
-                const confirmedBundleHashes = getBundleHashesForTailTransactionHashes(
+                const confirmedBundleHashes = getBundleHashesForNewlyConfirmedTransactions(
                     thisStateCopy.unconfirmedBundleTails,
-                    confirmedTransactionHashes,
+                    confirmedTransactionsHashes,
                 );
 
                 // All bundle hashes that are now confirmed should be removed from the dictionary.
