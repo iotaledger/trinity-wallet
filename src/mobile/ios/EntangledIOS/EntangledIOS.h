@@ -6,6 +6,7 @@
 //  Copyright © 2018 IOTA Foundation. All rights reserved.
 //
 #import <React/RCTBridgeModule.h>
+#import <React/RCTEventEmitter.h>
 #import "bindings.h"
 
 @interface EntangledIOS: NSObject <RCTBridgeModule>
