@@ -8,12 +8,6 @@ import { connect } from 'react-redux';
 import { round, roundDown } from 'iota-wallet-shared-modules/libs/utils';
 import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/iota/utils';
 import {
-    getRelevantTransfer,
-    isReceivedTransfer,
-    getTransferValue,
-} from 'iota-wallet-shared-modules/libs/iota/transfers';
-import {
-    getAddressesForSelectedAccount,
     getTransfersForSelectedAccount,
     getBalanceForSelectedAccount,
 } from 'iota-wallet-shared-modules/selectors/accounts';
@@ -77,8 +71,6 @@ export class Balance extends Component {
         seedIndex: PropTypes.number.isRequired,
         /** Balance for currently selected account */
         balance: PropTypes.number.isRequired,
-        /** Addresses for currently selected account */
-        addresses: PropTypes.array.isRequired,
         /** Transactions for currently selected account */
         transfers: PropTypes.object.isRequired,
         /** Translation helper
@@ -147,7 +139,7 @@ export class Balance extends Component {
      */
 
     prepTransactions() {
-        const { transfers, addresses, t, primary, secondary, body } = this.props;
+        const { transfers, t, primary, secondary, body } = this.props;
         const orderedTransfers = orderBy(transfers, (tx) => tx.timestamp, ['desc']);
         const recentTransactions = orderedTransfers.slice(0, 4);
 
@@ -168,16 +160,13 @@ export class Balance extends Component {
         };
 
         const formattedTransfers = map(recentTransactions, (transfer) => {
-            const tx = getRelevantTransfer(transfer, addresses);
-            const value = getTransferValue(transfer, addresses);
-            const incoming = isReceivedTransfer(transfer, addresses);
-
+            const { timestamp, incoming, persistence, transferValue } = transfer;
             return {
-                time: tx.timestamp,
-                confirmationStatus: computeConfirmationStatus(tx.persistence, incoming),
-                value: round(formatValue(value), 1),
-                unit: formatUnit(value),
-                sign: getSign(value, incoming),
+                time: timestamp,
+                confirmationStatus: computeConfirmationStatus(persistence, incoming),
+                value: round(formatValue(transferValue), 1),
+                unit: formatUnit(transferValue),
+                sign: getSign(transferValue, incoming),
                 incoming,
                 style: {
                     titleColor: incoming ? primary.color : secondary.color,
@@ -252,7 +241,6 @@ const mapStateToProps = (state) => ({
     usdPrice: state.marketData.usdPrice,
     seedIndex: state.wallet.seedIndex,
     balance: getBalanceForSelectedAccount(state),
-    addresses: getAddressesForSelectedAccount(state),
     transfers: getTransfersForSelectedAccount(state),
     currency: state.settings.currency,
     conversionRate: state.settings.conversionRate,
