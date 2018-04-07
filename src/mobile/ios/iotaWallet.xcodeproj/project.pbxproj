@@ -34,8 +34,8 @@
 		5403F0AF99C33584CC25CA8D4422B333 /* Inconsolata-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 60C4FCE77138FA022DBAD917D3C8B8C1 /* Inconsolata-Regular.ttf */; };
 		54D44899635E65A34FCEAC3EA412BE26 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFA2B84C183CC39F995C8E04CC713DDB /* Images.xcassets */; };
 		5613EA5FACE7DF227C991290F2E89D02 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE06912F32A64660367B379A5FA9B59C /* libRCTAnimation.a */; };
-		60415BC82078708700E0135C /* EntangledIOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 601D1A1320782CEB00B6DC89 /* EntangledIOS.m */; };
 		60415BC9207873E500E0135C /* ios_bindings_lipo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 601D1A1220782CEB00B6DC89 /* ios_bindings_lipo.a */; };
+		607C041C2079115E0025A3FF /* EntangledIOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 607C041B2079115E0025A3FF /* EntangledIOS.m */; };
 		6271062A9C4773BE282CDC0CF95480D8 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B655981D53B5AE618EDBD102EA41BF51 /* libReact.a */; };
 		6E9CC66B45FB093ECF765004AFED349E /* IotaKitEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE52C6768ACF193E25BFCE2B5EA7832 /* IotaKitEmitter.swift */; };
 		6ED5CBEF7B1A39258C560F6CDCD36254 /* libKCKeepAwake.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4F418B6A7C158123D272588757B8B5E /* libKCKeepAwake.a */; };
@@ -648,9 +648,9 @@
 		5C64D2219E425907A910B0F3A28CD9F1 /* iotaWalletTests-debug-config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "iotaWalletTests-debug-config.xcconfig"; sourceTree = "<group>"; };
 		5D730345CF75A62E99A5B317731440D2 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		601D1A1220782CEB00B6DC89 /* ios_bindings_lipo.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = ios_bindings_lipo.a; sourceTree = "<group>"; };
-		601D1A1320782CEB00B6DC89 /* EntangledIOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EntangledIOS.m; sourceTree = "<group>"; };
 		601D1A1420782CEB00B6DC89 /* bindings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bindings.h; sourceTree = "<group>"; };
 		601D1A1520782CEB00B6DC89 /* EntangledIOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EntangledIOS.h; sourceTree = "<group>"; };
+		607C041B2079115E0025A3FF /* EntangledIOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EntangledIOS.m; sourceTree = "<group>"; };
 		60C4FCE77138FA022DBAD917D3C8B8C1 /* Inconsolata-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inconsolata-Regular.ttf"; path = "../../shared/custom-fonts/Inconsolata-Regular.ttf"; sourceTree = "<group>"; };
 		60F0D8F42077A67D00426A47 /* ios_bindings-fl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "ios_bindings-fl.a"; path = "../../../../../../var/tmp/_bazel_rajiv/f375e5a0d7be270644e1885aff9a8d6e/execroot/org_iota_entangled/bazel-out/ios-x86_64-min9.0-applebin_ios-ios_x86_64-fastbuild/bin/mobile/interface/ios_bindings-fl.a"; sourceTree = "<group>"; };
 		64A04B0E69E2398FF12B202BA93DEFED /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -1002,8 +1002,8 @@
 		601D1A1620782CEB00B6DC89 /* EntangledIOS */ = {
 			isa = PBXGroup;
 			children = (
+				607C041B2079115E0025A3FF /* EntangledIOS.m */,
 				601D1A1220782CEB00B6DC89 /* ios_bindings_lipo.a */,
-				601D1A1320782CEB00B6DC89 /* EntangledIOS.m */,
 				601D1A1420782CEB00B6DC89 /* bindings.h */,
 				601D1A1520782CEB00B6DC89 /* EntangledIOS.h */,
 			);
@@ -2454,7 +2454,7 @@
 			files = (
 				962469C90FA6C9D7DB8B0F1D49DD98E7 /* AppDelegate.m in Sources */,
 				009513FCBFA797A40A555F3084ED0B8D /* Iota.m in Sources */,
-				60415BC82078708700E0135C /* EntangledIOS.m in Sources */,
+				607C041C2079115E0025A3FF /* EntangledIOS.m in Sources */,
 				6E9CC66B45FB093ECF765004AFED349E /* IotaKitEmitter.swift in Sources */,
 				3E58EC90CE11629FBA816AAD96D16464 /* main.m in Sources */,
 			);
