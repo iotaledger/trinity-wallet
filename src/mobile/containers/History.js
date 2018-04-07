@@ -8,13 +8,7 @@ import { translate } from 'react-i18next';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { broadcastBundle, promoteTransaction } from 'iota-wallet-shared-modules/actions/transfers';
 import {
-    getRelevantTransfer,
-    isReceivedTransfer,
-    getTransferValue,
-} from 'iota-wallet-shared-modules/libs/iota/transfers';
-import {
-    getAddressesForSelectedAccount,
-    getDeduplicatedTransfersForSelectedAccount,
+    getTransfersForSelectedAccount,
     getSelectedAccountName,
 } from 'iota-wallet-shared-modules/selectors/accounts';
 import { getAccountInfo } from 'iota-wallet-shared-modules/actions/accounts';
@@ -64,10 +58,8 @@ const styles = StyleSheet.create({
 /** History screen component */
 class History extends Component {
     static propTypes = {
-        /** Addresses for selected account */
-        addresses: PropTypes.array.isRequired,
         /** Transactions for selected account */
-        transfers: PropTypes.array.isRequired,
+        transfers: PropTypes.object.isRequired,
         /** Close active top bar */
         closeTopBar: PropTypes.func.isRequired,
         /** Theme settings */
@@ -225,7 +217,6 @@ class History extends Component {
     prepTransactions() {
         const {
             transfers,
-            addresses,
             theme: { negative, primary, secondary, positive, body, bar },
             mode,
             t,
@@ -244,16 +235,14 @@ class History extends Component {
             return incoming ? t('global:received') : t('global:sent');
         };
 
-        const withValueAndUnit = (item) => ({
-            address: item.address,
+        const withUnitAndChecksum = (item) => ({
+            address: `${item.address}${item.checksum}`,
             value: round(formatValue(item.value), 1),
             unit: formatUnit(item.value),
         });
 
         const formattedTransfers = map(transfers, (transfer) => {
-            const tx = getRelevantTransfer(transfer, addresses);
-            const value = getTransferValue(transfer, addresses);
-            const incoming = isReceivedTransfer(transfer, addresses);
+            const { timestamp, incoming, persistence, transferValue, inputs, outputs, bundle, message } = transfer;
             const disableWhen = isBroadcastingBundle || isPromotingTransaction;
 
             return {
@@ -262,21 +251,21 @@ class History extends Component {
                 rebroadcast: (bundle) => this.props.broadcastBundle(bundle, selectedAccountName),
                 promote: (bundle) => this.props.promoteTransaction(bundle, selectedAccountName),
                 generateAlert: this.props.generateAlert, // Already declated in upper scope
-                addresses: map(transfer, withValueAndUnit),
+                addresses: [...map(inputs, withUnitAndChecksum), ...map(outputs, withUnitAndChecksum)],
                 status: incoming ? t('history:receive') : t('history:send'),
-                confirmation: computeConfirmationStatus(tx.persistence, incoming),
-                confirmationBool: tx.persistence,
-                value: round(formatValue(value), 1),
-                unit: formatUnit(value),
-                time: tx.timestamp,
-                message: convertFromTrytes(tx.signatureMessageFragment),
-                bundle: tx.bundle,
+                confirmation: computeConfirmationStatus(persistence, incoming),
+                confirmationBool: persistence,
+                value: round(formatValue(transferValue), 1),
+                unit: formatUnit(transferValue),
+                time: timestamp,
+                bundle,
+                message,
                 mode,
                 style: {
                     titleColor: incoming ? primary.color : secondary.color,
                     containerBorderColor: { borderColor: containerBorderColor },
                     containerBackgroundColor: { backgroundColor: containerBackgroundColor },
-                    confirmationStatusColor: { color: !tx.persistence ? negative.color : positive.color },
+                    confirmationStatusColor: { color: !persistence ? negative.color : positive.color },
                     defaultTextColor: { color: body.color },
                     backgroundColor: body.bg,
                     borderColor: { borderColor: body.color },
@@ -359,8 +348,7 @@ class History extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    addresses: getAddressesForSelectedAccount(state),
-    transfers: getDeduplicatedTransfersForSelectedAccount(state),
+    transfers: getTransfersForSelectedAccount(state),
     selectedAccountName: getSelectedAccountName(state),
     seedIndex: state.wallet.seedIndex,
     mode: state.settings.mode,
