@@ -1,4 +1,5 @@
 import assign from 'lodash/assign';
+import cloneDeep from 'lodash/cloneDeep';
 import get from 'lodash/get';
 import keys from 'lodash/keys';
 import each from 'lodash/each';
@@ -39,6 +40,27 @@ import {
 } from './extendedApi';
 import { convertFromTrytes } from './utils';
 import Errors from './../errors';
+
+export const getTransferValue = (bundle, addresses) => {
+    let value = 0;
+    let j = 0;
+    for (let i = 0; i < bundle.length; i++) {
+        if (addresses.indexOf(bundle[i].address) > -1) {
+            const isRemainder = bundle[i].currentIndex === bundle[i].lastIndex && bundle[i].lastIndex !== 0;
+            if (bundle[i].value < 0 && !isRemainder) {
+                value = bundle[0].value;
+                return value;
+            } else if (bundle[i].value >= 0 && !isRemainder) {
+                value += bundle[i].value;
+                j++;
+            }
+        }
+    }
+    if (j === 0) {
+        return extractTailTransferFromBundle(bundle).value;
+    }
+    return value;
+};
 
 /**
  *   Returns a transfer array
@@ -206,12 +228,12 @@ export const getRelevantTransfer = (bundle, addresses) => {
  *   @returns {boolean}
  **/
 export const isValidTransactionSync = (transaction, addressData) => {
-    const knownTransactionBalance = transaction.transferValue;
+    const knownTransactionBalanceOnInputs = reduce(transaction.inputs, (acc, input) => acc + Math.abs(input.value), 0);
 
     const balances = getBalancesSync(transaction.inputs, addressData);
-    const latestBalance = accumulateBalance(balances);
+    const latestBalanceOnInputs = accumulateBalance(balances);
 
-    return knownTransactionBalance <= latestBalance;
+    return knownTransactionBalanceOnInputs <= latestBalanceOnInputs;
 };
 
 /**
@@ -222,12 +244,12 @@ export const isValidTransactionSync = (transaction, addressData) => {
  *   @returns {boolean}
  **/
 export const isValidTransactionAsync = (transaction) => {
-    const knownTransactionBalance = transaction.transferValue;
+    const knownTransactionBalanceOnInputs = reduce(transaction.inputs, (acc, input) => acc + Math.abs(input.value), 0);
 
     return getBalancesAsync(transaction.inputs, DEFAULT_BALANCES_THRESHOLD).then((balances) => {
-        const latestBalance = accumulateBalance(map(balances.balances, Number));
+        const latestBalanceOnInputs = accumulateBalance(map(balances.balances, Number));
 
-        return knownTransactionBalance <= latestBalance;
+        return knownTransactionBalanceOnInputs <= latestBalanceOnInputs;
     });
 };
 
@@ -278,17 +300,6 @@ export const filterInvalidTransactionsAsync = (transactions) => {
     );
 };
 
-/**
- *   Accepts a bundle and computes the total balance consumed
- *
- *   @method accumulateBalanceOnBundle
- *   @param {array} bundle
- *   @returns {number} - Balance
- **/
-export const accumulateBalanceFromBundle = (bundle) => {
-    return reduce(bundle, (acc, tx) => (tx.value < 0 ? acc + Math.abs(tx.value) : acc), 0);
-};
-
 export const getBundleTailsForPendingValidTransfers = (transfers, addressData, account) => {
     const addresses = keys(addressData);
     const pendingTransfers = filter(transfers, (tx) => !tx.persistence);
@@ -316,7 +327,7 @@ export const getBundleTailsForPendingValidTransfers = (transfers, addressData, a
     const validOutgoingTailTransactions = transform(validOutgoingTransfers, byBundles, {});
 
     // categorizeTransfers categorizes zero value transfers in received.
-    const incomingValueTransfers = filter(incoming, (transaction) => transaction.transferValue > 0);
+    const incomingValueTransfers = filter(incoming, (transaction) => transaction.transferValue !== 0);
 
     // Remove all invalid received transfers
     return filterInvalidTransactionsAsync(incomingValueTransfers).then((validReceivedTransfers) => {
@@ -489,6 +500,7 @@ export const getConfirmedTransactionHashes = (pendingTxTailHashes) => {
  *   @param {array} tailTransactions
  *   @param {array} transactionObjects
  *   @param {array} inclusionStates
+ *   @param {array} addresses
  *
  *   @returns {array}
  **/
@@ -532,7 +544,7 @@ const normalizeBundle = (bundle, addresses, tailTransactions, persistence) => {
         ...getAddressesMetaFromBundle(bundle),
         persistence,
         incoming: isReceivedTransfer(bundle, addresses),
-        transferValue: accumulateBalanceFromBundle(bundle),
+        transferValue: getTransferValue(bundle, addresses),
         message: convertFromTrytes(transfer.signatureMessageFragment),
         tailTransactionsHashes: map(filter(tailTransactions, (tx) => tx.bundle === bundleHash), (tx) => tx.hash),
     };
@@ -581,10 +593,27 @@ export const syncTransfers = (diff, accountState) => {
                 cached.tailTransactions,
                 cached.transactionObjects,
                 states,
+                keys(accountState.addresses)
             );
 
+            let transfers = cloneDeep(accountState.transfers);
+            
+            // Check if new transfer found is a reattachment i.e. there is already a bundle instance stored locally.
+            // If its a reattachment, just add its tail transaction hash
+            // Otherwise, add it as a new transfer
+            each(newTransfers, (transfer) => {
+                const bundle = transfer.bundle;
+                if (bundle in accountState.transfers) {
+                    transfers[bundle] = assign({}, transfers[bundle], {
+                        tailTransactionsHashes: union(transfers[bundle].tailTransactionsHashes, transfer.tailTransactionsHashes) 
+                    });
+                } else {
+                    transfers[bundle] = transfer;
+                }
+            });
+
             return {
-                transfers: [...accountState.transfers, ...newTransfers],
+                transfers,
                 newTransfers,
             };
         });
@@ -855,10 +884,10 @@ export const getPendingTransactionHashesForSpentAddresses = (transfers, addressD
     return findTransactionsAsync({ addresses: spentAddressesWithPendingTransfers });
 };
 
-export const getLatestTransactionHashes = (transfers, addresses) => {
+export const getLatestTransactionHashes = (transfers, addressData) => {
     return Promise.all([
-        getTransactionHashesForUnspentAddresses(addresses),
-        getPendingTransactionHashesForSpentAddresses(transfers, addresses),
+        getTransactionHashesForUnspentAddresses(addressData),
+        getPendingTransactionHashesForSpentAddresses(transfers, addressData),
     ]).then((hashes) => {
         const [txHashesForUnspentAddresses, pendingTxHashesForSpentAddresses] = hashes;
 
