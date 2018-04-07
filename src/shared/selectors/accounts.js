@@ -2,7 +2,6 @@ import get from 'lodash/get';
 import findKey from 'lodash/findKey';
 import keys from 'lodash/keys';
 import { createSelector } from 'reselect';
-import { deduplicateTransferBundles } from '../libs/iota/transfers';
 
 /**
  *   Selects settings prop from state.
