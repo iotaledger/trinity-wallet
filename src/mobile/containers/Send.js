@@ -35,7 +35,11 @@ import {
     VALID_SEED_REGEX,
     ADDRESS_LENGTH,
 } from 'iota-wallet-shared-modules/libs/iota';
-import { getBalanceForSelectedAccount, getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
+import {
+    getBalanceForSelectedAccount,
+    getAvailableBalanceForSelectedAccount,
+    getSelectedAccountName,
+} from 'iota-wallet-shared-modules/selectors/accounts';
 import { reset as resetProgress, startTrackingProgress } from 'iota-wallet-shared-modules/actions/progress';
 import { generateAlert, generateTransferErrorAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import Modal from 'react-native-modal';
@@ -46,6 +50,7 @@ import ProgressBar from '../components/ProgressBar';
 import ProgressSteps from '../utils/progressSteps';
 import { getSeedFromKeychain } from '../utils/keychain';
 import TransferConfirmationModal from '../components/TransferConfirmationModal';
+import UsedAddressModal from '../components/UsedAddressModal';
 import UnitInfoModal from '../components/UnitInfoModal';
 import CustomTextInput from '../components/CustomTextInput';
 import CtaButton from '../components/CtaButton';
@@ -114,6 +119,7 @@ export class Send extends Component {
         t: PropTypes.func.isRequired,
         currency: PropTypes.string.isRequired,
         balance: PropTypes.number.isRequired,
+        availableBalance: PropTypes.number.isRequired,
         isSyncing: PropTypes.bool.isRequired,
         seedIndex: PropTypes.number.isRequired,
         selectedAccountName: PropTypes.string.isRequired,
@@ -162,14 +168,15 @@ export class Send extends Component {
             maxText: t('send:sendMax'),
             sending: false,
             currencySymbol: getCurrencySymbol(this.props.currency),
+            isModalVisible: false,
         };
     }
 
     componentWillMount() {
-        const { t, balance, amount, primary } = this.props;
+        const { t, availableBalance, amount, primary } = this.props;
         const amountAsNumber = parseFloat(amount);
 
-        if (amountAsNumber === balance / this.getUnitMultiplier() && amountAsNumber !== 0) {
+        if (amountAsNumber === availableBalance / this.getUnitMultiplier() && amountAsNumber !== 0) {
             this.setState({
                 maxPressed: true,
                 maxColor: primary.color,
@@ -245,14 +252,14 @@ export class Send extends Component {
 
     onMaxPress() {
         const { sending, maxPressed } = this.state;
-        const { t, body, primary, balance } = this.props;
-        const max = (balance / this.getUnitMultiplier()).toString();
+        const { t, body, primary, availableBalance } = this.props;
+        const max = (availableBalance / this.getUnitMultiplier()).toString();
 
         if (sending) {
             return;
         }
 
-        if (balance === 0) {
+        if (availableBalance === 0) {
             return;
         }
 
@@ -274,11 +281,11 @@ export class Send extends Component {
     }
 
     onAmountType(amount) {
-        const { t, body } = this.props;
+        const { t, body, availableBalance } = this.props;
         amount = amount.replace(/,/g, '.');
         this.props.setSendAmountField(amount);
 
-        if (amount === (this.props.balance / this.getUnitMultiplier()).toString()) {
+        if (amount === (availableBalance / this.getUnitMultiplier()).toString()) {
             this.onMaxPress();
         } else {
             this.setState({
@@ -290,7 +297,7 @@ export class Send extends Component {
     }
 
     onSendPress() {
-        const { t, amount, address, message, denomination } = this.props;
+        const { t, amount, address, message, denomination, balance } = this.props;
         const { currencySymbol } = this.state;
 
         const multiplier = this.getUnitMultiplier();
@@ -310,6 +317,10 @@ export class Send extends Component {
         }
 
         if (!enoughBalance) {
+            // If amount includes funds at a spent address
+            if (parseInt(amount) * multiplier < balance) {
+                return this.openModal('usedAddress');
+            }
             return this.props.generateAlert('error', t('notEnoughFunds'), t('notEnoughFundsExplanation'));
         }
 
@@ -395,8 +406,19 @@ export class Send extends Component {
                     <UnitInfoModal
                         hideModal={() => this.hideModal()}
                         textColor={{ color: bar.color }}
+                        lineColor={{ borderLeftColor: bar.color }}
                         borderColor={{ borderColor: bar.color }}
                         bar={bar}
+                    />
+                );
+                break;
+            case 'usedAddress':
+                modalContent = (
+                    <UsedAddressModal
+                        hideModal={(callback) => this.hideModal(callback)}
+                        body={body}
+                        borderColor={{ borderColor: body.color }}
+                        textColor={{ color: body.color }}
                     />
                 );
                 break;
@@ -551,10 +573,10 @@ export class Send extends Component {
         });
 
     enoughBalance() {
-        const { amount, balance } = this.props;
+        const { amount, availableBalance } = this.props;
         const multiplier = this.getUnitMultiplier();
 
-        if (parseFloat(amount) * multiplier > balance) {
+        if (parseFloat(amount) * multiplier > availableBalance) {
             return false;
         }
 
@@ -838,6 +860,7 @@ export class Send extends Component {
 const mapStateToProps = (state) => ({
     currency: state.settings.currency,
     balance: getBalanceForSelectedAccount(state),
+    availableBalance: getAvailableBalanceForSelectedAccount(state),
     selectedAccountName: getSelectedAccountName(state),
     isSyncing: state.ui.isSyncing,
     isSendingTransfer: state.ui.isSendingTransfer,
