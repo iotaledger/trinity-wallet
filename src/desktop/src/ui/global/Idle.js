@@ -2,6 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { debounce } from 'lodash';
 
 import { setPassword } from 'actions/wallet';
 
@@ -31,6 +32,7 @@ class Idle extends React.Component {
     };
 
     componentDidMount() {
+        this.restartLockTimeout = debounce(this.handleEvent, 500);
         this.attachEvents();
         this.onSetIdle = this.lock.bind(this);
         Electron.onEvent('lockScreen', this.onSetIdle);
@@ -63,13 +65,13 @@ class Idle extends React.Component {
 
     attachEvents() {
         events.forEach((event) => {
-            window.addEventListener(event, this.handleEvent, true);
+            window.addEventListener(event, this.restartLockTimeout, true);
         });
     }
 
     removeEvents() {
         events.forEach((event) => {
-            window.removeEventListener(event, this.handleEvent, true);
+            window.removeEventListener(event, this.restartLockTimeout, true);
         });
     }
 
@@ -82,7 +84,7 @@ class Idle extends React.Component {
             } else {
                 this.handleEvent();
             }
-        }, this.props.timeout);
+        }, this.props.timeout * 60 * 1000);
     };
 
     render() {
