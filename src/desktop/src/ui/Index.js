@@ -188,7 +188,7 @@ class App extends React.Component {
     };
 
     render() {
-        const { accounts, location, activationCode, themeName, updateTheme } = this.props;
+        const { accounts, location, activationCode, themeName, updateTheme, settings } = this.props;
 
         const currentKey = location.pathname.split('/')[1] || '/';
 
@@ -216,7 +216,7 @@ class App extends React.Component {
                 <Theme />
                 <Alerts />
                 <Updates />
-                <Idle timeout={3 * 60 * 1000} />
+                <Idle timeout={settings.lockScreenTimeout} />
                 <TransitionGroup>
                     <CSSTransition key={currentKey} classNames="fade" timeout={300}>
                         <div>

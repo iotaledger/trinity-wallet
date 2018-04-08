@@ -307,7 +307,8 @@
         "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}.",
         "undo": "Undo",
         "redo": "Redo",
-        "about": "About Trinity"
+        "about": "About Trinity",
+        "lockScreenTimeout": "Lock Screen Timeout (Minutes)"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",
