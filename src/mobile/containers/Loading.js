@@ -217,11 +217,12 @@ class Loading extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        const { ready, theme: { body } } = this.props;
+        const { ready, theme: { body, bar } } = this.props;
         const isReady = !ready && newProps.ready;
 
         if (isReady) {
             KeepAwake.deactivate();
+            this.clearTimeouts();
             this.props.navigator.push({
                 screen: 'home',
                 navigatorStyle: {
@@ -229,7 +230,7 @@ class Loading extends Component {
                     navBarTransparent: true,
                     screenBackgroundColor: body.bg,
                     drawUnderStatusBar: true,
-                    statusBarColor: body.bg,
+                    statusBarColor: bar.bg,
                 },
                 animated: false,
             });
@@ -237,10 +238,7 @@ class Loading extends Component {
     }
 
     componentWillUnmount() {
-        if (this.timeout) {
-            clearTimeout(this.timeout);
-        }
-        timer.clearTimeout('animationTimeout');
+        this.clearTimeouts();
     }
 
     getWalletData() {
@@ -258,6 +256,13 @@ class Loading extends Component {
     playAnimationTwo() {
         this.setState({ animationPartOneDone: true });
         this.animation.play();
+    }
+
+    clearTimeouts() {
+        if (this.timeout) {
+            clearTimeout(this.timeout);
+        }
+        timer.clearTimeout('animationTimeout');
     }
 
     animateElipses = (chars, index, time = 750) => {
@@ -303,7 +308,9 @@ class Loading extends Component {
                             <View style={{ flexDirection: 'row' }}>
                                 <Text style={[styles.infoText, textColor]}>{t('thisMayTake')}</Text>
                                 <View style={{ alignItems: 'flex-start', width: width / 30 }}>
-                                    <Text style={[styles.infoText, textColor]}>{this.state.elipsis}</Text>
+                                    <Text style={[styles.infoText, textColor]}>
+                                        {isAndroid ? '..' : this.state.elipsis}
+                                    </Text>
                                 </View>
                             </View>
                         </View>
