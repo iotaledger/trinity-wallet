@@ -37,7 +37,7 @@ export const generateAccountInfoErrorAlert = (err) => (dispatch) => {
 };
 
 export const generateTransitionErrorAlert = () => (dispatch) => {
-    dispatch(generateAlert('error', 'Snapshot transition failed', 'Please try again.', 10000));
+    dispatch(generateAlert('error', i18next.t('cannotCompleteTransition'), i18next.t('somethingWentWrongTryAgain'), 10000));
 };
 
 export const generateSyncingCompleteAlert = () => (dispatch) => {
@@ -72,7 +72,7 @@ export const generateTransferErrorAlert = (error) => (dispatch) =>
 
 export const generatePromotionErrorAlert = (error) => (dispatch) =>
     dispatch(
-        generateAlert('error', 'Promotion', 'Something went wrong while promoting your transaction. Please try again.'),
+        generateAlert('error', i18next.t('promotionError'), i18next.t('promotionErrorExplanation')),
         20000,
         error,
     );
