@@ -44,22 +44,39 @@ class List extends React.PureComponent {
 
     state = {
         filter: 'All',
+        loaded: true,
     };
 
     switchFilter(filter) {
         this.setState({
             filter: filter,
+            loaded: false,
         });
+        setTimeout(() => {
+            this.setState({
+                loaded: true,
+            });
+        }, 200);
     }
 
     render() {
         const { isLoading, isBusy, updateAccount, transfers, addresses, setItem, currentItem, t } = this.props;
-        const { filter } = this.state;
+        const { filter, loaded } = this.state;
 
         const filters = ['All', 'Sent', 'Received', 'Pending'];
 
         const formattedTx =
-            transfers && transfers.length ? transfers.map((transfer) => getRelevantTransfer(transfer, addresses)) : [];
+            transfers && transfers.length
+                ? transfers.map((transfer) => getRelevantTransfer(transfer, addresses)).filter((tx) => {
+                      const isReceived = addresses.includes(tx.address);
+                      const isConfirmed = tx.persistence;
+                      return !(
+                          (filter === 'Sent' && (isReceived || !isConfirmed)) ||
+                          (filter === 'Received' && (!isReceived || !isConfirmed)) ||
+                          (filter === 'Pending' && isConfirmed)
+                      );
+                  })
+                : [];
         const historyTx = orderBy(formattedTx, 'timestamp', ['desc']);
 
         const activeTransfer = currentItem ? historyTx.filter((tx) => tx.hash === currentItem)[0] : null;
@@ -67,25 +84,39 @@ class List extends React.PureComponent {
         return (
             <React.Fragment>
                 <nav className={css.nav}>
-                    {filters.map((item) => {
-                        return (
-                            <a
-                                key={item}
-                                onClick={() => this.switchFilter(item)}
-                                className={classNames(
-                                    filter === item ? css.active : null,
-                                    !transfers || !transfers.length ? css.disabled : null,
-                                )}
-                            >
-                                {item}
-                            </a>
-                        );
-                    })}
+                    <ul>
+                        <a
+                            key="active"
+                            onClick={() => this.switchFilter(filter)}
+                            className={classNames(css.active)}
+                        >
+                            {filter === 'All' ? 'All' : t(filter.toLowerCase())} <small>({historyTx.length})</small>
+                            <Icon icon="chevronDown" size={12} />
+                        </a>
+                        {loaded
+                            ? filters.map((item) => {
+                                  if (filter === item) {
+                                      return null;
+                                  }
+                                  return (
+                                      <a
+                                          key={item}
+                                          onClick={() => this.switchFilter(item)}
+                                          className={classNames(
+                                              filter === item ? css.active : null
+                                          )}
+                                      >
+                                          {item === 'All' ? 'All' : t(item.toLowerCase())}
+                                      </a>
+                                  );
+                              })
+                            : null}
+                    </ul>
                     <a
                         onClick={() => updateAccount()}
                         className={classNames(css.refresh, isBusy ? css.busy : null, isLoading ? css.loading : null)}
                     >
-                        <Icon icon="sync" size={32} />
+                        <Icon icon="sync" size={26} />
                     </a>
                 </nav>
                 <hr />
@@ -96,8 +127,8 @@ class List extends React.PureComponent {
                             const isConfirmed = transfer.persistence;
 
                             if (
-                                (filter === 'Sent' && isReceived) ||
-                                (filter === 'Received' && !isReceived) ||
+                                (filter === 'Sent' && (isReceived || !isConfirmed)) ||
+                                (filter === 'Received' && (!isReceived || !isConfirmed)) ||
                                 (filter === 'Pending' && isConfirmed)
                             ) {
                                 return null;
@@ -126,7 +157,7 @@ class List extends React.PureComponent {
                             );
                         })
                     ) : (
-                        <p className={css.empty}>No recent history</p>
+                        <p className={css.empty}>{t('noTransactions')}</p>
                     )}
                 </div>
                 <div className={classNames(css.popup, activeTransfer ? css.on : null)} onClick={() => setItem(null)}>
@@ -157,7 +188,7 @@ class List extends React.PureComponent {
                                         <em>{formatModalTime(convertUnixTimeToJSDate(activeTransfer.timestamp))}</em>
                                     </small>
                                 </p>
-                                <h6>Bundle Hash:</h6>
+                                <h6>{t('bundleHash')}:</h6>
                                 <p className={css.hash}>
                                     <Clipboard
                                         text={activeTransfer.bundle}

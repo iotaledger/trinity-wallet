@@ -7,7 +7,7 @@ import { getVault } from 'libs/crypto';
 
 import AddressInput from 'ui/components/input/Address';
 import AmountInput from 'ui/components/input/Amount';
-import MessageInput from 'ui/components/input/Message';
+import TextInput from 'ui/components/input/Text';
 import Button from 'ui/components/Button';
 import Confirm from 'ui/components/modal/Confirm';
 import withSendData from 'containers/wallet/Send';
@@ -64,7 +64,7 @@ class Send extends React.PureComponent {
 
     state = {
         address: '',
-        amount: '0',
+        amount: 0,
         message: '',
         isModalVisible: false,
     };
@@ -87,9 +87,9 @@ class Send extends React.PureComponent {
     refreshDeepLinkValues = (props) => {
         if (props.address.length > 0 && props.address !== this.state.address) {
             this.setState({
-                amount: props.amount,
                 address: props.address,
-                message: props.message,
+                amount: props.amount || this.state.amount,
+                message: props.message || this.state.message,
             });
             this.props.sendAmount(0, '', '');
         }
@@ -136,7 +136,7 @@ class Send extends React.PureComponent {
         const vault = await getVault(password);
         const seed = vault.seeds[seedIndex];
 
-        sendTransfer(seed, address, parseInt(amount), message, null, powFn);
+        sendTransfer(seed, address, amount, message, null, powFn);
     };
 
     render() {
@@ -171,15 +171,15 @@ class Send extends React.PureComponent {
                         closeLabel={t('back')}
                     />
                     <AmountInput
-                        amount={amount.toString()}
+                        amount={amount}
                         settings={settings}
                         label={t('send:amount')}
                         labelMax={t('send:max')}
                         balance={balance}
                         onChange={(value) => this.setState({ amount: value })}
                     />
-                    <MessageInput
-                        message={message}
+                    <TextInput
+                        value={message}
                         label={t('send:message')}
                         onChange={(value) => this.setState({ message: value })}
                     />
