@@ -607,7 +607,7 @@ export const normalizeBundle = (bundle, addresses, tailTransactions, persistence
     const bundleHash = transfer.bundle;
 
     return {
-        ...pick(transfer, ['hash', 'bundle', 'timestamp', 'attachmentTimeStamp']),
+        ...pick(transfer, ['hash', 'bundle', 'timestamp', 'attachmentTimestamp']),
         ...categorizeBundleByInputsOutputs(bundle),
         persistence,
         incoming: isReceivedTransfer(bundle, addresses),
