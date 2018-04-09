@@ -1,3 +1,4 @@
+/*global Electron*/
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { translate, Trans } from 'react-i18next';
@@ -58,10 +59,10 @@ class Advanced extends PureComponent {
 
         try {
             await setVault(password, {}, true);
-            localStorage.clear();
-            location.reload();
-
             document.body.style.background = themes.Ionic.body.bg;
+            localStorage.clear();
+            Electron.clearStorage();
+            location.reload();
         } catch (err) {
             generateAlert(
                 'error',
