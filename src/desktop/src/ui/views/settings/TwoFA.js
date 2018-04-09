@@ -87,7 +87,7 @@ class TwoFA extends React.Component {
                 passwordConfirm: false,
             });
 
-            generateAlert('success', t('twoFA:twoFAEnabled'), t('twoFA:twoFAEnabledExplanation§'));
+            generateAlert('success', t('twoFA:twoFAEnabled'), t('twoFA:twoFAEnabledExplanation'));
         } catch (err) {
             generateAlert(
                 'error',
