@@ -6,6 +6,7 @@ import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { runTask } from 'worker';
+import { getSeed } from 'libs/crypto';
 
 import Icon from 'ui/components/Icon';
 import List from 'ui/components/List';
@@ -25,12 +26,12 @@ class Dashboard extends React.PureComponent {
     static propTypes = {
         /** Current seed index */
         seedIndex: PropTypes.number.isRequired,
-        /** Seed state state data */
-        seeds: PropTypes.array.isRequired,
         /** Accounts state state data
          * @ignore
          */
-        account: PropTypes.object.isRequired,
+        accounts: PropTypes.object.isRequired,
+        /** Current password value */
+        password: PropTypes.string,
         /* Browser location objects */
         location: PropTypes.object,
         /** Browser history object */
@@ -52,10 +53,13 @@ class Dashboard extends React.PureComponent {
         }
     }
 
-    updateAccount() {
-        const { account, seedIndex, seeds } = this.props;
-        runTask('getAccountInfo', [seeds[seedIndex], account.accountNames[seedIndex]]);
-    }
+    updateAccount = async () => {
+        const { accounts, password, seedIndex } = this.props;
+
+        const seed = await getSeed(seedIndex, password);
+
+        runTask('getAccountInfo', [seed, accounts.accountNames[seedIndex]]);
+    };
 
     render() {
         const { t, history, location } = this.props;
@@ -82,10 +86,10 @@ class Dashboard extends React.PureComponent {
                         </div>
                         <nav>
                             <Button onClick={() => history.push('/wallet/send')} variant="primary">
-                                {t('history:send').toLowerCase()}
+                                {t('home:send')}
                             </Button>
                             <Button onClick={() => history.push('/wallet/receive')} variant="secondary">
-                                {t('history:receive').toLowerCase()}
+                                {t('home:receive')}
                             </Button>
                         </nav>
                     </section>
@@ -110,9 +114,9 @@ class Dashboard extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    seeds: state.seeds.seeds,
-    seedIndex: state.tempAccount.seedIndex,
-    account: state.account,
+    seedIndex: state.wallet.seedIndex,
+    password: state.wallet.password,
+    accounts: state.accounts,
     deepLinks: state.deepLinks,
 });
 

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { selectAccountInfo } from '../../selectors/accounts';
+import { getDeduplicatedTransfersForSelectedAccount, selectAccountInfo } from '../../selectors/accounts';
 
 /**
  * List component container
@@ -12,7 +12,8 @@ export default function withListData(ListComponent) {
     class ListData extends React.PureComponent {
         static propTypes = {
             accountInfo: PropTypes.object.isRequired,
-            tempAccount: PropTypes.object.isRequired,
+            transfers: PropTypes.array.isRequired,
+            wallet: PropTypes.object.isRequired,
             limit: PropTypes.number,
             filter: PropTypes.string,
             compact: PropTypes.bool,
@@ -26,25 +27,23 @@ export default function withListData(ListComponent) {
             const {
                 accountInfo,
                 updateAccount,
+                transfers,
                 limit,
                 compact,
                 filter,
                 setItem,
                 currentItem,
-                tempAccount,
+                wallet,
                 theme,
                 t,
             } = this.props;
 
             const isBusy =
-                tempAccount.isSyncing ||
-                tempAccount.isSendingTransfer ||
-                tempAccount.isAttachingToTangle ||
-                tempAccount.isTransitioning;
+                wallet.isSyncing || wallet.isSendingTransfer || wallet.isAttachingToTangle || wallet.isTransitioning;
 
             const ListProps = {
-                transfers: accountInfo.transfers && accountInfo.transfers.length ? accountInfo.transfers : [],
                 addresses: Object.keys(accountInfo.addresses),
+                transfers,
                 updateAccount,
                 setItem,
                 currentItem,
@@ -53,7 +52,7 @@ export default function withListData(ListComponent) {
                 limit,
                 filter,
                 isBusy,
-                isLoading: tempAccount.isFetchingLatestAccountInfoOnLogin,
+                isLoading: wallet.isFetchingLatestAccountInfoOnLogin,
                 t,
             };
 
@@ -66,8 +65,9 @@ export default function withListData(ListComponent) {
     const mapStateToProps = (state) => ({
         accounts: state.accounts,
         accountInfo: selectAccountInfo(state),
+        transfers: getDeduplicatedTransfersForSelectedAccount(state),
         theme: state.settings.theme,
-        tempAccount: state.tempAccount,
+        wallet: state.wallet,
     });
 
     return connect(mapStateToProps, {})(translate()(ListData));

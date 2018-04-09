@@ -17,6 +17,8 @@ export default class SeedInput extends React.PureComponent {
         seed: PropTypes.string.isRequired,
         /** Seed input label */
         label: PropTypes.string.isRequired,
+        /** Should input focus when changed to true */
+        focus: PropTypes.bool,
         /** Camera modal close label */
         closeLabel: PropTypes.string.isRequired,
         /** Seed change event function
@@ -28,6 +30,18 @@ export default class SeedInput extends React.PureComponent {
     state = {
         showScanner: false,
     };
+
+    componentDidMount() {
+        if (this.props.focus) {
+            this.input.focus();
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (!this.props.focus && nextProps.focus) {
+            this.input.focus();
+        }
+    }
 
     onScanEvent = (address) => {
         if (address !== null) {
@@ -62,6 +76,9 @@ export default class SeedInput extends React.PureComponent {
                     </a>
                     <input
                         type="text"
+                        ref={(input) => {
+                            this.input = input;
+                        }}
                         value={seed}
                         onChange={(e) => onChange(e.target.value.toUpperCase())}
                         maxLength={MAX_SEED_LENGTH}
