@@ -141,7 +141,7 @@ class Chart extends PureComponent {
                         {priceData.currency}
                     </Button>
                     <p>
-                        <strong>Current value</strong>
+                        <strong>{t('chart:currentValue')}</strong>
                         {priceData.symbol} {getPriceFormat(getPriceForCurrency(priceData.currency))} / Mi
                     </p>
                     <Button variant="secondary" className="outline" onClick={() => setTimeframe()}>
