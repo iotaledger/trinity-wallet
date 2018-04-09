@@ -8,6 +8,7 @@ import { generateAlert } from 'actions/alerts';
 
 import { setVault } from 'libs/crypto';
 import { deleteAccount } from 'actions/accounts';
+import ModalPassword from 'ui/components/modal/Password';
 
 import Button from 'ui/components/Button';
 import Confirm from 'ui/components/modal/Confirm';
@@ -26,10 +27,6 @@ class Remove extends PureComponent {
         setPassword: PropTypes.func.isRequired,
         /** Current account name */
         accountName: PropTypes.string.isRequired,
-        /** Current vault content */
-        vault: PropTypes.object.isRequired,
-        /** Account password */
-        password: PropTypes.string.isRequired,
         /** Remove account
          * @param {String} accountName - Target account name
          * @ignore
@@ -53,20 +50,13 @@ class Remove extends PureComponent {
 
     state = {
         removeConfirm: false,
+        password: null,
+        vault: null,
     };
 
     removeAccount = () => {
-        const {
-            accountName,
-            seedIndex,
-            setPassword,
-            password,
-            vault,
-            history,
-            t,
-            generateAlert,
-            deleteAccount,
-        } = this.props;
+        const { accountName, seedIndex, setPassword, history, t, generateAlert, deleteAccount } = this.props;
+        const { password, vault } = this.state;
 
         try {
             const seeds = vault.seeds.filter((seed, index) => index !== seedIndex);
@@ -91,13 +81,28 @@ class Remove extends PureComponent {
 
     render() {
         const { t } = this.props;
-        const { removeConfirm } = this.state;
+        const { removeConfirm, vault } = this.state;
+
+        if (removeConfirm && !vault) {
+            return (
+                <ModalPassword
+                    isOpen
+                    inline
+                    onSuccess={(password, vault) => this.setState({ password, vault })}
+                    onClose={() => this.setState({ removeConfirm: false })}
+                    content={{
+                        title: t('deleteAccount:enterPassword'),
+                    }}
+                />
+            );
+        }
 
         return (
             <div>
                 <Button variant="negative" onClick={() => this.setState({ removeConfirm: !removeConfirm })}>
                     {t('accountManagement:deleteAccount')}
                 </Button>
+
                 <Confirm
                     isOpen={removeConfirm}
                     category="negative"
