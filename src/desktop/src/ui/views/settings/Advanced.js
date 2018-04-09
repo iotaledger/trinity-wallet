@@ -73,12 +73,14 @@ class Advanced extends PureComponent {
     };
 
     changeLockScreenTimeout = (value) => {
-        const timeout = parseInt(value);
+        let timeout = parseInt(value);
         if (!timeout) {
             // Set lock timeout to at least one minute
             this.props.setLockScreenTimeout(1);
             return;
         }
+        // Max one hour timeout
+        timeout = timeout > 60 ? 60 : timeout;
         this.props.setLockScreenTimeout(timeout);
     };
 
