@@ -1,7 +1,7 @@
 /*global Electron*/
 import React from 'react';
 import { connect } from 'react-redux';
-import { translate, Trans } from 'react-i18next';
+import { translate, Interpolate } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
 import PropTypes from 'prop-types';
 import { getUpdateData, setUpdateDone } from 'actions/settings';
@@ -50,8 +50,8 @@ class Updates extends React.PureComponent {
         if (update.error) {
             return (
                 <Modal variant="confirm" isOpen onClose={() => setUpdateDone()}>
-                    <h1 className="error">{t('Error retreiving update data')}</h1>
-                    <p>{t('There was an error retreiving upodate data.')}</p>
+                    <h1 className="error">{t('errorRetrievingUpdateDataExplanation')}</h1>
+                    <p>{t('errorRetrievingUpdateDataExplanation')}</p>
                     <footer>
                         <Button onClick={() => setUpdateDone()} variant="secondary">
                             {t('close')}
@@ -64,11 +64,11 @@ class Updates extends React.PureComponent {
         if (update.version === DESKTOP_VERSION) {
             return (
                 <Modal variant="confirm" isOpen onClose={() => setUpdateDone()}>
-                    <h1 className="success">{t('No updates currently available')}</h1>
-                    <p>{t('You`ve got the latest version of IOTA Trinity desktop wallet!')}</p>
+                    <h1 className="success">{t('noUpdatesAvailable')}</h1>
+                    <p>{t('noUpdatesAvailableExplanation')}</p>
                     <footer>
                         <Button onClick={() => setUpdateDone()} variant="secondary">
-                            {t('close')}
+                            {t('global:close')}
                         </Button>
                     </footer>
                 </Modal>
@@ -77,13 +77,19 @@ class Updates extends React.PureComponent {
 
         return (
             <Modal variant="confirm" isOpen onClose={() => setUpdateDone()}>
-                <h1 className="success">{t('New version available')}</h1>
-                <Trans i18nKey="">
+                <h1 className="success">{t('newVersionAvailable')}</h1>
+                {/*eslint-disable react/jsx-boolean-value*/}
+                <Interpolate
+                    i18nKey="updates:newVersionAvailableExplanation"
+                    useDangerouslySetInnerHTML={true}
+                    version={update.version}
+                >
                     <p>
                         A new <strong>Trinity</strong> <strong>{update.version}</strong> version is available. Please
                         read the release details carefully and verify the download source before updating:
                     </p>
-                </Trans>
+                </Interpolate>
+                {/*eslint-enable react/jsx-boolean-value*/}
                 <Info variant="blank">
                     <ReactMarkdown source={`- ${update.notes.join('\n- ')}`} />
                 </Info>
@@ -95,10 +101,10 @@ class Updates extends React.PureComponent {
                         }}
                         variant="primary"
                     >
-                        {t('Download release')}
+                        {t('downloadRelease')}
                     </Button>
                     <Button onClick={() => setUpdateDone()} variant="secondary">
-                        {t('Skip')}
+                        {t('skipUpdate')}
                     </Button>
                 </footer>
             </Modal>
@@ -115,4 +121,4 @@ const mapDispatchToProps = {
     setUpdateDone,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(Updates));
+export default connect(mapStateToProps, mapDispatchToProps)(translate(['updates', 'global'])(Updates));
