@@ -419,12 +419,12 @@ export const prepareForAutoPromotion = (transfers, addressData, account) => {
 /**
  *  Get all tail transactions hashes for pending transactions.
  *
- *   @method getTailTransactionsHashesForPendingTransfers
+ *   @method getPendingTxTailsHashes
  *   @param {object} normalizedTransactions
  *
  *   @returns {array}
  **/
-export const getTailTransactionsHashesForPendingTransfers = (normalizedTransactions) => {
+export const getPendingTxTailsHashes = (normalizedTransactions) => {
     const grabHashes = (acc, transaction) => {
         if (!transaction.persistence) {
             acc.push(...map(transaction.tailTransactions, (tx) => tx.hash));
@@ -440,12 +440,16 @@ export const getTailTransactionsHashesForPendingTransfers = (normalizedTransacti
  *  Marks pending transfers as confirmed.
  *
  *   @method markTransfersConfirmed
- *   @param {array} bundles - Transfer bundles
+ *   @param {array} transfers - Transfers array
  *   @param {array} confirmedTransfersTailsHashes - Array of transaction hashes
  *
  *   @returns {array} - bundles
  **/
 export const markTransfersConfirmed = (transfers, confirmedTransactionsHashes) => {
+    if (isEmpty(confirmedTransactionsHashes)) {
+        return transfers;
+    }
+
     return map(transfers, (transfer) => ({
         ...transfer,
         persistence: transfer.persistence
