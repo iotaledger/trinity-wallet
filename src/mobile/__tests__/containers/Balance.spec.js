@@ -1,4 +1,5 @@
 import assign from 'lodash/assign';
+import find from 'lodash/find';
 import map from 'lodash/map';
 import noop from 'lodash/noop';
 import React from 'react';
@@ -20,7 +21,7 @@ const getProps = (overrides) =>
             seedIndex: 0,
             balance: 0,
             addresses: [],
-            transfers: [],
+            transfers: {},
             primary: { color: 'red' },
             secondary: { color: 'green' },
             body: { color: 'blue' },
@@ -52,12 +53,8 @@ describe('Testing Balance component', () => {
             expect(Balance.propTypes.balance).toEqual(PropTypes.number.isRequired);
         });
 
-        it('should require an addresses array as a prop', () => {
-            expect(Balance.propTypes.addresses).toEqual(PropTypes.array.isRequired);
-        });
-
-        it('should require a transfers array as a prop', () => {
-            expect(Balance.propTypes.transfers).toEqual(PropTypes.array.isRequired);
+        it('should require a transfers object as a prop', () => {
+            expect(Balance.propTypes.transfers).toEqual(PropTypes.object.isRequired);
         });
 
         it('should require a primary object as a prop', () => {
@@ -138,42 +135,24 @@ describe('Testing Balance component', () => {
                 let transfers;
 
                 beforeEach(() => {
-                    transfers = [
-                        [
-                            {
-                                currentIndex: 0,
-                                lastIndex: 3,
-                                timestamp: 1518327592290,
-                                value: 1,
-                                persistence: true,
-                                address: 'U'.repeat(81),
-                            },
-                            {
-                                currentIndex: 1,
-                                lastIndex: 3,
-                                timestamp: 1518327592290,
-                                value: 1,
-                                persistence: true,
-                                address: 'A'.repeat(81),
-                            },
-                            {
-                                currentIndex: 2,
-                                lastIndex: 3,
-                                timestamp: 1518327592290,
-                                value: 1,
-                                persistence: true,
-                                address: 'B'.repeat(81),
-                            },
-                            {
-                                currentIndex: 3,
-                                lastIndex: 3,
-                                timestamp: 1518327592290,
-                                value: 1,
-                                persistence: true,
-                                address: 'C'.repeat(81),
-                            },
-                        ],
-                    ];
+                    transfers = {
+                        bundleHashOne: {
+                            value: -100,
+                            persistence: true,
+                            transferValue: -100,
+                            incoming: false,
+                            inputs: [{ address: 'U'.repeat(81), value: -100 }],
+                            outputs: [{ address: 'A'.repeat(81), value: 100 }]
+                        },
+                        bundleHashTwo: {
+                            value: 80,
+                            persistence: true,
+                            transferValue: 80,
+                            incoming: true,
+                            inputs: [{ address: 'E'.repeat(81), value: -80 }],
+                            outputs: [{ address: 'B'.repeat(81), value: 80 }]
+                        }
+                    };
                 });
 
                 it('should always return an array', () => {
@@ -198,68 +177,62 @@ describe('Testing Balance component', () => {
                     expect(Object.keys(returnValueHead).length).toEqual(7);
                 });
 
-                it('should have time prop equals timestamp prop in transfers object', () => {
+                it('should have confirmationStatus prop equals "Received" if the transfer is incoming and persistence is true', () => {
                     const props = getProps({ transfers });
 
                     const instance = shallow(<Balance {...props} />).instance();
-                    const returnValueHead = instance.prepTransactions()[0];
+                    const incomingTransaction = find(instance.prepTransactions(), { incoming: true });
 
-                    expect(returnValueHead.time).toEqual(1518327592290);
+                    expect(incomingTransaction.confirmationStatus).toEqual('Received');
                 });
 
-                it('should have confirmationStatus prop equals "Received" if value prop is greater than one, addresses are part of transfers object and persistence is true', () => {
+                it('should have confirmationStatus prop equals "Receiving" if the transfer is incoming and persistence is false', () => {
                     const props = getProps({
-                        transfers,
-                        addresses: ['U'.repeat(81), 'A'.repeat(81), 'B'.repeat(81), 'C'.repeat(81)],
+                        transfers: assign({}, transfers, {
+                            bundleHashTwo: {
+                                value: 0,
+                                persistence: false,
+                                transferValue: 0,
+                                incoming: true,
+                                inputs: [],
+                                outputs: [{ address: 'U'.repeat(81), value: 0 }]
+                            },
+                        })
                     });
 
                     const instance = shallow(<Balance {...props} />).instance();
-                    const returnValueHead = instance.prepTransactions()[0];
+                    const incomingTransaction = find(instance.prepTransactions(), { incoming: true });
 
-                    // Since addresses are part of transfers mock object and value > 0
-                    expect(returnValueHead.confirmationStatus).toEqual('Received');
+                    expect(incomingTransaction.confirmationStatus).toEqual('Receiving');
                 });
 
-                it('should have confirmationStatus prop equals "Receiving" if value prop is greater than one, addresses are part of transfers object and persistence is false', () => {
-                    transfers = map(transfers, (tx) => map(tx, (t) => ({ ...t, persistence: false })));
+                it('should have confirmationStatus prop equals "Sent" if the transfer is not incoming and persistence is true', () => {
+                    const props = getProps({ transfers });
 
+                    const instance = shallow(<Balance {...props} />).instance();
+                    const outgoingTransaction = find(instance.prepTransactions(), { incoming: false });
+
+                    expect(outgoingTransaction.confirmationStatus).toEqual('Sent');
+                });
+
+                it('should have confirmationStatus prop equals "Sending" if the transfer is not incoming and persistence is false', () => {
                     const props = getProps({
-                        transfers,
-                        addresses: ['U'.repeat(81), 'A'.repeat(81), 'B'.repeat(81), 'C'.repeat(81)],
+                        transfers: assign({}, transfers, {
+                            bundleHashOne: {
+                                value: -10,
+                                persistence: false,
+                                transferValue: 80,
+                                incoming: false,
+                                inputs: [{ address: 'Y'.repeat(81), value: -10 }],
+                                outputs: [{ address: 'U'.repeat(81), value: 80 }]
+                            },
+                        })
                     });
 
                     const instance = shallow(<Balance {...props} />).instance();
-                    const returnValueHead = instance.prepTransactions()[0];
+                    const outgoingTransaction = find(instance.prepTransactions(), { incoming: false });
 
-                    expect(returnValueHead.confirmationStatus).toEqual('Receiving');
-                });
-
-                it('should have confirmationStatus prop equals "Sent" if value prop is less than one, addresses are part of transfers object and persistence is true', () => {
-                    transfers = map(transfers, (tx) => map(tx, (t) => ({ ...t, value: -1 })));
-
-                    const props = getProps({
-                        transfers,
-                        addresses: ['U'.repeat(81), 'A'.repeat(81), 'B'.repeat(81), 'C'.repeat(81)],
-                    });
-
-                    const instance = shallow(<Balance {...props} />).instance();
-                    const returnValueHead = instance.prepTransactions()[0];
-
-                    expect(returnValueHead.confirmationStatus).toEqual('Sent');
-                });
-
-                it('should have confirmationStatus prop equals "Sending" if value prop is less than one, addresses are part of transfers object and persistence is false', () => {
-                    transfers = map(transfers, (tx) => map(tx, (t) => ({ ...t, value: -1, persistence: false })));
-
-                    const props = getProps({
-                        transfers,
-                        addresses: ['U'.repeat(81), 'A'.repeat(81), 'B'.repeat(81), 'C'.repeat(81)],
-                    });
-
-                    const instance = shallow(<Balance {...props} />).instance();
-                    const returnValueHead = instance.prepTransactions()[0];
-
-                    expect(returnValueHead.confirmationStatus).toEqual('Sending');
+                    expect(outgoingTransaction.confirmationStatus).toEqual('Sending');
                 });
             });
         });
