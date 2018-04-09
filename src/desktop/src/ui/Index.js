@@ -199,7 +199,11 @@ class App extends React.Component {
             return null;
         }
 
+        // Hotfix: Temporary block wallet with a hard reset (for release 0.1.2)
         if (DESKTOP_VERSION !== Electron.getActiveVersion()) {
+            if (themeName === 'Default') {
+                updateTheme(themes.Ionic, 'Ionic');
+            }
             return (
                 <div className={css.trintiy}>
                     <Theme />
