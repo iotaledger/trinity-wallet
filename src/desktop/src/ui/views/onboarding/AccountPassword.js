@@ -2,14 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
+import sjcl from 'sjcl';
 
-import { setSeeds } from 'actions/seeds';
 import { generateAlert } from 'actions/alerts';
 import { addAccountName } from 'actions/accounts';
-import { setAdditionalAccountInfo, setSeedIndex } from 'actions/wallet';
+import { setAdditionalAccountInfo, setSeedIndex, setPassword } from 'actions/wallet';
+import { setOnboardingSeed, setOnboardingName } from 'actions/ui';
 
 import { isValidPassword } from 'libs/utils';
-import { setVault } from 'libs/crypto';
+import { setVault, getVault } from 'libs/crypto';
 
 import Button from 'ui/components/Button';
 import Infobox from 'ui/components/Info';
@@ -21,8 +22,6 @@ import ModalPassword from 'ui/components/modal/Password';
  */
 class AccountPassword extends React.PureComponent {
     static propTypes = {
-        /** Current state seed data */
-        seeds: PropTypes.object.isRequired,
         /** If first account is beeing created */
         firstAccount: PropTypes.bool.isRequired,
         /** Add new account name
@@ -33,10 +32,22 @@ class AccountPassword extends React.PureComponent {
          * @param {Object} data - Additional account data
          */
         setAdditionalAccountInfo: PropTypes.func.isRequired,
-        /** Set seed state
-         * @param {Array} seeds - Seeds list
+        /** Set password state
+         * @param {String} password - Current password
+         * @ignore
          */
-        setSeeds: PropTypes.func.isRequired,
+        setPassword: PropTypes.func.isRequired,
+        /** Set onboarding account name
+         * @param {String} name - New accounts name
+         */
+        setOnboardingName: PropTypes.func.isRequired,
+        /** Set onboarding seed state
+         * @param {String} seed - New seed
+         * @param {Boolean} isGenerated - Is the new seed generated
+         */
+        setOnboardingSeed: PropTypes.func.isRequired,
+        /** Onboarding set seed and name */
+        onboarding: PropTypes.object.isRequired,
         /** Set seed index state
          *  @param {Number} Index - Seed index
          */
@@ -64,16 +75,18 @@ class AccountPassword extends React.PureComponent {
         passwordConfirm: '',
     };
 
-    createAccount = (e) => {
+    createAccount = async (e) => {
         const {
             firstAccount,
-            setSeeds,
+            setPassword,
             addAccountName,
             setAdditionalAccountInfo,
             setSeedIndex,
+            setOnboardingSeed,
+            setOnboardingName,
             history,
-            seeds,
             generateAlert,
+            onboarding,
             t,
         } = this.props;
         const { password, passwordConfirm } = this.state;
@@ -98,19 +111,28 @@ class AccountPassword extends React.PureComponent {
             );
         }
 
-        const newSeeds = [].concat(seeds.seeds, seeds.newSeed);
+        let newSeeds = [onboarding.seed];
+        const passwordHash = firstAccount ? sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(password)) : password;
 
-        setSeeds(newSeeds);
-        addAccountName(seeds.newName);
+        if (!firstAccount) {
+            const vault = await getVault(passwordHash);
+            newSeeds = [].concat(vault.seeds, onboarding.seed);
+        }
 
-        setSeedIndex(seeds.seeds.length);
+        addAccountName(onboarding.name);
 
-        setVault(firstAccount ? null : password, password, { seeds: newSeeds });
+        setSeedIndex(newSeeds.length - 1);
+        setPassword(passwordHash);
+
+        setOnboardingSeed(null);
+        setOnboardingName('');
+
+        await setVault(passwordHash, { seeds: newSeeds }, firstAccount);
 
         if (!firstAccount) {
             setAdditionalAccountInfo({
                 addingAdditionalAccount: true,
-                additionalAccountName: seeds.newName,
+                additionalAccountName: onboarding.name,
             });
             history.push('/onboarding/login');
         } else {
@@ -146,6 +168,7 @@ class AccountPassword extends React.PureComponent {
             <form onSubmit={(e) => this.createAccount(e)}>
                 <section>
                     <PasswordInput
+                        focus
                         value={this.state.password}
                         label={t('password')}
                         onChange={(value) => this.setState({ password: value })}
@@ -173,14 +196,16 @@ class AccountPassword extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    seeds: state.seeds,
     firstAccount: !state.wallet.ready,
+    onboarding: state.ui.onboarding,
 });
 
 const mapDispatchToProps = {
-    setSeeds,
+    setPassword,
     addAccountName,
     setAdditionalAccountInfo,
+    setOnboardingSeed,
+    setOnboardingName,
     generateAlert,
     setSeedIndex,
 };

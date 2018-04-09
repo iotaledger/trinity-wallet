@@ -3,10 +3,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
+
 import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'libs/iota/utils';
+import { getVault } from 'libs/crypto';
 
 import { generateAlert } from 'actions/alerts';
-import { setNewSeed } from 'actions/seeds';
+import { setOnboardingSeed } from 'actions/ui';
 
 import Button from 'ui/components/Button';
 import Infobox from 'ui/components/Info';
@@ -17,15 +19,15 @@ import SeedInput from 'ui/components/input/Seed';
  */
 class SeedVerify extends React.PureComponent {
     static propTypes = {
-        /** Current generated seed */
-        newSeed: PropTypes.string,
-        /** is news seed generated */
-        isGenerated: PropTypes.bool,
-        /** Accept current generated seed
+        /** Current wallet password */
+        password: PropTypes.string.isRequired,
+        /** Current onboarding seed, generation state */
+        onboarding: PropTypes.object.isRequired,
+        /** Set onboarding seed state
          * @param {String} seed - New seed
          * @param {Boolean} isGenerated - Is the new seed generated
          */
-        setNewSeed: PropTypes.func.isRequired,
+        setOnboardingSeed: PropTypes.func.isRequired,
         /** Browser History object */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
@@ -49,7 +51,9 @@ class SeedVerify extends React.PureComponent {
     };
 
     componentDidMount() {
-        Electron.clipboard('');
+        if (this.props.onboarding.isGenerated) {
+            Electron.clipboard('');
+        }
     }
 
     onChange = (value) => {
@@ -58,45 +62,55 @@ class SeedVerify extends React.PureComponent {
         }));
     };
 
-    setSeed = (e) => {
+    setSeed = async (e) => {
         if (e) {
             e.preventDefault();
         }
 
-        const { history, setNewSeed, generateAlert, newSeed, isGenerated, t } = this.props;
+        const { history, password, setOnboardingSeed, generateAlert, onboarding, t } = this.props;
         const { seed } = this.state;
 
-        if (isGenerated && seed !== newSeed) {
+        if (onboarding.isGenerated && seed !== onboarding.seed) {
             generateAlert('error', t('seedReentry:incorrectSeed'), t('seedReentry:incorrectSeedExplanation'));
             return;
         }
 
-        if (!seed.match(VALID_SEED_REGEX) && seed.length === MAX_SEED_LENGTH) {
-            generateAlert('error', t('enterSeed:invalidCharacters'), t('enterSeed:invalidCharactersExplanation'));
-        } else if (seed.length < MAX_SEED_LENGTH) {
+        if (password.length) {
+            const vault = await getVault(password);
+            if (vault.seeds.indexOf(seed) > -1) {
+                generateAlert('error', t('addAdditionalSeed:seedInUse'), t('addAdditionalSeed:seedInUseExplanation'));
+                return;
+            }
+        }
+
+        if (seed.length < MAX_SEED_LENGTH) {
             generateAlert(
                 'error',
                 t('enterSeed:seedTooShort'),
                 t('enterSeed:seedTooShortExplanation', { maxLength: MAX_SEED_LENGTH, currentLength: seed.length }),
             );
+            return;
+        } else if (!seed.match(VALID_SEED_REGEX)) {
+            generateAlert('error', t('enterSeed:invalidCharacters'), t('enterSeed:invalidCharactersExplanation'));
+            return;
         }
 
-        if (!isGenerated) {
-            setNewSeed(seed, false);
+        if (!onboarding.isGenerated) {
+            setOnboardingSeed(seed, false);
         }
 
         history.push('/onboarding/account-name');
     };
 
     render() {
-        const { isGenerated, t } = this.props;
+        const { onboarding, t } = this.props;
         const { seed = '' } = this.state;
         return (
             <form onSubmit={(e) => this.setSeed(e)}>
                 <section>
-                    <SeedInput seed={seed} onChange={this.onChange} label={t('seed')} closeLabel={t('back')} />
+                    <SeedInput seed={seed} focus onChange={this.onChange} label={t('seed')} closeLabel={t('back')} />
                     <Infobox>
-                        {isGenerated ? (
+                        {onboarding.isGenerated ? (
                             <React.Fragment>
                                 <p>
                                     {t('seedReentry:thisIsACheck')}
@@ -106,10 +120,9 @@ class SeedVerify extends React.PureComponent {
                             </React.Fragment>
                         ) : (
                             <React.Fragment>
+                                <p>{t('enterSeed:seedExplanation', { maxLength: MAX_SEED_LENGTH })}</p>
                                 <p>
-                                    {t('seedExplanation', { maxLength: MAX_SEED_LENGTH })}
-                                    <br />
-                                    {t('enterSeed:neverShare')}
+                                    <strong>{t('enterSeed:neverShare')}</strong>
                                 </p>
                             </React.Fragment>
                         )}
@@ -117,7 +130,7 @@ class SeedVerify extends React.PureComponent {
                 </section>
                 <footer>
                     <Button
-                        to={`/onboarding/seed-${isGenerated ? 'save' : 'intro'}`}
+                        to={`/onboarding/seed-${onboarding.isGenerated ? 'save' : 'intro'}`}
                         className="inline"
                         variant="secondary"
                     >
@@ -133,13 +146,13 @@ class SeedVerify extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    newSeed: state.seeds.newSeed,
-    isGenerated: state.seeds.isGenerated,
+    onboarding: state.ui.onboarding,
+    password: state.wallet.password,
 });
 
 const mapDispatchToProps = {
     generateAlert,
-    setNewSeed,
+    setOnboardingSeed,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate()(SeedVerify));

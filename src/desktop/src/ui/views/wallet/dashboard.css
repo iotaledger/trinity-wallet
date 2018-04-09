@@ -46,6 +46,7 @@
             input,
             textarea {
                 background: var(--body-bg);
+                color: var(--body);
             }
 
             ul li {
@@ -125,6 +126,7 @@
         transform: scale(0.75);
         opacity: 0;
         transition: opacity 0.3s cubic-bezier(0, 0, 0.2, 1), transform 0.3s cubic-bezier(0, 0, 0.2, 1);
+        pointer-events: none;
         span {
             cursor: pointer;
         }
@@ -139,6 +141,7 @@
     }
     &.open {
         > span {
+            pointer-events: all;
             transform: scale(1);
             opacity: 1;
         }

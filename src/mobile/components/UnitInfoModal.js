@@ -46,8 +46,8 @@ const styles = StyleSheet.create({
         paddingVertical: width / 40,
     },
     line: {
-        borderWidth: 0.25,
-        width: 0.5,
+        borderLeftWidth: 0.5,
+        width: 1,
         height: width / 2.3,
         marginHorizontal: width / 75,
     },
@@ -67,6 +67,8 @@ class UnitInfoModal extends PureComponent {
     static propTypes = {
         /** Modal border color */
         borderColor: PropTypes.object.isRequired,
+        /** Line color */
+        lineColor: PropTypes.object.isRequired,
         /** Modal bar colors */
         bar: PropTypes.object.isRequired,
         /** Modal content text color */
@@ -80,7 +82,7 @@ class UnitInfoModal extends PureComponent {
     };
 
     render() {
-        const { t, textColor, borderColor, bar } = this.props;
+        const { t, textColor, borderColor, lineColor, bar } = this.props;
 
         return (
             <TouchableOpacity onPress={() => this.props.hideModal()} style={styles.modalContainer}>
@@ -110,7 +112,7 @@ class UnitInfoModal extends PureComponent {
                                 i
                             </TextWithLetterSpacing>
                         </View>
-                        <View style={[styles.line, borderColor]} />
+                        <View style={[styles.line, lineColor]} />
                         <View style={{ alignItems: 'flex-start', paddingHorizontal: width / 60 }}>
                             <TextWithLetterSpacing spacing={2} textStyle={[styles.numberText, textColor]}>
                                 {t('trillion')}
@@ -128,7 +130,7 @@ class UnitInfoModal extends PureComponent {
                                 {t('one')}
                             </TextWithLetterSpacing>
                         </View>
-                        <View style={[styles.line, borderColor]} />
+                        <View style={[styles.line, lineColor]} />
                         <View style={{ alignItems: 'flex-end', paddingHorizontal: width / 60 }}>
                             <TextWithLetterSpacing spacing={2} textStyle={[styles.numberText, textColor]}>
                                 1 000 000 000 000
