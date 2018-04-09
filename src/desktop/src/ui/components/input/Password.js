@@ -11,6 +11,8 @@ export default class PasswordInput extends React.PureComponent {
     static propTypes = {
         /** Current password value */
         value: PropTypes.string.isRequired,
+        /** Should input focus when changed to true */
+        focus: PropTypes.bool,
         /** Password input label */
         label: PropTypes.string.isRequired,
         /** Password change event function
@@ -22,6 +24,18 @@ export default class PasswordInput extends React.PureComponent {
     state = {
         hidden: true,
     };
+
+    componentDidMount() {
+        if (this.props.focus) {
+            this.input.focus();
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (!this.props.focus && nextProps.focus) {
+            this.input.focus();
+        }
+    }
 
     setVisibility = () => {
         this.setState({
@@ -40,6 +54,9 @@ export default class PasswordInput extends React.PureComponent {
                     </a>
                     <input
                         type={hidden ? 'password' : 'text'}
+                        ref={(input) => {
+                            this.input = input;
+                        }}
                         value={value}
                         onChange={(e) => onChange(e.target.value)}
                     />

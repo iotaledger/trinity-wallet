@@ -1,6 +1,8 @@
 import get from 'lodash/get';
 import findKey from 'lodash/findKey';
 import keys from 'lodash/keys';
+import reduce from 'lodash/reduce';
+import filter from 'lodash/filter';
 import { createSelector } from 'reselect';
 
 /**
@@ -194,6 +196,19 @@ export const getAddressesForSelectedAccount = createSelector(
  *   @returns {number}
  **/
 export const getBalanceForSelectedAccount = createSelector(selectAccountInfo, (account) => account.balance || 0);
+
+/**
+ *   Selects available balance from accountInfo object i.e. balance at unused addresses.
+ *
+ *   @method getAvailableBalanceForSelectedAccount
+ *   @param {object} state
+ *   @returns {number}
+ **/
+export const getAvailableBalanceForSelectedAccount = createSelector(selectAccountInfo, (account) => {
+    const unspentAddresses = filter(account.addresses, { spent: false });
+    const availableBalance = reduce(unspentAddresses, (res, item) => res + item.balance, 0);
+    return availableBalance;
+});
 
 /**
  *   Selects account name for currently selected account.

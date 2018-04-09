@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { translate, Trans } from 'react-i18next';
 
-import { clearNewSeed } from 'actions/seeds';
+import { setOnboardingSeed } from 'actions/ui';
 
 import Button from 'ui/components/Button';
 
@@ -12,8 +12,11 @@ import Button from 'ui/components/Button';
  */
 class SeedIntro extends React.PureComponent {
     static propTypes = {
-        /** Clears new seed data from state */
-        clearNewSeed: PropTypes.func.isRequired,
+        /** Set onboarding seed state
+         * @param {String} seed - New seed
+         * @param {Boolean} isGenerated - Is the new seed generated
+         */
+        setOnboardingSeed: PropTypes.func.isRequired,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
@@ -22,7 +25,7 @@ class SeedIntro extends React.PureComponent {
     };
 
     componentDidMount() {
-        this.props.clearNewSeed();
+        this.props.setOnboardingSeed(null);
     }
 
     render() {
@@ -32,17 +35,19 @@ class SeedIntro extends React.PureComponent {
                 <section>
                     <form className="center">
                         <fieldset>
-                            <h2>Do you want to create a new seed?</h2>
+                            <h2>{t('walletSetup:doYouAlreadyHaveASeed')}</h2>
 
-                            <Button to="/onboarding/seed-verify" className="large" variant="secondary">
+                            <Button to="/onboarding/seed-warning" className="large" variant="secondary">
                                 {t('no')}
                             </Button>
-                            <Button to="/onboarding/seed-warning" className="large" variant="primary">
+                            <Button to="/onboarding/seed-verify" className="large" variant="primary">
                                 {t('yes')}
                             </Button>
-                            <small>
-                                <strong>Hint:</strong> Click YES if this is your first time using IOTA.
-                            </small>
+                            <Trans i18nKey="walletSetup:hint">
+                                <small>
+                                    <strong>Hint:</strong> Click NO if this is your first time using IOTA.
+                                </small>
+                            </Trans>
                         </fieldset>
                     </form>
                 </section>
@@ -53,7 +58,7 @@ class SeedIntro extends React.PureComponent {
 }
 
 const mapDispatchToProps = {
-    clearNewSeed,
+    setOnboardingSeed,
 };
 
 export default connect(null, mapDispatchToProps)(translate()(SeedIntro));
