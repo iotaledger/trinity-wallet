@@ -3,7 +3,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
+
 import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'libs/iota/utils';
+import { getVault } from 'libs/crypto';
 
 import { generateAlert } from 'actions/alerts';
 import { setOnboardingSeed } from 'actions/ui';
@@ -17,6 +19,8 @@ import SeedInput from 'ui/components/input/Seed';
  */
 class SeedVerify extends React.PureComponent {
     static propTypes = {
+        /** Current wallet password */
+        password: PropTypes.string.isRequired,
         /** Current onboarding seed, generation state */
         onboarding: PropTypes.object.isRequired,
         /** Set onboarding seed state
@@ -47,7 +51,9 @@ class SeedVerify extends React.PureComponent {
     };
 
     componentDidMount() {
-        Electron.clipboard('');
+        if (this.props.onboarding.isGenerated) {
+            Electron.clipboard('');
+        }
     }
 
     onChange = (value) => {
@@ -56,12 +62,12 @@ class SeedVerify extends React.PureComponent {
         }));
     };
 
-    setSeed = (e) => {
+    setSeed = async (e) => {
         if (e) {
             e.preventDefault();
         }
 
-        const { history, setOnboardingSeed, generateAlert, onboarding, t } = this.props;
+        const { history, password, setOnboardingSeed, generateAlert, onboarding, t } = this.props;
         const { seed } = this.state;
 
         if (onboarding.isGenerated && seed !== onboarding.seed) {
@@ -69,14 +75,24 @@ class SeedVerify extends React.PureComponent {
             return;
         }
 
-        if (!seed.match(VALID_SEED_REGEX) && seed.length === MAX_SEED_LENGTH) {
-            generateAlert('error', t('enterSeed:invalidCharacters'), t('enterSeed:invalidCharactersExplanation'));
-        } else if (seed.length < MAX_SEED_LENGTH) {
+        if (password.length) {
+            const vault = await getVault(password);
+            if (vault.seeds.indexOf(seed) > -1) {
+                generateAlert('error', t('addAdditionalSeed:seedInUse'), t('addAdditionalSeed:seedInUseExplanation'));
+                return;
+            }
+        }
+
+        if (seed.length < MAX_SEED_LENGTH) {
             generateAlert(
                 'error',
                 t('enterSeed:seedTooShort'),
                 t('enterSeed:seedTooShortExplanation', { maxLength: MAX_SEED_LENGTH, currentLength: seed.length }),
             );
+            return;
+        } else if (!seed.match(VALID_SEED_REGEX)) {
+            generateAlert('error', t('enterSeed:invalidCharacters'), t('enterSeed:invalidCharactersExplanation'));
+            return;
         }
 
         if (!onboarding.isGenerated) {
@@ -92,7 +108,7 @@ class SeedVerify extends React.PureComponent {
         return (
             <form onSubmit={(e) => this.setSeed(e)}>
                 <section>
-                    <SeedInput seed={seed} onChange={this.onChange} label={t('seed')} closeLabel={t('back')} />
+                    <SeedInput seed={seed} focus onChange={this.onChange} label={t('seed')} closeLabel={t('back')} />
                     <Infobox>
                         {onboarding.isGenerated ? (
                             <React.Fragment>
@@ -104,10 +120,9 @@ class SeedVerify extends React.PureComponent {
                             </React.Fragment>
                         ) : (
                             <React.Fragment>
+                                <p>{t('enterSeed:seedExplanation', { maxLength: MAX_SEED_LENGTH })}</p>
                                 <p>
-                                    {t('seedExplanation', { maxLength: MAX_SEED_LENGTH })}
-                                    <br />
-                                    {t('enterSeed:neverShare')}
+                                    <strong>{t('enterSeed:neverShare')}</strong>
                                 </p>
                             </React.Fragment>
                         )}
@@ -132,6 +147,7 @@ class SeedVerify extends React.PureComponent {
 
 const mapStateToProps = (state) => ({
     onboarding: state.ui.onboarding,
+    password: state.wallet.password,
 });
 
 const mapDispatchToProps = {
