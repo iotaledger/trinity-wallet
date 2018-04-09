@@ -13,9 +13,9 @@ import findKey from 'lodash/findKey';
 import size from 'lodash/size';
 import pickBy from 'lodash/pickBy';
 import omitBy from 'lodash/omitBy';
+import flatMap from 'lodash/flatMap';
 import { iota } from './index';
 import { getBalancesAsync, wereAddressesSpentFromAsync } from './extendedApi';
-import { categorizeTransactions } from './transfers';
 
 const errors = require('iota.lib.js/lib/errors/inputErrors');
 const async = require('async');
@@ -408,7 +408,7 @@ export const syncAddresses = (seed, accountData, genFn, addNewAddress = false) =
                     index,
                     balance: 0,
                     spent: false,
-                    checksum: iota.utils.addChecksum(newAddress).slice(newAddress.length)
+                    checksum: iota.utils.addChecksum(newAddress).slice(newAddress.length),
                 };
 
                 index += 1;
@@ -418,7 +418,7 @@ export const syncAddresses = (seed, accountData, genFn, addNewAddress = false) =
                     index,
                     balance: 0,
                     spent: false,
-                    checksum: iota.utils.addChecksum(newAddress).slice(newAddress.length)
+                    checksum: iota.utils.addChecksum(newAddress).slice(newAddress.length),
                 };
             }
         });
@@ -449,11 +449,15 @@ export const filterAddressesWithIncomingTransfers = (inputs, pendingValueTransfe
         {},
     );
 
-    const { incoming, outgoing } = categorizeTransactions(pendingValueTransfers);
-
     const addressesWithIncomingTransfers = new Set();
 
-    each([...outgoing.outputs, ...incoming.outputs], (output) => {
+    // Check outputs of incoming transfers i.e. If there is an incoming value transfer
+    // Checks outputs of sent transfers to check if there is an incoming transfer (change address)
+
+    // Note: Inputs for outgoing transfers should not be checked since filterSpentAddresses already removes spent inputs
+    const outputsToCheck = flatMap(pendingValueTransfers, (transfer) => transfer.outputs);
+
+    each(outputsToCheck, (output) => {
         if (output.address in inputsByAddress && output.value > 0) {
             addressesWithIncomingTransfers.add(output.address);
         }

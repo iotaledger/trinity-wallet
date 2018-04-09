@@ -35,7 +35,7 @@ describe('libs: iota/addresses', () => {
     });
 
     describe('#getSpentAddressesWithPendingTransfersSync', () => {
-        describe('when no address in transaction objects is found in addressData with "spent" prop true', () => {
+        describe('when no input address in transactions is found in addressData with "spent" prop true', () => {
             it('should return an empty array', () => {
                 const fakeAddress = 'U'.repeat(81);
 
@@ -48,47 +48,26 @@ describe('libs: iota/addresses', () => {
                 };
 
                 const transfers = [
-                    [{ currentIndex: 0, value: 0, lastIndex: 0, address: firstAddress, persistence: false }],
-                    [
-                        { currentIndex: 0, value: -50, lastIndex: 3, address: firstAddress },
-                        { currentIndex: 1, value: 50, lastIndex: 3, address: secondAddress },
-                        { currentIndex: 2, value: 0, lastIndex: 3, address: firstAddress },
-                        { currentIndex: 3, value: 20, lastIndex: 3, address: thirdAddress },
-                    ],
+                    {
+                        persistence: false,
+                        tailTransactions: [{ hash: 'XXX' }],
+                        inputs: [{ address: firstAddress }],
+                        outputs: [{ address: secondAddress }],
+                    },
+                    {
+                        persistence: false,
+                        tailTransactions: [{ hash: 'YYY' }],
+                        inputs: [{ address: secondAddress }],
+                        outputs: [{ address: thirdAddress }],
+                    },
                 ];
 
                 expect(getSpentAddressesWithPendingTransfersSync(transfers, addressData)).to.eql([]);
             });
         });
 
-        describe('when address in transaction objects is found in addressData with "spent" prop true', () => {
-            it('should return an empty array if value on transfer is greater than or equal to zero and it is not a remainder object', () => {
-                const firstAddress = 'D'.repeat(81);
-
-                const addressData = {
-                    [firstAddress]: { spent: true, balance: 0, index: 0 },
-                };
-
-                const transfers = [
-                    [{ currentIndex: 1, value: 0, lastIndex: 1, address: firstAddress, persistence: false }],
-                ];
-
-                expect(getSpentAddressesWithPendingTransfersSync(transfers, addressData)).to.eql([]);
-            });
-
-            it('should return an empty array if value on transfer is less zero but transaction object is a remainder', () => {
-                const address = 'A'.repeat(81);
-
-                const addressData = {
-                    [address]: { spent: true, balance: 4, index: 5 },
-                };
-
-                const transfers = [[{ currentIndex: 3, value: -30, lastIndex: 3, address }]];
-
-                expect(getSpentAddressesWithPendingTransfersSync(transfers, addressData)).to.eql([]);
-            });
-
-            it('should return an array of addresses in transaction objects that are not remainders and have value less than zero', () => {
+        describe('when input address in transactions is found in addressData with "spent" prop true', () => {
+            it('should return an array of input addresses', () => {
                 const firstAddress = 'D'.repeat(81);
                 const secondAddress = 'A'.repeat(81);
                 const thirdAddress = 'B'.repeat(81);
@@ -98,12 +77,18 @@ describe('libs: iota/addresses', () => {
                 };
 
                 const transfers = [
-                    [
-                        { currentIndex: 0, value: -50, lastIndex: 3, address: firstAddress },
-                        { currentIndex: 1, value: 50, lastIndex: 3, address: secondAddress },
-                        { currentIndex: 2, value: 0, lastIndex: 3, address: firstAddress },
-                        { currentIndex: 3, value: 20, lastIndex: 3, address: thirdAddress },
-                    ],
+                    {
+                        persistence: false,
+                        tailTransactions: [{ hash: 'XXX' }],
+                        inputs: [{ address: firstAddress }],
+                        outputs: [{ address: secondAddress }],
+                    },
+                    {
+                        persistence: false,
+                        tailTransactions: [{ hash: 'YYY' }],
+                        inputs: [{ address: secondAddress }],
+                        outputs: [{ address: thirdAddress }],
+                    },
                 ];
 
                 expect(getSpentAddressesWithPendingTransfersSync(transfers, addressData)).to.eql([firstAddress]);
@@ -169,7 +154,7 @@ describe('libs: iota/addresses', () => {
 
     describe('#filterAddressesWithIncomingTransfers', () => {
         describe('when inputs passed as first argument is an empty array', () => {
-            it('should return an empty array', () => {
+            it('should return inputs passed as first argument', () => {
                 expect(filterAddressesWithIncomingTransfers([], [{}, {}])).to.eql([]);
             });
         });
@@ -182,81 +167,43 @@ describe('libs: iota/addresses', () => {
 
         describe('when inputs passed as first argument is not an empty array and pendingValueTransfers passed as second argument is not an empty array', () => {
             let pendingTransfers;
-            const firstOwnAddress = 'A'.repeat(81);
-            const secondOwnAddress = 'B'.repeat(81);
-            const changeAddress = 'C'.repeat(81);
-            const otherAddress = 'U'.repeat(81);
 
             beforeEach(() => {
                 pendingTransfers = [
-                    // Outgoing
-                    [
-                        {
-                            value: 1,
-                            currentIndex: 0,
-                            address: otherAddress,
-                            lastIndex: 3,
-                        },
-                        {
-                            value: -1,
-                            currentIndex: 1,
-                            address: firstOwnAddress,
-                            lastIndex: 3,
-                        },
-                        {
-                            value: 0,
-                            currentIndex: 2,
-                            address: firstOwnAddress,
-                            lastIndex: 3,
-                        },
-                        {
-                            value: -1,
-                            currentIndex: 3,
-                            address: changeAddress,
-                            lastIndex: 3,
-                        },
-                    ],
-                    // Incoming
-                    [
-                        {
-                            value: 1,
-                            currentIndex: 0,
-                            address: firstOwnAddress,
-                            lastIndex: 2,
-                        },
-                        {
-                            value: 1,
-                            currentIndex: 1,
-                            address: otherAddress,
-                            lastIndex: 2,
-                        },
-                        {
-                            value: 0,
-                            currentIndex: 2,
-                            address: otherAddress,
-                            lastIndex: 2,
-                        },
-                    ],
+                    {
+                        transferValue: -100,
+                        incoming: false,
+                        inputs: [{ address: 'A'.repeat(81), value: -100 }],
+                        outputs: [
+                            // Change address
+                            { address: 'C'.repeat(81), value: 20 },
+                            { address: 'U'.repeat(81), value: 80 },
+                        ],
+                        persistence: false,
+                    },
+                    {
+                        transferValue: -50,
+                        incoming: true,
+                        inputs: [{ address: 'D'.repeat(81), value: -40 }],
+                        outputs: [{ address: 'E'.repeat(81), value: 30 }, { address: 'Y'.repeat(81), value: 10 }],
+                        persistence: false,
+                    },
                 ];
             });
 
-            it('should filter inputs that have pending incoming value transfers ', () => {
-                const inputs = [{ address: firstOwnAddress }, { address: secondOwnAddress }];
+            it('should filter inputs that have pending incoming value transfers', () => {
+                const inputs = [{ address: 'E'.repeat(81) }, { address: 'F'.repeat(81) }];
 
                 expect(filterAddressesWithIncomingTransfers(inputs, pendingTransfers)).to.eql([
-                    { address: secondOwnAddress },
+                    { address: 'F'.repeat(81) },
                 ]);
             });
 
             it('should filter inputs that have pending outgoing value transfers on change addresses', () => {
-                const inputs = [
-                    { address: firstOwnAddress },
-                    { address: secondOwnAddress },
-                    { address: changeAddress },
-                ];
+                const inputs = [{ address: 'C'.repeat(81) }, { address: 'F'.repeat(81) }];
 
                 expect(filterAddressesWithIncomingTransfers(inputs, pendingTransfers)).to.eql([
-                    { address: secondOwnAddress },
+                    { address: 'F'.repeat(81) },
                 ]);
             });
         });
