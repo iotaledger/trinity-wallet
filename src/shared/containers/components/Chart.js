@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 
+import { round } from '../../libs/utils';
+
 import { setCurrency, setTimeframe } from '../../actions/marketData';
 import { getCurrencySymbol } from '../../libs/currency';
 
@@ -13,6 +15,7 @@ import { getCurrencySymbol } from '../../libs/currency';
 export default function withChartData(ChartComponent) {
     class ChartData extends React.Component {
         static propTypes = {
+            settings: PropTypes.object.isRequired,
             marketData: PropTypes.object.isRequired,
             setTimeframe: PropTypes.func.isRequired,
             setCurrency: PropTypes.func.isRequired,
@@ -83,7 +86,7 @@ export default function withChartData(ChartComponent) {
         }
 
         render() {
-            const { marketData, theme, t } = this.props;
+            const { marketData, settings, theme, t } = this.props;
 
             const dataSet = marketData.chartData[marketData.currency][marketData.timeframe];
 
@@ -96,9 +99,10 @@ export default function withChartData(ChartComponent) {
                     currency: marketData.currency,
                     symbol: getCurrencySymbol(marketData.currency),
                     price: this.props.marketData.usdPrice,
-                    volume: marketData.volume,
+                    volume: (round(marketData.volume.replace(/,/g, '') * settings.conversionRate)).toLocaleString('en'),
                     change24h: marketData.change24h,
-                    mcap: marketData.mcap,
+                    mcap: (round(marketData.mcap.replace(/,/g, '') * settings.conversionRate)).toLocaleString('en'),
+                    globalSymbol: getCurrencySymbol(settings.currency)
                 },
                 chartData: {
                     timeframe: marketData.timeframe,
@@ -119,6 +123,7 @@ export default function withChartData(ChartComponent) {
 
     const mapStateToProps = (state) => ({
         marketData: state.marketData,
+        settings: state.settings,
         theme: state.settings.theme,
     });
 

@@ -97,7 +97,7 @@
         "changeNode": "Change node",
         "addCustomNode": "Add custom node",
         "nodeChanged": "Node changed",
-        "nodeChangedExpalantion": "The node has been changed successfully."
+        "nodeChangedExplanation": "The node has been changed successfully."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
@@ -312,7 +312,8 @@
         "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}.",
         "undo": "Undo",
         "redo": "Redo",
-        "about": "About Trinity"
+        "about": "About Trinity",
+        "lockScreenTimeout": "Lock Screen Timeout (Minutes)"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",
@@ -326,7 +327,8 @@
             "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
         "explanation":
             "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
-        "keepSafe": "Please keep your seed safe."
+        "keepSafe": "Please keep your seed safe.",
+        "hint": "<0><0>Hint:</0> Click NO if this is your first time using IOTA.</0>"
     },
     "welcome": {
         "thankYou": "Thank you for downloading Trinity.",
@@ -469,7 +471,8 @@
     "chart": {
         "mcap": "MCAP",
         "change": "Change",
-        "volume": "Volume (24h)"
+        "volume": "Volume (24h)",
+        "currentValue": "Current value"
     },
     "rootDetection": {
         "warning": "WARNING",
@@ -500,7 +503,18 @@
         "transitionCompleteExplanation": "The snapshot transition has completed successfully."
     },
     "deepLink": {
-      "autofill": "Autofill",
-      "autofillExplanation": "Transaction data autofilled from link."
+        "autofill": "Autofill",
+        "autofillExplanation": "Transaction data autofilled from link."
+    },
+    "updates": {
+        "errorRetrievingUpdateData": "Error retreiving update data",
+        "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
+        "noUpdatesAvailable": "No updates available",
+        "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
+        "newVersionAvailable": "New version available",
+        "newVersionAvailableExplanation":
+            "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
+        "downloadRelease": "Download release",
+        "skipUpdate": "Skip update"
     }
 }
