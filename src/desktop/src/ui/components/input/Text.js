@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import css from './input.css';
 
 /**
- * Single ine input component
+ * Single line input component
  */
 export default class TextInput extends React.PureComponent {
     static propTypes = {
