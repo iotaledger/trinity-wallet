@@ -78,7 +78,7 @@ class SeedSave extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    seed: state.seeds.newSeed,
+    seed: state.ui.onboarding.seed,
 });
 
 export default connect(mapStateToProps)(translate()(SeedSave));

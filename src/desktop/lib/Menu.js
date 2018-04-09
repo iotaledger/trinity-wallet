@@ -76,6 +76,7 @@ const initMenu = (app, getWindow) => {
                         submenu: [
                             {
                                 label: language.language,
+                                accelerator: 'Command+,',
                                 click: () => navigate('settings/language'),
                             },
                             {
@@ -195,7 +196,7 @@ const initMenu = (app, getWindow) => {
                                         buttons: [language.yes, language.no],
                                     },
                                     (index) => {
-                                        if (index === 1) {
+                                        if (index === 0) {
                                             mainWindow.webContents.send('menu', 'logout');
                                         }
                                     },
