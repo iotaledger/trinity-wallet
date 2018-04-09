@@ -146,6 +146,7 @@ label {
         opacity: 0;
         transform: scale(0.9);
         transition: opacity 300ms ease-in, transform 200ms ease-out;
+        pointer-events: none;
     }
 
     .slide-enter {
@@ -182,6 +183,7 @@ label {
     }
 
     .slide-exit.slide-exit-active {
+        pointer-events: none;
         section {
             opacity: 0;
             transform: scale(0.9);
