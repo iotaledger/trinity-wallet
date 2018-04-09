@@ -6,7 +6,8 @@ import i18next from 'i18next';
 export default i18next.init({
     fallbackLng: 'en',
     defaultNS: 'global',
-    parseMissingKeyHandler: (value) => `_${value}_`,
+    parseMissingKeyHandler: (value) => value,
+    debug: true,
     resources: {
         en: require('locales/en/translation.json'),
         ar: require('locales/ar/translation.json'),
