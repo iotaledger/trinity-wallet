@@ -1,20 +1,54 @@
 .nav {
     display: flex;
-    padding: 0 0 10px 10px;
+    padding: 0 0 28px 10px;
     margin: 0px;
     a {
         color: var(--secondary);
         font-weight: 300;
-        margin: 0 28px 0 0;
-        &.active {
-            color: var(--primary);
-        }
+        margin: 0 22px 0 0;
+
         &.empty {
             color: var(--body-alt);
         }
         &.disabled {
             color: var(--body-alt);
             pointer-events: none;
+        }
+        small {
+            font-size: 14px;
+            font-weight: 200;
+            margin: 0 2px;
+        }
+    }
+    ul {
+        margin: 0px;
+        padding: 0px;
+        position: absolute;
+        top: 8px;
+        left: 2px;
+        z-index: 2;
+        a {
+            display: none;
+            background: var(--body-altBg);
+            line-height: 28px;
+            padding: 10px 20px 0px;
+            span {
+                display: block;
+                float: right;
+                margin: 8px 0 0 6px;
+                color: var(--secondary);
+            }
+            &:first-child {
+                display: block;
+            }
+        }
+        &:hover {
+            a {
+                display: block;
+                &:hover {
+                    color: var(--primary);
+                }
+            }
         }
     }
 }
@@ -25,7 +59,7 @@
     left: 0px;
     width: 100%;
     height: calc(100% - 80px);
-    padding: 0 20px;
+    padding: 0;
     overflow: scroll;
 
     a {
@@ -41,6 +75,7 @@
             line-height: 38px;
             cursor: pointer;
             width: 100%;
+            padding: 0 20px;
             > span {
                 width: 50%;
                 padding: 0 2%;
@@ -104,10 +139,12 @@
 .refresh {
     display: block;
     position: absolute;
-    top: 14px;
-    right: -10px;
+    top: 18px;
+    right: -4px;
     margin: 0px;
-    height: 32px;
+    height: 26px;
+    width: 26px;
+    text-align: center;
 
     &:hover {
         color: var(--primary);
@@ -120,7 +157,7 @@
 
     &.loading {
         pointer-events: none;
-        animation: spin 0.6s ease infinite;
+        animation: spin 0.8s ease infinite;
     }
 }
 
@@ -135,6 +172,7 @@
     pointer-events: none;
     transition: opacity 0.15s ease-out;
     cursor: pointer;
+    z-index: 3;
     > div {
         position: absolute;
         top: 50%;
@@ -154,7 +192,9 @@
 
             &:last-child {
                 margin-top: 26px;
-
+                word-break: break-word;
+                max-height: 100px;
+                overflow: scroll;
                 strong {
                     margin-right: 12px;
                 }

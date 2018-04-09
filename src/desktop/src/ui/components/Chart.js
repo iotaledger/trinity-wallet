@@ -141,7 +141,6 @@ class Chart extends PureComponent {
                         {priceData.currency}
                     </Button>
                     <p>
-                        <strong>Current value</strong>
                         {priceData.symbol} {getPriceFormat(getPriceForCurrency(priceData.currency))} / Mi
                     </p>
                     <Button variant="secondary" className="outline" onClick={() => setTimeframe()}>
@@ -150,13 +149,19 @@ class Chart extends PureComponent {
                 </nav>
                 <ul>
                     <li>
-                        {t('chart:mcap')}: <strong>$ {priceData.mcap}</strong>
+                        {t('chart:mcap')}:{' '}
+                        <strong>
+                            {priceData.globalSymbol} {priceData.mcap}
+                        </strong>
                     </li>
                     <li>
                         {t('chart:change')}: <strong>{priceData.change24h}%</strong>
                     </li>
                     <li>
-                        {t('chart:volume')}: <strong>$ {priceData.volume}</strong>
+                        {t('chart:volume')}:{' '}
+                        <strong>
+                            {priceData.globalSymbol} {priceData.volume}
+                        </strong>
                     </li>
                 </ul>
             </div>

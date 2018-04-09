@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 import Sidebar from 'ui/views/wallet/Sidebar';
 import Dashboard from 'ui/views/wallet/Dashboard';
+import Polling from 'ui/global/Polling';
 
 import css from './index.css';
 
@@ -25,6 +26,7 @@ class Wallet extends React.PureComponent {
 
         return (
             <main className={css.wallet}>
+                <Polling />
                 <Sidebar history={history} location={location} />
                 <section className={location.pathname === '/wallet/charts' ? css.slided : null}>
                     <Dashboard location={location} history={history} />
