@@ -1,4 +1,3 @@
-import isArray from 'lodash/isArray';
 import { expect } from 'chai';
 import {
     prepareTransferArray,
@@ -117,9 +116,7 @@ describe('libs: iota/transfers', () => {
 
             const states = [true, false];
 
-            expect(categorizeTransactionsByPersistence(transactions, states).confirmed).to.eql([
-                { bundle: 'foo' },
-            ]);
+            expect(categorizeTransactionsByPersistence(transactions, states).confirmed).to.eql([{ bundle: 'foo' }]);
         });
 
         it('should map all those transactions to "unconfirmed" prop object that have corresponding states false', () => {
@@ -127,7 +124,9 @@ describe('libs: iota/transfers', () => {
 
             const states = [true, false];
 
-            expect(categorizeTransactionsByPersistence(tailTransactions, states).unconfirmed).to.eql([{ bundle: 'baz' }]);
+            expect(categorizeTransactionsByPersistence(tailTransactions, states).unconfirmed).to.eql([
+                { bundle: 'baz' },
+            ]);
         });
     });
 
@@ -150,7 +149,7 @@ describe('libs: iota/transfers', () => {
             it('should return an array with hashes for elements with persistence false', () => {
                 const args = {
                     bundleOne: { tailTransactions: [{ hash: '999' }, { hash: 'UUU' }], value: 100, persistence: false },
-                    bundleTwo: { tailTransactions: [{ hash: 'XXX' }, { hash: 'YYY' }], value: 100, persistence: true }
+                    bundleTwo: { tailTransactions: [{ hash: 'XXX' }, { hash: 'YYY' }], value: 100, persistence: true },
                 };
 
                 expect(getPendingTxTailsHashes(args)).to.eql(['999', 'UUU']);
@@ -171,14 +170,14 @@ describe('libs: iota/transfers', () => {
             it('should assign persistence true to those objects that have any tail transaction hash in second argument array', () => {
                 const transfers = [
                     { persistence: false, tailTransactions: [{ hash: 'UUU' }] },
-                    { persistence: false, tailTransactions: [{ hash: 'XXX' }] }
+                    { persistence: false, tailTransactions: [{ hash: 'XXX' }] },
                 ];
 
                 const confirmedTransactionsHashes = ['XXX'];
 
                 const result = [
                     { persistence: false, tailTransactions: [{ hash: 'UUU' }] },
-                    { persistence: true, tailTransactions: [{ hash: 'XXX' }] }
+                    { persistence: true, tailTransactions: [{ hash: 'XXX' }] },
                 ];
 
                 expect(markTransfersConfirmed(transfers, confirmedTransactionsHashes)).to.eql(result);
