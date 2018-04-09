@@ -14,12 +14,15 @@ import { getUpdateData, updateTheme } from 'actions/settings';
 import { disposeOffAlert, generateAlert } from 'actions/alerts';
 import { sendAmount } from 'actions/deepLinks';
 
+import { DESKTOP_VERSION } from 'config';
+
 import themes from 'themes/themes';
 
 import Theme from 'ui/global/Theme';
 import Alerts from 'ui/global/Alerts';
 import Updates from 'ui/global/Updates';
 import Idle from 'ui/global/Idle';
+import AlphaReset from 'ui/global/AlphaReset';
 import Feedback from 'ui/global/Feedback';
 
 import Loading from 'ui/components/Loading';
@@ -150,7 +153,7 @@ class App extends React.Component {
         const parsedData = parseAddress(data);
 
         if (parsedData) {
-            this.props.sendAmount(parsedData.ammount || 0, parsedData.address, parsedData.message || null);
+            this.props.sendAmount(parsedData.amount || 0, parsedData.address, parsedData.message || null);
             if (this.props.wallet.ready === true) {
                 this.props.history.push('/wallet/send');
             }
@@ -188,12 +191,26 @@ class App extends React.Component {
     };
 
     render() {
-        const { accounts, location, activationCode, themeName, updateTheme } = this.props;
+        const { accounts, location, activationCode, themeName, updateTheme, settings } = this.props;
 
         const currentKey = location.pathname.split('/')[1] || '/';
 
         if (!this.state.uuid) {
             return null;
+        }
+
+        // Hotfix: Temporary block wallet with a hard reset (for release 0.1.2)
+        if (DESKTOP_VERSION !== Electron.getActiveVersion()) {
+            if (themeName === 'Default') {
+                updateTheme(themes.Ionic, 'Ionic');
+            }
+            return (
+                <div className={css.trintiy}>
+                    <Theme />
+                    <Alerts />
+                    <AlphaReset />
+                </div>
+            );
         }
 
         if (!activationCode) {
@@ -216,7 +233,7 @@ class App extends React.Component {
                 <Theme />
                 <Alerts />
                 <Updates />
-                <Idle timeout={3 * 60 * 1000} />
+                <Idle timeout={settings.lockScreenTimeout} />
                 <TransitionGroup>
                     <CSSTransition key={currentKey} classNames="fade" timeout={300}>
                         <div>

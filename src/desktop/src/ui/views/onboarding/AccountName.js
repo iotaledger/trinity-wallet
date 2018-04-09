@@ -15,6 +15,8 @@ import Input from 'ui/components/input/Text';
  */
 class AccountName extends React.PureComponent {
     static propTypes = {
+        /** Current accounts info */
+        accountInfo: PropTypes.object,
         /** Current seed count */
         seedCount: PropTypes.number.isRequired,
         /** Set onboarding seed name */
@@ -63,10 +65,19 @@ class AccountName extends React.PureComponent {
 
     setName = (e) => {
         e.preventDefault();
-        const { setOnboardingName, history, generateAlert, t } = this.props;
-        const { name } = this.state;
+        const { setOnboardingName, accountInfo, history, generateAlert, t } = this.props;
+
+        const accountNames = Object.keys(accountInfo);
+
+        const name = this.state.name.replace(/^\s+|\s+$/g, '');
+
         if (!name.length) {
             generateAlert('error', t('addAdditionalSeed:noNickname'), t('addAdditionalSeed:noNicknameExplanation'));
+            return;
+        }
+
+        if (accountNames.indexOf(name) > -1) {
+            generateAlert('error', t('addAdditionalSeed:nameInUse'), t('addAdditionalSeed:nameInUseExplanation'));
             return;
         }
 
@@ -82,6 +93,7 @@ class AccountName extends React.PureComponent {
                 <section>
                     <Input
                         value={name}
+                        focus
                         label={t('addAdditionalSeed:accountName')}
                         onChange={(value) => this.setState({ name: value })}
                     />
@@ -108,6 +120,7 @@ class AccountName extends React.PureComponent {
 
 const mapStateToProps = (state) => ({
     seedCount: state.accounts.accountNames.length,
+    accountInfo: state.accounts.accountInfo,
     onboarding: state.ui.onboarding,
 });
 

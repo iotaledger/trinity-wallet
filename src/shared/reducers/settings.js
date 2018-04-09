@@ -55,6 +55,7 @@ const initialState = {
         notes: [],
     },
     remotePoW: true,
+    lockScreenTimeout: 3,
     versions: {},
     is2FAEnabled: false,
     isFingerprintEnabled: false,
@@ -66,6 +67,11 @@ const settingsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 remotePoW: !state.remotePoW,
+            };
+        case ActionTypes.SET_LOCK_SCREEN_TIMEOUT:
+            return {
+                ...state,
+                lockScreenTimeout: action.payload,
             };
         case ActionTypes.SET_LOCALE:
             return {

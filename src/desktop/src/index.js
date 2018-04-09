@@ -7,19 +7,22 @@ import { Provider as Redux } from 'react-redux';
 import { MemoryRouter as Router } from 'react-router';
 import i18next from 'libs/i18next';
 import store, { persistStore } from 'store';
+import persistElectronStorage from 'libs/storage';
 import { changeIotaNode } from 'libs/iota';
 import createPlugin from 'bugsnag-react';
+import { DESKTOP_VERSION } from 'config';
 
 import Index from 'ui/Index';
 
 export const bugsnagClient = bugsnag({
     apiKey: '53981ba998df346f6377ebbeb1da46d3',
-    appVersion: '0.1.1',
+    appVersion: DESKTOP_VERSION,
     interactionBreadcrumbsEnabled: false,
 });
 const ErrorBoundary = bugsnagClient.use(createPlugin(React));
 
 const persistConfig = {
+    storage: persistElectronStorage,
     blacklist: ['wallet', 'polling', 'ui', 'deepLinks'],
 };
 

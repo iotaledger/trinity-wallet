@@ -98,6 +98,7 @@
                 white-space: nowrap;
                 max-width: 200px;
                 overflow: hidden;
+
                 &:hover {
                     background: var(--bar-alt);
                 }
@@ -115,11 +116,30 @@
                 strong {
                     font-weight: 300;
                 }
+                small {
+                    display: block;
+                    margin-right: 12px;
+                    opacity: 0.72;
+                    text-transform: none;
+                }
             }
 
             ul {
                 margin: 0px;
                 padding: 0px;
+
+                a {
+                    line-height: 21px;
+                    padding: 14px 0 14px 30px;
+                }
+            }
+
+            > div {
+                transition: opacity 0.6s ease;
+                &.disabled {
+                    pointer-events: none;
+                    opacity: 0.4;
+                }
             }
         }
 
