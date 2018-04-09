@@ -46,7 +46,6 @@ const renderInitialScreen = (store) => {
                 statusBarColor: state.settings.theme.body.bg,
                 screenBackgroundColor: state.settings.theme.body.bg,
             },
-            overrideBackPress: true,
         },
         appStyle: {
             orientation: 'portrait',

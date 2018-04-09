@@ -6,6 +6,7 @@ import authenticator from 'authenticator';
 import PropTypes from 'prop-types';
 import KeepAwake from 'react-native-keep-awake';
 import { StyleSheet, View } from 'react-native';
+import { Navigation } from 'react-native-navigation';
 import { setFullNode } from 'iota-wallet-shared-modules/actions/settings';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
 import { setPassword, setSetting } from 'iota-wallet-shared-modules/actions/wallet';
@@ -93,8 +94,6 @@ class Login extends Component {
          * @param {string} translationString - locale string identifier to be translated
          */
         t: PropTypes.func.isRequired,
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -189,17 +188,22 @@ class Login extends Component {
 
     navigateToLoading() {
         const { theme: { body } } = this.props;
-        this.props.navigator.push({
-            screen: 'loading',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                screenBackgroundColor: body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: body.bg,
+        Navigation.startSingleScreenApp({
+            screen: {
+                screen: 'loading',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    screenBackgroundColor: body.bg,
+                    statusBarColor: body.bg,
+                    drawUnderStatusBar: true,
+                },
+                overrideBackPress: true,
             },
-            animated: false,
-            overrideBackPress: true,
+            appStyle: {
+                orientation: 'portrait',
+                keepStyleAcrossPush: true,
+            },
         });
     }
 

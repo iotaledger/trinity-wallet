@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, NativeModules } from 'react-native';
-import { Navigation } from 'react-native-navigation';
+import timer from 'react-native-timer';
 import whiteLoadingAnimation from 'iota-wallet-shared-modules/animations/loading-white.json';
 import blackLoadingAnimation from 'iota-wallet-shared-modules/animations/loading-black.json';
 import whiteWelcomeAnimationPartOne from 'iota-wallet-shared-modules/animations/welcome-part-one-white.json';
@@ -166,7 +166,9 @@ class Loading extends Component {
             this.setAnimationOneTimout();
         }
         this.getWalletData();
-        this.animateElipses(['.', '..', ''], 0);
+        if ((firstUse || addingAdditionalAccount) && !isAndroid) {
+            this.animateElipses(['.', '..', ''], 0);
+        }
         KeepAwake.activate();
         this.props.changeHomeScreenRoute('balance');
         this.props.setSetting('mainSettings');
@@ -219,30 +221,26 @@ class Loading extends Component {
         const isReady = !ready && newProps.ready;
 
         if (isReady) {
-            clearTimeout(this.timeout);
             KeepAwake.deactivate();
-            Navigation.startSingleScreenApp({
-                screen: {
-                    screen: 'home',
-                    navigatorStyle: {
-                        navBarHidden: true,
-                        navBarTransparent: true,
-                        screenBackgroundColor: body.bg,
-                        statusBarColor: body.bg,
-                        drawUnderStatusBar: true,
-                    },
+            this.props.navigator.push({
+                screen: 'home',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    screenBackgroundColor: body.bg,
+                    drawUnderStatusBar: true,
+                    statusBarColor: body.bg,
                 },
-                appStyle: {
-                    orientation: 'portrait',
-                    keepStyleAcrossPush: true,
-                },
+                animated: false,
             });
         }
     }
 
     componentWillUnmount() {
-        clearTimeout(this.timeout);
-        clearTimeout(this.animationTimeout);
+        if (this.timeout) {
+            clearTimeout(this.timeout);
+        }
+        timer.clearTimeout('animationTimeout');
     }
 
     getWalletData() {
@@ -254,7 +252,7 @@ class Loading extends Component {
     }
 
     setAnimationOneTimout() {
-        this.animationTimeout = setTimeout(() => this.playAnimationTwo(), 2000);
+        timer.setTimeout('animationTimeout', () => this.playAnimationTwo(), 2000);
     }
 
     playAnimationTwo() {
@@ -262,12 +260,12 @@ class Loading extends Component {
         this.animation.play();
     }
 
-    animateElipses = (chars, index, timer = 750) => {
+    animateElipses = (chars, index, time = 750) => {
         this.timeout = setTimeout(() => {
             this.setState({ elipsis: chars[index] });
             const next = index === chars.length - 1 ? 0 : index + 1;
             this.animateElipses(chars, next);
-        }, timer);
+        }, time);
     };
 
     render() {
