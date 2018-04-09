@@ -149,13 +149,19 @@ class Chart extends PureComponent {
                 </nav>
                 <ul>
                     <li>
-                        {t('chart:mcap')}: <strong>{priceData.globalSymbol} {priceData.mcap}</strong>
+                        {t('chart:mcap')}:{' '}
+                        <strong>
+                            {priceData.globalSymbol} {priceData.mcap}
+                        </strong>
                     </li>
                     <li>
                         {t('chart:change')}: <strong>{priceData.change24h}%</strong>
                     </li>
                     <li>
-                        {t('chart:volume')}: <strong>{priceData.globalSymbol} {priceData.volume}</strong>
+                        {t('chart:volume')}:{' '}
+                        <strong>
+                            {priceData.globalSymbol} {priceData.volume}
+                        </strong>
                     </li>
                 </ul>
             </div>
