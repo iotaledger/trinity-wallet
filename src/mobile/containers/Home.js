@@ -31,6 +31,11 @@ const styles = StyleSheet.create({
     bottomContainer: {
         flex: 0.68,
     },
+    inactivityLogoutContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
 });
 
 class Home extends Component {
@@ -47,7 +52,7 @@ class Home extends Component {
         changeHomeScreenRoute: PropTypes.func.isRequired,
         /** Generate a notification alert
          * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
+         * @param {String} title - notification titleinactivityLogoutContainer
          * @param {String} text - notification explanation
          */
         generateAlert: PropTypes.func.isRequired,
@@ -287,7 +292,7 @@ class Home extends Component {
                             </View>
                         )}
                     {inactive && (
-                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                        <View style={[styles.inactivityLogoutContainer, { backgroundColor: body.bg }]}>
                             <EnterPassword
                                 onLoginPress={this.onLoginPress}
                                 backgroundColor={body.bg}
