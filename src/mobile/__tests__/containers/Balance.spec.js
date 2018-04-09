@@ -1,6 +1,5 @@
 import assign from 'lodash/assign';
 import find from 'lodash/find';
-import map from 'lodash/map';
 import noop from 'lodash/noop';
 import React from 'react';
 import { FlatList } from 'react-native';
@@ -142,7 +141,7 @@ describe('Testing Balance component', () => {
                             transferValue: -100,
                             incoming: false,
                             inputs: [{ address: 'U'.repeat(81), value: -100 }],
-                            outputs: [{ address: 'A'.repeat(81), value: 100 }]
+                            outputs: [{ address: 'A'.repeat(81), value: 100 }],
                         },
                         bundleHashTwo: {
                             value: 80,
@@ -150,8 +149,8 @@ describe('Testing Balance component', () => {
                             transferValue: 80,
                             incoming: true,
                             inputs: [{ address: 'E'.repeat(81), value: -80 }],
-                            outputs: [{ address: 'B'.repeat(81), value: 80 }]
-                        }
+                            outputs: [{ address: 'B'.repeat(81), value: 80 }],
+                        },
                     };
                 });
 
@@ -195,9 +194,9 @@ describe('Testing Balance component', () => {
                                 transferValue: 0,
                                 incoming: true,
                                 inputs: [],
-                                outputs: [{ address: 'U'.repeat(81), value: 0 }]
+                                outputs: [{ address: 'U'.repeat(81), value: 0 }],
                             },
-                        })
+                        }),
                     });
 
                     const instance = shallow(<Balance {...props} />).instance();
@@ -224,9 +223,9 @@ describe('Testing Balance component', () => {
                                 transferValue: 80,
                                 incoming: false,
                                 inputs: [{ address: 'Y'.repeat(81), value: -10 }],
-                                outputs: [{ address: 'U'.repeat(81), value: 80 }]
+                                outputs: [{ address: 'U'.repeat(81), value: 80 }],
                             },
-                        })
+                        }),
                     });
 
                     const instance = shallow(<Balance {...props} />).instance();
