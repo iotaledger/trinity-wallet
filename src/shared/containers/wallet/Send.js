@@ -42,8 +42,8 @@ export default function withSendData(SendComponent) {
 
         validadeDeepLink(address) {
             if (address !== '') {
-                const { generateAlert } = this.props;
-                generateAlert('success', 'Autofill', 'Transaction data autofilled from link.');
+                const { generateAlert, t } = this.props;
+                generateAlert('success', t('autofill'), t('autofillExplanation'));
             }
         }
 
@@ -82,11 +82,7 @@ export default function withSendData(SendComponent) {
             }
 
             if (ui.isTransitioning) {
-                generateAlert(
-                    'error',
-                    t('Snapshot transition in progress'),
-                    t('Please wait until the transition is complete.'),
-                );
+                generateAlert('error', t('snapshotTransitionInProgress'), t('snapshotTransitionInProgressExplanation'));
                 return;
             }
 

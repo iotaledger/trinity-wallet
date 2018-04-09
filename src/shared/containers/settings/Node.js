@@ -70,7 +70,7 @@ export default function withNodeData(NodeComponent) {
                         addCustomPoWNode(nodeSelected);
                     }
 
-                    generateAlert('success', 'Node changed', 'The node has been changed successfully!');
+                    generateAlert('success', t('nodeChanged'), t('nodeChangedExpalantion'));
 
                     if (typeof backPress === 'function') {
                         backPress();

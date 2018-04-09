@@ -48,7 +48,9 @@ export default function withChartData(ChartComponent) {
 
         getPriceFormat = (x) => {
             const { marketData } = this.props;
-            return marketData.currency === 'USD' ? parseFloat(x).toFixed(2) : parseFloat(x).toFixed(6);
+            return marketData.currency === 'USD' || marketData.currency === 'EUR'
+                ? parseFloat(x).toFixed(2)
+                : parseFloat(x).toFixed(6);
         };
 
         getPriceForCurrency = (x) => {
