@@ -14,12 +14,15 @@ import { getUpdateData, updateTheme } from 'actions/settings';
 import { disposeOffAlert, generateAlert } from 'actions/alerts';
 import { sendAmount } from 'actions/deepLinks';
 
+import { DESKTOP_VERSION } from 'config';
+
 import themes from 'themes/themes';
 
 import Theme from 'ui/global/Theme';
 import Alerts from 'ui/global/Alerts';
 import Updates from 'ui/global/Updates';
 import Idle from 'ui/global/Idle';
+import AlphaReset from 'ui/global/AlphaReset';
 import Feedback from 'ui/global/Feedback';
 
 import Loading from 'ui/components/Loading';
@@ -206,6 +209,16 @@ class App extends React.Component {
                     <Theme />
                     <Alerts />
                     <Activation uuid={this.state.uuid} />
+                </div>
+            );
+        }
+
+        if (DESKTOP_VERSION !== Electron.getActiveVersion()) {
+            return (
+                <div className={css.trintiy}>
+                    <Theme />
+                    <Alerts />
+                    <AlphaReset />
                 </div>
             );
         }
