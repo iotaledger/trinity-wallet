@@ -199,6 +199,16 @@ class App extends React.Component {
             return null;
         }
 
+        if (DESKTOP_VERSION !== Electron.getActiveVersion()) {
+            return (
+                <div className={css.trintiy}>
+                    <Theme />
+                    <Alerts />
+                    <AlphaReset />
+                </div>
+            );
+        }
+
         if (!activationCode) {
             //Hotfix: Temporary default theme difference between mobile and desktop
             if (themeName === 'Default') {
@@ -209,16 +219,6 @@ class App extends React.Component {
                     <Theme />
                     <Alerts />
                     <Activation uuid={this.state.uuid} />
-                </div>
-            );
-        }
-
-        if (DESKTOP_VERSION !== Electron.getActiveVersion()) {
-            return (
-                <div className={css.trintiy}>
-                    <Theme />
-                    <Alerts />
-                    <AlphaReset />
                 </div>
             );
         }
