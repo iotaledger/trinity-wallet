@@ -1,3 +1,5 @@
+import find from 'lodash/find';
+import keys from 'lodash/keys';
 import { expect } from 'chai';
 import {
     prepareTransferArray,
@@ -7,6 +9,8 @@ import {
     markTransfersConfirmed,
     hasNewTransfers,
     getHashesDiff,
+    categorizeTransactions,
+    normalizeBundle,
 } from '../../../libs/iota/transfers';
 
 describe('libs: iota/transfers', () => {
@@ -111,7 +115,7 @@ describe('libs: iota/transfers', () => {
             });
         });
 
-        it('should map all those transactions to "confirmed" prop object that have corresponding states true', () => {
+        it('should map all those transactions to "confirmed" prop array that have corresponding states true', () => {
             const transactions = [{ bundle: 'foo' }, { bundle: 'baz' }];
 
             const states = [true, false];
@@ -119,14 +123,12 @@ describe('libs: iota/transfers', () => {
             expect(categorizeTransactionsByPersistence(transactions, states).confirmed).to.eql([{ bundle: 'foo' }]);
         });
 
-        it('should map all those transactions to "unconfirmed" prop object that have corresponding states false', () => {
-            const tailTransactions = [{ bundle: 'foo' }, { bundle: 'baz' }];
+        it('should map all those transactions to "unconfirmed" prop array that have corresponding states false', () => {
+            const transactions = [{ bundle: 'foo' }, { bundle: 'baz' }];
 
             const states = [true, false];
 
-            expect(categorizeTransactionsByPersistence(tailTransactions, states).unconfirmed).to.eql([
-                { bundle: 'baz' },
-            ]);
+            expect(categorizeTransactionsByPersistence(transactions, states).unconfirmed).to.eql([{ bundle: 'baz' }]);
         });
     });
 
@@ -287,6 +289,169 @@ describe('libs: iota/transfers', () => {
                     expect(getHashesDiff([], ['bar'], thirdArgument, fourthArgument)).to.eql(['bar', 'baz']);
                 });
             });
+        });
+    });
+
+    describe('#categorizeTransactions', () => {
+        it('should always return an object with props "incoming" and "outgoing"', () => {
+            const args = [[undefined], [null], [], [{}], [''], [0], ['foo']];
+
+            args.forEach((arg) => {
+                expect(categorizeTransactions(...arg)).to.have.keys(['incoming', 'outgoing']);
+            });
+        });
+
+        it('should categorize incoming transactions to "incoming" prop array', () => {
+            const transactions = [{ incoming: true }, { incoming: false }, { incoming: false }];
+
+            expect(categorizeTransactions(transactions).incoming).to.eql([{ incoming: true }]);
+        });
+
+        it('should categorize outgoing transactions to "outgoing" prop array', () => {
+            const transactions = [{ incoming: true }, { incoming: false }];
+
+            expect(categorizeTransactions(transactions).outgoing).to.eql([{ incoming: false }]);
+        });
+    });
+
+    describe('#normalizeBundle', () => {
+        let bundle;
+        let addresses;
+        let tailTransactions;
+        let timestamp;
+        let attachmentTimestamp;
+
+        beforeEach(() => {
+            timestamp = attachmentTimestamp = Date.now();
+
+            bundle = [
+                {
+                    currentIndex: 0,
+                    hash: 'NGX9LKVXKGMLJDKVMSNOCZYPSSCKYVQBCWPFZUAAKMIUVORXJAFRGRJSDWOMEFIOWFBUQVORWGID99999',
+                    bundle: '9DCUNBJYTSWOYRRLJC9LLPCIUCEXCIVZGPWEKOJHSDLWFZX9HOUNFNKAQZGHDYHFPBRLJFORLFHIRVVC9',
+                    address: 'AWHJTOTMFXZUAVJAWHXULZJFTQNHYAIQHIDKOSTEMR9ZBHWFWDLIQYPHDKTVXYDJYRHKMXYLDUULJMMWW',
+                    value: 1,
+                    signatureMessageFragment: '9'.repeat(2187),
+                    timestamp,
+                    attachmentTimestamp,
+                },
+                {
+                    currentIndex: 1,
+                    hash: 'GAYYEUVRGFRDNEPLP9BTYLBPQGZGUHOGUFHCCAOFTPDFYOBNCGGGGAZ9JTT9AHVWMBLTRDZTBCEX99999',
+                    bundle: '9DCUNBJYTSWOYRRLJC9LLPCIUCEXCIVZGPWEKOJHSDLWFZX9HOUNFNKAQZGHDYHFPBRLJFORLFHIRVVC9',
+                    address: 'JMJHGMMVBEOWEVMEUYFYWJGZK9ITVBZAIWXITUANTYYLAKSHYRCZBBN9ULEDLRYITFNQMAUPZP9WMLEHB',
+                    value: -2201,
+                    signatureMessageFragment: '9'.repeat(2187),
+                    timestamp,
+                    attachmentTimestamp,
+                },
+                {
+                    currentIndex: 2,
+                    hash: 'SHGVLJDUPADJ9ASLTVTWNJDOVLV9AQHCGBBAK9GLIZJRNKK9CBFNPNDWRWZZU9OHPHZZSDZWSESLZ9999',
+                    bundle: '9DCUNBJYTSWOYRRLJC9LLPCIUCEXCIVZGPWEKOJHSDLWFZX9HOUNFNKAQZGHDYHFPBRLJFORLFHIRVVC9',
+                    address: 'JMJHGMMVBEOWEVMEUYFYWJGZK9ITVBZAIWXITUANTYYLAKSHYRCZBBN9ULEDLRYITFNQMAUPZP9WMLEHB',
+                    value: 0,
+                    signatureMessageFragment: '9'.repeat(2187),
+                    timestamp,
+                    attachmentTimestamp,
+                },
+                {
+                    currentIndex: 2,
+                    hash: 'XFGRJCCUXXDL9UQTKRDRKPIIJKZIONDLPOHUINXJWZ99HPGTYAFEGQDNQMLFG9VIWPKTRURTSFJH99999',
+                    bundle: '9DCUNBJYTSWOYRRLJC9LLPCIUCEXCIVZGPWEKOJHSDLWFZX9HOUNFNKAQZGHDYHFPBRLJFORLFHIRVVC9',
+                    address: 'GEFNJWYGCACGXYEXAS999VIRYWLJSAQJNRTSTDNOKKR9SULNXGHPVHCHJQVMIKEVJNKMEQMYMFZUXZPGC',
+                    value: 2201,
+                    signatureMessageFragment: '9'.repeat(2187),
+                    timestamp,
+                    attachmentTimestamp,
+                },
+            ];
+
+            addresses = [
+                'JMJHGMMVBEOWEVMEUYFYWJGZK9ITVBZAIWXITUANTYYLAKSHYRCZBBN9ULEDLRYITFNQMAUPZP9WMLEHB',
+                'UTPQWLFOSBVOEXMMEDNDGCIKGOHFSRVZ9HDEFFNAOLXGDUKC9TEENGI9RAWMZSY9UTMKLHZPRUTFJDBOY',
+            ];
+
+            tailTransactions = [
+                {
+                    currentIndex: 0,
+                    hash: 'NGX9LKVXKGMLJDKVMSNOCZYPSSCKYVQBCWPFZUAAKMIUVORXJAFRGRJSDWOMEFIOWFBUQVORWGID99999',
+                    bundle: '9DCUNBJYTSWOYRRLJC9LLPCIUCEXCIVZGPWEKOJHSDLWFZX9HOUNFNKAQZGHDYHFPBRLJFORLFHIRVVC9',
+                    address: 'AWHJTOTMFXZUAVJAWHXULZJFTQNHYAIQHIDKOSTEMR9ZBHWFWDLIQYPHDKTVXYDJYRHKMXYLDUULJMMWW',
+                    value: 1,
+                    attachmentTimestamp,
+                },
+                {
+                    currentIndex: 0,
+                    hash: 'F9AN9GUWLXFGAIWNYEHRZKGUI9GLOTEIIXNNCGNPAIMZWM9BTSXQAIELQLZPADIMXYHDXWXJPOLSA9999',
+                    bundle: 'DAVBDNDIHERQQNZGRXHUBHECQFGGKPACOQCFKEFNLRZUGRRLFELDBVBQB9YOODGOXLKQXKBFSKXJIQXLA',
+                    address: 'UTPQWLFOSBVOEXMMEDNDGCIKGOHFSRVZ9HDEFFNAOLXGDUKC9TEENGI9RAWMZSY9UTMKLHZPRUTFJDBOY',
+                    value: 23300,
+                    attachmentTimestamp,
+                },
+            ];
+        });
+
+        // Note: Test internally used functions separately
+        it('should return an object with "hash" prop', () => {
+            expect(normalizeBundle(bundle, addresses, tailTransactions, false)).to.include.keys('hash');
+        });
+
+        it('should return an object with "bundle" prop', () => {
+            expect(normalizeBundle(bundle, addresses, tailTransactions, false)).to.include.keys('bundle');
+        });
+
+        it('should return an object with "timestamp" prop', () => {
+            expect(normalizeBundle(bundle, addresses, tailTransactions, false)).to.include.keys('timestamp');
+        });
+
+        it('should return an object with "attachmentTimestamp" prop', () => {
+            expect(normalizeBundle(bundle, addresses, tailTransactions, false)).to.include.keys('attachmentTimestamp');
+        });
+
+        it('should return an object with "inputs" prop', () => {
+            expect(normalizeBundle(bundle, addresses, tailTransactions, false)).to.include.keys('inputs');
+        });
+
+        it('should return an object with "outputs" prop', () => {
+            expect(normalizeBundle(bundle, addresses, tailTransactions, false)).to.include.keys('inputs');
+        });
+
+        it('should return an object with "persistence" prop equalling fourth argument', () => {
+            expect(normalizeBundle(bundle, addresses, tailTransactions, false).persistence).to.equal(false);
+        });
+
+        it('should return an object with "incoming" prop', () => {
+            expect(normalizeBundle(bundle, addresses, tailTransactions, false)).to.include.keys('incoming');
+        });
+
+        it('should return an object with "transferValue" prop', () => {
+            expect(normalizeBundle(bundle, addresses, tailTransactions, false)).to.include.keys('transferValue');
+        });
+
+        it('should return an object with "message" prop', () => {
+            expect(normalizeBundle(bundle, addresses, tailTransactions, false)).to.include.keys('transferValue');
+        });
+
+        it('should return an object with "tailTransactions" prop', () => {
+            expect(normalizeBundle(bundle, addresses, tailTransactions, false)).to.include.keys('tailTransactions');
+        });
+
+        it('should only keep tail transactions of the same bundle', () => {
+            const normalizedBundle = normalizeBundle(bundle, addresses, tailTransactions, false);
+
+            const tailTransactionFromBundle = find(bundle, { currentIndex: 0 });
+            normalizedBundle.tailTransactions.forEach((tailTransaction) =>
+                expect(tailTransaction.hash).to.equal(tailTransactionFromBundle.hash),
+            );
+        });
+
+        it('should only have "hash" and "attachmentTimestamp" props in each object of "tailTransactions" prop', () => {
+            const normalizedBundle = normalizeBundle(bundle, addresses, tailTransactions, false);
+
+            normalizedBundle.tailTransactions.forEach((tailTransaction) =>
+                expect(keys(tailTransaction)).to.eql(['hash', 'attachmentTimestamp']),
+            );
         });
     });
 });
