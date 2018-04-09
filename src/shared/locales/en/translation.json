@@ -507,7 +507,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Error retreiving update data",
-        "errorRetrievingUpdateDataExplanation": "There was an error retreiving upodate data. Please try again.",
+        "errorRetrievingUpdateDataExplanation": "There was an error retreiving update data. Please try again.",
         "noUpdatesAvailable": "No updates available",
         "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
         "newVersionAvailable": "New version available",
