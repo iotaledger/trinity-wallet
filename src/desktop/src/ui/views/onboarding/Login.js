@@ -145,6 +145,7 @@ class Login extends React.Component {
 
             this.setState({
                 password: '',
+                verifyTwoFA: false,
             });
 
             this.setupAccount(seed);
