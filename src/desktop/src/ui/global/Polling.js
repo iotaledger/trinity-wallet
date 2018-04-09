@@ -18,7 +18,6 @@ import {
 /** Background wallet polling component */
 class Polling extends React.PureComponent {
     static propTypes = {
-        wallet: PropTypes.object.isRequired,
         pollFor: PropTypes.string.isRequired,
         getAccountInfo: PropTypes.func.isRequired,
         allPollingServices: PropTypes.array.isRequired,
@@ -118,7 +117,6 @@ const mapStateToProps = (state) => ({
     isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
     isSendingTransfer: state.ui.isSendingTransfer,
     isFetchingLatestAccountInfoOnLogin: state.ui.isFetchingLatestAccountInfoOnLogin,
-    wallet: state.wallet,
     selectedAccountName: getSelectedAccountName(state),
     unconfirmedBundleTails: state.accounts.unconfirmedBundleTails,
     isTransitioning: state.ui.isTransitioning,
