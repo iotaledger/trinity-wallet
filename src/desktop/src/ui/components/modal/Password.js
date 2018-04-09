@@ -97,6 +97,7 @@ class ModalPassword extends PureComponent {
                 <form onSubmit={(e) => this.onSubmit(e)}>
                     <Password
                         value={password}
+                        focus={isOpen}
                         label={t('password')}
                         onChange={(value) => this.setState({ password: value })}
                     />
