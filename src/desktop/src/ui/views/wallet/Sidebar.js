@@ -12,6 +12,8 @@ import Logo from 'ui/components/Logo';
 import Icon from 'ui/components/Icon';
 import Confirm from 'ui/components/modal/Confirm';
 
+import css from './index.css';
+
 /**
  * Wallet's sidebar component
  */
@@ -36,6 +38,12 @@ class Sidebar extends React.PureComponent {
          * @ignore
          */
         seedIndex: PropTypes.number,
+        /** Is wallet currently generating receive address */
+        isGeneratingReceiveAddress: PropTypes.bool.isRequired,
+        /** Is wallet currently sending a transfer */
+        isSendingTransfer: PropTypes.bool.isRequired,
+        /** Is wallet currently synchronising */
+        isSyncing: PropTypes.bool.isRequired,
         /** Clear wallet state data
          * @ignore
          */
@@ -69,6 +77,9 @@ class Sidebar extends React.PureComponent {
         const { accounts, seedIndex, setSeedIndex, t, location, history } = this.props;
         const { modalLogout } = this.state;
 
+        const isWalletBusy =
+            this.props.isGeneratingReceiveAddress || this.props.isSendingTransfer || this.props.isSyncing;
+
         return (
             <aside>
                 <div>
@@ -76,7 +87,7 @@ class Sidebar extends React.PureComponent {
                 </div>
 
                 <nav>
-                    <div>
+                    <div className={isWalletBusy ? css.disabled : null}>
                         <a aria-current={location.pathname === '/wallet/'}>
                             <Icon icon="wallet" size={20} />
                         </a>
@@ -133,6 +144,9 @@ class Sidebar extends React.PureComponent {
 const mapStateToProps = (state) => ({
     accounts: state.accounts,
     seedIndex: state.wallet.seedIndex,
+    isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
+    isSendingTransfer: state.ui.isSendingTransfer,
+    isSyncing: state.ui.isSyncing,
 });
 
 const mapDispatchToProps = {

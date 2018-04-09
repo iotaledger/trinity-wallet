@@ -43,6 +43,14 @@ const Electron = {
         });
     },
 
+    getActiveVersion() {
+        return settings.get('trinity-version');
+    },
+
+    setActiveVersion(value) {
+        return settings.set('trinity-version', value);
+    },
+
     getStorage(key) {
         return settings.get(`persist-${key}`);
     },
@@ -53,6 +61,11 @@ const Electron = {
 
     removeStorage(key) {
         return settings.delete(`persist-${key}`);
+    },
+
+    clearStorage() {
+        const keys = this.getAllStorage();
+        keys.forEach((key) => this.removeStorage(key));
     },
 
     getAllStorage() {
