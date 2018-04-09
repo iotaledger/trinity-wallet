@@ -172,7 +172,7 @@ export const selectAccountInfo = createSelector(
  *   @param {object} state
  *   @returns {array}
  **/
-export const getTransfersForSelectedAccount = createSelector(selectAccountInfo, (account) => account.transfers || []);
+export const getTransfersForSelectedAccount = createSelector(selectAccountInfo, (account) => account.transfers || {});
 
 /**
  *   Selects addresses from accountInfo object.
