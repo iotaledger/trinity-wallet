@@ -196,8 +196,8 @@ export const parseAddress = (input) => {
         if (parsed.message && typeof parsed.message === 'string') {
             result.message = parsed.message;
         }
-        if (parsed.amount && parsed.amount == parseInt(parsed.amount, 10)) {
-            result.amount = parseInt(parsed.amount, 10);
+        if (parsed.amount && String(parsed.amount) === String(parseInt(parsed.amount, 10))) {
+            result.amount = Math.abs(parseInt(parsed.amount, 10));
         }
     } catch (error) {
         return null;
