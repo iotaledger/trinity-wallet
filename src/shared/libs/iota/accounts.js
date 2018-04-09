@@ -22,7 +22,7 @@ import {
     getLatestTransactionHashes,
     normalizedBundlesFromTransactionObjects,
     normalizeBundle,
-    mergeNewTransfers
+    mergeNewTransfers,
 } from './transfers';
 import { getAllAddresses, formatAddressesAndBalance, markAddressesAsSpentSync } from './addresses';
 
@@ -56,11 +56,7 @@ const organizeAccountState = (accountName, data) => {
             organizedState.addresses = addresses;
             organizedState.balance = balance;
 
-            return prepareForAutoPromotion(
-                normalizedTransactionsList,
-                organizedState.addresses,
-                accountName,
-            );
+            return prepareForAutoPromotion(normalizedTransactionsList, organizedState.addresses, accountName);
         })
         .then((unconfirmedBundleTails) => {
             organizedState.unconfirmedBundleTails = unconfirmedBundleTails;
@@ -71,7 +67,6 @@ const organizeAccountState = (accountName, data) => {
             organizedState.txHashesForUnspentAddresses = txHashesForUnspentAddresses;
             organizedState.pendingTxHashesForSpentAddresses = pendingTxHashesForSpentAddresses;
 
-            console.log('Organized state', organizedState);
             return organizedState;
         });
 };
@@ -179,9 +174,9 @@ export const syncAccount = (existingAccountState) => {
             return size(diff)
                 ? syncTransfers(diff, thisStateCopy)
                 : Promise.resolve({
-                    transfers: thisStateCopy.transfers,
-                    newNormalizedTransfers: {},
-                });
+                      transfers: thisStateCopy.transfers,
+                      newNormalizedTransfers: {},
+                  });
         })
         .then(({ transfers, newNormalizedTransfers }) => {
             thisStateCopy.transfers = transfers;
@@ -252,12 +247,7 @@ export const syncAccount = (existingAccountState) => {
  **/
 export const syncAccountAfterSpending = (name, newTransfer, accountState, isValueTransfer) => {
     const tailTransaction = find(newTransfer, { currentIndex: 0 });
-    const normalizedTransfer = normalizeBundle(
-        [newTransfer],
-        keys(accountState.addresses),
-        [tailTransaction],
-        false
-    );
+    const normalizedTransfer = normalizeBundle([newTransfer], keys(accountState.addresses), [tailTransaction], false);
 
     // Assign normalized transfer to existing transfers
     const transfers = mergeNewTransfers(normalizedTransfer, accountState.transfers);
@@ -277,8 +267,8 @@ export const syncAccountAfterSpending = (name, newTransfer, accountState, isValu
             [bundle]: {
                 hash: tailTransaction.hash,
                 attachmentTimestamp: tailTransaction.attachmentTimestamp,
-                account: name // Assign account name to each tx
-            }
+                account: name, // Assign account name to each tx
+            },
         });
     }
 
@@ -324,7 +314,7 @@ export const syncAccountAfterReattachment = (accountName, reattachment, accountS
         [reattachment],
         keys(accountState.addresses),
         [tailTransaction],
-        false
+        false,
     );
 
     // Merge into existing transfers
@@ -339,23 +329,27 @@ export const syncAccountAfterReattachment = (accountName, reattachment, accountS
         [bundle]:
             bundle in accountState.unconfirmedBundleTails
                 ? unionBy(
-                    [{
-                        hash: tailTransaction.hash,
-                        attachmentTimestamp: tailTransaction.attachmentTimestamp,
-                        account: accountName
-                    }],
-                    accountState.unconfirmedBundleTails[bundle],
-                    'hash'
-                )
-                : [{
-                    hash: tailTransaction.hash,
-                    attachmentTimestamp: tailTransaction.attachmentTimestamp,
-                    account: accountName
-                }],
+                      [
+                          {
+                              hash: tailTransaction.hash,
+                              attachmentTimestamp: tailTransaction.attachmentTimestamp,
+                              account: accountName,
+                          },
+                      ],
+                      accountState.unconfirmedBundleTails[bundle],
+                      'hash',
+                  )
+                : [
+                      {
+                          hash: tailTransaction.hash,
+                          attachmentTimestamp: tailTransaction.attachmentTimestamp,
+                          account: accountName,
+                      },
+                  ],
     });
 
     const addresses = accountState.addresses;
-    
+
     return getLatestTransactionHashes(map(transfers, (tx) => tx), addresses).then(
         ({ txHashesForUnspentAddresses, pendingTxHashesForSpentAddresses }) => {
             const newState = {
@@ -370,7 +364,7 @@ export const syncAccountAfterReattachment = (accountName, reattachment, accountS
             return {
                 newState,
                 reattachment,
-                normalizedReattachment
+                normalizedReattachment,
             };
         },
     );
