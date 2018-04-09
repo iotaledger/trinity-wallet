@@ -7,7 +7,6 @@ import {
     getPendingTxTailsHashes,
     markTransfersConfirmed,
     hasNewTransfers,
-    findBundlesFromTransfers,
     getHashesDiff,
 } from '../../../libs/iota/transfers';
 
@@ -113,24 +112,22 @@ describe('libs: iota/transfers', () => {
             });
         });
 
-        it('should map all tail transactions to "confirmed" prop object that have corresponding states true', () => {
-            const tailTransactions = [{ bundle: 'foo' }, { bundle: 'baz' }];
+        it('should map all those transactions to "confirmed" prop object that have corresponding states true', () => {
+            const transactions = [{ bundle: 'foo' }, { bundle: 'baz' }];
 
             const states = [true, false];
 
-            expect(categorizeTransactionsByPersistence(tailTransactions, states).confirmed).to.eql({
-                foo: { bundle: 'foo' },
-            });
+            expect(categorizeTransactionsByPersistence(transactions, states).confirmed).to.eql([
+                { bundle: 'foo' },
+            ]);
         });
 
-        it('should map all tail transactions to "unconfirmed" prop object that have corresponding states false', () => {
+        it('should map all those transactions to "unconfirmed" prop object that have corresponding states false', () => {
             const tailTransactions = [{ bundle: 'foo' }, { bundle: 'baz' }];
 
             const states = [true, false];
 
-            expect(categorizeTransactionsByPersistence(tailTransactions, states).unconfirmed).to.eql({
-                baz: { bundle: 'baz' },
-            });
+            expect(categorizeTransactionsByPersistence(tailTransactions, states).unconfirmed).to.eql([{ bundle: 'baz' }]);
         });
     });
 
@@ -143,20 +140,20 @@ describe('libs: iota/transfers', () => {
             });
         });
 
-        describe('when argument passed is an array', () => {
-            it('should return an empty array if no element is found with persistence false and currentIndex 0', () => {
-                const args = [[{}, {}], [{}], [{}]];
+        describe('when argument passed is an object', () => {
+            it('should return an empty array if no values have persistence false', () => {
+                const args = { bundleOne: {}, bundleTwo: {} };
 
                 expect(getPendingTxTailsHashes(args)).to.eql([]);
             });
 
-            it('should return an array with hashes for elements with persistence false and currentIndex 0', () => {
-                const args = [
-                    [{ currentIndex: 0, persistence: true, hash: 'foo' }],
-                    [{ currentIndex: 0, persistence: false, hash: 'baz' }],
-                ];
+            it('should return an array with hashes for elements with persistence false', () => {
+                const args = {
+                    bundleOne: { tailTransactions: [{ hash: '999' }, { hash: 'UUU' }], value: 100, persistence: false },
+                    bundleTwo: { tailTransactions: [{ hash: 'XXX' }, { hash: 'YYY' }], value: 100, persistence: true }
+                };
 
-                expect(getPendingTxTailsHashes(args)).to.eql(['baz']);
+                expect(getPendingTxTailsHashes(args)).to.eql(['999', 'UUU']);
             });
         });
     });
@@ -164,41 +161,27 @@ describe('libs: iota/transfers', () => {
     describe('#markTransfersConfirmed', () => {
         describe('when second argument passed is empty, null or undefined', () => {
             it('should return first argument', () => {
-                expect(markTransfersConfirmed([[{}]], null)).to.eql([[{}]]);
-                expect(markTransfersConfirmed([[{}]], undefined)).to.eql([[{}]]);
-                expect(markTransfersConfirmed([[{}]], [])).to.eql([[{}]]);
+                expect(markTransfersConfirmed([{}], null)).to.eql([{}]);
+                expect(markTransfersConfirmed([{}], undefined)).to.eql([{}]);
+                expect(markTransfersConfirmed([{}], [])).to.eql([{}]);
             });
         });
 
-        describe('when second argument passed is an array of strings', () => {
-            describe('when includes hash', () => {
-                it('should assign persistence true to all tx objects', () => {
-                    const transfers = [
-                        [
-                            { currentIndex: 1, hash: 'foo', persistence: false },
-                            { currentIndex: 2, hash: 'baz', persistence: false },
-                        ],
-                        [
-                            { currentIndex: 0, hash: 'waldo', persistence: false },
-                            { currentIndex: 1, hash: 'bar', persistence: false },
-                        ],
-                    ];
+        describe('when second argument passed is not an empty array', () => {
+            it('should assign persistence true to those objects that have any tail transaction hash in second argument array', () => {
+                const transfers = [
+                    { persistence: false, tailTransactions: [{ hash: 'UUU' }] },
+                    { persistence: false, tailTransactions: [{ hash: 'XXX' }] }
+                ];
 
-                    const tailsHashes = ['foo', 'waldo'];
+                const confirmedTransactionsHashes = ['XXX'];
 
-                    const result = [
-                        [
-                            { currentIndex: 1, hash: 'foo', persistence: false },
-                            { currentIndex: 2, hash: 'baz', persistence: false },
-                        ],
-                        [
-                            { currentIndex: 0, hash: 'waldo', persistence: true },
-                            { currentIndex: 1, hash: 'bar', persistence: true },
-                        ],
-                    ];
+                const result = [
+                    { persistence: false, tailTransactions: [{ hash: 'UUU' }] },
+                    { persistence: true, tailTransactions: [{ hash: 'XXX' }] }
+                ];
 
-                    expect(markTransfersConfirmed(transfers, tailsHashes)).to.eql(result);
-                });
+                expect(markTransfersConfirmed(transfers, confirmedTransactionsHashes)).to.eql(result);
             });
         });
     });
@@ -215,29 +198,6 @@ describe('libs: iota/transfers', () => {
             expect(hasNewTransfers(null, [])).to.equal(false);
             expect(hasNewTransfers(null, undefined)).to.equal(false);
             expect(hasNewTransfers(0, 10)).to.equal(false);
-        });
-    });
-
-    describe('#findBundlesFromTransfers', () => {
-        it('should always return an array', () => {
-            expect(isArray(findBundlesFromTransfers())).to.equal(true);
-            expect(isArray(findBundlesFromTransfers(null, undefined))).to.equal(true);
-            expect(isArray(findBundlesFromTransfers({}, {}))).to.equal(true);
-            expect(isArray(findBundlesFromTransfers('', []))).to.equal(true);
-            expect(isArray(findBundlesFromTransfers(1, 2))).to.equal(true);
-        });
-
-        it('should return bundles that have first element with "bundle" prop equals first argument', () => {
-            const transfers = [
-                [{ bundle: 'foo', currentIndex: 0 }, { bundle: 'foo', currentIndex: 1 }],
-                [{ bundle: 'baz', currentIndex: 0 }, { bundle: 'baz', currentIndex: 1 }],
-                [{ bundle: 'quz', currentIndex: 0 }, { bundle: 'quz', currentIndex: 1 }],
-                [{ bundle: 'bar', currentIndex: 0 }, { bundle: 'bar', currentIndex: 1 }],
-            ];
-
-            const expected = [[{ bundle: 'foo', currentIndex: 0 }, { bundle: 'foo', currentIndex: 1 }]];
-
-            expect(findBundlesFromTransfers('foo', transfers)).to.eql(expected);
         });
     });
 

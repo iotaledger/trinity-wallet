@@ -14,7 +14,7 @@ import { getNodeInfoAsync, findTransactionObjectsAsync, getLatestInclusionAsync 
 import {
     prepareForAutoPromotion,
     syncTransfers,
-    getTailTransactionsHashesForPendingTransfers,
+    getPendingTxTailsHashes,
     getConfirmedTransactionHashes,
     markTransfersConfirmed,
     getBundleHashesForNewlyConfirmedTransactions,
@@ -201,9 +201,9 @@ export const syncAccount = (existingAccountState) => {
             );
 
             // Grab all tail transactions hashes for pending transactions
-            const tailTransactionsHashesForPendingTransfers = getTailTransactionsHashesForPendingTransfers(thisStateCopy.transfers);
+            const pendingTxTailsHashes = getPendingTxTailsHashes(thisStateCopy.transfers);
 
-            return getConfirmedTransactionHashes(tailTransactionsHashesForPendingTransfers);
+            return getConfirmedTransactionHashes(pendingTxTailsHashes);
         })
         .then((confirmedTransactionsHashes) => {
             if (!isEmpty(confirmedTransactionsHashes)) {
