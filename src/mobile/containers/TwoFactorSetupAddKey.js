@@ -115,6 +115,7 @@ export class TwoFactorSetupAddKey extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
+                    topBarElevationShadowEnabled: false,
                     screenBackgroundColor: body.bg,
                     drawUnderStatusBar: true,
                     statusBarColor: body.bg,
@@ -138,6 +139,7 @@ export class TwoFactorSetupAddKey extends Component {
                     navigatorStyle: {
                         navBarHidden: true,
                         navBarTransparent: true,
+                        topBarElevationShadowEnabled: false,
                         screenBackgroundColor: body.bg,
                         drawUnderStatusBar: true,
                         statusBarColor: body.bg,
