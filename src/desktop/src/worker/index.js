@@ -1,14 +1,19 @@
+import { setSeed } from 'libs/crypto';
 import Worker from './main.worker.js';
 import store from '../../../shared/store';
 
 const worker = new Worker();
 export default worker;
 
-worker.onmessage = ({ data }) => {
-    const { type, action } = data;
-
-    if (type === 'dispatch') {
-        store.dispatch(action);
+worker.onmessage = async ({ data }) => {
+    const { type, action, payload } = data;
+    switch (type) {
+        case 'dispatch':
+            store.dispatch(action);
+            break;
+        case 'saveSeed':
+            setSeed(payload.password, payload.seed);
+            break;
     }
 };
 

@@ -43,6 +43,19 @@ self.onmessage = ({ data }) => {
             state = payload;
             break;
         default:
+            if (type === 'getFullAccountInfoAdditionalSeed') {
+                payload.push(async (password, seed, accountName) => {
+                    self.postMessage({
+                        type: 'saveSeed',
+                        payload: {
+                            password,
+                            seed,
+                            accountName,
+                        },
+                    });
+                });
+            }
+
             if (typeof actions[type] === 'function') {
                 actions[type](...payload)(dispatch, getState);
             }
