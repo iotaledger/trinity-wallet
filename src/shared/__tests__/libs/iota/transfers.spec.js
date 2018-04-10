@@ -12,6 +12,7 @@ import {
     categorizeTransactions,
     normalizeBundle,
     mergeNewTransfers,
+    categorizeBundleByInputsOutputs,
 } from '../../../libs/iota/transfers';
 
 describe('libs: iota/transfers', () => {
@@ -357,7 +358,7 @@ describe('libs: iota/transfers', () => {
                     attachmentTimestamp,
                 },
                 {
-                    currentIndex: 2,
+                    currentIndex: 3,
                     hash: 'XFGRJCCUXXDL9UQTKRDRKPIIJKZIONDLPOHUINXJWZ99HPGTYAFEGQDNQMLFG9VIWPKTRURTSFJH99999',
                     bundle: '9DCUNBJYTSWOYRRLJC9LLPCIUCEXCIVZGPWEKOJHSDLWFZX9HOUNFNKAQZGHDYHFPBRLJFORLFHIRVVC9',
                     address: 'GEFNJWYGCACGXYEXAS999VIRYWLJSAQJNRTSTDNOKKR9SULNXGHPVHCHJQVMIKEVJNKMEQMYMFZUXZPGC',
@@ -681,6 +682,65 @@ describe('libs: iota/transfers', () => {
 
                 expect(mergeNewTransfers(newNormalizedTransfers, existingNormalizedTransfers)).to.eql(mergedTransfers);
             });
+        });
+    });
+
+    describe('#categorizeBundleByInputsOutputs', () => {
+        let bundle;
+
+        beforeEach(() => {
+            bundle = [
+                {
+                    currentIndex: 0,
+                    value: 1,
+                    address: 'AWHJTOTMFXZUAVJAWHXULZJFTQNHYAIQHIDKOSTEMR9ZBHWFWDLIQYPHDKTVXYDJYRHKMXYLDUULJMMWW',
+                },
+                {
+                    currentIndex: 1,
+                    value: -2201,
+                    address: 'JMJHGMMVBEOWEVMEUYFYWJGZK9ITVBZAIWXITUANTYYLAKSHYRCZBBN9ULEDLRYITFNQMAUPZP9WMLEHB',
+                },
+                {
+                    currentIndex: 2,
+                    value: 0,
+                    address: 'JMJHGMMVBEOWEVMEUYFYWJGZK9ITVBZAIWXITUANTYYLAKSHYRCZBBN9ULEDLRYITFNQMAUPZP9WMLEHB',
+                },
+                {
+                    currentIndex: 3,
+                    value: 2201,
+                    address: 'GEFNJWYGCACGXYEXAS999VIRYWLJSAQJNRTSTDNOKKR9SULNXGHPVHCHJQVMIKEVJNKMEQMYMFZUXZPGC',
+                },
+            ];
+        });
+
+        it('should categorize non-remainder transaction objects with negative value to "inputs"', () => {
+            expect(categorizeBundleByInputsOutputs(bundle).inputs).to.eql([
+                {
+                    value: -2201,
+                    address: 'JMJHGMMVBEOWEVMEUYFYWJGZK9ITVBZAIWXITUANTYYLAKSHYRCZBBN9ULEDLRYITFNQMAUPZP9WMLEHB',
+                    checksum: 'MCDWJFKKC',
+                },
+            ]);
+        });
+
+        it('should categorize transaction objects with non-negative values to "outputs"', () => {
+            expect(categorizeBundleByInputsOutputs(bundle).outputs).to.eql([
+                {
+                    value: 1,
+                    address: 'AWHJTOTMFXZUAVJAWHXULZJFTQNHYAIQHIDKOSTEMR9ZBHWFWDLIQYPHDKTVXYDJYRHKMXYLDUULJMMWW',
+                    checksum: 'BQGLCYXGY',
+                },
+                {
+                    value: 0,
+                    address: 'JMJHGMMVBEOWEVMEUYFYWJGZK9ITVBZAIWXITUANTYYLAKSHYRCZBBN9ULEDLRYITFNQMAUPZP9WMLEHB',
+                    checksum: 'MCDWJFKKC',
+                },
+                {
+                    value: 2201,
+                    address: 'GEFNJWYGCACGXYEXAS999VIRYWLJSAQJNRTSTDNOKKR9SULNXGHPVHCHJQVMIKEVJNKMEQMYMFZUXZPGC',
+                    checksum: 'RYN9LQCEC',
+                },
+            ]);
         });
     });
 });
