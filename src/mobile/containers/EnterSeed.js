@@ -118,6 +118,7 @@ class EnterSeed extends React.Component {
                     navBarHidden: true,
                     navBarTransparent: true,
                     drawUnderStatusBar: true,
+                    topBarElevationShadowEnabled: false,
                     statusBarColor: theme.body.bg,
                     screenBackgroundColor: theme.body.bg,
                 },
