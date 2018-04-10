@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, NativeModules } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import timer from 'react-native-timer';
 import whiteLoadingAnimation from 'iota-wallet-shared-modules/animations/loading-white.json';
 import blackLoadingAnimation from 'iota-wallet-shared-modules/animations/loading-black.json';
@@ -26,7 +26,8 @@ import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
 import { getSeedFromKeychain, storeSeedInKeychain } from '../utils/keychain';
 import DynamicStatusBar from '../components/DynamicStatusBar';
-import { isAndroid, isIOS } from '../utils/device';
+import { getAddressGenFn, getMultiAddressGenFn } from '../utils/nativeModules';
+import { isAndroid } from '../utils/device';
 
 import { width, height } from '../utils/dimensions';
 
@@ -176,17 +177,9 @@ class Loading extends Component {
         let genFn = null;
 
         if (firstUse || addingAdditionalAccount) {
-            if (isAndroid) {
-                genFn = NativeModules.EntangledAndroid.generateAddresses;
-            } else if (isIOS) {
-                genFn = NativeModules.EntangledIOS.generateAddresses;
-            }
+            genFn = getMultiAddressGenFn();
         } else {
-            if (isAndroid) {
-                genFn = NativeModules.EntangledAndroid.generateAddress;
-            } else if (isIOS) {
-                genFn = NativeModules.EntangledIOS.generateAddress;
-            }
+            genFn = getAddressGenFn();
         }
 
         if (!firstUse && addingAdditionalAccount) {
