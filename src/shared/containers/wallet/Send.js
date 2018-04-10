@@ -73,6 +73,25 @@ export default function withSendData(SendComponent) {
             return true;
         };
 
+        validateMessage = (message) => {
+            const { generateAlert, t } = this.props;
+            // Validate whether message only contains ASCII letters
+            // as anything else is lost up on conversion to trytes
+            for (let i = 0; i < message.length; i++){
+                if (message.charCodeAt(i) > 255) {
+                    generateAlert('error', t('send:invalidMessageCharacter'), t('send:invalidMessageCharacterExplanation'));
+                    return false;
+                }
+            }
+            // Validate length of the message
+            const trytes = iota.utils.toTrytes(message) || '';
+            if (trytes.length > 2187) {
+                generateAlert('error', t('send:invalidMessageTooLong'), t('send:invalidMessageTooLongExplanation'));
+                return false;
+            }
+            return true;
+        };
+
         sendTransfer = (seed, address, value, message, taskRunner, powFn) => {
             const { ui, accountName, generateAlert, t } = this.props;
 
@@ -102,6 +121,7 @@ export default function withSendData(SendComponent) {
                 seedIndex: wallet.seedIndex,
                 validateInputs: this.validateInputs,
                 sendTransfer: this.sendTransfer,
+                validateMessage: this.validateMessage,
                 settings: {
                     currency: settings.currency,
                     conversionRate: settings.conversionRate,
