@@ -226,7 +226,7 @@ export const transformTransactionsByBundleHash = (transactions) => {
  *
  *   @returns {object}
  **/
-const categorizeBundleByInputsOutputs = (bundle) => {
+export const categorizeBundleByInputsOutputs = (bundle) => {
     return transform(
         bundle,
         (acc, tx) => {
