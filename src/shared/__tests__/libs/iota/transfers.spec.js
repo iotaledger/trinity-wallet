@@ -11,6 +11,7 @@ import {
     getHashesDiff,
     categorizeTransactions,
     normalizeBundle,
+    mergeNewTransfers,
 } from '../../../libs/iota/transfers';
 
 describe('libs: iota/transfers', () => {
@@ -452,6 +453,234 @@ describe('libs: iota/transfers', () => {
             normalizedBundle.tailTransactions.forEach((tailTransaction) =>
                 expect(keys(tailTransaction)).to.eql(['hash', 'attachmentTimestamp']),
             );
+        });
+    });
+
+    describe('#mergeNewTransfers', () => {
+        describe('when bundle hash of new normalized transfer exists in existing normalized transfers', () => {
+            it('should add tail transactions of new tranfers to tail transactions in existing transfer', () => {
+                const existingNormalizedTransfers = {
+                    bundleHashOne: {
+                        tailTransactions: [
+                            {
+                                hash: 'YYY',
+                            },
+                            {
+                                hash: 'ZZZ',
+                            },
+                        ],
+                        bundle: 'bundleHashOne',
+                    },
+                    bundleHashTwo: {
+                        tailTransactions: [
+                            {
+                                hash: 'AAA',
+                            },
+                            {
+                                hash: 'FFF',
+                            },
+                        ],
+                        bundle: 'bundleHashTwo',
+                    },
+                };
+
+                const newNormalizedTransfers = {
+                    bundleHashTwo: {
+                        tailTransactions: [
+                            {
+                                hash: 'CCC',
+                            },
+                        ],
+                        bundle: 'bundleHashTwo',
+                    },
+                };
+
+                const mergedTransfers = {
+                    bundleHashOne: {
+                        tailTransactions: [
+                            {
+                                hash: 'YYY',
+                            },
+                            {
+                                hash: 'ZZZ',
+                            },
+                        ],
+                        bundle: 'bundleHashOne',
+                    },
+                    bundleHashTwo: {
+                        tailTransactions: [
+                            {
+                                hash: 'AAA',
+                            },
+                            {
+                                hash: 'FFF',
+                            },
+                            {
+                                hash: 'CCC',
+                            },
+                        ],
+                        bundle: 'bundleHashTwo',
+                    },
+                };
+
+                expect(mergeNewTransfers(newNormalizedTransfers, existingNormalizedTransfers)).to.eql(mergedTransfers);
+            });
+
+            it('should keep unique hash values of tail transactions', () => {
+                const existingNormalizedTransfers = {
+                    bundleHashOne: {
+                        tailTransactions: [
+                            {
+                                hash: 'YYY',
+                            },
+                            {
+                                hash: 'ZZZ',
+                            },
+                        ],
+                        bundle: 'bundleHashOne',
+                    },
+                    bundleHashTwo: {
+                        tailTransactions: [
+                            {
+                                hash: 'AAA',
+                            },
+                            {
+                                hash: 'FFF',
+                            },
+                        ],
+                        bundle: 'bundleHashTwo',
+                    },
+                };
+
+                const newNormalizedTransfers = {
+                    bundleHashTwo: {
+                        tailTransactions: [
+                            {
+                                hash: 'FFF',
+                            },
+                        ],
+                        bundle: 'bundleHashTwo',
+                    },
+                };
+
+                const mergedTransfers = {
+                    bundleHashOne: {
+                        tailTransactions: [
+                            {
+                                hash: 'YYY',
+                            },
+                            {
+                                hash: 'ZZZ',
+                            },
+                        ],
+                        bundle: 'bundleHashOne',
+                    },
+                    bundleHashTwo: {
+                        tailTransactions: [
+                            {
+                                hash: 'AAA',
+                            },
+                            {
+                                hash: 'FFF',
+                            },
+                        ],
+                        bundle: 'bundleHashTwo',
+                    },
+                };
+
+                expect(mergeNewTransfers(newNormalizedTransfers, existingNormalizedTransfers)).to.eql(mergedTransfers);
+            });
+        });
+
+        describe('when bundle hash of new normalized transfer does not exist in existing normalized transfers', () => {
+            it('should assign new normalized transfer to the existing normalized transfers', () => {
+                const existingNormalizedTransfers = {
+                    bundleHashOne: {
+                        tailTransactions: [
+                            {
+                                hash: 'YYY',
+                            },
+                            {
+                                hash: 'ZZZ',
+                            },
+                        ],
+                        bundle: 'bundleHashOne',
+                    },
+                    bundleHashTwo: {
+                        tailTransactions: [
+                            {
+                                hash: 'AAA',
+                            },
+                            {
+                                hash: 'FFF',
+                            },
+                        ],
+                        bundle: 'bundleHashTwo',
+                    },
+                };
+
+                const newNormalizedTransfers = {
+                    bundleHashThree: {
+                        tailTransactions: [
+                            {
+                                hash: 'CCC',
+                            },
+                        ],
+                        bundle: 'bundleHashThree',
+                    },
+                    bundleHashFour: {
+                        tailTransactions: [
+                            {
+                                hash: 'DDD',
+                            },
+                        ],
+                        bundle: 'bundleHashFour',
+                    },
+                };
+
+                const mergedTransfers = {
+                    bundleHashOne: {
+                        tailTransactions: [
+                            {
+                                hash: 'YYY',
+                            },
+                            {
+                                hash: 'ZZZ',
+                            },
+                        ],
+                        bundle: 'bundleHashOne',
+                    },
+                    bundleHashTwo: {
+                        tailTransactions: [
+                            {
+                                hash: 'AAA',
+                            },
+                            {
+                                hash: 'FFF',
+                            },
+                        ],
+                        bundle: 'bundleHashTwo',
+                    },
+                    bundleHashThree: {
+                        tailTransactions: [
+                            {
+                                hash: 'CCC',
+                            },
+                        ],
+                        bundle: 'bundleHashThree',
+                    },
+                    bundleHashFour: {
+                        tailTransactions: [
+                            {
+                                hash: 'DDD',
+                            },
+                        ],
+                        bundle: 'bundleHashFour',
+                    },
+                };
+
+                expect(mergeNewTransfers(newNormalizedTransfers, existingNormalizedTransfers)).to.eql(mergedTransfers);
+            });
         });
     });
 });
