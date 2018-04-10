@@ -51,7 +51,7 @@ export default function withSendData(SendComponent) {
             const { generateAlert, balance, t } = this.props;
 
             if (address.length !== ADDRESS_LENGTH) {
-                generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation1'));
+                generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation1', { maxLength: ADDRESS_LENGTH }));
                 return false;
             }
 
