@@ -30,6 +30,10 @@ class Polling extends React.PureComponent {
         promoteTransfer: PropTypes.func.isRequired,
     };
 
+    state = {
+        accountIndex: 0,
+    };
+
     componentDidMount() {
         this.onPollTick = this.fetch.bind(this);
         this.interval = setInterval(this.onPollTick, 15000);
@@ -79,7 +83,15 @@ class Polling extends React.PureComponent {
     };
 
     fetchLatestAccountInfo = async () => {
-        this.props.getAccountInfo(this.props.selectedAccountName);
+        const { accountNames } = this.props;
+
+        const index = this.state.accountIndex >= accountNames.length ? 0 : this.state.accountIndex;
+
+        this.props.getAccountInfo(accountNames[index]);
+
+        this.setState({
+            accountIndex: index + 1,
+        });
     };
 
     promote = () => {
@@ -117,7 +129,7 @@ const mapStateToProps = (state) => ({
     isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
     isSendingTransfer: state.ui.isSendingTransfer,
     isFetchingLatestAccountInfoOnLogin: state.ui.isFetchingLatestAccountInfoOnLogin,
-    selectedAccountName: getSelectedAccountName(state),
+    accountNames: state.accounts.accountNames,
     unconfirmedBundleTails: state.accounts.unconfirmedBundleTails,
     isTransitioning: state.ui.isTransitioning,
 });
