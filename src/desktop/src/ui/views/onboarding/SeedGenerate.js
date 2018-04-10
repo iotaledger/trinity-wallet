@@ -5,7 +5,7 @@ import { translate } from 'react-i18next';
 import { isValidSeed } from 'libs/iota/utils';
 import { createRandomSeed } from 'libs/crypto';
 
-import { setNewSeed, clearNewSeed } from 'actions/seeds';
+import { setOnboardingSeed } from 'actions/ui';
 import { generateAlert } from 'actions/alerts';
 
 import Button from 'ui/components/Button';
@@ -18,11 +18,11 @@ import css from './index.css';
  */
 class GenerateSeed extends React.PureComponent {
     static propTypes = {
-        /** Accept current generated seed
+        /** Set onboarding seed state
          * @param {String} seed - New seed
          * @param {Boolean} isGenerated - Is the new seed generated
          */
-        setNewSeed: PropTypes.func.isRequired,
+        setOnboardingSeed: PropTypes.func.isRequired,
         /** Current new seed */
         newSeed: PropTypes.string,
         /** Browser history object */
@@ -36,8 +36,6 @@ class GenerateSeed extends React.PureComponent {
          * @ignore
          */
         generateAlert: PropTypes.func.isRequired,
-        /** Clears new seed data from state */
-        clearNewSeed: PropTypes.func.isRequired,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
@@ -56,20 +54,20 @@ class GenerateSeed extends React.PureComponent {
     };
 
     onRequestNext = () => {
-        const { setNewSeed, history, generateAlert, t } = this.props;
+        const { setOnboardingSeed, history, generateAlert, t } = this.props;
         const { seed } = this.state;
 
         if (!seed || !isValidSeed(seed)) {
             return generateAlert('error', t('seedReentry:incorrectSeed'), t('seedReentry:incorrectSeedExplanation'));
         }
-        setNewSeed(seed, true);
+        setOnboardingSeed(seed, true);
         history.push('/onboarding/seed-save');
     };
 
     onRequestPrevious = () => {
-        const { history, clearNewSeed } = this.props;
+        const { history, setOnboardingSeed } = this.props;
 
-        clearNewSeed();
+        setOnboardingSeed(null);
         history.push('/onboarding/seed-intro');
     };
 
@@ -135,12 +133,11 @@ class GenerateSeed extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    newSeed: state.seeds.newSeed,
+    newSeed: state.ui.onboarding.seed,
 });
 
 const mapDispatchToProps = {
-    setNewSeed,
-    clearNewSeed,
+    setOnboardingSeed,
     generateAlert,
 };
 

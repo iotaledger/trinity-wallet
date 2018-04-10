@@ -182,6 +182,10 @@ class Home extends Component {
     };
 
     keyboardWillShow = (event) => {
+        const { inactive } = this.props;
+        if (inactive) {
+            return;
+        }
         this.handleCloseTopBar();
         this.setState({ isIOSKeyboardActive: true });
         Animated.timing(this.viewFlex, {
@@ -217,11 +221,11 @@ class Home extends Component {
                 ref={(c) => {
                     this.userInactivity = c;
                 }}
-                timeForInactivity={180000}
+                timeForInactivity={300000}
                 checkInterval={3000}
                 onInactivity={this.handleInactivity}
             >
-                <View style={{ flex: 1 }}>
+                <View style={{ flex: 1, backgroundColor: body.bg }}>
                     <DynamicStatusBar backgroundColor={bar.bg} />
                     {!inactive &&
                         !minimised && (
@@ -231,7 +235,7 @@ class Home extends Component {
                                     behavior={isAndroid ? null : 'padding'}
                                 >
                                     <Animated.View useNativeDriver style={{ flex: this.viewFlex }} />
-                                    <View style={{ flex: 4.72, backgroundColor: body.bg }}>
+                                    <View style={{ flex: 4.72 }}>
                                         <TabContent
                                             navigator={navigator}
                                             onTabSwitch={(name) => this.onTabSwitch(name)}
