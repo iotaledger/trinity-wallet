@@ -1,4 +1,5 @@
 import assign from 'lodash/assign';
+import cloneDeep from 'lodash/cloneDeep';
 import get from 'lodash/get';
 import keys from 'lodash/keys';
 import each from 'lodash/each';
@@ -675,19 +676,28 @@ export const syncTransfers = (diff, accountState) => {
         });
 };
 
-export const mergeNewTransfers = (newTransfers, existingTransfers) => {
-    const transfers = {};
+/**
+ *  Merge latest normalized transactions into existing ones
+ *
+ *   @method syncTransfers
+ *   @param {object} newNormalizedTransfers
+ *   @param {object} existingNormalizedTransfers
+ *
+ *   @returns {object} - Updated normalized transfers
+ **/
+export const mergeNewTransfers = (newNormalizedTransfers, existingNormalizedTransfers) => {
+    const transfers = cloneDeep(existingNormalizedTransfers);
 
     // Check if new transfer found is a reattachment i.e. there is already a bundle instance stored locally.
     // If its a reattachment, just add its tail transaction hash and attachmentTimestamp
     // Otherwise, add it as a new transfer
-    each(newTransfers, (transfer) => {
+    each(newNormalizedTransfers, (transfer) => {
         const bundle = transfer.bundle;
 
-        if (bundle in existingTransfers) {
-            transfers[bundle] = assign({}, existingTransfers[bundle], {
+        if (bundle in existingNormalizedTransfers) {
+            transfers[bundle] = assign({}, existingNormalizedTransfers[bundle], {
                 tailTransactions: unionBy(
-                    existingTransfers[bundle].tailTransactions,
+                    existingNormalizedTransfers[bundle].tailTransactions,
                     transfer.tailTransactions,
                     'hash',
                 ),
