@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { LinearGradient, Defs, Stop } from 'react-native-svg';
 import { VictoryChart, VictoryLine, VictoryAxis, Line, VictoryLabel } from 'victory-native';
 import { translate } from 'react-i18next';
@@ -14,16 +14,16 @@ const chartHeight = height * 0.38;
 const styles = StyleSheet.create({
     buttonContainer: {
         flex: 1,
-        flexDirection: 'row',
-        borderWidth: 1,
-        borderRadius: 1000,
-        paddingHorizontal: width / 35,
-        paddingVertical: height / 110,
     },
     button: {
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'center',
+        alignItems: 'flex-start',
+        borderWidth: 1,
+        borderRadius: 1000,
+        paddingHorizontal: width / 35,
+        paddingVertical: height / 110,
     },
     container: {
         flex: 1,
@@ -159,34 +159,26 @@ class Chart extends PureComponent {
             <View style={styles.container}>
                 <View style={{ flex: 0.65 }} />
                 <View style={styles.topContainer}>
-                    <View style={[styles.buttonContainer, borderColor]}>
-                        <TouchableWithoutFeedback
-                            onPress={() => setCurrency()}
-                            hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
-                            style={{ alignItems: 'flex-start' }}
-                        >
-                            <View style={styles.button}>
-                                <Text style={[styles.buttonText, textColor]}>{priceData.currency}</Text>
-                            </View>
-                        </TouchableWithoutFeedback>
-                    </View>
+                    <TouchableOpacity
+                        onPress={() => setCurrency()}
+                        hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
+                        style={[styles.button, borderColor]}
+                    >
+                        <Text style={[styles.buttonText, textColor]}>{priceData.currency}</Text>
+                    </TouchableOpacity>
                     <View style={styles.priceContainer}>
                         <Text style={[styles.iotaPrice, textColor]}>
                             {getChartCurrencySymbol(priceData.currency)}{' '}
                             {getPriceFormat(getPriceForCurrency(priceData.currency))} / Mi
                         </Text>
                     </View>
-                    <View style={[styles.buttonContainer, borderColor]}>
-                        <TouchableWithoutFeedback
-                            onPress={() => setTimeframe()}
-                            hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
-                            style={{ alignItems: 'flex-start' }}
-                        >
-                            <View style={styles.button}>
-                                <Text style={[styles.buttonText, textColor]}>{chartData.timeframe}</Text>
-                            </View>
-                        </TouchableWithoutFeedback>
-                    </View>
+                    <TouchableOpacity
+                        onPress={() => setTimeframe()}
+                        hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
+                        style={[styles.button, borderColor]}
+                    >
+                        <Text style={[styles.buttonText, textColor]}>{chartData.timeframe}</Text>
+                    </TouchableOpacity>
                 </View>
                 {chartData.data.length === 0 || chartData.data === undefined ? (
                     <View style={styles.emptyChartContainer}>
