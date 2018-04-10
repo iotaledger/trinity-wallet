@@ -800,11 +800,11 @@ export class Send extends Component {
                         <View style={{ flex: 0.3 }} />
                     </View>
                     <Modal
-                        animationIn="zoomIn"
-                        animationOut="zoomOut"
-                        animationInTiming={300}
+                        animationIn={isAndroid ? 'bounceInUp' : 'zoomIn'}
+                        animationOut={isAndroid ? 'bounceOut' : 'zoomOut'}
+                        animationInTiming={isAndroid ? 1000 : 300}
                         animationOutTiming={200}
-                        backdropTransitionInTiming={300}
+                        backdropTransitionInTiming={isAndroid ? 500 : 300}
                         backdropTransitionOutTiming={200}
                         backdropColor={body.bg}
                         style={{ alignItems: 'center', margin: 0 }}
