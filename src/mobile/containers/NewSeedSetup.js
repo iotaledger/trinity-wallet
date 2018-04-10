@@ -231,10 +231,13 @@ class NewSeedSetup extends Component {
                     navBarTransparent: true,
                     topBarElevationShadowEnabled: false,
                     screenBackgroundColor: body.bg,
+                    drawUnderStatusBar: true,
+                    statusBarColor: body.bg,
                 },
             },
             appStyle: {
                 orientation: 'portrait',
+                keepStyleAcrossPush: true,
             },
         });
     }
