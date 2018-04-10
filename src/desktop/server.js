@@ -31,8 +31,8 @@ app.get('*', (request, response) => {
 
 app.listen(PORT, (error) => {
     if (error) {
-        console.error(error);
+        console.error(error); /* eslint-disable-line no-console */
     } else {
-        console.info('=> 🌎 http://localhost:%s/', PORT);
+        console.info('=> 🌎 http://localhost:%s/', PORT); /* eslint-disable-line no-console */
     }
 });

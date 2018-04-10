@@ -10,13 +10,15 @@ import android.graphics.Color;
 import android.widget.TextView;
 import android.view.Gravity;
 import android.util.TypedValue;
+import com.facebook.react.modules.storage.ReactDatabaseSupplier;
 
 public class MainActivity extends SplashActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Fabric.with(this, new Crashlytics());
-
+        long size = 50L * 1024L * 1024L; // 50 MB
+        com.facebook.react.modules.storage.ReactDatabaseSupplier.getInstance(getApplicationContext()).setMaximumSize(size);
     }
     @Override
     public LinearLayout createSplashLayout() {
