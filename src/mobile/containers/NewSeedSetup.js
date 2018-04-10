@@ -162,8 +162,9 @@ class NewSeedSetup extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
-                    drawUnderStatusBar: true,
+                    topBarElevationShadowEnabled: false,
                     screenBackgroundColor: body.bg,
+                    drawUnderStatusBar: true,
                     statusBarColor: body.bg,
                 },
                 animated: false,
@@ -180,7 +181,11 @@ class NewSeedSetup extends Component {
             this.props.navigator.pop({
                 navigatorStyle: {
                     navBarHidden: true,
+                    navBarTranslucent: true,
                     navBarTransparent: true,
+                    navBarBackgroundColor: 'transparent',
+                    topBarElevationShadowEnabled: false,
+                    navBarNoBorder: true,
                     screenBackgroundColor: body.bg,
                     drawUnderStatusBar: true,
                     statusBarColor: body.bg,
@@ -224,6 +229,7 @@ class NewSeedSetup extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
+                    topBarElevationShadowEnabled: false,
                     screenBackgroundColor: body.bg,
                 },
             },
