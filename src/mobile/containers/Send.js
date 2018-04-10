@@ -789,7 +789,7 @@ export class Send extends Component {
                                 <View style={styles.info}>
                                     <Icon
                                         name="info"
-                                        size={width / 22}
+                                        size={isAndroid ? width / 14 : width / 22}
                                         color={body.color}
                                         style={{ marginRight: width / 60 }}
                                     />
