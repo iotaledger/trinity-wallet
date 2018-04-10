@@ -21,7 +21,6 @@ class Polling extends React.PureComponent {
         pollFor: PropTypes.string.isRequired,
         getAccountInfo: PropTypes.func.isRequired,
         allPollingServices: PropTypes.array.isRequired,
-        selectedAccountName: PropTypes.string.isRequired,
         unconfirmedBundleTails: PropTypes.object.isRequired,
         setPollFor: PropTypes.func.isRequired,
         fetchMarketData: PropTypes.func.isRequired,
@@ -36,7 +35,7 @@ class Polling extends React.PureComponent {
 
     componentDidMount() {
         this.onPollTick = this.fetch.bind(this);
-        this.interval = setInterval(this.onPollTick, 15000);
+        this.interval = setInterval(this.onPollTick, 8000);
     }
 
     componentWillUnmount() {
