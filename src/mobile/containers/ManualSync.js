@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator, NativeModules } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
@@ -10,7 +10,7 @@ import { getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/acc
 import { manuallySyncAccount } from 'iota-wallet-shared-modules/actions/accounts';
 import { getSeedFromKeychain } from '../utils/keychain';
 import { width, height } from '../utils/dimensions';
-import { isAndroid, isIOS } from '../utils/device';
+import { getMultiAddressGenFn } from '../utils/nativeModules';
 import { Icon } from '../theme/icons';
 import CtaButton from '../components/CtaButton';
 import InfoBox from '../components/InfoBox';
@@ -116,14 +116,7 @@ export class ManualSync extends Component {
                         );
                     }
 
-                    let genFn = null;
-
-                    if (isAndroid) {
-                        genFn = NativeModules.EntangledAndroid.generateAddresses;
-                    } else if (isIOS) {
-                        genFn = NativeModules.EntangledIOS.generateAddresses;
-                    }
-
+                    const genFn = getMultiAddressGenFn();
                     this.props.manuallySyncAccount(seed, selectedAccountName, genFn);
                 })
                 .catch((err) => console.error(err)); // eslint-disable-line no-console

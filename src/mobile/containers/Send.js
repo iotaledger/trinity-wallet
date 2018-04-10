@@ -5,15 +5,7 @@ import reduce from 'lodash/reduce';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import {
-    StyleSheet,
-    View,
-    Text,
-    TouchableOpacity,
-    TouchableWithoutFeedback,
-    Keyboard,
-    NativeModules,
-} from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import { isValidAddress, isValidMessage, isValidAmount } from 'iota-wallet-shared-modules/libs/iota/utils';
 import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
@@ -51,7 +43,8 @@ import CustomTextInput from '../components/CustomTextInput';
 import CtaButton from '../components/CtaButton';
 import { Icon } from '../theme/icons.js';
 import { width } from '../utils/dimensions';
-import { isAndroid, isIOS } from '../utils/device';
+import { isAndroid } from '../utils/device';
+import { getAddressGenFn, getPowFn } from '../utils/nativeModules';
 
 const styles = StyleSheet.create({
     container: {
@@ -607,16 +600,8 @@ export class Send extends Component {
                     throw new Error('Error');
                 }
 
-                let powFn = null;
-                let genFn = null;
-
-                if (isAndroid) {
-                    powFn = NativeModules.EntangledAndroid.doPoW;
-                    genFn = NativeModules.EntangledAndroid.generateAddress;
-                } else if (isIOS) {
-                    powFn = NativeModules.Iota.doPoW;
-                    genFn = NativeModules.EntangledIOS.generateAddress;
-                }
+                const powFn = getPowFn();
+                const genFn = getAddressGenFn();
 
                 return this.props.makeTransaction(seed, address, value, message, selectedAccountName, powFn, genFn);
             })
