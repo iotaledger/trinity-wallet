@@ -46,6 +46,9 @@ To start the application in development mode, run
 npm start
 ```
 
+Note: you might have to rebuild the `keytar` node module under Windows with `.\node_modules\.bin\electron-rebuild.cmd`
+as there's a bug with it ([link](https://github.com/atom/node-keytar/issues/51)).
+
 ## Trinity UI styleguide
 
 To start the browser based UI styleguide and theme editor, run 

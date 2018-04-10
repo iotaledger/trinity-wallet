@@ -6,7 +6,11 @@ import { connect } from 'react-redux';
 import QRCode from 'qrcode.react';
 import { selectAccountInfo, getSelectedAccountName } from 'selectors/accounts';
 import { runTask } from 'worker';
+
 import { setReceiveAddress } from 'actions/wallet';
+import { generateAlert } from 'actions/alerts';
+
+import { getSeed } from 'libs/crypto';
 
 import Button from 'ui/components/Button';
 import Clipboard from 'ui/components/Clipboard';
@@ -25,8 +29,14 @@ class Receive extends React.PureComponent {
         accountName: PropTypes.string.isRequired,
         /** Current receive address */
         receiveAddress: PropTypes.string.isRequired,
-        /** Current seed value */
-        seed: PropTypes.string,
+        /** Current active seed index */
+        seedIndex: PropTypes.number,
+        /** Current password value */
+        password: PropTypes.string,
+        /** Is the wallet currently syncing */
+        isSyncing: PropTypes.bool.isRequired,
+        /** Is the wallet currently transitioning */
+        isTransitioning: PropTypes.bool.isRequired,
         /** Is wallet generating receive address state */
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
         /** Set receive address
@@ -34,6 +44,13 @@ class Receive extends React.PureComponent {
          * @ignore
          */
         setReceiveAddress: PropTypes.func.isRequired,
+        /** Create a notification message
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
+         * @ignore
+         */
+        generateAlert: PropTypes.func.isRequired,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
@@ -51,8 +68,15 @@ class Receive extends React.PureComponent {
         }
     }
 
-    onGeneratePress = () => {
-        const { seed, accountName, account } = this.props;
+    onGeneratePress = async () => {
+        const { password, accountName, account, seedIndex, isSyncing, isTransitioning, generateAlert, t } = this.props;
+
+        if (isSyncing || isTransitioning) {
+            return generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
+        }
+
+        const seed = await getSeed(seedIndex, password);
+
         runTask('generateNewAddress', [seed, accountName, account]);
     };
 
@@ -75,7 +99,11 @@ class Receive extends React.PureComponent {
                         {content}
                     </Clipboard>
                 </p>
-                <Text value={message} label="Custom message" onChange={(value) => this.setState({ message: value })} />
+                <Text
+                    value={message}
+                    label={t('receive:message')}
+                    onChange={(value) => this.setState({ message: value })}
+                />
                 <Button onClick={this.onGeneratePress} loading={isGeneratingReceiveAddress}>
                     {t('receive:generateNewAddress')}
                 </Button>
@@ -86,14 +114,18 @@ class Receive extends React.PureComponent {
 
 const mapStateToProps = (state) => ({
     receiveAddress: state.wallet.receiveAddress,
-    isGeneratingReceiveAddress: state.wallet.isGeneratingReceiveAddress,
+    isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
+    isSyncing: state.ui.isSyncing,
+    isTransitioning: state.ui.isTransitioning,
     account: selectAccountInfo(state),
     accountName: getSelectedAccountName(state),
-    seed: state.seeds.seeds[state.wallet.seedIndex],
+    password: state.wallet.password,
+    seedIndex: state.wallet.seedIndex,
 });
 
 const mapDispatchToProps = {
     setReceiveAddress,
+    generateAlert,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate()(Receive));

@@ -23,6 +23,7 @@ export const ActionTypes = {
     SET_UPDATE_SUCCESS: 'IOTA/SETTINGS/UPDATE_SUCCESS',
     SET_UPDATE_DONE: 'IOTA/SETTINGS/UPDATE_DONE',
     UPDATE_POW_SETTINGS: 'IOTA/SETTINGS/UPDATE_POW_SETTINGS',
+    SET_LOCK_SCREEN_TIMEOUT: 'IOTA/SETTINGS/SET_LOCK_SCREEN_TIMEOUT',
     SET_VERSIONS: 'IOTA/SETTINGS/WALLET/SET_VERSIONS',
     WALLET_RESET: 'IOTA/SETTINGS/WALLET/RESET',
     SET_2FA_STATUS: 'IOTA/SETTINGS/SET_2FA_STATUS',
@@ -59,6 +60,11 @@ export const setMode = (payload) => ({
 
 export const updatePowSettings = () => ({
     type: ActionTypes.UPDATE_POW_SETTINGS,
+});
+
+export const setLockScreenTimeout = (payload) => ({
+    type: ActionTypes.SET_LOCK_SCREEN_TIMEOUT,
+    payload,
 });
 
 export function setLocale(locale) {
