@@ -1,5 +1,5 @@
 export default {
-    body: { color: '#F0F2F6', bg: '#161835', altBg: 'rgba(37, 35, 68, 0.8)', alt: '#3D3D59' },
+    body: { color: '#F0F2F6', bg: '#161835', altBg: '#222042', alt: '#3D3D59' },
     bar: { color: '#F0F2F6', bg: '#000000', alt: '#192733' },
     primary: { color: '#19D5FC', hover: '#0FB2D4', body: '#000000' },
     secondary: { color: '#FA76FF', hover: '#BF4AC4', body: '#1E1E1E' },

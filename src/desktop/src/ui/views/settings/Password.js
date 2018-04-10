@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { generateAlert } from 'actions/alerts';
 
 import { isValidPassword } from 'libs/utils';
-import { setVault } from 'libs/crypto';
+import { updateVaultPassword } from 'libs/crypto';
 
 import Password from 'ui/components/input/Password';
 import Button from 'ui/components/Button';
@@ -59,7 +59,7 @@ class SetPassword extends PureComponent {
         }
 
         try {
-            setVault(passwordCurrent, passwordNew);
+            updateVaultPassword(passwordCurrent, passwordNew);
 
             this.setState({
                 passwordCurrent: '',

@@ -5,7 +5,6 @@ import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import Icon from 'ui/components/Icon';
-import ModalPassword from 'ui/components/modal/Password';
 
 import Name from 'ui/views/account/Name';
 import Seed from 'ui/views/account/Seed';
@@ -26,7 +25,11 @@ class Account extends React.PureComponent {
         /** wallet state data
          * @ignore
          */
-        wallet: PropTypes.object,
+        wallet: PropTypes.object.isRequired,
+        /** Wallet account names
+         * @ignore
+         */
+        accountNames: PropTypes.array.isRequired,
         /** Translation helper
          * @param {string} translationString - Locale string identifier to be translated
          * @ignore
@@ -44,38 +47,7 @@ class Account extends React.PureComponent {
     };
 
     render() {
-        const { t, location, history } = this.props;
-        const { vault } = this.state;
-
-        if (!vault) {
-            return (
-                <ModalPassword
-                    isOpen
-                    inline
-                    onSuccess={(password, vault) => this.setState({ password, vault })}
-                    onClose={() => history.push('/wallet/')}
-                    content={{
-                        title: t('enterPasswordToAccessAccountSettings'),
-                    }}
-                />
-            );
-        }
-
-        const PropsRoute = ({ component, ...props }) => {
-            const reactProps = {
-                history: this.props.history,
-                ...this.state,
-            };
-
-            return (
-                <Route
-                    {...props}
-                    render={() => {
-                        return React.createElement(component, reactProps);
-                    }}
-                />
-            );
-        };
+        const { accountNames, t, location, history } = this.props;
 
         return (
             <main className={css.settings}>
@@ -92,7 +64,7 @@ class Account extends React.PureComponent {
                                 <Icon icon="bookmark" size={20} />{' '}
                                 <strong>{t('accountManagement:viewAddresses')}</strong>
                             </NavLink>
-                            {vault.seeds.length > 1 ? (
+                            {accountNames.length > 1 ? (
                                 <NavLink to="/account/remove">
                                     <Icon icon="trash" size={20} />{' '}
                                     <strong>{t('accountManagement:deleteAccount')}</strong>
@@ -107,10 +79,10 @@ class Account extends React.PureComponent {
                             </a>
                         </header>
                         <Switch location={location}>
-                            <PropsRoute path="/account/name" component={Name} />
-                            <PropsRoute path="/account/seed" component={Seed} />
-                            <PropsRoute path="/account/addresses" component={Addresses} />
-                            <PropsRoute path="/account/remove" component={Remove} />
+                            <Route path="/account/name" component={Name} />
+                            <Route path="/account/seed" component={Seed} />
+                            <Route path="/account/addresses" component={Addresses} />
+                            <Route path="/account/remove" component={Remove} />
                             <Redirect from="/account/" to="/account/name" />
                         </Switch>
                     </section>
@@ -122,6 +94,7 @@ class Account extends React.PureComponent {
 
 const mapStateToProps = (state) => ({
     wallet: state.wallet,
+    accountNames: state.accounts.accountNames,
 });
 
 export default connect(mapStateToProps)(translate()(Account));
