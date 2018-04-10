@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import map from 'lodash/map';
 import orderBy from 'lodash/orderBy';
 import classNames from 'classnames';
 import { round } from 'libs/utils';
 import { convertFromTrytes, formatValue, formatUnit } from 'libs/iota/utils';
 import { formatTime, formatModalTime, convertUnixTimeToJSDate } from 'libs/date';
-import { getRelevantTransfer } from 'libs/iota/transfers';
 
 import Clipboard from 'ui/components/Clipboard';
 import Icon from 'ui/components/Icon';
@@ -26,15 +26,13 @@ class List extends React.PureComponent {
         /** Should update history */
         updateAccount: PropTypes.func.isRequired,
         /** Transaction history */
-        transfers: PropTypes.array.isRequired,
+        transfers: PropTypes.object.isRequired,
         /** Set active history item
          * @param {Number} index - Current item index
          */
         setItem: PropTypes.func.isRequired,
         /** Current active history item */
         currentItem: PropTypes.number,
-        /** Receive address list */
-        addresses: PropTypes.array.isRequired,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
@@ -60,23 +58,23 @@ class List extends React.PureComponent {
     }
 
     render() {
-        const { isLoading, isBusy, updateAccount, transfers, addresses, setItem, currentItem, t } = this.props;
+        const { isLoading, isBusy, updateAccount, transfers, setItem, currentItem, t } = this.props;
         const { filter, loaded } = this.state;
 
         const filters = ['All', 'Sent', 'Received', 'Pending'];
+        const transfersList = map(transfers, (tx) => tx);
 
-        const formattedTx =
-            transfers && transfers.length
-                ? transfers.map((transfer) => getRelevantTransfer(transfer, addresses)).filter((tx) => {
-                      const isReceived = addresses.includes(tx.address);
-                      const isConfirmed = tx.persistence;
-                      return !(
-                          (filter === 'Sent' && (isReceived || !isConfirmed)) ||
-                          (filter === 'Received' && (!isReceived || !isConfirmed)) ||
-                          (filter === 'Pending' && isConfirmed)
-                      );
-                  })
-                : [];
+        const formattedTx = transfersList.filter((tx) => {
+            const isReceived = tx.incoming;
+            const isConfirmed = tx.persistence;
+
+            return !(
+                (filter === 'Sent' && (isReceived || !isConfirmed)) ||
+                (filter === 'Received' && (!isReceived || !isConfirmed)) ||
+                (filter === 'Pending' && isConfirmed)
+            );
+        });
+
         const historyTx = orderBy(formattedTx, 'timestamp', ['desc']);
 
         const activeTransfer = currentItem ? historyTx.filter((tx) => tx.hash === currentItem)[0] : null;
@@ -85,11 +83,7 @@ class List extends React.PureComponent {
             <React.Fragment>
                 <nav className={css.nav}>
                     <ul>
-                        <a
-                            key="active"
-                            onClick={() => this.switchFilter(filter)}
-                            className={classNames(css.active)}
-                        >
+                        <a key="active" onClick={() => this.switchFilter(filter)} className={classNames(css.active)}>
                             {filter === 'All' ? 'All' : t(filter.toLowerCase())} <small>({historyTx.length})</small>
                             <Icon icon="chevronDown" size={12} />
                         </a>
@@ -102,9 +96,7 @@ class List extends React.PureComponent {
                                       <a
                                           key={item}
                                           onClick={() => this.switchFilter(item)}
-                                          className={classNames(
-                                              filter === item ? css.active : null
-                                          )}
+                                          className={classNames(filter === item ? css.active : null)}
                                       >
                                           {item === 'All' ? 'All' : t(item.toLowerCase())}
                                       </a>
@@ -123,7 +115,7 @@ class List extends React.PureComponent {
                 <div className={css.list}>
                     {historyTx && historyTx.length ? (
                         historyTx.map((transfer, key) => {
-                            const isReceived = addresses.includes(transfer.address);
+                            const isReceived = transfer.incoming;
                             const isConfirmed = transfer.persistence;
 
                             if (
@@ -149,8 +141,8 @@ class List extends React.PureComponent {
                                         <strong>
                                             {!isConfirmed ? t('pending') : isReceived ? t('received') : t('sent')}
                                         </strong>
-                                        <span>{`${round(formatValue(transfer.value))} ${formatUnit(
-                                            transfer.value,
+                                        <span>{`${round(formatValue(transfer.transferValue))} ${formatUnit(
+                                            transfer.transferValue,
                                         )}`}</span>
                                     </div>
                                 </a>
@@ -165,26 +157,24 @@ class List extends React.PureComponent {
                         {activeTransfer ? (
                             <div
                                 className={classNames(
-                                    addresses.includes(activeTransfer.address) ? css.received : css.sent,
+                                    activeTransfer.incoming ? css.received : css.sent,
                                     activeTransfer.persistence ? css.confirmed : css.pending,
                                 )}
                             >
                                 <p>
                                     <strong>
-                                        {addresses.includes(activeTransfer.address)
-                                            ? t('history:receive')
-                                            : t('history:send')}
+                                        {activeTransfer.incoming ? t('history:receive') : t('history:send')}
                                         <span>
                                             {' '}
-                                            {`${round(formatValue(activeTransfer.value))} ${formatUnit(
-                                                activeTransfer.value,
+                                            {`${round(formatValue(activeTransfer.transferValue))} ${formatUnit(
+                                                activeTransfer.transferValue,
                                             )}`}
                                         </span>
                                     </strong>
                                     <small>
                                         {!activeTransfer.persistence
                                             ? t('pending')
-                                            : addresses.includes(activeTransfer.address) ? t('received') : t('sent')}
+                                            : activeTransfer.incoming ? t('received') : t('sent')}
                                         <em>{formatModalTime(convertUnixTimeToJSDate(activeTransfer.timestamp))}</em>
                                     </small>
                                 </p>
@@ -198,7 +188,7 @@ class List extends React.PureComponent {
                                 </p>
                                 <p>
                                     <strong>{t('send:message')}</strong>
-                                    <span>{convertFromTrytes(activeTransfer.signatureMessageFragment)}</span>
+                                    <span>{convertFromTrytes(activeTransfer.message)}</span>
                                 </p>
                             </div>
                         ) : null}
