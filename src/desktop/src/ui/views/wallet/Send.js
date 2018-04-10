@@ -55,6 +55,10 @@ class Send extends React.PureComponent {
         sendTransfer: PropTypes.func.isRequired,
         /** Set deep link amount */
         sendAmount: PropTypes.func.isRequired,
+        /** Validate the given message
+         * @param {string} message - the transaction message
+         */
+        validateMessage: PropTypes.func.isRequired,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
@@ -66,7 +70,7 @@ class Send extends React.PureComponent {
         address: '',
         amount: 0,
         message: '',
-        isModalVisible: false,
+        isTransferModalVisible: false,
     };
 
     componentWillMount() {
@@ -102,7 +106,7 @@ class Send extends React.PureComponent {
         e.preventDefault();
 
         this.setState({
-            isModalVisible: validateInputs(address, amount),
+            isTransferModalVisible: validateInputs(address, amount),
         });
     };
 
@@ -111,7 +115,7 @@ class Send extends React.PureComponent {
         const { password, seedIndex, sendTransfer, settings } = this.props;
 
         this.setState({
-            isModalVisible: false,
+            isTransferModalVisible: false,
         });
 
         let powFn = null;
@@ -139,17 +143,24 @@ class Send extends React.PureComponent {
         sendTransfer(seed, address, amount, message, null, powFn);
     };
 
+    changeMessage = (message) => {
+        if (!this.props.validateMessage(message)){
+            return;
+        }
+        this.setState({ message });
+    }
+
     render() {
         const { isSending, balance, settings, t } = this.props;
-        const { address, amount, message, isModalVisible } = this.state;
+        const { address, amount, message, isTransferModalVisible } = this.state;
 
         return (
             <form onSubmit={(e) => this.validateInputs(e)}>
                 <div className={isSending ? css.sending : null}>
                     <Confirm
                         category="primary"
-                        isOpen={isModalVisible}
-                        onCancel={() => this.setState({ isModalVisible: false })}
+                        isOpen={isTransferModalVisible}
+                        onCancel={() => this.setState({ isTransferModalVisible: false })}
                         onConfirm={() => this.confirmTransfer()}
                         content={{
                             title: `You are about to send ${formatValue(amount)} ${formatUnit(amount)} to the address`,
@@ -181,7 +192,7 @@ class Send extends React.PureComponent {
                     <TextInput
                         value={message}
                         label={t('send:message')}
-                        onChange={(value) => this.setState({ message: value })}
+                        onChange={this.changeMessage}
                     />
                 </div>
                 <fieldset>
