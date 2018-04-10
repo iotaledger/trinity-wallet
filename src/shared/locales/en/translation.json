@@ -236,6 +236,10 @@
         "message": "Message",
         "invalidMessage": "Invalid message",
         "invalidMessageExplanation": "Your message contains invalid characters.",
+        "invalidMessageCharacter": "Invalid character",
+        "invalidMessageCharacterExplanation": "Only ASCII characters are allowed in the message.",
+        "invalidMessageTooLong": "Message too long",
+        "invalidMessageTooLongExplanation": "The message exceeds the max. amount of characters (1093).",
         "send": "SEND",
         "invalidAmount": "Incorrect amount entered",
         "invalidAmountExplanation":
