@@ -15,6 +15,7 @@ import {
     VALID_SEED_REGEX,
     ADDRESS_LENGTH,
 } from 'iota-wallet-shared-modules/libs/iota/utils';
+import { setDeepLinkInactive } from 'iota-wallet-shared-modules/actions/deepLink';
 import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
 import {
     getFromKeychainRequest,
@@ -148,6 +149,10 @@ export class Send extends Component {
         timeTakenByEachProgressStep: PropTypes.array.isRequired,
         password: PropTypes.string.isRequired,
         generateTransferErrorAlert: PropTypes.func.isRequired,
+        /** Determines if the wallet has just opened a deep link */
+        deepLinkActive: PropTypes.bool.isRequired,
+        /** Resets deep link status */
+        setDeepLinkInactive: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -181,8 +186,13 @@ export class Send extends Component {
     }
 
     componentDidMount() {
+        const { t, deepLinkActive } = this.props;
         if (!this.props.isSendingTransfer) {
             this.props.resetProgress();
+        }
+        if (deepLinkActive) {
+            this.props.generateAlert('success', t('deepLink:autofill'), t('deepLink:autofillExplanation'));
+            this.props.setDeepLinkInactive();
         }
     }
 
@@ -869,6 +879,7 @@ const mapStateToProps = (state) => ({
     timeTakenByEachProgressStep: state.progress.timeTakenByEachStep,
     remotePoW: state.settings.remotePoW,
     password: state.wallet.password,
+    deepLinkActive: state.wallet.deepLinkActive,
 });
 
 const mapDispatchToProps = {
@@ -884,6 +895,7 @@ const mapDispatchToProps = {
     resetProgress,
     startTrackingProgress,
     generateTransferErrorAlert,
+    setDeepLinkInactive,
 };
 
 export default translate(['send', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Send));
