@@ -1,4 +1,5 @@
-import isArray from 'lodash/isArray';
+import find from 'lodash/find';
+import keys from 'lodash/keys';
 import { expect } from 'chai';
 import {
     prepareTransferArray,
@@ -7,8 +8,11 @@ import {
     getPendingTxTailsHashes,
     markTransfersConfirmed,
     hasNewTransfers,
-    findBundlesFromTransfers,
     getHashesDiff,
+    categorizeTransactions,
+    normalizeBundle,
+    mergeNewTransfers,
+    categorizeBundleByInputsOutputs,
 } from '../../../libs/iota/transfers';
 
 describe('libs: iota/transfers', () => {
@@ -113,24 +117,20 @@ describe('libs: iota/transfers', () => {
             });
         });
 
-        it('should map all tail transactions to "confirmed" prop object that have corresponding states true', () => {
-            const tailTransactions = [{ bundle: 'foo' }, { bundle: 'baz' }];
+        it('should map all those transactions to "confirmed" prop array that have corresponding states true', () => {
+            const transactions = [{ bundle: 'foo' }, { bundle: 'baz' }];
 
             const states = [true, false];
 
-            expect(categorizeTransactionsByPersistence(tailTransactions, states).confirmed).to.eql({
-                foo: { bundle: 'foo' },
-            });
+            expect(categorizeTransactionsByPersistence(transactions, states).confirmed).to.eql([{ bundle: 'foo' }]);
         });
 
-        it('should map all tail transactions to "unconfirmed" prop object that have corresponding states false', () => {
-            const tailTransactions = [{ bundle: 'foo' }, { bundle: 'baz' }];
+        it('should map all those transactions to "unconfirmed" prop array that have corresponding states false', () => {
+            const transactions = [{ bundle: 'foo' }, { bundle: 'baz' }];
 
             const states = [true, false];
 
-            expect(categorizeTransactionsByPersistence(tailTransactions, states).unconfirmed).to.eql({
-                baz: { bundle: 'baz' },
-            });
+            expect(categorizeTransactionsByPersistence(transactions, states).unconfirmed).to.eql([{ bundle: 'baz' }]);
         });
     });
 
@@ -143,20 +143,20 @@ describe('libs: iota/transfers', () => {
             });
         });
 
-        describe('when argument passed is an array', () => {
-            it('should return an empty array if no element is found with persistence false and currentIndex 0', () => {
-                const args = [[{}, {}], [{}], [{}]];
+        describe('when argument passed is an object', () => {
+            it('should return an empty array if no values have persistence false', () => {
+                const args = { bundleOne: {}, bundleTwo: {} };
 
                 expect(getPendingTxTailsHashes(args)).to.eql([]);
             });
 
-            it('should return an array with hashes for elements with persistence false and currentIndex 0', () => {
-                const args = [
-                    [{ currentIndex: 0, persistence: true, hash: 'foo' }],
-                    [{ currentIndex: 0, persistence: false, hash: 'baz' }],
-                ];
+            it('should return an array with hashes for elements with persistence false', () => {
+                const args = {
+                    bundleOne: { tailTransactions: [{ hash: '999' }, { hash: 'UUU' }], value: 100, persistence: false },
+                    bundleTwo: { tailTransactions: [{ hash: 'XXX' }, { hash: 'YYY' }], value: 100, persistence: true },
+                };
 
-                expect(getPendingTxTailsHashes(args)).to.eql(['baz']);
+                expect(getPendingTxTailsHashes(args)).to.eql(['999', 'UUU']);
             });
         });
     });
@@ -164,41 +164,27 @@ describe('libs: iota/transfers', () => {
     describe('#markTransfersConfirmed', () => {
         describe('when second argument passed is empty, null or undefined', () => {
             it('should return first argument', () => {
-                expect(markTransfersConfirmed([[{}]], null)).to.eql([[{}]]);
-                expect(markTransfersConfirmed([[{}]], undefined)).to.eql([[{}]]);
-                expect(markTransfersConfirmed([[{}]], [])).to.eql([[{}]]);
+                expect(markTransfersConfirmed([{}], null)).to.eql([{}]);
+                expect(markTransfersConfirmed([{}], undefined)).to.eql([{}]);
+                expect(markTransfersConfirmed([{}], [])).to.eql([{}]);
             });
         });
 
-        describe('when second argument passed is an array of strings', () => {
-            describe('when includes hash', () => {
-                it('should assign persistence true to all tx objects', () => {
-                    const transfers = [
-                        [
-                            { currentIndex: 1, hash: 'foo', persistence: false },
-                            { currentIndex: 2, hash: 'baz', persistence: false },
-                        ],
-                        [
-                            { currentIndex: 0, hash: 'waldo', persistence: false },
-                            { currentIndex: 1, hash: 'bar', persistence: false },
-                        ],
-                    ];
+        describe('when second argument passed is not an empty array', () => {
+            it('should assign persistence true to those objects that have any tail transaction hash in second argument array', () => {
+                const transfers = [
+                    { persistence: false, tailTransactions: [{ hash: 'UUU' }] },
+                    { persistence: false, tailTransactions: [{ hash: 'XXX' }] },
+                ];
 
-                    const tailsHashes = ['foo', 'waldo'];
+                const confirmedTransactionsHashes = ['XXX'];
 
-                    const result = [
-                        [
-                            { currentIndex: 1, hash: 'foo', persistence: false },
-                            { currentIndex: 2, hash: 'baz', persistence: false },
-                        ],
-                        [
-                            { currentIndex: 0, hash: 'waldo', persistence: true },
-                            { currentIndex: 1, hash: 'bar', persistence: true },
-                        ],
-                    ];
+                const result = [
+                    { persistence: false, tailTransactions: [{ hash: 'UUU' }] },
+                    { persistence: true, tailTransactions: [{ hash: 'XXX' }] },
+                ];
 
-                    expect(markTransfersConfirmed(transfers, tailsHashes)).to.eql(result);
-                });
+                expect(markTransfersConfirmed(transfers, confirmedTransactionsHashes)).to.eql(result);
             });
         });
     });
@@ -215,29 +201,6 @@ describe('libs: iota/transfers', () => {
             expect(hasNewTransfers(null, [])).to.equal(false);
             expect(hasNewTransfers(null, undefined)).to.equal(false);
             expect(hasNewTransfers(0, 10)).to.equal(false);
-        });
-    });
-
-    describe('#findBundlesFromTransfers', () => {
-        it('should always return an array', () => {
-            expect(isArray(findBundlesFromTransfers())).to.equal(true);
-            expect(isArray(findBundlesFromTransfers(null, undefined))).to.equal(true);
-            expect(isArray(findBundlesFromTransfers({}, {}))).to.equal(true);
-            expect(isArray(findBundlesFromTransfers('', []))).to.equal(true);
-            expect(isArray(findBundlesFromTransfers(1, 2))).to.equal(true);
-        });
-
-        it('should return bundles that have first element with "bundle" prop equals first argument', () => {
-            const transfers = [
-                [{ bundle: 'foo', currentIndex: 0 }, { bundle: 'foo', currentIndex: 1 }],
-                [{ bundle: 'baz', currentIndex: 0 }, { bundle: 'baz', currentIndex: 1 }],
-                [{ bundle: 'quz', currentIndex: 0 }, { bundle: 'quz', currentIndex: 1 }],
-                [{ bundle: 'bar', currentIndex: 0 }, { bundle: 'bar', currentIndex: 1 }],
-            ];
-
-            const expected = [[{ bundle: 'foo', currentIndex: 0 }, { bundle: 'foo', currentIndex: 1 }]];
-
-            expect(findBundlesFromTransfers('foo', transfers)).to.eql(expected);
         });
     });
 
@@ -328,6 +291,456 @@ describe('libs: iota/transfers', () => {
                     expect(getHashesDiff([], ['bar'], thirdArgument, fourthArgument)).to.eql(['bar', 'baz']);
                 });
             });
+        });
+    });
+
+    describe('#categorizeTransactions', () => {
+        it('should always return an object with props "incoming" and "outgoing"', () => {
+            const args = [[undefined], [null], [], [{}], [''], [0], ['foo']];
+
+            args.forEach((arg) => {
+                expect(categorizeTransactions(...arg)).to.have.keys(['incoming', 'outgoing']);
+            });
+        });
+
+        it('should categorize incoming transactions to "incoming" prop array', () => {
+            const transactions = [{ incoming: true }, { incoming: false }, { incoming: false }];
+
+            expect(categorizeTransactions(transactions).incoming).to.eql([{ incoming: true }]);
+        });
+
+        it('should categorize outgoing transactions to "outgoing" prop array', () => {
+            const transactions = [{ incoming: true }, { incoming: false }];
+
+            expect(categorizeTransactions(transactions).outgoing).to.eql([{ incoming: false }]);
+        });
+    });
+
+    describe('#normalizeBundle', () => {
+        let bundle;
+        let addresses;
+        let tailTransactions;
+        let timestamp;
+        let attachmentTimestamp;
+
+        beforeEach(() => {
+            timestamp = attachmentTimestamp = Date.now();
+
+            bundle = [
+                {
+                    currentIndex: 0,
+                    hash: 'NGX9LKVXKGMLJDKVMSNOCZYPSSCKYVQBCWPFZUAAKMIUVORXJAFRGRJSDWOMEFIOWFBUQVORWGID99999',
+                    bundle: '9DCUNBJYTSWOYRRLJC9LLPCIUCEXCIVZGPWEKOJHSDLWFZX9HOUNFNKAQZGHDYHFPBRLJFORLFHIRVVC9',
+                    address: 'AWHJTOTMFXZUAVJAWHXULZJFTQNHYAIQHIDKOSTEMR9ZBHWFWDLIQYPHDKTVXYDJYRHKMXYLDUULJMMWW',
+                    value: 1,
+                    signatureMessageFragment: '9'.repeat(2187),
+                    timestamp,
+                    attachmentTimestamp,
+                },
+                {
+                    currentIndex: 1,
+                    hash: 'GAYYEUVRGFRDNEPLP9BTYLBPQGZGUHOGUFHCCAOFTPDFYOBNCGGGGAZ9JTT9AHVWMBLTRDZTBCEX99999',
+                    bundle: '9DCUNBJYTSWOYRRLJC9LLPCIUCEXCIVZGPWEKOJHSDLWFZX9HOUNFNKAQZGHDYHFPBRLJFORLFHIRVVC9',
+                    address: 'JMJHGMMVBEOWEVMEUYFYWJGZK9ITVBZAIWXITUANTYYLAKSHYRCZBBN9ULEDLRYITFNQMAUPZP9WMLEHB',
+                    value: -2201,
+                    signatureMessageFragment: '9'.repeat(2187),
+                    timestamp,
+                    attachmentTimestamp,
+                },
+                {
+                    currentIndex: 2,
+                    hash: 'SHGVLJDUPADJ9ASLTVTWNJDOVLV9AQHCGBBAK9GLIZJRNKK9CBFNPNDWRWZZU9OHPHZZSDZWSESLZ9999',
+                    bundle: '9DCUNBJYTSWOYRRLJC9LLPCIUCEXCIVZGPWEKOJHSDLWFZX9HOUNFNKAQZGHDYHFPBRLJFORLFHIRVVC9',
+                    address: 'JMJHGMMVBEOWEVMEUYFYWJGZK9ITVBZAIWXITUANTYYLAKSHYRCZBBN9ULEDLRYITFNQMAUPZP9WMLEHB',
+                    value: 0,
+                    signatureMessageFragment: '9'.repeat(2187),
+                    timestamp,
+                    attachmentTimestamp,
+                },
+                {
+                    currentIndex: 3,
+                    hash: 'XFGRJCCUXXDL9UQTKRDRKPIIJKZIONDLPOHUINXJWZ99HPGTYAFEGQDNQMLFG9VIWPKTRURTSFJH99999',
+                    bundle: '9DCUNBJYTSWOYRRLJC9LLPCIUCEXCIVZGPWEKOJHSDLWFZX9HOUNFNKAQZGHDYHFPBRLJFORLFHIRVVC9',
+                    address: 'GEFNJWYGCACGXYEXAS999VIRYWLJSAQJNRTSTDNOKKR9SULNXGHPVHCHJQVMIKEVJNKMEQMYMFZUXZPGC',
+                    value: 2201,
+                    signatureMessageFragment: '9'.repeat(2187),
+                    timestamp,
+                    attachmentTimestamp,
+                },
+            ];
+
+            addresses = [
+                'JMJHGMMVBEOWEVMEUYFYWJGZK9ITVBZAIWXITUANTYYLAKSHYRCZBBN9ULEDLRYITFNQMAUPZP9WMLEHB',
+                'UTPQWLFOSBVOEXMMEDNDGCIKGOHFSRVZ9HDEFFNAOLXGDUKC9TEENGI9RAWMZSY9UTMKLHZPRUTFJDBOY',
+            ];
+
+            tailTransactions = [
+                {
+                    currentIndex: 0,
+                    hash: 'NGX9LKVXKGMLJDKVMSNOCZYPSSCKYVQBCWPFZUAAKMIUVORXJAFRGRJSDWOMEFIOWFBUQVORWGID99999',
+                    bundle: '9DCUNBJYTSWOYRRLJC9LLPCIUCEXCIVZGPWEKOJHSDLWFZX9HOUNFNKAQZGHDYHFPBRLJFORLFHIRVVC9',
+                    address: 'AWHJTOTMFXZUAVJAWHXULZJFTQNHYAIQHIDKOSTEMR9ZBHWFWDLIQYPHDKTVXYDJYRHKMXYLDUULJMMWW',
+                    value: 1,
+                    attachmentTimestamp,
+                },
+                {
+                    currentIndex: 0,
+                    hash: 'F9AN9GUWLXFGAIWNYEHRZKGUI9GLOTEIIXNNCGNPAIMZWM9BTSXQAIELQLZPADIMXYHDXWXJPOLSA9999',
+                    bundle: 'DAVBDNDIHERQQNZGRXHUBHECQFGGKPACOQCFKEFNLRZUGRRLFELDBVBQB9YOODGOXLKQXKBFSKXJIQXLA',
+                    address: 'UTPQWLFOSBVOEXMMEDNDGCIKGOHFSRVZ9HDEFFNAOLXGDUKC9TEENGI9RAWMZSY9UTMKLHZPRUTFJDBOY',
+                    value: 23300,
+                    attachmentTimestamp,
+                },
+            ];
+        });
+
+        // Note: Test internally used functions separately
+        it('should return an object with "hash" prop', () => {
+            expect(normalizeBundle(bundle, addresses, tailTransactions, false)).to.include.keys('hash');
+        });
+
+        it('should return an object with "bundle" prop', () => {
+            expect(normalizeBundle(bundle, addresses, tailTransactions, false)).to.include.keys('bundle');
+        });
+
+        it('should return an object with "timestamp" prop', () => {
+            expect(normalizeBundle(bundle, addresses, tailTransactions, false)).to.include.keys('timestamp');
+        });
+
+        it('should return an object with "attachmentTimestamp" prop', () => {
+            expect(normalizeBundle(bundle, addresses, tailTransactions, false)).to.include.keys('attachmentTimestamp');
+        });
+
+        it('should return an object with "inputs" prop', () => {
+            expect(normalizeBundle(bundle, addresses, tailTransactions, false)).to.include.keys('inputs');
+        });
+
+        it('should return an object with "outputs" prop', () => {
+            expect(normalizeBundle(bundle, addresses, tailTransactions, false)).to.include.keys('inputs');
+        });
+
+        it('should return an object with "persistence" prop equalling fourth argument', () => {
+            expect(normalizeBundle(bundle, addresses, tailTransactions, false).persistence).to.equal(false);
+        });
+
+        it('should return an object with "incoming" prop', () => {
+            expect(normalizeBundle(bundle, addresses, tailTransactions, false)).to.include.keys('incoming');
+        });
+
+        it('should return an object with "transferValue" prop', () => {
+            expect(normalizeBundle(bundle, addresses, tailTransactions, false)).to.include.keys('transferValue');
+        });
+
+        it('should return an object with "message" prop', () => {
+            expect(normalizeBundle(bundle, addresses, tailTransactions, false)).to.include.keys('transferValue');
+        });
+
+        it('should return an object with "tailTransactions" prop', () => {
+            expect(normalizeBundle(bundle, addresses, tailTransactions, false)).to.include.keys('tailTransactions');
+        });
+
+        it('should only keep tail transactions of the same bundle', () => {
+            const normalizedBundle = normalizeBundle(bundle, addresses, tailTransactions, false);
+
+            const tailTransactionFromBundle = find(bundle, { currentIndex: 0 });
+            normalizedBundle.tailTransactions.forEach((tailTransaction) =>
+                expect(tailTransaction.hash).to.equal(tailTransactionFromBundle.hash),
+            );
+        });
+
+        it('should only have "hash" and "attachmentTimestamp" props in each object of "tailTransactions" prop', () => {
+            const normalizedBundle = normalizeBundle(bundle, addresses, tailTransactions, false);
+
+            normalizedBundle.tailTransactions.forEach((tailTransaction) =>
+                expect(keys(tailTransaction)).to.eql(['hash', 'attachmentTimestamp']),
+            );
+        });
+    });
+
+    describe('#mergeNewTransfers', () => {
+        describe('when bundle hash of new normalized transfer exists in existing normalized transfers', () => {
+            it('should add tail transactions of new tranfers to tail transactions in existing transfer', () => {
+                const existingNormalizedTransfers = {
+                    bundleHashOne: {
+                        tailTransactions: [
+                            {
+                                hash: 'YYY',
+                            },
+                            {
+                                hash: 'ZZZ',
+                            },
+                        ],
+                        bundle: 'bundleHashOne',
+                    },
+                    bundleHashTwo: {
+                        tailTransactions: [
+                            {
+                                hash: 'AAA',
+                            },
+                            {
+                                hash: 'FFF',
+                            },
+                        ],
+                        bundle: 'bundleHashTwo',
+                    },
+                };
+
+                const newNormalizedTransfers = {
+                    bundleHashTwo: {
+                        tailTransactions: [
+                            {
+                                hash: 'CCC',
+                            },
+                        ],
+                        bundle: 'bundleHashTwo',
+                    },
+                };
+
+                const mergedTransfers = {
+                    bundleHashOne: {
+                        tailTransactions: [
+                            {
+                                hash: 'YYY',
+                            },
+                            {
+                                hash: 'ZZZ',
+                            },
+                        ],
+                        bundle: 'bundleHashOne',
+                    },
+                    bundleHashTwo: {
+                        tailTransactions: [
+                            {
+                                hash: 'AAA',
+                            },
+                            {
+                                hash: 'FFF',
+                            },
+                            {
+                                hash: 'CCC',
+                            },
+                        ],
+                        bundle: 'bundleHashTwo',
+                    },
+                };
+
+                expect(mergeNewTransfers(newNormalizedTransfers, existingNormalizedTransfers)).to.eql(mergedTransfers);
+            });
+
+            it('should keep unique hash values of tail transactions', () => {
+                const existingNormalizedTransfers = {
+                    bundleHashOne: {
+                        tailTransactions: [
+                            {
+                                hash: 'YYY',
+                            },
+                            {
+                                hash: 'ZZZ',
+                            },
+                        ],
+                        bundle: 'bundleHashOne',
+                    },
+                    bundleHashTwo: {
+                        tailTransactions: [
+                            {
+                                hash: 'AAA',
+                            },
+                            {
+                                hash: 'FFF',
+                            },
+                        ],
+                        bundle: 'bundleHashTwo',
+                    },
+                };
+
+                const newNormalizedTransfers = {
+                    bundleHashTwo: {
+                        tailTransactions: [
+                            {
+                                hash: 'FFF',
+                            },
+                        ],
+                        bundle: 'bundleHashTwo',
+                    },
+                };
+
+                const mergedTransfers = {
+                    bundleHashOne: {
+                        tailTransactions: [
+                            {
+                                hash: 'YYY',
+                            },
+                            {
+                                hash: 'ZZZ',
+                            },
+                        ],
+                        bundle: 'bundleHashOne',
+                    },
+                    bundleHashTwo: {
+                        tailTransactions: [
+                            {
+                                hash: 'AAA',
+                            },
+                            {
+                                hash: 'FFF',
+                            },
+                        ],
+                        bundle: 'bundleHashTwo',
+                    },
+                };
+
+                expect(mergeNewTransfers(newNormalizedTransfers, existingNormalizedTransfers)).to.eql(mergedTransfers);
+            });
+        });
+
+        describe('when bundle hash of new normalized transfer does not exist in existing normalized transfers', () => {
+            it('should assign new normalized transfer to the existing normalized transfers', () => {
+                const existingNormalizedTransfers = {
+                    bundleHashOne: {
+                        tailTransactions: [
+                            {
+                                hash: 'YYY',
+                            },
+                            {
+                                hash: 'ZZZ',
+                            },
+                        ],
+                        bundle: 'bundleHashOne',
+                    },
+                    bundleHashTwo: {
+                        tailTransactions: [
+                            {
+                                hash: 'AAA',
+                            },
+                            {
+                                hash: 'FFF',
+                            },
+                        ],
+                        bundle: 'bundleHashTwo',
+                    },
+                };
+
+                const newNormalizedTransfers = {
+                    bundleHashThree: {
+                        tailTransactions: [
+                            {
+                                hash: 'CCC',
+                            },
+                        ],
+                        bundle: 'bundleHashThree',
+                    },
+                    bundleHashFour: {
+                        tailTransactions: [
+                            {
+                                hash: 'DDD',
+                            },
+                        ],
+                        bundle: 'bundleHashFour',
+                    },
+                };
+
+                const mergedTransfers = {
+                    bundleHashOne: {
+                        tailTransactions: [
+                            {
+                                hash: 'YYY',
+                            },
+                            {
+                                hash: 'ZZZ',
+                            },
+                        ],
+                        bundle: 'bundleHashOne',
+                    },
+                    bundleHashTwo: {
+                        tailTransactions: [
+                            {
+                                hash: 'AAA',
+                            },
+                            {
+                                hash: 'FFF',
+                            },
+                        ],
+                        bundle: 'bundleHashTwo',
+                    },
+                    bundleHashThree: {
+                        tailTransactions: [
+                            {
+                                hash: 'CCC',
+                            },
+                        ],
+                        bundle: 'bundleHashThree',
+                    },
+                    bundleHashFour: {
+                        tailTransactions: [
+                            {
+                                hash: 'DDD',
+                            },
+                        ],
+                        bundle: 'bundleHashFour',
+                    },
+                };
+
+                expect(mergeNewTransfers(newNormalizedTransfers, existingNormalizedTransfers)).to.eql(mergedTransfers);
+            });
+        });
+    });
+
+    describe('#categorizeBundleByInputsOutputs', () => {
+        let bundle;
+
+        beforeEach(() => {
+            bundle = [
+                {
+                    currentIndex: 0,
+                    value: 1,
+                    address: 'AWHJTOTMFXZUAVJAWHXULZJFTQNHYAIQHIDKOSTEMR9ZBHWFWDLIQYPHDKTVXYDJYRHKMXYLDUULJMMWW',
+                },
+                {
+                    currentIndex: 1,
+                    value: -2201,
+                    address: 'JMJHGMMVBEOWEVMEUYFYWJGZK9ITVBZAIWXITUANTYYLAKSHYRCZBBN9ULEDLRYITFNQMAUPZP9WMLEHB',
+                },
+                {
+                    currentIndex: 2,
+                    value: 0,
+                    address: 'JMJHGMMVBEOWEVMEUYFYWJGZK9ITVBZAIWXITUANTYYLAKSHYRCZBBN9ULEDLRYITFNQMAUPZP9WMLEHB',
+                },
+                {
+                    currentIndex: 3,
+                    value: 2201,
+                    address: 'GEFNJWYGCACGXYEXAS999VIRYWLJSAQJNRTSTDNOKKR9SULNXGHPVHCHJQVMIKEVJNKMEQMYMFZUXZPGC',
+                },
+            ];
+        });
+
+        it('should categorize non-remainder transaction objects with negative value to "inputs"', () => {
+            expect(categorizeBundleByInputsOutputs(bundle).inputs).to.eql([
+                {
+                    value: -2201,
+                    address: 'JMJHGMMVBEOWEVMEUYFYWJGZK9ITVBZAIWXITUANTYYLAKSHYRCZBBN9ULEDLRYITFNQMAUPZP9WMLEHB',
+                    checksum: 'MCDWJFKKC',
+                },
+            ]);
+        });
+
+        it('should categorize transaction objects with non-negative values to "outputs"', () => {
+            expect(categorizeBundleByInputsOutputs(bundle).outputs).to.eql([
+                {
+                    value: 1,
+                    address: 'AWHJTOTMFXZUAVJAWHXULZJFTQNHYAIQHIDKOSTEMR9ZBHWFWDLIQYPHDKTVXYDJYRHKMXYLDUULJMMWW',
+                    checksum: 'BQGLCYXGY',
+                },
+                {
+                    value: 0,
+                    address: 'JMJHGMMVBEOWEVMEUYFYWJGZK9ITVBZAIWXITUANTYYLAKSHYRCZBBN9ULEDLRYITFNQMAUPZP9WMLEHB',
+                    checksum: 'MCDWJFKKC',
+                },
+                {
+                    value: 2201,
+                    address: 'GEFNJWYGCACGXYEXAS999VIRYWLJSAQJNRTSTDNOKKR9SULNXGHPVHCHJQVMIKEVJNKMEQMYMFZUXZPGC',
+                    checksum: 'RYN9LQCEC',
+                },
+            ]);
         });
     });
 });
