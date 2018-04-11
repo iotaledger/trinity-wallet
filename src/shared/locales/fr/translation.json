@@ -79,6 +79,7 @@
         "autopromotingExplanation": "Promotion de la transaction de hash {{hash}}",
         "promoting": "Promotion du transfert",
         "promotionError": "Impossible de promouvoir la transaction",
+        "promotionErrorExplanation": "Une erreur est survenue pendant la promotion de votre transaction. Veuillez réessayer.",
         "noLongerValid": "Le paquet que vous essayez de promouvoir n'est plus valide",
         "cannotSendToOwn": "Envoi à votre propre adresse",
         "cannotSendToOwnExplanation": "Vous ne pouvez pas effectuer un transfert de fonds vers vos propres adresses.",
@@ -89,7 +90,11 @@
         "snapshotTransitionInProgressExplanation": "Veuillez patienter jusqu'à ce que la transition soit terminée.",
         "checkForUpdates": "Rechercher des mises à jour",
         "account": "Compte",
-        "enterPasswordToAccessSettings": "Entrez votre mot de passe pour accéder aux réglages de compte"
+        "enterPasswordToAccessSettings": "Entrez votre mot de passe pour accéder aux réglages de compte",
+        "changeNode": "Changer de serveur",
+        "addCustomNode": "Ajouter un serveur personnalisé",
+        "nodeChanged": "Serveur changé",
+        "nodeChangedExplanation": "Le serveur à été changé avec succès."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -157,7 +162,7 @@
         "enterPassword": "Veuillez saisir votre mot de passe.",
         "useSeed": "UTILISER LA SEED",
         "login": "SE CONNECTER",
-        "selectDifferentNode": "Voulez-vous sélectionner un serveur différent ?",
+        "selectDifferentNode": "Voulez-vous sélectionner un serveur différent ?",
         "setNode": "CONFIGURER UN SERVEUR",
         "cannotConnect": "Impossible de se connecter à un serveur IOTA."
     },
@@ -169,7 +174,7 @@
     },
     "newSeedSetup": {
         "seedNotGenerated": "La seed n'a pas été générée",
-        "seedNotGeneratedExplanation": "Veuillez générer un nouveau seed.",
+        "seedNotGeneratedExplanation": "Veuillez générer une nouvelle seed.",
         "pressForNewSeed": "NOUVELLE SEED",
         "individualLetters": "Rajoutez de l'aléatoire en cliquant sur des lettres isolées."
     },
@@ -290,7 +295,8 @@
         "fetchedConversionRatesExplanation": "Récupération des derniers taux de conversion pour {{currency}} réussie.",
         "undo": "Annuler",
         "redo": "Rétablir",
-        "about": "A propos de Trinity"
+        "about": "À propos de Trinity",
+        "lockScreenTimeout": "Délai pour le verrouillage de l'écran (Minutes)"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Introduisez votre mot de passe pour réinitialiser le portefeuille.",
@@ -302,7 +308,8 @@
         "doYouAlreadyHaveASeed": "Détenez-vous déjà une seed que vous désirez utiliser ?",
         "seedExplanation": "La seed IOTA est comme un nom d'utilisateur et un mot de passe combinés en une chaîne de 81 caractères.",
         "explanation": "<0><0>Vous pouvez l'utiliser pour accéder à vos fonds à partir de</0><1> n'importe quel portefeuille</1><2>, depuis</2><3> n'importe quel appareil</3><4>. Mais si vous perdez votre seed, vous perdez également vos IOTA.</4></0>",
-        "keepSafe": "Merci de garder votre Seed en sécurité."
+        "keepSafe": "Merci de garder votre Seed en sécurité.",
+        "hint": "<0><0>Astuce :</0> Cliquez sur NON si c'est la première fois que vous utilisez IOTA.</0>"
     },
     "welcome": {
         "thankYou": "Merci d’avoir téléchargé Trinity.",
@@ -340,7 +347,8 @@
         "selectNode": "Sélectionner un serveur",
         "addCustomNode": "Ajouter un serveur personnalisé",
         "manualSync": "Synchro manuelle",
-        "snapshotTransition": "Transition du Snapshot"
+        "snapshotTransition": "Transition du Snapshot",
+        "pow": "Proof of Work"
     },
     "advancedThemeCustomisation": {
         "background": "Arrière-plan",
@@ -366,8 +374,13 @@
         "thousand": "Mille",
         "one": "Un"
     },
+    "usedAddressModal": {
+        "cantSpendFullBalanceQuestion": "Pourquoi ne puis-je pas dépenser l'intégralité de mon solde ?",
+        "spentAddressExplanation": "Vous avez des fonds sur une ou plusieurs adresses utilisées pour des envois. La réutilisation d'adresse est dangereuse avec IOTA, donc ce portefeuille ne vous permet pas de réaliser des envois au départ d'une même adresse plus d'une fois.",
+        "discordInformation": "Veuillez vous rendre sur le canal #help de Discord pour savoir ce que vous pouvez faire."
+    },
     "deleteAccount": {
-        "areYouSure": "Êtes-vous certain de vouloir supprimer {{accountName}}?",
+        "areYouSure": "<0></0><1>Are you sure you want to delete</1><2></2><3>{{accountName}}?</3>",
         "yourSeedWillBeRemoved": "L’historique de vos seeds et de vos transactions sera supprimé.",
         "thisAction": "Cette action est irréversible.",
         "enterPassword": "Saisissez votre mot de passe pour supprimer ce compte."
@@ -436,7 +449,8 @@
     "chart": {
         "mcap": "MCAP",
         "change": "Variation",
-        "volume": "Volume (24h)"
+        "volume": "Volume (24h)",
+        "currentValue": "Valeur acutelle"
     },
     "rootDetection": {
         "warning": "ATTENTION",
@@ -455,7 +469,7 @@
         "syncingAccount": "Synchronisation du compte",
         "preparingInputs": "Préparation des entrées",
         "preparingTransfers": "Préparation des transferts",
-        "gettingTransactionsToApprove": "Réception de transactions à valider",
+        "gettingTransactionsToApprove": "Réception des transactions à valider",
         "proofOfWork": "Finalisation de la preuve de travail",
         "broadcasting": "Diffusion en cours"
     },
@@ -464,5 +478,19 @@
         "cannotCompleteTransitionExplanation": "Votre solde doit être supérieur à 0 pour terminer la transition.",
         "transitionComplete": "Transition du snapshot terminée",
         "transitionCompleteExplanation": "La transition du snapshot s'est terminée avec succès."
+    },
+    "deepLink": {
+        "autofill": "Remplissage automatique",
+        "autofillExplanation": "Remplissage automatique des transactions depuis les liens."
+    },
+    "updates": {
+        "errorRetrievingUpdateData": "Erreur lors de la récupération des données de mise à jour",
+        "errorRetrievingUpdateDataExplanation": "Une erreur s'est produite lors de la récupération des données de mise à jour. Veuillez réessayer.",
+        "noUpdatesAvailable": "Aucune mise à jour disponible",
+        "noUpdatesAvailableExplanation": "Vous avez déjà la dernière version du portefeuille IOTA Trinity !",
+        "newVersionAvailable": "Une nouvelle version est disponible",
+        "newVersionAvailableExplanation": "Une nouvelle version <strong>{{version}}</strong> <strong>de Trinity</strong> est disponible. Veuillez lire les détails de la version attentivement et vérifier la source du téléchargement avant la mise à jour :",
+        "downloadRelease": "Télécharger la version",
+        "skipUpdate": "Passer la mise a jour"
     }
 }
