@@ -1,12 +1,13 @@
 import 'babel-polyfill';
 import { generateNewAddress } from 'actions/wallet';
 import { getAccountInfo, getFullAccountInfoFirstSeed, getFullAccountInfoAdditionalSeed } from 'actions/accounts';
-import { changeIotaNode } from 'libs/iota';
+import { changeIotaNode, SwitchingConfig } from 'libs/iota';
 import { defaultNode } from 'config';
 
 let state = {
     settings: {
         node: defaultNode,
+        autoNodeSwitching: true,
     },
 };
 
@@ -17,6 +18,10 @@ const actions = {
     getFullAccountInfoAdditionalSeed,
 };
 
+// A special dispatch function which either runs
+// the given action (if it's a function) or returns the final
+// return value to the main app's listener, so that those values
+// are applied to the main Redux store.
 const dispatch = (action) => {
     if (typeof action === 'function') {
         action(dispatch, getState);
@@ -28,20 +33,41 @@ const dispatch = (action) => {
     }
 };
 
+const nodeSwitchedCallback = (newNode) => {
+    self.postMessage({
+        type: 'updateNode',
+        action: newNode,
+    });
+};
+
+// automatically inform the main app, when this instance of
+// the iota library automatically changed node
+SwitchingConfig.callbacks.push(nodeSwitchedCallback);
+
 const getState = () => {
     return state;
 };
 
+// Listen for new messages to process
 self.onmessage = ({ data }) => {
     const { type, payload } = data;
 
     switch (type) {
+        // Update the state of the Worker Redux store
+        // to correspond with the main app's one.
         case 'setState':
             if (state.settings.node !== payload.settings.node) {
                 changeIotaNode(payload.settings.node);
             }
+            if (SwitchingConfig.autoSwitch !== payload.settings.autoNodeSwitching) {
+                SwitchingConfig.autoSwitch = payload.settings.autoNodeSwitching;
+            }
             state = payload;
             break;
+        case 'updateNode':
+            changeIotaNode(payload);
+            break;
+        // Execute the given action
         default:
             if (typeof actions[type] === 'function') {
                 actions[type](...payload)(dispatch, getState);
