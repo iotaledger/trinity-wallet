@@ -146,6 +146,7 @@ class WalletResetRequirePassword extends Component {
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
+                    topBarElevationShadowEnabled: false,
                     screenBackgroundColor: body.bg,
                     statusBarColor: body.bg,
                     drawUnderStatusBar: true,
