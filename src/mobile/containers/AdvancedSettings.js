@@ -156,7 +156,7 @@ class AdvancedSettings extends PureComponent {
                         >
                             <View style={styles.item}>
                                 <Icon name="pow" size={width / 22} color={bodyColor} />
-                                <Text style={[styles.titleText, textColor]}>Proof of Work</Text>
+                                <Text style={[styles.titleText, textColor]}>{t('pow')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
