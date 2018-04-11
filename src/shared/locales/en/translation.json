@@ -97,7 +97,9 @@
         "changeNode": "Change node",
         "addCustomNode": "Add custom node",
         "nodeChanged": "Node changed",
-        "nodeChangedExplanation": "The node has been changed successfully."
+        "nodeChangedExplanation": "The node has been changed successfully.",
+        "nodeAutoChanged": "Auto. switched node",
+        "nodeAutoChangedExplanation": "Switched to new node as selected one is offline."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
@@ -317,7 +319,8 @@
         "undo": "Undo",
         "redo": "Redo",
         "about": "About Trinity",
-        "lockScreenTimeout": "Lock Screen Timeout (Minutes)"
+        "lockScreenTimeout": "Lock Screen Timeout (Minutes)",
+        "autoNodeSwitching": "Automatically switch node when selected is unreachable"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",
