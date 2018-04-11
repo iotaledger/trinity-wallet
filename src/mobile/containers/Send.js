@@ -5,11 +5,16 @@ import reduce from 'lodash/reduce';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { iota } from 'iota-wallet-shared-modules/libs/iota';
-import { sendAmount } from 'iota-wallet-shared-modules/actions/deepLinks';
 import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
-import { isValidAddress, isValidMessage, isValidAmount, VALID_ADDRESS_WITH_CHECKSUM_REGEX, VALID_SEED_REGEX, ADDRESS_LENGTH } from 'iota-wallet-shared-modules/libs/iota/utils';
+import {
+    isValidAddress,
+    isValidMessage,
+    isValidAmount,
+    VALID_ADDRESS_WITH_CHECKSUM_REGEX,
+    VALID_SEED_REGEX,
+    ADDRESS_LENGTH,
+} from 'iota-wallet-shared-modules/libs/iota/utils';
 import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
 import {
     getFromKeychainRequest,
@@ -143,7 +148,6 @@ export class Send extends Component {
         timeTakenByEachProgressStep: PropTypes.array.isRequired,
         password: PropTypes.string.isRequired,
         generateTransferErrorAlert: PropTypes.func.isRequired,
-        deepLinks: PropTypes.object.isRequired,
     };
 
     constructor(props) {
@@ -176,32 +180,13 @@ export class Send extends Component {
         }
     }
 
-    refreshDeepLinkValues = (props) => {
-        if (props.address.length > 0 && props.address !== this.props.address) {
-            let amountStr = props.amount.toString();
-            this.props.setSendAmountField(amountStr);
-            this.props.setSendAddressField(props.address);
-            this.props.setSendMessageField(props.message);
-            this.validadeDeepLink(props.address);
-        }
-    };
-
-    validadeDeepLink(address) {
-        if (address !== '') {
-            const { generateAlert } = this.props;
-            generateAlert('success', 'Autofill', 'Transaction data autofilled from link.');
-        }
-    }
-
     componentDidMount() {
-        this.refreshDeepLinkValues(this.props.deepLinks);
         if (!this.props.isSendingTransfer) {
             this.props.resetProgress();
         }
     }
 
     componentWillReceiveProps(newProps) {
-        this.refreshDeepLinkValues(this.props.deepLinks);
         const { seedIndex, isSendingTransfer } = this.props;
 
         if (!isSendingTransfer && newProps.isSendingTransfer) {
@@ -307,7 +292,7 @@ export class Send extends Component {
     }
 
     onSendPress() {
-        const { t, amount, address, message, denomination } = this.props;
+        const { t, amount, address, balance, message, denomination } = this.props;
         const { currencySymbol } = this.state;
 
         const multiplier = this.getUnitMultiplier();
@@ -883,7 +868,6 @@ const mapStateToProps = (state) => ({
     activeSteps: state.progress.activeSteps,
     timeTakenByEachProgressStep: state.progress.timeTakenByEachStep,
     remotePoW: state.settings.remotePoW,
-    deepLinks: state.deepLinks,
     password: state.wallet.password,
 });
 
@@ -900,7 +884,6 @@ const mapDispatchToProps = {
     resetProgress,
     startTrackingProgress,
     generateTransferErrorAlert,
-    sendAmount,
 };
 
 export default translate(['send', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Send));
