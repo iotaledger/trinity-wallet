@@ -78,7 +78,8 @@
         "autopromoting": "Automatická podpora transferu",
         "autopromotingExplanation": "Podpora transakcií z hash {{hash}}",
         "promoting": "Podpora transakcie",
-        "promotionError": "Podpora transakcie zlyhala",
+        "promotionError": "Nepodarilo sa podporiť transakciu",
+        "promotionErrorExplanation": "Something went wrong while promoting your transaction. Please try again.",
         "noLongerValid": "Balíček, ktorý sa snažíte podporiť, už nie je platný",
         "cannotSendToOwn": "Odosielanie na vlastnú adresu",
         "cannotSendToOwnExplanation": "Nemôžete previesť čiastku na vlastné adresy.",
@@ -89,7 +90,11 @@
         "snapshotTransitionInProgressExplanation": "Počkajte, kým prebehne aktualizácia údajov po snapshote.",
         "checkForUpdates": "Kontrola aktualizácií",
         "account": "Účet",
-        "enterPasswordToAccessSettings": "Pre prístup k nastaveniam účtu zadajte Vaše heslo"
+        "enterPasswordToAccessSettings": "Pre prístup k nastaveniam účtu zadajte Vaše heslo",
+        "changeNode": "Change node",
+        "addCustomNode": "Add custom node",
+        "nodeChanged": "Node changed",
+        "nodeChangedExplanation": "The node has been changed successfully."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
@@ -163,7 +168,7 @@
     },
     "loading": {
         "loadingFirstTime": "Prvotné načítanie Seedu.",
-        "thisMayTake": "Môže to chvíľu trvat.",
+        "thisMayTake": "Môže to chvíľu trvať.",
         "doNotMinimise": "Neminimalizujte, ani nezatvárajte aplikáciu.",
         "youMayNotice": "Môžete zaregistrovať spomalenie Vášho zariadenia."
     },
@@ -290,7 +295,8 @@
         "fetchedConversionRatesExplanation": "Najnovšie konverzné kurzy pre {{currency}} úspešne načítané.",
         "undo": "Zrušiť",
         "redo": "Znova",
-        "about": "O Trinity"
+        "about": "O Trinity",
+        "lockScreenTimeout": "Lock Screen Timeout (Minutes)"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Pre zmazanie peňaženky zadajte Vaše heslo.",
@@ -302,7 +308,8 @@
         "doYouAlreadyHaveASeed": "Máte už vlastný seed, ktorý by ste chceli použiť?",
         "seedExplanation": "IOTA seed je niečo ako Vaše užívateľské meno a zároveň heslo k Vášmu účtu, spojené do jedného reťazca 81 znakov.",
         "explanation": "<0><0>Môžete ho použiť na prístup k svojim prostriedkom z</0> <1>akejkoľvek peňaženky</1> <2>, na</2> <3>na akomkoľvek zariadení</3> <4>. Ak však stratíte svoj seed, stratíte tiež všetky Vaše IOTA.</4></0>",
-        "keepSafe": "Svoj seed prosím uchovávajte v bezpečí."
+        "keepSafe": "Svoj seed prosím uchovávajte v bezpečí.",
+        "hint": "<0><0>Hint:</0> Click NO if this is your first time using IOTA.</0>"
     },
     "welcome": {
         "thankYou": "Ďakujeme, že ste si stiahli Trinity.",
@@ -340,7 +347,8 @@
         "selectNode": "Vybrať uzol",
         "addCustomNode": "Pridať vlastný uzol",
         "manualSync": "Manuálna synchronizácia",
-        "snapshotTransition": "Aktualizácia údajov po Snapshote"
+        "snapshotTransition": "Aktualizácia údajov po Snapshote",
+        "pow": "Proof of Work"
     },
     "advancedThemeCustomisation": {
         "background": "Pozadie",
@@ -366,8 +374,13 @@
         "thousand": "Tisíc",
         "one": "Jedna"
     },
+    "usedAddressModal": {
+        "cantSpendFullBalanceQuestion": "Why can't I spend my full balance?",
+        "spentAddressExplanation": "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
+        "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
+    },
     "deleteAccount": {
-        "areYouSure": "Naozaj chcete odstrániť {{accountName}}?",
+        "areYouSure": "<0></0><1>Are you sure you want to delete</1><2></2><3>{{accountName}}?</3>",
         "yourSeedWillBeRemoved": "Váš Seed a história transakcií budú odstránené.",
         "thisAction": "Tento účet nie je možné obnoviť.",
         "enterPassword": "Pre zmazanie účtu vložte svoje heslo."
@@ -436,7 +449,8 @@
     "chart": {
         "mcap": "MCAP",
         "change": "Zmena",
-        "volume": "Objem (24h)"
+        "volume": "Objem (24h)",
+        "currentValue": "Current value"
     },
     "rootDetection": {
         "warning": "VAROVANIE",
@@ -464,5 +478,19 @@
         "cannotCompleteTransitionExplanation": "Pre dokončenie aktualizácie údajov po snapshote musí byť zostatok na Vašom konte väčší ako 0.",
         "transitionComplete": "Aktualizácia údajov po snapshote je kompletná",
         "transitionCompleteExplanation": "Aktualizácia údajov po snapshote prebehla úspešne."
+    },
+    "deepLink": {
+        "autofill": "Autofill",
+        "autofillExplanation": "Transaction data autofilled from link."
+    },
+    "updates": {
+        "errorRetrievingUpdateData": "Error retreiving update data",
+        "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
+        "noUpdatesAvailable": "No updates available",
+        "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
+        "newVersionAvailable": "New version available",
+        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
+        "downloadRelease": "Download release",
+        "skipUpdate": "Skip update"
     }
 }
