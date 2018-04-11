@@ -164,27 +164,31 @@ describe('libs: iota/transfers', () => {
     describe('#markTransfersConfirmed', () => {
         describe('when second argument passed is empty, null or undefined', () => {
             it('should return first argument', () => {
-                expect(markTransfersConfirmed([{}], null)).to.eql([{}]);
-                expect(markTransfersConfirmed([{}], undefined)).to.eql([{}]);
-                expect(markTransfersConfirmed([{}], [])).to.eql([{}]);
+                expect(markTransfersConfirmed({}, null)).to.eql({});
+                expect(markTransfersConfirmed({}, undefined)).to.eql({});
+                expect(markTransfersConfirmed({}, [])).to.eql({});
             });
         });
 
         describe('when second argument passed is not an empty array', () => {
             it('should assign persistence true to those objects that have any tail transaction hash in second argument array', () => {
-                const transfers = [
-                    { persistence: false, tailTransactions: [{ hash: 'UUU' }] },
-                    { persistence: false, tailTransactions: [{ hash: 'XXX' }] },
-                ];
-
+                const normalizedTransfers = {
+                    bundleHashOne: {
+                        persistence: false, tailTransactions: [{ hash: 'UUU' }]
+                    },
+                    bundleHashTwo: {
+                         persistence: false, tailTransactions: [{ hash: 'XXX' }]
+                    }
+                };
+                
                 const confirmedTransactionsHashes = ['XXX'];
 
-                const result = [
-                    { persistence: false, tailTransactions: [{ hash: 'UUU' }] },
-                    { persistence: true, tailTransactions: [{ hash: 'XXX' }] },
-                ];
+                const result = {
+                    bundleHashOne: { persistence: false, tailTransactions: [{ hash: 'UUU' }] },
+                    bundleHashTwo: { persistence: true, tailTransactions: [{ hash: 'XXX' }] },
+                };
 
-                expect(markTransfersConfirmed(transfers, confirmedTransactionsHashes)).to.eql(result);
+                expect(markTransfersConfirmed(normalizedTransfers, confirmedTransactionsHashes)).to.eql(result);
             });
         });
     });
