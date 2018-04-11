@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, KeyboardAvoidingView, Animated, Keyboard } from 'react-native';
+import {Linking, StyleSheet, View, KeyboardAvoidingView, Animated, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import { changeHomeScreenRoute, toggleTopBarDisplay } from 'iota-wallet-shared-modules/actions/home';
 import { setPassword, setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { setUserActivity } from 'iota-wallet-shared-modules/actions/ui';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import { parseAddress } from 'iota-wallet-shared-modules/libs/iota/utils';
+import { sendAmount } from 'iota-wallet-shared-modules/actions/deepLinks';
 import { getPasswordHash } from '../utils/crypto';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import UserInactivity from '../components/UserInactivity';
@@ -82,6 +84,8 @@ class Home extends Component {
         theme: PropTypes.object.isRequired,
         isTopBarActive: PropTypes.bool.isRequired,
         toggleTopBarDisplay: PropTypes.func.isRequired,
+        sendAmount: PropTypes.func.isRequired,
+
     };
 
     constructor(props) {
@@ -102,7 +106,24 @@ class Home extends Component {
     }
 
     componentDidMount() {
+        this.onSetDeepUrl = this.setDeepUrl.bind(this);
+        Linking.addEventListener('url', this.onSetDeepUrl);
+
         this.userInactivity.setActiveFromComponent();
+    }
+
+
+    setDeepUrl(data) {
+        const { generateAlert, t } = this.props;
+
+        const parsedData = parseAddress(data.url);
+
+        if (parsedData) {
+            this.props.sendAmount(parsedData.amount || 0, parsedData.address, parsedData.message || null);
+            this.props.changeHomeScreenRoute('send');
+        } else {
+            generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation1'));
+        }
     }
 
     shouldComponentUpdate(newProps) {
@@ -228,73 +249,73 @@ class Home extends Component {
                 <View style={{ flex: 1, backgroundColor: body.bg }}>
                     <DynamicStatusBar backgroundColor={bar.bg} />
                     {!inactive &&
-                        !minimised && (
-                            <View style={{ flex: 1 }}>
-                                <KeyboardAvoidingView
-                                    style={styles.midContainer}
-                                    behavior={isAndroid ? null : 'padding'}
-                                >
-                                    <Animated.View useNativeDriver style={{ flex: this.viewFlex }} />
-                                    <View style={{ flex: 4.72 }}>
-                                        <TabContent
-                                            navigator={navigator}
-                                            onTabSwitch={(name) => this.onTabSwitch(name)}
-                                            handleCloseTopBar={() => this.handleCloseTopBar()}
-                                        />
-                                    </View>
-                                </KeyboardAvoidingView>
-                                <View style={styles.bottomContainer}>
-                                    <Tabs onPress={(name) => this.onTabSwitch(name)} barBg={bar.bg}>
-                                        <Tab
-                                            name="balance"
-                                            icon="wallet"
-                                            iconColor={bar.color}
-                                            activeBorderColor={primary.color}
-                                            activeColor={bar.alt}
-                                            textColor={barTextColor}
-                                            text={t('home:balance').toUpperCase()}
-                                        />
-                                        <Tab
-                                            name="send"
-                                            icon="send"
-                                            iconColor={bar.color}
-                                            activeBorderColor={primary.color}
-                                            activeColor={bar.alt}
-                                            textColor={barTextColor}
-                                            text={t('home:send').toUpperCase()}
-                                        />
-                                        <Tab
-                                            name="receive"
-                                            icon="receive"
-                                            iconColor={bar.color}
-                                            activeBorderColor={primary.color}
-                                            activeColor={bar.alt}
-                                            textColor={barTextColor}
-                                            text={t('home:receive').toUpperCase()}
-                                        />
-                                        <Tab
-                                            name="history"
-                                            icon="history"
-                                            iconColor={bar.color}
-                                            activeBorderColor={primary.color}
-                                            activeColor={bar.alt}
-                                            textColor={barTextColor}
-                                            text={t('home:history').toUpperCase()}
-                                        />
-                                        <Tab
-                                            name="settings"
-                                            icon="settings"
-                                            iconColor={bar.color}
-                                            activeBorderColor={primary.color}
-                                            activeColor={bar.alt}
-                                            textColor={barTextColor}
-                                            text={t('home:settings').toUpperCase()}
-                                        />
-                                    </Tabs>
+                    !minimised && (
+                        <View style={{ flex: 1 }}>
+                            <KeyboardAvoidingView
+                                style={styles.midContainer}
+                                behavior={isAndroid ? null : 'padding'}
+                            >
+                                <Animated.View useNativeDriver style={{ flex: this.viewFlex }} />
+                                <View style={{ flex: 4.72 }}>
+                                    <TabContent
+                                        navigator={navigator}
+                                        onTabSwitch={(name) => this.onTabSwitch(name)}
+                                        handleCloseTopBar={() => this.handleCloseTopBar()}
+                                    />
                                 </View>
-                                <TopBar isIOSKeyboardActive={isIOSKeyboardActive} topBarHeight={this.topBarHeight} />
+                            </KeyboardAvoidingView>
+                            <View style={styles.bottomContainer}>
+                                <Tabs onPress={(name) => this.onTabSwitch(name)} barBg={bar.bg}>
+                                    <Tab
+                                        name="balance"
+                                        icon="wallet"
+                                        iconColor={bar.color}
+                                        activeBorderColor={primary.color}
+                                        activeColor={bar.alt}
+                                        textColor={barTextColor}
+                                        text={t('home:balance').toUpperCase()}
+                                    />
+                                    <Tab
+                                        name="send"
+                                        icon="send"
+                                        iconColor={bar.color}
+                                        activeBorderColor={primary.color}
+                                        activeColor={bar.alt}
+                                        textColor={barTextColor}
+                                        text={t('home:send').toUpperCase()}
+                                    />
+                                    <Tab
+                                        name="receive"
+                                        icon="receive"
+                                        iconColor={bar.color}
+                                        activeBorderColor={primary.color}
+                                        activeColor={bar.alt}
+                                        textColor={barTextColor}
+                                        text={t('home:receive').toUpperCase()}
+                                    />
+                                    <Tab
+                                        name="history"
+                                        icon="history"
+                                        iconColor={bar.color}
+                                        activeBorderColor={primary.color}
+                                        activeColor={bar.alt}
+                                        textColor={barTextColor}
+                                        text={t('home:history').toUpperCase()}
+                                    />
+                                    <Tab
+                                        name="settings"
+                                        icon="settings"
+                                        iconColor={bar.color}
+                                        activeBorderColor={primary.color}
+                                        activeColor={bar.alt}
+                                        textColor={barTextColor}
+                                        text={t('home:settings').toUpperCase()}
+                                    />
+                                </Tabs>
                             </View>
-                        )}
+                            <TopBar isIOSKeyboardActive={isIOSKeyboardActive} topBarHeight={this.topBarHeight} />
+                        </View>
+                    )}
                     {inactive && (
                         <View style={[styles.inactivityLogoutContainer, { backgroundColor: body.bg }]}>
                             <EnterPassword
@@ -336,6 +357,7 @@ const mapDispatchToProps = {
     setUserActivity,
     setSetting,
     toggleTopBarDisplay,
+    sendAmount,
 };
 
 export default WithUserActivity()(

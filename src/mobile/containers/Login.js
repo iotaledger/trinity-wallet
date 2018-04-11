@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import authenticator from 'authenticator';
 import PropTypes from 'prop-types';
 import KeepAwake from 'react-native-keep-awake';
-import { StyleSheet, View } from 'react-native';
 import { Navigation } from 'react-native-navigation';
+import {Linking, Platform, StyleSheet, View} from 'react-native';
 import { setFullNode } from 'iota-wallet-shared-modules/actions/settings';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
 import { setPassword, setSetting } from 'iota-wallet-shared-modules/actions/wallet';
@@ -23,6 +23,8 @@ import { getPasswordHash } from '../utils/crypto';
 import { migrate } from '../../shared/actions/app';
 import { persistor, persistConfig } from '../store';
 import { width, height } from '../utils/dimensions';
+import { parseAddress } from 'iota-wallet-shared-modules/libs/iota/utils';
+import { sendAmount } from 'iota-wallet-shared-modules/actions/deepLinks';
 
 const styles = StyleSheet.create({
     container: {
@@ -85,6 +87,14 @@ class Login extends Component {
          * @param {string} node
          */
         t: PropTypes.func.isRequired,
+        /** Navigation object */
+        navigator: PropTypes.object.isRequired,
+        /** Send deepLink (send amount params)
+         * @param {string} - amount
+         * @param {string} - address
+         * @param {string} - message
+         */
+        sendAmount: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -93,6 +103,7 @@ class Login extends Component {
         this.state = {
             changingNode: false,
             completing2FA: false,
+            deepLinkStats: false,
         };
 
         this.onComplete2FA = this.onComplete2FA.bind(this);
@@ -102,9 +113,24 @@ class Login extends Component {
     }
 
     componentDidMount() {
+        this.onSetDeepUrl = this.setDeepUrl.bind(this);
+        Linking.addEventListener('url', this.onSetDeepUrl);
         this.checkForUpdates();
         KeepAwake.deactivate();
         this.props.setUserActivity({ inactive: false });
+    }
+
+    setDeepUrl(data) {
+        this.state.deepLinkStats = true;
+        const { generateAlert, t } = this.props;
+
+        const parsedData = parseAddress(data.url);
+
+        if (parsedData) {
+            this.props.sendAmount(parsedData.amount || 0, parsedData.address, parsedData.message || null);
+        } else {
+            generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation1'));
+        }
     }
 
     async onLoginPress(password) {
@@ -191,6 +217,7 @@ class Login extends Component {
                     drawUnderStatusBar: true,
                 },
                 overrideBackPress: true,
+                passProps: { deepLinkSent: this.state.deepLinkStats }
             },
             appStyle: {
                 orientation: 'portrait',
@@ -248,6 +275,7 @@ const mapDispatchToProps = {
     setUserActivity,
     migrate,
     setLoginPasswordField,
+    sendAmount,
 };
 
 export default WithBackPressCloseApp()(

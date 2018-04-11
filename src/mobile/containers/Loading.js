@@ -171,7 +171,11 @@ class Loading extends Component {
             this.animateElipses(['.', '..', ''], 0);
         }
         KeepAwake.activate();
-        this.props.changeHomeScreenRoute('balance');
+        if (this.props.deepLinkSent === false) {
+            this.props.changeHomeScreenRoute('balance');
+        } else {
+            this.props.changeHomeScreenRoute('send');
+        }
         this.props.setSetting('mainSettings');
 
         let genFn = null;
