@@ -437,20 +437,6 @@
 			remoteGlobalIDString = 78510E1974839EACED295CFC857494F6;
 			remoteInfo = RNIsDeviceRooted;
 		};
-		CB2C1864207D10A100C54F40 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 33AC314FF1C9CE4F19E8E899E79675B4 /* React.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EBF21BDC1FC498900052F4D5;
-			remoteInfo = jsinspector;
-		};
-		CB2C1866207D10A100C54F40 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 33AC314FF1C9CE4F19E8E899E79675B4 /* React.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EBF21BFA1FC4989A0052F4D5;
-			remoteInfo = "jsinspector-tvOS";
-		};
 		CBC5562B207BA79E00BA0A7F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B8B9BB680BF96F04B35C8CF2291F3DF7 /* Lottie.xcodeproj */;
@@ -1135,8 +1121,6 @@
 				9D772B812DB6C05ECF25775FCAB7E002 /* libcxxreact.a */,
 				CBC55660207BA79E00BA0A7F /* libjschelpers.a */,
 				4638EBE17A0D3826A792DF9563570526 /* libjschelpers.a */,
-				CB2C1865207D10A100C54F40 /* libjsinspector.a */,
-				CB2C1867207D10A100C54F40 /* libjsinspector-tvOS.a */,
 				CBC55662207BA79E00BA0A7F /* libthird-party.a */,
 				A449CDAA92C2C98ABDF0AE5690864303 /* libthird-party.a */,
 				9DBC3C8E34A01D88134F4A69AA32625F /* libdouble-conversion.a */,
@@ -1925,20 +1909,6 @@
 			fileType = archive.ar;
 			path = libRNDeviceInfo.a;
 			remoteRef = 53DB1F47FFBD018460D6B3F399D77096 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		CB2C1865207D10A100C54F40 /* libjsinspector.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libjsinspector.a;
-			remoteRef = CB2C1864207D10A100C54F40 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		CB2C1867207D10A100C54F40 /* libjsinspector-tvOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libjsinspector-tvOS.a";
-			remoteRef = CB2C1866207D10A100C54F40 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		CBC5562C207BA79E00BA0A7F /* Lottie.framework */ = {
