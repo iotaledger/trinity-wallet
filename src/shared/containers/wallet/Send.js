@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { generateAlert } from '../../actions/alerts';
 
-import { sendAmount } from '../../actions/deepLinks';
+import { setDeepLink } from '../../actions/deepLink';
 import { makeTransaction } from '../../actions/transfers';
 import { getSelectedAccountName, getBalanceForSelectedAccount } from '../../selectors/accounts';
 import { VALID_SEED_REGEX, ADDRESS_LENGTH } from '../../libs/iota/utils';
@@ -29,7 +29,7 @@ export default function withSendData(SendComponent) {
             theme: PropTypes.object.isRequired,
             t: PropTypes.func.isRequired,
             deepLinks: PropTypes.object.isRequired,
-            sendAmount: PropTypes.func.isRequired,
+            setDeepLink: PropTypes.func.isRequired,
         };
 
         componentWillMount() {
@@ -51,7 +51,11 @@ export default function withSendData(SendComponent) {
             const { generateAlert, balance, t } = this.props;
 
             if (address.length !== ADDRESS_LENGTH) {
-                generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation1', { maxLength: ADDRESS_LENGTH }));
+                generateAlert(
+                    'error',
+                    t('send:invalidAddress'),
+                    t('send:invalidAddressExplanation1', { maxLength: ADDRESS_LENGTH }),
+                );
                 return false;
             }
 
@@ -94,7 +98,7 @@ export default function withSendData(SendComponent) {
         };
 
         render() {
-            const { balance, settings, marketData, wallet, ui, theme, t, deepLinks, sendAmount } = this.props;
+            const { balance, settings, marketData, wallet, ui, theme, t, setDeepLink } = this.props;
 
             const sendProps = {
                 isSending: ui.isSendingTransfer,
@@ -110,8 +114,7 @@ export default function withSendData(SendComponent) {
                 balance,
                 theme,
                 t,
-                deepLinkAmount: deepLinks,
-                sendAmount: sendAmount,
+                setDeepLink,
             };
 
             return <SendComponent {...sendProps} />;
@@ -135,7 +138,7 @@ export default function withSendData(SendComponent) {
     const mapDispatchToProps = {
         generateAlert,
         makeTransaction,
-        sendAmount,
+        setDeepLink,
     };
 
     return translate()(connect(mapStateToProps, mapDispatchToProps)(SendData));
