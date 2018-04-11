@@ -129,7 +129,11 @@ export class EditAccountName extends Component {
                     });
 
                     this.props.setSetting('accountManagement');
-                    this.props.generateAlert('success', t('nicknameChanged'), t('nicknameChangedExplanation'));
+                    this.props.generateAlert(
+                        'success',
+                        t('settings:nicknameChanged'),
+                        t('settings:nicknameChangedExplanation'),
+                    );
                 })
                 .catch((err) => console.log(err)); // eslint-disable-line no-console
         }
