@@ -78,7 +78,8 @@
         "autopromoting": "Promovendo transferência automaticamente",
         "autopromotingExplanation": "Promovendo transação com hash {{hash}}",
         "promoting": "Promovendo a transferência",
-        "promotionError": "A transação não pode ser criada",
+        "promotionError": "Could not promote transfer",
+        "promotionErrorExplanation": "Something went wrong while promoting your transaction. Please try again.",
         "noLongerValid": "O pacote que você está tentando criar não é mais válido",
         "cannotSendToOwn": "Enviando para próprio endereço",
         "cannotSendToOwnExplanation": "Você não pode fazer uma transferência de valor para um dos seus próprios endereços.",
@@ -89,7 +90,11 @@
         "snapshotTransitionInProgressExplanation": "Por favor, aguarde até a transição ser finalizada.",
         "checkForUpdates": "Verificar Atualizações",
         "account": "Conta",
-        "enterPasswordToAccessSettings": "Informe sua Senha par acessar as opções da conta"
+        "enterPasswordToAccessSettings": "Informe sua Senha par acessar as opções da conta",
+        "changeNode": "Change node",
+        "addCustomNode": "Add custom node",
+        "nodeChanged": "Node changed",
+        "nodeChangedExplanation": "The node has been changed successfully."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém caracteres inválidos",
@@ -290,7 +295,8 @@
         "fetchedConversionRatesExplanation": "As taxas de câmbio foram obtidas com sucesso para {{currency}}.",
         "undo": "Desfazer",
         "redo": "Refazer",
-        "about": "Sobre a Trinity"
+        "about": "Sobre a Trinity",
+        "lockScreenTimeout": "Lock Screen Timeout (Minutes)"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Digite sua senha para redefinir a carteira.",
@@ -302,7 +308,8 @@
         "doYouAlreadyHaveASeed": "Já possui uma Seed que gostaria de utilizar?",
         "seedExplanation": "A Seed IOTA representa, simultaneamente, o nome do usuário e a senha de sua conta, combinados em uma sequência de 81 caracteres.",
         "explanation": "<0><0>Você pode usá-la para acessar seus fundos a partir de</0><1> qualquer carteira</1><2>, em </2><3>qualquer dispositivo</3><4>. Mas se você perder sua Seed, também perderá as suas IOTAs.</4></0>",
-        "keepSafe": "Por favor, mantenha a sua Seed protegida e segura."
+        "keepSafe": "Por favor, mantenha a sua Seed protegida e segura.",
+        "hint": "<0><0>Hint:</0> Click NO if this is your first time using IOTA.</0>"
     },
     "welcome": {
         "thankYou": "Obrigado por baixar a Trinity.",
@@ -340,7 +347,8 @@
         "selectNode": "Selecionar servidor",
         "addCustomNode": "Adicionar servidor personalizado",
         "manualSync": "Sincronização manual",
-        "snapshotTransition": "Transição de snapshot"
+        "snapshotTransition": "Transição de snapshot",
+        "pow": "Proof of Work"
     },
     "advancedThemeCustomisation": {
         "background": "Plano de Fundo",
@@ -366,8 +374,13 @@
         "thousand": "Mil",
         "one": "Um"
     },
+    "usedAddressModal": {
+        "cantSpendFullBalanceQuestion": "Why can't I spend my full balance?",
+        "spentAddressExplanation": "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
+        "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
+    },
     "deleteAccount": {
-        "areYouSure": "Tem certeza que deseja excluir a conta: {{accountName}}?",
+        "areYouSure": "<0></0><1>Are you sure you want to delete</1><2></2><3>{{accountName}}?</3>",
         "yourSeedWillBeRemoved": "Sua Seed e histórico de transações serão removidos.",
         "thisAction": "Esta operação não pode ser desfeita.",
         "enterPassword": "Por favor, digite sua senha para excluir esta conta."
@@ -436,7 +449,8 @@
     "chart": {
         "mcap": "MCAP",
         "change": "Variação",
-        "volume": "Volume (24h)"
+        "volume": "Volume (24h)",
+        "currentValue": "Current value"
     },
     "rootDetection": {
         "warning": "ATENÇÃO",
@@ -464,5 +478,19 @@
         "cannotCompleteTransitionExplanation": "Seu saldo deve ser maior que 0 (zero) para completar esta transação.",
         "transitionComplete": "Transição de registro instantâneo concluída",
         "transitionCompleteExplanation": "A transição do registro instantâneo foi concluída com sucesso."
+    },
+    "deepLink": {
+        "autofill": "Autofill",
+        "autofillExplanation": "Transaction data autofilled from link."
+    },
+    "updates": {
+        "errorRetrievingUpdateData": "Error retreiving update data",
+        "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
+        "noUpdatesAvailable": "No updates available",
+        "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
+        "newVersionAvailable": "New version available",
+        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
+        "downloadRelease": "Download release",
+        "skipUpdate": "Skip update"
     }
 }

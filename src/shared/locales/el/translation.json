@@ -78,7 +78,8 @@
         "autopromoting": "Αυτόματη προώθηση συναλλαγής",
         "autopromotingExplanation": "Επανατοποθέτηση συναλλαγής με κατατεμαχισμό ",
         "promoting": "Αυτόματη προώθηση συναλλαγής",
-        "promotionError": "Η συναλλαγή δεν προωθήθηκε",
+        "promotionError": "Could not promote transfer",
+        "promotionErrorExplanation": "Something went wrong while promoting your transaction. Please try again.",
         "noLongerValid": "Η δέσμη που προσπαθείτε να προωθήσετε δεν είναι πλέον έγκυρη",
         "cannotSendToOwn": "Αποστολή σε ιδιωτική διεύθυνση",
         "cannotSendToOwnExplanation": "Δεν μπορείτε να κάνετε μια τιμή μεταφοράς σε μία από τις δικές  σας διευθύνσεις ",
@@ -89,7 +90,11 @@
         "snapshotTransitionInProgressExplanation": "Παρακαλώ περιμένετε μέχρι να ολοκληρωθεί η μετάβαση.",
         "checkForUpdates": "Έλεγχος για ενημερώσεις",
         "account": "Λογαριασμός",
-        "enterPasswordToAccessSettings": "Εισάγετε τον κωδικό πρόσβασής σας στις ρυθμίσεις του λογαριασμού πρόσβασης"
+        "enterPasswordToAccessSettings": "Εισάγετε τον κωδικό πρόσβασής σας στις ρυθμίσεις του λογαριασμού πρόσβασης",
+        "changeNode": "Change node",
+        "addCustomNode": "Add custom node",
+        "nodeChanged": "Node changed",
+        "nodeChangedExplanation": "The node has been changed successfully."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Το seed σας περιέχει μη έγκυρους χαρακτήρες",
@@ -290,7 +295,8 @@
         "fetchedConversionRatesExplanation": "Με επιτυχία η ανάκληση τελευταίες ισοτιμίες νομίσματος",
         "undo": "Αναίρεση",
         "redo": "Επανάληψη",
-        "about": "Σχετικά με το Trinity"
+        "about": "Σχετικά με το Trinity",
+        "lockScreenTimeout": "Lock Screen Timeout (Minutes)"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Πληκτρολογήστε τον κωδικό πρόσβασης για να επαναφέρετε το πορτοφόλι.",
@@ -302,7 +308,8 @@
         "doYouAlreadyHaveASeed": "Έχετε ήδη έναν σπόρο που θα θέλατε να χρησιμοποιήσετε;",
         "seedExplanation": "Ο σπόρος ΙΟΤΑ είναι όπως ένα όνομα χρήστη και κωδικός πρόσβασης για το λογαριασμό σας, σε συνδυασμένα σε μια συμβολοσειρά 81 χαρακτήρων.",
         "explanation": "<0><0>Μπορείτε να το χρησιμοποιήσετε για να αποκτήσετε πρόσβαση σας κεφάλαια από</0> <1>κάθε πορτοφόλι</1> <2>, από</2> <3>οποιαδήποτε συσκευή</3> <4>. Αλλά αν χάσετε το seed σας, χάνετε επίσης και τα ΙΟΤΑ σας.</4></0>",
-        "keepSafe": "Παρακαλώ κρατήστε το σπόρο σας ασφαλή."
+        "keepSafe": "Παρακαλώ κρατήστε το σπόρο σας ασφαλή.",
+        "hint": "<0><0>Hint:</0> Click NO if this is your first time using IOTA.</0>"
     },
     "welcome": {
         "thankYou": "Σας ευχαριστούμε για τη λήψη του Trinity.",
@@ -340,7 +347,8 @@
         "selectNode": "Επιλέξτε κόμβο",
         "addCustomNode": "Προσθήκη προσαρμοσμένου κόμβου",
         "manualSync": "Χειροκίνητος συγχρονισμός",
-        "snapshotTransition": "Στιγμιότυπο μετάβασης"
+        "snapshotTransition": "Στιγμιότυπο μετάβασης",
+        "pow": "Proof of Work"
     },
     "advancedThemeCustomisation": {
         "background": "Φόντο",
@@ -366,8 +374,13 @@
         "thousand": "Χίλια",
         "one": "Ένα"
     },
+    "usedAddressModal": {
+        "cantSpendFullBalanceQuestion": "Why can't I spend my full balance?",
+        "spentAddressExplanation": "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
+        "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
+    },
     "deleteAccount": {
-        "areYouSure": "Είστε σίγουρος ότι θέλετε να διαγράψετε αυτό το λογαριασμό;",
+        "areYouSure": "<0></0><1>Are you sure you want to delete</1><2></2><3>{{accountName}}?</3>",
         "yourSeedWillBeRemoved": "Ο σπόρος σας και το ιστορικό συναλλαγών θα διαγραφούν.",
         "thisAction": "Δεν είναι δυνατή η αναίρεση αυτής της ενέργειας.",
         "enterPassword": "Πληκτρολογήστε τον κωδικό πρόσβασης για να διαγράψετε αυτό το λογαριασμό."
@@ -436,7 +449,8 @@
     "chart": {
         "mcap": "MCAP",
         "change": "Αλλαγή",
-        "volume": "Όγκος (24h)"
+        "volume": "Όγκος (24h)",
+        "currentValue": "Current value"
     },
     "rootDetection": {
         "warning": "ΠΡΟΕΙΔΟΠΟΙΗΣΗ",
@@ -464,5 +478,19 @@
         "cannotCompleteTransitionExplanation": "Το υπόλοιπό σας πρέπει να είναι μεγαλύτερη από το 0 για να ολοκληρωθεί η μετάβαση.",
         "transitionComplete": "Snapshot ολοκληρώθηκε. ",
         "transitionCompleteExplanation": "Το snapshot έχει ολοκληρωθεί με επιτυχία."
+    },
+    "deepLink": {
+        "autofill": "Autofill",
+        "autofillExplanation": "Transaction data autofilled from link."
+    },
+    "updates": {
+        "errorRetrievingUpdateData": "Error retreiving update data",
+        "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
+        "noUpdatesAvailable": "No updates available",
+        "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
+        "newVersionAvailable": "New version available",
+        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
+        "downloadRelease": "Download release",
+        "skipUpdate": "Skip update"
     }
 }
