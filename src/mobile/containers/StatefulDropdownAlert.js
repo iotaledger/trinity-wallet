@@ -8,6 +8,11 @@ import tinycolor from 'tinycolor2';
 import DropdownAlert from 'react-native-dropdownalert/DropdownAlert';
 import { width, height } from '../utils/dimensions';
 
+const errorIcon = require('../../shared/images/errorIcon.png');
+const successIcon = require('../../shared/images/successIcon.png');
+const warnIcon = require('../../shared/images/warnIcon.png');
+const infoIcon = require('../../shared/images/infoIcon.png');
+
 const styles = StyleSheet.create({
     dropdownTitle: {
         fontSize: width / 25.9,
@@ -91,6 +96,10 @@ class StatefulDropdownAlert extends Component {
                 elevation={120}
                 successColor="#009f3f"
                 errorColor="#A10702"
+                errorImageSrc={errorIcon}
+                successImageSrc={successIcon}
+                warnImageSrc={warnIcon}
+                infoImageSrc={infoIcon}
                 titleStyle={styles.dropdownTitle}
                 defaultTextContainer={styles.dropdownTextContainer}
                 messageStyle={styles.dropdownMessage}
