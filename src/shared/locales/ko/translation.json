@@ -78,7 +78,8 @@
         "autopromoting": "거래 자동 프로모트 중",
         "autopromotingExplanation": "아래의 트랜잭션 해시를 프로모트합니다: {{hash}}",
         "promoting": "거래 프로모트 중",
-        "promotionError": "트랜잭션을 프로모트할 수 없음",
+        "promotionError": "Could not promote transfer",
+        "promotionErrorExplanation": "Something went wrong while promoting your transaction. Please try again.",
         "noLongerValid": "프로모트하려는 번들이 더 이상 유효하지 않습니다.",
         "cannotSendToOwn": "내 주소로 보내는 중",
         "cannotSendToOwnExplanation": "내 주소로는 가치 전송을 할 수 없습니다.",
@@ -89,7 +90,11 @@
         "snapshotTransitionInProgressExplanation": "스냅샷 이전 작업이 완료될 때까지 기다려 주십시오.",
         "checkForUpdates": "Check for Updates",
         "account": "Account",
-        "enterPasswordToAccessSettings": "Enter your password to access account settings"
+        "enterPasswordToAccessSettings": "Enter your password to access account settings",
+        "changeNode": "Change node",
+        "addCustomNode": "Add custom node",
+        "nodeChanged": "Node changed",
+        "nodeChangedExplanation": "The node has been changed successfully."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
@@ -290,7 +295,8 @@
         "fetchedConversionRatesExplanation": "{{currency}}로의 최신 환율을 성공적으로 가져왔습니다.",
         "undo": "Undo",
         "redo": "Redo",
-        "about": "About Trinity"
+        "about": "About Trinity",
+        "lockScreenTimeout": "Lock Screen Timeout (Minutes)"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "지갑을 초기화하려면 비밀번호를 입력하세요.",
@@ -302,7 +308,8 @@
         "doYouAlreadyHaveASeed": "이미 사용하고자 하는 시드를 가지고 있습니까?",
         "seedExplanation": "IOTA의 시드는 81글자로 구성되며, 계정에 있어 아이디와 비밀번호를 합친 것과 같은 역할을 합니다.",
         "explanation": "<0><0>이 시드를 이용하여 </0><1>어느 지갑에서나</1><2>, </2><3>어느 기기에서나</3><4> 당신의 펀드에 접근할 수 있습니다. 그러나 이 시드를 잃어버릴 경우 이 시드에 담긴 IOTA 또한 잃게 됩니다.</4></0>",
-        "keepSafe": "반드시 시드를 안전히 보관하십시오."
+        "keepSafe": "반드시 시드를 안전히 보관하십시오.",
+        "hint": "<0><0>Hint:</0> Click NO if this is your first time using IOTA.</0>"
     },
     "welcome": {
         "thankYou": "트리니티를 다운로드해 주셔서 감사합니다.",
@@ -340,7 +347,8 @@
         "selectNode": "노드 선택",
         "addCustomNode": "커스텀 노드 추가",
         "manualSync": "수동 동기화",
-        "snapshotTransition": "스냅샷 이전"
+        "snapshotTransition": "스냅샷 이전",
+        "pow": "Proof of Work"
     },
     "advancedThemeCustomisation": {
         "background": "배경",
@@ -366,8 +374,13 @@
         "thousand": "천",
         "one": "일"
     },
+    "usedAddressModal": {
+        "cantSpendFullBalanceQuestion": "Why can't I spend my full balance?",
+        "spentAddressExplanation": "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
+        "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
+    },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete {{accountName}}?",
+        "areYouSure": "<0></0><1>Are you sure you want to delete</1><2></2><3>{{accountName}}?</3>",
         "yourSeedWillBeRemoved": "등록된 시드 및 거래 내역이 전부 제거됩니다.",
         "thisAction": "이 작업은 되돌릴 수 없습니다.",
         "enterPassword": "계정을 삭제하기 위해 암호를 입력해 주세요."
@@ -436,7 +449,8 @@
     "chart": {
         "mcap": "시가총액",
         "change": "전일대비",
-        "volume": "거래량 (24시간)"
+        "volume": "거래량 (24시간)",
+        "currentValue": "Current value"
     },
     "rootDetection": {
         "warning": "경고",
@@ -464,5 +478,19 @@
         "cannotCompleteTransitionExplanation": "스냅샷 이전을 수행하기 위해서는 잔액이 0보다 커야 합니다.",
         "transitionComplete": "스냅샷 이전 완료",
         "transitionCompleteExplanation": "스냅샷 이전이 성공적으로 완료되었습니다."
+    },
+    "deepLink": {
+        "autofill": "Autofill",
+        "autofillExplanation": "Transaction data autofilled from link."
+    },
+    "updates": {
+        "errorRetrievingUpdateData": "Error retreiving update data",
+        "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
+        "noUpdatesAvailable": "No updates available",
+        "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
+        "newVersionAvailable": "New version available",
+        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
+        "downloadRelease": "Download release",
+        "skipUpdate": "Skip update"
     }
 }

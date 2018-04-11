@@ -78,7 +78,8 @@
         "autopromoting": "Edistetään siirtoa automaattisesti",
         "autopromotingExplanation": "Edistetään siirtoa tiivisteluvulla {{hash}}",
         "promoting": "Edistetään siirtoa",
-        "promotionError": "Siirtoa ei voitu edistää",
+        "promotionError": "Siirto ei voi edistää",
+        "promotionErrorExplanation": "Siirron edistämisessä tapahtui virhe. Yritä uudelleen.",
         "noLongerValid": "Kokoelma jonka siirtoa yrität edistää ei ole enää voimassa",
         "cannotSendToOwn": "Lähetys omaan osoitteeseen",
         "cannotSendToOwnExplanation": "Et voi siirtää varoja yhteen omista osoitteistasi.",
@@ -89,7 +90,11 @@
         "snapshotTransitionInProgressExplanation": "Odota kunnes siirtymäprosessi on valmis.",
         "checkForUpdates": "Tarkista päivitykset",
         "account": "Oma tili",
-        "enterPasswordToAccessSettings": "Anna salasana päästäksesi tilin asetuksiin"
+        "enterPasswordToAccessSettings": "Anna salasana päästäksesi tilin asetuksiin",
+        "changeNode": "Vaihda palvelinta",
+        "addCustomNode": "Lisää omavalintainen palvelin",
+        "nodeChanged": "Palvelin vaihdettu",
+        "nodeChangedExplanation": "Palvelin on vaihdettu onnistuneesti."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed-luku sisältää virheellisiä merkkejä",
@@ -181,7 +186,7 @@
         "storeSafely": "Säilytä sitä turvallisesti.",
         "neverShare": "Älä koskaa jaa seed-lukua kenenkään ulkopuolisen kanssa.",
         "iotaLogo": "IOTA-logo",
-        "printWallet": "TULOSTA PAPERILOMPAKKO"
+        "printWallet": "TULOSTA SEED-LUKU PAPERILLE"
     },
     "receive": {
         "addressCopied": "Osoite kopioitu",
@@ -290,7 +295,8 @@
         "fetchedConversionRatesExplanation": "Vaihtokurssit haettu onnistuneesti valuutalle {{currency}}.",
         "undo": "Kumoa",
         "redo": "Toista",
-        "about": "Lisätietoja Trinitystä"
+        "about": "Lisätietoja Trinitystä",
+        "lockScreenTimeout": "Näytön aikalukitus (minuuttia)"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Kirjoita salasanasi resetoidaksesi lompakkosi.",
@@ -302,7 +308,8 @@
         "doYouAlreadyHaveASeed": "Onko sinulla jo seed-luku jota haluat käyttää?",
         "seedExplanation": "IOTA seed-luku on käyttäjänimen ja salasanan yhdistelmä tilillesi. Seed-luku koostuu yhdestä 81-merkin pituisesta merkkijonosta.",
         "explanation": "<0><0>Voit käyttää seed-lukuasi päästäksesi käsiksi varoihisi mistä tahansa</0><1> lompakosta</1><2>, millä tahansa tuetulla</2><3> laitteella</3><4>. Muista kuitenkin että jos hävität seed-lukusi, menetät myös pääsyn varoihisi.</4></0>",
-        "keepSafe": "Muista aina pitää seed-lukusi turvassa."
+        "keepSafe": "Muista aina pitää seed-lukusi turvassa.",
+        "hint": "<0><0>Ohje:</0> Valitse EI jos käytät IOTA-lompakkoa ensimmäistä kertaa.</0>"
     },
     "welcome": {
         "thankYou": "Kiitos, että latasit Trinity-lompakon.",
@@ -340,7 +347,8 @@
         "selectNode": "Valitse palvelin",
         "addCustomNode": "Lisää omavalintainen palvelin",
         "manualSync": "Manuaalinen synkronointi",
-        "snapshotTransition": "Snapshot-hallinta"
+        "snapshotTransition": "Snapshot-hallinta",
+        "pow": "Proof of Work"
     },
     "advancedThemeCustomisation": {
         "background": "Tausta",
@@ -366,8 +374,13 @@
         "thousand": "Tuhatta",
         "one": "Yksi"
     },
+    "usedAddressModal": {
+        "cantSpendFullBalanceQuestion": "Miksi en voi käyttää koko tilin saldoa?",
+        "spentAddressExplanation": "Sinulla on saldoa yhdessä tai useammassa osoitteessa josta on jo lähetty varallisuutta. Tälläisen osoitteen käyttö uudelleen on vaarallista ja siksi estetty tässä ohjelmassa.",
+        "discordInformation": "Siirry Discord yhteisön #help kanavalle saadaksesi apua ongelmaan."
+    },
     "deleteAccount": {
-        "areYouSure": "Oletko varma, että haluat poistaa tilin {{accountName}}?",
+        "areYouSure": "<0></0><1>Are you sure you want to delete</1><2></2><3>{{accountName}}?</3>",
         "yourSeedWillBeRemoved": "Seed-lukusi ja tilitapahtumahistoriasi poistetaan.",
         "thisAction": "Tätä toimintoa ei voi peruuttaa jälkikäteen.",
         "enterPassword": "Kirjoita salasanasi poistaaksesi tämän tilin."
@@ -436,7 +449,8 @@
     "chart": {
         "mcap": "MARVO",
         "change": "Muutos",
-        "volume": "Vaihto (24h)"
+        "volume": "Vaihto (24h)",
+        "currentValue": "Nykyinen arvo"
     },
     "rootDetection": {
         "warning": "VAROITUS",
@@ -464,5 +478,19 @@
         "cannotCompleteTransitionExplanation": "Tilin saldon tulee olla suurempi kuin 0, jotta siirtymäprosessi voidaan käynnistää.",
         "transitionComplete": "Snapshot-siirtymä valmis",
         "transitionCompleteExplanation": "Snapshot-siirtymäprosessi suoritettu onnistuneesti."
+    },
+    "deepLink": {
+        "autofill": "Aut. täyttö",
+        "autofillExplanation": "Siirron tilitiedot noudettu automaattisesti linkin kautta."
+    },
+    "updates": {
+        "errorRetrievingUpdateData": "Virhe haettaessa päivityksiä",
+        "errorRetrievingUpdateDataExplanation": "Päivitystietojen haussa tapahtui virhe. Yritä uudelleen.",
+        "noUpdatesAvailable": "Ei uusia päivityksiä",
+        "noUpdatesAvailableExplanation": "Sinulla on uusin versio IOTA Trinity lompakosta!",
+        "newVersionAvailable": "Uusi versio saatavilla",
+        "newVersionAvailableExplanation": "Uusi <strong>Trinity</strong> <strong>{{version}}</strong> päivitys on saatavilla. Lue julkaisun tiedot huolellisesti ja varmista että lataus tehdään luotettavasta lähteestä:",
+        "downloadRelease": "Lataa päivitys",
+        "skipUpdate": "Ohita päivitys"
     }
 }
