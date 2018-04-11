@@ -6,6 +6,7 @@ import each from 'lodash/each';
 import find from 'lodash/find';
 import head from 'lodash/head';
 import map from 'lodash/map';
+import mapValues from 'lodash/mapValues';
 import omitBy from 'lodash/omitBy';
 import pick from 'lodash/pick';
 import includes from 'lodash/includes';
@@ -441,17 +442,17 @@ export const getPendingTxTailsHashes = (normalizedTransactions) => {
  *  Marks pending transfers as confirmed.
  *
  *   @method markTransfersConfirmed
- *   @param {array} transfers - Transfers array
+ *   @param {object} normalizedTransfers
  *   @param {array} confirmedTransfersTailsHashes - Array of transaction hashes
  *
  *   @returns {array} - bundles
  **/
-export const markTransfersConfirmed = (transfers, confirmedTransactionsHashes) => {
+export const markTransfersConfirmed = (normalizedTransfers, confirmedTransactionsHashes) => {
     if (isEmpty(confirmedTransactionsHashes)) {
-        return transfers;
+        return normalizedTransfers;
     }
 
-    return map(transfers, (transfer) => ({
+    return mapValues(normalizedTransfers, (transfer) => ({
         ...transfer,
         persistence: transfer.persistence
             ? transfer.persistence

@@ -30,7 +30,9 @@ export default () => (C) => {
                     this.backHandler = BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
                     break;
                 case 'willDisappear':
-                    this.backHandler.remove();
+                    if (this.backHandler) {
+                        this.backHandler.remove();
+                    }
                     break;
                 default:
                     break;
