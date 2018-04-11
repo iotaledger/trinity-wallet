@@ -693,7 +693,6 @@ export const mergeNewTransfers = (newNormalizedTransfers, existingNormalizedTran
     // Otherwise, add it as a new transfer
     each(newNormalizedTransfers, (transfer) => {
         const bundle = transfer.bundle;
-
         if (bundle in existingNormalizedTransfers) {
             transfers[bundle].tailTransactions = unionBy(
                 existingNormalizedTransfers[bundle].tailTransactions,
