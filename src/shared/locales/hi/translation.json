@@ -78,7 +78,8 @@
         "autopromoting": "ऑटोप्रोमोटिंग ट्रांसफर",
         "autopromotingExplanation": "हैश {{hash}} ट्रांजेक्शन को प्रमोट कर रहे है",
         "promoting": "प्रोमोटिंग ट्रांसफर",
-        "promotionError": "ट्रांसैक्शन को प्रोमोट नहीं कर सकते",
+        "promotionError": "Could not promote transfer",
+        "promotionErrorExplanation": "Something went wrong while promoting your transaction. Please try again.",
         "noLongerValid": "जिस बंडल को आप प्रोमोट करने का प्रयास कर रहे है वह अब मान्य नहीं है",
         "cannotSendToOwn": "स्वयं के पते पर भेजा जा रहा है",
         "cannotSendToOwnExplanation": "आप स्वयं के किसी पते पर मूल्य हस्तांतरण नहीं कर सकते",
@@ -89,7 +90,11 @@
         "snapshotTransitionInProgressExplanation": "इस प्रक्रिया के पूर्ण होने तक कृपया प्रतीक्षा करें ।",
         "checkForUpdates": "Check for Updates",
         "account": "Account",
-        "enterPasswordToAccessSettings": "Enter your password to access account settings"
+        "enterPasswordToAccessSettings": "Enter your password to access account settings",
+        "changeNode": "Change node",
+        "addCustomNode": "Add custom node",
+        "nodeChanged": "Node changed",
+        "nodeChangedExplanation": "The node has been changed successfully."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "सीड में अवैध वर्ण हैं।",
@@ -149,7 +154,7 @@
         "settings": "सेटिंग्स"
     },
     "languageSetup": {
-        "language": "भाषा "
+        "language": "भाषा "
     },
     "login": {
         "emptyPassword": "खाली पासवर्ड",
@@ -254,7 +259,7 @@
         "mode": "मोड",
         "theme": "थीम",
         "currency": "मुद्रा",
-        "language": "भाषा ",
+        "language": "भाषा ",
         "accountManagement": "अकाउंट प्रबंध",
         "addNewSeed": "नए सीड जोड़ें",
         "twoFA": "Two-factor authentication",
@@ -290,7 +295,8 @@
         "fetchedConversionRatesExplanation": "{{currency}} के लिए नवीनतम रूपांतरण दरों को सफलतापूर्वक दिलवाया ।",
         "undo": "Undo",
         "redo": "Redo",
-        "about": "About Trinity"
+        "about": "About Trinity",
+        "lockScreenTimeout": "Lock Screen Timeout (Minutes)"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "इस खाते को हटाने के लिए अपना पासवर्ड दर्ज करें ।",
@@ -302,7 +308,8 @@
         "doYouAlreadyHaveASeed": "क्या आपके पास पहले से एक सीड है जिसे आप उपयोग करना चाहते हैं?",
         "seedExplanation": "IOTA सीड आपके खाते में यूज़रनेम और पासवर्ड की तरह है, जो 81 अक्षरों में से एक शब्द में मिला है।",
         "explanation": "<0> <0> आप इसका उपयोग </0> <1> किसी भी वॉलेट </1> <2>, पर </2> <3> किसी भी डिवाइस </3> <4> से अपने फण्ड तक पहुंचने के लिए कर सकते हैं । लेकिन अगर आप अपना सीड खो देते हैं तो आप भी अपना IOTA खो देते हैं । </4> </0>",
-        "keepSafe": "कृपया अपने सीड को सुरक्षित रखें"
+        "keepSafe": "कृपया अपने सीड को सुरक्षित रखें",
+        "hint": "<0><0>Hint:</0> Click NO if this is your first time using IOTA.</0>"
     },
     "welcome": {
         "thankYou": "वॉलेट डाउनलोड करने के लिए धन्यवाद",
@@ -340,7 +347,8 @@
         "selectNode": "नोड चुने",
         "addCustomNode": "कस्टम नोड जोड़ें",
         "manualSync": "मैन्युअल सिंक",
-        "snapshotTransition": "स्नैपशॉट"
+        "snapshotTransition": "स्नैपशॉट",
+        "pow": "Proof of Work"
     },
     "advancedThemeCustomisation": {
         "background": "बैकग्राउंड",
@@ -366,8 +374,13 @@
         "thousand": "हज़ार",
         "one": "एक"
     },
+    "usedAddressModal": {
+        "cantSpendFullBalanceQuestion": "Why can't I spend my full balance?",
+        "spentAddressExplanation": "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
+        "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
+    },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete {{accountName}}?",
+        "areYouSure": "<0></0><1>Are you sure you want to delete</1><2></2><3>{{accountName}}?</3>",
         "yourSeedWillBeRemoved": "आपके सीड और लेन-देन विवरण को हटा दिया जाएगा ।",
         "thisAction": "यह पूर्ववत् नहीं किया जा सकता है!",
         "enterPassword": "इस खाते को हटाने के लिए अपना पासवर्ड दर्ज करें ।"
@@ -436,7 +449,8 @@
     "chart": {
         "mcap": "MCAP",
         "change": "बदलें",
-        "volume": "वॉल्यूम (24 घ)"
+        "volume": "वॉल्यूम (24 घ)",
+        "currentValue": "Current value"
     },
     "rootDetection": {
         "warning": "चेतावनी!",
@@ -464,5 +478,19 @@
         "cannotCompleteTransitionExplanation": "इस प्रक्रिया को पूरा करने के लिए आपका बैलेंस 0 से अधिक होना चाहिए ।",
         "transitionComplete": "स्नैपशॉट पूर्ण",
         "transitionCompleteExplanation": "स्नैपशॉट सफलतापूर्वक पूर्ण हुआ ।"
+    },
+    "deepLink": {
+        "autofill": "Autofill",
+        "autofillExplanation": "Transaction data autofilled from link."
+    },
+    "updates": {
+        "errorRetrievingUpdateData": "Error retreiving update data",
+        "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
+        "noUpdatesAvailable": "No updates available",
+        "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
+        "newVersionAvailable": "New version available",
+        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
+        "downloadRelease": "Download release",
+        "skipUpdate": "Skip update"
     }
 }
