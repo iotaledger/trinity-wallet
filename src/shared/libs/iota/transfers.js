@@ -695,13 +695,11 @@ export const mergeNewTransfers = (newNormalizedTransfers, existingNormalizedTran
         const bundle = transfer.bundle;
 
         if (bundle in existingNormalizedTransfers) {
-            transfers[bundle] = assign({}, existingNormalizedTransfers[bundle], {
-                tailTransactions: unionBy(
-                    existingNormalizedTransfers[bundle].tailTransactions,
-                    transfer.tailTransactions,
-                    'hash',
-                ),
-            });
+            transfers[bundle].tailTransactions = unionBy(
+                existingNormalizedTransfers[bundle].tailTransactions,
+                transfer.tailTransactions,
+                'hash',
+            );
         } else {
             transfers[bundle] = transfer;
         }
