@@ -205,7 +205,9 @@ class DeleteAccount extends Component {
             >
                 <View style={[styles.modalContent, borderColor]}>
                     <Text style={[styles.modalInfoText, { paddingBottom: height / 30 }, textColor]}>
-                        {t('areYouSure')}
+                        {/*FIXME: localization*/}
+                        {/*{t('areYouSure')}*/}
+                        Are you sure you want to delete
                     </Text>
                     <Text style={[styles.modalInfoText, { paddingBottom: height / 16 }, textColor]}>
                         {selectedAccountName} ?
@@ -239,12 +241,13 @@ class DeleteAccount extends Component {
                         <View style={{ flex: 0.5 }} />
                         {!this.state.pressedContinue && (
                             <View style={styles.textContainer}>
-                                <Trans i18nKey="deleteAccount:areYouSure" accountName={selectedAccountName}>
-                                    <View style={{ flex: 0.3 }} />
-                                    <Text style={[styles.infoText, textColor]}>Are you sure you want to delete</Text>
-                                    <View style={{ flex: 0.25 }} />
-                                    <Text style={[styles.infoText, textColor]}>{selectedAccountName}?</Text>
-                                </Trans>
+                                {/*FIXME: Investigate why Trans component doesn't work here*/}
+                                {/*<Trans i18nKey="deleteAccount:areYouSure" accountName={selectedAccountName}>*/}
+                                <View style={{ flex: 0.3 }} />
+                                <Text style={[styles.infoText, textColor]}>Are you sure you want to delete</Text>
+                                <View style={{ flex: 0.25 }} />
+                                <Text style={[styles.infoText, textColor]}>{selectedAccountName}?</Text>
+                                {/*</Trans>*/}
                                 {/*eslint-enable react/jsx-boolean-value*/}
                                 <View style={{ flex: 0.6 }} />
                                 <Text style={[styles.infoText, textColor]}>{t('yourSeedWillBeRemoved')}</Text>
