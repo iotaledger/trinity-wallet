@@ -247,10 +247,15 @@ export const syncAccount = (existingAccountState) => {
  **/
 export const syncAccountAfterSpending = (name, newTransfer, accountState, isValueTransfer) => {
     const tailTransaction = find(newTransfer, { currentIndex: 0 });
-    const normalizedTransfer = normalizeBundle([newTransfer], keys(accountState.addresses), [tailTransaction], false);
+    const normalizedTransfer = normalizeBundle(newTransfer, keys(accountState.addresses), [tailTransaction], false);
 
     // Assign normalized transfer to existing transfers
-    const transfers = mergeNewTransfers(normalizedTransfer, accountState.transfers);
+    const transfers = mergeNewTransfers(
+        {
+            [normalizedTransfer.bundle]: normalizedTransfer,
+        },
+        accountState.transfers,
+    );
 
     // Turn on spent flag for addresses that were used in this transfer
     const addresses = markAddressesAsSpentSync([newTransfer], accountState.addresses);
@@ -264,11 +269,13 @@ export const syncAccountAfterSpending = (name, newTransfer, accountState, isValu
         const bundle = get(newTransfer, '[0].bundle');
 
         unconfirmedBundleTails = merge({}, unconfirmedBundleTails, {
-            [bundle]: {
-                hash: tailTransaction.hash,
-                attachmentTimestamp: tailTransaction.attachmentTimestamp,
-                account: name, // Assign account name to each tx
-            },
+            [bundle]: [
+                {
+                    hash: tailTransaction.hash,
+                    attachmentTimestamp: tailTransaction.attachmentTimestamp,
+                    account: name, // Assign account name to each tx
+                },
+            ],
         });
     }
 
@@ -311,14 +318,19 @@ export const syncAccountAfterReattachment = (accountName, reattachment, accountS
     const tailTransaction = find(reattachment, { currentIndex: 0 });
 
     const normalizedReattachment = normalizeBundle(
-        [reattachment],
+        reattachment,
         keys(accountState.addresses),
         [tailTransaction],
         false,
     );
 
     // Merge into existing transfers
-    const transfers = mergeNewTransfers(normalizedReattachment, accountState.transfers);
+    const transfers = mergeNewTransfers(
+        {
+            [normalizedReattachment.bundle]: normalizedReattachment,
+        },
+        accountState.transfers,
+    );
     const bundle = get(reattachment, '[0].bundle');
 
     // This check would is very redundant but to make sure state is never messed up,
