@@ -6,7 +6,7 @@ export default {
     positive: { color: '#44C27F', hover: '#185B48', body: '#FFFFFF' },
     negative: { color: '#CF6666', hover: '#9B000D', body: '#FFFFFF' },
     extra: { color: '#FFFFFF', hover: '#669FBF', body: '#1E1E1E' },
-    label: { color: '#FFFFFF', hover: '#F7D002'},
+    label: { color: '#FFFFFF', hover: '#F7D002' },
     input: { color: '#1E1E1E', bg: '#FFFFFF', alt: '#727272' },
     chart: { color: '#FFFFFF' },
 };

@@ -85,11 +85,7 @@ class List extends React.PureComponent {
             <React.Fragment>
                 <nav className={css.nav}>
                     <ul>
-                        <a
-                            key="active"
-                            onClick={() => this.switchFilter(filter)}
-                            className={classNames(css.active)}
-                        >
+                        <a key="active" onClick={() => this.switchFilter(filter)} className={classNames(css.active)}>
                             {filter === 'All' ? 'All' : t(filter.toLowerCase())} <small>({historyTx.length})</small>
                             <Icon icon="chevronDown" size={12} />
                         </a>
@@ -102,9 +98,7 @@ class List extends React.PureComponent {
                                       <a
                                           key={item}
                                           onClick={() => this.switchFilter(item)}
-                                          className={classNames(
-                                              filter === item ? css.active : null
-                                          )}
+                                          className={classNames(filter === item ? css.active : null)}
                                       >
                                           {item === 'All' ? 'All' : t(item.toLowerCase())}
                                       </a>

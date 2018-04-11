@@ -5,15 +5,7 @@ import reduce from 'lodash/reduce';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import {
-    StyleSheet,
-    View,
-    Text,
-    TouchableOpacity,
-    TouchableWithoutFeedback,
-    Keyboard,
-    NativeModules,
-} from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import { isValidAddress, isValidMessage, isValidAmount, VALID_ADDRESS_WITH_CHECKSUM_REGEX, VALID_SEED_REGEX, ADDRESS_LENGTH } from 'iota-wallet-shared-modules/libs/iota/utils';
 import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
@@ -51,7 +43,8 @@ import CustomTextInput from '../components/CustomTextInput';
 import CtaButton from '../components/CtaButton';
 import { Icon } from '../theme/icons.js';
 import { width } from '../utils/dimensions';
-import { isAndroid, isIOS } from '../utils/device';
+import { isAndroid } from '../utils/device';
+import { getAddressGenFn, getPowFn } from '../utils/nativeModules';
 
 const styles = StyleSheet.create({
     container: {
@@ -624,15 +617,8 @@ export class Send extends Component {
                     throw new Error('Error');
                 }
 
-                let powFn = null;
-                let genFn = null;
-
-                if (isAndroid) {
-                    powFn = NativeModules.PoWModule.doPoW;
-                } else if (isIOS) {
-                    powFn = NativeModules.Iota.doPoW;
-                    genFn = NativeModules.Iota.address;
-                }
+                const powFn = getPowFn();
+                const genFn = getAddressGenFn();
 
                 return this.props.makeTransaction(seed, address, value, message, selectedAccountName, powFn, genFn);
             })
@@ -820,7 +806,7 @@ export class Send extends Component {
                                 <View style={styles.info}>
                                     <Icon
                                         name="info"
-                                        size={width / 22}
+                                        size={isAndroid ? width / 14 : width / 22}
                                         color={body.color}
                                         style={{ marginRight: width / 60 }}
                                     />
@@ -831,11 +817,11 @@ export class Send extends Component {
                         <View style={{ flex: 0.3 }} />
                     </View>
                     <Modal
-                        animationIn="zoomIn"
-                        animationOut="zoomOut"
-                        animationInTiming={300}
+                        animationIn={isAndroid ? 'bounceInUp' : 'zoomIn'}
+                        animationOut={isAndroid ? 'bounceOut' : 'zoomOut'}
+                        animationInTiming={isAndroid ? 1000 : 300}
                         animationOutTiming={200}
-                        backdropTransitionInTiming={300}
+                        backdropTransitionInTiming={isAndroid ? 500 : 300}
                         backdropTransitionOutTiming={200}
                         backdropColor={body.bg}
                         style={{ alignItems: 'center', margin: 0 }}
