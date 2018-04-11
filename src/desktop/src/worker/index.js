@@ -25,12 +25,6 @@ worker.onmessage = ({ data }) => {
     }
 };
 
-// auto. update the Worker's iota library instance
-// when the node switched in the main app's one.
-SwitchingConfig.callbacks.push((newNode) => {
-    runTask('updateNode', newNode);
-});
-
 // send updates to the Redux store to the Worker
 store.subscribe(() => {
     worker.postMessage({ type: 'setState', payload: store.getState() });
