@@ -33,8 +33,9 @@ import Settings from 'ui/views/settings/Index';
 import Account from 'ui/views/account/Index';
 import Activation from 'ui/views/onboarding/Activation';
 
+import withAutoNodeSwitching from 'containers/global/AutoNodeSwitching';
+
 import css from './index.css';
-import withAutoNodeSwitching from '../../../shared/containers/global/AutoNodeSwitching';
 
 /** Main wallet wrapper component */
 class App extends React.Component {
