@@ -141,6 +141,8 @@ class Loading extends Component {
          * @param {String} text - notification explanation
          */
         generateAlert: PropTypes.func.isRequired,
+        /** If user has opened a deep link */
+        deepLinkActive: PropTypes.bool.isRequired,
     };
 
     constructor() {
@@ -161,6 +163,7 @@ class Loading extends Component {
             password,
             navigator,
             t,
+            deepLinkActive,
         } = this.props;
         this.animation.play();
         if (!firstUse && !addingAdditionalAccount) {
@@ -171,10 +174,10 @@ class Loading extends Component {
             this.animateElipses(['.', '..', ''], 0);
         }
         KeepAwake.activate();
-        if (this.props.deepLinkSent === false) {
-            this.props.changeHomeScreenRoute('balance');
-        } else {
+        if (deepLinkActive) {
             this.props.changeHomeScreenRoute('send');
+        } else {
+            this.props.changeHomeScreenRoute('balance');
         }
         this.props.setSetting('mainSettings');
 
@@ -357,6 +360,7 @@ const mapStateToProps = (state) => ({
     password: state.wallet.password,
     theme: state.settings.theme,
     currency: state.settings.currency,
+    deepLinkActive: state.wallet.deepLinkActive,
 });
 
 const mapDispatchToProps = {
