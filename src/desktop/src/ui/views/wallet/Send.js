@@ -112,7 +112,7 @@ class Send extends React.PureComponent {
 
     confirmTransfer = async () => {
         const { address, amount, message } = this.state;
-        const { password, seedIndex, sendTransfer, settings } = this.props;
+        const { password, seedIndex, sendTransfer, settings, generateAlert } = this.props;
 
         this.setState({
             isTransferModalVisible: false,
