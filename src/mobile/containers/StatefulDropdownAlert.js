@@ -8,6 +8,11 @@ import tinycolor from 'tinycolor2';
 import DropdownAlert from 'react-native-dropdownalert/DropdownAlert';
 import { width, height } from '../utils/dimensions';
 
+const errorIcon = require('iota-wallet-shared-modules/images/error.png');
+const successIcon = require('iota-wallet-shared-modules/images/successIcon.png');
+const warnIcon = require('iota-wallet-shared-modules/images/warnIcon.png');
+const infoIcon = require('iota-wallet-shared-modules/images/infoIcon.png');
+
 const styles = StyleSheet.create({
     dropdownTitle: {
         fontSize: width / 25.9,
@@ -34,8 +39,8 @@ const styles = StyleSheet.create({
     },
     dropdownImage: {
         marginLeft: width / 25,
-        width: width / 12,
-        height: width / 12,
+        width: width / 15,
+        height: width / 15,
         alignSelf: 'center',
     },
 });
@@ -91,6 +96,10 @@ class StatefulDropdownAlert extends Component {
                 elevation={120}
                 successColor="#009f3f"
                 errorColor="#A10702"
+                errorImageSrc={errorIcon}
+                successImageSrc={successIcon}
+                warnImageSrc={warnIcon}
+                infoImageSrc={infoIcon}
                 titleStyle={styles.dropdownTitle}
                 defaultTextContainer={styles.dropdownTextContainer}
                 messageStyle={styles.dropdownMessage}
