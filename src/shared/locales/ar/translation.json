@@ -78,7 +78,8 @@
         "autopromoting": "نقل أوتوبروموتينج",
         "autopromotingExplanation": "Promoting transaction with hash {{hash}}",
         "promoting": "Promoting transfer",
-        "promotionError": "Could not promote transaction",
+        "promotionError": "Could not promote transfer",
+        "promotionErrorExplanation": "Something went wrong while promoting your transaction. Please try again.",
         "noLongerValid": "The bundle you are trying to promote is no longer valid",
         "cannotSendToOwn": "Sending to own address",
         "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses.",
@@ -89,7 +90,11 @@
         "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete.",
         "checkForUpdates": "Check for Updates",
         "account": "Account",
-        "enterPasswordToAccessSettings": "Enter your password to access account settings"
+        "enterPasswordToAccessSettings": "Enter your password to access account settings",
+        "changeNode": "Change node",
+        "addCustomNode": "Add custom node",
+        "nodeChanged": "Node changed",
+        "nodeChangedExplanation": "The node has been changed successfully."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "أوتورياتاتشينج إلى تشابك",
@@ -290,7 +295,8 @@
         "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}.",
         "undo": "Undo",
         "redo": "Redo",
-        "about": "About Trinity"
+        "about": "About Trinity",
+        "lockScreenTimeout": "Lock Screen Timeout (Minutes)"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "الرجاء ادخال كلمة المرور لإعادة المحفظة.",
@@ -302,7 +308,8 @@
         "doYouAlreadyHaveASeed": "هل لديك seed ترغب في استخدامه؟",
         "seedExplanation": "السييد مثل اسم المستخدم وكلمة المرور للحساب الخاص بك، جنبا إلى جنب في سلسلة واحدة مكونة من 81 خانة.",
         "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
-        "keepSafe": "يرجى الحفاظ على السييد الخاص بك في مكان آمن."
+        "keepSafe": "يرجى الحفاظ على السييد الخاص بك في مكان آمن.",
+        "hint": "<0><0>Hint:</0> Click NO if this is your first time using IOTA.</0>"
     },
     "welcome": {
         "thankYou": "Thank you for downloading Trinity.",
@@ -340,7 +347,8 @@
         "selectNode": "اختيار العقدة",
         "addCustomNode": "إضافة عقده معينة",
         "manualSync": "مزامنة يدوية",
-        "snapshotTransition": "Snapshot transition"
+        "snapshotTransition": "Snapshot transition",
+        "pow": "Proof of Work"
     },
     "advancedThemeCustomisation": {
         "background": "خلفية",
@@ -366,8 +374,13 @@
         "thousand": "ألف",
         "one": "واحد"
     },
+    "usedAddressModal": {
+        "cantSpendFullBalanceQuestion": "Why can't I spend my full balance?",
+        "spentAddressExplanation": "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
+        "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
+    },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete {{accountName}}?",
+        "areYouSure": "<0></0><1>Are you sure you want to delete</1><2></2><3>{{accountName}}?</3>",
         "yourSeedWillBeRemoved": "سيتم إزالة السييد و تاريخ الحوالات الخاصة بك.",
         "thisAction": "لا يمكن التراجع عن هذا الإجراء.",
         "enterPassword": "الرجاء ادخال كلمة المرور لحذف هذا الحساب."
@@ -436,7 +449,8 @@
     "chart": {
         "mcap": "MCAP",
         "change": "Change",
-        "volume": "Volume (24h)"
+        "volume": "Volume (24h)",
+        "currentValue": "Current value"
     },
     "rootDetection": {
         "warning": "WARNING",
@@ -464,5 +478,19 @@
         "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
         "transitionComplete": "Snapshot transition complete",
         "transitionCompleteExplanation": "The snapshot transition has completed successfully."
+    },
+    "deepLink": {
+        "autofill": "Autofill",
+        "autofillExplanation": "Transaction data autofilled from link."
+    },
+    "updates": {
+        "errorRetrievingUpdateData": "Error retreiving update data",
+        "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
+        "noUpdatesAvailable": "No updates available",
+        "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
+        "newVersionAvailable": "New version available",
+        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
+        "downloadRelease": "Download release",
+        "skipUpdate": "Skip update"
     }
 }
