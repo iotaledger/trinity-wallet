@@ -8,10 +8,10 @@ import tinycolor from 'tinycolor2';
 import DropdownAlert from 'react-native-dropdownalert/DropdownAlert';
 import { width, height } from '../utils/dimensions';
 
-const errorIcon = require('../../shared/images/errorIcon.png');
-const successIcon = require('../../shared/images/successIcon.png');
-const warnIcon = require('../../shared/images/warnIcon.png');
-const infoIcon = require('../../shared/images/infoIcon.png');
+const errorIcon = require('iota-wallet-shared-modules/images/error.png');
+const successIcon = require('iota-wallet-shared-modules/images/successIcon.png');
+const warnIcon = require('iota-wallet-shared-modules/images/warnIcon.png');
+const infoIcon = require('iota-wallet-shared-modules/images/infoIcon.png');
 
 const styles = StyleSheet.create({
     dropdownTitle: {
@@ -39,8 +39,8 @@ const styles = StyleSheet.create({
     },
     dropdownImage: {
         marginLeft: width / 25,
-        width: width / 12,
-        height: width / 12,
+        width: width / 15,
+        height: width / 15,
         alignSelf: 'center',
     },
 });
