@@ -64,9 +64,6 @@ self.onmessage = ({ data }) => {
             }
             state = payload;
             break;
-        case 'updateNode':
-            changeIotaNode(payload);
-            break;
         // Execute the given action
         default:
             if (typeof actions[type] === 'function') {
