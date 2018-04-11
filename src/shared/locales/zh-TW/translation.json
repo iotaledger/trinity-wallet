@@ -61,7 +61,7 @@
         "attachToTangleUnavailable": "無法連接到 Tangle",
         "attachToTangleUnavailableExplanation": "連接到 Tangle 的功能無法在您所選的節點使用。",
         "wallet": "錢包",
-        "sent": "送出",
+        "sent": "已支出",
         "received": "已接收",
         "sending": "轉帳中",
         "receiving": "收款中",
@@ -79,6 +79,7 @@
         "autopromotingExplanation": "使用雜湊值 {{hash}} 促進交易",
         "promoting": "促進交易",
         "promotionError": "無法促進交易",
+        "promotionErrorExplanation": "促進您的交易時發生一些錯誤，請再試一次。",
         "noLongerValid": "您嘗試促進的交易組已經無效",
         "cannotSendToOwn": "傳送到自己的地址",
         "cannotSendToOwnExplanation": "您無法轉帳到自己的地址。",
@@ -89,7 +90,11 @@
         "snapshotTransitionInProgressExplanation": "請等待轉換完成。",
         "checkForUpdates": "檢查更新",
         "account": "帳戶",
-        "enterPasswordToAccessSettings": "請輸入密碼才能行帳戶設定"
+        "enterPasswordToAccessSettings": "請輸入密碼才能行帳戶設定",
+        "changeNode": "變更節點",
+        "addCustomNode": "新增自訂節點",
+        "nodeChanged": "節點已變更",
+        "nodeChangedExplanation": "節點已成功變更。"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
@@ -290,7 +295,8 @@
         "fetchedConversionRatesExplanation": "成功取得 {{currency}} 最新的匯率。",
         "undo": "復原",
         "redo": "重做",
-        "about": "關於 Trinity"
+        "about": "關於 Trinity",
+        "lockScreenTimeout": "逾時鎖定螢幕 (分鐘)"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "輸入密碼以重設您的錢包。",
@@ -302,7 +308,8 @@
         "doYouAlreadyHaveASeed": "您是否希望使用已擁有的種子碼?",
         "seedExplanation": "IOTA 種子碼是由您帳戶的名稱和密碼結合成為 81 個字元長的字串。",
         "explanation": "<0><0>您可以用它來取得您的資金，這可以是</0><1>任何錢包</1><2>和</2><3>任何裝置</3><4>。但如果您遺失種子碼的話，就代表您損失您所有的 IOTA。</4></0>",
-        "keepSafe": "請妥善保存您的種子碼"
+        "keepSafe": "請妥善保存您的種子碼",
+        "hint": "<0><0>提示：</0> 如果這是您第一次使用 IOTA 請按「否」。</0>"
     },
     "welcome": {
         "thankYou": "感謝您下載 Trinity。",
@@ -340,7 +347,8 @@
         "selectNode": "選擇節點",
         "addCustomNode": "新增自訂節點",
         "manualSync": "手動同步",
-        "snapshotTransition": "快照轉換"
+        "snapshotTransition": "快照轉換",
+        "pow": "Proof of Work"
     },
     "advancedThemeCustomisation": {
         "background": "背景",
@@ -366,8 +374,13 @@
         "thousand": "千",
         "one": "一"
     },
+    "usedAddressModal": {
+        "cantSpendFullBalanceQuestion": "我為何無法支出所有餘額？",
+        "spentAddressExplanation": "您有資金位於已支出的地址，在 IOTA 中重複使用地址是很危險的事情，所以本錢包會禁止您用相同的地址重複轉帳。",
+        "discordInformation": "請前往 Discord 頻道 #help 或 #zh 尋求協助。"
+    },
     "deleteAccount": {
-        "areYouSure": "您確定要刪除 {{accountName}}？",
+        "areYouSure": "<0></0><1>Are you sure you want to delete</1><2></2><3>{{accountName}}?</3>",
         "yourSeedWillBeRemoved": "您的種子和交易記錄將被移除。",
         "thisAction": "此動作無法復原。",
         "enterPassword": "請輸入密碼以刪除此帳戶。"
@@ -436,7 +449,8 @@
     "chart": {
         "mcap": "MCAP",
         "change": "變化率",
-        "volume": "交易量(24h)"
+        "volume": "交易量(24h)",
+        "currentValue": "目前價值"
     },
     "rootDetection": {
         "warning": "警告！",
@@ -464,5 +478,19 @@
         "cannotCompleteTransitionExplanation": "您的餘額必須大於零才能完成交易。",
         "transitionComplete": "快照轉換完成",
         "transitionCompleteExplanation": "快照轉換已成功處理完成。"
+    },
+    "deepLink": {
+        "autofill": "自動填入",
+        "autofillExplanation": "從連結自動填入交易資料。"
+    },
+    "updates": {
+        "errorRetrievingUpdateData": "取得更新資料時發生錯誤",
+        "errorRetrievingUpdateDataExplanation": "取得更新資料時發生錯誤，請再試一次。",
+        "noUpdatesAvailable": "尚無更新",
+        "noUpdatesAvailableExplanation": "您的 IOTA Trinity 桌面版錢包已經是最新版本！",
+        "newVersionAvailable": "有新版本可用",
+        "newVersionAvailableExplanation": "有新的 <strong>Trinity</strong> 版本 <strong>{{version}}</strong> 可以使用，請仔細閱讀詳細資料並驗證下載來源後再更新：",
+        "downloadRelease": "下載更新版本",
+        "skipUpdate": "跳過更新"
     }
 }
