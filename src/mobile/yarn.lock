@@ -2357,6 +2357,10 @@ fast-deep-equal@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/fast-deep-equal/-/fast-deep-equal-1.0.0.tgz#96256a3bc975595eb36d82e9929d060d893439ff"
 
+fast-deep-equal@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/fast-deep-equal/-/fast-deep-equal-1.1.0.tgz#c053477817c86b51daa853c81e059b733d023614"
+
 fast-json-stable-stringify@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/fast-json-stable-stringify/-/fast-json-stable-stringify-2.0.0.tgz#d5142c0caee6b1189f87d3a76111064f86c8bbf2"
@@ -3922,7 +3926,7 @@ lodash@^3.1.0, lodash@^3.3.1, lodash@^3.5.0:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
 
-lodash@^4.0.0, lodash@^4.17.4:
+lodash@^4.0.0, lodash@^4.17.4, lodash@^4.17.5:
   version "4.17.5"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.5.tgz#99a92d65c0272debe8c96b6057bc8fbfa3bed511"
 
@@ -6471,42 +6475,43 @@ vhost@~3.0.1:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/vhost/-/vhost-3.0.2.tgz#2fb1decd4c466aa88b0f9341af33dc1aff2478d5"
 
-victory-chart@^24.3.0:
-  version "24.3.1"
-  resolved "https://registry.yarnpkg.com/victory-chart/-/victory-chart-24.3.1.tgz#6ab97743f5bbe9f8b93938c1d2fae6cccd537ccc"
+victory-chart@^25.2.0:
+  version "25.2.3"
+  resolved "https://registry.yarnpkg.com/victory-chart/-/victory-chart-25.2.3.tgz#7b4ee628ea380e99f229df044f39e386f2501dbe"
   dependencies:
     d3-voronoi "^1.1.2"
-    lodash "^4.17.4"
-    victory-core "^20.2.0"
+    lodash "^4.17.5"
+    victory-core "^21.1.2"
 
-victory-core@^20.0.0, victory-core@^20.2.0:
-  version "20.3.0"
-  resolved "https://registry.yarnpkg.com/victory-core/-/victory-core-20.3.0.tgz#e51e3bd9794f116ebbeab4cd939e00c106f1572f"
+victory-core@^21.1.0, victory-core@^21.1.1, victory-core@^21.1.2:
+  version "21.1.8"
+  resolved "https://registry.yarnpkg.com/victory-core/-/victory-core-21.1.8.tgz#4d7d99d111eb325b83b598fcc2ed5118a5a8e7b2"
   dependencies:
     d3-ease "^1.0.0"
     d3-interpolate "^1.1.1"
     d3-scale "^1.0.0"
     d3-shape "^1.2.0"
     d3-timer "^1.0.0"
-    lodash "^4.17.4"
+    fast-deep-equal "^1.1.0"
+    lodash "^4.17.5"
 
-victory-native@^0.16.1:
-  version "0.16.1"
-  resolved "https://registry.yarnpkg.com/victory-native/-/victory-native-0.16.1.tgz#dc009f113bf66ec696e521e45a06ed77b4716e96"
+victory-native@^0.17.4:
+  version "0.17.4"
+  resolved "https://registry.yarnpkg.com/victory-native/-/victory-native-0.17.4.tgz#3d4b22fa9ad11bae2961be8e3f52883d6b41e201"
   dependencies:
-    lodash "^4.17.4"
+    lodash "^4.17.5"
     prop-types "^15.5.10"
-    victory-chart "^24.3.0"
-    victory-core "^20.2.0"
-    victory-pie "^13.0.0"
+    victory-chart "^25.2.0"
+    victory-core "^21.1.1"
+    victory-pie "^14.0.2"
 
-victory-pie@^13.0.0:
-  version "13.1.0"
-  resolved "https://registry.yarnpkg.com/victory-pie/-/victory-pie-13.1.0.tgz#e23fe543939ab82f05d81a321093997911ab1cc3"
+victory-pie@^14.0.2:
+  version "14.0.2"
+  resolved "https://registry.yarnpkg.com/victory-pie/-/victory-pie-14.0.2.tgz#fc284febf9c505b5de852e34891492d607145c39"
   dependencies:
     d3-shape "^1.0.0"
-    lodash "^4.17.4"
-    victory-core "^20.0.0"
+    lodash "^4.17.5"
+    victory-core "^21.1.0"
 
 vinyl-file@^2.0.0:
   version "2.0.0"
