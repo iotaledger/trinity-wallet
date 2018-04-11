@@ -367,7 +367,8 @@
         "selectNode": "Select node",
         "addCustomNode": "Add custom node",
         "manualSync": "Manual sync",
-        "snapshotTransition": "Snapshot transition"
+        "snapshotTransition": "Snapshot transition",
+        "pow": "Proof of Work"
     },
     "advancedThemeCustomisation": {
         "background": "Background",
@@ -400,7 +401,7 @@
         "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete",
+        "areYouSure": "<0></0><1>Are you sure you want to delete</1><2></2><3>{{accountName}}?</3>",
         "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
         "thisAction": "This action cannot be undone.",
         "enterPassword": "Enter your password to delete this account."

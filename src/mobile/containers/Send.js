@@ -15,7 +15,7 @@ import {
     NativeModules,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { isValidAddress, isValidMessage, isValidAmount } from 'iota-wallet-shared-modules/libs/iota/utils';
+import { isValidAddress, isValidMessage, isValidAmount, VALID_ADDRESS_WITH_CHECKSUM_REGEX, VALID_SEED_REGEX, ADDRESS_LENGTH } from 'iota-wallet-shared-modules/libs/iota/utils';
 import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
 import {
     getFromKeychainRequest,
@@ -30,11 +30,6 @@ import {
     setSendDenomination,
 } from 'iota-wallet-shared-modules/actions/ui';
 import { parse, round } from 'iota-wallet-shared-modules/libs/utils';
-import {
-    VALID_ADDRESS_WITH_CHECKSUM_REGEX,
-    VALID_SEED_REGEX,
-    ADDRESS_LENGTH,
-} from 'iota-wallet-shared-modules/libs/iota';
 import {
     getBalanceForSelectedAccount,
     getAvailableBalanceForSelectedAccount,
