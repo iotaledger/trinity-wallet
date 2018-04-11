@@ -16,14 +16,9 @@ import { sendAmount } from 'actions/deepLinks';
 
 import { DESKTOP_VERSION } from 'config';
 
-import themes from 'themes/themes';
-
-import Theme from 'ui/global/Theme';
-import Alerts from 'ui/global/Alerts';
-import Updates from 'ui/global/Updates';
 import Idle from 'ui/global/Idle';
 import AlphaReset from 'ui/global/AlphaReset';
-import Feedback from 'ui/global/Feedback';
+import FatalError from 'ui/global/FatalError';
 
 import Loading from 'ui/components/Loading';
 
@@ -101,24 +96,28 @@ class App extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { uuid: null };
+        this.state = {
+            fatalError: false,
+        };
     }
 
     componentDidMount() {
         this.onMenuToggle = this.menuToggle.bind(this);
-        Electron.onEvent('menu', this.onMenuToggle);
 
-        this.onSetDeepUrl = this.setDeepUrl.bind(this);
-        Electron.onEvent('url-params', this.onSetDeepUrl);
+        try {
+            Electron.onEvent('menu', this.onMenuToggle);
 
-        Electron.changeLanguage(this.props.t);
-        Electron.requestDeepLink();
+            this.onSetDeepUrl = this.setDeepUrl.bind(this);
+            Electron.onEvent('url-params', this.onSetDeepUrl);
 
-        Electron.getUuid().then((uuid) => {
+            Electron.changeLanguage(this.props.t);
+            Electron.requestDeepLink();
+        } catch (error) {
+            // eslint-disable-next-line react/no-did-mount-set-state
             this.setState({
-                uuid: uuid,
+                fatalError: true,
             });
-        });
+        }
     }
 
     componentWillReceiveProps(nextProps) {
@@ -191,48 +190,37 @@ class App extends React.Component {
     };
 
     render() {
-        const { accounts, location, activationCode, themeName, updateTheme, settings } = this.props;
+        const { accounts, location, activationCode, settings } = this.props;
 
         const currentKey = location.pathname.split('/')[1] || '/';
 
-        if (!this.state.uuid) {
-            return null;
+        if (this.state.fatalError) {
+            return (
+                <div className={css.trintiy}>
+                    <FatalError />
+                </div>
+            );
         }
 
         // Hotfix: Temporary block wallet with a hard reset (for release 0.1.2)
         if (DESKTOP_VERSION !== Electron.getActiveVersion()) {
-            if (themeName === 'Default') {
-                updateTheme(themes.Ionic, 'Ionic');
-            }
             return (
                 <div className={css.trintiy}>
-                    <Theme />
-                    <Alerts />
                     <AlphaReset />
                 </div>
             );
         }
 
         if (!activationCode) {
-            //Hotfix: Temporary default theme difference between mobile and desktop
-            if (themeName === 'Default') {
-                updateTheme(themes.Ionic, 'Ionic');
-            }
             return (
                 <div className={css.trintiy}>
-                    <Theme />
-                    <Alerts />
-                    <Activation uuid={this.state.uuid} />
+                    <Activation />
                 </div>
             );
         }
 
         return (
             <div className={css.trintiy}>
-                <Feedback />
-                <Theme />
-                <Alerts />
-                <Updates />
                 <Idle timeout={settings.lockScreenTimeout} />
                 <TransitionGroup>
                     <CSSTransition key={currentKey} classNames="fade" timeout={300}>
