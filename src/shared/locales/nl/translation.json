@@ -1,6 +1,6 @@
 {
     "global": {
-        "send": "VERSTUUR",
+        "send": "VERZEND",
         "cancel": "ANNULEREN",
         "continue?": "Weet u zeker dat u wilt doorgaan?",
         "noTransactions": "Geen recente geschiedenis",
@@ -22,7 +22,7 @@
         "invalidResponseFetchingAccount": "De node gaf een ongeldig antwoord bij het opvragen van uw accountinformatie. Probeer het opnieuw.",
         "invalidResponseSendingTransfer": "De node heeft een ongeldige reactie teruggestuurd tijdens het verzenden van de transactie.",
         "seed": "Sleutel",
-        "back": "TERUG",
+        "back": "Terug",
         "backLowercase": "Terug",
         "done": "Gereed",
         "doneLowercase": "Gereed",
@@ -38,14 +38,14 @@
         "notAvailableExplanation": "Dit zal in een later stadium worden toegevoegd.",
         "enterSeed": "Voer uw sleutel in.",
         "mainWallet": "Hoofdaccount",
-        "secondWallet": "TWEEDE ACCOUNT",
-        "thirdWallet": "DERDE ACCOUNT",
-        "fourthWallet": "VIERDE ACCOUNT",
+        "secondWallet": "Tweede account",
+        "thirdWallet": "Derde account",
+        "fourthWallet": "Vierde account",
         "fifthWallet": "Vijfde account",
         "sixthWallet": "Zesde account",
         "otherWallet": "Andere account",
         "yes": "Ja",
-        "no": "NEE",
+        "no": "Nee",
         "password": "Wachtwoord",
         "passwordOrFingerprint": "Wachtwoord of vingerafdruk",
         "unrecognisedPassword": "Onjuist wachtwoord",
@@ -63,8 +63,8 @@
         "wallet": "Wallet",
         "sent": "Verzonden",
         "received": "Ontvangen",
-        "sending": "Wordt verzonden",
-        "receiving": "Wordt ontvangen",
+        "sending": "Uitgaand",
+        "receiving": "Inkomend",
         "confirmed": "Bevestigd",
         "pending": "In afwachting",
         "bundleHash": "Bundel Hash",
@@ -78,7 +78,8 @@
         "autopromoting": "Auto-promoten transactie",
         "autopromotingExplanation": "Promoten transactie met hash {{hash}}",
         "promoting": "Promoten transactie",
-        "promotionError": "Kon transactie niet promoten",
+        "promotionError": "Kon transactie niet verzenden",
+        "promotionErrorExplanation": "Er ging iets mis bij het verzenden van uw transactie. Probeer het opnieuw.",
         "noLongerValid": "De bundel die u probeert te promoten is niet langer geldig",
         "cannotSendToOwn": "Versturen naar eigen adres",
         "cannotSendToOwnExplanation": "U kunt geen transactie sturen naar een van uw eigen adressen.",
@@ -89,13 +90,17 @@
         "snapshotTransitionInProgressExplanation": "Wacht tot de transitie is voltooid.",
         "checkForUpdates": "Controleren op updates",
         "account": "Account",
-        "enterPasswordToAccessSettings": "Voer uw wachtwoord in voor accountinstellingen"
+        "enterPasswordToAccessSettings": "Voer uw wachtwoord in voor accountinstellingen",
+        "changeNode": "Wijzig node",
+        "addCustomNode": "Voeg eigen node toe",
+        "nodeChanged": "Node aangepast",
+        "nodeChangedExplanation": "De node is succesvol aangepast."
     },
     "addAdditionalSeed": {
-        "seedInvalidChars": "De seed bevat ongeldige tekens",
+        "seedInvalidChars": "De sleutel bevat ongeldige tekens",
         "seedInvalidCharsExplanation": "Sleutels kunnen alleen de hoofdletters A-Z en het getal 9 bevatten. Uw sleutel bevat ongeldige tekens. Probeer het opnieuw.",
         "seedTooShort": "Sleutel is te kort",
-        "seedTooShortExplanation": "Sleutel moet minstens {{maxLength}} tekens lang zijn. Uw sleutel is momenteel {{currentLength}} tekens lang. Probeer het opnieuw.",
+        "seedTooShortExplanation": "Uw sleutel moet minstens {{maxLength}} tekens lang zijn. Het is momenteel {{currentLength}} tekens lang. Probeer het opnieuw.",
         "nameInUse": "Deze accountnaam is al in gebruik",
         "nameInUseExplanation": "Gebruik een unieke accountnaam voor uw sleutel.",
         "enterAccountName": "Voer een accountnaam in.",
@@ -159,7 +164,7 @@
         "login": "AANMELDEN",
         "selectDifferentNode": "Wilt u een andere node selecteren?",
         "setNode": "SELECTEER NODE",
-        "cannotConnect": "Kan niet verbinden IOTA node."
+        "cannotConnect": "IOTA node kan niet verbinden."
     },
     "loading": {
         "loadingFirstTime": "Sleutel voor de eerste keer laden.",
@@ -170,7 +175,7 @@
     "newSeedSetup": {
         "seedNotGenerated": "Seed is niet gegenereerd",
         "seedNotGeneratedExplanation": "Genereer een nieuwe sleutel.",
-        "pressForNewSeed": "DRUK VOOR NIEUWE SLEUTEL",
+        "pressForNewSeed": "DRUK VOOR EEN NIEUWE SLEUTEL",
         "individualLetters": "Druk op de letters om deze te veranderen in een willekeurige letter."
     },
     "onboardingComplete": {
@@ -238,7 +243,7 @@
     },
     "setSeedName": {
         "canUseMultipleSeeds": "U kunt in deze wallet meerdere seeds gebruiken. Elke seed vereist een accountnaam.",
-        "youCanAdd": "U kunt meer sleutels toevoegen in het menu instellingen."
+        "youCanAdd": "U kunt meer sleutels toevoegen in het menu Instellingen."
     },
     "modeSelection": {
         "expert": "Expert",
@@ -262,7 +267,7 @@
         "advanced": "Geavanceerde instellingen",
         "logout": "Uitloggen",
         "reset": "Wallet opnieuw instellen",
-        "syncingComplete": "Synchroniseren voltooid",
+        "syncingComplete": "Synchronisatie voltooid",
         "syncingCompleteExplanation": "Uw account is succesvol bijgewerkt.",
         "nicknameChanged": "Accountnaam veranderd",
         "nicknameChangedExplanation": "Uw accountnaam is veranderd.",
@@ -290,7 +295,8 @@
         "fetchedConversionRatesExplanation": "Recentste wisselkoersen opgehaald voor {{currency}}.",
         "undo": "Herstel",
         "redo": "Opnieuw",
-        "about": "Over Trinity"
+        "about": "Over Trinity",
+        "lockScreenTimeout": "Vergrendelscherm Time-out (Minuten)"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Voer uw wachtwoord in om de wallet opnieuw in te stellen.",
@@ -301,8 +307,9 @@
         "okay": "Oke. Laten we uw wallet instellen!",
         "doYouAlreadyHaveASeed": "Heeft u al een sleutel die u zou willen gebruiken?",
         "seedExplanation": "De IOTA-sleutel is als een gebruikersnaam en wachtwoord voor uw account, samengevoegd in een tekenreeks van 81 karakters.",
-        "explanation": "<0><0>U krijgt hiermee toegang tot uw saldo vanuit</0><1>elke wallet</1><2>, op</2><3>elk apparaat</3><4>. Maar als u uw sleutel verliest, verliest u daarmee ook uw IOTA.</4></0>",
-        "keepSafe": "Houd uw sleutel veilig."
+        "explanation": "<0><0>U krijgt hiermee toegang tot uw saldo vanuit </0><1>elke wallet</1><2>, op</2> <3>elk apparaat</3><4>. Maar als u uw sleutel verliest, verliest u daarmee ook uw IOTA.</4></0>",
+        "keepSafe": "Houd uw sleutel veilig.",
+        "hint": "<0><0>Hint:</0> Klik op NEE als dit de eerste keer is dat u IOTA gebruikt.</0>"
     },
     "welcome": {
         "thankYou": "Bedankt voor het downloaden van Trinity.",
@@ -318,8 +325,8 @@
         "bundleHashCopiedExplanation": "De bundel-hash is gekopieerd naar het klembord.",
         "addressCopied": "Adres gekopieerd",
         "addressCopiedExplanation": "Het adres is naar het klembord gekopieerd.",
-        "send": "VERSTUUR",
-        "receive": "ONTVANG"
+        "send": "-",
+        "receive": "ONTVANGEN"
     },
     "accountManagement": {
         "viewSeed": "Sleutel bekijken",
@@ -340,7 +347,8 @@
         "selectNode": "Selecteer node",
         "addCustomNode": "Aangepaste node toevoegen",
         "manualSync": "Handmatig synchroniseren",
-        "snapshotTransition": "Snapshot transitie"
+        "snapshotTransition": "Snapshot transitie",
+        "pow": "Bewijs van inspanning"
     },
     "advancedThemeCustomisation": {
         "background": "Achtergrond",
@@ -364,10 +372,15 @@
         "billion": "Miljard",
         "million": "Miljoen",
         "thousand": "Duizend",
-        "one": "Een"
+        "one": "Één"
+    },
+    "usedAddressModal": {
+        "cantSpendFullBalanceQuestion": "Waarom kan ik mijn volledige saldo niet uitgeven?",
+        "spentAddressExplanation": "U heeft nog saldo op één of meerdere reeds uitgegeven adressen. Het hergebruiken van adressen in IOTA is gevaarlijk, daarom staat deze wallet het niet toe om het reeds gebruikte adres te hergebruiken.",
+        "discordInformation": "Indien u hulp nodig heeft verzoeken wij u naar het #help kanaal te gaan op Discord."
     },
     "deleteAccount": {
-        "areYouSure": "Weet u zeker dat u {{accountName}} wilt verwijderen?",
+        "areYouSure": "<0></0><1>Weet u zeker dat u</1><2>{{accountName}}?</2><3>wilt verwijderen?</3>",
         "yourSeedWillBeRemoved": "Uw sleutel en transactiegeschiedenis zullen worden verwijderd.",
         "thisAction": "Deze actie kan niet ongedaan worden gemaakt.",
         "enterPassword": "Typ uw wachtwoord als u deze account wilt verwijderen."
@@ -436,7 +449,8 @@
     "chart": {
         "mcap": "MCAP",
         "change": "Verschil",
-        "volume": "Volume (24u)"
+        "volume": "Volume (24u)",
+        "currentValue": "Huidige waarde"
     },
     "rootDetection": {
         "warning": "WAARSCHUWING",
@@ -464,5 +478,19 @@
         "cannotCompleteTransitionExplanation": "Uw saldo moet groter zijn dan 0 om de transitie te voltooien.",
         "transitionComplete": "Snapshot transitie voltooid",
         "transitionCompleteExplanation": "De snapshot transitie is voltooid."
+    },
+    "deepLink": {
+        "autofill": "Autom. invullen",
+        "autofillExplanation": "De transactie gegevens worden automatisch ingevuld vanuit de link."
+    },
+    "updates": {
+        "errorRetrievingUpdateData": "Error bij het ophalen van update data",
+        "errorRetrievingUpdateDataExplanation": "Er was een error bij het ophalen van update data. Probeer het opnieuw.",
+        "noUpdatesAvailable": "Geen updates beschikbaar",
+        "noUpdatesAvailableExplanation": "U beschikt over de laatste versie van de IOTA Trinity desktop wallet!",
+        "newVersionAvailable": "Nieuwe versie beschikbaar",
+        "newVersionAvailableExplanation": "Een nieuwe<strong>Trinity</strong> <strong>{{version}}</strong> versie is beschikbaar. Lees de opmerkingen aandacht door en zorg dat u de download bron verifieert voor het downloaden van de update:",
+        "downloadRelease": "Download versie",
+        "skipUpdate": "Sla de update over"
     }
 }
