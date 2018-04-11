@@ -43,15 +43,13 @@ class Dashboard extends React.PureComponent {
          * @ignore
          */
         t: PropTypes.func.isRequired,
-        /** Deep links state */
-        deepLinks: PropTypes.object.isRequired,
     };
-
+    /*
     componentWillMount() {
         if (this.props.deepLinks.address !== '') {
             this.props.history.push('/wallet/send');
         }
-    }
+    }*/
 
     updateAccount = async () => {
         const { accounts, password, seedIndex } = this.props;
