@@ -182,6 +182,11 @@ export default (state = initialState, action) => {
                 ...state,
                 deepLinkActive: true,
             };
+        case DeepLinkActionTypes.SET_DEEP_LINK_INACTIVE:
+            return {
+                ...state,
+                deepLinkActive: false,
+            };
         default:
             return state;
     }

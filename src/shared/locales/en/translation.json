@@ -504,7 +504,7 @@
         "transitionCompleteExplanation": "The snapshot transition has completed successfully."
     },
     "deepLink": {
-        "autofill": "Autofill",
+        "autofill": "Autofill success",
         "autofillExplanation": "Transaction data autofilled from link."
     },
     "updates": {
