@@ -7,7 +7,15 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
-import { isValidAddress, isValidMessage, isValidAmount, VALID_ADDRESS_WITH_CHECKSUM_REGEX, VALID_SEED_REGEX, ADDRESS_LENGTH } from 'iota-wallet-shared-modules/libs/iota/utils';
+import {
+    isValidAddress,
+    isValidMessage,
+    isValidAmount,
+    VALID_ADDRESS_WITH_CHECKSUM_REGEX,
+    VALID_SEED_REGEX,
+    ADDRESS_LENGTH,
+} from 'iota-wallet-shared-modules/libs/iota/utils';
+import { setDeepLinkInactive } from 'iota-wallet-shared-modules/actions/deepLink';
 import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
 import {
     getFromKeychainRequest,
@@ -141,6 +149,10 @@ export class Send extends Component {
         timeTakenByEachProgressStep: PropTypes.array.isRequired,
         password: PropTypes.string.isRequired,
         generateTransferErrorAlert: PropTypes.func.isRequired,
+        /** Determines if the wallet has just opened a deep link */
+        deepLinkActive: PropTypes.bool.isRequired,
+        /** Resets deep link status */
+        setDeepLinkInactive: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -174,8 +186,13 @@ export class Send extends Component {
     }
 
     componentDidMount() {
+        const { t, deepLinkActive } = this.props;
         if (!this.props.isSendingTransfer) {
             this.props.resetProgress();
+        }
+        if (deepLinkActive) {
+            this.props.generateAlert('success', t('deepLink:autofill'), t('deepLink:autofillExplanation'));
+            this.props.setDeepLinkInactive();
         }
     }
 
@@ -285,7 +302,7 @@ export class Send extends Component {
     }
 
     onSendPress() {
-        const { t, amount, address, message, denomination, balance } = this.props;
+        const { t, amount, address, balance, message, denomination } = this.props;
         const { currencySymbol } = this.state;
 
         const multiplier = this.getUnitMultiplier();
@@ -470,7 +487,6 @@ export class Send extends Component {
     getConversionTextIota() {
         const { amount, usdPrice, conversionRate } = this.props;
         const { currencySymbol } = this.state;
-
         if (this.shouldConversionTextShowInvalid()) {
             return 'INVALID';
         }
@@ -863,6 +879,7 @@ const mapStateToProps = (state) => ({
     timeTakenByEachProgressStep: state.progress.timeTakenByEachStep,
     remotePoW: state.settings.remotePoW,
     password: state.wallet.password,
+    deepLinkActive: state.wallet.deepLinkActive,
 });
 
 const mapDispatchToProps = {
@@ -878,6 +895,7 @@ const mapDispatchToProps = {
     resetProgress,
     startTrackingProgress,
     generateTransferErrorAlert,
+    setDeepLinkInactive,
 };
 
 export default translate(['send', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Send));
