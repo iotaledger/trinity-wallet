@@ -154,7 +154,7 @@ class Login extends Component {
                 this.props.generateAlert('error', t('twoFA:wrongCode'), t('twoFA:wrongCodeExplanation'));
             }
         } else {
-            this.props.generateAlert('error', t('twoFA:emptyCode'), t('emptyCodeExplanation'));
+            this.props.generateAlert('error', t('twoFA:emptyCode'), t('twoFA:emptyCodeExplanation'));
         }
     }
 
