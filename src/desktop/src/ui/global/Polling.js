@@ -4,7 +4,6 @@ import keys from 'lodash/keys';
 import size from 'lodash/size';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getSelectedAccountName } from 'selectors/accounts';
 import { removeBundleFromUnconfirmedBundleTails } from 'actions/accounts';
 import {
     fetchMarketData,
@@ -18,6 +17,7 @@ import {
 /** Background wallet polling component */
 class Polling extends React.PureComponent {
     static propTypes = {
+        accountNames: PropTypes.array.isRequired,
         pollFor: PropTypes.string.isRequired,
         getAccountInfo: PropTypes.func.isRequired,
         allPollingServices: PropTypes.array.isRequired,
@@ -68,7 +68,21 @@ class Polling extends React.PureComponent {
             return;
         }
 
-        const service = this.props.pollFor;
+        let service = this.props.pollFor;
+
+        //Loop all accounts before reseting poll service queue
+        if (this.state.accountIndex) {
+            if (this.state.accountIndex >= this.props.accountNames.length) {
+                this.props.setPollFor(this.props.allPollingServices[0]);
+                service = this.props.allPollingServices[0];
+                this.setState({
+                    accountIndex: 0,
+                });
+            } else {
+                this.fetchLatestAccountInfo();
+                return;
+            }
+        }
 
         const dict = {
             promotion: this.promote,
@@ -82,14 +96,11 @@ class Polling extends React.PureComponent {
     };
 
     fetchLatestAccountInfo = async () => {
+        const { accountIndex } = this.state;
         const { accountNames } = this.props;
-
-        const index = this.state.accountIndex >= accountNames.length ? 0 : this.state.accountIndex;
-
-        this.props.getAccountInfo(accountNames[index]);
-
+        this.props.getAccountInfo(accountNames[accountIndex]);
         this.setState({
-            accountIndex: index + 1,
+            accountIndex: accountIndex + 1,
         });
     };
 
