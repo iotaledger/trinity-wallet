@@ -225,10 +225,6 @@ const attachToTangleAsync = (
     });
 };
 
-const newAddressAsync = (seed, index, security, checksum) => {
-    return Promise.resolve(iota.api._newAddress(seed, index, security, checksum));
-};
-
 export {
     getBalancesAsync,
     getNodeInfoAsync,
@@ -246,5 +242,4 @@ export {
     prepareTransfersAsync,
     storeAndBroadcastAsync,
     attachToTangleAsync,
-    newAddressAsync,
 };

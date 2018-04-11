@@ -20,7 +20,6 @@ class Activation extends React.PureComponent {
         localStorage.clear();
         Electron.clearStorage();
         location.reload();
-
     };
 
     render() {

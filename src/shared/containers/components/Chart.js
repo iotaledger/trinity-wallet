@@ -99,10 +99,10 @@ export default function withChartData(ChartComponent) {
                     currency: marketData.currency,
                     symbol: getCurrencySymbol(marketData.currency),
                     price: this.props.marketData.usdPrice,
-                    volume: (round(marketData.volume.replace(/,/g, '') * settings.conversionRate)).toLocaleString('en'),
+                    volume: round(marketData.volume.replace(/,/g, '') * settings.conversionRate).toLocaleString('en'),
                     change24h: marketData.change24h,
-                    mcap: (round(marketData.mcap.replace(/,/g, '') * settings.conversionRate)).toLocaleString('en'),
-                    globalSymbol: getCurrencySymbol(settings.currency)
+                    mcap: round(marketData.mcap.replace(/,/g, '') * settings.conversionRate).toLocaleString('en'),
+                    globalSymbol: getCurrencySymbol(settings.currency),
                 },
                 chartData: {
                     timeframe: marketData.timeframe,
