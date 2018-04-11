@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { translate, Trans } from 'react-i18next';
 import Modal from 'react-native-modal';
 import { getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
 import { shouldPreventAction } from 'iota-wallet-shared-modules/selectors/global';
@@ -239,10 +239,13 @@ class DeleteAccount extends Component {
                         <View style={{ flex: 0.5 }} />
                         {!this.state.pressedContinue && (
                             <View style={styles.textContainer}>
-                                <View style={{ flex: 0.3 }} />
-                                <Text style={[styles.infoText, textColor]}>{t('areYouSure')}</Text>
-                                <View style={{ flex: 0.25 }} />
-                                <Text style={[styles.infoText, textColor]}>{selectedAccountName} ?</Text>
+                                <Trans i18nKey="deleteAccount:areYouSure" accountName={selectedAccountName}>
+                                    <View style={{ flex: 0.3 }} />
+                                    <Text style={[styles.infoText, textColor]}>Are you sure you want to delete</Text>
+                                    <View style={{ flex: 0.25 }} />
+                                    <Text style={[styles.infoText, textColor]}>{selectedAccountName}?</Text>
+                                </Trans>
+                                {/*eslint-enable react/jsx-boolean-value*/}
                                 <View style={{ flex: 0.6 }} />
                                 <Text style={[styles.infoText, textColor]}>{t('yourSeedWillBeRemoved')}</Text>
                                 <View style={{ flex: 0.25 }} />
