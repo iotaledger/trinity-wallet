@@ -94,6 +94,7 @@ class WalletSetup extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
+                topBarElevationShadowEnabled: false,
                 screenBackgroundColor: theme.body.bg,
                 drawUnderStatusBar: true,
                 statusBarColor: theme.body.bg,
@@ -109,6 +110,7 @@ class WalletSetup extends Component {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
+                topBarElevationShadowEnabled: false,
                 screenBackgroundColor: theme.body.bg,
                 drawUnderStatusBar: true,
                 statusBarColor: theme.body.bg,

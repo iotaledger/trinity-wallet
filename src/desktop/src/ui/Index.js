@@ -12,7 +12,7 @@ import { parseAddress } from 'libs/iota/utils';
 import { setPassword, clearWalletData } from 'actions/wallet';
 import { getUpdateData, updateTheme } from 'actions/settings';
 import { disposeOffAlert, generateAlert } from 'actions/alerts';
-import { sendAmount } from 'actions/deepLinks';
+import { setDeepLink } from 'actions/deepLink';
 
 import { DESKTOP_VERSION } from 'config';
 
@@ -98,7 +98,7 @@ class App extends React.Component {
          * @ignore
          */
         t: PropTypes.func.isRequired,
-        sendAmount: PropTypes.func.isRequired,
+        setDeepLink: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -133,7 +133,6 @@ class App extends React.Component {
         const currentKey = this.props.location.pathname.split('/')[1] || '/';
 
         /* On Login */
-
         if (!this.props.wallet.ready && nextProps.wallet.ready && currentKey === 'onboarding') {
             Electron.updateMenu('authorised', true);
             this.props.history.push('/wallet/');
@@ -155,7 +154,7 @@ class App extends React.Component {
         const parsedData = parseAddress(data);
 
         if (parsedData) {
-            this.props.sendAmount(parsedData.amount || 0, parsedData.address, parsedData.message || null);
+            this.props.setDeepLink(String(parsedData.amount) || '', parsedData.address, parsedData.message || '');
             if (this.props.wallet.ready === true) {
                 this.props.history.push('/wallet/send');
             }
@@ -270,7 +269,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     clearWalletData,
     setPassword,
-    sendAmount,
+    setDeepLink,
     getUpdateData,
     disposeOffAlert,
     generateAlert,
