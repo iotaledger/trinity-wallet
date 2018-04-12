@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { getDeduplicatedTransfersForSelectedAccount, selectAccountInfo } from '../../selectors/accounts';
+import { getTransfersForSelectedAccount } from '../../selectors/accounts';
 
 /**
  * List component container
@@ -11,8 +11,7 @@ import { getDeduplicatedTransfersForSelectedAccount, selectAccountInfo } from '.
 export default function withListData(ListComponent) {
     class ListData extends React.PureComponent {
         static propTypes = {
-            accountInfo: PropTypes.object.isRequired,
-            transfers: PropTypes.array.isRequired,
+            transfers: PropTypes.object.isRequired,
             wallet: PropTypes.object.isRequired,
             ui: PropTypes.object.isRequired,
             limit: PropTypes.number,
@@ -26,7 +25,6 @@ export default function withListData(ListComponent) {
         };
         render() {
             const {
-                accountInfo,
                 updateAccount,
                 transfers,
                 limit,
@@ -43,7 +41,6 @@ export default function withListData(ListComponent) {
             const isBusy = ui.isSyncing || ui.isSendingTransfer || ui.isAttachingToTangle || ui.isTransitioning;
 
             const ListProps = {
-                addresses: Object.keys(accountInfo.addresses),
                 transfers,
                 updateAccount,
                 setItem,
@@ -65,8 +62,7 @@ export default function withListData(ListComponent) {
 
     const mapStateToProps = (state) => ({
         accounts: state.accounts,
-        accountInfo: selectAccountInfo(state),
-        transfers: getDeduplicatedTransfersForSelectedAccount(state),
+        transfers: getTransfersForSelectedAccount(state),
         theme: state.settings.theme,
         wallet: state.wallet,
         ui: state.ui,

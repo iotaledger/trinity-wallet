@@ -89,6 +89,18 @@ export const getSeed = async (index, password) => {
 };
 
 /**
+ * Set and encrypt new seed data from local storage
+ * @param {Number} index - Target seed item index
+ * @param {String} password - Storage encryption password
+ * @returns {String} - Decrypted seed
+ */
+export const setSeed = async (password, seed) => {
+    const vault = await getVault(password);
+    vault.seeds.push(seed);
+    setVault(password, { seeds: vault.seeds });
+};
+
+/**
  * Get and decrypt seed data from local storage
  * @param {String} password - Storage encryption password
  * @returns {Object} Decrypted seed data

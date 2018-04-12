@@ -20,10 +20,14 @@ import css from './index.css';
  */
 class Send extends React.PureComponent {
     static propTypes = {
+        /** Current Send transaction fields state */
+        fields: PropTypes.shape({
+            address: PropTypes.string.isRequired,
+            amount: PropTypes.string.isRequired,
+            message: PropTypes.string.isRequired,
+        }),
         /** Current send status */
         isSending: PropTypes.bool.isRequired,
-        /** Deep link state */
-        deepLinkAmount: PropTypes.object.isRequired,
         /** Current password value */
         password: PropTypes.string.isRequired,
         /** Current seed index */
@@ -53,12 +57,18 @@ class Send extends React.PureComponent {
          *  @param {function} powFn - locla PoW function
          */
         sendTransfer: PropTypes.func.isRequired,
-        /** Set deep link amount */
-        sendAmount: PropTypes.func.isRequired,
-        /** Validate the given message
-         * @param {string} message - the transaction message
+        /** Update address field value
+         *  @param {string} address - receiver address
          */
-        validateMessage: PropTypes.func.isRequired,
+        setSendAddressField: PropTypes.func.isRequired,
+        /** Update amount field value
+         *  @param {string} amount - receiver address
+         */
+        setSendAmountField: PropTypes.func.isRequired,
+        /** Update message field value
+         *  @param {string} message - receiver address
+         */
+        setSendMessageField: PropTypes.func.isRequired,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
@@ -67,52 +77,32 @@ class Send extends React.PureComponent {
     };
 
     state = {
-        address: '',
-        amount: 0,
-        message: '',
         isTransferModalVisible: false,
     };
 
-    componentWillMount() {
-        this.refreshDeepLinkValues(this.props.deepLinkAmount);
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (this.props.isSending && !nextProps.isSending) {
-            this.setState({
-                address: '',
-                amount: 0,
-                message: '',
-            });
-        }
-        this.refreshDeepLinkValues(nextProps.deepLinkAmount);
-    }
-
-    refreshDeepLinkValues = (props) => {
-        if (props.address.length > 0 && props.address !== this.state.address) {
-            this.setState({
-                address: props.address,
-                amount: props.amount || this.state.amount,
-                message: props.message || this.state.message,
-            });
-            this.props.sendAmount(0, '', '');
-        }
-    };
-
     validateInputs = (e) => {
-        const { address, amount } = this.state;
         const { validateInputs } = this.props;
 
         e.preventDefault();
 
         this.setState({
-            isTransferModalVisible: validateInputs(address, amount),
+            isTransferModalVisible: validateInputs(),
         });
     };
 
+    updateFields(address, message, amount) {
+        this.props.setSendAddressField(address);
+        if (message) {
+            this.props.setSendMessageField(message);
+        }
+        if (amount) {
+            this.props.setSendAmountField(amount);
+        }
+    }
+
     confirmTransfer = async () => {
         const { address, amount, message } = this.state;
-        const { password, seedIndex, sendTransfer, settings, generateAlert } = this.props;
+        const { fields,  password, seedIndex, sendTransfer, settings, generateAlert } = this.props;
 
         this.setState({
             isTransferModalVisible: false,
@@ -140,9 +130,10 @@ class Send extends React.PureComponent {
         const vault = await getVault(password);
         const seed = vault.seeds[seedIndex];
 
-        sendTransfer(seed, address, amount, message, null, powFn);
+        sendTransfer(seed, fields.address, parseInt(fields.amount), fields.message, null, powFn);
     };
 
+<<<<<<< HEAD
     changeMessage = (message) => {
         if (!this.props.validateMessage(message)) {
             return;
@@ -150,9 +141,11 @@ class Send extends React.PureComponent {
         this.setState({ message });
     };
 
+=======
+>>>>>>> desktop-next
     render() {
-        const { isSending, balance, settings, t } = this.props;
-        const { address, amount, message, isTransferModalVisible } = this.state;
+        const { fields, isSending, balance, settings, t } = this.props;
+        const { isTransferModalVisible } = this.state;
 
         return (
             <form onSubmit={(e) => this.validateInputs(e)}>
@@ -163,33 +156,39 @@ class Send extends React.PureComponent {
                         onCancel={() => this.setState({ isTransferModalVisible: false })}
                         onConfirm={() => this.confirmTransfer()}
                         content={{
-                            title: `You are about to send ${formatValue(amount)} ${formatUnit(amount)} to the address`,
-                            message: address,
+                            title: `You are about to send ${formatValue(fields.amount)} ${formatUnit(
+                                fields.amount,
+                            )} to the address`,
+                            message: fields.address,
                             confirm: 'confirm',
                             cancel: 'Cancel',
                         }}
                     />
                     <AddressInput
-                        address={address}
-                        onChange={(value, messageIn, ammountIn) =>
-                            this.setState({
-                                address: value,
-                                message: messageIn ? messageIn : message,
-                                amount: ammountIn ? ammountIn : amount,
-                            })
-                        }
+                        address={fields.address}
+                        onChange={(address, message, amount) => {
+                            this.updateFields(address, message, amount);
+                        }}
                         label={t('send:recipientAddress')}
                         closeLabel={t('back')}
                     />
                     <AmountInput
-                        amount={amount}
+                        amount={fields.amount}
                         settings={settings}
                         label={t('send:amount')}
                         labelMax={t('send:max')}
                         balance={balance}
-                        onChange={(value) => this.setState({ amount: value })}
+                        onChange={(value) => this.props.setSendAmountField(value)}
                     />
+<<<<<<< HEAD
                     <TextInput value={message} label={t('send:message')} onChange={this.changeMessage} />
+=======
+                    <TextInput
+                        value={fields.message}
+                        label={t('send:message')}
+                        onChange={(value) => this.props.setSendMessageField(value)}
+                    />
+>>>>>>> desktop-next
                 </div>
                 <fieldset>
                     <Button type="submit" loading={isSending} variant="primary">

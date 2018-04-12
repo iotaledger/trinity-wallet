@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { iota } from 'iota-wallet-shared-modules/libs/iota';
 import { View, Text, StyleSheet, TouchableOpacity, Clipboard } from 'react-native';
 import { OptimizedFlatList } from 'react-native-optimized-flatlist';
 import { selectAccountInfo } from 'iota-wallet-shared-modules/selectors/accounts';
@@ -119,7 +118,7 @@ export class ViewAddresses extends Component {
             ...data,
             balance: round(formatValue(data.balance), 1),
             unit: formatUnit(data.balance),
-            address: iota.utils.addChecksum(address, 9, true),
+            address: `${address}${data.checksum}`,
         }));
 
         return orderBy(preparedAddresses, 'index', ['desc']);

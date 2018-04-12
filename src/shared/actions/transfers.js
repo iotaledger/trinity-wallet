@@ -1,7 +1,10 @@
 import head from 'lodash/head';
 import find from 'lodash/find';
 import get from 'lodash/get';
+import map from 'lodash/map';
+import filter from 'lodash/filter';
 import some from 'lodash/some';
+import sample from 'lodash/sample';
 import { iota } from '../libs/iota';
 import {
     broadcastBundleAsync,
@@ -20,13 +23,10 @@ import {
 import { setNextStepAsActive } from './progress';
 import { clearSendFields } from './ui';
 import {
-    getTailTransactionForBundle,
-    getAllTailTransactionsForBundle,
-    isValidForPromotion,
+    isStillAValidTransaction,
     getFirstConsistentTail,
     prepareTransferArray,
-    filterInvalidPendingTransfers,
-    filterZeroValueTransfers,
+    filterInvalidPendingTransactions,
     performPow,
 } from '../libs/iota/transfers';
 import { syncAccountAfterReattachment, syncAccount, syncAccountAfterSpending } from '../libs/iota/accounts';
@@ -102,9 +102,21 @@ export const broadcastBundle = (bundleHash, accountName) => (dispatch, getState)
     dispatch(broadcastBundleRequest());
 
     const accountState = selectedAccountStateFactory(accountName)(getState());
-    const tailTransaction = getTailTransactionForBundle(bundleHash, accountState.transfers);
+    const transaction = accountState.transfers[bundleHash];
+    const tailTransaction = sample(transaction.tailTransactions);
 
-    return broadcastBundleAsync(tailTransaction.hash)
+    let chainBrokenInternally = false;
+
+    return isStillAValidTransaction(transaction, accountState.addresses)
+        .then((isValid) => {
+            if (!isValid) {
+                chainBrokenInternally = true;
+
+                throw new Error(Errors.BUNDLE_NO_LONGER_VALID);
+            }
+
+            return broadcastBundleAsync(tailTransaction.hash);
+        })
         .then(() => {
             dispatch(
                 generateAlert(
@@ -116,16 +128,21 @@ export const broadcastBundle = (bundleHash, accountName) => (dispatch, getState)
 
             return dispatch(broadcastBundleSuccess());
         })
-        .catch(() => {
-            dispatch(
-                generateAlert(
-                    'error',
-                    'Could not rebroadcast transaction ',
-                    'Something went wrong while rebroadcasting your transaction. Please try again.',
-                ),
-            );
+        .catch((err) => {
+            if (err.message === Errors.BUNDLE_NO_LONGER_VALID && chainBrokenInternally) {
+                // TODO: Replace error message with a valid broadcast error message
+                dispatch(generateAlert('error', i18next.t('global:promotionError'), i18next.t('global:noLongerValid')));
+            } else {
+                dispatch(
+                    generateAlert(
+                        'error',
+                        'Could not rebroadcast transaction ',
+                        'Something went wrong while rebroadcasting your transaction. Please try again.',
+                    ),
+                );
+            }
 
-            dispatch(broadcastBundleError());
+            return dispatch(broadcastBundleError());
         });
 };
 
@@ -133,10 +150,12 @@ export const promoteTransaction = (bundleHash, accountName) => (dispatch, getSta
     dispatch(promoteTransactionRequest());
 
     const accountState = selectedAccountStateFactory(accountName)(getState());
-    const tailTransactions = getAllTailTransactionsForBundle(bundleHash, accountState.transfers);
+    const transaction = accountState.transfers[bundleHash];
+    const tailTransactions = transaction.tailTransactions;
+
     let chainBrokenInternally = false;
 
-    return isValidForPromotion(bundleHash, accountState.transfers, accountState.addresses)
+    return isStillAValidTransaction(transaction, accountState.addresses)
         .then((isValid) => {
             if (!isValid) {
                 chainBrokenInternally = true;
@@ -254,8 +273,9 @@ export const makeTransaction = (seed, address, value, message, accountName, powF
                 // Update local store with the latest account information
                 dispatch(accountInfoFetchSuccess(accountState));
 
-                const valueTransfers = filterZeroValueTransfers(accountState.transfers);
-                return filterInvalidPendingTransfers(valueTransfers, accountState.addresses);
+                const valueTransfers = filter(map(accountState.transfers, (tx) => tx), (tx) => tx.transferValue !== 0);
+
+                return filterInvalidPendingTransactions(valueTransfers, accountState.addresses);
             })
             .then((filteredTransfers) => {
                 const { addresses } = accountState;
@@ -353,9 +373,7 @@ export const makeTransaction = (seed, address, value, message, accountName, powF
 
                 return storeAndBroadcastAsync(cached.trytes);
             })
-            .then(() =>
-                syncAccountAfterSpending(accountName, cached.transactionObjects, accountState, !isZeroValue),
-            )
+            .then(() => syncAccountAfterSpending(accountName, cached.transactionObjects, accountState, !isZeroValue))
             .then(({ newState }) => {
                 // Progress summary
                 dispatch(setNextStepAsActive());
