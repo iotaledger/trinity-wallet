@@ -94,7 +94,7 @@
         "changeNode": "Skift node",
         "addCustomNode": "Tilføj brugerdefineret node",
         "nodeChanged": "Node ændret",
-        "nodeChangedExplanation": "The node has been changed successfully."
+        "nodeChangedExplanation": "Noden er succesfuldt blevet ændret."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøglen indeholder ugyldige tegn",
@@ -296,7 +296,7 @@
         "undo": "Fortryd",
         "redo": "Gendan",
         "about": "Om Trinity",
-        "lockScreenTimeout": "Lock Screen Timeout (Minutes)"
+        "lockScreenTimeout": "Skærm låst grundet inaktivitet"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Indtast din adgangskode for at nulstille tegnebogen.",
@@ -309,7 +309,7 @@
         "seedExplanation": "En IOTA hovednøgle fungerer som din kontos brugernavn og adgangskode, og består af en kombineret streng på 81 tegn.",
         "explanation": "<0><0>du kan bruge det til at hente dine midler fra</0><1> enhver tegnebog</1><2>, på</2><3> hvilken som helst enhed</3><4>. Men mister du din hovednøgle, mister du også dine IOTA.</4></0>",
         "keepSafe": "Du bedes opbevare din hovednøgle sikkert.",
-        "hint": "<0><0>Hint:</0> Click NO if this is your first time using IOTA.</0>"
+        "hint": "<0><0>Hint:</0> Klik NEJ hvis det er første gang du bruger IOTA.</0>"
     },
     "welcome": {
         "thankYou": "Tak fordi du downloadede Trinity.",
@@ -348,7 +348,7 @@
         "addCustomNode": "Tilføje brugerdefinerede node",
         "manualSync": "Manuel synkronisering",
         "snapshotTransition": "Snapshot synkronisering",
-        "pow": "Proof of Work"
+        "pow": "Netværksvalidering"
     },
     "advancedThemeCustomisation": {
         "background": "Baggrund",
@@ -375,9 +375,9 @@
         "one": "En"
     },
     "usedAddressModal": {
-        "cantSpendFullBalanceQuestion": "Why can't I spend my full balance?",
-        "spentAddressExplanation": "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
-        "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
+        "cantSpendFullBalanceQuestion": "Hvorfor kan jeg bruge min fulde saldo?",
+        "spentAddressExplanation": "Du har penge på en eller flere brugte adresser. Adressegenbrug er farligt i IOTA og denne tegnebog tillader dig derfor ikke at sende fra samme adresse mere end én gang.",
+        "discordInformation": "Søg venligst over på hjælpekanalen #help på Discord app'en for at finde ud af hvad du kan gøre."
     },
     "deleteAccount": {
         "areYouSure": "<0></0> <1>Er du sikker på du vil slette</1> <2></2> <3>{{accountName}}?</3>",
