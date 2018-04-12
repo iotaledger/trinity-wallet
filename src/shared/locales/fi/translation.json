@@ -480,11 +480,11 @@
         "transitionCompleteExplanation": "Snapshot-siirtymäprosessi suoritettu onnistuneesti."
     },
     "deepLink": {
-        "autofill": "Aut. täyttö",
+        "autofill": "Autofill success",
         "autofillExplanation": "Siirron tilitiedot noudettu automaattisesti linkin kautta."
     },
     "updates": {
-        "errorRetrievingUpdateData": "Virhe haettaessa päivityksiä",
+        "errorRetrievingUpdateData": "Error retrieving update data",
         "errorRetrievingUpdateDataExplanation": "Päivitystietojen haussa tapahtui virhe. Yritä uudelleen.",
         "noUpdatesAvailable": "Ei uusia päivityksiä",
         "noUpdatesAvailableExplanation": "Sinulla on uusin versio IOTA Trinity lompakosta!",
