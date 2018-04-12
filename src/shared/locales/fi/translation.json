@@ -325,8 +325,8 @@
         "bundleHashCopiedExplanation": "Kokoelman tiivisteluku on kopioitu leikepöydälle.",
         "addressCopied": "Osoite kopioitu",
         "addressCopiedExplanation": "Osoite on kopioitu leikepöydälle.",
-        "send": "LÄHETETTY",
-        "receive": "VASTAANOTETAAN"
+        "send": "LÄHETYS",
+        "receive": "VASTAANOTTO"
     },
     "accountManagement": {
         "viewSeed": "Katso seed-luku",
@@ -347,8 +347,8 @@
         "selectNode": "Valitse palvelin",
         "addCustomNode": "Lisää omavalintainen palvelin",
         "manualSync": "Manuaalinen synkronointi",
-        "snapshotTransition": "Snapshot-hallinta",
-        "pow": "Proof of Work"
+        "snapshotTransition": "Snapshot-asetukset",
+        "pow": "Proof of Work-asetukset"
     },
     "advancedThemeCustomisation": {
         "background": "Tausta",
@@ -380,7 +380,7 @@
         "discordInformation": "Siirry Discord yhteisön #help kanavalle saadaksesi apua ongelmaan."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Are you sure you want to delete</1><2></2><3>{{accountName}}?</3>",
+        "areYouSure": "<0></0><1>Oletko varma että haluat poistaa tilin</1><2></2><3>{{accountName}}?</3>",
         "yourSeedWillBeRemoved": "Seed-lukusi ja tilitapahtumahistoriasi poistetaan.",
         "thisAction": "Tätä toimintoa ei voi peruuttaa jälkikäteen.",
         "enterPassword": "Kirjoita salasanasi poistaaksesi tämän tilin."
@@ -480,11 +480,11 @@
         "transitionCompleteExplanation": "Snapshot-siirtymäprosessi suoritettu onnistuneesti."
     },
     "deepLink": {
-        "autofill": "Autofill success",
+        "autofill": "Tiedot haettu onnistuneesti",
         "autofillExplanation": "Siirron tilitiedot noudettu automaattisesti linkin kautta."
     },
     "updates": {
-        "errorRetrievingUpdateData": "Error retrieving update data",
+        "errorRetrievingUpdateData": "Virhe haettaessa päivityksiä",
         "errorRetrievingUpdateDataExplanation": "Päivitystietojen haussa tapahtui virhe. Yritä uudelleen.",
         "noUpdatesAvailable": "Ei uusia päivityksiä",
         "noUpdatesAvailableExplanation": "Sinulla on uusin versio IOTA Trinity lompakosta!",
