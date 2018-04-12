@@ -9,7 +9,7 @@ end
 
 lane :refresh_dsyms do
   clean_build_artifacts
-  download_dsyms(build_number: '21')
+  download_dsyms(build_number: '24')
   upload_symbols_to_crashlytics
   upload_symbols_to_bugsnag
   clean_build_artifacts
