@@ -380,7 +380,7 @@
         "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Are you sure you want to delete</1><2></2><3>{{accountName}}?</3>",
+        "areYouSure": "<0></0> <1>Er du sikker på du vil slette</1> <2></2> <3>{{accountName}}?</3>",
         "yourSeedWillBeRemoved": "Din hovednøgle og transaktionshistorik vil blive fjernet.",
         "thisAction": "Denne handling kan ikke fortrydes.",
         "enterPassword": "Indtast din adgangskode for at slette denne konto."
@@ -450,7 +450,7 @@
         "mcap": "MCAP",
         "change": "Ændring",
         "volume": "Volumen (24t)",
-        "currentValue": "Current value"
+        "currentValue": "Aktuel værdi"
     },
     "rootDetection": {
         "warning": "ADVARSEL",
@@ -484,13 +484,13 @@
         "autofillExplanation": "Transaktionsdata er autoudfyldt fra linket."
     },
     "updates": {
-        "errorRetrievingUpdateData": "Error retrieving update data",
-        "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
-        "noUpdatesAvailable": "No updates available",
-        "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
-        "newVersionAvailable": "New version available",
-        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
-        "downloadRelease": "Download release",
+        "errorRetrievingUpdateData": "Fejl under hentning af opdateringsdata",
+        "errorRetrievingUpdateDataExplanation": "Der opstod en fejl under hentning af opdateringsdata. Prøv venligst igen.",
+        "noUpdatesAvailable": "Ingen tilgængelige opdateringer",
+        "noUpdatesAvailableExplanation": "Du har den seneste computer-version af IOTA Trinity tegnebogen!",
+        "newVersionAvailable": "Ny version tilgængelig",
+        "newVersionAvailableExplanation": "En ny <strong>Trinity</strong> <strong>{{version}}</strong> version er tilgængelig. Læs venligst udgivelsesnoterne nøje og kontroller downloadkilden før du opdaterer:",
+        "downloadRelease": "Download version",
         "skipUpdate": "Spring opdatering over"
     }
 }
