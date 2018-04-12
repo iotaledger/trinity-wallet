@@ -348,7 +348,7 @@
         "addCustomNode": "新增自訂節點",
         "manualSync": "手動同步",
         "snapshotTransition": "快照轉換",
-        "pow": "Proof of Work"
+        "pow": "工作量證明"
     },
     "advancedThemeCustomisation": {
         "background": "背景",
@@ -380,7 +380,7 @@
         "discordInformation": "請前往 Discord 頻道 #help 或 #zh 尋求協助。"
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Are you sure you want to delete</1><2></2><3>{{accountName}}?</3>",
+        "areYouSure": "<0></0><1>您確定要刪除</1><2></2><3>{{accountName}}？</3>",
         "yourSeedWillBeRemoved": "您的種子和交易記錄將被移除。",
         "thisAction": "此動作無法復原。",
         "enterPassword": "請輸入密碼以刪除此帳戶。"
