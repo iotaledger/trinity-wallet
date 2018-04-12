@@ -42,7 +42,7 @@ export default function withAutoNodeSwitching(AutoNodeSwitchedComponent) {
         showAlertOnAutoNodeSwitch = (newNode) => {
             const { generateAlert, setFullNode, t } = this.props;
             setFullNode(newNode);
-            generateAlert('success', t('global:nodeAutoChanged'), t('global:nodeAutoChangedExplanation'));
+            generateAlert('success', t('global:nodeAutoChanged'), t('global:nodeAutoChangedExplanation', { nodeAddress: newNode }));
         }
 
         render() {
