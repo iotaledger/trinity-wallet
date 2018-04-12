@@ -325,7 +325,7 @@
         "bundleHashCopiedExplanation": "バンドルハッシュをクリップボードにコピーしました。",
         "addressCopied": "アドレスをコピーしました。",
         "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。",
-        "send": "送金",
+        "send": "送金or送信",
         "receive": "受取"
     },
     "accountManagement": {
@@ -480,7 +480,7 @@
         "transitionCompleteExplanation": "スナップショットの移行が正常に完了しました。"
     },
     "deepLink": {
-        "autofill": "自動入力",
+        "autofill": "自動入力成功",
         "autofillExplanation": "取引データはリンクから自動入力されました。"
     },
     "updates": {
