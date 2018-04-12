@@ -78,8 +78,8 @@
         "autopromoting": "Auto-promoviendo la transferencia",
         "autopromotingExplanation": "Promoviendo la transacción con hash {{hash}}",
         "promoting": "Promoviendo la transferencia",
-        "promotionError": "Could not promote transfer",
-        "promotionErrorExplanation": "Something went wrong while promoting your transaction. Please try again.",
+        "promotionError": "No se pudo promover la transacción",
+        "promotionErrorExplanation": "Algo salió mal durante la promoción de su transacción. Por favor, inténtelo de nuevo.",
         "noLongerValid": "El paquete que está intentando promover ya no es válido",
         "cannotSendToOwn": "Enviando a dirección propia",
         "cannotSendToOwnExplanation": "No puede hacer una transferencia de valor a un direccion propia.",
@@ -91,10 +91,10 @@
         "checkForUpdates": "Buscar actualizaciones",
         "account": "Cuenta",
         "enterPasswordToAccessSettings": "Ingrese su contraseña para acceder a las configuraciones de cuentas",
-        "changeNode": "Change node",
-        "addCustomNode": "Add custom node",
-        "nodeChanged": "Node changed",
-        "nodeChangedExplanation": "The node has been changed successfully."
+        "changeNode": "Cambiar nodo",
+        "addCustomNode": "Añadir nodo personalizado",
+        "nodeChanged": "Nodo modificado",
+        "nodeChangedExplanation": "El nodo fue modificado exitosamente."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contiene caracteres inválidos",
@@ -296,7 +296,7 @@
         "undo": "Deshacer",
         "redo": "Rehacer",
         "about": "Acerca de Trinity",
-        "lockScreenTimeout": "Lock Screen Timeout (Minutes)"
+        "lockScreenTimeout": "Tiempo para hibernar cuenta (Minutos)"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Ingresa tu contraseña para reiniciar la cartera.",
@@ -480,11 +480,11 @@
         "transitionCompleteExplanation": "La transicion del snapshot fue completada exitosamente."
     },
     "deepLink": {
-        "autofill": "Autofill",
+        "autofill": "Autofill success",
         "autofillExplanation": "Transaction data autofilled from link."
     },
     "updates": {
-        "errorRetrievingUpdateData": "Error retreiving update data",
+        "errorRetrievingUpdateData": "Error retrieving update data",
         "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
         "noUpdatesAvailable": "No updates available",
         "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
