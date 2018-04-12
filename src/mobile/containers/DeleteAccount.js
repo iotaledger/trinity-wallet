@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { connect } from 'react-redux';
-import { translate, Trans } from 'react-i18next';
+import { translate } from 'react-i18next';
 import Modal from 'react-native-modal';
 import { getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
 import { shouldPreventAction } from 'iota-wallet-shared-modules/selectors/global';
