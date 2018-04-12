@@ -5,12 +5,12 @@ import { translate } from 'react-i18next';
 import sjcl from 'sjcl';
 
 import { generateAlert } from 'actions/alerts';
-import { addAccountName } from 'actions/accounts';
+import { addAccountName, increaseSeedCount } from 'actions/accounts';
 import { setAdditionalAccountInfo, setSeedIndex, setPassword } from 'actions/wallet';
 import { setOnboardingSeed, setOnboardingName } from 'actions/ui';
 
 import { isValidPassword } from 'libs/utils';
-import { setVault, getVault } from 'libs/crypto';
+import { setVault } from 'libs/crypto';
 
 import Button from 'ui/components/Button';
 import Infobox from 'ui/components/Info';
@@ -24,10 +24,15 @@ class AccountPassword extends React.PureComponent {
     static propTypes = {
         /** If first account is beeing created */
         firstAccount: PropTypes.bool.isRequired,
+        /** Current account count */
+        seedCount: PropTypes.number.isRequired,
         /** Add new account name
          * @param {String} name - Account name
          */
         addAccountName: PropTypes.func.isRequired,
+        /** Increase seed count
+         */
+        increaseSeedCount: PropTypes.func.isRequired,
         /** Set additional account info
          * @param {Object} data - Additional account data
          */
@@ -78,8 +83,10 @@ class AccountPassword extends React.PureComponent {
     createAccount = async (e) => {
         const {
             firstAccount,
+            seedCount,
             setPassword,
             addAccountName,
+            increaseSeedCount,
             setAdditionalAccountInfo,
             setSeedIndex,
             setOnboardingSeed,
@@ -111,23 +118,18 @@ class AccountPassword extends React.PureComponent {
             );
         }
 
-        let newSeeds = [onboarding.seed];
         const passwordHash = firstAccount ? sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(password)) : password;
 
-        if (!firstAccount) {
-            const vault = await getVault(passwordHash);
-            newSeeds = [].concat(vault.seeds, onboarding.seed);
+        if (firstAccount) {
+            addAccountName(onboarding.name);
+            increaseSeedCount();
+            setPassword(passwordHash);
+            await setVault(passwordHash, { seeds: [onboarding.seed] }, firstAccount);
+            setOnboardingSeed(null);
         }
 
-        addAccountName(onboarding.name);
-
-        setSeedIndex(newSeeds.length - 1);
-        setPassword(passwordHash);
-
-        setOnboardingSeed(null);
         setOnboardingName('');
-
-        await setVault(passwordHash, { seeds: newSeeds }, firstAccount);
+        setSeedIndex(seedCount);
 
         if (!firstAccount) {
             setAdditionalAccountInfo({
@@ -197,6 +199,7 @@ class AccountPassword extends React.PureComponent {
 
 const mapStateToProps = (state) => ({
     firstAccount: !state.wallet.ready,
+    seedCount: state.accounts.seedCount,
     onboarding: state.ui.onboarding,
 });
 
@@ -208,6 +211,7 @@ const mapDispatchToProps = {
     setOnboardingName,
     generateAlert,
     setSeedIndex,
+    increaseSeedCount,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate()(AccountPassword));

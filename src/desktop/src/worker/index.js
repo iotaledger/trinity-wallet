@@ -1,4 +1,5 @@
-import { changeIotaNode, SwitchingConfig} from 'libs/iota';
+import { setSeed } from 'libs/crypto';
+import { changeIotaNode, SwitchingConfig } from 'libs/iota';
 import Worker from './main.worker.js';
 import store from '../../../shared/store';
 
@@ -8,14 +9,17 @@ import store from '../../../shared/store';
 const worker = new Worker();
 export default worker;
 
-worker.onmessage = ({ data }) => {
-    const { type, action } = data;
+worker.onmessage = async ({ data }) => {
+    const { type, action, payload } = data;
 
     // dispatch the produced value by the Worker
     // back into the main app store
     switch (type) {
         case 'dispatch':
             store.dispatch(action);
+            break;
+        case 'saveSeed':
+            setSeed(payload.password, payload.seed);
             break;
         // The Worker auto. switched nodes
         case 'updateNode':
