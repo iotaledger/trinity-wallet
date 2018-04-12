@@ -94,7 +94,7 @@
         "changeNode": "Ubah node",
         "addCustomNode": "Tambah node khusus",
         "nodeChanged": "Node diganti",
-        "nodeChangedExplanation": "The node has been changed successfully."
+        "nodeChangedExplanation": "Node telah berhasil diubah."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed berisi karakter yang tidak valid",
@@ -135,8 +135,8 @@
         "seedCopiedExplanation": "Seed akan dihapus setelah menekan \"SELESAI\" atau 60 detik telah berlalu.",
         "clickToCopy": "Klik tombol dibawah ini dan salin Seed Anda ke dalam manajer kata sandi.",
         "doNotStore": "Jangan simpan Seed Anda di dalam teks biasa.",
-        "copyToClipboard": "Copy seed",
-        "shareSeed": "Share your seed to a secure password manager"
+        "copyToClipboard": "Salin Seed",
+        "shareSeed": "Simpan Seed anda ke kata sandi manajer yang aman"
     },
     "enterSeed": {
         "invalidCharacters": "Seed berisi karakter yang tidak valid",
@@ -164,17 +164,17 @@
         "login": "MASUK",
         "selectDifferentNode": "Apakah Anda ingin memilih node yang berbeda?",
         "setNode": "SET NODE",
-        "cannotConnect": "Cannot connect to IOTA node."
+        "cannotConnect": "Tidak dapat menyambung ke Node IOTA."
     },
     "loading": {
         "loadingFirstTime": "Menyiapkan Seed untuk pertama kalinya.",
         "thisMayTake": "Ini dapat memakan beberapa saat.",
-        "doNotMinimise": "Do not minimise or close the app.",
+        "doNotMinimise": "Jangan memperkecil atau menutup aplikasi.",
         "youMayNotice": "Anda mungkin dapat memperhatikan perangkat anda menjadi lambat pada proses ini."
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seed belum dibuat",
-        "seedNotGeneratedExplanation": "Please generate a new seed.",
+        "seedNotGeneratedExplanation": "Silahkan membuat Seed baru.",
         "pressForNewSeed": "TEKAN UNTUK MEMBUAT SEED BARU",
         "individualLetters": "Tekan masing-masing huruf untuk mengacaknya."
     },
@@ -194,8 +194,8 @@
         "generateNewAddress": "ALAMAT BARU",
         "message": "Pesan opsional",
         "removeMessage": "HAPUS PESAN",
-        "noAddresses": "NO ADDRESSES",
-        "spent": "Spent"
+        "noAddresses": "TIDAK ADA ALAMAT",
+        "spent": "Dihabiskan"
     },
     "saveYourSeed": {
         "seedCleared": "Seed telah dihapus",
