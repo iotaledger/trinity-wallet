@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, KeyboardAvoidingView, Animated, Keyboard } from 'react-native';
+import { Linking, StyleSheet, View, KeyboardAvoidingView, Animated, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import { changeHomeScreenRoute, toggleTopBarDisplay } from 'iota-wallet-shared-modules/actions/home';
 import { setPassword, setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { setUserActivity } from 'iota-wallet-shared-modules/actions/ui';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import { parseAddress } from 'iota-wallet-shared-modules/libs/iota/utils';
+import { setDeepLink } from 'iota-wallet-shared-modules/actions/deepLink';
 import { getPasswordHash } from '../utils/crypto';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import UserInactivity from '../components/UserInactivity';
@@ -19,7 +21,6 @@ import Tabs from '../components/Tabs';
 import Tab from '../components/Tab';
 import TabContent from '../components/TabContent';
 import EnterPassword from '../containers/EnterPassword';
-
 import { height } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
 
@@ -30,6 +31,11 @@ const styles = StyleSheet.create({
     },
     bottomContainer: {
         flex: 0.68,
+    },
+    inactivityLogoutContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 });
 
@@ -47,7 +53,7 @@ class Home extends Component {
         changeHomeScreenRoute: PropTypes.func.isRequired,
         /** Generate a notification alert
          * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
+         * @param {String} title - notification titleinactivityLogoutContainer
          * @param {String} text - notification explanation
          */
         generateAlert: PropTypes.func.isRequired,
@@ -77,11 +83,18 @@ class Home extends Component {
         theme: PropTypes.object.isRequired,
         isTopBarActive: PropTypes.bool.isRequired,
         toggleTopBarDisplay: PropTypes.func.isRequired,
+        /** Set send amount params
+         * @param {string} - amount
+         * @param {string} - address
+         * @param {string} - message
+         */
+        setDeepLink: PropTypes.func.isRequired,
     };
 
     constructor(props) {
         super(props);
         this.onLoginPress = this.onLoginPress.bind(this);
+        this.setDeepUrl = this.setDeepUrl.bind(this);
         this.viewFlex = new Animated.Value(0.7);
         this.topBarHeight = new Animated.Value(height / 8.8);
         this.state = {
@@ -94,6 +107,7 @@ class Home extends Component {
             this.keyboardWillShowSub = Keyboard.addListener('keyboardWillShow', this.keyboardWillShow);
             this.keyboardWillHideSub = Keyboard.addListener('keyboardWillHide', this.keyboardWillHide);
         }
+        this.deepLinkSub = Linking.addEventListener('url', this.setDeepUrl);
     }
 
     componentDidMount() {
@@ -123,6 +137,7 @@ class Home extends Component {
             this.keyboardWillShowSub.remove();
             this.keyboardWillHideSub.remove();
         }
+        Linking.removeEventListener('url');
     }
 
     onLoginPress = (password) => {
@@ -147,6 +162,17 @@ class Home extends Component {
         this.props.changeHomeScreenRoute(name);
         if (!isSyncing && !isTransitioning) {
             this.resetSettings();
+        }
+    }
+
+    setDeepUrl(data) {
+        const { generateAlert, t } = this.props;
+        const parsedData = parseAddress(data.url);
+        if (parsedData) {
+            this.props.setDeepLink(parsedData.amount.toString() || '0', parsedData.address, parsedData.message || null);
+            this.props.changeHomeScreenRoute('send');
+        } else {
+            generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation1'));
         }
     }
 
@@ -291,7 +317,7 @@ class Home extends Component {
                             </View>
                         )}
                     {inactive && (
-                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                        <View style={[styles.inactivityLogoutContainer, { backgroundColor: body.bg }]}>
                             <EnterPassword
                                 onLoginPress={this.onLoginPress}
                                 backgroundColor={body.bg}
@@ -331,6 +357,7 @@ const mapDispatchToProps = {
     setUserActivity,
     setSetting,
     toggleTopBarDisplay,
+    setDeepLink,
 };
 
 export default WithUserActivity()(

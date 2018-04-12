@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, NativeModules } from 'react-native';
-import { Navigation } from 'react-native-navigation';
+import { StyleSheet, View, Text } from 'react-native';
+import timer from 'react-native-timer';
 import whiteLoadingAnimation from 'iota-wallet-shared-modules/animations/loading-white.json';
 import blackLoadingAnimation from 'iota-wallet-shared-modules/animations/loading-black.json';
 import whiteWelcomeAnimationPartOne from 'iota-wallet-shared-modules/animations/welcome-part-one-white.json';
@@ -26,7 +26,8 @@ import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
 import { getSeedFromKeychain, storeSeedInKeychain } from '../utils/keychain';
 import DynamicStatusBar from '../components/DynamicStatusBar';
-import { isAndroid, isIOS } from '../utils/device';
+import { getAddressGenFn, getMultiAddressGenFn } from '../utils/nativeModules';
+import { isAndroid } from '../utils/device';
 
 import { width, height } from '../utils/dimensions';
 
@@ -140,6 +141,8 @@ class Loading extends Component {
          * @param {String} text - notification explanation
          */
         generateAlert: PropTypes.func.isRequired,
+        /** If user has opened a deep link */
+        deepLinkActive: PropTypes.bool.isRequired,
     };
 
     constructor() {
@@ -160,31 +163,30 @@ class Loading extends Component {
             password,
             navigator,
             t,
+            deepLinkActive,
         } = this.props;
         this.animation.play();
         if (!firstUse && !addingAdditionalAccount) {
             this.setAnimationOneTimout();
         }
         this.getWalletData();
-        this.animateElipses(['.', '..', ''], 0);
+        if ((firstUse || addingAdditionalAccount) && !isAndroid) {
+            this.animateElipses(['.', '..', ''], 0);
+        }
         KeepAwake.activate();
-        this.props.changeHomeScreenRoute('balance');
+        if (deepLinkActive) {
+            this.props.changeHomeScreenRoute('send');
+        } else {
+            this.props.changeHomeScreenRoute('balance');
+        }
         this.props.setSetting('mainSettings');
 
         let genFn = null;
 
         if (firstUse || addingAdditionalAccount) {
-            if (isAndroid) {
-                //  genFn = Android address function
-            } else if (isIOS) {
-                genFn = NativeModules.Iota.multiAddress;
-            }
+            genFn = getMultiAddressGenFn();
         } else {
-            if (isAndroid) {
-                //  genFn = Android multiAddress function
-            } else if (isIOS) {
-                genFn = NativeModules.Iota.address;
-            }
+            genFn = getAddressGenFn();
         }
 
         if (!firstUse && addingAdditionalAccount) {
@@ -215,34 +217,29 @@ class Loading extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        const { ready, theme: { body } } = this.props;
+        const { ready, theme: { body, bar } } = this.props;
         const isReady = !ready && newProps.ready;
 
         if (isReady) {
-            clearTimeout(this.timeout);
             KeepAwake.deactivate();
-            Navigation.startSingleScreenApp({
-                screen: {
-                    screen: 'home',
-                    navigatorStyle: {
-                        navBarHidden: true,
-                        navBarTransparent: true,
-                        screenBackgroundColor: body.bg,
-                        statusBarColor: body.bg,
-                        drawUnderStatusBar: true,
-                    },
+            this.clearTimeouts();
+            this.props.navigator.push({
+                screen: 'home',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    topBarElevationShadowEnabled: false,
+                    screenBackgroundColor: body.bg,
+                    drawUnderStatusBar: true,
+                    statusBarColor: bar.bg,
                 },
-                appStyle: {
-                    orientation: 'portrait',
-                    keepStyleAcrossPush: true,
-                },
+                animated: false,
             });
         }
     }
 
     componentWillUnmount() {
-        clearTimeout(this.timeout);
-        clearTimeout(this.animationTimeout);
+        this.clearTimeouts();
     }
 
     getWalletData() {
@@ -254,7 +251,7 @@ class Loading extends Component {
     }
 
     setAnimationOneTimout() {
-        this.animationTimeout = setTimeout(() => this.playAnimationTwo(), 2000);
+        timer.setTimeout('animationTimeout', () => this.playAnimationTwo(), 2000);
     }
 
     playAnimationTwo() {
@@ -262,12 +259,19 @@ class Loading extends Component {
         this.animation.play();
     }
 
-    animateElipses = (chars, index, timer = 750) => {
+    clearTimeouts() {
+        if (this.timeout) {
+            clearTimeout(this.timeout);
+        }
+        timer.clearTimeout('animationTimeout');
+    }
+
+    animateElipses = (chars, index, time = 750) => {
         this.timeout = setTimeout(() => {
             this.setState({ elipsis: chars[index] });
             const next = index === chars.length - 1 ? 0 : index + 1;
             this.animateElipses(chars, next);
-        }, timer);
+        }, time);
     };
 
     render() {
@@ -305,7 +309,9 @@ class Loading extends Component {
                             <View style={{ flexDirection: 'row' }}>
                                 <Text style={[styles.infoText, textColor]}>{t('thisMayTake')}</Text>
                                 <View style={{ alignItems: 'flex-start', width: width / 30 }}>
-                                    <Text style={[styles.infoText, textColor]}>{this.state.elipsis}</Text>
+                                    <Text style={[styles.infoText, textColor]}>
+                                        {isAndroid ? '..' : this.state.elipsis}
+                                    </Text>
                                 </View>
                             </View>
                         </View>
@@ -354,6 +360,7 @@ const mapStateToProps = (state) => ({
     password: state.wallet.password,
     theme: state.settings.theme,
     currency: state.settings.currency,
+    deepLinkActive: state.wallet.deepLinkActive,
 });
 
 const mapDispatchToProps = {

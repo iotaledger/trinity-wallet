@@ -5,7 +5,10 @@ import { connect } from 'react-redux';
 import authenticator from 'authenticator';
 import PropTypes from 'prop-types';
 import KeepAwake from 'react-native-keep-awake';
-import { StyleSheet, View } from 'react-native';
+import { Navigation } from 'react-native-navigation';
+import { Linking, StyleSheet, View } from 'react-native';
+import { parseAddress } from 'iota-wallet-shared-modules/libs/iota/utils';
+import { setDeepLink } from 'iota-wallet-shared-modules/actions/deepLink';
 import { setFullNode } from 'iota-wallet-shared-modules/actions/settings';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
 import { setPassword, setSetting } from 'iota-wallet-shared-modules/actions/wallet';
@@ -84,8 +87,12 @@ class Login extends Component {
          * @param {string} node
          */
         t: PropTypes.func.isRequired,
-        /** Navigation object */
-        navigator: PropTypes.object.isRequired,
+        /** Set send amount params
+         * @param {string} - amount
+         * @param {string} - address
+         * @param {string} - message
+         */
+        setDeepLink: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -100,12 +107,21 @@ class Login extends Component {
         this.onLoginPress = this.onLoginPress.bind(this);
         this.onBackPress = this.onBackPress.bind(this);
         this.navigateToNodeSelection = this.navigateToNodeSelection.bind(this);
+        this.setDeepUrl = this.setDeepUrl.bind(this);
+    }
+
+    componentWillMount() {
+        Linking.addEventListener('url', this.setDeepUrl);
     }
 
     componentDidMount() {
         this.checkForUpdates();
         KeepAwake.deactivate();
         this.props.setUserActivity({ inactive: false });
+    }
+
+    componentWillUnmount() {
+        Linking.removeEventListener('url');
     }
 
     async onLoginPress(password) {
@@ -154,12 +170,22 @@ class Login extends Component {
                 this.props.generateAlert('error', t('twoFA:wrongCode'), t('twoFA:wrongCodeExplanation'));
             }
         } else {
-            this.props.generateAlert('error', t('twoFA:emptyCode'), t('emptyCodeExplanation'));
+            this.props.generateAlert('error', t('twoFA:emptyCode'), t('twoFA:emptyCodeExplanation'));
         }
     }
 
     onBackPress() {
         this.setState({ completing2FA: false });
+    }
+
+    setDeepUrl(data) {
+        const { generateAlert, t } = this.props;
+        const parsedData = parseAddress(data.url);
+        if (parsedData) {
+            this.props.setDeepLink(parsedData.amount.toString() || '0', parsedData.address, parsedData.message || null);
+        } else {
+            generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation1'));
+        }
     }
 
     checkForUpdates() {
@@ -180,17 +206,23 @@ class Login extends Component {
 
     navigateToLoading() {
         const { theme: { body } } = this.props;
-        this.props.navigator.push({
-            screen: 'loading',
-            navigatorStyle: {
-                navBarHidden: true,
-                navBarTransparent: true,
-                screenBackgroundColor: body.bg,
-                drawUnderStatusBar: true,
-                statusBarColor: body.bg,
+        Navigation.startSingleScreenApp({
+            screen: {
+                screen: 'loading',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    topBarElevationShadowEnabled: false,
+                    screenBackgroundColor: body.bg,
+                    statusBarColor: body.bg,
+                    drawUnderStatusBar: true,
+                },
+                overrideBackPress: true,
             },
-            animated: false,
-            overrideBackPress: true,
+            appStyle: {
+                orientation: 'portrait',
+                keepStyleAcrossPush: true,
+            },
         });
     }
 
@@ -243,6 +275,7 @@ const mapDispatchToProps = {
     setUserActivity,
     migrate,
     setLoginPasswordField,
+    setDeepLink,
 };
 
 export default WithBackPressCloseApp()(

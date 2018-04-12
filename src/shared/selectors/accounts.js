@@ -4,7 +4,6 @@ import keys from 'lodash/keys';
 import reduce from 'lodash/reduce';
 import filter from 'lodash/filter';
 import { createSelector } from 'reselect';
-import { deduplicateTransferBundles } from '../libs/iota/transfers';
 
 /**
  *   Selects settings prop from state.
@@ -169,17 +168,13 @@ export const selectAccountInfo = createSelector(
 );
 
 /**
- *   Selects transfers array from accountInfo object.
- *   Deduplicates tranfsers to keep only a single bundle i.e. remove reattachments
+ *   Selects transfers from accountInfo object.
  *
- *   @method getDeduplicatedTransfersForSelectedAccount
+ *   @method getTransfersForSelectedAccount
  *   @param {object} state
  *   @returns {array}
  **/
-export const getDeduplicatedTransfersForSelectedAccount = createSelector(
-    selectAccountInfo,
-    (account) => deduplicateTransferBundles(account.transfers) || [],
-);
+export const getTransfersForSelectedAccount = createSelector(selectAccountInfo, (account) => account.transfers || {});
 
 /**
  *   Selects addresses from accountInfo object.

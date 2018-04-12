@@ -3,7 +3,6 @@ import cloneDeep from 'lodash/cloneDeep';
 import each from 'lodash/each';
 import filter from 'lodash/filter';
 import head from 'lodash/head';
-import find from 'lodash/find';
 import isEmpty from 'lodash/isEmpty';
 import transform from 'lodash/transform';
 import isNumber from 'lodash/isNumber';
@@ -14,6 +13,7 @@ import findKey from 'lodash/findKey';
 import size from 'lodash/size';
 import pickBy from 'lodash/pickBy';
 import omitBy from 'lodash/omitBy';
+import flatMap from 'lodash/flatMap';
 import { iota } from './index';
 import { getBalancesAsync, wereAddressesSpentFromAsync } from './extendedApi';
 
@@ -126,7 +126,7 @@ export const getAllAddresses = (seed, genFn) => {
  *   Accepts addresses as an array.
  *   Finds latest balances on those addresses.
  *   Finds latest spent statuses on addresses.
- *   Transforms addresses array to a dictionary. [{ address: { index: 0, spent: false, balance: 0 }}]
+ *   Transforms addresses array to a dictionary. [{ address: { index: 0, spent: false, balance: 0, checksum: address-checksum }}]
  *
  *   @method formatAddressesAndBalance
  *   @param {array} addresses
@@ -158,6 +158,7 @@ export const formatAddressesAndBalance = (addresses) => {
                         index,
                         spent: cached.wereSpent[index],
                         balance: cached.balances[index],
+                        checksum: iota.utils.addChecksum(address).slice(address.length),
                     };
 
                     acc.balance = acc.balance + cached.balances[index];
@@ -243,17 +244,14 @@ export const getUnspentAddressesSync = (addressData) => {
  *   @param {object} addressData
  *   @returns {array} - Array of spent addresses with pending transfers
  **/
-export const getSpentAddressesWithPendingTransfersSync = (pendingTransfers, addressData) => {
+export const getSpentAddressesWithPendingTransfersSync = (pendingTransactions, addressData) => {
     const spentAddresses = pickBy(addressData, (addressObject) => addressObject.spent);
     const spentAddressesWithPendingTransfers = new Set();
 
-    each(pendingTransfers, (pendingBundle) => {
-        each(pendingBundle, (transactionObject) => {
-            const isRemainder =
-                transactionObject.currentIndex === transactionObject.lastIndex && transactionObject.lastIndex !== 0;
-
-            if (transactionObject.address in spentAddresses && transactionObject.value < 0 && !isRemainder) {
-                spentAddressesWithPendingTransfers.add(transactionObject.address);
+    each(pendingTransactions, (transaction) => {
+        each(transaction.inputs, (input) => {
+            if (input.address in spentAddresses) {
+                spentAddressesWithPendingTransfers.add(input.address);
             }
         });
     });
@@ -356,7 +354,7 @@ export const getBalancesSync = (addresses, addressData) => {
 
 export const getLatestAddresses = (seed, index, genFn) => {
     return new Promise((resolve, reject) => {
-        const options = { checksum: false, index, returnAll: true };
+        const options = { index, returnAll: true };
         return getNewAddress(seed, options, genFn, (err, addresses) => {
             if (err) {
                 reject(err);
@@ -406,11 +404,22 @@ export const syncAddresses = (seed, accountData, genFn, addNewAddress = false) =
             // In case the newly created address is not part of the addresses object
             // Add that as a key with a 0 balance.
             if (size(updatedAddresses) === 0) {
-                updatedAddresses[newAddress] = { index, balance: 0, spent: false };
+                updatedAddresses[newAddress] = {
+                    index,
+                    balance: 0,
+                    spent: false,
+                    checksum: iota.utils.addChecksum(newAddress).slice(newAddress.length),
+                };
+
                 index += 1;
             } else if (!(newAddress in thisAccountDataCopy.addresses)) {
                 index += 1;
-                updatedAddresses[newAddress] = { index, balance: 0, spent: false };
+                updatedAddresses[newAddress] = {
+                    index,
+                    balance: 0,
+                    spent: false,
+                    checksum: iota.utils.addChecksum(newAddress).slice(newAddress.length),
+                };
             }
         });
         thisAccountDataCopy.addresses = updatedAddresses;
@@ -440,27 +449,18 @@ export const filterAddressesWithIncomingTransfers = (inputs, pendingValueTransfe
         {},
     );
 
-    const { sent, received } = iota.utils.categorizeTransfers(
-        pendingValueTransfers,
-        map(inputsByAddress, (input, address) => address),
-    );
-
     const addressesWithIncomingTransfers = new Set();
 
-    each(sent, (bundle) => {
-        const remainder = find(bundle, (tx) => tx.currentIndex === tx.lastIndex && tx.lastIndex !== 0);
+    // Check outputs of incoming transfers i.e. If there is an incoming value transfer
+    // Checks outputs of sent transfers to check if there is an incoming transfer (change address)
 
-        if (remainder && remainder.address in inputsByAddress) {
-            addressesWithIncomingTransfers.add(remainder.address);
+    // Note: Inputs for outgoing transfers should not be checked since filterSpentAddresses already removes spent inputs
+    const outputsToCheck = flatMap(pendingValueTransfers, (transfer) => transfer.outputs);
+
+    each(outputsToCheck, (output) => {
+        if (output.address in inputsByAddress && output.value > 0) {
+            addressesWithIncomingTransfers.add(output.address);
         }
-    });
-
-    each(received, (bundle) => {
-        each(bundle, (tx) => {
-            if (tx.address in inputsByAddress && tx.value > 0) {
-                addressesWithIncomingTransfers.add(tx.address);
-            }
-        });
     });
 
     return map(
@@ -475,7 +475,6 @@ export const filterAddressesWithIncomingTransfers = (inputs, pendingValueTransfe
  *   @param {string} seed
  *   @param {object} options
  *       @property   {int} index         Key index to start search from
- *       @property   {bool} checksum     add 9-tryte checksum
  *       @property   {int} total         Total number of addresses to return
  *       @property   {int} security      Security level to be used for the private key / address. Can be 1, 2 or 3
  *       @property   {bool} returnAll    return all searched addresses
@@ -518,7 +517,6 @@ export const getNewAddress = (seed, options, genFn = null, callback) => {
         }
     }
 
-    var checksum = options.checksum || false;
     var total = options.total || null;
     // If no user defined security, use the standard value of 2
     var security = 2;
@@ -540,7 +538,7 @@ export const getNewAddress = (seed, options, genFn = null, callback) => {
     // and return the list of all addresses
     if (total) {
         // Increase index with each iteration
-        return genFn(seed, index, total, security, checksum).then((addresses) => {
+        return genFn(seed, index, security, total).then((addresses) => {
             allAddresses = addresses;
             return callback(null, allAddresses);
         });
@@ -554,7 +552,7 @@ export const getNewAddress = (seed, options, genFn = null, callback) => {
             (callback) => {
                 // Iteratee function
                 var newAddress = '';
-                return genFn(seed, index, security, checksum).then((address) => {
+                return genFn(seed, index, security).then((address) => {
                     newAddress = address;
                     if (options.returnAll) {
                         allAddresses.push(newAddress);

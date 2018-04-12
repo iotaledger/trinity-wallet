@@ -37,7 +37,9 @@ export const generateAccountInfoErrorAlert = (err) => (dispatch) => {
 };
 
 export const generateTransitionErrorAlert = () => (dispatch) => {
-    dispatch(generateAlert('error', i18next.t('cannotCompleteTransition'), i18next.t('somethingWentWrongTryAgain'), 10000));
+    dispatch(
+        generateAlert('error', i18next.t('cannotCompleteTransition'), i18next.t('somethingWentWrongTryAgain'), 10000),
+    );
 };
 
 export const generateSyncingCompleteAlert = () => (dispatch) => {
@@ -71,11 +73,7 @@ export const generateTransferErrorAlert = (error) => (dispatch) =>
     );
 
 export const generatePromotionErrorAlert = (error) => (dispatch) =>
-    dispatch(
-        generateAlert('error', i18next.t('promotionError'), i18next.t('promotionErrorExplanation')),
-        20000,
-        error,
-    );
+    dispatch(generateAlert('error', i18next.t('promotionError'), i18next.t('promotionErrorExplanation')), 20000, error);
 
 export const disposeOffAlert = () => (dispatch) => dispatch(dispose());
 
