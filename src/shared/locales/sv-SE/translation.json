@@ -480,11 +480,11 @@
         "transitionCompleteExplanation": "Snapshot-övergången genomfördes framgångsrikt."
     },
     "deepLink": {
-        "autofill": "Autofyll",
+        "autofill": "Autofill success",
         "autofillExplanation": "Transaktionsdata ifylld automatiskt från länk."
     },
     "updates": {
-        "errorRetrievingUpdateData": "Fel vid hämtning av uppdateringsdata",
+        "errorRetrievingUpdateData": "Error retrieving update data",
         "errorRetrievingUpdateDataExplanation": "Ett fel uppstod vid hämtning av uppdateringsdata. Vänligen försök igen.",
         "noUpdatesAvailable": "Inga uppdateringar tillgängliga",
         "noUpdatesAvailableExplanation": "Du har den senaste versionen av Trinity!",
