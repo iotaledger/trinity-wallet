@@ -480,11 +480,11 @@
         "transitionCompleteExplanation": "Aktualizacja środków zakończyła się sukcesem."
     },
     "deepLink": {
-        "autofill": "Autouzupełnianie",
+        "autofill": "Autofill success",
         "autofillExplanation": "Dane transakcji zostały automatycznie uzupełnione z linku."
     },
     "updates": {
-        "errorRetrievingUpdateData": "Błąd podczas pobierania danych aktualizacji",
+        "errorRetrievingUpdateData": "Error retrieving update data",
         "errorRetrievingUpdateDataExplanation": "Wystąpił błąd podczas pobierania danych aktualizacji. Proszę spróbować ponownie.",
         "noUpdatesAvailable": "Brak dostępnych aktualizacji",
         "noUpdatesAvailableExplanation": "Masz już najnowszą wersję portfela IOTA Trinity!",
