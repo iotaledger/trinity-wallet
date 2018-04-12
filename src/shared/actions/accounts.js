@@ -1,7 +1,7 @@
-import { selectedAccountStateFactory } from '../selectors/accounts';
+import { selectedAccountStateFactory, getAccountNamesFromState } from '../selectors/accounts';
 import { syncAccount, getAccountData } from '../libs/iota/accounts';
 import { syncAddresses } from '../libs/iota/addresses';
-import { clearWalletData } from './wallet';
+import { clearWalletData, setSeedIndex } from './wallet';
 import {
     generateAccountInfoErrorAlert,
     generateSyncingCompleteAlert,
@@ -164,7 +164,7 @@ export const getFullAccountInfoAdditionalSeed = (
     storeInKeychainPromise,
     navigator = null,
     genFn,
-) => (dispatch) => {
+) => (dispatch, getState) => {
     const onError = (err) => {
         if (navigator) {
             navigator.pop({ animated: false });
@@ -176,12 +176,17 @@ export const getFullAccountInfoAdditionalSeed = (
 
     dispatch(fullAccountInfoAdditionalSeedFetchRequest());
 
+    const existingAccountNames = getAccountNamesFromState(getState());
+
     getAccountData(seed, accountName, genFn)
         .then((data) => {
             dispatch(clearWalletData()); // Clean up partial state for reducer.
             if (storeInKeychainPromise) {
                 storeInKeychainPromise(password, seed, accountName)
-                    .then(() => dispatch(fullAccountInfoAdditionalSeedFetchSuccess(data)))
+                    .then(() => {
+                        dispatch(setSeedIndex(existingAccountNames.length));
+                        dispatch(fullAccountInfoAdditionalSeedFetchSuccess(data));
+                    })
                     .catch((err) => onError(err));
             } else {
                 dispatch(fullAccountInfoAdditionalSeedFetchSuccess(data));
