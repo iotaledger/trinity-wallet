@@ -168,7 +168,7 @@
     },
     "loading": {
         "loadingFirstTime": "首次讀取種子碼。",
-        "thisMayTake": "這可能需要一點時間。",
+        "thisMayTake": "這可能需要一點時間.",
         "doNotMinimise": "請不要最小化或關閉應用程式。",
         "youMayNotice": "您的裝置可能會變慢。"
     },
