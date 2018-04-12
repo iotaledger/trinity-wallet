@@ -491,6 +491,6 @@
         "newVersionAvailable": "New version available",
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
         "downloadRelease": "Download release",
-        "skipUpdate": "Skip update"
+        "skipUpdate": "Spring opdatering over"
     }
 }
