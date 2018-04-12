@@ -75,7 +75,7 @@
         "pressBackAgain": "再按一次返回鍵退出",
         "autoreattaching": "自動重新連接",
         "autoreattachingExplanation": "使用雜湊值 {{hash}} 重新連接交易",
-        "autopromoting": "自動宣傳交易",
+        "autopromoting": "自動促進交易",
         "autopromotingExplanation": "使用雜湊值 {{hash}} 促進交易",
         "promoting": "促進交易",
         "promotionError": "無法促進交易",
@@ -248,7 +248,7 @@
     "modeSelection": {
         "expert": "專業",
         "standard": "標準",
-        "expertModeExplanation": "專業模式將會提供像是手動宣傳和重新連接等額外功能。",
+        "expertModeExplanation": "專業模式將會提供像是手動促進和重新連接等額外功能。",
         "modesExplanation": "請確定熟悉 Tangle 運作機制後再啟用專業模式，否則您可能會誤用進階功能。"
     },
     "settings": {
