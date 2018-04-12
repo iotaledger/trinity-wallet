@@ -375,12 +375,12 @@
         "one": "Um"
     },
     "usedAddressModal": {
-        "cantSpendFullBalanceQuestion": "Why can't I spend my full balance?",
-        "spentAddressExplanation": "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
-        "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
+        "cantSpendFullBalanceQuestion": "Por que eu não posso usar meu saldo integral?",
+        "spentAddressExplanation": "Você tem fundos gastos em um ou mais endereços. Para a IOTA, a reutilização de endereço é perigosa, por isso esta carteira não permite que você envie mais de uma vez de um mesmo endereço.",
+        "discordInformation": "Por favor, acesse canal #help no Discord para encontrar o que pode fazer."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Are you sure you want to delete</1><2></2><3>{{accountName}}?</3>",
+        "areYouSure": "<0></0> <1>Você tem certeza que deseja excluir</1> <2></2> <3>{{accountName}}?</3>",
         "yourSeedWillBeRemoved": "Sua Seed e histórico de transações serão removidos.",
         "thisAction": "Esta operação não pode ser desfeita.",
         "enterPassword": "Por favor, digite sua senha para excluir esta conta."
