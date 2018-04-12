@@ -480,11 +480,11 @@
         "transitionCompleteExplanation": "Il passaggio allo snapshot è stato completato con successo."
     },
     "deepLink": {
-        "autofill": "Riempimento automatico",
+        "autofill": "Autofill success",
         "autofillExplanation": "Dati riempiti automaticamente da un collegamento."
     },
     "updates": {
-        "errorRetrievingUpdateData": "Errore nel reperimento dell'aggiornamento",
+        "errorRetrievingUpdateData": "Error retrieving update data",
         "errorRetrievingUpdateDataExplanation": "C'è stato un errore nel reperimento dell'aggiornamento. Per favore riprova.",
         "noUpdatesAvailable": "Nessun aggiornamento disponibile",
         "noUpdatesAvailableExplanation": "Hai l'ultima versione desktop del portafoglio IOTA Trinity!",
