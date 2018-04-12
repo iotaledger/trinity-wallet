@@ -200,7 +200,7 @@
     "saveYourSeed": {
         "seedCleared": "Seed telah dihapus",
         "seedClearedExplanation": "Seed telah dihapus dari papan klip demi keamanan anda.",
-        "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
+        "mustSaveYourSeed": "<0><0>Anda harus menyimpang Seed dengan </0><1>setidaknya</1><2> salah satu opsi dibawah ini.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Seed salah",
@@ -421,67 +421,67 @@
         "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
         "status": "Status",
         "enabled": "Enabled",
-        "disabled": "Disabled",
-        "fingerprintUnavailable": "Fingerprint sensor unavailable",
-        "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
-        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
-        "instructionsLogin": "Touch fingerprint reader to log in."
+        "disabled": "Dinonaktifkan",
+        "fingerprintUnavailable": "Sensor sidik jari tidak tersedia",
+        "fingerprintUnavailableExplanation": "Perangkat anda tidak mendukung fungsi memindai sidik jari atau belum dikonfigurasi di pengaturan perangkat.",
+        "buttonInstructionsDisable": "Tekan tombol dibawah ini untuk menonaktifkan autentikasi sidik jari.",
+        "buttonInstructionsEnable": "Tekan tombol dibawah ini untuk mengaktifkan autentikasi sidik jari.",
+        "instructionsLogin": "Tekan pembaca sidik jari untuk masuk."
     },
     "transferConfirmation": {
         "youAreAbout": "Anda akan mengirim {{contents}} ke alamat",
         "aMessage": "pesan"
     },
     "twoFA": {
-        "wrongCode": "Wrong code",
-        "wrongCodeExplanation": "The code you entered is incorrect.",
-        "emptyCode": "Empty code",
-        "emptyCodeExplanation": "Please enter a code and try again.",
-        "keyCopied": "Key copied to clipboard",
-        "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
-        "addKey": "Add this key to your 2FA app",
-        "key": "Key",
-        "twoFAEnabled": "2FA is now enabled",
-        "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
-        "enterCode": "Enter the code from your 2FA app",
-        "code": "Code"
+        "wrongCode": "Kode salah",
+        "wrongCodeExplanation": "Kode yang Anda masukkan tidak benar.",
+        "emptyCode": "Kode kosong",
+        "emptyCodeExplanation": "Silakan masukkan kode dan coba lagi.",
+        "keyCopied": "Kunci disalin ke papan klip",
+        "keyCopiedExplanation": "Kunci 2FA Anda telah disalin ke papan klip.",
+        "addKey": "Tambahkan tombol ini ke aplikasi 2FA Anda",
+        "key": "Kunci",
+        "twoFAEnabled": "2FA sekarang aktif",
+        "twoFAEnabledExplanation": "Anda telah berhasil mengaktifkan dua faktor otentikasi.",
+        "enterCode": "Masukkan kode dari aplikasi 2FA",
+        "code": "Kode"
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change",
-        "volume": "Volume (24h)",
-        "currentValue": "Current value"
+        "change": "Ubah",
+        "volume": "Volume (24jam)",
+        "currentValue": "Nilai saat ini"
     },
     "rootDetection": {
-        "warning": "WARNING",
-        "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+        "warning": "PERINGATAN",
+        "rootDetected": "<0>Perangkat anda sepertinya telah di root</0><1>Ini dapat menambah resiko yang tinggi dalam dompet anda.</1><2>Apakah anda tetap ingin lanjut?</2>"
     },
     "pow": {
-        "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
-        "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
-        "local": "Local",
-        "remote": "Remote",
-        "powUpdated": "Proof of work settings",
-        "powUpdatedExplanation": "Your proof of work configuration has been updated."
+        "feeless": "Dibutuhkan sedikit Proof of Work untuk mengirim transaksi tanpa biaya di IOTA.",
+        "localOrRemote": "Proof of Work dapat diselesaikan secara lokal pada perangkat Anda, atau dikirim ke sebuah node.",
+        "local": "Lokal",
+        "remote": "Jarak jauh",
+        "powUpdated": "Pengaturan Proof of Work",
+        "powUpdatedExplanation": "Konfigurasi Proof of Work anda telah diperbarui."
     },
     "progressSteps": {
-        "validatingReceiveAddress": "Validating receive address",
-        "syncingAccount": "Syncing account",
-        "preparingInputs": "Preparing inputs",
-        "preparingTransfers": "Preparing transfers",
-        "gettingTransactionsToApprove": "Getting transactions to approve",
-        "proofOfWork": "Completing proof of work",
-        "broadcasting": "Broadcasting"
+        "validatingReceiveAddress": "Mengesahkan alamat penerima",
+        "syncingAccount": "Sinkronisasi akun",
+        "preparingInputs": "Mempersiapkan masukan",
+        "preparingTransfers": "Menyiapkan transfer",
+        "gettingTransactionsToApprove": "Menyiapkan transaksi untuk disetujui",
+        "proofOfWork": "Menyelesaikan Proof of Work",
+        "broadcasting": "Menyiarkan"
     },
     "snapshotTransition": {
-        "cannotCompleteTransition": "Cannot complete snapshot transition",
-        "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
-        "transitionComplete": "Snapshot transition complete",
-        "transitionCompleteExplanation": "The snapshot transition has completed successfully."
+        "cannotCompleteTransition": "Tidak dapat menyelesaikan transisi snapshot",
+        "cannotCompleteTransitionExplanation": "Saldo Anda harus lebih besar dari 0 untuk menyelesaikan transisi.",
+        "transitionComplete": "Transisi Snapshot selesai",
+        "transitionCompleteExplanation": "Transisi Snapshot telah selesai dengan sukses."
     },
     "deepLink": {
-        "autofill": "Autofill",
-        "autofillExplanation": "Transaction data autofilled from link."
+        "autofill": "Isi otomatis",
+        "autofillExplanation": "Data transaksi isi otomatis dari link."
     },
     "updates": {
         "errorRetrievingUpdateData": "Error retreiving update data",
