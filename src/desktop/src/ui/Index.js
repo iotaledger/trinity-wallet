@@ -112,6 +112,9 @@ class App extends React.Component {
 
             Electron.changeLanguage(this.props.t);
             Electron.requestDeepLink();
+
+            Electron.readKeychain();
+            
         } catch (error) {
             // eslint-disable-next-line react/no-did-mount-set-state
             this.setState({
