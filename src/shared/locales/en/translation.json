@@ -374,7 +374,8 @@
         "selectNode": "Select node",
         "addCustomNode": "Add custom node",
         "manualSync": "Manual sync",
-        "snapshotTransition": "Snapshot transition"
+        "snapshotTransition": "Snapshot transition",
+        "pow": "Proof of Work"
     },
     "advancedThemeCustomisation": {
         "background": "Background",
@@ -407,7 +408,7 @@
         "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
     },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete",
+        "areYouSure": "<0></0><1>Are you sure you want to delete</1><2></2><3>{{accountName}}?</3>",
         "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
         "thisAction": "This action cannot be undone.",
         "enterPassword": "Enter your password to delete this account."
@@ -510,11 +511,11 @@
         "transitionCompleteExplanation": "The snapshot transition has completed successfully."
     },
     "deepLink": {
-        "autofill": "Autofill",
+        "autofill": "Autofill success",
         "autofillExplanation": "Transaction data autofilled from link."
     },
     "updates": {
-        "errorRetrievingUpdateData": "Error retreiving update data",
+        "errorRetrievingUpdateData": "Error retrieving update data",
         "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
         "noUpdatesAvailable": "No updates available",
         "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",

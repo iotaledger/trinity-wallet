@@ -42,11 +42,11 @@ const renderInitialScreen = (store) => {
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
+                topBarElevationShadowEnabled: false,
                 drawUnderStatusBar: true,
                 statusBarColor: state.settings.theme.body.bg,
                 screenBackgroundColor: state.settings.theme.body.bg,
             },
-            overrideBackPress: true,
         },
         appStyle: {
             orientation: 'portrait',

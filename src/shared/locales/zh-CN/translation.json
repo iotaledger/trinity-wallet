@@ -78,7 +78,8 @@
         "autopromoting": "自动提示转移",
         "autopromotingExplanation": "使用哈希{{hash}} 促进事务",
         "promoting": "提示转移",
-        "promotionError": "无法提升交易",
+        "promotionError": "Could not promote transfer",
+        "promotionErrorExplanation": "Something went wrong while promoting your transaction. Please try again.",
         "noLongerValid": "您想要提升的捆绑包已经失效",
         "cannotSendToOwn": "发送到自己的地址",
         "cannotSendToOwnExplanation": "您不能转账到您自己的地址。",
@@ -89,7 +90,11 @@
         "snapshotTransitionInProgressExplanation": "请稍候, 直到转换完成。",
         "checkForUpdates": "检查更新",
         "account": "账户",
-        "enterPasswordToAccessSettings": "输入密码以访问帐户设置"
+        "enterPasswordToAccessSettings": "输入密码以访问帐户设置",
+        "changeNode": "Change node",
+        "addCustomNode": "Add custom node",
+        "nodeChanged": "Node changed",
+        "nodeChangedExplanation": "The node has been changed successfully."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "种子包含无效字符",
@@ -138,7 +143,8 @@
         "invalidCharactersExplanation": "种子只能由大写A-Z字母和数字9组成。您的种子包含无效字符。请再试一遍。",
         "seedTooShort": "种子太短",
         "seedTooShortExplanation": "种子长度必须为{{maxLength}} 。您的种子当前为{{currentLength}} 个字符。请重试。",
-        "seedExplanation": "种子的长度应该有{{maxLength}} 个字符，包含大写字母 A - Z 或者数字9。您不能使用超过 {{maxLength}} 个字符。",
+        "seedExplanation":
+            "种子的长度应该有{{maxLength}} 个字符，包含大写字母 A - Z 或者数字9。您不能使用超过 {{maxLength}} 个字符。",
         "neverShare": "永远不要与任何人分享你的种子"
     },
     "home": {
@@ -228,7 +234,8 @@
     },
     "setPassword": {
         "passwordTooShort": "密码太短",
-        "passwordTooShortExplanation": "您的密码长度必须为至少{{minLength}} 个字符 。当前为{{currentLength}} 个字符。请重试。",
+        "passwordTooShortExplanation":
+            "您的密码长度必须为至少{{minLength}} 个字符 。当前为{{currentLength}} 个字符。请重试。",
         "passwordMismatch": "密码不相符",
         "passwordMismatchExplanation": "您输入的密码不匹配。请再试一次。",
         "nowWeNeedTo": "现在我们需要设置一个密码。",
@@ -290,7 +297,8 @@
         "fetchedConversionRatesExplanation": "已成功获取 {{currency}} 的最新汇率。",
         "undo": "撤销",
         "redo": "重做",
-        "about": "关于Trinity"
+        "about": "关于Trinity",
+        "lockScreenTimeout": "Lock Screen Timeout (Minutes)"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "输入您的密码以重置钱包。",
@@ -301,8 +309,10 @@
         "okay": "好，让我们来开始设置您的钱包 ！",
         "doYouAlreadyHaveASeed": "您是否希望使用一个已有的种子？",
         "seedExplanation": "IOTA种子就像您账户的用户名和密码被转化成了一个长度为81个字符的字符串。",
-        "explanation": "<0> <0> 您可以使用它访问您的资金从 </0> <1> 任何钱包 </1> <2>, 在 </2> <3> 任何设备 </3> <4>。但是, 如果你失去了你的种子, 你也失去了你的丝毫. </4> </0>",
-        "keepSafe": "请您保管好你的种子."
+        "explanation":
+            "<0> <0> 您可以使用它访问您的资金从 </0> <1> 任何钱包 </1> <2>, 在 </2> <3> 任何设备 </3> <4>。但是, 如果你失去了你的种子, 你也失去了你的丝毫. </4> </0>",
+        "keepSafe": "请您保管好你的种子.",
+        "hint": "<0><0>Hint:</0> Click NO if this is your first time using IOTA.</0>"
     },
     "welcome": {
         "thankYou": "感谢下载Trinity",
@@ -340,7 +350,8 @@
         "selectNode": "选择节点",
         "addCustomNode": "添加自定义节点",
         "manualSync": "手动同步",
-        "snapshotTransition": "快照转换"
+        "snapshotTransition": "快照转换",
+        "pow": "Proof of Work"
     },
     "advancedThemeCustomisation": {
         "background": "背景",
@@ -366,8 +377,14 @@
         "thousand": "千",
         "one": "一"
     },
+    "usedAddressModal": {
+        "cantSpendFullBalanceQuestion": "Why can't I spend my full balance?",
+        "spentAddressExplanation":
+            "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
+        "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
+    },
     "deleteAccount": {
-        "areYouSure": "Are you sure you want to delete {{accountName}}?",
+        "areYouSure": "<0></0><1>Are you sure you want to delete</1><2></2><3>{{accountName}}?</3>",
         "yourSeedWillBeRemoved": "您的种子和交易记录将被删除。",
         "thisAction": "本操作无法撤销。",
         "enterPassword": "请输入您的密码以确认将帐号删除。"
@@ -395,7 +412,8 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "此操作无法撤消",
-        "warning": "<0><0>所有的钱包数据，包括你的 </0><1> 密码,</1><2> 和 </2><3> 其他帐户信息</3><4> 会丢失的。</4></0>"
+        "warning":
+            "<0><0>所有的钱包数据，包括你的 </0><1> 密码,</1><2> 和 </2><3> 其他帐户信息</3><4> 会丢失的。</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "触摸设备的指纹读取器以启用指纹验证。",
@@ -436,11 +454,13 @@
     "chart": {
         "mcap": "MCAP",
         "change": "变化率",
-        "volume": "交易量(24h)"
+        "volume": "交易量(24h)",
+        "currentValue": "Current value"
     },
     "rootDetection": {
         "warning": "警告",
-        "rootDetected": "<0> 您的设备似乎root过 </0><1> 这可能会对您的钱包的安全性造成重大风险. </1><2> 尽管存在此风险, 您是否仍要继续？ </2>"
+        "rootDetected":
+            "<0> 您的设备似乎root过 </0><1> 这可能会对您的钱包的安全性造成重大风险. </1><2> 尽管存在此风险, 您是否仍要继续？ </2>"
     },
     "pow": {
         "feeless": "有必要完成一点工作量证明来在IOTA中发送免收手续费的事务",
@@ -464,5 +484,20 @@
         "cannotCompleteTransitionExplanation": "您的余额必须大于0才能完成事务。",
         "transitionComplete": "快照转换完成。",
         "transitionCompleteExplanation": "快照转换已成功完成。"
+    },
+    "deepLink": {
+        "autofill": "Autofill",
+        "autofillExplanation": "Transaction data autofilled from link."
+    },
+    "updates": {
+        "errorRetrievingUpdateData": "Error retreiving update data",
+        "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
+        "noUpdatesAvailable": "No updates available",
+        "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
+        "newVersionAvailable": "New version available",
+        "newVersionAvailableExplanation":
+            "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
+        "downloadRelease": "Download release",
+        "skipUpdate": "Skip update"
     }
 }

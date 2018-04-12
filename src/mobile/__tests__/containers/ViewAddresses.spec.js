@@ -21,9 +21,10 @@ const getProps = (overrides) =>
                         balance: 0,
                         index: 0,
                         spent: false,
+                        checksum: 'NXELTUENX',
                     },
                 },
-                transfers: [],
+                transfers: {},
                 balance: 0,
             },
             setSetting: noop,
@@ -124,7 +125,6 @@ describe('Testing ViewAddresses component', () => {
                 });
 
                 it('should assign checksum to address prop in each item of the returned array', () => {
-                    const fakeAddress = 'U'.repeat(81);
                     const props = getProps();
 
                     const wrapper = shallow(<ViewAddresses {...props} />);
@@ -134,11 +134,10 @@ describe('Testing ViewAddresses component', () => {
 
                     expect(returnValue.length).toEqual(1);
 
-                    const head = returnValue[0];
-
+                    const fakeAddress = 'U'.repeat(81);
                     const checksum = 'NXELTUENX';
                     const fakeAddressWithChecksum = `${fakeAddress}${checksum}`;
-                    expect(head.address).toEqual(fakeAddressWithChecksum);
+                    expect(returnValue[0].address).toEqual(fakeAddressWithChecksum);
                 });
 
                 it('should return an ordered array in descending by index prop', () => {
