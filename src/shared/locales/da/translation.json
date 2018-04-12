@@ -480,11 +480,11 @@
         "transitionCompleteExplanation": "Snapshot synkronisering blev gennemført med succes."
     },
     "deepLink": {
-        "autofill": "Auto-udfyld",
+        "autofill": "Autofill success",
         "autofillExplanation": "Transaktionsdata er autoudfyldt fra linket."
     },
     "updates": {
-        "errorRetrievingUpdateData": "Error retreiving update data",
+        "errorRetrievingUpdateData": "Error retrieving update data",
         "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
         "noUpdatesAvailable": "No updates available",
         "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
