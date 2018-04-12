@@ -17,7 +17,7 @@ class FatalError extends React.PureComponent {
     generalContent = () => {
         return (
             <section>
-                <h2>Linux missing dependencies tutorial</h2>
+                <h2>Windows/Mac generic error</h2>
             </section>
         );
     };
