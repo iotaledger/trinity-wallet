@@ -480,11 +480,11 @@
         "transitionCompleteExplanation": "De snapshot transitie is voltooid."
     },
     "deepLink": {
-        "autofill": "Autom. invullen",
+        "autofill": "Autofill success",
         "autofillExplanation": "De transactie gegevens worden automatisch ingevuld vanuit de link."
     },
     "updates": {
-        "errorRetrievingUpdateData": "Error bij het ophalen van update data",
+        "errorRetrievingUpdateData": "Error retrieving update data",
         "errorRetrievingUpdateDataExplanation": "Er was een error bij het ophalen van update data. Probeer het opnieuw.",
         "noUpdatesAvailable": "Geen updates beschikbaar",
         "noUpdatesAvailableExplanation": "U beschikt over de laatste versie van de IOTA Trinity desktop wallet!",
