@@ -58,8 +58,8 @@
         "node": "Servidor",
         "cannotPerformAction": "Não é possível executar a ação",
         "cannotPerformActionExplanation": "Vá para Opções para redefinir a carteira.",
-        "attachToTangleUnavailable": "Anexamento ao Tangle indisponível",
-        "attachToTangleUnavailableExplanation": "Anexo ao Tangle não está disponível no servidor selecionado.",
+        "attachToTangleUnavailable": "Anexar ao Tangle indisponível",
+        "attachToTangleUnavailableExplanation": "Anexar ao Tangle não está disponível no servidor selecionado.",
         "wallet": "Carteira",
         "sent": "Enviado",
         "received": "Recebido",
@@ -450,7 +450,7 @@
         "mcap": "MCAP",
         "change": "Variação",
         "volume": "Volume (24h)",
-        "currentValue": "Current value"
+        "currentValue": "Valor atual"
     },
     "rootDetection": {
         "warning": "ATENÇÃO",
@@ -480,17 +480,17 @@
         "transitionCompleteExplanation": "A transição do registro instantâneo foi concluída com sucesso."
     },
     "deepLink": {
-        "autofill": "Autofill success",
-        "autofillExplanation": "Transaction data autofilled from link."
+        "autofill": "Sucesso no preenchimento automático",
+        "autofillExplanation": "Dados da transação preenchida automaticamente através do link."
     },
     "updates": {
-        "errorRetrievingUpdateData": "Error retrieving update data",
-        "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
-        "noUpdatesAvailable": "No updates available",
-        "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
-        "newVersionAvailable": "New version available",
-        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
-        "downloadRelease": "Download release",
-        "skipUpdate": "Skip update"
+        "errorRetrievingUpdateData": "Erro ao recuperar dados de atualização",
+        "errorRetrievingUpdateDataExplanation": "Ocorreu um erro ao recuperar os dados de atualização. Por favor, tente novamente.",
+        "noUpdatesAvailable": "Nenhuma atualização disponível",
+        "noUpdatesAvailableExplanation": "Você possui a última versão da carteira Trinity IOTA Desktop!",
+        "newVersionAvailable": "Nova versão disponível",
+        "newVersionAvailableExplanation": "Uma nova versão da <strong>Trinity</strong> <strong>{{version}}</strong> está disponível. Por favor, leia os detalhes do lançamento e certifique-se da origem do download antes de atualizar:",
+        "downloadRelease": "Baixar Nova Versão",
+        "skipUpdate": "Ignorar a atualização"
     }
 }
