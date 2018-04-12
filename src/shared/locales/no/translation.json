@@ -296,7 +296,7 @@
         "undo": "Angre",
         "redo": "Gjenta",
         "about": "Om Trinity",
-        "lockScreenTimeout": "Lock Screen Timeout (Minutes)"
+        "lockScreenTimeout": "Lås Trinity etter innaktivitet (minutter)"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Skriv inn passordet for å tilbakestille lommeboken.",
@@ -484,13 +484,13 @@
         "autofillExplanation": "Transaksjonsdata er autoutfylt fra lenken."
     },
     "updates": {
-        "errorRetrievingUpdateData": "Error retreiving update data",
-        "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
+        "errorRetrievingUpdateData": "Feil ved innhenting av data",
+        "errorRetrievingUpdateDataExplanation": "Det oppstod en feil under innhenting av data. Vennligst forsøk igjen.",
         "noUpdatesAvailable": "Ingen tilgjengelige oppdateringer",
-        "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
+        "noUpdatesAvailableExplanation": "Du har den nyeste versjonen av IOTA Trinity desktop lommeboken!",
         "newVersionAvailable": "Ny versjon tilgjengelig",
-        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
-        "downloadRelease": "Download release",
+        "newVersionAvailableExplanation": "En ny <strong>Trinity</strong> <strong>{{version}}</strong> versjon er tilgjengelig. Vennligst les utgivelses-notatene nøye og verifiser nedlastingskilden før oppdatering:",
+        "downloadRelease": "Last ned versjon",
         "skipUpdate": "Hopp over oppdatering"
     }
 }
