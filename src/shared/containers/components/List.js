@@ -13,6 +13,7 @@ export default function withListData(ListComponent) {
         static propTypes = {
             transfers: PropTypes.object.isRequired,
             wallet: PropTypes.object.isRequired,
+            ui: PropTypes.object.isRequired,
             limit: PropTypes.number,
             filter: PropTypes.string,
             compact: PropTypes.bool,
@@ -33,11 +34,11 @@ export default function withListData(ListComponent) {
                 currentItem,
                 wallet,
                 theme,
+                ui,
                 t,
             } = this.props;
 
-            const isBusy =
-                wallet.isSyncing || wallet.isSendingTransfer || wallet.isAttachingToTangle || wallet.isTransitioning;
+            const isBusy = ui.isSyncing || ui.isSendingTransfer || ui.isAttachingToTangle || ui.isTransitioning;
 
             const ListProps = {
                 transfers,
@@ -64,6 +65,7 @@ export default function withListData(ListComponent) {
         transfers: getTransfersForSelectedAccount(state),
         theme: state.settings.theme,
         wallet: state.wallet,
+        ui: state.ui,
     });
 
     return connect(mapStateToProps, {})(translate()(ListData));

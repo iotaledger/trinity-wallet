@@ -84,6 +84,10 @@ const Electron = {
         return keytar.setPassword('Trinity desktop wallet', 'trinity', content);
     },
 
+    getOS: () => {
+        return process.platform;
+    },
+
     changeLanguage: (t) => {
         ipc.send('menu.language', {
             about: t('settings:about'),
