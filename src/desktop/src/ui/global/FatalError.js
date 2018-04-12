@@ -26,7 +26,7 @@ class FatalError extends React.PureComponent {
         return (
             <main className={css.onboarding}>
                 <header />
-                {Electron.getOS === 'linux' ? this.linuxContent : this.generalContent}
+                {Electron.getOS() === 'linux' ? this.linuxContent() : this.generalContent()}
                 <footer />
             </main>
         );

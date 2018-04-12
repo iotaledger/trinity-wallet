@@ -104,6 +104,8 @@ class App extends React.Component {
     componentDidMount() {
         this.onMenuToggle = this.menuToggle.bind(this);
 
+        this.checkVaultAvailability();
+
         try {
             Electron.onEvent('menu', this.onMenuToggle);
 
@@ -112,9 +114,6 @@ class App extends React.Component {
 
             Electron.changeLanguage(this.props.t);
             Electron.requestDeepLink();
-
-            Electron.readKeychain();
-            
         } catch (error) {
             // eslint-disable-next-line react/no-did-mount-set-state
             this.setState({
@@ -161,6 +160,16 @@ class App extends React.Component {
             }
         } else {
             generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation1'));
+        }
+    }
+
+    async checkVaultAvailability() {
+        try {
+            await Electron.readKeychain();
+        } catch (err) {
+            this.setState({
+                fatalError: true,
+            });
         }
     }
 
