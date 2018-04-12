@@ -48,5 +48,6 @@
         "node-cmd": "^3.0.0",
         "os": "^0.1.1",
         "prettier": "^1.11.0"
-    }
+    },
+    "dependencies": {}
 }

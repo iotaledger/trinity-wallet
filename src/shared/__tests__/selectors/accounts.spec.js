@@ -10,7 +10,7 @@ import {
     getAccountNamesFromState,
     getSeedIndexFromState,
     selectAccountInfo,
-    getDeduplicatedTransfersForSelectedAccount,
+    getTransfersForSelectedAccount,
     getAddressesForSelectedAccount,
     getBalanceForSelectedAccount,
     getSelectedAccountName,
@@ -105,8 +105,8 @@ describe('selectors: accounts', () => {
                     pendingTxHashesForSpentAddresses: { valid: [], invalid: [] },
                     txHashesForUnspentAddresses: { valid: [], invalid: [] },
                     accountInfo: {
-                        valid: { transfers: [], addresses: {}, balance: 0 },
-                        invalid: { transfers: [], addresses: {}, balance: 0 },
+                        valid: { transfers: {}, addresses: {}, balance: 0 },
+                        invalid: { transfers: {}, addresses: {}, balance: 0 },
                     },
                 },
                 garbage: {},
@@ -145,7 +145,7 @@ describe('selectors: accounts', () => {
                             balance: 10,
                         },
                         baz: {
-                            transfers: [],
+                            transfers: {},
                             addresses: {
                                 addresses: {
                                     ['B'.repeat(81)]: { index: 0, balance: 20, spent: false },
@@ -200,12 +200,12 @@ describe('selectors: accounts', () => {
                 accounts: {
                     accountInfo: {
                         foo: {
-                            transfers: [],
+                            transfers: {},
                             addresses: {},
                             balance: 0,
                         },
                         baz: {
-                            transfers: [],
+                            transfers: {},
                             addresses: {
                                 addresses: {
                                     ['B'.repeat(81)]: { index: 0, balance: 20, spent: false },
@@ -224,18 +224,18 @@ describe('selectors: accounts', () => {
 
         it('should slice accountInfo with currently selected account name', () => {
             expect(selectAccountInfo(state)).to.eql({
-                transfers: [],
+                transfers: {},
                 addresses: {},
                 balance: 0,
             });
         });
     });
 
-    describe('#getDeduplicatedTransfersForSelectedAccount', () => {
+    describe('#getTransfersForSelectedAccount', () => {
         describe('when "transfers" prop is not defined as a nested prop under selected account info object', () => {
-            it('should return an empty array', () => {
+            it('should return an empty object', () => {
                 expect(
-                    getDeduplicatedTransfersForSelectedAccount({
+                    getTransfersForSelectedAccount({
                         accounts: {
                             accountInfo: {
                                 foo: {
@@ -253,22 +253,21 @@ describe('selectors: accounts', () => {
                             seedIndex: 0,
                         },
                     }),
-                ).to.eql([]);
+                ).to.eql({});
             });
         });
 
         describe('when "transfers" prop is defined as a nested prop under selected account info object', () => {
-            // Test deduplication for transfers separately
             it('should return transfers', () => {
                 expect(
-                    getDeduplicatedTransfersForSelectedAccount({
+                    getTransfersForSelectedAccount({
                         accounts: {
                             accountInfo: {
                                 foo: {
-                                    transfers: [
-                                        [{ bundle: 'bundleOne', currentIndex: 0 }],
-                                        [{ bundle: 'bundleTwo', currentIndex: 0 }],
-                                    ],
+                                    transfers: {
+                                        bundleOne: { foo: {} },
+                                        bundleTwo: { foo: {} },
+                                    },
                                     addresses: {},
                                     balance: 0,
                                 },
@@ -284,7 +283,10 @@ describe('selectors: accounts', () => {
                             seedIndex: 0,
                         },
                     }),
-                ).to.eql([[{ bundle: 'bundleOne', currentIndex: 0 }], [{ bundle: 'bundleTwo', currentIndex: 0 }]]);
+                ).to.eql({
+                    bundleOne: { foo: {} },
+                    bundleTwo: { foo: {} },
+                });
             });
         });
     });
@@ -297,11 +299,11 @@ describe('selectors: accounts', () => {
                         accounts: {
                             accountInfo: {
                                 foo: {
-                                    transfers: [],
+                                    transfers: {},
                                     balance: 0,
                                 },
                                 baz: {
-                                    transfers: [],
+                                    transfers: {},
                                     balance: 0,
                                 },
                             },
@@ -322,7 +324,7 @@ describe('selectors: accounts', () => {
                         accounts: {
                             accountInfo: {
                                 foo: {
-                                    transfers: [],
+                                    transfers: {},
                                     addresses: {
                                         ['U'.repeat(81)]: {},
                                         ['A'.repeat(81)]: {},
@@ -330,7 +332,7 @@ describe('selectors: accounts', () => {
                                     balance: 0,
                                 },
                                 baz: {
-                                    transfers: [],
+                                    transfers: {},
                                     addresses: {},
                                     balance: 0,
                                 },
@@ -354,11 +356,11 @@ describe('selectors: accounts', () => {
                         accounts: {
                             accountInfo: {
                                 foo: {
-                                    transfers: [],
+                                    transfers: {},
                                     addresses: {},
                                 },
                                 baz: {
-                                    transfers: [],
+                                    transfers: {},
                                     addresses: {},
                                 },
                             },
@@ -379,12 +381,12 @@ describe('selectors: accounts', () => {
                         accounts: {
                             accountInfo: {
                                 foo: {
-                                    transfers: [],
+                                    transfers: {},
                                     addresses: {},
                                     balance: 10000,
                                 },
                                 baz: {
-                                    transfers: [],
+                                    transfers: {},
                                     addresses: {},
                                     balance: 10,
                                 },

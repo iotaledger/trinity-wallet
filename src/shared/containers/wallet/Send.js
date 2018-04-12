@@ -4,8 +4,10 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { generateAlert } from '../../actions/alerts';
 
-import { sendAmount } from '../../actions/deepLinks';
+import { setDeepLinkInactive } from '../../actions/deepLink';
 import { makeTransaction } from '../../actions/transfers';
+import { setSendAddressField, setSendAmountField, setSendMessageField } from '../../actions/ui';
+
 import { getSelectedAccountName, getBalanceForSelectedAccount } from '../../selectors/accounts';
 import { VALID_SEED_REGEX, ADDRESS_LENGTH } from '../../libs/iota/utils';
 import { iota } from '../../libs/iota';
@@ -28,67 +30,93 @@ export default function withSendData(SendComponent) {
             makeTransaction: PropTypes.func.isRequired,
             theme: PropTypes.object.isRequired,
             t: PropTypes.func.isRequired,
-            deepLinks: PropTypes.object.isRequired,
-            sendAmount: PropTypes.func.isRequired,
+            setDeepLinkInactive: PropTypes.func.isRequired,
+            deepLinkActive: PropTypes.bool.isRequired,
+            setSendAddressField: PropTypes.func.isRequired,
+            setSendAmountField: PropTypes.func.isRequired,
+            setSendMessageField: PropTypes.func.isRequired,
         };
 
         componentWillMount() {
-            this.validadeDeepLink(this.props.deepLinks.address);
+            this.checkDeepLink(this.props);
         }
 
         componentWillReceiveProps(nextProps) {
-            this.validadeDeepLink(nextProps.deepLinks.address);
-        }
+            this.checkDeepLink(nextProps);
 
-        validadeDeepLink(address) {
-            if (address !== '') {
-                const { generateAlert, t } = this.props;
-                generateAlert('success', t('autofill'), t('autofillExplanation'));
+            if (this.props.ui.isSendingTransfer && !nextProps.ui.isSendingTransfer) {
+                this.props.setSendAddressField('');
+                this.props.setSendAmountField('');
+                this.props.setSendMessageField('');
             }
         }
 
-        validateInputs = (address, amount) => {
-            const { generateAlert, balance, t } = this.props;
+        checkDeepLink = (props) => {
+            if (props.deepLinkActive) {
+                this.props.generateAlert(
+                    'success',
+                    this.props.t('deepLink:autofill'),
+                    this.props.t('deepLink:autofillExplanation'),
+                );
+                this.props.setDeepLinkInactive();
+            }
+        };
 
+        validateInputs = () => {
+            const { ui, generateAlert, balance, t } = this.props;
+
+            const address = ui.sendAddressFieldText;
+            const amount = ui.sendAmountFieldText;
+            const message = ui.sendMessageFieldText;
+
+            // Validate address length
             if (address.length !== ADDRESS_LENGTH) {
-                generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation1'));
+                generateAlert(
+                    'error',
+                    t('send:invalidAddress'),
+                    t('send:invalidAddressExplanation1', { maxLength: ADDRESS_LENGTH }),
+                );
                 return false;
             }
 
+            // Validate valid IOTA address
             if (!address.match(VALID_SEED_REGEX)) {
                 generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation2'));
                 return false;
             }
 
+            // Validate address checksum
             if (!iota.utils.isValidChecksum(address)) {
                 generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation3'));
                 return false;
             }
 
+            // Validate enought balance
             if (parseFloat(amount) > balance) {
                 generateAlert('error', t('send:notEnoughFunds'), t('send:notEnoughFundsExplanation'));
                 return false;
             }
 
-            return true;
-        };
-
-        validateMessage = (message) => {
-            const { generateAlert, t } = this.props;
             // Validate whether message only contains ASCII letters
             // as anything else is lost up on conversion to trytes
-            for (let i = 0; i < message.length; i++){
+            for (let i = 0; i < message.length; i++) {
                 if (message.charCodeAt(i) > 255) {
-                    generateAlert('error', t('send:invalidMessageCharacter'), t('send:invalidMessageCharacterExplanation'));
+                    generateAlert(
+                        'error',
+                        t('send:invalidMessageCharacter'),
+                        t('send:invalidMessageCharacterExplanation'),
+                    );
                     return false;
                 }
             }
+
             // Validate length of the message
             const trytes = iota.utils.toTrytes(message) || '';
             if (trytes.length > 2187) {
                 generateAlert('error', t('send:invalidMessageTooLong'), t('send:invalidMessageTooLongExplanation'));
                 return false;
             }
+
             return true;
         };
 
@@ -113,9 +141,28 @@ export default function withSendData(SendComponent) {
         };
 
         render() {
-            const { balance, settings, marketData, wallet, ui, theme, t, deepLinks, sendAmount } = this.props;
+            const {
+                balance,
+                settings,
+                marketData,
+                wallet,
+                ui,
+                theme,
+                t,
+                setSendAddressField,
+                setSendAmountField,
+                setSendMessageField,
+            } = this.props;
 
             const sendProps = {
+                fields: {
+                    address: ui.sendAddressFieldText,
+                    amount: ui.sendAmountFieldText,
+                    message: ui.sendMessageFieldText,
+                },
+                setSendAddressField,
+                setSendAmountField,
+                setSendMessageField,
                 isSending: ui.isSendingTransfer,
                 password: wallet.password,
                 seedIndex: wallet.seedIndex,
@@ -130,8 +177,6 @@ export default function withSendData(SendComponent) {
                 balance,
                 theme,
                 t,
-                deepLinkAmount: deepLinks,
-                sendAmount: sendAmount,
             };
 
             return <SendComponent {...sendProps} />;
@@ -149,13 +194,16 @@ export default function withSendData(SendComponent) {
         accounts: state.accounts,
         theme: state.settings.theme,
         ui: state.ui,
-        deepLinks: state.deepLinks,
+        deepLinkActive: state.wallet.deepLinkActive,
     });
 
     const mapDispatchToProps = {
         generateAlert,
         makeTransaction,
-        sendAmount,
+        setDeepLinkInactive,
+        setSendAddressField,
+        setSendAmountField,
+        setSendMessageField,
     };
 
     return translate()(connect(mapStateToProps, mapDispatchToProps)(SendData));
