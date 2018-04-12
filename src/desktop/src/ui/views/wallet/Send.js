@@ -11,7 +11,6 @@ import TextInput from 'ui/components/input/Text';
 import Button from 'ui/components/Button';
 import Confirm from 'ui/components/modal/Confirm';
 import withSendData from 'containers/wallet/Send';
-import { generateAlert } from 'actions/alerts';
 
 import css from './index.css';
 
@@ -101,8 +100,7 @@ class Send extends React.PureComponent {
     }
 
     confirmTransfer = async () => {
-        const { address, amount, message } = this.state;
-        const { fields,  password, seedIndex, sendTransfer, settings, generateAlert } = this.props;
+        const { fields, password, seedIndex, sendTransfer, settings, generateAlert } = this.props;
 
         this.setState({
             isTransferModalVisible: false,
@@ -133,16 +131,6 @@ class Send extends React.PureComponent {
         sendTransfer(seed, fields.address, parseInt(fields.amount), fields.message, null, powFn);
     };
 
-<<<<<<< HEAD
-    changeMessage = (message) => {
-        if (!this.props.validateMessage(message)) {
-            return;
-        }
-        this.setState({ message });
-    };
-
-=======
->>>>>>> desktop-next
     render() {
         const { fields, isSending, balance, settings, t } = this.props;
         const { isTransferModalVisible } = this.state;
@@ -180,15 +168,11 @@ class Send extends React.PureComponent {
                         balance={balance}
                         onChange={(value) => this.props.setSendAmountField(value)}
                     />
-<<<<<<< HEAD
-                    <TextInput value={message} label={t('send:message')} onChange={this.changeMessage} />
-=======
                     <TextInput
                         value={fields.message}
                         label={t('send:message')}
                         onChange={(value) => this.props.setSendMessageField(value)}
                     />
->>>>>>> desktop-next
                 </div>
                 <fieldset>
                     <Button type="submit" loading={isSending} variant="primary">
