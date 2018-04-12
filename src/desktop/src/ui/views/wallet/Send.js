@@ -120,7 +120,7 @@ class Send extends React.PureComponent {
 
         let powFn = null;
 
-        if (!settings.remotePow) {
+        if (!settings.remotePoW) {
             // Temporarily return an error if WebGL cannot be initialized
             // Remove once we implement more PoW methods
             try {
@@ -144,11 +144,11 @@ class Send extends React.PureComponent {
     };
 
     changeMessage = (message) => {
-        if (!this.props.validateMessage(message)){
+        if (!this.props.validateMessage(message)) {
             return;
         }
         this.setState({ message });
-    }
+    };
 
     render() {
         const { isSending, balance, settings, t } = this.props;
@@ -189,11 +189,7 @@ class Send extends React.PureComponent {
                         balance={balance}
                         onChange={(value) => this.setState({ amount: value })}
                     />
-                    <TextInput
-                        value={message}
-                        label={t('send:message')}
-                        onChange={this.changeMessage}
-                    />
+                    <TextInput value={message} label={t('send:message')} onChange={this.changeMessage} />
                 </div>
                 <fieldset>
                     <Button type="submit" loading={isSending} variant="primary">
