@@ -200,7 +200,7 @@
     "saveYourSeed": {
         "seedCleared": "種子已清除",
         "seedClearedExplanation": "基於安全理由，種子已從剪貼簿清除。",
-        "mustSaveYourSeed": "<0><0> 您必須使用以下</0><1>其中一種</1><2>選項儲存您的種子碼。</2></0>"
+        "mustSaveYourSeed": "<0><0>您必須使用以下</0><1>其中一種</1><2>選項儲存您的種子碼。</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "錯誤種子",
