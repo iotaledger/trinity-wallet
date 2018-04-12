@@ -33,6 +33,8 @@ import Settings from 'ui/views/settings/Index';
 import Account from 'ui/views/account/Index';
 import Activation from 'ui/views/onboarding/Activation';
 
+import withAutoNodeSwitching from 'containers/global/AutoNodeSwitching';
+
 import css from './index.css';
 
 /** Main wallet wrapper component */
@@ -275,4 +277,4 @@ const mapDispatchToProps = {
     updateTheme,
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(translate()(App)));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(translate()(withAutoNodeSwitching(App))));
