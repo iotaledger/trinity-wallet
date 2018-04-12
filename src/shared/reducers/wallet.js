@@ -1,6 +1,7 @@
 import union from 'lodash/union';
 import { ActionTypes } from '../actions/wallet';
 import { ActionTypes as AccountsActionTypes } from '../actions/accounts';
+import { ActionTypes as DeepLinkActionTypes } from '../actions/deepLink';
 
 const initialState = {
     ready: false,
@@ -17,6 +18,7 @@ const initialState = {
     transitionAddresses: [],
     addingAdditionalAccount: false,
     balanceCheckToggle: false,
+    deepLinkActive: false,
 };
 
 export default (state = initialState, action) => {
@@ -76,6 +78,7 @@ export default (state = initialState, action) => {
                 isGeneratingReceiveAddress: false,
                 currentSetting: 'mainSettings',
                 copiedToClipboard: false,
+                deepLinkActive: false,
             };
         case ActionTypes.CLEAR_SEED:
             return {
@@ -173,6 +176,16 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 transitionAddresses: union(state.transitionAddresses, action.payload),
+            };
+        case DeepLinkActionTypes.SET_DEEP_LINK:
+            return {
+                ...state,
+                deepLinkActive: true,
+            };
+        case DeepLinkActionTypes.SET_DEEP_LINK_INACTIVE:
+            return {
+                ...state,
+                deepLinkActive: false,
             };
         default:
             return state;

@@ -194,11 +194,11 @@ export default class TransactionRow extends PureComponent {
                         </View>
                     </View>
                     <Modal
-                        animationIn="zoomIn"
-                        animationOut="zoomOut"
-                        animationInTiming={300}
+                        animationIn={isAndroid ? 'bounceInUp' : 'zoomIn'}
+                        animationOut={isAndroid ? 'bounceOut' : 'zoomOut'}
+                        animationInTiming={isAndroid ? 1000 : 300}
                         animationOutTiming={200}
-                        backdropTransitionInTiming={300}
+                        backdropTransitionInTiming={isAndroid ? 500 : 300}
                         backdropTransitionOutTiming={200}
                         backdropColor={style.backgroundColor}
                         backdropOpacity={0.6}

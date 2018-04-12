@@ -22,6 +22,7 @@ import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 import CtaButton from '../components/CtaButton';
 import InfoBox from '../components/InfoBox';
+import { getMultiAddressGenFn } from '../utils/nativeModules';
 import { isAndroid } from '../utils/device';
 
 const styles = StyleSheet.create({
@@ -195,7 +196,7 @@ class SnapshotTransition extends Component {
 
     onBalanceIncompletePress() {
         this.hideModal();
-
+        const genFn = getMultiAddressGenFn();
         const { transitionAddresses, password, selectedAccountName } = this.props;
         const currentIndex = transitionAddresses.length;
         setTimeout(() => {
@@ -203,7 +204,7 @@ class SnapshotTransition extends Component {
                 if (seed === null) {
                     throw new Error('Error');
                 } else {
-                    this.props.generateAddressesAndGetBalance(seed, currentIndex);
+                    this.props.generateAddressesAndGetBalance(seed, currentIndex, genFn);
                 }
             });
         }, 300);
@@ -361,11 +362,11 @@ class SnapshotTransition extends Component {
                     )}
                 </View>
                 <Modal
-                    animationIn="zoomIn"
-                    animationOut="zoomOut"
-                    animationInTiming={300}
+                    animationIn={isAndroid ? 'bounceInUp' : 'zoomIn'}
+                    animationOut={isAndroid ? 'bounceOut' : 'zoomOut'}
+                    animationInTiming={isAndroid ? 1000 : 300}
                     animationOutTiming={200}
-                    backdropTransitionInTiming={300}
+                    backdropTransitionInTiming={isAndroid ? 500 : 300}
                     backdropTransitionOutTiming={200}
                     backdropColor={theme.body.bg}
                     backdropOpacity={0.6}

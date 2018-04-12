@@ -5,7 +5,7 @@ import { setPrice, setChartData, setMarketData } from './marketData';
 import { formatChartData, getUrlTimeFormat, getUrlNumberFormat, rearrangeObjectKeys } from '../libs/utils';
 import { generateAlert, generateAccountInfoErrorAlert } from './alerts';
 import { setNewUnconfirmedBundleTails, removeBundleFromUnconfirmedBundleTails } from './accounts';
-import { getFirstConsistentTail, isValidForPromotion } from '../libs/iota/transfers';
+import { getFirstConsistentTail, isStillAValidTransaction } from '../libs/iota/transfers';
 import { selectedAccountStateFactory } from '../selectors/accounts';
 import { syncAccount } from '../libs/iota/accounts';
 import { forceTransactionPromotion } from './transfers';
@@ -222,7 +222,7 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
     const accountName = get(tails, '[0].account');
     const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
-    return isValidForPromotion(bundle, existingAccountState.transfers, existingAccountState.addresses)
+    return isStillAValidTransaction(existingAccountState.transfers[bundle], existingAccountState.addresses)
         .then((isValid) => {
             if (!isValid) {
                 dispatch(removeBundleFromUnconfirmedBundleTails(bundle));
