@@ -12,6 +12,7 @@ import { generateAlert } from 'actions/alerts';
 import { getMarketData, getChartData, getPrice } from 'actions/marketData';
 import { getCurrencyData } from 'actions/settings';
 import { clearWalletData, setPassword } from 'actions/wallet';
+import { setOnboardingSeed } from 'actions/ui';
 
 import { runTask } from 'worker';
 
@@ -39,6 +40,13 @@ class Login extends React.Component {
          * @ignore
          */
         setPassword: PropTypes.func.isRequired,
+        /** Set onboarding seed state
+         * @param {String} seed - New seed
+         * @param {Boolean} isGenerated - Is the new seed generated
+         */
+        setOnboardingSeed: PropTypes.func.isRequired,
+        /** Onboarding set seed and name */
+        onboarding: PropTypes.object.isRequired,
         /** Clear wallet state data
          * @ignore
          */
@@ -91,9 +99,11 @@ class Login extends React.Component {
     };
 
     setupAccount = async () => {
-        const { accounts, wallet, currency } = this.props;
+        const { accounts, wallet, currency, onboarding, setOnboardingSeed } = this.props;
 
-        const seed = await getSeed(wallet.seedIndex, wallet.password);
+        const seed = wallet.addingAdditionalAccount
+            ? onboarding.seed
+            : await getSeed(wallet.seedIndex, wallet.password);
 
         this.props.getPrice();
         this.props.getChartData();
@@ -103,7 +113,8 @@ class Login extends React.Component {
         if (accounts.firstUse) {
             runTask('getFullAccountInfoFirstSeed', [seed, accounts.accountNames[wallet.seedIndex]]);
         } else if (wallet.addingAdditionalAccount) {
-            runTask('getFullAccountInfoAdditionalSeed', [seed, wallet.additionalAccountName]);
+            setOnboardingSeed(null);
+            runTask('getFullAccountInfoAdditionalSeed', [seed, wallet.additionalAccountName, wallet.password]);
         } else {
             runTask('getAccountInfo', [seed, accounts.accountNames[wallet.seedIndex]]);
         }
@@ -222,11 +233,13 @@ const mapStateToProps = (state) => ({
     wallet: state.wallet,
     firstUse: state.accounts.firstUse,
     currency: state.settings.currency,
+    onboarding: state.ui.onboarding,
 });
 
 const mapDispatchToProps = {
     generateAlert,
     setPassword,
+    setOnboardingSeed,
     clearWalletData,
     getChartData,
     getPrice,

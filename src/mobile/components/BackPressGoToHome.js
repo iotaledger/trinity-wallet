@@ -41,6 +41,7 @@ export default () => (C) => {
                     navigatorStyle: {
                         navBarHidden: true,
                         navBarTransparent: true,
+                        topBarElevationShadowEnabled: false,
                         screenBackgroundColor: theme.body.bg,
                     },
                 },

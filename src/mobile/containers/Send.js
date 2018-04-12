@@ -5,17 +5,17 @@ import reduce from 'lodash/reduce';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import {
-    StyleSheet,
-    View,
-    Text,
-    TouchableOpacity,
-    TouchableWithoutFeedback,
-    Keyboard,
-    NativeModules,
-} from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
-import { isValidAddress, isValidMessage, isValidAmount } from 'iota-wallet-shared-modules/libs/iota/utils';
+import {
+    isValidAddress,
+    isValidMessage,
+    isValidAmount,
+    VALID_ADDRESS_WITH_CHECKSUM_REGEX,
+    VALID_SEED_REGEX,
+    ADDRESS_LENGTH,
+} from 'iota-wallet-shared-modules/libs/iota/utils';
+import { setDeepLinkInactive } from 'iota-wallet-shared-modules/actions/deepLink';
 import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
 import {
     getFromKeychainRequest,
@@ -30,11 +30,6 @@ import {
     setSendDenomination,
 } from 'iota-wallet-shared-modules/actions/ui';
 import { parse, round } from 'iota-wallet-shared-modules/libs/utils';
-import {
-    VALID_ADDRESS_WITH_CHECKSUM_REGEX,
-    VALID_SEED_REGEX,
-    ADDRESS_LENGTH,
-} from 'iota-wallet-shared-modules/libs/iota';
 import {
     getBalanceForSelectedAccount,
     getAvailableBalanceForSelectedAccount,
@@ -56,7 +51,8 @@ import CustomTextInput from '../components/CustomTextInput';
 import CtaButton from '../components/CtaButton';
 import { Icon } from '../theme/icons.js';
 import { width } from '../utils/dimensions';
-import { isAndroid, isIOS } from '../utils/device';
+import { isAndroid } from '../utils/device';
+import { getAddressGenFn, getPowFn } from '../utils/nativeModules';
 
 const styles = StyleSheet.create({
     container: {
@@ -153,6 +149,10 @@ export class Send extends Component {
         timeTakenByEachProgressStep: PropTypes.array.isRequired,
         password: PropTypes.string.isRequired,
         generateTransferErrorAlert: PropTypes.func.isRequired,
+        /** Determines if the wallet has just opened a deep link */
+        deepLinkActive: PropTypes.bool.isRequired,
+        /** Resets deep link status */
+        setDeepLinkInactive: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -186,8 +186,13 @@ export class Send extends Component {
     }
 
     componentDidMount() {
+        const { t, deepLinkActive } = this.props;
         if (!this.props.isSendingTransfer) {
             this.props.resetProgress();
+        }
+        if (deepLinkActive) {
+            this.props.generateAlert('success', t('deepLink:autofill'), t('deepLink:autofillExplanation'));
+            this.props.setDeepLinkInactive();
         }
     }
 
@@ -297,7 +302,7 @@ export class Send extends Component {
     }
 
     onSendPress() {
-        const { t, amount, address, message, denomination, balance } = this.props;
+        const { t, amount, address, balance, message, denomination } = this.props;
         const { currencySymbol } = this.state;
 
         const multiplier = this.getUnitMultiplier();
@@ -482,7 +487,6 @@ export class Send extends Component {
     getConversionTextIota() {
         const { amount, usdPrice, conversionRate } = this.props;
         const { currencySymbol } = this.state;
-
         if (this.shouldConversionTextShowInvalid()) {
             return 'INVALID';
         }
@@ -629,15 +633,8 @@ export class Send extends Component {
                     throw new Error('Error');
                 }
 
-                let powFn = null;
-                let genFn = null;
-
-                if (isAndroid) {
-                    powFn = NativeModules.PoWModule.doPoW;
-                } else if (isIOS) {
-                    powFn = NativeModules.Iota.doPoW;
-                    genFn = NativeModules.Iota.address;
-                }
+                const powFn = getPowFn();
+                const genFn = getAddressGenFn();
 
                 return this.props.makeTransaction(seed, address, value, message, selectedAccountName, powFn, genFn);
             })
@@ -825,7 +822,7 @@ export class Send extends Component {
                                 <View style={styles.info}>
                                     <Icon
                                         name="info"
-                                        size={width / 22}
+                                        size={isAndroid ? width / 14 : width / 22}
                                         color={body.color}
                                         style={{ marginRight: width / 60 }}
                                     />
@@ -836,11 +833,11 @@ export class Send extends Component {
                         <View style={{ flex: 0.3 }} />
                     </View>
                     <Modal
-                        animationIn="zoomIn"
-                        animationOut="zoomOut"
-                        animationInTiming={300}
+                        animationIn={isAndroid ? 'bounceInUp' : 'zoomIn'}
+                        animationOut={isAndroid ? 'bounceOut' : 'zoomOut'}
+                        animationInTiming={isAndroid ? 1000 : 300}
                         animationOutTiming={200}
-                        backdropTransitionInTiming={300}
+                        backdropTransitionInTiming={isAndroid ? 500 : 300}
                         backdropTransitionOutTiming={200}
                         backdropColor={body.bg}
                         style={{ alignItems: 'center', margin: 0 }}
@@ -882,6 +879,7 @@ const mapStateToProps = (state) => ({
     timeTakenByEachProgressStep: state.progress.timeTakenByEachStep,
     remotePoW: state.settings.remotePoW,
     password: state.wallet.password,
+    deepLinkActive: state.wallet.deepLinkActive,
 });
 
 const mapDispatchToProps = {
@@ -897,6 +895,7 @@ const mapDispatchToProps = {
     resetProgress,
     startTrackingProgress,
     generateTransferErrorAlert,
+    setDeepLinkInactive,
 };
 
 export default translate(['send', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Send));

@@ -79,6 +79,7 @@ class Updates extends React.PureComponent {
             <Modal variant="confirm" isOpen onClose={() => setUpdateDone()}>
                 <h1 className="success">{t('newVersionAvailable')}</h1>
                 {/*eslint-disable react/jsx-boolean-value*/}
+                {/*// TODO: Contact jamuhl about why Trans component doesn't work here*/}
                 <Interpolate
                     i18nKey="updates:newVersionAvailableExplanation"
                     useDangerouslySetInnerHTML={true}
