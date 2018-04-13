@@ -2,11 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from 'react-native';
+import FingerprintScanner from 'react-native-fingerprint-scanner';
+import Modal from 'react-native-modal';
 import { connect } from 'react-redux';
 import CustomTextInput from '../components/CustomTextInput';
+import FingerprintModal from '../components/FingerprintModal';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
+import { isAndroid } from '../utils/device';
 
 const styles = StyleSheet.create({
     topContainer: {
@@ -69,13 +73,33 @@ class EnterPassword extends Component {
         t: PropTypes.func.isRequired,
         /** Theme settings */
         theme: PropTypes.object.isRequired,
+        /** Generate a notification alert
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification titleinactivityLogoutContainer
+         * @param {String} text - notification explanation
+         */
+        generateAlert: PropTypes.func.isRequired,
+        /** Set application activity state to active = true*/
+        setUserActive: PropTypes.func.isRequired,
+        /** Determines if user has activated fingerprint auth */
+        isFingerprintEnabled: PropTypes.bool.isRequired,
     };
 
     constructor() {
         super();
         this.state = {
             password: '',
+            isModalVisible: false,
         };
+        this.activateFingerPrintScanner = this.activateFingerPrintScanner.bind(this);
+        this.hideModal = this.hideModal.bind(this);
+    }
+
+    componentWillUnmount() {
+        const { isFingerprintEnabled } = this.props;
+        if (isFingerprintEnabled) {
+            FingerprintScanner.release();
+        }
     }
 
     handleLogin = () => {
@@ -84,8 +108,36 @@ class EnterPassword extends Component {
         onLoginPress(password);
     };
 
+    activateFingerPrintScanner() {
+        const { t } = this.props;
+        this.openModalOnAndroid();
+        FingerprintScanner.authenticate({ description: t('fingerprintSetup:instructionsLogin') })
+            .then(() => {
+                this.hideModal();
+                this.props.setUserActive();
+            })
+            .catch(() => {
+                this.props.generateAlert(
+                    'error',
+                    t('fingerprintSetup:fingerprintAuthFailed'),
+                    t('fingerprintSetup:fingerprintAuthFailedExplanation'),
+                );
+            });
+    }
+
+    hideModal() {
+        this.setState({ isModalVisible: false });
+    }
+
+    openModalOnAndroid() {
+        if (isAndroid) {
+            this.setState({ isModalVisible: true });
+        }
+    }
+
     render() {
-        const { t, theme } = this.props;
+        const { isModalVisible } = this.state;
+        const { t, theme, isFingerprintEnabled } = this.props;
         const borderColor = { borderColor: theme.primary.color };
         const primaryTextColor = { color: theme.primary.color };
 
@@ -107,6 +159,8 @@ class EnterPassword extends Component {
                             secureTextEntry
                             onSubmitEditing={this.handleLogin}
                             theme={theme}
+                            fingerprintAuthentication={isFingerprintEnabled}
+                            onFingerprintPress={this.activateFingerPrintScanner}
                         />
                     </View>
                     <View style={styles.bottomContainer}>
@@ -116,6 +170,28 @@ class EnterPassword extends Component {
                             </View>
                         </TouchableOpacity>
                     </View>
+                    <Modal
+                        animationIn={isAndroid ? 'bounceInUp' : 'zoomIn'}
+                        animationOut={isAndroid ? 'bounceOut' : 'zoomOut'}
+                        animationInTiming={isAndroid ? 1000 : 300}
+                        animationOutTiming={200}
+                        backdropTransitionInTiming={isAndroid ? 500 : 300}
+                        backdropTransitionOutTiming={200}
+                        backdropOpacity={0.9}
+                        backdropColor={theme.body.bg}
+                        style={{ alignItems: 'center', margin: 0 }}
+                        isVisible={isModalVisible}
+                        onBackButtonPress={this.hideModal}
+                        hideModalContentWhileAnimating
+                        useNativeDriver={isAndroid ? true : false}
+                    >
+                        <FingerprintModal
+                            hideModal={this.hideModal}
+                            borderColor={{ borderColor: theme.body.color }}
+                            textColor={{ color: theme.body.color }}
+                            backgroundColor={{ backgroundColor: theme.body.bg }}
+                        />
+                    </Modal>
                 </View>
             </TouchableWithoutFeedback>
         );
