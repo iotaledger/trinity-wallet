@@ -69,7 +69,7 @@ class SeedSave extends PureComponent {
                         {t('back').toLowerCase()}
                     </Button>
                     <Button to="/onboarding/seed-verify" className="large" variant="primary">
-                        {t('next').toLowerCase()}
+                        {t('done').toLowerCase()}
                     </Button>
                 </footer>
             </React.Fragment>
