@@ -23,6 +23,7 @@ import org.iota.mobile.IOTAMobilePackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import my.fin.RNIsDeviceRootedPackage;
 import com.bugsnag.BugsnagReactNative;
+import com.hieuvp.fingerprint.ReactNativeFingerprintScannerPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -70,6 +71,7 @@ public class MainApplication extends NavigationApplication {
             new RandomBytesPackage(),
             new VectorIconsPackage(),
             new RNIsDeviceRootedPackage(),
+            new ReactNativeFingerprintScannerPackage(),
             BugsnagReactNative.getPackage()
     );
   }

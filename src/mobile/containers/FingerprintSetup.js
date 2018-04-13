@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, Alert } from 'react-native';
 import { setFingerprintStatus } from 'iota-wallet-shared-modules/actions/settings';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { Navigation } from 'react-native-navigation';
@@ -8,15 +8,18 @@ import { connect } from 'react-redux';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 import { translate } from 'react-i18next';
 import tinycolor from 'tinycolor2';
+import Modal from 'react-native-modal';
 import whiteFingerprintImagePath from 'iota-wallet-shared-modules/images/fingerprint-white.png';
 import blackFingerprintImagePath from 'iota-wallet-shared-modules/images/fingerprint-black.png';
 import WithBackPressGoToHome from '../components/BackPressGoToHome';
 import DynamicStatusBar from '../components/DynamicStatusBar';
+import FingerprintModal from '../components/FingerprintModal';
 import Fonts from '../theme/fonts';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
 import { Icon } from '../theme/icons.js';
+import { isAndroid } from '../utils/device';
 
 const styles = StyleSheet.create({
     container: {
@@ -99,16 +102,19 @@ class FingerprintEnable extends Component {
 
     constructor(props) {
         super(props);
+        this.state = { isModalVisible: false };
         this.navigateToHome = this.navigateToHome.bind(this);
+        this.handleAuthenticationAttempted = this.handleAuthenticationAttempted.bind(this);
+        this.navigateToHome = this.navigateToHome.bind(this);
+        this.onFingerprintPress = this.onFingerprintPress.bind(this);
     }
 
     componentWillUnmount() {
-        FingerprintScanner.release();
+        this.releaseFingerPrintOnAndroid();
     }
 
     onFingerprintPress() {
         const { isFingerprintEnabled } = this.props;
-
         if (isFingerprintEnabled) {
             this.deactivateFingerPrintScanner();
         } else {
@@ -116,8 +122,27 @@ class FingerprintEnable extends Component {
         }
     }
 
+    releaseFingerPrintOnAndroid() {
+        if (isAndroid) {
+            FingerprintScanner.release();
+        }
+    }
+
+    openModalOnAndroid() {
+        if (isAndroid) {
+            this.setState({ isModalVisible: true });
+        }
+    }
+
+    closeModalOnAndroid() {
+        if (isAndroid) {
+            this.setState({ isModalVisible: false });
+        }
+    }
+
     activateFingerPrintScanner() {
         const { t } = this.props;
+        this.openModalOnAndroid();
         FingerprintScanner.isSensorAvailable()
             .then(
                 FingerprintScanner.authenticate({
@@ -125,6 +150,7 @@ class FingerprintEnable extends Component {
                     onAttempt: this.handleAuthenticationAttempted,
                 })
                     .then(() => {
+                        this.closeModalOnAndroid();
                         this.props.setFingerprintStatus(true);
                         this.timeout = setTimeout(() => {
                             this.props.generateAlert(
@@ -133,6 +159,7 @@ class FingerprintEnable extends Component {
                                 t('fingerprintAuthEnabledExplanation'),
                             );
                         }, 300);
+                        this.releaseFingerPrintOnAndroid();
                     })
                     .catch(() => {
                         this.props.generateAlert(
@@ -149,10 +176,13 @@ class FingerprintEnable extends Component {
 
     deactivateFingerPrintScanner() {
         const { t } = this.props;
+        this.openModalOnAndroid();
         FingerprintScanner.authenticate({
             description: t('instructionsDisable'),
+            onAttempt: this.handleAuthenticationAttempted,
         })
             .then(() => {
+                this.closeModalOnAndroid();
                 this.props.setFingerprintStatus(false);
                 this.timeout = setTimeout(() => {
                     this.props.generateAlert(
@@ -161,10 +191,16 @@ class FingerprintEnable extends Component {
                         t('fingerprintAuthDisabledExplanation'),
                     );
                 }, 300);
+                this.releaseFingerPrintOnAndroid();
             })
             .catch(() => {
                 this.props.generateAlert('error', t('fingerprintAuthFailed'), t('fingerprintAuthFailedExplanation'));
             });
+    }
+
+    handleAuthenticationAttempted() {
+        const { t } = this.props;
+        Alert.alert(t('fingerprintAuthFailed'), t('fingerprintAuthFailedExplanation'));
     }
 
     navigateToHome() {
@@ -190,7 +226,12 @@ class FingerprintEnable extends Component {
         });
     }
 
+    hideModal() {
+        this.setState({ isModalVisible: false });
+    }
+
     render() {
+        const { isModalVisible } = this.state;
         const { t, isFingerprintEnabled, theme } = this.props;
         const backgroundColor = { backgroundColor: theme.body.bg };
         const textColor = { color: theme.body.color };
@@ -201,36 +242,54 @@ class FingerprintEnable extends Component {
             : blackFingerprintImagePath;
 
         return (
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                <View style={[styles.container, backgroundColor]}>
-                    <DynamicStatusBar backgroundColor={theme.body.bg} />
-                    <View style={styles.topWrapper}>
-                        <Icon name="iota" size={width / 8} color={theme.body.color} />
-                    </View>
-                    <View style={styles.midWrapper}>
-                        <View style={{ flex: 0.25 }} />
-                        <Text style={[styles.subHeaderText, textColor]}>{instructions}</Text>
-                        <View style={{ flex: 0.2 }} />
-                        <TouchableOpacity onPress={() => this.onFingerprintPress()}>
-                            <Image source={fingerprintImagePath} style={styles.fingerprint} />
-                        </TouchableOpacity>
-                        <View style={{ flex: 0.2 }} />
-                        <Text style={[styles.subHeaderText, textColor]}>
-                            {t('status')}: {authenticationStatus}
-                        </Text>
-                    </View>
-                    <View style={styles.bottomWrapper}>
-                        <TouchableOpacity onPress={() => this.navigateToHome()}>
-                            <View style={[styles.backButton, { borderColor: theme.secondary.color }]}>
-                                <Text style={[styles.backText, { color: theme.secondary.color }]}>
-                                    {t('global:back')}
-                                </Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    <StatefulDropdownAlert textColor={theme.body.color} backgroundColor={theme.body.bg} />
+            <View style={[styles.container, backgroundColor]}>
+                <DynamicStatusBar backgroundColor={theme.body.bg} />
+                <View style={styles.topWrapper}>
+                    <Icon name="iota" size={width / 8} color={theme.body.color} />
                 </View>
-            </TouchableWithoutFeedback>
+                <View style={styles.midWrapper}>
+                    <View style={{ flex: 0.25 }} />
+                    <Text style={[styles.subHeaderText, textColor]}>{instructions}</Text>
+                    <View style={{ flex: 0.2 }} />
+                    <TouchableOpacity onPress={this.onFingerprintPress}>
+                        <Image source={fingerprintImagePath} style={styles.fingerprint} />
+                    </TouchableOpacity>
+                    <View style={{ flex: 0.2 }} />
+                    <Text style={[styles.subHeaderText, textColor]}>
+                        {t('status')}: {authenticationStatus}
+                    </Text>
+                </View>
+                <View style={styles.bottomWrapper}>
+                    <TouchableOpacity onPress={this.navigateToHome}>
+                        <View style={[styles.backButton, { borderColor: theme.secondary.color }]}>
+                            <Text style={[styles.backText, { color: theme.secondary.color }]}>{t('global:back')}</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+                <StatefulDropdownAlert textColor={theme.body.color} backgroundColor={theme.body.bg} />
+                <Modal
+                    animationIn={isAndroid ? 'bounceInUp' : 'zoomIn'}
+                    animationOut={isAndroid ? 'bounceOut' : 'zoomOut'}
+                    animationInTiming={isAndroid ? 1000 : 300}
+                    animationOutTiming={200}
+                    backdropTransitionInTiming={isAndroid ? 500 : 300}
+                    backdropTransitionOutTiming={200}
+                    backdropOpacity={0.9}
+                    backdropColor={theme.body.bg}
+                    style={{ alignItems: 'center', margin: 0 }}
+                    isVisible={isModalVisible}
+                    onBackButtonPress={this.hideModal}
+                    hideModalContentWhileAnimating
+                    useNativeDriver={isAndroid ? true : false}
+                >
+                    <FingerprintModal
+                        hideModal={this.hideModal}
+                        borderColor={{ borderColor: theme.body.color }}
+                        textColor={textColor}
+                        backgroundColor={backgroundColor}
+                    />
+                </Modal>
+            </View>
         );
     }
 }
