@@ -44,7 +44,7 @@ function createWindow() {
         minWidth: 500,
         minHeight: 720,
         titleBarStyle: 'hidden',
-        backgroundColor: settings.get('backgroundColor') ? settings.get('backgroundColor') : '#E8EBF1',
+        backgroundColor: settings.get('backgroundColor') ? settings.get('backgroundColor') : '#1a373e',
         webPreferences: {
             nodeIntegration: false,
             preload: path.resolve(__dirname, 'lib/Window.js'),
