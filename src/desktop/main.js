@@ -38,8 +38,6 @@ function createWindow() {
         );
     });
 
-    console.log(`${__dirname}/dist/icon.png`);
-
     windows.main = new BrowserWindow({
         width: 1024,
         height: 768,

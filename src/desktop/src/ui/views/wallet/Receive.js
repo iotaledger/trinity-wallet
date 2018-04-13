@@ -104,9 +104,11 @@ class Receive extends React.PureComponent {
                     label={t('receive:message')}
                     onChange={(value) => this.setState({ message: value })}
                 />
-                <Button onClick={this.onGeneratePress} loading={isGeneratingReceiveAddress}>
-                    {t('receive:generateNewAddress')}
-                </Button>
+                {receiveAddress.length < 2 ? (
+                    <Button onClick={this.onGeneratePress} loading={isGeneratingReceiveAddress}>
+                        {t('receive:generateNewAddress')}
+                    </Button>
+                ) : null}
             </div>
         );
     }
