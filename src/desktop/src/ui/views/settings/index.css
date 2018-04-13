@@ -62,6 +62,10 @@
         border-top: 1px solid var(--body-alt);
     }
 
+    h3 {
+        margin-top: 0px;
+    }
+
     @media (max-width: 720px) {
         > div {
             max-width: none;
