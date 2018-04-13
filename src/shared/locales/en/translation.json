@@ -97,7 +97,8 @@
         "changeNode": "Change node",
         "addCustomNode": "Add custom node",
         "nodeChanged": "Node changed",
-        "nodeChangedExplanation": "The node has been changed successfully."
+        "nodeChangedExplanation": "The node has been changed successfully.",
+        "touchFingerprintReader": "Please touch the fingerprint reader now"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",

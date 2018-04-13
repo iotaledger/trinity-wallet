@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { Navigation } from 'react-native-navigation';
-import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
@@ -132,6 +132,27 @@ class SecuritySettings extends Component {
         }
     }
 
+    onFingerprintSetupPress() {
+        const { theme: { body } } = this.props;
+        Navigation.startSingleScreenApp({
+            screen: {
+                screen: 'fingerprintSetup',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    topBarElevationShadowEnabled: false,
+                    screenBackgroundColor: body.bg,
+                    drawUnderStatusBar: true,
+                    statusBarColor: body.bg,
+                },
+            },
+            appStyle: {
+                orientation: 'portrait',
+                keepStyleAcrossPush: false,
+            },
+        });
+    }
+
     render() {
         const { t, theme: { body } } = this.props;
         const textColor = { color: body.color };
@@ -152,15 +173,15 @@ class SecuritySettings extends Component {
                         </TouchableOpacity>
                     </View>
                     <View style={styles.itemContainer}>
-                        <TouchableWithoutFeedback
-                            onPress={() => {}}
+                        <TouchableOpacity
+                            onPress={() => this.onFingerprintSetupPress()}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
-                            <View style={[styles.item, { opacity: 0.2 }]}>
+                            <View style={[styles.item]}>
                                 <Icon name="biometric" size={width / 22} color={bodyColor} />
                                 <Text style={[styles.titleText, textColor]}>{t('fingerprint')}</Text>
                             </View>
-                        </TouchableWithoutFeedback>
+                        </TouchableOpacity>
                     </View>
                     <View style={{ flex: 7 }} />
                 </View>
