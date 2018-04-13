@@ -59,8 +59,7 @@
     left: 0px;
     width: 100%;
     height: calc(100% - 80px);
-    padding: 0;
-    overflow: scroll;
+    padding: 0 0 20px 20px;
 
     a {
         list-style: none;
@@ -191,12 +190,16 @@
             }
 
             &:last-child {
+                display: block;
                 margin-top: 26px;
                 word-break: break-word;
-                max-height: 100px;
-                overflow: scroll;
+                height: 100px;
+                position: relative;
                 strong {
-                    margin-right: 12px;
+                    display: block;
+                    margin-bottom: 4px;
+                    font-size: 12px;
+                    padding-top:0px;
                 }
             }
 
