@@ -47,6 +47,10 @@ class List extends React.PureComponent {
     };
 
     switchFilter(filter) {
+        if (filter === this.state.filter) {
+            return;
+        }
+
         this.setState({
             filter: filter,
             loaded: false,
@@ -188,12 +192,15 @@ class List extends React.PureComponent {
                                         success={t('history:bundleHashCopiedExplanation')}
                                     />
                                 </p>
-                                <p>
+                                <div className={css.message}>
                                     <strong>{t('send:message')}</strong>
                                     <Scrollbar>
-                                        <span>{activeTransfer.message}</span>
+                                        <span>
+                                            {activeTransfer.message}{' '}
+                                            sa,dmnasm,dnansdkjbaksdbjsa,dmnasm,dnansdkjbaksdbjsa,dmnasm,dnansdkjbaksdbjsa,dmnasm,dnansdkjbaksdbjsa,dmnasm,dnansdkjbaksdbjsa,dmnasm,dnansdkjbaksdbjsa,dmnasm,dnansdkjbaksdbjsa,dmnasm,dnansdkjbaksdbjsa,dmnasm,dnansdkjbaksdbjsa,dmnasm,dnansdkjbaksdbjsa,dmnasm,dnansdkjbaksdbjsa,dmnasm,dnansdkjbaksdbjsa,dmnasm,dnansdkjbaksdbjsa,dmnasm,dnansdkjbaksdbjsa,dmnasm,dnansdkjbaksdbjsa,dmnasm,dnansdkjbaksdbjsa,dmnasm,dnansdkjbaksdbjsa,dmnasm,dnansdkjbaksdbjsa,dmnasm,dnansdkjbaksdbj
+                                        </span>
                                     </Scrollbar>
-                                </p>
+                                </div>
                             </div>
                         ) : null}
                     </div>
