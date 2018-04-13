@@ -9,10 +9,9 @@ import { translate } from 'react-i18next';
 
 import { parseAddress } from 'libs/iota/utils';
 
-import { setPassword, clearWalletData } from 'actions/wallet';
+import { setPassword, clearWalletData, setDeepLink } from 'actions/wallet';
 import { getUpdateData, updateTheme } from 'actions/settings';
 import { disposeOffAlert, generateAlert } from 'actions/alerts';
-import { setDeepLink } from 'actions/deepLink';
 
 import { DESKTOP_VERSION } from 'config';
 
