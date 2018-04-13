@@ -237,6 +237,8 @@
         "max": "MAX",
         "message": "Message",
         "invalidMessage": "Invalid message",
+        "sendConfirmation": "You are about to send {{sendAmount}} to the address:",
+        "messageSingle": "a message",
         "invalidMessageExplanation": "Your message contains invalid characters.",
         "invalidMessageCharacter": "Invalid character",
         "invalidMessageCharacterExplanation": "Only ASCII characters are allowed in the message.",
