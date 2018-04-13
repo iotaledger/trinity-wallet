@@ -128,12 +128,17 @@ class Send extends React.PureComponent {
         const vault = await getVault(password);
         const seed = vault.seeds[seedIndex];
 
-        sendTransfer(seed, fields.address, parseInt(fields.amount), fields.message, null, powFn);
+        sendTransfer(seed, fields.address, parseInt(fields.amount) || 0, fields.message, null, powFn);
     };
 
     render() {
         const { fields, isSending, balance, settings, t } = this.props;
         const { isTransferModalVisible } = this.state;
+
+        const transferContents =
+            parseInt(fields.amount) > 0
+                ? `${formatValue(fields.amount)} ${formatUnit(fields.amount)}`
+                : t('send:messageSingle');
 
         return (
             <form onSubmit={(e) => this.validateInputs(e)}>
@@ -144,12 +149,10 @@ class Send extends React.PureComponent {
                         onCancel={() => this.setState({ isTransferModalVisible: false })}
                         onConfirm={() => this.confirmTransfer()}
                         content={{
-                            title: `You are about to send ${formatValue(fields.amount)} ${formatUnit(
-                                fields.amount,
-                            )} to the address`,
+                            title: t('send:sendConfirmation', { sendAmount: transferContents }),
                             message: fields.address,
-                            confirm: 'confirm',
-                            cancel: 'Cancel',
+                            confirm: t('send'),
+                            cancel: t('cancel'),
                         }}
                     />
                     <AddressInput
