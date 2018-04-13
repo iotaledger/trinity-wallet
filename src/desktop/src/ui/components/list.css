@@ -189,20 +189,6 @@
                 justify-content: space-between;
             }
 
-            &:last-child {
-                display: block;
-                margin-top: 26px;
-                word-break: break-word;
-                height: 100px;
-                position: relative;
-                strong {
-                    display: block;
-                    margin-bottom: 4px;
-                    font-size: 12px;
-                    padding-top:0px;
-                }
-            }
-
             strong {
                 font-weight: 300;
                 padding-top: 21px;
@@ -223,6 +209,20 @@
                 display: block;
                 font-family: monospace;
                 word-break: break-word;
+            }
+        }
+
+        .message {
+            display: block;
+            margin: 26px 0  20px;
+            word-break: break-word;
+            height: 100px;
+            position: relative;
+            strong {
+                display: block;
+                margin-bottom: 4px;
+                font-size: 12px;
+                padding-top: 0px;
             }
         }
 

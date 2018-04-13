@@ -14,7 +14,7 @@ class SetCurrency extends PureComponent {
         /** Current currency */
         currency: PropTypes.string.isRequired,
         /** Available currency list */
-        currencies: PropTypes.array.isRequired,
+        currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
         /** Currency change statuss */
         loading: PropTypes.bool.isRequired,
         /** Set new currency
