@@ -113,7 +113,7 @@ class List extends React.PureComponent {
                         onClick={() => updateAccount()}
                         className={classNames(css.refresh, isBusy ? css.busy : null, isLoading ? css.loading : null)}
                     >
-                        <Icon icon="sync" size={26} />
+                        <Icon icon="sync" size={32} />
                     </a>
                 </nav>
                 <hr />
