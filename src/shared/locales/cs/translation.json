@@ -309,7 +309,7 @@
         "seedExplanation": "IOTA Seed je jako uživatelské jméno a heslo k Vašemu účtu, zkombinované do řady 81 znaků.",
         "explanation": "<0><0>Můžete ho použít pro přístup ke svým prostředkům z</0> <1>jakékoliv peněženky</1> <2>, na</2> <3>jakémkoliv zařízení</3> <4>. Ale pokud ztratíte svůj Seed, ztratíte také všechny Vaše IOTA.</4></0>",
         "keepSafe": "Uchovávejte Váš seed v bezpečí.",
-        "hint": "<0><0>Hint:</0> Click NO if this is your first time using IOTA.</0>"
+        "hint": "<0><0>Tip:</0> Pokud IOTA peněženku používáte poprvé, klepněte na tlačítko NE</0>"
     },
     "welcome": {
         "thankYou": "Děkujeme, že jste si stáhli Trinity.",
