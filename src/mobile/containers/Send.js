@@ -39,7 +39,7 @@ import { reset as resetProgress, startTrackingProgress } from 'iota-wallet-share
 import { generateAlert, generateTransferErrorAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import Modal from 'react-native-modal';
 import KeepAwake from 'react-native-keep-awake';
-import QRScanner from '../components/QrScanner';
+import QRScannerComponent from '../components/QrScanner';
 import Toggle from '../components/Toggle';
 import ProgressBar from '../components/ProgressBar';
 import ProgressSteps from '../utils/progressSteps';
@@ -381,7 +381,7 @@ export class Send extends Component {
         switch (selectedSetting) {
             case 'qrScanner':
                 modalContent = (
-                    <QRScanner
+                    <QRScannerComponent
                         onQRRead={(data) => this.onQRRead(data)}
                         hideModal={() => this.hideModal()}
                         primary={primary}
