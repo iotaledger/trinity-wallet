@@ -33,7 +33,7 @@ class List extends React.PureComponent {
          */
         setItem: PropTypes.func.isRequired,
         /** Current active history item */
-        currentItem: PropTypes.number,
+        currentItem: PropTypes.string,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore

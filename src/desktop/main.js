@@ -38,16 +38,20 @@ function createWindow() {
         );
     });
 
+    console.log(`${__dirname}/dist/icon.png`);
+
     windows.main = new BrowserWindow({
         width: 1024,
         height: 768,
         minWidth: 500,
         minHeight: 720,
         titleBarStyle: 'hidden',
+        icon: `${__dirname}/dist/icon.png`,
         backgroundColor: settings.get('backgroundColor') ? settings.get('backgroundColor') : '#1a373e',
         webPreferences: {
             nodeIntegration: false,
             preload: path.resolve(__dirname, 'lib/Window.js'),
+            disableBlinkFeatures: 'Auxclick',
         },
     });
 
