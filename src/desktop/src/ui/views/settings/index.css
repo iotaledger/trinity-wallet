@@ -15,6 +15,12 @@
         }
     }
 
+    :global {
+        .ps {
+            margin-right: -10px;
+        }
+    }
+
     > div {
         display: flex;
         justify-content: center;
@@ -24,7 +30,7 @@
     }
 
     section:first-of-type {
-        flex: 0 0 220px;
+        flex: 0 0 240px;
         padding: var(--header-height) 0 20px;
     }
 
