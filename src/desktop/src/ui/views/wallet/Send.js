@@ -11,7 +11,6 @@ import TextInput from 'ui/components/input/Text';
 import Button from 'ui/components/Button';
 import Confirm from 'ui/components/modal/Confirm';
 import withSendData from 'containers/wallet/Send';
-import { generateAlert } from 'actions/alerts';
 
 import css from './index.css';
 
@@ -101,7 +100,7 @@ class Send extends React.PureComponent {
     }
 
     confirmTransfer = async () => {
-        const { fields, password, seedIndex, sendTransfer, settings } = this.props;
+        const { fields, password, seedIndex, sendTransfer, settings, generateAlert } = this.props;
 
         this.setState({
             isTransferModalVisible: false,
@@ -109,7 +108,7 @@ class Send extends React.PureComponent {
 
         let powFn = null;
 
-        if (!settings.remotePow) {
+        if (!settings.remotePoW) {
             // Temporarily return an error if WebGL cannot be initialized
             // Remove once we implement more PoW methods
             try {
