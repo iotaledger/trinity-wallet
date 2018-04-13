@@ -78,7 +78,7 @@
         "autopromoting": "Automatická podpora přenosu",
         "autopromotingExplanation": "Podpora transakcí s hash {{hash}}",
         "promoting": "Podpora transakce",
-        "promotionError": "Could not promote transfer",
+        "promotionError": "Nezdařilo se podpořit transakci",
         "promotionErrorExplanation": "Something went wrong while promoting your transaction. Please try again.",
         "noLongerValid": "Balíček, který se snažíte podpořit, již není platný",
         "cannotSendToOwn": "Odesílání na vlastní adresu",
