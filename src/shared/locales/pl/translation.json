@@ -462,7 +462,7 @@
         "local": "Lokalnie",
         "remote": "Zdalnie",
         "powUpdated": "Ustawienia PoW",
-        "powUpdatedExplanation": "Twoja konfiguracja proof of work została zaktualizowana."
+        "powUpdatedExplanation": "Twoja konfiguracja Proof of Work została zaktualizowana."
     },
     "progressSteps": {
         "validatingReceiveAddress": "Sprawdzanie adresu odbiorczego",
