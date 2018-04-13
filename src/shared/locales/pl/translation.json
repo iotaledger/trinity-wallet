@@ -461,7 +461,7 @@
         "localOrRemote": "Proof of work może być wykonany lokalnie na Twoim urządzeniu lub przy użyciu serwera.",
         "local": "Lokalnie",
         "remote": "Zdalnie",
-        "powUpdated": "Ustawienia PoW",
+        "powUpdated": "Zmieniono tryb PoW",
         "powUpdatedExplanation": "Twoja konfiguracja Proof of Work została zaktualizowana."
     },
     "progressSteps": {
