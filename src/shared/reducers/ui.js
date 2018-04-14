@@ -29,6 +29,7 @@ const initialState = {
         seed: null,
         isGenerated: false,
     },
+    doNotMinimise: false,
 };
 
 export default (state = initialState, action) => {
@@ -112,6 +113,12 @@ export default (state = initialState, action) => {
                 isPromotingTransaction: false,
             };
         case UiActionTypes.SET_USER_ACTIVITY:
+            if (state.doNotMinimise) {
+              return {
+                  ...state,
+                  minimised: false,
+              };
+            }
             return {
                 ...state,
                 ...action.payload,
