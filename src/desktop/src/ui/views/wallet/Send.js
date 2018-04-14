@@ -100,7 +100,7 @@ class Send extends React.PureComponent {
     }
 
     confirmTransfer = async () => {
-        const { fields, password, seedIndex, sendTransfer, settings, generateAlert } = this.props;
+        const { fields, password, seedIndex, sendTransfer, settings, generateAlert, t } = this.props;
 
         this.setState({
             isTransferModalVisible: false,
@@ -116,8 +116,8 @@ class Send extends React.PureComponent {
             } catch (e) {
                 return generateAlert(
                     'error',
-                    'WebGL not supported',
-                    'Your computer does not support WebGL. Please use remote PoW.',
+                    t('pow:noWebGLSupport'),
+                    t('pow:noWebGLSupportExplanation'),
                 );
             }
             powFn = (trytes, minWeight) => {
