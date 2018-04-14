@@ -61,7 +61,6 @@ class Advanced extends PureComponent {
 
         try {
             await setVault(password, {}, true);
-            document.body.style.background = themes.Ionic.body.bg;
             localStorage.clear();
             Electron.clearStorage();
             location.reload();
