@@ -197,7 +197,6 @@ class List extends React.PureComponent {
                                     <Scrollbar>
                                         <span>
                                             {activeTransfer.message}{' '}
-                                            sa,dmnasm,dnansdkjbaksdbjsa,dmnasm,dnansdkjbaksdbjsa,dmnasm,dnansdkjbaksdbjsa,dmnasm,dnansdkjbaksdbjsa,dmnasm,dnansdkjbaksdbjsa,dmnasm,dnansdkjbaksdbjsa,dmnasm,dnansdkjbaksdbjsa,dmnasm,dnansdkjbaksdbjsa,dmnasm,dnansdkjbaksdbjsa,dmnasm,dnansdkjbaksdbjsa,dmnasm,dnansdkjbaksdbjsa,dmnasm,dnansdkjbaksdbjsa,dmnasm,dnansdkjbaksdbjsa,dmnasm,dnansdkjbaksdbjsa,dmnasm,dnansdkjbaksdbjsa,dmnasm,dnansdkjbaksdbjsa,dmnasm,dnansdkjbaksdbjsa,dmnasm,dnansdkjbaksdbjsa,dmnasm,dnansdkjbaksdbj
                                         </span>
                                     </Scrollbar>
                                 </div>
