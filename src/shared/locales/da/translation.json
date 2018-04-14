@@ -480,7 +480,7 @@
         "transitionCompleteExplanation": "Snapshot synkronisering blev gennemført med succes."
     },
     "deepLink": {
-        "autofill": "Autofill success",
+        "autofill": "Autoudfyldning fuldendt",
         "autofillExplanation": "Transaktionsdata er autoudfyldt fra linket."
     },
     "updates": {
