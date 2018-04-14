@@ -348,7 +348,7 @@
         "addCustomNode": "Aggiungi un nodo personalizzato",
         "manualSync": "Sincronizzazione manuale",
         "snapshotTransition": "Passaggio dopo uno snapshot",
-        "pow": "Proof of Work"
+        "pow": "Prova di lavoro"
     },
     "advancedThemeCustomisation": {
         "background": "Sfondo",
@@ -380,7 +380,7 @@
         "discordInformation": "Si prega di visitare il canale #help in Discord per scoprire cosa si può fare."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Are you sure you want to delete</1><2></2><3>{{accountName}}?</3>",
+        "areYouSure": "<0></0><1>Sei sicuro di voler eliminare</1><2></2><3>{{accountName}}?</3>",
         "yourSeedWillBeRemoved": "Il tuo seme e la cronologia delle transazioni saranno rimossi.",
         "thisAction": "Questa azione non può essere annullata.",
         "enterPassword": "Immetti la tua password per cancellare il conto."
@@ -480,11 +480,11 @@
         "transitionCompleteExplanation": "Il passaggio allo snapshot è stato completato con successo."
     },
     "deepLink": {
-        "autofill": "Autofill success",
+        "autofill": "Riempimento automatico",
         "autofillExplanation": "Dati riempiti automaticamente da un collegamento."
     },
     "updates": {
-        "errorRetrievingUpdateData": "Error retrieving update data",
+        "errorRetrievingUpdateData": "Errore nel reperimento dell'aggiornamento",
         "errorRetrievingUpdateDataExplanation": "C'è stato un errore nel reperimento dell'aggiornamento. Per favore riprova.",
         "noUpdatesAvailable": "Nessun aggiornamento disponibile",
         "noUpdatesAvailableExplanation": "Hai l'ultima versione desktop del portafoglio IOTA Trinity!",
