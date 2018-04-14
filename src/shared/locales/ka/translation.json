@@ -1,6 +1,6 @@
 {
     "global": {
-        "send": "SEND",
+        "send": "გაგზავნა",
         "cancel": "CANCEL",
         "continue?": "Are you sure you want to continue?",
         "noTransactions": "NO RECENT HISTORY",
