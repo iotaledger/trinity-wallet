@@ -88,8 +88,8 @@ class Advanced extends PureComponent {
                 <Scrollbar>
                     <h3>{t('pow:powUpdated')}</h3>
                     <Info>
-                        {t('pow:feeless')} <br /> Proof of work can either be completed locally on your device, or
-                        offloaded to a node.
+                        {t('pow:feeless')} <br />
+                        {t('pow:localOrRemote')}
                     </Info>
                     <Toggle
                         checked={remotePoW}
@@ -107,8 +107,11 @@ class Advanced extends PureComponent {
                     <h3>{t('settings:reset')}</h3>
                     <Trans i18nKey="walletResetConfirmation:warning">
                         <Info>
-                            All of your wallet data including your <strong>seeds, password,</strong> and{' '}
+                            <React.Fragment>All of your wallet data including your </React.Fragment>
+                            <strong>seeds, password,</strong>
+                            <React.Fragment>and{' '}</React.Fragment>
                             <strong>other account information</strong>
+                            <React.Fragment> will be lost.</React.Fragment>
                         </Info>
                     </Trans>
                     <Button onClick={() => this.setState({ resetConfirm: !resetConfirm })} variant="negative">
@@ -124,8 +127,11 @@ class Advanced extends PureComponent {
                             message: (
                                 <Trans i18nKey="walletResetConfirmation:warning">
                                     <React.Fragment>
-                                        All of your wallet data including your <strong>seeds, password,</strong> and{' '}
+                                        <React.Fragment>All of your wallet data including your </React.Fragment>
+                                        <strong>seeds, password,</strong>
+                                        <React.Fragment>and{' '}</React.Fragment>
                                         <strong>other account information</strong>
+                                        <React.Fragment> will be lost.</React.Fragment>
                                     </React.Fragment>
                                 </Trans>
                             ),
