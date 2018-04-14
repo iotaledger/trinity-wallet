@@ -323,7 +323,7 @@ export class Send extends Component {
 
         if (!enoughBalance) {
             // If amount includes funds at a spent address
-            if (parseInt(amount) * multiplier < balance) {
+            if (parseInt(amount) * multiplier <= balance) {
                 return this.openModal('usedAddress');
             }
             return this.props.generateAlert('error', t('notEnoughFunds'), t('notEnoughFundsExplanation'));
