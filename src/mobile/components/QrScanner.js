@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     },
 });
 
-class QRScanner extends Component {
+export class QRScanner extends Component {
     static async requestCameraPermission() {
         await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.CAMERA, {
             title: 'QR Scanner permission',
