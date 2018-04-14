@@ -500,7 +500,9 @@
         "local": "Local",
         "remote": "Remote",
         "powUpdated": "Proof of work settings",
-        "powUpdatedExplanation": "Your proof of work configuration has been updated."
+        "powUpdatedExplanation": "Your proof of work configuration has been updated.",
+        "noWebGLSupport": "WebGL not supported",
+        "noWebGLSupportExplanation": "Your computer does not support WebGL. Please use remote PoW."
     },
     "progressSteps": {
         "validatingReceiveAddress": "Validating receive address",
