@@ -11,7 +11,7 @@ import Checksum from '../components/Checksum';
 import CustomTextInput from '../components/CustomTextInput';
 import InfoBox from '../components/InfoBox';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
-import QRScanner from '../components/QrScanner';
+import QRScannerComponent from '../components/QrScanner';
 import OnboardingButtons from '../containers/OnboardingButtons';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
@@ -167,7 +167,7 @@ class EnterSeed extends React.Component {
         const { theme: { body, primary } } = this.props;
 
         return (
-            <QRScanner
+            <QRScannerComponent
                 primary={primary}
                 body={body}
                 onQRRead={(data) => this.onQRRead(data)}

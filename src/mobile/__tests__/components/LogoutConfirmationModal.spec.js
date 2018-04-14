@@ -19,7 +19,7 @@ const getProps = (overrides) =>
         overrides,
     );
 
-describe('Testing Letter component', () => {
+describe('Testing LogoutConfirmationModal component', () => {
     describe('propTypes', () => {
         it('should require a t function as a prop', () => {
             expect(LogoutConfirmationModal.propTypes.t).toEqual(PropTypes.func.isRequired);
