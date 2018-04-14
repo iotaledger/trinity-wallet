@@ -169,6 +169,7 @@ export class Send extends Component {
             sending: false,
             currencySymbol: getCurrencySymbol(this.props.currency),
             isModalVisible: false,
+            doNotMinimise: false,
         };
     }
 
@@ -550,9 +551,11 @@ export class Send extends Component {
     }
 
     openModal(selectedSetting) {
+        this.setState({ doNotMinimise: true });
         this.setModalContent(selectedSetting);
         this.setState({ selectedSetting }); // eslint-disable-line react/no-unused-state
         this.showModal();
+        console.log(this.state);
     }
 
     shouldConversionTextShowInvalid() {
@@ -565,7 +568,10 @@ export class Send extends Component {
         return !amountIsValid && amount !== '';
     }
 
-    showModal = () => this.setState({ isModalVisible: true });
+    showModal = () => this.setState({
+      isModalVisible: true,
+      doNotMinimise: true,
+     });
 
     hideModal = (callback) =>
         this.setState({ isModalVisible: false }, () => {
@@ -658,7 +664,7 @@ export class Send extends Component {
     }
 
     render() {
-        const { isModalVisible, maxPressed, maxColor, maxText, sending, currencySymbol } = this.state;
+        const { isModalVisible, maxPressed, maxColor, maxText, sending, currencySymbol, doNotMinimise } = this.state;
         const {
             t,
             isSendingTransfer,
@@ -700,7 +706,10 @@ export class Send extends Component {
                                 }
                             }}
                             widget="qr"
-                            onQRPress={() => this.openModal('qrScanner')}
+                            onQRPress={() => {
+                              this.setState({ doNotMinimise: true });
+                              this.openModal('qrScanner');
+                            }}
                             theme={theme}
                             value={address}
                             editable={!isSending}
