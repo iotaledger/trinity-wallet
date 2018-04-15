@@ -114,11 +114,7 @@ class Send extends React.PureComponent {
             try {
                 Curl.init();
             } catch (e) {
-                return generateAlert(
-                    'error',
-                    t('pow:noWebGLSupport'),
-                    t('pow:noWebGLSupportExplanation'),
-                );
+                return generateAlert('error', t('pow:noWebGLSupport'), t('pow:noWebGLSupportExplanation'));
             }
             powFn = (trytes, minWeight) => {
                 return Curl.pow({ trytes, minWeight });
@@ -138,7 +134,7 @@ class Send extends React.PureComponent {
         const transferContents =
             parseInt(fields.amount) > 0
                 ? `${formatValue(fields.amount)} ${formatUnit(fields.amount)}`
-                : t('send:messageSingle');
+                : t('transferConfirmation:aMessage');
 
         return (
             <form onSubmit={(e) => this.validateInputs(e)}>
@@ -149,7 +145,7 @@ class Send extends React.PureComponent {
                         onCancel={() => this.setState({ isTransferModalVisible: false })}
                         onConfirm={() => this.confirmTransfer()}
                         content={{
-                            title: t('send:sendConfirmation', { sendAmount: transferContents }),
+                            title: t('transferConfirmation:youAreAbout', { contents: transferContents }),
                             message: fields.address,
                             confirm: t('send'),
                             cancel: t('cancel'),
