@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import { translate, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 
-import themes from 'themes/themes';
-
 import { updatePowSettings, setLockScreenTimeout } from 'actions/settings';
 import { generateAlert } from 'actions/alerts';
 import { setVault } from 'libs/crypto';
@@ -109,7 +107,7 @@ class Advanced extends PureComponent {
                         <Info>
                             <React.Fragment>All of your wallet data including your </React.Fragment>
                             <strong>seeds, password,</strong>
-                            <React.Fragment>and{' '}</React.Fragment>
+                            <React.Fragment>and </React.Fragment>
                             <strong>other account information</strong>
                             <React.Fragment> will be lost.</React.Fragment>
                         </Info>
@@ -129,7 +127,7 @@ class Advanced extends PureComponent {
                                     <React.Fragment>
                                         <React.Fragment>All of your wallet data including your </React.Fragment>
                                         <strong>seeds, password,</strong>
-                                        <React.Fragment>and{' '}</React.Fragment>
+                                        <React.Fragment>and </React.Fragment>
                                         <strong>other account information</strong>
                                         <React.Fragment> will be lost.</React.Fragment>
                                     </React.Fragment>

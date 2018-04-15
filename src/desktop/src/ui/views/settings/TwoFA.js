@@ -149,7 +149,7 @@ class TwoFA extends React.Component {
                 <Text value={code} label={t('twoFA:code')} onChange={(value) => this.setState({ code: value })} />
                 <fieldset>
                     <Button type="submit" variant="primary">
-                        {t('twoFA:disable')}
+                        {t('disable')}
                     </Button>
                 </fieldset>
             </form>
@@ -199,7 +199,7 @@ class TwoFA extends React.Component {
                     onClose={() => this.setState({ passwordConfirm: false })}
                     content={{
                         title: is2FAEnabled ? t('enterYourPassword') : t('enterYourPassword'),
-                        confirm: is2FAEnabled ? t('twoFA:disable') : t('twoFA:enable'),
+                        confirm: is2FAEnabled ? t('disable') : t('enable'),
                     }}
                 />
             </React.Fragment>
