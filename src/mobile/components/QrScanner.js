@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, PermissionsAndroid } from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { translate } from 'react-i18next';
+import { setDoNotMinimise } from 'iota-wallet-shared-modules/actions/ui';
 import GENERAL from '../theme/general';
 import { isAndroid } from '../utils/device';
 import { width, height } from '../utils/dimensions';
@@ -63,10 +64,15 @@ export class QRScanner extends Component {
         ctaBorderColor: 'transparent',
     };
 
-    componentWillMount() {
+    componentDidMount() {
+      setDoNotMinimise(true);
         if (isAndroid) {
             QRScanner.requestCameraPermission();
         }
+    }
+
+    componentWillUnmount() {
+        setDoNotMinimise(false);
     }
 
     render() {

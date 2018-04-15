@@ -113,12 +113,6 @@ export default (state = initialState, action) => {
                 isPromotingTransaction: false,
             };
         case UiActionTypes.SET_USER_ACTIVITY:
-            if (state.doNotMinimise) {
-              return {
-                  ...state,
-                  minimised: false,
-              };
-            }
             return {
                 ...state,
                 ...action.payload,
@@ -228,6 +222,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 onboarding: Object.assign({}, state.onboarding, { name: action.payload }),
+            };
+        case UiActionTypes.SET_DO_NOT_MINIMISE:
+            return {
+                ...state,
+                doNotMinimise: action.payload,
             };
         default:
             return state;
