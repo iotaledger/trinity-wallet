@@ -301,7 +301,7 @@
     "resetWalletRequirePassword": {
         "enterPassword": "Kirjoita salasanasi resetoidaksesi lompakkosi.",
         "cancel": "PERUUTA",
-        "reset": "RESETOI"
+        "reset": "TYHJENNÄ"
     },
     "walletSetup": {
         "okay": "Okei. Luodaan sinulle lompakko!",
@@ -382,7 +382,7 @@
     "deleteAccount": {
         "areYouSure": "<0></0><1>Oletko varma että haluat poistaa tilin</1><2></2><3>{{accountName}}?</3>",
         "yourSeedWillBeRemoved": "Seed-lukusi ja tilitapahtumahistoriasi poistetaan.",
-        "thisAction": "Tätä toimintoa ei voi peruuttaa jälkikäteen.",
+        "thisAction": "Tätä toimintoa ei voi kumota.",
         "enterPassword": "Kirjoita salasanasi poistaaksesi tämän tilin."
     },
     "manualSync": {
@@ -408,7 +408,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "TÄTÄ TOIMINTOA EI VOI KUMOTA.",
-        "warning": "<0><0>Kaikki lompakkosi tiedot kuten </0><1>seed-lukusi, salasanasi</1><2> ja </2><3>muut tilitiedot</3><4> poistetaan.</4></0>"
+        "warning": "<0><0>Kaikki lompakkosi tiedot, kuten </0><1>seed-lukusi</1><2> ja </2><3>salasanasi</3><4> poistetaan.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Kosketa laitteesi sormenjälkilukijaa ottaaksesi käyttöön sormenjälkivarmennuksen.",
