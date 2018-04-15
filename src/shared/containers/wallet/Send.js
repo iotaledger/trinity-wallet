@@ -168,7 +168,6 @@ export default function withSendData(SendComponent) {
                 seedIndex: wallet.seedIndex,
                 validateInputs: this.validateInputs,
                 sendTransfer: this.sendTransfer,
-                validateMessage: this.validateMessage,
                 settings: {
                     currency: settings.currency,
                     conversionRate: settings.conversionRate,
