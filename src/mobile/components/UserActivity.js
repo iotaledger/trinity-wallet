@@ -12,6 +12,10 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
+const mapStateToProps = (state) => ({
+    doNotMinimise: state.ui.doNotMinimise,
+});
+
 export default () => (C) => {
     class WithUserActivity extends Component {
         componentDidMount() {
@@ -24,7 +28,7 @@ export default () => (C) => {
         }
 
         handleAppStateChange = (nextAppState) => {
-            if (nextAppState.match(/inactive|background/)) {
+            if (nextAppState.match(/inactive|background/) && !this.props.doNotMinimise) {
                 this.props.setUserActivity({ minimised: true });
             } else if (nextAppState === 'active') {
                 this.props.setUserActivity({ minimised: false });
@@ -47,7 +51,12 @@ export default () => (C) => {
          * @param {String} text - notification explanation
          */
         generateAlert: PropTypes.func.isRequired,
+        /**
+         * Disables app minimisation if necessary
+         * @type {bool}
+         */
+        doNotMinimise: PropTypes.bool.isRequired,
     };
 
-    return translate(['global'])(connect(null, mapDispatchToProps)(WithUserActivity));
+    return translate(['global'])(connect(mapStateToProps, mapDispatchToProps)(WithUserActivity));
 };

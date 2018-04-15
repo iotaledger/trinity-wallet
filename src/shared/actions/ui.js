@@ -8,6 +8,7 @@ export const ActionTypes = {
     SET_USER_ACTIVITY: 'IOTA/UI/SET_USER_ACTIVITY',
     SET_ONBOARDING_SEED: 'IOTA/UI/SET_ONBOARDING_SEED',
     SET_ONBOARDING_NAME: 'IOTA/UI/SET_ONBOARDING_NAME',
+    SET_DO_NOT_MINIMISE: 'IOTA/UI/SET_DO_NOT_MINIMISE',
 };
 
 export const setSendAddressField = (payload) => ({
@@ -55,5 +56,12 @@ export const setOnboardingName = (name) => {
     return {
         type: ActionTypes.SET_ONBOARDING_NAME,
         payload: name,
+    };
+};
+
+export const setDoNotMinimise = (payload) => {
+    return {
+        type: ActionTypes.SET_DO_NOT_MINIMISE,
+        payload,
     };
 };
