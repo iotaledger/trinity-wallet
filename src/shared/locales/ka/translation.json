@@ -121,12 +121,12 @@
         "passwordsDoNotMatchExplanation": "Passwords do not match. Please try again.",
         "passwordTooShort": "პაროლი ძალიან მოკლეა",
         "passwordTooShortExplanation": "თქვენი პაროლი უნდა შედგებოდეს მინიმუმ 12 სიმბოლოსგან. კიდევ სცადეთ.",
-        "oldPassword": "Cannot set old password",
+        "oldPassword": "ძველი პაროლი არ დაყენდება",
         "oldPasswordExplanation": "თქვენ არ შეგიძლიათ გამოიყენოთ ძველი პაროლი ახალ პაროლად. მოიფიქრეთ ახალი პაროლი.",
         "ensureStrongPassword": "დარწმუნდი რომ იყენებ რთულ პაროლს რომელიც მინიმუმ 12 სიმბოლოსაგან შედგება.",
         "currentPassword": "ამჟამინდელი პაროლი",
         "newPassword": "ახალი პაროლი",
-        "confirmPassword": "Confirm New Password"
+        "confirmPassword": "დაადასტურე ახალი პაროლი"
     },
     "copyToClipboard": {
         "seedCleared": "Seed cleared",
