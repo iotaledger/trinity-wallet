@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, PermissionsAndroid } from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { translate } from 'react-i18next';
-import { setDoNotMinimise } from 'iota-wallet-shared-modules/actions/ui';
 import GENERAL from '../theme/general';
 import { isAndroid } from '../utils/device';
 import { width, height } from '../utils/dimensions';
@@ -58,6 +57,10 @@ export class QRScanner extends Component {
         /** Content base colors */
         body: PropTypes.object.isRequired,
         primary: PropTypes.object.isRequired,
+        /** Mount lifecycle method calback function  */
+        onMount: PropTypes.func,
+        /** Unmount lifecycle method calback function  */
+        onUnmount: PropTypes.func
     };
 
     static defaultProps = {
@@ -65,14 +68,19 @@ export class QRScanner extends Component {
     };
 
     componentDidMount() {
-      setDoNotMinimise(true);
+        if (this.props.onMount) {
+            this.props.onMount();
+        }
+
         if (isAndroid) {
             QRScanner.requestCameraPermission();
         }
     }
 
     componentWillUnmount() {
-        setDoNotMinimise(false);
+        if (this.props.onUnmount) {
+            this.props.onUnmount();
+        }
     }
 
     render() {
