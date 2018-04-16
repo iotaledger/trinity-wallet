@@ -318,7 +318,7 @@
     "resetWalletRequirePassword": {
         "enterPassword": "Kirjoita salasanasi resetoidaksesi lompakkosi.",
         "cancel": "PERUUTA",
-        "reset": "RESETOI"
+        "reset": "TYHJENNÄ"
     },
     "walletSetup": {
         "okay": "Okei. Luodaan sinulle lompakko!",
@@ -346,8 +346,8 @@
         "bundleHashCopiedExplanation": "Kokoelman tiivisteluku on kopioitu leikepöydälle.",
         "addressCopied": "Osoite kopioitu",
         "addressCopiedExplanation": "Osoite on kopioitu leikepöydälle.",
-        "send": "LÄHETETTY",
-        "receive": "VASTAANOTETAAN"
+        "send": "LÄHETYS",
+        "receive": "VASTAANOTTO"
     },
     "accountManagement": {
         "viewSeed": "Katso seed-luku",
@@ -368,8 +368,8 @@
         "selectNode": "Valitse palvelin",
         "addCustomNode": "Lisää omavalintainen palvelin",
         "manualSync": "Manuaalinen synkronointi",
-        "snapshotTransition": "Snapshot-hallinta",
-        "pow": "Proof of Work"
+        "snapshotTransition": "Snapshot-asetukset",
+        "pow": "Proof of Work-asetukset"
     },
     "advancedThemeCustomisation": {
         "background": "Tausta",
@@ -402,9 +402,9 @@
         "discordInformation": "Siirry Discord yhteisön #help kanavalle saadaksesi apua ongelmaan."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Are you sure you want to delete</1><2></2><3>{{accountName}}?</3>",
+        "areYouSure": "<0></0><1>Oletko varma että haluat poistaa tilin</1><2></2><3>{{accountName}}?</3>",
         "yourSeedWillBeRemoved": "Seed-lukusi ja tilitapahtumahistoriasi poistetaan.",
-        "thisAction": "Tätä toimintoa ei voi peruuttaa jälkikäteen.",
+        "thisAction": "Tätä toimintoa ei voi kumota.",
         "enterPassword": "Kirjoita salasanasi poistaaksesi tämän tilin."
     },
     "manualSync": {
@@ -430,8 +430,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "TÄTÄ TOIMINTOA EI VOI KUMOTA.",
-        "warning":
-            "<0><0>Kaikki lompakkosi tiedot kuten </0><1>seed-lukusi, salasanasi</1><2> ja </2><3>muut tilitiedot</3><4> poistetaan.</4></0>"
+        "warning": "<0><0>Kaikki lompakkosi tiedot, kuten </0><1>seed-lukusi</1><2> ja </2><3>salasanasi</3><4> poistetaan.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Kosketa laitteesi sormenjälkilukijaa ottaaksesi käyttöön sormenjälkivarmennuksen.",
@@ -506,7 +505,7 @@
         "transitionCompleteExplanation": "Snapshot-siirtymäprosessi suoritettu onnistuneesti."
     },
     "deepLink": {
-        "autofill": "Aut. täyttö",
+        "autofill": "Tiedot haettu onnistuneesti",
         "autofillExplanation": "Siirron tilitiedot noudettu automaattisesti linkin kautta."
     },
     "updates": {

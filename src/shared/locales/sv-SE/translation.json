@@ -503,7 +503,7 @@
         "transitionCompleteExplanation": "Snapshot-övergången genomfördes framgångsrikt."
     },
     "deepLink": {
-        "autofill": "Autofyll",
+        "autofill": "Autofyll lyckat",
         "autofillExplanation": "Transaktionsdata ifylld automatiskt från länk."
     },
     "updates": {

@@ -514,11 +514,11 @@
         "transitionCompleteExplanation": "Die Snapshot-Umstellung wurde erfolgreich abgeschlossen."
     },
     "deepLink": {
-        "autofill": "Automatisch ausfüllen",
+        "autofill": "Autofill success",
         "autofillExplanation": "Transaction data autofilled from link."
     },
     "updates": {
-        "errorRetrievingUpdateData": "Error retreiving update data",
+        "errorRetrievingUpdateData": "Error retrieving update data",
         "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
         "noUpdatesAvailable": "Keine Updates verfügbar",
         "noUpdatesAvailableExplanation": "Du hast die neueste Version der IOTA Trinity Desktop-Wallet!",

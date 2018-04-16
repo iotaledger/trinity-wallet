@@ -59,8 +59,8 @@
         "node": "Servidor",
         "cannotPerformAction": "Não é possível executar a ação",
         "cannotPerformActionExplanation": "Vá para Opções para redefinir a carteira.",
-        "attachToTangleUnavailable": "Anexamento ao Tangle indisponível",
-        "attachToTangleUnavailableExplanation": "Anexo ao Tangle não está disponível no servidor selecionado.",
+        "attachToTangleUnavailable": "Anexar ao Tangle indisponível",
+        "attachToTangleUnavailableExplanation": "Anexar ao Tangle não está disponível no servidor selecionado.",
         "wallet": "Carteira",
         "sent": "Enviado",
         "received": "Recebido",
@@ -79,8 +79,8 @@
         "autopromoting": "Promovendo transferência automaticamente",
         "autopromotingExplanation": "Promovendo transação com hash {{hash}}",
         "promoting": "Promovendo a transferência",
-        "promotionError": "Could not promote transfer",
-        "promotionErrorExplanation": "Something went wrong while promoting your transaction. Please try again.",
+        "promotionError": "A transferência não pode ser criada",
+        "promotionErrorExplanation": "Algo deu errado ao criar sua transferência. Por favor, tente novamente.",
         "noLongerValid": "O pacote que você está tentando criar não é mais válido",
         "cannotSendToOwn": "Enviando para próprio endereço",
         "cannotSendToOwnExplanation":
@@ -94,10 +94,10 @@
         "checkForUpdates": "Verificar Atualizações",
         "account": "Conta",
         "enterPasswordToAccessSettings": "Informe sua Senha par acessar as opções da conta",
-        "changeNode": "Change node",
-        "addCustomNode": "Add custom node",
-        "nodeChanged": "Node changed",
-        "nodeChangedExplanation": "The node has been changed successfully."
+        "changeNode": "Alterar Servidor",
+        "addCustomNode": "Adicionar um Servidor personalizado",
+        "nodeChanged": "Servidor alterado",
+        "nodeChangedExplanation": "O Servidor foi alterado com sucesso."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém caracteres inválidos",
@@ -315,7 +315,7 @@
         "undo": "Desfazer",
         "redo": "Refazer",
         "about": "Sobre a Trinity",
-        "lockScreenTimeout": "Lock Screen Timeout (Minutes)"
+        "lockScreenTimeout": "Tempo para o Bloqueio da Tela (minutos)"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Digite sua senha para redefinir a carteira.",
@@ -330,7 +330,7 @@
         "explanation":
             "<0><0>Você pode usá-la para acessar seus fundos a partir de</0><1> qualquer carteira</1><2>, em </2><3>qualquer dispositivo</3><4>. Mas se você perder sua Seed, também perderá as suas IOTAs.</4></0>",
         "keepSafe": "Por favor, mantenha a sua Seed protegida e segura.",
-        "hint": "<0><0>Hint:</0> Click NO if this is your first time using IOTA.</0>"
+        "hint": "<0><0>Dica:</0> Clique NÃO, se esta é a primeira vez usando IOTA.</0>"
     },
     "welcome": {
         "thankYou": "Obrigado por baixar a Trinity.",
@@ -370,7 +370,7 @@
         "addCustomNode": "Adicionar servidor personalizado",
         "manualSync": "Sincronização manual",
         "snapshotTransition": "Transição de snapshot",
-        "pow": "Proof of Work"
+        "pow": "Prova de Trabalho"
     },
     "advancedThemeCustomisation": {
         "background": "Plano de Fundo",
@@ -397,13 +397,12 @@
         "one": "Um"
     },
     "usedAddressModal": {
-        "cantSpendFullBalanceQuestion": "Why can't I spend my full balance?",
-        "spentAddressExplanation":
-            "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
-        "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
+        "cantSpendFullBalanceQuestion": "Por que eu não posso usar meu saldo integral?",
+        "spentAddressExplanation": "Você tem fundos gastos em um ou mais endereços. Para a IOTA, a reutilização de endereço é perigosa, por isso esta carteira não permite que você envie mais de uma vez de um mesmo endereço.",
+        "discordInformation": "Por favor, acesse canal #help no Discord para encontrar o que pode fazer."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Are you sure you want to delete</1><2></2><3>{{accountName}}?</3>",
+        "areYouSure": "<0></0> <1>Você tem certeza que deseja excluir</1> <2></2> <3>{{accountName}}?</3>",
         "yourSeedWillBeRemoved": "Sua Seed e histórico de transações serão removidos.",
         "thisAction": "Esta operação não pode ser desfeita.",
         "enterPassword": "Por favor, digite sua senha para excluir esta conta."
@@ -477,7 +476,7 @@
         "mcap": "MCAP",
         "change": "Variação",
         "volume": "Volume (24h)",
-        "currentValue": "Current value"
+        "currentValue": "Valor atual"
     },
     "rootDetection": {
         "warning": "ATENÇÃO",
@@ -508,18 +507,17 @@
         "transitionCompleteExplanation": "A transição do registro instantâneo foi concluída com sucesso."
     },
     "deepLink": {
-        "autofill": "Autofill",
-        "autofillExplanation": "Transaction data autofilled from link."
+        "autofill": "Sucesso no preenchimento automático",
+        "autofillExplanation": "Dados da transação preenchida automaticamente através do link."
     },
     "updates": {
-        "errorRetrievingUpdateData": "Error retreiving update data",
-        "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
-        "noUpdatesAvailable": "No updates available",
-        "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
-        "newVersionAvailable": "New version available",
-        "newVersionAvailableExplanation":
-            "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
-        "downloadRelease": "Download release",
-        "skipUpdate": "Skip update"
+        "errorRetrievingUpdateData": "Erro ao recuperar dados de atualização",
+        "errorRetrievingUpdateDataExplanation": "Ocorreu um erro ao recuperar os dados de atualização. Por favor, tente novamente.",
+        "noUpdatesAvailable": "Nenhuma atualização disponível",
+        "noUpdatesAvailableExplanation": "Você possui a última versão da carteira Trinity IOTA Desktop!",
+        "newVersionAvailable": "Nova versão disponível",
+        "newVersionAvailableExplanation": "Uma nova versão da <strong>Trinity</strong> <strong>{{version}}</strong> está disponível. Por favor, leia os detalhes do lançamento e certifique-se da origem do download antes de atualizar:",
+        "downloadRelease": "Baixar Nova Versão",
+        "skipUpdate": "Ignorar a atualização"
     }
 }
