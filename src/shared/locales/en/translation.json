@@ -449,7 +449,7 @@
             "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
-        "instructionsLogin": "Touch fingerprint reader to log in."
+        "instructionsLogin": "Touch fingerprint reader to log in"
     },
     "transferConfirmation": {
         "youAreAbout": "You are about to send {{contents}} to the address",

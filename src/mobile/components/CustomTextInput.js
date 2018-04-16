@@ -192,7 +192,7 @@ class CustomTextInput extends Component {
                     style={styles.widgetButton}
                     hitSlop={{ top: height / 60, bottom: height / 60, left: width / 75, right: width / 75 }}
                 >
-                    <Icon name="eye" size={containerStyle.width / 15} color={theme.input.alt} />
+                    <Icon name="fingerprint" size={containerStyle.width / 15} color={theme.input.alt} />
                 </TouchableOpacity>
             </View>
         );

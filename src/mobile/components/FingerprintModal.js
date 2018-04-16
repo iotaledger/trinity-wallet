@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
         borderRadius: GENERAL.borderRadius,
         borderWidth: 2,
         paddingVertical: height / 18,
-        paddingHorizontal: width / 10,
+        paddingHorizontal: width / 8,
     },
     modalText: {
         fontFamily: Fonts.secondary,
@@ -52,7 +52,7 @@ export class FingerprintModal extends PureComponent {
                 onPress={this.props.hideModal}
             >
                 <View style={[styles.modalContent, borderColor]}>
-                    <Text style={[styles.modalText, textColor]}>{t('fingerprintSetup:touchFingerprintReader')}</Text>
+                    <Text style={[styles.modalText, textColor]}>{t('fingerprintSetup:instructionsLogin')}</Text>
                 </View>
             </TouchableOpacity>
         );
