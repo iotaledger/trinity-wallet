@@ -1,14 +1,14 @@
 import get from 'lodash/get';
-import filter from 'lodash/filter';
+import each from 'lodash/each';
+import map from 'lodash/map';
 import { setPrice, setChartData, setMarketData } from './marketData';
-import { formatChartData, getUrlTimeFormat, getUrlNumberFormat } from '../libs/marketData';
+import { formatChartData, getUrlTimeFormat, getUrlNumberFormat, rearrangeObjectKeys } from '../libs/utils';
 import { generateAlert, generateAccountInfoErrorAlert } from './alerts';
-import { setNewUnconfirmedBundleTails, removeBundleFromUnconfirmedBundleTails } from './account';
-import { getFirstConsistentTail, isValidForPromotion } from '../libs/iota/transfers';
-import { selectedAccountStateFactory } from '../selectors/account';
+import { setNewUnconfirmedBundleTails, removeBundleFromUnconfirmedBundleTails } from './accounts';
+import { getFirstConsistentTail, isStillAValidTransaction } from '../libs/iota/transfers';
+import { selectedAccountStateFactory } from '../selectors/accounts';
 import { syncAccount } from '../libs/iota/accounts';
 import { forceTransactionPromotion } from './transfers';
-import { rearrangeObjectKeys } from '../libs/util';
 import i18next from '../i18next.js';
 
 export const ActionTypes = {
@@ -129,56 +129,56 @@ export const fetchPrice = () => {
 
 export const fetchChartData = () => {
     return (dispatch) => {
+        dispatch(fetchChartDataRequest());
+
         const arrayCurrenciesTimeFrames = [];
         //If you want a new currency just add it in this array, the function will handle the rest.
         const currencies = ['USD', 'EUR', 'BTC', 'ETH'];
         const timeframes = ['24h', '7d', '1m', '1h'];
         const chartData = {};
-        const arrayPromises = [];
 
-        dispatch(fetchChartDataRequest());
-        currencies.forEach((itemCurrency) => {
+        each(currencies, (itemCurrency) => {
             chartData[itemCurrency] = {};
-            filter(timeframes, (timeFrameItem) => {
+            each(timeframes, (timeFrameItem) => {
                 arrayCurrenciesTimeFrames.push({ currency: itemCurrency, timeFrame: timeFrameItem });
             });
         });
 
-        arrayCurrenciesTimeFrames.forEach((currencyTimeFrameArrayItem) => {
+        const urls = [];
+        const grabContent = (url) => fetch(url).then((response) => response.json());
+
+        each(arrayCurrenciesTimeFrames, (currencyTimeFrameArrayItem) => {
             const url = `https://min-api.cryptocompare.com/data/histo${getUrlTimeFormat(
                 currencyTimeFrameArrayItem.timeFrame,
             )}?fsym=IOT&tsym=${currencyTimeFrameArrayItem.currency}&limit=${getUrlNumberFormat(
                 currencyTimeFrameArrayItem.timeFrame,
             )}`;
-            arrayPromises.push(
-                fetch(url).then((response) => {
-                    try {
-                        return response.json();
-                    } catch (err) {
-                        dispatch(fetchChartDataError());
+
+            urls.push(url);
+        });
+
+        Promise.all(map(urls, grabContent))
+            .then((results) => {
+                const chartData = { USD: {}, EUR: {}, BTC: {}, ETH: {} };
+                let actualCurrency = '';
+                let currentTimeFrame = '';
+                let currentCurrency = '';
+
+                each(results, (resultItem, index) => {
+                    currentTimeFrame = arrayCurrenciesTimeFrames[index].timeFrame;
+                    currentCurrency = arrayCurrenciesTimeFrames[index].currency;
+                    const formatedData = formatChartData(resultItem, currentCurrency, currentTimeFrame);
+
+                    if (actualCurrency !== currentCurrency) {
+                        actualCurrency = currentCurrency;
                     }
-                }),
-            );
-        });
+                    chartData[currentCurrency][currentTimeFrame] = formatedData;
+                });
 
-        Promise.all(arrayPromises).then((results) => {
-            const chartData = { USD: {}, EUR: {}, BTC: {}, ETH: {} };
-            let actualCurrency = '';
-            let currentTimeFrame = '';
-            let currentCurrency = '';
-            results.forEach((resultItem, index) => {
-                currentTimeFrame = arrayCurrenciesTimeFrames[index].timeFrame;
-                currentCurrency = arrayCurrenciesTimeFrames[index].currency;
-                const formatedData = formatChartData(resultItem, currentCurrency, currentTimeFrame);
-
-                if (actualCurrency !== currentCurrency) {
-                    actualCurrency = currentCurrency;
-                }
-                chartData[currentCurrency][currentTimeFrame] = formatedData;
-            });
-            dispatch(setChartData(chartData));
-            dispatch(fetchChartDataSuccess());
-        });
+                dispatch(setChartData(chartData));
+                dispatch(fetchChartDataSuccess());
+            })
+            .catch(() => dispatch(fetchChartDataError()));
     };
 };
 
@@ -222,7 +222,7 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
     const accountName = get(tails, '[0].account');
     const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
-    return isValidForPromotion(bundle, existingAccountState.transfers, existingAccountState.addresses)
+    return isStillAValidTransaction(existingAccountState.transfers[bundle], existingAccountState.addresses)
         .then((isValid) => {
             if (!isValid) {
                 dispatch(removeBundleFromUnconfirmedBundleTails(bundle));

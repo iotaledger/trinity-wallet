@@ -1,7 +1,10 @@
 import head from 'lodash/head';
 import find from 'lodash/find';
 import get from 'lodash/get';
+import map from 'lodash/map';
+import filter from 'lodash/filter';
 import some from 'lodash/some';
+import sample from 'lodash/sample';
 import { iota } from '../libs/iota';
 import {
     broadcastBundleAsync,
@@ -16,21 +19,18 @@ import {
     selectedAccountStateFactory,
     getRemotePoWFromState,
     selectFirstAddressFromAccountFactory,
-} from '../selectors/account';
-import { completeTransfer, sendTransferError, sendTransferRequest } from './tempAccount';
+} from '../selectors/accounts';
 import { setNextStepAsActive } from './progress';
+import { clearSendFields } from './ui';
 import {
-    getTailTransactionForBundle,
-    getAllTailTransactionsForBundle,
-    isValidForPromotion,
+    isStillAValidTransaction,
     getFirstConsistentTail,
     prepareTransferArray,
-    filterInvalidPendingTransfers,
-    filterZeroValueTransfers,
+    filterInvalidPendingTransactions,
     performPow,
 } from '../libs/iota/transfers';
-import { syncAccountAfterReattachment, syncAccount } from '../libs/iota/accounts';
-import { updateAccountAfterReattachment, updateAccountInfo, accountInfoFetchSuccess } from './account';
+import { syncAccountAfterReattachment, syncAccount, syncAccountAfterSpending } from '../libs/iota/accounts';
+import { updateAccountAfterReattachment, updateAccountInfoAfterSpending, accountInfoFetchSuccess } from './accounts';
 import { shouldAllowSendingToAddress, syncAddresses, getLatestAddress } from '../libs/iota/addresses';
 import { getStartingSearchIndexToPrepareInputs, getUnspentInputs } from '../libs/iota/inputs';
 import { generateAlert, generateTransferErrorAlert, generatePromotionErrorAlert } from './alerts';
@@ -44,6 +44,9 @@ export const ActionTypes = {
     PROMOTE_TRANSACTION_REQUEST: 'IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST',
     PROMOTE_TRANSACTION_SUCCESS: 'IOTA/TRANSFERS/PROMOTE_TRANSACTION_SUCCESS',
     PROMOTE_TRANSACTION_ERROR: 'IOTA/TRANSFERS/PROMOTE_TRANSACTION_ERROR',
+    SEND_TRANSFER_REQUEST: 'IOTA/TEMP_ACCOUNT/SEND_TRANSFER_REQUEST',
+    SEND_TRANSFER_SUCCESS: 'IOTA/TEMP_ACCOUNT/SEND_TRANSFER_SUCCESS',
+    SEND_TRANSFER_ERROR: 'IOTA/TEMP_ACCOUNT/SEND_TRANSFER_ERROR',
 };
 
 const broadcastBundleRequest = () => ({
@@ -70,13 +73,50 @@ const promoteTransactionError = () => ({
     type: ActionTypes.PROMOTE_TRANSACTION_ERROR,
 });
 
+export const sendTransferRequest = () => ({
+    type: ActionTypes.SEND_TRANSFER_REQUEST,
+});
+
+export const sendTransferSuccess = (payload) => ({
+    type: ActionTypes.SEND_TRANSFER_SUCCESS,
+    payload,
+});
+
+export const sendTransferError = () => ({
+    type: ActionTypes.SEND_TRANSFER_ERROR,
+});
+
+/**
+ *   On successful transfer, update store, generate alert and clear send text fields
+ *   @method completeTransfer
+ *   @param {object} payload - sending status, address, transfer value
+ **/
+export const completeTransfer = (payload) => {
+    return (dispatch) => {
+        dispatch(clearSendFields());
+        dispatch(sendTransferSuccess(payload));
+    };
+};
+
 export const broadcastBundle = (bundleHash, accountName) => (dispatch, getState) => {
     dispatch(broadcastBundleRequest());
 
     const accountState = selectedAccountStateFactory(accountName)(getState());
-    const tailTransaction = getTailTransactionForBundle(bundleHash, accountState.transfers);
+    const transaction = accountState.transfers[bundleHash];
+    const tailTransaction = sample(transaction.tailTransactions);
 
-    return broadcastBundleAsync(tailTransaction.hash)
+    let chainBrokenInternally = false;
+
+    return isStillAValidTransaction(transaction, accountState.addresses)
+        .then((isValid) => {
+            if (!isValid) {
+                chainBrokenInternally = true;
+
+                throw new Error(Errors.BUNDLE_NO_LONGER_VALID);
+            }
+
+            return broadcastBundleAsync(tailTransaction.hash);
+        })
         .then(() => {
             dispatch(
                 generateAlert(
@@ -88,16 +128,21 @@ export const broadcastBundle = (bundleHash, accountName) => (dispatch, getState)
 
             return dispatch(broadcastBundleSuccess());
         })
-        .catch(() => {
-            dispatch(
-                generateAlert(
-                    'error',
-                    'Could not rebroadcast transaction ',
-                    'Something went wrong while rebroadcasting your transaction. Please try again.',
-                ),
-            );
+        .catch((err) => {
+            if (err.message === Errors.BUNDLE_NO_LONGER_VALID && chainBrokenInternally) {
+                // TODO: Replace error message with a valid broadcast error message
+                dispatch(generateAlert('error', i18next.t('global:promotionError'), i18next.t('global:noLongerValid')));
+            } else {
+                dispatch(
+                    generateAlert(
+                        'error',
+                        'Could not rebroadcast transaction ',
+                        'Something went wrong while rebroadcasting your transaction. Please try again.',
+                    ),
+                );
+            }
 
-            dispatch(broadcastBundleError());
+            return dispatch(broadcastBundleError());
         });
 };
 
@@ -105,10 +150,12 @@ export const promoteTransaction = (bundleHash, accountName) => (dispatch, getSta
     dispatch(promoteTransactionRequest());
 
     const accountState = selectedAccountStateFactory(accountName)(getState());
-    const tailTransactions = getAllTailTransactionsForBundle(bundleHash, accountState.transfers);
+    const transaction = accountState.transfers[bundleHash];
+    const tailTransactions = transaction.tailTransactions;
+
     let chainBrokenInternally = false;
 
-    return isValidForPromotion(bundleHash, accountState.transfers, accountState.addresses)
+    return isStillAValidTransaction(transaction, accountState.addresses)
         .then((isValid) => {
             if (!isValid) {
                 chainBrokenInternally = true;
@@ -190,9 +237,9 @@ export const makeTransaction = (seed, address, value, message, accountName, powF
     // Use a local variable to keep track if the promise chain was interrupted internally.
     let chainBrokenInternally = false;
 
-    // Initialize latest account state, remainderAddress and startingSearchIndexToPrepareInputs as null
-    // Reassign all when account is synced
-    let latestAccountState = null;
+    // Initialize account state
+    // Reassign with latest state when account is synced
+    let accountState = selectedAccountStateFactory(accountName)(getState());
 
     // Security checks are not necessary for zero value transfers
     // Have them wrapped in a separate private function so in case it is a value transfer,
@@ -207,8 +254,7 @@ export const makeTransaction = (seed, address, value, message, accountName, powF
         return shouldAllowSendingToAddress([address])
             .then((shouldAllowSending) => {
                 if (shouldAllowSending) {
-                    const currentAccountState = selectedAccountStateFactory(accountName)(getState());
-                    return syncAddresses(seed, currentAccountState, genFn, true);
+                    return syncAddresses(seed, accountState, genFn, true);
                 }
 
                 chainBrokenInternally = true;
@@ -221,16 +267,18 @@ export const makeTransaction = (seed, address, value, message, accountName, powF
                 return syncAccount(newState);
             })
             .then((newState) => {
-                latestAccountState = newState;
+                // Assign latest account
+                accountState = newState;
 
                 // Update local store with the latest account information
-                dispatch(accountInfoFetchSuccess(latestAccountState));
+                dispatch(accountInfoFetchSuccess(accountState));
 
-                const valueTransfers = filterZeroValueTransfers(latestAccountState.transfers);
-                return filterInvalidPendingTransfers(valueTransfers, latestAccountState.addresses);
+                const valueTransfers = filter(map(accountState.transfers, (tx) => tx), (tx) => tx.transferValue !== 0);
+
+                return filterInvalidPendingTransactions(valueTransfers, accountState.addresses);
             })
             .then((filteredTransfers) => {
-                const { addresses } = latestAccountState;
+                const { addresses } = accountState;
                 const startIndex = getStartingSearchIndexToPrepareInputs(addresses);
 
                 // Preparing inputs
@@ -266,7 +314,7 @@ export const makeTransaction = (seed, address, value, message, accountName, powF
                     throw new Error(Errors.CANNOT_SEND_TO_OWN_ADDRESS);
                 }
 
-                const remainderAddress = getLatestAddress(latestAccountState.addresses);
+                const remainderAddress = getLatestAddress(accountState.addresses);
 
                 return {
                     inputs: get(inputs, 'inputs'),
@@ -325,12 +373,13 @@ export const makeTransaction = (seed, address, value, message, accountName, powF
 
                 return storeAndBroadcastAsync(cached.trytes);
             })
-            .then(() => {
+            .then(() => syncAccountAfterSpending(accountName, cached.transactionObjects, accountState, !isZeroValue))
+            .then(({ newState }) => {
                 // Progress summary
                 dispatch(setNextStepAsActive());
 
                 // TODO: Validate bundle
-                dispatch(updateAccountInfo(accountName, cached.transactionObjects, value));
+                dispatch(updateAccountInfoAfterSpending(newState));
 
                 // Delay dispatching alerts to display the progress summary
                 return setTimeout(() => {

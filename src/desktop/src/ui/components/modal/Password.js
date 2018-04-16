@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
+import sjcl from 'sjcl';
 
 import { generateAlert } from 'actions/alerts';
 
@@ -23,10 +24,12 @@ class ModalPassword extends PureComponent {
         category: PropTypes.oneOf(['primary', 'secondary', 'positive', 'negative', 'highlight', 'extra']),
         /** Dialog visibility state */
         isOpen: PropTypes.bool,
+        /** Should the dialog be without a cancel option */
+        isForced: PropTypes.bool,
         /** Modal inline style state */
         inline: PropTypes.bool,
         /** On dialog close event */
-        onClose: PropTypes.func.isRequired,
+        onClose: PropTypes.func,
         /** On correct password entered event
          * @param {String} Password - Entered password plain text
          * @param {Object} Vault - Vault content
@@ -58,16 +61,17 @@ class ModalPassword extends PureComponent {
         }
     }
 
-    onSubmit(e) {
+    onSubmit = async (e) => {
         const { password } = this.state;
         const { onSuccess, generateAlert, t } = this.props;
 
         e.preventDefault();
 
         let vault = null;
+        const passwordHash = sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(password));
 
         try {
-            vault = getVault(password);
+            vault = await getVault(passwordHash);
         } catch (err) {
             generateAlert(
                 'error',
@@ -78,30 +82,33 @@ class ModalPassword extends PureComponent {
         }
 
         if (vault) {
-            onSuccess(password, vault);
+            onSuccess(passwordHash, vault);
         }
-    }
+    };
 
     render() {
-        const { content, category, isOpen, inline, onClose, t } = this.props;
+        const { content, category, isOpen, isForced, inline, onClose, t } = this.props;
         const { password } = this.state;
 
         return (
-            <Modal variant="confirm" inline={inline} isOpen={isOpen} onClose={() => onClose()}>
+            <Modal variant="confirm" inline={inline} isOpen={isOpen} isForced={isForced} onClose={() => onClose()}>
                 {content.title ? <h1 className={category ? category : null}>{content.title}</h1> : null}
                 {content.message ? <p>{content.message}</p> : null}
                 <form onSubmit={(e) => this.onSubmit(e)}>
                     <Password
                         value={password}
+                        focus={isOpen}
                         label={t('password')}
                         onChange={(value) => this.setState({ password: value })}
                     />
                     <fieldset>
-                        <Button onClick={() => onClose()} variant="secondary">
-                            {t('cancel')}
-                        </Button>
+                        {!isForced ? (
+                            <Button onClick={() => onClose()} variant="secondary">
+                                {t('cancel')}
+                            </Button>
+                        ) : null}
                         <Button type="submit" variant={category ? category : 'positive'}>
-                            {content.confirm ? content.confirm : t('ok')}
+                            {content.confirm ? content.confirm : t('login:login').toLowerCase()}
                         </Button>
                     </fieldset>
                 </form>

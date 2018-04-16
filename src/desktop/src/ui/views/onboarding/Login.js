@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import authenticator from 'authenticator';
+import sjcl from 'sjcl';
 
-import { getVault } from 'libs/crypto';
+import { getVault, getSeed } from 'libs/crypto';
 
 import { generateAlert } from 'actions/alerts';
 import { getMarketData, getChartData, getPrice } from 'actions/marketData';
 import { getCurrencyData } from 'actions/settings';
-import { clearTempData } from 'actions/tempAccount';
-import { setSeeds, clearSeeds } from 'actions/seeds';
+import { clearWalletData, setPassword } from 'actions/wallet';
 
 import { runTask } from 'worker';
 
@@ -24,32 +24,25 @@ import Modal from 'ui/components/modal/Modal';
 /** Login component */
 class Login extends React.Component {
     static propTypes = {
-        /** Seed state state data */
-        seeds: PropTypes.array.isRequired,
         /** Accounts state state data
          * @ignore
          */
-        account: PropTypes.object.isRequired,
-        /** Temporary account state data
+        accounts: PropTypes.object.isRequired,
+        /** wallet state data
          * @ignore
          */
-        tempAccount: PropTypes.object.isRequired,
+        wallet: PropTypes.object.isRequired,
         /** Current currency symbol */
         currency: PropTypes.string.isRequired,
-        /** Set seed state data
-         * @param {Array} seeds - Seed state data
+        /** Set password state
+         * @param {String} password - Current password
          * @ignore
          */
-        setSeeds: PropTypes.func.isRequired,
-        /** Clear temporary account state data
+        setPassword: PropTypes.func.isRequired,
+        /** Clear wallet state data
          * @ignore
          */
-        clearTempData: PropTypes.func.isRequired,
-        /** Clear temporary seed state data
-         * @ignore
-         */
-        clearSeeds: PropTypes.func.isRequired,
-
+        clearWalletData: PropTypes.func.isRequired,
         /** Fetch chart data */
         getChartData: PropTypes.func.isRequired,
         /** Fetch price data */
@@ -73,7 +66,6 @@ class Login extends React.Component {
     };
 
     state = {
-        loading: false,
         verifyTwoFA: false,
         code: '',
         password: '',
@@ -82,27 +74,13 @@ class Login extends React.Component {
     componentDidMount() {
         Electron.updateMenu('authorised', false);
 
-        const { seeds, tempAccount } = this.props;
+        const { wallet } = this.props;
 
-        if (tempAccount.ready && tempAccount.addingAdditionalAccount) {
-            const seed = seeds[tempAccount.seedIndex];
-            this.setupAccount(seed);
+        if (wallet.ready && wallet.addingAdditionalAccount) {
+            this.setupAccount();
         } else {
-            this.props.clearTempData();
-            this.props.clearSeeds();
-        }
-    }
-
-    componentWillReceiveProps(newProps) {
-        const { tempAccount } = this.props;
-
-        const hasError =
-            !tempAccount.hasErrorFetchingAccountInfoOnLogin && newProps.tempAccount.hasErrorFetchingAccountInfoOnLogin;
-
-        if (hasError) {
-            this.setState({
-                loading: false,
-            });
+            this.props.clearWalletData();
+            this.props.setPassword('');
         }
     }
 
@@ -112,35 +90,38 @@ class Login extends React.Component {
         });
     };
 
-    setupAccount(seed) {
-        const { account, tempAccount, currency } = this.props;
+    setupAccount = async () => {
+        const { accounts, wallet, currency } = this.props;
+
+        const seed = await getSeed(wallet.seedIndex, wallet.password);
 
         this.props.getPrice();
         this.props.getChartData();
         this.props.getMarketData();
         this.props.getCurrencyData(currency);
 
-        if (account.firstUse) {
-            runTask('getFullAccountInfoFirstSeed', [seed, account.accountNames[tempAccount.seedIndex]]);
-        } else if (tempAccount.addingAdditionalAccount) {
-            runTask('getFullAccountInfoAdditionalSeed', [seed, tempAccount.additionalAccountName]);
+        if (accounts.firstUse) {
+            runTask('getFullAccountInfoFirstSeed', [seed, accounts.accountNames[wallet.seedIndex]]);
+        } else if (wallet.addingAdditionalAccount) {
+            runTask('getFullAccountInfoAdditionalSeed', [seed, wallet.additionalAccountName]);
         } else {
-            runTask('getAccountInfo', [seed, account.accountNames[tempAccount.seedIndex]]);
+            runTask('getAccountInfo', [seed, accounts.accountNames[wallet.seedIndex]]);
         }
-    }
+    };
 
-    handleSubmit = (e) => {
+    handleSubmit = async (e) => {
         if (e) {
             e.preventDefault();
         }
 
         const { password, code, verifyTwoFA } = this.state;
-        const { setSeeds, tempAccount, generateAlert, t } = this.props;
+        const { setPassword, wallet, generateAlert, t } = this.props;
 
+        const passwordHash = sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(password));
         let vault = null;
 
         try {
-            vault = getVault(password);
+            vault = await getVault(passwordHash);
 
             if (vault.twoFAkey && !authenticator.verifyToken(vault.twoFAkey, code)) {
                 if (verifyTwoFA) {
@@ -158,12 +139,13 @@ class Login extends React.Component {
         }
 
         if (vault) {
-            setSeeds(vault.seeds);
+            setPassword(passwordHash);
 
-            const seed = vault.seeds[tempAccount.seedIndex];
+            const seed = vault.seeds[wallet.seedIndex];
 
             this.setState({
-                loading: true,
+                password: '',
+                verifyTwoFA: false,
             });
 
             this.setupAccount(seed);
@@ -171,15 +153,15 @@ class Login extends React.Component {
     };
 
     render() {
-        const { t, account, tempAccount } = this.props;
-        const { loading, verifyTwoFA, code } = this.state;
+        const { t, accounts, wallet } = this.props;
+        const { verifyTwoFA, code } = this.state;
 
-        if (loading || tempAccount.addingAdditionalAccount) {
+        if (wallet.isFetchingLatestAccountInfoOnLogin || wallet.addingAdditionalAccount) {
             return (
                 <Loading
                     loop
-                    title={account.firstUse ? t('loading:loadingFirstTime') : null}
-                    subtitle={account.firstUse ? t('loading:thisMayTake') : null}
+                    title={accounts.firstUse || wallet.addingAdditionalAccount ? t('loading:loadingFirstTime') : null}
+                    subtitle={accounts.firstUse || wallet.addingAdditionalAccount ? t('loading:thisMayTake') : null}
                 />
             );
         }
@@ -190,6 +172,7 @@ class Login extends React.Component {
                     <div />
                     <section>
                         <PasswordInput
+                            focus
                             value={this.state.password}
                             label={t('password')}
                             name="password"
@@ -210,20 +193,23 @@ class Login extends React.Component {
                     <form onSubmit={(e) => this.handleSubmit(e)}>
                         <Text
                             value={code}
+                            focus={verifyTwoFA}
                             label={t('twoFA:code')}
                             onChange={(value) => this.setState({ code: value })}
                         />
-                        <Button
-                            onClick={() => {
-                                this.setState({ verifyTwoFA: false });
-                            }}
-                            variant="secondary"
-                        >
-                            {t('back')}
-                        </Button>
-                        <Button type="submit" variant="primary">
-                            {t('glboal:done')}
-                        </Button>
+                        <footer>
+                            <Button
+                                onClick={() => {
+                                    this.setState({ verifyTwoFA: false });
+                                }}
+                                variant="secondary"
+                            >
+                                {t('back')}
+                            </Button>
+                            <Button type="submit" variant="primary">
+                                {t('login:login')}
+                            </Button>
+                        </footer>
                     </form>
                 </Modal>
             </React.Fragment>
@@ -232,18 +218,16 @@ class Login extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    account: state.account,
-    tempAccount: state.tempAccount,
-    firstUse: state.account.firstUse,
+    accounts: state.accounts,
+    wallet: state.wallet,
+    firstUse: state.accounts.firstUse,
     currency: state.settings.currency,
-    seeds: state.seeds.seeds,
 });
 
 const mapDispatchToProps = {
     generateAlert,
-    setSeeds,
-    clearTempData,
-    clearSeeds,
+    setPassword,
+    clearWalletData,
     getChartData,
     getPrice,
     getMarketData,

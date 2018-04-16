@@ -7,14 +7,23 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import i18next from 'libs/i18next';
 import { translate } from 'react-i18next';
 
-import { clearTempData } from 'actions/tempAccount';
-import { getUpdateData } from 'actions/settings';
-import { clearSeeds } from 'actions/seeds';
-import { disposeOffAlert } from 'actions/alerts';
+import { parseAddress } from 'libs/iota/utils';
+
+import { setPassword, clearWalletData } from 'actions/wallet';
+import { getUpdateData, updateTheme } from 'actions/settings';
+import { disposeOffAlert, generateAlert } from 'actions/alerts';
+import { setDeepLink } from 'actions/deepLink';
+
+import { DESKTOP_VERSION } from 'config';
+
+import themes from 'themes/themes';
 
 import Theme from 'ui/global/Theme';
 import Alerts from 'ui/global/Alerts';
 import Updates from 'ui/global/Updates';
+import Idle from 'ui/global/Idle';
+import AlphaReset from 'ui/global/AlphaReset';
+import Feedback from 'ui/global/Feedback';
 
 import Loading from 'ui/components/Loading';
 
@@ -42,33 +51,52 @@ class App extends React.Component {
         /** Accounts state state data
          * @ignore
          */
-        account: PropTypes.object.isRequired,
-        /** Temporary account state data
+        accounts: PropTypes.object.isRequired,
+        /** wallet state data
          * @ignore
          */
-        tempAccount: PropTypes.object.isRequired,
+        wallet: PropTypes.object.isRequired,
+        /** Create a notification message
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
+         * @ignore
+         */
+        generateAlert: PropTypes.func.isRequired,
         /** Clear  alert state data
          * @ignore
          */
         disposeOffAlert: PropTypes.func.isRequired,
-        /** Clear temporary account state data
+        /** Clear wallet state data
          * @ignore
          */
-        clearTempData: PropTypes.func.isRequired,
-        /** Clear temporary seed state data
+        clearWalletData: PropTypes.func.isRequired,
+        /** Set password state
+         * @param {String} password - Current password
          * @ignore
          */
-        clearSeeds: PropTypes.func.isRequired,
+        setPassword: PropTypes.func.isRequired,
         /** Initiate update check
          * @param {Boolean} force - Force update confirmation dialog
          * @ignore
          */
         getUpdateData: PropTypes.func.isRequired,
+        /** Current theme name
+         * @ignore
+         */
+        themeName: PropTypes.string.isRequired,
+        /** Change theme
+         * @param {Object} theme - Theme object
+         * @param {String} name - Theme name
+         * @ignore
+         */
+        updateTheme: PropTypes.func.isRequired,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
          */
         t: PropTypes.func.isRequired,
+        setDeepLink: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -79,7 +107,12 @@ class App extends React.Component {
     componentDidMount() {
         this.onMenuToggle = this.menuToggle.bind(this);
         Electron.onEvent('menu', this.onMenuToggle);
+
+        this.onSetDeepUrl = this.setDeepUrl.bind(this);
+        Electron.onEvent('url-params', this.onSetDeepUrl);
+
         Electron.changeLanguage(this.props.t);
+        Electron.requestDeepLink();
 
         Electron.getUuid().then((uuid) => {
             this.setState({
@@ -94,8 +127,12 @@ class App extends React.Component {
             i18next.changeLanguage(nextProps.settings.locale);
             Electron.changeLanguage(this.props.t);
         }
+
+        const currentKey = this.props.location.pathname.split('/')[1] || '/';
+
         /* On Login */
-        if (!this.props.tempAccount.ready && nextProps.tempAccount.ready) {
+
+        if (!this.props.wallet.ready && nextProps.wallet.ready && currentKey === 'onboarding') {
             Electron.updateMenu('authorised', true);
             this.props.history.push('/wallet/');
         }
@@ -107,10 +144,29 @@ class App extends React.Component {
 
     componentWillUnmount() {
         Electron.removeEvent('menu', this.onMenuToggle);
+        Electron.removeEvent('url-params', this.onSetDeepUrl);
+    }
+
+    setDeepUrl(data) {
+        const { generateAlert, t } = this.props;
+
+        const parsedData = parseAddress(data);
+
+        if (parsedData) {
+            this.props.setDeepLink(parsedData.amount || 0, parsedData.address, parsedData.message || null);
+            if (this.props.wallet.ready === true) {
+                this.props.history.push('/wallet/send');
+            }
+        } else {
+            generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation1'));
+        }
     }
 
     menuToggle(item) {
         switch (item) {
+            case 'feedback':
+                // Is processed in Feedback component
+                break;
             case 'addAccount':
                 this.props.history.push('/onboarding/seed-intro');
                 break;
@@ -118,8 +174,8 @@ class App extends React.Component {
                 this.props.getUpdateData(true);
                 break;
             case 'logout':
-                this.props.clearTempData();
-                this.props.clearSeeds();
+                this.props.clearWalletData();
+                this.props.setPassword('');
                 this.props.history.push('/onboarding/login');
                 break;
             default:
@@ -129,11 +185,13 @@ class App extends React.Component {
     }
 
     Init = (props) => {
-        return <Loading inline {...props} loop={false} onEnd={() => this.props.history.push('/onboarding/')} />;
+        return (
+            <Loading inline transparent {...props} loop={false} onEnd={() => this.props.history.push('/onboarding/')} />
+        );
     };
 
     render() {
-        const { account, location, activationCode } = this.props;
+        const { accounts, location, activationCode, themeName, updateTheme, settings } = this.props;
 
         const currentKey = location.pathname.split('/')[1] || '/';
 
@@ -141,7 +199,25 @@ class App extends React.Component {
             return null;
         }
 
+        // Hotfix: Temporary block wallet with a hard reset (for release 0.1.2)
+        if (DESKTOP_VERSION !== Electron.getActiveVersion()) {
+            if (themeName === 'Default') {
+                updateTheme(themes.Ionic, 'Ionic');
+            }
+            return (
+                <div className={css.trintiy}>
+                    <Theme />
+                    <Alerts />
+                    <AlphaReset />
+                </div>
+            );
+        }
+
         if (!activationCode) {
+            //Hotfix: Temporary default theme difference between mobile and desktop
+            if (themeName === 'Default') {
+                updateTheme(themes.Ionic, 'Ionic');
+            }
             return (
                 <div className={css.trintiy}>
                     <Theme />
@@ -153,9 +229,11 @@ class App extends React.Component {
 
         return (
             <div className={css.trintiy}>
+                <Feedback />
                 <Theme />
                 <Alerts />
                 <Updates />
+                <Idle timeout={settings.lockScreenTimeout} />
                 <TransitionGroup>
                     <CSSTransition key={currentKey} classNames="fade" timeout={300}>
                         <div>
@@ -165,7 +243,7 @@ class App extends React.Component {
                                 <Route path="/wallet" component={Wallet} />
                                 <Route
                                     path="/onboarding"
-                                    complete={account.onboardingComplete}
+                                    complete={accounts.onboardingComplete}
                                     component={Onboarding}
                                 />
                                 <Route exact path="/" loop={false} component={this.Init} />
@@ -180,16 +258,21 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => ({
     settings: state.settings,
-    account: state.account,
-    tempAccount: state.tempAccount,
+    accounts: state.accounts,
+    wallet: state.wallet,
+    deepLinks: state.deepLinks,
     activationCode: state.app.activationCode,
+    themeName: state.settings.themeName,
 });
 
 const mapDispatchToProps = {
-    clearTempData,
-    clearSeeds,
+    clearWalletData,
+    setPassword,
+    setDeepLink,
     getUpdateData,
     disposeOffAlert,
+    generateAlert,
+    updateTheme,
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(translate()(App)));

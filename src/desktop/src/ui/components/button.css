@@ -105,15 +105,6 @@ footer {
     }
 }
 
-.highlight {
-    composes: button;
-    color: var(--highlight-body);
-    background: var(--highlight);
-    &:hover {
-        background: var(--highlight-hover);
-    }
-}
-
 .extra {
     composes: button;
     color: var(--extra-body);
@@ -174,12 +165,6 @@ footer {
         color: var(--extra);
         &:hover {
             color: var(--extra-hover);
-        }
-    }
-    &.highlight {
-        color: var(--highlight);
-        &:hover {
-            color: var(--highlight-hover);
         }
     }
 }

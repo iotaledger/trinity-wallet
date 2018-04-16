@@ -1,5 +1,5 @@
 // The order here matters for right now :/
-export const I18N_LOCALES = [
+const I18N_LOCALES = [
     'en',
     'ar',
     'cs',
@@ -8,6 +8,7 @@ export const I18N_LOCALES = [
     'el',
     'es_ES',
     'es_LA',
+    'et',
     'fi',
     'fr',
     'he',
@@ -16,6 +17,7 @@ export const I18N_LOCALES = [
     'it',
     'ja',
     'ko',
+    'lt',
     'lv',
     'nl',
     'no',
@@ -27,6 +29,7 @@ export const I18N_LOCALES = [
     'sk',
     'sl',
     'sv_SE',
+    'th',
     'tr',
     'ur',
     'vi',
@@ -34,7 +37,7 @@ export const I18N_LOCALES = [
     'zh_TW',
 ];
 
-export const I18N_LOCALE_LABELS = [
+const I18N_LOCALE_LABELS = [
     'English (International)',
     'عربى - Arabic',
     'Čeština - Czech',
@@ -43,6 +46,7 @@ export const I18N_LOCALE_LABELS = [
     'Ελληνικά - Greek',
     'Español (España) - Spanish (Spain)',
     'Español (Latinoamérica) - Spanish (Latin America)',
+    'Eesti keel - Estonian',
     'Suomi - Finnish',
     'Français - French',
     'עִברִית - Hebrew',
@@ -51,6 +55,7 @@ export const I18N_LOCALE_LABELS = [
     'Italiano - Italian',
     '日本語 - Japanese',
     '한국어 - Korean',
+    'Lietuviškai - Lithuanian',
     'Latviešu - Latvian',
     'Nederlands - Dutch',
     'Norsk - Norwegian',
@@ -62,6 +67,7 @@ export const I18N_LOCALE_LABELS = [
     'Slovenský - Slovak',
     'Slovenščina - Slovenian',
     'Svenska - Swedish',
+    'ไทย - Thai',
     'Türkçe - Turkish',
     'اردو - Urdu',
     'Tiếng Việt - Vietnamese',
@@ -69,7 +75,14 @@ export const I18N_LOCALE_LABELS = [
     '中文 (繁體) - Chinese (Traditional)',
 ];
 
-export const getLocaleFromLabel = (label) => {
+const getLocaleFromLabel = (label) => {
     const languageIndex = I18N_LOCALE_LABELS.findIndex((l) => l === label);
     return I18N_LOCALES[languageIndex];
+};
+
+// Export constants for pre-ES6 compatibility
+module.exports = {
+    I18N_LOCALES,
+    I18N_LOCALE_LABELS,
+    getLocaleFromLabel,
 };
