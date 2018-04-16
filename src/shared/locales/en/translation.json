@@ -101,7 +101,7 @@
         "addCustomNode": "Add custom node",
         "nodeChanged": "Node changed",
         "nodeChangedExplanation": "The node has been changed successfully.",
-        "nodeAutoChanged": "Auto. switched node",
+        "nodeAutoChanged": "Auto-switched node",
         "nodeAutoChangedExplanation": "Switched to new node {{- nodeAddress}} as selected node is offline."
     },
     "addAdditionalSeed": {
