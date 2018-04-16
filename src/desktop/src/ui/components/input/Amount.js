@@ -14,10 +14,10 @@ const decimals = [0, 3, 6, 9, 12, 2];
 /**
  * Ammount input component
  */
-export default class AddressInput extends React.PureComponent {
+export default class AmountInput extends React.PureComponent {
     static propTypes = {
         /** Current ammount value */
-        amount: PropTypes.number.isRequired,
+        amount: PropTypes.string.isRequired,
         /** Max available ammount */
         balance: PropTypes.number.isRequired,
         /** Fiat currency settings
@@ -42,17 +42,16 @@ export default class AddressInput extends React.PureComponent {
 
     state = {
         unit: 'Mi',
-        value: '0',
+        value: 0,
         iotas: 0,
     };
 
+    componentWillMount() {
+        this.stateToProps(this.props);
+    }
+
     componentWillReceiveProps(nextProps) {
-        if (this.state.iotas !== nextProps.amount) {
-            this.setState({
-                iotas: nextProps.amount,
-                value: this.toUnits(nextProps.amount, this.state.unit),
-            });
-        }
+        this.stateToProps(nextProps);
     }
 
     onChange = (value) => {
@@ -79,7 +78,7 @@ export default class AddressInput extends React.PureComponent {
                 value: value,
                 iotas: iotas,
             },
-            () => this.props.onChange(iotas),
+            () => this.props.onChange(String(iotas)),
         );
     };
 
@@ -108,10 +107,19 @@ export default class AddressInput extends React.PureComponent {
         return multiplier;
     }
 
+    stateToProps = (props) => {
+        if (this.state.iotas !== parseInt(props.amount)) {
+            this.setState({
+                iotas: props.amount.length ? parseInt(props.amount) : 0,
+                value: this.toUnits(props.amount, this.state.unit),
+            });
+        }
+    };
+
     maxAmount = () => {
         const { amount, balance } = this.props;
         const total = balance === parseInt(amount) ? 0 : balance;
-        this.props.onChange(total);
+        this.props.onChange(String(total));
     };
 
     toUnits = (iotas, unit) => {

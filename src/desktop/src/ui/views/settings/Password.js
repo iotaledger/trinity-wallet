@@ -2,8 +2,10 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
+import sjcl from 'sjcl';
 
 import { generateAlert } from 'actions/alerts';
+import { setPassword } from 'actions/wallet';
 
 import { isValidPassword } from 'libs/utils';
 import { updateVaultPassword } from 'libs/crypto';
@@ -14,8 +16,13 @@ import Button from 'ui/components/Button';
 /**
  * User account password change component
  */
-class SetPassword extends PureComponent {
+class PasswordSettings extends PureComponent {
     static propTypes = {
+        /** Set password state
+         * @param {String} password - Current password
+         * @ignore
+         */
+        setPassword: PropTypes.func.isRequired,
         /** Create a notification message
          * @param {String} type - notification type - success, error
          * @param {String} title - notification title
@@ -36,9 +43,11 @@ class SetPassword extends PureComponent {
         passwordConfirm: '',
     };
 
-    changePassword = () => {
+    changePassword = (e) => {
+        e.preventDefault();
+
         const { passwordCurrent, passwordNew, passwordConfirm } = this.state;
-        const { generateAlert, t } = this.props;
+        const { setPassword, generateAlert, t } = this.props;
 
         if (passwordNew !== passwordConfirm) {
             generateAlert(
@@ -59,7 +68,12 @@ class SetPassword extends PureComponent {
         }
 
         try {
-            updateVaultPassword(passwordCurrent, passwordNew);
+            const passwordNewHash = sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(passwordNew));
+            const passwordCurrentHash = sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(passwordCurrent));
+
+            updateVaultPassword(passwordCurrentHash, passwordNewHash);
+
+            setPassword(passwordNewHash);
 
             this.setState({
                 passwordCurrent: '',
@@ -87,7 +101,7 @@ class SetPassword extends PureComponent {
         const { passwordCurrent, passwordNew, passwordConfirm } = this.state;
 
         return (
-            <div>
+            <form onSubmit={(e) => this.changePassword(e)}>
                 <Password
                     value={passwordCurrent}
                     label={t('changePassword:currentPassword')}
@@ -103,15 +117,22 @@ class SetPassword extends PureComponent {
                     label={t('changePassword:confirmPassword')}
                     onChange={(value) => this.setState({ passwordConfirm: value })}
                 />
-
-                <Button onClick={() => this.changePassword()}>{t('settings:changePassword')}</Button>
-            </div>
+                <fieldset>
+                    <Button
+                        type="submit"
+                        disabled={!passwordCurrent.length || !passwordNew.length || !passwordConfirm.length}
+                    >
+                        {t('settings:changePassword')}
+                    </Button>
+                </fieldset>
+            </form>
         );
     }
 }
 
 const mapDispatchToProps = {
     generateAlert,
+    setPassword,
 };
 
-export default connect(null, mapDispatchToProps)(translate()(SetPassword));
+export default connect(null, mapDispatchToProps)(translate()(PasswordSettings));

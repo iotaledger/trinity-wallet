@@ -161,7 +161,7 @@ export class Balance extends Component {
 
         const formattedTransfers = map(recentTransactions, (transfer) => {
             const { timestamp, incoming, persistence, transferValue } = transfer;
-            
+
             return {
                 time: timestamp,
                 confirmationStatus: computeConfirmationStatus(persistence, incoming),

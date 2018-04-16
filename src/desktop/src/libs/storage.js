@@ -27,7 +27,7 @@ const persistElectronStorage = {
             const keys = Electron.getAllStorage();
             callback(null, keys);
         } catch (err) {
-            callback(err);
+            callback(err, []);
         }
     },
 };
