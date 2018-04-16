@@ -13,7 +13,7 @@ describe('Reducer: app', () => {
     });
 
     describe('IOTA/APP/SET_ACTIVATION_CODE', () => {
-        it('should merge "payload" in "activationCode" state prop', () => {
+        it('should merge "payload" to "activationCode" state prop', () => {
             const initialState = {
                 activationCode: null,
             };
