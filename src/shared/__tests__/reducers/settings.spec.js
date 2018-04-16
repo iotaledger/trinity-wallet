@@ -14,6 +14,7 @@ describe('Reducer: settings', () => {
                 mode: 'Standard',
                 language: 'English (International)',
                 currency: 'USD',
+                autoNodeSwitching: true,
                 availableCurrencies: [
                     'USD',
                     'GBP',
