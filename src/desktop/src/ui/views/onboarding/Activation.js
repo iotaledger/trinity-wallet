@@ -56,9 +56,12 @@ class Activation extends React.PureComponent {
                 uuid: uuid,
             };
 
-            fetch('https://trinity-alpha-fphqhjwuwu.now.sh', {
+            fetch('https://trinity-alpha.iota.org', {
                 method: 'POST',
                 body: JSON.stringify(data),
+                headers: {
+                    'content-type': 'application/json',
+                },
             })
                 .then(() => {
                     this.setState({
@@ -74,6 +77,10 @@ class Activation extends React.PureComponent {
                 })
                 .catch(() => {
                     generateAlert('error', 'Error requesting activation code', 'Something went wrong :/');
+                    this.setState({
+                        loading: false,
+                        input: '',
+                    });
                 });
         } else if (checkActivationCode(input, uuid)) {
             setActivationCode(input);
@@ -91,7 +98,11 @@ class Activation extends React.PureComponent {
                         <fieldset>
                             <h2>Activate your copy of Trinity wallet</h2>
                             <p>Enter your activation code or e-mail below</p>
-                            <Text value={this.state.input} onChange={(value) => this.setState({ input: value })} />
+                            <Text
+                                focus
+                                value={this.state.input}
+                                onChange={(value) => this.setState({ input: value })}
+                            />
                             <Button type="submit" loading={this.state.loading} className="large" variant="primary">
                                 Activate
                             </Button>

@@ -1,7 +1,7 @@
 import React from 'react';
 import QrReader from 'react-qr-reader';
 import PropTypes from 'prop-types';
-import { ADDRESS_LENGTH } from 'libs/util';
+import { ADDRESS_LENGTH, parseAddress } from 'libs/iota/utils';
 
 import Modal from 'ui/components/modal/Modal';
 import Button from 'ui/components/Button';
@@ -17,10 +17,14 @@ export default class AddressInput extends React.PureComponent {
         address: PropTypes.string.isRequired,
         /** Address input label */
         label: PropTypes.string.isRequired,
+        /** Should input focus when changed to true */
+        focus: PropTypes.bool,
         /** Camera modal close button label */
         closeLabel: PropTypes.string.isRequired,
         /** Address change event function
-         * @param {string} value - Current address value
+         * @param {string} address - Current address value
+         * @param {string} message - Current message value
+         * @param {string} value - Current value
          */
         onChange: PropTypes.func.isRequired,
     };
@@ -29,12 +33,25 @@ export default class AddressInput extends React.PureComponent {
         showScanner: false,
     };
 
-    onScanEvent = (address) => {
-        if (address !== null) {
+    componentDidMount() {
+        if (this.props.focus) {
+            this.input.focus();
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (!this.props.focus && nextProps.focus) {
+            this.input.focus();
+        }
+    }
+
+    onScanEvent = (data) => {
+        if (data !== null) {
             this.setState(() => ({
                 showScanner: false,
             }));
-            this.props.onChange(address);
+            const input = parseAddress(data);
+            this.props.onChange(input.address, input.message, input.amount);
         }
     };
 
@@ -62,6 +79,9 @@ export default class AddressInput extends React.PureComponent {
                     </a>
                     <input
                         type="text"
+                        ref={(input) => {
+                            this.input = input;
+                        }}
                         value={address}
                         onChange={(e) => this.props.onChange(e.target.value)}
                         maxLength={ADDRESS_LENGTH}
@@ -71,7 +91,7 @@ export default class AddressInput extends React.PureComponent {
                 {showScanner && (
                     <Modal isOpen onClose={this.closeScanner}>
                         <div className={css.qrScanner}>
-                            <QrReader delay={350} onScan={this.onScanEvent} />
+                            <QrReader delay={350} onScan={this.onScanEvent} onError={() => {}} />
                             <Button type="button" onClick={this.closeScanner} variant="primary">
                                 {closeLabel}
                             </Button>

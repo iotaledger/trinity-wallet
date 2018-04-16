@@ -1,0 +1,109 @@
+import assign from 'lodash/assign';
+import noop from 'lodash/noop';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { shallow } from 'enzyme';
+import { MainSettings } from '../../containers/MainSettings';
+
+jest.mock('react-native-is-device-rooted', () => ({
+    isDeviceRooted: () => true,
+    isDeviceLocked: () => false,
+}));
+
+const getProps = (overrides) =>
+    assign(
+        {},
+        {
+            currency: 'USD',
+            mode: 'Standard',
+            theme: { body: {} },
+            themeName: 'custom',
+            setSetting: noop,
+            clearWalletData: noop,
+            setPassword: noop,
+            t: (arg) => arg,
+        },
+        overrides,
+    );
+
+describe('Testing MainSettings component', () => {
+    describe('propTypes', () => {
+        it('should require a currency string as a prop', () => {
+            expect(MainSettings.propTypes.currency).toBe(PropTypes.string.isRequired);
+        });
+
+        it('should require a mode string as a prop', () => {
+            expect(MainSettings.propTypes.mode).toBe(PropTypes.string.isRequired);
+        });
+
+        it('should require a setSetting function as a prop', () => {
+            expect(MainSettings.propTypes.setSetting).toBe(PropTypes.func.isRequired);
+        });
+
+        it('should require a t function as a prop', () => {
+            expect(MainSettings.propTypes.t).toEqual(PropTypes.func.isRequired);
+        });
+
+        it('should require a theme object as a prop', () => {
+            expect(MainSettings.propTypes.theme).toEqual(PropTypes.object.isRequired);
+        });
+
+        it('should require a setPassword function as a prop', () => {
+            expect(MainSettings.propTypes.setPassword).toEqual(PropTypes.func.isRequired);
+        });
+
+        it('should require a clearWalletData function as a prop', () => {
+            expect(MainSettings.propTypes.clearWalletData).toEqual(PropTypes.func.isRequired);
+        });
+    });
+
+    describe('when renders', () => {
+        describe('initially', () => {
+            it('should not explode', () => {
+                const props = getProps();
+                const wrapper = shallow(<MainSettings {...props} />);
+                expect(wrapper.name()).toBe('View');
+            });
+
+            it('should return a View component as an immediate child', () => {
+                const props = getProps();
+                const wrapper = shallow(<MainSettings {...props} />);
+                expect(wrapper.childAt(0).name()).toBe('View');
+            });
+
+            it('should return nine TouchableOpacity components', () => {
+                const props = getProps();
+                const wrapper = shallow(<MainSettings {...props} />);
+                expect(wrapper.find('TouchableOpacity').length).toBe(9);
+            });
+        });
+
+        [
+            { func: 'setSetting', calledWith: 'modeSelection' },
+            { func: 'setSetting', calledWith: 'themeCustomisation' },
+            { func: 'setSetting', calledWith: 'currencySelection' },
+            { func: 'setSetting', calledWith: 'languageSelection' },
+            { func: 'setSetting', calledWith: 'accountManagement' },
+            { func: 'setSetting', calledWith: 'changePassword' },
+            { func: 'setSetting', calledWith: 'securitySettings' },
+            { func: 'setSetting', calledWith: 'advancedSettings' },
+        ].forEach((item, idx) => {
+            describe(`when TouchableOpacity component prop onPress on index ${idx + 1} is triggered`, () => {
+                it(`should call prop method ${item.func}`, () => {
+                    const props = getProps({
+                        [item.func]: jest.fn(),
+                    });
+
+                    const wrapper = shallow(<MainSettings {...props} />);
+                    wrapper
+                        .find('TouchableOpacity')
+                        .at(idx)
+                        .props()
+                        .onPress();
+
+                    expect(props[item.func]).toHaveBeenCalledWith(item.calledWith);
+                });
+            });
+        });
+    });
+});

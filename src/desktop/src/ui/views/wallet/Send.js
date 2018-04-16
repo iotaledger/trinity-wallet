@@ -1,15 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { formatValue, formatUnit } from 'libs/util';
+import { formatValue, formatUnit } from 'libs/iota/utils';
 import Curl from 'curl.lib.js';
+
+import { getVault } from 'libs/crypto';
 
 import AddressInput from 'ui/components/input/Address';
 import AmountInput from 'ui/components/input/Amount';
-import MessageInput from 'ui/components/input/Message';
+import TextInput from 'ui/components/input/Text';
 import Button from 'ui/components/Button';
 import Confirm from 'ui/components/modal/Confirm';
-
 import withSendData from 'containers/wallet/Send';
+import { generateAlert } from 'actions/alerts';
+
+import css from './index.css';
 
 /**
  * Send transaction component
@@ -18,8 +22,12 @@ class Send extends React.PureComponent {
     static propTypes = {
         /** Current send status */
         isSending: PropTypes.bool.isRequired,
-        /** Current seed value */
-        seed: PropTypes.string.isRequired,
+        /** Deep link state */
+        deepLinkAmount: PropTypes.object.isRequired,
+        /** Current password value */
+        password: PropTypes.string.isRequired,
+        /** Current seed index */
+        seedIndex: PropTypes.number.isRequired,
         /** Total current account wallet ballance in iotas */
         balance: PropTypes.number.isRequired,
         /** Fiat currency settings
@@ -45,6 +53,8 @@ class Send extends React.PureComponent {
          *  @param {function} powFn - locla PoW function
          */
         sendTransfer: PropTypes.func.isRequired,
+        /** Set deep link amount */
+        sendAmount: PropTypes.func.isRequired,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
@@ -59,6 +69,32 @@ class Send extends React.PureComponent {
         isModalVisible: false,
     };
 
+    componentWillMount() {
+        this.refreshDeepLinkValues(this.props.deepLinkAmount);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.isSending && !nextProps.isSending) {
+            this.setState({
+                address: '',
+                amount: 0,
+                message: '',
+            });
+        }
+        this.refreshDeepLinkValues(nextProps.deepLinkAmount);
+    }
+
+    refreshDeepLinkValues = (props) => {
+        if (props.address.length > 0 && props.address !== this.state.address) {
+            this.setState({
+                address: props.address,
+                amount: props.amount || this.state.amount,
+                message: props.message || this.state.message,
+            });
+            this.props.sendAmount(0, '', '');
+        }
+    };
+
     validateInputs = (e) => {
         const { address, amount } = this.state;
         const { validateInputs } = this.props;
@@ -70,9 +106,9 @@ class Send extends React.PureComponent {
         });
     };
 
-    confirmTransfer = () => {
+    confirmTransfer = async () => {
         const { address, amount, message } = this.state;
-        const { seed, sendTransfer, settings } = this.props;
+        const { password, seedIndex, sendTransfer, settings } = this.props;
 
         this.setState({
             isModalVisible: false,
@@ -81,11 +117,24 @@ class Send extends React.PureComponent {
         let powFn = null;
 
         if (!settings.remotePow) {
-            Curl.init();
+            // Temporarily return an error if WebGL cannot be initialized
+            // Remove once we implement more PoW methods
+            try {
+                Curl.init();
+            } catch (e) {
+                return generateAlert(
+                    'error',
+                    'WebGL not supported',
+                    'Your computer does not support WebGL. Please use remote PoW.',
+                );
+            }
             powFn = (trytes, minWeight) => {
                 return Curl.pow({ trytes, minWeight });
             };
         }
+
+        const vault = await getVault(password);
+        const seed = vault.seeds[seedIndex];
 
         sendTransfer(seed, address, amount, message, null, powFn);
     };
@@ -96,37 +145,45 @@ class Send extends React.PureComponent {
 
         return (
             <form onSubmit={(e) => this.validateInputs(e)}>
-                <Confirm
-                    category="primary"
-                    isOpen={isModalVisible}
-                    onCancel={() => this.setState({ isModalVisible: false })}
-                    onConfirm={() => this.confirmTransfer()}
-                    content={{
-                        title: `You are about to send ${formatValue(amount)} ${formatUnit(amount)} to the address`,
-                        message: address,
-                        confirm: 'confirm',
-                        cancel: 'Cancel',
-                    }}
-                />
-                <AddressInput
-                    address={address}
-                    onChange={(value) => this.setState({ address: value })}
-                    label={t('send:recipientAddress')}
-                    closeLabel={t('back')}
-                />
-                <AmountInput
-                    amount={amount.toString()}
-                    settings={settings}
-                    label={t('send:amount')}
-                    labelMax={t('send:max')}
-                    balance={balance}
-                    onChange={(value) => this.setState({ amount: value })}
-                />
-                <MessageInput
-                    message={message}
-                    label={t('send:message')}
-                    onChange={(value) => this.setState({ message: value })}
-                />
+                <div className={isSending ? css.sending : null}>
+                    <Confirm
+                        category="primary"
+                        isOpen={isModalVisible}
+                        onCancel={() => this.setState({ isModalVisible: false })}
+                        onConfirm={() => this.confirmTransfer()}
+                        content={{
+                            title: `You are about to send ${formatValue(amount)} ${formatUnit(amount)} to the address`,
+                            message: address,
+                            confirm: 'confirm',
+                            cancel: 'Cancel',
+                        }}
+                    />
+                    <AddressInput
+                        address={address}
+                        onChange={(value, messageIn, ammountIn) =>
+                            this.setState({
+                                address: value,
+                                message: messageIn ? messageIn : message,
+                                amount: ammountIn ? ammountIn : amount,
+                            })
+                        }
+                        label={t('send:recipientAddress')}
+                        closeLabel={t('back')}
+                    />
+                    <AmountInput
+                        amount={amount}
+                        settings={settings}
+                        label={t('send:amount')}
+                        labelMax={t('send:max')}
+                        balance={balance}
+                        onChange={(value) => this.setState({ amount: value })}
+                    />
+                    <TextInput
+                        value={message}
+                        label={t('send:message')}
+                        onChange={(value) => this.setState({ message: value })}
+                    />
+                </div>
                 <fieldset>
                     <Button type="submit" loading={isSending} variant="primary">
                         {t('send:send')}

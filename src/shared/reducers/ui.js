@@ -1,17 +1,35 @@
 import { ActionTypes as SettingsActionTypes } from '../actions/settings';
 import { ActionTypes as UiActionTypes } from '../actions/ui';
 import { ActionTypes as TransfersActionTypes } from '../actions/transfers';
+import { ActionTypes as WalletActionTypes } from '../actions/wallet';
+import { ActionTypes as AccountsActionTypes } from '../actions/accounts';
+import { ActionTypes as DeepLinkActionTypes } from '../actions/deepLink';
 
 const initialState = {
+    isGeneratingReceiveAddress: false,
     isFetchingCurrencyData: false,
     hasErrorFetchingCurrencyData: false,
     isBroadcastingBundle: false,
     isPromotingTransaction: false,
+    isTransitioning: false,
+    isAttachingToTangle: false,
+    isFetchingLatestAccountInfoOnLogin: false,
+    hasErrorFetchingAccountInfoOnLogin: false,
+    isSendingTransfer: false,
+    isSyncing: false,
+    inactive: false,
+    minimised: false,
     sendAddressFieldText: '',
     sendAmountFieldText: '',
     sendMessageFieldText: '',
     loginPasswordFieldText: '',
     sendDenomination: 'i',
+    onboarding: {
+        name: '',
+        seed: null,
+        isGenerated: false,
+    },
+    doNotMinimise: false,
 };
 
 export default (state = initialState, action) => {
@@ -60,6 +78,13 @@ export default (state = initialState, action) => {
                 sendAmountFieldText: '',
                 sendMessageFieldText: '',
             };
+        case DeepLinkActionTypes.SET_DEEP_LINK:
+            return {
+                ...state,
+                sendAddressFieldText: action.address,
+                sendAmountFieldText: action.amount,
+                sendMessageFieldText: action.message,
+            };
         case UiActionTypes.SET_SEND_DENOMINATION:
             return {
                 ...state,
@@ -86,6 +111,122 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isPromotingTransaction: false,
+            };
+        case UiActionTypes.SET_USER_ACTIVITY:
+            return {
+                ...state,
+                ...action.payload,
+            };
+        case WalletActionTypes.GENERATE_NEW_ADDRESS_REQUEST:
+            return {
+                ...state,
+                isGeneratingReceiveAddress: true,
+            };
+        case WalletActionTypes.GENERATE_NEW_ADDRESS_SUCCESS:
+            return {
+                ...state,
+                isGeneratingReceiveAddress: false,
+            };
+        case WalletActionTypes.GENERATE_NEW_ADDRESS_ERROR:
+            return {
+                ...state,
+                isGeneratingReceiveAddress: false,
+            };
+        case TransfersActionTypes.SEND_TRANSFER_REQUEST:
+            return {
+                ...state,
+                isSendingTransfer: true,
+            };
+        case TransfersActionTypes.SEND_TRANSFER_SUCCESS:
+        case TransfersActionTypes.SEND_TRANSFER_ERROR:
+            return {
+                ...state,
+                isSendingTransfer: false,
+            };
+        case WalletActionTypes.CLEAR_WALLET_DATA:
+            return {
+                ...state,
+                isSendingTransfer: false,
+                sendDenomination: 'i',
+                sendAddressFieldText: '',
+                sendAmountFieldText: '',
+                sendMessageFieldText: '',
+            };
+        case AccountsActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_REQUEST:
+            return {
+                ...state,
+                hasErrorFetchingAccountInfoOnLogin: false,
+            };
+        case AccountsActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_ERROR:
+            return {
+                ...state,
+                hasErrorFetchingAccountInfoOnLogin: true,
+            };
+        case AccountsActionTypes.ACCOUNT_INFO_FETCH_REQUEST:
+            return {
+                ...state,
+                isFetchingLatestAccountInfoOnLogin: true,
+            };
+        case AccountsActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
+        case AccountsActionTypes.ACCOUNT_INFO_FETCH_ERROR:
+            return {
+                ...state,
+                isFetchingLatestAccountInfoOnLogin: false,
+            };
+        case AccountsActionTypes.MANUAL_SYNC_REQUEST:
+            return {
+                ...state,
+                isSyncing: true,
+            };
+        case AccountsActionTypes.MANUAL_SYNC_SUCCESS:
+            return {
+                ...state,
+                isSyncing: false,
+            };
+        case AccountsActionTypes.MANUAL_SYNC_ERROR:
+            return {
+                ...state,
+                isSyncing: false,
+            };
+        case WalletActionTypes.SNAPSHOT_TRANSITION_REQUEST:
+            return {
+                ...state,
+                isTransitioning: true,
+            };
+        case WalletActionTypes.SNAPSHOT_TRANSITION_SUCCESS:
+            return {
+                ...state,
+                isTransitioning: false,
+            };
+        case WalletActionTypes.SNAPSHOT_TRANSITION_ERROR:
+            return {
+                ...state,
+                isTransitioning: false,
+            };
+        case WalletActionTypes.SNAPSHOT_ATTACH_TO_TANGLE_REQUEST:
+            return {
+                ...state,
+                isAttachingToTangle: true,
+            };
+        case WalletActionTypes.SNAPSHOT_ATTACH_TO_TANGLE_COMPLETE:
+            return {
+                ...state,
+                isAttachingToTangle: false,
+            };
+        case UiActionTypes.SET_ONBOARDING_SEED:
+            return {
+                ...state,
+                onboarding: Object.assign({}, state.onboarding, action.payload),
+            };
+        case UiActionTypes.SET_ONBOARDING_NAME:
+            return {
+                ...state,
+                onboarding: Object.assign({}, state.onboarding, { name: action.payload }),
+            };
+        case UiActionTypes.SET_DO_NOT_MINIMISE:
+            return {
+                ...state,
+                doNotMinimise: action.payload,
             };
         default:
             return state;

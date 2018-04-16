@@ -29,7 +29,7 @@
             align-items: center;
             justify-content: flex-end;
             margin-bottom: 0px;
-            width: calc(100vw - 20px);
+            width: calc(100vw - 40px);
             max-width: 560px;
 
             section {
@@ -104,8 +104,8 @@
 .seed {
     display: block;
     margin: 32px auto;
-    width: calc(100vw - 20px);
-    max-width: 864px;
+    width: calc(100vw - 40px);
+    max-width: 920px;
     text-align: left;
 
     button,
@@ -115,17 +115,22 @@
         border: none;
         color: var(--secondary);
         font-size: 21px;
-        line-height: 21px;
-        width: 32px;
-        height: 32px;
+        line-height: 36px;
+        height: 34px;
         margin: 5px 0;
         font-family: 'SourceCode';
         font-weight: 300;
+        transition: transform 0.1s cubic-bezier(0.4, 0, 0.6, 1);
 
         &:hover {
             position: relative;
             cursor: pointer;
-            background: var(--body-hover);
+            color: var(--primary);
+            transform: scale(1.5);
+        }
+
+        &:active {
+            transform: scale(2);
         }
 
         &:focus {
@@ -133,8 +138,42 @@
         }
     }
 
+    > div {
+        padding: 10px 0;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        > span,
+        button {
+            flex: 0 0 3.6%;
+        }
+    }
+
     span {
         pointer-events: none;
+    }
+
+    &.narrow {
+        padding-left: 180px;
+        position: relative;
+        > div {
+            height: 160px;
+        }
+        canvas {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            border: 10px solid white;
+            box-sizing: content-box;
+        }
+        @media (max-width: 900px) {
+            padding: 180px 0 0 0;
+            canvas {
+                left: 50%;
+                transform: translate(-50%, 0);
+            }
+        }
     }
 }
 
@@ -150,7 +189,7 @@
         position: absolute;
         top: 0px;
         left: 0px;
-        background: url('animations/wave.svg') repeat-x;
+        background: var(--wave-file) repeat-x;
         background-size: auto 227px;
         background-position: 0 0;
         opacity: 0.15;
@@ -173,7 +212,7 @@
         list-style: none;
         width: 12px;
         height: 12px;
-        background: var(--body-hover);
+        background: var(--body-alt);
         margin: 0 18px;
         position: relative;
         border-radius: 12px;
@@ -195,7 +234,7 @@
             left: -36px;
             height: 2px;
             width: 36px;
-            background: var(--body-hover);
+            background: var(--body-alt);
             transition: width 0.2s ease-out;
         }
         &:after {
@@ -216,5 +255,11 @@
         &:after {
             width: 36px;
         }
+    }
+}
+
+.hide-on-print {
+    @media print {
+        display: none;
     }
 }

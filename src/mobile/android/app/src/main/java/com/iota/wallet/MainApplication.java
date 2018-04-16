@@ -10,7 +10,7 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.horcrux.svg.SvgPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
-import com.lwansbrough.RCTCamera.RCTCameraPackage;
+import org.reactnative.camera.RNCameraPackage;
 import com.oblador.keychain.KeychainPackage;
 import com.peel.react.rnos.RNOSModule;
 import com.reactnativenavigation.NavigationApplication;
@@ -22,6 +22,8 @@ import net.rhogan.rnsecurerandom.RNSecureRandomPackage;
 import org.iota.mobile.IOTAMobilePackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import my.fin.RNIsDeviceRootedPackage;
+import com.bugsnag.BugsnagReactNative;
+import com.hieuvp.fingerprint.ReactNativeFingerprintScannerPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 
 import java.util.Arrays;
@@ -57,7 +59,7 @@ public class MainApplication extends NavigationApplication {
             new RNOSModule(),
             new RNHTMLtoPDFPackage(),
             new RNPrintPackage(),
-	          new RCTCameraPackage(),
+	          new RNCameraPackage(),
 	          new RNFSPackage(),
             new ExtraDimensionsPackage(),
             new RNDetectNavbarAndroidPackage(),
@@ -71,6 +73,8 @@ public class MainApplication extends NavigationApplication {
             new VectorIconsPackage(),
             new RNIsDeviceRootedPackage(),
             new SplashScreenReactPackage()
+            new ReactNativeFingerprintScannerPackage(),
+            BugsnagReactNative.getPackage()
     );
   }
 

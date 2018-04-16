@@ -52,29 +52,34 @@ export default function withNodeData(NodeComponent) {
             // TODO: Should create a new instance of IRI API and not use existing for node check
             changeIotaNode(nodeSelected);
 
-            checkNode((error) => {
-                this.setState({
-                    loading: false,
+            try {
+                checkNode((error) => {
+                    this.setState({
+                        loading: false,
+                    });
+
+                    if (error) {
+                        generateAlert('error', t('global:invalidResponse'), t('global:invalidResponseExplanation'));
+                        changeIotaNode(node);
+                        return;
+                    }
+
+                    setFullNode(nodeSelected);
+
+                    if (nodes.indexOf(nodeSelected) < 0) {
+                        addCustomPoWNode(nodeSelected);
+                    }
+
+                    generateAlert('success', t('nodeChanged'), t('nodeChangedExplanation'));
+
+                    if (typeof backPress === 'function') {
+                        backPress();
+                    }
                 });
-
-                if (error) {
-                    generateAlert('error', t('global:invalidResponse'), t('global:invalidResponseExplanation'));
-                    changeIotaNode(node);
-                    return;
-                }
-
-                setFullNode(nodeSelected);
-
-                if (nodes.indexOf(nodeSelected) < 0) {
-                    addCustomPoWNode(nodeSelected);
-                }
-
-                generateAlert('success', 'Node changed', 'The node has been changed successfully!');
-
-                if (typeof backPress === 'function') {
-                    backPress();
-                }
-            });
+            } catch (err) {
+                generateAlert('error', t('global:invalidResponse'), t('global:invalidResponseExplanation'));
+                changeIotaNode(node);
+            }
         };
 
         render() {
@@ -97,8 +102,8 @@ export default function withNodeData(NodeComponent) {
     NodeData.displayName = `withNodeData(${NodeComponent.name})`;
 
     const mapStateToProps = (state) => ({
-        node: state.settings.fullNode,
-        nodes: state.settings.availablePoWNodes,
+        node: state.settings.node,
+        nodes: state.settings.nodes,
         theme: state.settings.theme,
     });
 
