@@ -8,7 +8,7 @@ import RNExitApp from 'react-native-exit-app';
 import { connect } from 'react-redux';
 import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
-import RootDetectionModal from '../components/RootDetectionModal';
+import RootDetectionModalComponent from '../components/RootDetectionModal';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import { width, height } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
@@ -88,7 +88,7 @@ class Welcome extends Component {
         this.state = {
             isModalVisible: false,
             modalContent: (
-                <RootDetectionModal
+                <RootDetectionModalComponent
                     style={{ flex: 1 }}
                     hideModal={() => this.hideModal()}
                     closeApp={() => this.closeApp()}
