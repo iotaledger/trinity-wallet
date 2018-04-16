@@ -13,7 +13,7 @@ import { shouldPreventAction } from 'iota-wallet-shared-modules/selectors/global
 import { hasDuplicateAccountName, hasDuplicateSeed, getAllSeedsFromKeychain } from '../utils/keychain';
 import CustomTextInput from '../components/CustomTextInput';
 import Checksum from '../components/Checksum';
-import QRScanner from '../components/QrScanner';
+import QRScannerComponent from '../components/QrScanner';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 import { isAndroid } from '../utils/device';
@@ -274,7 +274,7 @@ class UseExistingSeed extends Component {
     renderModalContent = () => {
         const { theme: { body, primary } } = this.props;
         return (
-            <QRScanner
+            <QRScannerComponent
                 primary={primary}
                 body={body}
                 onQRRead={(data) => this.onQRRead(data)}
