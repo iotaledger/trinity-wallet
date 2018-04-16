@@ -52,7 +52,7 @@ export class FingerprintModal extends PureComponent {
                 onPress={this.props.hideModal}
             >
                 <View style={[styles.modalContent, borderColor]}>
-                    <Text style={[styles.modalText, textColor]}>{t('touchFingerprintReader')}</Text>
+                    <Text style={[styles.modalText, textColor]}>{t('fingerprintSetup:touchFingerprintReader')}</Text>
                 </View>
             </TouchableOpacity>
         );
