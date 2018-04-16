@@ -240,6 +240,12 @@ export class Send extends Component {
         return true;
     }
 
+    componentWillUnmount() {
+        if (isAndroid) {
+            FingerprintScanner.release();
+        }
+    }
+
     onDenominationPress() {
         const { t, body, denomination } = this.props;
         const { currencySymbol } = this.state;
