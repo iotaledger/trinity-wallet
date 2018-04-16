@@ -78,6 +78,7 @@ class AccountPassword extends React.PureComponent {
     state = {
         password: '',
         passwordConfirm: '',
+        loading: false,
     };
 
     createAccount = async (e) => {
@@ -102,6 +103,10 @@ class AccountPassword extends React.PureComponent {
             e.preventDefault();
         }
 
+        if (this.state.loading) {
+            return;
+        }
+
         if (firstAccount && password !== passwordConfirm) {
             return generateAlert(
                 'error',
@@ -117,6 +122,10 @@ class AccountPassword extends React.PureComponent {
                 t('changePassword:passwordTooShortExplanation'),
             );
         }
+
+        this.setState({
+            loading: true,
+        });
 
         const passwordHash = firstAccount ? sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(password)) : password;
 
