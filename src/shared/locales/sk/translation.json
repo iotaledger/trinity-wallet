@@ -480,11 +480,11 @@
         "transitionCompleteExplanation": "Aktualizácia údajov po snapshote prebehla úspešne."
     },
     "deepLink": {
-        "autofill": "Autofill",
+        "autofill": "Autofill success",
         "autofillExplanation": "Transaction data autofilled from link."
     },
     "updates": {
-        "errorRetrievingUpdateData": "Error retreiving update data",
+        "errorRetrievingUpdateData": "Error retrieving update data",
         "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
         "noUpdatesAvailable": "No updates available",
         "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",

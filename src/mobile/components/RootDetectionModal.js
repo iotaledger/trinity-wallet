@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     },
 });
 
-class RootDetectionModal extends PureComponent {
+export class RootDetectionModal extends PureComponent {
     static propTypes = {
         /** Exits the application */
         closeApp: PropTypes.func.isRequired,

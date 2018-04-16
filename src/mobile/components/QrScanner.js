@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     },
 });
 
-class QRScanner extends Component {
+export class QRScanner extends Component {
     static async requestCameraPermission() {
         await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.CAMERA, {
             title: 'QR Scanner permission',
@@ -57,15 +57,29 @@ class QRScanner extends Component {
         /** Content base colors */
         body: PropTypes.object.isRequired,
         primary: PropTypes.object.isRequired,
+        /** Mount lifecycle method calback function  */
+        onMount: PropTypes.func,
+        /** Unmount lifecycle method calback function  */
+        onUnmount: PropTypes.func
     };
 
     static defaultProps = {
         ctaBorderColor: 'transparent',
     };
 
-    componentWillMount() {
+    componentDidMount() {
+        if (this.props.onMount) {
+            this.props.onMount();
+        }
+
         if (isAndroid) {
             QRScanner.requestCameraPermission();
+        }
+    }
+
+    componentWillUnmount() {
+        if (this.props.onUnmount) {
+            this.props.onUnmount();
         }
     }
 

@@ -57,6 +57,9 @@ const getProps = (overrides) =>
             password: 'foo',
             makeTransaction: noop,
             generateTransferErrorAlert: noop,
+            availableBalance: 100,
+            deepLinkActive: false,
+            setDeepLinkInactive: noop,
         },
         overrides,
     );

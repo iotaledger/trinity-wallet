@@ -28,6 +28,7 @@ import {
     setSendAmountField,
     setSendMessageField,
     setSendDenomination,
+    setDoNotMinimise
 } from 'iota-wallet-shared-modules/actions/ui';
 import { parse, round } from 'iota-wallet-shared-modules/libs/utils';
 import {
@@ -40,7 +41,7 @@ import { generateAlert, generateTransferErrorAlert } from 'iota-wallet-shared-mo
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 import Modal from 'react-native-modal';
 import KeepAwake from 'react-native-keep-awake';
-import QRScanner from '../components/QrScanner';
+import QRScannerComponent from '../components/QrScanner';
 import Toggle from '../components/Toggle';
 import FingerPrintModal from '../components/FingerprintModal';
 import ProgressBar from '../components/ProgressBar';
@@ -157,6 +158,10 @@ export class Send extends Component {
         setDeepLinkInactive: PropTypes.func.isRequired,
         /** Determines if user has activated fingerprint auth */
         isFingerprintEnabled: PropTypes.bool.isRequired,
+       /** Allow deny application to minimize
+         * @param {boolean} status
+         */
+        setDoNotMinimise: PropTypes.func.isRequired
     };
 
     constructor(props) {
@@ -327,7 +332,7 @@ export class Send extends Component {
 
         if (!enoughBalance) {
             // If amount includes funds at a spent address
-            if (parseInt(amount) * multiplier < balance) {
+            if (parseInt(amount) * multiplier <= balance) {
                 return this.openModal('usedAddress');
             }
             return this.props.generateAlert('error', t('notEnoughFunds'), t('notEnoughFundsExplanation'));
@@ -385,11 +390,13 @@ export class Send extends Component {
         switch (selectedSetting) {
             case 'qrScanner':
                 modalContent = (
-                    <QRScanner
+                    <QRScannerComponent
                         onQRRead={(data) => this.onQRRead(data)}
                         hideModal={() => this.hideModal()}
                         primary={primary}
                         body={body}
+                        onMount={() => this.props.setDoNotMinimise(true)}
+                        onUnmount={() => this.props.setDoNotMinimise(false)}
                     />
                 );
                 break;
@@ -582,7 +589,10 @@ export class Send extends Component {
         return !amountIsValid && amount !== '';
     }
 
-    showModal = () => this.setState({ isModalVisible: true });
+    showModal = () =>
+        this.setState({
+            isModalVisible: true,
+        });
 
     hideModal = (callback) =>
         this.setState({ isModalVisible: false }, () => {
@@ -741,7 +751,9 @@ export class Send extends Component {
                                 }
                             }}
                             widget="qr"
-                            onQRPress={() => this.openModal('qrScanner')}
+                            onQRPress={() => {
+                                this.openModal('qrScanner');
+                            }}
                             theme={theme}
                             value={address}
                             editable={!isSending}
@@ -938,6 +950,7 @@ const mapDispatchToProps = {
     startTrackingProgress,
     generateTransferErrorAlert,
     setDeepLinkInactive,
+    setDoNotMinimise
 };
 
 export default translate(['send', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Send));
