@@ -28,6 +28,7 @@ import {
     setSendAmountField,
     setSendMessageField,
     setSendDenomination,
+    setDoNotMinimise
 } from 'iota-wallet-shared-modules/actions/ui';
 import { parse, round } from 'iota-wallet-shared-modules/libs/utils';
 import {
@@ -153,6 +154,10 @@ export class Send extends Component {
         deepLinkActive: PropTypes.bool.isRequired,
         /** Resets deep link status */
         setDeepLinkInactive: PropTypes.func.isRequired,
+       /** Allow deny application to minimize
+         * @param {boolean} status
+         */
+        setDoNotMinimise: PropTypes.func.isRequired
     };
 
     constructor(props) {
@@ -386,6 +391,8 @@ export class Send extends Component {
                         hideModal={() => this.hideModal()}
                         primary={primary}
                         body={body}
+                        onMount={() => this.props.setDoNotMinimise(true)}
+                        onUnmount={() => this.props.setDoNotMinimise(false)}
                     />
                 );
                 break;
@@ -565,7 +572,10 @@ export class Send extends Component {
         return !amountIsValid && amount !== '';
     }
 
-    showModal = () => this.setState({ isModalVisible: true });
+    showModal = () =>
+        this.setState({
+            isModalVisible: true,
+        });
 
     hideModal = (callback) =>
         this.setState({ isModalVisible: false }, () => {
@@ -700,7 +710,9 @@ export class Send extends Component {
                                 }
                             }}
                             widget="qr"
-                            onQRPress={() => this.openModal('qrScanner')}
+                            onQRPress={() => {
+                                this.openModal('qrScanner');
+                            }}
                             theme={theme}
                             value={address}
                             editable={!isSending}
@@ -896,6 +908,7 @@ const mapDispatchToProps = {
     startTrackingProgress,
     generateTransferErrorAlert,
     setDeepLinkInactive,
+    setDoNotMinimise
 };
 
 export default translate(['send', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Send));
