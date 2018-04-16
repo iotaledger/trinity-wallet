@@ -9,7 +9,7 @@ import { makeTransaction } from '../../actions/transfers';
 import { setSendAddressField, setSendAmountField, setSendMessageField } from '../../actions/ui';
 
 import { getSelectedAccountName, getBalanceForSelectedAccount } from '../../selectors/accounts';
-import { VALID_SEED_REGEX, ADDRESS_LENGTH } from '../../libs/iota/utils';
+import { VALID_SEED_REGEX, ADDRESS_LENGTH, isValidMessage } from '../../libs/iota/utils';
 import { iota } from '../../libs/iota';
 
 /**
@@ -99,15 +99,9 @@ export default function withSendData(SendComponent) {
 
             // Validate whether message only contains ASCII letters
             // as anything else is lost up on conversion to trytes
-            for (let i = 0; i < message.length; i++) {
-                if (message.charCodeAt(i) > 255) {
-                    generateAlert(
-                        'error',
-                        t('send:invalidMessageCharacter'),
-                        t('send:invalidMessageCharacterExplanation'),
-                    );
-                    return false;
-                }
+            if (!isValidMessage(message)) {
+                generateAlert('error', t('send:invalidMessage'), t('send:invalidMessageExplanation'));
+                return false;
             }
 
             // Validate length of the message
