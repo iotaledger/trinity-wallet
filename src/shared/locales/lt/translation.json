@@ -480,11 +480,11 @@
         "transitionCompleteExplanation": "Tinklo duomenų perkėlimas įvykdytas sėkmingai."
     },
     "deepLink": {
-        "autofill": "Automatinis įkėlimas",
+        "autofill": "Automatinis įkėlimas sėkmingas",
         "autofillExplanation": "Pavedimo duomenys automatiškai įkelti iš nuorodos."
     },
     "updates": {
-        "errorRetrievingUpdateData": "Klaida siunčiant atnaujinimus",
+        "errorRetrievingUpdateData": "Klaida atsiunčiant atnaujinimus",
         "errorRetrievingUpdateDataExplanation": "Įvyko klaida siunčiant atnaujinimus. Bandykite dar kartą.",
         "noUpdatesAvailable": "Nėra naujų atnaujinimų",
         "noUpdatesAvailableExplanation": "Jūs turite naujausią IOTA Trinity darbalaukio piniginės versiją!",
