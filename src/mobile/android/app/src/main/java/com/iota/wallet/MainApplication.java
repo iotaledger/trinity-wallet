@@ -72,7 +72,7 @@ public class MainApplication extends NavigationApplication {
             new RandomBytesPackage(),
             new VectorIconsPackage(),
             new RNIsDeviceRootedPackage(),
-            new SplashScreenReactPackage()
+            new SplashScreenReactPackage(),
             new ReactNativeFingerprintScannerPackage(),
             BugsnagReactNative.getPackage()
     );
