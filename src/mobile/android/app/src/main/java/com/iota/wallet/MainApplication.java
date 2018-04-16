@@ -10,7 +10,7 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.horcrux.svg.SvgPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
-import com.lwansbrough.RCTCamera.RCTCameraPackage;
+import org.reactnative.camera.RNCameraPackage;
 import com.oblador.keychain.KeychainPackage;
 import com.peel.react.rnos.RNOSModule;
 import com.reactnativenavigation.NavigationApplication;
@@ -57,7 +57,7 @@ public class MainApplication extends NavigationApplication {
             new RNOSModule(),
             new RNHTMLtoPDFPackage(),
             new RNPrintPackage(),
-	          new RCTCameraPackage(),
+	          new RNCameraPackage(),
 	          new RNFSPackage(),
             new ExtraDimensionsPackage(),
             new RNDetectNavbarAndroidPackage(),
