@@ -174,13 +174,15 @@ describe('libs: iota/transfers', () => {
             it('should assign persistence true to those objects that have any tail transaction hash in second argument array', () => {
                 const normalizedTransfers = {
                     bundleHashOne: {
-                        persistence: false, tailTransactions: [{ hash: 'UUU' }]
+                        persistence: false,
+                        tailTransactions: [{ hash: 'UUU' }],
                     },
                     bundleHashTwo: {
-                         persistence: false, tailTransactions: [{ hash: 'XXX' }]
-                    }
+                        persistence: false,
+                        tailTransactions: [{ hash: 'XXX' }],
+                    },
                 };
-                
+
                 const confirmedTransactionsHashes = ['XXX'];
 
                 const result = {

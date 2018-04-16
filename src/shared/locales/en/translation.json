@@ -16,12 +16,12 @@
         "messageSentMessage": "Your message has been sent to the Tangle.",
         "keyReuse": "Key reuse",
         "keyReuseError": "You cannot send to an address that has already been spent from.",
-        "invalidResponse": "Invalid response",
-        "invalidResponseExplanation": "The node returned an invalid response.",
-        "invalidResponsePollingExplanation": "The node returned an invalid response while polling.",
+        "invalidResponse": "Node error",
+        "invalidResponseExplanation": "The node returned an error. Check the notifications for more information.",
+        "invalidResponsePollingExplanation": "The node returned an error while polling. Check the notifications for more information.",
         "invalidResponseFetchingAccount":
-            "The node returned an invalid response while fetching your account information. Try changing node.",
-        "invalidResponseSendingTransfer": "The node returned an invalid response while sending the transfer.",
+            "The node returned an error while fetching your account information. Try changing your node or check the notifications for more information.",
+        "invalidResponseSendingTransfer": "The node returned an error while sending the transfer. Check the notifications for more information.",
         "seed": "Seed",
         "back": "BACK",
         "backLowercase": "Back",
@@ -32,6 +32,8 @@
         "save": "Save",
         "close": "CLOSE",
         "continue": "Continue",
+        "enable": "Enable",
+        "disable": "Disable",
         "manualCopy": "Write seed down",
         "paperWallet": "Print paper copy",
         "copyToClipboard": "Add to password manager",
@@ -94,10 +96,13 @@
         "checkForUpdates": "Check for Updates",
         "account": "Account",
         "enterPasswordToAccessSettings": "Enter your password to access account settings",
+        "enterYourPassword": "Enter your password",
         "changeNode": "Change node",
         "addCustomNode": "Add custom node",
         "nodeChanged": "Node changed",
-        "nodeChangedExplanation": "The node has been changed successfully."
+        "nodeChangedExplanation": "The node has been changed successfully.",
+        "nodeAutoChanged": "Auto-switched node",
+        "nodeAutoChangedExplanation": "Switched to new node {{- nodeAddress}} as selected node is offline."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
@@ -236,13 +241,16 @@
         "message": "Message",
         "invalidMessage": "Invalid message",
         "invalidMessageExplanation": "Your message contains invalid characters.",
+        "invalidMessageTooLong": "Message too long",
+        "invalidMessageTooLongExplanation": "The message exceeds the max. amount of characters (1093).",
         "send": "SEND",
         "invalidAmount": "Incorrect amount entered",
         "invalidAmountExplanation":
             "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "MAXIMUM amount selected",
         "iotaUnits": "IOTA units explained",
-        "sendMax": "SEND MAX"
+        "sendMax": "SEND MAX",
+        "fingerprintOnSend": "Touch fingerprint reader to send the transfer"
     },
     "setPassword": {
         "passwordTooShort": "Password is too short",
@@ -313,7 +321,8 @@
         "undo": "Undo",
         "redo": "Redo",
         "about": "About Trinity",
-        "lockScreenTimeout": "Lock Screen Timeout (Minutes)"
+        "lockScreenTimeout": "Lock Screen Timeout (Minutes)",
+        "autoNodeSwitching": "Automatically switch node when selected is unreachable"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",
@@ -433,8 +442,8 @@
             "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
-        "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
+        "instructionsEnable": "Touch fingerprint reader to enable fingerprint authentication",
+        "instructionsDisable": "Touch fingerprint reader to disable fingerprint authentication",
         "fingerprintAuthEnabled": "Fingerprint authentication enabled",
         "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
         "fingerprintAuthDisabled": "Fingerprint authentication disabled",
@@ -449,7 +458,7 @@
             "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
-        "instructionsLogin": "Touch fingerprint reader to log in."
+        "instructionsLogin": "Touch fingerprint reader to log in"
     },
     "transferConfirmation": {
         "youAreAbout": "You are about to send {{contents}} to the address",
@@ -466,6 +475,8 @@
         "key": "Key",
         "twoFAEnabled": "2FA is now enabled",
         "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
+        "twoFADisabled": "2FA is now disabled",
+        "twoFADisabledExplanation": "You have successfully disabled Two Factor Authentication.",
         "enterCode": "Enter the code from your 2FA app",
         "code": "Code"
     },
@@ -486,7 +497,9 @@
         "local": "Local",
         "remote": "Remote",
         "powUpdated": "Proof of work settings",
-        "powUpdatedExplanation": "Your proof of work configuration has been updated."
+        "powUpdatedExplanation": "Your proof of work configuration has been updated.",
+        "noWebGLSupport": "WebGL not supported",
+        "noWebGLSupportExplanation": "Your computer does not support WebGL. Please use remote PoW."
     },
     "progressSteps": {
         "validatingReceiveAddress": "Validating receive address",

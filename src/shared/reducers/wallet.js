@@ -1,7 +1,6 @@
 import union from 'lodash/union';
 import { ActionTypes } from '../actions/wallet';
 import { ActionTypes as AccountsActionTypes } from '../actions/accounts';
-import { ActionTypes as DeepLinkActionTypes } from '../actions/deepLink';
 
 const initialState = {
     ready: false,
@@ -156,12 +155,12 @@ export default (state = initialState, action) => {
                 ...state,
                 transitionAddresses: union(state.transitionAddresses, action.payload),
             };
-        case DeepLinkActionTypes.SET_DEEP_LINK:
+        case ActionTypes.SET_DEEP_LINK:
             return {
                 ...state,
                 deepLinkActive: true,
             };
-        case DeepLinkActionTypes.SET_DEEP_LINK_INACTIVE:
+        case ActionTypes.SET_DEEP_LINK_INACTIVE:
             return {
                 ...state,
                 deepLinkActive: false,

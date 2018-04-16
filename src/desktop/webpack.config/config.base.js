@@ -1,6 +1,7 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 
 module.exports = {
@@ -85,5 +86,6 @@ module.exports = {
             inject: false,
             template: __dirname + '/index.html',
         }),
+        new CopyWebpackPlugin([{ from: 'assets/icon-128.png', to: 'icon.png' }]),
     ],
 };

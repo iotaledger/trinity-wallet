@@ -15,16 +15,22 @@
         }
     }
 
+    :global {
+        .ps {
+            margin-right: -10px;
+        }
+    }
+
     > div {
         display: flex;
         justify-content: center;
-        max-width: 720px;
+        max-width: 760px;
         width: 100%;
         height: 100%;
     }
 
     section:first-of-type {
-        flex: 0 0 220px;
+        flex: 0 0 240px;
         padding: var(--header-height) 0 20px;
     }
 
@@ -60,6 +66,10 @@
         border: none;
         margin: 20px 0;
         border-top: 1px solid var(--body-alt);
+    }
+
+    h3 {
+        margin-top: 0px;
     }
 
     @media (max-width: 720px) {
