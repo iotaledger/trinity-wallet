@@ -7,15 +7,6 @@ import { connect } from 'react-redux';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { setUserActivity } from 'iota-wallet-shared-modules/actions/ui';
 
-const mapDispatchToProps = {
-    setUserActivity,
-    generateAlert,
-};
-
-const mapStateToProps = (state) => ({
-    doNotMinimise: state.ui.doNotMinimise,
-});
-
 export default () => (C) => {
     class WithUserActivity extends Component {
         componentDidMount() {
@@ -28,7 +19,8 @@ export default () => (C) => {
         }
 
         handleAppStateChange = (nextAppState) => {
-            if (nextAppState.match(/inactive|background/) && !this.props.doNotMinimise) {
+            const { doNotMinimise } = this.props;
+            if (nextAppState.match(/inactive|background/) && !doNotMinimise) {
                 this.props.setUserActivity({ minimised: true });
             } else if (nextAppState === 'active') {
                 this.props.setUserActivity({ minimised: false });
@@ -57,6 +49,15 @@ export default () => (C) => {
          */
         doNotMinimise: PropTypes.bool.isRequired,
     };
+
+    const mapDispatchToProps = {
+        setUserActivity,
+        generateAlert,
+    };
+
+    const mapStateToProps = (state) => ({
+        doNotMinimise: state.ui.doNotMinimise,
+    });
 
     return translate(['global'])(connect(mapStateToProps, mapDispatchToProps)(WithUserActivity));
 };
