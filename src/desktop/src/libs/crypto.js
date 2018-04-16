@@ -1,5 +1,6 @@
+/*global Electron*/
 import sjcl from 'sjcl';
-import { createRandomSeed as createRandomSeedWrapped, MAX_SEED_LENGTH } from 'libs/util';
+import { createRandomSeed as createRandomSeedWrapped, MAX_SEED_LENGTH } from 'libs/iota/utils';
 
 /**
  * Create random bytes array
@@ -31,23 +32,27 @@ export const createRandomSeed = (length = MAX_SEED_LENGTH) => {
 
 /**
  * Save and encrypt seed data to local storage
- * @param {String} oldPassword - Storage encryption currrent password
- * @param {String} newPassword - Storage encryption new password
+ * @param {String} password - Storage encryption currrent password
  * @param {Object} content - Enrcypted content. Defaults to current content, if exists
+ * @param {Boolean} rewrite - Should the vault be owerritten ignoring existing state
  */
-export const setVault = (oldPassword, newPassword, content) => {
-    const vault = localStorage.getItem('trinity');
-    if (vault) {
-        try {
-            const decryptedVault = JSON.parse(sjcl.decrypt(oldPassword, vault));
-            content = Object.assign({}, decryptedVault, content);
-        } catch (err) {
-            throw new Error('Incorrect password');
+export const setVault = async (password, content, rewrite) => {
+    if (!rewrite) {
+        const vault = await Electron.readKeychain();
+        if (vault) {
+            try {
+                const decryptedVault = JSON.parse(sjcl.decrypt(password, vault));
+                content = Object.assign({}, decryptedVault, content);
+            } catch (err) {
+                throw new Error('Incorrect password');
+            }
+        } else if (!content) {
+            throw new Error('Empty content');
         }
-    } else if (!content) {
-        throw new Error('Empty content');
     }
-    localStorage.setItem('trinity', sjcl.encrypt(newPassword, JSON.stringify(content)));
+
+    await Electron.setKeychain(sjcl.encrypt(password, JSON.stringify(content)));
+    return true;
 };
 
 /**
@@ -55,47 +60,85 @@ export const setVault = (oldPassword, newPassword, content) => {
  * @param {String} password - Storage encryption password
  * @returns {Object} Decrypted seed data
  */
-export const getVault = (password) => {
-    const vault = localStorage.getItem('trinity');
+export const getVault = async (password) => {
+    const vault = await Electron.readKeychain();
     if (!vault) {
         throw new Error('Local storage not available');
     }
-    const decryptedVault = JSON.parse(sjcl.decrypt(password, vault));
-    return decryptedVault;
+    try {
+        const decryptedVault = JSON.parse(sjcl.decrypt(password, vault));
+        return decryptedVault;
+    } catch (err) {
+        throw err;
+    }
 };
 
 /**
- * Save and encrypt seed data to local storage
+ * Get and decrypt seed data from local storage
+ * @param {Number} index - Target seed item index
  * @param {String} password - Storage encryption password
- * @param {String} key - Two-factor authorisation key
+ * @returns {String} - Decrypted seed
  */
-export const setKey = (password, key) => {
-    const seedData = getVault(password);
-    seedData.twoFAkey = key;
-    localStorage.setItem('trinity', sjcl.encrypt(password, JSON.stringify(seedData)));
+export const getSeed = async (index, password) => {
+    const vault = await getVault(password);
+    if (!vault.seeds[index]) {
+        throw new Error('Incorrect seed index');
+    } else {
+        return vault.seeds[index];
+    }
 };
 
 /**
  * Get and decrypt seed data from local storage
  * @param {String} password - Storage encryption password
- * @returns {String} Decrypted two-factor private key
+ * @returns {Object} Decrypted seed data
  */
-export const getKey = (password) => {
-    const seedData = getVault(password);
-    return seedData.twoFAkey;
+export const updateVaultPassword = async (passwordOld, passwordNew) => {
+    const vault = await Electron.readKeychain();
+    if (!vault) {
+        throw new Error('Local storage not available');
+    }
+    try {
+        const decryptedVault = JSON.parse(sjcl.decrypt(passwordOld, vault));
+        await Electron.setKeychain(sjcl.encrypt(passwordNew, JSON.stringify(decryptedVault)));
+        return true;
+    } catch (err) {
+        throw new Error('Incorrect password');
+    }
 };
 
 /**
- * Save and encrypt seed data to local storage
+ * Save and encrypt two-factor authentication key
  * @param {String} password - Storage encryption password
  * @param {String} key - Two-factor authorisation key
  */
-export const removeKey = (password, key) => {
-    const seedData = getVault(password);
+export const setTwoFA = async (password, key) => {
+    const vault = await getVault(password);
+    vault.twoFAkey = key;
+    await setVault(password, vault);
+};
 
-    if (seedData.twoFAkey === key) {
-        delete seedData.twoFAkey;
-        localStorage.setItem('trinity', sjcl.encrypt(password, JSON.stringify(seedData)));
+/**
+ * Get and decrypt two-factor-authentication key
+ * @param {String} password - Storage encryption password
+ * @returns {String} Decrypted two-factor private key
+ */
+export const getTwoFA = async (password) => {
+    const vault = await getVault(password);
+    return vault.twoFAkey;
+};
+
+/**
+ * Remove two-factor authentication key
+ * @param {String} password - Storage encryption password
+ * @param {String} key - Two-factor authorisation key
+ */
+export const removeTwoFA = async (password, key) => {
+    const vault = await getVault(password);
+
+    if (vault.twoFAkey === key) {
+        delete vault.twoFAkey;
+        await Electron.setKeychain(sjcl.encrypt(password, JSON.stringify(vault)));
     } else {
         throw new Error('Two-factor key mismatch');
     }

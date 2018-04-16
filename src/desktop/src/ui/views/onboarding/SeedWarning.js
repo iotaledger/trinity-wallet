@@ -6,7 +6,7 @@ import Button from 'ui/components/Button';
 import Info from 'ui/components/Info';
 
 /**
- * Onboarding, Seed warnging
+ * Onboarding, Seed warning
  */
 class SeedWarning extends React.PureComponent {
     static propTypes = {
@@ -37,10 +37,10 @@ class SeedWarning extends React.PureComponent {
                 </section>
                 <footer>
                     <Button to="/onboarding/seed-intro" className="inline" variant="secondary">
-                        Back
+                        {t('back')}
                     </Button>
                     <Button to="/onboarding/seed-generate" className="large" variant="primary">
-                        Generate seed
+                        {t('next')}
                     </Button>
                 </footer>
             </React.Fragment>

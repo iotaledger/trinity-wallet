@@ -1,16 +1,73 @@
-.list {
+.nav {
+    display: flex;
+    padding: 0 0 28px 10px;
     margin: 0px;
-    padding: 0px;
-    overflow: scroll;
-    max-height: calc(100vh - var(--header-height) - 40px);
+    a {
+        color: var(--secondary);
+        font-weight: 300;
+        margin: 0 22px 0 0;
 
-    &.compact {
-        border-top: 1px solid var(--body-alt);
-        padding: 10px 0;
+        &.empty {
+            color: var(--body-alt);
+        }
+        &.disabled {
+            color: var(--body-alt);
+            pointer-events: none;
+        }
+        small {
+            font-size: 14px;
+            font-weight: 200;
+            margin: 0 2px;
+        }
     }
+    ul {
+        margin: 0px;
+        padding: 0px;
+        position: absolute;
+        top: 8px;
+        left: 2px;
+        z-index: 2;
+        a {
+            display: none;
+            background: var(--body-altBg);
+            line-height: 28px;
+            padding: 10px 20px 0px;
+            span {
+                display: block;
+                float: right;
+                margin: 8px 0 0 6px;
+                color: var(--secondary);
+            }
+            &:first-child {
+                display: block;
+            }
+        }
+        &:hover {
+            a {
+                display: block;
+                &:hover {
+                    color: var(--primary);
+                }
+            }
+        }
+    }
+}
+
+.list {
+    position: absolute;
+    top: 80px;
+    left: 0px;
+    width: 100%;
+    height: calc(100% - 80px);
+    padding: 0;
+    overflow: scroll;
 
     a {
         list-style: none;
+
+        strong {
+            font-weight: 200;
+        }
 
         > div {
             list-style: none;
@@ -18,12 +75,13 @@
             line-height: 38px;
             cursor: pointer;
             width: 100%;
+            padding: 0 20px;
             > span {
                 width: 50%;
                 padding: 0 2%;
             }
             > span:nth-child(1) {
-                width: 24px;
+                width: 36px;
                 margin-top: 10px;
             }
             > span:nth-child(2) {
@@ -39,25 +97,21 @@
             }
         }
         &:hover > div {
-            background: var(--body-hover);
+            background: var(--body-bg);
         }
         &.received {
-            > strong {
+            span:nth-child(4) {
                 color: var(--primary);
             }
         }
         &.sent {
-            strong {
+            span:nth-child(4) {
                 color: var(--secondary);
             }
         }
-        &.confirmed {
-            span:nth-child(4) {
-                color: var(--positive);
-            }
-        }
         &.pending {
-            span:nth-child(4) {
+            span:nth-child(4),
+            strong {
                 color: var(--negative);
             }
         }
@@ -65,113 +119,141 @@
 
     .empty {
         display: block;
+        position: absolute;
+        top: 50%;
+        left: 0px;
         text-align: center;
         width: 100%;
-        opacity: 0.65;
-        padding: 30px 0;
-    }
-
-    .pending {
-        strong {
-            color: var(--negative);
-        }
-    }
-
-    .full {
-        display: block;
-        margin-bottom: 12px;
-        padding: 12px;
-        border-radius: 4px;
-        border: 1px solid var(--body-alt);
-
-        &:hover {
-            background: var(--body-hover);
-        }
-
-        p {
-            margin: 0px;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            line-height: 24px;
-            font-size: var(--font-size-small);
-            &:nth-child(2) {
-                color: var(--color-body);
-            }
-        }
-    }
-
-    strong {
-        font-weight: 200;
+        opacity: 0.5;
+        padding: 0;
+        margin: -20px 0 0;
     }
 }
 
-.history-item {
-    margin: 0 auto;
-    width: 560px;
-    padding: 35px;
-    border-radius: 8px;
-    font-size: var(--font-size-small);
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
 
-    @media (max-width: 810px) {
-        width: 100%;
-        padding: 35px 0px;
+.refresh {
+    display: block;
+    position: absolute;
+    top: 18px;
+    right: -4px;
+    margin: 0px;
+    height: 26px;
+    width: 26px;
+    text-align: center;
+
+    &:hover {
+        color: var(--primary);
     }
 
-    header {
-        display: flex;
-        justify-content: space-between;
-        &.received {
-            color: var(--color-extra);
-        }
-        &.sent {
-            color: var(--color-highlight);
-        }
-        p,
-        small {
-            font-size: var(--font-size-default);
-        }
-        small {
-            color: var(--color-body);
-        }
+    &.busy {
+        pointer-events: none;
+        color: var(--body-alt);
     }
-    p {
-        overflow-wrap: break-word;
-        margin: 0px;
+
+    &.loading {
+        pointer-events: none;
+        animation: spin 0.8s ease infinite;
     }
-    h6 {
-        font-size: var(--font-size-small);
-        margin: 20px 0 0 0;
-    }
-    ul {
-        padding: 0px;
-        max-height: 200px;
-        overflow: scroll;
-        overflow-x: hidden;
-        width: calc(100% + 50px);
-        padding-right: 50px;
-        li {
-            display: flex;
-            list-style: none;
-            width: 100%;
-            padding: 0 0 12px;
-            p {
-                width: 90%;
+}
+
+.popup {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: var(--body-altBg);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease-out;
+    cursor: pointer;
+    z-index: 3;
+    > div {
+        position: absolute;
+        top: 50%;
+        left: 20px;
+        width: calc(100% - 40px);
+        min-height: 100px;
+        transform: translate(0, -50%) scale(0.9);
+        background: var(--body-bg);
+        padding: 20px;
+        border-radius: 4px;
+        transition: transform 0.2s cubic-bezier(0, 0, 0.2, 1);
+        p {
+            &:first-child {
+                display: flex;
+                justify-content: space-between;
             }
+
+            &:last-child {
+                margin-top: 26px;
+                word-break: break-word;
+                max-height: 100px;
+                overflow: scroll;
+                strong {
+                    margin-right: 12px;
+                }
+            }
+
             strong {
-                flex: 1 0;
-                width: 100px;
+                font-weight: 300;
+                padding-top: 21px;
+            }
+
+            small {
+                font-size: 12px;
                 text-align: right;
             }
+
+            em {
+                display: block;
+                font-style: normal;
+                color: var(--body);
+            }
+
+            &.hash {
+                display: block;
+                font-family: monospace;
+                word-break: break-word;
+            }
+        }
+
+        h6 {
+            font-size: 12px;
+            margin-bottom: 0px;
+        }
+
+        .received {
+            p:first-child strong {
+                color: var(--primary);
+            }
+        }
+        .sent {
+            p:first-child strong {
+                color: var(--secondary);
+            }
+        }
+        .pending {
+            p:first-child small {
+                color: var(--negative);
+            }
+        }
+        .confirmed {
+            p:first-child small {
+                color: var(--positive);
+            }
         }
     }
-    footer {
-        padding-top: 20px;
-        text-align: center;
+    &.on {
+        opacity: 1;
+        pointer-events: all;
+        > div {
+            transform: translate(0, -50%) scale(1);
+        }
     }
-}
-
-.scroll {
-    max-height: 200px;
-    overflow: hidden;
 }

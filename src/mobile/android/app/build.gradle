@@ -91,20 +91,12 @@ def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = true
 
 android {
-    signingConfigs {
-        config {
-            keyAlias 'key0'
-            keyPassword 'frankisg0d'
-            storeFile file('/Users/charlie/Desktop/Untitled')
-            storePassword 'frankisg0d'
-        }
-    }
     compileSdkVersion 26
     buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.iota.wallet"
-        versionCode 21
-        versionName "3.4.1"
+        versionCode 24
+        versionName "3.4.4"
         minSdkVersion 19
         targetSdkVersion 26
         multiDexEnabled true
@@ -157,8 +149,11 @@ dependencies {
     compile project(':react-native-extra-dimensions-android')
     compile project(':react-native-detect-navbar-android')
     compile project(':react-native-os')
-    compile(project(':react-native-camera')) {
-        exclude group: "com.android.support"
+    compile (project(':react-native-camera')) {
+        exclude group: "com.google.android.gms"
+    }
+    compile ("com.google.android.gms:play-services-vision:10.2.0") {
+        force = true;
     }
     compile ('com.android.support:exifinterface:26.0.1') {
         force = true;
@@ -186,6 +181,8 @@ dependencies {
     compile project(':randombytes')
     compile 'com.android.support:exifinterface:26.1.0'
     compile project(':react-native-vector-icons')
+    compile project(':bugsnag-react-native')
+    compile project(':react-native-fingerprint-scanner')
     compile project(':react-native-splash-screen')
 }
 

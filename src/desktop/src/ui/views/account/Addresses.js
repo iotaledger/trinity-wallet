@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { selectAccountInfo } from 'selectors/account';
+import { selectAccountInfo } from 'selectors/accounts';
 
 import css from './addresses.css';
 

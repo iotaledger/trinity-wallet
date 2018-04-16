@@ -5,8 +5,9 @@ const state = {
 };
 
 let language = {
-    about: 'About',
+    about: 'About Trinity',
     checkUpdate: 'Check for Updates',
+    sendFeedback: 'Send feedback',
     settings: 'Settings',
     accountSettings: 'Account management',
     newAccount: 'Add new account',
@@ -53,18 +54,29 @@ const initMenu = (app, getWindow) => {
                 label: app.getName(),
                 submenu: [
                     {
-                        label: `${language.about} ${app.getName()}`,
+                        label: language.about,
                         role: 'about',
+                    },
+                    {
+                        type: 'separator',
                     },
                     {
                         label: `${language.checkUpdate}...`,
                         click: () => navigate('update'),
                     },
                     {
+                        label: language.sendFeedback,
+                        click: () => navigate('feedback'),
+                    },
+                    {
+                        type: 'separator',
+                    },
+                    {
                         label: language.settings,
                         submenu: [
                             {
                                 label: language.language,
+                                accelerator: 'Command+,',
                                 click: () => navigate('settings/language'),
                             },
                             {
@@ -184,7 +196,7 @@ const initMenu = (app, getWindow) => {
                                         buttons: [language.yes, language.no],
                                     },
                                     (index) => {
-                                        if (index === 1) {
+                                        if (index === 0) {
                                             mainWindow.webContents.send('menu', 'logout');
                                         }
                                     },

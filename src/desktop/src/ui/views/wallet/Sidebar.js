@@ -4,11 +4,15 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 
-import { clearTempData, setSeedIndex } from 'actions/tempAccount';
+import { formatIota } from 'libs/iota/utils';
+
+import { clearWalletData, setSeedIndex } from 'actions/wallet';
 
 import Logo from 'ui/components/Logo';
 import Icon from 'ui/components/Icon';
 import Confirm from 'ui/components/modal/Confirm';
+
+import css from './index.css';
 
 /**
  * Wallet's sidebar component
@@ -25,7 +29,7 @@ class Sidebar extends React.PureComponent {
             push: PropTypes.func.isRequired,
         }).isRequired,
         /** Accounts state data */
-        accounts: PropTypes.array,
+        accounts: PropTypes.object,
         /** Set seed index state
          *  @param {Number} Index - Seed index
          */
@@ -34,10 +38,16 @@ class Sidebar extends React.PureComponent {
          * @ignore
          */
         seedIndex: PropTypes.number,
-        /** Clear temporary seed state data
+        /** Is wallet currently generating receive address */
+        isGeneratingReceiveAddress: PropTypes.bool.isRequired,
+        /** Is wallet currently sending a transfer */
+        isSendingTransfer: PropTypes.bool.isRequired,
+        /** Is wallet currently synchronising */
+        isSyncing: PropTypes.bool.isRequired,
+        /** Clear wallet state data
          * @ignore
          */
-        clearTempData: PropTypes.func.isRequired,
+        clearWalletData: PropTypes.func.isRequired,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
@@ -59,13 +69,16 @@ class Sidebar extends React.PureComponent {
         this.setState({
             modalLogout: false,
         });
-        this.props.clearTempData();
+        this.props.clearWalletData();
         this.props.history.push('/onboarding/');
     };
 
     render() {
         const { accounts, seedIndex, setSeedIndex, t, location, history } = this.props;
         const { modalLogout } = this.state;
+
+        const isWalletBusy =
+            this.props.isGeneratingReceiveAddress || this.props.isSendingTransfer || this.props.isSyncing;
 
         return (
             <aside>
@@ -74,12 +87,12 @@ class Sidebar extends React.PureComponent {
                 </div>
 
                 <nav>
-                    <div>
+                    <div className={isWalletBusy ? css.disabled : null}>
                         <a aria-current={location.pathname === '/wallet/'}>
                             <Icon icon="wallet" size={20} />
                         </a>
                         <ul>
-                            {accounts.map((account, index) => {
+                            {accounts.accountNames.map((account, index) => {
                                 return (
                                     <a
                                         aria-current={index === seedIndex}
@@ -90,9 +103,13 @@ class Sidebar extends React.PureComponent {
                                         }}
                                     >
                                         <strong>{account}</strong>
+                                        <small>{formatIota(accounts.accountInfo[account].balance)}</small>
                                     </a>
                                 );
                             })}
+                            <a onClick={() => history.push('/onboarding/seed-intro')}>
+                                + {t('accountManagement:addNewAccount')}
+                            </a>
                         </ul>
                     </div>
                     <NavLink to="/wallet/charts">
@@ -125,12 +142,15 @@ class Sidebar extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    accounts: state.account.accountNames,
-    seedIndex: state.tempAccount.seedIndex,
+    accounts: state.accounts,
+    seedIndex: state.wallet.seedIndex,
+    isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
+    isSendingTransfer: state.ui.isSendingTransfer,
+    isSyncing: state.ui.isSyncing,
 });
 
 const mapDispatchToProps = {
-    clearTempData,
+    clearWalletData,
     setSeedIndex,
 };
 

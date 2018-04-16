@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { generateAlert } from '../../actions/alerts';
 
+import { setDeepLink } from '../../actions/deepLink';
 import { makeTransaction } from '../../actions/transfers';
-import { getSelectedAccountName, getBalanceForSelectedAccount } from '../../selectors/account';
-import { VALID_SEED_REGEX, ADDRESS_LENGTH } from '../../libs/util';
+import { getSelectedAccountName, getBalanceForSelectedAccount } from '../../selectors/accounts';
+import { VALID_SEED_REGEX, ADDRESS_LENGTH } from '../../libs/iota/utils';
 import { iota } from '../../libs/iota';
 
 /**
@@ -17,22 +18,44 @@ export default function withSendData(SendComponent) {
     class SendData extends React.Component {
         static propTypes = {
             balance: PropTypes.number.isRequired,
-            account: PropTypes.object.isRequired,
+            accounts: PropTypes.object.isRequired,
             accountName: PropTypes.string.isRequired,
-            tempAccount: PropTypes.object.isRequired,
-            seed: PropTypes.string.isRequired,
+            wallet: PropTypes.object.isRequired,
+            ui: PropTypes.object.isRequired,
             settings: PropTypes.object.isRequired,
+            marketData: PropTypes.object.isRequired,
             generateAlert: PropTypes.func.isRequired,
             makeTransaction: PropTypes.func.isRequired,
             theme: PropTypes.object.isRequired,
             t: PropTypes.func.isRequired,
+            deepLinks: PropTypes.object.isRequired,
+            setDeepLink: PropTypes.func.isRequired,
         };
+
+        componentWillMount() {
+            this.validadeDeepLink(this.props.deepLinks.address);
+        }
+
+        componentWillReceiveProps(nextProps) {
+            this.validadeDeepLink(nextProps.deepLinks.address);
+        }
+
+        validadeDeepLink(address) {
+            if (address !== '') {
+                const { generateAlert, t } = this.props;
+                generateAlert('success', t('autofill'), t('autofillExplanation'));
+            }
+        }
 
         validateInputs = (address, amount) => {
             const { generateAlert, balance, t } = this.props;
 
             if (address.length !== ADDRESS_LENGTH) {
-                generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation1'));
+                generateAlert(
+                    'error',
+                    t('send:invalidAddress'),
+                    t('send:invalidAddressExplanation1', { maxLength: ADDRESS_LENGTH }),
+                );
                 return false;
             }
 
@@ -55,19 +78,15 @@ export default function withSendData(SendComponent) {
         };
 
         sendTransfer = (seed, address, value, message, taskRunner, powFn) => {
-            const { tempAccount, accountName, generateAlert, t } = this.props;
+            const { ui, accountName, generateAlert, t } = this.props;
 
-            if (tempAccount.isSyncing) {
+            if (ui.isSyncing) {
                 generateAlert('error', t('global:syncInProgress'), t('global:syncInProgressExplanation'));
                 return;
             }
 
-            if (tempAccount.isTransitioning) {
-                generateAlert(
-                    'error',
-                    t('Snapshot transition in progress'),
-                    t('Please wait until the transition is complete.'),
-                );
+            if (ui.isTransitioning) {
+                generateAlert('error', t('snapshotTransitionInProgress'), t('snapshotTransitionInProgressExplanation'));
                 return;
             }
 
@@ -79,17 +98,23 @@ export default function withSendData(SendComponent) {
         };
 
         render() {
-            const { balance, seed, settings, tempAccount, theme, t } = this.props;
+            const { balance, settings, marketData, wallet, ui, theme, t, setDeepLink } = this.props;
 
             const sendProps = {
-                isSending: tempAccount.isSendingTransfer,
+                isSending: ui.isSendingTransfer,
+                password: wallet.password,
+                seedIndex: wallet.seedIndex,
                 validateInputs: this.validateInputs,
                 sendTransfer: this.sendTransfer,
-                settings,
+                settings: {
+                    currency: settings.currency,
+                    conversionRate: settings.conversionRate,
+                    usdPrice: marketData.usdPrice,
+                },
                 balance,
-                seed,
                 theme,
                 t,
+                setDeepLink,
             };
 
             return <SendComponent {...sendProps} />;
@@ -99,18 +124,21 @@ export default function withSendData(SendComponent) {
     SendData.displayName = `withSendData(${SendComponent.name})`;
 
     const mapStateToProps = (state) => ({
-        tempAccount: state.tempAccount,
+        wallet: state.wallet,
         balance: getBalanceForSelectedAccount(state),
         accountName: getSelectedAccountName(state),
         settings: state.settings,
-        account: state.account,
-        seed: state.seeds.seeds[state.tempAccount.seedIndex],
+        marketData: state.marketData,
+        accounts: state.accounts,
         theme: state.settings.theme,
+        ui: state.ui,
+        deepLinks: state.deepLinks,
     });
 
     const mapDispatchToProps = {
         generateAlert,
         makeTransaction,
+        setDeepLink,
     };
 
     return translate()(connect(mapStateToProps, mapDispatchToProps)(SendData));
