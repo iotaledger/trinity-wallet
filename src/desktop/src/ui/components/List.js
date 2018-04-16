@@ -113,7 +113,7 @@ class List extends React.PureComponent {
                         onClick={() => updateAccount()}
                         className={classNames(css.refresh, isBusy ? css.busy : null, isLoading ? css.loading : null)}
                     >
-                        <Icon icon="sync" size={32} />
+                        <Icon icon="sync" size={26} />
                     </a>
                 </nav>
                 <hr />
@@ -195,9 +195,7 @@ class List extends React.PureComponent {
                                 <div className={css.message}>
                                     <strong>{t('send:message')}</strong>
                                     <Scrollbar>
-                                        <span>
-                                            {activeTransfer.message}{' '}
-                                        </span>
+                                        <span>{activeTransfer.message} </span>
                                     </Scrollbar>
                                 </div>
                             </div>
