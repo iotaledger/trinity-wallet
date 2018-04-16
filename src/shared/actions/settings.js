@@ -23,6 +23,7 @@ export const ActionTypes = {
     SET_UPDATE_SUCCESS: 'IOTA/SETTINGS/UPDATE_SUCCESS',
     SET_UPDATE_DONE: 'IOTA/SETTINGS/UPDATE_DONE',
     UPDATE_POW_SETTINGS: 'IOTA/SETTINGS/UPDATE_POW_SETTINGS',
+    UPDATE_AUTO_NODE_SWITCHING: 'IOTA/SETTINGS/UPDATE_AUTO_NODE_SWITCHING',
     SET_LOCK_SCREEN_TIMEOUT: 'IOTA/SETTINGS/SET_LOCK_SCREEN_TIMEOUT',
     SET_VERSIONS: 'IOTA/SETTINGS/WALLET/SET_VERSIONS',
     WALLET_RESET: 'IOTA/SETTINGS/WALLET/RESET',
@@ -65,6 +66,11 @@ export const setNode = (payload) => ({
 
 export const updatePowSettings = () => ({
     type: ActionTypes.UPDATE_POW_SETTINGS,
+});
+
+export const updateAutoNodeSwitching = (payload) => ({
+    type: ActionTypes.UPDATE_AUTO_NODE_SWITCHING,
+    payload
 });
 
 export const setLockScreenTimeout = (payload) => ({

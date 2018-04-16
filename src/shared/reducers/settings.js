@@ -56,6 +56,7 @@ const initialState = {
     },
     remotePoW: true,
     lockScreenTimeout: 3,
+    autoNodeSwitching: true,
     versions: {},
     is2FAEnabled: false,
     isFingerprintEnabled: false,
@@ -67,6 +68,11 @@ const settingsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 remotePoW: !state.remotePoW,
+            };
+        case ActionTypes.UPDATE_AUTO_NODE_SWITCHING:
+            return {
+                ...state,
+                autoNodeSwitching: action.payload === undefined ? !state.autoNodeSwitching : action.payload,
             };
         case ActionTypes.SET_LOCK_SCREEN_TIMEOUT:
             return {

@@ -19,7 +19,8 @@
         "invalidResponse": "Virheellinen vastaus",
         "invalidResponseExplanation": "Palvelin palautti virheilmoituksen.",
         "invalidResponsePollingExplanation": "Palvelin palautti virheilmoituksen yhdistysvaiheessa.",
-        "invalidResponseFetchingAccount": "Palvelin palautti virheilmoituksen haettaessa tilitietoja. Kokeile uudestaan vaihtamalla palvelinta.",
+        "invalidResponseFetchingAccount":
+            "Palvelin palautti virheilmoituksen haettaessa tilitietoja. Kokeile uudestaan vaihtamalla palvelinta.",
         "invalidResponseSendingTransfer": "Palvelin palautti virheilmoituksen siirron yhteydessä.",
         "seed": "Seed-luku",
         "back": "TAKAISIN",
@@ -59,7 +60,8 @@
         "cannotPerformAction": "Toimintoa ei voi suorittaa",
         "cannotPerformActionExplanation": "Siirry lisäasetuksiin resetoidaksesi lompakkosi.",
         "attachToTangleUnavailable": "Yhteys Tangle-verkkoon ei käytettävissä",
-        "attachToTangleUnavailableExplanation": "Tangle-verkkoon liittäminen ei ole mahdollista valitsemallasi palvelimella.",
+        "attachToTangleUnavailableExplanation":
+            "Tangle-verkkoon liittäminen ei ole mahdollista valitsemallasi palvelimella.",
         "wallet": "Lompakko",
         "sent": "Lähetetty",
         "received": "Vastaanotettu",
@@ -85,7 +87,8 @@
         "cannotSendToOwnExplanation": "Et voi siirtää varoja yhteen omista osoitteistasi.",
         "pleaseWait": "Odota hetki",
         "pleaseWaitExplanation": "Trinity suorittaa jo toista toimintoa. Odota hetki ja yritä uudelleen.",
-        "pleaseWaitTransferExplanation": "Saldoasi käytetään jo olemassa olevissa siirroissa. Odota, että ne on vahvistettu ennen kuin yrität uudelleen.",
+        "pleaseWaitTransferExplanation":
+            "Saldoasi käytetään jo olemassa olevissa siirroissa. Odota, että ne on vahvistettu ennen kuin yrität uudelleen.",
         "snapshotTransitionInProgress": "Snapshot-siirtymä käynnissä",
         "snapshotTransitionInProgressExplanation": "Odota kunnes siirtymäprosessi on valmis.",
         "checkForUpdates": "Tarkista päivitykset",
@@ -98,9 +101,11 @@
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed-luku sisältää virheellisiä merkkejä",
-        "seedInvalidCharsExplanation": "Seed-luvut voivat muodostua ainoastaan isoista alkukirjaimista A-Z ja numerosta 9. Sinun seed-lukusi sisältää virheellisiä merkkejä. Yritä uudelleen.",
+        "seedInvalidCharsExplanation":
+            "Seed-luvut voivat muodostua ainoastaan isoista alkukirjaimista A-Z ja numerosta 9. Sinun seed-lukusi sisältää virheellisiä merkkejä. Yritä uudelleen.",
         "seedTooShort": "Seed-luku on liian lyhyt",
-        "seedTooShortExplanation": "Seed-lukujen on oltava {{maxLength}} merkkiä pitkiä. Sinun seed-lukusi on tällä hetkellä {{currentLength}} merkkiä pitkä. Yritä uudelleen.",
+        "seedTooShortExplanation":
+            "Seed-lukujen on oltava {{maxLength}} merkkiä pitkiä. Sinun seed-lukusi on tällä hetkellä {{currentLength}} merkkiä pitkä. Yritä uudelleen.",
         "nameInUse": "Tilin nimi on jo käytössä",
         "nameInUseExplanation": "Käytä yksilöllistä tilin nimeä seed-luvullesi.",
         "enterAccountName": "Anna tilin nimi.",
@@ -123,7 +128,8 @@
         "passwordTooShortExplanation": "Salasanan tulee olla vähintään 12 merkkiä pitkä. Yritä uudelleen.",
         "oldPassword": "Vanhaa salasanaa ei voi käyttää",
         "oldPasswordExplanation": "Et voi käyttää vanhaa salasanaa toista kertaa. Yritä uudelleen.",
-        "ensureStrongPassword": "Varmista, että käytät vahvaa salasanaa, joka on vähintään 12 merkkiä pitkä ja sisältää erikoismerkkejä.",
+        "ensureStrongPassword":
+            "Varmista, että käytät vahvaa salasanaa, joka on vähintään 12 merkkiä pitkä ja sisältää erikoismerkkejä.",
         "currentPassword": "Nykyinen Salasana",
         "newPassword": "Uusi Salasana",
         "confirmPassword": "Vahvista Uusi Salasana"
@@ -140,10 +146,13 @@
     },
     "enterSeed": {
         "invalidCharacters": "Seed-luku sisältää virheellisiä merkkejä",
-        "invalidCharactersExplanation": "Seed-luvut voivat muodostua ainoastaan isoista alkukirjaimista A-Z ja numerosta 9. Sinun seed-lukusi sisältää virheellisiä merkkejä. Yritä uudelleen.",
+        "invalidCharactersExplanation":
+            "Seed-luvut voivat muodostua ainoastaan isoista alkukirjaimista A-Z ja numerosta 9. Sinun seed-lukusi sisältää virheellisiä merkkejä. Yritä uudelleen.",
         "seedTooShort": "Seed-luku on liian lyhyt",
-        "seedTooShortExplanation": "Seed-luvun on oltava {{maxLength}} merkkiä pitkä. Sinun seed-lukusi on tällä hetkellä {{currentLength}} merkkiä pitkä. Yritä uudelleen.",
-        "seedExplanation": "Seed-lukusi tulee olla {{maxLength}} merkkiä pitkä ja sisältää isoja kirjaimia A-Z tai numeron yhdeksän (9). Yli {{maxLength}} merkkiä pitkiä Seed-lukuja ei voi käyttää.",
+        "seedTooShortExplanation":
+            "Seed-luvun on oltava {{maxLength}} merkkiä pitkä. Sinun seed-lukusi on tällä hetkellä {{currentLength}} merkkiä pitkä. Yritä uudelleen.",
+        "seedExplanation":
+            "Seed-lukusi tulee olla {{maxLength}} merkkiä pitkä ja sisältää isoja kirjaimia A-Z tai numeron yhdeksän (9). Yli {{maxLength}} merkkiä pitkiä Seed-lukuja ei voi käyttää.",
         "neverShare": "ÄLÄ KOSKAAN JAA SEED-LUKUASI KENELLEKÄÄN"
     },
     "home": {
@@ -200,7 +209,8 @@
     "saveYourSeed": {
         "seedCleared": "Seed-luku tyhjennetty",
         "seedClearedExplanation": "Seed-luku on turvallisuussyistä poistettu leikepöydältä.",
-        "mustSaveYourSeed": "<0><0>Tallenna seed-lukusi käyttäen </0><1>vähintään yhtä</1><2> alla olevista vaihtoehdoista.</2></0>"
+        "mustSaveYourSeed":
+            "<0><0>Tallenna seed-lukusi käyttäen </0><1>vähintään yhtä</1><2> alla olevista vaihtoehdoista.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Virheellinen seed-luku",
@@ -210,10 +220,12 @@
     },
     "send": {
         "invalidAddress": "Virheellinen osoite",
-        "invalidAddressExplanation1": "Osoitteen on oltava {{maxLength}} merkkiä pitkä ja sen pitäisi sisältää tarkistussumma.",
+        "invalidAddressExplanation1":
+            "Osoitteen on oltava {{maxLength}} merkkiä pitkä ja sen pitäisi sisältää tarkistussumma.",
         "invalidAddressExplanation2": "Osoite sisältää virheellisiä merkkejä.",
         "invalidAddressExplanation3": "Osoite sisältää virheellisen tarkistussumman.",
-        "invalidAddressExplanationGeneric": "Osoitteen on oltava 90 merkkiä pitkä ja sisältää ainoastaan merkkejä A-Z tai 9.",
+        "invalidAddressExplanationGeneric":
+            "Osoitteen on oltava 90 merkkiä pitkä ja sisältää ainoastaan merkkejä A-Z tai 9.",
         "notEnoughFunds": "Varoja ei riittävästi",
         "notEnoughFundsExplanation": "Sinulla ei ole tarpeeksi IOTAa suorittaaksesi siirtoa loppuun.",
         "keyReuse": "Avaimen uudelleenkäyttö",
@@ -233,12 +245,15 @@
     },
     "setPassword": {
         "passwordTooShort": "Salasana on liian lyhyt",
-        "passwordTooShortExplanation": "Salasanasi on oltava vähintään {{minLength}} merkkiä. Se on tällä hetkellä {{currentLength}} merkin pituinen. Yritä uudelleen.",
+        "passwordTooShortExplanation":
+            "Salasanasi on oltava vähintään {{minLength}} merkkiä. Se on tällä hetkellä {{currentLength}} merkin pituinen. Yritä uudelleen.",
         "passwordMismatch": "Salasanat eivät täsmää",
         "passwordMismatchExplanation": "Annetut salasanat eivät täsmää. Yritä uudelleen.",
         "nowWeNeedTo": "Nyt meidän on luotava salasana.",
-        "anEncryptedCopy": "Seed-lukusi salattu kopio tallennetaan laitteellesi. Tällä salasanalla pääset käyttämään lompakkoasi jatkossa.",
-        "ensure": "Varmista, että käytät hyvää salasanaa, joka on vähintään 12 merkkiä pitkä ja sisältää erikoismerkkejä.",
+        "anEncryptedCopy":
+            "Seed-lukusi salattu kopio tallennetaan laitteellesi. Tällä salasanalla pääset käyttämään lompakkoasi jatkossa.",
+        "ensure":
+            "Varmista, että käytät hyvää salasanaa, joka on vähintään 12 merkkiä pitkä ja sisältää erikoismerkkejä.",
         "retypePassword": "Kirjoita Salasana Uudelleen"
     },
     "setSeedName": {
@@ -248,8 +263,10 @@
     "modeSelection": {
         "expert": "Edistynyt käyttäjä",
         "standard": "Tavallinen käyttäjä",
-        "expertModeExplanation": "Edistynyt käyttäjä -tila mahdollistaa pääsyn lisäominaisuuksiin kuten lähetyksen edistämiseen.",
-        "modesExplanation": "Aktivoi edistyneen käyttäjän tila vain jos ymmärrät miten Tangle-verkko toimii. Muuten tila voi vaikuttaa hankalalta käyttää."
+        "expertModeExplanation":
+            "Edistynyt käyttäjä -tila mahdollistaa pääsyn lisäominaisuuksiin kuten lähetyksen edistämiseen.",
+        "modesExplanation":
+            "Aktivoi edistyneen käyttäjän tila vain jos ymmärrät miten Tangle-verkko toimii. Muuten tila voi vaikuttaa hankalalta käyttää."
     },
     "settings": {
         "transferSending": "Siirto käynnissä",
@@ -301,32 +318,36 @@
     "resetWalletRequirePassword": {
         "enterPassword": "Kirjoita salasanasi resetoidaksesi lompakkosi.",
         "cancel": "PERUUTA",
-        "reset": "RESETOI"
+        "reset": "TYHJENNÄ"
     },
     "walletSetup": {
         "okay": "Okei. Luodaan sinulle lompakko!",
         "doYouAlreadyHaveASeed": "Onko sinulla jo seed-luku jota haluat käyttää?",
-        "seedExplanation": "IOTA seed-luku on käyttäjänimen ja salasanan yhdistelmä tilillesi. Seed-luku koostuu yhdestä 81-merkin pituisesta merkkijonosta.",
-        "explanation": "<0><0>Voit käyttää seed-lukuasi päästäksesi käsiksi varoihisi mistä tahansa</0><1> lompakosta</1><2>, millä tahansa tuetulla</2><3> laitteella</3><4>. Muista kuitenkin että jos hävität seed-lukusi, menetät myös pääsyn varoihisi.</4></0>",
+        "seedExplanation":
+            "IOTA seed-luku on käyttäjänimen ja salasanan yhdistelmä tilillesi. Seed-luku koostuu yhdestä 81-merkin pituisesta merkkijonosta.",
+        "explanation":
+            "<0><0>Voit käyttää seed-lukuasi päästäksesi käsiksi varoihisi mistä tahansa</0><1> lompakosta</1><2>, millä tahansa tuetulla</2><3> laitteella</3><4>. Muista kuitenkin että jos hävität seed-lukusi, menetät myös pääsyn varoihisi.</4></0>",
         "keepSafe": "Muista aina pitää seed-lukusi turvassa.",
         "hint": "<0><0>Ohje:</0> Valitse EI jos käytät IOTA-lompakkoa ensimmäistä kertaa.</0>"
     },
     "welcome": {
         "thankYou": "Kiitos, että latasit Trinity-lompakon.",
         "weWillSpend": "Seuraavaksi määritämme lompakkosi asetukset.",
-        "reminder": "Kaikki tulevat vaiheet ovat tärkeitä lompakon toimivuuden kannalta, suorita ne huolellisesti loppuun asti."
+        "reminder":
+            "Kaikki tulevat vaiheet ovat tärkeitä lompakon toimivuuden kannalta, suorita ne huolellisesti loppuun asti."
     },
     "writeSeedDown": {
         "yourSeedIs": "Sinun seed-lukusi on {{maxSeedLength}} merkkiä luettuna vasemmalta oikealle.",
-        "writeDownYourSeed": "<0>Kirjoita muistiin seed-lukusi ja tarkistussumma ja</0> <1>varmista kolmesti,</1> <2>että ne ovat oikein.</2>"
+        "writeDownYourSeed":
+            "<0>Kirjoita muistiin seed-lukusi ja tarkistussumma ja</0> <1>varmista kolmesti,</1> <2>että ne ovat oikein.</2>"
     },
     "history": {
         "bundleHashCopied": "Kokoelman tiivisteluku kopioitu",
         "bundleHashCopiedExplanation": "Kokoelman tiivisteluku on kopioitu leikepöydälle.",
         "addressCopied": "Osoite kopioitu",
         "addressCopiedExplanation": "Osoite on kopioitu leikepöydälle.",
-        "send": "LÄHETETTY",
-        "receive": "VASTAANOTETAAN"
+        "send": "LÄHETYS",
+        "receive": "VASTAANOTTO"
     },
     "accountManagement": {
         "viewSeed": "Katso seed-luku",
@@ -347,8 +368,8 @@
         "selectNode": "Valitse palvelin",
         "addCustomNode": "Lisää omavalintainen palvelin",
         "manualSync": "Manuaalinen synkronointi",
-        "snapshotTransition": "Snapshot-hallinta",
-        "pow": "Proof of Work"
+        "snapshotTransition": "Snapshot-asetukset",
+        "pow": "Proof of Work-asetukset"
     },
     "advancedThemeCustomisation": {
         "background": "Tausta",
@@ -376,13 +397,14 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Miksi en voi käyttää koko tilin saldoa?",
-        "spentAddressExplanation": "Sinulla on saldoa yhdessä tai useammassa osoitteessa josta on jo lähetty varallisuutta. Tälläisen osoitteen käyttö uudelleen on vaarallista ja siksi estetty tässä ohjelmassa.",
+        "spentAddressExplanation":
+            "Sinulla on saldoa yhdessä tai useammassa osoitteessa josta on jo lähetty varallisuutta. Tälläisen osoitteen käyttö uudelleen on vaarallista ja siksi estetty tässä ohjelmassa.",
         "discordInformation": "Siirry Discord yhteisön #help kanavalle saadaksesi apua ongelmaan."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Are you sure you want to delete</1><2></2><3>{{accountName}}?</3>",
+        "areYouSure": "<0></0><1>Oletko varma että haluat poistaa tilin</1><2></2><3>{{accountName}}?</3>",
         "yourSeedWillBeRemoved": "Seed-lukusi ja tilitapahtumahistoriasi poistetaan.",
-        "thisAction": "Tätä toimintoa ei voi peruuttaa jälkikäteen.",
+        "thisAction": "Tätä toimintoa ei voi kumota.",
         "enterPassword": "Kirjoita salasanasi poistaaksesi tämän tilin."
     },
     "manualSync": {
@@ -408,7 +430,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "TÄTÄ TOIMINTOA EI VOI KUMOTA.",
-        "warning": "<0><0>Kaikki lompakkosi tiedot kuten </0><1>seed-lukusi, salasanasi</1><2> ja </2><3>muut tilitiedot</3><4> poistetaan.</4></0>"
+        "warning": "<0><0>Kaikki lompakkosi tiedot, kuten </0><1>seed-lukusi</1><2> ja </2><3>salasanasi</3><4> poistetaan.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Kosketa laitteesi sormenjälkilukijaa ottaaksesi käyttöön sormenjälkivarmennuksen.",
@@ -423,7 +445,8 @@
         "enabled": "Käytössä",
         "disabled": "Ei käytössä",
         "fingerprintUnavailable": "Sormenjälkianturi ei saatavilla",
-        "fingerprintUnavailableExplanation": "Laite ei tue sormenjälkitunnistusta tai sitä ei ole määritetty laitteen asetuksiin.",
+        "fingerprintUnavailableExplanation":
+            "Laite ei tue sormenjälkitunnistusta tai sitä ei ole määritetty laitteen asetuksiin.",
         "buttonInstructionsDisable": "Paina alla olevaa painiketta poistaaksesi sormenjälkitunnistuksen.",
         "buttonInstructionsEnable": "Paina alla olevaa painiketta ottaaksesi käyttöön sormenjälkitunnistuksen.",
         "instructionsLogin": "Kosketa sormenjälkilukijaa kirjautuaksesi sisään."
@@ -454,7 +477,8 @@
     },
     "rootDetection": {
         "warning": "VAROITUS",
-        "rootDetected": "<0>Laitteesi näyttää olevan rootattu.</0><1>Tämä voi johtaa merkittäviin ongelmiin lompakon tietoturvassa.</1><2>Haluatko jatkaa tästä huolimatta?</2>"
+        "rootDetected":
+            "<0>Laitteesi näyttää olevan rootattu.</0><1>Tämä voi johtaa merkittäviin ongelmiin lompakon tietoturvassa.</1><2>Haluatko jatkaa tästä huolimatta?</2>"
     },
     "pow": {
         "feeless": "Kuluttoman siirron tekeminen vaatii vähäistä määrää laskentatyötä (Proof of Work).",
@@ -475,12 +499,13 @@
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Snapshot-siirtymä ei onnistu",
-        "cannotCompleteTransitionExplanation": "Tilin saldon tulee olla suurempi kuin 0, jotta siirtymäprosessi voidaan käynnistää.",
+        "cannotCompleteTransitionExplanation":
+            "Tilin saldon tulee olla suurempi kuin 0, jotta siirtymäprosessi voidaan käynnistää.",
         "transitionComplete": "Snapshot-siirtymä valmis",
         "transitionCompleteExplanation": "Snapshot-siirtymäprosessi suoritettu onnistuneesti."
     },
     "deepLink": {
-        "autofill": "Aut. täyttö",
+        "autofill": "Tiedot haettu onnistuneesti",
         "autofillExplanation": "Siirron tilitiedot noudettu automaattisesti linkin kautta."
     },
     "updates": {
@@ -489,7 +514,8 @@
         "noUpdatesAvailable": "Ei uusia päivityksiä",
         "noUpdatesAvailableExplanation": "Sinulla on uusin versio IOTA Trinity lompakosta!",
         "newVersionAvailable": "Uusi versio saatavilla",
-        "newVersionAvailableExplanation": "Uusi <strong>Trinity</strong> <strong>{{version}}</strong> päivitys on saatavilla. Lue julkaisun tiedot huolellisesti ja varmista että lataus tehdään luotettavasta lähteestä:",
+        "newVersionAvailableExplanation":
+            "Uusi <strong>Trinity</strong> <strong>{{version}}</strong> päivitys on saatavilla. Lue julkaisun tiedot huolellisesti ja varmista että lataus tehdään luotettavasta lähteestä:",
         "downloadRelease": "Lataa päivitys",
         "skipUpdate": "Ohita päivitys"
     }

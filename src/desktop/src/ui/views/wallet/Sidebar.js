@@ -38,12 +38,8 @@ class Sidebar extends React.PureComponent {
          * @ignore
          */
         seedIndex: PropTypes.number,
-        /** Is wallet currently generating receive address */
-        isGeneratingReceiveAddress: PropTypes.bool.isRequired,
-        /** Is wallet currently sending a transfer */
-        isSendingTransfer: PropTypes.bool.isRequired,
-        /** Is wallet currently synchronising */
-        isSyncing: PropTypes.bool.isRequired,
+        /** Is wallet ready to switch accounts */
+        isReady: PropTypes.bool.isRequired,
         /** Clear wallet state data
          * @ignore
          */
@@ -74,11 +70,8 @@ class Sidebar extends React.PureComponent {
     };
 
     render() {
-        const { accounts, seedIndex, setSeedIndex, t, location, history } = this.props;
+        const { accounts, seedIndex, setSeedIndex, t, location, history, isReady } = this.props;
         const { modalLogout } = this.state;
-
-        const isWalletBusy =
-            this.props.isGeneratingReceiveAddress || this.props.isSendingTransfer || this.props.isSyncing;
 
         return (
             <aside>
@@ -87,7 +80,7 @@ class Sidebar extends React.PureComponent {
                 </div>
 
                 <nav>
-                    <div className={isWalletBusy ? css.disabled : null}>
+                    <div className={isReady ? css.disabled : null}>
                         <a aria-current={location.pathname === '/wallet/'}>
                             <Icon icon="wallet" size={20} />
                         </a>
@@ -144,9 +137,8 @@ class Sidebar extends React.PureComponent {
 const mapStateToProps = (state) => ({
     accounts: state.accounts,
     seedIndex: state.wallet.seedIndex,
-    isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
-    isSendingTransfer: state.ui.isSendingTransfer,
-    isSyncing: state.ui.isSyncing,
+    isReady:
+        !state.wallet.ready || state.ui.isSyncing || state.ui.isSendingTransfer || state.ui.isGeneratingReceiveAddress,
 });
 
 const mapDispatchToProps = {

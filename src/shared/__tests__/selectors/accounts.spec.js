@@ -266,7 +266,7 @@ describe('selectors: accounts', () => {
                                 foo: {
                                     transfers: {
                                         bundleOne: { foo: {} },
-                                        bundleTwo: { foo: {} }
+                                        bundleTwo: { foo: {} },
                                     },
                                     addresses: {},
                                     balance: 0,
@@ -285,7 +285,7 @@ describe('selectors: accounts', () => {
                     }),
                 ).to.eql({
                     bundleOne: { foo: {} },
-                    bundleTwo: { foo: {} }
+                    bundleTwo: { foo: {} },
                 });
             });
         });

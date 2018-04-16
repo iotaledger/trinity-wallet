@@ -80,9 +80,14 @@ class TransferConfirmationModal extends Component {
         conversionText: PropTypes.string.isRequired,
         /** Transaction value as a string */
         amount: PropTypes.string.isRequired,
+        /** Theme setting */
         body: PropTypes.object.isRequired,
         /** Name for selected account */
         selectedAccountName: PropTypes.string.isRequired,
+        /** Determines if user has activated fingerprint auth */
+        isFingerprintEnabled: PropTypes.bool.isRequired,
+        /** Activates fingerprint scanner */
+        activateFingerprintScanner: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -93,7 +98,7 @@ class TransferConfirmationModal extends Component {
     }
 
     onSendPress() {
-        const { hideModal, sendTransfer, setSendingTransferFlag } = this.props;
+        const { hideModal, sendTransfer, setSendingTransferFlag, isFingerprintEnabled, value } = this.props;
         const { sending } = this.state;
 
         // Prevent multiple spends
@@ -103,13 +108,17 @@ class TransferConfirmationModal extends Component {
 
         this.setState({ sending: true });
 
-        // Prevent modal close lag
-        hideModal(() => {
-            setSendingTransferFlag();
-            this.timeout = setTimeout(() => {
-                sendTransfer();
-            }, 300);
-        });
+        if (isFingerprintEnabled && value !== 0) {
+            this.props.activateFingerprintScanner();
+        } else {
+            // Prevent modal close lag
+            hideModal(() => {
+                setSendingTransferFlag();
+                this.timeout = setTimeout(() => {
+                    sendTransfer();
+                }, 300);
+            });
+        }
     }
 
     render() {
