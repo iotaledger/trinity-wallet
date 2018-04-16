@@ -9,21 +9,15 @@ import { translate } from 'react-i18next';
 
 import { parseAddress } from 'libs/iota/utils';
 
-import { setPassword, clearWalletData } from 'actions/wallet';
+import { setPassword, clearWalletData, setDeepLink } from 'actions/wallet';
 import { getUpdateData, updateTheme } from 'actions/settings';
 import { disposeOffAlert, generateAlert } from 'actions/alerts';
-import { setDeepLink } from 'actions/deepLink';
 
 import { DESKTOP_VERSION } from 'config';
 
-import themes from 'themes/themes';
-
-import Theme from 'ui/global/Theme';
-import Alerts from 'ui/global/Alerts';
-import Updates from 'ui/global/Updates';
 import Idle from 'ui/global/Idle';
 import AlphaReset from 'ui/global/AlphaReset';
-import Feedback from 'ui/global/Feedback';
+import FatalError from 'ui/global/FatalError';
 
 import Loading from 'ui/components/Loading';
 
@@ -32,6 +26,8 @@ import Wallet from 'ui/views/wallet/Index';
 import Settings from 'ui/views/settings/Index';
 import Account from 'ui/views/account/Index';
 import Activation from 'ui/views/onboarding/Activation';
+
+import withAutoNodeSwitching from 'containers/global/AutoNodeSwitching';
 
 import css from './index.css';
 
@@ -101,24 +97,30 @@ class App extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { uuid: null };
+        this.state = {
+            fatalError: false,
+        };
     }
 
     componentDidMount() {
         this.onMenuToggle = this.menuToggle.bind(this);
-        Electron.onEvent('menu', this.onMenuToggle);
 
-        this.onSetDeepUrl = this.setDeepUrl.bind(this);
-        Electron.onEvent('url-params', this.onSetDeepUrl);
+        this.checkVaultAvailability();
 
-        Electron.changeLanguage(this.props.t);
-        Electron.requestDeepLink();
+        try {
+            Electron.onEvent('menu', this.onMenuToggle);
 
-        Electron.getUuid().then((uuid) => {
+            this.onSetDeepUrl = this.setDeepUrl.bind(this);
+            Electron.onEvent('url-params', this.onSetDeepUrl);
+
+            Electron.changeLanguage(this.props.t);
+            Electron.requestDeepLink();
+        } catch (error) {
+            // eslint-disable-next-line react/no-did-mount-set-state
             this.setState({
-                uuid: uuid,
+                fatalError: true,
             });
-        });
+        }
     }
 
     componentWillReceiveProps(nextProps) {
@@ -131,7 +133,6 @@ class App extends React.Component {
         const currentKey = this.props.location.pathname.split('/')[1] || '/';
 
         /* On Login */
-
         if (!this.props.wallet.ready && nextProps.wallet.ready && currentKey === 'onboarding') {
             Electron.updateMenu('authorised', true);
             this.props.history.push('/wallet/');
@@ -153,12 +154,22 @@ class App extends React.Component {
         const parsedData = parseAddress(data);
 
         if (parsedData) {
-            this.props.setDeepLink(parsedData.amount || 0, parsedData.address, parsedData.message || null);
+            this.props.setDeepLink(String(parsedData.amount) || '', parsedData.address, parsedData.message || '');
             if (this.props.wallet.ready === true) {
                 this.props.history.push('/wallet/send');
             }
         } else {
             generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation1'));
+        }
+    }
+
+    async checkVaultAvailability() {
+        try {
+            await Electron.readKeychain();
+        } catch (err) {
+            this.setState({
+                fatalError: true,
+            });
         }
     }
 
@@ -191,48 +202,37 @@ class App extends React.Component {
     };
 
     render() {
-        const { accounts, location, activationCode, themeName, updateTheme, settings } = this.props;
+        const { accounts, location, activationCode, settings } = this.props;
 
         const currentKey = location.pathname.split('/')[1] || '/';
 
-        if (!this.state.uuid) {
-            return null;
+        if (this.state.fatalError) {
+            return (
+                <div className={css.trintiy}>
+                    <FatalError />
+                </div>
+            );
         }
 
         // Hotfix: Temporary block wallet with a hard reset (for release 0.1.2)
         if (DESKTOP_VERSION !== Electron.getActiveVersion()) {
-            if (themeName === 'Default') {
-                updateTheme(themes.Ionic, 'Ionic');
-            }
             return (
                 <div className={css.trintiy}>
-                    <Theme />
-                    <Alerts />
                     <AlphaReset />
                 </div>
             );
         }
 
         if (!activationCode) {
-            //Hotfix: Temporary default theme difference between mobile and desktop
-            if (themeName === 'Default') {
-                updateTheme(themes.Ionic, 'Ionic');
-            }
             return (
                 <div className={css.trintiy}>
-                    <Theme />
-                    <Alerts />
-                    <Activation uuid={this.state.uuid} />
+                    <Activation />
                 </div>
             );
         }
 
         return (
             <div className={css.trintiy}>
-                <Feedback />
-                <Theme />
-                <Alerts />
-                <Updates />
                 <Idle timeout={settings.lockScreenTimeout} />
                 <TransitionGroup>
                     <CSSTransition key={currentKey} classNames="fade" timeout={300}>
@@ -275,4 +275,4 @@ const mapDispatchToProps = {
     updateTheme,
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(translate()(App)));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(translate()(withAutoNodeSwitching(App))));

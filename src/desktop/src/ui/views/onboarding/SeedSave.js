@@ -37,7 +37,7 @@ class SeedSave extends PureComponent {
                         </p>
                     </Trans>
                     <div className={classNames(css.seed, css.narrow)}>
-                        <QRCode value={seed} size={140} />
+                        <QRCode value={seed || ''} size={140} />
                         <div>
                             {seed
                                 ? seed.split('').map((letter, index) => {
@@ -48,7 +48,7 @@ class SeedSave extends PureComponent {
                     </div>
                     <nav className={css.hideOnPrint}>
                         <Clipboard
-                            text={seed}
+                            text={seed || ''}
                             timeout={60}
                             title={t('copyToClipboard:seedCopied')}
                             success={t('copyToClipboard:seedCopiedExplanation')}
@@ -69,7 +69,7 @@ class SeedSave extends PureComponent {
                         {t('back').toLowerCase()}
                     </Button>
                     <Button to="/onboarding/seed-verify" className="large" variant="primary">
-                        {t('next').toLowerCase()}
+                        {t('done').toLowerCase()}
                     </Button>
                 </footer>
             </React.Fragment>

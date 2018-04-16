@@ -1,9 +1,15 @@
 .twoFa {
+    text-align: center;
     canvas {
         display: block;
+        margin: 0 auto;
         background: #fff;
         padding: 10px;
         border-radius: 4px;
-        margin-bottom: 30px;
+        margin-bottom: 14px;
+        box-sizing: content-box;
+    }
+    h3 {
+        text-align: left;
     }
 }

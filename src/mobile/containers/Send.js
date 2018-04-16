@@ -15,7 +15,7 @@ import {
     VALID_SEED_REGEX,
     ADDRESS_LENGTH,
 } from 'iota-wallet-shared-modules/libs/iota/utils';
-import { setDeepLinkInactive } from 'iota-wallet-shared-modules/actions/deepLink';
+import { setDeepLinkInactive } from 'iota-wallet-shared-modules/actions/wallet';
 import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
 import {
     getFromKeychainRequest,

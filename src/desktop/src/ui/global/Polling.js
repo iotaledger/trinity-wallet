@@ -4,7 +4,6 @@ import keys from 'lodash/keys';
 import size from 'lodash/size';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getSelectedAccountName } from 'selectors/accounts';
 import { removeBundleFromUnconfirmedBundleTails } from 'actions/accounts';
 import {
     fetchMarketData,
@@ -18,10 +17,10 @@ import {
 /** Background wallet polling component */
 class Polling extends React.PureComponent {
     static propTypes = {
+        accountNames: PropTypes.array.isRequired,
         pollFor: PropTypes.string.isRequired,
         getAccountInfo: PropTypes.func.isRequired,
         allPollingServices: PropTypes.array.isRequired,
-        selectedAccountName: PropTypes.string.isRequired,
         unconfirmedBundleTails: PropTypes.object.isRequired,
         setPollFor: PropTypes.func.isRequired,
         fetchMarketData: PropTypes.func.isRequired,
@@ -30,9 +29,13 @@ class Polling extends React.PureComponent {
         promoteTransfer: PropTypes.func.isRequired,
     };
 
+    state = {
+        accountIndex: 0,
+    };
+
     componentDidMount() {
         this.onPollTick = this.fetch.bind(this);
-        this.interval = setInterval(this.onPollTick, 15000);
+        this.interval = setInterval(this.onPollTick, 8000);
     }
 
     componentWillUnmount() {
@@ -65,7 +68,21 @@ class Polling extends React.PureComponent {
             return;
         }
 
-        const service = this.props.pollFor;
+        let service = this.props.pollFor;
+
+        //Loop all accounts before reseting poll service queue
+        if (this.state.accountIndex) {
+            if (this.state.accountIndex >= this.props.accountNames.length) {
+                this.props.setPollFor(this.props.allPollingServices[0]);
+                service = this.props.allPollingServices[0];
+                this.setState({
+                    accountIndex: 0,
+                });
+            } else {
+                this.fetchLatestAccountInfo();
+                return;
+            }
+        }
 
         const dict = {
             promotion: this.promote,
@@ -79,7 +96,12 @@ class Polling extends React.PureComponent {
     };
 
     fetchLatestAccountInfo = async () => {
-        this.props.getAccountInfo(this.props.selectedAccountName);
+        const { accountIndex } = this.state;
+        const { accountNames } = this.props;
+        this.props.getAccountInfo(accountNames[accountIndex]);
+        this.setState({
+            accountIndex: accountIndex + 1,
+        });
     };
 
     promote = () => {
@@ -117,7 +139,7 @@ const mapStateToProps = (state) => ({
     isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
     isSendingTransfer: state.ui.isSendingTransfer,
     isFetchingLatestAccountInfoOnLogin: state.ui.isFetchingLatestAccountInfoOnLogin,
-    selectedAccountName: getSelectedAccountName(state),
+    accountNames: state.accounts.accountNames,
     unconfirmedBundleTails: state.accounts.unconfirmedBundleTails,
     isTransitioning: state.ui.isTransitioning,
 });
