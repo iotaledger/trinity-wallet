@@ -17,7 +17,7 @@ describe('Reducer: alerts', () => {
     });
 
     describe('IOTA/ALERTS/SHOW', () => {
-        it('should "category" prop in action to category in state', () => {
+        it('should assign "category" prop in action to category in state', () => {
             const initialState = {
                 category: 'foo',
             };
