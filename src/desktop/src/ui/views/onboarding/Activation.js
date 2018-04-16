@@ -1,3 +1,4 @@
+/*global Electron*/
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -16,8 +17,6 @@ import css from './index.css';
  */
 class Activation extends React.PureComponent {
     static propTypes = {
-        /** UUID of the machine */
-        uuid: PropTypes.string.isRequired,
         /** Set activation code
          * @ignore
          */
@@ -32,13 +31,22 @@ class Activation extends React.PureComponent {
     };
 
     state = {
+        uuid: null,
         input: '',
         loading: false,
     };
 
+    componentDidMount() {
+        Electron.getUuid().then((uuid) => {
+            this.setState({
+                uuid: uuid,
+            });
+        });
+    }
+
     setCode = (e) => {
-        const { uuid, setActivationCode, generateAlert } = this.props;
-        const { input, loading } = this.state;
+        const { setActivationCode, generateAlert } = this.props;
+        const { uuid, input, loading } = this.state;
 
         e.preventDefault();
 
@@ -90,6 +98,10 @@ class Activation extends React.PureComponent {
     };
 
     render() {
+        if (!this.state.uuid) {
+            return null;
+        }
+
         return (
             <main className={css.onboarding}>
                 <header />

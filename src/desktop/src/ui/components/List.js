@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import map from 'lodash/map';
 import orderBy from 'lodash/orderBy';
 import classNames from 'classnames';
+import { formatValue, formatUnit } from 'libs/iota/utils';
 import { round } from 'libs/utils';
-import { convertFromTrytes, formatValue, formatUnit } from 'libs/iota/utils';
 import { formatTime, formatModalTime, convertUnixTimeToJSDate } from 'libs/date';
 
 import Clipboard from 'ui/components/Clipboard';
 import Icon from 'ui/components/Icon';
+import Scrollbar from 'ui/components/Scrollbar';
 
 import withListData from 'containers/components/List';
 
@@ -32,7 +33,7 @@ class List extends React.PureComponent {
          */
         setItem: PropTypes.func.isRequired,
         /** Current active history item */
-        currentItem: PropTypes.number,
+        currentItem: PropTypes.string,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
@@ -46,6 +47,10 @@ class List extends React.PureComponent {
     };
 
     switchFilter(filter) {
+        if (filter === this.state.filter) {
+            return;
+        }
+
         this.setState({
             filter: filter,
             loaded: false,
@@ -113,44 +118,47 @@ class List extends React.PureComponent {
                 </nav>
                 <hr />
                 <div className={css.list}>
-                    {historyTx && historyTx.length ? (
-                        historyTx.map((transfer, key) => {
-                            const isReceived = transfer.incoming;
-                            const isConfirmed = transfer.persistence;
+                    <Scrollbar>
+                        {historyTx && historyTx.length ? (
+                            historyTx.map((transfer, key) => {
+                                const isReceived = transfer.incoming;
+                                const isConfirmed = transfer.persistence;
 
-                            if (
-                                (filter === 'Sent' && (isReceived || !isConfirmed)) ||
-                                (filter === 'Received' && (!isReceived || !isConfirmed)) ||
-                                (filter === 'Pending' && isConfirmed)
-                            ) {
-                                return null;
-                            }
+                                if (
+                                    (filter === 'Sent' && (isReceived || !isConfirmed)) ||
+                                    (filter === 'Received' && (!isReceived || !isConfirmed)) ||
+                                    (filter === 'Pending' && isConfirmed)
+                                ) {
+                                    return null;
+                                }
 
-                            return (
-                                <a
-                                    key={key}
-                                    onClick={() => setItem(transfer.hash)}
-                                    className={classNames(
-                                        isConfirmed ? css.confirmed : css.pending,
-                                        isReceived ? css.received : css.sent,
-                                    )}
-                                >
-                                    <div>
-                                        <Icon icon={isReceived ? 'receive' : 'send'} size={16} />
-                                        <span>{formatTime(convertUnixTimeToJSDate(transfer.timestamp))}</span>
-                                        <strong>
-                                            {!isConfirmed ? t('pending') : isReceived ? t('received') : t('sent')}
-                                        </strong>
-                                        <span>{`${round(formatValue(transfer.transferValue))} ${formatUnit(
-                                            transfer.transferValue,
-                                        )}`}</span>
-                                    </div>
-                                </a>
-                            );
-                        })
-                    ) : (
-                        <p className={css.empty}>{t('noTransactions')}</p>
-                    )}
+                                return (
+                                    <a
+                                        key={key}
+                                        onClick={() => setItem(transfer.hash)}
+                                        className={classNames(
+                                            isConfirmed ? css.confirmed : css.pending,
+                                            isReceived ? css.received : css.sent,
+                                        )}
+                                    >
+                                        <div>
+                                            <Icon icon={isReceived ? 'receive' : 'send'} size={16} />
+                                            <span>{formatTime(convertUnixTimeToJSDate(transfer.timestamp))}</span>
+                                            <strong>
+                                                {!isConfirmed ? t('pending') : isReceived ? t('received') : t('sent')}
+                                            </strong>
+                                            <span>
+                                                {round(formatValue(transfer.transferValue), 1)}{' '}
+                                                {formatUnit(transfer.transferValue)}
+                                            </span>
+                                        </div>
+                                    </a>
+                                );
+                            })
+                        ) : (
+                            <p className={css.empty}>{t('noTransactions')}</p>
+                        )}
+                    </Scrollbar>
                 </div>
                 <div className={classNames(css.popup, activeTransfer ? css.on : null)} onClick={() => setItem(null)}>
                     <div>
@@ -165,10 +173,8 @@ class List extends React.PureComponent {
                                     <strong>
                                         {activeTransfer.incoming ? t('history:receive') : t('history:send')}
                                         <span>
-                                            {' '}
-                                            {`${round(formatValue(activeTransfer.transferValue))} ${formatUnit(
-                                                activeTransfer.transferValue,
-                                            )}`}
+                                            {round(formatValue(activeTransfer.transferValue), 1)}{' '}
+                                            {formatUnit(activeTransfer.transferValue)}
                                         </span>
                                     </strong>
                                     <small>
@@ -186,10 +192,12 @@ class List extends React.PureComponent {
                                         success={t('history:bundleHashCopiedExplanation')}
                                     />
                                 </p>
-                                <p>
+                                <div className={css.message}>
                                     <strong>{t('send:message')}</strong>
-                                    <span>{convertFromTrytes(activeTransfer.message)}</span>
-                                </p>
+                                    <Scrollbar>
+                                        <span>{activeTransfer.message} </span>
+                                    </Scrollbar>
+                                </div>
                             </div>
                         ) : null}
                     </div>
