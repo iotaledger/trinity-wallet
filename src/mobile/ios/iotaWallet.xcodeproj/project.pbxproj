@@ -29,7 +29,6 @@
 		3D089B147B065DF500AFDE15871144F7 /* libRNExitApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FFDF2800ED208F6574931A64651435D /* libRNExitApp.a */; };
 		3E58EC90CE11629FBA816AAD96D16464 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0FDEA3EDE9090E04563794CE9A92B7 /* main.m */; };
 		412B533C94F35A1287B87CBF50D0679C /* libRNSecureRandom.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D68D9CD64CE2AD239A1BABD810A4043 /* libRNSecureRandom.a */; };
-		4255D5D068A7CB1DA5956188369B1FFF /* Icons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 90FB584C334E9A462066739094F9A72B /* Icons.ttf */; };
 		4A4F5E775D301A641C32594E736C0E3A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F799E10140F3477803D1C73A2F97B01B /* libz.tbd */; };
 		53D5C66F9CFCE4AF6BAE7EBD7DEF9413 /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBEF619F59D7EBCE4196DF4E7471DFA3 /* libRNFS.a */; };
 		5403F0AF99C33584CC25CA8D4422B333 /* Inconsolata-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 60C4FCE77138FA022DBAD917D3C8B8C1 /* Inconsolata-Regular.ttf */; };
@@ -63,6 +62,7 @@
 		C51860C3A5258461508F6E3006EA337D /* Inconsolata-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA20221A44EBECD2DE04895A475187C4 /* Inconsolata-Bold.ttf */; };
 		C63F4449914D3D19E3C83C38F602BFB5 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F4F16E746AE853607E2E4D649F9E40 /* libRNDeviceInfo.a */; };
 		CA8AF202D45B7B9C48CB844FE4029B34 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38822DC4E60A1BDF9DF917E7C1541B3D /* libRCTLinking.a */; };
+		CB66259D2084BF2A00651519 /* Icons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB66259C2084BF2A00651519 /* Icons.ttf */; };
 		CDC76600A03C06457F99259512D7F713 /* libRNIsDeviceRooted.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0431CEEC099BC4CE1F43E0550C4CC291 /* libRNIsDeviceRooted.a */; };
 		D51793D4E78BCB702D9FFAA1A3356153 /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48E60D4ABEBFCB6EC7FCE9538A5FF83F /* libRNSVG.a */; };
 		D54A6C850FD7BE61FF81BD7F6E7F25A3 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EEAE9D5C606B7556253D3AD01EB78CE0 /* Info.plist */; };
@@ -667,7 +667,6 @@
 		8B49115E102EED64D1B7D7AC047F1ABF /* RNExitApp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNExitApp.xcodeproj; path = "../node_modules/react-native-exit-app/ios/RNExitApp.xcodeproj"; sourceTree = "<group>"; };
 		8E434FE1CB1AC831CE3744C82835ADDB /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = "<group>"; };
 		90295FE7864C1575989558505A053B99 /* Pods-iotaWallet-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iotaWallet-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iotaWallet-tvOS/Pods-iotaWallet-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		90FB584C334E9A462066739094F9A72B /* Icons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Icons.ttf; path = ../../shared/icons/Icons.ttf; sourceTree = "<group>"; };
 		9E17389EF3AB0C14C6843EF1892D81D4 /* KCKeepAwake.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KCKeepAwake.xcodeproj; path = "../node_modules/react-native-keep-awake/ios/KCKeepAwake.xcodeproj"; sourceTree = "<group>"; };
 		9EE76A96BDAFEB3F2332A2982168E1CE /* RCTNetwork.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTNetwork.xcodeproj; path = "../node_modules/react-native/Libraries/Network/RCTNetwork.xcodeproj"; sourceTree = "<group>"; };
 		A1FAED857304034D3DCD87D13F961C48 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -694,6 +693,7 @@
 		C95BBF78A0A4EBD898EABC433D7C624A /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Bold.ttf"; path = "../../shared/custom-fonts/Lato-Bold.ttf"; sourceTree = "<group>"; };
 		C989B5B2E21BB76597A51E0EFEA9B547 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CB12F2DB8E6D3A4CD653968A6281A586 /* Lato-Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Heavy.ttf"; path = "../../shared/custom-fonts/Lato-Heavy.ttf"; sourceTree = "<group>"; };
+		CB66259C2084BF2A00651519 /* Icons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Icons.ttf; path = ../../shared/icons/Icons.ttf; sourceTree = "<group>"; };
 		CFA2B84C183CC39F995C8E04CC713DDB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = iotaWallet/Images.xcassets; sourceTree = "<group>"; };
 		D2C796029F4A68C167C1F1F5176A5819 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D6579997ECA951BF786CFC9441D56F53 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -918,7 +918,7 @@
 				3B537B39817BE965218CAE954AED9DE5 /* iotaWallet */,
 				E5A4C15555A5061D24DCE7B856718C84 /* iotaWalletTests */,
 				0615A4F7D0026D822A624F7C6A4761CD /* iotaWalletUITests */,
-				90FB584C334E9A462066739094F9A72B /* Icons.ttf */,
+				CB66259C2084BF2A00651519 /* Icons.ttf */,
 				AA20221A44EBECD2DE04895A475187C4 /* Inconsolata-Bold.ttf */,
 				60C4FCE77138FA022DBAD917D3C8B8C1 /* Inconsolata-Regular.ttf */,
 				DC4E6A9C05ACCC390F5544E11376A3C2 /* Lato-Black.ttf */,
@@ -2138,7 +2138,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4255D5D068A7CB1DA5956188369B1FFF /* Icons.ttf in Resources */,
 				54D44899635E65A34FCEAC3EA412BE26 /* Images.xcassets in Resources */,
 				C51860C3A5258461508F6E3006EA337D /* Inconsolata-Bold.ttf in Resources */,
 				5403F0AF99C33584CC25CA8D4422B333 /* Inconsolata-Regular.ttf in Resources */,
@@ -2148,6 +2147,7 @@
 				B8AC91FAFE3114D9363FFF789AD58236 /* Lato-Bold.ttf in Resources */,
 				87280DCAD434304502824FCC4346EEB5 /* Lato-Heavy.ttf in Resources */,
 				6F563B73857A573593D57546EEF24E49 /* Lato-Light.ttf in Resources */,
+				CB66259D2084BF2A00651519 /* Icons.ttf in Resources */,
 				0627A09CD100D250E484B6D14027A03E /* Lato-Regular.ttf in Resources */,
 				29E9C75A4A87FFC827469A3CFB2D3C89 /* Launch Screen.storyboard in Resources */,
 			);
