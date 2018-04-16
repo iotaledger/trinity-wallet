@@ -77,6 +77,8 @@ class Home extends Component {
          * @param {string} setting
          */
         setSetting: PropTypes.func.isRequired,
+        /** Determines if user has activated fingerprint auth */
+        isFingerprintEnabled: PropTypes.bool.isRequired,
         /** Currently selected setting */
         currentSetting: PropTypes.string.isRequired,
         /** Theme settings */
@@ -232,7 +234,14 @@ class Home extends Component {
     };
 
     render() {
-        const { t, navigator, inactive, minimised, theme: { bar, body, negative, positive, primary } } = this.props;
+        const {
+            t,
+            navigator,
+            inactive,
+            minimised,
+            isFingerprintEnabled,
+            theme: { bar, body, negative, positive, primary },
+        } = this.props;
         const { isIOSKeyboardActive } = this.state;
         const barTextColor = { color: bar.color };
         const textColor = { color: body.color };
@@ -325,6 +334,11 @@ class Home extends Component {
                                 positiveColor={positive.color}
                                 bodyColor={body.color}
                                 textColor={textColor}
+                                setUserActive={() => this.props.setUserActivity({ inactive: false })}
+                                generateAlert={(error, title, explanation) =>
+                                    this.props.generateAlert(error, title, explanation)
+                                }
+                                isFingerprintEnabled={isFingerprintEnabled}
                             />
                         </View>
                     )}
@@ -348,6 +362,7 @@ const mapStateToProps = (state) => ({
     isTransitioning: state.ui.isTransitioning,
     currentSetting: state.wallet.currentSetting,
     isTopBarActive: state.home.isTopBarActive,
+    isFingerprintEnabled: state.settings.isFingerprintEnabled,
 });
 
 const mapDispatchToProps = {
