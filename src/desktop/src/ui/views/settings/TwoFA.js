@@ -123,7 +123,7 @@ class TwoFA extends React.Component {
                 passwordConfirm: false,
             });
 
-            generateAlert('success', t('Two fa disabled'), t('Two fa disabled'));
+            generateAlert('success', t('twoFA:twoFADisabled'), t('twoFA:twoFADisabledExplanation'));
         } catch (err) {
             generateAlert(
                 'error',
@@ -145,11 +145,13 @@ class TwoFA extends React.Component {
                     this.disableTwoFA();
                 }}
             >
-                <h2>{t('To disable, enter code')}</h2>
+                <h3>{t('twoFA:enterCode')}</h3>
                 <Text value={code} label={t('twoFA:code')} onChange={(value) => this.setState({ code: value })} />
-                <Button type="submit" variant="primary">
-                    {t('twoFA:disable')}
-                </Button>
+                <fieldset>
+                    <Button type="submit" variant="primary">
+                        {t('disable')}
+                    </Button>
+                </fieldset>
             </form>
         );
     }
@@ -164,20 +166,22 @@ class TwoFA extends React.Component {
 
         return (
             <form className={css.twoFa} onSubmit={(e) => this.verifyCode(e)}>
-                <h2>{t('twoFA:addKey')}</h2>
+                <h3>1. {t('twoFA:addKey')}</h3>
                 <QRCode size={180} value={authenticator.generateTotpUri(key, 'Trinity desktop wallet')} />
-                <p>
+                <small>
                     {t('twoFA:key')}:{' '}
                     <Clipboard text={key} title={t('twoFA:keyCopied')} success={t('twoFA:keyCopiedExplanation')}>
                         <strong>{key}</strong>
                     </Clipboard>
-                </p>
+                </small>
                 <hr />
-                <h2>{t('twoFA:enterCode')}:</h2>
+                <h3>2. {t('twoFA:enterCode')}</h3>
                 <Text value={code} onChange={(value) => this.setState({ code: value })} />
-                <Button type="submit" variant="primary">
-                    {t('apply')}
-                </Button>
+                <fieldset>
+                    <Button type="submit" disabled={code.length < 6} variant="primary">
+                        {t('apply')}
+                    </Button>
+                </fieldset>
             </form>
         );
     }
@@ -194,10 +198,8 @@ class TwoFA extends React.Component {
                     onSuccess={(password) => this.enableTwoFA(password)}
                     onClose={() => this.setState({ passwordConfirm: false })}
                     content={{
-                        title: is2FAEnabled
-                            ? t('Enter your password to disable Two-factor authentication')
-                            : t('Enter your password to enable Two-factor authentication'),
-                        confirm: is2FAEnabled ? t('Disable') : t('Enable'),
+                        title: is2FAEnabled ? t('enterYourPassword') : t('enterYourPassword'),
+                        confirm: is2FAEnabled ? t('disable') : t('enable'),
                     }}
                 />
             </React.Fragment>
