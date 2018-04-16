@@ -1,3 +1,4 @@
+const settings = require('../package.json');
 const config = require('./config.base');
 
 const { BugsnagSourceMapUploaderPlugin } = require('webpack-bugsnag-plugins');
@@ -17,7 +18,7 @@ config.devtool = 'source-map';
 config.plugins = [
     new BugsnagSourceMapUploaderPlugin({
         apiKey: '53981ba998df346f6377ebbeb1da46d3',
-        appVersion: '0.1.1',
+        appVersion: settings.version,
         publicPath: 'iota://dist/',
     }),
 ].concat(config.plugins);

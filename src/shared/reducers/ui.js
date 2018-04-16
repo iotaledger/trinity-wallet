@@ -3,7 +3,6 @@ import { ActionTypes as UiActionTypes } from '../actions/ui';
 import { ActionTypes as TransfersActionTypes } from '../actions/transfers';
 import { ActionTypes as WalletActionTypes } from '../actions/wallet';
 import { ActionTypes as AccountsActionTypes } from '../actions/accounts';
-import { ActionTypes as DeepLinkActionTypes } from '../actions/deepLink';
 
 const initialState = {
     isGeneratingReceiveAddress: false,
@@ -78,7 +77,7 @@ export default (state = initialState, action) => {
                 sendAmountFieldText: '',
                 sendMessageFieldText: '',
             };
-        case DeepLinkActionTypes.SET_DEEP_LINK:
+        case WalletActionTypes.SET_DEEP_LINK:
             return {
                 ...state,
                 sendAddressFieldText: action.address,

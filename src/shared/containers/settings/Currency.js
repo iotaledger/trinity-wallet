@@ -15,7 +15,7 @@ export default function withCurrencyData(CurrencyComponent) {
             isFetchingCurrencyData: PropTypes.bool.isRequired,
             hasErrorFetchingCurrencyData: PropTypes.bool.isRequired,
             currentCurrency: PropTypes.string.isRequired,
-            availableCurrencies: PropTypes.array.availableCurrencies,
+            availableCurrencies: PropTypes.arrayOf(PropTypes.string).isRequired,
             getCurrencyData: PropTypes.func.isRequired,
             backPress: PropTypes.func,
             t: PropTypes.func.isRequired,
