@@ -78,8 +78,8 @@
         "autopromoting": "Auto-promoviendo la transferencia",
         "autopromotingExplanation": "Promoviendo la transacción con hash {{hash}}",
         "promoting": "Promoviendo la transferencia",
-        "promotionError": "Could not promote transfer",
-        "promotionErrorExplanation": "Something went wrong while promoting your transaction. Please try again.",
+        "promotionError": "No se pudo promover la transacción",
+        "promotionErrorExplanation": "Algo salió mal durante la promoción de su transacción. Por favor, inténtelo de nuevo.",
         "noLongerValid": "El paquete que está intentando promover ya no es válido",
         "cannotSendToOwn": "Enviando a dirección propia",
         "cannotSendToOwnExplanation": "No puede hacer una transferencia de valor a un direccion propia.",
@@ -91,10 +91,10 @@
         "checkForUpdates": "Buscar actualizaciones",
         "account": "Cuenta",
         "enterPasswordToAccessSettings": "Ingrese su contraseña para acceder a las configuraciones de cuentas",
-        "changeNode": "Change node",
-        "addCustomNode": "Add custom node",
-        "nodeChanged": "Node changed",
-        "nodeChangedExplanation": "The node has been changed successfully."
+        "changeNode": "Cambiar nodo",
+        "addCustomNode": "Añadir nodo personalizado",
+        "nodeChanged": "Nodo modificado",
+        "nodeChangedExplanation": "El nodo fue modificado exitosamente."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contiene caracteres inválidos",
@@ -296,7 +296,7 @@
         "undo": "Deshacer",
         "redo": "Rehacer",
         "about": "Acerca de Trinity",
-        "lockScreenTimeout": "Lock Screen Timeout (Minutes)"
+        "lockScreenTimeout": "Tiempo para hibernar cuenta (Minutos)"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Ingresa tu contraseña para reiniciar la cartera.",
@@ -309,7 +309,7 @@
         "seedExplanation": "La seed de IOTA es, simultáneamente, el nombre del usuario y la contraseña para tu cuenta, combinada en una cadena de 81 caracteres.",
         "explanation": "<0><0>Puedes usarla para acceder a tus fondos desde</0><1>cualquier billetera</1><2>, en</2><3> cualquier dispositivo</3><4>. Pero si pierdes tu seed, también pierdes tus IOTA.</4></0>",
         "keepSafe": "Por favor mantén tu seed en seguridad.",
-        "hint": "<0><0>Hint:</0> Click NO if this is your first time using IOTA.</0>"
+        "hint": "<0><0>Pista:</0> Haga clic en NO Si esta es su primera vez con IOTA.</0>"
     },
     "welcome": {
         "thankYou": "Gracias por descargar Trinity.",
@@ -348,7 +348,7 @@
         "addCustomNode": "Añadir nodo personalizado",
         "manualSync": "Sincronización manual",
         "snapshotTransition": "Transicion de snapshot",
-        "pow": "Proof of Work"
+        "pow": "Prueba de trabajo"
     },
     "advancedThemeCustomisation": {
         "background": "Fondo",
@@ -375,12 +375,12 @@
         "one": "Uno"
     },
     "usedAddressModal": {
-        "cantSpendFullBalanceQuestion": "Why can't I spend my full balance?",
-        "spentAddressExplanation": "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
-        "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
+        "cantSpendFullBalanceQuestion": "¿Por qué no puedo gastar mi saldo total?",
+        "spentAddressExplanation": "Tienes en una o más direcciones. La reutilización de direcciones es peligrosa en IOTA, por ello esta cartera no te permite enviar desde la misma dirección más de una vez.",
+        "discordInformation": "Por favor diríjase al canal #help en Discord para averiguar lo que puede hacer."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Are you sure you want to delete</1><2></2><3>{{accountName}}?</3>",
+        "areYouSure": "<0></0> <1>¿Está seguro de que desea eliminar</1> <2></2> <3>{{accountName}}?</3>",
         "yourSeedWillBeRemoved": "Tu semilla y tu historial de transacciones serán eliminados.",
         "thisAction": "Esta acción no se puede deshacer.",
         "enterPassword": "Escribe tu contraseña para eliminar la cuenta."
@@ -450,7 +450,7 @@
         "mcap": "MCAP",
         "change": "Variación",
         "volume": "Volumen (24h)",
-        "currentValue": "Current value"
+        "currentValue": "Valor actual"
     },
     "rootDetection": {
         "warning": "ADVERTENCIA",
@@ -480,17 +480,17 @@
         "transitionCompleteExplanation": "La transicion del snapshot fue completada exitosamente."
     },
     "deepLink": {
-        "autofill": "Autofill",
-        "autofillExplanation": "Transaction data autofilled from link."
+        "autofill": "Auto completado exitoso",
+        "autofillExplanation": "Información de la transacción auto completada desde el enlace."
     },
     "updates": {
-        "errorRetrievingUpdateData": "Error retreiving update data",
-        "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
-        "noUpdatesAvailable": "No updates available",
-        "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
-        "newVersionAvailable": "New version available",
-        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
-        "downloadRelease": "Download release",
-        "skipUpdate": "Skip update"
+        "errorRetrievingUpdateData": "Error al recuperar datos de actualización",
+        "errorRetrievingUpdateDataExplanation": "Hubo un error al recuperar datos de actualización. Por favor, inténtelo de nuevo.",
+        "noUpdatesAvailable": "No hay actualizaciones disponibles",
+        "noUpdatesAvailableExplanation": "¡Tienes la última versión de la cartera IOTA Trinity para PC!",
+        "newVersionAvailable": "Nueva versión disponible",
+        "newVersionAvailableExplanation": "Una nueva versión de <strong>Trinity</strong> <strong>{{version}}</strong> está disponible. Por favor lea cuidadosamente los detalles del lanzamiento y verifique la fuente de descarga antes de actualizar:",
+        "downloadRelease": "Descargar version",
+        "skipUpdate": "Saltar la actualización"
     }
 }

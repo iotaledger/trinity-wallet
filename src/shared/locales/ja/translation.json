@@ -325,7 +325,7 @@
         "bundleHashCopiedExplanation": "バンドルハッシュをクリップボードにコピーしました。",
         "addressCopied": "アドレスをコピーしました。",
         "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。",
-        "send": "送金",
+        "send": "送金.",
         "receive": "受取"
     },
     "accountManagement": {
@@ -480,14 +480,14 @@
         "transitionCompleteExplanation": "スナップショットの移行が正常に完了しました。"
     },
     "deepLink": {
-        "autofill": "自動入力",
+        "autofill": "自動入力成功",
         "autofillExplanation": "取引データはリンクから自動入力されました。"
     },
     "updates": {
         "errorRetrievingUpdateData": "更新データの取得エラー",
         "errorRetrievingUpdateDataExplanation": "更新データの取得中にエラーが発生しました。もう一度やり直して下さい。",
         "noUpdatesAvailable": "利用可能な更新はありません。",
-        "noUpdatesAvailableExplanation": "最新版のIOTA Trinity デスクトップ版ウォレットです。",
+        "noUpdatesAvailableExplanation": "最新版のIOTA Trinity デスクトップウォレットです。",
         "newVersionAvailable": "新しいバージョンが利用可能です。",
         "newVersionAvailableExplanation": "新しい<strong>Trinity</strong><strong>{{version}}</strong>バージョンが利用可能です。更新する前に、リリースの詳細を注意深く読み、ダウンロード元を確認してください：",
         "downloadRelease": "リリースをダウンロード",
