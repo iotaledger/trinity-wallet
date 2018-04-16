@@ -37,14 +37,39 @@ export class FingerprintModal extends PureComponent {
         textColor: PropTypes.object.isRequired,
         /** Modal border color */
         borderColor: PropTypes.object.isRequired,
+        /** Determines in which instance the modal is being used*/
+        instance: PropTypes.string.isRequired,
+        /** Determines if user has activated fingerprint auth */
+        isFingerprintEnabled: PropTypes.bool,
     };
 
     componentDidMount() {
         this.props.hideModal = this.props.hideModal.bind(this);
     }
 
+    getText() {
+        const { t, instance, isFingerprintEnabled } = this.props;
+        let modalText = '';
+        switch (instance) {
+            case 'send':
+                modalText = t('send:fingerprintOnSend');
+                break;
+            case 'login':
+                modalText = t('fingerprintSetup:instructionsLogin');
+                break;
+            case 'setup':
+                modalText = isFingerprintEnabled
+                    ? t('fingerprintSetup:instructionsDisable')
+                    : t('fingerprintSetup:instructionsEnable');
+                break;
+            default:
+                break;
+        }
+        return modalText;
+    }
+
     render() {
-        const { t, backgroundColor, textColor, borderColor } = this.props;
+        const { backgroundColor, textColor, borderColor } = this.props;
 
         return (
             <TouchableOpacity
@@ -52,7 +77,7 @@ export class FingerprintModal extends PureComponent {
                 onPress={this.props.hideModal}
             >
                 <View style={[styles.modalContent, borderColor]}>
-                    <Text style={[styles.modalText, textColor]}>{t('fingerprintSetup:instructionsLogin')}</Text>
+                    <Text style={[styles.modalText, textColor]}>{this.getText()}</Text>
                 </View>
             </TouchableOpacity>
         );

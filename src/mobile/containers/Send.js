@@ -37,10 +37,12 @@ import {
 } from 'iota-wallet-shared-modules/selectors/accounts';
 import { reset as resetProgress, startTrackingProgress } from 'iota-wallet-shared-modules/actions/progress';
 import { generateAlert, generateTransferErrorAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import FingerprintScanner from 'react-native-fingerprint-scanner';
 import Modal from 'react-native-modal';
 import KeepAwake from 'react-native-keep-awake';
 import QRScanner from '../components/QrScanner';
 import Toggle from '../components/Toggle';
+import FingerPrintModal from '../components/FingerprintModal';
 import ProgressBar from '../components/ProgressBar';
 import ProgressSteps from '../utils/progressSteps';
 import { getSeedFromKeychain } from '../utils/keychain';
@@ -153,6 +155,8 @@ export class Send extends Component {
         deepLinkActive: PropTypes.bool.isRequired,
         /** Resets deep link status */
         setDeepLinkInactive: PropTypes.func.isRequired,
+        /** Determines if user has activated fingerprint auth */
+        isFingerprintEnabled: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
@@ -376,7 +380,7 @@ export class Send extends Component {
 
     setModalContent(selectedSetting) {
         let modalContent;
-        const { bar, body, primary, address, amount, selectedAccountName } = this.props;
+        const { bar, body, primary, address, amount, selectedAccountName, isFingerprintEnabled } = this.props;
 
         switch (selectedSetting) {
             case 'qrScanner':
@@ -403,6 +407,8 @@ export class Send extends Component {
                         textColor={{ color: body.color }}
                         setSendingTransferFlag={() => this.setSendingTransferFlag()}
                         selectedAccountName={selectedAccountName}
+                        activateFingerprintScanner={() => this.activateFingerprintScanner()}
+                        isFingerprintEnabled={isFingerprintEnabled}
                     />
                 );
                 break;
@@ -424,6 +430,17 @@ export class Send extends Component {
                         body={body}
                         borderColor={{ borderColor: body.color }}
                         textColor={{ color: body.color }}
+                    />
+                );
+                break;
+            case 'fingerPrintModal':
+                modalContent = (
+                    <FingerPrintModal
+                        hideModal={this.hideModal}
+                        borderColor={{ borderColor: body.color }}
+                        textColor={{ color: body.color }}
+                        backgroundColor={{ backgroundColor: body.bg }}
+                        instance="send"
                     />
                 );
                 break;
@@ -644,6 +661,30 @@ export class Send extends Component {
             });
     }
 
+    activateFingerprintScanner() {
+        const { t } = this.props;
+        if (isAndroid) {
+            this.setModalContent('fingerPrintModal');
+        }
+        FingerprintScanner.authenticate({ description: t('fingerprintOnSend') })
+            .then(() => {
+                this.setSendingTransferFlag();
+                this.hideModal();
+                this.sendTransfer();
+            })
+            .catch(() => {
+                this.props.generateAlert(
+                    'error',
+                    t('fingerprintSetup:fingerprintAuthFailed'),
+                    t('fingerprintSetup:fingerprintAuthFailedExplanation'),
+                );
+            });
+    }
+
+    hideModal() {
+        this.setState({ isModalVisible: false });
+    }
+
     renderModalContent = () => <View>{this.state.modalContent}</View>;
 
     renderProgressBarChildren() {
@@ -822,7 +863,7 @@ export class Send extends Component {
                                 <View style={styles.info}>
                                     <Icon
                                         name="info"
-                                        size={isAndroid ? width / 14 : width / 22}
+                                        size={width / 22}
                                         color={body.color}
                                         style={{ marginRight: width / 60 }}
                                     />
@@ -880,6 +921,7 @@ const mapStateToProps = (state) => ({
     remotePoW: state.settings.remotePoW,
     password: state.wallet.password,
     deepLinkActive: state.wallet.deepLinkActive,
+    isFingerprintEnabled: state.settings.isFingerprintEnabled,
 });
 
 const mapDispatchToProps = {
