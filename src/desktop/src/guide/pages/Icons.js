@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Icon from 'ui/components/Icon';
-import { icons } from 'icons/icons';
+import icons from 'icons/icons';
 
 import css from './icons.css';
 
@@ -15,9 +15,9 @@ const Colors = () => {
                 {Object.keys(icons).map((icon, key) => {
                     return (
                         <div key={key}>
-                            <Icon icon={icon} size={80} />
-                            <Icon icon={icon} size={40} />
-                            <Icon icon={icon} size={20} />
+                            <Icon icon={icon} size={64} />
+                            <Icon icon={icon} size={32} />
+                            <Icon icon={icon} size={16} />
                             <p>{icon}</p>
                         </div>
                     );

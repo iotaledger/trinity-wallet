@@ -33,7 +33,9 @@ class Clipboard extends React.PureComponent {
 
     static timeout = null;
 
-    copy() {
+    copy(e) {
+        e.stopPropagation();
+
         const { text, generateAlert, title, success, timeout } = this.props;
 
         Electron.clipboard(text);
@@ -53,7 +55,7 @@ class Clipboard extends React.PureComponent {
         const { children, text } = this.props;
 
         return (
-            <span className={css.clipboard} onClick={() => this.copy()}>
+            <span className={css.clipboard} onClick={(e) => this.copy(e)}>
                 {children || text}
             </span>
         );

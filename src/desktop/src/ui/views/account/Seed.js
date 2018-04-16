@@ -2,10 +2,11 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import { MAX_SEED_LENGTH } from 'libs/util';
+import { MAX_SEED_LENGTH } from 'libs/iota/utils';
 
 import Button from 'ui/components/Button';
 import Clipboard from 'ui/components/Clipboard';
+import ModalPassword from 'ui/components/modal/Password';
 
 import css from './seed.css';
 
@@ -14,10 +15,6 @@ import css from './seed.css';
  */
 class Seed extends PureComponent {
     static propTypes = {
-        /** Account vault */
-        vault: PropTypes.shape({
-            seeds: PropTypes.arrayOf(PropTypes.string),
-        }).isRequired,
         /** Current seed index
          *  @ignore
          */
@@ -31,14 +28,30 @@ class Seed extends PureComponent {
 
     state = {
         hidden: true,
+        vault: false,
     };
 
     render() {
-        const { vault, seedIndex, t } = this.props;
-        const { hidden } = this.state;
+        const { seedIndex, t } = this.props;
+        const { vault, hidden } = this.state;
 
-        const seed = vault.seeds[seedIndex];
-        const content = hidden ? new Array(MAX_SEED_LENGTH / 3).join('··· ') : seed.match(/.{1,3}/g).join(' ');
+        const seed = vault ? vault.seeds[seedIndex] : '';
+        const content =
+            hidden || !seed.length ? new Array(MAX_SEED_LENGTH / 3).join('··· ') : seed.match(/.{1,3}/g).join(' ');
+
+        if (!hidden && !vault) {
+            return (
+                <ModalPassword
+                    isOpen
+                    inline
+                    onSuccess={(password, vault) => this.setState({ vault })}
+                    onClose={() => this.setState({ hidden: true })}
+                    content={{
+                        title: t('viewSeed:enterPassword'),
+                    }}
+                />
+            );
+        }
 
         return (
             <form>
@@ -52,7 +65,9 @@ class Seed extends PureComponent {
                     </Clipboard>
                 </p>
                 <fieldset>
-                    <Button onClick={() => this.setState({ hidden: !hidden })}>{hidden ? t('show') : t('hide')}</Button>
+                    <Button onClick={() => this.setState({ hidden: !hidden })}>
+                        {hidden ? t('settings:show') : t('settings:hide')}
+                    </Button>
                 </fieldset>
             </form>
         );
@@ -60,7 +75,7 @@ class Seed extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    seedIndex: state.tempAccount.seedIndex,
+    seedIndex: state.wallet.seedIndex,
 });
 
 export default connect(mapStateToProps)(translate()(Seed));

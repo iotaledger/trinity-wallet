@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "iota.png",
+      "filename" : "icon1x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "iota@2x.png",
+      "filename" : "icon2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "iota@3x.png",
+      "filename" : "icon3x.png",
       "scale" : "3x"
     }
   ],

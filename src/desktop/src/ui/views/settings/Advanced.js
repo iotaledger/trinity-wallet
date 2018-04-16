@@ -1,18 +1,22 @@
+/*global Electron*/
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { translate, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 
-import { updatePowSettings } from 'actions/settings';
+import themes from 'themes/themes';
+
+import { updatePowSettings, setLockScreenTimeout } from 'actions/settings';
 import { generateAlert } from 'actions/alerts';
-import { getVault } from 'libs/crypto';
+import { setVault } from 'libs/crypto';
 
 import Button from 'ui/components/Button';
 import ModalPassword from 'ui/components/modal/Password';
 import Checkbox from 'ui/components/Checkbox';
+import TextInput from 'ui/components/input/Text';
 
 /**
- * Advaned user settings component, icnluding - wallet reset
+ * Advanced user settings component, including - wallet reset
  */
 class Advanced extends PureComponent {
     static propTypes = {
@@ -22,11 +26,16 @@ class Advanced extends PureComponent {
          * @ignore
          */
         updatePowSettings: PropTypes.func.isRequired,
-        /** Update local PoW settings state
-         * @param {Bool} state - Error notification content
+        /**
+         * Update the lock screen timeout state
          * @ignore
          */
-
+        setLockScreenTimeout: PropTypes.func.isRequired,
+        /**
+         * Lock screen timeout
+         * @ignore
+         */
+        lockScreenTimeout: PropTypes.number.isRequired,
         /** Create a notification message
          * @param {String} type - notification type - success, error
          * @param {String} title - notification title
@@ -45,12 +54,14 @@ class Advanced extends PureComponent {
         resetConfirm: false,
     };
 
-    resetWallet = (password) => {
+    resetWallet = async (password) => {
         const { t, generateAlert } = this.props;
 
         try {
-            getVault(password);
+            await setVault(password, {}, true);
+            document.body.style.background = themes.Ionic.body.bg;
             localStorage.clear();
+            Electron.clearStorage();
             location.reload();
         } catch (err) {
             generateAlert(
@@ -62,13 +73,23 @@ class Advanced extends PureComponent {
         }
     };
 
+    changeLockScreenTimeout = (value) => {
+        const timeout = Math.abs(parseInt(value)) || 1;
+        this.props.setLockScreenTimeout(timeout > 60 ? 60 : timeout);
+    };
+
     render() {
-        const { remotePoW, updatePowSettings, t } = this.props;
+        const { remotePoW, updatePowSettings, lockScreenTimeout, t } = this.props;
         const { resetConfirm } = this.state;
 
         return (
             <div>
                 <Checkbox checked={remotePoW} onChange={() => updatePowSettings()} label="Do PoW remotely" />
+                <TextInput
+                    value={lockScreenTimeout.toString()}
+                    label={t('settings:lockScreenTimeout')}
+                    onChange={this.changeLockScreenTimeout}
+                />
                 <hr />
                 <Button onClick={() => this.setState({ resetConfirm: !resetConfirm })} variant="negative">
                     {t('settings:reset')}
@@ -76,7 +97,7 @@ class Advanced extends PureComponent {
                 <ModalPassword
                     isOpen={resetConfirm}
                     category="negative"
-                    onSucces={(password) => this.resetWallet(password)}
+                    onSuccess={(password) => this.resetWallet(password)}
                     onClose={() => this.setState({ resetConfirm: false })}
                     content={{
                         title: t('walletResetConfirmation:cannotUndo'),
@@ -98,11 +119,13 @@ class Advanced extends PureComponent {
 
 const mapStateToProps = (state) => ({
     remotePoW: state.settings.remotePoW,
+    lockScreenTimeout: state.settings.lockScreenTimeout,
 });
 
 const mapDispatchToProps = {
     generateAlert,
     updatePowSettings,
+    setLockScreenTimeout,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate()(Advanced));

@@ -11,15 +11,15 @@ class Iota: RCTEventEmitter {
     callback([result])
   }
   
-  @objc func address(_ seed: String, index: Int, security: Int, checksum: Bool, resolver resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) -> Void {
-    let address = IotaAPIUtils.newAddress(seed: seed, index: index, checksum: checksum, security: security, multithreaded: true)
+  @objc func address(_ seed: String, index: Int, security: Int, resolver resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) -> Void {
+    let address = IotaAPIUtils.newAddress(seed: seed, index: index, checksum: false, security: security, multithreaded: true)
     resolve(address)
   }
   
-  @objc func multiAddress(_ seed: String, index: Int,  total: Int, security: Int, checksum: Bool, resolver resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) -> Void {
+  @objc func multiAddress(_ seed: String, index: Int,  security: Int, total: Int,  resolver resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) -> Void {
     var addresses: [String] = []
     for i in index..<index+total {
-      let address = IotaAPIUtils.newAddress(seed: seed, index: i, checksum: checksum, security: security, multithreaded: true)
+      let address = IotaAPIUtils.newAddress(seed: seed, index: i, checksum: false, security: security, multithreaded: true)
       addresses.append(address)
     }
     resolve(addresses)

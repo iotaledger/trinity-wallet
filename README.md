@@ -33,6 +33,6 @@ To create a new feature or bugfix (or chore) please create a new branch and use 
 
 If you are adding any text in your work, please follow the instructions in LOCALIZATION.md. 
 
-When creating a new branch try to always branch off from `master`! Avoid branching off from other branches unless it's absolutely necessary.
+When creating a new branch try to always branch off from `develop`. Avoid branching off from other branches unless it's absolutely necessary.
 
 When you're done with your work create a new Pull Request (Merge Request on Gitlab) and use your branch as **source** branch and **develop** as target branch. Never create Pull Requests directly against **master** as target branch unless you're trying to merge an important hotfix.

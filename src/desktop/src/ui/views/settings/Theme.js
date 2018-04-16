@@ -91,20 +91,28 @@ class Theme extends React.PureComponent {
                     </div>
                     <Button
                         style={{
-                            color: theme.positive.body || theme.body.color,
-                            background: theme.positive.bg || theme.positive.color,
-                        }}
-                    >
-                        {t('save')}
-                    </Button>
-                    <Button
-                        style={{
-                            color: theme.highlight.color,
-                            borderColor: theme.highlight.color,
-                            background: 'none',
+                            color: theme.primary.body,
+                            background: theme.primary.color,
                         }}
                     >
                         {t('back')}
+                    </Button>
+                    <Button
+                        style={{
+                            color: theme.secondary.body,
+                            background: theme.secondary.color,
+                        }}
+                    >
+                        {t('next')}
+                    </Button>
+                    <Button
+                        style={{
+                            color: theme.positive.color,
+                            borderColor: theme.positive.color,
+                            background: 'none',
+                        }}
+                    >
+                        {t('save')}
                     </Button>
                     <Button
                         style={{
@@ -113,16 +121,7 @@ class Theme extends React.PureComponent {
                             background: 'none',
                         }}
                     >
-                        {t('close')}
-                    </Button>
-                    <Button
-                        style={{
-                            color: theme.extra.color,
-                            borderColor: theme.extra.color,
-                            background: 'none',
-                        }}
-                    >
-                        {t('next')}
+                        {t('apply')}
                     </Button>
                 </div>
                 <fieldset>
@@ -143,4 +142,4 @@ const mapDispatchToProps = {
     updateTheme,
 };
 
-export default translate('theme')(connect(mapStateToProps, mapDispatchToProps)(Theme));
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(Theme));

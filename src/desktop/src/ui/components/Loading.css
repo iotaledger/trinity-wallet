@@ -14,6 +14,10 @@
         position: relative;
     }
 
+    &.transparent {
+        background: none;
+    }
+
     > div {
         text-align: center;
     }
