@@ -28,6 +28,7 @@ describe('Reducer: ui', () => {
                     seed: null,
                     isGenerated: false,
                 },
+                doNotMinimise: false,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
@@ -964,6 +965,26 @@ describe('Reducer: ui', () => {
                     seed: null,
                     isGenerated: false,
                 },
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
+
+    describe('IOTA/UI/SET_DO_NOT_MINIMISE', () => {
+        it('should set "doNotMinimise" state prop to true', () => {
+            const initialState = {
+                doNotMinimise: true,
+            };
+
+            const action = {
+                type: 'IOTA/UI/SET_DO_NOT_MINIMISE',
+                payload: true,
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                doNotMinimise: true,
             };
 
             expect(newState).to.eql(expectedState);
