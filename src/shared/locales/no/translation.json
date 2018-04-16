@@ -506,18 +506,17 @@
         "transitionCompleteExplanation": "Snapshot synkronisering var vellykket."
     },
     "deepLink": {
-        "autofill": "Autoutfyll",
+        "autofill": "Automatisk utfylling vellykket",
         "autofillExplanation": "Transaksjonsdata er autoutfylt fra lenken."
     },
     "updates": {
-        "errorRetrievingUpdateData": "Feil ved innhenting av data",
+        "errorRetrievingUpdateData": "Feil under henting av oppdaterte data",
         "errorRetrievingUpdateDataExplanation": "Det oppstod en feil under innhenting av data. Vennligst forsøk igjen.",
         "noUpdatesAvailable": "Ingen tilgjengelige oppdateringer",
         "noUpdatesAvailableExplanation": "Du har den nyeste versjonen av IOTA Trinity desktop lommeboken!",
         "newVersionAvailable": "Ny versjon tilgjengelig",
-        "newVersionAvailableExplanation":
-            "En ny <strong>Trinity</strong> <strong>{{version}}</strong> versjon er tilgjengelig. Vennligst les utgivelses-notatene nøye og verifiser nedlastingskilden før oppdatering:",
-        "downloadRelease": "Last ned versjon",
+        "newVersionAvailableExplanation": "En ny <strong>Trinity</strong> <strong>{{version}}</strong> versjon er tilgjengelig. Vennligst les utgivelses-notatene nøye og verifiser nedlastingskilden før oppdatering:",
+        "downloadRelease": "Last ned siste utgave",
         "skipUpdate": "Hopp over oppdatering"
     }
 }

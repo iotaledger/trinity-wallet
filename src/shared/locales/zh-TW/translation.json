@@ -44,7 +44,7 @@
         "fifthWallet": "第五帳戶",
         "sixthWallet": "第六帳戶",
         "otherWallet": "其他帳戶",
-        "yes": "確認",
+        "yes": "是",
         "no": "否",
         "password": "密碼",
         "passwordOrFingerprint": "密碼或指紋",
@@ -75,7 +75,7 @@
         "pressBackAgain": "再按一次返回鍵退出",
         "autoreattaching": "自動重新連接",
         "autoreattachingExplanation": "使用雜湊值 {{hash}} 重新連接交易",
-        "autopromoting": "自動宣傳交易",
+        "autopromoting": "自動促進交易",
         "autopromotingExplanation": "使用雜湊值 {{hash}} 促進交易",
         "promoting": "促進交易",
         "promotionError": "無法促進交易",
@@ -171,7 +171,7 @@
     },
     "loading": {
         "loadingFirstTime": "首次讀取種子碼。",
-        "thisMayTake": "這可能需要一點時間。",
+        "thisMayTake": "這可能需要一點時間.",
         "doNotMinimise": "請不要最小化或關閉應用程式。",
         "youMayNotice": "您的裝置可能會變慢。"
     },
@@ -203,7 +203,7 @@
     "saveYourSeed": {
         "seedCleared": "種子已清除",
         "seedClearedExplanation": "基於安全理由，種子已從剪貼簿清除。",
-        "mustSaveYourSeed": "<0><0> 您必須使用以下</0><1>其中一種</1><2>選項儲存您的種子碼。</2></0>"
+        "mustSaveYourSeed": "<0><0>您必須使用以下</0><1>其中一種</1><2>選項儲存您的種子碼。</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "錯誤種子",
@@ -246,13 +246,13 @@
         "retypePassword": "重新輸入密碼"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "本錢包能使用多個種子碼。每個種子碼都需要一個帳戶名稱。",
+        "canUseMultipleSeeds": "本錢包能使用多個種子碼，每個種子碼都需要一個帳戶名稱。",
         "youCanAdd": "您可至設定選單中加入更多種子碼。"
     },
     "modeSelection": {
         "expert": "專業",
         "standard": "標準",
-        "expertModeExplanation": "專業模式將會提供像是手動宣傳和重新連接等額外功能。",
+        "expertModeExplanation": "專業模式將會提供像是手動促進和重新連接等額外功能。",
         "modesExplanation": "請確定熟悉 Tangle 運作機制後再啟用專業模式，否則您可能會誤用進階功能。"
     },
     "settings": {
@@ -311,9 +311,8 @@
         "okay": "好囉，現在來設置您的錢包！",
         "doYouAlreadyHaveASeed": "您是否希望使用已擁有的種子碼?",
         "seedExplanation": "IOTA 種子碼是由您帳戶的名稱和密碼結合成為 81 個字元長的字串。",
-        "explanation":
-            "<0><0>您可以用它來取得您的資金，這可以是</0><1>任何錢包</1><2>和</2><3>任何裝置</3><4>。但如果您遺失種子碼的話，就代表您損失您所有的 IOTA。</4></0>",
-        "keepSafe": "請妥善保存您的種子碼",
+        "explanation": "<0><0>您可以用它來取得您的資金，這可以是</0><1>任何錢包</1><2>和</2><3>任何裝置</3><4>。但如果您遺失種子碼的話，就代表您損失您所有的 IOTA。</4></0>",
+        "keepSafe": "請妥善保存您的種子碼。",
         "hint": "<0><0>提示：</0> 如果這是您第一次使用 IOTA 請按「否」。</0>"
     },
     "welcome": {
@@ -488,7 +487,7 @@
         "transitionCompleteExplanation": "快照轉換已成功處理完成。"
     },
     "deepLink": {
-        "autofill": "自動填入",
+        "autofill": "自動填入成功",
         "autofillExplanation": "從連結自動填入交易資料。"
     },
     "updates": {
