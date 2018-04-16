@@ -146,6 +146,7 @@ export default function withSendData(SendComponent) {
                 setSendAddressField,
                 setSendAmountField,
                 setSendMessageField,
+                generateAlert
             } = this.props;
 
             const sendProps = {
