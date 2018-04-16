@@ -491,8 +491,8 @@
         "localOrRemote": "Proof of work może być wykonany lokalnie na Twoim urządzeniu lub przy użyciu serwera.",
         "local": "Lokalnie",
         "remote": "Zdalnie",
-        "powUpdated": "Ustawienia proof of work",
-        "powUpdatedExplanation": "Twoja konfiguracja proof of work została zaktualizowana."
+        "powUpdated": "Zmieniono tryb PoW",
+        "powUpdatedExplanation": "Twoja konfiguracja Proof of Work została zaktualizowana."
     },
     "progressSteps": {
         "validatingReceiveAddress": "Sprawdzanie adresu odbiorczego",
@@ -510,7 +510,7 @@
         "transitionCompleteExplanation": "Aktualizacja środków zakończyła się sukcesem."
     },
     "deepLink": {
-        "autofill": "Autouzupełnianie",
+        "autofill": "Autouzupełniono",
         "autofillExplanation": "Dane transakcji zostały automatycznie uzupełnione z linku."
     },
     "updates": {
