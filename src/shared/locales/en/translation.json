@@ -242,7 +242,8 @@
             "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "MAXIMUM amount selected",
         "iotaUnits": "IOTA units explained",
-        "sendMax": "SEND MAX"
+        "sendMax": "SEND MAX",
+        "fingerprintOnSend": "Touch fingerprint reader to send the transfer"
     },
     "setPassword": {
         "passwordTooShort": "Password is too short",
@@ -433,8 +434,8 @@
             "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Touch your device's fingerprint reader to enable fingerprint authentication.",
-        "instructionsDisable": "Touch your device's fingerprint reader to disable fingerprint authentication.",
+        "instructionsEnable": "Touch fingerprint reader to enable fingerprint authentication",
+        "instructionsDisable": "Touch fingerprint reader to disable fingerprint authentication",
         "fingerprintAuthEnabled": "Fingerprint authentication enabled",
         "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
         "fingerprintAuthDisabled": "Fingerprint authentication disabled",

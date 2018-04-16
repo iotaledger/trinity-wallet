@@ -6,7 +6,7 @@ import FingerprintScanner from 'react-native-fingerprint-scanner';
 import Modal from 'react-native-modal';
 import { connect } from 'react-redux';
 import CustomTextInput from '../components/CustomTextInput';
-import FingerprintModal from '../components/FingerprintModal';
+import FingerPrintModal from '../components/FingerprintModal';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
@@ -91,13 +91,12 @@ class EnterPassword extends Component {
             password: '',
             isModalVisible: false,
         };
-        this.activateFingerPrintScanner = this.activateFingerPrintScanner.bind(this);
+        this.activateFingerprintScanner = this.activateFingerprintScanner.bind(this);
         this.hideModal = this.hideModal.bind(this);
     }
 
     componentWillUnmount() {
-        const { isFingerprintEnabled } = this.props;
-        if (isFingerprintEnabled) {
+        if (isAndroid) {
             FingerprintScanner.release();
         }
     }
@@ -108,9 +107,11 @@ class EnterPassword extends Component {
         onLoginPress(password);
     };
 
-    activateFingerPrintScanner() {
+    activateFingerprintScanner() {
         const { t } = this.props;
-        this.openModalOnAndroid();
+        if (isAndroid) {
+            this.setState({ isModalVisible: true });
+        }
         FingerprintScanner.authenticate({ description: t('fingerprintSetup:instructionsLogin') })
             .then(() => {
                 this.hideModal();
@@ -127,12 +128,6 @@ class EnterPassword extends Component {
 
     hideModal() {
         this.setState({ isModalVisible: false });
-    }
-
-    openModalOnAndroid() {
-        if (isAndroid) {
-            this.setState({ isModalVisible: true });
-        }
     }
 
     render() {
@@ -160,7 +155,7 @@ class EnterPassword extends Component {
                             onSubmitEditing={this.handleLogin}
                             theme={theme}
                             fingerprintAuthentication={isFingerprintEnabled}
-                            onFingerprintPress={this.activateFingerPrintScanner}
+                            onFingerprintPress={this.activateFingerprintScanner}
                         />
                     </View>
                     <View style={styles.bottomContainer}>
@@ -185,11 +180,12 @@ class EnterPassword extends Component {
                         hideModalContentWhileAnimating
                         useNativeDriver={isAndroid ? true : false}
                     >
-                        <FingerprintModal
+                        <FingerPrintModal
                             hideModal={this.hideModal}
                             borderColor={{ borderColor: theme.body.color }}
                             textColor={{ color: theme.body.color }}
                             backgroundColor={{ backgroundColor: theme.body.bg }}
+                            instance="login"
                         />
                     </Modal>
                 </View>
