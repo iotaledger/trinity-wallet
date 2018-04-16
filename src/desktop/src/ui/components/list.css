@@ -92,7 +92,7 @@
                 text-align: left;
             }
             > span:nth-child(4) {
-                width: 20%;
+                width: 25%;
                 text-align: right;
             }
         }
@@ -139,7 +139,7 @@
 .refresh {
     display: block;
     position: absolute;
-    top: 14px;
+    top: 16px;
     right: -4px;
     margin: 0px;
     height: 31.5px;
