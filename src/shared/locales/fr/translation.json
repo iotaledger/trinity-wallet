@@ -480,11 +480,11 @@
         "transitionCompleteExplanation": "La transition du snapshot s'est terminée avec succès."
     },
     "deepLink": {
-        "autofill": "Remplissage automatique",
+        "autofill": "Autofill success",
         "autofillExplanation": "Remplissage automatique des transactions depuis les liens."
     },
     "updates": {
-        "errorRetrievingUpdateData": "Erreur lors de la récupération des données de mise à jour",
+        "errorRetrievingUpdateData": "Error retrieving update data",
         "errorRetrievingUpdateDataExplanation": "Une erreur s'est produite lors de la récupération des données de mise à jour. Veuillez réessayer.",
         "noUpdatesAvailable": "Aucune mise à jour disponible",
         "noUpdatesAvailableExplanation": "Vous avez déjà la dernière version du portefeuille IOTA Trinity !",

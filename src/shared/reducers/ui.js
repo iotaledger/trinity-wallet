@@ -29,6 +29,7 @@ const initialState = {
         seed: null,
         isGenerated: false,
     },
+    doNotMinimise: false,
 };
 
 export default (state = initialState, action) => {
@@ -221,6 +222,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 onboarding: Object.assign({}, state.onboarding, { name: action.payload }),
+            };
+        case UiActionTypes.SET_DO_NOT_MINIMISE:
+            return {
+                ...state,
+                doNotMinimise: action.payload,
             };
         default:
             return state;
