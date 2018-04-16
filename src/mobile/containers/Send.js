@@ -353,9 +353,8 @@ export class Send extends Component {
             // For codes containing JSON (iotaledger and Trinity)
             const parsedData = parse(data);
             this.props.setSendAddressField(parsedData.address);
-
-            if (data.message) {
-                this.props.setSendMessageField(data.message);
+            if (parsedData.message) {
+                this.props.setSendMessageField(parsedData.message);
             }
         } else if (dataString.match(/iota:/)) {
             // For codes with iota: at the front (TheTangle.org)
