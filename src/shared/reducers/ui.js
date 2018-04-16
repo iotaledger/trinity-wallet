@@ -121,12 +121,8 @@ export default (state = initialState, action) => {
                 ...state,
                 isGeneratingReceiveAddress: true,
             };
-        case WalletActionTypes.GENERATE_NEW_ADDRESS_SUCCESS:
-            return {
-                ...state,
-                isGeneratingReceiveAddress: false,
-            };
         case WalletActionTypes.GENERATE_NEW_ADDRESS_ERROR:
+        case WalletActionTypes.GENERATE_NEW_ADDRESS_SUCCESS:
             return {
                 ...state,
                 isGeneratingReceiveAddress: false,
@@ -178,10 +174,6 @@ export default (state = initialState, action) => {
                 isSyncing: true,
             };
         case AccountsActionTypes.MANUAL_SYNC_SUCCESS:
-            return {
-                ...state,
-                isSyncing: false,
-            };
         case AccountsActionTypes.MANUAL_SYNC_ERROR:
             return {
                 ...state,
