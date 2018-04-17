@@ -40,7 +40,7 @@ const currencyDataFetchRequest = () => ({
     type: ActionTypes.CURRENCY_DATA_FETCH_REQUEST,
 });
 
-const currencyDataFetchSuccess = (payload) => ({
+export const currencyDataFetchSuccess = (payload) => ({
     type: ActionTypes.CURRENCY_DATA_FETCH_SUCCESS,
     payload,
 });
@@ -56,6 +56,11 @@ export const setRandomlySelectedNode = (payload) => ({
 
 export const setMode = (payload) => ({
     type: ActionTypes.SET_MODE,
+    payload,
+});
+
+export const setNode = (payload) => ({
+    type: ActionTypes.SET_FULLNODE,
     payload,
 });
 
@@ -133,10 +138,7 @@ export function setLanguage(language) {
 
 export function setFullNode(fullNode) {
     return (dispatch) => {
-        dispatch({
-            type: ActionTypes.SET_FULLNODE,
-            payload: fullNode,
-        });
+        dispatch(setNode(fullNode));
     };
 }
 
