@@ -50,7 +50,7 @@ export default function withListData(ListComponent) {
                 limit,
                 filter,
                 isBusy,
-                isLoading: wallet.isFetchingLatestAccountInfoOnLogin,
+                isLoading: ui.isFetchingLatestAccountInfoOnLogin,
                 t,
             };
 
