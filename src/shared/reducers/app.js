@@ -2,7 +2,6 @@ import merge from 'lodash/merge';
 import { ActionTypes } from '../actions/app';
 
 const initialState = {
-    root: 'initialLoading',
     activationCode: null,
 };
 

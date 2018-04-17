@@ -24,7 +24,6 @@ export default (state = initialState, action) => {
                 title: '',
                 message: '',
                 closeInterval: 5500,
-                notificationLog: [...state.notificationLog],
             };
         case ActionTypes.UPDATE_LOG:
             return {
