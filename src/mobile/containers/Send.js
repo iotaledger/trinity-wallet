@@ -28,7 +28,7 @@ import {
     setSendAmountField,
     setSendMessageField,
     setSendDenomination,
-    setDoNotMinimise
+    setDoNotMinimise,
 } from 'iota-wallet-shared-modules/actions/ui';
 import { parse, round } from 'iota-wallet-shared-modules/libs/utils';
 import {
@@ -158,10 +158,10 @@ export class Send extends Component {
         setDeepLinkInactive: PropTypes.func.isRequired,
         /** Determines if user has activated fingerprint auth */
         isFingerprintEnabled: PropTypes.bool.isRequired,
-       /** Allow deny application to minimize
+        /** Allow deny application to minimize
          * @param {boolean} status
          */
-        setDoNotMinimise: PropTypes.func.isRequired
+        setDoNotMinimise: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -369,7 +369,7 @@ export class Send extends Component {
             // For codes with plain text (Bitfinex, Binance, and IOTASear.ch)
             this.props.setSendAddressField(data);
         } else {
-            this.props.generateAlert('error', t('invalidAddress'), t('invalidAmountExplanationGeneric'));
+            this.props.generateAlert('error', t('invalidAddress'), t('invalidAddressExplanationGeneric'));
         }
 
         this.hideModal();
@@ -955,7 +955,7 @@ const mapDispatchToProps = {
     startTrackingProgress,
     generateTransferErrorAlert,
     setDeepLinkInactive,
-    setDoNotMinimise
+    setDoNotMinimise,
 };
 
 export default translate(['send', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Send));
