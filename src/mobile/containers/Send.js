@@ -320,16 +320,16 @@ export class Send extends Component {
     }
 
     onSendPress() {
-        const { t, amount, address, balance, message, denomination } = this.props;
+        const { t, amount, address, message, denomination } = this.props;
         const { currencySymbol } = this.state;
 
         const multiplier = this.getUnitMultiplier();
         const isFiat = denomination === currencySymbol;
-
-        const enoughBalance = this.enoughBalance();
-        const messageIsValid = isValidMessage(message);
         const addressIsValid = isValidAddress(address);
         const amountIsValid = isValidAmount(amount, multiplier, isFiat);
+        const enoughBalance = this.enoughBalance();
+        const isSpendingFundsAtSpentAddresses = this.isSpendingFundsAtSpentAddresses();
+        const messageIsValid = isValidMessage(message);
 
         if (!addressIsValid) {
             return this.getInvalidAddressError(address);
@@ -340,11 +340,11 @@ export class Send extends Component {
         }
 
         if (!enoughBalance) {
-            // If amount includes funds at a spent address
-            if (parseInt(amount) * multiplier <= balance) {
-                return this.openModal('usedAddress');
-            }
             return this.props.generateAlert('error', t('notEnoughFunds'), t('notEnoughFundsExplanation'));
+        }
+
+        if (isSpendingFundsAtSpentAddresses) {
+            return this.openModal('usedAddress');
         }
 
         if (!messageIsValid) {
@@ -626,14 +626,24 @@ export class Send extends Component {
         });
 
     enoughBalance() {
-        const { amount, availableBalance } = this.props;
+        const { amount, balance } = this.props;
         const multiplier = this.getUnitMultiplier();
 
-        if (parseFloat(amount) * multiplier > availableBalance) {
+        if (parseFloat(amount) * multiplier > balance) {
             return false;
         }
 
         return true;
+    }
+
+    isSpendingFundsAtSpentAddresses() {
+        const { amount, balance, availableBalance } = this.props;
+        const multiplier = this.getUnitMultiplier();
+        const value = parseInt(amount) * multiplier;
+        if (value <= balance && value > availableBalance) {
+            return true;
+        }
+        return false;
     }
 
     startTrackingTransactionProgress(isZeroValueTransaction) {
