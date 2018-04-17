@@ -12,7 +12,6 @@ export default function withListData(ListComponent) {
     class ListData extends React.PureComponent {
         static propTypes = {
             transfers: PropTypes.object.isRequired,
-            wallet: PropTypes.object.isRequired,
             ui: PropTypes.object.isRequired,
             limit: PropTypes.number,
             filter: PropTypes.string,
@@ -32,7 +31,6 @@ export default function withListData(ListComponent) {
                 filter,
                 setItem,
                 currentItem,
-                wallet,
                 theme,
                 ui,
                 t,
@@ -64,7 +62,6 @@ export default function withListData(ListComponent) {
         accounts: state.accounts,
         transfers: getTransfersForSelectedAccount(state),
         theme: state.settings.theme,
-        wallet: state.wallet,
         ui: state.ui,
     });
 
