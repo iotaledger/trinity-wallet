@@ -354,6 +354,8 @@
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
         "addressCopied": "Address copied",
         "addressCopiedExplanation": "The address has been copied to the clipboard.",
+        "messageCopied": "Message copied",
+        "messageCopiedExplanation": "The message has been copied to the clipboard.",
         "send": "SEND",
         "receive": "RECEIVE"
     },

@@ -25,7 +25,6 @@ export default class Loading extends React.PureComponent {
 
     render() {
         const { loop, inline, transparent, title, subtitle, onEnd } = this.props;
-        console.log('rendering loading');
 
         return (
             <div className={classNames(css.loading, inline ? css.inline : null, transparent ? css.transparent : null)}>
