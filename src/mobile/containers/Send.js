@@ -594,10 +594,14 @@ export class Send extends Component {
         return !amountIsValid && amount !== '';
     }
 
-    showModal = () =>
+    showModal = () => {
+        this.addressField.blur();
+        this.amountField.blur();
+        this.messageField.blur();
         this.setState({
             isModalVisible: true,
         });
+    };
 
     hideModal = (callback) =>
         this.setState({ isModalVisible: false }, () => {
