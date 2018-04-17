@@ -330,7 +330,7 @@ class TopBar extends Component {
         const children = this.renderTitles();
         const hasMultipleSeeds = size(TopBar.filterSeedTitles(accountNames, seedIndex));
         const shouldDisable = this.shouldDisable();
-        const hasNotifications = notificationLog.length > 0;
+        const hasNotifications = size(notificationLog) && notificationLog.length > 0;
 
         return (
             <TouchableWithoutFeedback
