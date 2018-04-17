@@ -269,6 +269,7 @@ class Home extends Component {
                                             navigator={navigator}
                                             onTabSwitch={(name) => this.onTabSwitch(name)}
                                             handleCloseTopBar={() => this.handleCloseTopBar()}
+                                            isIOSKeyboardActive={isIOSKeyboardActive}
                                         />
                                     </View>
                                 </KeyboardAvoidingView>
