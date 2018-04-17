@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import timer from 'react-native-timer';
 import { connect } from 'react-redux';
 import {
     isValidAddress,
@@ -162,6 +163,8 @@ export class Send extends Component {
          * @param {boolean} status
          */
         setDoNotMinimise: PropTypes.func.isRequired,
+        /** Determines whether keyboard is open on iOS */
+        isIOSKeyboardActive: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
@@ -595,12 +598,22 @@ export class Send extends Component {
     }
 
     showModal = () => {
-        this.addressField.blur();
-        this.amountField.blur();
-        this.messageField.blur();
-        this.setState({
-            isModalVisible: true,
-        });
+        const { isIOSKeyboardActive } = this.props;
+        if (isIOSKeyboardActive) {
+            this.blurTextFields();
+            timer.setTimeout(
+                'modalShowTimer',
+                () =>
+                    this.setState({
+                        isModalVisible: true,
+                    }),
+                500,
+            );
+        } else {
+            this.setState({
+                isModalVisible: true,
+            });
+        }
     };
 
     hideModal = (callback) =>
@@ -698,6 +711,12 @@ export class Send extends Component {
                     t('fingerprintSetup:fingerprintAuthFailedExplanation'),
                 );
             });
+    }
+
+    blurTextFields() {
+        this.addressField.blur();
+        this.amountField.blur();
+        this.messageField.blur();
     }
 
     hideModal() {
@@ -849,9 +868,7 @@ export class Send extends Component {
                                         onPress={() => {
                                             this.onSendPress();
                                             if (address === '' && amount === '' && message && '') {
-                                                this.addressField.blur();
-                                                this.amountField.blur();
-                                                this.messageField.blur();
+                                                this.blurTextFields();
                                             }
                                         }}
                                     />
