@@ -5,10 +5,16 @@ import { translate } from 'react-i18next';
 import OnboardingButtons from '../containers/OnboardingButtons';
 import GENERAL from '../theme/general';
 import StatefulDropdownAlert from '../containers/StatefulDropdownAlert';
-
 import { width, height } from '../utils/dimensions';
 
 const styles = StyleSheet.create({
+    modalContainer: {
+        flex: 1,
+        alignItems: 'center',
+        width,
+        height,
+        justifyContent: 'center',
+    },
     modalContent: {
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -49,8 +55,8 @@ export class LogoutConfirmationModal extends PureComponent {
         const { t, backgroundColor, barBg, textColor, borderColor } = this.props;
 
         return (
-            <View style={{ width: width / 1.2, alignItems: 'center', backgroundColor }}>
-                <View style={[styles.modalContent, borderColor]}>
+            <View style={styles.modalContainer}>
+                <View style={[styles.modalContent, borderColor, backgroundColor]}>
                     <Text style={[styles.questionText, textColor]}>{t('logoutConfirmation')}</Text>
                     <OnboardingButtons
                         onLeftButtonPress={() => this.props.hideModal()}
