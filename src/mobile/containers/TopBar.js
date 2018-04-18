@@ -119,7 +119,7 @@ class TopBar extends Component {
         setPollFor: PropTypes.func.isRequired,
         notificationLog: PropTypes.array.isRequired,
         clearLog: PropTypes.func.isRequired,
-        topBarHeight: PropTypes.object.isRequired,
+        topBarHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.object]).isRequired,
         isIOSKeyboardActive: PropTypes.bool.isRequired,
         /** Sets whether modal is active or inactive */
         toggleModalActivity: PropTypes.func.isRequired,
