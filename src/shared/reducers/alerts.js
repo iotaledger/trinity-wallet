@@ -1,4 +1,4 @@
-import { ActionTypes } from '../actions/alerts.js';
+import { ActionTypes } from '../actions/alerts';
 
 const initialState = {
     category: '',
