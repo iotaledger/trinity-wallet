@@ -113,10 +113,12 @@ class Home extends Component {
             this.keyboardWillHideSub = Keyboard.addListener('keyboardWillHide', this.keyboardWillHide);
         }
         this.deepLinkSub = Linking.addEventListener('url', this.setDeepUrl);
+
     }
 
     componentDidMount() {
         this.userInactivity.setActiveFromComponent();
+        setInterval(() => this.props.generateAlert('success', 'test', 'test'), 5000);
     }
 
     shouldComponentUpdate(newProps) {
@@ -258,7 +260,7 @@ class Home extends Component {
                 ref={(c) => {
                     this.userInactivity = c;
                 }}
-                timeForInactivity={10000}
+                timeForInactivity={300000}
                 checkInterval={3000}
                 onInactivity={this.handleInactivity}
             >
