@@ -310,7 +310,7 @@ export class MainSettings extends Component {
                     backdropTransitionOutTiming={200}
                     backdropColor={theme.body.bg}
                     backdropOpacity={0.8}
-                    style={{ alignItems: 'center', margin: 0 }}
+                    style={{ alignItems: 'center', justifyContent: 'center', margin: 0 }}
                     isVisible={this.state.isModalActive}
                     onBackButtonPress={this.toggleModalDisplay}
                     useNativeDriver={isAndroid ? true : false}
