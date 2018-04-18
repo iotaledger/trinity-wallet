@@ -6,6 +6,7 @@ import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import Modal from 'react-native-modal';
 import { Navigation } from 'react-native-navigation';
 import i18next from 'i18next';
+import { toggleModalActivity } from 'iota-wallet-shared-modules/actions/ui';
 import { selectLocale } from 'iota-wallet-shared-modules/libs/locale';
 import { setSetting, clearWalletData, setPassword } from 'iota-wallet-shared-modules/actions/wallet';
 import LogoutConfirmationModalComponent from '../components/LogoutConfirmationModal';
@@ -101,6 +102,8 @@ export class MainSettings extends Component {
          * @param {string} passwordHash
          */
         setPassword: PropTypes.func.isRequired,
+        /** Sets whether modal is active or inactive */
+        toggleModalActivity: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -115,6 +118,7 @@ export class MainSettings extends Component {
     }
 
     toggleModalDisplay() {
+        this.props.toggleModalActivity();
         this.setState({ isModalActive: !this.state.isModalActive });
     }
 
@@ -145,7 +149,7 @@ export class MainSettings extends Component {
     }
 
     renderModalContent() {
-        const { theme: { body } } = this.props;
+        const { theme: { body, bar } } = this.props;
         const textColor = { color: body.color };
         const bodyColor = body.color;
 
@@ -157,6 +161,7 @@ export class MainSettings extends Component {
                 backgroundColor={body.bg}
                 textColor={textColor}
                 borderColor={{ borderColor: bodyColor }}
+                barBg={bar.bg}
             />
         );
     }
@@ -329,6 +334,7 @@ const mapDispatchToProps = {
     setSetting,
     clearWalletData,
     setPassword,
+    toggleModalActivity,
 };
 
 export default translate(['settings', 'global'])(connect(mapStateToProps, mapDispatchToProps)(MainSettings));

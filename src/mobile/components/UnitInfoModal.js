@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { translate } from 'react-i18next';
 import TextWithLetterSpacing from './TextWithLetterSpacing';
+import StatefulDropdownAlert from '../containers/StatefulDropdownAlert';
 import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
 import { Icon } from '../theme/icons.js';
@@ -150,6 +151,7 @@ class UnitInfoModal extends PureComponent {
                         </View>
                     </View>
                 </View>
+                <StatefulDropdownAlert backgroundColor={bar.bg} />
             </TouchableOpacity>
         );
     }

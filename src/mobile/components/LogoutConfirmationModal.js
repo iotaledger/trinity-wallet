@@ -4,6 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { translate } from 'react-i18next';
 import OnboardingButtons from '../containers/OnboardingButtons';
 import GENERAL from '../theme/general';
+import StatefulDropdownAlert from '../containers/StatefulDropdownAlert';
 
 import { width, height } from '../utils/dimensions';
 
@@ -40,10 +41,12 @@ export class LogoutConfirmationModal extends PureComponent {
         textColor: PropTypes.object.isRequired,
         /** Modal border color */
         borderColor: PropTypes.object.isRequired,
+        /** Bar background color */
+        barBg: PropTypes.string.isRequired,
     };
 
     render() {
-        const { t, backgroundColor, textColor, borderColor } = this.props;
+        const { t, backgroundColor, barBg, textColor, borderColor } = this.props;
 
         return (
             <View style={{ width: width / 1.2, alignItems: 'center', backgroundColor }}>
@@ -58,6 +61,7 @@ export class LogoutConfirmationModal extends PureComponent {
                         containerWidth={{ width: width / 1.4 }}
                     />
                 </View>
+                <StatefulDropdownAlert backgroundColor={barBg} />
             </View>
         );
     }
