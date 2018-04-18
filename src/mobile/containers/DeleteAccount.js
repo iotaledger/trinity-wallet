@@ -315,7 +315,7 @@ class DeleteAccount extends Component {
                         backdropTransitionOutTiming={200}
                         backdropColor={backgroundColor}
                         backdropOpacity={0.6}
-                        style={{ alignItems: 'center' }}
+                        style={{ alignItems: 'center', margin: 0 }}
                         isVisible={this.state.isModalVisible}
                         onBackButtonPress={() => this.setState({ isModalVisible: false })}
                         hideModalContentWhileAnimating

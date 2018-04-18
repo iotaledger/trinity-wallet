@@ -77,6 +77,7 @@ const styles = StyleSheet.create({
     },
     modal: {
         alignItems: 'center',
+        margin: 0
     },
 });
 
