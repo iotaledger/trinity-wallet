@@ -24,6 +24,7 @@ import com.oblador.vectoricons.VectorIconsPackage;
 import my.fin.RNIsDeviceRootedPackage;
 import com.bugsnag.BugsnagReactNative;
 import com.hieuvp.fingerprint.ReactNativeFingerprintScannerPackage;
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -71,6 +72,7 @@ public class MainApplication extends NavigationApplication {
             new RandomBytesPackage(),
             new VectorIconsPackage(),
             new RNIsDeviceRootedPackage(),
+            new SplashScreenReactPackage(),
             new ReactNativeFingerprintScannerPackage(),
             BugsnagReactNative.getPackage()
     );
