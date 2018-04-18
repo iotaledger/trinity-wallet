@@ -113,12 +113,10 @@ class Home extends Component {
             this.keyboardWillHideSub = Keyboard.addListener('keyboardWillHide', this.keyboardWillHide);
         }
         this.deepLinkSub = Linking.addEventListener('url', this.setDeepUrl);
-
     }
 
     componentDidMount() {
         this.userInactivity.setActiveFromComponent();
-        setInterval(() => this.props.generateAlert('success', 'test', 'test'), 5000);
     }
 
     shouldComponentUpdate(newProps) {
@@ -265,7 +263,7 @@ class Home extends Component {
                 onInactivity={this.handleInactivity}
             >
                 <View style={{ flex: 1, backgroundColor: body.bg }}>
-                    <DynamicStatusBar backgroundColor={bar.bg} />
+                    <DynamicStatusBar backgroundColor={bar.bg} isModalActive={isModalActive} />
                     {!inactive &&
                         !minimised && (
                             <View style={{ flex: 1 }}>
