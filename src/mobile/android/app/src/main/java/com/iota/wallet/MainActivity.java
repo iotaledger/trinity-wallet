@@ -1,6 +1,7 @@
 package com.iota.wallet;
 
-import org.devio.rn.splashscreen.SplashScreen;
+import com.horcrux.svg.SvgPackage;
+import com.reactnativenavigation.controllers.SplashActivity;
 import android.os.Bundle;
 import io.fabric.sdk.android.Fabric;
 import com.crashlytics.android.Crashlytics;
@@ -10,7 +11,6 @@ import android.widget.TextView;
 import android.widget.ImageView;
 import android.view.Gravity;
 import android.util.TypedValue;
-import com.reactnativenavigation.controllers.SplashActivity;
 import com.facebook.react.modules.storage.ReactDatabaseSupplier;
 import android.support.v4.content.ContextCompat;
 
@@ -39,5 +39,4 @@ public class MainActivity extends SplashActivity {
         view.addView(imageView);
         return view;
     }
-
 }
