@@ -150,7 +150,7 @@ dependencies {
     compile project(':react-native-detect-navbar-android')
     compile project(':react-native-os')
     compile (project(':react-native-camera')) {
-        exclude group: "com.google.android.gms"
+        exclude group: "com.android.support"
     }
     compile ("com.google.android.gms:play-services-vision:10.2.0") {
         force = true;
@@ -184,6 +184,9 @@ dependencies {
     compile project(':bugsnag-react-native')
     compile project(':react-native-fingerprint-scanner')
     compile project(':react-native-splash-screen')
+    compile ('com.android.support:exifinterface:26.0.1') {
+        force = true;
+    }
 }
 
 // Run this once to be able to run the application with BUCK
