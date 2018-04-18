@@ -20,6 +20,7 @@ export default (state = initialState, action) => {
             };
         case ActionTypes.HIDE:
             return {
+                ...state,
                 category: '',
                 title: '',
                 message: '',
