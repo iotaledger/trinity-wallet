@@ -381,7 +381,7 @@ class SnapshotTransition extends Component {
                     backdropTransitionOutTiming={200}
                     backdropColor={theme.body.bg}
                     backdropOpacity={0.6}
-                    style={{ alignItems: 'center' }}
+                    style={{ alignItems: 'center', margin: 0 }}
                     isVisible={this.state.isModalVisible}
                     onBackButtonPress={() => this.hideModal()}
                     hideModalContentWhileAnimating
