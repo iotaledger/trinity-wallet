@@ -421,6 +421,7 @@ export class Send extends Component {
                         sendTransfer={() => this.sendTransfer()}
                         hideModal={(callback) => this.hideModal(callback)}
                         body={body}
+                        bar={bar}
                         borderColor={{ borderColor: body.color }}
                         textColor={{ color: body.color }}
                         setSendingTransferFlag={() => this.setSendingTransferFlag()}
@@ -734,10 +735,6 @@ export class Send extends Component {
         this.addressField.blur();
         this.amountField.blur();
         this.messageField.blur();
-    }
-
-    hideModal() {
-        this.setState({ isModalVisible: false });
     }
 
     renderModalContent = () => <View>{this.state.modalContent}</View>;
