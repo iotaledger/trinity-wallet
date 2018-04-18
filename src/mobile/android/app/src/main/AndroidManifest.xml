@@ -20,41 +20,42 @@
         tools:overrideLibrary="com.rnprint.RNPrint"/>
 
     <application
-      android:name=".MainApplication"
-      android:allowBackup="false"
-      android:label="@string/app_name"
-      android:icon="@mipmap/icon"
-      android:theme="@style/AppTheme"
-      tools:replace="android:allowBackup"
-        >
-    <meta-data
-        android:name="io.fabric.ApiKey"
-        android:value="e741ca311eddc2a22fa56c2dad19b440babbddbc"
-        tools:replace="android:value"
-        />
-    <meta-data
-        android:name="com.bugsnag.android.API_KEY"
-        android:value="724eeaea61c47c132b8c9acb2c8c2445"
-        />
-      <activity
-        android:name=".MainActivity"
-        android:theme="@style/SplashTheme"
+        android:name=".MainApplication"
+        android:allowBackup="false"
         android:label="@string/app_name"
-        android:configChanges="keyboard|keyboardHidden|screenSize"
-        android:screenOrientation="portrait"
-        android:windowSoftInputMode="adjustPan|adjustResize|stateAlwaysHidden"
-      >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-          <intent-filter android:label="filter_react_native">
-              <action android:name="android.intent.action.VIEW" />
-              <category android:name="android.intent.category.DEFAULT" />
-              <category android:name="android.intent.category.BROWSABLE" />
-              <data android:scheme="iota" />
-          </intent-filter>
-      </activity>
-      <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+        android:icon="@mipmap/icon"
+        android:theme="@style/AppTheme"
+        tools:replace="android:allowBackup"
+        tools:node="replace"
+        >
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="e741ca311eddc2a22fa56c2dad19b440babbddbc"
+            tools:replace="android:value"
+            />
+        <meta-data
+            android:name="com.bugsnag.android.API_KEY"
+            android:value="724eeaea61c47c132b8c9acb2c8c2445"
+            />
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/SplashTheme"
+            android:label="@string/app_name"
+            android:configChanges="keyboard|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|adjustResize|stateAlwaysHidden"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter android:label="filter_react_native">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="iota" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
     </application>
 </manifest>

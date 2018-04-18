@@ -400,8 +400,10 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Hvorfor kan jeg bruge min fulde saldo?",
-        "spentAddressExplanation": "Du har penge på en eller flere brugte adresser. Adressegenbrug er farligt i IOTA og denne tegnebog tillader dig derfor ikke at sende fra samme adresse mere end én gang.",
-        "discordInformation": "Søg venligst over på hjælpekanalen #help på Discord app'en for at finde ud af hvad du kan gøre."
+        "spentAddressExplanation":
+            "Du har penge på en eller flere brugte adresser. Adressegenbrug er farligt i IOTA og denne tegnebog tillader dig derfor ikke at sende fra samme adresse mere end én gang.",
+        "discordInformation":
+            "Søg venligst over på hjælpekanalen #help på Discord app'en for at finde ud af hvad du kan gøre."
     },
     "deleteAccount": {
         "areYouSure": "<0></0> <1>Er du sikker på du vil slette</1> <2></2> <3>{{accountName}}?</3>",
@@ -514,11 +516,13 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Fejl under hentning af opdateringsdata",
-        "errorRetrievingUpdateDataExplanation": "Der opstod en fejl under hentning af opdateringsdata. Prøv venligst igen.",
+        "errorRetrievingUpdateDataExplanation":
+            "Der opstod en fejl under hentning af opdateringsdata. Prøv venligst igen.",
         "noUpdatesAvailable": "Ingen tilgængelige opdateringer",
         "noUpdatesAvailableExplanation": "Du har den seneste computer-version af IOTA Trinity tegnebogen!",
         "newVersionAvailable": "Ny version tilgængelig",
-        "newVersionAvailableExplanation": "En ny <strong>Trinity</strong> <strong>{{version}}</strong> version er tilgængelig. Læs venligst udgivelsesnoterne nøje og kontroller downloadkilden før du opdaterer:",
+        "newVersionAvailableExplanation":
+            "En ny <strong>Trinity</strong> <strong>{{version}}</strong> version er tilgængelig. Læs venligst udgivelsesnoterne nøje og kontroller downloadkilden før du opdaterer:",
         "downloadRelease": "Download version",
         "skipUpdate": "Spring opdatering over"
     }
