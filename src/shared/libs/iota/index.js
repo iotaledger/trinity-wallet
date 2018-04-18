@@ -1,4 +1,5 @@
 import IOTA from 'iota.lib.js';
+import ProxyPolyfill from 'proxy-polyfill/src/proxy';
 import { nodes, defaultNode } from '../../config';
 
 const iotaAPI = new IOTA({ provider: defaultNode });
@@ -100,7 +101,8 @@ const autoNodeSwitchHandler = {
 
 // patch the auto node switcher into the API object
 function injectAPIProxy() {
-    iotaAPI.api = new Proxy(iotaAPI.api, autoNodeSwitchHandler);
+    const args = [iotaAPI.api, autoNodeSwitchHandler];
+    iotaAPI.api = typeof Proxy !== 'undefined' ? new Proxy(...args) : new ProxyPolyfill(...args);
 }
 
 export const getRandomNode = () => {
