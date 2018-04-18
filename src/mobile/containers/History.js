@@ -11,6 +11,7 @@ import { getTransfersForSelectedAccount, getSelectedAccountName } from 'iota-wal
 import { getAccountInfo } from 'iota-wallet-shared-modules/actions/accounts';
 import { OptimizedFlatList } from 'react-native-optimized-flatlist';
 import { round } from 'iota-wallet-shared-modules/libs/utils';
+import { toggleModalActivity } from 'iota-wallet-shared-modules/actions/ui';
 import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/iota/utils';
 import tinycolor from 'tinycolor2';
 import TransactionRow from '../components/TransactionRow';
@@ -108,6 +109,8 @@ class History extends Component {
         mode: PropTypes.string.isRequired,
         /** Hash for wallet's password */
         password: PropTypes.string.isRequired,
+        /** Sets whether modal is active or inactive */
+        toggleModalActivity: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -248,6 +251,7 @@ class History extends Component {
                 rebroadcast: (bundle) => this.props.broadcastBundle(bundle, selectedAccountName),
                 promote: (bundle) => this.props.promoteTransaction(bundle, selectedAccountName),
                 generateAlert: this.props.generateAlert, // Already declated in upper scope
+                toggleModalActivity: () => this.props.toggleModalActivity(),
                 addresses: [...map(inputs, withUnitAndChecksum), ...map(outputs, withUnitAndChecksum)],
                 status: incoming ? t('history:receive') : t('history:send'),
                 confirmation: computeConfirmationStatus(persistence, incoming),
@@ -366,6 +370,7 @@ const mapDispatchToProps = {
     getAccountInfo,
     broadcastBundle,
     promoteTransaction,
+    toggleModalActivity,
 };
 
 export default translate(['history', 'global'])(connect(mapStateToProps, mapDispatchToProps)(History));

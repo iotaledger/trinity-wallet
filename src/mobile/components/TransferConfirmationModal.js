@@ -160,9 +160,7 @@ class TransferConfirmationModal extends Component {
                     {(value !== 0 && (
                         <View style={styles.textContainer}>
                             <Text style={[styles.text, textColor, { paddingTop: height / 50 }]}>
-                                <Text style={[styles.regularText, textColor]}>
-                                    You are about to send {transferContents} from
-                                </Text>
+                                <Text style={[styles.regularText, textColor]}>Sending {transferContents} from</Text>
                             </Text>
                             <Text style={[styles.boldText, textColor, { paddingTop: height / 25 }]}>
                                 {selectedAccountName}
