@@ -9,9 +9,10 @@ import Modal from 'react-native-modal';
 import { getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
 import { shouldPreventAction } from 'iota-wallet-shared-modules/selectors/global';
 import { deleteAccount } from 'iota-wallet-shared-modules/actions/accounts';
+import { toggleModalActivity } from 'iota-wallet-shared-modules/actions/ui';
+import StatefulDropdownAlert from '../containers/StatefulDropdownAlert';
 import Fonts from '../theme/fonts';
 import { deleteSeedFromKeychain } from '../utils/keychain';
-
 import OnboardingButtons from '../containers/OnboardingButtons';
 import { width, height } from '../utils/dimensions';
 import { getPasswordHash } from '../utils/crypto';
@@ -126,6 +127,8 @@ class DeleteAccount extends Component {
          * @param {String} text - notification explanation
          */
         generateAlert: PropTypes.func.isRequired,
+        /** Sets whether modal is active or inactive */
+        toggleModalActivity: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -187,9 +190,15 @@ class DeleteAccount extends Component {
             .catch((err) => console.error(err));
     }
 
-    showModal = () => this.setState({ isModalVisible: true });
+    showModal = () => {
+        this.props.toggleModalActivity();
+        this.setState({ isModalVisible: true });
+    };
 
-    hideModal = () => this.setState({ isModalVisible: false });
+    hideModal = () => {
+        this.props.toggleModalActivity();
+        this.setState({ isModalVisible: false });
+    };
 
     renderModalContent = (borderColor, textColor) => {
         const { t, theme, selectedAccountName } = this.props;
@@ -221,6 +230,7 @@ class DeleteAccount extends Component {
                         containerWidth={{ width: width / 1.4 }}
                     />
                 </View>
+                <StatefulDropdownAlert backgroundColor={theme.bar.bg} />
             </View>
         );
     };
@@ -330,6 +340,7 @@ const mapDispatchToProps = {
     setSetting,
     generateAlert,
     deleteAccount,
+    toggleModalActivity,
 };
 
 export default translate(['deleteAccount', 'global'])(connect(mapStateToProps, mapDispatchToProps)(DeleteAccount));

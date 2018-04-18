@@ -29,6 +29,7 @@ const initialState = {
         isGenerated: false,
     },
     doNotMinimise: false,
+    isModalActive: false,
 };
 
 export default (state = initialState, action) => {
@@ -218,6 +219,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 doNotMinimise: action.payload,
+            };
+        case UiActionTypes.TOGGLE_MODAL_ACTIVITY:
+            return {
+                ...state,
+                isModalActive: !state.isModalActive,
             };
         default:
             return state;
