@@ -158,7 +158,7 @@ export class MainSettings extends Component {
                 style={{ flex: 1 }}
                 hideModal={this.toggleModalDisplay}
                 logout={this.logout}
-                backgroundColor={body.bg}
+                backgroundColor={{ backgroundColor: body.bg }}
                 textColor={textColor}
                 borderColor={{ borderColor: bodyColor }}
                 barBg={bar.bg}
@@ -310,7 +310,7 @@ export class MainSettings extends Component {
                     backdropTransitionOutTiming={200}
                     backdropColor={theme.body.bg}
                     backdropOpacity={0.8}
-                    style={{ alignItems: 'center' }}
+                    style={{ alignItems: 'center', margin: 0 }}
                     isVisible={this.state.isModalActive}
                     onBackButtonPress={this.toggleModalDisplay}
                     useNativeDriver={isAndroid ? true : false}

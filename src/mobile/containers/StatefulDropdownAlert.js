@@ -89,7 +89,6 @@ class StatefulDropdownAlert extends Component {
         const { backgroundColor, onRef } = this.props;
         const closeAfter = closeInterval;
         const statusBarStyle = tinycolor(backgroundColor).isDark() ? 'light-content' : 'dark-content';
-
         return (
             <DropdownAlert
                 ref={onRef || this.refFunc}

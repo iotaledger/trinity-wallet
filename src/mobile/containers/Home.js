@@ -5,7 +5,7 @@ import { Linking, StyleSheet, View, KeyboardAvoidingView, Animated, Keyboard } f
 import { connect } from 'react-redux';
 import { changeHomeScreenRoute, toggleTopBarDisplay } from 'iota-wallet-shared-modules/actions/home';
 import { setPassword, setSetting, setDeepLink } from 'iota-wallet-shared-modules/actions/wallet';
-import { setUserActivity } from 'iota-wallet-shared-modules/actions/ui';
+import { setUserActivity, toggleModalActivity } from 'iota-wallet-shared-modules/actions/ui';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { parseAddress } from 'iota-wallet-shared-modules/libs/iota/utils';
 import { getPasswordHash } from '../utils/crypto';
@@ -92,6 +92,8 @@ class Home extends Component {
         setDeepLink: PropTypes.func.isRequired,
         /** Determines whether modal is open */
         isModalActive: PropTypes.bool.isRequired,
+        /** Sets whether modal is active or inactive */
+        toggleModalActivity: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -195,11 +197,14 @@ class Home extends Component {
     };
 
     handleInactivity = () => {
-        const { isTransitioning, isSyncing, isSendingTransfer } = this.props;
+        const { isTransitioning, isSyncing, isSendingTransfer, isModalActive } = this.props;
         const doingSomething = isTransitioning || isSyncing || isSendingTransfer;
         if (doingSomething) {
             this.userInactivity.setActiveFromComponent();
         } else {
+            if (isModalActive) {
+                this.props.toggleModalActivity();
+            }
             this.resetSettings();
             this.props.setUserActivity({ inactive: true });
         }
@@ -253,7 +258,7 @@ class Home extends Component {
                 ref={(c) => {
                     this.userInactivity = c;
                 }}
-                timeForInactivity={300000}
+                timeForInactivity={10000}
                 checkInterval={3000}
                 onInactivity={this.handleInactivity}
             >
@@ -377,6 +382,7 @@ const mapDispatchToProps = {
     setSetting,
     toggleTopBarDisplay,
     setDeepLink,
+    toggleModalActivity,
 };
 
 export default WithUserActivity()(

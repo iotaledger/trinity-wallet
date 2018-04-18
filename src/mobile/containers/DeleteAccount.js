@@ -22,6 +22,13 @@ import { Icon } from '../theme/icons.js';
 import { isAndroid } from '../utils/device';
 
 const styles = StyleSheet.create({
+    modalContainer: {
+        flex: 1,
+        alignItems: 'center',
+        width,
+        height,
+        justifyContent: 'center',
+    },
     container: {
         flex: 1,
         alignItems: 'center',
@@ -202,17 +209,11 @@ class DeleteAccount extends Component {
 
     renderModalContent = (borderColor, textColor) => {
         const { t, theme, selectedAccountName } = this.props;
-        const backgroundColor = theme.body.bg;
+        const backgroundColor = { backgroundColor: theme.body.bg };
 
         return (
-            <View
-                style={{
-                    width: width / 1.2,
-                    alignItems: 'center',
-                    backgroundColor,
-                }}
-            >
-                <View style={[styles.modalContent, borderColor]}>
+            <View style={styles.modalContainer}>
+                <View style={[styles.modalContent, borderColor, backgroundColor]}>
                     <Text style={[styles.modalInfoText, { paddingBottom: height / 30 }, textColor]}>
                         {/*FIXME: localization*/}
                         {/*{t('areYouSure')}*/}
