@@ -96,6 +96,10 @@ describe('Testing TransactionRow component', () => {
         it('should require a disableWHen boolean as a prop', () => {
             expect(TransactionRow.propTypes.disableWhen).toEqual(PropTypes.bool.isRequired);
         });
+
+        it('should require a toggleModalActivity func as a prop', () => {
+            expect(TransactionRow.propTypes.toggleModalActivity).toEqual(PropTypes.func.isRequired);
+        });
     });
 
     describe('when renders', () => {
