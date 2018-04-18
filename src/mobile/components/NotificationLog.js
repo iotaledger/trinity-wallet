@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet, TouchableOpacity, Text, ListView } from 'react-native';
 import { formatTimeAs } from 'iota-wallet-shared-modules/libs/date';
+import StatefulDropdownAlert from '../containers/StatefulDropdownAlert';
 import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
 
@@ -70,8 +71,10 @@ class NotificationLog extends PureComponent {
         borderColor: PropTypes.object.isRequired,
         /** Content text color */
         textColor: PropTypes.object.isRequired,
-        /** Content border bottom color */
+        /** Bar color */
         barColor: PropTypes.string.isRequired,
+        /** Bar background color */
+        barBg: PropTypes.string.isRequired,
         /** Hide active modal */
         hideModal: PropTypes.func.isRequired,
         /** List of notifications */
@@ -86,7 +89,7 @@ class NotificationLog extends PureComponent {
     }
 
     render() {
-        const { backgroundColor, textColor, borderColor, barColor, notificationLog, hideModal } = this.props;
+        const { backgroundColor, textColor, borderColor, barColor, barBg, notificationLog, hideModal } = this.props;
         const lineBorder = { borderBottomColor: barColor };
         const trimmedLog = notificationLog.reverse().slice(0, 10);
 
@@ -113,6 +116,7 @@ class NotificationLog extends PureComponent {
                         </View>
                     </TouchableOpacity>
                 </View>
+                <StatefulDropdownAlert backgroundColor={barBg} />
             </TouchableOpacity>
         );
     }

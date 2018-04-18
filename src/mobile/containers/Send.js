@@ -30,6 +30,7 @@ import {
     setSendMessageField,
     setSendDenomination,
     setDoNotMinimise,
+    toggleModalActivity,
 } from 'iota-wallet-shared-modules/actions/ui';
 import { parse, round } from 'iota-wallet-shared-modules/libs/utils';
 import {
@@ -165,6 +166,8 @@ export class Send extends Component {
         setDoNotMinimise: PropTypes.func.isRequired,
         /** Determines whether keyboard is open on iOS */
         isIOSKeyboardActive: PropTypes.bool.isRequired,
+        /** Sets whether modal is active or inactive */
+        toggleModalActivity: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -443,6 +446,7 @@ export class Send extends Component {
                     <UsedAddressModal
                         hideModal={(callback) => this.hideModal(callback)}
                         body={body}
+                        bar={bar}
                         borderColor={{ borderColor: body.color }}
                         textColor={{ color: body.color }}
                     />
@@ -599,6 +603,7 @@ export class Send extends Component {
 
     showModal = () => {
         const { isIOSKeyboardActive } = this.props;
+        this.props.toggleModalActivity();
         if (isIOSKeyboardActive) {
             this.blurTextFields();
             timer.setTimeout(
@@ -616,7 +621,8 @@ export class Send extends Component {
         }
     };
 
-    hideModal = (callback) =>
+    hideModal = (callback) => {
+        this.props.toggleModalActivity();
         this.setState({ isModalVisible: false }, () => {
             const callable = (fn) => isFunction(fn);
 
@@ -624,6 +630,7 @@ export class Send extends Component {
                 setTimeout(callback);
             }
         });
+    };
 
     enoughBalance() {
         const { amount, balance } = this.props;
@@ -987,6 +994,7 @@ const mapDispatchToProps = {
     generateTransferErrorAlert,
     setDeepLinkInactive,
     setDoNotMinimise,
+    toggleModalActivity,
 };
 
 export default translate(['send', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Send));

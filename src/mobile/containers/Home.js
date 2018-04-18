@@ -90,6 +90,8 @@ class Home extends Component {
          * @param {string} - message
          */
         setDeepLink: PropTypes.func.isRequired,
+        /** Determines whether modal is open */
+        isModalActive: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
@@ -239,6 +241,7 @@ class Home extends Component {
             inactive,
             minimised,
             isFingerprintEnabled,
+            isModalActive,
             theme: { bar, body, negative, positive, primary },
         } = this.props;
         const { isIOSKeyboardActive } = this.state;
@@ -344,7 +347,7 @@ class Home extends Component {
                     )}
                     {minimised && <View />}
                     <PollComponent />
-                    <StatefulDropdownAlert backgroundColor={bar.bg} />
+                    {!isModalActive && <StatefulDropdownAlert backgroundColor={bar.bg} />}
                 </View>
             </UserInactivity>
         );
@@ -363,6 +366,7 @@ const mapStateToProps = (state) => ({
     currentSetting: state.wallet.currentSetting,
     isTopBarActive: state.home.isTopBarActive,
     isFingerprintEnabled: state.settings.isFingerprintEnabled,
+    isModalActive: state.ui.isModalActive,
 });
 
 const mapDispatchToProps = {

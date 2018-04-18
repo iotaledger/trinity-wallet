@@ -124,6 +124,10 @@ export default class TransactionRow extends PureComponent {
                 unit: PropTypes.string.isRequired,
             }),
         ).isRequired,
+        /** Sets whether modal is active or inactive
+         * @param {boolean} active
+         */
+        toggleModalActivity: PropTypes.func.isRequired,
         /** Content styles */
         style: PropTypes.shape({
             titleColor: PropTypes.string.isRequired,
@@ -154,10 +158,15 @@ export default class TransactionRow extends PureComponent {
     getModalProps() {
         const props = this.props;
 
-        return { ...props, onPress: this.toggleModal };
+        return {
+            ...props,
+            onPress: this.toggleModal,
+            generateAlert: (error, title, explanation) => this.props.generateAlert(error, title, explanation),
+        };
     }
 
     toggleModal() {
+        this.props.toggleModalActivity();
         this.setState({ isModalActive: !this.state.isModalActive });
     }
 
