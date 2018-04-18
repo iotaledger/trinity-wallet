@@ -6,6 +6,7 @@ import authenticator from 'authenticator';
 import PropTypes from 'prop-types';
 import KeepAwake from 'react-native-keep-awake';
 import { Navigation } from 'react-native-navigation';
+import SplashScreen from 'react-native-splash-screen';
 import { Linking, StyleSheet, View } from 'react-native';
 import { parseAddress } from 'iota-wallet-shared-modules/libs/iota/utils';
 import { setFullNode } from 'iota-wallet-shared-modules/actions/settings';
@@ -114,6 +115,7 @@ class Login extends Component {
     }
 
     componentDidMount() {
+        SplashScreen.hide();
         this.checkForUpdates();
         KeepAwake.deactivate();
         this.props.setUserActivity({ inactive: false });
