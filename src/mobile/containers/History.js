@@ -111,6 +111,8 @@ class History extends Component {
         password: PropTypes.string.isRequired,
         /** Sets whether modal is active or inactive */
         toggleModalActivity: PropTypes.func.isRequired,
+        /** Determines whether modal is open */
+        isModalActive: PropTypes.bool.isRequired,
     };
 
     constructor() {
@@ -223,6 +225,7 @@ class History extends Component {
             selectedAccountName,
             isBroadcastingBundle,
             isPromotingTransaction,
+            isModalActive
         } = this.props;
         const containerBorderColor = tinycolor(body.bg).isDark() ? 'rgba(255, 255, 255, 0.25)' : 'rgba(0, 0, 0, 0.25)';
         const containerBackgroundColor = tinycolor(body.bg).isDark() ? 'rgba(255, 255, 255, 0.08)' : 'transparent';
@@ -251,7 +254,8 @@ class History extends Component {
                 rebroadcast: (bundle) => this.props.broadcastBundle(bundle, selectedAccountName),
                 promote: (bundle) => this.props.promoteTransaction(bundle, selectedAccountName),
                 generateAlert: this.props.generateAlert, // Already declated in upper scope
-                toggleModalActivity: () => this.props.toggleModalActivity(),
+                toggleModalActivity: this.props.toggleModalActivity,
+                isModalActive: isModalActive,
                 addresses: [...map(inputs, withUnitAndChecksum), ...map(outputs, withUnitAndChecksum)],
                 status: incoming ? t('history:receive') : t('history:send'),
                 confirmation: computeConfirmationStatus(persistence, incoming),
@@ -363,6 +367,7 @@ const mapStateToProps = (state) => ({
     isBroadcastingBundle: state.ui.isBroadcastingBundle,
     isPromotingTransaction: state.ui.isPromotingTransaction,
     password: state.wallet.password,
+    isModalActive: state.ui.isModalActive,
 });
 
 const mapDispatchToProps = {

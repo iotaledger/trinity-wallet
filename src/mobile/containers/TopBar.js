@@ -10,7 +10,6 @@ import { toggleTopBarDisplay } from 'iota-wallet-shared-modules/actions/home';
 import { setSeedIndex, setReceiveAddress } from 'iota-wallet-shared-modules/actions/wallet';
 import { clearLog } from 'iota-wallet-shared-modules/actions/alerts';
 import { getBalanceForSelectedAccount, selectAccountInfo } from 'iota-wallet-shared-modules/selectors/accounts';
-import { toggleModalActivity } from 'iota-wallet-shared-modules/actions/ui';
 import {
     View,
     Text,
@@ -121,8 +120,6 @@ class TopBar extends Component {
         clearLog: PropTypes.func.isRequired,
         topBarHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.object]).isRequired,
         isIOSKeyboardActive: PropTypes.bool.isRequired,
-        /** Sets whether modal is active or inactive */
-        toggleModalActivity: PropTypes.func.isRequired,
     };
 
     static filterSeedTitles(accountNames, currentSeedIndex) {
@@ -198,12 +195,10 @@ class TopBar extends Component {
     }
 
     showModal() {
-        this.props.toggleModalActivity();
         this.setState({ isModalVisible: true });
     }
 
     hideModal() {
-        this.props.toggleModalActivity();
         this.setState({ isModalVisible: false });
     }
 
@@ -335,7 +330,7 @@ class TopBar extends Component {
             topBarHeight,
             isIOSKeyboardActive,
         } = this.props;
-
+        const { isModalVisible } = this.state;
         const children = this.renderTitles();
         const hasMultipleSeeds = size(TopBar.filterSeedTitles(accountNames, seedIndex));
         const shouldDisable = this.shouldDisable();
@@ -404,7 +399,7 @@ class TopBar extends Component {
                             backdropTransitionOutTiming={200}
                             backdropColor={body.bg}
                             style={{ alignItems: 'center', margin: 0 }}
-                            isVisible={this.state.isModalVisible}
+                            isVisible={isModalVisible}
                             onBackButtonPress={() => this.hideModal()}
                             onBackdropPress={() => this.hideModal()}
                             hideModalContentWhileAnimating
@@ -452,7 +447,6 @@ const mapDispatchToProps = {
     setReceiveAddress,
     setPollFor,
     clearLog,
-    toggleModalActivity,
 };
 
 export default translate('global')(connect(mapStateToProps, mapDispatchToProps)(TopBar));
