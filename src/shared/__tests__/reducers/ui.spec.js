@@ -29,6 +29,7 @@ describe('Reducer: ui', () => {
                     isGenerated: false,
                 },
                 doNotMinimise: false,
+                isModalActive: false,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
@@ -985,6 +986,44 @@ describe('Reducer: ui', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 doNotMinimise: true,
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
+
+    describe('IOTA/UI/TOGGLE_MODAL_ACTIVITY', () => {
+        it('should set "isModalActive" state prop to true', () => {
+            const initialState = {
+                isModalActive: false,
+            };
+
+            const action = {
+                type: 'IOTA/UI/TOGGLE_MODAL_ACTIVITY',
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                isModalActive: true,
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
+
+    describe('IOTA/UI/TOGGLE_MODAL_ACTIVITY', () => {
+        it('should set "isModalActive" state prop to false', () => {
+            const initialState = {
+                isModalActive: true,
+            };
+
+            const action = {
+                type: 'IOTA/UI/TOGGLE_MODAL_ACTIVITY',
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                isModalActive: false,
             };
 
             expect(newState).to.eql(expectedState);

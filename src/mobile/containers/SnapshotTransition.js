@@ -13,8 +13,10 @@ import {
 } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { getSelectedAccountName, getAddressesForSelectedAccount } from 'iota-wallet-shared-modules/selectors/accounts';
+import { toggleModalActivity } from 'iota-wallet-shared-modules/actions/ui';
 import { shouldPreventAction } from 'iota-wallet-shared-modules/selectors/global';
 import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/iota/utils';
+import StatefulDropdownAlert from '../containers/StatefulDropdownAlert';
 import OnboardingButtons from '../containers/OnboardingButtons';
 import GENERAL from '../theme/general';
 import { getSeedFromKeychain } from '../utils/keychain';
@@ -156,6 +158,8 @@ class SnapshotTransition extends Component {
         isAttachingToTangle: PropTypes.bool.isRequired,
         /** Wallet password  */
         password: PropTypes.string.isRequired,
+        /** Sets whether modal is active or inactive */
+        toggleModalActivity: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -228,9 +232,15 @@ class SnapshotTransition extends Component {
         }
     }
 
-    showModal = () => this.setState({ isModalVisible: true });
+    showModal = () => {
+        this.props.toggleModalActivity();
+        this.setState({ isModalVisible: true });
+    };
 
-    hideModal = () => this.setState({ isModalVisible: false });
+    hideModal = () => {
+        this.props.toggleModalActivity();
+        this.setState({ isModalVisible: false });
+    };
 
     renderModalContent = () => {
         const { transitionBalance, t, theme } = this.props;
@@ -254,6 +264,7 @@ class SnapshotTransition extends Component {
                         containerWidth={{ width: width / 1.4 }}
                     />
                 </View>
+                <StatefulDropdownAlert backgroundColor={theme.bar.bg} />
             </View>
         );
     };
@@ -370,7 +381,7 @@ class SnapshotTransition extends Component {
                     backdropTransitionOutTiming={200}
                     backdropColor={theme.body.bg}
                     backdropOpacity={0.6}
-                    style={{ alignItems: 'center' }}
+                    style={{ alignItems: 'center', margin: 0 }}
                     isVisible={this.state.isModalVisible}
                     onBackButtonPress={() => this.hideModal()}
                     hideModalContentWhileAnimating
@@ -402,6 +413,7 @@ const mapDispatchToProps = {
     generateAddressesAndGetBalance,
     completeSnapshotTransition,
     generateAlert,
+    toggleModalActivity,
 };
 
 export default translate(['global'])(connect(mapStateToProps, mapDispatchToProps)(SnapshotTransition));

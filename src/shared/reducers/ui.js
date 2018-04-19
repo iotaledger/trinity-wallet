@@ -29,6 +29,7 @@ const initialState = {
         isGenerated: false,
     },
     doNotMinimise: false,
+    isModalActive: false,
 };
 
 export default (state = initialState, action) => {
@@ -141,11 +142,31 @@ export default (state = initialState, action) => {
         case WalletActionTypes.CLEAR_WALLET_DATA:
             return {
                 ...state,
+                isGeneratingReceiveAddress: false,
+                isFetchingCurrencyData: false,
+                hasErrorFetchingCurrencyData: false,
+                isBroadcastingBundle: false,
+                isPromotingTransaction: false,
+                isTransitioning: false,
+                isAttachingToTangle: false,
+                isFetchingLatestAccountInfoOnLogin: false,
+                hasErrorFetchingAccountInfoOnLogin: false,
                 isSendingTransfer: false,
-                sendDenomination: 'i',
+                isSyncing: false,
+                inactive: false,
+                minimised: false,
                 sendAddressFieldText: '',
                 sendAmountFieldText: '',
                 sendMessageFieldText: '',
+                loginPasswordFieldText: '',
+                sendDenomination: 'i',
+                onboarding: {
+                    name: '',
+                    seed: null,
+                    isGenerated: false,
+                },
+                doNotMinimise: false,
+                isModalActive: false,
             };
         case AccountsActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_REQUEST:
             return {
@@ -225,6 +246,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 doNotMinimise: action.payload,
+            };
+        case UiActionTypes.TOGGLE_MODAL_ACTIVITY:
+            return {
+                ...state,
+                isModalActive: !state.isModalActive,
             };
         default:
             return state;
