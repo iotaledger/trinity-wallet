@@ -6,6 +6,7 @@ import authenticator from 'authenticator';
 import PropTypes from 'prop-types';
 import KeepAwake from 'react-native-keep-awake';
 import { Navigation } from 'react-native-navigation';
+import SplashScreen from 'react-native-splash-screen';
 import { Linking, StyleSheet, View } from 'react-native';
 import { parseAddress } from 'iota-wallet-shared-modules/libs/iota/utils';
 import { setFullNode } from 'iota-wallet-shared-modules/actions/settings';
@@ -24,6 +25,7 @@ import { getPasswordHash } from '../utils/crypto';
 import { migrate } from '../../shared/actions/app';
 import { persistor, persistConfig } from '../store';
 import { width, height } from '../utils/dimensions';
+import { isAndroid } from '../utils/device';
 
 const styles = StyleSheet.create({
     container: {
@@ -114,6 +116,9 @@ class Login extends Component {
     }
 
     componentDidMount() {
+        if (!isAndroid) {
+            SplashScreen.hide();
+        }
         this.checkForUpdates();
         KeepAwake.deactivate();
         this.props.setUserActivity({ inactive: false });

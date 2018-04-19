@@ -8,6 +8,7 @@
  */
 
 #import "AppDelegate.h"
+#import "SplashScreen.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 
@@ -50,6 +51,7 @@
   [BugsnagReactNative start];
   // TODO: Move this to where you establish a user session
   [self logUser];
+  [SplashScreen show];
   return YES;
 }
 

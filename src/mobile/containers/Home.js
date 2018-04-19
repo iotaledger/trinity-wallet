@@ -5,7 +5,7 @@ import { Linking, StyleSheet, View, KeyboardAvoidingView, Animated, Keyboard } f
 import { connect } from 'react-redux';
 import { changeHomeScreenRoute, toggleTopBarDisplay } from 'iota-wallet-shared-modules/actions/home';
 import { setPassword, setSetting, setDeepLink } from 'iota-wallet-shared-modules/actions/wallet';
-import { setUserActivity } from 'iota-wallet-shared-modules/actions/ui';
+import { setUserActivity, toggleModalActivity } from 'iota-wallet-shared-modules/actions/ui';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { parseAddress } from 'iota-wallet-shared-modules/libs/iota/utils';
 import { getPasswordHash } from '../utils/crypto';
@@ -90,6 +90,10 @@ class Home extends Component {
          * @param {string} - message
          */
         setDeepLink: PropTypes.func.isRequired,
+        /** Determines whether modal is open */
+        isModalActive: PropTypes.bool.isRequired,
+        /** Sets whether modal is active or inactive */
+        toggleModalActivity: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -97,7 +101,7 @@ class Home extends Component {
         this.onLoginPress = this.onLoginPress.bind(this);
         this.setDeepUrl = this.setDeepUrl.bind(this);
         this.viewFlex = new Animated.Value(0.7);
-        this.topBarHeight = new Animated.Value(height / 8.8);
+        this.topBarHeight = isAndroid ? height / 8 : new Animated.Value(height / 8.8);
         this.state = {
             isIOSKeyboardActive: false,
         };
@@ -193,11 +197,14 @@ class Home extends Component {
     };
 
     handleInactivity = () => {
-        const { isTransitioning, isSyncing, isSendingTransfer } = this.props;
+        const { isTransitioning, isSyncing, isSendingTransfer, isModalActive } = this.props;
         const doingSomething = isTransitioning || isSyncing || isSendingTransfer;
         if (doingSomething) {
             this.userInactivity.setActiveFromComponent();
         } else {
+            if (isModalActive) {
+                this.props.toggleModalActivity();
+            }
             this.resetSettings();
             this.props.setUserActivity({ inactive: true });
         }
@@ -239,6 +246,7 @@ class Home extends Component {
             inactive,
             minimised,
             isFingerprintEnabled,
+            isModalActive,
             theme: { bar, body, negative, positive, primary },
         } = this.props;
         const { isIOSKeyboardActive } = this.state;
@@ -255,7 +263,7 @@ class Home extends Component {
                 onInactivity={this.handleInactivity}
             >
                 <View style={{ flex: 1, backgroundColor: body.bg }}>
-                    <DynamicStatusBar backgroundColor={bar.bg} />
+                    <DynamicStatusBar backgroundColor={bar.bg} isModalActive={isModalActive} />
                     {!inactive &&
                         !minimised && (
                             <View style={{ flex: 1 }}>
@@ -269,6 +277,7 @@ class Home extends Component {
                                             navigator={navigator}
                                             onTabSwitch={(name) => this.onTabSwitch(name)}
                                             handleCloseTopBar={() => this.handleCloseTopBar()}
+                                            isIOSKeyboardActive={isIOSKeyboardActive}
                                         />
                                     </View>
                                 </KeyboardAvoidingView>
@@ -343,7 +352,7 @@ class Home extends Component {
                     )}
                     {minimised && <View />}
                     <PollComponent />
-                    <StatefulDropdownAlert backgroundColor={bar.bg} />
+                    {!isModalActive && <StatefulDropdownAlert backgroundColor={bar.bg} />}
                 </View>
             </UserInactivity>
         );
@@ -362,6 +371,7 @@ const mapStateToProps = (state) => ({
     currentSetting: state.wallet.currentSetting,
     isTopBarActive: state.home.isTopBarActive,
     isFingerprintEnabled: state.settings.isFingerprintEnabled,
+    isModalActive: state.ui.isModalActive,
 });
 
 const mapDispatchToProps = {
@@ -372,6 +382,7 @@ const mapDispatchToProps = {
     setSetting,
     toggleTopBarDisplay,
     setDeepLink,
+    toggleModalActivity,
 };
 
 export default WithUserActivity()(
