@@ -305,6 +305,11 @@ class History extends Component {
         return orderBy(formattedTransfers, 'time', ['desc']);
     }
 
+    resetModalProps() {
+        this.setState({ modalProps: null });
+        this.props.toggleModalActivity();
+    }
+
     renderTransactions() {
         const { theme: { primary }, t } = this.props;
         const { isRefreshing } = this.state;
@@ -353,11 +358,6 @@ class History extends Component {
                 }
             />
         );
-    }
-
-    resetModalProps() {
-        this.setState({ modalProps: null });
-        this.props.toggleModalActivity();
     }
 
     render() {
