@@ -150,7 +150,7 @@ dependencies {
     compile project(':react-native-detect-navbar-android')
     compile project(':react-native-os')
     compile (project(':react-native-camera')) {
-        exclude group: "com.google.android.gms"
+        exclude group: "com.android.support"
     }
     compile ("com.google.android.gms:play-services-vision:10.2.0") {
         force = true;
@@ -176,7 +176,6 @@ dependencies {
     compile project(':react-native-securerandom')
     compile project(':react-native-is-device-rooted')
     compile project(':randombytes')
-    compile 'com.android.support:exifinterface:26.1.0'
     compile project(':react-native-vector-icons')
     compile project(':bugsnag-react-native')
     compile project(':react-native-fingerprint-scanner')

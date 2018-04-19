@@ -19,7 +19,8 @@
         "invalidResponse": "Respon tidak sah",
         "invalidResponseExplanation": "Node mengembalikan response yang tidak valid.",
         "invalidResponsePollingExplanation": "Node mengembalikan response yang tidak valid ketika memungut suara.",
-        "invalidResponseFetchingAccount": "Node memberikan tanggapan yang tidak benar ketika menarik informasi dari akun anda. Silahkan coba node yang lain.",
+        "invalidResponseFetchingAccount":
+            "Node memberikan tanggapan yang tidak benar ketika menarik informasi dari akun anda. Silahkan coba node yang lain.",
         "invalidResponseSendingTransfer": "Node memberikan tanggapan yang tidak benar ketika melakukan pengiriman.",
         "seed": "Benih",
         "back": "KEMBALI",
@@ -85,7 +86,8 @@
         "cannotSendToOwnExplanation": "Anda tidak bisa mentransfer nilai ke salah satu alamat sendiri.",
         "pleaseWait": "Silahkan tunggu",
         "pleaseWaitExplanation": "Trinity sedang melakukan fungsi lain. Silahkan tunggu dan coba lagi.",
-        "pleaseWaitTransferExplanation": "Saldo yang tersedia saat ini sedang digunakan untuk transfer. Silahkan tunggu sampai salah satu telah dikonfirmasi sebelum mencoba lagi.",
+        "pleaseWaitTransferExplanation":
+            "Saldo yang tersedia saat ini sedang digunakan untuk transfer. Silahkan tunggu sampai salah satu telah dikonfirmasi sebelum mencoba lagi.",
         "snapshotTransitionInProgress": "Dalam proses transisi Snapshot",
         "snapshotTransitionInProgressExplanation": "Silahkan tunggu sampai transisi selesai.",
         "checkForUpdates": "Periksa pembaruan",
@@ -207,7 +209,8 @@
     "saveYourSeed": {
         "seedCleared": "Seed telah dihapus",
         "seedClearedExplanation": "Seed telah dihapus dari papan klip demi keamanan anda.",
-        "mustSaveYourSeed": "<0><0>Anda harus menyimpang Seed dengan </0><1>setidaknya</1><2> salah satu opsi dibawah ini.</2></0>"
+        "mustSaveYourSeed":
+            "<0><0>Anda harus menyimpang Seed dengan </0><1>setidaknya</1><2> salah satu opsi dibawah ini.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Seed salah",
@@ -233,7 +236,8 @@
         "invalidMessageExplanation": "Pesan anda mengandung karakter yang tidak valid.",
         "send": "KIRIM",
         "invalidAmount": "Jumlah nilai salah",
-        "invalidAmountExplanation": "Silahkan masukan angka transaksi yang valid. Ini akan membantu melihat rincian unit IOTA dihalaman ini yang bawah.",
+        "invalidAmountExplanation":
+            "Silahkan masukan angka transaksi yang valid. Ini akan membantu melihat rincian unit IOTA dihalaman ini yang bawah.",
         "maximumSelected": "Jumlah MAKSIMUM dipilih",
         "iotaUnits": "IOTA unit dijelaskan",
         "sendMax": "KIRIM MAKS"
@@ -258,8 +262,10 @@
     "modeSelection": {
         "expert": "Ahli",
         "standard": "Standar",
-        "expertModeExplanation": "Mode ahli akan menyediakan akses ke fitur tambahan seperti memajukan manual dan penyambungan kembali.",
-        "modesExplanation": "Hanya aktifkan mode ahli jika Anda adalah pengguna Tangle yang berpengalaman. Bila tidak ini dapat membuat pengalaman anda lebih rumit."
+        "expertModeExplanation":
+            "Mode ahli akan menyediakan akses ke fitur tambahan seperti memajukan manual dan penyambungan kembali.",
+        "modesExplanation":
+            "Hanya aktifkan mode ahli jika Anda adalah pengguna Tangle yang berpengalaman. Bila tidak ini dapat membuat pengalaman anda lebih rumit."
     },
     "settings": {
         "transferSending": "Sedang mentransfer",
@@ -316,8 +322,10 @@
     "walletSetup": {
         "okay": "Oke. Mari menyiapkan dompet Anda!",
         "doYouAlreadyHaveASeed": "Apakah anda sudah memiliki Seed yang ingin digunakan?",
-        "seedExplanation": "Seed di IOTA adalah nama pengguna dan kata sandi di akun anda yang dicampur dalam rangkaian 81 karakter.",
-        "explanation": "<0><0>Anda dapat mengakses dana anda dari</0><1> dompet manapun</1><2>, di</2><3> perangkat apapun</3><4>. Tetapi jika anda lupa Seed, Anda akan kehilangan IOTA.</4></0>",
+        "seedExplanation":
+            "Seed di IOTA adalah nama pengguna dan kata sandi di akun anda yang dicampur dalam rangkaian 81 karakter.",
+        "explanation":
+            "<0><0>Anda dapat mengakses dana anda dari</0><1> dompet manapun</1><2>, di</2><3> perangkat apapun</3><4>. Tetapi jika anda lupa Seed, Anda akan kehilangan IOTA.</4></0>",
         "keepSafe": "Harap disimpan Seed anda dengan baik.",
         "hint": "<0><0>Petunjuk:</0> Tekan TIDAK jika ini pertama kalinya menggunakan IOTA.</0>"
     },
@@ -386,7 +394,8 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Mengapa saya tidak bisa menghabiskan saldo saya?",
-        "spentAddressExplanation": "Anda memiliki dana pada satu atau lebih alamat yang telah digunakan. Menggunakan alamat kembali sangat berbahaya di IOTA, karena itu dompet ini tidak membolehkan menggunakan alamat yang sama lebih dari satu kali.",
+        "spentAddressExplanation":
+            "Anda memiliki dana pada satu atau lebih alamat yang telah digunakan. Menggunakan alamat kembali sangat berbahaya di IOTA, karena itu dompet ini tidak membolehkan menggunakan alamat yang sama lebih dari satu kali.",
         "discordInformation": "Silahkan menuju ke #help pada Discord untuk mengetahui apa yang dapat Anda lakukan."
     },
     "deleteAccount": {
@@ -418,7 +427,8 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "TINDAKAN INI TIDAK DAPAT DIKEMBALIKAN.",
-        "warning": "<0><0>Semua data dompet Anda termasuk </0> <1>Seeds, kata sandi,</1> <2>dan </2> <3>informasi akun lain</3> <4> akan hilang.</4></0>"
+        "warning":
+            "<0><0>Semua data dompet Anda termasuk </0> <1>Seeds, kata sandi,</1> <2>dan </2> <3>informasi akun lain</3> <4> akan hilang.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Tekan pemindai sidik jari Anda untuk mengaktifkan otentikasi sidik jari.",
@@ -433,7 +443,8 @@
         "enabled": "Diaktifkan",
         "disabled": "Dinonaktifkan",
         "fingerprintUnavailable": "Sensor sidik jari tidak tersedia",
-        "fingerprintUnavailableExplanation": "Perangkat anda tidak mendukung fungsi memindai sidik jari atau belum dikonfigurasi di pengaturan perangkat.",
+        "fingerprintUnavailableExplanation":
+            "Perangkat anda tidak mendukung fungsi memindai sidik jari atau belum dikonfigurasi di pengaturan perangkat.",
         "buttonInstructionsDisable": "Tekan tombol dibawah ini untuk menonaktifkan autentikasi sidik jari.",
         "buttonInstructionsEnable": "Tekan tombol dibawah ini untuk mengaktifkan autentikasi sidik jari.",
         "instructionsLogin": "Tekan pembaca sidik jari untuk masuk."
@@ -464,11 +475,13 @@
     },
     "rootDetection": {
         "warning": "PERINGATAN",
-        "rootDetected": "<0>Perangkat anda sepertinya telah di root</0><1>Ini dapat menambah resiko yang tinggi dalam dompet anda.</1><2>Apakah anda tetap ingin lanjut?</2>"
+        "rootDetected":
+            "<0>Perangkat anda sepertinya telah di root</0><1>Ini dapat menambah resiko yang tinggi dalam dompet anda.</1><2>Apakah anda tetap ingin lanjut?</2>"
     },
     "pow": {
         "feeless": "Dibutuhkan sedikit Proof of Work untuk mengirim transaksi tanpa biaya di IOTA.",
-        "localOrRemote": "Proof of Work dapat diselesaikan secara lokal pada perangkat Anda, atau dikirim ke sebuah node.",
+        "localOrRemote":
+            "Proof of Work dapat diselesaikan secara lokal pada perangkat Anda, atau dikirim ke sebuah node.",
         "local": "Lokal",
         "remote": "Jarak jauh",
         "powUpdated": "Pengaturan Proof of Work",
@@ -499,7 +512,8 @@
         "noUpdatesAvailable": "Tidak ada pembaruan tersedia",
         "noUpdatesAvailableExplanation": "Anda punya versi terbaru dari IOTA Trinity dompet desktop!",
         "newVersionAvailable": "Versi baru tersedia",
-        "newVersionAvailableExplanation": "Versi terbaru <strong>Trinity</strong> <strong>{{version}}</strong> tersedia. Silahkan baca rincian rilis dengan hati-hati dan periksa alamat unduh sebelum memperbarui:",
+        "newVersionAvailableExplanation":
+            "Versi terbaru <strong>Trinity</strong> <strong>{{version}}</strong> tersedia. Silahkan baca rincian rilis dengan hati-hati dan periksa alamat unduh sebelum memperbarui:",
         "downloadRelease": "Unduh rilis",
         "skipUpdate": "Lewati pembaruan"
     }

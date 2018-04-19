@@ -8,9 +8,12 @@ import com.crashlytics.android.Crashlytics;
 import android.widget.LinearLayout;
 import android.graphics.Color;
 import android.widget.TextView;
+import android.widget.ImageView;
 import android.view.Gravity;
 import android.util.TypedValue;
+import android.view.View;
 import com.facebook.react.modules.storage.ReactDatabaseSupplier;
+import android.support.v4.content.ContextCompat;
 
 public class MainActivity extends SplashActivity {
     @Override
@@ -20,11 +23,21 @@ public class MainActivity extends SplashActivity {
         long size = 50L * 1024L * 1024L; // 50 MB
         com.facebook.react.modules.storage.ReactDatabaseSupplier.getInstance(getApplicationContext()).setMaximumSize(size);
     }
+
     @Override
-    public LinearLayout createSplashLayout() {
+    public View createSplashLayout() {
         LinearLayout view = new LinearLayout(this);
-        view.setBackgroundColor(Color.parseColor("#1a373e"));
+        ImageView imageView = new ImageView(this);
+
+        view.setBackgroundColor(Color.parseColor("#181818"));
         view.setGravity(Gravity.CENTER);
-        return view;
+
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(400, 400);
+        layoutParams.gravity = Gravity.CENTER;
+        imageView.setLayoutParams(layoutParams);
+        imageView.setImageDrawable(ContextCompat.getDrawable(this.getApplicationContext(), R.drawable.background_splash));
+
+        view.addView(imageView);
+        return new View(this);
     }
 }

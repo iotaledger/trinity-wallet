@@ -9,7 +9,7 @@ const getProps = (overrides) =>
         {},
         {
             backgroundColor: '#ffffff',
-            isModalActive: false
+            isModalActive: false,
         },
         overrides,
     );

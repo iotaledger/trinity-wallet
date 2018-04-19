@@ -81,7 +81,8 @@
         "autopromotingExplanation": "Promoviendo la transacción con hash {{hash}}",
         "promoting": "Promoviendo la transferencia",
         "promotionError": "No se pudo promover la transacción",
-        "promotionErrorExplanation": "Algo salió mal durante la promoción de su transacción. Por favor, inténtelo de nuevo.",
+        "promotionErrorExplanation":
+            "Algo salió mal durante la promoción de su transacción. Por favor, inténtelo de nuevo.",
         "noLongerValid": "El paquete que está intentando promover ya no es válido",
         "cannotSendToOwn": "Enviando a dirección propia",
         "cannotSendToOwnExplanation": "No puede hacer una transferencia de valor a un direccion propia.",
@@ -399,7 +400,8 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "¿Por qué no puedo gastar mi saldo total?",
-        "spentAddressExplanation": "Tienes en una o más direcciones. La reutilización de direcciones es peligrosa en IOTA, por ello esta cartera no te permite enviar desde la misma dirección más de una vez.",
+        "spentAddressExplanation":
+            "Tienes en una o más direcciones. La reutilización de direcciones es peligrosa en IOTA, por ello esta cartera no te permite enviar desde la misma dirección más de una vez.",
         "discordInformation": "Por favor diríjase al canal #help en Discord para averiguar lo que puede hacer."
     },
     "deleteAccount": {
@@ -513,11 +515,13 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Error al recuperar datos de actualización",
-        "errorRetrievingUpdateDataExplanation": "Hubo un error al recuperar datos de actualización. Por favor, inténtelo de nuevo.",
+        "errorRetrievingUpdateDataExplanation":
+            "Hubo un error al recuperar datos de actualización. Por favor, inténtelo de nuevo.",
         "noUpdatesAvailable": "No hay actualizaciones disponibles",
         "noUpdatesAvailableExplanation": "¡Tienes la última versión de la cartera IOTA Trinity para PC!",
         "newVersionAvailable": "Nueva versión disponible",
-        "newVersionAvailableExplanation": "Una nueva versión de <strong>Trinity</strong> <strong>{{version}}</strong> está disponible. Por favor lea cuidadosamente los detalles del lanzamiento y verifique la fuente de descarga antes de actualizar:",
+        "newVersionAvailableExplanation":
+            "Una nueva versión de <strong>Trinity</strong> <strong>{{version}}</strong> está disponible. Por favor lea cuidadosamente los detalles del lanzamiento y verifique la fuente de descarga antes de actualizar:",
         "downloadRelease": "Descargar version",
         "skipUpdate": "Saltar la actualización"
     }

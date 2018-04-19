@@ -47,7 +47,7 @@ const getProps = (overrides) =>
                 barBg: 'white',
                 buttonsOpacity: { opacity: 1 },
             },
-            toggleModalActivity: noop
+            toggleModalActivity: noop,
         },
         overrides,
     );
@@ -263,7 +263,7 @@ describe('Testing TransactionRow component', () => {
 
                 it('should call prop method toggleModalActivity', () => {
                     const props = getProps({
-                        toggleModalActivity: jest.fn()
+                        toggleModalActivity: jest.fn(),
                     });
 
                     const wrapper = shallow(<TransactionRow {...props} />);

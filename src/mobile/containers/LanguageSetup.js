@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Ima
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import i18next from 'i18next';
+import SplashScreen from 'react-native-splash-screen';
 import { getDeviceLocale } from 'react-native-device-info';
 import { I18N_LOCALE_LABELS, getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
 import { setLanguage } from 'iota-wallet-shared-modules/actions/settings';
@@ -12,6 +13,7 @@ import { connect } from 'react-redux';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import WithBackPressCloseApp from '../components/BackPressCloseApp';
 import { width, height } from '../utils/dimensions';
+import { isIOS } from '../utils/device';
 import DropdownComponent from '../containers/Dropdown';
 import GENERAL from '../theme/general';
 import { Icon } from '../theme/icons.js';
@@ -82,6 +84,12 @@ class LanguageSetup extends Component {
 
     componentWillMount() {
         i18next.changeLanguage(defaultLocale);
+    }
+
+    componentDidMount() {
+        if (isIOS) {
+            SplashScreen.hide();
+        }
     }
 
     onNextPress() {
