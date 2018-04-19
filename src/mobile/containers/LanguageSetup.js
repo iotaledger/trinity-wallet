@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import WithBackPressCloseApp from '../components/BackPressCloseApp';
 import { width, height } from '../utils/dimensions';
+import { isIOS } from '../utils/device';
 import DropdownComponent from '../containers/Dropdown';
 import GENERAL from '../theme/general';
 import { Icon } from '../theme/icons.js';
@@ -86,7 +87,9 @@ class LanguageSetup extends Component {
     }
 
     componentDidMount() {
-        SplashScreen.hide();
+        if (isIOS) {
+            SplashScreen.hide();
+        }
     }
 
     onNextPress() {
