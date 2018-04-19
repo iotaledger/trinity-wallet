@@ -55,6 +55,9 @@
 
             form > fieldset {
                 margin-top: -20px;
+                p{
+                   margin-top:14px;
+                }
             }
         }
 
