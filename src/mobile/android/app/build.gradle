@@ -150,7 +150,8 @@ dependencies {
     compile project(':react-native-detect-navbar-android')
     compile project(':react-native-os')
     compile (project(':react-native-camera')) {
-        exclude group: "com.android.support"
+        exclude group: "com.google.android.gms:+"
+        compile 'com.android.support:exifinterface:27.+'
     }
     compile ("com.google.android.gms:play-services-vision:10.2.0") {
         force = true;
