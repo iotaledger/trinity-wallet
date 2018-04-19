@@ -36,7 +36,8 @@ class Addresses extends PureComponent {
                             <li key={address}>
                                 <p className={account.addresses[address].spent ? css.spent : null}>
                                     <Clipboard
-                                        text={text}
+                                        text={address}
+                                        label={text}
                                         title={t('receive:addressCopied')}
                                         success={t('receive:addressCopiedExplanation')}
                                     />

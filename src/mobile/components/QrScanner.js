@@ -60,7 +60,7 @@ export class QRScanner extends Component {
         /** Mount lifecycle method calback function  */
         onMount: PropTypes.func,
         /** Unmount lifecycle method calback function  */
-        onUnmount: PropTypes.func
+        onUnmount: PropTypes.func,
     };
 
     static defaultProps = {
