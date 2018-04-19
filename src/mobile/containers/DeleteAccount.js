@@ -9,9 +9,10 @@ import Modal from 'react-native-modal';
 import { getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
 import { shouldPreventAction } from 'iota-wallet-shared-modules/selectors/global';
 import { deleteAccount } from 'iota-wallet-shared-modules/actions/accounts';
+import { toggleModalActivity } from 'iota-wallet-shared-modules/actions/ui';
+import StatefulDropdownAlert from '../containers/StatefulDropdownAlert';
 import Fonts from '../theme/fonts';
 import { deleteSeedFromKeychain } from '../utils/keychain';
-
 import OnboardingButtons from '../containers/OnboardingButtons';
 import { width, height } from '../utils/dimensions';
 import { getPasswordHash } from '../utils/crypto';
@@ -21,6 +22,13 @@ import { Icon } from '../theme/icons.js';
 import { isAndroid } from '../utils/device';
 
 const styles = StyleSheet.create({
+    modalContainer: {
+        flex: 1,
+        alignItems: 'center',
+        width,
+        height,
+        justifyContent: 'center',
+    },
     container: {
         flex: 1,
         alignItems: 'center',
@@ -126,6 +134,8 @@ class DeleteAccount extends Component {
          * @param {String} text - notification explanation
          */
         generateAlert: PropTypes.func.isRequired,
+        /** Sets whether modal is active or inactive */
+        toggleModalActivity: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -187,23 +197,23 @@ class DeleteAccount extends Component {
             .catch((err) => console.error(err));
     }
 
-    showModal = () => this.setState({ isModalVisible: true });
+    showModal = () => {
+        this.props.toggleModalActivity();
+        this.setState({ isModalVisible: true });
+    };
 
-    hideModal = () => this.setState({ isModalVisible: false });
+    hideModal = () => {
+        this.props.toggleModalActivity();
+        this.setState({ isModalVisible: false });
+    };
 
     renderModalContent = (borderColor, textColor) => {
         const { t, theme, selectedAccountName } = this.props;
-        const backgroundColor = theme.body.bg;
+        const backgroundColor = { backgroundColor: theme.body.bg };
 
         return (
-            <View
-                style={{
-                    width: width / 1.2,
-                    alignItems: 'center',
-                    backgroundColor,
-                }}
-            >
-                <View style={[styles.modalContent, borderColor]}>
+            <View style={styles.modalContainer}>
+                <View style={[styles.modalContent, borderColor, backgroundColor]}>
                     <Text style={[styles.modalInfoText, { paddingBottom: height / 30 }, textColor]}>
                         {/*FIXME: localization*/}
                         {/*{t('areYouSure')}*/}
@@ -221,6 +231,7 @@ class DeleteAccount extends Component {
                         containerWidth={{ width: width / 1.4 }}
                     />
                 </View>
+                <StatefulDropdownAlert backgroundColor={theme.bar.bg} />
             </View>
         );
     };
@@ -304,7 +315,7 @@ class DeleteAccount extends Component {
                         backdropTransitionOutTiming={200}
                         backdropColor={backgroundColor}
                         backdropOpacity={0.6}
-                        style={{ alignItems: 'center' }}
+                        style={{ alignItems: 'center', margin: 0 }}
                         isVisible={this.state.isModalVisible}
                         onBackButtonPress={() => this.setState({ isModalVisible: false })}
                         hideModalContentWhileAnimating
@@ -330,6 +341,7 @@ const mapDispatchToProps = {
     setSetting,
     generateAlert,
     deleteAccount,
+    toggleModalActivity,
 };
 
 export default translate(['deleteAccount', 'global'])(connect(mapStateToProps, mapDispatchToProps)(DeleteAccount));
