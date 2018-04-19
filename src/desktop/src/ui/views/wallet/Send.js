@@ -9,6 +9,7 @@ import AddressInput from 'ui/components/input/Address';
 import AmountInput from 'ui/components/input/Amount';
 import TextInput from 'ui/components/input/Text';
 import Button from 'ui/components/Button';
+import Progress from 'ui/components/Progress';
 import Confirm from 'ui/components/modal/Confirm';
 import withSendData from 'containers/wallet/Send';
 
@@ -36,11 +37,19 @@ class Send extends React.PureComponent {
         /** Fiat currency settings
          * @property {bool} remotePow - Local PoW enable state
          * @property {string} conversionRate - Active currency conversion rate to MIota
-         * @property (string) currency - Active currency name
+         * @property {string} currency - Active currency name
          */
         settings: PropTypes.shape({
             conversionRate: PropTypes.number.isRequired,
             currency: PropTypes.string.isRequired,
+        }),
+        /** Send progress and description
+         * @property {number} progress - Current percentage progress
+         * @property {string} title - Current progress description
+         */
+        progress: PropTypes.shape({
+            progress: PropTypes.number,
+            title: PropTypes.string,
         }),
         /** Validate the transaction inputs
          *  @param {string} address - receiver address
@@ -128,7 +137,7 @@ class Send extends React.PureComponent {
     };
 
     render() {
-        const { fields, isSending, balance, settings, t } = this.props;
+        const { fields, isSending, balance, settings, progress, t } = this.props;
         const { isTransferModalVisible } = this.state;
 
         const transferContents =
@@ -174,9 +183,13 @@ class Send extends React.PureComponent {
                     />
                 </div>
                 <fieldset>
-                    <Button type="submit" loading={isSending} variant="primary">
-                        {t('send:send')}
-                    </Button>
+                    {!isSending ? (
+                        <Button type="submit" variant="primary">
+                            {t('send:send')}
+                        </Button>
+                    ) : (
+                        <Progress {...progress} />
+                    )}
                 </fieldset>
             </form>
         );
