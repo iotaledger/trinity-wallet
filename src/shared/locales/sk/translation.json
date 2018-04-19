@@ -14,13 +14,13 @@
         "transferSentMessage": "Vaša transakcia bola odoslaná do Tangle.",
         "messageSent": "Správa odoslaná",
         "messageSentMessage": "Vaša správa bola odoslaná do Tangle.",
-        "keyReuse": "Sending to spent address",
+        "keyReuse": "Posielate na adresu z ktorej Ste už odoslali",
         "keyReuseError": "Nie je možné uskutočniť transakciu na adresu, ktorá už vykonala určitý prevod.",
-        "invalidResponse": "Node error",
-        "invalidResponseExplanation": "The node returned an error. Check the notifications for more information.",
+        "invalidResponse": "Chyba uzla (node)",
+        "invalidResponseExplanation": "Uzol (node) vrátil chybu. Pre viac informácií skontrolujte notifikácie.",
         "invalidResponsePollingExplanation": "The node returned an error while polling. Check the notifications for more information.",
-        "invalidResponseFetchingAccount": "The node returned an error while fetching your account information. Try changing your node or check the notifications for more information.",
-        "invalidResponseSendingTransfer": "The node returned an error while sending the transfer. Check the notifications for more information.",
+        "invalidResponseFetchingAccount": "Uzol (node) vrátil chybu pri získavaní informácií o Vášom účte. Pokúste sa zmeniť Váš node, alebo pre viac informácií skontrolujte notifikácie.",
+        "invalidResponseSendingTransfer": "Uzol (node) vrátil chybu pri odosielaní platby. Pre viac informácií skontrolujte notifikácie.",
         "seed": "Seed",
         "back": "SPÄŤ",
         "backLowercase": "Späť",
@@ -93,11 +93,11 @@
         "checkForUpdates": "Kontrola aktualizácií",
         "account": "Účet",
         "enterPasswordToAccessSettings": "Pre prístup k nastaveniam účtu zadajte Vaše heslo",
-        "enterYourPassword": "Enter your password",
-        "changeNode": "Change node",
-        "addCustomNode": "Add custom node",
-        "nodeChanged": "Node changed",
-        "nodeChangedExplanation": "The node has been changed successfully.",
+        "enterYourPassword": "Zadajte vaše heslo",
+        "changeNode": "Zmeniť uzol (node)",
+        "addCustomNode": "Pridať vlastný uzol (node)",
+        "nodeChanged": "Uzol (node) zmenený",
+        "nodeChangedExplanation": "Uzol (node) bol úspešne zmenený.",
         "nodeAutoChanged": "Auto-switched node",
         "nodeAutoChangedExplanation": "Switched to new node {{- nodeAddress}} as selected node is offline."
     },
@@ -229,7 +229,7 @@
         "message": "Správa",
         "invalidMessage": "Neplatná správa",
         "invalidMessageExplanation": "Vaša správa obsahuje neplatné znaky.",
-        "invalidMessageTooLong": "Message too long",
+        "invalidMessageTooLong": "Správa je príliš dlhá",
         "invalidMessageTooLongExplanation": "The message exceeds the max. amount of characters (1093).",
         "send": "ODOSLAŤ",
         "invalidAmount": "Zadaná neplatná čiastka",
@@ -304,7 +304,7 @@
         "undo": "Zrušiť",
         "redo": "Znova",
         "about": "O Trinity",
-        "lockScreenTimeout": "Lock Screen Timeout (Minutes)",
+        "lockScreenTimeout": "Zámok obrazovky po (minúty)",
         "autoNodeSwitching": "Automatically switch node when selected is unreachable"
     },
     "resetWalletRequirePassword": {
@@ -452,8 +452,8 @@
         "key": "Kľúč",
         "twoFAEnabled": "2FA autentifikácia aktivovaná",
         "twoFAEnabledExplanation": "Úspešne ste aktivovali dvojfázovú autentifikáciu 2FA.",
-        "twoFADisabled": "2FA is now disabled",
-        "twoFADisabledExplanation": "You have successfully disabled Two Factor Authentication.",
+        "twoFADisabled": "2FA je teraz deaktiovovaná",
+        "twoFADisabledExplanation": "Úspešne ste deaktivovali dvojfaktorovú autentifikáciu.",
         "enterCode": "Vložte kód z Vašej 2FA aplikácie",
         "code": "Kód"
     },
@@ -461,7 +461,7 @@
         "mcap": "MCAP",
         "change": "Zmena",
         "volume": "Objem (24h)",
-        "currentValue": "Current value"
+        "currentValue": "Súčasná hodnota"
     },
     "rootDetection": {
         "warning": "VAROVANIE",
@@ -474,8 +474,8 @@
         "remote": "Vzdialený",
         "powUpdated": "Proof of work nastavenia",
         "powUpdatedExplanation": "Nastavenia proof of work bolo aktualizované.",
-        "noWebGLSupport": "WebGL not supported",
-        "noWebGLSupportExplanation": "Your computer does not support WebGL. Please use remote PoW."
+        "noWebGLSupport": "WebGL nie je podporovaný",
+        "noWebGLSupportExplanation": "Váš počítač nepodporuje WebGL. Použite vzdialenú PoW."
     },
     "progressSteps": {
         "validatingReceiveAddress": "Overovanie prijímacie adresy",
@@ -493,11 +493,11 @@
         "transitionCompleteExplanation": "Aktualizácia údajov po snapshote prebehla úspešne."
     },
     "deepLink": {
-        "autofill": "Autofill success",
+        "autofill": "Automatické vyplnenie úspešné",
         "autofillExplanation": "Transaction data autofilled from link."
     },
     "updates": {
-        "errorRetrievingUpdateData": "Error retrieving update data",
+        "errorRetrievingUpdateData": "Chyba pri získavaní aktualizačných dát",
         "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
         "noUpdatesAvailable": "Nie sú dostupné žiadne aktualizácie",
         "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
