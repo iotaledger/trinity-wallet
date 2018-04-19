@@ -1,4 +1,3 @@
-/*global Electron*/
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -48,7 +47,6 @@ class Theme extends React.PureComponent {
                 onSubmit={(e) => {
                     e.preventDefault();
                     if (themeName) {
-                        Electron.updateSettings('backgroundColor', themes[themeName].body.bg);
                         document.body.style.background = themes[themeName].body.bg;
                         updateTheme(themes[themeName], themeName);
                     }

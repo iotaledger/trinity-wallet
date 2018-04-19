@@ -2,7 +2,7 @@ const { ipcMain: ipc, app, protocol } = require('electron');
 const electron = require('electron');
 const initMenu = require('./lib/Menu.js');
 const path = require('path');
-const settings = require('electron-settings');
+const electronSettings = require('electron-settings');
 
 const BrowserWindow = electron.BrowserWindow;
 const devMode = process.env.NODE_ENV === 'development';
@@ -28,6 +28,13 @@ if (shouldQuit) {
     return;
 }
 
+let settings = null;
+
+try {
+    const data = electronSettings.get('reduxPersist:settings');
+    settings = JSON.parse(data);
+} catch (error) {}
+
 function createWindow() {
     protocol.registerFileProtocol('iota', (request, callback) => {
         callback(
@@ -45,7 +52,7 @@ function createWindow() {
         minHeight: 720,
         titleBarStyle: 'hidden',
         icon: `${__dirname}/dist/icon.png`,
-        backgroundColor: settings.get('backgroundColor') ? settings.get('backgroundColor') : '#1a373e',
+        backgroundColor: settings ? settings.theme.body.bg : '#1a373e',
         webPreferences: {
             nodeIntegration: false,
             preload: path.resolve(__dirname, 'lib/Window.js'),
@@ -125,8 +132,4 @@ ipc.on('request.deepLink', () => {
         windows.main.webContents.send('url-params', deeplinkingUrl);
         deeplinkingUrl = null;
     }
-});
-
-ipc.on('settings.update', (e, data) => {
-    settings.set(data.attribute, data.value);
 });
