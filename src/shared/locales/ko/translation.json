@@ -14,14 +14,13 @@
         "transferSentMessage": "전송 요청이 탱글로 보내졌습니다.",
         "messageSent": "메시지 전송됨",
         "messageSentMessage": "메시지를 탱글로 전송했습니다.",
-        "keyReuse": "키 재사용",
+        "keyReuse": "Sending to spent address",
         "keyReuseError": "출금에 사용한 기록이 있는 주소로는 전송할 수 없습니다.",
-        "invalidResponse": "잘못된 응답",
-        "invalidResponseExplanation": "노드가 잘못된 응답을 보냈습니다.",
-        "invalidResponsePollingExplanation": "폴링 중에 노드가 잘못된 응답을 보냈습니다.",
-        "invalidResponseFetchingAccount":
-            "계정 정보를 불러오는 중에 노드가 잘못된 응답을 보냈습니다. 다른 노드로 시도해 보십시오.",
-        "invalidResponseSendingTransfer": "전송 중에 노드가 잘못된 응답을 보냈습니다.",
+        "invalidResponse": "노드 오류",
+        "invalidResponseExplanation": "The node returned an error. Check the notifications for more information.",
+        "invalidResponsePollingExplanation": "The node returned an error while polling. Check the notifications for more information.",
+        "invalidResponseFetchingAccount": "The node returned an error while fetching your account information. Try changing your node or check the notifications for more information.",
+        "invalidResponseSendingTransfer": "The node returned an error while sending the transfer. Check the notifications for more information.",
         "seed": "시드",
         "back": "뒤로",
         "backLowercase": "뒤로가기",
@@ -32,6 +31,8 @@
         "save": "저장하기",
         "close": "닫기",
         "continue": "계속 하기",
+        "enable": "활성화",
+        "disable": "비활성화",
         "manualCopy": "시드 기록하기",
         "paperWallet": "종이에 인쇄하기",
         "copyToClipboard": "비밀번호 관리자에 입력하기",
@@ -79,32 +80,32 @@
         "autopromoting": "거래 자동 프로모트 중",
         "autopromotingExplanation": "아래의 트랜잭션 해시를 프로모트합니다: {{hash}}",
         "promoting": "거래 프로모트 중",
-        "promotionError": "Could not promote transfer",
-        "promotionErrorExplanation": "Something went wrong while promoting your transaction. Please try again.",
+        "promotionError": "전송을 프로모트할 수 없음",
+        "promotionErrorExplanation": "트랜잭션을 프로모트하는 중에 오류가 발생했습니다. 다시 시도해주십시오.",
         "noLongerValid": "프로모트하려는 번들이 더 이상 유효하지 않습니다.",
         "cannotSendToOwn": "내 주소로 보내는 중",
         "cannotSendToOwnExplanation": "내 주소로는 가치 전송을 할 수 없습니다.",
         "pleaseWait": "잠시 기다려 주세요",
         "pleaseWaitExplanation": "트리니티가 다른 작업을 수행하는 중입니다. 잠시 후 다시 시도해 주십시오.",
-        "pleaseWaitTransferExplanation":
-            "현재 잔액이 다른 거래에 사용되고 있습니다. 진행중인 거래가 종료된 후 다시 시도해 주십시오.",
+        "pleaseWaitTransferExplanation": "현재 잔액이 다른 거래에 사용되고 있습니다. 진행중인 거래가 종료된 후 다시 시도해 주십시오.",
         "snapshotTransitionInProgress": "스냅샷 이전 진행 중",
         "snapshotTransitionInProgressExplanation": "스냅샷 이전 작업이 완료될 때까지 기다려 주십시오.",
-        "checkForUpdates": "Check for Updates",
-        "account": "Account",
-        "enterPasswordToAccessSettings": "Enter your password to access account settings",
-        "changeNode": "Change node",
-        "addCustomNode": "Add custom node",
-        "nodeChanged": "Node changed",
-        "nodeChangedExplanation": "The node has been changed successfully."
+        "checkForUpdates": "업데이트 확인",
+        "account": "계정",
+        "enterPasswordToAccessSettings": "계정 설정에 접근하기 위해 비밀번호를 입력해 주십시오.",
+        "enterYourPassword": "비밀번호 입력",
+        "changeNode": "노드 변경",
+        "addCustomNode": "커스텀 노드 추가",
+        "nodeChanged": "노드 변경됨",
+        "nodeChangedExplanation": "노드가 성공적으로 변경되었습니다.",
+        "nodeAutoChanged": "노드 자동 변경됨",
+        "nodeAutoChangedExplanation": "선택한 노드에 연결할 수 없어 새로운 노드인 {{- nodeAddress}}에 연결하였습니다."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
-        "seedInvalidCharsExplanation":
-            "시드는 A부터 Z까지의 대문자와 숫자 9만 포함할 수 있습니다. 입력하신 시드에는 잘못된 문자가 포함되어 있습니다. 다시 시도해 주십시오.",
+        "seedInvalidCharsExplanation": "시드는 A부터 Z까지의 대문자와 숫자 9만 포함할 수 있습니다. 입력하신 시드에는 잘못된 문자가 포함되어 있습니다. 다시 시도해 주십시오.",
         "seedTooShort": "시드가 너무 짧음",
-        "seedTooShortExplanation":
-            "시드는 {{maxLength}}글자로 구성되어야 합니다. 입력하신 시드는 {{currentLength}}글자로 구성되어 있습니다. 다시 시도해 주십시오.",
+        "seedTooShortExplanation": "시드는 {{maxLength}}글자로 구성되어야 합니다. 입력하신 시드는 {{currentLength}}글자로 구성되어 있습니다. 다시 시도해 주십시오.",
         "nameInUse": "계정 이름 중복",
         "nameInUseExplanation": "계정 이름은 다른 시드와 중복되지 말아야 합니다.",
         "enterAccountName": "계정 이름을 입력하십시오.",
@@ -126,8 +127,7 @@
         "passwordTooShort": "비밀번호가 너무 짧음",
         "passwordTooShortExplanation": "비밀번호는 최소 12글자로 구성되어야 합니다. 다시 시도해 주십시오.",
         "oldPassword": "이전 비밀번호 재사용 불가",
-        "oldPasswordExplanation":
-            "이전 비밀번호를 새 비밀번호로 사용할 수 없습니다. 새로운 비밀번호로 다시 시도하십시오.",
+        "oldPasswordExplanation": "이전 비밀번호를 새 비밀번호로 사용할 수 없습니다. 새로운 비밀번호로 다시 시도하십시오.",
         "ensureStrongPassword": "최소 12글자로 구성된 비밀번호를 사용하십시오.",
         "currentPassword": "현재 비밀번호",
         "newPassword": "새 비밀번호",
@@ -145,13 +145,10 @@
     },
     "enterSeed": {
         "invalidCharacters": "시드에 잘못된 문자 포함",
-        "invalidCharactersExplanation":
-            "시드는 A부터 Z까지의 대문자와 숫자 9만 포함할 수 있습니다. 입력하신 시드에는 잘못된 문자가 포함되어 있습니다. 다시 시도해 주십시오.",
+        "invalidCharactersExplanation": "시드는 A부터 Z까지의 대문자와 숫자 9만 포함할 수 있습니다. 입력하신 시드에는 잘못된 문자가 포함되어 있습니다. 다시 시도해 주십시오.",
         "seedTooShort": "시드가 너무 짧음",
-        "seedTooShortExplanation":
-            "시드는 {{maxLength}}글자로 구성되어야 합니다. 입력하신 시드는 {{currentLength}}글자로 구성되어 있습니다. 다시 시도해 주십시오.",
-        "seedExplanation":
-            "시드는 {{maxLength}}글자로 구성되며, A부터 Z까지의 대문자와 숫자 9만 포함할 수 있습니다. {{maxLength}}자보다 더 긴 시드는 사용할 수 없습니다.",
+        "seedTooShortExplanation": "시드는 {{maxLength}}글자로 구성되어야 합니다. 입력하신 시드는 {{currentLength}}글자로 구성되어 있습니다. 다시 시도해 주십시오.",
+        "seedExplanation": "시드는 {{maxLength}}글자로 구성되며, A부터 Z까지의 대문자와 숫자 9만 포함할 수 있습니다. {{maxLength}}자보다 더 긴 시드는 사용할 수 없습니다.",
         "neverShare": "절대로 다른 사람에게 시드를 알려주지 마십시오"
     },
     "home": {
@@ -208,8 +205,7 @@
     "saveYourSeed": {
         "seedCleared": "시드 삭제됨",
         "seedClearedExplanation": "보안을 위해 클립보드에서 시드가 삭제되었습니다.",
-        "mustSaveYourSeed":
-            "<0><0>반드시 아래 나열된 방법 중 </0><1>하나 이상</1><2>을 사용하여 시드를 기록해야 합니다.</2></0>"
+        "mustSaveYourSeed": "<0><0>반드시 아래 나열된 방법 중 </0><1>하나 이상</1><2>을 사용하여 시드를 기록해야 합니다.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "잘못된 시드",
@@ -233,17 +229,19 @@
         "message": "메시지",
         "invalidMessage": "잘못된 메시지",
         "invalidMessageExplanation": "메시지에 유효하지 않은 문자가 포함되어 있습니다.",
+        "invalidMessageTooLong": "메시지가 너무 김",
+        "invalidMessageTooLongExplanation": "메시지가 최대 길이(1093자)를 초과하였습니다.",
         "send": "보내기",
         "invalidAmount": "잘못된 금액",
         "invalidAmountExplanation": "유효한 거래 금액을 입력해 주십시오. 아래의 IOTA 단위 체계를 참고하십시오.",
         "maximumSelected": "최대 금액 선택됨",
         "iotaUnits": "IOTA 단위 체계",
-        "sendMax": "최대 금액"
+        "sendMax": "최대 금액",
+        "fingerprintOnSend": "지문을 인식하여 전송 승인"
     },
     "setPassword": {
         "passwordTooShort": "비밀번호가 너무 짧음",
-        "passwordTooShortExplanation":
-            "비밀번호는 최소 {{minLength}}글자로 구성되어야 합니다. 입력하신 비밀번호는 {{currentLength}}글자로 구성되어 있습니다. 다시 시도해 주십시오.",
+        "passwordTooShortExplanation": "비밀번호는 최소 {{minLength}}글자로 구성되어야 합니다. 입력하신 비밀번호는 {{currentLength}}글자로 구성되어 있습니다. 다시 시도해 주십시오.",
         "passwordMismatch": "비밀번호가 일치하지 않음",
         "passwordMismatchExplanation": "비밀번호가 일치하지 않습니다. 다시 시도해 주십시오.",
         "nowWeNeedTo": "이제 비밀번호를 설정해야 합니다.",
@@ -252,8 +250,7 @@
         "retypePassword": "비밀번호 다시 입력"
     },
     "setSeedName": {
-        "canUseMultipleSeeds":
-            "하나의 지갑에 여러 개의 시드를 등록하여 사용할 수 있습니다. 각각의 시드는 계정 이름이 필요합니다.",
+        "canUseMultipleSeeds": "하나의 지갑에 여러 개의 시드를 등록하여 사용할 수 있습니다. 각각의 시드는 계정 이름이 필요합니다.",
         "youCanAdd": "설정 메뉴에서 시드를 추가할 수 있습니다."
     },
     "modeSelection": {
@@ -290,7 +287,7 @@
         "poorConnectionExplanation": "연결 상태가 불량하여 화폐단위를 수정하지 못했습니다.",
         "hide": "숨기기",
         "hideOthers": "나머지 숨기기",
-        "show": "Show",
+        "show": "보기",
         "showAll": "전부 펼치기",
         "quit": "중단하기",
         "edit": "수정",
@@ -304,10 +301,11 @@
         "couldNotFetchRatesExplanation": "{{currency}}로의 환율을 가져오는 중에 문제가 발생하였습니다.",
         "fetchedConversionRates": "환율 가져옴",
         "fetchedConversionRatesExplanation": "{{currency}}로의 최신 환율을 성공적으로 가져왔습니다.",
-        "undo": "Undo",
-        "redo": "Redo",
-        "about": "About Trinity",
-        "lockScreenTimeout": "Lock Screen Timeout (Minutes)"
+        "undo": "취소",
+        "redo": "다시 실행",
+        "about": "트리니티에 대해",
+        "lockScreenTimeout": "자동 잠금 시간 (분)",
+        "autoNodeSwitching": "노드에 연결이 불가능할 경우 자동으로 다른 노드에 연결 시도"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "지갑을 초기화하려면 비밀번호를 입력하세요.",
@@ -317,12 +315,10 @@
     "walletSetup": {
         "okay": "좋습니다. 이제 지갑을 만들어 봅시다!",
         "doYouAlreadyHaveASeed": "이미 사용하고자 하는 시드를 가지고 있습니까?",
-        "seedExplanation":
-            "IOTA의 시드는 81글자로 구성되며, 계정에 있어 아이디와 비밀번호를 합친 것과 같은 역할을 합니다.",
-        "explanation":
-            "<0><0>이 시드를 이용하여 </0><1>어느 지갑에서나</1><2>, </2><3>어느 기기에서나</3><4> 당신의 펀드에 접근할 수 있습니다. 그러나 이 시드를 잃어버릴 경우 이 시드에 담긴 IOTA 또한 잃게 됩니다.</4></0>",
+        "seedExplanation": "IOTA의 시드는 81글자로 구성되며, 계정에 있어 아이디와 비밀번호를 합친 것과 같은 역할을 합니다.",
+        "explanation": "<0><0>이 시드를 이용하여 </0><1>어느 지갑에서나</1><2>, </2><3>어느 기기에서나</3><4> 당신의 펀드에 접근할 수 있습니다. 그러나 이 시드를 잃어버릴 경우 이 시드에 담긴 IOTA 또한 잃게 됩니다.</4></0>",
         "keepSafe": "반드시 시드를 안전히 보관하십시오.",
-        "hint": "<0><0>Hint:</0> Click NO if this is your first time using IOTA.</0>"
+        "hint": "<0><0>도움말:</0> IOTA를 처음 사용하시는 경우 \"아니오\"를 누르십시오.</0>"
     },
     "welcome": {
         "thankYou": "트리니티를 다운로드해 주셔서 감사합니다.",
@@ -331,8 +327,7 @@
     },
     "writeSeedDown": {
         "yourSeedIs": "시드는 {{maxSeedLength}}글자로 구성되며, 왼쪽에서 오른쪽으로 읽습니다.",
-        "writeDownYourSeed":
-            "<0>시드와 체크섬을 기록하고, 정확히 기록하였는지 최소 </0><1>세 번 이상 확인하십시오.</1><2></2>"
+        "writeDownYourSeed": "<0>시드와 체크섬을 기록하고, 정확히 기록하였는지 최소 </0><1>세 번 이상 확인하십시오.</1><2></2>"
     },
     "history": {
         "bundleHashCopied": "번들 해시 복사됨",
@@ -362,7 +357,7 @@
         "addCustomNode": "커스텀 노드 추가",
         "manualSync": "수동 동기화",
         "snapshotTransition": "스냅샷 이전",
-        "pow": "Proof of Work"
+        "pow": "작업증명"
     },
     "advancedThemeCustomisation": {
         "background": "배경",
@@ -389,13 +384,12 @@
         "one": "일"
     },
     "usedAddressModal": {
-        "cantSpendFullBalanceQuestion": "Why can't I spend my full balance?",
-        "spentAddressExplanation":
-            "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
-        "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
+        "cantSpendFullBalanceQuestion": "왜 거래에 잔고를 전부 사용할 수 없죠?",
+        "spentAddressExplanation": "이미 사용한 적이 있는 주소에 잔고가 남아있습니다. IOTA 상에서의 주소 재사용은 보안에 위해가 갈 수 있기 때문에 지갑 차원에서 이미 사용한 적이 있는 주소를 다시 사용하는 것을 금지하고 있습니다.",
+        "discordInformation": "IOTA 디스코드의 #help 채널을 통해 도움을 받을 수 있습니다."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Are you sure you want to delete</1><2></2><3>{{accountName}}?</3>",
+        "areYouSure": "<0></0><1>정말로 다음 계정을 삭제하시겠습니까? </1><2></2><3>{{accountName}}</3>",
         "yourSeedWillBeRemoved": "등록된 시드 및 거래 내역이 전부 제거됩니다.",
         "thisAction": "이 작업은 되돌릴 수 없습니다.",
         "enterPassword": "계정을 삭제하기 위해 암호를 입력해 주세요."
@@ -426,8 +420,8 @@
         "warning": "<0><0></0><1>시드와 비밀번호</1><2>를 비롯한 </2><3>모든 계정 정보가</3><4> 삭제됩니다.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "지문 인증을 활성화하려면 손가락을 지문 센서 위에 올리십시오.",
-        "instructionsDisable": "지문 인증을 비활성화하려면 손가락을 지문 센서 위에 올리십시오.",
+        "instructionsEnable": "지문 인증을 활성화하려면 손가락을 지문 센서 위에 올리십시오",
+        "instructionsDisable": "지문 인증을 비활성화하려면 손가락을 지문 센서 위에 올리십시오",
         "fingerprintAuthEnabled": "지문 인증 활성화됨",
         "fingerprintAuthEnabledExplanation": "성공적으로 지문 인증을 활성화하였습니다.",
         "fingerprintAuthDisabled": "지문 인증 비활성화됨",
@@ -438,11 +432,10 @@
         "enabled": "활성화됨",
         "disabled": "비활성화됨",
         "fingerprintUnavailable": "지문 센서 사용 불가능",
-        "fingerprintUnavailableExplanation":
-            "이 기기는 지문인식 기능을 지원하지 않거나, 지문인식 기능을 사용하지 않도록 설정되어 있습니다.",
+        "fingerprintUnavailableExplanation": "이 기기는 지문인식 기능을 지원하지 않거나, 지문인식 기능을 사용하지 않도록 설정되어 있습니다.",
         "buttonInstructionsDisable": "아래 버튼을 눌러 지문 인증을 비활성화할 수 있습니다.",
         "buttonInstructionsEnable": "아래 버튼을 눌러 지문 인증을 활성화할 수 있습니다.",
-        "instructionsLogin": "로그인하기 위해 손가락을 지문센서 위에 올리십시오."
+        "instructionsLogin": "로그인하기 위해 손가락을 지문 센서 위에 올리십시오"
     },
     "transferConfirmation": {
         "youAreAbout": "아래의 주소로 {{contents}}를 보내려고 합니다.",
@@ -458,7 +451,9 @@
         "addKey": "OTP 앱에 이 키를 추가하십시오",
         "key": "키",
         "twoFAEnabled": "OTP 인증 활성화됨",
-        "twoFAEnabledExplanation": "OTP 인증이 활성화되었습니다.",
+        "twoFAEnabledExplanation": "OTP 인증이 성공적으로 활성화되었습니다.",
+        "twoFADisabled": "OTP 인증 비활성화됨",
+        "twoFADisabledExplanation": "OTP 인증이 성공적으로 비활성화되었습니다.",
         "enterCode": "OTP 코드를 입력하십시오",
         "code": "코드"
     },
@@ -466,20 +461,21 @@
         "mcap": "시가총액",
         "change": "전일대비",
         "volume": "거래량 (24시간)",
-        "currentValue": "Current value"
+        "currentValue": "현재 호가"
     },
     "rootDetection": {
         "warning": "경고",
-        "rootDetected":
-            "<0>기기가 루팅된 것이 감지되었습니다. </0><1>이 경우 지갑의 보안에 위험을 끼칠 수 있습니다.</1><2> 보안 위험을 감수하고 진행하시겠습니까?</2>"
+        "rootDetected": "<0>기기가 루팅된 것이 감지되었습니다. </0><1>이 경우 지갑의 보안에 위험을 끼칠 수 있습니다.</1><2> 보안 위험을 감수하고 진행하시겠습니까?</2>"
     },
     "pow": {
         "feeless": "IOTA에서는 수수료 없는 거래를 하기 위해 약간의 작업증명을 수행해야 합니다.",
         "localOrRemote": "이러한 작업증명은 기기에서 직접 이루어지거나, 연결된 노드 측에서 수행할 수 있습니다.",
         "local": "기기",
         "remote": "노드",
-        "powUpdated": "Proof of work settings",
-        "powUpdatedExplanation": "Your proof of work configuration has been updated."
+        "powUpdated": "작업증명 설정",
+        "powUpdatedExplanation": "작업증명 설정이 저장되었습니다.",
+        "noWebGLSupport": "WebGL 미지원",
+        "noWebGLSupportExplanation": "사용하시는 컴퓨터는 WebGL을 지원하지 않습니다. 노드 작업증명을 사용해 주십시오."
     },
     "progressSteps": {
         "validatingReceiveAddress": "받는 주소 확인 중",
@@ -497,18 +493,17 @@
         "transitionCompleteExplanation": "스냅샷 이전이 성공적으로 완료되었습니다."
     },
     "deepLink": {
-        "autofill": "Autofill success",
-        "autofillExplanation": "Transaction data autofilled from link."
+        "autofill": "자동 완성 성공",
+        "autofillExplanation": "링크를 통해 트랜잭션 데이터가 자동 완성 되었습니다."
     },
     "updates": {
-        "errorRetrievingUpdateData": "Error retrieving update data",
-        "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
-        "noUpdatesAvailable": "No updates available",
-        "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
-        "newVersionAvailable": "New version available",
-        "newVersionAvailableExplanation":
-            "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
-        "downloadRelease": "Download release",
-        "skipUpdate": "Skip update"
+        "errorRetrievingUpdateData": "업데이트를 받아오는 중 오류 발생",
+        "errorRetrievingUpdateDataExplanation": "업데이트 데이터를 받아오는 중 오류가 발생하였습니다. 다시 시도해 주십시오.",
+        "noUpdatesAvailable": "사용 가능한 업데이트 없음",
+        "noUpdatesAvailableExplanation": "IOTA 트리니티 데스크탑 지갑의 최신 버전을 사용하고 있습니다!",
+        "newVersionAvailable": "새 버전 이용 가능",
+        "newVersionAvailableExplanation": "<strong>트리니티</strong> 버전 <strong>{{version}}</strong>을 사용할 수 있습니다. 업데이트를 하기 전에 내역을 자세히 읽고 다운로드 출처를 확인해 주십시오:",
+        "downloadRelease": "새 버전 다운로드",
+        "skipUpdate": "업데이트 건너뛰기"
     }
 }
