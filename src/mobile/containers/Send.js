@@ -255,6 +255,8 @@ export class Send extends Component {
         if (isAndroid) {
             FingerprintScanner.release();
         }
+        timer.clearTimeout('invalidAddressAlert');
+        timer.clearTimeout('modalShow');
     }
 
     onDenominationPress() {
@@ -360,25 +362,24 @@ export class Send extends Component {
     onQRRead(data) {
         const dataString = data.toString();
         const { t } = this.props;
-        if (dataString.match(/{/)) {
+        const parsedData = parse(data);
+        const dataSubstring = data.substring(5);
+        this.hideModal();
+        if (parsedData.address) {
             // For codes containing JSON (iotaledger and Trinity)
-            const parsedData = parse(data);
             this.props.setSendAddressField(parsedData.address);
             if (parsedData.message) {
                 this.props.setSendMessageField(parsedData.message);
             }
-        } else if (dataString.match(/iota:/)) {
+        } else if (dataString.startsWith('iota:') && dataSubstring.match(VALID_ADDRESS_WITH_CHECKSUM_REGEX)) {
             // For codes with iota: at the front (TheTangle.org)
-            const dataSubstring = data.substring(5);
             this.props.setSendAddressField(dataSubstring);
         } else if (dataString.match(VALID_ADDRESS_WITH_CHECKSUM_REGEX)) {
             // For codes with plain text (Bitfinex, Binance, and IOTASear.ch)
             this.props.setSendAddressField(data);
         } else {
-            this.props.generateAlert('error', t('invalidAddress'), t('invalidAddressExplanationGeneric'));
+            timer.setTimeout('invalidAddressAlert', () => this.props.generateAlert('error', t('invalidAddress'), t('invalidAddressExplanationGeneric')), 500);
         }
-
-        this.hideModal();
     }
 
     getInvalidAddressError(address) {
@@ -607,7 +608,7 @@ export class Send extends Component {
         if (isIOSKeyboardActive) {
             this.blurTextFields();
             timer.setTimeout(
-                'modalShowTimer',
+                'modalShow',
                 () => this.props.toggleModalActivity(),
                 500,
             );
