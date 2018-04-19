@@ -4,11 +4,19 @@ import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
 import { round } from 'iota-wallet-shared-modules/libs/utils';
 import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/iota/utils';
+import StatefulDropdownAlert from '../containers/StatefulDropdownAlert';
 import OnboardingButtons from '../containers/OnboardingButtons';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
 
 const styles = StyleSheet.create({
+    modalContainer: {
+        flex: 1,
+        alignItems: 'center',
+        width,
+        height,
+        justifyContent: 'center',
+    },
     modalContent: {
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -82,6 +90,8 @@ class TransferConfirmationModal extends Component {
         amount: PropTypes.string.isRequired,
         /** Theme setting */
         body: PropTypes.object.isRequired,
+        /** Theme setting */
+        bar: PropTypes.object.isRequired,
         /** Name for selected account */
         selectedAccountName: PropTypes.string.isRequired,
         /** Determines if user has activated fingerprint auth */
@@ -122,7 +132,7 @@ class TransferConfirmationModal extends Component {
     }
 
     render() {
-        const { t, body, textColor, borderColor, value, conversionText, amount, selectedAccountName } = this.props;
+        const { t, body, bar, textColor, borderColor, value, conversionText, amount, selectedAccountName } = this.props;
         // TODO: fix this using trans component
 
         /*
@@ -155,14 +165,12 @@ class TransferConfirmationModal extends Component {
             );
         }
         return (
-            <View style={{ width: width / 1.2, alignItems: 'center', backgroundColor: body.bg }}>
-                <View style={[styles.modalContent, borderColor]}>
+            <View style={styles.modalContainer}>
+                <View style={[styles.modalContent, borderColor, { backgroundColor: body.bg }]}>
                     {(value !== 0 && (
                         <View style={styles.textContainer}>
                             <Text style={[styles.text, textColor, { paddingTop: height / 50 }]}>
-                                <Text style={[styles.regularText, textColor]}>
-                                    You are about to send {transferContents} from
-                                </Text>
+                                <Text style={[styles.regularText, textColor]}>Sending {transferContents} from</Text>
                             </Text>
                             <Text style={[styles.boldText, textColor, { paddingTop: height / 25 }]}>
                                 {selectedAccountName}
@@ -202,6 +210,7 @@ class TransferConfirmationModal extends Component {
                         containerWidth={{ width: width / 1.4 }}
                     />
                 </View>
+                <StatefulDropdownAlert backgroundColor={bar.bg} />
             </View>
         );
     }

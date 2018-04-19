@@ -42,6 +42,7 @@ const getProps = (overrides) =>
             addresses: [{ address: 'U'.repeat(81), value: 1, unit: 'i' }],
             confirmationBool: false,
             mode: 'Standard',
+            generateAlert: noop,
             style: {
                 titleColor: 'white',
                 containerBorderColor: { borderColor: 'white' },
