@@ -122,12 +122,9 @@ class TransferConfirmationModal extends Component {
             this.props.activateFingerprintScanner();
         } else {
             // Prevent modal close lag
-            hideModal(() => {
-                setSendingTransferFlag();
-                this.timeout = setTimeout(() => {
-                    sendTransfer();
-                }, 300);
-            });
+            hideModal();
+            setSendingTransferFlag();
+            sendTransfer();
         }
     }
 
