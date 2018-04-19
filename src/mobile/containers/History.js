@@ -1,6 +1,8 @@
+import assign from 'lodash/assign';
 import map from 'lodash/map';
 import orderBy from 'lodash/orderBy';
 import React, { Component } from 'react';
+import Modal from 'react-native-modal';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, TouchableWithoutFeedback, RefreshControl, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
@@ -15,6 +17,7 @@ import { toggleModalActivity } from 'iota-wallet-shared-modules/actions/ui';
 import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/iota/utils';
 import tinycolor from 'tinycolor2';
 import TransactionRow from '../components/TransactionRow';
+import HistoryModalContent from '../components/HistoryModalContent';
 import { width, height } from '../utils/dimensions';
 import { getSeedFromKeychain } from '../utils/keychain';
 import { isAndroid } from '../utils/device';
@@ -50,6 +53,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         height: height / 5,
+    },
+    modal: {
+        alignItems: 'center',
+        margin: 0,
     },
 });
 
@@ -118,7 +125,11 @@ class History extends Component {
     constructor() {
         super();
 
-        this.state = { isRefreshing: false };
+        this.state = {
+            isRefreshing: false,
+            modalProps: null,
+        };
+
         this.onRefresh = this.onRefresh.bind(this);
     }
 
@@ -225,7 +236,6 @@ class History extends Component {
             selectedAccountName,
             isBroadcastingBundle,
             isPromotingTransaction,
-            isModalActive
         } = this.props;
         const containerBorderColor = tinycolor(body.bg).isDark() ? 'rgba(255, 255, 255, 0.25)' : 'rgba(0, 0, 0, 0.25)';
         const containerBackgroundColor = tinycolor(body.bg).isDark() ? 'rgba(255, 255, 255, 0.08)' : 'transparent';
@@ -250,22 +260,29 @@ class History extends Component {
 
             return {
                 t,
-                disableWhen,
-                rebroadcast: (bundle) => this.props.broadcastBundle(bundle, selectedAccountName),
-                promote: (bundle) => this.props.promoteTransaction(bundle, selectedAccountName),
-                generateAlert: this.props.generateAlert, // Already declated in upper scope
-                toggleModalActivity: this.props.toggleModalActivity,
-                isModalActive: isModalActive,
-                addresses: [...map(inputs, withUnitAndChecksum), ...map(outputs, withUnitAndChecksum)],
                 status: incoming ? t('history:receive') : t('history:send'),
                 confirmation: computeConfirmationStatus(persistence, incoming),
                 confirmationBool: persistence,
                 value: round(formatValue(transferValue), 1),
                 unit: formatUnit(transferValue),
                 time: timestamp,
-                bundle,
                 message,
                 mode,
+                onPress: (modalProps) => {
+                    this.setState({
+                        modalProps: assign({}, modalProps, {
+                            rebroadcast: (bundle) => this.props.broadcastBundle(bundle, selectedAccountName),
+                            promote: (bundle) => this.props.promoteTransaction(bundle, selectedAccountName),
+                            onPress: this.props.toggleModalActivity,
+                            generateAlert: this.props.generateAlert,
+                            bundle,
+                            disableWhen,
+                            addresses: [...map(inputs, withUnitAndChecksum), ...map(outputs, withUnitAndChecksum)],
+                        }),
+                    });
+
+                    this.props.toggleModalActivity();
+                },
                 style: {
                     titleColor: incoming ? primary.color : secondary.color,
                     containerBorderColor: { borderColor: containerBorderColor },
@@ -286,6 +303,11 @@ class History extends Component {
         });
 
         return orderBy(formattedTransfers, 'time', ['desc']);
+    }
+
+    resetModalProps() {
+        this.setState({ modalProps: null });
+        this.props.toggleModalActivity();
     }
 
     renderTransactions() {
@@ -340,12 +362,33 @@ class History extends Component {
 
     render() {
         const transactions = this.renderTransactions();
+        const { theme, isModalActive } = this.props;
+        const { modalProps } = this.state;
 
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
                 <View style={styles.container}>
                     <View style={{ flex: 0.2 }} />
                     <View style={styles.listView}>{transactions}</View>
+                    {modalProps && (
+                        <Modal
+                            animationIn={isAndroid ? 'bounceInUp' : 'zoomIn'}
+                            animationOut={isAndroid ? 'bounceOut' : 'zoomOut'}
+                            animationInTiming={isAndroid ? 1000 : 300}
+                            animationOutTiming={200}
+                            backdropTransitionInTiming={isAndroid ? 500 : 300}
+                            backdropTransitionOutTiming={200}
+                            backdropColor={theme.body.bg}
+                            backdropOpacity={0.6}
+                            style={styles.modal}
+                            isVisible={isModalActive}
+                            onBackButtonPress={this.resetModalProps}
+                            hideModalContentWhileAnimating
+                            useNativeDriver={isAndroid}
+                        >
+                            <HistoryModalContent {...modalProps} />
+                        </Modal>
+                    )}
                 </View>
             </TouchableWithoutFeedback>
         );
