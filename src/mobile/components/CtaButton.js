@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
     ctaText: {
         fontFamily: 'Lato-Regular',
         backgroundColor: 'transparent',
+        textAlign: 'center',
     },
 });
 

@@ -29,11 +29,13 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Light',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
+        textAlign: 'center',
     },
     rightText: {
         fontFamily: 'Lato-Light',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
+        textAlign: 'center',
     },
 });
 
