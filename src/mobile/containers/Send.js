@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import timer from 'react-native-timer';
 import { connect } from 'react-redux';
 import {
     isValidAddress,
@@ -28,7 +29,8 @@ import {
     setSendAmountField,
     setSendMessageField,
     setSendDenomination,
-    setDoNotMinimise
+    setDoNotMinimise,
+    toggleModalActivity,
 } from 'iota-wallet-shared-modules/actions/ui';
 import { parse, round } from 'iota-wallet-shared-modules/libs/utils';
 import {
@@ -158,10 +160,14 @@ export class Send extends Component {
         setDeepLinkInactive: PropTypes.func.isRequired,
         /** Determines if user has activated fingerprint auth */
         isFingerprintEnabled: PropTypes.bool.isRequired,
-       /** Allow deny application to minimize
+        /** Allow deny application to minimize
          * @param {boolean} status
          */
-        setDoNotMinimise: PropTypes.func.isRequired
+        setDoNotMinimise: PropTypes.func.isRequired,
+        /** Determines whether keyboard is open on iOS */
+        isIOSKeyboardActive: PropTypes.bool.isRequired,
+        /** Sets whether modal is active or inactive */
+        toggleModalActivity: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -317,16 +323,16 @@ export class Send extends Component {
     }
 
     onSendPress() {
-        const { t, amount, address, balance, message, denomination } = this.props;
+        const { t, amount, address, message, denomination } = this.props;
         const { currencySymbol } = this.state;
 
         const multiplier = this.getUnitMultiplier();
         const isFiat = denomination === currencySymbol;
-
-        const enoughBalance = this.enoughBalance();
-        const messageIsValid = isValidMessage(message);
         const addressIsValid = isValidAddress(address);
         const amountIsValid = isValidAmount(amount, multiplier, isFiat);
+        const enoughBalance = this.enoughBalance();
+        const isSpendingFundsAtSpentAddresses = this.isSpendingFundsAtSpentAddresses();
+        const messageIsValid = isValidMessage(message);
 
         if (!addressIsValid) {
             return this.getInvalidAddressError(address);
@@ -337,11 +343,11 @@ export class Send extends Component {
         }
 
         if (!enoughBalance) {
-            // If amount includes funds at a spent address
-            if (parseInt(amount) * multiplier <= balance) {
-                return this.openModal('usedAddress');
-            }
             return this.props.generateAlert('error', t('notEnoughFunds'), t('notEnoughFundsExplanation'));
+        }
+
+        if (isSpendingFundsAtSpentAddresses) {
+            return this.openModal('usedAddress');
         }
 
         if (!messageIsValid) {
@@ -369,7 +375,7 @@ export class Send extends Component {
             // For codes with plain text (Bitfinex, Binance, and IOTASear.ch)
             this.props.setSendAddressField(data);
         } else {
-            this.props.generateAlert('error', t('invalidAddress'), t('invalidAmountExplanationGeneric'));
+            this.props.generateAlert('error', t('invalidAddress'), t('invalidAddressExplanationGeneric'));
         }
 
         this.hideModal();
@@ -415,6 +421,7 @@ export class Send extends Component {
                         sendTransfer={() => this.sendTransfer()}
                         hideModal={(callback) => this.hideModal(callback)}
                         body={body}
+                        bar={bar}
                         borderColor={{ borderColor: body.color }}
                         textColor={{ color: body.color }}
                         setSendingTransferFlag={() => this.setSendingTransferFlag()}
@@ -440,6 +447,7 @@ export class Send extends Component {
                     <UsedAddressModal
                         hideModal={(callback) => this.hideModal(callback)}
                         body={body}
+                        bar={bar}
                         borderColor={{ borderColor: body.color }}
                         textColor={{ color: body.color }}
                     />
@@ -594,12 +602,28 @@ export class Send extends Component {
         return !amountIsValid && amount !== '';
     }
 
-    showModal = () =>
-        this.setState({
-            isModalVisible: true,
-        });
+    showModal = () => {
+        const { isIOSKeyboardActive } = this.props;
+        this.props.toggleModalActivity();
+        if (isIOSKeyboardActive) {
+            this.blurTextFields();
+            timer.setTimeout(
+                'modalShowTimer',
+                () =>
+                    this.setState({
+                        isModalVisible: true,
+                    }),
+                500,
+            );
+        } else {
+            this.setState({
+                isModalVisible: true,
+            });
+        }
+    };
 
-    hideModal = (callback) =>
+    hideModal = (callback) => {
+        this.props.toggleModalActivity();
         this.setState({ isModalVisible: false }, () => {
             const callable = (fn) => isFunction(fn);
 
@@ -607,16 +631,27 @@ export class Send extends Component {
                 setTimeout(callback);
             }
         });
+    };
 
     enoughBalance() {
-        const { amount, availableBalance } = this.props;
+        const { amount, balance } = this.props;
         const multiplier = this.getUnitMultiplier();
 
-        if (parseFloat(amount) * multiplier > availableBalance) {
+        if (parseFloat(amount) * multiplier > balance) {
             return false;
         }
 
         return true;
+    }
+
+    isSpendingFundsAtSpentAddresses() {
+        const { amount, balance, availableBalance } = this.props;
+        const multiplier = this.getUnitMultiplier();
+        const value = parseInt(amount) * multiplier;
+        if (value <= balance && value > availableBalance) {
+            return true;
+        }
+        return false;
     }
 
     startTrackingTransactionProgress(isZeroValueTransaction) {
@@ -696,8 +731,10 @@ export class Send extends Component {
             });
     }
 
-    hideModal() {
-        this.setState({ isModalVisible: false });
+    blurTextFields() {
+        this.addressField.blur();
+        this.amountField.blur();
+        this.messageField.blur();
     }
 
     renderModalContent = () => <View>{this.state.modalContent}</View>;
@@ -845,9 +882,7 @@ export class Send extends Component {
                                         onPress={() => {
                                             this.onSendPress();
                                             if (address === '' && amount === '' && message && '') {
-                                                this.addressField.blur();
-                                                this.amountField.blur();
-                                                this.messageField.blur();
+                                                this.blurTextFields();
                                             }
                                         }}
                                     />
@@ -955,7 +990,8 @@ const mapDispatchToProps = {
     startTrackingProgress,
     generateTransferErrorAlert,
     setDeepLinkInactive,
-    setDoNotMinimise
+    setDoNotMinimise,
+    toggleModalActivity,
 };
 
 export default translate(['send', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Send));
