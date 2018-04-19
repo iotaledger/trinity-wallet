@@ -138,11 +138,15 @@ class Home extends Component {
     }
 
     componentWillUnmount() {
+        const { isModalActive } = this.props;
         if (!isAndroid) {
             this.keyboardWillShowSub.remove();
             this.keyboardWillHideSub.remove();
         }
         Linking.removeEventListener('url');
+        if (isModalActive) {
+            this.props.toggleModalActivity();
+        }
     }
 
     onLoginPress = (password) => {
