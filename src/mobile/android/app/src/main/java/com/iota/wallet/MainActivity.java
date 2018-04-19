@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.ImageView;
 import android.view.Gravity;
 import android.util.TypedValue;
+import android.view.View;
 import com.facebook.react.modules.storage.ReactDatabaseSupplier;
 import android.support.v4.content.ContextCompat;
 
@@ -24,7 +25,7 @@ public class MainActivity extends SplashActivity {
     }
 
     @Override
-    public LinearLayout createSplashLayout() {
+    public View createSplashLayout() {
         LinearLayout view = new LinearLayout(this);
         ImageView imageView = new ImageView(this);
 
@@ -37,6 +38,6 @@ public class MainActivity extends SplashActivity {
         imageView.setImageDrawable(ContextCompat.getDrawable(this.getApplicationContext(), R.drawable.background_splash));
 
         view.addView(imageView);
-        return view;
+        return new View(this);
     }
 }

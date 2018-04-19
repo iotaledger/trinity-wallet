@@ -2,7 +2,11 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primary_dark</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/primary_dark</item>
         <item name="android:statusBarColor">@color/primary_dark</item>
+        <item name="android:windowBackground">@color/primary_dark</item>
     </style>
     <style name="SplashTheme" parent="AppTheme">
     	<item name="android:windowBackground">@drawable/background_splash</item>
