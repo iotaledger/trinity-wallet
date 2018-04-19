@@ -163,6 +163,12 @@ export default class HistoryModalContent extends PureComponent {
                 unit: PropTypes.string.isRequired,
             }),
         ).isRequired,
+        /** Generate a notification alert
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification titleinactivityLogoutContainer
+         * @param {String} text - notification explanation
+         */
+        generateAlert: PropTypes.func.isRequired,
         /** Content styles */
         style: PropTypes.shape({
             titleColor: PropTypes.string.isRequired,
@@ -190,8 +196,8 @@ export default class HistoryModalContent extends PureComponent {
 
         Clipboard.setString(item);
 
-        if (types[type] && this.dropdown) {
-            this.dropdown.alertWithType('success', ...types[type]);
+        if (types[type]) {
+            this.props.generateAlert('success', ...types[type]);
         }
     }
 
@@ -328,12 +334,7 @@ export default class HistoryModalContent extends PureComponent {
                         </ScrollView>
                     </View>
                 </View>
-                <StatefulDropdownAlert
-                    backgroundColor={style.barBg}
-                    onRef={(c) => {
-                        this.dropdown = c;
-                    }}
-                />
+                <StatefulDropdownAlert backgroundColor={style.barBg} />
             </TouchableOpacity>
         );
     }
