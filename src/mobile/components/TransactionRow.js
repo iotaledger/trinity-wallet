@@ -129,6 +129,8 @@ export default class TransactionRow extends PureComponent {
          * @param {boolean} active
          */
         toggleModalActivity: PropTypes.func.isRequired,
+        /** Determines whether modal is open */
+        isModalActive: PropTypes.bool.isRequired,
         /** Content styles */
         style: PropTypes.shape({
             titleColor: PropTypes.string.isRequired,
@@ -148,35 +150,21 @@ export default class TransactionRow extends PureComponent {
         message: 'Empty',
     };
 
-    constructor() {
-        super();
-
-        this.state = { isModalActive: false };
-
-        this.toggleModal = this.toggleModal.bind(this);
-    }
-
     getModalProps() {
         const props = this.props;
 
         return {
             ...props,
-            onPress: this.toggleModal,
+            onPress: this.props.toggleModalActivity,
             generateAlert: (error, title, explanation) => this.props.generateAlert(error, title, explanation),
         };
     }
 
-    toggleModal() {
-        this.props.toggleModalActivity();
-        this.setState({ isModalActive: !this.state.isModalActive });
-    }
-
     render() {
-        const { status, confirmation, value, unit, time, message, t, style } = this.props;
-        const { isModalActive } = this.state;
+        const { status, confirmation, value, unit, time, message, t, style, isModalActive } = this.props;
 
         return (
-            <TouchableOpacity onPress={this.toggleModal}>
+            <TouchableOpacity onPress={this.props.toggleModalActivity}>
                 <View style={styles.topWrapper}>
                     <View style={[styles.container, style.containerBorderColor, style.containerBackgroundColor]}>
                         <View style={styles.innerWrapper}>
@@ -214,8 +202,7 @@ export default class TransactionRow extends PureComponent {
                         backdropOpacity={0.6}
                         style={styles.modal}
                         isVisible={isModalActive}
-                        onBackButtonPress={this.toggleModal}
-                        onBackdropPress={this.toggleModal}
+                        onBackButtonPress={this.props.toggleModalActivity}
                         hideModalContentWhileAnimating
                         useNativeDriver={isAndroid ? true : false}
                     >

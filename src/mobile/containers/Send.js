@@ -1,4 +1,3 @@
-import isFunction from 'lodash/isFunction';
 import size from 'lodash/size';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
@@ -168,6 +167,8 @@ export class Send extends Component {
         isIOSKeyboardActive: PropTypes.bool.isRequired,
         /** Sets whether modal is active or inactive */
         toggleModalActivity: PropTypes.func.isRequired,
+        /** Determines whether modal is open */
+        isModalActive: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
@@ -183,7 +184,6 @@ export class Send extends Component {
             maxText: t('send:sendMax'),
             sending: false,
             currencySymbol: getCurrencySymbol(this.props.currency),
-            isModalVisible: false,
         };
     }
 
@@ -604,33 +604,20 @@ export class Send extends Component {
 
     showModal = () => {
         const { isIOSKeyboardActive } = this.props;
-        this.props.toggleModalActivity();
         if (isIOSKeyboardActive) {
             this.blurTextFields();
             timer.setTimeout(
                 'modalShowTimer',
-                () =>
-                    this.setState({
-                        isModalVisible: true,
-                    }),
+                () => this.props.toggleModalActivity(),
                 500,
             );
         } else {
-            this.setState({
-                isModalVisible: true,
-            });
+            this.props.toggleModalActivity();
         }
     };
 
-    hideModal = (callback) => {
+    hideModal = () => {
         this.props.toggleModalActivity();
-        this.setState({ isModalVisible: false }, () => {
-            const callable = (fn) => isFunction(fn);
-
-            if (callable(callback)) {
-                setTimeout(callback);
-            }
-        });
     };
 
     enoughBalance() {
@@ -715,14 +702,19 @@ export class Send extends Component {
         const { t } = this.props;
         if (isAndroid) {
             this.setModalContent('fingerPrintModal');
+        } else {
+            this.hideModal();
         }
         FingerprintScanner.authenticate({ description: t('fingerprintOnSend') })
             .then(() => {
                 this.setSendingTransferFlag();
-                this.hideModal();
+                if (isAndroid){
+                    this.hideModal();
+                }
                 this.sendTransfer();
             })
             .catch(() => {
+                this.hideModal();
                 this.props.generateAlert(
                     'error',
                     t('fingerprintSetup:fingerprintAuthFailed'),
@@ -751,7 +743,7 @@ export class Send extends Component {
     }
 
     render() {
-        const { isModalVisible, maxPressed, maxColor, maxText, sending, currencySymbol } = this.state;
+        const { maxPressed, maxColor, maxText, sending, currencySymbol } = this.state;
         const {
             t,
             isSendingTransfer,
@@ -763,6 +755,7 @@ export class Send extends Component {
             theme,
             body,
             primary,
+            isModalActive
         } = this.props;
         const textColor = { color: body.color };
         const conversionText =
@@ -889,23 +882,23 @@ export class Send extends Component {
                                 </View>
                             )}
                         {(isGettingSensitiveInfoToMakeTransaction || isSendingTransfer) &&
-                            !isModalVisible && (
-                                <View
-                                    style={{
-                                        flex: 1,
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                    }}
-                                >
-                                    <ProgressBar
-                                        indeterminate={this.props.activeStepIndex === -1}
-                                        progress={this.props.activeStepIndex / size(this.props.activeSteps)}
-                                        color={primary.color}
-                                        textColor={body.color}
-                                    >
-                                        {this.renderProgressBarChildren()}
-                                    </ProgressBar>
-                                </View>
+                              (
+                              <View
+                                  style={{
+                                      flex: 1,
+                                      justifyContent: 'center',
+                                      alignItems: 'center',
+                                  }}
+                              >
+                                  <ProgressBar
+                                      indeterminate={this.props.activeStepIndex === -1}
+                                      progress={this.props.activeStepIndex / size(this.props.activeSteps)}
+                                      color={primary.color}
+                                      textColor={body.color}
+                                  >
+                                      {this.renderProgressBarChildren()}
+                                  </ProgressBar>
+                              </View>
                             )}
                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                             <TouchableOpacity
@@ -934,8 +927,8 @@ export class Send extends Component {
                         backdropTransitionOutTiming={200}
                         backdropColor={body.bg}
                         style={{ alignItems: 'center', margin: 0 }}
-                        isVisible={isModalVisible}
-                        onBackButtonPress={() => this.setState({ isModalVisible: false })}
+                        isVisible={isModalActive}
+                        onBackButtonPress={() => this.props.toggleModalActivity()}
                         hideModalContentWhileAnimating
                         useNativeDriver={isAndroid ? true : false}
                     >
@@ -974,6 +967,7 @@ const mapStateToProps = (state) => ({
     password: state.wallet.password,
     deepLinkActive: state.wallet.deepLinkActive,
     isFingerprintEnabled: state.settings.isFingerprintEnabled,
+    isModalActive: state.ui.isModalActive
 });
 
 const mapDispatchToProps = {

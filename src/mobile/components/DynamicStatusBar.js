@@ -10,7 +10,7 @@ class DynamicStatusBar extends PureComponent {
         /** Status bar background color */
         backgroundColor: PropTypes.string.isRequired,
         /** Determines whether modal is open */
-        isModalActive: PropTypes.bool.isRequired,
+        isModalActive: PropTypes.bool,
     };
 
     componentWillReceiveProps(newProps) {
