@@ -365,7 +365,6 @@ class History extends Component {
         const { theme, isModalActive } = this.props;
         const { modalProps } = this.state;
 
-        console.log('Modal props', modalProps);
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
                 <View style={styles.container}>
