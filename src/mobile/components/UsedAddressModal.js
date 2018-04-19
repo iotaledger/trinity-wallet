@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import StatefulDropdownAlert from '../containers/StatefulDropdownAlert';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
 
@@ -53,12 +54,14 @@ class UsedAddressModal extends PureComponent {
         textColor: PropTypes.object.isRequired,
         /** Content border color */
         borderColor: PropTypes.object.isRequired,
-        /** Transaction value as a string */
+        /** Theme body */
         body: PropTypes.object.isRequired,
+        /** Theme bar */
+        bar: PropTypes.object.isRequired,
     };
 
     render() {
-        const { t, body, textColor, borderColor } = this.props;
+        const { t, body, bar, textColor, borderColor } = this.props;
 
         return (
             <TouchableOpacity onPress={() => this.props.hideModal()} style={styles.modalContainer}>
@@ -75,6 +78,7 @@ class UsedAddressModal extends PureComponent {
                         </View>
                     </View>
                 </View>
+                <StatefulDropdownAlert backgroundColor={bar.bg} />
             </TouchableOpacity>
         );
     }
