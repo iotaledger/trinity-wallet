@@ -1,4 +1,4 @@
-import { ActionTypes } from '../actions/alerts.js';
+import { ActionTypes } from '../actions/alerts';
 
 const initialState = {
     category: '',
@@ -20,6 +20,7 @@ export default (state = initialState, action) => {
             };
         case ActionTypes.HIDE:
             return {
+                ...state,
                 category: '',
                 title: '',
                 message: '',
