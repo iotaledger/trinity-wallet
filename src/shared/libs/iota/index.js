@@ -1,6 +1,6 @@
 import IOTA from 'iota.lib.js';
-import { nodes, defaultNode } from '../../config';
 import 'proxy-polyfill';
+import { nodes, defaultNode } from '../../config';
 
 const iotaAPI = new IOTA({ provider: defaultNode });
 
