@@ -45,14 +45,13 @@ const renderInitialScreen = (store) => {
                 topBarElevationShadowEnabled: false,
                 drawUnderStatusBar: true,
                 statusBarColor: '#181818',
-                screenBackgroundColor: '#181818'
+                screenBackgroundColor: '#181818',
             },
         },
         appStyle: {
             orientation: 'portrait',
             keepStyleAcrossPush: true,
         },
-        animationType: 'fade'
     });
 };
 
