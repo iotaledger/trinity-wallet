@@ -16,7 +16,7 @@ const getProps = (overrides) =>
         {
             currency: 'USD',
             mode: 'Standard',
-            theme: { body: {} },
+            theme: { bar: {}, body: {} },
             themeName: 'custom',
             setSetting: noop,
             clearWalletData: noop,

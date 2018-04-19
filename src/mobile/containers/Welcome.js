@@ -175,7 +175,7 @@ class Welcome extends Component {
                     backdropTransitionOutTiming={200}
                     backdropColor={theme.body.bg}
                     backdropOpacity={0.8}
-                    style={{ alignItems: 'center' }}
+                    style={{ alignItems: 'center', margin: 0 }}
                     isVisible={isModalVisible}
                     onBackButtonPress={() => this.setState({ isModalVisible: false })}
                     useNativeDriver={isAndroid ? true : false}

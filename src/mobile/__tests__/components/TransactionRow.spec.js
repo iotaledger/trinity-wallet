@@ -47,6 +47,7 @@ const getProps = (overrides) =>
                 barBg: 'white',
                 buttonsOpacity: { opacity: 1 },
             },
+            toggleModalActivity: noop
         },
         overrides,
     );
@@ -95,6 +96,10 @@ describe('Testing TransactionRow component', () => {
 
         it('should require a disableWHen boolean as a prop', () => {
             expect(TransactionRow.propTypes.disableWhen).toEqual(PropTypes.bool.isRequired);
+        });
+
+        it('should require a toggleModalActivity func as a prop', () => {
+            expect(TransactionRow.propTypes.toggleModalActivity).toEqual(PropTypes.func.isRequired);
         });
     });
 
@@ -254,6 +259,18 @@ describe('Testing TransactionRow component', () => {
 
                     instance.toggleModal();
                     expect(wrapper.state().isModalActive).toBe(false);
+                });
+
+                it('should call prop method toggleModalActivity', () => {
+                    const props = getProps({
+                        toggleModalActivity: jest.fn()
+                    });
+
+                    const wrapper = shallow(<TransactionRow {...props} />);
+
+                    const instance = wrapper.instance();
+                    instance.toggleModal();
+                    expect(props.toggleModalActivity).toHaveBeenCalledTimes(1);
                 });
             });
 
