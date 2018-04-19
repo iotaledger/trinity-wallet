@@ -129,6 +129,6 @@ function selectLocale(lang) {
 }
 
 module.exports = {
-  detectLocale,
-  selectLocale,
+    detectLocale,
+    selectLocale,
 };

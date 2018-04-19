@@ -44,8 +44,8 @@ const renderInitialScreen = (store) => {
                 navBarTransparent: true,
                 topBarElevationShadowEnabled: false,
                 drawUnderStatusBar: true,
-                statusBarColor: state.settings.theme.body.bg,
-                screenBackgroundColor: state.settings.theme.body.bg,
+                statusBarColor: '#181818',
+                screenBackgroundColor: '#181818',
             },
         },
         appStyle: {
