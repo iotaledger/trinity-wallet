@@ -382,7 +382,7 @@ class History extends Component {
                             backdropOpacity={0.6}
                             style={styles.modal}
                             isVisible={isModalActive}
-                            onBackButtonPress={this.moda}
+                            onBackButtonPress={this.resetModalProps}
                             hideModalContentWhileAnimating
                             useNativeDriver={isAndroid}
                         >
