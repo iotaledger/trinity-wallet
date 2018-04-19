@@ -25,6 +25,7 @@ import { getPasswordHash } from '../utils/crypto';
 import { migrate } from '../../shared/actions/app';
 import { persistor, persistConfig } from '../store';
 import { width, height } from '../utils/dimensions';
+import { isAndroid } from '../utils/device';
 
 const styles = StyleSheet.create({
     container: {
@@ -115,7 +116,9 @@ class Login extends Component {
     }
 
     componentDidMount() {
-        SplashScreen.hide();
+        if (!isAndroid) {
+            SplashScreen.hide();
+        }
         this.checkForUpdates();
         KeepAwake.deactivate();
         this.props.setUserActivity({ inactive: false });
