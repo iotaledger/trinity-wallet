@@ -52,6 +52,8 @@ class StatefulDropdownAlert extends Component {
         closeInterval: PropTypes.number,
         backgroundColor: PropTypes.string.isRequired,
         onRef: PropTypes.func,
+        /** Determines whether modal is open */
+        isModalActive: PropTypes.bool.isRequired,
     };
 
     static defaultProps = {
@@ -64,7 +66,7 @@ class StatefulDropdownAlert extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        const { alerts } = this.props;
+        const { alerts, isModalActive } = this.props;
         const hasAnAlert = newProps.alerts.category && newProps.alerts.title && newProps.alerts.message;
         const alertIsNew = alerts.message !== newProps.alerts.message;
         const shouldGenerateAlert = hasAnAlert && alertIsNew;
@@ -73,6 +75,10 @@ class StatefulDropdownAlert extends Component {
             if (this.dropdown) {
                 this.dropdown.alertWithType(newProps.alerts.category, newProps.alerts.title, newProps.alerts.message);
             }
+        }
+
+        if (isModalActive !== newProps.isModalActive) {
+            this.dropdown.close();
         }
     }
 
@@ -86,14 +92,12 @@ class StatefulDropdownAlert extends Component {
 
     render() {
         const { closeInterval } = this.props.alerts;
-        const { backgroundColor, onRef } = this.props;
+        const { backgroundColor, onRef, isModalActive } = this.props;
         const closeAfter = closeInterval;
         const statusBarStyle = tinycolor(backgroundColor).isDark() ? 'light-content' : 'dark-content';
-
         return (
             <DropdownAlert
                 ref={onRef || this.refFunc}
-                elevation={120}
                 successColor="#009f3f"
                 errorColor="#A10702"
                 errorImageSrc={errorIcon}
@@ -109,13 +113,16 @@ class StatefulDropdownAlert extends Component {
                 onCancel={this.props.disposeOffAlert}
                 onClose={this.props.disposeOffAlert}
                 closeInterval={closeAfter}
-                translucent
+                translucent={!isModalActive}
             />
         );
     }
 }
 
-const mapStateToProps = ({ alerts }) => ({ alerts });
+const mapStateToProps = (state) => ({
+    alerts: state.alerts,
+    isModalActive: state.ui.isModalActive,
+});
 
 const mapDispatchToProps = { disposeOffAlert };
 
