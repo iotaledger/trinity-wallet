@@ -1,6 +1,19 @@
-import { setApiTimeout, clearApiTimeout } from './multinode';
-import { quorum_nodes } from '../../config';
+import { setApiTimeout, clearApiTimeout, getValidNodes } from './multinode';
+import { quorum_nodes, quorum_poll_freq, quorum_pool_size } from '../../config';
 import objectHash from 'object-hash';
+import sample from 'lodash/sample';
+
+export var quorumNodes = [];
+
+export function getQuorumNodes() {
+    return sample(quorumNodes, quorum_nodes);
+}
+
+function pollNodes() {
+    getValidNodes(quorumNodes, (res) => {
+        quorumNodes = res;
+    });
+}
 
 export function getQuorumResult(nodefunc, nodelist, timeout, unorderedArrays, callback) {
     let promises = [];
