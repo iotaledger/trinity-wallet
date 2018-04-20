@@ -10,7 +10,7 @@ export default class Progress extends React.PureComponent {
         /** Progress bar progress */
         progress: PropTypes.number.isRequired,
         /** Progress bar title */
-        title: PropTypes.string.isRequired,
+        title: PropTypes.string,
     };
 
     render() {
@@ -18,7 +18,7 @@ export default class Progress extends React.PureComponent {
 
         return (
             <div className={css.progress}>
-                <p>{title}</p>
+                <p>{title || ''}</p>
                 <div>
                     <div style={{ width: `${progress}%` }} />
                 </div>
