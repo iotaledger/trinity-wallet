@@ -1,6 +1,7 @@
 import find from 'lodash/find';
 import keys from 'lodash/keys';
 import { expect } from 'chai';
+import sinon from 'sinon';
 import {
     prepareTransferArray,
     extractTailTransferFromBundle,
@@ -13,7 +14,9 @@ import {
     normalizeBundle,
     mergeNewTransfers,
     categorizeBundleByInputsOutputs,
+    getTransactionHashesForUnspentAddresses,
 } from '../../../libs/iota/transfers';
+import { iota } from '../../../libs/iota/index';
 
 describe('libs: iota/transfers', () => {
     describe('#prepareTransferArray', () => {
@@ -747,6 +750,31 @@ describe('libs: iota/transfers', () => {
                     checksum: 'RYN9LQCEC',
                 },
             ]);
+        });
+    });
+
+    describe('#getTransactionHashesForUnspentAddresses', () => {
+        let server;
+
+        before(() => {
+            server = sinon.fakeServer.create();
+            server.autoRespond = true;
+        });
+
+        after(() => {
+            server.restore();
+        });
+
+        it('should return hashes for unspent addresses', (done) => {
+            sinon.stub(iota.api, 'findTransactions').yields(null, ['9'.repeat(81)]);
+            const promise = getTransactionHashesForUnspentAddresses({ ['U'.repeat(81)]: { spent: false } });
+
+            promise
+                .then((hashes) => {
+                    expect(hashes).to.eql(['9'.repeat(81)]);
+                    done();
+                })
+                .catch(done);
         });
     });
 });
