@@ -89,12 +89,7 @@
 -keep class com.samsung.android.sdk.** { *; }
 -dontwarn com.samsung.android.sdk.**
 
-# Bugsnag
-
--keepattributes SourceFile,LineNumberTable
--keep class com.bugsnag.android.NativeInterface { *; }
--keep class com.bugsnag.android.Breadcrumbs { *; }
--keep class com.bugsnag.android.Breadcrumbs$Breadcrumb { *; }
--keep class com.bugsnag.android.BreadcrumbType { *; }
--keep class com.bugsnag.android.Severity { *; }
--keep class com.bugsnag.android.ndk.BugsnagObserver { *; }
+-ignorewarnings
+-keep class * {
+    public private *;
+}
