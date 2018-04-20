@@ -385,8 +385,7 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Por que eu não posso usar meu saldo integral?",
-        "spentAddressExplanation":
-            "Você tem fundos gastos em um ou mais endereços. Para a IOTA, a reutilização de endereço é perigosa, por isso esta carteira não permite que você envie mais de uma vez de um mesmo endereço.",
+        "spentAddressExplanation": "Você tem fundos gastos em um ou mais endereços. Para a IOTA, a reutilização de endereço é perigosa, por isso esta carteira não permite que você envie mais de uma vez de um mesmo endereço.",
         "discordInformation": "Por favor, acesse canal #help no Discord para encontrar o que pode fazer."
     },
     "deleteAccount": {
@@ -499,13 +498,11 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Erro ao recuperar dados de atualização",
-        "errorRetrievingUpdateDataExplanation":
-            "Ocorreu um erro ao recuperar os dados de atualização. Por favor, tente novamente.",
+        "errorRetrievingUpdateDataExplanation": "Ocorreu um erro ao recuperar os dados de atualização. Por favor, tente novamente.",
         "noUpdatesAvailable": "Nenhuma atualização disponível",
         "noUpdatesAvailableExplanation": "Você possui a última versão da carteira Trinity IOTA Desktop!",
         "newVersionAvailable": "Nova versão disponível",
-        "newVersionAvailableExplanation":
-            "Uma nova versão da <strong>Trinity</strong> <strong>{{version}}</strong> está disponível. Por favor, leia os detalhes do lançamento e certifique-se da origem do download antes de atualizar:",
+        "newVersionAvailableExplanation": "Uma nova versão da <strong>Trinity</strong> <strong>{{version}}</strong> está disponível. Por favor, leia os detalhes do lançamento e certifique-se da origem do download antes de atualizar:",
         "downloadRelease": "Baixar Nova Versão",
         "skipUpdate": "Ignorar a atualização"
     }
