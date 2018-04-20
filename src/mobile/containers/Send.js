@@ -331,7 +331,7 @@ export class Send extends Component {
         const addressIsValid = isValidAddress(address);
         const amountIsValid = isValidAmount(amount, multiplier, isFiat);
         const enoughBalance = this.enoughBalance();
-        const isSpendingFundsAtSpentAddresses = this.isSpendingFundsAtSpentAddresses();
+        // const isSpendingFundsAtSpentAddresses = this.isSpendingFundsAtSpentAddresses();
         const messageIsValid = isValidMessage(message);
 
         if (!addressIsValid) {
@@ -346,9 +346,9 @@ export class Send extends Component {
             return this.props.generateAlert('error', t('notEnoughFunds'), t('notEnoughFundsExplanation'));
         }
 
-        if (isSpendingFundsAtSpentAddresses) {
+        /*if (isSpendingFundsAtSpentAddresses) {
             return this.openModal('usedAddress');
-        }
+        }*/
 
         if (!messageIsValid) {
             return this.props.generateAlert('error', t('invalidMessage'), t('invalidMessageExplanation'));
