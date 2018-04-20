@@ -10,6 +10,7 @@ import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/li
 import { setSetting, setAdditionalAccountInfo } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { shouldPreventAction } from 'iota-wallet-shared-modules/selectors/global';
+import { toggleModalActivity } from 'iota-wallet-shared-modules/actions/ui';
 import { hasDuplicateAccountName, hasDuplicateSeed, getAllSeedsFromKeychain } from '../utils/keychain';
 import CustomTextInput from '../components/CustomTextInput';
 import Checksum from '../components/Checksum';
@@ -132,6 +133,10 @@ class UseExistingSeed extends Component {
          * @param {string} setting
          */
         setSetting: PropTypes.func.isRequired,
+        /** Determines whether modal is open */
+        isModalActive: PropTypes.bool.isRequired,
+        /** Sets whether modal is active or inactive */
+        toggleModalActivity: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -140,7 +145,6 @@ class UseExistingSeed extends Component {
         this.state = {
             seed: '',
             accountName: this.getDefaultAccountName(),
-            isModalVisible: false,
         };
     }
 
@@ -267,9 +271,9 @@ class UseExistingSeed extends Component {
         }
     }
 
-    showModal = () => this.setState({ isModalVisible: true });
+    showModal = () => this.props.toggleModalActivity();
 
-    hideModal = () => this.setState({ isModalVisible: false });
+    hideModal = () => this.props.toggleModalActivity();
 
     renderModalContent = () => {
         const { theme: { body, primary } } = this.props;
@@ -284,7 +288,7 @@ class UseExistingSeed extends Component {
     };
 
     render() {
-        const { t, theme } = this.props;
+        const { t, theme, isModalActive } = this.props;
         const { seed, accountName } = this.state;
 
         const textColor = { color: theme.body.color };
@@ -369,8 +373,8 @@ class UseExistingSeed extends Component {
                         backdropColor={theme.body.bg}
                         backdropOpacity={1}
                         style={{ alignItems: 'center', margin: 0 }}
-                        isVisible={this.state.isModalVisible}
-                        onBackButtonPress={() => this.setState({ isModalVisible: false })}
+                        isVisible={isModalActive}
+                        onBackButtonPress={() => this.props.toggleModalActivity()}
                         hideModalContentWhileAnimating
                         useNativeDriver={isAndroid ? true : false}
                     >
@@ -388,12 +392,14 @@ const mapStateToProps = (state) => ({
     password: state.wallet.password,
     theme: state.settings.theme,
     shouldPreventAction: shouldPreventAction(state),
+    isModalActive: state.ui.isModalActive,
 });
 
 const mapDispatchToProps = {
     setSetting,
     generateAlert,
     setAdditionalAccountInfo,
+    toggleModalActivity
 };
 
 export default translate(['addAdditionalSeed', 'useExistingSeed', 'global'])(
