@@ -136,13 +136,14 @@ class DeleteAccount extends Component {
         generateAlert: PropTypes.func.isRequired,
         /** Sets whether modal is active or inactive */
         toggleModalActivity: PropTypes.func.isRequired,
+        /** Determines whether modal is open */
+        isModalActive: PropTypes.bool.isRequired,
     };
 
     constructor() {
         super();
 
         this.state = {
-            isModalVisible: false,
             pressedContinue: false,
             password: '',
         };
@@ -199,12 +200,10 @@ class DeleteAccount extends Component {
 
     showModal = () => {
         this.props.toggleModalActivity();
-        this.setState({ isModalVisible: true });
     };
 
     hideModal = () => {
         this.props.toggleModalActivity();
-        this.setState({ isModalVisible: false });
     };
 
     renderModalContent = (borderColor, textColor) => {
@@ -237,7 +236,7 @@ class DeleteAccount extends Component {
     };
 
     render() {
-        const { t, theme, selectedAccountName } = this.props;
+        const { t, theme, selectedAccountName, isModalActive } = this.props;
 
         const primaryColor = theme.primary.color;
         const textColor = { color: theme.body.color };
@@ -316,8 +315,8 @@ class DeleteAccount extends Component {
                         backdropColor={backgroundColor}
                         backdropOpacity={0.6}
                         style={{ alignItems: 'center', margin: 0 }}
-                        isVisible={this.state.isModalVisible}
-                        onBackButtonPress={() => this.setState({ isModalVisible: false })}
+                        isVisible={isModalActive}
+                        onBackButtonPress={() => this.props.toggleModalActivity()}
                         hideModalContentWhileAnimating
                         useNativeDriver={isAndroid ? true : false}
                     >
@@ -335,6 +334,7 @@ const mapStateToProps = (state) => ({
     isPromoting: state.polling.isPromoting,
     selectedAccountName: getSelectedAccountName(state),
     shouldPreventAction: shouldPreventAction(state),
+    isModalActive: state.ui.isModalActive
 });
 
 const mapDispatchToProps = {
