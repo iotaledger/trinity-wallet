@@ -8,6 +8,7 @@ import { getVault } from 'libs/crypto';
 import AddressInput from 'ui/components/input/Address';
 import AmountInput from 'ui/components/input/Amount';
 import TextInput from 'ui/components/input/Text';
+import Icon from 'ui/components/Icon';
 import Button from 'ui/components/Button';
 import Progress from 'ui/components/Progress';
 import Confirm from 'ui/components/modal/Confirm';
@@ -62,7 +63,7 @@ class Send extends React.PureComponent {
          *  @param {number} value - transaction value in iotas
          *  @param {string} message - transaction message
          *  @param {function} taskRunner - task manager
-         *  @param {function} powFn - locla PoW function
+         *  @param {function} powFn - local PoW function
          */
         sendTransfer: PropTypes.func.isRequired,
         /** Update address field value
@@ -86,6 +87,7 @@ class Send extends React.PureComponent {
 
     state = {
         isTransferModalVisible: false,
+        isUnitsVisible: false,
     };
 
     validateInputs = (e) => {
@@ -138,7 +140,7 @@ class Send extends React.PureComponent {
 
     render() {
         const { fields, isSending, balance, settings, progress, t } = this.props;
-        const { isTransferModalVisible } = this.state;
+        const { isTransferModalVisible, isUnitsVisible } = this.state;
 
         const transferContents =
             parseInt(fields.amount) > 0
@@ -188,9 +190,50 @@ class Send extends React.PureComponent {
                             {t('send:send')}
                         </Button>
                     ) : (
-                        <Progress {...progress} />
+                        <React.Fragment>
+                            <Progress {...progress} />
+                            <small onClick={() => this.setState({ isUnitsVisible: true })}>
+                                <Icon icon="info" size={16} />
+                                {t('send:iotaUnits')}
+                            </small>
+                        </React.Fragment>
                     )}
                 </fieldset>
+                {!isUnitsVisible ? null : (
+                    <div className={css.units} onClick={() => this.setState({ isUnitsVisible: false })}>
+                        <div>
+                            <h3>
+                                <Icon icon="iota" size={32} />
+                                {t('unitInfoModal:unitSystem')}
+                            </h3>
+                            <dl>
+                                <dt>Ti</dt>
+                                <dd>{t('unitInfoModal:trillion')}</dd>
+                                <dd>1 000 000 000 000</dd>
+                            </dl>
+                            <dl>
+                                <dt>Gi</dt>
+                                <dd>{t('unitInfoModal:billion')}</dd>
+                                <dd>1 000 000 000</dd>
+                            </dl>
+                            <dl>
+                                <dt>Mi</dt>
+                                <dd>{t('unitInfoModal:million')}</dd>
+                                <dd>1 000 000</dd>
+                            </dl>
+                            <dl>
+                                <dt>Ki</dt>
+                                <dd>{t('unitInfoModal:thousand')}</dd>
+                                <dd>1 000</dd>
+                            </dl>
+                            <dl>
+                                <dt>i</dt>
+                                <dd>{t('unitInfoModal:one')}</dd>
+                                <dd>1</dd>
+                            </dl>
+                        </div>
+                    </div>
+                )}
             </form>
         );
     }
