@@ -54,10 +54,6 @@ const getProps = (overrides) =>
 
 describe('Testing TransactionRow component', () => {
     describe('propTypes', () => {
-        it('should require a generateAlert function as a prop', () => {
-            expect(TransactionRow.propTypes.generateAlert).toEqual(PropTypes.func.isRequired);
-        });
-
         it('should require a t function as a prop', () => {
             expect(TransactionRow.propTypes.t).toEqual(PropTypes.func.isRequired);
         });
@@ -84,22 +80,6 @@ describe('Testing TransactionRow component', () => {
 
         it('should require a message string as a prop', () => {
             expect(TransactionRow.propTypes.message).toEqual(PropTypes.string);
-        });
-
-        it('should require a bundle string as a prop', () => {
-            expect(TransactionRow.propTypes.bundle).toEqual(PropTypes.string.isRequired);
-        });
-
-        it('should require a rebroadcast function as a prop', () => {
-            expect(TransactionRow.propTypes.rebroadcast).toEqual(PropTypes.func.isRequired);
-        });
-
-        it('should require a disableWHen boolean as a prop', () => {
-            expect(TransactionRow.propTypes.disableWhen).toEqual(PropTypes.bool.isRequired);
-        });
-
-        it('should require a toggleModalActivity func as a prop', () => {
-            expect(TransactionRow.propTypes.toggleModalActivity).toEqual(PropTypes.func.isRequired);
         });
     });
 
@@ -219,88 +199,6 @@ describe('Testing TransactionRow component', () => {
                     .children()
                     .text(),
             ).toEqual('Honey and the moon');
-        });
-
-        it('should return a Modal component', () => {
-            const props = getProps();
-
-            const wrapper = shallow(<TransactionRow {...props} />);
-            expect(wrapper.find('ReactNativeModal').length).toEqual(1);
-        });
-
-        it('should return HistoryModalContent component as a child to Modal component', () => {
-            const props = getProps();
-
-            const wrapper = shallow(<TransactionRow {...props} />);
-            expect(
-                wrapper
-                    .find('HistoryModalContent')
-                    .parent()
-                    .name(),
-            ).toEqual('ReactNativeModal');
-        });
-    });
-
-    describe('instance methods', () => {
-        describe('when called', () => {
-            describe('#toggleModal', () => {
-                it('should invert isModalActive state prop', () => {
-                    const props = getProps();
-
-                    const wrapper = shallow(<TransactionRow {...props} />);
-
-                    const instance = wrapper.instance();
-
-                    expect(wrapper.state().isModalActive).toBe(false);
-
-                    instance.toggleModal();
-
-                    expect(wrapper.state().isModalActive).toBe(true);
-
-                    instance.toggleModal();
-                    expect(wrapper.state().isModalActive).toBe(false);
-                });
-
-                it('should call prop method toggleModalActivity', () => {
-                    const props = getProps({
-                        toggleModalActivity: jest.fn(),
-                    });
-
-                    const wrapper = shallow(<TransactionRow {...props} />);
-
-                    const instance = wrapper.instance();
-                    instance.toggleModal();
-                    expect(props.toggleModalActivity).toHaveBeenCalledTimes(1);
-                });
-            });
-
-            describe('#getModalProps', () => {
-                it('should return an object with all component props with an onPress prop', () => {
-                    const props = getProps();
-
-                    const wrapper = shallow(<TransactionRow {...props} />);
-
-                    const instance = wrapper.instance();
-
-                    const returnValue = instance.getModalProps();
-
-                    const propsKeys = Object.keys(props);
-
-                    expect(Object.keys(returnValue)).toEqual([...propsKeys, 'onPress']);
-                });
-
-                it('should return an object with onPress prop equals instance method toggleModal', () => {
-                    const props = getProps();
-
-                    const wrapper = shallow(<TransactionRow {...props} />);
-
-                    const instance = wrapper.instance();
-
-                    const returnValue = instance.getModalProps();
-
-                    expect(returnValue.onPress).toEqual(instance.toggleModal);
-                });
-            });
         });
     });
 });
