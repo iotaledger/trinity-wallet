@@ -11,7 +11,7 @@ const getProps = (overrides) =>
         {
             onChangeText: noop,
             label: 'foo',
-            theme: { body: {}, input: {}, primary: {} },
+            theme: { body: {}, input: {}, primary: {}, label: {} },
         },
         overrides,
     );
