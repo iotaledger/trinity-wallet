@@ -78,6 +78,45 @@ function createWindow() {
         installExtension(REACT_DEVELOPER_TOOLS);
         installExtension(REDUX_DEVTOOLS);
     }
+
+    windows.main.webContents.on('context-menu', (e, props) => {
+        const InputMenu = electron.Menu.buildFromTemplate([
+            {
+                label: 'Undo',
+                role: 'undo',
+            },
+            {
+                label: 'Redo',
+                role: 'redo',
+            },
+            {
+                type: 'separator',
+            },
+            {
+                label: 'Cut',
+                role: 'cut',
+            },
+            {
+                label: 'Copy',
+                role: 'copy',
+            },
+            {
+                label: 'Paste',
+                role: 'paste',
+            },
+            {
+                type: 'separator',
+            },
+            {
+                label: 'Select all',
+                role: 'selectall',
+            },
+        ]);
+        const { isEditable } = props;
+        if (isEditable) {
+            InputMenu.popup(windows.main);
+        }
+    });
 }
 
 const hideOnClose = function(e) {
