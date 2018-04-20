@@ -191,3 +191,6 @@ task copyDownloadableDepsToLibs(type: Copy) {
 project.ext.react = [
         nodeExecutableAndArgs : ["/usr/local/bin/node"]
 ];
+
+
+apply plugin: 'com.bugsnag.android.gradle'
