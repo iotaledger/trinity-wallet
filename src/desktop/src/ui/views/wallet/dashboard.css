@@ -55,6 +55,9 @@
 
             form > fieldset {
                 margin-top: -10px;
+                p {
+                    margin-top: 14px;
+                }
                 small {
                     margin-top: 5px;
                     line-height: 16px;
