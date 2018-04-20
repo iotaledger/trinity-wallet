@@ -252,6 +252,7 @@
         "maximumSelected": "MAXIMUM amount selected",
         "iotaUnits": "IOTA units explained",
         "sendMax": "SEND MAX",
+        "totalTime": "Total time",
         "fingerprintOnSend": "Touch fingerprint reader to send the transfer"
     },
     "setPassword": {
