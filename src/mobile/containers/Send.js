@@ -378,7 +378,11 @@ export class Send extends Component {
             // For codes with plain text (Bitfinex, Binance, and IOTASear.ch)
             this.props.setSendAddressField(data);
         } else {
-            timer.setTimeout('invalidAddressAlert', () => this.props.generateAlert('error', t('invalidAddress'), t('invalidAddressExplanationGeneric')), 500);
+            timer.setTimeout(
+                'invalidAddressAlert',
+                () => this.props.generateAlert('error', t('invalidAddress'), t('invalidAddressExplanationGeneric')),
+                500,
+            );
         }
     }
 
@@ -607,11 +611,7 @@ export class Send extends Component {
         const { isIOSKeyboardActive } = this.props;
         if (isIOSKeyboardActive) {
             this.blurTextFields();
-            timer.setTimeout(
-                'modalShow',
-                () => this.props.toggleModalActivity(),
-                500,
-            );
+            timer.setTimeout('modalShow', () => this.props.toggleModalActivity(), 500);
         } else {
             this.props.toggleModalActivity();
         }
@@ -709,13 +709,15 @@ export class Send extends Component {
         FingerprintScanner.authenticate({ description: t('fingerprintOnSend') })
             .then(() => {
                 this.setSendingTransferFlag();
-                if (isAndroid){
+                if (isAndroid) {
                     this.hideModal();
                 }
                 this.sendTransfer();
             })
             .catch(() => {
-                this.hideModal();
+                if (isAndroid) {
+                    this.hideModal();
+                }
                 this.props.generateAlert(
                     'error',
                     t('fingerprintSetup:fingerprintAuthFailed'),
@@ -756,7 +758,7 @@ export class Send extends Component {
             theme,
             body,
             primary,
-            isModalActive
+            isModalActive,
         } = this.props;
         const textColor = { color: body.color };
         const conversionText =
@@ -882,25 +884,24 @@ export class Send extends Component {
                                     />
                                 </View>
                             )}
-                        {(isGettingSensitiveInfoToMakeTransaction || isSendingTransfer) &&
-                              (
-                              <View
-                                  style={{
-                                      flex: 1,
-                                      justifyContent: 'center',
-                                      alignItems: 'center',
-                                  }}
-                              >
-                                  <ProgressBar
-                                      indeterminate={this.props.activeStepIndex === -1}
-                                      progress={this.props.activeStepIndex / size(this.props.activeSteps)}
-                                      color={primary.color}
-                                      textColor={body.color}
-                                  >
-                                      {this.renderProgressBarChildren()}
-                                  </ProgressBar>
-                              </View>
-                            )}
+                        {(isGettingSensitiveInfoToMakeTransaction || isSendingTransfer) && (
+                            <View
+                                style={{
+                                    flex: 1,
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                }}
+                            >
+                                <ProgressBar
+                                    indeterminate={this.props.activeStepIndex === -1}
+                                    progress={this.props.activeStepIndex / size(this.props.activeSteps)}
+                                    color={primary.color}
+                                    textColor={body.color}
+                                >
+                                    {this.renderProgressBarChildren()}
+                                </ProgressBar>
+                            </View>
+                        )}
                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                             <TouchableOpacity
                                 onPress={() => this.openModal('unitInfo')}
@@ -968,7 +969,7 @@ const mapStateToProps = (state) => ({
     password: state.wallet.password,
     deepLinkActive: state.wallet.deepLinkActive,
     isFingerprintEnabled: state.settings.isFingerprintEnabled,
-    isModalActive: state.ui.isModalActive
+    isModalActive: state.ui.isModalActive,
 });
 
 const mapDispatchToProps = {
