@@ -186,17 +186,17 @@ class Send extends React.PureComponent {
                 </div>
                 <fieldset>
                     {!isSending ? (
-                        <Button type="submit" variant="primary">
-                            {t('send:send')}
-                        </Button>
-                    ) : (
                         <React.Fragment>
-                            <Progress {...progress} />
+                            <Button type="submit" variant="primary">
+                                {t('send:send')}
+                            </Button>
                             <small onClick={() => this.setState({ isUnitsVisible: true })}>
                                 <Icon icon="info" size={16} />
                                 {t('send:iotaUnits')}
                             </small>
                         </React.Fragment>
+                    ) : (
+                        <Progress {...progress} />
                     )}
                 </fieldset>
                 {!isUnitsVisible ? null : (
