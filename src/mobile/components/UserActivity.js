@@ -5,7 +5,7 @@ import timer from 'react-native-timer';
 import { AppState } from 'react-native';
 import { connect } from 'react-redux';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { setUserActivity } from 'iota-wallet-shared-modules/actions/ui';
+import { setUserActivity, toggleModalActivity } from 'iota-wallet-shared-modules/actions/ui';
 
 export default () => (C) => {
     class WithUserActivity extends Component {
@@ -19,9 +19,12 @@ export default () => (C) => {
         }
 
         handleAppStateChange = (nextAppState) => {
-            const { doNotMinimise } = this.props;
+            const { doNotMinimise, isModalActive } = this.props;
             if (nextAppState.match(/inactive|background/) && !doNotMinimise) {
                 this.props.setUserActivity({ minimised: true });
+                if (isModalActive){
+                    this.props.toggleModalActivity();
+                }
             } else if (nextAppState === 'active') {
                 this.props.setUserActivity({ minimised: false });
             }
@@ -48,15 +51,21 @@ export default () => (C) => {
          * @type {bool}
          */
         doNotMinimise: PropTypes.bool.isRequired,
+        /** Determines whether modal is open */
+        isModalActive: PropTypes.bool.isRequired,
+        /** Sets whether modal is active or inactive */
+        toggleModalActivity: PropTypes.func.isRequired,
     };
 
     const mapDispatchToProps = {
         setUserActivity,
         generateAlert,
+        toggleModalActivity,
     };
 
     const mapStateToProps = (state) => ({
         doNotMinimise: state.ui.doNotMinimise,
+        isModalActive: state.ui.isModalActive,
     });
 
     return translate(['global'])(connect(mapStateToProps, mapDispatchToProps)(WithUserActivity));
