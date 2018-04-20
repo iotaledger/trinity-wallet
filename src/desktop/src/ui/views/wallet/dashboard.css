@@ -54,10 +54,24 @@
             }
 
             form > fieldset {
-                margin-top: -20px;
-                p{
-                   margin-top:14px;
+                margin-top: -10px;
+                p {
+                    margin-top: 14px;
                 }
+                small {
+                    margin-top: 5px;
+                    line-height: 16px;
+                    display: flex;
+                    justify-content: center;
+                    cursor: pointer;
+                    span {
+                        margin-right: 8px;
+                    }
+                }
+            }
+
+            form > div > div {
+                padding-bottom: 20px;
             }
         }
 
