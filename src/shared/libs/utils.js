@@ -79,7 +79,7 @@ export const updatePersistedState = (incomingState, restoredState) => {
     if ('settings' in restoredCopy) {
         restoredCopy.settings.nodes = nodes;
         restoredCopy.settings.theme = theme;
-        restoredCopy.app.versions = versions;
+        restoredCopy.settings.versions = versions;
     }
 
     return merge({}, incomingState, restoredCopy);
