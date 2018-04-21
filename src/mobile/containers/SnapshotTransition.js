@@ -28,6 +28,13 @@ import { getMultiAddressGenFn } from '../utils/nativeModules';
 import { isAndroid } from '../utils/device';
 
 const styles = StyleSheet.create({
+    modalContainer: {
+        flex: 1,
+        alignItems: 'center',
+        width,
+        height,
+        justifyContent: 'center',
+    },
     modalContent: {
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -160,14 +167,12 @@ class SnapshotTransition extends Component {
         password: PropTypes.string.isRequired,
         /** Sets whether modal is active or inactive */
         toggleModalActivity: PropTypes.func.isRequired,
+        /** Determines whether modal is open */
+        isModalActive: PropTypes.bool.isRequired,
     };
 
     constructor() {
         super();
-        this.state = {
-            isModalVisible: false,
-        };
-
         this.onSnapshotTransititionPress = this.onSnapshotTransititionPress.bind(this);
     }
 
@@ -234,12 +239,10 @@ class SnapshotTransition extends Component {
 
     showModal = () => {
         this.props.toggleModalActivity();
-        this.setState({ isModalVisible: true });
     };
 
     hideModal = () => {
         this.props.toggleModalActivity();
-        this.setState({ isModalVisible: false });
     };
 
     renderModalContent = () => {
@@ -247,8 +250,8 @@ class SnapshotTransition extends Component {
         const textColor = { color: theme.body.color };
 
         return (
-            <View style={{ width: width / 1.2, alignItems: 'center', backgroundColor: theme.body.bg }}>
-                <View style={[styles.modalContent, { borderColor: theme.body.color }]}>
+            <View style={styles.modalContainer}>
+                <View style={[styles.modalContent, { borderColor: theme.body.color, backgroundColor: theme.body.bg }]}>
                     <View style={styles.textContainer}>
                         <Text style={[styles.buttonInfoText, textColor]}>
                             Detected balance: {round(formatValue(transitionBalance), 1)} {formatUnit(transitionBalance)}
@@ -270,7 +273,7 @@ class SnapshotTransition extends Component {
     };
 
     render() {
-        const { isTransitioning, theme, t, isAttachingToTangle } = this.props;
+        const { isTransitioning, theme, t, isAttachingToTangle, isModalActive } = this.props;
         const textColor = { color: theme.body.color };
 
         return (
@@ -382,7 +385,7 @@ class SnapshotTransition extends Component {
                     backdropColor={theme.body.bg}
                     backdropOpacity={0.6}
                     style={{ alignItems: 'center', margin: 0 }}
-                    isVisible={this.state.isModalVisible}
+                    isVisible={isModalActive}
                     onBackButtonPress={() => this.hideModal()}
                     hideModalContentWhileAnimating
                     useNativeDriver={isAndroid ? true : false}
@@ -405,6 +408,7 @@ const mapStateToProps = (state) => ({
     addresses: getAddressesForSelectedAccount(state),
     isAttachingToTangle: state.ui.isAttachingToTangle,
     isTransitioning: state.ui.isTransitioning,
+    isModalActive: state.ui.isModalActive
 });
 
 const mapDispatchToProps = {

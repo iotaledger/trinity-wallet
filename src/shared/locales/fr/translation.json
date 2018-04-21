@@ -498,8 +498,7 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Error retrieving update data",
-        "errorRetrievingUpdateDataExplanation":
-            "Une erreur s'est produite lors de la récupération des données de mise à jour. Veuillez réessayer.",
+        "errorRetrievingUpdateDataExplanation": "Une erreur s'est produite lors de la récupération des données de mise à jour. Veuillez réessayer.",
         "noUpdatesAvailable": "Aucune mise à jour disponible",
         "noUpdatesAvailableExplanation": "Vous avez déjà la dernière version du portefeuille IOTA Trinity !",
         "newVersionAvailable": "Une nouvelle version est disponible",
