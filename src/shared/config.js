@@ -25,11 +25,11 @@ export const DEFAULT_TAG = 'TRINITY';
 export const DEFAULT_SECURITY = 2;
 export const DEFAULT_BALANCES_THRESHOLD = 100;
 
-export const use_legacy_quorum = true;
-export const quorum_pool_size = 5;
-export const quorum_poll_freq = 60 * 1000;
+export const useLegacyQuorum = true;
+export const quorumPoolSize = 5;
+export const quorumPollFreq = 60 * 1000;
 // A list of nodes for the quorum system.
-export const quorum_nodes = [
+export const quorumNodes = [
     'https://potato.iotasalad.org:14265',
     'https://durian.iotasalad.org:14265',
     'https://peanut.iotasalad.org:14265',

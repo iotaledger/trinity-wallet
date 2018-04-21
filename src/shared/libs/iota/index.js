@@ -1,14 +1,14 @@
 import IOTA from 'iota.lib.js';
 import 'proxy-polyfill';
-import { nodes, defaultNode, quorum_nodes, use_legacy_quorum } from '../../config';
+import { nodes, defaultNode, quorumNodes, useLegacyQuorum } from '../../config';
 import { checkNode as _checkNode } from './multinode';
 import { getQuorumResult, getQuorumNodes } from './quorum';
 
-var iotaAPI = new IOTA({ provider: defaultNode });
+let iotaAPI = new IOTA({ provider: defaultNode });
 
 // quorum shim
-if (use_legacy_quorum) {
-    iotaAPI = Object.assign(iotaAPI.api, {
+if (useLegacyQuorum) {
+    iotaAPI.api = Object.assign(iotaAPI.api, {
         getInclusionStates: (transactions, tips, callback) => {
             getQuorumResult(
                 (nodeapi, cb) => {
@@ -33,7 +33,6 @@ if (use_legacy_quorum) {
         },
     });
 }
-
 
 // Later used by the checkNodePatched function
 let unproxiedNodeInfo = iotaAPI.api.getNodeInfo.bind(iotaAPI.api);
@@ -60,7 +59,7 @@ export const SwitchingConfig = autoNodeSwitchingConfig;
 function checkNodePatched() {
     return new Promise((resolve, reject) => {
         unproxiedNodeInfo((err) => {
-            if (err){
+            if (err) {
                 reject(err);
                 return;
             }
@@ -80,12 +79,11 @@ function checkNodePatched() {
  * @type {{get: autoNodeSwitcher.get}}
  */
 const autoNodeSwitchHandler = {
-    get: function (target, propKey) {
-
+    get: function(target, propKey) {
         const propValue = target[propKey];
-        if (typeof propValue !== 'function'){
+        if (typeof propValue !== 'function') {
             return propValue;
-        };
+        }
         return function(...args) {
             let originalCallback;
             if (args.length) {
@@ -127,7 +125,7 @@ const autoNodeSwitchHandler = {
                     propValue.apply(target, args);
                 });
         };
-    }
+    },
 };
 
 // patch the auto node switcher into the API object
