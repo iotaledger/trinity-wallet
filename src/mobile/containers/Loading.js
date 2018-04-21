@@ -19,6 +19,7 @@ import {
 } from 'iota-wallet-shared-modules/actions/accounts';
 import tinycolor from 'tinycolor2';
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
+import { Navigation } from 'react-native-navigation';
 import { getCurrencyData } from 'iota-wallet-shared-modules/actions/settings';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
@@ -223,18 +224,39 @@ class Loading extends Component {
         if (isReady) {
             KeepAwake.deactivate();
             this.clearTimeouts();
-            this.props.navigator.push({
-                screen: 'home',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    topBarElevationShadowEnabled: false,
-                    screenBackgroundColor: body.bg,
-                    drawUnderStatusBar: true,
-                    statusBarColor: bar.bg,
-                },
-                animated: false,
-            });
+            // FIXME: A quick workaround to stop history refresh flash on iOS.
+            if (isAndroid) {
+                this.props.navigator.push({
+                    screen: 'home',
+                    navigatorStyle: {
+                        navBarHidden: true,
+                        navBarTransparent: true,
+                        topBarElevationShadowEnabled: false,
+                        screenBackgroundColor: body.bg,
+                        drawUnderStatusBar: true,
+                        statusBarColor: bar.bg,
+                    },
+                    animated: false,
+                });
+            } else {
+                Navigation.startSingleScreenApp({
+                    screen: {
+                        screen: 'home',
+                        navigatorStyle: {
+                            navBarHidden: true,
+                            navBarTransparent: true,
+                            topBarElevationShadowEnabled: false,
+                            screenBackgroundColor: body.bg,
+                            drawUnderStatusBar: true,
+                            statusBarColor: body.bg,
+                        },
+                    },
+                    appStyle: {
+                        orientation: 'portrait',
+                        keepStyleAcrossPush: true,
+                    },
+                });
+            }
         }
     }
 
