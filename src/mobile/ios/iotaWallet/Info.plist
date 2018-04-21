@@ -36,7 +36,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>24</string>
+	<string>28</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -75,10 +75,26 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Trinity requires access to the camera in order to enable QR scanning.</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Trinity requires access to Face ID in order to enable biometric authentication.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</string>
+	<key>NSMotionUsageDescription</key>
+	<string>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Lato-Black.ttf</string>
