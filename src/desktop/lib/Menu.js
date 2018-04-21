@@ -114,31 +114,39 @@ const initMenu = (app, getWindow) => {
                     {
                         type: 'separator',
                     },
-                    {
-                        label: `${language.hide} ${app.getName()}`,
-                        role: 'hide',
-                    },
-                    {
-                        label: language.hideOthers,
-                        role: 'hideothers',
-                    },
-                    {
-                        label: language.showAll,
-                        role: 'unhide',
-                    },
-                    {
-                        type: 'separator',
-                    },
-                    {
-                        label: language.quit,
-                        accelerator: 'Command+Q',
-                        click: function() {
-                            app.quit();
-                        },
-                    },
                 ],
             },
         ];
+
+        if (process.platform === 'darwinx') {
+            template[0].submenu = template[0].submenu.concat([
+                {
+                    label: `${language.hide} ${app.getName()}`,
+                    role: 'hide',
+                },
+                {
+                    label: language.hideOthers,
+                    role: 'hideothers',
+                },
+                {
+                    label: language.showAll,
+                    role: 'unhide',
+                },
+                {
+                    type: 'separator',
+                },
+            ]);
+        }
+
+        template[0].submenu = template[0].submenu.concat([
+            {
+                label: language.quit,
+                accelerator: 'Command+Q',
+                click: function() {
+                    app.quit();
+                },
+            },
+        ]);
 
         template.push({
             label: language.edit,

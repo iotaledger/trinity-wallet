@@ -117,7 +117,6 @@ const mapStateToProps = (state) => ({
     seedIndex: state.wallet.seedIndex,
     password: state.wallet.password,
     accounts: state.accounts,
-    deepLinks: state.deepLinks,
     isDeepLinkActive: state.wallet.deepLinkActive,
 });
 

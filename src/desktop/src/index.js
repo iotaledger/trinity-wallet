@@ -30,7 +30,7 @@ const ErrorBoundary = bugsnagClient.use(createPlugin(React));
 
 const persistConfig = {
     storage: persistElectronStorage,
-    blacklist: ['wallet', 'polling', 'ui', 'deepLinks'],
+    blacklist: ['wallet', 'polling', 'ui'],
 };
 
 persistStore(store, persistConfig, (err, restoredState) => {
