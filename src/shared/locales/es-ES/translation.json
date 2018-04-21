@@ -14,7 +14,7 @@
         "transferSentMessage": "Tu transferencia se ha enviado al Tangle.",
         "messageSent": "Mensaje enviado",
         "messageSentMessage": "Tu mensaje se ha enviado al Tangle.",
-        "keyReuse": "Reutilización de clave",
+        "keyReuse": "Sending to spent address",
         "keyReuseError": "No puedes enviar a una dirección que ya se ha gastado.",
         "invalidResponse": "Node error",
         "invalidResponseExplanation": "The node returned an error. Check the notifications for more information.",

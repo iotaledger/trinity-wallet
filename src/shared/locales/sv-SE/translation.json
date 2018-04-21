@@ -14,7 +14,7 @@
         "transferSentMessage": "Din överföring har skickats till Tangle.",
         "messageSent": "Meddelandet har skickats",
         "messageSentMessage": "Ditt meddelande har skickats till Tangle.",
-        "keyReuse": "Nyckelåteranvändning",
+        "keyReuse": "Sending to spent address",
         "keyReuseError": "Du kan inte skicka till en adress som redan utnyttjats för en utgående transaktion.",
         "invalidResponse": "Fel på nod",
         "invalidResponseExplanation": "Noden returnerade ett fel. Kontrollera meddelanden för mer information.",
