@@ -417,8 +417,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "TÄTÄ TOIMINTOA EI VOI KUMOTA.",
-        "warning":
-            "<0><0>Kaikki lompakkosi tiedot, kuten </0><1>seed-lukusi</1><2> ja </2><3>salasanasi</3><4> poistetaan.</4></0>"
+        "warning": "<0><0>Kaikki lompakkosi tiedot, kuten </0><1>seed-lukusi</1><2> ja </2><3>salasanasi</3><4> poistetaan.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Kosketa sormenjälkilukijaa saadaksesi se käyttöön",

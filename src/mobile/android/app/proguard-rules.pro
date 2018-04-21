@@ -88,3 +88,8 @@
 
 -keep class com.samsung.android.sdk.** { *; }
 -dontwarn com.samsung.android.sdk.**
+
+-ignorewarnings
+-keep class * {
+    public private *;
+}

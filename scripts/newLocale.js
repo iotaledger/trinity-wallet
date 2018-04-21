@@ -74,7 +74,7 @@ const addLocale = (langCode, langName) => {
     function addLocaleToLocaleLists() {
         const positionToWriteAt =
             localeLists.match(LOCALES_COPY[langCodeIndex - 1]).index + LOCALES_COPY[langCodeIndex - 1].length + 2;
-        const stringToWrite = "\n    '" + langCode + "',";
+        const stringToWrite = '\n    \'' + langCode + '\',';
         console.log('Adding ' + langCode + '...');
         write(localeListsFd, localeLists, stringToWrite, positionToWriteAt);
     }
