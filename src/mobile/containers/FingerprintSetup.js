@@ -107,6 +107,7 @@ class FingerprintEnable extends Component {
         this.handleAuthenticationAttempted = this.handleAuthenticationAttempted.bind(this);
         this.navigateToHome = this.navigateToHome.bind(this);
         this.onFingerprintPress = this.onFingerprintPress.bind(this);
+        this.hideModal = this.hideModal.bind(this);
     }
 
     componentWillUnmount() {
@@ -128,10 +129,6 @@ class FingerprintEnable extends Component {
         this.setState({ isModalVisible: true });
     }
 
-    closeModal() {
-        this.setState({ isModalVisible: false });
-    }
-
     activateFingerprintScanner() {
         const { t } = this.props;
         if (isAndroid) {
@@ -145,7 +142,7 @@ class FingerprintEnable extends Component {
                 })
                     .then(() => {
                         if (isAndroid) {
-                            this.closeModal();
+                            this.hideModal();
                         }
                         this.props.setFingerprintStatus(true);
                         this.timeout = setTimeout(() => {
@@ -180,7 +177,7 @@ class FingerprintEnable extends Component {
         })
             .then(() => {
                 if (isAndroid) {
-                    this.closeModal();
+                    this.hideModal();
                 }
                 this.props.setFingerprintStatus(false);
                 this.timeout = setTimeout(() => {
