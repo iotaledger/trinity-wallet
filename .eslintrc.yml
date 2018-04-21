@@ -34,6 +34,10 @@ settings:
                 - .js
                 - .json
                 - .css
+            paths:
+                - ./src/desktop/src
+                - ./src/shared
+
 rules:
     arrow-parens: [2, "always"]
     block-scoped-var: 2

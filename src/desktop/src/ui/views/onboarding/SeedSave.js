@@ -1,16 +1,15 @@
 import React, { PureComponent } from 'react';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import QRCode from 'qrcode.react';
 import { translate, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { clearSeeds } from 'actions/seeds';
-import { showNotification } from 'actions/notifications';
-import { getSelectedSeed } from 'selectors/seeds';
+import QRCode from 'qrcode.react';
 
 import Button from 'ui/components/Button';
+import Icon from 'ui/components/Icon';
+import Clipboard from 'ui/components/Clipboard';
 
-import css from './seedSave.css';
+import css from './index.css';
 
 /**
  * Onboarding, Seed backup step
@@ -19,11 +18,6 @@ class SeedSave extends PureComponent {
     static propTypes = {
         /** Current user defined seed */
         seed: PropTypes.string,
-        /** Notification helper
-         * @param {object} content - notification content
-         * @ignore
-         */
-        showNotification: PropTypes.func.isRequired,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
@@ -32,61 +26,59 @@ class SeedSave extends PureComponent {
     };
 
     render() {
-        const { t, seed, showNotification } = this.props;
+        const { t, seed } = this.props;
 
         return (
-            <main>
+            <React.Fragment>
                 <section>
-                    <div className={css.seed}>
-                        <QRCode size={128} value={seed} />
-                        <p>{seed.match(/.{1,3}/g).map((chunk, i) => <span key={i}>{chunk}</span>)}</p>
-                    </div>
                     <Trans i18nKey="saveYourSeed:mustSaveYourSeed">
                         <p className={css.hideOnPrint}>
-                            You must save your seed with<strong>at least one</strong> of the options listed below.
+                            You must save your seed with <strong>at least one</strong> of the options listed below.
                         </p>
                     </Trans>
-                    <nav className={css.nav}>
-                        <CopyToClipboard text={seed}>
-                            <Button
-                                variant="secondary"
-                                onClick={() =>
-                                    showNotification({
-                                        type: 'success',
-                                        title: 'Seed copied to clipboard!',
-                                        text:
-                                            'Copy your seed to a password manager and do not store the seed in plain text. The seed will stay in your clipboard for 60 seconds',
-                                    })
-                                }
-                            >
+                    <div className={classNames(css.seed, css.narrow)}>
+                        <QRCode value={seed || ''} size={140} />
+                        <div>
+                            {seed
+                                ? seed.split('').map((letter, index) => {
+                                      return <span key={`seed-${index}`}>{letter}</span>;
+                                  })
+                                : null}
+                        </div>
+                    </div>
+                    <nav className={css.hideOnPrint}>
+                        <Clipboard
+                            text={seed || ''}
+                            timeout={60}
+                            title={t('copyToClipboard:seedCopied')}
+                            success={t('copyToClipboard:seedCopiedExplanation')}
+                        >
+                            <Button className="icon">
+                                <Icon icon="copy" size={32} />
                                 {t('copyToClipboard:copyToClipboard')}
                             </Button>
-                        </CopyToClipboard>
-                        <Button onClick={() => window.print()} variant="secondary">
-                            {t('paperWallet:printWallet')}
+                        </Clipboard>
+                        <Button className="icon" onClick={() => window.print()}>
+                            <Icon icon="print" size={32} />
+                            {t('paperWallet:printWallet').toLowerCase()}
                         </Button>
                     </nav>
                 </section>
                 <footer>
-                    <Button to="/onboarding/seed-generate" className="outline" variant="highlight">
-                        {t('global:back')}
+                    <Button to="/onboarding/seed-generate" className="inline" variant="secondary">
+                        {t('back').toLowerCase()}
                     </Button>
-                    <Button to="/onboarding/seed-verify" className="outline" variant="primary">
-                        {t('global:done')}
+                    <Button to="/onboarding/seed-verify" className="large" variant="primary">
+                        {t('done').toLowerCase()}
                     </Button>
                 </footer>
-            </main>
+            </React.Fragment>
         );
     }
 }
 
 const mapStateToProps = (state) => ({
-    seed: getSelectedSeed(state).seed,
+    seed: state.ui.onboarding.seed,
 });
 
-const mapDispatchToProps = {
-    clearSeeds,
-    showNotification,
-};
-
-export default translate()(connect(mapStateToProps, mapDispatchToProps)(SeedSave));
+export default connect(mapStateToProps)(translate()(SeedSave));

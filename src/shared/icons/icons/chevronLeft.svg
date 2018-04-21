@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1024px" height="1024px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <title>chevron-down</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="chevron-down" fill="#000000" fill-rule="nonzero">
+            <path d="M778.039216,1009.03922 C757.960784,1029.11765 726.169935,1029.11765 707.764706,1009.03922 L245.960784,547.235294 C225.882353,528.830065 225.882353,497.039216 245.960784,476.960784 L707.764706,15.1568627 C726.169935,-4.92156863 757.960784,-4.92156863 778.039216,15.1568627 C798.117647,33.5620915 798.117647,65.3529412 778.039216,85.4313725 L353.045752,512.098039 L778.039216,938.764706 C798.117647,957.169935 798.117647,988.960784 778.039216,1009.03922 Z" id="Shape"></path>
+        </g>
+    </g>
+</svg>

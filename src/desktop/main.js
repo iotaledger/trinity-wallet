@@ -1,30 +1,63 @@
+const { ipcMain: ipc, app, protocol } = require('electron');
 const electron = require('electron');
 const initMenu = require('./lib/Menu.js');
 const path = require('path');
+const settings = require('electron-settings');
 
-const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 const devMode = process.env.NODE_ENV === 'development';
+
+let deeplinkingUrl = null;
 
 const windows = {
     main: null,
 };
 
+if (!devMode) {
+    protocol.registerStandardSchemes(['iota'], { secure: true });
+}
+
+const shouldQuit = app.makeSingleInstance((argv) => {
+    if (process.platform === 'win32') {
+        deeplinkingUrl = argv.slice(1);
+    }
+});
+
+if (shouldQuit) {
+    app.quit();
+    return;
+}
+
 function createWindow() {
+    protocol.registerFileProtocol('iota', (request, callback) => {
+        callback(
+            request.url
+                .replace('iota:/', app.getAppPath())
+                .split('?')[0]
+                .split('#')[0],
+        );
+    });
+
     windows.main = new BrowserWindow({
         width: 1024,
         height: 768,
-        minWidth: 920,
-        minHeight: 680,
+        minWidth: 500,
+        minHeight: 720,
+        titleBarStyle: 'hidden',
+        icon: `${__dirname}/dist/icon.png`,
+        backgroundColor: settings.get('backgroundColor') ? settings.get('backgroundColor') : '#1a373e',
         webPreferences: {
             nodeIntegration: false,
-            preload: path.join(__dirname, 'lib/window.js'),
+            preload: path.resolve(__dirname, 'lib/Window.js'),
+            disableBlinkFeatures: 'Auxclick',
         },
     });
 
-    const url = devMode ? 'http://localhost:1074/' : 'file://' + __dirname + '/dist/index.html';
+    const url = devMode ? 'http://localhost:1074/' : 'iota://dist/index.html';
 
     windows.main.loadURL(url);
+
+    windows.main.on('close', hideOnClose);
 
     if (devMode) {
         windows.main.webContents.openDevTools();
@@ -38,11 +71,17 @@ function createWindow() {
         installExtension(REACT_DEVELOPER_TOOLS);
         installExtension(REDUX_DEVTOOLS);
     }
-
-    windows.main.on('closed', () => {
-        windows.main = null;
-    });
 }
+
+const hideOnClose = function(e) {
+    if (process.platform === 'darwin') {
+        e.preventDefault();
+        windows.main.hide();
+        windows.main.webContents.send('lockScreen');
+    } else {
+        windows.main = null;
+    }
+};
 
 const getWindow = function(windowName) {
     return windows[windowName];
@@ -58,8 +97,36 @@ app.on('window-all-closed', () => {
     }
 });
 
+app.on('before-quit', () => {
+    if (windows.main && !windows.main.isDestroyed()) {
+        windows.main.removeListener('close', hideOnClose);
+    }
+});
+
 app.on('activate', () => {
     if (windows.main === null) {
         createWindow();
+    } else if (!windows.main.isVisible()) {
+        windows.main.show();
     }
+});
+
+app.setAsDefaultProtocolClient('iota');
+app.on('open-url', (event, url) => {
+    event.preventDefault();
+    deeplinkingUrl = url;
+    if (windows.main) {
+        windows.main.webContents.send('url-params', url);
+    }
+});
+
+ipc.on('request.deepLink', () => {
+    if (deeplinkingUrl) {
+        windows.main.webContents.send('url-params', deeplinkingUrl);
+        deeplinkingUrl = null;
+    }
+});
+
+ipc.on('settings.update', (e, data) => {
+    settings.set(data.attribute, data.value);
 });

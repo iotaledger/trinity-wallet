@@ -61,9 +61,9 @@ export const prepareInputs = (addressData, start, threshold, security = DEFAULT_
  *   @param {number} start - Index to start the search from
  *   @param {number} threshold - Maximum value (balance) to stop the search
  *   @param {object} inputs - Could be initialized with null. In case its null default inputs would be defined.
- *   @param {function} callback
+ *   @returns {promise<object>}
  **/
-export const getUnspentInputs = (addressData, pendingValueTransfers, start, threshold, inputs, callback) => {
+export const getUnspentInputs = (addressData, pendingValueTransfers, start, threshold, inputs) => {
     if (isNull(inputs)) {
         inputs = { inputs: [], totalBalance: 0, allBalance: 0 };
     }
@@ -71,40 +71,31 @@ export const getUnspentInputs = (addressData, pendingValueTransfers, start, thre
     const preparedInputs = prepareInputs(addressData, start, threshold);
     inputs.allBalance += preparedInputs.inputs.reduce((sum, input) => sum + input.balance, 0);
 
-    filterSpentAddresses(preparedInputs.inputs)
-        .then((unspentInputs) => {
-            const filtered = filterAddressesWithIncomingTransfers(unspentInputs, pendingValueTransfers);
+    return filterSpentAddresses(preparedInputs.inputs).then((unspentInputs) => {
+        const filtered = filterAddressesWithIncomingTransfers(unspentInputs, pendingValueTransfers);
 
-            const collected = filtered.reduce((sum, input) => sum + input.balance, 0);
+        const collected = filtered.reduce((sum, input) => sum + input.balance, 0);
 
-            const diff = threshold - collected;
-            const hasInputs = size(preparedInputs.inputs);
+        const diff = threshold - collected;
+        const hasInputs = size(preparedInputs.inputs);
 
-            if (hasInputs && diff > 0) {
-                const ordered = preparedInputs.inputs.sort((a, b) => a.keyIndex - b.keyIndex).reverse();
-                const end = ordered[0].keyIndex;
+        if (hasInputs && diff > 0) {
+            const ordered = preparedInputs.inputs.sort((a, b) => a.keyIndex - b.keyIndex).reverse();
+            const end = ordered[0].keyIndex;
 
-                getUnspentInputs(
-                    addressData,
-                    pendingValueTransfers,
-                    end + 1,
-                    diff,
-                    {
-                        inputs: inputs.inputs.concat(filtered),
-                        totalBalance: inputs.totalBalance + collected,
-                        allBalance: inputs.allBalance,
-                    },
-                    callback,
-                );
-            } else {
-                callback(null, {
-                    inputs: inputs.inputs.concat(filtered),
-                    totalBalance: inputs.totalBalance + collected,
-                    allBalance: inputs.allBalance,
-                });
-            }
-        })
-        .catch((err) => callback(err));
+            return getUnspentInputs(addressData, pendingValueTransfers, end + 1, diff, {
+                inputs: inputs.inputs.concat(filtered),
+                totalBalance: inputs.totalBalance + collected,
+                allBalance: inputs.allBalance,
+            });
+        }
+
+        return Promise.resolve({
+            inputs: inputs.inputs.concat(filtered),
+            totalBalance: inputs.totalBalance + collected,
+            allBalance: inputs.allBalance,
+        });
+    });
 };
 
 /**

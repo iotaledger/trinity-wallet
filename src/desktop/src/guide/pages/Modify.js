@@ -2,22 +2,27 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { updateTheme } from 'actions/settings';
-import { showNotification } from 'actions/notifications';
+import { generateAlert } from 'actions/alerts';
 
 import Input from 'ui/components/input/Text';
 import Button from 'ui/components/Button';
-import Clipboard from 'ui/components/Clipboard';
 
 import css from './modify.css';
 
-const colors = ['primary', 'secondary', 'positive', 'negative', 'highlight', 'extra'];
+const colors = ['primary', 'secondary', 'positive', 'negative', 'extra'];
 
 class ModifyTheme extends React.Component {
     static propTypes = {
         theme: PropTypes.object.isRequired,
         themeName: PropTypes.string.isRequired,
         updateTheme: PropTypes.func.isRequired,
-        showNotification: PropTypes.func.isRequired,
+        /** Create a notification message
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
+         * @ignore
+         */
+        generateAlert: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -44,11 +49,7 @@ class ModifyTheme extends React.Component {
                 .slice(-5),
         );
 
-        this.props.showNotification({
-            type: 'success',
-            title: 'Theme applied',
-            text: 'Theme applied to the styleguide',
-        });
+        this.props.generateAlert('success', 'Theme applied', 'Theme applied to the styleguide');
     };
 
     updateColor = (color, type, value) => {
@@ -89,10 +90,10 @@ class ModifyTheme extends React.Component {
                                         />
                                     </div>
                                     <div>
-                                        <span style={{ background: theme[color].body || theme.body.color }} />
+                                        <span style={{ background: theme[color].body }} />
                                         <Input
-                                            label={`${color} body`}
-                                            value={theme[color].body || theme.body.color}
+                                            label={`${color} text color`}
+                                            value={theme[color].body}
                                             onChange={(value) => this.updateColor(color, 'body', value)}
                                         />
                                     </div>
@@ -115,16 +116,8 @@ class ModifyTheme extends React.Component {
                                 <span style={{ background: theme.body.bg }} />
                                 <Input
                                     label="Body background"
-                                    value={theme.body.background}
+                                    value={theme.body.bg}
                                     onChange={(value) => this.updateColor('body', 'bg', value)}
-                                />
-                            </div>
-                            <div>
-                                <span style={{ background: theme.body.hover }} />
-                                <Input
-                                    label="Body hover"
-                                    value={theme.body.hover}
-                                    onChange={(value) => this.updateColor('body', 'hover', value)}
                                 />
                             </div>
                             <div>
@@ -133,6 +126,14 @@ class ModifyTheme extends React.Component {
                                     label="Body alternative"
                                     value={theme.body.alt}
                                     onChange={(value) => this.updateColor('body', 'alt', value)}
+                                />
+                            </div>
+                            <div>
+                                <span style={{ background: theme.body.altBg }} />
+                                <Input
+                                    label="Body alternative bg"
+                                    value={theme.body.altBg}
+                                    onChange={(value) => this.updateColor('body', 'altBg', value)}
                                 />
                             </div>
                             <hr />
@@ -193,33 +194,6 @@ class ModifyTheme extends React.Component {
                         </li>
                         <li className={css.preview}>
                             <div>
-                                <span style={{ background: theme.inputOptional.color }} />
-                                <Input
-                                    label="Input optional color"
-                                    value={theme.inputOptional.color}
-                                    onChange={(value) => this.updateColor('inputOptional', 'color', value)}
-                                />
-                            </div>
-                            <div>
-                                <span style={{ background: theme.inputOptional.bg }} />
-                                <Input
-                                    label="Input optional background"
-                                    value={theme.inputOptional.bg}
-                                    onChange={(value) => this.updateColor('inputOptional', 'bg', value)}
-                                />
-                            </div>
-                            <div>
-                                <span style={{ background: theme.inputOptional.alt }} />
-                                <Input
-                                    label="Input optional alternative"
-                                    value={theme.inputOptional.alt}
-                                    onChange={(value) => this.updateColor('inputOptional', 'alt', value)}
-                                />
-                            </div>
-                            <hr />
-                        </li>
-                        <li className={css.preview}>
-                            <div>
                                 <span style={{ background: theme.label.color }} />
                                 <Input
                                     label="Label color"
@@ -228,11 +202,11 @@ class ModifyTheme extends React.Component {
                                 />
                             </div>
                             <div>
-                                <span style={{ background: theme.label.active || theme.primary.color }} />
+                                <span style={{ background: theme.label.hover }} />
                                 <Input
                                     label="Label active"
-                                    value={theme.label.active || theme.primary.color}
-                                    onChange={(value) => this.updateColor('label', 'active', value)}
+                                    value={theme.label.hover}
+                                    onChange={(value) => this.updateColor('label', 'hover', value)}
                                 />
                             </div>
                             <hr />
@@ -246,22 +220,17 @@ class ModifyTheme extends React.Component {
                                     onChange={(value) => this.updateColor('chart', 'color', value)}
                                 />
                             </div>
-                            <hr />
                         </li>
                     </ul>
                 </div>
 
                 <hr />
-
                 <Button variant="primary" onClick={this.setTheme}>
-                    Update
+                    Update local styleguide
                 </Button>
-                <Clipboard
-                    text={JSON.stringify(theme)}
-                    label="Copy to clipboard"
-                    title="Copied to clipboard"
-                    success="Theme data is copied to clipboard"
-                />
+                <hr />
+                <h2>Theme output:</h2>
+                <textarea value={JSON.stringify(theme, null, '\t')} readOnly />
             </div>
         );
     }
@@ -274,7 +243,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     updateTheme,
-    showNotification,
+    generateAlert,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModifyTheme);

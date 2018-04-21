@@ -6,6 +6,7 @@ import withNodeData from 'containers/settings/Node';
 import Button from 'ui/components/Button';
 import Select from 'ui/components/input/Select';
 import Text from 'ui/components/input/Text';
+import Checkbox from 'ui/components/Checkbox';
 
 /**
  * Change IRI API node component
@@ -22,6 +23,15 @@ class SetNode extends PureComponent {
          * @param {string} url - Node url
          */
         setNode: PropTypes.func.isRequired,
+        /** Auto node switching enabled
+         * @ignore
+         */
+        autoNodeSwitching: PropTypes.bool.isRequired,
+        /**
+         * Update the auto node switching state
+         * @ignore
+         */
+        setAutoNodeSwitching: PropTypes.func.isRequired,
         /** Translation helper
          * @param {string} translationString - Locale string identifier to be translated
          * @ignore
@@ -39,16 +49,24 @@ class SetNode extends PureComponent {
     };
 
     render() {
-        const { nodes, node, loading, setNode, t } = this.props;
+        const { nodes, node, loading, setNode, autoNodeSwitching, setAutoNodeSwitching, t } = this.props;
         const { selection, customNode } = this.state;
 
         const selectedNode = this.validNode(customNode) ? customNode : selection;
 
         return (
-            <div>
+            <form
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    setNode(selectedNode);
+                    this.setState({
+                        customNode: '',
+                    });
+                }}
+            >
                 <Select
                     value={selection || node}
-                    label={t('global:node')}
+                    label={t('node')}
                     disabled={this.validNode(customNode)}
                     onChange={(e) => this.setState({ selection: e.target.value })}
                 >
@@ -65,19 +83,17 @@ class SetNode extends PureComponent {
                     onChange={(value) => this.setState({ customNode: value })}
                 />
 
-                <Button
-                    loading={loading}
-                    disabled={!selectedNode || selectedNode === node}
-                    onClick={() => {
-                        setNode(selectedNode);
-                        this.setState({
-                            customNode: '',
-                        });
-                    }}
-                >
-                    {t('global:save')}
-                </Button>
-            </div>
+                <Checkbox
+                    checked={autoNodeSwitching} onChange={() => setAutoNodeSwitching()}
+                    label={t('settings:autoNodeSwitching')}
+                />
+
+                <fieldset>
+                    <Button type="submit" loading={loading} disabled={!selectedNode || selectedNode === node}>
+                        {t('save')}
+                    </Button>
+                </fieldset>
+            </form>
         );
     }
 }

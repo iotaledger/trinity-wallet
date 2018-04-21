@@ -3,8 +3,8 @@
         "send": "INVIA",
         "cancel": "ANNULLA",
         "continue?": "Sei sicuro di voler continuare?",
-        "noTransactions": "NIENTE NELLA CRONOLOGIA RECENTE",
-        "refresh": "REFRESH",
+        "noTransactions": "Cronologia recente vuota",
+        "refresh": "AGGIORNA",
         "qr": "QR",
         "balanceError": "Saldo insufficiente",
         "balanceErrorMessage": "Non hai abbastanza IOTA per completare questo trasferimento.",
@@ -14,13 +14,13 @@
         "transferSentMessage": "Il trasferimento è stato inviato al Tangle.",
         "messageSent": "Messaggio inviato",
         "messageSentMessage": "Il messaggio è stato inviato al Tangle.",
-        "keyReuse": "Riutilizzo di chiave",
+        "keyReuse": "Sending to spent address",
         "keyReuseError": "Non è possibile inviare a un indirizzo che è già stato usato per una spesa.",
-        "invalidResponse": "Risposta non valida",
-        "invalidResponseExplanation": "Il nodo ha restituito una risposta non valida.",
-        "invalidResponsePollingExplanation": "Il nodo ha restituito una risposta non valida durante il polling.",
-        "invalidResponseFetchingAccount": "Il nodo ha restituito una risposta non valida durante il recupero di informazioni del tuo conto.",
-        "invalidResponseSendingTransfer": "Il nodo ha restituito una risposta non valida durante l'invio del trasferimento.",
+        "invalidResponse": "Errore di nodo",
+        "invalidResponseExplanation": "Il nodo ha restituito un errore. Controllare le notifiche per ulteriori informazioni.",
+        "invalidResponsePollingExplanation": "Il nodo ha restituito un errore nella fase di contatto (polling). Controllare le notifiche per ulteriori informazioni.",
+        "invalidResponseFetchingAccount": "Il nodo ha restituito un errore durante il recupero di informazioni del tuo conto. Provare a cambiare il nodo o controllare le notifiche per ulteriori informazioni.",
+        "invalidResponseSendingTransfer": "Il nodo ha restituito un errore durante l'invio della transazione. Controllare le notifiche per ulteriori informazioni.",
         "seed": "Seme",
         "back": "INDIETRO",
         "backLowercase": "Indietro",
@@ -31,6 +31,8 @@
         "save": "Salva",
         "close": "CHIUDI",
         "continue": "Continua",
+        "enable": "Abilita",
+        "disable": "Disabilita",
         "manualCopy": "Annota il seme",
         "paperWallet": "Stampa copia cartacea",
         "copyToClipboard": "Aggiungi al gestore di password",
@@ -53,7 +55,8 @@
         "syncInProgress": "Sincronizzazione in corso",
         "syncInProgressExplanation": "Si prega di attendere che la sincronizzazione sia completa.",
         "somethingWentWrong": "Si è verificato un errore",
-        "somethingWentWrongExplanation": "Si prega di riavviare l'applicazione.",
+        "somethingWentWrongRestart": "Si prega di riavviare l'applicazione.",
+        "somethingWentWrongTryAgain": "Si prega di riprovare.",
         "node": "Nodo",
         "cannotPerformAction": "Non è possibile eseguire l'azione",
         "cannotPerformActionExplanation": "Vai alle impostazioni avanzate per reimpostare il portafoglio.",
@@ -68,16 +71,35 @@
         "pending": "In attesa",
         "bundleHash": "Hash del pacchetto",
         "addresses": "Indirizzi",
+        "reattach": "RICOLLEGA",
+        "promote": "PROMUOVI",
+        "rebroadcast": "RITRASMETTI",
         "pressBackAgain": "Premi di nuovo Indietro per chiudere la app",
         "autoreattaching": "Ricollegamento automatico al Tangle",
         "autoreattachingExplanation": "Ricollegamento della transazione con hash {{hash}}",
         "autopromoting": "Promozione automatica del trasferimento",
         "autopromotingExplanation": "Promozione della transazione con hash {{hash}}",
+        "promoting": "Promozione della transazione",
+        "promotionError": "Non si è potuto promuovere la transazione",
+        "promotionErrorExplanation": "Qualcosa è andato storto nella promozione della transazione. Prova di nuovo.",
+        "noLongerValid": "Il pacchetto che si sta tentando di promuovere non è più valido",
         "cannotSendToOwn": "Invio a un indirizzo proprio",
         "cannotSendToOwnExplanation": "Non puoi fare un trasferimento verso uno dei tuoi indirizzi.",
-        "pleaseWait": "Please wait",
-        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
-        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."
+        "pleaseWait": "Attendere, per favore",
+        "pleaseWaitExplanation": "Trinity sta eseguendo un altro lavoro. Attendere e riprovare.",
+        "pleaseWaitTransferExplanation": "Il tuo saldo disponibile è attualmente in uso in altri trasferimenti. Si prega di attendere la conferma di uno di questi prima di riprovare.",
+        "snapshotTransitionInProgress": "Passaggio allo snapshot in corso",
+        "snapshotTransitionInProgressExplanation": "Si prega di attendere fino a quando il passaggio allo snapshot sarà completato.",
+        "checkForUpdates": "Controlla Aggiornamenti",
+        "account": "Account",
+        "enterPasswordToAccessSettings": "Inserisci la tua password per accedere alle impostazioni account",
+        "enterYourPassword": "Inserisci la tua password",
+        "changeNode": "Cambia nodo",
+        "addCustomNode": "Aggiungi un nodo personalizzato",
+        "nodeChanged": "Nodo cambiato",
+        "nodeChangedExplanation": "Il nodo è stato cambiato con successo.",
+        "nodeAutoChanged": "Nodo cambiato automaticamente",
+        "nodeAutoChangedExplanation": "Passati al nuovo nodo {{- nodeAddress}} siccome il nodo selezionato non è in linea."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
@@ -118,7 +140,8 @@
         "seedCopiedExplanation": "Il seme verrà cancellato una volta che si preme \"FINE\" o che sono trascorsi 60 secondi.",
         "clickToCopy": "Fai clic sul pulsante qui sotto e copia il tuo seme su un gestore di password.",
         "doNotStore": "Non salvare il tuo seme in un file non crittografato.",
-        "copyToClipboard": "Copia negli appunti"
+        "copyToClipboard": "Copiare seed",
+        "shareSeed": "Passa il seme ad un gestore di password sicuro"
     },
     "enterSeed": {
         "invalidCharacters": "Il seme contiene caratteri non validi",
@@ -151,11 +174,12 @@
     "loading": {
         "loadingFirstTime": "Carico il seme per la prima volta.",
         "thisMayTake": "Potrebbe volerci un po'.",
+        "doNotMinimise": "Non minimizzare o chiudere l'app.",
         "youMayNotice": "Potresti notare che il dispositivo rallenta."
     },
     "newSeedSetup": {
         "seedNotGenerated": "Il seme non è stato generato",
-        "seedNotGeneratedExplanation": "Fare clic sul pulsante \"Genera nuovo seme\".",
+        "seedNotGeneratedExplanation": "Si prega di generare un nuovo seme.",
         "pressForNewSeed": "PREMI PER UN NUOVO SEME",
         "individualLetters": "Premi alcune singole lettere per renderle maggiormente casuali."
     },
@@ -175,8 +199,8 @@
         "generateNewAddress": "NUOVO INDIRIZZO",
         "message": "Messaggio opzionale",
         "removeMessage": "RIMUOVI IL MESSAGGIO",
-        "noAddresses": "NO ADDRESSES",
-        "spent": "Spent"
+        "noAddresses": "NESSUN INDIRIZZO",
+        "spent": "Speso"
     },
     "saveYourSeed": {
         "seedCleared": "Seme cancellato",
@@ -194,6 +218,7 @@
         "invalidAddressExplanation1": "L'indirizzo deve essere {{maxLength}} caratteri e deve avere un valore di checksum.",
         "invalidAddressExplanation2": "L'indirizzo contiene caratteri non validi.",
         "invalidAddressExplanation3": "L'indirizzo contiene un checksum non valido.",
+        "invalidAddressExplanationGeneric": "Un indirizzo valido consta di 90 caratteri e contiene solo A-Z o 9.",
         "notEnoughFunds": "Fondi insufficienti",
         "notEnoughFundsExplanation": "Non hai abbastanza IOTA per completare questo trasferimento.",
         "keyReuse": "Riutilizzo di chiave",
@@ -204,12 +229,15 @@
         "message": "Messaggio",
         "invalidMessage": "Messaggio non valido",
         "invalidMessageExplanation": "Il tuo messaggio contiene caratteri non validi.",
+        "invalidMessageTooLong": "Messaggio troppo lungo",
+        "invalidMessageTooLongExplanation": "Il messaggio supera il numero massimo di caratteri (1093).",
         "send": "INVIA",
         "invalidAmount": "Inserito un importo non corretto",
-        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
+        "invalidAmountExplanation": "Inserisci un importo di transazione valido. Può essere utile visualizzare la spiegazione di unità IOTA nella parte inferiore di questa pagina.",
         "maximumSelected": "Selezionato importo MASSIMO",
         "iotaUnits": "Spiegazione delle unità IOTA",
-        "sendMax": "INVIA MASSIMO"
+        "sendMax": "INVIA MASSIMO",
+        "fingerprintOnSend": "Toccare il lettore di impronte digitali per inviare il trasferimento"
     },
     "setPassword": {
         "passwordTooShort": "La password è troppo corta",
@@ -224,6 +252,12 @@
     "setSeedName": {
         "canUseMultipleSeeds": "Con questo portafoglio, è possibile utilizzare più semi. Ogni seme richiede un nome di conto.",
         "youCanAdd": "Nel menu impostazioni, è possibile aggiungere più semi."
+    },
+    "modeSelection": {
+        "expert": "Esperto",
+        "standard": "Standard",
+        "expertModeExplanation": "La modalità Esperto fornirà accesso a funzioni aggiuntive come promozione e ricollegamento manuali.",
+        "modesExplanation": "Abilita la modalità Esperto solo se hai esperienza nell'uso del Tangle. Altrimenti potresti trovarti disorientato."
     },
     "settings": {
         "transferSending": "Invio transazione",
@@ -253,6 +287,7 @@
         "poorConnectionExplanation": "Impossibile modificare la valuta a causa di una cattiva connessione.",
         "hide": "Nascondi",
         "hideOthers": "Nascondi altri",
+        "show": "Visualizza",
         "showAll": "Mostra tutti",
         "quit": "Esci",
         "edit": "Modifica",
@@ -261,7 +296,16 @@
         "paste": "Incolla",
         "selectAll": "Seleziona tutto",
         "securitySettings": "Impostazioni di sicurezza",
-        "fingerprint": "Biometric authentication"
+        "fingerprint": "Autenticazione biometrica",
+        "couldNotFetchRates": "Impossibile reperire tassi",
+        "couldNotFetchRatesExplanation": "Qualcosa è andato storto durante il reperimento dei tassi di conversione per {{currency}}.",
+        "fetchedConversionRates": "Reperiti i tassi di conversione",
+        "fetchedConversionRatesExplanation": "Reperiti con successo i più recenti tassi di conversione per {{currency}}.",
+        "undo": "Annulla",
+        "redo": "Ripeti",
+        "about": "Info su Trinity",
+        "lockScreenTimeout": "Tempo di attivazione del blocco dello schermo (minuti)",
+        "autoNodeSwitching": "Cambiare il nodo automaticamente quando quello selezionato non è in linea"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Immetti la tua password per reimpostare il portafoglio.",
@@ -273,10 +317,11 @@
         "doYouAlreadyHaveASeed": "Possiedi già un seme che desideri utilizzare?",
         "seedExplanation": "Il seme IOTA è come una combinazione di utente e password per il tuo conto, in un'unica stringa di 81 caratteri.",
         "explanation": "<0><0>Puoi utilizzarlo per accedere ai tuoi fondi da</0><1> qualsiasi portafoglio</1><2>, su</2><3> qualsiasi dispositivo</3><4>. Ma se perdi il tuo seme, perdi anche i tuoi IOTA</4></0>",
-        "keepSafe": "Sei pregato di tenere il tuo seme al sicuro."
+        "keepSafe": "Sei pregato di tenere il tuo seme al sicuro.",
+        "hint": "<0><0>Suggerimento:</0> Premi NO se questa è la prima volta che usi IOTA.</0>"
     },
     "welcome": {
-        "thankYou": "Grazie per aver scaricato il portafoglio IOTA.",
+        "thankYou": "Grazie per aver scaricato Trinity.",
         "weWillSpend": "In pochi minuti imposteremo insieme il tuo portafoglio.",
         "reminder": "Potresti essere tentato di saltare alcuni passaggi, ma ti invitiamo a seguire l'intero processo."
     },
@@ -310,7 +355,9 @@
     "advancedSettings": {
         "selectNode": "Seleziona un nodo",
         "addCustomNode": "Aggiungi un nodo personalizzato",
-        "manualSync": "Sincronizzazione manuale"
+        "manualSync": "Sincronizzazione manuale",
+        "snapshotTransition": "Passaggio dopo uno snapshot",
+        "pow": "Prova di lavoro"
     },
     "advancedThemeCustomisation": {
         "background": "Sfondo",
@@ -336,16 +383,22 @@
         "thousand": "Migliaia",
         "one": "Unità"
     },
+    "usedAddressModal": {
+        "cantSpendFullBalanceQuestion": "Perché non posso spendere tutto il contenuto del portafoglio?",
+        "spentAddressExplanation": "Hai alcuni IOTA in uno o più indirizzi già spesi. Il riuso di indirizzi è pericoloso in IOTA, perciò questo portafoglio non ti permette di inviare IOTA dallo stesso indirizzo più di una volta.",
+        "discordInformation": "Si prega di visitare il canale #help in Discord per scoprire cosa si può fare."
+    },
     "deleteAccount": {
-        "areYouSure": "Sei sicuro di voler eliminare questo account?",
+        "areYouSure": "<0></0><1>Sei sicuro di voler eliminare</1><2></2><3>{{accountName}}?</3>",
         "yourSeedWillBeRemoved": "Il tuo seme e la cronologia delle transazioni saranno rimossi.",
         "thisAction": "Questa azione non può essere annullata.",
         "enterPassword": "Immetti la tua password per cancellare il conto."
     },
     "manualSync": {
+        "outOfSync": "La cronologia delle tue transazioni ti sembra non sincronizzata?",
         "pressToSync": "Premi il pulsante sotto per sincronizzare il conto.",
-        "thisMayTake": "Potrebbe volerci un po'.",
-        "youMayNotice": "Potresti notare che il dispositivo rallenta.",
+        "thisMayTake": "Questo potrebbe richiedere del tempo. È possibile notare rallentamenti del dispositivo.",
+        "doNotClose": "Attenzione, se si minimizza l'app la sincronizzazione si annulla.",
         "syncAccount": "SINCRONIZZA CONTO",
         "syncingYourAccount": "Sto sincronizzando il tuo conto."
     },
@@ -367,8 +420,8 @@
         "warning": "<0><0>Tutti i dati nel tuo portafoglio tra cui </0> <1>i semi, le password</1><2> e </2><3>altre informazioni sul conto</3><4> andranno persi.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Tocca il lettore di impronte digitali del dispositivo per abilitare l'autenticazione tramite impronta digitale.",
-        "instructionsDisable": "Tocca il lettore di impronte digitali del dispositivo per disabilitare l'autenticazione tramite impronta digitale.",
+        "instructionsEnable": "Tocca il lettore di impronte digitali per abilitare l'autenticazione tramite impronta digitale",
+        "instructionsDisable": "Tocca il lettore di impronte digitali per disabilitare l'autenticazione tramite impronta digitale",
         "fingerprintAuthEnabled": "Autenticazione tramite impronta digitale abilitata",
         "fingerprintAuthEnabledExplanation": "Hai abilitato con successo l'autenticazione tramite impronta digitale.",
         "fingerprintAuthDisabled": "Autenticazione tramite impronta digitale disabilitata",
@@ -376,13 +429,13 @@
         "fingerprintAuthFailed": "Autenticazione tramite impronta digitale non riuscita",
         "fingerprintAuthFailedExplanation": "Autenticazione tramite impronta digitale fallita. Riprova.",
         "status": "Stato",
-        "enabled": "Abilitato",
+        "enabled": "Attivato",
         "disabled": "Disabilitato",
         "fingerprintUnavailable": "Sensore impronta digitale non disponibile",
         "fingerprintUnavailableExplanation": "Il tuo dispositivo non supporta il riconoscimento dell'impronta digitale o non è stato configurato nelle impostazioni del dispositivo.",
         "buttonInstructionsDisable": "Premi il pulsante sotto per disabilitare l'autenticazione tramite impronta digitale.",
         "buttonInstructionsEnable": "Premi il pulsante sotto per abilitare l'autenticazione tramite impronta digitale.",
-        "instructionsLogin": "Tocca il lettore di impronte digitali per accedere."
+        "instructionsLogin": "Tocca il lettore di impronte digitali per accedere"
     },
     "transferConfirmation": {
         "youAreAbout": "Stai per inviare {{contents}} all'indirizzo",
@@ -399,12 +452,58 @@
         "key": "Chiave",
         "twoFAEnabled": "Autenticazione a 2 fattori abilitata",
         "twoFAEnabledExplanation": "È stata attivata con successo l'autenticazione a due fattori.",
+        "twoFADisabled": "Autenticazione a 2 fattori disabilitata",
+        "twoFADisabledExplanation": "È stata disattivata con successo l'autenticazione a due fattori.",
         "enterCode": "Inserisci il codice dall'app di 2FA",
         "code": "Codice"
     },
     "chart": {
         "mcap": "MCAP",
         "change": "Cambio",
-        "volume": "Volume (24h)"
+        "volume": "Volume (24h)",
+        "currentValue": "Valore corrente"
+    },
+    "rootDetection": {
+        "warning": "ATTENZIONE",
+        "rootDetected": "<0>Il dispositivo sembra essere rooted.</0> <1>Ciò può rappresentare un rischio significativo per la sicurezza del tuo portafoglio.</1> <2>Vuoi continuare nonostante questo rischio?</2>"
+    },
+    "pow": {
+        "feeless": "È necessario completare un piccolo calcolo (PoW) per inviare transazioni senza costi in IOTA.",
+        "localOrRemote": "Il calcolo (PoW) può essere completato in locale nel tuo dispositivo, oppure demandato ad un nodo.",
+        "local": "Locale",
+        "remote": "Remoto",
+        "powUpdated": "Impostazioni proof-of-work",
+        "powUpdatedExplanation": "Configurazione proof-of-work aggiornata.",
+        "noWebGLSupport": "WebGL non supportato",
+        "noWebGLSupportExplanation": "Il computer non supporta WebGL. Si prega di usare il proof-of-work remoto."
+    },
+    "progressSteps": {
+        "validatingReceiveAddress": "Convalido l'indirizzo ricevente",
+        "syncingAccount": "Sincronizzo il conto",
+        "preparingInputs": "Preparo i fondi",
+        "preparingTransfers": "Preparo i trasferimenti",
+        "gettingTransactionsToApprove": "Ottengo le transazioni da approvare",
+        "proofOfWork": "Completo la prova di lavoro",
+        "broadcasting": "Trasmissione"
+    },
+    "snapshotTransition": {
+        "cannotCompleteTransition": "Non è possibile completare il passaggio allo snapshot",
+        "cannotCompleteTransitionExplanation": "Il saldo deve essere maggiore di 0 per completare il passaggio.",
+        "transitionComplete": "Passaggio allo snapshot completato",
+        "transitionCompleteExplanation": "Il passaggio allo snapshot è stato completato con successo."
+    },
+    "deepLink": {
+        "autofill": "Riempimento automatico",
+        "autofillExplanation": "Dati riempiti automaticamente da un collegamento."
+    },
+    "updates": {
+        "errorRetrievingUpdateData": "Errore nel reperimento dell'aggiornamento",
+        "errorRetrievingUpdateDataExplanation": "C'è stato un errore nel reperimento dell'aggiornamento. Per favore riprova.",
+        "noUpdatesAvailable": "Nessun aggiornamento disponibile",
+        "noUpdatesAvailableExplanation": "Hai l'ultima versione desktop del portafoglio IOTA Trinity!",
+        "newVersionAvailable": "Una nuova versione è disponibile",
+        "newVersionAvailableExplanation": "Una nuova versione <strong>{{version}}</strong> di <strong>Trinity</strong> è disponibile. Si prega di leggere attentamente i dettagli di rilascio e verificare l'origine del download prima di eseguire l'aggiornamento:",
+        "downloadRelease": "Scarica la versione",
+        "skipUpdate": "Salta l'aggiornamento"
     }
 }

@@ -3,7 +3,7 @@
 //  iotaWalletUITests
 //
 //  Created by Rajiv Shah on 1/25/18.
-//  Copyright © 2018 Facebook. All rights reserved.
+//  Copyright © 2018 IOTA Foundation. All rights reserved.
 //
 
 import XCTest
@@ -78,7 +78,7 @@ class iotaWalletUITests: XCTestCase {
   func waitForElementToAppear(_ element: XCUIElement) {
     let existsPredicate = NSPredicate(format: "exists == true")
     expectation(for: existsPredicate, evaluatedWith: element, handler: nil)
-    waitForExpectations(timeout: 15, handler: nil)
+    waitForExpectations(timeout: 20, handler: nil)
   }
     
 }

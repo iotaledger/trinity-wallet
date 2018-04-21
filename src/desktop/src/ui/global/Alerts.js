@@ -1,8 +1,11 @@
 import React from 'react';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import withAlertsData from 'containers/global/Alerts';
-import Modal from 'ui/components/modal/Modal';
-import Button from 'ui/components/Button';
+
+import Icon from 'ui/components/Icon';
+
+import css from './alerts.css';
 
 /**
  * Alerts UI helper component
@@ -17,28 +20,41 @@ class Alerts extends React.PureComponent {
          * @ignore
          */
         alerts: PropTypes.object.isRequired,
-        /** Translation helper
-         * @param {String} translationString - locale string identifier to be translated
-         * @ignore
-         */
-        t: PropTypes.func.isRequired,
     };
 
-    render() {
-        const { alerts, disposeOffAlert, t } = this.props;
+    static timeout = null;
 
-        if (!alerts.category.length) {
-            return null;
+    componentWillReceiveProps(nextProps) {
+        if (this.timeout) {
+            clearTimeout(this.timeout);
         }
+        if (nextProps.alerts.category.length && nextProps.alerts.closeInterval > 0) {
+            this.timeout = setTimeout(() => {
+                this.props.disposeOffAlert();
+            }, nextProps.alerts.closeInterval);
+        }
+    }
+
+    closeAlert() {
+        if (this.timeout) {
+            clearTimeout(this.timeout);
+        }
+        this.props.disposeOffAlert();
+    }
+
+    render() {
+        const { alerts, disposeOffAlert } = this.props;
 
         return (
-            <Modal variant="confirm" isOpen onClose={disposeOffAlert}>
-                <h1 className={alerts.category}>{alerts.title}</h1>
-                <p>{alerts.message}</p>
-                <Button onClick={disposeOffAlert} variant="secondary">
-                    {t('global:back')}
-                </Button>
-            </Modal>
+            <div className={css.wrapper}>
+                <div className={classNames(alerts.category.length ? css.visible : null, css[`${alerts.category}`])}>
+                    <span onClick={() => disposeOffAlert()}>
+                        <Icon icon="cross" size={32} />
+                    </span>
+                    {alerts.title && <h2>{alerts.title}</h2>}
+                    {alerts.message && <p>{alerts.message}</p>}
+                </div>
+            </div>
         );
     }
 }

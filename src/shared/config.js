@@ -1,14 +1,23 @@
-export const defaultNode = 'http://trinity.iota.fm:80';
+export const DESKTOP_VERSION = '0.1.3';
+
+export const defaultNode = 'https://trinity.iota.fm:443';
 export const nodes = [
-    'http://trinity.iota.fm:80',
-    'http://iri2.iota.fm:80',
-    'https://node.neffware.com:443',
+    'https://trinity.iota.fm:443',
+    'https://iri2.iota.fm:443',
+    'https://nodes.iota.fm:443',
+    'https://field.carriota.com:443',
     'https://iotanode.us:443',
-    'http://astra2261.startdedicated.net:14265',
-    'https://www.veriti.io',
-    'http://148.251.181.105:14265',
-    'http://nodes.iota.fm:80',
+    'https://peanut.iotasalad.org:14265',
+    'https://beta.tangle-nodes.com:443',
+    'https://alpha.tangle-nodes.com:443',
+    'https://potato.iotasalad.org:14265',
+    'https://tuna.iotasalad.org:14265',
+    'https://durian.iotasalad.org:14265',
+    'https://nodes.iota.cafe:443',
+    'https://nodes.thetangle.org:443',
 ];
+
+export const UPDATE_URL = 'https://trinity-alpha.iota.org/release';
 
 export const DEFAULT_DEPTH = 4;
 export const DEFAULT_MIN_WEIGHT_MAGNITUDE = 14;

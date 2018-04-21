@@ -1,30 +1,29 @@
 import { Navigation } from 'react-native-navigation';
-import withSafeAreaView from '../components/withSafeAreaView';
-import InitialLoading from '../containers/initialLoading';
-import Home from '../containers/home';
-import Loading from '../containers/loading';
-import NewSeedSetup from '../containers/newSeedSetup';
-import WalletSetup from '../containers/walletSetup';
-import LanguageSetup from '../containers/languageSetup';
-import Welcome from '../containers/welcome';
-import EnterSeed from '../containers/enterSeed';
-import SaveYourSeed from '../containers/saveYourSeed';
-import SetPassword from '../containers/setPassword';
-import WriteSeedDown from '../containers/writeSeedDown';
-import CopySeedToClipboard from '../containers/copySeedToClipboard';
-import PaperWallet from '../containers/paperWallet';
-import SaveSeedConfirmation from '../containers/saveSeedConfirmation';
-import Login from '../containers/login';
-import WalletResetConfirmation from '../containers/walletResetConfirmation';
-import WalletResetRequirePassword from '../containers/walletResetRequirePassword';
-import OnboardingComplete from '../containers/onboardingComplete';
-import SetSeedNameComponent from '../containers/setSeedName';
-import SeedReentry from '../containers/seedReentry';
-import TwoFactorSetupAddKeyComponent from '../containers/twoFactorSetupAddKey';
-import TwoFactorSetupEnterToken from '../containers/twoFactorSetupEnterToken';
-import Disable2FA from '../containers/disable2FA';
-import { isIPhoneX } from '../util/device';
-import FingerprintSetup from '../containers/fingerprintSetup';
+import withSafeAreaView from '../components/SafeAreaView';
+import Home from '../containers/Home';
+import Loading from '../containers/Loading';
+import NewSeedSetup from '../containers/NewSeedSetup';
+import WalletSetup from '../containers/WalletSetup';
+import LanguageSetup from '../containers/LanguageSetup';
+import Welcome from '../containers/Welcome';
+import EnterSeed from '../containers/EnterSeed';
+import SaveYourSeed from '../containers/SaveYourSeed';
+import SetPassword from '../containers/SetPassword';
+import WriteSeedDown from '../containers/WriteSeedDown';
+import CopySeedToClipboard from '../containers/CopySeedToClipboard';
+import PaperWallet from '../containers/PaperWallet';
+import SaveSeedConfirmation from '../containers/SaveSeedConfirmation';
+import Login from '../containers/Login';
+import WalletResetConfirmation from '../containers/WalletResetConfirmation';
+import WalletResetRequirePassword from '../containers/WalletResetRequirePassword';
+import OnboardingComplete from '../containers/OnboardingComplete';
+import SetAccountNameComponent from '../containers/SetAccountName';
+import SeedReentry from '../containers/SeedReentry';
+import TwoFactorSetupAddKeyComponent from '../containers/TwoFactorSetupAddKey';
+import TwoFactorSetupEnterToken from '../containers/TwoFactorSetupEnterToken';
+import Disable2FA from '../containers/Disable2FA';
+import { isIPhoneX } from '../utils/device';
+import FingerprintSetup from '../containers/FingerprintSetup';
 
 function getGenerator(screen) {
     if (isIPhoneX) {
@@ -35,7 +34,6 @@ function getGenerator(screen) {
 }
 
 export default function registerScreens(store, Provider) {
-    Navigation.registerComponent('initialLoading', () => getGenerator(InitialLoading), store, Provider);
     Navigation.registerComponent('home', () => getGenerator(Home), store, Provider);
     Navigation.registerComponent('loading', () => getGenerator(Loading), store, Provider);
     Navigation.registerComponent('newSeedSetup', () => getGenerator(NewSeedSetup), store, Provider);
@@ -57,7 +55,7 @@ export default function registerScreens(store, Provider) {
         Provider,
     );
     Navigation.registerComponent('onboardingComplete', () => getGenerator(OnboardingComplete), store, Provider);
-    Navigation.registerComponent('setSeedName', () => getGenerator(SetSeedNameComponent), store, Provider);
+    Navigation.registerComponent('setAccountName', () => getGenerator(SetAccountNameComponent), store, Provider);
     Navigation.registerComponent('seedReentry', () => getGenerator(SeedReentry), store, Provider);
     Navigation.registerComponent('saveSeedConfirmation', () => getGenerator(SaveSeedConfirmation), store, Provider);
     Navigation.registerComponent(

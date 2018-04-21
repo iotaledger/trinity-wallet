@@ -1,4 +1,4 @@
-import { ActionTypes } from '../actions/alerts.js';
+import { ActionTypes } from '../actions/alerts';
 
 const initialState = {
     category: '',
@@ -20,11 +20,11 @@ export default (state = initialState, action) => {
             };
         case ActionTypes.HIDE:
             return {
+                ...state,
                 category: '',
                 title: '',
                 message: '',
                 closeInterval: 5500,
-                notificationLog: [...state.notificationLog],
             };
         case ActionTypes.UPDATE_LOG:
             return {

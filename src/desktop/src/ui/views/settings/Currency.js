@@ -14,7 +14,7 @@ class SetCurrency extends PureComponent {
         /** Current currency */
         currency: PropTypes.string.isRequired,
         /** Available currency list */
-        currencies: PropTypes.array.isRequired,
+        currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
         /** Currency change statuss */
         loading: PropTypes.bool.isRequired,
         /** Set new currency
@@ -37,7 +37,12 @@ class SetCurrency extends PureComponent {
         const { selection } = this.state;
 
         return (
-            <div>
+            <form
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    setCurrency(this.state.selection);
+                }}
+            >
                 <Select
                     value={selection || currency}
                     label={t('currencySelection:currency')}
@@ -49,15 +54,12 @@ class SetCurrency extends PureComponent {
                         </option>
                     ))}
                 </Select>
-
-                <Button
-                    loading={loading}
-                    disabled={!selection || selection === currency}
-                    onClick={() => setCurrency(this.state.selection)}
-                >
-                    {t('global:save')}
-                </Button>
-            </div>
+                <fieldset>
+                    <Button disabled={!selection || selection === currency} type="submit" loading={loading}>
+                        {t('save')}
+                    </Button>
+                </fieldset>
+            </form>
         );
     }
 }

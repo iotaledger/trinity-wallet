@@ -3,17 +3,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import { getSecurelyPersistedSeeds } from 'libs/crypto';
-import { addAccountName } from 'actions/account';
-import { showError } from 'actions/notifications';
+import authenticator from 'authenticator';
+import sjcl from 'sjcl';
+
+import { getVault, getSeed } from 'libs/crypto';
+
+import { generateAlert } from 'actions/alerts';
 import { getMarketData, getChartData, getPrice } from 'actions/marketData';
 import { getCurrencyData } from 'actions/settings';
-import { clearTempData } from 'actions/tempAccount';
-import { loadSeeds, clearSeeds } from 'actions/seeds';
+import { clearWalletData, setPassword } from 'actions/wallet';
+import { setOnboardingSeed } from 'actions/ui';
+
 import { runTask } from 'worker';
+
 import PasswordInput from 'ui/components/input/Password';
+import Text from 'ui/components/input/Text';
 import Button from 'ui/components/Button';
 import Loading from 'ui/components/Loading';
+import Modal from 'ui/components/modal/Modal';
 
 /** Login component */
 class Login extends React.Component {
@@ -21,27 +28,29 @@ class Login extends React.Component {
         /** Accounts state state data
          * @ignore
          */
-        account: PropTypes.object.isRequired,
-        /** Temporary account state data
+        accounts: PropTypes.object.isRequired,
+        /** wallet state data
          * @ignore
          */
-        tempAccount: PropTypes.object.isRequired,
+        wallet: PropTypes.object.isRequired,
         /** Current currency symbol */
         currency: PropTypes.string.isRequired,
-        /** Set seed state data
-         * @param {Object} seeds - Seed state data
+        /** Set password state
+         * @param {String} password - Current password
          * @ignore
          */
-        loadSeeds: PropTypes.func.isRequired,
-        /** Clear temporary account state data
+        setPassword: PropTypes.func.isRequired,
+        /** Set onboarding seed state
+         * @param {String} seed - New seed
+         * @param {Boolean} isGenerated - Is the new seed generated
+         */
+        setOnboardingSeed: PropTypes.func.isRequired,
+        /** Onboarding set seed and name */
+        onboarding: PropTypes.object.isRequired,
+        /** Clear wallet state data
          * @ignore
          */
-        clearTempData: PropTypes.func.isRequired,
-        /** Clear temporary seed state data
-         * @ignore
-         */
-        clearSeeds: PropTypes.func.isRequired,
-
+        clearWalletData: PropTypes.func.isRequired,
         /** Fetch chart data */
         getChartData: PropTypes.func.isRequired,
         /** Fetch price data */
@@ -50,16 +59,13 @@ class Login extends React.Component {
         getMarketData: PropTypes.func.isRequired,
         /** Fetch currency data */
         getCurrencyData: PropTypes.func.isRequired,
-        /** Add account name to account list
-         * @param {Object} title - Account title
+        /** Create a notification message
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
          * @ignore
          */
-        addAccountName: PropTypes.func.isRequired,
-        /** Error modal helper
-         * @param {Object} content - Error screen content
-         * @ignore
-         */
-        showError: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
@@ -68,26 +74,21 @@ class Login extends React.Component {
     };
 
     state = {
-        loading: false,
+        verifyTwoFA: false,
+        code: '',
         password: '',
     };
 
     componentDidMount() {
-        this.props.clearTempData();
-        this.props.clearSeeds();
         Electron.updateMenu('authorised', false);
-    }
 
-    componentWillReceiveProps(newProps) {
-        const { tempAccount } = this.props;
+        const { wallet } = this.props;
 
-        const hasError =
-            !tempAccount.hasErrorFetchingAccountInfoOnLogin && newProps.tempAccount.hasErrorFetchingAccountInfoOnLogin;
-
-        if (hasError) {
-            this.setState({
-                loading: false,
-            });
+        if (wallet.ready && wallet.addingAdditionalAccount) {
+            this.setupAccount();
+        } else {
+            this.props.clearWalletData();
+            this.props.setPassword('');
         }
     }
 
@@ -97,106 +98,153 @@ class Login extends React.Component {
         });
     };
 
-    setupAccount(seed) {
-        const { account, addAccountName, currency } = this.props;
+    setupAccount = async () => {
+        const { accounts, wallet, currency, onboarding, setOnboardingSeed } = this.props;
+
+        const seed = wallet.addingAdditionalAccount
+            ? onboarding.seed
+            : await getSeed(wallet.seedIndex, wallet.password);
 
         this.props.getPrice();
         this.props.getChartData();
         this.props.getMarketData();
         this.props.getCurrencyData(currency);
 
-        if (account.firstUse) {
-            addAccountName(seed.name);
-            runTask('getFullAccountInfo', [seed.seed, seed.name]);
+        if (accounts.firstUse) {
+            runTask('getFullAccountInfoFirstSeed', [seed, accounts.accountNames[wallet.seedIndex]]);
+        } else if (wallet.addingAdditionalAccount) {
+            setOnboardingSeed(null);
+            runTask('getFullAccountInfoAdditionalSeed', [seed, wallet.additionalAccountName, wallet.password]);
         } else {
-            runTask('getAccountInfo', [seed.seed, seed.name]);
+            runTask('getAccountInfo', [seed, accounts.accountNames[wallet.seedIndex]]);
         }
-    }
+    };
 
-    handleSubmit = (e) => {
-        e.preventDefault();
-        const { password } = this.state;
-        const { t, loadSeeds, showError } = this.props;
+    handleSubmit = async (e) => {
+        if (e) {
+            e.preventDefault();
+        }
 
-        let seeds = null;
+        const { password, code, verifyTwoFA } = this.state;
+        const { setPassword, wallet, generateAlert, t } = this.props;
+
+        const passwordHash = sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(password));
+        let vault = null;
 
         try {
-            seeds = getSecurelyPersistedSeeds(password);
+            vault = await getVault(passwordHash);
+
+            if (vault.twoFAkey && !authenticator.verifyToken(vault.twoFAkey, code)) {
+                if (verifyTwoFA) {
+                    generateAlert('error', t('twoFA:wrongCode'), t('twoFA:wrongCodeExplanation'));
+                }
+
+                this.setState({
+                    verifyTwoFA: true,
+                });
+
+                return;
+            }
         } catch (err) {
-            showError({
-                title: t('global:unrecognisedPassword'),
-                text: t('global:unrecognisedPasswordExplanation'),
-            });
+            generateAlert('error', t('unrecognisedPassword'), t('unrecognisedPasswordExplanation'));
         }
 
-        if (seeds) {
-            loadSeeds(seeds);
-            const seed = seeds.items[seeds.selectedSeedIndex];
+        if (vault) {
+            setPassword(passwordHash);
+
+            const seed = vault.seeds[wallet.seedIndex];
 
             this.setState({
-                loading: true,
+                password: '',
+                verifyTwoFA: false,
             });
 
-            this.setupAccount(seed, seeds.selectedSeedIndex);
+            this.setupAccount(seed);
         }
     };
 
     render() {
-        const { t, account } = this.props;
-        const { loading } = this.state;
+        const { t, accounts, wallet } = this.props;
+        const { verifyTwoFA, code } = this.state;
 
-        if (loading) {
+        if (wallet.isFetchingLatestAccountInfoOnLogin || wallet.addingAdditionalAccount) {
             return (
                 <Loading
                     loop
-                    title={account.firstUse ? t('loading:thisMayTake') : null}
-                    subtitle={account.firstUse ? t('loading:loadingFirstTime') : null}
+                    title={accounts.firstUse || wallet.addingAdditionalAccount ? t('loading:loadingFirstTime') : null}
+                    subtitle={accounts.firstUse || wallet.addingAdditionalAccount ? t('loading:thisMayTake') : null}
                 />
             );
         }
 
         return (
-            <form onSubmit={this.handleSubmit}>
-                <main>
+            <React.Fragment>
+                <form onSubmit={(e) => this.handleSubmit(e)}>
+                    <div />
                     <section>
                         <PasswordInput
+                            focus
                             value={this.state.password}
-                            label={t('global:password')}
+                            label={t('password')}
                             name="password"
                             onChange={this.setPassword}
                         />
                     </section>
                     <footer>
-                        <Button to="/seedlogin" className="outline" variant="highlight">
-                            {t('login:useSeed')}
+                        <Button to="/settings/node" className="inline" variant="secondary">
+                            {t('home:settings').toLowerCase()}
                         </Button>
-                        <Button className="outline" variant="primary">
-                            {t('login:login')}
+                        <Button type="submit" className="large" variant="primary">
+                            {t('login:login').toLowerCase()}
                         </Button>
                     </footer>
-                </main>
-            </form>
+                </form>
+                <Modal variant="confirm" isOpen={verifyTwoFA} onClose={() => this.setState({ verifyTwoFA: false })}>
+                    <p>{t('twoFA:enterCode')}</p>
+                    <form onSubmit={(e) => this.handleSubmit(e)}>
+                        <Text
+                            value={code}
+                            focus={verifyTwoFA}
+                            label={t('twoFA:code')}
+                            onChange={(value) => this.setState({ code: value })}
+                        />
+                        <footer>
+                            <Button
+                                onClick={() => {
+                                    this.setState({ verifyTwoFA: false });
+                                }}
+                                variant="secondary"
+                            >
+                                {t('back')}
+                            </Button>
+                            <Button type="submit" variant="primary">
+                                {t('login:login')}
+                            </Button>
+                        </footer>
+                    </form>
+                </Modal>
+            </React.Fragment>
         );
     }
 }
 
 const mapStateToProps = (state) => ({
-    account: state.account,
-    firstUse: state.account.firstUse,
-    tempAccount: state.tempAccount,
+    accounts: state.accounts,
+    wallet: state.wallet,
+    firstUse: state.accounts.firstUse,
     currency: state.settings.currency,
+    onboarding: state.ui.onboarding,
 });
 
 const mapDispatchToProps = {
-    showError,
-    loadSeeds,
-    clearTempData,
-    clearSeeds,
-    addAccountName,
+    generateAlert,
+    setPassword,
+    setOnboardingSeed,
+    clearWalletData,
     getChartData,
     getPrice,
     getMarketData,
     getCurrencyData,
 };
 
-export default translate()(connect(mapStateToProps, mapDispatchToProps)(Login));
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(Login));

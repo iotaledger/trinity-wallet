@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import map from 'lodash/map';
+import orderBy from 'lodash/orderBy';
 import classNames from 'classnames';
-import { formatValue, formatUnit, round } from 'libs/util';
-import { convertFromTrytes } from 'libs/iota';
-import { formatTime, formatModalTime, convertUnixTimeToJSDate } from 'libs/dateUtils';
-import Modal from 'ui/components/modal/Modal';
-import Button from 'ui/components/Button';
+import { formatValue, formatUnit } from 'libs/iota/utils';
+import { round } from 'libs/utils';
+import { formatTime, formatModalTime, convertUnixTimeToJSDate } from 'libs/date';
+
 import Clipboard from 'ui/components/Clipboard';
 import Icon from 'ui/components/Icon';
+import Scrollbar from 'ui/components/Scrollbar';
 
 import withListData from 'containers/components/List';
 
@@ -18,16 +20,20 @@ import css from './list.css';
  */
 class List extends React.PureComponent {
     static propTypes = {
-        /** List item count limit */
-        limit: PropTypes.number,
-        /** Compact style state  */
-        compact: PropTypes.bool,
-        /** Transaction type filter */
-        filter: PropTypes.oneOf(['sent', 'received', 'pending']),
+        /** Can history be updated */
+        isBusy: PropTypes.bool.isRequired,
+        /** Is history updating */
+        isLoading: PropTypes.bool.isRequired,
+        /** Should update history */
+        updateAccount: PropTypes.func.isRequired,
         /** Transaction history */
-        transfers: PropTypes.array.isRequired,
-        /** Receive address list */
-        addresses: PropTypes.array.isRequired,
+        transfers: PropTypes.object.isRequired,
+        /** Set active history item
+         * @param {Number} index - Current item index
+         */
+        setItem: PropTypes.func.isRequired,
+        /** Current active history item */
+        currentItem: PropTypes.string,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
@@ -36,155 +42,167 @@ class List extends React.PureComponent {
     };
 
     state = {
-        activeItem: null,
+        filter: 'All',
+        loaded: true,
     };
 
-    setHistoryItem = (itemIndex) => {
+    switchFilter(filter) {
+        if (filter === this.state.filter) {
+            return;
+        }
+
         this.setState({
-            activeItem: itemIndex,
+            filter: filter,
+            loaded: false,
         });
-    };
-
-    compactItem = (transfer, isReceived, isConfirmed, t) => {
-        return (
-            <div>
-                <Icon icon={isReceived ? 'receive' : 'send'} size={16} />
-                <span>{formatTime(convertUnixTimeToJSDate(transfer.timestamp))}</span>
-                <strong>
-                    {!isConfirmed ? t('global:pending') : isReceived ? t('global:received') : t('global:sent')}
-                </strong>
-                <span>{`${round(formatValue(transfer.value))} ${formatUnit(transfer.value)}`}</span>
-            </div>
-        );
-    };
-
-    fullItem = (transfer, isReceived, isConfirmed, t) => {
-        return (
-            <div className={css.full}>
-                <p>
-                    <span>
-                        {isReceived ? t('global:received') : t('global:sent')}{' '}
-                        {`${round(formatValue(transfer.value))} ${formatUnit(transfer.value)}`}
-                    </span>
-                    <strong>
-                        {!isConfirmed ? t('global:pending') : isReceived ? t('global:received') : t('global:sent')}
-                    </strong>
-                </p>
-                <p>
-                    <span>Message: {convertFromTrytes(transfer.signatureMessageFragment)}</span>
-                    <span>{formatModalTime(convertUnixTimeToJSDate(transfer.timestamp))}</span>
-                </p>
-            </div>
-        );
-    };
+        setTimeout(() => {
+            this.setState({
+                loaded: true,
+            });
+        }, 200);
+    }
 
     render() {
-        const { transfers, addresses, limit, t, compact, filter } = this.props;
+        const { isLoading, isBusy, updateAccount, transfers, setItem, currentItem, t } = this.props;
+        const { filter, loaded } = this.state;
 
-        const transferLimit = limit ? limit : transfers.length;
+        const filters = ['All', 'Sent', 'Received', 'Pending'];
+        const transfersList = map(transfers, (tx) => tx);
 
-        const activeTransfers = this.state.activeItem !== null ? transfers[this.state.activeItem] : null;
-        const activeTransfer = activeTransfers ? activeTransfers[0] : null;
+        const formattedTx = transfersList.filter((tx) => {
+            const isReceived = tx.incoming;
+            const isConfirmed = tx.persistence;
+
+            return !(
+                (filter === 'Sent' && (isReceived || !isConfirmed)) ||
+                (filter === 'Received' && (!isReceived || !isConfirmed)) ||
+                (filter === 'Pending' && isConfirmed)
+            );
+        });
+
+        const historyTx = orderBy(formattedTx, 'timestamp', ['desc']);
+
+        const activeTransfer = currentItem ? historyTx.filter((tx) => tx.hash === currentItem)[0] : null;
 
         return (
-            <div>
-                <nav className={classNames(css.list, compact ? css.compact : null)}>
-                    {transfers && transfers.length ? (
-                        transfers.slice(0, transferLimit).map((transferRow, key) => {
-                            const transfer = transferRow[0];
-                            const isReceived = addresses.includes(transfer.address);
-                            const isConfirmed = transfer.persistence;
-
-                            if (
-                                (filter === 'sent' && isReceived) ||
-                                (filter === 'received' && !isReceived) ||
-                                (filter === 'pending' && !isConfirmed)
-                            ) {
-                                return null;
-                            }
-
-                            return (
-                                <a
-                                    key={key}
-                                    onClick={() => this.setHistoryItem(key)}
-                                    className={classNames(
-                                        isReceived ? css.received : css.sent,
-                                        isConfirmed ? css.confirmed : css.pending,
-                                    )}
-                                >
-                                    {compact
-                                        ? this.compactItem(transfer, isReceived, isConfirmed, t)
-                                        : this.fullItem(transfer, isReceived, isConfirmed, t)}
-                                </a>
-                            );
-                        })
-                    ) : (
-                        <a className={css.empty}>No recent history</a>
-                    )}
+            <React.Fragment>
+                <nav className={css.nav}>
+                    <ul>
+                        <a key="active" onClick={() => this.switchFilter(filter)} className={classNames(css.active)}>
+                            {filter === 'All' ? 'All' : t(filter.toLowerCase())} <small>({historyTx.length})</small>
+                            <Icon icon="chevronDown" size={12} />
+                        </a>
+                        {loaded
+                            ? filters.map((item) => {
+                                  if (filter === item) {
+                                      return null;
+                                  }
+                                  return (
+                                      <a
+                                          key={item}
+                                          onClick={() => this.switchFilter(item)}
+                                          className={classNames(filter === item ? css.active : null)}
+                                      >
+                                          {item === 'All' ? 'All' : t(item.toLowerCase())}
+                                      </a>
+                                  );
+                              })
+                            : null}
+                    </ul>
+                    <a
+                        onClick={() => updateAccount()}
+                        className={classNames(css.refresh, isBusy ? css.busy : null, isLoading ? css.loading : null)}
+                    >
+                        <Icon icon="sync" size={26} />
+                    </a>
                 </nav>
-                {activeTransfer !== null ? (
-                    <Modal isOpen onClose={() => this.setState({ activeItem: null })}>
-                        <div className={css.historyItem}>
-                            <header
+                <hr />
+                <div className={css.list}>
+                    <Scrollbar>
+                        {historyTx && historyTx.length ? (
+                            historyTx.map((transfer, key) => {
+                                const isReceived = transfer.incoming;
+                                const isConfirmed = transfer.persistence;
+
+                                if (
+                                    (filter === 'Sent' && (isReceived || !isConfirmed)) ||
+                                    (filter === 'Received' && (!isReceived || !isConfirmed)) ||
+                                    (filter === 'Pending' && isConfirmed)
+                                ) {
+                                    return null;
+                                }
+
+                                return (
+                                    <a
+                                        key={key}
+                                        onClick={() => setItem(transfer.hash)}
+                                        className={classNames(
+                                            isConfirmed ? css.confirmed : css.pending,
+                                            isReceived ? css.received : css.sent,
+                                        )}
+                                    >
+                                        <div>
+                                            <Icon icon={isReceived ? 'receive' : 'send'} size={16} />
+                                            <span>{formatTime(convertUnixTimeToJSDate(transfer.timestamp))}</span>
+                                            <strong>
+                                                {!isConfirmed ? t('pending') : isReceived ? t('received') : t('sent')}
+                                            </strong>
+                                            <span>
+                                                {round(formatValue(transfer.transferValue), 1)}{' '}
+                                                {formatUnit(transfer.transferValue)}
+                                            </span>
+                                        </div>
+                                    </a>
+                                );
+                            })
+                        ) : (
+                            <p className={css.empty}>{t('noTransactions')}</p>
+                        )}
+                    </Scrollbar>
+                </div>
+                <div className={classNames(css.popup, activeTransfer ? css.on : null)} onClick={() => setItem(null)}>
+                    <div>
+                        {activeTransfer ? (
+                            <div
                                 className={classNames(
-                                    addresses.includes(activeTransfer.address) ? css.received : css.sent,
+                                    activeTransfer.incoming ? css.received : css.sent,
                                     activeTransfer.persistence ? css.confirmed : css.pending,
                                 )}
                             >
                                 <p>
                                     <strong>
+                                        {activeTransfer.incoming ? t('history:receive') : t('history:send')}
+                                        <span>
+                                            {round(formatValue(activeTransfer.transferValue), 1)}{' '}
+                                            {formatUnit(activeTransfer.transferValue)}
+                                        </span>
+                                    </strong>
+                                    <small>
                                         {!activeTransfer.persistence
-                                            ? t('global:pending')
-                                            : addresses.includes(activeTransfer.address)
-                                              ? t('global:received')
-                                              : t('global:sent')}
-                                    </strong>{' '}
-                                    <span>{`${round(formatValue(activeTransfer.value))} ${formatUnit(
-                                        activeTransfer.value,
-                                    )}`}</span>
+                                            ? t('pending')
+                                            : activeTransfer.incoming ? t('received') : t('sent')}
+                                        <em>{formatModalTime(convertUnixTimeToJSDate(activeTransfer.timestamp))}</em>
+                                    </small>
                                 </p>
-                                <small>{formatModalTime(convertUnixTimeToJSDate(activeTransfer.timestamp))}</small>
-                            </header>
-                            <h6>Bundle Hash:</h6>
-                            <p>
-                                <Clipboard
-                                    text={activeTransfer.bundle}
-                                    title={t('history:bundleHashCopied')}
-                                    success={t('history:bundleHashCopiedExplanation')}
-                                />
-                            </p>
-                            <h6>Addresses</h6>
-                            <div className={css.scroll}>
-                                <ul>
-                                    {activeTransfers.map((tx, key) => {
-                                        return (
-                                            <li key={key}>
-                                                <p>
-                                                    <Clipboard
-                                                        text={tx.address}
-                                                        title={t('history:addressCopied')}
-                                                        success={t('history:addressCopiedExplanation')}
-                                                    />
-                                                </p>
-                                                <strong>{`${round(formatValue(tx.value))} ${formatUnit(
-                                                    tx.value,
-                                                )}`}</strong>
-                                            </li>
-                                        );
-                                    })}
-                                </ul>
+                                <h6>{t('bundleHash')}:</h6>
+                                <p className={css.hash}>
+                                    <Clipboard
+                                        text={activeTransfer.bundle}
+                                        title={t('history:bundleHashCopied')}
+                                        success={t('history:bundleHashCopiedExplanation')}
+                                    />
+                                </p>
+                                <div className={css.message}>
+                                    <strong>{t('send:message')}</strong>
+                                    <Scrollbar>
+                                        <span>{activeTransfer.message} </span>
+                                    </Scrollbar>
+                                </div>
                             </div>
-                            <h6>Message</h6>
-                            <p>{convertFromTrytes(activeTransfer.signatureMessageFragment)}</p>
-                            <footer>
-                                <Button onClick={() => this.setState({ activeItem: null })} variant="primary">
-                                    {t('global:back')}
-                                </Button>
-                            </footer>
-                        </div>
-                    </Modal>
-                ) : null}
-            </div>
+                        ) : null}
+                    </div>
+                </div>
+            </React.Fragment>
         );
     }
 }

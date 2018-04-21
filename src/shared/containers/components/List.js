@@ -2,34 +2,55 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { getSelectedAccountNameViaSeedIndex } from '../../selectors/account';
+import { getTransfersForSelectedAccount } from '../../selectors/accounts';
 
 /**
  * List component container
  * @ignore
  */
 export default function withListData(ListComponent) {
-    class ListData extends React.Component {
+    class ListData extends React.PureComponent {
         static propTypes = {
-            account: PropTypes.object.isRequired,
-            accountName: PropTypes.string.isRequired,
+            transfers: PropTypes.object.isRequired,
+            wallet: PropTypes.object.isRequired,
+            ui: PropTypes.object.isRequired,
             limit: PropTypes.number,
             filter: PropTypes.string,
+            compact: PropTypes.bool,
+            setItem: PropTypes.func.isRequired,
+            currentItem: PropTypes.any,
             t: PropTypes.func.isRequired,
             theme: PropTypes.object.isRequired,
+            updateAccount: PropTypes.func.isRequired,
         };
-
         render() {
-            const { account, accountName, limit, filter, theme, t } = this.props;
+            const {
+                updateAccount,
+                transfers,
+                limit,
+                compact,
+                filter,
+                setItem,
+                currentItem,
+                wallet,
+                theme,
+                ui,
+                t,
+            } = this.props;
 
-            const accountInfo = account.accountInfo[accountName];
+            const isBusy = ui.isSyncing || ui.isSendingTransfer || ui.isAttachingToTangle || ui.isTransitioning;
 
             const ListProps = {
-                transfers: accountInfo.transfers.length ? accountInfo.transfers : [],
-                addresses: Object.keys(accountInfo.addresses),
+                transfers,
+                updateAccount,
+                setItem,
+                currentItem,
+                compact,
                 theme,
                 limit,
                 filter,
+                isBusy,
+                isLoading: wallet.isFetchingLatestAccountInfoOnLogin,
                 t,
             };
 
@@ -40,10 +61,12 @@ export default function withListData(ListComponent) {
     ListData.displayName = `withListData(${ListComponent.displayName || ListComponent.name})`;
 
     const mapStateToProps = (state) => ({
-        account: state.account,
-        accountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
+        accounts: state.accounts,
+        transfers: getTransfersForSelectedAccount(state),
         theme: state.settings.theme,
+        wallet: state.wallet,
+        ui: state.ui,
     });
 
-    return translate()(connect(mapStateToProps, {})(ListData));
+    return connect(mapStateToProps, {})(translate()(ListData));
 }

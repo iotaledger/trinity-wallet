@@ -1,19 +1,14 @@
 import get from 'lodash/get';
-import head from 'lodash/head';
-import find from 'lodash/find';
+import each from 'lodash/each';
+import map from 'lodash/map';
 import { setPrice, setChartData, setMarketData } from './marketData';
-import { formatChartData, getUrlTimeFormat, getUrlNumberFormat } from '../libs/marketData';
+import { formatChartData, getUrlTimeFormat, getUrlNumberFormat, rearrangeObjectKeys } from '../libs/utils';
 import { generateAlert, generateAccountInfoErrorAlert } from './alerts';
-import {
-    setNewUnconfirmedBundleTails,
-    removeBundleFromUnconfirmedBundleTails,
-    updateAccountAfterReattachment,
-} from './account';
-import { replayBundleAsync, promoteTransactionAsync } from '../libs/iota/extendedApi';
-import { getFirstConsistentTail, isValidForPromotion } from '../libs/iota/transfers';
-import { selectedAccountStateFactory } from '../selectors/account';
-import { syncAccount, syncAccountAfterReattachment } from '../libs/iota/accounts';
-import { rearrangeObjectKeys } from '../libs/util';
+import { setNewUnconfirmedBundleTails, removeBundleFromUnconfirmedBundleTails } from './accounts';
+import { getFirstConsistentTail, isStillAValidTransaction } from '../libs/iota/transfers';
+import { selectedAccountStateFactory } from '../selectors/accounts';
+import { syncAccount } from '../libs/iota/accounts';
+import { forceTransactionPromotion } from './transfers';
 import i18next from '../i18next.js';
 
 export const ActionTypes = {
@@ -134,37 +129,56 @@ export const fetchPrice = () => {
 
 export const fetchChartData = () => {
     return (dispatch) => {
-        const currencies = ['USD', 'BTC', 'ETH'];
-        const timeframes = ['24h', '7d', '1m', '1h'];
-
         dispatch(fetchChartDataRequest());
-        currencies.forEach((currency, i) => {
-            timeframes.forEach((timeframe, j) => {
-                const url = `https://min-api.cryptocompare.com/data/histo${getUrlTimeFormat(
-                    timeframe,
-                )}?fsym=IOT&tsym=${currency}&limit=${getUrlNumberFormat(timeframe)}`;
-                return fetch(url)
-                    .then(
-                        (response) => response.json(),
-                        () => {
-                            if (i === currencies.length - 1 && j === timeframes.length - 1) {
-                                dispatch(fetchChartDataError());
-                            }
-                        },
-                    )
-                    .then((json) => {
-                        if (json) {
-                            const data = formatChartData(json, currency, timeframe);
-                            dispatch(setChartData(data, currency, timeframe));
-                        }
 
-                        // Dirty hack
-                        if (i === currencies.length - 1 && j === timeframes.length - 1) {
-                            dispatch(fetchChartDataSuccess());
-                        }
-                    });
+        const arrayCurrenciesTimeFrames = [];
+        //If you want a new currency just add it in this array, the function will handle the rest.
+        const currencies = ['USD', 'EUR', 'BTC', 'ETH'];
+        const timeframes = ['24h', '7d', '1m', '1h'];
+        const chartData = {};
+
+        each(currencies, (itemCurrency) => {
+            chartData[itemCurrency] = {};
+            each(timeframes, (timeFrameItem) => {
+                arrayCurrenciesTimeFrames.push({ currency: itemCurrency, timeFrame: timeFrameItem });
             });
         });
+
+        const urls = [];
+        const grabContent = (url) => fetch(url).then((response) => response.json());
+
+        each(arrayCurrenciesTimeFrames, (currencyTimeFrameArrayItem) => {
+            const url = `https://min-api.cryptocompare.com/data/histo${getUrlTimeFormat(
+                currencyTimeFrameArrayItem.timeFrame,
+            )}?fsym=IOT&tsym=${currencyTimeFrameArrayItem.currency}&limit=${getUrlNumberFormat(
+                currencyTimeFrameArrayItem.timeFrame,
+            )}`;
+
+            urls.push(url);
+        });
+
+        Promise.all(map(urls, grabContent))
+            .then((results) => {
+                const chartData = { USD: {}, EUR: {}, BTC: {}, ETH: {} };
+                let actualCurrency = '';
+                let currentTimeFrame = '';
+                let currentCurrency = '';
+
+                each(results, (resultItem, index) => {
+                    currentTimeFrame = arrayCurrenciesTimeFrames[index].timeFrame;
+                    currentCurrency = arrayCurrenciesTimeFrames[index].currency;
+                    const formatedData = formatChartData(resultItem, currentCurrency, currentTimeFrame);
+
+                    if (actualCurrency !== currentCurrency) {
+                        actualCurrency = currentCurrency;
+                    }
+                    chartData[currentCurrency][currentTimeFrame] = formatedData;
+                });
+
+                dispatch(setChartData(chartData));
+                dispatch(fetchChartDataSuccess());
+            })
+            .catch(() => dispatch(fetchChartDataError()));
     };
 };
 
@@ -176,64 +190,19 @@ export const fetchChartData = () => {
  *   @param {string} accountName
  *   @returns {function} dispatch
  **/
-export const getAccountInfo = (seed, accountName) => {
+export const getAccountInfo = (accountName) => {
     return (dispatch, getState) => {
         dispatch(accountInfoFetchRequest());
 
         const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
-        return syncAccount(seed, existingAccountState)
+        return syncAccount(existingAccountState)
             .then((newAccountData) => dispatch(accountInfoFetchSuccess(newAccountData)))
             .catch((err) => {
                 dispatch(accountInfoFetchError());
                 dispatch(generateAccountInfoErrorAlert(err));
             });
     };
-};
-
-/**
- *   Accepts a consistent tail boolean with all tails associated with a bundle.
- *   - Case (when no consistent tail)
- *      > Replays bundle and promotes with the reattachment's transaction hash
- *   - Case (when there is a consistent tail)
- *      > Just directly promote transaction with the consistent tail hash
- *
- *   @method forceTransactionPromotion
- *   @param {string} accountName
- *   @param {boolean} consistentTail
- *   @param {array} tails
- *   @returns {Promise}
- **/
-const forceTransactionPromotion = (accountName, consistentTail, tails) => (dispatch, getState) => {
-    if (!consistentTail) {
-        // Grab hash from the top tail to replay
-        const topTx = head(tails);
-        const hash = topTx.hash;
-
-        return replayBundleAsync(hash)
-            .then((reattachment) => {
-                dispatch(
-                    generateAlert(
-                        'success',
-                        i18next.t('global:autoreattaching'),
-                        i18next.t('global:autoreattachingExplanation', { hash }),
-                        2500,
-                    ),
-                );
-
-                const existingAccountState = selectedAccountStateFactory(accountName)(getState());
-
-                return syncAccountAfterReattachment(accountName, reattachment, existingAccountState);
-            })
-            .then(({ newState, reattachment }) => {
-                dispatch(updateAccountAfterReattachment(newState));
-
-                const tailTransaction = find(reattachment, { currentIndex: 0 });
-                return promoteTransactionAsync(tailTransaction.hash);
-            });
-    }
-
-    return promoteTransactionAsync(consistentTail.hash);
 };
 
 /**
@@ -253,16 +222,12 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
     const accountName = get(tails, '[0].account');
     const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
-    return isValidForPromotion(bundle, existingAccountState.transfers, existingAccountState.addresses)
+    return isStillAValidTransaction(existingAccountState.transfers[bundle], existingAccountState.addresses)
         .then((isValid) => {
             if (!isValid) {
                 dispatch(removeBundleFromUnconfirmedBundleTails(bundle));
 
-                // Polling retries in case of errors
-                // If the chosen bundle for promotion is no longer valid
-                // dispatch an error action, so that the next bundle could be picked up
-                // immediately for promotion.
-                return dispatch(promoteTransactionError());
+                throw new Error('Bundle no longer valid');
             }
 
             return getFirstConsistentTail(tails, 0);
@@ -284,7 +249,5 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
 
             return dispatch(promoteTransactionSuccess());
         })
-        .catch(() => {
-            return dispatch(promoteTransactionError());
-        });
+        .catch(() => dispatch(promoteTransactionError()));
 };

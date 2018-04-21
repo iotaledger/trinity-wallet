@@ -17,7 +17,7 @@ export default class Info extends React.PureComponent {
 
         return (
             <div className={css.wrapper}>
-                <Icon icon="info" size={30} />
+                <Icon icon="info" size={24} />
                 {children}
             </div>
         );

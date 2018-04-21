@@ -1,25 +1,52 @@
 import get from 'lodash/get';
 import { Navigation } from 'react-native-navigation';
 import { translate } from 'react-i18next';
+import { Text, TextInput } from 'react-native';
 import { Provider } from 'react-redux';
 import { setRandomlySelectedNode } from 'iota-wallet-shared-modules/actions/settings';
 import { changeIotaNode, getRandomNode } from 'iota-wallet-shared-modules/libs/iota';
+import i18next from 'i18next';
+import { getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
+import { isIOS } from '../utils/device';
+import keychain from '../utils/keychain';
 import registerScreens from './navigation';
 import i18 from '../i18next';
-import COLORS from '../theme/Colors';
 
-const renderInitialScreen = () => {
+const clearKeychain = () => {
+    if (isIOS) {
+        keychain.clear().catch((err) => console.error(err)); // eslint-disable-line no-console
+    }
+};
+
+const renderInitialScreen = (store) => {
+    Text.defaultProps.allowFontScaling = false;
+    TextInput.defaultProps.allowFontScaling = false;
+
+    // Ignore android warning against timers
+    console.ignoredYellowBox = ['Setting a timer']; // eslint-disable-line no-console
+
+    const state = store.getState();
+
+    // Clear keychain if very first load
+    if (!state.accounts.onboardingComplete) {
+        clearKeychain();
+    }
+
+    i18next.changeLanguage(getLocaleFromLabel(state.settings.language));
+
+    const initialScreen = state.accounts.onboardingComplete ? 'login' : 'languageSetup';
+
     Navigation.startSingleScreenApp({
         screen: {
-            screen: 'initialLoading',
+            screen: initialScreen,
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
+                topBarElevationShadowEnabled: false,
                 drawUnderStatusBar: true,
-                statusBarColor: COLORS.backgroundGreen,
-                screenBackgroundColor: COLORS.backgroundGreen,
+                statusBarColor: '#181818',
+                screenBackgroundColor: '#181818',
             },
-            overrideBackPress: true,
         },
         appStyle: {
             orientation: 'portrait',
@@ -33,7 +60,7 @@ export const setRandomIotaNode = (store) => {
     const hasAlreadyRandomized = get(settings, 'hasRandomizedNode');
 
     // Update provider
-    changeIotaNode(get(settings, 'fullNode'));
+    changeIotaNode(get(settings, 'node'));
 
     if (!hasAlreadyRandomized) {
         const node = getRandomNode();
@@ -49,5 +76,5 @@ export default (store) => {
     translate.setI18n(i18);
 
     setRandomIotaNode(store);
-    renderInitialScreen();
+    renderInitialScreen(store);
 };

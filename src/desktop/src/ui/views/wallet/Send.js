@@ -1,30 +1,40 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { formatValue, formatUnit } from 'libs/util';
+import { formatValue, formatUnit } from 'libs/iota/utils';
+import Curl from 'curl.lib.js';
+
+import { getVault } from 'libs/crypto';
 
 import AddressInput from 'ui/components/input/Address';
 import AmountInput from 'ui/components/input/Amount';
-import MessageInput from 'ui/components/input/Message';
-import List from 'ui/components/List';
+import TextInput from 'ui/components/input/Text';
 import Button from 'ui/components/Button';
-import Modal from 'ui/components/modal/Modal';
-
+import Confirm from 'ui/components/modal/Confirm';
 import withSendData from 'containers/wallet/Send';
 
-import css from './send.css';
+import css from './index.css';
 
 /**
  * Send transaction component
  */
 class Send extends React.PureComponent {
     static propTypes = {
+        /** Current Send transaction fields state */
+        fields: PropTypes.shape({
+            address: PropTypes.string.isRequired,
+            amount: PropTypes.string.isRequired,
+            message: PropTypes.string.isRequired,
+        }),
         /** Current send status */
         isSending: PropTypes.bool.isRequired,
-        /** Current seed state value */
-        seeds: PropTypes.object.isRequired,
+        /** Current password value */
+        password: PropTypes.string.isRequired,
+        /** Current seed index */
+        seedIndex: PropTypes.number.isRequired,
         /** Total current account wallet ballance in iotas */
         balance: PropTypes.number.isRequired,
         /** Fiat currency settings
+         * @property {bool} remotePow - Local PoW enable state
          * @property {string} conversionRate - Active currency conversion rate to MIota
          * @property (string) currency - Active currency name
          */
@@ -42,8 +52,22 @@ class Send extends React.PureComponent {
          *  @param {string} address - receiver address
          *  @param {number} value - transaction value in iotas
          *  @param {string} message - transaction message
+         *  @param {function} taskRunner - task manager
+         *  @param {function} powFn - locla PoW function
          */
         sendTransfer: PropTypes.func.isRequired,
+        /** Update address field value
+         *  @param {string} address - receiver address
+         */
+        setSendAddressField: PropTypes.func.isRequired,
+        /** Update amount field value
+         *  @param {string} amount - receiver address
+         */
+        setSendAmountField: PropTypes.func.isRequired,
+        /** Update message field value
+         *  @param {string} message - receiver address
+         */
+        setSendMessageField: PropTypes.func.isRequired,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
@@ -52,92 +76,109 @@ class Send extends React.PureComponent {
     };
 
     state = {
-        address: '',
-        amount: 0,
-        message: '',
-        isModalVisible: false,
+        isTransferModalVisible: false,
     };
 
     validateInputs = (e) => {
-        const { address, amount } = this.state;
         const { validateInputs } = this.props;
 
         e.preventDefault();
 
         this.setState({
-            isModalVisible: validateInputs(address, amount),
+            isTransferModalVisible: validateInputs(),
         });
     };
 
-    confirmTransfer = () => {
-        const { address, amount, message } = this.state;
-        const { seeds, sendTransfer } = this.props;
+    updateFields(address, message, amount) {
+        this.props.setSendAddressField(address);
+        if (message) {
+            this.props.setSendMessageField(message);
+        }
+        if (amount) {
+            this.props.setSendAmountField(amount);
+        }
+    }
+
+    confirmTransfer = async () => {
+        const { fields, password, seedIndex, sendTransfer, settings, generateAlert, t } = this.props;
 
         this.setState({
-            isModalVisible: false,
+            isTransferModalVisible: false,
         });
 
-        const seedInfo = seeds.items[seeds.selectedSeedIndex];
+        let powFn = null;
 
-        sendTransfer(seedInfo.seed, address, amount, message);
+        if (!settings.remotePoW) {
+            // Temporarily return an error if WebGL cannot be initialized
+            // Remove once we implement more PoW methods
+            try {
+                Curl.init();
+            } catch (e) {
+                return generateAlert('error', t('pow:noWebGLSupport'), t('pow:noWebGLSupportExplanation'));
+            }
+            powFn = (trytes, minWeight) => {
+                return Curl.pow({ trytes, minWeight });
+            };
+        }
+
+        const vault = await getVault(password);
+        const seed = vault.seeds[seedIndex];
+
+        sendTransfer(seed, fields.address, parseInt(fields.amount) || 0, fields.message, null, powFn);
     };
 
     render() {
-        const { isSending, balance, settings, t } = this.props;
-        const { address, amount, message, isModalVisible } = this.state;
+        const { fields, isSending, balance, settings, t } = this.props;
+        const { isTransferModalVisible } = this.state;
+
+        const transferContents =
+            parseInt(fields.amount) > 0
+                ? `${formatValue(fields.amount)} ${formatUnit(fields.amount)}`
+                : t('transferConfirmation:aMessage');
 
         return (
-            <main>
-                <section className={css.send}>
-                    <div>
-                        <form onSubmit={this.validateInputs}>
-                            <Modal
-                                variant="confirm"
-                                isOpen={isModalVisible}
-                                onClose={() => this.setState({ isModalVisible: false })}
-                            >
-                                <h1>
-                                    You are about to send{' '}
-                                    <strong>{`${formatValue(amount)} ${formatUnit(amount)}`}</strong> to the address:{' '}
-                                    <br />
-                                    <strong>{address}</strong>
-                                </h1>
-                                <Button onClick={() => this.setState({ isModalVisible: false })} variant="secondary">
-                                    {t('global:no')}
-                                </Button>
-                                <Button onClick={this.confirmTransfer} variant="primary">
-                                    {t('global:yes')}
-                                </Button>
-                            </Modal>
-                            <AddressInput
-                                address={address}
-                                onChange={(value) => this.setState({ address: value })}
-                                label={t('send:recipientAddress')}
-                                closeLabel={t('global:back')}
-                            />
-                            <AmountInput
-                                amount={amount.toString()}
-                                settings={settings}
-                                label={t('send:amount')}
-                                labelMax={t('send:max')}
-                                balance={balance}
-                                onChange={(value) => this.setState({ amount: value })}
-                            />
-                            <MessageInput
-                                message={message}
-                                label={t('send:message')}
-                                onChange={(value) => this.setState({ message: value })}
-                            />
-                            <Button loading={isSending} variant="primary">
-                                {t('send:send')}
-                            </Button>
-                        </form>
-                    </div>
-                </section>
-                <section>
-                    <List filter="sent" limit={10} />
-                </section>
-            </main>
+            <form onSubmit={(e) => this.validateInputs(e)}>
+                <div className={isSending ? css.sending : null}>
+                    <Confirm
+                        category="primary"
+                        isOpen={isTransferModalVisible}
+                        onCancel={() => this.setState({ isTransferModalVisible: false })}
+                        onConfirm={() => this.confirmTransfer()}
+                        content={{
+                            title: t('transferConfirmation:youAreAbout', { contents: transferContents }),
+                            message: fields.address,
+                            confirm: t('send'),
+                            cancel: t('cancel'),
+                        }}
+                    />
+                    <AddressInput
+                        address={fields.address}
+                        onChange={(address, message, amount) => {
+                            this.updateFields(address, message, amount);
+                        }}
+                        label={t('send:recipientAddress')}
+                        closeLabel={t('back')}
+                    />
+                    <AmountInput
+                        amount={fields.amount}
+                        settings={settings}
+                        label={t('send:amount')}
+                        labelMax={t('send:max')}
+                        balance={balance}
+                        onChange={(value) => this.props.setSendAmountField(value)}
+                    />
+                    <TextInput
+                        value={fields.message}
+                        label={t('send:message')}
+                        onChange={(value) => this.props.setSendMessageField(value)}
+                    />
+                </div>
+                <fieldset>
+                    <Button type="submit" loading={isSending} variant="primary">
+                        {t('send:send')}
+                    </Button>
+                </fieldset>
+            </form>
         );
     }
 }

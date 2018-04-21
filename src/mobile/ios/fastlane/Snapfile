@@ -1,22 +1,24 @@
 # Uncomment the lines below you want to change by removing the # in the beginning
 
 # A list of devices you want to take the screenshots from
- devices([
-   "iPhone 6",
-#   "iPhone 6 Plus",
-#   "iPhone 5s",
-#   "iPhone 7",
-#   "iPhone X"
- ])
+devices([
+          'iPhone 6',
+          #   "iPhone 6 Plus",
+          #   "iPhone 5s",
+          #   "iPhone 7",
+          #   "iPhone X"
+        ])
 
 languages([
    "en-UK",
    "ar_SA",
+   "cs_CZ",
    "da_DK",
    "de-DE",
    "el_GR",
    "es_ES",
    "es_MX",
+   "et_EE",
    "fi_FI",
    "fr_FR",
    "he_IL",
@@ -25,6 +27,7 @@ languages([
    "it-IT",
    "ja_JP",
    "ko_KR",
+   "lt_LT",
    "lv_LV",
    "nl_NL",
    "nb_NO",
@@ -33,31 +36,34 @@ languages([
    "pt_BR",
    "ro_RO",
    "ru_RU",
+   "sk_SK",
    "sl_SI",
    "sv_SE",
+   "th_TH",
    "tr_TR",
    "ur_PK",
+   "vi_VN",
    "zh_Hans_CN",
    "zh_Hant_TW"
    
  ])
 
 # The name of the scheme which contains the UI Tests
- scheme "iotaWalletUITests"
+scheme 'iotaWalletUITests'
 
 # Where should the resulting screenshots be stored?
- output_directory "./screenshots"
+output_directory './screenshots'
 
 # remove the '#' to clear all previously generated screenshots before creating new ones
- clear_previous_screenshots true
+clear_previous_screenshots true
 
 # Arguments to pass to the app on launch. See https://docs.fastlane.tools/actions/snapshot/#launch-arguments
 # launch_arguments(["-favColor red"])
-  
-  stop_after_first_error true
-  reinstall_app true
-  localize_simulator true
-  erase_simulator true
+
+stop_after_first_error true
+reinstall_app true
+localize_simulator true
+erase_simulator true
 
 # For more information about all available options run
 # fastlane action snapshot

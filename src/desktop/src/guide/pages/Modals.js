@@ -2,29 +2,34 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Confirm from 'ui/components/modal/Confirm';
-import Modal from 'ui/components/modal/Modal';
+import Password from 'ui/components/modal/Password';
 import Button from 'ui/components/Button';
 
-import { showError, showNotification } from 'actions/notifications';
+import { generateAlert } from 'actions/alerts';
 import css from './modals.css';
 
 class Modals extends React.PureComponent {
     static propTypes = {
-        showError: PropTypes.func.isRequired,
-        showNotification: PropTypes.func.isRequired,
+        /** Create a notification message
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
+         * @ignore
+         */
+        generateAlert: PropTypes.func.isRequired,
     };
 
     state = {
         confirmOn: false,
+        passwordOn: false,
         warningOn: false,
-        successOn: false,
     };
 
     render() {
         return (
             <div className={css.modals}>
                 <h1>Modals</h1>
-                <Button onClick={() => this.setState({ confirmOn: true })} variant="secondary">
+                <Button onClick={() => this.setState({ confirmOn: true })} variant="primary">
                     Confirm
                 </Button>
                 <Confirm
@@ -37,53 +42,51 @@ class Modals extends React.PureComponent {
                     onCancel={() => this.setState({ confirmOn: false })}
                     onConfirm={() => this.setState({ confirmOn: false })}
                 />
+                <Button onClick={() => this.setState({ passwordOn: true })} variant="secondary">
+                    With input
+                </Button>
+                <Password
+                    isOpen={this.state.passwordOn}
+                    content={{
+                        title: 'Enter password to continue',
+                        confirm: 'Ok',
+                        cancel: 'Cancel',
+                    }}
+                    onClose={() => this.setState({ passwordOn: false })}
+                    onSuccess={() => this.setState({ passwordOn: false })}
+                />
                 <Button onClick={() => this.setState({ warningOn: true })} variant="negative">
                     Negative
                 </Button>
-                <Modal
-                    variant="confirm"
+                <Confirm
                     isOpen={this.state.warningOn}
-                    onClose={() => this.setState({ warningOn: false })}
-                >
-                    <h1 className="error">Error occured</h1>
-                    <p>Sorry for the trouble - some error occured.</p>
-                    <Button onClick={() => this.setState({ warningOn: false })} variant="secondary">
-                        Back
-                    </Button>
-                </Modal>
-                <Button onClick={() => this.setState({ successOn: true })} variant="positive">
-                    Success
-                </Button>
-                <Modal
-                    variant="confirm"
-                    isOpen={this.state.successOn}
-                    onClose={() => this.setState({ successOn: false })}
-                >
-                    <h1 className="success">Successfully done!</h1>
-                    <p>The thing you did was succesfull!</p>
-                    <Button onClick={() => this.setState({ successOn: false })} variant="secondary">
-                        Back
-                    </Button>
-                </Modal>
+                    category="negative"
+                    content={{
+                        title: 'Are you sure?',
+                        message: 'The thing you want to do is dangerous',
+                        confirm: 'Yes',
+                        cancel: 'No',
+                    }}
+                    onCancel={() => this.setState({ warningOn: false })}
+                    onConfirm={() => this.setState({ warningOn: false })}
+                />
                 <hr />
-                <h1>Notifications</h1>
+                <h1>Alerts</h1>
                 <Button
                     onClick={() =>
-                        this.props.showNotification({
-                            title: 'All fine!',
-                            text: 'The thing you did, finished upo just fine!',
-                        })
+                        this.props.generateAlert('success', 'All fine!', 'The thing you did, finished up just fine!')
                     }
-                    variant="primary"
+                    variant="positive"
                 >
                     Success
                 </Button>
                 <Button
                     onClick={() =>
-                        this.props.showError({
-                            title: 'Something went wrong!',
-                            text: 'Something you did was not wroking as expected!',
-                        })
+                        this.props.generateAlert(
+                            'error',
+                            'Something went wrong!',
+                            'Something you did was not working as expected!',
+                        )
                     }
                     variant="negative"
                 >
@@ -94,11 +97,8 @@ class Modals extends React.PureComponent {
     }
 }
 
-const mapStateToProps = () => ({});
-
 const mapDispatchToProps = {
-    showError,
-    showNotification,
+    generateAlert,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Modals);
+export default connect(null, mapDispatchToProps)(Modals);

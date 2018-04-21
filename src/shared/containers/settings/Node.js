@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 
-import { changeIotaNode, checkNode } from '../../libs/iota';
-import { setFullNode, addCustomPoWNode } from '../../actions/settings';
+import { changeIotaNode, checkNode} from '../../libs/iota';
+import { setFullNode, addCustomPoWNode, updateAutoNodeSwitching } from '../../actions/settings';
 import { generateAlert } from '../../actions/alerts';
 
 /**
@@ -18,6 +18,8 @@ export default function withNodeData(NodeComponent) {
             nodes: PropTypes.array.isRequired,
             setFullNode: PropTypes.func.isRequired,
             addCustomPoWNode: PropTypes.func.isRequired,
+            autoNodeSwitching: PropTypes.bool.isRequired,
+            updateAutoNodeSwitching: PropTypes.func.isRequired,
             generateAlert: PropTypes.func.isRequired,
             backPress: PropTypes.func,
             t: PropTypes.func.isRequired,
@@ -35,6 +37,9 @@ export default function withNodeData(NodeComponent) {
         changeNode = (nodeSelected) => {
             const { nodes, node, setFullNode, addCustomPoWNode, generateAlert, backPress, t } = this.props;
 
+            if (!nodeSelected || nodeSelected.length < 4) {
+                return;
+            }
             //Remove trailing slash
             nodeSelected = nodeSelected.replace(/\/$/, '');
 
@@ -49,60 +54,74 @@ export default function withNodeData(NodeComponent) {
             // TODO: Should create a new instance of IRI API and not use existing for node check
             changeIotaNode(nodeSelected);
 
-            checkNode((error) => {
-                this.setState({
-                    loading: false,
+            try {
+                checkNode((error) => {
+                    this.setState({
+                        loading: false,
+                    });
+
+                    if (error) {
+                        generateAlert('error', t('global:invalidResponse'), t('global:invalidResponseExplanation'));
+                        changeIotaNode(node);
+                        return;
+
+                    }
+
+                    setFullNode(nodeSelected);
+
+                    if (nodes.indexOf(nodeSelected) < 0) {
+                        addCustomPoWNode(nodeSelected);
+                    }
+
+                    generateAlert('success', t('nodeChanged'), t('nodeChangedExplanation'));
+
+                    if (typeof backPress === 'function') {
+                        backPress();
+                    }
                 });
+            } catch (err) {
+                generateAlert('error',t('global:invalidResponse'), t('global:invalidResponseExplanation'));
+                changeIotaNode(node);
+            }
+        };
 
-                if (error) {
-                    generateAlert('error', t('global:invalidResponse'), t('global:invalidResponseExplanation'));
-                    changeIotaNode(node);
-                    return;
-                }
-
-                setFullNode(nodeSelected);
-
-                if (nodes.indexOf(nodeSelected) < 0) {
-                    addCustomPoWNode(nodeSelected);
-                }
-
-                generateAlert('success', 'Node changed', 'The node has been changed successfully!');
-
-                if (typeof backPress === 'function') {
-                    backPress();
-                }
-            });
+        changeAutoNodeSwitching = () => {
+            this.props.updateAutoNodeSwitching();
         };
 
         render() {
-            const { node, nodes, backPress, theme, t } = this.props;
+            const { node, nodes, backPress, theme, autoNodeSwitching, t } = this.props;
 
-            const currencyProps = {
+            const nodeProps = {
                 node: node,
                 nodes: nodes,
                 loading: this.state.loading,
                 setNode: this.changeNode,
+                autoNodeSwitching: autoNodeSwitching,
+                setAutoNodeSwitching: this.changeAutoNodeSwitching,
                 backPress: backPress,
                 theme,
                 t,
             };
 
-            return <NodeComponent {...currencyProps} />;
+            return <NodeComponent {...nodeProps} />;
         }
     }
 
     NodeData.displayName = `withNodeData(${NodeComponent.name})`;
 
     const mapStateToProps = (state) => ({
-        node: state.settings.fullNode,
-        nodes: state.settings.availablePoWNodes,
+        node: state.settings.node,
+        nodes: state.settings.nodes,
         theme: state.settings.theme,
+        autoNodeSwitching: state.settings.autoNodeSwitching,
     });
 
     const mapDispatchToProps = {
         setFullNode,
         addCustomPoWNode,
         generateAlert,
+        updateAutoNodeSwitching,
     };
 
     return translate()(connect(mapStateToProps, mapDispatchToProps)(NodeData));

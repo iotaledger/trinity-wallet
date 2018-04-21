@@ -5,9 +5,14 @@ const state = {
 };
 
 let language = {
-    about: 'About',
+    about: 'About Trinity',
+    checkUpdate: 'Check for Updates',
+    sendFeedback: 'Send feedback',
     settings: 'Settings',
+    accountSettings: 'Account management',
+    newAccount: 'Add new account',
     language: 'Language',
+    node: 'Node',
     currency: 'Currency',
     theme: 'Theme',
     twoFA: 'Two-factor authentication',
@@ -24,7 +29,7 @@ let language = {
     copy: 'Copy',
     paste: 'Paste',
     selectAll: 'Select All',
-    wallet: 'Wallet',
+    account: 'Account',
     balance: 'Balance',
     send: 'Send',
     receive: 'Receive',
@@ -49,15 +54,34 @@ const initMenu = (app, getWindow) => {
                 label: app.getName(),
                 submenu: [
                     {
-                        label: `${language.about} ${app.getName()}`,
+                        label: language.about,
                         role: 'about',
+                    },
+                    {
+                        type: 'separator',
+                    },
+                    {
+                        label: `${language.checkUpdate}...`,
+                        click: () => navigate('update'),
+                    },
+                    {
+                        label: language.sendFeedback,
+                        click: () => navigate('feedback'),
+                    },
+                    {
+                        type: 'separator',
                     },
                     {
                         label: language.settings,
                         submenu: [
                             {
                                 label: language.language,
+                                accelerator: 'Command+,',
                                 click: () => navigate('settings/language'),
+                            },
+                            {
+                                label: language.node,
+                                click: () => navigate('settings/node'),
                             },
                             {
                                 label: language.currency,
@@ -73,12 +97,12 @@ const initMenu = (app, getWindow) => {
                             {
                                 label: language.twoFA,
                                 enabled: state.authorised,
-                                click: () => navigate('settings/twoFA'),
+                                click: () => navigate('settings/twoFa'),
                             },
                             {
                                 label: language.changePassword,
                                 enabled: state.authorised,
-                                click: () => navigate('settings/change-password'),
+                                click: () => navigate('settings/password'),
                             },
                             {
                                 label: language.advanced,
@@ -131,12 +155,8 @@ const initMenu = (app, getWindow) => {
 
         if (state.authorised) {
             template.push({
-                label: language.wallet,
+                label: language.account,
                 submenu: [
-                    {
-                        label: language.balance,
-                        click: () => navigate('wallet/balance'),
-                    },
                     {
                         label: language.send,
                         click: () => navigate('wallet/send'),
@@ -146,8 +166,18 @@ const initMenu = (app, getWindow) => {
                         click: () => navigate('wallet/receive'),
                     },
                     {
-                        label: language.history,
-                        click: () => navigate('wallet/history'),
+                        type: 'separator',
+                    },
+                    {
+                        label: language.accountSettings,
+                        click: () => navigate('account/name'),
+                    },
+                    {
+                        type: 'separator',
+                    },
+                    {
+                        label: language.newAccount,
+                        click: () => navigate('addAccount'),
                     },
                     {
                         type: 'separator',
@@ -166,7 +196,7 @@ const initMenu = (app, getWindow) => {
                                         buttons: [language.yes, language.no],
                                     },
                                     (index) => {
-                                        if (index === 1) {
+                                        if (index === 0) {
                                             mainWindow.webContents.send('menu', 'logout');
                                         }
                                     },

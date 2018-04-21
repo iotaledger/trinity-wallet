@@ -1,5 +1,8 @@
+import map from 'lodash/map';
+import size from 'lodash/size';
+import clone from 'lodash/clone';
 import { iota } from './index';
-import { DEFAULT_BALANCES_THRESHOLD } from '../../config';
+import { DEFAULT_BALANCES_THRESHOLD, DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../../config';
 
 const getBalancesAsync = (addresses, threshold = DEFAULT_BALANCES_THRESHOLD) => {
     return new Promise((resolve, reject) => {
@@ -26,27 +29,24 @@ const getNodeInfoAsync = () => {
 };
 
 const getTransactionsObjectsAsync = (hashes) => {
+    const cachedHashes = clone(hashes);
     return new Promise((resolve, reject) => {
-        iota.api.getTransactionsObjects(hashes, (err, txs) => {
+        iota.api.getTrytes(hashes, (err, trytes) => {
             if (err) {
                 reject(err);
+            } else if (size(cachedHashes) !== size(trytes)) {
+                reject();
             } else {
-                resolve(txs);
+                resolve(
+                    map(trytes, (tryteString, idx) => iota.utils.fastTransactionObject(cachedHashes[idx], tryteString)),
+                );
             }
         });
     });
 };
 
 const findTransactionObjectsAsync = (args) => {
-    return new Promise((resolve, reject) => {
-        iota.api.findTransactionObjects(args, (err, txs) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(txs);
-            }
-        });
-    });
+    return findTransactionsAsync(args).then((hashes) => getTransactionsObjectsAsync(hashes));
 };
 
 const findTransactionsAsync = (args) => {
@@ -131,6 +131,100 @@ const wereAddressesSpentFromAsync = (addresses) => {
     });
 };
 
+const broadcastBundleAsync = (tail) => {
+    return new Promise((resolve, reject) => {
+        iota.api.broadcastBundle(tail, (err) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve();
+            }
+        });
+    });
+};
+
+const sendTransferAsync = (seed, depth, minWeightMagnitude, transfers, options = null) => {
+    // https://github.com/iotaledger/iota.lib.js/blob/e60c728c836cb37f3d6fb8b0eff522d08b745caa/lib/api/api.js#L1058
+    let args = [seed, depth, minWeightMagnitude, transfers];
+
+    if (options) {
+        args = [...args, options];
+    }
+
+    return new Promise((resolve, reject) => {
+        iota.api.sendTransfer(...args, (err, newTransfer) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(newTransfer);
+            }
+        });
+    });
+};
+
+const getTransactionsToApproveAsync = (depth = DEFAULT_DEPTH) => {
+    return new Promise((resolve, reject) => {
+        iota.api.getTransactionsToApprove(depth, null, (err, transactionsToApprove) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(transactionsToApprove);
+            }
+        });
+    });
+};
+
+const prepareTransfersAsync = (seed, transfers, options = null) => {
+    // https://github.com/iotaledger/iota.lib.js/blob/e60c728c836cb37f3d6fb8b0eff522d08b745caa/lib/api/api.js#L1058
+    let args = [seed, transfers];
+
+    if (options) {
+        args = [...args, options];
+    }
+
+    return new Promise((resolve, reject) => {
+        iota.api.prepareTransfers(...args, (err, trytes) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(trytes);
+            }
+        });
+    });
+};
+
+const storeAndBroadcastAsync = (trytes) => {
+    return new Promise((resolve, reject) => {
+        iota.api.storeAndBroadcast(trytes, (err) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve();
+            }
+        });
+    });
+};
+
+const attachToTangleAsync = (
+    trunkTransaction,
+    branchTransaction,
+    trytes,
+    minWeightMagnitude = DEFAULT_MIN_WEIGHT_MAGNITUDE,
+) => {
+    return new Promise((resolve, reject) => {
+        iota.api.attachToTangle(trunkTransaction, branchTransaction, minWeightMagnitude, trytes, (err, trytes) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve({
+                    trytes,
+                    transactionObjects: map(trytes, (tryteString) => iota.utils.transactionObject(tryteString)),
+                });
+            }
+        });
+    });
+};
+
 export {
     getBalancesAsync,
     getNodeInfoAsync,
@@ -142,4 +236,10 @@ export {
     replayBundleAsync,
     getBundleAsync,
     wereAddressesSpentFromAsync,
+    broadcastBundleAsync,
+    sendTransferAsync,
+    getTransactionsToApproveAsync,
+    prepareTransfersAsync,
+    storeAndBroadcastAsync,
+    attachToTangleAsync,
 };

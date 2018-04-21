@@ -2,10 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { showError } from '../../actions/notifications';
-import { prepareTransfer } from '../../actions/tempAccount';
-import { getSelectedAccountNameViaSeedIndex, getBalanceForSelectedAccountViaSeedIndex } from '../../selectors/account';
-import { VALID_SEED_REGEX, ADDRESS_LENGTH } from '../../libs/util';
+import { generateAlert } from '../../actions/alerts';
+
+import { setDeepLinkInactive } from '../../actions/wallet';
+import { makeTransaction } from '../../actions/transfers';
+import { setSendAddressField, setSendAmountField, setSendMessageField } from '../../actions/ui';
+
+import { getSelectedAccountName, getBalanceForSelectedAccount } from '../../selectors/accounts';
+import { VALID_SEED_REGEX, ADDRESS_LENGTH, isValidMessage } from '../../libs/iota/utils';
 import { iota } from '../../libs/iota';
 
 /**
@@ -16,97 +20,157 @@ export default function withSendData(SendComponent) {
     class SendData extends React.Component {
         static propTypes = {
             balance: PropTypes.number.isRequired,
-            account: PropTypes.object.isRequired,
+            accounts: PropTypes.object.isRequired,
             accountName: PropTypes.string.isRequired,
-            tempAccount: PropTypes.object.isRequired,
-            seeds: PropTypes.object.isRequired,
+            wallet: PropTypes.object.isRequired,
+            ui: PropTypes.object.isRequired,
             settings: PropTypes.object.isRequired,
-            showError: PropTypes.func.isRequired,
-            prepareTransfer: PropTypes.func.isRequired,
+            marketData: PropTypes.object.isRequired,
+            generateAlert: PropTypes.func.isRequired,
+            makeTransaction: PropTypes.func.isRequired,
             theme: PropTypes.object.isRequired,
             t: PropTypes.func.isRequired,
+            setDeepLinkInactive: PropTypes.func.isRequired,
+            deepLinkActive: PropTypes.bool.isRequired,
+            setSendAddressField: PropTypes.func.isRequired,
+            setSendAmountField: PropTypes.func.isRequired,
+            setSendMessageField: PropTypes.func.isRequired,
         };
 
-        validateInputs = (address, amount) => {
-            const { showError, balance } = this.props;
+        componentWillMount() {
+            this.checkDeepLink(this.props);
+        }
 
+        componentWillReceiveProps(nextProps) {
+            this.checkDeepLink(nextProps);
+
+            if (this.props.ui.isSendingTransfer && !nextProps.ui.isSendingTransfer) {
+                this.props.setSendAddressField('');
+                this.props.setSendAmountField('');
+                this.props.setSendMessageField('');
+            }
+        }
+
+        checkDeepLink = (props) => {
+            if (props.deepLinkActive) {
+                this.props.generateAlert(
+                    'success',
+                    this.props.t('deepLink:autofill'),
+                    this.props.t('deepLink:autofillExplanation'),
+                );
+                this.props.setDeepLinkInactive();
+            }
+        };
+
+        validateInputs = () => {
+            const { ui, generateAlert, balance, t } = this.props;
+
+            const address = ui.sendAddressFieldText;
+            const amount = ui.sendAmountFieldText;
+            const message = ui.sendMessageFieldText;
+
+            // Validate address length
             if (address.length !== ADDRESS_LENGTH) {
-                showError({
-                    title: 'send:invalidAddress',
-                    text: 'send:invalidAddressExplanation1',
-                    translate: true,
-                });
+                generateAlert(
+                    'error',
+                    t('send:invalidAddress'),
+                    t('send:invalidAddressExplanation1', { maxLength: ADDRESS_LENGTH }),
+                );
                 return false;
             }
 
+            // Validate valid IOTA address
             if (!address.match(VALID_SEED_REGEX)) {
-                showError({
-                    title: 'send:invalidAddress',
-                    text: 'send:invalidAddressExplanation2',
-                    translate: true,
-                });
+                generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation2'));
                 return false;
             }
 
+            // Validate address checksum
             if (!iota.utils.isValidChecksum(address)) {
-                showError({
-                    title: 'send:invalidAddress',
-                    text: 'send:invalidAddressExplanation3',
-                    translate: true,
-                });
+                generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation3'));
                 return false;
             }
 
+            // Validate enought balance
             if (parseFloat(amount) > balance) {
-                showError({
-                    title: 'send:notEnoughFunds',
-                    text: 'send:notEnoughFundsExplanation',
-                    translate: true,
-                });
+                generateAlert('error', t('send:notEnoughFunds'), t('send:notEnoughFundsExplanation'));
+                return false;
+            }
+
+            // Validate whether message only contains ASCII letters
+            // as anything else is lost up on conversion to trytes
+            if (!isValidMessage(message)) {
+                generateAlert('error', t('send:invalidMessage'), t('send:invalidMessageExplanation'));
+                return false;
+            }
+
+            // Validate length of the message
+            const trytes = iota.utils.toTrytes(message) || '';
+            if (trytes.length > 2187) {
+                generateAlert('error', t('send:invalidMessageTooLong'), t('send:invalidMessageTooLongExplanation'));
                 return false;
             }
 
             return true;
         };
 
-        sendTransfer = (seed, address, value, message, taskRunner) => {
-            const { prepareTransfer, tempAccount, accountName, showError, t } = this.props;
+        sendTransfer = (seed, address, value, message, taskRunner, powFn) => {
+            const { ui, accountName, generateAlert, t } = this.props;
 
-            if (tempAccount.isSyncing) {
-                showError({
-                    title: t('global:syncInProgress'),
-                    text: t('global:syncInProgressExplanation'),
-                    translate: true,
-                });
+            if (ui.isSyncing) {
+                generateAlert('error', t('global:syncInProgress'), t('global:syncInProgressExplanation'));
                 return;
             }
 
-            if (tempAccount.isTransitioning) {
-                showError({
-                    title: 'Snapshot transition in progress',
-                    text: 'Please wait until the transition is complete.',
-                    translate: true,
-                });
+            if (ui.isTransitioning) {
+                generateAlert('error', t('snapshotTransitionInProgress'), t('snapshotTransitionInProgressExplanation'));
                 return;
             }
 
             if (typeof taskRunner === 'function') {
-                taskRunner('prepareTransfer', [seed, address, value, message, accountName]);
+                taskRunner('makeTransaction', [seed, address, value, message, accountName, powFn]);
             } else {
-                prepareTransfer(seed, address, value, message, accountName);
+                this.props.makeTransaction(seed, address, value, message, accountName, powFn);
             }
         };
 
         render() {
-            const { balance, seeds, settings, tempAccount, theme, t } = this.props;
+            const {
+                balance,
+                settings,
+                marketData,
+                wallet,
+                ui,
+                theme,
+                t,
+                setSendAddressField,
+                setSendAmountField,
+                setSendMessageField,
+                generateAlert
+            } = this.props;
 
             const sendProps = {
-                isSending: tempAccount.isSendingTransfer,
+                fields: {
+                    address: ui.sendAddressFieldText,
+                    amount: ui.sendAmountFieldText,
+                    message: ui.sendMessageFieldText,
+                },
+                setSendAddressField,
+                setSendAmountField,
+                setSendMessageField,
+                isSending: ui.isSendingTransfer,
+                password: wallet.password,
+                seedIndex: wallet.seedIndex,
                 validateInputs: this.validateInputs,
                 sendTransfer: this.sendTransfer,
-                settings,
+                settings: {
+                    currency: settings.currency,
+                    conversionRate: settings.conversionRate,
+                    usdPrice: marketData.usdPrice,
+                    remotePoW: settings.remotePoW,
+                },
+                generateAlert,
                 balance,
-                seeds,
                 theme,
                 t,
             };
@@ -118,18 +182,24 @@ export default function withSendData(SendComponent) {
     SendData.displayName = `withSendData(${SendComponent.name})`;
 
     const mapStateToProps = (state) => ({
-        tempAccount: state.tempAccount,
-        balance: getBalanceForSelectedAccountViaSeedIndex(state.tempAccount.seedIndex, state.account.accountInfo),
-        accountName: getSelectedAccountNameViaSeedIndex(state.tempAccount.seedIndex, state.account.seedNames),
+        wallet: state.wallet,
+        balance: getBalanceForSelectedAccount(state),
+        accountName: getSelectedAccountName(state),
         settings: state.settings,
-        account: state.account,
-        seeds: state.seeds,
+        marketData: state.marketData,
+        accounts: state.accounts,
         theme: state.settings.theme,
+        ui: state.ui,
+        deepLinkActive: state.wallet.deepLinkActive,
     });
 
     const mapDispatchToProps = {
-        showError,
-        prepareTransfer,
+        generateAlert,
+        makeTransaction,
+        setDeepLinkInactive,
+        setSendAddressField,
+        setSendAmountField,
+        setSendMessageField,
     };
 
     return translate()(connect(mapStateToProps, mapDispatchToProps)(SendData));

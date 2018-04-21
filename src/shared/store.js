@@ -3,18 +3,17 @@ import { autoRehydrate, persistStore, getStoredState, purgeStoredState, createPe
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import marketData from './reducers/marketData';
-import tempAccount from './reducers/tempAccount';
-import account from './reducers/account';
+import wallet from './reducers/wallet';
+import accounts from './reducers/accounts';
 import app from './reducers/app';
 import settings from './reducers/settings';
-import seeds from './reducers/seeds';
-import notifications from './reducers/notifications';
 import alerts from './reducers/alerts';
 import home from './reducers/home';
 import keychain from './reducers/keychain';
 import polling from './reducers/polling';
+import progress from './reducers/progress';
 import ui from './reducers/ui';
-import { ActionTypes } from './actions/app';
+import { ActionTypes } from './actions/settings';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
@@ -24,22 +23,22 @@ const productionMiddleware = [thunk];
 const reducers = combineReducers({
     alerts,
     marketData,
-    tempAccount,
-    account,
+    accounts,
     app,
     settings,
-    seeds,
-    notifications,
     home,
     keychain,
     polling,
+    progress,
     ui,
+    wallet,
 });
 
 const rootReducer = (state, action) => {
     if (action.type === ActionTypes.WALLET_RESET) {
         state = undefined;
     }
+
     /* eslint-enable no-param-reassign */
     return reducers(state, action);
 };

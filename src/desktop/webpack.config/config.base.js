@@ -1,13 +1,14 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 
 module.exports = {
-    entry: ['babel-polyfill', './src/index.js'],
+    entry: ['./src/index.js'],
     output: {
         path: path.join(__dirname, '..', 'dist'),
-        pathinfo: true,
+        pathinfo: false,
         filename: 'bundle.js',
         publicPath: '/',
     },
@@ -52,6 +53,7 @@ module.exports = {
             },
             {
                 test: /\.(png|jpg|jpeg|svg|ttf|woff)$/,
+                exclude: /node_modules/,
                 use: [
                     {
                         loader: 'url-loader',
@@ -64,8 +66,10 @@ module.exports = {
             },
             {
                 test: /\.workers?\.js$/,
-                use: [{ loader: 'worker-loader' }, { loader: 'babel-loader' }],
+                exclude: /node_modules/,
+                use: [{ loader: 'worker-loader', options: { publicPath: '/' } }, { loader: 'babel-loader' }],
             },
+            { test: /\.node$/, loader: 'node-loader' },
         ],
     },
     resolve: {
@@ -82,5 +86,6 @@ module.exports = {
             inject: false,
             template: __dirname + '/index.html',
         }),
+        new CopyWebpackPlugin([{ from: 'assets/icon-128.png', to: 'icon.png' }]),
     ],
 };

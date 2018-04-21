@@ -20,7 +20,7 @@ function checkNode(url, callback) {
         }
 
         if (
-            nodeinfo.latestMilestoneIndex != nodeinfo.latestSolidSubtangleMilestoneIndex ||
+            nodeinfo.latestMilestoneIndex !== nodeinfo.latestSolidSubtangleMilestoneIndex ||
             nodeinfo.latestMilestone ===
                 '999999999999999999999999999999999999999999999999999999999999999999999999999999999'
         ) {
@@ -33,7 +33,7 @@ function checkNode(url, callback) {
         const neighborsThreshold = 2;
 
         if (nodeinfo.tips < tipThreshold) {
-            callback("Node doesn't have enough tips!");
+            callback('Node doesn\'t have enough tips!');
         }
 
         if (nodeinfo.transactionsToRequest > txsToRequestThreshold) {
@@ -53,11 +53,11 @@ function checkNode(url, callback) {
 }
 
 export function getValidNodes(urls, callback) {
-    let promises = [];
+    const promises = [];
 
-    for (url of urls) {
+    for (const url of urls) {
         promises.push(
-            new Promise((resolve, reject) => {
+            new Promise((resolve) => {
                 checkNode(url, (err, iota, nodeinfo) => {
                     if (err) {
                         resolve(undefined);

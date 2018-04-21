@@ -33,9 +33,18 @@
         min-width: 30px;
         border-radius: 2px;
     }
+    &.large,
+    &.inline {
+        padding: 0 32px;
+        line-height: 44px;
+        font-weight: 300;
+        height: 46px;
+        font-size: 16px;
+        text-transform: capitalize;
+    }
     &:disabled,
     &.disabled {
-        opacity: 0.5;
+        opacity: 0.3;
         pointer-events: none;
     }
     &:before {
@@ -54,8 +63,10 @@
     }
 }
 
-footer .button + .button {
-    margin-left: 20px;
+footer {
+    .button + .button {
+        margin-left: 20px;
+    }
 }
 
 .primary {
@@ -94,15 +105,6 @@ footer .button + .button {
     }
 }
 
-.highlight {
-    composes: button;
-    color: var(--highlight-body);
-    background: var(--highlight);
-    &:hover {
-        background: var(--highlight-hover);
-    }
-}
-
 .extra {
     composes: button;
     color: var(--extra-body);
@@ -113,12 +115,25 @@ footer .button + .button {
     }
 }
 
-.outline {
+.inline {
     background: none;
+    &:hover {
+        background: none;
+    }
+    &.secondary {
+        color: var(--secondary);
+        &:hover {
+            color: var(--secondary-hover);
+        }
+    }
+}
+
+.outline {
+    background: var(--body-bg);
     border: 1px solid;
 
     &:hover {
-        background: none;
+        background: var(--body-bg);
     }
 
     &.primary {
@@ -152,10 +167,25 @@ footer .button + .button {
             color: var(--extra-hover);
         }
     }
-    &.highlight {
-        color: var(--highlight);
-        &:hover {
-            color: var(--highlight-hover);
+}
+
+.icon {
+    border: none;
+    background: none;
+    text-transform: capitalize;
+    font-size: 14px;
+    color: var(--body);
+    cursor: pointer;
+    height: auto;
+    padding: 0px;
+    > span {
+        display: block;
+        cursor: pointer;
+    }
+    &:hover {
+        background: none;
+        > span {
+            color: var(--primary);
         }
     }
 }

@@ -2,11 +2,13 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
+import sjcl from 'sjcl';
 
-import { showError, showNotification } from 'actions/notifications';
+import { generateAlert } from 'actions/alerts';
+import { setPassword } from 'actions/wallet';
 
-import { isValidPassword } from 'libs/util';
-import { getSecurelyPersistedSeeds, securelyPersistSeeds } from 'libs/crypto';
+import { isValidPassword } from 'libs/utils';
+import { updateVaultPassword } from 'libs/crypto';
 
 import Password from 'ui/components/input/Password';
 import Button from 'ui/components/Button';
@@ -14,18 +16,20 @@ import Button from 'ui/components/Button';
 /**
  * User account password change component
  */
-class SetPassword extends PureComponent {
+class PasswordSettings extends PureComponent {
     static propTypes = {
-        /** Error helper function
-         * @param {Object} content - Error notification content
+        /** Set password state
+         * @param {String} password - Current password
          * @ignore
          */
-        showError: PropTypes.func.isRequired,
-        /** Notification helper function
-         * @param {Object} content - Success notification content
+        setPassword: PropTypes.func.isRequired,
+        /** Create a notification message
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
          * @ignore
          */
-        showNotification: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
         /** Translation helper
          * @param {string} translationString - Locale string identifier to be translated
          * @ignore
@@ -39,30 +43,37 @@ class SetPassword extends PureComponent {
         passwordConfirm: '',
     };
 
-    changePassword = () => {
+    changePassword = (e) => {
+        e.preventDefault();
+
         const { passwordCurrent, passwordNew, passwordConfirm } = this.state;
-        const { showError, showNotification, t } = this.props;
+        const { setPassword, generateAlert, t } = this.props;
 
         if (passwordNew !== passwordConfirm) {
-            showError({
-                title: t('changePassword:passwordsDoNotMatch'),
-                text: t('changePassword:passwordsDoNotMatchExplanation'),
-            });
+            generateAlert(
+                'error',
+                t('changePassword:passwordsDoNotMatch'),
+                t('changePassword:passwordsDoNotMatchExplanation'),
+            );
             return;
         }
 
         if (!isValidPassword(passwordNew)) {
-            showError({
-                title: t('changePassword:passwordTooShort'),
-                text: t('changePassword:passwordTooShortExplanation'),
-            });
+            generateAlert(
+                'error',
+                t('changePassword:passwordTooShort'),
+                t('changePassword:passwordTooShortExplanation'),
+            );
             return;
         }
 
         try {
-            const seeds = getSecurelyPersistedSeeds(passwordCurrent);
+            const passwordNewHash = sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(passwordNew));
+            const passwordCurrentHash = sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(passwordCurrent));
 
-            securelyPersistSeeds(passwordNew, seeds);
+            updateVaultPassword(passwordCurrentHash, passwordNewHash);
+
+            setPassword(passwordNewHash);
 
             this.setState({
                 passwordCurrent: '',
@@ -70,15 +81,17 @@ class SetPassword extends PureComponent {
                 passwordConfirm: '',
             });
 
-            showNotification({
-                title: t('changePassword:passwordUpdated'),
-                text: t('changePassword:passwordUpdatedExplanation'),
-            });
+            generateAlert(
+                'success',
+                t('changePassword:passwordUpdated'),
+                t('changePassword:passwordUpdatedExplanation'),
+            );
         } catch (err) {
-            showError({
-                title: t('changePassword:incorrectPassword'),
-                text: t('changePassword:incorrectPasswordExplanation'),
-            });
+            generateAlert(
+                'error',
+                t('changePassword:incorrectPassword'),
+                t('changePassword:incorrectPasswordExplanation'),
+            );
             return;
         }
     };
@@ -88,7 +101,7 @@ class SetPassword extends PureComponent {
         const { passwordCurrent, passwordNew, passwordConfirm } = this.state;
 
         return (
-            <div>
+            <form onSubmit={(e) => this.changePassword(e)}>
                 <Password
                     value={passwordCurrent}
                     label={t('changePassword:currentPassword')}
@@ -104,18 +117,22 @@ class SetPassword extends PureComponent {
                     label={t('changePassword:confirmPassword')}
                     onChange={(value) => this.setState({ passwordConfirm: value })}
                 />
-
-                <Button onClick={() => this.changePassword()}>{t('settings:changePassword')}</Button>
-            </div>
+                <fieldset>
+                    <Button
+                        type="submit"
+                        disabled={!passwordCurrent.length || !passwordNew.length || !passwordConfirm.length}
+                    >
+                        {t('settings:changePassword')}
+                    </Button>
+                </fieldset>
+            </form>
         );
     }
 }
 
-const mapStateToProps = () => ({});
-
 const mapDispatchToProps = {
-    showError,
-    showNotification,
+    generateAlert,
+    setPassword,
 };
 
-export default translate()(connect(mapStateToProps, mapDispatchToProps)(SetPassword));
+export default connect(null, mapDispatchToProps)(translate()(PasswordSettings));

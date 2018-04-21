@@ -93,12 +93,10 @@ def enableProguardInReleaseBuilds = true
 android {
     compileSdkVersion 26
     buildToolsVersion '26.0.2'
-
-
     defaultConfig {
         applicationId "com.iota.wallet"
-        versionCode 19
-        versionName "3.3.9"
+        versionCode 28
+        versionName "3.4.5"
         minSdkVersion 19
         targetSdkVersion 26
         multiDexEnabled true
@@ -107,7 +105,6 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
     }
-
     splits {
         abi {
             reset()
@@ -117,7 +114,8 @@ android {
         }
     }
     repositories {
-            maven { url "https://maven.fabric.io/public" }
+        maven { url "https://jitpack.io" }
+        maven { url "https://maven.fabric.io/public" }
     }
     buildTypes {
         release {
@@ -134,7 +132,7 @@ android {
         variant.outputs.each { output ->
             // For each separate APK per architecture, set a unique version code as described here:
             // http://tools.android.com/tech-docs/new-build-system/user-guide/apk-splits
-            def versionCodes = ["armeabi-v7a":1, "x86":2]
+            def versionCodes = ["armeabi-v7a": 1, "x86": 2]
             def abi = output.getFilter(OutputFile.ABI)
             if (abi != null) {  // null for the universal-debug, universal-release variants
                 output.versionCodeOverride =
@@ -153,7 +151,10 @@ dependencies {
     compile project(':react-native-detect-navbar-android')
     compile project(':react-native-os')
     compile (project(':react-native-camera')) {
-       exclude group: "com.android.support"
+        exclude group: "com.google.android.gms:+"
+    }
+    compile ("com.google.android.gms:play-services-vision:10.2.0") {
+        force = true;
     }
     compile project(':react-native-html-to-pdf')
     compile project(':react-native-print')
@@ -161,22 +162,24 @@ dependencies {
     compile project(':react-native-tcp')
     compile project(':react-native-svg')
     compile project(':react-native-navigation')
-  	compile fileTree(dir: "libs", include: ["*.jar"])
-  	compile "com.android.support:appcompat-v7:25.3.1"
-  	compile "com.facebook.react:react-native:+"
-  	compile project(':react-native-svg')
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.facebook.react:react-native:+'
+    compile project(':react-native-svg')
     compile project(':react-native-fs')
     compile project(':react-native-keychain')
     compile('com.crashlytics.sdk.android:crashlytics:2.9.0@aar') {
         transitive = true;
     }
-    compile "com.android.support:multidex:1.0.1"
+    compile 'com.android.support:multidex:1.0.1'
     compile project(':lottie-react-native')
     compile project(':react-native-exit-app')
     compile project(':react-native-securerandom')
     compile project(':react-native-is-device-rooted')
     compile project(':randombytes')
-    compile "com.android.support:exifinterface:26.1.0"
+    compile project(':react-native-vector-icons')
+    compile project(':bugsnag-react-native')
+    compile project(':react-native-fingerprint-scanner')
 }
 
 // Run this once to be able to run the application with BUCK
@@ -189,3 +192,6 @@ task copyDownloadableDepsToLibs(type: Copy) {
 project.ext.react = [
         nodeExecutableAndArgs : ["/usr/local/bin/node"]
 ];
+
+
+apply plugin: 'com.bugsnag.android.gradle'

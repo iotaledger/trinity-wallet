@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.iota.wallet"
     xmlns:tools="http://schemas.android.com/tools"
-    android:versionCode="19"
-    android:versionName="3.3.9">
+    android:versionCode="28"
+    android:versionName="3.4.5">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
@@ -23,7 +23,7 @@
       android:name=".MainApplication"
       android:allowBackup="false"
       android:label="@string/app_name"
-      android:icon="@mipmap/ic_launcher"
+      android:icon="@mipmap/icon"
       android:theme="@style/AppTheme"
       tools:replace="android:allowBackup"
         >
@@ -31,6 +31,10 @@
         android:name="io.fabric.ApiKey"
         android:value="e741ca311eddc2a22fa56c2dad19b440babbddbc"
         tools:replace="android:value"
+        />
+    <meta-data
+        android:name="com.bugsnag.android.API_KEY"
+        android:value="724eeaea61c47c132b8c9acb2c8c2445"
         />
       <activity
         android:name=".MainActivity"
@@ -44,6 +48,12 @@
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
+          <intent-filter android:label="filter_react_native">
+              <action android:name="android.intent.action.VIEW" />
+              <category android:name="android.intent.category.DEFAULT" />
+              <category android:name="android.intent.category.BROWSABLE" />
+              <data android:scheme="iota" />
+          </intent-filter>
       </activity>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
     </application>

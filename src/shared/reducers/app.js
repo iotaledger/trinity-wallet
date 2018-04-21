@@ -1,23 +1,15 @@
 import merge from 'lodash/merge';
-import { ActionTypes } from '../actions/app.js';
+import { ActionTypes } from '../actions/app';
 
 const initialState = {
-    isOnboardingCompleted: false,
-    mode: 'STANDARD',
-    root: 'initialLoading',
-    versions: {},
+    activationCode: null,
 };
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case ActionTypes.SET_ONBOARDING_COMPLETED:
-            return {
-                ...state,
-                isOnboardingCompleted: action.payload,
-            };
-        case ActionTypes.SET_VERSIONS:
+        case ActionTypes.SET_ACTIVATION_CODE:
             return merge({}, state, {
-                versions: action.payload,
+                activationCode: action.payload,
             });
     }
     return state;

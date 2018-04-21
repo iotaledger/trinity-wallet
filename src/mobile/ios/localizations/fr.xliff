@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="iotaWallet/Info.plist" source-language="en" datatype="plaintext" target-language="fr">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C34b"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleDisplayName">
+        <source>Trinity</source>
+        <target xml:lang="fr" state="needs-translation">Trinity</target>
+      </trans-unit>
+      <trans-unit id="CFBundleName">
+        <source>$(PRODUCT_NAME)</source>
+        <target xml:lang="fr" state="needs-translation">$(PRODUCT_NAME)</target>
+      </trans-unit>
+      <trans-unit id="NSCameraUsageDescription">
+        <source>Trinity requires access to the camera in order to enable QR scanning.</source>
+        <target xml:lang="fr" state="translated">Trinity a besoin d'accéder à l'appareil photo pour activer le scan de QR codes.</target>
+        <alt-trans>
+          <target xml:lang="fr">Tinity requiert l'accès à la caméra afin d'activer le scan de QR codes.</target>
+        </alt-trans>
+      </trans-unit>
+      <trans-unit id="NSFaceIDUsageDescription">
+        <source>Trinity requires access to Face ID in order to enable biometric authentication.</source>
+        <target xml:lang="fr" state="translated">Trinity a besoin d'accéder à Face ID pour activer l’authentification biométrique.</target>
+      </trans-unit>
+      <trans-unit id="NSHumanReadableCopyright">
+        <source>2018 IOTA Foundation. All rights reserved.</source>
+        <target xml:lang="fr" state="translated">Fondation IOTA 2018. Tous droits réservés.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

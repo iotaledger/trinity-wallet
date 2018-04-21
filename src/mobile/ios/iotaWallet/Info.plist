@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>BugsnagAPIKey</key>
+	<string>724eeaea61c47c132b8c9acb2c8c2445</string>
+	<key>CFBundleAllowMixedLocalizations</key>
+	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -20,8 +24,19 @@
 	<string>0.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.iota.urischeme</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>iota</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
-	<string>19</string>
+	<string>28</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -50,18 +65,36 @@
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
-		<true/>
+		<false/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>localhost</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+		</dict>
 	</dict>
 	<key>NSAppleMusicUsageDescription</key>
-	<string>Please allow access to the photo library. This will allow you to attach screenshots to bug reports.</string>
+	<string>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Trinity requires permission to access the camera in order to enable QR code scanning</string>
+	<string>Trinity requires access to the camera in order to enable QR scanning.</string>
 	<key>NSFaceIDUsageDescription</key>
-	<string>Trinity requires permission to access Face ID in order to enable face authentication</string>
+	<string>Trinity requires access to Face ID in order to enable biometric authentication.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</string>
+	<key>NSMotionUsageDescription</key>
+	<string>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>IOTA Wallet</string>
+	<string>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Lato-Black.ttf</string>
@@ -71,13 +104,16 @@
 		<string>Lato-Regular.ttf</string>
 		<string>Inconsolata-Regular.ttf</string>
 		<string>Inconsolata-Bold.ttf</string>
+		<string>Icons.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
+	<string>Launch Screen</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIStatusBarHidden</key>
+	<true/>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleLightContent</string>
 	<key>UISupportedInterfaceOrientations</key>

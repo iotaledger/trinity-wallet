@@ -44,13 +44,7 @@ const marketData = (state = initialState, action) => {
         case ActionTypes.SET_CHART_DATA:
             return {
                 ...state,
-                chartData: {
-                    ...state.chartData,
-                    [action.currency]: {
-                        ...state.chartData[action.currency],
-                        [action.timeframe]: action.data,
-                    },
-                },
+                chartData: action.chartData,
             };
         default:
             return state;

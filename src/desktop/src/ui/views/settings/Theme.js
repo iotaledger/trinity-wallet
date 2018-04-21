@@ -1,3 +1,4 @@
+/*global Electron*/
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -10,7 +11,7 @@ import Button from 'ui/components/Button';
 import inputCSS from 'ui/components/input/input.css';
 import Icon from 'ui/components/Icon';
 
-import css from 'ui/index.css';
+import css from './index.css';
 
 /** Theme switch component */
 class Theme extends React.PureComponent {
@@ -43,7 +44,16 @@ class Theme extends React.PureComponent {
         const theme = themeName ? themes[themeName] : themes[this.props.themeName];
 
         return (
-            <div>
+            <form
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    if (themeName) {
+                        Electron.updateSettings('backgroundColor', themes[themeName].body.bg);
+                        document.body.style.background = themes[themeName].body.bg;
+                        updateTheme(themes[themeName], themeName);
+                    }
+                }}
+            >
                 <Select
                     label="Theme"
                     value={themeName || this.props.themeName}
@@ -81,20 +91,28 @@ class Theme extends React.PureComponent {
                     </div>
                     <Button
                         style={{
-                            color: theme.positive.body || theme.body.color,
-                            background: theme.positive.bg || theme.positive.color,
+                            color: theme.primary.body,
+                            background: theme.primary.color,
                         }}
                     >
-                        {t('global:save')}
+                        {t('back')}
                     </Button>
                     <Button
                         style={{
-                            color: theme.highlight.color,
-                            borderColor: theme.highlight.color,
+                            color: theme.secondary.body,
+                            background: theme.secondary.color,
+                        }}
+                    >
+                        {t('next')}
+                    </Button>
+                    <Button
+                        style={{
+                            color: theme.positive.color,
+                            borderColor: theme.positive.color,
                             background: 'none',
                         }}
                     >
-                        {t('global:back')}
+                        {t('save')}
                     </Button>
                     <Button
                         style={{
@@ -103,25 +121,15 @@ class Theme extends React.PureComponent {
                             background: 'none',
                         }}
                     >
-                        {t('global:close')}
-                    </Button>
-                    <Button
-                        style={{
-                            color: theme.extra.color,
-                            borderColor: theme.extra.color,
-                            background: 'none',
-                        }}
-                    >
-                        {t('global:next')}
+                        {t('apply')}
                     </Button>
                 </div>
-                <Button
-                    disabled={!themeName || themeName === this.props.themeName}
-                    onClick={() => updateTheme(themes[themeName], themeName)}
-                >
-                    Save
-                </Button>
-            </div>
+                <fieldset>
+                    <Button type="submit" disabled={!themeName || themeName === this.props.themeName}>
+                        Save
+                    </Button>
+                </fieldset>
+            </form>
         );
     }
 }
@@ -134,4 +142,4 @@ const mapDispatchToProps = {
     updateTheme,
 };
 
-export default translate('theme')(connect(mapStateToProps, mapDispatchToProps)(Theme));
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(Theme));

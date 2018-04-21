@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { I18N_LOCALE_LABELS, I18N_LOCALES } from 'libs/i18n';
+import { translate } from 'react-i18next';
 import Select from 'ui/components/input/Select';
 import i18next from 'libs/i18next';
 import { setLocale } from 'actions/settings';
@@ -13,12 +14,15 @@ class LanguageSelect extends React.PureComponent {
     static propTypes = {
         /** Current locale */
         locale: PropTypes.string,
-        /** Language drop-down label */
-        label: PropTypes.string,
         /** Locale change event function
          * @param {string} locale - Target locale
          */
         setLocale: PropTypes.func.isRequired,
+        /** Translation helper
+         * @param {string} translationString - Locale string identifier to be translated
+         * @ignore
+         */
+        t: PropTypes.func.isRequired,
     };
 
     changeLocale = (locale) => {
@@ -27,10 +31,14 @@ class LanguageSelect extends React.PureComponent {
     };
 
     render() {
-        const { locale, label } = this.props;
+        const { locale, t } = this.props;
 
         return (
-            <Select label={label} defaultValue={locale} onChange={(e) => this.changeLocale(e.target.value)}>
+            <Select
+                label={t('languageSetup:language')}
+                defaultValue={locale}
+                onChange={(e) => this.changeLocale(e.target.value)}
+            >
                 {I18N_LOCALES.map((item, index) => (
                     <option key={item} value={item}>
                         {I18N_LOCALE_LABELS[index]}
@@ -49,4 +57,4 @@ const mapDispatchToProps = {
     setLocale,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LanguageSelect);
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(LanguageSelect));

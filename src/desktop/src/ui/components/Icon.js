@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { icons } from 'icons/icons';
+import icons from 'icons/icons';
 
 import css from './icon.css';
 
@@ -21,7 +21,10 @@ export default class Icon extends React.PureComponent {
     render() {
         const { size, icon, color } = this.props;
         return (
-            <span className={classNames(css.icon, css[icon])} style={{ fontSize: size || 32, color: color || null }}>
+            <span
+                className={classNames(css.icon, css[icon])}
+                style={{ fontSize: size || 32, lineHeight: size ? `${size}px` : 32, color: color || null }}
+            >
                 {icons[icon]}
             </span>
         );

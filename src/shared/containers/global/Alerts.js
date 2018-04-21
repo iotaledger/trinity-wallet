@@ -10,7 +10,7 @@ import { disposeOffAlert } from '../../actions/alerts';
  * @ignore
  */
 export default function withAlertsData(AlertsComponent) {
-    class AlertsData extends React.Component {
+    class AlertsData extends React.PureComponent {
         static propTypes = {
             disposeOffAlert: PropTypes.func.isRequired,
             alerts: PropTypes.object.isRequired,

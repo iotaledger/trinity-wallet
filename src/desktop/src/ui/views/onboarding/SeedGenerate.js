@@ -1,35 +1,41 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { addAndSelectSeed, clearSeeds } from 'actions/seeds';
-import { showError } from 'actions/notifications';
-import { getSelectedSeed } from 'selectors/seeds';
-import { isValidSeed, MAX_SEED_LENGTH } from 'libs/util';
+import { isValidSeed } from 'libs/iota/utils';
 import { createRandomSeed } from 'libs/crypto';
-import Button from 'ui/components/Button';
 
-import css from './seedGenerate.css';
+import { setOnboardingSeed } from 'actions/ui';
+import { generateAlert } from 'actions/alerts';
+
+import Button from 'ui/components/Button';
+import Icon from 'ui/components/Icon';
+
+import css from './index.css';
 
 /**
  * Onboarding, Seed generation component
  */
 class GenerateSeed extends React.PureComponent {
     static propTypes = {
-        /** Accept current generated seed */
-        addAndSelectSeed: PropTypes.func.isRequired,
+        /** Set onboarding seed state
+         * @param {String} seed - New seed
+         * @param {Boolean} isGenerated - Is the new seed generated
+         */
+        setOnboardingSeed: PropTypes.func.isRequired,
+        /** Current new seed */
+        newSeed: PropTypes.string,
         /** Browser history object */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
-        /** Error modal helper
-         * @param {Object} content - error screen content
+        /** Create a notification message
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
          * @ignore
          */
-        showError: PropTypes.func.isRequired,
-        /** Clear seed data from state */
-        clearSeeds: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
@@ -38,7 +44,7 @@ class GenerateSeed extends React.PureComponent {
     };
 
     state = {
-        seed: null,
+        seed: this.props.newSeed || createRandomSeed(),
     };
 
     onUpdatedSeed = (seed) => {
@@ -48,25 +54,20 @@ class GenerateSeed extends React.PureComponent {
     };
 
     onRequestNext = () => {
-        const { addAndSelectSeed, history, showError } = this.props;
+        const { setOnboardingSeed, history, generateAlert, t } = this.props;
         const { seed } = this.state;
 
         if (!seed || !isValidSeed(seed)) {
-            return showError({
-                title: 'seedReentry:incorrectSeed',
-                text: 'seedReentry:incorrectSeedExplanation',
-                translate: true,
-            });
+            return generateAlert('error', t('seedReentry:incorrectSeed'), t('seedReentry:incorrectSeedExplanation'));
         }
-        clearSeeds(seed);
-        addAndSelectSeed(seed);
+        setOnboardingSeed(seed, true);
         history.push('/onboarding/seed-save');
     };
 
     onRequestPrevious = () => {
-        const { history, clearSeeds } = this.props;
+        const { history, setOnboardingSeed } = this.props;
 
-        clearSeeds();
+        setOnboardingSeed(null);
         history.push('/onboarding/seed-intro');
     };
 
@@ -94,50 +95,50 @@ class GenerateSeed extends React.PureComponent {
         const { t } = this.props;
         const { seed } = this.state;
 
-        const letters = seed ? seed.split('') : Array(MAX_SEED_LENGTH).fill('');
-
         return (
-            <main>
+            <React.Fragment>
                 <section>
-                    <Button type="button" onClick={this.generateNewSeed} variant="primary">
-                        {t('newSeedSetup:pressForNewSeed')}
-                    </Button>
-                    <div className={classNames(css.wrapper, seed ? css.enabled : css.disabled)}>
-                        {letters.map((letter, index) => {
-                            return (
-                                <button
-                                    onClick={() => this.updateLetter(index)}
-                                    key={`${index}${letter}`}
-                                    value={letter}
-                                >
-                                    {letter}
-                                </button>
-                            );
-                        })}
+                    <p>{t('newSeedSetup:individualLetters')}</p>
+                    <div className={css.seed}>
+                        <div>
+                            {seed.split('').map((letter, index) => {
+                                return (
+                                    <button
+                                        onClick={() => this.updateLetter(index)}
+                                        key={`${index}${letter}`}
+                                        value={letter}
+                                    >
+                                        {letter}
+                                    </button>
+                                );
+                            })}
+                        </div>
                     </div>
-                    <p>{this.state.seed ? t('newSeedSetup:individualLetters') : '\u00A0'}</p>
+                    <Button type="button" onClick={this.generateNewSeed} className="icon">
+                        <Icon icon="sync" size={32} />
+                        {t('newSeedSetup:pressForNewSeed').toLowerCase()}
+                    </Button>
                 </section>
                 <footer>
-                    <Button onClick={this.onRequestPrevious} className="outline" variant="highlight">
-                        {t('global:back')}
+                    <Button onClick={this.onRequestPrevious} className="inline" variant="secondary">
+                        {t('back').toLowerCase()}
                     </Button>
-                    <Button onClick={this.onRequestNext} className="outline" disabled={!seed} variant="primary">
-                        {t('global:next')}
+                    <Button onClick={this.onRequestNext} className="large" variant="primary">
+                        {t('next').toLowerCase()}
                     </Button>
                 </footer>
-            </main>
+            </React.Fragment>
         );
     }
 }
 
 const mapStateToProps = (state) => ({
-    seed: getSelectedSeed(state).seed,
+    newSeed: state.ui.onboarding.seed,
 });
 
 const mapDispatchToProps = {
-    addAndSelectSeed,
-    clearSeeds,
-    showError,
+    setOnboardingSeed,
+    generateAlert,
 };
 
-export default translate('newSeedSetup')(connect(mapStateToProps, mapDispatchToProps)(GenerateSeed));
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(GenerateSeed));
