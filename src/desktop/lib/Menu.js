@@ -118,7 +118,7 @@ const initMenu = (app, getWindow) => {
             },
         ];
 
-        if (process.platform === 'darwinx') {
+        if (process.platform === 'darwin') {
             template[0].submenu = template[0].submenu.concat([
                 {
                     label: `${language.hide} ${app.getName()}`,
