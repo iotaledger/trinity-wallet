@@ -15,7 +15,7 @@ function injectQuorum() {
                     (nodeapi, cb) => {
                         nodeapi.api.getInclusionStates(transactions, tips, cb);
                     },
-                    500,
+                    1000,
                     false,
                     callback,
                 );
@@ -25,7 +25,7 @@ function injectQuorum() {
                     (nodeapi, cb) => {
                         nodeapi.api.wereAddressesSpentFrom(addresses, cb);
                     },
-                    500,
+                    1000,
                     false,
                     callback,
                 );

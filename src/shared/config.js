@@ -54,4 +54,8 @@ export const quorumNodes = [
     'https://iotanode2.jlld.at',
     'https://fuckup.patrick-schnell.de:443',
     'https://iotanode3.jlld.at:443',
+    'https://trinity.iota.fm:443',
+    'https://iri2.iota.fm:443',
+    'https://nodes.iota.fm:443',
+    'https://field.carriota.com:443',
 ];

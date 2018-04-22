@@ -12,7 +12,6 @@ export function getQuorumNodes() {
 function pollNodes() {
     getValidNodes(quorumNodes, (res) => {
         validQuorumNodes = res;
-        console.log('valid quorum nodes: ', res.length);
     });
 }
 
@@ -27,7 +26,6 @@ export function getQuorumResult(nodefunc, timeout, unorderedArrays, callback) {
             new Promise((resolve, reject) => {
                 setApiTimeout(nodeapi, timeout);
                 nodefunc(nodeapi, (err, res) => {
-                    console.log('nodeaptgqrres', err, res);
                     if (err) {
                         resolve(null);
                         return;
@@ -78,8 +76,6 @@ export function getMostCommon(objs, unorderedArrays) {
             best = ob;
         }
     }
-
-    console.log('quorum agreement of', maxseen, 'nodes');
 
     return best;
 }
