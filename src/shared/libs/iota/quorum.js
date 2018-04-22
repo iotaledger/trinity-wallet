@@ -1,7 +1,7 @@
 import objectHash from 'object-hash';
 import sampleSize from 'lodash/sampleSize';
 import { setApiTimeout, getValidNodes } from './multinode';
-import { quorumNodes, quorumPoolSize } from '../../config';
+import { quorumNodes, quorumPoolSize, useLegacyQuorum } from '../../config';
 
 let validQuorumNodes = [];
 
@@ -10,9 +10,11 @@ export function getQuorumNodes() {
 }
 
 function pollNodes() {
-    getValidNodes(quorumNodes, (res) => {
-        validQuorumNodes = res;
-    });
+    if (useLegacyQuorum) {
+        getValidNodes(quorumNodes, (res) => {
+            validQuorumNodes = res;
+        });
+    }
 }
 
 pollNodes();
