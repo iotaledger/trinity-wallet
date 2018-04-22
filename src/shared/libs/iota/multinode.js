@@ -1,55 +1,53 @@
 import IOTA from 'iota.lib.js';
-import isString from 'lodash/isString';
 
 function checkNode(url, callback) {
-    if (isString(url)) {
-        var iota = new IOTA({
-            provider: url,
-        });
-    } else {
-        // if we're given something that's not a string, just assume it's an iota instance
-        var iota = url;
-    }
+    const iota = new IOTA({
+        provider: url,
+    });
 
     setApiTimeout(iota, 1000);
 
-    iota.api.getNodeInfo((err, nodeinfo) => {
-        if (err) {
-            callback(err);
-            return;
-        }
+    try {
+        iota.api.getNodeInfo((err, nodeinfo) => {
+            if (err) {
+                callback(err);
+                return;
+            }
 
-        if (
-            nodeinfo.latestMilestoneIndex !== nodeinfo.latestSolidSubtangleMilestoneIndex ||
-            nodeinfo.latestMilestone ===
-                '999999999999999999999999999999999999999999999999999999999999999999999999999999999'
-        ) {
-            callback('Node is not synced!');
-            return;
-        }
+            if (
+                nodeinfo.latestMilestoneIndex !== nodeinfo.latestSolidSubtangleMilestoneIndex ||
+                nodeinfo.latestMilestone ===
+                    '999999999999999999999999999999999999999999999999999999999999999999999999999999999'
+            ) {
+                callback('Node is not synced!');
+                return;
+            }
 
-        const tipThreshold = 100;
-        const txsToRequestThreshold = 200;
-        const neighborsThreshold = 2;
+            const tipThreshold = 100;
+            const txsToRequestThreshold = 200;
+            const neighborsThreshold = 2;
 
-        if (nodeinfo.tips < tipThreshold) {
-            callback('Node doesn\'t have enough tips!');
-        }
+            if (nodeinfo.tips < tipThreshold) {
+                callback('Node doesn\'t have enough tips!');
+            }
 
-        if (nodeinfo.transactionsToRequest > txsToRequestThreshold) {
-            callback('Node txsToRequest too high!');
-        }
+            if (nodeinfo.transactionsToRequest > txsToRequestThreshold) {
+                callback('Node txsToRequest too high!');
+            }
 
-        if (nodeinfo.neighbors < neighborsThreshold) {
-            callback('Node has too few neighbors!');
-        }
+            if (nodeinfo.neighbors < neighborsThreshold) {
+                callback('Node has too few neighbors!');
+            }
 
-        // TODO: Somehow figure out if node is latest version
+            // TODO: Somehow figure out if node is latest version
 
-        // unshim _makeRequest before returning
-        clearApiTimeout(iota);
-        callback(null, iota, nodeinfo);
-    });
+            // unshim _makeRequest before returning
+            clearApiTimeout(iota);
+            callback(null, iota);
+        });
+    } catch (err) {
+        callback(err);
+    }
 }
 
 export function getValidNodes(urls, callback) {
@@ -58,7 +56,7 @@ export function getValidNodes(urls, callback) {
     for (const url of urls) {
         promises.push(
             new Promise((resolve) => {
-                checkNode(url, (err, iota, nodeinfo) => {
+                checkNode(url, (err, iota) => {
                     if (err) {
                         resolve(undefined);
                     } else {
@@ -79,15 +77,17 @@ export function getValidNodes(urls, callback) {
     });
 }
 
-export function setApiTimeout(api, timeout) {
+export function setApiTimeout(iota, timeout) {
     // shim the open function to add a timeout
     // TODO: implement timeout in iota.lib.js instead of here
     // if a call takes forever, it just sits in the background taking up space
 
-    iota.api._makeRequest._open = iota.api._makeRequest.open;
+    if (!iota.api._makeRequest._open) {
+        iota.api._makeRequest._open = iota.api._makeRequest.open;
+    }
 
     iota.api._makeRequest.open = () => {
-        let request = iota.api._makeRequest._open();
+        const request = iota.api._makeRequest._open();
 
         // TODO: replace setTimeout with some native equivalent
         setTimeout(() => {
@@ -100,6 +100,6 @@ export function setApiTimeout(api, timeout) {
     };
 }
 
-export function clearApiTimeout(api) {
+export function clearApiTimeout(iota) {
     iota.api._makeRequest.open = iota.api._makeRequest._open;
 }

@@ -3,7 +3,7 @@ import { getMostCommon } from '../../../libs/iota/quorum';
 
 // random objects for testing
 
-var a = {
+const a = {
     testobj: 1,
     test: [
         {
@@ -18,7 +18,7 @@ var a = {
     ],
 };
 
-var b = {
+const b = {
     w: 1,
     test: [
         {
@@ -33,7 +33,7 @@ var b = {
     ],
 };
 
-var c = {
+const c = {
     w: 1,
     test: [
         {
@@ -48,7 +48,7 @@ var c = {
     ],
 };
 
-var d = {
+const d = {
     w: 1,
     test: [
         {
@@ -63,7 +63,7 @@ var d = {
     ],
 };
 
-var e = {
+const e = {
     w: 1,
     test: [
         {

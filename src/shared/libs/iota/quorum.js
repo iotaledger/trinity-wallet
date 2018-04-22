@@ -1,33 +1,38 @@
-import { setApiTimeout, clearApiTimeout, getValidNodes } from './multinode';
-import { quorumNodes, quorumPollFreq, quorumPoolSize } from '../../config';
 import objectHash from 'object-hash';
-import sample from 'lodash/sample';
+import sampleSize from 'lodash/sampleSize';
+import { setApiTimeout, getValidNodes } from './multinode';
+import { quorumNodes, quorumPoolSize } from '../../config';
 
 let validQuorumNodes = [];
 
 export function getQuorumNodes() {
-    return sample(quorumNodes, quorumPoolSize);
+    return sampleSize(validQuorumNodes, quorumPoolSize);
 }
 
 function pollNodes() {
     getValidNodes(quorumNodes, (res) => {
         validQuorumNodes = res;
+        console.log('valid quorum nodes: ', res.length);
     });
 }
 
-export function getQuorumResult(nodefunc, nodelist, timeout, unorderedArrays, callback) {
-    let promises = [];
+pollNodes();
 
-    for (nodeapi of nodelist) {
+export function getQuorumResult(nodefunc, timeout, unorderedArrays, callback) {
+    const promises = [];
+
+    for (const nodeapi of getQuorumNodes()) {
         promises.push(
+            // eslint-disable-next-line no-unused-vars
             new Promise((resolve, reject) => {
                 setApiTimeout(nodeapi, timeout);
                 nodefunc(nodeapi, (err, res) => {
+                    console.log('nodeaptgqrres', err, res);
                     if (err) {
                         resolve(null);
                         return;
                     }
-                    clearApiTimeout(nodeapi);
+                    //                    clearApiTimeout(nodeapi);
                     resolve(res);
                 });
             }),
@@ -38,11 +43,11 @@ export function getQuorumResult(nodefunc, nodelist, timeout, unorderedArrays, ca
         // filter out all falsey values
         result = result.filter(Boolean);
 
-        for (r of result) {
+        for (const r of result) {
             r.duration = 0;
         }
 
-        callback(getMostCommon(result, unorderedArrays));
+        callback(undefined, getMostCommon(result, unorderedArrays));
     });
 }
 
@@ -52,12 +57,12 @@ export function getMostCommon(objs, unorderedArrays) {
     */
     let best = null;
     let maxseen = 0;
-    let seentimes = new Map();
+    const seentimes = new Map();
 
     unorderedArrays = unorderedArrays || false;
 
-    for (let ob of objs) {
-        let rhash = objectHash(ob, {
+    for (const ob of objs) {
+        const rhash = objectHash(ob, {
             unorderedArrays: unorderedArrays,
         });
         let cnt = seentimes.get(rhash);
@@ -73,6 +78,8 @@ export function getMostCommon(objs, unorderedArrays) {
             best = ob;
         }
     }
+
+    console.log('quorum agreement of', maxseen, 'nodes');
 
     return best;
 }

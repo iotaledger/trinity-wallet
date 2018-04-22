@@ -1,38 +1,40 @@
 import IOTA from 'iota.lib.js';
 import 'proxy-polyfill';
-import { nodes, defaultNode, quorumNodes, useLegacyQuorum } from '../../config';
+import { nodes, defaultNode, useLegacyQuorum } from '../../config';
 import { checkNode as _checkNode } from './multinode';
-import { getQuorumResult, getQuorumNodes } from './quorum';
+import { getQuorumResult } from './quorum';
 
-let iotaAPI = new IOTA({ provider: defaultNode });
+const iotaAPI = new IOTA({ provider: defaultNode });
 
-// quorum shim
-if (useLegacyQuorum) {
-    iotaAPI.api = Object.assign(iotaAPI.api, {
-        getInclusionStates: (transactions, tips, callback) => {
-            getQuorumResult(
-                (nodeapi, cb) => {
-                    iotaAPI.getInclusionStates(transactions, tips, cb);
-                },
-                getQuorumNodes(),
-                1000,
-                false,
-                callback,
-            );
-        },
-        wereAddressesSpentFrom: (addresses, callback) => {
-            getQuorumResult(
-                (nodeapi, cb) => {
-                    iotaAPI.wereAddressesSpentFrom(addresses, cb);
-                },
-                getQuorumNodes(),
-                1000,
-                false,
-                callback,
-            );
-        },
-    });
+function injectQuorum() {
+    // quorum shim
+    if (useLegacyQuorum) {
+        iotaAPI.api = Object.assign(iotaAPI.api, {
+            getInclusionStates: (transactions, tips, callback) => {
+                getQuorumResult(
+                    (nodeapi, cb) => {
+                        nodeapi.api.getInclusionStates(transactions, tips, cb);
+                    },
+                    500,
+                    false,
+                    callback,
+                );
+            },
+            wereAddressesSpentFrom: (addresses, callback) => {
+                getQuorumResult(
+                    (nodeapi, cb) => {
+                        nodeapi.api.wereAddressesSpentFrom(addresses, cb);
+                    },
+                    500,
+                    false,
+                    callback,
+                );
+            },
+        });
+    }
 }
+
+injectQuorum();
 
 // Later used by the checkNodePatched function
 let unproxiedNodeInfo = iotaAPI.api.getNodeInfo.bind(iotaAPI.api);
@@ -43,6 +45,9 @@ export const changeIotaNode = (provider) => {
     unproxiedNodeInfo = iotaAPI.api.getNodeInfo.bind(iotaAPI.api);
     // re-inject proxy
     injectAPIProxy();
+
+    // re-inject quorum
+    injectQuorum();
 };
 
 // Holds the auto. node switching configuration and callbacks
