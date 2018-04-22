@@ -178,7 +178,6 @@ export default class HistoryModalContent extends PureComponent {
             defaultTextColor: PropTypes.shape({ color: PropTypes.string.isRequired }).isRequired,
             backgroundColor: PropTypes.string.isRequired,
             borderColor: PropTypes.shape({ borderColor: PropTypes.string.isRequired }).isRequired,
-            buttonsOpacity: PropTypes.shape({ opacity: PropTypes.number.isRequired }).isRequired,
         }).isRequired,
     };
 
@@ -300,7 +299,7 @@ export default class HistoryModalContent extends PureComponent {
                                     {!confirmationBool &&
                                         mode === 'Expert' &&
                                         value > 0 && (
-                                            <View style={[styles.buttonsContainer, style.buttonsOpacity]}>
+                                            <View style={[styles.buttonsContainer, { opacity: disableWhen ? 0.5 : 1 }]}>
                                                 <CtaButton
                                                     ctaColor={style.primaryColor}
                                                     secondaryCtaColor={style.primaryBody}
