@@ -759,22 +759,57 @@ describe('libs: iota/transfers', () => {
         before(() => {
             server = sinon.fakeServer.create();
             server.autoRespond = true;
+
+            sinon
+                .stub(iota.api, 'findTransactions')
+                .yields(null, ['99SCLLLYGMB9FSLXARXJPUXAMUQRDSAXMKNMAPOWZMZLTXUCPUVUICKEQUUGFIRD9JZTGHKGMNZUA9999']);
         });
 
         after(() => {
             server.restore();
+
+            if (iota.api.findTransactions.restore) {
+                iota.api.findTransactions.restore();
+            }
         });
 
-        it('should return hashes for unspent addresses', (done) => {
-            sinon.stub(iota.api, 'findTransactions').yields(null, ['9'.repeat(81)]);
-            const promise = getTransactionHashesForUnspentAddresses({ ['U'.repeat(81)]: { spent: false } });
+        describe('when all addresses are spent', () => {
+            it('should return an empty array', (done) => {
+                const addressData = {
+                    ['U'.repeat(81)]: { spent: true },
+                    ['V'.repeat(81)]: { spent: true },
+                    ['9'.repeat(81)]: { spent: true },
+                };
 
-            promise
-                .then((hashes) => {
-                    expect(hashes).to.eql(['9'.repeat(81)]);
-                    done();
-                })
-                .catch(done);
+                const promise = getTransactionHashesForUnspentAddresses(addressData);
+
+                promise
+                    .then((hashes) => {
+                        expect(hashes).to.eql([]);
+                        done();
+                    })
+                    .catch(done);
+            });
+        });
+
+        describe('when one or more of the addresses are unspent', () => {
+            it('should return transaction hashes for unspent addresses', (done) => {
+                const addressData = {
+                    ['U'.repeat(81)]: { spent: true },
+                    ['V'.repeat(81)]: { spent: false },
+                };
+
+                const promise = getTransactionHashesForUnspentAddresses(addressData);
+
+                promise
+                    .then((hashes) => {
+                        expect(hashes).to.eql([
+                            '99SCLLLYGMB9FSLXARXJPUXAMUQRDSAXMKNMAPOWZMZLTXUCPUVUICKEQUUGFIRD9JZTGHKGMNZUA9999',
+                        ]);
+                        done();
+                    })
+                    .catch(done);
+            });
         });
     });
 });
