@@ -1,6 +1,7 @@
 import find from 'lodash/find';
 import keys from 'lodash/keys';
 import { expect } from 'chai';
+import sinon from 'sinon';
 import {
     prepareTransferArray,
     extractTailTransferFromBundle,
@@ -13,7 +14,9 @@ import {
     normalizeBundle,
     mergeNewTransfers,
     categorizeBundleByInputsOutputs,
+    getTransactionHashesForUnspentAddresses,
 } from '../../../libs/iota/transfers';
+import { iota } from '../../../libs/iota/index';
 
 describe('libs: iota/transfers', () => {
     describe('#prepareTransferArray', () => {
@@ -747,6 +750,66 @@ describe('libs: iota/transfers', () => {
                     checksum: 'RYN9LQCEC',
                 },
             ]);
+        });
+    });
+
+    describe('#getTransactionHashesForUnspentAddresses', () => {
+        let server;
+
+        before(() => {
+            server = sinon.fakeServer.create();
+            server.autoRespond = true;
+
+            sinon
+                .stub(iota.api, 'findTransactions')
+                .yields(null, ['99SCLLLYGMB9FSLXARXJPUXAMUQRDSAXMKNMAPOWZMZLTXUCPUVUICKEQUUGFIRD9JZTGHKGMNZUA9999']);
+        });
+
+        after(() => {
+            server.restore();
+
+            if (iota.api.findTransactions.restore) {
+                iota.api.findTransactions.restore();
+            }
+        });
+
+        describe('when all addresses are spent', () => {
+            it('should return an empty array', (done) => {
+                const addressData = {
+                    ['U'.repeat(81)]: { spent: true },
+                    ['V'.repeat(81)]: { spent: true },
+                    ['9'.repeat(81)]: { spent: true },
+                };
+
+                const promise = getTransactionHashesForUnspentAddresses(addressData);
+
+                promise
+                    .then((hashes) => {
+                        expect(hashes).to.eql([]);
+                        done();
+                    })
+                    .catch(done);
+            });
+        });
+
+        describe('when one or more of the addresses are unspent', () => {
+            it('should return transaction hashes for unspent addresses', (done) => {
+                const addressData = {
+                    ['U'.repeat(81)]: { spent: true },
+                    ['V'.repeat(81)]: { spent: false },
+                };
+
+                const promise = getTransactionHashesForUnspentAddresses(addressData);
+
+                promise
+                    .then((hashes) => {
+                        expect(hashes).to.eql([
+                            '99SCLLLYGMB9FSLXARXJPUXAMUQRDSAXMKNMAPOWZMZLTXUCPUVUICKEQUUGFIRD9JZTGHKGMNZUA9999',
+                        ]);
+                        done();
+                    })
+                    .catch(done);
+            });
         });
     });
 });
