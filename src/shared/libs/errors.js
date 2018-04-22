@@ -6,4 +6,5 @@ export default {
     POW_FUNCTION_UNDEFINED: 'Proof of work function is undefined.',
     BUNDLE_NO_LONGER_VALID: 'Bundle no longer valid',
     PERSISTOR_UNDEFINED: 'Persistor is undefined.',
+    ATTACH_TO_TANGLE_UNAVAILABLE: 'attachToTangle is not available',
 };
