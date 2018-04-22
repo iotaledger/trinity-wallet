@@ -40,6 +40,13 @@ export default function withNodeData(NodeComponent) {
             if (!nodeSelected || nodeSelected.length < 4) {
                 return;
             }
+
+            // only allow HTTPS nodes
+            if(nodeSelected.substring(0,8) !== "https://") {
+                generateAlert('error', t('nodeMustUseHTTPS'), t('nodeMustUseHTTPSExplanation'));
+                return;
+            }
+
             //Remove trailing slash
             nodeSelected = nodeSelected.replace(/\/$/, '');
 
