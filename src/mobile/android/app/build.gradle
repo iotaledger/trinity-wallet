@@ -95,7 +95,7 @@ android {
     buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.iota.wallet"
-        versionCode 25
+        versionCode 28
         versionName "3.4.5"
         minSdkVersion 19
         targetSdkVersion 26
@@ -114,6 +114,7 @@ android {
         }
     }
     repositories {
+        maven { url "https://jitpack.io" }
         maven { url "https://maven.fabric.io/public" }
     }
     buildTypes {
@@ -191,3 +192,6 @@ task copyDownloadableDepsToLibs(type: Copy) {
 project.ext.react = [
         nodeExecutableAndArgs : ["/usr/local/bin/node"]
 ];
+
+
+apply plugin: 'com.bugsnag.android.gradle'
