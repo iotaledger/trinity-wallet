@@ -86,6 +86,7 @@
         "cannotSendToOwn": "Αποστολή σε ιδιωτική διεύθυνση",
         "cannotSendToOwnExplanation": "Δεν μπορείτε να κάνετε μια τιμή μεταφοράς σε μία από τις δικές  σας διευθύνσεις ",
         "pleaseWait": "Παρακαλώ περίμενε",
+        "pleaseWaitEllipses": "Please wait...",
         "pleaseWaitExplanation": "Το trinity εκτελεί μια άλλη λειτουργία. Παρακαλώ περιμένετε και προσπαθήστε ξανά.",
         "pleaseWaitTransferExplanation": "Το διαθέσιμο υπόλοιπό σας χρησιμοποιείται αυτήν τη στιγμή σε άλλες μεταφορές. Σας παρακαλώ να περιμένετε  για επιβεβαίωση πριν να προσπαθήσετε πάλι.",
         "snapshotTransitionInProgress": "Στιγμιότυπο μετάβασης σε εξέλιξη",
@@ -490,7 +491,15 @@
         "cannotCompleteTransition": "Δεν μπορεί να ολοκληρώσει τη μετάβαση στιγμιότυπο",
         "cannotCompleteTransitionExplanation": "Το υπόλοιπό σας πρέπει να είναι μεγαλύτερη από το 0 για να ολοκληρωθεί η μετάβαση.",
         "transitionComplete": "Snapshot ολοκληρώθηκε. ",
-        "transitionCompleteExplanation": "Το snapshot έχει ολοκληρωθεί με επιτυχία."
+        "transitionCompleteExplanation": "Το snapshot έχει ολοκληρωθεί με επιτυχία.",
+        "detectedBalance": "Detected balance: {{amount}} {{unit}}",
+        "isThisCorrect": "Is this correct?",
+        "snapshotExplanation": "Every so often, a snapshot is performed to prune the size of the Tangle.",
+        "hasSnapshotTakenPlace": "Has a snapshot taken place? Press the button below to transition.",
+        "transition": "TRANSITION",
+        "transitioning": "Transitioning for the snapshot.",
+        "generatingAndDetecting": "Generating addresses and detecting balance.",
+        "attaching": "Attaching addresses to Tangle"
     },
     "deepLink": {
         "autofill": "Autofill success",
