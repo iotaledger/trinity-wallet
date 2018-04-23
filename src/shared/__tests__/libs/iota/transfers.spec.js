@@ -16,9 +16,22 @@ import {
     categorizeBundleByInputsOutputs,
     getTransactionHashesForUnspentAddresses,
 } from '../../../libs/iota/transfers';
-import { iota } from '../../../libs/iota/index';
+import { iota, SwitchingConfig } from '../../../libs/iota/index';
 
 describe('libs: iota/transfers', () => {
+    let sandbox;
+
+    before(() => {
+        sandbox = sinon.sandbox.create();
+        SwitchingConfig.autoSwitch = false;
+        sandbox.stub(iota.api, 'getNodeInfo').yields(null, {});
+    });
+
+    after(() => {
+        SwitchingConfig.autoSwitch = true;
+        sandbox.restore();
+    });
+
     describe('#prepareTransferArray', () => {
         it('should return an array', () => {
             const args = ['foo', 1, 'message', 'U'.repeat(81)];
@@ -754,23 +767,10 @@ describe('libs: iota/transfers', () => {
     });
 
     describe('#getTransactionHashesForUnspentAddresses', () => {
-        let server;
-
         before(() => {
-            server = sinon.fakeServer.create();
-            server.autoRespond = true;
-
-            sinon
+            sandbox
                 .stub(iota.api, 'findTransactions')
                 .yields(null, ['99SCLLLYGMB9FSLXARXJPUXAMUQRDSAXMKNMAPOWZMZLTXUCPUVUICKEQUUGFIRD9JZTGHKGMNZUA9999']);
-        });
-
-        after(() => {
-            server.restore();
-
-            if (iota.api.findTransactions.restore) {
-                iota.api.findTransactions.restore();
-            }
         });
 
         describe('when all addresses are spent', () => {
