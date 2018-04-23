@@ -5,10 +5,11 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { setCopiedToClipboard } from 'iota-wallet-shared-modules/actions/wallet';
+import RNSecureClipboard from 'react-native-secure-clipboard';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import Seedbox from '../components/SeedBox';
 import { width, height } from '../utils/dimensions';
-import { isAndroid } from '../utils/device';
+import { isAndroid, isIOS } from '../utils/device';
 import GENERAL from '../theme/general';
 import CtaButton from '../components/CtaButton';
 import DynamicStatusBar from '../components/DynamicStatusBar';
@@ -116,7 +117,16 @@ class CopySeedToClipboard extends Component {
 
     componentWillUnmount() {
         this.clearTimeout();
-        Clipboard.setString(' ');
+
+        let clipboardFn = null;
+
+        if (isIOS) {
+            clipboardFn = RNSecureClipboard.setString;
+        } else {
+            clipboardFn = Clipboard.setString;
+        }
+
+        clipboardFn(' ');
     }
 
     /**
@@ -146,6 +156,8 @@ class CopySeedToClipboard extends Component {
     onCopyPress() {
         const { t, seed } = this.props;
 
+        let clipboardFn = null;
+
         if (isAndroid) {
             return Share.share(
                 {
@@ -155,12 +167,17 @@ class CopySeedToClipboard extends Component {
                     dialogTitle: t('shareSeed'),
                 },
             );
+        } else if (isIOS) {
+            // Prevent seed from being available to the Universal Clipboard
+            clipboardFn = RNSecureClipboard.setString;
+        } else {
+            clipboardFn = Clipboard.setString;
         }
 
-        Clipboard.setString(seed);
+        clipboardFn(seed);
         this.props.generateAlert('success', t('seedCopied'), t('seedCopiedExplanation'));
         this.timeout = setTimeout(() => {
-            Clipboard.setString(' ');
+            clipboardFn.setString(' ');
             this.generateClipboardClearAlert();
         }, 30000);
     }
