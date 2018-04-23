@@ -74,7 +74,7 @@ class Dashboard extends React.PureComponent {
                 <div>
                     <section className={classNames(css.balance, balanceOpen ? css.open : null)}>
                         <span onClick={() => history.push('/wallet/')}>
-                            <Icon icon="cross" size={32} />
+                            <Icon icon="cross" size={24} />
                         </span>
                         <Balance />
                         <hr />
