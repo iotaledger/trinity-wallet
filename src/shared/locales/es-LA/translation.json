@@ -86,6 +86,7 @@
         "cannotSendToOwn": "Enviando a dirección propia",
         "cannotSendToOwnExplanation": "No puede hacer una transferencia de valor a un direccion propia.",
         "pleaseWait": "Porfavor espere",
+        "pleaseWaitEllipses": "Please wait...",
         "pleaseWaitExplanation": "Trinity esta ocupada. Por favor espere un poco e intente nuevamente.",
         "pleaseWaitTransferExplanation": "Su saldo disponible se está utilizando actualmente en otras transferencias. Por favor, espere a que una de ellas se confirme antes de volver a intentarlo.",
         "snapshotTransitionInProgress": "Transicion de snapshot en progreso",
@@ -490,7 +491,15 @@
         "cannotCompleteTransition": "No se puede completar la transicion de snapshot",
         "cannotCompleteTransitionExplanation": "Tu balance debe ser mayor que 0 para completar la transicion.",
         "transitionComplete": "Transicion de snapshot completada",
-        "transitionCompleteExplanation": "La transicion del snapshot fue completada exitosamente."
+        "transitionCompleteExplanation": "La transicion del snapshot fue completada exitosamente.",
+        "detectedBalance": "Detected balance: {{amount}} {{unit}}",
+        "isThisCorrect": "Is this correct?",
+        "snapshotExplanation": "Every so often, a snapshot is performed to prune the size of the Tangle.",
+        "hasSnapshotTakenPlace": "Has a snapshot taken place? Press the button below to transition.",
+        "transition": "TRANSITION",
+        "transitioning": "Transitioning for the snapshot.",
+        "generatingAndDetecting": "Generating addresses and detecting balance.",
+        "attaching": "Attaching addresses to Tangle"
     },
     "deepLink": {
         "autofill": "Auto completado exitoso",

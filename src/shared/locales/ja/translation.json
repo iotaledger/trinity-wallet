@@ -86,6 +86,7 @@
         "cannotSendToOwn": "自分のアドレスに送金する。",
         "cannotSendToOwnExplanation": "自分のアドレスに送金することができません。",
         "pleaseWait": "少々お待ちください。",
+        "pleaseWaitEllipses": "Please wait...",
         "pleaseWaitExplanation": "Trinityは別の機能を実行しています。お待ち頂き、もう一度実行してください。",
         "pleaseWaitTransferExplanation": "利用可能な残高は、現在、別の送金で使用されています。送金が承認されるまで少々お待ちください。",
         "snapshotTransitionInProgress": "スナップショットの移行が進行中",
@@ -198,7 +199,7 @@
         "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。",
         "generateNewAddress": "新しいアドレス",
         "message": "任意のメッセージ",
-        "removeMessage": "メッセージを削除します。",
+        "removeMessage": "メッセージを削除",
         "noAddresses": "アドレスなし",
         "spent": "使用済"
     },
@@ -490,7 +491,15 @@
         "cannotCompleteTransition": "スナップショットの移行を完了できません。",
         "cannotCompleteTransitionExplanation": "移行を完了するには、残高が0より大きくなければなりません。",
         "transitionComplete": "スナップショットの移行完了",
-        "transitionCompleteExplanation": "スナップショットの移行が正常に完了しました。"
+        "transitionCompleteExplanation": "スナップショットの移行が正常に完了しました。",
+        "detectedBalance": "Detected balance: {{amount}} {{unit}}",
+        "isThisCorrect": "Is this correct?",
+        "snapshotExplanation": "Every so often, a snapshot is performed to prune the size of the Tangle.",
+        "hasSnapshotTakenPlace": "Has a snapshot taken place? Press the button below to transition.",
+        "transition": "TRANSITION",
+        "transitioning": "Transitioning for the snapshot.",
+        "generatingAndDetecting": "Generating addresses and detecting balance.",
+        "attaching": "Attaching addresses to Tangle"
     },
     "deepLink": {
         "autofill": "自動入力成功",
