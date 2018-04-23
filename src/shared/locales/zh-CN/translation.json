@@ -86,6 +86,7 @@
         "cannotSendToOwn": "发送到自己的地址",
         "cannotSendToOwnExplanation": "您不能转账到您自己的地址。",
         "pleaseWait": "请稍等",
+        "pleaseWaitEllipses": "Please wait...",
         "pleaseWaitExplanation": "Trinity正在执行另一个功能。请稍候再试一次。",
         "pleaseWaitTransferExplanation": "您的可用余额目前正在其他转帐中使用。请等待确认后再试一次。",
         "snapshotTransitionInProgress": "正在进行快照转换",
@@ -490,7 +491,15 @@
         "cannotCompleteTransition": "无法完成快照转换",
         "cannotCompleteTransitionExplanation": "您的余额必须大于0才能完成事务。",
         "transitionComplete": "快照转换完成。",
-        "transitionCompleteExplanation": "快照转换已成功完成。"
+        "transitionCompleteExplanation": "快照转换已成功完成。",
+        "detectedBalance": "Detected balance: {{amount}} {{unit}}",
+        "isThisCorrect": "Is this correct?",
+        "snapshotExplanation": "Every so often, a snapshot is performed to prune the size of the Tangle.",
+        "hasSnapshotTakenPlace": "Has a snapshot taken place? Press the button below to transition.",
+        "transition": "TRANSITION",
+        "transitioning": "Transitioning for the snapshot.",
+        "generatingAndDetecting": "Generating addresses and detecting balance.",
+        "attaching": "Attaching addresses to Tangle"
     },
     "deepLink": {
         "autofill": "Autofill success",

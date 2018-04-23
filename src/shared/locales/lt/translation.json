@@ -86,6 +86,7 @@
         "cannotSendToOwn": "Gavėjo adresas sutampa su siuntėjo adresu",
         "cannotSendToOwnExplanation": "Į savo adresą atlikti pavedimo negalima.",
         "pleaseWait": "Prašome palaukti",
+        "pleaseWaitEllipses": "Please wait...",
         "pleaseWaitExplanation": "Trinity atlieka kitą veiksmą. Prašome palaukti ir bandyti dar kartą.",
         "pleaseWaitTransferExplanation": "Jūsų balansas yra kitų pavedimų apdorojimo procese. Prašome palaukti, kol vienas iš tų pavedimų bus atliktas ir bandykite dar kartą.",
         "snapshotTransitionInProgress": "Vyksta tinklo duomenų perkėlimas",
@@ -490,7 +491,15 @@
         "cannotCompleteTransition": "Nepavyksta perkelti tinklo duomenų",
         "cannotCompleteTransitionExplanation": "Jūsų balansas turi būti didesnis nei 0, kad perkėlimas būtų įvykdytas.",
         "transitionComplete": "Tinklo duomenų perkėlimas įvykdytas",
-        "transitionCompleteExplanation": "Tinklo duomenų perkėlimas įvykdytas sėkmingai."
+        "transitionCompleteExplanation": "Tinklo duomenų perkėlimas įvykdytas sėkmingai.",
+        "detectedBalance": "Detected balance: {{amount}} {{unit}}",
+        "isThisCorrect": "Is this correct?",
+        "snapshotExplanation": "Every so often, a snapshot is performed to prune the size of the Tangle.",
+        "hasSnapshotTakenPlace": "Has a snapshot taken place? Press the button below to transition.",
+        "transition": "TRANSITION",
+        "transitioning": "Transitioning for the snapshot.",
+        "generatingAndDetecting": "Generating addresses and detecting balance.",
+        "attaching": "Attaching addresses to Tangle"
     },
     "deepLink": {
         "autofill": "Automatinis įkėlimas sėkmingas",

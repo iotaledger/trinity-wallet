@@ -14,7 +14,7 @@
         "transferSentMessage": "Siirtosi on lähetetty Tangle-verkkoon.",
         "messageSent": "Viesti lähetetty",
         "messageSentMessage": "Viestisi on lähetetty Tangle-verkkoon.",
-        "keyReuse": "Sending to spent address",
+        "keyReuse": "Lähetys jo käytettyyn osoitteeseen",
         "keyReuseError": "Et voi lähettää osoitteeseen, jota on jo käytetty aikaisemmin.",
         "invalidResponse": "Palvelin virhe",
         "invalidResponseExplanation": "Palvelin palautti virheilmoituksen. Katso ilmoitukset saadaksesi lisätietoa.",
@@ -86,6 +86,7 @@
         "cannotSendToOwn": "Lähetys omaan osoitteeseen",
         "cannotSendToOwnExplanation": "Et voi siirtää varoja yhteen omista osoitteistasi.",
         "pleaseWait": "Odota hetki",
+        "pleaseWaitEllipses": "Odota hetki...",
         "pleaseWaitExplanation": "Trinity suorittaa jo toista toimintoa. Odota hetki ja yritä uudelleen.",
         "pleaseWaitTransferExplanation": "Saldoasi käytetään jo olemassa olevissa siirroissa. Odota, että ne on vahvistettu ennen kuin yrität uudelleen.",
         "snapshotTransitionInProgress": "Snapshot-siirtymä käynnissä",
@@ -490,7 +491,15 @@
         "cannotCompleteTransition": "Snapshot-siirtymä ei onnistu",
         "cannotCompleteTransitionExplanation": "Tilin saldon tulee olla suurempi kuin 0, jotta siirtymäprosessi voidaan käynnistää.",
         "transitionComplete": "Snapshot-siirtymä valmis",
-        "transitionCompleteExplanation": "Snapshot-siirtymäprosessi suoritettu onnistuneesti."
+        "transitionCompleteExplanation": "Snapshot-siirtymäprosessi suoritettu onnistuneesti.",
+        "detectedBalance": "Löydetty saldo: {{amount}} {{unit}}",
+        "isThisCorrect": "Onko tämä oikein?",
+        "snapshotExplanation": "Aika ajoin järjestelmä suorittaa Snapshot -päivityksen jotta Tangle-verkon koko ei kasva liian suureksi.",
+        "hasSnapshotTakenPlace": "Onko snapshot -päivitys suoritettu? Paina alla olevaa painiketta siirtyäksesi uuteen versioon.",
+        "transition": "SIIRTYMÄ",
+        "transitioning": "Siirrytään uuteen snapshot -versioon.",
+        "generatingAndDetecting": "Luodaan osoitteita ja haetaan saldoa.",
+        "attaching": "Yhdistetään osoitteita Tangle-verkkoon"
     },
     "deepLink": {
         "autofill": "Tiedot haettu onnistuneesti",
