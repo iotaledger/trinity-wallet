@@ -179,6 +179,15 @@ export const promoteTransaction = (bundleHash, accountName) => (dispatch, getSta
         .catch((err) => {
             if (err.message === Errors.BUNDLE_NO_LONGER_VALID && chainBrokenInternally) {
                 dispatch(generateAlert('error', i18next.t('global:promotionError'), i18next.t('global:noLongerValid')));
+            } else if (err.message.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
+                dispatch(
+                    generateAlert(
+                        'error',
+                        i18next.t('global:attachToTangleUnavailable'),
+                        i18next.t('global:attachToTangleUnavailableExplanation'),
+                        20000,
+                    ),
+                );
             }
 
             dispatch(generatePromotionErrorAlert());
@@ -442,7 +451,7 @@ export const makeTransaction = (seed, address, value, message, accountName, powF
                             20000,
                         ),
                     );
-                } else if (message.includes('attachToTangle is not available')) {
+                } else if (message.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
                     return dispatch(
                         generateAlert(
                             'error',

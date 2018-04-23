@@ -103,7 +103,6 @@ export default class TransactionRow extends PureComponent {
             borderColor: PropTypes.shape({ borderColor: PropTypes.string.isRequired }).isRequired,
             barColor: PropTypes.string.isRequired,
             barBg: PropTypes.string.isRequired,
-            buttonsOpacity: PropTypes.shape({ opacity: PropTypes.number.isRequired }).isRequired,
         }).isRequired,
         /** Container element press event callback function */
         onPress: PropTypes.func.isRequired,
