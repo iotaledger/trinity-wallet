@@ -86,6 +86,7 @@
         "cannotSendToOwn": "Enda aadressile saatmine",
         "cannotSendToOwnExplanation": "Te ei saa teha väärtusega tehingut mõnele oma aadressile.",
         "pleaseWait": "Palun oodake",
+        "pleaseWaitEllipses": "Please wait...",
         "pleaseWaitExplanation": "Trinity täidab teist funktsiooni. Palun oodake ja proovige uuesti.",
         "pleaseWaitTransferExplanation": "Teie vabad vahendid on hetkel kasutuses teistes tehingutes. Palun oodake kuni üks kinnitatakse enne uuesti proovimist.",
         "snapshotTransitionInProgress": "Snapshot transition in progress",
@@ -490,7 +491,15 @@
         "cannotCompleteTransition": "Cannot complete snapshot transition",
         "cannotCompleteTransitionExplanation": "Ülemineku lõpuleviimiseks peab teie kontojääk olema suurem kui 0.",
         "transitionComplete": "Snapshot transition complete",
-        "transitionCompleteExplanation": "The snapshot transition has completed successfully."
+        "transitionCompleteExplanation": "The snapshot transition has completed successfully.",
+        "detectedBalance": "Detected balance: {{amount}} {{unit}}",
+        "isThisCorrect": "Is this correct?",
+        "snapshotExplanation": "Every so often, a snapshot is performed to prune the size of the Tangle.",
+        "hasSnapshotTakenPlace": "Has a snapshot taken place? Press the button below to transition.",
+        "transition": "TRANSITION",
+        "transitioning": "Transitioning for the snapshot.",
+        "generatingAndDetecting": "Generating addresses and detecting balance.",
+        "attaching": "Attaching addresses to Tangle"
     },
     "deepLink": {
         "autofill": "Autofill success",
