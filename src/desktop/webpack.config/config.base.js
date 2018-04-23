@@ -29,7 +29,14 @@ module.exports = {
                 test: /\.css$/,
                 exclude: /node_modules/,
                 use: [
-                    devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+                    devMode
+                        ? 'style-loader'
+                        : {
+                              loader: MiniCssExtractPlugin.loader,
+                              options: {
+                                  publicPath: '../',
+                              },
+                          },
                     {
                         loader: 'css-loader',
                         options: {
