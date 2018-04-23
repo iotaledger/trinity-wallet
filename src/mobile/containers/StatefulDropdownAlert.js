@@ -90,7 +90,7 @@ class StatefulDropdownAlert extends Component {
     getStatusBarStyle() {
         const { backgroundColor } = this.props;
         if (isIPhoneX) {
-            return 'dark-content';
+            return 'light-content';
         }
         return tinycolor(backgroundColor).isDark() ? 'light-content' : 'dark-content';
     }
