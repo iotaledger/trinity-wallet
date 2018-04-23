@@ -5343,6 +5343,10 @@ react-native-safe-module@^1.1.0:
   dependencies:
     dedent "^0.6.0"
 
+react-native-secure-clipboard@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-secure-clipboard/-/react-native-secure-clipboard-0.1.1.tgz#dad5c2ac480ad8f6ab7f9ff88d306a4882226553"
+
 react-native-securerandom@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/react-native-securerandom/-/react-native-securerandom-0.1.1.tgz#f130623a412c338b0afadedbc204c5cbb8bf2070"
