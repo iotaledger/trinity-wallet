@@ -86,6 +86,7 @@
         "cannotSendToOwn": "स्वयं के पते पर भेजा जा रहा है",
         "cannotSendToOwnExplanation": "आप स्वयं के किसी पते पर मूल्य हस्तांतरण नहीं कर सकते",
         "pleaseWait": "कृपया प्रतीक्षा करें",
+        "pleaseWaitEllipses": "Please wait...",
         "pleaseWaitExplanation": "ट्रिनिटी एक और काम कर रहा है । कृपया प्रतीक्षा करें और पुन: प्रयास करे ।",
         "pleaseWaitTransferExplanation": "आपका उपलब्ध बैलेंस वर्तमान में अंय स्थानांतरण में उपयोग किया जा रहा है । पुन: प्रयास करने से पहले पुष्टि करने के लिए कृपया प्रतीक्षा करें ।",
         "snapshotTransitionInProgress": "स्नैपशॉट प्रगति में",
@@ -490,7 +491,15 @@
         "cannotCompleteTransition": "स्नैपशॉट पूरा नहीं कर सकता",
         "cannotCompleteTransitionExplanation": "इस प्रक्रिया को पूरा करने के लिए आपका बैलेंस 0 से अधिक होना चाहिए ।",
         "transitionComplete": "स्नैपशॉट पूर्ण",
-        "transitionCompleteExplanation": "स्नैपशॉट सफलतापूर्वक पूर्ण हुआ ।"
+        "transitionCompleteExplanation": "स्नैपशॉट सफलतापूर्वक पूर्ण हुआ ।",
+        "detectedBalance": "Detected balance: {{amount}} {{unit}}",
+        "isThisCorrect": "Is this correct?",
+        "snapshotExplanation": "Every so often, a snapshot is performed to prune the size of the Tangle.",
+        "hasSnapshotTakenPlace": "Has a snapshot taken place? Press the button below to transition.",
+        "transition": "TRANSITION",
+        "transitioning": "Transitioning for the snapshot.",
+        "generatingAndDetecting": "Generating addresses and detecting balance.",
+        "attaching": "Attaching addresses to Tangle"
     },
     "deepLink": {
         "autofill": "Autofill success",

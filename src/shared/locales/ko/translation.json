@@ -86,6 +86,7 @@
         "cannotSendToOwn": "내 주소로 보내는 중",
         "cannotSendToOwnExplanation": "내 주소로는 가치 전송을 할 수 없습니다.",
         "pleaseWait": "잠시 기다려 주세요",
+        "pleaseWaitEllipses": "Please wait...",
         "pleaseWaitExplanation": "트리니티가 다른 작업을 수행하는 중입니다. 잠시 후 다시 시도해 주십시오.",
         "pleaseWaitTransferExplanation": "현재 잔액이 다른 거래에 사용되고 있습니다. 진행중인 거래가 종료된 후 다시 시도해 주십시오.",
         "snapshotTransitionInProgress": "스냅샷 이전 진행 중",
@@ -490,7 +491,15 @@
         "cannotCompleteTransition": "스냅샷 이전을 완료할 수 없음",
         "cannotCompleteTransitionExplanation": "스냅샷 이전을 수행하기 위해서는 잔액이 0보다 커야 합니다.",
         "transitionComplete": "스냅샷 이전 완료",
-        "transitionCompleteExplanation": "스냅샷 이전이 성공적으로 완료되었습니다."
+        "transitionCompleteExplanation": "스냅샷 이전이 성공적으로 완료되었습니다.",
+        "detectedBalance": "Detected balance: {{amount}} {{unit}}",
+        "isThisCorrect": "Is this correct?",
+        "snapshotExplanation": "Every so often, a snapshot is performed to prune the size of the Tangle.",
+        "hasSnapshotTakenPlace": "Has a snapshot taken place? Press the button below to transition.",
+        "transition": "TRANSITION",
+        "transitioning": "Transitioning for the snapshot.",
+        "generatingAndDetecting": "Generating addresses and detecting balance.",
+        "attaching": "Attaching addresses to Tangle"
     },
     "deepLink": {
         "autofill": "자동 완성 성공",
