@@ -285,20 +285,6 @@
 			remoteGlobalIDString = 9D23B34F1C767B80008B4819;
 			remoteInfo = ReactNativePermissions;
 		};
-		6057F929207E88DA001EC1EE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 33AC314FF1C9CE4F19E8E899E79675B4 /* React.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EBF21BDC1FC498900052F4D5;
-			remoteInfo = jsinspector;
-		};
-		6057F92B207E88DA001EC1EE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 33AC314FF1C9CE4F19E8E899E79675B4 /* React.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EBF21BFA1FC4989A0052F4D5;
-			remoteInfo = "jsinspector-tvOS";
-		};
 		67F735F37D9C96FFCC1469292012988C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 79A46F4458348360C0DFE21018DAAF14 /* RCTGeolocation.xcodeproj */;
@@ -1165,8 +1151,6 @@
 				9D772B812DB6C05ECF25775FCAB7E002 /* libcxxreact.a */,
 				CBC55660207BA79E00BA0A7F /* libjschelpers.a */,
 				4638EBE17A0D3826A792DF9563570526 /* libjschelpers.a */,
-				6057F92A207E88DA001EC1EE /* libjsinspector.a */,
-				6057F92C207E88DA001EC1EE /* libjsinspector-tvOS.a */,
 				CBC55662207BA79E00BA0A7F /* libthird-party.a */,
 				A449CDAA92C2C98ABDF0AE5690864303 /* libthird-party.a */,
 				9DBC3C8E34A01D88134F4A69AA32625F /* libdouble-conversion.a */,
@@ -1810,20 +1794,6 @@
 			fileType = archive.ar;
 			path = libReactNativePermissions.a;
 			remoteRef = 6056CF5A20827E2E0006A2F3 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		6057F92A207E88DA001EC1EE /* libjsinspector.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libjsinspector.a;
-			remoteRef = 6057F929207E88DA001EC1EE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		6057F92C207E88DA001EC1EE /* libjsinspector-tvOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libjsinspector-tvOS.a";
-			remoteRef = 6057F92B207E88DA001EC1EE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		667F57494F99C69927244B789F08BA39 /* Lottie.framework */ = {
