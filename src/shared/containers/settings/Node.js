@@ -37,11 +37,24 @@ export default function withNodeData(NodeComponent) {
         changeNode = (nodeSelected) => {
             const { nodes, node, setFullNode, addCustomPoWNode, generateAlert, backPress, t } = this.props;
 
-            if (!nodeSelected || nodeSelected.length < 4) {
+            if (!nodeSelected) {
                 return;
             }
-            //Remove trailing slash
-            nodeSelected = nodeSelected.replace(/\/$/, '');
+
+            // Remove spaces and trailing slash
+            nodeSelected = nodeSelected.replace(/ /g, '').replace(/\/$/, '');
+
+            // Only allow HTTPS nodes
+            if (!nodeSelected.startsWith('https://')) {
+                generateAlert('error', t('nodeMustUseHTTPS'), t('nodeMustUseHTTPSExplanation'));
+                return;
+            }
+
+            // Check whether the node was already added to the list
+            if (nodes.includes(nodeSelected)) {
+                generateAlert('error', t('nodeDuplicated'), t('nodeDuplicatedExplanation'));
+                return;
+            }
 
             if (nodeSelected === node) {
                 return;
