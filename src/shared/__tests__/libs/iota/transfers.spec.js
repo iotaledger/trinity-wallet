@@ -1,5 +1,6 @@
 import find from 'lodash/find';
 import keys from 'lodash/keys';
+import isArray from 'lodash/isArray';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import {
@@ -17,6 +18,8 @@ import {
     getTransactionHashesForUnspentAddresses,
     getPendingTransactionHashesForSpentAddresses,
     performPow,
+    filterInvalidPendingTransactions,
+    getBundleHashesForNewlyConfirmedTransactions,
 } from '../../../libs/iota/transfers';
 import { iota, SwitchingConfig } from '../../../libs/iota/index';
 import trytes from '../../__samples__/trytes';
@@ -935,6 +938,147 @@ describe('libs: iota/transfers', () => {
                 expect(transactionObjects[3].trunkTransaction).to.equal(trunkTransaction);
                 expect(transactionObjects[3].branchTransaction).to.equal(branchTransaction);
             });
+        });
+    });
+
+    describe('#filterInvalidPendingTransactions', () => {
+        let sandbox;
+
+        beforeEach(() => {
+            sandbox = sinon.sandbox.create();
+
+            sandbox.stub(iota.api, 'getNodeInfo').yields(null, {});
+        });
+
+        afterEach(() => {
+            sandbox.restore();
+        });
+
+        describe('when there are no pending transactions', () => {
+            it('should return an empty array', () => {
+                const transactions = Array.from(new Array(5), () => ({ persistence: true }));
+
+                const promise = filterInvalidPendingTransactions(transactions, {});
+
+                return promise.then((transactions) => {
+                    expect(transactions).to.eql([]);
+                });
+            });
+        });
+
+        describe('when there are incoming pending transfers', () => {
+            it('should filter transaction if input addresses do not have enough balance', () => {
+                const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['0'] });
+                const addressData = {
+                    ['U'.repeat(81)]: { spent: true },
+                    ['V'.repeat(81)]: { spent: false },
+                };
+
+                const transactions = [
+                    {
+                        incoming: true,
+                        persistence: false,
+                        inputs: [{ address: 'A'.repeat(81), value: 10 }],
+                    },
+                ];
+
+                const promise = filterInvalidPendingTransactions(transactions, addressData);
+                return promise.then((txs) => {
+                    expect(txs).to.eql([]);
+                    getBalances.restore();
+                });
+            });
+
+            it('should not filter transaction if input addresses still have enough balance', () => {
+                const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['10'] });
+                const addressData = {
+                    ['U'.repeat(81)]: { spent: true },
+                    ['V'.repeat(81)]: { spent: false },
+                };
+
+                const transactions = [
+                    {
+                        incoming: true,
+                        persistence: false,
+                        inputs: [{ address: 'A'.repeat(81), value: 10 }],
+                    },
+                ];
+
+                const promise = filterInvalidPendingTransactions(transactions, addressData);
+                return promise.then((txs) => {
+                    expect(txs).to.eql(transactions);
+                    getBalances.restore();
+                });
+            });
+        });
+
+        describe('when there are outgoing pending transfers', () => {
+            it('should filter transaction if input addresses do not have enough balance', () => {
+                const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['0'] });
+                const addressData = {
+                    ['U'.repeat(81)]: { spent: true },
+                    ['V'.repeat(81)]: { spent: false },
+                };
+
+                const transactions = [
+                    {
+                        incoming: true,
+                        persistence: false,
+                        inputs: [{ address: 'U'.repeat(81), value: -10 }],
+                    },
+                ];
+
+                const promise = filterInvalidPendingTransactions(transactions, addressData);
+                return promise.then((txs) => {
+                    expect(txs).to.eql([]);
+                    getBalances.restore();
+                });
+            });
+
+            it('should not filter transaction if input addresses still have enough balance', () => {
+                const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['10'] });
+                const addressData = {
+                    ['U'.repeat(81)]: { spent: true },
+                    ['V'.repeat(81)]: { spent: false },
+                };
+
+                const transactions = [
+                    {
+                        incoming: true,
+                        persistence: false,
+                        inputs: [{ address: 'U'.repeat(81), value: -10 }],
+                    },
+                ];
+
+                const promise = filterInvalidPendingTransactions(transactions, addressData);
+                return promise.then((txs) => {
+                    expect(txs).to.eql(transactions);
+                    getBalances.restore();
+                });
+            });
+        });
+    });
+
+    describe('#getBundleHashesForNewlyConfirmedTransactions', () => {
+        it('should always return an array', () => {
+            const args = [[undefined, undefined], [null, undefined], [], [{}, {}], ['', ''], [0, 0]];
+
+            args.forEach((arg) => {
+                expect(isArray(getBundleHashesForNewlyConfirmedTransactions(...arg))).to.equal(true);
+            });
+        });
+
+        it('should return bundle hashes with any tail transaction existing in confirmed transaction hashes', () => {
+            const unconfirmedBundleTails = {
+                firstBundleHash: [{ hash: 'foo' }, { hash: 'baz' }],
+                secondBundleHash: [{ hash: 'bar' }],
+            };
+
+            const confirmedTransactionsHashes = ['baz'];
+
+            expect(
+                getBundleHashesForNewlyConfirmedTransactions(unconfirmedBundleTails, confirmedTransactionsHashes),
+            ).to.eql(['firstBundleHash']);
         });
     });
 });
