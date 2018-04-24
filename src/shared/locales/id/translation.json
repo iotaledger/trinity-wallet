@@ -14,13 +14,16 @@
         "transferSentMessage": "Transfer anda telah dikirim ke Tangle.",
         "messageSent": "Pesan telah dikirim",
         "messageSentMessage": "Pesan anda telah dikirim ke Tangle.",
-        "keyReuse": "Sending to spent address",
+        "keyReuse": "Mengirim ke alamat yang telah digunakan",
         "keyReuseError": "Anda tidak dapat mengirim ke alamat yang telah melakukan pengeluaran.",
-        "invalidResponse": "Node error",
-        "invalidResponseExplanation": "The node returned an error. Check the notifications for more information.",
-        "invalidResponsePollingExplanation": "The node returned an error while polling. Check the notifications for more information.",
-        "invalidResponseFetchingAccount": "The node returned an error while fetching your account information. Try changing your node or check the notifications for more information.",
-        "invalidResponseSendingTransfer": "The node returned an error while sending the transfer. Check the notifications for more information.",
+        "invalidResponse": "Kesalahan pada Node",
+        "invalidResponseExplanation": "Node mengembalikan kesalahan. Periksa notifikasi untuk informasi lebih lanjut.",
+        "invalidResponsePollingExplanation":
+            "Node mengembalikan kesalahan ketika polling. Periksa notifikasi untuk informasi lebih lanjut.",
+        "invalidResponseFetchingAccount":
+            "Node mengembalikan kesalahan ketika mengakses informasi akun anda. Cobalah mengganti Node atau periksa notifikasi untuk informasi lebih lanjut.",
+        "invalidResponseSendingTransfer":
+            "Node mengembalikan kesalahan ketika mengirim. Periksa notifikasi untuk informasi lebih lanjut.",
         "seed": "Benih",
         "back": "KEMBALI",
         "backLowercase": "Kembali",
@@ -31,8 +34,8 @@
         "save": "Simpan",
         "close": "TUTUP",
         "continue": "Lanjutkan",
-        "enable": "Enable",
-        "disable": "Disable",
+        "enable": "Aktif",
+        "disable": "Tidak aktif",
         "manualCopy": "Tulis Seed Anda",
         "paperWallet": "Cetak ke printer",
         "copyToClipboard": "Tambahkan ke manajer kata sandi",
@@ -86,6 +89,7 @@
         "cannotSendToOwn": "Mengirim ke alamat sendiri",
         "cannotSendToOwnExplanation": "Anda tidak bisa mentransfer nilai ke salah satu alamat sendiri.",
         "pleaseWait": "Silahkan tunggu",
+        "pleaseWaitEllipses": "Silahkan tunggu...",
         "pleaseWaitExplanation": "Trinity sedang melakukan fungsi lain. Silahkan tunggu dan coba lagi.",
         "pleaseWaitTransferExplanation":
             "Saldo yang tersedia saat ini sedang digunakan untuk transfer. Silahkan tunggu sampai salah satu telah dikonfirmasi sebelum mencoba lagi.",
@@ -94,19 +98,21 @@
         "checkForUpdates": "Periksa pembaruan",
         "account": "Akun",
         "enterPasswordToAccessSettings": "Masukkan kata sandi anda untuk mengakses pengaturan akun",
-        "enterYourPassword": "Enter your password",
+        "enterYourPassword": "Masukkan kata sandi Anda",
         "changeNode": "Ubah node",
         "addCustomNode": "Tambah node khusus",
         "nodeChanged": "Node diganti",
         "nodeChangedExplanation": "Node telah berhasil diubah.",
-        "nodeAutoChanged": "Auto-switched node",
-        "nodeAutoChangedExplanation": "Switched to new node {{- nodeAddress}} as selected node is offline."
+        "nodeAutoChanged": "Node beralih otomatis",
+        "nodeAutoChangedExplanation": "Beralih ke node baru {{- nodeAddress}} karena node yang dipilih offline."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed berisi karakter yang tidak valid",
-        "seedInvalidCharsExplanation": "Seed Anda memiliki karakter yang tidak valid. Seed hanya boleh terdiri dari huruf A-Z dan angka 9. Silakan coba lagi.",
+        "seedInvalidCharsExplanation":
+            "Seed Anda memiliki karakter yang tidak valid. Seed hanya boleh terdiri dari huruf A-Z dan angka 9. Silakan coba lagi.",
         "seedTooShort": "Seed terlalu singkat",
-        "seedTooShortExplanation": "Seed harus terdiri dari setidaknya {{maxLength}} karakter. Seed Anda adalah {{maxLength}} karakter. Silahkan coba lagi.",
+        "seedTooShortExplanation":
+            "Seed harus terdiri dari setidaknya {{maxLength}} karakter. Seed Anda adalah {{maxLength}} karakter. Silahkan coba lagi.",
         "nameInUse": "Nama akun sudah digunakan",
         "nameInUseExplanation": "Silahkan menggunakan nama akun yang unik untuk Seed anda.",
         "enterAccountName": "Masukkan nama akun.",
@@ -128,7 +134,8 @@
         "passwordTooShort": "Kata sandi terlalu singkat",
         "passwordTooShortExplanation": "Kata sandi Anda paling sedikit harus 12 karakter. Silakan coba lagi.",
         "oldPassword": "Tidak bisa merubah password lama",
-        "oldPasswordExplanation": "Anda tidak boleh menggunakan kata sandi lama sebagai kata sandi baru. Silahkan coba lagi dengan kata sandi baru.",
+        "oldPasswordExplanation":
+            "Anda tidak boleh menggunakan kata sandi lama sebagai kata sandi baru. Silahkan coba lagi dengan kata sandi baru.",
         "ensureStrongPassword": "Pastikan Anda menggunakan kata sandi yang kuat setidaknya 12 karakter.",
         "currentPassword": "Kata Sandi Saat Ini",
         "newPassword": "Kata Sandi Baru",
@@ -146,10 +153,13 @@
     },
     "enterSeed": {
         "invalidCharacters": "Seed berisi karakter yang tidak valid",
-        "invalidCharactersExplanation": "Seed Anda memiliki karakter yang tidak valid. Seed hanya boleh terdiri dari huruf A-Z dan angka 9. Silakan coba lagi.",
+        "invalidCharactersExplanation":
+            "Seed Anda memiliki karakter yang tidak valid. Seed hanya boleh terdiri dari huruf A-Z dan angka 9. Silakan coba lagi.",
         "seedTooShort": "Seed terlalu singkat",
-        "seedTooShortExplanation": "Seed harus terdiri dari setidaknya {{maxLength}} karakter. Seed Anda adalah {{maxLength}} karakter. Silahkan coba lagi.",
-        "seedExplanation": "Seed harus {{maxLength}} karakter dan harus berisi huruf A-Z, atau nomor 9. Anda tidak dapat menggunakan Seed lebih dari {{maxLength}} karakter.",
+        "seedTooShortExplanation":
+            "Seed harus terdiri dari setidaknya {{maxLength}} karakter. Seed Anda adalah {{maxLength}} karakter. Silahkan coba lagi.",
+        "seedExplanation":
+            "Seed harus {{maxLength}} karakter dan harus berisi huruf A-Z, atau nomor 9. Anda tidak dapat menggunakan Seed lebih dari {{maxLength}} karakter.",
         "neverShare": "JANGAN PERNAH MEMBERITAHUKAN SEED ANDA DENGAN SIAPAPUN"
     },
     "home": {
@@ -185,7 +195,8 @@
         "individualLetters": "Tekan masing-masing huruf untuk mengacaknya."
     },
     "onboardingComplete": {
-        "walletReady": "Dompet sudah dipersiapkan dan siap untuk digunakan. Silahkan cek di menu Perkakas jika Anda ingin membuat perubahan lagi."
+        "walletReady":
+            "Dompet sudah dipersiapkan dan siap untuk digunakan. Silahkan cek di menu Perkakas jika Anda ingin membuat perubahan lagi."
     },
     "paperWallet": {
         "clickToPrint": "Tekan tombol di bawah ini untuk mencetak salinan dompet kertas anda.",
@@ -231,8 +242,8 @@
         "message": "Pesan",
         "invalidMessage": "Pesan tidak valid",
         "invalidMessageExplanation": "Pesan anda mengandung karakter yang tidak valid.",
-        "invalidMessageTooLong": "Message too long",
-        "invalidMessageTooLongExplanation": "The message exceeds the max. amount of characters (1093).",
+        "invalidMessageTooLong": "Pesan terlalu panjang",
+        "invalidMessageTooLongExplanation": "Pesan melebihi maksimum jumlah karakter (1093).",
         "send": "KIRIM",
         "invalidAmount": "Jumlah nilai salah",
         "invalidAmountExplanation":
@@ -240,20 +251,23 @@
         "maximumSelected": "Jumlah MAKSIMUM dipilih",
         "iotaUnits": "IOTA unit dijelaskan",
         "sendMax": "KIRIM MAKS",
-        "fingerprintOnSend": "Touch fingerprint reader to send the transfer"
+        "fingerprintOnSend": "Sentuh pemindai sidik jari untuk mentransfer"
     },
     "setPassword": {
         "passwordTooShort": "Kata sandi terlalu singkat",
-        "passwordTooShortExplanation": "Kata sandi setidaknya harus ${MIN_PASSWORD_LENGTH} karakter. Kata sandi anda saat ini adalah ${this.state.password.length} karakter. Silakan coba lagi.",
+        "passwordTooShortExplanation":
+            "Kata sandi setidaknya harus ${MIN_PASSWORD_LENGTH} karakter. Kata sandi anda saat ini adalah ${this.state.password.length} karakter. Silakan coba lagi.",
         "passwordMismatch": "Kata sandi tidak sama",
         "passwordMismatchExplanation": "Kata sandi yang Anda masukkan tidak sama. Silahkan coba lagi.",
         "nowWeNeedTo": "Mari kita membuat kata sandi.",
-        "anEncryptedCopy": "Salinan dari Seed yang terenkripsi akan disimpan di perangkat anda. Anda akan menggunakan kata sandi ini untuk mengakses dompet anda.",
+        "anEncryptedCopy":
+            "Salinan dari Seed yang terenkripsi akan disimpan di perangkat anda. Anda akan menggunakan kata sandi ini untuk mengakses dompet anda.",
         "ensure": "Pastikan Anda menggunakan kata sandi yang kuat setidaknya 12 karakter.",
         "retypePassword": "Ketik ulang kata sandi"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "Anda dapat menggunakan beberapa Seed dengan dompet ini. Setiap Seed membutuhkan nama akun.",
+        "canUseMultipleSeeds":
+            "Anda dapat menggunakan beberapa Seed dengan dompet ini. Setiap Seed membutuhkan nama akun.",
         "youCanAdd": "Anda dapat menambahkan Seed di menu Perkakas."
     },
     "modeSelection": {
@@ -310,7 +324,7 @@
         "redo": "Ulangi",
         "about": "Tentang Trinity",
         "lockScreenTimeout": "Waktu habis kunci layar (Menit)",
-        "autoNodeSwitching": "Automatically switch node when selected is unreachable"
+        "autoNodeSwitching": "Otomatis beralih Node ketika Node terpilih tidak terjangkau"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Masukan kata sandi anda untuk mengatur ulang dompet anda.",
@@ -429,8 +443,8 @@
             "<0><0>Semua data dompet Anda termasuk </0> <1>Seeds, kata sandi,</1> <2>dan </2> <3>informasi akun lain</3> <4> akan hilang.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Touch fingerprint reader to enable fingerprint authentication",
-        "instructionsDisable": "Touch fingerprint reader to disable fingerprint authentication",
+        "instructionsEnable": "Sentuh pemindai sidik jari untuk mengaktifkan otentikasi sidik jari",
+        "instructionsDisable": "Sentuh pemindai sidik jari untuk mengnonaktifkan otentikasi sidik jari",
         "fingerprintAuthEnabled": "Otentikasi sidik jari diaktifkan",
         "fingerprintAuthEnabledExplanation": "Anda telah berhasil mengaktifkan otentikasi sidik jari.",
         "fingerprintAuthDisabled": "Otentikasi sidik jari dimatikan",
@@ -445,7 +459,7 @@
             "Perangkat anda tidak mendukung fungsi memindai sidik jari atau belum dikonfigurasi di pengaturan perangkat.",
         "buttonInstructionsDisable": "Tekan tombol dibawah ini untuk menonaktifkan autentikasi sidik jari.",
         "buttonInstructionsEnable": "Tekan tombol dibawah ini untuk mengaktifkan autentikasi sidik jari.",
-        "instructionsLogin": "Touch fingerprint reader to log in"
+        "instructionsLogin": "Tekan pemindai sidik jari untuk masuk"
     },
     "transferConfirmation": {
         "youAreAbout": "Anda akan mengirim {{contents}} ke alamat",
@@ -462,8 +476,8 @@
         "key": "Kunci",
         "twoFAEnabled": "2FA sekarang aktif",
         "twoFAEnabledExplanation": "Anda telah berhasil mengaktifkan dua faktor otentikasi.",
-        "twoFADisabled": "2FA is now disabled",
-        "twoFADisabledExplanation": "You have successfully disabled Two Factor Authentication.",
+        "twoFADisabled": "2FA sekarang tidak aktif",
+        "twoFADisabledExplanation": "Anda telah berhasil mengnonaktifkan dua faktor otentikasi.",
         "enterCode": "Masukkan kode dari aplikasi 2FA",
         "code": "Kode"
     },
@@ -486,8 +500,8 @@
         "remote": "Jarak jauh",
         "powUpdated": "Pengaturan Proof of Work",
         "powUpdatedExplanation": "Konfigurasi Proof of Work anda telah diperbarui.",
-        "noWebGLSupport": "WebGL not supported",
-        "noWebGLSupportExplanation": "Your computer does not support WebGL. Please use remote PoW."
+        "noWebGLSupport": "WebGL tidak didukung",
+        "noWebGLSupportExplanation": "Komputer anda tidak mendukung WebGL. Silahkan menggunakan Pow jarak jauh."
     },
     "progressSteps": {
         "validatingReceiveAddress": "Mengesahkan alamat penerima",
@@ -502,7 +516,16 @@
         "cannotCompleteTransition": "Tidak dapat menyelesaikan transisi snapshot",
         "cannotCompleteTransitionExplanation": "Saldo Anda harus lebih besar dari 0 untuk menyelesaikan transisi.",
         "transitionComplete": "Transisi Snapshot selesai",
-        "transitionCompleteExplanation": "Transisi Snapshot telah selesai dengan sukses."
+        "transitionCompleteExplanation": "Transisi Snapshot telah selesai dengan sukses.",
+        "detectedBalance": "Saldo terdeteksi: {{amount}}{{unit}}",
+        "isThisCorrect": "Apakah ini benar?",
+        "snapshotExplanation":
+            "Setiap beberapa waktu, Snapshot akan dilaksanakan untuk memangkas besar ukuran dari Tangle.",
+        "hasSnapshotTakenPlace": "Apakah Snapshot telah dilaksanakan? Tekan tombol dibawah ini untuk transisi.",
+        "transition": "TRANSISI",
+        "transitioning": "Transisi untuk Snapshot.",
+        "generatingAndDetecting": "Menghasilkan alamat dan mendeteksi saldo.",
+        "attaching": "Melampirkan alamat ke Tangle"
     },
     "deepLink": {
         "autofill": "Isi otomatis sukses",
