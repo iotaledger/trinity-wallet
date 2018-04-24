@@ -14,13 +14,13 @@
         "transferSentMessage": "Transakce byla odeslána do Tangle.",
         "messageSent": "Zpráva odeslána",
         "messageSentMessage": "Vaše zpráva byla odeslána do Tangle.",
-        "keyReuse": "Sending to spent address",
+        "keyReuse": "Posíláte na již použitou adresu",
         "keyReuseError": "Nelze odeslat na adresu, ze které již proběhla odchozí transakce.",
-        "invalidResponse": "Node error",
-        "invalidResponseExplanation": "The node returned an error. Check the notifications for more information.",
-        "invalidResponsePollingExplanation": "The node returned an error while polling. Check the notifications for more information.",
-        "invalidResponseFetchingAccount": "The node returned an error while fetching your account information. Try changing your node or check the notifications for more information.",
-        "invalidResponseSendingTransfer": "The node returned an error while sending the transfer. Check the notifications for more information.",
+        "invalidResponse": "Chyba Nodu",
+        "invalidResponseExplanation": "Node vrátil chybu. Pro více informací zkontrolujte notifikace.",
+        "invalidResponsePollingExplanation": "Node vrátil chybu. Pro více informací zkontrolujte notifikace.",
+        "invalidResponseFetchingAccount": "Node vrátil chybu při získávání informací o účtu. Zkuste změnit Váš Node, nebo pro více informací zkontrolujte notifikace.",
+        "invalidResponseSendingTransfer": "Node vrátil chybu při odesílání platby. Pro více informací zkontrolujte notifikace.",
         "seed": "Seed",
         "back": "ZPĚT",
         "backLowercase": "Zpět",
@@ -31,8 +31,8 @@
         "save": "Uložit",
         "close": "ZAVŘÍT",
         "continue": "Pokračovat",
-        "enable": "Enable",
-        "disable": "Disable",
+        "enable": "Zapnout",
+        "disable": "Vypnout",
         "manualCopy": "Napište Seed",
         "paperWallet": "Tisk papírové kopie",
         "copyToClipboard": "Přidat do Správce hesel",
@@ -72,7 +72,7 @@
         "bundleHash": "Balíček Hash",
         "addresses": "Adresy",
         "reattach": "ZNOVU PŘIPOJIT",
-        "promote": "PODPOROVAT",
+        "promote": "PODPOŘIT",
         "rebroadcast": "OPAKOVÁNÍ PŘENOSU",
         "pressBackAgain": "Opětovným stisknutím tlačítka Zpět zavřete aplikaci",
         "autoreattaching": "Automatické opětovné připojení do Tangle",
@@ -81,11 +81,12 @@
         "autopromotingExplanation": "Podpora transakcí s hash {{hash}}",
         "promoting": "Podpora transakce",
         "promotionError": "Nezdařilo se podpořit transakci",
-        "promotionErrorExplanation": "Something went wrong while promoting your transaction. Please try again.",
+        "promotionErrorExplanation": "Při podpoře transakce se něco nezdařilo. Prosím, zkuste to znovu.",
         "noLongerValid": "Balíček, který se snažíte podpořit, již není platný",
         "cannotSendToOwn": "Odesílání na vlastní adresu",
         "cannotSendToOwnExplanation": "Nemůžete převést částku na vlastní adresy.",
         "pleaseWait": "Prosím čekejte",
+        "pleaseWaitEllipses": "Prosím čekejte...",
         "pleaseWaitExplanation": "Trinity vykonává jinou funkci. Počkejte prosím a poté zkuste znovu.",
         "pleaseWaitTransferExplanation": "Váš disponibilní zůstatek se momentálně používá v jiných převodech. Počkejte prosím na jedno potvrzení než to zkusíte znovu.",
         "snapshotTransitionInProgress": "Probíhá aktualizace údajů po Snapshotu",
@@ -93,13 +94,13 @@
         "checkForUpdates": "Kontrola aktualizací",
         "account": "Účet",
         "enterPasswordToAccessSettings": "Zadejte Vaše heslo pro přístup k nastavení účtu",
-        "enterYourPassword": "Enter your password",
-        "changeNode": "Change node",
-        "addCustomNode": "Add custom node",
-        "nodeChanged": "Node changed",
-        "nodeChangedExplanation": "The node has been changed successfully.",
-        "nodeAutoChanged": "Auto-switched node",
-        "nodeAutoChangedExplanation": "Switched to new node {{- nodeAddress}} as selected node is offline."
+        "enterYourPassword": "Zadejte Vaše heslo",
+        "changeNode": "Změna Nodu",
+        "addCustomNode": "Přidat vlastní Node",
+        "nodeChanged": "Node byl změněn",
+        "nodeChangedExplanation": "Node byl úspěšně změněn.",
+        "nodeAutoChanged": "Automatické přepnutí Nodu",
+        "nodeAutoChangedExplanation": "Přepnuto na nový Node {{- nodeAddress}} jelikož dříve vybraný je offline."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
@@ -229,15 +230,15 @@
         "message": "Zpráva",
         "invalidMessage": "Neplatná zpráva",
         "invalidMessageExplanation": "Vaše zpráva obsahuje neplatné znaky.",
-        "invalidMessageTooLong": "Message too long",
-        "invalidMessageTooLongExplanation": "The message exceeds the max. amount of characters (1093).",
+        "invalidMessageTooLong": "Zpráva je příliš dlouhá",
+        "invalidMessageTooLongExplanation": "Zpráva překračuje maximální počet znaků (1093).",
         "send": "ODESLAT",
         "invalidAmount": "Zadána neplatná částka",
         "invalidAmountExplanation": "Prosím zadejte platnou transakční částku. Případně níže na stránce jsou informace o IOTA jednotkách.\n",
         "maximumSelected": "Vybrána MAXIMÁLNÍ částka",
         "iotaUnits": "Informace o IOTA jednotkách.",
         "sendMax": "POSLAT MAXIMUM",
-        "fingerprintOnSend": "Touch fingerprint reader to send the transfer"
+        "fingerprintOnSend": "Pro odeslání přenosu přiložte prst na čtečku"
     },
     "setPassword": {
         "passwordTooShort": "Heslo je příliš krátké",
@@ -304,8 +305,8 @@
         "undo": "Zrušit",
         "redo": "Znovu",
         "about": "O Trinity",
-        "lockScreenTimeout": "Lock Screen Timeout (Minutes)",
-        "autoNodeSwitching": "Automatically switch node when selected is unreachable"
+        "lockScreenTimeout": "Zámek obrazovky časový limit (minuty)",
+        "autoNodeSwitching": "Automaticky přepnout na jiný Node, pokud vybraný není dostupný"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Pro smazání peněženky zadejte Vaše heslo.",
@@ -384,12 +385,12 @@
         "one": "Jedna"
     },
     "usedAddressModal": {
-        "cantSpendFullBalanceQuestion": "Why can't I spend my full balance?",
-        "spentAddressExplanation": "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
-        "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
+        "cantSpendFullBalanceQuestion": "Proč nemohu použít celý zůstatek mého účtu?",
+        "spentAddressExplanation": "Máte prostředky na jedné nebo několika použitých adresách. Opětovné použití adres je v IOTA nebezpečné, proto Vám tato peněženka neumožní odesílat ze stejné adresy vícekrát.",
+        "discordInformation": "Chcete-li zjistit co můžete udělat, přejděte do #help v aplikaci Diskord."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Are you sure you want to delete</1><2></2><3>{{accountName}}?</3>",
+        "areYouSure": "<0></0><1>Opravdu chcete odstranit</1><2></2><3>{{accountName}}?</3>",
         "yourSeedWillBeRemoved": "Váš Seed a transakční historie budou odebrány.",
         "thisAction": "Tuto akci nelze vrátit zpět.",
         "enterPassword": "Pro smazání účtu, zadejte Vaše heslo."
@@ -420,8 +421,8 @@
         "warning": "<0><0>Veškerá data z peněženky, včetně Vašeho</0> <1>Seedu, hesla</1> <2>a</2> <3>dalších informací o Vašem účtu</3> <4>budou ztracena.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Touch fingerprint reader to enable fingerprint authentication",
-        "instructionsDisable": "Touch fingerprint reader to disable fingerprint authentication",
+        "instructionsEnable": "Chcete-li zapnout funkci ověření otiskem prstu, přiložte prst na čtečku",
+        "instructionsDisable": "Chcete-li vypnout funkci ověření otiskem prstu, přiložte prst na čtečku",
         "fingerprintAuthEnabled": "Identifikace čtečkou otisku prstu aktivována",
         "fingerprintAuthEnabledExplanation": "Úspěšně jste aktivovali přihlášení pomocí čtečky otisků prstů.",
         "fingerprintAuthDisabled": "Autentifikace čtečkou otisku prstu vypnuta",
@@ -435,7 +436,7 @@
         "fingerprintUnavailableExplanation": "Zařízení nepodporuje rozpoznávání otisků prstů nebo není tato funkce nakonfigurována v nastavení zařízení.",
         "buttonInstructionsDisable": "Stisknutím tlačítka níže vypnete ověřování otisku prstů.",
         "buttonInstructionsEnable": "Stisknutím tlačítka níže aktivujete ověření otisků prstů.",
-        "instructionsLogin": "Touch fingerprint reader to log in"
+        "instructionsLogin": "Pro přihlášení přiložte prst na čtečku"
     },
     "transferConfirmation": {
         "youAreAbout": "Chystáte se odeslat {{contents}} na adresu",
@@ -452,8 +453,8 @@
         "key": "Klíč",
         "twoFAEnabled": "2FA aktivována",
         "twoFAEnabledExplanation": "Úspěšně jste aktivovali dvoufaktorovou autentifikaci 2FA.",
-        "twoFADisabled": "2FA is now disabled",
-        "twoFADisabledExplanation": "You have successfully disabled Two Factor Authentication.",
+        "twoFADisabled": "2FA je nyní deaktivována",
+        "twoFADisabledExplanation": "Úspěšně jste deaktivovali dvoufaktorovou autentifikaci 2FA.",
         "enterCode": "Zadejte kód z Vaší 2FA aplikace",
         "code": "Kód"
     },
@@ -461,7 +462,7 @@
         "mcap": "MCAP",
         "change": "Změna",
         "volume": "Objem (24h)",
-        "currentValue": "Current value"
+        "currentValue": "Současná hodnota"
     },
     "rootDetection": {
         "warning": "VAROVÁNÍ",
@@ -474,8 +475,8 @@
         "remote": "Vzdálený",
         "powUpdated": "Proof of work nastavení",
         "powUpdatedExplanation": "Nastavení proof of work bylo aktualizováno.",
-        "noWebGLSupport": "WebGL not supported",
-        "noWebGLSupportExplanation": "Your computer does not support WebGL. Please use remote PoW."
+        "noWebGLSupport": "WebGL není podporován",
+        "noWebGLSupportExplanation": "Váš počítač nepodporuje WebGL. Prosím, použijte vzdálený PoW."
     },
     "progressSteps": {
         "validatingReceiveAddress": "Ověřování přijímací adresy",
@@ -490,20 +491,28 @@
         "cannotCompleteTransition": "Není možné dokončit aktualizaci údajů po Snapshotu",
         "cannotCompleteTransitionExplanation": "Pro dokončení aktualizace údajů po Snapshotu musí být zůstatek na Vašem účtu větší než 0.",
         "transitionComplete": "Aktualizace údajů po Snapshotu je dokončena",
-        "transitionCompleteExplanation": "Aktualizace údajů po Snapshotu byla dokončena."
+        "transitionCompleteExplanation": "Aktualizace údajů po Snapshotu byla dokončena.",
+        "detectedBalance": "Zjištěn zůstatek: {{amount}} {{unit}}",
+        "isThisCorrect": "Je to správně?",
+        "snapshotExplanation": "Every so often, a snapshot is performed to prune the size of the Tangle.",
+        "hasSnapshotTakenPlace": "Has a snapshot taken place? Press the button below to transition.",
+        "transition": "TRANSITION",
+        "transitioning": "Transitioning for the snapshot.",
+        "generatingAndDetecting": "Generating addresses and detecting balance.",
+        "attaching": "Attaching addresses to Tangle"
     },
     "deepLink": {
-        "autofill": "Autofill success",
-        "autofillExplanation": "Transaction data autofilled from link."
+        "autofill": "Automatické vyplňování úspěšné",
+        "autofillExplanation": "Údaje o transakci byly automaticky doplněny z odkazu."
     },
     "updates": {
-        "errorRetrievingUpdateData": "Error retrieving update data",
-        "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
-        "noUpdatesAvailable": "No updates available",
+        "errorRetrievingUpdateData": "Chyba při získávání aktualizačních dat",
+        "errorRetrievingUpdateDataExplanation": "Při aktualizaci došlo k chybě. Prosím zkuste to znovu.",
+        "noUpdatesAvailable": "Nejsou dostupné žádné aktualizace",
         "noUpdatesAvailableExplanation": "Máte nejnovější verzi IOTA Trinity Desktop peneženky!",
-        "newVersionAvailable": "New version available",
+        "newVersionAvailable": "K dispozici je nová verze",
         "newVersionAvailableExplanation": "Je k dispozici nová verze <strong>Trinity</strong> peněženky <strong>{{version}}</strong>. Před aktualizací si pozorně přečtěte detaily k tomuto vydání a ověřte si zdroj, ze kterého software stahujete:",
-        "downloadRelease": "Download release",
+        "downloadRelease": "Stáhnout aktualizaci",
         "skipUpdate": "Aktualizovat později"
     }
 }
