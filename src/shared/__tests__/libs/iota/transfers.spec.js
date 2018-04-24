@@ -19,17 +19,12 @@ import {
 import { iota, SwitchingConfig } from '../../../libs/iota/index';
 
 describe('libs: iota/transfers', () => {
-    let sandbox;
-
     before(() => {
-        sandbox = sinon.sandbox.create();
         SwitchingConfig.autoSwitch = false;
-        sandbox.stub(iota.api, 'getNodeInfo').yields(null, {});
     });
 
     after(() => {
         SwitchingConfig.autoSwitch = true;
-        sandbox.restore();
     });
 
     describe('#prepareTransferArray', () => {
@@ -767,10 +762,19 @@ describe('libs: iota/transfers', () => {
     });
 
     describe('#getTransactionHashesForUnspentAddresses', () => {
-        before(() => {
+        let sandbox;
+
+        beforeEach(() => {
+            sandbox = sinon.sandbox.create();
+
+            sandbox.stub(iota.api, 'getNodeInfo').yields(null, {});
             sandbox
                 .stub(iota.api, 'findTransactions')
                 .yields(null, ['99SCLLLYGMB9FSLXARXJPUXAMUQRDSAXMKNMAPOWZMZLTXUCPUVUICKEQUUGFIRD9JZTGHKGMNZUA9999']);
+        });
+
+        afterEach(() => {
+            sandbox.restore();
         });
 
         describe('when all addresses are spent', () => {
