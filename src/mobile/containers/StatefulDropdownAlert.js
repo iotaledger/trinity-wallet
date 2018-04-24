@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import tinycolor from 'tinycolor2';
 import DropdownAlert from 'react-native-dropdownalert/DropdownAlert';
 import { width, height } from '../utils/dimensions';
+import { isIPhoneX } from '../utils/device';
 
 const errorIcon = require('iota-wallet-shared-modules/images/error.png');
 const successIcon = require('iota-wallet-shared-modules/images/successIcon.png');
@@ -86,6 +87,14 @@ class StatefulDropdownAlert extends Component {
         this.props.disposeOffAlert();
     }
 
+    getStatusBarStyle() {
+        const { backgroundColor } = this.props;
+        if (isIPhoneX) {
+            return 'light-content';
+        }
+        return tinycolor(backgroundColor).isDark() ? 'light-content' : 'dark-content';
+    }
+
     refFunc = (ref) => {
         this.dropdown = ref;
     };
@@ -94,7 +103,7 @@ class StatefulDropdownAlert extends Component {
         const { closeInterval } = this.props.alerts;
         const { backgroundColor, onRef, isModalActive } = this.props;
         const closeAfter = closeInterval;
-        const statusBarStyle = tinycolor(backgroundColor).isDark() ? 'light-content' : 'dark-content';
+        const statusBarStyle = this.getStatusBarStyle();
         return (
             <DropdownAlert
                 ref={onRef || this.refFunc}

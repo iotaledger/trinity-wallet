@@ -131,6 +131,7 @@ class History extends Component {
         };
 
         this.onRefresh = this.onRefresh.bind(this);
+        this.resetModalProps = this.resetModalProps.bind(this);
     }
 
     componentWillReceiveProps(newProps) {
@@ -234,8 +235,6 @@ class History extends Component {
             mode,
             t,
             selectedAccountName,
-            isBroadcastingBundle,
-            isPromotingTransaction,
         } = this.props;
         const containerBorderColor = tinycolor(body.bg).isDark() ? 'rgba(255, 255, 255, 0.25)' : 'rgba(0, 0, 0, 0.25)';
         const containerBackgroundColor = tinycolor(body.bg).isDark() ? 'rgba(255, 255, 255, 0.08)' : 'transparent';
@@ -256,7 +255,6 @@ class History extends Component {
 
         const formattedTransfers = map(transfers, (transfer) => {
             const { timestamp, incoming, persistence, transferValue, inputs, outputs, bundle, message } = transfer;
-            const disableWhen = isBroadcastingBundle || isPromotingTransaction;
 
             return {
                 t,
@@ -276,7 +274,6 @@ class History extends Component {
                             onPress: this.props.toggleModalActivity,
                             generateAlert: this.props.generateAlert,
                             bundle,
-                            disableWhen,
                             addresses: [...map(inputs, withUnitAndChecksum), ...map(outputs, withUnitAndChecksum)],
                         }),
                     });
@@ -297,7 +294,6 @@ class History extends Component {
                     secondaryColor: secondary.color,
                     secondaryBody: secondary.body,
                     barColor: bar.color,
-                    buttonsOpacity: { opacity: disableWhen ? 0.5 : 1 },
                 },
             };
         });
@@ -362,7 +358,7 @@ class History extends Component {
 
     render() {
         const transactions = this.renderTransactions();
-        const { theme, isModalActive } = this.props;
+        const { theme, isModalActive, isPromotingTransaction, isBroadcastingBundle } = this.props;
         const { modalProps } = this.state;
 
         return (
@@ -386,7 +382,10 @@ class History extends Component {
                             hideModalContentWhileAnimating
                             useNativeDriver={isAndroid}
                         >
-                            <HistoryModalContent {...modalProps} />
+                            <HistoryModalContent
+                                {...modalProps}
+                                disableWhen={isPromotingTransaction || isBroadcastingBundle}
+                            />
                         </Modal>
                     )}
                 </View>
