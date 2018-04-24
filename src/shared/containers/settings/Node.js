@@ -34,7 +34,7 @@ export default function withNodeData(NodeComponent) {
             };
         }
 
-        changeNode = (nodeSelected) => {
+        changeNode = (nodeSelected, customNode) => {
             const { nodes, node, setFullNode, addCustomPoWNode, generateAlert, backPress, t } = this.props;
 
             if (!nodeSelected) {
@@ -51,7 +51,7 @@ export default function withNodeData(NodeComponent) {
             }
 
             // Check whether the node was already added to the list
-            if (nodes.includes(nodeSelected)) {
+            if (customNode && nodes.includes(nodeSelected)) {
                 generateAlert('error', t('nodeDuplicated'), t('nodeDuplicatedExplanation'));
                 return;
             }
