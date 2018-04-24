@@ -554,6 +554,54 @@ describe('actions: transfers', () => {
                             });
                     });
                 });
+
+                describe('when receive address is one of the input addresses', () => {
+                    it('should create action of type IOTA/ALERTS/SHOW with a message "You cannot make a value transfer to one of your own addresses."', () => {
+                        const store = mockStore({ accounts });
+
+                        const wereAddressesSpentFrom = sinon
+                            .stub(iota.api, 'wereAddressesSpentFrom')
+                            .yields(null, [false]);
+
+                        sinon.stub(inputUtils, 'getUnspentInputs').resolves({
+                            allBalance: 110,
+                            totalBalance: 10,
+                            inputs: [
+                                {
+                                    address:
+                                        'MVVQANCKCPSDGEHFEVT9RVYJWOPPEGZSAVLIZ9MGNRPJPUORYFOTP9FNCLBFMQKUXMHNRGZDTWUI9UDHW',
+                                },
+                                {
+                                    address:
+                                        'NNLAKCEDT9FMFLBIFWKHRIQJJETOSBSFPUCBWYYXXYKSLNCCSWOQRAVOYUSX9FMLGHMKUITLFEQIPHQLW',
+                                },
+                            ],
+                        });
+                        sinon.stub(accountsUtils, 'syncAccountAfterSpending').resolves({});
+
+                        return store
+                            .dispatch(
+                                actions.makeTransaction(
+                                    'SEED',
+                                    'NNLAKCEDT9FMFLBIFWKHRIQJJETOSBSFPUCBWYYXXYKSLNCCSWOQRAVOYUSX9FMLGHMKUITLFEQIPHQLWWSWWTDSVX',
+                                    2,
+                                    'TEST MESSAGE',
+                                    'TEST',
+                                    powFn,
+                                    genFn,
+                                ),
+                            )
+                            .then(() => {
+                                expect(
+                                    store.getActions().find((action) => action.type === 'IOTA/ALERTS/SHOW').message,
+                                ).to.equal('You cannot make a value transfer to one of your own addresses.');
+
+                                wereAddressesSpentFrom.restore();
+                                inputUtils.getUnspentInputs.restore();
+                                accountsUtils.syncAccountAfterSpending.restore();
+                            });
+                    });
+                });
             });
         });
     });
