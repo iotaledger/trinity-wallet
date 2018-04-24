@@ -64,7 +64,7 @@ class SetNode extends PureComponent {
         e.preventDefault();
         const { setNode } = this.props;
         const { selection, customNode } = this.state;
-        setNode(this.validNode(customNode) ? customNode : selection);
+        setNode(this.validNode(customNode) ? customNode : selection, this.validNode(customNode));
         this.setState({customNode: ''});
     }
 
