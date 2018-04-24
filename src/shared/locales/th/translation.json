@@ -86,6 +86,7 @@
         "cannotSendToOwn": "ส่งไปที่อยู่ของตัวเอง",
         "cannotSendToOwnExplanation": "คุณไม่สามารถถ่ายโอนสกุลเงินไปยังที่อยู่อื่นของคุณเองได้",
         "pleaseWait": "กรุณารอสักครู่",
+        "pleaseWaitEllipses": "Please wait...",
         "pleaseWaitExplanation": "Trinity กำลังปฏิบัติการอย่างอื่นอยู่ กรุณารอสักครู่ และลองใหม่อีกครั้ง",
         "pleaseWaitTransferExplanation": "ยอดคงเหลือที่สามารถใช้ได้ของคุณในขณะนี้ กำลังถูกใช้งานในการโอนอื่นอยู่ กรุณารอจนกว่าผู้รับโอนทำการยืนยันก่อนที่จะทำการโอนอีกครั้ง",
         "snapshotTransitionInProgress": "การเปลี่ยนแปลงของ Snapshot อยู่ระหว่างการดำเนินการ",
@@ -490,7 +491,15 @@
         "cannotCompleteTransition": "ไม่สามารถทำรายการ Snapshot",
         "cannotCompleteTransitionExplanation": "ยอดคงเหลือของคุณจะต้องมากกว่า 0 เพื่อการเปลี่ยนแปลงที่สมบูรณ์",
         "transitionComplete": "การเปลี่ยนแปลงของ Snapshot เสร็จสมบูรณ์",
-        "transitionCompleteExplanation": "การเปลี่ยนแปลงของ Snapshot เสร็จสมบูรณ์"
+        "transitionCompleteExplanation": "การเปลี่ยนแปลงของ Snapshot เสร็จสมบูรณ์",
+        "detectedBalance": "Detected balance: {{amount}} {{unit}}",
+        "isThisCorrect": "Is this correct?",
+        "snapshotExplanation": "Every so often, a snapshot is performed to prune the size of the Tangle.",
+        "hasSnapshotTakenPlace": "Has a snapshot taken place? Press the button below to transition.",
+        "transition": "TRANSITION",
+        "transitioning": "Transitioning for the snapshot.",
+        "generatingAndDetecting": "Generating addresses and detecting balance.",
+        "attaching": "Attaching addresses to Tangle"
     },
     "deepLink": {
         "autofill": "Autofill success",

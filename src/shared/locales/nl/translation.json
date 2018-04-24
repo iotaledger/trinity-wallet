@@ -14,13 +14,13 @@
         "transferSentMessage": "Uw transactie is verzonden naar de Tangle.",
         "messageSent": "Bericht verzonden",
         "messageSentMessage": "Uw bericht is verzonden naar de Tangle.",
-        "keyReuse": "Sending to spent address",
+        "keyReuse": "Sturen naar verbruikt adres",
         "keyReuseError": "U kunt niet sturen naar een adres waar al op uitgegeven is.",
-        "invalidResponse": "Node error",
-        "invalidResponseExplanation": "The node returned an error. Check the notifications for more information.",
-        "invalidResponsePollingExplanation": "The node returned an error while polling. Check the notifications for more information.",
-        "invalidResponseFetchingAccount": "The node returned an error while fetching your account information. Try changing your node or check the notifications for more information.",
-        "invalidResponseSendingTransfer": "The node returned an error while sending the transfer. Check the notifications for more information.",
+        "invalidResponse": "Node fout",
+        "invalidResponseExplanation": "De node stuurde een fout terug. Bekijk de notificaties voor meer informatie.",
+        "invalidResponsePollingExplanation": "De node stuurde een fout terug tijdens polling. Bekijk de notificaties voor meer informatie.",
+        "invalidResponseFetchingAccount": "De node stuurde een fout terug bij het ophalen van uw account informatie. Probeer te veranderen van node of bekijk de notificaties voor meer informatie.",
+        "invalidResponseSendingTransfer": "De node stuurde een fout terug tijdens het versturen van de transactie. Bekijk de notificaties voor meer informatie.",
         "seed": "Sleutel",
         "back": "Terug",
         "backLowercase": "Terug",
@@ -31,8 +31,8 @@
         "save": "Opslaan",
         "close": "Sluiten",
         "continue": "Doorgaan",
-        "enable": "Enable",
-        "disable": "Disable",
+        "enable": "Inschakelen",
+        "disable": "Uitschakelen",
         "manualCopy": "Schrijf uw sleutel op",
         "paperWallet": "Print uw sleutel uit",
         "copyToClipboard": "Voeg uw sleutel toe aan uw wachtwoord-manager",
@@ -86,6 +86,7 @@
         "cannotSendToOwn": "Versturen naar eigen adres",
         "cannotSendToOwnExplanation": "U kunt geen transactie sturen naar een van uw eigen adressen.",
         "pleaseWait": "Een ogenblik geduld",
+        "pleaseWaitEllipses": "Please wait...",
         "pleaseWaitExplanation": "Trinity voert een andere functie uit. Wacht even en probeer het opnieuw.",
         "pleaseWaitTransferExplanation": "Uw saldo wordt momenteel gebruikt in andere transacties. Wacht op een bevestiging hiervan, voordat u het opnieuw probeert.",
         "snapshotTransitionInProgress": "Snapshot transitie in uitvoering",
@@ -93,13 +94,13 @@
         "checkForUpdates": "Controleren op updates",
         "account": "Account",
         "enterPasswordToAccessSettings": "Voer uw wachtwoord in voor accountinstellingen",
-        "enterYourPassword": "Enter your password",
+        "enterYourPassword": "Voer uw wachtwoord in",
         "changeNode": "Wijzig node",
         "addCustomNode": "Voeg eigen node toe",
         "nodeChanged": "Node aangepast",
         "nodeChangedExplanation": "De node is succesvol aangepast.",
-        "nodeAutoChanged": "Auto-switched node",
-        "nodeAutoChangedExplanation": "Switched to new node {{- nodeAddress}} as selected node is offline."
+        "nodeAutoChanged": "Automatisch van node gewisseld",
+        "nodeAutoChangedExplanation": "Gewisseld naar node {{- nodeAddress}} omdat de geselecteerde node offline is."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "De sleutel bevat ongeldige tekens",
@@ -229,15 +230,15 @@
         "message": "Bericht",
         "invalidMessage": "Ongeldig bericht",
         "invalidMessageExplanation": "Uw bericht bevat ongeldige tekens.",
-        "invalidMessageTooLong": "Message too long",
-        "invalidMessageTooLongExplanation": "The message exceeds the max. amount of characters (1093).",
+        "invalidMessageTooLong": "Bericht te lang",
+        "invalidMessageTooLongExplanation": "Het bericht overschrijdt het max. aantal karakters (1093).",
         "send": "VERSTUUR",
         "invalidAmount": "Onjuist aantal ingevoerd",
         "invalidAmountExplanation": "Voer een geldig transactiebedrag in. Het kan handig zijn om de uitleg van IOTA-eenheden onderaan de pagina te bekijken.",
         "maximumSelected": "MAXIMUM aantal geselecteerd",
         "iotaUnits": "Uitleg IOTA eenheden",
         "sendMax": "MAX VERZENDEN",
-        "fingerprintOnSend": "Touch fingerprint reader to send the transfer"
+        "fingerprintOnSend": "Raak vingerafdruklezer aan om te versturen"
     },
     "setPassword": {
         "passwordTooShort": "Wachtwoord is te kort",
@@ -305,7 +306,7 @@
         "redo": "Opnieuw",
         "about": "Over Trinity",
         "lockScreenTimeout": "Vergrendelscherm Time-out (Minuten)",
-        "autoNodeSwitching": "Automatically switch node when selected is unreachable"
+        "autoNodeSwitching": "Wissel automatisch van node als de geselecteerde node onbereikbaar is"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Voer uw wachtwoord in om de wallet opnieuw in te stellen.",
@@ -420,8 +421,8 @@
         "warning": "<0><0>Al uw wallet-gegevens, waaronder uw</0> <1>sleutels, wachtwoord</1> <2>en</2> <3>andere accountgegevens</3> <4>zullen verloren gaan.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Touch fingerprint reader to enable fingerprint authentication",
-        "instructionsDisable": "Touch fingerprint reader to disable fingerprint authentication",
+        "instructionsEnable": "Raak vingerafdruklezer aan om vingerafdruk authenticatie in te schakelen",
+        "instructionsDisable": "Raak vingerafdruklezer aan om vingerafdruk authenticatie uit te schakelen",
         "fingerprintAuthEnabled": "Vingerafdruk-verificatie ingeschakeld",
         "fingerprintAuthEnabledExplanation": "U hebt vingerafdruk-verificatie met succes ingeschakeld.",
         "fingerprintAuthDisabled": "Vingerafdruk-verificatie uitgeschakeld",
@@ -435,7 +436,7 @@
         "fingerprintUnavailableExplanation": "Uw apparaat ondersteunt geen vingerafdrukherkenning of dit niet is geconfigureerd in de apparaatinstellingen.",
         "buttonInstructionsDisable": "Druk op de knop hieronder om vingerafdruk-verificatie uit te schakelen.",
         "buttonInstructionsEnable": "Druk op de knop hieronder om vingerafdruk-verificatie uit te schakelen.",
-        "instructionsLogin": "Touch fingerprint reader to log in"
+        "instructionsLogin": "Raak vingerafdruklezer aan om in te loggen"
     },
     "transferConfirmation": {
         "youAreAbout": "U staat op het punt om {{contents}} te versturen naar het adres",
@@ -452,8 +453,8 @@
         "key": "Sleutel",
         "twoFAEnabled": "2FA is nu ingeschakeld",
         "twoFAEnabledExplanation": "U hebt de Twee-staps verificatie nu ingeschakeld.",
-        "twoFADisabled": "2FA is now disabled",
-        "twoFADisabledExplanation": "You have successfully disabled Two Factor Authentication.",
+        "twoFADisabled": "2FA is nu ingeschakeld",
+        "twoFADisabledExplanation": "U heeft Twee-staps Verificatie succesvol uitgeschakeld.",
         "enterCode": "Voer de code uit uw 2FA app in",
         "code": "Code"
     },
@@ -474,8 +475,8 @@
         "remote": "Extern",
         "powUpdated": "Bewijs van inspanning instellingen",
         "powUpdatedExplanation": "Uw bewijs van inspanning-configuratie is bijgewerkt.",
-        "noWebGLSupport": "WebGL not supported",
-        "noWebGLSupportExplanation": "Your computer does not support WebGL. Please use remote PoW."
+        "noWebGLSupport": "WebGL wordt niet ondersteund",
+        "noWebGLSupportExplanation": "Uw computer ondersteunt WebGL niet. Gebruik externe PoW."
     },
     "progressSteps": {
         "validatingReceiveAddress": "Ontvangstadres wordt gevalideerd",
@@ -490,7 +491,15 @@
         "cannotCompleteTransition": "Snapshot transitie kan niet worden voltooid",
         "cannotCompleteTransitionExplanation": "Uw saldo moet groter zijn dan 0 om de transitie te voltooien.",
         "transitionComplete": "Snapshot transitie voltooid",
-        "transitionCompleteExplanation": "De snapshot transitie is voltooid."
+        "transitionCompleteExplanation": "De snapshot transitie is voltooid.",
+        "detectedBalance": "Detected balance: {{amount}} {{unit}}",
+        "isThisCorrect": "Is this correct?",
+        "snapshotExplanation": "Every so often, a snapshot is performed to prune the size of the Tangle.",
+        "hasSnapshotTakenPlace": "Has a snapshot taken place? Press the button below to transition.",
+        "transition": "TRANSITION",
+        "transitioning": "Transitioning for the snapshot.",
+        "generatingAndDetecting": "Generating addresses and detecting balance.",
+        "attaching": "Attaching addresses to Tangle"
     },
     "deepLink": {
         "autofill": "Automatisch vullen succesvol",

@@ -14,7 +14,7 @@
         "transferSentMessage": "Il trasferimento è stato inviato al Tangle.",
         "messageSent": "Messaggio inviato",
         "messageSentMessage": "Il messaggio è stato inviato al Tangle.",
-        "keyReuse": "Sending to spent address",
+        "keyReuse": "Invio a un indirizzo usato per una spesa",
         "keyReuseError": "Non è possibile inviare a un indirizzo che è già stato usato per una spesa.",
         "invalidResponse": "Errore di nodo",
         "invalidResponseExplanation": "Il nodo ha restituito un errore. Controllare le notifiche per ulteriori informazioni.",
@@ -86,6 +86,7 @@
         "cannotSendToOwn": "Invio a un indirizzo proprio",
         "cannotSendToOwnExplanation": "Non puoi fare un trasferimento verso uno dei tuoi indirizzi.",
         "pleaseWait": "Attendere, per favore",
+        "pleaseWaitEllipses": "Attendere prego...",
         "pleaseWaitExplanation": "Trinity sta eseguendo un altro lavoro. Attendere e riprovare.",
         "pleaseWaitTransferExplanation": "Il tuo saldo disponibile è attualmente in uso in altri trasferimenti. Si prega di attendere la conferma di uno di questi prima di riprovare.",
         "snapshotTransitionInProgress": "Passaggio allo snapshot in corso",
@@ -490,7 +491,15 @@
         "cannotCompleteTransition": "Non è possibile completare il passaggio allo snapshot",
         "cannotCompleteTransitionExplanation": "Il saldo deve essere maggiore di 0 per completare il passaggio.",
         "transitionComplete": "Passaggio allo snapshot completato",
-        "transitionCompleteExplanation": "Il passaggio allo snapshot è stato completato con successo."
+        "transitionCompleteExplanation": "Il passaggio allo snapshot è stato completato con successo.",
+        "detectedBalance": "Saldo rilevato: {{amount}} {{unit}}",
+        "isThisCorrect": "È corretto?",
+        "snapshotExplanation": "Ogni tanto, viene fatto uno snapshot per ridurre la dimensione del Tangle.",
+        "hasSnapshotTakenPlace": "È stato fatto uno snapshot? Premi il bottone sotto per passare al nuovo stato.",
+        "transition": "PASSAGGIO ALLO SNAPSHOT",
+        "transitioning": "Passaggio in corso allo snapshot.",
+        "generatingAndDetecting": "Generazione di indirizzi e rilevamento del saldo.",
+        "attaching": "Attacco gli indirizzi al Tangle"
     },
     "deepLink": {
         "autofill": "Riempimento automatico",
