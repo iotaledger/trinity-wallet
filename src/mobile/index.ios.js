@@ -6,6 +6,6 @@ import Wallet from './routes/entry';
 /*eslint-disable no-console*/
 console.disableYellowBox = true;
 const configuration = new Configuration();
-configuration.appVersion = '0.1.24';
+configuration.appVersion = '0.1.29';
 const bugsnag = new Client(configuration);
 AppRegistry.registerComponent('iotaWallet', () => Wallet);
