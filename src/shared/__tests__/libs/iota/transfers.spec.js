@@ -16,8 +16,10 @@ import {
     categorizeBundleByInputsOutputs,
     getTransactionHashesForUnspentAddresses,
     getPendingTransactionHashesForSpentAddresses,
+    performPow,
 } from '../../../libs/iota/transfers';
 import { iota, SwitchingConfig } from '../../../libs/iota/index';
+import trytes from '../../__samples__/trytes';
 
 describe('libs: iota/transfers', () => {
     before(() => {
@@ -869,6 +871,69 @@ describe('libs: iota/transfers', () => {
                         '99SCLLLYGMB9FSLXARXJPUXAMUQRDSAXMKNMAPOWZMZLTXUCPUVUICKEQUUGFIRD9JZTGHKGMNZUA9999',
                     ]);
                 });
+            });
+        });
+    });
+
+    describe('#performPow', () => {
+        let powFn;
+        let trunkTransaction;
+        let branchTransaction;
+
+        const nonces = [
+            'N9UIMZQVDYWLXWGHLELNRCUUPMP',
+            'SLSJJSDPDTDSKEVCBVPMWDNOLAH',
+            'K9JXMYPREJZGUFFSANKRNPOMAGR',
+            'CAIYIYWLTPMFZOABIHTXOPWCZNQ',
+        ];
+
+        beforeEach(() => {
+            powFn = () => {
+                let calledTimes = 0;
+
+                return () => {
+                    const promise = Promise.resolve(nonces[calledTimes]);
+                    calledTimes += 1;
+
+                    return promise;
+                };
+            };
+
+            trunkTransaction = 'LLJWVVZFXF9ZGFSBSHPCD9HOIFBCLXGRV9XWSQDTGOMSRGQQIVFVZKHLKTJJVFMXQTZVPNRNAQEPA9999';
+            branchTransaction = 'GSHUHUWAUUGQHHNAPRDPDJRKZFJNIAPFNTVAHZPUNDJWRHZSZASOERZURXZVEHN9OJVS9QNRGSJE99999';
+        });
+
+        it('should sort transaction objects in ascending order by currentIndex', () => {
+            const fn = performPow(powFn(), trytes.value.reverse(), trunkTransaction, branchTransaction, 14);
+
+            return fn.then(({ transactionObjects }) => {
+                transactionObjects.map((tx, idx) => expect(tx.currentIndex).to.equal(idx));
+            });
+        });
+
+        it('should assign generated nonce', () => {
+            const fn = performPow(powFn(), trytes.value.reverse(), trunkTransaction, branchTransaction, 14);
+
+            return fn.then(({ transactionObjects }) => {
+                transactionObjects.map((tx, idx) => expect(tx.nonce).to.equal(nonces.slice().reverse()[idx]));
+            });
+        });
+
+        it('should set correct bundle sequence', () => {
+            const fn = performPow(powFn(), trytes.value.reverse(), trunkTransaction, branchTransaction, 14);
+
+            return fn.then(({ transactionObjects }) => {
+                expect(transactionObjects[0].trunkTransaction).to.equal(transactionObjects[1].hash);
+                expect(transactionObjects[0].branchTransaction).to.equal(trunkTransaction);
+
+                expect(transactionObjects[1].trunkTransaction).to.equal(transactionObjects[2].hash);
+                expect(transactionObjects[1].branchTransaction).to.equal(trunkTransaction);
+
+                expect(transactionObjects[2].trunkTransaction).to.equal(transactionObjects[3].hash);
+                expect(transactionObjects[2].branchTransaction).to.equal(trunkTransaction);
+
+                expect(transactionObjects[3].trunkTransaction).to.equal(trunkTransaction);
+                expect(transactionObjects[3].branchTransaction).to.equal(branchTransaction);
             });
         });
     });
