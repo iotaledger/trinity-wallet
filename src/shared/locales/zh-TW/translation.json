@@ -14,7 +14,7 @@
         "transferSentMessage": "您的交易已經傳送至 Tangle",
         "messageSent": "訊息送出",
         "messageSentMessage": "您的訊息已經傳送至 Tangle",
-        "keyReuse": "Sending to spent address",
+        "keyReuse": "轉帳到已支出過的地址",
         "keyReuseError": "您不能傳送到已使用過的地址。",
         "invalidResponse": "節點錯誤",
         "invalidResponseExplanation": "節點回傳錯誤，請檢查通知了解詳細資訊。",
@@ -86,6 +86,7 @@
         "cannotSendToOwn": "傳送到自己的地址",
         "cannotSendToOwnExplanation": "您無法轉帳到自己的地址。",
         "pleaseWait": "請稍候",
+        "pleaseWaitEllipses": "請稍後...",
         "pleaseWaitExplanation": "Trinity 正在執行其他功能，請稍後再試。",
         "pleaseWaitTransferExplanation": "您目前可用餘額正用於其他交易中，請等待確認後再試一次。",
         "snapshotTransitionInProgress": "快照轉換處理中",
@@ -490,7 +491,15 @@
         "cannotCompleteTransition": "無法完成快照轉換",
         "cannotCompleteTransitionExplanation": "您的餘額必須大於零才能完成交易。",
         "transitionComplete": "快照轉換完成",
-        "transitionCompleteExplanation": "快照轉換已成功處理完成。"
+        "transitionCompleteExplanation": "快照轉換已成功處理完成。",
+        "detectedBalance": "檢測到的餘額：{{amount}} {{unit}}",
+        "isThisCorrect": "這樣正確嗎？",
+        "snapshotExplanation": "每隔一段時間會進行快照來修剪 Tangle 的大小。",
+        "hasSnapshotTakenPlace": "有快照發生了嗎？按下方按鈕進行轉換。",
+        "transition": "轉換",
+        "transitioning": "進行快照轉換。",
+        "generatingAndDetecting": "產生地址並檢測餘額。",
+        "attaching": "將地址連接到 Tangle"
     },
     "deepLink": {
         "autofill": "自動填入成功",
