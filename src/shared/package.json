@@ -44,6 +44,7 @@
         "chai": "^4.1.2",
         "mocha": "^4.0.1",
         "redux-logger": "^3.0.6",
+        "sinon": "^4.5.0",
         "svg2ttf": "^4.1.0",
         "svgicons2svgfont": "^9.0.1",
         "timekeeper": "^2.0.0"
