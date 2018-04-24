@@ -17,7 +17,7 @@ import { ActionTypes } from './actions/settings';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
-const developmentMiddleware = [thunk];
+const developmentMiddleware = [thunk, logger];
 const productionMiddleware = [thunk];
 
 const reducers = combineReducers({
