@@ -15,6 +15,7 @@ import {
     mergeNewTransfers,
     categorizeBundleByInputsOutputs,
     getTransactionHashesForUnspentAddresses,
+    getPendingTransactionHashesForSpentAddresses,
 } from '../../../libs/iota/transfers';
 import { iota, SwitchingConfig } from '../../../libs/iota/index';
 
@@ -778,7 +779,7 @@ describe('libs: iota/transfers', () => {
         });
 
         describe('when all addresses are spent', () => {
-            it('should return an empty array', (done) => {
+            it('should return an empty array', () => {
                 const addressData = {
                     ['U'.repeat(81)]: { spent: true },
                     ['V'.repeat(81)]: { spent: true },
@@ -787,17 +788,14 @@ describe('libs: iota/transfers', () => {
 
                 const promise = getTransactionHashesForUnspentAddresses(addressData);
 
-                promise
-                    .then((hashes) => {
-                        expect(hashes).to.eql([]);
-                        done();
-                    })
-                    .catch(done);
+                return promise.then((hashes) => {
+                    expect(hashes).to.eql([]);
+                });
             });
         });
 
         describe('when one or more of the addresses are unspent', () => {
-            it('should return transaction hashes for unspent addresses', (done) => {
+            it('should return transaction hashes for unspent addresses', () => {
                 const addressData = {
                     ['U'.repeat(81)]: { spent: true },
                     ['V'.repeat(81)]: { spent: false },
@@ -805,14 +803,72 @@ describe('libs: iota/transfers', () => {
 
                 const promise = getTransactionHashesForUnspentAddresses(addressData);
 
-                promise
-                    .then((hashes) => {
-                        expect(hashes).to.eql([
-                            '99SCLLLYGMB9FSLXARXJPUXAMUQRDSAXMKNMAPOWZMZLTXUCPUVUICKEQUUGFIRD9JZTGHKGMNZUA9999',
-                        ]);
-                        done();
-                    })
-                    .catch(done);
+                return promise.then((hashes) => {
+                    expect(hashes).to.eql([
+                        '99SCLLLYGMB9FSLXARXJPUXAMUQRDSAXMKNMAPOWZMZLTXUCPUVUICKEQUUGFIRD9JZTGHKGMNZUA9999',
+                    ]);
+                });
+            });
+        });
+    });
+
+    describe('#getPendingTransactionHashesForSpentAddresses', () => {
+        let sandbox;
+
+        beforeEach(() => {
+            sandbox = sinon.sandbox.create();
+
+            sandbox.stub(iota.api, 'getNodeInfo').yields(null, {});
+            sandbox
+                .stub(iota.api, 'findTransactions')
+                .yields(null, ['99SCLLLYGMB9FSLXARXJPUXAMUQRDSAXMKNMAPOWZMZLTXUCPUVUICKEQUUGFIRD9JZTGHKGMNZUA9999']);
+        });
+
+        afterEach(() => {
+            sandbox.restore();
+        });
+
+        describe('when there are no pending transactions', () => {
+            it('should return an empty array', () => {
+                const transactions = Array.from(new Array(5), () => ({ persistence: true }));
+
+                const promise = getPendingTransactionHashesForSpentAddresses(transactions, {});
+
+                return promise.then((hashes) => {
+                    expect(hashes).to.eql([]);
+                });
+            });
+        });
+
+        describe('when there are pending transfers', () => {
+            it('should return transaction hashes for spend addresses with pending transfers', () => {
+                const addressData = {
+                    ['U'.repeat(81)]: { spent: true },
+                    ['V'.repeat(81)]: { spent: false },
+                };
+
+                const transactions = [
+                    {
+                        persistence: false,
+                        inputs: [
+                            {
+                                address: 'U'.repeat(81),
+                            },
+                        ],
+                    },
+                    {
+                        persistence: true,
+                        inputs: [],
+                    },
+                ];
+
+                const promise = getPendingTransactionHashesForSpentAddresses(transactions, addressData);
+
+                return promise.then((hashes) => {
+                    expect(hashes).to.eql([
+                        '99SCLLLYGMB9FSLXARXJPUXAMUQRDSAXMKNMAPOWZMZLTXUCPUVUICKEQUUGFIRD9JZTGHKGMNZUA9999',
+                    ]);
+                });
             });
         });
     });
