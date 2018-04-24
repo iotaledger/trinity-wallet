@@ -5098,10 +5098,6 @@ react-dom@^16.2.0:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
-react-fast-compare@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-1.0.0.tgz#813a039155e49b43ceffe99528fe5e9d97a6c938"
-
 react-i18next@^7.3.0, react-i18next@^7.3.4:
   version "7.6.0"
   resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-7.6.0.tgz#abdb44b9dee5b43b4340590e25a6f7b04e2df6bc"
@@ -5347,6 +5343,10 @@ react-native-safe-module@^1.1.0:
   dependencies:
     dedent "^0.6.0"
 
+react-native-secure-clipboard@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-secure-clipboard/-/react-native-secure-clipboard-0.1.1.tgz#dad5c2ac480ad8f6ab7f9ff88d306a4882226553"
+
 react-native-securerandom@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/react-native-securerandom/-/react-native-securerandom-0.1.1.tgz#f130623a412c338b0afadedbc204c5cbb8bf2070"
@@ -5363,9 +5363,9 @@ react-native-splash-screen@^3.0.6:
   version "3.0.6"
   resolved "https://registry.yarnpkg.com/react-native-splash-screen/-/react-native-splash-screen-3.0.6.tgz#c0bbf2c8ae40a313c4c7044f55e569414ff68332"
 
-react-native-svg@^6.0.1-rc.1:
-  version "6.3.1"
-  resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-6.3.1.tgz#06a573f17c59ce953a56fd62e776fd79d632d765"
+react-native-svg@~6.1.4:
+  version "6.1.4"
+  resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-6.1.4.tgz#ca9d0979608fad36d495d6b516408ef6e714bd74"
   dependencies:
     color "^2.0.1"
     lodash "^4.16.6"
@@ -6771,44 +6771,42 @@ vhost@~3.0.1:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/vhost/-/vhost-3.0.2.tgz#2fb1decd4c466aa88b0f9341af33dc1aff2478d5"
 
-victory-chart@^25.2.0:
-  version "25.2.5"
-  resolved "https://registry.yarnpkg.com/victory-chart/-/victory-chart-25.2.5.tgz#70625c4fbe596ca2919e1ee4a1676d5bc9b5cd3e"
+victory-chart@^24.3.0:
+  version "24.6.1"
+  resolved "https://registry.yarnpkg.com/victory-chart/-/victory-chart-24.6.1.tgz#8e1a85ab42c2e471d356e15f1637430cd57aca90"
   dependencies:
     d3-voronoi "^1.1.2"
-    lodash "^4.17.5"
-    react-fast-compare "^1.0.0"
-    victory-core "^21.1.12"
+    lodash "^4.17.4"
+    victory-core "^20.6.0"
 
-victory-core@^21.1.0, victory-core@^21.1.1, victory-core@^21.1.12:
-  version "21.1.13"
-  resolved "https://registry.yarnpkg.com/victory-core/-/victory-core-21.1.13.tgz#5076e57e450af8e136fd11376ff80213904963d1"
+victory-core@^20.2.0, victory-core@^20.6.0:
+  version "20.6.0"
+  resolved "https://registry.yarnpkg.com/victory-core/-/victory-core-20.6.0.tgz#5f5f4ac43364c9025dbbfbcd97a2f3feb3f9f6ad"
   dependencies:
     d3-ease "^1.0.0"
     d3-interpolate "^1.1.1"
     d3-scale "^1.0.0"
     d3-shape "^1.2.0"
     d3-timer "^1.0.0"
-    lodash "^4.17.5"
-    react-fast-compare "^1.0.0"
+    lodash "^4.17.4"
 
-victory-native@^0.17.4:
-  version "0.17.4"
-  resolved "https://registry.yarnpkg.com/victory-native/-/victory-native-0.17.4.tgz#3d4b22fa9ad11bae2961be8e3f52883d6b41e201"
+victory-native@^0.16.2:
+  version "0.16.6"
+  resolved "https://registry.yarnpkg.com/victory-native/-/victory-native-0.16.6.tgz#cb47d21f178b01d1e1ddcb9178bcc72126828e1f"
   dependencies:
-    lodash "^4.17.5"
+    lodash "^4.17.4"
     prop-types "^15.5.10"
-    victory-chart "^25.2.0"
-    victory-core "^21.1.1"
-    victory-pie "^14.0.2"
+    victory-chart "^24.3.0"
+    victory-core "^20.2.0"
+    victory-pie "^13.0.0"
 
-victory-pie@^14.0.2:
-  version "14.0.2"
-  resolved "https://registry.yarnpkg.com/victory-pie/-/victory-pie-14.0.2.tgz#fc284febf9c505b5de852e34891492d607145c39"
+victory-pie@^13.0.0:
+  version "13.3.1"
+  resolved "https://registry.yarnpkg.com/victory-pie/-/victory-pie-13.3.1.tgz#26cf91ad492ea5f84785dfc34b705e58515f2386"
   dependencies:
     d3-shape "^1.0.0"
-    lodash "^4.17.5"
-    victory-core "^21.1.0"
+    lodash "^4.17.4"
+    victory-core "^20.6.0"
 
 vinyl-file@^2.0.0:
   version "2.0.0"
