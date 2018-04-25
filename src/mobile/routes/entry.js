@@ -4,7 +4,7 @@ import { translate } from 'react-i18next';
 import { Text, TextInput } from 'react-native';
 import { Provider } from 'react-redux';
 import { setRandomlySelectedNode } from 'iota-wallet-shared-modules/actions/settings';
-import { changeIotaNode, getRandomNode } from 'iota-wallet-shared-modules/libs/iota';
+import { changeIotaNode, getRandomNode, SwitchingConfig } from 'iota-wallet-shared-modules/libs/iota';
 import i18next from 'i18next';
 import { getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
 import { isIOS } from '../utils/device';
@@ -19,6 +19,9 @@ const clearKeychain = () => {
 };
 
 const renderInitialScreen = (store) => {
+    // Disable auto node switching.
+    SwitchingConfig.autoSwitch = false;
+
     Text.defaultProps.allowFontScaling = false;
     TextInput.defaultProps.allowFontScaling = false;
 
