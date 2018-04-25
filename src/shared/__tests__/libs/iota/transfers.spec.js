@@ -3,6 +3,7 @@ import keys from 'lodash/keys';
 import isArray from 'lodash/isArray';
 import isObject from 'lodash/isObject';
 import omit from 'lodash/omit';
+import map from 'lodash/map';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import {
@@ -23,6 +24,7 @@ import {
     filterInvalidPendingTransactions,
     getBundleHashesForNewlyConfirmedTransactions,
     normalizedBundlesFromTransactionObjects,
+    prepareForAutoPromotion,
 } from '../../../libs/iota/transfers';
 import { iota, SwitchingConfig } from '../../../libs/iota/index';
 import trytes from '../../__samples__/trytes';
@@ -1106,94 +1108,7 @@ describe('libs: iota/transfers', () => {
                         'ATOKJBNU9UVOETMNVGENWMLBKCIIMIQBPOGHJWMFEUJNXVUPQABEYIETRKPTQRT9AYOOMMYGX9OMTZAJX',
                     ],
                 ),
-            ).to.eql({
-                HAXVESTQCJHLGZYTEG9DGBXHWNURRIAUXJEW9LGDQKJEFEXAWLSEOOMNATDGXGVDAIAAKLOPZHLLXPNTZ: {
-                    attachmentTimestamp: 1524504682708,
-                    transferValue: 1,
-                    bundle: 'HAXVESTQCJHLGZYTEG9DGBXHWNURRIAUXJEW9LGDQKJEFEXAWLSEOOMNATDGXGVDAIAAKLOPZHLLXPNTZ',
-                    hash: 'RXPWGHVYSRKQWRONOWMPAQJUMBZCUTXGAPAOKAFCTDUNNBN9VKUUJQOGZGNUYBFCJABFZWFCHBMKA9999',
-                    incoming: true,
-                    inputs: [
-                        {
-                            address:
-                                'SRWJECVJMNGLRTRNUBRBWOFWKXHWFOWXSZIARUSCAGQRMQNDOFJKJYRUIBCMQWIUTHSMQEYW9ZK9QBXAC',
-                            checksum: 'EVBYFYWLZ',
-                            value: -5,
-                        },
-                    ],
-                    outputs: [
-                        {
-                            address:
-                                'ATOKJBNU9UVOETMNVGENWMLBKCIIMIQBPOGHJWMFEUJNXVUPQABEYIETRKPTQRT9AYOOMMYGX9OMTZAJX',
-                            checksum: 'WWEYWGWBZ',
-                            value: 1,
-                        },
-                        {
-                            address:
-                                'SRWJECVJMNGLRTRNUBRBWOFWKXHWFOWXSZIARUSCAGQRMQNDOFJKJYRUIBCMQWIUTHSMQEYW9ZK9QBXAC',
-                            checksum: 'EVBYFYWLZ',
-                            value: 0,
-                        },
-                        {
-                            address:
-                                'RJHWUBVBVDOAXQNKKJSFYPJQTXNVTNI9CZACOKC9VVGDOYJ9SVNJHSBOUXZJMI9RW99LHRDRBNDCQXTBD',
-                            checksum: 'ALHAZEQBX',
-                            value: 4,
-                        },
-                    ],
-                    message: 'Empty',
-                    persistence: true,
-                    timestamp: 1524498991,
-                    tailTransactions: [
-                        {
-                            hash: 'RXPWGHVYSRKQWRONOWMPAQJUMBZCUTXGAPAOKAFCTDUNNBN9VKUUJQOGZGNUYBFCJABFZWFCHBMKA9999',
-                            attachmentTimestamp: 1524504682708,
-                        },
-                        {
-                            hash: 'CNHIHIVBBHEJFXOEPHYICFMFDKNJJL9DEFBWXMZNYHIDTBDENT9GYYMFLURNMRFNRICVIIUMEKZ9Z9999',
-                            attachmentTimestamp: 1524498999992,
-                        },
-                    ],
-                },
-                BHA9U99WJWBADGCDLLZSNRXNS9C9HCEDODDVACLZIGGTUDODOJQGJRGXNRBJCWKTLRXSAJLAGLYZQZXIA: {
-                    attachmentTimestamp: 1524573605144,
-                    transferValue: 1,
-                    bundle: 'BHA9U99WJWBADGCDLLZSNRXNS9C9HCEDODDVACLZIGGTUDODOJQGJRGXNRBJCWKTLRXSAJLAGLYZQZXIA',
-                    hash: 'KIYCLXKBYIIBRSZDZZTZZZ9WMSINGIWWOZBEYDCYTSREFRCMYJBJZ9NOXCJ9ORDXKVHJKCUBDLIDZ9999',
-                    incoming: true,
-                    inputs: [
-                        {
-                            address:
-                                'PEAQU9KBPVHYXLQIUHECEMVLVSLK9QWVITCNPCVXVOL9COKMODBWYBUNTQXT9DMXUBYUFNVOLBCVUIKRX',
-                            checksum: 'ZFVETXHX9',
-                            value: -1,
-                        },
-                    ],
-                    outputs: [
-                        {
-                            address:
-                                'WUOTVAPXBUWZYNN9WZXGDNAFOWNQPJLHJJDMUCLMPONEEMVNGEH9XIYAPB9LMXTAHOLZQNZFSHSIJAIID',
-                            checksum: 'DAGGCMMFD',
-                            value: 1,
-                        },
-                        {
-                            address:
-                                'PEAQU9KBPVHYXLQIUHECEMVLVSLK9QWVITCNPCVXVOL9COKMODBWYBUNTQXT9DMXUBYUFNVOLBCVUIKRX',
-                            checksum: 'ZFVETXHX9',
-                            value: 0,
-                        },
-                    ],
-                    message: 'Empty',
-                    persistence: false,
-                    timestamp: 1524573595,
-                    tailTransactions: [
-                        {
-                            hash: 'KIYCLXKBYIIBRSZDZZTZZZ9WMSINGIWWOZBEYDCYTSREFRCMYJBJZ9NOXCJ9ORDXKVHJKCUBDLIDZ9999',
-                            attachmentTimestamp: 1524573605144,
-                        },
-                    ],
-                },
-            });
+            ).to.eql(mockTransactions.normalizedBundles);
         });
 
         it('should not return invalid bundles', () => {
@@ -1211,6 +1126,77 @@ describe('libs: iota/transfers', () => {
                     ],
                 ),
             ).to.eql({});
+        });
+    });
+
+    describe('#prepareForAutoPromotion', () => {
+        let sandbox;
+
+        beforeEach(() => {
+            sandbox = sinon.sandbox.create();
+
+            sandbox.stub(iota.api, 'getNodeInfo').yields(null, {});
+        });
+
+        afterEach(() => {
+            sandbox.restore();
+        });
+
+        describe('when there are no pending transfers', () => {
+            it('should resolve an empty array', () => {
+                return prepareForAutoPromotion([{ persistence: true }, { persistence: true }], {}, 'TEST').then(
+                    (result) => expect(result).to.eql({}),
+                );
+            });
+        });
+
+        describe('when there are valid pending transfers', () => {
+            it('should transform transfers by bundle', () => {
+                const transactions = map(mockTransactions.normalizedBundles, (tx) => tx);
+                const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['100'] });
+
+                return prepareForAutoPromotion(
+                    transactions,
+                    {
+                        WUOTVAPXBUWZYNN9WZXGDNAFOWNQPJLHJJDMUCLMPONEEMVNGEH9XIYAPB9LMXTAHOLZQNZFSHSIJAIID: {},
+                        ATOKJBNU9UVOETMNVGENWMLBKCIIMIQBPOGHJWMFEUJNXVUPQABEYIETRKPTQRT9AYOOMMYGX9OMTZAJX: {},
+                    },
+                    'TEST',
+                ).then((result) => {
+                    expect(result).to.eql({
+                        BHA9U99WJWBADGCDLLZSNRXNS9C9HCEDODDVACLZIGGTUDODOJQGJRGXNRBJCWKTLRXSAJLAGLYZQZXIA: [
+                            {
+                                hash:
+                                    'KIYCLXKBYIIBRSZDZZTZZZ9WMSINGIWWOZBEYDCYTSREFRCMYJBJZ9NOXCJ9ORDXKVHJKCUBDLIDZ9999',
+                                attachmentTimestamp: 1524573605144,
+                                account: 'TEST',
+                            },
+                        ],
+                    });
+
+                    getBalances.restore();
+                });
+            });
+        });
+
+        describe('when there are invalid pending transfers', () => {
+            it('should not include them in transformed bundles', () => {
+                const transactions = map(mockTransactions.normalizedBundles, (tx) => tx);
+                const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['0'] });
+
+                return prepareForAutoPromotion(
+                    transactions,
+                    {
+                        WUOTVAPXBUWZYNN9WZXGDNAFOWNQPJLHJJDMUCLMPONEEMVNGEH9XIYAPB9LMXTAHOLZQNZFSHSIJAIID: {},
+                        ATOKJBNU9UVOETMNVGENWMLBKCIIMIQBPOGHJWMFEUJNXVUPQABEYIETRKPTQRT9AYOOMMYGX9OMTZAJX: {},
+                    },
+                    'TEST',
+                ).then((result) => {
+                    expect(result).to.eql({});
+
+                    getBalances.restore();
+                });
+            });
         });
     });
 });
