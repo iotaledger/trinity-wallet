@@ -168,8 +168,11 @@ class Home extends Component {
 
     onTabSwitch(name) {
         const { isSyncing, isTransitioning } = this.props;
+        if (isTransitioning) {
+            return;
+        }
         this.props.changeHomeScreenRoute(name);
-        if (!isSyncing && !isTransitioning) {
+        if (!isSyncing) {
             this.resetSettings();
         }
     }
