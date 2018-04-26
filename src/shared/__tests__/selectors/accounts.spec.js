@@ -139,8 +139,8 @@ describe('selectors: accounts', () => {
                         foo: {
                             transfers: [],
                             addresses: {
-                                ['U'.repeat(81)]: { index: 0, balance: 0, spent: false },
-                                ['A'.repeat(81)]: { index: 1, balance: 10, spent: false },
+                                ['U'.repeat(81)]: { index: 0, balance: 0, spent: false, checksum: 'NXELTUENX' },
+                                ['A'.repeat(81)]: { index: 1, balance: 10, spent: false, checksum: 'YLFHUOJUY' },
                             },
                             balance: 10,
                         },
@@ -148,7 +148,7 @@ describe('selectors: accounts', () => {
                             transfers: {},
                             addresses: {
                                 addresses: {
-                                    ['B'.repeat(81)]: { index: 0, balance: 20, spent: false },
+                                    ['B'.repeat(81)]: { index: 0, balance: 20, spent: false, checksum: 'IO9LGIBVB' },
                                 },
                             },
                             balance: 20,
@@ -159,8 +159,9 @@ describe('selectors: accounts', () => {
             };
         });
 
-        it('should return the address from selected account with index zero', () => {
-            expect(selectFirstAddressFromAccountFactory('foo')(state)).to.equal('U'.repeat(81));
+        it('should return first address (index === 0) with checksum for selected account', () => {
+            const firstAddressWithChecksum = `${'U'.repeat(81)}NXELTUENX`;
+            expect(selectFirstAddressFromAccountFactory('foo')(state)).to.equal(firstAddressWithChecksum);
         });
     });
 
