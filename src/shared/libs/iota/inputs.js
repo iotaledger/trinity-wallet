@@ -60,7 +60,7 @@ export const prepareInputs = (addressData, start, threshold, security = DEFAULT_
  *   @param {object} addressData - Addresses dictionary with balance and spend status
  *   @param {number} start - Index to start the search from
  *   @param {number} threshold - Maximum value (balance) to stop the search
- *   @param {object} inputs - Could be initialized with null. In case its null default inputs would be defined.
+ *   @param {object} inputs - Could be initialised with null. In case its null default inputs would be defined.
  *   @returns {promise<object>}
  **/
 export const getUnspentInputs = (addressData, pendingValueTransfers, start, threshold, inputs) => {
