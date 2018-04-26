@@ -5,15 +5,15 @@ import sinon from 'sinon';
 import {
     prepareTransferArray,
     extractTailTransferFromBundle,
-    categorizeTransactionsByPersistence,
+    categoriseTransactionsByPersistence,
     getPendingTxTailsHashes,
     markTransfersConfirmed,
     hasNewTransfers,
     getHashesDiff,
-    categorizeTransactions,
-    normalizeBundle,
+    categoriseTransactions,
+    normaliseBundle,
     mergeNewTransfers,
-    categorizeBundleByInputsOutputs,
+    categoriseBundleByInputsOutputs,
     getTransactionHashesForUnspentAddresses,
 } from '../../../libs/iota/transfers';
 import { iota } from '../../../libs/iota/index';
@@ -102,7 +102,7 @@ describe('libs: iota/transfers', () => {
         });
     });
 
-    describe('#categorizeTransactionsByPersistence', () => {
+    describe('#categoriseTransactionsByPersistence', () => {
         it('should always return an object with props "unconfirmed" and "confirmed"', () => {
             const args = [
                 [undefined, undefined],
@@ -116,7 +116,7 @@ describe('libs: iota/transfers', () => {
             ];
 
             args.forEach((arg) => {
-                expect(categorizeTransactionsByPersistence(...arg)).to.have.keys(['confirmed', 'unconfirmed']);
+                expect(categoriseTransactionsByPersistence(...arg)).to.have.keys(['confirmed', 'unconfirmed']);
             });
         });
 
@@ -125,7 +125,7 @@ describe('libs: iota/transfers', () => {
 
             const states = [true, false];
 
-            expect(categorizeTransactionsByPersistence(transactions, states).confirmed).to.eql([{ bundle: 'foo' }]);
+            expect(categoriseTransactionsByPersistence(transactions, states).confirmed).to.eql([{ bundle: 'foo' }]);
         });
 
         it('should map all those transactions to "unconfirmed" prop array that have corresponding states false', () => {
@@ -133,7 +133,7 @@ describe('libs: iota/transfers', () => {
 
             const states = [true, false];
 
-            expect(categorizeTransactionsByPersistence(transactions, states).unconfirmed).to.eql([{ bundle: 'baz' }]);
+            expect(categoriseTransactionsByPersistence(transactions, states).unconfirmed).to.eql([{ bundle: 'baz' }]);
         });
     });
 
@@ -175,7 +175,7 @@ describe('libs: iota/transfers', () => {
 
         describe('when second argument passed is not an empty array', () => {
             it('should assign persistence true to those objects that have any tail transaction hash in second argument array', () => {
-                const normalizedTransfers = {
+                const normalisedTransfers = {
                     bundleHashOne: {
                         persistence: false,
                         tailTransactions: [{ hash: 'UUU' }],
@@ -193,7 +193,7 @@ describe('libs: iota/transfers', () => {
                     bundleHashTwo: { persistence: true, tailTransactions: [{ hash: 'XXX' }] },
                 };
 
-                expect(markTransfersConfirmed(normalizedTransfers, confirmedTransactionsHashes)).to.eql(result);
+                expect(markTransfersConfirmed(normalisedTransfers, confirmedTransactionsHashes)).to.eql(result);
             });
         });
     });
@@ -303,29 +303,29 @@ describe('libs: iota/transfers', () => {
         });
     });
 
-    describe('#categorizeTransactions', () => {
+    describe('#categoriseTransactions', () => {
         it('should always return an object with props "incoming" and "outgoing"', () => {
             const args = [[undefined], [null], [], [{}], [''], [0], ['foo']];
 
             args.forEach((arg) => {
-                expect(categorizeTransactions(...arg)).to.have.keys(['incoming', 'outgoing']);
+                expect(categoriseTransactions(...arg)).to.have.keys(['incoming', 'outgoing']);
             });
         });
 
-        it('should categorize incoming transactions to "incoming" prop array', () => {
+        it('should categorise incoming transactions to "incoming" prop array', () => {
             const transactions = [{ incoming: true }, { incoming: false }, { incoming: false }];
 
-            expect(categorizeTransactions(transactions).incoming).to.eql([{ incoming: true }]);
+            expect(categoriseTransactions(transactions).incoming).to.eql([{ incoming: true }]);
         });
 
-        it('should categorize outgoing transactions to "outgoing" prop array', () => {
+        it('should categorise outgoing transactions to "outgoing" prop array', () => {
             const transactions = [{ incoming: true }, { incoming: false }];
 
-            expect(categorizeTransactions(transactions).outgoing).to.eql([{ incoming: false }]);
+            expect(categoriseTransactions(transactions).outgoing).to.eql([{ incoming: false }]);
         });
     });
 
-    describe('#normalizeBundle', () => {
+    describe('#normaliseBundle', () => {
         let bundle;
         let addresses;
         let tailTransactions;
@@ -405,69 +405,69 @@ describe('libs: iota/transfers', () => {
 
         // Note: Test internally used functions separately
         it('should return an object with "hash" prop', () => {
-            expect(normalizeBundle(bundle, addresses, tailTransactions, false)).to.include.keys('hash');
+            expect(normaliseBundle(bundle, addresses, tailTransactions, false)).to.include.keys('hash');
         });
 
         it('should return an object with "bundle" prop', () => {
-            expect(normalizeBundle(bundle, addresses, tailTransactions, false)).to.include.keys('bundle');
+            expect(normaliseBundle(bundle, addresses, tailTransactions, false)).to.include.keys('bundle');
         });
 
         it('should return an object with "timestamp" prop', () => {
-            expect(normalizeBundle(bundle, addresses, tailTransactions, false)).to.include.keys('timestamp');
+            expect(normaliseBundle(bundle, addresses, tailTransactions, false)).to.include.keys('timestamp');
         });
 
         it('should return an object with "attachmentTimestamp" prop', () => {
-            expect(normalizeBundle(bundle, addresses, tailTransactions, false)).to.include.keys('attachmentTimestamp');
+            expect(normaliseBundle(bundle, addresses, tailTransactions, false)).to.include.keys('attachmentTimestamp');
         });
 
         it('should return an object with "inputs" prop', () => {
-            expect(normalizeBundle(bundle, addresses, tailTransactions, false)).to.include.keys('inputs');
+            expect(normaliseBundle(bundle, addresses, tailTransactions, false)).to.include.keys('inputs');
         });
 
         it('should return an object with "outputs" prop', () => {
-            expect(normalizeBundle(bundle, addresses, tailTransactions, false)).to.include.keys('inputs');
+            expect(normaliseBundle(bundle, addresses, tailTransactions, false)).to.include.keys('inputs');
         });
 
         it('should return an object with "persistence" prop equalling fourth argument', () => {
-            expect(normalizeBundle(bundle, addresses, tailTransactions, false).persistence).to.equal(false);
+            expect(normaliseBundle(bundle, addresses, tailTransactions, false).persistence).to.equal(false);
         });
 
         it('should return an object with "incoming" prop', () => {
-            expect(normalizeBundle(bundle, addresses, tailTransactions, false)).to.include.keys('incoming');
+            expect(normaliseBundle(bundle, addresses, tailTransactions, false)).to.include.keys('incoming');
         });
 
         it('should return an object with "transferValue" prop', () => {
-            expect(normalizeBundle(bundle, addresses, tailTransactions, false)).to.include.keys('transferValue');
+            expect(normaliseBundle(bundle, addresses, tailTransactions, false)).to.include.keys('transferValue');
         });
 
         it('should return an object with "message" prop', () => {
-            expect(normalizeBundle(bundle, addresses, tailTransactions, false)).to.include.keys('transferValue');
+            expect(normaliseBundle(bundle, addresses, tailTransactions, false)).to.include.keys('transferValue');
         });
 
         it('should return an object with "tailTransactions" prop', () => {
-            expect(normalizeBundle(bundle, addresses, tailTransactions, false)).to.include.keys('tailTransactions');
+            expect(normaliseBundle(bundle, addresses, tailTransactions, false)).to.include.keys('tailTransactions');
         });
 
         it('should only keep tail transactions of the same bundle', () => {
-            const normalizedBundle = normalizeBundle(bundle, addresses, tailTransactions, false);
+            const normalisedBundle = normaliseBundle(bundle, addresses, tailTransactions, false);
 
             const tailTransactionFromBundle = find(bundle, { currentIndex: 0 });
-            normalizedBundle.tailTransactions.forEach((tailTransaction) =>
+            normalisedBundle.tailTransactions.forEach((tailTransaction) =>
                 expect(tailTransaction.hash).to.equal(tailTransactionFromBundle.hash),
             );
         });
 
         it('should only have "hash" and "attachmentTimestamp" props in each object of "tailTransactions" prop', () => {
-            const normalizedBundle = normalizeBundle(bundle, addresses, tailTransactions, false);
+            const normalisedBundle = normaliseBundle(bundle, addresses, tailTransactions, false);
 
-            normalizedBundle.tailTransactions.forEach((tailTransaction) =>
+            normalisedBundle.tailTransactions.forEach((tailTransaction) =>
                 expect(keys(tailTransaction)).to.eql(['hash', 'attachmentTimestamp']),
             );
         });
     });
 
     describe('#mergeNewTransfers', () => {
-        describe('when bundle hash of new normalized transfer exists in existing normalized transfers', () => {
+        describe('when bundle hash of new normalised transfer exists in existing normalised transfers', () => {
             it('should add tail transactions of new tranfers to tail transactions in existing transfer', () => {
                 const existingNormalizedTransfers = {
                     bundleHashOne: {
@@ -602,8 +602,8 @@ describe('libs: iota/transfers', () => {
             });
         });
 
-        describe('when bundle hash of new normalized transfer does not exist in existing normalized transfers', () => {
-            it('should assign new normalized transfer to the existing normalized transfers', () => {
+        describe('when bundle hash of new normalised transfer does not exist in existing normalised transfers', () => {
+            it('should assign new normalised transfer to the existing normalised transfers', () => {
                 const existingNormalizedTransfers = {
                     bundleHashOne: {
                         tailTransactions: [
@@ -694,7 +694,7 @@ describe('libs: iota/transfers', () => {
         });
     });
 
-    describe('#categorizeBundleByInputsOutputs', () => {
+    describe('#categoriseBundleByInputsOutputs', () => {
         let bundle;
 
         beforeEach(() => {
@@ -722,8 +722,8 @@ describe('libs: iota/transfers', () => {
             ];
         });
 
-        it('should categorize non-remainder transaction objects with negative value to "inputs"', () => {
-            expect(categorizeBundleByInputsOutputs(bundle).inputs).to.eql([
+        it('should categorise non-remainder transaction objects with negative value to "inputs"', () => {
+            expect(categoriseBundleByInputsOutputs(bundle).inputs).to.eql([
                 {
                     value: -2201,
                     address: 'JMJHGMMVBEOWEVMEUYFYWJGZK9ITVBZAIWXITUANTYYLAKSHYRCZBBN9ULEDLRYITFNQMAUPZP9WMLEHB',
@@ -732,8 +732,8 @@ describe('libs: iota/transfers', () => {
             ]);
         });
 
-        it('should categorize transaction objects with non-negative values to "outputs"', () => {
-            expect(categorizeBundleByInputsOutputs(bundle).outputs).to.eql([
+        it('should categorise transaction objects with non-negative values to "outputs"', () => {
+            expect(categoriseBundleByInputsOutputs(bundle).outputs).to.eql([
                 {
                     value: 1,
                     address: 'AWHJTOTMFXZUAVJAWHXULZJFTQNHYAIQHIDKOSTEMR9ZBHWFWDLIQYPHDKTVXYDJYRHKMXYLDUULJMMWW',
