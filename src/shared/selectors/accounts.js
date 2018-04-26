@@ -1,6 +1,6 @@
 import get from 'lodash/get';
-import findKey from 'lodash/findKey';
 import keys from 'lodash/keys';
+import pickBy from 'lodash/pickBy';
 import reduce from 'lodash/reduce';
 import filter from 'lodash/filter';
 import { createSelector } from 'reselect';
@@ -125,7 +125,15 @@ export const selectedAccountStateFactory = (accountName) => {
  **/
 export const selectFirstAddressFromAccountFactory = (accountName) => {
     return createSelector(getAccountInfoFromState, (state) =>
-        findKey(state[accountName].addresses, (addressMeta) => addressMeta.index === 0),
+        reduce(
+            pickBy(state[accountName].addresses, (addressMeta) => addressMeta.index === 0),
+            (acc, addressMeta, address) => {
+                acc = `${address}${addressMeta.checksum}`;
+
+                return acc;
+            },
+            '',
+        ),
     );
 };
 
