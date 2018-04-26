@@ -188,9 +188,10 @@ export const promoteTransaction = (bundleHash, accountName) => (dispatch, getSta
                         20000,
                     ),
                 );
+            } else {
+                dispatch(generatePromotionErrorAlert());
             }
 
-            dispatch(generatePromotionErrorAlert());
             return dispatch(promoteTransactionError());
         });
 };
