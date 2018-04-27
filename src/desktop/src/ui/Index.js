@@ -260,7 +260,6 @@ const mapStateToProps = (state) => ({
     settings: state.settings,
     accounts: state.accounts,
     wallet: state.wallet,
-    deepLinks: state.deepLinks,
     activationCode: state.app.activationCode,
     themeName: state.settings.themeName,
 });

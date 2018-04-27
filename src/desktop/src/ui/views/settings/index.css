@@ -37,6 +37,10 @@
     section:last-of-type {
         flex: 1;
         padding: 0 20px;
+
+        > div {
+            height: calc(100vh - 120px);
+        }
     }
 
     nav {

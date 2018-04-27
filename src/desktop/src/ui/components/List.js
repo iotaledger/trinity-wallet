@@ -172,6 +172,7 @@ class List extends React.PureComponent {
                                 <p>
                                     <strong>
                                         {activeTransfer.incoming ? t('history:receive') : t('history:send')}
+                                        {' '}
                                         <span>
                                             {round(formatValue(activeTransfer.transferValue), 1)}{' '}
                                             {formatUnit(activeTransfer.transferValue)}
@@ -195,7 +196,11 @@ class List extends React.PureComponent {
                                 <div className={css.message}>
                                     <strong>{t('send:message')}</strong>
                                     <Scrollbar>
-                                        <span>{activeTransfer.message} </span>
+                                        <Clipboard
+                                            text={activeTransfer.message}
+                                            title={t('history:messageCopied')}
+                                            success={t('history:messageCopiedExplanation')}
+                                        />
                                     </Scrollbar>
                                 </div>
                             </div>
