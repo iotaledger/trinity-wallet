@@ -1,8 +1,9 @@
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+
+const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
     entry: ['./src/index.js'],
@@ -10,6 +11,7 @@ module.exports = {
         path: path.join(__dirname, '..', 'dist'),
         pathinfo: false,
         filename: 'bundle.js',
+        globalObject: 'this',
         publicPath: '/',
     },
     module: {
@@ -26,30 +28,27 @@ module.exports = {
             {
                 test: /\.css$/,
                 exclude: /node_modules/,
-                use: ['css-hot-loader'].concat(
-                    ExtractTextPlugin.extract({
-                        publicPath: process.env.NODE_ENV === 'production' ? '../' : undefined,
-                        use: [
-                            {
-                                loader: 'css-loader',
-                                options: {
-                                    camelCase: true,
-                                    modules: true,
-                                    importLoaders: 1,
-                                    localIdentName:
-                                        process.env.NODE_ENV === 'production' ? '[hash:base64]' : '[name]__[local]',
-                                    sourceMap: true,
-                                },
-                            },
-                            {
-                                loader: 'postcss-loader',
-                                options: {
-                                    sourceMap: true,
-                                },
-                            },
-                        ],
-                    }),
-                ),
+                use: [
+                    devMode
+                        ? 'style-loader'
+                        : {
+                              loader: MiniCssExtractPlugin.loader,
+                              options: {
+                                  publicPath: '../',
+                              },
+                          },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            camelCase: true,
+                            modules: true,
+                            importLoaders: 1,
+                            localIdentName: '[name]__[local]',
+                            sourceMap: true,
+                        },
+                    },
+                    'postcss-loader',
+                ],
             },
             {
                 test: /\.(png|jpg|jpeg|svg|ttf|woff)$/,
@@ -76,10 +75,8 @@ module.exports = {
         modules: ['node_modules', path.resolve(__dirname, '..', 'src'), path.resolve(__dirname, '..', '..', 'shared')],
     },
     plugins: [
-        new CaseSensitivePathsPlugin(),
-        new ExtractTextPlugin({
+        new MiniCssExtractPlugin({
             filename: 'css/[name].css',
-            allChunks: false,
         }),
         new HtmlWebpackPlugin({
             title: 'Trinity',
