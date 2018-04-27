@@ -354,7 +354,9 @@
     },
     "addCustomNode": {
         "customNode": "Пользовательский узел",
-        "add": "Добавить"
+        "add": "Добавить",
+        "nodeFieldEmpty": "Text field is empty",
+        "nodeFieldEmptyExplanation": "Please enter a custom node."
     },
     "addNewAccount": {
         "useExistingSeed": "Использовать текущий ключ",
