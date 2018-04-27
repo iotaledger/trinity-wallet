@@ -26,7 +26,8 @@
       android:icon="@mipmap/icon"
       android:theme="@style/AppTheme"
       tools:replace="android:allowBackup"
-        >
+      android:resizeableActivity="false"
+    >
     <meta-data
         android:name="io.fabric.ApiKey"
         android:value="e741ca311eddc2a22fa56c2dad19b440babbddbc"
