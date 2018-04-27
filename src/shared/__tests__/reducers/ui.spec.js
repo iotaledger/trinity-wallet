@@ -682,6 +682,7 @@ describe('Reducer: ui', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 hasErrorFetchingAccountInfoOnLogin: false,
+                isFetchingLatestAccountInfoOnLogin: true,
             };
 
             expect(newState).to.eql(expectedState);
@@ -701,6 +702,7 @@ describe('Reducer: ui', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 hasErrorFetchingAccountInfoOnLogin: true,
+                isFetchingLatestAccountInfoOnLogin: false,
             };
 
             expect(newState).to.eql(expectedState);
