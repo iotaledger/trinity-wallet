@@ -2,7 +2,6 @@
 import React from 'react';
 
 import { DESKTOP_VERSION } from 'config';
-import themes from 'themes/themes';
 
 import Button from 'ui/components/Button';
 
@@ -14,11 +13,12 @@ import css from 'ui/views/onboarding/index.css';
 class Activation extends React.PureComponent {
     resetWallet = (e) => {
         e.preventDefault();
+
+        localStorage.clear();
+
+        Electron.clearStorage();
         Electron.setActiveVersion(DESKTOP_VERSION);
 
-        document.body.style.background = themes.Ionic.body.bg;
-        localStorage.clear();
-        Electron.clearStorage();
         location.reload();
     };
 
