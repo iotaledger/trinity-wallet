@@ -1,5 +1,9 @@
 import find from 'lodash/find';
 import keys from 'lodash/keys';
+import isArray from 'lodash/isArray';
+import isObject from 'lodash/isObject';
+import omit from 'lodash/omit';
+import map from 'lodash/map';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import {
@@ -15,10 +19,26 @@ import {
     mergeNewTransfers,
     categorizeBundleByInputsOutputs,
     getTransactionHashesForUnspentAddresses,
+    getPendingTransactionHashesForSpentAddresses,
+    performPow,
+    filterInvalidPendingTransactions,
+    getBundleHashesForNewlyConfirmedTransactions,
+    normalizedBundlesFromTransactionObjects,
+    prepareForAutoPromotion,
 } from '../../../libs/iota/transfers';
-import { iota } from '../../../libs/iota/index';
+import { iota, SwitchingConfig } from '../../../libs/iota/index';
+import trytes from '../../__samples__/trytes';
+import * as mockTransactions from '../../__samples__/transactions';
 
 describe('libs: iota/transfers', () => {
+    before(() => {
+        SwitchingConfig.autoSwitch = false;
+    });
+
+    after(() => {
+        SwitchingConfig.autoSwitch = true;
+    });
+
     describe('#prepareTransferArray', () => {
         it('should return an array', () => {
             const args = ['foo', 1, 'message', 'U'.repeat(81)];
@@ -754,27 +774,23 @@ describe('libs: iota/transfers', () => {
     });
 
     describe('#getTransactionHashesForUnspentAddresses', () => {
-        let server;
+        let sandbox;
 
-        before(() => {
-            server = sinon.fakeServer.create();
-            server.autoRespond = true;
+        beforeEach(() => {
+            sandbox = sinon.sandbox.create();
 
-            sinon
+            sandbox.stub(iota.api, 'getNodeInfo').yields(null, {});
+            sandbox
                 .stub(iota.api, 'findTransactions')
                 .yields(null, ['99SCLLLYGMB9FSLXARXJPUXAMUQRDSAXMKNMAPOWZMZLTXUCPUVUICKEQUUGFIRD9JZTGHKGMNZUA9999']);
         });
 
-        after(() => {
-            server.restore();
-
-            if (iota.api.findTransactions.restore) {
-                iota.api.findTransactions.restore();
-            }
+        afterEach(() => {
+            sandbox.restore();
         });
 
         describe('when all addresses are spent', () => {
-            it('should return an empty array', (done) => {
+            it('should return an empty array', () => {
                 const addressData = {
                     ['U'.repeat(81)]: { spent: true },
                     ['V'.repeat(81)]: { spent: true },
@@ -783,17 +799,14 @@ describe('libs: iota/transfers', () => {
 
                 const promise = getTransactionHashesForUnspentAddresses(addressData);
 
-                promise
-                    .then((hashes) => {
-                        expect(hashes).to.eql([]);
-                        done();
-                    })
-                    .catch(done);
+                return promise.then((hashes) => {
+                    expect(hashes).to.eql([]);
+                });
             });
         });
 
         describe('when one or more of the addresses are unspent', () => {
-            it('should return transaction hashes for unspent addresses', (done) => {
+            it('should return transaction hashes for unspent addresses', () => {
                 const addressData = {
                     ['U'.repeat(81)]: { spent: true },
                     ['V'.repeat(81)]: { spent: false },
@@ -801,14 +814,388 @@ describe('libs: iota/transfers', () => {
 
                 const promise = getTransactionHashesForUnspentAddresses(addressData);
 
-                promise
-                    .then((hashes) => {
-                        expect(hashes).to.eql([
-                            '99SCLLLYGMB9FSLXARXJPUXAMUQRDSAXMKNMAPOWZMZLTXUCPUVUICKEQUUGFIRD9JZTGHKGMNZUA9999',
-                        ]);
-                        done();
-                    })
-                    .catch(done);
+                return promise.then((hashes) => {
+                    expect(hashes).to.eql([
+                        '99SCLLLYGMB9FSLXARXJPUXAMUQRDSAXMKNMAPOWZMZLTXUCPUVUICKEQUUGFIRD9JZTGHKGMNZUA9999',
+                    ]);
+                });
+            });
+        });
+    });
+
+    describe('#getPendingTransactionHashesForSpentAddresses', () => {
+        let sandbox;
+
+        beforeEach(() => {
+            sandbox = sinon.sandbox.create();
+
+            sandbox.stub(iota.api, 'getNodeInfo').yields(null, {});
+            sandbox
+                .stub(iota.api, 'findTransactions')
+                .yields(null, ['99SCLLLYGMB9FSLXARXJPUXAMUQRDSAXMKNMAPOWZMZLTXUCPUVUICKEQUUGFIRD9JZTGHKGMNZUA9999']);
+        });
+
+        afterEach(() => {
+            sandbox.restore();
+        });
+
+        describe('when there are no pending transactions', () => {
+            it('should return an empty array', () => {
+                const transactions = Array.from(new Array(5), () => ({ persistence: true }));
+
+                const promise = getPendingTransactionHashesForSpentAddresses(transactions, {});
+
+                return promise.then((hashes) => {
+                    expect(hashes).to.eql([]);
+                });
+            });
+        });
+
+        describe('when there are pending transfers', () => {
+            it('should return transaction hashes for spend addresses with pending transfers', () => {
+                const addressData = {
+                    ['U'.repeat(81)]: { spent: true },
+                    ['V'.repeat(81)]: { spent: false },
+                };
+
+                const transactions = [
+                    {
+                        persistence: false,
+                        inputs: [
+                            {
+                                address: 'U'.repeat(81),
+                            },
+                        ],
+                    },
+                    {
+                        persistence: true,
+                        inputs: [],
+                    },
+                ];
+
+                const promise = getPendingTransactionHashesForSpentAddresses(transactions, addressData);
+
+                return promise.then((hashes) => {
+                    expect(hashes).to.eql([
+                        '99SCLLLYGMB9FSLXARXJPUXAMUQRDSAXMKNMAPOWZMZLTXUCPUVUICKEQUUGFIRD9JZTGHKGMNZUA9999',
+                    ]);
+                });
+            });
+        });
+    });
+
+    describe('#performPow', () => {
+        let powFn;
+        let trunkTransaction;
+        let branchTransaction;
+
+        const nonces = [
+            'N9UIMZQVDYWLXWGHLELNRCUUPMP',
+            'SLSJJSDPDTDSKEVCBVPMWDNOLAH',
+            'K9JXMYPREJZGUFFSANKRNPOMAGR',
+            'CAIYIYWLTPMFZOABIHTXOPWCZNQ',
+        ];
+
+        beforeEach(() => {
+            powFn = () => {
+                let calledTimes = 0;
+
+                return () => {
+                    const promise = Promise.resolve(nonces[calledTimes]);
+                    calledTimes += 1;
+
+                    return promise;
+                };
+            };
+
+            trunkTransaction = 'LLJWVVZFXF9ZGFSBSHPCD9HOIFBCLXGRV9XWSQDTGOMSRGQQIVFVZKHLKTJJVFMXQTZVPNRNAQEPA9999';
+            branchTransaction = 'GSHUHUWAUUGQHHNAPRDPDJRKZFJNIAPFNTVAHZPUNDJWRHZSZASOERZURXZVEHN9OJVS9QNRGSJE99999';
+        });
+
+        it('should sort transaction objects in ascending order by currentIndex', () => {
+            const fn = performPow(powFn(), trytes.value.reverse(), trunkTransaction, branchTransaction, 14);
+
+            return fn.then(({ transactionObjects }) => {
+                transactionObjects.map((tx, idx) => expect(tx.currentIndex).to.equal(idx));
+            });
+        });
+
+        it('should assign generated nonce', () => {
+            const fn = performPow(powFn(), trytes.value.reverse(), trunkTransaction, branchTransaction, 14);
+
+            return fn.then(({ transactionObjects }) => {
+                transactionObjects.map((tx, idx) => expect(tx.nonce).to.equal(nonces.slice().reverse()[idx]));
+            });
+        });
+
+        it('should set correct bundle sequence', () => {
+            const fn = performPow(powFn(), trytes.value.reverse(), trunkTransaction, branchTransaction, 14);
+
+            return fn.then(({ transactionObjects }) => {
+                expect(transactionObjects[0].trunkTransaction).to.equal(transactionObjects[1].hash);
+                expect(transactionObjects[0].branchTransaction).to.equal(trunkTransaction);
+
+                expect(transactionObjects[1].trunkTransaction).to.equal(transactionObjects[2].hash);
+                expect(transactionObjects[1].branchTransaction).to.equal(trunkTransaction);
+
+                expect(transactionObjects[2].trunkTransaction).to.equal(transactionObjects[3].hash);
+                expect(transactionObjects[2].branchTransaction).to.equal(trunkTransaction);
+
+                expect(transactionObjects[3].trunkTransaction).to.equal(trunkTransaction);
+                expect(transactionObjects[3].branchTransaction).to.equal(branchTransaction);
+            });
+        });
+    });
+
+    describe('#filterInvalidPendingTransactions', () => {
+        let sandbox;
+
+        beforeEach(() => {
+            sandbox = sinon.sandbox.create();
+
+            sandbox.stub(iota.api, 'getNodeInfo').yields(null, {});
+        });
+
+        afterEach(() => {
+            sandbox.restore();
+        });
+
+        describe('when there are no pending transactions', () => {
+            it('should return an empty array', () => {
+                const transactions = Array.from(new Array(5), () => ({ persistence: true }));
+
+                const promise = filterInvalidPendingTransactions(transactions, {});
+
+                return promise.then((transactions) => {
+                    expect(transactions).to.eql([]);
+                });
+            });
+        });
+
+        describe('when there are incoming pending transfers', () => {
+            it('should filter transaction if input addresses do not have enough balance', () => {
+                const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['0'] });
+                const addressData = {
+                    ['U'.repeat(81)]: { spent: true },
+                    ['V'.repeat(81)]: { spent: false },
+                };
+
+                const transactions = [
+                    {
+                        incoming: true,
+                        persistence: false,
+                        inputs: [{ address: 'A'.repeat(81), value: 10 }],
+                    },
+                ];
+
+                const promise = filterInvalidPendingTransactions(transactions, addressData);
+                return promise.then((txs) => {
+                    expect(txs).to.eql([]);
+                    getBalances.restore();
+                });
+            });
+
+            it('should not filter transaction if input addresses still have enough balance', () => {
+                const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['10'] });
+                const addressData = {
+                    ['U'.repeat(81)]: { spent: true },
+                    ['V'.repeat(81)]: { spent: false },
+                };
+
+                const transactions = [
+                    {
+                        incoming: true,
+                        persistence: false,
+                        inputs: [{ address: 'A'.repeat(81), value: 10 }],
+                    },
+                ];
+
+                const promise = filterInvalidPendingTransactions(transactions, addressData);
+                return promise.then((txs) => {
+                    expect(txs).to.eql(transactions);
+                    getBalances.restore();
+                });
+            });
+        });
+
+        describe('when there are outgoing pending transfers', () => {
+            it('should filter transaction if input addresses do not have enough balance', () => {
+                const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['0'] });
+                const addressData = {
+                    ['U'.repeat(81)]: { spent: true },
+                    ['V'.repeat(81)]: { spent: false },
+                };
+
+                const transactions = [
+                    {
+                        incoming: true,
+                        persistence: false,
+                        inputs: [{ address: 'U'.repeat(81), value: -10 }],
+                    },
+                ];
+
+                const promise = filterInvalidPendingTransactions(transactions, addressData);
+                return promise.then((txs) => {
+                    expect(txs).to.eql([]);
+                    getBalances.restore();
+                });
+            });
+
+            it('should not filter transaction if input addresses still have enough balance', () => {
+                const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['10'] });
+                const addressData = {
+                    ['U'.repeat(81)]: { spent: true },
+                    ['V'.repeat(81)]: { spent: false },
+                };
+
+                const transactions = [
+                    {
+                        incoming: true,
+                        persistence: false,
+                        inputs: [{ address: 'U'.repeat(81), value: -10 }],
+                    },
+                ];
+
+                const promise = filterInvalidPendingTransactions(transactions, addressData);
+                return promise.then((txs) => {
+                    expect(txs).to.eql(transactions);
+                    getBalances.restore();
+                });
+            });
+        });
+    });
+
+    describe('#getBundleHashesForNewlyConfirmedTransactions', () => {
+        it('should always return an array', () => {
+            const args = [[undefined, undefined], [null, undefined], [], [{}, {}], ['', ''], [0, 0]];
+
+            args.forEach((arg) => {
+                expect(isArray(getBundleHashesForNewlyConfirmedTransactions(...arg))).to.equal(true);
+            });
+        });
+
+        it('should return bundle hashes with any tail transaction existing in confirmed transaction hashes', () => {
+            const unconfirmedBundleTails = {
+                firstBundleHash: [{ hash: 'foo' }, { hash: 'baz' }],
+                secondBundleHash: [{ hash: 'bar' }],
+            };
+
+            const confirmedTransactionsHashes = ['baz'];
+
+            expect(
+                getBundleHashesForNewlyConfirmedTransactions(unconfirmedBundleTails, confirmedTransactionsHashes),
+            ).to.eql(['firstBundleHash']);
+        });
+    });
+
+    describe('#normalizedBundlesFromTransactionObjects', () => {
+        it('should always return an object', () => {
+            const args = [[undefined, undefined, undefined, undefined], [null, undefined, null, null], [], [{}, {}]];
+
+            args.forEach((arg) => {
+                expect(isObject(normalizedBundlesFromTransactionObjects(...arg))).to.equal(true);
+            });
+        });
+
+        it('should return normalized bundles', () => {
+            expect(
+                normalizedBundlesFromTransactionObjects(
+                    mockTransactions.tailTransactions,
+                    mockTransactions.transactionObjects,
+                    [false, true, false],
+                    [
+                        'WUOTVAPXBUWZYNN9WZXGDNAFOWNQPJLHJJDMUCLMPONEEMVNGEH9XIYAPB9LMXTAHOLZQNZFSHSIJAIID',
+                        'ATOKJBNU9UVOETMNVGENWMLBKCIIMIQBPOGHJWMFEUJNXVUPQABEYIETRKPTQRT9AYOOMMYGX9OMTZAJX',
+                    ],
+                ),
+            ).to.eql(mockTransactions.normalizedBundles);
+        });
+
+        it('should not return invalid bundles', () => {
+            const invalidTransactionObjects = mockTransactions.transactionObjects.map((tx) =>
+                omit(tx, 'signatureMessageFragment'),
+            );
+            expect(
+                normalizedBundlesFromTransactionObjects(
+                    mockTransactions.tailTransactions,
+                    invalidTransactionObjects,
+                    [false, true, false],
+                    [
+                        'WUOTVAPXBUWZYNN9WZXGDNAFOWNQPJLHJJDMUCLMPONEEMVNGEH9XIYAPB9LMXTAHOLZQNZFSHSIJAIID',
+                        'ATOKJBNU9UVOETMNVGENWMLBKCIIMIQBPOGHJWMFEUJNXVUPQABEYIETRKPTQRT9AYOOMMYGX9OMTZAJX',
+                    ],
+                ),
+            ).to.eql({});
+        });
+    });
+
+    describe('#prepareForAutoPromotion', () => {
+        let sandbox;
+
+        beforeEach(() => {
+            sandbox = sinon.sandbox.create();
+
+            sandbox.stub(iota.api, 'getNodeInfo').yields(null, {});
+        });
+
+        afterEach(() => {
+            sandbox.restore();
+        });
+
+        describe('when there are no pending transfers', () => {
+            it('should resolve an empty array', () => {
+                return prepareForAutoPromotion([{ persistence: true }, { persistence: true }], {}, 'TEST').then(
+                    (result) => expect(result).to.eql({}),
+                );
+            });
+        });
+
+        describe('when there are valid pending transfers', () => {
+            it('should transform transfers by bundle', () => {
+                const transactions = map(mockTransactions.normalizedBundles, (tx) => tx);
+                const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['100'] });
+
+                return prepareForAutoPromotion(
+                    transactions,
+                    {
+                        WUOTVAPXBUWZYNN9WZXGDNAFOWNQPJLHJJDMUCLMPONEEMVNGEH9XIYAPB9LMXTAHOLZQNZFSHSIJAIID: {},
+                        ATOKJBNU9UVOETMNVGENWMLBKCIIMIQBPOGHJWMFEUJNXVUPQABEYIETRKPTQRT9AYOOMMYGX9OMTZAJX: {},
+                    },
+                    'TEST',
+                ).then((result) => {
+                    expect(result).to.eql({
+                        BHA9U99WJWBADGCDLLZSNRXNS9C9HCEDODDVACLZIGGTUDODOJQGJRGXNRBJCWKTLRXSAJLAGLYZQZXIA: [
+                            {
+                                hash:
+                                    'KIYCLXKBYIIBRSZDZZTZZZ9WMSINGIWWOZBEYDCYTSREFRCMYJBJZ9NOXCJ9ORDXKVHJKCUBDLIDZ9999',
+                                attachmentTimestamp: 1524573605144,
+                                account: 'TEST',
+                            },
+                        ],
+                    });
+
+                    getBalances.restore();
+                });
+            });
+        });
+
+        describe('when there are invalid pending transfers', () => {
+            it('should not include them in transformed bundles', () => {
+                const transactions = map(mockTransactions.normalizedBundles, (tx) => tx);
+                const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['0'] });
+
+                return prepareForAutoPromotion(
+                    transactions,
+                    {
+                        WUOTVAPXBUWZYNN9WZXGDNAFOWNQPJLHJJDMUCLMPONEEMVNGEH9XIYAPB9LMXTAHOLZQNZFSHSIJAIID: {},
+                        ATOKJBNU9UVOETMNVGENWMLBKCIIMIQBPOGHJWMFEUJNXVUPQABEYIETRKPTQRT9AYOOMMYGX9OMTZAJX: {},
+                    },
+                    'TEST',
+                ).then((result) => {
+                    expect(result).to.eql({});
+
+                    getBalances.restore();
+                });
             });
         });
     });
