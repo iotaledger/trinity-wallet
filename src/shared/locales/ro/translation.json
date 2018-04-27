@@ -159,7 +159,7 @@
     },
     "home": {
         "balance": "BALANCE",
-        "send": "SEND",
+        "send": "TRIMITE",
         "receive": "RECEIVE",
         "history": "HISTORY",
         "settings": "SETTINGS"
@@ -226,7 +226,7 @@
         "invalidAddressExplanation3": "Address contains an invalid checksum.",
         "invalidAddressExplanationGeneric": "Valid addresses should be 90 characters and contain only A-Z or 9.",
         "notEnoughFunds": "Insufficient funds",
-        "notEnoughFundsExplanation": "You do not have enough IOTA to complete this transfer.",
+        "notEnoughFundsExplanation": "Nu aveţi suficient IOTA pentru a finaliza acest transfer.",
         "keyReuse": "Key reuse",
         "keyReuseExplanation": "The address you are trying to send to has already been used. Please try another address.",
         "recipientAddress": "Recipient address",
@@ -237,7 +237,7 @@
         "invalidMessageExplanation": "Your message contains invalid characters.",
         "invalidMessageTooLong": "Message too long",
         "invalidMessageTooLongExplanation": "The message exceeds the max. amount of characters (1093).",
-        "send": "SEND",
+        "send": "TRIMITE",
         "invalidAmount": "Incorrect amount entered",
         "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "MAXIMUM amount selected",
@@ -287,8 +287,8 @@
         "nicknameChangedExplanation": "Your account name has been changed.",
         "accountDeleted": "Account deleted",
         "accountDeletedExplanation": "Your account has been removed from the wallet.",
-        "cannotPerformAction": "Cannot perform action",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
+        "cannotPerformAction": "Nu se poate efectua acțiunea",
+        "cannotPerformActionExplanation": "Du-te la setările avansate pentru a reseta portofelul.",
         "poorConnection": "Poor connection",
         "poorConnectionExplanation": "Failed to change currency due to a poor connection.",
         "hide": "Hide",
@@ -315,7 +315,7 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",
-        "cancel": "CANCEL",
+        "cancel": "Renunță",
         "reset": "RESET"
     },
     "walletSetup": {
@@ -342,7 +342,7 @@
         "addressCopiedExplanation": "The address has been copied to the clipboard.",
         "messageCopied": "Message copied",
         "messageCopiedExplanation": "The message has been copied to the clipboard.",
-        "send": "SEND",
+        "send": "TRIMITE",
         "receive": "RECEIVE"
     },
     "accountManagement": {
@@ -354,7 +354,9 @@
     },
     "addCustomNode": {
         "customNode": "Custom node",
-        "add": "Add"
+        "add": "Add",
+        "nodeFieldEmpty": "Text field is empty",
+        "nodeFieldEmptyExplanation": "Please enter a custom node."
     },
     "addNewAccount": {
         "useExistingSeed": "Use existing seed",
