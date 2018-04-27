@@ -123,6 +123,11 @@ class AddCustomNode extends Component {
         );
     }
 
+    onEmptyFieldError() {
+        const { t } = this.props;
+        return this.props.generateAlert('error', t('nodeFieldEmpty'), t('nodeFieldEmptyExplanation'));
+    }
+
     setNode(selectedNode) {
         changeIotaNode(selectedNode);
         this.props.setFullNode(selectedNode);
@@ -132,6 +137,10 @@ class AddCustomNode extends Component {
         const { node, nodes } = this.props;
 
         const { customNode } = this.state;
+
+        if (!customNode.match(/^[.a-zA-Z0-9:/-]+$/)) {
+            return this.onEmptyFieldError();
+        }
 
         if (!customNode.startsWith('http')) {
             return this.onAddNodeError();
