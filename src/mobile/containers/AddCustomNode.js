@@ -123,6 +123,10 @@ class AddCustomNode extends Component {
         );
     }
 
+    onEmptyFieldError() {
+        return this.props.generateAlert('error', 'Text field is empty', 'Please enter a custom node.');
+    }
+
     setNode(selectedNode) {
         changeIotaNode(selectedNode);
         this.props.setFullNode(selectedNode);
@@ -132,6 +136,10 @@ class AddCustomNode extends Component {
         const { node, nodes } = this.props;
 
         const { customNode } = this.state;
+
+        if (!customNode.match(/^[.a-zA-Z0-9:/-]+$/)) {
+            return this.onEmptyFieldError();
+        }
 
         if (!customNode.startsWith('http')) {
             return this.onAddNodeError();
