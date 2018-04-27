@@ -354,7 +354,9 @@
     },
     "addCustomNode": {
         "customNode": "Custom node",
-        "add": "Adicionar"
+        "add": "Adicionar",
+        "nodeFieldEmpty": "Text field is empty",
+        "nodeFieldEmptyExplanation": "Please enter a custom node."
     },
     "addNewAccount": {
         "useExistingSeed": "Usar Seed existente",
