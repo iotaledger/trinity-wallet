@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
 export default class HistoryModalContent extends PureComponent {
     static propTypes = {
         /** Container element press event callback function */
-        onPress: PropTypes.oneOfType([PropTypes.func, PropTypes.boolean]).isRequired,
+        onPress: PropTypes.func.isRequired,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          */
