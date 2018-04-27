@@ -124,7 +124,8 @@ class AddCustomNode extends Component {
     }
 
     onEmptyFieldError() {
-        return this.props.generateAlert('error', 'Text field is empty', 'Please enter a custom node.');
+        const { t } = this.props;
+        return this.props.generateAlert('error', t('nodeFieldEmpty'), t('nodeFieldEmptyExplanation'));
     }
 
     setNode(selectedNode) {
