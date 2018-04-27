@@ -49,7 +49,7 @@ class Alerts extends React.PureComponent {
             <div className={css.wrapper}>
                 <div className={classNames(alerts.category.length ? css.visible : null, css[`${alerts.category}`])}>
                     <span onClick={() => disposeOffAlert()}>
-                        <Icon icon="cross" size={32} />
+                        <Icon icon="cross" size={24} />
                     </span>
                     {alerts.title && <h2>{alerts.title}</h2>}
                     {alerts.message && <p>{alerts.message}</p>}
