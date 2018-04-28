@@ -354,7 +354,9 @@
     },
     "addCustomNode": {
         "customNode": "Serveur personnalisé",
-        "add": "Ajouter"
+        "add": "Ajouter",
+        "nodeFieldEmpty": "Text field is empty",
+        "nodeFieldEmptyExplanation": "Please enter a custom node."
     },
     "addNewAccount": {
         "useExistingSeed": "Utiliser une seed existante",
