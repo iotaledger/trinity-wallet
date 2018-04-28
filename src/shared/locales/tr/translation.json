@@ -306,12 +306,12 @@
         "couldNotFetchRates": "Oranlar alınamadı",
         "couldNotFetchRatesExplanation": "{{currency}} için dönüşüm oranları alınırken bir şeyler yanlış gitti.",
         "fetchedConversionRates": "Dönüşüm oranları alındı",
-        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}.",
-        "undo": "Undo",
-        "redo": "Redo",
-        "about": "About Trinity",
-        "lockScreenTimeout": "Lock Screen Timeout (Minutes)",
-        "autoNodeSwitching": "Automatically switch node when selected is unreachable"
+        "fetchedConversionRatesExplanation": "{{currency}} ilgili en son dönüşüm oranları başarıyla alındı.",
+        "undo": "Geri al",
+        "redo": "Tekrarla",
+        "about": "Trinity Hakkında",
+        "lockScreenTimeout": "Kilit Ekranı Zaman Aşımı (Dakika)",
+        "autoNodeSwitching": "Seçili ağa ulaşılamazsa otomatik olarak ağ değiştir"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Cüzdanınızı sıfırlamak için şifrenizi girin.",
@@ -327,7 +327,7 @@
         "hint": "<0><0>Hint:</0> Click NO if this is your first time using IOTA.</0>"
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity.",
+        "thankYou": "Trinity'i indirdiğiniz için teşekkür ederiz.",
         "weWillSpend": "Önümüzdeki bir kaç dakikayı cüzdanınızı ayarlamak için harcayacağız.",
         "reminder": "Bazı adımları geçebilirsin, ama tüm işlemi takip etmeni tavsiye ederim."
     },
@@ -340,8 +340,8 @@
         "bundleHashCopiedExplanation": "Paket karması panoya kopyalanmış.",
         "addressCopied": "Adres kopyalandı",
         "addressCopiedExplanation": "Adres panoya kopyalanmış.",
-        "messageCopied": "Message copied",
-        "messageCopiedExplanation": "The message has been copied to the clipboard.",
+        "messageCopied": "Mesaj kopyalandı",
+        "messageCopiedExplanation": "Mesaj panoya kopyalandı.",
         "send": "GÖNDER",
         "receive": "AL"
     },
@@ -355,8 +355,8 @@
     "addCustomNode": {
         "customNode": "Özel düğüm",
         "add": "Ekle",
-        "nodeFieldEmpty": "Text field is empty",
-        "nodeFieldEmptyExplanation": "Please enter a custom node."
+        "nodeFieldEmpty": "Bu alan boş",
+        "nodeFieldEmptyExplanation": "Lütfen özel ağınızı girin."
     },
     "addNewAccount": {
         "useExistingSeed": "Mevcut kaynağı kullan",
@@ -406,9 +406,9 @@
     },
     "manualSync": {
         "outOfSync": "Does your transaction history look like it may be out of sync?",
-        "pressToSync": "Press the button below to sync your account.",
-        "thisMayTake": "This may take a while. You may notice your device slowing down.",
-        "doNotClose": "Please note, minimising the app will cancel the sync.",
+        "pressToSync": "Hesabınızı senkronize etmek için aşağıdaki tuşa basın.",
+        "thisMayTake": "Bu biraz zaman alabilir. Cihazınızın yavaşladığını fark edebilirsiniz.",
+        "doNotClose": "Önemli, uygulamayı küçültmek senkronizasyonu iptal edecektir.",
         "syncAccount": "HESABI EŞİTLE",
         "syncingYourAccount": "Hesabınız eşitleniyor."
     },
@@ -430,7 +430,7 @@
         "warning": "<0><0>Tüm cüzdan verilerin, </0><1>seed'lerin, parolan</1><2> ve </2><3>diğer hesap bilgilerin</3><4> dahil, kaybolacak.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Touch fingerprint reader to enable fingerprint authentication",
+        "instructionsEnable": "Parmakizi doğrulamasını aktifleştirmek için parmakizi okuyucuya dokunun",
         "instructionsDisable": "Touch fingerprint reader to disable fingerprint authentication",
         "fingerprintAuthEnabled": "Biometric authentication enabled",
         "fingerprintAuthEnabledExplanation": "You have succesfully enabled biometric authentication.",
