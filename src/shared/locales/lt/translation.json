@@ -354,7 +354,9 @@
     },
     "addCustomNode": {
         "customNode": "Vartotojo serveris",
-        "add": "Pridėti"
+        "add": "Pridėti",
+        "nodeFieldEmpty": "Text field is empty",
+        "nodeFieldEmptyExplanation": "Please enter a custom node."
     },
     "addNewAccount": {
         "useExistingSeed": "Naudoti seną užraktą",
