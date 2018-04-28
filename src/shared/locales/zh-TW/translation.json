@@ -99,10 +99,10 @@
         "addCustomNode": "新增自訂節點",
         "nodeChanged": "節點已變更",
         "nodeChangedExplanation": "節點已成功變更。",
-        "nodeMustUseHTTPS": "Invalid node (non HTTPS)",
-        "nodeMustUseHTTPSExplanation": "Only custom nodes using HTTPS are allowed.",
-        "nodeDuplicated": "Duplicated node",
-        "nodeDuplicatedExplanation": "The custom node is already listed.",
+        "nodeMustUseHTTPS": "無效節點 (非 HTTPS)",
+        "nodeMustUseHTTPSExplanation": "僅允許使用 HTTPS 的自訂節點。",
+        "nodeDuplicated": "重複節點",
+        "nodeDuplicatedExplanation": "自訂節點已在列表中。",
         "nodeAutoChanged": "自動切換節點",
         "nodeAutoChangedExplanation": "當選擇的節點斷線時切換到新的節點 {{- nodeAddress}}。",
         "fingerprintOnSend": "觸摸指紋辨識器來驗證交易"
@@ -243,7 +243,7 @@
         "maximumSelected": "已選擇金額上限",
         "iotaUnits": "IOTA 單位說明",
         "sendMax": "全部傳送",
-        "totalTime": "Total time"
+        "totalTime": "總計"
     },
     "setPassword": {
         "passwordTooShort": "密碼過短",
@@ -340,8 +340,8 @@
         "bundleHashCopiedExplanation": "交易組的雜湊值已複製到剪貼簿。",
         "addressCopied": "地址已複製",
         "addressCopiedExplanation": "您的地址已複製到剪貼簿。",
-        "messageCopied": "Message copied",
-        "messageCopiedExplanation": "The message has been copied to the clipboard.",
+        "messageCopied": "訊息已複製",
+        "messageCopiedExplanation": "訊息已複製到剪貼簿。",
         "send": "轉帳",
         "receive": "收款"
     },
@@ -355,8 +355,8 @@
     "addCustomNode": {
         "customNode": "自訂節點",
         "add": "新增",
-        "nodeFieldEmpty": "Text field is empty",
-        "nodeFieldEmptyExplanation": "Please enter a custom node."
+        "nodeFieldEmpty": "文字欄為空",
+        "nodeFieldEmptyExplanation": "請輸入自訂節點。"
     },
     "addNewAccount": {
         "useExistingSeed": "使用現有的種子碼",
