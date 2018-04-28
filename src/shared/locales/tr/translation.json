@@ -342,8 +342,8 @@
         "addressCopiedExplanation": "Adres panoya kopyalanmış.",
         "messageCopied": "Message copied",
         "messageCopiedExplanation": "The message has been copied to the clipboard.",
-        "send": "SEND",
-        "receive": "RECEIVE"
+        "send": "GÖNDER",
+        "receive": "AL"
     },
     "accountManagement": {
         "viewSeed": "Kaynağı görüntüle",
@@ -354,7 +354,9 @@
     },
     "addCustomNode": {
         "customNode": "Özel düğüm",
-        "add": "Ekle"
+        "add": "Ekle",
+        "nodeFieldEmpty": "Text field is empty",
+        "nodeFieldEmptyExplanation": "Please enter a custom node."
     },
     "addNewAccount": {
         "useExistingSeed": "Mevcut kaynağı kullan",
