@@ -316,7 +316,7 @@
     "resetWalletRequirePassword": {
         "enterPassword": "Wprowadź swoje hasło, aby zresetować portfel.",
         "cancel": "ANULUJ",
-        "reset": "RESET"
+        "reset": "RESETUJ"
     },
     "walletSetup": {
         "okay": "W porządku. Ustawmy Twój portfel!",
@@ -355,8 +355,8 @@
     "addCustomNode": {
         "customNode": "Serwer niestandardowy",
         "add": "Dodaj",
-        "nodeFieldEmpty": "Text field is empty",
-        "nodeFieldEmptyExplanation": "Please enter a custom node."
+        "nodeFieldEmpty": "Pole adresu puste",
+        "nodeFieldEmptyExplanation": "Proszę wpisać adres niestandardowego serwera."
     },
     "addNewAccount": {
         "useExistingSeed": "Użyj istniejącego klucza seed",
@@ -459,14 +459,14 @@
         "emptyCode": "Kod pusty",
         "emptyCodeExplanation": "Wprowadź kod i spróbuj ponownie.",
         "keyCopied": "Klucz skopiowany do schowka",
-        "keyCopiedExplanation": "Twój klucz dwustopniowej autoryzacji został skopiowany do schowka.",
-        "addKey": "Dodaj ten klucz do aplikacji dwustopniowej autoryzacji",
+        "keyCopiedExplanation": "Twój klucz autoryzacji dwustopniowej został skopiowany do schowka.",
+        "addKey": "Dodaj ten klucz do aplikacji autoryzacji dwustopniowej",
         "key": "Klucz",
         "twoFAEnabled": "Włączono 2FA",
-        "twoFAEnabledExplanation": "Pomyślnie włączono funkcję dwustopniowej autoryzacji.",
+        "twoFAEnabledExplanation": "Pomyślnie włączono funkcję autoryzacji dwustopniowej.",
         "twoFADisabled": "Wyłączono 2FA",
-        "twoFADisabledExplanation": "Pomyślnie wyłączono funkcję dwustopniowej autoryzacji.",
-        "enterCode": "Wpisz kod z aplikacji dwustopniowej autoryzacji",
+        "twoFADisabledExplanation": "Pomyślnie wyłączono funkcję autoryzacji dwustopniowej.",
+        "enterCode": "Wpisz kod z aplikacji autoryzacji dwustopniowej",
         "code": "Kod"
     },
     "chart": {
