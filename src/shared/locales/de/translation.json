@@ -71,7 +71,7 @@
         "pending": "Ausstehend",
         "bundleHash": "Bundle-Hash",
         "addresses": "Adressen",
-        "reattach": "ERNEUT ANHÄNGEN",
+        "reattach": "REATTACH",
         "promote": "PROMOTEN",
         "rebroadcast": "REBROADCAST",
         "pressBackAgain": "Nochmal Zurück drücken, um die App zu beenden",
@@ -496,7 +496,7 @@
         "preparingTransfers": "Vorbereitung der Transaktionen",
         "gettingTransactionsToApprove": "Warte auf Bestätigung der Transaktionen",
         "proofOfWork": "Vervollständige Proof of Work",
-        "broadcasting": "Broadcasting"
+        "broadcasting": "Übertrage"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Snapshot-Wiederherstellung konnte nicht abgeschlossen werden",
