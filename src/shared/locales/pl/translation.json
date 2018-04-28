@@ -354,7 +354,9 @@
     },
     "addCustomNode": {
         "customNode": "Serwer niestandardowy",
-        "add": "Dodaj"
+        "add": "Dodaj",
+        "nodeFieldEmpty": "Text field is empty",
+        "nodeFieldEmptyExplanation": "Please enter a custom node."
     },
     "addNewAccount": {
         "useExistingSeed": "Użyj istniejącego klucza seed",
