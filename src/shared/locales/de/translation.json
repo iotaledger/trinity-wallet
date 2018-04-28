@@ -445,8 +445,8 @@
         "fingerprintUnavailableExplanation": "Dein Gerät unterstützt die Erkennung von Fingerabdrücken nicht oder diese Funktion wurde in den Einstellungen deines Gerätes deaktiviert.",
         "buttonInstructionsDisable": "Drücke die Schaltfläche unten, um die Fingerabdruck-Authentifizierung zu deaktivieren.",
         "buttonInstructionsEnable": "Drücke die Schaltfläche unten, um die Fingerabdruck-Authentifizierung zu aktivieren.",
-        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID.",
-        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID.",
+        "buttonInstructionsDisableIPhoneX": "Drücke den folgenden Button um Face ID zu deaktivieren.",
+        "buttonInstructionsEnableIPhoneX": "Drücke den folgenden Button um Face ID zu aktivieren.",
         "instructionsLogin": "Zur Anmeldung Fingerabdrucksensor berühren"
     },
     "transferConfirmation": {
