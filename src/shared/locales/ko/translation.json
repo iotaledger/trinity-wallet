@@ -304,12 +304,12 @@
         "securitySettings": "보안 설정",
         "fingerprint": "생체 인증",
         "couldNotFetchRates": "환율을 가져올 수 없음",
-        "couldNotFetchRatesExplanation": "{{currency}}로의 환율을 가져오는 중에 문제가 발생하였습니다.",
+        "couldNotFetchRatesExplanation": "{{currency}} 단위의 환율을 가져오는 중에 문제가 발생하였습니다.",
         "fetchedConversionRates": "환율 가져옴",
-        "fetchedConversionRatesExplanation": "{{currency}}로의 최신 환율을 성공적으로 가져왔습니다.",
+        "fetchedConversionRatesExplanation": "{{currency}} 단위의 최신 환율을 성공적으로 가져왔습니다.",
         "undo": "취소",
         "redo": "다시 실행",
-        "about": "트리니티에 대해",
+        "about": "트리니티 정보",
         "lockScreenTimeout": "자동 잠금 시간 (분)",
         "autoNodeSwitching": "노드에 연결이 불가능할 경우 자동으로 다른 노드에 연결 시도"
     },
@@ -322,24 +322,24 @@
         "okay": "좋습니다. 이제 지갑을 만들어 봅시다!",
         "doYouAlreadyHaveASeed": "이미 사용하고자 하는 시드를 가지고 있습니까?",
         "seedExplanation": "IOTA의 시드는 81글자로 구성되며, 계정에 있어 아이디와 비밀번호를 합친 것과 같은 역할을 합니다.",
-        "explanation": "<0><0>이 시드를 이용하여 </0><1>어느 지갑에서나</1><2>, </2><3>어느 기기에서나</3><4> 당신의 펀드에 접근할 수 있습니다. 그러나 이 시드를 잃어버릴 경우 이 시드에 담긴 IOTA 또한 잃게 됩니다.</4></0>",
+        "explanation": "<0><0>이 시드를 이용하여 </0><1>어느 지갑에서나</1><2>, </2><3>어느 기기에서나</3><4> 가지고 있는 자산에 접근할 수 있습니다. 그러나 이 시드를 잃어버릴 경우 이 시드에 담긴 IOTA 또한 잃게 됩니다.</4></0>",
         "keepSafe": "반드시 시드를 안전히 보관하십시오.",
         "hint": "<0><0>도움말:</0> IOTA를 처음 사용하시는 경우 \"아니오\"를 누르십시오.</0>"
     },
     "welcome": {
         "thankYou": "트리니티를 다운로드해 주셔서 감사합니다.",
         "weWillSpend": "지갑을 만드는 데에는 몇 분 정도 걸릴 예정입니다.",
-        "reminder": "중간중간 과정들을 건너뛰고 싶을 수 있지만 모든 과정을 따라 주시길 부탁드립니다."
+        "reminder": "건너뛰고 싶은 과정들이 있을 수 있지만, 반드시 모든 과정을 따라 주시길 바랍니다."
     },
     "writeSeedDown": {
         "yourSeedIs": "시드는 {{maxSeedLength}}글자로 구성되며, 왼쪽에서 오른쪽으로 읽습니다.",
         "writeDownYourSeed": "<0>시드와 체크섬을 기록하고, 정확히 기록하였는지 최소 </0><1>세 번 이상 확인하십시오.</1><2></2>"
     },
     "history": {
-        "bundleHashCopied": "번들 해시 복사됨",
-        "bundleHashCopiedExplanation": "번들 해시가 클립보드에 복사되었습니다.",
-        "addressCopied": "주소 복사됨",
-        "addressCopiedExplanation": "주소가 클립보드에 복사되었습니다.",
+        "bundleHashCopied": "번들 해시 복사함",
+        "bundleHashCopiedExplanation": "번들 해시를 클립보드에 복사하였습니다.",
+        "addressCopied": "주소 복사함",
+        "addressCopiedExplanation": "주소를 클립보드에 복사했습니다.",
         "messageCopied": "메시지 복사함",
         "messageCopiedExplanation": "메시지를 클립보드에 복사했습니다.",
         "send": "보냄",
@@ -395,7 +395,7 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "왜 거래에 잔고를 전부 사용할 수 없죠?",
-        "spentAddressExplanation": "이미 사용한 적이 있는 주소에 잔고가 남아있습니다. IOTA 상에서의 주소 재사용은 보안에 위해가 갈 수 있기 때문에 지갑 차원에서 이미 사용한 적이 있는 주소를 다시 사용하는 것을 금지하고 있습니다.",
+        "spentAddressExplanation": "이미 사용한 하나 이상의 주소에 잔고가 있습니다. IOTA 상에서의 주소 재사용은 보안상 위험하므로, 지갑 차원에서 하나의 주소를 두 번 이상 사용하는 것을 금지하고 있습니다.",
         "discordInformation": "IOTA 디스코드의 #help 채널을 통해 도움을 받을 수 있습니다."
     },
     "deleteAccount": {
@@ -458,13 +458,13 @@
         "wrongCodeExplanation": "입력한 코드가 옳지 않습니다.",
         "emptyCode": "코드 미입력",
         "emptyCodeExplanation": "코드를 입력하고 다시 시도해주십시오.",
-        "keyCopied": "키가 클립보드에 복사됨",
+        "keyCopied": "키를 클립보드에 복사함",
         "keyCopiedExplanation": "OTP 키가 클립보드에 복사되었습니다.",
         "addKey": "OTP 앱에 이 키를 추가하십시오",
         "key": "키",
         "twoFAEnabled": "OTP 인증 활성화됨",
-        "twoFAEnabledExplanation": "OTP 인증이 성공적으로 활성화되었습니다.",
-        "twoFADisabled": "OTP 인증 비활성화됨",
+        "twoFAEnabledExplanation": "OTP 인증을 활성화했습니다.",
+        "twoFADisabled": "OTP 인증 비활성화",
         "twoFADisabledExplanation": "OTP 인증이 성공적으로 비활성화되었습니다.",
         "enterCode": "OTP 코드를 입력하십시오",
         "code": "코드"
