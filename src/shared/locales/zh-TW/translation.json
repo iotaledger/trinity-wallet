@@ -470,7 +470,7 @@
         "code": "驗證碼"
     },
     "chart": {
-        "mcap": "MCAP",
+        "mcap": "總市值",
         "change": "變化率",
         "volume": "交易量(24h)",
         "currentValue": "目前價值"
