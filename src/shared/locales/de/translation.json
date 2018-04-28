@@ -243,7 +243,7 @@
         "maximumSelected": "MAXIMALER Betrag ausgewählt",
         "iotaUnits": "IOTA Einheiten erklärt",
         "sendMax": "SENDE MAX",
-        "totalTime": "Total time"
+        "totalTime": "Gesamtzeit"
     },
     "setPassword": {
         "passwordTooShort": "Das Passwort ist zu kurz",
@@ -340,8 +340,8 @@
         "bundleHashCopiedExplanation": "Dein Bundle-Hash wurde in die Zwischenablage kopiert.",
         "addressCopied": "Adresse kopiert",
         "addressCopiedExplanation": "Die Adresse wurde in die Zwischenablage kopiert.",
-        "messageCopied": "Message copied",
-        "messageCopiedExplanation": "The message has been copied to the clipboard.",
+        "messageCopied": "Nachricht kopiert",
+        "messageCopiedExplanation": "Die Nachricht wurde in die Zwischenablage kopiert.",
         "send": "SENDEN",
         "receive": "EMPFANGEN"
     },
@@ -355,8 +355,8 @@
     "addCustomNode": {
         "customNode": "Benutzerdefinierter Server",
         "add": "Hinzufügen",
-        "nodeFieldEmpty": "Text field is empty",
-        "nodeFieldEmptyExplanation": "Please enter a custom node."
+        "nodeFieldEmpty": "Das Feld ist leer",
+        "nodeFieldEmptyExplanation": "Bitte eine benutzerdefinierte Node hinzufügen."
     },
     "addNewAccount": {
         "useExistingSeed": "Vorhandenen Seed verwenden",
@@ -432,17 +432,17 @@
     "fingerprintSetup": {
         "instructionsEnable": "Berühre den Fingerabdrucksensor, um die Authentifizierung mittels Fingerabdruck einzurichten",
         "instructionsDisable": "Berühre den Fingerabdrucksensor, um die Authentifizierung mittels Fingerabdruck zu deaktivieren",
-        "fingerprintAuthEnabled": "Biometric authentication enabled",
-        "fingerprintAuthEnabledExplanation": "You have succesfully enabled biometric authentication.",
-        "fingerprintAuthDisabled": "Biometric authentication disabled",
-        "fingerprintAuthDisabledExplanation": "You have succesfully disabled biometric authentication.",
-        "fingerprintAuthFailed": "Biometric authentication failed",
+        "fingerprintAuthEnabled": "Fingerabdruck-Authentifizierung aktiviert",
+        "fingerprintAuthEnabledExplanation": "Du hast erfolgreich die Zwei-Faktor-Authentifizierung aktiviert.",
+        "fingerprintAuthDisabled": "Fingerabdruck-Authentifizierung deaktiviert",
+        "fingerprintAuthDisabledExplanation": "Du hast erfolgreich die Zwei-Faktor-Authentifizierung deaktiviert.",
+        "fingerprintAuthFailed": "Fingerabdruck-Authentifizierung fehlgeschlagen",
         "fingerprintAuthFailedExplanation": "Fingerabdruck-Authentifizierung fehlgeschlagen. Bitte erneut versuchen.",
         "status": "Status",
         "enabled": "Aktiviert",
         "disabled": "Deaktiviert",
-        "fingerprintUnavailable": "Biometric authenticatation unavailable",
-        "fingerprintUnavailableExplanation": "Your device does not support biometric authenticatation or it has not been configured in the device settings.",
+        "fingerprintUnavailable": "Fingerabdruck-Authentifizierung nicht verfügbar",
+        "fingerprintUnavailableExplanation": "Dein Gerät unterstützt die Erkennung von Fingerabdrücken nicht oder diese Funktion wurde in den Einstellungen deines Gerätes deaktiviert.",
         "buttonInstructionsDisable": "Drücke die Schaltfläche unten, um die Fingerabdruck-Authentifizierung zu deaktivieren.",
         "buttonInstructionsEnable": "Drücke die Schaltfläche unten, um die Fingerabdruck-Authentifizierung zu aktivieren.",
         "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID.",
