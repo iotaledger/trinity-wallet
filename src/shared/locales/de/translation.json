@@ -71,7 +71,7 @@
         "pending": "Ausstehend",
         "bundleHash": "Bundle-Hash",
         "addresses": "Adressen",
-        "reattach": "REATTACH",
+        "reattach": "ERNEUT ANHÄNGEN",
         "promote": "PROMOTEN",
         "rebroadcast": "REBROADCAST",
         "pressBackAgain": "Nochmal Zurück drücken, um die App zu beenden",
@@ -99,13 +99,13 @@
         "addCustomNode": "Benutzerdefinierten Server hinzufügen",
         "nodeChanged": "Server gewechselt",
         "nodeChangedExplanation": "Der Server wurde erfolgreich gewechselt.",
-        "nodeMustUseHTTPS": "Invalid node (non HTTPS)",
-        "nodeMustUseHTTPSExplanation": "Only custom nodes using HTTPS are allowed.",
-        "nodeDuplicated": "Duplicated node",
-        "nodeDuplicatedExplanation": "The custom node is already listed.",
+        "nodeMustUseHTTPS": "Üngültige Node (fehlende Verschlüsselung)",
+        "nodeMustUseHTTPSExplanation": "Benutzerdefinierte Server müssen eine Verschlüsselung verwenden (HTTPS).",
+        "nodeDuplicated": "Doppelte Node",
+        "nodeDuplicatedExplanation": "Diese Node ist bereits vorhanden.",
         "nodeAutoChanged": "Server automatisch gewechselt",
         "nodeAutoChangedExplanation": "Auf den Server {{- nodeAddress}} gewechselt, da der ausgewählte Server offline ist.",
-        "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer"
+        "fingerprintOnSend": "Berühre den Fingerabdrucksensor um den Transfer zu bestätigen."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
@@ -499,18 +499,18 @@
         "broadcasting": "Broadcasting"
     },
     "snapshotTransition": {
-        "cannotCompleteTransition": "Snapshot-Wiederherstellung konnte nicht abgeschlossen werden.",
+        "cannotCompleteTransition": "Snapshot-Wiederherstellung konnte nicht abgeschlossen werden",
         "cannotCompleteTransitionExplanation": "Du musst über einen positiven Kontostand verfügen, um die Wiederherstellung durchführen zu können.",
         "transitionComplete": "Snapshot-Wiederherstellung abgeschlossen",
-        "transitionCompleteExplanation": "Die Snapshot-Umstellung wurde erfolgreich abgeschlossen.",
+        "transitionCompleteExplanation": "Die Snapshot-Wiederherstellung wurde erfolgreich abgeschlossen.",
         "detectedBalance": "Erkanntes Guthaben: {{amount}} {{unit}}",
         "isThisCorrect": "Ist das korrekt?",
         "snapshotExplanation": "In unregelmäßigen Abständen wird ein Snapshot durchgeführt, um die Größe vom Tangle zu reduzieren.",
-        "hasSnapshotTakenPlace": "Falls ein Snapshot stattgefunden hat, drücke folgenden Button um deinen Kontostand wiederherzustellen.",
+        "hasSnapshotTakenPlace": "Falls ein Snapshot stattgefunden hat, kannst du hier deinen Kontostand wiederherstellen.",
         "transition": "WIEDERHERSTELLEN",
         "transitioning": "Daten werden wiederhergestellt.",
-        "generatingAndDetecting": "Adressen werden generiert und Kontostand erkannt.",
-        "attaching": "Adressen werden dem Tangle angehängt"
+        "generatingAndDetecting": "Adressen werden generiert und Kontostand wird erkannt.",
+        "attaching": "Adressen werden dem Tangle angehängt."
     },
     "deepLink": {
         "autofill": "Automatisches ausfüllen erfolgreich",
