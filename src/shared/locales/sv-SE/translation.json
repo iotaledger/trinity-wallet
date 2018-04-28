@@ -99,13 +99,13 @@
         "addCustomNode": "Lägg till anpassad nod",
         "nodeChanged": "Nod ändrad",
         "nodeChangedExplanation": "Noden har ändrats framgångsrikt.",
-        "nodeMustUseHTTPS": "Invalid node (non HTTPS)",
-        "nodeMustUseHTTPSExplanation": "Only custom nodes using HTTPS are allowed.",
-        "nodeDuplicated": "Duplicated node",
-        "nodeDuplicatedExplanation": "The custom node is already listed.",
+        "nodeMustUseHTTPS": "Ogiltig nod (ej HTTPS)",
+        "nodeMustUseHTTPSExplanation": "Endast anpassade noder som använder HTTPS är tillåtna.",
+        "nodeDuplicated": "Duplicerad nod",
+        "nodeDuplicatedExplanation": "Den anpassade noden finns redan.",
         "nodeAutoChanged": "Bytte automatiskt nod",
         "nodeAutoChangedExplanation": "Bytte till ny nod {{- nodeAddress}} då din valda nod är offline.",
-        "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer"
+        "fingerprintOnSend": "Tryck på fingeravtrycksläsaren för att skicka överföringen"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
@@ -243,7 +243,7 @@
         "maximumSelected": "MAXIMALT belopp valt",
         "iotaUnits": "Förklaring av IOTA-enheter",
         "sendMax": "SKICKA MAX",
-        "totalTime": "Total time"
+        "totalTime": "Total tid"
     },
     "setPassword": {
         "passwordTooShort": "Lösenordet är för kort",
@@ -340,8 +340,8 @@
         "bundleHashCopiedExplanation": "Hashbunten har kopierats till urklipp.",
         "addressCopied": "Adress kopierad",
         "addressCopiedExplanation": "Din adress har kopierats till urklipp.",
-        "messageCopied": "Message copied",
-        "messageCopiedExplanation": "The message has been copied to the clipboard.",
+        "messageCopied": "Meddelandet kopierat",
+        "messageCopiedExplanation": "Meddelandet har kopierats till urklipp.",
         "send": "SKICKA",
         "receive": "TA EMOT"
     },
@@ -355,8 +355,8 @@
     "addCustomNode": {
         "customNode": "Anpassad nod",
         "add": "Lägg till",
-        "nodeFieldEmpty": "Text field is empty",
-        "nodeFieldEmptyExplanation": "Please enter a custom node."
+        "nodeFieldEmpty": "Textfältet är tomt",
+        "nodeFieldEmptyExplanation": "Ange en anpassad nod."
     },
     "addNewAccount": {
         "useExistingSeed": "Använd befintlig seed",
@@ -432,8 +432,8 @@
     "fingerprintSetup": {
         "instructionsEnable": "Tryck på fingeravtrycksläsaren för att aktivera autentisering med fingeravtryck",
         "instructionsDisable": "Tryck på fingeravtrycksläsaren för att avaktivera autentisering med fingeravtryck",
-        "fingerprintAuthEnabled": "Biometric authentication enabled",
-        "fingerprintAuthEnabledExplanation": "You have succesfully enabled biometric authentication.",
+        "fingerprintAuthEnabled": "Biometrisk autentisering aktiverad",
+        "fingerprintAuthEnabledExplanation": "Du har framgångsrikt aktiverat biometrisk autentisering.",
         "fingerprintAuthDisabled": "Biometric authentication disabled",
         "fingerprintAuthDisabledExplanation": "You have succesfully disabled biometric authentication.",
         "fingerprintAuthFailed": "Biometric authentication failed",
