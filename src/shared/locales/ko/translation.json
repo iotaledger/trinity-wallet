@@ -465,7 +465,7 @@
         "twoFAEnabled": "OTP 인증 활성화됨",
         "twoFAEnabledExplanation": "OTP 인증을 활성화했습니다.",
         "twoFADisabled": "OTP 인증 비활성화",
-        "twoFADisabledExplanation": "OTP 인증이 성공적으로 비활성화되었습니다.",
+        "twoFADisabledExplanation": "OTP 인증을 비활성화했습니다.",
         "enterCode": "OTP 코드를 입력하십시오",
         "code": "코드"
     },
