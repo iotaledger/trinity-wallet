@@ -92,20 +92,20 @@
         "snapshotTransitionInProgress": "Passaggio allo snapshot in corso",
         "snapshotTransitionInProgressExplanation": "Si prega di attendere fino a quando il passaggio allo snapshot sarà completato.",
         "checkForUpdates": "Controlla Aggiornamenti",
-        "account": "Account",
+        "account": "Conto",
         "enterPasswordToAccessSettings": "Inserisci la tua password per accedere alle impostazioni account",
         "enterYourPassword": "Inserisci la tua password",
         "changeNode": "Cambia nodo",
         "addCustomNode": "Aggiungi un nodo personalizzato",
         "nodeChanged": "Nodo cambiato",
         "nodeChangedExplanation": "Il nodo è stato cambiato con successo.",
-        "nodeMustUseHTTPS": "Invalid node (non HTTPS)",
-        "nodeMustUseHTTPSExplanation": "Only custom nodes using HTTPS are allowed.",
-        "nodeDuplicated": "Duplicated node",
-        "nodeDuplicatedExplanation": "The custom node is already listed.",
+        "nodeMustUseHTTPS": "Nodo non valido (non HTTPS)",
+        "nodeMustUseHTTPSExplanation": "Sono ammessi solo nodi personalizzati che usano HTTPS.",
+        "nodeDuplicated": "Nodo duplicato",
+        "nodeDuplicatedExplanation": "Il nodo personalizzato è già elencato.",
         "nodeAutoChanged": "Nodo cambiato automaticamente",
         "nodeAutoChangedExplanation": "Passati al nuovo nodo {{- nodeAddress}} siccome il nodo selezionato non è in linea.",
-        "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer"
+        "fingerprintOnSend": "Toccare il lettore di impronte digitali per autorizzare il trasferimento"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
@@ -243,11 +243,11 @@
         "maximumSelected": "Selezionato importo MASSIMO",
         "iotaUnits": "Spiegazione delle unità IOTA",
         "sendMax": "INVIA MASSIMO",
-        "totalTime": "Total time"
+        "totalTime": "Tempo totale"
     },
     "setPassword": {
         "passwordTooShort": "La password è troppo corta",
-        "passwordTooShortExplanation": "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
+        "passwordTooShortExplanation": "La password deve essere almeno {{minLength}} caratteri. Attualmente è {{currentLength}} caratteri. Si prega di riprovare.",
         "passwordMismatch": "Le password non corrispondono",
         "passwordMismatchExplanation": "Le password immesse non corrispondono. Si prega di riprovare.",
         "nowWeNeedTo": "Ora abbiamo bisogno di impostare una password.",
@@ -340,8 +340,8 @@
         "bundleHashCopiedExplanation": "L'hash del pacchetto è stato copiato negli Appunti.",
         "addressCopied": "Indirizzo copiato",
         "addressCopiedExplanation": "L'indirizzo è stato copiato negli Appunti.",
-        "messageCopied": "Message copied",
-        "messageCopiedExplanation": "The message has been copied to the clipboard.",
+        "messageCopied": "Messaggio copiato",
+        "messageCopiedExplanation": "Il messaggio è stato copiato negli Appunti.",
         "send": "INVIA",
         "receive": "RICEVI"
     },
@@ -355,8 +355,8 @@
     "addCustomNode": {
         "customNode": "Nodo personalizzato",
         "add": "Aggiungi",
-        "nodeFieldEmpty": "Text field is empty",
-        "nodeFieldEmptyExplanation": "Please enter a custom node."
+        "nodeFieldEmpty": "Questo campo è vuoto",
+        "nodeFieldEmptyExplanation": "Si prega di inserire un nodo personalizzato."
     },
     "addNewAccount": {
         "useExistingSeed": "Usa un seme esistente",
@@ -432,21 +432,21 @@
     "fingerprintSetup": {
         "instructionsEnable": "Tocca il lettore di impronte digitali per abilitare l'autenticazione tramite impronta digitale",
         "instructionsDisable": "Tocca il lettore di impronte digitali per disabilitare l'autenticazione tramite impronta digitale",
-        "fingerprintAuthEnabled": "Biometric authentication enabled",
-        "fingerprintAuthEnabledExplanation": "You have succesfully enabled biometric authentication.",
-        "fingerprintAuthDisabled": "Biometric authentication disabled",
-        "fingerprintAuthDisabledExplanation": "You have succesfully disabled biometric authentication.",
-        "fingerprintAuthFailed": "Biometric authentication failed",
+        "fingerprintAuthEnabled": "Autenticazione biometrica abilitata",
+        "fingerprintAuthEnabledExplanation": "Hai abilitato con successo l'autenticazione biometrica.",
+        "fingerprintAuthDisabled": "Autenticazione biometrica disabilitata",
+        "fingerprintAuthDisabledExplanation": "Hai disabilitato con successo l'autenticazione biometrica.",
+        "fingerprintAuthFailed": "Autenticazione biometrica non riuscita",
         "fingerprintAuthFailedExplanation": "Autenticazione tramite impronta digitale fallita. Riprova.",
         "status": "Stato",
         "enabled": "Attivato",
         "disabled": "Disabilitato",
-        "fingerprintUnavailable": "Biometric authenticatation unavailable",
-        "fingerprintUnavailableExplanation": "Your device does not support biometric authenticatation or it has not been configured in the device settings.",
+        "fingerprintUnavailable": "Autenticazione biometrica non disponibile",
+        "fingerprintUnavailableExplanation": "Il tuo dispositivo non supporta l'autenticazione biometrica o non è stato configurato nelle impostazioni del dispositivo.",
         "buttonInstructionsDisable": "Premi il pulsante sotto per disabilitare l'autenticazione tramite impronta digitale.",
         "buttonInstructionsEnable": "Premi il pulsante sotto per abilitare l'autenticazione tramite impronta digitale.",
-        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID.",
-        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID.",
+        "buttonInstructionsDisableIPhoneX": "Premere il pulsante qui sotto per disabilitare Face ID.",
+        "buttonInstructionsEnableIPhoneX": "Premere il pulsante qui sotto per attivare Face ID.",
         "instructionsLogin": "Tocca il lettore di impronte digitali per accedere"
     },
     "transferConfirmation": {
