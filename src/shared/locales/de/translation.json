@@ -500,8 +500,8 @@
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Snapshot-Wiederherstellung konnte nicht abgeschlossen werden.",
-        "cannotCompleteTransitionExplanation": "Ihr Guthaben muss größer als 0 sein, um die Umstellung abzuschließen.",
-        "transitionComplete": "Snapshot-Umstellung abgeschlossen",
+        "cannotCompleteTransitionExplanation": "Du musst über einen positiven Kontostand verfügen, um die Wiederherstellung durchführen zu können.",
+        "transitionComplete": "Snapshot-Wiederherstellung abgeschlossen",
         "transitionCompleteExplanation": "Die Snapshot-Umstellung wurde erfolgreich abgeschlossen.",
         "detectedBalance": "Erkanntes Guthaben: {{amount}} {{unit}}",
         "isThisCorrect": "Ist das korrekt?",
