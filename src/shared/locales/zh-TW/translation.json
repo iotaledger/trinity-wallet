@@ -354,7 +354,9 @@
     },
     "addCustomNode": {
         "customNode": "自訂節點",
-        "add": "新增"
+        "add": "新增",
+        "nodeFieldEmpty": "Text field is empty",
+        "nodeFieldEmptyExplanation": "Please enter a custom node."
     },
     "addNewAccount": {
         "useExistingSeed": "使用現有的種子碼",
