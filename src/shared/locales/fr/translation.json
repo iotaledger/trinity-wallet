@@ -356,7 +356,7 @@
         "customNode": "Serveur personnalisé",
         "add": "Ajouter",
         "nodeFieldEmpty": "Text field is empty",
-        "nodeFieldEmptyExplanation": "Please enter a custom node."
+        "nodeFieldEmptyExplanation": "Veuillez entrer un serveur personnalisé."
     },
     "addNewAccount": {
         "useExistingSeed": "Utiliser une seed existante",
