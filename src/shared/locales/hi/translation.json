@@ -354,7 +354,9 @@
     },
     "addCustomNode": {
         "customNode": "कस्टम नोड",
-        "add": "जोड़ें"
+        "add": "जोड़ें",
+        "nodeFieldEmpty": "Text field is empty",
+        "nodeFieldEmptyExplanation": "Please enter a custom node."
     },
     "addNewAccount": {
         "useExistingSeed": "मौजूदा सीड का उपयोग करें",
