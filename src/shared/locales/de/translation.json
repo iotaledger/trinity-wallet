@@ -89,8 +89,8 @@
         "pleaseWaitEllipses": "Bitte warten...",
         "pleaseWaitExplanation": "Trinity führt derzeit eine andere Aktion durch. Bitte in Kürze erneut versuchen.",
         "pleaseWaitTransferExplanation": "Dein verfügbares Guthaben wird derzeit in anderen Transaktionen verwendet. Bitte warte, bis diese Transaktionen bestätigt sind, und versuche es erneut.",
-        "snapshotTransitionInProgress": "Snapshot-Umstellung wird ausgeführt",
-        "snapshotTransitionInProgressExplanation": "Bitte warte, bis die Umstellung abgeschlossen ist.",
+        "snapshotTransitionInProgress": "Snapshot-Wiederherstellung wird ausgeführt.",
+        "snapshotTransitionInProgressExplanation": "Bitte warte, bis die Wiederherstellung abgeschlossen ist.",
         "checkForUpdates": "Suche nach Updates",
         "account": "Konto",
         "enterPasswordToAccessSettings": "Gib dein Passwort ein, um auf deine Konto-Einstellungen zuzugreifen",
@@ -366,7 +366,7 @@
         "selectNode": "Server auswählen",
         "addCustomNode": "Benutzerdefinierten Server hinzufügen",
         "manualSync": "Manuell synchronisieren",
-        "snapshotTransition": "Snapshot-Umstellung",
+        "snapshotTransition": "Snapshot-Wiederherstellung",
         "pow": "Proof of Work"
     },
     "advancedThemeCustomisation": {
