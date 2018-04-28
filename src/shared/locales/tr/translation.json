@@ -243,7 +243,7 @@
         "maximumSelected": "En fazla tutar seçildi",
         "iotaUnits": "IOTA birim açıklaması",
         "sendMax": "TÜMÜNÜ GÖNDER",
-        "totalTime": "Total time"
+        "totalTime": "Toplam zaman"
     },
     "setPassword": {
         "passwordTooShort": "Parola çok kısa",
@@ -260,8 +260,8 @@
         "youCanAdd": "Ayarlar menüsünden daha fazla tohum ekleyebilirsiniz."
     },
     "modeSelection": {
-        "expert": "Expert",
-        "standard": "Standard",
+        "expert": "Uzman",
+        "standard": "Standart",
         "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
         "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
@@ -460,47 +460,47 @@
         "emptyCodeExplanation": "Lütfen bir kod girin ve yeniden deneyin.",
         "keyCopied": "Anahtar panoya kopyalandı",
         "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
-        "addKey": "Add this key to your 2FA app",
-        "key": "Key",
-        "twoFAEnabled": "2FA is now enabled",
-        "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
-        "twoFADisabled": "2FA is now disabled",
-        "twoFADisabledExplanation": "You have successfully disabled Two Factor Authentication.",
-        "enterCode": "Enter the code from your 2FA app",
-        "code": "Code"
+        "addKey": "Bu anahtarı 2FA uygulamanıza girin",
+        "key": "Anahtar",
+        "twoFAEnabled": "2FA şu anda etkin",
+        "twoFAEnabledExplanation": "İki Adımlı Doğrulamayı başarıyla aktifleştirdiniz.",
+        "twoFADisabled": "2FA şu anda devre dışı",
+        "twoFADisabledExplanation": "İki Adımlı Doğrulamayı başarıyla devre dışı bıraktınız.",
+        "enterCode": "2FA uygulamanızdaki kodu girin",
+        "code": "Kod"
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change",
-        "volume": "Volume (24h)",
-        "currentValue": "Current value"
+        "change": "Değiştir",
+        "volume": "Hacim (24 saat)",
+        "currentValue": "Anlık değer"
     },
     "rootDetection": {
-        "warning": "WARNING",
+        "warning": "UYARI",
         "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
     },
     "pow": {
         "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
         "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
-        "local": "Local",
-        "remote": "Remote",
-        "powUpdated": "Proof of work settings",
+        "local": "Yerel",
+        "remote": "Uzak",
+        "powUpdated": "İş kanıtı ayarları",
         "powUpdatedExplanation": "Your proof of work configuration has been updated.",
-        "noWebGLSupport": "WebGL not supported",
-        "noWebGLSupportExplanation": "Your computer does not support WebGL. Please use remote PoW."
+        "noWebGLSupport": "WebGL desteklenmiyor",
+        "noWebGLSupportExplanation": "Bilgisayarınız WebGL desteklemiyor. Lütfen uzaktan PoW kullanın."
     },
     "progressSteps": {
-        "validatingReceiveAddress": "Validating receive address",
-        "syncingAccount": "Syncing account",
-        "preparingInputs": "Preparing inputs",
-        "preparingTransfers": "Preparing transfers",
-        "gettingTransactionsToApprove": "Getting transactions to approve",
+        "validatingReceiveAddress": "Alıcı adresi doğrulanıyor",
+        "syncingAccount": "Hesap senkronize ediliyor",
+        "preparingInputs": "Girişler hazırlanıyor",
+        "preparingTransfers": "Transferler hazırlanıyor",
+        "gettingTransactionsToApprove": "Onaylamak için işlemler alınıyor",
         "proofOfWork": "Completing proof of work",
-        "broadcasting": "Broadcasting"
+        "broadcasting": "Yayınlanıyor"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Cannot complete snapshot transition",
-        "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
+        "cannotCompleteTransitionExplanation": "Bakiyeniz geçişi gerçekleştirmek için 0'dan büyük olmalıdır.",
         "transitionComplete": "Snapshot transition complete",
         "transitionCompleteExplanation": "The snapshot transition has completed successfully.",
         "detectedBalance": "Detected balance: {{amount}} {{unit}}",
