@@ -430,31 +430,31 @@
         "warning": "<0><0>Tüm cüzdan verilerin, </0><1>seed'lerin, parolan</1><2> ve </2><3>diğer hesap bilgilerin</3><4> dahil, kaybolacak.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Parmakizi doğrulamasını aktifleştirmek için parmakizi okuyucuya dokunun",
-        "instructionsDisable": "Touch fingerprint reader to disable fingerprint authentication",
-        "fingerprintAuthEnabled": "Biometric authentication enabled",
-        "fingerprintAuthEnabledExplanation": "You have succesfully enabled biometric authentication.",
-        "fingerprintAuthDisabled": "Biometric authentication disabled",
-        "fingerprintAuthDisabledExplanation": "You have succesfully disabled biometric authentication.",
-        "fingerprintAuthFailed": "Biometric authentication failed",
-        "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
+        "instructionsEnable": "Parmak izi doğrulamasını aktifleştirmek için parmak izi okuyucusuna dokunun",
+        "instructionsDisable": "Parmak izi doğrulamasını devre dışı bırakmak için parmak izi okuyucusuna dokunun",
+        "fingerprintAuthEnabled": "Biyometrik doğrulama etkin",
+        "fingerprintAuthEnabledExplanation": "Biyometrik doğrulamayı başarıyla aktifleştirdiniz.",
+        "fingerprintAuthDisabled": "Biyometrik doğrulama devre dışı",
+        "fingerprintAuthDisabledExplanation": "Biyometrik doğrulamayı başarıyla devre dışı bıraktınız.",
+        "fingerprintAuthFailed": "Biyometrik doğrulama başarısız",
+        "fingerprintAuthFailedExplanation": "Parmak izi doğrulaması başarısız. Lütfen tekrar deneyin.",
         "status": "Durum",
         "enabled": "Etkin",
         "disabled": "Etkisiz",
-        "fingerprintUnavailable": "Biometric authenticatation unavailable",
-        "fingerprintUnavailableExplanation": "Your device does not support biometric authenticatation or it has not been configured in the device settings.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
-        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
-        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID.",
-        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID.",
-        "instructionsLogin": "Touch fingerprint reader to log in"
+        "fingerprintUnavailable": "Biyometrik doğrulama kullanılamaz",
+        "fingerprintUnavailableExplanation": "Cihazınızda biyometrik doğrulama desteklemiyor veya aygıt ayarlarında yapılandırılmamış.",
+        "buttonInstructionsDisable": "Parmak izi doğrulamayı devre dışı bırakmak için aşağıdaki tuşa basın.",
+        "buttonInstructionsEnable": "Parmak izi doğrulamayı aktifleştirmek için aşağıdaki tuşa basın.",
+        "buttonInstructionsDisableIPhoneX": "Face ID'yi devre dışış bırakmak için aşağıdaki tuşa basın.",
+        "buttonInstructionsEnableIPhoneX": "Face ID'yi aktifleştirmek için aşağıdaki tuşa basın.",
+        "instructionsLogin": "Giriş yapmak için parmak izi okuyucusuna dokunun"
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}} to the address",
+        "youAreAbout": "Adrese {{contents}} göndermek üzeresiniz",
         "aMessage": "mesaj"
     },
     "twoFA": {
-        "wrongCode": "Wrong code",
+        "wrongCode": "Kod yanlış",
         "wrongCodeExplanation": "The code you entered is incorrect.",
         "emptyCode": "Empty code",
         "emptyCodeExplanation": "Please enter a code and try again.",
@@ -504,7 +504,7 @@
         "transitionComplete": "Snapshot transition complete",
         "transitionCompleteExplanation": "The snapshot transition has completed successfully.",
         "detectedBalance": "Detected balance: {{amount}} {{unit}}",
-        "isThisCorrect": "Is this correct?",
+        "isThisCorrect": "Bu doğru mu?",
         "snapshotExplanation": "Every so often, a snapshot is performed to prune the size of the Tangle.",
         "hasSnapshotTakenPlace": "Has a snapshot taken place? Press the button below to transition.",
         "transition": "TRANSITION",
@@ -513,17 +513,17 @@
         "attaching": "Attaching addresses to Tangle"
     },
     "deepLink": {
-        "autofill": "Autofill success",
-        "autofillExplanation": "Transaction data autofilled from link."
+        "autofill": "Otomatik doldurma başarılı",
+        "autofillExplanation": "İşlem bilgisi linken otomatik olarak girildi."
     },
     "updates": {
-        "errorRetrievingUpdateData": "Error retrieving update data",
-        "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
-        "noUpdatesAvailable": "No updates available",
-        "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
-        "newVersionAvailable": "New version available",
+        "errorRetrievingUpdateData": "Güncelleme bilgisi alınırken hata oluştu",
+        "errorRetrievingUpdateDataExplanation": "Güncelleme bilgisi alınırken bir hata oluştu. Lütfen tekrar deneyin.",
+        "noUpdatesAvailable": "Kullanılabilir güncelleme yok",
+        "noUpdatesAvailableExplanation": "IOTA Trinity masaüstü cüzdanı'nın son versiyonuna sahipsin!",
+        "newVersionAvailable": "Yeni versiyon mevcut",
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
         "downloadRelease": "Download release",
-        "skipUpdate": "Skip update"
+        "skipUpdate": "Güncelleştirmeyi atla"
     }
 }
