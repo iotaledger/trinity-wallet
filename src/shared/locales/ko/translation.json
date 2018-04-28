@@ -2,7 +2,7 @@
     "global": {
         "send": "보내기",
         "cancel": "취소",
-        "continue?": "계속하시겠습니까?",
+        "continue?": "계속 하시겠습니까?",
         "noTransactions": "최근 기록 없음",
         "refresh": "새로고침",
         "qr": "QR",
@@ -11,8 +11,8 @@
         "transferError": "전송 오류",
         "transferErrorMessage": "전송 중에 오류가 발생했습니다. 다시 시도해주십시오.",
         "transferSent": "전송 완료",
-        "transferSentMessage": "전송 요청이 탱글로 보내졌습니다.",
-        "messageSent": "메시지 전송됨",
+        "transferSentMessage": "전송 요청을 탱글로 보냈습니다.",
+        "messageSent": "메시지 전송함",
         "messageSentMessage": "메시지를 탱글로 전송했습니다.",
         "keyReuse": "이미 사용한 주소로 보내는 중",
         "keyReuseError": "출금에 사용한 기록이 있는 주소로는 전송할 수 없습니다.",
@@ -78,7 +78,7 @@
         "autoreattaching": "어태치 자동 재시도중",
         "autoreattachingExplanation": "아래의 트랜잭션 해시를 다시 어태치합니다: {{hash}}",
         "autopromoting": "거래 자동 프로모트 중",
-        "autopromotingExplanation": "아래의 트랜잭션 해시를 프로모트합니다: {{hash}}",
+        "autopromotingExplanation": "다음의 트랜잭션 해시를 프로모트합니다: {{hash}}",
         "promoting": "거래 프로모트 중",
         "promotionError": "전송을 프로모트할 수 없음",
         "promotionErrorExplanation": "트랜잭션을 프로모트하는 중에 오류가 발생했습니다. 다시 시도해주십시오.",
@@ -99,10 +99,10 @@
         "addCustomNode": "커스텀 노드 추가",
         "nodeChanged": "노드 변경됨",
         "nodeChangedExplanation": "노드가 성공적으로 변경되었습니다.",
-        "nodeMustUseHTTPS": "Invalid node (non HTTPS)",
-        "nodeMustUseHTTPSExplanation": "Only custom nodes using HTTPS are allowed.",
-        "nodeDuplicated": "Duplicated node",
-        "nodeDuplicatedExplanation": "The custom node is already listed.",
+        "nodeMustUseHTTPS": "잘못된 노드 (HTTPS를 사용하지 않음)",
+        "nodeMustUseHTTPSExplanation": "HTTPS를 사용하는 커스텀 노드만 사용 가능합니다.",
+        "nodeDuplicated": "중복된 노드",
+        "nodeDuplicatedExplanation": "해당 커스텀 노드는 이미 등록되어 있습니다.",
         "nodeAutoChanged": "노드 자동 변경됨",
         "nodeAutoChangedExplanation": "선택한 노드에 연결할 수 없어 새로운 노드인 {{- nodeAddress}}에 연결하였습니다.",
         "fingerprintOnSend": "지문을 인식하여 전송 승인"
@@ -206,7 +206,7 @@
         "message": "메시지 (선택)",
         "removeMessage": "메시지 삭제하기",
         "noAddresses": "주소 없음",
-        "spent": "사용됨"
+        "spent": "이미 사용함"
     },
     "saveYourSeed": {
         "seedCleared": "시드 삭제됨",
@@ -216,8 +216,8 @@
     "seedReentry": {
         "incorrectSeed": "잘못된 시드",
         "incorrectSeedExplanation": "입력한 시드가 올바르지 않습니다. 다시 시도해 주십시오.",
-        "thisIsACheck": "시드를 기록하였는지 확인하기 위한 검사를 수행합니다.",
-        "ifYouHaveNotSaved": "시드를 기록하지 않은 경우 다시 뒤로 돌아가서 기록하십시오."
+        "thisIsACheck": "시드를 따로 저장하였는지 한번 더 확인하겠습니다.",
+        "ifYouHaveNotSaved": "시드를 따로 저장해 두지 않았다면 뒤로 돌아가 저장해 주십시오."
     },
     "send": {
         "invalidAddress": "잘못된 주소",
@@ -240,10 +240,10 @@
         "send": "보내기",
         "invalidAmount": "잘못된 금액",
         "invalidAmountExplanation": "유효한 거래 금액을 입력해 주십시오. 아래의 IOTA 단위 체계를 참고하십시오.",
-        "maximumSelected": "최대 금액 선택됨",
+        "maximumSelected": "최대액수 선택함",
         "iotaUnits": "IOTA 단위 체계",
         "sendMax": "최대 금액",
-        "totalTime": "Total time"
+        "totalTime": "총 소요시간"
     },
     "setPassword": {
         "passwordTooShort": "비밀번호가 너무 짧음",
@@ -263,7 +263,7 @@
         "expert": "전문가",
         "standard": "기본",
         "expertModeExplanation": "전문가 모드에서는 프로모트 및 다시 어태치를 직접 실행할 수 있습니다.",
-        "modesExplanation": "혼동을 피하기 위해 탱글을 사용하는 데에 익숙한 경우에만 전문가 모드를 사용해 주십시오."
+        "modesExplanation": "전문가 모드는 탱글에 익숙한 사용자만 사용하시길 권장합니다. 탱글에 익숙하지 않으면 사용하기 어려울 수 있습니다."
     },
     "settings": {
         "transferSending": "거래 전송중",
@@ -340,8 +340,8 @@
         "bundleHashCopiedExplanation": "번들 해시가 클립보드에 복사되었습니다.",
         "addressCopied": "주소 복사됨",
         "addressCopiedExplanation": "주소가 클립보드에 복사되었습니다.",
-        "messageCopied": "Message copied",
-        "messageCopiedExplanation": "The message has been copied to the clipboard.",
+        "messageCopied": "메시지 복사함",
+        "messageCopiedExplanation": "메시지를 클립보드에 복사했습니다.",
         "send": "보냄",
         "receive": "받음"
     },
@@ -354,7 +354,9 @@
     },
     "addCustomNode": {
         "customNode": "커스텀 노드",
-        "add": "추가"
+        "add": "추가",
+        "nodeFieldEmpty": "입력한 텍스트가 없습니다.",
+        "nodeFieldEmptyExplanation": "커스텀 노드를 입력해 주십시오."
     },
     "addNewAccount": {
         "useExistingSeed": "기존 시드 사용",
