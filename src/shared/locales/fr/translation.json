@@ -3,7 +3,7 @@
         "send": "ENVOYER",
         "cancel": "ANNULER",
         "continue?": "Êtes-vous sûr(e) de vouloir continuer ?",
-        "noTransactions": "AUCUN HISTORIQUE",
+        "noTransactions": "AUCUN HISTORIQUE RÉCENT",
         "refresh": "ACTUALISER",
         "qr": "QR",
         "balanceError": "Solde insuffisant",
