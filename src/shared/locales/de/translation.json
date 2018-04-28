@@ -99,7 +99,7 @@
         "addCustomNode": "Benutzerdefinierten Server hinzufügen",
         "nodeChanged": "Server gewechselt",
         "nodeChangedExplanation": "Der Server wurde erfolgreich gewechselt.",
-        "nodeMustUseHTTPS": "Üngültige Node (fehlende Verschlüsselung)",
+        "nodeMustUseHTTPS": "Ungültige Node (fehlende Verschlüsselung)",
         "nodeMustUseHTTPSExplanation": "Benutzerdefinierte Server müssen eine Verschlüsselung verwenden (HTTPS).",
         "nodeDuplicated": "Doppelte Node",
         "nodeDuplicatedExplanation": "Diese Node ist bereits vorhanden.",
@@ -355,7 +355,7 @@
     "addCustomNode": {
         "customNode": "Benutzerdefinierter Server",
         "add": "Hinzufügen",
-        "nodeFieldEmpty": "Das Feld ist leer",
+        "nodeFieldEmpty": "Textfeld ist leer",
         "nodeFieldEmptyExplanation": "Bitte eine benutzerdefinierte Node hinzufügen."
     },
     "addNewAccount": {
