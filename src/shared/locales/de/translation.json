@@ -179,7 +179,7 @@
     },
     "loading": {
         "loadingFirstTime": "Lade den Seed zum ersten Mal.",
-        "thisMayTake": "Dies kann eine Weile dauern.",
+        "thisMayTake": "Das kann eine Weile dauern.",
         "doNotMinimise": "Die App nicht minimieren oder schließen.",
         "youMayNotice": "Dein Gerät könnte dabei langsamer werden."
     },
@@ -407,7 +407,7 @@
     "manualSync": {
         "outOfSync": "Sieht der Verlauf deiner Transaktionen so aus, als ob er nicht synchronisiert wäre?",
         "pressToSync": "Drücke die Schaltfläche unten, um dein Konto zu synchronisieren.",
-        "thisMayTake": "Dies könnte eine Weile dauern. Dein Gerät könnte etwas langsamer werden.",
+        "thisMayTake": "Das kann eine Weile dauern. Dein Gerät könnte etwas langsamer werden.",
         "doNotClose": "Beim Minimieren der App wird die Synchronisierung abgebrochen.",
         "syncAccount": "SYNCHRONISIEREN",
         "syncingYourAccount": "Konto wird synchronisiert."
@@ -499,7 +499,7 @@
         "broadcasting": "Broadcasting"
     },
     "snapshotTransition": {
-        "cannotCompleteTransition": "Snapshot-Umstellung kann nicht abgeschlossenn werden",
+        "cannotCompleteTransition": "Snapshot-Wiederherstellung konnte nicht abgeschlossen werden.",
         "cannotCompleteTransitionExplanation": "Ihr Guthaben muss größer als 0 sein, um die Umstellung abzuschließen.",
         "transitionComplete": "Snapshot-Umstellung abgeschlossen",
         "transitionCompleteExplanation": "Die Snapshot-Umstellung wurde erfolgreich abgeschlossen.",
