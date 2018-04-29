@@ -69,8 +69,8 @@ describe('libs: iota/transfers', () => {
             });
         });
 
-        it('should return two transfer objects if value passed as second argument is 0', () => {
-            const args = ['foo', 0, 'message', 'U'.repeat(81)];
+        it('should return two transfer objects if value passed as second argument is 0 and address does not equal first own address', () => {
+            const args = ['A'.repeat(81), 0, 'message', 'U'.repeat(81)];
             const result = prepareTransferArray(...args);
 
             expect(result.length).to.equal(2);
@@ -83,7 +83,14 @@ describe('libs: iota/transfers', () => {
             expect(result.length).to.equal(1);
         });
 
-        it('should assign "firstOwnAddress" passed as fourth argument to second transfer object if value passed as second argument is 0', () => {
+        it('should return a single transfer object if value passed as second argument is 0 but first own address equals receive address', () => {
+            const args = ['U'.repeat(81), 1, 'message', 'U'.repeat(81)];
+            const result = prepareTransferArray(...args);
+
+            expect(result.length).to.equal(1);
+        });
+
+        it('should assign "firstOwnAddress" passed as fourth argument to second transfer object if value passed as second argument is 0 and address does not equal first own address', () => {
             const firstOwnAddress = 'U'.repeat(81);
             const args = ['foo', 0, 'message', firstOwnAddress];
             const result = prepareTransferArray(...args);
