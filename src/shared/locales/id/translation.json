@@ -73,6 +73,7 @@
         "addresses": "Alamat",
         "reattach": "MENYAMBUNG KEMBALI",
         "promote": "MEMAJUKAN",
+        "retry": "RETRY",
         "rebroadcast": "MENYIAR KEMBALI",
         "pressBackAgain": "Tekan tombol kembali sekali lagi untuk menutup app",
         "autoreattaching": "Otomatis menyambung kembali ke Tangle",
