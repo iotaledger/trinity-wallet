@@ -954,6 +954,7 @@ iota-wallet-shared-modules@./src/shared/:
     react-i18next "^7.3.4"
     react-redux "^5.0.6"
     redux "^3.7.2"
+    redux-mock-store "^1.5.1"
     redux-persist "^4.10.1"
     redux-thunk "^2.2.0"
     reselect "^3.0.1"
@@ -1233,6 +1234,10 @@ lodash-es@^4.17.4, lodash-es@^4.17.5, lodash-es@^4.2.1:
 lodash.concat@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.concat/-/lodash.concat-4.5.0.tgz#b053ae02e4a8008582e7256b9d02bda6d0380395"
+
+lodash.isplainobject@^4.0.6:
+  version "4.0.6"
+  resolved "https://registry.yarnpkg.com/lodash.isplainobject/-/lodash.isplainobject-4.0.6.tgz#7c526a52d89b45c45cc690b88163be0497f550cb"
 
 lodash@^4.14.0, lodash@^4.17.5, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.3.0, lodash@^4.6.1:
   version "4.17.5"
@@ -1638,6 +1643,12 @@ readable-stream@^2.3.3:
     safe-buffer "~5.1.1"
     string_decoder "~1.1.1"
     util-deprecate "~1.0.1"
+
+redux-mock-store@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/redux-mock-store/-/redux-mock-store-1.5.1.tgz#fca4335392e66605420b5559fe02fc5b8bb6d63c"
+  dependencies:
+    lodash.isplainobject "^4.0.6"
 
 redux-persist@^4.10.1:
   version "4.10.2"
