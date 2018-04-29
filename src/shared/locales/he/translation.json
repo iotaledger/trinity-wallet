@@ -73,6 +73,7 @@
         "addresses": "כתובת",
         "reattach": "חבר",
         "promote": "שלח",
+        "retry": "RETRY",
         "rebroadcast": "שלח מחדש",
         "pressBackAgain": "לחץ שוב חזור על מנת לסגור את האפליקציה",
         "autoreattaching": "Autoreattaching to Tangle",
