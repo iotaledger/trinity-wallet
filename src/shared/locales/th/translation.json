@@ -73,6 +73,7 @@
         "addresses": "ที่อยู่",
         "reattach": "แนบอีกครั้ง",
         "promote": "เลื่อนขั้น",
+        "retry": "RETRY",
         "rebroadcast": "กระจายข้อมูลอีกครั้ง",
         "pressBackAgain": "เลือก ย้อนกลับ อีกครั้ง เพื่อปิดแอพพลิเคชั่น",
         "autoreattaching": "แนบใหม่อีกครั้งโดยอัตโนมัติ สู่ระบบ Tangle",
