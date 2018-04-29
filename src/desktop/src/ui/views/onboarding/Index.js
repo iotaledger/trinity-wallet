@@ -87,7 +87,7 @@ class Onboarding extends React.PureComponent {
                         this.steps(currentKey)
                     ) : (
                         <a onClick={() => history.push('/wallet/')}>
-                            <Icon icon="cross" size={40} />
+                            <Icon icon="cross" size={24} />
                         </a>
                     )}
                 </header>
