@@ -5,6 +5,7 @@ import map from 'lodash/map';
 import filter from 'lodash/filter';
 import some from 'lodash/some';
 import sample from 'lodash/sample';
+import size from 'lodash/size';
 import { iota } from '../libs/iota';
 import {
     broadcastBundleAsync,
@@ -241,8 +242,13 @@ export const forceTransactionPromotion = (accountName, consistentTail, tails) =>
     return promoteTransactionAsync(consistentTail.hash);
 };
 
-export const makeTransaction = (seed, address, value, message, accountName, powFn, genFn) => (dispatch, getState) => {
+export const makeTransaction = (seed, receiveAddress, value, message, accountName, powFn, genFn) => (
+    dispatch,
+    getState,
+) => {
     dispatch(sendTransferRequest());
+
+    const address = size(receiveAddress) === 90 ? receiveAddress : iota.utils.addChecksum(receiveAddress);
 
     // Use a local variable to keep track if the promise chain was interrupted internally.
     let chainBrokenInternally = false;

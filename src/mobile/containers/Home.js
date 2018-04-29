@@ -163,13 +163,18 @@ class Home extends Component {
             );
         } else {
             this.props.setUserActivity({ inactive: false });
+            this.userInactivity.setActiveFromComponent();
         }
     };
 
     onTabSwitch(name) {
         const { isSyncing, isTransitioning } = this.props;
+        this.userInactivity.setActiveFromComponent();
+        if (isTransitioning) {
+            return;
+        }
         this.props.changeHomeScreenRoute(name);
-        if (!isSyncing && !isTransitioning) {
+        if (!isSyncing) {
             this.resetSettings();
         }
     }
@@ -187,7 +192,6 @@ class Home extends Component {
 
     resetSettings() {
         const { currentSetting } = this.props;
-
         if (currentSetting !== 'mainSettings') {
             this.props.setSetting('mainSettings');
         }
@@ -195,6 +199,7 @@ class Home extends Component {
 
     handleCloseTopBar = () => {
         const { isTopBarActive } = this.props;
+        this.userInactivity.setActiveFromComponent();
         if (isTopBarActive) {
             this.props.toggleTopBarDisplay();
         }

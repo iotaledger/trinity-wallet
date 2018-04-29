@@ -49,24 +49,24 @@ class SetNode extends PureComponent {
     };
 
     changeCustomNode = (val) => {
-        this.setState({customNode: val});
-    }
+        this.setState({ customNode: val });
+    };
 
     toggleAutoNodeSwitching = () => {
         this.props.setAutoNodeSwitching();
-    }
+    };
 
     changeSelectedNode = (e) => {
-        this.setState({selection: e.target.value});
-    }
+        this.setState({ selection: e.target.value });
+    };
 
     changeNode = (e) => {
         e.preventDefault();
         const { setNode } = this.props;
         const { selection, customNode } = this.state;
         setNode(this.validNode(customNode) ? customNode : selection, this.validNode(customNode));
-        this.setState({customNode: ''});
-    }
+        this.setState({ customNode: '' });
+    };
 
     render() {
         const { nodes, node, loading, autoNodeSwitching, t } = this.props;
@@ -89,14 +89,11 @@ class SetNode extends PureComponent {
                     ))}
                 </Select>
 
-                <Text
-                    value={customNode}
-                    label={t('addCustomNode:customNode')}
-                    onChange={this.changeCustomNode}
-                />
+                <Text value={customNode} label={t('addCustomNode:customNode')} onChange={this.changeCustomNode} />
 
                 <Checkbox
-                    checked={autoNodeSwitching} onChange={this.toggleAutoNodeSwitching}
+                    checked={autoNodeSwitching}
+                    onChange={this.toggleAutoNodeSwitching}
                     label={t('settings:autoNodeSwitching')}
                 />
 
