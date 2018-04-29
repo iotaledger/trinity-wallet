@@ -73,6 +73,7 @@
         "addresses": "Địa Chỉ",
         "reattach": "REATTACH",
         "promote": "PROMOTE",
+        "retry": "RETRY",
         "rebroadcast": "REBROADCAST",
         "pressBackAgain": "Nhấn nút lui lại lần nữa để đóng chương trình",
         "autoreattaching": "Đang tự động kết nối vào Tangle",
