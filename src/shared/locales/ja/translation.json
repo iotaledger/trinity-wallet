@@ -18,8 +18,10 @@
         "keyReuseError": "一度支払いに使われたアドレスに送金することはできません。",
         "invalidResponse": "ノードエラー",
         "invalidResponseExplanation": "ノードがエラーを返しました。詳細については、通知をご確認下さい。",
-        "invalidResponsePollingExplanation": "ポーリング中にノードがエラーを返しました。詳細については、通知をご確認下さい。",
-        "invalidResponseFetchingAccount": "アカウント情報の取得中にノードがエラーを返しました。詳細については、通知をご確認下さい。",
+        "invalidResponsePollingExplanation":
+            "ポーリング中にノードがエラーを返しました。詳細については、通知をご確認下さい。",
+        "invalidResponseFetchingAccount":
+            "アカウント情報の取得中にノードがエラーを返しました。詳細については、通知をご確認下さい。",
         "invalidResponseSendingTransfer": "送金中にノードがエラーを返しました。詳細については、通知をご確認下さい。",
         "seed": "Seed",
         "back": "戻る",
@@ -88,7 +90,8 @@
         "pleaseWait": "少々お待ちください",
         "pleaseWaitEllipses": "少々お待ちください...",
         "pleaseWaitExplanation": "Trinityは別の機能を実行しています。お待ち頂き、もう一度実行してください。",
-        "pleaseWaitTransferExplanation": "利用可能な残高は、現在、別の送金で使用されています。送金が承認されるまで少々お待ちください。",
+        "pleaseWaitTransferExplanation":
+            "利用可能な残高は、現在、別の送金で使用されています。送金が承認されるまで少々お待ちください。",
         "snapshotTransitionInProgress": "スナップショットの移行が進行中",
         "snapshotTransitionInProgressExplanation": "移行が完了するまで少々お待ちください。",
         "checkForUpdates": "更新を確認",
@@ -104,14 +107,17 @@
         "nodeDuplicated": "重複したノード",
         "nodeDuplicatedExplanation": "このカスタムノードは既にリストにあります。",
         "nodeAutoChanged": "ノードの自動切り替え",
-        "nodeAutoChangedExplanation": "選択したノードがオフラインであるため、新しいノード {{- nodeAddress}} に切り替えました。",
+        "nodeAutoChangedExplanation":
+            "選択したノードがオフラインであるため、新しいノード {{- nodeAddress}} に切り替えました。",
         "fingerprintOnSend": "指紋認証リーダーをタッチして送金を承認してください。"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだSeedです。",
-        "seedInvalidCharsExplanation": "Seedは英大文字AからZと数字の9のみで構成します。あなたのSeedは無効な文字を含んでいます。もう一度やり直して下さい。",
+        "seedInvalidCharsExplanation":
+            "Seedは英大文字AからZと数字の9のみで構成します。あなたのSeedは無効な文字を含んでいます。もう一度やり直して下さい。",
         "seedTooShort": "Seedが短すぎます。",
-        "seedTooShortExplanation": "Seedは{{maxLength}}文字にする必要があります。現在のSeedは{{currentLength}}文字です。もう一度やり直して下さい。",
+        "seedTooShortExplanation":
+            "Seedは{{maxLength}}文字にする必要があります。現在のSeedは{{currentLength}}文字です。もう一度やり直して下さい。",
         "nameInUse": "このアカウント名はすでに使われています。",
         "nameInUseExplanation": "あなたのSeedに唯一のアカウント名を付けてください。",
         "enterAccountName": "アカウント名を入力して下さい。",
@@ -133,7 +139,8 @@
         "passwordTooShort": "パスワードが短すぎます。",
         "passwordTooShortExplanation": "パスワードは最低12文字で設定しましょう。もう一度やり直してください。",
         "oldPassword": "古いパスワードは使えません。",
-        "oldPasswordExplanation": "古いパスワードは新しいパスワードとして使えません。新しいパスワードでもう一度やり直して下さい。",
+        "oldPasswordExplanation":
+            "古いパスワードは新しいパスワードとして使えません。新しいパスワードでもう一度やり直して下さい。",
         "ensureStrongPassword": "破られにくいよう、パスワードは最低でも12文字以上にすることをお勧めします。",
         "currentPassword": "現在のパスワード",
         "newPassword": "新しいパスワード",
@@ -151,10 +158,13 @@
     },
     "enterSeed": {
         "invalidCharacters": "無効な文字を含んだSeedです。",
-        "invalidCharactersExplanation": "Seedにはアルファベット大文字（A〜Z）と数字の\"9\"のみ使用できます。あなたのSeedは無効な文字を含んでいます。もう一度やり直して下さい。",
+        "invalidCharactersExplanation":
+            "Seedにはアルファベット大文字（A〜Z）と数字の\"9\"のみ使用できます。あなたのSeedは無効な文字を含んでいます。もう一度やり直して下さい。",
         "seedTooShort": "Seedが短すぎます。",
-        "seedTooShortExplanation": "Seedは{{maxLength}}文字にする必要があります。あなたのSeedは現在{{currentLength}}文字です。もう一度やり直して下さい。",
-        "seedExplanation": "Seedは{{maxLength}}文字である必要があり、使用可能な文字は大文字アルファベット（A〜Z）、数字の\"9\"のみです。また、{{maxLength}}文字以上の長さにはできません。",
+        "seedTooShortExplanation":
+            "Seedは{{maxLength}}文字にする必要があります。あなたのSeedは現在{{currentLength}}文字です。もう一度やり直して下さい。",
+        "seedExplanation":
+            "Seedは{{maxLength}}文字である必要があり、使用可能な文字は大文字アルファベット（A〜Z）、数字の\"9\"のみです。また、{{maxLength}}文字以上の長さにはできません。",
         "neverShare": "Seedを他の人に絶対に教えてはいけません。"
     },
     "home": {
@@ -247,11 +257,13 @@
     },
     "setPassword": {
         "passwordTooShort": "パスワードが短すぎます。",
-        "passwordTooShortExplanation": "パスワードは少なくとも{{minLength}}文字以上にする必要があります。今は{{currentLength}}文字です。もう一度やり直して下さい。",
+        "passwordTooShortExplanation":
+            "パスワードは少なくとも{{minLength}}文字以上にする必要があります。今は{{currentLength}}文字です。もう一度やり直して下さい。",
         "passwordMismatch": "パスワードが一致しません。",
         "passwordMismatchExplanation": "入力した 2 つのパスワードが一致しません、もう一度やり直してください。",
         "nowWeNeedTo": "次にパスワードの設定です。",
-        "anEncryptedCopy": "暗号化されたSeedのコピーがデバイスに保存されます。今後パスワードを使用してウォレットにアクセスします。",
+        "anEncryptedCopy":
+            "暗号化されたSeedのコピーがデバイスに保存されます。今後パスワードを使用してウォレットにアクセスします。",
         "ensure": "破られにくいよう、パスワードは最低でも12文字以上にすることをお勧めします。",
         "retypePassword": "パスワードを再入力して下さい。"
     },
@@ -263,7 +275,8 @@
         "expert": "上級",
         "standard": "標準",
         "expertModeExplanation": "上級モードでは手動促進や再添付などの追加機能をご利用になれます。",
-        "modesExplanation": "経験豊富なタングルユーザーのみ上級モードを有効にしましょう。そうでないと混乱してしまいますよ。"
+        "modesExplanation":
+            "経験豊富なタングルユーザーのみ上級モードを有効にしましょう。そうでないと混乱してしまいますよ。"
     },
     "settings": {
         "transferSending": "送金中",
@@ -322,7 +335,8 @@
         "okay": "それではウォレットの設定を行いましょう。",
         "doYouAlreadyHaveASeed": "IOTAのSeedはすでにお持ちでしょうか？",
         "seedExplanation": "IOTAのSeedはユーザー名とパスワードを一つにまとめた81文字の文字列ととらえるとよいでしょう。",
-        "explanation": "<0><0>同じSeedを使えば、</0><1>どのウォレット、</1><2>デバイスからでも</2><3>あなたの口座にアクセスすることができます。</3><4>Seedを紛失すると、口座とその預金にもアクセスできなくなります。</4></0>",
+        "explanation":
+            "<0><0>同じSeedを使えば、</0><1>どのウォレット、</1><2>デバイスからでも</2><3>あなたの口座にアクセスすることができます。</3><4>Seedを紛失すると、口座とその預金にもアクセスできなくなります。</4></0>",
         "keepSafe": "Seedは安全に保管してください。",
         "hint": "<0><0>ヒント</0>IOTAを初めて使う場合は、いいえをクリックして下さい。</0>"
     },
@@ -395,8 +409,10 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "どうして全ての残高を使えないのか？",
-        "spentAddressExplanation": "１つまたはそれ以上の使用済みアドレスに資金があります。アドレスの再利用はIOTAでは非常に危険です。よって、このウォレットでは同じアドレスから複数回送金することはできません。",
-        "discordInformation": "あなたができることを見つけるには、Discordの#helpチャンネルか#japaneseチャンネルにお立ち寄りください。"
+        "spentAddressExplanation":
+            "１つまたはそれ以上の使用済みアドレスに資金があります。アドレスの再利用はIOTAでは非常に危険です。よって、このウォレットでは同じアドレスから複数回送金することはできません。",
+        "discordInformation":
+            "あなたができることを見つけるには、Discordの#helpチャンネルか#japaneseチャンネルにお立ち寄りください。"
     },
     "deleteAccount": {
         "areYouSure": "<0></0><1>{{accountName}}を</1><2></2><3>削除してもよろしいですか？</3>",
@@ -427,7 +443,8 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "この操作は元に戻せません。",
-        "warning": "<0><0>Seedやパスワード、</0><1>その他のアカウント情報など</1><2>すべての</2><3>ウォレットデータが</3><4>消えます。</4></0>"
+        "warning":
+            "<0><0>Seedやパスワード、</0><1>その他のアカウント情報など</1><2>すべての</2><3>ウォレットデータが</3><4>消えます。</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "指紋認証を有効にするには、指紋リーダーに触れて下さい。",
@@ -442,7 +459,8 @@
         "enabled": "有効",
         "disabled": "無効",
         "fingerprintUnavailable": "生体認証が利用できません。",
-        "fingerprintUnavailableExplanation": "お使いのデバイスは生体認証をサポートしていないか、デバイス設定で設定されていません。",
+        "fingerprintUnavailableExplanation":
+            "お使いのデバイスは生体認証をサポートしていないか、デバイス設定で設定されていません。",
         "buttonInstructionsDisable": "指紋認証を無効にするには、下のボタンを押してください。",
         "buttonInstructionsEnable": "指紋認証を有効にするには、下のボタンを押してください。",
         "buttonInstructionsDisableIPhoneX": "顔認証を無効にするには、下のボタンを押してください。",
@@ -477,17 +495,20 @@
     },
     "rootDetection": {
         "warning": "警告",
-        "rootDetected": "<0>あなたのデバイスはルート化されているようです。</0><1>これにより、ウォレットの安全性に重大なリスクが発生する可能性があります。</1><2>それでも続行してよろしいですか？</2>"
+        "rootDetected":
+            "<0>あなたのデバイスはルート化されているようです。</0><1>これにより、ウォレットの安全性に重大なリスクが発生する可能性があります。</1><2>それでも続行してよろしいですか？</2>"
     },
     "pow": {
         "feeless": "IOTAの取引手数料無しの送金を行うには小規模のプルーフ・オブ・ワークを行う必要があります。",
-        "localOrRemote": "プルーフ・オブ・ワークはデバイス上でローカルに行うか、ノードにお任せしてリモートで行うことができます。",
+        "localOrRemote":
+            "プルーフ・オブ・ワークはデバイス上でローカルに行うか、ノードにお任せしてリモートで行うことができます。",
         "local": "ローカル",
         "remote": "リモート",
         "powUpdated": "プルーフ・オブ・ワークの設定",
         "powUpdatedExplanation": "プルーフ・オブ・ワークの設定を更新しました。",
         "noWebGLSupport": "WebGLがサポートされていません。",
-        "noWebGLSupportExplanation": "お使いのコンピューターは WebGL をサポートしていません。リモートの PoW をご利用下さい。"
+        "noWebGLSupportExplanation":
+            "お使いのコンピューターは WebGL をサポートしていません。リモートの PoW をご利用下さい。"
     },
     "progressSteps": {
         "validatingReceiveAddress": "受取用アドレスを検証中",
@@ -522,7 +543,8 @@
         "noUpdatesAvailable": "利用可能な更新はありません。",
         "noUpdatesAvailableExplanation": "最新版のIOTA Trinity デスクトップウォレットです。",
         "newVersionAvailable": "新しいバージョンが利用可能です。",
-        "newVersionAvailableExplanation": "新しい<strong>Trinity</strong><strong>{{version}}</strong>バージョンがご利用可能です。更新する前に、リリースの詳細を注意深く読み、ダウンロード元をご確認下さい：",
+        "newVersionAvailableExplanation":
+            "新しい<strong>Trinity</strong><strong>{{version}}</strong>バージョンがご利用可能です。更新する前に、リリースの詳細を注意深く読み、ダウンロード元をご確認下さい：",
         "downloadRelease": "リリースをダウンロード",
         "skipUpdate": "更新をスキップ"
     }
