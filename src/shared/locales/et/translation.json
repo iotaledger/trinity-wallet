@@ -73,6 +73,7 @@
         "addresses": "Aadressid",
         "reattach": "KINNITA UUESTI",
         "promote": "EDENDA",
+        "retry": "RETRY",
         "rebroadcast": "KUULUTA UUESTI",
         "pressBackAgain": "Rakenduse sulgemiseks vajutage uuesti tagasi nuppu",
         "autoreattaching": "Kinnitan automaatselt",
