@@ -73,6 +73,7 @@
         "addresses": "Adresser",
         "reattach": "ÅTERFÄST",
         "promote": "BEFORDRA",
+        "retry": "RETRY",
         "rebroadcast": "ÅTERSÄND",
         "pressBackAgain": "Tryck tillbaka igen för att stänga appen",
         "autoreattaching": "Återfäster automatiskt till Tangle",
