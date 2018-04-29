@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 
-import { changeIotaNode, checkNode} from '../../libs/iota';
+import { changeIotaNode, checkNode } from '../../libs/iota';
 import { setFullNode, addCustomPoWNode, updateAutoNodeSwitching } from '../../actions/settings';
 import { generateAlert } from '../../actions/alerts';
 
@@ -77,7 +77,6 @@ export default function withNodeData(NodeComponent) {
                         generateAlert('error', t('global:invalidResponse'), t('global:invalidResponseExplanation'));
                         changeIotaNode(node);
                         return;
-
                     }
 
                     setFullNode(nodeSelected);
@@ -93,7 +92,7 @@ export default function withNodeData(NodeComponent) {
                     }
                 });
             } catch (err) {
-                generateAlert('error',t('global:invalidResponse'), t('global:invalidResponseExplanation'));
+                generateAlert('error', t('global:invalidResponse'), t('global:invalidResponseExplanation'));
                 changeIotaNode(node);
             }
         };
