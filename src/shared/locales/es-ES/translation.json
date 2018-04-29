@@ -342,8 +342,8 @@
         "addressCopiedExplanation": "La dirección se ha copiado al portapapeles.",
         "messageCopied": "Message copied",
         "messageCopiedExplanation": "The message has been copied to the clipboard.",
-        "send": "SEND",
-        "receive": "RECEIVE"
+        "send": "ENVIAR",
+        "receive": "RECIBIR"
     },
     "accountManagement": {
         "viewSeed": "Ver Seed",
@@ -354,7 +354,9 @@
     },
     "addCustomNode": {
         "customNode": "Nodo personalizado",
-        "add": "Añadir"
+        "add": "Añadir",
+        "nodeFieldEmpty": "Text field is empty",
+        "nodeFieldEmptyExplanation": "Please enter a custom node."
     },
     "addNewAccount": {
         "useExistingSeed": "Usar Seed existente",

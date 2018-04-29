@@ -354,7 +354,9 @@
     },
     "addCustomNode": {
         "customNode": "Omavalintainen palvelin",
-        "add": "Lisää"
+        "add": "Lisää",
+        "nodeFieldEmpty": "Text field is empty",
+        "nodeFieldEmptyExplanation": "Please enter a custom node."
     },
     "addNewAccount": {
         "useExistingSeed": "Käytä olemassaolevaa seed-lukua",
