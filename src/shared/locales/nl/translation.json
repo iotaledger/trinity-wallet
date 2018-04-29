@@ -1,7 +1,7 @@
 {
     "global": {
-        "send": "VERZEND",
-        "cancel": "ANNULEREN",
+        "send": "Verzend",
+        "cancel": "Annuleer",
         "continue?": "Weet u zeker dat u wilt doorgaan?",
         "noTransactions": "Geen recente geschiedenis",
         "refresh": "Herlaad",
@@ -62,7 +62,7 @@
         "cannotPerformActionExplanation": "Ga naar Geavanceerde instellingen om uw wallet opnieuw in te stellen.",
         "attachToTangleUnavailable": "Koppelen aan Tangle niet beschikbaar",
         "attachToTangleUnavailableExplanation": "Koppelen aan Tangle niet beschikbaar op uw gekozen node.",
-        "wallet": "Wallet",
+        "wallet": "Portemonnee",
         "sent": "Verzonden",
         "received": "Ontvangen",
         "sending": "Uitgaand",
@@ -99,10 +99,10 @@
         "addCustomNode": "Voeg eigen node toe",
         "nodeChanged": "Node aangepast",
         "nodeChangedExplanation": "De node is succesvol aangepast.",
-        "nodeMustUseHTTPS": "Invalid node (non HTTPS)",
-        "nodeMustUseHTTPSExplanation": "Only custom nodes using HTTPS are allowed.",
-        "nodeDuplicated": "Duplicated node",
-        "nodeDuplicatedExplanation": "The custom node is already listed.",
+        "nodeMustUseHTTPS": "Ongeldige node (niet HTTPS)",
+        "nodeMustUseHTTPSExplanation": "Alleen aangepaste nodes met HTTPS zijn toegestaan.",
+        "nodeDuplicated": "Node geduplificeerd",
+        "nodeDuplicatedExplanation": "De aangepaste node wordt al vermeld.",
         "nodeAutoChanged": "Automatisch van node gewisseld",
         "nodeAutoChangedExplanation": "Gewisseld naar node {{- nodeAddress}} omdat de geselecteerde node offline is.",
         "fingerprintOnSend": "Raak vingerafdruklezer aan om transactie te autoriseren"
@@ -243,7 +243,7 @@
         "maximumSelected": "MAXIMUM aantal geselecteerd",
         "iotaUnits": "Uitleg IOTA eenheden",
         "sendMax": "MAX VERZENDEN",
-        "totalTime": "Total time"
+        "totalTime": "Totale tijd"
     },
     "setPassword": {
         "passwordTooShort": "Wachtwoord is te kort",
@@ -340,8 +340,8 @@
         "bundleHashCopiedExplanation": "De bundel-hash is gekopieerd naar het klembord.",
         "addressCopied": "Adres gekopieerd",
         "addressCopiedExplanation": "Het adres is naar het klembord gekopieerd.",
-        "messageCopied": "Message copied",
-        "messageCopiedExplanation": "The message has been copied to the clipboard.",
+        "messageCopied": "Bericht gekopieerd",
+        "messageCopiedExplanation": "Het bericht is gekopieerd naar het klembord.",
         "send": "-",
         "receive": "ONTVANGEN"
     },
@@ -354,7 +354,9 @@
     },
     "addCustomNode": {
         "customNode": "Aangepaste node",
-        "add": "Toevoegen"
+        "add": "Toevoegen",
+        "nodeFieldEmpty": "Tekst veld is leeg",
+        "nodeFieldEmptyExplanation": "Voer a.u.b. een aangepaste node in."
     },
     "addNewAccount": {
         "useExistingSeed": "Bestaande sleutel gebruiken",

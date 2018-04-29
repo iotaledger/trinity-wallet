@@ -21,7 +21,7 @@
         "invalidResponsePollingExplanation": "Error en el nodo mientras se efectuaba la votación. Revise las notificaciones para más información.",
         "invalidResponseFetchingAccount": "Error en el nodo al intentar obtener información de su cuenta. Intente cambiarlo o revise las notificaciones para más información.",
         "invalidResponseSendingTransfer": "Error en el nodo mientras se enviaba la transferencia. Revise las notificaciones para más información.",
-        "seed": "Seed",
+        "seed": "Semilla",
         "back": "VOLVER",
         "backLowercase": "Atrás",
         "done": "LISTO",
@@ -99,10 +99,10 @@
         "addCustomNode": "Añadir nodo personalizado",
         "nodeChanged": "Nodo modificado",
         "nodeChangedExplanation": "El nodo fue modificado exitosamente.",
-        "nodeMustUseHTTPS": "Invalid node (non HTTPS)",
-        "nodeMustUseHTTPSExplanation": "Only custom nodes using HTTPS are allowed.",
-        "nodeDuplicated": "Duplicated node",
-        "nodeDuplicatedExplanation": "The custom node is already listed.",
+        "nodeMustUseHTTPS": "Nodo invalido (debe ser HTTPS)",
+        "nodeMustUseHTTPSExplanation": "Solo se admiten nodos HTTPS.",
+        "nodeDuplicated": "Nodo duplicado",
+        "nodeDuplicatedExplanation": "Este nodo ya se encuentra en la lista.",
         "nodeAutoChanged": "Cambiar de nodo automáticamente",
         "nodeAutoChangedExplanation": "El nuevo nodo {{- nodeAddress}} seleccionado está fuera de línea.",
         "fingerprintOnSend": "Toque el lector de huella dactilar para autorizar la transferencia"
@@ -243,7 +243,7 @@
         "maximumSelected": "Cantidad MÁXIMA seleccionada",
         "iotaUnits": "Explicacion de unidades IOTA",
         "sendMax": "ENVIAR MÁXIMO",
-        "totalTime": "Total time"
+        "totalTime": "Tiempo total"
     },
     "setPassword": {
         "passwordTooShort": "La contraseña es demasiado corta",
@@ -340,8 +340,8 @@
         "bundleHashCopiedExplanation": "El hash del paquete se ha copiado en el portapapeles.",
         "addressCopied": "Dirección Copiada",
         "addressCopiedExplanation": "La dirección se ha copiado al portapapeles.",
-        "messageCopied": "Message copied",
-        "messageCopiedExplanation": "The message has been copied to the clipboard.",
+        "messageCopied": "Mensaje copiado",
+        "messageCopiedExplanation": "El mensaje fue copiado al portapapeles.",
         "send": "ENVIAR",
         "receive": "RECIBIR"
     },
@@ -354,7 +354,9 @@
     },
     "addCustomNode": {
         "customNode": "Nodo personalizado",
-        "add": "Añadir"
+        "add": "Añadir",
+        "nodeFieldEmpty": "El campo de texto está vacío",
+        "nodeFieldEmptyExplanation": "Por favor ingrese la direccion de un nodo."
     },
     "addNewAccount": {
         "useExistingSeed": "Usar semilla existente",
@@ -468,7 +470,7 @@
         "code": "Código"
     },
     "chart": {
-        "mcap": "MCAP",
+        "mcap": "Market cap",
         "change": "Variación",
         "volume": "Volumen (24h)",
         "currentValue": "Valor actual"

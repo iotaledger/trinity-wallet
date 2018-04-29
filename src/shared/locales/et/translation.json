@@ -288,7 +288,7 @@
         "accountDeleted": "Konto kustutatud",
         "accountDeletedExplanation": "Teie konto eemaldati rahakotist.",
         "cannotPerformAction": "Toimingut ei saa teha",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
+        "cannotPerformActionExplanation": "Minge menüüst Täpsemad sätted, et rahakott tühjendada.",
         "poorConnection": "Kehv ühendus",
         "poorConnectionExplanation": "Valuuta vahetamine ebaõnnestus halva ühenduse tõttu.",
         "hide": "Peida",
@@ -354,7 +354,9 @@
     },
     "addCustomNode": {
         "customNode": "Ise määratud sõlm",
-        "add": "Lisa"
+        "add": "Lisa",
+        "nodeFieldEmpty": "Text field is empty",
+        "nodeFieldEmptyExplanation": "Please enter a custom node."
     },
     "addNewAccount": {
         "useExistingSeed": "Kasuta olemasolevat seemet",
