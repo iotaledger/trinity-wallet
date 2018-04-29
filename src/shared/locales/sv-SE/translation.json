@@ -99,13 +99,13 @@
         "addCustomNode": "Lägg till anpassad nod",
         "nodeChanged": "Nod ändrad",
         "nodeChangedExplanation": "Noden har ändrats framgångsrikt.",
-        "nodeMustUseHTTPS": "Invalid node (non HTTPS)",
-        "nodeMustUseHTTPSExplanation": "Only custom nodes using HTTPS are allowed.",
-        "nodeDuplicated": "Duplicated node",
-        "nodeDuplicatedExplanation": "The custom node is already listed.",
+        "nodeMustUseHTTPS": "Ogiltig nod (ej HTTPS)",
+        "nodeMustUseHTTPSExplanation": "Endast anpassade noder som använder HTTPS är tillåtna.",
+        "nodeDuplicated": "Duplicerad nod",
+        "nodeDuplicatedExplanation": "Den anpassade noden finns redan.",
         "nodeAutoChanged": "Bytte automatiskt nod",
         "nodeAutoChangedExplanation": "Bytte till ny nod {{- nodeAddress}} då din valda nod är offline.",
-        "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer"
+        "fingerprintOnSend": "Tryck på fingeravtrycksläsaren för att skicka överföringen"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
@@ -243,7 +243,7 @@
         "maximumSelected": "MAXIMALT belopp valt",
         "iotaUnits": "Förklaring av IOTA-enheter",
         "sendMax": "SKICKA MAX",
-        "totalTime": "Total time"
+        "totalTime": "Total tid"
     },
     "setPassword": {
         "passwordTooShort": "Lösenordet är för kort",
@@ -340,8 +340,8 @@
         "bundleHashCopiedExplanation": "Hashbunten har kopierats till urklipp.",
         "addressCopied": "Adress kopierad",
         "addressCopiedExplanation": "Din adress har kopierats till urklipp.",
-        "messageCopied": "Message copied",
-        "messageCopiedExplanation": "The message has been copied to the clipboard.",
+        "messageCopied": "Meddelandet kopierat",
+        "messageCopiedExplanation": "Meddelandet har kopierats till urklipp.",
         "send": "SKICKA",
         "receive": "TA EMOT"
     },
@@ -354,7 +354,9 @@
     },
     "addCustomNode": {
         "customNode": "Anpassad nod",
-        "add": "Lägg till"
+        "add": "Lägg till",
+        "nodeFieldEmpty": "Textfältet är tomt",
+        "nodeFieldEmptyExplanation": "Ange en anpassad nod."
     },
     "addNewAccount": {
         "useExistingSeed": "Använd befintlig seed",
@@ -430,21 +432,21 @@
     "fingerprintSetup": {
         "instructionsEnable": "Tryck på fingeravtrycksläsaren för att aktivera autentisering med fingeravtryck",
         "instructionsDisable": "Tryck på fingeravtrycksläsaren för att avaktivera autentisering med fingeravtryck",
-        "fingerprintAuthEnabled": "Biometric authentication enabled",
-        "fingerprintAuthEnabledExplanation": "You have succesfully enabled biometric authentication.",
-        "fingerprintAuthDisabled": "Biometric authentication disabled",
-        "fingerprintAuthDisabledExplanation": "You have succesfully disabled biometric authentication.",
-        "fingerprintAuthFailed": "Biometric authentication failed",
+        "fingerprintAuthEnabled": "Biometrisk autentisering aktiverad",
+        "fingerprintAuthEnabledExplanation": "Du har framgångsrikt aktiverat biometrisk autentisering.",
+        "fingerprintAuthDisabled": "Biometrisk autentisering avaktiverad",
+        "fingerprintAuthDisabledExplanation": "Du har framgångsrikt avaktiverat biometrisk autentisering.",
+        "fingerprintAuthFailed": "Biometrisk autentisering misslyckades",
         "fingerprintAuthFailedExplanation": "Fingeravtrycksautentisering misslyckades. Var god försök igen.",
         "status": "Status",
         "enabled": "Aktiverad",
         "disabled": "Avaktiverad",
-        "fingerprintUnavailable": "Biometric authenticatation unavailable",
-        "fingerprintUnavailableExplanation": "Your device does not support biometric authenticatation or it has not been configured in the device settings.",
+        "fingerprintUnavailable": "Biometrisk autentisering otillgänglig",
+        "fingerprintUnavailableExplanation": "Din enhet stödjer ej biometrisk autentisering eller så har det ej konfigurerats i enhetens inställningar.",
         "buttonInstructionsDisable": "Tryck på knappen nedan för att avaktivera fingeravtrycksautentisering.",
         "buttonInstructionsEnable": "Tryck på knappen nedan för att aktivera fingeravtrycksautentisering.",
-        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID.",
-        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID.",
+        "buttonInstructionsDisableIPhoneX": "Tryck på knappen nedan för att avaktivera Face ID.",
+        "buttonInstructionsEnableIPhoneX": "Tryck på knappen nedan för att aktivera Face ID.",
         "instructionsLogin": "Lägg fingret på fingeravtrycksläsaren för att logga in"
     },
     "transferConfirmation": {
@@ -493,7 +495,7 @@
         "preparingInputs": "Förbereder indata",
         "preparingTransfers": "Förbereder överföringar",
         "gettingTransactionsToApprove": "Godkänner transaktioner",
-        "proofOfWork": "Utför proof of work",
+        "proofOfWork": "Utför bevis på arbete",
         "broadcasting": "Sändning pågår"
     },
     "snapshotTransition": {

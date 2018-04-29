@@ -354,7 +354,9 @@
     },
     "addCustomNode": {
         "customNode": "Προσαρμοσμένος κόμβος",
-        "add": "Προσθήκη"
+        "add": "Προσθήκη",
+        "nodeFieldEmpty": "Text field is empty",
+        "nodeFieldEmptyExplanation": "Please enter a custom node."
     },
     "addNewAccount": {
         "useExistingSeed": "Χρήση υπάρχοντος σπόρου",
