@@ -73,6 +73,7 @@
         "addresses": "アドレス",
         "reattach": "再添付",
         "promote": "促進",
+        "retry": "RETRY",
         "rebroadcast": "再ブロードキャスト",
         "pressBackAgain": "もう一度タップすると、アプリを閉じます。",
         "autoreattaching": "タングルに自動再登録",
