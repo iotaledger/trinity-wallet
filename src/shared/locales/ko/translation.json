@@ -73,6 +73,7 @@
         "addresses": "주소",
         "reattach": "다시 어태치",
         "promote": "프로모트",
+        "retry": "RETRY",
         "rebroadcast": "재송출",
         "pressBackAgain": "앱을 닫으려면 뒤로가기를 다시 누르세요.",
         "autoreattaching": "어태치 자동 재시도중",
