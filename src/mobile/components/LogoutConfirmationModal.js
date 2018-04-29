@@ -42,7 +42,7 @@ export class LogoutConfirmationModal extends PureComponent {
         /** Log out from wallet */
         logout: PropTypes.func.isRequired,
         /** Modal background color */
-        backgroundColor: PropTypes.string.isRequired,
+        backgroundColor: PropTypes.object.isRequired,
         /** Modal text color */
         textColor: PropTypes.object.isRequired,
         /** Modal border color */

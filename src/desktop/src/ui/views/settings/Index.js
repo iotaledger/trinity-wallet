@@ -79,7 +79,7 @@ class Settings extends React.PureComponent {
                     <section className={css.content}>
                         <header>
                             <a onClick={() => history.push(backRoute)}>
-                                <Icon icon="cross" size={40} />
+                                <Icon icon="cross" size={24} />
                             </a>
                         </header>
                         <Switch location={location}>

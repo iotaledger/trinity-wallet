@@ -33,6 +33,10 @@ class Login extends React.Component {
          * @ignore
          */
         wallet: PropTypes.object.isRequired,
+        /** ui state data
+         * @ignore
+         */
+        ui: PropTypes.object.isRequired,
         /** Current currency symbol */
         currency: PropTypes.string.isRequired,
         /** Set password state
@@ -164,10 +168,10 @@ class Login extends React.Component {
     };
 
     render() {
-        const { t, accounts, wallet } = this.props;
+        const { t, accounts, wallet, ui } = this.props;
         const { verifyTwoFA, code } = this.state;
 
-        if (wallet.isFetchingLatestAccountInfoOnLogin || wallet.addingAdditionalAccount) {
+        if (ui.isFetchingLatestAccountInfoOnLogin || wallet.addingAdditionalAccount) {
             return (
                 <Loading
                     loop
@@ -231,6 +235,7 @@ class Login extends React.Component {
 const mapStateToProps = (state) => ({
     accounts: state.accounts,
     wallet: state.wallet,
+    ui: state.ui,
     firstUse: state.accounts.firstUse,
     currency: state.settings.currency,
     onboarding: state.ui.onboarding,

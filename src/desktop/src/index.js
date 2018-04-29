@@ -12,6 +12,8 @@ import { changeIotaNode } from 'libs/iota';
 import createPlugin from 'bugsnag-react';
 import { DESKTOP_VERSION } from 'config';
 
+import themes from 'themes/themes';
+
 import Index from 'ui/Index';
 
 import Theme from 'ui/global/Theme';
@@ -28,14 +30,21 @@ const ErrorBoundary = bugsnagClient.use(createPlugin(React));
 
 const persistConfig = {
     storage: persistElectronStorage,
-    blacklist: ['wallet', 'polling', 'ui', 'deepLinks'],
+    blacklist: ['wallet', 'polling', 'ui'],
 };
 
 persistStore(store, persistConfig, (err, restoredState) => {
     const node = get(restoredState, 'settings.fullNode');
+    const bgColor = get(restoredState, 'settings.theme.body.bg');
 
     if (node) {
         changeIotaNode(node);
+    }
+
+    if (bgColor) {
+        document.body.style.background = bgColor;
+    } else {
+        document.body.style.background = themes.Default.body.bg;
     }
 });
 

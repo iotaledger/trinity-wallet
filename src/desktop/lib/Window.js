@@ -36,13 +36,6 @@ const Electron = {
         ipc.send('request.deepLink');
     },
 
-    updateSettings: (attribute, value) => {
-        ipc.send('settings.update', {
-            attribute: attribute,
-            value: value,
-        });
-    },
-
     getActiveVersion() {
         return settings.get('trinity-version');
     },
@@ -52,27 +45,25 @@ const Electron = {
     },
 
     getStorage(key) {
-        return settings.get(`persist-${key}`);
+        return settings.get(key);
     },
 
     setStorage(key, item) {
-        return settings.set(`persist-${key}`, item);
+        return settings.set(key, item);
     },
 
     removeStorage(key) {
-        return settings.delete(`persist-${key}`);
+        return settings.delete(key);
     },
 
     clearStorage() {
-        const keys = this.getAllStorage();
-        keys.forEach((key) => this.removeStorage(key));
+        const keys = settings.getAll();
+        Object.keys(keys).forEach((key) => this.removeStorage(key));
     },
 
     getAllStorage() {
         const data = settings.getAll();
-        const keys = Object.keys(data)
-            .filter((key) => key.indexOf('persist-') === 0)
-            .map((key) => key.replace('persist-', ''));
+        const keys = Object.keys(data).filter((key) => key.indexOf('reduxPersist') === 0);
         return keys;
     },
 
