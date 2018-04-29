@@ -73,6 +73,7 @@
         "addresses": "地址",
         "reattach": "重新连接",
         "promote": "提升",
+        "retry": "RETRY",
         "rebroadcast": "重新广播",
         "pressBackAgain": "再次按返回关闭应用程序",
         "autoreattaching": "自动附加到纠缠",
