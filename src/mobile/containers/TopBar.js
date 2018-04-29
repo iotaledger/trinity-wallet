@@ -120,6 +120,7 @@ class TopBar extends Component {
         clearLog: PropTypes.func.isRequired,
         topBarHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.object]).isRequired,
         isIOSKeyboardActive: PropTypes.bool.isRequired,
+        isTransitioning: PropTypes.bool.isRequired
     };
 
     static filterSeedTitles(accountNames, currentSeedIndex) {
@@ -191,7 +192,8 @@ class TopBar extends Component {
     }
 
     shouldDisable() {
-        return this.props.isGeneratingReceiveAddress || this.props.isSendingTransfer || this.props.isSyncing;
+        const { isGeneratingReceiveAddress, isSendingTransfer, isSyncing, isTransitioning } = this.props;
+        return isGeneratingReceiveAddress || isSendingTransfer || isSyncing || isTransitioning;
     }
 
     showModal() {
@@ -432,6 +434,7 @@ const mapStateToProps = (state) => ({
     seedIndex: state.wallet.seedIndex,
     isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
     isSendingTransfer: state.ui.isSendingTransfer,
+    isTransitioning: state.ui.isTransitioning,
     isSyncing: state.ui.isSyncing,
     childRoute: state.home.childRoute,
     isTopBarActive: state.home.isTopBarActive,

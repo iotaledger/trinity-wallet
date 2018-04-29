@@ -790,7 +790,9 @@ export class Send extends Component {
                             }}
                             widget="qr"
                             onQRPress={() => {
-                                this.openModal('qrScanner');
+                                if (!isSending) {
+                                    this.openModal('qrScanner');
+                                }
                             }}
                             theme={theme}
                             value={address}
@@ -820,14 +822,24 @@ export class Send extends Component {
                                 currencyConversion
                                 theme={theme}
                                 denominationText={denomination}
-                                onDenominationPress={() => this.onDenominationPress()}
+                                onDenominationPress={() => {
+                                    if (!isSending) {
+                                        this.onDenominationPress();
+                                    }
+                                }}
                                 value={amount}
                                 editable={!isSending}
                                 selectTextOnFocus={!isSending}
                             />
                             <View style={{ flex: 0.2 }} />
                             <View style={[styles.maxContainer, { opacity: opacity }]}>
-                                <TouchableOpacity onPress={() => this.onMaxPress()}>
+                                <TouchableOpacity
+                                    onPress={() => {
+                                        if (!isSending) {
+                                            this.onMaxPress();
+                                        }
+                                    }}
+                                >
                                     <View
                                         style={{
                                             flexDirection: 'row',
