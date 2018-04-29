@@ -89,8 +89,8 @@
         "pleaseWaitEllipses": "Bitte warten...",
         "pleaseWaitExplanation": "Trinity führt derzeit eine andere Aktion durch. Bitte in Kürze erneut versuchen.",
         "pleaseWaitTransferExplanation": "Dein verfügbares Guthaben wird derzeit in anderen Transaktionen verwendet. Bitte warte, bis diese Transaktionen bestätigt sind, und versuche es erneut.",
-        "snapshotTransitionInProgress": "Snapshot-Umstellung wird ausgeführt",
-        "snapshotTransitionInProgressExplanation": "Bitte warte, bis die Umstellung abgeschlossen ist.",
+        "snapshotTransitionInProgress": "Snapshot-Wiederherstellung wird ausgeführt.",
+        "snapshotTransitionInProgressExplanation": "Bitte warte, bis die Wiederherstellung abgeschlossen ist.",
         "checkForUpdates": "Suche nach Updates",
         "account": "Konto",
         "enterPasswordToAccessSettings": "Gib dein Passwort ein, um auf deine Konto-Einstellungen zuzugreifen",
@@ -99,13 +99,13 @@
         "addCustomNode": "Benutzerdefinierten Server hinzufügen",
         "nodeChanged": "Server gewechselt",
         "nodeChangedExplanation": "Der Server wurde erfolgreich gewechselt.",
-        "nodeMustUseHTTPS": "Invalid node (non HTTPS)",
-        "nodeMustUseHTTPSExplanation": "Only custom nodes using HTTPS are allowed.",
-        "nodeDuplicated": "Duplicated node",
-        "nodeDuplicatedExplanation": "The custom node is already listed.",
+        "nodeMustUseHTTPS": "Ungültige Node (fehlende Verschlüsselung)",
+        "nodeMustUseHTTPSExplanation": "Benutzerdefinierte Server müssen eine Verschlüsselung verwenden (HTTPS).",
+        "nodeDuplicated": "Doppelte Node",
+        "nodeDuplicatedExplanation": "Diese Node ist bereits vorhanden.",
         "nodeAutoChanged": "Server automatisch gewechselt",
         "nodeAutoChangedExplanation": "Auf den Server {{- nodeAddress}} gewechselt, da der ausgewählte Server offline ist.",
-        "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer"
+        "fingerprintOnSend": "Berühre den Fingerabdrucksensor um den Transfer zu bestätigen."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
@@ -179,7 +179,7 @@
     },
     "loading": {
         "loadingFirstTime": "Lade den Seed zum ersten Mal.",
-        "thisMayTake": "Dies kann eine Weile dauern.",
+        "thisMayTake": "Das kann eine Weile dauern.",
         "doNotMinimise": "Die App nicht minimieren oder schließen.",
         "youMayNotice": "Dein Gerät könnte dabei langsamer werden."
     },
@@ -243,7 +243,7 @@
         "maximumSelected": "MAXIMALER Betrag ausgewählt",
         "iotaUnits": "IOTA Einheiten erklärt",
         "sendMax": "SENDE MAX",
-        "totalTime": "Total time"
+        "totalTime": "Gesamtzeit"
     },
     "setPassword": {
         "passwordTooShort": "Das Passwort ist zu kurz",
@@ -340,8 +340,8 @@
         "bundleHashCopiedExplanation": "Dein Bundle-Hash wurde in die Zwischenablage kopiert.",
         "addressCopied": "Adresse kopiert",
         "addressCopiedExplanation": "Die Adresse wurde in die Zwischenablage kopiert.",
-        "messageCopied": "Message copied",
-        "messageCopiedExplanation": "The message has been copied to the clipboard.",
+        "messageCopied": "Nachricht kopiert",
+        "messageCopiedExplanation": "Die Nachricht wurde in die Zwischenablage kopiert.",
         "send": "SENDEN",
         "receive": "EMPFANGEN"
     },
@@ -354,7 +354,9 @@
     },
     "addCustomNode": {
         "customNode": "Benutzerdefinierter Server",
-        "add": "Hinzufügen"
+        "add": "Hinzufügen",
+        "nodeFieldEmpty": "Textfeld ist leer",
+        "nodeFieldEmptyExplanation": "Bitte eine benutzerdefinierte Node hinzufügen."
     },
     "addNewAccount": {
         "useExistingSeed": "Vorhandenen Seed verwenden",
@@ -364,7 +366,7 @@
         "selectNode": "Server auswählen",
         "addCustomNode": "Benutzerdefinierten Server hinzufügen",
         "manualSync": "Manuell synchronisieren",
-        "snapshotTransition": "Snapshot-Umstellung",
+        "snapshotTransition": "Snapshot-Wiederherstellung",
         "pow": "Proof of Work"
     },
     "advancedThemeCustomisation": {
@@ -404,8 +406,8 @@
     },
     "manualSync": {
         "outOfSync": "Sieht der Verlauf deiner Transaktionen so aus, als ob er nicht synchronisiert wäre?",
-        "pressToSync": "Drücke die Schaltfläche unten, um dein Konto zu synchronisieren.",
-        "thisMayTake": "Dies könnte eine Weile dauern. Dein Gerät könnte etwas langsamer werden.",
+        "pressToSync": "Drücke die folgende Schaltfläche, um dein Konto zu synchronisieren.",
+        "thisMayTake": "Das kann eine Weile dauern. Dein Gerät könnte etwas langsamer werden.",
         "doNotClose": "Beim Minimieren der App wird die Synchronisierung abgebrochen.",
         "syncAccount": "SYNCHRONISIEREN",
         "syncingYourAccount": "Konto wird synchronisiert."
@@ -430,21 +432,21 @@
     "fingerprintSetup": {
         "instructionsEnable": "Berühre den Fingerabdrucksensor, um die Authentifizierung mittels Fingerabdruck einzurichten",
         "instructionsDisable": "Berühre den Fingerabdrucksensor, um die Authentifizierung mittels Fingerabdruck zu deaktivieren",
-        "fingerprintAuthEnabled": "Biometric authentication enabled",
-        "fingerprintAuthEnabledExplanation": "You have succesfully enabled biometric authentication.",
-        "fingerprintAuthDisabled": "Biometric authentication disabled",
-        "fingerprintAuthDisabledExplanation": "You have succesfully disabled biometric authentication.",
-        "fingerprintAuthFailed": "Biometric authentication failed",
+        "fingerprintAuthEnabled": "Fingerabdruck-Authentifizierung aktiviert",
+        "fingerprintAuthEnabledExplanation": "Du hast erfolgreich die Zwei-Faktor-Authentifizierung aktiviert.",
+        "fingerprintAuthDisabled": "Fingerabdruck-Authentifizierung deaktiviert",
+        "fingerprintAuthDisabledExplanation": "Du hast erfolgreich die Zwei-Faktor-Authentifizierung deaktiviert.",
+        "fingerprintAuthFailed": "Fingerabdruck-Authentifizierung fehlgeschlagen",
         "fingerprintAuthFailedExplanation": "Fingerabdruck-Authentifizierung fehlgeschlagen. Bitte erneut versuchen.",
         "status": "Status",
         "enabled": "Aktiviert",
         "disabled": "Deaktiviert",
-        "fingerprintUnavailable": "Biometric authenticatation unavailable",
-        "fingerprintUnavailableExplanation": "Your device does not support biometric authenticatation or it has not been configured in the device settings.",
+        "fingerprintUnavailable": "Fingerabdruck-Authentifizierung nicht verfügbar",
+        "fingerprintUnavailableExplanation": "Dein Gerät unterstützt die Erkennung von Fingerabdrücken nicht oder diese Funktion wurde in den Einstellungen deines Gerätes deaktiviert.",
         "buttonInstructionsDisable": "Drücke die Schaltfläche unten, um die Fingerabdruck-Authentifizierung zu deaktivieren.",
         "buttonInstructionsEnable": "Drücke die Schaltfläche unten, um die Fingerabdruck-Authentifizierung zu aktivieren.",
-        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID.",
-        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID.",
+        "buttonInstructionsDisableIPhoneX": "Drücke den folgenden Button um Face ID zu deaktivieren.",
+        "buttonInstructionsEnableIPhoneX": "Drücke den folgenden Button um Face ID zu aktivieren.",
         "instructionsLogin": "Zur Anmeldung Fingerabdrucksensor berühren"
     },
     "transferConfirmation": {
@@ -491,24 +493,24 @@
         "validatingReceiveAddress": "Überprüfe Empfangsadresse",
         "syncingAccount": "Konto synchronisieren",
         "preparingInputs": "Vorbereitung der Daten",
-        "preparingTransfers": "Vorbereitung der Transaktionen",
-        "gettingTransactionsToApprove": "Warte auf Bestätigung der Transaktionen",
+        "preparingTransfers": "Vorbereitung der Transaktion",
+        "gettingTransactionsToApprove": "Warte auf Bestätigung der Transaktion",
         "proofOfWork": "Vervollständige Proof of Work",
-        "broadcasting": "Broadcasting"
+        "broadcasting": "Übertrage"
     },
     "snapshotTransition": {
-        "cannotCompleteTransition": "Snapshot-Umstellung kann nicht abgeschlossenn werden",
-        "cannotCompleteTransitionExplanation": "Ihr Guthaben muss größer als 0 sein, um die Umstellung abzuschließen.",
-        "transitionComplete": "Snapshot-Umstellung abgeschlossen",
-        "transitionCompleteExplanation": "Die Snapshot-Umstellung wurde erfolgreich abgeschlossen.",
+        "cannotCompleteTransition": "Snapshot-Wiederherstellung konnte nicht abgeschlossen werden",
+        "cannotCompleteTransitionExplanation": "Du musst über einen positiven Kontostand verfügen, um die Wiederherstellung durchführen zu können.",
+        "transitionComplete": "Snapshot-Wiederherstellung abgeschlossen",
+        "transitionCompleteExplanation": "Die Snapshot-Wiederherstellung wurde erfolgreich abgeschlossen.",
         "detectedBalance": "Erkanntes Guthaben: {{amount}} {{unit}}",
         "isThisCorrect": "Ist das korrekt?",
         "snapshotExplanation": "In unregelmäßigen Abständen wird ein Snapshot durchgeführt, um die Größe vom Tangle zu reduzieren.",
-        "hasSnapshotTakenPlace": "Falls ein Snapshot stattgefunden hat, drücke folgenden Button um deinen Kontostand wiederherzustellen.",
+        "hasSnapshotTakenPlace": "Falls ein Snapshot stattgefunden hat, kannst du hier deinen Kontostand wiederherstellen.",
         "transition": "WIEDERHERSTELLEN",
         "transitioning": "Daten werden wiederhergestellt.",
-        "generatingAndDetecting": "Adressen werden generiert und Kontostand erkannt.",
-        "attaching": "Adressen werden dem Tangle angehängt"
+        "generatingAndDetecting": "Adressen werden generiert und Kontostand wird erkannt.",
+        "attaching": "Adressen werden dem Tangle angehängt."
     },
     "deepLink": {
         "autofill": "Automatisches ausfüllen erfolgreich",
