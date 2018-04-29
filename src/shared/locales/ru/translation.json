@@ -76,6 +76,7 @@
         "addresses": "Адреса",
         "reattach": "ПРИВЯЗАТЬ ПОВТОРНО",
         "promote": "СОДЕЙСТВИЕ",
+        "retry": "RETRY",
         "rebroadcast": "РЕТРАНСЛИРОВАТЬ",
         "pressBackAgain": "Нажмите еще раз назад чтобы закрыть приложение",
         "autoreattaching": "Автоматическое прикрепление к Tangle",
