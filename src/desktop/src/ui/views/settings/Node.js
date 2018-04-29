@@ -48,27 +48,39 @@ class SetNode extends PureComponent {
         return node.length > 0;
     };
 
+    changeCustomNode = (val) => {
+        this.setState({ customNode: val });
+    };
+
+    toggleAutoNodeSwitching = () => {
+        this.props.setAutoNodeSwitching();
+    };
+
+    changeSelectedNode = (e) => {
+        this.setState({ selection: e.target.value });
+    };
+
+    changeNode = (e) => {
+        e.preventDefault();
+        const { setNode } = this.props;
+        const { selection, customNode } = this.state;
+        setNode(this.validNode(customNode) ? customNode : selection, this.validNode(customNode));
+        this.setState({ customNode: '' });
+    };
+
     render() {
-        const { nodes, node, loading, setNode, autoNodeSwitching, setAutoNodeSwitching, t } = this.props;
+        const { nodes, node, loading, autoNodeSwitching, t } = this.props;
         const { selection, customNode } = this.state;
 
         const selectedNode = this.validNode(customNode) ? customNode : selection;
 
         return (
-            <form
-                onSubmit={(e) => {
-                    e.preventDefault();
-                    setNode(selectedNode);
-                    this.setState({
-                        customNode: '',
-                    });
-                }}
-            >
+            <form onSubmit={this.changeNode}>
                 <Select
                     value={selection || node}
                     label={t('node')}
                     disabled={this.validNode(customNode)}
-                    onChange={(e) => this.setState({ selection: e.target.value })}
+                    onChange={this.changeSelectedNode}
                 >
                     {nodes.map((item) => (
                         <option key={item} value={item}>
@@ -77,14 +89,11 @@ class SetNode extends PureComponent {
                     ))}
                 </Select>
 
-                <Text
-                    value={customNode}
-                    label={t('addCustomNode:customNode')}
-                    onChange={(value) => this.setState({ customNode: value })}
-                />
+                <Text value={customNode} label={t('addCustomNode:customNode')} onChange={this.changeCustomNode} />
 
                 <Checkbox
-                    checked={autoNodeSwitching} onChange={() => setAutoNodeSwitching()}
+                    checked={autoNodeSwitching}
+                    onChange={this.toggleAutoNodeSwitching}
                     label={t('settings:autoNodeSwitching')}
                 />
 

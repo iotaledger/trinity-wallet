@@ -11,7 +11,7 @@ First you need to install Node.JS if you haven’t done that already.
 Then run the following command to install electron globally.
 ```
 npm install -g electron
-````
+```
 
 ### 2. Clone or download the Trinity repo from GitLab.
 Clone the GitLab repo by running this command:
