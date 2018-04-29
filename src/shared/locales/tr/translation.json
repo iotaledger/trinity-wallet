@@ -504,7 +504,7 @@
         "cannotCompleteTransitionExplanation": "Bakiyeniz geçişi gerçekleştirmek için 0'dan büyük olmalıdır.",
         "transitionComplete": "Snapshot transition complete",
         "transitionCompleteExplanation": "The snapshot transition has completed successfully.",
-        "detectedBalance": "Detected balance: {{amount}} {{unit}}",
+        "detectedBalance": "Tespit edilen varlıklar: {{amount}} {{unit}}",
         "isThisCorrect": "Bu doğru mu?",
         "snapshotExplanation": "Every so often, a snapshot is performed to prune the size of the Tangle.",
         "hasSnapshotTakenPlace": "Has a snapshot taken place? Press the button below to transition.",
