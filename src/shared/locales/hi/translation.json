@@ -73,6 +73,7 @@
         "addresses": "पता",
         "reattach": "पुनः अटैच",
         "promote": "प्रमोट",
+        "retry": "RETRY",
         "rebroadcast": "पुनः ब्रॉडकास्ट",
         "pressBackAgain": "एप बंद करने के लिए वापस फिर से दबाएं",
         "autoreattaching": "टैंगल में स्वतः पुनः अटैच हो रहा है",
