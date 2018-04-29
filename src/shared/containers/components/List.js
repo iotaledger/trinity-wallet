@@ -12,7 +12,6 @@ export default function withListData(ListComponent) {
     class ListData extends React.PureComponent {
         static propTypes = {
             transfers: PropTypes.object.isRequired,
-            wallet: PropTypes.object.isRequired,
             ui: PropTypes.object.isRequired,
             limit: PropTypes.number,
             filter: PropTypes.string,
@@ -24,19 +23,7 @@ export default function withListData(ListComponent) {
             updateAccount: PropTypes.func.isRequired,
         };
         render() {
-            const {
-                updateAccount,
-                transfers,
-                limit,
-                compact,
-                filter,
-                setItem,
-                currentItem,
-                wallet,
-                theme,
-                ui,
-                t,
-            } = this.props;
+            const { updateAccount, transfers, limit, compact, filter, setItem, currentItem, theme, ui, t } = this.props;
 
             const isBusy = ui.isSyncing || ui.isSendingTransfer || ui.isAttachingToTangle || ui.isTransitioning;
 
@@ -50,7 +37,7 @@ export default function withListData(ListComponent) {
                 limit,
                 filter,
                 isBusy,
-                isLoading: wallet.isFetchingLatestAccountInfoOnLogin,
+                isLoading: ui.isFetchingLatestAccountInfoOnLogin,
                 t,
             };
 
@@ -64,7 +51,6 @@ export default function withListData(ListComponent) {
         accounts: state.accounts,
         transfers: getTransfersForSelectedAccount(state),
         theme: state.settings.theme,
-        wallet: state.wallet,
         ui: state.ui,
     });
 

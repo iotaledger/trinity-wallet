@@ -105,6 +105,10 @@
         "addCustomNode": "Add custom node",
         "nodeChanged": "Node changed",
         "nodeChangedExplanation": "The node has been changed successfully.",
+        "nodeMustUseHTTPS": "Invalid node (non HTTPS)",
+        "nodeMustUseHTTPSExplanation": "Only custom nodes using HTTPS are allowed.",
+        "nodeDuplicated": "Duplicated node",
+        "nodeDuplicatedExplanation": "The custom node is already listed.",
         "nodeAutoChanged": "Auto-switched node",
         "nodeAutoChangedExplanation": "Switched to new node {{- nodeAddress}} as selected node is offline.",
         "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer"
@@ -254,7 +258,8 @@
             "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "MAXIMUM amount selected",
         "iotaUnits": "IOTA units explained",
-        "sendMax": "SEND MAX"
+        "sendMax": "SEND MAX",
+        "totalTime": "Total time"
     },
     "setPassword": {
         "passwordTooShort": "Password is too short",
@@ -358,6 +363,8 @@
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
         "addressCopied": "Address copied",
         "addressCopiedExplanation": "The address has been copied to the clipboard.",
+        "messageCopied": "Message copied",
+        "messageCopiedExplanation": "The message has been copied to the clipboard.",
         "send": "SEND",
         "receive": "RECEIVE"
     },
@@ -370,7 +377,9 @@
     },
     "addCustomNode": {
         "customNode": "Custom node",
-        "add": "Add"
+        "add": "Add",
+        "nodeFieldEmpty": "Text field is empty",
+        "nodeFieldEmptyExplanation": "Please enter a custom node."
     },
     "addNewAccount": {
         "useExistingSeed": "Use existing seed",
