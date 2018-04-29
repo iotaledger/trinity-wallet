@@ -1,7 +1,7 @@
 {
     "global": {
-        "send": "VERZEND",
-        "cancel": "ANNULEREN",
+        "send": "Verzend",
+        "cancel": "Annuleer",
         "continue?": "Weet u zeker dat u wilt doorgaan?",
         "noTransactions": "Geen recente geschiedenis",
         "refresh": "Herlaad",
