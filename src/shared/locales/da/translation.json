@@ -73,6 +73,7 @@
         "addresses": "Adresser",
         "reattach": "GENSEND OVERFØRSEL",
         "promote": "PROMOVER",
+        "retry": "RETRY",
         "rebroadcast": "Gensend transaktion til netværk",
         "pressBackAgain": "Tryk tilbage igen for at lukke app'en",
         "autoreattaching": "Gensend automatisk til netværket",
