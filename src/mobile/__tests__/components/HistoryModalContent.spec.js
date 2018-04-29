@@ -111,7 +111,7 @@ describe('Testing HistoryModalContent component', () => {
             const props = getProps();
 
             const wrapper = shallow(<HistoryModalContent {...props} />);
-            expect(wrapper.name()).toEqual('TouchableOpacity');
+            expect(wrapper.name()).toEqual('TouchableWithoutFeedback');
         });
 
         it('should return six View components', () => {
@@ -238,7 +238,7 @@ describe('Testing HistoryModalContent component', () => {
             const instance = wrapper.instance();
 
             jest.spyOn(instance, 'copy');
-            const touchableOpacity = wrapper.find('TouchableOpacity').at(1);
+            const touchableOpacity = wrapper.find('TouchableOpacity').at(0);
 
             touchableOpacity.props().onPress();
 

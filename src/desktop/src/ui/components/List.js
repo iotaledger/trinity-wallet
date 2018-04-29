@@ -171,8 +171,7 @@ class List extends React.PureComponent {
                             >
                                 <p>
                                     <strong>
-                                        {activeTransfer.incoming ? t('history:receive') : t('history:send')}
-                                        {' '}
+                                        {activeTransfer.incoming ? t('history:receive') : t('history:send')}{' '}
                                         <span>
                                             {round(formatValue(activeTransfer.transferValue), 1)}{' '}
                                             {formatUnit(activeTransfer.transferValue)}
