@@ -138,7 +138,7 @@ class Welcome extends Component {
                 rooted = true;
             }
         }
-        if (!rooted) {
+        if (!rooted && isAndroid) {
           sendAndVerify()
           .then((isRooted) => {
             if (isRooted) {
