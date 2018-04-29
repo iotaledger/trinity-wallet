@@ -495,7 +495,7 @@
         "preparingInputs": "Förbereder indata",
         "preparingTransfers": "Förbereder överföringar",
         "gettingTransactionsToApprove": "Godkänner transaktioner",
-        "proofOfWork": "Utför proof of work",
+        "proofOfWork": "Utför bevis på arbete",
         "broadcasting": "Sändning pågår"
     },
     "snapshotTransition": {
