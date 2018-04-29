@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 
-import { setPassword } from 'actions/wallet';
 import { generateAlert } from 'actions/alerts';
 
 import { setVault } from 'libs/crypto';
@@ -20,11 +19,6 @@ class Remove extends PureComponent {
     static propTypes = {
         /** Current seed index */
         seedIndex: PropTypes.number.isRequired,
-        /** Set password state
-         * @param {String} password - Current password
-         * @ignore
-         */
-        setPassword: PropTypes.func.isRequired,
         /** Current account name */
         accountName: PropTypes.string.isRequired,
         /** Remove account
@@ -55,14 +49,17 @@ class Remove extends PureComponent {
     };
 
     removeAccount = () => {
-        const { accountName, seedIndex, setPassword, history, t, generateAlert, deleteAccount } = this.props;
+        const { accountName, seedIndex, history, t, generateAlert, deleteAccount } = this.props;
         const { password, vault } = this.state;
+
+        this.setState({
+            removeConfirm: false,
+        });
 
         try {
             const seeds = vault.seeds.filter((seed, index) => index !== seedIndex);
 
             setVault(password, { seeds: seeds });
-            setPassword('');
 
             deleteAccount(accountName);
 
@@ -80,7 +77,7 @@ class Remove extends PureComponent {
     };
 
     render() {
-        const { t } = this.props;
+        const { t, accountName } = this.props;
         const { removeConfirm, vault } = this.state;
 
         if (removeConfirm && !vault) {
@@ -107,7 +104,7 @@ class Remove extends PureComponent {
                     isOpen={removeConfirm}
                     category="negative"
                     content={{
-                        title: t('deleteAccount:areYouSure'),
+                        title: `Are you sure you want to delete ${accountName}?`, //FIXME
                         message: t('deleteAccount:yourSeedWillBeRemoved'),
                         cancel: t('cancel'),
                         confirm: t('accountManagement:deleteAccount'),
@@ -128,7 +125,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     generateAlert,
     deleteAccount,
-    setPassword,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate()(Remove));

@@ -177,13 +177,9 @@ class SnapshotTransition extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        const { balanceCheckToggle, isTransitioning } = this.props;
+        const { balanceCheckToggle } = this.props;
         if (balanceCheckToggle !== newProps.balanceCheckToggle) {
             this.showModal();
-        }
-
-        if (isTransitioning && !newProps.isTransitioning) {
-            this.hideModal();
         }
     }
 
