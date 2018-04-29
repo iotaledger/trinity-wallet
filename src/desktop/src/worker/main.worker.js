@@ -1,6 +1,11 @@
 import 'babel-polyfill';
 import { generateNewAddress } from 'actions/wallet';
-import { getAccountInfo, getFullAccountInfoFirstSeed, getFullAccountInfoAdditionalSeed } from 'actions/accounts';
+import {
+    getAccountInfo,
+    getFullAccountInfoFirstSeed,
+    getFullAccountInfoAdditionalSeed,
+    manuallySyncAccount,
+} from 'actions/accounts';
 import { changeIotaNode, SwitchingConfig } from 'libs/iota';
 import { defaultNode } from 'config';
 
@@ -16,6 +21,7 @@ const actions = {
     getAccountInfo,
     getFullAccountInfoFirstSeed,
     getFullAccountInfoAdditionalSeed,
+    manuallySyncAccount,
 };
 
 // A special dispatch function which either runs

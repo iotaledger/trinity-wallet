@@ -7,6 +7,7 @@ import { generateAlert } from '../../actions/alerts';
 import { setDeepLinkInactive } from '../../actions/wallet';
 import { makeTransaction } from '../../actions/transfers';
 import { setSendAddressField, setSendAmountField, setSendMessageField } from '../../actions/ui';
+import { reset as resetProgress, startTrackingProgress } from '../../actions/progress';
 
 import { getSelectedAccountName, getBalanceForSelectedAccount } from '../../selectors/accounts';
 import { VALID_SEED_REGEX, ADDRESS_LENGTH, isValidMessage } from '../../libs/iota/utils';
@@ -23,6 +24,7 @@ export default function withSendData(SendComponent) {
             accounts: PropTypes.object.isRequired,
             accountName: PropTypes.string.isRequired,
             wallet: PropTypes.object.isRequired,
+            progress: PropTypes.object.isRequired,
             ui: PropTypes.object.isRequired,
             settings: PropTypes.object.isRequired,
             marketData: PropTypes.object.isRequired,
@@ -35,10 +37,15 @@ export default function withSendData(SendComponent) {
             setSendAddressField: PropTypes.func.isRequired,
             setSendAmountField: PropTypes.func.isRequired,
             setSendMessageField: PropTypes.func.isRequired,
+            startTrackingProgress: PropTypes.func.isRequired,
+            resetProgress: PropTypes.func.isRequired,
         };
 
         componentWillMount() {
             this.checkDeepLink(this.props);
+            if (!this.props.ui.isSendingTransfer) {
+                this.props.resetProgress();
+            }
         }
 
         componentWillReceiveProps(nextProps) {
@@ -49,6 +56,29 @@ export default function withSendData(SendComponent) {
                 this.props.setSendAmountField('');
                 this.props.setSendMessageField('');
             }
+        }
+
+        setProgressSteps(isZeroValueTransaction) {
+            const { t } = this.props;
+
+            const steps = isZeroValueTransaction
+                ? [
+                      t('progressSteps:preparingTransfers'),
+                      t('progressSteps:gettingTransactionsToApprove'),
+                      t('progressSteps:proofOfWork'),
+                      t('progressSteps:broadcasting'),
+                  ]
+                : [
+                      t('progressSteps:validatingReceiveAddress'),
+                      t('progressSteps:syncingAccount'),
+                      t('progressSteps:preparingInputs'),
+                      t('progressSteps:preparingTransfers'),
+                      t('progressSteps:gettingTransactionsToApprove'),
+                      t('progressSteps:proofOfWork'),
+                      t('progressSteps:broadcasting'),
+                  ];
+
+            this.props.startTrackingProgress(steps);
         }
 
         checkDeepLink = (props) => {
@@ -127,6 +157,8 @@ export default function withSendData(SendComponent) {
                 return;
             }
 
+            this.setProgressSteps(value === 0);
+
             if (typeof taskRunner === 'function') {
                 taskRunner('makeTransaction', [seed, address, value, message, accountName, powFn]);
             } else {
@@ -146,8 +178,16 @@ export default function withSendData(SendComponent) {
                 setSendAddressField,
                 setSendAmountField,
                 setSendMessageField,
-                generateAlert
+                generateAlert,
+                progress,
             } = this.props;
+
+            const progressTitle =
+                progress.activeStepIndex !== progress.activeSteps.length
+                    ? progress.activeSteps[progress.activeStepIndex]
+                    : `${t('send:totalTime')} ${Math.round(
+                          progress.timeTakenByEachStep.reduce((total, time) => total + Number(time), 0),
+                      )}s`;
 
             const sendProps = {
                 fields: {
@@ -169,6 +209,10 @@ export default function withSendData(SendComponent) {
                     usdPrice: marketData.usdPrice,
                     remotePoW: settings.remotePoW,
                 },
+                progress: {
+                    progress: Math.round(progress.activeStepIndex / progress.activeSteps.length * 100),
+                    title: progressTitle,
+                },
                 generateAlert,
                 balance,
                 theme,
@@ -189,6 +233,7 @@ export default function withSendData(SendComponent) {
         marketData: state.marketData,
         accounts: state.accounts,
         theme: state.settings.theme,
+        progress: state.progress,
         ui: state.ui,
         deepLinkActive: state.wallet.deepLinkActive,
     });
@@ -200,6 +245,8 @@ export default function withSendData(SendComponent) {
         setSendAddressField,
         setSendAmountField,
         setSendMessageField,
+        startTrackingProgress,
+        resetProgress,
     };
 
     return translate()(connect(mapStateToProps, mapDispatchToProps)(SendData));
