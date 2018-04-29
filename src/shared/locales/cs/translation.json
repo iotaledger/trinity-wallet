@@ -75,6 +75,7 @@
         "addresses": "Adresy",
         "reattach": "ZNOVU PŘIPOJIT",
         "promote": "PODPOŘIT",
+        "retry": "RETRY",
         "rebroadcast": "OPAKOVÁNÍ PŘENOSU",
         "pressBackAgain": "Opětovným stisknutím tlačítka Zpět zavřete aplikaci",
         "autoreattaching": "Automatické opětovné připojení do Tangle",

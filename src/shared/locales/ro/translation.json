@@ -76,6 +76,7 @@
         "addresses": "Adrese",
         "reattach": "REATAȘEAZĂ",
         "promote": "PROMOVEAZA",
+        "retry": "RETRY",
         "rebroadcast": "RETRANSMITE",
         "pressBackAgain": "Apăsaţi înapoi din nou pentru a închide aplicaţia",
         "autoreattaching": "Reatasare automata la Tangle",

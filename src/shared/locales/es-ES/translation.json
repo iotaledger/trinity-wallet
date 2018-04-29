@@ -76,6 +76,7 @@
         "addresses": "Direcciones",
         "reattach": "REVINCULAR",
         "promote": "PROMOVER",
+        "retry": "RETRY",
         "rebroadcast": "RETRANSMISIÓN",
         "pressBackAgain": "Pulsa atrás otra vez para cerrar la app",
         "autoreattaching": "Auto-revinculando al Tangle",
