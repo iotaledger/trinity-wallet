@@ -122,7 +122,9 @@ export const prepareTransferArray = (address, value, message, firstOwnAddress, t
         tag,
     };
 
-    if (isZeroValue) {
+    const isSendingToFirstOwnAddress = firstOwnAddress === address;
+
+    if (isZeroValue && !isSendingToFirstOwnAddress) {
         return [transfer, assign({}, transfer, { address: firstOwnAddress })];
     }
 
