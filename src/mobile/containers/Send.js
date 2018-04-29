@@ -257,7 +257,7 @@ export class Send extends Component {
         }
         timer.clearTimeout('invalidAddressAlert');
         timer.clearTimeout('modalShow');
-        timer.clearTimeout('delaySendOnFingerprintAuth');
+        timer.clearTimeout('delaySend');
     }
 
     onDenominationPress() {
@@ -701,7 +701,7 @@ export class Send extends Component {
     }
 
     sendWithDelay() {
-        timer.setTimeout('delaySendOnFingerprintAuth', () => this.sendTransfer(), 200);
+        timer.setTimeout('delaySend', () => this.sendTransfer(), 200);
     }
 
     activateFingerprintScanner() {
