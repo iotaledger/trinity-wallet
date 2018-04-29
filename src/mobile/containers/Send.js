@@ -257,6 +257,7 @@ export class Send extends Component {
         }
         timer.clearTimeout('invalidAddressAlert');
         timer.clearTimeout('modalShow');
+        timer.clearTimeout('delaySendOnFingerprintAuth');
     }
 
     onDenominationPress() {
@@ -423,7 +424,7 @@ export class Send extends Component {
                         amount={amount}
                         conversionText={this.getConversionTextIota()}
                         address={address}
-                        sendTransfer={() => this.sendTransfer()}
+                        sendTransfer={() => this.sendWithDelay()}
                         hideModal={(callback) => this.hideModal(callback)}
                         body={body}
                         bar={bar}
@@ -699,12 +700,14 @@ export class Send extends Component {
             });
     }
 
+    sendWithDelay() {
+        timer.setTimeout('delaySendOnFingerprintAuth', () => this.sendTransfer(), 200);
+    }
+
     activateFingerprintScanner() {
         const { t } = this.props;
         if (isAndroid) {
             this.setModalContent('fingerPrintModal');
-        } else {
-            this.hideModal();
         }
         FingerprintScanner.authenticate({ description: t('fingerprintOnSend') })
             .then(() => {
@@ -712,7 +715,7 @@ export class Send extends Component {
                 if (isAndroid) {
                     this.hideModal();
                 }
-                this.sendTransfer();
+                this.sendWithDelay();
             })
             .catch(() => {
                 if (isAndroid) {
