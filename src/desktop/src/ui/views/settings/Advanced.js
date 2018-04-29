@@ -89,9 +89,9 @@ class Advanced extends PureComponent {
     };
 
     syncAccount = async () => {
-          const { wallet, accounts } = this.props;
-          const seed = await getSeed(wallet.seedIndex, wallet.password);
-          runTask('manuallySyncAccount', [seed, accounts.accountNames[wallet.seedIndex]]);
+        const { wallet, accounts } = this.props;
+        const seed = await getSeed(wallet.seedIndex, wallet.password);
+        runTask('manuallySyncAccount', [seed, accounts.accountNames[wallet.seedIndex]]);
     };
 
     render() {
@@ -114,18 +114,17 @@ class Advanced extends PureComponent {
                     />
                     <hr />
                     <h3>{t('advancedSettings:manualSync')}</h3>
-                    {
-                        ui.isSyncing ?
-                            <Info>
-                                {t('manualSync:syncingYourAccount')} <br/>
-                                {t('manualSync:thisMayTake')}
-                            </Info>
-                            :
-                            <Info>
-                                {t('manualSync:outOfSync')} <br/>
-                                {t('manualSync:pressToSync')}
-                            </Info>
-                    }
+                    {ui.isSyncing ? (
+                        <Info>
+                            {t('manualSync:syncingYourAccount')} <br />
+                            {t('manualSync:thisMayTake')}
+                        </Info>
+                    ) : (
+                        <Info>
+                            {t('manualSync:outOfSync')} <br />
+                            {t('manualSync:pressToSync')}
+                        </Info>
+                    )}
                     <Button onClick={this.syncAccount} loading={ui.isSyncing}>
                         {t('manualSync:syncAccount')}
                     </Button>

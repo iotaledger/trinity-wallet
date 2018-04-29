@@ -77,6 +77,7 @@
         "addresses": "Addresses",
         "reattach": "REATTACH",
         "promote": "PROMOTE",
+        "retry": "RETRY",
         "rebroadcast": "REBROADCAST",
         "pressBackAgain": "Press back again to close the app",
         "autoreattaching": "Autoreattaching to Tangle",

@@ -10,7 +10,7 @@ import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/li
 import { setSetting, setAdditionalAccountInfo } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { shouldPreventAction } from 'iota-wallet-shared-modules/selectors/global';
-import { toggleModalActivity } from 'iota-wallet-shared-modules/actions/ui';
+import { toggleModalActivity, setDoNotMinimise } from 'iota-wallet-shared-modules/actions/ui';
 import { hasDuplicateAccountName, hasDuplicateSeed, getAllSeedsFromKeychain } from '../utils/keychain';
 import CustomTextInput from '../components/CustomTextInput';
 import Checksum from '../components/Checksum';
@@ -137,6 +137,10 @@ class UseExistingSeed extends Component {
         isModalActive: PropTypes.bool.isRequired,
         /** Sets whether modal is active or inactive */
         toggleModalActivity: PropTypes.func.isRequired,
+        /** Determines whether component can minimise
+         * @param {boolean} status
+         */
+        setDoNotMinimise: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -283,6 +287,8 @@ class UseExistingSeed extends Component {
                 body={body}
                 onQRRead={(data) => this.onQRRead(data)}
                 hideModal={() => this.hideModal()}
+                onMount={() => this.props.setDoNotMinimise(true)}
+                onUnmount={() => this.props.setDoNotMinimise(false)}
             />
         );
     };
@@ -399,7 +405,8 @@ const mapDispatchToProps = {
     setSetting,
     generateAlert,
     setAdditionalAccountInfo,
-    toggleModalActivity
+    toggleModalActivity,
+    setDoNotMinimise
 };
 
 export default translate(['addAdditionalSeed', 'useExistingSeed', 'global'])(

@@ -385,6 +385,8 @@ class History extends Component {
                             <HistoryModalContent
                                 {...modalProps}
                                 disableWhen={isPromotingTransaction || isBroadcastingBundle}
+                                isPromotingTransaction={isPromotingTransaction}
+                                isBroadcastingBundle={isBroadcastingBundle}
                             />
                         </Modal>
                     )}
