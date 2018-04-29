@@ -73,6 +73,7 @@
         "addresses": "Adresser",
         "reattach": "RE-TILKNYTTE",
         "promote": "PROMOTER",
+        "retry": "RETRY",
         "rebroadcast": "KRINGKAST PÅ NYTT",
         "pressBackAgain": "Trykk tilbake igjen for å lukke applikasjonen",
         "autoreattaching": "Re-tilknytter Tangle automatisk",
