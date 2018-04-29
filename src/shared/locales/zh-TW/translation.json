@@ -73,6 +73,7 @@
         "addresses": "地址",
         "reattach": "重新連接",
         "promote": "促進",
+        "retry": "RETRY",
         "rebroadcast": "重新廣播",
         "pressBackAgain": "再按一次返回鍵退出",
         "autoreattaching": "自動重新連接",

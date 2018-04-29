@@ -76,6 +76,7 @@
         "addresses": "Endereços",
         "reattach": "REANEXAR",
         "promote": "PROMOVER",
+        "retry": "RETRY",
         "rebroadcast": "RETRANSMITIR",
         "pressBackAgain": "Pressione o botão \"voltar\" novamente para fechar o aplicativo",
         "autoreattaching": "Anexando automaticamente ao Tangle",
