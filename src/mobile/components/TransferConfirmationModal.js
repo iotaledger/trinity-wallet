@@ -121,7 +121,6 @@ class TransferConfirmationModal extends Component {
         if (isFingerprintEnabled && value > 0) {
             this.props.activateFingerprintScanner();
         } else {
-            // Prevent modal close lag
             hideModal();
             setSendingTransferFlag();
             sendTransfer();
