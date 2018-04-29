@@ -73,6 +73,7 @@
         "addresses": "Naslovi",
         "reattach": "PONOVNO PRIPNI",
         "promote": "SPODBUDI",
+        "retry": "RETRY",
         "rebroadcast": "PONOVNO ODDAJ",
         "pressBackAgain": "Pritisnite nazaj ponovno za zapreti app",
         "autoreattaching": "Automatsko pripenjanje na Tangle",
