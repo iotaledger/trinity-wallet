@@ -11,6 +11,7 @@ import { setSetting, setAdditionalAccountInfo } from 'iota-wallet-shared-modules
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { shouldPreventAction } from 'iota-wallet-shared-modules/selectors/global';
 import { toggleModalActivity, setDoNotMinimise } from 'iota-wallet-shared-modules/actions/ui';
+import timer from 'react-native-timer';
 import { hasDuplicateAccountName, hasDuplicateSeed, getAllSeedsFromKeychain } from '../utils/keychain';
 import CustomTextInput from '../components/CustomTextInput';
 import Checksum from '../components/Checksum';
@@ -152,25 +153,33 @@ class UseExistingSeed extends Component {
         };
     }
 
+    componentWillUnmount() {
+        timer.clearTimeout('invalidSeedAlert');
+    }
+
     onQRPress() {
         this.showModal();
     }
 
     onQRRead(data) {
         const dataString = data.toString();
+        this.hideModal();
         if (dataString.length === 81 && dataString.match(VALID_SEED_REGEX)) {
             this.setState({
                 seed: data,
             });
         } else {
-            this.props.generateAlert(
-                'error',
-                'Incorrect seed format',
-                'Valid seeds should be 81 characters and contain only A-Z or 9.',
+            timer.setTimeout(
+                'invalidSeedAlert',
+                () =>
+                    this.props.generateAlert(
+                        'error',
+                        'Incorrect seed format',
+                        'Valid seeds should be 81 characters and contain only A-Z or 9.',
+                    ),
+                500,
             );
         }
-
-        this.hideModal();
     }
 
     getDefaultAccountName() {
@@ -406,7 +415,7 @@ const mapDispatchToProps = {
     generateAlert,
     setAdditionalAccountInfo,
     toggleModalActivity,
-    setDoNotMinimise
+    setDoNotMinimise,
 };
 
 export default translate(['addAdditionalSeed', 'useExistingSeed', 'global'])(
