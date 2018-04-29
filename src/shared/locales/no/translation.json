@@ -354,7 +354,9 @@
     },
     "addCustomNode": {
         "customNode": "Egendefinert node",
-        "add": "Legg til"
+        "add": "Legg til",
+        "nodeFieldEmpty": "Text field is empty",
+        "nodeFieldEmptyExplanation": "Please enter a custom node."
     },
     "addNewAccount": {
         "useExistingSeed": "Bruk eksisterende hovednøkkel",

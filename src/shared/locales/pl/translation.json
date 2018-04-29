@@ -36,10 +36,10 @@
         "manualCopy": "Zanotuj swój seed",
         "paperWallet": "Wydrukuj wersje papierową",
         "copyToClipboard": "Dodaj do menedżera haseł",
-        "notAvailable": "Ta funkcja nie jest dostępna",
-        "notAvailableExplanation": "Zostanie dodana w późniejszym czasie.",
+        "notAvailable": "Funkcja niedostępna",
+        "notAvailableExplanation": "Ta funkcja zostanie dodana na późniejszym etapie.",
         "enterSeed": "Proszę wpisz swój seed.",
-        "mainWallet": "KONTO GŁÓWNE",
+        "mainWallet": "GŁÓWNE KONTO",
         "secondWallet": "DRUGIE KONTO",
         "thirdWallet": "TRZECIE KONTO",
         "fourthWallet": "CZWARTE KONTO",
@@ -98,13 +98,13 @@
         "changeNode": "Zmień serwer",
         "addCustomNode": "Dodaj niestandardowy serwer",
         "nodeChanged": "Serwer zmieniony",
-        "nodeChangedExplanation": "Serwer został pomyślnie zmieniony.",
+        "nodeChangedExplanation": "Serwer został zmieniony pomyślnie.",
         "nodeMustUseHTTPS": "Serwer bez obsługi HTTPS",
         "nodeMustUseHTTPSExplanation": "Dozwolone są jedynie serwery, które obsługują protokół HTTPS.",
         "nodeDuplicated": "Serwer zduplikowany",
         "nodeDuplicatedExplanation": "Ten niestandardowy serwer znajduje się już na liście.",
         "nodeAutoChanged": "Autom. zmiana serwera",
-        "nodeAutoChangedExplanation": "Automatycznie przełączono na nowy serwer {{- nodeAddress}}. Poprzednio wybrany serwer był offline.",
+        "nodeAutoChangedExplanation": "Przełączono na nowy serwer {{- nodeAddress}}, ponieważ poprzednio wybrany serwer był offline.",
         "fingerprintOnSend": "Przyłóż palec do czytnika, aby autoryzować transfer"
     },
     "addAdditionalSeed": {
@@ -171,7 +171,7 @@
         "emptyPassword": "Puste hasło",
         "emptyPasswordExplanation": "Musisz wprowadzić hasło, aby się zalogować. Proszę spróbować ponownie.",
         "enterPassword": "Wprowadź swoje hasło.",
-        "useSeed": "UŻYJ SEED",
+        "useSeed": "UŻYJ KLUCZA SEED",
         "login": "ZALOGUJ",
         "selectDifferentNode": "Czy chcesz wybrać inny serwer?",
         "setNode": "SERWER",
@@ -316,7 +316,7 @@
     "resetWalletRequirePassword": {
         "enterPassword": "Wprowadź swoje hasło, aby zresetować portfel.",
         "cancel": "ANULUJ",
-        "reset": "RESET"
+        "reset": "RESETUJ"
     },
     "walletSetup": {
         "okay": "W porządku. Ustawmy Twój portfel!",
@@ -354,7 +354,9 @@
     },
     "addCustomNode": {
         "customNode": "Serwer niestandardowy",
-        "add": "Dodaj"
+        "add": "Dodaj",
+        "nodeFieldEmpty": "Pole adresu puste",
+        "nodeFieldEmptyExplanation": "Proszę wpisać adres niestandardowego serwera."
     },
     "addNewAccount": {
         "useExistingSeed": "Użyj istniejącego klucza seed",
@@ -394,7 +396,7 @@
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Dlaczego nie mogę zużyć całego stanu mojego konta?",
         "spentAddressExplanation": "Masz fundusze na jednym lub kilku zużytych adresach. Ponowne użycie adresów w IOTA jest niebezpieczne, więc portfel ten nie pozwala wysyłać z tego samego adresu więcej niż jeden raz.",
-        "discordInformation": "Wejdź na kanał #help w Discord, aby dowiedzieć się, co możesz zrobić."
+        "discordInformation": "Wejdź na kanał #help czatu Discord, aby dowiedzieć się, co możesz zrobić."
     },
     "deleteAccount": {
         "areYouSure": "<0></0><1>Czy na pewno chcesz usunąć</1><2></2><3>{{accountName}}?</3>",
@@ -457,14 +459,14 @@
         "emptyCode": "Kod pusty",
         "emptyCodeExplanation": "Wprowadź kod i spróbuj ponownie.",
         "keyCopied": "Klucz skopiowany do schowka",
-        "keyCopiedExplanation": "Twój klucz dwustopniowej autoryzacji został skopiowany do schowka.",
-        "addKey": "Dodaj ten klucz do aplikacji dwustopniowej autoryzacji",
+        "keyCopiedExplanation": "Twój klucz autoryzacji dwustopniowej został skopiowany do schowka.",
+        "addKey": "Dodaj ten klucz do aplikacji autoryzacji dwustopniowej",
         "key": "Klucz",
         "twoFAEnabled": "Włączono 2FA",
-        "twoFAEnabledExplanation": "Pomyślnie włączono funkcję dwustopniowej autoryzacji.",
+        "twoFAEnabledExplanation": "Pomyślnie włączono funkcję autoryzacji dwustopniowej.",
         "twoFADisabled": "Wyłączono 2FA",
-        "twoFADisabledExplanation": "Pomyślnie wyłączono funkcję dwustopniowej autoryzacji.",
-        "enterCode": "Wpisz kod z aplikacji dwustopniowej autoryzacji",
+        "twoFADisabledExplanation": "Pomyślnie wyłączono funkcję autoryzacji dwustopniowej.",
+        "enterCode": "Wpisz kod z aplikacji autoryzacji dwustopniowej",
         "code": "Kod"
     },
     "chart": {
@@ -520,7 +522,7 @@
         "noUpdatesAvailable": "Brak dostępnych aktualizacji",
         "noUpdatesAvailableExplanation": "Masz już najnowszą wersję portfela IOTA Trinity!",
         "newVersionAvailable": "Nowa wersja dostępna",
-        "newVersionAvailableExplanation": "Nowa wersja <strong>Trinity</strong> <strong>{{version}}</strong> jest dostępna. Przeczytaj uważnie informacje o wersji oraz zweryfikuj źródło pobrania przed aktualizacją:",
+        "newVersionAvailableExplanation": "Nowa wersja <strong>Trinity</strong> <strong>{{version}}</strong> jest dostępna. Przeczytaj uważnie informacje o wersji oraz zweryfikuj źródło pliku instalacyjnego przed aktualizacją:",
         "downloadRelease": "Pobierz aktualizację",
         "skipUpdate": "Pomiń aktualizację"
     }

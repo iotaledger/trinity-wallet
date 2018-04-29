@@ -150,7 +150,7 @@
         "shareSeed": "แชร์ Seed (เลขที่บัญชี) ของคุณไปยังการจัดการรหัสผ่าน"
     },
     "enterSeed": {
-        "invalidCharacters": "Seed contains invalid characters",
+        "invalidCharacters": "Seed (เลขที่บัญชี) ประกอบด้วยอักขระที่ไม่ถูกต้อง",
         "invalidCharactersExplanation": "Seed (เลขที่บัญชี) สามารถประกอบด้วยอักษรตัวใหญ่ A-Z และเลข 9 เท่านั้น, Seed (เลขที่บัญชี) ของคุณมีอักขระที่ไม่ถูกต้อง โปรดลองอีกครั้ง",
         "seedTooShort": "Seed (เลขที่บัญชี) สั้นเกินไป",
         "seedTooShortExplanation": "Seed (เลขที่บัญชี) ของคุณจะต้องมีอักขระอย่างต่ำ {{maxLength}} หลัก ขณะนี้ Seed (เลขที่บัญชี) ปัจจุบันของคุณมี {{currentLength}} หลัก กรุณาลองใหม่อีกครั้ง",
@@ -288,7 +288,7 @@
         "accountDeleted": "บัญชีได้ถูกลบแล้ว",
         "accountDeletedExplanation": "Your account has been removed from the wallet.",
         "cannotPerformAction": "ไม่สามารถดำเนินการได้",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
+        "cannotPerformActionExplanation": "ไปที่การตั้งค่าขั้นสูงการตั้งค่ากระเป๋าสตางค์",
         "poorConnection": "สัญญาณอ่อน",
         "poorConnectionExplanation": "Failed to change currency due to a poor connection.",
         "hide": "ซ่อน",
@@ -315,7 +315,7 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",
-        "cancel": "CANCEL",
+        "cancel": "ยกเลิก",
         "reset": "RESET"
     },
     "walletSetup": {
@@ -338,7 +338,7 @@
     "history": {
         "bundleHashCopied": "Bundle hash copied",
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
-        "addressCopied": "Address copied",
+        "addressCopied": "คัดลอกที่อยู่แล้ว",
         "addressCopiedExplanation": "The address has been copied to the clipboard.",
         "messageCopied": "Message copied",
         "messageCopiedExplanation": "The message has been copied to the clipboard.",
@@ -354,7 +354,9 @@
     },
     "addCustomNode": {
         "customNode": "Custom node",
-        "add": "Add"
+        "add": "Add",
+        "nodeFieldEmpty": "Text field is empty",
+        "nodeFieldEmptyExplanation": "Please enter a custom node."
     },
     "addNewAccount": {
         "useExistingSeed": "Use existing seed",
