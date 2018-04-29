@@ -4,7 +4,7 @@
         "cancel": "İPTAL",
         "continue?": "Devam etmek istediğine emin misin?",
         "noTransactions": "GÖNDERİ GEÇMİŞİ YOK",
-        "refresh": "REFRESH",
+        "refresh": "YENİLE",
         "qr": "QR",
         "balanceError": "Yetersiz bakiye",
         "balanceErrorMessage": "Bu aktarımı tamamlamak için yeterli Iota'nız yok.",
@@ -13,7 +13,7 @@
         "transferSent": "Transfer Gönder",
         "transferSentMessage": "Transferiniz Tangle a gönderildi.",
         "messageSent": "Mesaj gönderildi",
-        "messageSentMessage": "Your message has been sent to the Tangle.",
+        "messageSentMessage": "Mesajınız Tangle'a gönderildi.",
         "keyReuse": "Sending to spent address",
         "keyReuseError": "You cannot send to an address that has already been spent from.",
         "invalidResponse": "Node error",
@@ -31,8 +31,8 @@
         "save": "Kaydet",
         "close": "KAPAT",
         "continue": "Devam Et",
-        "enable": "Enable",
-        "disable": "Disable",
+        "enable": "Etkinleştir",
+        "disable": "Devre Dışı Bırak",
         "manualCopy": "Cüzdan şifreni yaz",
         "paperWallet": "Kağıdın bir kopyasını al",
         "copyToClipboard": "Şifre yöneticisine ekle",
@@ -55,8 +55,8 @@
         "syncInProgress": "Eşitleme sürüyor",
         "syncInProgressExplanation": "Senkronizasyonu tamamlanana kadar bekleyin.",
         "somethingWentWrong": "Bir şeyler yanlış gitti",
-        "somethingWentWrongRestart": "Please restart the app.",
-        "somethingWentWrongTryAgain": "Please try again.",
+        "somethingWentWrongRestart": "Lütfen uygulamayı yeniden başlatın.",
+        "somethingWentWrongTryAgain": "Lütfen tekrar deneyin.",
         "node": "Ağ",
         "cannotPerformAction": "İşlem gerçekleştirilemiyor",
         "cannotPerformActionExplanation": "Cüzdanı sıfırlamak için gelişmiş ayarlara gidin.",
@@ -71,7 +71,7 @@
         "pending": "Bekleniyor",
         "bundleHash": "Bundle Hash",
         "addresses": "Adresler",
-        "reattach": "REATTACH",
+        "reattach": "TEKRAR EKLE",
         "promote": "PROMOTE",
         "rebroadcast": "REBROADCAST",
         "pressBackAgain": "Uygulamayı kapatmak için geri tuşuna bir daha bas",
@@ -85,16 +85,16 @@
         "noLongerValid": "The bundle you are trying to promote is no longer valid",
         "cannotSendToOwn": "Sending to own address",
         "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses.",
-        "pleaseWait": "Please wait",
-        "pleaseWaitEllipses": "Please wait...",
-        "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
+        "pleaseWait": "Lütfen bekleyin",
+        "pleaseWaitEllipses": "Lütfen bekleyin...",
+        "pleaseWaitExplanation": "Trinity başka bir fonksiyonu gerçekleştiriyor. Lütfen bekleyin ve tekrar deneyin.",
         "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again.",
         "snapshotTransitionInProgress": "Snapshot transition in progress",
         "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete.",
-        "checkForUpdates": "Check for Updates",
-        "account": "Account",
-        "enterPasswordToAccessSettings": "Enter your password to access account settings",
-        "enterYourPassword": "Enter your password",
+        "checkForUpdates": "Güncellemeleri Denetle",
+        "account": "Hesap",
+        "enterPasswordToAccessSettings": "Hesap ayarlarına erişmek için parolanızı girin",
+        "enterYourPassword": "Şifrenizi girin",
         "changeNode": "Change node",
         "addCustomNode": "Add custom node",
         "nodeChanged": "Node changed",
@@ -105,7 +105,7 @@
         "nodeDuplicatedExplanation": "The custom node is already listed.",
         "nodeAutoChanged": "Auto-switched node",
         "nodeAutoChangedExplanation": "Switched to new node {{- nodeAddress}} as selected node is offline.",
-        "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer"
+        "fingerprintOnSend": "Aktarımı onaylamak için parmakizi okuyucusuna dokunun"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Geçersiz karakterler içeriyor",
@@ -243,7 +243,7 @@
         "maximumSelected": "En fazla tutar seçildi",
         "iotaUnits": "IOTA birim açıklaması",
         "sendMax": "TÜMÜNÜ GÖNDER",
-        "totalTime": "Total time"
+        "totalTime": "Toplam zaman"
     },
     "setPassword": {
         "passwordTooShort": "Parola çok kısa",
@@ -260,8 +260,8 @@
         "youCanAdd": "Ayarlar menüsünden daha fazla tohum ekleyebilirsiniz."
     },
     "modeSelection": {
-        "expert": "Expert",
-        "standard": "Standard",
+        "expert": "Uzman",
+        "standard": "Standart",
         "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
         "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
@@ -293,7 +293,7 @@
         "poorConnectionExplanation": "Kötü bağlantı nedeniyle para birimini değiştirmek başarısız oldu.",
         "hide": "Sakla",
         "hideOthers": "Diğerlerini sakla",
-        "show": "Show",
+        "show": "Göster",
         "showAll": "Hepsini göster",
         "quit": "Çıkış",
         "edit": "Düzenle",
@@ -302,16 +302,16 @@
         "paste": "Yapıştır",
         "selectAll": "Hepsini seç",
         "securitySettings": "Güvenlik ayarları",
-        "fingerprint": "Biometric authentication",
-        "couldNotFetchRates": "Could not fetch rates",
-        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
-        "fetchedConversionRates": "Fetched conversion rates",
-        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}.",
-        "undo": "Undo",
-        "redo": "Redo",
-        "about": "About Trinity",
-        "lockScreenTimeout": "Lock Screen Timeout (Minutes)",
-        "autoNodeSwitching": "Automatically switch node when selected is unreachable"
+        "fingerprint": "Biyometrik doğrulama",
+        "couldNotFetchRates": "Oranlar alınamadı",
+        "couldNotFetchRatesExplanation": "{{currency}} için dönüşüm oranları alınırken bir şeyler yanlış gitti.",
+        "fetchedConversionRates": "Dönüşüm oranları alındı",
+        "fetchedConversionRatesExplanation": "{{currency}} ilgili en son dönüşüm oranları başarıyla alındı.",
+        "undo": "Geri al",
+        "redo": "Tekrarla",
+        "about": "Trinity Hakkında",
+        "lockScreenTimeout": "Kilit Ekranı Zaman Aşımı (Dakika)",
+        "autoNodeSwitching": "Seçili ağa ulaşılamazsa otomatik olarak ağ değiştir"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Cüzdanınızı sıfırlamak için şifrenizi girin.",
@@ -327,7 +327,7 @@
         "hint": "<0><0>Hint:</0> Click NO if this is your first time using IOTA.</0>"
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity.",
+        "thankYou": "Trinity'i indirdiğiniz için teşekkür ederiz.",
         "weWillSpend": "Önümüzdeki bir kaç dakikayı cüzdanınızı ayarlamak için harcayacağız.",
         "reminder": "Bazı adımları geçebilirsin, ama tüm işlemi takip etmeni tavsiye ederim."
     },
@@ -340,10 +340,10 @@
         "bundleHashCopiedExplanation": "Paket karması panoya kopyalanmış.",
         "addressCopied": "Adres kopyalandı",
         "addressCopiedExplanation": "Adres panoya kopyalanmış.",
-        "messageCopied": "Message copied",
-        "messageCopiedExplanation": "The message has been copied to the clipboard.",
-        "send": "SEND",
-        "receive": "RECEIVE"
+        "messageCopied": "Mesaj kopyalandı",
+        "messageCopiedExplanation": "Mesaj panoya kopyalandı.",
+        "send": "GÖNDER",
+        "receive": "AL"
     },
     "accountManagement": {
         "viewSeed": "Kaynağı görüntüle",
@@ -354,7 +354,9 @@
     },
     "addCustomNode": {
         "customNode": "Özel düğüm",
-        "add": "Ekle"
+        "add": "Ekle",
+        "nodeFieldEmpty": "Bu alan boş",
+        "nodeFieldEmptyExplanation": "Lütfen özel ağınızı girin."
     },
     "addNewAccount": {
         "useExistingSeed": "Mevcut kaynağı kullan",
@@ -394,19 +396,19 @@
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Why can't I spend my full balance?",
         "spentAddressExplanation": "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
-        "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
+        "discordInformation": "Neler yapabileceğinizi öğrenmek için lüfen Discord'daki #help kanalına gidin."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Are you sure you want to delete</1><2></2><3>{{accountName}}?</3>",
+        "areYouSure": "<0></0><1> Silmek istediğinize emin misiniz </1><2></2><3>{{accountName}}?</3>",
         "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
         "thisAction": "Bu işlem geri alınamaz.",
         "enterPassword": "Hesabınızı silmek için lütfen şifrenizi girin."
     },
     "manualSync": {
         "outOfSync": "Does your transaction history look like it may be out of sync?",
-        "pressToSync": "Press the button below to sync your account.",
-        "thisMayTake": "This may take a while. You may notice your device slowing down.",
-        "doNotClose": "Please note, minimising the app will cancel the sync.",
+        "pressToSync": "Hesabınızı senkronize etmek için aşağıdaki tuşa basın.",
+        "thisMayTake": "Bu biraz zaman alabilir. Cihazınızın yavaşladığını fark edebilirsiniz.",
+        "doNotClose": "Önemli, uygulamayı küçültmek senkronizasyonu iptal edecektir.",
         "syncAccount": "HESABI EŞİTLE",
         "syncingYourAccount": "Hesabınız eşitleniyor."
     },
@@ -428,81 +430,81 @@
         "warning": "<0><0>Tüm cüzdan verilerin, </0><1>seed'lerin, parolan</1><2> ve </2><3>diğer hesap bilgilerin</3><4> dahil, kaybolacak.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Touch fingerprint reader to enable fingerprint authentication",
-        "instructionsDisable": "Touch fingerprint reader to disable fingerprint authentication",
-        "fingerprintAuthEnabled": "Biometric authentication enabled",
-        "fingerprintAuthEnabledExplanation": "You have succesfully enabled biometric authentication.",
-        "fingerprintAuthDisabled": "Biometric authentication disabled",
-        "fingerprintAuthDisabledExplanation": "You have succesfully disabled biometric authentication.",
-        "fingerprintAuthFailed": "Biometric authentication failed",
-        "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
+        "instructionsEnable": "Parmak izi doğrulamasını aktifleştirmek için parmak izi okuyucusuna dokunun",
+        "instructionsDisable": "Parmak izi doğrulamasını devre dışı bırakmak için parmak izi okuyucusuna dokunun",
+        "fingerprintAuthEnabled": "Biyometrik doğrulama etkin",
+        "fingerprintAuthEnabledExplanation": "Biyometrik doğrulamayı başarıyla aktifleştirdiniz.",
+        "fingerprintAuthDisabled": "Biyometrik doğrulama devre dışı",
+        "fingerprintAuthDisabledExplanation": "Biyometrik doğrulamayı başarıyla devre dışı bıraktınız.",
+        "fingerprintAuthFailed": "Biyometrik doğrulama başarısız",
+        "fingerprintAuthFailedExplanation": "Parmak izi doğrulaması başarısız. Lütfen tekrar deneyin.",
         "status": "Durum",
         "enabled": "Etkin",
         "disabled": "Etkisiz",
-        "fingerprintUnavailable": "Biometric authenticatation unavailable",
-        "fingerprintUnavailableExplanation": "Your device does not support biometric authenticatation or it has not been configured in the device settings.",
-        "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
-        "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
-        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID.",
-        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID.",
-        "instructionsLogin": "Touch fingerprint reader to log in"
+        "fingerprintUnavailable": "Biyometrik doğrulama kullanılamaz",
+        "fingerprintUnavailableExplanation": "Cihazınızda biyometrik doğrulama desteklemiyor veya aygıt ayarlarında yapılandırılmamış.",
+        "buttonInstructionsDisable": "Parmak izi doğrulamayı devre dışı bırakmak için aşağıdaki tuşa basın.",
+        "buttonInstructionsEnable": "Parmak izi doğrulamayı aktifleştirmek için aşağıdaki tuşa basın.",
+        "buttonInstructionsDisableIPhoneX": "Face ID'yi devre dışış bırakmak için aşağıdaki tuşa basın.",
+        "buttonInstructionsEnableIPhoneX": "Face ID'yi aktifleştirmek için aşağıdaki tuşa basın.",
+        "instructionsLogin": "Giriş yapmak için parmak izi okuyucusuna dokunun"
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}} to the address",
+        "youAreAbout": "Adrese {{contents}} göndermek üzeresiniz",
         "aMessage": "mesaj"
     },
     "twoFA": {
-        "wrongCode": "Wrong code",
-        "wrongCodeExplanation": "The code you entered is incorrect.",
-        "emptyCode": "Empty code",
-        "emptyCodeExplanation": "Please enter a code and try again.",
-        "keyCopied": "Key copied to clipboard",
+        "wrongCode": "Kod yanlış",
+        "wrongCodeExplanation": "Girdiğiniz kod doğru değil.",
+        "emptyCode": "Boş kod",
+        "emptyCodeExplanation": "Lütfen bir kod girin ve yeniden deneyin.",
+        "keyCopied": "Anahtar panoya kopyalandı",
         "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
-        "addKey": "Add this key to your 2FA app",
-        "key": "Key",
-        "twoFAEnabled": "2FA is now enabled",
-        "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
-        "twoFADisabled": "2FA is now disabled",
-        "twoFADisabledExplanation": "You have successfully disabled Two Factor Authentication.",
-        "enterCode": "Enter the code from your 2FA app",
-        "code": "Code"
+        "addKey": "Bu anahtarı 2FA uygulamanıza girin",
+        "key": "Anahtar",
+        "twoFAEnabled": "2FA şu anda etkin",
+        "twoFAEnabledExplanation": "İki Adımlı Doğrulamayı başarıyla aktifleştirdiniz.",
+        "twoFADisabled": "2FA şu anda devre dışı",
+        "twoFADisabledExplanation": "İki Adımlı Doğrulamayı başarıyla devre dışı bıraktınız.",
+        "enterCode": "2FA uygulamanızdaki kodu girin",
+        "code": "Kod"
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change",
-        "volume": "Volume (24h)",
-        "currentValue": "Current value"
+        "change": "Değiştir",
+        "volume": "Hacim (24 saat)",
+        "currentValue": "Anlık değer"
     },
     "rootDetection": {
-        "warning": "WARNING",
+        "warning": "UYARI",
         "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
     },
     "pow": {
         "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
         "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
-        "local": "Local",
-        "remote": "Remote",
-        "powUpdated": "Proof of work settings",
+        "local": "Yerel",
+        "remote": "Uzak",
+        "powUpdated": "İş kanıtı ayarları",
         "powUpdatedExplanation": "Your proof of work configuration has been updated.",
-        "noWebGLSupport": "WebGL not supported",
-        "noWebGLSupportExplanation": "Your computer does not support WebGL. Please use remote PoW."
+        "noWebGLSupport": "WebGL desteklenmiyor",
+        "noWebGLSupportExplanation": "Bilgisayarınız WebGL desteklemiyor. Lütfen uzaktan PoW kullanın."
     },
     "progressSteps": {
-        "validatingReceiveAddress": "Validating receive address",
-        "syncingAccount": "Syncing account",
-        "preparingInputs": "Preparing inputs",
-        "preparingTransfers": "Preparing transfers",
-        "gettingTransactionsToApprove": "Getting transactions to approve",
+        "validatingReceiveAddress": "Alıcı adresi doğrulanıyor",
+        "syncingAccount": "Hesap senkronize ediliyor",
+        "preparingInputs": "Girişler hazırlanıyor",
+        "preparingTransfers": "Transferler hazırlanıyor",
+        "gettingTransactionsToApprove": "Onaylamak için işlemler alınıyor",
         "proofOfWork": "Completing proof of work",
-        "broadcasting": "Broadcasting"
+        "broadcasting": "Yayınlanıyor"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Cannot complete snapshot transition",
-        "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
+        "cannotCompleteTransitionExplanation": "Bakiyeniz geçişi gerçekleştirmek için 0'dan büyük olmalıdır.",
         "transitionComplete": "Snapshot transition complete",
         "transitionCompleteExplanation": "The snapshot transition has completed successfully.",
         "detectedBalance": "Detected balance: {{amount}} {{unit}}",
-        "isThisCorrect": "Is this correct?",
+        "isThisCorrect": "Bu doğru mu?",
         "snapshotExplanation": "Every so often, a snapshot is performed to prune the size of the Tangle.",
         "hasSnapshotTakenPlace": "Has a snapshot taken place? Press the button below to transition.",
         "transition": "TRANSITION",
@@ -511,17 +513,17 @@
         "attaching": "Attaching addresses to Tangle"
     },
     "deepLink": {
-        "autofill": "Autofill success",
-        "autofillExplanation": "Transaction data autofilled from link."
+        "autofill": "Otomatik doldurma başarılı",
+        "autofillExplanation": "İşlem bilgisi linken otomatik olarak girildi."
     },
     "updates": {
-        "errorRetrievingUpdateData": "Error retrieving update data",
-        "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
-        "noUpdatesAvailable": "No updates available",
-        "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
-        "newVersionAvailable": "New version available",
+        "errorRetrievingUpdateData": "Güncelleme bilgisi alınırken hata oluştu",
+        "errorRetrievingUpdateDataExplanation": "Güncelleme bilgisi alınırken bir hata oluştu. Lütfen tekrar deneyin.",
+        "noUpdatesAvailable": "Kullanılabilir güncelleme yok",
+        "noUpdatesAvailableExplanation": "IOTA Trinity masaüstü cüzdanı'nın son versiyonuna sahipsin!",
+        "newVersionAvailable": "Yeni versiyon mevcut",
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
         "downloadRelease": "Download release",
-        "skipUpdate": "Skip update"
+        "skipUpdate": "Güncelleştirmeyi atla"
     }
 }

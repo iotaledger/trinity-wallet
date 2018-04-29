@@ -100,9 +100,9 @@
         "nodeChanged": "Serveris pakeistas",
         "nodeChangedExplanation": "Serveris buvo sėkmingai pakeistas.",
         "nodeMustUseHTTPS": "Neteisingas serveris (ne HTTPS)",
-        "nodeMustUseHTTPSExplanation": "Only custom nodes using HTTPS are allowed.",
-        "nodeDuplicated": "Duplicated node",
-        "nodeDuplicatedExplanation": "The custom node is already listed.",
+        "nodeMustUseHTTPSExplanation": "Vartotojo serveriai galimi tik naudojantys HTTPS.",
+        "nodeDuplicated": "Dubliuotas serveris",
+        "nodeDuplicatedExplanation": "Toks vartotojo serveris jau yra įvestas.",
         "nodeAutoChanged": "Automatiškai pakeistas serveris",
         "nodeAutoChangedExplanation": "Pakeista į naują serverį {{- nodeAddress}}, nes pasirinktas serveris nepasiekiamas.",
         "fingerprintOnSend": "Palieskite piršto antspaudo skaitytuvą, norėdami patvirtinti pavedimą"
@@ -243,7 +243,7 @@
         "maximumSelected": "Pasirinkta MAKSIMALI suma",
         "iotaUnits": "IOTA vienetų paaiškinimas",
         "sendMax": "SIŲSTI MAKS.",
-        "totalTime": "Total time"
+        "totalTime": "Bendras laikas"
     },
     "setPassword": {
         "passwordTooShort": "Slaptažodis per trumpas",
@@ -340,8 +340,8 @@
         "bundleHashCopiedExplanation": "Paketo šifras nukopijuotas į iškarpinę.",
         "addressCopied": "Adresas nukopijuotas",
         "addressCopiedExplanation": "Adresas nukopijuotas į iškarpinę.",
-        "messageCopied": "Message copied",
-        "messageCopiedExplanation": "The message has been copied to the clipboard.",
+        "messageCopied": "Žinutė nukopijuota",
+        "messageCopiedExplanation": "Žinutė nukopijuota į iškarpinę.",
         "send": "SIŲSTA",
         "receive": "GAUTA"
     },
@@ -354,7 +354,9 @@
     },
     "addCustomNode": {
         "customNode": "Vartotojo serveris",
-        "add": "Pridėti"
+        "add": "Pridėti",
+        "nodeFieldEmpty": "Adreso laukas yra tuščias",
+        "nodeFieldEmptyExplanation": "Prašome įvesti vartotojo serverį."
     },
     "addNewAccount": {
         "useExistingSeed": "Naudoti seną užraktą",

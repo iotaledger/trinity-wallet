@@ -159,7 +159,7 @@
     },
     "home": {
         "balance": "BALANCE",
-        "send": "SEND",
+        "send": "გაგზავნა",
         "receive": "RECEIVE",
         "history": "HISTORY",
         "settings": "SETTINGS"
@@ -226,7 +226,7 @@
         "invalidAddressExplanation3": "Address contains an invalid checksum.",
         "invalidAddressExplanationGeneric": "Valid addresses should be 90 characters and contain only A-Z or 9.",
         "notEnoughFunds": "Insufficient funds",
-        "notEnoughFundsExplanation": "You do not have enough IOTA to complete this transfer.",
+        "notEnoughFundsExplanation": "თქვენ არ გაქვთ საკმარისი რაოდენობის IOTA გადარიცხვის დასასრულებლად.",
         "keyReuse": "Key reuse",
         "keyReuseExplanation": "The address you are trying to send to has already been used. Please try another address.",
         "recipientAddress": "Recipient address",
@@ -237,7 +237,7 @@
         "invalidMessageExplanation": "Your message contains invalid characters.",
         "invalidMessageTooLong": "Message too long",
         "invalidMessageTooLongExplanation": "The message exceeds the max. amount of characters (1093).",
-        "send": "SEND",
+        "send": "გაგზავნა",
         "invalidAmount": "Incorrect amount entered",
         "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "MAXIMUM amount selected",
@@ -246,13 +246,13 @@
         "totalTime": "Total time"
     },
     "setPassword": {
-        "passwordTooShort": "Password is too short",
+        "passwordTooShort": "პაროლი ძალიან მოკლეა",
         "passwordTooShortExplanation": "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
         "passwordMismatch": "Passwords do not match",
         "passwordMismatchExplanation": "The passwords you have entered do not match. Please try again.",
         "nowWeNeedTo": "Now we need to set up a password.",
         "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
-        "ensure": "Ensure you use a strong password of at least 12 characters.",
+        "ensure": "დარწმუნდი რომ იყენებ რთულ პაროლს რომელიც მინიმუმ 12 სიმბოლოსაგან შედგება.",
         "retypePassword": "Retype Password"
     },
     "setSeedName": {
@@ -315,7 +315,7 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",
-        "cancel": "CANCEL",
+        "cancel": "გაუქმება",
         "reset": "RESET"
     },
     "walletSetup": {
@@ -342,7 +342,7 @@
         "addressCopiedExplanation": "The address has been copied to the clipboard.",
         "messageCopied": "Message copied",
         "messageCopiedExplanation": "The message has been copied to the clipboard.",
-        "send": "SEND",
+        "send": "გაგზავნა",
         "receive": "RECEIVE"
     },
     "accountManagement": {

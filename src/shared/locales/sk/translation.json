@@ -354,7 +354,9 @@
     },
     "addCustomNode": {
         "customNode": "Vlastný Node",
-        "add": "Pridať"
+        "add": "Pridať",
+        "nodeFieldEmpty": "Text field is empty",
+        "nodeFieldEmptyExplanation": "Please enter a custom node."
     },
     "addNewAccount": {
         "useExistingSeed": "Použiť súčasný seed",

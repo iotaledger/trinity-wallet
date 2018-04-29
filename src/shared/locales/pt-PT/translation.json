@@ -342,8 +342,8 @@
         "addressCopiedExplanation": "O seu endereço foi copiado para a área de transferência.",
         "messageCopied": "Message copied",
         "messageCopiedExplanation": "The message has been copied to the clipboard.",
-        "send": "SEND",
-        "receive": "RECEIVE"
+        "send": "ENVIAR",
+        "receive": "RECEBER"
     },
     "accountManagement": {
         "viewSeed": "View seed",
@@ -354,7 +354,9 @@
     },
     "addCustomNode": {
         "customNode": "Custom node",
-        "add": "Adicionar"
+        "add": "Adicionar",
+        "nodeFieldEmpty": "Text field is empty",
+        "nodeFieldEmptyExplanation": "Please enter a custom node."
     },
     "addNewAccount": {
         "useExistingSeed": "Usar Seed existente",
