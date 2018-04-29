@@ -2,7 +2,7 @@
     "global": {
         "send": "보내기",
         "cancel": "취소",
-        "continue?": "계속하시겠습니까?",
+        "continue?": "계속 하시겠습니까?",
         "noTransactions": "최근 기록 없음",
         "refresh": "새로고침",
         "qr": "QR",
@@ -11,8 +11,8 @@
         "transferError": "전송 오류",
         "transferErrorMessage": "전송 중에 오류가 발생했습니다. 다시 시도해주십시오.",
         "transferSent": "전송 완료",
-        "transferSentMessage": "전송 요청이 탱글로 보내졌습니다.",
-        "messageSent": "메시지 전송됨",
+        "transferSentMessage": "전송 요청을 탱글로 보냈습니다.",
+        "messageSent": "메시지 전송함",
         "messageSentMessage": "메시지를 탱글로 전송했습니다.",
         "keyReuse": "이미 사용한 주소로 보내는 중",
         "keyReuseError": "출금에 사용한 기록이 있는 주소로는 전송할 수 없습니다.",
@@ -78,7 +78,7 @@
         "autoreattaching": "어태치 자동 재시도중",
         "autoreattachingExplanation": "아래의 트랜잭션 해시를 다시 어태치합니다: {{hash}}",
         "autopromoting": "거래 자동 프로모트 중",
-        "autopromotingExplanation": "아래의 트랜잭션 해시를 프로모트합니다: {{hash}}",
+        "autopromotingExplanation": "다음의 트랜잭션 해시를 프로모트합니다: {{hash}}",
         "promoting": "거래 프로모트 중",
         "promotionError": "전송을 프로모트할 수 없음",
         "promotionErrorExplanation": "트랜잭션을 프로모트하는 중에 오류가 발생했습니다. 다시 시도해주십시오.",
@@ -99,10 +99,10 @@
         "addCustomNode": "커스텀 노드 추가",
         "nodeChanged": "노드 변경됨",
         "nodeChangedExplanation": "노드가 성공적으로 변경되었습니다.",
-        "nodeMustUseHTTPS": "Invalid node (non HTTPS)",
-        "nodeMustUseHTTPSExplanation": "Only custom nodes using HTTPS are allowed.",
-        "nodeDuplicated": "Duplicated node",
-        "nodeDuplicatedExplanation": "The custom node is already listed.",
+        "nodeMustUseHTTPS": "잘못된 노드 (HTTPS를 사용하지 않음)",
+        "nodeMustUseHTTPSExplanation": "HTTPS를 사용하는 커스텀 노드만 사용 가능합니다.",
+        "nodeDuplicated": "중복된 노드",
+        "nodeDuplicatedExplanation": "해당 커스텀 노드는 이미 등록되어 있습니다.",
         "nodeAutoChanged": "노드 자동 변경됨",
         "nodeAutoChangedExplanation": "선택한 노드에 연결할 수 없어 새로운 노드인 {{- nodeAddress}}에 연결하였습니다.",
         "fingerprintOnSend": "지문을 인식하여 전송 승인"
@@ -206,7 +206,7 @@
         "message": "메시지 (선택)",
         "removeMessage": "메시지 삭제하기",
         "noAddresses": "주소 없음",
-        "spent": "사용됨"
+        "spent": "이미 사용함"
     },
     "saveYourSeed": {
         "seedCleared": "시드 삭제됨",
@@ -216,8 +216,8 @@
     "seedReentry": {
         "incorrectSeed": "잘못된 시드",
         "incorrectSeedExplanation": "입력한 시드가 올바르지 않습니다. 다시 시도해 주십시오.",
-        "thisIsACheck": "시드를 기록하였는지 확인하기 위한 검사를 수행합니다.",
-        "ifYouHaveNotSaved": "시드를 기록하지 않은 경우 다시 뒤로 돌아가서 기록하십시오."
+        "thisIsACheck": "시드를 따로 저장하였는지 한번 더 확인하겠습니다.",
+        "ifYouHaveNotSaved": "시드를 따로 저장해 두지 않았다면 뒤로 돌아가 저장해 주십시오."
     },
     "send": {
         "invalidAddress": "잘못된 주소",
@@ -240,10 +240,10 @@
         "send": "보내기",
         "invalidAmount": "잘못된 금액",
         "invalidAmountExplanation": "유효한 거래 금액을 입력해 주십시오. 아래의 IOTA 단위 체계를 참고하십시오.",
-        "maximumSelected": "최대 금액 선택됨",
+        "maximumSelected": "최대액수 선택함",
         "iotaUnits": "IOTA 단위 체계",
         "sendMax": "최대 금액",
-        "totalTime": "Total time"
+        "totalTime": "총 소요시간"
     },
     "setPassword": {
         "passwordTooShort": "비밀번호가 너무 짧음",
@@ -263,7 +263,7 @@
         "expert": "전문가",
         "standard": "기본",
         "expertModeExplanation": "전문가 모드에서는 프로모트 및 다시 어태치를 직접 실행할 수 있습니다.",
-        "modesExplanation": "혼동을 피하기 위해 탱글을 사용하는 데에 익숙한 경우에만 전문가 모드를 사용해 주십시오."
+        "modesExplanation": "전문가 모드는 탱글에 익숙한 사용자만 사용하시길 권장합니다. 탱글에 익숙하지 않으면 사용하기 어려울 수 있습니다."
     },
     "settings": {
         "transferSending": "거래 전송중",
@@ -304,12 +304,12 @@
         "securitySettings": "보안 설정",
         "fingerprint": "생체 인증",
         "couldNotFetchRates": "환율을 가져올 수 없음",
-        "couldNotFetchRatesExplanation": "{{currency}}로의 환율을 가져오는 중에 문제가 발생하였습니다.",
+        "couldNotFetchRatesExplanation": "{{currency}} 단위의 환율을 가져오는 중에 문제가 발생하였습니다.",
         "fetchedConversionRates": "환율 가져옴",
-        "fetchedConversionRatesExplanation": "{{currency}}로의 최신 환율을 성공적으로 가져왔습니다.",
+        "fetchedConversionRatesExplanation": "{{currency}} 단위의 최신 환율을 성공적으로 가져왔습니다.",
         "undo": "취소",
         "redo": "다시 실행",
-        "about": "트리니티에 대해",
+        "about": "트리니티 정보",
         "lockScreenTimeout": "자동 잠금 시간 (분)",
         "autoNodeSwitching": "노드에 연결이 불가능할 경우 자동으로 다른 노드에 연결 시도"
     },
@@ -322,26 +322,26 @@
         "okay": "좋습니다. 이제 지갑을 만들어 봅시다!",
         "doYouAlreadyHaveASeed": "이미 사용하고자 하는 시드를 가지고 있습니까?",
         "seedExplanation": "IOTA의 시드는 81글자로 구성되며, 계정에 있어 아이디와 비밀번호를 합친 것과 같은 역할을 합니다.",
-        "explanation": "<0><0>이 시드를 이용하여 </0><1>어느 지갑에서나</1><2>, </2><3>어느 기기에서나</3><4> 당신의 펀드에 접근할 수 있습니다. 그러나 이 시드를 잃어버릴 경우 이 시드에 담긴 IOTA 또한 잃게 됩니다.</4></0>",
+        "explanation": "<0><0>이 시드를 이용하여 </0><1>어느 지갑에서나</1><2>, </2><3>어느 기기에서나</3><4> 가지고 있는 자산에 접근할 수 있습니다. 그러나 이 시드를 잃어버릴 경우 이 시드에 담긴 IOTA 또한 잃게 됩니다.</4></0>",
         "keepSafe": "반드시 시드를 안전히 보관하십시오.",
         "hint": "<0><0>도움말:</0> IOTA를 처음 사용하시는 경우 \"아니오\"를 누르십시오.</0>"
     },
     "welcome": {
         "thankYou": "트리니티를 다운로드해 주셔서 감사합니다.",
         "weWillSpend": "지갑을 만드는 데에는 몇 분 정도 걸릴 예정입니다.",
-        "reminder": "중간중간 과정들을 건너뛰고 싶을 수 있지만 모든 과정을 따라 주시길 부탁드립니다."
+        "reminder": "건너뛰고 싶은 과정들이 있을 수 있지만, 반드시 모든 과정을 따라 주시길 바랍니다."
     },
     "writeSeedDown": {
         "yourSeedIs": "시드는 {{maxSeedLength}}글자로 구성되며, 왼쪽에서 오른쪽으로 읽습니다.",
         "writeDownYourSeed": "<0>시드와 체크섬을 기록하고, 정확히 기록하였는지 최소 </0><1>세 번 이상 확인하십시오.</1><2></2>"
     },
     "history": {
-        "bundleHashCopied": "번들 해시 복사됨",
-        "bundleHashCopiedExplanation": "번들 해시가 클립보드에 복사되었습니다.",
-        "addressCopied": "주소 복사됨",
-        "addressCopiedExplanation": "주소가 클립보드에 복사되었습니다.",
-        "messageCopied": "Message copied",
-        "messageCopiedExplanation": "The message has been copied to the clipboard.",
+        "bundleHashCopied": "번들 해시 복사함",
+        "bundleHashCopiedExplanation": "번들 해시를 클립보드에 복사하였습니다.",
+        "addressCopied": "주소 복사함",
+        "addressCopiedExplanation": "주소를 클립보드에 복사했습니다.",
+        "messageCopied": "메시지 복사함",
+        "messageCopiedExplanation": "메시지를 클립보드에 복사했습니다.",
         "send": "보냄",
         "receive": "받음"
     },
@@ -354,7 +354,9 @@
     },
     "addCustomNode": {
         "customNode": "커스텀 노드",
-        "add": "추가"
+        "add": "추가",
+        "nodeFieldEmpty": "입력한 텍스트가 없습니다.",
+        "nodeFieldEmptyExplanation": "커스텀 노드를 입력해 주십시오."
     },
     "addNewAccount": {
         "useExistingSeed": "기존 시드 사용",
@@ -393,7 +395,7 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "왜 거래에 잔고를 전부 사용할 수 없죠?",
-        "spentAddressExplanation": "이미 사용한 적이 있는 주소에 잔고가 남아있습니다. IOTA 상에서의 주소 재사용은 보안에 위해가 갈 수 있기 때문에 지갑 차원에서 이미 사용한 적이 있는 주소를 다시 사용하는 것을 금지하고 있습니다.",
+        "spentAddressExplanation": "이미 사용한 하나 이상의 주소에 잔고가 있습니다. IOTA 상에서의 주소 재사용은 보안상 위험하므로, 지갑 차원에서 하나의 주소를 두 번 이상 사용하는 것을 금지하고 있습니다.",
         "discordInformation": "IOTA 디스코드의 #help 채널을 통해 도움을 받을 수 있습니다."
     },
     "deleteAccount": {
@@ -456,14 +458,14 @@
         "wrongCodeExplanation": "입력한 코드가 옳지 않습니다.",
         "emptyCode": "코드 미입력",
         "emptyCodeExplanation": "코드를 입력하고 다시 시도해주십시오.",
-        "keyCopied": "키가 클립보드에 복사됨",
+        "keyCopied": "키를 클립보드에 복사함",
         "keyCopiedExplanation": "OTP 키가 클립보드에 복사되었습니다.",
         "addKey": "OTP 앱에 이 키를 추가하십시오",
         "key": "키",
         "twoFAEnabled": "OTP 인증 활성화됨",
-        "twoFAEnabledExplanation": "OTP 인증이 성공적으로 활성화되었습니다.",
-        "twoFADisabled": "OTP 인증 비활성화됨",
-        "twoFADisabledExplanation": "OTP 인증이 성공적으로 비활성화되었습니다.",
+        "twoFAEnabledExplanation": "OTP 인증을 활성화했습니다.",
+        "twoFADisabled": "OTP 인증 비활성화",
+        "twoFADisabledExplanation": "OTP 인증을 비활성화했습니다.",
         "enterCode": "OTP 코드를 입력하십시오",
         "code": "코드"
     },

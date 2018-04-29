@@ -354,7 +354,9 @@
     },
     "addCustomNode": {
         "customNode": "カスタムノード",
-        "add": "追加"
+        "add": "追加",
+        "nodeFieldEmpty": "テキスト欄が空です。",
+        "nodeFieldEmptyExplanation": "カスタムノードを入力してください。"
     },
     "addNewAccount": {
         "useExistingSeed": "既存のSeedを使用",

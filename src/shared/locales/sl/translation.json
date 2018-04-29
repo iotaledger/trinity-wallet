@@ -342,8 +342,8 @@
         "addressCopiedExplanation": "Naslov je bil kopiran v odložišce.",
         "messageCopied": "Message copied",
         "messageCopiedExplanation": "The message has been copied to the clipboard.",
-        "send": "SEND",
-        "receive": "RECEIVE"
+        "send": "Pošlji",
+        "receive": "Prejmi"
     },
     "accountManagement": {
         "viewSeed": "View seed",
@@ -354,7 +354,9 @@
     },
     "addCustomNode": {
         "customNode": "Custom node",
-        "add": "Dodaj"
+        "add": "Dodaj",
+        "nodeFieldEmpty": "Text field is empty",
+        "nodeFieldEmptyExplanation": "Please enter a custom node."
     },
     "addNewAccount": {
         "useExistingSeed": "Use existing seed",
