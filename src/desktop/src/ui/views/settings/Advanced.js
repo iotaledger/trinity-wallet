@@ -6,7 +6,9 @@ import { connect } from 'react-redux';
 
 import { updatePowSettings, setLockScreenTimeout } from 'actions/settings';
 import { generateAlert } from 'actions/alerts';
-import { setVault } from 'libs/crypto';
+import { setVault, getSeed } from 'libs/crypto';
+
+import { runTask } from 'worker';
 
 import Button from 'ui/components/Button';
 import ModalPassword from 'ui/components/modal/Password';
@@ -48,6 +50,15 @@ class Advanced extends PureComponent {
          * @ignore
          */
         t: PropTypes.func.isRequired,
+        /** Current account state
+         */
+        accounts: PropTypes.object.isRequired,
+        /** Current wallet state
+         */
+        wallet: PropTypes.object.isRequired,
+        /** Current ui state
+         */
+        ui: PropTypes.object.isRequired,
     };
 
     state = {
@@ -77,8 +88,14 @@ class Advanced extends PureComponent {
         this.props.setLockScreenTimeout(timeout > 60 ? 60 : timeout);
     };
 
+    syncAccount = async () => {
+        const { wallet, accounts } = this.props;
+        const seed = await getSeed(wallet.seedIndex, wallet.password);
+        runTask('manuallySyncAccount', [seed, accounts.accountNames[wallet.seedIndex]]);
+    };
+
     render() {
-        const { remotePoW, updatePowSettings, lockScreenTimeout, t } = this.props;
+        const { remotePoW, updatePowSettings, lockScreenTimeout, ui, t } = this.props;
         const { resetConfirm } = this.state;
 
         return (
@@ -95,6 +112,22 @@ class Advanced extends PureComponent {
                         on={t('pow:remote')}
                         off={t('pow:local')}
                     />
+                    <hr />
+                    <h3>{t('advancedSettings:manualSync')}</h3>
+                    {ui.isSyncing ? (
+                        <Info>
+                            {t('manualSync:syncingYourAccount')} <br />
+                            {t('manualSync:thisMayTake')}
+                        </Info>
+                    ) : (
+                        <Info>
+                            {t('manualSync:outOfSync')} <br />
+                            {t('manualSync:pressToSync')}
+                        </Info>
+                    )}
+                    <Button onClick={this.syncAccount} loading={ui.isSyncing}>
+                        {t('manualSync:syncAccount')}
+                    </Button>
                     <hr />
                     <TextInput
                         value={lockScreenTimeout.toString()}
@@ -144,6 +177,9 @@ class Advanced extends PureComponent {
 
 const mapStateToProps = (state) => ({
     remotePoW: state.settings.remotePoW,
+    accounts: state.accounts,
+    wallet: state.wallet,
+    ui: state.ui,
     lockScreenTimeout: state.settings.lockScreenTimeout,
 });
 

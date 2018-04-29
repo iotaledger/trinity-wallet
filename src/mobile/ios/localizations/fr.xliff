@@ -16,9 +16,6 @@
       <trans-unit id="NSCameraUsageDescription">
         <source>Trinity requires access to the camera in order to enable QR scanning.</source>
         <target xml:lang="fr" state="translated">Trinity a besoin d'accéder à l'appareil photo pour activer le scan de QR codes.</target>
-        <alt-trans>
-          <target xml:lang="fr">Tinity requiert l'accès à la caméra afin d'activer le scan de QR codes.</target>
-        </alt-trans>
       </trans-unit>
       <trans-unit id="NSFaceIDUsageDescription">
         <source>Trinity requires access to Face ID in order to enable biometric authentication.</source>

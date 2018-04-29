@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { LineChart, ResponsiveContainer, Line, YAxis, Tooltip } from 'recharts';
-import { format, subDays, subHours, subMinutes } from 'date-fns';
+import { format, addHours, subDays, subHours, subMinutes } from 'date-fns';
 
 import withChartData from 'containers/components/Chart';
 
@@ -70,11 +70,14 @@ class Chart extends PureComponent {
                 case '1m':
                     date = subDays(new Date(), 30 * distance / props.maxItems);
                     break;
+                case '24h':
+                    date = addHours(date, 1);
+                    break;
             }
 
             return (
                 <p className={css.label}>
-                    {format(date, 'DD.MM.YY. HH:mm')}
+                    {format(date, 'DD.MM.YY HH:mm')}
                     <br />
                     <strong>
                         {props.symbol} {props.payload[0].value}

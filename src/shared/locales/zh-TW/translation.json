@@ -99,14 +99,20 @@
         "addCustomNode": "新增自訂節點",
         "nodeChanged": "節點已變更",
         "nodeChangedExplanation": "節點已成功變更。",
+        "nodeMustUseHTTPS": "無效節點 (非 HTTPS)",
+        "nodeMustUseHTTPSExplanation": "僅允許使用 HTTPS 的自訂節點。",
+        "nodeDuplicated": "重複節點",
+        "nodeDuplicatedExplanation": "自訂節點已在列表中。",
         "nodeAutoChanged": "自動切換節點",
-        "nodeAutoChangedExplanation": "當選擇的節點斷線時切換到新的節點 {{- nodeAddress}}。"
+        "nodeAutoChangedExplanation": "當選擇的節點斷線時切換到新的節點 {{- nodeAddress}}。",
+        "fingerprintOnSend": "觸摸指紋辨識器來驗證交易"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
         "seedInvalidCharsExplanation": "種子碼只能由大寫A-Z字母和數字9組成。您的種子碼包含無效字元。請再試一次。",
         "seedTooShort": "種子碼過短",
-        "seedTooShortExplanation": "種子碼必須是 {{maxLength}} 個字元，您的種子目前為 {{currentLength}} 個字元，請再試一次。",
+        "seedTooShortExplanation":
+            "種子碼必須是 {{maxLength}} 個字元，您的種子目前為 {{currentLength}} 個字元，請再試一次。",
         "nameInUse": "帳戶名稱已使用",
         "nameInUseExplanation": "種子碼請使用獨特帳戶名稱",
         "enterAccountName": "輸入帳戶名稱",
@@ -148,8 +154,10 @@
         "invalidCharacters": "種子碼包含無效字元",
         "invalidCharactersExplanation": "種子碼只能由大寫 A-Z 字母和數字 9 組成，您的種子碼包含無效字元，請再試一次。",
         "seedTooShort": "種子碼過短",
-        "seedTooShortExplanation": "您的密碼必須至少是 {{maxLength}} 個字元，目前為 {{currentLength}} 個字元長，請再試一次。",
-        "seedExplanation": "種子碼應為 {{maxLength}} 個字元長並包含大寫字母 A-Z 或數字 9，您的種子碼不能長於 {{maxLength}} 個字元。",
+        "seedTooShortExplanation":
+            "您的密碼必須至少是 {{maxLength}} 個字元，目前為 {{currentLength}} 個字元長，請再試一次。",
+        "seedExplanation":
+            "種子碼應為 {{maxLength}} 個字元長並包含大寫字母 A-Z 或數字 9，您的種子碼不能長於 {{maxLength}} 個字元。",
         "neverShare": "千萬別和他人分享您的種子碼"
     },
     "home": {
@@ -238,11 +246,12 @@
         "maximumSelected": "已選擇金額上限",
         "iotaUnits": "IOTA 單位說明",
         "sendMax": "全部傳送",
-        "fingerprintOnSend": "觸摸指紋辨識器來傳送交易"
+        "totalTime": "總計"
     },
     "setPassword": {
         "passwordTooShort": "密碼過短",
-        "passwordTooShortExplanation": "您的密碼必須至少為 {{minLength}} 個字元，目前為 {{currentLength}} 個字元長，請再試一次。",
+        "passwordTooShortExplanation":
+            "您的密碼必須至少為 {{minLength}} 個字元，目前為 {{currentLength}} 個字元長，請再試一次。",
         "passwordMismatch": "密碼不符",
         "passwordMismatchExplanation": "您輸入的密碼不符，請再試一次。",
         "nowWeNeedTo": "現在我們需要設置密碼。",
@@ -317,7 +326,8 @@
         "okay": "好囉，現在來設置您的錢包！",
         "doYouAlreadyHaveASeed": "您是否希望使用已擁有的種子碼?",
         "seedExplanation": "IOTA 種子碼是由您帳戶的名稱和密碼結合成為 81 個字元長的字串。",
-        "explanation": "<0><0>您可以用它來取得您的資金，這可以是</0><1>任何錢包</1><2>和</2><3>任何裝置</3><4>。但如果您遺失種子碼的話，就代表您損失您所有的 IOTA。</4></0>",
+        "explanation":
+            "<0><0>您可以用它來取得您的資金，這可以是</0><1>任何錢包</1><2>和</2><3>任何裝置</3><4>。但如果您遺失種子碼的話，就代表您損失您所有的 IOTA。</4></0>",
         "keepSafe": "請妥善保存您的種子碼。",
         "hint": "<0><0>提示：</0> 如果這是您第一次使用 IOTA 請按「否」。</0>"
     },
@@ -335,6 +345,8 @@
         "bundleHashCopiedExplanation": "交易組的雜湊值已複製到剪貼簿。",
         "addressCopied": "地址已複製",
         "addressCopiedExplanation": "您的地址已複製到剪貼簿。",
+        "messageCopied": "訊息已複製",
+        "messageCopiedExplanation": "訊息已複製到剪貼簿。",
         "send": "轉帳",
         "receive": "收款"
     },
@@ -347,7 +359,9 @@
     },
     "addCustomNode": {
         "customNode": "自訂節點",
-        "add": "新增"
+        "add": "新增",
+        "nodeFieldEmpty": "文字欄為空",
+        "nodeFieldEmptyExplanation": "請輸入自訂節點。"
     },
     "addNewAccount": {
         "useExistingSeed": "使用現有的種子碼",
@@ -386,7 +400,8 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "我為何無法支出所有餘額？",
-        "spentAddressExplanation": "您有資金位於已支出的地址，在 IOTA 中重複使用地址是很危險的事情，所以本錢包會禁止您用相同的地址重複轉帳。",
+        "spentAddressExplanation":
+            "您有資金位於已支出的地址，在 IOTA 中重複使用地址是很危險的事情，所以本錢包會禁止您用相同的地址重複轉帳。",
         "discordInformation": "請前往 Discord 頻道 #help 或 #zh 尋求協助。"
     },
     "deleteAccount": {
@@ -418,24 +433,27 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "此動作將無法復原。",
-        "warning": "<0><0>所有的錢包資訊包含您的</0><1>種子碼、密碼</1><2>以及</2><3>其他帳戶訊息</3><4>都將遺失。</4></0>"
+        "warning":
+            "<0><0>所有的錢包資訊包含您的</0><1>種子碼、密碼</1><2>以及</2><3>其他帳戶訊息</3><4>都將遺失。</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "觸摸指紋辨識器來啟用指紋驗證",
         "instructionsDisable": "觸摸指紋辨識器來停用指紋驗證",
-        "fingerprintAuthEnabled": "指紋驗證已啟用",
-        "fingerprintAuthEnabledExplanation": "您已成功啟用指紋驗證。",
-        "fingerprintAuthDisabled": "指紋驗證已停用",
-        "fingerprintAuthDisabledExplanation": "您已成功停用指紋驗證。",
-        "fingerprintAuthFailed": "指紋驗證失敗",
+        "fingerprintAuthEnabled": "生物識別驗證已啟用",
+        "fingerprintAuthEnabledExplanation": "您已成功啟用生物識別驗證。",
+        "fingerprintAuthDisabled": "生物識別驗證已停用",
+        "fingerprintAuthDisabledExplanation": "您已成功停用生物識別驗證。",
+        "fingerprintAuthFailed": "生物識別驗證失敗",
         "fingerprintAuthFailedExplanation": "指紋驗證失敗，請再試一次。",
         "status": "狀態",
         "enabled": "已啟用",
         "disabled": "已停用",
-        "fingerprintUnavailable": "指紋驗證無法使用",
-        "fingerprintUnavailableExplanation": "您的裝置不支援指紋識別，或者裝置設定中並沒有啟用此權限。",
+        "fingerprintUnavailable": "生物識別驗證無法使用",
+        "fingerprintUnavailableExplanation": "您的裝置不支援生物識別驗證，或者裝置設定中並沒有啟用此權限。",
         "buttonInstructionsDisable": "按下方按鈕停用指紋驗證。",
         "buttonInstructionsEnable": "按下方按鈕啟用指紋驗證。",
+        "buttonInstructionsDisableIPhoneX": "按下方按鈕停用 Face ID。",
+        "buttonInstructionsEnableIPhoneX": "按下方按鈕啟用 Face ID。",
         "instructionsLogin": "觸摸指紋辨識器來登入"
     },
     "transferConfirmation": {
@@ -459,14 +477,15 @@
         "code": "驗證碼"
     },
     "chart": {
-        "mcap": "MCAP",
+        "mcap": "總市值",
         "change": "變化率",
         "volume": "交易量(24h)",
         "currentValue": "目前價值"
     },
     "rootDetection": {
         "warning": "警告！",
-        "rootDetected": "<0>您的裝置已經 root 過。</0><1>這可能會對您的錢包安全帶來重大風險。</1><2>請問您確定要繼續嗎？</2>"
+        "rootDetected":
+            "<0>您的裝置已經 root 過。</0><1>這可能會對您的錢包安全帶來重大風險。</1><2>請問您確定要繼續嗎？</2>"
     },
     "pow": {
         "feeless": "在 IOTA 中傳送無手續費的交易必須完成一點工作量證明。",
@@ -511,7 +530,8 @@
         "noUpdatesAvailable": "尚無更新",
         "noUpdatesAvailableExplanation": "您的 IOTA Trinity 桌面版錢包已經是最新版本！",
         "newVersionAvailable": "有新版本可用",
-        "newVersionAvailableExplanation": "有新的 <strong>Trinity</strong> 版本 <strong>{{version}}</strong> 可以使用，請仔細閱讀詳細資料並驗證下載來源後再更新：",
+        "newVersionAvailableExplanation":
+            "有新的 <strong>Trinity</strong> 版本 <strong>{{version}}</strong> 可以使用，請仔細閱讀詳細資料並驗證下載來源後再更新：",
         "downloadRelease": "下載更新版本",
         "skipUpdate": "跳過更新"
     }
