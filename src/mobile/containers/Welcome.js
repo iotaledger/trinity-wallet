@@ -12,6 +12,7 @@ import RootDetectionModalComponent from '../components/RootDetectionModal';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import { width, height } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
+import { sendAndVerify } from '../utils/safetynet';
 
 const styles = StyleSheet.create({
     container: {
@@ -100,6 +101,10 @@ class Welcome extends Component {
         };
     }
 
+    componentDidMount(){
+      this.showModalIfRooted();
+    }
+
     onNextPress() {
         const { theme } = this.props;
 
@@ -119,16 +124,33 @@ class Welcome extends Component {
 
     showModalIfRooted() {
         const isDeviceRooted = RNIsDeviceRooted.isDeviceRooted();
+        let rooted = false;
         if (Promise && Promise.resolve && Promise.resolve(isDeviceRooted) === isDeviceRooted) {
             isDeviceRooted.then((isRooted) => {
                 if (isRooted) {
                     this.setState({ isModalVisible: true });
+                    rooted = true;
                 }
             });
         } else {
             if (isDeviceRooted) {
                 this.setState({ isModalVisible: true });
+                rooted = true;
             }
+        }
+        if (!rooted) {
+          sendAndVerify()
+          .then((isRooted) => {
+            if (isRooted) {
+              this.setState({ isModalVisible: true });
+            }
+          })
+          .catch((e) => {
+            /*eslint-disable no-console*/
+            console.log(e);
+            /*eslint-enable no-console*/
+          //  this.setState({ error: e });
+          });
         }
     }
 
