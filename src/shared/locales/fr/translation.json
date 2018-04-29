@@ -73,6 +73,7 @@
         "addresses": "Adresses",
         "reattach": "RATTACHER",
         "promote": "PROMOUVOIR",
+        "retry": "RETRY",
         "rebroadcast": "RETRANSMETTRE",
         "pressBackAgain": "Appuyez sur le bouton retour pour fermer l'application",
         "autoreattaching": "Rattachement automatique au Tangle",
