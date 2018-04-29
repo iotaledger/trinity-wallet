@@ -406,7 +406,7 @@
     },
     "manualSync": {
         "outOfSync": "Sieht der Verlauf deiner Transaktionen so aus, als ob er nicht synchronisiert wäre?",
-        "pressToSync": "Drücke die Schaltfläche unten, um dein Konto zu synchronisieren.",
+        "pressToSync": "Drücke die folgende Schaltfläche, um dein Konto zu synchronisieren.",
         "thisMayTake": "Das kann eine Weile dauern. Dein Gerät könnte etwas langsamer werden.",
         "doNotClose": "Beim Minimieren der App wird die Synchronisierung abgebrochen.",
         "syncAccount": "SYNCHRONISIEREN",
@@ -493,8 +493,8 @@
         "validatingReceiveAddress": "Überprüfe Empfangsadresse",
         "syncingAccount": "Konto synchronisieren",
         "preparingInputs": "Vorbereitung der Daten",
-        "preparingTransfers": "Vorbereitung der Transaktionen",
-        "gettingTransactionsToApprove": "Warte auf Bestätigung der Transaktionen",
+        "preparingTransfers": "Vorbereitung der Transaktion",
+        "gettingTransactionsToApprove": "Warte auf Bestätigung der Transaktion",
         "proofOfWork": "Vervollständige Proof of Work",
         "broadcasting": "Übertrage"
     },
