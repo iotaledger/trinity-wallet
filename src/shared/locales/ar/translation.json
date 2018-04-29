@@ -73,6 +73,7 @@
         "addresses": "عناوين",
         "reattach": "REATTACH",
         "promote": "PROMOTE",
+        "retry": "RETRY",
         "rebroadcast": "REBROADCAST",
         "pressBackAgain": "تجزئة الحزمة",
         "autoreattaching": "اضغط على العودة مرة أخرى لإغلاق التطبيق",
