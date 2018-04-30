@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
     titleWrapper: {
         alignItems: 'center',
         justifyContent: 'center',
+        width,
     },
     mainTitle: {
         fontFamily: 'Lato-Regular',
@@ -56,8 +57,12 @@ const styles = StyleSheet.create({
         fontSize: width / 27.6,
     },
     childView: {
-        height: height / 10,
-        justifyContent: 'center',
+        height: height / 14,
+        width,
+        paddingHorizontal: width / 18,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
     },
     centralView: {
         alignItems: 'center',
@@ -65,28 +70,20 @@ const styles = StyleSheet.create({
     chevronWrapper: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingRight: width / 18,
+        position: 'absolute',
+        right: width / 18,
     },
     notificationContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingLeft: width / 18,
+        position: 'absolute',
+        left: width / 18,
     },
     disabled: {
         color: '#a9a9a9',
     },
     disabledImage: {
         color: '#a9a9a9',
-    },
-    separator: {
-        width: width / 2,
-        height: 1,
-        borderBottomWidth: height / 3000,
-    },
-    topSeparator: {
-        width,
-        height: 1,
-        borderBottomWidth: height / 3000,
     },
     scrollViewContainer: {
         maxHeight: height,
@@ -115,12 +112,13 @@ class TopBar extends Component {
         selectedAccount: PropTypes.object.isRequired,
         body: PropTypes.object.isRequired,
         bar: PropTypes.object.isRequired,
+        primary: PropTypes.object.isRequired,
         setPollFor: PropTypes.func.isRequired,
         notificationLog: PropTypes.array.isRequired,
         clearLog: PropTypes.func.isRequired,
         topBarHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.object]).isRequired,
         isIOSKeyboardActive: PropTypes.bool.isRequired,
-        isTransitioning: PropTypes.bool.isRequired
+        isTransitioning: PropTypes.bool.isRequired,
     };
 
     static filterSeedTitles(accountNames, currentSeedIndex) {
@@ -205,8 +203,16 @@ class TopBar extends Component {
     }
 
     renderTitles() {
-        const { isTopBarActive, accountNames, balance, accountInfo, seedIndex, bar, topBarHeight } = this.props;
-        const borderBottomColor = { borderBottomColor: bar.color };
+        const {
+            isTopBarActive,
+            accountNames,
+            balance,
+            accountInfo,
+            seedIndex,
+            bar,
+            primary,
+            topBarHeight,
+        } = this.props;
         const selectedTitle = get(accountNames, `[${seedIndex}]`) || ''; // fallback
         const selectedSubtitle = TopBar.humanizeBalance(balance);
         const subtitleColor = tinycolor(bar.color).isDark() ? '#262626' : '#d3d3d3';
@@ -262,9 +268,10 @@ class TopBar extends Component {
             return baseContent;
         }
 
-        const withoutSelectedTitle = TopBar.filterSeedTitles(titles, seedIndex);
-        const restContent = map(withoutSelectedTitle, (t, idx) => {
-            const isLast = idx === size(withoutSelectedTitle) - 1;
+        const restContent = map(titles, (t, idx) => {
+            const isSelected = idx === seedIndex;
+            const isLast = idx === size(titles) - 1;
+            const activeHighlight = { borderLeftWidth: parseInt(width / 160), borderColor: primary.color };
             const children = (
                 <TouchableOpacity
                     onPress={() => {
@@ -276,13 +283,19 @@ class TopBar extends Component {
                     key={idx}
                     style={{ width, alignItems: 'center' }}
                 >
-                    <View style={styles.childView}>
+                    <View
+                        style={[
+                            styles.childView,
+                            { backgroundColor: isSelected ? bar.alt : bar.bg },
+                            isSelected ? activeHighlight : null,
+                        ]}
+                    >
                         <Text
                             numberOfLines={1}
                             style={
                                 disableWhen
                                     ? StyleSheet.flatten([styles.mainTitle, styles.disabled, { color: bar.color }])
-                                    : [styles.mainTitle, { color: bar.color }]
+                                    : [styles.mainTitle, { color: bar.color, opacity: idx === seedIndex ? 1 : 0.6 }]
                             }
                         >
                             {t.title}
@@ -291,7 +304,7 @@ class TopBar extends Component {
                             style={
                                 disableWhen
                                     ? StyleSheet.flatten([styles.subtitle, styles.disabled, { color: subtitleColor }])
-                                    : [styles.subtitle, { color: subtitleColor }]
+                                    : [styles.subtitle, { color: subtitleColor, opacity: idx === seedIndex ? 1 : 0.6 }]
                             }
                         >
                             {t.subtitle}
@@ -307,7 +320,6 @@ class TopBar extends Component {
             return (
                 <View key={idx} style={styles.centralView}>
                     {children}
-                    <View style={[styles.separator, borderBottomColor]} />
                 </View>
             );
         });
@@ -315,7 +327,6 @@ class TopBar extends Component {
         return (
             <View style={styles.titleWrapper}>
                 {baseContent}
-                {size(withoutSelectedTitle) ? <View style={[styles.topSeparator, borderBottomColor]} /> : null}
                 {restContent}
             </View>
         );
@@ -360,7 +371,11 @@ class TopBar extends Component {
                             {hasNotifications && !isIOSKeyboardActive ? (
                                 <TouchableOpacity style={styles.notificationContainer} onPress={() => this.showModal()}>
                                     <Animated.View
-                                        style={{ width: width / 18, height: topBarHeight, justifyContent: 'center' }}
+                                        style={{
+                                            height: topBarHeight,
+                                            justifyContent: 'center',
+                                            paddingTop: isAndroid ? 0 : height / 170,
+                                        }}
                                     >
                                         <Icon name="notification" size={width / 18} color={bar.color} />
                                     </Animated.View>
@@ -370,21 +385,27 @@ class TopBar extends Component {
                                     <View style={styles.empty} />
                                 </View>
                             )}
-                            <ScrollView style={styles.scrollViewContainer}>{children}</ScrollView>
+                            <ScrollView scrollEnabled={false} style={styles.scrollViewContainer}>
+                                {children}
+                            </ScrollView>
                             <View style={styles.chevronWrapper}>
                                 {hasMultipleSeeds && !isIOSKeyboardActive ? (
                                     <Animated.View
-                                        style={{ width: width / 18, height: topBarHeight, justifyContent: 'center' }}
+                                        style={{
+                                            height: topBarHeight,
+                                            justifyContent: 'center',
+                                            paddingTop: isAndroid ? 0 : height / 170,
+                                        }}
                                     >
                                         <Icon
                                             name={isTopBarActive ? 'chevronUp' : 'chevronDown'}
                                             size={width / 22}
                                             color={bar.color}
-                                            style={
+                                            style={[
                                                 shouldDisable
                                                     ? StyleSheet.flatten([styles.chevron, styles.disabledImage])
-                                                    : styles.chevron
-                                            }
+                                                    : styles.chevron,
+                                            ]}
                                         />
                                     </Animated.View>
                                 ) : (
@@ -441,6 +462,7 @@ const mapStateToProps = (state) => ({
     selectedAccount: selectAccountInfo(state),
     body: state.settings.theme.body,
     bar: state.settings.theme.bar,
+    primary: state.settings.theme.primary,
     notificationLog: state.alerts.notificationLog,
 });
 
