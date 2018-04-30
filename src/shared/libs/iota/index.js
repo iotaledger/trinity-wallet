@@ -15,8 +15,10 @@ function injectQuorum() {
                     (nodeapi, cb) => {
                         nodeapi.api.getInclusionStates(transactions, tips, cb);
                     },
-                    1000,
-                    false,
+                    {
+                        timeout: 1000,
+                        unorderedArrays: false,
+                    },
                     callback,
                 );
             },
@@ -25,8 +27,10 @@ function injectQuorum() {
                     (nodeapi, cb) => {
                         nodeapi.api.wereAddressesSpentFrom(addresses, cb);
                     },
-                    1000,
-                    false,
+                    {
+                        timeout: 1000,
+                        unorderedArrays: false,
+                    },
                     callback,
                 );
             },

@@ -19,14 +19,15 @@ function pollNodes() {
 
 pollNodes();
 
-export function getQuorumResult(nodefunc, timeout, unorderedArrays, callback) {
+export function getQuorumResult(nodefunc, options, callback) {
     const promises = [];
+    options = options || {};
 
-    for (const nodeapi of getQuorumNodes()) {
+    for (const nodeapi of options.nodelist || getQuorumNodes()) {
         promises.push(
             // eslint-disable-next-line no-unused-vars
             new Promise((resolve, reject) => {
-                setApiTimeout(nodeapi, timeout);
+                setApiTimeout(nodeapi, options.timeout || 1000);
                 nodefunc(nodeapi, (err, res) => {
                     if (err) {
                         resolve(null);
@@ -47,7 +48,7 @@ export function getQuorumResult(nodefunc, timeout, unorderedArrays, callback) {
             r.duration = 0;
         }
 
-        callback(undefined, getMostCommon(result, unorderedArrays));
+        callback(undefined, getMostCommon(result, options.unorderedArrays || false));
     });
 }
 
