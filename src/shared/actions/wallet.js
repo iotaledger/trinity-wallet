@@ -236,16 +236,19 @@ export const completeSnapshotTransition = (seed, accountName, addresses) => {
                             } else {
                                 dispatch(snapshotTransitionError());
                                 dispatch(snapshotAttachToTangleComplete());
-                                dispatch(generateTransitionErrorAlert());
+                                dispatch(generateTransitionErrorAlert(error));
                             }
                         });
                     } else {
-                        console.log(error);
+                        dispatch(snapshotTransitionError());
+                        dispatch(snapshotAttachToTangleComplete());
+                        dispatch(generateTransitionErrorAlert(error));
                     }
                 });
             } else {
                 dispatch(snapshotTransitionError());
-                dispatch(generateTransitionErrorAlert());
+                dispatch(snapshotAttachToTangleComplete());
+                dispatch(generateTransitionErrorAlert(error));
             }
         });
     };
@@ -262,7 +265,7 @@ export const generateAddressesAndGetBalance = (seed, index, genFn) => {
         getNewAddress(seed, options, genFn, (error, addresses) => {
             if (error) {
                 dispatch(snapshotTransitionError());
-                dispatch(generateTransitionErrorAlert());
+                dispatch(generateTransitionErrorAlert(error));
             } else {
                 dispatch(updateTransitionAddresses(addresses));
                 dispatch(getBalanceForCheck(addresses));
@@ -292,7 +295,7 @@ export const getBalanceForCheck = (addresses) => {
                 dispatch(switchBalanceCheckToggle());
             } else {
                 dispatch(snapshotTransitionError());
-                dispatch(generateTransitionErrorAlert());
+                dispatch(generateTransitionErrorAlert(error));
             }
         });
     };
