@@ -1,4 +1,5 @@
 import i18next from '../i18next.js';
+import Errors from '../libs/errors';
 
 export const ActionTypes = {
     SHOW: 'IOTA/ALERTS/SHOW',
@@ -36,15 +37,27 @@ export const generateAccountInfoErrorAlert = (err) => (dispatch) => {
     dispatch(prepareLogUpdate(err));
 };
 
-export const generateTransitionErrorAlert = () => (dispatch) => {
-    dispatch(
-        generateAlert(
-            'error',
-            i18next.t('snapshotTransition:cannotCompleteTransition'),
-            i18next.t('snapshotTransition:somethingWentWrongTryAgain'),
-            10000,
-        ),
-    );
+export const generateTransitionErrorAlert = (err) => (dispatch) => {
+    if (err.message.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
+        dispatch(
+            generateAlert(
+                'error',
+                i18next.t('global:attachToTangleUnavailable'),
+                i18next.t('global:attachToTangleUnavailableExplanation'),
+                10000,
+            ),
+        );
+    } else {
+        dispatch(
+            generateAlert(
+                'error',
+                i18next.t('snapshotTransition:cannotCompleteTransition'),
+                i18next.t('snapshotTransition:somethingWentWrongTryAgain'),
+                10000,
+            ),
+        );
+    }
+    dispatch(prepareLogUpdate(err));
 };
 
 export const generateSyncingCompleteAlert = () => (dispatch) => {
