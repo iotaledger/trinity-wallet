@@ -5,11 +5,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { setCopiedToClipboard } from 'iota-wallet-shared-modules/actions/wallet';
-import RNSecureClipboard from 'react-native-secure-clipboard';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import Seedbox from '../components/SeedBox';
 import { width, height } from '../utils/dimensions';
-import { isAndroid, isIOS } from '../utils/device';
 import GENERAL from '../theme/general';
 import CtaButton from '../components/CtaButton';
 import DynamicStatusBar from '../components/DynamicStatusBar';
@@ -111,22 +109,12 @@ class CopySeedToClipboard extends Component {
 
     constructor() {
         super();
-
         this.timeout = null;
     }
 
     componentWillUnmount() {
         this.clearTimeout();
-
-        let clipboardFn = null;
-
-        if (isIOS) {
-            clipboardFn = RNSecureClipboard.setString;
-        } else {
-            clipboardFn = Clipboard.setString;
-        }
-
-        clipboardFn(' ');
+        Clipboard.setString(' ');
     }
 
     /**
@@ -155,29 +143,16 @@ class CopySeedToClipboard extends Component {
      */
     onCopyPress() {
         const { t, seed } = this.props;
-
-        let clipboardFn = null;
-
-        if (isAndroid) {
-            return Share.share(
-                {
-                    message: seed,
-                },
-                {
-                    dialogTitle: t('shareSeed'),
-                },
-            );
-        } else if (isIOS) {
-            // Prevent seed from being available to the Universal Clipboard
-            clipboardFn = RNSecureClipboard.setString;
-        } else {
-            clipboardFn = Clipboard.setString;
-        }
-
-        clipboardFn(seed);
-        this.props.generateAlert('success', t('seedCopied'), t('seedCopiedExplanation'));
+        Share.share(
+            {
+                message: seed,
+            },
+            {
+                dialogTitle: t('shareSeed'),
+            },
+        );
         this.timeout = setTimeout(() => {
-            clipboardFn.setString(' ');
+            Clipboard.setString(' ');
             this.generateClipboardClearAlert();
         }, 30000);
     }
