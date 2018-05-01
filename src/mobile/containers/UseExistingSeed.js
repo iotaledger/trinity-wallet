@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard, Clipboard } from 'react-native';
 import Modal from 'react-native-modal';
 import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/iota/utils';
 import { setSetting, setAdditionalAccountInfo } from 'iota-wallet-shared-modules/actions/wallet';
@@ -277,7 +277,7 @@ class UseExistingSeed extends Component {
                             t('addAdditionalSeed:seedInUseExplanation'),
                         );
                     }
-
+                    Clipboard.setString(' ');
                     return this.fetchAccountInfo(seed, accountName);
                 })
                 .catch((err) => console.log(err)); // eslint-disable no-console

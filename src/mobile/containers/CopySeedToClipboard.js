@@ -4,7 +4,7 @@ import { StyleSheet, View, Text, TouchableOpacity, Clipboard, Share } from 'reac
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { setCopiedToClipboard } from 'iota-wallet-shared-modules/actions/wallet';
+import timer from 'react-native-timer';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import Seedbox from '../components/SeedBox';
 import { width, height } from '../utils/dimensions';
@@ -89,10 +89,6 @@ class CopySeedToClipboard extends Component {
         seed: PropTypes.string.isRequired,
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
-        /** Set a flag for clipboard copy
-         * @param {boolean} - true
-         */
-        setCopiedToClipboard: PropTypes.func.isRequired,
         /** Generate a notification alert
          * @param {String} type - notification type - success, error
          * @param {String} title - notification title
@@ -110,22 +106,23 @@ class CopySeedToClipboard extends Component {
     constructor() {
         super();
         this.timeout = null;
+        this.state = {
+            copiedToClipboard: false,
+        };
     }
 
     componentWillUnmount() {
-        this.clearTimeout();
-        Clipboard.setString(' ');
+        timer.clearTimeout('clipboardClear');
+        this.clearClipboard();
     }
 
-    /**
+    /**qwertyuiop[]
+
      * Clear the clipboard after pressing Done
      */
     onDonePress() {
         const { theme } = this.props;
-        this.clearTimeout();
-        Clipboard.setString(' ');
-        this.props.setCopiedToClipboard(true);
-
+        const { copiedToClipboard } = this.state;
         this.props.navigator.pop({
             navigatorStyle: {
                 navBarHidden: true,
@@ -136,6 +133,9 @@ class CopySeedToClipboard extends Component {
             },
             animated: false,
         });
+        if (copiedToClipboard) {
+            this.clearClipboard();
+        }
     }
 
     /**
@@ -143,6 +143,7 @@ class CopySeedToClipboard extends Component {
      */
     onCopyPress() {
         const { t, seed } = this.props;
+        this.setState({ copiedToClipboard: true });
         Share.share(
             {
                 message: seed,
@@ -151,25 +152,23 @@ class CopySeedToClipboard extends Component {
                 dialogTitle: t('shareSeed'),
             },
         );
-        this.timeout = setTimeout(() => {
-            Clipboard.setString(' ');
-            this.generateClipboardClearAlert();
-        }, 30000);
+        timer.setTimeout(
+            'clipboardClear',
+            () => {
+                this.clearClipboard();
+                this.setState({ copiedToClipboard: false });
+            },
+            30000,
+        );
     }
 
     /**
      * Alert the user that the clipboard was cleared
      */
-    generateClipboardClearAlert() {
+    clearClipboard() {
         const { t } = this.props;
-
-        return this.props.generateAlert('info', t('seedCleared'), t('seedClearedExplanation'));
-    }
-
-    clearTimeout() {
-        if (this.timeout) {
-            clearTimeout(this.timeout);
-        }
+        Clipboard.setString(' ');
+        this.props.generateAlert('info', t('seedCleared'), t('seedClearedExplanation'));
     }
 
     render() {
@@ -228,7 +227,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    setCopiedToClipboard,
     generateAlert,
 };
 
