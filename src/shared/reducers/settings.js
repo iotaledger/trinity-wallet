@@ -15,6 +15,7 @@ const initialState = {
         'GBP',
         'EUR',
         'AUD',
+        'ARS',
         'BGN',
         'BRL',
         'CAD',
