@@ -5204,9 +5204,9 @@ react-native-git-upgrade@^0.2.7:
     shelljs "^0.7.5"
     yeoman-environment "1.5.3"
 
-react-native-google-safetynet@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/react-native-google-safetynet/-/react-native-google-safetynet-0.2.1.tgz#7fd3ec81b7e23174ae8a3cbd72aee3454299c5f1"
+react-native-google-safetynet@^0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/react-native-google-safetynet/-/react-native-google-safetynet-0.2.3.tgz#bc6677835cd5eaf7125974a1dc5e51ec9f313898"
   dependencies:
     base64-js "^1.3.0"
     jws "^3.1.4"

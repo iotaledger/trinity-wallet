@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { translate, Trans } from 'react-i18next';
+import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
 import OnboardingButtons from '../containers/OnboardingButtons';
@@ -58,7 +58,15 @@ export class RootDetectionModal extends PureComponent {
                 <View style={[styles.modalContent, borderColor]}>
                     <Text style={styles.warningText}>{t('warning')}</Text>
                     <View style={{ marginBottom: height / 35 }}>
-                        <Trans i18nKey="rootDetected">
+                        <Text style={[styles.questionText, textColor]}>Your device appears to be rooted.</Text>
+                        <Text style={[styles.questionText, textColor]}>
+                            This can pose a significant risk to the security of your wallet.
+                        </Text>
+                        <Text style={[styles.questionText, textColor]}>Do you wish to continue despite this risk?</Text>
+                        {/*FIXME: Trans component causes a crash here*/}
+                        {/*Cannot add a child that doesn't have a YogaNode to a parent without a measure function! (Trying to add a 'ReactRawTextShadowNode' to a 'LayoutShadowNode')*/}
+
+                        {/*<Trans i18nKey="rootDetected">
                             <Text style={[styles.questionText, textColor]}>Your device appears to be rooted.</Text>
                             <Text style={[styles.questionText, textColor]}>
                                 This can pose a significant risk to the security of your wallet.
@@ -66,7 +74,7 @@ export class RootDetectionModal extends PureComponent {
                             <Text style={[styles.questionText, textColor]}>
                                 Do you wish to continue despite this risk?
                             </Text>
-                        </Trans>
+                        </Trans>*/}
                     </View>
                     <OnboardingButtons
                         onLeftButtonPress={() => this.props.closeApp()}
