@@ -210,7 +210,8 @@
         "storeSafely": "Store it safely.",
         "neverShare": "Never share your seed with anyone.",
         "iotaLogo": "IOTA logo",
-        "printWallet": "PRINT PAPER WALLET"
+        "printWallet": "PRINT PAPER WALLET",
+        "print": "PRINT"
     },
     "receive": {
         "addressCopied": "Address copied",
