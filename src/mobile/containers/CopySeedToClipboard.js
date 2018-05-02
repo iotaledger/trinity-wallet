@@ -245,24 +245,17 @@ class CopySeedToClipboard extends Component {
                     text={
                         <View>
                             <Text style={[styles.infoText, textColor, { paddingTop: height / 40 }]}>
-                                <Text style={styles.infoTextNormal}>
-                                    Your IOTA seed is the master key to your funds.{' '}
-                                </Text>
-                                <Text style={styles.infoTextNormal}>
-                                    If you choose to back-up your seed on your phone it should be stored encrypted e.g.
-                                    in a password manager.{' '}
-                                </Text>
+                                <Text style={styles.infoTextBold}>{t('global:masterKey')} </Text>
+                                <Text style={styles.infoTextNormal}>{t('storeEncrypted')} </Text>
                             </Text>
                             <Text style={[styles.infoTextBold, textColor, { paddingVertical: height / 30 }]}>
-                                Please tap the checkbox below to confirm.
+                                {t('tapConfirm')}
                             </Text>
                             <TouchableOpacity
                                 style={[styles.modalCheckboxContainer, { paddingTop: height / 60 }]}
                                 onPress={() => this.setState({ checkbox: !checkbox })}
                             >
-                                <Text style={[styles.modalCheckboxText, textColor]}>
-                                    I will store my seed with encryption
-                                </Text>
+                                <Text style={[styles.modalCheckboxText, textColor]}>{t('encryptionCheckbox')}</Text>
                                 <Image source={this.getCheckbox()} style={styles.modalCheckbox} />
                             </TouchableOpacity>
                             <View style={{ paddingTop: height / 18 }}>
@@ -270,7 +263,7 @@ class CopySeedToClipboard extends Component {
                                     onLeftButtonPress={() => this.hideModal()}
                                     onRightButtonPress={() => this.onCopyPress()}
                                     leftText={t('global:back')}
-                                    rightText="COPY"
+                                    rightText={t('copy')}
                                     opacity={opacity}
                                     containerWidth={width / 1.25}
                                 />
