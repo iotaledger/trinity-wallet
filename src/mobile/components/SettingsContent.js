@@ -20,6 +20,7 @@ import ManualSyncComponent from '../containers/ManualSync';
 import ThemeCustomisation from '../containers/ThemeCustomisation';
 import SnapshotTransition from '../containers/SnapshotTransition';
 import SecuritySettings from '../containers/SecuritySettings';
+import About from '../containers/About';
 
 const SETTINGS_COMPONENTS = {
     mainSettings: MainSettingsComponent,
@@ -42,6 +43,7 @@ const SETTINGS_COMPONENTS = {
     securitySettings: SecuritySettings,
     modeSelection: ModeSelection,
     pow: ProofOfWork,
+    about: About,
 };
 
 const SettingsContent = ({ component, ...props }) => {

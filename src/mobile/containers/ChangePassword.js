@@ -153,7 +153,7 @@ class ChangePassword extends Component {
 
                     generateAlert('success', t('passwordUpdated'), t('passwordUpdatedExplanation'));
 
-                    this.props.setSetting('mainSettings');
+                    this.props.setSetting('securitySettings');
                 })
                 .catch(() => throwErr());
         }
@@ -266,7 +266,7 @@ class ChangePassword extends Component {
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity
-                            onPress={() => this.props.setSetting('mainSettings')}
+                            onPress={() => this.props.setSetting('securitySettings')}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>

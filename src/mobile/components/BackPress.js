@@ -59,9 +59,9 @@ export default () => (C) => {
                 case 'currencySelection':
                 case 'languageSelection':
                 case 'accountManagement':
-                case 'changePassword':
                 case 'securitySettings':
                 case 'advancedSettings':
+                case 'about':
                     this.props.setSetting('mainSettings');
                     return true;
                 case 'nodeSelection':
@@ -81,10 +81,12 @@ export default () => (C) => {
                 case 'addExistingSeed':
                     this.props.setSetting('addNewAccount');
                     return true;
+                case 'changePassword':
+                    this.props.setSetting('securitySettings');
+                    return true;
                 default:
                     break;
             }
-
             return true;
         };
 
