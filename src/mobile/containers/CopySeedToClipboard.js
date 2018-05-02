@@ -177,7 +177,7 @@ class CopySeedToClipboard extends Component {
         clipboardFn(seed);
         this.props.generateAlert('success', t('seedCopied'), t('seedCopiedExplanation'));
         this.timeout = setTimeout(() => {
-            clipboardFn.setString(' ');
+            clipboardFn(' ');
             this.generateClipboardClearAlert();
         }, 30000);
     }
