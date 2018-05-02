@@ -199,11 +199,7 @@ const styles = StyleSheet.create({
     },
     modalContainer: {
         width: width / 1.1,
-        alignItems: 'center',
-        justifyContent: 'center',
         paddingVertical: height / 20,
-        borderRadius: GENERAL.borderRadius,
-        borderWidth: 2,
     },
     modalCheckboxContainer: {
         flexDirection: 'row',
@@ -254,6 +250,10 @@ class PaperWallet extends Component {
         };
 
         this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+    }
+
+    componentWillMount() {
+        timer.clearTimeout('delayPrint');
     }
 
     onDonePress() {
@@ -519,13 +519,7 @@ class PaperWallet extends Component {
                     width={width / 1.1}
                     text={
                         <View>
-                            <Text
-                                style={[
-                                    styles.infoText,
-                                    textColor,
-                                    { paddingTop: height / 40, paddingBottom: height / 30 },
-                                ]}
-                            >
+                            <Text style={[styles.infoText, textColor, { paddingTop: height / 40 }]}>
                                 <Text style={styles.infoTextNormal}>
                                     Printing a paper copy of your seed is a convenient way to store it.{' '}
                                 </Text>
@@ -533,7 +527,7 @@ class PaperWallet extends Component {
                                     But printing on public wifi or a public printer is insecure.
                                 </Text>
                             </Text>
-                            <Text style={[styles.infoTextBold, textColor, { paddingBottom: height / 30 }]}>
+                            <Text style={[styles.infoTextBold, textColor, { paddingVertical: height / 30 }]}>
                                 Please tap the checkboxes below to confirm.
                             </Text>
                             <TouchableOpacity

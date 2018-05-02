@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableOpacity, Clipboard, Share } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Clipboard, Share, Image } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import timer from 'react-native-timer';
+import whiteCheckboxCheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-checked-white.png';
+import whiteCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked-white.png';
+import blackCheckboxCheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-checked-black.png';
+import blackCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked-black.png';
+import tinycolor from 'tinycolor2';
+import Modal from 'react-native-modal';
+import OnboardingButtons from '../containers/OnboardingButtons';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import Seedbox from '../components/SeedBox';
 import { width, height } from '../utils/dimensions';
@@ -13,6 +20,7 @@ import CtaButton from '../components/CtaButton';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import { Icon } from '../theme/icons.js';
 import InfoBox from '../components/InfoBox';
+import { isAndroid } from '../utils/device';
 
 const styles = StyleSheet.create({
     container: {
@@ -54,16 +62,22 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-around',
     },
+    infoText: {
+        fontFamily: 'Lato-Light',
+        fontSize: width / 27.6,
+        textAlign: 'justify',
+        backgroundColor: 'transparent',
+    },
     infoTextNormal: {
         fontFamily: 'Lato-Light',
         fontSize: width / 27.6,
-        textAlign: 'center',
+        textAlign: 'justify',
         backgroundColor: 'transparent',
     },
     infoTextBold: {
         fontFamily: 'Lato-Bold',
         fontSize: width / 27.6,
-        textAlign: 'center',
+        textAlign: 'justify',
         backgroundColor: 'transparent',
     },
     doneButton: {
@@ -79,6 +93,24 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Light',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
+    },
+    modalContainer: {
+        width: width / 1.1,
+        paddingVertical: height / 20,
+    },
+    modalCheckboxContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        height: height / 14,
+    },
+    modalCheckboxText: {
+        fontFamily: 'Lato-Light',
+        fontSize: width / 25.9,
+    },
+    modalCheckbox: {
+        width: width / 20,
+        height: width / 20,
     },
 });
 
@@ -108,11 +140,13 @@ class CopySeedToClipboard extends Component {
         this.timeout = null;
         this.state = {
             copiedToClipboard: false,
+            isModalActive: false,
         };
     }
 
     componentWillUnmount() {
         timer.clearTimeout('clipboardClear');
+        timer.clearTimeout('delayCopy');
         this.clearClipboard();
     }
 
@@ -138,10 +172,45 @@ class CopySeedToClipboard extends Component {
         }
     }
 
+    onCopyPress() {
+        const { checkbox } = this.state;
+        if (checkbox) {
+            this.hideModal();
+            timer.setTimeout('delayCopy', () => this.copy(), 500);
+        }
+    }
+
+    getCheckbox() {
+        const { theme: { body } } = this.props;
+        const { checkbox } = this.state;
+        const isBgDark = tinycolor(body.bg).isDark();
+        if (checkbox) {
+            return isBgDark ? whiteCheckboxCheckedImagePath : blackCheckboxCheckedImagePath;
+        }
+        return isBgDark ? whiteCheckboxUncheckedImagePath : blackCheckboxUncheckedImagePath;
+    }
+
+    openModal() {
+        this.setState({ isModalActive: true });
+    }
+
+    hideModal() {
+        this.setState({ isModalActive: false, checkbox: false });
+    }
+
+    /**
+     * Alert the user that the clipboard was cleared
+     */
+    clearClipboard() {
+        const { t } = this.props;
+        Clipboard.setString(' ');
+        this.props.generateAlert('info', t('seedCleared'), t('seedClearedExplanation'));
+    }
+
     /**
      * Copy the seed to the clipboard and remove it after 30 seconds
      */
-    onCopyPress() {
+    copy() {
         const { t, seed } = this.props;
         this.setState({ copiedToClipboard: true });
         Share.share(
@@ -162,17 +231,60 @@ class CopySeedToClipboard extends Component {
         );
     }
 
-    /**
-     * Alert the user that the clipboard was cleared
-     */
-    clearClipboard() {
-        const { t } = this.props;
-        Clipboard.setString(' ');
-        this.props.generateAlert('info', t('seedCleared'), t('seedClearedExplanation'));
-    }
+    renderModalContent = () => {
+        const { t, theme: { body } } = this.props;
+        const { checkbox } = this.state;
+        const textColor = { color: body.color };
+        const opacity = checkbox ? 1 : 0.1;
+
+        return (
+            <View style={{ backgroundColor: body.bg, marginTop: height / 20 }}>
+                <InfoBox
+                    body={body}
+                    width={width / 1.1}
+                    text={
+                        <View>
+                            <Text style={[styles.infoText, textColor, { paddingTop: height / 40 }]}>
+                                <Text style={styles.infoTextNormal}>
+                                    Your IOTA seed is the master key to your funds.{' '}
+                                </Text>
+                                <Text style={styles.infoTextNormal}>
+                                    If you choose to back-up your seed on your phone it should be stored encrypted e.g.
+                                    in a password manager.{' '}
+                                </Text>
+                            </Text>
+                            <Text style={[styles.infoTextBold, textColor, { paddingVertical: height / 30 }]}>
+                                Please tap the checkbox below to confirm.
+                            </Text>
+                            <TouchableOpacity
+                                style={[styles.modalCheckboxContainer, { paddingTop: height / 60 }]}
+                                onPress={() => this.setState({ checkbox: !checkbox })}
+                            >
+                                <Text style={[styles.modalCheckboxText, textColor]}>
+                                    I will store my seed with encryption
+                                </Text>
+                                <Image source={this.getCheckbox()} style={styles.modalCheckbox} />
+                            </TouchableOpacity>
+                            <View style={{ paddingTop: height / 18 }}>
+                                <OnboardingButtons
+                                    onLeftButtonPress={() => this.hideModal()}
+                                    onRightButtonPress={() => this.onCopyPress()}
+                                    leftText={t('global:back')}
+                                    rightText="COPY"
+                                    opacity={opacity}
+                                    containerWidth={width / 1.25}
+                                />
+                            </View>
+                        </View>
+                    }
+                />
+            </View>
+        );
+    };
 
     render() {
         const { t, theme, seed } = this.props;
+        const { isModalActive } = this.state;
         const textColor = { color: theme.body.color };
         const borderColor = { borderColor: theme.body.color };
 
@@ -202,7 +314,7 @@ class CopySeedToClipboard extends Component {
                         secondaryCtaColor={theme.primary.body}
                         text={t('copyToClipboard').toUpperCase()}
                         onPress={() => {
-                            this.onCopyPress();
+                            this.openModal();
                         }}
                         ctaWidth={width / 1.65}
                     />
@@ -215,6 +327,19 @@ class CopySeedToClipboard extends Component {
                         </View>
                     </TouchableOpacity>
                 </View>
+                <Modal
+                    backdropTransitionInTiming={isAndroid ? 500 : 300}
+                    backdropTransitionOutTiming={200}
+                    backdropColor={theme.body.bg}
+                    backdropOpacity={0.8}
+                    style={{ alignItems: 'center', margin: 0 }}
+                    isVisible={isModalActive}
+                    onBackButtonPress={() => this.hideModal()}
+                    hideModalContentWhileAnimating
+                    useNativeDriver={isAndroid ? true : false}
+                >
+                    {this.renderModalContent()}
+                </Modal>
                 <StatefulDropdownAlert backgroundColor={theme.body.bg} />
             </View>
         );
