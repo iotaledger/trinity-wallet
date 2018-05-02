@@ -238,13 +238,13 @@
     },
     "saveYourSeed": {
         "mustSaveYourSeed":
-            "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
+            "<0><0>You must back up your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Incorrect seed",
         "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
-        "thisIsACheck": "This is a check to make sure you saved your seed.",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
+        "thisIsACheck": "This is a check to make sure you backed up your seed.",
+        "ifYouHaveNotSaved": "If you have not backed up your seed, please go back and do so."
     },
     "send": {
         "invalidAddress": "Invalid address",
@@ -457,9 +457,10 @@
         "hideSeed": "HIDE SEED"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "I have saved my seed",
+        "alreadyHave": "I have backed up my seed",
         "reenter": "You will now be asked to re-enter your seed.",
-        "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
+        "reenterWarning":
+            "If your device is lost, stolen or fails, and you have not backed up your seed, you will lose your IOTA."
     },
     "walletResetConfirmation": {
         "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
