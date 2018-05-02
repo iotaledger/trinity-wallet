@@ -94,10 +94,6 @@ const styles = StyleSheet.create({
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
     },
-    modalContainer: {
-        width: width / 1.1,
-        paddingVertical: height / 20,
-    },
     modalCheckboxContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -245,7 +241,7 @@ class CopySeedToClipboard extends Component {
                     text={
                         <View>
                             <Text style={[styles.infoText, textColor, { paddingTop: height / 40 }]}>
-                                <Text style={styles.infoTextBold}>{t('global:masterKey')} </Text>
+                                <Text style={styles.infoTextNormal}>{t('global:masterKey')} </Text>
                                 <Text style={styles.infoTextNormal}>{t('storeEncrypted')} </Text>
                             </Text>
                             <Text style={[styles.infoTextBold, textColor, { paddingVertical: height / 30 }]}>
