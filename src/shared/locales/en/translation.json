@@ -163,7 +163,7 @@
             "If you choose to back-up your seed on your phone it should be stored encrypted e.g. in a password manager.",
         "tapConfirm": "Please tap the checkbox below to confirm.",
         "encryptionCheckbox": "I will store my seed with encryption",
-        "copy": "copy"
+        "copy": "COPY"
     },
     "enterSeed": {
         "invalidCharacters": "Seed contains invalid characters",
