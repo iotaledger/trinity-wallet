@@ -1,10 +1,9 @@
 import get from 'lodash/get';
-import union from 'lodash/union';
 import { getStoredState } from 'redux-persist';
 import { updatePersistedState } from '../libs/utils';
 import { generateAlert } from './alerts';
 import i18next from '../i18next';
-import { UPDATE_URL, nodes } from '../config';
+import { UPDATE_URL } from '../config';
 
 export const ActionTypes = {
     SET_LOCALE: 'IOTA/SETTINGS/LOCALE',
@@ -66,17 +65,10 @@ export const setNode = (payload) => ({
     payload,
 });
 
-export function setNodeList(list) {
-    const remoteNodes = list.map((node) => node.node);
-    const unionNodes = union(nodes, remoteNodes);
-
-    return (dispatch) => {
-        dispatch({
-            type: ActionTypes.SET_NODELIST,
-            nodes: unionNodes,
-        });
-    };
-}
+export const setNodeList = (payload) => ({
+    type: ActionTypes.SET_NODELIST,
+    payload,
+});
 
 export const updatePowSettings = () => ({
     type: ActionTypes.UPDATE_POW_SETTINGS,
