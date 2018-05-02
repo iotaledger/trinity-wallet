@@ -520,32 +520,24 @@ class PaperWallet extends Component {
                     text={
                         <View>
                             <Text style={[styles.infoText, textColor, { paddingTop: height / 40 }]}>
-                                <Text style={styles.infoTextNormal}>
-                                    Printing a paper copy of your seed is a convenient way to store it.{' '}
-                                </Text>
-                                <Text style={styles.infoTextBold}>
-                                    But printing on public wifi or a public printer is insecure.
-                                </Text>
+                                <Text style={styles.infoTextNormal}>{t('paperConvenience')} </Text>
+                                <Text style={styles.infoTextBold}>{t('publicInsecure')}</Text>
                             </Text>
                             <Text style={[styles.infoTextBold, textColor, { paddingVertical: height / 30 }]}>
-                                Please tap the checkboxes below to confirm.
+                                {t('tapCheckboxes')}
                             </Text>
                             <TouchableOpacity
                                 style={[styles.modalCheckboxContainer, { paddingTop: height / 60 }]}
                                 onPress={() => this.onPublicWifiCheckboxPress()}
                             >
-                                <Text style={[styles.modalCheckboxText, textColor]}>
-                                    I will not print on public wifi
-                                </Text>
+                                <Text style={[styles.modalCheckboxText, textColor]}>{t('wifiCheckbox')}</Text>
                                 <Image source={this.getCheckbox(publicWifiCheckbox)} style={styles.modalCheckbox} />
                             </TouchableOpacity>
                             <TouchableOpacity
                                 style={styles.modalCheckboxContainer}
                                 onPress={() => this.onPublicPrinterCheckboxPress()}
                             >
-                                <Text style={[styles.modalCheckboxText, textColor]}>
-                                    I will not print on a public printer
-                                </Text>
+                                <Text style={[styles.modalCheckboxText, textColor]}>{t('printerCheckbox')}</Text>
                                 <Image source={this.getCheckbox(publicPrinterCheckbox)} style={styles.modalCheckbox} />
                             </TouchableOpacity>
                             <View style={{ paddingTop: height / 18 }}>
@@ -553,7 +545,7 @@ class PaperWallet extends Component {
                                     onLeftButtonPress={() => this.hideModal()}
                                     onRightButtonPress={() => this.onPrintPress()}
                                     leftText={t('global:back')}
-                                    rightText="PRINT"
+                                    rightText={t('print')}
                                     opacity={opacity}
                                     containerWidth={width / 1.25}
                                 />
