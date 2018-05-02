@@ -46,13 +46,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     mainTitle: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 24.4,
         paddingBottom: isAndroid ? 0 : height / 170,
     },
     subtitle: {
         textAlign: 'center',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 27.6,
     },
     childView: {
@@ -120,7 +120,7 @@ class TopBar extends Component {
         clearLog: PropTypes.func.isRequired,
         topBarHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.object]).isRequired,
         isIOSKeyboardActive: PropTypes.bool.isRequired,
-        isTransitioning: PropTypes.bool.isRequired
+        isTransitioning: PropTypes.bool.isRequired,
     };
 
     static filterSeedTitles(accountNames, currentSeedIndex) {

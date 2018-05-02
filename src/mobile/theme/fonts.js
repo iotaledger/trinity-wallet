@@ -1,5 +1,5 @@
 export default {
-    primary: 'Lato-Bold',
-    secondary: 'Lato-Regular',
-    tertiary: 'Lato-Light',
+    primary: 'SourceSansPro-Bold',
+    secondary: 'SourceSansPro-Regular',
+    tertiary: 'SourceSansPro-Light',
 };

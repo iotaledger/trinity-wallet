@@ -40,13 +40,13 @@ const styles = StyleSheet.create({
         height: width / 28,
     },
     titleText: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         marginLeft: width / 25,
     },
     backText: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     settingText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 23,
         marginLeft: width / 12,
         width: width / 2.4,

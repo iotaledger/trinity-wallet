@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     },
     text: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 32,
     },
 });

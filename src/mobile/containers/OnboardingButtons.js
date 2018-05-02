@@ -26,13 +26,13 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
     },
     leftText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
         textAlign: 'center',
     },
     rightText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
         textAlign: 'center',
