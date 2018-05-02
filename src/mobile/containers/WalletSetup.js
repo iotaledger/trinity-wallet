@@ -33,19 +33,19 @@ const styles = StyleSheet.create({
         paddingBottom: height / 20,
     },
     infoText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 27.6,
         textAlign: 'justify',
         paddingTop: height / 60,
         backgroundColor: 'transparent',
     },
     infoTextLight: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 27.6,
         backgroundColor: 'transparent',
     },
     infoTextRegular: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 27.6,
         backgroundColor: 'transparent',
     },
@@ -55,13 +55,13 @@ const styles = StyleSheet.create({
         width: width / 1.5,
     },
     greetingText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 23,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
     questionText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 23,
         textAlign: 'center',
         backgroundColor: 'transparent',

@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     },
     optionButtonText: {
         color: '#8BD4FF',
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 25.3,
         textAlign: 'center',
         paddingHorizontal: width / 20,
@@ -68,19 +68,19 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
     },
     infoText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 27.6,
         textAlign: 'justify',
         backgroundColor: 'transparent',
     },
     infoTextNormal: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 27.6,
         textAlign: 'justify',
         backgroundColor: 'transparent',
     },
     infoTextBold: {
-        fontFamily: 'Lato-Bold',
+        fontFamily: 'SourceSansPro-Bold',
         fontSize: width / 27.6,
         textAlign: 'justify',
         backgroundColor: 'transparent',
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
         marginBottom: height / 20,
     },
     doneText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
     },
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
     paperWalletText: {
         color: 'black',
         fontSize: width / 40,
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         textAlign: 'center',
         backgroundColor: 'transparent',
         paddingBottom: height / 80,
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
         height: width / 30,
     },
     checkboxText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 27.6,
         color: 'white',
         backgroundColor: 'transparent',
@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
     checksumText: {
         fontSize: width / 37.6,
         color: 'black',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
     },
     modalContainer: {
         width: width / 1.1,
@@ -208,7 +208,7 @@ const styles = StyleSheet.create({
         height: height / 14,
     },
     modalCheckboxText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 25.9,
     },
     modalCheckbox: {
@@ -409,10 +409,10 @@ class PaperWallet extends Component {
                 border-width: 2px;
                 border-radius: 20px
             }
-            @font-face { font-family: "Lato"; src: "iota-wallet-shared-modules/custom-fonts/Lato-Regular.ttf" }
+            @font-face { font-family: "SourceSansPro"; src: "iota-wallet-shared-modules/custom-fonts/SourceSansPro-Regular.ttf" }
             @font-face { font-family: "Monospace"; src: "iota-wallet-shared-modules/custom-fonts/Inconsolata-Bold.ttf" }
             #text {
-                font-family: "Lato";
+                font-family: "SourceSansPro";
                 font-size: 20px;
                 text-align: center;
                 padding-top: 42px;
@@ -424,7 +424,7 @@ class PaperWallet extends Component {
                 marginTop: 100px;
             }
             #checksum {
-                font-family: "Lato";
+                font-family: "SourceSansPro";
                 font-size: 20px;
                 margin-top: 100px;
                 border: solid #000;

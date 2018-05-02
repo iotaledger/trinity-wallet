@@ -71,13 +71,13 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
     },
     titleTextLeft: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
     titleTextRight: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         marginRight: width / 20,
@@ -334,7 +334,7 @@ const mapStateToProps = (state) => ({
     isPromoting: state.polling.isPromoting,
     selectedAccountName: getSelectedAccountName(state),
     shouldPreventAction: shouldPreventAction(state),
-    isModalActive: state.ui.isModalActive
+    isModalActive: state.ui.isModalActive,
 });
 
 const mapDispatchToProps = {
