@@ -312,6 +312,7 @@
         "twoFA": "Two-factor authentication",
         "changePassword": "Change password",
         "advanced": "Advanced settings",
+        "about": "About",
         "logout": "Log out",
         "reset": "Reset wallet",
         "syncingComplete": "Syncing complete",
