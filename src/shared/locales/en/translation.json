@@ -111,7 +111,8 @@
         "nodeDuplicatedExplanation": "The custom node is already listed.",
         "nodeAutoChanged": "Auto-switched node",
         "nodeAutoChangedExplanation": "Switched to new node {{- nodeAddress}} as selected node is offline.",
-        "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer"
+        "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer",
+        "masterKey": "Your IOTA seed is the master key to your funds."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
@@ -156,7 +157,12 @@
         "clickToCopy": "Click the button below and copy your seed to a password manager.",
         "doNotStore": "Do not store your seed in plain text.",
         "copyToClipboard": "Copy seed",
-        "shareSeed": "Share your seed to a secure password manager"
+        "shareSeed": "Share your seed to a secure password manager",
+        "storeEncrypted":
+            "If you choose to back-up your seed on your phone it should be stored encrypted e.g. in a password manager.",
+        "tapConfirm": "Please tap the checkbox below to confirm.",
+        "encryptionCheckbox": "I will store my seed with encryption",
+        "copy": "copy"
     },
     "enterSeed": {
         "invalidCharacters": "Seed contains invalid characters",
@@ -211,7 +217,12 @@
         "neverShare": "Never share your seed with anyone.",
         "iotaLogo": "IOTA logo",
         "printWallet": "PRINT PAPER WALLET",
-        "print": "PRINT"
+        "print": "PRINT",
+        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
+        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
+        "tapCheckboxes": "Please tap the checkboxes below to confirm.",
+        "wifiCheckbox": "I will not print on public wifi",
+        "printerCheckbox": "I will not print on a public printer"
     },
     "receive": {
         "addressCopied": "Address copied",
