@@ -52,6 +52,7 @@
         "otherWallet": "OTHER ACCOUNT",
         "yes": "YES",
         "no": "NO",
+        "okay": "OKAY",
         "password": "Password",
         "passwordOrFingerprint": "Password or fingerprint",
         "unrecognisedPassword": "Unrecognised password",
@@ -205,7 +206,9 @@
         "seedNotGenerated": "Seed has not been generated",
         "seedNotGeneratedExplanation": "Please generate a new seed.",
         "pressForNewSeed": "PRESS FOR NEW SEED",
-        "individualLetters": "Press individual letters to randomise them."
+        "generateSuccess": "Seed generated successfully",
+        "individualLetters": "Press individual letters to randomise them.",
+        "whatIsASeed": "What is a seed?"
     },
     "onboardingComplete": {
         "walletReady":
@@ -351,8 +354,7 @@
     "walletSetup": {
         "okay": "Okay. Let's set up your wallet!",
         "doYouAlreadyHaveASeed": "Do you already have a seed that you would like to use?",
-        "seedExplanation":
-            "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
+        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long.",
         "explanation":
             "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
         "keepSafe": "Please keep your seed safe.",
