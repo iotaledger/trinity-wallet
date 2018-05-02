@@ -712,6 +712,7 @@
 		C95BBF78A0A4EBD898EABC433D7C624A /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Bold.ttf"; path = "../../shared/custom-fonts/Lato-Bold.ttf"; sourceTree = "<group>"; };
 		C989B5B2E21BB76597A51E0EFEA9B547 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CB12F2DB8E6D3A4CD653968A6281A586 /* Lato-Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Heavy.ttf"; path = "../../shared/custom-fonts/Lato-Heavy.ttf"; sourceTree = "<group>"; };
+		CB42B7702099FCE5002F0EF9 /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Bold.ttf"; sourceTree = "<group>"; };
 		CB66259C2084BF2A00651519 /* Icons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Icons.ttf; path = ../../shared/icons/Icons.ttf; sourceTree = "<group>"; };
 		CB6626ED2085056C00651519 /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
 		CFA2B84C183CC39F995C8E04CC713DDB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = iotaWallet/Images.xcassets; sourceTree = "<group>"; };
@@ -949,6 +950,7 @@
 				CB12F2DB8E6D3A4CD653968A6281A586 /* Lato-Heavy.ttf */,
 				7354E30FAB50A709173411D8600A744E /* Lato-Light.ttf */,
 				106C93169C14F4C2B53F9F4CA76BB6A2 /* Lato-Regular.ttf */,
+				CB42B7702099FCE5002F0EF9 /* SourceSansPro-Bold.ttf */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
