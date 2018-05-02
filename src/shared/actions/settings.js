@@ -1,9 +1,10 @@
 import get from 'lodash/get';
+import union from 'lodash/union';
 import { getStoredState } from 'redux-persist';
 import { updatePersistedState } from '../libs/utils';
 import { generateAlert } from './alerts';
 import i18next from '../i18next';
-import { UPDATE_URL } from '../config';
+import { UPDATE_URL, nodes } from '../config';
 
 export const ActionTypes = {
     SET_LOCALE: 'IOTA/SETTINGS/LOCALE',
@@ -22,6 +23,7 @@ export const ActionTypes = {
     SET_UPDATE_ERROR: 'IOTA/SETTINGS/SET_UPDATE_ERROR',
     SET_UPDATE_SUCCESS: 'IOTA/SETTINGS/UPDATE_SUCCESS',
     SET_UPDATE_DONE: 'IOTA/SETTINGS/UPDATE_DONE',
+    SET_NODELIST: 'IOTA/SETTINGS/SET_NODELIST',
     UPDATE_POW_SETTINGS: 'IOTA/SETTINGS/UPDATE_POW_SETTINGS',
     UPDATE_AUTO_NODE_SWITCHING: 'IOTA/SETTINGS/UPDATE_AUTO_NODE_SWITCHING',
     SET_LOCK_SCREEN_TIMEOUT: 'IOTA/SETTINGS/SET_LOCK_SCREEN_TIMEOUT',
@@ -64,13 +66,25 @@ export const setNode = (payload) => ({
     payload,
 });
 
+export function setNodeList(list) {
+    const remoteNodes = list.map((node) => node.node);
+    const unionNodes = union(nodes, remoteNodes);
+
+    return (dispatch) => {
+        dispatch({
+            type: ActionTypes.SET_NODELIST,
+            nodes: unionNodes,
+        });
+    };
+}
+
 export const updatePowSettings = () => ({
     type: ActionTypes.UPDATE_POW_SETTINGS,
 });
 
 export const updateAutoNodeSwitching = (payload) => ({
     type: ActionTypes.UPDATE_AUTO_NODE_SWITCHING,
-    payload
+    payload,
 });
 
 export const setLockScreenTimeout = (payload) => ({
