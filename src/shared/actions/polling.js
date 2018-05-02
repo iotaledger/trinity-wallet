@@ -1,6 +1,7 @@
 import get from 'lodash/get';
 import each from 'lodash/each';
 import map from 'lodash/map';
+import union from 'lodash/union';
 import { setPrice, setChartData, setMarketData } from './marketData';
 import { setNodeList } from './settings';
 import { formatChartData, getUrlTimeFormat, getUrlNumberFormat, rearrangeObjectKeys } from '../libs/utils';
@@ -11,7 +12,7 @@ import { selectedAccountStateFactory } from '../selectors/accounts';
 import { syncAccount } from '../libs/iota/accounts';
 import { forceTransactionPromotion } from './transfers';
 import i18next from '../i18next.js';
-import { NODELIST_URL } from '../config';
+import { NODELIST_URL, nodes } from '../config';
 
 export const ActionTypes = {
     SET_POLL_FOR: 'IOTA/POLLING/SET_POLL_FOR',
@@ -149,8 +150,17 @@ export const fetchNodelist = () => {
         dispatch(fetchNodeListRequest());
         fetch(NODELIST_URL)
             .then((response) => response.json(), () => dispatch(fetchNodeListError()))
-            .then((json) => {
-                dispatch(setNodeList(json));
+            .then((response) => {
+                if (response.length) {
+                    const remoteNodes = response
+                        .map((node) => node.node)
+                        .filter((node) => typeof node === 'string' && node.indexOf('https://') === 0);
+
+                    const unionNodes = union(nodes, remoteNodes);
+
+                    dispatch(setNodeList(unionNodes));
+                }
+
                 dispatch(fetchNodeListSuccess());
             });
     };
