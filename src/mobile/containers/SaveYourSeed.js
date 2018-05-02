@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         paddingBottom: height / 20,
     },
     optionButtonText: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 25.3,
         textAlign: 'center',
         backgroundColor: 'transparent',
@@ -49,20 +49,20 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
     },
     infoText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         paddingHorizontal: width / 9,
         textAlign: 'center',
     },
     infoTextNormal: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         textAlign: 'center',
     },
     infoTextBold: {
-        fontFamily: 'Lato-Bold',
+        fontFamily: 'SourceSansPro-Bold',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         textAlign: 'center',

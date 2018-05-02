@@ -42,13 +42,13 @@ const styles = StyleSheet.create({
     },
     subHeaderText: {
         fontSize: width / 22.7,
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
     infoText: {
         fontSize: width / 27.6,
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         textAlign: 'justify',
         backgroundColor: 'transparent',
     },

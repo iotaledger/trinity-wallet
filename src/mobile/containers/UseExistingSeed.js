@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
         paddingBottom: height / 30,
     },
     title: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 20.7,
         textAlign: 'center',
         backgroundColor: 'transparent',
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     textField: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
     },
     accountNameContainer: {
         flex: 4,
@@ -88,13 +88,13 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
     },
     titleTextLeft: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
     titleTextRight: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         marginRight: width / 20,

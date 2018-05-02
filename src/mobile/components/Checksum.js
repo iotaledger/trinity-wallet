@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     },
     checksumText: {
         fontSize: width / 29.6,
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
     },
 });
 
