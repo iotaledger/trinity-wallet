@@ -9,6 +9,7 @@ import {
     fetchMarketData,
     fetchChartData,
     fetchPrice,
+    fetchNodeList,
     setPollFor,
     promoteTransfer,
     getAccountInfo,
@@ -25,6 +26,7 @@ class Polling extends React.PureComponent {
         setPollFor: PropTypes.func.isRequired,
         fetchMarketData: PropTypes.func.isRequired,
         fetchPrice: PropTypes.func.isRequired,
+        fetchNodeList: PropTypes.func.isRequired,
         fetchChartData: PropTypes.func.isRequired,
         promoteTransfer: PropTypes.func.isRequired,
     };
@@ -89,6 +91,7 @@ class Polling extends React.PureComponent {
             marketData: this.props.fetchMarketData,
             price: this.props.fetchPrice,
             chartData: this.props.fetchChartData,
+            nodeList: this.props.fetchNodeList,
             accountInfo: this.fetchLatestAccountInfo,
         };
 
@@ -148,6 +151,7 @@ const mapDispatchToProps = {
     fetchMarketData,
     fetchChartData,
     fetchPrice,
+    fetchNodeList,
     setPollFor,
     promoteTransfer,
     getAccountInfo,
