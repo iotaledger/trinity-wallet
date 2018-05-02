@@ -68,18 +68,18 @@ const styles = StyleSheet.create({
         borderWidth: 1.2,
     },
     generateText: {
-        fontFamily: 'Lato-Bold',
+        fontFamily: 'SourceSansPro-Bold',
         fontSize: width / 34.5,
         backgroundColor: 'transparent',
     },
     infoText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 27.6,
         backgroundColor: 'transparent',
     },
     tileText: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Bold',
+        fontFamily: 'SourceSansPro-Bold',
         fontSize: width / 28.9,
         textAlign: 'center',
     },
@@ -90,12 +90,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     infoTextLight: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 27.6,
         backgroundColor: 'transparent',
     },
     infoTextRegular: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 27.6,
         backgroundColor: 'transparent',
     },
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
     },
     okText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
     },

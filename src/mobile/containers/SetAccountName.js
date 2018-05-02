@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
         paddingTop: height / 15,
     },
     infoText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 27.6,
         textAlign: 'justify',
         paddingTop: height / 60,

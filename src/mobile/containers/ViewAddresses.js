@@ -26,13 +26,13 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
     },
     titleText: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
     infoText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 23,
         backgroundColor: 'transparent',
     },
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     },
     balanceText: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 31.8,
         textAlign: 'right',
     },
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
     },
     noAddresses: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 27.6,
         backgroundColor: 'transparent',
     },
