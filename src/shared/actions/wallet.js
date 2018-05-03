@@ -2,7 +2,7 @@ import takeRight from 'lodash/takeRight';
 import { iota } from '../libs/iota';
 import { updateAddresses, updateAccountAfterTransition } from '../actions/accounts';
 import { generateAlert, generateTransitionErrorAlert } from '../actions/alerts';
-import { getNewAddress, formatAddresses, syncAddresses, getLatestAddress } from '../libs/iota/addresses';
+import { getNewAddress, formatAddressData, syncAddresses, getLatestAddress } from '../libs/iota/addresses';
 import { MAX_SEED_LENGTH } from '../libs/iota/utils';
 import { DEFAULT_MIN_WEIGHT_MAGNITUDE, DEFAULT_DEPTH } from '../config';
 import i18next from '../i18next';
@@ -206,7 +206,7 @@ export const completeSnapshotTransition = (seed, accountName, addresses) => {
 
                 iota.api.wereAddressesSpentFrom(addresses, (error, addressSpendStatus) => {
                     if (!error) {
-                        const formattedAddresses = formatAddresses(
+                        const formattedAddressData = formatAddressData(
                             relevantAddresses,
                             relevantBalances,
                             addressSpendStatus,
@@ -216,7 +216,7 @@ export const completeSnapshotTransition = (seed, accountName, addresses) => {
                         dispatch(snapshotAttachToTangleRequest());
                         iota.api.sendTransfer(...args, (error) => {
                             if (!error) {
-                                dispatch(updateAccountAfterTransition(accountName, formattedAddresses, balance));
+                                dispatch(updateAccountAfterTransition(accountName, formattedAddressData, balance));
                                 dispatch(snapshotTransitionSuccess());
                                 dispatch(snapshotAttachToTangleComplete());
                                 dispatch(
