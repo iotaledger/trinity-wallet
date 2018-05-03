@@ -12,6 +12,7 @@ import {
     fetchMarketData,
     fetchChartData,
     fetchPrice,
+    fetchNodeList,
     setPollFor,
     getAccountInfo,
     promoteTransfer,
@@ -26,6 +27,7 @@ export class Poll extends Component {
         setPollFor: PropTypes.func.isRequired,
         fetchMarketData: PropTypes.func.isRequired,
         fetchPrice: PropTypes.func.isRequired,
+        fetchNodeList: PropTypes.func.isRequired,
         fetchChartData: PropTypes.func.isRequired,
         getAccountInfo: PropTypes.func.isRequired,
         promoteTransfer: PropTypes.func.isRequired,
@@ -61,6 +63,7 @@ export class Poll extends Component {
 
         const isAlreadyPollingSomething =
             props.isFetchingPrice ||
+            props.isFetchingNodelist ||
             props.isFetchingChartData ||
             props.isFetchingMarketData ||
             props.isFetchingAccountInfo ||
@@ -79,6 +82,7 @@ export class Poll extends Component {
             marketData: this.props.fetchMarketData,
             price: this.props.fetchPrice,
             chartData: this.props.fetchChartData,
+            nodeList: this.props.fetchNodeList,
             accountInfo: this.fetchLatestAccountInfo,
         };
 
@@ -134,6 +138,7 @@ const mapStateToProps = (state) => ({
     pollFor: state.polling.pollFor,
     allPollingServices: state.polling.allPollingServices,
     isFetchingPrice: state.polling.isFetchingPrice,
+    isFetchingNodelist: state.polling.isFetchingNodelist,
     isFetchingChartData: state.polling.isFetchingChartData,
     isFetchingMarketData: state.polling.isFetchingMarketData,
     isFetchingAccountInfo: state.polling.isFetchingAccountInfo,
@@ -153,6 +158,7 @@ const mapDispatchToProps = {
     fetchMarketData,
     fetchChartData,
     fetchPrice,
+    fetchNodeList,
     setPollFor,
     getAccountInfo,
     promoteTransfer,
