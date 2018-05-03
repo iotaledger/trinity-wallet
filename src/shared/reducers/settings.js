@@ -1,4 +1,5 @@
 import merge from 'lodash/merge';
+import union from 'lodash/union';
 import { ActionTypes } from '../actions/settings';
 import { DESKTOP_VERSION, defaultNode as node, nodes } from '../config';
 import themes from '../themes/themes';
@@ -7,6 +8,7 @@ const initialState = {
     locale: 'en',
     node,
     nodes,
+    customNodes: [],
     mode: 'Standard',
     language: 'English (International)',
     currency: 'USD',
@@ -93,12 +95,13 @@ const settingsReducer = (state = initialState, action) => {
         case ActionTypes.ADD_CUSTOM_POW_NODE:
             return {
                 ...state,
-                nodes: state.nodes.includes(action.payload) ? state.nodes : [].concat(state.nodes, action.payload),
+                nodes: union(state.nodes, [action.payload]),
+                customNodes: (state.nodes.includes(action.payload)) ? state.customNodes : union(state.customNodes, [action.payload]),
             };
         case ActionTypes.SET_NODELIST:
             return {
                 ...state,
-                nodes: action.payload.includes(state.node) ? action.payload : action.payload.concat([state.node]),
+                nodes: union(action.payload, state.customNodes, [state.node]),
             };
         case ActionTypes.SET_MODE:
             return {
