@@ -5,7 +5,7 @@ import { Text, TextInput } from 'react-native';
 import { Provider } from 'react-redux';
 import { setRandomlySelectedNode } from 'iota-wallet-shared-modules/actions/settings';
 import { changeIotaNode, getRandomNode, SwitchingConfig } from 'iota-wallet-shared-modules/libs/iota';
-import { fetchNodelist as fetchNodes } from 'iota-wallet-shared-modules/actions/polling';
+import { fetchNodeList as fetchNodes } from 'iota-wallet-shared-modules/actions/polling';
 import i18next from 'i18next';
 import { getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
 import { isIOS } from '../utils/device';
