@@ -63,7 +63,7 @@ export class Poll extends Component {
 
         const isAlreadyPollingSomething =
             props.isFetchingPrice ||
-            props.isFetchingNodelist ||
+            props.isFetchingNodeList ||
             props.isFetchingChartData ||
             props.isFetchingMarketData ||
             props.isFetchingAccountInfo ||
@@ -138,7 +138,7 @@ const mapStateToProps = (state) => ({
     pollFor: state.polling.pollFor,
     allPollingServices: state.polling.allPollingServices,
     isFetchingPrice: state.polling.isFetchingPrice,
-    isFetchingNodelist: state.polling.isFetchingNodelist,
+    isFetchingNodeList: state.polling.isFetchingNodeList,
     isFetchingChartData: state.polling.isFetchingChartData,
     isFetchingMarketData: state.polling.isFetchingMarketData,
     isFetchingAccountInfo: state.polling.isFetchingAccountInfo,

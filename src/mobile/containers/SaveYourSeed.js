@@ -4,6 +4,7 @@ import { StyleSheet, View, Text, TouchableOpacity, BackHandler } from 'react-nat
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import tinycolor from 'tinycolor2';
 import OnboardingButtons from '../containers/OnboardingButtons';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import DynamicStatusBar from '../components/DynamicStatusBar';
@@ -178,9 +179,13 @@ class SaveYourSeed extends Component {
 
     render() {
         const { t, theme: { body, extra } } = this.props;
+        const isBgLight = tinycolor(body.bg).isLight();
         const textColor = { color: body.color };
-        const extraColorText = { color: extra.color };
-        const extraColorBorder = { borderColor: extra.color };
+        const extraColorText = { color: isBgLight ? body.bg : extra.color };
+        const extraColorBorder = {
+            borderColor: isBgLight ? 'transparent' : extra.color,
+            backgroundColor: isBgLight ? extra.color : body.color,
+        };
 
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>

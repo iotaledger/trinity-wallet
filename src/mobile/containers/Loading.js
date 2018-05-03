@@ -248,7 +248,7 @@ class Loading extends Component {
                             topBarElevationShadowEnabled: false,
                             screenBackgroundColor: body.bg,
                             drawUnderStatusBar: true,
-                            statusBarColor: body.bg,
+                            statusBarColor: bar.bg,
                         },
                     },
                     appStyle: {

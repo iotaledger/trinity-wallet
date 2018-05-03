@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MainSettingsComponent from '../containers/MainSettings';
-import AdvancedSettings from '../containers/AdvancedSettings';
+import AdvancedSettingsComponent from '../containers/AdvancedSettings';
 import AccountManagement from '../containers/AccountManagement';
 import ViewSeed from '../containers/ViewSeed';
 import ViewAddressesComponent from '../containers/ViewAddresses';
@@ -24,7 +24,7 @@ import About from '../containers/About';
 
 const SETTINGS_COMPONENTS = {
     mainSettings: MainSettingsComponent,
-    advancedSettings: AdvancedSettings,
+    advancedSettings: AdvancedSettingsComponent,
     accountManagement: AccountManagement,
     viewSeed: ViewSeed,
     viewAddresses: ViewAddressesComponent,

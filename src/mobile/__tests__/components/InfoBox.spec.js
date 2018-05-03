@@ -29,11 +29,11 @@ describe('Testing InfoBox component', () => {
             expect(wrapper.name()).toEqual('View');
         });
 
-        it('should return an "Image" component', () => {
+        it('should return an "Icon" component', () => {
             const props = getProps();
 
             const wrapper = shallow(<InfoBox {...props} />);
-            expect(wrapper.find('Image').length).toEqual(1);
+            expect(wrapper.find('Icon').length).toEqual(1);
         });
 
         it('should return "text" prop as a child to last View component', () => {
@@ -43,8 +43,8 @@ describe('Testing InfoBox component', () => {
             expect(
                 wrapper
                     .find('View')
-                    .last()
                     .children()
+                    .at(4)
                     .text(),
             ).toEqual('foo');
         });
