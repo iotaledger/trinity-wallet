@@ -6,7 +6,7 @@ import { ActionTypes } from '../../actions/polling';
 describe('Reducer: polling', () => {
     it('should have an initial state', () => {
         const initialState = {
-            allPollingServices: ['promotion', 'marketData', 'price', 'chartData', 'accountInfo'],
+            allPollingServices: ['promotion', 'marketData', 'price', 'chartData', 'nodeList', 'accountInfo'],
             pollFor: 'promotion',
             retryCount: 0,
             isFetchingPrice: false,
