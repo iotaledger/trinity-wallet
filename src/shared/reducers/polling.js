@@ -41,13 +41,14 @@ export const setNextPollIfUnsuccessful = (state) => {
 
 const polling = (
     state = {
-        allPollingServices: ['promotion', 'marketData', 'price', 'chartData', 'accountInfo'],
+        allPollingServices: ['promotion', 'marketData', 'price', 'chartData', 'nodeList', 'accountInfo'],
         pollFor: 'promotion',
         retryCount: 0,
         isFetchingPrice: false,
         isFetchingChartData: false,
         isFetchingMarketData: false,
         isFetchingAccountInfo: false,
+        isFetchingNodeList: false,
         isPromoting: false,
     },
     action,
@@ -68,6 +69,23 @@ const polling = (
             return {
                 ...state,
                 isFetchingPrice: false,
+                ...setNextPollIfUnsuccessful(state),
+            };
+        case ActionTypes.FETCH_NODELIST_REQUEST:
+            return {
+                ...state,
+                isFetchingNodeList: true,
+            };
+        case ActionTypes.FETCH_NODELIST_SUCCESS:
+            return {
+                ...state,
+                isFetchingNodeList: false,
+                ...setNextPollIfSuccessful(state),
+            };
+        case ActionTypes.FETCH_NODELIST_ERROR:
+            return {
+                ...state,
+                isFetchingNodeList: false,
                 ...setNextPollIfUnsuccessful(state),
             };
         case ActionTypes.FETCH_CHART_DATA_REQUEST:
