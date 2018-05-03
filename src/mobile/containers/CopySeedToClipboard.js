@@ -321,8 +321,8 @@ class CopySeedToClipboard extends Component {
                 </View>
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={() => this.onDonePress()}>
-                        <View style={[styles.doneButton, { borderColor: theme.primary.color }]}>
-                            <Text style={[styles.doneText, { color: theme.primary.color }]}>{t('global:done')}</Text>
+                        <View style={[styles.doneButton, { borderColor: theme.secondary.color }]}>
+                            <Text style={[styles.doneText, { color: theme.secondary.color }]}>{t('global:done')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>

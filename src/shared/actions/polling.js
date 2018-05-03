@@ -145,7 +145,7 @@ export const fetchPrice = () => {
     };
 };
 
-export const fetchNodelist = () => {
+export const fetchNodeList = () => {
     return (dispatch) => {
         dispatch(fetchNodeListRequest());
         fetch(NODELIST_URL)

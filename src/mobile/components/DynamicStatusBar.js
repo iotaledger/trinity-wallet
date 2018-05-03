@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { View, StatusBar } from 'react-native';
+import { StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 import tinycolor from 'tinycolor2';
 import timer from 'react-native-timer';
@@ -43,11 +43,7 @@ class DynamicStatusBar extends PureComponent {
         const { backgroundColor } = this.props;
         const statusBarStyle = this.getStatusBarStyle();
 
-        return (
-            <View style={{ backgroundColor: 'black', opacity: 0.6 }}>
-                <StatusBar barStyle={statusBarStyle} backgroundColor={backgroundColor} translucent animated={false} />
-            </View>
-        );
+        return <StatusBar barStyle={statusBarStyle} backgroundColor={backgroundColor} translucent animated={false} />;
     }
 }
 export default DynamicStatusBar;
