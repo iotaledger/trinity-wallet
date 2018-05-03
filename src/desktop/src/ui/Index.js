@@ -11,7 +11,7 @@ import { parseAddress } from 'libs/iota/utils';
 
 import { setPassword, clearWalletData, setDeepLink } from 'actions/wallet';
 import { getUpdateData, updateTheme } from 'actions/settings';
-import { fetchNodelist } from 'actions/polling';
+import { fetchNodeList } from 'actions/polling';
 import { disposeOffAlert, generateAlert } from 'actions/alerts';
 
 import { DESKTOP_VERSION } from 'config';
@@ -76,7 +76,7 @@ class App extends React.Component {
         /** Fetches remote node list
          * @ignore
          */
-        fetchNodelist: PropTypes.func.isRequired,
+        fetchNodeList: PropTypes.func.isRequired,
         /** Initiate update check
          * @param {Boolean} force - Force update confirmation dialog
          * @ignore
@@ -111,7 +111,7 @@ class App extends React.Component {
         this.onMenuToggle = this.menuToggle.bind(this);
 
         this.checkVaultAvailability();
-        this.props.fetchNodelist();
+        this.props.fetchNodeList();
 
         try {
             Electron.onEvent('menu', this.onMenuToggle);
@@ -277,7 +277,7 @@ const mapDispatchToProps = {
     getUpdateData,
     disposeOffAlert,
     generateAlert,
-    fetchNodelist,
+    fetchNodeList,
     updateTheme,
 };
 
