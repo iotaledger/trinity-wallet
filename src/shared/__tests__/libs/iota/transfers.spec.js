@@ -23,7 +23,7 @@ import {
     performPow,
     filterInvalidPendingTransactions,
     getBundleHashesForNewlyConfirmedTransactions,
-    normalizedBundlesFromTransactionObjects,
+    constructNormalisedBundles,
     prepareForAutoPromotion,
 } from '../../../libs/iota/transfers';
 import { iota, SwitchingConfig } from '../../../libs/iota/index';
@@ -1095,18 +1095,18 @@ describe('libs: iota/transfers', () => {
         });
     });
 
-    describe('#normalizedBundlesFromTransactionObjects', () => {
+    describe('#constructNormalisedBundles', () => {
         it('should always return an object', () => {
             const args = [[undefined, undefined, undefined, undefined], [null, undefined, null, null], [], [{}, {}]];
 
             args.forEach((arg) => {
-                expect(isObject(normalizedBundlesFromTransactionObjects(...arg))).to.equal(true);
+                expect(isObject(constructNormalisedBundles(...arg))).to.equal(true);
             });
         });
 
         it('should return normalized bundles', () => {
             expect(
-                normalizedBundlesFromTransactionObjects(
+                constructNormalisedBundles(
                     mockTransactions.tailTransactions,
                     mockTransactions.transactionObjects,
                     [false, true, false],
@@ -1123,7 +1123,7 @@ describe('libs: iota/transfers', () => {
                 omit(tx, 'signatureMessageFragment'),
             );
             expect(
-                normalizedBundlesFromTransactionObjects(
+                constructNormalisedBundles(
                     mockTransactions.tailTransactions,
                     invalidTransactionObjects,
                     [false, true, false],
