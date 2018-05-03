@@ -9,7 +9,7 @@ import { width, height } from '../utils/dimensions';
 
 const styles = StyleSheet.create({
     qrInfoText: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         textAlign: 'center',
         fontSize: width / 23,
     },
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     },
     closeButtonText: {
         color: 'white',
-        fontFamily: 'Lato-Bold',
+        fontFamily: 'SourceSansPro-Bold',
         fontSize: width / 29.6,
         backgroundColor: 'transparent',
     },

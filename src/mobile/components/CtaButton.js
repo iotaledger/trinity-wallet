@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     ctaText: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         backgroundColor: 'transparent',
         textAlign: 'center',
     },

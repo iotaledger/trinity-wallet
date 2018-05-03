@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     infoText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 25.9,
         backgroundColor: 'transparent',
         textAlign: 'center',
