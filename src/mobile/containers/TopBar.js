@@ -38,7 +38,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        opacity: 0.98,
         flex: 1,
     },
     titleWrapper: {
@@ -70,15 +69,12 @@ const styles = StyleSheet.create({
     chevronWrapper: {
         justifyContent: 'center',
         alignItems: 'center',
-        position: 'absolute',
-        right: width / 18,
+        marginRight: width / 18,
     },
     notificationContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        position: 'absolute',
-        left: width / 18,
-        zIndex: 1,
+        marginLeft: width / 18,
     },
     disabled: {
         color: '#a9a9a9',
@@ -213,6 +209,8 @@ class TopBar extends Component {
             bar,
             primary,
             topBarHeight,
+            isIOSKeyboardActive,
+            notificationLog,
         } = this.props;
         const selectedTitle = get(accountNames, `[${seedIndex}]`) || ''; // fallback
         const selectedSubtitle = TopBar.humanizeBalance(balance);
@@ -225,43 +223,101 @@ class TopBar extends Component {
 
         const withSubtitles = (title, index) => ({ title, subtitle: getBalance(index), index });
         const titles = map(accountNames, withSubtitles);
-        const disableWhen = this.shouldDisable();
+        const hasMultipleSeeds = size(TopBar.filterSeedTitles(accountNames, seedIndex));
+        const hasNotifications = size(notificationLog) && notificationLog.length > 0;
+        const shouldDisable = this.shouldDisable();
 
         const baseContent = (
             <Animated.View style={[styles.titleWrapper, { height: topBarHeight }]}>
                 <TouchableWithoutFeedback
                     onPress={() => {
-                        if (!disableWhen) {
+                        if (!shouldDisable) {
                             if (accountNames.length > 1) {
                                 this.props.toggleTopBarDisplay();
                             }
                         }
                     }}
                 >
-                    <View>
-                        <Text
-                            numberOfLines={1}
-                            style={
-                                disableWhen
-                                    ? StyleSheet.flatten([
-                                          styles.mainTitle,
-                                          styles.disabled,
-                                          { color: bar.color, marginTop: height / 55 },
-                                      ])
-                                    : [styles.mainTitle, { color: bar.color, marginTop: height / 55 }]
-                            }
-                        >
-                            {selectedTitle}
-                        </Text>
-                        <Text
-                            style={
-                                disableWhen
-                                    ? StyleSheet.flatten([styles.subtitle, styles.disabled, { color: subtitleColor }])
-                                    : [styles.subtitle, { color: subtitleColor }]
-                            }
-                        >
-                            {selectedSubtitle}
-                        </Text>
+                    <View
+                        style={{ width, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}
+                    >
+                        {hasNotifications && !isIOSKeyboardActive ? (
+                            <TouchableOpacity
+                                hitSlop={{ left: width / 18, right: width / 18, top: 0, bottom: 0 }}
+                                style={styles.notificationContainer}
+                                onPress={() => this.showModal()}
+                            >
+                                <Animated.View
+                                    style={{
+                                        height: topBarHeight,
+                                        width: width / 18,
+                                        justifyContent: 'center',
+                                        paddingTop: isAndroid ? 0 : height / 170,
+                                    }}
+                                >
+                                    <Icon name="notification" size={width / 18} color={bar.color} />
+                                </Animated.View>
+                            </TouchableOpacity>
+                        ) : (
+                            <View style={styles.notificationContainer}>
+                                <View style={styles.empty} />
+                            </View>
+                        )}
+                        {!isIOSKeyboardActive && (
+                            <View>
+                                <Text
+                                    numberOfLines={1}
+                                    style={
+                                        shouldDisable
+                                            ? StyleSheet.flatten([
+                                                  styles.mainTitle,
+                                                  styles.disabled,
+                                                  { color: bar.color, marginTop: height / 55 },
+                                              ])
+                                            : [styles.mainTitle, { color: bar.color, marginTop: height / 55 }]
+                                    }
+                                >
+                                    {selectedTitle}
+                                </Text>
+                                <Text
+                                    style={
+                                        shouldDisable
+                                            ? StyleSheet.flatten([
+                                                  styles.subtitle,
+                                                  styles.disabled,
+                                                  { color: subtitleColor },
+                                              ])
+                                            : [styles.subtitle, { color: subtitleColor }]
+                                    }
+                                >
+                                    {selectedSubtitle}
+                                </Text>
+                            </View>
+                        )}
+                        <View style={styles.chevronWrapper}>
+                            {hasMultipleSeeds && !isIOSKeyboardActive ? (
+                                <Animated.View
+                                    style={{
+                                        height: topBarHeight,
+                                        justifyContent: 'center',
+                                        paddingTop: isAndroid ? 0 : height / 170,
+                                    }}
+                                >
+                                    <Icon
+                                        name={isTopBarActive ? 'chevronUp' : 'chevronDown'}
+                                        size={width / 22}
+                                        color={bar.color}
+                                        style={[
+                                            shouldDisable
+                                                ? StyleSheet.flatten([styles.chevron, styles.disabledImage])
+                                                : styles.chevron,
+                                        ]}
+                                    />
+                                </Animated.View>
+                            ) : (
+                                <View style={styles.empty} />
+                            )}
+                        </View>
                     </View>
                 </TouchableWithoutFeedback>
             </Animated.View>
@@ -278,7 +334,7 @@ class TopBar extends Component {
             const children = (
                 <TouchableOpacity
                     onPress={() => {
-                        if (!disableWhen) {
+                        if (!shouldDisable) {
                             this.props.toggleTopBarDisplay(); // Close
                             this.onChange(t.index);
                         }
@@ -296,7 +352,7 @@ class TopBar extends Component {
                         <Text
                             numberOfLines={1}
                             style={
-                                disableWhen
+                                shouldDisable
                                     ? StyleSheet.flatten([styles.mainTitle, styles.disabled, { color: bar.color }])
                                     : [styles.mainTitle, { color: bar.color, opacity: idx === seedIndex ? 1 : 0.6 }]
                             }
@@ -305,7 +361,7 @@ class TopBar extends Component {
                         </Text>
                         <Text
                             style={
-                                disableWhen
+                                shouldDisable
                                     ? StyleSheet.flatten([styles.subtitle, styles.disabled, { color: subtitleColor }])
                                     : [styles.subtitle, { color: subtitleColor, opacity: idx === seedIndex ? 1 : 0.6 }]
                             }
@@ -336,21 +392,10 @@ class TopBar extends Component {
     }
 
     render() {
-        const {
-            seedIndex,
-            accountNames,
-            isTopBarActive,
-            body,
-            bar,
-            notificationLog,
-            topBarHeight,
-            isIOSKeyboardActive,
-        } = this.props;
+        const { accountNames, body, bar, notificationLog } = this.props;
         const { isModalVisible } = this.state;
         const children = this.renderTitles();
-        const hasMultipleSeeds = size(TopBar.filterSeedTitles(accountNames, seedIndex));
         const shouldDisable = this.shouldDisable();
-        const hasNotifications = size(notificationLog) && notificationLog.length > 0;
 
         return (
             <TouchableWithoutFeedback
@@ -372,58 +417,9 @@ class TopBar extends Component {
                             },
                         ]}
                     >
-                        <View style={{ flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'center' }}>
-                            {hasNotifications && !isIOSKeyboardActive ? (
-                                <TouchableOpacity
-                                    hitSlop={{ left: width / 18, right: width / 18, top: 0, bottom: 0 }}
-                                    style={styles.notificationContainer}
-                                    onPress={() => this.showModal()}
-                                >
-                                    <Animated.View
-                                        style={{
-                                            height: topBarHeight,
-                                            width: width / 18,
-                                            backgroundColor: 'blue',
-                                            justifyContent: 'center',
-                                            paddingTop: isAndroid ? 0 : height / 170,
-                                        }}
-                                    >
-                                        <Icon name="notification" size={width / 18} color={bar.color} />
-                                    </Animated.View>
-                                </TouchableOpacity>
-                            ) : (
-                                <View style={styles.notificationContainer}>
-                                    <View style={styles.empty} />
-                                </View>
-                            )}
-                            <ScrollView scrollEnabled={false} style={styles.scrollViewContainer}>
-                                {children}
-                            </ScrollView>
-                            <View style={styles.chevronWrapper}>
-                                {hasMultipleSeeds && !isIOSKeyboardActive ? (
-                                    <Animated.View
-                                        style={{
-                                            height: topBarHeight,
-                                            justifyContent: 'center',
-                                            paddingTop: isAndroid ? 0 : height / 170,
-                                        }}
-                                    >
-                                        <Icon
-                                            name={isTopBarActive ? 'chevronUp' : 'chevronDown'}
-                                            size={width / 22}
-                                            color={bar.color}
-                                            style={[
-                                                shouldDisable
-                                                    ? StyleSheet.flatten([styles.chevron, styles.disabledImage])
-                                                    : styles.chevron,
-                                            ]}
-                                        />
-                                    </Animated.View>
-                                ) : (
-                                    <View style={styles.empty} />
-                                )}
-                            </View>
-                        </View>
+                        <ScrollView scrollEnabled={false} style={styles.scrollViewContainer}>
+                            {children}
+                        </ScrollView>
                         <Modal
                             animationIn={isAndroid ? 'bounceInUp' : 'zoomIn'}
                             animationOut={isAndroid ? 'bounceOut' : 'zoomOut'}
