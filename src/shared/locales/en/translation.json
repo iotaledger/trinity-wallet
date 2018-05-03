@@ -293,6 +293,8 @@
         "mode": "Mode",
         "theme": "Theme",
         "currency": "Currency",
+        "cannotChangeNode": "Cannot change node",
+        "cannotChangeNodeWhileSending": "Cannot change node while sending.",
         "language": "Language",
         "accountManagement": "Account management",
         "addNewSeed": "Add new seed",
