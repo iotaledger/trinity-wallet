@@ -6,10 +6,11 @@ import { ActionTypes } from '../../actions/polling';
 describe('Reducer: polling', () => {
     it('should have an initial state', () => {
         const initialState = {
-            allPollingServices: ['promotion', 'marketData', 'price', 'chartData', 'accountInfo'],
+            allPollingServices: ['promotion', 'marketData', 'price', 'chartData', 'nodeList', 'accountInfo'],
             pollFor: 'promotion',
             retryCount: 0,
             isFetchingPrice: false,
+            isFetchingNodeList: false,
             isFetchingChartData: false,
             isFetchingMarketData: false,
             isFetchingAccountInfo: false,
@@ -70,6 +71,59 @@ describe('Reducer: polling', () => {
         };
 
         expect(newState.isFetchingPrice).to.eql(expectedState.isFetchingPrice);
+    });
+
+    it('FETCH_NODELIST_REQUEST should set isFetchingNodeList to true', () => {
+        const initialState = {
+            isFetchingNodeList: false,
+        };
+
+        const action = {
+            type: ActionTypes.FETCH_NODELIST_REQUEST,
+        };
+
+        const newState = reducer(initialState, action);
+        const expectedState = {
+            isFetchingNodeList: true,
+        };
+
+        expect(newState).to.eql(expectedState);
+    });
+
+    it('FETCH_NODELIST_SUCCESS should set isFetchingNodeList to false', () => {
+        const initialState = {
+            isFetchingNodeList: true,
+            allPollingServices: [],
+        };
+
+        const action = {
+            type: ActionTypes.FETCH_NODELIST_SUCCESS,
+        };
+
+        const newState = reducer(initialState, action);
+        const expectedState = {
+            isFetchingNodeList: false,
+        };
+
+        expect(newState.isFetchingNodeList).to.eql(expectedState.isFetchingNodeList);
+    });
+
+    it('FETCH_NODELIST_ERROR should set isFetchingNodeList to false', () => {
+        const initialState = {
+            isFetchingNodeList: true,
+            allPollingServices: [],
+        };
+
+        const action = {
+            type: ActionTypes.FETCH_NODELIST_ERROR,
+        };
+
+        const newState = reducer(initialState, action);
+        const expectedState = {
+            isFetchingNodeList: false,
+        };
+
+        expect(newState.isFetchingNodeList).to.eql(expectedState.isFetchingNodeList);
     });
 
     it('FETCH_CHART_DATA_REQUEST should set isFetchingChartData to true', () => {
