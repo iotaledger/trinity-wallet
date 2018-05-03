@@ -18,6 +18,7 @@ export const nodes = [
 ];
 
 export const UPDATE_URL = 'https://trinity-alpha.iota.org/release';
+export const NODELIST_URL = 'https://nodes.iota.works/api/ssl/live';
 
 export const DEFAULT_DEPTH = 4;
 export const DEFAULT_MIN_WEIGHT_MAGNITUDE = 14;
