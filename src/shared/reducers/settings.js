@@ -95,6 +95,11 @@ const settingsReducer = (state = initialState, action) => {
                 ...state,
                 nodes: state.nodes.includes(action.payload) ? state.nodes : [].concat(state.nodes, action.payload),
             };
+        case ActionTypes.SET_NODELIST:
+            return {
+                ...state,
+                nodes: action.payload.includes(state.node) ? action.payload : action.payload.concat([state.node]),
+            };
         case ActionTypes.SET_MODE:
             return {
                 ...state,
