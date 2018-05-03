@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     },
     optionButtonText: {
         color: '#8BD4FF',
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 25.3,
         textAlign: 'center',
         paddingHorizontal: width / 20,
@@ -52,19 +52,19 @@ const styles = StyleSheet.create({
     },
     infoText: {
         color: 'white',
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 27.6,
         textAlign: 'justify',
         backgroundColor: 'transparent',
     },
     infoTextNormal: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 27.6,
         textAlign: 'justify',
         backgroundColor: 'transparent',
     },
     infoTextBold: {
-        fontFamily: 'Lato-Bold',
+        fontFamily: 'SourceSansPro-Bold',
         fontSize: width / 27.6,
         textAlign: 'justify',
         backgroundColor: 'transparent',
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
         marginBottom: height / 20,
     },
     doneText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
     },
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     checksumText: {
         fontSize: width / 29.6,
         color: 'white',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
     },
 });
 

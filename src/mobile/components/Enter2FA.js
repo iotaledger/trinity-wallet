@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
     },
     doneText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
     },

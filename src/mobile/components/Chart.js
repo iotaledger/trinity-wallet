@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
         zIndex: 0,
     },
     emptyChartText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 27.6,
     },
     marketDataContainer: {
@@ -69,17 +69,17 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         fontWeight: 'normal',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 35,
     },
     iotaPrice: {
         fontWeight: 'normal',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 24,
     },
     marketFigure: {
         fontWeight: 'normal',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 37.6,
     },
     marketFigureTitle: {
@@ -153,10 +153,8 @@ class Chart extends PureComponent {
             getPriceForCurrency,
         } = this.props;
 
-        const volumeFormatted = priceData.volume.toString()
-                .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-        const mcapFormatted = priceData.mcap.toString()
-                .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        const volumeFormatted = priceData.volume.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        const mcapFormatted = priceData.mcap.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
         const textColor = { color: theme.body.color };
         const borderColor = { borderColor: theme.body.color };
@@ -219,7 +217,7 @@ class Chart extends PureComponent {
                                     tickLabels: {
                                         fill: theme.body.color,
                                         fontSize: width / 44,
-                                        fontFamily: 'Lato-Regular',
+                                        fontFamily: 'SourceSansPro-Regular',
                                     },
                                 }}
                                 gridComponent={

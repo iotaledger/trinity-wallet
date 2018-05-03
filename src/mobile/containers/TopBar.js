@@ -46,13 +46,13 @@ const styles = StyleSheet.create({
         width,
     },
     mainTitle: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 24.4,
         paddingBottom: isAndroid ? 0 : height / 170,
     },
     subtitle: {
         textAlign: 'center',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 27.6,
     },
     childView: {
