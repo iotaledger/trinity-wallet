@@ -26,7 +26,7 @@ describe('Testing DynamicStatusBar component', () => {
             const props = getProps();
 
             const wrapper = shallow(<DynamicStatusBar {...props} />);
-            expect(wrapper.name()).toEqual('View');
+            expect(wrapper.name()).toEqual('StatusBar');
         });
 
         it('should pass "barStyle" prop to StatusBar component', () => {
@@ -34,7 +34,7 @@ describe('Testing DynamicStatusBar component', () => {
 
             const wrapper = shallow(<DynamicStatusBar {...props} />);
 
-            expect('barStyle' in wrapper.childAt(0).props()).toEqual(true);
+            expect('barStyle' in wrapper.props()).toEqual(true);
         });
 
         it('should pass "backgroundColor" prop to StatusBar component', () => {
@@ -42,7 +42,7 @@ describe('Testing DynamicStatusBar component', () => {
 
             const wrapper = shallow(<DynamicStatusBar {...props} />);
 
-            expect('backgroundColor' in wrapper.childAt(0).props()).toEqual(true);
+            expect('backgroundColor' in wrapper.props()).toEqual(true);
         });
 
         it('should pass "translucent" prop to StatusBar component', () => {
@@ -50,7 +50,7 @@ describe('Testing DynamicStatusBar component', () => {
 
             const wrapper = shallow(<DynamicStatusBar {...props} />);
 
-            expect('translucent' in wrapper.childAt(0).props()).toEqual(true);
+            expect('translucent' in wrapper.props()).toEqual(true);
         });
     });
 });
