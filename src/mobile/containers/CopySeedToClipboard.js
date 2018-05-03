@@ -147,8 +147,7 @@ class CopySeedToClipboard extends Component {
         this.clearClipboard();
     }
 
-    /**qwertyuiop[]
-
+    /**
      * Clear the clipboard after pressing Done
      */
     onDonePress() {
