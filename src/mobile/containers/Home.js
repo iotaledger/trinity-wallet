@@ -21,7 +21,7 @@ import Tab from '../components/Tab';
 import TabContent from '../components/TabContent';
 import EnterPassword from '../containers/EnterPassword';
 import { height } from '../utils/dimensions';
-import { isAndroid } from '../utils/device';
+import { isAndroid, isIPhoneX } from '../utils/device';
 
 const styles = StyleSheet.create({
     midContainer: {
@@ -232,7 +232,7 @@ class Home extends Component {
         }).start();
         Animated.timing(this.topBarHeight, {
             duration: event.duration,
-            toValue: 0,
+            toValue: isIPhoneX ? 0 : 20,
         }).start();
     };
 
