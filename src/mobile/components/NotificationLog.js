@@ -26,12 +26,12 @@ const styles = StyleSheet.create({
     },
     titleText: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 25.9,
     },
     itemText: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 34.5,
     },
     line: {
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
         marginTop: height / 70,
     },
     clearText: {
-        fontFamily: 'Lato-Bold',
+        fontFamily: 'SourceSansPro-Bold',
         fontSize: width / 34.5,
         backgroundColor: 'transparent',
     },

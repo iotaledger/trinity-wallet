@@ -37,18 +37,18 @@ const styles = StyleSheet.create({
         flex: 5,
     },
     iotaBalance: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 8,
         backgroundColor: 'transparent',
         paddingBottom: isAndroid ? null : height / 110,
     },
     fiatBalance: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 25,
         backgroundColor: 'transparent',
     },
     noTransactions: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 37.6,
         backgroundColor: 'transparent',
     },

@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         marginBottom: height / 20,
     },
     nextText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
     },
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
         top: height / 6,
     },
     infoText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         textAlign: 'center',

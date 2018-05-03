@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
     },
     backText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
     },
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     infoTextLight: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         lineHeight: height / 14,
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
         height: width / 20,
     },
     checkboxText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 23,
         color: 'white',
         backgroundColor: 'transparent',
