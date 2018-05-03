@@ -70,6 +70,11 @@ class AdvancedSettings extends PureComponent {
         theme: PropTypes.object.isRequired,
     };
 
+    getYear() {
+        const date = new Date();
+        return date.getFullYear();
+    }
+
     render() {
         const { t, theme } = this.props;
         const textColor = { color: theme.body.color };
@@ -79,7 +84,7 @@ class AdvancedSettings extends PureComponent {
             <View style={styles.container}>
                 <View style={{ flex: 7, justifyContent: 'center', alignItems: 'center' }}>
                     <Text style={[styles.infoText, textColor, { marginTop: height / 15 }]}>
-                        Trinity Wallet. IOTA Foundation 2018.
+                        Trinity Wallet. IOTA Foundation {this.getYear()}.
                     </Text>
                     <Text style={[styles.infoText, textColor, { paddingTop: height / 30 }]}>
                         v {getVersion()} ({getBuildNumber()})
