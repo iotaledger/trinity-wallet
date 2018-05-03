@@ -458,9 +458,10 @@ class PaperWallet extends Component {
     }
 
     render() {
-        const { t, seed, theme: { body, primary } } = this.props;
+        const { t, seed, theme: { body, primary, secondary } } = this.props;
         const textColor = { color: body.color };
         const checksum = getChecksum(seed);
+        const isBgLight = tinycolor(body.bg).isLight();
 
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
@@ -481,7 +482,12 @@ class PaperWallet extends Component {
                         }
                     />
                     <View style={{ flex: 0.5 }} />
-                    <View style={styles.paperWalletContainer}>
+                    <View
+                        style={[
+                            styles.paperWalletContainer,
+                            isBgLight ? { borderColor: body.color, borderWidth: 1 } : null,
+                        ]}
+                    >
                         <Seedbox
                             scale={0.51}
                             bodyColor="black"
@@ -524,8 +530,8 @@ class PaperWallet extends Component {
                 </View>
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={() => this.onDonePress()}>
-                        <View style={[styles.doneButton, { borderColor: primary.color }]}>
-                            <Text style={[styles.doneText, { color: primary.color }]}>{t('global:done')}</Text>
+                        <View style={[styles.doneButton, { borderColor: secondary.color }]}>
+                            <Text style={[styles.doneText, { color: secondary.color }]}>{t('global:done')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
