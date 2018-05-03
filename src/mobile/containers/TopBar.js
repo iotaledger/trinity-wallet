@@ -78,6 +78,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         position: 'absolute',
         left: width / 18,
+        zIndex: 1,
     },
     disabled: {
         color: '#a9a9a9',
@@ -231,7 +232,9 @@ class TopBar extends Component {
                 <TouchableWithoutFeedback
                     onPress={() => {
                         if (!disableWhen) {
-                            this.props.toggleTopBarDisplay();
+                            if (accountNames.length > 1) {
+                                this.props.toggleTopBarDisplay();
+                            }
                         }
                     }}
                 >
@@ -353,7 +356,9 @@ class TopBar extends Component {
             <TouchableWithoutFeedback
                 onPress={() => {
                     if (!shouldDisable) {
-                        this.props.toggleTopBarDisplay();
+                        if (accountNames.length > 1) {
+                            this.props.toggleTopBarDisplay();
+                        }
                         this.hideModal();
                     }
                 }}
@@ -369,10 +374,16 @@ class TopBar extends Component {
                     >
                         <View style={{ flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'center' }}>
                             {hasNotifications && !isIOSKeyboardActive ? (
-                                <TouchableOpacity style={styles.notificationContainer} onPress={() => this.showModal()}>
+                                <TouchableOpacity
+                                    hitSlop={{ left: width / 18, right: width / 18, top: 0, bottom: 0 }}
+                                    style={styles.notificationContainer}
+                                    onPress={() => this.showModal()}
+                                >
                                     <Animated.View
                                         style={{
                                             height: topBarHeight,
+                                            width: width / 18,
+                                            backgroundColor: 'blue',
                                             justifyContent: 'center',
                                             paddingTop: isAndroid ? 0 : height / 170,
                                         }}
