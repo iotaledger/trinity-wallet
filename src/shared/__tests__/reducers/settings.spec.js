@@ -11,6 +11,7 @@ describe('Reducer: settings', () => {
                 locale: 'en',
                 node: defaultNode,
                 nodes,
+                customNodes: [],
                 mode: 'Standard',
                 language: 'English (International)',
                 currency: 'USD',
@@ -144,6 +145,7 @@ describe('Reducer: settings', () => {
             it('should return state prop "nodes" as is', () => {
                 const initialState = {
                     nodes: ['http://localhost:9000', 'http://localhost:5000'],
+                    customNodes: [],
                 };
 
                 const action = {
@@ -154,6 +156,7 @@ describe('Reducer: settings', () => {
                 const newState = reducer(initialState, action);
                 const expectedState = {
                     nodes: ['http://localhost:9000', 'http://localhost:5000'],
+                    customNodes: [],
                 };
 
                 expect(newState).to.eql(expectedState);
@@ -161,9 +164,10 @@ describe('Reducer: settings', () => {
         });
 
         describe('when payload does not exist in "nodes" state prop', () => {
-            it('should return state prop "nodes" as is', () => {
+            it('should add payload to state prop "nodes" and "customNodes"', () => {
                 const initialState = {
                     nodes: ['http://localhost:9000', 'http://localhost:5000'],
+                    customNodes: [],
                 };
 
                 const action = {
@@ -174,6 +178,7 @@ describe('Reducer: settings', () => {
                 const newState = reducer(initialState, action);
                 const expectedState = {
                     nodes: ['http://localhost:9000', 'http://localhost:5000', 'http://localhost:3000'],
+                    customNodes: ['http://localhost:3000'],
                 };
 
                 expect(newState).to.eql(expectedState);

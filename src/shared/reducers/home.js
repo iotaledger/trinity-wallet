@@ -1,4 +1,5 @@
 import { ActionTypes } from '../actions/home';
+import { ActionTypes as UIActionTypes } from '../actions/ui';
 
 const initialState = {
     childRoute: 'balance', // left most tab
@@ -16,6 +17,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isTopBarActive: !state.isTopBarActive,
+            };
+        case UIActionTypes.TOGGLE_MODAL_ACTIVITY:
+            return {
+                ...state,
+                isTopBarActive: false,
             };
         default:
             return state;
