@@ -379,11 +379,11 @@ export const filterInvalidTransactionsAsync = (transactions) => {
  *   @method prepareForAutoPromotion
  *   @param {array} transfers
  *   @param {object} addressData
- *   @param {string} accountName
+ *   @param {string} account
  *
  *   @returns {Promise<object>}
  **/
-export const prepareForAutoPromotion = (transfers, addressData, accountName) => {
+export const prepareForAutoPromotion = (transfers, addressData, account) => {
     const pendingTransactions = filter(transfers, (tx) => !tx.persistence);
 
     if (isEmpty(pendingTransactions)) {
@@ -396,7 +396,7 @@ export const prepareForAutoPromotion = (transfers, addressData, accountName) => 
         if (isValueTransfer) {
             const bundleHash = transaction.bundle;
 
-            acc[bundleHash] = map(transaction.tailTransactions, (meta) => ({ ...meta, accountName }));
+            acc[bundleHash] = map(transaction.tailTransactions, (meta) => ({ ...meta, account }));
         }
     };
 
