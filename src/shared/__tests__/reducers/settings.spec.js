@@ -20,6 +20,7 @@ describe('Reducer: settings', () => {
                     'GBP',
                     'EUR',
                     'AUD',
+                    'ARS',
                     'BGN',
                     'BRL',
                     'CAD',
