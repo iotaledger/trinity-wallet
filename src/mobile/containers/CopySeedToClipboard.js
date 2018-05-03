@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import timer from 'react-native-timer';
+import RNSecureClipboard from 'react-native-secure-clipboard';
 import whiteCheckboxCheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-checked-white.png';
 import whiteCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked-white.png';
 import blackCheckboxCheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-checked-black.png';
@@ -142,7 +143,7 @@ class CopySeedToClipboard extends Component {
 
     componentWillUnmount() {
         timer.clearTimeout('clipboardClear');
-        timer.clearTimeout('delayCopy');
+        timer.clearTimeout('delayShare');
         this.clearClipboard();
     }
 
@@ -172,7 +173,7 @@ class CopySeedToClipboard extends Component {
         const { checkbox } = this.state;
         if (checkbox) {
             this.hideModal();
-            timer.setTimeout('delayCopy', () => this.copy(), 500);
+            this.copy();
         }
     }
 
@@ -209,21 +210,31 @@ class CopySeedToClipboard extends Component {
     copy() {
         const { t, seed } = this.props;
         this.setState({ copiedToClipboard: true });
-        Share.share(
-            {
-                message: seed,
-            },
-            {
-                dialogTitle: t('shareSeed'),
-            },
-        );
+        if (isAndroid) {
+            timer.setTimeout(
+                'delayShare',
+                () =>
+                    Share.share(
+                        {
+                            message: seed,
+                        },
+                        {
+                            dialogTitle: t('shareSeed'),
+                        },
+                    ),
+                500,
+            );
+        } else {
+            RNSecureClipboard.setString(seed);
+            this.props.generateAlert('success', t('seedCopied'), t('seedCopiedExplanation'));
+        }
         timer.setTimeout(
             'clipboardClear',
             () => {
                 this.clearClipboard();
                 this.setState({ copiedToClipboard: false });
             },
-            30000,
+            60000,
         );
     }
 
