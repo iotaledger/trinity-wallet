@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     },
     textInput: {
         fontSize: width / 23,
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         flex: 6,
         marginHorizontal: width / 28,
         paddingTop: 0,
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     },
     conversionText: {
         fontSize: width / 23,
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         backgroundColor: 'transparent',
         position: 'absolute',
         top: isAndroid ? height / 60 : height / 49,
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     denominationText: {
-        fontFamily: 'Lato-Bold',
+        fontFamily: 'SourceSansPro-Bold',
         fontSize: width / 29.6,
         backgroundColor: 'transparent',
     },
@@ -146,8 +146,8 @@ class CustomTextInput extends Component {
 
     getLabelStyle() {
         const { theme } = this.props;
-        const focusedFieldLabel = { color: theme.primary.color, fontFamily: 'Lato-Regular' };
-        const unfocusedFieldLabel = { color: theme.body.color, fontFamily: 'Lato-Regular' };
+        const focusedFieldLabel = { color: theme.primary.color, fontFamily: 'SourceSansPro-Regular' };
+        const unfocusedFieldLabel = { color: theme.body.color, fontFamily: 'SourceSansPro-Regular' };
 
         return this.state.isFocused ? focusedFieldLabel : unfocusedFieldLabel;
     }

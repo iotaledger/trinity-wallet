@@ -93,13 +93,13 @@ const styles = StyleSheet.create({
         borderColor: 'white',
     },
     maxButtonText: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 31.8,
         backgroundColor: 'transparent',
         marginRight: width / 50,
     },
     infoText: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 29.6,
         textAlign: 'center',
         backgroundColor: 'transparent',

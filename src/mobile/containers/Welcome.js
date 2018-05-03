@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
         marginBottom: height / 20,
     },
     nextText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
     },
@@ -55,14 +55,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     infoTextLight: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         paddingTop: height / 30,
         textAlign: 'center',
     },
     infoTextRegular: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         paddingTop: height / 30,
@@ -101,8 +101,8 @@ class Welcome extends Component {
         };
     }
 
-    componentDidMount(){
-      this.showModalIfRooted();
+    componentDidMount() {
+        this.showModalIfRooted();
     }
 
     onNextPress() {
@@ -139,18 +139,18 @@ class Welcome extends Component {
             }
         }
         if (!rooted && isAndroid) {
-          sendAndVerify()
-          .then((isRooted) => {
-            if (isRooted) {
-              this.setState({ isModalVisible: true });
-            }
-          })
-          .catch((e) => {
-            /*eslint-disable no-console*/
-            console.log(e);
-            /*eslint-enable no-console*/
-          //  this.setState({ error: e });
-          });
+            sendAndVerify()
+                .then((isRooted) => {
+                    if (isRooted) {
+                        this.setState({ isModalVisible: true });
+                    }
+                })
+                .catch((e) => {
+                    /*eslint-disable no-console*/
+                    console.log(e);
+                    /*eslint-enable no-console*/
+                    //  this.setState({ error: e });
+                });
         }
     }
 

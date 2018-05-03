@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     statusText: {
         justifyContent: 'space-between',
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 29.6,
     },
     valueText: {
@@ -73,18 +73,18 @@ const styles = StyleSheet.create({
     },
     confirmation: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 31.8,
         paddingRight: width / 25,
     },
     timestamp: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 31.8,
     },
     heading: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Bold',
+        fontFamily: 'SourceSansPro-Bold',
         fontSize: width / 31.8,
         paddingTop: height / 50,
     },
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     },
     addressRowValue: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Bold',
+        fontFamily: 'SourceSansPro-Bold',
         fontSize: width / 27.6,
         textAlign: 'right',
     },
