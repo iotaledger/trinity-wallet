@@ -124,8 +124,10 @@ export class AdvancedSettings extends PureComponent {
     generateChangeNodeAlert() {
         this.props.generateAlert(
             'error',
-            'Cannot change node',
-            'Cannot change node while sending. Please wait until your transaction has sent',
+            this.props.t('settings:cannotChangeNode'),
+            `${this.props.t('settings:cannotChangeNodeWhileSending')} ${this.props.t(
+                'settings:transferSendingExplanation',
+            )}`,
         );
     }
 
