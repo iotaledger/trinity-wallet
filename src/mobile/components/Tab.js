@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
         paddingTop: height / 80,
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 40.5,
         backgroundColor: 'transparent',
     },

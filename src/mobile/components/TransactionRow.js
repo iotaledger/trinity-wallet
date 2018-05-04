@@ -48,28 +48,28 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     statusText: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 31.8,
     },
     message: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 31.8,
     },
     messageTitle: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Bold',
+        fontFamily: 'SourceSansPro-Bold',
         fontSize: width / 31.8,
         paddingRight: width / 70,
     },
     confirmationStatus: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 31.8,
     },
     timestamp: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 31.8,
     },
 });

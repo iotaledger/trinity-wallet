@@ -1,21 +1,24 @@
 import split from 'lodash/split';
 import React, { Component } from 'react';
-import { translate } from 'react-i18next';
+import { translate, Trans } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, TouchableHighlight, FlatList, BackHandler } from 'react-native';
+import { StyleSheet, View, Text, TouchableHighlight, FlatList, BackHandler, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { randomiseSeed, setSeed, clearSeed } from 'iota-wallet-shared-modules/actions/wallet';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/iota/utils';
 import { generateSecureRandom } from 'react-native-securerandom';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { Navigation } from 'react-native-navigation';
+import Modal from 'react-native-modal';
 import CtaButton from '../components/CtaButton';
 import { width, height } from '../utils/dimensions';
 import OnboardingButtons from '../containers/OnboardingButtons';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import GENERAL from '../theme/general';
 import DynamicStatusBar from '../components/DynamicStatusBar';
+import InfoBox from '../components/InfoBox';
 import { Icon } from '../theme/icons.js';
+import { isAndroid } from '../utils/device';
 
 const styles = StyleSheet.create({
     container: {
@@ -65,26 +68,49 @@ const styles = StyleSheet.create({
         borderWidth: 1.2,
     },
     generateText: {
-        fontFamily: 'Lato-Bold',
+        fontFamily: 'SourceSansPro-Bold',
         fontSize: width / 34.5,
         backgroundColor: 'transparent',
     },
     infoText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 27.6,
         backgroundColor: 'transparent',
     },
-    infoTextContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        flex: 40,
-        paddingBottom: width / 40,
-    },
     tileText: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Bold',
+        fontFamily: 'SourceSansPro-Bold',
         fontSize: width / 28.9,
         textAlign: 'center',
+    },
+    info: {
+        height: height / 14,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    infoTextLight: {
+        fontFamily: 'SourceSansPro-Light',
+        fontSize: width / 27.6,
+        backgroundColor: 'transparent',
+    },
+    infoTextRegular: {
+        fontFamily: 'SourceSansPro-Regular',
+        fontSize: width / 27.6,
+        backgroundColor: 'transparent',
+    },
+    okButton: {
+        borderWidth: 1.2,
+        borderRadius: GENERAL.borderRadius,
+        width: width / 3,
+        height: height / 14,
+        alignItems: 'center',
+        justifyContent: 'space-around',
+    },
+    okText: {
+        fontFamily: 'SourceSansPro-Light',
+        fontSize: width / 24.4,
+        backgroundColor: 'transparent',
     },
 });
 
@@ -128,7 +154,7 @@ class NewSeedSetup extends Component {
 
         this.state = {
             randomised: false,
-            infoTextColor: 'transparent',
+            isModalActive: false,
         };
     }
 
@@ -148,9 +174,10 @@ class NewSeedSetup extends Component {
     }
 
     onGeneratePress() {
-        const { theme: { body } } = this.props;
+        const { t } = this.props;
         this.props.randomiseSeed(generateSecureRandom);
-        this.setState({ randomised: true, infoTextColor: body.color });
+        this.setState({ randomised: true });
+        this.props.generateAlert('success', t('generateSuccess'), t('individualLetters'));
     }
 
     onNextPress() {
@@ -242,6 +269,55 @@ class NewSeedSetup extends Component {
         });
     }
 
+    openModal() {
+        this.setState({ isModalActive: true });
+    }
+
+    hideModal() {
+        this.setState({ isModalActive: false });
+    }
+
+    renderModalContent = () => {
+        const { t, theme: { body, primary } } = this.props;
+        const textColor = { color: body.color };
+
+        return (
+            <View style={{ backgroundColor: body.bg }}>
+                <InfoBox
+                    body={body}
+                    width={width / 1.3}
+                    text={
+                        <View>
+                            <Text style={[styles.infoText, textColor, { paddingTop: height / 40 }]}>
+                                {t('walletSetup:seedExplanation', { maxLength: MAX_SEED_LENGTH })}
+                            </Text>
+                            <Trans i18nKey="walletSetup:explanation">
+                                <Text style={[styles.infoText, textColor, { paddingTop: height / 60 }]}>
+                                    <Text style={styles.infoTextLight}>You can use it to access your funds from</Text>
+                                    <Text style={styles.infoTextRegular}> any wallet</Text>
+                                    <Text style={styles.infoTextLight}>, on</Text>
+                                    <Text style={styles.infoTextRegular}> any device</Text>
+                                    <Text style={styles.infoTextLight}>
+                                        . But if you lose your seed, you also lose your IOTA.
+                                    </Text>
+                                </Text>
+                            </Trans>
+                            <View style={{ paddingTop: height / 20, alignItems: 'center' }}>
+                                <TouchableOpacity onPress={() => this.hideModal()}>
+                                    <View style={[styles.okButton, { borderColor: primary.color }]}>
+                                        <Text style={[styles.okText, { color: primary.color }]}>
+                                            {t('global:okay')}
+                                        </Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    }
+                />
+            </View>
+        );
+    };
+
     renderChequerboard(character, index) {
         const { theme: { input, primary } } = this.props;
 
@@ -265,9 +341,10 @@ class NewSeedSetup extends Component {
 
     render() {
         const { seed, t, theme: { primary, body } } = this.props;
+        const { isModalActive } = this.state;
         const viewOpacity = this.state.randomised ? 1 : 0.2;
         const opacity = this.state.randomised ? 1 : 0.1;
-
+        const textColor = { color: body.color };
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
                 <DynamicStatusBar backgroundColor={body.bg} />
@@ -287,7 +364,20 @@ class NewSeedSetup extends Component {
                     />
                 </View>
                 <View style={styles.midContainer}>
-                    <View style={{ flex: 15 }} />
+                    <TouchableOpacity
+                        onPress={() => this.openModal()}
+                        style={{ marginTop: height / 65, marginBottom: height / 80 }}
+                    >
+                        <View style={styles.info}>
+                            <Icon
+                                name="info"
+                                size={width / 22}
+                                color={body.color}
+                                style={{ marginRight: width / 60 }}
+                            />
+                            <Text style={[styles.infoText, textColor]}>{t('whatIsASeed')}</Text>
+                        </View>
+                    </TouchableOpacity>
                     <FlatList
                         contentContainerStyle={[styles.list, { opacity: viewOpacity }]}
                         data={split(seed, '')}
@@ -296,19 +386,6 @@ class NewSeedSetup extends Component {
                         initialNumToRender={MAX_SEED_LENGTH}
                         scrollEnabled={false}
                     />
-                    <View style={styles.infoTextContainer}>
-                        <Text
-                            style={{
-                                color: this.state.infoTextColor,
-                                fontFamily: 'Lato-Light',
-                                textAlign: 'center',
-                                fontSize: width / 27.6,
-                                backgroundColor: 'transparent',
-                            }}
-                        >
-                            {t('individualLetters')}
-                        </Text>
-                    </View>
                 </View>
                 <View style={styles.bottomContainer}>
                     <OnboardingButtons
@@ -321,7 +398,20 @@ class NewSeedSetup extends Component {
                         opacity={opacity}
                     />
                 </View>
-                <StatefulDropdownAlert backgroundColor={body.bg} />
+                <Modal
+                    backdropTransitionInTiming={isAndroid ? 500 : 300}
+                    backdropTransitionOutTiming={200}
+                    backdropColor={body.bg}
+                    backdropOpacity={0.8}
+                    style={{ alignItems: 'center', margin: 0 }}
+                    isVisible={isModalActive}
+                    onBackButtonPress={() => this.hideModal()}
+                    hideModalContentWhileAnimating
+                    useNativeDriver={isAndroid ? true : false}
+                >
+                    {this.renderModalContent()}
+                </Modal>
+                {!isModalActive && <StatefulDropdownAlert backgroundColor={body.bg} />}
             </View>
         );
     }

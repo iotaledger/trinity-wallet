@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
         paddingTop: height / 8,
     },
     title: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 20.7,
         textAlign: 'center',
         backgroundColor: 'transparent',
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
     },
     loginText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
     },

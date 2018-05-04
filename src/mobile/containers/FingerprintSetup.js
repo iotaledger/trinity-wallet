@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     },
     backText: {
         color: '#9DFFAF',
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
     },
