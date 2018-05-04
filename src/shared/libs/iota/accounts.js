@@ -108,7 +108,11 @@ export const getAccountData = (seed, accountName, genFn) => {
             return findTransactionObjectsAsync({ addresses: data.addresses });
         })
         .then((transactionObjects) => {
-            each(transactionObjects, (tx) => bundleHashes.add(tx.bundle)); // Grab all bundle hashes
+            each(transactionObjects, (tx) => {
+                if (tx.bundle !== '9'.repeat(81)) {
+                    bundleHashes.add(tx.bundle);
+                }
+            });
 
             return findTransactionObjectsAsync({ bundles: Array.from(bundleHashes) });
         })
