@@ -35,13 +35,13 @@ const styles = StyleSheet.create({
     },
     questionText: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 27.6,
         paddingBottom: height / 40,
     },
     infoText: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 27.6,
         paddingBottom: height / 16,
     },

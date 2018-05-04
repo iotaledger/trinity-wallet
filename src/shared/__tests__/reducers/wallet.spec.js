@@ -13,7 +13,6 @@ describe('Reducer: wallet', () => {
                 seedIndex: 0,
                 usedSeedToLogin: false,
                 currentSetting: 'mainSettings',
-                copiedToClipboard: false,
                 additionalAccountName: '',
                 transitionBalance: 0,
                 transitionAddresses: [],
@@ -307,23 +306,6 @@ describe('Reducer: wallet', () => {
             expect(newState.currentSetting).to.eql(expectedState.currentSetting);
         });
 
-        it('should set "copiedToClipboard" state prop to false', () => {
-            const initialState = {
-                copiedToClipboard: true,
-            };
-
-            const action = {
-                type: 'IOTA/WALLET/CLEAR_WALLET_DATA',
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                copiedToClipboard: false,
-            };
-
-            expect(newState.copiedToClipboard).to.eql(expectedState.copiedToClipboard);
-        });
-
         it('should set "deepLinkActive" state prop to false', () => {
             const initialState = {
                 deepLinkActive: true,
@@ -376,26 +358,6 @@ describe('Reducer: wallet', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 currentSetting: 'mainSettings',
-            };
-
-            expect(newState).to.eql(expectedState);
-        });
-    });
-
-    describe('IOTA/WALLET/SET_COPIED_TO_CLIPBOARD', () => {
-        it('should assign payload to "copiedToClipboard" in state', () => {
-            const initialState = {
-                copiedToClipboard: false,
-            };
-
-            const action = {
-                type: 'IOTA/WALLET/SET_COPIED_TO_CLIPBOARD',
-                payload: true,
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                copiedToClipboard: true,
             };
 
             expect(newState).to.eql(expectedState);
