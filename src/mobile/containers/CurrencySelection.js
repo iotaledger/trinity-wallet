@@ -43,13 +43,13 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
     },
     titleTextLeft: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
     infoText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         paddingTop: height / 30,
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
         marginTop: height / 40,
     },
     titleTextRight: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         marginRight: width / 20,

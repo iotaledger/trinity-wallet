@@ -52,6 +52,7 @@
         "otherWallet": "OTHER ACCOUNT",
         "yes": "YES",
         "no": "NO",
+        "okay": "OKAY",
         "password": "Password",
         "passwordOrFingerprint": "Password or fingerprint",
         "unrecognisedPassword": "Unrecognised password",
@@ -111,7 +112,8 @@
         "nodeDuplicatedExplanation": "The custom node is already listed.",
         "nodeAutoChanged": "Auto-switched node",
         "nodeAutoChangedExplanation": "Switched to new node {{- nodeAddress}} as selected node is offline.",
-        "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer"
+        "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer",
+        "masterKey": "Your IOTA seed is the master key to your funds."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
@@ -149,14 +151,19 @@
         "confirmPassword": "Confirm New Password"
     },
     "copyToClipboard": {
-        "seedCleared": "Seed cleared",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
+        "seedCleared": "Clipboard cleared",
+        "seedClearedExplanation": "The clipboard has been cleared for your security.",
         "seedCopied": "Copied seed to clipboard",
         "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
         "clickToCopy": "Click the button below and copy your seed to a password manager.",
         "doNotStore": "Do not store your seed in plain text.",
         "copyToClipboard": "Copy seed",
-        "shareSeed": "Share your seed to a secure password manager"
+        "shareSeed": "Share your seed to a secure password manager",
+        "storeEncrypted":
+            "If you choose to back-up your seed on your phone it should be stored encrypted e.g. in a password manager.",
+        "tapConfirm": "Please tap the checkbox below to confirm.",
+        "encryptionCheckbox": "I will store my seed with encryption",
+        "copy": "COPY"
     },
     "enterSeed": {
         "invalidCharacters": "Seed contains invalid characters",
@@ -199,7 +206,9 @@
         "seedNotGenerated": "Seed has not been generated",
         "seedNotGeneratedExplanation": "Please generate a new seed.",
         "pressForNewSeed": "PRESS FOR NEW SEED",
-        "individualLetters": "Press individual letters to randomise them."
+        "generateSuccess": "Seed generated successfully",
+        "individualLetters": "Press individual letters to randomise them.",
+        "whatIsASeed": "What is a seed?"
     },
     "onboardingComplete": {
         "walletReady":
@@ -210,7 +219,13 @@
         "storeSafely": "Store it safely.",
         "neverShare": "Never share your seed with anyone.",
         "iotaLogo": "IOTA logo",
-        "printWallet": "PRINT PAPER WALLET"
+        "printWallet": "PRINT PAPER WALLET",
+        "print": "PRINT",
+        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
+        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
+        "tapCheckboxes": "Please tap the checkboxes below to confirm.",
+        "wifiCheckbox": "I will not print on public wifi",
+        "printerCheckbox": "I will not print on a public printer"
     },
     "receive": {
         "addressCopied": "Address copied",
@@ -222,16 +237,14 @@
         "spent": "Spent"
     },
     "saveYourSeed": {
-        "seedCleared": "Seed cleared",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
         "mustSaveYourSeed":
-            "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
+            "<0><0>You must back up your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Incorrect seed",
         "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
-        "thisIsACheck": "This is a check to make sure you saved your seed.",
-        "ifYouHaveNotSaved": "If you have not saved your seed, please go back and do so."
+        "thisIsACheck": "This is a check to make sure you backed up your seed.",
+        "ifYouHaveNotSaved": "If you have not backed up your seed, please go back and do so."
     },
     "send": {
         "invalidAddress": "Invalid address",
@@ -301,6 +314,7 @@
         "twoFA": "Two-factor authentication",
         "changePassword": "Change password",
         "advanced": "Advanced settings",
+        "about": "About",
         "logout": "Log out",
         "reset": "Reset wallet",
         "syncingComplete": "Syncing complete",
@@ -343,8 +357,7 @@
     "walletSetup": {
         "okay": "Okay. Let's set up your wallet!",
         "doYouAlreadyHaveASeed": "Do you already have a seed that you would like to use?",
-        "seedExplanation":
-            "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
+        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long.",
         "explanation":
             "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
         "keepSafe": "Please keep your seed safe.",
@@ -447,9 +460,10 @@
         "hideSeed": "HIDE SEED"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "I have saved my seed",
+        "alreadyHave": "I have backed up my seed",
         "reenter": "You will now be asked to re-enter your seed.",
-        "reenterWarning": "If your device fails and you have not saved your seed, you will lose your IOTA."
+        "reenterWarning":
+            "If your device is lost, stolen or fails, and you have not backed up your seed, you will lose your IOTA."
     },
     "walletResetConfirmation": {
         "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",

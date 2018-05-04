@@ -38,14 +38,14 @@ const styles = StyleSheet.create({
     },
     titleTextLeft: {
         color: 'white',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
     titleTextRight: {
         color: 'white',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         marginRight: width / 20,

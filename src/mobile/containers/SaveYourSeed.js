@@ -4,14 +4,12 @@ import { StyleSheet, View, Text, TouchableOpacity, BackHandler } from 'react-nat
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { setCopiedToClipboard } from 'iota-wallet-shared-modules/actions/wallet';
 import tinycolor from 'tinycolor2';
 import OnboardingButtons from '../containers/OnboardingButtons';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
-import { isIOS } from '../utils/device';
 import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({
@@ -38,7 +36,7 @@ const styles = StyleSheet.create({
         paddingBottom: height / 20,
     },
     optionButtonText: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 25.3,
         textAlign: 'center',
         backgroundColor: 'transparent',
@@ -52,20 +50,20 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
     },
     infoText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         paddingHorizontal: width / 9,
         textAlign: 'center',
     },
     infoTextNormal: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         textAlign: 'center',
     },
     infoTextBold: {
-        fontFamily: 'Lato-Bold',
+        fontFamily: 'SourceSansPro-Bold',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         textAlign: 'center',
@@ -77,16 +75,6 @@ class SaveYourSeed extends Component {
     static propTypes = {
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
-        /** Set a flag for clipboard copy
-         * @param {boolean} - true
-         */
-        setCopiedToClipboard: PropTypes.func.isRequired,
-        /** Generate a notification alert
-         * @param {string} type - notification type - success, error
-         * @param {string} title - notification title
-         * @param {string} text - notification explanation
-         */
-        generateAlert: PropTypes.func.isRequired,
         /** Determines whether onboarding steps for wallet setup are completed */
         onboardingComplete: PropTypes.bool.isRequired,
         /** Theme settings */
@@ -103,18 +91,6 @@ class SaveYourSeed extends Component {
                 this.onBackPress();
                 return true;
             });
-        }
-    }
-
-    componentWillReceiveProps(newProps) {
-        const { t } = this.props;
-
-        if (newProps.copiedToClipboard && isIOS) {
-            this.timeout = setTimeout(() => {
-                this.props.generateAlert('info', t('seedCleared'), t('seedClearedExplanation'));
-            }, 250);
-
-            this.props.setCopiedToClipboard(false);
         }
     }
 
@@ -271,13 +247,11 @@ class SaveYourSeed extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    copiedToClipboard: state.wallet.copiedToClipboard,
     theme: state.settings.theme,
     onboardingComplete: state.accounts.onboardingComplete,
 });
 
 const mapDispatchToProps = {
-    setCopiedToClipboard,
     generateAlert,
 };
 

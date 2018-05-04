@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: 'white',
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
     },
     dropdownTextContainer: {
         flex: 1,
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         fontWeight: 'normal',
         color: 'white',
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         paddingTop: height / 60,
     },
     dropdownImage: {

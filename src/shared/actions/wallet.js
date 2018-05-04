@@ -11,7 +11,6 @@ export const ActionTypes = {
     GENERATE_NEW_ADDRESS_REQUEST: 'IOTA/WALLET/GENERATE_NEW_ADDRESS_REQUEST',
     GENERATE_NEW_ADDRESS_SUCCESS: 'IOTA/WALLET/GENERATE_NEW_ADDRESS_SUCCESS',
     GENERATE_NEW_ADDRESS_ERROR: 'IOTA/WALLET/GENERATE_NEW_ADDRESS_ERROR',
-    SET_COPIED_TO_CLIPBOARD: 'IOTA/WALLET/SET_COPIED_TO_CLIPBOARD',
     SET_RECEIVE_ADDRESS: 'IOTA/WALLET/SET_RECEIVE_ADDRESS',
     SET_ACCOUNT_NAME: 'IOTA/WALLET/SET_ACCOUNT_NAME',
     SET_PASSWORD: 'IOTA/WALLET/SET_PASSWORD',
@@ -46,11 +45,6 @@ export const generateNewAddressSuccess = (payload) => ({
 
 export const generateNewAddressError = () => ({
     type: ActionTypes.GENERATE_NEW_ADDRESS_ERROR,
-});
-
-export const setCopiedToClipboard = (payload) => ({
-    type: ActionTypes.SET_COPIED_TO_CLIPBOARD,
-    payload,
 });
 
 export const setReceiveAddress = (payload) => ({

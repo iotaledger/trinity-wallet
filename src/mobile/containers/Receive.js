@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     removeText: {
-        fontFamily: 'Lato-Bold',
+        fontFamily: 'SourceSansPro-Bold',
         fontSize: width / 34.5,
         backgroundColor: 'transparent',
     },
