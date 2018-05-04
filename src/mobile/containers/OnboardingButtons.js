@@ -27,13 +27,13 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
     },
     leftText: {
-        fontFamily: 'SourceSansPro-Light',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
         textAlign: 'center',
     },
     rightText: {
-        fontFamily: 'SourceSansPro-Light',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
         textAlign: 'center',
@@ -73,7 +73,7 @@ class OnboardingButtons extends PureComponent {
     render() {
         const { theme: { primary, secondary, body }, opacity, buttonWidth, containerWidth } = this.props;
         const isBgLight = tinycolor(body.bg).isLight();
-        const rightTextColor = { color: isBgLight ? body.bg : primary.color };
+        const rightTextColor = { color: isBgLight ? primary.body : primary.color };
         const rightBorderColor = { borderColor: isBgLight ? 'transparent' : primary.color };
         const leftTextColor = { color: secondary.color };
         const leftBorderColor = { borderColor: secondary.color };
