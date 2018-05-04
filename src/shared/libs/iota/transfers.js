@@ -639,7 +639,11 @@ export const syncTransfers = (diff, accountState) => {
 
     return getTransactionsObjectsAsync(diff)
         .then((transactionObjects) => {
-            each(transactionObjects, (transactionObject) => bundleHashes.add(transactionObject.bundle));
+            each(transactionObjects, (transactionObject) => {
+                if (transactionObject.bundle !== '9'.repeat(81)) {
+                    bundleHashes.add(transactionObject.bundle);
+                }
+            });
 
             // Find all transaction objects from bundle hashes
             return findTransactionObjectsAsync({ bundles: Array.from(bundleHashes) });
@@ -880,7 +884,6 @@ export const performPow = (
  **/
 export const getTransactionHashesForUnspentAddresses = (addressData) => {
     const unspentAddresses = getUnspentAddressesSync(addressData);
-
     if (isEmpty(unspentAddresses)) {
         return Promise.resolve([]);
     }
@@ -901,7 +904,6 @@ export const getTransactionHashesForUnspentAddresses = (addressData) => {
  **/
 export const getPendingTransactionHashesForSpentAddresses = (transactions, addressData) => {
     const pendingTransactions = filter(transactions, (tx) => !tx.persistence);
-
     const spentAddressesWithPendingTransactions = getSpentAddressesWithPendingTransfersSync(
         pendingTransactions,
         addressData,
