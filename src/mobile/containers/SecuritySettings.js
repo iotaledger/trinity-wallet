@@ -41,13 +41,13 @@ const styles = StyleSheet.create({
         marginRight: width / 20,
     },
     titleText: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         marginLeft: width / 25,
     },
     backText: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     settingText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 23,
         marginLeft: width / 12,
         width: width / 2.4,
@@ -157,10 +157,25 @@ class SecuritySettings extends Component {
         const { t, theme: { body } } = this.props;
         const textColor = { color: body.color };
         const bodyColor = body.color;
+        const borderBottomColor = { borderBottomColor: body.color };
 
         return (
             <View style={styles.container}>
                 <View style={{ flex: 9, justifyContent: 'flex-start' }}>
+                    <View style={styles.itemContainer}>
+                        <TouchableOpacity
+                            onPress={() => this.props.setSetting('changePassword')}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                        >
+                            <View style={styles.item}>
+                                <Icon name="password" size={width / 22} color={bodyColor} />
+                                <Text style={[styles.titleText, textColor]}>{t('changePassword')}</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.separatorContainer}>
+                        <View style={[styles.separator, borderBottomColor]} />
+                    </View>
                     <View style={styles.itemContainer}>
                         <TouchableOpacity
                             onPress={() => this.on2FASetupPress()}
@@ -183,7 +198,7 @@ class SecuritySettings extends Component {
                             </View>
                         </TouchableOpacity>
                     </View>
-                    <View style={{ flex: 7 }} />
+                    <View style={{ flex: 5.5 }} />
                 </View>
                 <View style={{ flex: 1, justifyContent: 'flex-end' }}>
                     <View style={styles.itemContainer}>

@@ -31,12 +31,12 @@ const styles = StyleSheet.create({
     },
     regularText: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 25.9,
     },
     boldText: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 25.9,
         textAlign: 'justify',
     },

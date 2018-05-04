@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     },
     warningText: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 22,
         textAlign: 'center',
         color: 'red',
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     },
     questionText: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 24,
         paddingBottom: height / 35,
         textAlign: 'center',
