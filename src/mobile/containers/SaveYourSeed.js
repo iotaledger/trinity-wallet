@@ -184,7 +184,7 @@ class SaveYourSeed extends Component {
         const extraColorText = { color: isBgLight ? body.bg : extra.color };
         const extraColorBorder = {
             borderColor: isBgLight ? 'transparent' : extra.color,
-            backgroundColor: isBgLight ? extra.color : body.color,
+            backgroundColor: isBgLight ? extra.color : body.bg,
         };
 
         return (
