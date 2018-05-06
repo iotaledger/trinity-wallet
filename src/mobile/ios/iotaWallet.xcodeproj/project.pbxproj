@@ -65,6 +65,8 @@
 		CB42B77C2099FEDE002F0EF9 /* SourceSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB42B7792099FEDE002F0EF9 /* SourceSansPro-Bold.ttf */; };
 		CB66259D2084BF2A00651519 /* Icons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB66259C2084BF2A00651519 /* Icons.ttf */; };
 		CB6626F52085057F00651519 /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB6626F42085056C00651519 /* libSplashScreen.a */; };
+		CB866281209F36CA00C026E3 /* EntangledIOS.m in Sources */ = {isa = PBXBuildFile; fileRef = CB86627D209F36CA00C026E3 /* EntangledIOS.m */; };
+		CB866357209F8B4E00C026E3 /* entangled_fat_binary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB866356209F8B4E00C026E3 /* entangled_fat_binary.a */; };
 		CDC76600A03C06457F99259512D7F713 /* libRNIsDeviceRooted.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0431CEEC099BC4CE1F43E0550C4CC291 /* libRNIsDeviceRooted.a */; };
 		D51793D4E78BCB702D9FFAA1A3356153 /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48E60D4ABEBFCB6EC7FCE9538A5FF83F /* libRNSVG.a */; };
 		D54A6C850FD7BE61FF81BD7F6E7F25A3 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EEAE9D5C606B7556253D3AD01EB78CE0 /* Info.plist */; };
@@ -452,19 +454,19 @@
 			remoteGlobalIDString = 78510E1974839EACED295CFC857494F6;
 			remoteInfo = RNIsDeviceRooted;
 		};
-		CB42BB5E209B7DCB002F0EF9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DA959792AD9A5C3642835114D50DE868 /* Pods.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F90973ADF99851374F06FC44DF2E3A77;
-			remoteInfo = IotaKit;
-		};
 		CB6626F32085056C00651519 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CB6626ED2085056C00651519 /* SplashScreen.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 3D7682761D8E76B80014119E;
 			remoteInfo = SplashScreen;
+		};
+		CB8662B3209F372A00C026E3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DA959792AD9A5C3642835114D50DE868 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F90973ADF99851374F06FC44DF2E3A77;
+			remoteInfo = IotaKit;
 		};
 		CB8F2AF32095E41E0071A30B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -711,6 +713,10 @@
 		CB42B7792099FEDE002F0EF9 /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceSansPro-Bold.ttf"; path = "../../../../../Downloads/Source_Sans_Pro/SourceSansPro-Bold.ttf"; sourceTree = "<group>"; };
 		CB66259C2084BF2A00651519 /* Icons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Icons.ttf; path = ../../shared/icons/Icons.ttf; sourceTree = "<group>"; };
 		CB6626ED2085056C00651519 /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
+		CB86627D209F36CA00C026E3 /* EntangledIOS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntangledIOS.m; sourceTree = "<group>"; };
+		CB86627E209F36CA00C026E3 /* bindings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bindings.h; sourceTree = "<group>"; };
+		CB86627F209F36CA00C026E3 /* EntangledIOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntangledIOS.h; sourceTree = "<group>"; };
+		CB866356209F8B4E00C026E3 /* entangled_fat_binary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = entangled_fat_binary.a; sourceTree = "<group>"; };
 		CFA2B84C183CC39F995C8E04CC713DDB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = iotaWallet/Images.xcassets; sourceTree = "<group>"; };
 		D2C796029F4A68C167C1F1F5176A5819 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D6579997ECA951BF786CFC9441D56F53 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -754,6 +760,7 @@
 				C2F42249DD5989B1962B809D5CCC00F3 /* libART.a in Frameworks */,
 				0C2504A17226DF5FFD3C2A54AD060E8A /* libBugsnagReactNative.a in Frameworks */,
 				6ED5CBEF7B1A39258C560F6CDCD36254 /* libKCKeepAwake.a in Frameworks */,
+				CB866357209F8B4E00C026E3 /* entangled_fat_binary.a in Frameworks */,
 				2F852D5F92D3F66B78914D33F296087F /* libLottie.a in Frameworks */,
 				F695E3B017504F2AD81D2965695DA403 /* libLottieReactNative.a in Frameworks */,
 				227F5ECF692F599792F69DC4D573B2E6 /* libRCTActionSheet.a in Frameworks */,
@@ -927,6 +934,7 @@
 		3FA554CD0D5061D20FBDC112457CF26E = {
 			isa = PBXGroup;
 			children = (
+				CB86627A209F36CA00C026E3 /* EntangledIOS */,
 				CB42B7792099FEDE002F0EF9 /* SourceSansPro-Bold.ttf */,
 				CB42B7772099FEDD002F0EF9 /* SourceSansPro-Light.ttf */,
 				CB42B7782099FEDE002F0EF9 /* SourceSansPro-Regular.ttf */,
@@ -1105,7 +1113,7 @@
 		9587AF1D58A6A266E24B67481F9ED9F2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CB42BB5F209B7DCB002F0EF9 /* IotaKit.framework */,
+				CB8662B4209F372A00C026E3 /* IotaKit.framework */,
 				A7757FB00CE594F07671643433203090 /* Pods_iotaWallet.framework */,
 				73DE2893421CB79475DA9ABBFC68EF31 /* libPods-iotaWallet-tvOS.a */,
 				75741D422FC234226BD97F79574086A2 /* libPods-iotaWallet-tvOSTests.a */,
@@ -1208,6 +1216,17 @@
 				CB6626F42085056C00651519 /* libSplashScreen.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		CB86627A209F36CA00C026E3 /* EntangledIOS */ = {
+			isa = PBXGroup;
+			children = (
+				CB866356209F8B4E00C026E3 /* entangled_fat_binary.a */,
+				CB86627D209F36CA00C026E3 /* EntangledIOS.m */,
+				CB86627E209F36CA00C026E3 /* bindings.h */,
+				CB86627F209F36CA00C026E3 /* EntangledIOS.h */,
+			);
+			path = EntangledIOS;
 			sourceTree = "<group>";
 		};
 		CC4DA02F315C59DE24560F554539A682 /* Products */ = {
@@ -1989,18 +2008,18 @@
 			remoteRef = 53DB1F47FFBD018460D6B3F399D77096 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		CB42BB5F209B7DCB002F0EF9 /* IotaKit.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = IotaKit.framework;
-			remoteRef = CB42BB5E209B7DCB002F0EF9 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		CB6626F42085056C00651519 /* libSplashScreen.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libSplashScreen.a;
 			remoteRef = CB6626F32085056C00651519 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CB8662B4209F372A00C026E3 /* IotaKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = IotaKit.framework;
+			remoteRef = CB8662B3209F372A00C026E3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		CB8F2AF42095E41E0071A30B /* libRNRandomBytes-tvOS.a */ = {
@@ -2501,6 +2520,7 @@
 			files = (
 				962469C90FA6C9D7DB8B0F1D49DD98E7 /* AppDelegate.m in Sources */,
 				009513FCBFA797A40A555F3084ED0B8D /* Iota.m in Sources */,
+				CB866281209F36CA00C026E3 /* EntangledIOS.m in Sources */,
 				6E9CC66B45FB093ECF765004AFED349E /* IotaKitEmitter.swift in Sources */,
 				3E58EC90CE11629FBA816AAD96D16464 /* main.m in Sources */,
 			);
@@ -2699,6 +2719,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = D6XGU8EVBS;
+				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../node_modules/react-native-navigation/ios/**",
 					"(SRCROOT)/../../react-native/React/**",
@@ -3013,6 +3034,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D6XGU8EVBS;
+				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../node_modules/react-native-navigation/ios/**",
 					"(SRCROOT)/../../react-native/React/**",
