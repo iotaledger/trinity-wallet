@@ -1,13 +1,15 @@
-import noop from 'lodash/noop';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import Modal from 'react-native-modal';
 import RNExitApp from 'react-native-exit-app';
+import RNIsDeviceRooted from 'react-native-is-device-rooted';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { connect } from 'react-redux';
 import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
+import StatefulDropdownAlert from './StatefulDropdownAlert';
 import RootDetectionModalComponent from '../components/RootDetectionModal';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import { width, height } from '../utils/dimensions';
@@ -81,6 +83,12 @@ class Welcome extends Component {
          * @param {string} translationString - locale string identifier to be translated
          */
         t: PropTypes.func.isRequired,
+        /** Generate a notification alert
+         * @param {string} type - notification type - success, error
+         * @param {string} title - notification title
+         * @param {string} text - notification explanation
+         */
+        generateAlert: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -124,14 +132,33 @@ class Welcome extends Component {
 
     showModalIfRooted() {
         // FIXME: Have UI indicators for this request
-        doAttestationFromSafetyNet()
-            .then((isRooted) => {
-                if (isRooted) {
-                    this.setState({ isModalVisible: true });
-                }
-            })
-            // TODO: Handle exceptions with an alert
-            .catch(noop);
+        if (isAndroid) {
+            doAttestationFromSafetyNet()
+                .then((isRooted) => {
+                    if (isRooted) {
+                        this.setState({ isModalVisible: true });
+                    }
+                })
+                .catch((error) => {
+                    if (error.message === 'play services not available.') {
+                        this.props.generateAlert(
+                            'error',
+                            this.props.t('global:googlePlayServicesNotAvailable'),
+                            this.props.t('global:couldNotVerifyDeviceIntegrity'),
+                        );
+                    }
+                });
+        } else {
+            const isDeviceRooted = RNIsDeviceRooted.isDeviceRooted();
+
+            isDeviceRooted
+                .then((isRooted) => {
+                    if (isRooted) {
+                        this.setState({ isModalVisible: true });
+                    }
+                })
+                .catch((err) => console.error(err)); // eslint-disable-line no-console
+        }
     }
 
     hideModal() {
@@ -186,6 +213,7 @@ class Welcome extends Component {
                         {this.state.modalContent}
                     </View>
                 </Modal>
+                <StatefulDropdownAlert backgroundColor={theme.body.bg} />
             </View>
         );
     }
@@ -195,4 +223,8 @@ const mapStateToProps = (state) => ({
     theme: state.settings.theme,
 });
 
-export default translate(['welcome', 'global'])(connect(mapStateToProps)(Welcome));
+const mapDispatchToProps = {
+    generateAlert,
+};
+
+export default translate(['welcome', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Welcome));
