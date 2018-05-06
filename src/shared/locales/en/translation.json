@@ -113,7 +113,10 @@
         "nodeAutoChanged": "Auto-switched node",
         "nodeAutoChangedExplanation": "Switched to new node {{- nodeAddress}} as selected node is offline.",
         "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer",
-        "masterKey": "Your IOTA seed is the master key to your funds."
+        "masterKey": "Your IOTA seed is the master key to your funds.",
+        "googlePlayServicesNotAvailable": "Google play services not available.",
+        "couldNotVerifyDeviceIntegrity":
+            "Could not check device integrity because google play services are not available on your device."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
