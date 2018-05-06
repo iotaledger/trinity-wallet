@@ -133,13 +133,24 @@ class Welcome extends Component {
     showModalIfRooted() {
         // FIXME: Have UI indicators for this request
         if (isAndroid) {
-            doAttestationFromSafetyNet()
+            RNIsDeviceRooted.isDeviceRooted()
+                .then((isRooted) => {
+                    if (isRooted) {
+                        throw new Error('device rooted.');
+                    }
+
+                    return doAttestationFromSafetyNet();
+                })
                 .then((isRooted) => {
                     if (isRooted) {
                         this.setState({ isModalVisible: true });
                     }
                 })
                 .catch((error) => {
+                    if (error.message === 'device rooted.') {
+                        this.setState({ isModalVisible: true });
+                    }
+
                     if (error.message === 'play services not available.') {
                         this.props.generateAlert(
                             'error',
@@ -149,9 +160,7 @@ class Welcome extends Component {
                     }
                 });
         } else {
-            const isDeviceRooted = RNIsDeviceRooted.isDeviceRooted();
-
-            isDeviceRooted
+            RNIsDeviceRooted.isDeviceRooted()
                 .then((isRooted) => {
                     if (isRooted) {
                         this.setState({ isModalVisible: true });
