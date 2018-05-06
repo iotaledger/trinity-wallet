@@ -13,6 +13,16 @@
 
 RCT_EXPORT_MODULE();
 
+// PoW
+RCT_EXPORT_METHOD(doPoW:(NSString *)trytes minWeightMagnitude:(int)minWeightMagnitude resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+{
+  char * trytesChars = [trytes cStringUsingEncoding:NSUTF8StringEncoding];
+  char * nonce = do_pow(trytesChars, minWeightMagnitude);
+  NSString * nonceString = [NSString stringWithFormat:@"%s", nonce];
+  resolve(nonceString);
+}
+
+
 // Single address generation
 RCT_EXPORT_METHOD(generateAddress:(NSString *)seed index:(int)index security:(int)security resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
