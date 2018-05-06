@@ -1,9 +1,9 @@
+import noop from 'lodash/noop';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import Modal from 'react-native-modal';
-import RNIsDeviceRooted from 'react-native-is-device-rooted';
 import RNExitApp from 'react-native-exit-app';
 import { connect } from 'react-redux';
 import { Icon } from '../theme/icons.js';
@@ -12,7 +12,7 @@ import RootDetectionModalComponent from '../components/RootDetectionModal';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import { width, height } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
-import { sendAndVerify } from '../utils/safetynet';
+import { doAttestationFromSafetyNet } from '../utils/safetynet';
 
 const styles = StyleSheet.create({
     container: {
@@ -123,35 +123,15 @@ class Welcome extends Component {
     }
 
     showModalIfRooted() {
-        const isDeviceRooted = RNIsDeviceRooted.isDeviceRooted();
-        let rooted = false;
-        if (Promise && Promise.resolve && Promise.resolve(isDeviceRooted) === isDeviceRooted) {
-            isDeviceRooted.then((isRooted) => {
+        // FIXME: Have UI indicators for this request
+        doAttestationFromSafetyNet()
+            .then((isRooted) => {
                 if (isRooted) {
                     this.setState({ isModalVisible: true });
-                    rooted = true;
                 }
-            });
-        } else {
-            if (isDeviceRooted) {
-                this.setState({ isModalVisible: true });
-                rooted = true;
-            }
-        }
-        if (!rooted && isAndroid) {
-            sendAndVerify()
-                .then((isRooted) => {
-                    if (isRooted) {
-                        this.setState({ isModalVisible: true });
-                    }
-                })
-                .catch((e) => {
-                    /*eslint-disable no-console*/
-                    console.log(e);
-                    /*eslint-enable no-console*/
-                    //  this.setState({ error: e });
-                });
-        }
+            })
+            // TODO: Handle exceptions with an alert
+            .catch(noop);
     }
 
     hideModal() {
