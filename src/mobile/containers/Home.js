@@ -70,6 +70,8 @@ class Home extends Component {
         isTransitioning: PropTypes.bool.isRequired,
         /** Determines if wallet is doing a manual sync */
         isSyncing: PropTypes.bool.isRequired,
+        /** Determines if the newly added custom node is being checked */
+        isCheckingCustomNode: PropTypes.bool.isRequired,
         /** Determines if wallet is making a transaction */
         isSendingTransfer: PropTypes.bool.isRequired,
         /** Change current setting
@@ -168,13 +170,17 @@ class Home extends Component {
     };
 
     onTabSwitch(name) {
-        const { isSyncing, isTransitioning } = this.props;
+        const { isSyncing, isTransitioning, isCheckingCustomNode } = this.props;
+
         this.userInactivity.setActiveFromComponent();
+
         if (isTransitioning) {
             return;
         }
+
         this.props.changeHomeScreenRoute(name);
-        if (!isSyncing) {
+
+        if (!isSyncing && !isCheckingCustomNode) {
             this.resetSettings();
         }
     }
@@ -375,6 +381,7 @@ const mapStateToProps = (state) => ({
     theme: state.settings.theme,
     currentRoute: state.home.childRoute,
     isSyncing: state.ui.isSyncing,
+    isCheckingCustomNode: state.ui.isCheckingCustomNode,
     isSendingTransfer: state.ui.isSendingTransfer,
     isTransitioning: state.ui.isTransitioning,
     currentSetting: state.wallet.currentSetting,
