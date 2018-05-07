@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
 import { getNodeInfoAsync as checkNode } from 'iota-wallet-shared-modules/libs/iota/extendedApi';
 import { setFullNode, addCustomPoWNode } from 'iota-wallet-shared-modules/actions/settings';
+import { setCustomNodeCheckStatus } from 'iota-wallet-shared-modules/actions/ui';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { translate } from 'react-i18next';
 import { width, height } from '../utils/dimensions';
@@ -104,6 +105,12 @@ class AddCustomNode extends Component {
          * @param {string} customNode
          */
         addCustomPoWNode: PropTypes.func.isRequired,
+        /** Determines if the newly added custom node is being checked */
+        isCheckingCustomNode: PropTypes.bool.isRequired,
+        /** Set status for custom node check
+         * @param {boolean} status
+         */
+        setCustomNodeCheckStatus: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -111,7 +118,6 @@ class AddCustomNode extends Component {
 
         this.state = {
             customNode: '',
-            isCheckingNode: false,
         };
     }
 
@@ -177,17 +183,18 @@ class AddCustomNode extends Component {
         }
 
         if (!nodes.includes(customNode.replace(/ /g, ''))) {
-            this.setState({ isCheckingNode: true });
+            this.props.setCustomNodeCheckStatus(true);
 
             checkNode(customNode)
                 .then(() => {
-                    this.setState({ isCheckingNode: false });
+                    this.props.setCustomNodeCheckStatus(false);
+
                     this.onAddNodeSuccess(customNode);
                     this.setNode(customNode);
                     this.props.backPress();
                 })
                 .catch(() => {
-                    this.setState({ isCheckingNode: false });
+                    this.props.setCustomNodeCheckStatus(false);
                     this.onAddNodeError();
                 });
         } else {
@@ -247,7 +254,7 @@ class AddCustomNode extends Component {
                             theme={theme}
                         />
                     </View>
-                    {this.state.isCheckingNode ? (
+                    {this.props.isCheckingCustomNode ? (
                         <View style={styles.innerContainer}>
                             <ActivityIndicator
                                 animating
@@ -260,8 +267,8 @@ class AddCustomNode extends Component {
                         <View style={styles.innerContainer} />
                     )}
                     <View style={styles.bottomContainer}>
-                        {!this.state.isCheckingNode && this.renderBackPressOption()}
-                        {!this.state.isCheckingNode && this.renderAddCustomNodeOption()}
+                        {!this.props.isCheckingCustomNode && this.renderBackPressOption()}
+                        {!this.props.isCheckingCustomNode && this.renderAddCustomNodeOption()}
                     </View>
                 </View>
             </TouchableWithoutFeedback>
@@ -272,12 +279,14 @@ class AddCustomNode extends Component {
 const mapStateToProps = (state) => ({
     nodes: state.settings.nodes,
     theme: state.settings.theme,
+    isCheckingCustomNode: state.ui.isCheckingCustomNode,
 });
 
 const mapDispatchToProps = {
     setFullNode,
     generateAlert,
     addCustomPoWNode,
+    setCustomNodeCheckStatus,
 };
 
 export default translate(['addCustomNode', 'global'])(connect(mapStateToProps, mapDispatchToProps)(AddCustomNode));
