@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import KeepAwake from 'react-native-keep-awake';
@@ -34,6 +34,8 @@ class Settings extends Component {
         setSetting: PropTypes.func.isRequired,
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
+        /** Close active top bar */
+        closeTopBar: PropTypes.func.isRequired,
     };
 
     componentWillReceiveProps(newProps) {
@@ -64,13 +66,15 @@ class Settings extends Component {
         const childrenProps = this.getChildrenProps(this.props.currentSetting);
 
         return (
-            <View style={styles.container}>
-                <View style={{ flex: 1 }} />
-                <View style={styles.settingsContainer}>
-                    <SettingsContent component={this.props.currentSetting} {...childrenProps} />
+            <TouchableWithoutFeedback style={styles.container} onPress={() => this.props.closeTopBar()}>
+                <View style={{ flex: 1 }}>
+                    <View style={{ flex: 1 }} />
+                    <View style={styles.settingsContainer}>
+                        <SettingsContent component={this.props.currentSetting} {...childrenProps} />
+                    </View>
+                    <View style={{ flex: 1 }} />
                 </View>
-                <View style={{ flex: 1 }} />
-            </View>
+            </TouchableWithoutFeedback>
         );
     }
 }
