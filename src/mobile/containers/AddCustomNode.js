@@ -235,7 +235,7 @@ class AddCustomNode extends Component {
     }
 
     render() {
-        const { t, theme } = this.props;
+        const { t, theme, isCheckingCustomNode } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -252,6 +252,7 @@ class AddCustomNode extends Component {
                             returnKeyType="done"
                             onSubmitEditing={() => this.addNode()}
                             theme={theme}
+                            editable={!isCheckingCustomNode}
                         />
                     </View>
                     {this.props.isCheckingCustomNode ? (
