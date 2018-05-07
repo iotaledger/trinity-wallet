@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     },
 });
 
-class Enter2FA extends Component {
+export class Enter2FA extends Component {
     static propTypes = {
         /** Verify two factor authentication token */
         /** @param {string} token - 2fa token */
