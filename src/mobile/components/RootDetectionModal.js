@@ -58,23 +58,9 @@ export class RootDetectionModal extends PureComponent {
                 <View style={[styles.modalContent, borderColor]}>
                     <Text style={styles.warningText}>{t('warning')}</Text>
                     <View style={{ marginBottom: height / 35 }}>
-                        <Text style={[styles.questionText, textColor]}>Your device appears to be rooted.</Text>
-                        <Text style={[styles.questionText, textColor]}>
-                            This can pose a significant risk to the security of your wallet.
-                        </Text>
-                        <Text style={[styles.questionText, textColor]}>Do you wish to continue despite this risk?</Text>
-                        {/*FIXME: Trans component causes a crash here*/}
-                        {/*Cannot add a child that doesn't have a YogaNode to a parent without a measure function! (Trying to add a 'ReactRawTextShadowNode' to a 'LayoutShadowNode')*/}
-
-                        {/*<Trans i18nKey="rootDetected">
-                            <Text style={[styles.questionText, textColor]}>Your device appears to be rooted.</Text>
-                            <Text style={[styles.questionText, textColor]}>
-                                This can pose a significant risk to the security of your wallet.
-                            </Text>
-                            <Text style={[styles.questionText, textColor]}>
-                                Do you wish to continue despite this risk?
-                            </Text>
-                        </Trans>*/}
+                        <Text style={[styles.questionText, textColor]}>{t('appearsRooted')}</Text>
+                        <Text style={[styles.questionText, textColor]}>{t('securityRisk')}</Text>
+                        <Text style={[styles.questionText, textColor]}>{t('continueDepsiteRisk')}</Text>
                     </View>
                     <OnboardingButtons
                         onLeftButtonPress={() => this.props.closeApp()}

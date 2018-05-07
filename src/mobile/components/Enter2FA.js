@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { translate } from 'react-i18next';
 import CustomTextInput from '../components/CustomTextInput';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
     },
 });
 
-class Enter2FA extends Component {
+export class Enter2FA extends Component {
     static propTypes = {
         /** Verify two factor authentication token */
         /** @param {string} token - 2fa token */
@@ -53,6 +54,10 @@ class Enter2FA extends Component {
         theme: PropTypes.object.isRequired,
         /** Cancel two factor authentication */
         cancel: PropTypes.func.isRequired,
+        /** Translation helper
+         * @param {string} translationString - locale string identifier to be translated
+         */
+        t: PropTypes.func.isRequired,
     };
 
     state = {
@@ -72,7 +77,7 @@ class Enter2FA extends Component {
 
     render() {
         const { codefor2FA } = this.state;
-        const { theme } = this.props;
+        const { t, theme } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -82,7 +87,7 @@ class Enter2FA extends Component {
                     </View>
                     <View style={styles.midContainer}>
                         <CustomTextInput
-                            label="2FA Token"
+                            label={t('twoFaToken')}
                             onChangeText={this.handleChange2FAToken}
                             containerStyle={{ width: width / 1.2 }}
                             autoCapitalize="none"
@@ -99,8 +104,8 @@ class Enter2FA extends Component {
                         <OnboardingButtons
                             onLeftButtonPress={this.handleBackPress}
                             onRightButtonPress={this.handleDonePress}
-                            leftText="BACK"
-                            rightText="DONE"
+                            leftText={t('global:back')}
+                            rightText={t('global:done')}
                         />
                     </View>
                 </View>
@@ -109,4 +114,4 @@ class Enter2FA extends Component {
     }
 }
 
-export default Enter2FA;
+export default translate(['twoFA', 'global'])(Enter2FA);
