@@ -118,26 +118,34 @@ class AddCustomNode extends Component {
     onAddNodeError() {
         return this.props.generateAlert(
             'error',
-            'Custom node could not be added',
-            'The node returned an invalid response.',
+            this.props.t('addCustomNode:customNodeCouldNotBeAdded'),
+            this.props.t('addCustomNode:invalidNodeResponse'),
         );
     }
 
     onAddNodeSuccess(customNode) {
         this.props.addCustomPoWNode(customNode);
 
-        return this.props.generateAlert('success', 'Custom node added', 'The custom node has been added successfully.');
+        return this.props.generateAlert(
+            'success',
+            this.props.t('addCustomNode:customNodeAdded'),
+            this.props.t('addCustomNode:customNodeAddedSuccessfully'),
+        );
     }
 
     onDuplicateNodeError() {
-        return this.props.generateAlert('error', 'Duplicate node', 'The custom node is already listed.');
+        return this.props.generateAlert(
+            'error',
+            this.props.t('global:nodeDuplicated'),
+            this.props.t('global:nodeDuplicatedExplanation'),
+        );
     }
 
     onAddHttpNodeError() {
         return this.props.generateAlert(
             'error',
-            'Custom node could not be added',
-            'Trinity Mobile only supports https nodes.',
+            this.props.t('addCustomNode:customNodeCouldNotBeAdded'),
+            this.props.t('addCustomNode:httpNodeError'),
         );
     }
 
