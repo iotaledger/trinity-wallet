@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     },
 });
 
-class NotificationLog extends PureComponent {
+export class NotificationLog extends PureComponent {
     static propTypes = {
         /** Content background color */
         backgroundColor: PropTypes.string.isRequired,
