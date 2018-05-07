@@ -30,6 +30,7 @@ const initialState = {
     },
     doNotMinimise: false,
     isModalActive: false,
+    isCheckingCustomNode: false,
 };
 
 export default (state = initialState, action) => {
@@ -251,6 +252,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isModalActive: !state.isModalActive,
+            };
+        case UiActionTypes.SET_CUSTOM_NODE_CHECK_STATUS:
+            return {
+                ...state,
+                isCheckingCustomNode: action.payload,
             };
         default:
             return state;
