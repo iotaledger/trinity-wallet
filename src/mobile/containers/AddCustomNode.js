@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
-import { changeIotaNode, checkNode } from 'iota-wallet-shared-modules/libs/iota';
+import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
+import { getNodeInfoAsync as checkNode } from 'iota-wallet-shared-modules/libs/iota/extendedApi';
 import { setFullNode, addCustomPoWNode } from 'iota-wallet-shared-modules/actions/settings';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { translate } from 'react-i18next';
@@ -153,15 +154,13 @@ class AddCustomNode extends Component {
         if (!nodes.includes(customNode.replace(/ /g, ''))) {
             this.setNode(customNode);
 
-            checkNode((error) => {
-                if (error) {
-                    this.onAddNodeError();
-                    this.setNode(node);
-                } else {
+            checkNode(customNode)
+                .then(() => {
                     this.onAddNodeSuccess(customNode);
+                    this.setNode(customNode);
                     this.props.backPress();
-                }
-            });
+                })
+                .catch(() => this.onAddNodeError());
         } else {
             this.onDuplicateNodeError();
         }
