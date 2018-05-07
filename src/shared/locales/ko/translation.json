@@ -48,6 +48,7 @@
         "otherWallet": "기타 계정",
         "yes": "예",
         "no": "아니오",
+        "okay": "OKAY",
         "password": "비밀번호",
         "passwordOrFingerprint": "비밀번호 또는 지문",
         "unrecognisedPassword": "잘못된 비밀번호",
@@ -73,7 +74,7 @@
         "addresses": "주소",
         "reattach": "다시 어태치",
         "promote": "프로모트",
-        "retry": "RETRY",
+        "retry": "재시도",
         "rebroadcast": "재송출",
         "pressBackAgain": "앱을 닫으려면 뒤로가기를 다시 누르세요.",
         "autoreattaching": "어태치 자동 재시도중",
@@ -106,7 +107,10 @@
         "nodeDuplicatedExplanation": "해당 커스텀 노드는 이미 등록되어 있습니다.",
         "nodeAutoChanged": "노드 자동 변경됨",
         "nodeAutoChangedExplanation": "선택한 노드에 연결할 수 없어 새로운 노드인 {{- nodeAddress}}에 연결하였습니다.",
-        "fingerprintOnSend": "지문을 인식하여 전송 승인"
+        "fingerprintOnSend": "지문을 인식하여 전송 승인",
+        "masterKey": "Your IOTA seed is the master key to your funds.",
+        "googlePlayServicesNotAvailable": "Google Play Services not available",
+        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
@@ -148,7 +152,11 @@
         "clickToCopy": "아래 버튼을 눌러 시드를 복사하고, 비밀번호 관리자에 저장하십시오.",
         "doNotStore": "시드를 암호화하지 않은 채로 저장하지 마십시오.",
         "copyToClipboard": "시드 복사",
-        "shareSeed": "안전한 비밀번호 관리자로 시드를 공유하십시오"
+        "shareSeed": "안전한 비밀번호 관리자로 시드를 공유하십시오",
+        "storeEncrypted": "If you choose to back-up your seed on your phone it should be stored encrypted e.g. in a password manager.",
+        "tapConfirm": "Please tap the checkbox below to confirm.",
+        "encryptionCheckbox": "I will store my seed with encryption",
+        "copy": "COPY"
     },
     "enterSeed": {
         "invalidCharacters": "시드에 잘못된 문자 포함",
@@ -188,7 +196,9 @@
         "seedNotGenerated": "시드가 생성되지 않았습니다",
         "seedNotGeneratedExplanation": "새 시드를 생성해 주십시오.",
         "pressForNewSeed": "여기를 눌러 새 시드 생성",
-        "individualLetters": "개별 문자를 눌러 해당 문자를 무작위로 바꿀 수 있습니다."
+        "generateSuccess": "Seed generated successfully",
+        "individualLetters": "개별 문자를 눌러 해당 문자를 무작위로 바꿀 수 있습니다.",
+        "whatIsASeed": "What is a seed?"
     },
     "onboardingComplete": {
         "walletReady": "지갑 구성이 완료되었습니다. 변경해야 할 사항이 있을 경우 설정 메뉴를 확인하십시오."
@@ -198,7 +208,13 @@
         "storeSafely": "안전하게 보관하십시오.",
         "neverShare": "절대로 다른 사람에게 시드를 알려주지 마십시오.",
         "iotaLogo": "IOTA 로고",
-        "printWallet": "종이 지갑 인쇄하기"
+        "printWallet": "종이 지갑 인쇄하기",
+        "print": "PRINT",
+        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
+        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
+        "tapCheckboxes": "Please tap the checkboxes below to confirm.",
+        "wifiCheckbox": "I will not print on public wifi",
+        "printerCheckbox": "I will not print on a public printer"
     },
     "receive": {
         "addressCopied": "주소가 복사됨",
@@ -210,8 +226,6 @@
         "spent": "이미 사용함"
     },
     "saveYourSeed": {
-        "seedCleared": "시드 삭제됨",
-        "seedClearedExplanation": "보안을 위해 클립보드에서 시드가 삭제되었습니다.",
         "mustSaveYourSeed": "<0><0>반드시 아래 나열된 방법 중 </0><1>하나 이상</1><2>을 사용하여 시드를 기록해야 합니다.</2></0>"
     },
     "seedReentry": {
@@ -274,12 +288,15 @@
         "mode": "모드",
         "theme": "테마",
         "currency": "통화",
+        "cannotChangeNode": "Cannot change node",
+        "cannotChangeNodeWhileSending": "Cannot change node while sending.",
         "language": "언어",
         "accountManagement": "계정 관리",
         "addNewSeed": "새 시드 추가",
         "twoFA": "2단계 인증",
         "changePassword": "비밀번호 변경",
         "advanced": "고급 설정",
+        "about": "트리니티 정보",
         "logout": "로그아웃",
         "reset": "지갑 초기화",
         "syncingComplete": "동기화 완료",
@@ -296,7 +313,7 @@
         "hideOthers": "나머지 숨기기",
         "show": "보기",
         "showAll": "전부 펼치기",
-        "quit": "중단하기",
+        "quit": "나가기",
         "edit": "수정",
         "cut": "잘라내기",
         "copy": "복사",
@@ -310,7 +327,6 @@
         "fetchedConversionRatesExplanation": "{{currency}} 단위의 최신 환율을 성공적으로 가져왔습니다.",
         "undo": "취소",
         "redo": "다시 실행",
-        "about": "트리니티 정보",
         "lockScreenTimeout": "자동 잠금 시간 (분)",
         "autoNodeSwitching": "노드에 연결이 불가능할 경우 자동으로 다른 노드에 연결 시도"
     },

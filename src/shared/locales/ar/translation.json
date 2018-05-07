@@ -48,6 +48,7 @@
         "otherWallet": "حساب آخر",
         "yes": "نعم",
         "no": "لا",
+        "okay": "OKAY",
         "password": "كلمة المرور",
         "passwordOrFingerprint": "كلمة المرور أو البصمة",
         "unrecognisedPassword": "كلمة المرور غير المعترف بها",
@@ -106,7 +107,11 @@
         "nodeDuplicatedExplanation": "The custom node is already listed.",
         "nodeAutoChanged": "Auto-switched node",
         "nodeAutoChangedExplanation": "Switched to new node {{- nodeAddress}} as selected node is offline.",
-        "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer"
+        "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer",
+        "masterKey": "Your IOTA seed is the master key to your funds.",
+        "googlePlayServicesNotAvailable": "Google Play Services not available",
+        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available.",
+        "clear": "CLEAR"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "أوتورياتاتشينج إلى تشابك",
@@ -148,7 +153,11 @@
         "clickToCopy": "انقر على الزر أدناه وانسخ السييد الخاص بك إلى مكان آمن.",
         "doNotStore": "لا تخزن السييد الخاص بك في نص عادي.",
         "copyToClipboard": "Copy seed",
-        "shareSeed": "Share your seed to a secure password manager"
+        "shareSeed": "Share your seed to a secure password manager",
+        "storeEncrypted": "If you choose to back-up your seed on your phone it should be stored encrypted e.g. in a password manager.",
+        "tapConfirm": "Please tap the checkbox below to confirm.",
+        "encryptionCheckbox": "I will store my seed with encryption",
+        "copy": "COPY"
     },
     "enterSeed": {
         "invalidCharacters": "السييد يحتوي على أحرف غير صالحة",
@@ -188,7 +197,9 @@
         "seedNotGenerated": "القيم لم يتم تكوينها",
         "seedNotGeneratedExplanation": "Please generate a new seed.",
         "pressForNewSeed": "اضغط لإنشاء قيم جديدة",
-        "individualLetters": "اضغط على الأحرف بشكل فردي لكي تكن عشوائية."
+        "generateSuccess": "Seed generated successfully",
+        "individualLetters": "اضغط على الأحرف بشكل فردي لكي تكن عشوائية.",
+        "whatIsASeed": "What is a seed?"
     },
     "onboardingComplete": {
         "walletReady": "تم إعداد المحفظة الآن وجاهزة للاستخدام. إذا كنت بحاجة إلى إجراء أية تغييرات في المستقبل، فابحث في قائمة الإعدادات."
@@ -198,7 +209,13 @@
         "storeSafely": "خزنها بأمان.",
         "neverShare": "لا تقم ابداً بمشاركة السييد الخاص بك مع اي شخص.",
         "iotaLogo": "شعار IOTA",
-        "printWallet": "طباعة محفظة ورقية"
+        "printWallet": "طباعة محفظة ورقية",
+        "print": "PRINT",
+        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
+        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
+        "tapCheckboxes": "Please tap the checkboxes below to confirm.",
+        "wifiCheckbox": "I will not print on public wifi",
+        "printerCheckbox": "I will not print on a public printer"
     },
     "receive": {
         "addressCopied": "تم نسخ العنوان",
@@ -210,8 +227,6 @@
         "spent": "اُنفق"
     },
     "saveYourSeed": {
-        "seedCleared": "تم مسح القيم",
-        "seedClearedExplanation": "تم مسح القيم من الحافظة لأمنك.",
         "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
     },
     "seedReentry": {
@@ -274,12 +289,15 @@
         "mode": "نمط",
         "theme": "التصميم",
         "currency": "عملة",
+        "cannotChangeNode": "Cannot change node",
+        "cannotChangeNodeWhileSending": "Cannot change node while sending.",
         "language": "اللغة",
         "accountManagement": "إدارة الحساب",
         "addNewSeed": "إضافة سييد جديد",
         "twoFA": "Two-factor authentication",
         "changePassword": "تغيير كلمة المرور",
         "advanced": "إعدادات متقدمة",
+        "about": "About Trinity",
         "logout": "تسجيل خروج",
         "reset": "إعادة تعيين المحفظة",
         "syncingComplete": "تم إكمال المزامنة",
@@ -310,7 +328,6 @@
         "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}.",
         "undo": "Undo",
         "redo": "Redo",
-        "about": "About Trinity",
         "lockScreenTimeout": "Lock Screen Timeout (Minutes)",
         "autoNodeSwitching": "Automatically switch node when selected is unreachable"
     },
@@ -354,7 +371,12 @@
         "addNewAccount": "إضافة حساب جديد"
     },
     "addCustomNode": {
+        "customNodeAdded": "Custom node added",
+        "customNodeCouldNotBeAdded": "Custom node could not be added",
+        "customNodeAddedSuccessfully": "The custom node has been added successfully.",
         "customNode": "عقده معينة",
+        "invalidNodeResponse": "The node returned an invalid response",
+        "httpNodeError": "Trinity Mobile only supports https nodes.",
         "add": "إضافة",
         "nodeFieldEmpty": "Text field is empty",
         "nodeFieldEmptyExplanation": "Please enter a custom node."
@@ -414,7 +436,9 @@
         "syncingYourAccount": "جاري مزامنة حسابك."
     },
     "useExistingSeed": {
-        "title": "أدخل سييد واسم حساب."
+        "title": "أدخل سييد واسم حساب.",
+        "incorrectFormat": "Incorrect seed format",
+        "validSeedExplanation": "'Valid seeds should be 81 characters and contain only A-Z or 9.'"
     },
     "viewSeed": {
         "enterPassword": "أدخل كلمة المرور لعرض السييد الخاص بك.",
@@ -468,7 +492,8 @@
         "twoFADisabled": "2FA is now disabled",
         "twoFADisabledExplanation": "You have successfully disabled Two Factor Authentication.",
         "enterCode": "Enter the code from your 2FA app",
-        "code": "Code"
+        "code": "Code",
+        "twoFaToken": "2FA Token"
     },
     "chart": {
         "mcap": "MCAP",
@@ -478,7 +503,9 @@
     },
     "rootDetection": {
         "warning": "WARNING",
-        "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+        "appearsRooted": "Your device appears to be rooted.",
+        "securityRisk": "This can pose a significant risk to the security of your wallet.",
+        "continueDepsiteRisk": "Do you wish to continue despite this risk?"
     },
     "pow": {
         "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
@@ -526,5 +553,8 @@
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
         "downloadRelease": "Download release",
         "skipUpdate": "Skip update"
+    },
+    "notificationLog": {
+        "errorLog": "ERROR LOG"
     }
 }
