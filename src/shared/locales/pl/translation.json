@@ -48,6 +48,7 @@
         "otherWallet": "INNE KONTO",
         "yes": "TAK",
         "no": "NIE",
+        "okay": "OKEJ",
         "password": "Hasło",
         "passwordOrFingerprint": "Hasło lub odcisk palca",
         "unrecognisedPassword": "Hasło nierozpoznane",
@@ -97,7 +98,7 @@
         "enterPasswordToAccessSettings": "Wprowadź swoje hasło, aby uzyskać dostęp do ustawień konta",
         "enterYourPassword": "Wprowadź swoje hasło",
         "changeNode": "Zmień serwer",
-        "addCustomNode": "Dodaj niestandardowy serwer",
+        "addCustomNode": "Dodaj serwer",
         "nodeChanged": "Serwer zmieniony",
         "nodeChangedExplanation": "Serwer został zmieniony pomyślnie.",
         "nodeMustUseHTTPS": "Serwer bez obsługi HTTPS",
@@ -106,7 +107,10 @@
         "nodeDuplicatedExplanation": "Ten niestandardowy serwer znajduje się już na liście.",
         "nodeAutoChanged": "Autom. zmiana serwera",
         "nodeAutoChangedExplanation": "Przełączono na nowy serwer {{- nodeAddress}}, ponieważ poprzednio wybrany serwer był offline.",
-        "fingerprintOnSend": "Przyłóż palec do czytnika, aby autoryzować transfer"
+        "fingerprintOnSend": "Przyłóż palec do czytnika, aby autoryzować transfer",
+        "masterKey": "Twój seed IOTA jest głównym kluczem do Twoich funduszy.",
+        "googlePlayServicesNotAvailable": "Usługi Google Play niedostępne",
+        "couldNotVerifyDeviceIntegrity": "Nie można zweryfikować integralności urządzenia, ponieważ Usługi Google Play są niedostępne."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -148,7 +152,11 @@
         "clickToCopy": "Kliknij poniższy przycisk i skopiuj swój klucz seed do menedżera haseł.",
         "doNotStore": "Nie przechowuj tego klucza w formie zwykłego tekstu.",
         "copyToClipboard": "Kopiuj seed",
-        "shareSeed": "Udostępnij swój klucz seed do bezpiecznego menedżera haseł"
+        "shareSeed": "Udostępnij swój klucz seed do bezpiecznego menedżera haseł",
+        "storeEncrypted": "Jeśli zdecydujesz się na kopię zapasową Twojego klucza seed w telefonie, powinna być ona zaszyfrowana np. w menedżer haseł.",
+        "tapConfirm": "Zaznacz poniższe pole, aby potwierdzić.",
+        "encryptionCheckbox": "Będę przechowywać mój seed zaszyfrowany",
+        "copy": "KOPIUJ"
     },
     "enterSeed": {
         "invalidCharacters": "Seed zawiera nieprawidłowe znaki",
@@ -188,7 +196,9 @@
         "seedNotGenerated": "Seed nie został wygenerowany",
         "seedNotGeneratedExplanation": "Wygeneruj nowy klucz seed.",
         "pressForNewSeed": "WYGENERUJ NOWY SEED",
-        "individualLetters": "Naciśnij na dane pole, aby wylosować je ponownie."
+        "generateSuccess": "Klucz seed został wygenerowany pomyślnie",
+        "individualLetters": "Naciśnij na dane pole, aby wylosować je ponownie.",
+        "whatIsASeed": "Czym jest seed?"
     },
     "onboardingComplete": {
         "walletReady": "Portfel został skonfigurowany i jest gotowy do użycia. Jeśli będziesz chciał wprowadzić zmiany, skorzystaj z menu ustawień."
@@ -198,7 +208,13 @@
         "storeSafely": "Przechowuj go bezpiecznie.",
         "neverShare": "Nigdy nie udostępniaj nikomu swojego klucza seed.",
         "iotaLogo": "Logo IOTA",
-        "printWallet": "DRUKUJ PAPIEROWY PORTFEL"
+        "printWallet": "DRUKUJ PAPIEROWY PORTFEL",
+        "print": "DRUKUJ",
+        "paperConvenience": "Wydruk papierowej kopii klucza seed jest wygodnym sposobem na jego przechowywanie.",
+        "publicInsecure": "Jednak drukowanie na publicznej sieci WiFi lub publicznej drukarce jest niebezpieczne.",
+        "tapCheckboxes": "Zaznacz poniższe pola, aby potwierdzić.",
+        "wifiCheckbox": "Nie będę drukował na publicznym WiFi",
+        "printerCheckbox": "Nie będę drukował na publicznej drukarce"
     },
     "receive": {
         "addressCopied": "Adres skopiowany",
@@ -210,8 +226,6 @@
         "spent": "Adres zużyty"
     },
     "saveYourSeed": {
-        "seedCleared": "Seed wyczyszczony",
-        "seedClearedExplanation": "Seed został usunięty ze schowka dla Twojego bezpieczeństwa.",
         "mustSaveYourSeed": "<0><0>Musisz zapisać swój seed, wybierając </0><1>co najmniej jedną</1><2> z poniższych opcji.</2></0>"
     },
     "seedReentry": {
@@ -274,12 +288,15 @@
         "mode": "Tryb",
         "theme": "Motyw",
         "currency": "Waluta",
+        "cannotChangeNode": "Nie można zmienić serwera",
+        "cannotChangeNodeWhileSending": "Nie można zmienić serwera podczas wysyłania.",
         "language": "Język",
         "accountManagement": "Zarządzanie kontem",
         "addNewSeed": "Dodaj nowy seed",
         "twoFA": "Autoryzacja dwustopniowa",
         "changePassword": "Zmień hasło",
         "advanced": "Ustawienia zaawansowane",
+        "about": "O Trinity",
         "logout": "Wyloguj",
         "reset": "Zresetuj portfel",
         "syncingComplete": "Synchronizacja zakończona",
@@ -310,7 +327,6 @@
         "fetchedConversionRatesExplanation": "Pomyślnie pobrano najnowszy kurs przeliczeniowy dla waluty {{currency}}.",
         "undo": "Cofnij",
         "redo": "Ponów",
-        "about": "O Trinity",
         "lockScreenTimeout": "Czas do zablokowania ekranu (Minuty)",
         "autoNodeSwitching": "Automatyczna zmiana serwera, gdy aktualnie wybrany jest nieosiągalny"
     },
@@ -354,7 +370,7 @@
         "addNewAccount": "Dodaj nowe konto"
     },
     "addCustomNode": {
-        "customNode": "Serwer niestandardowy",
+        "customNode": "Niestandardowy serwer",
         "add": "Dodaj",
         "nodeFieldEmpty": "Pole adresu puste",
         "nodeFieldEmptyExplanation": "Proszę wpisać adres niestandardowego serwera."
@@ -365,7 +381,7 @@
     },
     "advancedSettings": {
         "selectNode": "Wybierz serwer",
-        "addCustomNode": "Dodaj niestandardowy serwer",
+        "addCustomNode": "Dodaj serwer",
         "manualSync": "Ręczna synchronizacja",
         "snapshotTransition": "Snapshot asystent",
         "pow": "Konfiguracja Proof of Work"

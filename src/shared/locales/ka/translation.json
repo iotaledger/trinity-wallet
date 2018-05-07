@@ -48,6 +48,7 @@
         "otherWallet": "OTHER ACCOUNT",
         "yes": "YES",
         "no": "NO",
+        "okay": "OKAY",
         "password": "Password",
         "passwordOrFingerprint": "Password or fingerprint",
         "unrecognisedPassword": "Unrecognised password",
@@ -106,7 +107,10 @@
         "nodeDuplicatedExplanation": "The custom node is already listed.",
         "nodeAutoChanged": "Auto-switched node",
         "nodeAutoChangedExplanation": "Switched to new node {{- nodeAddress}} as selected node is offline.",
-        "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer"
+        "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer",
+        "masterKey": "Your IOTA seed is the master key to your funds.",
+        "googlePlayServicesNotAvailable": "Google Play Services not available",
+        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
@@ -148,7 +152,11 @@
         "clickToCopy": "Click the button below and copy your seed to a password manager.",
         "doNotStore": "Do not store your seed in plain text.",
         "copyToClipboard": "Copy seed",
-        "shareSeed": "Share your seed to a secure password manager"
+        "shareSeed": "Share your seed to a secure password manager",
+        "storeEncrypted": "If you choose to back-up your seed on your phone it should be stored encrypted e.g. in a password manager.",
+        "tapConfirm": "Please tap the checkbox below to confirm.",
+        "encryptionCheckbox": "I will store my seed with encryption",
+        "copy": "COPY"
     },
     "enterSeed": {
         "invalidCharacters": "Seed contains invalid characters",
@@ -188,7 +196,9 @@
         "seedNotGenerated": "Seed has not been generated",
         "seedNotGeneratedExplanation": "Please generate a new seed.",
         "pressForNewSeed": "PRESS FOR NEW SEED",
-        "individualLetters": "Press individual letters to randomise them."
+        "generateSuccess": "Seed generated successfully",
+        "individualLetters": "Press individual letters to randomise them.",
+        "whatIsASeed": "What is a seed?"
     },
     "onboardingComplete": {
         "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
@@ -198,7 +208,13 @@
         "storeSafely": "Store it safely.",
         "neverShare": "Never share your seed with anyone.",
         "iotaLogo": "IOTA logo",
-        "printWallet": "PRINT PAPER WALLET"
+        "printWallet": "PRINT PAPER WALLET",
+        "print": "PRINT",
+        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
+        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
+        "tapCheckboxes": "Please tap the checkboxes below to confirm.",
+        "wifiCheckbox": "I will not print on public wifi",
+        "printerCheckbox": "I will not print on a public printer"
     },
     "receive": {
         "addressCopied": "Address copied",
@@ -210,8 +226,6 @@
         "spent": "Spent"
     },
     "saveYourSeed": {
-        "seedCleared": "Seed cleared",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
         "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
     },
     "seedReentry": {
@@ -274,12 +288,15 @@
         "mode": "Mode",
         "theme": "Theme",
         "currency": "Currency",
+        "cannotChangeNode": "Cannot change node",
+        "cannotChangeNodeWhileSending": "Cannot change node while sending.",
         "language": "Language",
         "accountManagement": "Account management",
         "addNewSeed": "Add new seed",
         "twoFA": "Two-factor authentication",
         "changePassword": "Change password",
         "advanced": "Advanced settings",
+        "about": "About Trinity",
         "logout": "Log out",
         "reset": "Reset wallet",
         "syncingComplete": "Syncing complete",
@@ -310,7 +327,6 @@
         "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}.",
         "undo": "Undo",
         "redo": "Redo",
-        "about": "About Trinity",
         "lockScreenTimeout": "Lock Screen Timeout (Minutes)",
         "autoNodeSwitching": "Automatically switch node when selected is unreachable"
     },
