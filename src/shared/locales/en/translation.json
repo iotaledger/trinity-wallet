@@ -116,7 +116,8 @@
         "masterKey": "Your IOTA seed is the master key to your funds.",
         "googlePlayServicesNotAvailable": "Google Play Services not available",
         "couldNotVerifyDeviceIntegrity":
-            "Could not verify device integrity because Google Play Services are not available."
+            "Could not verify device integrity because Google Play Services are not available.",
+        "clear": "CLEAR"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
@@ -455,7 +456,9 @@
         "syncingYourAccount": "Syncing your account."
     },
     "useExistingSeed": {
-        "title": "Enter a seed and account name."
+        "title": "Enter a seed and account name.",
+        "incorrectFormat": "Incorrect seed format",
+        "validSeedExplanation": "'Valid seeds should be 81 characters and contain only A-Z or 9.'"
     },
     "viewSeed": {
         "enterPassword": "Enter password to view your seed.",
@@ -512,7 +515,8 @@
         "twoFADisabled": "2FA is now disabled",
         "twoFADisabledExplanation": "You have successfully disabled Two Factor Authentication.",
         "enterCode": "Enter the code from your 2FA app",
-        "code": "Code"
+        "code": "Code",
+        "twoFaToken": "2FA Token"
     },
     "chart": {
         "mcap": "MCAP",
@@ -522,8 +526,9 @@
     },
     "rootDetection": {
         "warning": "WARNING",
-        "rootDetected":
-            "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+        "appearsRooted": "Your device appears to be rooted.",
+        "securityRisk": "This can pose a significant risk to the security of your wallet.",
+        "continueDepsiteRisk": "Do you wish to continue despite this risk?"
     },
     "pow": {
         "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
@@ -572,5 +577,8 @@
             "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
         "downloadRelease": "Download release",
         "skipUpdate": "Skip update"
+    },
+    "notificationLog": {
+        "errorLog": "ERROR LOG"
     }
 }
