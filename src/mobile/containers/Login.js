@@ -18,7 +18,7 @@ import WithBackPressCloseApp from '../components/BackPressCloseApp';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import NodeSelectionOnLogin from './NodeSelectionOnLogin';
 import EnterPasswordOnLoginComponent from '../components/EnterPasswordOnLogin';
-import Enter2FA from '../components/Enter2FA';
+import Enter2FAComponent from '../components/Enter2FA';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import { getAllSeedsFromKeychain, getTwoFactorAuthKeyFromKeychain, logTwoFa } from '../utils/keychain';
 import { getPasswordHash } from '../utils/crypto';
@@ -249,7 +249,7 @@ class Login extends Component {
                     )}
                 {!this.state.changingNode &&
                     this.state.completing2FA && (
-                        <Enter2FA verify={this.onComplete2FA} cancel={this.onBackPress} theme={theme} />
+                        <Enter2FAComponent verify={this.onComplete2FA} cancel={this.onBackPress} theme={theme} />
                     )}
                 {this.state.changingNode && (
                     <NodeSelectionOnLogin backPress={() => this.setState({ changingNode: false })} />
