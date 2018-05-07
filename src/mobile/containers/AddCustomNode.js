@@ -138,7 +138,7 @@ class AddCustomNode extends Component {
 
         const { customNode } = this.state;
 
-        if (!customNode.match(/^[.a-zA-Z0-9:/-]+$/)) {
+        if (!customNode) {
             return this.onEmptyFieldError();
         }
 
