@@ -2,6 +2,7 @@ import map from 'lodash/map';
 import size from 'lodash/size';
 import clone from 'lodash/clone';
 import { iota } from './index';
+import IOTA from 'iota.lib.js';
 import { DEFAULT_BALANCES_THRESHOLD, DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../../config';
 
 const getBalancesAsync = (addresses, threshold = DEFAULT_BALANCES_THRESHOLD) => {
@@ -16,9 +17,11 @@ const getBalancesAsync = (addresses, threshold = DEFAULT_BALANCES_THRESHOLD) => 
     });
 };
 
-const getNodeInfoAsync = () => {
+const getNodeInfoAsync = (provider = null) => {
     return new Promise((resolve, reject) => {
-        iota.api.getNodeInfo((err, info) => {
+        const instance = provider ? new IOTA({ provider }) : iota;
+
+        instance.api.getNodeInfo((err, info) => {
             if (err) {
                 reject(err);
             } else {
