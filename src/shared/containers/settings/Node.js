@@ -65,23 +65,26 @@ export default function withNodeData(NodeComponent) {
                 loading: true,
             });
 
-            checkNode(nodeSelected).then(() => {
-                this.setState({ loading: false });
-                setFullNode(nodeSelected);
+            checkNode(nodeSelected)
+                .then(() => {
+                    this.setState({ loading: false });
+                    changeIotaNode(nodeSelected);
+                    setFullNode(nodeSelected);
 
-                if (nodes.indexOf(nodeSelected) < 0) {
-                    addCustomPoWNode(nodeSelected);
-                }
+                    if (nodes.indexOf(nodeSelected) < 0) {
+                        addCustomPoWNode(nodeSelected);
+                    }
 
-                generateAlert('success', t('nodeChanged'), t('nodeChangedExplanation'));
+                    generateAlert('success', t('nodeChanged'), t('nodeChangedExplanation'));
 
-                if (typeof backPress === 'function') {
-                    backPress();
-                }
-            }).catch(() => {
-                this.setState({ loading: false });
-                generateAlert('error', t('global:invalidResponse'), t('global:invalidResponseExplanation'));
-            });
+                    if (typeof backPress === 'function') {
+                        backPress();
+                    }
+                })
+                .catch(() => {
+                    this.setState({ loading: false });
+                    generateAlert('error', t('global:invalidResponse'), t('global:invalidResponseExplanation'));
+                });
         };
 
         changeAutoNodeSwitching = () => {

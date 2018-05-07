@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import {
+    ActivityIndicator,
+    View,
+    Text,
+    StyleSheet,
+    TouchableOpacity,
+    TouchableWithoutFeedback,
+    Keyboard,
+} from 'react-native';
 import { connect } from 'react-redux';
 import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
 import { getNodeInfoAsync as checkNode } from 'iota-wallet-shared-modules/libs/iota/extendedApi';
@@ -18,8 +26,12 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     topContainer: {
-        flex: 9,
+        flex: 4,
         justifyContent: 'flex-start',
+    },
+    innerContainer: {
+        flex: 5,
+        justifyContent: 'center',
         alignItems: 'center',
     },
     bottomContainer: {
@@ -55,6 +67,12 @@ const styles = StyleSheet.create({
     dropdownWidth: {
         width: width / 1.5,
     },
+    activityIndicator: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: height / 40,
+    },
 });
 
 /**
@@ -64,8 +82,6 @@ class AddCustomNode extends Component {
     static propTypes = {
         /** Available IRI nodes */
         nodes: PropTypes.array.isRequired,
-        /** Currently selected IRI node */
-        node: PropTypes.string.isRequired,
         /** Theme settings */
         theme: PropTypes.object.isRequired,
         /** Set node
@@ -95,6 +111,7 @@ class AddCustomNode extends Component {
 
         this.state = {
             customNode: '',
+            isCheckingNode: false,
         };
     }
 
@@ -135,7 +152,7 @@ class AddCustomNode extends Component {
     }
 
     addNode() {
-        const { node, nodes } = this.props;
+        const { nodes } = this.props;
 
         const { customNode } = this.state;
 
@@ -152,30 +169,64 @@ class AddCustomNode extends Component {
         }
 
         if (!nodes.includes(customNode.replace(/ /g, ''))) {
-            this.setNode(customNode);
+            this.setState({ isCheckingNode: true });
 
             checkNode(customNode)
                 .then(() => {
+                    this.setState({ isCheckingNode: false });
                     this.onAddNodeSuccess(customNode);
                     this.setNode(customNode);
                     this.props.backPress();
                 })
-                .catch(() => this.onAddNodeError());
+                .catch(() => {
+                    this.setState({ isCheckingNode: false });
+                    this.onAddNodeError();
+                });
         } else {
             this.onDuplicateNodeError();
         }
     }
 
+    renderBackPressOption() {
+        const { t, theme } = this.props;
+
+        return (
+            <TouchableOpacity
+                onPress={() => this.props.backPress()}
+                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+            >
+                <View style={styles.itemLeft}>
+                    <Icon name="chevronLeft" size={width / 28} color={theme.body.color} />
+                    <Text style={[styles.titleTextLeft, { color: theme.body.color }]}>{t('global:backLowercase')}</Text>
+                </View>
+            </TouchableOpacity>
+        );
+    }
+
+    renderAddCustomNodeOption() {
+        const { t, theme } = this.props;
+
+        return (
+            <TouchableOpacity
+                onPress={() => this.addNode()}
+                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+            >
+                <View style={styles.itemRight}>
+                    <Text style={[styles.titleTextRight, { color: theme.body.color }]}>{t('add')}</Text>
+                    <Icon name="tick" size={width / 28} color={theme.body.color} />
+                </View>
+            </TouchableOpacity>
+        );
+    }
+
     render() {
         const { t, theme } = this.props;
-        const textColor = { color: theme.body.color };
-        const bodyColor = theme.body.color;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
-                        <View style={{ flex: 0.3 }} />
+                        <View style={{ flex: 1.2 }} />
                         <CustomTextInput
                             label={t('customNode')}
                             onChangeText={(customNode) => this.setState({ customNode })}
@@ -188,25 +239,21 @@ class AddCustomNode extends Component {
                             theme={theme}
                         />
                     </View>
+                    {this.state.isCheckingNode ? (
+                        <View style={styles.innerContainer}>
+                            <ActivityIndicator
+                                animating
+                                style={styles.activityIndicator}
+                                size="large"
+                                color={theme.primary.color}
+                            />
+                        </View>
+                    ) : (
+                        <View style={styles.innerContainer} />
+                    )}
                     <View style={styles.bottomContainer}>
-                        <TouchableOpacity
-                            onPress={() => this.props.backPress()}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.itemLeft}>
-                                <Icon name="chevronLeft" size={width / 28} color={bodyColor} />
-                                <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={() => this.addNode()}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.itemRight}>
-                                <Text style={[styles.titleTextRight, textColor]}>{t('add')}</Text>
-                                <Icon name="tick" size={width / 28} color={bodyColor} />
-                            </View>
-                        </TouchableOpacity>
+                        {!this.state.isCheckingNode && this.renderBackPressOption()}
+                        {!this.state.isCheckingNode && this.renderAddCustomNodeOption()}
                     </View>
                 </View>
             </TouchableWithoutFeedback>
@@ -216,7 +263,6 @@ class AddCustomNode extends Component {
 
 const mapStateToProps = (state) => ({
     nodes: state.settings.nodes,
-    node: state.settings.node,
     theme: state.settings.theme,
 });
 
