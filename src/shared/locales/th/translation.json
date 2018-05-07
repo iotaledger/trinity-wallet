@@ -48,6 +48,7 @@
         "otherWallet": "บัญชีอื่นๆ",
         "yes": "ใช่",
         "no": "ไม่ใช่",
+        "okay": "OKAY",
         "password": "รหัสผ่าน",
         "passwordOrFingerprint": "รหัสผ่าน หรือ ลายนิ้วมือ",
         "unrecognisedPassword": "รหัสผ่านผิด",
@@ -106,7 +107,10 @@
         "nodeDuplicatedExplanation": "The custom node is already listed.",
         "nodeAutoChanged": "Auto-switched node",
         "nodeAutoChangedExplanation": "Switched to new node {{- nodeAddress}} as selected node is offline.",
-        "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer"
+        "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer",
+        "masterKey": "Your IOTA seed is the master key to your funds.",
+        "googlePlayServicesNotAvailable": "Google Play Services not available",
+        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed (เลขที่บัญชี) ประกอบด้วยอักขระที่ไม่ถูกต้อง",
@@ -148,7 +152,11 @@
         "clickToCopy": "คลิกปุ่มด้านล่าง และคัดลอก Seed (เลขที่บัญชี) ไปยังการจัดการรหัสผ่าน",
         "doNotStore": "Do not store your seed in plain text.",
         "copyToClipboard": "คัดลอก Seed (เลขที่บัญชี)",
-        "shareSeed": "แชร์ Seed (เลขที่บัญชี) ของคุณไปยังการจัดการรหัสผ่าน"
+        "shareSeed": "แชร์ Seed (เลขที่บัญชี) ของคุณไปยังการจัดการรหัสผ่าน",
+        "storeEncrypted": "If you choose to back-up your seed on your phone it should be stored encrypted e.g. in a password manager.",
+        "tapConfirm": "Please tap the checkbox below to confirm.",
+        "encryptionCheckbox": "I will store my seed with encryption",
+        "copy": "COPY"
     },
     "enterSeed": {
         "invalidCharacters": "Seed (เลขที่บัญชี) ประกอบด้วยอักขระที่ไม่ถูกต้อง",
@@ -188,7 +196,9 @@
         "seedNotGenerated": "ไม่มีการสร้าง Seed (เลขที่บัญชี)",
         "seedNotGeneratedExplanation": "กรุณาสร้าง Seed (เลขที่บัญชี) ใหม่",
         "pressForNewSeed": "กดสำหรับ Seed ใหม่",
-        "individualLetters": "กดตัวอักษรแต่ละตัวเพื่อที่จะสุ่มตัวอักษรอีกครั้"
+        "generateSuccess": "Seed generated successfully",
+        "individualLetters": "กดตัวอักษรแต่ละตัวเพื่อที่จะสุ่มตัวอักษรอีกครั้",
+        "whatIsASeed": "What is a seed?"
     },
     "onboardingComplete": {
         "walletReady": "กระเป๋าสตางค์ถูกตั้งค่า และพร้อมใช้ ถ้าคุณต้องการเปลี่ยนแปลงในอนาคต สามารถค้นหาได้ในเมนูการตั้งค่า"
@@ -198,7 +208,13 @@
         "storeSafely": "เก็บไว้อย่างปลอดภัย",
         "neverShare": "ไม่เปิดเผย Seed (เลขที่บัญชี) ของคุณให้แก่บุคคลอื่น",
         "iotaLogo": "IOTA logo",
-        "printWallet": "PRINT PAPER WALLET"
+        "printWallet": "PRINT PAPER WALLET",
+        "print": "PRINT",
+        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
+        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
+        "tapCheckboxes": "Please tap the checkboxes below to confirm.",
+        "wifiCheckbox": "I will not print on public wifi",
+        "printerCheckbox": "I will not print on a public printer"
     },
     "receive": {
         "addressCopied": "คัดลอกที่อยู่แล้ว",
@@ -210,8 +226,6 @@
         "spent": "Spent"
     },
     "saveYourSeed": {
-        "seedCleared": "Seed (เลขที่บัญชี) เคลียร์จากคลิปบอร์ดแล้ว",
-        "seedClearedExplanation": "Seed (เลขที่บัญชี) เคลียร์จากคลิปบอร์ดเพื่อความปลอดภัยแล้ว",
         "mustSaveYourSeed": "<0><0>คุณต้องบันทึก Seed (เลขที่บัญชี) ด้วย</0><1>อย่างน้อยหนึ่ง</1> <2>จากตัวเลือกด้านล่างนี้</2> </0>"
     },
     "seedReentry": {
@@ -274,12 +288,15 @@
         "mode": "หมวดหมู่",
         "theme": "ชุดรูปแบบ",
         "currency": "สกุลเงิน",
+        "cannotChangeNode": "Cannot change node",
+        "cannotChangeNodeWhileSending": "Cannot change node while sending.",
         "language": "ภาษา",
         "accountManagement": "การจัดการบัญชี",
         "addNewSeed": "เพิ่ม Seed (เลขที่บัญชี)",
         "twoFA": "การยืนยันตัวตนแบบ 2 ชั้น",
         "changePassword": "เปลี่ยนรหัสผ่าน",
         "advanced": "ตั้งค่าขั้นสูง",
+        "about": "About Trinity",
         "logout": "ออกจากระบบ",
         "reset": "Reset wallet",
         "syncingComplete": "ทำการซิงค์เสร็จสมบูรณ์",
@@ -310,7 +327,6 @@
         "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}.",
         "undo": "Undo",
         "redo": "Redo",
-        "about": "About Trinity",
         "lockScreenTimeout": "Lock Screen Timeout (Minutes)",
         "autoNodeSwitching": "Automatically switch node when selected is unreachable"
     },
