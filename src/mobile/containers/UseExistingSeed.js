@@ -162,6 +162,7 @@ class UseExistingSeed extends Component {
     }
 
     onQRRead(data) {
+        const { t } = this.props;
         const dataString = data.toString();
         this.hideModal();
         if (dataString.length === 81 && dataString.match(VALID_SEED_REGEX)) {
@@ -174,8 +175,8 @@ class UseExistingSeed extends Component {
                 () =>
                     this.props.generateAlert(
                         'error',
-                        'Incorrect seed format',
-                        'Valid seeds should be 81 characters and contain only A-Z or 9.',
+                        t('useExistingSeed:incorrectFormat'),
+                        t('useExistingSeed:validSeedExplanation'),
                     ),
                 500,
             );
