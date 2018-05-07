@@ -3,7 +3,7 @@ import noop from 'lodash/noop';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
-import Enter2FA from '../../components/Enter2FA';
+import { Enter2FA } from '../../components/Enter2FA';
 
 const getProps = (overrides) =>
     assign(
