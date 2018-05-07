@@ -8,6 +8,7 @@ export default i18next.use(reactI18nextModule).init(
         parseMissingKeyHandler: (value) => `Translation not available for ${value}`,
         resources: {
             ar: require('../shared/locales/ar/translation.json'),
+            cs: require('../shared/locales/cs/translation.json'),
             da: require('../shared/locales/da/translation.json'),
             de: require('../shared/locales/de/translation.json'),
             el: require('../shared/locales/el/translation.json'),
