@@ -48,6 +48,7 @@
         "otherWallet": "ANNAT KONTO",
         "yes": "JA",
         "no": "NEJ",
+        "okay": "OKAY",
         "password": "Lösenord",
         "passwordOrFingerprint": "Lösenord eller fingeravtryck",
         "unrecognisedPassword": "Fel lösenord",
@@ -73,7 +74,7 @@
         "addresses": "Adresser",
         "reattach": "ÅTERFÄST",
         "promote": "BEFORDRA",
-        "retry": "RETRY",
+        "retry": "FÖRSÖK IGEN",
         "rebroadcast": "ÅTERSÄND",
         "pressBackAgain": "Tryck tillbaka igen för att stänga appen",
         "autoreattaching": "Återfäster automatiskt till Tangle",
@@ -106,7 +107,10 @@
         "nodeDuplicatedExplanation": "Den anpassade noden finns redan.",
         "nodeAutoChanged": "Bytte automatiskt nod",
         "nodeAutoChangedExplanation": "Bytte till ny nod {{- nodeAddress}} då din valda nod är offline.",
-        "fingerprintOnSend": "Tryck på fingeravtrycksläsaren för att skicka överföringen"
+        "fingerprintOnSend": "Tryck på fingeravtrycksläsaren för att skicka överföringen",
+        "masterKey": "Your IOTA seed is the master key to your funds.",
+        "googlePlayServicesNotAvailable": "Google Play Services not available",
+        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
@@ -148,7 +152,11 @@
         "clickToCopy": "Klicka på knappen nedan för att kopiera din adress till en lösenordshanterare.",
         "doNotStore": "Förvara inte din seed i oformaterad text.",
         "copyToClipboard": "Kopiera seed",
-        "shareSeed": "Dela din seed till en säker lösenordshanterare"
+        "shareSeed": "Dela din seed till en säker lösenordshanterare",
+        "storeEncrypted": "If you choose to back-up your seed on your phone it should be stored encrypted e.g. in a password manager.",
+        "tapConfirm": "Please tap the checkbox below to confirm.",
+        "encryptionCheckbox": "I will store my seed with encryption",
+        "copy": "COPY"
     },
     "enterSeed": {
         "invalidCharacters": "Seeden innehåller ogiltiga tecken",
@@ -188,7 +196,9 @@
         "seedNotGenerated": "En seed har inte blivit genererad",
         "seedNotGeneratedExplanation": "Var vänlig och generera en ny seed.",
         "pressForNewSeed": "TRYCK FÖR NY SEED",
-        "individualLetters": "Tryck på enskilda bokstäver för att ändra de slumpmässigt."
+        "generateSuccess": "Seed generated successfully",
+        "individualLetters": "Tryck på enskilda bokstäver för att ändra de slumpmässigt.",
+        "whatIsASeed": "What is a seed?"
     },
     "onboardingComplete": {
         "walletReady": "Plånboken är nu inställd och redo att använda. Om du behöver göra några ändringar i framtiden, titta i menyn Inställningar."
@@ -198,7 +208,13 @@
         "storeSafely": "Förvara den säkert.",
         "neverShare": "Dela aldrig din seed med någon.",
         "iotaLogo": "IOTA logotyp",
-        "printWallet": "SKRIV UT PAPPERSKOPIA"
+        "printWallet": "SKRIV UT PAPPERSKOPIA",
+        "print": "PRINT",
+        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
+        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
+        "tapCheckboxes": "Please tap the checkboxes below to confirm.",
+        "wifiCheckbox": "I will not print on public wifi",
+        "printerCheckbox": "I will not print on a public printer"
     },
     "receive": {
         "addressCopied": "Adress kopierad",
@@ -210,8 +226,6 @@
         "spent": "Förbrukat"
     },
     "saveYourSeed": {
-        "seedCleared": "Seed rensad",
-        "seedClearedExplanation": "Seeden har rensats från urklippet för din säkerhet.",
         "mustSaveYourSeed": "<0><0>Du måste spara din seed med</0><1>minst ett</1><2> av alternativen listade nedan.</2></0>"
     },
     "seedReentry": {
@@ -274,12 +288,15 @@
         "mode": "Läge",
         "theme": "Teman",
         "currency": "Valuta",
+        "cannotChangeNode": "Cannot change node",
+        "cannotChangeNodeWhileSending": "Cannot change node while sending.",
         "language": "Språk",
         "accountManagement": "Kontohantering",
         "addNewSeed": "Lägg till ny seed",
         "twoFA": "Tvåfaktorsautentisering",
         "changePassword": "Ändra lösenord",
         "advanced": "Avancerade inställningar",
+        "about": "Om Trinity",
         "logout": "Logga ut",
         "reset": "Återställ plånbok",
         "syncingComplete": "Synkronisering genomförd",
@@ -310,7 +327,6 @@
         "fetchedConversionRatesExplanation": "Lyckad hämtning av senaste valutakurs för {{currency}}.",
         "undo": "Ångra",
         "redo": "Upprepa",
-        "about": "Om Trinity",
         "lockScreenTimeout": "Inaktivitetslås (minuter)",
         "autoNodeSwitching": "Byt nod automatiskt när vald nod är onåbar"
     },

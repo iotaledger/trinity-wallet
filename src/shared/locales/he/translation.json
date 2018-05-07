@@ -48,6 +48,7 @@
         "otherWallet": "חשבון אחר",
         "yes": "כן",
         "no": "לא",
+        "okay": "OKAY",
         "password": "Password",
         "passwordOrFingerprint": "סיסמה או תביעת אצבע",
         "unrecognisedPassword": "סיסמה שגויה",
@@ -106,7 +107,10 @@
         "nodeDuplicatedExplanation": "The custom node is already listed.",
         "nodeAutoChanged": "Auto-switched node",
         "nodeAutoChangedExplanation": "Switched to new node {{- nodeAddress}} as selected node is offline.",
-        "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer"
+        "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer",
+        "masterKey": "Your IOTA seed is the master key to your funds.",
+        "googlePlayServicesNotAvailable": "Google Play Services not available",
+        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "הסיד מכיל תווים לא חוקיים",
@@ -148,7 +152,11 @@
         "clickToCopy": "לחץ על הכפתור למטה על מנת להעתיק את הסיד שלך למנהל סיסמאות.",
         "doNotStore": "אל תאחסן את הסיד שלך בעורך טקסט.",
         "copyToClipboard": "העתק סיד",
-        "shareSeed": "שתף את הסיד שלך למנהל סיסמאות מאובטח"
+        "shareSeed": "שתף את הסיד שלך למנהל סיסמאות מאובטח",
+        "storeEncrypted": "If you choose to back-up your seed on your phone it should be stored encrypted e.g. in a password manager.",
+        "tapConfirm": "Please tap the checkbox below to confirm.",
+        "encryptionCheckbox": "I will store my seed with encryption",
+        "copy": "COPY"
     },
     "enterSeed": {
         "invalidCharacters": "הסיד מכיל תווים לא חוקיים",
@@ -188,7 +196,9 @@
         "seedNotGenerated": "הסיד לא נוצר",
         "seedNotGeneratedExplanation": "בבקשה ייצר סיד חדש.",
         "pressForNewSeed": "לחץ ליצירת סיד חדש",
-        "individualLetters": "לחץ על התווים על מנת לסדר אותם בסדר אקראי."
+        "generateSuccess": "Seed generated successfully",
+        "individualLetters": "לחץ על התווים על מנת לסדר אותם בסדר אקראי.",
+        "whatIsASeed": "What is a seed?"
     },
     "onboardingComplete": {
         "walletReady": "הארנק מוגדר ומוכן לשימוש. אם את צריך לערוך שינוי כלשהו בעתיד, היכנס לתפריט ההגדרות."
@@ -198,7 +208,13 @@
         "storeSafely": "אחסן את זה בבטחה.",
         "neverShare": "Never share your seed with anyone.",
         "iotaLogo": "IOTA logo",
-        "printWallet": "PRINT PAPER WALLET"
+        "printWallet": "PRINT PAPER WALLET",
+        "print": "PRINT",
+        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
+        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
+        "tapCheckboxes": "Please tap the checkboxes below to confirm.",
+        "wifiCheckbox": "I will not print on public wifi",
+        "printerCheckbox": "I will not print on a public printer"
     },
     "receive": {
         "addressCopied": "הכתובת הועתקה",
@@ -210,8 +226,6 @@
         "spent": "Spent"
     },
     "saveYourSeed": {
-        "seedCleared": "הסיד נוקה",
-        "seedClearedExplanation": "הסיד נוקה משורת ההעתקה למען בטחונך.",
         "mustSaveYourSeed": "<0><0>עליך לשמור את הסיד שלך עם </0><1>לפחות פעם אחת</1><2> ממספר הפעמים שמופיע.</2></0>"
     },
     "seedReentry": {
@@ -274,12 +288,15 @@
         "mode": "מצב",
         "theme": "עיצוב",
         "currency": "מטבע",
+        "cannotChangeNode": "Cannot change node",
+        "cannotChangeNodeWhileSending": "Cannot change node while sending.",
         "language": "שפה",
         "accountManagement": "Account management",
         "addNewSeed": "הוסף סיד חדש",
         "twoFA": "Two-factor authentication",
         "changePassword": "Change password",
         "advanced": "Advanced settings",
+        "about": "על הארנק",
         "logout": "התנתק",
         "reset": "אפס ארנק",
         "syncingComplete": "הסינכרון הושלם",
@@ -310,7 +327,6 @@
         "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}.",
         "undo": "בטל",
         "redo": "בצע שוב",
-        "about": "על הארנק",
         "lockScreenTimeout": "Lock Screen Timeout (Minutes)",
         "autoNodeSwitching": "Automatically switch node when selected is unreachable"
     },
