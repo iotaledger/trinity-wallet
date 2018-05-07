@@ -16,6 +16,7 @@ const getProps = (overrides) =>
             hideModal: noop,
             notificationLog: [],
             clearLog: noop,
+            t: () => ''
         },
         overrides,
     );
@@ -44,6 +45,10 @@ describe('Testing NotificationLog component', () => {
 
         it('should require a clearLog function as a prop', () => {
             expect(NotificationLog.propTypes.clearLog).toEqual(PropTypes.func.isRequired);
+        });
+
+        it('should require a t function as a prop', () => {
+            expect(NotificationLog.propTypes.t).toEqual(PropTypes.func.isRequired);
         });
     });
 
