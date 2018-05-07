@@ -25,7 +25,7 @@ import { setPollFor } from 'iota-wallet-shared-modules/actions/polling';
 import { roundDown } from 'iota-wallet-shared-modules/libs/utils';
 import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/iota/utils';
 import Modal from 'react-native-modal';
-import NotificationLog from '../components/NotificationLog';
+import NotificationLogComponent from '../components/NotificationLog';
 import { Icon } from '../theme/icons.js';
 import { isAndroid } from '../utils/device';
 
@@ -435,7 +435,7 @@ class TopBar extends Component {
                             hideModalContentWhileAnimating
                             useNativeDriver={isAndroid ? true : false}
                         >
-                            <NotificationLog
+                            <NotificationLogComponent
                                 backgroundColor={bar.bg}
                                 hideModal={() => this.hideModal()}
                                 textColor={{ color: bar.color }}
