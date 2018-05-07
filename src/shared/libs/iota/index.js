@@ -110,15 +110,5 @@ export const getRandomNode = () => {
     return nodes[x];
 };
 
-export const checkNode = (cb) => {
-    iotaAPI.api.getNodeInfo((error, success) => {
-        if (error) {
-            cb(error);
-        } else {
-            cb(null, success);
-        }
-    });
-};
-
 injectAPIProxy();
 export const iota = iotaAPI;
