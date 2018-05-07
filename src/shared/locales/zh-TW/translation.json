@@ -48,6 +48,7 @@
         "otherWallet": "其他帳戶",
         "yes": "是",
         "no": "否",
+        "okay": "OKAY",
         "password": "密碼",
         "passwordOrFingerprint": "密碼或指紋",
         "unrecognisedPassword": "密碼不符",
@@ -73,7 +74,7 @@
         "addresses": "地址",
         "reattach": "重新連接",
         "promote": "促進",
-        "retry": "RETRY",
+        "retry": "重試",
         "rebroadcast": "重新廣播",
         "pressBackAgain": "再按一次返回鍵退出",
         "autoreattaching": "自動重新連接",
@@ -106,14 +107,17 @@
         "nodeDuplicatedExplanation": "自訂節點已在列表中。",
         "nodeAutoChanged": "自動切換節點",
         "nodeAutoChangedExplanation": "當選擇的節點斷線時切換到新的節點 {{- nodeAddress}}。",
-        "fingerprintOnSend": "觸摸指紋辨識器來驗證交易"
+        "fingerprintOnSend": "觸摸指紋辨識器來驗證交易",
+        "masterKey": "Your IOTA seed is the master key to your funds.",
+        "googlePlayServicesNotAvailable": "Google Play Services not available",
+        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available.",
+        "clear": "CLEAR"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
         "seedInvalidCharsExplanation": "種子碼只能由大寫A-Z字母和數字9組成。您的種子碼包含無效字元。請再試一次。",
         "seedTooShort": "種子碼過短",
-        "seedTooShortExplanation":
-            "種子碼必須是 {{maxLength}} 個字元，您的種子目前為 {{currentLength}} 個字元，請再試一次。",
+        "seedTooShortExplanation": "種子碼必須是 {{maxLength}} 個字元，您的種子目前為 {{currentLength}} 個字元，請再試一次。",
         "nameInUse": "帳戶名稱已使用",
         "nameInUseExplanation": "種子碼請使用獨特帳戶名稱",
         "enterAccountName": "輸入帳戶名稱",
@@ -149,16 +153,18 @@
         "clickToCopy": "按下方按鈕以複製您的種子碼至密碼管理工具。",
         "doNotStore": "不要儲存種子碼於一般文字格式。",
         "copyToClipboard": "複製種子碼",
-        "shareSeed": "將種子碼儲存至密碼管理工具"
+        "shareSeed": "將種子碼儲存至密碼管理工具",
+        "storeEncrypted": "If you choose to back-up your seed on your phone it should be stored encrypted e.g. in a password manager.",
+        "tapConfirm": "Please tap the checkbox below to confirm.",
+        "encryptionCheckbox": "I will store my seed with encryption",
+        "copy": "COPY"
     },
     "enterSeed": {
         "invalidCharacters": "種子碼包含無效字元",
         "invalidCharactersExplanation": "種子碼只能由大寫 A-Z 字母和數字 9 組成，您的種子碼包含無效字元，請再試一次。",
         "seedTooShort": "種子碼過短",
-        "seedTooShortExplanation":
-            "您的密碼必須至少是 {{maxLength}} 個字元，目前為 {{currentLength}} 個字元長，請再試一次。",
-        "seedExplanation":
-            "種子碼應為 {{maxLength}} 個字元長並包含大寫字母 A-Z 或數字 9，您的種子碼不能長於 {{maxLength}} 個字元。",
+        "seedTooShortExplanation": "您的密碼必須至少是 {{maxLength}} 個字元，目前為 {{currentLength}} 個字元長，請再試一次。",
+        "seedExplanation": "種子碼應為 {{maxLength}} 個字元長並包含大寫字母 A-Z 或數字 9，您的種子碼不能長於 {{maxLength}} 個字元。",
         "neverShare": "千萬別和他人分享您的種子碼"
     },
     "home": {
@@ -183,7 +189,7 @@
     },
     "loading": {
         "loadingFirstTime": "首次讀取種子碼。",
-        "thisMayTake": "這可能需要一點時間.",
+        "thisMayTake": "這可能需要一點時間。",
         "doNotMinimise": "請不要最小化或關閉應用程式。",
         "youMayNotice": "您的裝置可能會變慢。"
     },
@@ -191,7 +197,9 @@
         "seedNotGenerated": "尚未產生種子碼",
         "seedNotGeneratedExplanation": "請產生新的種子碼。",
         "pressForNewSeed": "按此取得新種子碼",
-        "individualLetters": "請按各字母以隨機產生。"
+        "generateSuccess": "Seed generated successfully",
+        "individualLetters": "請按各字母以隨機產生。",
+        "whatIsASeed": "What is a seed?"
     },
     "onboardingComplete": {
         "walletReady": "錢包已設置完成且能使用。若您在未來需要做任何變動，請到設定選單。"
@@ -201,7 +209,13 @@
         "storeSafely": "妥善存放。",
         "neverShare": "千萬別和任何人分享您的種子碼。",
         "iotaLogo": "IOTA 標誌",
-        "printWallet": "列印紙本錢包"
+        "printWallet": "列印紙本錢包",
+        "print": "PRINT",
+        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
+        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
+        "tapCheckboxes": "Please tap the checkboxes below to confirm.",
+        "wifiCheckbox": "I will not print on public wifi",
+        "printerCheckbox": "I will not print on a public printer"
     },
     "receive": {
         "addressCopied": "已複製地址",
@@ -213,8 +227,6 @@
         "spent": "已支出"
     },
     "saveYourSeed": {
-        "seedCleared": "種子已清除",
-        "seedClearedExplanation": "基於安全理由，種子已從剪貼簿清除。",
         "mustSaveYourSeed": "<0><0>您必須使用以下</0><1>其中一種</1><2>選項儲存您的種子碼。</2></0>"
     },
     "seedReentry": {
@@ -251,8 +263,7 @@
     },
     "setPassword": {
         "passwordTooShort": "密碼過短",
-        "passwordTooShortExplanation":
-            "您的密碼必須至少為 {{minLength}} 個字元，目前為 {{currentLength}} 個字元長，請再試一次。",
+        "passwordTooShortExplanation": "您的密碼必須至少為 {{minLength}} 個字元，目前為 {{currentLength}} 個字元長，請再試一次。",
         "passwordMismatch": "密碼不符",
         "passwordMismatchExplanation": "您輸入的密碼不符，請再試一次。",
         "nowWeNeedTo": "現在我們需要設置密碼。",
@@ -278,12 +289,15 @@
         "mode": "模式",
         "theme": "佈景主題",
         "currency": "貨幣",
+        "cannotChangeNode": "Cannot change node",
+        "cannotChangeNodeWhileSending": "Cannot change node while sending.",
         "language": "語言",
         "accountManagement": "帳戶管理",
         "addNewSeed": "增加新的種子碼",
         "twoFA": "雙重身分驗證",
         "changePassword": "修改密碼",
         "advanced": "進階設定",
+        "about": "關於 Trinity",
         "logout": "登出",
         "reset": "重設錢包",
         "syncingComplete": "同步完成",
@@ -314,7 +328,6 @@
         "fetchedConversionRatesExplanation": "成功取得 {{currency}} 最新的匯率。",
         "undo": "復原",
         "redo": "重做",
-        "about": "關於 Trinity",
         "lockScreenTimeout": "逾時鎖定螢幕 (分鐘)",
         "autoNodeSwitching": "當無法連上所選節點時自動切換節點。"
     },
@@ -327,8 +340,7 @@
         "okay": "好囉，現在來設置您的錢包！",
         "doYouAlreadyHaveASeed": "您是否希望使用已擁有的種子碼?",
         "seedExplanation": "IOTA 種子碼是由您帳戶的名稱和密碼結合成為 81 個字元長的字串。",
-        "explanation":
-            "<0><0>您可以用它來取得您的資金，這可以是</0><1>任何錢包</1><2>和</2><3>任何裝置</3><4>。但如果您遺失種子碼的話，就代表您損失您所有的 IOTA。</4></0>",
+        "explanation": "<0><0>您可以用它來取得您的資金，這可以是</0><1>任何錢包</1><2>和</2><3>任何裝置</3><4>。但如果您遺失種子碼的話，就代表您損失您所有的 IOTA。</4></0>",
         "keepSafe": "請妥善保存您的種子碼。",
         "hint": "<0><0>提示：</0> 如果這是您第一次使用 IOTA 請按「否」。</0>"
     },
@@ -401,8 +413,7 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "我為何無法支出所有餘額？",
-        "spentAddressExplanation":
-            "您有資金位於已支出的地址，在 IOTA 中重複使用地址是很危險的事情，所以本錢包會禁止您用相同的地址重複轉帳。",
+        "spentAddressExplanation": "您有資金位於已支出的地址，在 IOTA 中重複使用地址是很危險的事情，所以本錢包會禁止您用相同的地址重複轉帳。",
         "discordInformation": "請前往 Discord 頻道 #help 或 #zh 尋求協助。"
     },
     "deleteAccount": {
@@ -417,10 +428,12 @@
         "thisMayTake": "這可能需要一些時間，而且您可能會注意到您的裝置變慢。",
         "doNotClose": "請注意，最小化應用程式的話將會取消同步。",
         "syncAccount": "同步帳戶",
-        "syncingYourAccount": "同步您的帳戶。"
+        "syncingYourAccount": "同步您的帳戶中。"
     },
     "useExistingSeed": {
-        "title": "輸入種子碼和帳戶名稱。"
+        "title": "輸入種子碼和帳戶名稱。",
+        "incorrectFormat": "Incorrect seed format",
+        "validSeedExplanation": "'Valid seeds should be 81 characters and contain only A-Z or 9.'"
     },
     "viewSeed": {
         "enterPassword": "輸入密碼查看您的種子碼。",
@@ -434,8 +447,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "此動作將無法復原。",
-        "warning":
-            "<0><0>所有的錢包資訊包含您的</0><1>種子碼、密碼</1><2>以及</2><3>其他帳戶訊息</3><4>都將遺失。</4></0>"
+        "warning": "<0><0>所有的錢包資訊包含您的</0><1>種子碼、密碼</1><2>以及</2><3>其他帳戶訊息</3><4>都將遺失。</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "觸摸指紋辨識器來啟用指紋驗證",
@@ -475,7 +487,8 @@
         "twoFADisabled": "2FA 現已停用",
         "twoFADisabledExplanation": "您已成功停用雙重身分驗證。",
         "enterCode": "請輸入您的 2FA 應用程式中的驗證碼",
-        "code": "驗證碼"
+        "code": "驗證碼",
+        "twoFaToken": "2FA Token"
     },
     "chart": {
         "mcap": "總市值",
@@ -485,8 +498,9 @@
     },
     "rootDetection": {
         "warning": "警告！",
-        "rootDetected":
-            "<0>您的裝置已經 root 過。</0><1>這可能會對您的錢包安全帶來重大風險。</1><2>請問您確定要繼續嗎？</2>"
+        "appearsRooted": "Your device appears to be rooted.",
+        "securityRisk": "This can pose a significant risk to the security of your wallet.",
+        "continueDepsiteRisk": "Do you wish to continue despite this risk?"
     },
     "pow": {
         "feeless": "在 IOTA 中傳送無手續費的交易必須完成一點工作量證明。",
@@ -531,9 +545,11 @@
         "noUpdatesAvailable": "尚無更新",
         "noUpdatesAvailableExplanation": "您的 IOTA Trinity 桌面版錢包已經是最新版本！",
         "newVersionAvailable": "有新版本可用",
-        "newVersionAvailableExplanation":
-            "有新的 <strong>Trinity</strong> 版本 <strong>{{version}}</strong> 可以使用，請仔細閱讀詳細資料並驗證下載來源後再更新：",
+        "newVersionAvailableExplanation": "有新的 <strong>Trinity</strong> 版本 <strong>{{version}}</strong> 可以使用，請仔細閱讀詳細資料並驗證下載來源後再更新：",
         "downloadRelease": "下載更新版本",
         "skipUpdate": "跳過更新"
+    },
+    "notificationLog": {
+        "errorLog": "ERROR LOG"
     }
 }

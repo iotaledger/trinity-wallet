@@ -15,7 +15,10 @@
       </trans-unit>
       <trans-unit id="NSCameraUsageDescription">
         <source>Trinity requires access to the camera in order to enable QR scanning.</source>
-        <target xml:lang="zh-Hans" state="translated">Trinity 需要访问相机权限以启用二维码扫描功能。</target>
+        <target xml:lang="zh-Hans" state="translated">三位一体需要访问相机, 以实现 QR 扫描。二维码</target>
+        <alt-trans>
+          <target xml:lang="zh-Hans">Trinity 需要访问相机权限以启用二维码扫描功能。</target>
+        </alt-trans>
       </trans-unit>
       <trans-unit id="NSFaceIDUsageDescription">
         <source>Trinity requires access to Face ID in order to enable biometric authentication.</source>
