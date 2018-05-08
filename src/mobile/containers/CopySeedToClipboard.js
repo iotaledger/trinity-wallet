@@ -66,19 +66,19 @@ const styles = StyleSheet.create({
     infoText: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: width / 27.6,
-        textAlign: 'justify',
+        textAlign: 'left',
         backgroundColor: 'transparent',
     },
     infoTextNormal: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: width / 27.6,
-        textAlign: 'justify',
+        textAlign: 'left',
         backgroundColor: 'transparent',
     },
     infoTextBold: {
         fontFamily: 'SourceSansPro-Bold',
         fontSize: width / 27.6,
-        textAlign: 'justify',
+        textAlign: 'left',
         backgroundColor: 'transparent',
     },
     doneButton: {
@@ -271,7 +271,8 @@ class CopySeedToClipboard extends Component {
                                     leftText={t('global:back')}
                                     rightText={t('copy')}
                                     opacity={opacity}
-                                    containerWidth={width / 1.25}
+                                    containerWidth={{ width: width / 1.25 }}
+                                    buttonWidth={{ width: width / 2.85 }}
                                 />
                             </View>
                         </View>
