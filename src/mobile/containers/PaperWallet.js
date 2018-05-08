@@ -547,7 +547,8 @@ class PaperWallet extends Component {
                                     leftText={t('global:back')}
                                     rightText={t('print')}
                                     opacity={opacity}
-                                    containerWidth={width / 1.25}
+                                    containerWidth={{ width: width / 1.25 }}
+                                    buttonWidth={{ width: width / 2.85 }}
                                 />
                             </View>
                         </View>
