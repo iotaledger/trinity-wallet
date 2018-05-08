@@ -110,7 +110,8 @@
         "fingerprintOnSend": "Touchez le lecteur d'empreintes digitales pour autoriser le transfert",
         "masterKey": "Your IOTA seed is the master key to your funds.",
         "googlePlayServicesNotAvailable": "Google Play Services not available",
-        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available."
+        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available.",
+        "clear": "CLEAR"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -370,7 +371,12 @@
         "addNewAccount": "Ajouter un nouveau compte"
     },
     "addCustomNode": {
+        "customNodeAdded": "Custom node added",
+        "customNodeCouldNotBeAdded": "Custom node could not be added",
+        "customNodeAddedSuccessfully": "The custom node has been added successfully.",
         "customNode": "Serveur personnalisé",
+        "invalidNodeResponse": "The node returned an invalid response",
+        "httpNodeError": "Trinity Mobile only supports https nodes.",
         "add": "Ajouter",
         "nodeFieldEmpty": "Text field is empty",
         "nodeFieldEmptyExplanation": "Veuillez entrer un serveur personnalisé."
@@ -430,7 +436,9 @@
         "syncingYourAccount": "Synchronisation de votre compte."
     },
     "useExistingSeed": {
-        "title": "Saisissez une seed et un nom de compte."
+        "title": "Saisissez une seed et un nom de compte.",
+        "incorrectFormat": "Incorrect seed format",
+        "validSeedExplanation": "'Valid seeds should be 81 characters and contain only A-Z or 9.'"
     },
     "viewSeed": {
         "enterPassword": "Saisissez le mot de passe pour afficher votre seed.",
@@ -484,7 +492,8 @@
         "twoFADisabled": "2FA est maintenant désactivée",
         "twoFADisabledExplanation": "Vous avez désactivé l'authentification à deux facteurs avec succès.",
         "enterCode": "Entrez le code de votre application 2FA",
-        "code": "Code"
+        "code": "Code",
+        "twoFaToken": "2FA Token"
     },
     "chart": {
         "mcap": "MCAP",
@@ -494,7 +503,9 @@
     },
     "rootDetection": {
         "warning": "ATTENTION",
-        "rootDetected": "<0>Votre appareil semble être rooté/jailbreaké</0><1>Ceci peut poser un risque important pour la sécurité de votre portefeuille.</1><2>Voulez-vous continuer malgré ce risque ?</2>"
+        "appearsRooted": "Your device appears to be rooted.",
+        "securityRisk": "This can pose a significant risk to the security of your wallet.",
+        "continueDepsiteRisk": "Do you wish to continue despite this risk?"
     },
     "pow": {
         "feeless": "Il est nécessaire de remplir une petite preuve du travail pour envoyer des transactions sans frais en IOTA.",
@@ -542,5 +553,8 @@
         "newVersionAvailableExplanation": "Une nouvelle version <strong>{{version}}</strong> <strong>de Trinity</strong> est disponible. Veuillez lire les détails de la version attentivement et vérifier la source du téléchargement avant la mise à jour :",
         "downloadRelease": "Télécharger la version",
         "skipUpdate": "Passer la mise a jour"
+    },
+    "notificationLog": {
+        "errorLog": "ERROR LOG"
     }
 }

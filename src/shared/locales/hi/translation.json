@@ -110,7 +110,8 @@
         "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer",
         "masterKey": "Your IOTA seed is the master key to your funds.",
         "googlePlayServicesNotAvailable": "Google Play Services not available",
-        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available."
+        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available.",
+        "clear": "CLEAR"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "सीड में अवैध वर्ण हैं।",
@@ -370,7 +371,12 @@
         "addNewAccount": "नया खाता जोड़ें"
     },
     "addCustomNode": {
+        "customNodeAdded": "Custom node added",
+        "customNodeCouldNotBeAdded": "Custom node could not be added",
+        "customNodeAddedSuccessfully": "The custom node has been added successfully.",
         "customNode": "कस्टम नोड",
+        "invalidNodeResponse": "The node returned an invalid response",
+        "httpNodeError": "Trinity Mobile only supports https nodes.",
         "add": "जोड़ें",
         "nodeFieldEmpty": "Text field is empty",
         "nodeFieldEmptyExplanation": "Please enter a custom node."
@@ -430,7 +436,9 @@
         "syncingYourAccount": "अपना खाता सिंक्रनाइज़ कर रहा है ।"
     },
     "useExistingSeed": {
-        "title": "सीड और खाता नाम दर्ज करें ।"
+        "title": "सीड और खाता नाम दर्ज करें ।",
+        "incorrectFormat": "Incorrect seed format",
+        "validSeedExplanation": "'Valid seeds should be 81 characters and contain only A-Z or 9.'"
     },
     "viewSeed": {
         "enterPassword": "अपना सीड देखने के लिए पासवर्ड दर्ज करें ।",
@@ -484,7 +492,8 @@
         "twoFADisabled": "2FA is now disabled",
         "twoFADisabledExplanation": "You have successfully disabled Two Factor Authentication.",
         "enterCode": "अपने 2FA एप्लिकेशन से कोड दर्ज करें",
-        "code": "कोड"
+        "code": "कोड",
+        "twoFaToken": "2FA Token"
     },
     "chart": {
         "mcap": "MCAP",
@@ -494,7 +503,9 @@
     },
     "rootDetection": {
         "warning": "चेतावनी!",
-        "rootDetected": "<0> अपने डिवाइसरूटेड/जेलब्रोकेन निहित प्रतीत होता है/</0> <1> यह अपने बटुए की सुरक्षा के लिए एक महत्वपूर्ण जोखिम पैदा कर सकते हैं । </1> <2> क्या आप इस जोखिम के बावजूद जारी रखना चाहते हैं? </2>"
+        "appearsRooted": "Your device appears to be rooted.",
+        "securityRisk": "This can pose a significant risk to the security of your wallet.",
+        "continueDepsiteRisk": "Do you wish to continue despite this risk?"
     },
     "pow": {
         "feeless": "IOTA में निशुल्क ट्रांजेक्शन भेजने के लिए काम का थोड़ा सा सबूत पूरा करना जरूरी होता है ।",
@@ -542,5 +553,8 @@
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
         "downloadRelease": "Download release",
         "skipUpdate": "Skip update"
+    },
+    "notificationLog": {
+        "errorLog": "ERROR LOG"
     }
 }

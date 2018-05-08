@@ -74,7 +74,7 @@
         "addresses": "Adressen",
         "reattach": "REATTACH",
         "promote": "PROMOTEN",
-        "retry": "RETRY",
+        "retry": "WIEDERHOLEN",
         "rebroadcast": "REBROADCAST",
         "pressBackAgain": "Nochmal Zurück drücken, um die App zu beenden",
         "autoreattaching": "Automatisches anhängen an den Tangle",
@@ -108,9 +108,10 @@
         "nodeAutoChanged": "Server automatisch gewechselt",
         "nodeAutoChangedExplanation": "Auf den Server {{- nodeAddress}} gewechselt, da der ausgewählte Server offline ist.",
         "fingerprintOnSend": "Berühre den Fingerabdrucksensor um den Transfer zu bestätigen.",
-        "masterKey": "Your IOTA seed is the master key to your funds.",
-        "googlePlayServicesNotAvailable": "Google Play Services not available",
-        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available."
+        "masterKey": "Dein IOTA Seed ist der Hauptschlüssel zu deinem Guthaben.",
+        "googlePlayServicesNotAvailable": "Google Play-Dienste nicht verfügbar",
+        "couldNotVerifyDeviceIntegrity": "Gerät konnte nicht überprüft werden, da die Google-Play-Dienste nicht verfügbar sind.",
+        "clear": "LEEREN"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
@@ -153,10 +154,10 @@
         "doNotStore": "Speichere deinen Seed nicht als Klartext.",
         "copyToClipboard": "Seed kopieren",
         "shareSeed": "Teile deinen Seed mit einem sicheren Passwort-Manager",
-        "storeEncrypted": "If you choose to back-up your seed on your phone it should be stored encrypted e.g. in a password manager.",
-        "tapConfirm": "Please tap the checkbox below to confirm.",
-        "encryptionCheckbox": "I will store my seed with encryption",
-        "copy": "COPY"
+        "storeEncrypted": "Falls du dich dazu entscheidest den Seed auf deinem Gerät zu sichern, sollte der Seed verschlüsselt gesichert werden, zum Beispiel in einem Passwortmanager.",
+        "tapConfirm": "Bitte aktiviere folgende Kontrollbox um zu Bestätigen.",
+        "encryptionCheckbox": "Ich werde meinen Seed verschlüsselt speichern",
+        "copy": "KOPIEREN"
     },
     "enterSeed": {
         "invalidCharacters": "Der Seed enthält ungültige Zeichen",
@@ -196,9 +197,9 @@
         "seedNotGenerated": "Der Seed wurde nicht erstellt",
         "seedNotGeneratedExplanation": "Bitte erstelle einen neuen Seed.",
         "pressForNewSeed": "NEUEN SEED ERSTELLEN",
-        "generateSuccess": "Seed generated successfully",
+        "generateSuccess": "Seed erfolgreich generiert",
         "individualLetters": "Tippe einzelne Buchstaben an, um sie neu zu generieren.",
-        "whatIsASeed": "What is a seed?"
+        "whatIsASeed": "Was ist ein Seed?"
     },
     "onboardingComplete": {
         "walletReady": "Dein Wallet ist jetzt eingerichtet und bereit. Wenn du in Zukunft Änderungen vornehmen möchtest, verwende das Einstellungsmenü."
@@ -209,12 +210,12 @@
         "neverShare": "Teile niemals deinen Seed.",
         "iotaLogo": "IOTA Logo",
         "printWallet": "PAPER-WALLET DRUCKEN",
-        "print": "PRINT",
-        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
-        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
-        "tapCheckboxes": "Please tap the checkboxes below to confirm.",
-        "wifiCheckbox": "I will not print on public wifi",
-        "printerCheckbox": "I will not print on a public printer"
+        "print": "DRUCKEN",
+        "paperConvenience": "Deinen Seed auszudrucken ist ein komfortabler Weg deinen Seed zu sichern.",
+        "publicInsecure": "Doch beachte, dass der Ausdruck über einen öffentlich zugänglichen Drucker oder während du dich im WLAN befindest, unsicher ist.",
+        "tapCheckboxes": "Bitte aktiviere folgende Kontrollboxen um zu Bestätigen.",
+        "wifiCheckbox": "Ich werde nicht drucken während ich ein öffentliches WLAN verwende",
+        "printerCheckbox": "Ich werde nicht auf einem öffentlich zugänglichen Drucker ausdrucken"
     },
     "receive": {
         "addressCopied": "Adresse kopiert",
@@ -288,8 +289,8 @@
         "mode": "Modus",
         "theme": "Design",
         "currency": "Währung",
-        "cannotChangeNode": "Cannot change node",
-        "cannotChangeNodeWhileSending": "Cannot change node while sending.",
+        "cannotChangeNode": "Node konnte nicht gewechselt werden",
+        "cannotChangeNodeWhileSending": "Während dem Senden einer Transaktion kann die Node nicht gewechselt werden.",
         "language": "Sprache",
         "accountManagement": "Konto-Verwaltung",
         "addNewSeed": "Neuen Seed hinzufügen",
@@ -370,7 +371,12 @@
         "addNewAccount": "Neues Konto hinzufügen"
     },
     "addCustomNode": {
+        "customNodeAdded": "Benutzerdefinierte Node hinzugefügt",
+        "customNodeCouldNotBeAdded": "Benutzerdefinierte Node konnte nicht hinzugefügt werden",
+        "customNodeAddedSuccessfully": "Die benutzerdefinierte Node wurde erfolgreich hinzugefügt.",
         "customNode": "Benutzerdefinierter Server",
+        "invalidNodeResponse": "Die Node hat eine ungültige Antwort zurückgegeben",
+        "httpNodeError": "Trinity Mobile unterstützt nur verschlüsselte Nodes (HTTPS).",
         "add": "Hinzufügen",
         "nodeFieldEmpty": "Textfeld ist leer",
         "nodeFieldEmptyExplanation": "Bitte eine benutzerdefinierte Node hinzufügen."
@@ -430,7 +436,9 @@
         "syncingYourAccount": "Konto wird synchronisiert."
     },
     "useExistingSeed": {
-        "title": "Gib einen Seed und einen Kontonamen ein."
+        "title": "Gib einen Seed und einen Kontonamen ein.",
+        "incorrectFormat": "Ungültiges Format",
+        "validSeedExplanation": "'Ein gültiger Seed sollte aus 81 Zeichen bestehen und die Buchstaben A-Z, sowie die Zahl 9 enthalten.'"
     },
     "viewSeed": {
         "enterPassword": "Gib dein Passwort ein, um den Seed anzuzeigen.",
@@ -449,22 +457,22 @@
     "fingerprintSetup": {
         "instructionsEnable": "Berühre den Fingerabdrucksensor, um die Authentifizierung mittels Fingerabdruck einzurichten",
         "instructionsDisable": "Berühre den Fingerabdrucksensor, um die Authentifizierung mittels Fingerabdruck zu deaktivieren",
-        "fingerprintAuthEnabled": "Fingerabdruck-Authentifizierung aktiviert",
-        "fingerprintAuthEnabledExplanation": "Du hast erfolgreich die Zwei-Faktor-Authentifizierung aktiviert.",
-        "fingerprintAuthDisabled": "Fingerabdruck-Authentifizierung deaktiviert",
-        "fingerprintAuthDisabledExplanation": "Du hast erfolgreich die Zwei-Faktor-Authentifizierung deaktiviert.",
-        "fingerprintAuthFailed": "Fingerabdruck-Authentifizierung fehlgeschlagen",
+        "fingerprintAuthEnabled": "Biometrische Authentifizierung aktiviert",
+        "fingerprintAuthEnabledExplanation": "Du hast erfolgreich die biometrische Authentifizierung aktiviert.",
+        "fingerprintAuthDisabled": "Biometrische Authentifizierung deaktiviert",
+        "fingerprintAuthDisabledExplanation": "Du hast erfolgreich die biometrische Authentifizierung deaktiviert.",
+        "fingerprintAuthFailed": "Biometrische Authentifizierung fehlgeschlagen",
         "fingerprintAuthFailedExplanation": "Fingerabdruck-Authentifizierung fehlgeschlagen. Bitte erneut versuchen.",
         "status": "Status",
         "enabled": "Aktiviert",
         "disabled": "Deaktiviert",
-        "fingerprintUnavailable": "Fingerabdruck-Authentifizierung nicht verfügbar",
-        "fingerprintUnavailableExplanation": "Dein Gerät unterstützt die Erkennung von Fingerabdrücken nicht oder diese Funktion wurde in den Einstellungen deines Gerätes deaktiviert.",
-        "buttonInstructionsDisable": "Drücke die Schaltfläche unten, um die Fingerabdruck-Authentifizierung zu deaktivieren.",
-        "buttonInstructionsEnable": "Drücke die Schaltfläche unten, um die Fingerabdruck-Authentifizierung zu aktivieren.",
+        "fingerprintUnavailable": "Biometrische Authentifizierung nicht verfügbar",
+        "fingerprintUnavailableExplanation": "Dein Gerät unterstützt keine biometrische Authentifizierung oder die Funktion wurde in den Einstellungen deines Gerätes deaktiviert.",
+        "buttonInstructionsDisable": "Drücke die folgende Schaltfläche, um die Fingerabdruck-Authentifizierung zu deaktivieren.",
+        "buttonInstructionsEnable": "Drücke die folgende Schaltfläche, um die Fingerabdruck-Authentifizierung zu aktivieren.",
         "buttonInstructionsDisableIPhoneX": "Drücke den folgenden Button um Face ID zu deaktivieren.",
         "buttonInstructionsEnableIPhoneX": "Drücke den folgenden Button um Face ID zu aktivieren.",
-        "instructionsLogin": "Zur Anmeldung Fingerabdrucksensor berühren"
+        "instructionsLogin": "Zur Anmeldung den Fingerabdrucksensor berühren"
     },
     "transferConfirmation": {
         "youAreAbout": "Du sendest jetzt {{contents}} an die Adresse",
@@ -484,7 +492,8 @@
         "twoFADisabled": "2FA ist jetzt deaktiviert",
         "twoFADisabledExplanation": "Du hast erfolgreich die Zwei-Faktor-Authentifizierung deaktiviert.",
         "enterCode": "Gib den Code aus deiner 2FA App ein",
-        "code": "Code"
+        "code": "Code",
+        "twoFaToken": "2FA Token"
     },
     "chart": {
         "mcap": "MCAP",
@@ -494,7 +503,9 @@
     },
     "rootDetection": {
         "warning": "WARNUNG",
-        "rootDetected": "<0>Das Betriebssystem deines Geräts scheint manipuliert zu sein.</0> <1>Dies kann ein erhebliches Risiko für die Sicherheit deiner Wallet darstellen.</1> <2>Möchtest du trotz dieses Risikos fortfahren?</2>"
+        "appearsRooted": "Dein Gerät scheint gerootet zu sein.",
+        "securityRisk": "Dies kann ein erhebliches Risiko für die Sicherheit deines Wallets darstellen.",
+        "continueDepsiteRisk": "Möchtest du trotz dieses Risiko fortfahren?"
     },
     "pow": {
         "feeless": "Um gebührenfreie Transaktionen mit IOTA zu senden, ist eine kleine Berechnung (\"Proof of Work\") nötig.",
@@ -542,5 +553,8 @@
         "newVersionAvailableExplanation": "Eine neue <strong>Trinity</strong> <strong>{{version}}</strong> Version ist verfügbar. Bitte lies die Release-Details und überprüfe die Download-Quelle vor der Aktualisierung:",
         "downloadRelease": "Download Veröffentlichung",
         "skipUpdate": "Update überspringen"
+    },
+    "notificationLog": {
+        "errorLog": "FEHLERPROTOKOLL"
     }
 }
