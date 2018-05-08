@@ -29,12 +29,8 @@ export function setMarketData(data) {
     const usdPrice = get(data, 'RAW.IOT.USD.PRICE') || 0;
     const volume24Hours = get(data, 'RAW.IOT.USD.TOTALVOLUME24HTO') || 0;
     const changePct24Hours = get(data, 'RAW.IOT.USD.CHANGEPCT24HOUR') || 0;
-    const mcap = Math.round(usdPrice * 2779530283)
-        .toString()
-        .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    const volume = Math.round(volume24Hours)
-        .toString()
-        .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    const mcap = Math.round(usdPrice * 2779530283);
+    const volume = Math.round(volume24Hours);
     const change24h = parseFloat(Math.round(changePct24Hours * 100) / 100).toFixed(2);
 
     return {

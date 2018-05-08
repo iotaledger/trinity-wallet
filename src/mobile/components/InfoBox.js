@@ -1,11 +1,10 @@
 import React, { PureComponent } from 'react';
-import { View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
-import whiteInfoImagePath from 'iota-wallet-shared-modules/images/info-white.png';
-import blackInfoImagePath from 'iota-wallet-shared-modules/images/info-black.png';
 import tinycolor from 'tinycolor2';
 import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
+import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({
     fieldContainer: {
@@ -23,8 +22,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 17,
     },
     icon: {
-        width: height / 24,
-        height: height / 24,
         position: 'absolute',
         top: height / 24 - height / 48,
         left: width / 17,
@@ -63,24 +60,27 @@ class InfoBox extends PureComponent {
 
     render() {
         const { body, text, width } = this.props;
-        const isDark = tinycolor(body.color).isDark();
-        const infoImagePath = isDark ? blackInfoImagePath : whiteInfoImagePath;
-        const innerContainerBackgroundColor = isDark
-            ? { backgroundColor: 'rgba(0, 0, 0, 0.05)' }
+        const isBgLight = tinycolor(body.bg).isLight();
+        const fieldContainerStyling = isBgLight ? null : { backgroundColor: 'rgba(255, 255, 255, 0.05)' };
+        const innerContainerStyling = isBgLight
+            ? { borderColor: body.color, borderWidth: 1 }
             : { backgroundColor: 'rgba(255, 255, 255, 0.05)' };
-        const bannerBackgroundColor = isDark
-            ? { backgroundColor: 'rgba(0, 0, 0, 0.15)' }
+        const bannerStyling = isBgLight
+            ? {
+                  borderColor: body.color,
+                  borderTopWidth: 1,
+                  borderLeftWidth: 1,
+                  borderRightWidth: 1,
+              }
             : { backgroundColor: 'rgba(255, 255, 255, 0.15)' };
-        const iconContainerBackgroundColor = isDark
-            ? { backgroundColor: 'rgba(0, 0, 0, 0.11)' }
-            : { backgroundColor: 'rgba(255, 255, 255, 0.11)' };
+        const iconContainerStyling = isBgLight ? { borderWidth: 1 } : { backgroundColor: 'rgba(255, 255, 255, 0.11)' };
 
         return (
-            <View style={styles.fieldContainer}>
-                <View style={[styles.banner, bannerBackgroundColor, { width }]} />
-                <View style={[styles.iconContainer, iconContainerBackgroundColor]} />
-                <Image source={infoImagePath} style={styles.icon} />
-                <View style={[styles.innerContainer, innerContainerBackgroundColor, { width }]}>{text}</View>
+            <View style={[styles.fieldContainer, fieldContainerStyling]}>
+                <View style={[styles.banner, bannerStyling, { width }]} />
+                <View style={[styles.innerContainer, innerContainerStyling, { width }]}>{text}</View>
+                <View style={[styles.iconContainer, iconContainerStyling]} />
+                <Icon name="info" size={height / 24} color={body.color} style={styles.icon} />
             </View>
         );
     }

@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
     },
     titleTextLeft: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         marginLeft: width / 20,

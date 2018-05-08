@@ -55,13 +55,13 @@ const styles = StyleSheet.create({
         paddingBottom: height / 20,
     },
     infoText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 27.6,
         textAlign: 'justify',
         backgroundColor: 'transparent',
     },
     warningText: {
-        fontFamily: 'Lato-Bold',
+        fontFamily: 'SourceSansPro-Bold',
         fontSize: width / 27.6,
         textAlign: 'justify',
         paddingTop: height / 70,

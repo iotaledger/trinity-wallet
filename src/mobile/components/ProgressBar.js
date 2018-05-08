@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     text: {
         color: 'white',
         marginBottom: height / 40,
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
     },
 });
 

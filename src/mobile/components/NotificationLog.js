@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet, TouchableOpacity, Text, ListView } from 'react-native';
 import { formatTimeAs } from 'iota-wallet-shared-modules/libs/date';
+import { translate } from 'react-i18next';
 import StatefulDropdownAlert from '../containers/StatefulDropdownAlert';
 import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
@@ -26,12 +27,12 @@ const styles = StyleSheet.create({
     },
     titleText: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 25.9,
     },
     itemText: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 34.5,
     },
     line: {
@@ -57,13 +58,13 @@ const styles = StyleSheet.create({
         marginTop: height / 70,
     },
     clearText: {
-        fontFamily: 'Lato-Bold',
+        fontFamily: 'SourceSansPro-Bold',
         fontSize: width / 34.5,
         backgroundColor: 'transparent',
     },
 });
 
-class NotificationLog extends PureComponent {
+export class NotificationLog extends PureComponent {
     static propTypes = {
         /** Content background color */
         backgroundColor: PropTypes.string.isRequired,
@@ -81,6 +82,10 @@ class NotificationLog extends PureComponent {
         notificationLog: PropTypes.array.isRequired,
         /** Clears all notifications */
         clearLog: PropTypes.func.isRequired,
+        /** Translation helper
+         * @param {string} translationString - locale string identifier to be translated
+         */
+        t: PropTypes.func.isRequired,
     };
 
     clearNotificationLog() {
@@ -89,14 +94,14 @@ class NotificationLog extends PureComponent {
     }
 
     render() {
-        const { backgroundColor, textColor, borderColor, barColor, barBg, notificationLog, hideModal } = this.props;
+        const { t, backgroundColor, textColor, borderColor, barColor, barBg, notificationLog, hideModal } = this.props;
         const lineBorder = { borderBottomColor: barColor };
         const trimmedLog = notificationLog.reverse().slice(0, 10);
 
         return (
             <TouchableOpacity style={styles.modalContainer} onPress={() => hideModal()}>
                 <View style={[styles.modalContent, { backgroundColor }, borderColor]}>
-                    <Text style={[styles.titleText, textColor]}>ERROR LOG</Text>
+                    <Text style={[styles.titleText, textColor]}>{t('notificationLog:errorLog')}</Text>
                     <View style={[styles.line, lineBorder]} />
                     <ListView
                         dataSource={ds.cloneWithRows(trimmedLog)}
@@ -112,7 +117,7 @@ class NotificationLog extends PureComponent {
                     />
                     <TouchableOpacity onPress={() => this.clearNotificationLog()}>
                         <View style={[styles.clearButton, borderColor]}>
-                            <Text style={[styles.clearText, textColor]}>CLEAR</Text>
+                            <Text style={[styles.clearText, textColor]}>{t('clear')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -122,4 +127,4 @@ class NotificationLog extends PureComponent {
     }
 }
 
-export default NotificationLog;
+export default translate(['global, notificationLog'])(NotificationLog);

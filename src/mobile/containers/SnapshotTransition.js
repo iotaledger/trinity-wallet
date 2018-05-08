@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
     },
     titleText: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
@@ -83,18 +83,18 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     buttonInfoText: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 27.6,
         backgroundColor: 'transparent',
     },
     infoText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 27.6,
         textAlign: 'justify',
         backgroundColor: 'transparent',
     },
     buttonQuestionText: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 27.6,
         backgroundColor: 'transparent',
         paddingTop: height / 60,
@@ -177,13 +177,9 @@ class SnapshotTransition extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        const { balanceCheckToggle, isTransitioning } = this.props;
+        const { balanceCheckToggle } = this.props;
         if (balanceCheckToggle !== newProps.balanceCheckToggle) {
             this.showModal();
-        }
-
-        if (isTransitioning && !newProps.isTransitioning) {
-            this.hideModal();
         }
     }
 

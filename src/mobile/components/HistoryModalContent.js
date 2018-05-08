@@ -9,6 +9,7 @@ import {
     FlatList,
     ScrollView,
     TouchableWithoutFeedback,
+    ActivityIndicator,
 } from 'react-native';
 import { formatModalTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/date';
 import StatefulDropdownAlert from '../containers/StatefulDropdownAlert';
@@ -25,7 +26,9 @@ const styles = StyleSheet.create({
     wrapper: {
         flex: 1,
         justifyContent: 'center',
-        width: width / 1.15,
+        alignItems: 'center',
+        width,
+        height,
     },
     content: {
         width: width / 1.15,
@@ -42,7 +45,7 @@ const styles = StyleSheet.create({
     statusText: {
         justifyContent: 'space-between',
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 29.6,
     },
     valueText: {
@@ -70,18 +73,18 @@ const styles = StyleSheet.create({
     },
     confirmation: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 31.8,
         paddingRight: width / 25,
     },
     timestamp: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 31.8,
     },
     heading: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Bold',
+        fontFamily: 'SourceSansPro-Bold',
         fontSize: width / 31.8,
         paddingTop: height / 50,
     },
@@ -103,7 +106,7 @@ const styles = StyleSheet.create({
     },
     addressRowValue: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Bold',
+        fontFamily: 'SourceSansPro-Bold',
         fontSize: width / 27.6,
         textAlign: 'right',
     },
@@ -116,6 +119,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         marginTop: height / 40,
+    },
+    buttonContainer: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 });
 
@@ -169,6 +177,10 @@ export default class HistoryModalContent extends PureComponent {
          * @param {String} text - notification explanation
          */
         generateAlert: PropTypes.func.isRequired,
+        /** Determines if wallet is broadcasting bundle */
+        isBroadcastingBundle: PropTypes.bool.isRequired,
+        /** Determines if wallet is promoting transaction */
+        isPromotingTransaction: PropTypes.bool.isRequired,
         /** Content styles */
         style: PropTypes.shape({
             titleColor: PropTypes.string.isRequired,
@@ -252,10 +264,12 @@ export default class HistoryModalContent extends PureComponent {
             rebroadcast,
             promote,
             disableWhen,
+            isPromotingTransaction,
+            isBroadcastingBundle,
         } = this.props;
 
         return (
-            <TouchableOpacity style={styles.container} onPress={onPress}>
+            <TouchableWithoutFeedback style={styles.container} onPress={!disableWhen && onPress}>
                 <View style={styles.wrapper}>
                     <View style={[styles.content, style.borderColor, { backgroundColor: style.backgroundColor }]}>
                         <ScrollView>
@@ -299,42 +313,68 @@ export default class HistoryModalContent extends PureComponent {
                                     {!confirmationBool &&
                                         mode === 'Expert' &&
                                         value > 0 && (
-                                            <View style={[styles.buttonsContainer, { opacity: disableWhen ? 0.5 : 1 }]}>
-                                                <CtaButton
-                                                    ctaColor={style.primaryColor}
-                                                    secondaryCtaColor={style.primaryBody}
-                                                    ctaWidth={width / 2.75}
-                                                    ctaHeight={height / 17}
-                                                    fontSize={width / 29.6}
-                                                    text={t('promote')}
-                                                    onPress={() => {
-                                                        if (!disableWhen) {
-                                                            promote(bundle);
-                                                        }
-                                                    }}
-                                                />
-                                                <CtaButton
-                                                    ctaColor={style.secondaryColor}
-                                                    secondaryCtaColor={style.secondaryBody}
-                                                    ctaWidth={width / 2.75}
-                                                    ctaHeight={height / 17}
-                                                    fontSize={width / 29.6}
-                                                    text={t('rebroadcast')}
-                                                    onPress={() => {
-                                                        if (!disableWhen) {
-                                                            rebroadcast(bundle);
-                                                        }
-                                                    }}
-                                                />
+                                            <View style={[styles.buttonsContainer]}>
+                                                {(!isPromotingTransaction && (
+                                                    <View
+                                                        style={[
+                                                            styles.buttonContainer,
+                                                            { opacity: disableWhen ? 0.3 : 1 },
+                                                        ]}
+                                                    >
+                                                        <CtaButton
+                                                            ctaColor={style.primaryColor}
+                                                            secondaryCtaColor={style.primaryBody}
+                                                            ctaWidth={width / 2.75}
+                                                            ctaHeight={height / 17}
+                                                            fontSize={width / 29.6}
+                                                            text={t('retry')}
+                                                            onPress={() => {
+                                                                if (!disableWhen) {
+                                                                    promote(bundle);
+                                                                }
+                                                            }}
+                                                        />
+                                                    </View>
+                                                )) || (
+                                                    <View style={styles.buttonContainer}>
+                                                        <ActivityIndicator color={style.primaryColor} size="large" />
+                                                    </View>
+                                                )}
+                                                {(!isBroadcastingBundle && (
+                                                    <View
+                                                        style={[
+                                                            styles.buttonContainer,
+                                                            { opacity: disableWhen ? 0.3 : 1 },
+                                                        ]}
+                                                    >
+                                                        <CtaButton
+                                                            ctaColor={style.secondaryColor}
+                                                            secondaryCtaColor={style.secondaryBody}
+                                                            ctaWidth={width / 2.75}
+                                                            ctaHeight={height / 17}
+                                                            fontSize={width / 29.6}
+                                                            text={t('rebroadcast')}
+                                                            onPress={() => {
+                                                                if (!disableWhen) {
+                                                                    rebroadcast(bundle);
+                                                                }
+                                                            }}
+                                                        />
+                                                    </View>
+                                                )) || (
+                                                    <View style={styles.buttonContainer}>
+                                                        <ActivityIndicator color={style.secondaryColor} size="large" />
+                                                    </View>
+                                                )}
                                             </View>
                                         )}
                                 </View>
                             </TouchableWithoutFeedback>
                         </ScrollView>
                     </View>
+                    <StatefulDropdownAlert backgroundColor={style.barBg} />
                 </View>
-                <StatefulDropdownAlert backgroundColor={style.barBg} />
-            </TouchableOpacity>
+            </TouchableWithoutFeedback>
         );
     }
 }
