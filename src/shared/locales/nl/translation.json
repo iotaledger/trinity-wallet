@@ -1,7 +1,7 @@
 {
     "global": {
-        "send": "Verzend",
-        "cancel": "Annuleer",
+        "send": "VERZEND",
+        "cancel": "ANNULEER",
         "continue?": "Weet u zeker dat u wilt doorgaan?",
         "noTransactions": "Geen recente geschiedenis",
         "refresh": "Herlaad",
@@ -48,7 +48,7 @@
         "otherWallet": "Andere account",
         "yes": "Ja",
         "no": "Nee",
-        "okay": "OKAY",
+        "okay": "OKE",
         "password": "Wachtwoord",
         "passwordOrFingerprint": "Wachtwoord of vingerafdruk",
         "unrecognisedPassword": "Onjuist wachtwoord",
@@ -108,9 +108,10 @@
         "nodeAutoChanged": "Automatisch van node gewisseld",
         "nodeAutoChangedExplanation": "Gewisseld naar node {{- nodeAddress}} omdat de geselecteerde node offline is.",
         "fingerprintOnSend": "Raak vingerafdruklezer aan om transactie te autoriseren",
-        "masterKey": "Your IOTA seed is the master key to your funds.",
-        "googlePlayServicesNotAvailable": "Google Play Services not available",
-        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available."
+        "masterKey": "Uw IOTA seed is de meester sleutel naar al uw geld.",
+        "googlePlayServicesNotAvailable": "Google Play Services niet beschikbaar",
+        "couldNotVerifyDeviceIntegrity": "Kon apparaat integriteit niet verifiëren omdat Google Play Services onbeschikbaar zijn.",
+        "clear": "WIS"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "De sleutel bevat ongeldige tekens",
@@ -153,10 +154,10 @@
         "doNotStore": "Bewaar de sleutel niet als platte tekst.",
         "copyToClipboard": "Kopieer sleutel",
         "shareSeed": "Stuur uw sleutel naar een veilige wachtwoordmanager",
-        "storeEncrypted": "If you choose to back-up your seed on your phone it should be stored encrypted e.g. in a password manager.",
-        "tapConfirm": "Please tap the checkbox below to confirm.",
-        "encryptionCheckbox": "I will store my seed with encryption",
-        "copy": "COPY"
+        "storeEncrypted": "Als u ervoor kiest om uw seed op uw telefoon te back-uppen moet u dat versleuteld doen, bijvoorbeeld in een wachtwoord manager.",
+        "tapConfirm": "Tik op het selectievakje om te bevestigen.",
+        "encryptionCheckbox": "Ik sla mijn seed versleuteld op",
+        "copy": "KOPIEER"
     },
     "enterSeed": {
         "invalidCharacters": "Sleutel bevat ongeldige tekens",
@@ -196,9 +197,9 @@
         "seedNotGenerated": "Seed is niet gegenereerd",
         "seedNotGeneratedExplanation": "Genereer een nieuwe sleutel.",
         "pressForNewSeed": "DRUK VOOR EEN NIEUWE SLEUTEL",
-        "generateSuccess": "Seed generated successfully",
+        "generateSuccess": "Seed succesvol gegenereerd",
         "individualLetters": "Druk op de letters om deze te veranderen in een willekeurige letter.",
-        "whatIsASeed": "What is a seed?"
+        "whatIsASeed": "Wat is een seed?"
     },
     "onboardingComplete": {
         "walletReady": "De wallet is nu ingesteld en klaar voor gebruik. Voor toekomstige wijzigingen kunt u het instellingen-menu gebruiken."
@@ -210,11 +211,11 @@
         "iotaLogo": "IOTA logo",
         "printWallet": "PRINT PAPIEREN WALLET",
         "print": "PRINT",
-        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
-        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
-        "tapCheckboxes": "Please tap the checkboxes below to confirm.",
-        "wifiCheckbox": "I will not print on public wifi",
-        "printerCheckbox": "I will not print on a public printer"
+        "paperConvenience": "Een papieren kopie van uw seed printen is een handige manier om het op te slaan.",
+        "publicInsecure": "Maar printen op publieke wifi of een publieke printer is onveilig.",
+        "tapCheckboxes": "Tik op de selectievakjes om te bevestigen.",
+        "wifiCheckbox": "Ik zal niet printen op publieke wifi",
+        "printerCheckbox": "Ik zal niet printen op een publieke printer"
     },
     "receive": {
         "addressCopied": "Adres gekopieerd",
@@ -288,8 +289,8 @@
         "mode": "Modus",
         "theme": "Thema",
         "currency": "Valuta",
-        "cannotChangeNode": "Cannot change node",
-        "cannotChangeNodeWhileSending": "Cannot change node while sending.",
+        "cannotChangeNode": "Kan node niet wijzigen",
+        "cannotChangeNodeWhileSending": "Kan node niet wijzigen tijdens het versturen.",
         "language": "Taal",
         "accountManagement": "Accountbeheer",
         "addNewSeed": "Nieuwe sleutel toevoegen",
@@ -370,7 +371,12 @@
         "addNewAccount": "Nieuw account toevoegen"
     },
     "addCustomNode": {
+        "customNodeAdded": "Aangepaste node toegevoegd",
+        "customNodeCouldNotBeAdded": "Aangepaste node kon niet worden toegevoegd",
+        "customNodeAddedSuccessfully": "De aangepaste node is succesvol toegevoegd.",
         "customNode": "Aangepaste node",
+        "invalidNodeResponse": "De node stuurde een ongeldige reactie terug",
+        "httpNodeError": "Trinity Mobile ondersteunt alleen https nodes.",
         "add": "Toevoegen",
         "nodeFieldEmpty": "Tekst veld is leeg",
         "nodeFieldEmptyExplanation": "Voer a.u.b. een aangepaste node in."
@@ -430,7 +436,9 @@
         "syncingYourAccount": "Account wordt gesynchroniseerd."
     },
     "useExistingSeed": {
-        "title": "Voer een sleutel en accountnaam in."
+        "title": "Voer een sleutel en accountnaam in.",
+        "incorrectFormat": "Incorrecte seed opmaak",
+        "validSeedExplanation": "'Geldige seeds zijn 81 tekens lang en bevatten alleen A-Z of 9.'"
     },
     "viewSeed": {
         "enterPassword": "Voer uw wachtwoord in om uw sleutel te bekijken.",
@@ -484,7 +492,8 @@
         "twoFADisabled": "2FA is nu ingeschakeld",
         "twoFADisabledExplanation": "U heeft Twee-staps Verificatie succesvol uitgeschakeld.",
         "enterCode": "Voer de code uit uw 2FA app in",
-        "code": "Code"
+        "code": "Code",
+        "twoFaToken": "2FA Token"
     },
     "chart": {
         "mcap": "MCAP",
@@ -494,7 +503,9 @@
     },
     "rootDetection": {
         "warning": "WAARSCHUWING",
-        "rootDetected": "<0>Uw apparaat lijkt ge-root te zijn.</0><1>Dit vormt een aanzienlijk risico voor de beveiliging van uw wallet.</1><2>Wenst verder te gaan, ondanks dit risico?</2>"
+        "appearsRooted": "Uw apparaat lijkt ge-root te zijn.",
+        "securityRisk": "Dit kan een aanzienlijk risico vormen voor de veiligheid van uw portemonnee.",
+        "continueDepsiteRisk": "Wilt u doorgaan ondanks het risico?"
     },
     "pow": {
         "feeless": "Een bewijs van inspanning (Proof of Work) is nodig om kostenloze transacties in IOTA te verzenden.",
@@ -542,5 +553,8 @@
         "newVersionAvailableExplanation": "Een nieuwe<strong>Trinity</strong> <strong>{{version}}</strong> versie is beschikbaar. Lees de opmerkingen aandacht door en zorg dat u de download bron verifieert voor het downloaden van de update:",
         "downloadRelease": "Download versie",
         "skipUpdate": "Sla de update over"
+    },
+    "notificationLog": {
+        "errorLog": "ERROR LOG"
     }
 }
