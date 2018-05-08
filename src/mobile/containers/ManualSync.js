@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     infoText: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: width / 27.6,
-        textAlign: 'justify',
+        textAlign: 'left',
         backgroundColor: 'transparent',
     },
     activityIndicator: {
