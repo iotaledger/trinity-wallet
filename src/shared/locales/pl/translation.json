@@ -39,7 +39,7 @@
         "notAvailable": "Funkcja niedostępna",
         "notAvailableExplanation": "Ta funkcja zostanie dodana na późniejszym etapie.",
         "enterSeed": "Proszę wpisz swój seed.",
-        "mainWallet": "GŁÓWNE KONTO",
+        "mainWallet": "KONTO GŁÓWNE",
         "secondWallet": "DRUGIE KONTO",
         "thirdWallet": "TRZECIE KONTO",
         "fourthWallet": "CZWARTE KONTO",
@@ -110,7 +110,8 @@
         "fingerprintOnSend": "Przyłóż palec do czytnika, aby autoryzować transfer",
         "masterKey": "Twój seed IOTA jest głównym kluczem do Twoich funduszy.",
         "googlePlayServicesNotAvailable": "Usługi Google Play niedostępne",
-        "couldNotVerifyDeviceIntegrity": "Nie można zweryfikować integralności urządzenia, ponieważ Usługi Google Play są niedostępne."
+        "couldNotVerifyDeviceIntegrity": "Nie można zweryfikować integralności urządzenia, ponieważ Usługi Google Play są niedostępne.",
+        "clear": "WYCZYŚĆ"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -153,7 +154,7 @@
         "doNotStore": "Nie przechowuj tego klucza w formie zwykłego tekstu.",
         "copyToClipboard": "Kopiuj seed",
         "shareSeed": "Udostępnij swój klucz seed do bezpiecznego menedżera haseł",
-        "storeEncrypted": "Jeśli zdecydujesz się na kopię zapasową Twojego klucza seed w telefonie, powinna być ona zaszyfrowana np. w menedżer haseł.",
+        "storeEncrypted": "Jeśli zdecydujesz się na kopię zapasową Twojego klucza seed w telefonie, powinna być ona zaszyfrowana np. w menedżerze haseł.",
         "tapConfirm": "Zaznacz poniższe pole, aby potwierdzić.",
         "encryptionCheckbox": "Będę przechowywać mój seed zaszyfrowany",
         "copy": "KOPIUJ"
@@ -370,7 +371,12 @@
         "addNewAccount": "Dodaj nowe konto"
     },
     "addCustomNode": {
+        "customNodeAdded": "Serwer dodany",
+        "customNodeCouldNotBeAdded": "Nie można dodać serwera",
+        "customNodeAddedSuccessfully": "Serwer został dodany pomyślnie.",
         "customNode": "Niestandardowy serwer",
+        "invalidNodeResponse": "Serwer zwrócił błędną odpowiedź",
+        "httpNodeError": "Trinity Mobile obsługuje jedynie serwery https.",
         "add": "Dodaj",
         "nodeFieldEmpty": "Pole adresu puste",
         "nodeFieldEmptyExplanation": "Proszę wpisać adres niestandardowego serwera."
@@ -430,7 +436,9 @@
         "syncingYourAccount": "Synchronizuje Twoje konto."
     },
     "useExistingSeed": {
-        "title": "Wprowadź seed oraz nazwę konta."
+        "title": "Wprowadź seed oraz nazwę konta.",
+        "incorrectFormat": "Nieprawidłowy format klucza",
+        "validSeedExplanation": "'Poprawny seed powinien składać się z 81 znaków i zawierać wielkie litery A-Z oraz cyfry 9.'"
     },
     "viewSeed": {
         "enterPassword": "Wprowadź hasło, aby wyświetlić swój seed.",
@@ -484,7 +492,8 @@
         "twoFADisabled": "Wyłączono 2FA",
         "twoFADisabledExplanation": "Pomyślnie wyłączono funkcję autoryzacji dwustopniowej.",
         "enterCode": "Wpisz kod z aplikacji autoryzacji dwustopniowej",
-        "code": "Kod"
+        "code": "Kod",
+        "twoFaToken": "Token 2FA"
     },
     "chart": {
         "mcap": "Market",
@@ -494,7 +503,9 @@
     },
     "rootDetection": {
         "warning": "OSTRZEŻENIE",
-        "rootDetected": "<0>Twoje urządzenie wydaje się być odblokowane (dostęp root).</0><1>To może stanowić istotne zagrożenie dla bezpieczeństwa Twojego portfela.</1><2>Czy chcesz kontynuować pomimo tego ryzyka?</2>"
+        "appearsRooted": "Twoje urządzenie wydaje się być odblokowane (dostęp root).",
+        "securityRisk": "To może stanowić istotne zagrożenie dla bezpieczeństwa Twojego portfela.",
+        "continueDepsiteRisk": "Czy chcesz kontynuować pomimo tego ryzyka?"
     },
     "pow": {
         "feeless": "Niezbędnym jest wykonanie niewielkiego procesu Proof of Work, aby przesyłać transakcje IOTA bez prowizji.",
@@ -542,5 +553,8 @@
         "newVersionAvailableExplanation": "Nowa wersja <strong>Trinity</strong> <strong>{{version}}</strong> jest dostępna. Przeczytaj uważnie informacje o wersji oraz zweryfikuj źródło pliku instalacyjnego przed aktualizacją:",
         "downloadRelease": "Pobierz aktualizację",
         "skipUpdate": "Pomiń aktualizację"
+    },
+    "notificationLog": {
+        "errorLog": "DZIENNIK BŁĘDÓW"
     }
 }

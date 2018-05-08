@@ -48,7 +48,7 @@
         "otherWallet": "ALTRO CONTO",
         "yes": "SI",
         "no": "NO",
-        "okay": "OKAY",
+        "okay": "OK",
         "password": "Password",
         "passwordOrFingerprint": "Password o impronta digitale",
         "unrecognisedPassword": "Password non riconosciuta",
@@ -74,7 +74,7 @@
         "addresses": "Indirizzi",
         "reattach": "RICOLLEGA",
         "promote": "PROMUOVI",
-        "retry": "RETRY",
+        "retry": "RIPROVA",
         "rebroadcast": "RITRASMETTI",
         "pressBackAgain": "Premi di nuovo Indietro per chiudere la app",
         "autoreattaching": "Ricollegamento automatico al Tangle",
@@ -108,9 +108,10 @@
         "nodeAutoChanged": "Nodo cambiato automaticamente",
         "nodeAutoChangedExplanation": "Passati al nuovo nodo {{- nodeAddress}} siccome il nodo selezionato non è in linea.",
         "fingerprintOnSend": "Toccare il lettore di impronte digitali per autorizzare il trasferimento",
-        "masterKey": "Your IOTA seed is the master key to your funds.",
-        "googlePlayServicesNotAvailable": "Google Play Services not available",
-        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available."
+        "masterKey": "Il tuo seme IOTA è la chiave di accesso ai tuoi fondi.",
+        "googlePlayServicesNotAvailable": "Servizio Google Play non disponibile",
+        "couldNotVerifyDeviceIntegrity": "Impossibile verificare l'integrità del dispositivo perché il servizio Google Play non è disponibile.",
+        "clear": "CANCELLA"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
@@ -153,10 +154,10 @@
         "doNotStore": "Non salvare il tuo seme in un file non crittografato.",
         "copyToClipboard": "Copiare seed",
         "shareSeed": "Passa il seme ad un gestore di password sicuro",
-        "storeEncrypted": "If you choose to back-up your seed on your phone it should be stored encrypted e.g. in a password manager.",
-        "tapConfirm": "Please tap the checkbox below to confirm.",
-        "encryptionCheckbox": "I will store my seed with encryption",
-        "copy": "COPY"
+        "storeEncrypted": "Se si sceglie di salvare il seme sul telefono andrebbe criptato, ad esempio con un gestore di password.",
+        "tapConfirm": "Seleziona la casella di controllo qui sotto per confermare.",
+        "encryptionCheckbox": "Memorizzerò il mio seme con crittografia",
+        "copy": "COPIA"
     },
     "enterSeed": {
         "invalidCharacters": "Il seme contiene caratteri non validi",
@@ -196,9 +197,9 @@
         "seedNotGenerated": "Il seme non è stato generato",
         "seedNotGeneratedExplanation": "Si prega di generare un nuovo seme.",
         "pressForNewSeed": "PREMI PER UN NUOVO SEME",
-        "generateSuccess": "Seed generated successfully",
+        "generateSuccess": "Seme generato correttamente",
         "individualLetters": "Premi alcune singole lettere per renderle maggiormente casuali.",
-        "whatIsASeed": "What is a seed?"
+        "whatIsASeed": "Cos'è un seme?"
     },
     "onboardingComplete": {
         "walletReady": "Il portafoglio è ora configurato e pronto all'uso. Se in futuro avrai bisogno di apportare modifiche, guarda nel menu Impostazioni."
@@ -209,12 +210,12 @@
         "neverShare": "Non condividere mai il tuo seme con nessuno.",
         "iotaLogo": "Logo IOTA",
         "printWallet": "STAMPA IL PORTAFOGLIO SU CARTA",
-        "print": "PRINT",
-        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
-        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
-        "tapCheckboxes": "Please tap the checkboxes below to confirm.",
-        "wifiCheckbox": "I will not print on public wifi",
-        "printerCheckbox": "I will not print on a public printer"
+        "print": "STAMPA",
+        "paperConvenience": "Stampare una copia cartacea del tuo seme è un modo conveniente per memorizzarlo.",
+        "publicInsecure": "Ma stampare attraverso Wi-Fi pubblico o su una stampante pubblica è insicuro.",
+        "tapCheckboxes": "Seleziona le caselle di controllo qui sotto per confermare.",
+        "wifiCheckbox": "Non stamperò su una connessione Wi-Fi pubblica",
+        "printerCheckbox": "Non stamperò su una stampante pubblica"
     },
     "receive": {
         "addressCopied": "Indirizzo copiato",
@@ -288,8 +289,8 @@
         "mode": "Modalità",
         "theme": "Tema",
         "currency": "Valuta",
-        "cannotChangeNode": "Cannot change node",
-        "cannotChangeNodeWhileSending": "Cannot change node while sending.",
+        "cannotChangeNode": "Non è possibile modificare il nodo",
+        "cannotChangeNodeWhileSending": "Impossibile modificare il nodo durante l'invio.",
         "language": "Lingua",
         "accountManagement": "Gestione conti",
         "addNewSeed": "Aggiungi un nuovo seme",
@@ -370,7 +371,12 @@
         "addNewAccount": "Aggiungi nuovo conto"
     },
     "addCustomNode": {
+        "customNodeAdded": "Nodo personalizzato aggiunto",
+        "customNodeCouldNotBeAdded": "Impossibile aggiungere il nodo personalizzato",
+        "customNodeAddedSuccessfully": "Il nodo personalizzato è stato aggiunto con successo.",
         "customNode": "Nodo personalizzato",
+        "invalidNodeResponse": "Il nodo ha restituito una risposta non valida",
+        "httpNodeError": "Trinity Mobile supporta solo nodi https.",
         "add": "Aggiungi",
         "nodeFieldEmpty": "Questo campo è vuoto",
         "nodeFieldEmptyExplanation": "Si prega di inserire un nodo personalizzato."
@@ -430,7 +436,9 @@
         "syncingYourAccount": "Sto sincronizzando il tuo conto."
     },
     "useExistingSeed": {
-        "title": "Inserisci un seme e un nome di conto."
+        "title": "Inserisci un seme e un nome di conto.",
+        "incorrectFormat": "Formato di seme non corretto",
+        "validSeedExplanation": "'Un seme valido consta di 81 caratteri e contiene solo A-Z o 9.'"
     },
     "viewSeed": {
         "enterPassword": "Immetti la password per visualizzare il tuo seme.",
@@ -484,7 +492,8 @@
         "twoFADisabled": "Autenticazione a 2 fattori disabilitata",
         "twoFADisabledExplanation": "È stata disattivata con successo l'autenticazione a due fattori.",
         "enterCode": "Inserisci il codice dall'app di 2FA",
-        "code": "Codice"
+        "code": "Codice",
+        "twoFaToken": "Token di 2FA"
     },
     "chart": {
         "mcap": "MCAP",
@@ -494,7 +503,9 @@
     },
     "rootDetection": {
         "warning": "ATTENZIONE",
-        "rootDetected": "<0>Il dispositivo sembra essere rooted.</0> <1>Ciò può rappresentare un rischio significativo per la sicurezza del tuo portafoglio.</1> <2>Vuoi continuare nonostante questo rischio?</2>"
+        "appearsRooted": "Il tuo dispositivo sembra essere modificato per concedere permessi di root.",
+        "securityRisk": "Ciò può rappresentare un rischio significativo per la sicurezza del tuo portafoglio.",
+        "continueDepsiteRisk": "Si desidera continuare nonostante questo rischio?"
     },
     "pow": {
         "feeless": "È necessario completare un piccolo calcolo (PoW) per inviare transazioni senza costi in IOTA.",
@@ -542,5 +553,8 @@
         "newVersionAvailableExplanation": "Una nuova versione <strong>{{version}}</strong> di <strong>Trinity</strong> è disponibile. Si prega di leggere attentamente i dettagli di rilascio e verificare l'origine del download prima di eseguire l'aggiornamento:",
         "downloadRelease": "Scarica la versione",
         "skipUpdate": "Salta l'aggiornamento"
+    },
+    "notificationLog": {
+        "errorLog": "LOG DEGLI ERRORI"
     }
 }
