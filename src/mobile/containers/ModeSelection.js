@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         fontSize: width / 27.6,
         paddingTop: height / 60,
         backgroundColor: 'transparent',
-        textAlign: 'justify',
+        textAlign: 'left',
     },
     itemLeft: {
         flexDirection: 'row',

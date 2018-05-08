@@ -57,13 +57,13 @@ const styles = StyleSheet.create({
     infoText: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: width / 27.6,
-        textAlign: 'justify',
+        textAlign: 'left',
         backgroundColor: 'transparent',
     },
     warningText: {
         fontFamily: 'SourceSansPro-Bold',
         fontSize: width / 27.6,
-        textAlign: 'justify',
+        textAlign: 'left',
         paddingTop: height / 70,
         backgroundColor: 'transparent',
     },

@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
         fontFamily: 'SourceSansPro-Light',
         fontSize: width / 27.6,
         backgroundColor: 'transparent',
+        textAlign: 'left',
     },
     tileText: {
         backgroundColor: 'transparent',

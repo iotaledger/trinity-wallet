@@ -461,13 +461,6 @@
 			remoteGlobalIDString = 3D7682761D8E76B80014119E;
 			remoteInfo = SplashScreen;
 		};
-		CB8662B3209F372A00C026E3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DA959792AD9A5C3642835114D50DE868 /* Pods.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F90973ADF99851374F06FC44DF2E3A77;
-			remoteInfo = IotaKit;
-		};
 		CB8F2AF32095E41E0071A30B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AB682616086B06AFA962D8B5F1DCAB78 /* RNRandomBytes.xcodeproj */;
@@ -544,6 +537,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 6456441F1EB8DA9100672408;
 			remoteInfo = "RNFS-tvOS";
+		};
+		CBF9C69820A1E8A800D7CE98 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DA959792AD9A5C3642835114D50DE868 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F90973ADF99851374F06FC44DF2E3A77;
+			remoteInfo = IotaKit;
 		};
 		CD481D22B9AD23CF851BD7CA4F49E762 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1112,7 +1112,7 @@
 		9587AF1D58A6A266E24B67481F9ED9F2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CB8662B4209F372A00C026E3 /* IotaKit.framework */,
+				CBF9C69920A1E8A800D7CE98 /* IotaKit.framework */,
 				A7757FB00CE594F07671643433203090 /* Pods_iotaWallet.framework */,
 				73DE2893421CB79475DA9ABBFC68EF31 /* libPods-iotaWallet-tvOS.a */,
 				75741D422FC234226BD97F79574086A2 /* libPods-iotaWallet-tvOSTests.a */,
@@ -2013,13 +2013,6 @@
 			remoteRef = CB6626F32085056C00651519 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		CB8662B4209F372A00C026E3 /* IotaKit.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = IotaKit.framework;
-			remoteRef = CB8662B3209F372A00C026E3 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		CB8F2AF42095E41E0071A30B /* libRNRandomBytes-tvOS.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -2102,6 +2095,13 @@
 			fileType = archive.ar;
 			path = libRNFS.a;
 			remoteRef = E1B37F619C11EA96BF3D3EF5382A8D08 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CBF9C69920A1E8A800D7CE98 /* IotaKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = IotaKit.framework;
+			remoteRef = CBF9C69820A1E8A800D7CE98 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		CF4DEBD89AF3703CA874122582CB0018 /* libART-tvOS.a */ = {
