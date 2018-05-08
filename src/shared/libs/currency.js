@@ -12,6 +12,8 @@ export const getCurrencySymbol = (currency) => {
             return '₿';
         case 'ETH':
             return 'Ξ';
+        case 'ARS':
+            return '$';
         case 'BGN':
             return 'лв';
         case 'BRL':

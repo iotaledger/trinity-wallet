@@ -7,11 +7,11 @@
     <body>
       <trans-unit id="CFBundleDisplayName">
         <source>Trinity</source>
-        <target xml:lang="es-419" state="needs-translation">Trinity</target>
+        <target xml:lang="es-419" state="translated">Trinity</target>
       </trans-unit>
       <trans-unit id="CFBundleName">
         <source>$(PRODUCT_NAME)</source>
-        <target xml:lang="es-419" state="needs-translation">$(PRODUCT_NAME)</target>
+        <target xml:lang="es-419" state="translated">$(PRODUCT_NAME)</target>
       </trans-unit>
       <trans-unit id="NSCameraUsageDescription">
         <source>Trinity requires access to the camera in order to enable QR scanning.</source>

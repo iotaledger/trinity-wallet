@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import tinycolor from 'tinycolor2';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
 
@@ -26,13 +27,13 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
     },
     leftText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
         textAlign: 'center',
     },
     rightText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
         textAlign: 'center',
@@ -70,12 +71,14 @@ class OnboardingButtons extends PureComponent {
     };
 
     render() {
-        const { theme: { primary, secondary }, opacity, buttonWidth, containerWidth } = this.props;
-        const rightTextColor = { color: primary.color };
-        const rightBorderColor = { borderColor: primary.color };
+        const { theme: { primary, secondary, body }, opacity, buttonWidth, containerWidth } = this.props;
+        const isBgLight = tinycolor(body.bg).isLight();
+        const rightTextColor = { color: isBgLight ? primary.body : primary.color };
+        const rightBorderColor = { borderColor: isBgLight ? 'transparent' : primary.color };
         const leftTextColor = { color: secondary.color };
         const leftBorderColor = { borderColor: secondary.color };
         const rightButtonOpacity = { opacity };
+        const rightBackgroundColor = { backgroundColor: isBgLight ? primary.color : 'transparent' };
 
         return (
             <View style={[styles.buttonsContainer, containerWidth]}>
@@ -85,7 +88,15 @@ class OnboardingButtons extends PureComponent {
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => this.props.onRightButtonPress()} testID={this.props.rightButtonTestID}>
-                    <View style={[styles.rightButton, buttonWidth, rightBorderColor, rightButtonOpacity]}>
+                    <View
+                        style={[
+                            styles.rightButton,
+                            buttonWidth,
+                            rightBorderColor,
+                            rightButtonOpacity,
+                            rightBackgroundColor,
+                        ]}
+                    >
                         <Text style={[styles.rightText, rightTextColor]}>{this.props.rightText}</Text>
                     </View>
                 </TouchableOpacity>
