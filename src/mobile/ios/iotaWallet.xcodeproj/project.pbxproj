@@ -35,6 +35,7 @@
 		5613EA5FACE7DF227C991290F2E89D02 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE06912F32A64660367B379A5FA9B59C /* libRCTAnimation.a */; };
 		6056CF5520827D3C0006A2F3 /* libRNCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6056CF5420827D2F0006A2F3 /* libRNCamera.a */; };
 		6056CF5C20827E370006A2F3 /* libReactNativePermissions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6056CF5B20827E2E0006A2F3 /* libReactNativePermissions.a */; };
+		609C11CD20A12E8900349263 /* EntangledKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 609C11CC20A12E8900349263 /* EntangledKit.framework */; };
 		60BDD27C208D128D0085549F /* libRNSecureClipboard.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60BDD27B208D12790085549F /* libRNSecureClipboard.a */; };
 		6271062A9C4773BE282CDC0CF95480D8 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B655981D53B5AE618EDBD102EA41BF51 /* libReact.a */; };
 		6E9CC66B45FB093ECF765004AFED349E /* IotaKitEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE52C6768ACF193E25BFCE2B5EA7832 /* IotaKitEmitter.swift */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -63,7 +64,6 @@
 		CB66259D2084BF2A00651519 /* Icons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB66259C2084BF2A00651519 /* Icons.ttf */; };
 		CB6626F52085057F00651519 /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB6626F42085056C00651519 /* libSplashScreen.a */; };
 		CB866281209F36CA00C026E3 /* EntangledIOS.m in Sources */ = {isa = PBXBuildFile; fileRef = CB86627D209F36CA00C026E3 /* EntangledIOS.m */; };
-		CB866357209F8B4E00C026E3 /* entangled_fat_binary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB866356209F8B4E00C026E3 /* entangled_fat_binary.a */; };
 		CB98FB9420A0A5BB0047877B /* SourceSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB98FB9120A0A5BB0047877B /* SourceSansPro-Bold.ttf */; };
 		CB98FB9520A0A5BB0047877B /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB98FB9220A0A5BB0047877B /* SourceSansPro-Regular.ttf */; };
 		CB98FB9620A0A5BB0047877B /* SourceSansPro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB98FB9320A0A5BB0047877B /* SourceSansPro-Light.ttf */; };
@@ -664,6 +664,7 @@
 		5D730345CF75A62E99A5B317731440D2 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6056CF4F20827D2F0006A2F3 /* RNCamera.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RNCamera.xcodeproj"; sourceTree = "<group>"; };
 		6056CF5620827E2E0006A2F3 /* ReactNativePermissions.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativePermissions.xcodeproj; path = "../node_modules/react-native-permissions/ios/ReactNativePermissions.xcodeproj"; sourceTree = "<group>"; };
+		609C11CC20A12E8900349263 /* EntangledKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EntangledKit.framework; sourceTree = "<group>"; };
 		60BDD276208D12790085549F /* RNSecureClipboard.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNSecureClipboard.xcodeproj; path = "../node_modules/react-native-secure-clipboard/ios/RNSecureClipboard.xcodeproj"; sourceTree = "<group>"; };
 		60C4FCE77138FA022DBAD917D3C8B8C1 /* Inconsolata-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inconsolata-Regular.ttf"; path = "../../shared/custom-fonts/Inconsolata-Regular.ttf"; sourceTree = "<group>"; };
 		64A04B0E69E2398FF12B202BA93DEFED /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -711,9 +712,7 @@
 		CB66259C2084BF2A00651519 /* Icons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Icons.ttf; path = ../../shared/icons/Icons.ttf; sourceTree = "<group>"; };
 		CB6626ED2085056C00651519 /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
 		CB86627D209F36CA00C026E3 /* EntangledIOS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntangledIOS.m; sourceTree = "<group>"; };
-		CB86627E209F36CA00C026E3 /* bindings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bindings.h; sourceTree = "<group>"; };
 		CB86627F209F36CA00C026E3 /* EntangledIOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntangledIOS.h; sourceTree = "<group>"; };
-		CB866356209F8B4E00C026E3 /* entangled_fat_binary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = entangled_fat_binary.a; sourceTree = "<group>"; };
 		CB98FB9120A0A5BB0047877B /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceSansPro-Bold.ttf"; path = "../../shared/custom-fonts/SourceSansPro-Bold.ttf"; sourceTree = "<group>"; };
 		CB98FB9220A0A5BB0047877B /* SourceSansPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceSansPro-Regular.ttf"; path = "../../shared/custom-fonts/SourceSansPro-Regular.ttf"; sourceTree = "<group>"; };
 		CB98FB9320A0A5BB0047877B /* SourceSansPro-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceSansPro-Light.ttf"; path = "../../shared/custom-fonts/SourceSansPro-Light.ttf"; sourceTree = "<group>"; };
@@ -760,7 +759,6 @@
 				C2F42249DD5989B1962B809D5CCC00F3 /* libART.a in Frameworks */,
 				0C2504A17226DF5FFD3C2A54AD060E8A /* libBugsnagReactNative.a in Frameworks */,
 				6ED5CBEF7B1A39258C560F6CDCD36254 /* libKCKeepAwake.a in Frameworks */,
-				CB866357209F8B4E00C026E3 /* entangled_fat_binary.a in Frameworks */,
 				2F852D5F92D3F66B78914D33F296087F /* libLottie.a in Frameworks */,
 				F695E3B017504F2AD81D2965695DA403 /* libLottieReactNative.a in Frameworks */,
 				227F5ECF692F599792F69DC4D573B2E6 /* libRCTActionSheet.a in Frameworks */,
@@ -768,6 +766,7 @@
 				E3AE8565650D2534125883D55649D450 /* libRCTGeolocation.a in Frameworks */,
 				C4646F689AA9CF8E8FFC65C04944FF13 /* libRCTImage.a in Frameworks */,
 				CA8AF202D45B7B9C48CB844FE4029B34 /* libRCTLinking.a in Frameworks */,
+				609C11CD20A12E8900349263 /* EntangledKit.framework in Frameworks */,
 				9D768D7930E8E00194C0FCC710EDD212 /* libRCTNetwork.a in Frameworks */,
 				85277BB9448BC0DF88CC1F206C0E4BF7 /* libRCTSettings.a in Frameworks */,
 				2AD31ECE2D7512D06C6BA29BD082EAE7 /* libRCTText.a in Frameworks */,
@@ -1221,9 +1220,8 @@
 		CB86627A209F36CA00C026E3 /* EntangledIOS */ = {
 			isa = PBXGroup;
 			children = (
-				CB866356209F8B4E00C026E3 /* entangled_fat_binary.a */,
+				609C11CC20A12E8900349263 /* EntangledKit.framework */,
 				CB86627D209F36CA00C026E3 /* EntangledIOS.m */,
-				CB86627E209F36CA00C026E3 /* bindings.h */,
 				CB86627F209F36CA00C026E3 /* EntangledIOS.h */,
 			);
 			path = EntangledIOS;
@@ -2719,7 +2717,11 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = D6XGU8EVBS;
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/EntangledIOS",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../node_modules/react-native-navigation/ios/**",
 					"(SRCROOT)/../../react-native/React/**",
@@ -3034,7 +3036,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D6XGU8EVBS;
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/EntangledIOS",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../node_modules/react-native-navigation/ios/**",
 					"(SRCROOT)/../../react-native/React/**",
