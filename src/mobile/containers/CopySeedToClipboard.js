@@ -271,7 +271,8 @@ class CopySeedToClipboard extends Component {
                                     leftText={t('global:back')}
                                     rightText={t('copy')}
                                     opacity={opacity}
-                                    containerWidth={width / 1.25}
+                                    containerWidth={{ width: width / 1.25 }}
+                                    buttonWidth={{ width: width / 2.85 }}
                                 />
                             </View>
                         </View>
