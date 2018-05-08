@@ -33,22 +33,22 @@ const styles = StyleSheet.create({
     },
     text: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 29.6,
     },
     regularText: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 29.6,
     },
     boldText: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 25.9,
     },
     middleText: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 31.8,
         paddingBottom: height / 80,
     },
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     },
     iotaText: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 25.9,
     },
 });
@@ -121,7 +121,6 @@ class TransferConfirmationModal extends Component {
         if (isFingerprintEnabled && value > 0) {
             this.props.activateFingerprintScanner();
         } else {
-            // Prevent modal close lag
             hideModal();
             setSendingTransferFlag();
             sendTransfer();

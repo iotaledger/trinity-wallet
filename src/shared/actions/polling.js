@@ -1,7 +1,9 @@
 import get from 'lodash/get';
 import each from 'lodash/each';
 import map from 'lodash/map';
+import union from 'lodash/union';
 import { setPrice, setChartData, setMarketData } from './marketData';
+import { setNodeList } from './settings';
 import { formatChartData, getUrlTimeFormat, getUrlNumberFormat, rearrangeObjectKeys } from '../libs/utils';
 import { generateAlert, generateAccountInfoErrorAlert } from './alerts';
 import { setNewUnconfirmedBundleTails, removeBundleFromUnconfirmedBundleTails } from './accounts';
@@ -10,12 +12,16 @@ import { selectedAccountStateFactory } from '../selectors/accounts';
 import { syncAccount } from '../libs/iota/accounts';
 import { forceTransactionPromotion } from './transfers';
 import i18next from '../i18next.js';
+import { NODELIST_URL, nodes } from '../config';
 
 export const ActionTypes = {
     SET_POLL_FOR: 'IOTA/POLLING/SET_POLL_FOR',
     FETCH_PRICE_REQUEST: 'IOTA/POLLING/FETCH_PRICE_REQUEST',
     FETCH_PRICE_SUCCESS: 'IOTA/POLLING/FETCH_PRICE_SUCCESS',
     FETCH_PRICE_ERROR: 'IOTA/POLLING/FETCH_PRICE_ERROR',
+    FETCH_NODELIST_REQUEST: 'IOTA/POLLING/FETCH_NODELIST_REQUEST',
+    FETCH_NODELIST_SUCCESS: 'IOTA/POLLING/FETCH_NODELIST_SUCCESS',
+    FETCH_NODELIST_ERROR: 'IOTA/POLLING/FETCH_NODELIST_ERROR',
     FETCH_CHART_DATA_REQUEST: 'IOTA/POLLING/FETCH_CHART_DATA_REQUEST',
     FETCH_CHART_DATA_SUCCESS: 'IOTA/POLLING/FETCH_CHART_DATA_SUCCESS',
     FETCH_CHART_DATA_ERROR: 'IOTA/POLLING/FETCH_CHART_DATA_ERROR',
@@ -40,6 +46,18 @@ const fetchPriceSuccess = () => ({
 
 const fetchPriceError = () => ({
     type: ActionTypes.FETCH_PRICE_ERROR,
+});
+
+const fetchNodeListRequest = () => ({
+    type: ActionTypes.FETCH_NODELIST_REQUEST,
+});
+
+const fetchNodeListSuccess = () => ({
+    type: ActionTypes.FETCH_NODELIST_SUCCESS,
+});
+
+const fetchNodeListError = () => ({
+    type: ActionTypes.FETCH_NODELIST_ERROR,
 });
 
 const fetchChartDataRequest = () => ({
@@ -123,6 +141,27 @@ export const fetchPrice = () => {
             .then((json) => {
                 dispatch(setPrice(json));
                 dispatch(fetchPriceSuccess());
+            });
+    };
+};
+
+export const fetchNodeList = () => {
+    return (dispatch) => {
+        dispatch(fetchNodeListRequest());
+        fetch(NODELIST_URL)
+            .then((response) => response.json(), () => dispatch(fetchNodeListError()))
+            .then((response) => {
+                if (response.length) {
+                    const remoteNodes = response
+                        .map((node) => node.node)
+                        .filter((node) => typeof node === 'string' && node.indexOf('https://') === 0);
+
+                    const unionNodes = union(nodes, remoteNodes);
+
+                    dispatch(setNodeList(unionNodes));
+                }
+
+                dispatch(fetchNodeListSuccess());
             });
     };
 };

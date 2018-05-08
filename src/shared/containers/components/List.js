@@ -23,18 +23,7 @@ export default function withListData(ListComponent) {
             updateAccount: PropTypes.func.isRequired,
         };
         render() {
-            const {
-                updateAccount,
-                transfers,
-                limit,
-                compact,
-                filter,
-                setItem,
-                currentItem,
-                theme,
-                ui,
-                t,
-            } = this.props;
+            const { updateAccount, transfers, limit, compact, filter, setItem, currentItem, theme, ui, t } = this.props;
 
             const isBusy = ui.isSyncing || ui.isSendingTransfer || ui.isAttachingToTangle || ui.isTransitioning;
 

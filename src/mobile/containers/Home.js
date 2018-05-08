@@ -21,7 +21,7 @@ import Tab from '../components/Tab';
 import TabContent from '../components/TabContent';
 import EnterPassword from '../containers/EnterPassword';
 import { height } from '../utils/dimensions';
-import { isAndroid } from '../utils/device';
+import { isAndroid, isIPhoneX } from '../utils/device';
 
 const styles = StyleSheet.create({
     midContainer: {
@@ -70,6 +70,8 @@ class Home extends Component {
         isTransitioning: PropTypes.bool.isRequired,
         /** Determines if wallet is doing a manual sync */
         isSyncing: PropTypes.bool.isRequired,
+        /** Determines if the newly added custom node is being checked */
+        isCheckingCustomNode: PropTypes.bool.isRequired,
         /** Determines if wallet is making a transaction */
         isSendingTransfer: PropTypes.bool.isRequired,
         /** Change current setting
@@ -163,13 +165,22 @@ class Home extends Component {
             );
         } else {
             this.props.setUserActivity({ inactive: false });
+            this.userInactivity.setActiveFromComponent();
         }
     };
 
     onTabSwitch(name) {
-        const { isSyncing, isTransitioning } = this.props;
+        const { isSyncing, isTransitioning, isCheckingCustomNode } = this.props;
+
+        this.userInactivity.setActiveFromComponent();
+
+        if (isTransitioning) {
+            return;
+        }
+
         this.props.changeHomeScreenRoute(name);
-        if (!isSyncing && !isTransitioning) {
+
+        if (!isSyncing && !isCheckingCustomNode) {
             this.resetSettings();
         }
     }
@@ -187,7 +198,6 @@ class Home extends Component {
 
     resetSettings() {
         const { currentSetting } = this.props;
-
         if (currentSetting !== 'mainSettings') {
             this.props.setSetting('mainSettings');
         }
@@ -195,6 +205,7 @@ class Home extends Component {
 
     handleCloseTopBar = () => {
         const { isTopBarActive } = this.props;
+        this.userInactivity.setActiveFromComponent();
         if (isTopBarActive) {
             this.props.toggleTopBarDisplay();
         }
@@ -227,7 +238,7 @@ class Home extends Component {
         }).start();
         Animated.timing(this.topBarHeight, {
             duration: event.duration,
-            toValue: 0,
+            toValue: isIPhoneX ? 0 : 20,
         }).start();
     };
 
@@ -370,6 +381,7 @@ const mapStateToProps = (state) => ({
     theme: state.settings.theme,
     currentRoute: state.home.childRoute,
     isSyncing: state.ui.isSyncing,
+    isCheckingCustomNode: state.ui.isCheckingCustomNode,
     isSendingTransfer: state.ui.isSendingTransfer,
     isTransitioning: state.ui.isTransitioning,
     currentSetting: state.wallet.currentSetting,

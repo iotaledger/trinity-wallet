@@ -30,6 +30,7 @@ describe('Reducer: ui', () => {
                 },
                 doNotMinimise: false,
                 isModalActive: false,
+                isCheckingCustomNode: false,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
@@ -682,6 +683,7 @@ describe('Reducer: ui', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 hasErrorFetchingAccountInfoOnLogin: false,
+                isFetchingLatestAccountInfoOnLogin: true,
             };
 
             expect(newState).to.eql(expectedState);
@@ -701,6 +703,7 @@ describe('Reducer: ui', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 hasErrorFetchingAccountInfoOnLogin: true,
+                isFetchingLatestAccountInfoOnLogin: false,
             };
 
             expect(newState).to.eql(expectedState);
@@ -1024,6 +1027,26 @@ describe('Reducer: ui', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 isModalActive: false,
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
+
+    describe('IOTA/UI/SET_CUSTOM_NODE_CHECK_STATUS', () => {
+        it('should set "isCheckingCustomNode" state prop to payload', () => {
+            const initialState = {
+                isCheckingCustomNode: false,
+            };
+
+            const action = {
+                type: 'IOTA/UI/SET_CUSTOM_NODE_CHECK_STATUS',
+                payload: true,
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                isCheckingCustomNode: true,
             };
 
             expect(newState).to.eql(expectedState);
