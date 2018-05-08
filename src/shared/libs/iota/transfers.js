@@ -264,8 +264,8 @@ export const categoriseBundleByInputsOutputs = (bundle) => {
 export const isSentTransfer = (bundle, addresses) => {
     const isSentMessage =
         reduce(bundle, (acc, tx) => acc + tx.value, 0) === 0 &&
-        !includes(addresses, bundle[0].address) &&
-        includes(addresses, bundle[1].address);
+        !includes(addresses, get(bundle, '[0].address')) &&
+        includes(addresses, get(bundle, '[1].address'));
     return some(bundle, (tx) => {
         const isRemainder = tx.value && tx.currentIndex === tx.lastIndex && tx.lastIndex !== 0;
         return (includes(addresses, tx.address) && tx.value < 0 && !isRemainder) || isSentMessage;
