@@ -371,7 +371,12 @@
         "addNewAccount": "Pridať nový účet"
     },
     "addCustomNode": {
+        "customNodeAdded": "Custom node added",
+        "customNodeCouldNotBeAdded": "Custom node could not be added",
+        "customNodeAddedSuccessfully": "The custom node has been added successfully.",
         "customNode": "Vlastný Node",
+        "invalidNodeResponse": "The node returned an invalid response",
+        "httpNodeError": "Trinity Mobile only supports https nodes.",
         "add": "Pridať",
         "nodeFieldEmpty": "Text field is empty",
         "nodeFieldEmptyExplanation": "Please enter a custom node."

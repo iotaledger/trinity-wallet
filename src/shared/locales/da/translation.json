@@ -108,9 +108,10 @@
         "nodeAutoChanged": "Noden blev automatisk skiftet",
         "nodeAutoChangedExplanation": "Skiftet til ny node {{- nodeAddress}} da den valgte node er offline.",
         "fingerprintOnSend": "Rør fingeraftrykssensoren for at godkende overførslen",
-        "masterKey": "Your IOTA seed is the master key to your funds.",
-        "googlePlayServicesNotAvailable": "Google Play Services not available",
-        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available."
+        "masterKey": "Din IOTA hovednøgle er den der giver dig adgang til at logge ind og se dine midler.",
+        "googlePlayServicesNotAvailable": "Google Play-tjenester er ikke tilgængelige",
+        "couldNotVerifyDeviceIntegrity": "Kunne ikke verificere enhedens integritet, da Google Play-tjenester ikke er tilgængelige.",
+        "clear": "RYD"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøglen indeholder ugyldige tegn",
@@ -149,14 +150,14 @@
         "seedClearedExplanation": "Hovednøglen er blevet fjernet fra udklipsholderen for at øge din sikkerhed.",
         "seedCopied": "Hovednøglen er kopieret til din udklipsholder",
         "seedCopiedExplanation": "Din hovednøgle vil blive slettet, når du trykker på \"FÆRDIG\" eller efter 60 sekunder.",
-        "clickToCopy": "Klik på knappen nedenfor for at kopiere din hovednøgle til en adgangskodemanager.",
+        "clickToCopy": "Klik på knappen nedenfor for at kopiere din hovednøgle til en password manager.",
         "doNotStore": "Opbevar ikke din hovednøgle i klartekst.",
         "copyToClipboard": "Kopier hovednøgle",
         "shareSeed": "Del din hovednøgle med en sikker password manager",
-        "storeEncrypted": "If you choose to back-up your seed on your phone it should be stored encrypted e.g. in a password manager.",
-        "tapConfirm": "Please tap the checkbox below to confirm.",
-        "encryptionCheckbox": "I will store my seed with encryption",
-        "copy": "COPY"
+        "storeEncrypted": "Hvis du vælger at sikkerhedskopiere din hovednøgle på din telefon, skal det opbevares krypteret. Eksempelvis i en password manager.",
+        "tapConfirm": "Klik venligst på afkrydsningsfeltet nedenfor for at bekræfte.",
+        "encryptionCheckbox": "Jeg vil gemme min hovednøgle krypteret",
+        "copy": "KOPIÉR"
     },
     "enterSeed": {
         "invalidCharacters": "Hovednøglen indeholder ugyldige tegn",
@@ -196,9 +197,9 @@
         "seedNotGenerated": "Hovednøglen er ikke blevet genereret",
         "seedNotGeneratedExplanation": "Vær venlig at generere en ny hovednøgle.",
         "pressForNewSeed": "GENERÈR NY HOVEDNØGLE",
-        "generateSuccess": "Seed generated successfully",
+        "generateSuccess": "Hovednøglen blev succesfuldt genereret",
         "individualLetters": "Tryk på individuelle bogstaver for at randomisere dem.",
-        "whatIsASeed": "What is a seed?"
+        "whatIsASeed": "Hvad er en hovednøgle?"
     },
     "onboardingComplete": {
         "walletReady": "Tegnebogen er nu opsat og klar til brug. Hvis du fremover har brug for at foretage ændringer, kan dette gøres fra menuen \"Indstillinger\"."
@@ -209,12 +210,12 @@
         "neverShare": "Del aldrig din hovednøgle med nogen.",
         "iotaLogo": "IOTA-logo",
         "printWallet": "UDSKRIV PAPIRTEGNEBOG",
-        "print": "PRINT",
-        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
-        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
-        "tapCheckboxes": "Please tap the checkboxes below to confirm.",
-        "wifiCheckbox": "I will not print on public wifi",
-        "printerCheckbox": "I will not print on a public printer"
+        "print": "UDSKRIV",
+        "paperConvenience": "Udskrivning af en papirkopi af din hovednøgle er en praktisk måde at gemme den på.",
+        "publicInsecure": "Men at udskrive på et offentligt wifi-netværk eller printer er usikkert.",
+        "tapCheckboxes": "Klik venligst på afkrydsningsfelterne nedenfor for at bekræfte.",
+        "wifiCheckbox": "Jeg printer ikke på et offentligt wifi-netværk",
+        "printerCheckbox": "Jeg printer ikke på en offentligt printer"
     },
     "receive": {
         "addressCopied": "Adresse kopieret",
@@ -288,8 +289,8 @@
         "mode": "Tilstand",
         "theme": "Tema",
         "currency": "Valuta",
-        "cannotChangeNode": "Cannot change node",
-        "cannotChangeNodeWhileSending": "Cannot change node while sending.",
+        "cannotChangeNode": "Kan ikke skifte node",
+        "cannotChangeNodeWhileSending": "Kan ikke skifte node imens der sendes.",
         "language": "Sprog",
         "accountManagement": "Konto administration",
         "addNewSeed": "Tilføj ny hovednøgle",
@@ -370,7 +371,12 @@
         "addNewAccount": "Tilføj ny konto"
     },
     "addCustomNode": {
+        "customNodeAdded": "Brugerdefineret node er tilføjet",
+        "customNodeCouldNotBeAdded": "Brugerdefineret node kunne ikke tilføjes",
+        "customNodeAddedSuccessfully": "Den brugerdefinerede node er succesfuldt tilføjet.",
         "customNode": "Brugerdefinerede node",
+        "invalidNodeResponse": "Noden returnerede et ugyldigt svar",
+        "httpNodeError": "Trinity Mobil understøtter kun HTTPS noder.",
         "add": "Tilføj",
         "nodeFieldEmpty": "Tekstfeltet er tomt",
         "nodeFieldEmptyExplanation": "Angiv venligst en brugerdefineret node."
@@ -430,17 +436,19 @@
         "syncingYourAccount": "Synkroniser din konto."
     },
     "useExistingSeed": {
-        "title": "Indtast et kontonavn."
+        "title": "Indtast et kontonavn.",
+        "incorrectFormat": "Forkert hovednøgle-format",
+        "validSeedExplanation": "'Gyldige hovednøgler skal være på 81 tegn og må kun indeholde A-Z eller 9.'"
     },
     "viewSeed": {
         "enterPassword": "Indtast din adgangskode for at se din hovednøgle.",
         "viewSeed": "Vis hovednøgle",
-        "hideSeed": "SKJUL SEED"
+        "hideSeed": "SKJUL HOVEDNØGLE"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "Jeg har gemt mit seed",
-        "reenter": "Du vil nu blive bedt om at genindtaste dit seed.",
-        "reenterWarning": "Hvis din enhed fejler and du ikke har indtastet dit seed, vil du miste dine IOTA."
+        "alreadyHave": "Jeg har sikkerhedskopieret min hovdenøgle",
+        "reenter": "Du vil nu blive bedt om at genindtaste din hovednøgle.",
+        "reenterWarning": "Hvis din enhed fejler og du ikke har sikkerhedskopieret din hovednøgle, vil du miste dine IOTA."
     },
     "walletResetConfirmation": {
         "cannotUndo": "DENNE HANDLING KAN IKKE FORTRYDES.",
@@ -484,7 +492,8 @@
         "twoFADisabled": "Totrinsbekræftelse er nu deaktiveret",
         "twoFADisabledExplanation": "Du har succesfuldt deaktiveret totrinsbekræftelse.",
         "enterCode": "Indtast koden fra din 2FA app",
-        "code": "Kode"
+        "code": "Kode",
+        "twoFaToken": "2FA Token"
     },
     "chart": {
         "mcap": "MCAP",
@@ -494,7 +503,9 @@
     },
     "rootDetection": {
         "warning": "ADVARSEL",
-        "rootDetected": "<0>Din enhed ser ud til at være rooted/jailbreaked.</0><1>Dette kan udgøre en væsentlig risiko for sikkerheden i din tegnebog</1><2>Ønsker du at fortsætte trods denne risiko?</2>"
+        "appearsRooted": "Din enhed lader til at være rooted.",
+        "securityRisk": "Dette kan udgøre en betydelig risiko for sikkerheden af din tegnebog.",
+        "continueDepsiteRisk": "Ønsker du at fortsætte på trods af denne risiko?"
     },
     "pow": {
         "feeless": "Det er nødvendigt at udføre en mindre netværksvalidering for at sende gratis transaktioner med IOTA.",
@@ -542,5 +553,8 @@
         "newVersionAvailableExplanation": "En ny <strong>Trinity</strong> <strong>{{version}}</strong> version er tilgængelig. Læs venligst udgivelsesnoterne nøje og kontroller downloadkilden før du opdaterer:",
         "downloadRelease": "Download version",
         "skipUpdate": "Spring opdatering over"
+    },
+    "notificationLog": {
+        "errorLog": "FEJL LOG"
     }
 }
