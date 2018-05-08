@@ -371,7 +371,12 @@
         "addNewAccount": "添加新帐户"
     },
     "addCustomNode": {
+        "customNodeAdded": "Custom node added",
+        "customNodeCouldNotBeAdded": "Custom node could not be added",
+        "customNodeAddedSuccessfully": "The custom node has been added successfully.",
         "customNode": "自定义节点",
+        "invalidNodeResponse": "The node returned an invalid response",
+        "httpNodeError": "Trinity Mobile only supports https nodes.",
         "add": "新增",
         "nodeFieldEmpty": "Text field is empty",
         "nodeFieldEmptyExplanation": "Please enter a custom node."
