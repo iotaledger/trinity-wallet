@@ -3,9 +3,11 @@ import cloneDeep from 'lodash/cloneDeep';
 import each from 'lodash/each';
 import filter from 'lodash/filter';
 import head from 'lodash/head';
+import last from 'lodash/last';
 import isEmpty from 'lodash/isEmpty';
 import transform from 'lodash/transform';
 import isNumber from 'lodash/isNumber';
+import includes from 'lodash/includes';
 import keys from 'lodash/keys';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
@@ -369,13 +371,59 @@ export const getLatestAddresses = (seed, index, genFn) => {
  *   Takes address data and returns the latest address
  *
  *   @method getLatestAddress
- *   @param {string} seed - Seed string
- *   @param {string} existingAccountData - existingAccountData from store
- *   @returns {object} - Updated account data data including latest used addresses
+ *   @param {object} addressData
+ *   @returns {string} - latest address
  **/
 export const getLatestAddress = (addressData) => {
-    const address = findKey(addressData, (addressObject) => addressObject.index === keys(addressData).length - 1);
-    return address;
+    return findKey(addressData, (addressObject) => addressObject.index === keys(addressData).length - 1);
+};
+
+/**
+ *   Generate addresses till remainder (unused and also not blacklisted for being a remainder address)
+ *
+ *   @method getAddressesUptoRemainder
+ *   @param {object} addressData
+ *   @param {array} blacklistedAddresses
+ *   @returns {promise<object>}
+ **/
+export const getAddressesUptoRemainder = (addressData, seed, genFn, blacklistedRemainderAddresses = []) => {
+    const latestAddress = getLatestAddress(addressData);
+    const addressDataClone = cloneDeep(addressData);
+
+    const isBlacklisted = (address) => includes(blacklistedRemainderAddresses, address);
+
+    if (isBlacklisted(latestAddress)) {
+        const latestAddressData = find(addressData, (data, address) => address === latestAddress);
+        const startIndex = latestAddressData.index + 1;
+
+        return getLatestAddress(seed, startIndex, genFn).then((newAddresses) => {
+            const remainderAddress = last(newAddresses);
+
+            const addressDataUptoRemainder = transform(
+                newAddresses,
+                (acc, address, index) => {
+                    acc[address] = {
+                        index: index ? startIndex + 1 : startIndex,
+                        balance: 0,
+                        spent: false,
+                        checksum: iota.utils.addChecksum(address).slice(address.length),
+                    };
+                },
+                addressDataClone,
+            );
+
+            if (isBlacklisted(remainderAddress)) {
+                return getAddressesUptoRemainder(addressDataUptoRemainder, seed, genFn, blacklistedRemainderAddresses);
+            }
+
+            return {
+                remainderAddress,
+                addressDataUptoRemainder,
+            };
+        });
+    }
+
+    return Promise.resolve({ remainderAddress: latestAddress, addressDataUptoRemainder: addressDataClone });
 };
 
 /**
@@ -390,6 +438,7 @@ export const getLatestAddress = (addressData) => {
 export const syncAddresses = (seed, accountData, genFn, addNewAddress = false) => {
     const thisAccountDataCopy = cloneDeep(accountData);
     let index = getStartingSearchIndexToFetchLatestAddresses(thisAccountDataCopy.addresses);
+
     return getLatestAddresses(seed, index, genFn).then((newAddresses) => {
         // Remove unused address
         if (!addNewAddress) {
@@ -399,7 +448,9 @@ export const syncAddresses = (seed, accountData, genFn, addNewAddress = false) =
         if (newAddresses.length === 0) {
             return accountData;
         }
+
         const updatedAddresses = cloneDeep(thisAccountDataCopy.addresses);
+
         newAddresses.forEach((newAddress) => {
             // In case the newly created address is not part of the addresses object
             // Add that as a key with a 0 balance.
@@ -422,6 +473,7 @@ export const syncAddresses = (seed, accountData, genFn, addNewAddress = false) =
                 };
             }
         });
+
         thisAccountDataCopy.addresses = updatedAddresses;
         return thisAccountDataCopy;
     });
