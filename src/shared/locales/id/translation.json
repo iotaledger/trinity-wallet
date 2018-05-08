@@ -18,12 +18,9 @@
         "keyReuseError": "Anda tidak dapat mengirim ke alamat yang telah melakukan pengeluaran.",
         "invalidResponse": "Kesalahan pada Node",
         "invalidResponseExplanation": "Node mengembalikan kesalahan. Periksa notifikasi untuk informasi lebih lanjut.",
-        "invalidResponsePollingExplanation":
-            "Node mengembalikan kesalahan ketika polling. Periksa notifikasi untuk informasi lebih lanjut.",
-        "invalidResponseFetchingAccount":
-            "Node mengembalikan kesalahan ketika mengakses informasi akun anda. Cobalah mengganti Node atau periksa notifikasi untuk informasi lebih lanjut.",
-        "invalidResponseSendingTransfer":
-            "Node mengembalikan kesalahan ketika mengirim. Periksa notifikasi untuk informasi lebih lanjut.",
+        "invalidResponsePollingExplanation": "Node mengembalikan kesalahan ketika polling. Periksa notifikasi untuk informasi lebih lanjut.",
+        "invalidResponseFetchingAccount": "Node mengembalikan kesalahan ketika mengakses informasi akun anda. Cobalah mengganti Node atau periksa notifikasi untuk informasi lebih lanjut.",
+        "invalidResponseSendingTransfer": "Node mengembalikan kesalahan ketika mengirim. Periksa notifikasi untuk informasi lebih lanjut.",
         "seed": "Benih",
         "back": "KEMBALI",
         "backLowercase": "Kembali",
@@ -51,6 +48,7 @@
         "otherWallet": "AKUN LAINNYA",
         "yes": "IYA",
         "no": "TIDAK",
+        "okay": "OKAY",
         "password": "Kata Sandi",
         "passwordOrFingerprint": "Kata sandi atau sidik jari",
         "unrecognisedPassword": "Kata sandi tidak dikenali",
@@ -76,6 +74,7 @@
         "addresses": "Alamat",
         "reattach": "MENYAMBUNG KEMBALI",
         "promote": "MEMAJUKAN",
+        "retry": "RETRY",
         "rebroadcast": "MENYIAR KEMBALI",
         "pressBackAgain": "Tekan tombol kembali sekali lagi untuk menutup app",
         "autoreattaching": "Otomatis menyambung kembali ke Tangle",
@@ -91,8 +90,7 @@
         "pleaseWait": "Silahkan tunggu",
         "pleaseWaitEllipses": "Silahkan tunggu...",
         "pleaseWaitExplanation": "Trinity sedang melakukan fungsi lain. Silahkan tunggu dan coba lagi.",
-        "pleaseWaitTransferExplanation":
-            "Saldo yang tersedia saat ini sedang digunakan untuk transfer. Silahkan tunggu sampai salah satu telah dikonfirmasi sebelum mencoba lagi.",
+        "pleaseWaitTransferExplanation": "Saldo yang tersedia saat ini sedang digunakan untuk transfer. Silahkan tunggu sampai salah satu telah dikonfirmasi sebelum mencoba lagi.",
         "snapshotTransitionInProgress": "Dalam proses transisi Snapshot",
         "snapshotTransitionInProgressExplanation": "Silahkan tunggu sampai transisi selesai.",
         "checkForUpdates": "Periksa pembaruan",
@@ -103,16 +101,22 @@
         "addCustomNode": "Tambah node khusus",
         "nodeChanged": "Node diganti",
         "nodeChangedExplanation": "Node telah berhasil diubah.",
+        "nodeMustUseHTTPS": "Invalid node (non HTTPS)",
+        "nodeMustUseHTTPSExplanation": "Only custom nodes using HTTPS are allowed.",
+        "nodeDuplicated": "Duplicated node",
+        "nodeDuplicatedExplanation": "The custom node is already listed.",
         "nodeAutoChanged": "Node beralih otomatis",
-        "nodeAutoChangedExplanation": "Beralih ke node baru {{- nodeAddress}} karena node yang dipilih offline."
+        "nodeAutoChangedExplanation": "Beralih ke node baru {{- nodeAddress}} karena node yang dipilih offline.",
+        "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer",
+        "masterKey": "Your IOTA seed is the master key to your funds.",
+        "googlePlayServicesNotAvailable": "Google Play Services not available",
+        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed berisi karakter yang tidak valid",
-        "seedInvalidCharsExplanation":
-            "Seed Anda memiliki karakter yang tidak valid. Seed hanya boleh terdiri dari huruf A-Z dan angka 9. Silakan coba lagi.",
+        "seedInvalidCharsExplanation": "Seed Anda memiliki karakter yang tidak valid. Seed hanya boleh terdiri dari huruf A-Z dan angka 9. Silakan coba lagi.",
         "seedTooShort": "Seed terlalu singkat",
-        "seedTooShortExplanation":
-            "Seed harus terdiri dari setidaknya {{maxLength}} karakter. Seed Anda adalah {{maxLength}} karakter. Silahkan coba lagi.",
+        "seedTooShortExplanation": "Seed harus terdiri dari setidaknya {{maxLength}} karakter. Seed Anda adalah {{currentLength}} karakter. Silahkan coba lagi.",
         "nameInUse": "Nama akun sudah digunakan",
         "nameInUseExplanation": "Silahkan menggunakan nama akun yang unik untuk Seed anda.",
         "enterAccountName": "Masukkan nama akun.",
@@ -134,8 +138,7 @@
         "passwordTooShort": "Kata sandi terlalu singkat",
         "passwordTooShortExplanation": "Kata sandi Anda paling sedikit harus 12 karakter. Silakan coba lagi.",
         "oldPassword": "Tidak bisa merubah password lama",
-        "oldPasswordExplanation":
-            "Anda tidak boleh menggunakan kata sandi lama sebagai kata sandi baru. Silahkan coba lagi dengan kata sandi baru.",
+        "oldPasswordExplanation": "Anda tidak boleh menggunakan kata sandi lama sebagai kata sandi baru. Silahkan coba lagi dengan kata sandi baru.",
         "ensureStrongPassword": "Pastikan Anda menggunakan kata sandi yang kuat setidaknya 12 karakter.",
         "currentPassword": "Kata Sandi Saat Ini",
         "newPassword": "Kata Sandi Baru",
@@ -149,17 +152,18 @@
         "clickToCopy": "Klik tombol dibawah ini dan salin Seed Anda ke dalam manajer kata sandi.",
         "doNotStore": "Jangan simpan Seed Anda di dalam teks biasa.",
         "copyToClipboard": "Salin Seed",
-        "shareSeed": "Simpan Seed anda ke kata sandi manajer yang aman"
+        "shareSeed": "Simpan Seed anda ke kata sandi manajer yang aman",
+        "storeEncrypted": "If you choose to back-up your seed on your phone it should be stored encrypted e.g. in a password manager.",
+        "tapConfirm": "Please tap the checkbox below to confirm.",
+        "encryptionCheckbox": "I will store my seed with encryption",
+        "copy": "COPY"
     },
     "enterSeed": {
         "invalidCharacters": "Seed berisi karakter yang tidak valid",
-        "invalidCharactersExplanation":
-            "Seed Anda memiliki karakter yang tidak valid. Seed hanya boleh terdiri dari huruf A-Z dan angka 9. Silakan coba lagi.",
+        "invalidCharactersExplanation": "Seed Anda memiliki karakter yang tidak valid. Seed hanya boleh terdiri dari huruf A-Z dan angka 9. Silakan coba lagi.",
         "seedTooShort": "Seed terlalu singkat",
-        "seedTooShortExplanation":
-            "Seed harus terdiri dari setidaknya {{maxLength}} karakter. Seed Anda adalah {{maxLength}} karakter. Silahkan coba lagi.",
-        "seedExplanation":
-            "Seed harus {{maxLength}} karakter dan harus berisi huruf A-Z, atau nomor 9. Anda tidak dapat menggunakan Seed lebih dari {{maxLength}} karakter.",
+        "seedTooShortExplanation": "Seed harus terdiri dari setidaknya {{maxLength}} karakter. Seed Anda adalah {{currentLength}} karakter. Silahkan coba lagi.",
+        "seedExplanation": "Seed harus {{maxLength}} karakter dan harus berisi huruf A-Z, atau nomor 9. Anda tidak dapat menggunakan Seed lebih dari {{maxLength}} karakter.",
         "neverShare": "JANGAN PERNAH MEMBERITAHUKAN SEED ANDA DENGAN SIAPAPUN"
     },
     "home": {
@@ -192,18 +196,25 @@
         "seedNotGenerated": "Seed belum dibuat",
         "seedNotGeneratedExplanation": "Silahkan membuat Seed baru.",
         "pressForNewSeed": "TEKAN UNTUK MEMBUAT SEED BARU",
-        "individualLetters": "Tekan masing-masing huruf untuk mengacaknya."
+        "generateSuccess": "Seed generated successfully",
+        "individualLetters": "Tekan masing-masing huruf untuk mengacaknya.",
+        "whatIsASeed": "What is a seed?"
     },
     "onboardingComplete": {
-        "walletReady":
-            "Dompet sudah dipersiapkan dan siap untuk digunakan. Silahkan cek di menu Perkakas jika Anda ingin membuat perubahan lagi."
+        "walletReady": "Dompet sudah dipersiapkan dan siap untuk digunakan. Silahkan cek di menu Perkakas jika Anda ingin membuat perubahan lagi."
     },
     "paperWallet": {
         "clickToPrint": "Tekan tombol di bawah ini untuk mencetak salinan dompet kertas anda.",
         "storeSafely": "Simpan dengan baik.",
         "neverShare": "Jangan pernah memberitahukan Seed Anda dengan siapa pun.",
         "iotaLogo": "Logo IOTA",
-        "printWallet": "CETAK DOMPET KERTAS"
+        "printWallet": "CETAK DOMPET KERTAS",
+        "print": "PRINT",
+        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
+        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
+        "tapCheckboxes": "Please tap the checkboxes below to confirm.",
+        "wifiCheckbox": "I will not print on public wifi",
+        "printerCheckbox": "I will not print on a public printer"
     },
     "receive": {
         "addressCopied": "Alamat telah disalin",
@@ -215,10 +226,7 @@
         "spent": "Dihabiskan"
     },
     "saveYourSeed": {
-        "seedCleared": "Seed telah dihapus",
-        "seedClearedExplanation": "Seed telah dihapus dari papan klip demi keamanan anda.",
-        "mustSaveYourSeed":
-            "<0><0>Anda harus menyimpang Seed dengan </0><1>setidaknya</1><2> salah satu opsi dibawah ini.</2></0>"
+        "mustSaveYourSeed": "<0><0>Anda harus menyimpang Seed dengan </0><1>setidaknya</1><2> salah satu opsi dibawah ini.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Seed salah",
@@ -246,37 +254,31 @@
         "invalidMessageTooLongExplanation": "Pesan melebihi maksimum jumlah karakter (1093).",
         "send": "KIRIM",
         "invalidAmount": "Jumlah nilai salah",
-        "invalidAmountExplanation":
-            "Silahkan masukan angka transaksi yang valid. Ini akan membantu melihat rincian unit IOTA dihalaman ini yang bawah.",
+        "invalidAmountExplanation": "Silahkan masukan angka transaksi yang valid. Ini akan membantu melihat rincian unit IOTA dihalaman ini yang bawah.",
         "maximumSelected": "Jumlah MAKSIMUM dipilih",
         "iotaUnits": "IOTA unit dijelaskan",
         "sendMax": "KIRIM MAKS",
-        "fingerprintOnSend": "Sentuh pemindai sidik jari untuk mentransfer"
+        "totalTime": "Total time"
     },
     "setPassword": {
         "passwordTooShort": "Kata sandi terlalu singkat",
-        "passwordTooShortExplanation":
-            "Kata sandi setidaknya harus ${MIN_PASSWORD_LENGTH} karakter. Kata sandi anda saat ini adalah ${this.state.password.length} karakter. Silakan coba lagi.",
+        "passwordTooShortExplanation": "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
         "passwordMismatch": "Kata sandi tidak sama",
         "passwordMismatchExplanation": "Kata sandi yang Anda masukkan tidak sama. Silahkan coba lagi.",
         "nowWeNeedTo": "Mari kita membuat kata sandi.",
-        "anEncryptedCopy":
-            "Salinan dari Seed yang terenkripsi akan disimpan di perangkat anda. Anda akan menggunakan kata sandi ini untuk mengakses dompet anda.",
+        "anEncryptedCopy": "Salinan dari Seed yang terenkripsi akan disimpan di perangkat anda. Anda akan menggunakan kata sandi ini untuk mengakses dompet anda.",
         "ensure": "Pastikan Anda menggunakan kata sandi yang kuat setidaknya 12 karakter.",
         "retypePassword": "Ketik ulang kata sandi"
     },
     "setSeedName": {
-        "canUseMultipleSeeds":
-            "Anda dapat menggunakan beberapa Seed dengan dompet ini. Setiap Seed membutuhkan nama akun.",
+        "canUseMultipleSeeds": "Anda dapat menggunakan beberapa Seed dengan dompet ini. Setiap Seed membutuhkan nama akun.",
         "youCanAdd": "Anda dapat menambahkan Seed di menu Perkakas."
     },
     "modeSelection": {
         "expert": "Ahli",
         "standard": "Standar",
-        "expertModeExplanation":
-            "Mode ahli akan menyediakan akses ke fitur tambahan seperti memajukan manual dan penyambungan kembali.",
-        "modesExplanation":
-            "Hanya aktifkan mode ahli jika Anda adalah pengguna Tangle yang berpengalaman. Bila tidak ini dapat membuat pengalaman anda lebih rumit."
+        "expertModeExplanation": "Mode ahli akan menyediakan akses ke fitur tambahan seperti memajukan manual dan penyambungan kembali.",
+        "modesExplanation": "Hanya aktifkan mode ahli jika Anda adalah pengguna Tangle yang berpengalaman. Bila tidak ini dapat membuat pengalaman anda lebih rumit."
     },
     "settings": {
         "transferSending": "Sedang mentransfer",
@@ -286,12 +288,15 @@
         "mode": "Modus",
         "theme": "Tema",
         "currency": "Mata Uang",
+        "cannotChangeNode": "Cannot change node",
+        "cannotChangeNodeWhileSending": "Cannot change node while sending.",
         "language": "Bahasa",
         "accountManagement": "Pengelolaan akun",
         "addNewSeed": "Tambahkan Seed baru",
         "twoFA": "Autentikasi dua faktor",
         "changePassword": "Ubah Kata Sandi",
         "advanced": "Pengaturan Lanjutan",
+        "about": "Tentang Trinity",
         "logout": "Keluar",
         "reset": "Hapus dompet",
         "syncingComplete": "Sinkronisasi selesai",
@@ -322,7 +327,6 @@
         "fetchedConversionRatesExplanation": "Telah berhasil mengunduh tarif konversi terbaru untuk {{currency}}.",
         "undo": "Batalkan",
         "redo": "Ulangi",
-        "about": "Tentang Trinity",
         "lockScreenTimeout": "Waktu habis kunci layar (Menit)",
         "autoNodeSwitching": "Otomatis beralih Node ketika Node terpilih tidak terjangkau"
     },
@@ -334,10 +338,8 @@
     "walletSetup": {
         "okay": "Oke. Mari menyiapkan dompet Anda!",
         "doYouAlreadyHaveASeed": "Apakah anda sudah memiliki Seed yang ingin digunakan?",
-        "seedExplanation":
-            "Seed di IOTA adalah nama pengguna dan kata sandi di akun anda yang dicampur dalam rangkaian 81 karakter.",
-        "explanation":
-            "<0><0>Anda dapat mengakses dana anda dari</0><1> dompet manapun</1><2>, di</2><3> perangkat apapun</3><4>. Tetapi jika anda lupa Seed, Anda akan kehilangan IOTA.</4></0>",
+        "seedExplanation": "Seed di IOTA adalah nama pengguna dan kata sandi di akun anda yang dicampur dalam rangkaian 81 karakter.",
+        "explanation": "<0><0>Anda dapat mengakses dana anda dari</0><1> dompet manapun</1><2>, di</2><3> perangkat apapun</3><4>. Tetapi jika anda lupa Seed, Anda akan kehilangan IOTA.</4></0>",
         "keepSafe": "Harap disimpan Seed anda dengan baik.",
         "hint": "<0><0>Petunjuk:</0> Tekan TIDAK jika ini pertama kalinya menggunakan IOTA.</0>"
     },
@@ -355,6 +357,8 @@
         "bundleHashCopiedExplanation": "Rangkaian hash telah disalin ke papan klip.",
         "addressCopied": "Alamat telah disalin",
         "addressCopiedExplanation": "Alamat telah disalin ke papan klip.",
+        "messageCopied": "Message copied",
+        "messageCopiedExplanation": "The message has been copied to the clipboard.",
         "send": "KIRIM",
         "receive": "TERIMA"
     },
@@ -367,7 +371,9 @@
     },
     "addCustomNode": {
         "customNode": "Node kustom",
-        "add": "Tambahkan"
+        "add": "Tambahkan",
+        "nodeFieldEmpty": "Text field is empty",
+        "nodeFieldEmptyExplanation": "Please enter a custom node."
     },
     "addNewAccount": {
         "useExistingSeed": "Gunakan seed yang ada saat ini",
@@ -406,8 +412,7 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Mengapa saya tidak bisa menghabiskan saldo saya?",
-        "spentAddressExplanation":
-            "Anda memiliki dana pada satu atau lebih alamat yang telah digunakan. Menggunakan alamat kembali sangat berbahaya di IOTA, karena itu dompet ini tidak membolehkan menggunakan alamat yang sama lebih dari satu kali.",
+        "spentAddressExplanation": "Anda memiliki dana pada satu atau lebih alamat yang telah digunakan. Menggunakan alamat kembali sangat berbahaya di IOTA, karena itu dompet ini tidak membolehkan menggunakan alamat yang sama lebih dari satu kali.",
         "discordInformation": "Silahkan menuju ke #help pada Discord untuk mengetahui apa yang dapat Anda lakukan."
     },
     "deleteAccount": {
@@ -439,26 +444,26 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "TINDAKAN INI TIDAK DAPAT DIKEMBALIKAN.",
-        "warning":
-            "<0><0>Semua data dompet Anda termasuk </0> <1>Seeds, kata sandi,</1> <2>dan </2> <3>informasi akun lain</3> <4> akan hilang.</4></0>"
+        "warning": "<0><0>Semua data dompet Anda termasuk </0> <1>Seeds, kata sandi,</1> <2>dan </2> <3>informasi akun lain</3> <4> akan hilang.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Sentuh pemindai sidik jari untuk mengaktifkan otentikasi sidik jari",
         "instructionsDisable": "Sentuh pemindai sidik jari untuk mengnonaktifkan otentikasi sidik jari",
-        "fingerprintAuthEnabled": "Otentikasi sidik jari diaktifkan",
-        "fingerprintAuthEnabledExplanation": "Anda telah berhasil mengaktifkan otentikasi sidik jari.",
-        "fingerprintAuthDisabled": "Otentikasi sidik jari dimatikan",
-        "fingerprintAuthDisabledExplanation": "Anda telah berhasil mematikan otentikasi sidik jari.",
-        "fingerprintAuthFailed": "Otentikasi sidik jari gagal",
+        "fingerprintAuthEnabled": "Biometric authentication enabled",
+        "fingerprintAuthEnabledExplanation": "You have succesfully enabled biometric authentication.",
+        "fingerprintAuthDisabled": "Biometric authentication disabled",
+        "fingerprintAuthDisabledExplanation": "You have succesfully disabled biometric authentication.",
+        "fingerprintAuthFailed": "Biometric authentication failed",
         "fingerprintAuthFailedExplanation": "Otentikasi sidik jari gagal. Silahkan coba lagi.",
         "status": "Status",
         "enabled": "Diaktifkan",
         "disabled": "Dinonaktifkan",
-        "fingerprintUnavailable": "Sensor sidik jari tidak tersedia",
-        "fingerprintUnavailableExplanation":
-            "Perangkat anda tidak mendukung fungsi memindai sidik jari atau belum dikonfigurasi di pengaturan perangkat.",
+        "fingerprintUnavailable": "Biometric authenticatation unavailable",
+        "fingerprintUnavailableExplanation": "Your device does not support biometric authenticatation or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Tekan tombol dibawah ini untuk menonaktifkan autentikasi sidik jari.",
         "buttonInstructionsEnable": "Tekan tombol dibawah ini untuk mengaktifkan autentikasi sidik jari.",
+        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID.",
+        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID.",
         "instructionsLogin": "Tekan pemindai sidik jari untuk masuk"
     },
     "transferConfirmation": {
@@ -489,13 +494,11 @@
     },
     "rootDetection": {
         "warning": "PERINGATAN",
-        "rootDetected":
-            "<0>Perangkat anda sepertinya telah di root</0><1>Ini dapat menambah resiko yang tinggi dalam dompet anda.</1><2>Apakah anda tetap ingin lanjut?</2>"
+        "rootDetected": "<0>Perangkat anda sepertinya telah di root</0><1>Ini dapat menambah resiko yang tinggi dalam dompet anda.</1><2>Apakah anda tetap ingin lanjut?</2>"
     },
     "pow": {
         "feeless": "Dibutuhkan sedikit Proof of Work untuk mengirim transaksi tanpa biaya di IOTA.",
-        "localOrRemote":
-            "Proof of Work dapat diselesaikan secara lokal pada perangkat Anda, atau dikirim ke sebuah node.",
+        "localOrRemote": "Proof of Work dapat diselesaikan secara lokal pada perangkat Anda, atau dikirim ke sebuah node.",
         "local": "Lokal",
         "remote": "Jarak jauh",
         "powUpdated": "Pengaturan Proof of Work",
@@ -519,8 +522,7 @@
         "transitionCompleteExplanation": "Transisi Snapshot telah selesai dengan sukses.",
         "detectedBalance": "Saldo terdeteksi: {{amount}}{{unit}}",
         "isThisCorrect": "Apakah ini benar?",
-        "snapshotExplanation":
-            "Setiap beberapa waktu, Snapshot akan dilaksanakan untuk memangkas besar ukuran dari Tangle.",
+        "snapshotExplanation": "Setiap beberapa waktu, Snapshot akan dilaksanakan untuk memangkas besar ukuran dari Tangle.",
         "hasSnapshotTakenPlace": "Apakah Snapshot telah dilaksanakan? Tekan tombol dibawah ini untuk transisi.",
         "transition": "TRANSISI",
         "transitioning": "Transisi untuk Snapshot.",
@@ -537,8 +539,7 @@
         "noUpdatesAvailable": "Tidak ada pembaruan tersedia",
         "noUpdatesAvailableExplanation": "Anda punya versi terbaru dari IOTA Trinity dompet desktop!",
         "newVersionAvailable": "Versi baru tersedia",
-        "newVersionAvailableExplanation":
-            "Versi terbaru <strong>Trinity</strong> <strong>{{version}}</strong> tersedia. Silahkan baca rincian rilis dengan hati-hati dan periksa alamat unduh sebelum memperbarui:",
+        "newVersionAvailableExplanation": "Versi terbaru <strong>Trinity</strong> <strong>{{version}}</strong> tersedia. Silahkan baca rincian rilis dengan hati-hati dan periksa alamat unduh sebelum memperbarui:",
         "downloadRelease": "Unduh rilis",
         "skipUpdate": "Lewati pembaruan"
     }

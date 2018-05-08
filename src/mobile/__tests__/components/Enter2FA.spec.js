@@ -3,7 +3,7 @@ import noop from 'lodash/noop';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
-import Enter2FA from '../../components/Enter2FA';
+import { Enter2FA } from '../../components/Enter2FA';
 
 const getProps = (overrides) =>
     assign(
@@ -12,6 +12,7 @@ const getProps = (overrides) =>
             verify: noop,
             theme: { body: {} },
             cancel: noop,
+            t: () => '',
         },
         overrides,
     );
@@ -28,6 +29,10 @@ describe('Testing Enter2FA component', () => {
 
         it('should require a cancel function as a prop', () => {
             expect(Enter2FA.propTypes.cancel).toEqual(PropTypes.func.isRequired);
+        });
+
+        it('should require a t function as a prop', () => {
+            expect(Enter2FA.propTypes.t).toEqual(PropTypes.func.isRequired);
         });
     });
 

@@ -18,12 +18,9 @@
         "keyReuseError": "आप उस पते पर नहीं भेज सकते हैं जो पहले से ही खर्च किया गया है",
         "invalidResponse": "Node error",
         "invalidResponseExplanation": "The node returned an error. Check the notifications for more information.",
-        "invalidResponsePollingExplanation":
-            "The node returned an error while polling. Check the notifications for more information.",
-        "invalidResponseFetchingAccount":
-            "The node returned an error while fetching your account information. Try changing your node or check the notifications for more information.",
-        "invalidResponseSendingTransfer":
-            "The node returned an error while sending the transfer. Check the notifications for more information.",
+        "invalidResponsePollingExplanation": "The node returned an error while polling. Check the notifications for more information.",
+        "invalidResponseFetchingAccount": "The node returned an error while fetching your account information. Try changing your node or check the notifications for more information.",
+        "invalidResponseSendingTransfer": "The node returned an error while sending the transfer. Check the notifications for more information.",
         "seed": "सीड",
         "back": "वापस",
         "backLowercase": "वापस जाएँ।",
@@ -51,6 +48,7 @@
         "otherWallet": "अन्य अकॉउंट",
         "yes": "हाँ",
         "no": "नहीं",
+        "okay": "OKAY",
         "password": "पासवर्ड",
         "passwordOrFingerprint": "पासवर्ड या अंगूठे का चिन्ह",
         "unrecognisedPassword": "पासवर्ड मेल नहीं खाया",
@@ -76,6 +74,7 @@
         "addresses": "पता",
         "reattach": "पुनः अटैच",
         "promote": "प्रमोट",
+        "retry": "RETRY",
         "rebroadcast": "पुनः ब्रॉडकास्ट",
         "pressBackAgain": "एप बंद करने के लिए वापस फिर से दबाएं",
         "autoreattaching": "टैंगल में स्वतः पुनः अटैच हो रहा है",
@@ -91,8 +90,7 @@
         "pleaseWait": "कृपया प्रतीक्षा करें",
         "pleaseWaitEllipses": "Please wait...",
         "pleaseWaitExplanation": "ट्रिनिटी एक और काम कर रहा है । कृपया प्रतीक्षा करें और पुन: प्रयास करे ।",
-        "pleaseWaitTransferExplanation":
-            "आपका उपलब्ध बैलेंस वर्तमान में अंय स्थानांतरण में उपयोग किया जा रहा है । पुन: प्रयास करने से पहले पुष्टि करने के लिए कृपया प्रतीक्षा करें ।",
+        "pleaseWaitTransferExplanation": "आपका उपलब्ध बैलेंस वर्तमान में अंय स्थानांतरण में उपयोग किया जा रहा है । पुन: प्रयास करने से पहले पुष्टि करने के लिए कृपया प्रतीक्षा करें ।",
         "snapshotTransitionInProgress": "स्नैपशॉट प्रगति में",
         "snapshotTransitionInProgressExplanation": "इस प्रक्रिया के पूर्ण होने तक कृपया प्रतीक्षा करें ।",
         "checkForUpdates": "Check for Updates",
@@ -103,16 +101,22 @@
         "addCustomNode": "Add custom node",
         "nodeChanged": "Node changed",
         "nodeChangedExplanation": "The node has been changed successfully.",
+        "nodeMustUseHTTPS": "Invalid node (non HTTPS)",
+        "nodeMustUseHTTPSExplanation": "Only custom nodes using HTTPS are allowed.",
+        "nodeDuplicated": "Duplicated node",
+        "nodeDuplicatedExplanation": "The custom node is already listed.",
         "nodeAutoChanged": "Auto-switched node",
-        "nodeAutoChangedExplanation": "Switched to new node {{- nodeAddress}} as selected node is offline."
+        "nodeAutoChangedExplanation": "Switched to new node {{- nodeAddress}} as selected node is offline.",
+        "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer",
+        "masterKey": "Your IOTA seed is the master key to your funds.",
+        "googlePlayServicesNotAvailable": "Google Play Services not available",
+        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "सीड में अवैध वर्ण हैं।",
-        "seedInvalidCharsExplanation":
-            "सीड केवल कैपिटल अक्षर A-Z और संख्या 9 से मिलकर बना सकते हैं । आपके बीज में अमांय वर्ण हैं । कृपया पुन: प्रयास करें ।",
+        "seedInvalidCharsExplanation": "सीड केवल कैपिटल अक्षर A-Z और संख्या 9 से मिलकर बना सकते हैं । आपके बीज में अमांय वर्ण हैं । कृपया पुन: प्रयास करें ।",
         "seedTooShort": "सीड बहुत छोटा है",
-        "seedTooShortExplanation":
-            "आपका सीड कम से कम {{maxLength}} वर्ण होना चाहिए। यह वर्तमान में {{currentLength}} वर्ण लंबा है कृपया पुन: प्रयास करें।",
+        "seedTooShortExplanation": "आपका सीड कम से कम {{maxLength}} वर्ण होना चाहिए। यह वर्तमान में {{currentLength}} वर्ण लंबा है कृपया पुन: प्रयास करें।",
         "nameInUse": "खाता पहले से ही उपयोग में है",
         "nameInUseExplanation": "कृपया अपने सीड के लिए एक खाता नाम दर्ज करें",
         "enterAccountName": "खाता नाम दर्ज करें।",
@@ -134,8 +138,7 @@
         "passwordTooShort": "पासवर्ड बहुत छोटा है",
         "passwordTooShortExplanation": "Your password must be at least 8 characters. Please try again.",
         "oldPassword": "पुराना पासवर्ड सेट नहीं कर सकता",
-        "oldPasswordExplanation":
-            "आप अपने नए पासवर्ड के रूप में पुराने पासवर्ड का उपयोग नहीं कर सकते। कृपया एक नया पासवर्ड के साथ फिर से प्रयास करें।",
+        "oldPasswordExplanation": "आप अपने नए पासवर्ड के रूप में पुराने पासवर्ड का उपयोग नहीं कर सकते। कृपया एक नया पासवर्ड के साथ फिर से प्रयास करें।",
         "ensureStrongPassword": "सुनिश्चित करें कि आप एक मजबूत पासवर्ड का उपयोग करे, जिसमे कम से कम 12 वर्ण हो ।",
         "currentPassword": "वर्तमान पासवर्ड",
         "newPassword": "नया पासवर्ड",
@@ -149,17 +152,18 @@
         "clickToCopy": "नीचे बटन पर क्लिक करें और एक पासवर्ड मैनेजर को अपने सीड की कॉपी करे।",
         "doNotStore": "अपने सीड को सीधे शब्दों में संग्रहीत न करें",
         "copyToClipboard": "सीड कॉपी करे",
-        "shareSeed": "अपने सीड को एक सुरक्षित पासवर्ड मैनेजर में साझा करें"
+        "shareSeed": "अपने सीड को एक सुरक्षित पासवर्ड मैनेजर में साझा करें",
+        "storeEncrypted": "If you choose to back-up your seed on your phone it should be stored encrypted e.g. in a password manager.",
+        "tapConfirm": "Please tap the checkbox below to confirm.",
+        "encryptionCheckbox": "I will store my seed with encryption",
+        "copy": "COPY"
     },
     "enterSeed": {
         "invalidCharacters": "सीड में अवैध वर्ण हैं।",
-        "invalidCharactersExplanation":
-            "सीड केवल कैपिटल अक्षर A-Z और संख्या 9 से मिलकर बना सकते हैं । आपके बीज में अमांय वर्ण हैं । कृपया पुन: प्रयास करें ।",
+        "invalidCharactersExplanation": "सीड केवल कैपिटल अक्षर A-Z और संख्या 9 से मिलकर बना सकते हैं । आपके बीज में अमांय वर्ण हैं । कृपया पुन: प्रयास करें ।",
         "seedTooShort": "सीड बहुत छोटा है",
-        "seedTooShortExplanation":
-            "आपका पासवर्ड कम से कम {{maxLength}} वर्ण होना चाहिए। यह वर्तमान में {{currentLength}} वर्ण लंबा है कृपया पुन: प्रयास करें।",
-        "seedExplanation":
-            "सीड {{maxLength}} वर्ण लंबा होना चाहिए, और इसमें कैपिटल अक्षर A-Z या 9 नंबर होना चाहिए। आप {{maxLength}} वर्णों से अधिक लम्बे seed का उपयोग नहीं कर सकते।",
+        "seedTooShortExplanation": "आपका पासवर्ड कम से कम {{maxLength}} वर्ण होना चाहिए। यह वर्तमान में {{currentLength}} वर्ण लंबा है कृपया पुन: प्रयास करें।",
+        "seedExplanation": "सीड {{maxLength}} वर्ण लंबा होना चाहिए, और इसमें कैपिटल अक्षर A-Z या 9 नंबर होना चाहिए। आप {{maxLength}} वर्णों से अधिक लम्बे seed का उपयोग नहीं कर सकते।",
         "neverShare": "कभी किसी के साथ अपने सीड साझा नहीं करें"
     },
     "home": {
@@ -192,18 +196,25 @@
         "seedNotGenerated": "सीड जेनेरेट नहीं हुआ है",
         "seedNotGeneratedExplanation": "कृपया एक नया सीड जेनेरेट करें ।",
         "pressForNewSeed": "नए सीड के लिए प्रेस करे",
-        "individualLetters": "अलग अलग लेटर को दबाये, ताकि आपका सीड अद्वितीय बन सके"
+        "generateSuccess": "Seed generated successfully",
+        "individualLetters": "अलग अलग लेटर को दबाये, ताकि आपका सीड अद्वितीय बन सके",
+        "whatIsASeed": "What is a seed?"
     },
     "onboardingComplete": {
-        "walletReady":
-            "वॉलेट अब सेट है और उपयोग करने के लिए तैयार है । यदि आप भविष्य में कोई परिवर्तन करने की जरूरत है, सेटिंग्स मेनू में देखो ।"
+        "walletReady": "वॉलेट अब सेट है और उपयोग करने के लिए तैयार है । यदि आप भविष्य में कोई परिवर्तन करने की जरूरत है, सेटिंग्स मेनू में देखो ।"
     },
     "paperWallet": {
         "clickToPrint": "अपने सीड की एक काग़ज़ की प्रतिलिपि मुद्रित करने के लिए नीचे बटन क्लिक करें ।",
         "storeSafely": "इसे सुरक्षित रूप से संग्रहीत करे।",
         "neverShare": "कभी किसी के साथ अपने सीड का साझा न करे ।",
         "iotaLogo": "IOTA लोगो",
-        "printWallet": "पेपर वॉलेट प्रिंट करे|"
+        "printWallet": "पेपर वॉलेट प्रिंट करे|",
+        "print": "PRINT",
+        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
+        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
+        "tapCheckboxes": "Please tap the checkboxes below to confirm.",
+        "wifiCheckbox": "I will not print on public wifi",
+        "printerCheckbox": "I will not print on a public printer"
     },
     "receive": {
         "addressCopied": "पता प्रतिलिपि बनाई गई",
@@ -215,10 +226,7 @@
         "spent": "खर्च"
     },
     "saveYourSeed": {
-        "seedCleared": "सीड हटाया गया",
-        "seedClearedExplanation": "आपकी सुरक्षा के लिए सीड को क्लिपबोर्ड से मिटा कर दिया गया है ।",
-        "mustSaveYourSeed":
-            "<0> <0> आपको </0> <1> के साथ अपने सीड को नीचे सूचीबद्ध विकल्पों में से कम एक </1> <2> से बचाना होगा । </2> </0>"
+        "mustSaveYourSeed": "<0> <0> आपको </0> <1> के साथ अपने सीड को नीचे सूचीबद्ध विकल्पों में से कम एक </1> <2> से बचाना होगा । </2> </0>"
     },
     "seedReentry": {
         "incorrectSeed": "गलत सीड",
@@ -235,8 +243,7 @@
         "notEnoughFunds": "अपर्याप्त राशि",
         "notEnoughFundsExplanation": "आपके पास प्रर्याप्त IOTA नहीं है इस ट्रान्सेक्शन के लिए.",
         "keyReuse": "कुंजी पुनः प्रयोग",
-        "keyReuseExplanation":
-            "जिस पते पर आप भेजने का प्रयास कर रहे हैं, उसका उपयोग पहले ही किया जा चुका है। कृपया दूसरे पते का प्रयास करें |",
+        "keyReuseExplanation": "जिस पते पर आप भेजने का प्रयास कर रहे हैं, उसका उपयोग पहले ही किया जा चुका है। कृपया दूसरे पते का प्रयास करें |",
         "recipientAddress": "प्राप्तकर्ता का पता",
         "amount": "राशि",
         "max": "अधिकतम",
@@ -247,37 +254,31 @@
         "invalidMessageTooLongExplanation": "The message exceeds the max. amount of characters (1093).",
         "send": "भेजे",
         "invalidAmount": "गलत राशि दर्ज की गई",
-        "invalidAmountExplanation":
-            "कृपया कोई मान्य हस्तांतरण राशि दर्ज करें । यह इस पृष्ठ के तल पर IOTA इकाई विवरण देखने के लिए सहायक हो सकता है ।",
+        "invalidAmountExplanation": "कृपया कोई मान्य हस्तांतरण राशि दर्ज करें । यह इस पृष्ठ के तल पर IOTA इकाई विवरण देखने के लिए सहायक हो सकता है ।",
         "maximumSelected": "अधिकतम चयनित राशि",
         "iotaUnits": "IOTA इकाइयों को समझाया गया है",
         "sendMax": "अधिकतम भेजें",
-        "fingerprintOnSend": "Touch fingerprint reader to send the transfer"
+        "totalTime": "Total time"
     },
     "setPassword": {
         "passwordTooShort": "पासवर्ड बहुत छोटा है",
-        "passwordTooShortExplanation":
-            "आपका पासवर्ड कम से कम {{minLength}} वर्ण होना चाहिए। यह वर्तमान में {{currentLength}} वर्ण लंबा है कृपया पुन: प्रयास करें।",
+        "passwordTooShortExplanation": "आपका पासवर्ड कम से कम {{minLength}} वर्ण होना चाहिए। यह वर्तमान में {{currentLength}} वर्ण लंबा है कृपया पुन: प्रयास करें।",
         "passwordMismatch": "पासवर्ड्स समान नहीं हैं",
         "passwordMismatchExplanation": "पासवर्ड्स जो आप दर्ज किया, मिलान नहीं हो रहा हैं। कृपया दोबारा लिखें।",
         "nowWeNeedTo": "अब हमें पासवर्ड सेट करने की आवश्यकता है ।",
-        "anEncryptedCopy":
-            "अपने सीड की एक एंक्रिप्टेड प्रतिलिपि आपके डिवाइस पर संग्रहीत किया जाएगा । आप भविष्य में अपने वॉलेट तक पहुंचने के लिए इस पासवर्ड का उपयोग करेंगे ।",
+        "anEncryptedCopy": "अपने सीड की एक एंक्रिप्टेड प्रतिलिपि आपके डिवाइस पर संग्रहीत किया जाएगा । आप भविष्य में अपने वॉलेट तक पहुंचने के लिए इस पासवर्ड का उपयोग करेंगे ।",
         "ensure": "सुनिश्चित करें कि आप एक मजबूत पासवर्ड का उपयोग करे, जिसमे कम से कम 12 वर्ण हो ।",
         "retypePassword": "पासवर्ड पुन: लिखें"
     },
     "setSeedName": {
-        "canUseMultipleSeeds":
-            "आप इस वॉलेट के साथ कई सीड का उपयोग कर सकते हैं । प्रत्येक सीड को खाता नाम की आवश्यकता है ।",
+        "canUseMultipleSeeds": "आप इस वॉलेट के साथ कई सीड का उपयोग कर सकते हैं । प्रत्येक सीड को खाता नाम की आवश्यकता है ।",
         "youCanAdd": "आप सेटिंग मेनू में और सीड अधिक जोड़ सकते हैं ।"
     },
     "modeSelection": {
         "expert": "एक्स्पर्ट",
         "standard": "मानक",
-        "expertModeExplanation":
-            "विशेषज्ञ मोड मैन्युअल संवर्धन और पुनर्आसक्ति जैसी अतिरिक्त सुविधाओं तक पहुँच प्रदान करेगा.",
-        "modesExplanation":
-            "यदि आप अनुभवी टैंगल उपयोगकर्ता हैं तो केवल विशेषज्ञ मोड सक्षम करें आप इसे अन्यथा भ्रमित कर सकते हैं"
+        "expertModeExplanation": "विशेषज्ञ मोड मैन्युअल संवर्धन और पुनर्आसक्ति जैसी अतिरिक्त सुविधाओं तक पहुँच प्रदान करेगा.",
+        "modesExplanation": "यदि आप अनुभवी टैंगल उपयोगकर्ता हैं तो केवल विशेषज्ञ मोड सक्षम करें आप इसे अन्यथा भ्रमित कर सकते हैं"
     },
     "settings": {
         "transferSending": "ट्रांसफर हो रहा है",
@@ -287,12 +288,15 @@
         "mode": "मोड",
         "theme": "थीम",
         "currency": "मुद्रा",
+        "cannotChangeNode": "Cannot change node",
+        "cannotChangeNodeWhileSending": "Cannot change node while sending.",
         "language": "भाषा ",
         "accountManagement": "अकाउंट प्रबंध",
         "addNewSeed": "नए सीड जोड़ें",
         "twoFA": "Two-factor authentication",
         "changePassword": "पासवर्ड परिवर्तित करें",
         "advanced": "उच्च सेटिंग्स",
+        "about": "About Trinity",
         "logout": "लॉग आउट",
         "reset": "वॉलेट रिसेट",
         "syncingComplete": "सिंकिंग पूर्ण",
@@ -323,7 +327,6 @@
         "fetchedConversionRatesExplanation": "{{currency}} के लिए नवीनतम रूपांतरण दरों को सफलतापूर्वक दिलवाया ।",
         "undo": "Undo",
         "redo": "Redo",
-        "about": "About Trinity",
         "lockScreenTimeout": "Lock Screen Timeout (Minutes)",
         "autoNodeSwitching": "Automatically switch node when selected is unreachable"
     },
@@ -335,18 +338,15 @@
     "walletSetup": {
         "okay": "चलो अपने वॉलेट को सेट करे!",
         "doYouAlreadyHaveASeed": "क्या आपके पास पहले से एक सीड है जिसे आप उपयोग करना चाहते हैं?",
-        "seedExplanation":
-            "IOTA सीड आपके खाते में यूज़रनेम और पासवर्ड की तरह है, जो 81 अक्षरों में से एक शब्द में मिला है।",
-        "explanation":
-            "<0> <0> आप इसका उपयोग </0> <1> किसी भी वॉलेट </1> <2>, पर </2> <3> किसी भी डिवाइस </3> <4> से अपने फण्ड तक पहुंचने के लिए कर सकते हैं । लेकिन अगर आप अपना सीड खो देते हैं तो आप भी अपना IOTA खो देते हैं । </4> </0>",
+        "seedExplanation": "IOTA सीड आपके खाते में यूज़रनेम और पासवर्ड की तरह है, जो 81 अक्षरों में से एक शब्द में मिला है।",
+        "explanation": "<0> <0> आप इसका उपयोग </0> <1> किसी भी वॉलेट </1> <2>, पर </2> <3> किसी भी डिवाइस </3> <4> से अपने फण्ड तक पहुंचने के लिए कर सकते हैं । लेकिन अगर आप अपना सीड खो देते हैं तो आप भी अपना IOTA खो देते हैं । </4> </0>",
         "keepSafe": "कृपया अपने सीड को सुरक्षित रखें",
         "hint": "<0><0>Hint:</0> Click NO if this is your first time using IOTA.</0>"
     },
     "welcome": {
         "thankYou": "वॉलेट डाउनलोड करने के लिए धन्यवाद",
         "weWillSpend": "हम आपके वॉलेट की सेटिंग अगले कुछ मिनटों में करेंगे",
-        "reminder":
-            "आप कुछ स्टेप को छोड़कर आगे बढ़ने का प्रयास कर सकते है, लेकिन हम आपको पूरी प्रक्रिया का पालन करने का आग्रह करते हैं।"
+        "reminder": "आप कुछ स्टेप को छोड़कर आगे बढ़ने का प्रयास कर सकते है, लेकिन हम आपको पूरी प्रक्रिया का पालन करने का आग्रह करते हैं।"
     },
     "writeSeedDown": {
         "yourSeedIs": "आपका सीड {{maxSeedLength}} अक्षरों की लंबाई है, इसे बाएं से दाएं को पढ़ें",
@@ -357,6 +357,8 @@
         "bundleHashCopiedExplanation": "बंडल हैश को क्लिपबोर्ड पर कॉपी किया गया है ।",
         "addressCopied": "पता प्रतिलिपि बनाई गई",
         "addressCopiedExplanation": "पते की क्लिपबोर्ड पर कॉपी बनाई गई है ।",
+        "messageCopied": "Message copied",
+        "messageCopiedExplanation": "The message has been copied to the clipboard.",
         "send": "भेजे",
         "receive": "प्राप्त करे"
     },
@@ -369,7 +371,9 @@
     },
     "addCustomNode": {
         "customNode": "कस्टम नोड",
-        "add": "जोड़ें"
+        "add": "जोड़ें",
+        "nodeFieldEmpty": "Text field is empty",
+        "nodeFieldEmptyExplanation": "Please enter a custom node."
     },
     "addNewAccount": {
         "useExistingSeed": "मौजूदा सीड का उपयोग करें",
@@ -408,8 +412,7 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Why can't I spend my full balance?",
-        "spentAddressExplanation":
-            "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
+        "spentAddressExplanation": "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
         "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
     },
     "deleteAccount": {
@@ -441,26 +444,26 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "यह क्रिया पूर्ववत् नहीं की जा सकती ।",
-        "warning":
-            "<0> <0> अपने वॉलेट डेटा के सभी </0> <1> सीड्स, पासवर्ड, </1> <2> और </2> <3> सहित अन्य अकाउंट की जानकारी </3> <4> खो जाएंगे । </4> </0>"
+        "warning": "<0> <0> अपने वॉलेट डेटा के सभी </0> <1> सीड्स, पासवर्ड, </1> <2> और </2> <3> सहित अन्य अकाउंट की जानकारी </3> <4> खो जाएंगे । </4> </0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Touch fingerprint reader to enable fingerprint authentication",
         "instructionsDisable": "Touch fingerprint reader to disable fingerprint authentication",
-        "fingerprintAuthEnabled": "फ़िंगरप्रिंट प्रमाणीकरण चालू किया गया",
-        "fingerprintAuthEnabledExplanation": "आपने सफलतापूर्वक फिंगरप्रिंट प्रमाणीकरण चालू कर दिया है",
-        "fingerprintAuthDisabled": "फ़िंगरप्रिंट प्रमाणीकरण बंद किया गया",
-        "fingerprintAuthDisabledExplanation": "आपने सफलतापूर्वक फिंगरप्रिंट प्रमाणीकरण बंद कर दिया है",
-        "fingerprintAuthFailed": "फ़िंगरप्रिंट प्रमाणीकरण असफल रहा",
+        "fingerprintAuthEnabled": "Biometric authentication enabled",
+        "fingerprintAuthEnabledExplanation": "You have succesfully enabled biometric authentication.",
+        "fingerprintAuthDisabled": "Biometric authentication disabled",
+        "fingerprintAuthDisabledExplanation": "You have succesfully disabled biometric authentication.",
+        "fingerprintAuthFailed": "Biometric authentication failed",
         "fingerprintAuthFailedExplanation": "फ़िंगरप्रिंट प्रमाणन विफल हुआ । कृपया पुन: प्रयास करें ।",
         "status": "स्टेटस",
         "enabled": "चालू करे",
         "disabled": "बंद करे",
-        "fingerprintUnavailable": "फ़िंगरप्रिंट सेंसर अनुपलब्ध",
-        "fingerprintUnavailableExplanation":
-            "आपका डिवाइस फ़िंगरप्रिंट पहचान का समर्थन नहीं करता है या यह डिवाइस सेटिंग्स में कॉंफ़िगर नहीं किया गया है ।",
+        "fingerprintUnavailable": "Biometric authenticatation unavailable",
+        "fingerprintUnavailableExplanation": "Your device does not support biometric authenticatation or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "फ़िंगरप्रिंट प्रमाणीकरण को बंद करने के लिए नीचे बटन दबाएँ.",
         "buttonInstructionsEnable": "फ़िंगरप्रिंट प्रमाणीकरण को चालू करने के लिए नीचे बटन दबाएँ.",
+        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID.",
+        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID.",
         "instructionsLogin": "Touch fingerprint reader to log in"
     },
     "transferConfirmation": {
@@ -491,13 +494,11 @@
     },
     "rootDetection": {
         "warning": "चेतावनी!",
-        "rootDetected":
-            "<0> अपने डिवाइसरूटेड/जेलब्रोकेन निहित प्रतीत होता है/</0> <1> यह अपने बटुए की सुरक्षा के लिए एक महत्वपूर्ण जोखिम पैदा कर सकते हैं । </1> <2> क्या आप इस जोखिम के बावजूद जारी रखना चाहते हैं? </2>"
+        "rootDetected": "<0> अपने डिवाइसरूटेड/जेलब्रोकेन निहित प्रतीत होता है/</0> <1> यह अपने बटुए की सुरक्षा के लिए एक महत्वपूर्ण जोखिम पैदा कर सकते हैं । </1> <2> क्या आप इस जोखिम के बावजूद जारी रखना चाहते हैं? </2>"
     },
     "pow": {
         "feeless": "IOTA में निशुल्क ट्रांजेक्शन भेजने के लिए काम का थोड़ा सा सबूत पूरा करना जरूरी होता है ।",
-        "localOrRemote":
-            "काम का सबूत या तो अपने डिवाइस पर स्थानीय रूप से पूरा किया जा सकता है, या एक नोड के लिए बिकवाली की ।",
+        "localOrRemote": "काम का सबूत या तो अपने डिवाइस पर स्थानीय रूप से पूरा किया जा सकता है, या एक नोड के लिए बिकवाली की ।",
         "local": "स्थानीय",
         "remote": "दूरस्थ",
         "powUpdated": "Proof of work settings",
@@ -538,8 +539,7 @@
         "noUpdatesAvailable": "No updates available",
         "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
         "newVersionAvailable": "New version available",
-        "newVersionAvailableExplanation":
-            "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
+        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
         "downloadRelease": "Download release",
         "skipUpdate": "Skip update"
     }

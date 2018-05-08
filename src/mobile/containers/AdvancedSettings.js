@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
+import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { Icon } from '../theme/icons.js';
 import { width, height } from '../utils/dimensions';
 
@@ -40,13 +41,13 @@ const styles = StyleSheet.create({
         height: width / 28,
     },
     titleText: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         marginLeft: width / 25,
     },
     backText: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
@@ -61,7 +62,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     settingText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 23,
         marginLeft: width / 12,
         width: width / 2.4,
@@ -72,7 +73,7 @@ const styles = StyleSheet.create({
 /**
  * Advanced Settings component
  */
-class AdvancedSettings extends PureComponent {
+export class AdvancedSettings extends PureComponent {
     static propTypes = {
         /** Change current setting
          * @param {string} setting
@@ -82,16 +83,52 @@ class AdvancedSettings extends PureComponent {
          * @param {string} translationString - locale string identifier to be translated
          */
         t: PropTypes.func.isRequired,
+        /** Generate a notification alert
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
+         */
+        generateAlert: PropTypes.func.isRequired,
         /** Currently selected IRI node */
         node: PropTypes.string.isRequired,
         /** Theme settings */
         theme: PropTypes.object.isRequired,
+        /** Determines if wallet is making a transaction */
+        isSendingTransfer: PropTypes.bool.isRequired,
     };
 
     constructor() {
         super();
 
         this.reset = this.reset.bind(this);
+        this.onNodeSelection = this.onNodeSelection.bind(this);
+        this.onAddCustomNode = this.onAddCustomNode.bind(this);
+    }
+
+    onNodeSelection() {
+        if (this.props.isSendingTransfer) {
+            this.generateChangeNodeAlert();
+        } else {
+            this.props.setSetting('nodeSelection');
+        }
+    }
+
+    onAddCustomNode() {
+        if (this.props.isSendingTransfer) {
+            this.generateChangeNodeAlert();
+        } else {
+            this.props.setSetting('addCustomNode');
+        }
+    }
+
+    generateChangeNodeAlert() {
+        this.props.generateAlert(
+            'error',
+            this.props.t('settings:cannotChangeNode'),
+            `${this.props.t('settings:cannotChangeNodeWhileSending')} ${this.props.t(
+                'settings:transferSendingExplanation',
+            )}`,
+        );
     }
 
     reset() {
@@ -127,7 +164,7 @@ class AdvancedSettings extends PureComponent {
                 <View style={{ flex: 7 }}>
                     <View style={styles.itemContainer}>
                         <TouchableOpacity
-                            onPress={() => this.props.setSetting('nodeSelection')}
+                            onPress={this.onNodeSelection}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
@@ -141,7 +178,7 @@ class AdvancedSettings extends PureComponent {
                     </View>
                     <View style={styles.itemContainer}>
                         <TouchableOpacity
-                            onPress={() => this.props.setSetting('addCustomNode')}
+                            onPress={this.onAddCustomNode}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
@@ -223,10 +260,12 @@ class AdvancedSettings extends PureComponent {
 const mapStateToProps = (state) => ({
     node: state.settings.node,
     theme: state.settings.theme,
+    isSendingTransfer: state.ui.isSendingTransfer,
 });
 
 const mapDispatchToProps = {
     setSetting,
+    generateAlert,
 };
 
 export default translate(['advancedSettings', 'settings', 'global'])(

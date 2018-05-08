@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MainSettingsComponent from '../containers/MainSettings';
-import AdvancedSettings from '../containers/AdvancedSettings';
+import AdvancedSettingsComponent from '../containers/AdvancedSettings';
 import AccountManagement from '../containers/AccountManagement';
 import ViewSeed from '../containers/ViewSeed';
 import ViewAddressesComponent from '../containers/ViewAddresses';
@@ -20,10 +20,11 @@ import ManualSyncComponent from '../containers/ManualSync';
 import ThemeCustomisation from '../containers/ThemeCustomisation';
 import SnapshotTransition from '../containers/SnapshotTransition';
 import SecuritySettings from '../containers/SecuritySettings';
+import About from '../containers/About';
 
 const SETTINGS_COMPONENTS = {
     mainSettings: MainSettingsComponent,
-    advancedSettings: AdvancedSettings,
+    advancedSettings: AdvancedSettingsComponent,
     accountManagement: AccountManagement,
     viewSeed: ViewSeed,
     viewAddresses: ViewAddressesComponent,
@@ -42,6 +43,7 @@ const SETTINGS_COMPONENTS = {
     securitySettings: SecuritySettings,
     modeSelection: ModeSelection,
     pow: ProofOfWork,
+    about: About,
 };
 
 const SettingsContent = ({ component, ...props }) => {

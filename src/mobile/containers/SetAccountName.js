@@ -3,7 +3,7 @@ import trim from 'lodash/trim';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { Keyboard, StyleSheet, View, Text, TouchableWithoutFeedback } from 'react-native';
+import { Keyboard, StyleSheet, View, Text, TouchableWithoutFeedback, Clipboard } from 'react-native';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { setAccountName, setAdditionalAccountInfo } from 'iota-wallet-shared-modules/actions/wallet';
 import { connect } from 'react-redux';
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
         paddingTop: height / 15,
     },
     infoText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 27.6,
         textAlign: 'justify',
         paddingTop: height / 60,
@@ -99,6 +99,12 @@ export class SetAccountName extends Component {
         this.state = {
             accountName: this.getDefaultAccountName(),
         };
+    }
+
+    componentDidMount() {
+        const { t } = this.props;
+        Clipboard.setString(' ');
+        this.props.generateAlert('info', t('copyToClipboard:seedCleared'), t('copyToClipboard:seedClearedExplanation'));
     }
 
     onDonePress() {

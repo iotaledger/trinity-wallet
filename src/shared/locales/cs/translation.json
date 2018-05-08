@@ -19,10 +19,8 @@
         "invalidResponse": "Chyba Nodu",
         "invalidResponseExplanation": "Node vrátil chybu. Pro více informací zkontrolujte notifikace.",
         "invalidResponsePollingExplanation": "Node vrátil chybu. Pro více informací zkontrolujte notifikace.",
-        "invalidResponseFetchingAccount":
-            "Node vrátil chybu při získávání informací o účtu. Zkuste změnit Váš Node, nebo pro více informací zkontrolujte notifikace.",
-        "invalidResponseSendingTransfer":
-            "Node vrátil chybu při odesílání platby. Pro více informací zkontrolujte notifikace.",
+        "invalidResponseFetchingAccount": "Node vrátil chybu při získávání informací o účtu. Zkuste změnit Váš Node, nebo pro více informací zkontrolujte notifikace.",
+        "invalidResponseSendingTransfer": "Node vrátil chybu při odesílání platby. Pro více informací zkontrolujte notifikace.",
         "seed": "Seed",
         "back": "ZPĚT",
         "backLowercase": "Zpět",
@@ -50,6 +48,7 @@
         "otherWallet": "DALŠÍ ÚČET",
         "yes": "ANO",
         "no": "NE",
+        "okay": "OKAY",
         "password": "Heslo",
         "passwordOrFingerprint": "Heslo nebo otisk prstu",
         "unrecognisedPassword": "Neznámé heslo",
@@ -75,6 +74,7 @@
         "addresses": "Adresy",
         "reattach": "ZNOVU PŘIPOJIT",
         "promote": "PODPOŘIT",
+        "retry": "RETRY",
         "rebroadcast": "OPAKOVÁNÍ PŘENOSU",
         "pressBackAgain": "Opětovným stisknutím tlačítka Zpět zavřete aplikaci",
         "autoreattaching": "Automatické opětovné připojení do Tangle",
@@ -90,8 +90,7 @@
         "pleaseWait": "Prosím čekejte",
         "pleaseWaitEllipses": "Prosím čekejte...",
         "pleaseWaitExplanation": "Trinity vykonává jinou funkci. Počkejte prosím a poté zkuste znovu.",
-        "pleaseWaitTransferExplanation":
-            "Váš disponibilní zůstatek se momentálně používá v jiných převodech. Počkejte prosím na jedno potvrzení než to zkusíte znovu.",
+        "pleaseWaitTransferExplanation": "Váš disponibilní zůstatek se momentálně používá v jiných převodech. Počkejte prosím na jedno potvrzení než to zkusíte znovu.",
         "snapshotTransitionInProgress": "Probíhá aktualizace údajů po Snapshotu",
         "snapshotTransitionInProgressExplanation": "Počkejte prosím na dokončení aktualizace údajů po Snapshotu.",
         "checkForUpdates": "Kontrola aktualizací",
@@ -102,16 +101,22 @@
         "addCustomNode": "Přidat vlastní Node",
         "nodeChanged": "Node byl změněn",
         "nodeChangedExplanation": "Node byl úspěšně změněn.",
+        "nodeMustUseHTTPS": "Invalid node (non HTTPS)",
+        "nodeMustUseHTTPSExplanation": "Only custom nodes using HTTPS are allowed.",
+        "nodeDuplicated": "Duplicated node",
+        "nodeDuplicatedExplanation": "The custom node is already listed.",
         "nodeAutoChanged": "Automatické přepnutí Nodu",
-        "nodeAutoChangedExplanation": "Přepnuto na nový Node {{- nodeAddress}} jelikož dříve vybraný je offline."
+        "nodeAutoChangedExplanation": "Přepnuto na nový Node {{- nodeAddress}} jelikož dříve vybraný je offline.",
+        "fingerprintOnSend": "Pro ověření přenosu přiložte prst na čtečku",
+        "masterKey": "Your IOTA seed is the master key to your funds.",
+        "googlePlayServicesNotAvailable": "Google Play Services not available",
+        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
-        "seedInvalidCharsExplanation":
-            "Seed musí obsahovat pouze velká písmena A-Z a číslo 9. Váš seed obsahuje neplatné znaky. Prosím opakujte akci.",
+        "seedInvalidCharsExplanation": "Seed musí obsahovat pouze velká písmena A-Z a číslo 9. Váš seed obsahuje neplatné znaky. Prosím opakujte akci.",
         "seedTooShort": "Seed je příliš krátký",
-        "seedTooShortExplanation":
-            "Seed musí obsahovat {{maxLength}} znaků. Váš Seed obsahuje {{currentLength}} znaků. Prosím zkuste to znovu.",
+        "seedTooShortExplanation": "Seed musí obsahovat {{maxLength}} znaků. Váš Seed obsahuje {{currentLength}} znaků. Prosím zkuste to znovu.",
         "nameInUse": "Název účtu je již používán",
         "nameInUseExplanation": "Prosím použijte jedinečný název účtu pro Váš Seed.",
         "enterAccountName": "Zadejte název účtu.",
@@ -147,17 +152,18 @@
         "clickToCopy": "Klepněte na tlačítko níže a skopírujte Váš seed do Správce hesel.",
         "doNotStore": "Neuchovávejte Váš Seed ve formátu prostého textu.",
         "copyToClipboard": "Kopírovat Seed",
-        "shareSeed": "Svůj Seed si uložte do zabezpečeného správce hesel"
+        "shareSeed": "Svůj Seed si uložte do zabezpečeného správce hesel",
+        "storeEncrypted": "If you choose to back-up your seed on your phone it should be stored encrypted e.g. in a password manager.",
+        "tapConfirm": "Please tap the checkbox below to confirm.",
+        "encryptionCheckbox": "I will store my seed with encryption",
+        "copy": "COPY"
     },
     "enterSeed": {
         "invalidCharacters": "Seed obsahuje neplatné znaky",
-        "invalidCharactersExplanation":
-            "Seed musí obsahovat pouze velká písmena A-Z a číslo 9. Váš Seed obsahuje neplatné znaky. Prosím zkuste to znovu.",
+        "invalidCharactersExplanation": "Seed musí obsahovat pouze velká písmena A-Z a číslo 9. Váš Seed obsahuje neplatné znaky. Prosím zkuste to znovu.",
         "seedTooShort": "Seed je příliš krátký",
-        "seedTooShortExplanation":
-            "Seed musí obsahovat {{maxLength}} znaků. Váš Seed obsahuje {{currentLength}} znaků. Prosím zkuste to znovu.",
-        "seedExplanation":
-            "Seed by měl mít {{maxLength}} znaků a měl by obsahovat velká písmena A-Z, nebo číslo 9. Nelze použít Seed delší než {{maxLength}} znaků.",
+        "seedTooShortExplanation": "Seed musí obsahovat {{maxLength}} znaků. Váš Seed obsahuje {{currentLength}} znaků. Prosím zkuste to znovu.",
+        "seedExplanation": "Seed by měl mít {{maxLength}} znaků a měl by obsahovat velká písmena A-Z, nebo číslo 9. Nelze použít Seed delší než {{maxLength}} znaků.",
         "neverShare": "NIKOMU NIKDY NESDĚLUJTE VÁŠ SEED"
     },
     "home": {
@@ -190,18 +196,25 @@
         "seedNotGenerated": "Seed nebyl vygenerován",
         "seedNotGeneratedExplanation": "Prosím vygenerujte nový Seed.",
         "pressForNewSeed": "VYGENERUJ NOVÝ SEED",
-        "individualLetters": "Vyberte náhodná písmena."
+        "generateSuccess": "Seed generated successfully",
+        "individualLetters": "Vyberte náhodná písmena.",
+        "whatIsASeed": "What is a seed?"
     },
     "onboardingComplete": {
-        "walletReady":
-            "Peněženka je nyní nastavena a připravena k použití. Pokud budete potřebovat něco měnit najdete to v Menu Nastavení."
+        "walletReady": "Peněženka je nyní nastavena a připravena k použití. Pokud budete potřebovat něco měnit najdete to v Menu Nastavení."
     },
     "paperWallet": {
         "clickToPrint": "Pro vytisknutí kopie Vašeho Seedu, klikněte na tlačítko níže.",
         "storeSafely": "Bezpečně uložte!",
         "neverShare": "Nikdy s nikým nesdílejte Váš Seed!",
         "iotaLogo": "IOTA logo",
-        "printWallet": "TISK PAPÍROVÉ PENĚŽENKY"
+        "printWallet": "TISK PAPÍROVÉ PENĚŽENKY",
+        "print": "PRINT",
+        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
+        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
+        "tapCheckboxes": "Please tap the checkboxes below to confirm.",
+        "wifiCheckbox": "I will not print on public wifi",
+        "printerCheckbox": "I will not print on a public printer"
     },
     "receive": {
         "addressCopied": "Adresa zkopírována",
@@ -213,8 +226,6 @@
         "spent": "Utraceno"
     },
     "saveYourSeed": {
-        "seedCleared": "Seed vymazán",
-        "seedClearedExplanation": "Z bezpečnostních důvodů byl Seed vymazán ze schránky.",
         "mustSaveYourSeed": "<0><0>Musíte uložit nejméně </0><1>jeden Seed</1><2>z níže uvedených možností.</2></0>"
     },
     "seedReentry": {
@@ -232,8 +243,7 @@
         "notEnoughFunds": "Nedostatek prostředků",
         "notEnoughFundsExplanation": "Nemáte dostatek IOTA k dokončení této transakce.",
         "keyReuse": "Opakované použití klíče",
-        "keyReuseExplanation":
-            "Adresa, na kterou se pokoušíte odeslat transakci, již byla použita. Zkuste jinou adresu.",
+        "keyReuseExplanation": "Adresa, na kterou se pokoušíte odeslat transakci, již byla použita. Zkuste jinou adresu.",
         "recipientAddress": "Adresa příjemce",
         "amount": "Částka",
         "max": "MAX",
@@ -244,22 +254,19 @@
         "invalidMessageTooLongExplanation": "Zpráva překračuje maximální počet znaků (1093).",
         "send": "ODESLAT",
         "invalidAmount": "Zadána neplatná částka",
-        "invalidAmountExplanation":
-            "Prosím zadejte platnou transakční částku. Případně níže na stránce jsou informace o IOTA jednotkách.\n",
+        "invalidAmountExplanation": "Prosím zadejte platnou transakční částku. Případně níže na stránce jsou informace o IOTA jednotkách.\n",
         "maximumSelected": "Vybrána MAXIMÁLNÍ částka",
         "iotaUnits": "Informace o IOTA jednotkách.",
         "sendMax": "POSLAT MAXIMUM",
-        "fingerprintOnSend": "Pro odeslání přenosu přiložte prst na čtečku"
+        "totalTime": "Total time"
     },
     "setPassword": {
         "passwordTooShort": "Heslo je příliš krátké",
-        "passwordTooShortExplanation":
-            "Heslo musí obsahovat minimálně {{minLength}} znaků. Nyní je {{currentLength}} znaků dlouhé. Prosím zkuste to znovu.",
+        "passwordTooShortExplanation": "Heslo musí obsahovat minimálně {{minLength}} znaků. Nyní je {{currentLength}} znaků dlouhé. Prosím zkuste to znovu.",
         "passwordMismatch": "Hesla se neshodují",
         "passwordMismatchExplanation": "Zadané heslo je neplatné. Prosím zkuste znovu.",
         "nowWeNeedTo": "Nyní je třeba vytvořit heslo.",
-        "anEncryptedCopy":
-            "V zařízení se uloží zašifrovaná kopie Vašeho Seedu. Tímto heslem se budete přihlašovat k Vaší peněžence.",
+        "anEncryptedCopy": "V zařízení se uloží zašifrovaná kopie Vašeho Seedu. Tímto heslem se budete přihlašovat k Vaší peněžence.",
         "ensure": "Ujistěte se, že budete používat bezpečené heslo, dlouhé minimálně 12 znaků.",
         "retypePassword": "Znovu zadejte heslo"
     },
@@ -270,10 +277,8 @@
     "modeSelection": {
         "expert": "Expert",
         "standard": "Výchozí",
-        "expertModeExplanation":
-            "Expertní režim umožní přístup k dalším funkcím, jako je ruční propagace a opětovné připojení.",
-        "modesExplanation":
-            "Expertní režim povolte, pouze pokud jste zkušený uživatel Tangle. Jinak to pro Vás může být matoucí."
+        "expertModeExplanation": "Expertní režim umožní přístup k dalším funkcím, jako je ruční propagace a opětovné připojení.",
+        "modesExplanation": "Expertní režim povolte, pouze pokud jste zkušený uživatel Tangle. Jinak to pro Vás může být matoucí."
     },
     "settings": {
         "transferSending": "Odesílání transakce",
@@ -283,12 +288,15 @@
         "mode": "Režim",
         "theme": "Motiv",
         "currency": "Měna",
+        "cannotChangeNode": "Cannot change node",
+        "cannotChangeNodeWhileSending": "Cannot change node while sending.",
         "language": "Jazyk",
         "accountManagement": "Správa účtů",
         "addNewSeed": "Přidat nový Seed",
         "twoFA": "Dvoufaktorové ověření 2FA",
         "changePassword": "Změnit heslo",
         "advanced": "Pokročilá nastavení",
+        "about": "O Trinity",
         "logout": "Odhlásit",
         "reset": "Obnovit peněženku",
         "syncingComplete": "Synchronizace dokončena",
@@ -319,7 +327,6 @@
         "fetchedConversionRatesExplanation": "Úspěšně načtené nejnovější kurzy pro {{currency}}.",
         "undo": "Zrušit",
         "redo": "Znovu",
-        "about": "O Trinity",
         "lockScreenTimeout": "Zámek obrazovky časový limit (minuty)",
         "autoNodeSwitching": "Automaticky přepnout na jiný Node, pokud vybraný není dostupný"
     },
@@ -332,8 +339,7 @@
         "okay": "OK - přejděme nyní k nastavení Vaší peněženky!",
         "doYouAlreadyHaveASeed": "Máte už vlastní Seed, který byste rádi použili?",
         "seedExplanation": "IOTA Seed je jako uživatelské jméno a heslo k Vašemu účtu, zkombinované do řady 81 znaků.",
-        "explanation":
-            "<0><0>Můžete ho použít pro přístup ke svým prostředkům z</0> <1>jakékoliv peněženky</1> <2>, na</2> <3>jakémkoliv zařízení</3> <4>. Ale pokud ztratíte svůj Seed, ztratíte také všechny Vaše IOTA.</4></0>",
+        "explanation": "<0><0>Můžete ho použít pro přístup ke svým prostředkům z</0> <1>jakékoliv peněženky</1> <2>, na</2> <3>jakémkoliv zařízení</3> <4>. Ale pokud ztratíte svůj Seed, ztratíte také všechny Vaše IOTA.</4></0>",
         "keepSafe": "Uchovávejte Váš seed v bezpečí.",
         "hint": "<0><0>Tip:</0> Pokud IOTA peněženku používáte poprvé, klepněte na tlačítko NE</0>"
     },
@@ -344,14 +350,15 @@
     },
     "writeSeedDown": {
         "yourSeedIs": "Váš Seed je {{maxSeedLength}} znaků čtených zleva doprava.",
-        "writeDownYourSeed":
-            "<0> Zapište si svůj Seed a kontrolní součet </0><1>a důkladně zkontrolujte</1><2> jejich správnost.</2>"
+        "writeDownYourSeed": "<0> Zapište si svůj Seed a kontrolní součet </0><1>a důkladně zkontrolujte</1><2> jejich správnost.</2>"
     },
     "history": {
         "bundleHashCopied": "Balíček hash zkopírován",
         "bundleHashCopiedExplanation": "Balíček hash byl zkopírován do schránky.",
         "addressCopied": "Adresa zkopírována",
         "addressCopiedExplanation": "Adresa byla zkopírována do schránky.",
+        "messageCopied": "Message copied",
+        "messageCopiedExplanation": "The message has been copied to the clipboard.",
         "send": "ODESLAT",
         "receive": "PŘÍJEM"
     },
@@ -364,7 +371,9 @@
     },
     "addCustomNode": {
         "customNode": "Vlastní Node",
-        "add": "Přidat"
+        "add": "Přidat",
+        "nodeFieldEmpty": "Text field is empty",
+        "nodeFieldEmptyExplanation": "Please enter a custom node."
     },
     "addNewAccount": {
         "useExistingSeed": "Použít stávající Seed",
@@ -403,8 +412,7 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Proč nemohu použít celý zůstatek mého účtu?",
-        "spentAddressExplanation":
-            "Máte prostředky na jedné nebo několika použitých adresách. Opětovné použití adres je v IOTA nebezpečné, proto Vám tato peněženka neumožní odesílat ze stejné adresy vícekrát.",
+        "spentAddressExplanation": "Máte prostředky na jedné nebo několika použitých adresách. Opětovné použití adres je v IOTA nebezpečné, proto Vám tato peněženka neumožní odesílat ze stejné adresy vícekrát.",
         "discordInformation": "Chcete-li zjistit co můžete udělat, přejděte do #help v aplikaci Diskord."
     },
     "deleteAccount": {
@@ -436,26 +444,26 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "TATO AKCE NEMŮŽE BÝT VRÁCENA.",
-        "warning":
-            "<0><0>Veškerá data z peněženky, včetně Vašeho</0> <1>Seedu, hesla</1> <2>a</2> <3>dalších informací o Vašem účtu</3> <4>budou ztracena.</4></0>"
+        "warning": "<0><0>Veškerá data z peněženky, včetně Vašeho</0> <1>Seedu, hesla</1> <2>a</2> <3>dalších informací o Vašem účtu</3> <4>budou ztracena.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Chcete-li zapnout funkci ověření otiskem prstu, přiložte prst na čtečku",
         "instructionsDisable": "Chcete-li vypnout funkci ověření otiskem prstu, přiložte prst na čtečku",
-        "fingerprintAuthEnabled": "Identifikace čtečkou otisku prstu aktivována",
-        "fingerprintAuthEnabledExplanation": "Úspěšně jste aktivovali přihlášení pomocí čtečky otisků prstů.",
-        "fingerprintAuthDisabled": "Autentifikace čtečkou otisku prstu vypnuta",
-        "fingerprintAuthDisabledExplanation": "Úspěšně jste deaktivovali přihlášení pomocí čtečky otisků prstů.",
-        "fingerprintAuthFailed": "Ověření pomocí otisku prstu selhalo",
+        "fingerprintAuthEnabled": "Ověření pomocí otisků prstů je zapnuté",
+        "fingerprintAuthEnabledExplanation": "Úspěšně jste aktivovali ověřování pomocí čtečky otisků prstů.",
+        "fingerprintAuthDisabled": "Ověření pomocí otisků prstů je vypnuté",
+        "fingerprintAuthDisabledExplanation": "Úspěšně jste deaktivovali ověřování pomocí čtečky otisků prstů.",
+        "fingerprintAuthFailed": "Ověření pomocí otisků prstů selhalo",
         "fingerprintAuthFailedExplanation": "Ověření pomocí otisku prstu selhalo. Prosím zkuste znovu.",
         "status": "Stav",
         "enabled": "Aktivováno",
         "disabled": "Vypnuto",
-        "fingerprintUnavailable": "Snímač otisků prstů není k dispozici",
-        "fingerprintUnavailableExplanation":
-            "Zařízení nepodporuje rozpoznávání otisků prstů nebo není tato funkce nakonfigurována v nastavení zařízení.",
+        "fingerprintUnavailable": "Ověření pomocí otisků prstů není k dispozici",
+        "fingerprintUnavailableExplanation": "Vaše zařízení nepodporuje ověření pomocí otisků prstů nebo nebylo nakonfigurováno.",
         "buttonInstructionsDisable": "Stisknutím tlačítka níže vypnete ověřování otisku prstů.",
         "buttonInstructionsEnable": "Stisknutím tlačítka níže aktivujete ověření otisků prstů.",
+        "buttonInstructionsDisableIPhoneX": "Stisknutím tlačítka níže vypnete ověření pomocí rozpoznávání obličeje.",
+        "buttonInstructionsEnableIPhoneX": "Stisknutím tlačítka níže zapnete ověření pomocí rozpoznávání obličeje.",
         "instructionsLogin": "Pro přihlášení přiložte prst na čtečku"
     },
     "transferConfirmation": {
@@ -486,8 +494,7 @@
     },
     "rootDetection": {
         "warning": "VAROVÁNÍ",
-        "rootDetected":
-            "<0>Zdá se, že vaše zařízení prošlo úpravou root/jailbreak.</0><1>To může znamenat značné riziko pro zabezpečení Vaší peněženky.</1><2>Chcete pokračovat navzdory tomuto riziku?</2>"
+        "rootDetected": "<0>Zdá se, že vaše zařízení prošlo úpravou root/jailbreak.</0><1>To může znamenat značné riziko pro zabezpečení Vaší peněženky.</1><2>Chcete pokračovat navzdory tomuto riziku?</2>"
     },
     "pow": {
         "feeless": "Pro odeslání bezplatné transakce v IOTA je potřebné vykonat malý důkaz práce - proof of work.",
@@ -510,18 +517,17 @@
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Není možné dokončit aktualizaci údajů po Snapshotu",
-        "cannotCompleteTransitionExplanation":
-            "Pro dokončení aktualizace údajů po Snapshotu musí být zůstatek na Vašem účtu větší než 0.",
+        "cannotCompleteTransitionExplanation": "Pro dokončení aktualizace údajů po Snapshotu musí být zůstatek na Vašem účtu větší než 0.",
         "transitionComplete": "Aktualizace údajů po Snapshotu je dokončena",
         "transitionCompleteExplanation": "Aktualizace údajů po Snapshotu byla dokončena.",
         "detectedBalance": "Zjištěn zůstatek: {{amount}} {{unit}}",
         "isThisCorrect": "Je to správně?",
-        "snapshotExplanation": "Every so often, a snapshot is performed to prune the size of the Tangle.",
-        "hasSnapshotTakenPlace": "Has a snapshot taken place? Press the button below to transition.",
-        "transition": "TRANSITION",
-        "transitioning": "Transitioning for the snapshot.",
-        "generatingAndDetecting": "Generating addresses and detecting balance.",
-        "attaching": "Attaching addresses to Tangle"
+        "snapshotExplanation": "V nepravidelných intervalech probíhá Snapshot, aby se zmenšila velikost Tanglu.",
+        "hasSnapshotTakenPlace": "Proběhl Snapshot? Stisknutím tlačítka níže provedete aktualizaci údajů po Snapshotu.",
+        "transition": "Aktualizace údajů po Snapshotu",
+        "transitioning": "Aktualizace údajů po Snapshotu.",
+        "generatingAndDetecting": "Generuji adresy a zjišťuji zůstatek.",
+        "attaching": "Připojuji adresy do sítě Tangle"
     },
     "deepLink": {
         "autofill": "Automatické vyplňování úspěšné",
@@ -533,8 +539,7 @@
         "noUpdatesAvailable": "Nejsou dostupné žádné aktualizace",
         "noUpdatesAvailableExplanation": "Máte nejnovější verzi IOTA Trinity Desktop peneženky!",
         "newVersionAvailable": "K dispozici je nová verze",
-        "newVersionAvailableExplanation":
-            "Je k dispozici nová verze <strong>Trinity</strong> peněženky <strong>{{version}}</strong>. Před aktualizací si pozorně přečtěte detaily k tomuto vydání a ověřte si zdroj, ze kterého software stahujete:",
+        "newVersionAvailableExplanation": "Je k dispozici nová verze <strong>Trinity</strong> peněženky <strong>{{version}}</strong>. Před aktualizací si pozorně přečtěte detaily k tomuto vydání a ověřte si zdroj, ze kterého software stahujete:",
         "downloadRelease": "Stáhnout aktualizaci",
         "skipUpdate": "Aktualizovat později"
     }

@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         marginBottom: height / 20,
     },
     nextText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
     },

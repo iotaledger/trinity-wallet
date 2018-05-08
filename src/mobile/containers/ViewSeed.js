@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 15,
     },
     titleText: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
