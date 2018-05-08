@@ -110,7 +110,8 @@
         "fingerprintOnSend": "Toque o leitor digital para autorizar a transferência",
         "masterKey": "Your IOTA seed is the master key to your funds.",
         "googlePlayServicesNotAvailable": "Google Play Services not available",
-        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available."
+        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available.",
+        "clear": "CLEAR"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém caracteres inválidos",
@@ -370,7 +371,12 @@
         "addNewAccount": "Adicionar nova Conta"
     },
     "addCustomNode": {
+        "customNodeAdded": "Custom node added",
+        "customNodeCouldNotBeAdded": "Custom node could not be added",
+        "customNodeAddedSuccessfully": "The custom node has been added successfully.",
         "customNode": "Servidor personalizado",
+        "invalidNodeResponse": "The node returned an invalid response",
+        "httpNodeError": "Trinity Mobile only supports https nodes.",
         "add": "Adicionar",
         "nodeFieldEmpty": "O campo de texto está vazio",
         "nodeFieldEmptyExplanation": "Por favor, insira um servidor personalizado."
@@ -430,7 +436,9 @@
         "syncingYourAccount": "Sincronizando sua conta."
     },
     "useExistingSeed": {
-        "title": "Digite a seed e o nome da conta."
+        "title": "Digite a seed e o nome da conta.",
+        "incorrectFormat": "Incorrect seed format",
+        "validSeedExplanation": "'Valid seeds should be 81 characters and contain only A-Z or 9.'"
     },
     "viewSeed": {
         "enterPassword": "Digite a senha para exibir sua seed.",
@@ -484,7 +492,8 @@
         "twoFADisabled": "2FA foi desativado",
         "twoFADisabledExplanation": "Você desativou a Autenticação Biométrica com sucesso.",
         "enterCode": "Digite o código de seu aplicativo 2FA",
-        "code": "Código"
+        "code": "Código",
+        "twoFaToken": "2FA Token"
     },
     "chart": {
         "mcap": "MCAP",
@@ -494,7 +503,9 @@
     },
     "rootDetection": {
         "warning": "ATENÇÃO",
-        "rootDetected": "<0>Seu dispositivo aparenta ter sofrido um root.</0><1>Isso pode oferecer riscos à segurança de sua carteira.</1><2>Continuar, apesar dos riscos?</2>"
+        "appearsRooted": "Your device appears to be rooted.",
+        "securityRisk": "This can pose a significant risk to the security of your wallet.",
+        "continueDepsiteRisk": "Do you wish to continue despite this risk?"
     },
     "pow": {
         "feeless": "É necessário completar a aprovação para enviar transações em IOTA gratuitamente.",
@@ -542,5 +553,8 @@
         "newVersionAvailableExplanation": "Uma nova versão da <strong>Trinity</strong> <strong>{{version}}</strong> está disponível. Por favor, leia os detalhes do lançamento e certifique-se da origem do download antes de atualizar:",
         "downloadRelease": "Baixar Nova Versão",
         "skipUpdate": "Ignorar a atualização"
+    },
+    "notificationLog": {
+        "errorLog": "ERROR LOG"
     }
 }
