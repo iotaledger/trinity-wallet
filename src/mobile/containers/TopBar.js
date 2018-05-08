@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
         fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 24.4,
         paddingBottom: isAndroid ? 0 : height / 170,
+        maxWidth: width / 1.35
     },
     subtitle: {
         textAlign: 'center',
