@@ -2722,6 +2722,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/EntangledIOS",
 				);
+				GCC_OPTIMIZATION_LEVEL = 0;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../node_modules/react-native-navigation/ios/**",
 					"(SRCROOT)/../../react-native/React/**",
