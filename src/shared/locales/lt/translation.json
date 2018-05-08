@@ -48,7 +48,7 @@
         "otherWallet": "KITA PASKYRA",
         "yes": "TAIP",
         "no": "NE",
-        "okay": "OKAY",
+        "okay": "GERAI",
         "password": "Slaptažodis",
         "passwordOrFingerprint": "Slaptažodis arba piršto antspaudas",
         "unrecognisedPassword": "Slaptažodis neatpažintas",
@@ -108,8 +108,8 @@
         "nodeAutoChanged": "Automatiškai pakeistas serveris",
         "nodeAutoChangedExplanation": "Pakeista į naują serverį {{- nodeAddress}}, nes pasirinktas serveris nepasiekiamas.",
         "fingerprintOnSend": "Palieskite piršto antspaudo skaitytuvą, norėdami patvirtinti pavedimą",
-        "masterKey": "Your IOTA seed is the master key to your funds.",
-        "googlePlayServicesNotAvailable": "Google Play Services not available",
+        "masterKey": "Jūsų IOTA užraktas yra pagrindinis raktas į jūsų lėšas.",
+        "googlePlayServicesNotAvailable": "Google Play paslaugos nepasiekiamos",
         "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available.",
         "clear": "CLEAR"
     },
@@ -154,10 +154,10 @@
         "doNotStore": "Nelaikykite užrakto nešifruotu formatu.",
         "copyToClipboard": "Kopijuoti užraktą",
         "shareSeed": "Įkelti užraktą į saugią slaptažodžių tvarkyklę",
-        "storeEncrypted": "If you choose to back-up your seed on your phone it should be stored encrypted e.g. in a password manager.",
-        "tapConfirm": "Please tap the checkbox below to confirm.",
-        "encryptionCheckbox": "I will store my seed with encryption",
-        "copy": "COPY"
+        "storeEncrypted": "Jei ketinate išsisaugoti savo užraktą telefone, jį turėtumėte užšifruoti, pavyzdžiui, įkelti į slaptažodžių tvarkyklę.",
+        "tapConfirm": "Sužymėkite varneles norėdami patvirtinti.",
+        "encryptionCheckbox": "Savo užraktą užšifruosiu",
+        "copy": "KOPIJUOTI"
     },
     "enterSeed": {
         "invalidCharacters": "Užraktas sudarytas iš neleistinų simbolių",
@@ -197,9 +197,9 @@
         "seedNotGenerated": "Sukurti užrakto nepavyko",
         "seedNotGeneratedExplanation": "Susikurkite naują užraktą.",
         "pressForNewSeed": "SUKURTI NAUJĄ UŽRAKTĄ",
-        "generateSuccess": "Seed generated successfully",
+        "generateSuccess": "Užraktas sėkmingai sukurtas",
         "individualLetters": "Spauskite ant raidės, norėdami ją pakeisti kita.",
-        "whatIsASeed": "What is a seed?"
+        "whatIsASeed": "Kas yra užraktas?"
     },
     "onboardingComplete": {
         "walletReady": "Piniginė paruošta naudojimui. Jeigu norėsite atlikti pakeitimus, eikite į Nustatymų meniu."
@@ -210,12 +210,12 @@
         "neverShare": "Su niekuo nesidalinkite savo užraktu.",
         "iotaLogo": "IOTA logotipas",
         "printWallet": "ATSPAUSDINTI",
-        "print": "PRINT",
-        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
-        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
-        "tapCheckboxes": "Please tap the checkboxes below to confirm.",
-        "wifiCheckbox": "I will not print on public wifi",
-        "printerCheckbox": "I will not print on a public printer"
+        "print": "SPAUSDINTI",
+        "paperConvenience": "Vienas iš patogių užrakto laikymo būdų yra laikyti jį atspausdintame lape.",
+        "publicInsecure": "Bet spausdinimas naudojant viešą wifi arba viešą spausdintuvą yra nesaugus.",
+        "tapCheckboxes": "Sužymėkite varneles norėdami patvirtinti.",
+        "wifiCheckbox": "Nespausdinsiu naudodamas viešą wifi",
+        "printerCheckbox": "Nespausdinsiu naudodamas viešą spausdintuvą"
     },
     "receive": {
         "addressCopied": "Adresas nukopijuotas",
@@ -289,7 +289,7 @@
         "mode": "Rėžimas",
         "theme": "Tema",
         "currency": "Valiuta",
-        "cannotChangeNode": "Cannot change node",
+        "cannotChangeNode": "Serverio pakeisti negalima",
         "cannotChangeNodeWhileSending": "Cannot change node while sending.",
         "language": "Kalba",
         "accountManagement": "Paskyros valdymas",
@@ -371,7 +371,12 @@
         "addNewAccount": "Pridėti naują paskyrą"
     },
     "addCustomNode": {
+        "customNodeAdded": "Vartotojo serveris pridėtas",
+        "customNodeCouldNotBeAdded": "Vartotojo serverio pridėti nepavyko",
+        "customNodeAddedSuccessfully": "Vartotojo serveris pridėtas sėkmingai.",
         "customNode": "Vartotojo serveris",
+        "invalidNodeResponse": "Serverio klaida",
+        "httpNodeError": "Trinity Mobile palaiko tik https serverius.",
         "add": "Pridėti",
         "nodeFieldEmpty": "Adreso laukas yra tuščias",
         "nodeFieldEmptyExplanation": "Prašome įvesti vartotojo serverį."
@@ -432,8 +437,8 @@
     },
     "useExistingSeed": {
         "title": "Įveskite užraktą ir paskyros vardą.",
-        "incorrectFormat": "Incorrect seed format",
-        "validSeedExplanation": "'Valid seeds should be 81 characters and contain only A-Z or 9.'"
+        "incorrectFormat": "Neteisingas užrakto formatas",
+        "validSeedExplanation": "'Užraktai turi būti sudaryti iš 81 simbolio, galimos tik raidės A-Z ir skaičius 9.'"
     },
     "viewSeed": {
         "enterPassword": "Įveskite slaptažodį, norėdami pamatyti užraktą.",
@@ -488,7 +493,7 @@
         "twoFADisabledExplanation": "Sėkmingai išjungėte dviejų veiksnių autentifikavimą.",
         "enterCode": "Įveskite kodą iš 2FA programėlės",
         "code": "Kodas",
-        "twoFaToken": "2FA Token"
+        "twoFaToken": "2FA žetonas"
     },
     "chart": {
         "mcap": "MCAP",
@@ -498,9 +503,9 @@
     },
     "rootDetection": {
         "warning": "PAVOJUS",
-        "appearsRooted": "Your device appears to be rooted.",
-        "securityRisk": "This can pose a significant risk to the security of your wallet.",
-        "continueDepsiteRisk": "Do you wish to continue despite this risk?"
+        "appearsRooted": "Panašu, kad į jūsų įrenginį buvo įsilaužta.",
+        "securityRisk": "Jūsų piniginės saugumui galimai iškilusi didelė grėsmė.",
+        "continueDepsiteRisk": "Ar norite tęsti nepaisant šios rizikos?"
     },
     "pow": {
         "feeless": "Norint atlikti nemokamus IOTA pavedimus, reikalingas skaičiavimų įrodymas (proof of work).",
