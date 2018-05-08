@@ -110,7 +110,8 @@
         "fingerprintOnSend": "Pro ověření přenosu přiložte prst na čtečku",
         "masterKey": "Your IOTA seed is the master key to your funds.",
         "googlePlayServicesNotAvailable": "Google Play Services not available",
-        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available."
+        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available.",
+        "clear": "CLEAR"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
@@ -370,7 +371,12 @@
         "addNewAccount": "Přidat nový účet"
     },
     "addCustomNode": {
+        "customNodeAdded": "Custom node added",
+        "customNodeCouldNotBeAdded": "Custom node could not be added",
+        "customNodeAddedSuccessfully": "The custom node has been added successfully.",
         "customNode": "Vlastní Node",
+        "invalidNodeResponse": "The node returned an invalid response",
+        "httpNodeError": "Trinity Mobile only supports https nodes.",
         "add": "Přidat",
         "nodeFieldEmpty": "Text field is empty",
         "nodeFieldEmptyExplanation": "Please enter a custom node."
@@ -430,7 +436,9 @@
         "syncingYourAccount": "Synchronizuji Váš účet."
     },
     "useExistingSeed": {
-        "title": "Zadejte Seed a název účtu."
+        "title": "Zadejte Seed a název účtu.",
+        "incorrectFormat": "Incorrect seed format",
+        "validSeedExplanation": "'Valid seeds should be 81 characters and contain only A-Z or 9.'"
     },
     "viewSeed": {
         "enterPassword": "Pro zobrazení Vašeho Seedu zadejte heslo.",
@@ -484,7 +492,8 @@
         "twoFADisabled": "2FA je nyní deaktivována",
         "twoFADisabledExplanation": "Úspěšně jste deaktivovali dvoufaktorovou autentifikaci 2FA.",
         "enterCode": "Zadejte kód z Vaší 2FA aplikace",
-        "code": "Kód"
+        "code": "Kód",
+        "twoFaToken": "2FA Token"
     },
     "chart": {
         "mcap": "MCAP",
@@ -494,7 +503,9 @@
     },
     "rootDetection": {
         "warning": "VAROVÁNÍ",
-        "rootDetected": "<0>Zdá se, že vaše zařízení prošlo úpravou root/jailbreak.</0><1>To může znamenat značné riziko pro zabezpečení Vaší peněženky.</1><2>Chcete pokračovat navzdory tomuto riziku?</2>"
+        "appearsRooted": "Your device appears to be rooted.",
+        "securityRisk": "This can pose a significant risk to the security of your wallet.",
+        "continueDepsiteRisk": "Do you wish to continue despite this risk?"
     },
     "pow": {
         "feeless": "Pro odeslání bezplatné transakce v IOTA je potřebné vykonat malý důkaz práce - proof of work.",
@@ -542,5 +553,8 @@
         "newVersionAvailableExplanation": "Je k dispozici nová verze <strong>Trinity</strong> peněženky <strong>{{version}}</strong>. Před aktualizací si pozorně přečtěte detaily k tomuto vydání a ověřte si zdroj, ze kterého software stahujete:",
         "downloadRelease": "Stáhnout aktualizaci",
         "skipUpdate": "Aktualizovat později"
+    },
+    "notificationLog": {
+        "errorLog": "ERROR LOG"
     }
 }

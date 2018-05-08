@@ -110,7 +110,8 @@
         "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer",
         "masterKey": "Your IOTA seed is the master key to your funds.",
         "googlePlayServicesNotAvailable": "Google Play Services not available",
-        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available."
+        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available.",
+        "clear": "CLEAR"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seeme sisaldab sobimatuid tähemärke",
@@ -370,7 +371,12 @@
         "addNewAccount": "Lisa uus konto"
     },
     "addCustomNode": {
+        "customNodeAdded": "Custom node added",
+        "customNodeCouldNotBeAdded": "Custom node could not be added",
+        "customNodeAddedSuccessfully": "The custom node has been added successfully.",
         "customNode": "Ise määratud sõlm",
+        "invalidNodeResponse": "The node returned an invalid response",
+        "httpNodeError": "Trinity Mobile only supports https nodes.",
         "add": "Lisa",
         "nodeFieldEmpty": "Text field is empty",
         "nodeFieldEmptyExplanation": "Please enter a custom node."
@@ -430,7 +436,9 @@
         "syncingYourAccount": "Sünkroniseerin teie kontot."
     },
     "useExistingSeed": {
-        "title": "Sisesta seeme ja konto nimi."
+        "title": "Sisesta seeme ja konto nimi.",
+        "incorrectFormat": "Incorrect seed format",
+        "validSeedExplanation": "'Valid seeds should be 81 characters and contain only A-Z or 9.'"
     },
     "viewSeed": {
         "enterPassword": "Seemne vaatamiseks sisestage oma parool.",
@@ -484,7 +492,8 @@
         "twoFADisabled": "2FA is now disabled",
         "twoFADisabledExplanation": "You have successfully disabled Two Factor Authentication.",
         "enterCode": "Sisestage oma 2FA rakendusest saadud kood",
-        "code": "Kood"
+        "code": "Kood",
+        "twoFaToken": "2FA Token"
     },
     "chart": {
         "mcap": "MCAP",
@@ -494,7 +503,9 @@
     },
     "rootDetection": {
         "warning": "HOIATUS",
-        "rootDetected": "<0>Teie seade näib olevat root õigustega.</0> <1>See võib kujutada ohtu teie rahakoti turvalisusele.</1> <2>Kas soovite vaatamata sellele ohule jätkata?</2>"
+        "appearsRooted": "Your device appears to be rooted.",
+        "securityRisk": "This can pose a significant risk to the security of your wallet.",
+        "continueDepsiteRisk": "Do you wish to continue despite this risk?"
     },
     "pow": {
         "feeless": "IOTA tasudeta tehingute jaoks on vaja teha natuke tööd.",
@@ -542,5 +553,8 @@
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
         "downloadRelease": "Download release",
         "skipUpdate": "Skip update"
+    },
+    "notificationLog": {
+        "errorLog": "ERROR LOG"
     }
 }

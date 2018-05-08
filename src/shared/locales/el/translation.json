@@ -110,7 +110,8 @@
         "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer",
         "masterKey": "Your IOTA seed is the master key to your funds.",
         "googlePlayServicesNotAvailable": "Google Play Services not available",
-        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available."
+        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available.",
+        "clear": "CLEAR"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Το seed σας περιέχει μη έγκυρους χαρακτήρες",
@@ -370,7 +371,12 @@
         "addNewAccount": "Προσθήκη νέου λογαριασμού"
     },
     "addCustomNode": {
+        "customNodeAdded": "Custom node added",
+        "customNodeCouldNotBeAdded": "Custom node could not be added",
+        "customNodeAddedSuccessfully": "The custom node has been added successfully.",
         "customNode": "Προσαρμοσμένος κόμβος",
+        "invalidNodeResponse": "The node returned an invalid response",
+        "httpNodeError": "Trinity Mobile only supports https nodes.",
         "add": "Προσθήκη",
         "nodeFieldEmpty": "Text field is empty",
         "nodeFieldEmptyExplanation": "Please enter a custom node."
@@ -430,7 +436,9 @@
         "syncingYourAccount": "Ο λογαριασμός σας συντονίζεται."
     },
     "useExistingSeed": {
-        "title": "Εισάγετε έναν σπόρο και όνομα λογαριασμού."
+        "title": "Εισάγετε έναν σπόρο και όνομα λογαριασμού.",
+        "incorrectFormat": "Incorrect seed format",
+        "validSeedExplanation": "'Valid seeds should be 81 characters and contain only A-Z or 9.'"
     },
     "viewSeed": {
         "enterPassword": "Εισάγετε κωδικό πρόσβασης για να δείτε το σπόρο σας.",
@@ -484,7 +492,8 @@
         "twoFADisabled": "2FA is now disabled",
         "twoFADisabledExplanation": "You have successfully disabled Two Factor Authentication.",
         "enterCode": "Εισαγάγετε τον κωδικό από την εφαρμογή ελεγχοs ταυτότητας δύο στοιχείων  (2FA) ",
-        "code": "Κωδικός"
+        "code": "Κωδικός",
+        "twoFaToken": "2FA Token"
     },
     "chart": {
         "mcap": "MCAP",
@@ -494,7 +503,9 @@
     },
     "rootDetection": {
         "warning": "ΠΡΟΕΙΔΟΠΟΙΗΣΗ",
-        "rootDetected": "<1><0>Η συσκευή σας εμφανίζεται να είναι rooted.</0><1>Αυτό μπορεί να αποτελέσει σημαντικό κίνδυνο για την ασφάλεια του πορτοφολιού σας.</1> <2>Θέλετε να συνεχίσετε παρά τον κίνδυνο;</2>"
+        "appearsRooted": "Your device appears to be rooted.",
+        "securityRisk": "This can pose a significant risk to the security of your wallet.",
+        "continueDepsiteRisk": "Do you wish to continue despite this risk?"
     },
     "pow": {
         "feeless": "Είναι απαραίτητο να ολοκληρώσετε μια μικρή απόδειξη εργασίας να στείλετε χωρίς επιβάρυνση  συναλλαγές στο  IOTA ",
@@ -542,5 +553,8 @@
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
         "downloadRelease": "Download release",
         "skipUpdate": "Skip update"
+    },
+    "notificationLog": {
+        "errorLog": "ERROR LOG"
     }
 }
