@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     },
     content: {
         width: width / 1.15,
-        maxHeight: height / 1.05,
+        maxHeight: height / 1.25,
         padding: width / 25,
         justifyContent: 'center',
         borderRadius: GENERAL.borderRadius,

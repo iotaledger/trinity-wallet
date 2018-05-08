@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
         fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 24.4,
         paddingBottom: isAndroid ? 0 : height / 170,
+        maxWidth: width / 1.35
     },
     subtitle: {
         textAlign: 'center',
@@ -184,6 +185,13 @@ class TopBar extends Component {
                 this.props.setPollFor('accountInfo'); // Override poll queue
             }
         }
+    }
+
+    setScrollable(y){
+        if (y >= height - height / 8.8){
+            return this.setState({ scrollable: true });
+        }
+        this.setState({ scrollable: false });
     }
 
     shouldDisable() {
@@ -383,10 +391,22 @@ class TopBar extends Component {
             );
         });
 
+        const { scrollable } = this.state;
         return (
             <View style={styles.titleWrapper}>
                 {baseContent}
-                {restContent}
+                <ScrollView
+                    scrollEnabled={scrollable}
+                    showsVerticalScrollIndicator={scrollable}
+                    ref={(c) => {
+                        this.scrollView = c;
+                    }}
+                    onContentSizeChange={(x, y) => this.setScrollable(y)}
+                    contentContainerView={{ height: height}}
+                    style={{ maxHeight: height - height / 8.8 }}
+                >
+                    {restContent}
+                </ScrollView>
             </View>
         );
     }
@@ -417,9 +437,12 @@ class TopBar extends Component {
                             },
                         ]}
                     >
-                        <ScrollView scrollEnabled={false} style={styles.scrollViewContainer}>
+                        <View
+                            scrollEnabled={false}
+                            style={styles.scrollViewContainer}
+                        >
                             {children}
-                        </ScrollView>
+                        </View>
                         <Modal
                             animationIn={isAndroid ? 'bounceInUp' : 'zoomIn'}
                             animationOut={isAndroid ? 'bounceOut' : 'zoomOut'}
