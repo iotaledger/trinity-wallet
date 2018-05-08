@@ -6,7 +6,7 @@ export const getAddressGenFn = () => {
     if (isAndroid) {
         genFn = NativeModules.EntangledAndroid.generateAddress;
     } else if (isIOS) {
-        genFn = NativeModules.Iota.generateAddress;
+        genFn = NativeModules.EntangledIOS.generateAddress;
     }
     return genFn;
 };
@@ -16,7 +16,7 @@ export const getMultiAddressGenFn = () => {
     if (isAndroid) {
         genFn = NativeModules.EntangledAndroid.generateAddresses;
     } else if (isIOS) {
-        genFn = NativeModules.Iota.generateAddresses;
+        genFn = NativeModules.EntangledIOS.generateAddresses;
     }
     return genFn;
 };
