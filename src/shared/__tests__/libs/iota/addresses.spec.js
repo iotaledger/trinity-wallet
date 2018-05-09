@@ -1,19 +1,25 @@
+import merge from 'lodash/merge';
 import { expect } from 'chai';
-import {
-    accumulateBalance,
-    getUnspentAddressesSync,
-    getSpentAddressesWithPendingTransfersSync,
-    getBalancesSync,
-    filterAddressesWithIncomingTransfers,
-} from '../../../libs/iota/addresses';
+import sinon from 'sinon';
+import * as addressesUtils from '../../../libs/iota/addresses';
+import accounts from '../../__samples__/accounts';
+import { iota, SwitchingConfig } from '../../../libs/iota/index';
 
 describe('libs: iota/addresses', () => {
+    before(() => {
+        SwitchingConfig.autoSwitch = false;
+    });
+
+    after(() => {
+        SwitchingConfig.autoSwitch = true;
+    });
+
     describe('#getUnspentAddressesSync', () => {
         describe('when argument is not an object', () => {
             it('should always return an array', () => {
                 const args = [null, undefined, '', {}, 0, -1];
 
-                args.forEach((arg) => expect(getUnspentAddressesSync(arg)).to.eql([]));
+                args.forEach((arg) => expect(addressesUtils.getUnspentAddressesSync(arg)).to.eql([]));
             });
         });
 
@@ -29,7 +35,7 @@ describe('libs: iota/addresses', () => {
                     [thirdAddress]: { spent: false, balance: 100, index: 100 },
                 };
 
-                expect(getUnspentAddressesSync(addressData)).to.eql([firstAddress, thirdAddress]);
+                expect(addressesUtils.getUnspentAddressesSync(addressData)).to.eql([firstAddress, thirdAddress]);
             });
         });
     });
@@ -62,7 +68,7 @@ describe('libs: iota/addresses', () => {
                     },
                 ];
 
-                expect(getSpentAddressesWithPendingTransfersSync(transfers, addressData)).to.eql([]);
+                expect(addressesUtils.getSpentAddressesWithPendingTransfersSync(transfers, addressData)).to.eql([]);
             });
         });
 
@@ -91,7 +97,9 @@ describe('libs: iota/addresses', () => {
                     },
                 ];
 
-                expect(getSpentAddressesWithPendingTransfersSync(transfers, addressData)).to.eql([firstAddress]);
+                expect(addressesUtils.getSpentAddressesWithPendingTransfersSync(transfers, addressData)).to.eql([
+                    firstAddress,
+                ]);
             });
         });
     });
@@ -101,21 +109,21 @@ describe('libs: iota/addresses', () => {
             it('should return 0', () => {
                 const args = [null, undefined, '', {}, 0, 0.5];
 
-                args.forEach((arg) => expect(accumulateBalance(arg)).to.equal(0));
+                args.forEach((arg) => expect(addressesUtils.accumulateBalance(arg)).to.equal(0));
             });
         });
 
         describe('when argument is an array', () => {
             it('should return 0 if array is empty', () => {
-                expect(accumulateBalance([])).to.equal(0);
+                expect(addressesUtils.accumulateBalance([])).to.equal(0);
             });
 
             it('should only calculates on numbers inside array', () => {
-                expect(accumulateBalance(['foo', 'baz'])).to.equal(0);
+                expect(addressesUtils.accumulateBalance(['foo', 'baz'])).to.equal(0);
             });
 
             it('should return total after summing up', () => {
-                expect(accumulateBalance([0, 4, 10])).to.equal(14);
+                expect(addressesUtils.accumulateBalance([0, 4, 10])).to.equal(14);
             });
         });
     });
@@ -132,7 +140,7 @@ describe('libs: iota/addresses', () => {
                     ['9'.repeat(81)]: { index: 100, balance: 10, spent: false },
                 };
 
-                expect(getBalancesSync(addresses, addressData)).to.eql([]);
+                expect(addressesUtils.getBalancesSync(addresses, addressData)).to.eql([]);
             });
         });
 
@@ -147,7 +155,7 @@ describe('libs: iota/addresses', () => {
                     [secondAddress]: { index: 100, balance: 10, spent: false },
                 };
 
-                expect(getBalancesSync(addresses, addressData)).to.eql([10]);
+                expect(addressesUtils.getBalancesSync(addresses, addressData)).to.eql([10]);
             });
         });
     });
@@ -155,13 +163,13 @@ describe('libs: iota/addresses', () => {
     describe('#filterAddressesWithIncomingTransfers', () => {
         describe('when inputs passed as first argument is an empty array', () => {
             it('should return inputs passed as first argument', () => {
-                expect(filterAddressesWithIncomingTransfers([], [{}, {}])).to.eql([]);
+                expect(addressesUtils.filterAddressesWithIncomingTransfers([], [{}, {}])).to.eql([]);
             });
         });
 
         describe('when pendingValueTransfers passed as second argument is an empty array', () => {
             it('should return inputs passed as first argument', () => {
-                expect(filterAddressesWithIncomingTransfers([{}], [])).to.eql([{}]);
+                expect(addressesUtils.filterAddressesWithIncomingTransfers([{}], [])).to.eql([{}]);
             });
         });
 
@@ -194,7 +202,7 @@ describe('libs: iota/addresses', () => {
             it('should filter inputs that have pending incoming value transfers', () => {
                 const inputs = [{ address: 'E'.repeat(81) }, { address: 'F'.repeat(81) }];
 
-                expect(filterAddressesWithIncomingTransfers(inputs, pendingTransfers)).to.eql([
+                expect(addressesUtils.filterAddressesWithIncomingTransfers(inputs, pendingTransfers)).to.eql([
                     { address: 'F'.repeat(81) },
                 ]);
             });
@@ -202,9 +210,137 @@ describe('libs: iota/addresses', () => {
             it('should filter inputs that have pending outgoing value transfers on change addresses', () => {
                 const inputs = [{ address: 'C'.repeat(81) }, { address: 'F'.repeat(81) }];
 
-                expect(filterAddressesWithIncomingTransfers(inputs, pendingTransfers)).to.eql([
+                expect(addressesUtils.filterAddressesWithIncomingTransfers(inputs, pendingTransfers)).to.eql([
                     { address: 'F'.repeat(81) },
                 ]);
+            });
+        });
+    });
+
+    describe('#getAddressesUptoRemainder', () => {
+        let addressData;
+        let seed;
+
+        let sandbox;
+
+        before(() => {
+            addressData = accounts.accountInfo.TEST.addresses;
+            seed = 'SEED';
+        });
+
+        beforeEach(() => {
+            sandbox = sinon.sandbox.create();
+
+            sandbox.stub(iota.api, 'getNodeInfo').yields(null, {});
+            sandbox.stub(iota.api, 'findTransactions').yields(null, []);
+            sandbox.stub(iota.api, 'wereAddressesSpentFrom').yields(null, []);
+        });
+
+        afterEach(() => {
+            sandbox.restore();
+        });
+
+        describe('when current latest address is not blacklisted', () => {
+            it('should return current latest address', () => {
+                return addressesUtils
+                    .getAddressesUptoRemainder(addressData, seed, () => Promise.resolve([]), [
+                        'Z'.repeat(81),
+                        'I'.repeat(81),
+                    ])
+                    .then(({ remainderAddress }) => {
+                        expect(remainderAddress).to.equal(
+                            'NNLAKCEDT9FMFLBIFWKHRIQJJETOSBSFPUCBWYYXXYKSLNCCSWOQRAVOYUSX9FMLGHMKUITLFEQIPHQLW',
+                        );
+                    });
+            });
+        });
+
+        describe('when current latest address is blacklisted', () => {
+            describe('when newly generated address is not blacklisted', () => {
+                it('should generate new addresses and return latest unused address as the remainder address', () => {
+                    const addressGenFn = sinon.stub();
+
+                    addressGenFn.onCall(0).resolves('U'.repeat(81));
+                    addressGenFn.onCall(1).resolves('R'.repeat(81));
+
+                    return addressesUtils
+                        .getAddressesUptoRemainder(addressData, seed, addressGenFn, [
+                            'NNLAKCEDT9FMFLBIFWKHRIQJJETOSBSFPUCBWYYXXYKSLNCCSWOQRAVOYUSX9FMLGHMKUITLFEQIPHQLW',
+                        ])
+                        .then(({ remainderAddress }) => {
+                            expect(remainderAddress).to.not.equal(
+                                'NNLAKCEDT9FMFLBIFWKHRIQJJETOSBSFPUCBWYYXXYKSLNCCSWOQRAVOYUSX9FMLGHMKUITLFEQIPHQLW',
+                            );
+                            expect(remainderAddress).to.equal('U'.repeat(81));
+                        });
+                });
+
+                it('should generate new addresses and merge it in address data', () => {
+                    const addressGenFn = sinon.stub();
+
+                    addressGenFn.onCall(0).resolves('U'.repeat(81));
+                    addressGenFn.onCall(1).resolves('R'.repeat(81));
+
+                    return addressesUtils
+                        .getAddressesUptoRemainder(addressData, seed, addressGenFn, [
+                            'NNLAKCEDT9FMFLBIFWKHRIQJJETOSBSFPUCBWYYXXYKSLNCCSWOQRAVOYUSX9FMLGHMKUITLFEQIPHQLW',
+                        ])
+                        .then(({ addressDataUptoRemainder }) => {
+                            const expectedAddressData = merge({}, addressData, {
+                                ['U'.repeat(81)]: {
+                                    index: 5,
+                                    checksum: 'NXELTUENX',
+                                    balance: 0,
+                                    spent: false,
+                                },
+                            });
+
+                            expect(addressDataUptoRemainder).to.eql(expectedAddressData);
+                        });
+                });
+            });
+
+            describe('when newly generated address is blacklisted', () => {
+                it('should recursively generate new addresses till latest unused is not part of the blacklisted addresses list', () => {
+                    const addressGenFn = sinon.stub();
+
+                    addressGenFn.onCall(0).resolves('U'.repeat(81));
+                    addressGenFn.onCall(1).resolves('R'.repeat(81));
+                    addressGenFn.onCall(2).resolves('Z'.repeat(81));
+
+                    return addressesUtils
+                        .getAddressesUptoRemainder(addressData, seed, addressGenFn, [
+                            'NNLAKCEDT9FMFLBIFWKHRIQJJETOSBSFPUCBWYYXXYKSLNCCSWOQRAVOYUSX9FMLGHMKUITLFEQIPHQLW',
+                            'U'.repeat(81),
+                            'R'.repeat(81),
+                        ])
+                        .then(({ remainderAddress, addressDataUptoRemainder }) => {
+                            expect(remainderAddress).to.equal('Z'.repeat(81));
+
+                            const expectedAddressData = merge({}, addressData, {
+                                ['U'.repeat(81)]: {
+                                    index: 5,
+                                    checksum: 'NXELTUENX',
+                                    balance: 0,
+                                    spent: false,
+                                },
+                                ['R'.repeat(81)]: {
+                                    index: 6,
+                                    checksum: 'JUHTDRHCA',
+                                    balance: 0,
+                                    spent: false,
+                                },
+                                ['Z'.repeat(81)]: {
+                                    index: 7,
+                                    checksum: '9JTQPKDGC',
+                                    balance: 0,
+                                    spent: false,
+                                },
+                            });
+
+                            expect(addressDataUptoRemainder).to.eql(expectedAddressData);
+                        });
+                });
             });
         });
     });
