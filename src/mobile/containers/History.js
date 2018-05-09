@@ -259,7 +259,7 @@ class History extends Component {
 
         const formattedTransfers = map(transfers, (transfer) => {
             const { timestamp, incoming, persistence, transferValue, inputs, outputs, bundle, message } = transfer;
-
+            const { isRefreshing } = this.state;
             return {
                 t,
                 status: incoming ? t('history:receive') : t('history:send'),
@@ -271,6 +271,9 @@ class History extends Component {
                 message,
                 mode,
                 onPress: (modalProps) => {
+                    if (isRefreshing) {
+                        return;
+                    }
                     this.setState({
                         modalProps: assign({}, modalProps, {
                             rebroadcast: (bundle) => this.props.broadcastBundle(bundle, selectedAccountName),
