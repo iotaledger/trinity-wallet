@@ -331,7 +331,9 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
 
                 transferInputs = get(inputs, 'inputs');
 
-                return getAddressesUptoRemainder(accountState.addresses, seed, genFn, [receiveAddress]);
+                return getAddressesUptoRemainder(accountState.addresses, seed, genFn, [
+                    iota.utils.noChecksum(receiveAddress),
+                ]);
             })
             .then(({ remainderAddress, addressDataUptoRemainder }) => {
                 // getAddressesUptoRemainder returns the latest unused address as the remainder address

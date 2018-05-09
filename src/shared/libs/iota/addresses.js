@@ -1,6 +1,7 @@
 import assign from 'lodash/assign';
 import cloneDeep from 'lodash/cloneDeep';
 import each from 'lodash/each';
+import find from 'lodash/find';
 import filter from 'lodash/filter';
 import head from 'lodash/head';
 import last from 'lodash/last';
@@ -396,7 +397,7 @@ export const getAddressesUptoRemainder = (addressData, seed, genFn, blacklistedR
         const latestAddressData = find(addressData, (data, address) => address === latestAddress);
         const startIndex = latestAddressData.index + 1;
 
-        return getLatestAddress(seed, startIndex, genFn).then((newAddresses) => {
+        return getLatestAddresses(seed, startIndex, genFn).then((newAddresses) => {
             const remainderAddress = last(newAddresses);
 
             const addressDataUptoRemainder = transform(
