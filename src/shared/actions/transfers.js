@@ -31,8 +31,8 @@ import {
     performPow,
 } from '../libs/iota/transfers';
 import { syncAccountAfterReattachment, syncAccount, syncAccountAfterSpending } from '../libs/iota/accounts';
-import { updateAccountAfterReattachment, updateAccountInfoAfterSpending, accountInfoFetchSuccess } from './accounts';
-import { shouldAllowSendingToAddress, syncAddresses, getLatestAddress } from '../libs/iota/addresses';
+import { updateAccountAfterReattachment, updateAccountInfoAfterSpending } from './accounts';
+import { shouldAllowSendingToAddress, syncAddresses, getAddressesUptoRemainder } from '../libs/iota/addresses';
 import { getStartingSearchIndexToPrepareInputs, getUnspentInputs } from '../libs/iota/inputs';
 import { generateAlert, generateTransferErrorAlert, generatePromotionErrorAlert } from './alerts';
 import i18next from '../i18next.js';
@@ -256,6 +256,7 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
     // Initialize account state
     // Reassign with latest state when account is synced
     let accountState = selectedAccountStateFactory(accountName)(getState());
+    let transferInputs = [];
 
     // Security checks are not necessary for zero value transfers
     // Have them wrapped in a separate private function so in case it is a value transfer,
@@ -283,11 +284,9 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 return syncAccount(newState);
             })
             .then((newState) => {
-                // Assign latest account
+                // Assign latest account but do not update the local store yet.
+                // Only update the local store with updated account information after this transaction is successfully completed.
                 accountState = newState;
-
-                // Update local store with the latest account information
-                dispatch(accountInfoFetchSuccess(accountState));
 
                 const valueTransfers = filter(map(accountState.transfers, (tx) => tx), (tx) => tx.transferValue !== 0);
 
@@ -330,10 +329,21 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                     throw new Error(Errors.CANNOT_SEND_TO_OWN_ADDRESS);
                 }
 
-                const remainderAddress = getLatestAddress(accountState.addresses);
+                transferInputs = get(inputs, 'inputs');
+
+                return getAddressesUptoRemainder(accountState.addresses, seed, genFn, [
+                    iota.utils.noChecksum(receiveAddress),
+                ]);
+            })
+            .then(({ remainderAddress, addressDataUptoRemainder }) => {
+                // getAddressesUptoRemainder returns the latest unused address as the remainder address
+                // Also returns updated address data including new address data for the intermediate addresses.
+                // E.g: If latest locally stored address has an index 50 and remainder address was calculated to be
+                // at index 53 it would include address data for 51, 52 and 53.
+                accountState.addresses = addressDataUptoRemainder;
 
                 return {
-                    inputs: get(inputs, 'inputs'),
+                    inputs: transferInputs,
                     address: remainderAddress,
                 };
             });
