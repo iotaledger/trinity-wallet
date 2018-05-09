@@ -21,7 +21,7 @@
         "invalidResponsePollingExplanation": "ポーリング中にノードがエラーを返しました。詳細については、通知をご確認下さい。",
         "invalidResponseFetchingAccount": "アカウント情報の取得中にノードがエラーを返しました。詳細については、通知をご確認下さい。",
         "invalidResponseSendingTransfer": "送金中にノードがエラーを返しました。詳細については、通知をご確認下さい。",
-        "seed": "Seed",
+        "seed": "シード",
         "back": "戻る",
         "backLowercase": "戻る",
         "done": "完了",
@@ -38,7 +38,7 @@
         "copyToClipboard": "パスワード マネージャーに追加",
         "notAvailable": "この機能は使えません。",
         "notAvailableExplanation": "この機能は将来追加される予定です。",
-        "enterSeed": "Seedを入力して下さい。",
+        "enterSeed": "シードを入力して下さい。",
         "mainWallet": "メインアカウント",
         "secondWallet": "2番目のアカウント",
         "thirdWallet": "3番目のアカウント",
@@ -48,7 +48,7 @@
         "otherWallet": "その他のアカウント",
         "yes": "はい",
         "no": "いいえ",
-        "okay": "OKAY",
+        "okay": "OK",
         "password": "パスワード",
         "passwordOrFingerprint": "パスワードや指紋",
         "unrecognisedPassword": "有効でないパスワードです。",
@@ -108,23 +108,24 @@
         "nodeAutoChanged": "ノードの自動切り替え",
         "nodeAutoChangedExplanation": "選択したノードがオフラインであるため、新しいノード {{- nodeAddress}} に切り替えました。",
         "fingerprintOnSend": "指紋認証リーダーをタッチして送金を承認してください。",
-        "masterKey": "Your IOTA seed is the master key to your funds.",
-        "googlePlayServicesNotAvailable": "Google Play Services not available",
-        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available."
+        "masterKey": "IOTAのシードはあなたの資金のマスターキーです。",
+        "googlePlayServicesNotAvailable": "Google Playサービスが利用できません。",
+        "couldNotVerifyDeviceIntegrity": "Google Playサービスが利用できないため、デバイスの整合性を確認できませんでした。",
+        "clear": "消去"
     },
     "addAdditionalSeed": {
-        "seedInvalidChars": "無効な文字を含んだSeedです。",
-        "seedInvalidCharsExplanation": "Seedは英大文字AからZと数字の9のみで構成します。あなたのSeedは無効な文字を含んでいます。もう一度やり直して下さい。",
-        "seedTooShort": "Seedが短すぎます。",
-        "seedTooShortExplanation": "Seedは{{maxLength}}文字にする必要があります。現在のSeedは{{currentLength}}文字です。もう一度やり直して下さい。",
+        "seedInvalidChars": "無効な文字を含んだシードです。",
+        "seedInvalidCharsExplanation": "シードは英大文字AからZと数字の9のみで構成します。あなたのシードは無効な文字を含んでいます。もう一度やり直して下さい。",
+        "seedTooShort": "シードが短すぎます。",
+        "seedTooShortExplanation": "シードは{{maxLength}}文字にする必要があります。現在のシードは{{currentLength}}文字です。もう一度やり直して下さい。",
         "nameInUse": "このアカウント名はすでに使われています。",
-        "nameInUseExplanation": "あなたのSeedに唯一のアカウント名を付けてください。",
+        "nameInUseExplanation": "シードに唯一のアカウント名を付けてください。",
         "enterAccountName": "アカウント名を入力して下さい。",
         "accountName": "アカウント名",
         "noNickname": "アカウント名が入力されていません。",
-        "noNicknameExplanation": "Seedのアカウント名を入力して下さい。",
-        "seedInUse": "このSeedはすでに使われています。",
-        "seedInUseExplanation": "このSeedは既にウォレットにリンクされています。違うSeedをご使用下さい。"
+        "noNicknameExplanation": "シードのアカウント名を入力して下さい。",
+        "seedInUse": "このシードはすでに使われています。",
+        "seedInUseExplanation": "このシードは既にウォレットにリンクされています。違うシードをご使用下さい。"
     },
     "changePassword": {
         "oops": "不具合が発生しました。",
@@ -147,24 +148,24 @@
     "copyToClipboard": {
         "seedCleared": "Seedを消去しました。",
         "seedClearedExplanation": "安全のために、Seedをクリップボードから消去しました。",
-        "seedCopied": "Seedをクリップボードにコピーしました。",
-        "seedCopiedExplanation": "\"完了\"を押す、または60秒後にはSeedは消去されます。",
+        "seedCopied": "シードをクリップボードにコピーしました。",
+        "seedCopiedExplanation": "\"完了\"を押す、または60秒後にはシードは消去されます。",
         "clickToCopy": "下のボタンをクリックし、Seedをパスワードマネージャーにコピーして下さい。",
         "doNotStore": "Seedは平文では絶対に保存しないでください。",
         "copyToClipboard": "Seedをコピー",
         "shareSeed": "シードを安全なパスワードマネージャーで管理してください。",
-        "storeEncrypted": "If you choose to back-up your seed on your phone it should be stored encrypted e.g. in a password manager.",
-        "tapConfirm": "Please tap the checkbox below to confirm.",
-        "encryptionCheckbox": "I will store my seed with encryption",
-        "copy": "COPY"
+        "storeEncrypted": "シードをスマホにバックアップする場合は必ずパスワードマネージャなどの暗号化を用いて保存してください。",
+        "tapConfirm": "確認するには、下のチェックボックスをタップしてください。",
+        "encryptionCheckbox": "私は暗号化してシードを保管します。",
+        "copy": "コピー"
     },
     "enterSeed": {
-        "invalidCharacters": "無効な文字を含んだSeedです。",
-        "invalidCharactersExplanation": "Seedにはアルファベット大文字（A〜Z）と数字の\"9\"のみ使用できます。あなたのSeedは無効な文字を含んでいます。もう一度やり直して下さい。",
-        "seedTooShort": "Seedが短すぎます。",
+        "invalidCharacters": "無効な文字を含んだシードです。",
+        "invalidCharactersExplanation": "シードにはアルファベット大文字（A〜Z）と数字の\"9\"のみ使用できます。あなたのシードは無効な文字を含んでいます。もう一度やり直して下さい。",
+        "seedTooShort": "シードが短すぎます。",
         "seedTooShortExplanation": "Seedは{{maxLength}}文字にする必要があります。あなたのSeedは現在{{currentLength}}文字です。もう一度やり直して下さい。",
-        "seedExplanation": "Seedは{{maxLength}}文字である必要があり、使用可能な文字は大文字アルファベット（A〜Z）、数字の\"9\"のみです。また、{{maxLength}}文字以上の長さにはできません。",
-        "neverShare": "Seedを他の人に絶対に教えてはいけません。"
+        "seedExplanation": "シードは{{maxLength}}文字である必要があり、使用可能な文字は大文字アルファベット（A〜Z）、数字の\"9\"のみです。また、{{maxLength}}文字以上の長さにはできません。",
+        "neverShare": "シードを他の人に絶対に教えてはいけません。"
     },
     "home": {
         "balance": "残高",
@@ -180,7 +181,7 @@
         "emptyPassword": "パスワードの入力なし",
         "emptyPasswordExplanation": "ログインするにはパスワードを入力する必要があります。もう一度やり直して下さい。",
         "enterPassword": "パスワードを入力して下さい。",
-        "useSeed": "Seedでログイン",
+        "useSeed": "シードでログイン",
         "login": "ログイン",
         "selectDifferentNode": "別のノードを選択しますか？",
         "setNode": "ノード設定",
@@ -193,12 +194,12 @@
         "youMayNotice": "あなたのデバイスが遅くなることがあります。"
     },
     "newSeedSetup": {
-        "seedNotGenerated": "Seedが生成されていません。",
-        "seedNotGeneratedExplanation": "新しいSeedを生成してください。",
-        "pressForNewSeed": "新しいSeedの元を作成",
-        "generateSuccess": "Seed generated successfully",
+        "seedNotGenerated": "シードが生成されていません。",
+        "seedNotGeneratedExplanation": "新しいシードを生成してください。",
+        "pressForNewSeed": "新しいシードの元を作成",
+        "generateSuccess": "シードは正常に生成されました。",
         "individualLetters": "文字をタップして更にランダムにしてください。",
-        "whatIsASeed": "What is a seed?"
+        "whatIsASeed": "シードとは何か？"
     },
     "onboardingComplete": {
         "walletReady": "ウォレットの準備が整いました。設定の変更は今後も設定メニューから行えます。"
@@ -209,12 +210,12 @@
         "neverShare": "Seedを他の人に絶対に教えてはいけません。",
         "iotaLogo": "IOTAロゴ",
         "printWallet": "ペーパーウォレットを印刷",
-        "print": "PRINT",
-        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
-        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
-        "tapCheckboxes": "Please tap the checkboxes below to confirm.",
-        "wifiCheckbox": "I will not print on public wifi",
-        "printerCheckbox": "I will not print on a public printer"
+        "print": "印刷",
+        "paperConvenience": "シードのコピーを紙に印刷して保存することは便利な方法です。",
+        "publicInsecure": "しかし、公共のWi-Fiや公共のプリンタでの印刷は安全ではないので行わないでください。",
+        "tapCheckboxes": "確認するには、下の２つのチェックボックスをタップしてください。",
+        "wifiCheckbox": "私は公共のWi-Fiで印刷しません。",
+        "printerCheckbox": "私は公共のプリンタで印刷しません。"
     },
     "receive": {
         "addressCopied": "アドレスをコピーしました。",
@@ -226,13 +227,13 @@
         "spent": "使用済"
     },
     "saveYourSeed": {
-        "mustSaveYourSeed": "<0><0>下の方法から</0><1>最低一つ選んで</1><2>Seedを保存しましょう。</2></0>"
+        "mustSaveYourSeed": "<0><0>下の方法から</0><1>最低一つ選んで</1><2>シードを保存しましょう。</2></0>"
     },
     "seedReentry": {
-        "incorrectSeed": "Seedが違います。",
-        "incorrectSeedExplanation": "入力したSeedは正しくありません。もう一度やり直して下さい。",
-        "thisIsACheck": "これはあなたがSeedを保存したかの確認です。",
-        "ifYouHaveNotSaved": "Seedをまだ保存していない場合は戻ってください。"
+        "incorrectSeed": "シードが違います。",
+        "incorrectSeedExplanation": "入力したシードは正しくありません。もう一度やり直して下さい。",
+        "thisIsACheck": "これはあなたがシードを保存したかの確認です。",
+        "ifYouHaveNotSaved": "シードをまだ保存していない場合は戻ってください。"
     },
     "send": {
         "invalidAddress": "無効なアドレスです。",
@@ -271,8 +272,8 @@
         "retypePassword": "パスワードを再入力して下さい。"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "このウォレットでは複数のSeedを使用できます。 各Seedにはアカウント名が必要です。",
-        "youCanAdd": "設定メニューでSeedを追加できます。"
+        "canUseMultipleSeeds": "このウォレットでは複数のシードを使用できます。 各シードにはアカウント名が必要です。",
+        "youCanAdd": "設定メニューでシードを追加できます。"
     },
     "modeSelection": {
         "expert": "上級",
@@ -288,11 +289,11 @@
         "mode": "モード",
         "theme": "テーマ",
         "currency": "通貨",
-        "cannotChangeNode": "Cannot change node",
-        "cannotChangeNodeWhileSending": "Cannot change node while sending.",
+        "cannotChangeNode": "ノード変更不可",
+        "cannotChangeNodeWhileSending": "送金中にノードを変更することはできません。",
         "language": "言語",
         "accountManagement": "アカウント設定",
-        "addNewSeed": "新しいSeedを追加",
+        "addNewSeed": "新しいシードを追加",
         "twoFA": "2要素認証",
         "changePassword": "パスワード変更",
         "advanced": "詳細設定",
@@ -337,7 +338,7 @@
     },
     "walletSetup": {
         "okay": "それではウォレットの設定を行いましょう。",
-        "doYouAlreadyHaveASeed": "IOTAのSeedはすでにお持ちでしょうか？",
+        "doYouAlreadyHaveASeed": "IOTAのシードはすでにお持ちでしょうか？",
         "seedExplanation": "IOTAのSeedはユーザー名とパスワードを一つにまとめた81文字の文字列ととらえるとよいでしょう。",
         "explanation": "<0><0>同じSeedを使えば、</0><1>どのウォレット、</1><2>デバイスからでも</2><3>あなたの口座にアクセスすることができます。</3><4>Seedを紛失すると、口座とその預金にもアクセスできなくなります。</4></0>",
         "keepSafe": "Seedは安全に保管してください。",
@@ -349,8 +350,8 @@
         "reminder": "いくつかの手順を飛ばすのも可能ではありますが、全ての手順を踏むことをお勧めします。"
     },
     "writeSeedDown": {
-        "yourSeedIs": "Seedは左から右に読む{{maxSeedLength}}文字です。",
-        "writeDownYourSeed": "<0>Seedとチェックサムを書き止め、</0><1>トリプルチェックを</1><2>して下さい。</2>"
+        "yourSeedIs": "シードは左から右に読む{{maxSeedLength}}文字です。",
+        "writeDownYourSeed": "<0>シードとチェックサムを書き止め、</0><1>トリプルチェックを</1><2>して下さい。</2>"
     },
     "history": {
         "bundleHashCopied": "バンドルハッシュをコピーしました。",
@@ -363,21 +364,26 @@
         "receive": "受取"
     },
     "accountManagement": {
-        "viewSeed": "Seedを表示",
+        "viewSeed": "シードを表示",
         "viewAddresses": "アドレスを表示",
         "editAccountName": "アカウント名を編集",
         "deleteAccount": "アカウントを削除",
         "addNewAccount": "新しいアカウントを追加"
     },
     "addCustomNode": {
+        "customNodeAdded": "カスタムノード追加完了",
+        "customNodeCouldNotBeAdded": "カスタムノード追加不可",
+        "customNodeAddedSuccessfully": "カスタムノードを正常に追加することができました。",
         "customNode": "カスタムノード",
+        "invalidNodeResponse": "ノードが無効な反応を返しました。",
+        "httpNodeError": "Trinityモバイルウォレットはhttps化されたノードのみをサポートします。",
         "add": "追加",
         "nodeFieldEmpty": "テキスト欄が空です。",
         "nodeFieldEmptyExplanation": "カスタムノードを入力してください。"
     },
     "addNewAccount": {
-        "useExistingSeed": "既存のSeedを使用",
-        "createNewSeed": "新しいSeedを作成"
+        "useExistingSeed": "既存のシードを使用",
+        "createNewSeed": "新しいシードを作成"
     },
     "advancedSettings": {
         "selectNode": "ノード選択",
@@ -417,7 +423,7 @@
     },
     "deleteAccount": {
         "areYouSure": "<0></0><1>{{accountName}}を</1><2></2><3>削除してもよろしいですか？</3>",
-        "yourSeedWillBeRemoved": "Seedと取引の履歴を削除します。",
+        "yourSeedWillBeRemoved": "シードと取引の履歴を削除します。",
         "thisAction": "この操作は元に戻せません。",
         "enterPassword": "アカウントを削除するにはパスワードを入力して下さい。"
     },
@@ -430,17 +436,19 @@
         "syncingYourAccount": "アカウントを同期中"
     },
     "useExistingSeed": {
-        "title": "Seedとアカウント名を入力して下さい。"
+        "title": "シードとアカウント名を入力して下さい。",
+        "incorrectFormat": "不正確なシードの形式です。",
+        "validSeedExplanation": "'有効なシードは大文字でA〜Zと数字の9のみを使います。'"
     },
     "viewSeed": {
-        "enterPassword": "Seedを閲覧するにはパスワードを入力して下さい。",
-        "viewSeed": "Seedを見る",
-        "hideSeed": "Seedを隠す"
+        "enterPassword": "シードを閲覧するにはパスワードを入力して下さい。",
+        "viewSeed": "シードを見る",
+        "hideSeed": "シードを隠す"
     },
     "saveSeedConfirmation": {
-        "alreadyHave": "私はSeedを安全に保管しました。",
-        "reenter": "Seedを再入力するよう求められます。",
-        "reenterWarning": "お使いのデバイスが失敗し、Seedがきちんと保存されていない場合、IOTAを失います。"
+        "alreadyHave": "私はシードを安全に保管しました。",
+        "reenter": "シードを再入力するよう求められます。",
+        "reenterWarning": "お使いのデバイスが失敗し、シードがきちんと保存されていない場合、IOTAを失います。"
     },
     "walletResetConfirmation": {
         "cannotUndo": "この操作は元に戻せません。",
@@ -476,15 +484,16 @@
         "emptyCode": "コードが入力されていません。",
         "emptyCodeExplanation": "コードを入力して、もう一度やり直してください。",
         "keyCopied": "キーをクリップボードにコピーしました。",
-        "keyCopiedExplanation": "2要素認証キーをクリップボードにコピーしました。",
-        "addKey": "2要素認証アプリにキーを追加してください。",
+        "keyCopiedExplanation": "二要素認証キーをクリップボードにコピーしました。",
+        "addKey": "二要素認証アプリにキーを追加してください。",
         "key": "キー",
-        "twoFAEnabled": "2要素認証が有効になりました。",
+        "twoFAEnabled": "二要素認証が有効になりました。",
         "twoFAEnabledExplanation": "2要素認証を有効にしました。",
-        "twoFADisabled": "2要素認証が無効になりました。",
+        "twoFADisabled": "二要素認証が無効になりました。",
         "twoFADisabledExplanation": "２要素認証の無効化が無事に完了しました。",
-        "enterCode": "2要素認証アプリのコードを入力してください。",
-        "code": "コード"
+        "enterCode": "二要素認証アプリのコードを入力してください。",
+        "code": "コード",
+        "twoFaToken": "二要素認証トークン"
     },
     "chart": {
         "mcap": "時価総額",
@@ -494,7 +503,9 @@
     },
     "rootDetection": {
         "warning": "警告",
-        "rootDetected": "<0>あなたのデバイスはルート化されているようです。</0><1>これにより、ウォレットの安全性に重大なリスクが発生する可能性があります。</1><2>それでも続行してよろしいですか？</2>"
+        "appearsRooted": "お使いのデバイスはルート化されているようです。",
+        "securityRisk": "これにより、ウォレットの安全性に重大なリスクが発生する可能性があります。",
+        "continueDepsiteRisk": "それでも続行しますか？"
     },
     "pow": {
         "feeless": "IOTAの取引手数料無しの送金を行うには小規模のプルーフ・オブ・ワークを行う必要があります。",
@@ -542,5 +553,8 @@
         "newVersionAvailableExplanation": "新しい<strong>Trinity</strong><strong>{{version}}</strong>バージョンがご利用可能です。更新する前に、リリースの詳細を注意深く読み、ダウンロード元をご確認下さい：",
         "downloadRelease": "リリースをダウンロード",
         "skipUpdate": "更新をスキップ"
+    },
+    "notificationLog": {
+        "errorLog": "エラー ログ"
     }
 }

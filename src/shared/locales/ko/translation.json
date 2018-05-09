@@ -110,7 +110,8 @@
         "fingerprintOnSend": "지문을 인식하여 전송 승인",
         "masterKey": "Your IOTA seed is the master key to your funds.",
         "googlePlayServicesNotAvailable": "Google Play Services not available",
-        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available."
+        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available.",
+        "clear": "CLEAR"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
@@ -370,7 +371,12 @@
         "addNewAccount": "새 계정 추가"
     },
     "addCustomNode": {
+        "customNodeAdded": "Custom node added",
+        "customNodeCouldNotBeAdded": "Custom node could not be added",
+        "customNodeAddedSuccessfully": "The custom node has been added successfully.",
         "customNode": "커스텀 노드",
+        "invalidNodeResponse": "The node returned an invalid response",
+        "httpNodeError": "Trinity Mobile only supports https nodes.",
         "add": "추가",
         "nodeFieldEmpty": "입력한 텍스트가 없습니다.",
         "nodeFieldEmptyExplanation": "커스텀 노드를 입력해 주십시오."
@@ -430,7 +436,9 @@
         "syncingYourAccount": "계정을 동기화 중입니다."
     },
     "useExistingSeed": {
-        "title": "시드와 계정 이름을 입력하십시오."
+        "title": "시드와 계정 이름을 입력하십시오.",
+        "incorrectFormat": "Incorrect seed format",
+        "validSeedExplanation": "'Valid seeds should be 81 characters and contain only A-Z or 9.'"
     },
     "viewSeed": {
         "enterPassword": "시드를 보기 위해 암호를 입력해 주세요.",
@@ -484,7 +492,8 @@
         "twoFADisabled": "OTP 인증 비활성화",
         "twoFADisabledExplanation": "OTP 인증을 비활성화했습니다.",
         "enterCode": "OTP 코드를 입력하십시오",
-        "code": "코드"
+        "code": "코드",
+        "twoFaToken": "2FA Token"
     },
     "chart": {
         "mcap": "시가총액",
@@ -494,7 +503,9 @@
     },
     "rootDetection": {
         "warning": "경고",
-        "rootDetected": "<0>기기가 루팅된 것이 감지되었습니다. </0><1>이 경우 지갑의 보안에 위험을 끼칠 수 있습니다.</1><2> 보안 위험을 감수하고 진행하시겠습니까?</2>"
+        "appearsRooted": "Your device appears to be rooted.",
+        "securityRisk": "This can pose a significant risk to the security of your wallet.",
+        "continueDepsiteRisk": "Do you wish to continue despite this risk?"
     },
     "pow": {
         "feeless": "IOTA에서는 수수료 없는 거래를 하기 위해 약간의 작업증명을 수행해야 합니다.",
@@ -542,5 +553,8 @@
         "newVersionAvailableExplanation": "<strong>트리니티</strong> 버전 <strong>{{version}}</strong>을 사용할 수 있습니다. 업데이트를 하기 전에 내역을 자세히 읽고 다운로드 출처를 확인해 주십시오:",
         "downloadRelease": "새 버전 다운로드",
         "skipUpdate": "업데이트 건너뛰기"
+    },
+    "notificationLog": {
+        "errorLog": "ERROR LOG"
     }
 }

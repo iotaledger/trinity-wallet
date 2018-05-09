@@ -7,7 +7,7 @@
 //
 #import <React/RCTBridgeModule.h>
 #import <React/RCTEventEmitter.h>
-#import "bindings.h"
+#import <EntangledKit/EntangledKit.h>
 
 @interface EntangledIOS: NSObject <RCTBridgeModule>
 
