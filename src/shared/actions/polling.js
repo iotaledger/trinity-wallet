@@ -97,8 +97,9 @@ const accountInfoFetchError = () => ({
     type: ActionTypes.ACCOUNT_INFO_FETCH_ERROR,
 });
 
-const promoteTransactionRequest = () => ({
+const promoteTransactionRequest = (payload) => ({
     type: ActionTypes.PROMOTE_TRANSACTION_REQUEST,
+    payload,
 });
 
 const promoteTransactionSuccess = () => ({
@@ -255,16 +256,15 @@ export const getAccountInfo = (accountName) => {
  *   @param {array} tails - All tail transaction objects for the bundle
  *   @returns {function} - dispatch
  **/
-export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
-    dispatch(promoteTransactionRequest());
-
+export const promoteTransfer = (bundleHash, tails) => (dispatch, getState) => {
+    dispatch(promoteTransactionRequest(bundleHash));
     const accountName = get(tails, '[0].account');
     const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
-    return isStillAValidTransaction(existingAccountState.transfers[bundle], existingAccountState.addresses)
+    return isStillAValidTransaction(existingAccountState.transfers[bundleHash], existingAccountState.addresses)
         .then((isValid) => {
             if (!isValid) {
-                dispatch(removeBundleFromUnconfirmedBundleTails(bundle));
+                dispatch(removeBundleFromUnconfirmedBundleTails(bundleHash));
 
                 throw new Error('Bundle no longer valid');
             }
@@ -283,7 +283,9 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
 
             // Rearrange bundles so that the next cycle picks up a new bundle for promotion
             dispatch(
-                setNewUnconfirmedBundleTails(rearrangeObjectKeys(existingAccountState.unconfirmedBundleTails, bundle)),
+                setNewUnconfirmedBundleTails(
+                    rearrangeObjectKeys(existingAccountState.unconfirmedBundleTails, bundleHash),
+                ),
             );
 
             return dispatch(promoteTransactionSuccess());

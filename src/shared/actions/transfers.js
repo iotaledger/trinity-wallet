@@ -62,8 +62,9 @@ const broadcastBundleError = () => ({
     type: ActionTypes.BROADCAST_BUNDLE_ERROR,
 });
 
-const promoteTransactionRequest = () => ({
+const promoteTransactionRequest = (payload) => ({
     type: ActionTypes.PROMOTE_TRANSACTION_REQUEST,
+    payload,
 });
 
 const promoteTransactionSuccess = () => ({
@@ -148,7 +149,7 @@ export const broadcastBundle = (bundleHash, accountName) => (dispatch, getState)
 };
 
 export const promoteTransaction = (bundleHash, accountName) => (dispatch, getState) => {
-    dispatch(promoteTransactionRequest());
+    dispatch(promoteTransactionRequest(bundleHash));
 
     const accountState = selectedAccountStateFactory(accountName)(getState());
     const transaction = accountState.transfers[bundleHash];
