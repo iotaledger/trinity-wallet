@@ -163,10 +163,10 @@
         "doNotStore": "Do not store your seed in plain text.",
         "copyToClipboard": "Copy seed",
         "shareSeed": "Share your seed to a secure password manager",
-        "storeEncrypted":
-            "If you choose to back-up your seed on your phone it should be stored encrypted e.g. in a password manager.",
+        "storeEncrypted": "Store your seed encrypted in a password manager.",
+        "doNotOpen": "Do not open any other apps during this process.",
         "tapConfirm": "Please tap the checkbox below to confirm.",
-        "encryptionCheckbox": "I will store my seed with encryption",
+        "passwordManagerCheckbox": "I will store my seed in a password manager",
         "copy": "COPY"
     },
     "enterSeed": {
