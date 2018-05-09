@@ -29,7 +29,7 @@ export const SwitchingConfig = autoNodeSwitchingConfig;
 function checkNodePatched() {
     return new Promise((resolve, reject) => {
         unproxiedNodeInfo((err) => {
-            if (err){
+            if (err) {
                 reject(err);
                 return;
             }
@@ -49,12 +49,11 @@ function checkNodePatched() {
  * @type {{get: autoNodeSwitcher.get}}
  */
 const autoNodeSwitchHandler = {
-    get: function (target, propKey) {
-
+    get: function(target, propKey) {
         const propValue = target[propKey];
-        if (typeof propValue !== 'function'){
+        if (typeof propValue !== 'function') {
             return propValue;
-        };
+        }
         return function(...args) {
             let originalCallback;
             if (args.length) {
@@ -96,7 +95,7 @@ const autoNodeSwitchHandler = {
                     propValue.apply(target, args);
                 });
         };
-    }
+    },
 };
 
 // patch the auto node switcher into the API object
