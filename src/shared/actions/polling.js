@@ -5,13 +5,12 @@ import union from 'lodash/union';
 import { setPrice, setChartData, setMarketData } from './marketData';
 import { setNodeList } from './settings';
 import { formatChartData, getUrlTimeFormat, getUrlNumberFormat, rearrangeObjectKeys } from '../libs/utils';
-import { generateAlert, generateAccountInfoErrorAlert } from './alerts';
+import { generateAccountInfoErrorAlert } from './alerts';
 import { setNewUnconfirmedBundleTails, removeBundleFromUnconfirmedBundleTails } from './accounts';
 import { getFirstConsistentTail, isStillAValidTransaction } from '../libs/iota/transfers';
 import { selectedAccountStateFactory } from '../selectors/accounts';
 import { syncAccount } from '../libs/iota/accounts';
 import { forceTransactionPromotion } from './transfers';
-import i18next from '../i18next.js';
 import { NODELIST_URL, nodes } from '../config';
 
 export const ActionTypes = {
@@ -271,16 +270,8 @@ export const promoteTransfer = (bundleHash, tails) => (dispatch, getState) => {
 
             return getFirstConsistentTail(tails, 0);
         })
-        .then((consistentTail) => dispatch(forceTransactionPromotion(accountName, consistentTail, tails)))
-        .then((hash) => {
-            dispatch(
-                generateAlert(
-                    'success',
-                    i18next.t('global:autopromoting'),
-                    i18next.t('global:autopromotingExplanation', { hash }),
-                ),
-            );
-
+        .then((consistentTail) => dispatch(forceTransactionPromotion(accountName, consistentTail, tails, true)))
+        .then(() => {
             // Rearrange bundles so that the next cycle picks up a new bundle for promotion
             dispatch(
                 setNewUnconfirmedBundleTails(
