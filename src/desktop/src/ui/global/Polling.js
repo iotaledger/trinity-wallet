@@ -60,7 +60,7 @@ class Polling extends React.PureComponent {
             props.isFetchingChartData ||
             props.isFetchingMarketData ||
             props.isFetchingAccountInfo ||
-            props.isPromoting;
+            props.isAutoPromoting;
 
         return isAlreadyDoingSomeHeavyLifting || isAlreadyPollingSomething;
     }
@@ -136,7 +136,7 @@ const mapStateToProps = (state) => ({
     isFetchingChartData: state.polling.isFetchingChartData,
     isFetchingMarketData: state.polling.isFetchingMarketData,
     isFetchingAccountInfo: state.polling.isFetchingAccountInfo,
-    isPromoting: state.polling.isPromoting,
+    isAutoPromoting: state.polling.isAutoPromoting,
     isSyncing: state.ui.isSyncing,
     addingAdditionalAccount: state.wallet.addingAdditionalAccount,
     isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,

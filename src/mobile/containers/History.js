@@ -110,7 +110,7 @@ class History extends Component {
         isTransitioning: PropTypes.bool.isRequired,
         /** Determines if wallet is broadcasting bundle */
         isBroadcastingBundle: PropTypes.bool.isRequired,
-        /** Determines if wallet is promoting transaction */
+        /** Determines if wallet is manually promoting transaction */
         isPromotingTransaction: PropTypes.bool.isRequired,
         /** Currently selected mode for wallet */
         mode: PropTypes.string.isRequired,
@@ -120,6 +120,10 @@ class History extends Component {
         toggleModalActivity: PropTypes.func.isRequired,
         /** Determines whether modal is open */
         isModalActive: PropTypes.bool.isRequired,
+        /** Determines if wallet is autopromoting transaction */
+        isAutoPromoting: PropTypes.bool.isRequired,
+        /** Bundle hash for the transaction that is currently being promoted */
+        currentlyPromotingBundleHash: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -358,7 +362,14 @@ class History extends Component {
 
     render() {
         const transactions = this.renderTransactions();
-        const { theme, isModalActive, isPromotingTransaction, isBroadcastingBundle } = this.props;
+        const {
+            theme,
+            isModalActive,
+            isAutoPromoting,
+            isPromotingTransaction,
+            isBroadcastingBundle,
+            currentlyPromotingBundleHash,
+        } = this.props;
         const { modalProps } = this.state;
 
         return (
@@ -384,9 +395,9 @@ class History extends Component {
                         >
                             <HistoryModalContent
                                 {...modalProps}
-                                disableWhen={isPromotingTransaction || isBroadcastingBundle}
-                                isPromotingTransaction={isPromotingTransaction}
+                                disableWhen={isAutoPromoting || isPromotingTransaction || isBroadcastingBundle}
                                 isBroadcastingBundle={isBroadcastingBundle}
+                                currentlyPromotingBundleHash={currentlyPromotingBundleHash}
                             />
                         </Modal>
                     )}
@@ -410,8 +421,10 @@ const mapStateToProps = (state) => ({
     isTransitioning: state.ui.isTransitioning,
     isBroadcastingBundle: state.ui.isBroadcastingBundle,
     isPromotingTransaction: state.ui.isPromotingTransaction,
+    isAutoPromoting: state.polling.isAutoPromoting,
     password: state.wallet.password,
     isModalActive: state.ui.isModalActive,
+    currentlyPromotingBundleHash: state.ui.currentlyPromotingBundleHash,
 });
 
 const mapDispatchToProps = {

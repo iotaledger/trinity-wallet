@@ -14,7 +14,7 @@ describe('Reducer: polling', () => {
             isFetchingChartData: false,
             isFetchingMarketData: false,
             isFetchingAccountInfo: false,
-            isPromoting: false,
+            isAutoPromoting: false,
         };
 
         expect(reducer(undefined, {})).to.eql(initialState);
@@ -285,9 +285,9 @@ describe('Reducer: polling', () => {
         expect(newState.isFetchingAccountInfo).to.eql(expectedState.isFetchingAccountInfo);
     });
 
-    it('PROMOTE_TRANSACTION_REQUEST should set isPromoting to true', () => {
+    it('PROMOTE_TRANSACTION_REQUEST should set isAutoPromoting to true', () => {
         const initialState = {
-            isPromoting: false,
+            isAutoPromoting: false,
         };
 
         const action = {
@@ -296,15 +296,15 @@ describe('Reducer: polling', () => {
 
         const newState = reducer(initialState, action);
         const expectedState = {
-            isPromoting: true,
+            isAutoPromoting: true,
         };
 
         expect(newState).to.eql(expectedState);
     });
 
-    it('PROMOTE_TRANSACTION_SUCCESS should set isPromoting to false', () => {
+    it('PROMOTE_TRANSACTION_SUCCESS should set isAutoPromoting to false', () => {
         const initialState = {
-            isPromoting: true,
+            isAutoPromoting: true,
             allPollingServices: [],
         };
 
@@ -314,15 +314,15 @@ describe('Reducer: polling', () => {
 
         const newState = reducer(initialState, action);
         const expectedState = {
-            isPromoting: false,
+            isAutoPromoting: false,
         };
 
-        expect(newState.isPromoting).to.eql(expectedState.isPromoting);
+        expect(newState.isAutoPromoting).to.eql(expectedState.isAutoPromoting);
     });
 
-    it('PROMOTE_TRANSACTION_ERROR should set isPromoting to false', () => {
+    it('PROMOTE_TRANSACTION_ERROR should set isAutoPromoting to false', () => {
         const initialState = {
-            isPromoting: true,
+            isAutoPromoting: true,
             allPollingServices: [],
         };
 
@@ -332,10 +332,10 @@ describe('Reducer: polling', () => {
 
         const newState = reducer(initialState, action);
         const expectedState = {
-            isPromoting: false,
+            isAutoPromoting: false,
         };
 
-        expect(newState.isPromoting).to.eql(expectedState.isPromoting);
+        expect(newState.isAutoPromoting).to.eql(expectedState.isAutoPromoting);
     });
 
     it('SET_POLL_FOR should set pollFor to payload in action', () => {
