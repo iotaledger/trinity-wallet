@@ -202,11 +202,9 @@ export const syncAccount = (existingAccountState) => {
             // Grab all tail transactions hashes for pending transactions
             const pendingTxTailsHashes = getPendingTxTailsHashes(thisStateCopy.transfers);
 
-            console.log('Pending tx tail hashes', pendingTxTailsHashes);
             return getConfirmedTransactionHashes(pendingTxTailsHashes);
         })
         .then((confirmedTransactionsHashes) => {
-            console.log('Confirmed transactions', confirmedTransactionsHashes);
             if (!isEmpty(confirmedTransactionsHashes)) {
                 thisStateCopy.transfers = markTransfersConfirmed(thisStateCopy.transfers, confirmedTransactionsHashes);
 
