@@ -15,6 +15,7 @@ import { formatModalTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-mod
 import StatefulDropdownAlert from '../containers/StatefulDropdownAlert';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
+import { isAndroid } from '../utils/device';
 import CtaButton from '../components/CtaButton';
 
 const styles = StyleSheet.create({
@@ -269,6 +270,7 @@ export default class HistoryModalContent extends PureComponent {
         } = this.props;
 
         const bundleIsBeingPromoted = currentlyPromotingBundleHash === bundle;
+        const opacity = { opacity: disableWhen ? (isAndroid ? 0.3 : 0.2) : 1 };
 
         return (
             <TouchableWithoutFeedback style={styles.container} onPress={onPress}>
@@ -318,10 +320,7 @@ export default class HistoryModalContent extends PureComponent {
                                             <View style={[styles.buttonsContainer]}>
                                                 {(!bundleIsBeingPromoted && (
                                                     <View
-                                                        style={[
-                                                            styles.buttonContainer,
-                                                            { opacity: disableWhen ? 0.3 : 1 },
-                                                        ]}
+                                                        style={[ styles.buttonContainer, opacity ]}
                                                     >
                                                         <CtaButton
                                                             ctaColor={style.primaryColor}
@@ -344,10 +343,7 @@ export default class HistoryModalContent extends PureComponent {
                                                 )}
                                                 {(!isBroadcastingBundle && (
                                                     <View
-                                                        style={[
-                                                            styles.buttonContainer,
-                                                            { opacity: disableWhen ? 0.3 : 1 },
-                                                        ]}
+                                                        style={[ styles.buttonContainer, opacity ]}
                                                     >
                                                         <CtaButton
                                                             ctaColor={style.secondaryColor}
