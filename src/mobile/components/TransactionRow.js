@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
+import LottieView from 'lottie-react-native';
 import { formatTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/date';
+import spinner from 'iota-wallet-shared-modules/animations/spinner.json';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
 
@@ -72,6 +74,10 @@ const styles = StyleSheet.create({
         fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 31.8,
     },
+    animation: {
+        width: width / 14,
+        height: width / 17,
+    },
 });
 
 export default class TransactionRow extends PureComponent {
@@ -106,6 +112,8 @@ export default class TransactionRow extends PureComponent {
         }).isRequired,
         /** Container element press event callback function */
         onPress: PropTypes.func.isRequired,
+        /** Determines whether bundle is currently being promoted */
+        bundleIsBeingPromoted: PropTypes.bool.isRequired,
     };
 
     static defaultProps = {
@@ -113,12 +121,38 @@ export default class TransactionRow extends PureComponent {
     };
 
     render() {
-        const { status, confirmation, value, unit, time, message, t, style, onPress } = this.props;
+        const {
+            status,
+            confirmation,
+            value,
+            unit,
+            time,
+            message,
+            t,
+            style,
+            onPress,
+            bundleIsBeingPromoted,
+        } = this.props;
 
         return (
             <TouchableOpacity onPress={() => onPress(this.props)}>
                 <View style={styles.topWrapper}>
                     <View style={[styles.container, style.containerBorderColor, style.containerBackgroundColor]}>
+                        {bundleIsBeingPromoted && (
+                            <View style={{ position: 'absolute', right: width / 6.8, top: height / 90 }}>
+                                <LottieView
+                                    source={spinner}
+                                    style={styles.animation}
+                                    autoPlay
+                                    loop
+                                    ref={(animation) => {
+                                        if (animation) {
+                                            animation.play();
+                                        }
+                                    }}
+                                />
+                            </View>
+                        )}
                         <View style={styles.innerWrapper}>
                             <View style={styles.statusWrapper}>
                                 <Text style={[styles.statusText, { color: style.titleColor }]}>
@@ -126,7 +160,7 @@ export default class TransactionRow extends PureComponent {
                                 </Text>
                             </View>
                             <Text style={[styles.confirmationStatus, style.confirmationStatusColor]}>
-                                {confirmation}
+                                {bundleIsBeingPromoted ? 'Retrying' : confirmation}
                             </Text>
                         </View>
                         <View style={styles.messageOuterWrapper}>

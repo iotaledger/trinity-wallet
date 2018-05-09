@@ -166,7 +166,9 @@ export const promoteTransaction = (bundleHash, accountName) => (dispatch, getSta
 
             return getFirstConsistentTail(tailTransactions, 0);
         })
-        .then((consistentTail) => dispatch(forceTransactionPromotion(accountName, consistentTail, tailTransactions)))
+        .then((consistentTail) =>
+            dispatch(forceTransactionPromotion(accountName, consistentTail, tailTransactions, false)),
+        )
         .then((hash) => {
             dispatch(
                 generateAlert(
@@ -211,7 +213,10 @@ export const promoteTransaction = (bundleHash, accountName) => (dispatch, getSta
  *   @param {array} tails
  *   @returns {Promise}
  **/
-export const forceTransactionPromotion = (accountName, consistentTail, tails) => (dispatch, getState) => {
+export const forceTransactionPromotion = (accountName, consistentTail, tails, shouldGenerateAlert) => (
+    dispatch,
+    getState,
+) => {
     if (!consistentTail) {
         // Grab hash from the top tail to replay
         const topTx = head(tails);
@@ -219,14 +224,16 @@ export const forceTransactionPromotion = (accountName, consistentTail, tails) =>
 
         return replayBundleAsync(hash)
             .then((reattachment) => {
-                dispatch(
-                    generateAlert(
-                        'success',
-                        i18next.t('global:autoreattaching'),
-                        i18next.t('global:autoreattachingExplanation', { hash }),
-                        2500,
-                    ),
-                );
+                if (shouldGenerateAlert) {
+                    dispatch(
+                        generateAlert(
+                            'success',
+                            i18next.t('global:autoreattaching'),
+                            i18next.t('global:autoreattachingExplanation', { hash }),
+                            2500,
+                        ),
+                    );
+                }
 
                 const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
