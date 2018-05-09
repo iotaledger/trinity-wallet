@@ -239,6 +239,7 @@ class History extends Component {
             mode,
             t,
             selectedAccountName,
+            currentlyPromotingBundleHash,
         } = this.props;
         const containerBorderColor = tinycolor(body.bg).isDark() ? 'rgba(255, 255, 255, 0.25)' : 'rgba(0, 0, 0, 0.25)';
         const containerBackgroundColor = tinycolor(body.bg).isDark() ? 'rgba(255, 255, 255, 0.08)' : 'transparent';
@@ -270,6 +271,7 @@ class History extends Component {
                 time: timestamp,
                 message,
                 mode,
+                bundleIsBeingPromoted: currentlyPromotingBundleHash === bundle && !persistence,
                 onPress: (modalProps) => {
                     if (isRefreshing) {
                         return;
