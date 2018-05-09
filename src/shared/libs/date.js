@@ -1,8 +1,8 @@
 import moment from 'moment';
 
 export const formatTimeAs = {
-    twelveHours: (time) => moment(time).format('h:mm a'),
-    hoursMinutesDayMonthYear: (time) => moment(time).format('hh:mm DD/MM/YYYY'),
+    twentyFourHours: (time) => moment(time).format('HH:mm'),
+    hoursMinutesDayMonthYear: (time) => moment(time).format('HH:mm DD/MM/YYYY'),
     hoursMinutesSecondsDayMonthYear: (time) => moment(time).format('hh:mm:ss DD/MM/YYYY'),
 };
 
@@ -29,7 +29,7 @@ export const getCurrentYear = () => new Date().getFullYear();
 
 export const formatTime = (ts) => {
     if (isToday(ts)) {
-        return formatTimeAs.twelveHours(ts);
+        return formatTimeAs.twentyFourHours(ts);
     } else if (isYesterday(ts)) {
         return 'Yesterday';
     }
