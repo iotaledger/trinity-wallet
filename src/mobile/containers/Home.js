@@ -8,6 +8,7 @@ import { setPassword, setSetting, setDeepLink } from 'iota-wallet-shared-modules
 import { setUserActivity, toggleModalActivity } from 'iota-wallet-shared-modules/actions/ui';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { parseAddress } from 'iota-wallet-shared-modules/libs/iota/utils';
+import timer from 'react-native-timer';
 import { getPasswordHash } from '../utils/crypto';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import UserInactivity from '../components/UserInactivity';
@@ -149,6 +150,7 @@ class Home extends Component {
         if (isModalActive) {
             this.props.toggleModalActivity();
         }
+        timer.clearTimeout('iOSKeyboardTimeout');
     }
 
     onLoginPress = (password) => {
@@ -243,7 +245,7 @@ class Home extends Component {
     };
 
     keyboardWillHide = (event) => {
-        this.setState({ isIOSKeyboardActive: false });
+        timer.setTimeout('iOSKeyboardTimeout', () => this.setState({ isIOSKeyboardActive: false }), event.duration);
         Animated.timing(this.viewFlex, {
             duration: event.duration,
             toValue: 0.7,

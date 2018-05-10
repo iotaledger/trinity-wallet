@@ -5,13 +5,12 @@ import union from 'lodash/union';
 import { setPrice, setChartData, setMarketData } from './marketData';
 import { setNodeList } from './settings';
 import { formatChartData, getUrlTimeFormat, getUrlNumberFormat, rearrangeObjectKeys } from '../libs/utils';
-import { generateAlert, generateAccountInfoErrorAlert } from './alerts';
+import { generateAccountInfoErrorAlert } from './alerts';
 import { setNewUnconfirmedBundleTails, removeBundleFromUnconfirmedBundleTails } from './accounts';
 import { getFirstConsistentTail, isStillAValidTransaction } from '../libs/iota/transfers';
 import { selectedAccountStateFactory } from '../selectors/accounts';
 import { syncAccount } from '../libs/iota/accounts';
 import { forceTransactionPromotion } from './transfers';
-import i18next from '../i18next.js';
 import { NODELIST_URL, nodes } from '../config';
 import Errors from '../libs/errors';
 
@@ -98,8 +97,9 @@ const accountInfoFetchError = () => ({
     type: ActionTypes.ACCOUNT_INFO_FETCH_ERROR,
 });
 
-const promoteTransactionRequest = () => ({
+const promoteTransactionRequest = (payload) => ({
     type: ActionTypes.PROMOTE_TRANSACTION_REQUEST,
+    payload,
 });
 
 const promoteTransactionSuccess = () => ({
@@ -256,35 +256,28 @@ export const getAccountInfo = (accountName) => {
  *   @param {array} tails - All tail transaction objects for the bundle
  *   @returns {function} - dispatch
  **/
-export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
-    dispatch(promoteTransactionRequest());
-
+export const promoteTransfer = (bundleHash, tails) => (dispatch, getState) => {
+    dispatch(promoteTransactionRequest(bundleHash));
     const accountName = get(tails, '[0].account');
     const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
-    return isStillAValidTransaction(existingAccountState.transfers[bundle], existingAccountState.addresses)
+    return isStillAValidTransaction(existingAccountState.transfers[bundleHash], existingAccountState.addresses)
         .then((isValid) => {
             if (!isValid) {
-                dispatch(removeBundleFromUnconfirmedBundleTails(bundle));
+                dispatch(removeBundleFromUnconfirmedBundleTails(bundleHash));
 
                 throw new Error(Errors.BUNDLE_NO_LONGER_VALID);
             }
 
             return getFirstConsistentTail(tails, 0);
         })
-        .then((consistentTail) => dispatch(forceTransactionPromotion(accountName, consistentTail, tails)))
-        .then((hash) => {
-            dispatch(
-                generateAlert(
-                    'success',
-                    i18next.t('global:autopromoting'),
-                    i18next.t('global:autopromotingExplanation', { hash }),
-                ),
-            );
-
+        .then((consistentTail) => dispatch(forceTransactionPromotion(accountName, consistentTail, tails, false)))
+        .then(() => {
             // Rearrange bundles so that the next cycle picks up a new bundle for promotion
             dispatch(
-                setNewUnconfirmedBundleTails(rearrangeObjectKeys(existingAccountState.unconfirmedBundleTails, bundle)),
+                setNewUnconfirmedBundleTails(
+                    rearrangeObjectKeys(existingAccountState.unconfirmedBundleTails, bundleHash),
+                ),
             );
 
             return dispatch(promoteTransactionSuccess());

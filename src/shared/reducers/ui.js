@@ -3,6 +3,7 @@ import { ActionTypes as UiActionTypes } from '../actions/ui';
 import { ActionTypes as TransfersActionTypes } from '../actions/transfers';
 import { ActionTypes as WalletActionTypes } from '../actions/wallet';
 import { ActionTypes as AccountsActionTypes } from '../actions/accounts';
+import { ActionTypes as PollingActionTypes } from '../actions/polling';
 
 const initialState = {
     isGeneratingReceiveAddress: false,
@@ -31,6 +32,7 @@ const initialState = {
     doNotMinimise: false,
     isModalActive: false,
     isCheckingCustomNode: false,
+    currentlyPromotingBundleHash: '',
 };
 
 export default (state = initialState, action) => {
@@ -106,12 +108,21 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isPromotingTransaction: true,
+                currentlyPromotingBundleHash: action.payload,
             };
+        case PollingActionTypes.PROMOTE_TRANSACTION_REQUEST:
+            return {
+                ...state,
+                currentlyPromotingBundleHash: action.payload,
+            };
+        case PollingActionTypes.PROMOTE_TRANSACTION_SUCCESS:
+        case PollingActionTypes.PROMOTE_TRANSACTION_ERROR:
         case TransfersActionTypes.PROMOTE_TRANSACTION_SUCCESS:
         case TransfersActionTypes.PROMOTE_TRANSACTION_ERROR:
             return {
                 ...state,
                 isPromotingTransaction: false,
+                currentlyPromotingBundleHash: '',
             };
         case UiActionTypes.SET_USER_ACTIVITY:
             return {

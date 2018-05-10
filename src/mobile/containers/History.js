@@ -110,7 +110,7 @@ class History extends Component {
         isTransitioning: PropTypes.bool.isRequired,
         /** Determines if wallet is broadcasting bundle */
         isBroadcastingBundle: PropTypes.bool.isRequired,
-        /** Determines if wallet is promoting transaction */
+        /** Determines if wallet is manually promoting transaction */
         isPromotingTransaction: PropTypes.bool.isRequired,
         /** Currently selected mode for wallet */
         mode: PropTypes.string.isRequired,
@@ -120,6 +120,10 @@ class History extends Component {
         toggleModalActivity: PropTypes.func.isRequired,
         /** Determines whether modal is open */
         isModalActive: PropTypes.bool.isRequired,
+        /** Determines if wallet is autopromoting transaction */
+        isAutoPromoting: PropTypes.bool.isRequired,
+        /** Bundle hash for the transaction that is currently being promoted */
+        currentlyPromotingBundleHash: PropTypes.string.isRequired,
     };
 
     constructor() {
@@ -137,6 +141,9 @@ class History extends Component {
     componentWillReceiveProps(newProps) {
         const { seedIndex } = this.props;
         if (this.props.isFetchingLatestAccountInfoOnLogin && !newProps.isFetchingLatestAccountInfoOnLogin) {
+            this.setState({ isRefreshing: false });
+        }
+        if (this.props.isFetchingAccountInfo && !newProps.isFetchingAccountInfo) {
             this.setState({ isRefreshing: false });
         }
         if (seedIndex !== newProps.seedIndex) {
@@ -194,18 +201,10 @@ class History extends Component {
         const isAlreadyFetchingAccountInfo = props.isFetchingAccountInfo;
 
         if (isAlreadyFetchingAccountInfo) {
-            this.generateAlreadyFetchingAccountInfoAlert();
+            this.setState({ isRefreshing: true });
         }
 
         return isAlreadyDoingSomeHeavyLifting || isAlreadyFetchingAccountInfo;
-    }
-
-    generateAlreadyFetchingAccountInfoAlert() {
-        this.props.generateAlert(
-            'error',
-            'Already fetching transaction history',
-            'Your transaction history will be updated automatically.',
-        );
     }
 
     updateAccountData() {
@@ -235,6 +234,7 @@ class History extends Component {
             mode,
             t,
             selectedAccountName,
+            currentlyPromotingBundleHash,
         } = this.props;
         const containerBorderColor = tinycolor(body.bg).isDark() ? 'rgba(255, 255, 255, 0.25)' : 'rgba(0, 0, 0, 0.25)';
         const containerBackgroundColor = tinycolor(body.bg).isDark() ? 'rgba(255, 255, 255, 0.08)' : 'transparent';
@@ -255,7 +255,7 @@ class History extends Component {
 
         const formattedTransfers = map(transfers, (transfer) => {
             const { timestamp, incoming, persistence, transferValue, inputs, outputs, bundle, message } = transfer;
-
+            const { isRefreshing } = this.state;
             return {
                 t,
                 status: incoming ? t('history:receive') : t('history:send'),
@@ -266,7 +266,11 @@ class History extends Component {
                 time: timestamp,
                 message,
                 mode,
+                bundleIsBeingPromoted: currentlyPromotingBundleHash === bundle && !persistence,
                 onPress: (modalProps) => {
+                    if (isRefreshing) {
+                        return;
+                    }
                     this.setState({
                         modalProps: assign({}, modalProps, {
                             rebroadcast: (bundle) => this.props.broadcastBundle(bundle, selectedAccountName),
@@ -358,7 +362,14 @@ class History extends Component {
 
     render() {
         const transactions = this.renderTransactions();
-        const { theme, isModalActive, isPromotingTransaction, isBroadcastingBundle } = this.props;
+        const {
+            theme,
+            isModalActive,
+            isAutoPromoting,
+            isPromotingTransaction,
+            isBroadcastingBundle,
+            currentlyPromotingBundleHash,
+        } = this.props;
         const { modalProps } = this.state;
 
         return (
@@ -384,9 +395,9 @@ class History extends Component {
                         >
                             <HistoryModalContent
                                 {...modalProps}
-                                disableWhen={isPromotingTransaction || isBroadcastingBundle}
-                                isPromotingTransaction={isPromotingTransaction}
+                                disableWhen={isAutoPromoting || isPromotingTransaction || isBroadcastingBundle}
                                 isBroadcastingBundle={isBroadcastingBundle}
+                                currentlyPromotingBundleHash={currentlyPromotingBundleHash}
                             />
                         </Modal>
                     )}
@@ -410,8 +421,10 @@ const mapStateToProps = (state) => ({
     isTransitioning: state.ui.isTransitioning,
     isBroadcastingBundle: state.ui.isBroadcastingBundle,
     isPromotingTransaction: state.ui.isPromotingTransaction,
+    isAutoPromoting: state.polling.isAutoPromoting,
     password: state.wallet.password,
     isModalActive: state.ui.isModalActive,
+    currentlyPromotingBundleHash: state.ui.currentlyPromotingBundleHash,
 });
 
 const mapDispatchToProps = {
