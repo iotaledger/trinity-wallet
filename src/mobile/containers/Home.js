@@ -85,7 +85,9 @@ class Home extends Component {
         currentSetting: PropTypes.string.isRequired,
         /** Theme settings */
         theme: PropTypes.object.isRequired,
+        /** Determines whether the top bar is currently open */
         isTopBarActive: PropTypes.bool.isRequired,
+        /** Opens/closes the top bar */
         toggleTopBarDisplay: PropTypes.func.isRequired,
         /** Set send amount params
          * @param {string} - amount
@@ -294,6 +296,8 @@ class Home extends Component {
                                             navigator={navigator}
                                             onTabSwitch={(name) => this.onTabSwitch(name)}
                                             handleCloseTopBar={() => this.handleCloseTopBar()}
+                                            shouldPreventManualRefresh={() => this.shouldPreventManualRefresh()}
+                                            updateAccountData={() => this.updateAccountData()}
                                             isIOSKeyboardActive={isIOSKeyboardActive}
                                         />
                                     </View>
