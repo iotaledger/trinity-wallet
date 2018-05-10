@@ -953,131 +953,155 @@ describe('Reducer: accounts', () => {
         });
     });
 
-    describe('UPDATE_ACCOUNT_INFO_AFTER_SPENDING', () => {
-        it('should merge addresses in payload to accountName in accountInfo', () => {
-            const initialState = {
-                accountInfo: {
-                    dummy: {
+    [
+        'IOTA/ACCOUNTS/UPDATE_ACCOUNT_INFO_AFTER_SPENDING',
+        'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION',
+        'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST',
+        'IOTA/ACCOUNTS/UPDATE_ACCOUNT_AFTER_REATTACHMENT',
+    ].forEach((actionType) => {
+        describe(actionType, () => {
+            it('should merge addresses in payload to accountName in accountInfo', () => {
+                const initialState = {
+                    accountInfo: {
+                        dummy: {
+                            balance: 0,
+                            addresses: { foo: {} },
+                            transfers: [],
+                        },
+                    },
+                };
+
+                const action = {
+                    type: actionType,
+                    payload: {
                         balance: 0,
-                        addresses: { foo: {} },
+                        accountName: 'dummy',
+                        addresses: { baz: {} },
                         transfers: [],
                     },
-                },
-            };
+                };
 
-            const action = actions.updateAccountInfoAfterSpending({
-                balance: 0,
-                accountName: 'dummy',
-                addresses: { baz: {} },
-                transfers: [],
+                const newState = reducer(initialState, action);
+                const expectedState = {
+                    accountInfo: {
+                        dummy: {
+                            balance: 0,
+                            addresses: { foo: {}, baz: {} },
+                            transfers: [],
+                        },
+                    },
+                };
+
+                expect(newState.accountInfo).to.eql(expectedState.accountInfo);
             });
 
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                accountInfo: {
-                    dummy: {
-                        balance: 0,
-                        addresses: { foo: {}, baz: {} },
-                        transfers: [],
+            it('should set transfers in payload to accountName in accountInfo', () => {
+                const initialState = {
+                    accountInfo: {
+                        foo: {
+                            balance: 0,
+                            transfers: [[{}, {}], [{}, {}], [{}, {}]],
+                        },
                     },
-                },
-            };
+                };
 
-            expect(newState.accountInfo).to.eql(expectedState.accountInfo);
-        });
-
-        it('should set transfers in payload to accountName in accountInfo', () => {
-            const initialState = {
-                accountInfo: {
-                    foo: {
-                        balance: 0,
-                        transfers: [[{}, {}], [{}, {}], [{}, {}]],
-                    },
-                },
-            };
-
-            const accountName = 'foo';
-            const action = actions.updateAccountInfoAfterSpending({
-                accountName,
-                transfers: [[{}, {}], [{}, {}]],
-            });
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                accountInfo: {
-                    foo: {
-                        balance: 0,
+                const accountName = 'foo';
+                const action = {
+                    type: actionType,
+                    payload: {
+                        accountName,
                         transfers: [[{}, {}], [{}, {}]],
                     },
-                },
-            };
+                };
 
-            expect(newState.accountInfo[accountName].transfers).to.eql(
-                expectedState.accountInfo[accountName].transfers,
-            );
-        });
+                const newState = reducer(initialState, action);
+                const expectedState = {
+                    accountInfo: {
+                        foo: {
+                            balance: 0,
+                            transfers: [[{}, {}], [{}, {}]],
+                        },
+                    },
+                };
 
-        it('should set txHashesForUnspentAddresses in payload to txHashesForUnspentAddresses in state', () => {
-            const initialState = {
-                txHashesForUnspentAddresses: {
-                    firstAccount: ['baz', 'bar'],
-                    secondAccount: ['hash'],
-                },
-            };
-
-            const action = actions.updateAccountInfoAfterSpending({
-                accountName: 'firstAccount',
-                txHashesForUnspentAddresses: ['baz'],
+                expect(newState.accountInfo[accountName].transfers).to.eql(
+                    expectedState.accountInfo[accountName].transfers,
+                );
             });
 
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                txHashesForUnspentAddresses: {
-                    firstAccount: ['baz'],
-                    secondAccount: ['hash'],
-                },
-            };
+            it('should set txHashesForUnspentAddresses in payload to txHashesForUnspentAddresses in state', () => {
+                const initialState = {
+                    txHashesForUnspentAddresses: {
+                        firstAccount: ['baz', 'bar'],
+                        secondAccount: ['hash'],
+                    },
+                };
 
-            expect(newState.txHashesForUnspentAddresses).to.eql(expectedState.txHashesForUnspentAddresses);
-        });
+                const action = {
+                    type: actionType,
+                    payload: {
+                        accountName: 'firstAccount',
+                        txHashesForUnspentAddresses: ['baz'],
+                    },
+                };
 
-        it('should set pendingTxHashesForSpentAddresses in payload to pendingTxHashesForSpentAddresses in state', () => {
-            const initialState = {
-                pendingTxHashesForSpentAddresses: {
-                    firstAccount: ['baz', 'bar'],
-                    secondAccount: ['hash'],
-                },
-            };
+                const newState = reducer(initialState, action);
+                const expectedState = {
+                    txHashesForUnspentAddresses: {
+                        firstAccount: ['baz'],
+                        secondAccount: ['hash'],
+                    },
+                };
 
-            const action = actions.updateAccountInfoAfterSpending({
-                accountName: 'firstAccount',
-                pendingTxHashesForSpentAddresses: ['baz'],
+                expect(newState.txHashesForUnspentAddresses).to.eql(expectedState.txHashesForUnspentAddresses);
             });
 
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                pendingTxHashesForSpentAddresses: {
-                    firstAccount: ['baz'],
-                    secondAccount: ['hash'],
-                },
-            };
+            it('should set pendingTxHashesForSpentAddresses in payload to pendingTxHashesForSpentAddresses in state', () => {
+                const initialState = {
+                    pendingTxHashesForSpentAddresses: {
+                        firstAccount: ['baz', 'bar'],
+                        secondAccount: ['hash'],
+                    },
+                };
 
-            expect(newState.pendingTxHashesForSpentAddresses).to.eql(expectedState.pendingTxHashesForSpentAddresses);
-        });
+                const action = {
+                    type: actionType,
+                    payload: {
+                        accountName: 'firstAccount',
+                        pendingTxHashesForSpentAddresses: ['baz'],
+                    },
+                };
 
-        it('should merge unconfirmedBundleTails in payload to unconfirmedBundleTails in state', () => {
-            const initialState = {
-                unconfirmedBundleTails: { foo: {} },
-            };
+                const newState = reducer(initialState, action);
+                const expectedState = {
+                    pendingTxHashesForSpentAddresses: {
+                        firstAccount: ['baz'],
+                        secondAccount: ['hash'],
+                    },
+                };
 
-            const action = actions.updateAccountInfoAfterSpending({ unconfirmedBundleTails: { baz: {} } });
+                expect(newState.pendingTxHashesForSpentAddresses).to.eql(
+                    expectedState.pendingTxHashesForSpentAddresses,
+                );
+            });
 
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                unconfirmedBundleTails: { baz: {}, foo: {} },
-            };
+            it('should merge unconfirmedBundleTails in payload to unconfirmedBundleTails in state', () => {
+                const initialState = {
+                    unconfirmedBundleTails: { foo: {} },
+                };
 
-            expect(newState.unconfirmedBundleTails).to.eql(expectedState.unconfirmedBundleTails);
+                const action = {
+                    type: actionType,
+                    payload: { unconfirmedBundleTails: { baz: {} } },
+                };
+
+                const newState = reducer(initialState, action);
+                const expectedState = {
+                    unconfirmedBundleTails: { baz: {}, foo: {} },
+                };
+
+                expect(newState.unconfirmedBundleTails).to.eql(expectedState.unconfirmedBundleTails);
+            });
         });
     });
 });
