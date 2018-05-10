@@ -32,17 +32,19 @@ describe('actions: transfers', () => {
                 sandbox.stub(iota.api, 'broadcastBundle').yields(null);
                 sandbox.stub(iota.api, 'getNodeInfo').yields(null, {});
                 sandbox.stub(transferUtils, 'isStillAValidTransaction').resolves(false);
+                sandbox.stub(accountsUtils, 'syncAccount').resolves(accounts.accountInfo.TEST);
             });
 
             afterEach(() => {
                 sandbox.restore();
             });
 
-            it('should create actions of type IOTA/TRANSFERS/BROADCAST_BUNDLE_REQUEST, IOTA/ALERTS/SHOW and IOTA/TRANSFERS/BROADCAST_BUNDLE_ERROR', () => {
+            it('should create actions of type IOTA/TRANSFERS/BROADCAST_BUNDLE_REQUEST, IOTA/ALERTS/SHOW, IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST and IOTA/TRANSFERS/BROADCAST_BUNDLE_ERROR', () => {
                 const store = mockStore({ accounts });
 
                 const expectedActions = [
                     'IOTA/TRANSFERS/BROADCAST_BUNDLE_REQUEST',
+                    'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST',
                     'IOTA/ALERTS/SHOW',
                     'IOTA/TRANSFERS/BROADCAST_BUNDLE_ERROR',
                 ];
@@ -69,17 +71,19 @@ describe('actions: transfers', () => {
                 sandbox.stub(iota.api, 'broadcastBundle').yields(null);
                 sandbox.stub(iota.api, 'getNodeInfo').yields(null, {});
                 sandbox.stub(transferUtils, 'isStillAValidTransaction').resolves(true);
+                sandbox.stub(accountsUtils, 'syncAccount').resolves(accounts.accountInfo.TEST);
             });
 
             afterEach(() => {
                 sandbox.restore();
             });
 
-            it('should create actions of type IOTA/TRANSFERS/BROADCAST_BUNDLE_REQUEST, IOTA/TRANSFERS/BROADCAST_BUNDLE_SUCCESS and IOTA/ALERTS/SHOW', () => {
+            it('should create actions of type IOTA/TRANSFERS/BROADCAST_BUNDLE_REQUEST, IOTA/TRANSFERS/BROADCAST_BUNDLE_SUCCESS, IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST and IOTA/ALERTS/SHOW', () => {
                 const store = mockStore({ accounts });
 
                 const expectedActions = [
                     'IOTA/TRANSFERS/BROADCAST_BUNDLE_REQUEST',
+                    'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST',
                     'IOTA/ALERTS/SHOW',
                     'IOTA/TRANSFERS/BROADCAST_BUNDLE_SUCCESS',
                 ];
@@ -108,17 +112,19 @@ describe('actions: transfers', () => {
                 sandbox.stub(iota.api, 'promoteTransaction').yields(null, '9'.repeat(81));
                 sandbox.stub(iota.api, 'replayBundle').yields(null, []);
                 sandbox.stub(transferUtils, 'isStillAValidTransaction').resolves(false);
+                sandbox.stub(accountsUtils, 'syncAccount').resolves(accounts.accountInfo.TEST);
             });
 
             afterEach(() => {
                 sandbox.restore();
             });
 
-            it('should create actions of type IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST, IOTA/ALERTS/SHOW and IOTA/TRANSFERS/PROMOTE_TRANSACTION_ERROR', () => {
+            it('should create actions of type IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST, IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION, IOTA/ALERTS/SHOW and IOTA/TRANSFERS/PROMOTE_TRANSACTION_ERROR', () => {
                 const store = mockStore({ accounts });
 
                 const expectedActions = [
                     'IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST',
+                    'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION',
                     'IOTA/ALERTS/SHOW',
                     'IOTA/TRANSFERS/PROMOTE_TRANSACTION_ERROR',
                 ];
@@ -142,6 +148,7 @@ describe('actions: transfers', () => {
             beforeEach(() => {
                 sandbox = sinon.sandbox.create();
 
+                sandbox.stub(accountsUtils, 'syncAccount').resolves(accounts.accountInfo.TEST);
                 sandbox.stub(iota.api, 'promoteTransaction').yields(null, '9'.repeat(81));
                 sandbox.stub(transferUtils, 'isStillAValidTransaction').resolves(true);
                 sandbox
@@ -153,11 +160,12 @@ describe('actions: transfers', () => {
                 sandbox.restore();
             });
 
-            it('should create actions of type IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST, IOTA/TRANSFERS/PROMOTE_TRANSACTION_SUCCESS and IOTA/ALERTS/SHOW', () => {
+            it('should create actions of type IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST, IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION, IOTA/TRANSFERS/PROMOTE_TRANSACTION_SUCCESS and IOTA/ALERTS/SHOW', () => {
                 const store = mockStore({ accounts });
 
                 const expectedActions = [
                     'IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST',
+                    'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION',
                     'IOTA/ALERTS/SHOW',
                     'IOTA/TRANSFERS/PROMOTE_TRANSACTION_SUCCESS',
                 ];
@@ -202,6 +210,7 @@ describe('actions: transfers', () => {
                 sandbox.stub(iota.api, 'replayBundle').yields(null, []);
                 sandbox.stub(transferUtils, 'isStillAValidTransaction').resolves(true);
                 sandbox.stub(transferUtils, 'getFirstConsistentTail').resolves(false);
+                sandbox.stub(accountsUtils, 'syncAccount').resolves(accounts.accountInfo.TEST);
                 syncAccountAfterReattachment = sandbox.stub(accountsUtils, 'syncAccountAfterReattachment').resolves({});
             });
 
