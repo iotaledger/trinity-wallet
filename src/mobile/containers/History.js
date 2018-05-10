@@ -143,6 +143,9 @@ class History extends Component {
         if (this.props.isFetchingLatestAccountInfoOnLogin && !newProps.isFetchingLatestAccountInfoOnLogin) {
             this.setState({ isRefreshing: false });
         }
+        if (this.props.isFetchingAccountInfo && !newProps.isFetchingAccountInfo) {
+            this.setState({ isRefreshing: false });
+        }
         if (seedIndex !== newProps.seedIndex) {
             this.setState({ isRefreshing: false });
         }
@@ -198,18 +201,10 @@ class History extends Component {
         const isAlreadyFetchingAccountInfo = props.isFetchingAccountInfo;
 
         if (isAlreadyFetchingAccountInfo) {
-            this.generateAlreadyFetchingAccountInfoAlert();
+            this.setState({ isRefreshing: true });
         }
 
         return isAlreadyDoingSomeHeavyLifting || isAlreadyFetchingAccountInfo;
-    }
-
-    generateAlreadyFetchingAccountInfoAlert() {
-        this.props.generateAlert(
-            'error',
-            'Already fetching transaction history',
-            'Your transaction history will be updated automatically.',
-        );
     }
 
     updateAccountData() {
