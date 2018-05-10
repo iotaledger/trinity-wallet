@@ -229,6 +229,7 @@ export class Balance extends Component {
                     />
                 }
                 contentContainerStyle={{flex: 1}}
+                showsVerticalScrollIndicator={false}
             >
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
                     <View style={styles.container}>
