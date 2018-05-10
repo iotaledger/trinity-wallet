@@ -14,7 +14,7 @@ import Progress from 'ui/components/Progress';
 import Confirm from 'ui/components/modal/Confirm';
 import withSendData from 'containers/wallet/Send';
 
-import css from './index.css';
+import css from './index.scss';
 
 /**
  * Send transaction component

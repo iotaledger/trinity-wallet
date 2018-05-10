@@ -1,7 +1,10 @@
+$header: 60px;
+
 .settings {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    padding-top: 60px;
 
     header {
         display: flex;
@@ -9,7 +12,7 @@
         justify-content: flex-end;
         width: 100%;
         max-width: 680px;
-        height: var(--header-height);
+        height: $header;
         a:hover {
             color: var(--primary);
         }
@@ -31,7 +34,7 @@
 
     section:first-of-type {
         flex: 0 0 240px;
-        padding: var(--header-height) 0 20px;
+        padding: $header 0 20px;
     }
 
     section:last-of-type {
@@ -50,9 +53,7 @@
             display: flex;
             color: var(--body);
             line-height: 20px;
-            font-size: var(--font-size-m);
             text-decoration: none;
-            font-weight: 200;
             margin-bottom: 16px;
             cursor: pointer;
             &:hover,

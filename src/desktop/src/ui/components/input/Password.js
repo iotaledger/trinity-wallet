@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import zxcvbn from 'zxcvbn';
 
 import Icon from 'ui/components/Icon';
-import css from './input.css';
+import css from './input.scss';
 
 /**
  * Password input component
@@ -13,6 +15,12 @@ export default class PasswordInput extends React.PureComponent {
         value: PropTypes.string.isRequired,
         /** Should input focus when changed to true */
         focus: PropTypes.bool,
+        /** Should input show the password strength score */
+        showScore: PropTypes.bool,
+        /** Should input show the validation checkmark */
+        showValid: PropTypes.bool,
+        /** Should the input match a string */
+        match: PropTypes.string,
         /** Password input label */
         label: PropTypes.string.isRequired,
         /** Password change event function
@@ -44,8 +52,12 @@ export default class PasswordInput extends React.PureComponent {
     };
 
     render() {
-        const { label, value, onChange } = this.props;
+        const { label, value, onChange, showScore, showValid, match } = this.props;
         const { hidden } = this.state;
+
+        const score = zxcvbn(value);
+        const isValid = score.score === 4 && (!match || match === value);
+
         return (
             <div className={css.input}>
                 <fieldset>
@@ -61,6 +73,18 @@ export default class PasswordInput extends React.PureComponent {
                         onChange={(e) => onChange(e.target.value)}
                     />
                     <small>{label}</small>
+                    {showScore ? (
+                        <div className={css.score} data-strength={score.score}>
+                            <span />
+                            <span />
+                            <span />
+                        </div>
+                    ) : null}
+                    {showValid ? (
+                        <div className={classNames(css.valid, isValid ? css.isValid : null)}>
+                            <Icon icon="tickRound" size={26} />
+                        </div>
+                    ) : null}
                 </fieldset>
             </div>
         );

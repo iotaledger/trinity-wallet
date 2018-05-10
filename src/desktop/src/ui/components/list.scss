@@ -4,7 +4,6 @@
     margin: 0px;
     a {
         color: var(--secondary);
-        font-weight: 300;
         margin: 0 22px 0 0;
 
         &.empty {
@@ -16,7 +15,6 @@
         }
         small {
             font-size: 14px;
-            font-weight: 200;
             margin: 0 2px;
         }
     }
@@ -63,10 +61,6 @@
 
     a {
         list-style: none;
-
-        strong {
-            font-weight: 200;
-        }
 
         > div {
             list-style: none;
@@ -191,7 +185,6 @@
             }
 
             strong {
-                font-weight: 300;
                 padding-top: 21px;
             }
 

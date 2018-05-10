@@ -10,7 +10,7 @@ import { checkActivationCode } from 'libs/crypto';
 import Button from 'ui/components/Button';
 import Text from 'ui/components/input/Text';
 
-import css from './index.css';
+import css from './index.scss';
 
 /**
  * Alpha version activation view
@@ -93,7 +93,12 @@ class Activation extends React.PureComponent {
         } else if (checkActivationCode(input, uuid)) {
             setActivationCode(input);
         } else {
-            generateAlert('error', 'Incorrect activation code', 'You entered an invalid activation code or e-mail.');
+            generateAlert(
+                'error',
+                'Incorrect activation code',
+                'You entered an invalid activation code or e-mail.',
+                999999,
+            );
         }
     };
 
@@ -105,23 +110,27 @@ class Activation extends React.PureComponent {
         return (
             <main className={css.onboarding}>
                 <header />
-                <section>
-                    <form className="center" onSubmit={this.setCode}>
-                        <fieldset>
-                            <h2>Activate your copy of Trinity wallet</h2>
-                            <p>Enter your activation code or e-mail below</p>
-                            <Text
-                                focus
-                                value={this.state.input}
-                                onChange={(value) => this.setState({ input: value })}
-                            />
-                            <Button type="submit" loading={this.state.loading} className="large" variant="primary">
-                                Activate
-                            </Button>
-                        </fieldset>
-                    </form>
-                </section>
-                <footer />
+                <div>
+                    <div>
+                        <form onSubmit={this.setCode}>
+                            <section>
+                                <h1>Activate your copy of Trinity wallet</h1>
+                                <p>Enter your activation code or e-mail below</p>
+                                <Text
+                                    focus
+                                    value={this.state.input}
+                                    label="Activation code"
+                                    onChange={(value) => this.setState({ input: value })}
+                                />
+                            </section>
+                            <footer>
+                                <Button type="submit" loading={this.state.loading} className="square" variant="primary">
+                                    Activate
+                                </Button>
+                            </footer>
+                        </form>
+                    </div>
+                </div>
             </main>
         );
     }
