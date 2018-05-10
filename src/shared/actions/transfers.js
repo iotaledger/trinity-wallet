@@ -125,7 +125,7 @@ export const broadcastBundle = (bundleHash, accountName) => (dispatch, getState)
                 generateAlert(
                     'success',
                     i18next.t('global:rebroadcasted'),
-                    i18next.t('global:rebroadcastedWithHash', { tailHash }),
+                    i18next.t('global:rebroadcastedExplanation', { tailHash }),
                 )
             );
 
@@ -174,8 +174,8 @@ export const promoteTransaction = (bundleHash, accountName) => (dispatch, getSta
             dispatch(
                 generateAlert(
                     'success',
-                    i18next.t('global:promoting'),
-                    i18next.t('global:autopromotingExplanation', { hash }),
+                    i18next.t('global:promoted'),
+                    i18next.t('global:promotedExplanation', { hash }),
                 ),
             );
 
@@ -229,8 +229,8 @@ export const forceTransactionPromotion = (accountName, consistentTail, tails, sh
                     dispatch(
                         generateAlert(
                             'success',
-                            i18next.t('global:autoreattaching'),
-                            i18next.t('global:autoreattachingExplanation', { hash }),
+                            i18next.t('global:reattached'),
+                            i18next.t('global:reattachedExplanation', { hash }),
                             2500,
                         ),
                     );
