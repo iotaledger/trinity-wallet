@@ -296,8 +296,6 @@ class Home extends Component {
                                             navigator={navigator}
                                             onTabSwitch={(name) => this.onTabSwitch(name)}
                                             handleCloseTopBar={() => this.handleCloseTopBar()}
-                                            shouldPreventManualRefresh={() => this.shouldPreventManualRefresh()}
-                                            updateAccountData={() => this.updateAccountData()}
                                             isIOSKeyboardActive={isIOSKeyboardActive}
                                         />
                                     </View>
