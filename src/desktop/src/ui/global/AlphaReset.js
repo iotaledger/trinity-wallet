@@ -5,7 +5,7 @@ import { DESKTOP_VERSION } from 'config';
 
 import Button from 'ui/components/Button';
 
-import css from 'ui/views/onboarding/index.css';
+import css from 'ui/views/onboarding/index.scss';
 
 /**
  * Alpha version activation view

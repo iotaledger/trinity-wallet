@@ -10,18 +10,16 @@
     border-radius: 3px;
     cursor: pointer;
     display: inline-block;
-    height: 42px;
-    line-height: 40px;
-    font-size: var(--font-size-s);
+    height: 50px;
+    line-height: 46px;
     letter-spacing: 0.2px;
-    min-width: 140px;
-    text-decoration: none;
-    text-transform: uppercase;
+    min-width: 200px;
     text-align: center;
-    font-weight: 200;
     padding: 0 24px 0;
     user-select: none;
     overflow: visible;
+    font-weight: 400;
+    font-size: 16px;
     transition: padding 0.2s cubic-bezier(0.55, 0, 0.1, 1);
     &:focus {
         outline: none;
@@ -37,7 +35,6 @@
     &.inline {
         padding: 0 32px;
         line-height: 44px;
-        font-weight: 300;
         height: 46px;
         font-size: 16px;
         text-transform: capitalize;
@@ -46,6 +43,12 @@
     &.disabled {
         opacity: 0.3;
         pointer-events: none;
+    }
+    &.square {
+        border-radius: 0px;
+        font-size: 18px;
+        height: 70px;
+        line-height: 70px;
     }
     &:before {
         content: '';
@@ -60,12 +63,6 @@
         border: 1px solid transparent;
         border-top-color: var(--color-Border);
         opacity: 0;
-    }
-}
-
-footer {
-    .button + .button {
-        margin-left: 20px;
     }
 }
 
@@ -112,6 +109,15 @@ footer {
     &:hover {
         background: var(--extra-hover);
         border-color: var(--extra-hover);
+    }
+}
+
+.back {
+    composes: button;
+    color: var(--back-body);
+    background: var(--back);
+    &:hover {
+        background: var(--dark-hover);
     }
 }
 
@@ -172,9 +178,8 @@ footer {
 .icon {
     border: none;
     background: none;
-    text-transform: capitalize;
-    font-size: 14px;
     color: var(--body);
+    font-weight: 300;
     cursor: pointer;
     height: auto;
     padding: 0px;

@@ -1,0 +1,20 @@
+.wrapper {
+    display: inline-block;
+    position: relative;
+    margin: 0 0 20px;
+    padding: 42px 30px 30px;
+    text-align: left; 
+    width: 100%;
+    background: var(--infobox-bg);
+    border-top:28px solid var(--infobox-border);
+    border-radius: 6px;
+
+    > span {
+        position: absolute;
+        top: -14px;
+        left: 20px;
+        color: var(--body);
+        background: var(--infobox-border);
+        border-radius: 28px;
+    }
+}

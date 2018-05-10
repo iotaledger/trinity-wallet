@@ -16,7 +16,7 @@ import Button from 'ui/components/Button';
 import Clipboard from 'ui/components/Clipboard';
 import Text from 'ui/components/input/Text.js';
 
-import css from './receive.css';
+import css from './receive.scss';
 
 /**
  * Send transactions component

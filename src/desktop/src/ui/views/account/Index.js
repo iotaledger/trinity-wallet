@@ -11,7 +11,7 @@ import Seed from 'ui/views/account/Seed';
 import Addresses from 'ui/views/account/Addresses';
 import Remove from 'ui/views/account/Remove';
 
-import css from '../settings/index.css';
+import css from '../settings/index.scss';
 
 /** Account settings main wrapper component */
 class Account extends React.PureComponent {

@@ -38,10 +38,6 @@
             list-style: none;
             text-align: left;
             width: 33.33%;
-            font-weight: 300;
-            strong {
-                font-weight: 200;
-            }
             &:nth-child(2) {
                 text-align: center;
             }
@@ -76,6 +72,5 @@
         padding: 4px 6px;
         border-radius: 4px;
         font-size: 12px;
-        font-weight: 300;
     }
 }

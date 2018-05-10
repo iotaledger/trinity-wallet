@@ -9,7 +9,6 @@ import Icon from 'ui/components/Icon';
 import Welcome from 'ui/views/onboarding/Welcome';
 import Login from 'ui/views/onboarding/Login';
 import SeedIntro from 'ui/views/onboarding/SeedIntro';
-import SeedWarning from 'ui/views/onboarding/SeedWarning';
 import GenerateSeed from 'ui/views/onboarding/SeedGenerate';
 import SaveYourSeedOptions from 'ui/views/onboarding/SeedSave';
 import SeedEnter from 'ui/views/onboarding/SeedVerify';
@@ -17,7 +16,7 @@ import SeedName from 'ui/views/onboarding/AccountName';
 import SecurityEnter from 'ui/views/onboarding/AccountPassword';
 import Done from 'ui/views/onboarding/Done';
 
-import css from './index.css';
+import css from './index.scss';
 
 /**
  * Onboarding main router wrapper component
@@ -32,6 +31,8 @@ class Onboarding extends React.PureComponent {
         location: PropTypes.object,
         /** Browser history obejct */
         history: PropTypes.object,
+        /** Theme definitions object */
+        theme: PropTypes.object.isRequired,
     };
 
     state = {
@@ -46,9 +47,15 @@ class Onboarding extends React.PureComponent {
         }
     }
 
+    getWave(primary) {
+        const fill = primary ? this.props.theme.wave.primary : this.props.theme.wave.secondary;
+        const wave = `<svg width='3196px' height='227px' viewBox='0 0 3196 227' xmlns='http://www.w3.org/2000/svg'><path fill='${fill}' d='M-1.13686838e-13,227 L-1.13686838e-13,149.222136 C289,149.222136 382,49 782,49 C1182.25708,48.7480077 1288.582,148.706694 1598.03248,149.220507 C1885.47122,148.649282 1979.93914,1.73038667e-16 2379,1.73038667e-16 C2780.102,-0.252524268 2885,149.222526 3195.995,149.222526 C3195.995,178.515341 3196,227 3196,227 L1596,227 L-1.13686838e-13,227 Z'></path></svg>`;
+        return `url("data:image/svg+xml;utf8,${wave}")`;
+    }
+
     steps(currentKey) {
         const steps = [
-            'seed-warning',
+            'seed-intro',
             'seed-generate',
             'seed-save',
             'seed-verify',
@@ -96,7 +103,6 @@ class Onboarding extends React.PureComponent {
                         <div>
                             <Switch location={location}>
                                 <Route path="/onboarding/seed-intro" component={SeedIntro} />
-                                <Route path="/onboarding/seed-warning" component={SeedWarning} />
                                 <Route path="/onboarding/seed-generate" component={GenerateSeed} />
                                 <Route path="/onboarding/seed-save" component={SaveYourSeedOptions} />
                                 <Route path="/onboarding/seed-verify" component={SeedEnter} />
@@ -109,8 +115,18 @@ class Onboarding extends React.PureComponent {
                     </CSSTransition>
                 </TransitionGroup>
                 <div className={css.wave}>
-                    <div style={{ backgroundPosition: `${this.state.waveIndex * 40}%` }} />
-                    <div style={{ backgroundPosition: `${this.state.waveIndex * 20 + 50}%` }} />
+                    <div
+                        style={{
+                            backgroundImage: this.getWave(true),
+                            backgroundPosition: `${this.state.waveIndex * 20}% bottom`,
+                        }}
+                    />
+                    <div
+                        style={{
+                            backgroundImage: this.getWave(),
+                            backgroundPosition: `${this.state.waveIndex * 40 + 50}% bottom`,
+                        }}
+                    />
                 </div>
             </main>
         );
@@ -120,6 +136,7 @@ class Onboarding extends React.PureComponent {
 const mapStateToProps = (state) => ({
     complete: state.accounts.onboardingComplete,
     isAuthorised: state.wallet.ready,
+    theme: state.settings.theme,
 });
 
 export default withRouter(connect(mapStateToProps)(Onboarding));

@@ -17,7 +17,7 @@ import Balance from 'ui/components/Balance';
 import Receive from 'ui/views/wallet/Receive';
 import Send from 'ui/views/wallet/Send';
 
-import css from './dashboard.css';
+import css from './dashboard.scss';
 
 /**
  * Wallet dashboard component

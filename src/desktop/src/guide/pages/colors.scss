@@ -16,11 +16,7 @@
     strong {
         font-weight: 300;
         flex: 0 0 120px;
-        line-height: 42px;
-    }
-
-    span {
-        padding-top: 10px;
+        line-height: 21px;
     }
 
     em {
@@ -99,6 +95,16 @@
 }
 .negative-body {
     background: var(--negative-body);
+}
+
+.dark-color {
+   background: var(--dark);
+}
+.dark-hover {
+   background: var(--dark-hover);
+}
+.dark-body {
+   background: var(--dark-body);
 }
 
 .input-color {
