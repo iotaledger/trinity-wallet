@@ -192,6 +192,8 @@ export default class HistoryModalContent extends PureComponent {
         }).isRequired,
         /** Bundle hash for the transaction that is currently being promoted */
         currentlyPromotingBundleHash: PropTypes.string.isRequired,
+        /* Determines whether a bundle is confirmed */
+        persistence: PropTypes.bool.isRequired,
     };
 
     static defaultProps = {
@@ -267,9 +269,10 @@ export default class HistoryModalContent extends PureComponent {
             disableWhen,
             isBroadcastingBundle,
             currentlyPromotingBundleHash,
+            persistence,
         } = this.props;
 
-        const bundleIsBeingPromoted = currentlyPromotingBundleHash === bundle;
+        const bundleIsBeingPromoted = currentlyPromotingBundleHash === bundle && !persistence;
         const opacity = { opacity: disableWhen ? (isAndroid ? 0.3 : 0.2) : 1 };
 
         return (
@@ -319,9 +322,7 @@ export default class HistoryModalContent extends PureComponent {
                                         value > 0 && (
                                             <View style={[styles.buttonsContainer]}>
                                                 {(!bundleIsBeingPromoted && (
-                                                    <View
-                                                        style={[ styles.buttonContainer, opacity ]}
-                                                    >
+                                                    <View style={[styles.buttonContainer, opacity]}>
                                                         <CtaButton
                                                             ctaColor={style.primaryColor}
                                                             secondaryCtaColor={style.primaryBody}
@@ -342,9 +343,7 @@ export default class HistoryModalContent extends PureComponent {
                                                     </View>
                                                 )}
                                                 {(!isBroadcastingBundle && (
-                                                    <View
-                                                        style={[ styles.buttonContainer, opacity ]}
-                                                    >
+                                                    <View style={[styles.buttonContainer, opacity]}>
                                                         <CtaButton
                                                             ctaColor={style.secondaryColor}
                                                             secondaryCtaColor={style.secondaryBody}
