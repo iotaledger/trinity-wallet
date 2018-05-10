@@ -198,6 +198,20 @@ export default class HistoryModalContent extends PureComponent {
         message: 'Empty',
     };
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            scrollable: false,
+        };
+    }
+
+    setScrollable(y) {
+        if (y >= height / 1.25) {
+            return this.setState({ scrollable: true });
+        }
+        this.setState({ scrollable: false });
+    }
+
     copy(item, type) {
         const { t } = this.props;
 
@@ -244,6 +258,7 @@ export default class HistoryModalContent extends PureComponent {
                 keyExtractor={(item, index) => index}
                 renderItem={({ item }) => this.renderAddressRow(item)}
                 ItemSeparatorComponent={() => <View />}
+                scrollEnabled={false}
             />
         );
     }
@@ -268,7 +283,7 @@ export default class HistoryModalContent extends PureComponent {
             isBroadcastingBundle,
             currentlyPromotingBundleHash,
         } = this.props;
-
+        const { scrollable } = this.state;
         const bundleIsBeingPromoted = currentlyPromotingBundleHash === bundle && !confirmationBool;
         const opacity = { opacity: disableWhen ? (isAndroid ? 0.3 : 0.2) : 1 };
 
@@ -276,7 +291,7 @@ export default class HistoryModalContent extends PureComponent {
             <TouchableWithoutFeedback style={styles.container} onPress={onPress}>
                 <View style={styles.wrapper}>
                     <View style={[styles.content, style.borderColor, { backgroundColor: style.backgroundColor }]}>
-                        <ScrollView>
+                        <ScrollView scrollEnabled={scrollable} onContentSizeChange={(x, y) => this.setScrollable(y)}>
                             <TouchableWithoutFeedback style={{ flex: 1 }}>
                                 <View style={{ flex: 1 }}>
                                     <View style={styles.statusWrapper}>
