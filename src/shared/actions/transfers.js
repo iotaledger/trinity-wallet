@@ -197,17 +197,13 @@ export const promoteTransaction = (bundleHash, accountName) => (dispatch, getSta
 
             return getFirstConsistentTail(tailTransactions, 0);
         })
-<<<<<<< HEAD
-        .then((consistentTail) =>
-            dispatch(forceTransactionPromotion(accountName, consistentTail, tailTransactions, true)),
-=======
         .then((consistentTail) => dispatch(
             forceTransactionPromotion(
                 accountName,
                 consistentTail,
-                accountState.transfers[bundleHash].tailTransactions
+                accountState.transfers[bundleHash].tailTransactions,
+                true
             ))
->>>>>>> develop
         )
         .then((hash) => {
             dispatch(
