@@ -140,7 +140,7 @@ const broadcastBundleAsync = (tail) => {
             if (err) {
                 reject(err);
             } else {
-                resolve();
+                resolve(tail);
             }
         });
     });
