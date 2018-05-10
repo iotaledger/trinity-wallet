@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { isValidSeed } from 'libs/iota/utils';
 import { createRandomSeed } from 'libs/crypto';
+import { capitalize } from 'libs/helpers';
 
 import { setOnboardingSeed } from 'actions/ui';
 import { generateAlert } from 'actions/alerts';
@@ -11,7 +12,7 @@ import { generateAlert } from 'actions/alerts';
 import Button from 'ui/components/Button';
 import Icon from 'ui/components/Icon';
 
-import css from './index.css';
+import css from './index.scss';
 
 /**
  * Onboarding, Seed generation component
@@ -96,8 +97,9 @@ class GenerateSeed extends React.PureComponent {
         const { seed } = this.state;
 
         return (
-            <React.Fragment>
-                <section>
+            <form>
+                <section className={css.wide}>
+                    <h1>{t('newSeedSetup:generatedSeed')}</h1>
                     <p>{t('newSeedSetup:individualLetters')}</p>
                     <div className={css.seed}>
                         <div>
@@ -116,18 +118,18 @@ class GenerateSeed extends React.PureComponent {
                     </div>
                     <Button type="button" onClick={this.generateNewSeed} className="icon">
                         <Icon icon="sync" size={32} />
-                        {t('newSeedSetup:pressForNewSeed').toLowerCase()}
+                        {capitalize(t('newSeedSetup:pressForNewSeed'))}
                     </Button>
                 </section>
                 <footer>
-                    <Button onClick={this.onRequestPrevious} className="inline" variant="secondary">
-                        {t('back').toLowerCase()}
+                    <Button onClick={this.onRequestPrevious} className="square" variant="back">
+                        {t('goBackStep')}
                     </Button>
-                    <Button onClick={this.onRequestNext} className="large" variant="primary">
-                        {t('next').toLowerCase()}
+                    <Button onClick={this.onRequestNext} className="square" variant="primary">
+                        {t('continue')}
                     </Button>
                 </footer>
-            </React.Fragment>
+            </form>
         );
     }
 }

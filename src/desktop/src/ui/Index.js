@@ -14,10 +14,8 @@ import { getUpdateData, updateTheme } from 'actions/settings';
 import { fetchNodeList } from 'actions/polling';
 import { disposeOffAlert, generateAlert } from 'actions/alerts';
 
-import { DESKTOP_VERSION } from 'config';
-
 import Idle from 'ui/global/Idle';
-import AlphaReset from 'ui/global/AlphaReset';
+import Titlebar from 'ui/global/Titlebar';
 import FatalError from 'ui/global/FatalError';
 
 import Loading from 'ui/components/Loading';
@@ -30,7 +28,7 @@ import Activation from 'ui/views/onboarding/Activation';
 
 import withAutoNodeSwitching from 'containers/global/AutoNodeSwitching';
 
-import css from './index.css';
+import css from './index.scss';
 
 /** Main wallet wrapper component */
 class App extends React.Component {
@@ -215,16 +213,8 @@ class App extends React.Component {
         if (this.state.fatalError) {
             return (
                 <div className={css.trintiy}>
+                    <Titlebar />
                     <FatalError />
-                </div>
-            );
-        }
-
-        // Hotfix: Temporary block wallet with a hard reset (for release 0.1.2)
-        if (DESKTOP_VERSION !== Electron.getActiveVersion()) {
-            return (
-                <div className={css.trintiy}>
-                    <AlphaReset />
                 </div>
             );
         }
@@ -232,6 +222,7 @@ class App extends React.Component {
         if (!activationCode) {
             return (
                 <div className={css.trintiy}>
+                    <Titlebar />
                     <Activation />
                 </div>
             );
@@ -239,6 +230,7 @@ class App extends React.Component {
 
         return (
             <div className={css.trintiy}>
+                <Titlebar />
                 <Idle timeout={settings.lockScreenTimeout} />
                 <TransitionGroup>
                     <CSSTransition key={currentKey} classNames="fade" timeout={300}>

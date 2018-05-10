@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from 'ui/components/Button';
-import css from './buttons.css';
+import css from './buttons.scss';
 
 const variants = ['primary', 'secondary', 'positive', 'negative', 'extra'];
 

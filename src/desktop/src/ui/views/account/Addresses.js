@@ -8,7 +8,7 @@ import { selectAccountInfo } from 'selectors/accounts';
 import Scrollbar from 'ui/components/Scrollbar';
 import Clipboard from 'ui/components/Clipboard';
 
-import css from './addresses.css';
+import css from './addresses.scss';
 
 /**
  * Account addresses component

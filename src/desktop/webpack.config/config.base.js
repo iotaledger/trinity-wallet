@@ -26,7 +26,7 @@ module.exports = {
                 ],
             },
             {
-                test: /\.css$/,
+                test: /\.scss$/,
                 exclude: /node_modules/,
                 use: [
                     devMode
@@ -47,7 +47,12 @@ module.exports = {
                             sourceMap: true,
                         },
                     },
-                    'postcss-loader',
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            includePaths: ['./src/'],
+                        },
+                    },
                 ],
             },
             {

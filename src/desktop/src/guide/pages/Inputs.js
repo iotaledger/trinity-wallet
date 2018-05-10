@@ -46,11 +46,6 @@ class Inputs extends React.PureComponent {
                         balance={2000}
                         onChange={(value) => this.setState({ ammount: value })}
                     />
-                    <MessageInput
-                        message={this.state.message}
-                        label="Auto size"
-                        onChange={(value) => this.setState({ message: value })}
-                    />
                 </form>
             </div>
         );

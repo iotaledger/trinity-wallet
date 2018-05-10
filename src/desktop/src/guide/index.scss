@@ -1,9 +1,14 @@
+body{
+   background: var(--body-bg);
+}
+
 .styleguide {
     display: flex;
     width: 100vw;
     height: 100vh;
     background: var(--body-bg);
     overflow: scroll;
+    overflow-x: hidden;
 
     aside {
         width: 240px;
@@ -54,6 +59,7 @@
 
         select {
             background: none;
+            border: none;
             color: var(--bar);
         }
         fieldset a:after {

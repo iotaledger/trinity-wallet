@@ -6,7 +6,7 @@ import { round } from 'libs/utils';
 import { getCurrencySymbol } from 'libs/currency';
 
 import Icon from 'ui/components/Icon';
-import css from './input.css';
+import css from './input.scss';
 
 const units = ['i', 'Ki', 'Mi', 'Gi', 'Ti', '$'];
 const decimals = [0, 3, 6, 9, 12, 2];

@@ -3,19 +3,35 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import sjcl from 'sjcl';
+import zxcvbn from 'zxcvbn';
 
 import { generateAlert } from 'actions/alerts';
 import { addAccountName, increaseSeedCount } from 'actions/accounts';
 import { setAdditionalAccountInfo, setSeedIndex, setPassword } from 'actions/wallet';
 import { setOnboardingSeed, setOnboardingName } from 'actions/ui';
 
-import { isValidPassword } from 'libs/utils';
 import { setVault } from 'libs/crypto';
 
 import Button from 'ui/components/Button';
-import Infobox from 'ui/components/Info';
 import PasswordInput from 'ui/components/input/Password';
 import ModalPassword from 'ui/components/modal/Password';
+
+const passwordReasons = {
+    'Straight rows of keys are easy to guess': 'reasonRow',
+    'Short keyboard patterns are easy to guess': 'reasonPattern',
+    'Names and surnames by themselves are easy to guess': 'reasonNames',
+    'Common names and surnames are easy to guess': 'reasonNames',
+    'Repeats like "aaa" are easy to guess': 'reasonRepeats',
+    'Repeats like "abcabcabc" are only slightly harder to guess than "abc"': 'reasonRepeats2',
+    'Sequences like abc or 6543 are easy to guess': 'reasonSequence',
+    'Recent years are easy to guess': 'reasonYears',
+    'Dates are often easy to guess': 'reasonDates',
+    'This is a top-10 common password': 'reasonTop10',
+    'This is a top-100 common password': 'reasonTop100',
+    'This is a very common password': 'reasonCommon',
+    'This is similar to a commonly used password': 'reasonSimilar',
+    'A word by itself is easy to guess': 'reasonWord',
+};
 
 /**
  * Onboarding, set account password
@@ -115,12 +131,16 @@ class AccountPassword extends React.PureComponent {
             );
         }
 
-        if (firstAccount && !isValidPassword(password)) {
-            return generateAlert(
-                'error',
-                t('changePassword:passwordTooShort'),
-                t('changePassword:passwordTooShortExplanation'),
-            );
+        if (firstAccount) {
+            const score = zxcvbn(password);
+
+            if (score.score < 4) {
+                const reason = score.feedback.warning
+                    ? t(`changePassword:${passwordReasons[score.feedback.warning]}`)
+                    : t('changePassword:passwordTooWeakReason');
+
+                return generateAlert('error', t('changePassword:passwordTooWeak'), reason);
+            }
         }
 
         this.setState({
@@ -178,27 +198,30 @@ class AccountPassword extends React.PureComponent {
         return (
             <form onSubmit={(e) => this.createAccount(e)}>
                 <section>
+                    <h1>{t('setPassword:choosePassword')}</h1>
+                    <p>{t('setPassword:anEncryptedCopy')}</p>
                     <PasswordInput
                         focus
                         value={this.state.password}
                         label={t('password')}
+                        showScore
+                        showValid
                         onChange={(value) => this.setState({ password: value })}
                     />
                     <PasswordInput
                         value={this.state.passwordConfirm}
                         label={t('setPassword:retypePassword')}
+                        showValid
+                        match={this.state.password}
                         onChange={(value) => this.setState({ passwordConfirm: value })}
                     />
-                    <Infobox>
-                        <p>{t('setPassword:anEncryptedCopy')}</p>
-                    </Infobox>
                 </section>
                 <footer>
-                    <Button to="/onboarding/account-name" className="inline" variant="secondary">
-                        {t('back').toLowerCase()}
+                    <Button to="/onboarding/account-name" className="square" variant="back">
+                        {t('goBackStep')}
                     </Button>
-                    <Button type="submit" className="large" variant="primary">
-                        {t('next').toLowerCase()}
+                    <Button type="submit" className="square" variant="primary">
+                        {t('continue')}
                     </Button>
                 </footer>
             </form>

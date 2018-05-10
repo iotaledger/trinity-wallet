@@ -13,7 +13,7 @@ import Scrollbar from 'ui/components/Scrollbar';
 
 import withListData from 'containers/components/List';
 
-import css from './list.css';
+import css from './list.scss';
 
 /**
  * Transaction history list component

@@ -7,7 +7,7 @@ import withChartData from 'containers/components/Chart';
 
 import Button from 'ui/components/Button';
 import Icon from 'ui/components/Icon';
-import css from './chart.css';
+import css from './chart.scss';
 
 /**
  * Chart component to display historical IOTA price charts

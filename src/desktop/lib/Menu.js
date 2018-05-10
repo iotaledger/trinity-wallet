@@ -41,6 +41,8 @@ let language = {
 };
 
 const initMenu = (app, getWindow) => {
+    let mainMenu = null;
+
     const navigate = (path) => {
         const mainWindow = getWindow('main');
         if (mainWindow) {
@@ -231,20 +233,27 @@ const initMenu = (app, getWindow) => {
 
         const applicationMenu = Menu.buildFromTemplate(template);
         Menu.setApplicationMenu(applicationMenu);
+
+        return applicationMenu;
     };
 
     app.once('ready', () => {
         ipcMain.on('menu.update', (e, settings) => {
             state[settings.attribute] = settings.value;
-            createMenu();
+            mainMenu = createMenu();
         });
 
         ipcMain.on('menu.language', (e, data) => {
             language = data;
-            createMenu();
+            mainMenu = createMenu();
         });
 
-        createMenu();
+        ipcMain.on('menu.popup', () => {
+            const mainWindow = getWindow('main');
+            mainMenu.popup(mainWindow);
+        });
+
+        mainMenu = createMenu();
     });
 };
 
