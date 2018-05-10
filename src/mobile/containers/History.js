@@ -284,7 +284,6 @@ class History extends Component {
                             generateAlert: this.props.generateAlert,
                             bundle,
                             addresses: [...map(inputs, withUnitAndChecksum), ...map(outputs, withUnitAndChecksum)],
-                            persistence,
                         }),
                     });
 

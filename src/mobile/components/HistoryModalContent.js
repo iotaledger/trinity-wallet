@@ -192,8 +192,6 @@ export default class HistoryModalContent extends PureComponent {
         }).isRequired,
         /** Bundle hash for the transaction that is currently being promoted */
         currentlyPromotingBundleHash: PropTypes.string.isRequired,
-        /* Determines whether a bundle is confirmed */
-        persistence: PropTypes.bool.isRequired,
     };
 
     static defaultProps = {
@@ -269,10 +267,9 @@ export default class HistoryModalContent extends PureComponent {
             disableWhen,
             isBroadcastingBundle,
             currentlyPromotingBundleHash,
-            persistence,
         } = this.props;
 
-        const bundleIsBeingPromoted = currentlyPromotingBundleHash === bundle && !persistence;
+        const bundleIsBeingPromoted = currentlyPromotingBundleHash === bundle && !confirmationBool;
         const opacity = { opacity: disableWhen ? (isAndroid ? 0.3 : 0.2) : 1 };
 
         return (
