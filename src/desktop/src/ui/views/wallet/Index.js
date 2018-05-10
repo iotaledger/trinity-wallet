@@ -6,7 +6,7 @@ import Sidebar from 'ui/views/wallet/Sidebar';
 import Dashboard from 'ui/views/wallet/Dashboard';
 import Polling from 'ui/global/Polling';
 
-import css from './index.css';
+import css from './index.scss';
 
 /**
  * Wallet functionallity router wrapper component

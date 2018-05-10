@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import css from './progress.css';
+import css from './progress.scss';
 
 /**
  * Progress bar component

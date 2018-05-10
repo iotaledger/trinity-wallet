@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import css from './modal.css';
+import css from './modal.scss';
 
 /**
  * Modal window component

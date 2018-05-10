@@ -12,7 +12,7 @@ import Logo from 'ui/components/Logo';
 import Icon from 'ui/components/Icon';
 import Confirm from 'ui/components/modal/Confirm';
 
-import css from './index.css';
+import css from './index.scss';
 
 /**
  * Wallet's sidebar component

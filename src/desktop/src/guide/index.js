@@ -7,7 +7,7 @@ import { BrowserRouter as Router, withRouter, NavLink, Switch, Route } from 'rea
 
 import { translate, I18nextProvider } from 'react-i18next';
 
-import 'ui/index.css';
+import 'ui/index.scss';
 
 import Logo from 'ui/components/Logo';
 import Theme from 'ui/global/Theme';
@@ -16,7 +16,7 @@ import ThemePicker from './ThemePicker';
 
 import i18next from '../libs/i18next';
 
-import css from './index.css';
+import css from './index.scss';
 import Colors from './pages/Colors';
 import Buttons from './pages/Buttons';
 import Inputs from './pages/Inputs';

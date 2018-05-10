@@ -20,16 +20,15 @@
 
     > div {
         text-align: center;
+        pointer-events: none;
     }
     h1 {
         margin: 45px 0 12px;
         font-size: 24px;
-        font-weight: 300;
         color: var(--body);
     }
     h2 {
         font-size: 16px;
-        font-weight: 300;
         color: var(--body);
     }
 }

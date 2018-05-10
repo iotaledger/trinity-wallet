@@ -25,7 +25,6 @@
         }
         text-align: center;
         h1 {
-            font-weight: 200;
             margin-bottom: 20px;
             max-width: none;
         }
@@ -47,11 +46,15 @@
 
     footer {
         margin-top: 40px;
+
+        a,
+        button {
+            margin: 24px;
+        }
     }
 
     .wrapper {
-        width: 80vw;
-        max-width: 680px;
+        width: calc(100vw - 40px);
         position: relative;
         z-index: 2;
         transform: scale(1);

@@ -31,16 +31,17 @@ class Done extends React.PureComponent {
     render() {
         const { t } = this.props;
         return (
-            <React.Fragment>
+            <form>
                 <section>
-                    <h2>{t('onboardingComplete:walletReady')}</h2>
+                    <h1>{t('onboardingComplete:allDone')}</h1>
+                    <p>{t('onboardingComplete:walletReady')}</p>
                 </section>
                 <footer>
-                    <Button onClick={this.setComplete} className="large" variant="primary">
-                        {t('done').toLowerCase()}
+                    <Button onClick={this.setComplete} className="square" variant="primary">
+                        {t('onboardingComplete:openYourWallet')}
                     </Button>
                 </footer>
-            </React.Fragment>
+            </form>
         );
     }
 }

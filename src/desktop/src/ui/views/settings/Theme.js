@@ -7,10 +7,10 @@ import themes from 'themes/themes';
 
 import Select from 'ui/components/input/Select';
 import Button from 'ui/components/Button';
-import inputCSS from 'ui/components/input/input.css';
+import inputCSS from 'ui/components/input/input.scss';
 import Icon from 'ui/components/Icon';
 
-import css from './index.css';
+import css from './index.scss';
 
 /** Theme switch component */
 class Theme extends React.PureComponent {

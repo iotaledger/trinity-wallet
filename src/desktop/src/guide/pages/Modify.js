@@ -7,7 +7,7 @@ import { generateAlert } from 'actions/alerts';
 import Input from 'ui/components/input/Text';
 import Button from 'ui/components/Button';
 
-import css from './modify.css';
+import css from './modify.scss';
 
 const colors = ['primary', 'secondary', 'positive', 'negative', 'extra'];
 

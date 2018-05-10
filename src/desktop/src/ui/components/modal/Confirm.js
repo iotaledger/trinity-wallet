@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Modal from 'ui/components/modal/Modal';
 import Button from 'ui/components/Button';
 
-import css from './modal.css';
+import css from './modal.scss';
 /**
  * Confirmation window component
  */

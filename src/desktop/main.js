@@ -50,6 +50,7 @@ function createWindow() {
         height: 768,
         minWidth: 500,
         minHeight: 720,
+        frame: process.platform === 'linux',
         titleBarStyle: 'hidden',
         icon: `${__dirname}/dist/icon.png`,
         backgroundColor: settings ? settings.theme.body.bg : '#1a373e',
