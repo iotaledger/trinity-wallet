@@ -24,6 +24,7 @@ import my.fin.RNIsDeviceRootedPackage;
 import com.bugsnag.BugsnagReactNative;
 import com.rajivshah.safetynet.RNGoogleSafetyNetPackage;
 import com.hieuvp.fingerprint.ReactNativeFingerprintScannerPackage;
+import com.rndetectnavbarandroid.RNDetectNavbarAndroidPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -54,6 +55,7 @@ public class MainApplication extends NavigationApplication {
             // eg. new VectorIconsPackage()
             new SvgPackage(),
             new MainReactPackage(),
+            new RNDetectNavbarAndroidPackage(),
             new RNDeviceInfo(),
             new RNOSModule(),
             new RNHTMLtoPDFPackage(),
