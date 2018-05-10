@@ -106,6 +106,7 @@ export const broadcastBundle = (bundleHash, accountName) => (dispatch, getState)
     const accountState = selectedAccountStateFactory(accountName)(getState());
     const transaction = accountState.transfers[bundleHash];
     const tailTransaction = sample(transaction.tailTransactions);
+    const tailHash = tailTransaction.hash;
 
     let chainBrokenInternally = false;
 
@@ -117,15 +118,15 @@ export const broadcastBundle = (bundleHash, accountName) => (dispatch, getState)
                 throw new Error(Errors.BUNDLE_NO_LONGER_VALID);
             }
 
-            return broadcastBundleAsync(tailTransaction.hash);
+            return broadcastBundleAsync(tailHash);
         })
         .then(() => {
             dispatch(
                 generateAlert(
                     'success',
-                    'Rebroadcasted transaction',
-                    `Rebroadcasted transaction with hash ${tailTransaction.hash}.`,
-                ),
+                    i18next.t('global:rebroadcasted'),
+                    i18next.t('global:rebroadcastedWithHash', { tailHash }),
+                )
             );
 
             return dispatch(broadcastBundleSuccess());
@@ -138,8 +139,8 @@ export const broadcastBundle = (bundleHash, accountName) => (dispatch, getState)
                 dispatch(
                     generateAlert(
                         'error',
-                        'Could not rebroadcast transaction ',
-                        'Something went wrong while rebroadcasting your transaction. Please try again.',
+                        i18next.t('global:rebroadcastError'),
+                        i18next.t('global:rebroadcastErrorExplanation'),
                     ),
                 );
             }
