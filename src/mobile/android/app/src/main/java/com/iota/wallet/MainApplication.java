@@ -14,7 +14,6 @@ import org.reactnative.camera.RNCameraPackage;
 import com.oblador.keychain.KeychainPackage;
 import com.peel.react.rnos.RNOSModule;
 import com.reactnativenavigation.NavigationApplication;
-import com.rndetectnavbarandroid.RNDetectNavbarAndroidPackage;
 import com.rnfs.RNFSPackage;
 import com.rnprint.RNPrint.RNPrintPackage;
 import com.github.wumke.RNExitApp.RNExitAppPackage;
@@ -62,7 +61,6 @@ public class MainApplication extends NavigationApplication {
 	          new RNCameraPackage(),
 	          new RNFSPackage(),
             new ExtraDimensionsPackage(),
-            new RNDetectNavbarAndroidPackage(),
             new KCKeepAwakePackage(),
             new KeychainPackage(),
             new LottiePackage(),
