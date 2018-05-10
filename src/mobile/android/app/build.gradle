@@ -136,6 +136,7 @@ android {
     }
 }
 dependencies {
+    compile project(':react-native-detect-navbar-android')
     compile project(':react-native-fingerprint-scanner')
     compile project(':react-native-fabric')
     compile project(':react-native-keep-awake')
