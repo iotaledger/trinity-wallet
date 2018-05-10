@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getAccountInfo } from 'iota-wallet-shared-modules/actions/accounts';
 import { getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
+import { translate } from 'react-i18next';
 import { getSeedFromKeychain } from '../utils/keychain';
 
 const mapDispatchToProps = {
@@ -141,5 +142,5 @@ export default () => (C) => {
         seedIndex: PropTypes.number.isRequired,
     };
 
-    return connect(mapStateToProps, mapDispatchToProps)(WithManualRefresh);
+    return translate(['global'])(connect(mapStateToProps, mapDispatchToProps)(WithManualRefresh));
 };
