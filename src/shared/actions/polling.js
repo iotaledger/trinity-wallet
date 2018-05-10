@@ -270,7 +270,7 @@ export const promoteTransfer = (bundleHash, tails) => (dispatch, getState) => {
 
             return getFirstConsistentTail(tails, 0);
         })
-        .then((consistentTail) => dispatch(forceTransactionPromotion(accountName, consistentTail, tails, true)))
+        .then((consistentTail) => dispatch(forceTransactionPromotion(accountName, consistentTail, tails, false)))
         .then(() => {
             // Rearrange bundles so that the next cycle picks up a new bundle for promotion
             dispatch(
