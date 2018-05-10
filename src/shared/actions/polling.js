@@ -13,6 +13,7 @@ import { syncAccount } from '../libs/iota/accounts';
 import { forceTransactionPromotion } from './transfers';
 import i18next from '../i18next.js';
 import { NODELIST_URL, nodes } from '../config';
+import Errors from '../libs/errors';
 
 export const ActionTypes = {
     SET_POLL_FOR: 'IOTA/POLLING/SET_POLL_FOR',
@@ -266,7 +267,7 @@ export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
             if (!isValid) {
                 dispatch(removeBundleFromUnconfirmedBundleTails(bundle));
 
-                throw new Error('Bundle no longer valid');
+                throw new Error(Errors.BUNDLE_NO_LONGER_VALID);
             }
 
             return getFirstConsistentTail(tails, 0);
