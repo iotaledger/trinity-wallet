@@ -67,8 +67,9 @@ const broadcastBundleError = () => ({
     type: ActionTypes.BROADCAST_BUNDLE_ERROR,
 });
 
-const promoteTransactionRequest = () => ({
+const promoteTransactionRequest = (payload) => ({
     type: ActionTypes.PROMOTE_TRANSACTION_REQUEST,
+    payload,
 });
 
 const promoteTransactionSuccess = () => ({
@@ -140,7 +141,7 @@ export const broadcastBundle = (bundleHash, accountName) => (dispatch, getState)
             dispatch(
                 generateAlert(
                     'success',
-                    i18next.t('global:rebroadcastedTransaction'),
+                    i18next.t('global:rebroadcasted'),
                     i18next.t('global:rebroadcastExplanation', { hash })
                 ),
             );
@@ -167,7 +168,7 @@ export const broadcastBundle = (bundleHash, accountName) => (dispatch, getState)
 };
 
 export const promoteTransaction = (bundleHash, accountName) => (dispatch, getState) => {
-    dispatch(promoteTransactionRequest());
+    dispatch(promoteTransactionRequest(bundleHash));
 
     let accountState = null;
     let chainBrokenInternally = false;
@@ -175,7 +176,7 @@ export const promoteTransaction = (bundleHash, accountName) => (dispatch, getSta
     return syncAccount(selectedAccountStateFactory(accountName)(getState()))
         .then((newAccountState) => {
             accountState = newAccountState;
-            
+
             dispatch(syncAccountBeforeManualPromotion(accountState));
 
             const transaction = accountState.transfers[bundleHash];
@@ -200,15 +201,16 @@ export const promoteTransaction = (bundleHash, accountName) => (dispatch, getSta
             forceTransactionPromotion(
                 accountName,
                 consistentTail,
-                accountState.transfers[bundleHash].tailTransactions
+                accountState.transfers[bundleHash].tailTransactions,
+                true
             ))
         )
         .then((hash) => {
             dispatch(
                 generateAlert(
                     'success',
-                    i18next.t('global:promoting'),
-                    i18next.t('global:autopromotingExplanation', { hash }),
+                    i18next.t('global:promoted'),
+                    i18next.t('global:promotedExplanation', { hash }),
                 ),
             );
 
@@ -249,7 +251,10 @@ export const promoteTransaction = (bundleHash, accountName) => (dispatch, getSta
  *   @param {array} tails
  *   @returns {Promise}
  **/
-export const forceTransactionPromotion = (accountName, consistentTail, tails) => (dispatch, getState) => {
+export const forceTransactionPromotion = (accountName, consistentTail, tails, shouldGenerateAlert) => (
+    dispatch,
+    getState,
+) => {
     if (!consistentTail) {
         // Grab hash from the top tail to replay
         const topTx = head(tails);
@@ -257,14 +262,16 @@ export const forceTransactionPromotion = (accountName, consistentTail, tails) =>
 
         return replayBundleAsync(hash)
             .then((reattachment) => {
-                dispatch(
-                    generateAlert(
-                        'success',
-                        i18next.t('global:autoreattaching'),
-                        i18next.t('global:autoreattachingExplanation', { hash }),
-                        2500,
-                    ),
-                );
+                if (shouldGenerateAlert) {
+                    dispatch(
+                        generateAlert(
+                            'success',
+                            i18next.t('global:reattached'),
+                            i18next.t('global:reattachedExplanation', { hash }),
+                            2500,
+                        ),
+                    );
+                }
 
                 const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
