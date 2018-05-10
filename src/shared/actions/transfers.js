@@ -142,7 +142,7 @@ export const broadcastBundle = (bundleHash, accountName) => (dispatch, getState)
                 generateAlert(
                     'success',
                     i18next.t('global:rebroadcasted'),
-                    i18next.t('global:rebroadcastExplanation', { hash })
+                    i18next.t('global:rebroadcastedExplanation', { hash })
                 ),
             );
 
