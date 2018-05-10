@@ -27,8 +27,6 @@
         "redux-persist": "^4.10.1",
         "redux-thunk": "^2.2.0",
         "reselect": "^3.0.1",
-        "svg2ttf": "^4.1.0",
-        "svgicons2svgfont": "^9.0.2",
         "tinycolor2": "^1.4.1",
         "url-parse": "^1.2.0"
     },
@@ -43,6 +41,8 @@
         "redux-logger": "^3.0.6",
         "redux-mock-store": "^1.5.1",
         "sinon": "^4.5.0",
+        "svg2ttf": "^4.1.0",
+        "svgicons2svgfont": "^9.0.2",
         "timekeeper": "^2.0.0"
     }
 }
