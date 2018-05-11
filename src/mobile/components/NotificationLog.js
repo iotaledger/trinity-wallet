@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+        width
     },
     modalContent: {
         borderRadius: GENERAL.borderRadius,
