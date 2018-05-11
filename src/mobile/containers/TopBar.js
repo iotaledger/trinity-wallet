@@ -117,6 +117,8 @@ class TopBar extends Component {
         topBarHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.object]).isRequired,
         isIOSKeyboardActive: PropTypes.bool.isRequired,
         isTransitioning: PropTypes.bool.isRequired,
+        /** Currently selected mode */
+        mode: PropTypes.oneOf(['Expert', 'Standard']).isRequired,
     };
 
     static filterSeedTitles(accountNames, currentSeedIndex) {
@@ -219,6 +221,7 @@ class TopBar extends Component {
             topBarHeight,
             isIOSKeyboardActive,
             notificationLog,
+            mode
         } = this.props;
         const selectedTitle = get(accountNames, `[${seedIndex}]`) || ''; // fallback
         const selectedSubtitle = TopBar.humanizeBalance(balance);
@@ -249,7 +252,7 @@ class TopBar extends Component {
                     <View
                         style={{ width, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}
                     >
-                        {hasNotifications && !isIOSKeyboardActive ? (
+                        {hasNotifications && !isIOSKeyboardActive && mode === 'Expert' ? (
                             <TouchableOpacity
                                 hitSlop={{ left: width / 18, right: width / 18, top: 0, bottom: 0 }}
                                 style={styles.notificationContainer}
@@ -483,6 +486,7 @@ const mapStateToProps = (state) => ({
     accountInfo: state.accounts.accountInfo,
     currentSetting: state.wallet.currentSetting,
     seedIndex: state.wallet.seedIndex,
+    mode: state.settings.mode,
     isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
     isSendingTransfer: state.ui.isSendingTransfer,
     isTransitioning: state.ui.isTransitioning,
