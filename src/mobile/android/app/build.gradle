@@ -136,12 +136,12 @@ android {
     }
 }
 dependencies {
+    compile project(':react-native-detect-navbar-android')
     compile project(':react-native-fingerprint-scanner')
     compile project(':react-native-fabric')
     compile project(':react-native-keep-awake')
     compile project(':react-native-device-info')
     compile project(':react-native-extra-dimensions-android')
-    compile project(':react-native-detect-navbar-android')
     compile project(':react-native-os')
     compile (project(':react-native-camera')) {
         exclude group: "com.google.android.gms:+"
