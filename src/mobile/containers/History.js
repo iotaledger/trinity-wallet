@@ -1,5 +1,7 @@
 import assign from 'lodash/assign';
 import map from 'lodash/map';
+import includes from 'lodash/includes';
+import get from 'lodash/get';
 import orderBy from 'lodash/orderBy';
 import React, { Component } from 'react';
 import Modal from 'react-native-modal';
@@ -9,7 +11,7 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { broadcastBundle, promoteTransaction } from 'iota-wallet-shared-modules/actions/transfers';
-import { getTransfersForSelectedAccount, getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
+import { getTransfersForSelectedAccount, getSelectedAccountName, getAddressesForSelectedAccount } from 'iota-wallet-shared-modules/selectors/accounts';
 import { OptimizedFlatList } from 'react-native-optimized-flatlist';
 import { round } from 'iota-wallet-shared-modules/libs/utils';
 import { toggleModalActivity } from 'iota-wallet-shared-modules/actions/ui';
@@ -113,7 +115,9 @@ class History extends Component {
         /** Determines whether account is being manually refreshed */
         isRefreshing: PropTypes.bool.isRequired,
         /** Fetches latest account info on swipe down */
-        onRefresh: PropTypes.func.isRequired
+        onRefresh: PropTypes.func.isRequired,
+        /** Addresses for selected account */
+        addresses: PropTypes.array.isRequired,
     };
 
     constructor() {
@@ -159,14 +163,23 @@ class History extends Component {
             t,
             selectedAccountName,
             currentlyPromotingBundleHash,
-            isRefreshing
+            isRefreshing,
+            addresses
         } = this.props;
         const containerBorderColor = tinycolor(body.bg).isDark() ? 'rgba(255, 255, 255, 0.25)' : 'rgba(0, 0, 0, 0.25)';
         const containerBackgroundColor = tinycolor(body.bg).isDark() ? 'rgba(255, 255, 255, 0.08)' : 'transparent';
 
-        const computeConfirmationStatus = (persistence, incoming) => {
+        const computeConfirmationStatus = (bundle, persistence, incoming, value) => {
             if (!persistence) {
                 return t('global:pending');
+            }
+
+            if (value === 0) {
+                if (!includes(addresses, get(bundle, '[0].address')) &&
+                includes(addresses, get(bundle, '[1].address'))) {
+                    return t('global:sent');
+                }
+                return t('global:received');
             }
 
             return incoming ? t('global:received') : t('global:sent');
@@ -180,12 +193,13 @@ class History extends Component {
 
         const formattedTransfers = map(transfers, (transfer) => {
             const { timestamp, incoming, persistence, transferValue, inputs, outputs, bundle, message } = transfer;
+            const value = round(formatValue(transferValue), 1);
             return {
                 t,
                 status: incoming ? t('history:receive') : t('history:send'),
-                confirmation: computeConfirmationStatus(persistence, incoming),
+                confirmation: computeConfirmationStatus(bundle, persistence, incoming, value),
                 confirmationBool: persistence,
-                value: round(formatValue(transferValue), 1),
+                value,
                 unit: formatUnit(transferValue),
                 time: timestamp,
                 message,
@@ -333,6 +347,7 @@ class History extends Component {
 const mapStateToProps = (state) => ({
     transfers: getTransfersForSelectedAccount(state),
     selectedAccountName: getSelectedAccountName(state),
+    addresses: getAddressesForSelectedAccount(state),
     mode: state.settings.mode,
     theme: state.settings.theme,
     isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
