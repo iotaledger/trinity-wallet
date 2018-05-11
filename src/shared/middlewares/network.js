@@ -4,7 +4,7 @@ import i18next from '../i18next.js';
 
 /* eslint-disable no-unused-vars */
 const networkMiddleware = (store) => (next) => (action) => {
-    /* eslint-enable no-unused-vars */
+/* eslint-enable no-unused-vars */
 
     if (action.type === ActionTypes.CONNECTION_CHANGED && !action.payload.isConnected) {
         next({
