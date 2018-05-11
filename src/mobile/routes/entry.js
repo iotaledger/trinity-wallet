@@ -85,10 +85,10 @@ const fetchNodeList = (store) => {
 };
 
 const startListeningToConnectivityChanges = (store) => {
-    const checkConnection = isConnected => {
+    const checkConnection = (isConnected) => {
         store.dispatch({
             type: ActionTypes.CONNECTION_CHANGED,
-            payload: { isConnected }
+            payload: { isConnected },
         });
     };
 
@@ -101,7 +101,7 @@ export default (store) => {
     NetInfo.isConnected.fetch().then((isConnected) => {
         store.dispatch({
             type: ActionTypes.CONNECTION_CHANGED,
-            payload: { isConnected }
+            payload: { isConnected },
         });
 
         fetchNodeList(store);
