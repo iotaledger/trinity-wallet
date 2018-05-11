@@ -1,35 +1,27 @@
-import includes from 'lodash/includes';
 import { ActionTypes } from '../actions/wallet';
 import { ActionTypes as AlertsActionTypes } from '../actions/alerts';
+import i18next from '../i18next.js';
 
+/* eslint-disable no-unused-vars */
 const networkMiddleware = (store) => (next) => (action) => {
-  if (
-    action.type === ActionTypes.CONNECTION_CHANGED &&
-    !action.payload.isConnected
-  ) {
-    next({
-      category: 'error',
-      title: 'no network',
-      message: 'no connection man.',
-      type: AlertsActionTypes.SHOW,
-      closeInterval: 100000
-    });
+    /* eslint-enable no-unused-vars */
 
-    next(action);
-  } else if (action.type === ActionTypes.CONNECTION_CHANGED && action.payload.isConnected) {
-    next({ type: AlertsActionTypes.HIDE });
-    next(action);
-  } else {
-    next(action);
-  }
+    if (action.type === ActionTypes.CONNECTION_CHANGED && !action.payload.isConnected) {
+        next({
+            type: AlertsActionTypes.SHOW,
+            category: 'error',
+            title: i18next.t('global:noNetworkConnection'),
+            message: i18next.t('global:noNetworkConnectionExplanation'),
+            closeInterval: 100000,
+        });
 
-  if (includes(action.type, 'ALERTS/SHOW')) {
-    if (store.getState().wallet.hasConnection) {
-      next(action);
+        next(action);
+    } else if (action.type === ActionTypes.CONNECTION_CHANGED && action.payload.isConnected) {
+        next(action);
+        next({ type: AlertsActionTypes.HIDE });
+    } else {
+        next(action);
     }
-  } else {
-    next(action);
-  }
 };
 
 export default networkMiddleware;

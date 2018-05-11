@@ -56,7 +56,7 @@ class StatefulDropdownAlert extends Component {
         /** Determines whether modal is open */
         isModalActive: PropTypes.bool.isRequired,
         /** Determines whether has internet connection */
-        hasConnection: PropTypes.bool.isRequired
+        hasConnection: PropTypes.bool.isRequired,
     };
 
     static defaultProps = {
@@ -69,7 +69,7 @@ class StatefulDropdownAlert extends Component {
     }
 
     componentDidMount() {
-        this.generateDefaultWhenNoConnection();
+        this.generateAlertWhenNoConnection();
     }
 
     componentWillReceiveProps(newProps) {
@@ -103,7 +103,7 @@ class StatefulDropdownAlert extends Component {
         return tinycolor(backgroundColor).isDark() ? 'light-content' : 'dark-content';
     }
 
-    generateDefaultWhenNoConnection() {
+    generateAlertWhenNoConnection() {
         const { alerts: { category, title, message }, hasConnection } = this.props;
 
         if (!hasConnection && this.dropdown) {
@@ -153,7 +153,7 @@ class StatefulDropdownAlert extends Component {
 const mapStateToProps = (state) => ({
     alerts: state.alerts,
     isModalActive: state.ui.isModalActive,
-    hasConnection: state.wallet.hasConnection
+    hasConnection: state.wallet.hasConnection,
 });
 
 const mapDispatchToProps = { disposeOffAlert };
