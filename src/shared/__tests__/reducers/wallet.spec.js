@@ -19,7 +19,7 @@ describe('Reducer: wallet', () => {
                 addingAdditionalAccount: false,
                 balanceCheckToggle: false,
                 deepLinkActive: false,
-                hasConnection: true
+                hasConnection: true,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
@@ -726,7 +726,7 @@ describe('Reducer: wallet', () => {
 
             const action = {
                 type: 'IOTA/WALLET/CONNECTION_CHANGED',
-                payload: { isConnected: true }
+                payload: { isConnected: true },
             };
 
             const newState = reducer(initialState, action);
