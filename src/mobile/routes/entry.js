@@ -84,26 +84,33 @@ const fetchNodeList = (store) => {
     store.dispatch(fetchNodes());
 };
 
-const startListeningToConnectivityChanges = (store) =>{
-    const checkConnection = hasConnection => {
+const startListeningToConnectivityChanges = (store) => {
+    const checkConnection = isConnected => {
         store.dispatch({
-          type: ActionTypes.CONNECTION_CHANGED,
-          payload: hasConnection
+            type: ActionTypes.CONNECTION_CHANGED,
+            payload: { isConnected }
         });
-      };
-    
-      NetInfo.isConnected.addEventListener('connectionChange', checkConnection);
+    };
+
+    NetInfo.isConnected.addEventListener('connectionChange', checkConnection);
 };
 
 // Initialization function
 // Passed as a callback to persistStore to adjust the rendering time
 export default (store) => {
-    fetchNodeList(store);
-    startListeningToConnectivityChanges(store);
+    NetInfo.isConnected.fetch().then((isConnected) => {
+        store.dispatch({
+            type: ActionTypes.CONNECTION_CHANGED,
+            payload: { isConnected }
+        });
 
-    registerScreens(store, Provider);
-    translate.setI18n(i18);
+        fetchNodeList(store);
+        startListeningToConnectivityChanges(store);
 
-    setRandomIotaNode(store);
-    renderInitialScreen(store);
+        registerScreens(store, Provider);
+        translate.setI18n(i18);
+
+        setRandomIotaNode(store);
+        renderInitialScreen(store);
+    });
 };
