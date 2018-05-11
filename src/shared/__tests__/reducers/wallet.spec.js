@@ -19,6 +19,7 @@ describe('Reducer: wallet', () => {
                 addingAdditionalAccount: false,
                 balanceCheckToggle: false,
                 deepLinkActive: false,
+                hasConnection: true
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
@@ -698,7 +699,7 @@ describe('Reducer: wallet', () => {
         });
     });
 
-    describe('OTA/APP/WALLET/SET_DEEP_LINK_INACTIVE', () => {
+    describe('IOTA/APP/WALLET/SET_DEEP_LINK_INACTIVE', () => {
         it('should set "deepLinkActive" in state to false', () => {
             const initialState = {
                 deepLinkActive: true,
@@ -711,6 +712,26 @@ describe('Reducer: wallet', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 deepLinkActive: false,
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
+
+    describe('IOTA/WALLET/CONNECTION_CHANGED', () => {
+        it('should set "hasConnection" in state to "isConnected" prop in payload', () => {
+            const initialState = {
+                hasConnection: false,
+            };
+
+            const action = {
+                type: 'IOTA/WALLET/CONNECTION_CHANGED',
+                payload: { isConnected: true }
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                hasConnection: true,
             };
 
             expect(newState).to.eql(expectedState);
