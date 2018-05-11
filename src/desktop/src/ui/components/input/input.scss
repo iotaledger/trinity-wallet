@@ -4,6 +4,17 @@
     max-width: 520px;
     margin: 0 auto;
     padding: 25px 0 30px;
+    transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+    &.disabled {
+        opacity: 0.25;
+        pointer-events: none;
+    }
+
+    &.padded {
+        margin-bottom: 28px;
+    }
+
     fieldset {
         border: none;
         position: relative;
@@ -285,6 +296,13 @@
             background: var(--positive);
         }
     }
+}
+
+.hint {
+    position: absolute;
+    bottom: -28px;
+    right: 0;
+    font-size: 14px;
 }
 
 .valid {
