@@ -267,7 +267,7 @@ export const isSentTransfer = (bundle, addresses) => {
         !includes(addresses, get(bundle, '[0].address')) &&
         includes(addresses, get(bundle, '[1].address'));
     return some(bundle, (tx) => {
-        const isRemainder = tx.value && tx.currentIndex === tx.lastIndex && tx.lastIndex !== 0;
+        const isRemainder = tx.currentIndex === tx.lastIndex && tx.lastIndex !== 0;
         return (includes(addresses, tx.address) && tx.value < 0 && !isRemainder) || isSentMessage;
     });
 };
