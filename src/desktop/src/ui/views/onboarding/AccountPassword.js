@@ -11,27 +11,11 @@ import { setAdditionalAccountInfo, setSeedIndex, setPassword } from 'actions/wal
 import { setOnboardingSeed, setOnboardingName } from 'actions/ui';
 
 import { setVault } from 'libs/crypto';
+import { passwordReasons } from 'libs/i18next';
 
 import Button from 'ui/components/Button';
 import PasswordInput from 'ui/components/input/Password';
 import ModalPassword from 'ui/components/modal/Password';
-
-const passwordReasons = {
-    'Straight rows of keys are easy to guess': 'reasonRow',
-    'Short keyboard patterns are easy to guess': 'reasonPattern',
-    'Names and surnames by themselves are easy to guess': 'reasonNames',
-    'Common names and surnames are easy to guess': 'reasonNames',
-    'Repeats like "aaa" are easy to guess': 'reasonRepeats',
-    'Repeats like "abcabcabc" are only slightly harder to guess than "abc"': 'reasonRepeats2',
-    'Sequences like abc or 6543 are easy to guess': 'reasonSequence',
-    'Recent years are easy to guess': 'reasonYears',
-    'Dates are often easy to guess': 'reasonDates',
-    'This is a top-10 common password': 'reasonTop10',
-    'This is a top-100 common password': 'reasonTop100',
-    'This is a very common password': 'reasonCommon',
-    'This is similar to a commonly used password': 'reasonSimilar',
-    'A word by itself is easy to guess': 'reasonWord',
-};
 
 /**
  * Onboarding, set account password
@@ -123,14 +107,6 @@ class AccountPassword extends React.PureComponent {
             return;
         }
 
-        if (firstAccount && password !== passwordConfirm) {
-            return generateAlert(
-                'error',
-                t('changePassword:passwordsDoNotMatch'),
-                t('changePassword:passwordsDoNotMatchExplanation'),
-            );
-        }
-
         if (firstAccount) {
             const score = zxcvbn(password);
 
@@ -141,6 +117,14 @@ class AccountPassword extends React.PureComponent {
 
                 return generateAlert('error', t('changePassword:passwordTooWeak'), reason);
             }
+        }
+
+        if (firstAccount && password !== passwordConfirm) {
+            return generateAlert(
+                'error',
+                t('changePassword:passwordsDoNotMatch'),
+                t('changePassword:passwordsDoNotMatchExplanation'),
+            );
         }
 
         this.setState({
@@ -173,6 +157,8 @@ class AccountPassword extends React.PureComponent {
 
     render() {
         const { firstAccount, history, t } = this.props;
+
+        const score = zxcvbn(this.state.password);
 
         if (!firstAccount) {
             return (
@@ -212,6 +198,7 @@ class AccountPassword extends React.PureComponent {
                         value={this.state.passwordConfirm}
                         label={t('setPassword:retypePassword')}
                         showValid
+                        disabled={score.score < 4}
                         match={this.state.password}
                         onChange={(value) => this.setState({ passwordConfirm: value })}
                     />
