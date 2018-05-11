@@ -50,7 +50,7 @@ class SeedSave extends PureComponent {
                             success={t('copyToClipboard:seedCopiedExplanation')}
                         >
                             <div>
-                                <Icon icon="copy" size={24} />
+                                <Icon icon="password" size={24} />
                             </div>
                             <h4>{t('saveYourSeed:digitalCopy')}</h4>
                             <p>{t('copyToClipboard')}</p>
@@ -58,7 +58,7 @@ class SeedSave extends PureComponent {
                         <a onClick={() => this.setState({ writeVisible: true, writeIndex: 1 })} className={css.secure}>
                             <h3>{t('saveYourSeed:mostSecure')}</h3>
                             <div>
-                                <Icon icon="copy" size={24} />
+                                <Icon icon="write" size={24} />
                             </div>
                             <h4>{t('saveYourSeed:paperWallet')}</h4>
                             <p>{t('saveYourSeed:writeYourSeedDown')}</p>
@@ -86,16 +86,17 @@ class SeedSave extends PureComponent {
                         <p>{t('saveYourSeed:youCanHighlightCharacters')}</p>
                         <div className={css.seed}>
                             <div>
-                                {seed.match(/.{1,3}/g).map((letter, index) => {
-                                    return (
-                                        <span
-                                            className={writeIndex <= index / 3 ? css.disabled : null}
-                                            key={`${index}${letter}`}
-                                        >
-                                            {letter}
-                                        </span>
-                                    );
-                                })}
+                                {seed &&
+                                    seed.match(/.{1,3}/g).map((letter, index) => {
+                                        return (
+                                            <span
+                                                className={writeIndex !== Math.floor(index / 3) + 1 ? css.disabled : null}
+                                                key={`${index}${letter}`}
+                                            >
+                                                {letter}
+                                            </span>
+                                        );
+                                    })}
                             </div>
                         </div>
                         <nav className={css.steps}>

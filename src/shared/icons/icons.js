@@ -42,5 +42,6 @@ module.exports = {
     security: '🔰',
     copy: '📋',
     print: '🖨',
+    write: '📝',
     fingerprint: '🖕',
 };

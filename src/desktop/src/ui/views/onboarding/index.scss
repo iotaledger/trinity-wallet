@@ -317,10 +317,10 @@ $footer: 70px;
             transition: transform 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
         }
 
-        &:hover{
-           span{
-              transform: scale(0.95);
-           }
+        &:hover {
+            span {
+                transform: scale(0.95);
+            }
         }
 
         &.disabled {
@@ -331,5 +331,56 @@ $footer: 70px;
     > span {
         margin: 8px 40px;
         font-size: 18px;
+    }
+}
+
+@keyframes fly {
+    to {
+        transform: translate(0, 0);
+    }
+}
+
+.done {
+    position: relative;
+
+    h1,
+    p {
+        position: relative;
+        z-index: 2;
+    }
+    p {
+        margin: 40px auto;
+        max-width: 320px;
+        line-height: 24px;
+    }
+    svg {
+        position: absolute;
+        width: 320px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0.06;
+        path {
+            fill: var(--body);
+        }
+        g,
+        > path {
+            animation: fly 6s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+        }
+        :global {
+            #baloon-mask {
+                fill: var(--body-bg);
+                opacity: 1;
+            }
+            #baloon-1 {
+                transform: translate(0, 40%);
+            }
+            #baloon-2 {
+                transform: translate(0, 30%);
+            }
+            #baloon-3 {
+                transform: translate(0, 60%);
+            }
+        }
     }
 }
