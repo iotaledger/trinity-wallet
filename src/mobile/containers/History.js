@@ -262,7 +262,7 @@ class History extends Component {
                                     ctaColor={primary.color}
                                     secondaryCtaColor={primary.body}
                                     text={t('global:refresh')}
-                                    onPress={this.onRefresh}
+                                    onPress={this.props.onRefresh}
                                     ctaWidth={width / 2}
                                     ctaHeight={height / 16}
                                 />
