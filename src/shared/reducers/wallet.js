@@ -17,7 +17,7 @@ const initialState = {
     addingAdditionalAccount: false,
     balanceCheckToggle: false,
     deepLinkActive: false,
-    hasConnection: false
+    hasConnection: true
 };
 
 export default (state = initialState, action) => {
@@ -162,7 +162,7 @@ export default (state = initialState, action) => {
         case ActionTypes.CONNECTION_CHANGED:
             return {
                 ...state,
-                hasConnection: action.payload
+                hasConnection: action.payload.isConnected
             };
         default:
             return state;

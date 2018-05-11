@@ -14,11 +14,12 @@ import polling from './reducers/polling';
 import progress from './reducers/progress';
 import ui from './reducers/ui';
 import { ActionTypes } from './actions/settings';
+import networkMiddleware from './middlewares/network';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
-const developmentMiddleware = [thunk, logger];
-const productionMiddleware = [thunk];
+const developmentMiddleware = [thunk, logger, networkMiddleware];
+const productionMiddleware = [thunk, networkMiddleware];
 
 const reducers = combineReducers({
     alerts,
