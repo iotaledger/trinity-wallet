@@ -5,6 +5,6 @@ import Wallet from './routes/entry';
 /*eslint-disable no-unused-vars*/
 /*eslint-disable no-console*/
 const configuration = new Configuration();
-configuration.appVersion = '0.1.33';
+configuration.appVersion = '0.1.34';
 const bugsnag = new Client(configuration);
 AppRegistry.registerComponent('iotaWallet', () => Wallet);
