@@ -267,7 +267,7 @@ class CopySeedToClipboard extends Component {
                                 </Text>
                                 <Image source={this.getCheckbox()} style={styles.modalCheckbox} />
                             </TouchableOpacity>
-                            <Text style={styles.infoTextBold}>{t('doNotOpen')} </Text>
+                            <Text style={[ styles.infoTextBold, textColor ]}>{t('doNotOpen')} </Text>
                             <View style={{ paddingTop: height / 18 }}>
                                 <OnboardingButtons
                                     onLeftButtonPress={() => this.hideModal()}
