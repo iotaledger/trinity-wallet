@@ -16,11 +16,12 @@ import ui from './reducers/ui';
 import { ActionTypes } from './actions/settings';
 import networkMiddleware from './middlewares/network';
 import alertsMiddleware from './middlewares/alerts';
+import modalMiddleware from './middlewares/modal';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
-const developmentMiddleware = [thunk, logger, networkMiddleware, alertsMiddleware];
-const productionMiddleware = [thunk, networkMiddleware, alertsMiddleware];
+const developmentMiddleware = [thunk, logger, networkMiddleware, alertsMiddleware, modalMiddleware];
+const productionMiddleware = [thunk, networkMiddleware, alertsMiddleware, modalMiddleware];
 
 const reducers = combineReducers({
     alerts,

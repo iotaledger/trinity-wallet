@@ -4,7 +4,7 @@ import i18next from '../i18next.js';
 
 /* eslint-disable no-unused-vars */
 const networkMiddleware = (store) => (next) => (action) => {
-/* eslint-enable no-unused-vars */
+    /* eslint-enable no-unused-vars */
 
     if (action.type === ActionTypes.CONNECTION_CHANGED && !action.payload.isConnected) {
         next({
@@ -12,7 +12,7 @@ const networkMiddleware = (store) => (next) => (action) => {
             category: 'error',
             title: i18next.t('global:noNetworkConnection'),
             message: i18next.t('global:noNetworkConnectionExplanation'),
-            closeInterval: 100000,
+            closeInterval: 3600000,
         });
 
         next(action);
