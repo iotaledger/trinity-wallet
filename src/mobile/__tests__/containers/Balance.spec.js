@@ -86,7 +86,7 @@ describe('Testing Balance component', () => {
             const props = getProps();
 
             const wrapper = shallow(<Balance {...props} />);
-            expect(wrapper.name()).toEqual('TouchableWithoutFeedback');
+            expect(wrapper.name()).toEqual('ScrollViewMock');
         });
     });
 
