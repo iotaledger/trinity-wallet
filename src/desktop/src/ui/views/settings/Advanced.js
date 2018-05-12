@@ -8,11 +8,6 @@ import {updatePowSettings, setLockScreenTimeout} from 'actions/settings';
 import {generateAlert} from 'actions/alerts';
 import {setVault, getSeed} from 'libs/crypto';
 
-import {
-    transitionForSnapshot,
-    generateAddressesAndGetBalance,
-    completeSnapshotTransition,
-} from 'actions/wallet';
 import {toggleModalActivity} from 'actions/ui';
 import {getSelectedAccountName, getAddressesForSelectedAccount} from 'selectors/accounts';
 import {formatValue, formatUnit} from 'libs/iota/utils';
@@ -21,9 +16,9 @@ import {round} from 'libs/utils';
 import {runTask} from 'worker';
 
 import Button from 'ui/components/Button';
-import Modal from 'ui/components/modal/Modal';
 import ModalPassword from 'ui/components/modal/Password';
 import ModalConfirm from 'ui/components/modal/Confirm';
+import Loading from 'ui/components/Loading';
 import Toggle from 'ui/components/Toggle';
 import TextInput from 'ui/components/input/Text';
 import Info from 'ui/components/Info';
@@ -77,15 +72,6 @@ class Advanced extends PureComponent {
         /** The transition addresses
          */
         transitionAddresses: PropTypes.array.isRequired,
-        /** Starts snapshot transition
-         */
-        transitionForSnapshot: PropTypes.func.isRequired,
-        /** Generates new addresses for the snapshot transition
-         */
-        generateAddressesAndGetBalance: PropTypes.func.isRequired,
-        /** Finishes up the snapshot transition
-         */
-        completeSnapshotTransition: PropTypes.func.isRequired,
         /**
          * Is the wallet attaching the snapshot transition addresses
          * to the Tangle?
@@ -113,6 +99,13 @@ class Advanced extends PureComponent {
         if (balanceCheckToggle !== newProps.balanceCheckToggle) {
             this.props.toggleModalActivity();
             return;
+        }
+
+        const {isTransitioning, isAttachingToTangle, isModalActive} = newProps;
+        if (isTransitioning || isAttachingToTangle || isModalActive) {
+            Electron.disableMenu();
+        } else {
+            Electron.enableMenu();
         }
     }
 
@@ -148,18 +141,14 @@ class Advanced extends PureComponent {
     startSnapshotTransition = async () => {
         const {wallet, addresses} = this.props;
         const seed = await getSeed(wallet.seedIndex, wallet.password);
-        setTimeout(() => {
-            this.props.transitionForSnapshot(seed, addresses);
-        }, 300);
+        runTask('transitionForSnapshot', [seed, addresses]);
     }
 
     transitionBalanceOk = async () => {
         this.props.toggleModalActivity();
         const {wallet, transitionAddresses, selectedAccountName} = this.props;
         const seed = await getSeed(wallet.seedIndex, wallet.password);
-        setTimeout(() => {
-            this.props.completeSnapshotTransition(seed, selectedAccountName, transitionAddresses);
-        }, 300);
+        runTask('completeSnapshotTransition', [seed, selectedAccountName, transitionAddresses]);
     }
 
     transitionBalanceWrong = async () => {
@@ -167,9 +156,7 @@ class Advanced extends PureComponent {
         const {wallet, transitionAddresses} = this.props;
         const seed = await getSeed(wallet.seedIndex, wallet.password);
         const currentIndex = transitionAddresses.length;
-        setTimeout(() => {
-            this.props.generateAddressesAndGetBalance(seed, currentIndex, null);
-        }, 300);
+        runTask('generateAddressesAndGetBalance', [seed, currentIndex, null]);
     }
 
     render() {
@@ -178,6 +165,31 @@ class Advanced extends PureComponent {
         // snapshot transition
         const {isTransitioning, isAttachingToTangle, isModalActive, transitionBalance} = this.props;
         const {resetConfirm} = this.state;
+
+        if ((isTransitioning || isAttachingToTangle) && !isModalActive) {
+            return (
+                <Loading
+                loop
+                transparent={false}
+                title={t('advancedSettings:snapshotTransition')}
+                subtitle={<React.Fragment>
+                    {
+                        !isAttachingToTangle ?
+                            <div>
+                                {t('snapshotTransition:transitioning')} <br/>
+                                {t('snapshotTransition:generatingAndDetecting')} {' '}
+                                {t('global:pleaseWaitEllipses')}
+                            </div>
+                            :
+                            <div>
+                                {t('snapshotTransition:attaching')} <br/>
+                                {t('loading:thisMayTake')} {' '}
+                                {t('global:pleaseWaitEllipses')}
+                            </div>
+                    }
+                </React.Fragment>}
+            />);
+        }
 
         return (
             <div>
@@ -203,30 +215,6 @@ class Advanced extends PureComponent {
                     <Button onClick={this.startSnapshotTransition} loading={isTransitioning || isAttachingToTangle}>
                         {t('snapshotTransition:transition')}
                     </Button>
-
-                    <Modal
-                        isOpen={isTransitioning || isAttachingToTangle && !isModalActive}
-                        isForced
-                        variant='confirm'
-                        onClose={() => {
-                        }}
-                    >
-                        <h1>{t('advancedSettings:snapshotTransition')}</h1>
-                        {
-                            !isAttachingToTangle ?
-                                <div>
-                                    {t('snapshotTransition:transitioning')} <br/>
-                                    {t('snapshotTransition:generatingAndDetecting')} {' '}
-                                    {t('global:pleaseWaitEllipses')}
-                                </div>
-                                :
-                                <div>
-                                    {t('snapshotTransition:attaching')} <br/>
-                                    {t('loading:thisMayTake')} {' '}
-                                    {t('global:pleaseWaitEllipses')}
-                                </div>
-                        }
-                    </Modal>
 
                     <ModalConfirm
                         isOpen={isModalActive}
@@ -331,9 +319,6 @@ const mapDispatchToProps = {
     generateAlert,
     updatePowSettings,
     setLockScreenTimeout,
-    transitionForSnapshot,
-    generateAddressesAndGetBalance,
-    completeSnapshotTransition,
     toggleModalActivity,
 };
 
