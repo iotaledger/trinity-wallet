@@ -31,6 +31,7 @@ describe('Reducer: ui', () => {
                 doNotMinimise: false,
                 isModalActive: false,
                 isCheckingCustomNode: false,
+                currentlyPromotingBundleHash: '',
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
@@ -409,14 +410,29 @@ describe('Reducer: ui', () => {
                 isPromotingTransaction: true,
             };
 
-            expect(newState).to.eql(expectedState);
+            expect(newState.isPromotingTransaction).to.eql(expectedState.isPromotingTransaction);
+        });
+
+        it('should set "currentlyPromotingBundleHash" state prop to payload in action', () => {
+            const initialState = {
+                currentlyPromotingBundleHash: '',
+            };
+
+            const action = {
+                type: 'IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST',
+                payload: 'foo'
+            };
+
+            const newState = reducer(initialState, action);
+            expect(newState.currentlyPromotingBundleHash).to.eql('foo');
         });
     });
 
     describe('IOTA/TRANSFERS/PROMOTE_TRANSACTION_SUCCESS', () => {
-        it('should set "isPromotingTransaction" state prop to false', () => {
+        it('should set "isPromotingTransaction" state prop to false and "currentlyPromotingBundleHash" to empty strings', () => {
             const initialState = {
                 isPromotingTransaction: true,
+                currentlyPromotingBundleHash: 'foo'
             };
 
             const action = {
@@ -426,6 +442,7 @@ describe('Reducer: ui', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 isPromotingTransaction: false,
+                currentlyPromotingBundleHash: ''
             };
 
             expect(newState).to.eql(expectedState);
@@ -433,9 +450,10 @@ describe('Reducer: ui', () => {
     });
 
     describe('IOTA/TRANSFERS/PROMOTE_TRANSACTION_ERROR', () => {
-        it('should set "isPromotingTransaction" state prop to true', () => {
+        it('should set "isPromotingTransaction" state prop to true and "currentlyPromotingBundleHash" to empty strings', () => {
             const initialState = {
                 isPromotingTransaction: true,
+                currentlyPromotingBundleHash: 'foo'
             };
 
             const action = {
@@ -445,6 +463,7 @@ describe('Reducer: ui', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 isPromotingTransaction: false,
+                currentlyPromotingBundleHash: ''
             };
 
             expect(newState).to.eql(expectedState);

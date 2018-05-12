@@ -125,7 +125,9 @@
         "googlePlayServicesNotAvailable": "Google Play Services not available",
         "couldNotVerifyDeviceIntegrity":
             "Could not verify device integrity because Google Play Services are not available.",
-        "clear": "CLEAR"
+        "clear": "CLEAR",
+        "noNetworkConnection": "No network connection",
+        "noNetworkConnectionExplanation": "Your internet connection appears to be offline."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
