@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
     },
     loginText: {
-        fontFamily: 'SourceSansPro-Light',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
     },
