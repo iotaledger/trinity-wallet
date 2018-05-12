@@ -32,6 +32,14 @@ const Electron = {
         });
     },
 
+    enableMenu: () => {
+        ipc.send('menu.enabled', true);
+    },
+
+    disableMenu: () => {
+        ipc.send('menu.enabled', false);
+    },
+
     requestDeepLink: () => {
         ipc.send('request.deepLink');
     },
