@@ -231,7 +231,7 @@ export const promoteTransaction = (bundleHash, accountName) => (dispatch, getSta
             } else if (err.message === Errors.TRANSACTION_ALREADY_CONFIRMED && chainBrokenInternally) {
                 dispatch(generateAlert('success', i18next.t('global:transactionAlreadyConfirmed'), i18next.t('global:transactionAlreadyConfirmedExplanation')));
             } else {
-                dispatch(generatePromotionErrorAlert());
+                dispatch(generatePromotionErrorAlert(err));
             }
 
             return dispatch(promoteTransactionError());
