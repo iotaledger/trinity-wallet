@@ -274,9 +274,9 @@ class TopBar extends Component {
                                     </Animated.View>
                                 </TouchableOpacity>
                             ) : (
-                                    <View style={styles.notificationContainer}>
-                                        <View style={styles.empty} />
-                                    </View>
+                                <View style={styles.notificationContainer}>
+                                    <View style={styles.empty} />
+                                </View>
                                 )}
                             <View>
                                 <Text
@@ -328,7 +328,7 @@ class TopBar extends Component {
                                         />
                                     </Animated.View>
                                 ) : (
-                                        <View style={styles.empty} />
+                                    <View style={styles.empty} />
                                     )}
                             </View>
                         </View>
