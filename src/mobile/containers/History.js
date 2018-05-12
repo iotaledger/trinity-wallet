@@ -1,5 +1,7 @@
 import assign from 'lodash/assign';
 import map from 'lodash/map';
+import includes from 'lodash/includes';
+import get from 'lodash/get';
 import orderBy from 'lodash/orderBy';
 import React, { Component } from 'react';
 import Modal from 'react-native-modal';
@@ -9,17 +11,16 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { broadcastBundle, promoteTransaction } from 'iota-wallet-shared-modules/actions/transfers';
-import { getTransfersForSelectedAccount, getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
-import { getAccountInfo } from 'iota-wallet-shared-modules/actions/accounts';
+import { getTransfersForSelectedAccount, getSelectedAccountName, getAddressesForSelectedAccount } from 'iota-wallet-shared-modules/selectors/accounts';
 import { OptimizedFlatList } from 'react-native-optimized-flatlist';
 import { round } from 'iota-wallet-shared-modules/libs/utils';
 import { toggleModalActivity } from 'iota-wallet-shared-modules/actions/ui';
 import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/iota/utils';
 import tinycolor from 'tinycolor2';
+import WithManualRefresh from '../components/ManualRefresh';
 import TransactionRow from '../components/TransactionRow';
 import HistoryModalContent from '../components/HistoryModalContent';
 import { width, height } from '../utils/dimensions';
-import { getSeedFromKeychain } from '../utils/keychain';
 import { isAndroid } from '../utils/device';
 import CtaButton from '../components/CtaButton';
 
@@ -69,25 +70,14 @@ class History extends Component {
         closeTopBar: PropTypes.func.isRequired,
         /** Theme settings */
         theme: PropTypes.object.isRequired,
-        /** Fetch latest account information
-         * @param {string} seed - seed value
-         * @param {string} selectedAccountName
-         */
-        getAccountInfo: PropTypes.func.isRequired,
         /** Account name for selected account */
         selectedAccountName: PropTypes.string.isRequired,
-        /** Determines if there is already a network call going on for fetching latest acocunt info */
-        isFetchingLatestAccountInfoOnLogin: PropTypes.bool.isRequired,
-        /** Determines if background poll is already fetching latest acocunt info */
-        isFetchingAccountInfo: PropTypes.bool.isRequired,
         /** Generate a notification alert
          * @param {String} type - notification type - success, error
          * @param {String} title - notification title
          * @param {String} text - notification explanation
          */
         generateAlert: PropTypes.func.isRequired,
-        /** Index of currently selected account in accountNames list */
-        seedIndex: PropTypes.number.isRequired,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          */
@@ -114,8 +104,6 @@ class History extends Component {
         isPromotingTransaction: PropTypes.bool.isRequired,
         /** Currently selected mode for wallet */
         mode: PropTypes.string.isRequired,
-        /** Hash for wallet's password */
-        password: PropTypes.string.isRequired,
         /** Sets whether modal is active or inactive */
         toggleModalActivity: PropTypes.func.isRequired,
         /** Determines whether modal is open */
@@ -124,31 +112,21 @@ class History extends Component {
         isAutoPromoting: PropTypes.bool.isRequired,
         /** Bundle hash for the transaction that is currently being promoted */
         currentlyPromotingBundleHash: PropTypes.string.isRequired,
+        /** Determines whether account is being manually refreshed */
+        isRefreshing: PropTypes.bool.isRequired,
+        /** Fetches latest account info on swipe down */
+        onRefresh: PropTypes.func.isRequired,
+        /** Addresses for selected account */
+        addresses: PropTypes.array.isRequired,
     };
 
     constructor() {
         super();
 
         this.state = {
-            isRefreshing: false,
             modalProps: null,
         };
-
-        this.onRefresh = this.onRefresh.bind(this);
         this.resetModalProps = this.resetModalProps.bind(this);
-    }
-
-    componentWillReceiveProps(newProps) {
-        const { seedIndex } = this.props;
-        if (this.props.isFetchingLatestAccountInfoOnLogin && !newProps.isFetchingLatestAccountInfoOnLogin) {
-            this.setState({ isRefreshing: false });
-        }
-        if (this.props.isFetchingAccountInfo && !newProps.isFetchingAccountInfo) {
-            this.setState({ isRefreshing: false });
-        }
-        if (seedIndex !== newProps.seedIndex) {
-            this.setState({ isRefreshing: false });
-        }
     }
 
     shouldComponentUpdate(newProps) {
@@ -174,56 +152,6 @@ class History extends Component {
     }
 
     /**
-     * Triggers a refresh
-     */
-    onRefresh() {
-        const { isRefreshing } = this.state;
-
-        if (isRefreshing) {
-            return;
-        }
-
-        if (!this.shouldPreventManualRefresh()) {
-            this.setState({ isRefreshing: true });
-            this.updateAccountData();
-        }
-    }
-
-    /**
-     * Prevents more than one refresh from occurring at the same time
-     */
-    shouldPreventManualRefresh() {
-        const props = this.props;
-
-        const isAlreadyDoingSomeHeavyLifting =
-            props.isSyncing || props.isSendingTransfer || props.isGeneratingReceiveAddress || props.isTransitioning;
-
-        const isAlreadyFetchingAccountInfo = props.isFetchingAccountInfo;
-
-        if (isAlreadyFetchingAccountInfo) {
-            this.setState({ isRefreshing: true });
-        }
-
-        return isAlreadyDoingSomeHeavyLifting || isAlreadyFetchingAccountInfo;
-    }
-
-    updateAccountData() {
-        const { t, selectedAccountName, password } = this.props;
-        getSeedFromKeychain(password, selectedAccountName)
-            .then((seed) => {
-                if (seed === null) {
-                    return this.props.generateAlert(
-                        'error',
-                        t('global:somethingWentWrong'),
-                        t('global:somethingWentWrongTryAgain'),
-                    );
-                }
-                this.props.getAccountInfo(seed, selectedAccountName);
-            })
-            .catch((err) => console.log(err));
-    }
-
-    /**
      * Formats transaction data
      * @return {Array} Formatted transaction data
      */
@@ -235,13 +163,23 @@ class History extends Component {
             t,
             selectedAccountName,
             currentlyPromotingBundleHash,
+            isRefreshing,
+            addresses
         } = this.props;
         const containerBorderColor = tinycolor(body.bg).isDark() ? 'rgba(255, 255, 255, 0.25)' : 'rgba(0, 0, 0, 0.25)';
         const containerBackgroundColor = tinycolor(body.bg).isDark() ? 'rgba(255, 255, 255, 0.08)' : 'transparent';
 
-        const computeConfirmationStatus = (persistence, incoming) => {
+        const computeConfirmationStatus = (bundle, persistence, incoming, value) => {
             if (!persistence) {
                 return t('global:pending');
+            }
+
+            if (value === 0) {
+                if (!includes(addresses, get(bundle, '[0].address')) &&
+                includes(addresses, get(bundle, '[1].address'))) {
+                    return t('global:sent');
+                }
+                return t('global:received');
             }
 
             return incoming ? t('global:received') : t('global:sent');
@@ -255,13 +193,13 @@ class History extends Component {
 
         const formattedTransfers = map(transfers, (transfer) => {
             const { timestamp, incoming, persistence, transferValue, inputs, outputs, bundle, message } = transfer;
-            const { isRefreshing } = this.state;
+            const value = round(formatValue(transferValue), 1);
             return {
                 t,
                 status: incoming ? t('history:receive') : t('history:send'),
-                confirmation: computeConfirmationStatus(persistence, incoming),
+                confirmation: computeConfirmationStatus(bundle, persistence, incoming, value),
                 confirmationBool: persistence,
-                value: round(formatValue(transferValue), 1),
+                value,
                 unit: formatUnit(transferValue),
                 time: timestamp,
                 message,
@@ -311,8 +249,7 @@ class History extends Component {
     }
 
     renderTransactions() {
-        const { theme: { primary }, t } = this.props;
-        const { isRefreshing } = this.state;
+        const { theme: { primary }, t, isRefreshing } = this.props;
         const data = this.prepTransactions();
         const noTransactions = data.length === 0;
 
@@ -327,7 +264,7 @@ class History extends Component {
                 refreshControl={
                     <RefreshControl
                         refreshing={isRefreshing && !noTransactions}
-                        onRefresh={this.onRefresh}
+                        onRefresh={this.props.onRefresh}
                         tintColor={primary.color}
                     />
                 }
@@ -339,7 +276,7 @@ class History extends Component {
                                     ctaColor={primary.color}
                                     secondaryCtaColor={primary.body}
                                     text={t('global:refresh')}
-                                    onPress={this.onRefresh}
+                                    onPress={this.props.onRefresh}
                                     ctaWidth={width / 2}
                                     ctaHeight={height / 16}
                                 />
@@ -410,11 +347,9 @@ class History extends Component {
 const mapStateToProps = (state) => ({
     transfers: getTransfersForSelectedAccount(state),
     selectedAccountName: getSelectedAccountName(state),
-    seedIndex: state.wallet.seedIndex,
+    addresses: getAddressesForSelectedAccount(state),
     mode: state.settings.mode,
     theme: state.settings.theme,
-    isFetchingLatestAccountInfoOnLogin: state.ui.isFetchingLatestAccountInfoOnLogin,
-    isFetchingAccountInfo: state.polling.isFetchingAccountInfo,
     isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
     isSendingTransfer: state.ui.isSendingTransfer,
     isSyncing: state.ui.isSyncing,
@@ -422,17 +357,17 @@ const mapStateToProps = (state) => ({
     isBroadcastingBundle: state.ui.isBroadcastingBundle,
     isPromotingTransaction: state.ui.isPromotingTransaction,
     isAutoPromoting: state.polling.isAutoPromoting,
-    password: state.wallet.password,
     isModalActive: state.ui.isModalActive,
     currentlyPromotingBundleHash: state.ui.currentlyPromotingBundleHash,
 });
 
 const mapDispatchToProps = {
     generateAlert,
-    getAccountInfo,
     broadcastBundle,
     promoteTransaction,
     toggleModalActivity,
 };
 
-export default translate(['history', 'global'])(connect(mapStateToProps, mapDispatchToProps)(History));
+export default WithManualRefresh()(
+    translate(['history', 'global'])(connect(mapStateToProps, mapDispatchToProps)(History))
+);

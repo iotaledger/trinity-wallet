@@ -89,8 +89,8 @@ android {
     buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.iota.wallet"
-        versionCode 33
-        versionName "3.4.9"
+        versionCode 34
+        versionName "3.5.0"
         minSdkVersion 19
         targetSdkVersion 26
         multiDexEnabled true

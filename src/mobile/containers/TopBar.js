@@ -117,6 +117,8 @@ class TopBar extends Component {
         topBarHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.object]).isRequired,
         isIOSKeyboardActive: PropTypes.bool.isRequired,
         isTransitioning: PropTypes.bool.isRequired,
+        /** Determines if the application is minimised */
+        minimised: PropTypes.bool.isRequired,
     };
 
     static filterSeedTitles(accountNames, currentSeedIndex) {
@@ -219,6 +221,7 @@ class TopBar extends Component {
             topBarHeight,
             isIOSKeyboardActive,
             notificationLog,
+            minimised
         } = this.props;
         const selectedTitle = get(accountNames, `[${seedIndex}]`) || ''; // fallback
         const selectedSubtitle = TopBar.humanizeBalance(balance);
@@ -246,10 +249,11 @@ class TopBar extends Component {
                         }
                     }}
                 >
+                    { !isIOSKeyboardActive && !minimised &&
                     <View
                         style={{ width, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}
                     >
-                        {hasNotifications && !isIOSKeyboardActive ? (
+                        {hasNotifications ? (
                             <TouchableOpacity
                                 hitSlop={{ left: width / 18, right: width / 18, top: 0, bottom: 0 }}
                                 style={styles.notificationContainer}
@@ -271,39 +275,37 @@ class TopBar extends Component {
                                 <View style={styles.empty} />
                             </View>
                         )}
-                        {!isIOSKeyboardActive && (
-                            <View>
-                                <Text
-                                    numberOfLines={1}
-                                    style={
-                                        shouldDisable
-                                            ? StyleSheet.flatten([
-                                                  styles.mainTitle,
-                                                  styles.disabled,
-                                                  { color: bar.color, marginTop: height / 55 },
-                                              ])
-                                            : [styles.mainTitle, { color: bar.color, marginTop: height / 55 }]
-                                    }
-                                >
-                                    {selectedTitle}
-                                </Text>
-                                <Text
-                                    style={
-                                        shouldDisable
-                                            ? StyleSheet.flatten([
-                                                  styles.subtitle,
-                                                  styles.disabled,
-                                                  { color: subtitleColor },
-                                              ])
-                                            : [styles.subtitle, { color: subtitleColor }]
-                                    }
-                                >
-                                    {selectedSubtitle}
-                                </Text>
-                            </View>
-                        )}
+                        <View>
+                            <Text
+                                numberOfLines={1}
+                                style={
+                                    shouldDisable
+                                        ? StyleSheet.flatten([
+                                              styles.mainTitle,
+                                              styles.disabled,
+                                              { color: bar.color, marginTop: height / 55 },
+                                          ])
+                                        : [styles.mainTitle, { color: bar.color, marginTop: height / 55 }]
+                                }
+                            >
+                                {selectedTitle}
+                            </Text>
+                            <Text
+                                style={
+                                    shouldDisable
+                                        ? StyleSheet.flatten([
+                                              styles.subtitle,
+                                              styles.disabled,
+                                              { color: subtitleColor },
+                                          ])
+                                        : [styles.subtitle, { color: subtitleColor }]
+                                }
+                            >
+                                {selectedSubtitle}
+                            </Text>
+                        </View>
                         <View style={styles.chevronWrapper}>
-                            {hasMultipleSeeds && !isIOSKeyboardActive ? (
+                            {hasMultipleSeeds ? (
                                 <Animated.View
                                     style={{
                                         height: topBarHeight,
@@ -327,6 +329,9 @@ class TopBar extends Component {
                             )}
                         </View>
                     </View>
+                    ||
+                    <View />
+                    }
                 </TouchableWithoutFeedback>
             </Animated.View>
         );
