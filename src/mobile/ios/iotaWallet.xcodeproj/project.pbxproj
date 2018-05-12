@@ -23,7 +23,6 @@
 		2AD31ECE2D7512D06C6BA29BD082EAE7 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4319E47FD77B4B10F18A0CCAA9E7CDB1 /* libRCTText.a */; };
 		2F852D5F92D3F66B78914D33F296087F /* libLottie.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 263220B07467A090937F126D1EAD4142 /* libLottie.a */; };
 		307E93B97FDF6F53908903B07505AC30 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E920A6AB840A93E25B7B234FEF27E6 /* SnapshotHelper.swift */; };
-		31F2332A754C8D94770FF2C620F3D34B /* libRNClipboard.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A62792EC69ED10CA10807A55EAF5E8D2 /* libRNClipboard.a */; };
 		38DDAF07C8480BD137CF60C851B9DB02 /* libRCTSettings-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FEDECF54B08D02E4DA237B29BFA7335 /* libRCTSettings-tvOS.a */; };
 		3D089B147B065DF500AFDE15871144F7 /* libRNExitApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FFDF2800ED208F6574931A64651435D /* libRNExitApp.a */; };
 		3E58EC90CE11629FBA816AAD96D16464 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0FDEA3EDE9090E04563794CE9A92B7 /* main.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -145,13 +144,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 1B6F56C5B39768183E212C21E8E213DA;
 			remoteInfo = "iotaWallet-tvOS";
-		};
-		2A362EBEE3AF8D5ECF5F1C4ADC6FAA77 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FACADF35E9F2A73C3D354FE3021229F2 /* RNClipboard.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = B7A910A612BA961EB33C8C9F55CC2FC3;
-			remoteInfo = RNClipboard;
 		};
 		2FC4A20B76D0682725A7FD3A48E950D9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -739,7 +731,6 @@
 		F9352B06FC1C1316CEDF137DAE286FCC /* libPods-iotaWallet-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iotaWallet-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F937ECCF0BA4BC3A155C89B3B7ECE27D /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		FA966CD6F6AC4A56AAE33F729009A387 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		FACADF35E9F2A73C3D354FE3021229F2 /* RNClipboard.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNClipboard.xcodeproj; path = "../node_modules/react-native-clipboard/RNClipboard.xcodeproj"; sourceTree = "<group>"; };
 		FC0C813F80FE9398560C13E6CC59C201 /* iotaWallet-debug-config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "iotaWallet-debug-config.xcconfig"; sourceTree = "<group>"; };
 		FF6707891F5797B0CC78F1267EB8F1A2 /* RNSVG.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSVG.xcodeproj; path = "../node_modules/react-native-svg/ios/RNSVG.xcodeproj"; sourceTree = "<group>"; };
 		FFB7466768C43C0F61CFB10138358A32 /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
@@ -772,7 +763,6 @@
 				2AD31ECE2D7512D06C6BA29BD082EAE7 /* libRCTText.a in Frameworks */,
 				DDA136528BBDF91C4395B590FD2C59F1 /* libRCTVibration.a in Frameworks */,
 				AC1DC503F1AF3CEE085E1EAA4DB30EF4 /* libRCTWebSocket.a in Frameworks */,
-				31F2332A754C8D94770FF2C620F3D34B /* libRNClipboard.a in Frameworks */,
 				C63F4449914D3D19E3C83C38F602BFB5 /* libRNDeviceInfo.a in Frameworks */,
 				3D089B147B065DF500AFDE15871144F7 /* libRNExitApp.a in Frameworks */,
 				53D5C66F9CFCE4AF6BAE7EBD7DEF9413 /* libRNFS.a in Frameworks */,
@@ -1055,7 +1045,6 @@
 				679A4B0BB6333961124F2288316630DD /* RCTText.xcodeproj */,
 				F2FA8FCAB678228017DD1EBC70517E3F /* RCTVibration.xcodeproj */,
 				BC3F9601D8757C3A48CF2AD9CF58F3EA /* RCTWebSocket.xcodeproj */,
-				FACADF35E9F2A73C3D354FE3021229F2 /* RNClipboard.xcodeproj */,
 				C39F11B2595A5CFD8F2D51D3B914CD41 /* RNDeviceInfo.xcodeproj */,
 				8B49115E102EED64D1B7D7AC047F1ABF /* RNExitApp.xcodeproj */,
 				6F63CB3492A71A3A73B8764893BE0F6F /* RNFS.xcodeproj */,
@@ -1089,14 +1078,6 @@
 			children = (
 				19CB0B55DE702DF718E5FD31D6EF66FE /* libRCTSettings.a */,
 				9FEDECF54B08D02E4DA237B29BFA7335 /* libRCTSettings-tvOS.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		8984CF664FA142E14F2291768FEA9192 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				8556BFD08B41D77575AACE772DCB65B7 /* libRNClipboard.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1620,10 +1601,6 @@
 					ProjectRef = 6056CF4F20827D2F0006A2F3 /* RNCamera.xcodeproj */;
 				},
 				{
-					ProductGroup = 8984CF664FA142E14F2291768FEA9192 /* Products */;
-					ProjectRef = FACADF35E9F2A73C3D354FE3021229F2 /* RNClipboard.xcodeproj */;
-				},
-				{
 					ProductGroup = 2FE9795D77E1EEB677D548CDD97FF948 /* Products */;
 					ProjectRef = C39F11B2595A5CFD8F2D51D3B914CD41 /* RNDeviceInfo.xcodeproj */;
 				},
@@ -1892,13 +1869,6 @@
 			fileType = wrapper.framework;
 			path = Pods_iotaWalletTests.framework;
 			remoteRef = 5883AA054AC88EAA5EFB34040EA713B2 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		8556BFD08B41D77575AACE772DCB65B7 /* libRNClipboard.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNClipboard.a;
-			remoteRef = 2A362EBEE3AF8D5ECF5F1C4ADC6FAA77 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		89DED642A5FCB71765083CCD2A12F54B /* libprivatedata.a */ = {
