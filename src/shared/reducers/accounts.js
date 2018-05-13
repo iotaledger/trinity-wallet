@@ -112,6 +112,10 @@ const account = (
                 accountNames: filter(state.accountNames, (name) => name !== action.payload),
                 seedCount: state.seedCount - 1,
             };
+        case ActionTypes.SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION:
+        case ActionTypes.SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST:
+        case ActionTypes.UPDATE_ACCOUNT_AFTER_REATTACHMENT:
+        case ActionTypes.UPDATE_ACCOUNT_INFO_AFTER_SPENDING:
         case PollingActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
         case ActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
             return {
@@ -125,7 +129,7 @@ const account = (
                     ...state.pendingTxHashesForSpentAddresses,
                     [action.payload.accountName]: action.payload.pendingTxHashesForSpentAddresses,
                 },
-                // Both these cases do a deep merge while updating existing unconfirmed bundle tails so just assign those
+                // All these cases do a deep merge while updating existing unconfirmed bundle tails so just assign those
                 // Also they omit confirmed bundles
                 unconfirmedBundleTails: action.payload.unconfirmedBundleTails,
             };
@@ -213,23 +217,6 @@ const account = (
                 ...updateAccountInfo(state, action.payload),
                 seedCount: state.seedCount + 1,
                 accountNames: union(state.accountNames, [action.payload.accountName]),
-                unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
-                txHashesForUnspentAddresses: {
-                    ...state.txHashesForUnspentAddresses,
-                    [action.payload.accountName]: action.payload.txHashesForUnspentAddresses,
-                },
-                pendingTxHashesForSpentAddresses: {
-                    ...state.pendingTxHashesForSpentAddresses,
-                    [action.payload.accountName]: action.payload.pendingTxHashesForSpentAddresses,
-                },
-            };
-        case ActionTypes.SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION:
-        case ActionTypes.SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST:
-        case ActionTypes.UPDATE_ACCOUNT_AFTER_REATTACHMENT:
-        case ActionTypes.UPDATE_ACCOUNT_INFO_AFTER_SPENDING:
-            return {
-                ...state,
-                ...updateAccountInfo(state, action.payload),
                 unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
                 txHashesForUnspentAddresses: {
                     ...state.txHashesForUnspentAddresses,
