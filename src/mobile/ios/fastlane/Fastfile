@@ -14,3 +14,7 @@ lane :refresh_dsyms do
   upload_symbols_to_bugsnag
   clean_build_artifacts
 end
+
+lane :localization do
+  import_localizations(source_path: './localizations/*.xliff', project: 'iotaWallet.xcodeproj')
+end
