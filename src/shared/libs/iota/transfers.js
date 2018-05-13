@@ -76,19 +76,29 @@ export const getRelevantTransfer = (bundle, addresses) => {
 };
 
 export const getFirstConsistentTail = (tails, idx) => {
-    if (!tails[idx]) {
+    let tailsAboveMaxDepth = [];
+
+    if (idx === 0) {
+        tailsAboveMaxDepth = filter(tails,
+            (tx) => isAboveMaxDepth(tx.attachmentTimestamp)
+        ).sort((a, b) => b.attachmentTimestamp - a.attachmentTimestamp);
+    }
+
+    if (!tailsAboveMaxDepth[idx]) {
         return Promise.resolve(false);
     }
 
+    const thisTail = tailsAboveMaxDepth[idx];
+
     return iota.api
-        .isPromotable(get(tails[idx], 'hash'))
+        .isPromotable(get(thisTail, 'hash'))
         .then((state) => {
-            if (state && isAboveMaxDepth(get(tails[idx], 'attachmentTimestamp'))) {
-                return tails[idx];
+            if (state && isAboveMaxDepth(get(thisTail, 'attachmentTimestamp'))) {
+                return thisTail;
             }
 
             idx += 1;
-            return getFirstConsistentTail(tails, idx);
+            return getFirstConsistentTail(tailsAboveMaxDepth, idx);
         })
         .catch(() => false);
 };
