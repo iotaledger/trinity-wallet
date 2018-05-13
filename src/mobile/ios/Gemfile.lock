@@ -66,6 +66,7 @@ GEM
       git
       xml-simple
     fastlane-plugin-load_json (0.0.1)
+    fastlane-plugin-localization (0.2.0)
     gh_inspector (1.1.3)
     git (1.3.0)
     google-api-client (0.13.6)
@@ -155,6 +156,7 @@ DEPENDENCIES
   fastlane
   fastlane-plugin-bugsnag
   fastlane-plugin-load_json
+  fastlane-plugin-localization
 
 BUNDLED WITH
    1.16.0

@@ -120,5 +120,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSHumanReadableCopyright</key>
+	<string>2018 IOTA Foundation. All rights reserved.</string>
 </dict>
 </plist>
