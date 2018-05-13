@@ -9,8 +9,16 @@ end
 
 lane :refresh_dsyms do
   clean_build_artifacts
-  download_dsyms(build_number: '34')
+  build_number = get_build_number(xcodeproj: 'iotaWallet.xcodeproj')
+  download_dsyms(build_number: build_number)
   upload_symbols_to_crashlytics
   upload_symbols_to_bugsnag
   clean_build_artifacts
+end
+
+lane :release do
+  package_json = load_json(json_path: '../package.json')
+  version = package_json['version']
+  increment_build_number(xcodeproj: 'iotaWallet.xcodeproj')
+  increment_version_number(version_number: version, xcodeproj: 'iotaWallet.xcodeproj')
 end
