@@ -20,3 +20,7 @@ lane :release do
   increment_build_number(xcodeproj: 'iotaWallet.xcodeproj')
   increment_version_number(version_number: version, xcodeproj: 'iotaWallet.xcodeproj')
 end
+
+lane :localization do
+  import_localizations(source_path: './localizations/*.xliff', project: 'iotaWallet.xcodeproj')
+end
