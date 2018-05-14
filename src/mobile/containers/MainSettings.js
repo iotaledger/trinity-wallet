@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 15,
     },
     titleText: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         marginLeft: width / 25,
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     settingText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 23,
         marginLeft: width / 12,
         width: width / 2.2,
@@ -256,17 +256,6 @@ export class MainSettings extends Component {
                 </View>
                 <View style={styles.itemContainer}>
                     <TouchableOpacity
-                        onPress={() => this.props.setSetting('changePassword')}
-                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                    >
-                        <View style={styles.item}>
-                            <Icon name="password" size={width / 22} color={bodyColor} />
-                            <Text style={[styles.titleText, textColor]}>{t('changePassword')}</Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.itemContainer}>
-                    <TouchableOpacity
                         onPress={() => this.props.setSetting('securitySettings')}
                         hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                     >
@@ -276,9 +265,6 @@ export class MainSettings extends Component {
                         </View>
                     </TouchableOpacity>
                 </View>
-                <View style={styles.separatorContainer}>
-                    <View style={[styles.separator, borderBottomColor]} />
-                </View>
                 <View style={styles.itemContainer}>
                     <TouchableOpacity
                         onPress={() => this.props.setSetting('advancedSettings')}
@@ -287,6 +273,20 @@ export class MainSettings extends Component {
                         <View style={styles.item}>
                             <Icon name="advanced" size={width / 22} color={bodyColor} />
                             <Text style={[styles.titleText, textColor]}>{t('advanced')}</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.separatorContainer}>
+                    <View style={[styles.separator, borderBottomColor]} />
+                </View>
+                <View style={styles.itemContainer}>
+                    <TouchableOpacity
+                        onPress={() => this.props.setSetting('about')}
+                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                    >
+                        <View style={styles.item}>
+                            <Icon name="info" size={width / 22} color={bodyColor} />
+                            <Text style={[styles.titleText, textColor]}>{t('about')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>

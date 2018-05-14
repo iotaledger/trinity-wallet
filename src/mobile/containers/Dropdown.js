@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
         paddingBottom: 2,
     },
     dropdownTitle: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 33,
         backgroundColor: 'transparent',
         paddingLeft: width / 100,
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     },
     dropdownItem: {
         fontSize: width / 23,
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         backgroundColor: 'transparent',
         textAlign: 'left',
         paddingTop: height / 100,
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.6,
     },
     selected: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         paddingBottom: height / 150,

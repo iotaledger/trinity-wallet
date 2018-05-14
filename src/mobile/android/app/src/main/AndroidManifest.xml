@@ -1,21 +1,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.iota.wallet"
     xmlns:tools="http://schemas.android.com/tools"
-    android:versionCode="29"
-    android:versionName="3.4.6">
+    android:versionCode="34"
+    android:versionName="3.5.0">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
 
 
     <uses-sdk
-        android:minSdkVersion="19"
+        android:minSdkVersion="21"
         android:targetSdkVersion="26"
         tools:overrideLibrary="com.rnprint.RNPrint"/>
 
@@ -26,7 +23,8 @@
       android:icon="@mipmap/icon"
       android:theme="@style/AppTheme"
       tools:replace="android:allowBackup"
-        >
+      android:resizeableActivity="false"
+    >
     <meta-data
         android:name="io.fabric.ApiKey"
         android:value="e741ca311eddc2a22fa56c2dad19b440babbddbc"

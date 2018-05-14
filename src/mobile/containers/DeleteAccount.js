@@ -71,13 +71,13 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
     },
     titleTextLeft: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
     titleTextRight: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         marginRight: width / 20,
@@ -125,7 +125,7 @@ class DeleteAccount extends Component {
         /** Theme settings */
         theme: PropTypes.object.isRequired,
         /** Promotion state for polling */
-        isPromoting: PropTypes.bool.isRequired,
+        isAutoPromoting: PropTypes.bool.isRequired,
         /** Determines whether to allow account deletion  */
         shouldPreventAction: PropTypes.bool.isRequired,
         /** Generate a notification alert
@@ -178,8 +178,8 @@ class DeleteAccount extends Component {
     }
 
     onYesPress() {
-        const { t, isPromoting } = this.props;
-        if (isPromoting || this.props.shouldPreventAction) {
+        const { t, isAutoPromoting } = this.props;
+        if (isAutoPromoting || this.props.shouldPreventAction) {
             return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         }
         this.hideModal();
@@ -331,10 +331,10 @@ class DeleteAccount extends Component {
 const mapStateToProps = (state) => ({
     password: state.wallet.password,
     theme: state.settings.theme,
-    isPromoting: state.polling.isPromoting,
+    isAutoPromoting: state.polling.isAutoPromoting,
     selectedAccountName: getSelectedAccountName(state),
     shouldPreventAction: shouldPreventAction(state),
-    isModalActive: state.ui.isModalActive
+    isModalActive: state.ui.isModalActive,
 });
 
 const mapDispatchToProps = {
