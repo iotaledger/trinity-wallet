@@ -43,6 +43,9 @@ $header: 60px;
 
         > div {
             height: calc(100vh - 120px);
+            > div {
+                padding-bottom: 60px;
+            }
         }
     }
 
@@ -70,11 +73,13 @@ $header: 60px;
     hr {
         border: none;
         margin: 20px 0;
-        border-top: 1px solid var(--body-alt);
+        border-top: 2px solid var(--body-alt);
     }
 
     h3 {
-        margin-top: 0px;
+        font-size: 21px;
+        margin-bottom: 21px;
+        text-align: left;
     }
 
     @media (max-width: 720px) {
