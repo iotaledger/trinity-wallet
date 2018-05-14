@@ -14,7 +14,10 @@ import whiteCheckboxCheckedImagePath from 'iota-wallet-shared-modules/images/che
 import whiteCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked-white.png';
 import blackCheckboxCheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-checked-black.png';
 import blackCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked-black.png';
+import timer from 'react-native-timer';
+import Modal from 'react-native-modal';
 import tinycolor from 'tinycolor2';
+import OnboardingButtons from '../containers/OnboardingButtons';
 import GENERAL from '../theme/general';
 import CtaButton from '../components/CtaButton';
 import { isAndroid, isIOS } from '../utils/device';
@@ -49,7 +52,7 @@ const styles = StyleSheet.create({
     },
     optionButtonText: {
         color: '#8BD4FF',
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 25.3,
         textAlign: 'center',
         paddingHorizontal: width / 20,
@@ -65,21 +68,21 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
     },
     infoText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 27.6,
-        textAlign: 'justify',
+        textAlign: 'left',
         backgroundColor: 'transparent',
     },
     infoTextNormal: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 27.6,
-        textAlign: 'justify',
+        textAlign: 'left',
         backgroundColor: 'transparent',
     },
     infoTextBold: {
-        fontFamily: 'Lato-Bold',
+        fontFamily: 'SourceSansPro-Bold',
         fontSize: width / 27.6,
-        textAlign: 'justify',
+        textAlign: 'left',
         backgroundColor: 'transparent',
     },
     doneButton: {
@@ -92,7 +95,7 @@ const styles = StyleSheet.create({
         marginBottom: height / 20,
     },
     doneText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
     },
@@ -152,7 +155,7 @@ const styles = StyleSheet.create({
     paperWalletText: {
         color: 'black',
         fontSize: width / 40,
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         textAlign: 'center',
         backgroundColor: 'transparent',
         paddingBottom: height / 80,
@@ -174,7 +177,7 @@ const styles = StyleSheet.create({
         height: width / 30,
     },
     checkboxText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 27.6,
         color: 'white',
         backgroundColor: 'transparent',
@@ -192,7 +195,25 @@ const styles = StyleSheet.create({
     checksumText: {
         fontSize: width / 37.6,
         color: 'black',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
+    },
+    modalContainer: {
+        width: width / 1.1,
+        paddingVertical: height / 20,
+    },
+    modalCheckboxContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        height: height / 14,
+    },
+    modalCheckboxText: {
+        fontFamily: 'SourceSansPro-Light',
+        fontSize: width / 25.9,
+    },
+    modalCheckbox: {
+        width: width / 20,
+        height: width / 20,
     },
 });
 
@@ -221,15 +242,18 @@ class PaperWallet extends Component {
         super(props);
 
         this.state = {
-            checkboxImage: tinycolor(props.theme.body.bg).isDark()
-                ? whiteCheckboxCheckedImagePath
-                : blackCheckboxCheckedImagePath,
+            iotaLogoCheckbox: true,
+            publicWifiCheckbox: false,
+            publicPrinterCheckbox: false,
             showIotaLogo: true,
-            iotaLogoVisibility: 'visible',
             pressedPrint: false,
         };
 
         this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+    }
+
+    componentWillMount() {
+        timer.clearTimeout('delayPrint');
     }
 
     onDonePress() {
@@ -264,7 +288,52 @@ class PaperWallet extends Component {
         }
     }
 
-    async onPrintPress() {
+    onIotaLogoCheckboxPress() {
+        const { iotaLogoCheckbox, showIotaLogo } = this.state;
+        this.setState({
+            iotaLogoCheckbox: !iotaLogoCheckbox,
+            showIotaLogo: !showIotaLogo,
+        });
+    }
+
+    onPublicWifiCheckboxPress() {
+        const { publicWifiCheckbox } = this.state;
+
+        this.setState({
+            publicWifiCheckbox: !publicWifiCheckbox,
+        });
+    }
+
+    onPublicPrinterCheckboxPress() {
+        const { publicPrinterCheckbox } = this.state;
+
+        this.setState({
+            publicPrinterCheckbox: !publicPrinterCheckbox,
+        });
+    }
+
+    onPrintPress() {
+        const { publicPrinterCheckbox, publicWifiCheckbox } = this.state;
+        if (publicPrinterCheckbox && publicWifiCheckbox) {
+            this.hideModal();
+            timer.setTimeout('delayPrint', () => this.print(), 500);
+        }
+    }
+
+    getCheckbox(checkboxChecked) {
+        const { theme: { body } } = this.props;
+        const isBgDark = tinycolor(body.bg).isDark();
+        if (checkboxChecked) {
+            return isBgDark ? whiteCheckboxCheckedImagePath : blackCheckboxCheckedImagePath;
+        }
+        return isBgDark ? whiteCheckboxUncheckedImagePath : blackCheckboxUncheckedImagePath;
+    }
+
+    getDataURL() {
+        this.svg.toDataURL(PaperWallet.callback);
+    }
+
+    async print() {
         const { seed } = this.props;
         this.getDataURL();
         this.setState({ pressedPrint: true });
@@ -340,10 +409,10 @@ class PaperWallet extends Component {
                 border-width: 2px;
                 border-radius: 20px
             }
-            @font-face { font-family: "Lato"; src: "iota-wallet-shared-modules/custom-fonts/Lato-Regular.ttf" }
+            @font-face { font-family: "SourceSansPro"; src: "iota-wallet-shared-modules/custom-fonts/SourceSansPro-Regular.ttf" }
             @font-face { font-family: "Monospace"; src: "iota-wallet-shared-modules/custom-fonts/Inconsolata-Bold.ttf" }
             #text {
-                font-family: "Lato";
+                font-family: "SourceSansPro";
                 font-size: 20px;
                 text-align: center;
                 padding-top: 42px;
@@ -355,7 +424,7 @@ class PaperWallet extends Component {
                 marginTop: 100px;
             }
             #checksum {
-                font-family: "Lato";
+                font-family: "SourceSansPro";
                 font-size: 20px;
                 margin-top: 100px;
                 border: solid #000;
@@ -381,7 +450,7 @@ class PaperWallet extends Component {
                 position: absolute;
                 left: 310px;
                 top: 18px;
-                visibility: ${this.state.iotaLogoVisibility}
+                visibility: ${this.state.showIotaLogo ? 'visible' : 'hidden'}
             }
             td {
                 padding-left: 7px;
@@ -418,32 +487,12 @@ class PaperWallet extends Component {
         }
     }
 
-    onCheckboxPress() {
-        const { theme: { body } } = this.props;
-        const checkboxUncheckedImagePath = tinycolor(body.bg).isDark()
-            ? whiteCheckboxUncheckedImagePath
-            : blackCheckboxUncheckedImagePath;
-        const checkboxCheckedImagePath = tinycolor(body.bg).isDark()
-            ? whiteCheckboxCheckedImagePath
-            : blackCheckboxCheckedImagePath;
-
-        if (this.state.checkboxImage === checkboxCheckedImagePath) {
-            this.setState({
-                checkboxImage: checkboxUncheckedImagePath,
-                showIotaLogo: false,
-                iotaLogoVisibility: 'hidden',
-            });
-        } else {
-            this.setState({
-                checkboxImage: checkboxCheckedImagePath,
-                showIotaLogo: true,
-                iotaLogoVisibility: 'visible',
-            });
-        }
+    openModal() {
+        this.setState({ isModalActive: true });
     }
 
-    getDataURL() {
-        this.svg.toDataURL(PaperWallet.callback);
+    hideModal() {
+        this.setState({ isModalActive: false, publicPrinterCheckbox: false, publicWifiCheckbox: false });
     }
 
     renderIotaLogo() {
@@ -457,10 +506,64 @@ class PaperWallet extends Component {
         return <View style={{ flex: 0.5 }} />;
     }
 
+    renderModalContent = () => {
+        const { t, theme: { body } } = this.props;
+        const { publicWifiCheckbox, publicPrinterCheckbox } = this.state;
+        const textColor = { color: body.color };
+        const opacity = publicWifiCheckbox && publicPrinterCheckbox ? 1 : 0.1;
+
+        return (
+            <View style={{ backgroundColor: body.bg, marginTop: height / 20 }}>
+                <InfoBox
+                    body={body}
+                    width={width / 1.1}
+                    text={
+                        <View>
+                            <Text style={[styles.infoText, textColor, { paddingTop: height / 40 }]}>
+                                <Text style={styles.infoTextNormal}>{t('paperConvenience')} </Text>
+                                <Text style={styles.infoTextBold}>{t('publicInsecure')}</Text>
+                            </Text>
+                            <Text style={[styles.infoTextBold, textColor, { paddingVertical: height / 30 }]}>
+                                {t('tapCheckboxes')}
+                            </Text>
+                            <TouchableOpacity
+                                style={[styles.modalCheckboxContainer, { paddingTop: height / 60 }]}
+                                onPress={() => this.onPublicWifiCheckboxPress()}
+                            >
+                                <Text style={[styles.modalCheckboxText, textColor]}>{t('wifiCheckbox')}</Text>
+                                <Image source={this.getCheckbox(publicWifiCheckbox)} style={styles.modalCheckbox} />
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={styles.modalCheckboxContainer}
+                                onPress={() => this.onPublicPrinterCheckboxPress()}
+                            >
+                                <Text style={[styles.modalCheckboxText, textColor]}>{t('printerCheckbox')}</Text>
+                                <Image source={this.getCheckbox(publicPrinterCheckbox)} style={styles.modalCheckbox} />
+                            </TouchableOpacity>
+                            <View style={{ paddingTop: height / 18 }}>
+                                <OnboardingButtons
+                                    onLeftButtonPress={() => this.hideModal()}
+                                    onRightButtonPress={() => this.onPrintPress()}
+                                    leftText={t('global:back')}
+                                    rightText={t('print')}
+                                    opacity={opacity}
+                                    containerWidth={{ width: width / 1.25 }}
+                                    buttonWidth={{ width: width / 2.85 }}
+                                />
+                            </View>
+                        </View>
+                    }
+                />
+            </View>
+        );
+    };
+
     render() {
-        const { t, seed, theme: { body, primary } } = this.props;
+        const { t, seed, theme: { body, primary, secondary } } = this.props;
+        const { isModalActive, iotaLogoCheckbox } = this.state;
         const textColor = { color: body.color };
         const checksum = getChecksum(seed);
+        const isBgLight = tinycolor(body.bg).isLight();
 
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
@@ -481,7 +584,12 @@ class PaperWallet extends Component {
                         }
                     />
                     <View style={{ flex: 0.5 }} />
-                    <View style={styles.paperWalletContainer}>
+                    <View
+                        style={[
+                            styles.paperWalletContainer,
+                            isBgLight ? { borderColor: body.color, borderWidth: 1 } : null,
+                        ]}
+                    >
                         <Seedbox
                             scale={0.51}
                             bodyColor="black"
@@ -505,8 +613,8 @@ class PaperWallet extends Component {
                         />
                     </View>
                     <View style={{ flex: 0.3 }} />
-                    <TouchableOpacity style={styles.checkboxContainer} onPress={() => this.onCheckboxPress()}>
-                        <Image source={this.state.checkboxImage} style={styles.checkbox} />
+                    <TouchableOpacity style={styles.checkboxContainer} onPress={() => this.onIotaLogoCheckboxPress()}>
+                        <Image source={this.getCheckbox(iotaLogoCheckbox)} style={styles.checkbox} />
                         <Text style={[styles.checkboxText, textColor]}>{t('iotaLogo')}</Text>
                     </TouchableOpacity>
                     <View style={{ flex: 0.3 }} />
@@ -516,7 +624,7 @@ class PaperWallet extends Component {
                         secondaryCtaColor={primary.body}
                         text={t('printWallet')}
                         onPress={() => {
-                            this.onPrintPress();
+                            this.openModal();
                         }}
                         ctaWidth={width / 1.1}
                     />
@@ -524,11 +632,24 @@ class PaperWallet extends Component {
                 </View>
                 <View style={styles.bottomContainer}>
                     <TouchableOpacity onPress={() => this.onDonePress()}>
-                        <View style={[styles.doneButton, { borderColor: primary.color }]}>
-                            <Text style={[styles.doneText, { color: primary.color }]}>{t('global:done')}</Text>
+                        <View style={[styles.doneButton, { borderColor: secondary.color }]}>
+                            <Text style={[styles.doneText, { color: secondary.color }]}>{t('global:done')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
+                <Modal
+                    backdropTransitionInTiming={isAndroid ? 500 : 300}
+                    backdropTransitionOutTiming={200}
+                    backdropColor={body.bg}
+                    backdropOpacity={0.8}
+                    style={{ alignItems: 'center', margin: 0 }}
+                    isVisible={isModalActive}
+                    onBackButtonPress={() => this.hideModal()}
+                    hideModalContentWhileAnimating
+                    useNativeDriver={isAndroid ? true : false}
+                >
+                    {this.renderModalContent()}
+                </Modal>
             </View>
         );
     }

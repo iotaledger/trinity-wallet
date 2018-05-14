@@ -32,9 +32,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     infoText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 27.6,
-        textAlign: 'justify',
+        textAlign: 'left',
         backgroundColor: 'transparent',
     },
     itemLeft: {
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
     },
     titleTextLeft: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         marginLeft: width / 20,

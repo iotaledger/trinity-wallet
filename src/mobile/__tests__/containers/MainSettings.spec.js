@@ -84,9 +84,9 @@ describe('Testing MainSettings component', () => {
             { func: 'setSetting', calledWith: 'currencySelection' },
             { func: 'setSetting', calledWith: 'languageSelection' },
             { func: 'setSetting', calledWith: 'accountManagement' },
-            { func: 'setSetting', calledWith: 'changePassword' },
             { func: 'setSetting', calledWith: 'securitySettings' },
             { func: 'setSetting', calledWith: 'advancedSettings' },
+            { func: 'setSetting', calledWith: 'about' },
         ].forEach((item, idx) => {
             describe(`when TouchableOpacity component prop onPress on index ${idx + 1} is triggered`, () => {
                 it(`should call prop method ${item.func}`, () => {

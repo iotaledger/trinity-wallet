@@ -10,6 +10,7 @@ export const ActionTypes = {
     SET_ONBOARDING_NAME: 'IOTA/UI/SET_ONBOARDING_NAME',
     SET_DO_NOT_MINIMISE: 'IOTA/UI/SET_DO_NOT_MINIMISE',
     TOGGLE_MODAL_ACTIVITY: 'IOTA/UI/TOGGLE_MODAL_ACTIVITY',
+    SET_CUSTOM_NODE_CHECK_STATUS: 'IOTA/UI/SET_CUSTOM_NODE_CHECK_STATUS',
 };
 
 export const setSendAddressField = (payload) => ({
@@ -43,6 +44,11 @@ export const setSendDenomination = (payload) => ({
 
 export const setUserActivity = (payload) => ({
     type: ActionTypes.SET_USER_ACTIVITY,
+    payload,
+});
+
+export const setCustomNodeCheckStatus = (payload) => ({
+    type: ActionTypes.SET_CUSTOM_NODE_CHECK_STATUS,
     payload,
 });
 

@@ -9,8 +9,12 @@ end
 
 lane :refresh_dsyms do
   clean_build_artifacts
-  download_dsyms(build_number: '29')
+  download_dsyms(build_number: '34')
   upload_symbols_to_crashlytics
   upload_symbols_to_bugsnag
   clean_build_artifacts
+end
+
+lane :localization do
+  import_localizations(source_path: './localizations/*.xliff', project: 'iotaWallet.xcodeproj')
 end

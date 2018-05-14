@@ -43,20 +43,20 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     infoTextTop: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 27.6,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
     infoTextBottom: {
         paddingTop: height / 60,
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 27.6,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
     warningText: {
-        fontFamily: 'Lato-Bold',
+        fontFamily: 'SourceSansPro-Bold',
         fontSize: width / 27.6,
         textAlign: 'center',
         paddingTop: height / 70,
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     },
     qrText: {
         color: 'white',
-        fontFamily: 'Lato-Bold',
+        fontFamily: 'SourceSansPro-Bold',
         fontSize: width / 34.5,
         backgroundColor: 'transparent',
     },
