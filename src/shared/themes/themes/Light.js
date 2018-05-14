@@ -1,5 +1,5 @@
 export default {
-    body: { color: '#000000', bg: '#FFFFFF', altBg: '#FFFFFF', alt: '#DEE0E6' },
+    body: { color: '#000000', bg: '#FFFFFF', alt: '#DEE0E6' },
     bar: { color: '#000000', bg: '#FFFFFF', alt: '#FFFFFF' },
     primary: { color: '#000000', hover: '#333333', body: '#FFFFFF' },
     secondary: { color: '#000000', hover: '#333333', body: '#FFFFFF' },
@@ -13,7 +13,7 @@ export default {
         bg: '#F0F0F0',
         alt: '#000000',
         border: 'rgba(0, 0, 0, 0.1)',
-        focus: 'rgba(0, 0, 0, 0.4)',
+        hover: 'rgba(0, 0, 0, 0.4)',
     },
     chart: { color: '#000000' },
     box: { bg: 'rgba(241, 241, 241, 0.9)', alt: '#dee1e7', body: '#F0F2F6' },

@@ -30,7 +30,7 @@ export default class Confirm extends React.PureComponent {
                 {content.title ? <h1 className={category ? css[category] : null}>{content.title}</h1> : null}
                 {content.message ? <p>{content.message}</p> : null}
                 <footer>
-                    <Button onClick={this.props.onCancel} variant="secondary">
+                    <Button onClick={this.props.onCancel} variant="dark">
                         {content.cancel}
                     </Button>
                     <Button onClick={this.props.onConfirm} variant={category ? category : 'primary'}>

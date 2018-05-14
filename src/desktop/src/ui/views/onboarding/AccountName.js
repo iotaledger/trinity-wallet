@@ -104,7 +104,7 @@ class AccountName extends React.PureComponent {
                     <Button
                         to={`/onboarding/seed-${onboarding.isGenerated ? 'save' : 'verify'}`}
                         className="square"
-                        variant="back"
+                        variant="dark"
                     >
                         {t('goBackStep')}
                     </Button>

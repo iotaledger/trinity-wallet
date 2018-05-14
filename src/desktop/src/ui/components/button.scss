@@ -114,10 +114,10 @@
     }
 }
 
-.back {
+.dark {
     composes: button;
-    color: var(--back-body);
-    background: var(--back);
+    color: var(--dark-body);
+    background: var(--dark);
     &:hover {
         background: var(--dark-hover);
     }
@@ -127,7 +127,6 @@
 .outlineSmall {
     background: var(--body-bg);
     border: 1px solid;
-
     &:hover {
         background: var(--body-bg);
     }

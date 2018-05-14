@@ -196,7 +196,7 @@ class Login extends React.Component {
                         />
                     </section>
                     <footer>
-                        <Button to="/settings/node" className="square" variant="back">
+                        <Button to="/settings/node" className="square" variant="dark">
                             {capitalize(t('home:settings'))}
                         </Button>
                         <Button type="submit" className="square" variant="primary">

@@ -73,7 +73,7 @@ class SeedSave extends PureComponent {
                     </nav>
                 </section>
                 <footer>
-                    <Button to="/onboarding/seed-generate" className="square" variant="back">
+                    <Button to="/onboarding/seed-generate" className="square" variant="dark">
                         {t('goBackStep')}
                     </Button>
                     <Button to="/onboarding/seed-verify" className="square" variant="primary">

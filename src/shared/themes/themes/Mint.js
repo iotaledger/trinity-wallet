@@ -1,5 +1,5 @@
 export default {
-    body: { color: '#F0F2F6', bg: '#003241', altBg: '#002836', alt: '#21434F' },
+    body: { color: '#F0F2F6', bg: '#003241', alt: '#21434F' },
     bar: { color: '#F0F2F6', bg: '#141825', alt: '#192733' },
     primary: { color: '#09f9ba', hover: '#07dba3', body: '#003241' },
     secondary: { color: '#00c6ff', hover: '#00aee0', body: '#1E1E1E' },
@@ -13,7 +13,7 @@ export default {
         bg: '#FFFFFF',
         alt: '#727272',
         border: 'rgba(0, 0, 0, 0.25)',
-        focus: 'rgba(0, 0, 0, 0.7)',
+        hover: 'rgba(0, 0, 0, 0.7)',
     },
     chart: { color: '#ffb85c' },
     box: { bg: 'rgba(3, 39, 52, 0.8)', alt: '#003e4f', body: '#F0F2F6' },
