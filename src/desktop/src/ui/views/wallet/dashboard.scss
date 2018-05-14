@@ -132,16 +132,51 @@
             flex-direction: column;
             background: var(--box-alt);
 
-            span {
-                margin-bottom: 20px;
+            > div {
+                display: block;
+                position: relative;
+                margin: 28px auto;
+                width: 60px;
+                height: 60px;
+                padding: 18px;
+                &:before,
+                &:after {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    width: calc(100% + 12px);
+                    height: calc(100% + 12px);
+                    border: 1px solid var(--body-alt);
+                    border-radius: 100%;
+                    transition: all 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+                    z-index: 2;
+                }
+                &:after {
+                    width: 100%;
+                    height: 100%;
+                    background: var(--body-bg);
+                    border: none;
+                    transition: all 0.8s cubic-bezier(0.075, 0.82, 0.165, 1);
+                    z-index: 1;
+                }
+                span {
+                    position: relative;
+                    z-index: 3;
+                }
             }
 
-            strong {
-                color: var(--primary);
-            }
-
-            &:first-child strong {
-                color: var(--secondary);
+            &:hover {
+                > div {
+                    &:before {
+                        transform: translate(-50%, -50%) scale(1.15);
+                        border-color: var(--body);
+                    }
+                    &:after {
+                        transform: translate(-50%, -50%) scale(0.9);
+                    }
+                }
             }
 
             @media screen and (max-width: 860px) {
@@ -164,7 +199,8 @@
                 }
             }
         }
-        div {
+
+        > div {
             flex: 1;
             text-align: center;
         }
@@ -175,30 +211,5 @@
             height: calc(100% - 200px);
             top: 180px;
         }
-    }
-}
-
-.wave {
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    width: 100vw;
-    height: 227px;
-    z-index: 1;
-    pointer-events: none;
-    > div {
-        content: '';
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        background-size: auto 275px;
-        background-position: left bottom;
-        background-repeat: repeat-x;
-        transition: background-position 3s cubic-bezier(0.075, 0.82, 0.165, 1);
-    }
-    > div:last-child {
-        background-position: 50% bottom;
     }
 }

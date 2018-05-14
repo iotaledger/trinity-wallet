@@ -1,5 +1,5 @@
 export default {
-    body: { color: '#000000', bg: '#FFFFFF', alt: '#DEE0E6' },
+    body: { color: '#000000', bg: '#FFFFFF', alt: '#000000' },
     bar: { color: '#000000', bg: '#FFFFFF', alt: '#FFFFFF' },
     primary: { color: '#000000', hover: '#333333', body: '#FFFFFF' },
     secondary: { color: '#000000', hover: '#333333', body: '#FFFFFF' },
