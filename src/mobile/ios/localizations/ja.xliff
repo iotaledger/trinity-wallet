@@ -7,11 +7,11 @@
     <body>
       <trans-unit id="CFBundleDisplayName">
         <source>Trinity</source>
-        <target xml:lang="ja" state="needs-translation">Trinity</target>
+        <target xml:lang="ja" state="translated">Trinity</target>
       </trans-unit>
       <trans-unit id="CFBundleName">
         <source>$(PRODUCT_NAME)</source>
-        <target xml:lang="ja" state="needs-translation">$(PRODUCT_NAME)</target>
+        <target xml:lang="ja" state="translated">$(PRODUCT_NAME)</target>
       </trans-unit>
       <trans-unit id="NSCameraUsageDescription">
         <source>Trinity requires access to the camera in order to enable QR scanning.</source>
@@ -19,7 +19,7 @@
       </trans-unit>
       <trans-unit id="NSFaceIDUsageDescription">
         <source>Trinity requires access to Face ID in order to enable biometric authentication.</source>
-        <target xml:lang="ja" state="translated">生体認証を有効にするには、Face IDへのアクセスが必要です。</target>
+        <target xml:lang="ja" state="translated">生体認証を有効にするには、顔認証へのアクセスが必要です。</target>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
         <source>2018 IOTA Foundation. All rights reserved.</source>

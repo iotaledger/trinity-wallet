@@ -3,7 +3,7 @@ import orderBy from 'lodash/orderBy';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, FlatList, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, FlatList, TouchableWithoutFeedback, TouchableOpacity, ScrollView, RefreshControl } from 'react-native';
 import { connect } from 'react-redux';
 import { round, roundDown } from 'iota-wallet-shared-modules/libs/utils';
 import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/iota/utils';
@@ -12,6 +12,7 @@ import {
     getBalanceForSelectedAccount,
 } from 'iota-wallet-shared-modules/selectors/accounts';
 import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
+import WithManualRefresh from '../components/ManualRefresh';
 import SimpleTransactionRow from '../components/SimpleTransactionRow';
 import Chart from '../components/Chart';
 import { width, height } from '../utils/dimensions';
@@ -37,18 +38,18 @@ const styles = StyleSheet.create({
         flex: 5,
     },
     iotaBalance: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 8,
         backgroundColor: 'transparent',
         paddingBottom: isAndroid ? null : height / 110,
     },
     fiatBalance: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 25,
         backgroundColor: 'transparent',
     },
     noTransactions: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 37.6,
         backgroundColor: 'transparent',
     },
@@ -87,9 +88,16 @@ export class Balance extends Component {
         currency: PropTypes.string.isRequired,
         /** Currency coversion rate */
         conversionRate: PropTypes.number.isRequired,
+        /** Theme setting */
         primary: PropTypes.object.isRequired,
+        /** Theme setting */
         secondary: PropTypes.object.isRequired,
+        /** Theme setting */
         body: PropTypes.object.isRequired,
+        /** Determines whether account is being manually refreshed */
+        isRefreshing: PropTypes.bool.isRequired,
+        /** Fetches latest account info on swipe down */
+        onRefresh: PropTypes.func.isRequired
     };
 
     /**
@@ -200,7 +208,7 @@ export class Balance extends Component {
     }
 
     render() {
-        const { balance, conversionRate, currency, usdPrice, body } = this.props;
+        const { balance, conversionRate, currency, usdPrice, body, primary, isRefreshing } = this.props;
 
         const shortenedBalance =
             roundDown(formatValue(balance), 1) +
@@ -212,28 +220,40 @@ export class Balance extends Component {
         const text = (this.state.balanceIsShort ? shortenedBalance : formatValue(balance)) + ' ' + formatUnit(balance);
 
         return (
-            <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
-                <View style={styles.container}>
-                    <TouchableWithoutFeedback onPress={() => this.onBalanceClick()}>
-                        <View style={styles.balanceContainer}>
-                            <TextWithLetterSpacing spacing={width / 200} textStyle={[styles.iotaBalance, textColor]}>
-                                {text}
-                            </TextWithLetterSpacing>
-                            <Text style={[styles.fiatBalance, textColor]}>
-                                {currencySymbol} {round(fiatBalance, 2).toFixed(2)}{' '}
-                            </Text>
+            <ScrollView
+                refreshControl={
+                    <RefreshControl
+                        refreshing={isRefreshing}
+                        onRefresh={this.props.onRefresh}
+                        tintColor={primary.color}
+                    />
+                }
+                contentContainerStyle={{flex: 1}}
+                showsVerticalScrollIndicator={false}
+            >
+                <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
+                    <View style={styles.container}>
+                        <TouchableWithoutFeedback onPress={() => this.onBalanceClick()}>
+                            <View style={styles.balanceContainer}>
+                                <TextWithLetterSpacing spacing={width / 200} textStyle={[styles.iotaBalance, textColor]}>
+                                    {text}
+                                </TextWithLetterSpacing>
+                                <Text style={[styles.fiatBalance, textColor]}>
+                                    {currencySymbol} {round(fiatBalance, 2).toFixed(2)}{' '}
+                                </Text>
+                            </View>
+                        </TouchableWithoutFeedback>
+                        <View style={styles.transactionsContainer}>
+                            <TouchableOpacity onPress={() => this.props.onTabSwitch('history')}>
+                                {recentTransactions}
+                            </TouchableOpacity>
                         </View>
-                    </TouchableWithoutFeedback>
-                    <View style={styles.transactionsContainer}>
-                        <TouchableOpacity onPress={() => this.props.onTabSwitch('history')}>
-                            {recentTransactions}
-                        </TouchableOpacity>
+                        <View style={styles.chartContainer}>
+                            <Chart />
+                        </View>
                     </View>
-                    <View style={styles.chartContainer}>
-                        <Chart />
-                    </View>
-                </View>
-            </TouchableWithoutFeedback>
+                </TouchableWithoutFeedback>
+            </ScrollView>
         );
     }
 }
@@ -250,4 +270,6 @@ const mapStateToProps = (state) => ({
     body: state.settings.theme.body,
 });
 
-export default translate(['global'])(connect(mapStateToProps)(Balance));
+export default WithManualRefresh()(
+    translate(['global'])(connect(mapStateToProps)(Balance))
+);

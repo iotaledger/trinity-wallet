@@ -1,4 +1,5 @@
 import i18next from '../i18next.js';
+import Errors from '../libs/errors';
 
 export const ActionTypes = {
     SHOW: 'IOTA/ALERTS/SHOW',
@@ -36,10 +37,27 @@ export const generateAccountInfoErrorAlert = (err) => (dispatch) => {
     dispatch(prepareLogUpdate(err));
 };
 
-export const generateTransitionErrorAlert = () => (dispatch) => {
-    dispatch(
-        generateAlert('error', i18next.t('cannotCompleteTransition'), i18next.t('somethingWentWrongTryAgain'), 10000),
-    );
+export const generateTransitionErrorAlert = (err) => (dispatch) => {
+    if (err.message.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
+        dispatch(
+            generateAlert(
+                'error',
+                i18next.t('global:attachToTangleUnavailable'),
+                i18next.t('global:attachToTangleUnavailableExplanation'),
+                10000,
+            ),
+        );
+    } else {
+        dispatch(
+            generateAlert(
+                'error',
+                i18next.t('snapshotTransition:cannotCompleteTransition'),
+                i18next.t('snapshotTransition:somethingWentWrongTryAgain'),
+                10000,
+            ),
+        );
+    }
+    dispatch(prepareLogUpdate(err));
 };
 
 export const generateSyncingCompleteAlert = () => (dispatch) => {
@@ -73,7 +91,11 @@ export const generateTransferErrorAlert = (error) => (dispatch) =>
     );
 
 export const generatePromotionErrorAlert = (error) => (dispatch) =>
-    dispatch(generateAlert('error', i18next.t('promotionError'), i18next.t('promotionErrorExplanation')), 20000, error);
+    dispatch(
+        generateAlert('error', i18next.t('global:promotionError'), i18next.t('global:promotionErrorExplanation')),
+        20000,
+        error,
+    );
 
 export const disposeOffAlert = () => (dispatch) => dispatch(dispose());
 

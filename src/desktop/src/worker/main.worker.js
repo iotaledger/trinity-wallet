@@ -6,8 +6,10 @@ import {
     completeSnapshotTransition,
 } from 'actions/wallet';
 import {
-    getAccountInfo, getFullAccountInfoFirstSeed,
-    getFullAccountInfoAdditionalSeed, manuallySyncAccount,
+    getAccountInfo,
+    getFullAccountInfoFirstSeed,
+    getFullAccountInfoAdditionalSeed,
+    manuallySyncAccount,
 } from 'actions/accounts';
 import { changeIotaNode, SwitchingConfig } from 'libs/iota';
 import { defaultNode } from 'config';

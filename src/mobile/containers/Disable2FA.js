@@ -170,7 +170,7 @@ class Disable2FA extends Component {
                                 onLeftButtonPress={this.goBack}
                                 onRightButtonPress={this.disable2FA}
                                 leftText={t('cancel')}
-                                rightText="DONE"
+                                rightText={t('done')}
                             />
                         </View>
                     </View>

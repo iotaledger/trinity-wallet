@@ -44,7 +44,7 @@ const getProps = (overrides) =>
 
 describe('Testing Balance component', () => {
     describe('propTypes', () => {
-        it('should require an seedIndex number as a prop', () => {
+        it('should require a seedIndex number as a prop', () => {
             expect(Balance.propTypes.seedIndex).toEqual(PropTypes.number.isRequired);
         });
 
@@ -86,7 +86,7 @@ describe('Testing Balance component', () => {
             const props = getProps();
 
             const wrapper = shallow(<Balance {...props} />);
-            expect(wrapper.name()).toEqual('TouchableWithoutFeedback');
+            expect(wrapper.name()).toEqual('ScrollViewMock');
         });
     });
 
