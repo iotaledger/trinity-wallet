@@ -57,7 +57,7 @@ const initMenu = (app, getWindow) => {
                 submenu: [
                     {
                         label: language.about,
-                        role: 'about',
+                        click: () => navigate('about'),
                     },
                     {
                         type: 'separator',
