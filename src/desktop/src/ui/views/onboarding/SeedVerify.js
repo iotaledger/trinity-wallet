@@ -11,7 +11,6 @@ import { generateAlert } from 'actions/alerts';
 import { setOnboardingSeed } from 'actions/ui';
 
 import Button from 'ui/components/Button';
-import Infobox from 'ui/components/Info';
 import SeedInput from 'ui/components/input/Seed';
 
 /**

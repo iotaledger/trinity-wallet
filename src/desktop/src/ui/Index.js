@@ -17,6 +17,7 @@ import { disposeOffAlert, generateAlert } from 'actions/alerts';
 import Idle from 'ui/global/Idle';
 import Titlebar from 'ui/global/Titlebar';
 import FatalError from 'ui/global/FatalError';
+import About from 'ui/global/About';
 
 import Loading from 'ui/components/Loading';
 
@@ -179,6 +180,9 @@ class App extends React.Component {
 
     menuToggle(item) {
         switch (item) {
+            case 'about':
+                // Is processed in About component
+                break;
             case 'feedback':
                 // Is processed in Feedback component
                 break;
@@ -231,6 +235,7 @@ class App extends React.Component {
         return (
             <div className={css.trintiy}>
                 <Titlebar />
+                <About />
                 <Idle timeout={settings.lockScreenTimeout} />
                 <TransitionGroup>
                     <CSSTransition key={currentKey} classNames="fade" timeout={300}>
