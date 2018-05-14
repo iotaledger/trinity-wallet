@@ -37,8 +37,6 @@ class Dashboard extends React.PureComponent {
         isDeepLinkActive: PropTypes.bool,
         /* Browser location objects */
         location: PropTypes.object,
-        /** Theme definitions object */
-        theme: PropTypes.object.isRequired,
         /** Browser history object */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
@@ -128,7 +126,6 @@ const mapStateToProps = (state) => ({
     seedIndex: state.wallet.seedIndex,
     password: state.wallet.password,
     accounts: state.accounts,
-    theme: state.settings.theme,
     isDeepLinkActive: state.wallet.deepLinkActive,
 });
 

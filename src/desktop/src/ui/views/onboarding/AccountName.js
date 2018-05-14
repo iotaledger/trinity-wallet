@@ -6,7 +6,6 @@ import { translate } from 'react-i18next';
 import { setOnboardingName } from 'actions/ui';
 import { generateAlert } from 'actions/alerts';
 
-import Infobox from 'ui/components/Info';
 import Button from 'ui/components/Button';
 import Input from 'ui/components/input/Text';
 

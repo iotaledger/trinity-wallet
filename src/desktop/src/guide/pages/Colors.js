@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import { updateTheme } from 'actions/settings';
 import { generateAlert } from 'actions/alerts';
 
-import Button from 'ui/components/Button';
 import css from './colors.scss';
 
 const colorTitles = {
