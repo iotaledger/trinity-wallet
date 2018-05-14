@@ -31,7 +31,7 @@ class Activation extends React.PureComponent {
                         <fieldset>
                             <h2>This alpha release requires a full wallet reset!</h2>
                             <p>The wallet will be reset to defaults and all your saved data will be lost.</p>
-                            <Button type="submit" className="large" variant="primary">
+                            <Button type="submit" variant="primary">
                                 Reset wallet
                             </Button>
                         </fieldset>

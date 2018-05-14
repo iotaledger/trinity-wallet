@@ -105,9 +105,6 @@ class Sidebar extends React.PureComponent {
                             </a>
                         </ul>
                     </div>
-                    <NavLink to="/wallet/charts">
-                        <Icon icon="chart" size={20} />
-                    </NavLink>
                 </nav>
                 <nav>
                     <NavLink to="/settings">

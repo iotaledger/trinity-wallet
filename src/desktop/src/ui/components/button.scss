@@ -24,12 +24,14 @@
     &:focus {
         outline: none;
     }
-    &.small {
+    &.small,
+    &.outlineSmall {
         padding: 0 16px;
-        height: 32px;
-        line-height: 32px;
+        height: 42px;
+        line-height: 42px;
         min-width: 30px;
         border-radius: 2px;
+        font-size: 13px;
     }
     &.large,
     &.inline {
@@ -121,20 +123,8 @@
     }
 }
 
-.inline {
-    background: none;
-    &:hover {
-        background: none;
-    }
-    &.secondary {
-        color: var(--secondary);
-        &:hover {
-            color: var(--secondary-hover);
-        }
-    }
-}
-
-.outline {
+.outline,
+.outlineSmall {
     background: var(--body-bg);
     border: 1px solid;
 
@@ -150,9 +140,10 @@
     }
 
     &.secondary {
+        border-color: var(--secondary);
         color: var(--secondary);
         &:hover {
-            color: var(--secondary-hover);
+            border-color: var(--secondary-hover);
         }
     }
     &.positive {

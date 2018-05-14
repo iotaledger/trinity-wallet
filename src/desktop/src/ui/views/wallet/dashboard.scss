@@ -3,170 +3,202 @@
     height: 100%;
     display: flex;
     position: relative;
-    flex-direction: row;
+    flex-direction: column;
     padding: 20px;
 
-    > div {
-        display: flex;
-        flex-direction: column;
-        &:first-child {
-            width: 40%;
-            min-width: 420px;
-            max-width: 560px;
+    &.windows {
+        padding-top: 50px;
+    }
 
-            @media (max-width: 900px) {
-                width: 100%;
+    > div {
+        width: 100%;
+
+        &:nth-child(1) {
+            flex: 0 0 185px;
+            margin-bottom: 20px;
+            z-index: 2;
+
+            @media screen and (max-width: 860px) {
+                height: 230px;
+                transition: height 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+                &.balanceOpen {
+                    height: 540px;
+                }
             }
         }
-        &:last-of-type {
-            flex: 1 1 auto;
+
+        &:nth-child(2) {
+            flex: 1;
+            display: flex;
+            z-index: 2;
+
+            @media screen and (max-width: 860px) {
+                display: block;
+            }
+
+            section {
+                width: calc(50% - 10px);
+                height: 100%;
+                overflow: hidden;
+
+                @media screen and (max-width: 860px) {
+                    width: 100%;
+                    height: calc(50% - 10px);
+                    margin-bottom: 20px;
+                    transition: height 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+                }
+
+                &:first-child {
+                    margin-right: 20px;
+                }
+            }
+
+            &.history {
+                @media screen and (max-width: 860px) {
+                    section {
+                        &:first-child {
+                            height: 100%;
+                        }
+                        &:last-child {
+                            opacity: 0;
+                        }
+                    }
+                }
+            }
         }
     }
 
     section {
-        background: var(--body-altBg);
-        margin: 0 20px 20px 0;
-        padding: 20px;
-        border-radius: 4px;
+        background: var(--box-bg);
         position: relative;
-        z-index: 2;
-        flex: 1 1 auto;
-
-        @media (max-width: 900px) {
-            margin: 20px;
-        }
-
-        &.balance {
-            flex: 0;
-            flex-basis: 230px;
-            &.open {
-                flex-basis: 510px;
-            }
-
-            input,
-            textarea {
-                background: var(--body-bg);
-                color: var(--body);
-            }
-
-            ul li {
-                background: var(--body-bg);
-            }
-
-            form > fieldset {
-                margin-top: -10px;
-                p {
-                    margin-top: 14px;
-                }
-                small {
-                    margin-top: 5px;
-                    line-height: 16px;
-                    display: flex;
-                    justify-content: center;
-                    cursor: pointer;
-                    span {
-                        margin-right: 8px;
-                    }
-                }
-            }
-
-            form > div > div {
-                padding-bottom: 20px;
-            }
-        }
-
-        &.history {
-            flex: 1 1 auto;
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 0px;
-            @media (max-width: 900px) {
-                margin: 0 20px 20px 20px;
-            }
-        }
-
-        &.market {
-            flex: 0;
-            margin-right: 0px;
-            padding-bottom: 12px;
-            @media (max-width: 900px) {
-                margin: 20px;
-            }
-        }
-    }
-
-    hr {
-        background: var(--body-alt);
-        border: none;
-        height: 2px;
-        margin-bottom: 20px;
-        width: 100%;
+        border-radius: 6px;
     }
 }
 
 .balance {
-    transition: flex-basis 0.275s cubic-bezier(0, 0, 0.2, 1);
-    overflow: hidden;
-    h1,
-    h2 {
-        font-size: 48px;
-        line-height: 48px;
-        text-align: center;
-        margin: 22px 0 10px;
-        max-width: none;
-    }
-    h2 {
-        font-size: 21px;
-        line-height: 21px;
-        margin: 0 0 24px;
-    }
-    nav {
-        position: absolute;
-        bottom: 0px;
-        left: 0px;
-        width: 100%;
-        padding: 0 50px;
-        height: 62px;
-        display: flex;
-        justify-content: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
 
-        button {
-            margin: 0 12px;
+    > div:first-child {
+        display: none;
+        @media screen and (max-width: 860px) {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 160px;
+            opacity: 1;
+            padding-top: 20px;
         }
     }
-    > span {
-        display: block;
+
+    > div:nth-child(2),
+    > div:nth-child(3) {
         position: absolute;
-        top: 20px;
-        right: 20px;
-        transform: scale(0.75);
+        width: 100%;
+        height: 100%;
+        top: 0px;
+        left: 0px;
         opacity: 0;
-        transition: opacity 0.3s cubic-bezier(0, 0, 0.2, 1), transform 0.3s cubic-bezier(0, 0, 0.2, 1);
+        transform: scale(0.9);
         pointer-events: none;
-        span {
-            cursor: pointer;
-        }
-        &:hover {
-            color: var(--primary);
-        }
-    }
-    > div {
-        transform: scale(0.95);
-        opacity: 0;
-        transition: opacity 0.2s cubic-bezier(0, 0, 0.2, 1), transform 0.3s cubic-bezier(0, 0, 0.2, 1);
-    }
-    &.open {
-        > span {
+        transition: opacity 300ms ease-in, transform 200ms ease-out;
+
+        &.open {
+            opacity: 1;
+            transform: scale(1);
             pointer-events: all;
-            transform: scale(1);
-            opacity: 1;
         }
-        nav {
-            display: none;
+    }
+
+    > div:nth-child(2) {
+        display: flex;
+
+        @media screen and (max-width: 860px) {
+            padding-bottom: 64px;
+            > div {
+                display: none;
+            }
         }
-        > div {
-            transform: scale(1);
-            opacity: 1;
+
+        a {
+            flex: 0 0 185px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background: var(--box-alt);
+
+            span {
+                margin-bottom: 20px;
+            }
+
+            strong {
+                color: var(--primary);
+            }
+
+            &:first-child strong {
+                color: var(--secondary);
+            }
+
+            @media screen and (max-width: 860px) {
+                position: absolute;
+                width: calc(50% - 1px);
+                height: 64px;
+                bottom: 0px;
+                border-radius: 0 0 0 6px;
+                flex-direction: row;
+                font-size: 14px;
+
+                span {
+                    margin: 0 20px 0 0;
+                    font-size: 26px !important;
+                }
+
+                &:last-child {
+                    left: calc(50% + 1px);
+                    border-radius: 0 0 6px 0;
+                }
+            }
         }
+        div {
+            flex: 1;
+            text-align: center;
+        }
+    }
+
+    @media screen and (max-width: 860px) {
+        > div:nth-child(3) {
+            height: calc(100% - 200px);
+            top: 180px;
+        }
+    }
+}
+
+.wave {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 227px;
+    z-index: 1;
+    pointer-events: none;
+    > div {
+        content: '';
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        background-size: auto 275px;
+        background-position: left bottom;
+        background-repeat: repeat-x;
+        transition: background-position 3s cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+    > div:last-child {
+        background-position: 50% bottom;
     }
 }
