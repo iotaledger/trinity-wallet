@@ -23,7 +23,7 @@ export default class Button extends React.PureComponent {
         /** Button type */
         type: PropTypes.string,
         /** Buttons style type */
-        variant: PropTypes.oneOf(['primary', 'secondary', 'positive', 'negative', 'extra', 'back']).isRequired,
+        variant: PropTypes.oneOf(['primary', 'secondary', 'positive', 'negative', 'extra', 'dark']).isRequired,
         /** Buttons custom class */
         className: PropTypes.oneOf(['outline', 'small', 'outlineSmall', 'square', 'icon']),
         /** Buttons loading state */
