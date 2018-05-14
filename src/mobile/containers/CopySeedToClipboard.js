@@ -66,19 +66,19 @@ const styles = StyleSheet.create({
     infoText: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: width / 27.6,
-        textAlign: 'justify',
+        textAlign: 'left',
         backgroundColor: 'transparent',
     },
     infoTextNormal: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: width / 27.6,
-        textAlign: 'justify',
+        textAlign: 'left',
         backgroundColor: 'transparent',
     },
     infoTextBold: {
         fontFamily: 'SourceSansPro-Bold',
         fontSize: width / 27.6,
-        textAlign: 'justify',
+        textAlign: 'left',
         backgroundColor: 'transparent',
     },
     doneButton: {
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
         marginBottom: height / 20,
     },
     doneText: {
-        fontFamily: 'SourceSansPro-Light',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
     },
@@ -100,6 +100,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         height: height / 14,
+        marginVertical: height / 30,
     },
     modalCheckboxText: {
         fontFamily: 'SourceSansPro-Light',
@@ -254,16 +255,19 @@ class CopySeedToClipboard extends Component {
                                 <Text style={styles.infoTextNormal}>{t('global:masterKey')} </Text>
                                 <Text style={styles.infoTextNormal}>{t('storeEncrypted')} </Text>
                             </Text>
-                            <Text style={[styles.infoTextBold, textColor, { paddingVertical: height / 30 }]}>
+                            <Text style={[styles.infoTextBold, textColor, { paddingTop: height / 30 }]}>
                                 {t('tapConfirm')}
                             </Text>
                             <TouchableOpacity
-                                style={[styles.modalCheckboxContainer, { paddingTop: height / 60 }]}
+                                style={[styles.modalCheckboxContainer]}
                                 onPress={() => this.setState({ checkbox: !checkbox })}
                             >
-                                <Text style={[styles.modalCheckboxText, textColor]}>{t('encryptionCheckbox')}</Text>
+                                <Text style={[styles.modalCheckboxText, textColor]}>
+                                    {t('passwordManagerCheckbox')}
+                                </Text>
                                 <Image source={this.getCheckbox()} style={styles.modalCheckbox} />
                             </TouchableOpacity>
+                            <Text style={styles.infoTextBold}>{t('doNotOpen')} </Text>
                             <View style={{ paddingTop: height / 18 }}>
                                 <OnboardingButtons
                                     onLeftButtonPress={() => this.hideModal()}
@@ -271,7 +275,8 @@ class CopySeedToClipboard extends Component {
                                     leftText={t('global:back')}
                                     rightText={t('copy')}
                                     opacity={opacity}
-                                    containerWidth={width / 1.25}
+                                    containerWidth={{ width: width / 1.25 }}
+                                    buttonWidth={{ width: width / 2.85 }}
                                 />
                             </View>
                         </View>

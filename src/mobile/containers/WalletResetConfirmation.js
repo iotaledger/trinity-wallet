@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     infoText: {
         fontSize: width / 27.6,
         fontFamily: 'SourceSansPro-Light',
-        textAlign: 'justify',
+        textAlign: 'left',
         backgroundColor: 'transparent',
     },
     infoTextLight: {

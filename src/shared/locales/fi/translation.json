@@ -48,7 +48,7 @@
         "otherWallet": "MUU TILI",
         "yes": "KYLLÄ",
         "no": "EI",
-        "okay": "OKAY",
+        "okay": "OK",
         "password": "Salasana",
         "passwordOrFingerprint": "Salasana tai sormenjälki",
         "unrecognisedPassword": "Tunnistamaton salasana",
@@ -108,9 +108,10 @@
         "nodeAutoChanged": "Palvelinta vaihdettu automaattisesti",
         "nodeAutoChangedExplanation": "Yhteys siirretty palvelimeen {{- nodeAddress}} koska alkuperäinen palvelin ei vastaa.",
         "fingerprintOnSend": "Jos hyväksyt siirron kosketa sormenjälkilukijaa",
-        "masterKey": "Your IOTA seed is the master key to your funds.",
-        "googlePlayServicesNotAvailable": "Google Play Services not available",
-        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available."
+        "masterKey": "Seed-luku on varojesi pääavain ja näinollen erityisin tärkeä.",
+        "googlePlayServicesNotAvailable": "Google Play Services ei ole käytettävissä",
+        "couldNotVerifyDeviceIntegrity": "Laitteen tietoturvaa ei voida varmistaa koska Google palveluihin ei saada yhteyttä.",
+        "clear": "TYHJENNÄ"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed-luku sisältää virheellisiä merkkejä",
@@ -153,10 +154,10 @@
         "doNotStore": "Älä säilytä seed-lukuasi pelkkänä tekstinä.",
         "copyToClipboard": "Kopioi seed-luku",
         "shareSeed": "Tallenna seed-lukusi turvalliseen salasanan hallintaohjelmaan",
-        "storeEncrypted": "If you choose to back-up your seed on your phone it should be stored encrypted e.g. in a password manager.",
-        "tapConfirm": "Please tap the checkbox below to confirm.",
-        "encryptionCheckbox": "I will store my seed with encryption",
-        "copy": "COPY"
+        "storeEncrypted": "Jos tallennat seed-lukusi puhelimeen, se tulee tehdä salatussa muodossa. Voit käyttää tähän salasanan hallintaohjelmia.",
+        "tapConfirm": "Paina alla olevia laatikoita vahvistaaksesi että ymmärrät ohjeistuksen.",
+        "encryptionCheckbox": "Tallennan seed-lukuni aina salatusti",
+        "copy": "KOPIOI"
     },
     "enterSeed": {
         "invalidCharacters": "Seed-luku sisältää virheellisiä merkkejä",
@@ -196,9 +197,9 @@
         "seedNotGenerated": "Seed-lukua ei ole luotu",
         "seedNotGeneratedExplanation": "Luo uusi seed-luku.",
         "pressForNewSeed": "LUO UUSI SEED-LUKU",
-        "generateSuccess": "Seed generated successfully",
+        "generateSuccess": "Seed-luvun luonti onnistu",
         "individualLetters": "Paina yksittäisiä merkkejä saadaksesi ne satunnaisiksi.",
-        "whatIsASeed": "What is a seed?"
+        "whatIsASeed": "Mikä on seed-luku?"
     },
     "onboardingComplete": {
         "walletReady": "Lompakkosi on nyt käyttövalmis. Voit tehdä siihen jatkossa muutoksia Asetukset-valikon kautta."
@@ -209,12 +210,12 @@
         "neverShare": "Älä koskaa jaa seed-lukua kenenkään ulkopuolisen kanssa.",
         "iotaLogo": "IOTA-logo",
         "printWallet": "TULOSTA SEED-LUKU PAPERILLE",
-        "print": "PRINT",
-        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
-        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
-        "tapCheckboxes": "Please tap the checkboxes below to confirm.",
-        "wifiCheckbox": "I will not print on public wifi",
-        "printerCheckbox": "I will not print on a public printer"
+        "print": "TULOSTA",
+        "paperConvenience": "Seed-luvun tulostaminen paperille on hyvä tapa tallentaa se laitteen ulkopuolelle.",
+        "publicInsecure": "Tulostaminen julkisessa verkossa tai julkisella tulostimella ei kuitenkaan ole turvallista.",
+        "tapCheckboxes": "Paina alla olevia laatikoita vahvistaaksesi että ymmärrät ohjeistuksen.",
+        "wifiCheckbox": "En tulosta julkisessa wifi-verkossa",
+        "printerCheckbox": "En tulosta julkisella tulostimella"
     },
     "receive": {
         "addressCopied": "Osoite kopioitu",
@@ -288,8 +289,8 @@
         "mode": "Tila",
         "theme": "Teema",
         "currency": "Valuutta",
-        "cannotChangeNode": "Cannot change node",
-        "cannotChangeNodeWhileSending": "Cannot change node while sending.",
+        "cannotChangeNode": "Palvelinta ei voi muuttaa",
+        "cannotChangeNodeWhileSending": "Muutos ei onnistu koska siirto on kesken.",
         "language": "Kieli",
         "accountManagement": "Tilinhallinta",
         "addNewSeed": "Lisää uusi seed-luku",
@@ -370,7 +371,12 @@
         "addNewAccount": "Lisää uusi tili"
     },
     "addCustomNode": {
+        "customNodeAdded": "Omavalintainen palvelin lisätty",
+        "customNodeCouldNotBeAdded": "Palvelinta ei voitu lisätä",
+        "customNodeAddedSuccessfully": "Palvelin lisätty onnistuneesti.",
         "customNode": "Omavalintainen palvelin",
+        "invalidNodeResponse": "Palvelin palautti virheilmoituksen",
+        "httpNodeError": "Trinity lompakko tukee vain https-palvelimia.",
         "add": "Lisää",
         "nodeFieldEmpty": "Tekstikenttä on tyhjä",
         "nodeFieldEmptyExplanation": "Anna omavalintaisen palvelin osoite."
@@ -430,7 +436,9 @@
         "syncingYourAccount": "Synkronoidaan tiliä."
     },
     "useExistingSeed": {
-        "title": "Anna seed-luku ja tilin nimi."
+        "title": "Anna seed-luku ja tilin nimi.",
+        "incorrectFormat": "Seed-luku on virheellinen",
+        "validSeedExplanation": "'Hyväksytyn osoitteen on oltava 81 merkkiä pitkä ja sisältää ainoastaan merkkejä A-Z tai 9.'"
     },
     "viewSeed": {
         "enterPassword": "Syötä salasana nähdäksesi seed-lukusi.",
@@ -450,9 +458,9 @@
         "instructionsEnable": "Kosketa sormenjälkilukijaa saadaksesi se käyttöön",
         "instructionsDisable": "Kosketa sormenjälkilukijaa poistaaksesi se käytöstä",
         "fingerprintAuthEnabled": "Biometrinen tunnistus käytössä",
-        "fingerprintAuthEnabledExplanation": "Olet ottanut käyttöön biometrisen tunnistuksen.",
+        "fingerprintAuthEnabledExplanation": "Biometrinen tunnistus otettu käyttöön.",
         "fingerprintAuthDisabled": "Biometrinen tunnistus poistettu käytöstä",
-        "fingerprintAuthDisabledExplanation": "Olet poistanut biometrisen tunnistuksen käytöstä.",
+        "fingerprintAuthDisabledExplanation": "Biometrinen tunnistus otettu pois käyttöstä.",
         "fingerprintAuthFailed": "Biometrinen tunnistus epäonnistui",
         "fingerprintAuthFailedExplanation": "Sormenjälkitunnistus epäonnistui. Yritä uudelleen.",
         "status": "Tila",
@@ -484,7 +492,8 @@
         "twoFADisabled": "Kaksivaiheinen tunnistautuminen (2FA) poistettu käytöstä",
         "twoFADisabledExplanation": "Kaksivaihetunnistautumisen (2FA) poistettu käytöstä onnistuneesti.",
         "enterCode": "Syötä tunnusluku 2FA-ohjelmasta",
-        "code": "Tunnusluku"
+        "code": "Tunnusluku",
+        "twoFaToken": "2FA tunnus"
     },
     "chart": {
         "mcap": "MARVO",
@@ -494,7 +503,9 @@
     },
     "rootDetection": {
         "warning": "VAROITUS",
-        "rootDetected": "<0>Laitteesi näyttää olevan rootattu.</0><1>Tämä voi johtaa merkittäviin ongelmiin lompakon tietoturvassa.</1><2>Haluatko jatkaa tästä huolimatta?</2>"
+        "appearsRooted": "Laitteellasi näyttää olevan root-käyttöoikeudet (rootattu).",
+        "securityRisk": "Tämä voi vähentää lompakkosi tietoturvaa merkittävästi.",
+        "continueDepsiteRisk": "Haluatko jatkaa jatkaa tästä huolimatta?"
     },
     "pow": {
         "feeless": "Kuluttoman siirron tekeminen vaatii vähäistä määrää laskentatyötä (Proof of Work).",
@@ -542,5 +553,8 @@
         "newVersionAvailableExplanation": "Uusi <strong>Trinity</strong> <strong>{{version}}</strong> päivitys on saatavilla. Lue julkaisun tiedot huolellisesti ja varmista että lataus tehdään luotettavasta lähteestä:",
         "downloadRelease": "Lataa päivitys",
         "skipUpdate": "Ohita päivitys"
+    },
+    "notificationLog": {
+        "errorLog": "VIRHEHISTORIA"
     }
 }

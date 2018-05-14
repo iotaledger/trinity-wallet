@@ -74,13 +74,14 @@ class InfoBox extends PureComponent {
               }
             : { backgroundColor: 'rgba(255, 255, 255, 0.15)' };
         const iconContainerStyling = isBgLight ? { borderWidth: 1 } : { backgroundColor: 'rgba(255, 255, 255, 0.11)' };
+        const iconStyling = isBgLight ? { backgroundColor: body.bg } : null;
 
         return (
             <View style={[styles.fieldContainer, fieldContainerStyling]}>
                 <View style={[styles.banner, bannerStyling, { width }]} />
                 <View style={[styles.innerContainer, innerContainerStyling, { width }]}>{text}</View>
                 <View style={[styles.iconContainer, iconContainerStyling]} />
-                <Icon name="info" size={height / 24} color={body.color} style={styles.icon} />
+                <Icon name="info" size={height / 24} color={body.color} style={[styles.icon, iconStyling]} />
             </View>
         );
     }

@@ -89,8 +89,8 @@ android {
     buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.iota.wallet"
-        versionCode 32
-        versionName "3.4.8"
+        versionCode 34
+        versionName "3.5.0"
         minSdkVersion 19
         targetSdkVersion 26
         multiDexEnabled true
@@ -136,12 +136,12 @@ android {
     }
 }
 dependencies {
+    compile project(':react-native-detect-navbar-android')
     compile project(':react-native-fingerprint-scanner')
     compile project(':react-native-fabric')
     compile project(':react-native-keep-awake')
     compile project(':react-native-device-info')
     compile project(':react-native-extra-dimensions-android')
-    compile project(':react-native-detect-navbar-android')
     compile project(':react-native-os')
     compile (project(':react-native-camera')) {
         exclude group: "com.google.android.gms:+"
