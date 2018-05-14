@@ -12,6 +12,8 @@ class Waves extends PureComponent {
     static propTypes = {
         /** Theme definitions object */
         theme: PropTypes.object.isRequired,
+        /** Wave visual offset */
+        offset: PropTypes.number,
         /** Height of the waves */
         height: PropTypes.string,
         /** Bottom margin of the waves */
@@ -25,20 +27,20 @@ class Waves extends PureComponent {
     }
 
     render() {
-        const { bottom, height } = this.props;
+        const { offset, bottom, height } = this.props;
 
         return (
-            <div className={css.wave} style={{ height: height ? height : '270px', bottom: bottom ? bottom : '0px' }}>
+            <div className={css.wave} style={{ height: height ? height : '160px', bottom: bottom ? bottom : '0px' }}>
                 <div
                     style={{
                         backgroundImage: this.getWave(true),
-                        backgroundPosition: '0% bottom',
+                        backgroundPosition: `${offset ? offset : 0}% bottom`,
                     }}
                 />
                 <div
                     style={{
                         backgroundImage: this.getWave(),
-                        backgroundPosition: '30% bottom',
+                        backgroundPosition: `${offset ? offset + 50 : 50}% bottom`,
                     }}
                 />
             </div>
