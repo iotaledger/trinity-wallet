@@ -25,6 +25,11 @@ fastlane screenshots
 fastlane refresh_dsyms
 ```
 
+### localization
+```
+fastlane localization
+```
+
 
 ----
 
