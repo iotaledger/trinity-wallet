@@ -138,7 +138,7 @@ class GenerateSeed extends React.PureComponent {
                     </Button>
                 </section>
                 <footer>
-                    <Button onClick={this.onRequestPrevious} className="square" variant="back">
+                    <Button onClick={this.onRequestPrevious} className="square" variant="dark">
                         {t('goBackStep')}
                     </Button>
                     <Button disabled={clicksLeft > 0} onClick={this.onRequestNext} className="square" variant="primary">

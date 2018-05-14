@@ -15,115 +15,33 @@
 
     strong {
         font-weight: 300;
-        flex: 0 0 120px;
+        flex: 0 0 220px;
         line-height: 21px;
     }
 
     em {
         display: block;
     }
-}
 
-.body-color {
-    background: var(--body);
-}
-.body-bg {
-    background: var(--body-bg);
-}
-.body-alt {
-    background: var(--body-alt);
-}
-.body-alt-bg {
-    background: var(--body-altBg);
-}
+    input {
+        background: none;
+        border: none;
+        color: var(--body);
+    }
 
-.bar-color {
-    background: var(--bar);
-}
-.bar-bg {
-    background: var(--bar-bg);
-}
-.bar-alt {
-    background: var(--bar-alt);
-}
-
-.primary-color {
-    background: var(--primary);
-}
-.primary-hover {
-    background: var(--primary-hover);
-}
-.primary-body {
-    background: var(--primary-body);
-}
-
-.secondary-color {
-    background: var(--secondary);
-}
-.secondary-hover {
-    background: var(--secondary-hover);
-}
-.secondary-body {
-    background: var(--secondary-body);
-}
-
-.extra-color {
-    background: var(--extra);
-}
-.extra-hover {
-    background: var(--extra-hover);
-}
-.extra-body {
-    background: var(--extra-body);
-}
-
-.positive-color {
-    background: var(--positive);
-}
-.positive-hover {
-    background: var(--positive-hover);
-}
-.positive-body {
-    background: var(--positive-body);
-}
-
-.negative-color {
-    background: var(--negative);
-}
-.negative-hover {
-    background: var(--negative-hover);
-}
-.negative-body {
-    background: var(--negative-body);
-}
-
-.dark-color {
-   background: var(--dark);
-}
-.dark-hover {
-   background: var(--dark-hover);
-}
-.dark-body {
-   background: var(--dark-body);
-}
-
-.input-color {
-    background: var(--input);
-}
-.input-bg {
-    background: var(--input-bg);
-}
-.input-alt {
-    background: var(--input-alt);
-}
-
-.label-color {
-    background: var(--label);
-}
-.label-hover {
-    background: var(--label-hover);
-}
-
-.chart-color {
-    background: var(--chart);
+    textarea {
+        width: 100%;
+        height: 400px;
+        margin-bottom: 60px;
+        background: var(--input-bg);
+        color: var(--input);
+        font-size: 11px;
+        font-family: monospace;
+        border: none;
+        padding: 20px;
+        border-radius: 4px;
+        &:focus {
+            outline: none;
+        }
+    }
 }

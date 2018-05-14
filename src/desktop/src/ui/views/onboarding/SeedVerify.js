@@ -124,7 +124,7 @@ class SeedVerify extends React.PureComponent {
                     <Button
                         to={`/onboarding/seed-${onboarding.isGenerated ? 'save' : 'intro'}`}
                         className="square"
-                        variant="back"
+                        variant="dark"
                     >
                         {t('goBackStep')}
                     </Button>

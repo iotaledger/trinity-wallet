@@ -208,7 +208,7 @@ class AccountPassword extends React.PureComponent {
                     />
                 </section>
                 <footer>
-                    <Button to="/onboarding/account-name" className="square" variant="back">
+                    <Button to="/onboarding/account-name" className="square" variant="dark">
                         {t('goBackStep')}
                     </Button>
                     <Button type="submit" className="square" variant="primary">
