@@ -110,7 +110,8 @@
         "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer",
         "masterKey": "Your IOTA seed is the master key to your funds.",
         "googlePlayServicesNotAvailable": "Google Play Services not available",
-        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available."
+        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available.",
+        "clear": "CLEAR"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed berisi karakter yang tidak valid",
@@ -370,7 +371,12 @@
         "addNewAccount": "Tambahkan akun baru"
     },
     "addCustomNode": {
+        "customNodeAdded": "Custom node added",
+        "customNodeCouldNotBeAdded": "Custom node could not be added",
+        "customNodeAddedSuccessfully": "The custom node has been added successfully.",
         "customNode": "Node kustom",
+        "invalidNodeResponse": "The node returned an invalid response",
+        "httpNodeError": "Trinity Mobile only supports https nodes.",
         "add": "Tambahkan",
         "nodeFieldEmpty": "Text field is empty",
         "nodeFieldEmptyExplanation": "Please enter a custom node."
@@ -430,7 +436,9 @@
         "syncingYourAccount": "Sinkronkan akun Anda."
     },
     "useExistingSeed": {
-        "title": "Masukkan nama akun."
+        "title": "Masukkan nama akun.",
+        "incorrectFormat": "Incorrect seed format",
+        "validSeedExplanation": "'Valid seeds should be 81 characters and contain only A-Z or 9.'"
     },
     "viewSeed": {
         "enterPassword": "Masukkan kata sandi untuk menghapus dompet anda.",
@@ -484,7 +492,8 @@
         "twoFADisabled": "2FA sekarang tidak aktif",
         "twoFADisabledExplanation": "Anda telah berhasil mengnonaktifkan dua faktor otentikasi.",
         "enterCode": "Masukkan kode dari aplikasi 2FA",
-        "code": "Kode"
+        "code": "Kode",
+        "twoFaToken": "2FA Token"
     },
     "chart": {
         "mcap": "MCAP",
@@ -494,7 +503,9 @@
     },
     "rootDetection": {
         "warning": "PERINGATAN",
-        "rootDetected": "<0>Perangkat anda sepertinya telah di root</0><1>Ini dapat menambah resiko yang tinggi dalam dompet anda.</1><2>Apakah anda tetap ingin lanjut?</2>"
+        "appearsRooted": "Your device appears to be rooted.",
+        "securityRisk": "This can pose a significant risk to the security of your wallet.",
+        "continueDepsiteRisk": "Do you wish to continue despite this risk?"
     },
     "pow": {
         "feeless": "Dibutuhkan sedikit Proof of Work untuk mengirim transaksi tanpa biaya di IOTA.",
@@ -542,5 +553,8 @@
         "newVersionAvailableExplanation": "Versi terbaru <strong>Trinity</strong> <strong>{{version}}</strong> tersedia. Silahkan baca rincian rilis dengan hati-hati dan periksa alamat unduh sebelum memperbarui:",
         "downloadRelease": "Unduh rilis",
         "skipUpdate": "Lewati pembaruan"
+    },
+    "notificationLog": {
+        "errorLog": "ERROR LOG"
     }
 }

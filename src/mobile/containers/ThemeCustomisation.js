@@ -150,8 +150,8 @@ const styles = StyleSheet.create({
     },
     ctaText: {
         color: 'white',
-        fontFamily: 'SourceSansPro-Bold',
-        fontSize: width / 29.6,
+        fontFamily: 'SourceSansPro-Regular',
+        fontSize: width / 27.6,
         backgroundColor: 'transparent',
     },
 });

@@ -59,7 +59,8 @@ export class Poll extends Component {
             props.isGeneratingReceiveAddress ||
             props.isFetchingLatestAccountInfoOnLogin || // In case the app is already fetching latest account info, stop polling because the market related data is already fetched on login
             props.addingAdditionalAccount ||
-            props.isTransitioning;
+            props.isTransitioning ||
+            props.isPromotingTransaction;
 
         const isAlreadyPollingSomething =
             props.isFetchingPrice ||
@@ -67,7 +68,7 @@ export class Poll extends Component {
             props.isFetchingChartData ||
             props.isFetchingMarketData ||
             props.isFetchingAccountInfo ||
-            props.isPromoting;
+            props.isAutoPromoting;
 
         return isAlreadyDoingSomeHeavyLifting || isAlreadyPollingSomething;
     }
@@ -97,7 +98,7 @@ export class Poll extends Component {
     }
 
     startBackgroundProcesses() {
-        timer.setInterval(this, 'polling', () => this.fetch(this.props.pollFor), 15000);
+        timer.setInterval(this, 'polling', () => this.fetch(this.props.pollFor), 8000);
     }
 
     handleAppStateChange = (nextAppState) => {
@@ -142,7 +143,8 @@ const mapStateToProps = (state) => ({
     isFetchingChartData: state.polling.isFetchingChartData,
     isFetchingMarketData: state.polling.isFetchingMarketData,
     isFetchingAccountInfo: state.polling.isFetchingAccountInfo,
-    isPromoting: state.polling.isPromoting,
+    isAutoPromoting: state.polling.isAutoPromoting,
+    isPromotingTransaction: state.ui.isPromotingTransaction,
     isSyncing: state.ui.isSyncing,
     addingAdditionalAccount: state.wallet.addingAdditionalAccount,
     isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,

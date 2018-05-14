@@ -5,6 +5,7 @@ import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Key
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 import Modal from 'react-native-modal';
 import { connect } from 'react-redux';
+import tinycolor from 'tinycolor2';
 import CustomTextInput from '../components/CustomTextInput';
 import FingerPrintModal from '../components/FingerprintModal';
 import GENERAL from '../theme/general';
@@ -133,8 +134,11 @@ class EnterPassword extends Component {
     render() {
         const { isModalVisible } = this.state;
         const { t, theme, isFingerprintEnabled } = this.props;
-        const borderColor = { borderColor: theme.primary.color };
-        const primaryTextColor = { color: theme.primary.color };
+        // FIXME: A quick workaround while theming is being finalised
+        const isBgLight = tinycolor(theme.body.bg).isLight();
+        const primaryTextColor = { color: isBgLight ? theme.primary.body : theme.primary.color };
+        const borderColor = { borderColor: isBgLight ? 'transparent' : theme.primary.color };
+        const backgroundColor = { backgroundColor: isBgLight ? theme.primary.color : 'transparent' };
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -160,7 +164,7 @@ class EnterPassword extends Component {
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity onPress={this.handleLogin}>
-                            <View style={[styles.loginButton, borderColor]}>
+                            <View style={[styles.loginButton, borderColor, backgroundColor]}>
                                 <Text style={[styles.loginText, primaryTextColor]}>{t('login')}</Text>
                             </View>
                         </TouchableOpacity>
