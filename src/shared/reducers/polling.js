@@ -49,7 +49,7 @@ const polling = (
         isFetchingMarketData: false,
         isFetchingAccountInfo: false,
         isFetchingNodeList: false,
-        isPromoting: false,
+        isAutoPromoting: false,
     },
     action,
 ) => {
@@ -142,18 +142,18 @@ const polling = (
         case ActionTypes.PROMOTE_TRANSACTION_REQUEST:
             return {
                 ...state,
-                isPromoting: true,
+                isAutoPromoting: true,
             };
         case ActionTypes.PROMOTE_TRANSACTION_SUCCESS:
             return {
                 ...state,
-                isPromoting: false,
+                isAutoPromoting: false,
                 ...setNextPollIfSuccessful(state),
             };
         case ActionTypes.PROMOTE_TRANSACTION_ERROR:
             return {
                 ...state,
-                isPromoting: false,
+                isAutoPromoting: false,
                 ...setNextPollIfUnsuccessful(state),
             };
         case ActionTypes.SET_POLL_FOR:

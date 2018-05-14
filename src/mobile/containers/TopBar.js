@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
         fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 24.4,
         paddingBottom: isAndroid ? 0 : height / 170,
+        maxWidth: width / 1.35
     },
     subtitle: {
         textAlign: 'center',
@@ -116,6 +117,10 @@ class TopBar extends Component {
         topBarHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.object]).isRequired,
         isIOSKeyboardActive: PropTypes.bool.isRequired,
         isTransitioning: PropTypes.bool.isRequired,
+        /** Currently selected mode */
+        mode: PropTypes.oneOf(['Expert', 'Standard']).isRequired,
+        /** Determines if the application is minimised */
+        minimised: PropTypes.bool.isRequired,
     };
 
     static filterSeedTitles(accountNames, currentSeedIndex) {
@@ -186,6 +191,13 @@ class TopBar extends Component {
         }
     }
 
+    setScrollable(y) {
+        if (y >= height - height / 8.8) {
+            return this.setState({ scrollable: true });
+        }
+        this.setState({ scrollable: false });
+    }
+
     shouldDisable() {
         const { isGeneratingReceiveAddress, isSendingTransfer, isSyncing, isTransitioning } = this.props;
         return isGeneratingReceiveAddress || isSendingTransfer || isSyncing || isTransitioning;
@@ -211,6 +223,8 @@ class TopBar extends Component {
             topBarHeight,
             isIOSKeyboardActive,
             notificationLog,
+            mode,
+            minimised
         } = this.props;
         const selectedTitle = get(accountNames, `[${seedIndex}]`) || ''; // fallback
         const selectedSubtitle = TopBar.humanizeBalance(balance);
@@ -238,42 +252,42 @@ class TopBar extends Component {
                         }
                     }}
                 >
-                    <View
-                        style={{ width, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}
-                    >
-                        {hasNotifications && !isIOSKeyboardActive ? (
-                            <TouchableOpacity
-                                hitSlop={{ left: width / 18, right: width / 18, top: 0, bottom: 0 }}
-                                style={styles.notificationContainer}
-                                onPress={() => this.showModal()}
-                            >
-                                <Animated.View
-                                    style={{
-                                        height: topBarHeight,
-                                        width: width / 18,
-                                        justifyContent: 'center',
-                                        paddingTop: isAndroid ? 0 : height / 170,
-                                    }}
+                    {!isIOSKeyboardActive && !minimised &&
+                        <View
+                            style={{ width, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}
+                        >
+                            {hasNotifications && !isIOSKeyboardActive && mode === 'Expert' ? (
+                                <TouchableOpacity
+                                    hitSlop={{ left: width / 18, right: width / 18, top: 0, bottom: 0 }}
+                                    style={styles.notificationContainer}
+                                    onPress={() => this.showModal()}
                                 >
-                                    <Icon name="notification" size={width / 18} color={bar.color} />
-                                </Animated.View>
-                            </TouchableOpacity>
-                        ) : (
-                            <View style={styles.notificationContainer}>
-                                <View style={styles.empty} />
-                            </View>
-                        )}
-                        {!isIOSKeyboardActive && (
+                                    <Animated.View
+                                        style={{
+                                            height: topBarHeight,
+                                            width: width / 18,
+                                            justifyContent: 'center',
+                                            paddingTop: isAndroid ? 0 : height / 170,
+                                        }}
+                                    >
+                                        <Icon name="notification" size={width / 18} color={bar.color} />
+                                    </Animated.View>
+                                </TouchableOpacity>
+                            ) : (
+                                <View style={styles.notificationContainer}>
+                                    <View style={styles.empty} />
+                                </View>
+                                )}
                             <View>
                                 <Text
                                     numberOfLines={1}
                                     style={
                                         shouldDisable
                                             ? StyleSheet.flatten([
-                                                  styles.mainTitle,
-                                                  styles.disabled,
-                                                  { color: bar.color, marginTop: height / 55 },
-                                              ])
+                                                styles.mainTitle,
+                                                styles.disabled,
+                                                { color: bar.color, marginTop: height / 55 },
+                                            ])
                                             : [styles.mainTitle, { color: bar.color, marginTop: height / 55 }]
                                     }
                                 >
@@ -283,42 +297,44 @@ class TopBar extends Component {
                                     style={
                                         shouldDisable
                                             ? StyleSheet.flatten([
-                                                  styles.subtitle,
-                                                  styles.disabled,
-                                                  { color: subtitleColor },
-                                              ])
+                                                styles.subtitle,
+                                                styles.disabled,
+                                                { color: subtitleColor },
+                                            ])
                                             : [styles.subtitle, { color: subtitleColor }]
                                     }
                                 >
                                     {selectedSubtitle}
                                 </Text>
                             </View>
-                        )}
-                        <View style={styles.chevronWrapper}>
-                            {hasMultipleSeeds && !isIOSKeyboardActive ? (
-                                <Animated.View
-                                    style={{
-                                        height: topBarHeight,
-                                        justifyContent: 'center',
-                                        paddingTop: isAndroid ? 0 : height / 170,
-                                    }}
-                                >
-                                    <Icon
-                                        name={isTopBarActive ? 'chevronUp' : 'chevronDown'}
-                                        size={width / 22}
-                                        color={bar.color}
-                                        style={[
-                                            shouldDisable
-                                                ? StyleSheet.flatten([styles.chevron, styles.disabledImage])
-                                                : styles.chevron,
-                                        ]}
-                                    />
-                                </Animated.View>
-                            ) : (
-                                <View style={styles.empty} />
-                            )}
+                            <View style={styles.chevronWrapper}>
+                                {hasMultipleSeeds ? (
+                                    <Animated.View
+                                        style={{
+                                            height: topBarHeight,
+                                            justifyContent: 'center',
+                                            paddingTop: isAndroid ? 0 : height / 170,
+                                        }}
+                                    >
+                                        <Icon
+                                            name={isTopBarActive ? 'chevronUp' : 'chevronDown'}
+                                            size={width / 22}
+                                            color={bar.color}
+                                            style={[
+                                                shouldDisable
+                                                    ? StyleSheet.flatten([styles.chevron, styles.disabledImage])
+                                                    : styles.chevron,
+                                            ]}
+                                        />
+                                    </Animated.View>
+                                ) : (
+                                    <View style={styles.empty} />
+                                    )}
+                            </View>
                         </View>
-                    </View>
+                        ||
+                        <View />
+                    }
                 </TouchableWithoutFeedback>
             </Animated.View>
         );
@@ -383,10 +399,22 @@ class TopBar extends Component {
             );
         });
 
+        const { scrollable } = this.state;
         return (
             <View style={styles.titleWrapper}>
                 {baseContent}
-                {restContent}
+                <ScrollView
+                    scrollEnabled={scrollable}
+                    showsVerticalScrollIndicator={scrollable}
+                    ref={(c) => {
+                        this.scrollView = c;
+                    }}
+                    onContentSizeChange={(x, y) => this.setScrollable(y)}
+                    contentContainerView={{ height: height }}
+                    style={{ maxHeight: height - height / 8.8 }}
+                >
+                    {restContent}
+                </ScrollView>
             </View>
         );
     }
@@ -417,9 +445,12 @@ class TopBar extends Component {
                             },
                         ]}
                     >
-                        <ScrollView scrollEnabled={false} style={styles.scrollViewContainer}>
+                        <View
+                            scrollEnabled={false}
+                            style={styles.scrollViewContainer}
+                        >
                             {children}
-                        </ScrollView>
+                        </View>
                         <Modal
                             animationIn={isAndroid ? 'bounceInUp' : 'zoomIn'}
                             animationOut={isAndroid ? 'bounceOut' : 'zoomOut'}
@@ -460,6 +491,7 @@ const mapStateToProps = (state) => ({
     accountInfo: state.accounts.accountInfo,
     currentSetting: state.wallet.currentSetting,
     seedIndex: state.wallet.seedIndex,
+    mode: state.settings.mode,
     isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
     isSendingTransfer: state.ui.isSendingTransfer,
     isTransitioning: state.ui.isTransitioning,
