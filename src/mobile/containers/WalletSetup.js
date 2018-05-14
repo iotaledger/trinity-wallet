@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     infoText: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: width / 27.6,
-        textAlign: 'justify',
+        textAlign: 'left',
         paddingTop: height / 60,
         backgroundColor: 'transparent',
     },

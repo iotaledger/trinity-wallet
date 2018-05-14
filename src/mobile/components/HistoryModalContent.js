@@ -15,6 +15,7 @@ import { formatModalTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-mod
 import StatefulDropdownAlert from '../containers/StatefulDropdownAlert';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
+import { isAndroid } from '../utils/device';
 import CtaButton from '../components/CtaButton';
 
 const styles = StyleSheet.create({
@@ -32,7 +33,7 @@ const styles = StyleSheet.create({
     },
     content: {
         width: width / 1.15,
-        maxHeight: height / 1.05,
+        maxHeight: height / 1.25,
         padding: width / 25,
         justifyContent: 'center',
         borderRadius: GENERAL.borderRadius,
@@ -179,8 +180,6 @@ export default class HistoryModalContent extends PureComponent {
         generateAlert: PropTypes.func.isRequired,
         /** Determines if wallet is broadcasting bundle */
         isBroadcastingBundle: PropTypes.bool.isRequired,
-        /** Determines if wallet is promoting transaction */
-        isPromotingTransaction: PropTypes.bool.isRequired,
         /** Content styles */
         style: PropTypes.shape({
             titleColor: PropTypes.string.isRequired,
@@ -191,11 +190,27 @@ export default class HistoryModalContent extends PureComponent {
             backgroundColor: PropTypes.string.isRequired,
             borderColor: PropTypes.shape({ borderColor: PropTypes.string.isRequired }).isRequired,
         }).isRequired,
+        /** Bundle hash for the transaction that is currently being promoted */
+        currentlyPromotingBundleHash: PropTypes.string.isRequired,
     };
 
     static defaultProps = {
         message: 'Empty',
     };
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            scrollable: false,
+        };
+    }
+
+    setScrollable(y) {
+        if (y >= height / 1.25) {
+            return this.setState({ scrollable: true });
+        }
+        this.setState({ scrollable: false });
+    }
 
     copy(item, type) {
         const { t } = this.props;
@@ -243,6 +258,7 @@ export default class HistoryModalContent extends PureComponent {
                 keyExtractor={(item, index) => index}
                 renderItem={({ item }) => this.renderAddressRow(item)}
                 ItemSeparatorComponent={() => <View />}
+                scrollEnabled={false}
             />
         );
     }
@@ -264,15 +280,18 @@ export default class HistoryModalContent extends PureComponent {
             rebroadcast,
             promote,
             disableWhen,
-            isPromotingTransaction,
             isBroadcastingBundle,
+            currentlyPromotingBundleHash,
         } = this.props;
+        const { scrollable } = this.state;
+        const bundleIsBeingPromoted = currentlyPromotingBundleHash === bundle && !confirmationBool;
+        const opacity = { opacity: disableWhen ? (isAndroid ? 0.3 : 0.2) : 1 };
 
         return (
-            <TouchableWithoutFeedback style={styles.container} onPress={!disableWhen && onPress}>
+            <TouchableWithoutFeedback style={styles.container} onPress={onPress}>
                 <View style={styles.wrapper}>
                     <View style={[styles.content, style.borderColor, { backgroundColor: style.backgroundColor }]}>
-                        <ScrollView>
+                        <ScrollView scrollEnabled={scrollable} onContentSizeChange={(x, y) => this.setScrollable(y)}>
                             <TouchableWithoutFeedback style={{ flex: 1 }}>
                                 <View style={{ flex: 1 }}>
                                     <View style={styles.statusWrapper}>
@@ -314,13 +333,8 @@ export default class HistoryModalContent extends PureComponent {
                                         mode === 'Expert' &&
                                         value > 0 && (
                                             <View style={[styles.buttonsContainer]}>
-                                                {(!isPromotingTransaction && (
-                                                    <View
-                                                        style={[
-                                                            styles.buttonContainer,
-                                                            { opacity: disableWhen ? 0.3 : 1 },
-                                                        ]}
-                                                    >
+                                                {(!bundleIsBeingPromoted && (
+                                                    <View style={[styles.buttonContainer, opacity]}>
                                                         <CtaButton
                                                             ctaColor={style.primaryColor}
                                                             secondaryCtaColor={style.primaryBody}
@@ -341,12 +355,7 @@ export default class HistoryModalContent extends PureComponent {
                                                     </View>
                                                 )}
                                                 {(!isBroadcastingBundle && (
-                                                    <View
-                                                        style={[
-                                                            styles.buttonContainer,
-                                                            { opacity: disableWhen ? 0.3 : 1 },
-                                                        ]}
-                                                    >
+                                                    <View style={[styles.buttonContainer, opacity]}>
                                                         <CtaButton
                                                             ctaColor={style.secondaryColor}
                                                             secondaryCtaColor={style.secondaryBody}

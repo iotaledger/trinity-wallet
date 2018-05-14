@@ -48,7 +48,7 @@
         "otherWallet": "ANNAT KONTO",
         "yes": "JA",
         "no": "NEJ",
-        "okay": "OKAY",
+        "okay": "OKEJ",
         "password": "Lösenord",
         "passwordOrFingerprint": "Lösenord eller fingeravtryck",
         "unrecognisedPassword": "Fel lösenord",
@@ -108,9 +108,10 @@
         "nodeAutoChanged": "Bytte automatiskt nod",
         "nodeAutoChangedExplanation": "Bytte till ny nod {{- nodeAddress}} då din valda nod är offline.",
         "fingerprintOnSend": "Tryck på fingeravtrycksläsaren för att skicka överföringen",
-        "masterKey": "Your IOTA seed is the master key to your funds.",
-        "googlePlayServicesNotAvailable": "Google Play Services not available",
-        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available."
+        "masterKey": "Din IOTA-seed är huvudnyckeln till dina pengar.",
+        "googlePlayServicesNotAvailable": "Google Play-tjänsten är inte tillgänglig",
+        "couldNotVerifyDeviceIntegrity": "Kunde inte verifiera enhetens integritet eftersom Google Play-tjänsten inte är tillgänglig.",
+        "clear": "RENSA"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
@@ -153,10 +154,10 @@
         "doNotStore": "Förvara inte din seed i oformaterad text.",
         "copyToClipboard": "Kopiera seed",
         "shareSeed": "Dela din seed till en säker lösenordshanterare",
-        "storeEncrypted": "If you choose to back-up your seed on your phone it should be stored encrypted e.g. in a password manager.",
-        "tapConfirm": "Please tap the checkbox below to confirm.",
-        "encryptionCheckbox": "I will store my seed with encryption",
-        "copy": "COPY"
+        "storeEncrypted": "Om du väljer att säkerhetskopiera din seed på telefonen bör den lagras krypterad, t.ex. i en lösenordshanterare.",
+        "tapConfirm": "Vänligen tryck på kryssrutan nedan för att bekräfta.",
+        "encryptionCheckbox": "Jag kommer att lagra min seed krypterad",
+        "copy": "KOPIERA"
     },
     "enterSeed": {
         "invalidCharacters": "Seeden innehåller ogiltiga tecken",
@@ -196,9 +197,9 @@
         "seedNotGenerated": "En seed har inte blivit genererad",
         "seedNotGeneratedExplanation": "Var vänlig och generera en ny seed.",
         "pressForNewSeed": "TRYCK FÖR NY SEED",
-        "generateSuccess": "Seed generated successfully",
+        "generateSuccess": "Seed genererad framgångsrikt",
         "individualLetters": "Tryck på enskilda bokstäver för att ändra de slumpmässigt.",
-        "whatIsASeed": "What is a seed?"
+        "whatIsASeed": "Vad är en seed?"
     },
     "onboardingComplete": {
         "walletReady": "Plånboken är nu inställd och redo att använda. Om du behöver göra några ändringar i framtiden, titta i menyn Inställningar."
@@ -209,12 +210,12 @@
         "neverShare": "Dela aldrig din seed med någon.",
         "iotaLogo": "IOTA logotyp",
         "printWallet": "SKRIV UT PAPPERSKOPIA",
-        "print": "PRINT",
-        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
-        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
-        "tapCheckboxes": "Please tap the checkboxes below to confirm.",
-        "wifiCheckbox": "I will not print on public wifi",
-        "printerCheckbox": "I will not print on a public printer"
+        "print": "SKRIV UT",
+        "paperConvenience": "Att skriva ut en papperskopia av din seed är ett lämpligt sätt att lagra den.",
+        "publicInsecure": "Men utskrifter på öppet wifi eller en offentlig skrivare är osäkert.",
+        "tapCheckboxes": "Vänligen tryck på kryssrutorna nedan för att bekräfta.",
+        "wifiCheckbox": "Jag kommer inte att skriva ut på ett öppet wifi",
+        "printerCheckbox": "Jag kommer inte att skriva ut på en offentlig skrivare"
     },
     "receive": {
         "addressCopied": "Adress kopierad",
@@ -288,8 +289,8 @@
         "mode": "Läge",
         "theme": "Teman",
         "currency": "Valuta",
-        "cannotChangeNode": "Cannot change node",
-        "cannotChangeNodeWhileSending": "Cannot change node while sending.",
+        "cannotChangeNode": "Kan inte ändra nod",
+        "cannotChangeNodeWhileSending": "Kan inte ändra nod under sändning.",
         "language": "Språk",
         "accountManagement": "Kontohantering",
         "addNewSeed": "Lägg till ny seed",
@@ -370,7 +371,12 @@
         "addNewAccount": "Lägg till konto"
     },
     "addCustomNode": {
+        "customNodeAdded": "Anpassad nod tillagd",
+        "customNodeCouldNotBeAdded": "Anpassad nod kunde inte bli tillagd",
+        "customNodeAddedSuccessfully": "Den anpassade noden har lagts till framgångsrikt.",
         "customNode": "Anpassad nod",
+        "invalidNodeResponse": "Noden returnerade ett ogiltigt svar",
+        "httpNodeError": "Trinity stödjer endast https-noder.",
         "add": "Lägg till",
         "nodeFieldEmpty": "Textfältet är tomt",
         "nodeFieldEmptyExplanation": "Ange en anpassad nod."
@@ -430,7 +436,9 @@
         "syncingYourAccount": "Synkar konto."
     },
     "useExistingSeed": {
-        "title": "Ange din seed och ett kontonamn."
+        "title": "Ange din seed och ett kontonamn.",
+        "incorrectFormat": "Felaktigt seed-format",
+        "validSeedExplanation": "'Giltig seed bör vara 81 tecken och endast innehålla A-Z eller 9.'"
     },
     "viewSeed": {
         "enterPassword": "Ange lösenord för att visa din seed.",
@@ -484,7 +492,8 @@
         "twoFADisabled": "2FA är nu avaktiverat",
         "twoFADisabledExplanation": "Du har framgångsrikt avaktiverat fingeravtrycksautentisering.",
         "enterCode": "Ange koden från din 2FA app",
-        "code": "Kod"
+        "code": "Kod",
+        "twoFaToken": "2FA-token"
     },
     "chart": {
         "mcap": "MCAP",
@@ -494,7 +503,9 @@
     },
     "rootDetection": {
         "warning": "VARNING",
-        "rootDetected": "<0>Din enhet verkar vara rootad.</0><1>Detta kan utgöra en betydande risk för din plånboks säkerhet.</1><2>Vill du fortsätta trots denna risk?</2>"
+        "appearsRooted": "Din enhet verkar vara rootad.",
+        "securityRisk": "Detta kan utgöra en betydande risk för säkerheten för din plånbok.",
+        "continueDepsiteRisk": "Vill du fortsätta trots denna risk?"
     },
     "pow": {
         "feeless": "Det är nödvändigt att genomföra ett bevis på arbete för att skicka avgiftsfria transaktioner i IOTA.",
@@ -542,5 +553,8 @@
         "newVersionAvailableExplanation": "En ny <strong>Trinity</strong> <strong>{{version}}</strong> version är tillgänglig. Läs versionsinformationen noggrant och verifiera nedladdningskällan innan uppdatering:",
         "downloadRelease": "Ladda ner version",
         "skipUpdate": "Hoppa över uppdatering"
+    },
+    "notificationLog": {
+        "errorLog": "FELMEDDELANDEN"
     }
 }

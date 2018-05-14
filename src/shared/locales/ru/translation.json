@@ -110,7 +110,8 @@
         "fingerprintOnSend": "Прикоснитесь к датчику отпечатка для подтверждения перевода",
         "masterKey": "Your IOTA seed is the master key to your funds.",
         "googlePlayServicesNotAvailable": "Google Play Services not available",
-        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available."
+        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available.",
+        "clear": "CLEAR"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ключ содержит недопустимые символы",
@@ -370,7 +371,12 @@
         "addNewAccount": "Добавить новый счёт"
     },
     "addCustomNode": {
+        "customNodeAdded": "Custom node added",
+        "customNodeCouldNotBeAdded": "Custom node could not be added",
+        "customNodeAddedSuccessfully": "The custom node has been added successfully.",
         "customNode": "Пользовательский узел",
+        "invalidNodeResponse": "The node returned an invalid response",
+        "httpNodeError": "Trinity Mobile only supports https nodes.",
         "add": "Добавить",
         "nodeFieldEmpty": "Текстовое поле пусто",
         "nodeFieldEmptyExplanation": "Пожалуйста, войдите в пользовательский узел."
@@ -430,7 +436,9 @@
         "syncingYourAccount": "Синхронизация Вашего счёта."
     },
     "useExistingSeed": {
-        "title": "Введите ключ и название счёта."
+        "title": "Введите ключ и название счёта.",
+        "incorrectFormat": "Incorrect seed format",
+        "validSeedExplanation": "'Valid seeds should be 81 characters and contain only A-Z or 9.'"
     },
     "viewSeed": {
         "enterPassword": "Введите пароль чтобы увидеть Ваш ключ.",
@@ -484,7 +492,8 @@
         "twoFADisabled": "Двухфакторная аутентификация теперь отключена",
         "twoFADisabledExplanation": "Вы успешно отключили Двухфакторную аутентификацию.",
         "enterCode": "Введите код из 2FA приложения",
-        "code": "Код"
+        "code": "Код",
+        "twoFaToken": "2FA Token"
     },
     "chart": {
         "mcap": "MCAP",
@@ -494,7 +503,9 @@
     },
     "rootDetection": {
         "warning": "ВНИМАНИЕ",
-        "rootDetected": "<0>Похоже, что Ваше устройство было скомпрометировано (rooted/jailbroken).</0> <1>Это может представлять серьёзную угрозу безопасности Вашего кошелька.</1> <2>Хотите ли Вы продолжить, несмотря на этот риск?</2>"
+        "appearsRooted": "Your device appears to be rooted.",
+        "securityRisk": "This can pose a significant risk to the security of your wallet.",
+        "continueDepsiteRisk": "Do you wish to continue despite this risk?"
     },
     "pow": {
         "feeless": "Для отправки транзакций без комиссий в IOTA необходимо выполнить процедуру доказательства выполнения работы (proof-of-work).",
@@ -542,5 +553,8 @@
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
         "downloadRelease": "Download release",
         "skipUpdate": "Skip update"
+    },
+    "notificationLog": {
+        "errorLog": "ERROR LOG"
     }
 }

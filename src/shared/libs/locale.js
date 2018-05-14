@@ -53,6 +53,9 @@ function selectLocale(lang) {
     if (lang === 'es_LA') {
         return 'Español (Latinoamérica) - Spanish (Latin America)';
     }
+    if (lang === 'et') {
+        return 'Eesti keel - Estonian';
+    }
     if (lang === 'fi') {
         return 'Suomi - Finnish';
     }
@@ -76,6 +79,9 @@ function selectLocale(lang) {
     }
     if (lang === 'ko') {
         return '한국어 - Korean';
+    }
+    if (lang === 'lt') {
+        return 'Lietuviškai - Lithuanian';
     }
     if (lang === 'lv') {
         return 'Latviešu - Latvian';
@@ -109,6 +115,9 @@ function selectLocale(lang) {
     }
     if (lang === 'sv_SE') {
         return 'Svenska - Swedish';
+    }
+    if (lang === 'th') {
+        return 'ไทย - Thai';
     }
     if (lang === 'tr') {
         return 'Türkçe - Turkish';
