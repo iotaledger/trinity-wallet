@@ -13,7 +13,7 @@ export default {
         bg: '#2a4a51',
         alt: '#94A8AC',
         border: 'rgba(255, 255, 255, 0.25)',
-        focus: 'rgba(255, 255, 255, 0.7)',
+        hover: 'rgba(255, 255, 255, 0.7)',
     },
     chart: { color: '#FFA25B' },
     wave: { primary: 'rgba(137, 211, 254, 0.15)', secondary: 'rgba(0, 0, 0, 0.15)' },

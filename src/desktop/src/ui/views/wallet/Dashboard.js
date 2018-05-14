@@ -13,6 +13,7 @@ import Icon from 'ui/components/Icon';
 import List from 'ui/components/List';
 import Chart from 'ui/components/Chart';
 import Balance from 'ui/components/Balance';
+import Waves from 'ui/components/Waves';
 
 import Receive from 'ui/views/wallet/Receive';
 import Send from 'ui/views/wallet/Send';
@@ -53,12 +54,6 @@ class Dashboard extends React.PureComponent {
         if (this.props.isDeepLinkActive) {
             this.props.history.push('/wallet/send');
         }
-    }
-
-    getWave(primary) {
-        const fill = primary ? this.props.theme.wave.primary : this.props.theme.wave.secondary;
-        const wave = `<svg width='3196px' height='227px' viewBox='0 0 3196 227' xmlns='http://www.w3.org/2000/svg'><path fill='${fill}' d='M-1.13686838e-13,227 L-1.13686838e-13,149.222136 C289,149.222136 382,49 782,49 C1182.25708,48.7480077 1288.582,148.706694 1598.03248,149.220507 C1885.47122,148.649282 1979.93914,1.73038667e-16 2379,1.73038667e-16 C2780.102,-0.252524268 2885,149.222526 3195.995,149.222526 C3195.995,178.515341 3196,227 3196,227 L1596,227 L-1.13686838e-13,227 Z'></path></svg>`;
-        return `url("data:image/svg+xml;utf8,${wave}")`;
     }
 
     updateAccount = async () => {
@@ -120,20 +115,7 @@ class Dashboard extends React.PureComponent {
                         <Chart />
                     </section>
                 </div>
-                <div className={css.wave}>
-                    <div
-                        style={{
-                            backgroundImage: this.getWave(true),
-                            backgroundPosition: '0% bottom',
-                        }}
-                    />
-                    <div
-                        style={{
-                            backgroundImage: this.getWave(),
-                            backgroundPosition: '30% bottom',
-                        }}
-                    />
-                </div>
+                <Waves />
             </div>
         );
     }
