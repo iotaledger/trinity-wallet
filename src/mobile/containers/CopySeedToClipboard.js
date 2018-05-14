@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableOpacity, Clipboard, Share, Image } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Clipboard, Image, NativeModules } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
@@ -209,33 +209,36 @@ class CopySeedToClipboard extends Component {
      */
     copy() {
         const { t, seed } = this.props;
-        this.setState({ copiedToClipboard: true });
         if (isAndroid) {
             timer.setTimeout(
                 'delayShare',
-                () =>
-                    Share.share(
-                        {
-                            message: seed,
-                        },
-                        {
-                            dialogTitle: t('shareSeed'),
-                        },
-                    ),
+                () => {
+                        NativeModules.ShareSecure.share(
+                            'keepass',
+                            {
+                                title: t('shareSeed'),
+                                message: seed,
+                            },
+                        )
+                        .catch(() =>
+                            this.props.generateAlert('error', t('noPasswordManagers'), t('noPasswordManagersExplanation'))
+                        );
+                },
                 500,
             );
         } else {
+            this.setState({ copiedToClipboard: true });
             RNSecureClipboard.setString(seed);
             this.props.generateAlert('success', t('seedCopied'), t('seedCopiedExplanation'));
+            timer.setTimeout(
+                'clipboardClear',
+                () => {
+                    this.clearClipboard();
+                    this.setState({ copiedToClipboard: false });
+                },
+                60000,
+            );
         }
-        timer.setTimeout(
-            'clipboardClear',
-            () => {
-                this.clearClipboard();
-                this.setState({ copiedToClipboard: false });
-            },
-            60000,
-        );
     }
 
     renderModalContent = () => {
