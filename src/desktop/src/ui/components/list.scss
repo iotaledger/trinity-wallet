@@ -1,10 +1,13 @@
 .nav {
     display: flex;
-    padding: 0 0 28px 10px;
-    margin: 0px;
+    padding: 20px;
+    margin: 0px 20px;
+    height: 72px;
+    border-bottom: 2px solid var(--body-bg);
     a {
-        color: var(--secondary);
+        color: var(--body);
         margin: 0 22px 0 0;
+        font-weight: 400;
 
         &.empty {
             color: var(--body-alt);
@@ -14,7 +17,7 @@
             pointer-events: none;
         }
         small {
-            font-size: 14px;
+            font-size: 13px;
             margin: 0 2px;
         }
     }
@@ -22,27 +25,42 @@
         margin: 0px;
         padding: 0px;
         position: absolute;
-        top: 8px;
-        left: 2px;
+        top: 20px;
+        left: 20px;
         z-index: 2;
         a {
             display: none;
-            background: var(--body-altBg);
-            line-height: 28px;
-            padding: 10px 20px 0px;
-            span {
-                display: block;
-                float: right;
-                margin: 8px 0 0 6px;
-                color: var(--secondary);
-            }
+            flex: 0;
+            line-height: 40px;
+            padding: 0 20px;
+            vertical-align: middle;
+
             &:first-child {
                 display: block;
+                float: left;
+                background: var(--body-bg);
+                border-radius: 6px;
+                line-height: 32px;
+            }
+
+            span {
+                margin-left: 4px;
             }
         }
         &:hover {
             a {
                 display: block;
+                clear: both;
+                background: var(--body-bg);
+                &:first-child {
+                    border-radius: 6px 6px 0 0;
+                }
+                &:nth-child(2) {
+                    border-radius: 0 6px 0 0;
+                }
+                &:last-child {
+                    border-radius: 0 0 6px 6px;
+                }
                 &:hover {
                     color: var(--primary);
                 }
@@ -53,19 +71,20 @@
 
 .list {
     position: absolute;
-    top: 80px;
+    top: 100px;
     left: 0px;
     width: 100%;
-    height: calc(100% - 80px);
+    height: calc(100% - 100px);
     padding: 0 0 20px 20px;
 
     a {
         list-style: none;
+        font-size: 14px;
 
         > div {
             list-style: none;
             display: flex;
-            line-height: 38px;
+            line-height: 32px;
             cursor: pointer;
             width: 100%;
             padding: 0 10px;
@@ -80,9 +99,10 @@
             }
             > span:nth-child(2) {
                 text-align: left;
+                width: 40%;
             }
             > strong:nth-child(3) {
-                width: 30%;
+                width: 20%;
                 text-align: left;
             }
             > span:nth-child(4) {
@@ -133,11 +153,11 @@
 .refresh {
     display: block;
     position: absolute;
-    top: 16px;
-    right: -4px;
+    top: 28px;
+    right: 0px;
     margin: 0px;
-    height: 26px;
-    width: 26px;
+    height: 20px;
+    width: 20px;
     text-align: center;
 
     &:hover {
@@ -161,7 +181,7 @@
     left: 0px;
     width: 100%;
     height: 100%;
-    background: var(--body-altBg);
+    background: var(--box-bg);
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.15s ease-out;
@@ -253,4 +273,38 @@
             transform: translate(0, -50%) scale(1);
         }
     }
+}
+
+.plus,
+.minus {
+    display: block;
+    flex: 0 0 17px;
+    height: 17px;
+    border: 1px solid var(--body);
+    border-radius: 17px;
+    padding: 0px;
+    margin: 8px 8px 0 0;
+    position: relative;
+    &:before,
+    &:after {
+        content: '';
+        position: absolute;
+        top: 7px;
+        left: 4px;
+        width: 7px;
+        height: 1px;
+        background: var(--primary);
+    }
+}
+.minus {
+    &:before {
+        background: var(--secondary);
+    }
+    &:after {
+        display: none;
+    }
+}
+
+.plus:after {
+    transform: rotate(90deg);
 }

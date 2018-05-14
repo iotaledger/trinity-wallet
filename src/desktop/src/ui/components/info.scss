@@ -3,18 +3,29 @@
     position: relative;
     margin: 0 0 20px;
     padding: 42px 30px 30px;
-    text-align: left; 
+    text-align: left;
     width: 100%;
-    background: var(--infobox-bg);
-    border-top:28px solid var(--infobox-border);
+    background: var(--box-bg);
+    color: var(--box-body);
+    padding-top: 68px;
     border-radius: 6px;
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 28px;
+        background: var(--box-alt);
+        border-radius: 6px 6px 0 0;
+    }
 
     > span {
         position: absolute;
-        top: -14px;
+        top: 14px;
         left: 20px;
-        color: var(--body);
-        background: var(--infobox-border);
+        color: var(--box-alt);
+        background: #21424d;
         border-radius: 28px;
     }
 }

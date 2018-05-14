@@ -28,9 +28,7 @@ class Wallet extends React.PureComponent {
             <main className={css.wallet}>
                 <Polling />
                 <Sidebar history={history} location={location} />
-                <section className={location.pathname === '/wallet/charts' ? css.slided : null}>
-                    <Dashboard location={location} history={history} />
-                </section>
+                <Dashboard location={location} history={history} />
             </main>
         );
     }

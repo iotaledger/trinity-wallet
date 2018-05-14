@@ -1,3 +1,4 @@
+/*global Electron*/
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -11,7 +12,6 @@ import { getSeed } from 'libs/crypto';
 import Icon from 'ui/components/Icon';
 import List from 'ui/components/List';
 import Chart from 'ui/components/Chart';
-import Button from 'ui/components/Button';
 import Balance from 'ui/components/Balance';
 
 import Receive from 'ui/views/wallet/Receive';
@@ -36,6 +36,8 @@ class Dashboard extends React.PureComponent {
         isDeepLinkActive: PropTypes.bool,
         /* Browser location objects */
         location: PropTypes.object,
+        /** Theme definitions object */
+        theme: PropTypes.object.isRequired,
         /** Browser history object */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
@@ -53,6 +55,12 @@ class Dashboard extends React.PureComponent {
         }
     }
 
+    getWave(primary) {
+        const fill = primary ? this.props.theme.wave.primary : this.props.theme.wave.secondary;
+        const wave = `<svg width='3196px' height='227px' viewBox='0 0 3196 227' xmlns='http://www.w3.org/2000/svg'><path fill='${fill}' d='M-1.13686838e-13,227 L-1.13686838e-13,149.222136 C289,149.222136 382,49 782,49 C1182.25708,48.7480077 1288.582,148.706694 1598.03248,149.220507 C1885.47122,148.649282 1979.93914,1.73038667e-16 2379,1.73038667e-16 C2780.102,-0.252524268 2885,149.222526 3195.995,149.222526 C3195.995,178.515341 3196,227 3196,227 L1596,227 L-1.13686838e-13,227 Z'></path></svg>`;
+        return `url("data:image/svg+xml;utf8,${wave}")`;
+    }
+
     updateAccount = async () => {
         const { accounts, password, seedIndex } = this.props;
 
@@ -68,32 +76,38 @@ class Dashboard extends React.PureComponent {
         const subroute = location.pathname.split('/')[3] || null;
 
         const balanceOpen = ['send', 'receive'].indexOf(route) > -1;
+        const historyOpen = ['history'].indexOf(route) > -1;
+
+        const os = Electron.getOS();
 
         return (
-            <div className={css.dashboard}>
-                <div>
-                    <section className={classNames(css.balance, balanceOpen ? css.open : null)}>
-                        <span onClick={() => history.push('/wallet/')}>
-                            <Icon icon="cross" size={24} />
-                        </span>
+            <div className={classNames(css.dashboard, os === 'win32' ? css.windows : null)}>
+                <div className={balanceOpen ? css.balanceOpen : null}>
+                    <section className={css.balance}>
                         <Balance />
-                        <hr />
-                        <div>
+                        <div className={!balanceOpen ? css.open : null}>
+                            <a onClick={() => history.push('/wallet/receive')}>
+                                <Icon icon="receive" size={36} />
+                                <strong>{t('home:receive')}</strong>
+                            </a>
+                            <div>
+                                <Balance />
+                            </div>
+                            <a onClick={() => history.push('/wallet/send')}>
+                                <Icon icon="send" size={36} />
+                                <strong>{t('home:send')}</strong>
+                            </a>
+                        </div>
+                        <div className={balanceOpen ? css.open : null}>
                             <Switch location={location}>
                                 <Route path="/wallet/send" component={Send} />
                                 <Route path="/wallet/receive" component={Receive} />
                             </Switch>
                         </div>
-                        <nav>
-                            <Button onClick={() => history.push('/wallet/send')} variant="primary">
-                                {t('home:send')}
-                            </Button>
-                            <Button onClick={() => history.push('/wallet/receive')} variant="secondary">
-                                {t('home:receive')}
-                            </Button>
-                        </nav>
                     </section>
-                    <section className={css.history}>
+                </div>
+                <div className={historyOpen || balanceOpen ? css.history : null}>
+                    <section>
                         <List
                             updateAccount={() => this.updateAccount()}
                             setItem={(item) =>
@@ -102,11 +116,23 @@ class Dashboard extends React.PureComponent {
                             currentItem={subroute}
                         />
                     </section>
-                </div>
-                <div>
-                    <section className={css.market}>
+                    <section>
                         <Chart />
                     </section>
+                </div>
+                <div className={css.wave}>
+                    <div
+                        style={{
+                            backgroundImage: this.getWave(true),
+                            backgroundPosition: '0% bottom',
+                        }}
+                    />
+                    <div
+                        style={{
+                            backgroundImage: this.getWave(),
+                            backgroundPosition: '30% bottom',
+                        }}
+                    />
                 </div>
             </div>
         );
@@ -117,6 +143,7 @@ const mapStateToProps = (state) => ({
     seedIndex: state.wallet.seedIndex,
     password: state.wallet.password,
     accounts: state.accounts,
+    theme: state.settings.theme,
     isDeepLinkActive: state.wallet.deepLinkActive,
 });
 

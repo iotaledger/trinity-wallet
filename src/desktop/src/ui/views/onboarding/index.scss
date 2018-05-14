@@ -61,6 +61,11 @@ $footer: 70px;
     }
 }
 
+.highlight {
+    color: var(--primary);
+    margin: 0 2px;
+}
+
 .wave {
     position: absolute;
     bottom: $footer;
