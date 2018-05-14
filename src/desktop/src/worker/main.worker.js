@@ -1,5 +1,10 @@
 import 'babel-polyfill';
-import { generateNewAddress } from 'actions/wallet';
+import {
+    generateNewAddress,
+    transitionForSnapshot,
+    generateAddressesAndGetBalance,
+    completeSnapshotTransition,
+} from 'actions/wallet';
 import {
     getAccountInfo,
     getFullAccountInfoFirstSeed,
@@ -22,6 +27,9 @@ const actions = {
     getFullAccountInfoFirstSeed,
     getFullAccountInfoAdditionalSeed,
     manuallySyncAccount,
+    transitionForSnapshot,
+    generateAddressesAndGetBalance,
+    completeSnapshotTransition,
 };
 
 // A special dispatch function which either runs
