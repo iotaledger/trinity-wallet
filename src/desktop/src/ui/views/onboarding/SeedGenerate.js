@@ -46,7 +46,7 @@ class GenerateSeed extends React.PureComponent {
 
     state = {
         seed: this.props.newSeed || createRandomSeed(),
-        clicks: 0,
+        clicks: [],
     };
 
     onUpdatedSeed = (seed) => {
@@ -80,6 +80,8 @@ class GenerateSeed extends React.PureComponent {
             e.preventDefault();
         }
 
+        const newClicks = clicks.indexOf(position) < 0 ? clicks.concat([position]) : clicks;
+
         const newSeed = seed
             .split('')
             .map((letter, index) => (index === Number(position) ? createRandomSeed(1) : letter))
@@ -87,7 +89,7 @@ class GenerateSeed extends React.PureComponent {
 
         this.setState(() => ({
             seed: newSeed,
-            clicks: clicks + 1,
+            clicks: newClicks,
         }));
     };
 
@@ -95,7 +97,7 @@ class GenerateSeed extends React.PureComponent {
         const newSeed = createRandomSeed();
         this.setState(() => ({
             seed: newSeed,
-            clicks: 0,
+            clicks: [],
         }));
     };
 
@@ -103,7 +105,7 @@ class GenerateSeed extends React.PureComponent {
         const { t } = this.props;
         const { seed, clicks } = this.state;
 
-        const clicksLeft = 10 - clicks;
+        const clicksLeft = 10 - clicks.length;
 
         return (
             <form>

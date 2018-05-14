@@ -1,5 +1,5 @@
 export default {
-    body: { color: '#000000', bg: '#E8EBF1', alt: '#DCDFE4' },
+    body: { color: '#000000', bg: '#E8EBF1', alt: 'rgba(0,0,0,0.25)' },
     bar: { color: '#FFFFFF', bg: '#1F0E3E', alt: '#38225F' },
     primary: { color: '#04a0f9', hover: '#038bd9', body: '#1F0E3E' },
     secondary: { color: '#8c30a4', hover: '#77298c', body: '#FFFFFF' },
@@ -16,6 +16,6 @@ export default {
         hover: 'rgba(0, 0, 0, 0.4)',
     },
     chart: { color: '#8C31A4' },
-    box: { bg: 'rgba(255, 255, 255, 0.9)', alt: '#dcdee5', body: '#F0F2F6' },
+    box: { bg: 'rgba(255, 255, 255, 0.9)', alt: '#dcdee5', body: '#000000' },
     wave: { primary: 'rgba(140, 48, 164, 0.5)', secondary: 'rgba(0, 0, 0, 0.05)' },
 };

@@ -66,28 +66,6 @@ $footer: 70px;
     margin: 0 2px;
 }
 
-.wave {
-    position: absolute;
-    bottom: $footer;
-    width: 100vw;
-    height: 227px;
-    > div {
-        content: '';
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        background-size: auto 140px;
-        background-position: left bottom;
-        background-repeat: repeat-x;
-        transition: background-position 3s cubic-bezier(0.075, 0.82, 0.165, 1);
-    }
-    > div:last-child {
-        background-position: 50% bottom;
-    }
-}
-
 .steps {
     display: flex;
     align-items: center;
@@ -159,9 +137,9 @@ $footer: 70px;
         border: none;
         color: var(--secondary);
         font-size: 24px;
-        line-height: 36px;
-        height: 38px;
-        margin: 5px 0;
+        line-height: 46px;
+        height: 48px;
+        margin: 0;
         font-family: 'SourceCodePro';
         transition: transform 0.1s cubic-bezier(0.4, 0, 0.6, 1);
 

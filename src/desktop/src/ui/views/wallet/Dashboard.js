@@ -8,12 +8,12 @@ import { connect } from 'react-redux';
 
 import { runTask } from 'worker';
 import { getSeed } from 'libs/crypto';
+import { capitalize } from 'libs/helpers';
 
 import Icon from 'ui/components/Icon';
 import List from 'ui/components/List';
 import Chart from 'ui/components/Chart';
 import Balance from 'ui/components/Balance';
-import Waves from 'ui/components/Waves';
 
 import Receive from 'ui/views/wallet/Receive';
 import Send from 'ui/views/wallet/Send';
@@ -82,15 +82,19 @@ class Dashboard extends React.PureComponent {
                         <Balance />
                         <div className={!balanceOpen ? css.open : null}>
                             <a onClick={() => history.push('/wallet/receive')}>
-                                <Icon icon="receive" size={36} />
-                                <strong>{t('home:receive')}</strong>
+                                <div>
+                                    <Icon icon="receive" size={24} />
+                                </div>
+                                <p>{capitalize(t('home:receive'))}</p>
                             </a>
                             <div>
                                 <Balance />
                             </div>
                             <a onClick={() => history.push('/wallet/send')}>
-                                <Icon icon="send" size={36} />
-                                <strong>{t('home:send')}</strong>
+                                <div>
+                                    <Icon icon="send" size={24} />
+                                </div>
+                                <p>{capitalize(t('home:send'))}</p>
                             </a>
                         </div>
                         <div className={balanceOpen ? css.open : null}>
@@ -115,7 +119,6 @@ class Dashboard extends React.PureComponent {
                         <Chart />
                     </section>
                 </div>
-                <Waves />
             </div>
         );
     }
