@@ -103,24 +103,6 @@ class Theme extends React.PureComponent {
                     >
                         {t('next')}
                     </Button>
-                    <Button
-                        style={{
-                            color: theme.positive.color,
-                            borderColor: theme.positive.color,
-                            background: 'none',
-                        }}
-                    >
-                        {t('save')}
-                    </Button>
-                    <Button
-                        style={{
-                            color: theme.negative.color,
-                            borderColor: theme.negative.color,
-                            background: 'none',
-                        }}
-                    >
-                        {t('apply')}
-                    </Button>
                 </div>
                 <fieldset>
                     <Button type="submit" disabled={!themeName || themeName === this.props.themeName}>

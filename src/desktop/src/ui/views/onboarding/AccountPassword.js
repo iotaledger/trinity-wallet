@@ -6,7 +6,7 @@ import sjcl from 'sjcl';
 import zxcvbn from 'zxcvbn';
 
 import { generateAlert } from 'actions/alerts';
-import { addAccountName, increaseSeedCount } from 'actions/accounts';
+import { addAccountName, increaseSeedCount, setOnboardingComplete } from 'actions/accounts';
 import { setAdditionalAccountInfo, setSeedIndex, setPassword } from 'actions/wallet';
 import { setOnboardingSeed, setOnboardingName } from 'actions/ui';
 
@@ -51,6 +51,8 @@ class AccountPassword extends React.PureComponent {
          * @param {Boolean} isGenerated - Is the new seed generated
          */
         setOnboardingSeed: PropTypes.func.isRequired,
+        /** Set onboarding status to complete */
+        setOnboardingComplete: PropTypes.func.isRequired,
         /** Onboarding set seed and name */
         onboarding: PropTypes.object.isRequired,
         /** Set seed index state
@@ -92,6 +94,7 @@ class AccountPassword extends React.PureComponent {
             setSeedIndex,
             setOnboardingSeed,
             setOnboardingName,
+            setOnboardingComplete,
             history,
             generateAlert,
             onboarding,
@@ -143,6 +146,7 @@ class AccountPassword extends React.PureComponent {
 
         setOnboardingName('');
         setSeedIndex(seedCount);
+        setOnboardingComplete(true);
 
         if (!firstAccount) {
             setAdditionalAccountInfo({
@@ -228,6 +232,7 @@ const mapDispatchToProps = {
     setAdditionalAccountInfo,
     setOnboardingSeed,
     setOnboardingName,
+    setOnboardingComplete,
     generateAlert,
     setSeedIndex,
     increaseSeedCount,

@@ -58,6 +58,7 @@ function createWindow() {
             nodeIntegration: false,
             preload: path.resolve(__dirname, 'lib/Window.js'),
             disableBlinkFeatures: 'Auxclick',
+            webviewTag: false,
         },
     });
 
@@ -67,8 +68,9 @@ function createWindow() {
 
     windows.main.on('close', hideOnClose);
 
+    windows.main.webContents.openDevTools();
+
     if (devMode) {
-        windows.main.webContents.openDevTools();
 
         const {
             default: installExtension,

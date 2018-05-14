@@ -71,7 +71,7 @@ module.exports = {
             {
                 test: /\.workers?\.js$/,
                 exclude: /node_modules/,
-                use: [{ loader: 'worker-loader', options: { publicPath: '/' } }, { loader: 'babel-loader' }],
+                use: [{ loader: 'worker-loader', options: { publicPath: '../' } }, { loader: 'babel-loader' }],
             },
             { test: /\.node$/, loader: 'node-loader' },
         ],
