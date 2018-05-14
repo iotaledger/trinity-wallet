@@ -12,6 +12,16 @@ $footer: 70px;
         display: flex;
         align-items: center;
         justify-content: center;
+        position: relative;
+
+        a {
+            position: absolute;
+            top: 50px;
+            right: 30px;
+            &:hover {
+                color: var(--primary);
+            }
+        }
     }
 
     > div:first-of-type > div {
