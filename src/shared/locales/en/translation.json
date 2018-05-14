@@ -576,7 +576,7 @@
         "transition": "TRANSITION",
         "transitioning": "Transitioning for the snapshot.",
         "generatingAndDetecting": "Generating addresses and detecting balance.",
-        "attaching": "Attaching addresses to Tangle"
+        "attaching": "Attaching addresses to Tangle."
     },
     "deepLink": {
         "autofill": "Autofill success",
