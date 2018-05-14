@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, PermissionsAndroid } from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { translate } from 'react-i18next';
+import DynamicStatusBar from '../components/DynamicStatusBar';
 import GENERAL from '../theme/general';
 import { isAndroid } from '../utils/device';
 import { width, height } from '../utils/dimensions';
 
 const styles = StyleSheet.create({
     qrInfoText: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         textAlign: 'center',
         fontSize: width / 23,
     },
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
     },
     closeButtonText: {
         color: 'white',
-        fontFamily: 'Lato-Bold',
+        fontFamily: 'SourceSansPro-Bold',
         fontSize: width / 29.6,
         backgroundColor: 'transparent',
     },
@@ -89,6 +90,7 @@ export class QRScanner extends Component {
         return (
             <View style={styles.modalContent}>
                 <View style={{ alignItems: 'center', backgroundColor: body.bg }}>
+                    <DynamicStatusBar backgroundColor={body.bg} isModalActive />
                     <View style={{ height: height / 12 }} />
                     <Text style={[styles.qrInfoText, { color: body.color }]}>{t('scan')}</Text>
                     <QRCodeScanner onRead={(data) => this.props.onQRRead(data.data)} />

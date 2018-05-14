@@ -15,15 +15,15 @@
       </trans-unit>
       <trans-unit id="NSCameraUsageDescription">
         <source>Trinity requires access to the camera in order to enable QR scanning.</source>
-        <target xml:lang="ru" state="needs-translation">Trinity requires access to the camera in order to enable QR scanning.</target>
+        <target xml:lang="ru" state="translated">Тринити нужен доступ к камере, чтобы включить сканер QR-кодов.</target>
       </trans-unit>
       <trans-unit id="NSFaceIDUsageDescription">
         <source>Trinity requires access to Face ID in order to enable biometric authentication.</source>
-        <target xml:lang="ru" state="needs-translation">Trinity requires access to Face ID in order to enable biometric authentication.</target>
+        <target xml:lang="ru" state="translated">Тринити нужен доступ к Face ID, чтобы использовать биометрическую аутентификации.</target>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
         <source>2018 IOTA Foundation. All rights reserved.</source>
-        <target xml:lang="ru" state="needs-translation">2018 IOTA Foundation. All rights reserved.</target>
+        <target xml:lang="ru" state="translated">2018 IOTA фонд. Все права защищены.</target>
       </trans-unit>
     </body>
   </file>

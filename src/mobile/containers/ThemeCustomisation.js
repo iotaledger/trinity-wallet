@@ -67,13 +67,13 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
     },
     titleTextLeft: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
     titleTextRight: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         marginRight: width / 20,
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
         zIndex: 3,
     },
     advancedText: {
-        fontFamily: 'Lato-Bold',
+        fontFamily: 'SourceSansPro-Bold',
         fontSize: width / 34.5,
         backgroundColor: 'transparent',
     },
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
         zIndex: 1,
     },
     frameBarTitle: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 24.4,
         color: '#ffffff',
         zIndex: 1,
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     buttonText: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 25.9,
         backgroundColor: 'transparent',
     },
@@ -150,8 +150,8 @@ const styles = StyleSheet.create({
     },
     ctaText: {
         color: 'white',
-        fontFamily: 'Lato-Bold',
-        fontSize: width / 29.6,
+        fontFamily: 'SourceSansPro-Regular',
+        fontSize: width / 27.6,
         backgroundColor: 'transparent',
     },
 });
@@ -241,7 +241,7 @@ class ThemeCustomisation extends Component {
                             <View style={{ alignItems: 'center', justifyContent: 'center', marginBottom: height / 44 }}>
                                 <Text
                                     style={{
-                                        fontFamily: 'Lato-Regular',
+                                        fontFamily: 'SourceSansPro-Regular',
                                         fontSize: width / 29.6,
                                         color: body.color,
                                     }}

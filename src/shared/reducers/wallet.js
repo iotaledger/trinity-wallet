@@ -11,13 +11,13 @@ const initialState = {
     seedIndex: 0,
     usedSeedToLogin: false,
     currentSetting: 'mainSettings',
-    copiedToClipboard: false,
     additionalAccountName: '',
     transitionBalance: 0,
     transitionAddresses: [],
     addingAdditionalAccount: false,
     balanceCheckToggle: false,
     deepLinkActive: false,
+    hasConnection: true
 };
 
 export default (state = initialState, action) => {
@@ -76,7 +76,6 @@ export default (state = initialState, action) => {
                 seedIndex: 0,
                 isGeneratingReceiveAddress: false,
                 currentSetting: 'mainSettings',
-                copiedToClipboard: false,
                 deepLinkActive: false,
             };
         case ActionTypes.CLEAR_SEED:
@@ -88,11 +87,6 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 currentSetting: action.payload,
-            };
-        case ActionTypes.SET_COPIED_TO_CLIPBOARD:
-            return {
-                ...state,
-                copiedToClipboard: action.payload,
             };
         case AccountsActionTypes.FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_REQUEST:
             return {
@@ -164,6 +158,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 deepLinkActive: false,
+            };
+        case ActionTypes.CONNECTION_CHANGED:
+            return {
+                ...state,
+                hasConnection: action.payload.isConnected
             };
         default:
             return state;

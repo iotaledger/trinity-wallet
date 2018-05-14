@@ -32,19 +32,19 @@ const styles = StyleSheet.create({
     },
     denominationText: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 29.6,
         paddingVertical: width / 40,
     },
     titleText: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 25.9,
         paddingVertical: width / 18,
     },
     numberText: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 29.6,
         paddingVertical: width / 40,
     },
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     },
     iotaText: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 34.5,
         paddingTop: width / 80,
     },

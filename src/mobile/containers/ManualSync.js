@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
     },
     titleText: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
@@ -54,9 +54,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     infoText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 27.6,
-        textAlign: 'justify',
+        textAlign: 'left',
         backgroundColor: 'transparent',
     },
     activityIndicator: {

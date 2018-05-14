@@ -1,11 +1,14 @@
 import assign from 'lodash/assign';
 import cloneDeep from 'lodash/cloneDeep';
 import each from 'lodash/each';
+import find from 'lodash/find';
 import filter from 'lodash/filter';
 import head from 'lodash/head';
+import last from 'lodash/last';
 import isEmpty from 'lodash/isEmpty';
 import transform from 'lodash/transform';
 import isNumber from 'lodash/isNumber';
+import includes from 'lodash/includes';
 import keys from 'lodash/keys';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
@@ -64,11 +67,26 @@ const removeUnusedAddresses = (resolve, reject, index, latestAddress, finalAddre
 };
 
 /**
+ *   Returns a promise meant for returning all associated addresses with a seed
+ *
+ *   @method getFullAddressHistory
+ *   @param {string} seed
+ *   @param {object} [addressesOpts={index: 0, total: 10, returnAll: true, security: 2}] - Default options for address generation
+ *   @returns {promise}
+ **/
+export const getFullAddressHistory = (seed, genFn) => {
+    return new Promise((res, rej) => {
+        const opts = { index: 0, total: 10, returnAll: true, security: 2 };
+        getAddressesUptoLatestUnused(res, rej, seed, opts, genFn, []);
+    });
+};
+
+/**
  *   Returns associated addresses with a seed
  *   Generates addresses in batches and upon each execution increase the index to fetch the next batch
  *   Stops at the point where there are no transaction hashes associated with last (total defaults to --> 10) addresses
  *
- *   @method getAddressesWithTransactions
+ *   @method getAddressesUptoLatestUnused
  *   @param {function} resolve
  *   @param {function} reject
  *   @param {string} seed
@@ -76,7 +94,7 @@ const removeUnusedAddresses = (resolve, reject, index, latestAddress, finalAddre
  *   @param {array} allAddresses
  *   @returns {array} All addresses
  **/
-const getAddressesWithTransactions = (resolve, reject, seed, opts, genFn, allAddresses) => {
+const getAddressesUptoLatestUnused = (resolve, reject, seed, opts, genFn, allAddresses) => {
     getNewAddress(seed, opts, genFn, (err, addresses) => {
         if (err) {
             reject(err);
@@ -85,7 +103,7 @@ const getAddressesWithTransactions = (resolve, reject, seed, opts, genFn, allAdd
                 if (size(hashes)) {
                     allAddresses = [...allAddresses, ...addresses];
                     const newOpts = assign({}, opts, { index: opts.total + opts.index });
-                    getAddressesWithTransactions(resolve, reject, seed, newOpts, genFn, allAddresses);
+                    getAddressesUptoLatestUnused(resolve, reject, seed, newOpts, genFn, allAddresses);
                 } else {
                     // Traverse backwards to remove all unused addresses
                     new Promise((res, rej) => {
@@ -108,31 +126,16 @@ const getAddressesWithTransactions = (resolve, reject, seed, opts, genFn, allAdd
 };
 
 /**
- *   Returns a promise meant for returning all associated addresses with a seed
- *
- *   @method getAllAddresses
- *   @param {string} seed
- *   @param {object} [addressesOpts={index: 0, total: 10, returnAll: true, security: 2}] - Default options for address generation
- *   @returns {promise}
- **/
-export const getAllAddresses = (seed, genFn) => {
-    return new Promise((res, rej) => {
-        const opts = { index: 0, total: 10, returnAll: true, security: 2 };
-        getAddressesWithTransactions(res, rej, seed, opts, genFn, []);
-    });
-};
-
-/**
  *   Accepts addresses as an array.
  *   Finds latest balances on those addresses.
  *   Finds latest spent statuses on addresses.
  *   Transforms addresses array to a dictionary. [{ address: { index: 0, spent: false, balance: 0, checksum: address-checksum }}]
  *
- *   @method formatAddressesAndBalance
+ *   @method getAddressDataAndFormatBalance
  *   @param {array} addresses
  *   @returns {promise<object>} - [ addresses: {}, balance: 0 ]
  **/
-export const formatAddressesAndBalance = (addresses) => {
+export const getAddressDataAndFormatBalance = (addresses) => {
     if (isEmpty(addresses)) {
         return Promise.resolve({ addresses: {}, balance: 0 });
     }
@@ -170,7 +173,7 @@ export const formatAddressesAndBalance = (addresses) => {
         });
 };
 
-export const formatAddresses = (addresses, balances, addressesSpendStatus) => {
+export const formatAddressData = (addresses, balances, addressesSpendStatus) => {
     const addressData = assign({}, ...addresses.map((n, index) => ({ [n]: { index, balance: 0, spent: false } })));
 
     for (let i = 0; i < addresses.length; i++) {
@@ -344,7 +347,7 @@ export const getBalancesSync = (addresses, addressData) => {
 };
 
 /**
- *   Gets the latest used address from the specified index onwards
+ *   Gets the latest used addresses from the specified index onwards
  *
  *   @method getLatestAddresses
  *   @param {string} seed - Seed string
@@ -369,13 +372,59 @@ export const getLatestAddresses = (seed, index, genFn) => {
  *   Takes address data and returns the latest address
  *
  *   @method getLatestAddress
- *   @param {string} seed - Seed string
- *   @param {string} existingAccountData - existingAccountData from store
- *   @returns {object} - Updated account data data including latest used addresses
+ *   @param {object} addressData
+ *   @returns {string} - latest address
  **/
 export const getLatestAddress = (addressData) => {
-    const address = findKey(addressData, (addressObject) => addressObject.index === keys(addressData).length - 1);
-    return address;
+    return findKey(addressData, (addressObject) => addressObject.index === keys(addressData).length - 1);
+};
+
+/**
+ *   Generate addresses till remainder (unused and also not blacklisted for being a remainder address)
+ *
+ *   @method getAddressesUptoRemainder
+ *   @param {object} addressData
+ *   @param {array} blacklistedAddresses
+ *   @returns {promise<object>}
+ **/
+export const getAddressesUptoRemainder = (addressData, seed, genFn, blacklistedRemainderAddresses = []) => {
+    const latestAddress = getLatestAddress(addressData);
+    const addressDataClone = cloneDeep(addressData);
+
+    const isBlacklisted = (address) => includes(blacklistedRemainderAddresses, address);
+
+    if (isBlacklisted(latestAddress)) {
+        const latestAddressData = find(addressData, (data, address) => address === latestAddress);
+        const startIndex = latestAddressData.index + 1;
+
+        return getLatestAddresses(seed, startIndex, genFn).then((newAddresses) => {
+            const remainderAddress = last(newAddresses);
+
+            const addressDataUptoRemainder = transform(
+                newAddresses,
+                (acc, address, index) => {
+                    acc[address] = {
+                        index: index ? startIndex + 1 : startIndex,
+                        balance: 0,
+                        spent: false,
+                        checksum: iota.utils.addChecksum(address).slice(address.length),
+                    };
+                },
+                addressDataClone,
+            );
+
+            if (isBlacklisted(remainderAddress)) {
+                return getAddressesUptoRemainder(addressDataUptoRemainder, seed, genFn, blacklistedRemainderAddresses);
+            }
+
+            return {
+                remainderAddress,
+                addressDataUptoRemainder,
+            };
+        });
+    }
+
+    return Promise.resolve({ remainderAddress: latestAddress, addressDataUptoRemainder: addressDataClone });
 };
 
 /**
@@ -390,6 +439,7 @@ export const getLatestAddress = (addressData) => {
 export const syncAddresses = (seed, accountData, genFn, addNewAddress = false) => {
     const thisAccountDataCopy = cloneDeep(accountData);
     let index = getStartingSearchIndexToFetchLatestAddresses(thisAccountDataCopy.addresses);
+
     return getLatestAddresses(seed, index, genFn).then((newAddresses) => {
         // Remove unused address
         if (!addNewAddress) {
@@ -399,7 +449,9 @@ export const syncAddresses = (seed, accountData, genFn, addNewAddress = false) =
         if (newAddresses.length === 0) {
             return accountData;
         }
+
         const updatedAddresses = cloneDeep(thisAccountDataCopy.addresses);
+
         newAddresses.forEach((newAddress) => {
             // In case the newly created address is not part of the addresses object
             // Add that as a key with a 0 balance.
@@ -422,6 +474,7 @@ export const syncAddresses = (seed, accountData, genFn, addNewAddress = false) =
                 };
             }
         });
+
         thisAccountDataCopy.addresses = updatedAddresses;
         return thisAccountDataCopy;
     });

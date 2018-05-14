@@ -93,13 +93,13 @@ const styles = StyleSheet.create({
         borderColor: 'white',
     },
     maxButtonText: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 31.8,
         backgroundColor: 'transparent',
         marginRight: width / 50,
     },
     infoText: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 29.6,
         textAlign: 'center',
         backgroundColor: 'transparent',
@@ -257,6 +257,7 @@ export class Send extends Component {
         }
         timer.clearTimeout('invalidAddressAlert');
         timer.clearTimeout('modalShow');
+        timer.clearTimeout('delaySend');
     }
 
     onDenominationPress() {
@@ -423,7 +424,7 @@ export class Send extends Component {
                         amount={amount}
                         conversionText={this.getConversionTextIota()}
                         address={address}
-                        sendTransfer={() => this.sendTransfer()}
+                        sendTransfer={() => this.sendWithDelay()}
                         hideModal={(callback) => this.hideModal(callback)}
                         body={body}
                         bar={bar}
@@ -699,12 +700,14 @@ export class Send extends Component {
             });
     }
 
+    sendWithDelay() {
+        timer.setTimeout('delaySend', () => this.sendTransfer(), 200);
+    }
+
     activateFingerprintScanner() {
         const { t } = this.props;
         if (isAndroid) {
             this.setModalContent('fingerPrintModal');
-        } else {
-            this.hideModal();
         }
         FingerprintScanner.authenticate({ description: t('fingerprintOnSend') })
             .then(() => {
@@ -712,7 +715,7 @@ export class Send extends Component {
                 if (isAndroid) {
                     this.hideModal();
                 }
-                this.sendTransfer();
+                this.sendWithDelay();
             })
             .catch(() => {
                 if (isAndroid) {
@@ -790,7 +793,9 @@ export class Send extends Component {
                             }}
                             widget="qr"
                             onQRPress={() => {
-                                this.openModal('qrScanner');
+                                if (!isSending) {
+                                    this.openModal('qrScanner');
+                                }
                             }}
                             theme={theme}
                             value={address}
@@ -820,14 +825,24 @@ export class Send extends Component {
                                 currencyConversion
                                 theme={theme}
                                 denominationText={denomination}
-                                onDenominationPress={() => this.onDenominationPress()}
+                                onDenominationPress={() => {
+                                    if (!isSending) {
+                                        this.onDenominationPress();
+                                    }
+                                }}
                                 value={amount}
                                 editable={!isSending}
                                 selectTextOnFocus={!isSending}
                             />
                             <View style={{ flex: 0.2 }} />
                             <View style={[styles.maxContainer, { opacity: opacity }]}>
-                                <TouchableOpacity onPress={() => this.onMaxPress()}>
+                                <TouchableOpacity
+                                    onPress={() => {
+                                        if (!isSending) {
+                                            this.onMaxPress();
+                                        }
+                                    }}
+                                >
                                     <View
                                         style={{
                                             flexDirection: 'row',
