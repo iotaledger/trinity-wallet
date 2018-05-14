@@ -1,12 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { setOnboardingComplete } from 'actions/accounts';
-
-import css from './index.scss';
 
 import Button from 'ui/components/Button';
+
+import css from './index.scss';
 
 /**
  * Onboarding complete component
@@ -15,8 +13,6 @@ class Done extends React.PureComponent {
     static propTypes = {
         /** Browser history object */
         history: PropTypes.object.isRequired,
-        /** Set onboarding status to complete */
-        setOnboardingComplete: PropTypes.func.isRequired,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
@@ -25,8 +21,7 @@ class Done extends React.PureComponent {
     };
 
     setComplete = () => {
-        const { history, setOnboardingComplete } = this.props;
-        setOnboardingComplete(true);
+        const { history } = this.props;
         history.push('/onboarding/');
     };
 
@@ -67,8 +62,4 @@ class Done extends React.PureComponent {
     }
 }
 
-const mapDispatchToProps = {
-    setOnboardingComplete,
-};
-
-export default connect(null, mapDispatchToProps)(translate()(Done));
+export default translate()(Done);
