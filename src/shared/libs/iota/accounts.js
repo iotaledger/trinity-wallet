@@ -349,6 +349,7 @@ export const syncAccountAfterReattachment = (accountName, reattachment, accountS
                           {
                               hash: tailTransaction.hash,
                               attachmentTimestamp: tailTransaction.attachmentTimestamp,
+                              // FIXME: Account name should be computed from previous tail
                               account: accountName,
                           },
                       ],

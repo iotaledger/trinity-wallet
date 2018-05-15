@@ -117,6 +117,7 @@ const account = (
         case ActionTypes.UPDATE_ACCOUNT_AFTER_REATTACHMENT:
         case ActionTypes.UPDATE_ACCOUNT_INFO_AFTER_SPENDING:
         case PollingActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
+        case PollingActionTypes.SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION:
         case ActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
             return {
                 ...state,
