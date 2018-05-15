@@ -1,3 +1,20 @@
+@keyframes slideRight {
+    from {
+        transform: translate(100%, 0);
+    }
+    to {
+        transform: translate(0, 0);
+    }
+}
+@keyframes slideLeft {
+    from {
+        transform: translate(-100%, 0);
+    }
+    to {
+        transform: translate(0, 0);
+    }
+}
+
 .dashboard {
     width: 100%;
     height: 100%;
@@ -5,6 +22,7 @@
     position: relative;
     flex-direction: column;
     padding: 20px;
+    overflow: hidden;
 
     &.windows {
         padding-top: 50px;
@@ -41,6 +59,7 @@
                 width: calc(50% - 10px);
                 height: 100%;
                 overflow: hidden;
+                background: var(--box-bg);
 
                 @media screen and (max-width: 860px) {
                     width: 100%;
@@ -70,7 +89,6 @@
     }
 
     section {
-        background: var(--box-bg);
         position: relative;
         border-radius: 6px;
     }
@@ -81,6 +99,7 @@
     width: 100%;
     height: 100%;
     z-index: 3;
+    background: none;
 
     > div:first-child {
         display: none;
@@ -98,19 +117,38 @@
     > div:nth-child(2),
     > div:nth-child(3) {
         position: absolute;
+        background: var(--box-bg);
         width: 100%;
         height: 100%;
         top: 0px;
         left: 0px;
-        opacity: 0;
-        transform: scale(0.9);
-        pointer-events: none;
-        transition: opacity 300ms ease-in, transform 200ms ease-out;
+    }
 
-        &.open {
-            opacity: 1;
-            transform: scale(1);
+    > div:nth-child(2) {
+        transition: all 420ms ease-out;
+        &.openMid {
+            opacity: 0.2;
+            transform: scale(0.92);
+        }
+    }
+
+    > div:nth-child(3) {
+        pointer-events: none;
+        z-index: 3;
+        &.openRight,
+        &.openLeft {
+            transition: none;
+            animation: slideRight 420ms cubic-bezier(0.4, 0, 0.2, 1);
             pointer-events: all;
+        }
+        &.openLeft {
+            animation: slideLeft 420ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        &.close {
+            transition: all 200ms ease-out;
+            transform: scale(0.9);
+            opacity: 0;
+            pointer-events: none;
         }
     }
 
@@ -132,38 +170,42 @@
             flex-direction: column;
             background: var(--box-alt);
 
-            > div {
-                display: block;
-                position: relative;
-                margin: 28px auto;
-                width: 60px;
-                height: 60px;
-                padding: 18px;
-                &:before,
-                &:after {
-                    content: '';
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    width: calc(100% + 12px);
-                    height: calc(100% + 12px);
-                    border: 1px solid var(--body-alt);
-                    border-radius: 100%;
-                    transition: all 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
-                    z-index: 2;
-                }
-                &:after {
-                    width: 100%;
-                    height: 100%;
-                    background: var(--body-bg);
-                    border: none;
-                    transition: all 0.8s cubic-bezier(0.075, 0.82, 0.165, 1);
-                    z-index: 1;
-                }
-                span {
+            @media screen and (min-width: 861px) {
+                > div {
+                    display: block;
                     position: relative;
-                    z-index: 3;
+                    margin: 28px auto;
+                    width: 64px;
+                    height: 64px;
+                    padding: 18px;
+                    text-align: center;
+                    line-height: 38px;
+                    &:before,
+                    &:after {
+                        content: '';
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        width: calc(100% + 12px);
+                        height: calc(100% + 12px);
+                        border: 1px solid var(--body-alt);
+                        border-radius: 100%;
+                        transition: all 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+                        z-index: 2;
+                    }
+                    &:after {
+                        width: 100%;
+                        height: 100%;
+                        background: var(--box-bg);
+                        border: none;
+                        transition: all 0.8s cubic-bezier(0.075, 0.82, 0.165, 1);
+                        z-index: 1;
+                    }
+                    span {
+                        position: relative;
+                        z-index: 3;
+                    }
                 }
             }
 
@@ -187,6 +229,10 @@
                 border-radius: 0 0 0 6px;
                 flex-direction: row;
                 font-size: 14px;
+
+                p {
+                    margin-bottom: 4px;
+                }
 
                 span {
                     margin: 0 20px 0 0;
