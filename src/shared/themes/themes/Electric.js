@@ -2,7 +2,7 @@ export default {
     body: {
         color: '#F0F2F6',
         bg: '#0b1f35',
-        alt: '#3D3D59',
+        alt: 'rgba(240,240,240,0.5)',
     },
     bar: {
         color: '#F0F2F6',
@@ -54,7 +54,7 @@ export default {
         color: '#ab5bef',
     },
     box: {
-        bg: 'rgba(22, 39, 67, 0.85)',
+        bg: '#142641',
         alt: '#233052',
         body: '#F0F2F6',
     },

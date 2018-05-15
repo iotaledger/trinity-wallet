@@ -18,4 +18,8 @@
     > div:last-child {
         background-position: 50% bottom;
     }
+
+    @media print {
+        display: none;
+    }
 }
