@@ -128,8 +128,8 @@ class Login extends Component {
     }
 
     async onLoginPress(password) {
-        const { t, is2FAEnabled, isConnected } = this.props;
-        if (!isConnected) {
+        const { t, is2FAEnabled, hasConnection } = this.props;
+        if (!hasConnection) {
             return;
         }
         if (!password) {
@@ -157,7 +157,10 @@ class Login extends Component {
     }
 
     async onComplete2FA(token) {
-        const { t, pwdHash } = this.props;
+        const { t, pwdHash, hasConnection } = this.props;
+        if (!hasConnection) {
+            return;
+        }
         if (token) {
             logTwoFa(pwdHash);
             const key = await getTwoFactorAuthKeyFromKeychain(pwdHash);
@@ -262,6 +265,7 @@ const mapStateToProps = (state) => ({
     password: state.ui.loginPasswordFieldText,
     pwdHash: state.wallet.password,
     loginRoute: state.ui.loginRoute,
+    hasConnection: state.wallet.hasConnection
 });
 
 const mapDispatchToProps = {
