@@ -34,7 +34,7 @@ export const ActionTypes = {
     PROMOTE_TRANSACTION_REQUEST: 'IOTA/POLLING/PROMOTE_TRANSACTION_REQUEST',
     PROMOTE_TRANSACTION_SUCCESS: 'IOTA/POLLING/PROMOTE_TRANSACTION_SUCCESS',
     PROMOTE_TRANSACTION_ERROR: 'IOTA/POLLING/PROMOTE_TRANSACTION_ERROR',
-    SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION: 'IOTA/POLLING/SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION'
+    SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION: 'IOTA/POLLING/SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION',
 };
 
 const fetchPriceRequest = () => ({
@@ -117,8 +117,8 @@ export const setPollFor = (payload) => ({
 });
 
 export const syncAccountBeforeAutoPromotion = (payload) => ({
-   type: ActionTypes.SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION,
-    payload
+    type: ActionTypes.SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION,
+    payload,
 });
 
 // TODO: Do not call fetch again for market data api calls.
@@ -245,7 +245,6 @@ export const getAccountInfo = (accountName) => {
         return syncAccount(existingAccountState)
             .then((newAccountData) => dispatch(accountInfoFetchSuccess(newAccountData)))
             .catch((err) => {
-                console.log('Account info polling', err);
                 dispatch(accountInfoFetchError());
                 dispatch(generateAccountInfoErrorAlert(err));
             });
@@ -284,24 +283,23 @@ export const promoteTransfer = (bundleHash, seenTailTransactions) => (dispatch, 
 
             return getFirstConsistentTail(accountState.unconfirmedBundleTails[bundleHash], 0);
         })
-        .then((consistentTail) => dispatch(forceTransactionPromotion(
-            accountName,
-            consistentTail,
-            accountState.unconfirmedBundleTails[bundleHash],
-            false
-        )))
+        .then((consistentTail) =>
+            dispatch(
+                forceTransactionPromotion(
+                    accountName,
+                    consistentTail,
+                    accountState.unconfirmedBundleTails[bundleHash],
+                    false,
+                ),
+            ),
+        )
         .then(() => {
             // Rearrange bundles so that the next cycle picks up a new bundle for promotion
             dispatch(
-                setNewUnconfirmedBundleTails(
-                    rearrangeObjectKeys(accountState.unconfirmedBundleTails, bundleHash),
-                ),
+                setNewUnconfirmedBundleTails(rearrangeObjectKeys(accountState.unconfirmedBundleTails, bundleHash)),
             );
 
             return dispatch(promoteTransactionSuccess());
         })
-        .catch((err) => {
-            console.log('Error', err);
-            dispatch(promoteTransactionError());
-        });
+        .catch(() => dispatch(promoteTransactionError()));
 };
