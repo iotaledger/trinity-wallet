@@ -455,9 +455,9 @@ export const getPendingTxTailsHashes = (normalisedTransactions) => {
  *
  *   @method markTransfersConfirmed
  *   @param {object} normalisedTransfers
- *   @param {array} confirmedTransfersTailsHashes - Array of transaction hashes
+ *   @param {array} confirmedTransactionsHashes - Array of transaction hashes
  *
- *   @returns {array} - bundles
+ *   @returns {object}
  **/
 export const markTransfersConfirmed = (normalisedTransfers, confirmedTransactionsHashes) => {
     if (isEmpty(confirmedTransactionsHashes)) {
@@ -480,7 +480,7 @@ export const markTransfersConfirmed = (normalisedTransfers, confirmedTransaction
  *   @param {object} tailTransaction
  *   @param {array} allTransactionObjects
  *
- *   @returns {boolean}
+ *   @returns {array}
  **/
 export const constructBundle = (tailTransaction, allTransactionObjects) => {
     // Start from the tail transaction object
@@ -635,7 +635,7 @@ export const normaliseBundle = (bundle, addresses, tailTransactions, persistence
  *
  *   @method syncTransfers
  *   @param {array} diff
- *   @param {object} existingAccountState - Account object
+ *   @param {object} accountState - Account object
  *
  *   @returns {Promise<object>} - { transfers (Updated transfers), newTransfers }
  **/
@@ -647,6 +647,7 @@ export const syncTransfers = (diff, accountState) => {
         transactionObjects: [],
     };
 
+    // FIXME: Do not reconstruct seen and already validated bundles
     return getTransactionsObjectsAsync(diff)
         .then((transactionObjects) => {
             each(transactionObjects, (transactionObject) => {
@@ -724,8 +725,8 @@ export const mergeNewTransfers = (newNormalisedTransfers, existingNormalisedTran
  *   Returns all relevant bundle hashes for tail transaction hashes
  *
  *   @method getBundleHashesForNewlyConfirmedTransactions
- *   @param {object} bundleTails - { bundleHash: [{}, {}]}
- *   @param {array} tailTransactionHashes - List of tail transaction hashes
+ *   @param {object} unconfirmedBundleTails - { bundleHash: [{}, {}]}
+ *   @param {array} confirmedTransactionsHashes - List of tail transaction hashes
  *
  *   @returns {array} bundleHashes - List of bundle hashes
  **/
@@ -744,8 +745,7 @@ export const getBundleHashesForNewlyConfirmedTransactions = (unconfirmedBundleTa
  *   with bundle hash is valid or not.
  *
  *   @method isValidForPromotion
- *   @param {string} bundleHash
- *   @param {array} transfers
+ *   @param {object} transaction
  *   @param {object} addressData
  *
  *   @returns {Promise<boolean>} - Promise that resolves whether the bundle is valid or not
@@ -761,12 +761,12 @@ export const isStillAValidTransaction = (transaction, addressData) => {
  *   with bundle hash is valid or not.
  *
  *   @method getHashesDiff
- *   @param {object} oldTxHashesForUnspentAddresses
- *   @param {object} newTxHashesForUnspentAddresses
- *   @param {object} oldPendingTxHashesForSpentAddresses
- *   @param {object} newPendingTxHashesForSpentAddresses
+ *   @param {array} oldTxHashesForUnspentAddresses
+ *   @param {array} newTxHashesForUnspentAddresses
+ *   @param {array} oldPendingTxHashesForSpentAddresses
+ *   @param {array} newPendingTxHashesForSpentAddresses
  *
- *   @returns {boolean}
+ *   @returns {array}
  **/
 export const getHashesDiff = (
     oldTxHashesForUnspentAddresses,
@@ -823,8 +823,8 @@ export const filterInvalidPendingTransactions = (transactions, addressData) => {
  *   @param {array} trytes
  *   @param {string} trunkTransaction
  *   @param {string} branchTransaction
- *   @param {integer} [minWeightMagnitude = 14]
- *   @returns {promise<object>}
+ *   @param {number} [minWeightMagnitude = 14]
+ *   @returns {Promise}
  **/
 export const performPow = (
     powFn,
@@ -834,7 +834,7 @@ export const performPow = (
     minWeightMagnitude = DEFAULT_MIN_WEIGHT_MAGNITUDE,
 ) => {
     if (!isFunction(powFn)) {
-        throw new Error(Errors.POW_FUNCTION_UNDEFINED);
+        return Promise.reject(Errors.POW_FUNCTION_UNDEFINED);
     }
 
     const transactionObjects = map(trytes, (transactionTrytes) =>
@@ -904,7 +904,7 @@ export const getTransactionHashesForUnspentAddresses = (addressData) => {
 /**
  *   Finds latest pending transaction hashes for spent addresses.
  *
- *   IMPORTANT: This function should always be used after the account is sycnced.
+ *   IMPORTANT: This function should always be used after the account is synced.
  *
  *   @method getPendingTransactionHashesForSpentAddresses
  *   @param {array} transactions
