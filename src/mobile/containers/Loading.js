@@ -17,9 +17,7 @@ import {
     getFullAccountInfoFirstSeed,
     getFullAccountInfoAdditionalSeed,
 } from 'iota-wallet-shared-modules/actions/accounts';
-import {
-    setLoginRoute
-} from 'iota-wallet-shared-modules/actions/ui';
+import { setLoginRoute } from 'iota-wallet-shared-modules/actions/ui';
 import tinycolor from 'tinycolor2';
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
 import { Navigation } from 'react-native-navigation';
@@ -93,7 +91,7 @@ const styles = StyleSheet.create({
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
     },
-    nodChangeContainer: {
+    nodeChangeContainer: {
         position: 'absolute',
         bottom: height / 20,
         alignItems: 'center',
@@ -438,7 +436,7 @@ class Loading extends Component {
                         )}
                     </View>
                     { displayNodeChangeOption &&
-                        <View style={styles.nodChangeContainer}>
+                        <View style={styles.nodeChangeContainer}>
                             <Text style={[styles.infoText, textColor]}>{t('takingAWhile')}...</Text>
                             <TouchableOpacity onPress={this.onChangeNodePress}>
                                 <View style={[styles.nodeChangeButton, borderColor]}>
