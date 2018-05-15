@@ -44,12 +44,12 @@ public class ShareSecure extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void share (String type, ReadableMap content, Promise promise) throws Error {
+    public void share (String type, ReadableMap content, Promise promise) {
         initShareIntent(type, content, promise);
     }
 
 
-    private void initShareIntent(String type, ReadableMap content, Promise promise) throws Error {
+    private void initShareIntent(String type, ReadableMap content, Promise promise) {
         List<Intent> limitedShareIntents = new ArrayList<Intent>();
         Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
         shareIntent.setType("text/plain");
