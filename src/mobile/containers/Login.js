@@ -128,7 +128,10 @@ class Login extends Component {
     }
 
     async onLoginPress(password) {
-        const { t, is2FAEnabled } = this.props;
+        const { t, is2FAEnabled, isConnected } = this.props;
+        if (!isConnected) {
+            return;
+        }
         if (!password) {
             this.props.generateAlert('error', t('emptyPassword'), t('emptyPasswordExplanation'));
         } else {
