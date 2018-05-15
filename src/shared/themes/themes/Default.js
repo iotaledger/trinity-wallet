@@ -17,5 +17,5 @@ export default {
     },
     chart: { color: '#FFA25B' },
     wave: { primary: 'rgba(137, 211, 254, 0.15)', secondary: 'rgba(0, 0, 0, 0.15)' },
-    box: { bg: 'rgba(20, 46, 53, 0.8)', alt: '#21424d', body: '#ffffff' },
+    box: { bg: '#153037', alt: '#21424d', body: '#ffffff' },
 };
