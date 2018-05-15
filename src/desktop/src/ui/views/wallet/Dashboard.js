@@ -69,6 +69,7 @@ class Dashboard extends React.PureComponent {
         const subroute = location.pathname.split('/')[3] || null;
 
         const balanceOpen = ['send', 'receive'].indexOf(route) > -1;
+        const sendOpen = ['send'].indexOf(route) > -1;
         const historyOpen = ['history'].indexOf(route) > -1;
 
         const os = Electron.getOS();
@@ -78,7 +79,7 @@ class Dashboard extends React.PureComponent {
                 <div className={balanceOpen ? css.balanceOpen : null}>
                     <section className={css.balance}>
                         <Balance />
-                        <div className={!balanceOpen ? css.open : null}>
+                        <div className={balanceOpen ? css.openMid : null}>
                             <a onClick={() => history.push('/wallet/receive')}>
                                 <div>
                                     <Icon icon="receive" size={24} />
@@ -95,7 +96,7 @@ class Dashboard extends React.PureComponent {
                                 <p>{capitalize(t('home:send'))}</p>
                             </a>
                         </div>
-                        <div className={balanceOpen ? css.open : null}>
+                        <div className={sendOpen ? css.openRight : balanceOpen ? css.openLeft : css.close}>
                             <Switch location={location}>
                                 <Route path="/wallet/send" component={Send} />
                                 <Route path="/wallet/receive" component={Receive} />

@@ -125,6 +125,7 @@ class List extends React.PureComponent {
                                 const isConfirmed = transfer.persistence;
 
                                 if (
+                                    transfer.transferValue < 1 ||
                                     (filter === 'Sent' && (isReceived || !isConfirmed)) ||
                                     (filter === 'Received' && (!isReceived || !isConfirmed)) ||
                                     (filter === 'Pending' && isConfirmed)

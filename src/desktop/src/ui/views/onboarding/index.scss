@@ -377,3 +377,15 @@ $footer: 70px;
         }
     }
 }
+
+@media print {
+    .onboarding {
+        footer,
+        header,
+        nav,
+        h1,
+        p {
+            display: none;
+        }
+    }
+}

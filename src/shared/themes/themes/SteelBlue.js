@@ -16,6 +16,6 @@ export default {
         hover: 'rgba(0, 0, 0, 0.4)',
     },
     chart: { color: '#1c299f' },
-    box: { bg: 'rgba(255, 255, 255, 0.9)', alt: '#d8dee9', body: '#000000' },
+    box: { bg: '#ffffff', alt: '#d8dee9', body: '#000000' },
     wave: { primary: 'rgba(28, 41, 159, 0.5)', secondary: 'rgba(0, 0, 0, 0.05)' },
 };
