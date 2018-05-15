@@ -12,11 +12,11 @@ import { parseAddress } from 'iota-wallet-shared-modules/libs/iota/utils';
 import { setFullNode } from 'iota-wallet-shared-modules/actions/settings';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
 import { setPassword, setSetting, setDeepLink } from 'iota-wallet-shared-modules/actions/wallet';
-import { setUserActivity, setLoginPasswordField } from 'iota-wallet-shared-modules/actions/ui';
+import { setUserActivity, setLoginPasswordField, setLoginRoute } from 'iota-wallet-shared-modules/actions/ui';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import WithBackPressCloseApp from '../components/BackPressCloseApp';
 import DynamicStatusBar from '../components/DynamicStatusBar';
-import NodeSelectionOnLogin from './NodeSelectionOnLogin';
+import NodeOptionsOnLogin from './NodeOptionsOnLogin';
 import EnterPasswordOnLoginComponent from '../components/EnterPasswordOnLogin';
 import Enter2FAComponent from '../components/Enter2FA';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
@@ -94,20 +94,19 @@ class Login extends Component {
          * @param {string} - message
          */
         setDeepLink: PropTypes.func.isRequired,
+        /** Determines which page should be displayed at login */
+        loginRoute: PropTypes.string.isRequired,
+        /** Sets which login page should be displayed
+         * @param {string} route - current route
+         */
+        setLoginRoute: PropTypes.func.isRequired,
     };
 
     constructor() {
         super();
 
-        this.state = {
-            changingNode: false,
-            completing2FA: false,
-        };
-
         this.onComplete2FA = this.onComplete2FA.bind(this);
         this.onLoginPress = this.onLoginPress.bind(this);
-        this.onBackPress = this.onBackPress.bind(this);
-        this.navigateToNodeSelection = this.navigateToNodeSelection.bind(this);
         this.setDeepUrl = this.setDeepUrl.bind(this);
     }
 
@@ -141,7 +140,7 @@ class Login extends Component {
                     if (!is2FAEnabled) {
                         this.navigateToLoading();
                     } else {
-                        this.setState({ completing2FA: true });
+                        this.props.setLoginRoute('complete2FA');
                     }
                 } else {
                     this.props.generateAlert(
@@ -169,17 +168,13 @@ class Login extends Component {
             const verified = authenticator.verifyToken(key, token);
             if (verified) {
                 this.navigateToLoading();
-                this.setState({ completing2FA: false });
+                this.props.setLoginRoute('login');
             } else {
                 this.props.generateAlert('error', t('twoFA:wrongCode'), t('twoFA:wrongCodeExplanation'));
             }
         } else {
             this.props.generateAlert('error', t('twoFA:emptyCode'), t('twoFA:emptyCodeExplanation'));
         }
-    }
-
-    onBackPress() {
-        this.setState({ completing2FA: false });
     }
 
     setDeepUrl(data) {
@@ -202,10 +197,6 @@ class Login extends Component {
         if (latestVersion !== currentVersion || latestBuildNumber !== currentBuildNumber) {
             this.props.migrate({ version: latestVersion, buildNumber: latestBuildNumber }, persistConfig, persistor);
         }
-    }
-
-    navigateToNodeSelection() {
-        this.setState({ changingNode: true });
     }
 
     navigateToLoading() {
@@ -231,29 +222,27 @@ class Login extends Component {
     }
 
     render() {
-        const { theme, password } = this.props;
-
+        const { theme, password, loginRoute } = this.props;
         const body = theme.body;
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
                 <DynamicStatusBar backgroundColor={body.bg} />
-                {!this.state.changingNode &&
-                    !this.state.completing2FA && (
-                        <EnterPasswordOnLoginComponent
-                            theme={theme}
-                            onLoginPress={this.onLoginPress}
-                            navigateToNodeSelection={this.navigateToNodeSelection}
-                            setLoginPasswordField={(pword) => this.props.setLoginPasswordField(pword)}
-                            password={password}
-                        />
-                    )}
-                {!this.state.changingNode &&
-                    this.state.completing2FA && (
-                        <Enter2FAComponent verify={this.onComplete2FA} cancel={this.onBackPress} theme={theme} />
-                    )}
-                {this.state.changingNode && (
-                    <NodeSelectionOnLogin backPress={() => this.setState({ changingNode: false })} />
-                )}
+                {loginRoute === 'login' &&
+                    <EnterPasswordOnLoginComponent
+                        theme={theme}
+                        onLoginPress={this.onLoginPress}
+                        navigateToNodeOptions={() => this.props.setLoginRoute('nodeOptions')}
+                        setLoginPasswordField={(pword) => this.props.setLoginPasswordField(pword)}
+                        password={password}
+                    />
+                }
+                {loginRoute === 'complete2FA' &&
+                    <Enter2FAComponent verify={this.onComplete2FA} cancel={() => this.props.setLoginRoute('login')} theme={theme} />
+                }
+                {loginRoute !== 'complete2FA' &&
+                    loginRoute !== 'login' &&
+                    <NodeOptionsOnLogin />
+                }
                 <StatefulDropdownAlert backgroundColor={body.bg} />
             </View>
         );
@@ -269,6 +258,7 @@ const mapStateToProps = (state) => ({
     accountInfo: state.accounts.accountInfo,
     password: state.ui.loginPasswordFieldText,
     pwdHash: state.wallet.password,
+    loginRoute: state.ui.loginRoute,
 });
 
 const mapDispatchToProps = {
@@ -280,6 +270,7 @@ const mapDispatchToProps = {
     migrate,
     setLoginPasswordField,
     setDeepLink,
+    setLoginRoute
 };
 
 export default WithBackPressCloseApp()(
