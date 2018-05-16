@@ -5,7 +5,7 @@ import union from 'lodash/union';
 import { setPrice, setChartData, setMarketData } from './marketData';
 import { setNodeList } from './settings';
 import { formatChartData, getUrlTimeFormat, getUrlNumberFormat, rearrangeObjectKeys } from '../libs/utils';
-import { generateAccountInfoErrorAlert } from './alerts';
+import { generateAccountInfoErrorAlert, generateAutopromotionErrorAlert } from './alerts';
 import { setNewUnconfirmedBundleTails, removeBundleFromUnconfirmedBundleTails } from './accounts';
 import { getFirstConsistentTail, isStillAValidTransaction } from '../libs/iota/transfers';
 import { selectedAccountStateFactory } from '../selectors/accounts';
@@ -308,5 +308,8 @@ export const promoteTransfer = (bundleHash, seenTailTransactions) => (dispatch, 
 
             return dispatch(promoteTransactionSuccess());
         })
-        .catch(() => dispatch(promoteTransactionError()));
+        .catch(() => {
+            dispatch(generateAutopromotionErrorAlert());
+            dispatch(promoteTransactionError());
+        });
 };
