@@ -213,7 +213,6 @@ export const getFullAccountInfoFirstSeed = (seed, accountName, navigator = null,
         getAccountData(seed, accountName, genFn)
             .then((data) => dispatch(fullAccountInfoFirstSeedFetchSuccess(data)))
             .catch((err) => {
-                console.log('Err', err);
                 pushScreen(navigator, 'login');
                 dispatch(fullAccountInfoFirstSeedFetchError());
 
