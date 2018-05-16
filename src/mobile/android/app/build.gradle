@@ -85,8 +85,8 @@ def enableSeparateBuildPerCPUArchitecture = false
  */
 def enableProguardInReleaseBuilds = true
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.iota.wallet"
         versionCode 34
@@ -159,7 +159,7 @@ dependencies {
     implementation project(':react-native-navigation')
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:27.1.0'
-    implementation 'com.facebook.react:react-native:+'
+    implementation ('com.facebook.react:react-native:0.51.0') { force = true }
     implementation project(':react-native-svg')
     implementation project(':react-native-fs')
     implementation project(':react-native-keychain')
