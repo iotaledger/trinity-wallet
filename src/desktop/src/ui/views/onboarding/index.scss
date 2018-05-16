@@ -69,6 +69,16 @@ $footer: 70px;
             flex: 1;
         }
     }
+
+    @media print {
+        footer,
+        header,
+        nav,
+        h1,
+        p {
+            display: none;
+        }
+    }
 }
 
 .highlight {
@@ -140,6 +150,12 @@ $footer: 70px;
     max-width: 920px;
     text-align: left;
 
+    &.narrow {
+        max-width: 400px;
+        margin-bottom: 16px;
+        padding-left: 40px;
+    }
+
     button,
     span {
         display: inline-block;
@@ -155,6 +171,10 @@ $footer: 70px;
 
         &.disabled {
             opacity: 0.15;
+            em {
+                background: var(--box-bg);
+                color: var(--box-body);
+            }
         }
 
         &:hover {
@@ -183,9 +203,29 @@ $footer: 70px;
             flex: 0 0 3.6%;
         }
         > span {
-            flex: 0 0 11.11%;
-            letter-spacing: 12px;
+            flex: 0 0 33.33%;
+            letter-spacing: 16px;
             text-align: center;
+            line-height: 32px;
+            height: 34px;
+            font-size: 21px;
+            position: relative;
+
+            em {
+                position: absolute;
+                display: block;
+                background: var(--primary);
+                width: 26px;
+                height: 26px;
+                top: 2px;
+                left: -48px;
+                font-style: normal;
+                line-height: 26px;
+                font-size: 14px;
+                padding: 0px;
+                letter-spacing: 0px;
+                color: var(--primary-body);
+            }
         }
     }
 
@@ -378,14 +418,25 @@ $footer: 70px;
     }
 }
 
-@media print {
-    .onboarding {
-        footer,
-        header,
-        nav,
-        h1,
-        p {
-            display: none;
+.print {
+    display: none;
+
+    @media print {
+        display: block;
+        width: 100vw;
+        height: 100vh;
+        img,
+        svg {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            width: 100vw;
+            height: 100vh;
+        }
+        svg text {
+            font-family: 'SourceCodePro';
+            font-size: 20px;
+            fill: #231f20;
         }
     }
 }
