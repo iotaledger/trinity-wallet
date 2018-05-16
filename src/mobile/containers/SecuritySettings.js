@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { Navigation } from 'react-native-navigation';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { width, height } from '../utils/dimensions';
@@ -88,55 +87,16 @@ class SecuritySettings extends Component {
         theme: PropTypes.object.isRequired,
         /** Determines if two factor authentication is enabled */
         is2FAEnabled: PropTypes.bool.isRequired,
+        /** Navigation object */
+        navigator: PropTypes.object.isRequired,
     };
 
     on2FASetupPress() {
         const { is2FAEnabled, theme: { body } } = this.props;
 
         if (!is2FAEnabled) {
-            Navigation.startSingleScreenApp({
-                screen: {
-                    screen: 'twoFactorSetupAddKey',
-                    navigatorStyle: {
-                        navBarHidden: true,
-                        navBarTransparent: true,
-                        topBarElevationShadowEnabled: false,
-                        screenBackgroundColor: body.bg,
-                        drawUnderStatusBar: true,
-                        statusBarColor: body.bg,
-                    },
-                },
-                appStyle: {
-                    orientation: 'portrait',
-                    keepStyleAcrossPush: false,
-                },
-            });
-        } else {
-            Navigation.startSingleScreenApp({
-                screen: {
-                    screen: 'disable2FA',
-                    navigatorStyle: {
-                        navBarHidden: true,
-                        navBarTransparent: true,
-                        topBarElevationShadowEnabled: false,
-                        screenBackgroundColor: body.bg,
-                        drawUnderStatusBar: true,
-                        statusBarColor: body.bg,
-                    },
-                },
-                appStyle: {
-                    orientation: 'portrait',
-                    keepStyleAcrossPush: false,
-                },
-            });
-        }
-    }
-
-    onFingerprintSetupPress() {
-        const { theme: { body } } = this.props;
-        Navigation.startSingleScreenApp({
-            screen: {
-                screen: 'fingerprintSetup',
+            this.props.navigator.push({
+                screen: 'twoFactorSetupAddKey',
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
@@ -145,11 +105,37 @@ class SecuritySettings extends Component {
                     drawUnderStatusBar: true,
                     statusBarColor: body.bg,
                 },
+                animated: false,
+            });
+        } else {
+            this.props.navigator.push({
+                screen: 'disable2FA',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    topBarElevationShadowEnabled: false,
+                    screenBackgroundColor: body.bg,
+                    drawUnderStatusBar: true,
+                    statusBarColor: body.bg,
+                },
+                animated: false,
+            });
+        }
+    }
+
+    onFingerprintSetupPress() {
+        const { theme: { body } } = this.props;
+        this.props.navigator.push({
+            screen: 'fingerprintSetup',
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                topBarElevationShadowEnabled: false,
+                screenBackgroundColor: body.bg,
+                drawUnderStatusBar: true,
+                statusBarColor: body.bg,
             },
-            appStyle: {
-                orientation: 'portrait',
-                keepStyleAcrossPush: false,
-            },
+            animated: false,
         });
     }
 
