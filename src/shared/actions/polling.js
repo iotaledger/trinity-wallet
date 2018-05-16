@@ -272,6 +272,13 @@ export const promoteTransfer = (bundleHash, seenTailTransactions) => (dispatch, 
             accountState = newState;
             dispatch(syncAccountBeforeAutoPromotion(accountState));
 
+            const transaction = accountState.transfers[bundleHash];
+
+            if (transaction.persistence) {
+                dispatch(removeBundleFromUnconfirmedBundleTails(bundleHash));
+                throw new Error(Errors.TRANSACTION_ALREADY_CONFIRMED);
+            }
+
             return isStillAValidTransaction(accountState.transfers[bundleHash], accountState.addresses);
         })
         .then((isValid) => {
