@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import { Navigation } from 'react-native-navigation';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
@@ -95,6 +94,8 @@ export class AdvancedSettings extends PureComponent {
         theme: PropTypes.object.isRequired,
         /** Determines if wallet is making a transaction */
         isSendingTransfer: PropTypes.bool.isRequired,
+        /** Navigation object */
+        navigator: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -133,23 +134,17 @@ export class AdvancedSettings extends PureComponent {
 
     reset() {
         const { theme } = this.props;
-
-        Navigation.startSingleScreenApp({
-            screen: {
-                screen: 'walletResetConfirm',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    topBarElevationShadowEnabled: false,
-                    screenBackgroundColor: theme.body.bg,
-                    drawUnderStatusBar: true,
-                    statusBarColor: theme.body.bg,
-                },
+        this.props.navigator.push({
+            screen: 'walletResetConfirm',
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                topBarElevationShadowEnabled: false,
+                screenBackgroundColor: theme.body.bg,
+                drawUnderStatusBar: true,
+                statusBarColor: theme.body.bg,
             },
-            appStyle: {
-                orientation: 'portrait',
-                keepStyleAcrossPush: false,
-            },
+            animated: false,
         });
     }
 

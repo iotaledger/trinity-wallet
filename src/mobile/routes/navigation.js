@@ -22,8 +22,8 @@ import SeedReentry from '../containers/SeedReentry';
 import TwoFactorSetupAddKeyComponent from '../containers/TwoFactorSetupAddKey';
 import TwoFactorSetupEnterToken from '../containers/TwoFactorSetupEnterToken';
 import Disable2FA from '../containers/Disable2FA';
-import { isIPhoneX } from '../utils/device';
 import FingerprintSetup from '../containers/FingerprintSetup';
+import { isIPhoneX } from '../utils/device';
 
 function getGenerator(screen) {
     if (isIPhoneX) {
