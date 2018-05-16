@@ -39,7 +39,14 @@ export const generateAccountInfoErrorAlert = (err) => (dispatch) => {
 
 export const generateTransitionErrorAlert = (err) => (dispatch) => {
     if (err.message.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
-        generateAttachToTangleUnavailableErrorAlert();
+        dispatch(
+            generateAlert(
+                'error',
+                i18next.t('global:attachToTangleUnavailable'),
+                i18next.t('global:attachToTangleUnavailableExplanation'),
+                10000,
+            ),
+        );
     } else {
         dispatch(
             generateAlert(
@@ -53,7 +60,7 @@ export const generateTransitionErrorAlert = (err) => (dispatch) => {
     dispatch(prepareLogUpdate(err));
 };
 
-export const generateAttachToTangleUnavailableErrorAlert = () => (dispatch) => {
+export const generateAutopromotionErrorAlert = () => (dispatch) => {
   dispatch(
       generateAlert(
           'error',
