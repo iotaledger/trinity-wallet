@@ -167,30 +167,49 @@ export function setFullNode(node) {
         checkAttachToTangleAsync(node)
             .then((res) => {
                 changeIotaNode(node);
-                if (res.error.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)){
+                if (res.error.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
                     dispatch(setNodeAndChangeToLocalPoW(node));
-                    dispatch(generateAlert(
-                        'success',
-                        'Successfully changed node',
-                        `The node was changed to ${node}. This node does not support Remote Proof of Work.`,
-                    ));
-                } else {
+                    return dispatch(
+                        generateAlert(
+                            'success',
+                            i18next.t('settings:nodeChangeSuccess'),
+                            i18next.t('settings:nodeChangeSuccessNoRemotePow', { node: node }),
+                            10000,
+                        ),
+                    );
+                } else if (res.error.includes('Invalid parameters')) {
                     dispatch(setNode(node));
-                    dispatch(generateAlert(
-                        'success',
-                        'Successfully changed node',
-                        `The node was changed to ${node}.`,
-                    ));
+                    return dispatch(
+                        generateAlert(
+                            'success',
+                            i18next.t('settings:nodeChangeSuccess'),
+                            i18next.t('settings:nodeChangeSuccessExplanation', { node: node }),
+                            10000,
+                        ),
+                    );
                 }
+                dispatch(setNodeError());
+                return dispatch(
+                    generateAlert(
+                        'error',
+                        i18next.t('settings:nodeChangeError'),
+                        i18next.t('settings:nodeChangeErrorExplanation'),
+                        7000,
+                        res,
+                    ),
+                );
             })
             .catch((err) => {
                 dispatch(setNodeError());
-                dispatch(generateAlert(
-                    'error',
-                    'Error changing node',
-                    'There was an error changing node. Please try again.',
-                    err
-                ));
+                dispatch(
+                    generateAlert(
+                        'error',
+                        i18next.t('settings:nodeChangeError'),
+                        i18next.t('settings:nodeChangeErrorExplanation'),
+                        7000,
+                        err,
+                    ),
+                );
             });
     };
 }
