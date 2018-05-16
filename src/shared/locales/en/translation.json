@@ -68,6 +68,7 @@
         "attachToTangleUnavailable": "Remote Proof of Work is unavailable",
         "attachToTangleUnavailableExplanation":
             "Remote Proof of Work is not available on your selected node. Either change node or set Proof of Work to Local in Advanced Settings.",
+        "attachToTangleUnavailableExplanationShort": "Remote Proof of Work is not available on your selected node.",
         "wallet": "Wallet",
         "sent": "Sent",
         "received": "Received",
@@ -375,7 +376,7 @@
             "The node was changed to {{node}}. This node does not support remote Proof of Work.",
         "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
         "nodeChangeError": "Error changing node",
-        "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
+        "nodeChangeErrorExplanation": "There was an error changing node. Please try again.",
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",
