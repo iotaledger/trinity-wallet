@@ -209,8 +209,11 @@ const storeAndBroadcastAsync = (trytes) => {
 };
 
 const checkAttachToTangleAsync = (node) => {
-    return fetch(node, { method: 'POST', body: JSON.stringify({ command: 'attachToTangle'}), headers: { 'X-IOTA-API-Version': '1' } })
-        .then((res) => res.json())
+    return fetch(node, {
+        method: 'POST',
+        body: JSON.stringify({ command: 'attachToTangle' }),
+        headers: { 'X-IOTA-API-Version': '1' },
+    }).then((res) => res.json());
 };
 
 const attachToTangleAsync = (
@@ -250,5 +253,5 @@ export {
     prepareTransfersAsync,
     storeAndBroadcastAsync,
     attachToTangleAsync,
-    checkAttachToTangleAsync
+    checkAttachToTangleAsync,
 };
