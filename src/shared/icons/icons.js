@@ -9,6 +9,8 @@ module.exports = {
     chevronLeft: '🔙',
     arrowRight: '➡',
     arrowLeft: '⬅',
+    arrowUp: '⬆️',
+    arrowDown: '⬇️',
     language: '💬',
     theme: '🌈',
     node: '📡',
