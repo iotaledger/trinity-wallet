@@ -229,10 +229,9 @@ export const fetchChartData = () => {
 };
 
 /**
- *   Accepts a user's seed and account name and sync local account state with ledger's.
+ *   Accepts account name and sync local account state with ledger's.
  *
  *   @method getAccountInfo
- *   @param {string} seed
  *   @param {string} accountName
  *   @returns {function} dispatch
  **/
@@ -267,6 +266,7 @@ export const promoteTransfer = (bundleHash, seenTailTransactions) => (dispatch, 
 
     const accountName = get(seenTailTransactions, '[0].account');
     let accountState = selectedAccountStateFactory(accountName)(getState());
+
     return syncAccount(accountState)
         .then((newState) => {
             accountState = newState;
