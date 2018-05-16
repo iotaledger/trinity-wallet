@@ -50,6 +50,8 @@ function createWindow() {
         height: 768,
         minWidth: 500,
         minHeight: 720,
+        maxWidth: 1600,
+        maxHeight: 900,
         frame: process.platform === 'linux',
         titleBarStyle: 'hidden',
         icon: `${__dirname}/dist/icon.png`,
@@ -71,7 +73,6 @@ function createWindow() {
     windows.main.webContents.openDevTools();
 
     if (devMode) {
-
         const {
             default: installExtension,
             REACT_DEVELOPER_TOOLS,
