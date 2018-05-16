@@ -634,7 +634,6 @@ export const normaliseBundle = (bundle, addresses, tailTransactions, persistence
  **/
 export const syncTransfers = (diff, accountState) => {
     const bundleHashes = new Set();
-    const outOfSyncTransactionHashes = [];
 
     const cached = {
         tailTransactions: [],
@@ -647,7 +646,6 @@ export const syncTransfers = (diff, accountState) => {
             each(transactionObjects, (transactionObject) => {
                 if (transactionObject.bundle !== '9'.repeat(81)) {
                     bundleHashes.add(transactionObject.bundle);
-                    outOfSyncTransactionHashes.push(transactionObject.bundle);
                 }
             });
 
@@ -679,8 +677,7 @@ export const syncTransfers = (diff, accountState) => {
 
             return {
                 transfers,
-                newNormalisedTransfers,
-                outOfSyncTransactionHashes,
+                newNormalisedTransfers
             };
         });
 };

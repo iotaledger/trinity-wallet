@@ -17,7 +17,6 @@ import size from 'lodash/size';
 import pickBy from 'lodash/pickBy';
 import omitBy from 'lodash/omitBy';
 import flatMap from 'lodash/flatMap';
-import union from 'lodash/union';
 import { iota } from './index';
 import { getBalancesAsync, wereAddressesSpentFromAsync } from './extendedApi';
 
@@ -113,7 +112,7 @@ const getAddressesUptoLatestUnused = (resolve, reject, seed, opts, genFn, allAdd
                         newOpts,
                         genFn,
                         allAddresses,
-                        union(transactionHashes, hashes),
+                        [...transactionHashes, ...hashes],
                     );
                 } else {
                     // Traverse backwards to remove all unused addresses
@@ -386,6 +385,7 @@ export const getLatestAddresses = (seed, index, genFn) => {
  *
  *   @method getLatestAddress
  *   @param {object} addressData
+ *   `
  *   @returns {string} - latest address
  **/
 export const getLatestAddress = (addressData) => {
@@ -447,17 +447,16 @@ export const getAddressesUptoRemainder = (addressData, seed, genFn, blacklistedR
  *
  *   @method syncAddresses
  *   @param {string} seed - Seed string
- *   @param {string} addressData
+ *   @param {string} existingAddressData
  *   @param {function} genFn
  *   @param {boolean} addNewAddress
- *   @param {boolean} syncMeta
  *
  *   @returns {Promise}
  **/
 
-export const syncAddresses = (seed, addressData, genFn, addNewAddress = false, syncMeta = true) => {
-    const existingAddressData = cloneDeep(addressData);
-    let index = getStartingSearchIndexToFetchLatestAddresses(existingAddressData);
+export const syncAddresses = (seed, existingAddressData, genFn, addNewAddress = false) => {
+    const addressData = cloneDeep(existingAddressData);
+    let index = getStartingSearchIndexToFetchLatestAddresses(addressData);
 
     return getLatestAddresses(seed, index, genFn).then((newAddresses) => {
         // Remove unused address
@@ -472,8 +471,8 @@ export const syncAddresses = (seed, addressData, genFn, addNewAddress = false, s
         newAddresses.forEach((newAddress) => {
             // In case the newly created address is not part of the addresses object
             // Add that as a key with a 0 balance.
-            if (size(existingAddressData) === 0) {
-                existingAddressData[newAddress] = {
+            if (size(addressData) === 0) {
+                addressData[newAddress] = {
                     index,
                     balance: 0,
                     spent: false,
@@ -481,9 +480,9 @@ export const syncAddresses = (seed, addressData, genFn, addNewAddress = false, s
                 };
 
                 index += 1;
-            } else if (!(newAddress in existingAddressData)) {
+            } else if (!(newAddress in addressData)) {
                 index += 1;
-                existingAddressData[newAddress] = {
+                addressData[newAddress] = {
                     index,
                     balance: 0,
                     spent: false,
@@ -492,12 +491,7 @@ export const syncAddresses = (seed, addressData, genFn, addNewAddress = false, s
             }
         });
 
-        return syncMeta
-            ? getAddressDataAndFormatBalance(keys(existingAddressData))
-            : {
-                  addresses: existingAddressData,
-                  balance: reduce(existingAddressData, (acc, addressMeta) => acc + addressMeta.balance, 0),
-              };
+        return addressData;
     });
 };
 
