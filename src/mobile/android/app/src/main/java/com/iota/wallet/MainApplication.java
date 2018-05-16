@@ -19,6 +19,7 @@ import com.rnprint.RNPrint.RNPrintPackage;
 import com.github.wumke.RNExitApp.RNExitAppPackage;
 import net.rhogan.rnsecurerandom.RNSecureRandomPackage;
 import org.iota.mobile.IOTAMobilePackage;
+import module.share.ShareSecurePackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import my.fin.RNIsDeviceRootedPackage;
 import com.bugsnag.BugsnagReactNative;
@@ -51,7 +52,7 @@ public class MainApplication extends NavigationApplication {
   protected List<ReactPackage> getPackages() {
     // Add additional packages you require here
     // No need to add RnnPackage and MainReactPackage
-    return Arrays.<ReactPackage>asList(
+    return Arrays.asList(
             // eg. new VectorIconsPackage()
             new SvgPackage(),
             new MainReactPackage(),
@@ -74,7 +75,8 @@ public class MainApplication extends NavigationApplication {
             new RNIsDeviceRootedPackage(),
             BugsnagReactNative.getPackage(),
             new RNGoogleSafetyNetPackage(),
-            new ReactNativeFingerprintScannerPackage()
+            new ReactNativeFingerprintScannerPackage(),
+            new ShareSecurePackage()
     );
   }
 
