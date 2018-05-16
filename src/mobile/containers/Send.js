@@ -177,8 +177,7 @@ export class Send extends Component {
         const { t, body } = this.props;
 
         this.state = {
-            selectedSetting: '', // eslint-disable-line react/no-unused-state
-            modalContent: '',
+            modalContent: '', // eslint-disable-line react/no-unused-state
             maxPressed: false,
             maxColor: body.color,
             maxText: t('send:sendMax'),
@@ -357,7 +356,7 @@ export class Send extends Component {
             return this.props.generateAlert('error', t('invalidMessage'), t('invalidMessageExplanation'));
         }
 
-        return this.openModal('transferConfirmation');
+        return this.showModal('transferConfirmation');
     }
 
     onQRRead(data) {
@@ -400,81 +399,23 @@ export class Send extends Component {
         return this.props.generateAlert(...props, t('invalidAddressExplanation3'));
     }
 
-    setModalContent(selectedSetting) {
-        let modalContent;
-        const { bar, body, primary, address, amount, selectedAccountName, isFingerprintEnabled } = this.props;
-
-        switch (selectedSetting) {
-            case 'qrScanner':
-                modalContent = (
-                    <QRScannerComponent
-                        onQRRead={(data) => this.onQRRead(data)}
-                        hideModal={() => this.hideModal()}
-                        primary={primary}
-                        body={body}
-                        onMount={() => this.props.setDoNotMinimise(true)}
-                        onUnmount={() => this.props.setDoNotMinimise(false)}
-                    />
-                );
-                break;
-            case 'transferConfirmation':
-                modalContent = (
-                    <TransferConfirmationModal
-                        value={parseFloat(amount) * this.getUnitMultiplier()}
-                        amount={amount}
-                        conversionText={this.getConversionTextIota()}
-                        address={address}
-                        sendTransfer={() => this.sendWithDelay()}
-                        hideModal={(callback) => this.hideModal(callback)}
-                        body={body}
-                        bar={bar}
-                        borderColor={{ borderColor: body.color }}
-                        textColor={{ color: body.color }}
-                        setSendingTransferFlag={() => this.setSendingTransferFlag()}
-                        selectedAccountName={selectedAccountName}
-                        activateFingerprintScanner={() => this.activateFingerprintScanner()}
-                        isFingerprintEnabled={isFingerprintEnabled}
-                    />
-                );
-                break;
-            case 'unitInfo':
-                modalContent = (
-                    <UnitInfoModal
-                        hideModal={() => this.hideModal()}
-                        textColor={{ color: bar.color }}
-                        lineColor={{ borderLeftColor: bar.color }}
-                        borderColor={{ borderColor: bar.color }}
-                        bar={bar}
-                    />
-                );
-                break;
-            case 'usedAddress':
-                modalContent = (
-                    <UsedAddressModal
-                        hideModal={(callback) => this.hideModal(callback)}
-                        body={body}
-                        bar={bar}
-                        borderColor={{ borderColor: body.color }}
-                        textColor={{ color: body.color }}
-                    />
-                );
-                break;
-            case 'fingerPrintModal':
-                modalContent = (
-                    <FingerPrintModal
-                        hideModal={this.hideModal}
-                        borderColor={{ borderColor: body.color }}
-                        textColor={{ color: body.color }}
-                        backgroundColor={{ backgroundColor: body.bg }}
-                        instance="send"
-                    />
-                );
-                break;
-            default:
-                break;
-        }
-
-        this.setState({ modalContent });
+    getModalProps() {
+        const { isModalActive, body } = this.props;
+        const props = {
+          animationIn: isAndroid ? 'bounceInUp' : 'zoomIn',
+          animationOut: isAndroid ? 'bounceOut' : 'zoomOut',
+          animationInTiming: isAndroid ? 1000 : 300,
+          animationOutTiming: 200,
+          backdropTransitionInTiming: isAndroid ? 500 : 300,
+          backdropTransitionOutTiming: 200,
+          backdropColor: body.bg,
+          style: { alignItems: 'center', margin: 0 },
+          isVisible: isModalActive,
+          onBackButtonPress: () => this.props.toggleModalActivity(),
+          hideModalContentWhileAnimating: true,
+          useNativeDriver: isAndroid ? true : false,
+        };
+        return props;
     }
 
     getUnitMultiplier() {
@@ -592,12 +533,6 @@ export class Send extends Component {
         Keyboard.dismiss();
     }
 
-    openModal(selectedSetting) {
-        this.setModalContent(selectedSetting);
-        this.setState({ selectedSetting }); // eslint-disable-line react/no-unused-state
-        this.showModal();
-    }
-
     shouldConversionTextShowInvalid() {
         const { amount, denomination } = this.props;
         const { currencySymbol } = this.state;
@@ -608,7 +543,12 @@ export class Send extends Component {
         return !amountIsValid && amount !== '';
     }
 
-    showModal = () => {
+    showModal(modalContent) {
+        this.setState({ modalContent });
+        this.openModal();
+    }
+
+    openModal = () => {
         const { isIOSKeyboardActive } = this.props;
         if (isIOSKeyboardActive) {
             this.blurTextFields();
@@ -707,7 +647,7 @@ export class Send extends Component {
     activateFingerprintScanner() {
         const { t } = this.props;
         if (isAndroid) {
-            this.setModalContent('fingerPrintModal');
+            this.setState({ modalContent: 'fingerPrintModal' });
         }
         FingerprintScanner.authenticate({ description: t('fingerprintOnSend') })
             .then(() => {
@@ -735,8 +675,6 @@ export class Send extends Component {
         this.messageField.blur();
     }
 
-    renderModalContent = () => <View>{this.state.modalContent}</View>;
-
     renderProgressBarChildren() {
         const { activeStepIndex, activeSteps } = this.props;
         const totalSteps = size(activeSteps);
@@ -746,6 +684,86 @@ export class Send extends Component {
         }
 
         return activeSteps[activeStepIndex] ? activeSteps[activeStepIndex] : null;
+    }
+
+    renderModal() {
+        const { bar, body, primary, address, amount, selectedAccountName, isFingerprintEnabled } = this.props;
+        const { modalContent } = this.state;
+        const modalProps = this.getModalProps();
+        switch (modalContent) {
+            case 'qrScanner':
+                return (
+                    <Modal {...modalProps}>
+                        <QRScannerComponent
+                            onQRRead={(data) => this.onQRRead(data)}
+                            hideModal={() => this.hideModal()}
+                            primary={primary}
+                            body={body}
+                            onMount={() => this.props.setDoNotMinimise(true)}
+                            onUnmount={() => this.props.setDoNotMinimise(false)}
+                        />
+                    </Modal>
+                );
+            case 'transferConfirmation':
+                  return (
+                      <Modal {...modalProps}>
+                          <TransferConfirmationModal
+                              value={parseFloat(amount) * this.getUnitMultiplier()}
+                              amount={amount}
+                              conversionText={this.getConversionTextIota()}
+                              address={address}
+                              sendTransfer={() => this.sendWithDelay()}
+                              hideModal={(callback) => this.hideModal(callback)}
+                              body={body}
+                              bar={bar}
+                              borderColor={{ borderColor: body.color }}
+                              textColor={{ color: body.color }}
+                              setSendingTransferFlag={() => this.setSendingTransferFlag()}
+                              selectedAccountName={selectedAccountName}
+                              activateFingerprintScanner={() => this.activateFingerprintScanner()}
+                              isFingerprintEnabled={isFingerprintEnabled}
+                          />
+                      </Modal>
+                );
+            case 'unitInfo':
+                return (
+                    <Modal {...modalProps}>
+                        <UnitInfoModal
+                            hideModal={() => this.hideModal()}
+                            textColor={{ color: bar.color }}
+                            lineColor={{ borderLeftColor: bar.color }}
+                            borderColor={{ borderColor: bar.color }}
+                            bar={bar}
+                        />
+                    </Modal>
+                );
+            case 'usedAddress':
+                return (
+                    <Modal {...modalProps}>
+                        <UsedAddressModal
+                            hideModal={(callback) => this.hideModal(callback)}
+                            body={body}
+                            bar={bar}
+                            borderColor={{ borderColor: body.color }}
+                            textColor={{ color: body.color }}
+                        />
+                    </Modal>
+                );
+            case 'fingerPrintModal':
+                return (
+                    <Modal {...modalProps}>
+                        <FingerPrintModal
+                            hideModal={this.hideModal}
+                            borderColor={{ borderColor: body.color }}
+                            textColor={{ color: body.color }}
+                            backgroundColor={{ backgroundColor: body.bg }}
+                            instance="send"
+                        />
+                    </Modal>
+                );
+            default:
+                break;
+        }
     }
 
     render() {
@@ -761,7 +779,6 @@ export class Send extends Component {
             theme,
             body,
             primary,
-            isModalActive,
         } = this.props;
         const textColor = { color: body.color };
         const conversionText =
@@ -794,7 +811,7 @@ export class Send extends Component {
                             widget="qr"
                             onQRPress={() => {
                                 if (!isSending) {
-                                    this.openModal('qrScanner');
+                                    this.showModal('qrScanner');
                                 }
                             }}
                             theme={theme}
@@ -919,7 +936,7 @@ export class Send extends Component {
                         )}
                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                             <TouchableOpacity
-                                onPress={() => this.openModal('unitInfo')}
+                                onPress={() => this.showModal('unitInfo') }
                                 hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
                             >
                                 <View style={styles.info}>
@@ -935,22 +952,7 @@ export class Send extends Component {
                         </View>
                         <View style={{ flex: 0.3 }} />
                     </View>
-                    <Modal
-                        animationIn={isAndroid ? 'bounceInUp' : 'zoomIn'}
-                        animationOut={isAndroid ? 'bounceOut' : 'zoomOut'}
-                        animationInTiming={isAndroid ? 1000 : 300}
-                        animationOutTiming={200}
-                        backdropTransitionInTiming={isAndroid ? 500 : 300}
-                        backdropTransitionOutTiming={200}
-                        backdropColor={body.bg}
-                        style={{ alignItems: 'center', margin: 0 }}
-                        isVisible={isModalActive}
-                        onBackButtonPress={() => this.props.toggleModalActivity()}
-                        hideModalContentWhileAnimating
-                        useNativeDriver={isAndroid ? true : false}
-                    >
-                        {this.renderModalContent()}
-                    </Modal>
+                    {this.renderModal()}
                 </View>
             </TouchableWithoutFeedback>
         );
