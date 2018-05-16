@@ -15,7 +15,7 @@ describe('Middlewares: networkMiddleware', () => {
 
                 store.dispatch({
                     type: 'IOTA/WALLET/CONNECTION_CHANGED',
-                    payload: { isConnected: false }
+                    payload: { isConnected: false },
                 });
 
                 const actions = store.getActions();
@@ -25,7 +25,7 @@ describe('Middlewares: networkMiddleware', () => {
                     category: 'error',
                     title: 'No network connection',
                     message: 'Your internet connection appears to be offline.',
-                    closeInterval: 100000
+                    closeInterval: 3600000,
                 };
 
                 expect(head(actions)).to.eql(firstExpectedAction);
@@ -38,14 +38,14 @@ describe('Middlewares: networkMiddleware', () => {
 
                 store.dispatch({
                     type: 'IOTA/WALLET/CONNECTION_CHANGED',
-                    payload: { isConnected: false }
+                    payload: { isConnected: false },
                 });
 
                 const actions = store.getActions();
 
                 const lastExpectedAction = {
                     type: 'IOTA/WALLET/CONNECTION_CHANGED',
-                    payload: { isConnected: false }
+                    payload: { isConnected: false },
                 };
 
                 expect(last(actions)).to.eql(lastExpectedAction);
@@ -60,14 +60,14 @@ describe('Middlewares: networkMiddleware', () => {
 
                 store.dispatch({
                     type: 'IOTA/WALLET/CONNECTION_CHANGED',
-                    payload: { isConnected: true }
+                    payload: { isConnected: true },
                 });
 
                 const actions = store.getActions();
 
                 const firstExpectedAction = {
                     type: 'IOTA/WALLET/CONNECTION_CHANGED',
-                    payload: { isConnected: true }
+                    payload: { isConnected: true },
                 };
 
                 expect(head(actions)).to.eql(firstExpectedAction);
@@ -80,7 +80,7 @@ describe('Middlewares: networkMiddleware', () => {
 
                 store.dispatch({
                     type: 'IOTA/WALLET/CONNECTION_CHANGED',
-                    payload: { isConnected: true }
+                    payload: { isConnected: true },
                 });
 
                 const actions = store.getActions();

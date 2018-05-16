@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BackHandler } from 'react-native';
-import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { isAndroid } from '../utils/device';
@@ -33,18 +32,19 @@ export default () => (C) => {
         }
 
         handleBackPress = () => {
-            const { theme } = this.props;
+            const { theme: { bar, body } } = this.props;
 
-            Navigation.startSingleScreenApp({
-                screen: {
-                    screen: 'home',
-                    navigatorStyle: {
-                        navBarHidden: true,
-                        navBarTransparent: true,
-                        topBarElevationShadowEnabled: false,
-                        screenBackgroundColor: theme.body.bg,
-                    },
+            this.props.navigator.push({
+                screen: 'home',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    topBarElevationShadowEnabled: false,
+                    screenBackgroundColor: body.bg,
+                    drawUnderStatusBar: true,
+                    statusBarColor: bar.bg,
                 },
+                animated: false,
             });
 
             return true;
