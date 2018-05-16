@@ -103,7 +103,12 @@ class NodeSelection extends Component {
     }
 
     saveNodeSelection() {
-        this.setNode(this.dropdown.getSelected());
+        const { node } = this.props;
+        const nextNode = this.dropdown.getSelected();
+        if (nextNode === node) {
+            return;
+        }
+        this.setNode(nextNode);
     }
 
     render() {
