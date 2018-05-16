@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, ActivityIndicator } from 'react-native';
 import { setFullNode } from 'iota-wallet-shared-modules/actions/settings';
-import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { translate } from 'react-i18next';
-import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
 import DropdownComponent from '../containers/Dropdown';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons';
@@ -19,6 +17,7 @@ const styles = StyleSheet.create({
     topContainer: {
         flex: 9,
         justifyContent: 'flex-end',
+        alignItems: 'center'
     },
     bottomContainer: {
         flex: 1,
@@ -52,6 +51,16 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         marginRight: width / 20,
     },
+    activityIndicator: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    innerContainer: {
+        position: 'absolute',
+        bottom: height / 3.4,
+        alignItems: 'center',
+    },
 });
 
 /** Node Selection component */
@@ -73,31 +82,20 @@ class NodeSelection extends Component {
         t: PropTypes.func.isRequired,
         /** Theme settings */
         theme: PropTypes.object.isRequired,
-        /** Generate a notification alert
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         */
-        generateAlert: PropTypes.func.isRequired,
+        /** Determines whether the node is being changed */
+        isChangingNode: PropTypes.bool.isRequired
     };
 
     setNode(selectedNode) {
-        changeIotaNode(selectedNode);
         this.props.setFullNode(selectedNode);
-        return this.props.generateAlert(
-            'success',
-            'Successfully changed node',
-            `The node was changed to ${selectedNode}.`,
-        );
     }
 
     saveNodeSelection() {
         this.setNode(this.dropdown.getSelected());
-        this.props.backPress();
     }
 
     render() {
-        const { node, nodes, t, theme: { body } } = this.props;
+        const { isChangingNode, node, nodes, t, theme: { body, primary } } = this.props;
         const textColor = { color: body.color };
 
         return (
@@ -121,6 +119,17 @@ class NodeSelection extends Component {
                             options={nodes}
                             background
                         />
+                        {isChangingNode &&
+                            <View style={styles.innerContainer}>
+                                <ActivityIndicator
+                                    animating
+                                    style={styles.activityIndicator}
+                                    size="large"
+                                    color={primary.color}
+                                />
+                            </View>
+                        }
+                        <View style={{ flex: 0.25 }} />
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity
@@ -152,11 +161,11 @@ const mapStateToProps = (state) => ({
     node: state.settings.node,
     nodes: state.settings.nodes,
     theme: state.settings.theme,
+    isChangingNode: state.ui.isChangingNode,
 });
 
 const mapDispatchToProps = {
     setFullNode,
-    generateAlert,
 };
 
 export default translate('global')(connect(mapStateToProps, mapDispatchToProps)(NodeSelection));

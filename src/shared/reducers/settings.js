@@ -87,10 +87,16 @@ const settingsReducer = (state = initialState, action) => {
                 ...state,
                 locale: action.payload,
             };
-        case ActionTypes.SET_FULLNODE:
+        case ActionTypes.SET_NODE:
             return {
                 ...state,
                 node: action.payload,
+            };
+        case ActionTypes.SET_NODE_AND_CHANGE_TO_LOCAL_POW:
+            return {
+                ...state,
+                node: action.payload,
+                remotePoW: false
             };
         case ActionTypes.ADD_CUSTOM_POW_NODE:
             return {
