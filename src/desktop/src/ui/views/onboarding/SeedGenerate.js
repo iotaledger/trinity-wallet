@@ -102,7 +102,7 @@ class GenerateSeed extends React.PureComponent {
     };
 
     render() {
-        const { t } = this.props;
+        const { newSeed, t } = this.props;
         const { seed, clicks } = this.state;
 
         const clicksLeft = 10 - clicks.length;
@@ -113,7 +113,7 @@ class GenerateSeed extends React.PureComponent {
                     <h1>{t('newSeedSetup:generatedSeed')}</h1>
                     <Interpolate
                         i18nKey="newSeedSetup:individualLetterCount"
-                        letterCount={clicksLeft > 0 ? <strong className={css.highlight}>{clicksLeft}</strong> : null}
+                        letterCount={!newSeed && clicksLeft > 0 ? <strong className={css.highlight}>{!newSeed ? clicksLeft : 0}</strong> : null}
                     >
                         <p>
                             Press <strong /> individual letters to randomise them.
@@ -143,7 +143,7 @@ class GenerateSeed extends React.PureComponent {
                     <Button onClick={this.onRequestPrevious} className="square" variant="dark">
                         {t('goBackStep')}
                     </Button>
-                    <Button disabled={clicksLeft > 0} onClick={this.onRequestNext} className="square" variant="primary">
+                    <Button disabled={!newSeed && clicksLeft > 0} onClick={this.onRequestNext} className="square" variant="primary">
                         {clicks < 10 ? `Randomise ${clicksLeft} characters to continue` : t('continue')}
                     </Button>
                 </footer>

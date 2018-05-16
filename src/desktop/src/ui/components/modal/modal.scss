@@ -9,6 +9,11 @@
     position: fixed;
     z-index: 1001;
     transition: opacity 0.15s ease-in;
+
+    @media print {
+        display: none;
+    }
+
     &:before {
         content: '';
         position: absolute;
