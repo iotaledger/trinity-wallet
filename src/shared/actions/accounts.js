@@ -1,6 +1,5 @@
 import { selectedAccountStateFactory, getAccountNamesFromState } from '../selectors/accounts';
 import { syncAccount, getAccountData } from '../libs/iota/accounts';
-import { syncAddresses } from '../libs/iota/addresses';
 import { clearWalletData, setSeedIndex } from './wallet';
 import {
     generateAccountInfoErrorAlert,
@@ -37,17 +36,17 @@ export const ActionTypes = {
     ACCOUNT_INFO_FETCH_SUCCESS: 'IOTA/ACCOUNTS/ACCOUNT_INFO_FETCH_SUCCESS',
     ACCOUNT_INFO_FETCH_ERROR: 'IOTA/ACCOUNTS/ACCOUNT_INFO_FETCH_ERROR',
     SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION: 'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION',
-    SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST: 'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST'
+    SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST: 'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST',
 };
 
 export const syncAccountBeforeManualPromotion = (payload) => ({
     type: ActionTypes.SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION,
-    payload
+    payload,
 });
 
 export const syncAccountBeforeManualRebroadcast = (payload) => ({
     type: ActionTypes.SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST,
-    payload
+    payload,
 });
 
 export const updateAccountInfoAfterSpending = (payload) => ({
@@ -214,6 +213,7 @@ export const getFullAccountInfoFirstSeed = (seed, accountName, navigator = null,
         getAccountData(seed, accountName, genFn)
             .then((data) => dispatch(fullAccountInfoFirstSeedFetchSuccess(data)))
             .catch((err) => {
+                console.log('Err', err);
                 pushScreen(navigator, 'login');
                 dispatch(fullAccountInfoFirstSeedFetchError());
 
@@ -248,10 +248,7 @@ export const getAccountInfo = (seed, accountName, navigator = null, genFn) => {
 
         const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
-        return syncAddresses(seed, existingAccountState, genFn)
-            .then((accountData) => {
-                return syncAccount(accountData);
-            })
+        return syncAccount(existingAccountState, seed, true, genFn, true)
             .then((newAccountData) => dispatch(accountInfoFetchSuccess(newAccountData)))
             .catch((err) => {
                 if (navigator) {
