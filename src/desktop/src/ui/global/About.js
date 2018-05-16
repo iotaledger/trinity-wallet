@@ -41,7 +41,7 @@ class About extends React.PureComponent {
         const { visible } = this.state;
 
         return (
-            <Modal variant="confirm" isOpen={visible} onClose={() => this.setState({ visible: false })}>
+            <Modal variant="global" isOpen={visible} onClose={() => this.setState({ visible: false })}>
                 <section className={css.about}>
                     <Icon icon="iota" size={48} />
                     <h1>Trinity Wallet</h1>
