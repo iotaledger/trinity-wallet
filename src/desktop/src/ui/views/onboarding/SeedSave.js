@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { translate, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
+import QRCode from 'qrcode.react';
 
 import { getChecksum } from 'libs/iota/utils';
 
@@ -10,6 +11,7 @@ import Modal from 'ui/components/modal/Modal';
 import Button from 'ui/components/Button';
 import Icon from 'ui/components/Icon';
 import Clipboard from 'ui/components/Clipboard';
+import Tooltip from 'ui/components/Tooltip';
 
 import paperWallet from 'themes/paper-wallet.svg';
 import paperWalletFilled from 'themes/paper-wallet-filled.svg';
@@ -91,7 +93,11 @@ class SeedSave extends PureComponent {
                         {t('saveYourSeed:iHaveSavedMySeed')}
                     </Button>
                 </footer>
-                <Modal variant="confirm" isOpen={writeVisible} onClose={() => this.setState({ writeVisible: false })}>
+                <Modal
+                    variant="fullscreen"
+                    isOpen={writeVisible}
+                    onClose={() => this.setState({ writeVisible: false })}
+                >
                     <section>
                         <h1>{t('saveYourSeed:letsWriteDownYourSeed')}</h1>
                         <p>{t('saveYourSeed:youCanHighlightCharacters')}</p>
@@ -112,27 +118,31 @@ class SeedSave extends PureComponent {
                                         );
                                     })}
                             </div>
+                            <div>
+                                <Tooltip
+                                    title={t('saveYourSeed:whatIsCheksum')}
+                                    tip={t('saveYourSeed:checksumExplanation')}
+                                />{' '}
+                                {t('saveYourSeed:optionalChecksum')}: <strong>{seed ? getChecksum(seed) : null}</strong>
+                            </div>
+                            <nav className={css.arrows}>
+                                <a
+                                    onClick={() => this.setState({ writeIndex: writeIndex - 1 })}
+                                    className={writeIndex === 1 ? css.disabled : null}
+                                >
+                                    <Icon icon="arrowUp" size={21} />
+                                </a>
+                                <a
+                                    onClick={() => this.setState({ writeIndex: writeIndex + 1 })}
+                                    className={writeIndex === 9 ? css.disabled : null}
+                                >
+                                    <Icon icon="arrowDown" size={24} />
+                                </a>
+                            </nav>
                         </div>
-                        <nav className={css.steps}>
-                            <a
-                                onClick={() => this.setState({ writeIndex: writeIndex - 1 })}
-                                className={writeIndex === 1 ? css.disabled : null}
-                            >
-                                <Icon icon="arrowLeft" size={38} />
-                                {t('prev')}
-                            </a>
-                            <span>{writeIndex}/9</span>
-                            <a
-                                onClick={() => this.setState({ writeIndex: writeIndex + 1 })}
-                                className={writeIndex === 9 ? css.disabled : null}
-                            >
-                                <Icon icon="arrowRight" size={38} />
-                                {t('next')}
-                            </a>
-                        </nav>
                     </section>
                     <footer>
-                        <Button onClick={() => window.print()} variant="secondary">
+                        <Button onClick={() => window.print()} className="square" variant="secondary">
                             {t('saveYourSeed:printBlankWallet')}
                         </Button>
                         <Button
@@ -141,32 +151,32 @@ class SeedSave extends PureComponent {
                                 this.setState({ writeVisible: false });
                             }}
                             variant="primary"
+                            className="square"
                         >
                             {t('done')}
                         </Button>
                     </footer>
                 </Modal>
                 <div className={css.print} onClick={() => window.print()}>
-                    <div>
-                        {writeVisible ? null : (
-                            <svg viewBox="0 0 595 841" xmlns="http://www.w3.org/2000/svg">
-                                {seed &&
-                                    seed.split('').map((letter, index) => {
-                                        const space = index % 9 > 5 ? 38 : index % 9 > 2 ? 19 : 0;
-                                        const x = 168 + (index % 9) * 26 + space;
-                                        const y = 405 + Math.floor(index / 9) * 32.8;
-                                        return (
-                                            <text x={x} y={y} key={`${index}${letter}`}>
-                                                {letter}
-                                            </text>
-                                        );
-                                    })}
-                                <text x="278" y="730">
-                                    {getChecksum(seed)}
-                                </text>
-                            </svg>
-                        )}
-                    </div>
+                    {writeVisible && seed ? null : (
+                        <svg viewBox="0 0 595 841" xmlns="http://www.w3.org/2000/svg">
+                            {seed &&
+                                seed.split('').map((letter, index) => {
+                                    const space = index % 9 > 5 ? 38 : index % 9 > 2 ? 19 : 0;
+                                    const x = 193 + (index % 9) * 26 + space;
+                                    const y = 365 + Math.floor(index / 9) * 32.8;
+                                    return (
+                                        <text x={x} y={y} key={`${index}${letter}`}>
+                                            {letter}
+                                        </text>
+                                    );
+                                })}
+                            <text x="373" y="735">
+                                {getChecksum(seed)}
+                            </text>
+                        </svg>
+                    )}
+                    {seed ? <QRCode value={seed} size={200} /> : null}
                     <img width="100%" height="100%" src={writeVisible ? paperWallet : wallets.paperWalletFilled} />
                 </div>
             </form>
