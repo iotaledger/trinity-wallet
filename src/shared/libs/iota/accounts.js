@@ -1,5 +1,4 @@
 import cloneDeep from 'lodash/cloneDeep';
-import assign from 'lodash/assign';
 import each from 'lodash/each';
 import size from 'lodash/size';
 import filter from 'lodash/filter';
@@ -182,11 +181,10 @@ export const syncAccount = (
 
     return (rescanAddresses
         ? syncAddresses(seed, thisStateCopy.addresses, genFn, withNewAddresses)
-        : Promise.resolve({ addresses: thisStateCopy.addresses, balance: thisStateCopy.balance })
+        : Promise.resolve(thisStateCopy.addresses)
     )
-        .then(({ addresses, balance }) => {
-            thisStateCopy.addresses = addresses;
-            thisStateCopy.balance = balance;
+        .then((latestAddressData) => {
+            thisStateCopy.addresses = latestAddressData;
 
             return findTransactionsAsync({ addresses: keys(thisStateCopy.addresses) });
         })
@@ -201,12 +199,11 @@ export const syncAccount = (
                 ? syncTransfers(diff, thisStateCopy)
                 : Promise.resolve({
                       transfers: thisStateCopy.transfers,
-                      newNormalisedTransfers: {},
+                      newNormalisedTransfers: {}
                   });
         })
-        .then(({ transfers, newNormalisedTransfers, outOfSyncTransactionHashes }) => {
+        .then(({ transfers, newNormalisedTransfers }) => {
             thisStateCopy.transfers = transfers;
-            thisStateCopy.hashes = filter(thisStateCopy.hashes, (hash) => !includes(outOfSyncTransactionHashes, hash));
 
             // Transform new transfers by bundle for promotion.
             return prepareForAutoPromotion(
@@ -244,6 +241,11 @@ export const syncAccount = (
                     confirmedBundleHashes,
                 );
             }
+
+            return getAddressDataAndFormatBalance(keys(thisStateCopy.addresses));
+        }).then(({ addresses, balance }) => {
+            thisStateCopy.addresses = addresses;
+            thisStateCopy.balance = balance;
 
             return thisStateCopy;
         });
@@ -298,7 +300,6 @@ export const syncAccountAfterSpending = (name, newTransfer, accountState, isValu
 
     // Turn on spent flag for addresses that were used in this transfer
     const addressData = markAddressesAsSpentSync([newTransfer], accountState.addresses);
-
     const ownTransactionHashesForThisTransfer = getOwnTransactionHashes(normalisedTransfer, accountState.addresses);
 
     const newState = {
@@ -353,7 +354,7 @@ export const syncAccountAfterReattachment = (accountName, reattachment, accountS
     // We make sure we check if bundle hash exists.
     // Also the usage of unionBy is to have a safety check that we do not end up storing duplicate hashes
     // https://github.com/iotaledger/iri/issues/463
-    const updatedUnconfirmedBundleTails = assign({}, accountState.unconfirmedBundleTails, {
+    const updatedUnconfirmedBundleTails = merge({}, accountState.unconfirmedBundleTails, {
         [bundle]:
             bundle in accountState.unconfirmedBundleTails
                 ? unionBy(
@@ -361,7 +362,6 @@ export const syncAccountAfterReattachment = (accountName, reattachment, accountS
                           {
                               hash: tailTransaction.hash,
                               attachmentTimestamp: tailTransaction.attachmentTimestamp,
-                              // FIXME: Account name should be computed from previous tail
                               account: accountName,
                           },
                       ],
