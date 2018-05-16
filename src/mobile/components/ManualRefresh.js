@@ -126,7 +126,7 @@ export default () => (C) => {
          * @param {String} text - notification explanation
          */
         generateAlert: PropTypes.func.isRequired,
-        /** Determines if there is already a network call going on for fetching latest acocunt info */
+        /** Determines if there is already a network call going on for fetching latest account info */
         isFetchingLatestAccountInfo: PropTypes.bool.isRequired,
         /** Determines if background poll is already fetching latest acocunt info */
         isPollingAccountInfo: PropTypes.bool.isRequired,
