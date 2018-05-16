@@ -148,7 +148,7 @@ class SeedSave extends PureComponent {
                 </Modal>
                 <div className={css.print} onClick={() => window.print()}>
                     <div>
-                        {writeVisible ? (
+                        {writeVisible ? null : (
                             <svg viewBox="0 0 595 841" xmlns="http://www.w3.org/2000/svg">
                                 {seed &&
                                     seed.split('').map((letter, index) => {
@@ -165,13 +165,9 @@ class SeedSave extends PureComponent {
                                     {getChecksum(seed)}
                                 </text>
                             </svg>
-                        ) : null}
+                        )}
                     </div>
-                    <img
-                        width="100%"
-                        height="100%"
-                        src={writeVisible ? wallets.paperWalletFilled : wallets.paperWallet}
-                    />
+                    <img width="100%" height="100%" src={writeVisible ? paperWallet : wallets.paperWalletFilled} />
                 </div>
             </form>
         );

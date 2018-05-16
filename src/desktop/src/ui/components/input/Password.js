@@ -69,7 +69,7 @@ class PasswordInput extends React.PureComponent {
         const isValid = score.score === 4 && (typeof match !== 'string' || match === value);
 
         return (
-            <div className={classNames(css.input, showScore ? css.padded : null, disabled ? css.disabled : null)}>
+            <div className={classNames(css.input, css.padded, disabled ? css.disabled : null)}>
                 <fieldset>
                     <a className={hidden ? css.strike : null} onClick={this.setVisibility}>
                         <Icon icon="eye" size={16} />
