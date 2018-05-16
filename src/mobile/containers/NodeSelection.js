@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, ActivityIndicator } from 'react-native';
+import { setLoginRoute } from 'iota-wallet-shared-modules/actions/ui';
 import { setFullNode } from 'iota-wallet-shared-modules/actions/settings';
 import { translate } from 'react-i18next';
 import DropdownComponent from '../containers/Dropdown';
@@ -83,8 +84,19 @@ class NodeSelection extends Component {
         /** Theme settings */
         theme: PropTypes.object.isRequired,
         /** Determines whether the node is being changed */
-        isChangingNode: PropTypes.bool.isRequired
+        isChangingNode: PropTypes.bool.isRequired,
+        /** Sets which login page should be displayed
+         * @param {string} route - current route
+         */
+        setLoginRoute: PropTypes.func.isRequired,
     };
+
+    componentWillReceiveProps(newProps) {
+        const { node } = this.props;
+        if (node !== newProps.node) {
+            this.props.setLoginRoute('login');
+        }
+    }
 
     setNode(selectedNode) {
         this.props.setFullNode(selectedNode);
@@ -166,6 +178,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     setFullNode,
+    setLoginRoute,
 };
 
 export default translate('global')(connect(mapStateToProps, mapDispatchToProps)(NodeSelection));
