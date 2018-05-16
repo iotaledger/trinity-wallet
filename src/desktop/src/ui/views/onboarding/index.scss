@@ -151,13 +151,15 @@ $footer: 70px;
     text-align: left;
 
     &.narrow {
-        max-width: 400px;
+        max-width: 460px;
         margin-bottom: 16px;
-        padding-left: 40px;
+        padding-left: 30px;
+        text-align: center;
+        position: relative;
     }
 
     button,
-    span {
+    > div > span {
         display: inline-block;
         background: transparent;
         border: none;
@@ -170,11 +172,8 @@ $footer: 70px;
         transition: transform 0.1s cubic-bezier(0.4, 0, 0.6, 1);
 
         &.disabled {
-            opacity: 0.15;
-            em {
-                background: var(--box-bg);
-                color: var(--box-body);
-            }
+            opacity: 0.1;
+            color: var(--body);
         }
 
         &:hover {
@@ -204,17 +203,18 @@ $footer: 70px;
         }
         > span {
             flex: 0 0 33.33%;
-            letter-spacing: 16px;
+            letter-spacing: 18px;
             text-align: center;
             line-height: 32px;
-            height: 34px;
-            font-size: 21px;
+            height: 43px;
+            font-size: 24px;
             position: relative;
-
+            color: var(--primary);
+            pointer-events: none;
             em {
                 position: absolute;
                 display: block;
-                background: var(--primary);
+                background: var(--secondary);
                 width: 26px;
                 height: 26px;
                 top: 2px;
@@ -224,13 +224,24 @@ $footer: 70px;
                 font-size: 14px;
                 padding: 0px;
                 letter-spacing: 0px;
-                color: var(--primary-body);
+                color: var(--secondary-body);
             }
         }
     }
 
-    span {
-        pointer-events: none;
+    > div:nth-child(2) {
+        margin-top: 6px;
+        line-height: 21px;
+        vertical-align: middle;
+
+        > strong {
+            margin: 0 4px;
+            color: var(--primary);
+            letter-spacing: 1;
+        }
+        >div{
+           padding-top: 4px;
+        }
     }
 }
 
@@ -337,23 +348,39 @@ $footer: 70px;
     }
 }
 
-.steps {
-    display: flex;
-    align-items: flex-start;
+.arrows {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: -60px;
+    margin-top: -80px;
 
     a {
+        display: block;
+        width: 45px;
+        height: 45px;
         font-size: 14px;
-        span {
-            display: block;
-            margin-bottom: 10px;
-            text-align: center;
-            transition: transform 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
-        }
+        background: var(--primary);
+        color: var(--primary-body);
+        padding-top: 11px;
 
         &:hover {
+            background: var(--primary-hover);
+        }
+
+        &:first-child {
+            background: var(--dark);
             span {
-                transform: scale(0.95);
+                color: var(--dark-body);
             }
+            &:hover {
+                background: var(--dark-hover);
+            }
+        }
+
+        span {
+            font-family: 'Icons';
+            color: var(--primary-body);
         }
 
         &.disabled {
@@ -423,10 +450,9 @@ $footer: 70px;
 
     @media print {
         display: block;
-        width: 100vw;
-        height: 100vh;
         img,
-        svg {
+        svg,
+        div {
             position: fixed;
             top: 0px;
             left: 0px;
@@ -437,6 +463,14 @@ $footer: 70px;
             font-family: 'SourceCodePro';
             font-size: 20px;
             fill: #231f20;
+        }
+        canvas {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 14vw !important;
+            height: 14vw !important;
+            transform: translate(-160%, 335%);
         }
     }
 }

@@ -286,6 +286,9 @@
         "letsWriteDownYourSeed": "Lets write down your seed",
         "youCanHighlightCharacters": "You can highlight 9 characters at a time",
         "printBlankWallet": "Print a blank wallet",
+        "optionalChecksum": "Optional checksum",
+        "whatIsCheksum": "The checksum is 3 characters long and is calculated from the seed.",
+        "checksumExplanation": "Whenever you enter a seed into your wallet, you should ensure that the checksum is correct. This will help you to spot errors.",
         "mustSaveYourSeed":
             "<0><0>You must back up your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
     },

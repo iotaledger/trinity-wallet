@@ -101,8 +101,13 @@
     z-index: 3;
     background: none;
 
+    @media screen and (max-width: 860px) {
+        background: var(--box-bg);
+        overflow: hidden;
+    }
+
     > div:first-child {
-        display: none;
+        background: red;
         @media screen and (max-width: 860px) {
             display: flex;
             align-items: center;
@@ -111,6 +116,9 @@
             height: 160px;
             opacity: 1;
             padding-top: 20px;
+            position: relative;
+            z-index: 2;
+            background: var(--box-bg);
         }
     }
 
@@ -125,7 +133,7 @@
     }
 
     > div:nth-child(2) {
-        transition: all 420ms ease-out;
+        transition: opacity 420ms ease-out, opacity 420ms ease-out;
         &.openMid {
             opacity: 0.2;
             transform: scale(0.92);
@@ -140,9 +148,16 @@
             transition: none;
             animation: slideRight 420ms cubic-bezier(0.4, 0, 0.2, 1);
             pointer-events: all;
+            @media screen and (max-width: 860px) {
+                animation: slideRight 220ms ease-in;
+            }
         }
         &.openLeft {
             animation: slideLeft 420ms cubic-bezier(0.4, 0, 0.2, 1);
+
+            @media screen and (max-width: 860px) {
+                animation: slideLeft 220ms ease-in;
+            }
         }
         &.close {
             transition: all 200ms ease-out;
@@ -254,8 +269,8 @@
 
     @media screen and (max-width: 860px) {
         > div:nth-child(3) {
-            height: calc(100% - 200px);
-            top: 180px;
+            height: calc(100% - 160px);
+            top: 160px;
         }
     }
 }
