@@ -114,16 +114,20 @@ export class Poll extends Component {
     }
 
     promote() {
-        const { unconfirmedBundleTails, allPollingServices, pollFor } = this.props;
+        const {
+            unconfirmedBundleTails,
+            allPollingServices,
+            pollFor
+        } = this.props;
 
         const index = allPollingServices.indexOf(pollFor);
         const next = index === size(allPollingServices) - 1 ? 0 : index + 1;
 
         if (!isEmpty(unconfirmedBundleTails)) {
             const bundles = keys(unconfirmedBundleTails);
-            const top = bundles[0];
+            const bundleHash = bundles[0];
 
-            return this.props.promoteTransfer(top, unconfirmedBundleTails[top]);
+            return this.props.promoteTransfer(bundleHash, unconfirmedBundleTails[bundleHash]);
         }
 
         // In case there are no unconfirmed bundle tails, move to the next service item
