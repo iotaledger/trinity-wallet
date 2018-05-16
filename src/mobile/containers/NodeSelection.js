@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     },
     innerContainer: {
         position: 'absolute',
-        bottom: height / 3.4,
+        bottom: height / 4.5,
         alignItems: 'center',
     },
 });
