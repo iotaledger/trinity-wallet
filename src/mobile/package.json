@@ -13,7 +13,7 @@
     "test": "./node_modules/.bin/jest --forceExit",
     "postinstall": "./node_modules/.bin/rn-nodeify --hack --install && rm ./node_modules/react-native/local-cli/core/__fixtures__/files/package.json",
     "lint": "./node_modules/.bin/eslint --ext .js .",
-    "release": "yarn version && cd ios && fastlane release && cd ../android && fastlane release && cd .. && echo Successfully bumped build numbers, please remember to run git commit, git push --tags, and git push"
+    "release": "yarn version && cd ios && fastlane release && cd ../android && fastlane release && cd .. && echo Successfully incremented version and build numbers ⬆️ ✅! Please remember to run git add ., git commit, git push --tags, and git push"
   },
   "dependencies": {
     "assert": "^1.4.1",
