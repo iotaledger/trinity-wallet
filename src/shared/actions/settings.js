@@ -242,6 +242,44 @@ export function updateTheme(theme, themeName) {
     };
 }
 
+export function changePowSettings() {
+    return (dispatch, getState) => {
+        const settings = getState().settings;
+        if (!settings.remotePoW) {
+            checkAttachToTangleAsync(settings.node)
+                .then((res) => {
+                    if (res.error.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
+                        return dispatch(
+                            generateAlert(
+                                'error',
+                                i18next.t('global:attachToTangleUnavailable'),
+                                i18next.t('global:attachToTangleUnavailableExplanationShort'),
+                                10000,
+                            ),
+                        );
+                    }
+                    dispatch(updatePowSettings());
+                    dispatch(
+                        generateAlert(
+                            'success',
+                            i18next.t('pow:powUpdated'),
+                            i18next.t('pow:powUpdatedExplanation')
+                        )
+                    );
+                });
+        } else {
+            dispatch(updatePowSettings());
+            dispatch(
+                generateAlert(
+                    'success',
+                    i18next.t('pow:powUpdated'),
+                    i18next.t('pow:powUpdatedExplanation')
+                )
+            );
+        }
+    };
+}
+
 /** Receives new release data and updates the release state
  * @param {Boolean} force - should confirmation dialog be forced
  */
