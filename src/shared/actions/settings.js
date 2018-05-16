@@ -1,13 +1,19 @@
 import get from 'lodash/get';
 import { getStoredState } from 'redux-persist';
+import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
 import { updatePersistedState } from '../libs/utils';
 import { generateAlert } from './alerts';
 import i18next from '../i18next';
 import { UPDATE_URL } from '../config';
+import { checkAttachToTangleAsync } from '../libs/iota/extendedApi';
+import Errors from '../libs/errors';
 
 export const ActionTypes = {
     SET_LOCALE: 'IOTA/SETTINGS/LOCALE',
-    SET_FULLNODE: 'IOTA/SETTINGS/FULLNODE',
+    SET_NODE: 'IOTA/SETTINGS/FULLNODE',
+    SET_NODE_AND_CHANGE_TO_LOCAL_POW: 'IOTA/SETTINGS/SET_NODE_AND_CHANGE_TO_LOCAL_POW',
+    SET_NODE_REQUEST: 'IOTA/SETTINGS/SET_NODE_REQUEST',
+    SET_NODE_ERROR: 'IOTA/SETTINGS/SET_NODE_ERROR',
     ADD_CUSTOM_NODE: 'IOTA/SETTINGS/ADD_CUSTOM_NODE',
     ADD_CUSTOM_POW_NODE: 'IOTA/SETTINGS/ADD_CUSTOM_POW_NODE',
     SET_MODE: 'IOTA/SETTINGS/SET_MODE',
@@ -50,6 +56,14 @@ const currencyDataFetchError = () => ({
     type: ActionTypes.CURRENCY_DATA_FETCH_ERROR,
 });
 
+const setNodeRequest = () => ({
+    type: ActionTypes.SET_NODE_REQUEST,
+});
+
+const setNodeError = () => ({
+    type: ActionTypes.SET_NODE_ERROR,
+});
+
 export const setRandomlySelectedNode = (payload) => ({
     type: ActionTypes.SET_RANDOMLY_SELECTED_NODE,
     payload,
@@ -61,7 +75,12 @@ export const setMode = (payload) => ({
 });
 
 export const setNode = (payload) => ({
-    type: ActionTypes.SET_FULLNODE,
+    type: ActionTypes.SET_NODE,
+    payload,
+});
+
+export const setNodeAndChangeToLocalPoW = (payload) => ({
+    type: ActionTypes.SET_NODE_AND_CHANGE_TO_LOCAL_POW,
     payload,
 });
 
@@ -142,9 +161,37 @@ export function setLanguage(language) {
     };
 }
 
-export function setFullNode(fullNode) {
+export function setFullNode(node) {
     return (dispatch) => {
-        dispatch(setNode(fullNode));
+        dispatch(setNodeRequest());
+        checkAttachToTangleAsync(node)
+            .then((res) => {
+                changeIotaNode(node);
+                if (res.error.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)){
+                    dispatch(setNodeAndChangeToLocalPoW(node));
+                    dispatch(generateAlert(
+                        'success',
+                        'Successfully changed node',
+                        `The node was changed to ${node}. This node does not support Remote Proof of Work.`,
+                    ));
+                } else {
+                    dispatch(setNode(node));
+                    dispatch(generateAlert(
+                        'success',
+                        'Successfully changed node',
+                        `The node was changed to ${node}.`,
+                    ));
+                }
+            })
+            .catch((err) => {
+                dispatch(setNodeError());
+                dispatch(generateAlert(
+                    'error',
+                    'Error changing node',
+                    'There was an error changing node. Please try again.',
+                    err
+                ));
+            });
     };
 }
 

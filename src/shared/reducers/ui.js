@@ -32,8 +32,9 @@ const initialState = {
     doNotMinimise: false,
     isModalActive: false,
     isCheckingCustomNode: false,
+    isChangingNode: false,
     currentlyPromotingBundleHash: '',
-    loginRoute: 'login'
+    loginRoute: 'login',
 };
 
 export default (state = initialState, action) => {
@@ -269,6 +270,18 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isCheckingCustomNode: action.payload,
+            };
+        case SettingsActionTypes.SET_NODE_REQUEST:
+            return {
+                ...state,
+                isChangingNode: true,
+            };
+        case SettingsActionTypes.SET_NODE:
+        case SettingsActionTypes.SET_NODE_AND_CHANGE_TO_LOCAL_POW:
+        case SettingsActionTypes.SET_NODE_ERROR:
+            return {
+                ...state,
+                isChangingNode: false,
             };
         case UiActionTypes.SET_LOGIN_ROUTE:
             return {
