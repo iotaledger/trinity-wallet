@@ -7,6 +7,7 @@
   "description": "IOTA desktop wallet",
   "main": "main.js",
   "author": "IOTA Foundation <contact@iota.org>",
+  "license": "MIT",
   "moduleRoots": [
     ".",
     "src",
