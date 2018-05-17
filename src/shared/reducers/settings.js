@@ -67,10 +67,10 @@ const initialState = {
 
 const settingsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ActionTypes.UPDATE_POW_SETTINGS:
+        case ActionTypes.SET_REMOTE_POW:
             return {
                 ...state,
-                remotePoW: !state.remotePoW,
+                remotePoW: action.payload,
             };
         case ActionTypes.UPDATE_AUTO_NODE_SWITCHING:
             return {
@@ -91,12 +91,6 @@ const settingsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 node: action.payload,
-            };
-        case ActionTypes.SET_NODE_AND_CHANGE_TO_LOCAL_POW:
-            return {
-                ...state,
-                node: action.payload,
-                remotePoW: false
             };
         case ActionTypes.ADD_CUSTOM_POW_NODE:
             return {

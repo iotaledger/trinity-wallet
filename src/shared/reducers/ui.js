@@ -277,7 +277,6 @@ export default (state = initialState, action) => {
                 isChangingNode: true,
             };
         case SettingsActionTypes.SET_NODE:
-        case SettingsActionTypes.SET_NODE_AND_CHANGE_TO_LOCAL_POW:
             return {
                 ...state,
                 isChangingNode: false,
