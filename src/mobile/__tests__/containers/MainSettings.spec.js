@@ -21,6 +21,7 @@ const getProps = (overrides) =>
             setSetting: noop,
             clearWalletData: noop,
             setPassword: noop,
+            toggleModalActivity: noop,
             t: (arg) => arg,
         },
         overrides,
@@ -54,6 +55,10 @@ describe('Testing MainSettings component', () => {
 
         it('should require a clearWalletData function as a prop', () => {
             expect(MainSettings.propTypes.clearWalletData).toEqual(PropTypes.func.isRequired);
+        });
+
+        it('should require a toggleModalActivity function as a prop', () => {
+            expect(MainSettings.propTypes.toggleModalActivity).toEqual(PropTypes.func.isRequired);
         });
     });
 

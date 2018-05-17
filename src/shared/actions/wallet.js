@@ -140,10 +140,10 @@ export const switchBalanceCheckToggle = () => ({
 export const generateNewAddress = (seed, accountName, existingAccountData, genFn) => {
     return (dispatch) => {
         dispatch(generateNewAddressRequest());
-        return syncAddresses(seed, existingAccountData, genFn, true)
-            .then((newAccountData) => {
-                const receiveAddress = iota.utils.addChecksum(getLatestAddress(newAccountData.addresses));
-                dispatch(updateAddresses(accountName, newAccountData.addresses));
+        return syncAddresses(seed, existingAccountData.addresses, genFn, true)
+            .then((latestAddressData) => {
+                const receiveAddress = iota.utils.addChecksum(getLatestAddress(latestAddressData));
+                dispatch(updateAddresses(accountName, latestAddressData));
                 dispatch(generateNewAddressSuccess(receiveAddress));
             })
             .catch(() => dispatch(generateNewAddressError()));

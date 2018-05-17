@@ -211,7 +211,11 @@ describe('actions: transfers', () => {
                 sandbox.stub(transferUtils, 'isStillAValidTransaction').resolves(true);
                 sandbox.stub(transferUtils, 'getFirstConsistentTail').resolves(false);
                 sandbox.stub(accountsUtils, 'syncAccount').resolves(accounts.accountInfo.TEST);
-                syncAccountAfterReattachment = sandbox.stub(accountsUtils, 'syncAccountAfterReattachment').resolves({});
+                syncAccountAfterReattachment = sandbox.stub(accountsUtils, 'syncAccountAfterReattachment').returns({
+                    newState: {},
+                    reattachment: [],
+                    normalisedReattachment: {},
+                });
             });
 
             afterEach(() => {
@@ -311,7 +315,7 @@ describe('actions: transfers', () => {
                 const store = mockStore({ accounts });
                 const prepareTransfers = sinon.stub(iota.api, 'prepareTransfers').yields(null, trytes.zeroValue);
                 const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, []);
-                const syncAccountAfterSpending = sinon.stub(accountsUtils, 'syncAccountAfterSpending').resolves({});
+                const syncAccountAfterSpending = sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns({});
 
                 return store
                     .dispatch(
@@ -344,7 +348,7 @@ describe('actions: transfers', () => {
 
                 const prepareTransfers = sinon.stub(iota.api, 'prepareTransfers').yields(null, trytes.zeroValue);
                 const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, []);
-                const syncAccountAfterSpending = sinon.stub(accountsUtils, 'syncAccountAfterSpending').resolves({});
+                const syncAccountAfterSpending = sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns({});
 
                 return store
                     .dispatch(
@@ -410,7 +414,7 @@ describe('actions: transfers', () => {
                         ],
                     });
 
-                    const syncAccountAfterSpending = sinon.stub(accountsUtils, 'syncAccountAfterSpending').resolves({});
+                    const syncAccountAfterSpending = sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns({});
 
                     const store = mockStore({ accounts });
 
@@ -448,7 +452,7 @@ describe('actions: transfers', () => {
                         const wereAddressesSpentFrom = sinon
                             .stub(iota.api, 'wereAddressesSpentFrom')
                             .yields(null, [true]);
-                        sinon.stub(accountsUtils, 'syncAccountAfterSpending').resolves({});
+                        sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns({});
 
                         const store = mockStore({ accounts });
 
@@ -492,7 +496,7 @@ describe('actions: transfers', () => {
                                 },
                             ],
                         });
-                        sinon.stub(accountsUtils, 'syncAccountAfterSpending').resolves({});
+                        sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns({});
 
                         return store
                             .dispatch(
@@ -536,7 +540,7 @@ describe('actions: transfers', () => {
                                 },
                             ],
                         });
-                        sinon.stub(accountsUtils, 'syncAccountAfterSpending').resolves({});
+                        sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns({});
 
                         return store
                             .dispatch(
@@ -586,7 +590,7 @@ describe('actions: transfers', () => {
                                 },
                             ],
                         });
-                        sinon.stub(accountsUtils, 'syncAccountAfterSpending').resolves({});
+                        sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns({});
 
                         return store
                             .dispatch(
