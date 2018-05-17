@@ -278,6 +278,11 @@ export default (state = initialState, action) => {
             };
         case SettingsActionTypes.SET_NODE:
         case SettingsActionTypes.SET_NODE_AND_CHANGE_TO_LOCAL_POW:
+            return {
+                ...state,
+                isChangingNode: false,
+                hasGeneratedAutopromotionAlert: false,
+            };
         case SettingsActionTypes.SET_NODE_ERROR:
             return {
                 ...state,
@@ -287,6 +292,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 loginRoute: action.payload,
+            };
+        case PollingActionTypes.SET_AUTOPROMOTION_ALERT_FLAG:
+            return {
+                ...state,
+                hasGeneratedAutopromotionAlert: action.payload,
             };
         default:
             return state;
