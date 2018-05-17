@@ -60,17 +60,6 @@ export const generateTransitionErrorAlert = (err) => (dispatch) => {
     dispatch(prepareLogUpdate(err));
 };
 
-export const generateAutopromotionErrorAlert = () => (dispatch) => {
-  dispatch(
-      generateAlert(
-          'error',
-          i18next.t('global:autopromotionError'),
-          i18next.t('global:autopromotionErrorExplanation'),
-          10000,
-      ),
-  );
-};
-
 export const generateSyncingCompleteAlert = () => (dispatch) => {
     dispatch(
         generateAlert(
