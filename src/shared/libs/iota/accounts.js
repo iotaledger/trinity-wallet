@@ -10,7 +10,12 @@ import find from 'lodash/find';
 import isEmpty from 'lodash/isEmpty';
 import omit from 'lodash/omit';
 import unionBy from 'lodash/unionBy';
-import { getNodeInfoAsync, findTransactionObjectsAsync, getLatestInclusionAsync } from './extendedApi';
+import {
+    getNodeInfoAsync,
+    findTransactionObjectsAsync,
+    getLatestInclusionAsync,
+    getTransactionsObjectsAsync
+} from './extendedApi';
 import {
     prepareForAutoPromotion,
     syncTransfers,
@@ -102,10 +107,10 @@ export const getAccountData = (seed, accountName, genFn) => {
 
     return getNodeInfoAsync()
         .then(() => getFullAddressHistory(seed, genFn))
-        .then((addresses) => {
+        .then(({ addresses, hashes }) => {
             data.addresses = addresses;
 
-            return findTransactionObjectsAsync({ addresses: data.addresses });
+            return getTransactionsObjectsAsync(hashes);
         })
         .then((transactionObjects) => {
             each(transactionObjects, (tx) => {
@@ -349,6 +354,7 @@ export const syncAccountAfterReattachment = (accountName, reattachment, accountS
                           {
                               hash: tailTransaction.hash,
                               attachmentTimestamp: tailTransaction.attachmentTimestamp,
+                              // FIXME: Account name should be computed from previous tail
                               account: accountName,
                           },
                       ],

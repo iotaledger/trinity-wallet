@@ -33,6 +33,7 @@ const initialState = {
     isModalActive: false,
     isCheckingCustomNode: false,
     currentlyPromotingBundleHash: '',
+    loginRoute: 'login'
 };
 
 export default (state = initialState, action) => {
@@ -268,6 +269,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isCheckingCustomNode: action.payload,
+            };
+        case UiActionTypes.SET_LOGIN_ROUTE:
+            return {
+                ...state,
+                loginRoute: action.payload,
             };
         default:
             return state;

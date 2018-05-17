@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import QRCode from 'react-native-qrcode-svg';
 import { Clipboard, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { translate } from 'react-i18next';
-import { Navigation } from 'react-native-navigation';
 import WithBackPressGoToHome from '../components/BackPressGoToHome';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import { storeTwoFactorAuthKeyInKeychain } from '../utils/keychain';
@@ -108,23 +107,8 @@ export class TwoFactorSetupAddKey extends Component {
     }
 
     goBack() {
-        const { theme: { body } } = this.props;
-        Navigation.startSingleScreenApp({
-            screen: {
-                screen: 'home',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    topBarElevationShadowEnabled: false,
-                    screenBackgroundColor: body.bg,
-                    drawUnderStatusBar: true,
-                    statusBarColor: body.bg,
-                },
-            },
-            appStyle: {
-                orientation: 'portrait',
-                keepStyleAcrossPush: true,
-            },
+        this.props.navigator.pop({
+            animated: false,
         });
     }
 
@@ -138,16 +122,16 @@ export class TwoFactorSetupAddKey extends Component {
                     screen: 'twoFactorSetupEnterToken',
                     navigatorStyle: {
                         navBarHidden: true,
-                        navBarTransparent: true,
                         topBarElevationShadowEnabled: false,
                         screenBackgroundColor: body.bg,
                         drawUnderStatusBar: true,
                         statusBarColor: body.bg,
+                        tabBarHidden: true,
+                        drawUnderTabBar: true,
                     },
                     animated: false,
                     appStyle: {
                         orientation: 'portrait',
-                        keepStyleAcrossPush: true,
                     },
                 });
             })

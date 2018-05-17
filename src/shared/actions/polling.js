@@ -5,7 +5,7 @@ import union from 'lodash/union';
 import { setPrice, setChartData, setMarketData } from './marketData';
 import { setNodeList } from './settings';
 import { formatChartData, getUrlTimeFormat, getUrlNumberFormat, rearrangeObjectKeys } from '../libs/utils';
-import { generateAccountInfoErrorAlert } from './alerts';
+import { generateAccountInfoErrorAlert, generateAutopromotionErrorAlert } from './alerts';
 import { setNewUnconfirmedBundleTails, removeBundleFromUnconfirmedBundleTails } from './accounts';
 import { getFirstConsistentTail, isStillAValidTransaction } from '../libs/iota/transfers';
 import { selectedAccountStateFactory } from '../selectors/accounts';
@@ -34,6 +34,7 @@ export const ActionTypes = {
     PROMOTE_TRANSACTION_REQUEST: 'IOTA/POLLING/PROMOTE_TRANSACTION_REQUEST',
     PROMOTE_TRANSACTION_SUCCESS: 'IOTA/POLLING/PROMOTE_TRANSACTION_SUCCESS',
     PROMOTE_TRANSACTION_ERROR: 'IOTA/POLLING/PROMOTE_TRANSACTION_ERROR',
+    SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION: 'IOTA/POLLING/SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION',
 };
 
 const fetchPriceRequest = () => ({
@@ -112,6 +113,11 @@ const promoteTransactionError = () => ({
 
 export const setPollFor = (payload) => ({
     type: ActionTypes.SET_POLL_FOR,
+    payload,
+});
+
+export const syncAccountBeforeAutoPromotion = (payload) => ({
+    type: ActionTypes.SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION,
     payload,
 });
 
@@ -252,16 +258,22 @@ export const getAccountInfo = (accountName) => {
  *   For cases where a bundle in valid, find first consistent tail and promote it.
  *
  *   @method promoteTransfer
- *   @param {string} bundle
- *   @param {array} tails - All tail transaction objects for the bundle
+ *   @param {string} bundleHash
+ *   @param {array} seenTailTransactions
  *   @returns {function} - dispatch
  **/
-export const promoteTransfer = (bundleHash, tails) => (dispatch, getState) => {
+export const promoteTransfer = (bundleHash, seenTailTransactions) => (dispatch, getState) => {
     dispatch(promoteTransactionRequest(bundleHash));
-    const accountName = get(tails, '[0].account');
-    const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
-    return isStillAValidTransaction(existingAccountState.transfers[bundleHash], existingAccountState.addresses)
+    const accountName = get(seenTailTransactions, '[0].account');
+    let accountState = selectedAccountStateFactory(accountName)(getState());
+    return syncAccount(accountState)
+        .then((newState) => {
+            accountState = newState;
+            dispatch(syncAccountBeforeAutoPromotion(accountState));
+
+            return isStillAValidTransaction(accountState.transfers[bundleHash], accountState.addresses);
+        })
         .then((isValid) => {
             if (!isValid) {
                 dispatch(removeBundleFromUnconfirmedBundleTails(bundleHash));
@@ -269,18 +281,28 @@ export const promoteTransfer = (bundleHash, tails) => (dispatch, getState) => {
                 throw new Error(Errors.BUNDLE_NO_LONGER_VALID);
             }
 
-            return getFirstConsistentTail(tails, 0);
+            return getFirstConsistentTail(accountState.unconfirmedBundleTails[bundleHash], 0);
         })
-        .then((consistentTail) => dispatch(forceTransactionPromotion(accountName, consistentTail, tails, false)))
+        .then((consistentTail) =>
+            dispatch(
+                forceTransactionPromotion(
+                    accountName,
+                    consistentTail,
+                    accountState.unconfirmedBundleTails[bundleHash],
+                    false,
+                ),
+            ),
+        )
         .then(() => {
             // Rearrange bundles so that the next cycle picks up a new bundle for promotion
             dispatch(
-                setNewUnconfirmedBundleTails(
-                    rearrangeObjectKeys(existingAccountState.unconfirmedBundleTails, bundleHash),
-                ),
+                setNewUnconfirmedBundleTails(rearrangeObjectKeys(accountState.unconfirmedBundleTails, bundleHash)),
             );
 
             return dispatch(promoteTransactionSuccess());
         })
-        .catch(() => dispatch(promoteTransactionError()));
+        .catch(() => {
+            dispatch(generateAutopromotionErrorAlert());
+            dispatch(promoteTransactionError());
+        });
 };
