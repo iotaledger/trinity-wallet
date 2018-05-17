@@ -32,6 +32,7 @@ describe('Reducer: ui', () => {
                 isModalActive: false,
                 isCheckingCustomNode: false,
                 currentlyPromotingBundleHash: '',
+                loginRoute: 'login'
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
