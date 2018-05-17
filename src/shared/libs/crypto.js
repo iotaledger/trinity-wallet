@@ -1,4 +1,4 @@
-import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/iota/utils';
+import { MAX_SEED_LENGTH } from './iota/utils';
 
 export const generateNewSeed = (randomBytesFn) => {
     const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9';
