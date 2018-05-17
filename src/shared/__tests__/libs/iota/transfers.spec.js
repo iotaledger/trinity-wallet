@@ -23,7 +23,7 @@ import {
     getBundleHashesForNewlyConfirmedTransactions,
     constructNormalisedBundles,
     prepareForAutoPromotion,
-    getOwnTransactionHashes
+    getOwnTransactionHashes,
 } from '../../../libs/iota/transfers';
 import { iota, SwitchingConfig } from '../../../libs/iota/index';
 import trytes from '../../__samples__/trytes';
@@ -1036,29 +1036,28 @@ describe('libs: iota/transfers', () => {
     });
 
     describe('#getOwnTransactionHashes', () => {
-       it('should return transaction hashes for own addresses', () => {
-          const bundles = keys(mockTransactions.normalizedBundles);
+        it('should return transaction hashes for own addresses', () => {
+            const bundles = keys(mockTransactions.normalizedBundles);
 
-          const addressData = {
-              SRWJECVJMNGLRTRNUBRBWOFWKXHWFOWXSZIARUSCAGQRMQNDOFJKJYRUIBCMQWIUTHSMQEYW9ZK9QBXAC: {},
-              ATOKJBNU9UVOETMNVGENWMLBKCIIMIQBPOGHJWMFEUJNXVUPQABEYIETRKPTQRT9AYOOMMYGX9OMTZAJX: {}
-          };
+            const addressData = {
+                SRWJECVJMNGLRTRNUBRBWOFWKXHWFOWXSZIARUSCAGQRMQNDOFJKJYRUIBCMQWIUTHSMQEYW9ZK9QBXAC: {},
+                ATOKJBNU9UVOETMNVGENWMLBKCIIMIQBPOGHJWMFEUJNXVUPQABEYIETRKPTQRT9AYOOMMYGX9OMTZAJX: {},
+            };
 
-          const results = [
-              [ 'HGT9QOBW9KKRQY9G9AWXAKDUIICKRUWVQ9MOWLX9YLXJMTNWX9L9RUMDHIHNJD9MYXIECZTFATOEA9999',
-                  'RXPWGHVYSRKQWRONOWMPAQJUMBZCUTXGAPAOKAFCTDUNNBN9VKUUJQOGZGNUYBFCJABFZWFCHBMKA9999',
-                  'HW9YVRZRJAUMWI9BMIYCRFPXMNBG9ACAKZFWCTRNTJHKZHPXK9RDGKQGJHMNMUYWSIQBIEWKLOOEA9999' ],
-              []
-          ];
+            const results = [
+                [
+                    'HGT9QOBW9KKRQY9G9AWXAKDUIICKRUWVQ9MOWLX9YLXJMTNWX9L9RUMDHIHNJD9MYXIECZTFATOEA9999',
+                    'RXPWGHVYSRKQWRONOWMPAQJUMBZCUTXGAPAOKAFCTDUNNBN9VKUUJQOGZGNUYBFCJABFZWFCHBMKA9999',
+                    'HW9YVRZRJAUMWI9BMIYCRFPXMNBG9ACAKZFWCTRNTJHKZHPXK9RDGKQGJHMNMUYWSIQBIEWKLOOEA9999',
+                ],
+                [],
+            ];
 
-          bundles.forEach((bundle, idx) => {
-             const result = getOwnTransactionHashes(
-                 mockTransactions.normalizedBundles[bundle],
-                 addressData
-             );
+            bundles.forEach((bundle, idx) => {
+                const result = getOwnTransactionHashes(mockTransactions.normalizedBundles[bundle], addressData);
 
-             expect(result).to.eql(results[idx]);
-          });
-       });
+                expect(result).to.eql(results[idx]);
+            });
+        });
     });
 });

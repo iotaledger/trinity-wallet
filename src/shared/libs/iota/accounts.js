@@ -197,7 +197,7 @@ export const syncAccount = (
                 ? syncTransfers(diff, thisStateCopy)
                 : Promise.resolve({
                       transfers: thisStateCopy.transfers,
-                      newNormalisedTransfers: {}
+                      newNormalisedTransfers: {},
                   });
         })
         .then(({ transfers, newNormalisedTransfers }) => {
@@ -241,7 +241,8 @@ export const syncAccount = (
             }
 
             return getAddressDataAndFormatBalance(keys(thisStateCopy.addresses));
-        }).then(({ addresses, balance }) => {
+        })
+        .then(({ addresses, balance }) => {
             thisStateCopy.addresses = addresses;
             thisStateCopy.balance = balance;
 

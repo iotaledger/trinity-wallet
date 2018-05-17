@@ -32,7 +32,7 @@ describe('Reducer: ui', () => {
                 isModalActive: false,
                 isCheckingCustomNode: false,
                 currentlyPromotingBundleHash: '',
-                loginRoute: 'login'
+                loginRoute: 'login',
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
@@ -421,7 +421,7 @@ describe('Reducer: ui', () => {
 
             const action = {
                 type: 'IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST',
-                payload: 'foo'
+                payload: 'foo',
             };
 
             const newState = reducer(initialState, action);
@@ -433,7 +433,7 @@ describe('Reducer: ui', () => {
         it('should set "isPromotingTransaction" state prop to false and "currentlyPromotingBundleHash" to empty strings', () => {
             const initialState = {
                 isPromotingTransaction: true,
-                currentlyPromotingBundleHash: 'foo'
+                currentlyPromotingBundleHash: 'foo',
             };
 
             const action = {
@@ -443,7 +443,7 @@ describe('Reducer: ui', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 isPromotingTransaction: false,
-                currentlyPromotingBundleHash: ''
+                currentlyPromotingBundleHash: '',
             };
 
             expect(newState).to.eql(expectedState);
@@ -454,7 +454,7 @@ describe('Reducer: ui', () => {
         it('should set "isPromotingTransaction" state prop to true and "currentlyPromotingBundleHash" to empty strings', () => {
             const initialState = {
                 isPromotingTransaction: true,
-                currentlyPromotingBundleHash: 'foo'
+                currentlyPromotingBundleHash: 'foo',
             };
 
             const action = {
@@ -464,7 +464,7 @@ describe('Reducer: ui', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 isPromotingTransaction: false,
-                currentlyPromotingBundleHash: ''
+                currentlyPromotingBundleHash: '',
             };
 
             expect(newState).to.eql(expectedState);

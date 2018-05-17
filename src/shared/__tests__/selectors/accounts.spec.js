@@ -71,13 +71,13 @@ describe('selectors: accounts', () => {
                             transfers: {},
                             addresses: {},
                             balance: 0,
-                            hashes: []
+                            hashes: [],
                         },
                         invalid: {
                             transfers: {},
                             addresses: {},
                             balance: 0,
-                            hashes: []
+                            hashes: [],
                         },
                     },
                 },
