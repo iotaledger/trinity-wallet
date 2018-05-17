@@ -1,13 +1,18 @@
 import get from 'lodash/get';
 import { getStoredState } from 'redux-persist';
+import { changeIotaNode } from '../libs/iota';
 import { updatePersistedState } from '../libs/utils';
 import { generateAlert } from './alerts';
 import i18next from '../i18next';
 import { UPDATE_URL } from '../config';
+import { checkAttachToTangleAsync } from '../libs/iota/extendedApi';
+import Errors from '../libs/errors';
 
 export const ActionTypes = {
     SET_LOCALE: 'IOTA/SETTINGS/LOCALE',
-    SET_FULLNODE: 'IOTA/SETTINGS/FULLNODE',
+    SET_NODE: 'IOTA/SETTINGS/FULLNODE',
+    SET_NODE_REQUEST: 'IOTA/SETTINGS/SET_NODE_REQUEST',
+    SET_NODE_ERROR: 'IOTA/SETTINGS/SET_NODE_ERROR',
     ADD_CUSTOM_NODE: 'IOTA/SETTINGS/ADD_CUSTOM_NODE',
     ADD_CUSTOM_POW_NODE: 'IOTA/SETTINGS/ADD_CUSTOM_POW_NODE',
     SET_MODE: 'IOTA/SETTINGS/SET_MODE',
@@ -23,7 +28,7 @@ export const ActionTypes = {
     SET_UPDATE_SUCCESS: 'IOTA/SETTINGS/UPDATE_SUCCESS',
     SET_UPDATE_DONE: 'IOTA/SETTINGS/UPDATE_DONE',
     SET_NODELIST: 'IOTA/SETTINGS/SET_NODELIST',
-    UPDATE_POW_SETTINGS: 'IOTA/SETTINGS/UPDATE_POW_SETTINGS',
+    SET_REMOTE_POW: 'IOTA/SETTINGS/SET_REMOTE_POW',
     UPDATE_AUTO_NODE_SWITCHING: 'IOTA/SETTINGS/UPDATE_AUTO_NODE_SWITCHING',
     SET_LOCK_SCREEN_TIMEOUT: 'IOTA/SETTINGS/SET_LOCK_SCREEN_TIMEOUT',
     SET_VERSIONS: 'IOTA/SETTINGS/WALLET/SET_VERSIONS',
@@ -50,6 +55,14 @@ const currencyDataFetchError = () => ({
     type: ActionTypes.CURRENCY_DATA_FETCH_ERROR,
 });
 
+const setNodeRequest = () => ({
+    type: ActionTypes.SET_NODE_REQUEST,
+});
+
+const setNodeError = () => ({
+    type: ActionTypes.SET_NODE_ERROR,
+});
+
 export const setRandomlySelectedNode = (payload) => ({
     type: ActionTypes.SET_RANDOMLY_SELECTED_NODE,
     payload,
@@ -61,7 +74,7 @@ export const setMode = (payload) => ({
 });
 
 export const setNode = (payload) => ({
-    type: ActionTypes.SET_FULLNODE,
+    type: ActionTypes.SET_NODE,
     payload,
 });
 
@@ -70,8 +83,9 @@ export const setNodeList = (payload) => ({
     payload,
 });
 
-export const updatePowSettings = () => ({
-    type: ActionTypes.UPDATE_POW_SETTINGS,
+export const setRemotePoW = (payload) => ({
+    type: ActionTypes.SET_REMOTE_POW,
+    payload
 });
 
 export const updateAutoNodeSwitching = (payload) => ({
@@ -142,9 +156,56 @@ export function setLanguage(language) {
     };
 }
 
-export function setFullNode(fullNode) {
+export function setFullNode(node) {
     return (dispatch) => {
-        dispatch(setNode(fullNode));
+        dispatch(setNodeRequest());
+        checkAttachToTangleAsync(node)
+            .then((res) => {
+                changeIotaNode(node);
+                dispatch(setNode(node));
+                if (res.error.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
+                    dispatch(setRemotePoW(false));
+                    return dispatch(
+                        generateAlert(
+                            'success',
+                            i18next.t('settings:nodeChangeSuccess'),
+                            i18next.t('settings:nodeChangeSuccessNoRemotePow', { node: node }),
+                            10000,
+                        ),
+                    );
+                } else if (res.error.includes('Invalid parameters')) {
+                    return dispatch(
+                        generateAlert(
+                            'success',
+                            i18next.t('settings:nodeChangeSuccess'),
+                            i18next.t('settings:nodeChangeSuccessExplanation', { node: node }),
+                            10000,
+                        ),
+                    );
+                }
+                dispatch(setNodeError());
+                return dispatch(
+                    generateAlert(
+                        'error',
+                        i18next.t('settings:nodeChangeError'),
+                        i18next.t('settings:nodeChangeErrorExplanation'),
+                        7000,
+                        res,
+                    ),
+                );
+            })
+            .catch((err) => {
+                dispatch(setNodeError());
+                dispatch(
+                    generateAlert(
+                        'error',
+                        i18next.t('settings:nodeChangeError'),
+                        i18next.t('settings:nodeChangeErrorExplanation'),
+                        7000,
+                        err,
+                    ),
+                );
+            });
     };
 }
 
@@ -173,6 +234,44 @@ export function updateTheme(theme, themeName) {
             theme,
             themeName,
         });
+    };
+}
+
+export function changePowSettings() {
+    return (dispatch, getState) => {
+        const settings = getState().settings;
+        if (!settings.remotePoW) {
+            checkAttachToTangleAsync(settings.node)
+                .then((res) => {
+                    if (res.error.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
+                        return dispatch(
+                            generateAlert(
+                                'error',
+                                i18next.t('global:attachToTangleUnavailable'),
+                                i18next.t('global:attachToTangleUnavailableExplanationShort'),
+                                10000,
+                            ),
+                        );
+                    }
+                    dispatch(setRemotePoW(true));
+                    dispatch(
+                        generateAlert(
+                            'success',
+                            i18next.t('pow:powUpdated'),
+                            i18next.t('pow:powUpdatedExplanation')
+                        )
+                    );
+                });
+        } else {
+            dispatch(setRemotePoW(!settings.remotePoW));
+            dispatch(
+                generateAlert(
+                    'success',
+                    i18next.t('pow:powUpdated'),
+                    i18next.t('pow:powUpdatedExplanation')
+                )
+            );
+        }
     };
 }
 

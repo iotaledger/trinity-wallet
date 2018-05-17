@@ -5,7 +5,7 @@ import union from 'lodash/union';
 import { setPrice, setChartData, setMarketData } from './marketData';
 import { setNodeList } from './settings';
 import { formatChartData, getUrlTimeFormat, getUrlNumberFormat, rearrangeObjectKeys } from '../libs/utils';
-import { generateAccountInfoErrorAlert, generateAutopromotionErrorAlert } from './alerts';
+import { generateAccountInfoErrorAlert, generateAlert } from './alerts';
 import { setNewUnconfirmedBundleTails, removeBundleFromUnconfirmedBundleTails } from './accounts';
 import { getFirstConsistentTail, isStillAValidTransaction } from '../libs/iota/transfers';
 import { selectedAccountStateFactory } from '../selectors/accounts';
@@ -35,7 +35,13 @@ export const ActionTypes = {
     PROMOTE_TRANSACTION_SUCCESS: 'IOTA/POLLING/PROMOTE_TRANSACTION_SUCCESS',
     PROMOTE_TRANSACTION_ERROR: 'IOTA/POLLING/PROMOTE_TRANSACTION_ERROR',
     SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION: 'IOTA/POLLING/SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION',
+    SET_AUTOPROMOTION_FAILED_FLAG: 'IOTA/POLLING/SET_AUTOPROMOTION_FAILED_FLAG',
 };
+
+export const setAutoPromotionFailedFlag = (payload) => ({
+    type: ActionTypes.SET_AUTOPROMOTION_FAILED_FLAG,
+    payload,
+});
 
 const fetchPriceRequest = () => ({
     type: ActionTypes.FETCH_PRICE_REQUEST,
@@ -229,10 +235,9 @@ export const fetchChartData = () => {
 };
 
 /**
- *   Accepts a user's seed and account name and sync local account state with ledger's.
+ *   Accepts account name and sync local account state with ledger's.
  *
  *   @method getAccountInfo
- *   @param {string} seed
  *   @param {string} accountName
  *   @returns {function} dispatch
  **/
@@ -267,10 +272,18 @@ export const promoteTransfer = (bundleHash, seenTailTransactions) => (dispatch, 
 
     const accountName = get(seenTailTransactions, '[0].account');
     let accountState = selectedAccountStateFactory(accountName)(getState());
+
     return syncAccount(accountState)
         .then((newState) => {
             accountState = newState;
             dispatch(syncAccountBeforeAutoPromotion(accountState));
+
+            const transaction = accountState.transfers[bundleHash];
+
+            if (transaction.persistence) {
+                dispatch(removeBundleFromUnconfirmedBundleTails(bundleHash));
+                throw new Error(Errors.TRANSACTION_ALREADY_CONFIRMED);
+            }
 
             return isStillAValidTransaction(accountState.transfers[bundleHash], accountState.addresses);
         })
@@ -301,8 +314,20 @@ export const promoteTransfer = (bundleHash, seenTailTransactions) => (dispatch, 
 
             return dispatch(promoteTransactionSuccess());
         })
-        .catch(() => {
-            dispatch(generateAutopromotionErrorAlert());
+        .catch((err) => {
+            if (err.message.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
+                // FIXME: Temporary solution until local/remote PoW is reworked on auto-promotion
+                if (!getState().ui.hasFailedAutopromotion) {
+                    dispatch(
+                        generateAlert(
+                            'error',
+                            'Could not auto-promote transaction',
+                            'Remote Proof of Work is not available on your selected node. Please change node.',
+                        ),
+                    );
+                }
+                dispatch(setAutoPromotionFailedFlag(true));
+            }
             dispatch(promoteTransactionError());
         });
 };
