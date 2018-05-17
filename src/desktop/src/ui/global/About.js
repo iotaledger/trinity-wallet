@@ -51,6 +51,17 @@ class About extends React.PureComponent {
 
                     <article>
                         <Scrollbar>
+                            <h5>0.1.5.</h5>
+                            <ul>
+                                <li>New: Major user interface and theming update</li>
+                                <li>New: Snapshot transition functionality</li>
+                                <li>New: Password strength and common password check</li>
+                                <li>Updated: Windows platform frameless application style</li>
+                                <li>Updated: Support `iota:` and `iota://` deep links</li>
+                                <li>Fixed: Amount input behaviour should match mobile</li>
+                                <li>Fixed: Address list overlaps in Account settings</li>
+                            </ul>
+
                             <h5>0.1.4.</h5>
                             <ul>
                                 <li>Added password strength estimation</li>
