@@ -5,7 +5,7 @@ import union from 'lodash/union';
 import { setPrice, setChartData, setMarketData } from './marketData';
 import { setNodeList } from './settings';
 import { formatChartData, getUrlTimeFormat, getUrlNumberFormat, rearrangeObjectKeys } from '../libs/utils';
-import { generateAccountInfoErrorAlert, generateAutopromotionErrorAlert } from './alerts';
+import { generateAccountInfoErrorAlert, generateAlert } from './alerts';
 import { setNewUnconfirmedBundleTails, removeBundleFromUnconfirmedBundleTails } from './accounts';
 import { getFirstConsistentTail, isStillAValidTransaction } from '../libs/iota/transfers';
 import { selectedAccountStateFactory } from '../selectors/accounts';
@@ -311,7 +311,11 @@ export const promoteTransfer = (bundleHash, seenTailTransactions) => (dispatch, 
             if (err.message.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)){
                 // FIXME: Temporary solution until local/remote PoW is reworked on auto-promotion
                 if (!getState().ui.hasFailedAutopromotion){
-                    dispatch(generateAutopromotionErrorAlert());
+                    dispatch(generateAlert(
+                        'error',
+                        'Could not auto-promote transaction',
+                        'Remote Proof of Work is not available on your selected node. Please change node.',
+                    ));
                 }
                 dispatch(setAutoPromotionFailedFlag(true));
             }
