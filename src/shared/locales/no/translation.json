@@ -18,12 +18,9 @@
         "keyReuseError": "Du kan ikke sende til en adresse som allerede er blitt brukt til å sende fra.",
         "invalidResponse": "Nodefeil",
         "invalidResponseExplanation": "Noden returnerte en feil. Sjekk varslene for mer informasjon.",
-        "invalidResponsePollingExplanation":
-            "Noden returnerte en feil under forespørselen. Sjekk varslene for mer informasjon.",
-        "invalidResponseFetchingAccount":
-            "Noden returnerte en feil under henting av din kontoinformasjon. Prøv å endre node eller kontroller varslene for mer informasjon.",
-        "invalidResponseSendingTransfer":
-            "Noden returnerte en feil under sending av transaksjonen. Kontroller varslene for mer informasjon.",
+        "invalidResponsePollingExplanation": "Noden returnerte en feil under forespørselen. Sjekk varslene for mer informasjon.",
+        "invalidResponseFetchingAccount": "Noden returnerte en feil under henting av din kontoinformasjon. Prøv å endre node eller kontroller varslene for mer informasjon.",
+        "invalidResponseSendingTransfer": "Noden returnerte en feil under sending av transaksjonen. Kontroller varslene for mer informasjon.",
         "seed": "Hovednøkkel",
         "back": "TILBAKE",
         "backLowercase": "Tilbake",
@@ -51,7 +48,7 @@
         "otherWallet": "ANNEN KONTO",
         "yes": "JA",
         "no": "NEI",
-        "okay": "OKAY",
+        "okay": "OK",
         "password": "Passord",
         "passwordOrFingerprint": "Passord eller fingeravtrykk",
         "unrecognisedPassword": "Ukjent passord",
@@ -80,21 +77,27 @@
         "retry": "FORSØK IGJEN",
         "rebroadcast": "KRINGKAST PÅ NYTT",
         "pressBackAgain": "Trykk tilbake igjen for å lukke applikasjonen",
-        "autoreattaching": "Re-tilknytter Tangle automatisk",
-        "autoreattachingExplanation": "Re-tilknytter transaksjon med hash-{{hash}}",
+        "reattached": "Transaksjonen er re-tilknyttet",
+        "reattachedExplanation": "Transaksjonen er re-tilknyttet med hash {{hash}}",
         "autopromoting": "Promoterer transaksjon automatisk",
         "autopromotingExplanation": "Promoterer transaksjon med hash {{hash}}",
-        "promoting": "Promoterer transaksjon",
-        "promotionError": "Kunne ikke promotere overføringen",
+        "rebroadcasted": "Transaksjonen er kringkastet på nytt",
+        "rebroadcastedExplanation": "Kringkaster transaksjonen på nytt med hash {{hash}}",
+        "rebroadcastError": "Kunne ikke kringkaste transaksjonen på nytt",
+        "rebroadcastErrorExplanation": "Noe gikk galt under kringkastingen av transaksjonen. Vennligst prøv på nytt.",
+        "promoted": "Transaksjonen er promotert",
+        "promotedExplanation": "Transaksjonen er promotert med hash {{hash}}",
+        "promotionError": "Kunne ikke promotere transaksjonen",
         "promotionErrorExplanation": "Noe gikk galt under promoteringen av overføringen. Vennligst prøv igjen.",
         "noLongerValid": "Pakken du prøver å promotere er ikke lenger gyldig",
+        "transactionAlreadyConfirmed": "Transaksjonen er allerede bekreftet",
+        "transactionAlreadyConfirmedExplanation": "Transaksjonen som du forsøker å promotere er allerede bekreftet.",
         "cannotSendToOwn": "Sender til egen adresse",
         "cannotSendToOwnExplanation": "Du kan ikke sende transaksjoner med verdi til en av dine egne adresser.",
         "pleaseWait": "Vennligst vent",
         "pleaseWaitEllipses": "Vennligst vent...",
         "pleaseWaitExplanation": "Trinity utfører en annen oppgave. Vennligst vent og forsøk igjen.",
-        "pleaseWaitTransferExplanation":
-            "Din tilgjengelige saldo blir benyttet i andre transaksjoner. Vent til en blir bekreftet før du forsøker igjen.",
+        "pleaseWaitTransferExplanation": "Din tilgjengelige saldo blir benyttet i andre transaksjoner. Vent til en blir bekreftet før du forsøker igjen.",
         "snapshotTransitionInProgress": "Snapshot synkronisering i gang",
         "snapshotTransitionInProgressExplanation": "Vennligst vent til synkroniseringen er fullført.",
         "checkForUpdates": "Søk etter oppdateringer",
@@ -112,19 +115,19 @@
         "nodeAutoChanged": "Noden har blitt automatisk endret",
         "nodeAutoChangedExplanation": "Byttet til ny node {{- nodeAddress}} da den valgte noden er frakoblet.",
         "fingerprintOnSend": "Berør fingeravtrykkleseren for å autorisere transaksjonen",
-        "masterKey": "Your IOTA seed is the master key to your funds.",
-        "googlePlayServicesNotAvailable": "Google Play Services not available",
-        "couldNotVerifyDeviceIntegrity":
-            "Could not verify device integrity because Google Play Services are not available.",
-        "clear": "CLEAR"
+        "masterKey": "Hovednøkkelen er det som gir deg tilgang til dine midler.",
+        "seedThief": "Hvis noen får tilgang til din hovednøkkel så kan de stjele dine IOTA.",
+        "googlePlayServicesNotAvailable": "Google Play tjenester er ikke tilgjengelige",
+        "couldNotVerifyDeviceIntegrity": "Kunne ikke verifisere enhetens integritet siden Google Play tjenesten ikke er tilgjengelig.",
+        "clear": "FJERN",
+        "noNetworkConnection": "Ingen nettverksforbindelse",
+        "noNetworkConnectionExplanation": "Ingen internettforbindelse."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøkkelen inneholder ugyldige tegn",
-        "seedInvalidCharsExplanation":
-            "Hovednøkkelen kan bare bestå av store bokstaver fra A til Z og tallet 9. Hovednøkkelen din inneholder ugyldige tegn. Vennligst prøv på nytt.",
+        "seedInvalidCharsExplanation": "Hovednøkkelen kan bare bestå av store bokstaver fra A til Z og tallet 9. Hovednøkkelen din inneholder ugyldige tegn. Vennligst prøv på nytt.",
         "seedTooShort": "Hovednøkkelen er for kort",
-        "seedTooShortExplanation":
-            "Hovednøkler må være {{maxLength}} tegn. Din hovednøkkel er nå {{currentLength}} tegn. Prøv på nytt.",
+        "seedTooShortExplanation": "Hovednøkler må være {{maxLength}} tegn. Din hovednøkkel er nå {{currentLength}} tegn. Prøv på nytt.",
         "nameInUse": "Kontonavnet er allerede i bruk",
         "nameInUseExplanation": "Vennligst bruk et unikt kontonavn til din hovednøkkel.",
         "enterAccountName": "Angi et kontonavn.",
@@ -146,8 +149,7 @@
         "passwordTooShort": "Passordet er for kort",
         "passwordTooShortExplanation": "Passordet ditt må være minst 12 tegn. Prøv igjen.",
         "oldPassword": "Kan ikke bruke et passord som er benyttet tidligere",
-        "oldPasswordExplanation":
-            "Du kan ikke bruke det gamle passordet som ditt nye passord. Prøv på nytt med et nytt passord.",
+        "oldPasswordExplanation": "Du kan ikke bruke det gamle passordet som ditt nye passord. Prøv på nytt med et nytt passord.",
         "ensureStrongPassword": "Sjekk at du bruker et sterkt passord med minst 12 tegn.",
         "currentPassword": "Nåværende passord",
         "newPassword": "Nytt passord",
@@ -157,27 +159,23 @@
         "seedCleared": "Hovednøkkel er fjernet",
         "seedClearedExplanation": "Hovednøkkelen har blitt fjernet fra utklippstavlen for din sikkerhet.",
         "seedCopied": "Kopierte hovednøkkelen til utklippstavle",
-        "seedCopiedExplanation":
-            "Hovednøkkelen vil bli fjernet med en gang du trykker \"FERDIG\" eller etter at 60 sekunder har passert.",
+        "seedCopiedExplanation": "Hovednøkkelen vil bli fjernet med en gang du trykker \"FERDIG\" eller etter at 60 sekunder har passert.",
         "clickToCopy": "Trykk på knappen nedenfor og kopier hovednøkkelen til en sikker passord-applikasjon.",
         "doNotStore": "Oppbevar ikke din hovednøkkelen i klartekst.",
         "copyToClipboard": "Kopier hovednøkkel",
         "shareSeed": "Kopier din hovednøkkel til en sikker passord applikasjon",
-        "storeEncrypted":
-            "If you choose to back-up your seed on your phone it should be stored encrypted e.g. in a password manager.",
-        "tapConfirm": "Please tap the checkbox below to confirm.",
-        "encryptionCheckbox": "I will store my seed with encryption",
-        "copy": "COPY"
+        "storeEncrypted": "Lagre din hovednøkkel kryptert i en password manager.",
+        "doNotOpen": "Åpne ikke andre applikasjoner under denne prosessen.",
+        "tapConfirm": "Vennligst huk av i boksen nedenfor for å bekrefte.",
+        "passwordManagerCheckbox": "Jeg ønsker å lagre hovednøkkelen min i en password manager",
+        "copy": "KOPIER"
     },
     "enterSeed": {
         "invalidCharacters": "Hovednøkkelen inneholder ugyldige tegn",
-        "invalidCharactersExplanation":
-            "Hovednøkkelen kan kun bestå av store bokstaver fra A til Z og tallet 9. Din hovednøkkel inneholder ugyldige tegn. Vennligst prøv på nytt.",
+        "invalidCharactersExplanation": "Hovednøkkelen kan kun bestå av store bokstaver fra A til Z og tallet 9. Din hovednøkkel inneholder ugyldige tegn. Vennligst prøv på nytt.",
         "seedTooShort": "Hovednøkkelen er for kort",
-        "seedTooShortExplanation":
-            "Hovednøkler må være {{maxLength}} tegn. Din hovednøkkel er nå {{currentLength}} tegn. Vennligst prøv på nytt.",
-        "seedExplanation":
-            "Hovednøkler skal være {{maxLength}} tegn, og bestå av store bokstaver fra A-Z eller tallet 9. Hovednøkkelen kan ikke ha flere enn {{maxLength}} tegn.",
+        "seedTooShortExplanation": "Hovednøkler må være {{maxLength}} tegn. Din hovednøkkel er nå {{currentLength}} tegn. Vennligst prøv på nytt.",
+        "seedExplanation": "Hovednøkler skal være {{maxLength}} tegn, og bestå av store bokstaver fra A-Z eller tallet 9. Hovednøkkelen kan ikke ha flere enn {{maxLength}} tegn.",
         "neverShare": "OPPGI ALDRI DIN HOVEDNØKKEL TIL ANDRE"
     },
     "home": {
@@ -210,13 +208,12 @@
         "seedNotGenerated": "Hovednøkkel har ikke blitt generert",
         "seedNotGeneratedExplanation": "Vennligst generer ny hovednøkkel.",
         "pressForNewSeed": "TRYKK FOR NY HOVEDNØKKEL",
-        "generateSuccess": "Seed generated successfully",
+        "generateSuccess": "Hovednøkkel er generert",
         "individualLetters": "Trykk individuelle tegn for å randomisere dem.",
-        "whatIsASeed": "What is a seed?"
+        "whatIsASeed": "Hva er en hovednøkkel?"
     },
     "onboardingComplete": {
-        "walletReady":
-            "Lommeboken er nå satt opp og er klar til bruk. Hvis du vil gjøre endringer i fremtiden, kan du gjøre dette under Innstillinger i menyen."
+        "walletReady": "Lommeboken er nå satt opp og er klar til bruk. Hvis du vil gjøre endringer i fremtiden, kan du gjøre dette under Innstillinger i menyen."
     },
     "paperWallet": {
         "clickToPrint": "Klikk knappen nedenfor for å skrive ut en papirkopi av din hovednøkkel.",
@@ -224,12 +221,12 @@
         "neverShare": "Del aldri hovednøkkelen din med noen.",
         "iotaLogo": "IOTA logo",
         "printWallet": "SKRIV UT PAPIRLOMMEBOK",
-        "print": "PRINT",
-        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
-        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
-        "tapCheckboxes": "Please tap the checkboxes below to confirm.",
-        "wifiCheckbox": "I will not print on public wifi",
-        "printerCheckbox": "I will not print on a public printer"
+        "print": "SKRIV UT",
+        "paperConvenience": "En praktisk måte å oppbevare hovednøkkelen er å skrive den ut på papir.",
+        "publicInsecure": "Men å skrive ut på et offentlig nettverk eller printer er usikkert.",
+        "tapCheckboxes": "Vennligst trykk på avkryssingsfeltet nedenfor for å bekrefte.",
+        "wifiCheckbox": "Jeg vil ikke skrive ut på et offentlig nettverk",
+        "printerCheckbox": "Jeg vil ikke skrive ut på en offentlig printer"
     },
     "receive": {
         "addressCopied": "Addresse kopiert",
@@ -241,8 +238,7 @@
         "spent": "Brukt"
     },
     "saveYourSeed": {
-        "mustSaveYourSeed":
-            "<0><0>Du må lagre din hovednøkkel med </0><1>minst én</1><2> av alternativene nedenfor.</2></0>"
+        "mustSaveYourSeed": "<0><0>Du må lagre din hovednøkkel med </0><1>minst én</1><2> av alternativene nedenfor.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Feil hovednøkkel",
@@ -255,8 +251,7 @@
         "invalidAddressExplanation1": "Adressen bør være {{maxLength}} tegn og ha kontrolltegn.",
         "invalidAddressExplanation2": "Adressen inneholder ugyldige tegn.",
         "invalidAddressExplanation3": "Adressens kontrolltegn stemmer ikke.",
-        "invalidAddressExplanationGeneric":
-            "Gyldige adresser må være 90 tegn og kun inneholde bokstavene A til Z og tallet 9.",
+        "invalidAddressExplanationGeneric": "Gyldige adresser må være 90 tegn og kun inneholde bokstavene A til Z og tallet 9.",
         "notEnoughFunds": "Saldoen er for lav",
         "notEnoughFundsExplanation": "Du har ikke nok IOTA til å fullføre denne transaksjonen.",
         "keyReuse": "Privatnøkkelen er brukt før",
@@ -271,8 +266,7 @@
         "invalidMessageTooLongExplanation": "Meldingen overskrider maks antall tegn (1093).",
         "send": "SEND",
         "invalidAmount": "Ugyldig beløp angitt",
-        "invalidAmountExplanation":
-            "Vennligst angi et gyldig transaksjonsbeløp. Det kan være nyttig å lese IOTA enhets-forklaring nederst på denne siden.",
+        "invalidAmountExplanation": "Vennligst angi et gyldig transaksjonsbeløp. Det kan være nyttig å lese IOTA enhets-forklaring nederst på denne siden.",
         "maximumSelected": "MAKSIMUM beløp valgt",
         "iotaUnits": "IOTA enheter forklart",
         "sendMax": "SENDE MAX",
@@ -280,28 +274,23 @@
     },
     "setPassword": {
         "passwordTooShort": "Passordet er for kort",
-        "passwordTooShortExplanation":
-            "Passordet må være minst {{minLength}} tegn. Det er nå {{currentLength}} tegn. Prøv på nytt.",
+        "passwordTooShortExplanation": "Passordet må være minst {{minLength}} tegn. Det er nå {{currentLength}} tegn. Prøv på nytt.",
         "passwordMismatch": "Passordene samsvarer ikke",
         "passwordMismatchExplanation": "Passordene du anga samsvarer ikke. Prøv på nytt.",
         "nowWeNeedTo": "Nå må vi sette opp et passord.",
-        "anEncryptedCopy":
-            "En kryptert kopi av hovednøkkelen blir lagret på din enhet. Du vil bruke dette passordet for å åpne lommeboken i fremtiden.",
+        "anEncryptedCopy": "En kryptert kopi av hovednøkkelen blir lagret på din enhet. Du vil bruke dette passordet for å åpne lommeboken i fremtiden.",
         "ensure": "Forsikre deg om at du bruker et sterkt passord med minst 12 tegn.",
         "retypePassword": "Skriv inn passordet på nytt"
     },
     "setSeedName": {
-        "canUseMultipleSeeds":
-            "Du kan lagre flere hovednøkler i denne lommeboken. Hver av disse må ha et eget kontonavn.",
+        "canUseMultipleSeeds": "Du kan lagre flere hovednøkler i denne lommeboken. Hver av disse må ha et eget kontonavn.",
         "youCanAdd": "Du kan legge til flere hovednøkler i menyen for Innstillinger."
     },
     "modeSelection": {
         "expert": "Ekspert",
         "standard": "Standard",
-        "expertModeExplanation":
-            "Ekspertmodus gir tilgang til flere funksjoner som manuell promotering og re-tilknytning av transaksjoner.",
-        "modesExplanation":
-            "Aktiver kun ekspertmodus dersom du er en erfaren Tangle bruker. Hvis ikke kan dette være forvirrende."
+        "expertModeExplanation": "Ekspertmodus gir tilgang til flere funksjoner som manuell promotering og re-tilknytning av transaksjoner.",
+        "modesExplanation": "Aktiver kun ekspertmodus dersom du er en erfaren Tangle bruker. Hvis ikke kan dette være forvirrende."
     },
     "settings": {
         "transferSending": "Sender transaksjon",
@@ -311,15 +300,15 @@
         "mode": "Modus",
         "theme": "Tema",
         "currency": "Valuta",
-        "cannotChangeNode": "Cannot change node",
-        "cannotChangeNodeWhileSending": "Cannot change node while sending.",
+        "cannotChangeNode": "Kan ikke endre node",
+        "cannotChangeNodeWhileSending": "Kan ikke endre node mens transaksjon sendes.",
         "language": "Språk",
         "accountManagement": "Kontoadministrasjon",
         "addNewSeed": "Legg til ny hovednøkkel",
         "twoFA": "To-faktor autentisering",
         "changePassword": "Endre passord",
         "advanced": "Avanserte innstillinger",
-        "aboutTrinity": "Om Trinity",
+        "about": "Om Trinity",
         "logout": "Logg ut",
         "reset": "Tilbakestill lommeboken",
         "syncingComplete": "Synkronisering fullført",
@@ -344,14 +333,14 @@
         "selectAll": "Velg alt",
         "securitySettings": "Sikkerhetsinnstillinger",
         "fingerprint": "Biometrisk autentisering",
-        "couldNotFetchRates": "Kunne ikke hente valutakurser",
-        "couldNotFetchRatesExplanation": "Noe gikk galt under henting av valutakurser for {{currency}}.",
-        "fetchedConversionRates": "Hentet valutakurser",
-        "fetchedConversionRatesExplanation": "Henting av valutakurs for {{currency}} var vellykket.",
+        "couldNotFetchRates": "Kunne ikke hente omregningskurs",
+        "couldNotFetchRatesExplanation": "Noe gikk galt under hentingen av omregningskursene for {{currency}}.",
+        "fetchedConversionRates": "Omregningskurs hentet",
+        "fetchedConversionRatesExplanation": "Siste omregningskurs er hentet for {{currency}}.",
         "undo": "Angre",
         "redo": "Gjør om",
         "lockScreenTimeout": "Skjermen er låst grunnet inaktivitet",
-        "autoNodeSwitching": "Endre node automatisk når den valgte noden er utilgjengelig"
+        "autoNodeSwitching": "Endre node automatisk dersom den valgte noden er utilgjengelig"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Skriv inn passordet for å tilbakestille lommeboken.",
@@ -361,23 +350,19 @@
     "walletSetup": {
         "okay": "Ok. La oss sette opp lommeboken din!",
         "doYouAlreadyHaveASeed": "Har du allerede en hovednøkkel som du ønsker å benytte?",
-        "seedExplanation":
-            "IOTA hovednøkkelen er som et brukernavn og passord til kontoen, og består av en kombinert streng på 81 tegn.",
-        "explanation":
-            "<0><0>Du kan bruke den til å få tilgang til dine midler fra</0> <1>enhver lommebok</1> <2>, på</2> <3>enhver enhet</3> <4>. Men hvis du mister hovednøkkelen mister du også dine IOTA.</4></0>",
+        "seedExplanation": "IOTA hovednøkkelen er som et brukernavn og passord til kontoen, og består av en kombinert streng på 81 tegn.",
+        "explanation": "<0><0>Du kan bruke den til å få tilgang til dine midler fra</0> <1>enhver lommebok</1> <2>, på</2> <3>enhver enhet</3> <4>. Men hvis du mister hovednøkkelen mister du også dine IOTA.</4></0>",
         "keepSafe": "Vennligst oppbevar hovednøkkelen sikkert.",
         "hint": "<0><0>Hint:</0> Klikk NEI hvis dette er første gangen du bruker IOTA.</0>"
     },
     "welcome": {
         "thankYou": "Takk for at du lastet ned Trinity.",
         "weWillSpend": "Vi vil bruke de neste minuttene på å konfigurere lommeboken din.",
-        "reminder":
-            "Du kan være fristet til å hoppe over enkelte trinn, men vi oppfordrer deg til å følge hele prosessen."
+        "reminder": "Du kan være fristet til å hoppe over enkelte trinn, men vi oppfordrer deg til å følge hele prosessen."
     },
     "writeSeedDown": {
         "yourSeedIs": "Din hovednøkkel er {{maxSeedLength}} tegn lest fra venstre mot høyre.",
-        "writeDownYourSeed":
-            "<0>Skriv ned din hovednøkkel og kontrolltegn, og</0> <1>trippelsjekk</1> <2>at de er riktige.</2>"
+        "writeDownYourSeed": "<0>Skriv ned din hovednøkkel og kontrolltegn, og</0> <1>trippelsjekk</1> <2>at de er riktige.</2>"
     },
     "history": {
         "bundleHashCopied": "Pakke hash kopiert",
@@ -397,12 +382,12 @@
         "addNewAccount": "Legge til ny konto"
     },
     "addCustomNode": {
-        "customNodeAdded": "Custom node added",
-        "customNodeCouldNotBeAdded": "Custom node could not be added",
-        "customNodeAddedSuccessfully": "The custom node has been added successfully.",
+        "customNodeAdded": "Egendefinert node er lagt til",
+        "customNodeCouldNotBeAdded": "Egendefinert node kunne ikke legges til",
+        "customNodeAddedSuccessfully": "Den egendefinerte noden var lagt til.",
         "customNode": "Egendefinert node",
-        "invalidNodeResponse": "The node returned an invalid response",
-        "httpNodeError": "Trinity Mobile only supports https nodes.",
+        "invalidNodeResponse": "Noden retunerte et ugyldig svar",
+        "httpNodeError": "Trinity Mobil støtter kun https noder.",
         "add": "Legg til",
         "nodeFieldEmpty": "Tekstfeltet er tomt",
         "nodeFieldEmptyExplanation": "Vennligst legg til en egendefinert node."
@@ -444,8 +429,7 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Hvorfor kan ikke jeg bruke hele saldoen?",
-        "spentAddressExplanation":
-            "Du har midler på én eller flere brukte adresser. Adresse gjenbruk er farlig i IOTA, så denne lommeboken tillater ikke å sende flere ganger fra samme adresse.",
+        "spentAddressExplanation": "Du har midler på én eller flere brukte adresser. Adresse gjenbruk er farlig i IOTA, så denne lommeboken tillater ikke å sende flere ganger fra samme adresse.",
         "discordInformation": "Vennligst besøk #help kanalen på Discord for å finne ut hva du kan gjøre."
     },
     "deleteAccount": {
@@ -464,8 +448,8 @@
     },
     "useExistingSeed": {
         "title": "Angi en hovednøkkel og et kontonavn.",
-        "incorrectFormat": "Incorrect seed format",
-        "validSeedExplanation": "'Valid seeds should be 81 characters and contain only A-Z or 9.'"
+        "incorrectFormat": "Feil format på hovednøkkelen",
+        "validSeedExplanation": "'En gyldig hovednøkkel skal være på 81 tegn bestående av bokstavene A til Z eller tallet 9.'"
     },
     "viewSeed": {
         "enterPassword": "Skriv inn passordet for å vise hovednøkkelen.",
@@ -475,13 +459,11 @@
     "saveSeedConfirmation": {
         "alreadyHave": "Jeg har lagret min hovednøkkel",
         "reenter": "Du vil nå bli spurt om å gjenta din hovednøkkel.",
-        "reenterWarning":
-            "Dersom enheten din slutter å virke og du ikke har lagret hovednøklene vil du miste dine IOTA."
+        "reenterWarning": "Dersom enheten din slutter å virke og du ikke har lagret hovednøklene vil du miste dine IOTA."
     },
     "walletResetConfirmation": {
         "cannotUndo": "DENNE HANDLINGEN KAN IKKE ANGRES.",
-        "warning":
-            "<0><0>Alle dine data, inkludert dine</0> <1>nøkler, passord</1> <2>og</2> <3>andre kontoopplysninger</3> <4> vil gå tapt.</4></0>"
+        "warning": "<0><0>Alle dine data, inkludert dine</0> <1>nøkler, passord</1> <2>og</2> <3>andre kontoopplysninger</3> <4> vil gå tapt.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Legg fingeren på fingeravtrykkleseren for å aktivere biometrisk autentisering",
@@ -496,8 +478,7 @@
         "enabled": "Aktivert",
         "disabled": "Deaktivert",
         "fingerprintUnavailable": "Biometrisk autentisering utilgjengelig",
-        "fingerprintUnavailableExplanation":
-            "Enheten din støtter ikke biometrisk autentisering, eller har ikke blitt konfigurert for å benytte dette.",
+        "fingerprintUnavailableExplanation": "Enheten din støtter ikke biometrisk autentisering, eller har ikke blitt konfigurert for å benytte dette.",
         "buttonInstructionsDisable": "Trykk på knappen nedenfor for å deaktivere biometrisk godkjenning.",
         "buttonInstructionsEnable": "Trykk på knappen nedenfor for å aktivere biometrisk godkjenning.",
         "buttonInstructionsDisableIPhoneX": "Trykk på knappen nedenfor for å deaktivere Face ID.",
@@ -533,14 +514,13 @@
     },
     "rootDetection": {
         "warning": "ADVARSEL",
-        "appearsRooted": "Your device appears to be rooted.",
-        "securityRisk": "This can pose a significant risk to the security of your wallet.",
-        "continueDepsiteRisk": "Do you wish to continue despite this risk?"
+        "appearsRooted": "Din enhet ser ut til å være rooted.",
+        "securityRisk": "Dette kan medføre en betydelig risiko for sikkerheten til din lommebok.",
+        "continueDepsiteRisk": "Ønsker du å fortsette til tross for risikoen?"
     },
     "pow": {
         "feeless": "Det er nødvendig for å utføre litt PoW (Proof of Work) for å sende gebyrfrie transaksjoner i IOTA.",
-        "localOrRemote":
-            "PoW (Proof of Work) kan enten utføres lokalt på din enhet, eller settes bort til den noden som du er tilkoblet.",
+        "localOrRemote": "PoW (Proof of Work) kan enten utføres lokalt på din enhet, eller settes bort til den noden som du er tilkoblet.",
         "local": "Lokal",
         "remote": "Ekstern",
         "powUpdated": "PoW (Proof of Work) innstillinger",
@@ -581,12 +561,11 @@
         "noUpdatesAvailable": "Ingen tilgjengelige oppdateringer",
         "noUpdatesAvailableExplanation": "Du har den nyeste versjonen av IOTA Trinity desktop lommeboken!",
         "newVersionAvailable": "Ny versjon tilgjengelig",
-        "newVersionAvailableExplanation":
-            "En ny <strong>Trinity</strong> <strong>{{version}}</strong> versjon er tilgjengelig. Vennligst les utgivelses-notatene nøye og verifiser nedlastingskilden før oppdatering:",
+        "newVersionAvailableExplanation": "En ny <strong>Trinity</strong> <strong>{{version}}</strong> versjon er tilgjengelig. Vennligst les utgivelses-notatene nøye og verifiser nedlastingskilden før oppdatering:",
         "downloadRelease": "Last ned siste versjon",
         "skipUpdate": "Hopp over oppdatering"
     },
     "notificationLog": {
-        "errorLog": "ERROR LOG"
+        "errorLog": "FEILMELDINGER"
     }
 }

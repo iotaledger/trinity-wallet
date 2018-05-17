@@ -18,12 +18,9 @@
         "keyReuseError": "Te ei saa saata aadressile, millelt on juba kulutatud.",
         "invalidResponse": "Node error",
         "invalidResponseExplanation": "The node returned an error. Check the notifications for more information.",
-        "invalidResponsePollingExplanation":
-            "The node returned an error while polling. Check the notifications for more information.",
-        "invalidResponseFetchingAccount":
-            "The node returned an error while fetching your account information. Try changing your node or check the notifications for more information.",
-        "invalidResponseSendingTransfer":
-            "The node returned an error while sending the transfer. Check the notifications for more information.",
+        "invalidResponsePollingExplanation": "The node returned an error while polling. Check the notifications for more information.",
+        "invalidResponseFetchingAccount": "The node returned an error while fetching your account information. Try changing your node or check the notifications for more information.",
+        "invalidResponseSendingTransfer": "The node returned an error while sending the transfer. Check the notifications for more information.",
         "seed": "Seeme",
         "back": "TAGASI",
         "backLowercase": "Tagasi",
@@ -80,21 +77,27 @@
         "retry": "RETRY",
         "rebroadcast": "KUULUTA UUESTI",
         "pressBackAgain": "Rakenduse sulgemiseks vajutage uuesti tagasi nuppu",
-        "autoreattaching": "Kinnitan automaatselt",
-        "autoreattachingExplanation": "Kinnitan uuesti tehingut räsiga {{hash}}",
+        "reattached": "Successfully reattached transaction",
+        "reattachedExplanation": "Reattached transaction with hash {{hash}}",
         "autopromoting": "Tehingu automaatne edendamine",
         "autopromotingExplanation": "Edendan tehingut räsiga {{hash}}",
-        "promoting": "Tehingu edendamine",
-        "promotionError": "Could not promote transfer",
+        "rebroadcasted": "Successfully rebroadcasted transaction",
+        "rebroadcastedExplanation": "Rebroadcasted transaction with hash {{hash}}",
+        "rebroadcastError": "Could not rebroadcast transaction",
+        "rebroadcastErrorExplanation": "Something went wrong while rebroadcasting your transaction. Please try again.",
+        "promoted": "Successfully promoted transaction",
+        "promotedExplanation": "Promoted transaction with hash {{hash}}",
+        "promotionError": "Could not promote transaction",
         "promotionErrorExplanation": "Something went wrong while promoting your transaction. Please try again.",
         "noLongerValid": "Edendatav pundar ei kehti enam",
+        "transactionAlreadyConfirmed": "Transaction already confirmed",
+        "transactionAlreadyConfirmedExplanation": "The transaction you are trying to promote is already confirmed.",
         "cannotSendToOwn": "Enda aadressile saatmine",
         "cannotSendToOwnExplanation": "Te ei saa teha väärtusega tehingut mõnele oma aadressile.",
         "pleaseWait": "Palun oodake",
         "pleaseWaitEllipses": "Please wait...",
         "pleaseWaitExplanation": "Trinity täidab teist funktsiooni. Palun oodake ja proovige uuesti.",
-        "pleaseWaitTransferExplanation":
-            "Teie vabad vahendid on hetkel kasutuses teistes tehingutes. Palun oodake kuni üks kinnitatakse enne uuesti proovimist.",
+        "pleaseWaitTransferExplanation": "Teie vabad vahendid on hetkel kasutuses teistes tehingutes. Palun oodake kuni üks kinnitatakse enne uuesti proovimist.",
         "snapshotTransitionInProgress": "Snapshot transition in progress",
         "snapshotTransitionInProgressExplanation": "Palun oodake, kuni üleminek on lõpule viidud.",
         "checkForUpdates": "Otsi uuendusi",
@@ -113,18 +116,18 @@
         "nodeAutoChangedExplanation": "Switched to new node {{- nodeAddress}} as selected node is offline.",
         "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer",
         "masterKey": "Your IOTA seed is the master key to your funds.",
+        "seedThief": "If someone else has your seed they can steal your IOTA.",
         "googlePlayServicesNotAvailable": "Google Play Services not available",
-        "couldNotVerifyDeviceIntegrity":
-            "Could not verify device integrity because Google Play Services are not available.",
-        "clear": "CLEAR"
+        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available.",
+        "clear": "CLEAR",
+        "noNetworkConnection": "No network connection",
+        "noNetworkConnectionExplanation": "Your internet connection appears to be offline."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seeme sisaldab sobimatuid tähemärke",
-        "seedInvalidCharsExplanation":
-            "Seemned võivad koosneda ainult suurtest tähtedest A-Z ja numbrist 9. Teie seemnes on sobimatuid tähemärke. Palun proovige uuesti.",
+        "seedInvalidCharsExplanation": "Seemned võivad koosneda ainult suurtest tähtedest A-Z ja numbrist 9. Teie seemnes on sobimatuid tähemärke. Palun proovige uuesti.",
         "seedTooShort": "Seeme on liiga lühike",
-        "seedTooShortExplanation":
-            "Seeme peab olema {{maxLength}} tähemärki pikk. Teie praegune seeme on {{currentLength}} tähemärgi pikkune. Palun proovige uuesti.",
+        "seedTooShortExplanation": "Seeme peab olema {{maxLength}} tähemärki pikk. Teie praegune seeme on {{currentLength}} tähemärgi pikkune. Palun proovige uuesti.",
         "nameInUse": "Konto nimi on juba kasutusel",
         "nameInUseExplanation": "Palun kasutage oma seemne jaoks unikaalset konto nime.",
         "enterAccountName": "Sisesta konto nimi.",
@@ -146,8 +149,7 @@
         "passwordTooShort": "Parool on liiga lühike",
         "passwordTooShortExplanation": "Sinu parool peab olema vähemalt 12 tähemärki pikk. Palun proovi uuesti.",
         "oldPassword": "Ei saa kasutada vana parooli",
-        "oldPasswordExplanation":
-            "You cannot use the old password as your new password. Please try again with a new password.",
+        "oldPasswordExplanation": "You cannot use the old password as your new password. Please try again with a new password.",
         "ensureStrongPassword": "Veenduge, et kasutate vähemalt 12 tähemärgi pikkust tugevat parooli.",
         "currentPassword": "Praegune parool",
         "newPassword": "Uus parool",
@@ -157,27 +159,23 @@
         "seedCleared": "Seeme tühjendatud",
         "seedClearedExplanation": "Seeme on turvalisuse kaalutlustel teie lõikelaualt tühjendatud.",
         "seedCopied": "Seeme kopeeritud",
-        "seedCopiedExplanation":
-            "Seeme tühjendatakse teie lõikelaualt kui vajutate \"VALMIS\" või on möödunud 60 sekundit.",
+        "seedCopiedExplanation": "Seeme tühjendatakse teie lõikelaualt kui vajutate \"VALMIS\" või on möödunud 60 sekundit.",
         "clickToCopy": "Vajutage allolevat nuppu ja kopeerige oma seeme paroolihaldurisse.",
         "doNotStore": "Ärge hoidke oma seemet lihttekstina.",
         "copyToClipboard": "Kopeeri seeme",
         "shareSeed": "Jaga oma seemet turvalise paroolihalduriga",
-        "storeEncrypted":
-            "If you choose to back-up your seed on your phone it should be stored encrypted e.g. in a password manager.",
+        "storeEncrypted": "Store your seed encrypted in a password manager.",
+        "doNotOpen": "Do not open any other apps during this process.",
         "tapConfirm": "Please tap the checkbox below to confirm.",
-        "encryptionCheckbox": "I will store my seed with encryption",
+        "passwordManagerCheckbox": "I will store my seed in a password manager",
         "copy": "COPY"
     },
     "enterSeed": {
         "invalidCharacters": "Seeme sisaldab sobimatuid tähemärke",
-        "invalidCharactersExplanation":
-            "Seemned võivad koosneda ainult suurtest tähtedest A-Z ja numbrist 9. Teie seemnes on sobimatuid tähemärke. Palun proovige uuesti.",
+        "invalidCharactersExplanation": "Seemned võivad koosneda ainult suurtest tähtedest A-Z ja numbrist 9. Teie seemnes on sobimatuid tähemärke. Palun proovige uuesti.",
         "seedTooShort": "Seeme on liiga ühike",
-        "seedTooShortExplanation":
-            "Seemned peavad olema {{maxLength}} tähemärki pikad. Teie seeme on praegu {{currentLength}} tähemärgi pikkune. Palun proovige uuesti.",
-        "seedExplanation":
-            "Seemned peaksid olema {{maxLength}} tähemärki pikad ja peaksid sisaldama suuri tähti A-Z või numbrit 9. Te ei saa kasutada seemneid, mis on lühemad kui {{maxLength}} tähemärki.",
+        "seedTooShortExplanation": "Seemned peavad olema {{maxLength}} tähemärki pikad. Teie seeme on praegu {{currentLength}} tähemärgi pikkune. Palun proovige uuesti.",
+        "seedExplanation": "Seemned peaksid olema {{maxLength}} tähemärki pikad ja peaksid sisaldama suuri tähti A-Z või numbrit 9. Te ei saa kasutada seemneid, mis on lühemad kui {{maxLength}} tähemärki.",
         "neverShare": "ÄRA JAGA KUNAGI OMA SEEMET KELLEGAGI"
     },
     "home": {
@@ -215,8 +213,7 @@
         "whatIsASeed": "What is a seed?"
     },
     "onboardingComplete": {
-        "walletReady":
-            "Rahakott on nüüd seadistatud ja kasutamiseks valmis. Vaadake sätetesse, kui soovite muudatusi teha."
+        "walletReady": "Rahakott on nüüd seadistatud ja kasutamiseks valmis. Vaadake sätetesse, kui soovite muudatusi teha."
     },
     "paperWallet": {
         "clickToPrint": "Vajutage oma seemnest paberkoopia printimiseks järgnevat nuppu.",
@@ -241,8 +238,7 @@
         "spent": "Kulutatud"
     },
     "saveYourSeed": {
-        "mustSaveYourSeed":
-            "<0><0>Peate oma seemne salvestama tehes vähemalt</0> <1>ühe</1> <2> alljärgnevatest valikutest.</2></0>"
+        "mustSaveYourSeed": "<0><0>Peate oma seemne salvestama tehes vähemalt</0> <1>ühe</1> <2> alljärgnevatest valikutest.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Vale seeme",
@@ -252,12 +248,10 @@
     },
     "send": {
         "invalidAddress": "Vigane aadress",
-        "invalidAddressExplanation1":
-            "Aadress peaks koosnema {{maxLength}} tähemärgist ja tal peaks olema kontrollsumma.",
+        "invalidAddressExplanation1": "Aadress peaks koosnema {{maxLength}} tähemärgist ja tal peaks olema kontrollsumma.",
         "invalidAddressExplanation2": "Aadress sisaldab sobimatuid tähemärke.",
         "invalidAddressExplanation3": "Aadress sisaldab vigast kontrollsummat.",
-        "invalidAddressExplanationGeneric":
-            "Kehtivad aadressid peaksid koosnema 90 tähemärgist ja sisaldama ainult A-Z või 9.",
+        "invalidAddressExplanationGeneric": "Kehtivad aadressid peaksid koosnema 90 tähemärgist ja sisaldama ainult A-Z või 9.",
         "notEnoughFunds": "Ebapiisavad vahendid",
         "notEnoughFundsExplanation": "Teil ei ole selle ülekande tegemiseks piisavalt IOTAsid.",
         "keyReuse": "Võtme taaskasutamine",
@@ -272,8 +266,7 @@
         "invalidMessageTooLongExplanation": "The message exceeds the max. amount of characters (1093).",
         "send": "SAADA",
         "invalidAmount": "Sisestatud vale summa",
-        "invalidAmountExplanation":
-            "Palun sisestage kehtiv ülekande summa. IOTA ühikusüsteemi selgitus käesoleva lehe all võib teile abiks tulla.",
+        "invalidAmountExplanation": "Palun sisestage kehtiv ülekande summa. IOTA ühikusüsteemi selgitus käesoleva lehe all võib teile abiks tulla.",
         "maximumSelected": "valitud MAKSIMAALNE summa",
         "iotaUnits": "IOTA ühikute selgitus",
         "sendMax": "SAADA MAKS.",
@@ -281,13 +274,11 @@
     },
     "setPassword": {
         "passwordTooShort": "Parool on liiga lühike",
-        "passwordTooShortExplanation":
-            "Teie parool peab olema vähemalt {{minLength}} tähemärki pikk. See on hetkel {{currentLength}} tähemärgi pikkune. Palun proovige uuesti.",
+        "passwordTooShortExplanation": "Teie parool peab olema vähemalt {{minLength}} tähemärki pikk. See on hetkel {{currentLength}} tähemärgi pikkune. Palun proovige uuesti.",
         "passwordMismatch": "Paroolid ei kattu",
         "passwordMismatchExplanation": "Sisestatud paroolid ei kattu. Palun proovige uuesti.",
         "nowWeNeedTo": "Nüüd peame me parooli panema.",
-        "anEncryptedCopy":
-            "Seemne krüpteeritud koopia salvestatakse teie seadmesse. Seda parooli kasutate edaspidi oma rahakotti sisenemiseks.",
+        "anEncryptedCopy": "Seemne krüpteeritud koopia salvestatakse teie seadmesse. Seda parooli kasutate edaspidi oma rahakotti sisenemiseks.",
         "ensure": "Veenduge, et kasutate vähemalt 12 tähemärgi pikkust tugevat parooli.",
         "retypePassword": "Parool uuesti"
     },
@@ -298,10 +289,8 @@
     "modeSelection": {
         "expert": "Ekspert",
         "standard": "Tavaline",
-        "expertModeExplanation":
-            "Expert mode will provide access to additional features like manual promotion and reattachment.",
-        "modesExplanation":
-            "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
+        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "Toimub ülekanne",
@@ -319,7 +308,7 @@
         "twoFA": "Kahe teguriga autentimine",
         "changePassword": "Vaheta parool",
         "advanced": "Täpsemad sätted",
-        "aboutTrinity": "Trinity kohta",
+        "about": "Trinity kohta",
         "logout": "Logi välja",
         "reset": "Tühjenda ülesseadistus",
         "syncingComplete": "Sünkroniseeritud",
@@ -344,10 +333,10 @@
         "selectAll": "Vali kõik",
         "securitySettings": "Turvasätted",
         "fingerprint": "Biomeetriline autentimine",
-        "couldNotFetchRates": "Ei saanud vahetuskurssi kätte",
-        "couldNotFetchRatesExplanation": "Midagi läks {{currency}} jaoks vahetuskursi otsimisega nässu.",
-        "fetchedConversionRates": "Tõmbasin vahetuskursid",
-        "fetchedConversionRatesExplanation": "Uusimate {{currency}} vahetuskursside leidmine õnnestus.",
+        "couldNotFetchRates": "Could not fetch rate",
+        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rate for {{currency}}.",
+        "fetchedConversionRates": "Fetched conversion rate",
+        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rate for {{currency}}.",
         "undo": "Tühista",
         "redo": "Korda",
         "lockScreenTimeout": "Lock Screen Timeout (Minutes)",
@@ -362,21 +351,18 @@
         "okay": "Okei. Seadistame sinu rahakoti ära!",
         "doYouAlreadyHaveASeed": "Kas teil on juba seeme, mida te sooviksite kasutada?",
         "seedExplanation": "IOTA seeme on nagu teie konto kasutajanimi ja parool, aga ühes tükis ja 81 tähemärki pikk.",
-        "explanation":
-            "<0><0>Selle abil saate oma rahale ligi pääseda</0> <1>igast rahakotist</1> <2>,</2> <3>mis tahes seadmest</3> <4>. Kuid kui te kaotate oma seemne, kaotate oma IOTA.</4></0>",
+        "explanation": "<0><0>Selle abil saate oma rahale ligi pääseda</0> <1>igast rahakotist</1> <2>,</2> <3>mis tahes seadmest</3> <4>. Kuid kui te kaotate oma seemne, kaotate oma IOTA.</4></0>",
         "keepSafe": "Palun hoidke oma seemne turvalisust.",
         "hint": "<0><0>Hint:</0> Click NO if this is your first time using IOTA.</0>"
     },
     "welcome": {
         "thankYou": "Täname teid Trinity alla laadimise eest.",
         "weWillSpend": "Me veedame järgmised paar minutit teie rahakoti üles seadmiseks.",
-        "reminder":
-            "Teil võib tekkida kiusatus mõni samm vahele jätta, kuid me soovitame tungivalt kogu protsessi täielikult läbida."
+        "reminder": "Teil võib tekkida kiusatus mõni samm vahele jätta, kuid me soovitame tungivalt kogu protsessi täielikult läbida."
     },
     "writeSeedDown": {
         "yourSeedIs": "Teie seeme on {{maxSeedLength}} tähemärki loetult vasakult paremale.",
-        "writeDownYourSeed":
-            "<0> Kirjutage oma seeme ja kontrollsumma üles ja </0><1>tehke kindlaks</1><2>, et need on õiged.</2>"
+        "writeDownYourSeed": "<0> Kirjutage oma seeme ja kontrollsumma üles ja </0><1>tehke kindlaks</1><2>, et need on õiged.</2>"
     },
     "history": {
         "bundleHashCopied": "Puntra räsi kopeeritud",
@@ -443,8 +429,7 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Why can't I spend my full balance?",
-        "spentAddressExplanation":
-            "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
+        "spentAddressExplanation": "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
         "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
     },
     "deleteAccount": {
@@ -478,8 +463,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "SEDA TOIMINGUT EI SAA TAGASI VÕTTA.",
-        "warning":
-            "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
+        "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Touch fingerprint reader to enable fingerprint authentication",
@@ -494,8 +478,7 @@
         "enabled": "Sees",
         "disabled": "Väljas",
         "fingerprintUnavailable": "Biometric authenticatation unavailable",
-        "fingerprintUnavailableExplanation":
-            "Your device does not support biometric authenticatation or it has not been configured in the device settings.",
+        "fingerprintUnavailableExplanation": "Your device does not support biometric authenticatation or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
         "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID.",
@@ -578,8 +561,7 @@
         "noUpdatesAvailable": "No updates available",
         "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
         "newVersionAvailable": "New version available",
-        "newVersionAvailableExplanation":
-            "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
+        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
         "downloadRelease": "Download release",
         "skipUpdate": "Skip update"
     },
