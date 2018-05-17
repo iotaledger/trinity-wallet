@@ -2,11 +2,16 @@ import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+/* eslint-disable import/no-unresolved */
+// FIXME: Get rid of this disabled eslint rule once imports for this file are resolved.
+
 import DefaultWave from 'themes/waves/Default.png';
 import MintWave from 'themes/waves/Mint.png';
 import IonicWave from 'themes/waves/Ionic.png';
 import ElectricWave from 'themes/waves/Electric.png';
 import SteelBlueWave from 'themes/waves/SteelBlue.png';
+
+/* eslint-enable import/no-unresolved */
 
 /**
  * Theming style provider component
