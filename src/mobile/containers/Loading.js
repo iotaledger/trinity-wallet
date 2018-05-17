@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import timer from 'react-native-timer';
 import whiteLoadingAnimation from 'iota-wallet-shared-modules/animations/loading-white.json';
 import blackLoadingAnimation from 'iota-wallet-shared-modules/animations/loading-black.json';
@@ -17,6 +17,7 @@ import {
     getFullAccountInfoFirstSeed,
     getFullAccountInfoAdditionalSeed,
 } from 'iota-wallet-shared-modules/actions/accounts';
+import { setLoginRoute } from 'iota-wallet-shared-modules/actions/ui';
 import tinycolor from 'tinycolor2';
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
 import { Navigation } from 'react-native-navigation';
@@ -25,6 +26,7 @@ import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
+import GENERAL from '../theme/general';
 import { getSeedFromKeychain, storeSeedInKeychain } from '../utils/keychain';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import { getAddressGenFn, getMultiAddressGenFn } from '../utils/nativeModules';
@@ -39,7 +41,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     infoText: {
-        fontFamily: 'SourceSansPro-Light',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 25.9,
         backgroundColor: 'transparent',
         textAlign: 'center',
@@ -66,6 +68,35 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
     },
+    changeNodeButton: {
+        borderWidth: 1.5,
+        borderRadius: GENERAL.borderRadius,
+        width: width / 2.7,
+        height: height / 17,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'transparent',
+    },
+    nodeChangeButton: {
+        borderWidth: 1.2,
+        borderRadius: GENERAL.borderRadius,
+        width: width / 2.7,
+        height: height / 14,
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        marginTop: height / 50,
+    },
+    nodeChangeText: {
+        fontFamily: 'SourceSansPro-Regular',
+        fontSize: width / 24.4,
+        backgroundColor: 'transparent',
+    },
+    nodeChangeContainer: {
+        position: 'absolute',
+        bottom: height / 20,
+        alignItems: 'center',
+        justifyContent: 'center'
+    }
 });
 
 /** Loading screen component */
@@ -144,6 +175,10 @@ class Loading extends Component {
         generateAlert: PropTypes.func.isRequired,
         /** If user has opened a deep link */
         deepLinkActive: PropTypes.bool.isRequired,
+        /** Sets which login page should be displayed
+         * @param {string} route - current route
+         */
+        setLoginRoute: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -151,7 +186,9 @@ class Loading extends Component {
         this.state = {
             elipsis: '',
             animationPartOneDone: false,
+            displayNodeChangeOption: false
         };
+        this.onChangeNodePress = this.onChangeNodePress.bind(this);
     }
 
     componentDidMount() {
@@ -169,6 +206,7 @@ class Loading extends Component {
         this.animation.play();
         if (!firstUse && !addingAdditionalAccount) {
             this.setAnimationOneTimout();
+            timer.setTimeout('waitTimeout', () => this.onWaitTimeout(), 10000);
         }
         this.getWalletData();
         if ((firstUse || addingAdditionalAccount) && !isAndroid) {
@@ -264,6 +302,32 @@ class Loading extends Component {
         this.clearTimeouts();
     }
 
+    onWaitTimeout() {
+        this.setState({ displayNodeChangeOption: true });
+    }
+
+    onChangeNodePress() {
+        const { theme: { body } } = this.props;
+        this.props.setLoginRoute('nodeSelection');
+        Navigation.startSingleScreenApp({
+            screen: {
+                screen: 'login',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    topBarElevationShadowEnabled: false,
+                    screenBackgroundColor: body.bg,
+                    drawUnderStatusBar: true,
+                    statusBarColor: body.bg,
+                },
+            },
+            appStyle: {
+                orientation: 'portrait',
+                keepStyleAcrossPush: true,
+            },
+        });
+    }
+
     getWalletData() {
         const { currency } = this.props;
         this.props.getPrice();
@@ -286,6 +350,7 @@ class Loading extends Component {
             clearTimeout(this.timeout);
         }
         timer.clearTimeout('animationTimeout');
+        timer.clearTimeout('waitTimeout');
     }
 
     animateElipses = (chars, index, time = 750) => {
@@ -297,15 +362,19 @@ class Loading extends Component {
     };
 
     render() {
-        const { firstUse, t, addingAdditionalAccount, theme: { body } } = this.props;
+        const { firstUse, t, addingAdditionalAccount, theme: { body, primary } } = this.props;
+        const { displayNodeChangeOption } = this.state;
         const textColor = { color: body.color };
-        const loadingAnimationPath = tinycolor(body.bg).isDark() ? whiteLoadingAnimation : blackLoadingAnimation;
-        const welcomeAnimationPartOnePath = tinycolor(body.bg).isDark()
-            ? whiteWelcomeAnimationPartOne
-            : blackWelcomeAnimationPartOne;
-        const welcomeAnimationPartTwoPath = tinycolor(body.bg).isDark()
-            ? whiteWelcomeAnimationPartTwo
-            : blackWelcomeAnimationPartTwo;
+        const isBgLight = tinycolor(body.bg).isLight();
+        const loadingAnimationPath = isBgLight ? blackLoadingAnimation : whiteLoadingAnimation;
+        const welcomeAnimationPartOnePath = isBgLight
+            ? blackWelcomeAnimationPartOne
+            : whiteWelcomeAnimationPartOne;
+        const welcomeAnimationPartTwoPath = isBgLight
+            ? blackWelcomeAnimationPartTwo
+            : whiteWelcomeAnimationPartTwo;
+            const primaryTextColor = { color: primary.color };
+            const borderColor = { borderColor: primary.color };
 
         if (firstUse || addingAdditionalAccount) {
             return (
@@ -366,6 +435,16 @@ class Loading extends Component {
                             />
                         )}
                     </View>
+                    { displayNodeChangeOption &&
+                        <View style={styles.nodeChangeContainer}>
+                            <Text style={[styles.infoText, textColor]}>{t('takingAWhile')}...</Text>
+                            <TouchableOpacity onPress={this.onChangeNodePress}>
+                                <View style={[styles.nodeChangeButton, borderColor]}>
+                                    <Text style={[styles.nodeChangeText, primaryTextColor]}>{t('global:changeNode').toUpperCase()}</Text>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
+                    }
                 </View>
             </View>
         );
@@ -396,6 +475,7 @@ const mapDispatchToProps = {
     getChartData,
     getCurrencyData,
     generateAlert,
+    setLoginRoute
 };
 
-export default translate('loading')(connect(mapStateToProps, mapDispatchToProps)(Loading));
+export default translate(['loading', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Loading));
