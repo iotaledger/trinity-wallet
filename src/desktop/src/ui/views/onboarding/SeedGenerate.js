@@ -156,7 +156,7 @@ class GenerateSeed extends React.PureComponent {
                         className="square"
                         variant="primary"
                     >
-                        {!newSeed && clicks < 10 ? `Randomise ${clicksLeft} characters to continue` : t('continue')}
+                        {!newSeed && clicksLeft > 0 ? `Randomise ${clicksLeft} characters to continue` : t('continue')}
                     </Button>
                 </footer>
             </form>

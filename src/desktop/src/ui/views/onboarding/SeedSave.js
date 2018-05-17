@@ -172,7 +172,7 @@ class SeedSave extends PureComponent {
                                     );
                                 })}
                             <text x="373" y="735">
-                                {getChecksum(seed)}
+                                {seed ? getChecksum(seed) : null}
                             </text>
                         </svg>
                     )}
