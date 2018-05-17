@@ -84,6 +84,12 @@ const fetchNodeList = (store) => {
     store.dispatch(fetchNodes());
 };
 
+/**
+ *  Listens to connection changes and updates store on connection change
+ *
+ *   @method startListeningToConnectivityChanges
+ *   @param {object} store - redux store object
+ **/
 const startListeningToConnectivityChanges = (store) => {
     const checkConnection = (isConnected) => {
         store.dispatch({
@@ -93,6 +99,29 @@ const startListeningToConnectivityChanges = (store) => {
     };
 
     NetInfo.isConnected.addEventListener('connectionChange', checkConnection);
+};
+
+/**
+ *  Determines if device has connection.
+ *
+ *   @method startListeningToConnectivityChanges
+ *   @param {string} url
+ *   @param {object} options
+ *
+ *   @returns {Promise}
+ **/
+const hasConnection = (url, options = { fallbackUrl: 'https://www.baidu.com' }) => {
+    return NetInfo.getConnectionInfo().then(() =>
+        fetch(url, { timeout: 3000 })
+            .then((response) => response.status === 200)
+            .catch(() => {
+                if (url !== options.fallbackUrl) {
+                    return hasConnection(options.fallbackUrl);
+                }
+
+                return false;
+            }),
+    );
 };
 
 // Initialization function
@@ -113,11 +142,5 @@ export default (store) => {
         renderInitialScreen(store);
     };
 
-    NetInfo.getConnectionInfo().then(() =>
-        fetch('https://www.google.com')
-            .then((response) => {
-                initialize(response.status === 200);
-            })
-            .catch(() => initialize(false)),
-    );
+    hasConnection('https://www.google.com').then((isConnected) => initialize(isConnected));
 };
