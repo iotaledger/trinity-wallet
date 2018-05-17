@@ -121,6 +121,8 @@ class TopBar extends Component {
         mode: PropTypes.oneOf(['Expert', 'Standard']).isRequired,
         /** Determines if the application is minimised */
         minimised: PropTypes.bool.isRequired,
+        /** Determines if there is already a network call going on for fetching latest acocunt info */
+        isFetchingLatestAccountInfo: PropTypes.bool.isRequired,
     };
 
     static filterSeedTitles(accountNames, currentSeedIndex) {
@@ -199,8 +201,8 @@ class TopBar extends Component {
     }
 
     shouldDisable() {
-        const { isGeneratingReceiveAddress, isSendingTransfer, isSyncing, isTransitioning } = this.props;
-        return isGeneratingReceiveAddress || isSendingTransfer || isSyncing || isTransitioning;
+        const { isGeneratingReceiveAddress, isSendingTransfer, isSyncing, isTransitioning, isFetchingLatestAccountInfo } = this.props;
+        return isGeneratingReceiveAddress || isSendingTransfer || isSyncing || isTransitioning || isFetchingLatestAccountInfo;
     }
 
     showModal() {
@@ -503,6 +505,7 @@ const mapStateToProps = (state) => ({
     bar: state.settings.theme.bar,
     primary: state.settings.theme.primary,
     notificationLog: state.alerts.notificationLog,
+    isFetchingLatestAccountInfo: state.ui.isFetchingLatestAccountInfoOnLogin,
 });
 
 const mapDispatchToProps = {

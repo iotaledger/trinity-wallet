@@ -17,6 +17,7 @@ import size from 'lodash/size';
 import pickBy from 'lodash/pickBy';
 import omitBy from 'lodash/omitBy';
 import flatMap from 'lodash/flatMap';
+import union from 'lodash/union';
 import { iota } from './index';
 import { getBalancesAsync, wereAddressesSpentFromAsync } from './extendedApi';
 
@@ -71,8 +72,8 @@ const removeUnusedAddresses = (resolve, reject, index, latestAddress, finalAddre
  *
  *   @method getFullAddressHistory
  *   @param {string} seed
- *   @param {object} [addressesOpts={index: 0, total: 10, returnAll: true, security: 2}] - Default options for address generation
- *   @returns {promise}
+ *   @param {function} genFn
+ *   @returns {Promise}
  **/
 export const getFullAddressHistory = (seed, genFn) => {
     return new Promise((res, rej) => {
@@ -91,10 +92,12 @@ export const getFullAddressHistory = (seed, genFn) => {
  *   @param {function} reject
  *   @param {string} seed
  *   @param {object} [opts={index: 0, total: 10, returnAll: true, security: 2}]
+ *   @param {function} genFn
  *   @param {array} allAddresses
- *   @returns {array} All addresses
+ *   @param {array} transactionHashes
+ *
  **/
-const getAddressesUptoLatestUnused = (resolve, reject, seed, opts, genFn, allAddresses) => {
+const getAddressesUptoLatestUnused = (resolve, reject, seed, opts, genFn, allAddresses, transactionHashes = []) => {
     getNewAddress(seed, opts, genFn, (err, addresses) => {
         if (err) {
             reject(err);
@@ -103,7 +106,15 @@ const getAddressesUptoLatestUnused = (resolve, reject, seed, opts, genFn, allAdd
                 if (size(hashes)) {
                     allAddresses = [...allAddresses, ...addresses];
                     const newOpts = assign({}, opts, { index: opts.total + opts.index });
-                    getAddressesUptoLatestUnused(resolve, reject, seed, newOpts, genFn, allAddresses);
+                    getAddressesUptoLatestUnused(
+                        resolve,
+                        reject,
+                        seed,
+                        newOpts,
+                        genFn,
+                        allAddresses,
+                        union(transactionHashes, hashes)
+                    );
                 } else {
                     // Traverse backwards to remove all unused addresses
                     new Promise((res, rej) => {
@@ -116,7 +127,10 @@ const getAddressesUptoLatestUnused = (resolve, reject, seed, opts, genFn, allAdd
                         removeUnusedAddresses(res, rej, lastAddressIndex, latestAddress, allAddresses.slice());
                     })
                         .then((finalAddresses) => {
-                            return resolve(finalAddresses);
+                            resolve({
+                                addresses: finalAddresses,
+                                hashes: transactionHashes
+                            });
                         })
                         .catch((err) => reject(err));
                 }
