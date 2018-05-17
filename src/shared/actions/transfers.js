@@ -300,9 +300,9 @@ export const forceTransactionPromotion = (accountName, consistentTail, tails, sh
                 dispatch(updateAccountAfterReattachment(newState));
 
                 const tailTransaction = find(reattachment, { currentIndex: 0 });
-                return new Promise((resolve) => setTimeout(() => resolve(tailTransaction), 2000));
-            })
-            .then((tailTransaction) => promoteTransactionAsync(tailTransaction.hash));
+
+                return promoteTransactionAsync(tailTransaction.hash);
+            });
     }
 
     return promoteTransactionAsync(consistentTail.hash);
