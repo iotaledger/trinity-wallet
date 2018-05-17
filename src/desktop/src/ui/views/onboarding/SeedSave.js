@@ -177,7 +177,7 @@ class SeedSave extends PureComponent {
                         </svg>
                     )}
                     {seed ? <QRCode value={seed} size={200} /> : null}
-                    <img width="100%" height="100%" src={writeVisible ? paperWallet : wallets.paperWalletFilled} />
+                    <img width="auto" height="100vh" src={writeVisible ? paperWallet : wallets.paperWalletFilled} />
                 </div>
             </form>
         );
