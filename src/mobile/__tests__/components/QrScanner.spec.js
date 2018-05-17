@@ -14,7 +14,7 @@ const getProps = (overrides) =>
             t: () => '',
             onQRRead: noop,
             hideModal: noop,
-            body: {},
+            body: { bg: '#ffffff' },
             primary: {},
         },
         overrides,
