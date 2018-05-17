@@ -98,12 +98,11 @@ const startListeningToConnectivityChanges = (store) => {
 // Initialization function
 // Passed as a callback to persistStore to adjust the rendering time
 export default (store) => {
-    NetInfo.isConnected.fetch().then((isConnected) => {
+    const initialize = (isConnected) => {
         store.dispatch({
             type: ActionTypes.CONNECTION_CHANGED,
             payload: { isConnected },
         });
-
         fetchNodeList(store);
         startListeningToConnectivityChanges(store);
 
@@ -112,5 +111,13 @@ export default (store) => {
 
         setRandomIotaNode(store);
         renderInitialScreen(store);
-    });
+    };
+
+    NetInfo.getConnectionInfo().then(() =>
+        fetch('https://www.google.com')
+            .then((response) => {
+                initialize(response.status === 200);
+            })
+            .catch(() => initialize(false)),
+    );
 };

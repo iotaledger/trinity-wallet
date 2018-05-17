@@ -35,9 +35,9 @@ import {
     updateAccountAfterReattachment,
     updateAccountInfoAfterSpending,
     syncAccountBeforeManualPromotion,
-    syncAccountBeforeManualRebroadcast
+    syncAccountBeforeManualRebroadcast,
 } from './accounts';
-import { shouldAllowSendingToAddress, syncAddresses, getAddressesUptoRemainder } from '../libs/iota/addresses';
+import { shouldAllowSendingToAddress, getAddressesUptoRemainder } from '../libs/iota/addresses';
 import { getStartingSearchIndexToPrepareInputs, getUnspentInputs } from '../libs/iota/inputs';
 import { generateAlert, generateTransferErrorAlert, generatePromotionErrorAlert } from './alerts';
 import i18next from '../i18next.js';
@@ -60,7 +60,7 @@ const broadcastBundleRequest = () => ({
 });
 
 const broadcastBundleSuccess = () => ({
-    type: ActionTypes.BROADCAST_BUNDLE_SUCCESS
+    type: ActionTypes.BROADCAST_BUNDLE_SUCCESS,
 });
 
 const broadcastBundleError = () => ({
@@ -73,7 +73,7 @@ const promoteTransactionRequest = (payload) => ({
 });
 
 const promoteTransactionSuccess = () => ({
-    type: ActionTypes.PROMOTE_TRANSACTION_SUCCESS
+    type: ActionTypes.PROMOTE_TRANSACTION_SUCCESS,
 });
 
 const promoteTransactionError = () => ({
@@ -142,7 +142,7 @@ export const broadcastBundle = (bundleHash, accountName) => (dispatch, getState)
                 generateAlert(
                     'success',
                     i18next.t('global:rebroadcasted'),
-                    i18next.t('global:rebroadcastedExplanation', { hash })
+                    i18next.t('global:rebroadcastedExplanation', { hash }),
                 ),
             );
 
@@ -150,9 +150,17 @@ export const broadcastBundle = (bundleHash, accountName) => (dispatch, getState)
         })
         .catch((err) => {
             if (err.message === Errors.BUNDLE_NO_LONGER_VALID && chainBrokenInternally) {
-                dispatch(generateAlert('error', i18next.t('global:rebroadcastError'), i18next.t('global:noLongerValid')));
+                dispatch(
+                    generateAlert('error', i18next.t('global:rebroadcastError'), i18next.t('global:noLongerValid')),
+                );
             } else if (err.message === Errors.TRANSACTION_ALREADY_CONFIRMED && chainBrokenInternally) {
-                dispatch(generateAlert('success', i18next.t('global:transactionAlreadyConfirmed'), i18next.t('global:transactionAlreadyConfirmedExplanation')));
+                dispatch(
+                    generateAlert(
+                        'success',
+                        i18next.t('global:transactionAlreadyConfirmed'),
+                        i18next.t('global:transactionAlreadyConfirmedExplanation'),
+                    ),
+                );
             } else {
                 dispatch(
                     generateAlert(
@@ -187,7 +195,8 @@ export const promoteTransaction = (bundleHash, accountName) => (dispatch, getSta
             }
 
             return isStillAValidTransaction(transaction, accountState.addresses);
-        }).then((isValid) => {
+        })
+        .then((isValid) => {
             if (!isValid) {
                 chainBrokenInternally = true;
                 throw new Error(Errors.BUNDLE_NO_LONGER_VALID);
@@ -197,13 +206,15 @@ export const promoteTransaction = (bundleHash, accountName) => (dispatch, getSta
 
             return getFirstConsistentTail(tailTransactions, 0);
         })
-        .then((consistentTail) => dispatch(
-            forceTransactionPromotion(
-                accountName,
-                consistentTail,
-                accountState.transfers[bundleHash].tailTransactions,
-                true
-            ))
+        .then((consistentTail) =>
+            dispatch(
+                forceTransactionPromotion(
+                    accountName,
+                    consistentTail,
+                    accountState.transfers[bundleHash].tailTransactions,
+                    true,
+                ),
+            ),
         )
         .then((hash) => {
             dispatch(
@@ -229,7 +240,13 @@ export const promoteTransaction = (bundleHash, accountName) => (dispatch, getSta
                     ),
                 );
             } else if (err.message === Errors.TRANSACTION_ALREADY_CONFIRMED && chainBrokenInternally) {
-                dispatch(generateAlert('success', i18next.t('global:transactionAlreadyConfirmed'), i18next.t('global:transactionAlreadyConfirmedExplanation')));
+                dispatch(
+                    generateAlert(
+                        'success',
+                        i18next.t('global:transactionAlreadyConfirmed'),
+                        i18next.t('global:transactionAlreadyConfirmedExplanation'),
+                    ),
+                );
             } else {
                 dispatch(generatePromotionErrorAlert(err));
             }
@@ -249,6 +266,8 @@ export const promoteTransaction = (bundleHash, accountName) => (dispatch, getSta
  *   @param {string} accountName
  *   @param {boolean} consistentTail
  *   @param {array} tails
+ *   @param {boolean} shouldGenerateAlert
+ *
  *   @returns {Promise}
  **/
 export const forceTransactionPromotion = (accountName, consistentTail, tails, shouldGenerateAlert) => (
@@ -260,30 +279,29 @@ export const forceTransactionPromotion = (accountName, consistentTail, tails, sh
         const topTx = head(tails);
         const hash = topTx.hash;
 
-        return replayBundleAsync(hash)
-            .then((reattachment) => {
-                if (shouldGenerateAlert) {
-                    dispatch(
-                        generateAlert(
-                            'success',
-                            i18next.t('global:reattached'),
-                            i18next.t('global:reattachedExplanation', { hash }),
-                            2500,
-                        ),
-                    );
-                }
+        return replayBundleAsync(hash).then((reattachment) => {
+            if (shouldGenerateAlert) {
+                dispatch(
+                    generateAlert(
+                        'success',
+                        i18next.t('global:reattached'),
+                        i18next.t('global:reattachedExplanation', { hash }),
+                        2500,
+                    ),
+                );
+            }
 
-                const existingAccountState = selectedAccountStateFactory(accountName)(getState());
+            const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
-                return syncAccountAfterReattachment(accountName, reattachment, existingAccountState);
-            })
-            .then(({ newState, reattachment }) => {
-                dispatch(updateAccountAfterReattachment(newState));
+            const { newState } = syncAccountAfterReattachment(accountName, reattachment, existingAccountState);
 
-                const tailTransaction = find(reattachment, { currentIndex: 0 });
+            // Update local store
+            dispatch(updateAccountAfterReattachment(newState));
 
-                return new Promise((resolve) => setTimeout(() => resolve(tailTransaction), 1000));
-            }).then((tailTransaction) => promoteTransactionAsync(tailTransaction.hash));
+            const tailTransaction = find(reattachment, { currentIndex: 0 });
+
+            return promoteTransactionAsync(tailTransaction.hash);
+        });
     }
 
     return promoteTransactionAsync(consistentTail.hash);
@@ -318,17 +336,14 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
         return shouldAllowSendingToAddress([address])
             .then((shouldAllowSending) => {
                 if (shouldAllowSending) {
-                    return syncAddresses(seed, accountState, genFn, true);
+                    // Syncing account
+                    dispatch(setNextStepAsActive());
+
+                    return syncAccount(accountState, seed, true, genFn, true);
                 }
 
                 chainBrokenInternally = true;
                 throw new Error(Errors.KEY_REUSE);
-            })
-            .then((newState) => {
-                // Syncing account
-                dispatch(setNextStepAsActive());
-
-                return syncAccount(newState);
             })
             .then((newState) => {
                 // Assign latest account but do not update the local store yet.
@@ -446,8 +461,14 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
 
                 return storeAndBroadcastAsync(cached.trytes);
             })
-            .then(() => syncAccountAfterSpending(accountName, cached.transactionObjects, accountState, !isZeroValue))
-            .then(({ newState }) => {
+            .then(() => {
+                const { newState } = syncAccountAfterSpending(
+                    accountName,
+                    cached.transactionObjects,
+                    accountState,
+                    !isZeroValue,
+                );
+
                 // Progress summary
                 dispatch(setNextStepAsActive());
 
@@ -455,7 +476,7 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 dispatch(updateAccountInfoAfterSpending(newState));
 
                 // Delay dispatching alerts to display the progress summary
-                return setTimeout(() => {
+                setTimeout(() => {
                     if (isZeroValue) {
                         dispatch(
                             generateAlert(
