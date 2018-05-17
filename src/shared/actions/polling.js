@@ -35,7 +35,13 @@ export const ActionTypes = {
     PROMOTE_TRANSACTION_SUCCESS: 'IOTA/POLLING/PROMOTE_TRANSACTION_SUCCESS',
     PROMOTE_TRANSACTION_ERROR: 'IOTA/POLLING/PROMOTE_TRANSACTION_ERROR',
     SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION: 'IOTA/POLLING/SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION',
+    SET_AUTOPROMOTION_ALERT_FLAG: 'IOTA/POLLING/SET_AUTOPROMOTION_ALERT_FLAG'
 };
+
+export const setAutoPromotionAlertFlag = (payload) => ({
+    type: ActionTypes.SET_AUTOPROMOTION_ALERT_FLAG,
+    payload,
+});
 
 const fetchPriceRequest = () => ({
     type: ActionTypes.FETCH_PRICE_REQUEST,
@@ -301,8 +307,14 @@ export const promoteTransfer = (bundleHash, seenTailTransactions) => (dispatch, 
 
             return dispatch(promoteTransactionSuccess());
         })
-        .catch(() => {
-            dispatch(generateAutopromotionErrorAlert());
+        .catch((err) => {
+            if (err.message.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)){
+                // FIXME: Temporary solution until local/remote PoW is reworked on auto-promotion
+                if (!getState().ui.hasGeneratedAutopromotionAlert){
+                    dispatch(generateAutopromotionErrorAlert());
+                }
+                dispatch(setAutoPromotionAlertFlag(true));
+            }
             dispatch(promoteTransactionError());
         });
 };
