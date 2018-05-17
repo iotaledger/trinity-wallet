@@ -4,10 +4,11 @@ import { translate, Trans } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, TouchableHighlight, FlatList, BackHandler, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { randomiseSeed, setSeed, clearSeed } from 'iota-wallet-shared-modules/actions/wallet';
+import { setSeed, clearSeed } from 'iota-wallet-shared-modules/actions/wallet';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/iota/utils';
 import { generateSecureRandom } from 'react-native-securerandom';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import { generateNewSeed, randomiseSeedCharacter } from 'iota-wallet-shared-modules/libs/crypto';
 import { Navigation } from 'react-native-navigation';
 import Modal from 'react-native-modal';
 import CtaButton from '../components/CtaButton';
@@ -124,10 +125,6 @@ class NewSeedSetup extends Component {
          * @param {string} seed
          */
         setSeed: PropTypes.func.isRequired,
-        /** Randomise seed
-         * @param {function} generateSecureRandom
-         */
-        randomiseSeed: PropTypes.func.isRequired,
         /** Generate a notification alert
          * @param {string} type - notification type - success, error
          * @param {string} title - notification title
@@ -174,16 +171,25 @@ class NewSeedSetup extends Component {
         }
     }
 
-    onGeneratePress() {
+    async onGeneratePress() {
         const { t } = this.props;
-        this.props.randomiseSeed(generateSecureRandom);
+        const seed = await generateNewSeed(generateSecureRandom);
+        this.props.setSeed(seed);
         this.setState({ randomised: true });
         this.props.generateAlert('success', t('generateSuccess'), t('individualLetters'));
     }
 
+    async onCharPress(sectionID) {
+        const { seed } = this.props;
+        const { randomised } = this.state;
+        if (randomised) {
+            const updatedSeed = await randomiseSeedCharacter(seed, sectionID, generateSecureRandom);
+            this.props.setSeed(updatedSeed);
+        }
+    }
+
     onNextPress() {
         const { t, theme: { body } } = this.props;
-
         if (this.state.randomised) {
             this.props.navigator.push({
                 screen: 'saveYourSeed',
@@ -223,28 +229,6 @@ class NewSeedSetup extends Component {
         } else {
             // FIXME: A quick workaround to stop UI text fields breaking on android due to react-native-navigation.
             this.goBack();
-        }
-    }
-
-    onItemPress(sectionID) {
-        if (this.state.randomised) {
-            const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9';
-            generateSecureRandom(5).then((bytes) => {
-                let i = 0;
-                let seed = this.props.seed;
-                Object.keys(bytes).forEach((key) => {
-                    if (bytes[key] < 243 && i < 1) {
-                        const randomNumber = bytes[key] % 27;
-                        const randomLetter = charset.charAt(randomNumber);
-                        const substr1 = seed.substr(0, sectionID);
-                        sectionID++;
-                        const substr2 = seed.substr(sectionID, 80);
-                        seed = substr1 + randomLetter + substr2;
-                        i++;
-                    }
-                });
-                this.props.setSeed(seed);
-            });
         }
     }
 
@@ -326,7 +310,7 @@ class NewSeedSetup extends Component {
 
         return (
             <TouchableHighlight
-                onPress={() => this.onItemPress(index)}
+                onPress={() => this.onCharPress(index)}
                 style={[styles.tileContainer, { backgroundColor: input.bg }]}
                 underlayColor={primary.color}
                 hitSlop={{ top: height / 80, bottom: height / 80, left: height / 80, right: height / 80 }}
@@ -341,7 +325,7 @@ class NewSeedSetup extends Component {
     }
 
     render() {
-        const { seed, t, theme: { primary, body } } = this.props;
+        const { t, theme: { primary, body }, seed } = this.props;
         const { isModalActive } = this.state;
         const viewOpacity = this.state.randomised ? 1 : 0.2;
         const opacity = this.state.randomised ? 1 : 0.1;
@@ -427,7 +411,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     setSeed,
     clearSeed,
-    randomiseSeed,
     generateAlert,
 };
 

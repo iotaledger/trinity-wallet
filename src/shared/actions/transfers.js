@@ -235,8 +235,8 @@ export const promoteTransaction = (bundleHash, accountName) => (dispatch, getSta
                     generateAlert(
                         'error',
                         i18next.t('global:attachToTangleUnavailable'),
-                        i18next.t('global:attachToTangleUnavailableExplanation'),
-                        20000,
+                        i18next.t('global:attachToTangleUnavailableExplanationShort'),
+                        10000,
                     ),
                 );
             } else if (err.message === Errors.TRANSACTION_ALREADY_CONFIRMED && chainBrokenInternally) {
@@ -279,30 +279,29 @@ export const forceTransactionPromotion = (accountName, consistentTail, tails, sh
         const topTx = head(tails);
         const hash = topTx.hash;
 
-        return replayBundleAsync(hash)
-            .then((reattachment) => {
-                if (shouldGenerateAlert) {
-                    dispatch(
-                        generateAlert(
-                            'success',
-                            i18next.t('global:reattached'),
-                            i18next.t('global:reattachedExplanation', { hash }),
-                            2500,
-                        ),
-                    );
-                }
+        return replayBundleAsync(hash).then((reattachment) => {
+            if (shouldGenerateAlert) {
+                dispatch(
+                    generateAlert(
+                        'success',
+                        i18next.t('global:reattached'),
+                        i18next.t('global:reattachedExplanation', { hash }),
+                        2500,
+                    ),
+                );
+            }
 
-                const existingAccountState = selectedAccountStateFactory(accountName)(getState());
+            const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
-                const { newState } = syncAccountAfterReattachment(accountName, reattachment, existingAccountState);
+            const { newState } = syncAccountAfterReattachment(accountName, reattachment, existingAccountState);
 
-                // Update local store
-                dispatch(updateAccountAfterReattachment(newState));
+            // Update local store
+            dispatch(updateAccountAfterReattachment(newState));
 
-                const tailTransaction = find(reattachment, { currentIndex: 0 });
+            const tailTransaction = find(reattachment, { currentIndex: 0 });
 
-                return promoteTransactionAsync(tailTransaction.hash);
-            });
+            return promoteTransactionAsync(tailTransaction.hash);
+        });
     }
 
     return promoteTransactionAsync(consistentTail.hash);

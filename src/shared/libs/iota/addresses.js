@@ -105,15 +105,10 @@ const getAddressesUptoLatestUnused = (resolve, reject, seed, opts, genFn, allAdd
                 if (size(hashes)) {
                     allAddresses = [...allAddresses, ...addresses];
                     const newOpts = assign({}, opts, { index: opts.total + opts.index });
-                    getAddressesUptoLatestUnused(
-                        resolve,
-                        reject,
-                        seed,
-                        newOpts,
-                        genFn,
-                        allAddresses,
-                        [...transactionHashes, ...hashes],
-                    );
+                    getAddressesUptoLatestUnused(resolve, reject, seed, newOpts, genFn, allAddresses, [
+                        ...transactionHashes,
+                        ...hashes,
+                    ]);
                 } else {
                     // Traverse backwards to remove all unused addresses
                     new Promise((res, rej) => {
