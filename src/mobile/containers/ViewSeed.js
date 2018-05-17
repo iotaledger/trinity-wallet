@@ -13,7 +13,7 @@ import { getSeedFromKeychain } from '../utils/keychain';
 import { getPasswordHash } from '../utils/crypto';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
-import OnboardingButtons from '../containers/OnboardingButtons';
+import GENERAL from '../theme/general';
 import CtaButton from '../components/CtaButton';
 import InfoBox from '../components/InfoBox';
 
@@ -86,6 +86,19 @@ const styles = StyleSheet.create({
         fontFamily: 'SourceSansPro-Bold',
         fontSize: width / 27.6,
         textAlign: 'left',
+        backgroundColor: 'transparent',
+    },
+    viewSeedButton: {
+        borderWidth: 1.2,
+        borderRadius: GENERAL.borderRadius,
+        width: width / 3,
+        height: height / 14,
+        alignItems: 'center',
+        justifyContent: 'space-around',
+    },
+    viewSeedText: {
+        fontFamily: 'SourceSansPro-Light',
+        fontSize: width / 24.4,
         backgroundColor: 'transparent',
     },
 });
@@ -256,15 +269,14 @@ class ViewSeed extends Component {
                                                 <Text style={styles.infoText}>{t('walletSetup:seedThief')} </Text>
                                                 <Text style={styles.infoTextBold}>{t('walletSetup:keepSafe')} </Text>
                                             </Text>
-                                            <View style={{ paddingTop: height / 15 }}>
-                                                <OnboardingButtons
-                                                    onLeftButtonPress={() => this.props.setSetting('accountManagement')}
-                                                    onRightButtonPress={() => this.setState({ isConfirming: false })}
-                                                    leftText={t('global:back')}
-                                                    rightText={t('viewSeed:viewSeed')}
-                                                    containerWidth={{ width: width / 1.28 }}
-                                                    buttonWidth={{ width: width / 2.8 }}
-                                                />
+                                            <View style={{ paddingTop: height / 20, alignItems: 'center' }}>
+                                                <TouchableOpacity onPress={() => this.setState({ isConfirming: false })}>
+                                                    <View style={[styles.viewSeedButton, { borderColor: theme.primary.color }]}>
+                                                        <Text style={[styles.viewSeedText, { color: theme.primary.color }]}>
+                                                            {t('viewSeed:viewSeed')}
+                                                        </Text>
+                                                    </View>
+                                                </TouchableOpacity>
                                             </View>
                                         </View>
                                     }
