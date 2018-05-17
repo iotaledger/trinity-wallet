@@ -156,6 +156,7 @@ const account = (
                         balance: action.payload.balance,
                         addresses: action.payload.addresses,
                         transfers: action.payload.transfers,
+                        hashes: action.payload.hashes
                     },
                 },
                 unconfirmedBundleTails: merge(
