@@ -286,7 +286,7 @@ export class MainSettings extends Component {
                     >
                         <View style={styles.item}>
                             <Icon name="info" size={width / 22} color={bodyColor} />
-                            <Text style={[styles.titleText, textColor]}>{t('about')}</Text>
+                            <Text style={[styles.titleText, textColor]}>{t('aboutTrinity')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>

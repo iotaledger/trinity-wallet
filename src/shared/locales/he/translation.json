@@ -18,9 +18,12 @@
         "keyReuseError": "אתה לא יכול לשלוח לכתובת שכבר בוצעה ממנה העברה.",
         "invalidResponse": "Node error",
         "invalidResponseExplanation": "The node returned an error. Check the notifications for more information.",
-        "invalidResponsePollingExplanation": "The node returned an error while polling. Check the notifications for more information.",
-        "invalidResponseFetchingAccount": "The node returned an error while fetching your account information. Try changing your node or check the notifications for more information.",
-        "invalidResponseSendingTransfer": "The node returned an error while sending the transfer. Check the notifications for more information.",
+        "invalidResponsePollingExplanation":
+            "The node returned an error while polling. Check the notifications for more information.",
+        "invalidResponseFetchingAccount":
+            "The node returned an error while fetching your account information. Try changing your node or check the notifications for more information.",
+        "invalidResponseSendingTransfer":
+            "The node returned an error while sending the transfer. Check the notifications for more information.",
         "seed": "סיד",
         "back": "חזור",
         "backLowercase": "חזור",
@@ -90,7 +93,8 @@
         "pleaseWait": "בבקשה המתן",
         "pleaseWaitEllipses": "Please wait...",
         "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
-        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again.",
+        "pleaseWaitTransferExplanation":
+            "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again.",
         "snapshotTransitionInProgress": "Snapshot transition in progress",
         "snapshotTransitionInProgressExplanation": "בבקשה המתן עד שהעברה תושלם.",
         "checkForUpdates": "חפש עדכונים",
@@ -110,14 +114,17 @@
         "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer",
         "masterKey": "Your IOTA seed is the master key to your funds.",
         "googlePlayServicesNotAvailable": "Google Play Services not available",
-        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available.",
+        "couldNotVerifyDeviceIntegrity":
+            "Could not verify device integrity because Google Play Services are not available.",
         "clear": "CLEAR"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "הסיד מכיל תווים לא חוקיים",
-        "seedInvalidCharsExplanation": "סיד יכול להיות מורכב רק מאותיות גדולות באנגלית והמספר 9. לסיד שלך יש תווים לא חוקיים. בבקשה נסה שוב.",
+        "seedInvalidCharsExplanation":
+            "סיד יכול להיות מורכב רק מאותיות גדולות באנגלית והמספר 9. לסיד שלך יש תווים לא חוקיים. בבקשה נסה שוב.",
         "seedTooShort": "הסיד קצר מידי",
-        "seedTooShortExplanation": "סידים חיבים להכיל {{maxLength}} תווים. הסיד שלך מכיל {{currentLength}} תווים. בבקשה נסה שוב.",
+        "seedTooShortExplanation":
+            "סידים חיבים להכיל {{maxLength}} תווים. הסיד שלך מכיל {{currentLength}} תווים. בבקשה נסה שוב.",
         "nameInUse": "שם חשבון זה כבר בשימוש",
         "nameInUseExplanation": "בבקשה בחר שם משתש שונה עבור הסיד שלך.",
         "enterAccountName": "הכנס שם לחשבון.",
@@ -139,7 +146,8 @@
         "passwordTooShort": "הסיסמה קצרה מדי",
         "passwordTooShortExplanation": "Your password must be at least 8 characters. Please try again.",
         "oldPassword": "אין אפשרות להגדיר את הסיסמה הישנה",
-        "oldPasswordExplanation": "אתה לא יכול להשתמש בסיסמה הישנה שלך בתור הסיסמה החדשה שלך. בבקשה נסה שוב עם סיסמה חדשה.",
+        "oldPasswordExplanation":
+            "אתה לא יכול להשתמש בסיסמה הישנה שלך בתור הסיסמה החדשה שלך. בבקשה נסה שוב עם סיסמה חדשה.",
         "ensureStrongPassword": "תוודא שאתה משתמש בסיסמה חזקה שמכילה לפחות 12 תווים.",
         "currentPassword": "סיסמה נוכחית",
         "newPassword": "סיסמה חדשה",
@@ -154,17 +162,21 @@
         "doNotStore": "אל תאחסן את הסיד שלך בעורך טקסט.",
         "copyToClipboard": "העתק סיד",
         "shareSeed": "שתף את הסיד שלך למנהל סיסמאות מאובטח",
-        "storeEncrypted": "If you choose to back-up your seed on your phone it should be stored encrypted e.g. in a password manager.",
+        "storeEncrypted":
+            "If you choose to back-up your seed on your phone it should be stored encrypted e.g. in a password manager.",
         "tapConfirm": "Please tap the checkbox below to confirm.",
         "encryptionCheckbox": "I will store my seed with encryption",
         "copy": "COPY"
     },
     "enterSeed": {
         "invalidCharacters": "הסיד מכיל תווים לא חוקיים",
-        "invalidCharactersExplanation": "סיד יכול להיות מורכב רק מאותיות גדולות באנגלית והמספר 9. לסיד שלך יש תווים לא חוקיים. בבקשה נסה שוב.",
+        "invalidCharactersExplanation":
+            "סיד יכול להיות מורכב רק מאותיות גדולות באנגלית והמספר 9. לסיד שלך יש תווים לא חוקיים. בבקשה נסה שוב.",
         "seedTooShort": "הסיד קצר מידי",
-        "seedTooShortExplanation": "סידים חיבים להכיל {{maxLength}} תווים. הסיד שלך מכיל {{currentLength}} תווים. בבקשה נסה שוב.",
-        "seedExplanation": "סידים צריכים להיות באורך של {{maxLength}} תווים, ולהיות מורכבים מאותיות גדולות באנגלית A-Z, או 9. אתה לא יכול להשתמש בסידים באורך שגדול מ{{maxLength}} תווים.",
+        "seedTooShortExplanation":
+            "סידים חיבים להכיל {{maxLength}} תווים. הסיד שלך מכיל {{currentLength}} תווים. בבקשה נסה שוב.",
+        "seedExplanation":
+            "סידים צריכים להיות באורך של {{maxLength}} תווים, ולהיות מורכבים מאותיות גדולות באנגלית A-Z, או 9. אתה לא יכול להשתמש בסידים באורך שגדול מ{{maxLength}} תווים.",
         "neverShare": "אף פעם אל תשתף את הסיד שלך עם אף אחד!!!"
     },
     "home": {
@@ -244,7 +256,8 @@
         "notEnoughFunds": "Insufficient funds",
         "notEnoughFundsExplanation": "אין לך מספיק מטבעות על מנת להשלים את העברה.",
         "keyReuse": "Key reuse",
-        "keyReuseExplanation": "The address you are trying to send to has already been used. Please try another address.",
+        "keyReuseExplanation":
+            "The address you are trying to send to has already been used. Please try another address.",
         "recipientAddress": "Recipient address",
         "amount": "Amount",
         "max": "MAX",
@@ -255,7 +268,8 @@
         "invalidMessageTooLongExplanation": "The message exceeds the max. amount of characters (1093).",
         "send": "שלח",
         "invalidAmount": "Incorrect amount entered",
-        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
+        "invalidAmountExplanation":
+            "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "MAXIMUM amount selected",
         "iotaUnits": "IOTA units explained",
         "sendMax": "שלח הכל",
@@ -263,11 +277,13 @@
     },
     "setPassword": {
         "passwordTooShort": "הסיסמה קצרה מדי",
-        "passwordTooShortExplanation": "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
+        "passwordTooShortExplanation":
+            "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
         "passwordMismatch": "הסיסמאות לא תואמות",
         "passwordMismatchExplanation": "The passwords you have entered do not match. Please try again.",
         "nowWeNeedTo": "Now we need to set up a password.",
-        "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
+        "anEncryptedCopy":
+            "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
         "ensure": "תוודא שאתה משתמש בסיסמה חזקה שמכילה לפחות 12 תווים.",
         "retypePassword": "Retype Password"
     },
@@ -278,8 +294,10 @@
     "modeSelection": {
         "expert": "Expert",
         "standard": "Standard",
-        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
-        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
+        "expertModeExplanation":
+            "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "modesExplanation":
+            "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "Transfer sending",
@@ -297,7 +315,7 @@
         "twoFA": "Two-factor authentication",
         "changePassword": "Change password",
         "advanced": "Advanced settings",
-        "about": "על הארנק",
+        "aboutTrinity": "על הארנק",
         "logout": "התנתק",
         "reset": "אפס ארנק",
         "syncingComplete": "הסינכרון הושלם",
@@ -340,7 +358,8 @@
         "okay": "אוקי. בוא נגדיר את הארנק שלך!",
         "doYouAlreadyHaveASeed": "יש לך כבר סיד שאתה רוצה להשתמש בו?",
         "seedExplanation": "הסיד הוא כמו שם המשתמש והסיסמה לחשבון שלך, שצורפו יחד לטקסט אחד עם של 81 תווים.",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
+        "explanation":
+            "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
         "keepSafe": "בבקשה שמור את הסיד שלך מבוטח.",
         "hint": "<0><0>Hint:</0> Click NO if this is your first time using IOTA.</0>"
     },
@@ -351,7 +370,8 @@
     },
     "writeSeedDown": {
         "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
-        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
+        "writeDownYourSeed":
+            "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
     },
     "history": {
         "bundleHashCopied": "Bundle hash copied",
@@ -418,7 +438,8 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Why can't I spend my full balance?",
-        "spentAddressExplanation": "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
+        "spentAddressExplanation":
+            "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
         "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
     },
     "deleteAccount": {
@@ -452,7 +473,8 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
-        "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
+        "warning":
+            "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Touch fingerprint reader to enable fingerprint authentication",
@@ -467,7 +489,8 @@
         "enabled": "פעיל",
         "disabled": "כבוי",
         "fingerprintUnavailable": "Biometric authenticatation unavailable",
-        "fingerprintUnavailableExplanation": "Your device does not support biometric authenticatation or it has not been configured in the device settings.",
+        "fingerprintUnavailableExplanation":
+            "Your device does not support biometric authenticatation or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
         "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID.",
@@ -550,7 +573,8 @@
         "noUpdatesAvailable": "No updates available",
         "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
         "newVersionAvailable": "New version available",
-        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
+        "newVersionAvailableExplanation":
+            "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
         "downloadRelease": "Download release",
         "skipUpdate": "Skip update"
     },
