@@ -677,7 +677,7 @@ export const syncTransfers = (diff, accountState) => {
 
             return {
                 transfers,
-                newNormalisedTransfers
+                newNormalisedTransfers,
             };
         });
 };

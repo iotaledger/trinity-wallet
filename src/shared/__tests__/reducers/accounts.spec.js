@@ -11,7 +11,7 @@ describe('Reducer: accounts', () => {
                 firstUse: true,
                 onboardingComplete: false,
                 accountInfo: {},
-                unconfirmedBundleTails: {}
+                unconfirmedBundleTails: {},
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
@@ -437,7 +437,7 @@ describe('Reducer: accounts', () => {
                 addresses: { baz: {} },
                 transfers: [{}],
                 balance: 100,
-                hashes: []
+                hashes: [],
             });
 
             const newState = reducer(initialState, action);
@@ -447,7 +447,7 @@ describe('Reducer: accounts', () => {
                         addresses: { foo: {}, baz: {} },
                         transfers: [{}],
                         balance: 100,
-                        hashes: []
+                        hashes: [],
                     },
                 },
             };
@@ -471,7 +471,7 @@ describe('Reducer: accounts', () => {
                 addresses: { baz: {} },
                 transfers: [[{}, {}], [{}, {}]],
                 balance: 100,
-                hashes: []
+                hashes: [],
             });
 
             const newState = reducer(initialState, action);
@@ -481,7 +481,7 @@ describe('Reducer: accounts', () => {
                         addresses: { foo: {}, baz: {} },
                         transfers: [[{}, {}], [{}, {}]],
                         balance: 100,
-                        hashes: []
+                        hashes: [],
                     },
                 },
             };
@@ -496,7 +496,7 @@ describe('Reducer: accounts', () => {
                         balance: 0,
                         transfers: {},
                         addresses: {},
-                        hashes: ['baz']
+                        hashes: ['baz'],
                     },
                 },
             };
@@ -505,7 +505,7 @@ describe('Reducer: accounts', () => {
                 accountName: 'foo',
                 hashes: ['baz', 'bar'],
                 transfers: {},
-                balance: 0
+                balance: 0,
             });
 
             const newState = reducer(initialState, action);
@@ -515,7 +515,7 @@ describe('Reducer: accounts', () => {
                         balance: 0,
                         transfers: {},
                         addresses: {},
-                        hashes: ['baz', 'bar']
+                        hashes: ['baz', 'bar'],
                     },
                 },
             };
@@ -558,7 +558,7 @@ describe('Reducer: accounts', () => {
                 addresses: { baz: {} },
                 transfers: [{}],
                 balance: 100,
-                hashes: []
+                hashes: [],
             });
 
             const newState = reducer(initialState, action);
@@ -568,7 +568,7 @@ describe('Reducer: accounts', () => {
                         addresses: { foo: {}, baz: {} },
                         transfers: [{}],
                         balance: 100,
-                        hashes: []
+                        hashes: [],
                     },
                 },
                 accountNames: [],
@@ -596,7 +596,7 @@ describe('Reducer: accounts', () => {
                 addresses: { baz: {} },
                 transfers: [[{}, {}], [{}, {}]],
                 balance: 100,
-                hashes: []
+                hashes: [],
             });
 
             const newState = reducer(initialState, action);
@@ -622,7 +622,7 @@ describe('Reducer: accounts', () => {
                         balance: 0,
                         transfers: {},
                         addresses: {},
-                        hashes: ['baz']
+                        hashes: ['baz'],
                     },
                 },
             };
@@ -631,7 +631,7 @@ describe('Reducer: accounts', () => {
                 accountName: 'foo',
                 hashes: ['baz', 'bar'],
                 transfers: {},
-                balance: 0
+                balance: 0,
             });
 
             const newState = reducer(initialState, action);
@@ -641,7 +641,7 @@ describe('Reducer: accounts', () => {
                         balance: 0,
                         transfers: {},
                         addresses: {},
-                        hashes: ['baz', 'bar']
+                        hashes: ['baz', 'bar'],
                     },
                 },
             };
@@ -702,7 +702,7 @@ describe('Reducer: accounts', () => {
         'IOTA/ACCOUNTS/UPDATE_ACCOUNT_AFTER_REATTACHMENT',
         'IOTA/ACCOUNTS/ACCOUNT_INFO_FETCH_SUCCESS',
         'IOTA/POLLING/ACCOUNT_INFO_FETCH_SUCCESS',
-        'IOTA/POLLING/SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION'
+        'IOTA/POLLING/SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION',
     ].forEach((actionType) => {
         describe(actionType, () => {
             it('should merge addresses in payload to accountName in accountInfo', () => {
@@ -723,7 +723,7 @@ describe('Reducer: accounts', () => {
                         accountName: 'dummy',
                         addresses: { baz: {} },
                         transfers: [],
-                        hashes: []
+                        hashes: [],
                     },
                 };
 
@@ -734,7 +734,7 @@ describe('Reducer: accounts', () => {
                             balance: 0,
                             addresses: { foo: {}, baz: {} },
                             transfers: [],
-                            hashes: []
+                            hashes: [],
                         },
                     },
                 };
@@ -758,7 +758,7 @@ describe('Reducer: accounts', () => {
                     payload: {
                         accountName,
                         transfers: [[{}, {}], [{}, {}]],
-                        hashes: []
+                        hashes: [],
                     },
                 };
 
@@ -768,7 +768,7 @@ describe('Reducer: accounts', () => {
                         foo: {
                             balance: 0,
                             transfers: [[{}, {}], [{}, {}]],
-                            hashes: []
+                            hashes: [],
                         },
                     },
                 };
@@ -784,7 +784,7 @@ describe('Reducer: accounts', () => {
                         foo: {
                             balance: 0,
                             transfers: [],
-                            hashes: ['baz']
+                            hashes: ['baz'],
                         },
                     },
                 };
@@ -795,7 +795,7 @@ describe('Reducer: accounts', () => {
                     payload: {
                         accountName,
                         transfers: [],
-                        hashes: ['bar']
+                        hashes: ['bar'],
                     },
                 };
 
@@ -805,14 +805,12 @@ describe('Reducer: accounts', () => {
                         foo: {
                             balance: 0,
                             transfers: [],
-                            hashes: ['bar']
+                            hashes: ['bar'],
                         },
                     },
                 };
 
-                expect(newState.accountInfo[accountName].hashes).to.eql(
-                    expectedState.accountInfo[accountName].hashes,
-                );
+                expect(newState.accountInfo[accountName].hashes).to.eql(expectedState.accountInfo[accountName].hashes);
             });
 
             it('should set unconfirmedBundleTails in payload to unconfirmedBundleTails in state', () => {

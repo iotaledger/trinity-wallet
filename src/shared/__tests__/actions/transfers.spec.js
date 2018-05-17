@@ -212,7 +212,10 @@ describe('actions: transfers', () => {
                 sandbox.stub(transferUtils, 'getFirstConsistentTail').resolves(false);
                 sandbox.stub(accountsUtils, 'syncAccount').resolves(accounts.accountInfo.TEST);
                 syncAccountAfterReattachment = sandbox.stub(accountsUtils, 'syncAccountAfterReattachment').returns({
-                    newState: {}, reattachment: [], normalisedReattachment: {} });
+                    newState: {},
+                    reattachment: [],
+                    normalisedReattachment: {},
+                });
             });
 
             afterEach(() => {
