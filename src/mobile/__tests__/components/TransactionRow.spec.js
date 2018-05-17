@@ -48,6 +48,8 @@ const getProps = (overrides) =>
                 buttonsOpacity: { opacity: 1 },
             },
             toggleModalActivity: noop,
+            onPress: noop,
+            bundleIsBeingPromoted: false,
         },
         overrides,
     );
@@ -80,6 +82,14 @@ describe('Testing TransactionRow component', () => {
 
         it('should require a message string as a prop', () => {
             expect(TransactionRow.propTypes.message).toEqual(PropTypes.string);
+        });
+
+        it('should require an onPress function as a prop', () => {
+            expect(TransactionRow.propTypes.onPress).toEqual(PropTypes.func.isRequired);
+        });
+
+        it('should require a bundleIsBeingPromoted boolean as a prop', () => {
+            expect(TransactionRow.propTypes.bundleIsBeingPromoted).toEqual(PropTypes.bool.isRequired);
         });
     });
 

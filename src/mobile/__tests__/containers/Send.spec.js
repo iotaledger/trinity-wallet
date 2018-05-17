@@ -60,6 +60,11 @@ const getProps = (overrides) =>
             availableBalance: 100,
             deepLinkActive: false,
             setDeepLinkInactive: noop,
+            isFingerprintEnabled: false,
+            setDoNotMinimise: noop,
+            isIOSKeyboardActive: false,
+            toggleModalActivity: noop,
+            isModalActive: false,
         },
         overrides,
     );

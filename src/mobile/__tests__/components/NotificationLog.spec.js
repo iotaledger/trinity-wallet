@@ -13,6 +13,7 @@ const getProps = (overrides) =>
             borderColor: { borderColor: '#ffffff' },
             textColor: { color: '#ffffff' },
             barColor: '#ffffff',
+            barBg: '#ffffff',
             hideModal: noop,
             notificationLog: [],
             clearLog: noop,
@@ -49,6 +50,10 @@ describe('Testing NotificationLog component', () => {
 
         it('should require a t function as a prop', () => {
             expect(NotificationLog.propTypes.t).toEqual(PropTypes.func.isRequired);
+        });
+
+        it('should require a barBg function as a prop', () => {
+            expect(NotificationLog.propTypes.barBg).toEqual(PropTypes.string.isRequired);
         });
     });
 
