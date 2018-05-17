@@ -107,7 +107,6 @@
     }
 
     > div:first-child {
-        background: red;
         @media screen and (max-width: 860px) {
             display: flex;
             align-items: center;
@@ -133,7 +132,7 @@
     }
 
     > div:nth-child(2) {
-        transition: opacity 420ms ease-out, opacity 420ms ease-out;
+        transition: opacity 420ms ease-out, transform 420ms ease-out;
         &.openMid {
             opacity: 0.2;
             transform: scale(0.92);
