@@ -67,8 +67,8 @@
         "node": "Node",
         "cannotPerformAction": "Cannot perform action",
         "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
-        "attachToTangleUnavailable": "Attach to Tangle unavailable",
-        "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node.",
+        "attachToTangleUnavailable": "Remote Proof of Work is unavailable",
+        "attachToTangleUnavailableExplanation": "Remote Proof of Work is not available on your selected node. Either change node or set Proof of Work to Local in Advanced Settings.",
         "wallet": "Wallet",
         "sent": "Sent",
         "received": "Received",
@@ -93,6 +93,8 @@
         "rebroadcastErrorExplanation": "Something went wrong while rebroadcasting your transaction. Please try again.",
         "promoted": "Successfully promoted transaction",
         "promotedExplanation": "Promoted transaction with hash {{hash}}",
+        "autopromotionError": "Could not auto-promote transaction",
+        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node.",
         "promotionError": "Could not promote transaction",
         "promotionErrorExplanation": "Something went wrong while promoting your transaction. Please try again.",
         "noLongerValid": "The bundle you are trying to promote is no longer valid",
@@ -194,7 +196,9 @@
         "doNotOpen": "Do not open any other apps during this process.",
         "tapConfirm": "Please tap the checkbox below to confirm.",
         "passwordManagerCheckbox": "I will store my seed in a password manager",
-        "copy": "COPY"
+        "copy": "COPY",
+        "noPasswordManagers": "No supported password managers installed",
+        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android."
     },
     "enterSeed": {
         "invalidCharacters": "Seed contains invalid characters",
@@ -231,7 +235,9 @@
         "loadingFirstTime": "Loading seed for the first time.",
         "thisMayTake": "This may take a while.",
         "doNotMinimise": "Do not minimise or close the app.",
-        "youMayNotice": "You may notice your device slowing down."
+        "youMayNotice": "You may notice your device slowing down.",
+        "takingAWhile": "This seems to be taking a while",
+
     },
     "newSeedSetup": {
         "generatedSeed": "Generated seed",
