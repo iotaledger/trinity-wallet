@@ -67,7 +67,7 @@ export class EnterPasswordOnLogin extends Component {
         /** @param {string} password - user's password */
         onLoginPress: PropTypes.func.isRequired,
         /** Navigate to node selection screen */
-        navigateToNodeSelection: PropTypes.func.isRequired,
+        navigateToNodeOptions: PropTypes.func.isRequired,
         /** Set updated text field password */
         /** @param {string} password - Updated password in the text field */
         setLoginPasswordField: PropTypes.func.isRequired,
@@ -92,8 +92,8 @@ export class EnterPasswordOnLogin extends Component {
     };
 
     changeNode = () => {
-        const { navigateToNodeSelection } = this.props;
-        navigateToNodeSelection();
+        const { navigateToNodeOptions } = this.props;
+        navigateToNodeOptions();
     };
 
     render() {
