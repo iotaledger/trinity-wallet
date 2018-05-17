@@ -5,7 +5,6 @@
         "continue?": "Are you sure you want to continue?",
         "noTransactions": "NO RECENT HISTORY",
         "refresh": "REFRESH",
-        "qr": "QR",
         "balanceError": "Not enough balance",
         "balanceErrorMessage": "You do not have enough IOTA to complete this transfer.",
         "transferError": "Transfer error",
@@ -236,8 +235,7 @@
         "thisMayTake": "This may take a while.",
         "doNotMinimise": "Do not minimise or close the app.",
         "youMayNotice": "You may notice your device slowing down.",
-        "takingAWhile": "This seems to be taking a while",
-
+        "takingAWhile": "This seems to be taking a while"
     },
     "newSeedSetup": {
         "generatedSeed": "Generated seed",
@@ -376,7 +374,6 @@
         "twoFA": "Two-factor authentication",
         "changePassword": "Change password",
         "advanced": "Advanced settings",
-        "about": "About",
         "logout": "Log out",
         "reset": "Reset wallet",
         "syncingComplete": "Syncing complete",
