@@ -11,7 +11,6 @@ import Errors from '../libs/errors';
 export const ActionTypes = {
     SET_LOCALE: 'IOTA/SETTINGS/LOCALE',
     SET_NODE: 'IOTA/SETTINGS/FULLNODE',
-    SET_NODE_AND_CHANGE_TO_LOCAL_POW: 'IOTA/SETTINGS/SET_NODE_AND_CHANGE_TO_LOCAL_POW',
     SET_NODE_REQUEST: 'IOTA/SETTINGS/SET_NODE_REQUEST',
     SET_NODE_ERROR: 'IOTA/SETTINGS/SET_NODE_ERROR',
     ADD_CUSTOM_NODE: 'IOTA/SETTINGS/ADD_CUSTOM_NODE',
@@ -29,7 +28,7 @@ export const ActionTypes = {
     SET_UPDATE_SUCCESS: 'IOTA/SETTINGS/UPDATE_SUCCESS',
     SET_UPDATE_DONE: 'IOTA/SETTINGS/UPDATE_DONE',
     SET_NODELIST: 'IOTA/SETTINGS/SET_NODELIST',
-    UPDATE_POW_SETTINGS: 'IOTA/SETTINGS/UPDATE_POW_SETTINGS',
+    SET_REMOTE_POW: 'IOTA/SETTINGS/SET_REMOTE_POW',
     UPDATE_AUTO_NODE_SWITCHING: 'IOTA/SETTINGS/UPDATE_AUTO_NODE_SWITCHING',
     SET_LOCK_SCREEN_TIMEOUT: 'IOTA/SETTINGS/SET_LOCK_SCREEN_TIMEOUT',
     SET_VERSIONS: 'IOTA/SETTINGS/WALLET/SET_VERSIONS',
@@ -79,18 +78,14 @@ export const setNode = (payload) => ({
     payload,
 });
 
-export const setNodeAndChangeToLocalPoW = (payload) => ({
-    type: ActionTypes.SET_NODE_AND_CHANGE_TO_LOCAL_POW,
-    payload,
-});
-
 export const setNodeList = (payload) => ({
     type: ActionTypes.SET_NODELIST,
     payload,
 });
 
-export const updatePowSettings = () => ({
-    type: ActionTypes.UPDATE_POW_SETTINGS,
+export const setRemotePoW = (payload) => ({
+    type: ActionTypes.SET_REMOTE_POW,
+    payload
 });
 
 export const updateAutoNodeSwitching = (payload) => ({
@@ -167,8 +162,9 @@ export function setFullNode(node) {
         checkAttachToTangleAsync(node)
             .then((res) => {
                 changeIotaNode(node);
+                dispatch(setNode(node));
                 if (res.error.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
-                    dispatch(setNodeAndChangeToLocalPoW(node));
+                    dispatch(setRemotePoW(false));
                     return dispatch(
                         generateAlert(
                             'success',
@@ -178,7 +174,6 @@ export function setFullNode(node) {
                         ),
                     );
                 } else if (res.error.includes('Invalid parameters')) {
-                    dispatch(setNode(node));
                     return dispatch(
                         generateAlert(
                             'success',
@@ -258,7 +253,7 @@ export function changePowSettings() {
                             ),
                         );
                     }
-                    dispatch(updatePowSettings());
+                    dispatch(setRemotePoW(true));
                     dispatch(
                         generateAlert(
                             'success',
@@ -268,7 +263,7 @@ export function changePowSettings() {
                     );
                 });
         } else {
-            dispatch(updatePowSettings());
+            dispatch(setRemotePoW(!settings.remotePoW));
             dispatch(
                 generateAlert(
                     'success',
