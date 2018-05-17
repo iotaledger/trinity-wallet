@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 import { getStoredState } from 'redux-persist';
-import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
+import { changeIotaNode } from '../libs/iota';
 import { updatePersistedState } from '../libs/utils';
 import { generateAlert } from './alerts';
 import i18next from '../i18next';
