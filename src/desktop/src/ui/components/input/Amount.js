@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { formatIota } from 'libs/iota/utils';
+import { formatIota, TOTAL_IOTA_SUPPLY } from 'libs/iota/utils';
 import { round } from 'libs/utils';
 import { getCurrencySymbol } from 'libs/currency';
-import { TOTAL_IOTA_SUPPLY } from 'libs/iota/utils';
 
 import Icon from 'ui/components/Icon';
 import css from './input.scss';

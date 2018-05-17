@@ -1,19 +1,19 @@
 /*global Electron*/
-import React, {PureComponent} from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import {translate, Trans} from 'react-i18next';
-import {connect} from 'react-redux';
+import { translate, Trans } from 'react-i18next';
+import { connect } from 'react-redux';
 
-import {updatePowSettings, setLockScreenTimeout} from 'actions/settings';
-import {generateAlert} from 'actions/alerts';
-import {setVault, getSeed} from 'libs/crypto';
+import { updatePowSettings, setLockScreenTimeout } from 'actions/settings';
+import { generateAlert } from 'actions/alerts';
+import { setVault, getSeed } from 'libs/crypto';
 
-import {toggleModalActivity} from 'actions/ui';
-import {getSelectedAccountName, getAddressesForSelectedAccount} from 'selectors/accounts';
-import {formatValue, formatUnit} from 'libs/iota/utils';
-import {round} from 'libs/utils';
+import { toggleModalActivity } from 'actions/ui';
+import { getSelectedAccountName, getAddressesForSelectedAccount } from 'selectors/accounts';
+import { formatValue, formatUnit } from 'libs/iota/utils';
+import { round } from 'libs/utils';
 
-import {runTask} from 'worker';
+import { runTask } from 'worker';
 
 import Button from 'ui/components/Button';
 import ModalPassword from 'ui/components/modal/Password';
@@ -95,13 +95,13 @@ class Advanced extends PureComponent {
     };
 
     componentWillReceiveProps(newProps) {
-        const {balanceCheckToggle} = this.props;
+        const { balanceCheckToggle } = this.props;
         if (balanceCheckToggle !== newProps.balanceCheckToggle) {
             this.props.toggleModalActivity();
             return;
         }
 
-        const {isTransitioning, isAttachingToTangle, isModalActive} = newProps;
+        const { isTransitioning, isAttachingToTangle, isModalActive } = newProps;
         if (isTransitioning || isAttachingToTangle || isModalActive) {
             Electron.disableMenu();
         } else {
@@ -110,7 +110,7 @@ class Advanced extends PureComponent {
     }
 
     resetWallet = async (password) => {
-        const {t, generateAlert} = this.props;
+        const { t, generateAlert } = this.props;
 
         try {
             await setVault(password, {}, true);
@@ -133,62 +133,62 @@ class Advanced extends PureComponent {
     };
 
     syncAccount = async () => {
-        const {wallet, selectedAccountName} = this.props;
+        const { wallet, selectedAccountName } = this.props;
         const seed = await getSeed(wallet.seedIndex, wallet.password);
         runTask('manuallySyncAccount', [seed, selectedAccountName]);
     };
 
     startSnapshotTransition = async () => {
-        const {wallet, addresses} = this.props;
+        const { wallet, addresses } = this.props;
         const seed = await getSeed(wallet.seedIndex, wallet.password);
         runTask('transitionForSnapshot', [seed, addresses]);
-    }
+    };
 
     transitionBalanceOk = async () => {
         this.props.toggleModalActivity();
-        const {wallet, transitionAddresses, selectedAccountName} = this.props;
+        const { wallet, transitionAddresses, selectedAccountName } = this.props;
         const seed = await getSeed(wallet.seedIndex, wallet.password);
         runTask('completeSnapshotTransition', [seed, selectedAccountName, transitionAddresses]);
-    }
+    };
 
     transitionBalanceWrong = async () => {
         this.props.toggleModalActivity();
-        const {wallet, transitionAddresses} = this.props;
+        const { wallet, transitionAddresses } = this.props;
         const seed = await getSeed(wallet.seedIndex, wallet.password);
         const currentIndex = transitionAddresses.length;
         runTask('generateAddressesAndGetBalance', [seed, currentIndex, null]);
-    }
+    };
 
     render() {
-        const {remotePoW, updatePowSettings, lockScreenTimeout, ui, t} = this.props;
+        const { remotePoW, updatePowSettings, lockScreenTimeout, ui, t } = this.props;
 
         // snapshot transition
-        const {isTransitioning, isAttachingToTangle, isModalActive, transitionBalance} = this.props;
-        const {resetConfirm} = this.state;
+        const { isTransitioning, isAttachingToTangle, isModalActive, transitionBalance } = this.props;
+        const { resetConfirm } = this.state;
 
         if ((isTransitioning || isAttachingToTangle) && !isModalActive) {
             return (
                 <Loading
-                loop
-                transparent={false}
-                title={t('advancedSettings:snapshotTransition')}
-                subtitle={<React.Fragment>
-                    {
-                        !isAttachingToTangle ?
-                            <div>
-                                {t('snapshotTransition:transitioning')} <br/>
-                                {t('snapshotTransition:generatingAndDetecting')} {' '}
-                                {t('global:pleaseWaitEllipses')}
-                            </div>
-                            :
-                            <div>
-                                {t('snapshotTransition:attaching')} <br/>
-                                {t('loading:thisMayTake')} {' '}
-                                {t('global:pleaseWaitEllipses')}
-                            </div>
+                    loop
+                    transparent={false}
+                    title={t('advancedSettings:snapshotTransition')}
+                    subtitle={
+                        <React.Fragment>
+                            {!isAttachingToTangle ? (
+                                <div>
+                                    {t('snapshotTransition:transitioning')} <br />
+                                    {t('snapshotTransition:generatingAndDetecting')} {t('global:pleaseWaitEllipses')}
+                                </div>
+                            ) : (
+                                <div>
+                                    {t('snapshotTransition:attaching')} <br />
+                                    {t('loading:thisMayTake')} {t('global:pleaseWaitEllipses')}
+                                </div>
+                            )}
+                        </React.Fragment>
                     }
-                </React.Fragment>}
-            />);
+                />
+            );
         }
 
         return (
@@ -196,7 +196,7 @@ class Advanced extends PureComponent {
                 <Scrollbar>
                     <h3>{t('pow:powUpdated')}</h3>
                     <Info>
-                        {t('pow:feeless')} <br/>
+                        {t('pow:feeless')} <br />
                         {t('pow:localOrRemote')}
                     </Info>
                     <Toggle
@@ -205,11 +205,11 @@ class Advanced extends PureComponent {
                         on={t('pow:remote')}
                         off={t('pow:local')}
                     />
-                    <hr/>
+                    <hr />
 
                     <h3>{t('advancedSettings:snapshotTransition')}</h3>
                     <Info>
-                        {t('snapshotTransition:snapshotExplanation')} <br/>
+                        {t('snapshotTransition:snapshotExplanation')} <br />
                         {t('snapshotTransition:hasSnapshotTakenPlace')}
                     </Info>
                     <Button onClick={this.startSnapshotTransition} loading={isTransitioning || isAttachingToTangle}>
@@ -218,7 +218,7 @@ class Advanced extends PureComponent {
 
                     <ModalConfirm
                         isOpen={isModalActive}
-                        category='primary'
+                        category="primary"
                         onConfirm={this.transitionBalanceOk}
                         onCancel={this.transitionBalanceWrong}
                         content={{
@@ -232,33 +232,36 @@ class Advanced extends PureComponent {
                         }}
                     />
 
-                    <br/><br/>
+                    <br />
+                    <br />
 
                     <h3>{t('advancedSettings:manualSync')}</h3>
-                    {
-                        ui.isSyncing ?
-                            <Info>
-                                {t('manualSync:syncingYourAccount')} <br/>
-                                {t('manualSync:thisMayTake')}
-                            </Info>
-                            :
-                            <Info>
-                                {t('manualSync:outOfSync')} <br/>
-                                {t('manualSync:pressToSync')}
-                            </Info>
-                    }
-                    <Button onClick={this.syncAccount} loading={ui.isSyncing}
-                            disabled={isTransitioning || isAttachingToTangle}>
+                    {ui.isSyncing ? (
+                        <Info>
+                            {t('manualSync:syncingYourAccount')} <br />
+                            {t('manualSync:thisMayTake')}
+                        </Info>
+                    ) : (
+                        <Info>
+                            {t('manualSync:outOfSync')} <br />
+                            {t('manualSync:pressToSync')}
+                        </Info>
+                    )}
+                    <Button
+                        onClick={this.syncAccount}
+                        loading={ui.isSyncing}
+                        disabled={isTransitioning || isAttachingToTangle}
+                    >
                         {t('manualSync:syncAccount')}
                     </Button>
-                    <hr/>
+                    <hr />
 
                     <TextInput
                         value={lockScreenTimeout.toString()}
                         label={t('settings:lockScreenTimeout')}
                         onChange={this.changeLockScreenTimeout}
                     />
-                    <hr/>
+                    <hr />
 
                     <h3>{t('settings:reset')}</h3>
                     <Trans i18nKey="walletResetConfirmation:warning">
@@ -270,14 +273,14 @@ class Advanced extends PureComponent {
                             <React.Fragment> will be lost.</React.Fragment>
                         </Info>
                     </Trans>
-                    <Button onClick={() => this.setState({resetConfirm: !resetConfirm})} variant="negative">
+                    <Button onClick={() => this.setState({ resetConfirm: !resetConfirm })} variant="negative">
                         {t('settings:reset')}
                     </Button>
                     <ModalPassword
                         isOpen={resetConfirm}
                         category="negative"
                         onSuccess={(password) => this.resetWallet(password)}
-                        onClose={() => this.setState({resetConfirm: false})}
+                        onClose={() => this.setState({ resetConfirm: false })}
                         content={{
                             title: t('walletResetConfirmation:cannotUndo'),
                             message: (
