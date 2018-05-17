@@ -224,8 +224,8 @@ export const promoteTransaction = (bundleHash, accountName) => (dispatch, getSta
                     generateAlert(
                         'error',
                         i18next.t('global:attachToTangleUnavailable'),
-                        i18next.t('global:attachToTangleUnavailableExplanation'),
-                        20000,
+                        i18next.t('global:attachToTangleUnavailableExplanationShort'),
+                        10000,
                     ),
                 );
             } else if (err.message === Errors.TRANSACTION_ALREADY_CONFIRMED && chainBrokenInternally) {
