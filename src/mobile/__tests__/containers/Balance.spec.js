@@ -38,6 +38,8 @@ const getProps = (overrides) =>
             onTabSwitch: noop,
             currency: 'USD',
             conversionRate: 1,
+            isRefreshing: false,
+            onRefresh: noop,
         },
         overrides,
     );
@@ -78,6 +80,14 @@ describe('Testing Balance component', () => {
 
         it('should require a onTabSwitch function as a prop', () => {
             expect(Balance.propTypes.onTabSwitch).toEqual(PropTypes.func.isRequired);
+        });
+
+        it('should require an isRefreshing boolean as a prop', () => {
+            expect(Balance.propTypes.isRefreshing).toEqual(PropTypes.bool.isRequired);
+        });
+
+        it('should require an onRefresh function as a prop', () => {
+            expect(Balance.propTypes.onRefresh).toEqual(PropTypes.func.isRequired);
         });
     });
 
