@@ -80,11 +80,6 @@ export class Poll extends Component {
 
         const dict = {
             promotion: this.promote,
-            marketData: this.props.fetchMarketData,
-            price: this.props.fetchPrice,
-            chartData: this.props.fetchChartData,
-            nodeList: this.props.fetchNodeList,
-            accountInfo: this.fetchLatestAccountInfo,
         };
 
         // In case something messed up, reinitialize
@@ -98,7 +93,7 @@ export class Poll extends Component {
     }
 
     startBackgroundProcesses() {
-        timer.setInterval(this, 'polling', () => this.fetch(this.props.pollFor), 8000);
+        timer.setInterval(this, 'polling', () => this.fetch(this.props.pollFor), 5000);
     }
 
     handleAppStateChange = (nextAppState) => {

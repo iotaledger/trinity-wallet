@@ -35,6 +35,7 @@ const initialState = {
     isChangingNode: false,
     currentlyPromotingBundleHash: '',
     loginRoute: 'login',
+    hasFailedAutopromotion: false,
 };
 
 export default (state = initialState, action) => {
@@ -280,7 +281,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isChangingNode: false,
-                hasGeneratedAutopromotionAlert: false,
+                hasFailedAutopromotion: false,
             };
         case SettingsActionTypes.SET_NODE_ERROR:
             return {
@@ -292,10 +293,10 @@ export default (state = initialState, action) => {
                 ...state,
                 loginRoute: action.payload,
             };
-        case PollingActionTypes.SET_AUTOPROMOTION_ALERT_FLAG:
+        case PollingActionTypes.SET_AUTOPROMOTION_FAILED_FLAG:
             return {
                 ...state,
-                hasGeneratedAutopromotionAlert: action.payload,
+                hasFailedAutopromotion: action.payload,
             };
         default:
             return state;
