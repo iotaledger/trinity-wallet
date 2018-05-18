@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { translate, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 
-import { updatePowSettings, setLockScreenTimeout } from 'actions/settings';
+import { changePowSettings, setLockScreenTimeout } from 'actions/settings';
 import { generateAlert } from 'actions/alerts';
 import { setVault, getSeed } from 'libs/crypto';
 
@@ -34,7 +34,7 @@ class Advanced extends PureComponent {
         /** Update remote PoW settings state
          * @ignore
          */
-        updatePowSettings: PropTypes.func.isRequired,
+        changePowSettings: PropTypes.func.isRequired,
         /**
          * Update the lock screen timeout state
          * @ignore
@@ -160,7 +160,7 @@ class Advanced extends PureComponent {
     };
 
     render() {
-        const { remotePoW, updatePowSettings, lockScreenTimeout, ui, t } = this.props;
+        const { remotePoW, changePowSettings, lockScreenTimeout, ui, t } = this.props;
 
         // snapshot transition
         const { isTransitioning, isAttachingToTangle, isModalActive, transitionBalance } = this.props;
@@ -201,7 +201,7 @@ class Advanced extends PureComponent {
                     </Info>
                     <Toggle
                         checked={remotePoW}
-                        onChange={() => updatePowSettings()}
+                        onChange={() => changePowSettings()}
                         on={t('pow:remote')}
                         off={t('pow:local')}
                     />
@@ -320,7 +320,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     generateAlert,
-    updatePowSettings,
+    changePowSettings,
     setLockScreenTimeout,
     toggleModalActivity,
 };
