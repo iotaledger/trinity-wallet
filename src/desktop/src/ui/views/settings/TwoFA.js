@@ -15,7 +15,7 @@ import Text from 'ui/components/input/Text';
 import Password from 'ui/components/modal/Password';
 import Clipboard from 'ui/components/Clipboard';
 
-import css from './twoFa.css';
+import css from './twoFa.scss';
 
 /**
  * Two-factor authentication settings container

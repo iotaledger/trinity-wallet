@@ -16,6 +16,8 @@ import { setOnboardingSeed } from 'actions/ui';
 
 import { runTask } from 'worker';
 
+import { capitalize } from 'libs/helpers';
+
 import PasswordInput from 'ui/components/input/Password';
 import Text from 'ui/components/input/Text';
 import Button from 'ui/components/Button';
@@ -184,7 +186,6 @@ class Login extends React.Component {
         return (
             <React.Fragment>
                 <form onSubmit={(e) => this.handleSubmit(e)}>
-                    <div />
                     <section>
                         <PasswordInput
                             focus
@@ -195,11 +196,11 @@ class Login extends React.Component {
                         />
                     </section>
                     <footer>
-                        <Button to="/settings/node" className="inline" variant="secondary">
-                            {t('home:settings').toLowerCase()}
+                        <Button to="/settings/node" className="square" variant="dark">
+                            {capitalize(t('home:settings'))}
                         </Button>
-                        <Button type="submit" className="large" variant="primary">
-                            {t('login:login').toLowerCase()}
+                        <Button type="submit" className="square" variant="primary">
+                            {capitalize(t('login:login'))}
                         </Button>
                     </footer>
                 </form>

@@ -1,3 +1,4 @@
+/*global Electron*/
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -7,17 +8,17 @@ import { connect } from 'react-redux';
 
 import { runTask } from 'worker';
 import { getSeed } from 'libs/crypto';
+import { capitalize } from 'libs/helpers';
 
 import Icon from 'ui/components/Icon';
 import List from 'ui/components/List';
 import Chart from 'ui/components/Chart';
-import Button from 'ui/components/Button';
 import Balance from 'ui/components/Balance';
 
 import Receive from 'ui/views/wallet/Receive';
 import Send from 'ui/views/wallet/Send';
 
-import css from './dashboard.css';
+import css from './dashboard.scss';
 
 /**
  * Wallet dashboard component
@@ -68,32 +69,43 @@ class Dashboard extends React.PureComponent {
         const subroute = location.pathname.split('/')[3] || null;
 
         const balanceOpen = ['send', 'receive'].indexOf(route) > -1;
+        const sendOpen = ['send'].indexOf(route) > -1;
+        const historyOpen = ['history'].indexOf(route) > -1;
+
+        const os = Electron.getOS();
 
         return (
-            <div className={css.dashboard}>
-                <div>
-                    <section className={classNames(css.balance, balanceOpen ? css.open : null)}>
-                        <span onClick={() => history.push('/wallet/')}>
-                            <Icon icon="cross" size={24} />
-                        </span>
+            <div className={classNames(css.dashboard, os === 'win32' ? css.windows : null)}>
+                <div className={balanceOpen ? css.balanceOpen : null}>
+                    <section className={css.balance}>
                         <Balance />
-                        <hr />
-                        <div>
+                        <div className={balanceOpen ? css.openMid : null}>
+                            <a onClick={() => history.push('/wallet/receive')}>
+                                <div>
+                                    <Icon icon="receive" size={24} />
+                                </div>
+                                <p>{capitalize(t('home:receive'))}</p>
+                            </a>
+                            <div>
+                                <Balance />
+                            </div>
+                            <a onClick={() => history.push('/wallet/send')}>
+                                <div>
+                                    <Icon icon="send" size={24} />
+                                </div>
+                                <p>{capitalize(t('home:send'))}</p>
+                            </a>
+                        </div>
+                        <div className={sendOpen ? css.openRight : balanceOpen ? css.openLeft : css.close}>
                             <Switch location={location}>
                                 <Route path="/wallet/send" component={Send} />
                                 <Route path="/wallet/receive" component={Receive} />
                             </Switch>
                         </div>
-                        <nav>
-                            <Button onClick={() => history.push('/wallet/send')} variant="primary">
-                                {t('home:send')}
-                            </Button>
-                            <Button onClick={() => history.push('/wallet/receive')} variant="secondary">
-                                {t('home:receive')}
-                            </Button>
-                        </nav>
                     </section>
-                    <section className={css.history}>
+                </div>
+                <div className={historyOpen || balanceOpen ? css.history : null}>
+                    <section>
                         <List
                             updateAccount={() => this.updateAccount()}
                             setItem={(item) =>
@@ -102,9 +114,7 @@ class Dashboard extends React.PureComponent {
                             currentItem={subroute}
                         />
                     </section>
-                </div>
-                <div>
-                    <section className={css.market}>
+                    <section>
                         <Chart />
                     </section>
                 </div>

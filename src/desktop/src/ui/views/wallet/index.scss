@@ -1,0 +1,159 @@
+$sidebar: 177px;
+$sidebar-narrow: 70px;
+
+.wallet {
+
+    > aside {
+        display: flex;
+        flex-direction: column;
+        background: var(--bar-bg);
+        flex: 0 0 $sidebar;
+        height: 100vh;
+
+        > div {
+            flex: 0 0 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            span {
+                color: var(--bar);
+            }
+        }
+
+        nav {
+            flex-grow: 1;
+            &:first-of-type {
+                span {
+                    display: none;
+                }
+            }
+            &:last-of-type {
+                flex-grow: 0;
+                padding-bottom: 30px;
+            }
+
+            a {
+                display: block;
+                color: var(--bar);
+                font-size: 14px;
+                border-right: 2px solid transparent;
+                text-decoration: none;
+                line-height: 60px;
+                padding-left: 30px;
+                text-transform: capitalize;
+                white-space: nowrap;
+                max-width: 200px;
+                overflow: hidden;
+
+                &:hover {
+                    background: var(--bar-alt);
+                }
+                &[aria-current='true'],
+                &.active {
+                    background: var(--bar-alt);
+                    border-right: 2px solid var(--primary);
+                }
+
+                span {
+                    display: block;
+                    float: left;
+                    margin: 18px 14px 0 0;
+                }
+                small {
+                    display: block;
+                    margin-right: 12px;
+                    opacity: 0.72;
+                    text-transform: none;
+                }
+            }
+
+            ul {
+                margin: 0px;
+                padding: 0px;
+
+                a {
+                    line-height: 21px;
+                    padding: 14px 0 14px 30px;
+                }
+            }
+
+            > div {
+                transition: opacity 0.6s ease;
+                &.disabled {
+                    pointer-events: none;
+                    opacity: 0.4;
+                }
+            }
+        }
+
+        @media (max-width: 940px) {
+            flex: 0 0 $sidebar-narrow;
+            transition: width 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+            nav {
+                &:first-of-type {
+                    position: relative;
+                    span {
+                        display: inline-block;
+                    }
+                }
+                > div > ul {
+                    display: none;
+                }
+
+                > a,
+                > div > a {
+                    padding-left: 0px;
+                    text-align: center;
+                    width: 100%;
+                    height: 60px;
+                    span {
+                        font-size: 24px !important;
+                        width: 100%;
+                        text-align: center;
+                    }
+                    strong {
+                        display: none;
+                    }
+                }
+
+                > div {
+                    &:hover {
+                        > a {
+                            background: var(--bar-alt);
+                        }
+                        ul {
+                            display: inline-block;
+                            position: absolute;
+                            top: 0px;
+                            left: 100%;
+                            width: 200px;
+                            z-index: 3;
+                            a {
+                                background: var(--bar-bg);
+                                border-right: 2px solid transparent;
+                                &:hover {
+                                    background: var(--bar-alt);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            > div {
+                text-align: center;
+                flex: 0 0 100px;
+                margin-bottom: 100px;
+                > div {
+                    width: 38px !important;
+                    height: 38px !important;
+                }
+                span {
+                    font-size: 38px !important;
+                    width: 100%;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}

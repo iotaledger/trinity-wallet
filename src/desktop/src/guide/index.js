@@ -7,23 +7,23 @@ import { BrowserRouter as Router, withRouter, NavLink, Switch, Route } from 'rea
 
 import { translate, I18nextProvider } from 'react-i18next';
 
-import 'ui/index.css';
+import 'ui/index.scss';
 
 import Logo from 'ui/components/Logo';
 import Theme from 'ui/global/Theme';
 import Alerts from 'ui/global/Alerts';
+import Waves from 'ui/components/Waves';
 import ThemePicker from './ThemePicker';
 
 import i18next from '../libs/i18next';
 
-import css from './index.css';
+import css from './index.scss';
 import Colors from './pages/Colors';
 import Buttons from './pages/Buttons';
 import Inputs from './pages/Inputs';
 import Modals from './pages/Modals';
 import Typography from './pages/Typography';
 import Icons from './pages/Icons';
-import Modify from './pages/Modify';
 
 const Intro = () => {
     return (
@@ -34,6 +34,7 @@ const Intro = () => {
                 use of style guides created to ensure consistency across a the wallet. The style guide may cover
                 anything from usage of colors, components and page layout.
             </p>
+            <Waves height="250px" />
         </div>
     );
 };
@@ -58,8 +59,6 @@ const Guide = (props) => {
                     <NavLink to="/buttons">Buttons</NavLink>
                     <NavLink to="/inputs">Inputs</NavLink>
                     <NavLink to="/modals">Modals & Alerts</NavLink>
-                    <hr />
-                    <NavLink to="/modify">Modify theme</NavLink>
                 </nav>
             </aside>
             <section className={props.location.pathname === '/' ? css.intro : null}>
@@ -70,7 +69,6 @@ const Guide = (props) => {
                     <Route path="/inputs" component={Inputs} />
                     <Route path="/modals" component={Modals} />
                     <Route path="/typography" component={Typography} />
-                    <Route path="/modify" component={Modify} />
                     <Route path="/" component={Intro} />
                 </Switch>
             </section>

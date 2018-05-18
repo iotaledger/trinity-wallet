@@ -1,159 +1,151 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-import css from './colors.css';
+import { updateTheme } from 'actions/settings';
+import { generateAlert } from 'actions/alerts';
 
-const Colors = () => {
-    return (
-        <div className={css.colors}>
-            <h1>Colors</h1>
+import css from './colors.scss';
 
-            <div>
-                <div className={css.bodyColor} /> <strong>body.color</strong>
-                <span>Default text, border and icon fill color</span>
-            </div>
-            <div>
-                <div className={css.bodyBg} /> <strong>body.bg</strong>
-                <span>Default interface background</span>
-            </div>
-            <div>
-                <div className={css.bodyAlt} /> <strong>body.alt</strong>
-                <span>
-                    Default alternative text, border and icon color.{' '}
-                    <em>E.g. Dashboard disabled menu items, content dividers</em>
-                </span>
-            </div>
-            <div>
-                <div className={css.bodyAltBg} /> <strong>body.altBg</strong>
-                <span>
-                    Alternative background color. <em>E.g. Dashboard card background</em>
-                </span>
-            </div>
-            <hr />
-
-            <div>
-                <div className={css.barColor} /> <strong>bar.color</strong>
-                <span>Sidebar and mobile menu text, border and icon fill color</span>
-            </div>
-            <div>
-                <div className={css.barBg} /> <strong>bar.bg</strong>
-                <span>Sidebar and mobile menu background</span>
-            </div>
-            <div>
-                <div className={css.barAlt} /> <strong>bar.alt</strong>
-                <span>
-                    Sidebar and mobile menu alternative color. <em>E.g. Active item background color</em>
-                </span>
-            </div>
-            <hr />
-
-            <div>
-                <div className={css.primaryColor} /> <strong>primary.color</strong>
-                <span>Primary CTA and accent color</span>
-            </div>
-            <div>
-                <div className={css.primaryHover} /> <strong>primary.hover</strong>
-                <span>Primary color hover state</span>
-            </div>
-            <div>
-                <div className={css.primaryBody} /> <strong>primary.body</strong>
-                <span>Text color if primary.color used as background</span>
-            </div>
-            <hr />
-
-            <div>
-                <div className={css.secondaryColor} /> <strong>secondary.color</strong>
-                <span>Secondary CTA and accent color</span>
-            </div>
-            <div>
-                <div className={css.secondaryHover} /> <strong>secondary.hover</strong>
-                <span>Secondary color hover state</span>
-            </div>
-            <div>
-                <div className={css.secondaryBody} /> <strong>secondary.body</strong>
-                <span>Text color if secondary.color used as background</span>
-            </div>
-            <hr />
-
-            <div>
-                <div className={css.extraColor} /> <strong>extra.color</strong>
-                <span>
-                    Extra CTA and accent color <em>E.g. mobile {'Save your seed'} option buttons</em>
-                </span>
-            </div>
-            <div>
-                <div className={css.extraHover} /> <strong>extra.hover</strong>
-                <span>Extra color hover state</span>
-            </div>
-            <div>
-                <div className={css.extraBody} /> <strong>extra.body</strong>
-                <span>Text color if extra.color used as background</span>
-            </div>
-            <hr />
-
-            <div>
-                <div className={css.positiveColor} /> <strong>positive.color</strong>
-                <span>
-                    Positive, success state color <em>E.g. Success notification background</em>
-                </span>
-            </div>
-            <div>
-                <div className={css.positiveHover} /> <strong>positive.hover</strong>
-                <span>Positive color hover state</span>
-            </div>
-            <div>
-                <div className={css.positiveBody} /> <strong>positive.body</strong>
-                <span>Text color if positive.color used as background</span>
-            </div>
-            <hr />
-
-            <div>
-                <div className={css.negativeColor} /> <strong>negative.color</strong>
-                <span>
-                    Negative CTA and accent color <em>E.g. Failure notification, deletion button</em>
-                </span>
-            </div>
-            <div>
-                <div className={css.negativeHover} /> <strong>negative.hover</strong>
-                <span>Negative color hover state</span>
-            </div>
-            <div>
-                <div className={css.negativeBody} /> <strong>negative.body</strong>
-                <span>Text color if negative.color used as background</span>
-            </div>
-            <hr />
-
-            <div>
-                <div className={css.inputColor} /> <strong>input.color</strong>
-                <span>Input element text color</span>
-            </div>
-            <div>
-                <div className={css.inputBg} /> <strong>input.bg</strong>
-                <span>Input element background color</span>
-            </div>
-            <div>
-                <div className={css.inputAlt} /> <strong>input.alt</strong>
-                <span>
-                    Input element alternative color. <em>E.g. Action icons inside an input</em>
-                </span>
-            </div>
-            <hr />
-
-            <div>
-                <div className={css.labelColor} /> <strong>label.color</strong>
-                <span>Form label color</span>
-            </div>
-            <div>
-                <div className={css.labelHover} /> <strong>label.hover</strong>
-                <span>Form label hover/active state color</span>
-            </div>
-            <hr />
-
-            <div>
-                <div className={css.chartColor} /> <strong>chart.color</strong>
-                <span>Chart line color</span>
-            </div>
-        </div>
-    );
+const colorTitles = {
+    'body.color': 'Default text, border and icon fill color',
+    'body.bg': 'Default interface background',
+    'body.alt': 'Default alternative text, border and icon color.',
+    'bar.color': 'Sidebar and mobile menu text, border and icon fill color',
+    'bar.bg': 'Sidebar and mobile menu background',
+    'bar.alt': ' Sidebar and mobile menu alternative color.',
+    'primary.color': 'Primary CTA and accent color',
+    'primary.hover': 'Primary color hover state',
+    'primary.body': 'Text color if primary.color used as background',
+    'secondary.color': 'Secondary CTA and accent color',
+    'secondary.hover': 'Secondary color hover state',
+    'secondary.body': 'Text color if secondary.color used as background',
+    'dark.color': 'Dark CTA and accent color',
+    'dark.hover': 'Dark color hover state',
+    'dark.body': 'Text color if dark.color used as background',
+    'extra.color': 'Extra CTA and accent color',
+    'extra.hover': 'Extra color hover state',
+    'extra.body': 'Text color if extra.color used as background',
+    'positive.color': 'Positive CTA and accent color',
+    'positive.hover': 'Positive color hover state',
+    'positive.body': 'Text color if positive.color used as background',
+    'negative.color': 'Negative CTA and accent color',
+    'negative.hover': 'Negative color hover state',
+    'negative.body': 'Text color if negative.color used as background',
+    'input.color': 'Input element text color',
+    'input.bg': 'Input element background color',
+    'input.alt': 'Input element alternative color',
+    'input.border': 'Input element border color',
+    'input.hover': 'Input element focus state border color',
+    'label.color': 'Input element label color',
+    'label.hover': 'Input element focus state label color',
+    'chart.color': 'Chart line fill color',
+    'wave.primary': 'Wave background fill color',
+    'wave.secondary': 'Wave background fill color',
+    'box.bg': 'Box element background color',
+    'box.alt': 'Box element accent color',
+    'box.body': 'Text color if box.bg used as background color',
 };
 
-export default Colors;
+const colorExamples = {
+    'body.alt': 'Dashboard dividers, chart subtitles, content scrollbars',
+    'bar.alt': 'Active item background color',
+    'positive.color': 'Success notification background',
+    'negative.color': 'Error notification background',
+    'input.alt': 'Action iconfill color inside input fields',
+};
+
+class Colors extends React.Component {
+    static propTypes = {
+        theme: PropTypes.object.isRequired,
+        themeName: PropTypes.string.isRequired,
+        updateTheme: PropTypes.func.isRequired,
+        generateAlert: PropTypes.func.isRequired,
+    };
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            theme: this.props.theme,
+        };
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.themeName !== nextProps.themeName) {
+            this.setState({
+                theme: nextProps.theme,
+            });
+        }
+    }
+
+    setTheme = () => {
+        this.props.updateTheme(
+            this.state.theme,
+            Math.random()
+                .toString(36)
+                .slice(-5),
+        );
+
+        this.props.generateAlert('success', 'Theme applied', 'Theme applied to the styleguide');
+    };
+
+    updateColor = (set, color, value) => {
+        const theme = Object.assign({}, this.state.theme);
+        theme[set][color] = value;
+
+        this.props.updateTheme(
+            theme,
+            Math.random()
+                .toString(36)
+                .slice(-5),
+        );
+    };
+
+    render() {
+        const { theme } = this.state;
+
+        return (
+            <div className={css.colors}>
+                <h1>Colors</h1>
+                {Object.keys(theme).map((set) => {
+                    return (
+                        <React.Fragment key={set}>
+                            {Object.keys(theme[set]).map((color) => {
+                                return (
+                                    <div key={`${set}.${color}`}>
+                                        <div style={{ background: theme[set][color] }} />
+                                        <strong>
+                                            {set}.{color} <br />
+                                            <input
+                                                value={theme[set][color]}
+                                                onChange={(e) => this.updateColor(set, color, e.target.value)}
+                                            />
+                                        </strong>
+                                        <span>
+                                            {colorTitles[`${set}.${color}`]} <em>{colorExamples[`${set}.${color}`]}</em>
+                                        </span>
+                                    </div>
+                                );
+                            })}
+                            <hr />
+                        </React.Fragment>
+                    );
+                })}
+                <h1>Theme source:</h1>
+                <textarea value={JSON.stringify(theme, null, '\t')} readOnly />
+            </div>
+        );
+    }
+}
+
+const mapStateToProps = (state) => ({
+    theme: state.settings.theme,
+    themeName: state.settings.themeName,
+});
+
+const mapDispatchToProps = {
+    updateTheme,
+    generateAlert,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Colors);

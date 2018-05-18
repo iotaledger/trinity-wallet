@@ -6,7 +6,7 @@ import Password from 'ui/components/modal/Password';
 import Button from 'ui/components/Button';
 
 import { generateAlert } from 'actions/alerts';
-import css from './modals.css';
+import css from './modals.scss';
 
 class Modals extends React.PureComponent {
     static propTypes = {

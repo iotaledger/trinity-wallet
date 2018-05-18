@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import css from './slideout.css';
+import css from './slideout.scss';
 
 /**
  * Modal window component
