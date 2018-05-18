@@ -233,7 +233,7 @@ class Welcome extends Component {
                     style={{ alignItems: 'center', margin: 0 }}
                     isVisible={isModalVisible}
                     onBackButtonPress={() => this.setState({ isModalVisible: false })}
-                    useNativeDriver={isAndroid ? true : false}
+                    useNativeDriver={!!isAndroid}
                 >
                     <View style={[styles.modalContent, { backgroundColor: theme.body.bg }]}>
                         {this.state.modalContent}
