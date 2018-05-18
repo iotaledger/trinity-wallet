@@ -10,7 +10,8 @@
     ],
     "scripts": {
         "test": "./node_modules/.bin/mocha --require babel-core/register \"__tests__/**/*.spec.js\"",
-        "test:watch": "yarn test --watch"
+        "test:watch": "yarn test --watch",
+        "audit": "./../../node_modules/.bin/auditjs -l error"
     },
     "license": "MIT",
     "dependencies": {

@@ -33,6 +33,7 @@
     },
     "homepage": "https://gitlab.com/iota-community/wallet#README",
     "devDependencies": {
+        "auditjs": "^2.4.3",
         "babel-eslint": "^8.2.2",
         "eslint": "^4.18.1",
         "eslint-config-airbnb": "^16.1.0",

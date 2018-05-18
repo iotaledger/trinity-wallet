@@ -7,6 +7,7 @@
   "description": "IOTA desktop wallet",
   "main": "main.js",
   "author": "IOTA Foundation <contact@iota.org>",
+  "license": "MIT",
   "moduleRoots": [
     ".",
     "src",
@@ -24,7 +25,8 @@
     "compile:mac": "npm run build && cross-env CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --mac --x64",
     "compile:win": "npm run build && electron-builder --win --x64 --ia32",
     "compile:win64": "npm run build && electron-builder --win --x64",
-    "compile:win32": "npm run build && electron-builder --win --x32"
+    "compile:win32": "npm run build && electron-builder --win --x32",
+    "audit": "./../../node_modules/.bin/auditjs -l error"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

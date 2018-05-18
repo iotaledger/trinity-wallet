@@ -3,7 +3,6 @@ import { iota } from '../libs/iota';
 import { updateAddresses, updateAccountAfterTransition } from '../actions/accounts';
 import { generateAlert, generateTransitionErrorAlert } from '../actions/alerts';
 import { getNewAddress, formatAddressData, syncAddresses, getLatestAddress } from '../libs/iota/addresses';
-import { MAX_SEED_LENGTH } from '../libs/iota/utils';
 import { DEFAULT_MIN_WEIGHT_MAGNITUDE, DEFAULT_DEPTH } from '../config';
 import i18next from '../i18next';
 
@@ -141,30 +140,13 @@ export const switchBalanceCheckToggle = () => ({
 export const generateNewAddress = (seed, accountName, existingAccountData, genFn) => {
     return (dispatch) => {
         dispatch(generateNewAddressRequest());
-        return syncAddresses(seed, existingAccountData, genFn, true)
-            .then((newAccountData) => {
-                const receiveAddress = iota.utils.addChecksum(getLatestAddress(newAccountData.addresses));
-                dispatch(updateAddresses(accountName, newAccountData.addresses));
+        return syncAddresses(seed, existingAccountData.addresses, genFn, true)
+            .then((latestAddressData) => {
+                const receiveAddress = iota.utils.addChecksum(getLatestAddress(latestAddressData));
+                dispatch(updateAddresses(accountName, latestAddressData));
                 dispatch(generateNewAddressSuccess(receiveAddress));
             })
             .catch(() => dispatch(generateNewAddressError()));
-    };
-};
-
-export const randomiseSeed = (randomBytesFn) => {
-    return (dispatch) => {
-        const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9';
-        let seed = '';
-        randomBytesFn(100).then((bytes) => {
-            Object.keys(bytes).forEach((key) => {
-                if (bytes[key] < 243 && seed.length < MAX_SEED_LENGTH) {
-                    const randomNumber = bytes[key] % 27;
-                    const randomLetter = charset.charAt(randomNumber);
-                    seed += randomLetter;
-                }
-            });
-            dispatch(setSeed(seed));
-        });
     };
 };
 

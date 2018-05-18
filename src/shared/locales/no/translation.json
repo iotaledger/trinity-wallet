@@ -48,7 +48,7 @@
         "otherWallet": "ANNEN KONTO",
         "yes": "JA",
         "no": "NEI",
-        "okay": "OKAY",
+        "okay": "OK",
         "password": "Passord",
         "passwordOrFingerprint": "Passord eller fingeravtrykk",
         "unrecognisedPassword": "Ukjent passord",
@@ -77,14 +77,21 @@
         "retry": "FORSØK IGJEN",
         "rebroadcast": "KRINGKAST PÅ NYTT",
         "pressBackAgain": "Trykk tilbake igjen for å lukke applikasjonen",
-        "autoreattaching": "Re-tilknytter Tangle automatisk",
-        "autoreattachingExplanation": "Re-tilknytter transaksjon med hash-{{hash}}",
+        "reattached": "Transaksjonen er re-tilknyttet",
+        "reattachedExplanation": "Transaksjonen er re-tilknyttet med hash {{hash}}",
         "autopromoting": "Promoterer transaksjon automatisk",
         "autopromotingExplanation": "Promoterer transaksjon med hash {{hash}}",
-        "promoting": "Promoterer transaksjon",
-        "promotionError": "Kunne ikke promotere overføringen",
+        "rebroadcasted": "Transaksjonen er kringkastet på nytt",
+        "rebroadcastedExplanation": "Kringkaster transaksjonen på nytt med hash {{hash}}",
+        "rebroadcastError": "Kunne ikke kringkaste transaksjonen på nytt",
+        "rebroadcastErrorExplanation": "Noe gikk galt under kringkastingen av transaksjonen. Vennligst prøv på nytt.",
+        "promoted": "Transaksjonen er promotert",
+        "promotedExplanation": "Transaksjonen er promotert med hash {{hash}}",
+        "promotionError": "Kunne ikke promotere transaksjonen",
         "promotionErrorExplanation": "Noe gikk galt under promoteringen av overføringen. Vennligst prøv igjen.",
         "noLongerValid": "Pakken du prøver å promotere er ikke lenger gyldig",
+        "transactionAlreadyConfirmed": "Transaksjonen er allerede bekreftet",
+        "transactionAlreadyConfirmedExplanation": "Transaksjonen som du forsøker å promotere er allerede bekreftet.",
         "cannotSendToOwn": "Sender til egen adresse",
         "cannotSendToOwnExplanation": "Du kan ikke sende transaksjoner med verdi til en av dine egne adresser.",
         "pleaseWait": "Vennligst vent",
@@ -108,10 +115,13 @@
         "nodeAutoChanged": "Noden har blitt automatisk endret",
         "nodeAutoChangedExplanation": "Byttet til ny node {{- nodeAddress}} da den valgte noden er frakoblet.",
         "fingerprintOnSend": "Berør fingeravtrykkleseren for å autorisere transaksjonen",
-        "masterKey": "Your IOTA seed is the master key to your funds.",
-        "googlePlayServicesNotAvailable": "Google Play Services not available",
-        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available.",
-        "clear": "CLEAR"
+        "masterKey": "Hovednøkkelen er det som gir deg tilgang til dine midler.",
+        "seedThief": "Hvis noen får tilgang til din hovednøkkel så kan de stjele dine IOTA.",
+        "googlePlayServicesNotAvailable": "Google Play tjenester er ikke tilgjengelige",
+        "couldNotVerifyDeviceIntegrity": "Kunne ikke verifisere enhetens integritet siden Google Play tjenesten ikke er tilgjengelig.",
+        "clear": "FJERN",
+        "noNetworkConnection": "Ingen nettverksforbindelse",
+        "noNetworkConnectionExplanation": "Ingen internettforbindelse."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøkkelen inneholder ugyldige tegn",
@@ -154,10 +164,11 @@
         "doNotStore": "Oppbevar ikke din hovednøkkelen i klartekst.",
         "copyToClipboard": "Kopier hovednøkkel",
         "shareSeed": "Kopier din hovednøkkel til en sikker passord applikasjon",
-        "storeEncrypted": "If you choose to back-up your seed on your phone it should be stored encrypted e.g. in a password manager.",
-        "tapConfirm": "Please tap the checkbox below to confirm.",
-        "encryptionCheckbox": "I will store my seed with encryption",
-        "copy": "COPY"
+        "storeEncrypted": "Lagre din hovednøkkel kryptert i en password manager.",
+        "doNotOpen": "Åpne ikke andre applikasjoner under denne prosessen.",
+        "tapConfirm": "Vennligst huk av i boksen nedenfor for å bekrefte.",
+        "passwordManagerCheckbox": "Jeg ønsker å lagre hovednøkkelen min i en password manager",
+        "copy": "KOPIER"
     },
     "enterSeed": {
         "invalidCharacters": "Hovednøkkelen inneholder ugyldige tegn",
@@ -197,9 +208,9 @@
         "seedNotGenerated": "Hovednøkkel har ikke blitt generert",
         "seedNotGeneratedExplanation": "Vennligst generer ny hovednøkkel.",
         "pressForNewSeed": "TRYKK FOR NY HOVEDNØKKEL",
-        "generateSuccess": "Seed generated successfully",
+        "generateSuccess": "Hovednøkkel er generert",
         "individualLetters": "Trykk individuelle tegn for å randomisere dem.",
-        "whatIsASeed": "What is a seed?"
+        "whatIsASeed": "Hva er en hovednøkkel?"
     },
     "onboardingComplete": {
         "walletReady": "Lommeboken er nå satt opp og er klar til bruk. Hvis du vil gjøre endringer i fremtiden, kan du gjøre dette under Innstillinger i menyen."
@@ -210,12 +221,12 @@
         "neverShare": "Del aldri hovednøkkelen din med noen.",
         "iotaLogo": "IOTA logo",
         "printWallet": "SKRIV UT PAPIRLOMMEBOK",
-        "print": "PRINT",
-        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
-        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
-        "tapCheckboxes": "Please tap the checkboxes below to confirm.",
-        "wifiCheckbox": "I will not print on public wifi",
-        "printerCheckbox": "I will not print on a public printer"
+        "print": "SKRIV UT",
+        "paperConvenience": "En praktisk måte å oppbevare hovednøkkelen er å skrive den ut på papir.",
+        "publicInsecure": "Men å skrive ut på et offentlig nettverk eller printer er usikkert.",
+        "tapCheckboxes": "Vennligst trykk på avkryssingsfeltet nedenfor for å bekrefte.",
+        "wifiCheckbox": "Jeg vil ikke skrive ut på et offentlig nettverk",
+        "printerCheckbox": "Jeg vil ikke skrive ut på en offentlig printer"
     },
     "receive": {
         "addressCopied": "Addresse kopiert",
@@ -289,8 +300,8 @@
         "mode": "Modus",
         "theme": "Tema",
         "currency": "Valuta",
-        "cannotChangeNode": "Cannot change node",
-        "cannotChangeNodeWhileSending": "Cannot change node while sending.",
+        "cannotChangeNode": "Kan ikke endre node",
+        "cannotChangeNodeWhileSending": "Kan ikke endre node mens transaksjon sendes.",
         "language": "Språk",
         "accountManagement": "Kontoadministrasjon",
         "addNewSeed": "Legg til ny hovednøkkel",
@@ -322,14 +333,14 @@
         "selectAll": "Velg alt",
         "securitySettings": "Sikkerhetsinnstillinger",
         "fingerprint": "Biometrisk autentisering",
-        "couldNotFetchRates": "Kunne ikke hente valutakurser",
-        "couldNotFetchRatesExplanation": "Noe gikk galt under henting av valutakurser for {{currency}}.",
-        "fetchedConversionRates": "Hentet valutakurser",
-        "fetchedConversionRatesExplanation": "Henting av valutakurs for {{currency}} var vellykket.",
+        "couldNotFetchRates": "Kunne ikke hente omregningskurs",
+        "couldNotFetchRatesExplanation": "Noe gikk galt under hentingen av omregningskursene for {{currency}}.",
+        "fetchedConversionRates": "Omregningskurs hentet",
+        "fetchedConversionRatesExplanation": "Siste omregningskurs er hentet for {{currency}}.",
         "undo": "Angre",
         "redo": "Gjør om",
         "lockScreenTimeout": "Skjermen er låst grunnet inaktivitet",
-        "autoNodeSwitching": "Endre node automatisk når den valgte noden er utilgjengelig"
+        "autoNodeSwitching": "Endre node automatisk dersom den valgte noden er utilgjengelig"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Skriv inn passordet for å tilbakestille lommeboken.",
@@ -371,12 +382,12 @@
         "addNewAccount": "Legge til ny konto"
     },
     "addCustomNode": {
-        "customNodeAdded": "Custom node added",
-        "customNodeCouldNotBeAdded": "Custom node could not be added",
-        "customNodeAddedSuccessfully": "The custom node has been added successfully.",
+        "customNodeAdded": "Egendefinert node er lagt til",
+        "customNodeCouldNotBeAdded": "Egendefinert node kunne ikke legges til",
+        "customNodeAddedSuccessfully": "Den egendefinerte noden var lagt til.",
         "customNode": "Egendefinert node",
-        "invalidNodeResponse": "The node returned an invalid response",
-        "httpNodeError": "Trinity Mobile only supports https nodes.",
+        "invalidNodeResponse": "Noden retunerte et ugyldig svar",
+        "httpNodeError": "Trinity Mobil støtter kun https noder.",
         "add": "Legg til",
         "nodeFieldEmpty": "Tekstfeltet er tomt",
         "nodeFieldEmptyExplanation": "Vennligst legg til en egendefinert node."
@@ -437,8 +448,8 @@
     },
     "useExistingSeed": {
         "title": "Angi en hovednøkkel og et kontonavn.",
-        "incorrectFormat": "Incorrect seed format",
-        "validSeedExplanation": "'Valid seeds should be 81 characters and contain only A-Z or 9.'"
+        "incorrectFormat": "Feil format på hovednøkkelen",
+        "validSeedExplanation": "'En gyldig hovednøkkel skal være på 81 tegn bestående av bokstavene A til Z eller tallet 9.'"
     },
     "viewSeed": {
         "enterPassword": "Skriv inn passordet for å vise hovednøkkelen.",
@@ -503,9 +514,9 @@
     },
     "rootDetection": {
         "warning": "ADVARSEL",
-        "appearsRooted": "Your device appears to be rooted.",
-        "securityRisk": "This can pose a significant risk to the security of your wallet.",
-        "continueDepsiteRisk": "Do you wish to continue despite this risk?"
+        "appearsRooted": "Din enhet ser ut til å være rooted.",
+        "securityRisk": "Dette kan medføre en betydelig risiko for sikkerheten til din lommebok.",
+        "continueDepsiteRisk": "Ønsker du å fortsette til tross for risikoen?"
     },
     "pow": {
         "feeless": "Det er nødvendig for å utføre litt PoW (Proof of Work) for å sende gebyrfrie transaksjoner i IOTA.",
@@ -555,6 +566,6 @@
         "skipUpdate": "Hopp over oppdatering"
     },
     "notificationLog": {
-        "errorLog": "ERROR LOG"
+        "errorLog": "FEILMELDINGER"
     }
 }

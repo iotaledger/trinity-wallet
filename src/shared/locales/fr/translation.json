@@ -48,7 +48,7 @@
         "otherWallet": "AUTRE COMPTE",
         "yes": "OUI",
         "no": "NON",
-        "okay": "OKAY",
+        "okay": "OK",
         "password": "Mot de passe",
         "passwordOrFingerprint": "Mot de passe ou empreinte digitale",
         "unrecognisedPassword": "Mot de passe non reconnu",
@@ -67,26 +67,33 @@
         "sent": "Envoyé",
         "received": "Reçue",
         "sending": "Envoi en cours",
-        "receiving": "Réception...",
+        "receiving": "Réception",
         "confirmed": "Confirmée",
         "pending": "En cours",
-        "bundleHash": "Hash du Paquet",
+        "bundleHash": "Hash du paquet",
         "addresses": "Adresses",
         "reattach": "RATTACHER",
         "promote": "PROMOUVOIR",
-        "retry": "RETRY",
+        "retry": "RÉESSAYER",
         "rebroadcast": "RETRANSMETTRE",
         "pressBackAgain": "Appuyez sur le bouton retour pour fermer l'application",
-        "autoreattaching": "Rattachement automatique au Tangle",
-        "autoreattachingExplanation": "Rattachement de la transaction de hash {{hash}}",
+        "reattached": "Transaction rattachée avec succès",
+        "reattachedExplanation": "Transaction avec le hash {{hash}} rattachée",
         "autopromoting": "Promotion automatique du transfert",
-        "autopromotingExplanation": "Promotion de la transaction de hash {{hash}}",
-        "promoting": "Promotion du transfert",
+        "autopromotingExplanation": "Promotion de la transaction avec le hash {{hash}}",
+        "rebroadcasted": "Transaction retransmise avec succès",
+        "rebroadcastedExplanation": "Transaction avec le hash {{hash}} retransmise",
+        "rebroadcastError": "Impossible de retransmettre la transaction",
+        "rebroadcastErrorExplanation": "Une erreur est survenue pendant la retransmission de votre transaction. Veuillez réessayer.",
+        "promoted": "Transaction promue avec succès",
+        "promotedExplanation": "Transaction avec le hash {{hash}} promue",
         "promotionError": "Impossible de promouvoir la transaction",
         "promotionErrorExplanation": "Une erreur est survenue pendant la promotion de votre transaction. Veuillez réessayer.",
         "noLongerValid": "Le paquet que vous essayez de promouvoir n'est plus valide",
+        "transactionAlreadyConfirmed": "Transaction déjà confirmée",
+        "transactionAlreadyConfirmedExplanation": "La transaction que vous essayez de promouvoir est déjà confirmée.",
         "cannotSendToOwn": "Envoi à votre propre adresse",
-        "cannotSendToOwnExplanation": "Vous ne pouvez pas effectuer un transfert de fonds vers vos propres adresses.",
+        "cannotSendToOwnExplanation": "Vous ne pouvez pas effectuer un transfert avec valeur vers vos propres adresses.",
         "pleaseWait": "Veuillez patienter",
         "pleaseWaitEllipses": "Merci de patienter...",
         "pleaseWaitExplanation": "Trinity est en train d'effectuer une autre tâche. Veuillez réessayer plus tard.",
@@ -95,7 +102,7 @@
         "snapshotTransitionInProgressExplanation": "Veuillez patienter jusqu'à ce que la transition soit terminée.",
         "checkForUpdates": "Rechercher des mises à jour",
         "account": "Compte",
-        "enterPasswordToAccessSettings": "Entrez votre mot de passe pour accéder aux réglages de compte",
+        "enterPasswordToAccessSettings": "Saisissez votre mot de passe pour accéder aux réglages de compte",
         "enterYourPassword": "Saisissez votre mot de passe",
         "changeNode": "Changer de serveur",
         "addCustomNode": "Ajouter un serveur personnalisé",
@@ -108,10 +115,13 @@
         "nodeAutoChanged": "Changement automatique de serveur",
         "nodeAutoChangedExplanation": "Passage au nouveau serveur {{- nodeAddress}} car le serveur sélectionné est hors ligne.",
         "fingerprintOnSend": "Touchez le lecteur d'empreintes digitales pour autoriser le transfert",
-        "masterKey": "Your IOTA seed is the master key to your funds.",
-        "googlePlayServicesNotAvailable": "Google Play Services not available",
-        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available.",
-        "clear": "CLEAR"
+        "masterKey": "Votre seed IOTA est la clé principale de vos fonds.",
+        "seedThief": "Si quelqu'un d'autre détient votre seed, il pourra voler vos IOTA.",
+        "googlePlayServicesNotAvailable": "Les services Google Play ne sont pas disponibles",
+        "couldNotVerifyDeviceIntegrity": "Impossible de vérifier l'intégrité de l'appareil car les services Google Play ne sont pas disponibles.",
+        "clear": "EFFACER",
+        "noNetworkConnection": "Aucune connexion réseau",
+        "noNetworkConnectionExplanation": "Votre connexion à internet semble être hors-ligne."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -146,18 +156,19 @@
         "confirmPassword": "Confirmer le nouveau mot de passe"
     },
     "copyToClipboard": {
-        "seedCleared": "Seed effacée",
+        "seedCleared": "Presse-papier vidé",
         "seedClearedExplanation": "La seed a été effacée du presse-papier pour plus de sécurité.",
         "seedCopied": "Seed copiée dans le presse-papier",
         "seedCopiedExplanation": "La seed sera effacée dès que vous aurez appuyé sur « OK » ou que 60 secondes se seront écoulées.",
         "clickToCopy": "Cliquez sur le bouton ci-dessous et copiez votre seed dans un gestionnaire de mot de passe.",
         "doNotStore": "Ne stockez pas votre seed en texte en clair.",
-        "copyToClipboard": "Copier le seed",
+        "copyToClipboard": "Copier la seed",
         "shareSeed": "Enregistrer votre seed dans un gestionnaire de mot de passe sécurisé",
-        "storeEncrypted": "If you choose to back-up your seed on your phone it should be stored encrypted e.g. in a password manager.",
-        "tapConfirm": "Please tap the checkbox below to confirm.",
-        "encryptionCheckbox": "I will store my seed with encryption",
-        "copy": "COPY"
+        "storeEncrypted": "Stockez votre seed de manière chiffrée dans un gestionnaire de mot de passe.",
+        "doNotOpen": "N'ouvrez aucune autre application pendant le processus.",
+        "tapConfirm": "Veuillez cocher la case ci-dessous pour confirmer.",
+        "passwordManagerCheckbox": "Je stockerai ma seed dans un gestionnaire de mot de passe",
+        "copy": "COPIER"
     },
     "enterSeed": {
         "invalidCharacters": "La seed contient des caractères invalides",
@@ -197,9 +208,9 @@
         "seedNotGenerated": "La seed n'a pas été générée",
         "seedNotGeneratedExplanation": "Veuillez générer une nouvelle seed.",
         "pressForNewSeed": "NOUVELLE SEED",
-        "generateSuccess": "Seed generated successfully",
+        "generateSuccess": "La seed a été générée avec succès",
         "individualLetters": "Rajoutez de l'aléatoire en cliquant sur des lettres isolées.",
-        "whatIsASeed": "What is a seed?"
+        "whatIsASeed": "Qu'est-ce qu'une seed ?"
     },
     "onboardingComplete": {
         "walletReady": "Le portefeuille est maintenant configuré et prêt à l'utilisation. Pour toute modification ultérieure, rendez-vous dans le menu Réglages."
@@ -210,12 +221,12 @@
         "neverShare": "Ne communiquez votre seed à personne.",
         "iotaLogo": "Logo IOTA",
         "printWallet": "IMPRIMER LE PORTEFEUILLE PAPIER",
-        "print": "PRINT",
-        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
-        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
-        "tapCheckboxes": "Please tap the checkboxes below to confirm.",
-        "wifiCheckbox": "I will not print on public wifi",
-        "printerCheckbox": "I will not print on a public printer"
+        "print": "IMPRIMER",
+        "paperConvenience": "Imprimer une copie papier de votre seed est un moyen pratique de la stocker.",
+        "publicInsecure": "Mais l’impression avec un wifi public ou une imprimante publique n’est pas sécurisée.",
+        "tapCheckboxes": "Veuillez cocher les cases ci-dessous pour confirmer.",
+        "wifiCheckbox": "Je n'imprimerai pas avec un wifi publique",
+        "printerCheckbox": "Je ne l'imprimerai pas sur une imprimante publique"
     },
     "receive": {
         "addressCopied": "Adresse copiée",
@@ -278,7 +289,7 @@
     "modeSelection": {
         "expert": "Expert",
         "standard": "Standard",
-        "expertModeExplanation": "Le mode expert donnera accès à des fonctionnalités supplémentaires comme la promotion manuelle et le rattachement.",
+        "expertModeExplanation": "Le mode expert donnera accès à des fonctionnalités supplémentaires comme la promotion et le rattachement manuels.",
         "modesExplanation": "Activer le mode Expert uniquement si vous êtes un utilisateur du Tangle expérimenté. Vous pourriez avoir des difficultés dans le cas contraire."
     },
     "settings": {
@@ -289,8 +300,8 @@
         "mode": "Mode",
         "theme": "Thème",
         "currency": "Devise",
-        "cannotChangeNode": "Cannot change node",
-        "cannotChangeNodeWhileSending": "Cannot change node while sending.",
+        "cannotChangeNode": "Impossible de changer de serveur",
+        "cannotChangeNodeWhileSending": "Impossible de changer de serveur pendant un envoi.",
         "language": "Langue",
         "accountManagement": "Gestion du compte",
         "addNewSeed": "Ajouter une nouvelle seed",
@@ -323,9 +334,9 @@
         "securitySettings": "Paramètres de sécurité",
         "fingerprint": "Authentification biométrique",
         "couldNotFetchRates": "Échec de la récupération des taux",
-        "couldNotFetchRatesExplanation": "Une erreur s'est produite lors de la récupération des taux de change pour {{currency}}.",
-        "fetchedConversionRates": "Taux de conversion récupérés",
-        "fetchedConversionRatesExplanation": "Récupération des derniers taux de conversion pour {{currency}} réussie.",
+        "couldNotFetchRatesExplanation": "Une erreur s'est produite lors de la récupération du taux de change en {{currency}}.",
+        "fetchedConversionRates": "Taux de conversion récupéré",
+        "fetchedConversionRatesExplanation": "Récupération des derniers taux de conversion en {{currency}} réussie.",
         "undo": "Annuler",
         "redo": "Rétablir",
         "lockScreenTimeout": "Délai pour le verrouillage de l'écran (Minutes)",
@@ -339,9 +350,9 @@
     "walletSetup": {
         "okay": "Bien ! Configurons votre portefeuille !",
         "doYouAlreadyHaveASeed": "Détenez-vous déjà une seed que vous désirez utiliser ?",
-        "seedExplanation": "La seed IOTA est comme un nom d'utilisateur et un mot de passe combinés en une chaîne de 81 caractères.",
+        "seedExplanation": "Votre seed IOTA est la clé principale de vos fonds. Elle est composée de 81 caractères.",
         "explanation": "<0><0>Vous pouvez l'utiliser pour accéder à vos fonds à partir de</0><1> n'importe quel portefeuille</1><2>, depuis</2><3> n'importe quel appareil</3><4>. Mais si vous perdez votre seed, vous perdez également vos IOTA.</4></0>",
-        "keepSafe": "Merci de garder votre Seed en sécurité.",
+        "keepSafe": "Merci de garder votre seed en sécurité.",
         "hint": "<0><0>Astuce :</0> Cliquez sur NON si c'est la première fois que vous utilisez IOTA.</0>"
     },
     "welcome": {
@@ -371,14 +382,14 @@
         "addNewAccount": "Ajouter un nouveau compte"
     },
     "addCustomNode": {
-        "customNodeAdded": "Custom node added",
-        "customNodeCouldNotBeAdded": "Custom node could not be added",
-        "customNodeAddedSuccessfully": "The custom node has been added successfully.",
+        "customNodeAdded": "Serveur personnalisé ajouté",
+        "customNodeCouldNotBeAdded": "Le serveur personnalisé n'a pas pu être ajouté",
+        "customNodeAddedSuccessfully": "Le serveur personnalisé a été ajouté avec succès.",
         "customNode": "Serveur personnalisé",
-        "invalidNodeResponse": "The node returned an invalid response",
-        "httpNodeError": "Trinity Mobile only supports https nodes.",
+        "invalidNodeResponse": "Le serveur a renvoyé une réponse invalide",
+        "httpNodeError": "La version mobile de Trinity ne supporte que des serveur https.",
         "add": "Ajouter",
-        "nodeFieldEmpty": "Text field is empty",
+        "nodeFieldEmpty": "Le champ texte est vide",
         "nodeFieldEmptyExplanation": "Veuillez entrer un serveur personnalisé."
     },
     "addNewAccount": {
@@ -423,7 +434,7 @@
     },
     "deleteAccount": {
         "areYouSure": "<0></0> <1>Êtes-vous sûr de vouloir supprimer</1> <2></2> <3>{{accountName}}?</3>",
-        "yourSeedWillBeRemoved": "L’historique de vos seeds et de vos transactions sera supprimé.",
+        "yourSeedWillBeRemoved": "L’historique de votre seed et de vos transactions sera supprimé.",
         "thisAction": "Cette action est irréversible.",
         "enterPassword": "Saisissez votre mot de passe pour supprimer ce compte."
     },
@@ -437,8 +448,8 @@
     },
     "useExistingSeed": {
         "title": "Saisissez une seed et un nom de compte.",
-        "incorrectFormat": "Incorrect seed format",
-        "validSeedExplanation": "'Valid seeds should be 81 characters and contain only A-Z or 9.'"
+        "incorrectFormat": "Format de seed incorrect",
+        "validSeedExplanation": "'Les seeds valides doit être composées de 81 caractères et contenir uniquement A-Z ou 9.'"
     },
     "viewSeed": {
         "enterPassword": "Saisissez le mot de passe pour afficher votre seed.",
@@ -452,7 +463,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "CETTE ACTION EST IRRÉVERSIBLE.",
-        "warning": "<0><0>Toutes vos données de portefeuille, y compris vos </0><1>seeds, mot de passe,</1><2> et</2><3>autres informations de compte</3><4> seront perdues.</4></0>"
+        "warning": "<0><0>Toutes vos données de portefeuille, y compris vos </0><1>seeds, mot de passe,</1><2> et </2><3>autres informations de compte</3><4> seront perdues.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Touchez le lecteur d'empreintes pour activer l'authentification par empreinte digitale",
@@ -493,19 +504,19 @@
         "twoFADisabledExplanation": "Vous avez désactivé l'authentification à deux facteurs avec succès.",
         "enterCode": "Entrez le code de votre application 2FA",
         "code": "Code",
-        "twoFaToken": "2FA Token"
+        "twoFaToken": "Code 2FA"
     },
     "chart": {
         "mcap": "MCAP",
         "change": "Variation",
         "volume": "Volume (24h)",
-        "currentValue": "Valeur acutelle"
+        "currentValue": "Valeur actuelle"
     },
     "rootDetection": {
         "warning": "ATTENTION",
-        "appearsRooted": "Your device appears to be rooted.",
-        "securityRisk": "This can pose a significant risk to the security of your wallet.",
-        "continueDepsiteRisk": "Do you wish to continue despite this risk?"
+        "appearsRooted": "Votre appareil semble être rooté.",
+        "securityRisk": "Cela peut poser un risque important pour la sécurité de votre portefeuille.",
+        "continueDepsiteRisk": "Souhaitez-vous continuer malgré le risque ?"
     },
     "pow": {
         "feeless": "Il est nécessaire de remplir une petite preuve du travail pour envoyer des transactions sans frais en IOTA.",
@@ -531,7 +542,7 @@
         "cannotCompleteTransitionExplanation": "Votre solde doit être supérieur à 0 pour terminer la transition.",
         "transitionComplete": "Transition du snapshot terminée",
         "transitionCompleteExplanation": "La transition du snapshot s'est terminée avec succès.",
-        "detectedBalance": "Solde a détecté : {{amount}} {{unit}}",
+        "detectedBalance": "Solde détecté : {{amount}} {{unit}}",
         "isThisCorrect": "Est-ce correct ?",
         "snapshotExplanation": "De temps en temps, un snapshot est réalisé afin de réduire la taille du Tangle.",
         "hasSnapshotTakenPlace": "Un snapshot a eu lieu ? Appuyez sur le bouton ci-dessous pour la transition.",
@@ -555,6 +566,6 @@
         "skipUpdate": "Passer la mise a jour"
     },
     "notificationLog": {
-        "errorLog": "ERROR LOG"
+        "errorLog": "JOURNAL DES ERREURS"
     }
 }
