@@ -12,7 +12,6 @@ import {
     categoriseTransactionsByPersistence,
     getPendingTxTailsHashes,
     markTransfersConfirmed,
-    hasNewTransfers,
     getTransactionsDiff,
     categoriseTransactions,
     normaliseBundle,
@@ -221,21 +220,6 @@ describe('libs: iota/transfers', () => {
 
                 expect(markTransfersConfirmed(normalisedTransfers, confirmedTransactionsHashes)).to.eql(result);
             });
-        });
-    });
-
-    describe('#hasNewTransfers', () => {
-        it('should return true if second argument size is greater than first argument size', () => {
-            expect(hasNewTransfers([], [1])).to.equal(true);
-        });
-
-        it('should return false if second argument size is greater than first argument size', () => {
-            expect(hasNewTransfers({}, { foo: 'bar' })).to.equal(false);
-            expect(hasNewTransfers([], [])).to.equal(false);
-            expect(hasNewTransfers([1], [])).to.equal(false);
-            expect(hasNewTransfers(null, [])).to.equal(false);
-            expect(hasNewTransfers(null, undefined)).to.equal(false);
-            expect(hasNewTransfers(0, 10)).to.equal(false);
         });
     });
 
