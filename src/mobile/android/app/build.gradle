@@ -55,7 +55,7 @@ import com.android.build.OutputFile
  *   // where to put drawable resources / React Native assets, e.g. the ones you use via
  *   // require('./image.png')), in release mode
  *   resourcesDirRelease: "$buildDir/intermediates/res/merged/release",
- *
+ *7S
  *   // by default the gradle tasks are skipped if none of the JS files or assets change; this means
  *   // that we don't look at files in android/ or ios/ to determine whether the tasks are up to
  *   // date; if you have any other folders that you want to ignore for performance reasons (gradle
