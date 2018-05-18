@@ -1,3 +1,4 @@
+import isBoolean from 'lodash/isBoolean';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
@@ -89,6 +90,10 @@ class Welcome extends Component {
          * @param {string} text - notification explanation
          */
         generateAlert: PropTypes.func.isRequired,
+        /**
+         * Determines if wallet has an active internet connection
+         */
+        hasConnection: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
@@ -142,7 +147,7 @@ class Welcome extends Component {
                     return doAttestationFromSafetyNet();
                 })
                 .then((isRooted) => {
-                    if (isRooted) {
+                    if (isBoolean(isRooted) && isRooted) {
                         this.setState({ isModalVisible: true });
                     }
                 })
@@ -181,7 +186,7 @@ class Welcome extends Component {
 
     render() {
         const { isModalVisible } = this.state;
-        const { t, theme } = this.props;
+        const { t, theme, hasConnection } = this.props;
 
         const textColor = { color: theme.body.color };
         return (
@@ -198,8 +203,20 @@ class Welcome extends Component {
                     </View>
                 </View>
                 <View style={styles.bottomContainer}>
-                    <TouchableOpacity onPress={() => this.onNextPress()} testID="welcome-next">
-                        <View style={[styles.nextButton, { borderColor: theme.primary.color }]}>
+                    <TouchableOpacity
+                        onPress={() => {
+                            if (hasConnection) {
+                                this.onNextPress();
+                            }
+                        }}
+                        testID="welcome-next"
+                    >
+                        <View
+                            style={[
+                                styles.nextButton,
+                                { borderColor: theme.primary.color, opacity: hasConnection ? 1 : 0.6 },
+                            ]}
+                        >
                             <Text style={[styles.nextText, { color: theme.primary.color }]}>{t('global:next')}</Text>
                         </View>
                     </TouchableOpacity>
@@ -230,6 +247,7 @@ class Welcome extends Component {
 
 const mapStateToProps = (state) => ({
     theme: state.settings.theme,
+    hasConnection: state.wallet.hasConnection,
 });
 
 const mapDispatchToProps = {
