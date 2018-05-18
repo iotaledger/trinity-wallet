@@ -57,6 +57,7 @@ const getProps = (overrides) =>
             },
             isBroadcastingBundle: false,
             currentlyPromotingBundleHash: 'foo',
+            hasFailedAutopromotion: false,
         },
         overrides,
     );
