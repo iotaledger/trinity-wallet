@@ -5,11 +5,11 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 import Icon from 'ui/components/Icon';
+import Waves from 'ui/components/Waves';
 
 import Welcome from 'ui/views/onboarding/Welcome';
 import Login from 'ui/views/onboarding/Login';
 import SeedIntro from 'ui/views/onboarding/SeedIntro';
-import SeedWarning from 'ui/views/onboarding/SeedWarning';
 import GenerateSeed from 'ui/views/onboarding/SeedGenerate';
 import SaveYourSeedOptions from 'ui/views/onboarding/SeedSave';
 import SeedEnter from 'ui/views/onboarding/SeedVerify';
@@ -17,7 +17,7 @@ import SeedName from 'ui/views/onboarding/AccountName';
 import SecurityEnter from 'ui/views/onboarding/AccountPassword';
 import Done from 'ui/views/onboarding/Done';
 
-import css from './index.css';
+import css from './index.scss';
 
 /**
  * Onboarding main router wrapper component
@@ -48,7 +48,7 @@ class Onboarding extends React.PureComponent {
 
     steps(currentKey) {
         const steps = [
-            'seed-warning',
+            'seed-intro',
             'seed-generate',
             'seed-save',
             'seed-verify',
@@ -96,7 +96,6 @@ class Onboarding extends React.PureComponent {
                         <div>
                             <Switch location={location}>
                                 <Route path="/onboarding/seed-intro" component={SeedIntro} />
-                                <Route path="/onboarding/seed-warning" component={SeedWarning} />
                                 <Route path="/onboarding/seed-generate" component={GenerateSeed} />
                                 <Route path="/onboarding/seed-save" component={SaveYourSeedOptions} />
                                 <Route path="/onboarding/seed-verify" component={SeedEnter} />
@@ -108,10 +107,7 @@ class Onboarding extends React.PureComponent {
                         </div>
                     </CSSTransition>
                 </TransitionGroup>
-                <div className={css.wave}>
-                    <div style={{ backgroundPosition: `${this.state.waveIndex * 40}%` }} />
-                    <div style={{ backgroundPosition: `${this.state.waveIndex * 20 + 50}%` }} />
-                </div>
+                <Waves offset={this.state.waveIndex * 20} bottom="70px" />
             </main>
         );
     }

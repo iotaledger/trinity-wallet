@@ -1,0 +1,137 @@
+$footer: 70px;
+
+.backdrop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 1001;
+    transition: opacity 0.15s ease-in;
+
+    @media print {
+        display: none;
+    }
+
+    &:before {
+        content: '';
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        top: 0px;
+        left: 0px;
+        z-index: 1;
+        background: var(--body-bg);
+    }
+    &.confirm,
+    &.global &.fullscreen {
+        &:before {
+            opacity: 1;
+        }
+        text-align: center;
+        h1 {
+            margin-bottom: 20px;
+            max-width: none;
+        }
+        p {
+            max-width: none;
+        }
+        strong {
+            max-width: 40vw;
+            word-wrap: break-word;
+        }
+        fieldset button {
+            margin: 0 20px;
+        }
+    }
+
+    &.global {
+        z-index: 1002;
+    }
+
+    &.inline {
+        position: static;
+    }
+
+    &.fullscreen {
+        > div {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100vw;
+            height: 100vh;
+            padding-bottom: 80px;
+            text-align: center;
+        }
+        footer {
+            position: absolute;
+            bottom: 0px;
+            height: $footer;
+            width: 100%;
+            display: flex;
+            align-items: stretch;
+            bottom: 0px;
+            left: 0px;
+            margin: 0px;
+            padding: 0px;
+
+            button {
+                margin: 0px;
+            }
+            * {
+                flex: 1;
+            }
+        }
+    }
+
+    footer {
+        margin-top: 40px;
+
+        a,
+        button {
+            margin: 24px;
+        }
+    }
+
+    .wrapper {
+        width: calc(100vw - 40px);
+        position: relative;
+        z-index: 2;
+        transform: scale(1);
+        transition: transform 0.2s ease-out;
+
+        p {
+            word-wrap: break-word;
+        }
+
+        form {
+            margin: 30px auto 0;
+            padding: 0px;
+            border: none;
+            max-width: 580px;
+        }
+
+        @media (max-width: 960px) {
+            width: 100vw;
+            padding: 0 20px;
+        }
+    }
+}
+
+.hidden {
+    pointer-events: none;
+    opacity: 0;
+
+    .wrapper {
+        transform: scale(0.95);
+    }
+}
+
+.negative {
+    color: var(--negative);
+}

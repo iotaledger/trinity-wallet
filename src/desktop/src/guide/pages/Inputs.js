@@ -3,15 +3,13 @@ import React from 'react';
 import PasswordInput from 'ui/components/input/Password';
 import SeedInput from 'ui/components/input/Seed';
 import AmountInput from 'ui/components/input/Amount';
-import MessageInput from 'ui/components/input/Message';
 import Select from 'ui/components/input/Select';
 
 class Inputs extends React.PureComponent {
     state = {
         password: '',
         seed: '',
-        ammount: '0',
-        message: '',
+        ammount: '0'
     };
 
     render() {
@@ -45,11 +43,6 @@ class Inputs extends React.PureComponent {
                         labelMax="Send maximum"
                         balance={2000}
                         onChange={(value) => this.setState({ ammount: value })}
-                    />
-                    <MessageInput
-                        message={this.state.message}
-                        label="Auto size"
-                        onChange={(value) => this.setState({ message: value })}
                     />
                 </form>
             </div>

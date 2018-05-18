@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import Logo from 'ui/components/Logo';
-import css from './Loading.css';
+import css from './Loading.scss';
 
 /**
  * Loading screen component

@@ -103,7 +103,7 @@ class ModalPassword extends PureComponent {
                     />
                     <fieldset>
                         {!isForced ? (
-                            <Button onClick={() => onClose()} variant="secondary">
+                            <Button onClick={() => onClose()} variant="dark">
                                 {t('cancel')}
                             </Button>
                         ) : null}
