@@ -165,11 +165,11 @@ class WalletResetRequirePassword extends Component {
         const { t } = this.props;
 
         if (isAuthenticated) {
+            this.redirectToInitialScreen();
             persistor
                 .purge()
                 .then(() => clearKeychain())
                 .then(() => {
-                    this.redirectToInitialScreen();
                     this.props.setOnboardingComplete(false);
                     this.props.setFirstUse(true);
                     this.props.clearWalletData();
