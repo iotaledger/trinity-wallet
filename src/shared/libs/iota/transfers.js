@@ -14,7 +14,6 @@ import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 import isFunction from 'lodash/isFunction';
 import filter from 'lodash/filter';
-import size from 'lodash/size';
 import some from 'lodash/some';
 import reduce from 'lodash/reduce';
 import transform from 'lodash/transform';
@@ -521,18 +520,6 @@ export const constructBundle = (tailTransaction, allTransactionObjects) => {
 };
 
 /**
- *   Checks if there is a difference between local transaction hashes and ledger's transaction hashes.
- *
- *   @method hasNewTransfers
- *   @param {array} existingHashes
- *   @param {array} newHashes
- *
- *   @returns {boolean}
- **/
-export const hasNewTransfers = (existingHashes, newHashes) =>
-    isArray(existingHashes) && isArray(newHashes) && size(newHashes) > size(existingHashes);
-
-/**
  *   Get latest inclusion states with hashes.
  *   Filter confirmed hashes.
  *
@@ -634,6 +621,7 @@ export const normaliseBundle = (bundle, addresses, tailTransactions, persistence
  **/
 export const syncTransfers = (diff, accountState) => {
     const bundleHashes = new Set();
+    const outOfSyncTransactionHashes = [];
 
     const cached = {
         tailTransactions: [],
@@ -643,9 +631,11 @@ export const syncTransfers = (diff, accountState) => {
     // FIXME: Do not reconstruct seen and already validated bundles
     return getTransactionsObjectsAsync(diff)
         .then((transactionObjects) => {
-            each(transactionObjects, (transactionObject) => {
+            each(transactionObjects, (transactionObject, idx) => {
                 if (transactionObject.bundle !== '9'.repeat(81)) {
                     bundleHashes.add(transactionObject.bundle);
+                } else {
+                    outOfSyncTransactionHashes.push(diff[idx]);
                 }
             });
 
@@ -678,6 +668,7 @@ export const syncTransfers = (diff, accountState) => {
             return {
                 transfers,
                 newNormalisedTransfers,
+                outOfSyncTransactionHashes,
             };
         });
 };
@@ -760,7 +751,7 @@ export const isStillAValidTransaction = (transaction, addressData) => {
  *   @returns {array}
  **/
 export const getTransactionsDiff = (existingHashes, newHashes) => {
-    return hasNewTransfers(existingHashes, newHashes) ? difference(newHashes, existingHashes) : [];
+    return difference(newHashes, existingHashes);
 };
 
 /**

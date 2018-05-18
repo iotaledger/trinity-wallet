@@ -6,6 +6,8 @@ import map from 'lodash/map';
 import keys from 'lodash/keys';
 import merge from 'lodash/merge';
 import find from 'lodash/find';
+import filter from 'lodash/filter';
+import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 import omit from 'lodash/omit';
 import unionBy from 'lodash/unionBy';
@@ -198,10 +200,14 @@ export const syncAccount = (
                 : Promise.resolve({
                       transfers: thisStateCopy.transfers,
                       newNormalisedTransfers: {},
+                      outOfSyncTransactionHashes: [],
                   });
         })
-        .then(({ transfers, newNormalisedTransfers }) => {
+        .then(({ transfers, newNormalisedTransfers, outOfSyncTransactionHashes }) => {
             thisStateCopy.transfers = transfers;
+
+            // Keep only synced transaction hashes so that the next cycle tries to re-sync
+            thisStateCopy.hashes = filter(thisStateCopy.hashes, (hash) => !includes(outOfSyncTransactionHashes, hash));
 
             // Transform new transfers by bundle for promotion.
             return prepareForAutoPromotion(
