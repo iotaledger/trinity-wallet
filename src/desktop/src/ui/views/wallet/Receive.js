@@ -13,10 +13,11 @@ import { generateAlert } from 'actions/alerts';
 import { getSeed } from 'libs/crypto';
 
 import Button from 'ui/components/Button';
+import Icon from 'ui/components/Icon';
 import Clipboard from 'ui/components/Clipboard';
 import Text from 'ui/components/input/Text.js';
 
-import css from './receive.css';
+import css from './receive.scss';
 
 /**
  * Send transactions component
@@ -84,31 +85,48 @@ class Receive extends React.PureComponent {
         const { t, receiveAddress, isGeneratingReceiveAddress } = this.props;
         const { message } = this.state;
 
-        const content =
-            receiveAddress.length > 2 ? receiveAddress.match(/.{1,3}/g).join(' ') : new Array(27).join('XXX ');
-
         return (
-            <div className={classNames(css.receive, receiveAddress.length < 2 ? css.empty : null)}>
-                <p className={css.address}>
-                    <QRCode value={JSON.stringify({ address: receiveAddress, message: message })} size={150} />
-                    <Clipboard
-                        text={receiveAddress}
-                        title={t('receive:addressCopied')}
-                        success={t('receive:addressCopiedExplanation')}
-                    >
-                        {content}
-                    </Clipboard>
-                </p>
-                <Text
-                    value={message}
-                    label={t('receive:message')}
-                    onChange={(value) => this.setState({ message: value })}
-                />
-                {receiveAddress.length < 2 ? (
-                    <Button onClick={this.onGeneratePress} loading={isGeneratingReceiveAddress}>
-                        {t('receive:generateNewAddress')}
-                    </Button>
-                ) : null}
+            <div className={classNames(css.receive, receiveAddress.length < 2 ? css.empty : css.full)}>
+                <div className={isGeneratingReceiveAddress ? css.loading : null}>
+                    <QRCode value={JSON.stringify({ address: receiveAddress, message: message })} size={145} />
+                    {receiveAddress.length < 2 ? (
+                        <Button className="icon" disabled={receiveAddress.length > 2} onClick={this.onGeneratePress}>
+                            <Icon icon="sync" size={32} />
+                            {t('receive:generateNewAddress')}
+                        </Button>
+                    ) : (
+                        <p>
+                            <Clipboard
+                                text={receiveAddress}
+                                title={t('receive:addressCopied')}
+                                success={t('receive:addressCopiedExplanation')}
+                            >
+                                {receiveAddress}
+                            </Clipboard>
+                        </p>
+                    )}
+                </div>
+                <div>
+                    <Text
+                        value={message}
+                        label={t('receive:message')}
+                        onChange={(value) => this.setState({ message: value })}
+                    />
+                    <footer>
+                        <Button to="/wallet/" variant="secondary" className="outlineSmall">
+                            {t('close')}
+                        </Button>
+                        <Clipboard
+                            text={receiveAddress}
+                            title={t('receive:addressCopied')}
+                            success={t('receive:addressCopiedExplanation')}
+                        >
+                            <Button className="small" onClick={() => {}}>
+                                {t('receive:copyAddress')}
+                            </Button>
+                        </Clipboard>
+                    </footer>
+                </div>
             </div>
         );
     }

@@ -6,7 +6,6 @@ import { translate } from 'react-i18next';
 import { setOnboardingName } from 'actions/ui';
 import { generateAlert } from 'actions/alerts';
 
-import Infobox from 'ui/components/Info';
 import Button from 'ui/components/Button';
 import Input from 'ui/components/input/Text';
 
@@ -91,26 +90,25 @@ class AccountName extends React.PureComponent {
         return (
             <form onSubmit={this.setName}>
                 <section>
+                    <h1>{t('setSeedName:letsAddName')}</h1>
+                    <p>{t('setSeedName:canUseMultipleSeeds')}</p>
                     <Input
                         value={name}
                         focus
                         label={t('addAdditionalSeed:accountName')}
                         onChange={(value) => this.setState({ name: value })}
                     />
-                    <Infobox>
-                        <p>{t('setSeedName:canUseMultipleSeeds')}</p>
-                    </Infobox>
                 </section>
                 <footer>
                     <Button
                         to={`/onboarding/seed-${onboarding.isGenerated ? 'save' : 'verify'}`}
-                        className="inline"
-                        variant="secondary"
+                        className="square"
+                        variant="dark"
                     >
-                        {t('back').toLowerCase()}
+                        {t('goBackStep')}
                     </Button>
-                    <Button type="submit" className="large" variant="primary">
-                        {t('next').toLowerCase()}
+                    <Button type="submit" className="square" variant="primary">
+                        {t('continue')}
                     </Button>
                 </footer>
             </form>

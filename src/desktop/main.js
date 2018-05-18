@@ -50,6 +50,9 @@ function createWindow() {
         height: 768,
         minWidth: 500,
         minHeight: 720,
+        maxWidth: 1600,
+        maxHeight: 900,
+        frame: process.platform === 'linux',
         titleBarStyle: 'hidden',
         icon: `${__dirname}/dist/icon.png`,
         backgroundColor: settings ? settings.theme.body.bg : '#1a373e',
@@ -57,6 +60,7 @@ function createWindow() {
             nodeIntegration: false,
             preload: path.resolve(__dirname, 'lib/Window.js'),
             disableBlinkFeatures: 'Auxclick',
+            webviewTag: false,
         },
     });
 
@@ -68,7 +72,6 @@ function createWindow() {
 
     if (devMode) {
         windows.main.webContents.openDevTools();
-
         const {
             default: installExtension,
             REACT_DEVELOPER_TOOLS,

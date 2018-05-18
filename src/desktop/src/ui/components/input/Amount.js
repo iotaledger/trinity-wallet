@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { formatIota } from 'libs/iota/utils';
+import { formatIota, TOTAL_IOTA_SUPPLY } from 'libs/iota/utils';
 import { round } from 'libs/utils';
 import { getCurrencySymbol } from 'libs/currency';
 
 import Icon from 'ui/components/Icon';
-import css from './input.css';
+import css from './input.scss';
 
 const units = ['i', 'Ki', 'Mi', 'Gi', 'Ti', '$'];
 const decimals = [0, 3, 6, 9, 12, 2];
@@ -73,6 +73,10 @@ export default class AmountInput extends React.PureComponent {
         // Convert to iotas
         const iotas = round(value * this.getUnitMultiplier());
 
+        if (iotas > TOTAL_IOTA_SUPPLY) {
+            return;
+        }
+
         this.setState(
             {
                 value: value,
@@ -111,7 +115,7 @@ export default class AmountInput extends React.PureComponent {
         if (this.state.iotas !== parseInt(props.amount)) {
             this.setState({
                 iotas: props.amount.length ? parseInt(props.amount) : 0,
-                value: this.toUnits(props.amount, this.state.unit),
+                value: props.amount.length ? round(parseInt(props.amount) / this.getUnitMultiplier()) : 0,
             });
         }
     };
@@ -122,27 +126,24 @@ export default class AmountInput extends React.PureComponent {
         this.props.onChange(String(total));
     };
 
-    toUnits = (iotas, unit) => {
-        let value = (round(iotas / this.getUnitMultiplier(unit) * 1000000000000) / 1000000000000)
-            .toFixed(decimals[units.indexOf(unit)])
-            .toString();
-
-        if (value.indexOf('.') > 0) {
-            // Remove reailing zeros and/or dot
-            value = value.replace(/(?=\d)0+$/, '').replace(/\.$/, '');
-        }
-        return value;
-    };
-
     unitChange = (unit) => {
         if (unit === this.state.unit) {
             return;
         }
 
-        this.setState({
-            unit: unit,
-            value: this.toUnits(this.props.amount, unit),
-        });
+        const iotas = round(this.state.value * this.getUnitMultiplier(unit));
+
+        const value =
+            iotas <= TOTAL_IOTA_SUPPLY ? this.state.value : round(TOTAL_IOTA_SUPPLY / this.getUnitMultiplier(unit));
+
+        this.setState(
+            {
+                unit: unit,
+                iotas: iotas,
+                value: value,
+            },
+            () => this.props.onChange(String(iotas)),
+        );
     };
 
     render() {

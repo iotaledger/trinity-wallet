@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { translate, Interpolate } from 'react-i18next';
 import { isValidSeed } from 'libs/iota/utils';
 import { createRandomSeed } from 'libs/crypto';
+import { capitalize } from 'libs/helpers';
 
 import { setOnboardingSeed } from 'actions/ui';
 import { generateAlert } from 'actions/alerts';
@@ -11,7 +12,7 @@ import { generateAlert } from 'actions/alerts';
 import Button from 'ui/components/Button';
 import Icon from 'ui/components/Icon';
 
-import css from './index.css';
+import css from './index.scss';
 
 /**
  * Onboarding, Seed generation component
@@ -45,6 +46,7 @@ class GenerateSeed extends React.PureComponent {
 
     state = {
         seed: this.props.newSeed || createRandomSeed(),
+        clicks: [],
     };
 
     onUpdatedSeed = (seed) => {
@@ -71,8 +73,14 @@ class GenerateSeed extends React.PureComponent {
         history.push('/onboarding/seed-intro');
     };
 
-    updateLetter = (position) => {
-        const { seed } = this.state;
+    updateLetter = (e, position) => {
+        const { seed, clicks } = this.state;
+
+        if (e) {
+            e.preventDefault();
+        }
+
+        const newClicks = clicks.indexOf(position) < 0 ? clicks.concat([position]) : clicks;
 
         const newSeed = seed
             .split('')
@@ -81,30 +89,49 @@ class GenerateSeed extends React.PureComponent {
 
         this.setState(() => ({
             seed: newSeed,
+            clicks: newClicks,
         }));
     };
 
     generateNewSeed = () => {
         const newSeed = createRandomSeed();
+
+        this.props.setOnboardingSeed(null);
+
         this.setState(() => ({
             seed: newSeed,
+            clicks: [],
         }));
     };
 
     render() {
-        const { t } = this.props;
-        const { seed } = this.state;
+        const { newSeed, t } = this.props;
+        const { seed, clicks } = this.state;
+
+        const clicksLeft = 10 - clicks.length;
 
         return (
-            <React.Fragment>
-                <section>
-                    <p>{t('newSeedSetup:individualLetters')}</p>
+            <form>
+                <section className={css.wide}>
+                    <h1>{t('newSeedSetup:generatedSeed')}</h1>
+                    <Interpolate
+                        i18nKey="newSeedSetup:individualLetterCount"
+                        letterCount={
+                            !newSeed && clicksLeft > 0 ? (
+                                <strong className={css.highlight}>{!newSeed ? clicksLeft : 0}</strong>
+                            ) : null
+                        }
+                    >
+                        <p>
+                            Press <strong /> individual letters to randomise them.
+                        </p>
+                    </Interpolate>
                     <div className={css.seed}>
                         <div>
                             {seed.split('').map((letter, index) => {
                                 return (
                                     <button
-                                        onClick={() => this.updateLetter(index)}
+                                        onClick={(e) => this.updateLetter(e, index)}
                                         key={`${index}${letter}`}
                                         value={letter}
                                     >
@@ -116,18 +143,23 @@ class GenerateSeed extends React.PureComponent {
                     </div>
                     <Button type="button" onClick={this.generateNewSeed} className="icon">
                         <Icon icon="sync" size={32} />
-                        {t('newSeedSetup:pressForNewSeed').toLowerCase()}
+                        {capitalize(t('newSeedSetup:pressForNewSeed'))}
                     </Button>
                 </section>
                 <footer>
-                    <Button onClick={this.onRequestPrevious} className="inline" variant="secondary">
-                        {t('back').toLowerCase()}
+                    <Button onClick={this.onRequestPrevious} className="square" variant="dark">
+                        {t('goBackStep')}
                     </Button>
-                    <Button onClick={this.onRequestNext} className="large" variant="primary">
-                        {t('next').toLowerCase()}
+                    <Button
+                        disabled={!newSeed && clicksLeft > 0}
+                        onClick={this.onRequestNext}
+                        className="square"
+                        variant="primary"
+                    >
+                        {!newSeed && clicksLeft > 0 ? `Randomise ${clicksLeft} characters to continue` : t('continue')}
                     </Button>
                 </footer>
-            </React.Fragment>
+            </form>
         );
     }
 }

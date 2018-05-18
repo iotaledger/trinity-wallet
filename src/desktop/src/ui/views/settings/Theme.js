@@ -7,10 +7,10 @@ import themes from 'themes/themes';
 
 import Select from 'ui/components/input/Select';
 import Button from 'ui/components/Button';
-import inputCSS from 'ui/components/input/input.css';
+import inputCSS from 'ui/components/input/input.scss';
 import Icon from 'ui/components/Icon';
 
-import css from './index.css';
+import css from './index.scss';
 
 /** Theme switch component */
 class Theme extends React.PureComponent {
@@ -102,24 +102,6 @@ class Theme extends React.PureComponent {
                         }}
                     >
                         {t('next')}
-                    </Button>
-                    <Button
-                        style={{
-                            color: theme.positive.color,
-                            borderColor: theme.positive.color,
-                            background: 'none',
-                        }}
-                    >
-                        {t('save')}
-                    </Button>
-                    <Button
-                        style={{
-                            color: theme.negative.color,
-                            borderColor: theme.negative.color,
-                            background: 'none',
-                        }}
-                    >
-                        {t('apply')}
                     </Button>
                 </div>
                 <fieldset>
