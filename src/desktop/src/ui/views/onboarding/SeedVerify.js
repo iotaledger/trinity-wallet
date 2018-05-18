@@ -11,7 +11,6 @@ import { generateAlert } from 'actions/alerts';
 import { setOnboardingSeed } from 'actions/ui';
 
 import Button from 'ui/components/Button';
-import Infobox from 'ui/components/Info';
 import SeedInput from 'ui/components/input/Seed';
 
 /**
@@ -88,6 +87,7 @@ class SeedVerify extends React.PureComponent {
                 'error',
                 t('enterSeed:seedTooShort'),
                 t('enterSeed:seedTooShortExplanation', { maxLength: MAX_SEED_LENGTH, currentLength: seed.length }),
+                999999,
             );
             return;
         } else if (!seed.match(VALID_SEED_REGEX)) {
@@ -108,36 +108,27 @@ class SeedVerify extends React.PureComponent {
         return (
             <form onSubmit={(e) => this.setSeed(e)}>
                 <section>
+                    <h1>{t('seedReentry:enterYourSeed')}</h1>
+                    {onboarding.isGenerated ? (
+                        <p>{t('seedReentry:enterSeedBelow')}</p>
+                    ) : (
+                        <p>
+                            {t('enterSeed:seedExplanation', { maxLength: MAX_SEED_LENGTH })}{' '}
+                            <strong>{t('enterSeed:neverShare')}</strong>
+                        </p>
+                    )}
                     <SeedInput seed={seed} focus onChange={this.onChange} label={t('seed')} closeLabel={t('back')} />
-                    <Infobox>
-                        {onboarding.isGenerated ? (
-                            <React.Fragment>
-                                <p>
-                                    {t('seedReentry:thisIsACheck')}
-                                    <br />
-                                    {t('seedReentry:ifYouHaveNotSaved')}
-                                </p>
-                            </React.Fragment>
-                        ) : (
-                            <React.Fragment>
-                                <p>{t('enterSeed:seedExplanation', { maxLength: MAX_SEED_LENGTH })}</p>
-                                <p>
-                                    <strong>{t('enterSeed:neverShare')}</strong>
-                                </p>
-                            </React.Fragment>
-                        )}
-                    </Infobox>
                 </section>
                 <footer>
                     <Button
                         to={`/onboarding/seed-${onboarding.isGenerated ? 'save' : 'intro'}`}
-                        className="inline"
-                        variant="secondary"
+                        className="square"
+                        variant="dark"
                     >
-                        {t('back').toLowerCase()}
+                        {t('goBackStep')}
                     </Button>
-                    <Button type="submit" className="large" variant="primary">
-                        {t('next').toLowerCase()}
+                    <Button type="submit" className="square" variant="primary">
+                        {t('continue')}
                     </Button>
                 </footer>
             </form>

@@ -11,10 +11,11 @@ import TextInput from 'ui/components/input/Text';
 import Icon from 'ui/components/Icon';
 import Button from 'ui/components/Button';
 import Progress from 'ui/components/Progress';
+import Balance from 'ui/components/Balance';
 import Confirm from 'ui/components/modal/Confirm';
 import withSendData from 'containers/wallet/Send';
 
-import css from './index.css';
+import css from './send.scss';
 
 /**
  * Send transaction component
@@ -148,7 +149,8 @@ class Send extends React.PureComponent {
                 : t('transferConfirmation:aMessage');
 
         return (
-            <form onSubmit={(e) => this.validateInputs(e)}>
+            <form className={css.send} onSubmit={(e) => this.validateInputs(e)}>
+                <Balance />
                 <div className={isSending ? css.sending : null}>
                     <Confirm
                         category="primary"
@@ -183,22 +185,22 @@ class Send extends React.PureComponent {
                         label={t('send:message')}
                         onChange={(value) => this.props.setSendMessageField(value)}
                     />
+                    <footer>
+                        {!isSending ? (
+                            <React.Fragment>
+                                <Button to="/wallet/" variant="secondary" className="outlineSmall">
+                                    {t('close')}
+                                </Button>
+
+                                <Button type="submit" className="small" variant="primary">
+                                    {t('send:send')}
+                                </Button>
+                            </React.Fragment>
+                        ) : (
+                            <Progress {...progress} />
+                        )}
+                    </footer>
                 </div>
-                <fieldset>
-                    {!isSending ? (
-                        <React.Fragment>
-                            <Button type="submit" variant="primary">
-                                {t('send:send')}
-                            </Button>
-                            <small onClick={() => this.setState({ isUnitsVisible: true })}>
-                                <Icon icon="info" size={16} />
-                                {t('send:iotaUnits')}
-                            </small>
-                        </React.Fragment>
-                    ) : (
-                        <Progress {...progress} />
-                    )}
-                </fieldset>
                 {!isUnitsVisible ? null : (
                     <div className={css.units} onClick={() => this.setState({ isUnitsVisible: false })}>
                         <div>

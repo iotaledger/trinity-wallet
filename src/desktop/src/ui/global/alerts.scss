@@ -1,0 +1,87 @@
+.wrapper {
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1002;
+    pointer-events: none;
+
+    > div {
+        @media print {
+            display: none;
+        }
+
+        display: block;
+        position: relative;
+        margin: 50px 20px 0;
+        padding: 18px 32px 24px 24px;
+        min-width: 340px;
+        width: 320px;
+        background: var(--body-bg);
+        max-width: calc(100% - 32px);
+        min-height: 120px;
+        transform: scale(0.8);
+        opacity: 0;
+        pointer-events: none;
+        border-radius: 6px;
+
+        * {
+            cursor: pointer;
+        }
+
+        h2 {
+            margin: 0;
+            font-size: 21px;
+            margin-bottom: 16px;
+            font-weight: 400;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 24px;
+            margin-bottom: 0px;
+            word-break: break-word;
+        }
+
+        span {
+            cursor: pointer;
+            position: absolute;
+            top: 6px;
+            right: 6px;
+        }
+
+        &.visible {
+            opacity: 1;
+            pointer-events: all;
+            cursor: pointer;
+            transform: scale(1);
+            transition: opacity 0.12s ease-in, transform 0.24s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        &.info {
+            background: var(--positive);
+            color: var(--positive-body);
+            border-color: var(--positive-hover);
+            span:hover {
+                color: var(--positive-hover);
+            }
+        }
+
+        &.error {
+            background: var(--negative);
+            color: var(--negative-body);
+            border-color: var(--negative-hover);
+            span:hover {
+                color: var(--negative-hover);
+            }
+        }
+
+        &.success {
+            background: var(--positive);
+            color: var(--positive-body);
+            border-color: var(--positive-hover);
+            span:hover {
+                color: var(--positive-hover);
+            }
+        }
+    }
+}
