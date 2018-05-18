@@ -231,7 +231,7 @@ export const markAddressesAsSpentSync = (transfers, addressData) => {
  *   Accepts address data.
  *   Finds all unspent addresses.
  *
- *   IMPORTANT: This function should always be utilized after the account is sycnced.
+ *   IMPORTANT: This function should always be utilized after the account is synced.
  *
  *   @method getUnspentAddressesSync
  *   @param {object} addressData
@@ -272,12 +272,15 @@ export const getSpentAddressesWithPendingTransfersSync = (pendingTransactions, a
  *
  *   @method filterSpentAddresses
  *   @param {array} inputs - Array or objects containing balance, keyIndex and address props.
+ *   @param {array} spentAddresses - Array of spent addresses
  *   @returns {Promise} - A promise that resolves all inputs with unspent addresses.
  **/
-export const filterSpentAddresses = (inputs) => {
+export const filterSpentAddresses = (inputs, spentAddresses) => {
     const addresses = map(inputs, (input) => input.address);
 
-    return wereAddressesSpentFromAsync(addresses).then((wereSpent) => filter(inputs, (input, idx) => !wereSpent[idx]));
+    return wereAddressesSpentFromAsync(addresses).then((wereSpent) =>
+        filter(inputs, (input, idx) => !wereSpent[idx] && !includes(spentAddresses, input.address)),
+    );
 };
 
 /**
