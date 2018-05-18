@@ -1,3 +1,4 @@
+import isBoolean from 'lodash/isBoolean';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
@@ -142,7 +143,7 @@ class Welcome extends Component {
                     return doAttestationFromSafetyNet();
                 })
                 .then((isRooted) => {
-                    if (isRooted) {
+                    if (isBoolean(isRooted) && isRooted) {
                         this.setState({ isModalVisible: true });
                     }
                 })
