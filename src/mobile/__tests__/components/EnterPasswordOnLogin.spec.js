@@ -12,7 +12,7 @@ const getProps = (overrides) =>
             password: '',
             theme: { body: {} },
             onLoginPress: noop,
-            navigateToNodeSelection: noop,
+            navigateToNodeOptions: noop,
             setLoginPasswordField: noop,
             t: () => '',
         },
@@ -33,8 +33,8 @@ describe('Testing EnterPasswordOnLogin component', () => {
             expect(EnterPasswordOnLogin.propTypes.onLoginPress).toEqual(PropTypes.func.isRequired);
         });
 
-        it('should require a navigateToNodeSelection function as a prop', () => {
-            expect(EnterPasswordOnLogin.propTypes.navigateToNodeSelection).toEqual(PropTypes.func.isRequired);
+        it('should require a navigateToNodeOptions function as a prop', () => {
+            expect(EnterPasswordOnLogin.propTypes.navigateToNodeOptions).toEqual(PropTypes.func.isRequired);
         });
 
         it('should require a setLoginPasswordField function as a prop', () => {
@@ -65,7 +65,7 @@ describe('Testing EnterPasswordOnLogin component', () => {
 
     describe('instance methods', () => {
         describe('when called', () => {
-            describe('handleChangeText', () => {
+            describe('#handleChangeText', () => {
                 it('should call prop method "setLoginPasswordField" with parameters', () => {
                     const props = getProps({
                         setLoginPasswordField: jest.fn(),
@@ -80,7 +80,7 @@ describe('Testing EnterPasswordOnLogin component', () => {
                 });
             });
 
-            describe('handleLogin', () => {
+            describe('#handleLogin', () => {
                 it('should call prop method "onLoginPress" with prop "password"', () => {
                     const props = getProps({
                         password: 'foo',
@@ -96,20 +96,20 @@ describe('Testing EnterPasswordOnLogin component', () => {
                 });
             });
 
-            describe('changeNode', () => {
-                it('should call prop method "navigateToNodeSelection"', () => {
+            describe('#changeNode', () => {
+                it('should call prop method "navigateToNodeOptions"', () => {
                     const props = getProps({
-                        navigateToNodeSelection: jest.fn(),
+                        navigateToNodeOptions: jest.fn(),
                     });
 
                     const wrapper = shallow(<EnterPasswordOnLogin {...props} />);
                     const instance = wrapper.instance();
 
-                    expect(props.navigateToNodeSelection).toHaveBeenCalledTimes(0);
+                    expect(props.navigateToNodeOptions).toHaveBeenCalledTimes(0);
 
                     instance.changeNode();
 
-                    expect(props.navigateToNodeSelection).toHaveBeenCalledTimes(1);
+                    expect(props.navigateToNodeOptions).toHaveBeenCalledTimes(1);
                 });
             });
         });

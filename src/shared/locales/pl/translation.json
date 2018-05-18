@@ -77,14 +77,21 @@
         "retry": "PONÓW",
         "rebroadcast": "REBROADCAST",
         "pressBackAgain": "Naciśnij przycisk wstecz ponownie, aby zamknąć aplikację",
-        "autoreattaching": "Autoreattaching do sieci Tangle",
-        "autoreattachingExplanation": "Reattaching transakcji z hashem {{hash}}",
+        "reattached": "Reattach udany",
+        "reattachedExplanation": "Wykonano reattach transakcji z hashem {{hash}}",
         "autopromoting": "Autopromowanie transferu",
         "autopromotingExplanation": "Promowanie transakcji z hashem {{hash}}",
-        "promoting": "Promowanie transferu",
-        "promotionError": "Błąd promowania transferu",
+        "rebroadcasted": "Rebroadcast udany",
+        "rebroadcastedExplanation": "Wykonano rebroadcast transakcji z hashem {{hash}}",
+        "rebroadcastError": "Rebroadcast nieudany",
+        "rebroadcastErrorExplanation": "Coś poszło nie tak podczas nadawania Twojego transferu. Proszę spróbować ponownie.",
+        "promoted": "Promowanie transakcji pomyślne",
+        "promotedExplanation": "Wypromowano transakcję z hashem {{hash}}",
+        "promotionError": "Nie można wypromować transakcji",
         "promotionErrorExplanation": "Coś poszło nie tak podczas promowania Twojego transferu. Proszę spróbować ponownie.",
         "noLongerValid": "Pakiet, który próbujesz promować, nie jest już ważny",
+        "transactionAlreadyConfirmed": "Transakcja już potwierdzona",
+        "transactionAlreadyConfirmedExplanation": "Transakcja, którą próbujesz promować, jest już potwierdzona.",
         "cannotSendToOwn": "Wysyłka na własny adres",
         "cannotSendToOwnExplanation": "Nie możesz wykonać transferu środków na swój własny adres.",
         "pleaseWait": "Proszę czekać",
@@ -109,9 +116,12 @@
         "nodeAutoChangedExplanation": "Przełączono na nowy serwer {{- nodeAddress}}, ponieważ poprzednio wybrany serwer był offline.",
         "fingerprintOnSend": "Przyłóż palec do czytnika, aby autoryzować transfer",
         "masterKey": "Twój seed IOTA jest głównym kluczem do Twoich funduszy.",
+        "seedThief": "Jeśli ktoś inny zdobędzie Twój klucz seed, będzie mógł on wykraść Twoje środki IOTA.",
         "googlePlayServicesNotAvailable": "Usługi Google Play niedostępne",
         "couldNotVerifyDeviceIntegrity": "Nie można zweryfikować integralności urządzenia, ponieważ Usługi Google Play są niedostępne.",
-        "clear": "WYCZYŚĆ"
+        "clear": "WYCZYŚĆ",
+        "noNetworkConnection": "Brak połączenia z siecią",
+        "noNetworkConnectionExplanation": "Wygląda na to, że utracono dostęp do internetu."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -154,9 +164,10 @@
         "doNotStore": "Nie przechowuj tego klucza w formie zwykłego tekstu.",
         "copyToClipboard": "Kopiuj seed",
         "shareSeed": "Udostępnij swój klucz seed do bezpiecznego menedżera haseł",
-        "storeEncrypted": "Jeśli zdecydujesz się na kopię zapasową Twojego klucza seed w telefonie, powinna być ona zaszyfrowana np. w menedżerze haseł.",
+        "storeEncrypted": "Przechowuj swój seed zaszyfrowany w menedżerze haseł.",
+        "doNotOpen": "Nie otwieraj innych aplikacji podczas tego procesu.",
         "tapConfirm": "Zaznacz poniższe pole, aby potwierdzić.",
-        "encryptionCheckbox": "Będę przechowywać mój seed zaszyfrowany",
+        "passwordManagerCheckbox": "Będę przechowywać mój seed w menedżerze haseł",
         "copy": "KOPIUJ"
     },
     "enterSeed": {
@@ -205,7 +216,7 @@
         "walletReady": "Portfel został skonfigurowany i jest gotowy do użycia. Jeśli będziesz chciał wprowadzić zmiany, skorzystaj z menu ustawień."
     },
     "paperWallet": {
-        "clickToPrint": "Kliknij poniższy przycisk, aby wydrukować kopie Twojego klucza seed.",
+        "clickToPrint": "Kliknij poniższy przycisk, aby wydrukować kopię Twojego klucza seed.",
         "storeSafely": "Przechowuj go bezpiecznie.",
         "neverShare": "Nigdy nie udostępniaj nikomu swojego klucza seed.",
         "iotaLogo": "Logo IOTA",
@@ -278,7 +289,7 @@
     "modeSelection": {
         "expert": "Ekspert",
         "standard": "Standardowy",
-        "expertModeExplanation": "Tryb eksperta zapewni dostęp do dodatkowych funkcji, takich jak manualne promowanie i reattaching transakcji.",
+        "expertModeExplanation": "Tryb eksperta zapewni dostęp do dodatkowych funkcji, takich jak manualne promowanie i reattach transakcji.",
         "modesExplanation": "Włącz tryb eksperta jedynie, jeśli jesteś doświadczonym użytkownikiem sieci Tangle. W przeciwnym razie nowe funkcje mogą okazać się niezrozumiałe."
     },
     "settings": {
@@ -322,7 +333,7 @@
         "selectAll": "Zaznacz wszystko",
         "securitySettings": "Ustawienia zabezpieczeń",
         "fingerprint": "Autoryzacja biometryczna",
-        "couldNotFetchRates": "Nie można kursów przeliczeniowych",
+        "couldNotFetchRates": "Błąd pobierania kursów",
         "couldNotFetchRatesExplanation": "Coś poszło nie tak podczas pobierania kursów przeliczeniowych dla waluty {{currency}}.",
         "fetchedConversionRates": "Pobrano kursy przeliczeniowe",
         "fetchedConversionRatesExplanation": "Pomyślnie pobrano najnowszy kurs przeliczeniowy dla waluty {{currency}}.",
@@ -508,7 +519,7 @@
         "continueDepsiteRisk": "Czy chcesz kontynuować pomimo tego ryzyka?"
     },
     "pow": {
-        "feeless": "Niezbędnym jest wykonanie niewielkiego procesu Proof of Work, aby przesyłać transakcje IOTA bez prowizji.",
+        "feeless": "Niezbędne jest wykonanie niewielkiego procesu Proof of Work, aby przesyłać transakcje IOTA bez prowizji.",
         "localOrRemote": "Proof of Work może być wykonany lokalnie na Twoim urządzeniu lub przy użyciu serwera.",
         "local": "Lokalnie",
         "remote": "Zdalnie",

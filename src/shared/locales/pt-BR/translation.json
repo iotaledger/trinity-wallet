@@ -48,7 +48,7 @@
         "otherWallet": "OUTRA CONTA",
         "yes": "SIM",
         "no": "NÃO",
-        "okay": "OKAY",
+        "okay": "OK",
         "password": "Senha",
         "passwordOrFingerprint": "Senha ou Autenticação Biométrica",
         "unrecognisedPassword": "Senha Inválida",
@@ -77,14 +77,21 @@
         "retry": "TENTAR NOVAMENTE",
         "rebroadcast": "RETRANSMITIR",
         "pressBackAgain": "Pressione o botão \"voltar\" novamente para fechar o aplicativo",
-        "autoreattaching": "Anexando automaticamente ao Tangle",
-        "autoreattachingExplanation": "Reanexando a transação com hash {{hash}}",
+        "reattached": "Reanexo com sucesso",
+        "reattachedExplanation": "Reanexando a transação com hash {{hash}}",
         "autopromoting": "Promovendo transferência automaticamente",
         "autopromotingExplanation": "Promovendo transação com hash {{hash}}",
-        "promoting": "Promovendo a transferência",
-        "promotionError": "A transferência não pode ser criada",
+        "rebroadcasted": "Transação reenviada com sucesso",
+        "rebroadcastedExplanation": "A transação foi reenviada com hash {{hash}}",
+        "rebroadcastError": "Não foi possível reenviar transação",
+        "rebroadcastErrorExplanation": "Algo deu errado ao criar sua transferência. Por favor, tente novamente.",
+        "promoted": "Transação promovida com sucesso",
+        "promotedExplanation": "Promoveu transação com hash {{hash}}",
+        "promotionError": "Não foi possível promover transação",
         "promotionErrorExplanation": "Algo deu errado ao criar sua transferência. Por favor, tente novamente.",
         "noLongerValid": "O pacote que você está tentando criar não é mais válido",
+        "transactionAlreadyConfirmed": "A transação já foi confirmada",
+        "transactionAlreadyConfirmedExplanation": "Você está tentando promover uma transação que já está confirmada.",
         "cannotSendToOwn": "Enviando para próprio endereço",
         "cannotSendToOwnExplanation": "Você não pode fazer uma transferência de valor para um dos seus próprios endereços.",
         "pleaseWait": "Por favor aguarde",
@@ -108,10 +115,13 @@
         "nodeAutoChanged": "Servidor trocado automaticamente",
         "nodeAutoChangedExplanation": "Substituição a um novo servidor {{- nodeAddress}} sendo que o servidor selecionado está offline.",
         "fingerprintOnSend": "Toque o leitor digital para autorizar a transferência",
-        "masterKey": "Your IOTA seed is the master key to your funds.",
-        "googlePlayServicesNotAvailable": "Google Play Services not available",
-        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available.",
-        "clear": "CLEAR"
+        "masterKey": "Sua Seed IOTA é a chave principal para seu saldo.",
+        "seedThief": "If someone else has your seed they can steal your IOTA.",
+        "googlePlayServicesNotAvailable": "Serviços do Google Play não disponíveis",
+        "couldNotVerifyDeviceIntegrity": "Não foi possível verificar a integridade do dispositivo porque o Google Play Services não estão disponíveis.",
+        "clear": "LIMPAR",
+        "noNetworkConnection": "No network connection",
+        "noNetworkConnectionExplanation": "Your internet connection appears to be offline."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém caracteres inválidos",
@@ -154,10 +164,11 @@
         "doNotStore": "Não grave a seed em arquivo de texto descriptografado.",
         "copyToClipboard": "Copiar seed",
         "shareSeed": "Compartilhe sua seed para um gerenciador de senhas seguro",
-        "storeEncrypted": "If you choose to back-up your seed on your phone it should be stored encrypted e.g. in a password manager.",
-        "tapConfirm": "Please tap the checkbox below to confirm.",
-        "encryptionCheckbox": "I will store my seed with encryption",
-        "copy": "COPY"
+        "storeEncrypted": "Guardar sua Seed em um gerenciador de senhas.",
+        "doNotOpen": "Não abra outros aplicativos durante este processo.",
+        "tapConfirm": "Por favor, toque a caixa de seleção abaixo para confirmar.",
+        "passwordManagerCheckbox": "Eu vou armazenar minha Seed em um Gerenciador de senhas",
+        "copy": "COPIAR"
     },
     "enterSeed": {
         "invalidCharacters": "A Seed contém caracteres inválidos",
@@ -197,9 +208,9 @@
         "seedNotGenerated": "A Seed não foi gerada",
         "seedNotGeneratedExplanation": "Por favor, gere uma seed nova.",
         "pressForNewSeed": "GERAR UMA NOVA SEED",
-        "generateSuccess": "Seed generated successfully",
+        "generateSuccess": "Seed gerada com sucesso",
         "individualLetters": "Pressione as letras individualmente para muda-las.",
-        "whatIsASeed": "What is a seed?"
+        "whatIsASeed": "O que é uma Seed?"
     },
     "onboardingComplete": {
         "walletReady": "Sua carteira está configurada e pronta para ser utilizada. Se desejar efetuar alterações no futuro, utilize o menu Opções."
@@ -210,12 +221,12 @@
         "neverShare": "Nunca revele sua seed a ninguém.",
         "iotaLogo": "Logotipo da IOTA",
         "printWallet": "IMPRIMIR CARTEIRA",
-        "print": "PRINT",
-        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
-        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
-        "tapCheckboxes": "Please tap the checkboxes below to confirm.",
-        "wifiCheckbox": "I will not print on public wifi",
-        "printerCheckbox": "I will not print on a public printer"
+        "print": "IMPRIMIR",
+        "paperConvenience": "Imprimir uma cópia de sua Seed é uma maneira conveniente para armazená-la.",
+        "publicInsecure": "Mas a imprimir em um wifi público ou uma impressora pública não é seguro.",
+        "tapCheckboxes": "Por favor, toque as caixas de seleção abaixo para confirmar.",
+        "wifiCheckbox": "Eu não vou imprimir em um rede publica",
+        "printerCheckbox": "Eu não vou imprimir em uma impressora publica"
     },
     "receive": {
         "addressCopied": "Endereço copiado",
@@ -289,8 +300,8 @@
         "mode": "Modo",
         "theme": "Tema",
         "currency": "Moeda",
-        "cannotChangeNode": "Cannot change node",
-        "cannotChangeNodeWhileSending": "Cannot change node while sending.",
+        "cannotChangeNode": "Não foi possível mudar de servidor",
+        "cannotChangeNodeWhileSending": "Não é possível alterar o servidor durante o envio.",
         "language": "Idioma",
         "accountManagement": "Gerenciar Contas",
         "addNewSeed": "Adicionar nova Seed",
@@ -371,12 +382,12 @@
         "addNewAccount": "Adicionar nova Conta"
     },
     "addCustomNode": {
-        "customNodeAdded": "Custom node added",
-        "customNodeCouldNotBeAdded": "Custom node could not be added",
-        "customNodeAddedSuccessfully": "The custom node has been added successfully.",
+        "customNodeAdded": "Servidor personalizado adicionado",
+        "customNodeCouldNotBeAdded": "Servidor personalizado não pôde ser adicionado",
+        "customNodeAddedSuccessfully": "O servidor personalizado foi adicionado com sucesso.",
         "customNode": "Servidor personalizado",
-        "invalidNodeResponse": "The node returned an invalid response",
-        "httpNodeError": "Trinity Mobile only supports https nodes.",
+        "invalidNodeResponse": "O servidor retornou uma resposta inválida",
+        "httpNodeError": "A Trinity suporta somente servidores https.",
         "add": "Adicionar",
         "nodeFieldEmpty": "O campo de texto está vazio",
         "nodeFieldEmptyExplanation": "Por favor, insira um servidor personalizado."
@@ -437,8 +448,8 @@
     },
     "useExistingSeed": {
         "title": "Digite a seed e o nome da conta.",
-        "incorrectFormat": "Incorrect seed format",
-        "validSeedExplanation": "'Valid seeds should be 81 characters and contain only A-Z or 9.'"
+        "incorrectFormat": "Formato de servidor incorreto",
+        "validSeedExplanation": "'Endereços válidos devem possuir 81 caracteres e conter apenas A-Z ou 9.'"
     },
     "viewSeed": {
         "enterPassword": "Digite a senha para exibir sua seed.",
@@ -493,7 +504,7 @@
         "twoFADisabledExplanation": "Você desativou a Autenticação Biométrica com sucesso.",
         "enterCode": "Digite o código de seu aplicativo 2FA",
         "code": "Código",
-        "twoFaToken": "2FA Token"
+        "twoFaToken": "Token 2FA"
     },
     "chart": {
         "mcap": "MCAP",
@@ -503,9 +514,9 @@
     },
     "rootDetection": {
         "warning": "ATENÇÃO",
-        "appearsRooted": "Your device appears to be rooted.",
-        "securityRisk": "This can pose a significant risk to the security of your wallet.",
-        "continueDepsiteRisk": "Do you wish to continue despite this risk?"
+        "appearsRooted": "Seu dispositivo parece estar rooteado.",
+        "securityRisk": "Isso pode representar um risco significativo para a segurança de sua carteira.",
+        "continueDepsiteRisk": "Você deseja continuar apesar desse risco?"
     },
     "pow": {
         "feeless": "É necessário completar a aprovação para enviar transações em IOTA gratuitamente.",
@@ -555,6 +566,6 @@
         "skipUpdate": "Ignorar a atualização"
     },
     "notificationLog": {
-        "errorLog": "ERROR LOG"
+        "errorLog": "LOG DE ERROS"
     }
 }
