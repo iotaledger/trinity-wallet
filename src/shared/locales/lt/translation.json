@@ -124,7 +124,9 @@
         "couldNotVerifyDeviceIntegrity": "Įrenginio vientisumo patvirtinti nepavyksta, nes Google Play paslaugos nepasiekiamos.",
         "clear": "IŠVALYTI",
         "noNetworkConnection": "Nėra tinklo ryšio",
-        "noNetworkConnectionExplanation": "Panašu, kad jūsų interneto ryšys atjungtas."
+        "noNetworkConnectionExplanation": "Panašu, kad jūsų interneto ryšys atjungtas.",
+        "spentAddressExplanation": "WARNING: Funds on spent addresses",
+        "discordInformation": "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Užraktas turi neleistinų simbolių",
