@@ -20,6 +20,7 @@ import transform from 'lodash/transform';
 import difference from 'lodash/difference';
 import unionBy from 'lodash/unionBy';
 import orderBy from 'lodash/orderBy';
+import pickBy from 'lodash/pickBy';
 import { DEFAULT_TAG, DEFAULT_BALANCES_THRESHOLD, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../../config';
 import { iota } from './index';
 import { getBalancesSync, accumulateBalance } from './addresses';
@@ -779,7 +780,7 @@ export const filterInvalidPendingTransactions = (transactions, addressData) => {
 };
 
 /**
- *   Performs proof of work and updates trytes and transaction objects with nonce
+ *   Performs proof of work and updates trytes and transaction objects with nonce.
  *
  *   @method performPow
  *   @param {function} powFn
@@ -846,7 +847,7 @@ export const performPow = (
 };
 
 /**
- * Grab transaction hashes for own addresses from a transaction
+ * Grab transaction hashes for own addresses from a transaction.
  *
  * @param {object} normalisedTransaction
  * @param {object} addressData
@@ -860,4 +861,36 @@ export const getOwnTransactionHashes = (normalisedTransaction, addressData) => {
             (output) => output.hash,
         ),
     ];
+};
+
+/**
+ * Takes addresses and transactions and returns outgoing transfers for those addresses.
+ *
+ * @param {array} addresses
+ * @param {object} transactions
+ * @returns {array}
+ */
+export const getOutgoingTransfersForAddresses = (addresses, transactions) => {
+    const selectedTransactions = new Set();
+    each(transactions, (tx) => {
+        each(tx.inputs, (input) => {
+            if (addresses.indexOf(input.address) > -1) {
+                selectedTransactions.add(tx);
+            }
+        });
+    });
+    return Array.from(selectedTransactions);
+};
+
+/**
+ * Takes addresses and transactions and returns pending outgoing transfers for those addresses.
+ *
+ * @param {array} addresses
+ * @param {object} transactions
+ * @returns {array}
+ */
+export const getPendingOutgoingTransfersForAddresses = (addresses, transfers) => {
+    const addressesWithBalance = pickBy(addresses, (address) => address.balance > 0);
+    const relevantTransfers = filter(transfers, (tx) => !tx.persistence);
+    return getOutgoingTransfersForAddresses(keys(addressesWithBalance), relevantTransfers);
 };
