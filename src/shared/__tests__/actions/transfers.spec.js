@@ -522,8 +522,8 @@ describe('actions: transfers', () => {
                     });
                 });
 
-                describe('when has pending transfers on inputs', () => {
-                    it('should create action of type IOTA/ALERTS/SHOW with a message "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."', () => {
+                describe('when has funds at spent addresses', () => {
+                    it('should create action of type IOTA/ALERTS/SHOW with a message "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do."', () => {
                         const store = mockStore({ accounts });
 
                         const wereAddressesSpentFrom = sinon
@@ -532,7 +532,7 @@ describe('actions: transfers', () => {
 
                         sinon.stub(inputUtils, 'getUnspentInputs').resolves({
                             allBalance: 110,
-                            totalBalance: 10,
+                            totalBalance: 0,
                             inputs: [
                                 {
                                     address:
@@ -558,7 +558,7 @@ describe('actions: transfers', () => {
                                 expect(
                                     store.getActions().find((action) => action.type === 'IOTA/ALERTS/SHOW').message,
                                 ).to.equal(
-                                    'Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again.',
+                                    'Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do.',
                                 );
 
                                 wereAddressesSpentFrom.restore();
