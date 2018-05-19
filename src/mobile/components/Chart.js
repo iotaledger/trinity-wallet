@@ -152,7 +152,6 @@ class Chart extends PureComponent {
             getPriceFormat,
             getPriceForCurrency,
         } = this.props;
-
         const volumeFormatted = priceData.volume.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
         const mcapFormatted = priceData.mcap.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
@@ -231,13 +230,13 @@ class Chart extends PureComponent {
                 )}
                 <View style={styles.marketDataContainer}>
                     <Text style={[styles.marketFigure, textColor]}>
-                        <Text style={[styles.marketFigureTitle, textColor]}>{t('chart:mcap')}</Text> $ {mcapFormatted}
+                        <Text style={[styles.marketFigureTitle, textColor]}>{t('chart:mcap')}</Text> {priceData.globalSymbol} {mcapFormatted}
                     </Text>
                     <Text style={[styles.marketFigure, textColor]}>
                         <Text style={styles.marketFigureTitle}>{t('chart:change')}</Text> {priceData.change24h}%
                     </Text>
                     <Text style={[styles.marketFigure, textColor]}>
-                        <Text style={styles.marketFigureTitle}>{t('chart:volume')}</Text> $ {volumeFormatted}
+                        <Text style={styles.marketFigureTitle}>{t('chart:volume')}</Text> {priceData.globalSymbol} {volumeFormatted}
                     </Text>
                 </View>
                 <View style={{ flex: 0.38 }} />

@@ -12,19 +12,17 @@ import {
     categoriseTransactionsByPersistence,
     getPendingTxTailsHashes,
     markTransfersConfirmed,
-    hasNewTransfers,
-    getHashesDiff,
+    getTransactionsDiff,
     categoriseTransactions,
     normaliseBundle,
     mergeNewTransfers,
     categoriseBundleByInputsOutputs,
-    getTransactionHashesForUnspentAddresses,
-    getPendingTransactionHashesForSpentAddresses,
     performPow,
     filterInvalidPendingTransactions,
     getBundleHashesForNewlyConfirmedTransactions,
     constructNormalisedBundles,
     prepareForAutoPromotion,
+    getOwnTransactionHashes,
 } from '../../../libs/iota/transfers';
 import { iota, SwitchingConfig } from '../../../libs/iota/index';
 import trytes from '../../__samples__/trytes';
@@ -225,22 +223,7 @@ describe('libs: iota/transfers', () => {
         });
     });
 
-    describe('#hasNewTransfers', () => {
-        it('should return true if second argument size is greater than first argument size', () => {
-            expect(hasNewTransfers([], [1])).to.equal(true);
-        });
-
-        it('should return false if second argument size is greater than first argument size', () => {
-            expect(hasNewTransfers({}, { foo: 'bar' })).to.equal(false);
-            expect(hasNewTransfers([], [])).to.equal(false);
-            expect(hasNewTransfers([1], [])).to.equal(false);
-            expect(hasNewTransfers(null, [])).to.equal(false);
-            expect(hasNewTransfers(null, undefined)).to.equal(false);
-            expect(hasNewTransfers(0, 10)).to.equal(false);
-        });
-    });
-
-    describe('#getHashesDiff', () => {
+    describe('#getTransactionsDiff', () => {
         describe('when second argument size is not greater than first argument size', () => {
             let firstArgument;
             let secondArgument;
@@ -250,82 +233,22 @@ describe('libs: iota/transfers', () => {
                 secondArgument = ['foo'];
             });
 
-            describe('when fourth argument size is not greater than third argument size', () => {
-                it('should return an empty array', () => {
-                    expect(getHashesDiff(firstArgument, secondArgument, [], [])).to.eql([]);
-                });
-            });
-
-            describe('when fourth argument size is greater than third argument size', () => {
-                it('should return an array with difference of third and fourth arguments', () => {
-                    expect(getHashesDiff(firstArgument, secondArgument, [], ['baz'])).to.eql(['baz']);
-                });
-            });
-        });
-
-        describe('when fourth argument size is not greater than third argument size', () => {
-            let thirdArgument;
-            let fourthArgument;
-
-            beforeEach(() => {
-                thirdArgument = ['foo'];
-                fourthArgument = ['foo'];
-            });
-
-            describe('when second argument size is not greater than first argument size', () => {
-                it('should return an empty array', () => {
-                    expect(getHashesDiff([], [], thirdArgument, fourthArgument)).to.eql([]);
-                });
-            });
-
-            describe('when second argument size is not greater than first argument size', () => {
-                it('should return an array with difference of first and second arguments', () => {
-                    expect(getHashesDiff([], ['baz'], thirdArgument, fourthArgument)).to.eql(['baz']);
-                });
+            it('should return an empty array', () => {
+                expect(getTransactionsDiff(firstArgument, secondArgument)).to.eql([]);
             });
         });
 
         describe('when second argument size is greater than first argument size', () => {
-            let firstArgument;
             let secondArgument;
+            let firstArgument;
 
             beforeEach(() => {
+                secondArgument = ['foo', 'baz'];
                 firstArgument = ['foo'];
-                secondArgument = ['foo', 'foo', 'baz'];
             });
 
-            describe('when fourth argument size is not greater than third argument size', () => {
-                it('should return a unique array of difference between second and first argument', () => {
-                    expect(getHashesDiff(firstArgument, secondArgument, [], [])).to.eql(['baz']);
-                });
-            });
-
-            describe('when fourth argument size is greater than third argument size', () => {
-                it('should return a unique array of difference between second and first argument and difference between fourth and third argument', () => {
-                    expect(getHashesDiff(firstArgument, secondArgument, [], ['bar', 'bar'])).to.eql(['baz', 'bar']);
-                });
-            });
-        });
-
-        describe('when fourth argument size is greater than third argument size', () => {
-            let thirdArgument;
-            let fourthArgument;
-
-            beforeEach(() => {
-                thirdArgument = ['foo'];
-                fourthArgument = ['foo', 'foo', 'baz'];
-            });
-
-            describe('when second argument size is not greater than first argument size', () => {
-                it('should return a unique array of difference between fourth and third argument', () => {
-                    expect(getHashesDiff([], [], thirdArgument, fourthArgument)).to.eql(['baz']);
-                });
-            });
-
-            describe('when second argument size is greater than first argument size', () => {
-                it('should return a unique array of difference between second and first argument and difference between fourth and third argument', () => {
-                    expect(getHashesDiff([], ['bar'], thirdArgument, fourthArgument)).to.eql(['bar', 'baz']);
-                });
+            it('should return an array with difference of first and second arguments', () => {
+                expect(getTransactionsDiff(firstArgument, secondArgument)).to.eql(['baz']);
             });
         });
     });
@@ -780,117 +703,6 @@ describe('libs: iota/transfers', () => {
         });
     });
 
-    describe('#getTransactionHashesForUnspentAddresses', () => {
-        let sandbox;
-
-        beforeEach(() => {
-            sandbox = sinon.sandbox.create();
-
-            sandbox.stub(iota.api, 'getNodeInfo').yields(null, {});
-            sandbox
-                .stub(iota.api, 'findTransactions')
-                .yields(null, ['99SCLLLYGMB9FSLXARXJPUXAMUQRDSAXMKNMAPOWZMZLTXUCPUVUICKEQUUGFIRD9JZTGHKGMNZUA9999']);
-        });
-
-        afterEach(() => {
-            sandbox.restore();
-        });
-
-        describe('when all addresses are spent', () => {
-            it('should return an empty array', () => {
-                const addressData = {
-                    ['U'.repeat(81)]: { spent: true },
-                    ['V'.repeat(81)]: { spent: true },
-                    ['9'.repeat(81)]: { spent: true },
-                };
-
-                const promise = getTransactionHashesForUnspentAddresses(addressData);
-
-                return promise.then((hashes) => {
-                    expect(hashes).to.eql([]);
-                });
-            });
-        });
-
-        describe('when one or more of the addresses are unspent', () => {
-            it('should return transaction hashes for unspent addresses', () => {
-                const addressData = {
-                    ['U'.repeat(81)]: { spent: true },
-                    ['V'.repeat(81)]: { spent: false },
-                };
-
-                const promise = getTransactionHashesForUnspentAddresses(addressData);
-
-                return promise.then((hashes) => {
-                    expect(hashes).to.eql([
-                        '99SCLLLYGMB9FSLXARXJPUXAMUQRDSAXMKNMAPOWZMZLTXUCPUVUICKEQUUGFIRD9JZTGHKGMNZUA9999',
-                    ]);
-                });
-            });
-        });
-    });
-
-    describe('#getPendingTransactionHashesForSpentAddresses', () => {
-        let sandbox;
-
-        beforeEach(() => {
-            sandbox = sinon.sandbox.create();
-
-            sandbox.stub(iota.api, 'getNodeInfo').yields(null, {});
-            sandbox
-                .stub(iota.api, 'findTransactions')
-                .yields(null, ['99SCLLLYGMB9FSLXARXJPUXAMUQRDSAXMKNMAPOWZMZLTXUCPUVUICKEQUUGFIRD9JZTGHKGMNZUA9999']);
-        });
-
-        afterEach(() => {
-            sandbox.restore();
-        });
-
-        describe('when there are no pending transactions', () => {
-            it('should return an empty array', () => {
-                const transactions = Array.from(new Array(5), () => ({ persistence: true }));
-
-                const promise = getPendingTransactionHashesForSpentAddresses(transactions, {});
-
-                return promise.then((hashes) => {
-                    expect(hashes).to.eql([]);
-                });
-            });
-        });
-
-        describe('when there are pending transfers', () => {
-            it('should return transaction hashes for spend addresses with pending transfers', () => {
-                const addressData = {
-                    ['U'.repeat(81)]: { spent: true },
-                    ['V'.repeat(81)]: { spent: false },
-                };
-
-                const transactions = [
-                    {
-                        persistence: false,
-                        inputs: [
-                            {
-                                address: 'U'.repeat(81),
-                            },
-                        ],
-                    },
-                    {
-                        persistence: true,
-                        inputs: [],
-                    },
-                ];
-
-                const promise = getPendingTransactionHashesForSpentAddresses(transactions, addressData);
-
-                return promise.then((hashes) => {
-                    expect(hashes).to.eql([
-                        '99SCLLLYGMB9FSLXARXJPUXAMUQRDSAXMKNMAPOWZMZLTXUCPUVUICKEQUUGFIRD9JZTGHKGMNZUA9999',
-                    ]);
-                });
-            });
-        });
-    });
-
     describe('#performPow', () => {
         let powFn;
         let trunkTransaction;
@@ -1203,6 +1015,32 @@ describe('libs: iota/transfers', () => {
 
                     getBalances.restore();
                 });
+            });
+        });
+    });
+
+    describe('#getOwnTransactionHashes', () => {
+        it('should return transaction hashes for own addresses', () => {
+            const bundles = keys(mockTransactions.normalizedBundles);
+
+            const addressData = {
+                SRWJECVJMNGLRTRNUBRBWOFWKXHWFOWXSZIARUSCAGQRMQNDOFJKJYRUIBCMQWIUTHSMQEYW9ZK9QBXAC: {},
+                ATOKJBNU9UVOETMNVGENWMLBKCIIMIQBPOGHJWMFEUJNXVUPQABEYIETRKPTQRT9AYOOMMYGX9OMTZAJX: {},
+            };
+
+            const results = [
+                [
+                    'HGT9QOBW9KKRQY9G9AWXAKDUIICKRUWVQ9MOWLX9YLXJMTNWX9L9RUMDHIHNJD9MYXIECZTFATOEA9999',
+                    'RXPWGHVYSRKQWRONOWMPAQJUMBZCUTXGAPAOKAFCTDUNNBN9VKUUJQOGZGNUYBFCJABFZWFCHBMKA9999',
+                    'HW9YVRZRJAUMWI9BMIYCRFPXMNBG9ACAKZFWCTRNTJHKZHPXK9RDGKQGJHMNMUYWSIQBIEWKLOOEA9999',
+                ],
+                [],
+            ];
+
+            bundles.forEach((bundle, idx) => {
+                const result = getOwnTransactionHashes(mockTransactions.normalizedBundles[bundle], addressData);
+
+                expect(result).to.eql(results[idx]);
             });
         });
     });

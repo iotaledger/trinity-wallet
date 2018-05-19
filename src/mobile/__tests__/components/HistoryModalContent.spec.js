@@ -55,6 +55,9 @@ const getProps = (overrides) =>
                 barColor: 'white',
                 buttonsOpacity: { opacity: 1 },
             },
+            isBroadcastingBundle: false,
+            currentlyPromotingBundleHash: 'foo',
+            hasFailedAutopromotion: false,
         },
         overrides,
     );
@@ -103,6 +106,14 @@ describe('Testing HistoryModalContent component', () => {
 
         it('should require a disableWhen boolean as a prop', () => {
             expect(HistoryModalContent.propTypes.disableWhen).toEqual(PropTypes.bool.isRequired);
+        });
+
+        it('should require a isBroadcastingBundle boolean as a prop', () => {
+            expect(HistoryModalContent.propTypes.isBroadcastingBundle).toEqual(PropTypes.bool.isRequired);
+        });
+
+        it('should require a currentlyPromotingBundleHash string as a prop', () => {
+            expect(HistoryModalContent.propTypes.currentlyPromotingBundleHash).toEqual(PropTypes.string.isRequired);
         });
     });
 

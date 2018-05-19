@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from 'react-native';
-import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { updatePowSettings } from 'iota-wallet-shared-modules/actions/settings';
+import { changePowSettings } from 'iota-wallet-shared-modules/actions/settings';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import Fonts from '../theme/fonts';
 import { width, height } from '../utils/dimensions';
@@ -66,12 +65,6 @@ const styles = StyleSheet.create({
 /** Proof Of Work settings component */
 class Pow extends Component {
     static propTypes = {
-        /** Generate a notification alert
-         * @param {string} type - notification type - success, error
-         * @param {string} title - notification title
-         * @param {string} text - notification explanation
-         */
-        generateAlert: PropTypes.func.isRequired,
         /** Determines whether the proof of work should be off-loaded */
         remotePoW: PropTypes.bool.isRequired,
         /** Translation helper
@@ -79,7 +72,7 @@ class Pow extends Component {
          */
         t: PropTypes.func.isRequired,
         /** Set proof of work settings */
-        updatePowSettings: PropTypes.func.isRequired,
+        changePowSettings: PropTypes.func.isRequired,
         /** Change current setting
          * @param {string} setting
          */
@@ -95,9 +88,7 @@ class Pow extends Component {
     }
 
     onChange() {
-        const { t } = this.props;
-        this.props.updatePowSettings();
-        this.props.generateAlert('success', t('powUpdated'), t('powUpdatedExplanation'));
+        this.props.changePowSettings();
     }
 
     render() {
@@ -170,8 +161,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    generateAlert,
-    updatePowSettings,
+    changePowSettings,
     setSetting,
 };
 

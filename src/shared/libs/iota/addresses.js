@@ -17,7 +17,6 @@ import size from 'lodash/size';
 import pickBy from 'lodash/pickBy';
 import omitBy from 'lodash/omitBy';
 import flatMap from 'lodash/flatMap';
-import union from 'lodash/union';
 import { iota } from './index';
 import { getBalancesAsync, wereAddressesSpentFromAsync } from './extendedApi';
 
@@ -106,15 +105,10 @@ const getAddressesUptoLatestUnused = (resolve, reject, seed, opts, genFn, allAdd
                 if (size(hashes)) {
                     allAddresses = [...allAddresses, ...addresses];
                     const newOpts = assign({}, opts, { index: opts.total + opts.index });
-                    getAddressesUptoLatestUnused(
-                        resolve,
-                        reject,
-                        seed,
-                        newOpts,
-                        genFn,
-                        allAddresses,
-                        union(transactionHashes, hashes)
-                    );
+                    getAddressesUptoLatestUnused(resolve, reject, seed, newOpts, genFn, allAddresses, [
+                        ...transactionHashes,
+                        ...hashes,
+                    ]);
                 } else {
                     // Traverse backwards to remove all unused addresses
                     new Promise((res, rej) => {
@@ -129,7 +123,7 @@ const getAddressesUptoLatestUnused = (resolve, reject, seed, opts, genFn, allAdd
                         .then((finalAddresses) => {
                             resolve({
                                 addresses: finalAddresses,
-                                hashes: transactionHashes
+                                hashes: transactionHashes,
                             });
                         })
                         .catch((err) => reject(err));
@@ -147,7 +141,7 @@ const getAddressesUptoLatestUnused = (resolve, reject, seed, opts, genFn, allAdd
  *
  *   @method getAddressDataAndFormatBalance
  *   @param {array} addresses
- *   @returns {promise<object>} - [ addresses: {}, balance: 0 ]
+ *   @returns {Promise}
  **/
 export const getAddressDataAndFormatBalance = (addresses) => {
     if (isEmpty(addresses)) {
@@ -200,15 +194,12 @@ export const formatAddressData = (addresses, balances, addressesSpendStatus) => 
 };
 
 /**
- *   Accepts addresses as an array.
- *   Finds latest balances on those addresses.
- *   Finds latest spent statuses on addresses.
- *   Transforms addresses array to a dictionary. [{ address: { index: 0, spent: false, balance: 0 }}]
+ *   Locally mark addresses as spent
  *
  *   @method markAddressesAsSpentSync
  *   @param {array} transfers
- *   @param {object} markAddressesAsSpentSync
- *   @returns {promise<object>} - [ addresses: {}, balance: 0 ]
+ *   @param {object} addressData
+ *   @returns {object}
  **/
 export const markAddressesAsSpentSync = (transfers, addressData) => {
     const addressDataClone = cloneDeep(addressData);
@@ -240,7 +231,7 @@ export const markAddressesAsSpentSync = (transfers, addressData) => {
  *   Accepts address data.
  *   Finds all unspent addresses.
  *
- *   IMPORTANT: This function should always be utilized after the account is sycnced.
+ *   IMPORTANT: This function should always be utilized after the account is synced.
  *
  *   @method getUnspentAddressesSync
  *   @param {object} addressData
@@ -254,10 +245,10 @@ export const getUnspentAddressesSync = (addressData) => {
  *   Accepts pending transfers and address data.
  *   Finds all spent addresses with pending transfers.
  *
- *   IMPORTANT: This function should always be utilized after the account is sycnced.
+ *   IMPORTANT: This function should always be utilized after the account is synced.
  *
  *   @method getSpentAddressesWithPendingTransfersSync
- *   @param {array} pendingTransfers - Unconfirmed transfers
+ *   @param {array} pendingTransactions - Unconfirmed transfers
  *   @param {object} addressData
  *   @returns {array} - Array of spent addresses with pending transfers
  **/
@@ -281,12 +272,15 @@ export const getSpentAddressesWithPendingTransfersSync = (pendingTransactions, a
  *
  *   @method filterSpentAddresses
  *   @param {array} inputs - Array or objects containing balance, keyIndex and address props.
+ *   @param {array} spentAddresses - Array of spent addresses
  *   @returns {Promise} - A promise that resolves all inputs with unspent addresses.
  **/
-export const filterSpentAddresses = (inputs) => {
+export const filterSpentAddresses = (inputs, spentAddresses) => {
     const addresses = map(inputs, (input) => input.address);
 
-    return wereAddressesSpentFromAsync(addresses).then((wereSpent) => filter(inputs, (input, idx) => !wereSpent[idx]));
+    return wereAddressesSpentFromAsync(addresses).then((wereSpent) =>
+        filter(inputs, (input, idx) => !wereSpent[idx] && !includes(spentAddresses, input.address)),
+    );
 };
 
 /**
@@ -366,7 +360,9 @@ export const getBalancesSync = (addresses, addressData) => {
  *   @method getLatestAddresses
  *   @param {string} seed - Seed string
  *   @param {number} index - Index to start generating addresses from
- *   @returns {array} - Array of latest used addresses
+ *   @param {function} genFn
+ *
+ *   @returns {Promise}
  **/
 
 export const getLatestAddresses = (seed, index, genFn) => {
@@ -387,6 +383,7 @@ export const getLatestAddresses = (seed, index, genFn) => {
  *
  *   @method getLatestAddress
  *   @param {object} addressData
+ *   `
  *   @returns {string} - latest address
  **/
 export const getLatestAddress = (addressData) => {
@@ -398,8 +395,10 @@ export const getLatestAddress = (addressData) => {
  *
  *   @method getAddressesUptoRemainder
  *   @param {object} addressData
- *   @param {array} blacklistedAddresses
- *   @returns {promise<object>}
+ *   @param {string} seed
+ *   @param {function} genFn
+ *   @param {array} blacklistedRemainderAddresses
+ *   @returns {Promise}
  **/
 export const getAddressesUptoRemainder = (addressData, seed, genFn, blacklistedRemainderAddresses = []) => {
     const latestAddress = getLatestAddress(addressData);
@@ -442,17 +441,20 @@ export const getAddressesUptoRemainder = (addressData, seed, genFn, blacklistedR
 };
 
 /**
- *   Takes current account data as input and adds latest used addresses
+ *   Takes current address data as input and adds latest used addresses
  *
  *   @method syncAddresses
  *   @param {string} seed - Seed string
- *   @param {string} accountData - existing account data
- *   @returns {object} - Updated account data data including latest used addresses
+ *   @param {string} existingAddressData
+ *   @param {function} genFn
+ *   @param {boolean} addNewAddress
+ *
+ *   @returns {Promise}
  **/
 
-export const syncAddresses = (seed, accountData, genFn, addNewAddress = false) => {
-    const thisAccountDataCopy = cloneDeep(accountData);
-    let index = getStartingSearchIndexToFetchLatestAddresses(thisAccountDataCopy.addresses);
+export const syncAddresses = (seed, existingAddressData, genFn, addNewAddress = false) => {
+    const addressData = cloneDeep(existingAddressData);
+    let index = getStartingSearchIndexToFetchLatestAddresses(addressData);
 
     return getLatestAddresses(seed, index, genFn).then((newAddresses) => {
         // Remove unused address
@@ -461,16 +463,14 @@ export const syncAddresses = (seed, accountData, genFn, addNewAddress = false) =
         }
         // If no new addresses return
         if (newAddresses.length === 0) {
-            return accountData;
+            return addressData;
         }
-
-        const updatedAddresses = cloneDeep(thisAccountDataCopy.addresses);
 
         newAddresses.forEach((newAddress) => {
             // In case the newly created address is not part of the addresses object
             // Add that as a key with a 0 balance.
-            if (size(updatedAddresses) === 0) {
-                updatedAddresses[newAddress] = {
+            if (size(addressData) === 0) {
+                addressData[newAddress] = {
                     index,
                     balance: 0,
                     spent: false,
@@ -478,9 +478,9 @@ export const syncAddresses = (seed, accountData, genFn, addNewAddress = false) =
                 };
 
                 index += 1;
-            } else if (!(newAddress in thisAccountDataCopy.addresses)) {
+            } else if (!(newAddress in addressData)) {
                 index += 1;
-                updatedAddresses[newAddress] = {
+                addressData[newAddress] = {
                     index,
                     balance: 0,
                     spent: false,
@@ -489,8 +489,7 @@ export const syncAddresses = (seed, accountData, genFn, addNewAddress = false) =
             }
         });
 
-        thisAccountDataCopy.addresses = updatedAddresses;
-        return thisAccountDataCopy;
+        return addressData;
     });
 };
 

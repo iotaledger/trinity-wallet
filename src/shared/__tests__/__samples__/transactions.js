@@ -433,6 +433,7 @@ export const normalizedBundles = {
             {
                 address: 'SRWJECVJMNGLRTRNUBRBWOFWKXHWFOWXSZIARUSCAGQRMQNDOFJKJYRUIBCMQWIUTHSMQEYW9ZK9QBXAC',
                 checksum: 'EVBYFYWLZ',
+                hash: 'HGT9QOBW9KKRQY9G9AWXAKDUIICKRUWVQ9MOWLX9YLXJMTNWX9L9RUMDHIHNJD9MYXIECZTFATOEA9999',
                 value: -5,
             },
         ],
@@ -440,16 +441,19 @@ export const normalizedBundles = {
             {
                 address: 'ATOKJBNU9UVOETMNVGENWMLBKCIIMIQBPOGHJWMFEUJNXVUPQABEYIETRKPTQRT9AYOOMMYGX9OMTZAJX',
                 checksum: 'WWEYWGWBZ',
+                hash: 'RXPWGHVYSRKQWRONOWMPAQJUMBZCUTXGAPAOKAFCTDUNNBN9VKUUJQOGZGNUYBFCJABFZWFCHBMKA9999',
                 value: 1,
             },
             {
                 address: 'SRWJECVJMNGLRTRNUBRBWOFWKXHWFOWXSZIARUSCAGQRMQNDOFJKJYRUIBCMQWIUTHSMQEYW9ZK9QBXAC',
                 checksum: 'EVBYFYWLZ',
+                hash: 'HW9YVRZRJAUMWI9BMIYCRFPXMNBG9ACAKZFWCTRNTJHKZHPXK9RDGKQGJHMNMUYWSIQBIEWKLOOEA9999',
                 value: 0,
             },
             {
                 address: 'RJHWUBVBVDOAXQNKKJSFYPJQTXNVTNI9CZACOKC9VVGDOYJ9SVNJHSBOUXZJMI9RW99LHRDRBNDCQXTBD',
                 checksum: 'ALHAZEQBX',
+                hash: 'WXR9JFMD99UUPR9KBMZBHFOQIXWJBQP9LYFFCXAFHRCPRAFJNGNJUN9BSXVCHUNOCQCWSEMACLJVA9999',
                 value: 4,
             },
         ],
@@ -477,6 +481,7 @@ export const normalizedBundles = {
             {
                 address: 'PEAQU9KBPVHYXLQIUHECEMVLVSLK9QWVITCNPCVXVOL9COKMODBWYBUNTQXT9DMXUBYUFNVOLBCVUIKRX',
                 checksum: 'ZFVETXHX9',
+                hash: 'JBVWPNBQTIMIJNFSDTDCOHPJFBJYZTFFELUVMKBXTY9JVNWRMIBSMADMZ9LXPSRBUSGNEKPVSHWRA9999',
                 value: -1,
             },
         ],
@@ -484,11 +489,13 @@ export const normalizedBundles = {
             {
                 address: 'WUOTVAPXBUWZYNN9WZXGDNAFOWNQPJLHJJDMUCLMPONEEMVNGEH9XIYAPB9LMXTAHOLZQNZFSHSIJAIID',
                 checksum: 'DAGGCMMFD',
+                hash: 'KIYCLXKBYIIBRSZDZZTZZZ9WMSINGIWWOZBEYDCYTSREFRCMYJBJZ9NOXCJ9ORDXKVHJKCUBDLIDZ9999',
                 value: 1,
             },
             {
                 address: 'PEAQU9KBPVHYXLQIUHECEMVLVSLK9QWVITCNPCVXVOL9COKMODBWYBUNTQXT9DMXUBYUFNVOLBCVUIKRX',
                 checksum: 'ZFVETXHX9',
+                hash: 'IGAHDFQKGHBXUEFIQFOTJDJYAJRYADPREWGOWTYCUWDJCUYLUD9PVAJYSZZKRLJSFRQNYDJBGYESZ9999',
                 value: 0,
             },
         ],
