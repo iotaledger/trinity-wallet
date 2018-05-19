@@ -5,7 +5,6 @@
         "continue?": "Tem a certeza que deseja continuar?",
         "noTransactions": "NENHUM HISTÓRICO RECENTE",
         "refresh": "ATUALIZAR",
-        "qr": "QR",
         "balanceError": "Saldo insuficiente",
         "balanceErrorMessage": "Você não tem IOTAs suficientes para realizar esta transferência.",
         "transferError": "Erro de transferência",
@@ -36,6 +35,7 @@
         "manualCopy": "Anotar Seed",
         "paperWallet": "Imprimir Cópia",
         "copyToClipboard": "Adicionar ao Gerenciador de Senhas",
+        "qr": "QR",
         "notAvailable": "Esta função não está disponível",
         "notAvailableExplanation": "Será adicionada futuramente.",
         "enterSeed": "Por favor, digite a sua Seed.",
@@ -61,8 +61,9 @@
         "node": "Servidor",
         "cannotPerformAction": "Não é possível executar a ação",
         "cannotPerformActionExplanation": "Vá para Opções para redefinir a carteira.",
-        "attachToTangleUnavailable": "Anexar ao Tangle indisponível",
-        "attachToTangleUnavailableExplanation": "Anexar ao Tangle não está disponível no servidor selecionado.",
+        "attachToTangleUnavailable": "Prova de trabalho remoto não está disponível",
+        "attachToTangleUnavailableExplanation": "Prova de trabalho remoto não está disponível no servidor selecionado. Altere o servidor ou a prova de trabalho para Local em configurações avançadas.",
+        "attachToTangleUnavailableExplanationShort": "Anexar a Prova de Trabalho não está disponível no servidor selecionado.",
         "wallet": "Carteira",
         "sent": "Enviado",
         "received": "Recebido",
@@ -87,6 +88,8 @@
         "rebroadcastErrorExplanation": "Algo deu errado ao criar sua transferência. Por favor, tente novamente.",
         "promoted": "Transação promovida com sucesso",
         "promotedExplanation": "Promoveu transação com hash {{hash}}",
+        "autopromotionError": "Não foi possível promover transação automaticamente",
+        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node.",
         "promotionError": "Não foi possível promover transação",
         "promotionErrorExplanation": "Algo deu errado ao criar sua transferência. Por favor, tente novamente.",
         "noLongerValid": "O pacote que você está tentando criar não é mais válido",
@@ -168,7 +171,9 @@
         "doNotOpen": "Não abra outros aplicativos durante este processo.",
         "tapConfirm": "Por favor, toque a caixa de seleção abaixo para confirmar.",
         "passwordManagerCheckbox": "Eu vou armazenar minha Seed em um Gerenciador de senhas",
-        "copy": "COPIAR"
+        "copy": "COPIAR",
+        "noPasswordManagers": "No supported password managers installed",
+        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android."
     },
     "enterSeed": {
         "invalidCharacters": "A Seed contém caracteres inválidos",
@@ -202,7 +207,8 @@
         "loadingFirstTime": "Carregando a Seed pela primeira vez.",
         "thisMayTake": "Isso pode demorar algum tempo.",
         "doNotMinimise": "Não feche ou minimize o aplicativo.",
-        "youMayNotice": "Você poderá notar que seu dispositivo ficará mais lento."
+        "youMayNotice": "Você poderá notar que seu dispositivo ficará mais lento.",
+        "takingAWhile": "This seems to be taking a while"
     },
     "newSeedSetup": {
         "seedNotGenerated": "A Seed não foi gerada",
@@ -308,7 +314,7 @@
         "twoFA": "Autenticação 2FA",
         "changePassword": "Alterar Senha",
         "advanced": "Opções Avançadas",
-        "about": "Sobre a Trinity",
+        "about": "About",
         "logout": "Desconectar",
         "reset": "Redefinir a carteira",
         "syncingComplete": "Sincronização completa",
@@ -339,8 +345,14 @@
         "fetchedConversionRatesExplanation": "As taxas de câmbio foram obtidas com sucesso para {{currency}}.",
         "undo": "Desfazer",
         "redo": "Refazer",
+        "aboutTrinity": "About Trinity",
         "lockScreenTimeout": "Tempo para o Bloqueio da Tela (minutos)",
-        "autoNodeSwitching": "Mudar de servidor automaticamente quando o servidor selecionado estiver inacessível"
+        "autoNodeSwitching": "Mudar de servidor automaticamente quando o servidor selecionado estiver inacessível",
+        "nodeChangeSuccess": "Successfully changed node",
+        "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
+        "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
+        "nodeChangeError": "Error changing node",
+        "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Digite sua senha para redefinir a carteira.",
@@ -449,7 +461,7 @@
     "useExistingSeed": {
         "title": "Digite a seed e o nome da conta.",
         "incorrectFormat": "Formato de servidor incorreto",
-        "validSeedExplanation": "'Endereços válidos devem possuir 81 caracteres e conter apenas A-Z ou 9.'"
+        "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
     },
     "viewSeed": {
         "enterPassword": "Digite a senha para exibir sua seed.",
@@ -469,16 +481,16 @@
         "instructionsEnable": "Toque o leitor de impressão digital para habilitar a autenticação biométrica",
         "instructionsDisable": "Toque o leitor de impressão digital para habilitar a autenticação biométrica",
         "fingerprintAuthEnabled": "Autenticação biométrica habilitada",
-        "fingerprintAuthEnabledExplanation": "Você habilitou a autenticação biométrica com sucesso.",
+        "fingerprintAuthEnabledExplanation": "You have successfully enabled biometric authentication.",
         "fingerprintAuthDisabled": "Autenticação biométrica desabilitada",
-        "fingerprintAuthDisabledExplanation": "Você desabilitou a autenticação biométrica com sucesso.",
+        "fingerprintAuthDisabledExplanation": "You have successfully disabled biometric authentication.",
         "fingerprintAuthFailed": "A Autenticação Biométrica falhou",
         "fingerprintAuthFailedExplanation": "Falha na autenticação biométrica. Por favor, tente novamente.",
         "status": "Situação",
         "enabled": "Ativado",
         "disabled": "Desativado",
-        "fingerprintUnavailable": "Autenticação Biométrica indisponível",
-        "fingerprintUnavailableExplanation": "Seu dispositivo não suporta reconhecimento de biometria ou não está configurado nas opções do dispositivo.",
+        "fingerprintUnavailable": "Biometric authentication unavailable",
+        "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Pressione o botão abaixo para desabilitar a autenticação biométrica.",
         "buttonInstructionsEnable": "Pressione o botão abaixo para habilitar a autenticação biométrica.",
         "buttonInstructionsDisableIPhoneX": "Pressione o botão abaixo para desabilitar a identificação do rosto.",

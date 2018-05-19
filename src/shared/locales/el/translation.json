@@ -5,7 +5,6 @@
         "continue?": "Είστε βέβαιοι ότι θέλετε να συνεχίσετε;",
         "noTransactions": "ΚΑΜΙΑ ΠΡΟΣΦΑΤΗ ΙΣΤΟΡΙΑ",
         "refresh": "ΑΝΑΝΈΩΣΗ",
-        "qr": "QR",
         "balanceError": "Μη αρκετό υπόλοιπο",
         "balanceErrorMessage": "Δεν έχετε αρκετά ΙΟΤΑ για να ολοκληρώσετε αυτή τη μεταφορά.",
         "transferError": "Σφάλμα μεταφοράς",
@@ -36,6 +35,7 @@
         "manualCopy": "Γράψτε το seed σας ",
         "paperWallet": "Εκτύπωση χάρτινου αντίγραφου",
         "copyToClipboard": "Προσθήκη στο διαχειριστή κωδικών πρόσβασης",
+        "qr": "QR",
         "notAvailable": "Αυτή η λειτουργία δεν είναι διαθέσιμη",
         "notAvailableExplanation": "Θα προστεθεί σε μεταγενέστερο στάδιο.",
         "enterSeed": "Παρακαλώ εισάγετε το seed σας.",
@@ -61,8 +61,9 @@
         "node": "Κόμβος",
         "cannotPerformAction": "Δεν είναι δυνατό να εκτελεστεί η ενέργεια",
         "cannotPerformActionExplanation": "Πηγαίνετε στο ρυθμίσεις για προχωρημένους για να επαναφέρετε το πορτοφόλι.",
-        "attachToTangleUnavailable": "Η επισύναψη στο Tangle δεν είναι διαθέσιμη",
-        "attachToTangleUnavailableExplanation": "Επισύναψη στο Tangle δεν είναι διαθέσιμη για το επιλεγμένο κόμβο.",
+        "attachToTangleUnavailable": "Remote Proof of Work is unavailable",
+        "attachToTangleUnavailableExplanation": "Remote Proof of Work is not available on your selected node. Either change node or set Proof of Work to Local in Advanced Settings.",
+        "attachToTangleUnavailableExplanationShort": "Remote Proof of Work is not available on your selected node.",
         "wallet": "Πορτοφόλι",
         "sent": "Εστάλη",
         "received": "Ελήφθη",
@@ -87,6 +88,8 @@
         "rebroadcastErrorExplanation": "Something went wrong while rebroadcasting your transaction. Please try again.",
         "promoted": "Successfully promoted transaction",
         "promotedExplanation": "Promoted transaction with hash {{hash}}",
+        "autopromotionError": "Could not auto-promote transaction",
+        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node.",
         "promotionError": "Could not promote transaction",
         "promotionErrorExplanation": "Something went wrong while promoting your transaction. Please try again.",
         "noLongerValid": "Η δέσμη που προσπαθείτε να προωθήσετε δεν είναι πλέον έγκυρη",
@@ -168,7 +171,9 @@
         "doNotOpen": "Do not open any other apps during this process.",
         "tapConfirm": "Please tap the checkbox below to confirm.",
         "passwordManagerCheckbox": "I will store my seed in a password manager",
-        "copy": "COPY"
+        "copy": "COPY",
+        "noPasswordManagers": "No supported password managers installed",
+        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android."
     },
     "enterSeed": {
         "invalidCharacters": "Ο σπόρος περιέχει μη έγκυρους χαρακτήρες",
@@ -202,7 +207,8 @@
         "loadingFirstTime": "Φόρτωση σπόρου για πρώτη φορά.",
         "thisMayTake": "Αυτό μπορεί να διαρκέσει λίγο.",
         "doNotMinimise": "Μην ελαχιστοποιήσετε ή κλείσετε την εφαρμογή.",
-        "youMayNotice": "Ενδέχεται να παρατηρήσετε τη συσκευή να επιβραδύνει."
+        "youMayNotice": "Ενδέχεται να παρατηρήσετε τη συσκευή να επιβραδύνει.",
+        "takingAWhile": "This seems to be taking a while"
     },
     "newSeedSetup": {
         "seedNotGenerated": "Δεν έχει παραχθεί σπόρος",
@@ -308,7 +314,7 @@
         "twoFA": "Έλεγχος ταυτότητας δύο παραγόντων",
         "changePassword": "Αλλάξτε κωδικό πρόσβασης",
         "advanced": "Ρυθμίσεις για προχωρημένους",
-        "about": "Σχετικά με το Trinity",
+        "about": "About",
         "logout": "Αποσύνδεση",
         "reset": "Επαναφέρετε το πορτοφόλι",
         "syncingComplete": "Ο συγχρονισμός ολοκληρώθηκε",
@@ -339,8 +345,14 @@
         "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rate for {{currency}}.",
         "undo": "Αναίρεση",
         "redo": "Επανάληψη",
+        "aboutTrinity": "About Trinity",
         "lockScreenTimeout": "Lock Screen Timeout (Minutes)",
-        "autoNodeSwitching": "Automatically switch node when selected is unreachable"
+        "autoNodeSwitching": "Automatically switch node when selected is unreachable",
+        "nodeChangeSuccess": "Successfully changed node",
+        "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
+        "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
+        "nodeChangeError": "Error changing node",
+        "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Πληκτρολογήστε τον κωδικό πρόσβασης για να επαναφέρετε το πορτοφόλι.",
@@ -449,7 +461,7 @@
     "useExistingSeed": {
         "title": "Εισάγετε έναν σπόρο και όνομα λογαριασμού.",
         "incorrectFormat": "Incorrect seed format",
-        "validSeedExplanation": "'Valid seeds should be 81 characters and contain only A-Z or 9.'"
+        "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
     },
     "viewSeed": {
         "enterPassword": "Εισάγετε κωδικό πρόσβασης για να δείτε το σπόρο σας.",
@@ -469,16 +481,16 @@
         "instructionsEnable": "Touch fingerprint reader to enable fingerprint authentication",
         "instructionsDisable": "Touch fingerprint reader to disable fingerprint authentication",
         "fingerprintAuthEnabled": "Biometric authentication enabled",
-        "fingerprintAuthEnabledExplanation": "You have succesfully enabled biometric authentication.",
+        "fingerprintAuthEnabledExplanation": "You have successfully enabled biometric authentication.",
         "fingerprintAuthDisabled": "Biometric authentication disabled",
-        "fingerprintAuthDisabledExplanation": "You have succesfully disabled biometric authentication.",
+        "fingerprintAuthDisabledExplanation": "You have successfully disabled biometric authentication.",
         "fingerprintAuthFailed": "Biometric authentication failed",
         "fingerprintAuthFailedExplanation": "Η είσοδος με χρήση δακτυλικού αποτυπωμάτος απέτυχε. Παρακαλώ δοκιμάστε ξανά.",
         "status": "Κατάσταση",
         "enabled": "Ενεργό",
         "disabled": "Ανενεργό",
-        "fingerprintUnavailable": "Biometric authenticatation unavailable",
-        "fingerprintUnavailableExplanation": "Your device does not support biometric authenticatation or it has not been configured in the device settings.",
+        "fingerprintUnavailable": "Biometric authentication unavailable",
+        "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Πατήστε το παρακάτω κουμπί για να απενεργοποιήσετε την είσοδο με χρήση δακτυλικών αποτυπωμάτων.",
         "buttonInstructionsEnable": "Πατήστε το παρακάτω κουμπί για να ενεργοποιήσετε την είσοδο με χρήση δακτυλικών αποτυπωμάτων.",
         "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID.",

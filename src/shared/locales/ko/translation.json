@@ -5,7 +5,6 @@
         "continue?": "계속 하시겠습니까?",
         "noTransactions": "최근 기록 없음",
         "refresh": "새로고침",
-        "qr": "QR",
         "balanceError": "잔고 부족",
         "balanceErrorMessage": "IOTA 잔고가 부족하여 거래를 완료할 수 없습니다.",
         "transferError": "전송 오류",
@@ -36,6 +35,7 @@
         "manualCopy": "시드 기록하기",
         "paperWallet": "종이에 인쇄하기",
         "copyToClipboard": "비밀번호 관리자에 입력하기",
+        "qr": "QR",
         "notAvailable": "이 기능은 사용할 수 없습니다.",
         "notAvailableExplanation": "이 기능은 추후에 추가될 예정입니다.",
         "enterSeed": "시드를 입력하십시오.",
@@ -61,8 +61,9 @@
         "node": "노드",
         "cannotPerformAction": "작업을 수행할 수 없음",
         "cannotPerformActionExplanation": "고급 설정으로 이동하여 지갑을 초기화하십시오.",
-        "attachToTangleUnavailable": "노드 원격 어태치 미지원",
-        "attachToTangleUnavailableExplanation": "선택하신 노드는 원격 어태치를 지원하지 않습니다.",
+        "attachToTangleUnavailable": "Remote Proof of Work is unavailable",
+        "attachToTangleUnavailableExplanation": "Remote Proof of Work is not available on your selected node. Either change node or set Proof of Work to Local in Advanced Settings.",
+        "attachToTangleUnavailableExplanationShort": "Remote Proof of Work is not available on your selected node.",
         "wallet": "지갑",
         "sent": "보냄",
         "received": "받음",
@@ -87,6 +88,8 @@
         "rebroadcastErrorExplanation": "트랜잭션을 재송출하는 중에 오류가 발생했습니다. 다시 시도해주십시오.",
         "promoted": "트랜잭션이 프로모트됨",
         "promotedExplanation": "다음의 트랜잭션 해시가 프로모트되었습니다: {{hash}}",
+        "autopromotionError": "Could not auto-promote transaction",
+        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node.",
         "promotionError": "트랜잭션을 프로모트할 수 없음",
         "promotionErrorExplanation": "트랜잭션을 프로모트하는 중에 오류가 발생했습니다. 다시 시도해주십시오.",
         "noLongerValid": "프로모트하려는 번들이 더 이상 유효하지 않습니다.",
@@ -168,7 +171,9 @@
         "doNotOpen": "Do not open any other apps during this process.",
         "tapConfirm": "Please tap the checkbox below to confirm.",
         "passwordManagerCheckbox": "I will store my seed in a password manager",
-        "copy": "COPY"
+        "copy": "COPY",
+        "noPasswordManagers": "No supported password managers installed",
+        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android."
     },
     "enterSeed": {
         "invalidCharacters": "시드에 잘못된 문자 포함",
@@ -202,7 +207,8 @@
         "loadingFirstTime": "처음으로 시드를 불러오는 중입니다.",
         "thisMayTake": "시간이 조금 걸릴 수 있습니다.",
         "doNotMinimise": "앱을 최소화하거나 종료하지 말아 주십시오.",
-        "youMayNotice": "기기가 느려질 수도 있습니다."
+        "youMayNotice": "기기가 느려질 수도 있습니다.",
+        "takingAWhile": "This seems to be taking a while"
     },
     "newSeedSetup": {
         "seedNotGenerated": "시드가 생성되지 않았습니다",
@@ -308,7 +314,7 @@
         "twoFA": "2단계 인증",
         "changePassword": "비밀번호 변경",
         "advanced": "고급 설정",
-        "about": "트리니티 정보",
+        "about": "About",
         "logout": "로그아웃",
         "reset": "지갑 초기화",
         "syncingComplete": "동기화 완료",
@@ -339,8 +345,14 @@
         "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rate for {{currency}}.",
         "undo": "취소",
         "redo": "다시 실행",
+        "aboutTrinity": "About Trinity",
         "lockScreenTimeout": "자동 잠금 시간 (분)",
-        "autoNodeSwitching": "노드에 연결이 불가능할 경우 자동으로 다른 노드에 연결 시도"
+        "autoNodeSwitching": "노드에 연결이 불가능할 경우 자동으로 다른 노드에 연결 시도",
+        "nodeChangeSuccess": "Successfully changed node",
+        "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
+        "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
+        "nodeChangeError": "Error changing node",
+        "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "지갑을 초기화하려면 비밀번호를 입력하세요.",
@@ -449,7 +461,7 @@
     "useExistingSeed": {
         "title": "시드와 계정 이름을 입력하십시오.",
         "incorrectFormat": "Incorrect seed format",
-        "validSeedExplanation": "'Valid seeds should be 81 characters and contain only A-Z or 9.'"
+        "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
     },
     "viewSeed": {
         "enterPassword": "시드를 보기 위해 암호를 입력해 주세요.",
@@ -469,16 +481,16 @@
         "instructionsEnable": "지문 인증을 활성화하려면 손가락을 지문 센서 위에 올리십시오",
         "instructionsDisable": "지문 인증을 비활성화하려면 손가락을 지문 센서 위에 올리십시오",
         "fingerprintAuthEnabled": "생체 인증 활성화됨",
-        "fingerprintAuthEnabledExplanation": "성공적으로 생체 인증을 활성화하였습니다.",
+        "fingerprintAuthEnabledExplanation": "You have successfully enabled biometric authentication.",
         "fingerprintAuthDisabled": "생체 인증 비활성화",
-        "fingerprintAuthDisabledExplanation": "성공적으로 생체 인증을 비활성화하였습니다.",
+        "fingerprintAuthDisabledExplanation": "You have successfully disabled biometric authentication.",
         "fingerprintAuthFailed": "생체 인증 실패",
         "fingerprintAuthFailedExplanation": "지문 인증이 실패했습니다. 다시 시도해 주십시오.",
         "status": "상태",
         "enabled": "활성화됨",
         "disabled": "비활성화됨",
-        "fingerprintUnavailable": "생체 인증을 사용할 수 없음",
-        "fingerprintUnavailableExplanation": "이 기기는 생체 인증을 지원하지 않거나, 생체 인증을 사용하지 않도록 설정되어 있습니다.",
+        "fingerprintUnavailable": "Biometric authentication unavailable",
+        "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "아래 버튼을 눌러 지문 인증을 비활성화할 수 있습니다.",
         "buttonInstructionsEnable": "아래 버튼을 눌러 지문 인증을 활성화할 수 있습니다.",
         "buttonInstructionsDisableIPhoneX": "아래 버튼을 눌러 Face ID를 비활성할 수 있습니다.",

@@ -5,7 +5,6 @@
         "continue?": "Bạn có muốn tiếp tục không?",
         "noTransactions": "KHÔNG CÓ LỊCH SỬ",
         "refresh": "LÀM MỚI",
-        "qr": "QR",
         "balanceError": "Tài khoản không đủ",
         "balanceErrorMessage": "Bạn không có đủ IOTA để hoàn thành giao dịch này.",
         "transferError": "Lỗi chuyển khoản",
@@ -36,6 +35,7 @@
         "manualCopy": "Viết từ khoá xuống",
         "paperWallet": "In giấy bản sao",
         "copyToClipboard": "Cho vào phần mềm quản lí mật khẩu",
+        "qr": "QR",
         "notAvailable": "Chức năng này không tồn tại",
         "notAvailableExplanation": "Sẽ được thêm vào ở giai đoạn sau.",
         "enterSeed": "Vui lòng nhập từ khoá.",
@@ -61,8 +61,9 @@
         "node": "Nút mạng",
         "cannotPerformAction": "Không thể thực hiện thao tác này",
         "cannotPerformActionExplanation": "Vào thiết lập nâng cao để cài lại ví điện tử.",
-        "attachToTangleUnavailable": "Không thể kết nối vào Tangle",
-        "attachToTangleUnavailableExplanation": "Không thể kết nối vào Tangle khi xài nút mạng đang chọn.",
+        "attachToTangleUnavailable": "Remote Proof of Work is unavailable",
+        "attachToTangleUnavailableExplanation": "Remote Proof of Work is not available on your selected node. Either change node or set Proof of Work to Local in Advanced Settings.",
+        "attachToTangleUnavailableExplanationShort": "Remote Proof of Work is not available on your selected node.",
         "wallet": "Ví Điện Tử",
         "sent": "Đã Gửi",
         "received": "Đã Nhận",
@@ -87,6 +88,8 @@
         "rebroadcastErrorExplanation": "Something went wrong while rebroadcasting your transaction. Please try again.",
         "promoted": "Successfully promoted transaction",
         "promotedExplanation": "Promoted transaction with hash {{hash}}",
+        "autopromotionError": "Could not auto-promote transaction",
+        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node.",
         "promotionError": "Could not promote transaction",
         "promotionErrorExplanation": "Something went wrong while promoting your transaction. Please try again.",
         "noLongerValid": "The bundle you are trying to promote is no longer valid",
@@ -168,7 +171,9 @@
         "doNotOpen": "Do not open any other apps during this process.",
         "tapConfirm": "Please tap the checkbox below to confirm.",
         "passwordManagerCheckbox": "I will store my seed in a password manager",
-        "copy": "COPY"
+        "copy": "COPY",
+        "noPasswordManagers": "No supported password managers installed",
+        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android."
     },
     "enterSeed": {
         "invalidCharacters": "Từ khoá chứa ký tự không hợp lệ",
@@ -202,7 +207,8 @@
         "loadingFirstTime": "Đang tải từ khoá lần đầu tiên.",
         "thisMayTake": "Thao tác này sẽ hơi lâu.",
         "doNotMinimise": "Do not minimise or close the app.",
-        "youMayNotice": "Bạn có thể thấy máy của bạn chậm lại."
+        "youMayNotice": "Bạn có thể thấy máy của bạn chậm lại.",
+        "takingAWhile": "This seems to be taking a while"
     },
     "newSeedSetup": {
         "seedNotGenerated": "Từ khoá chưa được tạo ra",
@@ -308,7 +314,7 @@
         "twoFA": "Xác thực 2 nhân tố",
         "changePassword": "Đổi mật khẩu",
         "advanced": "Thiết lập nâng cao",
-        "about": "About Trinity",
+        "about": "About",
         "logout": "Đăng xuất",
         "reset": "Cài lại ví điện tử",
         "syncingComplete": "Đồng bộ hoàn tất",
@@ -339,8 +345,14 @@
         "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rate for {{currency}}.",
         "undo": "Undo",
         "redo": "Redo",
+        "aboutTrinity": "About Trinity",
         "lockScreenTimeout": "Lock Screen Timeout (Minutes)",
-        "autoNodeSwitching": "Automatically switch node when selected is unreachable"
+        "autoNodeSwitching": "Automatically switch node when selected is unreachable",
+        "nodeChangeSuccess": "Successfully changed node",
+        "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
+        "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
+        "nodeChangeError": "Error changing node",
+        "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Nhập mật khẩu để cài lại ví điện tử.",
@@ -449,7 +461,7 @@
     "useExistingSeed": {
         "title": "Nhập từ khóa và tên tài khoản.",
         "incorrectFormat": "Incorrect seed format",
-        "validSeedExplanation": "'Valid seeds should be 81 characters and contain only A-Z or 9.'"
+        "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
     },
     "viewSeed": {
         "enterPassword": "Nhập mật khẩu để xem từ khóa.",
@@ -469,16 +481,16 @@
         "instructionsEnable": "Touch fingerprint reader to enable fingerprint authentication",
         "instructionsDisable": "Touch fingerprint reader to disable fingerprint authentication",
         "fingerprintAuthEnabled": "Biometric authentication enabled",
-        "fingerprintAuthEnabledExplanation": "You have succesfully enabled biometric authentication.",
+        "fingerprintAuthEnabledExplanation": "You have successfully enabled biometric authentication.",
         "fingerprintAuthDisabled": "Biometric authentication disabled",
-        "fingerprintAuthDisabledExplanation": "You have succesfully disabled biometric authentication.",
+        "fingerprintAuthDisabledExplanation": "You have successfully disabled biometric authentication.",
         "fingerprintAuthFailed": "Biometric authentication failed",
         "fingerprintAuthFailedExplanation": "Xác thực vân tay không thành công. Xin vui lòng thử lại.",
         "status": "Tình Trạng",
         "enabled": "Kích Hoạt",
         "disabled": "Vô Hiệu",
-        "fingerprintUnavailable": "Biometric authenticatation unavailable",
-        "fingerprintUnavailableExplanation": "Your device does not support biometric authenticatation or it has not been configured in the device settings.",
+        "fingerprintUnavailable": "Biometric authentication unavailable",
+        "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Nhấn vào nút dưới đây để vô hiệu hóa xác thực vân tay.",
         "buttonInstructionsEnable": "Nhấn vào nút dưới đây để kích hoạt xác thực vân tay.",
         "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID.",
