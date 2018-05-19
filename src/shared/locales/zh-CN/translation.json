@@ -5,7 +5,6 @@
         "continue?": "是否确定继续？",
         "noTransactions": "没有最近的历史记录",
         "refresh": "刷新",
-        "qr": "二维码",
         "balanceError": "余额不足",
         "balanceErrorMessage": "您的IOTA不足以完成本次交易。",
         "transferError": "交易错误",
@@ -36,6 +35,7 @@
         "manualCopy": "写下种子",
         "paperWallet": "打印副本",
         "copyToClipboard": "添加到密码管理器",
+        "qr": "二维码",
         "notAvailable": "此功能不可用",
         "notAvailableExplanation": "它将在稍后阶段添加。",
         "enterSeed": "请输入您的密码.",
@@ -61,8 +61,9 @@
         "node": "节点",
         "cannotPerformAction": "无法执行操作",
         "cannotPerformActionExplanation": "转到高级设置以重置钱包。",
-        "attachToTangleUnavailable": "无法连接到Tangle",
-        "attachToTangleUnavailableExplanation": "连接到Tangle的功能在选定的节点上无法使用",
+        "attachToTangleUnavailable": "Remote Proof of Work is unavailable",
+        "attachToTangleUnavailableExplanation": "Remote Proof of Work is not available on your selected node. Either change node or set Proof of Work to Local in Advanced Settings.",
+        "attachToTangleUnavailableExplanationShort": "Remote Proof of Work is not available on your selected node.",
         "wallet": "钱包",
         "sent": "发送",
         "received": "收到",
@@ -87,6 +88,8 @@
         "rebroadcastErrorExplanation": "Something went wrong while rebroadcasting your transaction. Please try again.",
         "promoted": "Successfully promoted transaction",
         "promotedExplanation": "Promoted transaction with hash {{hash}}",
+        "autopromotionError": "Could not auto-promote transaction",
+        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node.",
         "promotionError": "Could not promote transaction",
         "promotionErrorExplanation": "Something went wrong while promoting your transaction. Please try again.",
         "noLongerValid": "您想要提升的捆绑包已经失效",
@@ -168,7 +171,9 @@
         "doNotOpen": "Do not open any other apps during this process.",
         "tapConfirm": "Please tap the checkbox below to confirm.",
         "passwordManagerCheckbox": "I will store my seed in a password manager",
-        "copy": "COPY"
+        "copy": "COPY",
+        "noPasswordManagers": "No supported password managers installed",
+        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android."
     },
     "enterSeed": {
         "invalidCharacters": "种子包含无效字符",
@@ -202,7 +207,8 @@
         "loadingFirstTime": "首次读取种子",
         "thisMayTake": "可能需要一段时间",
         "doNotMinimise": "不要最小化或关闭应用程序。",
-        "youMayNotice": "您的设备可能会变慢。"
+        "youMayNotice": "您的设备可能会变慢。",
+        "takingAWhile": "This seems to be taking a while"
     },
     "newSeedSetup": {
         "seedNotGenerated": "尚未生成种子",
@@ -308,7 +314,7 @@
         "twoFA": "双重认证",
         "changePassword": "更改密码",
         "advanced": "高级设置",
-        "about": "关于Trinity",
+        "about": "About",
         "logout": "登出",
         "reset": "重置钱包",
         "syncingComplete": "同步完成",
@@ -339,8 +345,14 @@
         "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rate for {{currency}}.",
         "undo": "撤销",
         "redo": "重做",
+        "aboutTrinity": "About Trinity",
         "lockScreenTimeout": "Lock Screen Timeout (Minutes)",
-        "autoNodeSwitching": "Automatically switch node when selected is unreachable"
+        "autoNodeSwitching": "Automatically switch node when selected is unreachable",
+        "nodeChangeSuccess": "Successfully changed node",
+        "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
+        "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
+        "nodeChangeError": "Error changing node",
+        "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "输入您的密码以重置钱包。",
@@ -449,7 +461,7 @@
     "useExistingSeed": {
         "title": "输入种子和帐户名称。",
         "incorrectFormat": "Incorrect seed format",
-        "validSeedExplanation": "'Valid seeds should be 81 characters and contain only A-Z or 9.'"
+        "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
     },
     "viewSeed": {
         "enterPassword": "输入密码查看您的种子。",
@@ -469,16 +481,16 @@
         "instructionsEnable": "Touch fingerprint reader to enable fingerprint authentication",
         "instructionsDisable": "Touch fingerprint reader to disable fingerprint authentication",
         "fingerprintAuthEnabled": "Biometric authentication enabled",
-        "fingerprintAuthEnabledExplanation": "You have succesfully enabled biometric authentication.",
+        "fingerprintAuthEnabledExplanation": "You have successfully enabled biometric authentication.",
         "fingerprintAuthDisabled": "Biometric authentication disabled",
-        "fingerprintAuthDisabledExplanation": "You have succesfully disabled biometric authentication.",
+        "fingerprintAuthDisabledExplanation": "You have successfully disabled biometric authentication.",
         "fingerprintAuthFailed": "Biometric authentication failed",
         "fingerprintAuthFailedExplanation": "指纹验证失败。请重试。",
         "status": "状态",
         "enabled": "已启用",
         "disabled": "已禁用",
-        "fingerprintUnavailable": "Biometric authenticatation unavailable",
-        "fingerprintUnavailableExplanation": "Your device does not support biometric authenticatation or it has not been configured in the device settings.",
+        "fingerprintUnavailable": "Biometric authentication unavailable",
+        "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "点击下面的按钮禁用指纹身份验证。",
         "buttonInstructionsEnable": "点击下面的按钮启用指纹身份验证。",
         "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID.",
