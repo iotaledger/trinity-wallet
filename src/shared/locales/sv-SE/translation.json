@@ -5,7 +5,6 @@
         "continue?": "Är du säker på att du vill fortsätta?",
         "noTransactions": "Ingen historik",
         "refresh": "UPPDATERA",
-        "qr": "QR",
         "balanceError": "Otillräckligt saldo",
         "balanceErrorMessage": "Du har inte tillräckligt med IOTA för att slutföra denna överföring.",
         "transferError": "Överföringsfel",
@@ -36,6 +35,7 @@
         "manualCopy": "Skriv ner din seed",
         "paperWallet": "Skriv ut papperskopia",
         "copyToClipboard": "Lägg till i lösenordshanteraren",
+        "qr": "QR",
         "notAvailable": "Denna funktion är inte tillgänglig",
         "notAvailableExplanation": "Funktionen kommer i en senare version.",
         "enterSeed": "Ange din seed.",
@@ -61,8 +61,9 @@
         "node": "Nod",
         "cannotPerformAction": "Kan inte utföra åtgärden",
         "cannotPerformActionExplanation": "Gå till avancerade inställningar för att återställa plånboken.",
-        "attachToTangleUnavailable": "Fastsättning på Tangle otillgänglig",
-        "attachToTangleUnavailableExplanation": "Fäst på Tangle är otillgänglig på din valda nod.",
+        "attachToTangleUnavailable": "Avlägsen PoW otillgänglig",
+        "attachToTangleUnavailableExplanation": "Avlägsen PoW är inte tillgänglig på din valda nod. Antingen byt nod eller sätt PoW till Lokal i avancerade inställningar.",
+        "attachToTangleUnavailableExplanationShort": "Avlägsen PoW är inte tillgänglig på din valda nod.",
         "wallet": "Plånbok",
         "sent": "Skickat",
         "received": "Mottaget",
@@ -87,6 +88,8 @@
         "rebroadcastErrorExplanation": "Någonting gick fel under återsändning av transaktionen. Vänligen försök igen.",
         "promoted": "Framgångsrik befordran av transaktion",
         "promotedExplanation": "Befordrade transaktion med hash {{hash}}",
+        "autopromotionError": "Kunde inte befordra transaktionen automatiskt",
+        "autopromotionErrorExplanation": "Avlägsen PoW är inte tillgänglig på din valda nod. Vänligen byt nod.",
         "promotionError": "Kunde inte befordra transaktionen",
         "promotionErrorExplanation": "Någonting gick fel under befordran av transaktionen. Vänligen försök igen.",
         "noLongerValid": "Bunten du försökte befordra är inte giltig längre",
@@ -168,7 +171,9 @@
         "doNotOpen": "Öppna inte andra program under denna process.",
         "tapConfirm": "Vänligen tryck på kryssrutan nedan för att bekräfta.",
         "passwordManagerCheckbox": "Jag kommer att lagra min seed i en lösenordshanterare",
-        "copy": "KOPIERA"
+        "copy": "KOPIERA",
+        "noPasswordManagers": "Ingen installerad lösenordshanterade som stöds",
+        "noPasswordManagersExplanation": "Ingen installerad lösenordshanterade som stöds hittades på din enhet. Vänligen installera Keepass2Android."
     },
     "enterSeed": {
         "invalidCharacters": "Seeden innehåller ogiltiga tecken",
@@ -202,7 +207,8 @@
         "loadingFirstTime": "Laddar din adress för första gången.",
         "thisMayTake": "Detta kan ta ett tag.",
         "doNotMinimise": "Avvik från att minimera eller stänga appen.",
-        "youMayNotice": "Din enhet kan tillfälligt bli långsammare."
+        "youMayNotice": "Din enhet kan tillfälligt bli långsammare.",
+        "takingAWhile": "Detta verkar ta ett tag"
     },
     "newSeedSetup": {
         "seedNotGenerated": "En seed har inte blivit genererad",
@@ -308,7 +314,7 @@
         "twoFA": "Tvåfaktorsautentisering",
         "changePassword": "Ändra lösenord",
         "advanced": "Avancerade inställningar",
-        "about": "Om Trinity",
+        "about": "Om",
         "logout": "Logga ut",
         "reset": "Återställ plånbok",
         "syncingComplete": "Synkronisering genomförd",
@@ -339,8 +345,14 @@
         "fetchedConversionRatesExplanation": "Lyckad hämtning av senaste valutakurs för {{currency}}.",
         "undo": "Ångra",
         "redo": "Upprepa",
+        "aboutTrinity": "Om Trinity",
         "lockScreenTimeout": "Inaktivitetslås (minuter)",
-        "autoNodeSwitching": "Byt nod automatiskt när vald nod är onåbar"
+        "autoNodeSwitching": "Byt nod automatiskt när vald nod är onåbar",
+        "nodeChangeSuccess": "Bytte nod framgångsrikt",
+        "nodeChangeSuccessNoRemotePow": "Noden har ändrats till {{node}}. Denna nod stöder inte avlägsen PoW.",
+        "nodeChangeSuccessExplanation": "Noden har ändrats till {{node}}.",
+        "nodeChangeError": "Fel vid ändring av nod",
+        "nodeChangeErrorExplanation": "Ett fel inträffade vid ändring av nod. Vänligen försök igen."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Ange ditt lösenord för att återställa plånboken.",
@@ -449,7 +461,7 @@
     "useExistingSeed": {
         "title": "Ange din seed och ett kontonamn.",
         "incorrectFormat": "Felaktigt seed-format",
-        "validSeedExplanation": "'Giltig seed bör vara 81 tecken och endast innehålla A-Z eller 9.'"
+        "validSeedExplanation": "Giltig seed bör vara 81 tecken och innehålla A-Z eller 9."
     },
     "viewSeed": {
         "enterPassword": "Ange lösenord för att visa din seed.",
@@ -499,9 +511,9 @@
         "addKey": "Lägg till denna nyckeln till din 2FA app",
         "key": "Nyckel",
         "twoFAEnabled": "2FA är nu aktiverat",
-        "twoFAEnabledExplanation": "Du har aktiverat tvåfaktorsautentisering framgångsrikt.",
+        "twoFAEnabledExplanation": "Du har framgångsrikt aktiverat tvåfaktorsautentisering.",
         "twoFADisabled": "2FA är nu avaktiverat",
-        "twoFADisabledExplanation": "Du har framgångsrikt avaktiverat fingeravtrycksautentisering.",
+        "twoFADisabledExplanation": "Du har framgångsrikt avaktiverat tvåfaktorsautentisering.",
         "enterCode": "Ange koden från din 2FA app",
         "code": "Kod",
         "twoFaToken": "2FA-token"
