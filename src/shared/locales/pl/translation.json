@@ -5,7 +5,6 @@
         "continue?": "Czy na pewno chcesz kontynuować?",
         "noTransactions": "BRAK OSTATNIEJ AKTYWNOŚCI",
         "refresh": "ODŚWIEŻ",
-        "qr": "Kod QR",
         "balanceError": "Brak wystarczających środków",
         "balanceErrorMessage": "Nie masz wystarczających środków IOTA, aby wykonać ten transfer.",
         "transferError": "Błąd transferu",
@@ -36,6 +35,7 @@
         "manualCopy": "Zanotuj swój seed",
         "paperWallet": "Wydrukuj wersje papierową",
         "copyToClipboard": "Dodaj do menedżera haseł",
+        "qr": "Kod QR",
         "notAvailable": "Funkcja niedostępna",
         "notAvailableExplanation": "Ta funkcja zostanie dodana na późniejszym etapie.",
         "enterSeed": "Proszę wpisz swój seed.",
@@ -61,8 +61,9 @@
         "node": "Serwer",
         "cannotPerformAction": "Nie można wykonać akcji",
         "cannotPerformActionExplanation": "Aby zresetować portfel, przejdź do ustawień zaawansowanych.",
-        "attachToTangleUnavailable": "Błąd dołączania",
-        "attachToTangleUnavailableExplanation": "Dołączanie do sieci Tangle nie jest dostępne na wybranym serwerze.",
+        "attachToTangleUnavailable": "Zdalny Proof of Work niedostępny",
+        "attachToTangleUnavailableExplanation": "Zdalny tryb Proof of Work jest niedostępny na wybranym serwerze. Zmień serwer lub ustaw lokalny tryb PoW w zaawansowanych ustawieniach aplikacji.",
+        "attachToTangleUnavailableExplanationShort": "Zdalny tryb Proof of Work jest niedostępny na wybranym serwerze.",
         "wallet": "Portfel",
         "sent": "Wysłano",
         "received": "Odebrano",
@@ -87,6 +88,8 @@
         "rebroadcastErrorExplanation": "Coś poszło nie tak podczas nadawania Twojego transferu. Proszę spróbować ponownie.",
         "promoted": "Promowanie transakcji pomyślne",
         "promotedExplanation": "Wypromowano transakcję z hashem {{hash}}",
+        "autopromotionError": "Błąd auto-promowania transakcji",
+        "autopromotionErrorExplanation": "Zdalny tryb Proof of Work jest niedostępny na wybranym serwerze. Zmień serwer.",
         "promotionError": "Nie można wypromować transakcji",
         "promotionErrorExplanation": "Coś poszło nie tak podczas promowania Twojego transferu. Proszę spróbować ponownie.",
         "noLongerValid": "Pakiet, który próbujesz promować, nie jest już ważny",
@@ -168,7 +171,9 @@
         "doNotOpen": "Nie otwieraj innych aplikacji podczas tego procesu.",
         "tapConfirm": "Zaznacz poniższe pole, aby potwierdzić.",
         "passwordManagerCheckbox": "Będę przechowywać mój seed w menedżerze haseł",
-        "copy": "KOPIUJ"
+        "copy": "KOPIUJ",
+        "noPasswordManagers": "Brak obsługiwanych menedżerów haseł",
+        "noPasswordManagersExplanation": "Na Twoim urządzeniu nie znaleziono obsługiwanych menedżerów haseł. Zainstaluj Keepass2Android."
     },
     "enterSeed": {
         "invalidCharacters": "Seed zawiera nieprawidłowe znaki",
@@ -202,7 +207,8 @@
         "loadingFirstTime": "Ładowanie klucza seed po raz pierwszy.",
         "thisMayTake": "To może chwilę potrwać.",
         "doNotMinimise": "Nie minimalizuj ani nie zamykaj aplikacji.",
-        "youMayNotice": "Możesz zaobserwować spowolnienie Twojego urządzenia."
+        "youMayNotice": "Możesz zaobserwować spowolnienie Twojego urządzenia.",
+        "takingAWhile": "Wydaje się, że zajmuje to trochę czasu"
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seed nie został wygenerowany",
@@ -308,7 +314,7 @@
         "twoFA": "Autoryzacja dwustopniowa",
         "changePassword": "Zmień hasło",
         "advanced": "Ustawienia zaawansowane",
-        "about": "O Trinity",
+        "about": "O programie",
         "logout": "Wyloguj",
         "reset": "Zresetuj portfel",
         "syncingComplete": "Synchronizacja zakończona",
@@ -339,8 +345,14 @@
         "fetchedConversionRatesExplanation": "Pomyślnie pobrano najnowszy kurs przeliczeniowy dla waluty {{currency}}.",
         "undo": "Cofnij",
         "redo": "Ponów",
+        "aboutTrinity": "O Trinity",
         "lockScreenTimeout": "Czas do zablokowania ekranu (Minuty)",
-        "autoNodeSwitching": "Automatyczna zmiana serwera, gdy aktualnie wybrany jest nieosiągalny"
+        "autoNodeSwitching": "Automatyczna zmiana serwera, gdy aktualnie wybrany jest nieosiągalny",
+        "nodeChangeSuccess": "Serwer zmieniony",
+        "nodeChangeSuccessNoRemotePow": "Serwer został zmieniony na {{node}}. Ten serwer nie obsługuje zdalnego trybu Proof of Work.",
+        "nodeChangeSuccessExplanation": "Serwer został zmieniony na {{node}}.",
+        "nodeChangeError": "Błąd zmiany serwera",
+        "nodeChangeErrorExplanation": "Wystąpił problem podczas zmiany serwera. Spróbuj ponownie."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Wprowadź swoje hasło, aby zresetować portfel.",
@@ -449,7 +461,7 @@
     "useExistingSeed": {
         "title": "Wprowadź seed oraz nazwę konta.",
         "incorrectFormat": "Nieprawidłowy format klucza",
-        "validSeedExplanation": "'Poprawny seed powinien składać się z 81 znaków i zawierać wielkie litery A-Z oraz cyfry 9.'"
+        "validSeedExplanation": "Poprawny seed powinien składać się z 81 znaków i zawierać jedynie wielkie litery A-Z oraz cyfry 9."
     },
     "viewSeed": {
         "enterPassword": "Wprowadź hasło, aby wyświetlić swój seed.",
