@@ -124,7 +124,9 @@
         "couldNotVerifyDeviceIntegrity": "Laitteen tietoturvaa ei voida varmistaa koska Google palveluihin ei saada yhteyttä.",
         "clear": "TYHJENNÄ",
         "noNetworkConnection": "Ei verkkoyhteyttä",
-        "noNetworkConnectionExplanation": "Verkkoyhteys näyttää olevan offline-tilassa."
+        "noNetworkConnectionExplanation": "Verkkoyhteys näyttää olevan offline-tilassa.",
+        "spentAddressExplanation": "WARNING: Funds on spent addresses",
+        "discordInformation": "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed-luku sisältää virheellisiä merkkejä",
