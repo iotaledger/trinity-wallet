@@ -2,7 +2,7 @@ import IOTA from 'iota.lib.js';
 import 'proxy-polyfill';
 import { nodes, defaultNode, useLegacyQuorum } from '../../config';
 import { checkNode as _checkNode } from './multinode';
-import { getQuorumResult } from './quorum';
+import { getQuorumResult, getMostCommonElementwise } from './quorum';
 
 const iotaAPI = new IOTA({ provider: defaultNode });
 
@@ -19,7 +19,8 @@ function injectQuorum() {
                         timeout: 1000,
                         unorderedArrays: false,
                         safeResult: (results) => {
-                            return Array(addresses.length).fill(false)
+                            // getLatestInclusion should default to false if we're not sure
+                            return getMostCommonElementwise(results, transactions.length, false)
                         }
                     },
                     callback,
@@ -34,7 +35,8 @@ function injectQuorum() {
                         timeout: 1000,
                         unorderedArrays: false,
                         safeResult: (results) => {
-                            return Array(addresses.length).fill(true)
+                            // wereAddressesSpentFrom should default to true if we're not sure
+                            return getMostCommonElementwise(results, addresses.length, true)
                         }
                     },
                     callback,

@@ -91,3 +91,27 @@ export function getMostCommon(objs, unorderedArrays, safeResult) {
         return safeResult === undefined ? best : safeResult(objs);
     }
 }
+
+export function getMostCommonElementwise(arrs, expectedlen, fallback) {
+    // if somehow an array of wrong length got in here, get rid of it
+    validarrs = [];
+    for (arr of arrs) {
+        if (arr.length == expectedlen) {
+            validarrs.push(arr);
+        }
+    }
+
+    ret = [];
+    for (let i = 0; i < expectedlen; i++) {
+        // get ith element of every array in piv
+        piv = [];
+        for (arr in validarrs) {
+            piv.push(arr[i]);
+        }
+
+        // now find out which is most common, and that element
+        ret.push(getMostCommon(piv, false, (o) => fallback));
+    }
+
+    return ret;
+}
