@@ -124,7 +124,9 @@
         "couldNotVerifyDeviceIntegrity": "Nie można zweryfikować integralności urządzenia, ponieważ Usługi Google Play są niedostępne.",
         "clear": "WYCZYŚĆ",
         "noNetworkConnection": "Brak połączenia z siecią",
-        "noNetworkConnectionExplanation": "Wygląda na to, że utracono dostęp do internetu."
+        "noNetworkConnectionExplanation": "Wygląda na to, że utracono dostęp do internetu.",
+        "spentAddressExplanation": "WARNING: Funds on spent addresses",
+        "discordInformation": "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
