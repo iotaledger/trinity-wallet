@@ -384,7 +384,7 @@
         "addressCopied": "Dirección Copiada",
         "addressCopiedExplanation": "La dirección se ha copiado al portapapeles.",
         "messageCopied": "Mensaje copiado",
-        "messageCopiedExplanation": "The message has been copied to the clipboard.",
+        "messageCopiedExplanation": "El mensaje fue copiado al portapapeles.",
         "send": "ENVIAR",
         "receive": "RECIBIR"
     },
@@ -396,14 +396,14 @@
         "addNewAccount": "Añadir nueva cuenta"
     },
     "addCustomNode": {
-        "customNodeAdded": "Custom node added",
-        "customNodeCouldNotBeAdded": "Custom node could not be added",
-        "customNodeAddedSuccessfully": "The custom node has been added successfully.",
+        "customNodeAdded": "Nodo personalizado añadido",
+        "customNodeCouldNotBeAdded": "No se pudo añadir el nodo personalizado",
+        "customNodeAddedSuccessfully": "El nodo personalizado fue añadido exitosamente.",
         "customNode": "Nodo personalizado",
-        "invalidNodeResponse": "The node returned an invalid response",
-        "httpNodeError": "Trinity Mobile only supports https nodes.",
+        "invalidNodeResponse": "Respuesta inválida del nodo",
+        "httpNodeError": "Trinity para movil solo soporta nodos con HTTPS.",
         "add": "Añadir",
-        "nodeFieldEmpty": "Text field is empty",
+        "nodeFieldEmpty": "El campo de texto esta vacio",
         "nodeFieldEmptyExplanation": "Por favor ingrese un nodo personalizado."
     },
     "addNewAccount": {
@@ -463,7 +463,7 @@
     "useExistingSeed": {
         "title": "Introduzca una semilla y un nombre de cuenta.",
         "incorrectFormat": "Formato incorrecto de semilla",
-        "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
+        "validSeedExplanation": "Semillas válidas deben tener 81 caracteres y solo contener A-Z o 9."
     },
     "viewSeed": {
         "enterPassword": "Introduzca la contraseña para ver su Seed.",
@@ -480,7 +480,7 @@
         "warning": "<0><0>Todos los datos de su cartera, incluyendo sus </0><1> semillas, contraseña,</1><2> y </2><3>otra información de la cuenta</3><4> serán eliminados.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Touch fingerprint reader to enable fingerprint authentication",
+        "instructionsEnable": "Toque el lector de huellas para activar autenticación por este medio",
         "instructionsDisable": "Touch fingerprint reader to disable fingerprint authentication",
         "fingerprintAuthEnabled": "Biometric authentication enabled",
         "fingerprintAuthEnabledExplanation": "You have successfully enabled biometric authentication.",
