@@ -124,7 +124,9 @@
         "couldNotVerifyDeviceIntegrity": "Impossibile verificare l'integrità del dispositivo perché il servizio Google Play non è disponibile.",
         "clear": "CANCELLA",
         "noNetworkConnection": "Nessuna connessione di rete",
-        "noNetworkConnectionExplanation": "La connessione internet sembra essere non disponibile."
+        "noNetworkConnectionExplanation": "La connessione internet sembra essere non disponibile.",
+        "spentAddressExplanation": "WARNING: Funds on spent addresses",
+        "discordInformation": "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
