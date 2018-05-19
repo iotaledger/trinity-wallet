@@ -126,7 +126,7 @@
         "noNetworkConnection": "Nėra tinklo ryšio",
         "noNetworkConnectionExplanation": "Panašu, kad jūsų interneto ryšys atjungtas.",
         "spentAddressExplanation": "ĮSPĖJIMAS: Lėšos panaudotame adrese",
-        "discordInformation": "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do."
+        "discordInformation": "Pinigų siuntimas iš to pačio adreso daugiau nei kartą yra nesaugus. Keliaukite į #help kanalą Discord programoje norėdami sužinoti ką daryti tokiu atveju."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Užraktas turi neleistinų simbolių",
