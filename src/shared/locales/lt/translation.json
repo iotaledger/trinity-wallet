@@ -5,7 +5,6 @@
         "continue?": "Ar tikrai norite tęsti?",
         "noTransactions": "ISTORIJOS NĖRA",
         "refresh": "ATNAUJINTI",
-        "qr": "QR",
         "balanceError": "Nepakankamas likutis sąskaitoje",
         "balanceErrorMessage": "Nepakankamas IOTA likutis šiam pavedimui atlikti.",
         "transferError": "Pavedimo klaida",
@@ -36,6 +35,7 @@
         "manualCopy": "Nusirašykite užraktą",
         "paperWallet": "Atspausdinti",
         "copyToClipboard": "Pridėti į slaptažodžių tvarkyklę",
+        "qr": "QR",
         "notAvailable": "Ši funkcija negalima",
         "notAvailableExplanation": "Ateityje ši funkcija bus pridėta.",
         "enterSeed": "Įveskite savo užraktą.",
@@ -61,8 +61,9 @@
         "node": "Serveris",
         "cannotPerformAction": "Šio veiksmo atlikti negalima",
         "cannotPerformActionExplanation": "Eikite į išplėstinius parametrus, norėdami iš naujo atlikti piniginės nustatymus.",
-        "attachToTangleUnavailable": "Prijungimas prie Tangle negalimas",
-        "attachToTangleUnavailableExplanation": "Su pasirinktu serveriu prijungimas prie Tangle negalimas.",
+        "attachToTangleUnavailable": "Nuotolinis Proof of Work negalimas",
+        "attachToTangleUnavailableExplanation": "Nuotolinis Proof of Work negalimas su jūsų pasirinktu serveriu. Pakeiskite serverį arba nustatykite lokalų Proof of Work išplėstiniuose parametruose.",
+        "attachToTangleUnavailableExplanationShort": "Nuotolinis Proof of Work negalimas su jūsų pasirinktu serveriu.",
         "wallet": "Piniginė",
         "sent": "Išsiųsta",
         "received": "Gauta",
@@ -77,14 +78,23 @@
         "retry": "BANDYKITE DAR KARTĄ",
         "rebroadcast": "TRANSLIUOTI IŠ NAUJO",
         "pressBackAgain": "Spauskite atgal, norėdami uždaryti programėlę",
-        "autoreattaching": "Automatinis pakartotinis prijungimas prie Tangle",
-        "autoreattachingExplanation": "Pavedimas prijungiamas iš naujo su šifru {{hash}}",
+        "reattached": "Pavedimas sėkmingai prijungtas",
+        "reattachedExplanation": "Pavedimas prijungtas su šifru {{hash}}",
         "autopromoting": "Automatinis pavedimo iškelimas",
         "autopromotingExplanation": "Pavedimas iškeliamas naudojant šifrą {{hash}}",
-        "promoting": "Pavedimas iškeliamas",
+        "rebroadcasted": "Pavedimas sėkmingai ištransliuotas",
+        "rebroadcastedExplanation": "Pavedimas ištransliuotas su šifru {{hash}}",
+        "rebroadcastError": "Pavedimo ištransliuoti nepavyko",
+        "rebroadcastErrorExplanation": "Įvyko klaida bandant transliuoti jūsų pavedimą. Bandykite dar kartą.",
+        "promoted": "Pavedimas sėkmingai iškeltas",
+        "promotedExplanation": "Pavedimas iškeltas su šifru {{hash}}",
+        "autopromotionError": "Automatiškai iškelti pavedimo nepavyko",
+        "autopromotionErrorExplanation": "Nuotolinis Proof of Work negalimas su jūsų pasirinktu serveriu. Prašome pakeisti serverį.",
         "promotionError": "Pavedimo iškelti nepavyko",
         "promotionErrorExplanation": "Įvyko klaida iškeliant jūsų pavedimą. Bandykite dar kartą.",
         "noLongerValid": "Paketas, kurį norite iškelti yra nepasiekamas",
+        "transactionAlreadyConfirmed": "Šis pavedimas jau patvirtintas",
+        "transactionAlreadyConfirmedExplanation": "Pavedimas, kurį bandote iškelti jau yra patvirtintas.",
         "cannotSendToOwn": "Gavėjo adresas sutampa su siuntėjo adresu",
         "cannotSendToOwnExplanation": "Į savo adresą atlikti pavedimo negalima.",
         "pleaseWait": "Prašome palaukti",
@@ -109,9 +119,12 @@
         "nodeAutoChangedExplanation": "Pakeista į naują serverį {{- nodeAddress}}, nes pasirinktas serveris nepasiekiamas.",
         "fingerprintOnSend": "Palieskite piršto antspaudo skaitytuvą, norėdami patvirtinti pavedimą",
         "masterKey": "Jūsų IOTA užraktas yra pagrindinis raktas į jūsų lėšas.",
+        "seedThief": "Jeigu kas nors sužinos jūsų užraktą, jie galės pavogti jūsų IOTA.",
         "googlePlayServicesNotAvailable": "Google Play paslaugos nepasiekiamos",
-        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available.",
-        "clear": "CLEAR"
+        "couldNotVerifyDeviceIntegrity": "Įrenginio vientisumo patvirtinti nepavyksta, nes Google Play paslaugos nepasiekiamos.",
+        "clear": "IŠVALYTI",
+        "noNetworkConnection": "Nėra tinklo ryšio",
+        "noNetworkConnectionExplanation": "Panašu, kad jūsų interneto ryšys atjungtas."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Užraktas turi neleistinų simbolių",
@@ -154,10 +167,13 @@
         "doNotStore": "Nelaikykite užrakto nešifruotu formatu.",
         "copyToClipboard": "Kopijuoti užraktą",
         "shareSeed": "Įkelti užraktą į saugią slaptažodžių tvarkyklę",
-        "storeEncrypted": "Jei ketinate išsisaugoti savo užraktą telefone, jį turėtumėte užšifruoti, pavyzdžiui, įkelti į slaptažodžių tvarkyklę.",
+        "storeEncrypted": "Savo užraktą laikykite užšifruotą slaptažodžių tvarkyklėje.",
+        "doNotOpen": "Šio proceso metu neįjunkite jokių kitų programėlių.",
         "tapConfirm": "Sužymėkite varneles norėdami patvirtinti.",
-        "encryptionCheckbox": "Savo užraktą užšifruosiu",
-        "copy": "KOPIJUOTI"
+        "passwordManagerCheckbox": "Savo užraktą laikysiu slaptažodžių tvarkyklėje",
+        "copy": "KOPIJUOTI",
+        "noPasswordManagers": "Nėra palaikomų slaptažodžių tvarkyklių",
+        "noPasswordManagersExplanation": "Jūsų įrenginyje nerasta palaikomų slaptažodžių tvarkyklių. Įdiekite Keepass2Android."
     },
     "enterSeed": {
         "invalidCharacters": "Užraktas sudarytas iš neleistinų simbolių",
@@ -191,7 +207,8 @@
         "loadingFirstTime": "Užraktas užkraunamas pirmą kartą.",
         "thisMayTake": "Tai gali užtrukti.",
         "doNotMinimise": "Nesumažinkite ir neuždarykite programėlės.",
-        "youMayNotice": "Jūsų įrenginio darbas gali sulėtėti."
+        "youMayNotice": "Jūsų įrenginio darbas gali sulėtėti.",
+        "takingAWhile": "Atrodo, kad tai užtruks"
     },
     "newSeedSetup": {
         "seedNotGenerated": "Sukurti užrakto nepavyko",
@@ -290,14 +307,14 @@
         "theme": "Tema",
         "currency": "Valiuta",
         "cannotChangeNode": "Serverio pakeisti negalima",
-        "cannotChangeNodeWhileSending": "Cannot change node while sending.",
+        "cannotChangeNodeWhileSending": "Negalima pakeisti serverio kol siunčiama.",
         "language": "Kalba",
         "accountManagement": "Paskyros valdymas",
         "addNewSeed": "Pridėti naują užraktą",
         "twoFA": "Dviejų veiksnių autentifikavimas",
         "changePassword": "Keisti slaptažodį",
         "advanced": "Išplėstiniai parametrai",
-        "about": "Apie Trinity",
+        "about": "Apie",
         "logout": "Atsijungti",
         "reset": "Iš naujo nustatyti piniginę",
         "syncingComplete": "Sinchronizacija baigta",
@@ -322,14 +339,20 @@
         "selectAll": "Pažymėti viską",
         "securitySettings": "Saugumo nustatymai",
         "fingerprint": "Biometrinis autentifikavimas",
-        "couldNotFetchRates": "Nepavyksta užkrauti kursų",
-        "couldNotFetchRatesExplanation": "Įvyko klaida užkraunant keitimo kursus {{currency}} valiutai.",
-        "fetchedConversionRates": "Keitimo kursai užkrauti",
-        "fetchedConversionRatesExplanation": "Keitimo kursai sėkmingai užkrauti {{currency}} valiutai.",
+        "couldNotFetchRates": "Kurso užkrauti nepavyko",
+        "couldNotFetchRatesExplanation": "Įvyko klaida užkraunant keitimo kursą {{currency}} valiutai.",
+        "fetchedConversionRates": "Užkrautas keitimo kursas",
+        "fetchedConversionRatesExplanation": "Keitimo kursas sėkmingai užkrautas {{currency}} valiutai.",
         "undo": "Anuliuoti",
         "redo": "Perdaryti",
+        "aboutTrinity": "Apie Trinity",
         "lockScreenTimeout": "Ekrano užrakinimas (minutės)",
-        "autoNodeSwitching": "Automatiškai pakeisti serverį, kai pasirinktas yra nepasiekiamas"
+        "autoNodeSwitching": "Automatiškai pakeisti serverį, kai pasirinktas yra nepasiekiamas",
+        "nodeChangeSuccess": "Sėkmingai pakeistas serveris",
+        "nodeChangeSuccessNoRemotePow": "Serveris pakeistas į {{node}}, Šis serveris nepalaiko nuotolinio Proof of Work.",
+        "nodeChangeSuccessExplanation": "Serveris pakeistas į {{node}}.",
+        "nodeChangeError": "Klaida keičiant serverį",
+        "nodeChangeErrorExplanation": "Įvyko klaida keičiant serverį. Bandykite dar kartą."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Įveskite slaptažodį, norėdami iš naujo nustatyti piniginę.",
@@ -438,7 +461,7 @@
     "useExistingSeed": {
         "title": "Įveskite užraktą ir paskyros vardą.",
         "incorrectFormat": "Neteisingas užrakto formatas",
-        "validSeedExplanation": "'Užraktai turi būti sudaryti iš 81 simbolio, galimos tik raidės A-Z ir skaičius 9.'"
+        "validSeedExplanation": "Užraktai turi būti sudaryti iš 81 simbolio, galimos tik raidės A-Z ir skaičius 9."
     },
     "viewSeed": {
         "enterPassword": "Įveskite slaptažodį, norėdami pamatyti užraktą.",
@@ -555,6 +578,6 @@
         "skipUpdate": "Praleisti atnaujinimus"
     },
     "notificationLog": {
-        "errorLog": "ERROR LOG"
+        "errorLog": "KLAIDŲ ŽURNALAS"
     }
 }

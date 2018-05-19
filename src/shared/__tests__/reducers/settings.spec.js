@@ -72,23 +72,6 @@ describe('Reducer: settings', () => {
         });
     });
 
-    describe('UPDATE_POW_SETTINGS', () => {
-        it('should invert remotePow state prop', () => {
-            const initialState = {
-                remotePoW: false,
-            };
-
-            const action = actions.updatePowSettings();
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                remotePoW: true,
-            };
-
-            expect(newState).to.eql(expectedState);
-        });
-    });
-
     describe('SET_LOCK_SCREEN_TIMEOUT', () => {
         it('should set lockScreenTimeout to payload', () => {
             const initialState = {

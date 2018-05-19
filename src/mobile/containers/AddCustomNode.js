@@ -188,7 +188,6 @@ class AddCustomNode extends Component {
             checkNode(customNode)
                 .then(() => {
                     this.props.setCustomNodeCheckStatus(false);
-
                     this.onAddNodeSuccess(customNode);
                     this.setNode(customNode);
                     this.props.backPress();

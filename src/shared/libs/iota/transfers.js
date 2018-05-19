@@ -14,28 +14,21 @@ import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 import isFunction from 'lodash/isFunction';
 import filter from 'lodash/filter';
-import size from 'lodash/size';
 import some from 'lodash/some';
 import reduce from 'lodash/reduce';
 import transform from 'lodash/transform';
 import difference from 'lodash/difference';
-import union from 'lodash/union';
 import unionBy from 'lodash/unionBy';
 import orderBy from 'lodash/orderBy';
+import pickBy from 'lodash/pickBy';
 import { DEFAULT_TAG, DEFAULT_BALANCES_THRESHOLD, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../../config';
 import { iota } from './index';
-import {
-    getBalancesSync,
-    accumulateBalance,
-    getUnspentAddressesSync,
-    getSpentAddressesWithPendingTransfersSync,
-} from './addresses';
+import { getBalancesSync, accumulateBalance } from './addresses';
 import {
     getBalancesAsync,
     getTransactionsObjectsAsync,
     getLatestInclusionAsync,
     findTransactionObjectsAsync,
-    findTransactionsAsync,
 } from './extendedApi';
 import { convertFromTrytes } from './utils';
 import Errors from './../errors';
@@ -79,9 +72,9 @@ export const getFirstConsistentTail = (tails, idx) => {
     let tailsAboveMaxDepth = [];
 
     if (idx === 0) {
-        tailsAboveMaxDepth = filter(tails,
-            (tx) => isAboveMaxDepth(tx.attachmentTimestamp)
-        ).sort((a, b) => b.attachmentTimestamp - a.attachmentTimestamp);
+        tailsAboveMaxDepth = filter(tails, (tx) => isAboveMaxDepth(tx.attachmentTimestamp)).sort(
+            (a, b) => b.attachmentTimestamp - a.attachmentTimestamp,
+        );
     }
 
     if (!tailsAboveMaxDepth[idx]) {
@@ -244,7 +237,7 @@ export const categoriseBundleByInputsOutputs = (bundle) => {
         bundle,
         (acc, tx) => {
             const meta = {
-                ...pick(tx, ['address', 'value']),
+                ...pick(tx, ['address', 'value', 'hash']),
                 checksum: iota.utils.addChecksum(tx.address).slice(tx.address.length),
             };
 
@@ -528,18 +521,6 @@ export const constructBundle = (tailTransaction, allTransactionObjects) => {
 };
 
 /**
- *   Checks if there is a difference between local transaction hashes and ledger's transaction hashes.
- *
- *   @method hasNewTransfers
- *   @param {array} existingHashes
- *   @param {array} newHashes
- *
- *   @returns {boolean}
- **/
-export const hasNewTransfers = (existingHashes, newHashes) =>
-    isArray(existingHashes) && isArray(newHashes) && size(newHashes) > size(existingHashes);
-
-/**
  *   Get latest inclusion states with hashes.
  *   Filter confirmed hashes.
  *
@@ -641,6 +622,7 @@ export const normaliseBundle = (bundle, addresses, tailTransactions, persistence
  **/
 export const syncTransfers = (diff, accountState) => {
     const bundleHashes = new Set();
+    const outOfSyncTransactionHashes = [];
 
     const cached = {
         tailTransactions: [],
@@ -650,9 +632,11 @@ export const syncTransfers = (diff, accountState) => {
     // FIXME: Do not reconstruct seen and already validated bundles
     return getTransactionsObjectsAsync(diff)
         .then((transactionObjects) => {
-            each(transactionObjects, (transactionObject) => {
+            each(transactionObjects, (transactionObject, idx) => {
                 if (transactionObject.bundle !== '9'.repeat(81)) {
                     bundleHashes.add(transactionObject.bundle);
+                } else {
+                    outOfSyncTransactionHashes.push(diff[idx]);
                 }
             });
 
@@ -685,6 +669,7 @@ export const syncTransfers = (diff, accountState) => {
             return {
                 transfers,
                 newNormalisedTransfers,
+                outOfSyncTransactionHashes,
             };
         });
 };
@@ -760,35 +745,14 @@ export const isStillAValidTransaction = (transaction, addressData) => {
  *
  *   with bundle hash is valid or not.
  *
- *   @method getHashesDiff
- *   @param {array} oldTxHashesForUnspentAddresses
- *   @param {array} newTxHashesForUnspentAddresses
- *   @param {array} oldPendingTxHashesForSpentAddresses
- *   @param {array} newPendingTxHashesForSpentAddresses
- *
+ *   @method getTransactionsDiff
+ *   @param {array} existingHashes
+ *   @param {array} newHashes
+= *
  *   @returns {array}
  **/
-export const getHashesDiff = (
-    oldTxHashesForUnspentAddresses,
-    newTxHashesForUnspentAddresses,
-    oldPendingTxHashesForSpentAddresses,
-    newPendingTxHashesForSpentAddresses,
-) => {
-    let diffForUnspentAddresses = [];
-    let diffForSpentAddressesWithPendingTxs = [];
-
-    if (hasNewTransfers(oldTxHashesForUnspentAddresses, newTxHashesForUnspentAddresses)) {
-        diffForUnspentAddresses = difference(newTxHashesForUnspentAddresses, oldTxHashesForUnspentAddresses);
-    }
-
-    if (hasNewTransfers(oldPendingTxHashesForSpentAddresses, newPendingTxHashesForSpentAddresses)) {
-        diffForSpentAddressesWithPendingTxs = difference(
-            newPendingTxHashesForSpentAddresses,
-            oldPendingTxHashesForSpentAddresses,
-        );
-    }
-
-    return union(diffForUnspentAddresses, diffForSpentAddressesWithPendingTxs);
+export const getTransactionsDiff = (existingHashes, newHashes) => {
+    return difference(newHashes, existingHashes);
 };
 
 /**
@@ -816,7 +780,7 @@ export const filterInvalidPendingTransactions = (transactions, addressData) => {
 };
 
 /**
- *   Performs proof of work and updates trytes and transaction objects with nonce
+ *   Performs proof of work and updates trytes and transaction objects with nonce.
  *
  *   @method performPow
  *   @param {function} powFn
@@ -883,67 +847,50 @@ export const performPow = (
 };
 
 /**
- *   Finds latest transaction hashes for unspent addresses.
+ * Grab transaction hashes for own addresses from a transaction.
  *
- *   IMPORTANT: This function should always be used after the account is synced.
- *
- *   @method getTransactionHashesForUnspentAddresses
- *   @param {object} addressData
- *
- *   @returns {Promise<array>}.
- **/
-export const getTransactionHashesForUnspentAddresses = (addressData) => {
-    const unspentAddresses = getUnspentAddressesSync(addressData);
-    if (isEmpty(unspentAddresses)) {
-        return Promise.resolve([]);
-    }
-
-    return findTransactionsAsync({ addresses: unspentAddresses });
+ * @param {object} normalisedTransaction
+ * @param {object} addressData
+ * @returns {array}
+ */
+export const getOwnTransactionHashes = (normalisedTransaction, addressData) => {
+    return [
+        ...map(filter(normalisedTransaction.inputs, (input) => input.address in addressData), (input) => input.hash),
+        ...map(
+            filter(normalisedTransaction.outputs, (output) => output.address in addressData),
+            (output) => output.hash,
+        ),
+    ];
 };
 
 /**
- *   Finds latest pending transaction hashes for spent addresses.
+ * Takes addresses and transactions and returns outgoing transfers for those addresses.
  *
- *   IMPORTANT: This function should always be used after the account is synced.
- *
- *   @method getPendingTransactionHashesForSpentAddresses
- *   @param {array} transactions
- *   @param {object} addressData
- *
- *   @returns {Promise<array>}
- **/
-export const getPendingTransactionHashesForSpentAddresses = (transactions, addressData) => {
-    const pendingTransactions = filter(transactions, (tx) => !tx.persistence);
-    const spentAddressesWithPendingTransactions = getSpentAddressesWithPendingTransfersSync(
-        pendingTransactions,
-        addressData,
-    );
-
-    if (isEmpty(spentAddressesWithPendingTransactions)) {
-        return Promise.resolve([]);
-    }
-
-    return findTransactionsAsync({ addresses: spentAddressesWithPendingTransactions });
-};
-
-/**
- *   Finds:
- *    - Latest transaction hashes for unspent addresses
- *    - Latest transaction hashes for spent addresses with pending transactions.
- *
- *   @method getLatestTransactionHashes
- *   @param {array} transactions
- *   @param {object} addressData
- *
- *   @returns {Promise<object>}
- **/
-export const getLatestTransactionHashes = (transactions, addressData) => {
-    return Promise.all([
-        getTransactionHashesForUnspentAddresses(addressData),
-        getPendingTransactionHashesForSpentAddresses(transactions, addressData),
-    ]).then((hashes) => {
-        const [txHashesForUnspentAddresses, pendingTxHashesForSpentAddresses] = hashes;
-
-        return { txHashesForUnspentAddresses, pendingTxHashesForSpentAddresses };
+ * @param {array} addresses
+ * @param {object} transactions
+ * @returns {array}
+ */
+export const getOutgoingTransfersForAddresses = (addresses, transactions) => {
+    const selectedTransactions = new Set();
+    each(transactions, (tx) => {
+        each(tx.inputs, (input) => {
+            if (addresses.indexOf(input.address) > -1) {
+                selectedTransactions.add(tx);
+            }
+        });
     });
+    return Array.from(selectedTransactions);
+};
+
+/**
+ * Takes addresses and transactions and returns pending outgoing transfers for those addresses.
+ *
+ * @param {array} addresses
+ * @param {object} transactions
+ * @returns {array}
+ */
+export const getPendingOutgoingTransfersForAddresses = (addresses, transfers) => {
+    const addressesWithBalance = pickBy(addresses, (address) => address.balance > 0);
+    const relevantTransfers = filter(transfers, (tx) => !tx.persistence);
+    return getOutgoingTransfersForAddresses(keys(addressesWithBalance), relevantTransfers);
 };
