@@ -124,7 +124,9 @@
         "couldNotVerifyDeviceIntegrity": "Kunne ikke verifisere enhetens integritet siden Google Play tjenesten ikke er tilgjengelig.",
         "clear": "FJERN",
         "noNetworkConnection": "Ingen nettverksforbindelse",
-        "noNetworkConnectionExplanation": "Ingen internettforbindelse."
+        "noNetworkConnectionExplanation": "Ingen internettforbindelse.",
+        "spentAddressExplanation": "WARNING: Funds on spent addresses",
+        "discordInformation": "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøkkelen inneholder ugyldige tegn",
