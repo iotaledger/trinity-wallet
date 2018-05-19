@@ -182,7 +182,7 @@
         "invalidCharactersExplanation": "Las semillas sólo pueden estar compuestas de letras A-Z y el número 9. Su semilla contiene caracteres inválidos. Por favor inténtelo de nuevo.",
         "seedTooShort": "La semilla es demasiado corta",
         "seedTooShortExplanation": "Las semillas deben tener {{maxLength}} caracteres. Su semilla tiene actualmente {{currentLength}} caracteres. Por favor inténtelo nuevamente.",
-        "seedExplanation": "Las semillas deben ser de {{maxLength}} caracteres de longitud y contener letras mayúsculas de la A a la Z, o el número 9. No se pueden usar semillass de más de {{maxLength}} caracteres.",
+        "seedExplanation": "Las semillas deben ser de {{maxLength}} caracteres de longitud y contener letras mayúsculas de la A a la Z, o el número 9. No se pueden usar semillas de más de {{maxLength}} caracteres.",
         "neverShare": "NUNCA COMPARTA SU SEMILLA CON NADIE"
     },
     "home": {
@@ -349,7 +349,7 @@
         "redo": "Rehacer",
         "aboutTrinity": "Acerca de Trinity",
         "lockScreenTimeout": "Hibernar cuenta en (minutos)",
-        "autoNodeSwitching": "No se pudo activar el cambio automático de nodo",
+        "autoNodeSwitching": "Cambiar automáticamente de nodo cuando el seleccionado no está disponible",
         "nodeChangeSuccess": "Nodo modificado exitosamente",
         "nodeChangeSuccessNoRemotePow": "El nodo fue cambiado a {{node}}. Este nodo no soporta PoW remoto.",
         "nodeChangeSuccessExplanation": "El nodo fue cambiado a {{node}}.",
@@ -443,7 +443,7 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Porque no puedo gastar todos mis fondos?",
-        "spentAddressExplanation": "Tienes fondos en al menos una dirección usada. Reutilizar direcciones es muy peligroso en IOTA, por eso esta billetera no esta habilitada para enviar desde la misma dirección más de una vez.",
+        "spentAddressExplanation": "Tiene fondos en al menos una dirección usada. Reutilizar direcciones es muy peligroso en IOTA, por eso esta billetera no esta habilitada para enviar desde la misma dirección más de una vez.",
         "discordInformation": "Por favor diríjase al canal #help en Discord para averiguar qué puede hacer."
     },
     "deleteAccount": {
