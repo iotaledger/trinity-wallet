@@ -124,7 +124,9 @@
         "couldNotVerifyDeviceIntegrity": "因為 Google Play 服務無法使用，而無法檢驗裝置完整性。",
         "clear": "清除",
         "noNetworkConnection": "沒有網路連線",
-        "noNetworkConnectionExplanation": "您的網路連線顯示為離線。"
+        "noNetworkConnectionExplanation": "您的網路連線顯示為離線。",
+        "spentAddressExplanation": "WARNING: Funds on spent addresses",
+        "discordInformation": "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
