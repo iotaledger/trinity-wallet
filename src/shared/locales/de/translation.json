@@ -124,7 +124,9 @@
         "couldNotVerifyDeviceIntegrity": "Gerät konnte nicht überprüft werden, da die Google-Play-Dienste nicht verfügbar sind.",
         "clear": "LEEREN",
         "noNetworkConnection": "Keine Netzwerkverbindung",
-        "noNetworkConnectionExplanation": "Die Internetverbindung scheint offline zu sein."
+        "noNetworkConnectionExplanation": "Die Internetverbindung scheint offline zu sein.",
+        "spentAddressExplanation": "WARNING: Funds on spent addresses",
+        "discordInformation": "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
