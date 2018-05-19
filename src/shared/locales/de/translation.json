@@ -125,8 +125,8 @@
         "clear": "LEEREN",
         "noNetworkConnection": "Keine Netzwerkverbindung",
         "noNetworkConnectionExplanation": "Die Internetverbindung scheint offline zu sein.",
-        "spentAddressExplanation": "WARNING: Funds on spent addresses",
-        "discordInformation": "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do."
+        "spentAddressExplanation": "WARNUNG: Guthaben auf verwendeten Adressen",
+        "discordInformation": "Es ist gefährlich, mehr als einmal von der gleichen Adresse zu senden. Bitte besuche den #help Kanal in Discord um herauszufinden, wie du das Problem lösen kannst."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
@@ -576,7 +576,7 @@
         "noUpdatesAvailableExplanation": "Du hast die neueste Version der IOTA Trinity Desktop-Wallet!",
         "newVersionAvailable": "Neue Version verfügbar",
         "newVersionAvailableExplanation": "Eine neue <strong>Trinity</strong> <strong>{{version}}</strong> Version ist verfügbar. Bitte lies die Release-Details und überprüfe die Download-Quelle vor der Aktualisierung:",
-        "downloadRelease": "Download Veröffentlichung",
+        "downloadRelease": "Update herunterladen",
         "skipUpdate": "Update überspringen"
     },
     "notificationLog": {
