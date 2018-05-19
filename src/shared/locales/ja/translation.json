@@ -124,7 +124,9 @@
         "couldNotVerifyDeviceIntegrity": "Google Playサービスが利用できないため、デバイスの整合性を確認できませんでした。",
         "clear": "消去",
         "noNetworkConnection": "ネットワーク接続がありません。",
-        "noNetworkConnectionExplanation": "インターネット接続がオフラインになっているようです。"
+        "noNetworkConnectionExplanation": "インターネット接続がオフラインになっているようです。",
+        "spentAddressExplanation": "WARNING: Funds on spent addresses",
+        "discordInformation": "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだシードです。",
