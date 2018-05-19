@@ -124,7 +124,9 @@
         "couldNotVerifyDeviceIntegrity": "Kon apparaat integriteit niet verifiëren omdat Google Play Services onbeschikbaar zijn.",
         "clear": "WIS",
         "noNetworkConnection": "Geen netwerkverbinding",
-        "noNetworkConnectionExplanation": "Uw internetverbinding lijkt offline."
+        "noNetworkConnectionExplanation": "Uw internetverbinding lijkt offline.",
+        "spentAddressExplanation": "WARNING: Funds on spent addresses",
+        "discordInformation": "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "De seed bevat ongeldige tekens",
