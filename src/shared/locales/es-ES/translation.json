@@ -2,19 +2,19 @@
     "global": {
         "send": "ENVIAR",
         "cancel": "CANCELAR",
-        "continue?": "¿Seguro que quieres continuar?",
+        "continue?": "¿Seguro que quiere continuar?",
         "noTransactions": "NO HAY HISTORIAL RECIENTE",
         "refresh": "ACTUALIZAR",
         "balanceError": "Saldo insuficiente",
-        "balanceErrorMessage": "No tienes suficientes IOTA para completar esta transferencia.",
+        "balanceErrorMessage": "No tiene suficientes IOTA para completar esta transferencia.",
         "transferError": "Error de transferencia",
         "transferErrorMessage": "Algo salió mal al enviar su transferencia. Por favor, inténtelo de nuevo.",
         "transferSent": "Transferencia enviada",
         "transferSentMessage": "Su transferencia se ha enviado a la Tangle.",
         "messageSent": "Mensaje enviado",
         "messageSentMessage": "Su mensaje se ha enviado a la Tangle.",
-        "keyReuse": "Enviando a direccion usada",
-        "keyReuseError": "No puedes enviar a una dirección que ya se ha gastado.",
+        "keyReuse": "Enviando a dirección usada",
+        "keyReuseError": "No puede enviar a una dirección que ya se ha usado.",
         "invalidResponse": "Error de nodo",
         "invalidResponseExplanation": "Error al conectar con el nodo. Revise las notificaciones para más información.",
         "invalidResponsePollingExplanation": "Error durante la votación del nodo. Revise las notificaciones para más información.",
@@ -55,7 +55,7 @@
         "unrecognisedPasswordExplanation": "La contraseña no fue reconocida. Por favor, inténtelo de nuevo.",
         "syncInProgress": "Sincronización en progreso",
         "syncInProgressExplanation": "Por favor espere a que la sincronización esté completa.",
-        "somethingWentWrong": "Algo salió mal",
+        "somethingWentWrong": "Algo salio mal",
         "somethingWentWrongRestart": "Por favor, reinicie la aplicación.",
         "somethingWentWrongTryAgain": "Por favor, inténtelo otra vez.",
         "node": "Nodo",
@@ -573,13 +573,13 @@
         "errorRetrievingUpdateData": "Error al recuperar los datos de actualización",
         "errorRetrievingUpdateDataExplanation": "Hubo un error al recuperar los datos de actualización. Reintente.",
         "noUpdatesAvailable": "No hay actualizaciones disponibles",
-        "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
-        "newVersionAvailable": "New version available",
-        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
-        "downloadRelease": "Download release",
-        "skipUpdate": "Skip update"
+        "noUpdatesAvailableExplanation": "Tiene la última versión de IOTA Trinity para escritorio!",
+        "newVersionAvailable": "Nueva versión disponible",
+        "newVersionAvailableExplanation": "Una nueva versión <strong>{{version}}</strong> <strong>Trinity</strong> está disponible. Por favor lea cuidadosamente los detalles de lanzamiento y verifique el origen de la descarga antes de actualizar:",
+        "downloadRelease": "Descargar versión",
+        "skipUpdate": "Omitir actualización"
     },
     "notificationLog": {
-        "errorLog": "ERROR LOG"
+        "errorLog": "ERROR DE LOG"
     }
 }
