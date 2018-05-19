@@ -11,6 +11,7 @@ export const nodes = [
     'https://nodes.iota.fm:443',
     'https://trinity.iota.fm:443',
     'https://iri2.iota.fm:443',
+    'https://iotanode.us:443',
     'https://peanut.iotasalad.org:14265',
     'https://potato.iotasalad.org:14265',
     'https://tuna.iotasalad.org:14265',
