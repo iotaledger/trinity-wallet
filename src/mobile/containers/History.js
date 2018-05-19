@@ -118,6 +118,8 @@ class History extends Component {
         onRefresh: PropTypes.func.isRequired,
         /** Addresses for selected account */
         addresses: PropTypes.array.isRequired,
+        // FIXME: Temporary solution until local/remote PoW is reworked on auto-promotion. Will disable autopromotion UI feedback after first failure.
+        hasFailedAutopromotion: PropTypes.bool.isRequired
     };
 
     constructor() {
@@ -164,7 +166,8 @@ class History extends Component {
             selectedAccountName,
             currentlyPromotingBundleHash,
             isRefreshing,
-            addresses
+            addresses,
+            hasFailedAutopromotion
         } = this.props;
         const containerBorderColor = tinycolor(body.bg).isDark() ? 'rgba(255, 255, 255, 0.25)' : 'rgba(0, 0, 0, 0.25)';
         const containerBackgroundColor = tinycolor(body.bg).isDark() ? 'rgba(255, 255, 255, 0.08)' : 'transparent';
@@ -204,7 +207,7 @@ class History extends Component {
                 time: timestamp,
                 message,
                 mode,
-                bundleIsBeingPromoted: currentlyPromotingBundleHash === bundle && !persistence,
+                bundleIsBeingPromoted: (currentlyPromotingBundleHash === bundle && !persistence) && !hasFailedAutopromotion,
                 onPress: (modalProps) => {
                     if (isRefreshing) {
                         return;
@@ -212,11 +215,23 @@ class History extends Component {
                     this.setState({
                         modalProps: assign({}, modalProps, {
                             rebroadcast: (bundle) => this.props.broadcastBundle(bundle, selectedAccountName),
-                            promote: (bundle) => this.props.promoteTransaction(bundle, selectedAccountName),
+                            promote: (bundle) => {
+                                // FIXME: Temporary solution until local/remote PoW is reworked on auto-promotion. Will display alert after first autopromote failure.
+                                if (hasFailedAutopromotion) {
+                                      return this.props.generateAlert(
+                                          'error',
+                                          t('global:attachToTangleUnavailable'),
+                                          t('global:attachToTangleUnavailableExplanationShort'),
+                                          10000,
+                                      );
+                                }
+                                this.props.promoteTransaction(bundle, selectedAccountName);
+                            },
                             onPress: this.props.toggleModalActivity,
                             generateAlert: this.props.generateAlert,
                             bundle,
                             addresses: [...map(inputs, withUnitAndChecksum), ...map(outputs, withUnitAndChecksum)],
+                            hasFailedAutopromotion
                         }),
                     });
 
@@ -306,6 +321,7 @@ class History extends Component {
             isPromotingTransaction,
             isBroadcastingBundle,
             currentlyPromotingBundleHash,
+            hasFailedAutopromotion
         } = this.props;
         const { modalProps } = this.state;
 
@@ -332,7 +348,7 @@ class History extends Component {
                         >
                             <HistoryModalContent
                                 {...modalProps}
-                                disableWhen={isAutoPromoting || isPromotingTransaction || isBroadcastingBundle}
+                                disableWhen={(isAutoPromoting || isPromotingTransaction || isBroadcastingBundle) && !hasFailedAutopromotion}
                                 isBroadcastingBundle={isBroadcastingBundle}
                                 currentlyPromotingBundleHash={currentlyPromotingBundleHash}
                             />
@@ -359,6 +375,7 @@ const mapStateToProps = (state) => ({
     isAutoPromoting: state.polling.isAutoPromoting,
     isModalActive: state.ui.isModalActive,
     currentlyPromotingBundleHash: state.ui.currentlyPromotingBundleHash,
+    hasFailedAutopromotion: state.ui.hasFailedAutopromotion,
 });
 
 const mapDispatchToProps = {
