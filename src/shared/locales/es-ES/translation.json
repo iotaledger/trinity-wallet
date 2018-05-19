@@ -8,11 +8,11 @@
         "balanceError": "Saldo insuficiente",
         "balanceErrorMessage": "No tienes suficientes IOTA para completar esta transferencia.",
         "transferError": "Error de transferencia",
-        "transferErrorMessage": "Algo salió mal al enviar tu transferencia. Por favor, inténtalo de nuevo.",
+        "transferErrorMessage": "Algo salió mal al enviar su transferencia. Por favor, inténtelo de nuevo.",
         "transferSent": "Transferencia enviada",
-        "transferSentMessage": "Tu transferencia se ha enviado al Tangle.",
+        "transferSentMessage": "Su transferencia se ha enviado a la Tangle.",
         "messageSent": "Mensaje enviado",
-        "messageSentMessage": "Tu mensaje se ha enviado al Tangle.",
+        "messageSentMessage": "Su mensaje se ha enviado a la Tangle.",
         "keyReuse": "Enviando a direccion usada",
         "keyReuseError": "No puedes enviar a una dirección que ya se ha gastado.",
         "invalidResponse": "Error de nodo",
@@ -458,7 +458,7 @@
         "thisMayTake": "Esto puede tomar un rato. Es probable que su dispositivo se relentice.",
         "doNotClose": "Atención! minimizar la aplicación cancelara la sincronización.",
         "syncAccount": "SINCRONIZAR CUENTA",
-        "syncingYourAccount": "Sincronizando cuenta."
+        "syncingYourAccount": "Sincronizando su cuenta."
     },
     "useExistingSeed": {
         "title": "Introduzca una semilla y un nombre de cuenta.",
@@ -481,23 +481,23 @@
     },
     "fingerprintSetup": {
         "instructionsEnable": "Toque el lector de huellas para activar autenticación por este medio",
-        "instructionsDisable": "Touch fingerprint reader to disable fingerprint authentication",
-        "fingerprintAuthEnabled": "Biometric authentication enabled",
-        "fingerprintAuthEnabledExplanation": "You have successfully enabled biometric authentication.",
-        "fingerprintAuthDisabled": "Biometric authentication disabled",
-        "fingerprintAuthDisabledExplanation": "You have successfully disabled biometric authentication.",
-        "fingerprintAuthFailed": "Biometric authentication failed",
+        "instructionsDisable": "Toque el lector de huellas para desactivar autenticación por este medio",
+        "fingerprintAuthEnabled": "Autenticación biométrica activada",
+        "fingerprintAuthEnabledExplanation": "Ha activado la autenticación biométrica.",
+        "fingerprintAuthDisabled": "Ha desactivado la autentificación biométrica",
+        "fingerprintAuthDisabledExplanation": "Ha desactivado la autenticación biométrica.",
+        "fingerprintAuthFailed": "Fallo en la autenticación biométrica",
         "fingerprintAuthFailedExplanation": "Autenticación de huella dactilar errónea. Inténtalo de nuevo.",
         "status": "Estado",
         "enabled": "Habilitado",
         "disabled": "Deshabilitado",
-        "fingerprintUnavailable": "Biometric authentication unavailable",
-        "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
+        "fingerprintUnavailable": "Autenticación biométrica no disponible",
+        "fingerprintUnavailableExplanation": "Su dispositivo no soporta autenticación biométrica o no está correctamente configurada.",
         "buttonInstructionsDisable": "Pulsa el botón que hay a continuación para deshabilitar la autenticación de huellas dactilares.",
         "buttonInstructionsEnable": "Pulsa el botón que hay a continuación para habilitar la autenticación de huellas dactilares.",
-        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID.",
-        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID.",
-        "instructionsLogin": "Touch fingerprint reader to log in"
+        "buttonInstructionsDisableIPhoneX": "Presione el botón debajo para desactivar Face ID.",
+        "buttonInstructionsEnableIPhoneX": "Presione el botón debajo para activar Face ID.",
+        "instructionsLogin": "Toque el lector de huellas para loguearse"
     },
     "transferConfirmation": {
         "youAreAbout": "Estás a punto de enviar {{contents}} a la dirección",
@@ -514,37 +514,37 @@
         "key": "Clave",
         "twoFAEnabled": "2FA habilitado",
         "twoFAEnabledExplanation": "Has habilitado la autenticación de doble factor correctamente.",
-        "twoFADisabled": "2FA is now disabled",
-        "twoFADisabledExplanation": "You have successfully disabled Two Factor Authentication.",
+        "twoFADisabled": "2FA esta desactivado",
+        "twoFADisabledExplanation": "Ha desactivado 2FA.",
         "enterCode": "Introduce el código de tu aplicación 2FA",
         "code": "Código",
-        "twoFaToken": "2FA Token"
+        "twoFaToken": "Código 2FA"
     },
     "chart": {
         "mcap": "MCAP",
         "change": "Variación",
         "volume": "Volumen (24h)",
-        "currentValue": "Current value"
+        "currentValue": "Valor actual"
     },
     "rootDetection": {
-        "warning": "WARNING",
-        "appearsRooted": "Your device appears to be rooted.",
-        "securityRisk": "This can pose a significant risk to the security of your wallet.",
-        "continueDepsiteRisk": "Do you wish to continue despite this risk?"
+        "warning": "ALERTA",
+        "appearsRooted": "Su dispositivo parece estar rooteado.",
+        "securityRisk": "Esto puede significar un gran riesgo para la seguridad de su cartera.",
+        "continueDepsiteRisk": "Desea continuar a pesar de este riesgo?"
     },
     "pow": {
-        "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
-        "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
+        "feeless": "Es necesario que complete un pequeño PoW para enviar transacciones sin comision en IOTA.",
+        "localOrRemote": "El PoW puede ser completado localmente en su dispositivo, o remotamente en un nodo.",
         "local": "Local",
-        "remote": "Remote",
-        "powUpdated": "Proof of work settings",
-        "powUpdatedExplanation": "Your proof of work configuration has been updated.",
-        "noWebGLSupport": "WebGL not supported",
-        "noWebGLSupportExplanation": "Your computer does not support WebGL. Please use remote PoW."
+        "remote": "Remoto",
+        "powUpdated": "Configuración de PoW",
+        "powUpdatedExplanation": "Su configuración de PoW fue actualizada.",
+        "noWebGLSupport": "WebGL no soportado",
+        "noWebGLSupportExplanation": "Su computadora no soporta WebGL. Por favor use PoW remoto."
     },
     "progressSteps": {
-        "validatingReceiveAddress": "Validating receive address",
-        "syncingAccount": "Syncing account",
+        "validatingReceiveAddress": "Validando dirección de recepción",
+        "syncingAccount": "Sincronizando cuenta",
         "preparingInputs": "Preparing inputs",
         "preparingTransfers": "Preparing transfers",
         "gettingTransactionsToApprove": "Getting transactions to approve",
@@ -553,7 +553,7 @@
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Cannot complete snapshot transition",
-        "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
+        "cannotCompleteTransitionExplanation": "Su balance debe ser mayor a 0 para completar la transacción.",
         "transitionComplete": "Snapshot transition complete",
         "transitionCompleteExplanation": "The snapshot transition has completed successfully.",
         "detectedBalance": "Detected balance: {{amount}} {{unit}}",
