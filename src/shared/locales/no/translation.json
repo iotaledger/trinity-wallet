@@ -5,7 +5,6 @@
         "continue?": "Er du sikker på at du vil fortsette?",
         "noTransactions": "INGEN NYLIG HISTORIKK",
         "refresh": "LAST INN PÅ NYTT",
-        "qr": "QR",
         "balanceError": "Saldoen er for lav",
         "balanceErrorMessage": "Du har ikke nok IOTA til å fullføre denne transaksjonen.",
         "transferError": "Transaksjonsfeil",
@@ -36,6 +35,7 @@
         "manualCopy": "Skriv ned hovednøkkelen",
         "paperWallet": "Skriv ut papirkopi",
         "copyToClipboard": "Legg til i sikker passord-applikasjon",
+        "qr": "QR",
         "notAvailable": "Denne funksjonen er ikke tilgjengelig",
         "notAvailableExplanation": "Dette vil bli lagt til på et senere tidspunkt.",
         "enterSeed": "Vennligst skriv inn din hovednøkkel.",
@@ -61,8 +61,9 @@
         "node": "Node",
         "cannotPerformAction": "Kan ikke utføre handling",
         "cannotPerformActionExplanation": "Gå til avanserte innstillinger for å tilbakestille lommeboken.",
-        "attachToTangleUnavailable": "Tilknytt Tangle er ikke tilgjengelig",
-        "attachToTangleUnavailableExplanation": "Tilknytt Tangle er ikke tilgjengelig på valgte node.",
+        "attachToTangleUnavailable": "Remote Proof of Work is unavailable",
+        "attachToTangleUnavailableExplanation": "Remote Proof of Work is not available on your selected node. Either change node or set Proof of Work to Local in Advanced Settings.",
+        "attachToTangleUnavailableExplanationShort": "Remote Proof of Work is not available on your selected node.",
         "wallet": "Lommebok",
         "sent": "Sendt",
         "received": "Mottatt",
@@ -87,6 +88,8 @@
         "rebroadcastErrorExplanation": "Noe gikk galt under kringkastingen av transaksjonen. Vennligst prøv på nytt.",
         "promoted": "Transaksjonen er promotert",
         "promotedExplanation": "Transaksjonen er promotert med hash {{hash}}",
+        "autopromotionError": "Could not auto-promote transaction",
+        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node.",
         "promotionError": "Kunne ikke promotere transaksjonen",
         "promotionErrorExplanation": "Noe gikk galt under promoteringen av overføringen. Vennligst prøv igjen.",
         "noLongerValid": "Pakken du prøver å promotere er ikke lenger gyldig",
@@ -168,7 +171,9 @@
         "doNotOpen": "Åpne ikke andre applikasjoner under denne prosessen.",
         "tapConfirm": "Vennligst huk av i boksen nedenfor for å bekrefte.",
         "passwordManagerCheckbox": "Jeg ønsker å lagre hovednøkkelen min i en password manager",
-        "copy": "KOPIER"
+        "copy": "KOPIER",
+        "noPasswordManagers": "No supported password managers installed",
+        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android."
     },
     "enterSeed": {
         "invalidCharacters": "Hovednøkkelen inneholder ugyldige tegn",
@@ -202,7 +207,8 @@
         "loadingFirstTime": "Laster hovednøkkel for første gang.",
         "thisMayTake": "Dette kan ta en stund.",
         "doNotMinimise": "Ikke minimer eller lukk applikasjonen.",
-        "youMayNotice": "Du kan merke en treghet på enheten din."
+        "youMayNotice": "Du kan merke en treghet på enheten din.",
+        "takingAWhile": "This seems to be taking a while"
     },
     "newSeedSetup": {
         "seedNotGenerated": "Hovednøkkel har ikke blitt generert",
@@ -308,7 +314,7 @@
         "twoFA": "To-faktor autentisering",
         "changePassword": "Endre passord",
         "advanced": "Avanserte innstillinger",
-        "about": "Om Trinity",
+        "about": "About",
         "logout": "Logg ut",
         "reset": "Tilbakestill lommeboken",
         "syncingComplete": "Synkronisering fullført",
@@ -339,8 +345,14 @@
         "fetchedConversionRatesExplanation": "Siste omregningskurs er hentet for {{currency}}.",
         "undo": "Angre",
         "redo": "Gjør om",
+        "aboutTrinity": "About Trinity",
         "lockScreenTimeout": "Skjermen er låst grunnet inaktivitet",
-        "autoNodeSwitching": "Endre node automatisk dersom den valgte noden er utilgjengelig"
+        "autoNodeSwitching": "Endre node automatisk dersom den valgte noden er utilgjengelig",
+        "nodeChangeSuccess": "Successfully changed node",
+        "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
+        "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
+        "nodeChangeError": "Error changing node",
+        "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Skriv inn passordet for å tilbakestille lommeboken.",
@@ -449,7 +461,7 @@
     "useExistingSeed": {
         "title": "Angi en hovednøkkel og et kontonavn.",
         "incorrectFormat": "Feil format på hovednøkkelen",
-        "validSeedExplanation": "'En gyldig hovednøkkel skal være på 81 tegn bestående av bokstavene A til Z eller tallet 9.'"
+        "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
     },
     "viewSeed": {
         "enterPassword": "Skriv inn passordet for å vise hovednøkkelen.",
@@ -469,16 +481,16 @@
         "instructionsEnable": "Legg fingeren på fingeravtrykkleseren for å aktivere biometrisk autentisering",
         "instructionsDisable": "Legg fingeren på fingeravtrykkleseren for å deaktivere biometrisk autentisering",
         "fingerprintAuthEnabled": "Biometrisk autentisering aktivert",
-        "fingerprintAuthEnabledExplanation": "Du har aktivert biometrisk autentisering.",
+        "fingerprintAuthEnabledExplanation": "You have successfully enabled biometric authentication.",
         "fingerprintAuthDisabled": "Biometrisk autentisering deaktivert",
-        "fingerprintAuthDisabledExplanation": "Du har nå deaktivert biometrisk autentisering.",
+        "fingerprintAuthDisabledExplanation": "You have successfully disabled biometric authentication.",
         "fingerprintAuthFailed": "Biometrisk godkjenning mislyktes",
         "fingerprintAuthFailedExplanation": "Biometrisk autentisering feilet. Vennligst prøv igjen.",
         "status": "Status",
         "enabled": "Aktivert",
         "disabled": "Deaktivert",
-        "fingerprintUnavailable": "Biometrisk autentisering utilgjengelig",
-        "fingerprintUnavailableExplanation": "Enheten din støtter ikke biometrisk autentisering, eller har ikke blitt konfigurert for å benytte dette.",
+        "fingerprintUnavailable": "Biometric authentication unavailable",
+        "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Trykk på knappen nedenfor for å deaktivere biometrisk godkjenning.",
         "buttonInstructionsEnable": "Trykk på knappen nedenfor for å aktivere biometrisk godkjenning.",
         "buttonInstructionsDisableIPhoneX": "Trykk på knappen nedenfor for å deaktivere Face ID.",

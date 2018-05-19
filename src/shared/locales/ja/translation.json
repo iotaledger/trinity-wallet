@@ -5,7 +5,6 @@
         "continue?": "本当に続行しますか？",
         "noTransactions": "最近の履歴なし",
         "refresh": "更新",
-        "qr": "QRコード",
         "balanceError": "残高不足",
         "balanceErrorMessage": "送金を完了するための十分なIOTAが有りません。",
         "transferError": "送金エラー",
@@ -36,6 +35,7 @@
         "manualCopy": "シードを書き写す",
         "paperWallet": "印刷する",
         "copyToClipboard": "パスワード マネージャーに追加",
+        "qr": "QRコード",
         "notAvailable": "この機能は使えません。",
         "notAvailableExplanation": "この機能は将来追加される予定です。",
         "enterSeed": "シードを入力して下さい。",
@@ -61,8 +61,9 @@
         "node": "ノード",
         "cannotPerformAction": "操作を実行できません。",
         "cannotPerformActionExplanation": "ウォレットをリセットするには、詳細設定に進みます。",
-        "attachToTangleUnavailable": "タングルに登録出来ません。",
-        "attachToTangleUnavailableExplanation": "選択したノードではタングルに登録出来ません。",
+        "attachToTangleUnavailable": "リモートのプルーフ・オブ・ワーク利用不可",
+        "attachToTangleUnavailableExplanation": "選択しているノードでリモートによるプルーフ・オブ・ワークが利用できません。ノードを変更するか、詳細設定でローカルによるプルーフ・オブ・ワークに切り替えてください。",
+        "attachToTangleUnavailableExplanationShort": "選択しているノードでリモートによるプルーフ・オブ・ワークが利用できません。",
         "wallet": "ウォレット",
         "sent": "送金済",
         "received": "受取済",
@@ -87,6 +88,8 @@
         "rebroadcastErrorExplanation": "取引を再ブロードキャスト中に不具合が発生しました。もう一度やり直して下さい。",
         "promoted": "取引は正常に促進されました。",
         "promotedExplanation": "ハッシュ値{{hash}}の取引が促進されました。",
+        "autopromotionError": "取引の自動促進ができませんでした。",
+        "autopromotionErrorExplanation": "選択しているノードでリモートによるプルーフ・オブ・ワークが利用できません。ノードを変更してください。",
         "promotionError": "取引を促進できませんでした。",
         "promotionErrorExplanation": "取引を促進中に不具合が発生しました。もう一度やり直して下さい。",
         "noLongerValid": "促進しようとしているバンドルはもう有効ではありません。",
@@ -168,7 +171,9 @@
         "doNotOpen": "シードを保存中にパスワードマネージャー以外のアプリを開かないでください。",
         "tapConfirm": "確認するには、下のチェックボックスをタップしてください。",
         "passwordManagerCheckbox": "私はシードをパスワードマネージャーに保存します。",
-        "copy": "コピー"
+        "copy": "コピー",
+        "noPasswordManagers": "サポートされているパスワードマネージャーがインストールされていません。",
+        "noPasswordManagersExplanation": "お使いのデバイスにサポートされているパスワードマネージャーが見つかりませんでした。 Keepass2Androidをインストールしてください。"
     },
     "enterSeed": {
         "invalidCharacters": "無効な文字を含んだシードです。",
@@ -202,7 +207,8 @@
         "loadingFirstTime": "初めてのシードを読み込んでいます。",
         "thisMayTake": "これには時間がかかることがあります。",
         "doNotMinimise": "アプリを最小化したり終了したりしないでください。",
-        "youMayNotice": "あなたのデバイスが遅くなることがあります。"
+        "youMayNotice": "あなたのデバイスが遅くなることがあります。",
+        "takingAWhile": "これにはしばらく時間がかかりそうです。"
     },
     "newSeedSetup": {
         "seedNotGenerated": "シードが生成されていません。",
@@ -308,7 +314,7 @@
         "twoFA": "2要素認証",
         "changePassword": "パスワード変更",
         "advanced": "詳細設定",
-        "about": "Trinityについて",
+        "about": "アバウト",
         "logout": "ログアウト",
         "reset": "ウォレットをリセット",
         "syncingComplete": "同期が完了しました。",
@@ -339,8 +345,14 @@
         "fetchedConversionRatesExplanation": "{{currency}}の最新の換算率の取得に成功しました。",
         "undo": "取り消し",
         "redo": "やり直し",
+        "aboutTrinity": "Trinityについて",
         "lockScreenTimeout": "ロック画面までの時間(分)",
-        "autoNodeSwitching": "選択したノードが接続不能になると自動的にノードを切り替える。"
+        "autoNodeSwitching": "選択したノードが接続不能になると自動的にノードを切り替える。",
+        "nodeChangeSuccess": "ノード変更成功",
+        "nodeChangeSuccessNoRemotePow": "ノードを{{node}}に変更しました。このノードはリモートによるプルーフ・オブ・ワークをサポートしていません。",
+        "nodeChangeSuccessExplanation": "ノードを{{node}}に変更しました。",
+        "nodeChangeError": "ノード変更失敗",
+        "nodeChangeErrorExplanation": "ノードの変更中にエラーが発生しました。もう一度やり直してください。"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "ウォレットをリセットするにはパスワードを入力して下さい。",
@@ -449,7 +461,7 @@
     "useExistingSeed": {
         "title": "シードとアカウント名を入力して下さい。",
         "incorrectFormat": "不正確なシードの形式です。",
-        "validSeedExplanation": "'有効なシードは大文字でA〜Zと数字の9のみを使います。'"
+        "validSeedExplanation": "有効なシードは81文字で、A〜Zまたは9のみを含む必要があります。"
     },
     "viewSeed": {
         "enterPassword": "シードを閲覧するにはパスワードを入力して下さい。",
@@ -469,9 +481,9 @@
         "instructionsEnable": "指紋認証を有効にするには、指紋リーダーに触れて下さい。",
         "instructionsDisable": "指紋認証を無効にするには、指紋リーダーに触れて下さい。",
         "fingerprintAuthEnabled": "生体認証を有効化",
-        "fingerprintAuthEnabledExplanation": "生体承認を有効にしました。",
+        "fingerprintAuthEnabledExplanation": "生体認証の有効化に成功しました。",
         "fingerprintAuthDisabled": "生体認証を無効化",
-        "fingerprintAuthDisabledExplanation": "生体承認を無効にしました。",
+        "fingerprintAuthDisabledExplanation": "生体認証の無効化に成功しました。",
         "fingerprintAuthFailed": "生体認証に失敗しました。",
         "fingerprintAuthFailedExplanation": "指紋認証に失敗しました。もう一度やり直してください。",
         "status": "ステータス",

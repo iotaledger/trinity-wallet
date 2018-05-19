@@ -5,7 +5,6 @@
         "continue?": "Oletko varma, että haluat jatkaa?",
         "noTransactions": "EI HISTORIATIETOJA",
         "refresh": "PÄIVITÄ",
-        "qr": "QR",
         "balanceError": "Ei tarpeeksi katetta",
         "balanceErrorMessage": "Sinulla ei ole tarpeeksi IOTAa siirron loppuun suorittamiseksi.",
         "transferError": "Siirtovirhe",
@@ -36,6 +35,7 @@
         "manualCopy": "Kirjoita seed-luku paperille",
         "paperWallet": "Tulosta seed-luku paperille",
         "copyToClipboard": "Lisää salasanan hallintaohjelmaan",
+        "qr": "QR",
         "notAvailable": "Tämä toiminto ei ole käytettävissä",
         "notAvailableExplanation": "Se tullaan lisäämään myöhemmässä kehitysvaiheessa.",
         "enterSeed": "Anna seed-lukusi.",
@@ -61,8 +61,9 @@
         "node": "Palvelin",
         "cannotPerformAction": "Toimintoa ei voi suorittaa",
         "cannotPerformActionExplanation": "Siirry lisäasetuksiin resetoidaksesi lompakkosi.",
-        "attachToTangleUnavailable": "Yhteys Tangle-verkkoon ei käytettävissä",
-        "attachToTangleUnavailableExplanation": "Tangle-verkkoon liittäminen ei ole mahdollista valitsemallasi palvelimella.",
+        "attachToTangleUnavailable": "Remote Proof of Work is unavailable",
+        "attachToTangleUnavailableExplanation": "Remote Proof of Work is not available on your selected node. Either change node or set Proof of Work to Local in Advanced Settings.",
+        "attachToTangleUnavailableExplanationShort": "Remote Proof of Work is not available on your selected node.",
         "wallet": "Lompakko",
         "sent": "Lähetetty",
         "received": "Vastaanotettu",
@@ -87,6 +88,8 @@
         "rebroadcastErrorExplanation": "Lähetettäessä siirto uudelleen tapahtui virhe. Yritä hetken päästä uudestaan.",
         "promoted": "Siirron edistys onnistui",
         "promotedExplanation": "Siirtoa tiivisteluvulla {{hash}} edistetty onnistuneesti",
+        "autopromotionError": "Could not auto-promote transaction",
+        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node.",
         "promotionError": "Siirtoa ei voitu edistää",
         "promotionErrorExplanation": "Siirron edistämisessä tapahtui virhe. Yritä uudelleen.",
         "noLongerValid": "Kokoelma jonka siirtoa yrität edistää ei ole enää voimassa",
@@ -168,7 +171,9 @@
         "doNotOpen": "Älä avaa muita sovelluksia kesken tämän toiminnon.",
         "tapConfirm": "Paina alla olevia laatikoita vahvistaaksesi että ymmärrät ohjeistuksen.",
         "passwordManagerCheckbox": "Tallennan seed-lukuni salasanan hallintaohjelmaan",
-        "copy": "KOPIOI"
+        "copy": "KOPIOI",
+        "noPasswordManagers": "No supported password managers installed",
+        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android."
     },
     "enterSeed": {
         "invalidCharacters": "Seed-luku sisältää virheellisiä merkkejä",
@@ -202,7 +207,8 @@
         "loadingFirstTime": "Ladataan seed-lukua ensimmäistä kertaa.",
         "thisMayTake": "Tämä saattaa kestää hetken.",
         "doNotMinimise": "Älä sulje tai siirrä sovellusta taustalle.",
-        "youMayNotice": "Laitteessa voi ilmetä hitautta."
+        "youMayNotice": "Laitteessa voi ilmetä hitautta.",
+        "takingAWhile": "This seems to be taking a while"
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seed-lukua ei ole luotu",
@@ -308,7 +314,7 @@
         "twoFA": "Kaksivaiheinen tunnistautuminen (2FA)",
         "changePassword": "Vaihda salasana",
         "advanced": "Lisäasetukset",
-        "about": "Lisätietoja Trinitystä",
+        "about": "About",
         "logout": "Kirjaudu ulos",
         "reset": "Tyhjennä lompakko",
         "syncingComplete": "Synkronointi valmis",
@@ -339,8 +345,14 @@
         "fetchedConversionRatesExplanation": "Vaihtokurssit haettu onnistuneesti valuutalle {{currency}}.",
         "undo": "Kumoa",
         "redo": "Toista",
+        "aboutTrinity": "About Trinity",
         "lockScreenTimeout": "Näytön aikalukitus (minuuttia)",
-        "autoNodeSwitching": "Vaihda palvelinta automaattisesti jos nykyinen palvelin ei vastaa"
+        "autoNodeSwitching": "Vaihda palvelinta automaattisesti jos nykyinen palvelin ei vastaa",
+        "nodeChangeSuccess": "Successfully changed node",
+        "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
+        "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
+        "nodeChangeError": "Error changing node",
+        "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Kirjoita salasanasi resetoidaksesi lompakkosi.",
@@ -449,7 +461,7 @@
     "useExistingSeed": {
         "title": "Anna seed-luku ja tilin nimi.",
         "incorrectFormat": "Seed-luku on virheellinen",
-        "validSeedExplanation": "'Hyväksytyn osoitteen on oltava 81 merkkiä pitkä ja sisältää ainoastaan merkkejä A-Z tai 9.'"
+        "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
     },
     "viewSeed": {
         "enterPassword": "Syötä salasana nähdäksesi seed-lukusi.",
@@ -469,16 +481,16 @@
         "instructionsEnable": "Kosketa sormenjälkilukijaa saadaksesi se käyttöön",
         "instructionsDisable": "Kosketa sormenjälkilukijaa poistaaksesi se käytöstä",
         "fingerprintAuthEnabled": "Biometrinen tunnistus käytössä",
-        "fingerprintAuthEnabledExplanation": "Biometrinen tunnistus otettu käyttöön.",
+        "fingerprintAuthEnabledExplanation": "You have successfully enabled biometric authentication.",
         "fingerprintAuthDisabled": "Biometrinen tunnistus poistettu käytöstä",
-        "fingerprintAuthDisabledExplanation": "Biometrinen tunnistus otettu pois käyttöstä.",
+        "fingerprintAuthDisabledExplanation": "You have successfully disabled biometric authentication.",
         "fingerprintAuthFailed": "Biometrinen tunnistus epäonnistui",
         "fingerprintAuthFailedExplanation": "Sormenjälkitunnistus epäonnistui. Yritä uudelleen.",
         "status": "Tila",
         "enabled": "Käytössä",
         "disabled": "Ei käytössä",
-        "fingerprintUnavailable": "Biometrinen tunnistus ei ole käytettävissä",
-        "fingerprintUnavailableExplanation": "Laitteesi ei tue biometristä tunnistusta tai se on otettu pois käytöstä asetuksista.",
+        "fingerprintUnavailable": "Biometric authentication unavailable",
+        "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Paina alla olevaa painiketta poistaaksesi sormenjälkitunnistuksen käytöstä.",
         "buttonInstructionsEnable": "Paina alla olevaa painiketta ottaaksesi sormenjälkitunnistuksen käyttöön.",
         "buttonInstructionsDisableIPhoneX": "Paina alla olevaa painiketta poistaaksesi kasvotunnistuksen.",
