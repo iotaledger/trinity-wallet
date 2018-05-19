@@ -349,12 +349,12 @@
         "redo": "Rehacer",
         "aboutTrinity": "Acerca de Trinity",
         "lockScreenTimeout": "Hibernar cuenta en (minutos)",
-        "autoNodeSwitching": "Automatically switch node when selected is unreachable",
-        "nodeChangeSuccess": "Successfully changed node",
-        "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
-        "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
-        "nodeChangeError": "Error changing node",
-        "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
+        "autoNodeSwitching": "No se pudo activar el cambio automático de nodo",
+        "nodeChangeSuccess": "Nodo modificado exitosamente",
+        "nodeChangeSuccessNoRemotePow": "El nodo fue cambiado a {{node}}. Este nodo no soporta PoW remoto.",
+        "nodeChangeSuccessExplanation": "El nodo fue cambiado a {{node}}.",
+        "nodeChangeError": "Error al cambiar el nodo",
+        "nodeChangeErrorExplanation": "Hubo un error al cambiar el nodo. Por favor reintente."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Ingresa tu contraseña para reiniciar la cartera.",
@@ -367,7 +367,7 @@
         "seedExplanation": "Una semilla de IOTA funciona simultáneamente como nombre del usuario y contraseña para su cuenta, combinados en una cadena de 81 caracteres.",
         "explanation": "<0><0>Puede usar esto para acceder a sus fondos desde</0><1>cualquier cartera</1><2>, en</2><3> cualquier dispositivo</3><4>. Pero si pierde su semilla, también perderá sus IOTA.</4></0>",
         "keepSafe": "Por favor guarde su semilla de manera segura.",
-        "hint": "<0><0>Hint:</0> Click NO if this is your first time using IOTA.</0>"
+        "hint": "<0><0>Pista:</0> Click en NO si es su primera vez usando IOTA.</0>"
     },
     "welcome": {
         "thankYou": "Gracias por descargar Trinity.",
@@ -383,7 +383,7 @@
         "bundleHashCopiedExplanation": "El hash del paquete se ha copiado en el portapapeles.",
         "addressCopied": "Dirección Copiada",
         "addressCopiedExplanation": "La dirección se ha copiado al portapapeles.",
-        "messageCopied": "Message copied",
+        "messageCopied": "Mensaje copiado",
         "messageCopiedExplanation": "The message has been copied to the clipboard.",
         "send": "ENVIAR",
         "receive": "RECIBIR"
