@@ -125,8 +125,8 @@
         "clear": "消去",
         "noNetworkConnection": "ネットワーク接続がありません。",
         "noNetworkConnectionExplanation": "インターネット接続がオフラインになっているようです。",
-        "spentAddressExplanation": "WARNING: Funds on spent addresses",
-        "discordInformation": "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do."
+        "spentAddressExplanation": "警告：使用済みアドレスの資金です！",
+        "discordInformation": "同じアドレスから複数回送金するのは危険です。どうしたらいいのかはDiscordの#Japaneseチャンネルか#helpチャンネルにお尋ねください。"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだシードです。",
