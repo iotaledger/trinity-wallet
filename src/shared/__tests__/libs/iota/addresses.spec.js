@@ -344,4 +344,56 @@ describe('libs: iota/addresses', () => {
             });
         });
     });
+
+    describe('#filterSpentAddresses', () => {
+        let inputs;
+        let sandbox;
+
+        before(() => {
+            inputs = [
+                {
+                    address: 'U'.repeat(81),
+                },
+                {
+                    address: 'V'.repeat(81),
+                },
+                {
+                    address: 'Y'.repeat(81),
+                },
+            ];
+        });
+
+        beforeEach(() => {
+            sandbox = sinon.sandbox.create();
+
+            sandbox.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false, false, true]);
+        });
+
+        afterEach(() => {
+            sandbox.restore();
+        });
+
+        describe('when spent addresses is an empty array', () => {
+            it('should filter spent addresses relying on wereAddressesSpentFrom network call', () => {
+                return addressesUtils.filterSpentAddresses(inputs, []).then((unspentInputs) => {
+                    expect(unspentInputs).to.eql([
+                        {
+                            address: 'U'.repeat(81),
+                        },
+                        {
+                            address: 'V'.repeat(81),
+                        },
+                    ]);
+                });
+            });
+        });
+
+        describe('when spent addresses is not an empty array', () => {
+            it('should filter inputs containing spent addresses', () => {
+                return addressesUtils.filterSpentAddresses(inputs, ['U'.repeat(81)]).then((unspentInputs) => {
+                    expect(unspentInputs).to.eql([{ address: 'V'.repeat(81) }]);
+                });
+            });
+        });
+    });
 });

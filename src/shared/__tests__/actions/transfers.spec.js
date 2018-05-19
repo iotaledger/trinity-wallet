@@ -211,7 +211,11 @@ describe('actions: transfers', () => {
                 sandbox.stub(transferUtils, 'isStillAValidTransaction').resolves(true);
                 sandbox.stub(transferUtils, 'getFirstConsistentTail').resolves(false);
                 sandbox.stub(accountsUtils, 'syncAccount').resolves(accounts.accountInfo.TEST);
-                syncAccountAfterReattachment = sandbox.stub(accountsUtils, 'syncAccountAfterReattachment').resolves({});
+                syncAccountAfterReattachment = sandbox.stub(accountsUtils, 'syncAccountAfterReattachment').returns({
+                    newState: {},
+                    reattachment: [],
+                    normalisedReattachment: {},
+                });
             });
 
             afterEach(() => {
@@ -311,7 +315,7 @@ describe('actions: transfers', () => {
                 const store = mockStore({ accounts });
                 const prepareTransfers = sinon.stub(iota.api, 'prepareTransfers').yields(null, trytes.zeroValue);
                 const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, []);
-                const syncAccountAfterSpending = sinon.stub(accountsUtils, 'syncAccountAfterSpending').resolves({});
+                const syncAccountAfterSpending = sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns({});
 
                 return store
                     .dispatch(
@@ -344,7 +348,7 @@ describe('actions: transfers', () => {
 
                 const prepareTransfers = sinon.stub(iota.api, 'prepareTransfers').yields(null, trytes.zeroValue);
                 const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, []);
-                const syncAccountAfterSpending = sinon.stub(accountsUtils, 'syncAccountAfterSpending').resolves({});
+                const syncAccountAfterSpending = sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns({});
 
                 return store
                     .dispatch(
@@ -410,7 +414,7 @@ describe('actions: transfers', () => {
                         ],
                     });
 
-                    const syncAccountAfterSpending = sinon.stub(accountsUtils, 'syncAccountAfterSpending').resolves({});
+                    const syncAccountAfterSpending = sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns({});
 
                     const store = mockStore({ accounts });
 
@@ -448,7 +452,7 @@ describe('actions: transfers', () => {
                         const wereAddressesSpentFrom = sinon
                             .stub(iota.api, 'wereAddressesSpentFrom')
                             .yields(null, [true]);
-                        sinon.stub(accountsUtils, 'syncAccountAfterSpending').resolves({});
+                        sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns({});
 
                         const store = mockStore({ accounts });
 
@@ -492,7 +496,7 @@ describe('actions: transfers', () => {
                                 },
                             ],
                         });
-                        sinon.stub(accountsUtils, 'syncAccountAfterSpending').resolves({});
+                        sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns({});
 
                         return store
                             .dispatch(
@@ -518,8 +522,8 @@ describe('actions: transfers', () => {
                     });
                 });
 
-                describe('when has pending transfers on inputs', () => {
-                    it('should create action of type IOTA/ALERTS/SHOW with a message "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."', () => {
+                describe('when has funds at spent addresses', () => {
+                    it('should create action of type IOTA/ALERTS/SHOW with a message "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do."', () => {
                         const store = mockStore({ accounts });
 
                         const wereAddressesSpentFrom = sinon
@@ -528,7 +532,7 @@ describe('actions: transfers', () => {
 
                         sinon.stub(inputUtils, 'getUnspentInputs').resolves({
                             allBalance: 110,
-                            totalBalance: 10,
+                            totalBalance: 0,
                             inputs: [
                                 {
                                     address:
@@ -536,7 +540,7 @@ describe('actions: transfers', () => {
                                 },
                             ],
                         });
-                        sinon.stub(accountsUtils, 'syncAccountAfterSpending').resolves({});
+                        sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns({});
 
                         return store
                             .dispatch(
@@ -554,7 +558,7 @@ describe('actions: transfers', () => {
                                 expect(
                                     store.getActions().find((action) => action.type === 'IOTA/ALERTS/SHOW').message,
                                 ).to.equal(
-                                    'Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again.',
+                                    'Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do.',
                                 );
 
                                 wereAddressesSpentFrom.restore();
@@ -586,7 +590,7 @@ describe('actions: transfers', () => {
                                 },
                             ],
                         });
-                        sinon.stub(accountsUtils, 'syncAccountAfterSpending').resolves({});
+                        sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns({});
 
                         return store
                             .dispatch(
