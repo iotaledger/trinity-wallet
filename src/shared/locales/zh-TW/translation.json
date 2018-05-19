@@ -125,8 +125,8 @@
         "clear": "清除",
         "noNetworkConnection": "沒有網路連線",
         "noNetworkConnectionExplanation": "您的網路連線顯示為離線。",
-        "spentAddressExplanation": "WARNING: Funds on spent addresses",
-        "discordInformation": "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do."
+        "spentAddressExplanation": "警告：資金位於已支出的地址",
+        "discordInformation": "用相同的地址重複轉帳是非常危險的，請前往 Discord #help 頻道尋求協助。"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
@@ -174,8 +174,8 @@
         "tapConfirm": "請點擊以下方框來確認。",
         "passwordManagerCheckbox": "我會儲存我的種子碼到密碼管理工具中。",
         "copy": "複製",
-        "noPasswordManagers": "No supported password managers installed",
-        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android."
+        "noPasswordManagers": "未安裝支援的密碼管理工具",
+        "noPasswordManagersExplanation": "無法在您的裝置中找到有支援的密碼管理工具，請安裝像是 Keepass2Android。"
     },
     "enterSeed": {
         "invalidCharacters": "種子碼包含無效字元",
@@ -210,7 +210,7 @@
         "thisMayTake": "這可能需要一點時間。",
         "doNotMinimise": "請不要最小化或關閉應用程式。",
         "youMayNotice": "您的裝置可能會變慢。",
-        "takingAWhile": "This seems to be taking a while"
+        "takingAWhile": "這似乎會花些時間。"
     },
     "newSeedSetup": {
         "seedNotGenerated": "尚未產生種子碼",
@@ -316,7 +316,7 @@
         "twoFA": "雙重身分驗證",
         "changePassword": "修改密碼",
         "advanced": "進階設定",
-        "about": "About",
+        "about": "關於",
         "logout": "登出",
         "reset": "重設錢包",
         "syncingComplete": "同步完成",
@@ -347,14 +347,14 @@
         "fetchedConversionRatesExplanation": "成功取得 {{currency}} 最新匯率。",
         "undo": "復原",
         "redo": "重做",
-        "aboutTrinity": "About Trinity",
+        "aboutTrinity": "關於 Trinity",
         "lockScreenTimeout": "逾時鎖定螢幕 (分鐘)",
         "autoNodeSwitching": "當無法連上所選節點時自動切換節點。",
-        "nodeChangeSuccess": "Successfully changed node",
-        "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
-        "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
-        "nodeChangeError": "Error changing node",
-        "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
+        "nodeChangeSuccess": "成功變更節點",
+        "nodeChangeSuccessNoRemotePow": "節點已變更為 {{node}}，不過此節點並不支援遠端工作量證明。",
+        "nodeChangeSuccessExplanation": "節點已變更為 {{node}}。",
+        "nodeChangeError": "變更節點時出錯",
+        "nodeChangeErrorExplanation": "變更節點時發生錯誤，請再試一次。"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "輸入密碼以重設您的錢包。",
@@ -463,7 +463,7 @@
     "useExistingSeed": {
         "title": "輸入種子碼和帳戶名稱。",
         "incorrectFormat": "種子碼格式不符",
-        "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
+        "validSeedExplanation": "有效的種子碼應為 81 個字元而且僅包含 A-Z 或 9。"
     },
     "viewSeed": {
         "enterPassword": "輸入密碼查看您的種子碼。",
@@ -483,16 +483,16 @@
         "instructionsEnable": "觸摸指紋辨識器來啟用指紋驗證",
         "instructionsDisable": "觸摸指紋辨識器來停用指紋驗證",
         "fingerprintAuthEnabled": "生物識別驗證已啟用",
-        "fingerprintAuthEnabledExplanation": "You have successfully enabled biometric authentication.",
+        "fingerprintAuthEnabledExplanation": "您已成功啟用生物識別驗證。",
         "fingerprintAuthDisabled": "生物識別驗證已停用",
-        "fingerprintAuthDisabledExplanation": "You have successfully disabled biometric authentication.",
+        "fingerprintAuthDisabledExplanation": "您已成功停用生物識別驗證。",
         "fingerprintAuthFailed": "生物識別驗證失敗",
         "fingerprintAuthFailedExplanation": "指紋驗證失敗，請再試一次。",
         "status": "狀態",
         "enabled": "已啟用",
         "disabled": "已停用",
-        "fingerprintUnavailable": "Biometric authentication unavailable",
-        "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
+        "fingerprintUnavailable": "生物識別驗證無法使用",
+        "fingerprintUnavailableExplanation": "您的裝置不支援生物識別驗證，或者裝置設定中並沒有啟用此權限。",
         "buttonInstructionsDisable": "按下方按鈕停用指紋驗證。",
         "buttonInstructionsEnable": "按下方按鈕啟用指紋驗證。",
         "buttonInstructionsDisableIPhoneX": "按下方按鈕停用 Face ID。",
