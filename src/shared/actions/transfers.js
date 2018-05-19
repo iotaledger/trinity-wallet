@@ -29,6 +29,7 @@ import {
     prepareTransferArray,
     filterInvalidPendingTransactions,
     performPow,
+    getPendingOutgoingTransfersForAddresses,
 } from '../libs/iota/transfers';
 import { syncAccountAfterReattachment, syncAccount, syncAccountAfterSpending } from '../libs/iota/accounts';
 import {
@@ -389,7 +390,14 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                     // TODO: At this point, we could leverage the change addresses and allow user making a transfer on top from those.
                 } else if (get(inputs, 'totalBalance') < value) {
                     chainBrokenInternally = true;
-                    throw new Error(Errors.ADDRESS_HAS_PENDING_TRANSFERS);
+                    const addresses = accountState.addresses;
+                    const transfers = accountState.transfers;
+                    const pendingOutgoingTransfers = getPendingOutgoingTransfersForAddresses(addresses, transfers);
+                    if (size(pendingOutgoingTransfers)) {
+                        throw new Error(Errors.ADDRESS_HAS_PENDING_TRANSFERS);
+                    } else {
+                        throw new Error(Errors.FUNDS_AT_SPENT_ADDRESSES);
+                    }
                 }
 
                 // Do not allow receiving address to be one of the user's own input addresses.
@@ -536,6 +544,15 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                             'error',
                             i18next.t('global:pleaseWait'),
                             i18next.t('global:pleaseWaitTransferExplanation'),
+                            20000,
+                        ),
+                    );
+                } else if (message === Errors.FUNDS_AT_SPENT_ADDRESSES && chainBrokenInternally) {
+                    return dispatch(
+                        generateAlert(
+                            'error',
+                            i18next.t('global:spentAddressExplanation'),
+                            i18next.t('global:discordInformation'),
                             20000,
                         ),
                     );
