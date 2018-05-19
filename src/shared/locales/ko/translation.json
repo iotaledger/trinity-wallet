@@ -124,7 +124,9 @@
         "couldNotVerifyDeviceIntegrity": "Google 플레이 서비스를 사용할 수 없어 기기의 무결성을 확인하지 못했습니다.",
         "clear": "지우기",
         "noNetworkConnection": "네트워크에 연결되지 않음",
-        "noNetworkConnectionExplanation": "인터넷 연결이 오프라인 상태입니다."
+        "noNetworkConnectionExplanation": "인터넷 연결이 오프라인 상태입니다.",
+        "spentAddressExplanation": "WARNING: Funds on spent addresses",
+        "discordInformation": "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
