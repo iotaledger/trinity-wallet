@@ -124,7 +124,9 @@
         "couldNotVerifyDeviceIntegrity": "Cihaz bütünlüğü Google Play Servisleri mevcut olmadığı için doğrulanamıyor.",
         "clear": "TEMİZLE",
         "noNetworkConnection": "Ağ bağlantısı yok",
-        "noNetworkConnectionExplanation": "İnternet bağlantınız çevrimdışı görünüyor."
+        "noNetworkConnectionExplanation": "İnternet bağlantınız çevrimdışı görünüyor.",
+        "spentAddressExplanation": "WARNING: Funds on spent addresses",
+        "discordInformation": "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Geçersiz karakterler içeriyor",
