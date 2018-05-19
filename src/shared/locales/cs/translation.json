@@ -5,7 +5,6 @@
         "continue?": "Opravdu si přejete pokračovat?",
         "noTransactions": "ŽÁDNÁ NEDÁVNÁ HISTORIE",
         "refresh": "OBNOVIT",
-        "qr": "QR",
         "balanceError": "Nedostatečný zůstatek",
         "balanceErrorMessage": "Nemáte dostatek IOTA k dokončení této transakce.",
         "transferError": "Chyba transakce",
@@ -36,6 +35,7 @@
         "manualCopy": "Napište Seed",
         "paperWallet": "Tisk papírové kopie",
         "copyToClipboard": "Přidat do Správce hesel",
+        "qr": "QR",
         "notAvailable": "Tato funkce není k dispozici",
         "notAvailableExplanation": "Bude přidáno později.",
         "enterSeed": "Prosím zadejte Váš Seed.",
@@ -61,8 +61,9 @@
         "node": "Node",
         "cannotPerformAction": "Akci nelze provést",
         "cannotPerformActionExplanation": "Chcete-li obnovit peněženku, přejděte na Rozšířená nastavení.",
-        "attachToTangleUnavailable": "Připojení do Tangle je nedostupné",
-        "attachToTangleUnavailableExplanation": "Připojení do Tangle není ve vybraném Nodu k dispozici.",
+        "attachToTangleUnavailable": "Remote Proof of Work is unavailable",
+        "attachToTangleUnavailableExplanation": "Remote Proof of Work is not available on your selected node. Either change node or set Proof of Work to Local in Advanced Settings.",
+        "attachToTangleUnavailableExplanationShort": "Remote Proof of Work is not available on your selected node.",
         "wallet": "Peněženka",
         "sent": "Odesláno",
         "received": "Přijato",
@@ -87,6 +88,8 @@
         "rebroadcastErrorExplanation": "Something went wrong while rebroadcasting your transaction. Please try again.",
         "promoted": "Successfully promoted transaction",
         "promotedExplanation": "Promoted transaction with hash {{hash}}",
+        "autopromotionError": "Could not auto-promote transaction",
+        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node.",
         "promotionError": "Could not promote transaction",
         "promotionErrorExplanation": "Při podpoře transakce se něco nezdařilo. Prosím, zkuste to znovu.",
         "noLongerValid": "Balíček, který se snažíte podpořit, již není platný",
@@ -168,7 +171,9 @@
         "doNotOpen": "Do not open any other apps during this process.",
         "tapConfirm": "Please tap the checkbox below to confirm.",
         "passwordManagerCheckbox": "I will store my seed in a password manager",
-        "copy": "COPY"
+        "copy": "COPY",
+        "noPasswordManagers": "No supported password managers installed",
+        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android."
     },
     "enterSeed": {
         "invalidCharacters": "Seed obsahuje neplatné znaky",
@@ -202,7 +207,8 @@
         "loadingFirstTime": "První načítání Seedu.",
         "thisMayTake": "Toto může chvíli trvat.",
         "doNotMinimise": "Neminimalizujte, ani nezavírejte aplikaci.",
-        "youMayNotice": "Může dojít ke zpomalení Vašeho zařízení."
+        "youMayNotice": "Může dojít ke zpomalení Vašeho zařízení.",
+        "takingAWhile": "This seems to be taking a while"
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seed nebyl vygenerován",
@@ -308,7 +314,7 @@
         "twoFA": "Dvoufaktorové ověření 2FA",
         "changePassword": "Změnit heslo",
         "advanced": "Pokročilá nastavení",
-        "about": "O Trinity",
+        "about": "About",
         "logout": "Odhlásit",
         "reset": "Obnovit peněženku",
         "syncingComplete": "Synchronizace dokončena",
@@ -339,8 +345,14 @@
         "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rate for {{currency}}.",
         "undo": "Zrušit",
         "redo": "Znovu",
+        "aboutTrinity": "About Trinity",
         "lockScreenTimeout": "Zámek obrazovky časový limit (minuty)",
-        "autoNodeSwitching": "Automaticky přepnout na jiný Node, pokud vybraný není dostupný"
+        "autoNodeSwitching": "Automaticky přepnout na jiný Node, pokud vybraný není dostupný",
+        "nodeChangeSuccess": "Successfully changed node",
+        "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
+        "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
+        "nodeChangeError": "Error changing node",
+        "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Pro smazání peněženky zadejte Vaše heslo.",
@@ -449,7 +461,7 @@
     "useExistingSeed": {
         "title": "Zadejte Seed a název účtu.",
         "incorrectFormat": "Incorrect seed format",
-        "validSeedExplanation": "'Valid seeds should be 81 characters and contain only A-Z or 9.'"
+        "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
     },
     "viewSeed": {
         "enterPassword": "Pro zobrazení Vašeho Seedu zadejte heslo.",
@@ -469,16 +481,16 @@
         "instructionsEnable": "Chcete-li zapnout funkci ověření otiskem prstu, přiložte prst na čtečku",
         "instructionsDisable": "Chcete-li vypnout funkci ověření otiskem prstu, přiložte prst na čtečku",
         "fingerprintAuthEnabled": "Ověření pomocí otisků prstů je zapnuté",
-        "fingerprintAuthEnabledExplanation": "Úspěšně jste aktivovali ověřování pomocí čtečky otisků prstů.",
+        "fingerprintAuthEnabledExplanation": "You have successfully enabled biometric authentication.",
         "fingerprintAuthDisabled": "Ověření pomocí otisků prstů je vypnuté",
-        "fingerprintAuthDisabledExplanation": "Úspěšně jste deaktivovali ověřování pomocí čtečky otisků prstů.",
+        "fingerprintAuthDisabledExplanation": "You have successfully disabled biometric authentication.",
         "fingerprintAuthFailed": "Ověření pomocí otisků prstů selhalo",
         "fingerprintAuthFailedExplanation": "Ověření pomocí otisku prstu selhalo. Prosím zkuste znovu.",
         "status": "Stav",
         "enabled": "Aktivováno",
         "disabled": "Vypnuto",
-        "fingerprintUnavailable": "Ověření pomocí otisků prstů není k dispozici",
-        "fingerprintUnavailableExplanation": "Vaše zařízení nepodporuje ověření pomocí otisků prstů nebo nebylo nakonfigurováno.",
+        "fingerprintUnavailable": "Biometric authentication unavailable",
+        "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Stisknutím tlačítka níže vypnete ověřování otisku prstů.",
         "buttonInstructionsEnable": "Stisknutím tlačítka níže aktivujete ověření otisků prstů.",
         "buttonInstructionsDisableIPhoneX": "Stisknutím tlačítka níže vypnete ověření pomocí rozpoznávání obličeje.",

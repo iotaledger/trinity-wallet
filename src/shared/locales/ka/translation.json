@@ -5,7 +5,6 @@
         "continue?": "დარწმუნებული ხართ რომ გინდათ გაგრძელება?",
         "noTransactions": "მონაცემები არ არის",
         "refresh": "განახლება",
-        "qr": "QR",
         "balanceError": "არ გაქვთ საკმარისი თანხა",
         "balanceErrorMessage": "თქვენ არ გაქვთ საკმარისი რაოდენობის IOTA გადარიცხვის დასასრულებლად.",
         "transferError": "შეცდომა გადარიცხვისას",
@@ -36,6 +35,7 @@
         "manualCopy": "Write seed down",
         "paperWallet": "Print paper copy",
         "copyToClipboard": "Add to password manager",
+        "qr": "QR",
         "notAvailable": "This function is not available",
         "notAvailableExplanation": "It will be added at a later stage.",
         "enterSeed": "Please enter your seed.",
@@ -61,8 +61,9 @@
         "node": "Node",
         "cannotPerformAction": "Cannot perform action",
         "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
-        "attachToTangleUnavailable": "Attach to Tangle unavailable",
-        "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node.",
+        "attachToTangleUnavailable": "Remote Proof of Work is unavailable",
+        "attachToTangleUnavailableExplanation": "Remote Proof of Work is not available on your selected node. Either change node or set Proof of Work to Local in Advanced Settings.",
+        "attachToTangleUnavailableExplanationShort": "Remote Proof of Work is not available on your selected node.",
         "wallet": "საფულე",
         "sent": "გაგზავნილი",
         "received": "მიღებული",
@@ -87,6 +88,8 @@
         "rebroadcastErrorExplanation": "Something went wrong while rebroadcasting your transaction. Please try again.",
         "promoted": "Successfully promoted transaction",
         "promotedExplanation": "Promoted transaction with hash {{hash}}",
+        "autopromotionError": "Could not auto-promote transaction",
+        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node.",
         "promotionError": "Could not promote transaction",
         "promotionErrorExplanation": "Something went wrong while promoting your transaction. Please try again.",
         "noLongerValid": "The bundle you are trying to promote is no longer valid",
@@ -168,7 +171,9 @@
         "doNotOpen": "Do not open any other apps during this process.",
         "tapConfirm": "Please tap the checkbox below to confirm.",
         "passwordManagerCheckbox": "I will store my seed in a password manager",
-        "copy": "COPY"
+        "copy": "COPY",
+        "noPasswordManagers": "No supported password managers installed",
+        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android."
     },
     "enterSeed": {
         "invalidCharacters": "Seed contains invalid characters",
@@ -202,7 +207,8 @@
         "loadingFirstTime": "Loading seed for the first time.",
         "thisMayTake": "This may take a while.",
         "doNotMinimise": "Do not minimise or close the app.",
-        "youMayNotice": "You may notice your device slowing down."
+        "youMayNotice": "You may notice your device slowing down.",
+        "takingAWhile": "This seems to be taking a while"
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seed has not been generated",
@@ -308,7 +314,7 @@
         "twoFA": "Two-factor authentication",
         "changePassword": "Change password",
         "advanced": "Advanced settings",
-        "about": "About Trinity",
+        "about": "About",
         "logout": "Log out",
         "reset": "Reset wallet",
         "syncingComplete": "Syncing complete",
@@ -339,8 +345,14 @@
         "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rate for {{currency}}.",
         "undo": "Undo",
         "redo": "Redo",
+        "aboutTrinity": "About Trinity",
         "lockScreenTimeout": "Lock Screen Timeout (Minutes)",
-        "autoNodeSwitching": "Automatically switch node when selected is unreachable"
+        "autoNodeSwitching": "Automatically switch node when selected is unreachable",
+        "nodeChangeSuccess": "Successfully changed node",
+        "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
+        "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
+        "nodeChangeError": "Error changing node",
+        "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",
@@ -449,7 +461,7 @@
     "useExistingSeed": {
         "title": "Enter a seed and account name.",
         "incorrectFormat": "Incorrect seed format",
-        "validSeedExplanation": "'Valid seeds should be 81 characters and contain only A-Z or 9.'"
+        "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
     },
     "viewSeed": {
         "enterPassword": "Enter password to view your seed.",
@@ -469,16 +481,16 @@
         "instructionsEnable": "Touch fingerprint reader to enable fingerprint authentication",
         "instructionsDisable": "Touch fingerprint reader to disable fingerprint authentication",
         "fingerprintAuthEnabled": "Biometric authentication enabled",
-        "fingerprintAuthEnabledExplanation": "You have succesfully enabled biometric authentication.",
+        "fingerprintAuthEnabledExplanation": "You have successfully enabled biometric authentication.",
         "fingerprintAuthDisabled": "Biometric authentication disabled",
-        "fingerprintAuthDisabledExplanation": "You have succesfully disabled biometric authentication.",
+        "fingerprintAuthDisabledExplanation": "You have successfully disabled biometric authentication.",
         "fingerprintAuthFailed": "Biometric authentication failed",
         "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
         "status": "Status",
         "enabled": "Enabled",
         "disabled": "Disabled",
-        "fingerprintUnavailable": "Biometric authenticatation unavailable",
-        "fingerprintUnavailableExplanation": "Your device does not support biometric authenticatation or it has not been configured in the device settings.",
+        "fingerprintUnavailable": "Biometric authentication unavailable",
+        "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
         "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID.",

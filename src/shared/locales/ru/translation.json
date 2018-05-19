@@ -5,7 +5,6 @@
         "continue?": "Вы уверены, что хотите продолжить?",
         "noTransactions": "НЕДАВНЯЯ ИСТОРИЯ ОТСУТСТВУЕТ",
         "refresh": "ОБНОВИТЬ",
-        "qr": "QR",
         "balanceError": "Недостаточно средств",
         "balanceErrorMessage": "У вас недостаточно IOTA для завершения данного перевода.",
         "transferError": "Ошибка перевода",
@@ -36,6 +35,7 @@
         "manualCopy": "Запишите ключ",
         "paperWallet": "Распечатать бумажную версию",
         "copyToClipboard": "Добавить в менеджер паролей",
+        "qr": "QR",
         "notAvailable": "Эта функция недоступна",
         "notAvailableExplanation": "Это будет добавлено на более поздней стадии.",
         "enterSeed": "Пожалуйста, введите Ваш ключ.",
@@ -61,8 +61,9 @@
         "node": "Узел",
         "cannotPerformAction": "Не удается выполнить действие",
         "cannotPerformActionExplanation": "Перейдите в дополнительные настройки для сброса кошелька.",
-        "attachToTangleUnavailable": "Привязка к Tangle недоступна",
-        "attachToTangleUnavailableExplanation": "Привязка к Tangle недоступна на выбранном узле.",
+        "attachToTangleUnavailable": "Remote Proof of Work is unavailable",
+        "attachToTangleUnavailableExplanation": "Remote Proof of Work is not available on your selected node. Either change node or set Proof of Work to Local in Advanced Settings.",
+        "attachToTangleUnavailableExplanationShort": "Remote Proof of Work is not available on your selected node.",
         "wallet": "Кошелёк",
         "sent": "Отправлено",
         "received": "Получено",
@@ -87,6 +88,8 @@
         "rebroadcastErrorExplanation": "Something went wrong while rebroadcasting your transaction. Please try again.",
         "promoted": "Successfully promoted transaction",
         "promotedExplanation": "Promoted transaction with hash {{hash}}",
+        "autopromotionError": "Could not auto-promote transaction",
+        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node.",
         "promotionError": "Could not promote transaction",
         "promotionErrorExplanation": "Что-то пошло не так при отправке Вашего перевода. Пожалуйста, повторите попытку.",
         "noLongerValid": "Пакет, который вы пытаетесь содействовать, больше не действителен",
@@ -121,7 +124,9 @@
         "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available.",
         "clear": "CLEAR",
         "noNetworkConnection": "No network connection",
-        "noNetworkConnectionExplanation": "Your internet connection appears to be offline."
+        "noNetworkConnectionExplanation": "Your internet connection appears to be offline.",
+        "spentAddressExplanation": "WARNING: Funds on spent addresses",
+        "discordInformation": "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ключ содержит недопустимые символы",
@@ -168,7 +173,9 @@
         "doNotOpen": "Do not open any other apps during this process.",
         "tapConfirm": "Please tap the checkbox below to confirm.",
         "passwordManagerCheckbox": "I will store my seed in a password manager",
-        "copy": "COPY"
+        "copy": "COPY",
+        "noPasswordManagers": "No supported password managers installed",
+        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android."
     },
     "enterSeed": {
         "invalidCharacters": "Ключ содержит недопустимые символы",
@@ -202,7 +209,8 @@
         "loadingFirstTime": "Загрузка ключа в самый первый раз.",
         "thisMayTake": "Это может занять некоторое время.",
         "doNotMinimise": "Не минимизировать или закрыть приложение.",
-        "youMayNotice": "Вы можете заметить замедление работы Вашего устройства."
+        "youMayNotice": "Вы можете заметить замедление работы Вашего устройства.",
+        "takingAWhile": "This seems to be taking a while"
     },
     "newSeedSetup": {
         "seedNotGenerated": "Ключ не был сгенерирован",
@@ -308,7 +316,7 @@
         "twoFA": "Двухфакторная аутентификация",
         "changePassword": "Изменить пароль",
         "advanced": "Дополнительные настройки",
-        "about": "О Тринити",
+        "about": "About",
         "logout": "Выход",
         "reset": "Сбросить настройки кошелька",
         "syncingComplete": "Синхронизация завершена",
@@ -339,8 +347,14 @@
         "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rate for {{currency}}.",
         "undo": "Отменить",
         "redo": "Вернуть",
+        "aboutTrinity": "About Trinity",
         "lockScreenTimeout": "Время ожидания блокировки экрана (минут)",
-        "autoNodeSwitching": "Автоматически менять узел, если выбранный нндоступен"
+        "autoNodeSwitching": "Автоматически менять узел, если выбранный нндоступен",
+        "nodeChangeSuccess": "Successfully changed node",
+        "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
+        "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
+        "nodeChangeError": "Error changing node",
+        "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Введите Ваш пароль для сброса настроек кошелька.",
@@ -449,7 +463,7 @@
     "useExistingSeed": {
         "title": "Введите ключ и название счёта.",
         "incorrectFormat": "Incorrect seed format",
-        "validSeedExplanation": "'Valid seeds should be 81 characters and contain only A-Z or 9.'"
+        "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
     },
     "viewSeed": {
         "enterPassword": "Введите пароль чтобы увидеть Ваш ключ.",
@@ -469,16 +483,16 @@
         "instructionsEnable": "Коснитесь датчика касания, чтобы включить аутентификацию касанием",
         "instructionsDisable": "Коснитесь сенсора чтения отпечатков пальцев на Вашем устройстве для отключения аутентификации на основе отпечатков пальцев",
         "fingerprintAuthEnabled": "Биометрическая аутентификация включена",
-        "fingerprintAuthEnabledExplanation": "Вы успешно включили биометрическую аутентификацию.",
+        "fingerprintAuthEnabledExplanation": "You have successfully enabled biometric authentication.",
         "fingerprintAuthDisabled": "Биометрическая аутентификация отключена",
-        "fingerprintAuthDisabledExplanation": "Вы успешно отключили биометрическую аутентификацию.",
+        "fingerprintAuthDisabledExplanation": "You have successfully disabled biometric authentication.",
         "fingerprintAuthFailed": "Биометрическая аутентификация провалена",
         "fingerprintAuthFailedExplanation": "Ошибка аутентификации на основе отпечатков пальцев. Пожалуйста, попробуйте еще раз.",
         "status": "Статус",
         "enabled": "Включено",
         "disabled": "Выключено",
-        "fingerprintUnavailable": "Биометрическая аутентификация недоступна",
-        "fingerprintUnavailableExplanation": "Ваше устройство не поддерживает биометрическую аутентификацию или она не былв настроена в параметрах устройства.",
+        "fingerprintUnavailable": "Biometric authentication unavailable",
+        "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Нажмите на кнопку ниже, чтобы отключить аутентификацию на основе отпечатков пальцев.",
         "buttonInstructionsEnable": "Нажмите на кнопку ниже, чтобы включить аутентификацию на основе отпечатков пальцев.",
         "buttonInstructionsDisableIPhoneX": "Нажмите на кнопку ниже, чтобы отключить идентификатор лица.",
