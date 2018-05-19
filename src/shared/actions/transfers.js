@@ -38,7 +38,11 @@ import {
     syncAccountBeforeManualRebroadcast,
 } from './accounts';
 import { shouldAllowSendingToAddress, getAddressesUptoRemainder } from '../libs/iota/addresses';
-import { getStartingSearchIndexToPrepareInputs, getUnspentInputs } from '../libs/iota/inputs';
+import {
+    getStartingSearchIndexToPrepareInputs,
+    getUnspentInputs,
+    getSpentAddressesFromTransactions,
+} from '../libs/iota/inputs';
 import { generateAlert, generateTransferErrorAlert, generatePromotionErrorAlert } from './alerts';
 import i18next from '../i18next.js';
 import Errors from '../libs/errors';
@@ -355,13 +359,21 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 return filterInvalidPendingTransactions(valueTransfers, accountState.addresses);
             })
             .then((filteredTransfers) => {
-                const { addresses } = accountState;
+                const { addresses, transfers } = accountState;
                 const startIndex = getStartingSearchIndexToPrepareInputs(addresses);
+                const spentAddressesFromTransactions = getSpentAddressesFromTransactions(transfers);
 
                 // Preparing inputs
                 dispatch(setNextStepAsActive());
 
-                return getUnspentInputs(addresses, filteredTransfers, startIndex, value, null);
+                return getUnspentInputs(
+                    addresses,
+                    spentAddressesFromTransactions,
+                    filteredTransfers,
+                    startIndex,
+                    value,
+                    null,
+                );
             })
             .then((inputs) => {
                 // allBalance -> total balance associated with addresses.

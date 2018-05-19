@@ -1,7 +1,13 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
-import { prepareInputs, getStartingSearchIndexToPrepareInputs, getUnspentInputs } from '../../../libs/iota/inputs';
+import {
+    prepareInputs,
+    getStartingSearchIndexToPrepareInputs,
+    getUnspentInputs,
+    getSpentAddressesFromTransactions,
+} from '../../../libs/iota/inputs';
 import { iota, SwitchingConfig } from '../../../libs/iota/index';
+import * as mockTransactions from '../../__samples__/transactions';
 
 describe('libs: iota/inputs', () => {
     before(() => {
@@ -231,7 +237,7 @@ describe('libs: iota/inputs', () => {
                     .stub(iota.api, 'wereAddressesSpentFrom')
                     .yields(null, [false, false, false]);
 
-                return getUnspentInputs(addressData, [], 1, 13, null).then((inputs) => {
+                return getUnspentInputs(addressData, [], [], 1, 13, null).then((inputs) => {
                     expect(inputs.inputs).to.eql([
                         {
                             address:
@@ -267,15 +273,8 @@ describe('libs: iota/inputs', () => {
                     .stub(iota.api, 'wereAddressesSpentFrom')
                     .yields(null, [false, true, false]);
 
-                return getUnspentInputs(addressData, [], 1, 13, null).then((inputs) => {
+                return getUnspentInputs(addressData, ['B'.repeat(81)], [], 1, 13, null).then((inputs) => {
                     expect(inputs.inputs).to.eql([
-                        {
-                            address:
-                                'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB',
-                            balance: 1,
-                            keyIndex: 1,
-                            security: 2,
-                        },
                         {
                             address:
                                 'DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD',
@@ -302,7 +301,7 @@ describe('libs: iota/inputs', () => {
                     },
                 ];
 
-                return getUnspentInputs(addressData, pendingTransfers, 1, 13, null).then((inputs) => {
+                return getUnspentInputs(addressData, [], pendingTransfers, 1, 13, null).then((inputs) => {
                     expect(inputs.inputs).to.eql([
                         {
                             address:
@@ -323,6 +322,15 @@ describe('libs: iota/inputs', () => {
                     wereAddressesSpentFrom.restore();
                 });
             });
+        });
+    });
+
+    describe('#getSpentAddressesFromTransactions', () => {
+        it('should return addresses used as inputs', () => {
+            expect(getSpentAddressesFromTransactions(mockTransactions.normalizedBundles)).to.eql([
+                'SRWJECVJMNGLRTRNUBRBWOFWKXHWFOWXSZIARUSCAGQRMQNDOFJKJYRUIBCMQWIUTHSMQEYW9ZK9QBXAC',
+                'PEAQU9KBPVHYXLQIUHECEMVLVSLK9QWVITCNPCVXVOL9COKMODBWYBUNTQXT9DMXUBYUFNVOLBCVUIKRX',
+            ]);
         });
     });
 });
