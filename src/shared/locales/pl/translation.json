@@ -125,8 +125,8 @@
         "clear": "WYCZYŚĆ",
         "noNetworkConnection": "Brak połączenia z siecią",
         "noNetworkConnectionExplanation": "Wygląda na to, że utracono dostęp do internetu.",
-        "spentAddressExplanation": "WARNING: Funds on spent addresses",
-        "discordInformation": "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do."
+        "spentAddressExplanation": "UWAGA: Środki na zużytym adresie",
+        "discordInformation": "Wysyłanie z tego samego adresu więcej niż jeden raz jest niebezpieczne. Wejdź na kanał #help czatu Discord, aby dowiedzieć się, co możesz zrobić."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
