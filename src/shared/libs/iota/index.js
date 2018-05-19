@@ -10,10 +10,10 @@ function injectQuorum() {
     // quorum shim
     if (useLegacyQuorum) {
         iotaAPI.api = Object.assign(iotaAPI.api, {
-            getInclusionStates: (transactions, tips, callback) => {
+            getLatestInclusion: (transactions, callback) => {
                 getQuorumResult(
                     (nodeapi, cb) => {
-                        nodeapi.api.getInclusionStates(transactions, tips, cb);
+                        nodeapi.api.getLatestInclusion(transactions, cb);
                     },
                     {
                         timeout: 1000,
