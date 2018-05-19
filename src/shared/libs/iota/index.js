@@ -18,6 +18,9 @@ function injectQuorum() {
                     {
                         timeout: 1000,
                         unorderedArrays: false,
+                        safeResult: (results) => {
+                            return Array(addresses.length).fill(false)
+                        }
                     },
                     callback,
                 );
@@ -30,6 +33,9 @@ function injectQuorum() {
                     {
                         timeout: 1000,
                         unorderedArrays: false,
+                        safeResult: (results) => {
+                            return Array(addresses.length).fill(true)
+                        }
                     },
                     callback,
                 );

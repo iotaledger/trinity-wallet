@@ -30,7 +30,8 @@ export const DEFAULT_SECURITY = 2;
 export const DEFAULT_BALANCES_THRESHOLD = 100;
 
 export const useLegacyQuorum = true;
-export const quorumPoolSize = 5;
+export const quorumPoolSize = 12;
+export const quorumThreshold = 0.665;
 export const quorumPollFreq = 60 * 1000;
 // A list of nodes for the quorum system.
 export const quorumNodes = [

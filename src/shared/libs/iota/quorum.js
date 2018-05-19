@@ -1,7 +1,7 @@
 import objectHash from 'object-hash';
 import sampleSize from 'lodash/sampleSize';
 import { setApiTimeout, getValidNodes } from './multinode';
-import { quorumNodes, quorumPoolSize, useLegacyQuorum } from '../../config';
+import { quorumNodes, quorumPoolSize, quorumThreshold, useLegacyQuorum } from '../../config';
 
 let validQuorumNodes = [];
 
@@ -45,14 +45,17 @@ export function getQuorumResult(nodefunc, options, callback) {
         result = result.filter(Boolean);
 
         for (const r of result) {
-            r.duration = 0;
+            if (r.duration) {
+                // some calls
+                r.duration = 0;
+            }
         }
 
-        callback(undefined, getMostCommon(result, options.unorderedArrays || false));
+        callback(undefined, getMostCommon(result, options.unorderedArrays || false, options.safeResult));
     });
 }
 
-export function getMostCommon(objs, unorderedArrays) {
+export function getMostCommon(objs, unorderedArrays, safeResult) {
     /*
       Returns the most commonly seen object in array.
     */
@@ -80,5 +83,11 @@ export function getMostCommon(objs, unorderedArrays) {
         }
     }
 
-    return best;
+    if (maxseen / objs.length > quorumThreshold) {
+        // passwed threshold
+        return best;
+    } else {
+        // most common result but still less than threshold
+        return safeResult === undefined ? best : safeResult(objs);
+    }
 }
