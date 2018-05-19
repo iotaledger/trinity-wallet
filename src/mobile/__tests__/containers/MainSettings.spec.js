@@ -21,6 +21,7 @@ const getProps = (overrides) =>
             setSetting: noop,
             clearWalletData: noop,
             setPassword: noop,
+            toggleModalActivity: noop,
             t: (arg) => arg,
         },
         overrides,
@@ -55,6 +56,10 @@ describe('Testing MainSettings component', () => {
         it('should require a clearWalletData function as a prop', () => {
             expect(MainSettings.propTypes.clearWalletData).toEqual(PropTypes.func.isRequired);
         });
+
+        it('should require a toggleModalActivity function as a prop', () => {
+            expect(MainSettings.propTypes.toggleModalActivity).toEqual(PropTypes.func.isRequired);
+        });
     });
 
     describe('when renders', () => {
@@ -84,9 +89,9 @@ describe('Testing MainSettings component', () => {
             { func: 'setSetting', calledWith: 'currencySelection' },
             { func: 'setSetting', calledWith: 'languageSelection' },
             { func: 'setSetting', calledWith: 'accountManagement' },
-            { func: 'setSetting', calledWith: 'changePassword' },
             { func: 'setSetting', calledWith: 'securitySettings' },
             { func: 'setSetting', calledWith: 'advancedSettings' },
+            { func: 'setSetting', calledWith: 'about' },
         ].forEach((item, idx) => {
             describe(`when TouchableOpacity component prop onPress on index ${idx + 1} is triggered`, () => {
                 it(`should call prop method ${item.func}`, () => {

@@ -5,7 +5,6 @@
         "continue?": "您確定要繼續嗎？",
         "noTransactions": "無最近歷史紀錄",
         "refresh": "重新整理",
-        "qr": "QR",
         "balanceError": "餘額不足",
         "balanceErrorMessage": "您沒有足夠的 IOTA 完成本次交易。",
         "transferError": "交易錯誤",
@@ -14,7 +13,7 @@
         "transferSentMessage": "您的交易已經傳送至 Tangle",
         "messageSent": "訊息送出",
         "messageSentMessage": "您的訊息已經傳送至 Tangle",
-        "keyReuse": "Sending to spent address",
+        "keyReuse": "轉帳到已支出過的地址",
         "keyReuseError": "您不能傳送到已使用過的地址。",
         "invalidResponse": "節點錯誤",
         "invalidResponseExplanation": "節點回傳錯誤，請檢查通知了解詳細資訊。",
@@ -36,6 +35,7 @@
         "manualCopy": "寫下種子碼",
         "paperWallet": "列印副本",
         "copyToClipboard": "加入密碼管理工具",
+        "qr": "QR",
         "notAvailable": "此功能尚未開放",
         "notAvailableExplanation": "此功能將於稍後加入。",
         "enterSeed": "請輸入您的種子碼",
@@ -48,6 +48,7 @@
         "otherWallet": "其他帳戶",
         "yes": "是",
         "no": "否",
+        "okay": "確認",
         "password": "密碼",
         "passwordOrFingerprint": "密碼或指紋",
         "unrecognisedPassword": "密碼不符",
@@ -60,8 +61,9 @@
         "node": "節點",
         "cannotPerformAction": "無法執行操作",
         "cannotPerformActionExplanation": "請到進階設定重置錢包。",
-        "attachToTangleUnavailable": "無法連接到 Tangle",
-        "attachToTangleUnavailableExplanation": "連接到 Tangle 的功能無法在您所選的節點使用。",
+        "attachToTangleUnavailable": "Remote Proof of Work is unavailable",
+        "attachToTangleUnavailableExplanation": "Remote Proof of Work is not available on your selected node. Either change node or set Proof of Work to Local in Advanced Settings.",
+        "attachToTangleUnavailableExplanationShort": "Remote Proof of Work is not available on your selected node.",
         "wallet": "錢包",
         "sent": "已支出",
         "received": "已接收",
@@ -73,19 +75,30 @@
         "addresses": "地址",
         "reattach": "重新連接",
         "promote": "促進",
+        "retry": "重試",
         "rebroadcast": "重新廣播",
         "pressBackAgain": "再按一次返回鍵退出",
-        "autoreattaching": "自動重新連接",
-        "autoreattachingExplanation": "使用雜湊值 {{hash}} 重新連接交易",
+        "reattached": "成功重新連接交易",
+        "reattachedExplanation": "重新連接的交易雜湊值為 {{hash}}",
         "autopromoting": "自動促進交易",
         "autopromotingExplanation": "使用雜湊值 {{hash}} 促進交易",
-        "promoting": "促進交易",
+        "rebroadcasted": "成功重新廣播交易",
+        "rebroadcastedExplanation": "重新廣播的交易雜湊值為 {{hash}}",
+        "rebroadcastError": "無法重新廣播交易",
+        "rebroadcastErrorExplanation": "重新廣播您的交易時發生一些錯誤，請再試一次。",
+        "promoted": "成功促進交易",
+        "promotedExplanation": "促進的交易雜湊值為 {{hash}}",
+        "autopromotionError": "Could not auto-promote transaction",
+        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node.",
         "promotionError": "無法促進交易",
         "promotionErrorExplanation": "促進您的交易時發生一些錯誤，請再試一次。",
         "noLongerValid": "您嘗試促進的交易組已經無效",
+        "transactionAlreadyConfirmed": "交易已確認",
+        "transactionAlreadyConfirmedExplanation": "您嘗試促進的交易已經確認完成。",
         "cannotSendToOwn": "傳送到自己的地址",
         "cannotSendToOwnExplanation": "您無法轉帳到自己的地址。",
         "pleaseWait": "請稍候",
+        "pleaseWaitEllipses": "請稍後...",
         "pleaseWaitExplanation": "Trinity 正在執行其他功能，請稍後再試。",
         "pleaseWaitTransferExplanation": "您目前可用餘額正用於其他交易中，請等待確認後再試一次。",
         "snapshotTransitionInProgress": "快照轉換處理中",
@@ -98,8 +111,20 @@
         "addCustomNode": "新增自訂節點",
         "nodeChanged": "節點已變更",
         "nodeChangedExplanation": "節點已成功變更。",
+        "nodeMustUseHTTPS": "無效節點 (非 HTTPS)",
+        "nodeMustUseHTTPSExplanation": "僅允許使用 HTTPS 的自訂節點。",
+        "nodeDuplicated": "重複節點",
+        "nodeDuplicatedExplanation": "自訂節點已在列表中。",
         "nodeAutoChanged": "自動切換節點",
-        "nodeAutoChangedExplanation": "當選擇的節點斷線時切換到新的節點 {{- nodeAddress}}。"
+        "nodeAutoChangedExplanation": "當選擇的節點斷線時切換到新的節點 {{- nodeAddress}}。",
+        "fingerprintOnSend": "觸摸指紋辨識器來驗證交易",
+        "masterKey": "IOTA 種子碼就是您的資金的主要金鑰。",
+        "seedThief": "如果有人取得您的種子碼，代表他們就可以偷走您的 IOTA。",
+        "googlePlayServicesNotAvailable": "Google Play 服務無法使用",
+        "couldNotVerifyDeviceIntegrity": "因為 Google Play 服務無法使用，而無法檢驗裝置完整性。",
+        "clear": "清除",
+        "noNetworkConnection": "沒有網路連線",
+        "noNetworkConnectionExplanation": "您的網路連線顯示為離線。"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
@@ -141,7 +166,14 @@
         "clickToCopy": "按下方按鈕以複製您的種子碼至密碼管理工具。",
         "doNotStore": "不要儲存種子碼於一般文字格式。",
         "copyToClipboard": "複製種子碼",
-        "shareSeed": "將種子碼儲存至密碼管理工具"
+        "shareSeed": "將種子碼儲存至密碼管理工具",
+        "storeEncrypted": "加密儲存您的種子碼到密碼管理工具中。",
+        "doNotOpen": "請勿在此階段開啟其他應用程式。",
+        "tapConfirm": "請點擊以下方框來確認。",
+        "passwordManagerCheckbox": "我會儲存我的種子碼到密碼管理工具中。",
+        "copy": "複製",
+        "noPasswordManagers": "No supported password managers installed",
+        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android."
     },
     "enterSeed": {
         "invalidCharacters": "種子碼包含無效字元",
@@ -173,15 +205,18 @@
     },
     "loading": {
         "loadingFirstTime": "首次讀取種子碼。",
-        "thisMayTake": "這可能需要一點時間.",
+        "thisMayTake": "這可能需要一點時間。",
         "doNotMinimise": "請不要最小化或關閉應用程式。",
-        "youMayNotice": "您的裝置可能會變慢。"
+        "youMayNotice": "您的裝置可能會變慢。",
+        "takingAWhile": "This seems to be taking a while"
     },
     "newSeedSetup": {
         "seedNotGenerated": "尚未產生種子碼",
         "seedNotGeneratedExplanation": "請產生新的種子碼。",
         "pressForNewSeed": "按此取得新種子碼",
-        "individualLetters": "請按各字母以隨機產生。"
+        "generateSuccess": "種子碼產生成功",
+        "individualLetters": "請按各字母以隨機產生。",
+        "whatIsASeed": "什麼是種子碼？"
     },
     "onboardingComplete": {
         "walletReady": "錢包已設置完成且能使用。若您在未來需要做任何變動，請到設定選單。"
@@ -191,7 +226,13 @@
         "storeSafely": "妥善存放。",
         "neverShare": "千萬別和任何人分享您的種子碼。",
         "iotaLogo": "IOTA 標誌",
-        "printWallet": "列印紙本錢包"
+        "printWallet": "列印紙本錢包",
+        "print": "列印",
+        "paperConvenience": "將您的種子碼列列印成紙本是最簡便的儲存方式。",
+        "publicInsecure": "但請注意使用公共 wifi 或公共印表機列印的話可能會不安全。",
+        "tapCheckboxes": "請點擊以下方框來確認。",
+        "wifiCheckbox": "我不會使用公共 wifi 來列印",
+        "printerCheckbox": "我不會使用公共印表機來列印"
     },
     "receive": {
         "addressCopied": "已複製地址",
@@ -203,8 +244,6 @@
         "spent": "已支出"
     },
     "saveYourSeed": {
-        "seedCleared": "種子已清除",
-        "seedClearedExplanation": "基於安全理由，種子已從剪貼簿清除。",
         "mustSaveYourSeed": "<0><0>您必須使用以下</0><1>其中一種</1><2>選項儲存您的種子碼。</2></0>"
     },
     "seedReentry": {
@@ -237,7 +276,7 @@
         "maximumSelected": "已選擇金額上限",
         "iotaUnits": "IOTA 單位說明",
         "sendMax": "全部傳送",
-        "fingerprintOnSend": "觸摸指紋辨識器來傳送交易"
+        "totalTime": "總計"
     },
     "setPassword": {
         "passwordTooShort": "密碼過短",
@@ -267,12 +306,15 @@
         "mode": "模式",
         "theme": "佈景主題",
         "currency": "貨幣",
+        "cannotChangeNode": "無法變更節點",
+        "cannotChangeNodeWhileSending": "傳送交易時無法變更節點。",
         "language": "語言",
         "accountManagement": "帳戶管理",
         "addNewSeed": "增加新的種子碼",
         "twoFA": "雙重身分驗證",
         "changePassword": "修改密碼",
         "advanced": "進階設定",
+        "about": "About",
         "logout": "登出",
         "reset": "重設錢包",
         "syncingComplete": "同步完成",
@@ -298,14 +340,19 @@
         "securitySettings": "安全設定",
         "fingerprint": "生物識別驗證",
         "couldNotFetchRates": "無法取得匯率",
-        "couldNotFetchRatesExplanation": "取得 {{currency}} 匯率時發生了一些錯誤。",
+        "couldNotFetchRatesExplanation": "取得 {{currency}} 匯率時發生一些錯誤。",
         "fetchedConversionRates": "取得匯率",
-        "fetchedConversionRatesExplanation": "成功取得 {{currency}} 最新的匯率。",
+        "fetchedConversionRatesExplanation": "成功取得 {{currency}} 最新匯率。",
         "undo": "復原",
         "redo": "重做",
-        "about": "關於 Trinity",
+        "aboutTrinity": "About Trinity",
         "lockScreenTimeout": "逾時鎖定螢幕 (分鐘)",
-        "autoNodeSwitching": "當無法連上所選節點時自動切換節點。"
+        "autoNodeSwitching": "當無法連上所選節點時自動切換節點。",
+        "nodeChangeSuccess": "Successfully changed node",
+        "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
+        "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
+        "nodeChangeError": "Error changing node",
+        "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "輸入密碼以重設您的錢包。",
@@ -334,6 +381,8 @@
         "bundleHashCopiedExplanation": "交易組的雜湊值已複製到剪貼簿。",
         "addressCopied": "地址已複製",
         "addressCopiedExplanation": "您的地址已複製到剪貼簿。",
+        "messageCopied": "訊息已複製",
+        "messageCopiedExplanation": "訊息已複製到剪貼簿。",
         "send": "轉帳",
         "receive": "收款"
     },
@@ -345,8 +394,15 @@
         "addNewAccount": "新增帳戶"
     },
     "addCustomNode": {
+        "customNodeAdded": "自訂節點已加入",
+        "customNodeCouldNotBeAdded": "自訂節點無法加入",
+        "customNodeAddedSuccessfully": "自訂節點已成功加入。",
         "customNode": "自訂節點",
-        "add": "新增"
+        "invalidNodeResponse": "節點回傳無效回應。",
+        "httpNodeError": "Trinity Mobile 僅支援 https 節點。",
+        "add": "新增",
+        "nodeFieldEmpty": "文字欄為空",
+        "nodeFieldEmptyExplanation": "請輸入自訂節點。"
     },
     "addNewAccount": {
         "useExistingSeed": "使用現有的種子碼",
@@ -400,10 +456,12 @@
         "thisMayTake": "這可能需要一些時間，而且您可能會注意到您的裝置變慢。",
         "doNotClose": "請注意，最小化應用程式的話將會取消同步。",
         "syncAccount": "同步帳戶",
-        "syncingYourAccount": "同步您的帳戶。"
+        "syncingYourAccount": "同步您的帳戶中。"
     },
     "useExistingSeed": {
-        "title": "輸入種子碼和帳戶名稱。"
+        "title": "輸入種子碼和帳戶名稱。",
+        "incorrectFormat": "種子碼格式不符",
+        "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
     },
     "viewSeed": {
         "enterPassword": "輸入密碼查看您的種子碼。",
@@ -422,19 +480,21 @@
     "fingerprintSetup": {
         "instructionsEnable": "觸摸指紋辨識器來啟用指紋驗證",
         "instructionsDisable": "觸摸指紋辨識器來停用指紋驗證",
-        "fingerprintAuthEnabled": "指紋驗證已啟用",
-        "fingerprintAuthEnabledExplanation": "您已成功啟用指紋驗證。",
-        "fingerprintAuthDisabled": "指紋驗證已停用",
-        "fingerprintAuthDisabledExplanation": "您已成功停用指紋驗證。",
-        "fingerprintAuthFailed": "指紋驗證失敗",
+        "fingerprintAuthEnabled": "生物識別驗證已啟用",
+        "fingerprintAuthEnabledExplanation": "You have successfully enabled biometric authentication.",
+        "fingerprintAuthDisabled": "生物識別驗證已停用",
+        "fingerprintAuthDisabledExplanation": "You have successfully disabled biometric authentication.",
+        "fingerprintAuthFailed": "生物識別驗證失敗",
         "fingerprintAuthFailedExplanation": "指紋驗證失敗，請再試一次。",
         "status": "狀態",
         "enabled": "已啟用",
         "disabled": "已停用",
-        "fingerprintUnavailable": "指紋驗證無法使用",
-        "fingerprintUnavailableExplanation": "您的裝置不支援指紋識別，或者裝置設定中並沒有啟用此權限。",
+        "fingerprintUnavailable": "Biometric authentication unavailable",
+        "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "按下方按鈕停用指紋驗證。",
         "buttonInstructionsEnable": "按下方按鈕啟用指紋驗證。",
+        "buttonInstructionsDisableIPhoneX": "按下方按鈕停用 Face ID。",
+        "buttonInstructionsEnableIPhoneX": "按下方按鈕啟用 Face ID。",
         "instructionsLogin": "觸摸指紋辨識器來登入"
     },
     "transferConfirmation": {
@@ -455,17 +515,20 @@
         "twoFADisabled": "2FA 現已停用",
         "twoFADisabledExplanation": "您已成功停用雙重身分驗證。",
         "enterCode": "請輸入您的 2FA 應用程式中的驗證碼",
-        "code": "驗證碼"
+        "code": "驗證碼",
+        "twoFaToken": "2FA 金鑰"
     },
     "chart": {
-        "mcap": "MCAP",
+        "mcap": "總市值",
         "change": "變化率",
-        "volume": "交易量(24h)",
+        "volume": "交易量 (24h)",
         "currentValue": "目前價值"
     },
     "rootDetection": {
         "warning": "警告！",
-        "rootDetected": "<0>您的裝置已經 root 過。</0><1>這可能會對您的錢包安全帶來重大風險。</1><2>請問您確定要繼續嗎？</2>"
+        "appearsRooted": "您的裝置有取得 root 權限。",
+        "securityRisk": "這可能會對您的錢包安全帶來極大風險。",
+        "continueDepsiteRisk": "儘管知道此風險，您確定仍要繼續嗎？"
     },
     "pow": {
         "feeless": "在 IOTA 中傳送無手續費的交易必須完成一點工作量證明。",
@@ -490,7 +553,15 @@
         "cannotCompleteTransition": "無法完成快照轉換",
         "cannotCompleteTransitionExplanation": "您的餘額必須大於零才能完成交易。",
         "transitionComplete": "快照轉換完成",
-        "transitionCompleteExplanation": "快照轉換已成功處理完成。"
+        "transitionCompleteExplanation": "快照轉換已成功處理完成。",
+        "detectedBalance": "檢測到的餘額：{{amount}} {{unit}}",
+        "isThisCorrect": "這樣正確嗎？",
+        "snapshotExplanation": "每隔一段時間會進行快照來修剪 Tangle 的大小。",
+        "hasSnapshotTakenPlace": "有快照發生了嗎？按下方按鈕進行轉換。",
+        "transition": "轉換",
+        "transitioning": "進行快照轉換。",
+        "generatingAndDetecting": "產生地址並檢測餘額。",
+        "attaching": "將地址連接到 Tangle"
     },
     "deepLink": {
         "autofill": "自動填入成功",
@@ -505,5 +576,8 @@
         "newVersionAvailableExplanation": "有新的 <strong>Trinity</strong> 版本 <strong>{{version}}</strong> 可以使用，請仔細閱讀詳細資料並驗證下載來源後再更新：",
         "downloadRelease": "下載更新版本",
         "skipUpdate": "跳過更新"
+    },
+    "notificationLog": {
+        "errorLog": "錯誤紀錄"
     }
 }

@@ -1,6 +1,5 @@
 import { selectedAccountStateFactory, getAccountNamesFromState } from '../selectors/accounts';
 import { syncAccount, getAccountData } from '../libs/iota/accounts';
-import { syncAddresses } from '../libs/iota/addresses';
 import { clearWalletData, setSeedIndex } from './wallet';
 import {
     generateAccountInfoErrorAlert,
@@ -36,7 +35,19 @@ export const ActionTypes = {
     ACCOUNT_INFO_FETCH_REQUEST: 'IOTA/ACCOUNTS/ACCOUNT_INFO_FETCH_REQUEST',
     ACCOUNT_INFO_FETCH_SUCCESS: 'IOTA/ACCOUNTS/ACCOUNT_INFO_FETCH_SUCCESS',
     ACCOUNT_INFO_FETCH_ERROR: 'IOTA/ACCOUNTS/ACCOUNT_INFO_FETCH_ERROR',
+    SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION: 'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION',
+    SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST: 'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST',
 };
+
+export const syncAccountBeforeManualPromotion = (payload) => ({
+    type: ActionTypes.SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION,
+    payload,
+});
+
+export const syncAccountBeforeManualRebroadcast = (payload) => ({
+    type: ActionTypes.SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST,
+    payload,
+});
 
 export const updateAccountInfoAfterSpending = (payload) => ({
     type: ActionTypes.UPDATE_ACCOUNT_INFO_AFTER_SPENDING,
@@ -236,10 +247,7 @@ export const getAccountInfo = (seed, accountName, navigator = null, genFn) => {
 
         const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
-        return syncAddresses(seed, existingAccountState, genFn)
-            .then((accountData) => {
-                return syncAccount(accountData);
-            })
+        return syncAccount(existingAccountState, seed, true, genFn, true)
             .then((newAccountData) => dispatch(accountInfoFetchSuccess(newAccountData)))
             .catch((err) => {
                 if (navigator) {

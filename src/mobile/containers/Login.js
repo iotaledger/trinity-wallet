@@ -1,4 +1,3 @@
-import get from 'lodash/get';
 import { translate } from 'react-i18next';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -10,20 +9,17 @@ import SplashScreen from 'react-native-splash-screen';
 import { Linking, StyleSheet, View } from 'react-native';
 import { parseAddress } from 'iota-wallet-shared-modules/libs/iota/utils';
 import { setFullNode } from 'iota-wallet-shared-modules/actions/settings';
-import { getVersion, getBuildNumber } from 'react-native-device-info';
 import { setPassword, setSetting, setDeepLink } from 'iota-wallet-shared-modules/actions/wallet';
-import { setUserActivity, setLoginPasswordField } from 'iota-wallet-shared-modules/actions/ui';
+import { setUserActivity, setLoginPasswordField, setLoginRoute } from 'iota-wallet-shared-modules/actions/ui';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import WithBackPressCloseApp from '../components/BackPressCloseApp';
 import DynamicStatusBar from '../components/DynamicStatusBar';
-import NodeSelectionOnLogin from './NodeSelectionOnLogin';
+import NodeOptionsOnLogin from './NodeOptionsOnLogin';
 import EnterPasswordOnLoginComponent from '../components/EnterPasswordOnLogin';
-import Enter2FA from '../components/Enter2FA';
+import Enter2FAComponent from '../components/Enter2FA';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
-import { getAllSeedsFromKeychain, getTwoFactorAuthKeyFromKeychain, logTwoFa } from '../utils/keychain';
+import { getAllSeedsFromKeychain, getTwoFactorAuthKeyFromKeychain } from '../utils/keychain';
 import { getPasswordHash } from '../utils/crypto';
-import { migrate } from '../../shared/actions/app';
-import { persistor, persistConfig } from '../store';
 import { width, height } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
 
@@ -35,13 +31,13 @@ const styles = StyleSheet.create({
     },
     questionText: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 27.6,
         paddingBottom: height / 40,
     },
     infoText: {
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 27.6,
         paddingBottom: height / 16,
     },
@@ -50,8 +46,6 @@ const styles = StyleSheet.create({
 /** Login component */
 class Login extends Component {
     static propTypes = {
-        /** Application version number and version name */
-        versions: PropTypes.object.isRequired,
         /** Set new password hash
          * @param {string} passwordHash
          */
@@ -70,12 +64,6 @@ class Login extends Component {
          * @param {object} options - minimzed, active, inactive
          */
         setUserActivity: PropTypes.func.isRequired,
-        /** Migrate application state
-         * @param {object} versions - app version number and version name
-         * @param {object} persistConfig - redux persist configuration object
-         * @param {object} persistor - refux persist persistor instance
-         */
-        migrate: PropTypes.func.isRequired,
         /** Set password
          * @param {string} password
          */
@@ -94,20 +82,19 @@ class Login extends Component {
          * @param {string} - message
          */
         setDeepLink: PropTypes.func.isRequired,
+        /** Determines which page should be displayed at login */
+        loginRoute: PropTypes.string.isRequired,
+        /** Sets which login page should be displayed
+         * @param {string} route - current route
+         */
+        setLoginRoute: PropTypes.func.isRequired,
     };
 
     constructor() {
         super();
 
-        this.state = {
-            changingNode: false,
-            completing2FA: false,
-        };
-
         this.onComplete2FA = this.onComplete2FA.bind(this);
         this.onLoginPress = this.onLoginPress.bind(this);
-        this.onBackPress = this.onBackPress.bind(this);
-        this.navigateToNodeSelection = this.navigateToNodeSelection.bind(this);
         this.setDeepUrl = this.setDeepUrl.bind(this);
     }
 
@@ -119,7 +106,7 @@ class Login extends Component {
         if (!isAndroid) {
             SplashScreen.hide();
         }
-        this.checkForUpdates();
+
         KeepAwake.deactivate();
         this.props.setUserActivity({ inactive: false });
     }
@@ -129,7 +116,10 @@ class Login extends Component {
     }
 
     async onLoginPress(password) {
-        const { t, is2FAEnabled } = this.props;
+        const { t, is2FAEnabled, hasConnection } = this.props;
+        if (!hasConnection) {
+            return;
+        }
         if (!password) {
             this.props.generateAlert('error', t('emptyPassword'), t('emptyPasswordExplanation'));
         } else {
@@ -141,7 +131,7 @@ class Login extends Component {
                     if (!is2FAEnabled) {
                         this.navigateToLoading();
                     } else {
-                        this.setState({ completing2FA: true });
+                        this.props.setLoginRoute('complete2FA');
                     }
                 } else {
                     this.props.generateAlert(
@@ -155,9 +145,11 @@ class Login extends Component {
     }
 
     async onComplete2FA(token) {
-        const { t, pwdHash } = this.props;
+        const { t, pwdHash, hasConnection } = this.props;
+        if (!hasConnection) {
+            return;
+        }
         if (token) {
-            logTwoFa(pwdHash);
             const key = await getTwoFactorAuthKeyFromKeychain(pwdHash);
             if (key === null) {
                 this.props.generateAlert(
@@ -169,17 +161,13 @@ class Login extends Component {
             const verified = authenticator.verifyToken(key, token);
             if (verified) {
                 this.navigateToLoading();
-                this.setState({ completing2FA: false });
+                this.props.setLoginRoute('login');
             } else {
                 this.props.generateAlert('error', t('twoFA:wrongCode'), t('twoFA:wrongCodeExplanation'));
             }
         } else {
             this.props.generateAlert('error', t('twoFA:emptyCode'), t('twoFA:emptyCodeExplanation'));
         }
-    }
-
-    onBackPress() {
-        this.setState({ completing2FA: false });
     }
 
     setDeepUrl(data) {
@@ -190,22 +178,6 @@ class Login extends Component {
         } else {
             generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation1'));
         }
-    }
-
-    checkForUpdates() {
-        const latestVersion = getVersion();
-        const latestBuildNumber = getBuildNumber();
-        const { versions } = this.props;
-        const currentVersion = get(versions, 'version');
-        const currentBuildNumber = get(versions, 'buildNumber');
-
-        if (latestVersion !== currentVersion || latestBuildNumber !== currentBuildNumber) {
-            this.props.migrate({ version: latestVersion, buildNumber: latestBuildNumber }, persistConfig, persistor);
-        }
-    }
-
-    navigateToNodeSelection() {
-        this.setState({ changingNode: true });
     }
 
     navigateToLoading() {
@@ -231,29 +203,28 @@ class Login extends Component {
     }
 
     render() {
-        const { theme, password } = this.props;
-
+        const { theme, password, loginRoute } = this.props;
         const body = theme.body;
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
                 <DynamicStatusBar backgroundColor={body.bg} />
-                {!this.state.changingNode &&
-                    !this.state.completing2FA && (
-                        <EnterPasswordOnLoginComponent
-                            theme={theme}
-                            onLoginPress={this.onLoginPress}
-                            navigateToNodeSelection={this.navigateToNodeSelection}
-                            setLoginPasswordField={(pword) => this.props.setLoginPasswordField(pword)}
-                            password={password}
-                        />
-                    )}
-                {!this.state.changingNode &&
-                    this.state.completing2FA && (
-                        <Enter2FA verify={this.onComplete2FA} cancel={this.onBackPress} theme={theme} />
-                    )}
-                {this.state.changingNode && (
-                    <NodeSelectionOnLogin backPress={() => this.setState({ changingNode: false })} />
+                {loginRoute === 'login' && (
+                    <EnterPasswordOnLoginComponent
+                        theme={theme}
+                        onLoginPress={this.onLoginPress}
+                        navigateToNodeOptions={() => this.props.setLoginRoute('nodeOptions')}
+                        setLoginPasswordField={(pword) => this.props.setLoginPasswordField(pword)}
+                        password={password}
+                    />
                 )}
+                {loginRoute === 'complete2FA' && (
+                    <Enter2FAComponent
+                        verify={this.onComplete2FA}
+                        cancel={() => this.props.setLoginRoute('login')}
+                        theme={theme}
+                    />
+                )}
+                {loginRoute !== 'complete2FA' && loginRoute !== 'login' && <NodeOptionsOnLogin />}
                 <StatefulDropdownAlert backgroundColor={body.bg} />
             </View>
         );
@@ -265,10 +236,11 @@ const mapStateToProps = (state) => ({
     nodes: state.settings.nodes,
     theme: state.settings.theme,
     is2FAEnabled: state.settings.is2FAEnabled,
-    versions: state.settings.versions,
     accountInfo: state.accounts.accountInfo,
     password: state.ui.loginPasswordFieldText,
     pwdHash: state.wallet.password,
+    loginRoute: state.ui.loginRoute,
+    hasConnection: state.wallet.hasConnection,
 });
 
 const mapDispatchToProps = {
@@ -277,9 +249,9 @@ const mapDispatchToProps = {
     setFullNode,
     setSetting,
     setUserActivity,
-    migrate,
     setLoginPasswordField,
     setDeepLink,
+    setLoginRoute,
 };
 
 export default WithBackPressCloseApp()(

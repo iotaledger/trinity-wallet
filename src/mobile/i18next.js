@@ -8,6 +8,7 @@ export default i18next.use(reactI18nextModule).init(
         parseMissingKeyHandler: (value) => `Translation not available for ${value}`,
         resources: {
             ar: require('../shared/locales/ar/translation.json'),
+            cs: require('../shared/locales/cs/translation.json'),
             da: require('../shared/locales/da/translation.json'),
             de: require('../shared/locales/de/translation.json'),
             el: require('../shared/locales/el/translation.json'),
@@ -32,6 +33,7 @@ export default i18next.use(reactI18nextModule).init(
             pt_PT: require('../shared/locales/pt-PT/translation.json'),
             ro: require('../shared/locales/ro/translation.json'),
             ru: require('../shared/locales/ru/translation.json'),
+            sk: require('../shared/locales/sk/translation.json'),
             sl: require('../shared/locales/sl/translation.json'),
             sv_SE: require('../shared/locales/sv-SE/translation.json'),
             th: require('../shared/locales/th/translation.json'),

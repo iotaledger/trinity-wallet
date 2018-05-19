@@ -1,6 +1,6 @@
 import get from 'lodash/get';
-import findKey from 'lodash/findKey';
 import keys from 'lodash/keys';
+import pickBy from 'lodash/pickBy';
 import reduce from 'lodash/reduce';
 import filter from 'lodash/filter';
 import { createSelector } from 'reselect';
@@ -66,33 +66,7 @@ export const getUnconfirmedBundleTailsFromState = createSelector(
 );
 
 /**
- *   Selects txHashesForUnspentAddresses prop from accounts reducer state object.
- *   Uses getAccountFromState selector for slicing accounts state from the state object.
- *
- *   @method getTxHashesForUnspentAddressesFromState
- *   @param {object} state
- *   @returns {object}
- **/
-export const getTxHashesForUnspentAddressesFromState = createSelector(
-    getAccountsFromState,
-    (state) => state.txHashesForUnspentAddresses || {},
-);
-
-/**
- *   Selects pendingTxHashesForSpentAddressesFromState prop from accounts reducer state object.
- *   Uses getAccountFromState selector for slicing accounts state from the state object.
- *
- *   @method getPendingTxHashesForSpentAddressesFromState
- *   @param {object} state
- *   @returns {object}
- **/
-export const getPendingTxHashesForSpentAddressesFromState = createSelector(
-    getAccountsFromState,
-    (state) => state.pendingTxHashesForSpentAddresses || {},
-);
-
-/**
- *   Selects all relevent account information from the state object.
+ *   Selects all relevant account information from the state object.
  *   When returned function (createSelector) is called with the whole state object,
  *   it slices off state partials for the accountName.
  *
@@ -104,14 +78,10 @@ export const selectedAccountStateFactory = (accountName) => {
     return createSelector(
         getAccountInfoFromState,
         getUnconfirmedBundleTailsFromState,
-        getTxHashesForUnspentAddressesFromState,
-        getPendingTxHashesForSpentAddressesFromState,
-        (accountInfo, unconfirmedBundleTails, txHashesForUnspentAddresses, pendingTxHashesForSpentAddresses) => ({
+        (accountInfo, unconfirmedBundleTails) => ({
             ...(accountInfo[accountName] || {}),
             accountName,
             unconfirmedBundleTails,
-            txHashesForUnspentAddresses: txHashesForUnspentAddresses[accountName] || [],
-            pendingTxHashesForSpentAddresses: pendingTxHashesForSpentAddresses[accountName] || [],
         }),
     );
 };
@@ -120,12 +90,20 @@ export const selectedAccountStateFactory = (accountName) => {
  *   Selects address at index 0 from account info state partial.
  *
  *   @method selectFirstAddressFromAccountFactory
- *   @param {object} state
- *   @returns {object}
+ *   @param {object} accountName
+ *   @returns {function}
  **/
 export const selectFirstAddressFromAccountFactory = (accountName) => {
     return createSelector(getAccountInfoFromState, (state) =>
-        findKey(state[accountName].addresses, (addressMeta) => addressMeta.index === 0),
+        reduce(
+            pickBy(state[accountName].addresses, (addressMeta) => addressMeta.index === 0),
+            (acc, addressMeta, address) => {
+                acc = `${address}${addressMeta.checksum}`;
+
+                return acc;
+            },
+            '',
+        ),
     );
 };
 

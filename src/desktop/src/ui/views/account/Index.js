@@ -75,7 +75,7 @@ class Account extends React.PureComponent {
                     <section className={css.content}>
                         <header>
                             <a onClick={() => history.push('/wallet/')}>
-                                <Icon icon="cross" size={40} />
+                                <Icon icon="cross" size={24} />
                             </a>
                         </header>
                         <Switch location={location}>

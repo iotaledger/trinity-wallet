@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
-import { View, StatusBar } from 'react-native';
+import { StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 import tinycolor from 'tinycolor2';
 import timer from 'react-native-timer';
-import { isAndroid } from '../utils/device';
+import { isAndroid, isIPhoneX } from '../utils/device';
 
 class DynamicStatusBar extends PureComponent {
     static propTypes = {
@@ -26,6 +26,14 @@ class DynamicStatusBar extends PureComponent {
         }
     }
 
+    getStatusBarStyle() {
+        const { backgroundColor } = this.props;
+        if (isIPhoneX) {
+            return 'light-content';
+        }
+        return tinycolor(backgroundColor).isDark() ? 'light-content' : 'dark-content';
+    }
+
     resetStatusBarColor() {
         const { backgroundColor } = this.props;
         StatusBar.setBackgroundColor(backgroundColor);
@@ -33,13 +41,9 @@ class DynamicStatusBar extends PureComponent {
 
     render() {
         const { backgroundColor } = this.props;
-        const statusBarStyle = tinycolor(backgroundColor).isDark() ? 'light-content' : 'dark-content';
+        const statusBarStyle = this.getStatusBarStyle();
 
-        return (
-            <View style={{ backgroundColor: 'black', opacity: 0.6 }}>
-                <StatusBar barStyle={statusBarStyle} backgroundColor={backgroundColor} translucent animated={false} />
-            </View>
-        );
+        return <StatusBar barStyle={statusBarStyle} backgroundColor={backgroundColor} translucent animated={false} />;
     }
 }
 export default DynamicStatusBar;

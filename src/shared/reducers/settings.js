@@ -1,4 +1,5 @@
 import merge from 'lodash/merge';
+import union from 'lodash/union';
 import { ActionTypes } from '../actions/settings';
 import { DESKTOP_VERSION, defaultNode as node, nodes } from '../config';
 import themes from '../themes/themes';
@@ -7,6 +8,7 @@ const initialState = {
     locale: 'en',
     node,
     nodes,
+    customNodes: [],
     mode: 'Standard',
     language: 'English (International)',
     currency: 'USD',
@@ -15,6 +17,7 @@ const initialState = {
         'GBP',
         'EUR',
         'AUD',
+        'ARS',
         'BGN',
         'BRL',
         'CAD',
@@ -64,10 +67,10 @@ const initialState = {
 
 const settingsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ActionTypes.UPDATE_POW_SETTINGS:
+        case ActionTypes.SET_REMOTE_POW:
             return {
                 ...state,
-                remotePoW: !state.remotePoW,
+                remotePoW: action.payload,
             };
         case ActionTypes.UPDATE_AUTO_NODE_SWITCHING:
             return {
@@ -84,7 +87,7 @@ const settingsReducer = (state = initialState, action) => {
                 ...state,
                 locale: action.payload,
             };
-        case ActionTypes.SET_FULLNODE:
+        case ActionTypes.SET_NODE:
             return {
                 ...state,
                 node: action.payload,
@@ -92,7 +95,15 @@ const settingsReducer = (state = initialState, action) => {
         case ActionTypes.ADD_CUSTOM_POW_NODE:
             return {
                 ...state,
-                nodes: state.nodes.includes(action.payload) ? state.nodes : [].concat(state.nodes, action.payload),
+                nodes: union(state.nodes, [action.payload]),
+                customNodes: state.nodes.includes(action.payload)
+                    ? state.customNodes
+                    : union(state.customNodes, [action.payload]),
+            };
+        case ActionTypes.SET_NODELIST:
+            return {
+                ...state,
+                nodes: union(action.payload, state.customNodes, [state.node]),
             };
         case ActionTypes.SET_MODE:
             return {

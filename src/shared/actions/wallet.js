@@ -2,8 +2,7 @@ import takeRight from 'lodash/takeRight';
 import { iota } from '../libs/iota';
 import { updateAddresses, updateAccountAfterTransition } from '../actions/accounts';
 import { generateAlert, generateTransitionErrorAlert } from '../actions/alerts';
-import { getNewAddress, formatAddresses, syncAddresses, getLatestAddress } from '../libs/iota/addresses';
-import { MAX_SEED_LENGTH } from '../libs/iota/utils';
+import { getNewAddress, formatAddressData, syncAddresses, getLatestAddress } from '../libs/iota/addresses';
 import { DEFAULT_MIN_WEIGHT_MAGNITUDE, DEFAULT_DEPTH } from '../config';
 import i18next from '../i18next';
 
@@ -11,7 +10,6 @@ export const ActionTypes = {
     GENERATE_NEW_ADDRESS_REQUEST: 'IOTA/WALLET/GENERATE_NEW_ADDRESS_REQUEST',
     GENERATE_NEW_ADDRESS_SUCCESS: 'IOTA/WALLET/GENERATE_NEW_ADDRESS_SUCCESS',
     GENERATE_NEW_ADDRESS_ERROR: 'IOTA/WALLET/GENERATE_NEW_ADDRESS_ERROR',
-    SET_COPIED_TO_CLIPBOARD: 'IOTA/WALLET/SET_COPIED_TO_CLIPBOARD',
     SET_RECEIVE_ADDRESS: 'IOTA/WALLET/SET_RECEIVE_ADDRESS',
     SET_ACCOUNT_NAME: 'IOTA/WALLET/SET_ACCOUNT_NAME',
     SET_PASSWORD: 'IOTA/WALLET/SET_PASSWORD',
@@ -31,6 +29,7 @@ export const ActionTypes = {
     UPDATE_TRANSITION_BALANCE: 'IOTA/WALLET/UPDATE_TRANSITION_BALANCE',
     UPDATE_TRANSITION_ADDRESSES: 'IOTA/WALLET/UPDATE_TRANSITION_ADDRESSES',
     SWITCH_BALANCE_CHECK_TOGGLE: 'IOTA/WALLET/SWITCH_BALANCE_CHECK_TOGGLE',
+    CONNECTION_CHANGED: 'IOTA/WALLET/CONNECTION_CHANGED',
     SET_DEEP_LINK: 'IOTA/APP/WALLET/SET_DEEP_LINK',
     SET_DEEP_LINK_INACTIVE: 'IOTA/APP/WALLET/SET_DEEP_LINK_INACTIVE',
 };
@@ -46,11 +45,6 @@ export const generateNewAddressSuccess = (payload) => ({
 
 export const generateNewAddressError = () => ({
     type: ActionTypes.GENERATE_NEW_ADDRESS_ERROR,
-});
-
-export const setCopiedToClipboard = (payload) => ({
-    type: ActionTypes.SET_COPIED_TO_CLIPBOARD,
-    payload,
 });
 
 export const setReceiveAddress = (payload) => ({
@@ -146,30 +140,13 @@ export const switchBalanceCheckToggle = () => ({
 export const generateNewAddress = (seed, accountName, existingAccountData, genFn) => {
     return (dispatch) => {
         dispatch(generateNewAddressRequest());
-        return syncAddresses(seed, existingAccountData, genFn, true)
-            .then((newAccountData) => {
-                const receiveAddress = iota.utils.addChecksum(getLatestAddress(newAccountData.addresses));
-                dispatch(updateAddresses(accountName, newAccountData.addresses));
+        return syncAddresses(seed, existingAccountData.addresses, genFn, true)
+            .then((latestAddressData) => {
+                const receiveAddress = iota.utils.addChecksum(getLatestAddress(latestAddressData));
+                dispatch(updateAddresses(accountName, latestAddressData));
                 dispatch(generateNewAddressSuccess(receiveAddress));
             })
             .catch(() => dispatch(generateNewAddressError()));
-    };
-};
-
-export const randomiseSeed = (randomBytesFn) => {
-    return (dispatch) => {
-        const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9';
-        let seed = '';
-        randomBytesFn(100).then((bytes) => {
-            Object.keys(bytes).forEach((key) => {
-                if (bytes[key] < 243 && seed.length < MAX_SEED_LENGTH) {
-                    const randomNumber = bytes[key] % 27;
-                    const randomLetter = charset.charAt(randomNumber);
-                    seed += randomLetter;
-                }
-            });
-            dispatch(setSeed(seed));
-        });
     };
 };
 
@@ -212,7 +189,7 @@ export const completeSnapshotTransition = (seed, accountName, addresses) => {
 
                 iota.api.wereAddressesSpentFrom(addresses, (error, addressSpendStatus) => {
                     if (!error) {
-                        const formattedAddresses = formatAddresses(
+                        const formattedAddressData = formatAddressData(
                             relevantAddresses,
                             relevantBalances,
                             addressSpendStatus,
@@ -222,7 +199,7 @@ export const completeSnapshotTransition = (seed, accountName, addresses) => {
                         dispatch(snapshotAttachToTangleRequest());
                         iota.api.sendTransfer(...args, (error) => {
                             if (!error) {
-                                dispatch(updateAccountAfterTransition(accountName, formattedAddresses, balance));
+                                dispatch(updateAccountAfterTransition(accountName, formattedAddressData, balance));
                                 dispatch(snapshotTransitionSuccess());
                                 dispatch(snapshotAttachToTangleComplete());
                                 dispatch(
@@ -236,16 +213,19 @@ export const completeSnapshotTransition = (seed, accountName, addresses) => {
                             } else {
                                 dispatch(snapshotTransitionError());
                                 dispatch(snapshotAttachToTangleComplete());
-                                dispatch(generateTransitionErrorAlert());
+                                dispatch(generateTransitionErrorAlert(error));
                             }
                         });
                     } else {
-                        console.log(error);
+                        dispatch(snapshotTransitionError());
+                        dispatch(snapshotAttachToTangleComplete());
+                        dispatch(generateTransitionErrorAlert(error));
                     }
                 });
             } else {
                 dispatch(snapshotTransitionError());
-                dispatch(generateTransitionErrorAlert());
+                dispatch(snapshotAttachToTangleComplete());
+                dispatch(generateTransitionErrorAlert(error));
             }
         });
     };
@@ -262,7 +242,7 @@ export const generateAddressesAndGetBalance = (seed, index, genFn) => {
         getNewAddress(seed, options, genFn, (error, addresses) => {
             if (error) {
                 dispatch(snapshotTransitionError());
-                dispatch(generateTransitionErrorAlert());
+                dispatch(generateTransitionErrorAlert(error));
             } else {
                 dispatch(updateTransitionAddresses(addresses));
                 dispatch(getBalanceForCheck(addresses));
@@ -292,7 +272,7 @@ export const getBalanceForCheck = (addresses) => {
                 dispatch(switchBalanceCheckToggle());
             } else {
                 dispatch(snapshotTransitionError());
-                dispatch(generateTransitionErrorAlert());
+                dispatch(generateTransitionErrorAlert(error));
             }
         });
     };

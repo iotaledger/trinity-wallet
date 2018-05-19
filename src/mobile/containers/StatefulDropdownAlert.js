@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import tinycolor from 'tinycolor2';
 import DropdownAlert from 'react-native-dropdownalert/DropdownAlert';
 import { width, height } from '../utils/dimensions';
+import { isIPhoneX } from '../utils/device';
 
 const errorIcon = require('iota-wallet-shared-modules/images/error.png');
 const successIcon = require('iota-wallet-shared-modules/images/successIcon.png');
@@ -20,7 +21,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: 'white',
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
     },
     dropdownTextContainer: {
         flex: 1,
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
         fontWeight: 'normal',
         color: 'white',
         backgroundColor: 'transparent',
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         paddingTop: height / 60,
     },
     dropdownImage: {
@@ -54,6 +55,8 @@ class StatefulDropdownAlert extends Component {
         onRef: PropTypes.func,
         /** Determines whether modal is open */
         isModalActive: PropTypes.bool.isRequired,
+        /** Determines whether has internet connection */
+        hasConnection: PropTypes.bool.isRequired,
     };
 
     static defaultProps = {
@@ -63,6 +66,10 @@ class StatefulDropdownAlert extends Component {
     constructor() {
         super();
         this.refFunc = this.refFunc.bind(this);
+    }
+
+    componentDidMount() {
+        this.generateAlertWhenNoConnection();
     }
 
     componentWillReceiveProps(newProps) {
@@ -80,10 +87,34 @@ class StatefulDropdownAlert extends Component {
         if (isModalActive !== newProps.isModalActive) {
             this.dropdown.close();
         }
+
+        this.disposeIfConnectionIsRestored(newProps);
     }
 
     componentWillUnmount() {
         this.props.disposeOffAlert();
+    }
+
+    getStatusBarStyle() {
+        const { backgroundColor } = this.props;
+        if (isIPhoneX) {
+            return 'light-content';
+        }
+        return tinycolor(backgroundColor).isDark() ? 'light-content' : 'dark-content';
+    }
+
+    generateAlertWhenNoConnection() {
+        const { alerts: { category, title, message }, hasConnection } = this.props;
+
+        if (!hasConnection && this.dropdown) {
+            this.dropdown.alertWithType(category, title, message);
+        }
+    }
+
+    disposeIfConnectionIsRestored(newProps) {
+        if (!this.props.hasConnection && newProps.hasConnection && this.dropdown) {
+            this.dropdown.close();
+        }
     }
 
     refFunc = (ref) => {
@@ -94,7 +125,7 @@ class StatefulDropdownAlert extends Component {
         const { closeInterval } = this.props.alerts;
         const { backgroundColor, onRef, isModalActive } = this.props;
         const closeAfter = closeInterval;
-        const statusBarStyle = tinycolor(backgroundColor).isDark() ? 'light-content' : 'dark-content';
+        const statusBarStyle = this.getStatusBarStyle();
         return (
             <DropdownAlert
                 ref={onRef || this.refFunc}
@@ -114,6 +145,7 @@ class StatefulDropdownAlert extends Component {
                 onClose={this.props.disposeOffAlert}
                 closeInterval={closeAfter}
                 translucent={!isModalActive}
+                tapToCloseEnabled={this.props.hasConnection}
             />
         );
     }
@@ -122,6 +154,7 @@ class StatefulDropdownAlert extends Component {
 const mapStateToProps = (state) => ({
     alerts: state.alerts,
     isModalActive: state.ui.isModalActive,
+    hasConnection: state.wallet.hasConnection,
 });
 
 const mapDispatchToProps = { disposeOffAlert };

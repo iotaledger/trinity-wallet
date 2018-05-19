@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { Navigation } from 'react-native-navigation';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { width, height } from '../utils/dimensions';
@@ -41,13 +40,13 @@ const styles = StyleSheet.create({
         marginRight: width / 20,
     },
     titleText: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         marginLeft: width / 25,
     },
     backText: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
@@ -63,7 +62,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     settingText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 23,
         marginLeft: width / 12,
         width: width / 2.4,
@@ -88,55 +87,16 @@ class SecuritySettings extends Component {
         theme: PropTypes.object.isRequired,
         /** Determines if two factor authentication is enabled */
         is2FAEnabled: PropTypes.bool.isRequired,
+        /** Navigation object */
+        navigator: PropTypes.object.isRequired,
     };
 
     on2FASetupPress() {
         const { is2FAEnabled, theme: { body } } = this.props;
 
         if (!is2FAEnabled) {
-            Navigation.startSingleScreenApp({
-                screen: {
-                    screen: 'twoFactorSetupAddKey',
-                    navigatorStyle: {
-                        navBarHidden: true,
-                        navBarTransparent: true,
-                        topBarElevationShadowEnabled: false,
-                        screenBackgroundColor: body.bg,
-                        drawUnderStatusBar: true,
-                        statusBarColor: body.bg,
-                    },
-                },
-                appStyle: {
-                    orientation: 'portrait',
-                    keepStyleAcrossPush: false,
-                },
-            });
-        } else {
-            Navigation.startSingleScreenApp({
-                screen: {
-                    screen: 'disable2FA',
-                    navigatorStyle: {
-                        navBarHidden: true,
-                        navBarTransparent: true,
-                        topBarElevationShadowEnabled: false,
-                        screenBackgroundColor: body.bg,
-                        drawUnderStatusBar: true,
-                        statusBarColor: body.bg,
-                    },
-                },
-                appStyle: {
-                    orientation: 'portrait',
-                    keepStyleAcrossPush: false,
-                },
-            });
-        }
-    }
-
-    onFingerprintSetupPress() {
-        const { theme: { body } } = this.props;
-        Navigation.startSingleScreenApp({
-            screen: {
-                screen: 'fingerprintSetup',
+            this.props.navigator.push({
+                screen: 'twoFactorSetupAddKey',
                 navigatorStyle: {
                     navBarHidden: true,
                     navBarTransparent: true,
@@ -145,11 +105,37 @@ class SecuritySettings extends Component {
                     drawUnderStatusBar: true,
                     statusBarColor: body.bg,
                 },
+                animated: false,
+            });
+        } else {
+            this.props.navigator.push({
+                screen: 'disable2FA',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    topBarElevationShadowEnabled: false,
+                    screenBackgroundColor: body.bg,
+                    drawUnderStatusBar: true,
+                    statusBarColor: body.bg,
+                },
+                animated: false,
+            });
+        }
+    }
+
+    onFingerprintSetupPress() {
+        const { theme: { body } } = this.props;
+        this.props.navigator.push({
+            screen: 'fingerprintSetup',
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                topBarElevationShadowEnabled: false,
+                screenBackgroundColor: body.bg,
+                drawUnderStatusBar: true,
+                statusBarColor: body.bg,
             },
-            appStyle: {
-                orientation: 'portrait',
-                keepStyleAcrossPush: false,
-            },
+            animated: false,
         });
     }
 
@@ -157,10 +143,25 @@ class SecuritySettings extends Component {
         const { t, theme: { body } } = this.props;
         const textColor = { color: body.color };
         const bodyColor = body.color;
+        const borderBottomColor = { borderBottomColor: body.color };
 
         return (
             <View style={styles.container}>
                 <View style={{ flex: 9, justifyContent: 'flex-start' }}>
+                    <View style={styles.itemContainer}>
+                        <TouchableOpacity
+                            onPress={() => this.props.setSetting('changePassword')}
+                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                        >
+                            <View style={styles.item}>
+                                <Icon name="password" size={width / 22} color={bodyColor} />
+                                <Text style={[styles.titleText, textColor]}>{t('changePassword')}</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.separatorContainer}>
+                        <View style={[styles.separator, borderBottomColor]} />
+                    </View>
                     <View style={styles.itemContainer}>
                         <TouchableOpacity
                             onPress={() => this.on2FASetupPress()}
@@ -183,7 +184,7 @@ class SecuritySettings extends Component {
                             </View>
                         </TouchableOpacity>
                     </View>
-                    <View style={{ flex: 7 }} />
+                    <View style={{ flex: 5.5 }} />
                 </View>
                 <View style={{ flex: 1, justifyContent: 'flex-end' }}>
                     <View style={styles.itemContainer}>

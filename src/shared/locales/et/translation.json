@@ -5,7 +5,6 @@
         "continue?": "Olete kindel, et soovite jätkata?",
         "noTransactions": "LÄHIAJALUGU PUUDUB",
         "refresh": "VÄRSKENDA",
-        "qr": "QR",
         "balanceError": "Pole piisavalt vahendeid",
         "balanceErrorMessage": "Teil ei ole selle ülekande tegemiseks piisavalt IOTAsid.",
         "transferError": "Ülekande viga",
@@ -36,6 +35,7 @@
         "manualCopy": "Kirjutan seemne üles",
         "paperWallet": "Prindi koopia",
         "copyToClipboard": "Lisa paroolihaldurisse",
+        "qr": "QR",
         "notAvailable": "See funktsioon ei ole saadaval",
         "notAvailableExplanation": "See lisatakse hilisemas staadiumis.",
         "enterSeed": "Palun sisestage oma seeme.",
@@ -48,6 +48,7 @@
         "otherWallet": "TEINE KONTO",
         "yes": "JAH",
         "no": "EI",
+        "okay": "OKAY",
         "password": "Parool",
         "passwordOrFingerprint": "Parool või sõrmejälg",
         "unrecognisedPassword": "Tundmatu parool",
@@ -60,8 +61,9 @@
         "node": "Sõlm",
         "cannotPerformAction": "Toimingut ei saa teha",
         "cannotPerformActionExplanation": "Minge menüüst Täpsemad sätted, et rahakott tühjendada.",
-        "attachToTangleUnavailable": "Tangle'sse kinnitamine pole saadaval",
-        "attachToTangleUnavailableExplanation": "Tangle'sse kinnitamine ei ole teie valitud sõlmel saadaval.",
+        "attachToTangleUnavailable": "Remote Proof of Work is unavailable",
+        "attachToTangleUnavailableExplanation": "Remote Proof of Work is not available on your selected node. Either change node or set Proof of Work to Local in Advanced Settings.",
+        "attachToTangleUnavailableExplanationShort": "Remote Proof of Work is not available on your selected node.",
         "wallet": "Rahakott",
         "sent": "Saadetud",
         "received": "Laekunud",
@@ -73,19 +75,30 @@
         "addresses": "Aadressid",
         "reattach": "KINNITA UUESTI",
         "promote": "EDENDA",
+        "retry": "RETRY",
         "rebroadcast": "KUULUTA UUESTI",
         "pressBackAgain": "Rakenduse sulgemiseks vajutage uuesti tagasi nuppu",
-        "autoreattaching": "Kinnitan automaatselt",
-        "autoreattachingExplanation": "Kinnitan uuesti tehingut räsiga {{hash}}",
+        "reattached": "Successfully reattached transaction",
+        "reattachedExplanation": "Reattached transaction with hash {{hash}}",
         "autopromoting": "Tehingu automaatne edendamine",
         "autopromotingExplanation": "Edendan tehingut räsiga {{hash}}",
-        "promoting": "Tehingu edendamine",
-        "promotionError": "Could not promote transfer",
+        "rebroadcasted": "Successfully rebroadcasted transaction",
+        "rebroadcastedExplanation": "Rebroadcasted transaction with hash {{hash}}",
+        "rebroadcastError": "Could not rebroadcast transaction",
+        "rebroadcastErrorExplanation": "Something went wrong while rebroadcasting your transaction. Please try again.",
+        "promoted": "Successfully promoted transaction",
+        "promotedExplanation": "Promoted transaction with hash {{hash}}",
+        "autopromotionError": "Could not auto-promote transaction",
+        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node.",
+        "promotionError": "Could not promote transaction",
         "promotionErrorExplanation": "Something went wrong while promoting your transaction. Please try again.",
         "noLongerValid": "Edendatav pundar ei kehti enam",
+        "transactionAlreadyConfirmed": "Transaction already confirmed",
+        "transactionAlreadyConfirmedExplanation": "The transaction you are trying to promote is already confirmed.",
         "cannotSendToOwn": "Enda aadressile saatmine",
         "cannotSendToOwnExplanation": "Te ei saa teha väärtusega tehingut mõnele oma aadressile.",
         "pleaseWait": "Palun oodake",
+        "pleaseWaitEllipses": "Please wait...",
         "pleaseWaitExplanation": "Trinity täidab teist funktsiooni. Palun oodake ja proovige uuesti.",
         "pleaseWaitTransferExplanation": "Teie vabad vahendid on hetkel kasutuses teistes tehingutes. Palun oodake kuni üks kinnitatakse enne uuesti proovimist.",
         "snapshotTransitionInProgress": "Snapshot transition in progress",
@@ -98,8 +111,20 @@
         "addCustomNode": "Add custom node",
         "nodeChanged": "Node changed",
         "nodeChangedExplanation": "The node has been changed successfully.",
+        "nodeMustUseHTTPS": "Invalid node (non HTTPS)",
+        "nodeMustUseHTTPSExplanation": "Only custom nodes using HTTPS are allowed.",
+        "nodeDuplicated": "Duplicated node",
+        "nodeDuplicatedExplanation": "The custom node is already listed.",
         "nodeAutoChanged": "Auto-switched node",
-        "nodeAutoChangedExplanation": "Switched to new node {{- nodeAddress}} as selected node is offline."
+        "nodeAutoChangedExplanation": "Switched to new node {{- nodeAddress}} as selected node is offline.",
+        "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer",
+        "masterKey": "Your IOTA seed is the master key to your funds.",
+        "seedThief": "If someone else has your seed they can steal your IOTA.",
+        "googlePlayServicesNotAvailable": "Google Play Services not available",
+        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available.",
+        "clear": "CLEAR",
+        "noNetworkConnection": "No network connection",
+        "noNetworkConnectionExplanation": "Your internet connection appears to be offline."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seeme sisaldab sobimatuid tähemärke",
@@ -141,7 +166,14 @@
         "clickToCopy": "Vajutage allolevat nuppu ja kopeerige oma seeme paroolihaldurisse.",
         "doNotStore": "Ärge hoidke oma seemet lihttekstina.",
         "copyToClipboard": "Kopeeri seeme",
-        "shareSeed": "Jaga oma seemet turvalise paroolihalduriga"
+        "shareSeed": "Jaga oma seemet turvalise paroolihalduriga",
+        "storeEncrypted": "Store your seed encrypted in a password manager.",
+        "doNotOpen": "Do not open any other apps during this process.",
+        "tapConfirm": "Please tap the checkbox below to confirm.",
+        "passwordManagerCheckbox": "I will store my seed in a password manager",
+        "copy": "COPY",
+        "noPasswordManagers": "No supported password managers installed",
+        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android."
     },
     "enterSeed": {
         "invalidCharacters": "Seeme sisaldab sobimatuid tähemärke",
@@ -175,13 +207,16 @@
         "loadingFirstTime": "Laadin esimest korda seemet.",
         "thisMayTake": "See võib aega võtta.",
         "doNotMinimise": "Ärge väljuge rakendusest.",
-        "youMayNotice": "Sa võid märgata seadme aeglustumist."
+        "youMayNotice": "Sa võid märgata seadme aeglustumist.",
+        "takingAWhile": "This seems to be taking a while"
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seemet ei ole loodud",
         "seedNotGeneratedExplanation": "Palun genereerige uus seeme.",
         "pressForNewSeed": "VAJUTA UUE SEEMNE JAOKS",
-        "individualLetters": "Vajutage juhuslikkuseks üksikuid tähti."
+        "generateSuccess": "Seed generated successfully",
+        "individualLetters": "Vajutage juhuslikkuseks üksikuid tähti.",
+        "whatIsASeed": "What is a seed?"
     },
     "onboardingComplete": {
         "walletReady": "Rahakott on nüüd seadistatud ja kasutamiseks valmis. Vaadake sätetesse, kui soovite muudatusi teha."
@@ -191,7 +226,13 @@
         "storeSafely": "Hoidke see turvaliselt.",
         "neverShare": "Ärge jagage oma seemet kunagi.",
         "iotaLogo": "IOTA logo",
-        "printWallet": "PRINDI RAHAKOTT PABERILE"
+        "printWallet": "PRINDI RAHAKOTT PABERILE",
+        "print": "PRINT",
+        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
+        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
+        "tapCheckboxes": "Please tap the checkboxes below to confirm.",
+        "wifiCheckbox": "I will not print on public wifi",
+        "printerCheckbox": "I will not print on a public printer"
     },
     "receive": {
         "addressCopied": "Aadress kopeeritud",
@@ -203,8 +244,6 @@
         "spent": "Kulutatud"
     },
     "saveYourSeed": {
-        "seedCleared": "Seeme tühjendatud",
-        "seedClearedExplanation": "Seeme on turvalisuse kaalutlustel teie lõikelaualt eemaldatud.",
         "mustSaveYourSeed": "<0><0>Peate oma seemne salvestama tehes vähemalt</0> <1>ühe</1> <2> alljärgnevatest valikutest.</2></0>"
     },
     "seedReentry": {
@@ -237,7 +276,7 @@
         "maximumSelected": "valitud MAKSIMAALNE summa",
         "iotaUnits": "IOTA ühikute selgitus",
         "sendMax": "SAADA MAKS.",
-        "fingerprintOnSend": "Touch fingerprint reader to send the transfer"
+        "totalTime": "Total time"
     },
     "setPassword": {
         "passwordTooShort": "Parool on liiga lühike",
@@ -267,12 +306,15 @@
         "mode": "Režiim",
         "theme": "Teema",
         "currency": "Valuuta",
+        "cannotChangeNode": "Cannot change node",
+        "cannotChangeNodeWhileSending": "Cannot change node while sending.",
         "language": "Keel",
         "accountManagement": "Kontohaldus",
         "addNewSeed": "Lisa uus seeme",
         "twoFA": "Kahe teguriga autentimine",
         "changePassword": "Vaheta parool",
         "advanced": "Täpsemad sätted",
+        "about": "About",
         "logout": "Logi välja",
         "reset": "Tühjenda ülesseadistus",
         "syncingComplete": "Sünkroniseeritud",
@@ -282,7 +324,7 @@
         "accountDeleted": "Konto kustutatud",
         "accountDeletedExplanation": "Teie konto eemaldati rahakotist.",
         "cannotPerformAction": "Toimingut ei saa teha",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
+        "cannotPerformActionExplanation": "Minge menüüst Täpsemad sätted, et rahakott tühjendada.",
         "poorConnection": "Kehv ühendus",
         "poorConnectionExplanation": "Valuuta vahetamine ebaõnnestus halva ühenduse tõttu.",
         "hide": "Peida",
@@ -297,15 +339,20 @@
         "selectAll": "Vali kõik",
         "securitySettings": "Turvasätted",
         "fingerprint": "Biomeetriline autentimine",
-        "couldNotFetchRates": "Ei saanud vahetuskurssi kätte",
-        "couldNotFetchRatesExplanation": "Midagi läks {{currency}} jaoks vahetuskursi otsimisega nässu.",
-        "fetchedConversionRates": "Tõmbasin vahetuskursid",
-        "fetchedConversionRatesExplanation": "Uusimate {{currency}} vahetuskursside leidmine õnnestus.",
+        "couldNotFetchRates": "Could not fetch rate",
+        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rate for {{currency}}.",
+        "fetchedConversionRates": "Fetched conversion rate",
+        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rate for {{currency}}.",
         "undo": "Tühista",
         "redo": "Korda",
-        "about": "Trinity kohta",
+        "aboutTrinity": "About Trinity",
         "lockScreenTimeout": "Lock Screen Timeout (Minutes)",
-        "autoNodeSwitching": "Automatically switch node when selected is unreachable"
+        "autoNodeSwitching": "Automatically switch node when selected is unreachable",
+        "nodeChangeSuccess": "Successfully changed node",
+        "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
+        "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
+        "nodeChangeError": "Error changing node",
+        "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Rahakoti seadistuse nullimiseks sisestage oma parool.",
@@ -334,6 +381,8 @@
         "bundleHashCopiedExplanation": "Puntra räsi on kopeeritud.",
         "addressCopied": "Aadress kopeeritud",
         "addressCopiedExplanation": "Aadress on kopeeritud.",
+        "messageCopied": "Message copied",
+        "messageCopiedExplanation": "The message has been copied to the clipboard.",
         "send": "SAADA",
         "receive": "LAEKUS"
     },
@@ -345,8 +394,15 @@
         "addNewAccount": "Lisa uus konto"
     },
     "addCustomNode": {
+        "customNodeAdded": "Custom node added",
+        "customNodeCouldNotBeAdded": "Custom node could not be added",
+        "customNodeAddedSuccessfully": "The custom node has been added successfully.",
         "customNode": "Ise määratud sõlm",
-        "add": "Lisa"
+        "invalidNodeResponse": "The node returned an invalid response",
+        "httpNodeError": "Trinity Mobile only supports https nodes.",
+        "add": "Lisa",
+        "nodeFieldEmpty": "Text field is empty",
+        "nodeFieldEmptyExplanation": "Please enter a custom node."
     },
     "addNewAccount": {
         "useExistingSeed": "Kasuta olemasolevat seemet",
@@ -403,7 +459,9 @@
         "syncingYourAccount": "Sünkroniseerin teie kontot."
     },
     "useExistingSeed": {
-        "title": "Sisesta seeme ja konto nimi."
+        "title": "Sisesta seeme ja konto nimi.",
+        "incorrectFormat": "Incorrect seed format",
+        "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
     },
     "viewSeed": {
         "enterPassword": "Seemne vaatamiseks sisestage oma parool.",
@@ -422,19 +480,21 @@
     "fingerprintSetup": {
         "instructionsEnable": "Touch fingerprint reader to enable fingerprint authentication",
         "instructionsDisable": "Touch fingerprint reader to disable fingerprint authentication",
-        "fingerprintAuthEnabled": "Fingerprint authentication enabled",
-        "fingerprintAuthEnabledExplanation": "You have succesfully enabled fingerprint authentication.",
-        "fingerprintAuthDisabled": "Fingerprint authentication disabled",
-        "fingerprintAuthDisabledExplanation": "You have succesfully disabled fingerprint authentication.",
-        "fingerprintAuthFailed": "Fingerprint authentication failed",
+        "fingerprintAuthEnabled": "Biometric authentication enabled",
+        "fingerprintAuthEnabledExplanation": "You have successfully enabled biometric authentication.",
+        "fingerprintAuthDisabled": "Biometric authentication disabled",
+        "fingerprintAuthDisabledExplanation": "You have successfully disabled biometric authentication.",
+        "fingerprintAuthFailed": "Biometric authentication failed",
         "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
         "status": "Olek",
         "enabled": "Sees",
         "disabled": "Väljas",
-        "fingerprintUnavailable": "Sõrmejäljelugeja pole saadaval",
-        "fingerprintUnavailableExplanation": "Teie seade ei toeta sõrmejäljetuvastust või on teie seadme sätetes seadistamata.",
+        "fingerprintUnavailable": "Biometric authentication unavailable",
+        "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
+        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID.",
+        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID.",
         "instructionsLogin": "Touch fingerprint reader to log in"
     },
     "transferConfirmation": {
@@ -455,7 +515,8 @@
         "twoFADisabled": "2FA is now disabled",
         "twoFADisabledExplanation": "You have successfully disabled Two Factor Authentication.",
         "enterCode": "Sisestage oma 2FA rakendusest saadud kood",
-        "code": "Kood"
+        "code": "Kood",
+        "twoFaToken": "2FA Token"
     },
     "chart": {
         "mcap": "MCAP",
@@ -465,7 +526,9 @@
     },
     "rootDetection": {
         "warning": "HOIATUS",
-        "rootDetected": "<0>Teie seade näib olevat root õigustega.</0> <1>See võib kujutada ohtu teie rahakoti turvalisusele.</1> <2>Kas soovite vaatamata sellele ohule jätkata?</2>"
+        "appearsRooted": "Your device appears to be rooted.",
+        "securityRisk": "This can pose a significant risk to the security of your wallet.",
+        "continueDepsiteRisk": "Do you wish to continue despite this risk?"
     },
     "pow": {
         "feeless": "IOTA tasudeta tehingute jaoks on vaja teha natuke tööd.",
@@ -490,7 +553,15 @@
         "cannotCompleteTransition": "Cannot complete snapshot transition",
         "cannotCompleteTransitionExplanation": "Ülemineku lõpuleviimiseks peab teie kontojääk olema suurem kui 0.",
         "transitionComplete": "Snapshot transition complete",
-        "transitionCompleteExplanation": "The snapshot transition has completed successfully."
+        "transitionCompleteExplanation": "The snapshot transition has completed successfully.",
+        "detectedBalance": "Detected balance: {{amount}} {{unit}}",
+        "isThisCorrect": "Is this correct?",
+        "snapshotExplanation": "Every so often, a snapshot is performed to prune the size of the Tangle.",
+        "hasSnapshotTakenPlace": "Has a snapshot taken place? Press the button below to transition.",
+        "transition": "TRANSITION",
+        "transitioning": "Transitioning for the snapshot.",
+        "generatingAndDetecting": "Generating addresses and detecting balance.",
+        "attaching": "Attaching addresses to Tangle"
     },
     "deepLink": {
         "autofill": "Autofill success",
@@ -505,5 +576,8 @@
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
         "downloadRelease": "Download release",
         "skipUpdate": "Skip update"
+    },
+    "notificationLog": {
+        "errorLog": "ERROR LOG"
     }
 }

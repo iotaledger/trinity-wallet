@@ -3,6 +3,7 @@ import { ActionTypes as UiActionTypes } from '../actions/ui';
 import { ActionTypes as TransfersActionTypes } from '../actions/transfers';
 import { ActionTypes as WalletActionTypes } from '../actions/wallet';
 import { ActionTypes as AccountsActionTypes } from '../actions/accounts';
+import { ActionTypes as PollingActionTypes } from '../actions/polling';
 
 const initialState = {
     isGeneratingReceiveAddress: false,
@@ -30,6 +31,11 @@ const initialState = {
     },
     doNotMinimise: false,
     isModalActive: false,
+    isCheckingCustomNode: false,
+    isChangingNode: false,
+    currentlyPromotingBundleHash: '',
+    loginRoute: 'login',
+    hasFailedAutopromotion: false,
 };
 
 export default (state = initialState, action) => {
@@ -105,12 +111,21 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isPromotingTransaction: true,
+                currentlyPromotingBundleHash: action.payload,
             };
+        case PollingActionTypes.PROMOTE_TRANSACTION_REQUEST:
+            return {
+                ...state,
+                currentlyPromotingBundleHash: action.payload,
+            };
+        case PollingActionTypes.PROMOTE_TRANSACTION_SUCCESS:
+        case PollingActionTypes.PROMOTE_TRANSACTION_ERROR:
         case TransfersActionTypes.PROMOTE_TRANSACTION_SUCCESS:
         case TransfersActionTypes.PROMOTE_TRANSACTION_ERROR:
             return {
                 ...state,
                 isPromotingTransaction: false,
+                currentlyPromotingBundleHash: '',
             };
         case UiActionTypes.SET_USER_ACTIVITY:
             return {
@@ -171,12 +186,19 @@ export default (state = initialState, action) => {
         case AccountsActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_REQUEST:
             return {
                 ...state,
+                isFetchingLatestAccountInfoOnLogin: true,
                 hasErrorFetchingAccountInfoOnLogin: false,
             };
         case AccountsActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_ERROR:
             return {
                 ...state,
+                isFetchingLatestAccountInfoOnLogin: false,
                 hasErrorFetchingAccountInfoOnLogin: true,
+            };
+        case AccountsActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_SUCCESS:
+            return {
+                ...state,
+                isFetchingLatestAccountInfoOnLogin: false,
             };
         case AccountsActionTypes.ACCOUNT_INFO_FETCH_REQUEST:
             return {
@@ -244,6 +266,37 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isModalActive: !state.isModalActive,
+            };
+        case UiActionTypes.SET_CUSTOM_NODE_CHECK_STATUS:
+            return {
+                ...state,
+                isCheckingCustomNode: action.payload,
+            };
+        case SettingsActionTypes.SET_NODE_REQUEST:
+            return {
+                ...state,
+                isChangingNode: true,
+            };
+        case SettingsActionTypes.SET_NODE:
+            return {
+                ...state,
+                isChangingNode: false,
+                hasFailedAutopromotion: false,
+            };
+        case SettingsActionTypes.SET_NODE_ERROR:
+            return {
+                ...state,
+                isChangingNode: false,
+            };
+        case UiActionTypes.SET_LOGIN_ROUTE:
+            return {
+                ...state,
+                loginRoute: action.payload,
+            };
+        case PollingActionTypes.SET_AUTOPROMOTION_FAILED_FLAG:
+            return {
+                ...state,
+                hasFailedAutopromotion: action.payload,
             };
         default:
             return state;

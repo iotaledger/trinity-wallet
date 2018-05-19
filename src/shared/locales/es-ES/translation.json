@@ -5,7 +5,6 @@
         "continue?": "¿Seguro que quieres continuar?",
         "noTransactions": "NO HAY HISTORIAL RECIENTE",
         "refresh": "ACTUALIZAR",
-        "qr": "QR",
         "balanceError": "Saldo insuficiente",
         "balanceErrorMessage": "No tienes suficientes IOTA para completar esta transferencia.",
         "transferError": "Error de transferencia",
@@ -14,14 +13,14 @@
         "transferSentMessage": "Tu transferencia se ha enviado al Tangle.",
         "messageSent": "Mensaje enviado",
         "messageSentMessage": "Tu mensaje se ha enviado al Tangle.",
-        "keyReuse": "Sending to spent address",
+        "keyReuse": "Enviando a direccion usada",
         "keyReuseError": "No puedes enviar a una dirección que ya se ha gastado.",
-        "invalidResponse": "Node error",
-        "invalidResponseExplanation": "The node returned an error. Check the notifications for more information.",
-        "invalidResponsePollingExplanation": "The node returned an error while polling. Check the notifications for more information.",
-        "invalidResponseFetchingAccount": "The node returned an error while fetching your account information. Try changing your node or check the notifications for more information.",
-        "invalidResponseSendingTransfer": "The node returned an error while sending the transfer. Check the notifications for more information.",
-        "seed": "Seed",
+        "invalidResponse": "Error de nodo",
+        "invalidResponseExplanation": "Error al conectar con el nodo. Revise las notificaciones para más información.",
+        "invalidResponsePollingExplanation": "Error durante la votación del nodo. Revise las notificaciones para más información.",
+        "invalidResponseFetchingAccount": "Error del nodo mientras se buscaba la información de su cuenta. Pruebe cambiandolo o revise las notificaciones para más información.",
+        "invalidResponseSendingTransfer": "Error del nodo mientras se enviaba la transferencia. Revise las notificaciones para más información.",
+        "seed": "Semilla",
         "back": "ATRÁS",
         "backLowercase": "Atrás",
         "done": "LISTO",
@@ -31,11 +30,12 @@
         "save": "Guardar",
         "close": "CERRAR",
         "continue": "Continuar",
-        "enable": "Enable",
-        "disable": "Disable",
+        "enable": "Habilitar",
+        "disable": "Deshabilitar",
         "manualCopy": "Escribir la seed",
         "paperWallet": "Imprimir copia en papel",
         "copyToClipboard": "Agregar a administrador de contraseñas",
+        "qr": "QR",
         "notAvailable": "Esta función no está disponible",
         "notAvailableExplanation": "Se añadirá más adelante.",
         "enterSeed": "Por favor, introduzca tu seed.",
@@ -48,6 +48,7 @@
         "otherWallet": "OTRA CUENTA",
         "yes": "SÍ",
         "no": "NO",
+        "okay": "DE ACUERDO",
         "password": "Contraseña",
         "passwordOrFingerprint": "Contraseña o huella dactilar",
         "unrecognisedPassword": "Contraseña no reconocida",
@@ -60,8 +61,9 @@
         "node": "Nodo",
         "cannotPerformAction": "No se puede realizar la acción",
         "cannotPerformActionExplanation": "Ve a opciones avanzadas para restaurar la cartera.",
-        "attachToTangleUnavailable": "Vincular con Tangle no está disponible",
-        "attachToTangleUnavailableExplanation": "Vincular con Tangle no está disponible en el nodo seleccionado.",
+        "attachToTangleUnavailable": "PoW remota no disponible",
+        "attachToTangleUnavailableExplanation": "PoW remota no disponible en el nodo seleccionado. Pruebe cambiandolo o active PoW local en opciones avanzadas.",
+        "attachToTangleUnavailableExplanationShort": "PoW remota no disponible en el nodo seleccionado.",
         "wallet": "Cartera",
         "sent": "Enviada",
         "received": "Recibida",
@@ -73,19 +75,30 @@
         "addresses": "Direcciones",
         "reattach": "REVINCULAR",
         "promote": "PROMOVER",
+        "retry": "REINTENTAR",
         "rebroadcast": "RETRANSMISIÓN",
         "pressBackAgain": "Pulsa atrás otra vez para cerrar la app",
-        "autoreattaching": "Auto-revinculando al Tangle",
-        "autoreattachingExplanation": "Revinculando la transacción con hash {{hash}}",
+        "reattached": "Transacción revinculada exitosamente",
+        "reattachedExplanation": "Transacción revinculada con hash {{hash}}",
         "autopromoting": "Auto-promoviendo la transferencia",
         "autopromotingExplanation": "Promoviendo la transacción con hash {{hash}}",
-        "promoting": "Promoviendo transferencia",
-        "promotionError": "Could not promote transfer",
-        "promotionErrorExplanation": "Something went wrong while promoting your transaction. Please try again.",
+        "rebroadcasted": "Transacción retransmitida exitosamente",
+        "rebroadcastedExplanation": "Transacción retransmitida con hash {{hash}}",
+        "rebroadcastError": "No se pudo retransmitir la transacción",
+        "rebroadcastErrorExplanation": "Algo salio mal mientras se retransmitía su transacción. Por favor reintente.",
+        "promoted": "Transacción promovida exitosamente",
+        "promotedExplanation": "Transacción promovida con hash {{hash}}",
+        "autopromotionError": "No se pudo auto promover la transacción",
+        "autopromotionErrorExplanation": "PoW remoto no disponible en el nodo seleccionado. Por favor cámbielo.",
+        "promotionError": "No se pudo promover la transacción",
+        "promotionErrorExplanation": "Algo salio mal mientras se promovía su transacción. Por favor reintente.",
         "noLongerValid": "El paquete que esta intentando promover ya no es valido",
+        "transactionAlreadyConfirmed": "Transacción ya confirmada",
+        "transactionAlreadyConfirmedExplanation": "La transacción que está intentando promover ya está confirmada.",
         "cannotSendToOwn": "Enviando a una direccion propia",
         "cannotSendToOwnExplanation": "No puedes hacer una transferencia de valor a una dirección propia.",
         "pleaseWait": "Espere por favor",
+        "pleaseWaitEllipses": "Por favor espere...",
         "pleaseWaitExplanation": "Trinity está ejecutando otra función. Por Favor espere un poco e intente devuelta.",
         "pleaseWaitTransferExplanation": "Tu balance disponible está siendo usado en otra transferencia. Por favor espere a que dicha transferencia se confirme e intente devuelta.",
         "snapshotTransitionInProgress": "Transición de snapshot en progreso",
@@ -93,13 +106,25 @@
         "checkForUpdates": "Comprobar Actualizaciones",
         "account": "Cuenta",
         "enterPasswordToAccessSettings": "Introduzca su contraseña para acceder a la configuración de su cuenta",
-        "enterYourPassword": "Enter your password",
-        "changeNode": "Change node",
-        "addCustomNode": "Add custom node",
+        "enterYourPassword": "Ingrese su contraseña",
+        "changeNode": "Cambiar nodo",
+        "addCustomNode": "Añadir nodo personalizado",
         "nodeChanged": "Node changed",
         "nodeChangedExplanation": "The node has been changed successfully.",
+        "nodeMustUseHTTPS": "Invalid node (non HTTPS)",
+        "nodeMustUseHTTPSExplanation": "Only custom nodes using HTTPS are allowed.",
+        "nodeDuplicated": "Duplicated node",
+        "nodeDuplicatedExplanation": "The custom node is already listed.",
         "nodeAutoChanged": "Auto-switched node",
-        "nodeAutoChangedExplanation": "Switched to new node {{- nodeAddress}} as selected node is offline."
+        "nodeAutoChangedExplanation": "Switched to new node {{- nodeAddress}} as selected node is offline.",
+        "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer",
+        "masterKey": "Your IOTA seed is the master key to your funds.",
+        "seedThief": "If someone else has your seed they can steal your IOTA.",
+        "googlePlayServicesNotAvailable": "Google Play Services not available",
+        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available.",
+        "clear": "CLEAR",
+        "noNetworkConnection": "No network connection",
+        "noNetworkConnectionExplanation": "Your internet connection appears to be offline."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contiene caracteres inválidos",
@@ -141,10 +166,17 @@
         "clickToCopy": "Pulsa en el botón de abajo y copia tu seed en un administrador de contraseñas.",
         "doNotStore": "No almacenes tu seed en texto plano.",
         "copyToClipboard": "Copiar semilla",
-        "shareSeed": "Compartir su semilla en un administrador de contraseñas seguro"
+        "shareSeed": "Compartir su semilla en un administrador de contraseñas seguro",
+        "storeEncrypted": "Store your seed encrypted in a password manager.",
+        "doNotOpen": "Do not open any other apps during this process.",
+        "tapConfirm": "Please tap the checkbox below to confirm.",
+        "passwordManagerCheckbox": "I will store my seed in a password manager",
+        "copy": "COPY",
+        "noPasswordManagers": "No supported password managers installed",
+        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android."
     },
     "enterSeed": {
-        "invalidCharacters": "La seed contiene caracteres inválidos",
+        "invalidCharacters": "La semilla contiene caracteres inválidos",
         "invalidCharactersExplanation": "Las seeds sólo pueden estar compuestas de letras A-Z y el número 9. Tu seed contiene caracteres inválidos. Por favor intentalo de nuevo.",
         "seedTooShort": "La seed es demasiado corta",
         "seedTooShortExplanation": "Las seeds deben tener {{maxLength}} caracteres. Tu seed tiene actualmente {{currentLength}} caracteres. Por favor inténtalo nuevamente.",
@@ -175,13 +207,16 @@
         "loadingFirstTime": "Cargando la seed por primera vez.",
         "thisMayTake": "Esto puede tardar un rato.",
         "doNotMinimise": "No minimizar ni cerrar la aplicación.",
-        "youMayNotice": "Puedes notar que se alenta tu dispositivo."
+        "youMayNotice": "Puedes notar que se alenta tu dispositivo.",
+        "takingAWhile": "This seems to be taking a while"
     },
     "newSeedSetup": {
         "seedNotGenerated": "La semilla no se ha generado",
         "seedNotGeneratedExplanation": "Por favor genere una nueva semilla.",
         "pressForNewSeed": "PULSAR PARA NUEVA SEED",
-        "individualLetters": "Pulsa letras individuales para que el proceso sea aleatorio."
+        "generateSuccess": "Seed generated successfully",
+        "individualLetters": "Pulsa letras individuales para que el proceso sea aleatorio.",
+        "whatIsASeed": "What is a seed?"
     },
     "onboardingComplete": {
         "walletReady": "La billetera está configurada y lista para usar. Si necesitas hacer cambios en el futuro, busca en el menú de Opciones."
@@ -191,7 +226,13 @@
         "storeSafely": "Almacena tu seed de forma segura.",
         "neverShare": "Nunca compartas tu seed con nadie.",
         "iotaLogo": "Logo IOTA",
-        "printWallet": "IMPRIMIR CARTERA DE PAPEL"
+        "printWallet": "IMPRIMIR CARTERA DE PAPEL",
+        "print": "PRINT",
+        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
+        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
+        "tapCheckboxes": "Please tap the checkboxes below to confirm.",
+        "wifiCheckbox": "I will not print on public wifi",
+        "printerCheckbox": "I will not print on a public printer"
     },
     "receive": {
         "addressCopied": "Dirección Copiada",
@@ -203,8 +244,6 @@
         "spent": "Gastado"
     },
     "saveYourSeed": {
-        "seedCleared": "Seed removida",
-        "seedClearedExplanation": "Tu seed ha sido bordada del portapapeles para tu seguridad.",
         "mustSaveYourSeed": "<0><0>Debes guardar tu seed con</0><1>al menos una</1><2>de las opciones a continuación.</2></0>"
     },
     "seedReentry": {
@@ -237,7 +276,7 @@
         "maximumSelected": "Cantidad MÁXIMA seleccionada",
         "iotaUnits": "Explicación de la unidad IOTA",
         "sendMax": "ENVIAR MÁXIMO",
-        "fingerprintOnSend": "Touch fingerprint reader to send the transfer"
+        "totalTime": "Total time"
     },
     "setPassword": {
         "passwordTooShort": "La contraseña es demasiado corta",
@@ -267,12 +306,15 @@
         "mode": "Modo",
         "theme": "Tema",
         "currency": "Divisa",
+        "cannotChangeNode": "Cannot change node",
+        "cannotChangeNodeWhileSending": "Cannot change node while sending.",
         "language": "Idioma",
         "accountManagement": "Administración de cuentas",
         "addNewSeed": "Añadir nueva seed",
         "twoFA": "Autenticación de dos factores",
         "changePassword": "Cambiar contraseña",
         "advanced": "Opciones avanzadas",
+        "about": "About",
         "logout": "Cerrar sesión",
         "reset": "Reiniciar cartera",
         "syncingComplete": "Sincronización completada",
@@ -297,15 +339,20 @@
         "selectAll": "Seleccionar todo",
         "securitySettings": "Configuraciones de seguridad",
         "fingerprint": "Biometric authentication",
-        "couldNotFetchRates": "Could not fetch rates",
-        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
-        "fetchedConversionRates": "Fetched conversion rates",
-        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}.",
+        "couldNotFetchRates": "Could not fetch rate",
+        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rate for {{currency}}.",
+        "fetchedConversionRates": "Fetched conversion rate",
+        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rate for {{currency}}.",
         "undo": "Deshacer",
         "redo": "Rehacer",
-        "about": "Acerca de Trinity",
+        "aboutTrinity": "About Trinity",
         "lockScreenTimeout": "Lock Screen Timeout (Minutes)",
-        "autoNodeSwitching": "Automatically switch node when selected is unreachable"
+        "autoNodeSwitching": "Automatically switch node when selected is unreachable",
+        "nodeChangeSuccess": "Successfully changed node",
+        "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
+        "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
+        "nodeChangeError": "Error changing node",
+        "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Ingresa tu contraseña para reiniciar la cartera.",
@@ -334,8 +381,10 @@
         "bundleHashCopiedExplanation": "El hash del paquete se ha copiado en el portapapeles.",
         "addressCopied": "Dirección Copiada",
         "addressCopiedExplanation": "La dirección se ha copiado al portapapeles.",
-        "send": "SEND",
-        "receive": "RECEIVE"
+        "messageCopied": "Message copied",
+        "messageCopiedExplanation": "The message has been copied to the clipboard.",
+        "send": "ENVIAR",
+        "receive": "RECIBIR"
     },
     "accountManagement": {
         "viewSeed": "Ver Seed",
@@ -345,8 +394,15 @@
         "addNewAccount": "Añadir nueva cuenta"
     },
     "addCustomNode": {
+        "customNodeAdded": "Custom node added",
+        "customNodeCouldNotBeAdded": "Custom node could not be added",
+        "customNodeAddedSuccessfully": "The custom node has been added successfully.",
         "customNode": "Nodo personalizado",
-        "add": "Añadir"
+        "invalidNodeResponse": "The node returned an invalid response",
+        "httpNodeError": "Trinity Mobile only supports https nodes.",
+        "add": "Añadir",
+        "nodeFieldEmpty": "Text field is empty",
+        "nodeFieldEmptyExplanation": "Please enter a custom node."
     },
     "addNewAccount": {
         "useExistingSeed": "Usar Seed existente",
@@ -403,7 +459,9 @@
         "syncingYourAccount": "Sincronizando cuenta."
     },
     "useExistingSeed": {
-        "title": "Introduce una Seed y un nombre de cuenta."
+        "title": "Introduce una Seed y un nombre de cuenta.",
+        "incorrectFormat": "Incorrect seed format",
+        "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
     },
     "viewSeed": {
         "enterPassword": "Introduce la contraseña para ver tu Seed.",
@@ -422,19 +480,21 @@
     "fingerprintSetup": {
         "instructionsEnable": "Touch fingerprint reader to enable fingerprint authentication",
         "instructionsDisable": "Touch fingerprint reader to disable fingerprint authentication",
-        "fingerprintAuthEnabled": "Autenticación de huellas dactilares habilitada",
-        "fingerprintAuthEnabledExplanation": "La autenticación de huella dactilar se ha habilitado con éxito.",
-        "fingerprintAuthDisabled": "Autenticación de huella dactilar deshabilitada",
-        "fingerprintAuthDisabledExplanation": "La autenticación de huella dactilar se ha deshabilitado con éxito.",
-        "fingerprintAuthFailed": "Autenticación de huella dactilar errónea",
+        "fingerprintAuthEnabled": "Biometric authentication enabled",
+        "fingerprintAuthEnabledExplanation": "You have successfully enabled biometric authentication.",
+        "fingerprintAuthDisabled": "Biometric authentication disabled",
+        "fingerprintAuthDisabledExplanation": "You have successfully disabled biometric authentication.",
+        "fingerprintAuthFailed": "Biometric authentication failed",
         "fingerprintAuthFailedExplanation": "Autenticación de huella dactilar errónea. Inténtalo de nuevo.",
         "status": "Estado",
         "enabled": "Habilitado",
         "disabled": "Deshabilitado",
-        "fingerprintUnavailable": "Sensor de huella dactilar no disponible",
-        "fingerprintUnavailableExplanation": "El dispositivo no es compatible con el reconocimiento de huella dactilar o no está configurado en los ajustes del dispositivo.",
+        "fingerprintUnavailable": "Biometric authentication unavailable",
+        "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Pulsa el botón que hay a continuación para deshabilitar la autenticación de huellas dactilares.",
         "buttonInstructionsEnable": "Pulsa el botón que hay a continuación para habilitar la autenticación de huellas dactilares.",
+        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID.",
+        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID.",
         "instructionsLogin": "Touch fingerprint reader to log in"
     },
     "transferConfirmation": {
@@ -455,7 +515,8 @@
         "twoFADisabled": "2FA is now disabled",
         "twoFADisabledExplanation": "You have successfully disabled Two Factor Authentication.",
         "enterCode": "Introduce el código de tu aplicación 2FA",
-        "code": "Código"
+        "code": "Código",
+        "twoFaToken": "2FA Token"
     },
     "chart": {
         "mcap": "MCAP",
@@ -465,7 +526,9 @@
     },
     "rootDetection": {
         "warning": "WARNING",
-        "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+        "appearsRooted": "Your device appears to be rooted.",
+        "securityRisk": "This can pose a significant risk to the security of your wallet.",
+        "continueDepsiteRisk": "Do you wish to continue despite this risk?"
     },
     "pow": {
         "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
@@ -490,7 +553,15 @@
         "cannotCompleteTransition": "Cannot complete snapshot transition",
         "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
         "transitionComplete": "Snapshot transition complete",
-        "transitionCompleteExplanation": "The snapshot transition has completed successfully."
+        "transitionCompleteExplanation": "The snapshot transition has completed successfully.",
+        "detectedBalance": "Detected balance: {{amount}} {{unit}}",
+        "isThisCorrect": "Is this correct?",
+        "snapshotExplanation": "Every so often, a snapshot is performed to prune the size of the Tangle.",
+        "hasSnapshotTakenPlace": "Has a snapshot taken place? Press the button below to transition.",
+        "transition": "TRANSITION",
+        "transitioning": "Transitioning for the snapshot.",
+        "generatingAndDetecting": "Generating addresses and detecting balance.",
+        "attaching": "Attaching addresses to Tangle"
     },
     "deepLink": {
         "autofill": "Autofill success",
@@ -505,5 +576,8 @@
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
         "downloadRelease": "Download release",
         "skipUpdate": "Skip update"
+    },
+    "notificationLog": {
+        "errorLog": "ERROR LOG"
     }
 }

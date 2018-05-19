@@ -5,7 +5,6 @@
         "continue?": "Ar tikrai norite tęsti?",
         "noTransactions": "ISTORIJOS NĖRA",
         "refresh": "ATNAUJINTI",
-        "qr": "QR",
         "balanceError": "Nepakankamas likutis sąskaitoje",
         "balanceErrorMessage": "Nepakankamas IOTA likutis šiam pavedimui atlikti.",
         "transferError": "Pavedimo klaida",
@@ -36,6 +35,7 @@
         "manualCopy": "Nusirašykite užraktą",
         "paperWallet": "Atspausdinti",
         "copyToClipboard": "Pridėti į slaptažodžių tvarkyklę",
+        "qr": "QR",
         "notAvailable": "Ši funkcija negalima",
         "notAvailableExplanation": "Ateityje ši funkcija bus pridėta.",
         "enterSeed": "Įveskite savo užraktą.",
@@ -48,6 +48,7 @@
         "otherWallet": "KITA PASKYRA",
         "yes": "TAIP",
         "no": "NE",
+        "okay": "GERAI",
         "password": "Slaptažodis",
         "passwordOrFingerprint": "Slaptažodis arba piršto antspaudas",
         "unrecognisedPassword": "Slaptažodis neatpažintas",
@@ -60,8 +61,9 @@
         "node": "Serveris",
         "cannotPerformAction": "Šio veiksmo atlikti negalima",
         "cannotPerformActionExplanation": "Eikite į išplėstinius parametrus, norėdami iš naujo atlikti piniginės nustatymus.",
-        "attachToTangleUnavailable": "Prijungimas prie Tangle negalimas",
-        "attachToTangleUnavailableExplanation": "Su pasirinktu serveriu prijungimas prie Tangle negalimas.",
+        "attachToTangleUnavailable": "Nuotolinis Proof of Work negalimas",
+        "attachToTangleUnavailableExplanation": "Nuotolinis Proof of Work negalimas su jūsų pasirinktu serveriu. Pakeiskite serverį arba nustatykite lokalų Proof of Work išplėstiniuose parametruose.",
+        "attachToTangleUnavailableExplanationShort": "Nuotolinis Proof of Work negalimas su jūsų pasirinktu serveriu.",
         "wallet": "Piniginė",
         "sent": "Išsiųsta",
         "received": "Gauta",
@@ -73,19 +75,30 @@
         "addresses": "Adresai",
         "reattach": "PRIJUNGTI IŠ NAUJO",
         "promote": "IŠKELTI",
+        "retry": "BANDYKITE DAR KARTĄ",
         "rebroadcast": "TRANSLIUOTI IŠ NAUJO",
         "pressBackAgain": "Spauskite atgal, norėdami uždaryti programėlę",
-        "autoreattaching": "Automatinis pakartotinis prijungimas prie Tangle",
-        "autoreattachingExplanation": "Pavedimas prijungiamas iš naujo su šifru {{hash}}",
+        "reattached": "Pavedimas sėkmingai prijungtas",
+        "reattachedExplanation": "Pavedimas prijungtas su šifru {{hash}}",
         "autopromoting": "Automatinis pavedimo iškelimas",
         "autopromotingExplanation": "Pavedimas iškeliamas naudojant šifrą {{hash}}",
-        "promoting": "Pavedimas iškeliamas",
+        "rebroadcasted": "Pavedimas sėkmingai ištransliuotas",
+        "rebroadcastedExplanation": "Pavedimas ištransliuotas su šifru {{hash}}",
+        "rebroadcastError": "Pavedimo ištransliuoti nepavyko",
+        "rebroadcastErrorExplanation": "Įvyko klaida bandant transliuoti jūsų pavedimą. Bandykite dar kartą.",
+        "promoted": "Pavedimas sėkmingai iškeltas",
+        "promotedExplanation": "Pavedimas iškeltas su šifru {{hash}}",
+        "autopromotionError": "Automatiškai iškelti pavedimo nepavyko",
+        "autopromotionErrorExplanation": "Nuotolinis Proof of Work negalimas su jūsų pasirinktu serveriu. Prašome pakeisti serverį.",
         "promotionError": "Pavedimo iškelti nepavyko",
         "promotionErrorExplanation": "Įvyko klaida iškeliant jūsų pavedimą. Bandykite dar kartą.",
         "noLongerValid": "Paketas, kurį norite iškelti yra nepasiekamas",
+        "transactionAlreadyConfirmed": "Šis pavedimas jau patvirtintas",
+        "transactionAlreadyConfirmedExplanation": "Pavedimas, kurį bandote iškelti jau yra patvirtintas.",
         "cannotSendToOwn": "Gavėjo adresas sutampa su siuntėjo adresu",
         "cannotSendToOwnExplanation": "Į savo adresą atlikti pavedimo negalima.",
         "pleaseWait": "Prašome palaukti",
+        "pleaseWaitEllipses": "Prašome palaukti...",
         "pleaseWaitExplanation": "Trinity atlieka kitą veiksmą. Prašome palaukti ir bandyti dar kartą.",
         "pleaseWaitTransferExplanation": "Jūsų balansas yra kitų pavedimų apdorojimo procese. Prašome palaukti, kol vienas iš tų pavedimų bus atliktas ir bandykite dar kartą.",
         "snapshotTransitionInProgress": "Vyksta tinklo duomenų perkėlimas",
@@ -98,8 +111,20 @@
         "addCustomNode": "Pridėti vartotojo serverį",
         "nodeChanged": "Serveris pakeistas",
         "nodeChangedExplanation": "Serveris buvo sėkmingai pakeistas.",
+        "nodeMustUseHTTPS": "Neteisingas serveris (ne HTTPS)",
+        "nodeMustUseHTTPSExplanation": "Vartotojo serveriai galimi tik naudojantys HTTPS.",
+        "nodeDuplicated": "Dubliuotas serveris",
+        "nodeDuplicatedExplanation": "Toks vartotojo serveris jau yra įvestas.",
         "nodeAutoChanged": "Automatiškai pakeistas serveris",
-        "nodeAutoChangedExplanation": "Pakeista į naują serverį {{- nodeAddress}}, nes pasirinktas serveris nepasiekiamas."
+        "nodeAutoChangedExplanation": "Pakeista į naują serverį {{- nodeAddress}}, nes pasirinktas serveris nepasiekiamas.",
+        "fingerprintOnSend": "Palieskite piršto antspaudo skaitytuvą, norėdami patvirtinti pavedimą",
+        "masterKey": "Jūsų IOTA užraktas yra pagrindinis raktas į jūsų lėšas.",
+        "seedThief": "Jeigu kas nors sužinos jūsų užraktą, jie galės pavogti jūsų IOTA.",
+        "googlePlayServicesNotAvailable": "Google Play paslaugos nepasiekiamos",
+        "couldNotVerifyDeviceIntegrity": "Įrenginio vientisumo patvirtinti nepavyksta, nes Google Play paslaugos nepasiekiamos.",
+        "clear": "IŠVALYTI",
+        "noNetworkConnection": "Nėra tinklo ryšio",
+        "noNetworkConnectionExplanation": "Panašu, kad jūsų interneto ryšys atjungtas."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Užraktas turi neleistinų simbolių",
@@ -141,7 +166,14 @@
         "clickToCopy": "Spauskite žemiau esantį mygtuką, norėdami nukopijuoti savo užraktą į slaptažodžių tvarkyklę.",
         "doNotStore": "Nelaikykite užrakto nešifruotu formatu.",
         "copyToClipboard": "Kopijuoti užraktą",
-        "shareSeed": "Įkelti užraktą į saugią slaptažodžių tvarkyklę"
+        "shareSeed": "Įkelti užraktą į saugią slaptažodžių tvarkyklę",
+        "storeEncrypted": "Savo užraktą laikykite užšifruotą slaptažodžių tvarkyklėje.",
+        "doNotOpen": "Šio proceso metu neįjunkite jokių kitų programėlių.",
+        "tapConfirm": "Sužymėkite varneles norėdami patvirtinti.",
+        "passwordManagerCheckbox": "Savo užraktą laikysiu slaptažodžių tvarkyklėje",
+        "copy": "KOPIJUOTI",
+        "noPasswordManagers": "Nėra palaikomų slaptažodžių tvarkyklių",
+        "noPasswordManagersExplanation": "Jūsų įrenginyje nerasta palaikomų slaptažodžių tvarkyklių. Įdiekite Keepass2Android."
     },
     "enterSeed": {
         "invalidCharacters": "Užraktas sudarytas iš neleistinų simbolių",
@@ -175,13 +207,16 @@
         "loadingFirstTime": "Užraktas užkraunamas pirmą kartą.",
         "thisMayTake": "Tai gali užtrukti.",
         "doNotMinimise": "Nesumažinkite ir neuždarykite programėlės.",
-        "youMayNotice": "Jūsų įrenginio darbas gali sulėtėti."
+        "youMayNotice": "Jūsų įrenginio darbas gali sulėtėti.",
+        "takingAWhile": "Atrodo, kad tai užtruks"
     },
     "newSeedSetup": {
         "seedNotGenerated": "Sukurti užrakto nepavyko",
         "seedNotGeneratedExplanation": "Susikurkite naują užraktą.",
         "pressForNewSeed": "SUKURTI NAUJĄ UŽRAKTĄ",
-        "individualLetters": "Spauskite ant raidės, norėdami ją pakeisti kita."
+        "generateSuccess": "Užraktas sėkmingai sukurtas",
+        "individualLetters": "Spauskite ant raidės, norėdami ją pakeisti kita.",
+        "whatIsASeed": "Kas yra užraktas?"
     },
     "onboardingComplete": {
         "walletReady": "Piniginė paruošta naudojimui. Jeigu norėsite atlikti pakeitimus, eikite į Nustatymų meniu."
@@ -191,7 +226,13 @@
         "storeSafely": "Saugiai jį laikykite.",
         "neverShare": "Su niekuo nesidalinkite savo užraktu.",
         "iotaLogo": "IOTA logotipas",
-        "printWallet": "ATSPAUSDINTI"
+        "printWallet": "ATSPAUSDINTI",
+        "print": "SPAUSDINTI",
+        "paperConvenience": "Vienas iš patogių užrakto laikymo būdų yra laikyti jį atspausdintame lape.",
+        "publicInsecure": "Bet spausdinimas naudojant viešą wifi arba viešą spausdintuvą yra nesaugus.",
+        "tapCheckboxes": "Sužymėkite varneles norėdami patvirtinti.",
+        "wifiCheckbox": "Nespausdinsiu naudodamas viešą wifi",
+        "printerCheckbox": "Nespausdinsiu naudodamas viešą spausdintuvą"
     },
     "receive": {
         "addressCopied": "Adresas nukopijuotas",
@@ -203,8 +244,6 @@
         "spent": "Panaudotas"
     },
     "saveYourSeed": {
-        "seedCleared": "Užraktas išvalytas",
-        "seedClearedExplanation": "Užraktas išvalytas iš iškarpinės dėl jūsų saugumo.",
         "mustSaveYourSeed": "<0><0>Užraktą privalote išsisaugoti pasinaudodami </0><1>bent vienu</1><2> iš šių būdų, nurodytų žemiau.</2></0>"
     },
     "seedReentry": {
@@ -237,7 +276,7 @@
         "maximumSelected": "Pasirinkta MAKSIMALI suma",
         "iotaUnits": "IOTA vienetų paaiškinimas",
         "sendMax": "SIŲSTI MAKS.",
-        "fingerprintOnSend": "Palieskite piršto antspaudo skaitytuvą pavedimui atlikti"
+        "totalTime": "Bendras laikas"
     },
     "setPassword": {
         "passwordTooShort": "Slaptažodis per trumpas",
@@ -267,12 +306,15 @@
         "mode": "Rėžimas",
         "theme": "Tema",
         "currency": "Valiuta",
+        "cannotChangeNode": "Serverio pakeisti negalima",
+        "cannotChangeNodeWhileSending": "Negalima pakeisti serverio kol siunčiama.",
         "language": "Kalba",
         "accountManagement": "Paskyros valdymas",
         "addNewSeed": "Pridėti naują užraktą",
         "twoFA": "Dviejų veiksnių autentifikavimas",
         "changePassword": "Keisti slaptažodį",
         "advanced": "Išplėstiniai parametrai",
+        "about": "Apie",
         "logout": "Atsijungti",
         "reset": "Iš naujo nustatyti piniginę",
         "syncingComplete": "Sinchronizacija baigta",
@@ -297,15 +339,20 @@
         "selectAll": "Pažymėti viską",
         "securitySettings": "Saugumo nustatymai",
         "fingerprint": "Biometrinis autentifikavimas",
-        "couldNotFetchRates": "Nepavyksta užkrauti kursų",
-        "couldNotFetchRatesExplanation": "Įvyko klaida užkraunant keitimo kursus {{currency}} valiutai.",
-        "fetchedConversionRates": "Keitimo kursai užkrauti",
-        "fetchedConversionRatesExplanation": "Keitimo kursai sėkmingai užkrauti {{currency}} valiutai.",
+        "couldNotFetchRates": "Kurso užkrauti nepavyko",
+        "couldNotFetchRatesExplanation": "Įvyko klaida užkraunant keitimo kursą {{currency}} valiutai.",
+        "fetchedConversionRates": "Užkrautas keitimo kursas",
+        "fetchedConversionRatesExplanation": "Keitimo kursas sėkmingai užkrautas {{currency}} valiutai.",
         "undo": "Anuliuoti",
         "redo": "Perdaryti",
-        "about": "Apie Trinity",
+        "aboutTrinity": "Apie Trinity",
         "lockScreenTimeout": "Ekrano užrakinimas (minutės)",
-        "autoNodeSwitching": "Automatiškai pakeisti serverį, kai pasirinktas yra nepasiekiamas"
+        "autoNodeSwitching": "Automatiškai pakeisti serverį, kai pasirinktas yra nepasiekiamas",
+        "nodeChangeSuccess": "Sėkmingai pakeistas serveris",
+        "nodeChangeSuccessNoRemotePow": "Serveris pakeistas į {{node}}, Šis serveris nepalaiko nuotolinio Proof of Work.",
+        "nodeChangeSuccessExplanation": "Serveris pakeistas į {{node}}.",
+        "nodeChangeError": "Klaida keičiant serverį",
+        "nodeChangeErrorExplanation": "Įvyko klaida keičiant serverį. Bandykite dar kartą."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Įveskite slaptažodį, norėdami iš naujo nustatyti piniginę.",
@@ -334,6 +381,8 @@
         "bundleHashCopiedExplanation": "Paketo šifras nukopijuotas į iškarpinę.",
         "addressCopied": "Adresas nukopijuotas",
         "addressCopiedExplanation": "Adresas nukopijuotas į iškarpinę.",
+        "messageCopied": "Žinutė nukopijuota",
+        "messageCopiedExplanation": "Žinutė nukopijuota į iškarpinę.",
         "send": "SIŲSTA",
         "receive": "GAUTA"
     },
@@ -345,8 +394,15 @@
         "addNewAccount": "Pridėti naują paskyrą"
     },
     "addCustomNode": {
+        "customNodeAdded": "Vartotojo serveris pridėtas",
+        "customNodeCouldNotBeAdded": "Vartotojo serverio pridėti nepavyko",
+        "customNodeAddedSuccessfully": "Vartotojo serveris pridėtas sėkmingai.",
         "customNode": "Vartotojo serveris",
-        "add": "Pridėti"
+        "invalidNodeResponse": "Serverio klaida",
+        "httpNodeError": "Trinity Mobile palaiko tik https serverius.",
+        "add": "Pridėti",
+        "nodeFieldEmpty": "Adreso laukas yra tuščias",
+        "nodeFieldEmptyExplanation": "Prašome įvesti vartotojo serverį."
     },
     "addNewAccount": {
         "useExistingSeed": "Naudoti seną užraktą",
@@ -403,7 +459,9 @@
         "syncingYourAccount": "Paskyra sinchronizuojama."
     },
     "useExistingSeed": {
-        "title": "Įveskite užraktą ir paskyros vardą."
+        "title": "Įveskite užraktą ir paskyros vardą.",
+        "incorrectFormat": "Neteisingas užrakto formatas",
+        "validSeedExplanation": "Užraktai turi būti sudaryti iš 81 simbolio, galimos tik raidės A-Z ir skaičius 9."
     },
     "viewSeed": {
         "enterPassword": "Įveskite slaptažodį, norėdami pamatyti užraktą.",
@@ -422,19 +480,21 @@
     "fingerprintSetup": {
         "instructionsEnable": "Palieskite piršto antspaudo skaitytuvą, norėdami įjungti piršto antspaudo autentifikavimą",
         "instructionsDisable": "Palieskite piršto antspaudo skaitytuvą, norėdami išjungti piršto antspaudo autentifikavimą",
-        "fingerprintAuthEnabled": "Piršto antspaudo autentifikavimas įjungtas",
-        "fingerprintAuthEnabledExplanation": "Jūs sėkmingai įjungėte piršo antspaudo autentifikavimą.",
-        "fingerprintAuthDisabled": "Piršto antspaudo autentifikavimas išjungtas",
-        "fingerprintAuthDisabledExplanation": "Jūs sėkmingai išjungėte piršo antspaudo autentifikavimą.",
-        "fingerprintAuthFailed": "Piršto antspaudo autentifikavimas nesuveikė",
+        "fingerprintAuthEnabled": "Biometrinis autentifikavimas įjungtas",
+        "fingerprintAuthEnabledExplanation": "Jūs sėkmingai įjungėte biometrinį autentifikavimą.",
+        "fingerprintAuthDisabled": "Biometrinis autentifikavimas išjungtas",
+        "fingerprintAuthDisabledExplanation": "Jūs sėkmingai išjungėte biometrinį autentifikavimą.",
+        "fingerprintAuthFailed": "Biometrinis autentifikavimas nesuveikė",
         "fingerprintAuthFailedExplanation": "Piršto antspaudo autentifikavimas nesuveikė. Bandykite dar kartą.",
         "status": "Būsena",
         "enabled": "Įjungta",
         "disabled": "Išjungta",
-        "fingerprintUnavailable": "Piršto antspaudo jutiklis nepasiekamas",
-        "fingerprintUnavailableExplanation": "Jūsų įrenginys nepalaiko piršto antspaudo atpažinimo arba ši funkcija yra nesukonfigūruota jūsų įrenginyje.",
+        "fingerprintUnavailable": "Biometrinis autentifikavimas nepasiekiamas",
+        "fingerprintUnavailableExplanation": "Jūsų įrenginys nepalaiko biometrinio autentifikavimo arba ši funkcija yra nesukonfigūruota jūsų įrenginyje.",
         "buttonInstructionsDisable": "Spauskite žemiau esantį mygtuką, norėdami atjungti piršto antspaudo autentifikavimą.",
         "buttonInstructionsEnable": "Spauskite žemiau esantį mygtuką, norėdami įjungti piršto antspaudo autentifikavimą.",
+        "buttonInstructionsDisableIPhoneX": "Spauskite žemiau esantį mygtuką, norėdami išjungti Face ID.",
+        "buttonInstructionsEnableIPhoneX": "Spauskite žemiau esantį mygtuką, norėdami įjungti Face ID.",
         "instructionsLogin": "Palieskite piršto antspaudo skaitytuvą, norėdami prisijungti"
     },
     "transferConfirmation": {
@@ -455,7 +515,8 @@
         "twoFADisabled": "2FA išjungtas",
         "twoFADisabledExplanation": "Sėkmingai išjungėte dviejų veiksnių autentifikavimą.",
         "enterCode": "Įveskite kodą iš 2FA programėlės",
-        "code": "Kodas"
+        "code": "Kodas",
+        "twoFaToken": "2FA žetonas"
     },
     "chart": {
         "mcap": "MCAP",
@@ -465,7 +526,9 @@
     },
     "rootDetection": {
         "warning": "PAVOJUS",
-        "rootDetected": "<0>Panašu, kad į jūsų įrenginį buvo įsilaužta.</0><1>Jūsų piniginės saugumui galimai iškilusi didelė grėsmė.</1><2>Ar norite tęsti nepaisant šios rizikos?</2>"
+        "appearsRooted": "Panašu, kad į jūsų įrenginį buvo įsilaužta.",
+        "securityRisk": "Jūsų piniginės saugumui galimai iškilusi didelė grėsmė.",
+        "continueDepsiteRisk": "Ar norite tęsti nepaisant šios rizikos?"
     },
     "pow": {
         "feeless": "Norint atlikti nemokamus IOTA pavedimus, reikalingas skaičiavimų įrodymas (proof of work).",
@@ -490,7 +553,15 @@
         "cannotCompleteTransition": "Nepavyksta perkelti tinklo duomenų",
         "cannotCompleteTransitionExplanation": "Jūsų balansas turi būti didesnis nei 0, kad perkėlimas būtų įvykdytas.",
         "transitionComplete": "Tinklo duomenų perkėlimas įvykdytas",
-        "transitionCompleteExplanation": "Tinklo duomenų perkėlimas įvykdytas sėkmingai."
+        "transitionCompleteExplanation": "Tinklo duomenų perkėlimas įvykdytas sėkmingai.",
+        "detectedBalance": "Aptiktas balansas: {{amount}}{{unit}}",
+        "isThisCorrect": "Ar jis teisingas?",
+        "snapshotExplanation": "Norint sumažinti Tangle dydį, retkarčiais yra atliekamas tinklo duomenų užfiksavimas.",
+        "hasSnapshotTakenPlace": "Įvyko duomenų užfiksavimas? Spauskite žemiau esantį mygtuką, norėdami perkelti duomenis.",
+        "transition": "PERKELTI",
+        "transitioning": "Perkeliami tinklo duomenys.",
+        "generatingAndDetecting": "Kuriami adresai ir nustatinėjamas balansas.",
+        "attaching": "Adresai prijungiami prie Tangle"
     },
     "deepLink": {
         "autofill": "Automatinis įkėlimas sėkmingas",
@@ -505,5 +576,8 @@
         "newVersionAvailableExplanation": "Galima nauja <strong>Trinity</strong> <strong>{{version}}</strong> versija. Prašome atidžiai perskaityti naujo leidinio informaciją ir patvirtinkite atsisiuntimo šaltinį prieš atnaujinant:",
         "downloadRelease": "Atsisiųsti leidinį",
         "skipUpdate": "Praleisti atnaujinimus"
+    },
+    "notificationLog": {
+        "errorLog": "KLAIDŲ ŽURNALAS"
     }
 }

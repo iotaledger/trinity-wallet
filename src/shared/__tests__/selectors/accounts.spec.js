@@ -3,8 +3,6 @@ import {
     getAccountsFromState,
     getAccountInfoFromState,
     getUnconfirmedBundleTailsFromState,
-    getTxHashesForUnspentAddressesFromState,
-    getPendingTxHashesForSpentAddressesFromState,
     selectedAccountStateFactory,
     selectFirstAddressFromAccountFactory,
     getAccountNamesFromState,
@@ -61,40 +59,6 @@ describe('selectors: accounts', () => {
         });
     });
 
-    describe('#getTxHashesForUnspentAddressesFromState', () => {
-        describe('when "txHashesForUnspentAddresses" prop is not defined as a nested prop under "accounts" prop in argument', () => {
-            it('should return an empty object', () => {
-                expect(getTxHashesForUnspentAddressesFromState({ accounts: { foo: {} } })).to.eql({});
-            });
-        });
-
-        describe('when "txHashesForUnspentAddresses" prop is defined as a nested prop under "accounts" prop in argument', () => {
-            it('should return value for "txHashesForUnspentAddresses" prop', () => {
-                expect(
-                    getTxHashesForUnspentAddressesFromState({ accounts: { txHashesForUnspentAddresses: { foo: {} } } }),
-                ).to.eql({ foo: {} });
-            });
-        });
-    });
-
-    describe('#getPendingTxHashesForSpentAddressesFromState', () => {
-        describe('when "pendingTxHashesForSpentAddresses" prop is not defined as a nested prop under "accounts" prop in argument', () => {
-            it('should return an empty object', () => {
-                expect(getPendingTxHashesForSpentAddressesFromState({ accounts: { foo: {} } })).to.eql({});
-            });
-        });
-
-        describe('when "pendingTxHashesForSpentAddresses" prop is defined as a nested prop under "accounts" prop in argument', () => {
-            it('should return value for "pendingTxHashesForSpentAddresses" prop', () => {
-                expect(
-                    getPendingTxHashesForSpentAddressesFromState({
-                        accounts: { pendingTxHashesForSpentAddresses: { foo: {} } },
-                    }),
-                ).to.eql({ foo: {} });
-            });
-        });
-    });
-
     describe('#selectedAccountStateFactory', () => {
         let state;
 
@@ -102,24 +66,31 @@ describe('selectors: accounts', () => {
             state = {
                 accounts: {
                     unconfirmedBundleTails: { foo: {} },
-                    pendingTxHashesForSpentAddresses: { valid: [], invalid: [] },
-                    txHashesForUnspentAddresses: { valid: [], invalid: [] },
                     accountInfo: {
-                        valid: { transfers: {}, addresses: {}, balance: 0 },
-                        invalid: { transfers: {}, addresses: {}, balance: 0 },
+                        valid: {
+                            transfers: {},
+                            addresses: {},
+                            balance: 0,
+                            hashes: [],
+                        },
+                        invalid: {
+                            transfers: {},
+                            addresses: {},
+                            balance: 0,
+                            hashes: [],
+                        },
                     },
                 },
                 garbage: {},
             };
         });
 
-        it('should return an object with props "transfers", "addresses", "balance", "unconfirmedBundleTails", "accountInfo", "txHashesForUnspentAddresses" and "pendingTxHashesForSpentAddresses"', () => {
+        it('should return an object with props "transfers", "addresses", "balance", "unconfirmedBundleTails" and "hashes"', () => {
             expect(selectedAccountStateFactory('valid')(state)).to.have.keys([
                 'transfers',
                 'addresses',
                 'balance',
-                'txHashesForUnspentAddresses',
-                'pendingTxHashesForSpentAddresses',
+                'hashes',
                 'unconfirmedBundleTails',
                 'accountName',
             ]);
@@ -139,8 +110,8 @@ describe('selectors: accounts', () => {
                         foo: {
                             transfers: [],
                             addresses: {
-                                ['U'.repeat(81)]: { index: 0, balance: 0, spent: false },
-                                ['A'.repeat(81)]: { index: 1, balance: 10, spent: false },
+                                ['U'.repeat(81)]: { index: 0, balance: 0, spent: false, checksum: 'NXELTUENX' },
+                                ['A'.repeat(81)]: { index: 1, balance: 10, spent: false, checksum: 'YLFHUOJUY' },
                             },
                             balance: 10,
                         },
@@ -148,7 +119,7 @@ describe('selectors: accounts', () => {
                             transfers: {},
                             addresses: {
                                 addresses: {
-                                    ['B'.repeat(81)]: { index: 0, balance: 20, spent: false },
+                                    ['B'.repeat(81)]: { index: 0, balance: 20, spent: false, checksum: 'IO9LGIBVB' },
                                 },
                             },
                             balance: 20,
@@ -159,8 +130,9 @@ describe('selectors: accounts', () => {
             };
         });
 
-        it('should return the address from selected account with index zero', () => {
-            expect(selectFirstAddressFromAccountFactory('foo')(state)).to.equal('U'.repeat(81));
+        it('should return first address (index === 0) with checksum for selected account', () => {
+            const firstAddressWithChecksum = `${'U'.repeat(81)}NXELTUENX`;
+            expect(selectFirstAddressFromAccountFactory('foo')(state)).to.equal(firstAddressWithChecksum);
         });
     });
 

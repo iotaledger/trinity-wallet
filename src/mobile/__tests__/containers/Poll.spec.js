@@ -36,6 +36,7 @@ const getProps = (overrides) =>
             getAccountInfo: noop,
             promoteTransfer: noop,
             removeBundleFromUnconfirmedBundleTails: noop,
+            fetchNodeList: noop,
         },
         overrides,
     );

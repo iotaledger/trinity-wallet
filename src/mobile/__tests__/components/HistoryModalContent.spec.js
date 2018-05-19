@@ -55,6 +55,9 @@ const getProps = (overrides) =>
                 barColor: 'white',
                 buttonsOpacity: { opacity: 1 },
             },
+            isBroadcastingBundle: false,
+            currentlyPromotingBundleHash: 'foo',
+            hasFailedAutopromotion: false,
         },
         overrides,
     );
@@ -104,6 +107,14 @@ describe('Testing HistoryModalContent component', () => {
         it('should require a disableWhen boolean as a prop', () => {
             expect(HistoryModalContent.propTypes.disableWhen).toEqual(PropTypes.bool.isRequired);
         });
+
+        it('should require a isBroadcastingBundle boolean as a prop', () => {
+            expect(HistoryModalContent.propTypes.isBroadcastingBundle).toEqual(PropTypes.bool.isRequired);
+        });
+
+        it('should require a currentlyPromotingBundleHash string as a prop', () => {
+            expect(HistoryModalContent.propTypes.currentlyPromotingBundleHash).toEqual(PropTypes.string.isRequired);
+        });
     });
 
     describe('when renders', () => {
@@ -111,7 +122,7 @@ describe('Testing HistoryModalContent component', () => {
             const props = getProps();
 
             const wrapper = shallow(<HistoryModalContent {...props} />);
-            expect(wrapper.name()).toEqual('TouchableOpacity');
+            expect(wrapper.name()).toEqual('TouchableWithoutFeedback');
         });
 
         it('should return six View components', () => {
@@ -238,7 +249,7 @@ describe('Testing HistoryModalContent component', () => {
             const instance = wrapper.instance();
 
             jest.spyOn(instance, 'copy');
-            const touchableOpacity = wrapper.find('TouchableOpacity').at(1);
+            const touchableOpacity = wrapper.find('TouchableOpacity').at(0);
 
             touchableOpacity.props().onPress();
 

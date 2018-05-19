@@ -44,9 +44,9 @@ const styles = StyleSheet.create({
         paddingVertical: height / 50,
     },
     infoText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 27.6,
-        textAlign: 'justify',
+        textAlign: 'left',
         backgroundColor: 'transparent',
     },
     textField: {
@@ -72,13 +72,13 @@ const styles = StyleSheet.create({
         marginRight: width / 20,
     },
     titleTextLeft: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
     titleTextRight: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         marginRight: width / 20,
@@ -153,7 +153,7 @@ class ChangePassword extends Component {
 
                     generateAlert('success', t('passwordUpdated'), t('passwordUpdatedExplanation'));
 
-                    this.props.setSetting('mainSettings');
+                    this.props.setSetting('securitySettings');
                 })
                 .catch(() => throwErr());
         }
@@ -266,7 +266,7 @@ class ChangePassword extends Component {
                     </View>
                     <View style={styles.bottomContainer}>
                         <TouchableOpacity
-                            onPress={() => this.props.setSetting('mainSettings')}
+                            onPress={() => this.props.setSetting('securitySettings')}
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.itemLeft}>

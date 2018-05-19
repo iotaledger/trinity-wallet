@@ -2,7 +2,6 @@ import { translate, Trans } from 'react-i18next';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text } from 'react-native';
-import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import WithBackPressGoToHome from '../components/BackPressGoToHome';
 import { width, height } from '../utils/dimensions';
@@ -42,14 +41,14 @@ const styles = StyleSheet.create({
     },
     subHeaderText: {
         fontSize: width / 22.7,
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
     infoText: {
         fontSize: width / 27.6,
-        fontFamily: 'Lato-Light',
-        textAlign: 'justify',
+        fontFamily: 'SourceSansPro-Light',
+        textAlign: 'left',
         backgroundColor: 'transparent',
     },
     infoTextLight: {
@@ -109,24 +108,8 @@ class WalletResetConfirmation extends Component {
     }
 
     goBack() {
-        const { theme } = this.props;
-        // FIXME: A quick workaround to stop UI text fields breaking on android due to react-native-navigation.
-        Navigation.startSingleScreenApp({
-            screen: {
-                screen: 'home',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    topBarElevationShadowEnabled: false,
-                    screenBackgroundColor: theme.body.bg,
-                    drawUnderStatusBar: true,
-                    statusBarColor: theme.body.bg,
-                },
-            },
-            appStyle: {
-                orientation: 'portrait',
-                keepStyleAcrossPush: true,
-            },
+        this.props.navigator.pop({
+            animated: false,
         });
     }
 

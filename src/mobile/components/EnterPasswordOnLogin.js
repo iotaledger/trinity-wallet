@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
         paddingTop: height / 8,
     },
     title: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 20.7,
         textAlign: 'center',
         backgroundColor: 'transparent',
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
     },
     loginText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
     },
@@ -67,7 +67,7 @@ export class EnterPasswordOnLogin extends Component {
         /** @param {string} password - user's password */
         onLoginPress: PropTypes.func.isRequired,
         /** Navigate to node selection screen */
-        navigateToNodeSelection: PropTypes.func.isRequired,
+        navigateToNodeOptions: PropTypes.func.isRequired,
         /** Set updated text field password */
         /** @param {string} password - Updated password in the text field */
         setLoginPasswordField: PropTypes.func.isRequired,
@@ -92,8 +92,8 @@ export class EnterPasswordOnLogin extends Component {
     };
 
     changeNode = () => {
-        const { navigateToNodeSelection } = this.props;
-        navigateToNodeSelection();
+        const { navigateToNodeOptions } = this.props;
+        navigateToNodeOptions();
     };
 
     render() {

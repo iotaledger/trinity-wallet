@@ -3,7 +3,7 @@ import noop from 'lodash/noop';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
-import NotificationLog from '../../components/NotificationLog';
+import { NotificationLog } from '../../components/NotificationLog';
 
 const getProps = (overrides) =>
     assign(
@@ -13,9 +13,11 @@ const getProps = (overrides) =>
             borderColor: { borderColor: '#ffffff' },
             textColor: { color: '#ffffff' },
             barColor: '#ffffff',
+            barBg: '#ffffff',
             hideModal: noop,
             notificationLog: [],
             clearLog: noop,
+            t: () => '',
         },
         overrides,
     );
@@ -44,6 +46,14 @@ describe('Testing NotificationLog component', () => {
 
         it('should require a clearLog function as a prop', () => {
             expect(NotificationLog.propTypes.clearLog).toEqual(PropTypes.func.isRequired);
+        });
+
+        it('should require a t function as a prop', () => {
+            expect(NotificationLog.propTypes.t).toEqual(PropTypes.func.isRequired);
+        });
+
+        it('should require a barBg function as a prop', () => {
+            expect(NotificationLog.propTypes.barBg).toEqual(PropTypes.string.isRequired);
         });
     });
 

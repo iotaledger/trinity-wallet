@@ -1,8 +1,6 @@
 apply plugin: "com.android.application"
 apply plugin: "io.fabric"
-
 import com.android.build.OutputFile
-
 /**
  * The react.gradle file registers a task for each build variant (e.g. bundleDebugJsAndAssets
  * and bundleReleaseJsAndAssets).
@@ -72,9 +70,7 @@ import com.android.build.OutputFile
  *   extraPackagerArgs: []
  * ]
  */
-
 apply from: "../../node_modules/react-native/react.gradle"
-
 /**
  * Set this to true to create two separate APKs instead of one:
  *   - An APK that only works on ARM devices
@@ -84,20 +80,18 @@ apply from: "../../node_modules/react-native/react.gradle"
  * the correct one based on the CPU architecture of their device.
  */
 def enableSeparateBuildPerCPUArchitecture = false
-
 /**
  * Run Proguard to shrink the Java bytecode in release builds.
  */
 def enableProguardInReleaseBuilds = true
-
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.iota.wallet"
-        versionCode 28
-        versionName "3.4.5"
-        minSdkVersion 19
+        versionCode 35
+        versionName "3.5.1"
+        minSdkVersion 21
         targetSdkVersion 26
         multiDexEnabled true
         multiDexEnabled true
@@ -140,58 +134,58 @@ android {
             }
         }
     }
+    productFlavors {
+    }
 }
-
 dependencies {
-    compile project(':react-native-fingerprint-scanner')
-    compile project(':react-native-fabric')
-    compile project(':react-native-keep-awake')
-    compile project(':react-native-device-info')
-    compile project(':react-native-extra-dimensions-android')
-    compile project(':react-native-detect-navbar-android')
-    compile project(':react-native-os')
-    compile (project(':react-native-camera')) {
+    implementation project(':react-native-detect-navbar-android')
+    implementation project(':react-native-fingerprint-scanner')
+    implementation project(':react-native-fabric')
+    implementation project(':react-native-keep-awake')
+    implementation project(':react-native-device-info')
+    implementation project(':react-native-extra-dimensions-android')
+    implementation project(':react-native-os')
+    implementation(project(':react-native-camera')) {
         exclude group: "com.google.android.gms:+"
     }
-    compile ("com.google.android.gms:play-services-vision:10.2.0") {
-        force = true;
+    implementation('com.google.android.gms:play-services-vision:10.2.0') {
+        force = true
     }
-    compile project(':react-native-html-to-pdf')
-    compile project(':react-native-print')
-    compile project(':react-native-udp')
-    compile project(':react-native-tcp')
-    compile project(':react-native-svg')
-    compile project(':react-native-navigation')
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.facebook.react:react-native:+'
-    compile project(':react-native-svg')
-    compile project(':react-native-fs')
-    compile project(':react-native-keychain')
-    compile('com.crashlytics.sdk.android:crashlytics:2.9.0@aar') {
-        transitive = true;
+    implementation project(':react-native-html-to-pdf')
+    implementation project(':react-native-print')
+    implementation project(':react-native-udp')
+    implementation project(':react-native-tcp')
+    implementation project(':react-native-svg')
+    implementation project(':react-native-navigation')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:27.1.0'
+    implementation ('com.facebook.react:react-native:0.51.0') { force = true }
+    implementation project(':react-native-svg')
+    implementation project(':react-native-fs')
+    implementation project(':react-native-keychain')
+    implementation('com.crashlytics.sdk.android:crashlytics:2.9.0@aar') {
+        transitive = true
     }
-    compile 'com.android.support:multidex:1.0.1'
-    compile project(':lottie-react-native')
-    compile project(':react-native-exit-app')
-    compile project(':react-native-securerandom')
-    compile project(':react-native-is-device-rooted')
-    compile project(':randombytes')
-    compile project(':react-native-vector-icons')
-    compile project(':bugsnag-react-native')
-    compile project(':react-native-fingerprint-scanner')
+    implementation 'com.android.support:multidex:1.0.1'
+    implementation project(':lottie-react-native')
+    implementation project(':react-native-exit-app')
+    implementation project(':react-native-securerandom')
+    implementation project(':react-native-is-device-rooted')
+    implementation project(':randombytes')
+    implementation project(':react-native-vector-icons')
+    implementation project(':bugsnag-react-native')
+    implementation project(':react-native-fingerprint-scanner')
+    implementation project(':react-native-google-safetynet')
 }
-
 // Run this once to be able to run the application with BUCK
 // puts all compile dependencies into folder libs for BUCK to use
 task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
 }
-
 project.ext.react = [
         nodeExecutableAndArgs : ["/usr/local/bin/node"]
-];
+]
 
 
 apply plugin: 'com.bugsnag.android.gradle'

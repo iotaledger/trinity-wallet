@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, TouchableOpacity, Image, Alert } from 'react-native';
 import { setFingerprintStatus } from 'iota-wallet-shared-modules/actions/settings';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 import { translate } from 'react-i18next';
@@ -19,7 +18,7 @@ import StatefulDropdownAlert from './StatefulDropdownAlert';
 import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
 import { Icon } from '../theme/icons.js';
-import { isAndroid } from '../utils/device';
+import { isAndroid, isIPhoneX } from '../utils/device';
 
 const styles = StyleSheet.create({
     container: {
@@ -67,7 +66,7 @@ const styles = StyleSheet.create({
     },
     backText: {
         color: '#9DFFAF',
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 24.4,
         backgroundColor: 'transparent',
     },
@@ -98,6 +97,8 @@ class FingerprintEnable extends Component {
         t: PropTypes.func.isRequired,
         /** Determines whether fingerprint is enabled */
         isFingerprintEnabled: PropTypes.bool.isRequired,
+        /** Navigation object */
+        navigator: PropTypes.object.isRequired,
     };
 
     constructor(props) {
@@ -123,6 +124,14 @@ class FingerprintEnable extends Component {
         } else {
             this.activateFingerprintScanner();
         }
+    }
+
+    getButtonInstructions() {
+        const { t, isFingerprintEnabled } = this.props;
+        if (isIPhoneX) {
+            return isFingerprintEnabled ? t('buttonInstructionsDisableIPhoneX') : t('buttonInstructionsEnableIPhoneX');
+        }
+        return isFingerprintEnabled ? t('buttonInstructionsDisable') : t('buttonInstructionsEnable');
     }
 
     openModal() {
@@ -199,25 +208,8 @@ class FingerprintEnable extends Component {
     }
 
     navigateToHome() {
-        const { theme } = this.props;
-
-        // FIXME: A quick workaround to stop UI text fields breaking on android due to react-native-navigation.
-        Navigation.startSingleScreenApp({
-            screen: {
-                screen: 'home',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    topBarElevationShadowEnabled: false,
-                    screenBackgroundColor: theme.body.bg,
-                    drawUnderStatusBar: true,
-                    statusBarColor: theme.body.bg,
-                },
-            },
-            appStyle: {
-                orientation: 'portrait',
-                keepStyleAcrossPush: false,
-            },
+        this.props.navigator.pop({
+            animated: false,
         });
     }
 
@@ -231,7 +223,7 @@ class FingerprintEnable extends Component {
         const backgroundColor = { backgroundColor: theme.body.bg };
         const textColor = { color: theme.body.color };
         const authenticationStatus = isFingerprintEnabled ? t('enabled') : t('disabled');
-        const instructions = isFingerprintEnabled ? t('buttonInstructionsDisable') : t('buttonInstructionsEnable');
+        const instructions = this.getButtonInstructions();
         const fingerprintImagePath = tinycolor(theme.body.bg).isDark()
             ? whiteFingerprintImagePath
             : blackFingerprintImagePath;

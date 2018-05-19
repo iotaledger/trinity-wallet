@@ -1,21 +1,27 @@
 import get from 'lodash/get';
 import each from 'lodash/each';
 import map from 'lodash/map';
+import union from 'lodash/union';
 import { setPrice, setChartData, setMarketData } from './marketData';
+import { setNodeList } from './settings';
 import { formatChartData, getUrlTimeFormat, getUrlNumberFormat, rearrangeObjectKeys } from '../libs/utils';
-import { generateAlert, generateAccountInfoErrorAlert } from './alerts';
+import { generateAccountInfoErrorAlert, generateAlert } from './alerts';
 import { setNewUnconfirmedBundleTails, removeBundleFromUnconfirmedBundleTails } from './accounts';
 import { getFirstConsistentTail, isStillAValidTransaction } from '../libs/iota/transfers';
 import { selectedAccountStateFactory } from '../selectors/accounts';
 import { syncAccount } from '../libs/iota/accounts';
 import { forceTransactionPromotion } from './transfers';
-import i18next from '../i18next.js';
+import { NODELIST_URL, nodes } from '../config';
+import Errors from '../libs/errors';
 
 export const ActionTypes = {
     SET_POLL_FOR: 'IOTA/POLLING/SET_POLL_FOR',
     FETCH_PRICE_REQUEST: 'IOTA/POLLING/FETCH_PRICE_REQUEST',
     FETCH_PRICE_SUCCESS: 'IOTA/POLLING/FETCH_PRICE_SUCCESS',
     FETCH_PRICE_ERROR: 'IOTA/POLLING/FETCH_PRICE_ERROR',
+    FETCH_NODELIST_REQUEST: 'IOTA/POLLING/FETCH_NODELIST_REQUEST',
+    FETCH_NODELIST_SUCCESS: 'IOTA/POLLING/FETCH_NODELIST_SUCCESS',
+    FETCH_NODELIST_ERROR: 'IOTA/POLLING/FETCH_NODELIST_ERROR',
     FETCH_CHART_DATA_REQUEST: 'IOTA/POLLING/FETCH_CHART_DATA_REQUEST',
     FETCH_CHART_DATA_SUCCESS: 'IOTA/POLLING/FETCH_CHART_DATA_SUCCESS',
     FETCH_CHART_DATA_ERROR: 'IOTA/POLLING/FETCH_CHART_DATA_ERROR',
@@ -28,7 +34,14 @@ export const ActionTypes = {
     PROMOTE_TRANSACTION_REQUEST: 'IOTA/POLLING/PROMOTE_TRANSACTION_REQUEST',
     PROMOTE_TRANSACTION_SUCCESS: 'IOTA/POLLING/PROMOTE_TRANSACTION_SUCCESS',
     PROMOTE_TRANSACTION_ERROR: 'IOTA/POLLING/PROMOTE_TRANSACTION_ERROR',
+    SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION: 'IOTA/POLLING/SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION',
+    SET_AUTOPROMOTION_FAILED_FLAG: 'IOTA/POLLING/SET_AUTOPROMOTION_FAILED_FLAG',
 };
+
+export const setAutoPromotionFailedFlag = (payload) => ({
+    type: ActionTypes.SET_AUTOPROMOTION_FAILED_FLAG,
+    payload,
+});
 
 const fetchPriceRequest = () => ({
     type: ActionTypes.FETCH_PRICE_REQUEST,
@@ -40,6 +53,18 @@ const fetchPriceSuccess = () => ({
 
 const fetchPriceError = () => ({
     type: ActionTypes.FETCH_PRICE_ERROR,
+});
+
+const fetchNodeListRequest = () => ({
+    type: ActionTypes.FETCH_NODELIST_REQUEST,
+});
+
+const fetchNodeListSuccess = () => ({
+    type: ActionTypes.FETCH_NODELIST_SUCCESS,
+});
+
+const fetchNodeListError = () => ({
+    type: ActionTypes.FETCH_NODELIST_ERROR,
 });
 
 const fetchChartDataRequest = () => ({
@@ -79,8 +104,9 @@ const accountInfoFetchError = () => ({
     type: ActionTypes.ACCOUNT_INFO_FETCH_ERROR,
 });
 
-const promoteTransactionRequest = () => ({
+const promoteTransactionRequest = (payload) => ({
     type: ActionTypes.PROMOTE_TRANSACTION_REQUEST,
+    payload,
 });
 
 const promoteTransactionSuccess = () => ({
@@ -93,6 +119,11 @@ const promoteTransactionError = () => ({
 
 export const setPollFor = (payload) => ({
     type: ActionTypes.SET_POLL_FOR,
+    payload,
+});
+
+export const syncAccountBeforeAutoPromotion = (payload) => ({
+    type: ActionTypes.SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION,
     payload,
 });
 
@@ -123,6 +154,27 @@ export const fetchPrice = () => {
             .then((json) => {
                 dispatch(setPrice(json));
                 dispatch(fetchPriceSuccess());
+            });
+    };
+};
+
+export const fetchNodeList = () => {
+    return (dispatch) => {
+        dispatch(fetchNodeListRequest());
+        fetch(NODELIST_URL)
+            .then((response) => response.json(), () => dispatch(fetchNodeListError()))
+            .then((response) => {
+                if (response.length) {
+                    const remoteNodes = response
+                        .map((node) => node.node)
+                        .filter((node) => typeof node === 'string' && node.indexOf('https://') === 0);
+
+                    const unionNodes = union(nodes, remoteNodes);
+
+                    dispatch(setNodeList(unionNodes));
+                }
+
+                dispatch(fetchNodeListSuccess());
             });
     };
 };
@@ -183,10 +235,9 @@ export const fetchChartData = () => {
 };
 
 /**
- *   Accepts a user's seed and account name and sync local account state with ledger's.
+ *   Accepts account name and sync local account state with ledger's.
  *
  *   @method getAccountInfo
- *   @param {string} seed
  *   @param {string} accountName
  *   @returns {function} dispatch
  **/
@@ -212,42 +263,71 @@ export const getAccountInfo = (accountName) => {
  *   For cases where a bundle in valid, find first consistent tail and promote it.
  *
  *   @method promoteTransfer
- *   @param {string} bundle
- *   @param {array} tails - All tail transaction objects for the bundle
+ *   @param {string} bundleHash
+ *   @param {array} seenTailTransactions
  *   @returns {function} - dispatch
  **/
-export const promoteTransfer = (bundle, tails) => (dispatch, getState) => {
-    dispatch(promoteTransactionRequest());
+export const promoteTransfer = (bundleHash, seenTailTransactions) => (dispatch, getState) => {
+    dispatch(promoteTransactionRequest(bundleHash));
 
-    const accountName = get(tails, '[0].account');
-    const existingAccountState = selectedAccountStateFactory(accountName)(getState());
+    const accountName = get(seenTailTransactions, '[0].account');
+    let accountState = selectedAccountStateFactory(accountName)(getState());
 
-    return isStillAValidTransaction(existingAccountState.transfers[bundle], existingAccountState.addresses)
-        .then((isValid) => {
-            if (!isValid) {
-                dispatch(removeBundleFromUnconfirmedBundleTails(bundle));
+    return syncAccount(accountState)
+        .then((newState) => {
+            accountState = newState;
+            dispatch(syncAccountBeforeAutoPromotion(accountState));
 
-                throw new Error('Bundle no longer valid');
+            const transaction = accountState.transfers[bundleHash];
+
+            if (transaction.persistence) {
+                dispatch(removeBundleFromUnconfirmedBundleTails(bundleHash));
+                throw new Error(Errors.TRANSACTION_ALREADY_CONFIRMED);
             }
 
-            return getFirstConsistentTail(tails, 0);
+            return isStillAValidTransaction(accountState.transfers[bundleHash], accountState.addresses);
         })
-        .then((consistentTail) => dispatch(forceTransactionPromotion(accountName, consistentTail, tails)))
-        .then((hash) => {
-            dispatch(
-                generateAlert(
-                    'success',
-                    i18next.t('global:autopromoting'),
-                    i18next.t('global:autopromotingExplanation', { hash }),
-                ),
-            );
+        .then((isValid) => {
+            if (!isValid) {
+                dispatch(removeBundleFromUnconfirmedBundleTails(bundleHash));
 
+                throw new Error(Errors.BUNDLE_NO_LONGER_VALID);
+            }
+
+            return getFirstConsistentTail(accountState.unconfirmedBundleTails[bundleHash], 0);
+        })
+        .then((consistentTail) =>
+            dispatch(
+                forceTransactionPromotion(
+                    accountName,
+                    consistentTail,
+                    accountState.unconfirmedBundleTails[bundleHash],
+                    false,
+                ),
+            ),
+        )
+        .then(() => {
             // Rearrange bundles so that the next cycle picks up a new bundle for promotion
             dispatch(
-                setNewUnconfirmedBundleTails(rearrangeObjectKeys(existingAccountState.unconfirmedBundleTails, bundle)),
+                setNewUnconfirmedBundleTails(rearrangeObjectKeys(accountState.unconfirmedBundleTails, bundleHash)),
             );
 
             return dispatch(promoteTransactionSuccess());
         })
-        .catch(() => dispatch(promoteTransactionError()));
+        .catch((err) => {
+            if (err.message.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
+                // FIXME: Temporary solution until local/remote PoW is reworked on auto-promotion
+                if (!getState().ui.hasFailedAutopromotion) {
+                    dispatch(
+                        generateAlert(
+                            'error',
+                            'Could not auto-promote transaction',
+                            'Remote Proof of Work is not available on your selected node. Please change node.',
+                        ),
+                    );
+                }
+                dispatch(setAutoPromotionFailedFlag(true));
+            }
+            dispatch(promoteTransactionError());
+        });
 };

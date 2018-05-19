@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         fontSize: width / 27.6,
         paddingTop: height / 60,
         backgroundColor: 'transparent',
-        textAlign: 'justify',
+        textAlign: 'left',
     },
     itemLeft: {
         flexDirection: 'row',
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
     },
     titleTextLeft: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         marginLeft: width / 20,

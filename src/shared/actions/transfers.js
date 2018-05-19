@@ -5,6 +5,7 @@ import map from 'lodash/map';
 import filter from 'lodash/filter';
 import some from 'lodash/some';
 import sample from 'lodash/sample';
+import size from 'lodash/size';
 import { iota } from '../libs/iota';
 import {
     broadcastBundleAsync,
@@ -28,11 +29,21 @@ import {
     prepareTransferArray,
     filterInvalidPendingTransactions,
     performPow,
+    getPendingOutgoingTransfersForAddresses,
 } from '../libs/iota/transfers';
 import { syncAccountAfterReattachment, syncAccount, syncAccountAfterSpending } from '../libs/iota/accounts';
-import { updateAccountAfterReattachment, updateAccountInfoAfterSpending, accountInfoFetchSuccess } from './accounts';
-import { shouldAllowSendingToAddress, syncAddresses, getLatestAddress } from '../libs/iota/addresses';
-import { getStartingSearchIndexToPrepareInputs, getUnspentInputs } from '../libs/iota/inputs';
+import {
+    updateAccountAfterReattachment,
+    updateAccountInfoAfterSpending,
+    syncAccountBeforeManualPromotion,
+    syncAccountBeforeManualRebroadcast,
+} from './accounts';
+import { shouldAllowSendingToAddress, getAddressesUptoRemainder } from '../libs/iota/addresses';
+import {
+    getStartingSearchIndexToPrepareInputs,
+    getUnspentInputs,
+    getSpentAddressesFromTransactions,
+} from '../libs/iota/inputs';
 import { generateAlert, generateTransferErrorAlert, generatePromotionErrorAlert } from './alerts';
 import i18next from '../i18next.js';
 import Errors from '../libs/errors';
@@ -61,8 +72,9 @@ const broadcastBundleError = () => ({
     type: ActionTypes.BROADCAST_BUNDLE_ERROR,
 });
 
-const promoteTransactionRequest = () => ({
+const promoteTransactionRequest = (payload) => ({
     type: ActionTypes.PROMOTE_TRANSACTION_REQUEST,
+    payload,
 });
 
 const promoteTransactionSuccess = () => ({
@@ -101,28 +113,41 @@ export const completeTransfer = (payload) => {
 export const broadcastBundle = (bundleHash, accountName) => (dispatch, getState) => {
     dispatch(broadcastBundleRequest());
 
-    const accountState = selectedAccountStateFactory(accountName)(getState());
-    const transaction = accountState.transfers[bundleHash];
-    const tailTransaction = sample(transaction.tailTransactions);
-
+    let accountState = null;
     let chainBrokenInternally = false;
 
-    return isStillAValidTransaction(transaction, accountState.addresses)
+    return syncAccount(selectedAccountStateFactory(accountName)(getState()))
+        .then((newAccountState) => {
+            accountState = newAccountState;
+
+            dispatch(syncAccountBeforeManualRebroadcast(accountState));
+
+            const transaction = accountState.transfers[bundleHash];
+
+            if (transaction.persistence) {
+                chainBrokenInternally = true;
+                throw new Error(Errors.TRANSACTION_ALREADY_CONFIRMED);
+            }
+
+            return isStillAValidTransaction(transaction, accountState.addresses);
+        })
         .then((isValid) => {
             if (!isValid) {
                 chainBrokenInternally = true;
-
                 throw new Error(Errors.BUNDLE_NO_LONGER_VALID);
             }
 
+            const transaction = accountState.transfers[bundleHash];
+            const tailTransaction = sample(transaction.tailTransactions);
+
             return broadcastBundleAsync(tailTransaction.hash);
         })
-        .then(() => {
+        .then((hash) => {
             dispatch(
                 generateAlert(
                     'success',
-                    'Rebroadcasted transaction',
-                    `Rebroadcasted transaction with hash ${tailTransaction.hash}.`,
+                    i18next.t('global:rebroadcasted'),
+                    i18next.t('global:rebroadcastedExplanation', { hash }),
                 ),
             );
 
@@ -130,14 +155,23 @@ export const broadcastBundle = (bundleHash, accountName) => (dispatch, getState)
         })
         .catch((err) => {
             if (err.message === Errors.BUNDLE_NO_LONGER_VALID && chainBrokenInternally) {
-                // TODO: Replace error message with a valid broadcast error message
-                dispatch(generateAlert('error', i18next.t('global:promotionError'), i18next.t('global:noLongerValid')));
+                dispatch(
+                    generateAlert('error', i18next.t('global:rebroadcastError'), i18next.t('global:noLongerValid')),
+                );
+            } else if (err.message === Errors.TRANSACTION_ALREADY_CONFIRMED && chainBrokenInternally) {
+                dispatch(
+                    generateAlert(
+                        'success',
+                        i18next.t('global:transactionAlreadyConfirmed'),
+                        i18next.t('global:transactionAlreadyConfirmedExplanation'),
+                    ),
+                );
             } else {
                 dispatch(
                     generateAlert(
                         'error',
-                        'Could not rebroadcast transaction ',
-                        'Something went wrong while rebroadcasting your transaction. Please try again.',
+                        i18next.t('global:rebroadcastError'),
+                        i18next.t('global:rebroadcastErrorExplanation'),
                     ),
                 );
             }
@@ -147,30 +181,52 @@ export const broadcastBundle = (bundleHash, accountName) => (dispatch, getState)
 };
 
 export const promoteTransaction = (bundleHash, accountName) => (dispatch, getState) => {
-    dispatch(promoteTransactionRequest());
+    dispatch(promoteTransactionRequest(bundleHash));
 
-    const accountState = selectedAccountStateFactory(accountName)(getState());
-    const transaction = accountState.transfers[bundleHash];
-    const tailTransactions = transaction.tailTransactions;
-
+    let accountState = null;
     let chainBrokenInternally = false;
 
-    return isStillAValidTransaction(transaction, accountState.addresses)
+    return syncAccount(selectedAccountStateFactory(accountName)(getState()))
+        .then((newAccountState) => {
+            accountState = newAccountState;
+
+            dispatch(syncAccountBeforeManualPromotion(accountState));
+
+            const transaction = accountState.transfers[bundleHash];
+
+            if (transaction.persistence) {
+                chainBrokenInternally = true;
+                throw new Error(Errors.TRANSACTION_ALREADY_CONFIRMED);
+            }
+
+            return isStillAValidTransaction(transaction, accountState.addresses);
+        })
         .then((isValid) => {
             if (!isValid) {
                 chainBrokenInternally = true;
                 throw new Error(Errors.BUNDLE_NO_LONGER_VALID);
             }
 
+            const tailTransactions = accountState.transfers[bundleHash].tailTransactions;
+
             return getFirstConsistentTail(tailTransactions, 0);
         })
-        .then((consistentTail) => dispatch(forceTransactionPromotion(accountName, consistentTail, tailTransactions)))
+        .then((consistentTail) =>
+            dispatch(
+                forceTransactionPromotion(
+                    accountName,
+                    consistentTail,
+                    accountState.transfers[bundleHash].tailTransactions,
+                    true,
+                ),
+            ),
+        )
         .then((hash) => {
             dispatch(
                 generateAlert(
                     'success',
-                    i18next.t('global:promoting'),
-                    i18next.t('global:autopromotingExplanation', { hash }),
+                    i18next.t('global:promoted'),
+                    i18next.t('global:promotedExplanation', { hash }),
                 ),
             );
 
@@ -179,9 +235,27 @@ export const promoteTransaction = (bundleHash, accountName) => (dispatch, getSta
         .catch((err) => {
             if (err.message === Errors.BUNDLE_NO_LONGER_VALID && chainBrokenInternally) {
                 dispatch(generateAlert('error', i18next.t('global:promotionError'), i18next.t('global:noLongerValid')));
+            } else if (err.message.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
+                dispatch(
+                    generateAlert(
+                        'error',
+                        i18next.t('global:attachToTangleUnavailable'),
+                        i18next.t('global:attachToTangleUnavailableExplanationShort'),
+                        10000,
+                    ),
+                );
+            } else if (err.message === Errors.TRANSACTION_ALREADY_CONFIRMED && chainBrokenInternally) {
+                dispatch(
+                    generateAlert(
+                        'success',
+                        i18next.t('global:transactionAlreadyConfirmed'),
+                        i18next.t('global:transactionAlreadyConfirmedExplanation'),
+                    ),
+                );
+            } else {
+                dispatch(generatePromotionErrorAlert(err));
             }
 
-            dispatch(generatePromotionErrorAlert());
             return dispatch(promoteTransactionError());
         });
 };
@@ -197,42 +271,54 @@ export const promoteTransaction = (bundleHash, accountName) => (dispatch, getSta
  *   @param {string} accountName
  *   @param {boolean} consistentTail
  *   @param {array} tails
+ *   @param {boolean} shouldGenerateAlert
+ *
  *   @returns {Promise}
  **/
-export const forceTransactionPromotion = (accountName, consistentTail, tails) => (dispatch, getState) => {
+export const forceTransactionPromotion = (accountName, consistentTail, tails, shouldGenerateAlert) => (
+    dispatch,
+    getState,
+) => {
     if (!consistentTail) {
         // Grab hash from the top tail to replay
         const topTx = head(tails);
         const hash = topTx.hash;
 
-        return replayBundleAsync(hash)
-            .then((reattachment) => {
+        return replayBundleAsync(hash).then((reattachment) => {
+            if (shouldGenerateAlert) {
                 dispatch(
                     generateAlert(
                         'success',
-                        i18next.t('global:autoreattaching'),
-                        i18next.t('global:autoreattachingExplanation', { hash }),
+                        i18next.t('global:reattached'),
+                        i18next.t('global:reattachedExplanation', { hash }),
                         2500,
                     ),
                 );
+            }
 
-                const existingAccountState = selectedAccountStateFactory(accountName)(getState());
+            const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
-                return syncAccountAfterReattachment(accountName, reattachment, existingAccountState);
-            })
-            .then(({ newState, reattachment }) => {
-                dispatch(updateAccountAfterReattachment(newState));
+            const { newState } = syncAccountAfterReattachment(accountName, reattachment, existingAccountState);
 
-                const tailTransaction = find(reattachment, { currentIndex: 0 });
-                return promoteTransactionAsync(tailTransaction.hash);
-            });
+            // Update local store
+            dispatch(updateAccountAfterReattachment(newState));
+
+            const tailTransaction = find(reattachment, { currentIndex: 0 });
+
+            return promoteTransactionAsync(tailTransaction.hash);
+        });
     }
 
     return promoteTransactionAsync(consistentTail.hash);
 };
 
-export const makeTransaction = (seed, address, value, message, accountName, powFn, genFn) => (dispatch, getState) => {
+export const makeTransaction = (seed, receiveAddress, value, message, accountName, powFn, genFn) => (
+    dispatch,
+    getState,
+) => {
     dispatch(sendTransferRequest());
+
+    const address = size(receiveAddress) === 90 ? receiveAddress : iota.utils.addChecksum(receiveAddress);
 
     // Use a local variable to keep track if the promise chain was interrupted internally.
     let chainBrokenInternally = false;
@@ -240,6 +326,7 @@ export const makeTransaction = (seed, address, value, message, accountName, powF
     // Initialize account state
     // Reassign with latest state when account is synced
     let accountState = selectedAccountStateFactory(accountName)(getState());
+    let transferInputs = [];
 
     // Security checks are not necessary for zero value transfers
     // Have them wrapped in a separate private function so in case it is a value transfer,
@@ -254,37 +341,40 @@ export const makeTransaction = (seed, address, value, message, accountName, powF
         return shouldAllowSendingToAddress([address])
             .then((shouldAllowSending) => {
                 if (shouldAllowSending) {
-                    return syncAddresses(seed, accountState, genFn, true);
+                    // Syncing account
+                    dispatch(setNextStepAsActive());
+
+                    return syncAccount(accountState, seed, true, genFn, true);
                 }
 
                 chainBrokenInternally = true;
                 throw new Error(Errors.KEY_REUSE);
             })
             .then((newState) => {
-                // Syncing account
-                dispatch(setNextStepAsActive());
-
-                return syncAccount(newState);
-            })
-            .then((newState) => {
-                // Assign latest account
+                // Assign latest account but do not update the local store yet.
+                // Only update the local store with updated account information after this transaction is successfully completed.
                 accountState = newState;
-
-                // Update local store with the latest account information
-                dispatch(accountInfoFetchSuccess(accountState));
 
                 const valueTransfers = filter(map(accountState.transfers, (tx) => tx), (tx) => tx.transferValue !== 0);
 
                 return filterInvalidPendingTransactions(valueTransfers, accountState.addresses);
             })
             .then((filteredTransfers) => {
-                const { addresses } = accountState;
+                const { addresses, transfers } = accountState;
                 const startIndex = getStartingSearchIndexToPrepareInputs(addresses);
+                const spentAddressesFromTransactions = getSpentAddressesFromTransactions(transfers);
 
                 // Preparing inputs
                 dispatch(setNextStepAsActive());
 
-                return getUnspentInputs(addresses, filteredTransfers, startIndex, value, null);
+                return getUnspentInputs(
+                    addresses,
+                    spentAddressesFromTransactions,
+                    filteredTransfers,
+                    startIndex,
+                    value,
+                    null,
+                );
             })
             .then((inputs) => {
                 // allBalance -> total balance associated with addresses.
@@ -300,7 +390,14 @@ export const makeTransaction = (seed, address, value, message, accountName, powF
                     // TODO: At this point, we could leverage the change addresses and allow user making a transfer on top from those.
                 } else if (get(inputs, 'totalBalance') < value) {
                     chainBrokenInternally = true;
-                    throw new Error(Errors.ADDRESS_HAS_PENDING_TRANSFERS);
+                    const addresses = accountState.addresses;
+                    const transfers = accountState.transfers;
+                    const pendingOutgoingTransfers = getPendingOutgoingTransfersForAddresses(addresses, transfers);
+                    if (size(pendingOutgoingTransfers)) {
+                        throw new Error(Errors.ADDRESS_HAS_PENDING_TRANSFERS);
+                    } else {
+                        throw new Error(Errors.FUNDS_AT_SPENT_ADDRESSES);
+                    }
                 }
 
                 // Do not allow receiving address to be one of the user's own input addresses.
@@ -314,10 +411,21 @@ export const makeTransaction = (seed, address, value, message, accountName, powF
                     throw new Error(Errors.CANNOT_SEND_TO_OWN_ADDRESS);
                 }
 
-                const remainderAddress = getLatestAddress(accountState.addresses);
+                transferInputs = get(inputs, 'inputs');
+
+                return getAddressesUptoRemainder(accountState.addresses, seed, genFn, [
+                    iota.utils.noChecksum(receiveAddress),
+                ]);
+            })
+            .then(({ remainderAddress, addressDataUptoRemainder }) => {
+                // getAddressesUptoRemainder returns the latest unused address as the remainder address
+                // Also returns updated address data including new address data for the intermediate addresses.
+                // E.g: If latest locally stored address has an index 50 and remainder address was calculated to be
+                // at index 53 it would include address data for 51, 52 and 53.
+                accountState.addresses = addressDataUptoRemainder;
 
                 return {
-                    inputs: get(inputs, 'inputs'),
+                    inputs: transferInputs,
                     address: remainderAddress,
                 };
             });
@@ -373,8 +481,14 @@ export const makeTransaction = (seed, address, value, message, accountName, powF
 
                 return storeAndBroadcastAsync(cached.trytes);
             })
-            .then(() => syncAccountAfterSpending(accountName, cached.transactionObjects, accountState, !isZeroValue))
-            .then(({ newState }) => {
+            .then(() => {
+                const { newState } = syncAccountAfterSpending(
+                    accountName,
+                    cached.transactionObjects,
+                    accountState,
+                    !isZeroValue,
+                );
+
                 // Progress summary
                 dispatch(setNextStepAsActive());
 
@@ -382,7 +496,7 @@ export const makeTransaction = (seed, address, value, message, accountName, powF
                 dispatch(updateAccountInfoAfterSpending(newState));
 
                 // Delay dispatching alerts to display the progress summary
-                return setTimeout(() => {
+                setTimeout(() => {
                     if (isZeroValue) {
                         dispatch(
                             generateAlert(
@@ -433,6 +547,15 @@ export const makeTransaction = (seed, address, value, message, accountName, powF
                             20000,
                         ),
                     );
+                } else if (message === Errors.FUNDS_AT_SPENT_ADDRESSES && chainBrokenInternally) {
+                    return dispatch(
+                        generateAlert(
+                            'error',
+                            i18next.t('global:spentAddressExplanation'),
+                            i18next.t('global:discordInformation'),
+                            20000,
+                        ),
+                    );
                 } else if (message === Errors.CANNOT_SEND_TO_OWN_ADDRESS && chainBrokenInternally) {
                     return dispatch(
                         generateAlert(
@@ -442,7 +565,7 @@ export const makeTransaction = (seed, address, value, message, accountName, powF
                             20000,
                         ),
                     );
-                } else if (message.includes('attachToTangle is not available')) {
+                } else if (message.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
                     return dispatch(
                         generateAlert(
                             'error',

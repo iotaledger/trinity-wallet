@@ -1,10 +1,12 @@
 import get from 'lodash/get';
 import { Navigation } from 'react-native-navigation';
 import { translate } from 'react-i18next';
-import { Text, TextInput } from 'react-native';
+import { Text, TextInput, NetInfo } from 'react-native';
 import { Provider } from 'react-redux';
 import { setRandomlySelectedNode } from 'iota-wallet-shared-modules/actions/settings';
-import { changeIotaNode, getRandomNode } from 'iota-wallet-shared-modules/libs/iota';
+import { changeIotaNode, getRandomNode, SwitchingConfig } from 'iota-wallet-shared-modules/libs/iota';
+import { fetchNodeList as fetchNodes } from 'iota-wallet-shared-modules/actions/polling';
+import { ActionTypes } from 'iota-wallet-shared-modules/actions/wallet';
 import i18next from 'i18next';
 import { getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
 import { isIOS } from '../utils/device';
@@ -19,6 +21,9 @@ const clearKeychain = () => {
 };
 
 const renderInitialScreen = (store) => {
+    // Disable auto node switching.
+    SwitchingConfig.autoSwitch = false;
+
     Text.defaultProps.allowFontScaling = false;
     TextInput.defaultProps.allowFontScaling = false;
 
@@ -69,12 +74,73 @@ export const setRandomIotaNode = (store) => {
     }
 };
 
+/**
+ *  Fetch IRI nodes list from server
+ *
+ *   @method fetchNodeList
+ *   @param {object} store - redux store object
+ **/
+const fetchNodeList = (store) => {
+    store.dispatch(fetchNodes());
+};
+
+/**
+ *  Listens to connection changes and updates store on connection change
+ *
+ *   @method startListeningToConnectivityChanges
+ *   @param {object} store - redux store object
+ **/
+const startListeningToConnectivityChanges = (store) => {
+    const checkConnection = (isConnected) => {
+        store.dispatch({
+            type: ActionTypes.CONNECTION_CHANGED,
+            payload: { isConnected },
+        });
+    };
+
+    NetInfo.isConnected.addEventListener('connectionChange', checkConnection);
+};
+
+/**
+ *  Determines if device has connection.
+ *
+ *   @method startListeningToConnectivityChanges
+ *   @param {string} url
+ *   @param {object} options
+ *
+ *   @returns {Promise}
+ **/
+const hasConnection = (url, options = { fallbackUrl: 'https://www.baidu.com' }) => {
+    return NetInfo.getConnectionInfo().then(() =>
+        fetch(url, { timeout: 3000 })
+            .then((response) => response.status === 200)
+            .catch(() => {
+                if (url !== options.fallbackUrl) {
+                    return hasConnection(options.fallbackUrl);
+                }
+
+                return false;
+            }),
+    );
+};
+
 // Initialization function
 // Passed as a callback to persistStore to adjust the rendering time
 export default (store) => {
-    registerScreens(store, Provider);
-    translate.setI18n(i18);
+    const initialize = (isConnected) => {
+        store.dispatch({
+            type: ActionTypes.CONNECTION_CHANGED,
+            payload: { isConnected },
+        });
+        fetchNodeList(store);
+        startListeningToConnectivityChanges(store);
 
-    setRandomIotaNode(store);
-    renderInitialScreen(store);
+        registerScreens(store, Provider);
+        translate.setI18n(i18);
+
+        setRandomIotaNode(store);
+        renderInitialScreen(store);
+    };
+
+    hasConnection('https://www.google.com').then((isConnected) => initialize(isConnected));
 };

@@ -30,6 +30,11 @@ describe('Reducer: ui', () => {
                 },
                 doNotMinimise: false,
                 isModalActive: false,
+                isCheckingCustomNode: false,
+                isChangingNode: false,
+                currentlyPromotingBundleHash: '',
+                loginRoute: 'login',
+                hasFailedAutopromotion: false,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
@@ -408,14 +413,29 @@ describe('Reducer: ui', () => {
                 isPromotingTransaction: true,
             };
 
-            expect(newState).to.eql(expectedState);
+            expect(newState.isPromotingTransaction).to.eql(expectedState.isPromotingTransaction);
+        });
+
+        it('should set "currentlyPromotingBundleHash" state prop to payload in action', () => {
+            const initialState = {
+                currentlyPromotingBundleHash: '',
+            };
+
+            const action = {
+                type: 'IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST',
+                payload: 'foo',
+            };
+
+            const newState = reducer(initialState, action);
+            expect(newState.currentlyPromotingBundleHash).to.eql('foo');
         });
     });
 
     describe('IOTA/TRANSFERS/PROMOTE_TRANSACTION_SUCCESS', () => {
-        it('should set "isPromotingTransaction" state prop to false', () => {
+        it('should set "isPromotingTransaction" state prop to false and "currentlyPromotingBundleHash" to empty strings', () => {
             const initialState = {
                 isPromotingTransaction: true,
+                currentlyPromotingBundleHash: 'foo',
             };
 
             const action = {
@@ -425,6 +445,7 @@ describe('Reducer: ui', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 isPromotingTransaction: false,
+                currentlyPromotingBundleHash: '',
             };
 
             expect(newState).to.eql(expectedState);
@@ -432,9 +453,10 @@ describe('Reducer: ui', () => {
     });
 
     describe('IOTA/TRANSFERS/PROMOTE_TRANSACTION_ERROR', () => {
-        it('should set "isPromotingTransaction" state prop to true', () => {
+        it('should set "isPromotingTransaction" state prop to true and "currentlyPromotingBundleHash" to empty strings', () => {
             const initialState = {
                 isPromotingTransaction: true,
+                currentlyPromotingBundleHash: 'foo',
             };
 
             const action = {
@@ -444,6 +466,7 @@ describe('Reducer: ui', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 isPromotingTransaction: false,
+                currentlyPromotingBundleHash: '',
             };
 
             expect(newState).to.eql(expectedState);
@@ -682,6 +705,7 @@ describe('Reducer: ui', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 hasErrorFetchingAccountInfoOnLogin: false,
+                isFetchingLatestAccountInfoOnLogin: true,
             };
 
             expect(newState).to.eql(expectedState);
@@ -701,6 +725,7 @@ describe('Reducer: ui', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 hasErrorFetchingAccountInfoOnLogin: true,
+                isFetchingLatestAccountInfoOnLogin: false,
             };
 
             expect(newState).to.eql(expectedState);
@@ -1024,6 +1049,26 @@ describe('Reducer: ui', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 isModalActive: false,
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
+
+    describe('IOTA/UI/SET_CUSTOM_NODE_CHECK_STATUS', () => {
+        it('should set "isCheckingCustomNode" state prop to payload', () => {
+            const initialState = {
+                isCheckingCustomNode: false,
+            };
+
+            const action = {
+                type: 'IOTA/UI/SET_CUSTOM_NODE_CHECK_STATUS',
+                payload: true,
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                isCheckingCustomNode: true,
             };
 
             expect(newState).to.eql(expectedState);

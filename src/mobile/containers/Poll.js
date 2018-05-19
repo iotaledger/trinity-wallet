@@ -12,6 +12,7 @@ import {
     fetchMarketData,
     fetchChartData,
     fetchPrice,
+    fetchNodeList,
     setPollFor,
     getAccountInfo,
     promoteTransfer,
@@ -26,6 +27,7 @@ export class Poll extends Component {
         setPollFor: PropTypes.func.isRequired,
         fetchMarketData: PropTypes.func.isRequired,
         fetchPrice: PropTypes.func.isRequired,
+        fetchNodeList: PropTypes.func.isRequired,
         fetchChartData: PropTypes.func.isRequired,
         getAccountInfo: PropTypes.func.isRequired,
         promoteTransfer: PropTypes.func.isRequired,
@@ -57,14 +59,16 @@ export class Poll extends Component {
             props.isGeneratingReceiveAddress ||
             props.isFetchingLatestAccountInfoOnLogin || // In case the app is already fetching latest account info, stop polling because the market related data is already fetched on login
             props.addingAdditionalAccount ||
-            props.isTransitioning;
+            props.isTransitioning ||
+            props.isPromotingTransaction;
 
         const isAlreadyPollingSomething =
             props.isFetchingPrice ||
+            props.isFetchingNodeList ||
             props.isFetchingChartData ||
             props.isFetchingMarketData ||
             props.isFetchingAccountInfo ||
-            props.isPromoting;
+            props.isAutoPromoting;
 
         return isAlreadyDoingSomeHeavyLifting || isAlreadyPollingSomething;
     }
@@ -79,6 +83,7 @@ export class Poll extends Component {
             marketData: this.props.fetchMarketData,
             price: this.props.fetchPrice,
             chartData: this.props.fetchChartData,
+            nodeList: this.props.fetchNodeList,
             accountInfo: this.fetchLatestAccountInfo,
         };
 
@@ -93,7 +98,7 @@ export class Poll extends Component {
     }
 
     startBackgroundProcesses() {
-        timer.setInterval(this, 'polling', () => this.fetch(this.props.pollFor), 15000);
+        timer.setInterval(this, 'polling', () => this.fetch(this.props.pollFor), 8000);
     }
 
     handleAppStateChange = (nextAppState) => {
@@ -109,16 +114,20 @@ export class Poll extends Component {
     }
 
     promote() {
-        const { unconfirmedBundleTails, allPollingServices, pollFor } = this.props;
+        const {
+            unconfirmedBundleTails,
+            allPollingServices,
+            pollFor
+        } = this.props;
 
         const index = allPollingServices.indexOf(pollFor);
         const next = index === size(allPollingServices) - 1 ? 0 : index + 1;
 
         if (!isEmpty(unconfirmedBundleTails)) {
             const bundles = keys(unconfirmedBundleTails);
-            const top = bundles[0];
+            const bundleHash = bundles[0];
 
-            return this.props.promoteTransfer(top, unconfirmedBundleTails[top]);
+            return this.props.promoteTransfer(bundleHash, unconfirmedBundleTails[bundleHash]);
         }
 
         // In case there are no unconfirmed bundle tails, move to the next service item
@@ -134,10 +143,12 @@ const mapStateToProps = (state) => ({
     pollFor: state.polling.pollFor,
     allPollingServices: state.polling.allPollingServices,
     isFetchingPrice: state.polling.isFetchingPrice,
+    isFetchingNodeList: state.polling.isFetchingNodeList,
     isFetchingChartData: state.polling.isFetchingChartData,
     isFetchingMarketData: state.polling.isFetchingMarketData,
     isFetchingAccountInfo: state.polling.isFetchingAccountInfo,
-    isPromoting: state.polling.isPromoting,
+    isAutoPromoting: state.polling.isAutoPromoting,
+    isPromotingTransaction: state.ui.isPromotingTransaction,
     isSyncing: state.ui.isSyncing,
     addingAdditionalAccount: state.wallet.addingAdditionalAccount,
     isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
@@ -153,6 +164,7 @@ const mapDispatchToProps = {
     fetchMarketData,
     fetchChartData,
     fetchPrice,
+    fetchNodeList,
     setPollFor,
     getAccountInfo,
     promoteTransfer,

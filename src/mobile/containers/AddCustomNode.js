@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import {
+    ActivityIndicator,
+    View,
+    Text,
+    StyleSheet,
+    TouchableOpacity,
+    TouchableWithoutFeedback,
+    Keyboard,
+} from 'react-native';
 import { connect } from 'react-redux';
-import { changeIotaNode, checkNode } from 'iota-wallet-shared-modules/libs/iota';
+import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
+import { getNodeInfoAsync as checkNode } from 'iota-wallet-shared-modules/libs/iota/extendedApi';
 import { setFullNode, addCustomPoWNode } from 'iota-wallet-shared-modules/actions/settings';
+import { setCustomNodeCheckStatus } from 'iota-wallet-shared-modules/actions/ui';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { translate } from 'react-i18next';
 import { width, height } from '../utils/dimensions';
@@ -17,8 +27,12 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     topContainer: {
-        flex: 9,
+        flex: 4,
         justifyContent: 'flex-start',
+    },
+    innerContainer: {
+        flex: 5,
+        justifyContent: 'center',
         alignItems: 'center',
     },
     bottomContainer: {
@@ -40,19 +54,25 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
     },
     titleTextLeft: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
     titleTextRight: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         marginRight: width / 20,
     },
     dropdownWidth: {
         width: width / 1.5,
+    },
+    activityIndicator: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: height / 40,
     },
 });
 
@@ -63,8 +83,6 @@ class AddCustomNode extends Component {
     static propTypes = {
         /** Available IRI nodes */
         nodes: PropTypes.array.isRequired,
-        /** Currently selected IRI node */
-        node: PropTypes.string.isRequired,
         /** Theme settings */
         theme: PropTypes.object.isRequired,
         /** Set node
@@ -87,6 +105,12 @@ class AddCustomNode extends Component {
          * @param {string} customNode
          */
         addCustomPoWNode: PropTypes.func.isRequired,
+        /** Determines if the newly added custom node is being checked */
+        isCheckingCustomNode: PropTypes.bool.isRequired,
+        /** Set status for custom node check
+         * @param {boolean} status
+         */
+        setCustomNodeCheckStatus: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -100,27 +124,40 @@ class AddCustomNode extends Component {
     onAddNodeError() {
         return this.props.generateAlert(
             'error',
-            'Custom node could not be added',
-            'The node returned an invalid response.',
+            this.props.t('addCustomNode:customNodeCouldNotBeAdded'),
+            this.props.t('addCustomNode:invalidNodeResponse'),
         );
     }
 
     onAddNodeSuccess(customNode) {
         this.props.addCustomPoWNode(customNode);
 
-        return this.props.generateAlert('success', 'Custom node added', 'The custom node has been added successfully.');
+        return this.props.generateAlert(
+            'success',
+            this.props.t('addCustomNode:customNodeAdded'),
+            this.props.t('addCustomNode:customNodeAddedSuccessfully'),
+        );
     }
 
     onDuplicateNodeError() {
-        return this.props.generateAlert('error', 'Duplicate node', 'The custom node is already listed.');
+        return this.props.generateAlert(
+            'error',
+            this.props.t('global:nodeDuplicated'),
+            this.props.t('global:nodeDuplicatedExplanation'),
+        );
     }
 
     onAddHttpNodeError() {
         return this.props.generateAlert(
             'error',
-            'Custom node could not be added',
-            'Trinity Mobile only supports https nodes.',
+            this.props.t('addCustomNode:customNodeCouldNotBeAdded'),
+            this.props.t('addCustomNode:httpNodeError'),
         );
+    }
+
+    onEmptyFieldError() {
+        const { t } = this.props;
+        return this.props.generateAlert('error', t('nodeFieldEmpty'), t('nodeFieldEmptyExplanation'));
     }
 
     setNode(selectedNode) {
@@ -129,9 +166,13 @@ class AddCustomNode extends Component {
     }
 
     addNode() {
-        const { node, nodes } = this.props;
+        const { nodes } = this.props;
 
         const { customNode } = this.state;
+
+        if (!customNode) {
+            return this.onEmptyFieldError();
+        }
 
         if (!customNode.startsWith('http')) {
             return this.onAddNodeError();
@@ -142,32 +183,64 @@ class AddCustomNode extends Component {
         }
 
         if (!nodes.includes(customNode.replace(/ /g, ''))) {
-            this.setNode(customNode);
+            this.props.setCustomNodeCheckStatus(true);
 
-            checkNode((error) => {
-                if (error) {
-                    this.onAddNodeError();
-                    this.setNode(node);
-                } else {
+            checkNode(customNode)
+                .then(() => {
+                    this.props.setCustomNodeCheckStatus(false);
                     this.onAddNodeSuccess(customNode);
+                    this.setNode(customNode);
                     this.props.backPress();
-                }
-            });
+                })
+                .catch(() => {
+                    this.props.setCustomNodeCheckStatus(false);
+                    this.onAddNodeError();
+                });
         } else {
             this.onDuplicateNodeError();
         }
     }
 
-    render() {
+    renderBackPressOption() {
         const { t, theme } = this.props;
-        const textColor = { color: theme.body.color };
-        const bodyColor = theme.body.color;
+
+        return (
+            <TouchableOpacity
+                onPress={() => this.props.backPress()}
+                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+            >
+                <View style={styles.itemLeft}>
+                    <Icon name="chevronLeft" size={width / 28} color={theme.body.color} />
+                    <Text style={[styles.titleTextLeft, { color: theme.body.color }]}>{t('global:backLowercase')}</Text>
+                </View>
+            </TouchableOpacity>
+        );
+    }
+
+    renderAddCustomNodeOption() {
+        const { t, theme } = this.props;
+
+        return (
+            <TouchableOpacity
+                onPress={() => this.addNode()}
+                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+            >
+                <View style={styles.itemRight}>
+                    <Text style={[styles.titleTextRight, { color: theme.body.color }]}>{t('add')}</Text>
+                    <Icon name="tick" size={width / 28} color={theme.body.color} />
+                </View>
+            </TouchableOpacity>
+        );
+    }
+
+    render() {
+        const { t, theme, isCheckingCustomNode } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
-                        <View style={{ flex: 0.3 }} />
+                        <View style={{ flex: 1.2 }} />
                         <CustomTextInput
                             label={t('customNode')}
                             onChangeText={(customNode) => this.setState({ customNode })}
@@ -178,27 +251,24 @@ class AddCustomNode extends Component {
                             returnKeyType="done"
                             onSubmitEditing={() => this.addNode()}
                             theme={theme}
+                            editable={!isCheckingCustomNode}
                         />
                     </View>
+                    {this.props.isCheckingCustomNode ? (
+                        <View style={styles.innerContainer}>
+                            <ActivityIndicator
+                                animating
+                                style={styles.activityIndicator}
+                                size="large"
+                                color={theme.primary.color}
+                            />
+                        </View>
+                    ) : (
+                        <View style={styles.innerContainer} />
+                    )}
                     <View style={styles.bottomContainer}>
-                        <TouchableOpacity
-                            onPress={() => this.props.backPress()}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.itemLeft}>
-                                <Icon name="chevronLeft" size={width / 28} color={bodyColor} />
-                                <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={() => this.addNode()}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.itemRight}>
-                                <Text style={[styles.titleTextRight, textColor]}>{t('add')}</Text>
-                                <Icon name="tick" size={width / 28} color={bodyColor} />
-                            </View>
-                        </TouchableOpacity>
+                        {!this.props.isCheckingCustomNode && this.renderBackPressOption()}
+                        {!this.props.isCheckingCustomNode && this.renderAddCustomNodeOption()}
                     </View>
                 </View>
             </TouchableWithoutFeedback>
@@ -208,14 +278,15 @@ class AddCustomNode extends Component {
 
 const mapStateToProps = (state) => ({
     nodes: state.settings.nodes,
-    node: state.settings.node,
     theme: state.settings.theme,
+    isCheckingCustomNode: state.ui.isCheckingCustomNode,
 });
 
 const mapDispatchToProps = {
     setFullNode,
     generateAlert,
     addCustomPoWNode,
+    setCustomNodeCheckStatus,
 };
 
 export default translate(['addCustomNode', 'global'])(connect(mapStateToProps, mapDispatchToProps)(AddCustomNode));

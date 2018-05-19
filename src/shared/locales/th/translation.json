@@ -5,7 +5,6 @@
         "continue?": "คุณแน่ใจหรือว่าคุณต้องการทำต่อ",
         "noTransactions": "ไม่พบประวัติล่าสุด",
         "refresh": "รีเฟรช",
-        "qr": "QR",
         "balanceError": "ยอดคงเหลือไม่เพียงพอ",
         "balanceErrorMessage": "คุณมียอด IOTA คงเหลือไม่เพียงพอสำหรับการโอน",
         "transferError": "การโอนขัดข้อง",
@@ -36,6 +35,7 @@
         "manualCopy": "กรุณาใส่ Seed (เลขที่บัญชี)",
         "paperWallet": "พิมพ์สำเนา",
         "copyToClipboard": "เพิ่มไปยังการจัดการรหัสผ่าน",
+        "qr": "QR",
         "notAvailable": "ไม่พบฟังก์ชั่นนี้",
         "notAvailableExplanation": "มันจะถูกเพิ่มเข้าไปภายหลัง",
         "enterSeed": "กรุณาใส่ Seed (เลขที่บัญชี)",
@@ -48,6 +48,7 @@
         "otherWallet": "บัญชีอื่นๆ",
         "yes": "ใช่",
         "no": "ไม่ใช่",
+        "okay": "OKAY",
         "password": "รหัสผ่าน",
         "passwordOrFingerprint": "รหัสผ่าน หรือ ลายนิ้วมือ",
         "unrecognisedPassword": "รหัสผ่านผิด",
@@ -60,8 +61,9 @@
         "node": "Node",
         "cannotPerformAction": "ไม่สามารถดำเนินการได้",
         "cannotPerformActionExplanation": "ไปที่การตั้งค่าขั้นสูงการตั้งค่ากระเป๋าสตางค์",
-        "attachToTangleUnavailable": "ไม่สามารถแนบไปกับระบบ Tangle ได้",
-        "attachToTangleUnavailableExplanation": "Attach to Tangle is not available on your selected node.",
+        "attachToTangleUnavailable": "Remote Proof of Work is unavailable",
+        "attachToTangleUnavailableExplanation": "Remote Proof of Work is not available on your selected node. Either change node or set Proof of Work to Local in Advanced Settings.",
+        "attachToTangleUnavailableExplanationShort": "Remote Proof of Work is not available on your selected node.",
         "wallet": "กระเป๋าสตางค์",
         "sent": "ส่ง",
         "received": "ได้​รับ​แล้ว",
@@ -73,19 +75,30 @@
         "addresses": "ที่อยู่",
         "reattach": "แนบอีกครั้ง",
         "promote": "เลื่อนขั้น",
+        "retry": "RETRY",
         "rebroadcast": "กระจายข้อมูลอีกครั้ง",
         "pressBackAgain": "เลือก ย้อนกลับ อีกครั้ง เพื่อปิดแอพพลิเคชั่น",
-        "autoreattaching": "แนบใหม่อีกครั้งโดยอัตโนมัติ สู่ระบบ Tangle",
-        "autoreattachingExplanation": "แนบรายการอีกครั้งด้วย Hash {{hash}}",
+        "reattached": "Successfully reattached transaction",
+        "reattachedExplanation": "Reattached transaction with hash {{hash}}",
         "autopromoting": "เลื่อนขั้นการโอน โดยอัตโนมัติ",
         "autopromotingExplanation": "เลื่อนรายการอีกครั้งด้วย Hash {{hash}}",
-        "promoting": "Promoting transfer",
-        "promotionError": "Could not promote transfer",
+        "rebroadcasted": "Successfully rebroadcasted transaction",
+        "rebroadcastedExplanation": "Rebroadcasted transaction with hash {{hash}}",
+        "rebroadcastError": "Could not rebroadcast transaction",
+        "rebroadcastErrorExplanation": "Something went wrong while rebroadcasting your transaction. Please try again.",
+        "promoted": "Successfully promoted transaction",
+        "promotedExplanation": "Promoted transaction with hash {{hash}}",
+        "autopromotionError": "Could not auto-promote transaction",
+        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node.",
+        "promotionError": "Could not promote transaction",
         "promotionErrorExplanation": "Something went wrong while promoting your transaction. Please try again.",
         "noLongerValid": "The bundle you are trying to promote is no longer valid",
+        "transactionAlreadyConfirmed": "Transaction already confirmed",
+        "transactionAlreadyConfirmedExplanation": "The transaction you are trying to promote is already confirmed.",
         "cannotSendToOwn": "ส่งไปที่อยู่ของตัวเอง",
         "cannotSendToOwnExplanation": "คุณไม่สามารถถ่ายโอนสกุลเงินไปยังที่อยู่อื่นของคุณเองได้",
         "pleaseWait": "กรุณารอสักครู่",
+        "pleaseWaitEllipses": "Please wait...",
         "pleaseWaitExplanation": "Trinity กำลังปฏิบัติการอย่างอื่นอยู่ กรุณารอสักครู่ และลองใหม่อีกครั้ง",
         "pleaseWaitTransferExplanation": "ยอดคงเหลือที่สามารถใช้ได้ของคุณในขณะนี้ กำลังถูกใช้งานในการโอนอื่นอยู่ กรุณารอจนกว่าผู้รับโอนทำการยืนยันก่อนที่จะทำการโอนอีกครั้ง",
         "snapshotTransitionInProgress": "การเปลี่ยนแปลงของ Snapshot อยู่ระหว่างการดำเนินการ",
@@ -98,8 +111,20 @@
         "addCustomNode": "Add custom node",
         "nodeChanged": "Node changed",
         "nodeChangedExplanation": "The node has been changed successfully.",
+        "nodeMustUseHTTPS": "Invalid node (non HTTPS)",
+        "nodeMustUseHTTPSExplanation": "Only custom nodes using HTTPS are allowed.",
+        "nodeDuplicated": "Duplicated node",
+        "nodeDuplicatedExplanation": "The custom node is already listed.",
         "nodeAutoChanged": "Auto-switched node",
-        "nodeAutoChangedExplanation": "Switched to new node {{- nodeAddress}} as selected node is offline."
+        "nodeAutoChangedExplanation": "Switched to new node {{- nodeAddress}} as selected node is offline.",
+        "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer",
+        "masterKey": "Your IOTA seed is the master key to your funds.",
+        "seedThief": "If someone else has your seed they can steal your IOTA.",
+        "googlePlayServicesNotAvailable": "Google Play Services not available",
+        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available.",
+        "clear": "CLEAR",
+        "noNetworkConnection": "No network connection",
+        "noNetworkConnectionExplanation": "Your internet connection appears to be offline."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed (เลขที่บัญชี) ประกอบด้วยอักขระที่ไม่ถูกต้อง",
@@ -141,10 +166,17 @@
         "clickToCopy": "คลิกปุ่มด้านล่าง และคัดลอก Seed (เลขที่บัญชี) ไปยังการจัดการรหัสผ่าน",
         "doNotStore": "Do not store your seed in plain text.",
         "copyToClipboard": "คัดลอก Seed (เลขที่บัญชี)",
-        "shareSeed": "แชร์ Seed (เลขที่บัญชี) ของคุณไปยังการจัดการรหัสผ่าน"
+        "shareSeed": "แชร์ Seed (เลขที่บัญชี) ของคุณไปยังการจัดการรหัสผ่าน",
+        "storeEncrypted": "Store your seed encrypted in a password manager.",
+        "doNotOpen": "Do not open any other apps during this process.",
+        "tapConfirm": "Please tap the checkbox below to confirm.",
+        "passwordManagerCheckbox": "I will store my seed in a password manager",
+        "copy": "COPY",
+        "noPasswordManagers": "No supported password managers installed",
+        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android."
     },
     "enterSeed": {
-        "invalidCharacters": "Seed contains invalid characters",
+        "invalidCharacters": "Seed (เลขที่บัญชี) ประกอบด้วยอักขระที่ไม่ถูกต้อง",
         "invalidCharactersExplanation": "Seed (เลขที่บัญชี) สามารถประกอบด้วยอักษรตัวใหญ่ A-Z และเลข 9 เท่านั้น, Seed (เลขที่บัญชี) ของคุณมีอักขระที่ไม่ถูกต้อง โปรดลองอีกครั้ง",
         "seedTooShort": "Seed (เลขที่บัญชี) สั้นเกินไป",
         "seedTooShortExplanation": "Seed (เลขที่บัญชี) ของคุณจะต้องมีอักขระอย่างต่ำ {{maxLength}} หลัก ขณะนี้ Seed (เลขที่บัญชี) ปัจจุบันของคุณมี {{currentLength}} หลัก กรุณาลองใหม่อีกครั้ง",
@@ -175,13 +207,16 @@
         "loadingFirstTime": "โหลด Seed (เลขที่บัญชี) ครั้งแรก",
         "thisMayTake": "การกระทำนี้อาจใช้เวลาสักครู่หนึ่ง",
         "doNotMinimise": "Do not minimise or close the app.",
-        "youMayNotice": "อุปกรณ์ของคุณอาจปฏิบัติการช้าลง"
+        "youMayNotice": "อุปกรณ์ของคุณอาจปฏิบัติการช้าลง",
+        "takingAWhile": "This seems to be taking a while"
     },
     "newSeedSetup": {
         "seedNotGenerated": "ไม่มีการสร้าง Seed (เลขที่บัญชี)",
         "seedNotGeneratedExplanation": "กรุณาสร้าง Seed (เลขที่บัญชี) ใหม่",
         "pressForNewSeed": "กดสำหรับ Seed ใหม่",
-        "individualLetters": "กดตัวอักษรแต่ละตัวเพื่อที่จะสุ่มตัวอักษรอีกครั้"
+        "generateSuccess": "Seed generated successfully",
+        "individualLetters": "กดตัวอักษรแต่ละตัวเพื่อที่จะสุ่มตัวอักษรอีกครั้",
+        "whatIsASeed": "What is a seed?"
     },
     "onboardingComplete": {
         "walletReady": "กระเป๋าสตางค์ถูกตั้งค่า และพร้อมใช้ ถ้าคุณต้องการเปลี่ยนแปลงในอนาคต สามารถค้นหาได้ในเมนูการตั้งค่า"
@@ -191,7 +226,13 @@
         "storeSafely": "เก็บไว้อย่างปลอดภัย",
         "neverShare": "ไม่เปิดเผย Seed (เลขที่บัญชี) ของคุณให้แก่บุคคลอื่น",
         "iotaLogo": "IOTA logo",
-        "printWallet": "PRINT PAPER WALLET"
+        "printWallet": "PRINT PAPER WALLET",
+        "print": "PRINT",
+        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
+        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
+        "tapCheckboxes": "Please tap the checkboxes below to confirm.",
+        "wifiCheckbox": "I will not print on public wifi",
+        "printerCheckbox": "I will not print on a public printer"
     },
     "receive": {
         "addressCopied": "คัดลอกที่อยู่แล้ว",
@@ -203,8 +244,6 @@
         "spent": "Spent"
     },
     "saveYourSeed": {
-        "seedCleared": "Seed (เลขที่บัญชี) เคลียร์จากคลิปบอร์ดแล้ว",
-        "seedClearedExplanation": "Seed (เลขที่บัญชี) เคลียร์จากคลิปบอร์ดเพื่อความปลอดภัยแล้ว",
         "mustSaveYourSeed": "<0><0>คุณต้องบันทึก Seed (เลขที่บัญชี) ด้วย</0><1>อย่างน้อยหนึ่ง</1> <2>จากตัวเลือกด้านล่างนี้</2> </0>"
     },
     "seedReentry": {
@@ -237,7 +276,7 @@
         "maximumSelected": "เลือกจำนวนสูงสุดแล้ว",
         "iotaUnits": "IOTA units explained",
         "sendMax": "ส่งสูงสุด",
-        "fingerprintOnSend": "Touch fingerprint reader to send the transfer"
+        "totalTime": "Total time"
     },
     "setPassword": {
         "passwordTooShort": "รหัสผ่านสั้นเกินไป",
@@ -267,12 +306,15 @@
         "mode": "หมวดหมู่",
         "theme": "ชุดรูปแบบ",
         "currency": "สกุลเงิน",
+        "cannotChangeNode": "Cannot change node",
+        "cannotChangeNodeWhileSending": "Cannot change node while sending.",
         "language": "ภาษา",
         "accountManagement": "การจัดการบัญชี",
         "addNewSeed": "เพิ่ม Seed (เลขที่บัญชี)",
         "twoFA": "การยืนยันตัวตนแบบ 2 ชั้น",
         "changePassword": "เปลี่ยนรหัสผ่าน",
         "advanced": "ตั้งค่าขั้นสูง",
+        "about": "About",
         "logout": "ออกจากระบบ",
         "reset": "Reset wallet",
         "syncingComplete": "ทำการซิงค์เสร็จสมบูรณ์",
@@ -282,7 +324,7 @@
         "accountDeleted": "บัญชีได้ถูกลบแล้ว",
         "accountDeletedExplanation": "Your account has been removed from the wallet.",
         "cannotPerformAction": "ไม่สามารถดำเนินการได้",
-        "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
+        "cannotPerformActionExplanation": "ไปที่การตั้งค่าขั้นสูงการตั้งค่ากระเป๋าสตางค์",
         "poorConnection": "สัญญาณอ่อน",
         "poorConnectionExplanation": "Failed to change currency due to a poor connection.",
         "hide": "ซ่อน",
@@ -297,19 +339,24 @@
         "selectAll": "เลือกทั้งหมด",
         "securitySettings": "ตั้งค่าความปลอดภัย",
         "fingerprint": "การยืนยันตัวตนโดยใช้ระบบไบโอแมททริกซ์",
-        "couldNotFetchRates": "Could not fetch rates",
-        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rates for {{currency}}.",
-        "fetchedConversionRates": "Fetched conversion rates",
-        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rates for {{currency}}.",
+        "couldNotFetchRates": "Could not fetch rate",
+        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rate for {{currency}}.",
+        "fetchedConversionRates": "Fetched conversion rate",
+        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rate for {{currency}}.",
         "undo": "Undo",
         "redo": "Redo",
-        "about": "About Trinity",
+        "aboutTrinity": "About Trinity",
         "lockScreenTimeout": "Lock Screen Timeout (Minutes)",
-        "autoNodeSwitching": "Automatically switch node when selected is unreachable"
+        "autoNodeSwitching": "Automatically switch node when selected is unreachable",
+        "nodeChangeSuccess": "Successfully changed node",
+        "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
+        "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
+        "nodeChangeError": "Error changing node",
+        "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",
-        "cancel": "CANCEL",
+        "cancel": "ยกเลิก",
         "reset": "RESET"
     },
     "walletSetup": {
@@ -332,8 +379,10 @@
     "history": {
         "bundleHashCopied": "Bundle hash copied",
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
-        "addressCopied": "Address copied",
+        "addressCopied": "คัดลอกที่อยู่แล้ว",
         "addressCopiedExplanation": "The address has been copied to the clipboard.",
+        "messageCopied": "Message copied",
+        "messageCopiedExplanation": "The message has been copied to the clipboard.",
         "send": "ส่ง",
         "receive": "รับ"
     },
@@ -345,8 +394,15 @@
         "addNewAccount": "Add new account"
     },
     "addCustomNode": {
+        "customNodeAdded": "Custom node added",
+        "customNodeCouldNotBeAdded": "Custom node could not be added",
+        "customNodeAddedSuccessfully": "The custom node has been added successfully.",
         "customNode": "Custom node",
-        "add": "Add"
+        "invalidNodeResponse": "The node returned an invalid response",
+        "httpNodeError": "Trinity Mobile only supports https nodes.",
+        "add": "Add",
+        "nodeFieldEmpty": "Text field is empty",
+        "nodeFieldEmptyExplanation": "Please enter a custom node."
     },
     "addNewAccount": {
         "useExistingSeed": "Use existing seed",
@@ -403,7 +459,9 @@
         "syncingYourAccount": "กำลังซิงค์บัญชีของคุณ"
     },
     "useExistingSeed": {
-        "title": "Enter a seed and account name."
+        "title": "Enter a seed and account name.",
+        "incorrectFormat": "Incorrect seed format",
+        "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
     },
     "viewSeed": {
         "enterPassword": "Enter password to view your seed.",
@@ -422,19 +480,21 @@
     "fingerprintSetup": {
         "instructionsEnable": "Touch fingerprint reader to enable fingerprint authentication",
         "instructionsDisable": "Touch fingerprint reader to disable fingerprint authentication",
-        "fingerprintAuthEnabled": "การตรวจสอบลายนิ้วมือเปิดใช้งานแล้ว",
-        "fingerprintAuthEnabledExplanation": "การตรวจสอบลายนิ้วมือเปิดใช้งานแล้ว",
-        "fingerprintAuthDisabled": "การตรวจสอบลายนิ้วมือปิดใช้งานแล้ว",
-        "fingerprintAuthDisabledExplanation": "การตรวจสอบลายนิ้วมือปิดใช้งานแล้ว",
-        "fingerprintAuthFailed": "การตรวจสอบลายนิ้วมือล้มเหลว",
+        "fingerprintAuthEnabled": "Biometric authentication enabled",
+        "fingerprintAuthEnabledExplanation": "You have successfully enabled biometric authentication.",
+        "fingerprintAuthDisabled": "Biometric authentication disabled",
+        "fingerprintAuthDisabledExplanation": "You have successfully disabled biometric authentication.",
+        "fingerprintAuthFailed": "Biometric authentication failed",
         "fingerprintAuthFailedExplanation": "การตรวจสอบลายนิ้วมือล้มเหลว กรุณาลองใหม่อีกครั้ง",
         "status": "สถานะ",
         "enabled": "เปิดใช้งานแล้ว",
         "disabled": "ปิดการใช้งานแล้ว",
-        "fingerprintUnavailable": "เซ็นเซอร์ลายนิ้วมือไม่สามารถใช้ได้",
-        "fingerprintUnavailableExplanation": "Your device does not support fingerprint recognition or it has not been configured in the device settings.",
+        "fingerprintUnavailable": "Biometric authentication unavailable",
+        "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
+        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID.",
+        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID.",
         "instructionsLogin": "Touch fingerprint reader to log in"
     },
     "transferConfirmation": {
@@ -455,7 +515,8 @@
         "twoFADisabled": "2FA is now disabled",
         "twoFADisabledExplanation": "You have successfully disabled Two Factor Authentication.",
         "enterCode": "Enter the code from your 2FA app",
-        "code": "Code"
+        "code": "Code",
+        "twoFaToken": "2FA Token"
     },
     "chart": {
         "mcap": "MCAP",
@@ -465,7 +526,9 @@
     },
     "rootDetection": {
         "warning": "WARNING",
-        "rootDetected": "<0>Your device appears to be rooted.</0><1>This can pose a significant risk to the security of your wallet.</1><2>Do you wish to continue despite this risk?</2>"
+        "appearsRooted": "Your device appears to be rooted.",
+        "securityRisk": "This can pose a significant risk to the security of your wallet.",
+        "continueDepsiteRisk": "Do you wish to continue despite this risk?"
     },
     "pow": {
         "feeless": "PoW จำเป็นต้องสมบูรณ์เพื่อที่จะส่งรายการโดยไม่มีค่าใช้จ่ายใน IOTA",
@@ -490,7 +553,15 @@
         "cannotCompleteTransition": "ไม่สามารถทำรายการ Snapshot",
         "cannotCompleteTransitionExplanation": "ยอดคงเหลือของคุณจะต้องมากกว่า 0 เพื่อการเปลี่ยนแปลงที่สมบูรณ์",
         "transitionComplete": "การเปลี่ยนแปลงของ Snapshot เสร็จสมบูรณ์",
-        "transitionCompleteExplanation": "การเปลี่ยนแปลงของ Snapshot เสร็จสมบูรณ์"
+        "transitionCompleteExplanation": "การเปลี่ยนแปลงของ Snapshot เสร็จสมบูรณ์",
+        "detectedBalance": "Detected balance: {{amount}} {{unit}}",
+        "isThisCorrect": "Is this correct?",
+        "snapshotExplanation": "Every so often, a snapshot is performed to prune the size of the Tangle.",
+        "hasSnapshotTakenPlace": "Has a snapshot taken place? Press the button below to transition.",
+        "transition": "TRANSITION",
+        "transitioning": "Transitioning for the snapshot.",
+        "generatingAndDetecting": "Generating addresses and detecting balance.",
+        "attaching": "Attaching addresses to Tangle"
     },
     "deepLink": {
         "autofill": "Autofill success",
@@ -505,5 +576,8 @@
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
         "downloadRelease": "Download release",
         "skipUpdate": "Skip update"
+    },
+    "notificationLog": {
+        "errorLog": "ERROR LOG"
     }
 }

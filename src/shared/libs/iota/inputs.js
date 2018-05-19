@@ -1,7 +1,9 @@
 import get from 'lodash/get';
 import each from 'lodash/each';
 import isNull from 'lodash/isNull';
+import map from 'lodash/map';
 import keys from 'lodash/keys';
+import reduce from 'lodash/reduce';
 import size from 'lodash/size';
 import { filterSpentAddresses, filterAddressesWithIncomingTransfers } from './addresses';
 import { DEFAULT_SECURITY } from '../../config';
@@ -58,12 +60,15 @@ export const prepareInputs = (addressData, start, threshold, security = DEFAULT_
  *
  *   @method getUnspentInputs
  *   @param {object} addressData - Addresses dictionary with balance and spend status
+ *   @param {array} spentAddresses - Locally computed spent addresses from transactions
+ *   @param {array}  pendingValueTransfers
  *   @param {number} start - Index to start the search from
  *   @param {number} threshold - Maximum value (balance) to stop the search
- *   @param {object} inputs - Could be initialized with null. In case its null default inputs would be defined.
- *   @returns {promise<object>}
+ *   @param {object} inputs - Could be initialised with null. In case its null default inputs would be defined.
+ *
+ *   @returns {Promise}
  **/
-export const getUnspentInputs = (addressData, pendingValueTransfers, start, threshold, inputs) => {
+export const getUnspentInputs = (addressData, spentAddresses, pendingValueTransfers, start, threshold, inputs) => {
     if (isNull(inputs)) {
         inputs = { inputs: [], totalBalance: 0, allBalance: 0 };
     }
@@ -71,7 +76,7 @@ export const getUnspentInputs = (addressData, pendingValueTransfers, start, thre
     const preparedInputs = prepareInputs(addressData, start, threshold);
     inputs.allBalance += preparedInputs.inputs.reduce((sum, input) => sum + input.balance, 0);
 
-    return filterSpentAddresses(preparedInputs.inputs).then((unspentInputs) => {
+    return filterSpentAddresses(preparedInputs.inputs, spentAddresses).then((unspentInputs) => {
         const filtered = filterAddressesWithIncomingTransfers(unspentInputs, pendingValueTransfers);
 
         const collected = filtered.reduce((sum, input) => sum + input.balance, 0);
@@ -83,18 +88,18 @@ export const getUnspentInputs = (addressData, pendingValueTransfers, start, thre
             const ordered = preparedInputs.inputs.sort((a, b) => a.keyIndex - b.keyIndex).reverse();
             const end = ordered[0].keyIndex;
 
-            return getUnspentInputs(addressData, pendingValueTransfers, end + 1, diff, {
+            return getUnspentInputs(addressData, spentAddresses, pendingValueTransfers, end + 1, diff, {
                 inputs: inputs.inputs.concat(filtered),
                 totalBalance: inputs.totalBalance + collected,
                 allBalance: inputs.allBalance,
             });
         }
 
-        return Promise.resolve({
+        return {
             inputs: inputs.inputs.concat(filtered),
             totalBalance: inputs.totalBalance + collected,
             allBalance: inputs.allBalance,
-        });
+        };
     });
 };
 
@@ -105,6 +110,7 @@ export const getUnspentInputs = (addressData, pendingValueTransfers, start, thre
  *
  *   @method getStartingSearchIndexToPrepareInputs
  *   @param {object} addressData - Addresses dictionary with balance and spend status
+ *
  *   @returns {number} index
  **/
 export const getStartingSearchIndexToPrepareInputs = (addressData) => {
@@ -114,4 +120,24 @@ export const getStartingSearchIndexToPrepareInputs = (addressData) => {
         .find((address) => addressData[address].balance > 0);
 
     return address ? addressData[address].index : 0;
+};
+
+/**
+ *   Gets addresses used as inputs in transactions
+ *
+ *   @method getStartingSearchIndexToPrepareInputs
+ *   @param {object | array} normalizedTransactions
+ *
+ *   @returns {array} - spent addresses
+ **/
+export const getSpentAddressesFromTransactions = (normalizedTransactions) => {
+    return reduce(
+        normalizedTransactions,
+        (acc, transaction) => {
+            acc.push(...map(transaction.inputs, (input) => input.address));
+
+            return acc;
+        },
+        [],
+    );
 };

@@ -4,13 +4,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard, Clipboard } from 'react-native';
 import Modal from 'react-native-modal';
 import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/iota/utils';
 import { setSetting, setAdditionalAccountInfo } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { shouldPreventAction } from 'iota-wallet-shared-modules/selectors/global';
-import { toggleModalActivity } from 'iota-wallet-shared-modules/actions/ui';
+import { toggleModalActivity, setDoNotMinimise } from 'iota-wallet-shared-modules/actions/ui';
+import timer from 'react-native-timer';
 import { hasDuplicateAccountName, hasDuplicateSeed, getAllSeedsFromKeychain } from '../utils/keychain';
 import CustomTextInput from '../components/CustomTextInput';
 import Checksum from '../components/Checksum';
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
         paddingBottom: height / 30,
     },
     title: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 20.7,
         textAlign: 'center',
         backgroundColor: 'transparent',
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     textField: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
     },
     accountNameContainer: {
         flex: 4,
@@ -87,13 +88,13 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
     },
     titleTextLeft: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
     titleTextRight: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         marginRight: width / 20,
@@ -137,6 +138,10 @@ class UseExistingSeed extends Component {
         isModalActive: PropTypes.bool.isRequired,
         /** Sets whether modal is active or inactive */
         toggleModalActivity: PropTypes.func.isRequired,
+        /** Determines whether component can minimise
+         * @param {boolean} status
+         */
+        setDoNotMinimise: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -148,25 +153,34 @@ class UseExistingSeed extends Component {
         };
     }
 
+    componentWillUnmount() {
+        timer.clearTimeout('invalidSeedAlert');
+    }
+
     onQRPress() {
         this.showModal();
     }
 
     onQRRead(data) {
+        const { t } = this.props;
         const dataString = data.toString();
+        this.hideModal();
         if (dataString.length === 81 && dataString.match(VALID_SEED_REGEX)) {
             this.setState({
                 seed: data,
             });
         } else {
-            this.props.generateAlert(
-                'error',
-                'Incorrect seed format',
-                'Valid seeds should be 81 characters and contain only A-Z or 9.',
+            timer.setTimeout(
+                'invalidSeedAlert',
+                () =>
+                    this.props.generateAlert(
+                        'error',
+                        t('useExistingSeed:incorrectFormat'),
+                        t('useExistingSeed:validSeedExplanation'),
+                    ),
+                500,
             );
         }
-
-        this.hideModal();
     }
 
     getDefaultAccountName() {
@@ -264,7 +278,7 @@ class UseExistingSeed extends Component {
                             t('addAdditionalSeed:seedInUseExplanation'),
                         );
                     }
-
+                    Clipboard.setString(' ');
                     return this.fetchAccountInfo(seed, accountName);
                 })
                 .catch((err) => console.log(err)); // eslint-disable no-console
@@ -283,6 +297,8 @@ class UseExistingSeed extends Component {
                 body={body}
                 onQRRead={(data) => this.onQRRead(data)}
                 hideModal={() => this.hideModal()}
+                onMount={() => this.props.setDoNotMinimise(true)}
+                onUnmount={() => this.props.setDoNotMinimise(false)}
             />
         );
     };
@@ -304,7 +320,7 @@ class UseExistingSeed extends Component {
                         <View style={{ flex: 0.4 }} />
                         <CustomTextInput
                             label={t('global:seed')}
-                            onChangeText={(value) => this.setState({ seed: value })}
+                            onChangeText={(value) => this.setState({ seed: value.toUpperCase() })}
                             containerStyle={{ width: width / 1.2 }}
                             autoCapitalize="characters"
                             maxLength={MAX_SEED_LENGTH}
@@ -399,7 +415,8 @@ const mapDispatchToProps = {
     setSetting,
     generateAlert,
     setAdditionalAccountInfo,
-    toggleModalActivity
+    toggleModalActivity,
+    setDoNotMinimise,
 };
 
 export default translate(['addAdditionalSeed', 'useExistingSeed', 'global'])(

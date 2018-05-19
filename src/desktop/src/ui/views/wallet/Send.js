@@ -8,7 +8,9 @@ import { getVault } from 'libs/crypto';
 import AddressInput from 'ui/components/input/Address';
 import AmountInput from 'ui/components/input/Amount';
 import TextInput from 'ui/components/input/Text';
+import Icon from 'ui/components/Icon';
 import Button from 'ui/components/Button';
+import Progress from 'ui/components/Progress';
 import Confirm from 'ui/components/modal/Confirm';
 import withSendData from 'containers/wallet/Send';
 
@@ -36,11 +38,19 @@ class Send extends React.PureComponent {
         /** Fiat currency settings
          * @property {bool} remotePow - Local PoW enable state
          * @property {string} conversionRate - Active currency conversion rate to MIota
-         * @property (string) currency - Active currency name
+         * @property {string} currency - Active currency name
          */
         settings: PropTypes.shape({
             conversionRate: PropTypes.number.isRequired,
             currency: PropTypes.string.isRequired,
+        }),
+        /** Send progress and description
+         * @property {number} progress - Current percentage progress
+         * @property {string} title - Current progress description
+         */
+        progress: PropTypes.shape({
+            progress: PropTypes.number,
+            title: PropTypes.string,
         }),
         /** Validate the transaction inputs
          *  @param {string} address - receiver address
@@ -53,7 +63,7 @@ class Send extends React.PureComponent {
          *  @param {number} value - transaction value in iotas
          *  @param {string} message - transaction message
          *  @param {function} taskRunner - task manager
-         *  @param {function} powFn - locla PoW function
+         *  @param {function} powFn - local PoW function
          */
         sendTransfer: PropTypes.func.isRequired,
         /** Update address field value
@@ -77,6 +87,7 @@ class Send extends React.PureComponent {
 
     state = {
         isTransferModalVisible: false,
+        isUnitsVisible: false,
     };
 
     validateInputs = (e) => {
@@ -128,8 +139,8 @@ class Send extends React.PureComponent {
     };
 
     render() {
-        const { fields, isSending, balance, settings, t } = this.props;
-        const { isTransferModalVisible } = this.state;
+        const { fields, isSending, balance, settings, progress, t } = this.props;
+        const { isTransferModalVisible, isUnitsVisible } = this.state;
 
         const transferContents =
             parseInt(fields.amount) > 0
@@ -174,10 +185,55 @@ class Send extends React.PureComponent {
                     />
                 </div>
                 <fieldset>
-                    <Button type="submit" loading={isSending} variant="primary">
-                        {t('send:send')}
-                    </Button>
+                    {!isSending ? (
+                        <React.Fragment>
+                            <Button type="submit" variant="primary">
+                                {t('send:send')}
+                            </Button>
+                            <small onClick={() => this.setState({ isUnitsVisible: true })}>
+                                <Icon icon="info" size={16} />
+                                {t('send:iotaUnits')}
+                            </small>
+                        </React.Fragment>
+                    ) : (
+                        <Progress {...progress} />
+                    )}
                 </fieldset>
+                {!isUnitsVisible ? null : (
+                    <div className={css.units} onClick={() => this.setState({ isUnitsVisible: false })}>
+                        <div>
+                            <h3>
+                                <Icon icon="iota" size={32} />
+                                {t('unitInfoModal:unitSystem')}
+                            </h3>
+                            <dl>
+                                <dt>Ti</dt>
+                                <dd>{t('unitInfoModal:trillion')}</dd>
+                                <dd>1 000 000 000 000</dd>
+                            </dl>
+                            <dl>
+                                <dt>Gi</dt>
+                                <dd>{t('unitInfoModal:billion')}</dd>
+                                <dd>1 000 000 000</dd>
+                            </dl>
+                            <dl>
+                                <dt>Mi</dt>
+                                <dd>{t('unitInfoModal:million')}</dd>
+                                <dd>1 000 000</dd>
+                            </dl>
+                            <dl>
+                                <dt>Ki</dt>
+                                <dd>{t('unitInfoModal:thousand')}</dd>
+                                <dd>1 000</dd>
+                            </dl>
+                            <dl>
+                                <dt>i</dt>
+                                <dd>{t('unitInfoModal:one')}</dd>
+                                <dd>1</dd>
+                            </dl>
+                        </div>
+                    </div>
+                )}
             </form>
         );
     }

@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
     },
     titleText: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 23,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
@@ -83,18 +83,18 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     buttonInfoText: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 27.6,
         backgroundColor: 'transparent',
     },
     infoText: {
-        fontFamily: 'Lato-Light',
+        fontFamily: 'SourceSansPro-Light',
         fontSize: width / 27.6,
-        textAlign: 'justify',
+        textAlign: 'left',
         backgroundColor: 'transparent',
     },
     buttonQuestionText: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 27.6,
         backgroundColor: 'transparent',
         paddingTop: height / 60,
@@ -177,13 +177,9 @@ class SnapshotTransition extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        const { balanceCheckToggle, isTransitioning } = this.props;
+        const { balanceCheckToggle } = this.props;
         if (balanceCheckToggle !== newProps.balanceCheckToggle) {
             this.showModal();
-        }
-
-        if (isTransitioning && !newProps.isTransitioning) {
-            this.hideModal();
         }
     }
 
@@ -220,7 +216,7 @@ class SnapshotTransition extends Component {
     }
 
     onSnapshotTransititionPress() {
-        const { addresses, shouldPreventAction, password, selectedAccountName } = this.props;
+        const { addresses, shouldPreventAction, password, selectedAccountName, t } = this.props;
 
         if (!shouldPreventAction) {
             getSeedFromKeychain(password, selectedAccountName)
@@ -233,7 +229,7 @@ class SnapshotTransition extends Component {
                 })
                 .catch((err) => console.error(err));
         } else {
-            this.props.generateAlert('error', 'Please wait', 'Please wait and try again.');
+            this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         }
     }
 
@@ -254,9 +250,12 @@ class SnapshotTransition extends Component {
                 <View style={[styles.modalContent, { borderColor: theme.body.color, backgroundColor: theme.body.bg }]}>
                     <View style={styles.textContainer}>
                         <Text style={[styles.buttonInfoText, textColor]}>
-                            Detected balance: {round(formatValue(transitionBalance), 1)} {formatUnit(transitionBalance)}
+                            {t('detectedBalance', {
+                                amount: round(formatValue(transitionBalance), 1),
+                                unit: formatUnit(transitionBalance),
+                            })}
                         </Text>
-                        <Text style={[styles.buttonQuestionText, textColor]}>Is this correct?</Text>
+                        <Text style={[styles.buttonQuestionText, textColor]}>{t('isThisCorrect')}</Text>
                     </View>
                     <OnboardingButtons
                         onLeftButtonPress={() => this.onBalanceIncompletePress()}
@@ -286,11 +285,9 @@ class SnapshotTransition extends Component {
                                 body={theme.body}
                                 text={
                                     <View>
-                                        <Text style={[styles.infoText, textColor]}>
-                                            Every so often, a snapshot is performed to prune the size of the Tangle.
-                                        </Text>
+                                        <Text style={[styles.infoText, textColor]}>{t('snapshotExplanation')}</Text>
                                         <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
-                                            Has a snapshot taken place? Press the button below to transition.
+                                            {t('hasSnapshotTakenPlace')}
                                         </Text>
                                     </View>
                                 }
@@ -299,7 +296,7 @@ class SnapshotTransition extends Component {
                                 <CtaButton
                                     ctaColor={theme.primary.color}
                                     secondaryCtaColor={theme.primary.body}
-                                    text="TRANSITION"
+                                    text={t('transition')}
                                     onPress={this.onSnapshotTransititionPress}
                                     ctaWidth={width / 2}
                                     ctaHeight={height / 16}
@@ -314,14 +311,12 @@ class SnapshotTransition extends Component {
                                     body={theme.body}
                                     text={
                                         <View>
-                                            <Text style={[styles.infoText, textColor]}>
-                                                Transitioning for the snapshot.
+                                            <Text style={[styles.infoText, textColor]}>{t('transitioning')}</Text>
+                                            <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
+                                                {t('generatingAndDetecting')}
                                             </Text>
                                             <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
-                                                Generating addresses and detecting balance.
-                                            </Text>
-                                            <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
-                                                Please wait...
+                                                {t('global:pleaseWaitEllipses')}
                                             </Text>
                                         </View>
                                     }
@@ -341,14 +336,12 @@ class SnapshotTransition extends Component {
                                     body={theme.body}
                                     text={
                                         <View>
-                                            <Text style={[styles.infoText, textColor]}>
-                                                Attaching addresses to Tangle
+                                            <Text style={[styles.infoText, textColor]}>{t('attaching')}</Text>
+                                            <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
+                                                {t('loading:thisMayTake')}
                                             </Text>
                                             <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
-                                                This may take a while
-                                            </Text>
-                                            <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
-                                                Please wait...
+                                                {t('global:pleaseWaitEllipses')}
                                             </Text>
                                         </View>
                                     }
@@ -408,7 +401,7 @@ const mapStateToProps = (state) => ({
     addresses: getAddressesForSelectedAccount(state),
     isAttachingToTangle: state.ui.isAttachingToTangle,
     isTransitioning: state.ui.isTransitioning,
-    isModalActive: state.ui.isModalActive
+    isModalActive: state.ui.isModalActive,
 });
 
 const mapDispatchToProps = {
@@ -420,4 +413,6 @@ const mapDispatchToProps = {
     toggleModalActivity,
 };
 
-export default translate(['global'])(connect(mapStateToProps, mapDispatchToProps)(SnapshotTransition));
+export default translate(['snapshotTransition', 'global', 'loading'])(
+    connect(mapStateToProps, mapDispatchToProps)(SnapshotTransition),
+);
