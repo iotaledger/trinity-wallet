@@ -17,7 +17,7 @@ end
 lane :release do
   package_json = load_json(json_path: '../package.json')
   version = package_json['version']
-  increment_build_number(xcodeproj: 'iotaWallet.xcodeproj')
+  increment_build_number(build_number: 1, xcodeproj: 'iotaWallet.xcodeproj')
   increment_version_number(version_number: version, xcodeproj: 'iotaWallet.xcodeproj')
 end
 
