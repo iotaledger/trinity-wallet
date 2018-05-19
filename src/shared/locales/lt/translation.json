@@ -125,7 +125,7 @@
         "clear": "IŠVALYTI",
         "noNetworkConnection": "Nėra tinklo ryšio",
         "noNetworkConnectionExplanation": "Panašu, kad jūsų interneto ryšys atjungtas.",
-        "spentAddressExplanation": "WARNING: Funds on spent addresses",
+        "spentAddressExplanation": "ĮSPĖJIMAS: Lėšos panaudotame adrese",
         "discordInformation": "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do."
     },
     "addAdditionalSeed": {
