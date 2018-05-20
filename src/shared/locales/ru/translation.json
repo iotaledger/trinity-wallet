@@ -20,6 +20,8 @@
         "invalidResponsePollingExplanation": "Узел вернул ошибку во время опроса. Проверьте уведомления для получения дополнительной информации.",
         "invalidResponseFetchingAccount": "Узел возвратил ошибку при получении данных вашей учетной записи. Попробуйте изменить ваш узел или проверьте уведомления для получения дополнительной информации.",
         "invalidResponseSendingTransfer": "Узел вернул ошибку пока отправлял трансфер. Проверьте уведомления для получения дополнительной информации.",
+        "nodeOutOfSync": "Node out of sync",
+        "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
         "seed": "Ключ",
         "back": "НАЗАД",
         "backLowercase": "Назад",
@@ -543,6 +545,7 @@
         "noWebGLSupportExplanation": "Ваш компьютер не поддерживает WebGL. Пожалуйста, используйте удаленный PoW."
     },
     "progressSteps": {
+        "validatingNodeHealth": "Validating currently selected node's health",
         "validatingReceiveAddress": "Проверка адреса для приема средств",
         "syncingAccount": "Синхронизация аккаунта",
         "preparingInputs": "Подготовка материалов",
