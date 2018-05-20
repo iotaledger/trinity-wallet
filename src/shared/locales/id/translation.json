@@ -20,6 +20,8 @@
         "invalidResponsePollingExplanation": "Node mengembalikan kesalahan ketika polling. Periksa notifikasi untuk informasi lebih lanjut.",
         "invalidResponseFetchingAccount": "Node mengembalikan kesalahan ketika mengakses informasi akun anda. Cobalah mengganti Node atau periksa notifikasi untuk informasi lebih lanjut.",
         "invalidResponseSendingTransfer": "Node mengembalikan kesalahan ketika mengirim. Periksa notifikasi untuk informasi lebih lanjut.",
+        "nodeOutOfSync": "Node out of sync",
+        "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
         "seed": "Benih",
         "back": "KEMBALI",
         "backLowercase": "Kembali",
@@ -543,6 +545,7 @@
         "noWebGLSupportExplanation": "Komputer anda tidak mendukung WebGL. Silahkan menggunakan Pow jarak jauh."
     },
     "progressSteps": {
+        "validatingNodeHealth": "Validating currently selected node's health",
         "validatingReceiveAddress": "Mengesahkan alamat penerima",
         "syncingAccount": "Sinkronisasi akun",
         "preparingInputs": "Mempersiapkan masukan",
