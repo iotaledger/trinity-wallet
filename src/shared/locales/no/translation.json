@@ -20,6 +20,8 @@
         "invalidResponsePollingExplanation": "Noden returnerte en feil under forespørselen. Sjekk varslene for mer informasjon.",
         "invalidResponseFetchingAccount": "Noden returnerte en feil under henting av din kontoinformasjon. Prøv å endre node eller kontroller varslene for mer informasjon.",
         "invalidResponseSendingTransfer": "Noden returnerte en feil under sending av transaksjonen. Kontroller varslene for mer informasjon.",
+        "nodeOutOfSync": "Node out of sync",
+        "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
         "seed": "Hovednøkkel",
         "back": "TILBAKE",
         "backLowercase": "Tilbake",
@@ -543,6 +545,7 @@
         "noWebGLSupportExplanation": "Datamaskinen støtter ikke WebGL. Vennligst benytt ekstern PoW (Proof of Work)."
     },
     "progressSteps": {
+        "validatingNodeHealth": "Validating currently selected node's health",
         "validatingReceiveAddress": "Validerer mottaksadressen",
         "syncingAccount": "Synkroniser konto",
         "preparingInputs": "Forbereder input",
