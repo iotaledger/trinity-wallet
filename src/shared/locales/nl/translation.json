@@ -20,8 +20,8 @@
         "invalidResponsePollingExplanation": "De node stuurde een fout terug tijdens polling. Bekijk de notificaties voor meer informatie.",
         "invalidResponseFetchingAccount": "De node stuurde een fout terug bij het ophalen van uw account informatie. Probeer te veranderen van node of bekijk de notificaties voor meer informatie.",
         "invalidResponseSendingTransfer": "De node stuurde een fout terug tijdens het versturen van de transactie. Bekijk de notificaties voor meer informatie.",
-        "nodeOutOfSync": "Node out of sync",
-        "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
+        "nodeOutOfSync": "Node gedesynchroniseerd",
+        "nodeOutOfSyncExplanation": "Uw huidige node is gedesynchroniseerd. Verander uw node of probeer opnieuw.",
         "seed": "Seed",
         "back": "TERUG",
         "backLowercase": "Terug",
@@ -127,8 +127,8 @@
         "clear": "WIS",
         "noNetworkConnection": "Geen netwerkverbinding",
         "noNetworkConnectionExplanation": "Uw internetverbinding lijkt offline.",
-        "spentAddressExplanation": "WARNING: Funds on spent addresses",
-        "discordInformation": "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do."
+        "spentAddressExplanation": "WAARSCHUWING: Saldo op verbruikte adressen",
+        "discordInformation": "Vaker dan een keer sturen vanaf hetzelfde adres is gevaarlijk. Ga naar het #help kanaal in Discord om uit te vinden wat u kunt doen."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "De seed bevat ongeldige tekens",
@@ -545,7 +545,7 @@
         "noWebGLSupportExplanation": "Uw computer ondersteunt WebGL niet. Gebruik externe PoW."
     },
     "progressSteps": {
-        "validatingNodeHealth": "Validating currently selected node's health",
+        "validatingNodeHealth": "Gezondheid van huidige node valideren",
         "validatingReceiveAddress": "Ontvangstadres wordt gevalideerd",
         "syncingAccount": "Account synchroniseren",
         "preparingInputs": "Invoer voorbereiden",
