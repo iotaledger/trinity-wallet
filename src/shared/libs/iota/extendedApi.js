@@ -1,8 +1,11 @@
+import head from 'lodash/head';
 import map from 'lodash/map';
 import size from 'lodash/size';
 import clone from 'lodash/clone';
 import IOTA from 'iota.lib.js';
 import { iota } from './index';
+import Errors from '../errors';
+import { isWithinMinutes } from '../date';
 import { DEFAULT_BALANCES_THRESHOLD, DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../../config';
 
 const getBalancesAsync = (addresses, threshold = DEFAULT_BALANCES_THRESHOLD) => {
@@ -78,7 +81,7 @@ const getLatestInclusionAsync = (hashes) => {
 
 const promoteTransactionAsync = (
     hash,
-    depth = 3,
+    depth = DEFAULT_DEPTH,
     minWeightMagnitude = 14,
     transfer = [{ address: 'U'.repeat(81), value: 0, message: '', tag: '' }],
     options = { interrupt: false, delay: 0 },
@@ -236,6 +239,39 @@ const attachToTangleAsync = (
     });
 };
 
+const getTrytesAsync = (hashes) => {
+    return new Promise((resolve, reject) => {
+        iota.api.getTrytes(hashes, (err, trytes) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(trytes);
+            }
+        });
+    });
+};
+
+const isNodeSynced = (provider = null) => {
+    const cached = {
+        latestMilestone: '9'.repeat(81),
+    };
+
+    return getNodeInfoAsync(provider)
+        .then(({ latestMilestone, latestSolidSubtangleMilestone }) => {
+            cached.latestMilestone = latestMilestone;
+            if (cached.latestMilestone === latestSolidSubtangleMilestone && cached.latestMilestone !== '9'.repeat(81)) {
+                return getTrytesAsync([cached.latestMilestone]);
+            }
+
+            throw new Error(Errors.NODE_NOT_SYNCED);
+        })
+        .then((trytes) => {
+            const { timestamp } = iota.utils.fastTransactionObject(cached.latestMilestone, head(trytes));
+
+            return isWithinMinutes(timestamp * 1000, 5);
+        });
+};
+
 export {
     getBalancesAsync,
     getNodeInfoAsync,
@@ -254,4 +290,5 @@ export {
     storeAndBroadcastAsync,
     attachToTangleAsync,
     checkAttachToTangleAsync,
+    isNodeSynced,
 };
