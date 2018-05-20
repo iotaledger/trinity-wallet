@@ -20,6 +20,8 @@
         "invalidResponsePollingExplanation": "Noden returnerade ett fel. Kontrollera meddelanden för mer information.",
         "invalidResponseFetchingAccount": "Noden returnerade ett fel vid hämtning av din kontoinformation. Prova att ändra din nod eller kontrollera meddelanden för mer information.",
         "invalidResponseSendingTransfer": "Noden returnerade ett fel vid överföringen. Kontrollera meddelanden för mer information.",
+        "nodeOutOfSync": "Node out of sync",
+        "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
         "seed": "Seed",
         "back": "TILLBAKA",
         "backLowercase": "Tillbaka",
@@ -543,6 +545,7 @@
         "noWebGLSupportExplanation": "Din dator stöder inte WebGL. Använd avlägsen PoW."
     },
     "progressSteps": {
+        "validatingNodeHealth": "Validating currently selected node's health",
         "validatingReceiveAddress": "Bekräftar mottagaradress",
         "syncingAccount": "Synkroniserar kontot",
         "preparingInputs": "Förbereder indata",
