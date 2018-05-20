@@ -404,8 +404,8 @@ describe('actions: transfers', () => {
                     const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false]);
 
                     const getUnspentInputs = sinon.stub(inputUtils, 'getUnspentInputs').resolves({
-                        allBalance: 110,
-                        totalBalance: 10,
+                        totalBalance: 110,
+                        availableBalance: 10,
                         inputs: [
                             {
                                 address:
@@ -487,8 +487,8 @@ describe('actions: transfers', () => {
                             .stub(iota.api, 'wereAddressesSpentFrom')
                             .yields(null, [false]);
                         sinon.stub(inputUtils, 'getUnspentInputs').resolves({
-                            allBalance: 110,
-                            totalBalance: 10,
+                            totalBalance: 110,
+                            availableBalance: 10,
                             inputs: [
                                 {
                                     address:
@@ -531,8 +531,8 @@ describe('actions: transfers', () => {
                             .yields(null, [false]);
 
                         sinon.stub(inputUtils, 'getUnspentInputs').resolves({
-                            allBalance: 110,
-                            totalBalance: 0,
+                            totalBalance: 110,
+                            availableBalance: 0,
                             inputs: [
                                 {
                                     address:
@@ -577,8 +577,8 @@ describe('actions: transfers', () => {
                             .yields(null, [false]);
 
                         sinon.stub(inputUtils, 'getUnspentInputs').resolves({
-                            allBalance: 110,
-                            totalBalance: 10,
+                            totalBalance: 110,
+                            availableBalance: 10,
                             inputs: [
                                 {
                                     address:
