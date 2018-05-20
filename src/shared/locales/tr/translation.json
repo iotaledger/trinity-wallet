@@ -20,6 +20,8 @@
         "invalidResponsePollingExplanation": "Ağ yoklama sırasında bir hata verdi. Daha fazla bilgi için bildirimlere bakın.",
         "invalidResponseFetchingAccount": "Ağ hesap bilgilerinizi alırken bir hata verdi. Ağınızı değiştirin veya daha fazla bilgi için bildirimlere bakın.",
         "invalidResponseSendingTransfer": "Ağ transferi gönderirken bir hata ile karşılaştı. Daha fazla bilgi için bildirimlere bakın.",
+        "nodeOutOfSync": "Node out of sync",
+        "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
         "seed": "Oluşum",
         "back": "Geri",
         "backLowercase": "Geri",
@@ -543,6 +545,7 @@
         "noWebGLSupportExplanation": "Bilgisayarınız WebGL desteklemiyor. Lütfen uzaktan PoW kullanın."
     },
     "progressSteps": {
+        "validatingNodeHealth": "Validating currently selected node's health",
         "validatingReceiveAddress": "Alıcı adresi doğrulanıyor",
         "syncingAccount": "Hesap senkronize ediliyor",
         "preparingInputs": "Girişler hazırlanıyor",
