@@ -61,9 +61,9 @@
         "node": "Node",
         "cannotPerformAction": "Aktion kann nicht ausgeführt werden",
         "cannotPerformActionExplanation": "Öffne die erweiterten Einstellungen, um das Wallet zurückzusetzen.",
-        "attachToTangleUnavailable": "Node Seitiges Proof of Work ist nicht verfügbar",
+        "attachToTangleUnavailable": "Proof of Work auf diesem Node nicht verfügbar",
         "attachToTangleUnavailableExplanation": "Proof of Work ist auf dem gewählten Node nicht verfügbar. Ändere den Node oder aktiviere lokales Proof of Work in den erweiterten Einstellungen.",
-        "attachToTangleUnavailableExplanationShort": "Node Seitiges Proof of Work ist auf dem ausgewählten Node nicht verfügbar.",
+        "attachToTangleUnavailableExplanationShort": "Proof of Work ist auf dem gewählten Node nicht verfügbar.",
         "wallet": "Wallet",
         "sent": "Gesendet",
         "received": "Empfangen",
@@ -89,7 +89,7 @@
         "promoted": "Transaktion erfolgreich promoted",
         "promotedExplanation": "Promoten der Transaktion mit dem Hash {{hash}}",
         "autopromotionError": "Die Transaktion konnte nicht promotet werden",
-        "autopromotionErrorExplanation": "Node Seitiges Proof of Work ist auf dem ausgewählten Node nicht verfügbar. Bitte ändern Sie den Node.",
+        "autopromotionErrorExplanation": "Proof of Work ist auf dem gewählten Node nicht verfügbar. Bitte ändere den Node.",
         "promotionError": "Die Transaktion konnte nicht promotet werden",
         "promotionErrorExplanation": "Beim Senden der Transaktion ist etwas schief gegangen. Bitte versuche es erneut.",
         "noLongerValid": "Das Bundle, das du promoten möchtest, ist nicht mehr gültig",
@@ -203,7 +203,7 @@
         "login": "ANMELDEN",
         "selectDifferentNode": "Möchtest du einen anderen Node auswählen?",
         "setNode": "NODE AUSWÄHLEN",
-        "cannotConnect": "Verbindung zur Node nicht möglich."
+        "cannotConnect": "Verbindung zum Node nicht möglich."
     },
     "loading": {
         "loadingFirstTime": "Lade den Seed zum ersten Mal.",
@@ -534,7 +534,7 @@
     },
     "pow": {
         "feeless": "Um gebührenfreie Transaktionen mit IOTA zu senden, ist eine kleine Berechnung (\"Proof of Work\") nötig.",
-        "localOrRemote": "Der \"Proof of Work\" kann entweder lokal auf deinem Gerät erfolgen oder an eine Node übertragen werden.",
+        "localOrRemote": "Der \"Proof of Work\" kann entweder lokal auf deinem Gerät erfolgen oder an einen Node übertragen werden.",
         "local": "Lokal",
         "remote": "Berechnung durch Node",
         "powUpdated": "\"Proof of Work\" Einstellungen",
