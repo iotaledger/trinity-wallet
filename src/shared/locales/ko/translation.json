@@ -8,7 +8,7 @@
         "balanceError": "잔고 부족",
         "balanceErrorMessage": "IOTA 잔고가 부족하여 거래를 완료할 수 없습니다.",
         "transferError": "전송 오류",
-        "transferErrorMessage": "전송 중에 오류가 발생했습니다. 다시 시도해주십시오.",
+        "transferErrorMessage": "전송 중에 오류가 발생했습니다. 다시 시도해주세요.",
         "transferSent": "전송 완료",
         "transferSentMessage": "전송 요청을 탱글로 보냈습니다.",
         "messageSent": "메시지 전송함",
@@ -56,11 +56,11 @@
         "syncInProgress": "동기화 진행 중",
         "syncInProgressExplanation": "동기화가 완료될 때까지 기다려 주세요.",
         "somethingWentWrong": "알 수 없는 오류가 발생하였습니다.",
-        "somethingWentWrongRestart": "앱을 다시 실행하여 주십시오.",
-        "somethingWentWrongTryAgain": "다시 시도해 주십시오.",
+        "somethingWentWrongRestart": "앱을 다시 실행해 주세요.",
+        "somethingWentWrongTryAgain": "다시 시도해 주세요.",
         "node": "노드",
         "cannotPerformAction": "작업을 수행할 수 없음",
-        "cannotPerformActionExplanation": "고급 설정으로 이동하여 지갑을 초기화하십시오.",
+        "cannotPerformActionExplanation": "고급 설정에서 지갑을 초기화하세요.",
         "attachToTangleUnavailable": "원격 작업증명을 사용할 수 없습니다.",
         "attachToTangleUnavailableExplanation": "현재 선택한 노드에서는 원격 작업증명을 할 수 없습니다. 노드를 변경하거나 고급 설정에서 작업증명 주체를 기기로 변경하세요.",
         "attachToTangleUnavailableExplanationShort": "현재 선택한 노드에서는 원격 작업증명을 할 수 없습니다.",
@@ -171,7 +171,7 @@
         "shareSeed": "안전한 비밀번호 관리자로 시드를 공유하십시오",
         "storeEncrypted": "시드는 암호 관리 프로그램을 사용해 암호화하여 저장하세요.",
         "doNotOpen": "작업 수행중에 다른 앱을 실행하지 마세요.",
-        "tapConfirm": "아래 박스를 체크하여 확인하세요.",
+        "tapConfirm": "확인하셨으면 아래의 박스에 체크해 주세요.",
         "passwordManagerCheckbox": "암호 관리 프로그램에 시드를 저장하겠습니다.",
         "copy": "복사하기",
         "noPasswordManagers": "지원되는 암호 관리 프로그램이 없습니다",
@@ -230,11 +230,11 @@
         "iotaLogo": "IOTA 로고",
         "printWallet": "종이 지갑 인쇄하기",
         "print": "인쇄하기",
-        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
-        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
-        "tapCheckboxes": "Please tap the checkboxes below to confirm.",
-        "wifiCheckbox": "I will not print on public wifi",
-        "printerCheckbox": "I will not print on a public printer"
+        "paperConvenience": "시드를 종이에 인쇄해 놓으면 편리하게 보관할 수 있습니다.",
+        "publicInsecure": "하지만 공용 와이파이를 통해 인쇄하거나 공용 프린터를 사용해 인쇄하는 것은 위험합니다.",
+        "tapCheckboxes": "확인하셨으면 아래의 박스에 체크해 주세요.",
+        "wifiCheckbox": "공용 와이파이를 통해 인쇄하지 않겠습니다.",
+        "printerCheckbox": "공용 프린터를 사용해 인쇄하지 않겠습니다."
     },
     "receive": {
         "addressCopied": "주소가 복사됨",
@@ -308,7 +308,7 @@
         "mode": "모드",
         "theme": "테마",
         "currency": "통화",
-        "cannotChangeNode": "Cannot change node",
+        "cannotChangeNode": "노드를 변경할 수 없습니다",
         "cannotChangeNodeWhileSending": "전송중에는 노드를 변경할 수 없습니다.",
         "language": "언어",
         "accountManagement": "계정 관리",
@@ -316,7 +316,7 @@
         "twoFA": "2단계 인증",
         "changePassword": "비밀번호 변경",
         "advanced": "고급 설정",
-        "about": "About",
+        "about": "관련 정보",
         "logout": "로그아웃",
         "reset": "지갑 초기화",
         "syncingComplete": "동기화 완료",
@@ -341,20 +341,20 @@
         "selectAll": "전체 선택",
         "securitySettings": "보안 설정",
         "fingerprint": "생체 인증",
-        "couldNotFetchRates": "Could not fetch rate",
-        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rate for {{currency}}.",
-        "fetchedConversionRates": "Fetched conversion rate",
-        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rate for {{currency}}.",
+        "couldNotFetchRates": "환율을 불러올 수 없습니다.",
+        "couldNotFetchRatesExplanation": "{{currency}} 환율을 불러오는 데에 문제가 생겼습니다.",
+        "fetchedConversionRates": "환율 불러옴",
+        "fetchedConversionRatesExplanation": "{{currency}} 환율을 불러왔습니다.",
         "undo": "취소",
         "redo": "다시 실행",
-        "aboutTrinity": "About Trinity",
+        "aboutTrinity": "Trinity 정보",
         "lockScreenTimeout": "자동 잠금 시간 (분)",
         "autoNodeSwitching": "노드에 연결이 불가능할 경우 자동으로 다른 노드에 연결 시도",
-        "nodeChangeSuccess": "Successfully changed node",
-        "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
-        "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
-        "nodeChangeError": "Error changing node",
-        "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
+        "nodeChangeSuccess": "노드 변경 완료",
+        "nodeChangeSuccessNoRemotePow": "{{node}} 로 노드를 변경했습니다. 이 노드는 원격 작업증명을 지원하지 않습니다.",
+        "nodeChangeSuccessExplanation": "{{node}} 로 노드를 변경했습니다.",
+        "nodeChangeError": "노드 변경 중 오류가 발생했습니다.",
+        "nodeChangeErrorExplanation": "노드 변경 중 오류가 발생했습니다. 다시 시도해 주세요."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "지갑을 초기화하려면 비밀번호를 입력하세요.",
@@ -396,12 +396,12 @@
         "addNewAccount": "새 계정 추가"
     },
     "addCustomNode": {
-        "customNodeAdded": "Custom node added",
-        "customNodeCouldNotBeAdded": "Custom node could not be added",
-        "customNodeAddedSuccessfully": "The custom node has been added successfully.",
+        "customNodeAdded": "커스텀 노드 추가됨",
+        "customNodeCouldNotBeAdded": "커스텀 노드를 추가할 수 없습니다.",
+        "customNodeAddedSuccessfully": "커스텀 노드를 추가했습니다.",
         "customNode": "커스텀 노드",
-        "invalidNodeResponse": "The node returned an invalid response",
-        "httpNodeError": "Trinity Mobile only supports https nodes.",
+        "invalidNodeResponse": "노드가 잘못된 응답을 보냈습니다.",
+        "httpNodeError": "트리니티 모바일 앱은 https 노드만 지원합니다.",
         "add": "추가",
         "nodeFieldEmpty": "입력한 텍스트가 없습니다.",
         "nodeFieldEmptyExplanation": "커스텀 노드를 입력해 주십시오."
@@ -462,8 +462,8 @@
     },
     "useExistingSeed": {
         "title": "시드와 계정 이름을 입력하십시오.",
-        "incorrectFormat": "Incorrect seed format",
-        "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
+        "incorrectFormat": "잘못된 시드 형식",
+        "validSeedExplanation": "유효한 시드는 대문자 A-Z와 숫자 9만을 사용한 81자의 문자열 형태를 갖습니다."
     },
     "viewSeed": {
         "enterPassword": "시드를 보기 위해 암호를 입력해 주세요.",
@@ -483,16 +483,16 @@
         "instructionsEnable": "지문 인증을 활성화하려면 손가락을 지문 센서 위에 올리십시오",
         "instructionsDisable": "지문 인증을 비활성화하려면 손가락을 지문 센서 위에 올리십시오",
         "fingerprintAuthEnabled": "생체 인증 활성화됨",
-        "fingerprintAuthEnabledExplanation": "You have successfully enabled biometric authentication.",
+        "fingerprintAuthEnabledExplanation": "생체 인증을 활성화했습니다.",
         "fingerprintAuthDisabled": "생체 인증 비활성화",
-        "fingerprintAuthDisabledExplanation": "You have successfully disabled biometric authentication.",
+        "fingerprintAuthDisabledExplanation": "생체 인증을 비활성화했습니다.",
         "fingerprintAuthFailed": "생체 인증 실패",
         "fingerprintAuthFailedExplanation": "지문 인증이 실패했습니다. 다시 시도해 주십시오.",
         "status": "상태",
         "enabled": "활성화됨",
         "disabled": "비활성화됨",
-        "fingerprintUnavailable": "Biometric authentication unavailable",
-        "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
+        "fingerprintUnavailable": "생체 인증을 사용할 수 없음",
+        "fingerprintUnavailableExplanation": "본 기기는 생체 인증을 사용할 수 없거나, 사용하지 않도록 설정되어 있습니다.",
         "buttonInstructionsDisable": "아래 버튼을 눌러 지문 인증을 비활성화할 수 있습니다.",
         "buttonInstructionsEnable": "아래 버튼을 눌러 지문 인증을 활성화할 수 있습니다.",
         "buttonInstructionsDisableIPhoneX": "아래 버튼을 눌러 Face ID를 비활성할 수 있습니다.",
@@ -518,7 +518,7 @@
         "twoFADisabledExplanation": "OTP 인증을 비활성화했습니다.",
         "enterCode": "OTP 코드를 입력하십시오",
         "code": "코드",
-        "twoFaToken": "2FA Token"
+        "twoFaToken": "OTP 토큰"
     },
     "chart": {
         "mcap": "시가총액",
@@ -528,9 +528,9 @@
     },
     "rootDetection": {
         "warning": "경고",
-        "appearsRooted": "Your device appears to be rooted.",
-        "securityRisk": "This can pose a significant risk to the security of your wallet.",
-        "continueDepsiteRisk": "Do you wish to continue despite this risk?"
+        "appearsRooted": "본 기기는 루팅이 되어 있습니다.",
+        "securityRisk": "루팅은 기기 보안에 중대한 위협이 될 수 있습니다.",
+        "continueDepsiteRisk": "그래도 이대로 진행하시겠습니까?"
     },
     "pow": {
         "feeless": "IOTA에서는 수수료 없는 거래를 하기 위해 약간의 작업증명을 수행해야 합니다.",
@@ -580,6 +580,6 @@
         "skipUpdate": "업데이트 건너뛰기"
     },
     "notificationLog": {
-        "errorLog": "ERROR LOG"
+        "errorLog": "오류 로그"
     }
 }
