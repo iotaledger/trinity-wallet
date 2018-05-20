@@ -20,6 +20,8 @@
         "invalidResponsePollingExplanation": "Node vrátil chybu. Pro více informací zkontrolujte notifikace.",
         "invalidResponseFetchingAccount": "Node vrátil chybu při získávání informací o účtu. Zkuste změnit Váš Node, nebo pro více informací zkontrolujte notifikace.",
         "invalidResponseSendingTransfer": "Node vrátil chybu při odesílání platby. Pro více informací zkontrolujte notifikace.",
+        "nodeOutOfSync": "Node out of sync",
+        "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
         "seed": "Seed",
         "back": "ZPĚT",
         "backLowercase": "Zpět",
@@ -543,6 +545,7 @@
         "noWebGLSupportExplanation": "Váš počítač nepodporuje WebGL. Prosím, použijte vzdálený PoW."
     },
     "progressSteps": {
+        "validatingNodeHealth": "Validating currently selected node's health",
         "validatingReceiveAddress": "Ověřování přijímací adresy",
         "syncingAccount": "Synchronizace účtu",
         "preparingInputs": "Příprava vstupních dat",
