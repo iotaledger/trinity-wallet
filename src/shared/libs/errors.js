@@ -9,4 +9,5 @@ export default {
     PERSISTOR_UNDEFINED: 'Persistor is undefined.',
     ATTACH_TO_TANGLE_UNAVAILABLE: 'attachToTangle is not available',
     TRANSACTION_ALREADY_CONFIRMED: 'Transaction already confirmed.',
+    NODE_NOT_SYNCED: 'Node not synced',
 };
