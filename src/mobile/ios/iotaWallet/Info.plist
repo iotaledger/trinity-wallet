@@ -13,7 +13,7 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.iota.wallet</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -85,6 +85,8 @@
 	<string>Trinity requires access to the camera in order to enable QR scanning.</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Trinity requires access to Face ID in order to enable biometric authentication.</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>2018 IOTA Foundation. All rights reserved.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</string>
 	<key>NSMotionUsageDescription</key>
@@ -120,7 +122,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>NSHumanReadableCopyright</key>
-	<string>2018 IOTA Foundation. All rights reserved.</string>
 </dict>
 </plist>
