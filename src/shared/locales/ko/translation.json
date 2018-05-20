@@ -62,8 +62,8 @@
         "cannotPerformAction": "작업을 수행할 수 없음",
         "cannotPerformActionExplanation": "고급 설정으로 이동하여 지갑을 초기화하십시오.",
         "attachToTangleUnavailable": "원격 작업증명을 사용할 수 없습니다.",
-        "attachToTangleUnavailableExplanation": "Remote Proof of Work is not available on your selected node. Either change node or set Proof of Work to Local in Advanced Settings.",
-        "attachToTangleUnavailableExplanationShort": "Remote Proof of Work is not available on your selected node.",
+        "attachToTangleUnavailableExplanation": "현재 선택한 노드에서는 원격 작업증명을 할 수 없습니다. 노드를 변경하거나 고급 설정에서 작업증명 주체를 기기로 변경하세요.",
+        "attachToTangleUnavailableExplanationShort": "현재 선택한 노드에서는 원격 작업증명을 할 수 없습니다.",
         "wallet": "지갑",
         "sent": "보냄",
         "received": "받음",
@@ -88,8 +88,8 @@
         "rebroadcastErrorExplanation": "트랜잭션을 재송출하는 중에 오류가 발생했습니다. 다시 시도해주십시오.",
         "promoted": "트랜잭션이 프로모트됨",
         "promotedExplanation": "다음의 트랜잭션 해시가 프로모트되었습니다: {{hash}}",
-        "autopromotionError": "Could not auto-promote transaction",
-        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node.",
+        "autopromotionError": "트랜잭션 자동 프로모션이 불가합니다.",
+        "autopromotionErrorExplanation": "현재 선택한 노드에서는 원격 작업증명을 할 수 없습니다. 노드를 변경하세요.",
         "promotionError": "트랜잭션을 프로모트할 수 없음",
         "promotionErrorExplanation": "트랜잭션을 프로모트하는 중에 오류가 발생했습니다. 다시 시도해주십시오.",
         "noLongerValid": "프로모트하려는 번들이 더 이상 유효하지 않습니다.",
@@ -125,8 +125,8 @@
         "clear": "지우기",
         "noNetworkConnection": "네트워크에 연결되지 않음",
         "noNetworkConnectionExplanation": "인터넷 연결이 오프라인 상태입니다.",
-        "spentAddressExplanation": "WARNING: Funds on spent addresses",
-        "discordInformation": "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do."
+        "spentAddressExplanation": "경고: 이미 사용한 주소에 잔고가 있습니다",
+        "discordInformation": "동일한 주소에서 한 번 이상 전송하는 행위는 위험합니다. 디스코드 #help 채널로 오셔서 대처 방안에 대해 알아보세요."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
@@ -169,13 +169,13 @@
         "doNotStore": "시드를 암호화하지 않은 채로 저장하지 마십시오.",
         "copyToClipboard": "시드 복사",
         "shareSeed": "안전한 비밀번호 관리자로 시드를 공유하십시오",
-        "storeEncrypted": "Store your seed encrypted in a password manager.",
-        "doNotOpen": "Do not open any other apps during this process.",
-        "tapConfirm": "Please tap the checkbox below to confirm.",
-        "passwordManagerCheckbox": "I will store my seed in a password manager",
-        "copy": "COPY",
-        "noPasswordManagers": "No supported password managers installed",
-        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android."
+        "storeEncrypted": "시드는 암호 관리 프로그램을 사용해 암호화하여 저장하세요.",
+        "doNotOpen": "작업 수행중에 다른 앱을 실행하지 마세요.",
+        "tapConfirm": "아래 박스를 체크하여 확인하세요.",
+        "passwordManagerCheckbox": "암호 관리 프로그램에 시드를 저장하겠습니다.",
+        "copy": "복사하기",
+        "noPasswordManagers": "지원되는 암호 관리 프로그램이 없습니다",
+        "noPasswordManagersExplanation": "기기에서 지원되는 암호 관리 프로그램을 찾지 못했습니다. Keepass2Android를 설치해 주세요."
     },
     "enterSeed": {
         "invalidCharacters": "시드에 잘못된 문자 포함",
@@ -210,15 +210,15 @@
         "thisMayTake": "시간이 조금 걸릴 수 있습니다.",
         "doNotMinimise": "앱을 최소화하거나 종료하지 말아 주십시오.",
         "youMayNotice": "기기가 느려질 수도 있습니다.",
-        "takingAWhile": "This seems to be taking a while"
+        "takingAWhile": "생각보다 시간이 오래 걸리는군요..."
     },
     "newSeedSetup": {
         "seedNotGenerated": "시드가 생성되지 않았습니다",
         "seedNotGeneratedExplanation": "새 시드를 생성해 주십시오.",
         "pressForNewSeed": "여기를 눌러 새 시드 생성",
-        "generateSuccess": "Seed generated successfully",
+        "generateSuccess": "시드 생성에 성공했습니다.",
         "individualLetters": "개별 문자를 눌러 해당 문자를 무작위로 바꿀 수 있습니다.",
-        "whatIsASeed": "What is a seed?"
+        "whatIsASeed": "시드가 뭐죠?"
     },
     "onboardingComplete": {
         "walletReady": "지갑 구성이 완료되었습니다. 변경해야 할 사항이 있을 경우 설정 메뉴를 확인하십시오."
@@ -229,7 +229,7 @@
         "neverShare": "절대로 다른 사람에게 시드를 알려주지 마십시오.",
         "iotaLogo": "IOTA 로고",
         "printWallet": "종이 지갑 인쇄하기",
-        "print": "PRINT",
+        "print": "인쇄하기",
         "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
         "publicInsecure": "But printing on public wifi or a public printer is insecure.",
         "tapCheckboxes": "Please tap the checkboxes below to confirm.",
@@ -309,7 +309,7 @@
         "theme": "테마",
         "currency": "통화",
         "cannotChangeNode": "Cannot change node",
-        "cannotChangeNodeWhileSending": "Cannot change node while sending.",
+        "cannotChangeNodeWhileSending": "전송중에는 노드를 변경할 수 없습니다.",
         "language": "언어",
         "accountManagement": "계정 관리",
         "addNewSeed": "새 시드 추가",
