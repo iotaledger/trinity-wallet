@@ -21,7 +21,7 @@
         "invalidResponseFetchingAccount": "アカウント情報の取得中にノードがエラーを返しました。詳細については、通知をご確認下さい。",
         "invalidResponseSendingTransfer": "送金中にノードがエラーを返しました。詳細については、通知をご確認下さい。",
         "nodeOutOfSync": "ノードが同期していません。",
-        "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
+        "nodeOutOfSyncExplanation": "現在選択しているノードが同期していません。ノードを変更するか、もう一度お試しください。",
         "seed": "シード",
         "back": "戻る",
         "backLowercase": "戻る",
@@ -545,7 +545,7 @@
         "noWebGLSupportExplanation": "お使いのコンピューターは WebGL をサポートしていません。リモートの PoW をご利用下さい。"
     },
     "progressSteps": {
-        "validatingNodeHealth": "Validating currently selected node's health",
+        "validatingNodeHealth": "現在選択しているノードの健全性を検証中",
         "validatingReceiveAddress": "受取用アドレスを検証中",
         "syncingAccount": "アカウントを同期中",
         "preparingInputs": "入力部を準備中",
