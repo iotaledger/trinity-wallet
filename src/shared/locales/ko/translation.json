@@ -20,6 +20,8 @@
         "invalidResponsePollingExplanation": "요청 처리 중에 노드가 오류를 응답하였습니다. 알림 내역을 확인하여 더 자세한 내용을 확인할 수 있습니다.",
         "invalidResponseFetchingAccount": "계정 정보를 불러오는 중에 노드가 오류를 응답하였습니다. 노드를 변경하시거나, 알림 내역을 확인하여 더 자세한 내용을 확인할 수 있습니다.",
         "invalidResponseSendingTransfer": "거래를 전송하는 중에 노드가 오류를 응답하였습니다. 알림 내역을 확인하여 더 자세한 내용을 확인할 수 있습니다.",
+        "nodeOutOfSync": "Node out of sync",
+        "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
         "seed": "시드",
         "back": "뒤로",
         "backLowercase": "뒤로가기",
@@ -543,6 +545,7 @@
         "noWebGLSupportExplanation": "사용하시는 컴퓨터는 WebGL을 지원하지 않습니다. 노드 작업증명을 사용해 주십시오."
     },
     "progressSteps": {
+        "validatingNodeHealth": "Validating currently selected node's health",
         "validatingReceiveAddress": "받는 주소 확인 중",
         "syncingAccount": "계정 동기화중",
         "preparingInputs": "출금 트랜잭션 준비중",
