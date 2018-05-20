@@ -20,6 +20,8 @@
         "invalidResponsePollingExplanation": "Siunčiant jūsų duomenis įvyko serverio klaida. Skaitykite pranešimus dėl detalesnės informacijos.",
         "invalidResponseFetchingAccount": "Užkraunant jūsų paskyros informaciją įvyko serverio klaida. Bandykite pakeisti serverį arba skaitykite pranešimus dėl detalesnės informacijos.",
         "invalidResponseSendingTransfer": "Apdorojant pavedimą įvyko serverio klaida. Skaitykite pranešimus dėl detalesnės informacijos.",
+        "nodeOutOfSync": "Node out of sync",
+        "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
         "seed": "Užraktas",
         "back": "ATGAL",
         "backLowercase": "Atgal",
@@ -543,6 +545,7 @@
         "noWebGLSupportExplanation": "Jūsų kompiuteris nepalaiko WebGL. Prašome naudoti nuotolinį PoW."
     },
     "progressSteps": {
+        "validatingNodeHealth": "Validating currently selected node's health",
         "validatingReceiveAddress": "Tikrinamas pavedimų priėmimo adresas",
         "syncingAccount": "Paskyra sinchronizuojama",
         "preparingInputs": "Įvesties duomenų paruošimas",
