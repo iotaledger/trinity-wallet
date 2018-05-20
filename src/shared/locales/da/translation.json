@@ -20,6 +20,8 @@
         "invalidResponsePollingExplanation": "Noden returnerede en fejl under forespørgselen. Tjek meddelelserne for mere information.",
         "invalidResponseFetchingAccount": "Noden returnerede en fejl under hentningen af dine kontooplysninger. Prøv at ændre din node eller tjek dine meddelelser for mere information.",
         "invalidResponseSendingTransfer": "Noden returnerede en fejl under afsendelse af overførsel. Tjek meddelelserne for mere information.",
+        "nodeOutOfSync": "Node out of sync",
+        "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
         "seed": "Hovednøgle",
         "back": "TILBAGE",
         "backLowercase": "Tilbage",
@@ -543,6 +545,7 @@
         "noWebGLSupportExplanation": "Din computer understøtter ikke WebGL. Brug venligst ekstern netværksvalidering (PoW)."
     },
     "progressSteps": {
+        "validatingNodeHealth": "Validating currently selected node's health",
         "validatingReceiveAddress": "Validering modtageradresse",
         "syncingAccount": "Synkroniserer konto",
         "preparingInputs": "Forbereder input",
