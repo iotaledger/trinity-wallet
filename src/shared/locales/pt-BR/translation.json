@@ -20,6 +20,8 @@
         "invalidResponsePollingExplanation": "O servidor retornou um erro durante a verificação. Verifique as notificações para mais informações.",
         "invalidResponseFetchingAccount": "O servidor retornou um erro durante a busca de informações de sua conta. Tente mudar o servidor ou verifique as notificações para obter mais informações.",
         "invalidResponseSendingTransfer": "O servidor retornou um erro durante o envio da transferência. Verifique as notificações para mais informações.",
+        "nodeOutOfSync": "Node out of sync",
+        "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
         "seed": "Seed",
         "back": "VOLTAR",
         "backLowercase": "Voltar",
@@ -543,6 +545,7 @@
         "noWebGLSupportExplanation": "Seu computador não suporta WebGL. Por favor, use PoW remoto."
     },
     "progressSteps": {
+        "validatingNodeHealth": "Validating currently selected node's health",
         "validatingReceiveAddress": "Validando o endereço de recebimento",
         "syncingAccount": "Sincronizando a conta",
         "preparingInputs": "Preparando entradas",
