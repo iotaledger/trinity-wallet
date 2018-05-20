@@ -20,6 +20,8 @@
         "invalidResponsePollingExplanation": "节点The node returned an error while polling. Check the notifications for more information.\nIOTA Trinity Wallet's TM, 83% match",
         "invalidResponseFetchingAccount": "The node returned an error while fetching your account information. Try changing your node or check the notifications for more information.",
         "invalidResponseSendingTransfer": "The node returned an error while sending the transfer. Check the notifications for more information.",
+        "nodeOutOfSync": "Node out of sync",
+        "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
         "seed": "种子",
         "back": "返回",
         "backLowercase": "退回",
@@ -543,6 +545,7 @@
         "noWebGLSupportExplanation": "Your computer does not support WebGL. Please use remote PoW."
     },
     "progressSteps": {
+        "validatingNodeHealth": "Validating currently selected node's health",
         "validatingReceiveAddress": "验证接收地址",
         "syncingAccount": "正在同步账户",
         "preparingInputs": "准备输入",
