@@ -16,10 +16,10 @@
         "keyReuse": "Senden an verwendete Adresse",
         "keyReuseError": "Du kannst an keine Adresse senden, von der bereits eine andere Transaktion ausgegangen ist.",
         "invalidResponse": "Nodefehler",
-        "invalidResponseExplanation": "Die Node hat einen Fehler gemeldet. Überprüfe die Benachrichtigungen für weitere Informationen.",
-        "invalidResponsePollingExplanation": "Die Node hat einen Fehler bei der Abfrage gemeldet. Überprüfe die Benachrichtigungen für weitere Informationen.",
-        "invalidResponseFetchingAccount": "Die Node hat einen Fehler beim Abrufen der Kontoinformationen gemeldet. Versuche die Node zu wechseln oder überprüfe die Benachrichtigungen für weitere Informationen.",
-        "invalidResponseSendingTransfer": "Die Node hat einen Fehler beim Senden der Transaktion gemeldet. Überprüfe die Benachrichtigungen für weitere Informationen.",
+        "invalidResponseExplanation": "Der Node hat einen Fehler gemeldet. Überprüfe die Benachrichtigungen für weitere Informationen.",
+        "invalidResponsePollingExplanation": "Der Node hat einen Fehler bei der Abfrage gemeldet. Überprüfe die Benachrichtigungen für weitere Informationen.",
+        "invalidResponseFetchingAccount": "Der Node hat einen Fehler beim Abrufen der Kontoinformationen gemeldet. Versuche den Node zu wechseln oder überprüfe die Benachrichtigungen für weitere Informationen.",
+        "invalidResponseSendingTransfer": "Der Node hat einen Fehler beim Senden der Transaktion gemeldet. Überprüfe die Benachrichtigungen für weitere Informationen.",
         "seed": "Seed",
         "back": "ZURÜCK",
         "backLowercase": "Zurück",
@@ -62,7 +62,7 @@
         "cannotPerformAction": "Aktion kann nicht ausgeführt werden",
         "cannotPerformActionExplanation": "Öffne die erweiterten Einstellungen, um das Wallet zurückzusetzen.",
         "attachToTangleUnavailable": "Node Seitiges Proof of Work ist nicht verfügbar",
-        "attachToTangleUnavailableExplanation": "Node Seitiges Proof of Work ist nicht verfügbar auf Ihrem ausgewählten Node. Ändern Sie den Node oder stellen sie auf lokales Proof of Work um in erweiterte Einstellungen.",
+        "attachToTangleUnavailableExplanation": "Proof of Work ist auf dem gewählten Node nicht verfügbar. Ändere den Node oder aktiviere lokales Proof of Work in den erweiterten Einstellungen.",
         "attachToTangleUnavailableExplanationShort": "Node Seitiges Proof of Work ist auf dem ausgewählten Node nicht verfügbar.",
         "wallet": "Wallet",
         "sent": "Gesendet",
@@ -354,7 +354,7 @@
         "nodeChangeSuccessNoRemotePow": "Der Node wurde auf {{node}} geändert. Dieser Node Unterstützt keinen Proof of Work.",
         "nodeChangeSuccessExplanation": "Der Node wurde auf {{node}} geändert.",
         "nodeChangeError": "Fehler beim Ändern des Nodes",
-        "nodeChangeErrorExplanation": "Es gab einen Fehler beim Wechseln der Node. Bitte versuchen Sie nochmal."
+        "nodeChangeErrorExplanation": "Es gab einen Fehler beim Wechseln des Nodes. Bitte versuchen Sie nochmal."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Gib dein Passwort ein, um das Wallet zurückzusetzen.",
@@ -396,15 +396,15 @@
         "addNewAccount": "Neues Konto hinzufügen"
     },
     "addCustomNode": {
-        "customNodeAdded": "Benutzerdefinierte Node hinzugefügt",
-        "customNodeCouldNotBeAdded": "Benutzerdefinierte Node konnte nicht hinzugefügt werden",
+        "customNodeAdded": "Benutzerdefinierter Node hinzugefügt",
+        "customNodeCouldNotBeAdded": "Benutzerdefinierter Node konnte nicht hinzugefügt werden",
         "customNodeAddedSuccessfully": "Die benutzerdefinierte Node wurde erfolgreich hinzugefügt.",
-        "customNode": "Benutzerdefinierte Node",
-        "invalidNodeResponse": "Die Node hat eine ungültige Antwort zurückgegeben",
+        "customNode": "Benutzerdefinierter Node",
+        "invalidNodeResponse": "Der Node hat eine ungültige Antwort zurückgegeben",
         "httpNodeError": "Trinity Mobile unterstützt nur verschlüsselte Nodes (HTTPS).",
         "add": "Hinzufügen",
         "nodeFieldEmpty": "Textfeld ist leer",
-        "nodeFieldEmptyExplanation": "Bitte eine benutzerdefinierte Node hinzufügen."
+        "nodeFieldEmptyExplanation": "Bitte einen benutzerdefinierten Node hinzufügen."
     },
     "addNewAccount": {
         "useExistingSeed": "Vorhandenen Seed verwenden",
