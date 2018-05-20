@@ -20,6 +20,8 @@
         "invalidResponsePollingExplanation": "The node returned an error while polling. Check the notifications for more information.",
         "invalidResponseFetchingAccount": "The node returned an error while fetching your account information. Try changing your node or check the notifications for more information.",
         "invalidResponseSendingTransfer": "The node returned an error while sending the transfer. Check the notifications for more information.",
+        "nodeOutOfSync": "Node out of sync",
+        "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
         "seed": "Từ Khoá",
         "back": "TRỞ LẠI",
         "backLowercase": "Trở lại",
@@ -543,6 +545,7 @@
         "noWebGLSupportExplanation": "Your computer does not support WebGL. Please use remote PoW."
     },
     "progressSteps": {
+        "validatingNodeHealth": "Validating currently selected node's health",
         "validatingReceiveAddress": "Validating receive address",
         "syncingAccount": "Syncing account",
         "preparingInputs": "Preparing inputs",
