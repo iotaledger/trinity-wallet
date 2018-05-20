@@ -20,6 +20,8 @@
         "invalidResponsePollingExplanation": "Le serveur a renvoyé une erreur lors de la requête. Vérifiez les notifications pour plus d'informations.",
         "invalidResponseFetchingAccount": "Le serveur a renvoyé une erreur lors de la récupération des informations de votre compte. Essayez de changer de serveur ou vérifiez les notifications pour plus d'informations.",
         "invalidResponseSendingTransfer": "Le serveur a renvoyé une erreur durant l'envoi du transfert. Vérifiez les notifications pour plus d’informations.",
+        "nodeOutOfSync": "Node out of sync",
+        "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
         "seed": "Seed",
         "back": "RETOUR",
         "backLowercase": "Retour",
@@ -543,6 +545,7 @@
         "noWebGLSupportExplanation": "Votre ordinateur ne supporte pas WebGL. Veuillez utiliser la Preuve de Travail à distance."
     },
     "progressSteps": {
+        "validatingNodeHealth": "Validating currently selected node's health",
         "validatingReceiveAddress": "Validation de l'adresse de réception",
         "syncingAccount": "Synchronisation du compte",
         "preparingInputs": "Préparation des entrées",
