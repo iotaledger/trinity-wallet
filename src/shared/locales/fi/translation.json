@@ -20,6 +20,8 @@
         "invalidResponsePollingExplanation": "Palvelin palautti virheilmoituksen kesken yhteydenoton. Katso ilmoitukset saadaksesi lisätietoa.",
         "invalidResponseFetchingAccount": "Palvelin palautti virheilmoituksen haettaessa tilitietoja. Katso ilmoitukset saadaksesi lisätietoa.",
         "invalidResponseSendingTransfer": "Palvelin palautti virheilmoituksen kesken siirron. Katso ilmoitukset saadaksesi lisätietoa.",
+        "nodeOutOfSync": "Node out of sync",
+        "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
         "seed": "Seed-luku",
         "back": "TAKAISIN",
         "backLowercase": "Takaisin",
@@ -543,6 +545,7 @@
         "noWebGLSupportExplanation": "Laitteesi ei tue WebGL -laskentaa. Asetuksista voit siirtää laskennan (PoW) ulkoiselle palvelimelle."
     },
     "progressSteps": {
+        "validatingNodeHealth": "Validating currently selected node's health",
         "validatingReceiveAddress": "Varmistetaan vastaanottajan osoite",
         "syncingAccount": "Synkronoidaan tiliä",
         "preparingInputs": "Alustetaan sisältöä",
