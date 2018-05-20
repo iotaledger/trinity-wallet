@@ -20,6 +20,8 @@
         "invalidResponsePollingExplanation": "Il nodo ha restituito un errore nella fase di contatto (polling). Controllare le notifiche per ulteriori informazioni.",
         "invalidResponseFetchingAccount": "Il nodo ha restituito un errore durante il recupero di informazioni del tuo conto. Provare a cambiare il nodo o controllare le notifiche per ulteriori informazioni.",
         "invalidResponseSendingTransfer": "Il nodo ha restituito un errore durante l'invio della transazione. Controllare le notifiche per ulteriori informazioni.",
+        "nodeOutOfSync": "Node out of sync",
+        "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
         "seed": "Seme",
         "back": "INDIETRO",
         "backLowercase": "Indietro",
@@ -543,6 +545,7 @@
         "noWebGLSupportExplanation": "Il computer non supporta WebGL. Si prega di usare il proof-of-work remoto."
     },
     "progressSteps": {
+        "validatingNodeHealth": "Validating currently selected node's health",
         "validatingReceiveAddress": "Convalido l'indirizzo ricevente",
         "syncingAccount": "Sincronizzo il conto",
         "preparingInputs": "Preparo i fondi",
