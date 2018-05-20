@@ -61,7 +61,7 @@
         "node": "노드",
         "cannotPerformAction": "작업을 수행할 수 없음",
         "cannotPerformActionExplanation": "고급 설정으로 이동하여 지갑을 초기화하십시오.",
-        "attachToTangleUnavailable": "Remote Proof of Work is unavailable",
+        "attachToTangleUnavailable": "원격 작업증명을 사용할 수 없습니다.",
         "attachToTangleUnavailableExplanation": "Remote Proof of Work is not available on your selected node. Either change node or set Proof of Work to Local in Advanced Settings.",
         "attachToTangleUnavailableExplanationShort": "Remote Proof of Work is not available on your selected node.",
         "wallet": "지갑",
