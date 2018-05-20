@@ -20,6 +20,8 @@
         "invalidResponsePollingExplanation": "Error durante la votación del nodo. Revise las notificaciones para más información.",
         "invalidResponseFetchingAccount": "Error del nodo mientras se buscaba la información de su cuenta. Pruebe cambiandolo o revise las notificaciones para más información.",
         "invalidResponseSendingTransfer": "Error del nodo mientras se enviaba la transferencia. Revise las notificaciones para más información.",
+        "nodeOutOfSync": "Node out of sync",
+        "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
         "seed": "Semilla",
         "back": "ATRÁS",
         "backLowercase": "Atrás",
@@ -543,6 +545,7 @@
         "noWebGLSupportExplanation": "Su computadora no soporta WebGL. Por favor use PoW remoto."
     },
     "progressSteps": {
+        "validatingNodeHealth": "Validating currently selected node's health",
         "validatingReceiveAddress": "Validando dirección de recepción",
         "syncingAccount": "Sincronizando cuenta",
         "preparingInputs": "Preparando entradas",
