@@ -20,6 +20,8 @@
         "invalidResponsePollingExplanation": "節點在輪詢時回傳錯誤，請檢查通知了解詳細訊息。",
         "invalidResponseFetchingAccount": "節點在取得您的帳戶資訊時回傳錯誤，請變更您的節點或是檢查通知了解詳細資訊。",
         "invalidResponseSendingTransfer": "節點在傳送交易時回傳錯誤，請檢查通知了解詳細資訊。",
+        "nodeOutOfSync": "Node out of sync",
+        "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
         "seed": "種子碼",
         "back": "返回",
         "backLowercase": "返回",
@@ -543,6 +545,7 @@
         "noWebGLSupportExplanation": "您的電腦不支援 WebGL，請使用遠端 PoW。"
     },
     "progressSteps": {
+        "validatingNodeHealth": "Validating currently selected node's health",
         "validatingReceiveAddress": "驗證收款地址",
         "syncingAccount": "同步帳戶中",
         "preparingInputs": "準備交易輸入",
