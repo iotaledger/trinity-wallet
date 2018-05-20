@@ -20,6 +20,8 @@
         "invalidResponsePollingExplanation": "De node stuurde een fout terug tijdens polling. Bekijk de notificaties voor meer informatie.",
         "invalidResponseFetchingAccount": "De node stuurde een fout terug bij het ophalen van uw account informatie. Probeer te veranderen van node of bekijk de notificaties voor meer informatie.",
         "invalidResponseSendingTransfer": "De node stuurde een fout terug tijdens het versturen van de transactie. Bekijk de notificaties voor meer informatie.",
+        "nodeOutOfSync": "Node out of sync",
+        "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
         "seed": "Seed",
         "back": "TERUG",
         "backLowercase": "Terug",
@@ -543,6 +545,7 @@
         "noWebGLSupportExplanation": "Uw computer ondersteunt WebGL niet. Gebruik externe PoW."
     },
     "progressSteps": {
+        "validatingNodeHealth": "Validating currently selected node's health",
         "validatingReceiveAddress": "Ontvangstadres wordt gevalideerd",
         "syncingAccount": "Account synchroniseren",
         "preparingInputs": "Invoer voorbereiden",
