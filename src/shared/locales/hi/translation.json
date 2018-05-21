@@ -103,6 +103,7 @@
         "pleaseWaitEllipses": "Please wait...",
         "pleaseWaitExplanation": "ट्रिनिटी एक और काम कर रहा है । कृपया प्रतीक्षा करें और पुन: प्रयास करे ।",
         "pleaseWaitTransferExplanation": "आपका उपलब्ध बैलेंस वर्तमान में अंय स्थानांतरण में उपयोग किया जा रहा है । पुन: प्रयास करने से पहले पुष्टि करने के लिए कृपया प्रतीक्षा करें ।",
+        "pleaseWaitIncomingTransferExplanation": "You have incoming transfers. Please wait for them to confirm before trying again.",
         "snapshotTransitionInProgress": "स्नैपशॉट प्रगति में",
         "snapshotTransitionInProgressExplanation": "इस प्रक्रिया के पूर्ण होने तक कृपया प्रतीक्षा करें ।",
         "checkForUpdates": "Check for Updates",
