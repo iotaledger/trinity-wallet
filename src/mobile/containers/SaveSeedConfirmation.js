@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     infoTextContainer: {
-        paddingHorizontal: width / 15,
+        width: width / 1.2,
         alignItems: 'center',
     },
     infoTextLight: {

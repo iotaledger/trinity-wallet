@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
         fontFamily: 'SourceSansPro-Light',
         fontSize: GENERAL.fontSize4,
         backgroundColor: 'transparent',
+        paddingHorizontal: width / 9,
         textAlign: 'center',
     },
     infoTextNormal: {
