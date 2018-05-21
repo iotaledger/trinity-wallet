@@ -103,6 +103,7 @@
         "pleaseWaitEllipses": "Please wait...",
         "pleaseWaitExplanation": "Trinity กำลังปฏิบัติการอย่างอื่นอยู่ กรุณารอสักครู่ และลองใหม่อีกครั้ง",
         "pleaseWaitTransferExplanation": "ยอดคงเหลือที่สามารถใช้ได้ของคุณในขณะนี้ กำลังถูกใช้งานในการโอนอื่นอยู่ กรุณารอจนกว่าผู้รับโอนทำการยืนยันก่อนที่จะทำการโอนอีกครั้ง",
+        "pleaseWaitIncomingTransferExplanation": "You have incoming transfers. Please wait for them to confirm before trying again.",
         "snapshotTransitionInProgress": "การเปลี่ยนแปลงของ Snapshot อยู่ระหว่างการดำเนินการ",
         "snapshotTransitionInProgressExplanation": "กรุณารอจนกว่าการเปลี่ยนแปลงเสร็จสมบูรณ์",
         "checkForUpdates": "Check for Updates",
