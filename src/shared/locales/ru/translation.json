@@ -88,22 +88,22 @@
         "rebroadcastedExplanation": "Ретранслированная транзакция с хэшем {{hash}}",
         "rebroadcastError": "Не удалось ретранслировать транзакцию",
         "rebroadcastErrorExplanation": "Что-то пошло не так при ретрансляции Вашей транзакции. Пожалуйста, повторите попытку.",
-        "promoted": "Successfully promoted transaction",
-        "promotedExplanation": "Promoted transaction with hash {{hash}}",
-        "autopromotionError": "Could not auto-promote transaction",
+        "promoted": "Продвижение транзакции прошло успешно",
+        "promotedExplanation": "Продвинутая транзакция с хэшем {{hash}}",
+        "autopromotionError": "Не удалось выполнить авто-продвижение транзакции",
         "autopromotionErrorExplanation": "Удалённое проведение Proof of Work недоступно на выбранном Вами узле. Пожалуйста, смените узел.",
-        "promotionError": "Could not promote transaction",
+        "promotionError": "Не удалось продвинуть транзакцию",
         "promotionErrorExplanation": "Что-то пошло не так при отправке Вашего перевода. Пожалуйста, повторите попытку.",
         "noLongerValid": "Пакет, который вы пытаетесь содействовать, больше не действителен",
-        "transactionAlreadyConfirmed": "Transaction already confirmed",
-        "transactionAlreadyConfirmedExplanation": "The transaction you are trying to promote is already confirmed.",
+        "transactionAlreadyConfirmed": "Транзакция уже подтверждена",
+        "transactionAlreadyConfirmedExplanation": "Транзакция, которую Вы пытаетесь продвинуть, уже подтверждена.",
         "cannotSendToOwn": "Отправка на собственный адрес",
         "cannotSendToOwnExplanation": "Вы не можете переводить средства на один из Ваших собственных адресов.",
         "pleaseWait": "Пожалуйста, подождите",
         "pleaseWaitEllipses": "Секундочку...",
         "pleaseWaitExplanation": "Trinity в данный момент выполняет другую задачу. Пожалуйста, подождите и повторите попытку.",
         "pleaseWaitTransferExplanation": "Ваш баланс в данный момент используется в одной из транзакций. Пожалуйста, подождите до тех пор, пока транзакции будут завершены, и затем повторите попытку.",
-        "pleaseWaitIncomingTransferExplanation": "You have incoming transfers. Please wait for them to confirm before trying again.",
+        "pleaseWaitIncomingTransferExplanation": "У вас есть входящие переводы. Пожалуйста, подождите, пока они не будут подтверждены, прежде чем пытаться снова.",
         "snapshotTransitionInProgress": "Переход снимка в прогрессе",
         "snapshotTransitionInProgressExplanation": "Пожалуйста, подождите пока синхронизация будет завершена.",
         "checkForUpdates": "Проверить наличие обновлений",
@@ -121,15 +121,15 @@
         "nodeAutoChanged": "Авто-переключаемый узел",
         "nodeAutoChangedExplanation": "Перешел на новый узел {{- nodeAddress}}, так как выбранный узел находится в автономном режиме.",
         "fingerprintOnSend": "Прикоснитесь к датчику отпечатка для подтверждения перевода",
-        "masterKey": "Your IOTA seed is the master key to your funds.",
-        "seedThief": "If someone else has your seed they can steal your IOTA.",
-        "googlePlayServicesNotAvailable": "Google Play Services not available",
-        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available.",
-        "clear": "CLEAR",
-        "noNetworkConnection": "No network connection",
-        "noNetworkConnectionExplanation": "Your internet connection appears to be offline.",
-        "spentAddressExplanation": "WARNING: Funds on spent addresses",
-        "discordInformation": "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do."
+        "masterKey": "Ваш ключ IOTA (seed) - это главный ключ к Вашим средствам.",
+        "seedThief": "Если кто-то еще знает Ваш ключ, он может украсть Ваши IOTA.",
+        "googlePlayServicesNotAvailable": "Служба Google Play недоступна",
+        "couldNotVerifyDeviceIntegrity": "Не удалось проверить целостность устройства, потому что службы Google Play не доступны.",
+        "clear": "ЧИСТО",
+        "noNetworkConnection": "Нет подключения к сети",
+        "noNetworkConnectionExplanation": "Похоже, Вы не подключены к интернету.",
+        "spentAddressExplanation": "Предупреждение: Средства на использованном адресе",
+        "discordInformation": "Отправлять с одного адреса несколько раз опасно. Пожалуйста, посетите канал #help в Discord'е, чтобы узнать, что вы можете сделать."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ключ содержит недопустимые символы",
@@ -172,13 +172,13 @@
         "doNotStore": "Не храните Ваш ключ в незашифрованном виде.",
         "copyToClipboard": "Скопировать ключ",
         "shareSeed": "Переслать Ваш ключ в безопасный менеджер паролей",
-        "storeEncrypted": "Store your seed encrypted in a password manager.",
-        "doNotOpen": "Do not open any other apps during this process.",
-        "tapConfirm": "Please tap the checkbox below to confirm.",
-        "passwordManagerCheckbox": "I will store my seed in a password manager",
-        "copy": "COPY",
-        "noPasswordManagers": "No supported password managers installed",
-        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android."
+        "storeEncrypted": "Поместите Ваш ключ в зашифрованном виде в менеджере паролей.",
+        "doNotOpen": "Не открывайте других приложений во время этого процесса.",
+        "tapConfirm": "Пожалуйста, поставьте галочку ниже, чтобы подтвердить.",
+        "passwordManagerCheckbox": "Я буду хранить мой ключ в менеджере паролей",
+        "copy": "СКОПИРОВАТЬ",
+        "noPasswordManagers": "Не установлено поддерживаемых менеджеров паролей",
+        "noPasswordManagersExplanation": "На Вашем устройстве не было найдено поддерживаемых менеджеров паролей. Пожалуйста, установите Keepass2Android."
     },
     "enterSeed": {
         "invalidCharacters": "Ключ содержит недопустимые символы",
@@ -213,15 +213,15 @@
         "thisMayTake": "Это может занять некоторое время.",
         "doNotMinimise": "Не минимизировать или закрыть приложение.",
         "youMayNotice": "Вы можете заметить замедление работы Вашего устройства.",
-        "takingAWhile": "This seems to be taking a while"
+        "takingAWhile": "Кажется, это займёт какое-то время"
     },
     "newSeedSetup": {
         "seedNotGenerated": "Ключ не был сгенерирован",
         "seedNotGeneratedExplanation": "Пожалуйста, сгенерируйте новый ключ (seed).",
         "pressForNewSeed": "СОЗДАТЬ НОВЫЙ КЛЮЧ",
-        "generateSuccess": "Seed generated successfully",
+        "generateSuccess": "Ключ (seed) успешно сгенерирован",
         "individualLetters": "Нажмите на любые несколько символов в случайном порядке.",
-        "whatIsASeed": "What is a seed?"
+        "whatIsASeed": "Что такое ключ (seed) ?"
     },
     "onboardingComplete": {
         "walletReady": "Кошелёк настроен и готов к использованию. Если Вам понадобится в будущем внести какие-либо изменения, используйте меню настройки."
@@ -232,12 +232,12 @@
         "neverShare": "Никогда не сообщайте свой ключ кому-либо.",
         "iotaLogo": "Логотип IOTA",
         "printWallet": "СОЗДАТЬ КОШЕЛЁК НА БУМАГЕ",
-        "print": "PRINT",
-        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
-        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
-        "tapCheckboxes": "Please tap the checkboxes below to confirm.",
-        "wifiCheckbox": "I will not print on public wifi",
-        "printerCheckbox": "I will not print on a public printer"
+        "print": "НАПЕЧАТАТЬ",
+        "paperConvenience": "Печать бумажной копии Вашего ключа - это удобный способ его хранения.",
+        "publicInsecure": "Но печать через общественный Wi-Fi или на общедоступном принтере небезопасна.",
+        "tapCheckboxes": "Пожалуйста, поставьте галочки ниже, чтобы подтвердить.",
+        "wifiCheckbox": "Я не буду печатать через общественный Wi-Fi",
+        "printerCheckbox": "Я не буду печатать на общедоступном принтере"
     },
     "receive": {
         "addressCopied": "Адрес скопирован",
@@ -311,15 +311,15 @@
         "mode": "Режим",
         "theme": "Тема оформления",
         "currency": "Валюта",
-        "cannotChangeNode": "Cannot change node",
-        "cannotChangeNodeWhileSending": "Cannot change node while sending.",
+        "cannotChangeNode": "Не удается изменить узел",
+        "cannotChangeNodeWhileSending": "Не удается изменить узел во время отправки.",
         "language": "Язык",
         "accountManagement": "Управление счётом",
         "addNewSeed": "Добавить новый ключ",
         "twoFA": "Двухфакторная аутентификация",
         "changePassword": "Изменить пароль",
         "advanced": "Дополнительные настройки",
-        "about": "About",
+        "about": "О программе",
         "logout": "Выход",
         "reset": "Сбросить настройки кошелька",
         "syncingComplete": "Синхронизация завершена",
@@ -344,20 +344,20 @@
         "selectAll": "Выбрать всё",
         "securitySettings": "Настройки безопасности",
         "fingerprint": "Аутентификация на основе отпечатков пальцев",
-        "couldNotFetchRates": "Could not fetch rate",
-        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rate for {{currency}}.",
-        "fetchedConversionRates": "Fetched conversion rate",
-        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rate for {{currency}}.",
+        "couldNotFetchRates": "Не удаётся получить курс обмена",
+        "couldNotFetchRatesExplanation": "Что-то пошло не так при запросе курса обмена для {{currency}}.",
+        "fetchedConversionRates": "Курс обмена получен",
+        "fetchedConversionRatesExplanation": "Успешно получен актуальный курс обмена для {{currency}}.",
         "undo": "Отменить",
         "redo": "Вернуть",
-        "aboutTrinity": "About Trinity",
+        "aboutTrinity": "О Тринити",
         "lockScreenTimeout": "Время ожидания блокировки экрана (минут)",
         "autoNodeSwitching": "Автоматически менять узел, если выбранный нндоступен",
-        "nodeChangeSuccess": "Successfully changed node",
+        "nodeChangeSuccess": "Узел успешно изменен",
         "nodeChangeSuccessNoRemotePow": "Узел был изменён на {{node}}. Данный узел не поддерживает удаленное проведение Proof of Work.",
-        "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
-        "nodeChangeError": "Error changing node",
-        "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
+        "nodeChangeSuccessExplanation": "Узел был изменен на {{node}}.",
+        "nodeChangeError": "Ошибка при смене узла",
+        "nodeChangeErrorExplanation": "Произошла ошибка при изменении узла. Пожалуйста, попробуйте еще раз."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Введите Ваш пароль для сброса настроек кошелька.",
@@ -399,12 +399,12 @@
         "addNewAccount": "Добавить новый счёт"
     },
     "addCustomNode": {
-        "customNodeAdded": "Custom node added",
-        "customNodeCouldNotBeAdded": "Custom node could not be added",
-        "customNodeAddedSuccessfully": "The custom node has been added successfully.",
+        "customNodeAdded": "Пользовательский узел добавлен",
+        "customNodeCouldNotBeAdded": "Не удалось добавить пользовательский узел",
+        "customNodeAddedSuccessfully": "Пользовательский узел был успешно добавлен.",
         "customNode": "Пользовательский узел",
         "invalidNodeResponse": "The node returned an invalid response",
-        "httpNodeError": "Trinity Mobile only supports https nodes.",
+        "httpNodeError": "Мобильная версия Trinity поддерживает только https узлы.",
         "add": "Добавить",
         "nodeFieldEmpty": "Текстовое поле пусто",
         "nodeFieldEmptyExplanation": "Пожалуйста, войдите в пользовательский узел."
@@ -465,7 +465,7 @@
     },
     "useExistingSeed": {
         "title": "Введите ключ и название счёта.",
-        "incorrectFormat": "Incorrect seed format",
+        "incorrectFormat": "Неверный формат ключа",
         "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
     },
     "viewSeed": {
@@ -486,16 +486,16 @@
         "instructionsEnable": "Коснитесь датчика касания, чтобы включить аутентификацию касанием",
         "instructionsDisable": "Коснитесь сенсора чтения отпечатков пальцев на Вашем устройстве для отключения аутентификации на основе отпечатков пальцев",
         "fingerprintAuthEnabled": "Биометрическая аутентификация включена",
-        "fingerprintAuthEnabledExplanation": "You have successfully enabled biometric authentication.",
+        "fingerprintAuthEnabledExplanation": "Вы успешно включили биометрическую аутентификацию.",
         "fingerprintAuthDisabled": "Биометрическая аутентификация отключена",
-        "fingerprintAuthDisabledExplanation": "You have successfully disabled biometric authentication.",
+        "fingerprintAuthDisabledExplanation": "Вы успешно отключили биометрическую аутентификацию.",
         "fingerprintAuthFailed": "Биометрическая аутентификация провалена",
         "fingerprintAuthFailedExplanation": "Ошибка аутентификации на основе отпечатков пальцев. Пожалуйста, попробуйте еще раз.",
         "status": "Статус",
         "enabled": "Включено",
         "disabled": "Выключено",
-        "fingerprintUnavailable": "Biometric authentication unavailable",
-        "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
+        "fingerprintUnavailable": "Биометрическая аутентификация недоступна",
+        "fingerprintUnavailableExplanation": "Ваше устройство не поддерживает биометрической аутентификации, или она не была настроена в параметрах устройства.",
         "buttonInstructionsDisable": "Нажмите на кнопку ниже, чтобы отключить аутентификацию на основе отпечатков пальцев.",
         "buttonInstructionsEnable": "Нажмите на кнопку ниже, чтобы включить аутентификацию на основе отпечатков пальцев.",
         "buttonInstructionsDisableIPhoneX": "Нажмите на кнопку ниже, чтобы отключить идентификатор лица.",
@@ -521,7 +521,7 @@
         "twoFADisabledExplanation": "Вы успешно отключили Двухфакторную аутентификацию.",
         "enterCode": "Введите код из 2FA приложения",
         "code": "Код",
-        "twoFaToken": "2FA Token"
+        "twoFaToken": "Токен 2FA"
     },
     "chart": {
         "mcap": "MCAP",
@@ -531,9 +531,9 @@
     },
     "rootDetection": {
         "warning": "ВНИМАНИЕ",
-        "appearsRooted": "Your device appears to be rooted.",
-        "securityRisk": "This can pose a significant risk to the security of your wallet.",
-        "continueDepsiteRisk": "Do you wish to continue despite this risk?"
+        "appearsRooted": "Похоже, Ваше устройство рутованно (rooted).",
+        "securityRisk": "Это может представлять значительный риск для безопасности вашего кошелька.",
+        "continueDepsiteRisk": "Вы хотите продолжить, несмотря на этот риск?"
     },
     "pow": {
         "feeless": "Для отправки транзакций без комиссий в IOTA необходимо выполнить процедуру доказательства выполнения работы (proof-of-work).",
@@ -546,7 +546,7 @@
         "noWebGLSupportExplanation": "Ваш компьютер не поддерживает WebGL. Пожалуйста, используйте удаленный PoW."
     },
     "progressSteps": {
-        "validatingNodeHealth": "Validating currently selected node's health",
+        "validatingNodeHealth": "Проверка работоспособности выбранного узла",
         "validatingReceiveAddress": "Проверка адреса для приема средств",
         "syncingAccount": "Синхронизация аккаунта",
         "preparingInputs": "Подготовка материалов",
@@ -567,7 +567,7 @@
         "transition": "ПЕРЕХОД",
         "transitioning": "Переход для моментального снимка.",
         "generatingAndDetecting": "Genererer adresser og registrerer balance.",
-        "attaching": "Attaching addresses to Tangle"
+        "attaching": "Привязка адреса к Tangle"
     },
     "deepLink": {
         "autofill": "Autofill success",
@@ -576,14 +576,14 @@
     "updates": {
         "errorRetrievingUpdateData": "Error retrieving update data",
         "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
-        "noUpdatesAvailable": "No updates available",
+        "noUpdatesAvailable": "Нет доступных обновлений",
         "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
-        "newVersionAvailable": "New version available",
-        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
-        "downloadRelease": "Download release",
-        "skipUpdate": "Skip update"
+        "newVersionAvailable": "Доступна новая версия",
+        "newVersionAvailableExplanation": "Доступна новая версия <strong>Trinity</strong> <strong>{{version}}</strong>. Пожалуйста, внимательно прочитайте подробности релиза и проверьте источник загрузки перед обновлением:",
+        "downloadRelease": "Скачать релиз",
+        "skipUpdate": "Пропустить обновление"
     },
     "notificationLog": {
-        "errorLog": "ERROR LOG"
+        "errorLog": "ЖУРНАЛ ОШИБОК"
     }
 }
