@@ -1,6 +1,6 @@
 import IOTA from 'iota.lib.js';
 import 'proxy-polyfill';
-import { nodes, defaultNode } from '../../config';
+import { defaultNode } from '../../config';
 
 const iotaAPI = new IOTA({ provider: defaultNode });
 
@@ -104,9 +104,10 @@ function injectAPIProxy() {
     iotaAPI.api = new Proxy(...args);
 }
 
-export const getRandomNode = () => {
-    const x = Math.floor(Math.random() * nodes.length);
-    return nodes[x];
+export const getRandomNode = (nodesList) => {
+    const x = Math.floor(Math.random() * nodesList.length);
+
+    return nodesList[x];
 };
 
 injectAPIProxy();
