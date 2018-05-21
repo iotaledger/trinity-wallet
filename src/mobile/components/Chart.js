@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         zIndex: 0,
-        paddingLeft: width / 8.5,
+        paddingLeft: width / 8.95,
     },
     emptyChartContainer: {
         flex: 5,
@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         justifyContent: 'space-between',
         alignItems: 'flex-start',
+        width: width / 1.15,
     },
     buttonText: {
         fontWeight: 'normal',
