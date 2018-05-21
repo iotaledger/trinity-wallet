@@ -103,6 +103,7 @@
         "pleaseWaitEllipses": "Vennligst vent...",
         "pleaseWaitExplanation": "Trinity utfører en annen oppgave. Vennligst vent og forsøk igjen.",
         "pleaseWaitTransferExplanation": "Din tilgjengelige saldo blir benyttet i andre transaksjoner. Vent til en blir bekreftet før du forsøker igjen.",
+        "pleaseWaitIncomingTransferExplanation": "You have incoming transfers. Please wait for them to confirm before trying again.",
         "snapshotTransitionInProgress": "Snapshot synkronisering i gang",
         "snapshotTransitionInProgressExplanation": "Vennligst vent til synkroniseringen er fullført.",
         "checkForUpdates": "Søk etter oppdateringer",
