@@ -1,5 +1,27 @@
 default_platform :ios
 
+def enable_manual_provisioning(project_file)
+  UI.important "Switching ProvisioningStyle to Manual."
+  fastlane_require 'xcodeproj'
+  project = Xcodeproj::Project.open(project_file)
+  target = project.native_targets.detect { |target| target.name == "iotaWallet" }
+  target_attributes = project.root_object.attributes["TargetAttributes"]
+  target_attributes.each { |id, attrs| attrs["ProvisioningStyle"] = 'Manual' }
+  target.build_configurations.each do |item|
+    item.build_settings['PROVISIONING_PROFILE[sdk=iphoneos*]'] = "335defd0-d0a9-493b-8b7e-44d98a11dde0"
+    item.build_settings['DEVELOPMENT_TEAM'] = "UG77RJKZHH"
+  end
+  project.save
+end
+
+lane :build_release do
+  if is_ci?
+    enable_manual_provisioning('../iotaWallet.xcodeproj')
+  else
+    UI.error('This lane should only be run on CI!')
+  end
+end
+
 lane :screenshots do
   capture_screenshots
   frame_screenshots
@@ -19,6 +41,19 @@ lane :release do
   version = package_json['version']
   increment_build_number(xcodeproj: 'iotaWallet.xcodeproj')
   increment_version_number(version_number: version, xcodeproj: 'iotaWallet.xcodeproj')
+end
+
+lane :deploy do
+  if is_ci?
+    pilot(
+      username: "lewis@iota.org",
+      app_identifier: "com.iota.trinity",
+      skip_submission: true,
+      team_name: "IOTA Stiftung",
+    )
+  else
+    UI.error('This lane should only be run on CI!')
+  end
 end
 
 lane :localization do

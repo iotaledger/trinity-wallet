@@ -94,7 +94,7 @@ class StatefulDropdownAlert extends Component {
     }
 
     shouldComponentUpdate(newProps) {
-        if (newProps.alerts.message === '' || newProps.title === '') {
+        if (newProps.alerts.message === '' || newProps.alerts.title === '') {
             return false;
         }
         return true;
