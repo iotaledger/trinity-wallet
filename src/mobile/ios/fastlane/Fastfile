@@ -12,7 +12,6 @@ end
 lane :build_release do
   if is_ci?
     enable_manual_provisioning('../iotaWallet.xcodeproj')
-    enable_manual_provisioning('../../node_modules/lottie-ios/Lottie.xcodeproj')
   else
     UI.error('This lane should only be run on CI!')
   end
