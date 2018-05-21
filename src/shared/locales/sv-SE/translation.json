@@ -20,8 +20,8 @@
         "invalidResponsePollingExplanation": "Noden returnerade ett fel. Kontrollera meddelanden för mer information.",
         "invalidResponseFetchingAccount": "Noden returnerade ett fel vid hämtning av din kontoinformation. Prova att ändra din nod eller kontrollera meddelanden för mer information.",
         "invalidResponseSendingTransfer": "Noden returnerade ett fel vid överföringen. Kontrollera meddelanden för mer information.",
-        "nodeOutOfSync": "Node out of sync",
-        "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
+        "nodeOutOfSync": "Nod osynkad",
+        "nodeOutOfSyncExplanation": "Din valda nod är osynkad. Vänligen ändra nod eller försök igen.",
         "seed": "Seed",
         "back": "TILLBAKA",
         "backLowercase": "Tillbaka",
@@ -127,8 +127,8 @@
         "clear": "RENSA",
         "noNetworkConnection": "Ingen nätverksanslutning",
         "noNetworkConnectionExplanation": "Din internetanslutning verkar vara offline.",
-        "spentAddressExplanation": "WARNING: Funds on spent addresses",
-        "discordInformation": "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do."
+        "spentAddressExplanation": "VARNING: Tillgångar på förbrukade adresser",
+        "discordInformation": "Det är farligt att skicka från samma adress mer än en gång. Vänligen bege dig till #help på Discord för att ta reda på vad du kan göra."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
@@ -545,7 +545,7 @@
         "noWebGLSupportExplanation": "Din dator stöder inte WebGL. Använd avlägsen PoW."
     },
     "progressSteps": {
-        "validatingNodeHealth": "Validating currently selected node's health",
+        "validatingNodeHealth": "Validerar den valda nodens hälsa",
         "validatingReceiveAddress": "Bekräftar mottagaradress",
         "syncingAccount": "Synkroniserar kontot",
         "preparingInputs": "Förbereder indata",
