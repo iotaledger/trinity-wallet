@@ -10,4 +10,5 @@ export default {
     ATTACH_TO_TANGLE_UNAVAILABLE: 'attachToTangle is not available',
     TRANSACTION_ALREADY_CONFIRMED: 'Transaction already confirmed.',
     INCOMING_TRANSFERS: 'Incoming transfers to all selected inputs',
+    NODE_NOT_SYNCED: 'Node not synced',
 };
