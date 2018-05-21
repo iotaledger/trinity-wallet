@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     },
     titleText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize4,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 25,
     },
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     },
     settingText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize4,
+        fontSize: GENERAL.fontSize3,
         marginLeft: width / 12,
         width: width / 2.2,
         backgroundColor: 'transparent',
