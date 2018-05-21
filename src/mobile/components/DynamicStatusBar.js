@@ -22,7 +22,7 @@ class DynamicStatusBar extends PureComponent {
             timer.setTimeout('timeout', () => this.resetStatusBarColor(), 50);
         }
         if (isModalActive && !newProps.isModalActive) {
-            this.resetStatusBarColor();
+            timer.setTimeout('timeout', () => this.resetStatusBarColor(), 450);
         }
     }
 
