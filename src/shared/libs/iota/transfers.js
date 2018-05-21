@@ -5,6 +5,7 @@ import keys from 'lodash/keys';
 import each from 'lodash/each';
 import find from 'lodash/find';
 import head from 'lodash/head';
+import has from 'lodash/has';
 import map from 'lodash/map';
 import mapValues from 'lodash/mapValues';
 import omitBy from 'lodash/omitBy';
@@ -629,7 +630,6 @@ export const syncTransfers = (diff, accountState) => {
         transactionObjects: [],
     };
 
-    // FIXME: Do not reconstruct seen and already validated bundles
     return getTransactionsObjectsAsync(diff)
         .then((transactionObjects) => {
             each(transactionObjects, (transactionObject, idx) => {
@@ -645,14 +645,7 @@ export const syncTransfers = (diff, accountState) => {
         })
         .then((transactionObjects) => {
             cached.transactionObjects = transactionObjects;
-
-            const storeTailTransactions = (tx) => {
-                if (tx.currentIndex === 0) {
-                    cached.tailTransactions = unionBy(cached.tailTransactions, [tx], 'hash');
-                }
-            };
-
-            each(cached.transactionObjects, storeTailTransactions);
+            cached.tailTransactions = pickNewTailTransactions(cached.transactionObjects, accountState.transfers);
 
             return getLatestInclusionAsync(map(cached.tailTransactions, (tx) => tx.hash));
         })
@@ -677,7 +670,7 @@ export const syncTransfers = (diff, accountState) => {
 /**
  *  Merge latest normalised transactions into existing ones
  *
- *   @method syncTransfers
+ *   @method mergeNewTransfers
  *   @param {object} newNormalisedTransfers
  *   @param {object} existingNormalisedTransfers
  *
@@ -886,11 +879,49 @@ export const getOutgoingTransfersForAddresses = (addresses, transactions) => {
  * Takes addresses and transactions and returns pending outgoing transfers for those addresses.
  *
  * @param {array} addresses
- * @param {object} transactions
+ * @param {object} transfers
  * @returns {array}
  */
 export const getPendingOutgoingTransfersForAddresses = (addresses, transfers) => {
     const addressesWithBalance = pickBy(addresses, (address) => address.balance > 0);
     const relevantTransfers = filter(transfers, (tx) => !tx.persistence);
+
     return getOutgoingTransfersForAddresses(keys(addressesWithBalance), relevantTransfers);
+};
+
+/**
+ *   Picks newly found tail transactions from transaction objects
+ *
+ *   @method pickNewTailTransactions
+ *   @param {array} transactionObjects
+ *   @param {object} existingNormalisedTransfers
+ *
+ *   @returns {array}
+ **/
+export const pickNewTailTransactions = (transactionObjects, existingNormalisedTransfers) => {
+    const tailTransactions = [];
+
+    const storeUnseenTailTransactions = (tx) => {
+        if (tx.currentIndex === 0) {
+            const isSeenBundle = has(existingNormalisedTransfers, tx.bundle);
+            const seenTailTransactionsHashes = isSeenBundle
+                ? map(existingNormalisedTransfers[tx.bundle].tailTransactions, (transaction) => transaction.hash)
+                : [];
+
+            // If this tail transaction is from a seen bundle
+            // Check if its a new tail transaction
+            // In case its not a new tail transaction, ignore it.
+            if (isSeenBundle) {
+                if (!includes(seenTailTransactionsHashes, tx.hash)) {
+                    tailTransactions.push(tx);
+                }
+            } else {
+                tailTransactions.push(tx);
+            }
+        }
+    };
+
+    each(transactionObjects, storeUnseenTailTransactions);
+
+    return tailTransactions;
 };
