@@ -103,6 +103,7 @@
         "pleaseWaitEllipses": "잠시 기다려 주십시오...",
         "pleaseWaitExplanation": "트리니티가 다른 작업을 수행하는 중입니다. 잠시 후 다시 시도해 주십시오.",
         "pleaseWaitTransferExplanation": "현재 잔액이 다른 거래에 사용되고 있습니다. 진행중인 거래가 종료된 후 다시 시도해 주십시오.",
+        "pleaseWaitIncomingTransferExplanation": "You have incoming transfers. Please wait for them to confirm before trying again.",
         "snapshotTransitionInProgress": "스냅샷 이전 진행 중",
         "snapshotTransitionInProgressExplanation": "스냅샷 이전 작업이 완료될 때까지 기다려 주십시오.",
         "checkForUpdates": "업데이트 확인",
