@@ -103,6 +103,7 @@
         "pleaseWaitEllipses": "Een ogenblik geduld...",
         "pleaseWaitExplanation": "Trinity voert een andere functie uit. Wacht even en probeer het opnieuw.",
         "pleaseWaitTransferExplanation": "Uw saldo wordt momenteel gebruikt in andere transacties. Wacht op een bevestiging hiervan, voordat u het opnieuw probeert.",
+        "pleaseWaitIncomingTransferExplanation": "You have incoming transfers. Please wait for them to confirm before trying again.",
         "snapshotTransitionInProgress": "Snapshot transitie bezig",
         "snapshotTransitionInProgressExplanation": "Wacht tot de transitie is voltooid.",
         "checkForUpdates": "Controleren op Updates",
