@@ -103,6 +103,7 @@
         "pleaseWaitEllipses": "Please wait...",
         "pleaseWaitExplanation": "Trinity täidab teist funktsiooni. Palun oodake ja proovige uuesti.",
         "pleaseWaitTransferExplanation": "Teie vabad vahendid on hetkel kasutuses teistes tehingutes. Palun oodake kuni üks kinnitatakse enne uuesti proovimist.",
+        "pleaseWaitIncomingTransferExplanation": "You have incoming transfers. Please wait for them to confirm before trying again.",
         "snapshotTransitionInProgress": "Snapshot transition in progress",
         "snapshotTransitionInProgressExplanation": "Palun oodake, kuni üleminek on lõpule viidud.",
         "checkForUpdates": "Otsi uuendusi",
