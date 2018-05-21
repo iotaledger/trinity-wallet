@@ -103,6 +103,7 @@
         "pleaseWaitEllipses": "Silahkan tunggu...",
         "pleaseWaitExplanation": "Trinity sedang melakukan fungsi lain. Silahkan tunggu dan coba lagi.",
         "pleaseWaitTransferExplanation": "Saldo yang tersedia saat ini sedang digunakan untuk transfer. Silahkan tunggu sampai salah satu telah dikonfirmasi sebelum mencoba lagi.",
+        "pleaseWaitIncomingTransferExplanation": "You have incoming transfers. Please wait for them to confirm before trying again.",
         "snapshotTransitionInProgress": "Dalam proses transisi Snapshot",
         "snapshotTransitionInProgressExplanation": "Silahkan tunggu sampai transisi selesai.",
         "checkForUpdates": "Periksa pembaruan",
