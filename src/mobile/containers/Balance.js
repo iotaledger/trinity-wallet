@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     },
     fiatBalance: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: GENERAL.fontSize4,
         backgroundColor: 'transparent',
     },
     noTransactions: {
