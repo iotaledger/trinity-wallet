@@ -13,6 +13,7 @@ import LogoutConfirmationModalComponent from '../components/LogoutConfirmationMo
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons';
 import { isAndroid } from '../utils/device';
+import GENERAL from '../theme/general';
 
 const styles = StyleSheet.create({
     container: {
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
     },
     titleText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize4,
         backgroundColor: 'transparent',
         marginLeft: width / 25,
     },
@@ -70,7 +71,7 @@ const styles = StyleSheet.create({
     },
     settingText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize4,
         marginLeft: width / 12,
         width: width / 2.2,
         backgroundColor: 'transparent',

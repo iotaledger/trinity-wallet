@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     },
     backText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 24.4,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
     },
     infoTextContainer: {
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     },
     infoTextLight: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize4,
         backgroundColor: 'transparent',
         lineHeight: height / 14,
         textAlign: 'center',
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     },
     checkboxText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize4,
         color: 'white',
         backgroundColor: 'transparent',
         marginLeft: width / 40,

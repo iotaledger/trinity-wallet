@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
 import { Icon } from '../theme/icons.js';
 import { width, height } from '../utils/dimensions';
+import GENERAL from '../theme/general';
 
 const styles = StyleSheet.create({
     button: {
@@ -18,7 +19,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         paddingTop: height / 80,
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 40.5,
+        fontSize: GENERAL.fontSize1,
         backgroundColor: 'transparent',
     },
 });

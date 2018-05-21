@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     },
     doneText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 24.4,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
     },
 });

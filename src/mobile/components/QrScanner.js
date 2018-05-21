@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     qrInfoText: {
         fontFamily: 'SourceSansPro-Regular',
         textAlign: 'center',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize4,
     },
     closeButton: {
         flexDirection: 'row',
@@ -26,8 +26,8 @@ const styles = StyleSheet.create({
     },
     closeButtonText: {
         color: 'white',
-        fontFamily: 'SourceSansPro-Bold',
-        fontSize: width / 29.6,
+        fontFamily: 'SourceSansPro-Regular',
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
     },
     modalContent: {
