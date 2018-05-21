@@ -20,8 +20,8 @@
         "invalidResponsePollingExplanation": "Noden returnerede en fejl under forespørgselen. Tjek meddelelserne for mere information.",
         "invalidResponseFetchingAccount": "Noden returnerede en fejl under hentningen af dine kontooplysninger. Prøv at ændre din node eller tjek dine meddelelser for mere information.",
         "invalidResponseSendingTransfer": "Noden returnerede en fejl under afsendelse af overførsel. Tjek meddelelserne for mere information.",
-        "nodeOutOfSync": "Node out of sync",
-        "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
+        "nodeOutOfSync": "Node er ude af synkronisering",
+        "nodeOutOfSyncExplanation": "Dine valgte node er ude af synkronisering. Ændre venligst noden eller prøv igen.",
         "seed": "Hovednøgle",
         "back": "TILBAGE",
         "backLowercase": "Tilbage",
@@ -103,7 +103,7 @@
         "pleaseWaitEllipses": "Vent venligst...",
         "pleaseWaitExplanation": "Trinity udfører en anden funktion. Vent venligst og prøv igen.",
         "pleaseWaitTransferExplanation": "Din disponible balance bruges i øjeblikket i andre transaktioner. Vent venligst på at disse bekræftes før du prøver igen.",
-        "pleaseWaitIncomingTransferExplanation": "You have incoming transfers. Please wait for them to confirm before trying again.",
+        "pleaseWaitIncomingTransferExplanation": "Du har indgående overførsler. Vent venligst på at de er bekræftet før du prøver igen.",
         "snapshotTransitionInProgress": "Snapshot synkronisering i gang",
         "snapshotTransitionInProgressExplanation": "Vent venligst indtil synkroniseringen er fuldført.",
         "checkForUpdates": "Søg efter opdateringer",
@@ -128,8 +128,8 @@
         "clear": "RYD",
         "noNetworkConnection": "Ingen netværksforbindelse",
         "noNetworkConnectionExplanation": "Forbindelsen til internettet ser ud til at være offline.",
-        "spentAddressExplanation": "WARNING: Funds on spent addresses",
-        "discordInformation": "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do."
+        "spentAddressExplanation": "ADVARSEL: Midler på en brugt adresse",
+        "discordInformation": "At sende fra samme adresse mere end én gang er farligt. Gå venligst til #help kanalen på Discord for at finde ud af hvad du kan gøre."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøglen indeholder ugyldige tegn",
