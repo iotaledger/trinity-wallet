@@ -76,7 +76,8 @@ class StatefulDropdownAlert extends Component {
         const { alerts, isModalActive } = this.props;
         const hasAnAlert = newProps.alerts.category && newProps.alerts.title && newProps.alerts.message;
         const alertIsNew = alerts.message !== newProps.alerts.message;
-        const shouldGenerateAlert = hasAnAlert && alertIsNew;
+        const alertIsNotEmpty = newProps.alerts.message !== '';
+        const shouldGenerateAlert = hasAnAlert && alertIsNew && alertIsNotEmpty;
 
         if (shouldGenerateAlert) {
             if (this.dropdown) {
@@ -89,6 +90,13 @@ class StatefulDropdownAlert extends Component {
         }
 
         this.disposeIfConnectionIsRestored(newProps);
+    }
+
+    shouldComponentUpdate(newProps) {
+        if (newProps.alerts.message === '' || newProps.title === '') {
+            return false;
+        }
+        return true;
     }
 
     componentWillUnmount() {
@@ -123,7 +131,7 @@ class StatefulDropdownAlert extends Component {
 
     render() {
         const { closeInterval } = this.props.alerts;
-        const { backgroundColor, onRef, isModalActive } = this.props;
+        const { backgroundColor, onRef } = this.props;
         const closeAfter = closeInterval;
         const statusBarStyle = this.getStatusBarStyle();
         return (
@@ -144,8 +152,8 @@ class StatefulDropdownAlert extends Component {
                 onCancel={this.props.disposeOffAlert}
                 onClose={this.props.disposeOffAlert}
                 closeInterval={closeAfter}
-                translucent={!isModalActive}
                 tapToCloseEnabled={this.props.hasConnection}
+                translucent
             />
         );
     }
