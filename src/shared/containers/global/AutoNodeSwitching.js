@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 
-import { SwitchingConfig, changeIotaNode } from '../../libs/iota';
+import { SwitchingConfig } from '../../libs/iota';
 import { generateAlert } from '../../actions/alerts';
 import { setFullNode } from '../../actions/settings';
 
@@ -26,21 +26,16 @@ export default function withAutoNodeSwitching(AutoNodeSwitchedComponent) {
         }
 
         componentWillMount() {
-            const { autoNodeSwitching, node } = this.props;
+            const { autoNodeSwitching } = this.props;
             // re-inject auto switching to iota lib module up on startup
             SwitchingConfig.callbacks.push(this.showAlertOnAutoNodeSwitch);
             SwitchingConfig.autoSwitch = autoNodeSwitching;
-            // force switch to node of settings
-            changeIotaNode(node);
         }
 
         componentWillReceiveProps(newProps){
-            const { autoNodeSwitching, node } = this.props;
+            const { autoNodeSwitching } = this.props;
             if (newProps.autoNodeSwitching !== autoNodeSwitching) {
                 SwitchingConfig.autoSwitch = newProps.autoNodeSwitching;
-            }
-            if (newProps.node !== node) {
-                changeIotaNode(newProps.node);
             }
         }
 
