@@ -1,6 +1,6 @@
 import { translate } from 'react-i18next';
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 import { disposeOffAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { connect } from 'react-redux';
@@ -73,10 +73,11 @@ class StatefulDropdownAlert extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        const { alerts, isModalActive } = this.props;
+        const { alerts, isModalActive, backgroundColor } = this.props;
         const hasAnAlert = newProps.alerts.category && newProps.alerts.title && newProps.alerts.message;
         const alertIsNew = alerts.message !== newProps.alerts.message;
-        const shouldGenerateAlert = hasAnAlert && alertIsNew;
+        const alertIsNotEmpty = newProps.alerts.message !== '';
+        const shouldGenerateAlert = hasAnAlert && alertIsNew && alertIsNotEmpty;
 
         if (shouldGenerateAlert) {
             if (this.dropdown) {
@@ -86,9 +87,17 @@ class StatefulDropdownAlert extends Component {
 
         if (isModalActive !== newProps.isModalActive) {
             this.dropdown.close();
+            StatusBar.setBackgroundColor(backgroundColor, false);
         }
 
         this.disposeIfConnectionIsRestored(newProps);
+    }
+
+    shouldComponentUpdate(newProps) {
+        if (newProps.alerts.message === '' || newProps.alerts.title === '') {
+            return false;
+        }
+        return true;
     }
 
     componentWillUnmount() {
@@ -144,8 +153,8 @@ class StatefulDropdownAlert extends Component {
                 onCancel={this.props.disposeOffAlert}
                 onClose={this.props.disposeOffAlert}
                 closeInterval={closeAfter}
-                translucent={!isModalActive}
                 tapToCloseEnabled={this.props.hasConnection}
+                translucent={!isModalActive}
             />
         );
     }
