@@ -1,5 +1,23 @@
 default_platform :ios
 
+def enable_manual_provisioning(project_file)
+  UI.important "Switching ProvisioningStyle to Manual."
+  fastlane_require 'xcodeproj'
+  project = Xcodeproj::Project.open(project_file)
+  target_attributes = project.root_object.attributes["TargetAttributes"]
+  target_attributes.each { |id, attrs| attrs["ProvisioningStyle"] = 'Manual' }
+  project.save
+end
+
+lane :build_release do
+  if is_ci?
+    enable_manual_provisioning('../iotaWallet.xcodeproj')
+    enable_manual_provisioning('../../node_modules/lottie-ios/Lottie.xcodeproj')
+  else
+    UI.error('This lane should only be run on CI!')
+  end
+end
+
 lane :screenshots do
   capture_screenshots
   frame_screenshots
