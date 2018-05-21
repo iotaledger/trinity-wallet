@@ -5039,6 +5039,10 @@ react-native-level-fs@^3.0.0:
     level-filesystem "^1.0.1"
     levelup "^0.18.2"
 
+react-native-modal-translucent@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-modal-translucent/-/react-native-modal-translucent-1.1.1.tgz#9e5823a0c3bf6171eaa89cf6afeecfd59d776be6"
+
 react-native-modal@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-6.0.0.tgz#72b829454cde207848e4323a96a440c152f7508e"
