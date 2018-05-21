@@ -103,6 +103,7 @@
         "pleaseWaitEllipses": "请等待...",
         "pleaseWaitExplanation": "Trinity正在执行另一个功能。请稍候再试一次。",
         "pleaseWaitTransferExplanation": "您的可用余额目前正在其他转帐中使用。请等待确认后再试一次。",
+        "pleaseWaitIncomingTransferExplanation": "You have incoming transfers. Please wait for them to confirm before trying again.",
         "snapshotTransitionInProgress": "正在进行快照转换",
         "snapshotTransitionInProgressExplanation": "请稍候, 直到转换完成。",
         "checkForUpdates": "检查更新",
