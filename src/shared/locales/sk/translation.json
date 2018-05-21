@@ -103,6 +103,7 @@
         "pleaseWaitEllipses": "Prosím čakajte...",
         "pleaseWaitExplanation": "Trinity práve vykonáva inú funkciu. Počkajte chvíľu a skúste to znova.",
         "pleaseWaitTransferExplanation": "Váš disponibilný zostatok sa momentálne používa v iných prevodoch. Počkajte prosím na jedno potvrdenie, kým to skúsite znova.",
+        "pleaseWaitIncomingTransferExplanation": "You have incoming transfers. Please wait for them to confirm before trying again.",
         "snapshotTransitionInProgress": "Prebieha aktualizácia údajov po snapshote",
         "snapshotTransitionInProgressExplanation": "Počkajte, kým prebehne aktualizácia údajov po snapshote.",
         "checkForUpdates": "Kontrola aktualizácií",
