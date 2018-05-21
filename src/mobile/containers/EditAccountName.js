@@ -12,6 +12,7 @@ import { updateAccountNameInKeychain } from '../utils/keychain';
 import CustomTextInput from '../components/CustomTextInput';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
+import GENERAL from '../theme/general';
 
 const styles = StyleSheet.create({
     container: {
@@ -26,7 +27,7 @@ const styles = StyleSheet.create({
     },
     saveText: {
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: width / 34.5,
+        fontSize: GENERAL.fontSize1,
         backgroundColor: 'transparent',
     },
     bottomContainer: {
@@ -53,13 +54,13 @@ const styles = StyleSheet.create({
     },
     titleTextLeft: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize4,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
     titleTextRight: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize4,
         backgroundColor: 'transparent',
         marginRight: width / 20,
     },

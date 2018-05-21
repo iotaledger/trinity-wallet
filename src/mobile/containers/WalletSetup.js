@@ -9,6 +9,7 @@ import InfoBox from '../components/InfoBox';
 import { Icon } from '../theme/icons.js';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import { width, height } from '../utils/dimensions';
+import GENERAL from '../theme/general';
 
 const styles = StyleSheet.create({
     container: {
@@ -34,19 +35,19 @@ const styles = StyleSheet.create({
     },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
         textAlign: 'left',
         paddingTop: height / 60,
         backgroundColor: 'transparent',
     },
     infoTextLight: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
     },
     infoTextRegular: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
     },
     greetingTextContainer: {
@@ -56,13 +57,13 @@ const styles = StyleSheet.create({
     },
     greetingText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize4,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
     questionText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize4,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },

@@ -34,33 +34,33 @@ const styles = StyleSheet.create({
     text: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 29.6,
+        fontSize: GENERAL.fontSize2,
     },
     regularText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 29.6,
+        fontSize: GENERAL.fontSize2,
     },
     boldText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 25.9,
+        fontSize: GENERAL.fontSize3,
     },
     middleText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 31.8,
+        fontSize: GENERAL.fontSize2,
         paddingBottom: height / 80,
     },
     addressText: {
         backgroundColor: 'transparent',
         fontFamily: 'Inconsolata-Bold',
-        fontSize: width / 21.8,
+        fontSize: GENERAL.fontSize4,
     },
     iotaText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 25.9,
+        fontSize: GENERAL.fontSize3,
     },
 });
 

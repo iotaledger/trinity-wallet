@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     },
     infoText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 25.9,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
         textAlign: 'center',
         paddingBottom: height / 40,
@@ -88,15 +88,15 @@ const styles = StyleSheet.create({
     },
     nodeChangeText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 24.4,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
     },
     nodeChangeContainer: {
         position: 'absolute',
         bottom: height / 20,
         alignItems: 'center',
-        justifyContent: 'center'
-    }
+        justifyContent: 'center',
+    },
 });
 
 /** Loading screen component */
@@ -186,7 +186,7 @@ class Loading extends Component {
         this.state = {
             elipsis: '',
             animationPartOneDone: false,
-            displayNodeChangeOption: false
+            displayNodeChangeOption: false,
         };
         this.onChangeNodePress = this.onChangeNodePress.bind(this);
     }
@@ -367,14 +367,10 @@ class Loading extends Component {
         const textColor = { color: body.color };
         const isBgLight = tinycolor(body.bg).isLight();
         const loadingAnimationPath = isBgLight ? blackLoadingAnimation : whiteLoadingAnimation;
-        const welcomeAnimationPartOnePath = isBgLight
-            ? blackWelcomeAnimationPartOne
-            : whiteWelcomeAnimationPartOne;
-        const welcomeAnimationPartTwoPath = isBgLight
-            ? blackWelcomeAnimationPartTwo
-            : whiteWelcomeAnimationPartTwo;
-            const primaryTextColor = { color: primary.color };
-            const borderColor = { borderColor: primary.color };
+        const welcomeAnimationPartOnePath = isBgLight ? blackWelcomeAnimationPartOne : whiteWelcomeAnimationPartOne;
+        const welcomeAnimationPartTwoPath = isBgLight ? blackWelcomeAnimationPartTwo : whiteWelcomeAnimationPartTwo;
+        const primaryTextColor = { color: primary.color };
+        const borderColor = { borderColor: primary.color };
 
         if (firstUse || addingAdditionalAccount) {
             return (
@@ -435,16 +431,18 @@ class Loading extends Component {
                             />
                         )}
                     </View>
-                    { displayNodeChangeOption &&
+                    {displayNodeChangeOption && (
                         <View style={styles.nodeChangeContainer}>
                             <Text style={[styles.infoText, textColor]}>{t('takingAWhile')}...</Text>
                             <TouchableOpacity onPress={this.onChangeNodePress}>
                                 <View style={[styles.nodeChangeButton, borderColor]}>
-                                    <Text style={[styles.nodeChangeText, primaryTextColor]}>{t('global:changeNode').toUpperCase()}</Text>
+                                    <Text style={[styles.nodeChangeText, primaryTextColor]}>
+                                        {t('global:changeNode').toUpperCase()}
+                                    </Text>
                                 </View>
                             </TouchableOpacity>
                         </View>
-                    }
+                    )}
                 </View>
             </View>
         );
@@ -475,7 +473,7 @@ const mapDispatchToProps = {
     getChartData,
     getCurrencyData,
     generateAlert,
-    setLoginRoute
+    setLoginRoute,
 };
 
 export default translate(['loading', 'global'])(connect(mapStateToProps, mapDispatchToProps)(Loading));

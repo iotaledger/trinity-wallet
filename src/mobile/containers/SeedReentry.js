@@ -44,20 +44,20 @@ const styles = StyleSheet.create({
     },
     infoTextTop: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
     infoTextBottom: {
         paddingTop: height / 60,
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
     warningText: {
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
         textAlign: 'center',
         paddingTop: height / 70,
         backgroundColor: 'transparent',
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     qrText: {
         color: 'white',
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: width / 34.5,
+        fontSize: GENERAL.fontSize1,
         backgroundColor: 'transparent',
     },
     textFieldContainer: {
