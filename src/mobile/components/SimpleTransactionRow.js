@@ -4,6 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { formatTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/date';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
+import GENERAL from '../theme/general';
 
 const styles = StyleSheet.create({
     container: {
@@ -16,7 +17,7 @@ const styles = StyleSheet.create({
     text: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 32,
+        fontSize: GENERAL.fontSize2,
     },
 });
 

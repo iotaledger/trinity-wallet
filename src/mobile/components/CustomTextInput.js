@@ -11,12 +11,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     fieldLabel: {
-        fontSize: width / 34.5,
+        fontSize: GENERAL.fontSize2,
         marginBottom: height / 100,
         marginLeft: 1,
     },
     textInput: {
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize4,
         fontFamily: 'SourceSansPro-Light',
         flex: 6,
         marginHorizontal: width / 28,
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     conversionText: {
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize4,
         fontFamily: 'SourceSansPro-Light',
         backgroundColor: 'transparent',
         position: 'absolute',
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     },
     denominationText: {
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: width / 29.6,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
     },
 });

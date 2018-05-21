@@ -57,6 +57,7 @@ import { Icon } from '../theme/icons.js';
 import { width } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
 import { getAddressGenFn, getPowFn } from '../utils/nativeModules';
+import GENERAL from '../theme/general';
 
 const styles = StyleSheet.create({
     container: {
@@ -94,13 +95,13 @@ const styles = StyleSheet.create({
     },
     maxButtonText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 31.8,
+        fontSize: GENERAL.fontSize2,
         backgroundColor: 'transparent',
         marginRight: width / 50,
     },
     infoText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 29.6,
+        fontSize: GENERAL.fontSize3,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
@@ -110,7 +111,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     progressSummaryText: {
-        fontSize: width / 30.9,
+        fontSize: GENERAL.fontSize2,
     },
 });
 
@@ -402,18 +403,18 @@ export class Send extends Component {
     getModalProps() {
         const { isModalActive, body } = this.props;
         const props = {
-          animationIn: isAndroid ? 'bounceInUp' : 'zoomIn',
-          animationOut: isAndroid ? 'bounceOut' : 'zoomOut',
-          animationInTiming: isAndroid ? 1000 : 300,
-          animationOutTiming: 200,
-          backdropTransitionInTiming: isAndroid ? 500 : 300,
-          backdropTransitionOutTiming: 200,
-          backdropColor: body.bg,
-          style: { alignItems: 'center', margin: 0 },
-          isVisible: isModalActive,
-          onBackButtonPress: () => this.props.toggleModalActivity(),
-          hideModalContentWhileAnimating: true,
-          useNativeDriver: isAndroid ? true : false,
+            animationIn: isAndroid ? 'bounceInUp' : 'zoomIn',
+            animationOut: isAndroid ? 'bounceOut' : 'zoomOut',
+            animationInTiming: isAndroid ? 1000 : 300,
+            animationOutTiming: 200,
+            backdropTransitionInTiming: isAndroid ? 500 : 300,
+            backdropTransitionOutTiming: 200,
+            backdropColor: body.bg,
+            style: { alignItems: 'center', margin: 0 },
+            isVisible: isModalActive,
+            onBackButtonPress: () => this.props.toggleModalActivity(),
+            hideModalContentWhileAnimating: true,
+            useNativeDriver: isAndroid ? true : false,
         };
         return props;
     }
@@ -705,25 +706,25 @@ export class Send extends Component {
                     </Modal>
                 );
             case 'transferConfirmation':
-                  return (
-                      <Modal {...modalProps}>
-                          <TransferConfirmationModal
-                              value={parseFloat(amount) * this.getUnitMultiplier()}
-                              amount={amount}
-                              conversionText={this.getConversionTextIota()}
-                              address={address}
-                              sendTransfer={() => this.sendWithDelay()}
-                              hideModal={(callback) => this.hideModal(callback)}
-                              body={body}
-                              bar={bar}
-                              borderColor={{ borderColor: body.color }}
-                              textColor={{ color: body.color }}
-                              setSendingTransferFlag={() => this.setSendingTransferFlag()}
-                              selectedAccountName={selectedAccountName}
-                              activateFingerprintScanner={() => this.activateFingerprintScanner()}
-                              isFingerprintEnabled={isFingerprintEnabled}
-                          />
-                      </Modal>
+                return (
+                    <Modal {...modalProps}>
+                        <TransferConfirmationModal
+                            value={parseFloat(amount) * this.getUnitMultiplier()}
+                            amount={amount}
+                            conversionText={this.getConversionTextIota()}
+                            address={address}
+                            sendTransfer={() => this.sendWithDelay()}
+                            hideModal={(callback) => this.hideModal(callback)}
+                            body={body}
+                            bar={bar}
+                            borderColor={{ borderColor: body.color }}
+                            textColor={{ color: body.color }}
+                            setSendingTransferFlag={() => this.setSendingTransferFlag()}
+                            selectedAccountName={selectedAccountName}
+                            activateFingerprintScanner={() => this.activateFingerprintScanner()}
+                            isFingerprintEnabled={isFingerprintEnabled}
+                        />
+                    </Modal>
                 );
             case 'unitInfo':
                 return (
@@ -936,7 +937,7 @@ export class Send extends Component {
                         )}
                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                             <TouchableOpacity
-                                onPress={() => this.showModal('unitInfo') }
+                                onPress={() => this.showModal('unitInfo')}
                                 hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
                             >
                                 <View style={styles.info}>

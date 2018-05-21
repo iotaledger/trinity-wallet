@@ -7,6 +7,7 @@ import { translate } from 'react-i18next';
 import withChartData from 'iota-wallet-shared-modules/containers/components/Chart';
 import { width, height } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
+import GENERAL from '../theme/general';
 
 const chartWidth = width;
 const chartHeight = height * 0.38;
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
     },
     emptyChartText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
     },
     marketDataContainer: {
         flex: 1,
@@ -70,17 +71,17 @@ const styles = StyleSheet.create({
     buttonText: {
         fontWeight: 'normal',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 35,
+        fontSize: GENERAL.fontSize1,
     },
     iotaPrice: {
         fontWeight: 'normal',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 24,
+        fontSize: GENERAL.fontSize3,
     },
     marketFigure: {
         fontWeight: 'normal',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 37.6,
+        fontSize: GENERAL.fontSize1,
     },
     marketFigureTitle: {
         fontWeight: 'bold',
@@ -215,7 +216,7 @@ class Chart extends PureComponent {
                                     axis: { stroke: 'transparent' },
                                     tickLabels: {
                                         fill: theme.body.color,
-                                        fontSize: width / 44,
+                                        fontSize: GENERAL.fontSize1,
                                         fontFamily: 'SourceSansPro-Regular',
                                     },
                                 }}
@@ -230,13 +231,15 @@ class Chart extends PureComponent {
                 )}
                 <View style={styles.marketDataContainer}>
                     <Text style={[styles.marketFigure, textColor]}>
-                        <Text style={[styles.marketFigureTitle, textColor]}>{t('chart:mcap')}</Text> {priceData.globalSymbol} {mcapFormatted}
+                        <Text style={[styles.marketFigureTitle, textColor]}>{t('chart:mcap')}</Text>{' '}
+                        {priceData.globalSymbol} {mcapFormatted}
                     </Text>
                     <Text style={[styles.marketFigure, textColor]}>
                         <Text style={styles.marketFigureTitle}>{t('chart:change')}</Text> {priceData.change24h}%
                     </Text>
                     <Text style={[styles.marketFigure, textColor]}>
-                        <Text style={styles.marketFigureTitle}>{t('chart:volume')}</Text> {priceData.globalSymbol} {volumeFormatted}
+                        <Text style={styles.marketFigureTitle}>{t('chart:volume')}</Text> {priceData.globalSymbol}{' '}
+                        {volumeFormatted}
                     </Text>
                 </View>
                 <View style={{ flex: 0.38 }} />

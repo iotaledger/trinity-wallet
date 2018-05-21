@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 29.6,
+        fontSize: GENERAL.fontSize2,
     },
     valueText: {
         marginLeft: 2,
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     bundleHash: {
         backgroundColor: 'transparent',
         fontFamily: 'Inconsolata-Regular',
-        fontSize: width / 31.8,
+        fontSize: GENERAL.fontSize2,
         marginTop: 2,
     },
     bundleSeparator: {
@@ -75,24 +75,24 @@ const styles = StyleSheet.create({
     confirmation: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 31.8,
+        fontSize: GENERAL.fontSize2,
         paddingRight: width / 25,
     },
     timestamp: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 31.8,
+        fontSize: GENERAL.fontSize2,
     },
     heading: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: width / 31.8,
+        fontSize: GENERAL.fontSize2,
         paddingTop: height / 50,
     },
     text: {
         backgroundColor: 'transparent',
         fontFamily: 'Inconsolata-Regular',
-        fontSize: width / 31.8,
+        fontSize: GENERAL.fontSize2,
     },
     addressRowContainer: {
         flexDirection: 'row',
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     addressRowValue: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
         textAlign: 'right',
     },
     buttonWhenDisabled: {
@@ -192,7 +192,7 @@ export default class HistoryModalContent extends PureComponent {
         }).isRequired,
         /** Bundle hash for the transaction that is currently being promoted */
         currentlyPromotingBundleHash: PropTypes.string.isRequired,
-        hasFailedAutopromotion: PropTypes.bool.isRequired
+        hasFailedAutopromotion: PropTypes.bool.isRequired,
     };
 
     static defaultProps = {
@@ -283,10 +283,11 @@ export default class HistoryModalContent extends PureComponent {
             disableWhen,
             isBroadcastingBundle,
             currentlyPromotingBundleHash,
-            hasFailedAutopromotion
+            hasFailedAutopromotion,
         } = this.props;
         const { scrollable } = this.state;
-        const bundleIsBeingPromoted = (currentlyPromotingBundleHash === bundle && !confirmationBool) && !hasFailedAutopromotion;
+        const bundleIsBeingPromoted =
+            currentlyPromotingBundleHash === bundle && !confirmationBool && !hasFailedAutopromotion;
         const opacity = { opacity: disableWhen ? (isAndroid ? 0.3 : 0.2) : 1 };
 
         return (
@@ -342,7 +343,7 @@ export default class HistoryModalContent extends PureComponent {
                                                             secondaryCtaColor={style.primaryBody}
                                                             ctaWidth={width / 2.75}
                                                             ctaHeight={height / 17}
-                                                            fontSize={width / 29.6}
+                                                            fontSize={GENERAL.fontSize2}
                                                             text={t('retry')}
                                                             onPress={() => {
                                                                 if (!disableWhen) {
@@ -363,7 +364,7 @@ export default class HistoryModalContent extends PureComponent {
                                                             secondaryCtaColor={style.secondaryBody}
                                                             ctaWidth={width / 2.75}
                                                             ctaHeight={height / 17}
-                                                            fontSize={width / 29.6}
+                                                            fontSize={GENERAL.fontSize2}
                                                             text={t('rebroadcast')}
                                                             onPress={() => {
                                                                 if (!disableWhen) {

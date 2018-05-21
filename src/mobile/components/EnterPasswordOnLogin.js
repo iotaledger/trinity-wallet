@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 20.7,
+        fontSize: GENERAL.fontSize4,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     },
     loginText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 24.4,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
     },
 });
