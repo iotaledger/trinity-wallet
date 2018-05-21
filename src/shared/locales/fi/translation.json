@@ -20,8 +20,8 @@
         "invalidResponsePollingExplanation": "Palvelin palautti virheilmoituksen kesken yhteydenoton. Katso ilmoitukset saadaksesi lisätietoa.",
         "invalidResponseFetchingAccount": "Palvelin palautti virheilmoituksen haettaessa tilitietoja. Katso ilmoitukset saadaksesi lisätietoa.",
         "invalidResponseSendingTransfer": "Palvelin palautti virheilmoituksen kesken siirron. Katso ilmoitukset saadaksesi lisätietoa.",
-        "nodeOutOfSync": "Node out of sync",
-        "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
+        "nodeOutOfSync": "Palvelin ei ole ajantasalla",
+        "nodeOutOfSyncExplanation": "Palvelin jota käytät tällä hetkellä ei sisällä viimeisintä tietoa. Kokeile vaihtaa palvelin toiseen.",
         "seed": "Seed-luku",
         "back": "TAKAISIN",
         "backLowercase": "Takaisin",
@@ -36,7 +36,7 @@
         "disable": "Poista käytöstä",
         "manualCopy": "Kirjoita seed-luku paperille",
         "paperWallet": "Tulosta seed-luku paperille",
-        "copyToClipboard": "Lisää salasanan hallintaohjelmaan",
+        "copyToClipboard": "Lisää salasanan hallintasovellukseen",
         "qr": "QR",
         "notAvailable": "Tämä toiminto ei ole käytettävissä",
         "notAvailableExplanation": "Se tullaan lisäämään myöhemmässä kehitysvaiheessa.",
@@ -63,9 +63,9 @@
         "node": "Palvelin",
         "cannotPerformAction": "Toimintoa ei voi suorittaa",
         "cannotPerformActionExplanation": "Siirry lisäasetuksiin resetoidaksesi lompakkosi.",
-        "attachToTangleUnavailable": "Remote Proof of Work is unavailable",
-        "attachToTangleUnavailableExplanation": "Remote Proof of Work is not available on your selected node. Either change node or set Proof of Work to Local in Advanced Settings.",
-        "attachToTangleUnavailableExplanationShort": "Remote Proof of Work is not available on your selected node.",
+        "attachToTangleUnavailable": "Laskentatyöteko (PoW) palvelimella ei ole mahdollista",
+        "attachToTangleUnavailableExplanation": "Laskentatyöteko (PoW) valitsemallasi palvelimella ei ole tällä hetkellä mahdollista. Vaihda palvelinta tai muuta laskenta-asetuksia.",
+        "attachToTangleUnavailableExplanationShort": "Laskentatyöteko (PoW) palvelimella ei ole mahdollista.",
         "wallet": "Lompakko",
         "sent": "Lähetetty",
         "received": "Vastaanotettu",
@@ -90,8 +90,8 @@
         "rebroadcastErrorExplanation": "Lähetettäessä siirto uudelleen tapahtui virhe. Yritä hetken päästä uudestaan.",
         "promoted": "Siirron edistys onnistui",
         "promotedExplanation": "Siirtoa tiivisteluvulla {{hash}} edistetty onnistuneesti",
-        "autopromotionError": "Could not auto-promote transaction",
-        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node.",
+        "autopromotionError": "Siirtoa ei voitu edistää",
+        "autopromotionErrorExplanation": "Laskentatyöteko (PoW) valitsemallasi palvelimella ei ole tällä hetkellä mahdollista. Vaihda palvelinta.",
         "promotionError": "Siirtoa ei voitu edistää",
         "promotionErrorExplanation": "Siirron edistämisessä tapahtui virhe. Yritä uudelleen.",
         "noLongerValid": "Kokoelma jonka siirtoa yrität edistää ei ole enää voimassa",
@@ -103,6 +103,7 @@
         "pleaseWaitEllipses": "Odota hetki...",
         "pleaseWaitExplanation": "Trinity suorittaa jo toista toimintoa. Odota hetki ja yritä uudelleen.",
         "pleaseWaitTransferExplanation": "Saldoasi käytetään jo olemassa olevissa siirroissa. Odota, että ne on vahvistettu ennen kuin yrität uudelleen.",
+        "pleaseWaitIncomingTransferExplanation": "Sinulla on saapuvia siirtoja, jotka ovat vielä kesken. Odota että ne valmistuvat ennen kuin yrität uudelleen.",
         "snapshotTransitionInProgress": "Snapshot-siirtymä käynnissä",
         "snapshotTransitionInProgressExplanation": "Odota kunnes siirtymäprosessi on valmis.",
         "checkForUpdates": "Tarkista päivitykset",
@@ -127,8 +128,8 @@
         "clear": "TYHJENNÄ",
         "noNetworkConnection": "Ei verkkoyhteyttä",
         "noNetworkConnectionExplanation": "Verkkoyhteys näyttää olevan offline-tilassa.",
-        "spentAddressExplanation": "WARNING: Funds on spent addresses",
-        "discordInformation": "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do."
+        "spentAddressExplanation": "VAROITUS: Varoja jo käytetyssä osoitteessa",
+        "discordInformation": "Lähettäminen osoitteesta, josta on aikaisemmin lähetetty varoja on vaarallista. Saadaksesi apua tilanteeseen voit liittyä Iotan Discord palvelun #help kanavalle."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed-luku sisältää virheellisiä merkkejä",
@@ -167,17 +168,17 @@
         "seedClearedExplanation": "Seed-luku on turvallisuussyistä poistettu leikepöydältä.",
         "seedCopied": "Seed-luku kopioitu leikepöydälle",
         "seedCopiedExplanation": "Seed-luku poistetaan, kun painat ”VALMIS” tai kun 60 sekuntia on kulunut.",
-        "clickToCopy": "Klikkaa alla olevaa painiketta ja kopioi seed-lukusi salasanan hallintaohjelmaan.",
+        "clickToCopy": "Paina alla olevaa painiketta ja kopioi seed-lukusi salasanan hallintasovellukseen.",
         "doNotStore": "Älä säilytä seed-lukuasi pelkkänä tekstinä.",
         "copyToClipboard": "Kopioi seed-luku",
-        "shareSeed": "Tallenna seed-lukusi turvalliseen salasanan hallintaohjelmaan",
-        "storeEncrypted": "Kun käytät salasanan hallintaohjelmaa, tallenna seed-lukusi salatussa muodossa.",
+        "shareSeed": "Tallenna seed-lukusi turvalliseen salasanan hallintasovellukseen",
+        "storeEncrypted": "Kun käytät salasanan hallintasovellusta, tallenna seed-lukusi salatussa muodossa.",
         "doNotOpen": "Älä avaa muita sovelluksia kesken tämän toiminnon.",
         "tapConfirm": "Paina alla olevia laatikoita vahvistaaksesi että ymmärrät ohjeistuksen.",
-        "passwordManagerCheckbox": "Tallennan seed-lukuni salasanan hallintaohjelmaan",
+        "passwordManagerCheckbox": "Tallennan seed-lukuni salasanan hallintasovellukseen",
         "copy": "KOPIOI",
-        "noPasswordManagers": "No supported password managers installed",
-        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android."
+        "noPasswordManagers": "Tuettuja salasanojen hallintasovelluksia ei ole asennettuna",
+        "noPasswordManagersExplanation": "Tuettuja salasanojen hallintasovelluksia ei ole löydetty laitteeltasi. Voit asentaa sovelluksen nimeltä Keepass2Android."
     },
     "enterSeed": {
         "invalidCharacters": "Seed-luku sisältää virheellisiä merkkejä",
@@ -212,7 +213,7 @@
         "thisMayTake": "Tämä saattaa kestää hetken.",
         "doNotMinimise": "Älä sulje tai siirrä sovellusta taustalle.",
         "youMayNotice": "Laitteessa voi ilmetä hitautta.",
-        "takingAWhile": "This seems to be taking a while"
+        "takingAWhile": "Tämä kestää hetken"
     },
     "newSeedSetup": {
         "seedNotGenerated": "Seed-lukua ei ole luotu",
@@ -300,7 +301,7 @@
         "expert": "Edistynyt käyttäjä",
         "standard": "Tavallinen käyttäjä",
         "expertModeExplanation": "Edistynyt käyttäjä -tila mahdollistaa pääsyn lisäominaisuuksiin kuten lähetyksen edistämiseen.",
-        "modesExplanation": "Aktivoi edistyneen käyttäjän tila vain jos ymmärrät miten Tangle-verkko toimii. Muuten tila voi vaikuttaa hankalalta käyttää."
+        "modesExplanation": "Aktivoi edistyneen käyttäjän -tila vain jos ymmärrät miten Tangle-verkko toimii. Muuten tila voi vaikuttaa hankalalta käyttää."
     },
     "settings": {
         "transferSending": "Siirto käynnissä",
@@ -318,7 +319,7 @@
         "twoFA": "Kaksivaiheinen tunnistautuminen (2FA)",
         "changePassword": "Vaihda salasana",
         "advanced": "Lisäasetukset",
-        "about": "Tietoja",
+        "about": "Lisätietoja",
         "logout": "Kirjaudu ulos",
         "reset": "Tyhjennä lompakko",
         "syncingComplete": "Synkronointi valmis",
@@ -349,14 +350,14 @@
         "fetchedConversionRatesExplanation": "Vaihtokurssit haettu onnistuneesti valuutalle {{currency}}.",
         "undo": "Kumoa",
         "redo": "Toista",
-        "aboutTrinity": "Lisätietoja Trinitystä",
+        "aboutTrinity": "Lisätietoja sovelluksesta",
         "lockScreenTimeout": "Näytön aikalukitus (minuuttia)",
         "autoNodeSwitching": "Vaihda palvelinta automaattisesti jos nykyinen palvelin ei vastaa",
-        "nodeChangeSuccess": "Successfully changed node",
-        "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
-        "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
-        "nodeChangeError": "Error changing node",
-        "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
+        "nodeChangeSuccess": "Palvelin vaihdettiin onnistuneesti",
+        "nodeChangeSuccessNoRemotePow": "Uusi palvelin on {{node}}. Tämä palvelin ei tue laskentatyöntekoa (PoW).",
+        "nodeChangeSuccessExplanation": "Uusi palvelin on {{node}}.",
+        "nodeChangeError": "Palvelimen vaihto epäonnistui",
+        "nodeChangeErrorExplanation": "Palvelimen vaihto epäonnistui. Kokeile toista palvelinta."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Kirjoita salasanasi resetoidaksesi lompakkosi.",
@@ -416,8 +417,8 @@
         "selectNode": "Valitse palvelin",
         "addCustomNode": "Lisää omavalintainen palvelin",
         "manualSync": "Manuaalinen synkronointi",
-        "snapshotTransition": "Siirtymä (Snapshot)",
-        "pow": "Laskenta-asetukset (PoW)"
+        "snapshotTransition": "Snapshot-avustaja",
+        "pow": "Laskenta-asetukset"
     },
     "advancedThemeCustomisation": {
         "background": "Tausta",
@@ -445,7 +446,7 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Miksi en voi käyttää koko tilin saldoa?",
-        "spentAddressExplanation": "Sinulla on saldoa yhdessä tai useammassa osoitteessa josta on jo lähetty varallisuutta. Tälläisen osoitteen käyttö uudelleen on vaarallista ja siksi estetty tässä ohjelmassa.",
+        "spentAddressExplanation": "Sinulla on saldoa yhdessä tai useammassa osoitteessa josta on jo aikaisemmin lähetetty varoja. Tälläisen osoitteen käyttö uudelleen on vaarallista ja siksi estetty tässä sovelluksessa.",
         "discordInformation": "Siirry Discord yhteisön #help kanavalle saadaksesi apua ongelmaan."
     },
     "deleteAccount": {
@@ -458,14 +459,14 @@
         "outOfSync": "Näyttäkö siltä että tilihistoriasi ei ole ajan tasalla?",
         "pressToSync": "Alla olevalla painikkeella voit synkronoida tilisi.",
         "thisMayTake": "Tämä saattaa kestää hetken ja tänä aikana laitteen käyttö voi olla hidasta.",
-        "doNotClose": "Huomioi että ohjelman sulkeminen taustalle lopettaa synkronoinnin.",
+        "doNotClose": "Huomioi että sovelluksen sulkeminen taustalle lopettaa synkronoinnin.",
         "syncAccount": "SYNKRONOI TILI",
         "syncingYourAccount": "Synkronoidaan tiliä."
     },
     "useExistingSeed": {
         "title": "Anna seed-luku ja tilin nimi.",
         "incorrectFormat": "Seed-luku on virheellinen",
-        "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
+        "validSeedExplanation": "Hyväksytyn seed-luvun on oltava 81 merkkiä pitkä ja sisältää ainoastaan merkkejä A-Z tai 9."
     },
     "viewSeed": {
         "enterPassword": "Syötä salasana nähdäksesi seed-lukusi.",
@@ -485,16 +486,16 @@
         "instructionsEnable": "Kosketa sormenjälkilukijaa saadaksesi se käyttöön",
         "instructionsDisable": "Kosketa sormenjälkilukijaa poistaaksesi se käytöstä",
         "fingerprintAuthEnabled": "Biometrinen tunnistus käytössä",
-        "fingerprintAuthEnabledExplanation": "You have successfully enabled biometric authentication.",
+        "fingerprintAuthEnabledExplanation": "Biometrinen tunnistus otettu käyttöön.",
         "fingerprintAuthDisabled": "Biometrinen tunnistus poistettu käytöstä",
-        "fingerprintAuthDisabledExplanation": "You have successfully disabled biometric authentication.",
+        "fingerprintAuthDisabledExplanation": "Biometrinen tunnistus otettu pois käyttöstä.",
         "fingerprintAuthFailed": "Biometrinen tunnistus epäonnistui",
         "fingerprintAuthFailedExplanation": "Sormenjälkitunnistus epäonnistui. Yritä uudelleen.",
         "status": "Tila",
         "enabled": "Käytössä",
         "disabled": "Ei käytössä",
-        "fingerprintUnavailable": "Biometric authentication unavailable",
-        "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
+        "fingerprintUnavailable": "Biometrinen tunnistus ei ole käytettävissä",
+        "fingerprintUnavailableExplanation": "Laitteesi ei tue biometristä tunnistusta tai se on otettu pois käytöstä asetuksista.",
         "buttonInstructionsDisable": "Paina alla olevaa painiketta poistaaksesi sormenjälkitunnistuksen käytöstä.",
         "buttonInstructionsEnable": "Paina alla olevaa painiketta ottaaksesi sormenjälkitunnistuksen käyttöön.",
         "buttonInstructionsDisableIPhoneX": "Paina alla olevaa painiketta poistaaksesi kasvotunnistuksen.",
@@ -512,13 +513,13 @@
         "emptyCodeExplanation": "Syötä tunnusluku ja yritä uudelleen.",
         "keyCopied": "Avain kopioitu leikepöydälle",
         "keyCopiedExplanation": "Sinun 2FA-avaimesi on kopioitu leikepöydälle.",
-        "addKey": "Lisää alla oleva avain 2FA-ohjelmaasi",
+        "addKey": "Lisää alla oleva avain 2FA-sovellukseen",
         "key": "Avain",
         "twoFAEnabled": "2FA on nyt käytössä",
         "twoFAEnabledExplanation": "Olet onnistuneesti ottanut käyttöön kaksivaihetunnistautumisen (2FA).",
         "twoFADisabled": "Kaksivaiheinen tunnistautuminen (2FA) poistettu käytöstä",
         "twoFADisabledExplanation": "Kaksivaihetunnistautumisen (2FA) poistettu käytöstä onnistuneesti.",
-        "enterCode": "Syötä tunnusluku 2FA-ohjelmasta",
+        "enterCode": "Syötä tunnusluku 2FA-sovelluksesta",
         "code": "Tunnusluku",
         "twoFaToken": "2FA tunnus"
     },
@@ -539,19 +540,19 @@
         "localOrRemote": "Työ (PoW) voidaan tehdä joko paikallisesti omalla laitteella tai ulkoiselle palvelimella.",
         "local": "Paikallinen",
         "remote": "Ulkoinen",
-        "powUpdated": "Laskenta (PoW)",
-        "powUpdatedExplanation": "Proof of work-asetuksesi on päivitetty ajantasalle.",
+        "powUpdated": "Laskenta-asetukset",
+        "powUpdatedExplanation": "Laskenta-asetuksesi (PoW) on päivitetty ajantasalle.",
         "noWebGLSupport": "WebGL ei tuettu",
         "noWebGLSupportExplanation": "Laitteesi ei tue WebGL -laskentaa. Asetuksista voit siirtää laskennan (PoW) ulkoiselle palvelimelle."
     },
     "progressSteps": {
-        "validatingNodeHealth": "Validating currently selected node's health",
+        "validatingNodeHealth": "Varmistetaan valitun palvelimen tila",
         "validatingReceiveAddress": "Varmistetaan vastaanottajan osoite",
         "syncingAccount": "Synkronoidaan tiliä",
         "preparingInputs": "Alustetaan sisältöä",
         "preparingTransfers": "Alustetaan siirtoja",
         "gettingTransactionsToApprove": "Odotetaan siirtoja hyväksyttäväksi",
-        "proofOfWork": "Viimeistellään työ (Proof of Work)",
+        "proofOfWork": "Viimeistellään laskentatyö (Proof of Work)",
         "broadcasting": "Lähetetään"
     },
     "snapshotTransition": {
