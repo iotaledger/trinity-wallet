@@ -103,6 +103,7 @@
         "pleaseWaitEllipses": "Lütfen bekleyin...",
         "pleaseWaitExplanation": "Trinity başka bir fonksiyonu gerçekleştiriyor. Lütfen bekleyin ve tekrar deneyin.",
         "pleaseWaitTransferExplanation": "Kullanılabilir bakiyenizi diğer transferler kullanıyor. Lütfen yeniden denemeden önce birinin onaylanmasını bekleyin.",
+        "pleaseWaitIncomingTransferExplanation": "You have incoming transfers. Please wait for them to confirm before trying again.",
         "snapshotTransitionInProgress": "Anlık görüntü geçiş aşamasında",
         "snapshotTransitionInProgressExplanation": "Lütfen geçiş tamamlanana kadar bekleyin.",
         "checkForUpdates": "Güncellemeleri Denetle",
