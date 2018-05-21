@@ -41,3 +41,18 @@ export const formatModalTime = (ts) => {
 };
 
 export const convertUnixTimeToJSDate = (time) => convertUnixTimeToDateObject(time);
+
+/**
+ *   Checks if time falls within specified minutes
+ *
+ *   @method isWithinMinutes
+ *   @param {number} time
+ *   @param {number} minutes
+ *   @returns {boolean}
+ **/
+export const isWithinMinutes = (time, minutes) => {
+    const now = Date.now();
+    const lessThanMinutesAgo = now - minutes * 60 * 1000;
+
+    return time > lessThanMinutesAgo;
+};

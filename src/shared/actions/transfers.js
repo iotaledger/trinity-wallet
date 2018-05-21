@@ -15,6 +15,7 @@ import {
     getTransactionsToApproveAsync,
     attachToTangleAsync,
     storeAndBroadcastAsync,
+    isNodeSynced,
 } from '../libs/iota/extendedApi';
 import {
     selectedAccountStateFactory,
@@ -332,13 +333,23 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
     // Have them wrapped in a separate private function so in case it is a value transfer,
     // it can be chained together with the rest of the promise chain.
     const withPreTransactionSecurityChecks = () => {
-        // Validating receive address
+        // Checking node's health
         dispatch(setNextStepAsActive());
 
-        // Make sure that the address a user is about to send to is not already used.
-        // err -> Since shouldAllowSendingToAddress consumes wereAddressesSpentFrom endpoint
-        // Omit input preparation in case the address is already spent from.
-        return shouldAllowSendingToAddress([address])
+        return isNodeSynced()
+            .then((isSynced) => {
+                if (isSynced) {
+                    // Validating receive address
+                    dispatch(setNextStepAsActive());
+
+                    // Make sure that the address a user is about to send to is not already used.
+                    // err -> Since shouldAllowSendingToAddress consumes wereAddressesSpentFrom endpoint
+                    // Omit input preparation in case the address is already spent from.
+                    return shouldAllowSendingToAddress([address]);
+                }
+
+                throw new Error(Errors.NODE_NOT_SYNCED);
+            })
             .then((shouldAllowSending) => {
                 if (shouldAllowSending) {
                     // Syncing account
@@ -528,7 +539,15 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
 
                 const message = error.message;
 
-                if (message === Errors.KEY_REUSE && chainBrokenInternally) {
+                if (message === Errors.NODE_NOT_SYNCED) {
+                    return dispatch(
+                        generateAlert(
+                            'error',
+                            i18next.t('global:nodeOutOfSync'),
+                            i18next.t('global:nodeOutOfSyncExplanation'),
+                        ),
+                    );
+                } else if (message === Errors.KEY_REUSE && chainBrokenInternally) {
                     return dispatch(
                         generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError')),
                     );
