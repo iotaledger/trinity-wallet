@@ -8,11 +8,10 @@ import GENERAL from '../theme/general';
 
 const styles = StyleSheet.create({
     container: {
-        width,
         flexDirection: 'row',
         height: height / 40,
         alignItems: 'center',
-        paddingHorizontal: width / 10,
+        width: width / 1.15,
     },
     text: {
         backgroundColor: 'transparent',
