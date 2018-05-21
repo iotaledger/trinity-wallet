@@ -103,6 +103,7 @@
         "pleaseWaitEllipses": "Please wait...",
         "pleaseWaitExplanation": "Trinity đang thực hiện một chức năng khác. Vui lòng đợi và thử lại.",
         "pleaseWaitTransferExplanation": "Số tiền của bạn đang được sử dụng trong một giao dịch khác. Vui lòng đợi xác nhận xong trước khi thử gửi lại.",
+        "pleaseWaitIncomingTransferExplanation": "You have incoming transfers. Please wait for them to confirm before trying again.",
         "snapshotTransitionInProgress": "Snapshot transition in progress",
         "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete.",
         "checkForUpdates": "Check for Updates",
