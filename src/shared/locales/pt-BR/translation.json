@@ -103,6 +103,7 @@
         "pleaseWaitEllipses": "Por favor, aguarde...",
         "pleaseWaitExplanation": "A Trinity está efetuando outra função. Por favor, aguarde e tente novamente.",
         "pleaseWaitTransferExplanation": "Seu saldo atual disponível está sendo usado em outras transferências. Por favor aguarde uma confirmação antes de tentar novamente.",
+        "pleaseWaitIncomingTransferExplanation": "You have incoming transfers. Please wait for them to confirm before trying again.",
         "snapshotTransitionInProgress": "Transição de Registro Instantâneo em andamento",
         "snapshotTransitionInProgressExplanation": "Por favor, aguarde até a transição ser finalizada.",
         "checkForUpdates": "Verificar Atualizações",
