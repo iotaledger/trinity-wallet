@@ -65,7 +65,7 @@
         "cannotPerformActionExplanation": "Vai alle impostazioni avanzate per reimpostare il portafoglio.",
         "attachToTangleUnavailable": "Prova di lavoro remota non autorizzata",
         "attachToTangleUnavailableExplanation": "L'opzione prova di lavoro remota non è disponibile nel nodo che hai selezionato. Scegli un altro nodo oppure imposta \"prova di lavoro locale\" in \"impostazioni avanzate\".",
-        "attachToTangleUnavailableExplanationShort": "Remote Proof of Work is not available on your selected node.",
+        "attachToTangleUnavailableExplanationShort": "L'opzione prova di lavoro remota non è disponibile nel nodo che hai selezionato.",
         "wallet": "Portafoglio",
         "sent": "Inviato",
         "received": "Ricevuto",
@@ -90,8 +90,8 @@
         "rebroadcastErrorExplanation": "Qualcosa è andato storto nella ritrasmissione della transazione. Prova di nuovo.",
         "promoted": "Transazione promossa con successo",
         "promotedExplanation": "Transazione con hash {{hash}} promossa",
-        "autopromotionError": "Could not auto-promote transaction",
-        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node.",
+        "autopromotionError": "Non si è potuto promuovere la transazione",
+        "autopromotionErrorExplanation": "L'opzione prova di lavoro remota non è disponibile nel nodo che hai selezionato. Si prega di cambiare nodo.",
         "promotionError": "Non si è potuto promuovere la transazione",
         "promotionErrorExplanation": "Qualcosa è andato storto nella promozione della transazione. Prova di nuovo.",
         "noLongerValid": "Il pacchetto che si sta tentando di promuovere non è più valido",
@@ -127,8 +127,8 @@
         "clear": "CANCELLA",
         "noNetworkConnection": "Nessuna connessione di rete",
         "noNetworkConnectionExplanation": "La connessione internet sembra essere non disponibile.",
-        "spentAddressExplanation": "WARNING: Funds on spent addresses",
-        "discordInformation": "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do."
+        "spentAddressExplanation": "AVVISO: Fondi su indirizzi spesi",
+        "discordInformation": "È pericoloso inviare dallo stesso indirizzo più di una volta. Consulta il canale #help su Discord per scoprire cosa si può fare."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
@@ -176,8 +176,8 @@
         "tapConfirm": "Seleziona la casella di controllo qui sotto per confermare.",
         "passwordManagerCheckbox": "Memorizzerò il mio seme con un gestore di password",
         "copy": "COPIA",
-        "noPasswordManagers": "No supported password managers installed",
-        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android."
+        "noPasswordManagers": "Nessun gestore di password supportato",
+        "noPasswordManagersExplanation": "Non sono stati trovati sul tuo dispositivo gestori di passwrod supportati. Si prega di installare Keepass2Android."
     },
     "enterSeed": {
         "invalidCharacters": "Il seme contiene caratteri non validi",
@@ -212,7 +212,7 @@
         "thisMayTake": "Potrebbe volerci un po'.",
         "doNotMinimise": "Non minimizzare o chiudere l'app.",
         "youMayNotice": "Potresti notare che il dispositivo rallenta.",
-        "takingAWhile": "This seems to be taking a while"
+        "takingAWhile": "Sembra volerci un po' di tempo"
     },
     "newSeedSetup": {
         "seedNotGenerated": "Il seme non è stato generato",
