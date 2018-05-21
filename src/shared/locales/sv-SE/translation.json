@@ -103,6 +103,7 @@
         "pleaseWaitEllipses": "Var god vänta...",
         "pleaseWaitExplanation": "Trinity utför en annan funktion. Vänta och försök igen.",
         "pleaseWaitTransferExplanation": "Ditt tillgängliga saldo används för närvarande i andra transaktioner. Var god vänta tills en av de är godkända och försök igen.",
+        "pleaseWaitIncomingTransferExplanation": "You have incoming transfers. Please wait for them to confirm before trying again.",
         "snapshotTransitionInProgress": "Snapshot-övergång pågår",
         "snapshotTransitionInProgressExplanation": "Vänligen vänta tills övergången är klar.",
         "checkForUpdates": "Sök efter uppdateringar",
