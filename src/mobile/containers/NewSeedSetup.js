@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     okButton: {
         borderWidth: 1.2,
         borderRadius: GENERAL.borderRadius,
-        width: width / 3,
+        width: width / 2.7,
         height: height / 14,
         alignItems: 'center',
         justifyContent: 'space-around',
