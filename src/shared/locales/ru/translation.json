@@ -103,6 +103,7 @@
         "pleaseWaitEllipses": "Секундочку...",
         "pleaseWaitExplanation": "Trinity в данный момент выполняет другую задачу. Пожалуйста, подождите и повторите попытку.",
         "pleaseWaitTransferExplanation": "Ваш баланс в данный момент используется в одной из транзакций. Пожалуйста, подождите до тех пор, пока транзакции будут завершены, и затем повторите попытку.",
+        "pleaseWaitIncomingTransferExplanation": "You have incoming transfers. Please wait for them to confirm before trying again.",
         "snapshotTransitionInProgress": "Переход снимка в прогрессе",
         "snapshotTransitionInProgressExplanation": "Пожалуйста, подождите пока синхронизация будет завершена.",
         "checkForUpdates": "Проверить наличие обновлений",
