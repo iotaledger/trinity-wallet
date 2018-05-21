@@ -33,19 +33,19 @@ const styles = StyleSheet.create({
     denominationText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 29.6,
+        fontSize: GENERAL.fontSize2,
         paddingVertical: width / 40,
     },
     titleText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 25.9,
+        fontSize: GENERAL.fontSize3,
         paddingVertical: width / 18,
     },
     numberText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 29.6,
+        fontSize: GENERAL.fontSize2,
         paddingVertical: width / 40,
     },
     line: {
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     iotaText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 34.5,
+        fontSize: GENERAL.fontSize1,
         paddingTop: width / 80,
     },
 });

@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     },
     nextText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 24.4,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
     },
     infoTextContainer: {
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize4,
         backgroundColor: 'transparent',
         textAlign: 'center',
         lineHeight: height / 30,

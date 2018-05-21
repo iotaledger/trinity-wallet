@@ -16,6 +16,7 @@ import { width, height } from '../utils/dimensions';
 import { hasDuplicateAccountName, hasDuplicateSeed, getAllSeedsFromKeychain } from '../utils/keychain';
 import InfoBox from '../components/InfoBox';
 import { Icon } from '../theme/icons.js';
+import GENERAL from '../theme/general';
 
 console.ignoredYellowBox = true;
 
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
     },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
         textAlign: 'left',
         paddingTop: height / 60,
         backgroundColor: 'transparent',

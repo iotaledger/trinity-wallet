@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     },
     modalText: {
         fontFamily: Fonts.secondary,
-        fontSize: width / 20.7,
+        fontSize: GENERAL.fontSize4,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },

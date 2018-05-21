@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     checksumText: {
-        fontSize: width / 29.6,
+        fontSize: GENERAL.fontSize2,
         fontFamily: 'SourceSansPro-Regular',
     },
 });
