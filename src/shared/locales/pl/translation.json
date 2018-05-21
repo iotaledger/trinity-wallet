@@ -20,8 +20,8 @@
         "invalidResponsePollingExplanation": "Serwer zwrócił błąd podczas połączenia. Sprawdź powiadomienia, aby uzyskać więcej informacji.",
         "invalidResponseFetchingAccount": "Serwer zwrócił błąd podczas pobierania informacji o Twoim koncie. Spróbuj zmienić serwer lub sprawdź powiadomienia, aby uzyskać więcej informacji.",
         "invalidResponseSendingTransfer": "Serwer zwrócił błąd podczas przetwarzania Twojego transferu. Sprawdź powiadomienia, aby uzyskać więcej informacji.",
-        "nodeOutOfSync": "Node out of sync",
-        "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
+        "nodeOutOfSync": "Serwer niezsynchronizowany",
+        "nodeOutOfSyncExplanation": "Aktualnie wybrany serwer nie jest zsynchronizowany. Proszę zmienić serwer lub spróbować ponownie.",
         "seed": "Seed",
         "back": "WSTECZ",
         "backLowercase": "Wstecz",
@@ -545,7 +545,7 @@
         "noWebGLSupportExplanation": "Twój komputer nie obsługuje technologii WebGL. Użyj zdalnego trybu PoW."
     },
     "progressSteps": {
-        "validatingNodeHealth": "Validating currently selected node's health",
+        "validatingNodeHealth": "Sprawdzanie wydajności aktualnie wybranego serwera",
         "validatingReceiveAddress": "Sprawdzanie adresu odbiorczego",
         "syncingAccount": "Synchronizacja konta",
         "preparingInputs": "Przygotowywanie danych wejściowych",
