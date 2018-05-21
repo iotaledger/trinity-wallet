@@ -19,9 +19,9 @@ describe('libs: iota/inputs', () => {
     });
 
     describe('#prepareInputs', () => {
-        it('should return an object with props inputs and totalBalance', () => {
+        it('should return an object with props inputs and availableBalance', () => {
             const result = prepareInputs({}, 0, 0);
-            expect(result).to.have.keys(['inputs', 'totalBalance']);
+            expect(result).to.have.keys(['inputs', 'availableBalance']);
             expect(Object.keys(result).length).to.equal(2);
         });
 
@@ -48,7 +48,7 @@ describe('libs: iota/inputs', () => {
             inputs.forEach((input) => expect(input).to.have.keys('address', 'balance', 'keyIndex', 'security'));
         });
 
-        it('should have totalBalance always equal to sum of balances prop inside inputs', () => {
+        it('should have availableBalance always equal to sum of balances prop inside inputs', () => {
             const addressesData = {
                 foo: { index: 0, balance: 1 },
                 baz: { index: 1, balance: 0 },
@@ -56,10 +56,10 @@ describe('libs: iota/inputs', () => {
             };
 
             const result = prepareInputs(addressesData, 0, 3); // Threshold -> 3
-            expect(result.totalBalance).to.equal(3);
+            expect(result.availableBalance).to.equal(3);
         });
 
-        it('should have totalBalance always greater than or equal to threshold if total balances on addresses in greater than or equal to threshold', () => {
+        it('should have availableBalance always greater than or equal to threshold if total balances on addresses in greater than or equal to threshold', () => {
             const payloads = [
                 {
                     data: {
@@ -89,11 +89,11 @@ describe('libs: iota/inputs', () => {
 
             payloads.forEach((payload) => {
                 const result = prepareInputs(payload.data, 0, payload.threshold);
-                expect(result.totalBalance >= payload.threshold).to.equal(true);
+                expect(result.availableBalance >= payload.threshold).to.equal(true);
             });
         });
 
-        it('should have totalBalance always less than threshold if total balances on addresses in less than threshold', () => {
+        it('should have availableBalance always less than threshold if total balances on addresses in less than threshold', () => {
             const payloads = [
                 {
                     data: {
@@ -123,7 +123,7 @@ describe('libs: iota/inputs', () => {
 
             payloads.forEach((payload) => {
                 const result = prepareInputs(payload.data, 0, payload.threshold);
-                expect(result.totalBalance < payload.threshold).to.equal(true);
+                expect(result.availableBalance < payload.threshold).to.equal(true);
             });
         });
 
