@@ -103,7 +103,7 @@
         "pleaseWaitEllipses": "Proszę czekać...",
         "pleaseWaitExplanation": "Trinity wykonuje inną funkcję. Zaczekaj i spróbuj ponownie.",
         "pleaseWaitTransferExplanation": "Dostępne saldo jest aktualnie używane w innych transferach. Poczekaj na ich potwierdzenie, zanim spróbujesz ponownie.",
-        "pleaseWaitIncomingTransferExplanation": "You have incoming transfers. Please wait for them to confirm before trying again.",
+        "pleaseWaitIncomingTransferExplanation": "Posiadasz na swoim koncie niepotwierdzone transfery przychodzące. Zaczekaj na ich potwierdzenie przed ponowną próbą.",
         "snapshotTransitionInProgress": "Aktualizacja środków w toku",
         "snapshotTransitionInProgressExplanation": "Proszę czekać na zakończenie aktualizacji środków.",
         "checkForUpdates": "Sprawdź aktualizacje",
