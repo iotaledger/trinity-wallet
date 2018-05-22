@@ -51,13 +51,13 @@ const styles = StyleSheet.create({
         fontFamily: 'SourceSansPro-Light',
         fontSize: GENERAL.fontSize5,
         backgroundColor: 'transparent',
-        marginRight: width / 40
     },
     iotaUnit: {
         fontFamily: 'SourceSansPro-Regular',
         fontSize: GENERAL.fontSize4,
         backgroundColor: 'transparent',
-        marginTop: height / 31
+        marginTop: height / 31,
+        paddingLeft: width / 40
     },
     fiatBalance: {
         fontFamily: 'SourceSansPro-Regular',
@@ -260,7 +260,7 @@ export class Balance extends Component {
                             <View style={styles.balanceContainer}>
                                 <View style={styles.iotaBalanceContainer}>
                                     <TextWithLetterSpacing
-                                        spacing={0}
+                                        spacing={width / 100}
                                         textStyle={[styles.iotaBalance, textColor]}
                                     >
                                         {iotaBalance}
