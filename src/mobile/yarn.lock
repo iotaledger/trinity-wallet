@@ -4961,9 +4961,9 @@ react-native-device-info@^0.13.0:
   version "0.13.0"
   resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-0.13.0.tgz#81051eebd3db6959e4f1d2cb0ae8df74105040cf"
 
-"react-native-dropdownalert@git+https://github.com/cvarley100/react-native-dropdownalert":
+"react-native-dropdownalert@https://github.com/cvarley100/react-native-dropdownalert":
   version "3.4.0"
-  resolved "git+https://github.com/cvarley100/react-native-dropdownalert#a4169ba217084a477c86f741fe65486d004d8b7c"
+  resolved "https://github.com/cvarley100/react-native-dropdownalert#e4bc9d37a108a8abb10cdc216b70f5bc672c602c"
   dependencies:
     prop-types "15.5.10"
 
