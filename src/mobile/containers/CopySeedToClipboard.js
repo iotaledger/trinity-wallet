@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableOpacity, Clipboard, Image, NativeModules } from 'react-native';
+import { StyleSheet, View, Text, Linking, TouchableOpacity, Clipboard, Image, NativeModules } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
@@ -80,6 +80,15 @@ const styles = StyleSheet.create({
         fontSize: width / 27.6,
         textAlign: 'left',
         backgroundColor: 'transparent',
+    },
+    infoLinkWrapper: {
+        paddingTop: height / 40,
+        textAlign: 'center',
+    },
+    infoLink: {
+        fontFamily: 'SourceSansPro-Bold',
+        fontSize: width / 27.6,
+        textDecorationLine: 'underline',
     },
     doneButton: {
         borderWidth: 1.2,
@@ -213,16 +222,12 @@ class CopySeedToClipboard extends Component {
             timer.setTimeout(
                 'delayShare',
                 () => {
-                        NativeModules.ShareSecure.share(
-                            'keepass',
-                            {
-                                title: t('shareSeed'),
-                                message: seed,
-                            },
-                        )
-                        .catch(() =>
-                            this.props.generateAlert('error', t('noPasswordManagers'), t('noPasswordManagersExplanation'))
-                        );
+                    NativeModules.ShareSecure.share('keepass', {
+                        title: t('shareSeed'),
+                        message: seed,
+                    }).catch(() =>
+                        this.props.generateAlert('error', t('noPasswordManagers'), t('noPasswordManagersExplanation')),
+                    );
                 },
                 500,
             );
@@ -241,6 +246,48 @@ class CopySeedToClipboard extends Component {
         }
     }
 
+    renderInfoBoxContentForAndroid() {
+        const { t, theme: { body } } = this.props;
+        const { checkbox } = this.state;
+        const textColor = { color: body.color };
+        const opacity = checkbox ? 1 : 0.1;
+
+        return (
+            <View>
+                <Text style={[styles.infoText, textColor, { paddingTop: height / 40 }]}>
+                    <Text style={styles.infoTextNormal}>{t('global:masterKey')} </Text>
+                    <Text style={styles.infoTextNormal}>
+                        It must be stored appropriately. However, Android does not provide a secure clipboard.
+                    </Text>
+                </Text>
+                <Text style={[styles.infoText, textColor, { paddingTop: height / 40 }]}>
+                    <Text style={styles.infoTextNormal}>
+                        If you wish to store your seed in a password manager, you must follow a tutorial from the
+                        following link:
+                    </Text>
+                </Text>
+                <Text style={[styles.infoLinkWrapper, textColor]}>
+                    <Text style={styles.infoLink} onPress={() => Linking.openURL('http://google.com')}>
+                        https://foo.bar
+                    </Text>
+                </Text>
+                <Text style={[styles.infoTextBold, textColor, { paddingTop: height / 40 }]}>
+                    Never copy paste your seed on an Android device.{' '}
+                </Text>
+                <View style={{ paddingTop: height / 18 }}>
+                    <OnboardingButtons
+                        onLeftButtonPress={() => this.hideModal()}
+                        onRightButtonPress={() => this.onCopyPress()}
+                        leftText={t('global:back')}
+                        rightText={t('copy')}
+                        opacity={opacity}
+                        containerWidth={{ width: width / 1.25 }}
+                        buttonWidth={{ width: width / 2.85 }}
+                    />
+                </View>
+            </View>
+        );
+    }
     renderModalContent = () => {
         const { t, theme: { body } } = this.props;
         const { checkbox } = this.state;
@@ -253,36 +300,40 @@ class CopySeedToClipboard extends Component {
                     body={body}
                     width={width / 1.1}
                     text={
-                        <View>
-                            <Text style={[styles.infoText, textColor, { paddingTop: height / 40 }]}>
-                                <Text style={styles.infoTextNormal}>{t('global:masterKey')} </Text>
-                                <Text style={styles.infoTextNormal}>{t('storeEncrypted')} </Text>
-                            </Text>
-                            <Text style={[styles.infoTextBold, textColor, { paddingTop: height / 30 }]}>
-                                {t('tapConfirm')}
-                            </Text>
-                            <TouchableOpacity
-                                style={[styles.modalCheckboxContainer]}
-                                onPress={() => this.setState({ checkbox: !checkbox })}
-                            >
-                                <Text style={[styles.modalCheckboxText, textColor]}>
-                                    {t('passwordManagerCheckbox')}
+                        isAndroid ? (
+                            this.renderInfoBoxContentForAndroid()
+                        ) : (
+                            <View>
+                                <Text style={[styles.infoText, textColor, { paddingTop: height / 40 }]}>
+                                    <Text style={styles.infoTextNormal}>{t('global:masterKey')} </Text>
+                                    <Text style={styles.infoTextNormal}>{t('storeEncrypted')} </Text>
                                 </Text>
-                                <Image source={this.getCheckbox()} style={styles.modalCheckbox} />
-                            </TouchableOpacity>
-                            <Text style={[ styles.infoTextBold, textColor ]}>{t('doNotOpen')} </Text>
-                            <View style={{ paddingTop: height / 18 }}>
-                                <OnboardingButtons
-                                    onLeftButtonPress={() => this.hideModal()}
-                                    onRightButtonPress={() => this.onCopyPress()}
-                                    leftText={t('global:back')}
-                                    rightText={t('copy')}
-                                    opacity={opacity}
-                                    containerWidth={{ width: width / 1.25 }}
-                                    buttonWidth={{ width: width / 2.85 }}
-                                />
+                                <Text style={[styles.infoTextBold, textColor, { paddingTop: height / 30 }]}>
+                                    {t('tapConfirm')}
+                                </Text>
+                                <TouchableOpacity
+                                    style={[styles.modalCheckboxContainer]}
+                                    onPress={() => this.setState({ checkbox: !checkbox })}
+                                >
+                                    <Text style={[styles.modalCheckboxText, textColor]}>
+                                        {t('passwordManagerCheckbox')}
+                                    </Text>
+                                    <Image source={this.getCheckbox()} style={styles.modalCheckbox} />
+                                </TouchableOpacity>
+                                <Text style={[styles.infoTextBold, textColor]}>{t('doNotOpen')} </Text>
+                                <View style={{ paddingTop: height / 18 }}>
+                                    <OnboardingButtons
+                                        onLeftButtonPress={() => this.hideModal()}
+                                        onRightButtonPress={() => this.onCopyPress()}
+                                        leftText={t('global:back')}
+                                        rightText={t('copy')}
+                                        opacity={opacity}
+                                        containerWidth={{ width: width / 1.25 }}
+                                        buttonWidth={{ width: width / 2.85 }}
+                                    />
+                                </View>
                             </View>
-                        </View>
+                        )
                     }
                 />
             </View>
