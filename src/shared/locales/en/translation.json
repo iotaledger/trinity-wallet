@@ -40,6 +40,8 @@
         "manualCopy": "Write seed down",
         "paperWallet": "Print paper copy",
         "copyToClipboard": "Add to password manager",
+        "shareSeed": "Share seed",
+        "proceed": "proceed",
         "qr": "QR",
         "notAvailable": "This function is not available",
         "notAvailableExplanation": "It will be added at a later stage.",
@@ -138,7 +140,10 @@
         "noNetworkConnectionExplanation": "Your internet connection appears to be offline.",
         "spentAddressExplanation": "WARNING: Funds on spent addresses",
         "discordInformation":
-            "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do."
+            "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do.",
+        "androidInsecureClipboardWarning": "However, Android does not provide a secure clipboard.",
+        "androidCopyPasteWarning": "Never copy paste your seed on an Android device.",
+        "willNotCopyPasteSeed": "I will not copy paste my seed"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
@@ -502,10 +507,11 @@
         "hideSeed": "HIDE SEED"
     },
     "saveSeedConfirmation": {
+        "didSaveSeed": "Did you save your seed?",
         "alreadyHave": "I have backed up my seed",
-        "reenter": "You will now be asked to re-enter your seed.",
-        "reenterWarning":
-            "If your device is lost, stolen or fails, and you have not backed up your seed, you will lose your IOTA."
+        "reenterSeed": "At the next step you will be asked to re-enter your seed.",
+        "reenterSeedWarning":
+            "If you have not backed up your seed and your device fails, you will lose all of your IOTA."
     },
     "walletResetConfirmation": {
         "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
