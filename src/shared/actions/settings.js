@@ -35,6 +35,7 @@ export const ActionTypes = {
     WALLET_RESET: 'IOTA/SETTINGS/WALLET/RESET',
     SET_2FA_STATUS: 'IOTA/SETTINGS/SET_2FA_STATUS',
     SET_FINGERPRINT_STATUS: 'IOTA/SETTINGS/SET_FINGERPRINT_STATUS',
+    SET_SEED_SHARE_TUTORIAL_VISITATION_STATUS: 'IOTA/SETTINGS/SET_SEED_SHARE_TUTORIAL_VISITATION_STATUS',
 };
 
 export const setAppVersions = (payload) => ({
@@ -85,7 +86,7 @@ export const setNodeList = (payload) => ({
 
 export const setRemotePoW = (payload) => ({
     type: ActionTypes.SET_REMOTE_POW,
-    payload
+    payload,
 });
 
 export const updateAutoNodeSwitching = (payload) => ({
@@ -104,6 +105,11 @@ export function setLocale(locale) {
         payload: locale,
     };
 }
+
+export const setSeedShareTutorialVisitationStatus = (payload) => ({
+    type: ActionTypes.SET_SEED_SHARE_TUTORIAL_VISITATION_STATUS,
+    payload,
+});
 
 export function getCurrencyData(currency, withAlerts = false) {
     const url = 'https://api.fixer.io/latest?base=USD';
@@ -241,36 +247,23 @@ export function changePowSettings() {
     return (dispatch, getState) => {
         const settings = getState().settings;
         if (!settings.remotePoW) {
-            checkAttachToTangleAsync(settings.node)
-                .then((res) => {
-                    if (res.error.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
-                        return dispatch(
-                            generateAlert(
-                                'error',
-                                i18next.t('global:attachToTangleUnavailable'),
-                                i18next.t('global:attachToTangleUnavailableExplanationShort'),
-                                10000,
-                            ),
-                        );
-                    }
-                    dispatch(setRemotePoW(true));
-                    dispatch(
+            checkAttachToTangleAsync(settings.node).then((res) => {
+                if (res.error.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
+                    return dispatch(
                         generateAlert(
-                            'success',
-                            i18next.t('pow:powUpdated'),
-                            i18next.t('pow:powUpdatedExplanation')
-                        )
+                            'error',
+                            i18next.t('global:attachToTangleUnavailable'),
+                            i18next.t('global:attachToTangleUnavailableExplanationShort'),
+                            10000,
+                        ),
                     );
-                });
+                }
+                dispatch(setRemotePoW(true));
+                dispatch(generateAlert('success', i18next.t('pow:powUpdated'), i18next.t('pow:powUpdatedExplanation')));
+            });
         } else {
             dispatch(setRemotePoW(!settings.remotePoW));
-            dispatch(
-                generateAlert(
-                    'success',
-                    i18next.t('pow:powUpdated'),
-                    i18next.t('pow:powUpdatedExplanation')
-                )
-            );
+            dispatch(generateAlert('success', i18next.t('pow:powUpdated'), i18next.t('pow:powUpdatedExplanation')));
         }
     };
 }
