@@ -103,6 +103,7 @@
         "pleaseWaitEllipses": "Please wait...",
         "pleaseWaitExplanation": "Το trinity εκτελεί μια άλλη λειτουργία. Παρακαλώ περιμένετε και προσπαθήστε ξανά.",
         "pleaseWaitTransferExplanation": "Το διαθέσιμο υπόλοιπό σας χρησιμοποιείται αυτήν τη στιγμή σε άλλες μεταφορές. Σας παρακαλώ να περιμένετε  για επιβεβαίωση πριν να προσπαθήσετε πάλι.",
+        "pleaseWaitIncomingTransferExplanation": "You have incoming transfers. Please wait for them to confirm before trying again.",
         "snapshotTransitionInProgress": "Στιγμιότυπο μετάβασης σε εξέλιξη",
         "snapshotTransitionInProgressExplanation": "Παρακαλώ περιμένετε μέχρι να ολοκληρωθεί η μετάβαση.",
         "checkForUpdates": "Έλεγχος για ενημερώσεις",
