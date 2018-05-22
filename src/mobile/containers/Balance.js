@@ -40,18 +40,24 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     transactionsContainer: {
-        flex: 1.7,
+        flex: 1.6,
         justifyContent: 'center',
         alignItems: 'center',
     },
     chartContainer: {
-        flex: 5,
+        flex: 5.1,
     },
     iotaBalance: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: GENERAL.fontSize5,
         backgroundColor: 'transparent',
-        paddingBottom: isAndroid ? null : height / 110,
+        marginRight: width / 40
+    },
+    iotaUnit: {
+        fontFamily: 'SourceSansPro-Regular',
+        fontSize: GENERAL.fontSize4,
+        backgroundColor: 'transparent',
+        marginTop: height / 31
     },
     fiatBalance: {
         fontFamily: 'SourceSansPro-Regular',
@@ -70,6 +76,12 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
     },
+    iotaBalanceContainer: {
+        paddingBottom: isAndroid ? null : height / 200,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+    }
 });
 
 /**
@@ -189,7 +201,7 @@ export class Balance extends Component {
                 incoming,
                 style: {
                     titleColor: incoming ? primary.color : secondary.color,
-                    defaultTextColor: { color: body.color },
+                    defaultTextColor: body.color,
                     iconColor: body.color,
                 },
             };
@@ -227,7 +239,8 @@ export class Balance extends Component {
         const fiatBalance = balance * usdPrice / 1000000 * conversionRate;
         const textColor = { color: body.color };
         const recentTransactions = this.renderTransactions();
-        const text = (this.state.balanceIsShort ? shortenedBalance : formatValue(balance)) + ' ' + formatUnit(balance);
+        const iotaBalance = this.state.balanceIsShort ? shortenedBalance : formatValue(balance);
+        const iotaUnit = formatUnit(balance);
 
         return (
             <ScrollView
@@ -245,12 +258,17 @@ export class Balance extends Component {
                     <View style={styles.container}>
                         <TouchableWithoutFeedback onPress={() => this.onBalanceClick()}>
                             <View style={styles.balanceContainer}>
-                                <TextWithLetterSpacing
-                                    spacing={width / 200}
-                                    textStyle={[styles.iotaBalance, textColor]}
-                                >
-                                    {text}
-                                </TextWithLetterSpacing>
+                                <View style={styles.iotaBalanceContainer}>
+                                    <TextWithLetterSpacing
+                                        spacing={0}
+                                        textStyle={[styles.iotaBalance, textColor]}
+                                    >
+                                        {iotaBalance}
+                                    </TextWithLetterSpacing>
+                                    <Text style={[styles.iotaUnit, textColor]}>
+                                        {iotaUnit}
+                                    </Text>
+                                </View>
                                 <Text style={[styles.fiatBalance, textColor]}>
                                     {currencySymbol} {round(fiatBalance, 2).toFixed(2)}{' '}
                                 </Text>

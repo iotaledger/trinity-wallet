@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
 import { formatTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/date';
 import { width, height } from '../utils/dimensions';
-import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
 
 const styles = StyleSheet.create({
@@ -18,6 +17,19 @@ const styles = StyleSheet.create({
         fontFamily: 'SourceSansPro-Regular',
         fontSize: GENERAL.fontSize2,
     },
+    icon: {
+        fontSize: GENERAL.fontSize3,
+        fontFamily: 'SourceSansPro-Regular',
+        backgroundColor: 'transparent',
+        position: 'absolute',
+    },
+    iconContainer: {
+        borderRadius: width / 30,
+        borderWidth: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: width / 60
+    }
 });
 
 export default class SimpleTransactionRow extends PureComponent {
@@ -35,26 +47,27 @@ export default class SimpleTransactionRow extends PureComponent {
         /** TransactionRow styles */
         style: PropTypes.shape({
             titleColor: PropTypes.string.isRequired,
-            defaultTextColor: PropTypes.shape({ color: PropTypes.string.isRequired }).isRequired,
+            defaultTextColor: PropTypes.string.isRequired,
         }).isRequired,
         sign: PropTypes.string.isRequired,
     };
 
     render() {
-        const { time, confirmationStatus, value, unit, sign, incoming, style } = this.props;
-
+        const { time, confirmationStatus, value, unit, sign, style, incoming } = this.props;
         return (
             <View style={styles.container}>
-                <View style={{ flex: 0.8, alignItems: 'flex-start' }}>
-                    <Icon name={incoming ? 'receive' : 'send'} size={width / 30} color={style.iconColor} />
+                <View style={{ flex: 0.6, alignItems: 'flex-start' }}>
+                    <View style={[ styles.iconContainer, { borderColor: style.defaultTextColor } ]}>
+                        <Text style={[ styles.icon, { color: style.titleColor, bottom: incoming ? -3.2 : -2, left: incoming ? 2.5 : null } ]}>{sign}</Text>
+                    </View>
                 </View>
-                <View style={{ flex: 3, alignItems: 'flex-start' }}>
-                    <Text style={[styles.text, style.defaultTextColor, { padding: 5 }]}>
+                <View style={{ flex: 3.2, alignItems: 'flex-start' }}>
+                    <Text style={[styles.text, { color: style.defaultTextColor }, { padding: 5 }]}>
                         {formatTime(convertUnixTimeToJSDate(time))}
                     </Text>
                 </View>
                 <View style={{ flex: 2, alignItems: 'flex-start' }}>
-                    <Text style={[styles.text, style.defaultTextColor]}>{confirmationStatus}</Text>
+                    <Text style={[styles.text, { color: style.defaultTextColor } ]}>{confirmationStatus}</Text>
                 </View>
                 <View style={{ flex: 2, alignItems: 'flex-end' }}>
                     <Text style={[styles.text, { color: style.titleColor }]}>
