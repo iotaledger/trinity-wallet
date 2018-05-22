@@ -103,7 +103,7 @@
         "pleaseWaitEllipses": "Prašome palaukti...",
         "pleaseWaitExplanation": "Trinity atlieka kitą veiksmą. Prašome palaukti ir bandyti dar kartą.",
         "pleaseWaitTransferExplanation": "Jūsų balansas yra kitų pavedimų apdorojimo procese. Prašome palaukti, kol vienas iš tų pavedimų bus atliktas ir bandykite dar kartą.",
-        "pleaseWaitIncomingTransferExplanation": "You have incoming transfers. Please wait for them to confirm before trying again.",
+        "pleaseWaitIncomingTransferExplanation": "Jūs turite ateinančių pavedimų. Palaukite kol jie bus patvirtinti ir tada bandykite dar kartą.",
         "snapshotTransitionInProgress": "Vyksta tinklo duomenų perkėlimas",
         "snapshotTransitionInProgressExplanation": "Prašome palaukti, kol perkėlimas bus baigtas.",
         "checkForUpdates": "Tikrinti, ar yra atnaujinimų",
