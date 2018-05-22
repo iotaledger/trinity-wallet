@@ -35,11 +35,16 @@ export const ActionTypes = {
     WALLET_RESET: 'IOTA/SETTINGS/WALLET/RESET',
     SET_2FA_STATUS: 'IOTA/SETTINGS/SET_2FA_STATUS',
     SET_FINGERPRINT_STATUS: 'IOTA/SETTINGS/SET_FINGERPRINT_STATUS',
+    ACCEPT_TERMS: 'IOTA/SETTINGS/ACCEPT_TERMS'
 };
 
 export const setAppVersions = (payload) => ({
     type: ActionTypes.SET_VERSIONS,
     payload,
+});
+
+export const acceptTerms = () => ({
+    type: ActionTypes.ACCEPT_TERMS,
 });
 
 const currencyDataFetchRequest = () => ({

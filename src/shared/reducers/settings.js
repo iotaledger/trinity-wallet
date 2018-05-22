@@ -63,6 +63,7 @@ const initialState = {
     versions: {},
     is2FAEnabled: false,
     isFingerprintEnabled: false,
+    acceptedTerms: false
 };
 
 const settingsReducer = (state = initialState, action) => {
@@ -182,6 +183,11 @@ const settingsReducer = (state = initialState, action) => {
             return merge({}, state, {
                 versions: action.payload,
             });
+        case ActionTypes.ACCEPT_TERMS:
+            return {
+                ...state,
+                acceptedTerms: true,
+            };
     }
 
     return state;
