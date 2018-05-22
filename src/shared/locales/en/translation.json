@@ -295,7 +295,9 @@
         "maximumSelected": "MAXIMUM amount selected",
         "iotaUnits": "IOTA units explained",
         "sendMax": "SEND MAX",
-        "totalTime": "Total time"
+        "totalTime": "Total time",
+        "addressPasteDetected": "Address paste detected",
+        "addressPasteExplanation": "It looks like you are about to paste an address. Make sure that the pasted address matches the one you want to send to."
     },
     "setPassword": {
         "passwordTooShort": "Password is too short",
