@@ -354,10 +354,10 @@
         "lockScreenTimeout": "Tempo para o Bloqueio da Tela (minutos)",
         "autoNodeSwitching": "Mudar de servidor automaticamente quando o servidor selecionado estiver inacessível",
         "nodeChangeSuccess": "Servidor alterado com sucesso",
-        "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
-        "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
-        "nodeChangeError": "Error changing node",
-        "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
+        "nodeChangeSuccessNoRemotePow": "O servidor foi alterado para {{node}}. Este servidor não oferece suporte de prova de trabalho remoto.",
+        "nodeChangeSuccessExplanation": "O servidor foi alterado para {{node}}.",
+        "nodeChangeError": "Erro ao alterar servidor",
+        "nodeChangeErrorExplanation": "Houve um erro ao alterar servidores. Por favor, tente novamente."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Digite sua senha para redefinir a carteira.",
@@ -466,7 +466,7 @@
     "useExistingSeed": {
         "title": "Digite a seed e o nome da conta.",
         "incorrectFormat": "Formato de servidor incorreto",
-        "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
+        "validSeedExplanation": "Seeds válidas devem possuir 81 caracteres e conter apenas A-Z ou 9."
     },
     "viewSeed": {
         "enterPassword": "Digite a senha para exibir sua seed.",
@@ -486,16 +486,16 @@
         "instructionsEnable": "Toque o leitor de impressão digital para habilitar a autenticação biométrica",
         "instructionsDisable": "Toque o leitor de impressão digital para habilitar a autenticação biométrica",
         "fingerprintAuthEnabled": "Autenticação biométrica habilitada",
-        "fingerprintAuthEnabledExplanation": "You have successfully enabled biometric authentication.",
+        "fingerprintAuthEnabledExplanation": "Você habilitou a autenticação biométrica com sucesso.",
         "fingerprintAuthDisabled": "Autenticação biométrica desabilitada",
-        "fingerprintAuthDisabledExplanation": "You have successfully disabled biometric authentication.",
+        "fingerprintAuthDisabledExplanation": "Você desabilitou a autenticação biométrica com sucesso.",
         "fingerprintAuthFailed": "A Autenticação Biométrica falhou",
         "fingerprintAuthFailedExplanation": "Falha na autenticação biométrica. Por favor, tente novamente.",
         "status": "Situação",
         "enabled": "Ativado",
         "disabled": "Desativado",
-        "fingerprintUnavailable": "Biometric authentication unavailable",
-        "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
+        "fingerprintUnavailable": "Autenticação Biométrica indisponível",
+        "fingerprintUnavailableExplanation": "Seu dispositivo não suporta reconhecimento de biometria ou não está configurado nas opções do dispositivo.",
         "buttonInstructionsDisable": "Pressione o botão abaixo para desabilitar a autenticação biométrica.",
         "buttonInstructionsEnable": "Pressione o botão abaixo para habilitar a autenticação biométrica.",
         "buttonInstructionsDisableIPhoneX": "Pressione o botão abaixo para desabilitar a identificação do rosto.",
@@ -546,7 +546,7 @@
         "noWebGLSupportExplanation": "Seu computador não suporta WebGL. Por favor, use PoW remoto."
     },
     "progressSteps": {
-        "validatingNodeHealth": "Validating currently selected node's health",
+        "validatingNodeHealth": "Validando a saúde do servidor selecionado",
         "validatingReceiveAddress": "Validando o endereço de recebimento",
         "syncingAccount": "Sincronizando a conta",
         "preparingInputs": "Preparando entradas",
