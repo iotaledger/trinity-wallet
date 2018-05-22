@@ -63,6 +63,7 @@ const initialState = {
     versions: {},
     is2FAEnabled: false,
     isFingerprintEnabled: false,
+    hasVisitedSeedShareTutorial: false,
 };
 
 const settingsReducer = (state = initialState, action) => {
