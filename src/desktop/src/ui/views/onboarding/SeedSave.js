@@ -123,7 +123,7 @@ class SeedSave extends PureComponent {
                                     title={t('saveYourSeed:whatIsCheksum')}
                                     tip={t('saveYourSeed:checksumExplanation')}
                                 />{' '}
-                                {t('saveYourSeed:optionalChecksum')}: <strong>{seed ? getChecksum(seed) : null}</strong>
+                                {t('checksum')}: <strong>{seed ? getChecksum(seed) : null}</strong>
                             </div>
                             <nav className={css.arrows}>
                                 <a
