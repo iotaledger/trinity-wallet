@@ -10,7 +10,7 @@ import { isAndroid } from '../utils/device';
 import GENERAL from '../theme/general';
 
 const chartWidth = width;
-const chartHeight = height * 0.38;
+const chartHeight = height * 0.36;
 
 const styles = StyleSheet.create({
     buttonContainer: {
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     chartContainer: {
-        flex: 5,
+        flex: 4.7,
         width: width / 1.15,
         justifyContent: 'center',
         alignItems: 'center',
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         paddingLeft: width / 8.95,
     },
     emptyChartContainer: {
-        flex: 5,
+        flex: 4.7,
         width: width / 1.15,
         justifyContent: 'center',
         alignItems: 'center',
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
         fontSize: GENERAL.fontSize3,
     },
     marketDataContainer: {
-        flex: 1,
+        flex: 1.3,
         flexDirection: 'row',
         backgroundColor: 'transparent',
         justifyContent: 'space-between',
@@ -70,22 +70,25 @@ const styles = StyleSheet.create({
         width: width / 1.15,
     },
     buttonText: {
-        fontWeight: 'normal',
-        fontFamily: 'SourceSansPro-Regular',
+        fontFamily: 'SourceSansPro-Bold',
         fontSize: GENERAL.fontSize1,
+        marginBottom: 1
     },
     iotaPrice: {
         fontWeight: 'normal',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: GENERAL.fontSize4,
     },
     marketFigure: {
         fontWeight: 'normal',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize1,
+        fontSize: GENERAL.fontSize2,
+        marginTop: height / 200
     },
     marketFigureTitle: {
-        fontWeight: 'bold',
+        fontSize: GENERAL.fontSize2,
+        fontFamily: 'SourceSansPro-Bold',
+        opacity: 0.6
     },
 });
 
@@ -158,7 +161,7 @@ class Chart extends PureComponent {
         const mcapFormatted = priceData.mcap.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
         const textColor = { color: theme.body.color };
-        const borderColor = { borderColor: theme.body.color };
+        const borderColor = { borderColor: theme.secondary.color };
         return (
             <View style={styles.container}>
                 <View style={{ flex: 0.65 }} />
@@ -205,6 +208,7 @@ class Chart extends PureComponent {
                                         strokeWidth: 1.2,
                                     },
                                 }}
+                                interpolation='basis'
                                 scale={{ x: 'time', y: 'linear' }}
                                 animate={{
                                     duration: 450,
@@ -217,12 +221,12 @@ class Chart extends PureComponent {
                                     axis: { stroke: 'transparent' },
                                     tickLabels: {
                                         fill: theme.body.color,
-                                        fontSize: GENERAL.fontSize1,
+                                        fontSize: GENERAL.fontSize0,
                                         fontFamily: 'SourceSansPro-Regular',
                                     },
                                 }}
                                 gridComponent={
-                                    <Line type="grid" style={{ stroke: theme.body.color, strokeWidth: 0.1 }} />
+                                    <Line type="grid" style={{ stroke: theme.body.color, strokeWidth: 0.05 }} />
                                 }
                                 tickLabelComponent={<VictoryLabel x={width / 100} textAnchor="start" />}
                                 tickValues={chartData.yAxis.ticks}
@@ -231,17 +235,18 @@ class Chart extends PureComponent {
                     </View>
                 )}
                 <View style={styles.marketDataContainer}>
-                    <Text style={[styles.marketFigure, textColor]}>
-                        <Text style={[styles.marketFigureTitle, textColor]}>{t('chart:mcap')}</Text>{' '}
-                        {priceData.globalSymbol} {mcapFormatted}
-                    </Text>
-                    <Text style={[styles.marketFigure, textColor]}>
-                        <Text style={styles.marketFigureTitle}>{t('chart:change')}</Text> {priceData.change24h}%
-                    </Text>
-                    <Text style={[styles.marketFigure, textColor]}>
-                        <Text style={styles.marketFigureTitle}>{t('chart:volume')}</Text> {priceData.globalSymbol}{' '}
-                        {volumeFormatted}
-                    </Text>
+                    <View style={{ alignItems: 'flex-start' }}>
+                        <Text style={[styles.marketFigureTitle, textColor]}>{t('chart:mcap')}</Text>
+                        <Text style={[styles.marketFigure, textColor]}>{priceData.globalSymbol} {mcapFormatted}</Text>
+                    </View>
+                    <View style={{ alignItems: 'center' }}>
+                        <Text style={[ styles.marketFigureTitle, textColor ]}>{t('chart:change')}</Text>
+                        <Text style={[styles.marketFigure, textColor]}>{priceData.change24h}%</Text>
+                    </View>
+                    <View style={{ alignItems: 'flex-end' }}>
+                        <Text style={[ styles.marketFigureTitle, textColor ]}>{t('chart:volume')}</Text>
+                        <Text style={[styles.marketFigure, textColor]}>{priceData.globalSymbol} {volumeFormatted}</Text>
+                    </View>
                 </View>
                 <View style={{ flex: 0.38 }} />
             </View>
