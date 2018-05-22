@@ -122,14 +122,14 @@
         "nodeAutoChangedExplanation": "Substituição a um novo servidor {{- nodeAddress}} sendo que o servidor selecionado está offline.",
         "fingerprintOnSend": "Toque o leitor digital para autorizar a transferência",
         "masterKey": "Sua Seed IOTA é a chave principal para seu saldo.",
-        "seedThief": "If someone else has your seed they can steal your IOTA.",
+        "seedThief": "Se alguém obter sua Seed, o mesmo pode roubar sua IOTA.",
         "googlePlayServicesNotAvailable": "Serviços do Google Play não disponíveis",
         "couldNotVerifyDeviceIntegrity": "Não foi possível verificar a integridade do dispositivo porque o Google Play Services não estão disponíveis.",
         "clear": "LIMPAR",
-        "noNetworkConnection": "No network connection",
-        "noNetworkConnectionExplanation": "Your internet connection appears to be offline.",
-        "spentAddressExplanation": "WARNING: Funds on spent addresses",
-        "discordInformation": "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do."
+        "noNetworkConnection": "Sem conexão de rede",
+        "noNetworkConnectionExplanation": "A conexão com a internet parece estar offline.",
+        "spentAddressExplanation": "AVISO: Saldos em endereços já gasto",
+        "discordInformation": "Enviar mais de uma vez no mesmo endereço é perigoso. Por favor dirija-se para o canal de #help no discord para descobrir o que fazer."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém caracteres inválidos",
@@ -177,8 +177,8 @@
         "tapConfirm": "Por favor, toque a caixa de seleção abaixo para confirmar.",
         "passwordManagerCheckbox": "Eu vou armazenar minha Seed em um Gerenciador de senhas",
         "copy": "COPIAR",
-        "noPasswordManagers": "No supported password managers installed",
-        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android."
+        "noPasswordManagers": "Nenhum gerenciador de senhas suportado está instalado",
+        "noPasswordManagersExplanation": "Nenhum gerenciador de senhas suportados foram encontrados em seu dispositivo. Por favor, instale o Keepass2Android."
     },
     "enterSeed": {
         "invalidCharacters": "A Seed contém caracteres inválidos",
@@ -213,7 +213,7 @@
         "thisMayTake": "Isso pode demorar algum tempo.",
         "doNotMinimise": "Não feche ou minimize o aplicativo.",
         "youMayNotice": "Você poderá notar que seu dispositivo ficará mais lento.",
-        "takingAWhile": "This seems to be taking a while"
+        "takingAWhile": "Isto parece estar levando um tempo"
     },
     "newSeedSetup": {
         "seedNotGenerated": "A Seed não foi gerada",
@@ -319,7 +319,7 @@
         "twoFA": "Autenticação 2FA",
         "changePassword": "Alterar Senha",
         "advanced": "Opções Avançadas",
-        "about": "About",
+        "about": "Sobre",
         "logout": "Desconectar",
         "reset": "Redefinir a carteira",
         "syncingComplete": "Sincronização completa",
@@ -350,10 +350,10 @@
         "fetchedConversionRatesExplanation": "As taxas de câmbio foram obtidas com sucesso para {{currency}}.",
         "undo": "Desfazer",
         "redo": "Refazer",
-        "aboutTrinity": "About Trinity",
+        "aboutTrinity": "Sobre a Trinity",
         "lockScreenTimeout": "Tempo para o Bloqueio da Tela (minutos)",
         "autoNodeSwitching": "Mudar de servidor automaticamente quando o servidor selecionado estiver inacessível",
-        "nodeChangeSuccess": "Successfully changed node",
+        "nodeChangeSuccess": "Servidor alterado com sucesso",
         "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
         "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
         "nodeChangeError": "Error changing node",
