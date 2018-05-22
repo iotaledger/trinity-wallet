@@ -4,6 +4,7 @@ import { StyleSheet, View, Text, Linking, TouchableOpacity, Clipboard, Image, Na
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import { setSeedShareTutorialVisitationStatus } from 'iota-wallet-shared-modules/actions/settings';
 import timer from 'react-native-timer';
 import RNSecureClipboard from 'react-native-secure-clipboard';
 import whiteCheckboxCheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-checked-white.png';
@@ -140,6 +141,12 @@ class CopySeedToClipboard extends Component {
         t: PropTypes.func.isRequired,
         /** Theme settings */
         theme: PropTypes.object.isRequired,
+        /** Determines if a user has visited the seed share tutorial link */
+        hasVisitedSeedShareTutorial: PropTypes.bool.isRequired,
+        /** Sets status if a user has visited the seed share tutorial link
+         * @param {boolean} status
+         */
+        setSeedShareTutorialVisitationStatus: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -178,9 +185,8 @@ class CopySeedToClipboard extends Component {
         }
     }
 
-    onCopyPress() {
-        const { checkbox } = this.state;
-        if (checkbox) {
+    onCopyPress(isTrue) {
+        if (isTrue) {
             this.hideModal();
             this.copy();
         }
@@ -247,10 +253,9 @@ class CopySeedToClipboard extends Component {
     }
 
     renderInfoBoxContentForAndroid() {
-        const { t, theme: { body } } = this.props;
-        const { checkbox } = this.state;
+        const { t, theme: { body }, hasVisitedSeedShareTutorial } = this.props;
         const textColor = { color: body.color };
-        const opacity = checkbox ? 1 : 0.1;
+        const opacity = hasVisitedSeedShareTutorial ? 1 : 0.1;
 
         return (
             <View>
@@ -267,7 +272,13 @@ class CopySeedToClipboard extends Component {
                     </Text>
                 </Text>
                 <Text style={[styles.infoLinkWrapper, textColor]}>
-                    <Text style={styles.infoLink} onPress={() => Linking.openURL('http://google.com')}>
+                    <Text
+                        style={styles.infoLink}
+                        onPress={() => {
+                            this.props.setSeedShareTutorialVisitationStatus(true);
+                            Linking.openURL('http://google.com');
+                        }}
+                    >
                         https://foo.bar
                     </Text>
                 </Text>
@@ -277,9 +288,9 @@ class CopySeedToClipboard extends Component {
                 <View style={{ paddingTop: height / 18 }}>
                     <OnboardingButtons
                         onLeftButtonPress={() => this.hideModal()}
-                        onRightButtonPress={() => this.onCopyPress()}
+                        onRightButtonPress={() => this.onCopyPress(hasVisitedSeedShareTutorial)}
                         leftText={t('global:back')}
-                        rightText={t('copy')}
+                        rightText={t('global:proceed').toUpperCase()}
                         opacity={opacity}
                         containerWidth={{ width: width / 1.25 }}
                         buttonWidth={{ width: width / 2.85 }}
@@ -324,7 +335,7 @@ class CopySeedToClipboard extends Component {
                                 <View style={{ paddingTop: height / 18 }}>
                                     <OnboardingButtons
                                         onLeftButtonPress={() => this.hideModal()}
-                                        onRightButtonPress={() => this.onCopyPress()}
+                                        onRightButtonPress={() => this.onCopyPress(checkbox)}
                                         leftText={t('global:back')}
                                         rightText={t('copy')}
                                         opacity={opacity}
@@ -370,7 +381,7 @@ class CopySeedToClipboard extends Component {
                         ctaColor={theme.primary.color}
                         ctaBorderColor={theme.primary.hover}
                         secondaryCtaColor={theme.primary.body}
-                        text={t('copyToClipboard').toUpperCase()}
+                        text={t(isAndroid ? 'global:shareSeed' : 'copyToClipboard').toUpperCase()}
                         onPress={() => {
                             this.openModal();
                         }}
@@ -394,7 +405,7 @@ class CopySeedToClipboard extends Component {
                     isVisible={isModalActive}
                     onBackButtonPress={() => this.hideModal()}
                     hideModalContentWhileAnimating
-                    useNativeDriver={isAndroid ? true : false}
+                    useNativeDriver={!!isAndroid}
                 >
                     {this.renderModalContent()}
                 </Modal>
@@ -407,10 +418,12 @@ class CopySeedToClipboard extends Component {
 const mapStateToProps = (state) => ({
     seed: state.wallet.seed,
     theme: state.settings.theme,
+    hasVisitedSeedShareTutorial: state.settings.hasVisitedSeedShareTutorial,
 });
 
 const mapDispatchToProps = {
     generateAlert,
+    setSeedShareTutorialVisitationStatus,
 };
 
 export default translate(['copyToClipboard', 'global'])(
