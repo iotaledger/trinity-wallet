@@ -466,7 +466,7 @@
     "useExistingSeed": {
         "title": "Введите ключ и название счёта.",
         "incorrectFormat": "Неверный формат ключа",
-        "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
+        "validSeedExplanation": "Корректный ключ должен содержать 81 символ и состоять только из A-Z и 9."
     },
     "viewSeed": {
         "enterPassword": "Введите пароль чтобы увидеть Ваш ключ.",
@@ -570,14 +570,14 @@
         "attaching": "Привязка адреса к Tangle"
     },
     "deepLink": {
-        "autofill": "Autofill success",
-        "autofillExplanation": "Transaction data autofilled from link."
+        "autofill": "Автозаполнение прошло успешно",
+        "autofillExplanation": "Данные транзакции были автоматически заполнены из ссылки."
     },
     "updates": {
-        "errorRetrievingUpdateData": "Error retrieving update data",
-        "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
+        "errorRetrievingUpdateData": "Ошибка при получении данных обновления",
+        "errorRetrievingUpdateDataExplanation": "Произошла ошибка при получении данных обновления. Пожалуйста, попробуйте еще раз.",
         "noUpdatesAvailable": "Нет доступных обновлений",
-        "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
+        "noUpdatesAvailableExplanation": "Теперь у Вас последняя версия кошелька IOTA Trinity!",
         "newVersionAvailable": "Доступна новая версия",
         "newVersionAvailableExplanation": "Доступна новая версия <strong>Trinity</strong> <strong>{{version}}</strong>. Пожалуйста, внимательно прочитайте подробности релиза и проверьте источник загрузки перед обновлением:",
         "downloadRelease": "Скачать релиз",
