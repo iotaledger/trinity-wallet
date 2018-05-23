@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     },
     subHeaderText: {
         fontFamily: Fonts.secondary,
-        fontSize: width / 20.7,
+        fontSize: GENERAL.fontSize4,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     backText: {
         color: '#9DFFAF',
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 24.4,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
     },
     fingerprint: {

@@ -3,7 +3,16 @@ import orderBy from 'lodash/orderBy';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, FlatList, TouchableWithoutFeedback, TouchableOpacity, ScrollView, RefreshControl } from 'react-native';
+import {
+    StyleSheet,
+    View,
+    Text,
+    FlatList,
+    TouchableWithoutFeedback,
+    TouchableOpacity,
+    ScrollView,
+    RefreshControl,
+} from 'react-native';
 import { connect } from 'react-redux';
 import { round, roundDown } from 'iota-wallet-shared-modules/libs/utils';
 import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/iota/utils';
@@ -18,6 +27,7 @@ import Chart from '../components/Chart';
 import { width, height } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
 import TextWithLetterSpacing from '../components/TextWithLetterSpacing';
+import GENERAL from '../theme/general';
 
 const styles = StyleSheet.create({
     container: {
@@ -39,18 +49,18 @@ const styles = StyleSheet.create({
     },
     iotaBalance: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 8,
+        fontSize: GENERAL.fontSize5,
         backgroundColor: 'transparent',
         paddingBottom: isAndroid ? null : height / 110,
     },
     fiatBalance: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 25,
+        fontSize: GENERAL.fontSize4,
         backgroundColor: 'transparent',
     },
     noTransactions: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 37.6,
+        fontSize: GENERAL.fontSize1,
         backgroundColor: 'transparent',
     },
     separator: {
@@ -97,7 +107,7 @@ export class Balance extends Component {
         /** Determines whether account is being manually refreshed */
         isRefreshing: PropTypes.bool.isRequired,
         /** Fetches latest account info on swipe down */
-        onRefresh: PropTypes.func.isRequired
+        onRefresh: PropTypes.func.isRequired,
     };
 
     /**
@@ -228,14 +238,17 @@ export class Balance extends Component {
                         tintColor={primary.color}
                     />
                 }
-                contentContainerStyle={{flex: 1}}
+                contentContainerStyle={{ flex: 1 }}
                 showsVerticalScrollIndicator={false}
             >
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.props.closeTopBar()}>
                     <View style={styles.container}>
                         <TouchableWithoutFeedback onPress={() => this.onBalanceClick()}>
                             <View style={styles.balanceContainer}>
-                                <TextWithLetterSpacing spacing={width / 200} textStyle={[styles.iotaBalance, textColor]}>
+                                <TextWithLetterSpacing
+                                    spacing={width / 200}
+                                    textStyle={[styles.iotaBalance, textColor]}
+                                >
                                     {text}
                                 </TextWithLetterSpacing>
                                 <Text style={[styles.fiatBalance, textColor]}>
@@ -270,6 +283,4 @@ const mapStateToProps = (state) => ({
     body: state.settings.theme.body,
 });
 
-export default WithManualRefresh()(
-    translate(['global'])(connect(mapStateToProps)(Balance))
-);
+export default WithManualRefresh()(translate(['global'])(connect(mapStateToProps)(Balance)));
