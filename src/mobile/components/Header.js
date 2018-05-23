@@ -17,7 +17,9 @@ const styles = StyleSheet.create({
 
 export default class Header extends PureComponent {
     static propTypes = {
+        /* Text color for heading */
         textColor: PropTypes.string.isRequired,
+        /* Heading text content */
         children: PropTypes.string.isRequired,
     };
 
@@ -26,7 +28,7 @@ export default class Header extends PureComponent {
 
         return (
             <View style={styles.headerContainer}>
-                <Text style={[styles.header, textColor]}>{children}</Text>
+                <Text style={[styles.header, { color: textColor }]}>{children}</Text>
             </View>
         );
     }
