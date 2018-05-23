@@ -162,7 +162,7 @@
   },
   "rnpm": {
     "android": {
-      "mainFilePath": "src/main/java/com/iota/wallet/MainApplication.java"
+      "mainFilePath": "src/main/java/com/iota/trinity/MainApplication.java"
     }
   },
   "browser": {
