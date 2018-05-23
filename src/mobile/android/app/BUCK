@@ -45,12 +45,12 @@ android_library(
 
 android_build_config(
     name = "build_config",
-    package = "com.iota.wallet",
+    package = "trinity",
 )
 
 android_resource(
     name = "res",
-    package = "com.iota.wallet",
+    package = "trinity",
     res = "src/main/res",
 )
 

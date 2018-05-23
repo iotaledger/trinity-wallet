@@ -21,6 +21,7 @@ import { isAndroid } from '../utils/device';
 import { width, height } from '../utils/dimensions';
 import InfoBox from '../components/InfoBox';
 import { Icon } from '../theme/icons.js';
+import GENERAL from '../theme/general';
 
 const MIN_PASSWORD_LENGTH = 12;
 console.ignoredYellowBox = ['Native TextInput'];
@@ -56,13 +57,13 @@ const styles = StyleSheet.create({
     },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
     warningText: {
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
         textAlign: 'left',
         paddingTop: height / 70,
         backgroundColor: 'transparent',
