@@ -53,26 +53,26 @@ const styles = StyleSheet.create({
     infoText: {
         color: 'white',
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
     infoTextNormal: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
     infoTextBold: {
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
     doneButton: {
         borderWidth: 1.2,
         borderRadius: GENERAL.borderRadius,
-        width: width / 3,
+        width: width / 2.7,
         height: height / 14,
         alignItems: 'center',
         justifyContent: 'space-around',
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     },
     doneText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 24.4,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
     },
     seedBox: {
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     checksumText: {
-        fontSize: width / 29.6,
+        fontSize: GENERAL.fontSize2,
         color: 'white',
         fontFamily: 'SourceSansPro-Regular',
     },

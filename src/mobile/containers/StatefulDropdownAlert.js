@@ -8,6 +8,7 @@ import tinycolor from 'tinycolor2';
 import DropdownAlert from 'react-native-dropdownalert/DropdownAlert';
 import { width, height } from '../utils/dimensions';
 import { isIPhoneX } from '../utils/device';
+import GENERAL from '../theme/general';
 
 const errorIcon = require('iota-wallet-shared-modules/images/error.png');
 const successIcon = require('iota-wallet-shared-modules/images/successIcon.png');
@@ -16,7 +17,7 @@ const infoIcon = require('iota-wallet-shared-modules/images/infoIcon.png');
 
 const styles = StyleSheet.create({
     dropdownTitle: {
-        fontSize: width / 25.9,
+        fontSize: GENERAL.fontSize3,
         textAlign: 'left',
         fontWeight: 'bold',
         color: 'white',
@@ -30,7 +31,7 @@ const styles = StyleSheet.create({
         paddingVertical: height / 30,
     },
     dropdownMessage: {
-        fontSize: width / 29.6,
+        fontSize: GENERAL.fontSize2,
         textAlign: 'left',
         fontWeight: 'normal',
         color: 'white',

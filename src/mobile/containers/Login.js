@@ -20,8 +20,9 @@ import Enter2FAComponent from '../components/Enter2FA';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import { getAllSeedsFromKeychain, getTwoFactorAuthKeyFromKeychain } from '../utils/keychain';
 import { getPasswordHash } from '../utils/crypto';
-import { width, height } from '../utils/dimensions';
+import { height } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
+import GENERAL from '../theme/general';
 
 const styles = StyleSheet.create({
     container: {
@@ -32,13 +33,13 @@ const styles = StyleSheet.create({
     questionText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
         paddingBottom: height / 40,
     },
     infoText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
         paddingBottom: height / 16,
     },
 });
