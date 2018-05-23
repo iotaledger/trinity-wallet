@@ -23,6 +23,8 @@
             "The node returned an error while fetching your account information. Try changing your node or check the notifications for more information.",
         "invalidResponseSendingTransfer":
             "The node returned an error while sending the transfer. Check the notifications for more information.",
+        "nodeOutOfSync": "Node out of sync",
+        "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
         "seed": "Seed",
         "back": "BACK",
         "backLowercase": "Back",
@@ -107,6 +109,8 @@
         "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
         "pleaseWaitTransferExplanation":
             "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again.",
+        "pleaseWaitIncomingTransferExplanation":
+            "You have incoming transfers. Please wait for them to confirm before trying again.",
         "snapshotTransitionInProgress": "Snapshot transition in progress",
         "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete.",
         "checkForUpdates": "Check for Updates",
@@ -573,6 +577,7 @@
         "noWebGLSupportExplanation": "Your computer does not support WebGL. Please use remote PoW."
     },
     "progressSteps": {
+        "validatingNodeHealth": "Validating currently selected node's health",
         "validatingReceiveAddress": "Validating receive address",
         "syncingAccount": "Syncing account",
         "preparingInputs": "Preparing inputs",
