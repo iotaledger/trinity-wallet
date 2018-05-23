@@ -3,7 +3,8 @@ import each from 'lodash/each';
 import map from 'lodash/map';
 import union from 'lodash/union';
 import { setPrice, setChartData, setMarketData } from './marketData';
-import { setNodeList } from './settings';
+import { setNodeList, setRandomlySelectedNode } from './settings';
+import { getRandomNode, changeIotaNode } from '../libs/iota';
 import { formatChartData, getUrlTimeFormat, getUrlNumberFormat, rearrangeObjectKeys } from '../libs/utils';
 import { generateAccountInfoErrorAlert, generateAlert } from './alerts';
 import { setNewUnconfirmedBundleTails, removeBundleFromUnconfirmedBundleTails } from './accounts';
@@ -158,11 +159,28 @@ export const fetchPrice = () => {
     };
 };
 
-export const fetchNodeList = () => {
+export const fetchNodeList = (chooseRandomNode = false) => {
     return (dispatch) => {
         dispatch(fetchNodeListRequest());
+
+        const setRandomNode = (nodesList) => {
+            if (chooseRandomNode) {
+                const node = getRandomNode(nodesList);
+                changeIotaNode(node);
+                dispatch(setRandomlySelectedNode(node));
+            }
+        };
+
         fetch(NODELIST_URL)
-            .then((response) => response.json(), () => dispatch(fetchNodeListError()))
+            .then(
+                (response) => response.json(),
+                () => {
+                    // In case there is an error fetching the remote nodes list
+                    // Choose a random node from the list of hardcoded nodes
+                    setRandomNode(nodes);
+                    dispatch(fetchNodeListError());
+                },
+            )
             .then((response) => {
                 if (response.length) {
                     const remoteNodes = response
@@ -171,6 +189,7 @@ export const fetchNodeList = () => {
 
                     const unionNodes = union(nodes, remoteNodes);
 
+                    setRandomNode(unionNodes);
                     dispatch(setNodeList(unionNodes));
                 }
 
