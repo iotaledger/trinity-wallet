@@ -13,6 +13,7 @@ import StatefulDropdownAlert from './StatefulDropdownAlert';
 import GENERAL from '../theme/general';
 import InfoBox from '../components/InfoBox';
 import OnboardingButtons from '../containers/OnboardingButtons';
+import Header from '../components/Header';
 import { Icon } from '../theme/icons';
 
 const styles = StyleSheet.create({
@@ -42,14 +43,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    infoTextTop: {
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
-        textAlign: 'left',
-        backgroundColor: 'transparent',
-    },
     infoTextBottom: {
-        paddingTop: height / 60,
         fontFamily: 'SourceSansPro-Light',
         fontSize: GENERAL.fontSize3,
         textAlign: 'left',
@@ -58,9 +52,7 @@ const styles = StyleSheet.create({
     warningText: {
         fontFamily: 'SourceSansPro-Bold',
         fontSize: GENERAL.fontSize3,
-        textAlign: 'center',
-        paddingTop: height / 70,
-        backgroundColor: 'transparent',
+        paddingTop: height / 60,
     },
     qrImage: {
         height: width / 28,
@@ -176,7 +168,9 @@ class SeedReentry extends Component {
                             </View>
                         </View>
                         <View style={styles.midContainer}>
-                            <View style={{ flex: 0.5 }} />
+                            <View style={{ flex: 0.2 }} />
+                            <Header textColor={textColor}>{t('pleaseConfirmYourSeed')}</Header>
+                            <View style={{ flex: 0.3 }} />
                             <CustomTextInput
                                 label={t('global:seed')}
                                 onChangeText={(text) => this.setState({ seed: text })}
@@ -197,8 +191,10 @@ class SeedReentry extends Component {
                                 body={theme.body}
                                 text={
                                     <View>
-                                        <Text style={[styles.infoTextTop, textColor]}>{t('thisIsACheck')}</Text>
                                         <Text style={[styles.infoTextBottom, textColor]}>{t('ifYouHaveNotSaved')}</Text>
+                                        <Text style={[styles.warningText, textColor]}>
+                                            {t('trinityWillNeverAskToReenter')}
+                                        </Text>
                                     </View>
                                 }
                             />

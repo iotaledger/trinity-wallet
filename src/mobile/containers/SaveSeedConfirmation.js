@@ -12,6 +12,7 @@ import tinycolor from 'tinycolor2';
 import OnboardingButtons from '../containers/OnboardingButtons';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import InfoBox from '../components/InfoBox';
+import Header from '../components/Header';
 import GENERAL from '../theme/general';
 import { Icon } from '../theme/icons.js';
 import { isAndroid } from '../utils/device';
@@ -178,8 +179,9 @@ class SaveSeedConfirmation extends Component {
 
     onNextPress() {
         const { theme: { body } } = this.props;
-        const { hasSavedSeed } = this.state;
-        if (hasSavedSeed) {
+        const { hasSavedSeed, hasAgreedToNotCopyPaste } = this.state;
+
+        if (hasSavedSeed && hasAgreedToNotCopyPaste) {
             this.props.navigator.push({
                 screen: 'seedReentry',
                 navigatorStyle: {
@@ -263,9 +265,7 @@ class SaveSeedConfirmation extends Component {
                 </View>
                 <View style={styles.midContainer}>
                     <View style={{ flex: 0.2 }} />
-                    <View style={styles.headerContainer}>
-                        <Text style={[styles.header, textColor]}>{t('didSaveSeed')}</Text>
-                    </View>
+                    <Header textColor={textColor}>{t('didSaveSeed')}</Header>
                     <View style={{ flex: 0.3 }} />
                     <InfoBox body={body} width={width / 1.1} text={this.renderInfoBoxContent()} />
                     <View style={{ flex: 0.3 }} />
@@ -279,6 +279,7 @@ class SaveSeedConfirmation extends Component {
 
                                     return (
                                         <TouchableOpacity
+                                            key={idx}
                                             style={styles.checkboxContainer}
                                             onPress={() => this.onCheckboxPress(idx)}
                                         >
