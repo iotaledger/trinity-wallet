@@ -9,6 +9,7 @@ import CtaButton from '../components/CtaButton';
 import NodeSelection from '../containers/NodeSelection';
 import AddCustomNode from '../containers/AddCustomNode';
 import { Icon } from '../theme/icons';
+import GENERAL from '../theme/general';
 
 const styles = StyleSheet.create({
     container: {
@@ -40,14 +41,14 @@ const styles = StyleSheet.create({
     titleTextLeft: {
         color: 'white',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize4,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
     titleTextRight: {
         color: 'white',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize4,
         backgroundColor: 'transparent',
         marginRight: width / 20,
     },
@@ -76,7 +77,7 @@ class NodeOptionsOnLogin extends Component {
         return (
             <View style={{ flex: 1 }}>
                 <View style={{ flex: 0.3 }} />
-                {loginRoute === 'nodeOptions' &&
+                {loginRoute === 'nodeOptions' && (
                     <View style={styles.container}>
                         <View style={styles.topContainer}>
                             <View>
@@ -111,24 +112,18 @@ class NodeOptionsOnLogin extends Component {
                             >
                                 <View style={styles.itemLeft}>
                                     <Icon name="chevronLeft" size={width / 28} color={body.color} />
-                                    <Text style={[styles.titleTextLeft, textColor]}>
-                                        {t('global:backLowercase')}
-                                    </Text>
+                                    <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
                                 </View>
                             </TouchableOpacity>
                         </View>
                     </View>
-                }
-                { loginRoute === 'nodeSelection' &&
-                    <NodeSelection
-                        backPress={() => this.props.setLoginRoute('nodeOptions')}
-                    />
-                }
-                { loginRoute === 'customNode' &&
-                    <AddCustomNode
-                        backPress={() => this.props.setLoginRoute('nodeOptions')}
-                    />
-                }
+                )}
+                {loginRoute === 'nodeSelection' && (
+                    <NodeSelection backPress={() => this.props.setLoginRoute('nodeOptions')} />
+                )}
+                {loginRoute === 'customNode' && (
+                    <AddCustomNode backPress={() => this.props.setLoginRoute('nodeOptions')} />
+                )}
                 <View style={{ flex: 0.05 }} />
             </View>
         );

@@ -10,6 +10,7 @@ import OnboardingButtons from '../containers/OnboardingButtons';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import { Icon } from '../theme/icons.js';
 import InfoBox from '../components/InfoBox';
+import GENERAL from '../theme/general';
 
 const styles = StyleSheet.create({
     container: {
@@ -40,29 +41,29 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 10,
     },
     subHeaderText: {
-        fontSize: width / 22.7,
+        fontSize: GENERAL.fontSize4,
         fontFamily: 'SourceSansPro-Regular',
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
     infoText: {
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
         fontFamily: 'SourceSansPro-Light',
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
     infoTextLight: {
         fontFamily: Fonts.tertiary,
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
     },
     infoTextRegular: {
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
     },
     confirmationText: {
         fontFamily: Fonts.secondary,
-        fontSize: width / 20.7,
+        fontSize: GENERAL.fontSize4,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },

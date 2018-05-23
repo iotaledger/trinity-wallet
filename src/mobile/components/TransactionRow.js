@@ -51,28 +51,28 @@ const styles = StyleSheet.create({
     },
     statusText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 31.8,
+        fontSize: GENERAL.fontSize2,
     },
     message: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 31.8,
+        fontSize: GENERAL.fontSize2,
     },
     messageTitle: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: width / 31.8,
+        fontSize: GENERAL.fontSize2,
         paddingRight: width / 70,
     },
     confirmationStatus: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 31.8,
+        fontSize: GENERAL.fontSize2,
     },
     timestamp: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 31.8,
+        fontSize: GENERAL.fontSize2,
     },
     animation: {
         width: width / 14,
