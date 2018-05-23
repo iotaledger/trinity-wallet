@@ -198,6 +198,7 @@ export class Balance extends Component {
                 value: round(formatValue(transferValue), 1),
                 unit: formatUnit(transferValue),
                 sign: getSign(transferValue, incoming),
+                icon: incoming ? '+' : '-',
                 incoming,
                 style: {
                     titleColor: incoming ? primary.color : secondary.color,
