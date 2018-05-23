@@ -4932,9 +4932,9 @@ react-native-animatable@^1.2.4:
   dependencies:
     prop-types "^15.5.10"
 
-react-native-camera@^1.1.1:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-1.1.2.tgz#a93c389c522c8909c564f04c4a86072909259d07"
+react-native-camera@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-1.1.4.tgz#5a01be906507cc2f232405f903c52c9d99988dba"
   dependencies:
     lodash "^4.17.4"
     prop-types "^15.5.10"
@@ -4961,9 +4961,9 @@ react-native-device-info@^0.13.0:
   version "0.13.0"
   resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-0.13.0.tgz#81051eebd3db6959e4f1d2cb0ae8df74105040cf"
 
-"react-native-dropdownalert@git+https://github.com/cvarley100/react-native-dropdownalert":
+"react-native-dropdownalert@https://github.com/cvarley100/react-native-dropdownalert":
   version "3.4.0"
-  resolved "git+https://github.com/cvarley100/react-native-dropdownalert#a4169ba217084a477c86f741fe65486d004d8b7c"
+  resolved "https://github.com/cvarley100/react-native-dropdownalert#e4bc9d37a108a8abb10cdc216b70f5bc672c602c"
   dependencies:
     prop-types "15.5.10"
 
@@ -5094,9 +5094,9 @@ react-native-qrcode-svg@^5.0.3:
     prop-types "^15.5.10"
     qrcode "^0.9.0"
 
-react-native-randombytes@^3.0.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/react-native-randombytes/-/react-native-randombytes-3.1.0.tgz#237c7b479d1bd2de1324cd16acd5b56b2af1852a"
+react-native-randombytes@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-randombytes/-/react-native-randombytes-3.2.0.tgz#81ad85c854992ad5b36427095aa179acaff84ed0"
   dependencies:
     buffer "^4.9.1"
     sjcl "^1.0.3"
