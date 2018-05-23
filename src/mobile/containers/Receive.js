@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     },
     receiveAddressText: {
         fontFamily: 'Inconsolata-Bold',
-        fontSize: width / 21.8,
+        fontSize: GENERAL.fontSize4,
         backgroundColor: 'transparent',
         textAlign: 'center',
         lineHeight: width / 16,
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     },
     removeText: {
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: width / 34.5,
+        fontSize: GENERAL.fontSize1,
         backgroundColor: 'transparent',
     },
 });

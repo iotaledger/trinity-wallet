@@ -42,20 +42,20 @@ const styles = StyleSheet.create({
     },
     subHeaderText: {
         fontFamily: Fonts.secondary,
-        fontSize: width / 20.7,
+        fontSize: GENERAL.fontSize4,
         textAlign: 'center',
         backgroundColor: 'transparent',
         marginBottom: height / 15,
     },
     infoText: {
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
         textAlign: 'center',
         paddingTop: height / 60,
         backgroundColor: 'transparent',
     },
     infoTextLight: {
         fontFamily: Fonts.tertiary,
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
     },
     qrContainer: {
