@@ -2,6 +2,7 @@ import i18next from '../i18next';
 
 export default {
     valueTransaction: [
+        i18next.t('progressSteps:validatingNodeHealth'),
         i18next.t('progressSteps:validatingReceiveAddress'),
         i18next.t('progressSteps:syncingAccount'),
         i18next.t('progressSteps:preparingInputs'),

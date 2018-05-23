@@ -1,4 +1,4 @@
-package com.iota.wallet;
+package com.iota.trinity;
 
 import android.content.Context;
 import android.support.multidex.MultiDex;
