@@ -12,7 +12,7 @@ import { getFirstConsistentTail, isStillAValidTransaction } from '../libs/iota/t
 import { selectedAccountStateFactory } from '../selectors/accounts';
 import { syncAccount } from '../libs/iota/accounts';
 import { forceTransactionPromotion } from './transfers';
-import { NODELIST_URL, nodes } from '../config';
+import { NODELIST_URL, nodes, nodesWithPoWEnabled } from '../config';
 import Errors from '../libs/errors';
 
 export const ActionTypes = {
@@ -187,9 +187,15 @@ export const fetchNodeList = (chooseRandomNode = false) => {
                         .map((node) => node.node)
                         .filter((node) => typeof node === 'string' && node.indexOf('https://') === 0);
 
+                    const remoteNodesWithPoWEnabled = response
+                        .filter((node) => node.pow)
+                        .map((nodeWithPoWEnabled) => nodeWithPoWEnabled.node);
+
                     const unionNodes = union(nodes, remoteNodes);
 
-                    setRandomNode(unionNodes);
+                    // A temporary addition
+                    // Only choose a random node with PoW enabled.
+                    setRandomNode(union(nodesWithPoWEnabled, remoteNodesWithPoWEnabled));
                     dispatch(setNodeList(unionNodes));
                 }
 
