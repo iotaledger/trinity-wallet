@@ -32,12 +32,12 @@ const styles = StyleSheet.create({
     regularText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 25.9,
+        fontSize: GENERAL.fontSize3,
     },
     boldText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 25.9,
+        fontSize: GENERAL.fontSize3,
         textAlign: 'justify',
     },
 });
