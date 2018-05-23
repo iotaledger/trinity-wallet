@@ -225,7 +225,7 @@ class SaveYourSeed extends Component {
                         <TouchableOpacity onPress={() => this.onCopyClick()}>
                             <View style={[styles.optionButton, extraColorBorder]}>
                                 <Text style={[styles.optionButtonText, extraColorText]}>
-                                    {t('global:copyToClipboard').toUpperCase()}
+                                    {t('global:addToPasswordManager').toUpperCase()}
                                 </Text>
                             </View>
                         </TouchableOpacity>
