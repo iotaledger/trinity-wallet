@@ -1,18 +1,14 @@
-package com.iota.wallet;
+package com.iota.trinity;
 
-import com.horcrux.svg.SvgPackage;
 import com.reactnativenavigation.controllers.SplashActivity;
 import android.os.Bundle;
 import io.fabric.sdk.android.Fabric;
 import com.crashlytics.android.Crashlytics;
 import android.widget.LinearLayout;
 import android.graphics.Color;
-import android.widget.TextView;
 import android.widget.ImageView;
 import android.view.Gravity;
-import android.util.TypedValue;
 import android.view.View;
-import com.facebook.react.modules.storage.ReactDatabaseSupplier;
 import android.support.v4.content.ContextCompat;
 
 public class MainActivity extends SplashActivity {
