@@ -5,6 +5,7 @@ import Triangle from 'react-native-triangle';
 import { connect } from 'react-redux';
 import { isAndroid } from '../utils/device';
 import { width, height } from '../utils/dimensions';
+import GENERAL from '../theme/general';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
     },
     dropdownTitle: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 33,
+        fontSize: GENERAL.fontSize2,
         backgroundColor: 'transparent',
         paddingLeft: width / 100,
     },
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
     },
     dropdownItem: {
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize4,
         fontFamily: 'SourceSansPro-Light',
         backgroundColor: 'transparent',
         textAlign: 'left',
@@ -70,7 +71,7 @@ const styles = StyleSheet.create({
     },
     selected: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize4,
         backgroundColor: 'transparent',
         paddingBottom: height / 150,
         paddingLeft: width / 100,

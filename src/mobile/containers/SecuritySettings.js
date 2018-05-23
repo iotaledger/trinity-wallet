@@ -6,6 +6,7 @@ import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
+import GENERAL from '../theme/general';
 
 const styles = StyleSheet.create({
     container: {
@@ -41,13 +42,13 @@ const styles = StyleSheet.create({
     },
     titleText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize4,
         backgroundColor: 'transparent',
         marginLeft: width / 25,
     },
     backText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize4,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
     },
     settingText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize4,
         marginLeft: width / 12,
         width: width / 2.4,
         backgroundColor: 'transparent',

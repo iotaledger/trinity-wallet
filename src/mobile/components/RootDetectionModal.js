@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     warningText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 22,
+        fontSize: GENERAL.fontSize4,
         textAlign: 'center',
         color: 'red',
         paddingVertical: height / 25,
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     questionText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 24,
+        fontSize: GENERAL.fontSize3,
         paddingBottom: height / 35,
         textAlign: 'center',
     },
