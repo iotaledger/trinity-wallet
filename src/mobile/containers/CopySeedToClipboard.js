@@ -155,6 +155,7 @@ class CopySeedToClipboard extends Component {
         this.state = {
             copiedToClipboard: false,
             isModalActive: false,
+            checkbox: false,
         };
     }
 
@@ -262,14 +263,11 @@ class CopySeedToClipboard extends Component {
                 <Text style={[styles.infoText, textColor, { paddingTop: height / 40 }]}>
                     <Text style={styles.infoTextNormal}>{t('global:masterKey')} </Text>
                     <Text style={styles.infoTextNormal}>
-                        It must be stored appropriately. However, Android does not provide a secure clipboard.
+                        {t('global:mustBeStoredAppropriately')} {t('global:androidInsecureClipboardWarning')}
                     </Text>
                 </Text>
                 <Text style={[styles.infoText, textColor, { paddingTop: height / 40 }]}>
-                    <Text style={styles.infoTextNormal}>
-                        If you wish to store your seed in a password manager, you must follow a tutorial from the
-                        following link:
-                    </Text>
+                    <Text style={styles.infoTextNormal}>{`${t('followTutorialToSecurelyShareSeed')}:`}</Text>
                 </Text>
                 <Text style={[styles.infoLinkWrapper, textColor]}>
                     <Text
@@ -283,7 +281,7 @@ class CopySeedToClipboard extends Component {
                     </Text>
                 </Text>
                 <Text style={[styles.infoTextBold, textColor, { paddingTop: height / 40 }]}>
-                    Never copy paste your seed on an Android device.{' '}
+                    {t('global:androidCopyPasteWarning')}
                 </Text>
                 <View style={{ paddingTop: height / 18 }}>
                     <OnboardingButtons
@@ -299,6 +297,7 @@ class CopySeedToClipboard extends Component {
             </View>
         );
     }
+
     renderModalContent = () => {
         const { t, theme: { body } } = this.props;
         const { checkbox } = this.state;
@@ -326,10 +325,10 @@ class CopySeedToClipboard extends Component {
                                     style={[styles.modalCheckboxContainer]}
                                     onPress={() => this.setState({ checkbox: !checkbox })}
                                 >
+                                    <Image source={this.getCheckbox()} style={styles.modalCheckbox} />
                                     <Text style={[styles.modalCheckboxText, textColor]}>
                                         {t('passwordManagerCheckbox')}
                                     </Text>
-                                    <Image source={this.getCheckbox()} style={styles.modalCheckbox} />
                                 </TouchableOpacity>
                                 <Text style={[styles.infoTextBold, textColor]}>{t('doNotOpen')} </Text>
                                 <View style={{ paddingTop: height / 18 }}>
@@ -369,7 +368,9 @@ class CopySeedToClipboard extends Component {
                         body={theme.body}
                         text={
                             <Text>
-                                <Text style={[styles.infoTextNormal, textColor]}>{t('clickToCopy')} </Text>
+                                <Text style={[styles.infoTextNormal, textColor]}>
+                                    {`${t(isAndroid ? 'clickToSecurelyShare' : 'clickToCopy')} `}
+                                </Text>
                                 <Text style={[styles.infoTextBold, textColor]}>{t('doNotStore')}</Text>
                             </Text>
                         }
