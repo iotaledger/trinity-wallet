@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     },
     generalText: {
         fontFamily: Fonts.secondary,
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize4,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
@@ -72,33 +72,33 @@ const styles = StyleSheet.create({
     },
     titleText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize4,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
     infoText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
     infoTextBold: {
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
     viewSeedButton: {
         borderWidth: 1.2,
         borderRadius: GENERAL.borderRadius,
-        width: width / 3,
+        width: width / 2.7,
         height: height / 14,
         alignItems: 'center',
         justifyContent: 'space-around',
     },
     viewSeedText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 24.4,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
     },
 });
@@ -138,7 +138,7 @@ class ViewSeed extends Component {
             showSeed: false,
             seed: '',
             appState: AppState.currentState, // eslint-disable-line react/no-unused-state
-            isConfirming: true
+            isConfirming: true,
         };
 
         this.handleAppStateChange = this.handleAppStateChange.bind(this);
@@ -211,40 +211,44 @@ class ViewSeed extends Component {
                 <View style={styles.container}>
                     <View style={styles.topContainer}>
                         <View style={{ flex: 1 }} />
-                        {!this.state.showSeed && !isConfirming && (
-                            <View style={styles.passwordTextContainer}>
-                                <Text style={[styles.generalText, textColor]}>{t('viewSeed:enterPassword')}</Text>
-                            </View>
-                        )}
+                        {!this.state.showSeed &&
+                            !isConfirming && (
+                                <View style={styles.passwordTextContainer}>
+                                    <Text style={[styles.generalText, textColor]}>{t('viewSeed:enterPassword')}</Text>
+                                </View>
+                            )}
                         <View style={{ flex: 0.8 }} />
-                        {this.state.showSeed && !isConfirming && (
-                            <View style={styles.seedBoxContainer}>
-                                <Seedbox
-                                    seed={this.state.seed}
-                                    bodyColor={theme.body.color}
-                                    borderColor={borderColor}
-                                    textColor={textColor}
-                                />
-                            </View>
-                        )}
-                        {!this.state.showSeed && !isConfirming && (
-                            <View style={styles.textFieldContainer}>
-                                <CustomTextInput
-                                    label={t('global:password')}
-                                    onChangeText={(password) => this.setState({ password })}
-                                    containerStyle={{ width: width / 1.2 }}
-                                    autoCapitalize="none"
-                                    autoCorrect={false}
-                                    enablesReturnKeyAutomatically
-                                    returnKeyType="done"
-                                    secureTextEntry
-                                    value={this.state.password}
-                                    theme={theme}
-                                />
-                            </View>
-                        )}
+                        {this.state.showSeed &&
+                            !isConfirming && (
+                                <View style={styles.seedBoxContainer}>
+                                    <Seedbox
+                                        seed={this.state.seed}
+                                        bodyColor={theme.body.color}
+                                        borderColor={borderColor}
+                                        textColor={textColor}
+                                    />
+                                </View>
+                            )}
+                        {!this.state.showSeed &&
+                            !isConfirming && (
+                                <View style={styles.textFieldContainer}>
+                                    <CustomTextInput
+                                        label={t('global:password')}
+                                        onChangeText={(password) => this.setState({ password })}
+                                        containerStyle={{ width: width / 1.2 }}
+                                        autoCapitalize="none"
+                                        autoCorrect={false}
+                                        enablesReturnKeyAutomatically
+                                        returnKeyType="done"
+                                        secureTextEntry
+                                        value={this.state.password}
+                                        theme={theme}
+                                    />
+                                </View>
+                            )}
                         <View style={{ flex: 1.2 }} />
-                        {this.state.password.length > 0 && !isConfirming &&
+                        {this.state.password.length > 0 &&
+                            !isConfirming &&
                             !this.state.showSeed && (
                                 <View style={styles.viewButtonContainer}>
                                     <CtaButton
@@ -257,45 +261,61 @@ class ViewSeed extends Component {
                                     />
                                 </View>
                             )}
-                        {this.state.isConfirming && !this.state.showSeed && (
-                            <View>
-                                <InfoBox
-                                    body={theme.body}
-                                    width={width / 1.1}
-                                    text={
-                                        <View style={{ alignItems: 'center'}}>
-                                            <Text style={[styles.infoText, textColor, { paddingTop: height / 30 }]}>
-                                                <Text style={styles.infoText}>{t('global:masterKey')} </Text>
-                                                <Text style={styles.infoText}>{t('walletSetup:seedThief')} </Text>
-                                                <Text style={styles.infoTextBold}>{t('walletSetup:keepSafe')} </Text>
-                                            </Text>
-                                            <View style={{ paddingTop: height / 20, alignItems: 'center' }}>
-                                                <TouchableOpacity onPress={() => this.setState({ isConfirming: false })}>
-                                                    <View style={[styles.viewSeedButton, { borderColor: theme.primary.color }]}>
-                                                        <Text style={[styles.viewSeedText, { color: theme.primary.color }]}>
-                                                            {t('viewSeed:viewSeed')}
-                                                        </Text>
-                                                    </View>
-                                                </TouchableOpacity>
+                        {this.state.isConfirming &&
+                            !this.state.showSeed && (
+                                <View>
+                                    <InfoBox
+                                        body={theme.body}
+                                        width={width / 1.1}
+                                        text={
+                                            <View style={{ alignItems: 'center' }}>
+                                                <Text style={[styles.infoText, textColor, { paddingTop: height / 30 }]}>
+                                                    <Text style={styles.infoText}>{t('global:masterKey')} </Text>
+                                                    <Text style={styles.infoText}>{t('walletSetup:seedThief')} </Text>
+                                                    <Text style={styles.infoTextBold}>
+                                                        {t('walletSetup:keepSafe')}{' '}
+                                                    </Text>
+                                                </Text>
+                                                <View style={{ paddingTop: height / 20, alignItems: 'center' }}>
+                                                    <TouchableOpacity
+                                                        onPress={() => this.setState({ isConfirming: false })}
+                                                    >
+                                                        <View
+                                                            style={[
+                                                                styles.viewSeedButton,
+                                                                { borderColor: theme.primary.color },
+                                                            ]}
+                                                        >
+                                                            <Text
+                                                                style={[
+                                                                    styles.viewSeedText,
+                                                                    { color: theme.primary.color },
+                                                                ]}
+                                                            >
+                                                                {t('viewSeed:viewSeed')}
+                                                            </Text>
+                                                        </View>
+                                                    </TouchableOpacity>
+                                                </View>
                                             </View>
-                                        </View>
-                                    }
-                                />
-                                <View style={{ flex: 0.1 }}/>
-                            </View>
-                        )}
-                        {this.state.showSeed && !isConfirming && (
-                            <View style={styles.hideButtonContainer}>
-                                <CtaButton
-                                    ctaColor={theme.primary.color}
-                                    secondaryCtaColor={theme.primary.body}
-                                    text={t('viewSeed:hideSeed')}
-                                    onPress={this.hideSeed}
-                                    ctaWidth={width / 2}
-                                    ctaHeight={height / 16}
-                                />
-                            </View>
-                        )}
+                                        }
+                                    />
+                                    <View style={{ flex: 0.1 }} />
+                                </View>
+                            )}
+                        {this.state.showSeed &&
+                            !isConfirming && (
+                                <View style={styles.hideButtonContainer}>
+                                    <CtaButton
+                                        ctaColor={theme.primary.color}
+                                        secondaryCtaColor={theme.primary.body}
+                                        text={t('viewSeed:hideSeed')}
+                                        onPress={this.hideSeed}
+                                        ctaWidth={width / 2}
+                                        ctaHeight={height / 16}
+                                    />
+                                </View>
+                            )}
                         {this.state.password.length === 0 && <View style={styles.viewButtonContainer} />}
                         <View style={{ flex: 1 }} />
                     </View>
