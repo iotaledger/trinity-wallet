@@ -30,8 +30,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 9,
-        justifyContent: 'flex-start',
+        flex: 11,
     },
     itemLeft: {
         flexDirection: 'row',

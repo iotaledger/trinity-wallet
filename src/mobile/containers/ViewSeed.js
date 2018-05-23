@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     topContainer: {
-        flex: 9,
+        flex: 11,
         justifyContent: 'space-around',
     },
     passwordTextContainer: {

@@ -12,18 +12,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    topContainer: {
-        flex: 10,
-        justifyContent: 'flex-end',
-    },
-    bottomContainer: {
-        flex: 1,
-        width,
-        paddingHorizontal: width / 15,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'flex-end',
-    },
     itemContainer: {
         flex: 1,
         justifyContent: 'center',
@@ -59,7 +47,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
     },
     separatorContainer: {
-        flex: 0.5,
+        flex: 1,
         justifyContent: 'center',
     },
     settingText: {
@@ -148,57 +136,53 @@ class SecuritySettings extends Component {
 
         return (
             <View style={styles.container}>
-                <View style={{ flex: 9, justifyContent: 'flex-start' }}>
-                    <View style={styles.itemContainer}>
-                        <TouchableOpacity
-                            onPress={() => this.props.setSetting('changePassword')}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.item}>
-                                <Icon name="password" size={width / 22} color={bodyColor} />
-                                <Text style={[styles.titleText, textColor]}>{t('changePassword')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.separatorContainer}>
-                        <View style={[styles.separator, borderBottomColor]} />
-                    </View>
-                    <View style={styles.itemContainer}>
-                        <TouchableOpacity
-                            onPress={() => this.on2FASetupPress()}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.item}>
-                                <Icon name="twoFA" size={width / 22} color={bodyColor} />
-                                <Text style={[styles.titleText, textColor]}>{t('twoFA')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.itemContainer}>
-                        <TouchableOpacity
-                            onPress={() => this.onFingerprintSetupPress()}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={[styles.item]}>
-                                <Icon name="biometric" size={width / 22} color={bodyColor} />
-                                <Text style={[styles.titleText, textColor]}>{t('fingerprint')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={{ flex: 5.5 }} />
+                <View style={styles.itemContainer}>
+                    <TouchableOpacity
+                        onPress={() => this.props.setSetting('changePassword')}
+                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                    >
+                        <View style={styles.item}>
+                            <Icon name="password" size={width / 22} color={bodyColor} />
+                            <Text style={[styles.titleText, textColor]}>{t('changePassword')}</Text>
+                        </View>
+                    </TouchableOpacity>
                 </View>
-                <View style={{ flex: 1, justifyContent: 'flex-end' }}>
-                    <View style={styles.itemContainer}>
-                        <TouchableOpacity
-                            onPress={() => this.props.setSetting('mainSettings')}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.item}>
-                                <Icon name="chevronLeft" size={width / 28} color={bodyColor} />
-                                <Text style={[styles.backText, textColor]}>{t('global:backLowercase')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
+                <View style={styles.separatorContainer}>
+                    <View style={[styles.separator, borderBottomColor]} />
+                </View>
+                <View style={styles.itemContainer}>
+                    <TouchableOpacity
+                        onPress={() => this.on2FASetupPress()}
+                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                    >
+                        <View style={styles.item}>
+                            <Icon name="twoFA" size={width / 22} color={bodyColor} />
+                            <Text style={[styles.titleText, textColor]}>{t('twoFA')}</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.itemContainer}>
+                    <TouchableOpacity
+                        onPress={() => this.onFingerprintSetupPress()}
+                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                    >
+                        <View style={[styles.item]}>
+                            <Icon name="biometric" size={width / 22} color={bodyColor} />
+                            <Text style={[styles.titleText, textColor]}>{t('fingerprint')}</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+                <View style={{ flex: 7 }} />
+                <View style={styles.itemContainer}>
+                    <TouchableOpacity
+                        onPress={() => this.props.setSetting('mainSettings')}
+                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                    >
+                        <View style={styles.item}>
+                            <Icon name="chevronLeft" size={width / 28} color={bodyColor} />
+                            <Text style={[styles.backText, textColor]}>{t('global:backLowercase')}</Text>
+                        </View>
+                    </TouchableOpacity>
                 </View>
             </View>
         );
