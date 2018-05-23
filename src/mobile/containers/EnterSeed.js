@@ -16,6 +16,7 @@ import OnboardingButtons from '../containers/OnboardingButtons';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 import { isAndroid } from '../utils/device';
+import GENERAL from '../theme/general';
 
 console.ignoredYellowBox = ['Native TextInput'];
 
@@ -52,13 +53,13 @@ const styles = StyleSheet.create({
     },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
     warningText: {
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },

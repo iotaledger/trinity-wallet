@@ -28,13 +28,13 @@ const styles = StyleSheet.create({
     },
     leftText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 24.4,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
         textAlign: 'center',
     },
     rightText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 24.4,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
         textAlign: 'center',
     },

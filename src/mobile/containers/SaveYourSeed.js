@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     },
     optionButtonText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 25.3,
+        fontSize: GENERAL.fontSize3,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
@@ -51,20 +51,20 @@ const styles = StyleSheet.create({
     },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize4,
         backgroundColor: 'transparent',
         paddingHorizontal: width / 9,
         textAlign: 'center',
     },
     infoTextNormal: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize4,
         backgroundColor: 'transparent',
         textAlign: 'center',
     },
     infoTextBold: {
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize4,
         backgroundColor: 'transparent',
         textAlign: 'center',
     },
