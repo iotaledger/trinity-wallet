@@ -21,14 +21,15 @@ const styles = StyleSheet.create({
         fontSize: GENERAL.fontSize3,
         fontFamily: 'SourceSansPro-Regular',
         backgroundColor: 'transparent',
-        position: 'absolute',
     },
     iconContainer: {
         borderRadius: width / 30,
         borderWidth: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        padding: width / 60
+        width: width / 26,
+        height: width / 26
+
     }
 });
 
@@ -49,16 +50,19 @@ export default class SimpleTransactionRow extends PureComponent {
             titleColor: PropTypes.string.isRequired,
             defaultTextColor: PropTypes.string.isRequired,
         }).isRequired,
+        /** Sign for value */
         sign: PropTypes.string.isRequired,
+        /** Icon symbol */
+        icon: PropTypes.string.isRequired,
     };
 
     render() {
-        const { time, confirmationStatus, value, unit, sign, style, incoming } = this.props;
+        const { time, confirmationStatus, value, unit, sign, style, incoming, icon } = this.props;
         return (
             <View style={styles.container}>
                 <View style={{ flex: 0.6, alignItems: 'flex-start' }}>
                     <View style={[ styles.iconContainer, { borderColor: style.defaultTextColor } ]}>
-                        <Text style={[ styles.icon, { color: style.titleColor, bottom: incoming ? -3.2 : -2, left: incoming ? 2.5 : null } ]}>{sign}</Text>
+                        <Text style={[ styles.icon, { color: style.titleColor, marginBottom: incoming ? 1 : 2.5 } ]}>{icon}</Text>
                     </View>
                 </View>
                 <View style={{ flex: 3.2, alignItems: 'flex-start' }}>

@@ -72,7 +72,6 @@ const styles = StyleSheet.create({
     buttonText: {
         fontFamily: 'SourceSansPro-Bold',
         fontSize: GENERAL.fontSize1,
-        marginBottom: 1
     },
     iotaPrice: {
         fontWeight: 'normal',
