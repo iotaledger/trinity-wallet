@@ -12,7 +12,6 @@ import tinycolor from 'tinycolor2';
 import OnboardingButtons from '../containers/OnboardingButtons';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import InfoBox from '../components/InfoBox';
-import Header from '../components/Header';
 import GENERAL from '../theme/general';
 import { Icon } from '../theme/icons.js';
 import { isAndroid } from '../utils/device';
@@ -25,17 +24,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    headerContainer: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: width / 1.5,
-    },
-    header: {
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 16,
-    },
     topContainer: {
-        flex: 0.5,
+        flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 16,
@@ -45,15 +35,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     midContainer: {
-        flex: 4.6,
+        flex: 3,
         alignItems: 'center',
     },
     bottomMidContainer: {
-        flex: 0.5,
+        flex: 1,
         justifyContent: 'flex-start',
     },
     bottomContainer: {
-        flex: 0.8,
+        flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
@@ -264,9 +254,6 @@ class SaveSeedConfirmation extends Component {
                     <Icon name="iota" size={width / 8} color={body.color} />
                 </View>
                 <View style={styles.midContainer}>
-                    <View style={{ flex: 0.2 }} />
-                    <Header textColor={textColor}>{t('didSaveSeed')}</Header>
-                    <View style={{ flex: 0.3 }} />
                     <InfoBox body={body} width={width / 1.1} text={this.renderInfoBoxContent()} />
                     <View style={{ flex: 0.3 }} />
                     <View style={styles.bottomMidContainer}>
