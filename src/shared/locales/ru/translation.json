@@ -403,14 +403,14 @@
         "customNodeCouldNotBeAdded": "Не удалось добавить пользовательский узел",
         "customNodeAddedSuccessfully": "Пользовательский узел был успешно добавлен.",
         "customNode": "Пользовательский узел",
-        "invalidNodeResponse": "The node returned an invalid response",
+        "invalidNodeResponse": "На узле произошла ошибка",
         "httpNodeError": "Мобильная версия Trinity поддерживает только https узлы.",
         "add": "Добавить",
         "nodeFieldEmpty": "Текстовое поле пусто",
         "nodeFieldEmptyExplanation": "Пожалуйста, войдите в пользовательский узел."
     },
     "addNewAccount": {
-        "useExistingSeed": "Использовать текущий ключ",
+        "useExistingSeed": "Использовать существующий ключ",
         "createNewSeed": "Создать новый ключ"
     },
     "advancedSettings": {
