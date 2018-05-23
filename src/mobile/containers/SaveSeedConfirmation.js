@@ -280,7 +280,6 @@ class SaveSeedConfirmation extends Component {
                             <View style={{ flex: 1 }} />
                         )}
                     </View>
-                    <View style={{ flex: 0.3 }} />
                 </View>
                 <View style={styles.bottomContainer}>
                     <OnboardingButtons
