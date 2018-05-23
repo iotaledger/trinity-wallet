@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
         textAlign: 'right',
     },
     listView: {
-        flex: 8.8,
+        flex: 11,
         justifyContent: 'center',
         width,
     },

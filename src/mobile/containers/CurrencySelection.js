@@ -25,12 +25,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     innerContainer: {
-        flex: 5,
+        flex: 6,
         justifyContent: 'center',
         alignItems: 'center',
     },
     topContainer: {
-        flex: 4,
+        flex: 5,
         justifyContent: 'flex-start',
     },
     itemLeft: {

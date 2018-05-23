@@ -12,8 +12,6 @@ import GENERAL from '../theme/general';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'stretch',
-        justifyContent: 'space-between',
     },
     titleText: {
         color: 'white',
@@ -100,32 +98,30 @@ class AddNewAccount extends Component {
 
         return (
             <View style={styles.container}>
-                <View style={{ flex: 9, justifyContent: 'flex-start' }}>
-                    <View style={styles.itemContainer}>
-                        <TouchableOpacity
-                            onPress={() => this.props.setSetting('addExistingSeed')}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.item}>
-                                <Icon name="key" size={width / 22} color={bodyColor} />
-                                <Text style={[styles.titleText, textColor]}>{t('useExistingSeed')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.itemContainer}>
-                        <TouchableOpacity
-                            onPress={this.addNewSeed}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.item}>
-                                <Icon name="plus" size={width / 22} color={bodyColor} />
-                                <Text style={[styles.titleText, textColor]}>{t('createNewSeed')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={{ flex: 7 }} />
+                <View style={styles.itemContainer}>
+                    <TouchableOpacity
+                        onPress={() => this.props.setSetting('addExistingSeed')}
+                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                    >
+                        <View style={styles.item}>
+                            <Icon name="key" size={width / 22} color={bodyColor} />
+                            <Text style={[styles.titleText, textColor]}>{t('useExistingSeed')}</Text>
+                        </View>
+                    </TouchableOpacity>
                 </View>
-                <View style={{ flex: 1, justifyContent: 'center' }}>
+                <View style={styles.itemContainer}>
+                    <TouchableOpacity
+                        onPress={this.addNewSeed}
+                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                    >
+                        <View style={styles.item}>
+                            <Icon name="plus" size={width / 22} color={bodyColor} />
+                            <Text style={[styles.titleText, textColor]}>{t('createNewSeed')}</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+                <View style={{ flex: 9 }} />
+                <View style={styles.itemContainer}>
                     <TouchableOpacity
                         onPress={() => this.props.setSetting('accountManagement')}
                         hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
