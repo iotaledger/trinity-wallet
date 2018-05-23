@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
         width: width / 1.2,
     },
     topContainer: {
-        flex: 9,
+        flex: 11,
         justifyContent: 'center',
         alignItems: 'center',
     },
