@@ -13,6 +13,7 @@ import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
+import GENERAL from '../theme/general';
 
 const styles = StyleSheet.create({
     container: {
@@ -27,13 +28,13 @@ const styles = StyleSheet.create({
     },
     titleText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize4,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize4,
         backgroundColor: 'transparent',
     },
     spentText: {
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
         textDecorationLine: 'line-through',
         marginRight: width / 100,
         fontFamily: 'Inconsolata-Bold',
-        fontSize: width / 29.6,
+        fontSize: GENERAL.fontSize2,
     },
     bottomContainer: {
         flex: 1,
@@ -54,13 +55,13 @@ const styles = StyleSheet.create({
     addressText: {
         backgroundColor: 'transparent',
         fontFamily: 'Inconsolata-Bold',
-        fontSize: width / 29.6,
+        fontSize: GENERAL.fontSize2,
         textDecorationStyle: 'solid',
     },
     balanceText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 31.8,
+        fontSize: GENERAL.fontSize2,
         textAlign: 'right',
     },
     listView: {
@@ -79,7 +80,7 @@ const styles = StyleSheet.create({
     },
     noAddresses: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
     },
     flatList: {

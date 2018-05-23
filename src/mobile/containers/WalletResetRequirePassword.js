@@ -18,6 +18,7 @@ import CustomTextInput from '../components/CustomTextInput';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import { Icon } from '../theme/icons.js';
 import { width, height } from '../utils/dimensions';
+import GENERAL from '../theme/general';
 
 const styles = StyleSheet.create({
     container: {
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
     },
     generalText: {
         fontFamily: Fonts.secondary,
-        fontSize: width / 20.7,
+        fontSize: GENERAL.fontSize4,
         textAlign: 'center',
         paddingBottom: height / 10,
         backgroundColor: 'transparent',
