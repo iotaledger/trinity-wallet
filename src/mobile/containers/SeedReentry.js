@@ -13,7 +13,6 @@ import StatefulDropdownAlert from './StatefulDropdownAlert';
 import GENERAL from '../theme/general';
 import InfoBox from '../components/InfoBox';
 import OnboardingButtons from '../containers/OnboardingButtons';
-import Header from '../components/Header';
 import { Icon } from '../theme/icons';
 
 const styles = StyleSheet.create({
@@ -168,9 +167,7 @@ class SeedReentry extends Component {
                             </View>
                         </View>
                         <View style={styles.midContainer}>
-                            <View style={{ flex: 0.2 }} />
-                            <Header textColor={textColor}>{t('pleaseConfirmYourSeed')}</Header>
-                            <View style={{ flex: 0.3 }} />
+                            <View style={{ flex: 0.5 }} />
                             <CustomTextInput
                                 label={t('global:seed')}
                                 onChangeText={(text) => this.setState({ seed: text })}
