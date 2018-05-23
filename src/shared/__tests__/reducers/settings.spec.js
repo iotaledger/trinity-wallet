@@ -563,4 +563,21 @@ describe('Reducer: settings', () => {
             expect(newState).to.eql(expectedState);
         });
     });
+
+    describe('SET_SEED_SHARE_TUTORIAL_VISITATION_STATUS', () => {
+        it('should set hasVisitedSeedShareTutorial to payload', () => {
+            const initialState = {
+                hasVisitedSeedShareTutorial: false,
+            };
+
+            const action = actions.setSeedShareTutorialVisitationStatus(true);
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                hasVisitedSeedShareTutorial: true,
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
 });
