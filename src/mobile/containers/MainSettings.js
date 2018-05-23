@@ -20,18 +20,6 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
     },
-    topContainer: {
-        flex: 10,
-        justifyContent: 'flex-end',
-    },
-    bottomContainer: {
-        flex: 1,
-        width,
-        paddingHorizontal: width / 15,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'flex-end',
-    },
     itemContainer: {
         flex: 1,
         justifyContent: 'center',
@@ -61,12 +49,12 @@ const styles = StyleSheet.create({
         marginLeft: width / 25,
     },
     separator: {
-        borderBottomWidth: height / 1500,
+        borderBottomWidth: 0.25,
         width: width / 1.16,
         alignSelf: 'center',
     },
     separatorContainer: {
-        flex: 0.5,
+        flex: 1,
         justifyContent: 'center',
     },
     settingText: {
@@ -302,6 +290,7 @@ export class MainSettings extends Component {
                         </View>
                     </TouchableOpacity>
                 </View>
+                <View style={{ flex: 1 }}/>
                 <Modal
                     animationIn={isAndroid ? 'bounceInUp' : 'zoomIn'}
                     animationOut={isAndroid ? 'bounceOut' : 'zoomOut'}

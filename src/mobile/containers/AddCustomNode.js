@@ -28,11 +28,11 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     topContainer: {
-        flex: 4,
+        flex: 5,
         justifyContent: 'flex-start',
     },
     innerContainer: {
-        flex: 5,
+        flex: 6,
         justifyContent: 'center',
         alignItems: 'center',
     },
