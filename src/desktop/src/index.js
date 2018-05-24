@@ -34,7 +34,7 @@ const persistConfig = {
 };
 
 persistStore(store, persistConfig, (err, restoredState) => {
-    const node = get(restoredState, 'settings.fullNode');
+    const node = get(restoredState, 'settings.node');
     const bgColor = get(restoredState, 'settings.theme.body.bg');
 
     if (node) {

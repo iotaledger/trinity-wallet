@@ -12,7 +12,7 @@ import Logo from 'ui/components/Logo';
 import Icon from 'ui/components/Icon';
 import Confirm from 'ui/components/modal/Confirm';
 
-import css from './index.css';
+import css from './index.scss';
 
 /**
  * Wallet's sidebar component
@@ -105,9 +105,6 @@ class Sidebar extends React.PureComponent {
                             </a>
                         </ul>
                     </div>
-                    <NavLink to="/wallet/charts">
-                        <Icon icon="chart" size={20} />
-                    </NavLink>
                 </nav>
                 <nav>
                     <NavLink to="/settings">
