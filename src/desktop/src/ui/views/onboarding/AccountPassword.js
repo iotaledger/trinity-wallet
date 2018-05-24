@@ -3,17 +3,17 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import sjcl from 'sjcl';
+import zxcvbn from 'zxcvbn';
 
 import { generateAlert } from 'actions/alerts';
-import { addAccountName, increaseSeedCount } from 'actions/accounts';
+import { addAccountName, increaseSeedCount, setOnboardingComplete } from 'actions/accounts';
 import { setAdditionalAccountInfo, setSeedIndex, setPassword } from 'actions/wallet';
 import { setOnboardingSeed, setOnboardingName } from 'actions/ui';
 
-import { isValidPassword } from 'libs/utils';
 import { setVault } from 'libs/crypto';
+import { passwordReasons } from 'libs/i18next';
 
 import Button from 'ui/components/Button';
-import Infobox from 'ui/components/Info';
 import PasswordInput from 'ui/components/input/Password';
 import ModalPassword from 'ui/components/modal/Password';
 
@@ -51,6 +51,8 @@ class AccountPassword extends React.PureComponent {
          * @param {Boolean} isGenerated - Is the new seed generated
          */
         setOnboardingSeed: PropTypes.func.isRequired,
+        /** Set onboarding status to complete */
+        setOnboardingComplete: PropTypes.func.isRequired,
         /** Onboarding set seed and name */
         onboarding: PropTypes.object.isRequired,
         /** Set seed index state
@@ -92,6 +94,7 @@ class AccountPassword extends React.PureComponent {
             setSeedIndex,
             setOnboardingSeed,
             setOnboardingName,
+            setOnboardingComplete,
             history,
             generateAlert,
             onboarding,
@@ -107,19 +110,23 @@ class AccountPassword extends React.PureComponent {
             return;
         }
 
+        if (firstAccount) {
+            const score = zxcvbn(password);
+
+            if (score.score < 4) {
+                const reason = score.feedback.warning
+                    ? t(`changePassword:${passwordReasons[score.feedback.warning]}`)
+                    : t('changePassword:passwordTooWeakReason');
+
+                return generateAlert('error', t('changePassword:passwordTooWeak'), reason);
+            }
+        }
+
         if (firstAccount && password !== passwordConfirm) {
             return generateAlert(
                 'error',
                 t('changePassword:passwordsDoNotMatch'),
                 t('changePassword:passwordsDoNotMatchExplanation'),
-            );
-        }
-
-        if (firstAccount && !isValidPassword(password)) {
-            return generateAlert(
-                'error',
-                t('changePassword:passwordTooShort'),
-                t('changePassword:passwordTooShortExplanation'),
             );
         }
 
@@ -139,6 +146,7 @@ class AccountPassword extends React.PureComponent {
 
         setOnboardingName('');
         setSeedIndex(seedCount);
+        setOnboardingComplete(true);
 
         if (!firstAccount) {
             setAdditionalAccountInfo({
@@ -153,6 +161,8 @@ class AccountPassword extends React.PureComponent {
 
     render() {
         const { firstAccount, history, t } = this.props;
+
+        const score = zxcvbn(this.state.password);
 
         if (!firstAccount) {
             return (
@@ -178,27 +188,31 @@ class AccountPassword extends React.PureComponent {
         return (
             <form onSubmit={(e) => this.createAccount(e)}>
                 <section>
+                    <h1>{t('setPassword:choosePassword')}</h1>
+                    <p>{t('setPassword:anEncryptedCopy')}</p>
                     <PasswordInput
                         focus
                         value={this.state.password}
                         label={t('password')}
+                        showScore
+                        showValid
                         onChange={(value) => this.setState({ password: value })}
                     />
                     <PasswordInput
                         value={this.state.passwordConfirm}
                         label={t('setPassword:retypePassword')}
+                        showValid
+                        disabled={score.score < 4}
+                        match={this.state.password}
                         onChange={(value) => this.setState({ passwordConfirm: value })}
                     />
-                    <Infobox>
-                        <p>{t('setPassword:anEncryptedCopy')}</p>
-                    </Infobox>
                 </section>
                 <footer>
-                    <Button to="/onboarding/account-name" className="inline" variant="secondary">
-                        {t('back').toLowerCase()}
+                    <Button to="/onboarding/account-name" className="square" variant="dark">
+                        {t('goBackStep')}
                     </Button>
-                    <Button type="submit" className="large" variant="primary">
-                        {t('next').toLowerCase()}
+                    <Button type="submit" className="square" variant="primary">
+                        {t('continue')}
                     </Button>
                 </footer>
             </form>
@@ -218,6 +232,7 @@ const mapDispatchToProps = {
     setAdditionalAccountInfo,
     setOnboardingSeed,
     setOnboardingName,
+    setOnboardingComplete,
     generateAlert,
     setSeedIndex,
     increaseSeedCount,

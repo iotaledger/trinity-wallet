@@ -26,10 +26,13 @@
         "nodeOutOfSync": "Node out of sync",
         "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
         "seed": "Seed",
+        "checksum": "Checksum",
         "back": "BACK",
+        "goBackStep": "Go back a step",
         "backLowercase": "Back",
         "done": "DONE",
         "doneLowercase": "Done",
+        "prev": "PREV",
         "next": "NEXT",
         "apply": "Apply",
         "save": "Save",
@@ -179,7 +182,23 @@
         "ensureStrongPassword": "Ensure you use a strong password of at least 12 characters.",
         "currentPassword": "Current Password",
         "newPassword": "New Password",
-        "confirmPassword": "Confirm New Password"
+        "confirmPassword": "Confirm New Password",
+        "passwordTooWeak": "Password too weak",
+        "passwordTooWeakReason":
+            "Your password is too weak. Use a combination of words, and avoid common phrases, names or dates",
+        "reasonRow": "Straight rows of keys are easy to guess",
+        "reasonPattern": "Short patterns of keys are easy to guess",
+        "reasonNames": "Common names and surnames are easy to guess",
+        "reasonRepeats": "Repeats like 'aaa' are easy to guess",
+        "reasonRepeats2": "Repeats like 'abcabcabc' are only slightly harder to guess than 'abc'",
+        "reasonSequence": "Sequences like abc or 54321 are easy to guess",
+        "reasonYears": "Recent years are easy to guess",
+        "reasonDates": "Dates are often easy to guess",
+        "reasonTop10": "This is a top 10 common password",
+        "reasonTop100": "This is a top 100 common password",
+        "reasonCommon": "This is a very common password",
+        "reasonSimilar": "This is similar to a commonly-used password",
+        "reasonWord": "A single word is easy to guess"
     },
     "copyToClipboard": {
         "seedCleared": "Clipboard cleared",
@@ -241,14 +260,18 @@
         "takingAWhile": "This seems to be taking a while"
     },
     "newSeedSetup": {
+        "generatedSeed": "Generated seed",
         "seedNotGenerated": "Seed has not been generated",
         "seedNotGeneratedExplanation": "Please generate a new seed.",
         "pressForNewSeed": "PRESS FOR NEW SEED",
         "generateSuccess": "Seed generated successfully",
         "individualLetters": "Press individual letters to randomise them.",
+        "individualLetterCount": "Press {{letterCount}} more individual letters to randomise them.",
         "whatIsASeed": "What is a seed?"
     },
     "onboardingComplete": {
+        "allDone": "All Done!",
+        "openYourWallet": "Open your wallet",
         "walletReady":
             "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
     },
@@ -266,6 +289,7 @@
         "printerCheckbox": "I will not print on a public printer"
     },
     "receive": {
+        "copyAddress": "Copy address",
         "addressCopied": "Address copied",
         "addressCopiedExplanation": "Your address has been copied to the clipboard.",
         "generateNewAddress": "NEW ADDRESS",
@@ -275,6 +299,22 @@
         "spent": "Spent"
     },
     "saveYourSeed": {
+        "saveYourSeed": "Back up your seed",
+        "seedCleared": "Seed cleared",
+        "mostSecure": "Most secure",
+        "leastSecure": "Least secure",
+        "paperWallet": "Paper Wallet",
+        "writeYourSeedDown": "Write your seed down",
+        "printYourSeed": "Print your seed",
+        "digitalCopy": "Digital copy",
+        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
+        "iHaveSavedMySeed": "I have backed up my seed",
+        "letsWriteDownYourSeed": "Lets write down your seed",
+        "youCanHighlightCharacters": "You can highlight 9 characters at a time",
+        "printBlankWallet": "Print a blank wallet",
+        "whatIsCheksum": "Every seed has a corresponding 3 character checksum",
+        "checksumExplanation":
+            "Whenever you add a seed to your wallet, you should ensure that the wallet-generated checksum matches the one you have written down.",
         "mustSaveYourSeed":
             "<0><0>You must back up your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
     },
@@ -282,10 +322,12 @@
         "pleaseConfirmYourSeed": "Please confirm your seed",
         "trinityWillNeverAskToReenter":
             "Trinity will never ask you to re-enter this seed unless you reset your wallet or reinstall the app.",
+        "enterYourSeed": "Enter your seed",
         "incorrectSeed": "Incorrect seed",
         "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
         "thisIsACheck": "This is a check to make sure you backed up your seed.",
-        "ifYouHaveNotSaved": "If you have not backed up your seed, please go back and do so."
+        "ifYouHaveNotSaved": "If you have not backed up your seed, please go back and do so.",
+        "enterSeedBelow": "Enter your newly created seed below to confirm you have backed it up correctly"
     },
     "send": {
         "invalidAddress": "Invalid address",
@@ -316,6 +358,7 @@
         "totalTime": "Total time"
     },
     "setPassword": {
+        "choosePassword": "Choose a new password",
         "passwordTooShort": "Password is too short",
         "passwordTooShortExplanation":
             "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
@@ -328,6 +371,7 @@
         "retypePassword": "Retype Password"
     },
     "setSeedName": {
+        "letsAddName": "Let's add a name",
         "canUseMultipleSeeds": "You can use multiple seeds with this wallet. Each seed requires an account name.",
         "youCanAdd": "You can add more seeds in the Settings menu."
     },
@@ -355,7 +399,6 @@
         "twoFA": "Two-factor authentication",
         "changePassword": "Change password",
         "advanced": "Advanced settings",
-        "about": "About",
         "logout": "Log out",
         "reset": "Reset wallet",
         "syncingComplete": "Syncing complete",
@@ -402,9 +445,13 @@
         "reset": "RESET"
     },
     "walletSetup": {
+        "creatingSeed": "Creating a seed",
         "okay": "Okay. Let's set up your wallet!",
         "doYouAlreadyHaveASeed": "Do you already have a seed that you would like to use?",
+        "doYouNeedASeed": "Do you need to create a new seed?",
         "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long.",
+        "noIHaveOne": "No, I have one",
+        "yesINeedASeed": "Yes, I need a seed",
         "explanation":
             "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
         "keepSafe": "Please keep your seed safe.",
@@ -611,7 +658,7 @@
         "transition": "TRANSITION",
         "transitioning": "Transitioning for the snapshot.",
         "generatingAndDetecting": "Generating addresses and detecting balance.",
-        "attaching": "Attaching addresses to Tangle"
+        "attaching": "Attaching addresses to Tangle."
     },
     "deepLink": {
         "autofill": "Autofill success",

@@ -1,0 +1,310 @@
+.nav {
+    display: flex;
+    padding: 20px;
+    margin: 0px 20px;
+    height: 72px;
+    border-bottom: 2px solid var(--body-bg);
+    a {
+        color: var(--body);
+        margin: 0 22px 0 0;
+        font-weight: 400;
+
+        &.empty {
+            color: var(--body-alt);
+        }
+        &.disabled {
+            color: var(--body-alt);
+            pointer-events: none;
+        }
+        small {
+            font-size: 13px;
+            margin: 0 2px;
+        }
+    }
+    ul {
+        margin: 0px;
+        padding: 0px;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 2;
+        a {
+            display: none;
+            flex: 0;
+            line-height: 40px;
+            padding: 0 20px;
+            vertical-align: middle;
+
+            &:first-child {
+                display: block;
+                float: left;
+                background: var(--body-bg);
+                border-radius: 6px;
+                line-height: 32px;
+            }
+
+            span {
+                margin-left: 4px;
+            }
+        }
+        &:hover {
+            a {
+                display: block;
+                clear: both;
+                background: var(--body-bg);
+                &:first-child {
+                    border-radius: 6px 6px 0 0;
+                }
+                &:nth-child(2) {
+                    border-radius: 0 6px 0 0;
+                }
+                &:last-child {
+                    border-radius: 0 0 6px 6px;
+                }
+                &:hover {
+                    color: var(--primary);
+                }
+            }
+        }
+    }
+}
+
+.list {
+    position: absolute;
+    top: 100px;
+    left: 0px;
+    width: 100%;
+    height: calc(100% - 100px);
+    padding: 0 0 20px 20px;
+
+    a {
+        list-style: none;
+        font-size: 14px;
+
+        > div {
+            list-style: none;
+            display: flex;
+            line-height: 32px;
+            cursor: pointer;
+            width: 100%;
+            padding: 0 10px;
+            > span {
+                width: 50%;
+                padding: 0 2%;
+            }
+            > span:nth-child(1) {
+                width: 36px;
+                margin-top: 10px;
+                padding-left: 0px;
+            }
+            > span:nth-child(2) {
+                text-align: left;
+                width: 40%;
+            }
+            > strong:nth-child(3) {
+                width: 20%;
+                text-align: left;
+            }
+            > span:nth-child(4) {
+                width: 25%;
+                text-align: right;
+            }
+        }
+        &:hover > div {
+            background: var(--body-bg);
+        }
+        &.received {
+            span:nth-child(4) {
+                color: var(--primary);
+            }
+        }
+        &.sent {
+            span:nth-child(4) {
+                color: var(--secondary);
+            }
+        }
+        &.pending {
+            span:nth-child(4),
+            strong {
+                color: var(--negative);
+            }
+        }
+    }
+
+    .empty {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 0px;
+        text-align: center;
+        width: 100%;
+        opacity: 0.5;
+        padding: 0;
+        margin: -20px 0 0;
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.refresh {
+    display: block;
+    position: absolute;
+    top: 28px;
+    right: 0px;
+    margin: 0px;
+    height: 20px;
+    width: 20px;
+    text-align: center;
+
+    &:hover {
+        color: var(--primary);
+    }
+
+    &.busy {
+        pointer-events: none;
+        color: var(--body-alt);
+    }
+
+    &.loading {
+        pointer-events: none;
+        animation: spin 0.8s ease infinite;
+    }
+}
+
+.popup {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: var(--box-bg);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease-out;
+    cursor: pointer;
+    z-index: 3;
+    > div {
+        position: absolute;
+        top: 50%;
+        left: 20px;
+        width: calc(100% - 40px);
+        min-height: 100px;
+        transform: translate(0, -50%) scale(0.9);
+        background: var(--body-bg);
+        padding: 20px;
+        border-radius: 4px;
+        transition: transform 0.2s cubic-bezier(0, 0, 0.2, 1);
+        p {
+            &:first-child {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            strong {
+                padding-top: 21px;
+            }
+
+            small {
+                font-size: 12px;
+                text-align: right;
+            }
+
+            em {
+                display: block;
+                font-style: normal;
+                color: var(--body);
+            }
+
+            &.hash {
+                display: block;
+                font-family: monospace;
+                word-break: break-word;
+            }
+        }
+
+        .message {
+            display: block;
+            margin: 26px 0 20px;
+            word-break: break-word;
+            height: 100px;
+            position: relative;
+            strong {
+                display: block;
+                margin-bottom: 4px;
+                font-size: 12px;
+                padding-top: 0px;
+            }
+        }
+
+        h6 {
+            font-size: 12px;
+            margin-bottom: 0px;
+        }
+
+        .received {
+            p:first-child strong {
+                color: var(--primary);
+            }
+        }
+        .sent {
+            p:first-child strong {
+                color: var(--secondary);
+            }
+        }
+        .pending {
+            p:first-child small {
+                color: var(--negative);
+            }
+        }
+        .confirmed {
+            p:first-child small {
+                color: var(--positive);
+            }
+        }
+    }
+    &.on {
+        opacity: 1;
+        pointer-events: all;
+        > div {
+            transform: translate(0, -50%) scale(1);
+        }
+    }
+}
+
+.plus,
+.minus {
+    display: block;
+    flex: 0 0 17px;
+    height: 17px;
+    border: 1px solid var(--body);
+    border-radius: 17px;
+    padding: 0px;
+    margin: 8px 8px 0 0;
+    position: relative;
+    &:before,
+    &:after {
+        content: '';
+        position: absolute;
+        top: 7px;
+        left: 4px;
+        width: 7px;
+        height: 1px;
+        background: var(--primary);
+    }
+}
+.minus {
+    &:before {
+        background: var(--secondary);
+    }
+    &:after {
+        display: none;
+    }
+}
+
+.plus:after {
+    transform: rotate(90deg);
+}

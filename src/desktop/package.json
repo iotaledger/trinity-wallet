@@ -1,7 +1,7 @@
 {
   "name": "iota-desktop-wallet",
   "productName": "Trinity",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "url": "https://trinity-alpha.iota.org",
   "homepage": "https://trinity-alpha.iota.org",
   "description": "IOTA desktop wallet",
@@ -50,10 +50,7 @@
     "html-webpack-plugin": "^3.2.0",
     "i18next": "^11.2.3",
     "mini-css-extract-plugin": "^0.4.0",
-    "postcss-custom-media": "^6.0.0",
-    "postcss-loader": "^2.1.4",
-    "postcss-nested": "^3.0.0",
-    "postcss-normalize": "^4.0.0",
+    "node-sass": "^4.9.0",
     "qrcode.react": "^0.8.0",
     "react": "^16.3.2",
     "react-dev-utils": "^5.0.1",
@@ -64,6 +61,7 @@
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "redux": "^4.0.0",
+    "sass-loader": "^7.0.1",
     "sjcl": "^1.0.7",
     "style-loader": "^0.21.0",
     "url-loader": "^1.0.1",
@@ -137,6 +135,7 @@
     "react-markdown": "^3.3.0",
     "react-textarea-autosize": "^6.1.0",
     "react-transition-group": "^2.3.1",
-    "recharts": "^1.0.0-beta.10"
+    "recharts": "^1.0.0-beta.10",
+    "zxcvbn": "^4.4.2"
   }
 }
