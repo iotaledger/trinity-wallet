@@ -75,6 +75,8 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>NSAppleMusicUsageDescription</key>
 	<string>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
