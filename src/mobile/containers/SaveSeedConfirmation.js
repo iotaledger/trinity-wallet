@@ -46,7 +46,6 @@ const styles = StyleSheet.create({
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 20,
     },
     backButton: {
         borderWidth: 1.2,
@@ -244,7 +243,7 @@ class SaveSeedConfirmation extends Component {
         const { t, theme: { body } } = this.props;
         const { hasSavedSeed, hasAgreedToNotCopyPaste } = this.state;
         const textColor = { color: body.color };
-        const opacity = hasSavedSeed && hasAgreedToNotCopyPaste ? 1 : 0.1;
+        const opacity = hasSavedSeed && hasAgreedToNotCopyPaste ? 1 : 0.4;
         const isSecondCheckbox = (idx) => idx === 1;
 
         return (
@@ -285,9 +284,9 @@ class SaveSeedConfirmation extends Component {
                     <OnboardingButtons
                         onLeftButtonPress={() => this.onBackPress()}
                         onRightButtonPress={() => this.onNextPress()}
-                        leftText={t('global:back')}
-                        rightText={t('global:next')}
-                        opacity={opacity}
+                        leftButtonText={t('global:back')}
+                        rightButtonText={t('global:next')}
+                        rightButtonStyle={{ wrapper: { opacity } }}
                     />
                 </View>
             </View>

@@ -42,7 +42,6 @@ const styles = StyleSheet.create({
         flex: 0.7,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 20,
     },
     titleContainer: {
         justifyContent: 'center',
@@ -276,8 +275,8 @@ export class SetAccountName extends Component {
                             <OnboardingButtons
                                 onLeftButtonPress={() => this.onBackPress()}
                                 onRightButtonPress={() => this.onDonePress()}
-                                leftText={t('global:back')}
-                                rightText={t('global:done')}
+                                leftButtonText={t('global:back')}
+                                rightButtonText={t('global:done')}
                                 leftButtonTestID="setSeedName-back"
                                 rightButtonTestID="setSeedName-done"
                             />

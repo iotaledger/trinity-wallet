@@ -31,7 +31,6 @@ const styles = StyleSheet.create({
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 20,
     },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
@@ -170,8 +169,8 @@ class WalletSetup extends Component {
                     <OnboardingButtons
                         onLeftButtonPress={() => this.onNoPress()}
                         onRightButtonPress={() => this.onYesPress()}
-                        leftText={t('global:no')}
-                        rightText={t('global:yes')}
+                        leftButtonText={t('global:no')}
+                        rightButtonText={t('global:yes')}
                         leftButtonTestID="walletSetup-no"
                         rightButtonTestID="walletSetup-yes"
                     />

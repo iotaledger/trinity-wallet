@@ -221,7 +221,8 @@
         "settings": "SETTINGS"
     },
     "languageSetup": {
-        "language": "Language"
+        "language": "Language",
+        "letsGetStarted": "Let's get started"
     },
     "login": {
         "emptyPassword": "Empty password",

@@ -40,7 +40,6 @@ const styles = StyleSheet.create({
         flex: 0.8,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 20,
     },
     logoContainer: {
         justifyContent: 'center',
@@ -231,8 +230,8 @@ class EnterSeed extends React.Component {
                         <OnboardingButtons
                             onLeftButtonPress={() => this.onBackPress()}
                             onRightButtonPress={() => this.onDonePress()}
-                            leftText={t('global:back')}
-                            rightText={t('global:next')}
+                            leftButtonText={t('global:back')}
+                            rightButtonText={t('global:next')}
                             leftButtonTestID="enterSeed-back"
                             rightButtonTestID="enterSeed-next"
                         />

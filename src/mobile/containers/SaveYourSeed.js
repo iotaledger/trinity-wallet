@@ -33,7 +33,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'row',
         alignItems: 'flex-end',
-        paddingBottom: height / 20,
     },
     optionButtonText: {
         fontFamily: 'SourceSansPro-Regular',
@@ -236,8 +235,8 @@ class SaveYourSeed extends Component {
                     <OnboardingButtons
                         onLeftButtonPress={() => this.onBackPress()}
                         onRightButtonPress={() => this.onDonePress()}
-                        leftText={t('global:back')}
-                        rightText={t('global:done')}
+                        leftButtonText={t('global:back')}
+                        rightButtonText={t('global:done')}
                     />
                 </View>
                 <StatefulDropdownAlert backgroundColor={body.bg} />
