@@ -5,7 +5,7 @@ import withAlertsData from 'containers/global/Alerts';
 
 import Icon from 'ui/components/Icon';
 
-import css from './alerts.css';
+import css from './alerts.scss';
 
 /**
  * Alerts UI helper component
@@ -47,9 +47,12 @@ class Alerts extends React.PureComponent {
 
         return (
             <div className={css.wrapper}>
-                <div className={classNames(alerts.category.length ? css.visible : null, css[`${alerts.category}`])}>
-                    <span onClick={() => disposeOffAlert()}>
-                        <Icon icon="cross" size={24} />
+                <div
+                    onClick={() => disposeOffAlert()}
+                    className={classNames(alerts.category.length ? css.visible : null, css[`${alerts.category}`])}
+                >
+                    <span>
+                        <Icon icon="cross" size={14} />
                     </span>
                     {alerts.title && <h2>{alerts.title}</h2>}
                     {alerts.message && <p>{alerts.message}</p>}
