@@ -28,14 +28,9 @@ const styles = StyleSheet.create({
     },
     titleText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize4,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
-    },
-    infoText: {
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize4,
-        backgroundColor: 'transparent',
     },
     spentText: {
         color: '#B21C17',
@@ -65,7 +60,7 @@ const styles = StyleSheet.create({
         textAlign: 'right',
     },
     listView: {
-        flex: 8.8,
+        flex: 11,
         justifyContent: 'center',
         width,
     },
