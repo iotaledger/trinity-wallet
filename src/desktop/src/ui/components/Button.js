@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
-import css from './button.css';
+import css from './button.scss';
 
 /**
  * Button component
@@ -23,9 +23,9 @@ export default class Button extends React.PureComponent {
         /** Button type */
         type: PropTypes.string,
         /** Buttons style type */
-        variant: PropTypes.oneOf(['primary', 'secondary', 'positive', 'negative', 'extra', 'highlight']).isRequired,
+        variant: PropTypes.oneOf(['primary', 'secondary', 'positive', 'negative', 'extra', 'dark']).isRequired,
         /** Buttons custom class */
-        className: PropTypes.oneOf(['outline', 'small', 'large', 'inline', 'icon']),
+        className: PropTypes.oneOf(['outline', 'small', 'outlineSmall', 'square', 'icon']),
         /** Buttons loading state */
         loading: PropTypes.bool,
     };

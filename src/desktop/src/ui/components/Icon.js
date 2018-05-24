@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import icons from 'icons/icons';
 
-import css from './icon.css';
+import css from './icon.scss';
 
 /**
  * Icon component

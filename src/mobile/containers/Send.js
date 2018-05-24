@@ -4,7 +4,7 @@ import reduce from 'lodash/reduce';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard, Clipboard } from 'react-native';
 import timer from 'react-native-timer';
 import { connect } from 'react-redux';
 import {
@@ -185,6 +185,7 @@ export class Send extends Component {
             sending: false,
             currencySymbol: getCurrencySymbol(this.props.currency),
         };
+        this.detectAddressInClipboard = this.detectAddressInClipboard.bind(this);
     }
 
     componentWillMount() {
@@ -517,6 +518,14 @@ export class Send extends Component {
         );
     }
 
+    async detectAddressInClipboard() {
+        const { t } = this.props;
+        const clipboardContent = await Clipboard.getString();
+        if (clipboardContent.match(VALID_ADDRESS_WITH_CHECKSUM_REGEX)) {
+            this.props.generateAlert('info', t('addressPasteDetected'), t('addressPasteExplanation'));
+        }
+    }
+
     resetToggleSwitch() {
         const { maxPressed } = this.state;
         const { t } = this.props;
@@ -819,6 +828,7 @@ export class Send extends Component {
                             value={address}
                             editable={!isSending}
                             selectTextOnFocus={!isSending}
+                            detectAddressInClipboard={this.detectAddressInClipboard}
                         />
                         <View style={{ flex: 0.17 }} />
                         <View style={styles.fieldContainer}>

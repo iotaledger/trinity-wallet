@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import css from './progress.css';
+import css from './progress.scss';
 
 /**
  * Progress bar component
@@ -18,7 +18,7 @@ export default class Progress extends React.PureComponent {
 
         return (
             <div className={css.progress}>
-                <p>{title || ''}</p>
+                <p>{title || 'Receiveing something'}</p>
                 <div>
                     <div style={{ width: `${progress}%` }} />
                 </div>

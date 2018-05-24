@@ -3,7 +3,6 @@ import { translate, Trans } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, BackHandler } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import tinycolor from 'tinycolor2';
 import OnboardingButtons from '../containers/OnboardingButtons';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
@@ -250,8 +249,4 @@ const mapStateToProps = (state) => ({
     onboardingComplete: state.accounts.onboardingComplete,
 });
 
-const mapDispatchToProps = {
-    generateAlert,
-};
-
-export default translate(['saveYourSeed', 'global'])(connect(mapStateToProps, mapDispatchToProps)(SaveYourSeed));
+export default translate(['saveYourSeed', 'global'])(connect(mapStateToProps, null)(SaveYourSeed));
