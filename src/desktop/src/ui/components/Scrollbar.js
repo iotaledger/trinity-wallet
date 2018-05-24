@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PerfectScrollbar from 'perfect-scrollbar';
 
-import css from './scrollbar.css';
+import css from './scrollbar.scss';
 
 /**
  * Inner scrollbar container componten

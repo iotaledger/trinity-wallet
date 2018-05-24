@@ -8,7 +8,7 @@ import Button from 'ui/components/Button';
 import Clipboard from 'ui/components/Clipboard';
 import ModalPassword from 'ui/components/modal/Password';
 
-import css from './seed.css';
+import css from './seed.scss';
 
 /**
  * Account Seed settings component

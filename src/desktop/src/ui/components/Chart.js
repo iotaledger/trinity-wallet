@@ -7,7 +7,7 @@ import withChartData from 'containers/components/Chart';
 
 import Button from 'ui/components/Button';
 import Icon from 'ui/components/Icon';
-import css from './chart.css';
+import css from './chart.scss';
 
 /**
  * Chart component to display historical IOTA price charts
@@ -114,7 +114,7 @@ class Chart extends PureComponent {
                                 />
                                 <YAxis
                                     strokeWidth={0}
-                                    width={70}
+                                    width={55}
                                     tickMargin={10}
                                     tick={{ fill: theme.body.color }}
                                     tickCount={6}
@@ -138,35 +138,32 @@ class Chart extends PureComponent {
                         <Icon icon="cross" size={128} />
                     )}
                 </div>
-                <hr />
-                <nav>
-                    <Button variant="secondary" className="outline" onClick={() => setCurrency()}>
-                        {priceData.currency}
-                    </Button>
-                    <p>
-                        {priceData.symbol} {getPriceFormat(getPriceForCurrency(priceData.currency))} / Mi
-                    </p>
-                    <Button variant="secondary" className="outline" onClick={() => setTimeframe()}>
-                        {chartData.timeframe.replace('1m', '28d')}
-                    </Button>
-                </nav>
-                <ul>
-                    <li>
-                        {t('chart:mcap')}:{' '}
-                        <strong>
+                <footer>
+                    <nav>
+                        <Button variant="secondary" className="outline" onClick={() => setCurrency()}>
+                            {priceData.currency}
+                        </Button>
+                        <p>
+                            {priceData.symbol} {getPriceFormat(getPriceForCurrency(priceData.currency))} / Mi
+                        </p>
+                        <Button variant="secondary" className="outline" onClick={() => setTimeframe()}>
+                            {chartData.timeframe.replace('1m', '28d')}
+                        </Button>
+                    </nav>
+                    <ul>
+                        <li>
+                            <strong>{t('chart:mcap')}: </strong>
                             {priceData.globalSymbol} {priceData.mcap}
-                        </strong>
-                    </li>
-                    <li>
-                        {t('chart:change')}: <strong>{priceData.change24h}%</strong>
-                    </li>
-                    <li>
-                        {t('chart:volume')}:{' '}
-                        <strong>
+                        </li>
+                        <li>
+                            <strong>{t('chart:change')}:</strong> {priceData.change24h}%
+                        </li>
+                        <li>
+                            <strong>{t('chart:volume')}: </strong>
                             {priceData.globalSymbol} {priceData.volume}
-                        </strong>
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
+                </footer>
             </div>
         );
     }

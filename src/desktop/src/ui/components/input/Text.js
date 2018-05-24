@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import css from './input.css';
+import css from './input.scss';
 
 /**
  * Single line input component

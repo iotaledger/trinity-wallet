@@ -1,0 +1,27 @@
+*,
+*:after,
+*:before {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-weight: 300;
+    font-size: 100%;
+    box-sizing: border-box;
+    user-select: none;
+    cursor: default;
+    outline: none;
+    &:focus {
+        outline: none;
+    }
+}
+a,
+a *,
+*:before,
+*:after {
+    cursor: pointer;
+    text-decoration: none;
+}
+input,
+textarea {
+    cursor: text;
+}
