@@ -274,10 +274,10 @@ class CopySeedToClipboard extends Component {
                         style={styles.infoLink}
                         onPress={() => {
                             this.props.setSeedShareTutorialVisitationStatus(true);
-                            Linking.openURL('http://google.com');
+                            Linking.openURL('https://gist.github.com/marcusjang/0491b719ace4b1875147568431b70ebd');
                         }}
                     >
-                        https://foo.bar
+                        Using Trinity Wallet with Keepass2Android
                     </Text>
                 </Text>
                 <Text style={[styles.infoTextBold, textColor, { paddingTop: height / 40 }]}>
