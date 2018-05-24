@@ -1,3 +1,4 @@
+import map from 'lodash/map';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
@@ -10,8 +11,10 @@ import { connect } from 'react-redux';
 import tinycolor from 'tinycolor2';
 import OnboardingButtons from '../containers/OnboardingButtons';
 import DynamicStatusBar from '../components/DynamicStatusBar';
+import InfoBox from '../components/InfoBox';
 import GENERAL from '../theme/general';
 import { Icon } from '../theme/icons.js';
+import { isAndroid } from '../utils/device';
 
 import { width, height } from '../utils/dimensions';
 
@@ -34,11 +37,6 @@ const styles = StyleSheet.create({
     midContainer: {
         flex: 3,
         alignItems: 'center',
-        justifyContent: 'center',
-    },
-    topMidContainer: {
-        flex: 1.8,
-        justifyContent: 'center',
     },
     bottomMidContainer: {
         flex: 1,
@@ -77,8 +75,6 @@ const styles = StyleSheet.create({
     checkboxContainer: {
         height: height / 15,
         flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
         paddingTop: height / 50,
     },
     checkbox: {
@@ -91,6 +87,24 @@ const styles = StyleSheet.create({
         color: 'white',
         backgroundColor: 'transparent',
         marginLeft: width / 40,
+    },
+    infoText: {
+        fontFamily: 'SourceSansPro-Light',
+        fontSize: width / 27.6,
+        textAlign: 'left',
+        backgroundColor: 'transparent',
+    },
+    infoTextNormal: {
+        fontFamily: 'SourceSansPro-Light',
+        fontSize: width / 27.6,
+        textAlign: 'left',
+        backgroundColor: 'transparent',
+    },
+    infoTextBold: {
+        fontFamily: 'SourceSansPro-Bold',
+        fontSize: width / 27.6,
+        textAlign: 'left',
+        backgroundColor: 'transparent',
     },
 });
 
@@ -110,11 +124,23 @@ class SaveSeedConfirmation extends Component {
     constructor(props) {
         super(props);
 
+        const checkBoxImagePath = tinycolor(props.theme.body.bg).isDark()
+            ? whiteCheckboxUncheckedImagePath
+            : blackCheckboxUncheckedImagePath;
+
         this.state = {
-            checkboxImage: tinycolor(props.theme.body.bg).isDark()
-                ? whiteCheckboxUncheckedImagePath
-                : blackCheckboxUncheckedImagePath,
+            checkBoxesDetails: [
+                {
+                    path: checkBoxImagePath,
+                    text: this.props.t('saveSeedConfirmation:alreadyHave'),
+                },
+                {
+                    path: checkBoxImagePath,
+                    text: this.props.t('global:willNotCopyPasteSeed'),
+                },
+            ],
             hasSavedSeed: false,
+            hasAgreedToNotCopyPaste: !isAndroid,
             showCheckbox: false,
         };
     }
@@ -143,8 +169,9 @@ class SaveSeedConfirmation extends Component {
 
     onNextPress() {
         const { theme: { body } } = this.props;
-        const { hasSavedSeed } = this.state;
-        if (hasSavedSeed) {
+        const { hasSavedSeed, hasAgreedToNotCopyPaste } = this.state;
+
+        if (hasSavedSeed && hasAgreedToNotCopyPaste) {
             this.props.navigator.push({
                 screen: 'seedReentry',
                 navigatorStyle: {
@@ -160,7 +187,22 @@ class SaveSeedConfirmation extends Component {
         }
     }
 
-    onCheckboxPress() {
+    onCheckboxPress(checkboxIndex) {
+        const isFirstCheckbox = checkboxIndex === 0;
+        const setCheckboxImagePath = (checkBoxDetail, idx) => ({
+            ...checkBoxDetail,
+            path: idx === checkboxIndex ? this.getCheckboxImagePath(checkboxIndex) : checkBoxDetail.path,
+        });
+
+        this.setState({
+            checkBoxesDetails: map(this.state.checkBoxesDetails, setCheckboxImagePath),
+            ...(isFirstCheckbox
+                ? { hasSavedSeed: !this.state.hasSavedSeed }
+                : { hasAgreedToNotCopyPaste: !this.state.hasAgreedToNotCopyPaste }),
+        });
+    }
+
+    getCheckboxImagePath(checkboxIndex) {
         const { theme: { body } } = this.props;
         const checkboxUncheckedImagePath = tinycolor(body.bg).isDark()
             ? whiteCheckboxUncheckedImagePath
@@ -169,24 +211,41 @@ class SaveSeedConfirmation extends Component {
             ? whiteCheckboxCheckedImagePath
             : blackCheckboxCheckedImagePath;
 
-        if (this.state.checkboxImage === checkboxCheckedImagePath) {
-            this.setState({
-                checkboxImage: checkboxUncheckedImagePath,
-                hasSavedSeed: false,
-            });
-        } else {
-            this.setState({
-                checkboxImage: checkboxCheckedImagePath,
-                hasSavedSeed: true,
-            });
-        }
+        return this.state.checkBoxesDetails[checkboxIndex].path === checkboxCheckedImagePath
+            ? checkboxUncheckedImagePath
+            : checkboxCheckedImagePath;
+    }
+
+    renderInfoBoxContent() {
+        const { t, theme: { body } } = this.props;
+        const textColor = { color: body.color };
+
+        return (
+            <View>
+                <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
+                    <Text style={styles.infoTextBold}>{t('reenterSeed')}</Text>
+                </Text>
+                <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
+                    <Text style={styles.infoTextNormal}>
+                        {t('reenterSeedWarning')}
+                        {isAndroid ? ` ${t('global:androidInsecureClipboardWarning')}` : null}
+                    </Text>
+                </Text>
+                {isAndroid && (
+                    <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
+                        <Text style={styles.infoTextBold}>{t('global:androidCopyPasteWarning')}</Text>
+                    </Text>
+                )}
+            </View>
+        );
     }
 
     render() {
         const { t, theme: { body } } = this.props;
-        const { hasSavedSeed } = this.state;
+        const { hasSavedSeed, hasAgreedToNotCopyPaste } = this.state;
         const textColor = { color: body.color };
-        const opacity = hasSavedSeed ? 1 : 0.1;
+        const opacity = hasSavedSeed && hasAgreedToNotCopyPaste ? 1 : 0.1;
+        const isSecondCheckbox = (idx) => idx === 1;
 
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
@@ -195,24 +254,31 @@ class SaveSeedConfirmation extends Component {
                     <Icon name="iota" size={width / 8} color={body.color} />
                 </View>
                 <View style={styles.midContainer}>
-                    <View style={styles.topMidContainer}>
-                        <View style={styles.infoTextContainer}>
-                            <Text style={[styles.infoTextLight, textColor]}>{t('saveSeedConfirmation:reenter')}</Text>
-                            <Text style={[styles.infoTextLight, textColor]}>
-                                {t('saveSeedConfirmation:reenterWarning')}
-                            </Text>
-                        </View>
-                    </View>
+                    <InfoBox body={body} width={width / 1.1} text={this.renderInfoBoxContent()} />
+                    <View style={{ flex: 0.3 }} />
                     <View style={styles.bottomMidContainer}>
-                        {this.state.showCheckbox && (
-                            <TouchableOpacity style={styles.checkboxContainer} onPress={() => this.onCheckboxPress()}>
-                                <Image source={this.state.checkboxImage} style={styles.checkbox} />
-                                <Text style={[styles.checkboxText, textColor]}>
-                                    {t('saveSeedConfirmation:alreadyHave')}
-                                </Text>
-                            </TouchableOpacity>
+                        {this.state.showCheckbox ? (
+                            <View>
+                                {map(this.state.checkBoxesDetails, (detail, idx) => {
+                                    if (!isAndroid && isSecondCheckbox(idx)) {
+                                        return null;
+                                    }
+
+                                    return (
+                                        <TouchableOpacity
+                                            key={idx}
+                                            style={styles.checkboxContainer}
+                                            onPress={() => this.onCheckboxPress(idx)}
+                                        >
+                                            <Image source={detail.path} style={styles.checkbox} />
+                                            <Text style={[styles.checkboxText, textColor]}>{detail.text}</Text>
+                                        </TouchableOpacity>
+                                    );
+                                })}
+                            </View>
+                        ) : (
+                            <View style={{ flex: 1 }} />
                         )}
-                        {!this.state.showCheckbox && <View style={{ flex: 1 }} />}
                     </View>
                 </View>
                 <View style={styles.bottomContainer}>
