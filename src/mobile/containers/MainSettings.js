@@ -24,23 +24,17 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
     },
-    innerItemContainerLeft: {
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-    },
-    innerItemContainerRight: {
-        flex: 2.3,
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-    },
     item: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'flex-start',
         width,
         paddingHorizontal: width / 15,
+    },
+    content: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     },
     titleText: {
         fontFamily: 'SourceSansPro-Regular',
@@ -60,8 +54,6 @@ const styles = StyleSheet.create({
     settingText: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: GENERAL.fontSize3,
-        marginLeft: width / 12,
-        width: width / 2.2,
         backgroundColor: 'transparent',
     },
 });
@@ -169,11 +161,9 @@ export class MainSettings extends Component {
                         hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                     >
                         <View style={styles.item}>
-                            <View style={styles.innerItemContainerLeft}>
-                                <Icon name="mode" size={width / 22} color={bodyColor} />
+                            <Icon name="mode" size={width / 22} color={bodyColor} />
+                            <View style={styles.content}>
                                 <Text style={[styles.titleText, textColor]}>{t('mode')}</Text>
-                            </View>
-                            <View style={styles.innerItemContainerRight}>
                                 <Text style={[styles.settingText, textColor]}>{mode}</Text>
                             </View>
                         </View>
@@ -185,11 +175,9 @@ export class MainSettings extends Component {
                         hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                     >
                         <View style={styles.item}>
-                            <View style={styles.innerItemContainerLeft}>
-                                <Icon name="theme" size={width / 22} color={bodyColor} />
+                            <Icon name="theme" size={width / 22} color={bodyColor} />
+                            <View style={styles.content}>
                                 <Text style={[styles.titleText, textColor]}>{t('theme')}</Text>
-                            </View>
-                            <View style={styles.innerItemContainerRight}>
                                 <Text style={[styles.settingText, textColor]}>{themeName}</Text>
                             </View>
                         </View>
@@ -201,11 +189,9 @@ export class MainSettings extends Component {
                         hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                     >
                         <View style={styles.item}>
-                            <View style={styles.innerItemContainerLeft}>
-                                <Icon name="currency" size={width / 22} color={bodyColor} />
+                            <Icon name="currency" size={width / 22} color={bodyColor} />
+                            <View style={styles.content}>
                                 <Text style={[styles.titleText, textColor]}>{t('currency')}</Text>
-                            </View>
-                            <View style={styles.innerItemContainerRight}>
                                 <Text style={[styles.settingText, textColor]}>{currency}</Text>
                             </View>
                         </View>
@@ -217,11 +203,9 @@ export class MainSettings extends Component {
                         hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                     >
                         <View style={styles.item}>
-                            <View style={styles.innerItemContainerLeft}>
-                                <Icon name="language" size={width / 22} color={bodyColor} />
+                            <Icon name="language" size={width / 22} color={bodyColor} />
+                            <View style={styles.content}>
                                 <Text style={[styles.titleText, textColor]}>{t('language')}</Text>
-                            </View>
-                            <View style={styles.innerItemContainerRight}>
                                 <Text numberOfLines={1} style={[styles.settingText, textColor]}>
                                     {selectLocale(i18next.language)}
                                 </Text>
