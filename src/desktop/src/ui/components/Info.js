@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Icon from 'ui/components/Icon';
-import css from './info.css';
+import css from './info.scss';
 
 /**
  * Info block component
@@ -17,7 +17,7 @@ export default class Info extends React.PureComponent {
 
         return (
             <div className={css.wrapper}>
-                <Icon icon="info" size={24} />
+                <Icon icon="info" size={28} />
                 {children}
             </div>
         );

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import css from './modal.css';
+import css from './modal.scss';
 
 /**
  * Modal window component
@@ -12,7 +12,7 @@ export default class Modal extends React.Component {
         /** Modal content */
         children: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
         /** Modal window type */
-        variant: PropTypes.oneOf(['confirm']),
+        variant: PropTypes.oneOf(['confirm', 'global', 'fullscreen']),
         /** Modal visibility state */
         isOpen: PropTypes.bool,
         /** Should the dialog be without a cancel option */

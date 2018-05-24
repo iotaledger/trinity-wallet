@@ -20,18 +20,17 @@ class Welcome extends React.PureComponent {
     render() {
         const { t } = this.props;
         return (
-            <React.Fragment>
+            <form>
                 <section>
                     <h1>{t('welcome:thankYou')}</h1>
-                    <form>
-                        <Language />
-                        <Button to="/onboarding/seed-intro" className="large" variant="primary">
-                            {t('continue')}
-                        </Button>
-                    </form>
+                    <Language />
                 </section>
-                <footer />
-            </React.Fragment>
+                <footer>
+                    <Button to="/onboarding/seed-intro" className="square" variant="primary">
+                        {t('continue')}
+                    </Button>
+                </footer>
+            </form>
         );
     }
 }
