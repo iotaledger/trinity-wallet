@@ -1,6 +1,6 @@
 /*global Electron*/
 import React from 'react';
-import css from 'ui/views/onboarding/index.css';
+import css from 'ui/views/onboarding/index.scss';
 
 /**
  * Linux missing dependencies tutorial

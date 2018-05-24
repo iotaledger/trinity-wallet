@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import { generateAlert } from 'actions/alerts';
 
-import css from './clipboard.css';
+import css from './clipboard.scss';
 
 /**
  * Copy to clipboard wrapper component

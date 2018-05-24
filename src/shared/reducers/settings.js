@@ -63,7 +63,8 @@ const initialState = {
     versions: {},
     is2FAEnabled: false,
     isFingerprintEnabled: false,
-    acceptedTerms: false
+    acceptedTerms: false,
+    hasVisitedSeedShareTutorial: false,
 };
 
 const settingsReducer = (state = initialState, action) => {
@@ -187,6 +188,11 @@ const settingsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 acceptedTerms: true,
+            };
+        case ActionTypes.SET_SEED_SHARE_TUTORIAL_VISITATION_STATUS:
+            return {
+                ...state,
+                hasVisitedSeedShareTutorial: action.payload,
             };
     }
 

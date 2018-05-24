@@ -88,7 +88,7 @@ android {
     compileSdkVersion 27
     buildToolsVersion '27.0.3'
     defaultConfig {
-        applicationId "com.iota.wallet"
+        applicationId "com.iota.trinity"
         versionCode 1
         versionName "0.1.0"
         minSdkVersion 21

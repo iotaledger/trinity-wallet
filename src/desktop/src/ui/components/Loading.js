@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import Logo from 'ui/components/Logo';
-import css from './Loading.css';
+import css from './Loading.scss';
 
 /**
  * Loading screen component
@@ -16,9 +16,9 @@ export default class Loading extends React.PureComponent {
         /** Loading transparency class state */
         transparent: PropTypes.bool,
         /** Loading screen title content */
-        title: PropTypes.string,
+        title: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
         /** Loading screen subtitle content */
-        subtitle: PropTypes.string,
+        subtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
         /** On animation end  event */
         onEnd: PropTypes.func,
     };

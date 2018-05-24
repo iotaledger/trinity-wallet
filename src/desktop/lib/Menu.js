@@ -2,6 +2,7 @@ const { Menu, ipcMain, dialog, shell } = require('electron');
 
 const state = {
     authorised: false,
+    enabled: true,
 };
 
 let language = {
@@ -41,6 +42,8 @@ let language = {
 };
 
 const initMenu = (app, getWindow) => {
+    let mainMenu = null;
+
     const navigate = (path) => {
         const mainWindow = getWindow('main');
         if (mainWindow) {
@@ -55,7 +58,8 @@ const initMenu = (app, getWindow) => {
                 submenu: [
                     {
                         label: language.about,
-                        role: 'about',
+                        click: () => navigate('about'),
+                        enabled: state.enabled,
                     },
                     {
                         type: 'separator',
@@ -63,10 +67,12 @@ const initMenu = (app, getWindow) => {
                     {
                         label: `${language.checkUpdate}...`,
                         click: () => navigate('update'),
+                        enabled: state.enabled,
                     },
                     {
                         label: language.sendFeedback,
                         click: () => navigate('feedback'),
+                        enabled: state.enabled,
                     },
                     {
                         type: 'separator',
@@ -78,35 +84,39 @@ const initMenu = (app, getWindow) => {
                                 label: language.language,
                                 accelerator: 'Command+,',
                                 click: () => navigate('settings/language'),
+                                enabled: state.enabled,
                             },
                             {
                                 label: language.node,
                                 click: () => navigate('settings/node'),
+                                enabled: state.enabled,
                             },
                             {
                                 label: language.currency,
                                 click: () => navigate('settings/currency'),
+                                enabled: state.enabled,
                             },
                             {
                                 label: language.theme,
                                 click: () => navigate('settings/theme'),
+                                enabled: state.enabled,
                             },
                             {
                                 type: 'separator',
                             },
                             {
                                 label: language.twoFA,
-                                enabled: state.authorised,
+                                enabled: state.authorised && state.enabled,
                                 click: () => navigate('settings/twoFa'),
                             },
                             {
                                 label: language.changePassword,
-                                enabled: state.authorised,
+                                enabled: state.authorised && state.enabled,
                                 click: () => navigate('settings/password'),
                             },
                             {
                                 label: language.advanced,
-                                enabled: state.authorised,
+                                enabled: state.authorised && state.enabled,
                                 click: () => navigate('settings/advanced'),
                             },
                         ],
@@ -142,6 +152,7 @@ const initMenu = (app, getWindow) => {
             {
                 label: language.quit,
                 accelerator: 'Command+Q',
+                enabled: state.enabled,
                 click: function() {
                     app.quit();
                 },
@@ -168,10 +179,12 @@ const initMenu = (app, getWindow) => {
                     {
                         label: language.send,
                         click: () => navigate('wallet/send'),
+                        enabled: state.enabled,
                     },
                     {
                         label: language.receive,
                         click: () => navigate('wallet/receive'),
+                        enabled: state.enabled,
                     },
                     {
                         type: 'separator',
@@ -179,6 +192,7 @@ const initMenu = (app, getWindow) => {
                     {
                         label: language.accountSettings,
                         click: () => navigate('account/name'),
+                        enabled: state.enabled,
                     },
                     {
                         type: 'separator',
@@ -186,12 +200,14 @@ const initMenu = (app, getWindow) => {
                     {
                         label: language.newAccount,
                         click: () => navigate('addAccount'),
+                        enabled: state.enabled,
                     },
                     {
                         type: 'separator',
                     },
                     {
                         label: language.logout,
+                        enabled: state.enabled,
                         click: function() {
                             const mainWindow = getWindow('main');
                             if (mainWindow) {
@@ -231,20 +247,32 @@ const initMenu = (app, getWindow) => {
 
         const applicationMenu = Menu.buildFromTemplate(template);
         Menu.setApplicationMenu(applicationMenu);
+
+        return applicationMenu;
     };
 
     app.once('ready', () => {
         ipcMain.on('menu.update', (e, settings) => {
             state[settings.attribute] = settings.value;
+            mainMenu = createMenu();
+        });
+
+        ipcMain.on('menu.enabled', (e, enabled) => {
+            state.enabled = enabled;
             createMenu();
         });
 
         ipcMain.on('menu.language', (e, data) => {
             language = data;
-            createMenu();
+            mainMenu = createMenu();
         });
 
-        createMenu();
+        ipcMain.on('menu.popup', () => {
+            const mainWindow = getWindow('main');
+            mainMenu.popup(mainWindow);
+        });
+
+        mainMenu = createMenu();
     });
 };
 

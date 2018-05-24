@@ -3,8 +3,7 @@ import { Navigation } from 'react-native-navigation';
 import { translate } from 'react-i18next';
 import { Text, TextInput, NetInfo } from 'react-native';
 import { Provider } from 'react-redux';
-import { setRandomlySelectedNode } from 'iota-wallet-shared-modules/actions/settings';
-import { changeIotaNode, getRandomNode, SwitchingConfig } from 'iota-wallet-shared-modules/libs/iota';
+import { changeIotaNode, SwitchingConfig } from 'iota-wallet-shared-modules/libs/iota';
 import { fetchNodeList as fetchNodes } from 'iota-wallet-shared-modules/actions/polling';
 import { ActionTypes } from 'iota-wallet-shared-modules/actions/wallet';
 import i18next from 'i18next';
@@ -39,7 +38,9 @@ const renderInitialScreen = (store) => {
 
     i18next.changeLanguage(getLocaleFromLabel(state.settings.language));
 
-    const initialScreen = state.accounts.onboardingComplete ? 'login' : state.settings.acceptedTerms ? 'languageSetup' : 'termsAndConditions';
+    const initialScreen = state.accounts.onboardingComplete
+        ? 'login'
+        : state.settings.acceptedTerms ? 'languageSetup' : 'termsAndConditions';
 
     Navigation.startSingleScreenApp({
         screen: {
@@ -60,20 +61,6 @@ const renderInitialScreen = (store) => {
     });
 };
 
-export const setRandomIotaNode = (store) => {
-    const { settings } = store.getState();
-    const hasAlreadyRandomized = get(settings, 'hasRandomizedNode');
-
-    // Update provider
-    changeIotaNode(get(settings, 'node'));
-
-    if (!hasAlreadyRandomized) {
-        const node = getRandomNode();
-        changeIotaNode(node);
-        store.dispatch(setRandomlySelectedNode(node));
-    }
-};
-
 /**
  *  Fetch IRI nodes list from server
  *
@@ -81,7 +68,13 @@ export const setRandomIotaNode = (store) => {
  *   @param {object} store - redux store object
  **/
 const fetchNodeList = (store) => {
-    store.dispatch(fetchNodes());
+    const { settings } = store.getState();
+    const hasAlreadyRandomized = get(settings, 'hasRandomizedNode');
+
+    // Update provider
+    changeIotaNode(get(settings, 'node'));
+
+    store.dispatch(fetchNodes(!hasAlreadyRandomized));
 };
 
 /**
@@ -138,7 +131,6 @@ export default (store) => {
         registerScreens(store, Provider);
         translate.setI18n(i18);
 
-        setRandomIotaNode(store);
         renderInitialScreen(store);
     };
 
