@@ -14,8 +14,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     topContainer: {
-        flex: 10,
-        justifyContent: 'flex-end',
+        flex: 11,
     },
     bottomContainer: {
         flex: 1,
@@ -23,7 +22,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'flex-end',
+        alignItems: 'center',
     },
     backIcon: {
         width: width / 28,
