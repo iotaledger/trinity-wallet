@@ -24,6 +24,11 @@ const styles = StyleSheet.create({
         width,
         paddingHorizontal: width / 15,
     },
+    content: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
     backIcon: {
         width: width / 28,
         height: width / 28,
@@ -52,7 +57,6 @@ const styles = StyleSheet.create({
     settingText: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: GENERAL.fontSize3,
-        marginLeft: width / 12,
         width: width / 2.4,
         backgroundColor: 'transparent',
     },
@@ -152,10 +156,12 @@ export class AdvancedSettings extends PureComponent {
                     >
                         <View style={styles.item}>
                             <Icon name="node" size={width / 22} color={bodyColor} />
-                            <Text style={[styles.titleText, textColor]}>{t('selectNode')}</Text>
-                            <Text numberOfLines={1} style={[styles.settingText, textColor]}>
-                                {node}
-                            </Text>
+                            <View style={styles.content}>
+                                <Text style={[styles.titleText, textColor]}>{t('selectNode')}</Text>
+                                <Text numberOfLines={1} style={[styles.settingText, textColor]}>
+                                    {node}
+                                </Text>
+                            </View>
                         </View>
                     </TouchableOpacity>
                 </View>
