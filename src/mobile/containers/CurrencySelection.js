@@ -25,12 +25,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     innerContainer: {
-        flex: 5,
+        flex: 6,
         justifyContent: 'center',
         alignItems: 'center',
     },
     topContainer: {
-        flex: 4,
+        flex: 5,
         justifyContent: 'flex-start',
     },
     itemLeft: {
@@ -45,13 +45,13 @@ const styles = StyleSheet.create({
     },
     titleTextLeft: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize4,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize4,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
         paddingTop: height / 30,
         textAlign: 'center',
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     },
     titleTextRight: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize4,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
         marginRight: width / 20,
     },

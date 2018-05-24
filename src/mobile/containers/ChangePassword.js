@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 9,
+        flex: 11,
         justifyContent: 'space-around',
         alignItems: 'center',
     },
@@ -73,13 +73,13 @@ const styles = StyleSheet.create({
     },
     titleTextLeft: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize4,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
     titleTextRight: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize4,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
         marginRight: width / 20,
     },

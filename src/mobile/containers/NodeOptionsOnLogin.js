@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 9,
+        flex: 11,
         justifyContent: 'center',
     },
     bottomContainer: {
@@ -41,16 +41,9 @@ const styles = StyleSheet.create({
     titleTextLeft: {
         color: 'white',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize4,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
-    },
-    titleTextRight: {
-        color: 'white',
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize4,
-        backgroundColor: 'transparent',
-        marginRight: width / 20,
     },
 });
 
