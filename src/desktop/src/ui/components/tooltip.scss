@@ -1,0 +1,45 @@
+.tooltip {
+    position: relative;
+    display: inline-block;
+    line-height: 18px;
+    vertical-align: middle;
+    margin-right: 6px;
+
+    > span {
+        display: inline;
+        font-family: 'Icons';
+        cursor: pointer;
+    }
+
+    > div {
+        position: absolute;
+        display: block;
+        float: left;
+        pointer-events: none;
+        background: var(--box-bg);
+        padding: 12px;
+        border-radius: 4px;
+        bottom: calc(100% + 4px);
+        left: 100%;
+        line-height: 24px;
+        font-size: 14px;
+        opacity: 0;
+        transition: opacity 0.1s ease-out;
+
+        em,
+        strong {
+            display: block;
+            font-style: normal;
+            columns: var(--box-body);
+            text-align: left;
+        }
+        strong {
+            white-space: nowrap;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+    }
+    &:hover > div {
+        opacity: 1;
+    }
+}
