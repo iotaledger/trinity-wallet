@@ -1,0 +1,125 @@
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.receive {
+    display: flex;
+    padding: 20px;
+
+    @media screen and (max-width: 860px) {
+        display: block;
+        position: relative;
+        padding: 40px 20px 0;
+        &:before {
+            content: '';
+            position: absolute;
+            width: calc(100% - 40px);
+            height: 2px;
+            top: 0px;
+            left: 20px;
+            background: var(--body-alt);
+        }
+    }
+
+    > div {
+        flex: 1;
+
+        @media screen and (max-width: 860px) {
+            width: 100%;
+        }
+
+        input {
+            border: none;
+            line-height: 40px;
+            padding-left: 10px;
+            font-size: 14px;
+        }
+    }
+
+    > div:nth-child(1) {
+        display: flex;
+        flex: 0 1 440px;
+        position: relative;
+
+        &:after {
+            content: '';
+            position: absolute;
+            top: 0px;
+            right: 40px;
+            width: 2px;
+            height: calc(100%);
+            background: var(--body);
+            opacity: 0.1;
+        }
+
+        @media screen and (max-width: 860px) {
+            height: 170px;
+            &:after {
+                display: none;
+            }
+        }
+
+        button {
+            flex: 1;
+            padding-right: 20px;
+        }
+
+        p {
+            word-wrap: break-word;
+            word-break: break-word;
+            letter-spacing: 1px;
+            font-family: monospace;
+            font-size: 14px;
+            line-height: 25px;
+            padding-left: 20px;
+            max-width: 170px;
+            margin-bottom: 0px;
+        }
+    }
+
+    > div:nth-child(2) {
+        max-width: 520px;
+    }
+
+    canvas {
+        display: block;
+        background: #fff;
+        border-radius: 4px;
+        border: 5px solid white;
+    }
+
+    footer {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 10px;
+
+        > a,
+        > span {
+            width: calc(50% - 5%);
+            &:first-child {
+                margin-right: 10%;
+            }
+        }
+
+        span button {
+            width: 100%;
+        }
+    }
+}
+
+.loading span {
+    animation: spin 0.8s ease infinite;
+}
+
+.empty {
+    > div:nth-child(1) canvas {
+        display: none;
+    }
+    > div:nth-child(2) div,
+    > div:nth-child(2) footer > span {
+        opacity: 0.15;
+        pointer-events: none;
+    }
+}

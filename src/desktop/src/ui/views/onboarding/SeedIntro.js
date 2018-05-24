@@ -6,6 +6,7 @@ import { translate, Trans } from 'react-i18next';
 import { setOnboardingSeed } from 'actions/ui';
 
 import Button from 'ui/components/Button';
+import Info from 'ui/components/Info';
 
 /**
  * Onboarding, Seed introduction
@@ -31,28 +32,32 @@ class SeedIntro extends React.PureComponent {
     render() {
         const { t } = this.props;
         return (
-            <React.Fragment>
+            <form>
                 <section>
-                    <form className="center">
-                        <fieldset>
-                            <h2>{t('walletSetup:doYouAlreadyHaveASeed')}</h2>
-
-                            <Button to="/onboarding/seed-warning" className="large" variant="secondary">
-                                {t('no')}
-                            </Button>
-                            <Button to="/onboarding/seed-verify" className="large" variant="primary">
-                                {t('yes')}
-                            </Button>
-                            <Trans i18nKey="walletSetup:hint">
-                                <small>
-                                    <strong>Hint:</strong> Click NO if this is your first time using IOTA.
-                                </small>
-                            </Trans>
-                        </fieldset>
-                    </form>
+                    <h1>{t('walletSetup:creatingSeed')}</h1>
+                    <p>{t('walletSetup:doYouNeedASeed')}</p>
+                    <Info>
+                        <p>{t('walletSetup:seedExplanation')}</p>
+                        <Trans i18nKey="walletSetup:explanation">
+                            <p>
+                                <span>You can use it to access your funds from</span>
+                                <strong> any wallet</strong>
+                                <span>, on</span>
+                                <strong> any device</strong>
+                                <span>. But if you lose your seed, you also lose your IOTA.</span>
+                            </p>
+                        </Trans>
+                    </Info>
                 </section>
-                <footer />
-            </React.Fragment>
+                <footer>
+                    <Button to="/onboarding/seed-verify" className="square" variant="dark">
+                        {t('walletSetup:noIHaveOne')}
+                    </Button>
+                    <Button to="/onboarding/seed-generate" className="square" variant="primary">
+                        {t('walletSetup:yesINeedASeed')}
+                    </Button>
+                </footer>
+            </form>
         );
     }
 }

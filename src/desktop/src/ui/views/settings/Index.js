@@ -14,7 +14,7 @@ import Password from 'ui/views/settings/Password';
 import Advanced from 'ui/views/settings/Advanced';
 import TwoFA from 'ui/views/settings/TwoFA';
 
-import css from './index.css';
+import css from './index.scss';
 
 /** Settings main wrapper component */
 class Settings extends React.PureComponent {

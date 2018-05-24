@@ -3,7 +3,8 @@ import each from 'lodash/each';
 import map from 'lodash/map';
 import union from 'lodash/union';
 import { setPrice, setChartData, setMarketData } from './marketData';
-import { setNodeList } from './settings';
+import { setNodeList, setRandomlySelectedNode } from './settings';
+import { getRandomNode, changeIotaNode } from '../libs/iota';
 import { formatChartData, getUrlTimeFormat, getUrlNumberFormat, rearrangeObjectKeys } from '../libs/utils';
 import { generateAccountInfoErrorAlert, generateAlert } from './alerts';
 import { setNewUnconfirmedBundleTails, removeBundleFromUnconfirmedBundleTails } from './accounts';
@@ -11,7 +12,7 @@ import { getFirstConsistentTail, isStillAValidTransaction } from '../libs/iota/t
 import { selectedAccountStateFactory } from '../selectors/accounts';
 import { syncAccount } from '../libs/iota/accounts';
 import { forceTransactionPromotion } from './transfers';
-import { NODELIST_URL, nodes } from '../config';
+import { NODELIST_URL, nodes, nodesWithPoWEnabled } from '../config';
 import Errors from '../libs/errors';
 
 export const ActionTypes = {
@@ -158,19 +159,43 @@ export const fetchPrice = () => {
     };
 };
 
-export const fetchNodeList = () => {
+export const fetchNodeList = (chooseRandomNode = false) => {
     return (dispatch) => {
         dispatch(fetchNodeListRequest());
+
+        const setRandomNode = (nodesList) => {
+            if (chooseRandomNode) {
+                const node = getRandomNode(nodesList);
+                changeIotaNode(node);
+                dispatch(setRandomlySelectedNode(node));
+            }
+        };
+
         fetch(NODELIST_URL)
-            .then((response) => response.json(), () => dispatch(fetchNodeListError()))
+            .then(
+                (response) => response.json(),
+                () => {
+                    // In case there is an error fetching the remote nodes list
+                    // Choose a random node from the list of hardcoded nodes
+                    setRandomNode(nodes);
+                    dispatch(fetchNodeListError());
+                },
+            )
             .then((response) => {
                 if (response.length) {
                     const remoteNodes = response
                         .map((node) => node.node)
                         .filter((node) => typeof node === 'string' && node.indexOf('https://') === 0);
 
+                    const remoteNodesWithPoWEnabled = response
+                        .filter((node) => node.pow)
+                        .map((nodeWithPoWEnabled) => nodeWithPoWEnabled.node);
+
                     const unionNodes = union(nodes, remoteNodes);
 
+                    // A temporary addition
+                    // Only choose a random node with PoW enabled.
+                    setRandomNode(union(nodesWithPoWEnabled, remoteNodesWithPoWEnabled));
                     dispatch(setNodeList(unionNodes));
                 }
 

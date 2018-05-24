@@ -17,17 +17,17 @@ import { DEFAULT_SECURITY } from '../../config';
  *   @param {number} start - Index to start the search from
  *   @param {number} threshold - Maximum value (balance) to stop the search
  *   @param {number} [security= 2]
- *   @returns {object} inputs, totalBalance
+ *   @returns {object} inputs, availableBalance
  **/
 export const prepareInputs = (addressData, start, threshold, security = DEFAULT_SECURITY) => {
     const inputs = [];
-    let totalBalance = 0;
+    let availableBalance = 0;
 
     // Return prematurely in case threshold is zero
     // This check prevents adding input on the first iteration
     // if address data has addresses with balance.
     if (!threshold) {
-        return { inputs, totalBalance };
+        return { inputs, availableBalance };
     }
 
     const addresses = keys(addressData).slice(start);
@@ -40,9 +40,9 @@ export const prepareInputs = (addressData, start, threshold, security = DEFAULT_
             const input = { address, balance, keyIndex, security };
 
             inputs.push(input);
-            totalBalance += balance;
+            availableBalance += balance;
 
-            const hasReachedThreshold = totalBalance >= threshold;
+            const hasReachedThreshold = availableBalance >= threshold;
 
             if (hasReachedThreshold) {
                 return false;
@@ -50,7 +50,7 @@ export const prepareInputs = (addressData, start, threshold, security = DEFAULT_
         }
     });
 
-    return { inputs, totalBalance };
+    return { inputs, availableBalance };
 };
 
 /**
@@ -70,11 +70,11 @@ export const prepareInputs = (addressData, start, threshold, security = DEFAULT_
  **/
 export const getUnspentInputs = (addressData, spentAddresses, pendingValueTransfers, start, threshold, inputs) => {
     if (isNull(inputs)) {
-        inputs = { inputs: [], totalBalance: 0, allBalance: 0 };
+        inputs = { inputs: [], availableBalance: 0, totalBalance: 0 };
     }
 
     const preparedInputs = prepareInputs(addressData, start, threshold);
-    inputs.allBalance += preparedInputs.inputs.reduce((sum, input) => sum + input.balance, 0);
+    inputs.totalBalance += preparedInputs.inputs.reduce((sum, input) => sum + input.balance, 0);
 
     return filterSpentAddresses(preparedInputs.inputs, spentAddresses).then((unspentInputs) => {
         const filtered = filterAddressesWithIncomingTransfers(unspentInputs, pendingValueTransfers);
@@ -90,15 +90,15 @@ export const getUnspentInputs = (addressData, spentAddresses, pendingValueTransf
 
             return getUnspentInputs(addressData, spentAddresses, pendingValueTransfers, end + 1, diff, {
                 inputs: inputs.inputs.concat(filtered),
-                totalBalance: inputs.totalBalance + collected,
-                allBalance: inputs.allBalance,
+                availableBalance: inputs.availableBalance + collected,
+                totalBalance: inputs.totalBalance,
             });
         }
 
         return {
             inputs: inputs.inputs.concat(filtered),
-            totalBalance: inputs.totalBalance + collected,
-            allBalance: inputs.allBalance,
+            availableBalance: inputs.availableBalance + collected,
+            totalBalance: inputs.totalBalance,
         };
     });
 };
