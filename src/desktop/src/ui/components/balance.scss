@@ -1,0 +1,32 @@
+.balance {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    h3 {
+        font-size: 14px;
+        font-weight: 400;
+        letter-spacing: 0.5px;
+    }
+    h1 {
+        font-size: 64px;
+        line-height: 64px;
+        margin: 12px 0px;
+
+        @media screen and (max-width: 860px) {
+            margin: 4px 0;
+        }
+
+        small {
+            font-size: 21px;
+            line-height: 21px;
+            margin-left: 6px;
+        }
+    }
+
+    h2 {
+        margin-bottom: 15px;
+    }
+}
