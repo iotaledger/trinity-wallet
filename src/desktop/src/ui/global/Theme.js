@@ -2,17 +2,6 @@ import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-/* eslint-disable import/no-unresolved */
-// FIXME: Get rid of this disabled eslint rule once imports for this file are resolved.
-
-import DefaultWave from 'themes/waves/Default.png';
-import MintWave from 'themes/waves/Mint.png';
-import IonicWave from 'themes/waves/Ionic.png';
-import ElectricWave from 'themes/waves/Electric.png';
-import SteelBlueWave from 'themes/waves/SteelBlue.png';
-
-/* eslint-enable import/no-unresolved */
-
 /**
  * Theming style provider component
  * @ignore
@@ -31,16 +20,13 @@ class Theme extends PureComponent {
 
     componentWillReceiveProps(nextProps) {
         if (this.props.themeName !== nextProps.themeName) {
-            this.updateTheme(nextProps.theme, nextProps.themeName);
+            this.updateTheme(nextProps.theme);
         }
     }
 
-    updateTheme(theme, themeName) {
+    updateTheme(theme) {
         Object.keys(theme).map((colorsName) => {
             const colorSet = theme[colorsName];
-            if (!colorSet.color) {
-                return;
-            }
 
             Object.keys(colorSet).map((colorName) => {
                 if (colorName === 'color') {
@@ -50,33 +36,6 @@ class Theme extends PureComponent {
                 }
             });
         });
-
-        let wave = IonicWave;
-
-        switch (themeName) {
-            case 'Ionic':
-                wave = IonicWave;
-                break;
-            case 'Default':
-                wave = DefaultWave;
-                break;
-            case 'Electric':
-                wave = ElectricWave;
-                break;
-            case 'Mint':
-                wave = MintWave;
-                break;
-            case 'SteelBlue':
-                wave = SteelBlueWave;
-                break;
-            case 'Dark':
-                wave = '';
-                break;
-            case 'Light':
-                wave = '';
-                break;
-        }
-        document.documentElement.style.setProperty('--wave-file', `url("${wave.replace('../dist', '')}")`);
     }
 
     render() {

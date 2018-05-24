@@ -5,6 +5,7 @@ import sinon from 'sinon';
 import * as actions from '../../actions/transfers';
 import * as transferUtils from '../../libs/iota/transfers';
 import * as accountsUtils from '../../libs/iota/accounts';
+import * as extendedApis from '../../libs/iota/extendedApi';
 import * as inputUtils from '../../libs/iota/inputs';
 import { iota, SwitchingConfig } from '../../libs/iota/index';
 import accounts from '../__samples__/accounts';
@@ -381,6 +382,7 @@ describe('actions: transfers', () => {
                 sandbox = sinon.sandbox.create();
 
                 sandbox.stub(iota.api, 'getNodeInfo').yields(null, {});
+                sandbox.stub(extendedApis, 'isNodeSynced').resolves(true);
                 sandbox.stub(iota.api, 'getTransactionsToApprove').yields(null, {
                     trunkTransaction:
                         'PMEL9E9ZACLGEUPHNX9TSLEBDKTIGXDERNQSURABASAIGPWTFB9WUIXQVPKIFTHUQBRXEYQJANBDZ9999',
@@ -399,13 +401,13 @@ describe('actions: transfers', () => {
             });
 
             describe('when transaction is successful', () => {
-                it('should create eight actions of type IOTA/PROGRESS/SET_NEXT_STEP_AS_ACTIVE', () => {
+                it('should create nine actions of type IOTA/PROGRESS/SET_NEXT_STEP_AS_ACTIVE', () => {
                     const prepareTransfers = sinon.stub(iota.api, 'prepareTransfers').yields(null, trytes.value);
                     const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false]);
 
                     const getUnspentInputs = sinon.stub(inputUtils, 'getUnspentInputs').resolves({
-                        allBalance: 110,
-                        totalBalance: 10,
+                        totalBalance: 110,
+                        availableBalance: 10,
                         inputs: [
                             {
                                 address:
@@ -436,7 +438,7 @@ describe('actions: transfers', () => {
                                     .getActions()
                                     .map((action) => action.type)
                                     .filter((type) => type === 'IOTA/PROGRESS/SET_NEXT_STEP_AS_ACTIVE').length,
-                            ).to.equal(8);
+                            ).to.equal(9);
 
                             syncAccountAfterSpending.restore();
                             getUnspentInputs.restore();
@@ -487,8 +489,8 @@ describe('actions: transfers', () => {
                             .stub(iota.api, 'wereAddressesSpentFrom')
                             .yields(null, [false]);
                         sinon.stub(inputUtils, 'getUnspentInputs').resolves({
-                            allBalance: 110,
-                            totalBalance: 10,
+                            totalBalance: 110,
+                            availableBalance: 10,
                             inputs: [
                                 {
                                     address:
@@ -531,8 +533,8 @@ describe('actions: transfers', () => {
                             .yields(null, [false]);
 
                         sinon.stub(inputUtils, 'getUnspentInputs').resolves({
-                            allBalance: 110,
-                            totalBalance: 0,
+                            totalBalance: 110,
+                            availableBalance: 0,
                             inputs: [
                                 {
                                     address:
@@ -577,8 +579,8 @@ describe('actions: transfers', () => {
                             .yields(null, [false]);
 
                         sinon.stub(inputUtils, 'getUnspentInputs').resolves({
-                            allBalance: 110,
-                            totalBalance: 10,
+                            totalBalance: 110,
+                            availableBalance: 10,
                             inputs: [
                                 {
                                     address:
