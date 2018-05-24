@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import sjcl from 'sjcl';
+import zxcvbn from 'zxcvbn';
 
 import { generateAlert } from 'actions/alerts';
 import { setPassword } from 'actions/wallet';
 
-import { isValidPassword } from 'libs/utils';
+import { passwordReasons } from 'libs/i18next';
 import { updateVaultPassword } from 'libs/crypto';
 
 import Password from 'ui/components/input/Password';
@@ -43,7 +44,7 @@ class PasswordSettings extends PureComponent {
         passwordConfirm: '',
     };
 
-    changePassword = (e) => {
+    changePassword = async (e) => {
         e.preventDefault();
 
         const { passwordCurrent, passwordNew, passwordConfirm } = this.state;
@@ -58,20 +59,21 @@ class PasswordSettings extends PureComponent {
             return;
         }
 
-        if (!isValidPassword(passwordNew)) {
-            generateAlert(
-                'error',
-                t('changePassword:passwordTooShort'),
-                t('changePassword:passwordTooShortExplanation'),
-            );
-            return;
+        const score = zxcvbn(passwordNew);
+
+        if (score.score < 4) {
+            const reason = score.feedback.warning
+                ? t(`changePassword:${passwordReasons[score.feedback.warning]}`)
+                : t('changePassword:passwordTooWeakReason');
+
+            return generateAlert('error', t('changePassword:passwordTooWeak'), reason);
         }
 
         try {
             const passwordNewHash = sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(passwordNew));
             const passwordCurrentHash = sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(passwordCurrent));
 
-            updateVaultPassword(passwordCurrentHash, passwordNewHash);
+            await updateVaultPassword(passwordCurrentHash, passwordNewHash);
 
             setPassword(passwordNewHash);
 
@@ -108,6 +110,7 @@ class PasswordSettings extends PureComponent {
                     onChange={(value) => this.setState({ passwordCurrent: value })}
                 />
                 <Password
+                    showScore
                     value={passwordNew}
                     label={t('changePassword:newPassword')}
                     onChange={(value) => this.setState({ passwordNew: value })}

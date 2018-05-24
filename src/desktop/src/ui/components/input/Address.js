@@ -6,7 +6,7 @@ import { ADDRESS_LENGTH, parseAddress } from 'libs/iota/utils';
 import Modal from 'ui/components/modal/Modal';
 import Button from 'ui/components/Button';
 import Icon from 'ui/components/Icon';
-import css from './input.css';
+import css from './input.scss';
 
 /**
  * Address input component

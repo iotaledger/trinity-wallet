@@ -6,7 +6,7 @@ import Sidebar from 'ui/views/wallet/Sidebar';
 import Dashboard from 'ui/views/wallet/Dashboard';
 import Polling from 'ui/global/Polling';
 
-import css from './index.css';
+import css from './index.scss';
 
 /**
  * Wallet functionallity router wrapper component
@@ -28,9 +28,7 @@ class Wallet extends React.PureComponent {
             <main className={css.wallet}>
                 <Polling />
                 <Sidebar history={history} location={location} />
-                <section className={location.pathname === '/wallet/charts' ? css.slided : null}>
-                    <Dashboard location={location} history={history} />
-                </section>
+                <Dashboard location={location} history={history} />
             </main>
         );
     }
