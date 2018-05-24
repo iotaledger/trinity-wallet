@@ -13,7 +13,7 @@ import Scrollbar from 'ui/components/Scrollbar';
 
 import withListData from 'containers/components/List';
 
-import css from './list.css';
+import css from './list.scss';
 
 /**
  * Transaction history list component
@@ -90,7 +90,7 @@ class List extends React.PureComponent {
                     <ul>
                         <a key="active" onClick={() => this.switchFilter(filter)} className={classNames(css.active)}>
                             {filter === 'All' ? 'All' : t(filter.toLowerCase())} <small>({historyTx.length})</small>
-                            <Icon icon="chevronDown" size={12} />
+                            <Icon icon="chevronDown" size={8} />
                         </a>
                         {loaded
                             ? filters.map((item) => {
@@ -113,7 +113,7 @@ class List extends React.PureComponent {
                         onClick={() => updateAccount()}
                         className={classNames(css.refresh, isBusy ? css.busy : null, isLoading ? css.loading : null)}
                     >
-                        <Icon icon="sync" size={26} />
+                        <Icon icon="sync" size={20} />
                     </a>
                 </nav>
                 <hr />
@@ -142,11 +142,11 @@ class List extends React.PureComponent {
                                         )}
                                     >
                                         <div>
-                                            <Icon icon={isReceived ? 'receive' : 'send'} size={16} />
+                                            <div className={isReceived ? css.plus : css.minus} />
                                             <span>{formatTime(convertUnixTimeToJSDate(transfer.timestamp))}</span>
-                                            <strong>
+                                            <span>
                                                 {!isConfirmed ? t('pending') : isReceived ? t('received') : t('sent')}
-                                            </strong>
+                                            </span>
                                             <span>
                                                 {round(formatValue(transfer.transferValue), 1)}{' '}
                                                 {formatUnit(transfer.transferValue)}

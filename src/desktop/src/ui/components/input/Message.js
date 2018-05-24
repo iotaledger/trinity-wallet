@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Textarea from 'react-textarea-autosize';
-import css from './input.css';
+import css from './input.scss';
 
 /**
  * Message input component

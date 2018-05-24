@@ -3,6 +3,7 @@ const packageFile = require('../package.json');
 const machineUuid = require('machine-uuid');
 const keytar = require('keytar');
 const settings = require('electron-settings');
+const currentWindow = require('electron').remote.getCurrentWindow();
 
 const capitalize = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
@@ -30,6 +31,14 @@ const Electron = {
             attribute: attribute,
             value: value,
         });
+    },
+
+    enableMenu: () => {
+        ipc.send('menu.enabled', true);
+    },
+
+    disableMenu: () => {
+        ipc.send('menu.enabled', false);
     },
 
     requestDeepLink: () => {
@@ -77,6 +86,22 @@ const Electron = {
 
     getOS: () => {
         return process.platform;
+    },
+
+    minimize: () => {
+        currentWindow.minimize();
+    },
+
+    maximize: () => {
+        currentWindow.maximize();
+    },
+
+    close: () => {
+        currentWindow.close();
+    },
+
+    showMenu: () => {
+        ipc.send('menu.popup');
     },
 
     changeLanguage: (t) => {
