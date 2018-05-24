@@ -9,7 +9,7 @@ class Inputs extends React.PureComponent {
     state = {
         password: '',
         seed: '',
-        ammount: '0'
+        ammount: '0',
     };
 
     render() {
