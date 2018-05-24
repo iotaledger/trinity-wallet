@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     topContainer: {
-        flex: 9,
+        flex: 11,
         justifyContent: 'space-around',
     },
     passwordTextContainer: {
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     },
     titleText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize4,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
