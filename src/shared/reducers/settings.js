@@ -63,6 +63,7 @@ const initialState = {
     versions: {},
     is2FAEnabled: false,
     isFingerprintEnabled: false,
+    hasVisitedSeedShareTutorial: false,
 };
 
 const settingsReducer = (state = initialState, action) => {
@@ -182,6 +183,11 @@ const settingsReducer = (state = initialState, action) => {
             return merge({}, state, {
                 versions: action.payload,
             });
+        case ActionTypes.SET_SEED_SHARE_TUTORIAL_VISITATION_STATUS:
+            return {
+                ...state,
+                hasVisitedSeedShareTutorial: action.payload,
+            };
     }
 
     return state;
