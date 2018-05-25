@@ -228,11 +228,11 @@ class SaveSeedConfirmation extends Component {
                 <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
                     <Text style={styles.infoTextNormal}>
                         {t('reenterSeedWarning')}
-                        {isAndroid ? ` ${t('global:androidInsecureClipboardWarning')}` : null}
                     </Text>
                 </Text>
                 {isAndroid && (
                     <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
+                        <Text style={styles.infoTextNormal}>{t('global:androidInsecureClipboardWarning')} </Text>
                         <Text style={styles.infoTextBold}>{t('global:androidCopyPasteWarning')}</Text>
                     </Text>
                 )}
@@ -281,7 +281,7 @@ class SaveSeedConfirmation extends Component {
                                 })}
                             </View>
                         ) : (
-                            <View style={{ flex: 1 }} />
+                            <View style={{ flex: 1.2 }} />
                         )}
                     </View>
                 </View>

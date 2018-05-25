@@ -17,24 +17,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    topContainer: {
-        flex: 5,
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-    },
-    bottomContainer: {
-        flex: 0.8,
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-    },
     titleText: {
-        fontFamily: 'SourceSansPro-Regular',
+        fontFamily: 'SourceSansPro-SemiBold',
         fontSize: GENERAL.fontSize4,
         textAlign: 'center',
         paddingTop: height / 55,
     },
     pdf: {
-        height: height,
+        height: height - height / 8 - height / 11,
         width: width,
     },
     titleContainer: {
@@ -85,7 +75,7 @@ class TermsAndConditions extends Component {
 
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
-                <DynamicStatusBar backgroundColor={body.bg} />
+                <DynamicStatusBar backgroundColor={bar.bg} />
                 <View style={[styles.titleContainer, { backgroundColor: bar.bg }]}>
                     <Text style={[styles.titleText, textColor]}>{t('termsAndConditions').toUpperCase()}</Text>
                 </View>
