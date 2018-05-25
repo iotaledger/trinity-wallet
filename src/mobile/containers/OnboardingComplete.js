@@ -87,7 +87,7 @@ class OnboardingComplete extends Component {
     }
 
     render() {
-        const { t, theme: { body } } = this.props;
+        const { t, theme: { body, primary } } = this.props;
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
                 <DynamicStatusBar backgroundColor={body.bg} />
@@ -101,8 +101,15 @@ class OnboardingComplete extends Component {
                     <Image source={balloonsImagePath} style={styles.party} />
                 </View>
                 <View style={styles.bottomContainer}>
-                    <Button onPress={() => this.onNextPress()} testID="languageSetup-next">
-                        Open your wallet
+                    <Button
+                        onPress={() => this.onNextPress()}
+                        testID="languageSetup-next"
+                        style={{
+                            wrapper: { backgroundColor: primary.color },
+                            children: { color: primary.body },
+                        }}
+                    >
+                        {t('openYourWallet')}
                     </Button>
                 </View>
             </View>

@@ -545,7 +545,7 @@ class PaperWallet extends Component {
     };
 
     render() {
-        const { t, seed, theme: { body, secondary } } = this.props;
+        const { t, seed, theme: { primary, body, secondary } } = this.props;
         const { isModalActive, iotaLogoCheckbox } = this.state;
         const textColor = { color: body.color };
         const checksum = getChecksum(seed);
@@ -621,7 +621,15 @@ class PaperWallet extends Component {
                     <View style={{ flex: 1.5 }} />
                 </View>
                 <View style={styles.bottomContainer}>
-                    <Button onPress={() => this.onDonePress()}>{t('global:doneLowercase')}</Button>
+                    <Button
+                        onPress={() => this.onDonePress()}
+                        style={{
+                            wrapper: { backgroundColor: primary.color },
+                            children: { color: primary.body },
+                        }}
+                    >
+                        {t('global:doneLowercase')}
+                    </Button>
                 </View>
                 <Modal
                     backdropTransitionInTiming={isAndroid ? 500 : 300}

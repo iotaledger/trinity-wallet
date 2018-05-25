@@ -10,14 +10,12 @@ const styles = StyleSheet.create({
     },
     children: {
         fontFamily: 'SourceSansPro-Bold',
-        color: '#1a373e',
         fontSize: General.fontSize3,
         textAlign: 'center',
     },
     wrapper: {
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#f7d100',
         width,
         height: height / 12.5,
     },

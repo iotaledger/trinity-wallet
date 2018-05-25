@@ -380,7 +380,15 @@ class CopySeedToClipboard extends Component {
                     <View style={{ flex: 0.5 }} />
                 </View>
                 <View style={styles.bottomContainer}>
-                    <Button onPress={() => this.onDonePress()}>{t('global:doneLowercase')}</Button>
+                    <Button
+                        onPress={() => this.onDonePress()}
+                        style={{
+                            wrapper: { backgroundColor: theme.primary.color },
+                            children: { color: theme.primary.body },
+                        }}
+                    >
+                        {t('global:doneLowercase')}
+                    </Button>
                 </View>
                 <Modal
                     backdropTransitionInTiming={isAndroid ? 500 : 300}

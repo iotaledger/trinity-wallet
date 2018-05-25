@@ -100,7 +100,8 @@ class LanguageSetup extends Component {
     }
 
     render() {
-        const { t, theme: { body } } = this.props;
+        const { t, theme: { body, primary } } = this.props;
+
         return (
             <TouchableWithoutFeedback
                 onPress={() => {
@@ -131,7 +132,14 @@ class LanguageSetup extends Component {
                             />
                         </View>
                         <View style={styles.bottomContainer}>
-                            <Button onPress={() => this.onNextPress()} testID="languageSetup-next">
+                            <Button
+                                onPress={() => this.onNextPress()}
+                                testID="languageSetup-next"
+                                style={{
+                                    wrapper: { backgroundColor: primary.color },
+                                    children: { color: primary.body },
+                                }}
+                            >
                                 {t('letsGetStarted')}
                             </Button>
                         </View>

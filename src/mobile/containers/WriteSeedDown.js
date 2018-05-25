@@ -183,7 +183,15 @@ class WriteSeedDown extends Component {
                     <View style={{ flex: 1 }} />
                 </View>
                 <View style={styles.bottomContainer}>
-                    <Button onPress={() => this.onDonePress()}>{t('global:doneLowercase')}</Button>
+                    <Button
+                        onPress={() => this.onDonePress()}
+                        style={{
+                            wrapper: { backgroundColor: theme.primary.color },
+                            children: { color: theme.primary.body },
+                        }}
+                    >
+                        {t('global:doneLowercase')}
+                    </Button>
                 </View>
             </View>
         );

@@ -263,8 +263,8 @@ class SetPassword extends Component {
                             <OnboardingButtons
                                 onLeftButtonPress={() => this.onBackPress()}
                                 onRightButtonPress={() => this.onDonePress()}
-                                leftButtonText={t('global:back')}
-                                rightButtonText={t('global:done')}
+                                leftButtonText={t('global:goBack')}
+                                rightButtonText={t('global:doneLowercase')}
                             />
                         </View>
                     </View>

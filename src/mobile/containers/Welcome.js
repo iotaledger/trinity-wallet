@@ -196,7 +196,13 @@ class Welcome extends Component {
                                 this.onNextPress();
                             }
                         }}
-                        style={{ wrapper: { opacity: hasConnection ? 1 : 0.6 } }}
+                        style={{
+                            wrapper: {
+                                opacity: hasConnection ? 1 : 0.6,
+                                backgroundColor: theme.primary.color,
+                            },
+                            children: { color: theme.primary.body },
+                        }}
                         testID="welcome-next"
                     >
                         {t('global:continue')}
