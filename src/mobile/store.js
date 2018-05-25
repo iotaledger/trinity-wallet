@@ -11,6 +11,7 @@ export const persistConfig = {
     blacklist: ['app', 'keychain', 'polling', 'ui', 'progress', 'deepLinks', 'wallet'],
 };
 
+/* eslint-disable no-unused-vars */
 const shouldMigrate = (restoredState) => {
     const restoredVersion = get(restoredState, 'settings.versions.version');
     const restoredBuildNumber = get(restoredState, 'settings.versions.buildNumber');
@@ -20,9 +21,12 @@ const shouldMigrate = (restoredState) => {
 
     return restoredVersion !== currentVersion || restoredBuildNumber !== currentBuildNumber;
 };
+/* eslint-enable no-unused-vars */
 
 const migrate = (state, restoredState) => {
-    const hasAnUpdate = shouldMigrate(restoredState);
+    // TODO: Doing a dirty patch to disable migration setup for alpha v0.2.0
+    // since this would be installed as a fresh application.
+    const hasAnUpdate = false;
 
     if (!hasAnUpdate) {
         state.dispatch(
