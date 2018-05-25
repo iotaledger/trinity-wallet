@@ -645,7 +645,7 @@
         "noWebGLSupportExplanation": "Your computer does not support WebGL. Please use remote PoW."
     },
     "progressSteps": {
-        "validatingNodeHealth": "Validating currently selected node's health",
+        "checkingNodeHealth": "Checking node health",
         "validatingReceiveAddress": "Validating receive address",
         "syncingAccount": "Syncing account",
         "preparingInputs": "Preparing inputs",

@@ -35,6 +35,11 @@ fastlane refresh_dsyms
 fastlane release
 ```
 
+### deploy
+```
+fastlane deploy
+```
+
 ### localization
 ```
 fastlane localization
