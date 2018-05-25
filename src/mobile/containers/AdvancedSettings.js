@@ -187,6 +187,17 @@ export class AdvancedSettings extends PureComponent {
                         </View>
                     </TouchableOpacity>
                 </View>
+                <View style={styles.itemContainer}>
+                    <TouchableOpacity
+                        onPress={() => this.props.setSetting('autoPromotion')}
+                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                    >
+                        <View style={styles.item}>
+                            <Icon name="sync" size={width / 22} color={bodyColor} />
+                            <Text style={[styles.titleText, textColor]}>{t('autoPromotion')}</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
                 <View style={styles.separatorContainer}>
                     <View style={[styles.separator, borderColor]} />
                 </View>
