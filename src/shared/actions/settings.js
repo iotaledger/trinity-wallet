@@ -29,6 +29,7 @@ export const ActionTypes = {
     SET_UPDATE_DONE: 'IOTA/SETTINGS/UPDATE_DONE',
     SET_NODELIST: 'IOTA/SETTINGS/SET_NODELIST',
     SET_REMOTE_POW: 'IOTA/SETTINGS/SET_REMOTE_POW',
+    SET_AUTO_PROMOTION: 'IOTA/SETTINGS/SET_AUTO_PROMOTION',
     UPDATE_AUTO_NODE_SWITCHING: 'IOTA/SETTINGS/UPDATE_AUTO_NODE_SWITCHING',
     SET_LOCK_SCREEN_TIMEOUT: 'IOTA/SETTINGS/SET_LOCK_SCREEN_TIMEOUT',
     SET_VERSIONS: 'IOTA/SETTINGS/WALLET/SET_VERSIONS',
@@ -91,6 +92,11 @@ export const setNodeList = (payload) => ({
 
 export const setRemotePoW = (payload) => ({
     type: ActionTypes.SET_REMOTE_POW,
+    payload,
+});
+
+export const setAutoPromotion = (payload) => ({
+    type: ActionTypes.SET_AUTO_PROMOTION,
     payload,
 });
 
@@ -270,6 +276,13 @@ export function changePowSettings() {
             dispatch(setRemotePoW(!settings.remotePoW));
             dispatch(generateAlert('success', i18next.t('pow:powUpdated'), i18next.t('pow:powUpdatedExplanation')));
         }
+    };
+}
+
+export function changeAutoPromotionSettings() {
+    return (dispatch, getState) => {
+        const settings = getState().settings;
+        dispatch(setAutoPromotion(!settings.autoPromotion));
     };
 }
 
