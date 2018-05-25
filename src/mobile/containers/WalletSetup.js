@@ -86,7 +86,7 @@ class WalletSetup extends Component {
         theme: PropTypes.object.isRequired,
     };
 
-    onYesPress() {
+    redirectToEnterSeedScreen() {
         const { theme } = this.props;
 
         this.props.navigator.push({
@@ -103,7 +103,7 @@ class WalletSetup extends Component {
         });
     }
 
-    onNoPress() {
+    redirectToNewSeedSetupScreen() {
         const { theme } = this.props;
         this.props.navigator.push({
             screen: 'newSeedSetup',
@@ -167,10 +167,10 @@ class WalletSetup extends Component {
                 </View>
                 <View style={styles.bottomContainer}>
                     <OnboardingButtons
-                        onLeftButtonPress={() => this.onNoPress()}
-                        onRightButtonPress={() => this.onYesPress()}
-                        leftButtonText={t('global:no')}
-                        rightButtonText={t('global:yes')}
+                        onLeftButtonPress={() => this.redirectToEnterSeedScreen()}
+                        onRightButtonPress={() => this.redirectToNewSeedSetupScreen()}
+                        leftButtonText={t('noIHaveOne')}
+                        rightButtonText={t('yesINeedASeed')}
                         leftButtonTestID="walletSetup-no"
                         rightButtonTestID="walletSetup-yes"
                     />

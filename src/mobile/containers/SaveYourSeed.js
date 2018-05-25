@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { translate, Trans } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableOpacity, BackHandler } from 'react-native';
+import { StyleSheet, View, Text, BackHandler } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import tinycolor from 'tinycolor2';
+import Button from '../components/Button';
 import OnboardingButtons from '../containers/OnboardingButtons';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import DynamicStatusBar from '../components/DynamicStatusBar';
@@ -144,6 +145,7 @@ class SaveYourSeed extends Component {
             animated: false,
         });
     }
+
     onPrintClick() {
         const { theme: { body } } = this.props;
         this.props.navigator.push({
@@ -159,6 +161,7 @@ class SaveYourSeed extends Component {
             animated: false,
         });
     }
+
     onCopyClick() {
         const { theme: { body } } = this.props;
         this.props.navigator.push({
@@ -180,10 +183,6 @@ class SaveYourSeed extends Component {
         const isBgLight = tinycolor(body.bg).isLight();
         const textColor = { color: body.color };
         const extraColorText = { color: isBgLight ? body.bg : extra.color };
-        const extraColorBorder = {
-            borderColor: isBgLight ? 'transparent' : extra.color,
-            backgroundColor: isBgLight ? extra.color : body.bg,
-        };
 
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
@@ -202,31 +201,49 @@ class SaveYourSeed extends Component {
                     </Trans>
                     <View style={{ flex: 0.5 }} />
                     <View>
-                        <TouchableOpacity onPress={() => this.onWriteClick()}>
-                            <View style={[styles.optionButton, extraColorBorder]}>
-                                <Text style={[styles.optionButtonText, extraColorText]}>
-                                    {t('global:manualCopy').toUpperCase()}
-                                </Text>
-                            </View>
-                        </TouchableOpacity>
+                        <Button
+                            onPress={() => this.onWriteClick()}
+                            style={{
+                                wrapper: {
+                                    width: width / 1.36,
+                                    height: height / 13,
+                                    borderRadius: height / 90,
+                                    backgroundColor: extra.color,
+                                },
+                            }}
+                        >
+                            {t('global:manualCopy')}
+                        </Button>
                     </View>
                     <View style={{ paddingTop: height / 25 }}>
-                        <TouchableOpacity onPress={() => this.onPrintClick()}>
-                            <View style={[styles.optionButton, extraColorBorder]}>
-                                <Text style={[styles.optionButtonText, extraColorText]}>
-                                    {t('global:paperWallet').toUpperCase()}
-                                </Text>
-                            </View>
-                        </TouchableOpacity>
+                        <Button
+                            onPress={() => this.onPrintClick()}
+                            style={{
+                                wrapper: {
+                                    width: width / 1.36,
+                                    height: height / 13,
+                                    borderRadius: height / 90,
+                                    backgroundColor: extra.color,
+                                },
+                            }}
+                        >
+                            {t('global:paperWallet')}
+                        </Button>
                     </View>
                     <View style={{ paddingTop: height / 25 }}>
-                        <TouchableOpacity onPress={() => this.onCopyClick()}>
-                            <View style={[styles.optionButton, extraColorBorder]}>
-                                <Text style={[styles.optionButtonText, extraColorText]}>
-                                    {t('global:addToPasswordManager').toUpperCase()}
-                                </Text>
-                            </View>
-                        </TouchableOpacity>
+                        <Button
+                            onPress={() => this.onCopyClick()}
+                            style={{
+                                wrapper: {
+                                    width: width / 1.36,
+                                    height: height / 13,
+                                    borderRadius: height / 90,
+                                    backgroundColor: extra.color,
+                                },
+                            }}
+                        >
+                            {t('global:addToPasswordManager')}
+                        </Button>
                     </View>
                     <View style={{ flex: 1 }} />
                 </View>
@@ -234,8 +251,8 @@ class SaveYourSeed extends Component {
                     <OnboardingButtons
                         onLeftButtonPress={() => this.onBackPress()}
                         onRightButtonPress={() => this.onDonePress()}
-                        leftButtonText={t('global:back')}
-                        rightButtonText={t('global:done')}
+                        leftButtonText={t('global:goBack')}
+                        rightButtonText={t('iHavesavedMySeed')}
                     />
                 </View>
                 <StatefulDropdownAlert backgroundColor={body.bg} />

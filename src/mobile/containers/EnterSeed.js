@@ -230,8 +230,8 @@ class EnterSeed extends React.Component {
                         <OnboardingButtons
                             onLeftButtonPress={() => this.onBackPress()}
                             onRightButtonPress={() => this.onDonePress()}
-                            leftButtonText={t('global:back')}
-                            rightButtonText={t('global:next')}
+                            leftButtonText={t('global:goBack')}
+                            rightButtonText={t('global:continue')}
                             leftButtonTestID="enterSeed-back"
                             rightButtonTestID="enterSeed-next"
                         />

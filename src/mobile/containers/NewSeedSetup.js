@@ -376,8 +376,8 @@ class NewSeedSetup extends Component {
                     <OnboardingButtons
                         onLeftButtonPress={() => this.onBackPress()}
                         onRightButtonPress={() => this.onNextPress()}
-                        leftButtonText={t('global:back')}
-                        rightButtonText={t('global:next')}
+                        leftButtonText={t('global:goBack')}
+                        rightButtonText={t('global:continue')}
                         leftButtonTestID="newSeedSetup-back"
                         rightButtonTestID="newSeedSetup-next"
                         rightButtonStyle={{ wrapper: { opacity } }}
@@ -392,7 +392,7 @@ class NewSeedSetup extends Component {
                     isVisible={isModalActive}
                     onBackButtonPress={() => this.hideModal()}
                     hideModalContentWhileAnimating
-                    useNativeDriver={isAndroid ? true : false}
+                    useNativeDriver={isAndroid}
                 >
                     {this.renderModalContent()}
                 </Modal>

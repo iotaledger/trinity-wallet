@@ -199,7 +199,7 @@ class Welcome extends Component {
                         style={{ wrapper: { opacity: hasConnection ? 1 : 0.6 } }}
                         testID="welcome-next"
                     >
-                        {t('global:next')}
+                        {t('global:continue')}
                     </Button>
                 </View>
                 <Modal

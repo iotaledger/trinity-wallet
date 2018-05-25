@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { translate, Trans } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getChecksum, MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/iota/utils';
 import Seedbox from '../components/SeedBox';
+import Button from '../components/Button';
 import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
 import DynamicStatusBar from '../components/DynamicStatusBar';
@@ -67,20 +68,6 @@ const styles = StyleSheet.create({
         fontFamily: 'SourceSansPro-Bold',
         fontSize: GENERAL.fontSize3,
         textAlign: 'left',
-        backgroundColor: 'transparent',
-    },
-    doneButton: {
-        borderWidth: 1.2,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 2.7,
-        height: height / 14,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        marginBottom: height / 20,
-    },
-    doneText: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
     },
     seedBox: {
@@ -196,11 +183,7 @@ class WriteSeedDown extends Component {
                     <View style={{ flex: 1 }} />
                 </View>
                 <View style={styles.bottomContainer}>
-                    <TouchableOpacity onPress={() => this.onDonePress()}>
-                        <View style={[styles.doneButton, { borderColor: theme.secondary.color }]}>
-                            <Text style={[styles.doneText, { color: theme.secondary.color }]}>{t('global:done')}</Text>
-                        </View>
-                    </TouchableOpacity>
+                    <Button onPress={() => this.onDonePress()}>{t('global:doneLowercase')}</Button>
                 </View>
             </View>
         );
