@@ -178,7 +178,7 @@ class SaveYourSeed extends Component {
     }
 
     render() {
-        const { t, theme: { body, extra } } = this.props;
+        const { t, theme: { body, secondary } } = this.props;
         const textColor = { color: body.color };
 
         return (
@@ -205,8 +205,9 @@ class SaveYourSeed extends Component {
                                     width: width / 1.36,
                                     height: height / 13,
                                     borderRadius: height / 90,
-                                    backgroundColor: extra.color,
+                                    backgroundColor: secondary.color,
                                 },
+                                children: { color: secondary.body }
                             }}
                         >
                             {t('global:manualCopy')}
@@ -220,8 +221,9 @@ class SaveYourSeed extends Component {
                                     width: width / 1.36,
                                     height: height / 13,
                                     borderRadius: height / 90,
-                                    backgroundColor: extra.color,
+                                    backgroundColor: secondary.color,
                                 },
+                                children: { color: secondary.body }
                             }}
                         >
                             {t('global:paperWallet')}
@@ -235,8 +237,9 @@ class SaveYourSeed extends Component {
                                     width: width / 1.36,
                                     height: height / 13,
                                     borderRadius: height / 90,
-                                    backgroundColor: extra.color,
+                                    backgroundColor: secondary.color,
                                 },
+                                children: { color: secondary.body }
                             }}
                         >
                             {t('global:addToPasswordManager')}

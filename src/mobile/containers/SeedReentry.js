@@ -35,8 +35,7 @@ const styles = StyleSheet.create({
     bottomContainer: {
         flex: 0.5,
         alignItems: 'center',
-        justifyContent: 'flex-end',
-        paddingBottom: height / 20,
+        justifyContent: 'flex-end'
     },
     logoContainer: {
         justifyContent: 'center',
@@ -201,8 +200,8 @@ class SeedReentry extends Component {
                             <OnboardingButtons
                                 onLeftButtonPress={() => this.onBackPress()}
                                 onRightButtonPress={() => this.onDonePress()}
-                                leftText={t('global:back')}
-                                rightText={t('global:done')}
+                                leftButtonText={t('global:goBack')}
+                                rightButtonText={t('global:continue')}
                             />
                         </View>
                     </View>

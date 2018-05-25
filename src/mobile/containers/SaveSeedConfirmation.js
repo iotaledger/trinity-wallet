@@ -284,8 +284,8 @@ class SaveSeedConfirmation extends Component {
                     <OnboardingButtons
                         onLeftButtonPress={() => this.onBackPress()}
                         onRightButtonPress={() => this.onNextPress()}
-                        leftButtonText={t('global:back')}
-                        rightButtonText={t('global:next')}
+                        leftButtonText={t('global:goBack')}
+                        rightButtonText={t('global:continue')}
                         rightButtonStyle={{ wrapper: { opacity } }}
                     />
                 </View>
