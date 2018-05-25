@@ -1,5 +1,7 @@
 import map from 'lodash/map';
 import orderBy from 'lodash/orderBy';
+import includes from 'lodash/includes';
+import get from 'lodash/get';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
@@ -19,6 +21,7 @@ import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/iota/ut
 import {
     getTransfersForSelectedAccount,
     getBalanceForSelectedAccount,
+    getAddressesForSelectedAccount,
 } from 'iota-wallet-shared-modules/selectors/accounts';
 import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
 import WithManualRefresh from '../components/ManualRefresh';
@@ -57,7 +60,7 @@ const styles = StyleSheet.create({
         fontSize: GENERAL.fontSize4,
         backgroundColor: 'transparent',
         marginTop: height / 31,
-        paddingLeft: width / 40
+        paddingLeft: width / 40,
     },
     fiatBalance: {
         fontFamily: 'SourceSansPro-Regular',
@@ -81,7 +84,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-    }
+    },
 });
 
 /**
@@ -120,6 +123,8 @@ export class Balance extends Component {
         isRefreshing: PropTypes.bool.isRequired,
         /** Fetches latest account info on swipe down */
         onRefresh: PropTypes.func.isRequired,
+        /** Addresses for selected account */
+        addresses: PropTypes.array.isRequired,
     };
 
     /**
@@ -169,16 +174,24 @@ export class Balance extends Component {
      */
 
     prepTransactions() {
-        const { transfers, t, primary, secondary, body } = this.props;
+        const { t, addresses, transfers, primary, secondary, body } = this.props;
         const orderedTransfers = orderBy(transfers, (tx) => tx.timestamp, ['desc']);
         const recentTransactions = orderedTransfers.slice(0, 4);
 
-        const computeConfirmationStatus = (persistence, incoming) => {
-            if (incoming) {
-                return persistence ? t('received') : t('receiving');
+        const computeConfirmationStatus = (outputs, persistence, incoming, value) => {
+            const receiveStatus = persistence ? t('received') : t('receiving');
+            const sendStatus = persistence ? t('sent') : t('sending');
+            if (value === 0) {
+                if (
+                    !includes(addresses, get(outputs, '[0].address')) &&
+                    includes(addresses, get(outputs, '[1].address'))
+                ) {
+                    return sendStatus;
+                }
+                return receiveStatus;
             }
 
-            return persistence ? t('sent') : t('sending');
+            return incoming ? receiveStatus : sendStatus;
         };
 
         const getSign = (value, incoming) => {
@@ -190,11 +203,11 @@ export class Balance extends Component {
         };
 
         const formattedTransfers = map(recentTransactions, (transfer) => {
-            const { timestamp, incoming, persistence, transferValue } = transfer;
+            const { outputs, timestamp, incoming, persistence, transferValue } = transfer;
 
             return {
                 time: timestamp,
-                confirmationStatus: computeConfirmationStatus(persistence, incoming),
+                confirmationStatus: computeConfirmationStatus(outputs, persistence, incoming, transferValue),
                 value: round(formatValue(transferValue), 1),
                 unit: formatUnit(transferValue),
                 sign: getSign(transferValue, incoming),
@@ -266,9 +279,7 @@ export class Balance extends Component {
                                     >
                                         {iotaBalance}
                                     </TextWithLetterSpacing>
-                                    <Text style={[styles.iotaUnit, textColor]}>
-                                        {iotaUnit}
-                                    </Text>
+                                    <Text style={[styles.iotaUnit, textColor]}>{iotaUnit}</Text>
                                 </View>
                                 <Text style={[styles.fiatBalance, textColor]}>
                                     {currencySymbol} {round(fiatBalance, 2).toFixed(2)}{' '}
@@ -295,6 +306,7 @@ const mapStateToProps = (state) => ({
     seedIndex: state.wallet.seedIndex,
     balance: getBalanceForSelectedAccount(state),
     transfers: getTransfersForSelectedAccount(state),
+    addresses: getAddressesForSelectedAccount(state),
     currency: state.settings.currency,
     conversionRate: state.settings.conversionRate,
     primary: state.settings.theme.primary,
