@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     children: {
-        fontFamily: 'SourceSansPro-Bold',
+        fontFamily: 'SourceSansPro-SemiBold',
         fontSize: General.fontSize3,
         textAlign: 'center',
     },
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         width,
-        height: height / 12.5,
+        height: height / 11,
     },
 });
 

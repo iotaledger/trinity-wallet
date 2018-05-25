@@ -10,6 +10,7 @@ import DynamicStatusBar from '../components/DynamicStatusBar';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
+import Header from '../components/Header';
 
 const styles = StyleSheet.create({
     container: {
@@ -24,11 +25,12 @@ const styles = StyleSheet.create({
         paddingTop: height / 16,
     },
     midContainer: {
-        flex: 4,
+        flex: 3,
         alignItems: 'center',
         justifyContent: 'center',
     },
     bottomContainer: {
+        flex: 0.5,
         justifyContent: 'center',
         flexDirection: 'row',
         alignItems: 'flex-end',
@@ -48,14 +50,14 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
     },
     infoText: {
-        fontFamily: 'SourceSansPro-Light',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: GENERAL.fontSize4,
         backgroundColor: 'transparent',
         paddingHorizontal: width / 9,
         textAlign: 'center',
     },
     infoTextNormal: {
-        fontFamily: 'SourceSansPro-Light',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: GENERAL.fontSize4,
         backgroundColor: 'transparent',
         textAlign: 'center',
@@ -65,6 +67,18 @@ const styles = StyleSheet.create({
         fontSize: GENERAL.fontSize4,
         backgroundColor: 'transparent',
         textAlign: 'center',
+    },
+    infoTextSmall: {
+        fontFamily: 'SourceSansPro-Regular',
+        fontSize: GENERAL.fontSize3,
+        backgroundColor: 'transparent',
+        textAlign: 'center',
+    },
+    line: {
+        borderLeftWidth: 0.5,
+        width: 1,
+        height: height / 40,
+        marginVertical: height / 150
     },
 });
 
@@ -180,15 +194,17 @@ class SaveYourSeed extends Component {
     render() {
         const { t, theme: { body, extra } } = this.props;
         const textColor = { color: body.color };
+        const lineColor = { borderLeftColor: body.color };
 
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
                 <DynamicStatusBar backgroundColor={body.bg} />
                 <View style={styles.topContainer}>
                     <Icon name="iota" size={width / 8} color={body.color} />
+                    <View style={{ flex: 0.7 }}/>
+                    <Header textColor={body.color}>{t('saveYourSeed')}</Header>
                 </View>
                 <View style={styles.midContainer}>
-                    <View style={{ flex: 0.4 }} />
                     <Trans i18nKey="saveYourSeed:mustSaveYourSeed">
                         <Text style={[styles.infoText, textColor]}>
                             <Text style={styles.infoTextNormal}>You must save your seed with </Text>
@@ -197,6 +213,8 @@ class SaveYourSeed extends Component {
                         </Text>
                     </Trans>
                     <View style={{ flex: 0.5 }} />
+                    <Text style={[ styles.infoTextSmall, textColor ]}>{t('mostSecure')}</Text>
+                    <View style={[ styles.line, lineColor]}/>
                     <View>
                         <Button
                             onPress={() => this.onWriteClick()}
@@ -212,36 +230,36 @@ class SaveYourSeed extends Component {
                             {t('global:manualCopy')}
                         </Button>
                     </View>
-                    <View style={{ paddingTop: height / 25 }}>
-                        <Button
-                            onPress={() => this.onPrintClick()}
-                            style={{
-                                wrapper: {
-                                    width: width / 1.36,
-                                    height: height / 13,
-                                    borderRadius: height / 90,
-                                    backgroundColor: extra.color,
-                                },
-                            }}
-                        >
-                            {t('global:paperWallet')}
-                        </Button>
-                    </View>
-                    <View style={{ paddingTop: height / 25 }}>
-                        <Button
-                            onPress={() => this.onCopyClick()}
-                            style={{
-                                wrapper: {
-                                    width: width / 1.36,
-                                    height: height / 13,
-                                    borderRadius: height / 90,
-                                    backgroundColor: extra.color,
-                                },
-                            }}
-                        >
-                            {t('global:addToPasswordManager')}
-                        </Button>
-                    </View>
+                    <View style={[ styles.line, lineColor]}/>
+                    <Button
+                        onPress={() => this.onCopyClick()}
+                        style={{
+                            wrapper: {
+                                width: width / 1.36,
+                                height: height / 13,
+                                borderRadius: height / 90,
+                                backgroundColor: extra.color,
+                            },
+                        }}
+                    >
+                        {t('global:addToPasswordManager')}
+                    </Button>
+                    <View style={[ styles.line, lineColor]}/>
+                    <Button
+                        onPress={() => this.onPrintClick()}
+                        style={{
+                            wrapper: {
+                                width: width / 1.36,
+                                height: height / 13,
+                                borderRadius: height / 90,
+                                backgroundColor: extra.color,
+                            },
+                        }}
+                    >
+                        {t('global:paperWallet')}
+                    </Button>
+                    <View style={[ styles.line, lineColor]}/>
+                    <Text style={[ styles.infoTextSmall, textColor ]}>{t('leastSecure')}</Text>
                     <View style={{ flex: 1 }} />
                 </View>
                 <View style={styles.bottomContainer}>

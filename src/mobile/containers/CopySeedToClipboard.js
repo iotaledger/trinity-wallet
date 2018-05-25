@@ -47,6 +47,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'flex-end',
     },
+    textContainer: {
+        width: width / 1.25,
+        alignItems: 'center'
+    },
     optionButtonText: {
         color: '#8BD4FF',
         fontFamily: 'SourceSansPro-Light',
@@ -67,16 +71,34 @@ const styles = StyleSheet.create({
     infoText: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: GENERAL.fontSize3,
-        textAlign: 'left',
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
     infoTextNormal: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: GENERAL.fontSize3,
-        textAlign: 'left',
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
     infoTextBold: {
+        fontFamily: 'SourceSansPro-Bold',
+        fontSize: GENERAL.fontSize3,
+        textAlign: 'center',
+        backgroundColor: 'transparent',
+    },
+    modalInfoText: {
+        fontFamily: 'SourceSansPro-Light',
+        fontSize: GENERAL.fontSize3,
+        textAlign: 'left',
+        backgroundColor: 'transparent',
+    },
+    modalInfoTextNormal: {
+        fontFamily: 'SourceSansPro-Light',
+        fontSize: GENERAL.fontSize3,
+        textAlign: 'left',
+        backgroundColor: 'transparent',
+    },
+    modalInfoTextBold: {
         fontFamily: 'SourceSansPro-Bold',
         fontSize: GENERAL.fontSize3,
         textAlign: 'left',
@@ -101,6 +123,7 @@ const styles = StyleSheet.create({
     modalCheckboxText: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: GENERAL.fontSize3,
+        marginLeft: width / 40
     },
     modalCheckbox: {
         width: width / 20,
@@ -246,14 +269,14 @@ class CopySeedToClipboard extends Component {
 
         return (
             <View>
-                <Text style={[styles.infoText, textColor, { paddingTop: height / 40 }]}>
-                    <Text style={styles.infoTextNormal}>{t('global:masterKey')} </Text>
-                    <Text style={styles.infoTextNormal}>
+                <Text style={[styles.modalInfoText, textColor, { paddingTop: height / 40 }]}>
+                    <Text style={styles.modalInfoTextNormal}>{t('global:masterKey')} </Text>
+                    <Text style={styles.modalInfoTextNormal}>
                         {t('global:mustBeStoredAppropriately')} {t('global:androidInsecureClipboardWarning')}
                     </Text>
                 </Text>
-                <Text style={[styles.infoText, textColor, { paddingTop: height / 40 }]}>
-                    <Text style={styles.infoTextNormal}>{`${t('followTutorialToSecurelyShareSeed')}:`}</Text>
+                <Text style={[styles.modalInfoText, textColor, { paddingTop: height / 40 }]}>
+                    <Text style={styles.modalInfoTextNormal}>{`${t('followTutorialToSecurelyShareSeed')}:`}</Text>
                 </Text>
                 <Text style={[styles.infoLinkWrapper, textColor]}>
                     <Text
@@ -266,7 +289,7 @@ class CopySeedToClipboard extends Component {
                         https://foo.bar
                     </Text>
                 </Text>
-                <Text style={[styles.infoTextBold, textColor, { paddingTop: height / 40 }]}>
+                <Text style={[styles.modalInfoTextBold, textColor, { paddingTop: height / 40 }]}>
                     {t('global:androidCopyPasteWarning')}
                 </Text>
                 <View style={{ paddingTop: height / 18 }}>
@@ -300,11 +323,11 @@ class CopySeedToClipboard extends Component {
                             this.renderInfoBoxContentForAndroid()
                         ) : (
                             <View>
-                                <Text style={[styles.infoText, textColor, { paddingTop: height / 40 }]}>
-                                    <Text style={styles.infoTextNormal}>{t('global:masterKey')} </Text>
-                                    <Text style={styles.infoTextNormal}>{t('storeEncrypted')} </Text>
+                                <Text style={[styles.modalInfoText, textColor, { paddingTop: height / 40 }]}>
+                                    <Text style={styles.modalInfoTextNormal}>{t('global:masterKey')} </Text>
+                                    <Text style={styles.modalInfoTextNormal}>{t('storeEncrypted')} </Text>
                                 </Text>
-                                <Text style={[styles.infoTextBold, textColor, { paddingTop: height / 30 }]}>
+                                <Text style={[styles.modalInfoTextBold, textColor, { paddingTop: height / 30 }]}>
                                     {t('tapConfirm')}
                                 </Text>
                                 <TouchableOpacity
@@ -316,7 +339,7 @@ class CopySeedToClipboard extends Component {
                                         {t('passwordManagerCheckbox')}
                                     </Text>
                                 </TouchableOpacity>
-                                <Text style={[styles.infoTextBold, textColor]}>{t('doNotOpen')} </Text>
+                                <Text style={[styles.modalInfoTextBold, textColor]}>{t('doNotOpen')} </Text>
                                 <View style={{ paddingTop: height / 18 }}>
                                     <ModalButtons
                                         onLeftButtonPress={() => this.hideModal()}
@@ -350,17 +373,12 @@ class CopySeedToClipboard extends Component {
                 </View>
                 <View style={styles.midContainer}>
                     <View style={{ flex: 0.5 }} />
-                    <InfoBox
-                        body={theme.body}
-                        text={
-                            <Text>
-                                <Text style={[styles.infoTextNormal, textColor]}>
-                                    {`${t(isAndroid ? 'clickToSecurelyShare' : 'clickToCopy')} `}
-                                </Text>
-                                <Text style={[styles.infoTextBold, textColor]}>{t('doNotStore')}</Text>
-                            </Text>
-                        }
-                    />
+                    <View style={styles.textContainer}>
+                        <Text style={[styles.infoTextNormal, textColor]}>
+                            {`${t(isAndroid ? 'clickToSecurelyShare' : 'clickToCopy')} `}
+                        </Text>
+                        <Text style={[styles.infoTextBold, textColor, { paddingTop: height / 40 }]}>{t('doNotStore')}</Text>
+                    </View>
                     <View style={{ flex: 0.2 }} />
                     <Seedbox bodyColor={theme.body.color} borderColor={borderColor} textColor={textColor} seed={seed} />
                     <View style={{ flex: 0.2 }} />

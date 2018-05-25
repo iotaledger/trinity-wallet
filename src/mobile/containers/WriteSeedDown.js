@@ -10,7 +10,6 @@ import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import { Icon } from '../theme/icons.js';
-import InfoBox from '../components/InfoBox';
 
 const styles = StyleSheet.create({
     container: {
@@ -34,6 +33,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'flex-end',
     },
+    textContainer: {
+        width: width / 1.25,
+        alignItems: 'center'
+    },
     optionButtonText: {
         color: '#8BD4FF',
         fontFamily: 'SourceSansPro-Light',
@@ -55,19 +58,19 @@ const styles = StyleSheet.create({
         color: 'white',
         fontFamily: 'SourceSansPro-Light',
         fontSize: GENERAL.fontSize3,
-        textAlign: 'left',
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
     infoTextNormal: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: GENERAL.fontSize3,
-        textAlign: 'left',
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
     infoTextBold: {
         fontFamily: 'SourceSansPro-Bold',
         fontSize: GENERAL.fontSize3,
-        textAlign: 'left',
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
     seedBox: {
@@ -159,21 +162,18 @@ class WriteSeedDown extends Component {
                 </View>
                 <View style={styles.midContainer}>
                     <View style={{ flex: 1 }} />
-                    <InfoBox
-                        body={theme.body}
-                        text={
-                            <Text style={[styles.infoText, textColor]}>
-                                <Text style={styles.infoTextNormal}>
-                                    {t('writeSeedDown:yourSeedIs', { maxSeedLength: MAX_SEED_LENGTH })}
-                                </Text>
-                                <Trans i18nKey="writeDownYourSeed">
-                                    <Text style={styles.infoTextNormal}> Write down your seed and checksum and </Text>
-                                    <Text style={styles.infoTextBold}>triple check</Text>
-                                    <Text style={styles.infoTextNormal}> that they are correct.</Text>
-                                </Trans>
-                            </Text>
-                        }
-                    />
+                    <View style={styles.textContainer}>
+                        <Text style={[styles.infoTextNormal, textColor ]}>
+                            {t('writeSeedDown:yourSeedIs', { maxSeedLength: MAX_SEED_LENGTH })}
+                        </Text>
+                        <Text style={[styles.infoText, textColor, { paddingTop: height / 40 }]}>
+                            <Trans i18nKey="writeDownYourSeed">
+                                <Text style={styles.infoTextNormal}>Write down your seed and checksum and </Text>
+                                <Text style={styles.infoTextBold}>triple check</Text>
+                                <Text style={styles.infoTextNormal}> that they are correct.</Text>
+                            </Trans>
+                        </Text>
+                    </View>
                     <View style={{ flex: 0.5 }} />
                     <Seedbox bodyColor={theme.body.color} borderColor={borderColor} textColor={textColor} seed={seed} />
                     <View style={{ flex: 0.5 }} />

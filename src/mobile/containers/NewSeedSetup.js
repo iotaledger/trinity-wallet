@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     infoText: {
-        fontFamily: 'SourceSansPro-Light',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
         textAlign: 'left',
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
     },
     okText: {
-        fontFamily: 'SourceSansPro-Light',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
     },
@@ -324,7 +324,7 @@ class NewSeedSetup extends Component {
     }
 
     render() {
-        const { t, theme: { primary, body }, seed } = this.props;
+        const { t, theme: { primary, secondary, body }, seed } = this.props;
         const { isModalActive } = this.state;
         const viewOpacity = this.state.randomised ? 1 : 0.2;
         const opacity = this.state.randomised ? 1 : 0.4;
@@ -337,9 +337,9 @@ class NewSeedSetup extends Component {
                     <Icon name="iota" size={width / 8} color={body.color} />
                     <View style={{ flex: 1 }} />
                     <CtaButton
-                        ctaColor={primary.color}
+                        ctaColor={secondary.color}
                         ctaBorderColor={primary.hover}
-                        secondaryCtaColor={primary.body}
+                        secondaryCtaColor={secondary.body}
                         text={t('pressForNewSeed')}
                         onPress={() => {
                             this.onGeneratePress();

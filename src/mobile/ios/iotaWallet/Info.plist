@@ -105,6 +105,7 @@
 		<string>Inconsolata-Regular.ttf</string>
 		<string>Inconsolata-Bold.ttf</string>
 		<string>Icons.ttf</string>
+		<string>SourceSansPro-SemiBold.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>Launch Screen</string>

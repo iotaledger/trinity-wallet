@@ -12,6 +12,7 @@ import tinycolor from 'tinycolor2';
 import OnboardingButtons from '../containers/OnboardingButtons';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import InfoBox from '../components/InfoBox';
+import Header from '../components/Header';
 import GENERAL from '../theme/general';
 import { Icon } from '../theme/icons.js';
 import { isAndroid } from '../utils/device';
@@ -221,7 +222,7 @@ class SaveSeedConfirmation extends Component {
 
         return (
             <View>
-                <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
+                <Text style={[styles.infoText, textColor, { paddingTop: height / 80 }]}>
                     <Text style={styles.infoTextBold}>{t('reenterSeed')}</Text>
                 </Text>
                 <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
@@ -235,6 +236,7 @@ class SaveSeedConfirmation extends Component {
                         <Text style={styles.infoTextBold}>{t('global:androidCopyPasteWarning')}</Text>
                     </Text>
                 )}
+                <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>{t('pleaseConfirm')}</Text>
             </View>
         );
     }
@@ -251,8 +253,11 @@ class SaveSeedConfirmation extends Component {
                 <DynamicStatusBar backgroundColor={body.bg} />
                 <View style={styles.topContainer}>
                     <Icon name="iota" size={width / 8} color={body.color} />
+                    <View style={{ flex: 0.7 }} />
+                    <Header textColor={body.color}>{t('didSaveSeed')}</Header>
                 </View>
                 <View style={styles.midContainer}>
+                    <View style={{ flex: 0.15 }} />
                     <InfoBox body={body} width={width / 1.1} text={this.renderInfoBoxContent()} />
                     <View style={{ flex: 0.3 }} />
                     <View style={styles.bottomMidContainer}>
@@ -284,8 +289,8 @@ class SaveSeedConfirmation extends Component {
                     <OnboardingButtons
                         onLeftButtonPress={() => this.onBackPress()}
                         onRightButtonPress={() => this.onNextPress()}
-                        leftButtonText={t('global:back')}
-                        rightButtonText={t('global:next')}
+                        leftButtonText={t('global:goBack')}
+                        rightButtonText={t('global:continue')}
                         rightButtonStyle={{ wrapper: { opacity } }}
                     />
                 </View>

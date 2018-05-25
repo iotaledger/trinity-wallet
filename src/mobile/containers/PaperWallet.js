@@ -67,22 +67,44 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-around',
     },
-    infoText: {
+    textContainer: {
+        width: width / 1.25,
+        alignItems: 'center'
+    },
+    modalInfoText: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: GENERAL.fontSize3,
         textAlign: 'left',
+        backgroundColor: 'transparent',
+    },
+    modalInfoTextNormal: {
+        fontFamily: 'SourceSansPro-Light',
+        fontSize: GENERAL.fontSize3,
+        textAlign: 'left',
+        backgroundColor: 'transparent',
+    },
+    modalInfoTextBold: {
+        fontFamily: 'SourceSansPro-Bold',
+        fontSize: GENERAL.fontSize3,
+        textAlign: 'left',
+        backgroundColor: 'transparent',
+    },
+    infoText: {
+        fontFamily: 'SourceSansPro-Light',
+        fontSize: GENERAL.fontSize3,
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
     infoTextNormal: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: GENERAL.fontSize3,
-        textAlign: 'left',
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
     infoTextBold: {
         fontFamily: 'SourceSansPro-Bold',
         fontSize: GENERAL.fontSize3,
-        textAlign: 'left',
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
     paperWalletContainer: {
@@ -167,7 +189,7 @@ const styles = StyleSheet.create({
         fontSize: GENERAL.fontSize3,
         color: 'white',
         backgroundColor: 'transparent',
-        paddingLeft: width / 80,
+        marginLeft: width / 80,
     },
     checksum: {
         width: width / 12,
@@ -189,13 +211,14 @@ const styles = StyleSheet.create({
     },
     modalCheckboxContainer: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         alignItems: 'center',
         height: height / 14,
     },
     modalCheckboxText: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: GENERAL.fontSize3,
+        paddingLeft: width / 20,
     },
     modalCheckbox: {
         width: width / 20,
@@ -505,27 +528,29 @@ class PaperWallet extends Component {
                     width={width / 1.1}
                     text={
                         <View>
-                            <Text style={[styles.infoText, textColor, { paddingTop: height / 40 }]}>
-                                <Text style={styles.infoTextNormal}>{t('paperConvenience')} </Text>
-                                <Text style={styles.infoTextBold}>{t('publicInsecure')}</Text>
+                            <Text style={[styles.modalInfoText, textColor, { paddingTop: height / 40 }]}>
+                                <Text style={styles.modalInfoTextNormal}>{t('paperConvenience')} </Text>
+                                <Text style={styles.modalInfoTextBold}>{t('publicInsecure')}</Text>
                             </Text>
-                            <Text style={[styles.infoTextBold, textColor, { paddingVertical: height / 30 }]}>
+                            <Text style={[styles.modalInfoTextBold, textColor, { paddingVertical: height / 30 }]}>
                                 {t('tapCheckboxes')}
                             </Text>
-                            <TouchableOpacity
-                                style={[styles.modalCheckboxContainer, { paddingTop: height / 60 }]}
-                                onPress={() => this.onPublicWifiCheckboxPress()}
-                            >
-                                <Text style={[styles.modalCheckboxText, textColor]}>{t('wifiCheckbox')}</Text>
-                                <Image source={this.getCheckbox(publicWifiCheckbox)} style={styles.modalCheckbox} />
-                            </TouchableOpacity>
-                            <TouchableOpacity
-                                style={styles.modalCheckboxContainer}
-                                onPress={() => this.onPublicPrinterCheckboxPress()}
-                            >
-                                <Text style={[styles.modalCheckboxText, textColor]}>{t('printerCheckbox')}</Text>
-                                <Image source={this.getCheckbox(publicPrinterCheckbox)} style={styles.modalCheckbox} />
-                            </TouchableOpacity>
+                            <View style={{ alignItems: 'flex-start' }}>
+                                <TouchableOpacity
+                                    style={[styles.modalCheckboxContainer, { paddingTop: height / 60 }]}
+                                    onPress={() => this.onPublicWifiCheckboxPress()}
+                                >
+                                    <Image source={this.getCheckbox(publicWifiCheckbox)} style={styles.modalCheckbox} />
+                                    <Text style={[styles.modalCheckboxText, textColor]}>{t('wifiCheckbox')}</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity
+                                    style={styles.modalCheckboxContainer}
+                                    onPress={() => this.onPublicPrinterCheckboxPress()}
+                                >
+                                    <Image source={this.getCheckbox(publicPrinterCheckbox)} style={styles.modalCheckbox} />
+                                    <Text style={[styles.modalCheckboxText, textColor]}>{t('printerCheckbox')}</Text>
+                                </TouchableOpacity>
+                            </View>
                             <View style={{ paddingTop: height / 18 }}>
                                 <ModalButtons
                                     onLeftButtonPress={() => this.hideModal()}
@@ -559,16 +584,10 @@ class PaperWallet extends Component {
                 </View>
                 <View style={styles.midContainer}>
                     <View style={{ flex: 0.3 }} />
-                    <InfoBox
-                        body={body}
-                        width={width / 1.1}
-                        text={
-                            <Text style={[styles.infoText, textColor]}>
-                                <Text style={styles.infoTextNormal}>{t('clickToPrint')}</Text>
-                                <Text style={styles.infoTextBold}> {t('storeSafely')}</Text>
-                            </Text>
-                        }
-                    />
+                    <View style={styles.textContainer}>
+                        <Text style={[ styles.infoTextNormal, textColor ]}>{t('clickToPrint')}</Text>
+                        <Text style={[ styles.infoTextBold, textColor, { paddingTop: height / 40 } ]}> {t('storeSafely')}</Text>
+                    </View>
                     <View style={{ flex: 0.5 }} />
                     <View
                         style={[

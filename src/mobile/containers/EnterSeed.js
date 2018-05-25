@@ -17,6 +17,7 @@ import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 import { isAndroid } from '../utils/device';
 import GENERAL from '../theme/general';
+import Header from '../components/Header';
 
 console.ignoredYellowBox = ['Native TextInput'];
 
@@ -29,15 +30,17 @@ const styles = StyleSheet.create({
     topContainer: {
         flex: 1,
         paddingTop: height / 16,
+        alignItems: 'center',
+        justifyContent: 'flex-start'
     },
     midContainer: {
-        flex: 5,
+        flex: 3,
         alignItems: 'center',
         width,
-        justifyContent: 'space-between',
+        justifyContent: 'flex-start',
     },
     bottomContainer: {
-        flex: 0.8,
+        flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
     },
@@ -185,12 +188,12 @@ class EnterSeed extends React.Component {
                 <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
                     <StatusBar barStyle="light-content" backgroundColor={theme.body.bg} />
                     <View style={styles.topContainer}>
-                        <View style={styles.logoContainer}>
-                            <Icon name="iota" size={width / 8} color={theme.body.color} />
-                        </View>
+                        <Icon name="iota" size={width / 8} color={theme.body.color} />
+                        <View style={{ flex: 0.7 }} />
+                        <Header textColor={theme.body.color}>{t('seedReentry:enterYourSeed')}</Header>
                     </View>
                     <View style={styles.midContainer}>
-                        <View style={{ flex: 0.5 }} />
+                        <View style={{ flex: 0.15 }} />
                         <CustomTextInput
                             label={t('global:seed')}
                             onChangeText={(text) => this.setState({ seed: text.toUpperCase() })}

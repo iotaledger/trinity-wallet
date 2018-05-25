@@ -22,6 +22,7 @@ import { width, height } from '../utils/dimensions';
 import InfoBox from '../components/InfoBox';
 import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
+import Header from '../components/Header';
 
 const MIN_PASSWORD_LENGTH = 12;
 console.ignoredYellowBox = ['Native TextInput'];
@@ -33,13 +34,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 0.5,
+        flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 16,
     },
     midContainer: {
-        flex: 3.7,
+        flex: 3,
         justifyContent: 'space-around',
         alignItems: 'center',
         width,
@@ -206,9 +207,10 @@ class SetPassword extends Component {
                     <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
                         <View style={styles.topContainer}>
                             <Icon name="iota" size={width / 8} color={theme.body.color} />
+                            <View style={{ flex: 0.7 }} />
+                            <Header textColor={theme.body.color}>{t('choosePassword')}</Header>
                         </View>
                         <View style={styles.midContainer}>
-                            <View style={{ flex: 0.8 }} />
                             <InfoBox
                                 body={theme.body}
                                 text={

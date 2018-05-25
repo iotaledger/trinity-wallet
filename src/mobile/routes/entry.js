@@ -40,7 +40,7 @@ const renderInitialScreen = (store) => {
 
     const initialScreen = state.accounts.onboardingComplete
         ? 'login'
-        : state.settings.acceptedTerms ? 'languageSetup' : 'termsAndConditions';
+        : state.settings.acceptedTerms ? 'languageSetup' : 'languageSetup';
 
     Navigation.startSingleScreenApp({
         screen: {
