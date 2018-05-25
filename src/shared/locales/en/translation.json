@@ -681,5 +681,9 @@
     },
     "notificationLog": {
         "errorLog": "ERROR LOG"
+    },
+    "terms": {
+        "termsAndConditions": "Terms & Conditions",
+        "agree": "I agree"
     }
 }

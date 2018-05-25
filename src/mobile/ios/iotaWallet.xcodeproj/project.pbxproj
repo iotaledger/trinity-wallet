@@ -15,6 +15,7 @@
 		1C24EC71B4226833AA94DABC1F7B3655 /* libRNHTMLtoPDF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F895569100D60BA0DB0B50251B734B60 /* libRNHTMLtoPDF.a */; };
 		1D90A630DF083C6894C70C1D9936A0A9 /* libRCTText-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F586ACB1B483D19A73242AC34185FAD /* libRCTText-tvOS.a */; };
 		227F5ECF692F599792F69DC4D573B2E6 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E329CD2AEA74CC4A8A6F37DBBEF1EA5E /* libRCTActionSheet.a */; };
+		23DBCEF31158ED28593321DF /* libPods-iotaWallet-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F94248EA7BCF6FA1B4742792 /* libPods-iotaWallet-tvOSTests.a */; };
 		29169BFF0B0644DA1F501101B010A604 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49A551A49165ED5CFBE87EE1B7C5CCA8 /* InfoPlist.strings */; };
 		29E9C75A4A87FFC827469A3CFB2D3C89 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6EB779EC5853FB7A3F49999F69549ACA /* Launch Screen.storyboard */; };
 		2AD31ECE2D7512D06C6BA29BD082EAE7 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4319E47FD77B4B10F18A0CCAA9E7CDB1 /* libRCTText.a */; };
@@ -38,11 +39,13 @@
 		6ED5CBEF7B1A39258C560F6CDCD36254 /* libKCKeepAwake.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4F418B6A7C158123D272588757B8B5E /* libKCKeepAwake.a */; };
 		6F804BD1BAE4D7BCAD6B6767FD943A5A /* Lottie.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 667F57494F99C69927244B789F08BA39 /* Lottie.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		7201963BD0BAE41A9958AC15A84AAA5F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ED0FDEA3EDE9090E04563794CE9A92B7 /* main.m */; };
+		735D5C80D9DA0474412A6BED /* libPods-iotaWallet-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D3ACED5A5A03890087B45B /* libPods-iotaWallet-tvOS.a */; };
 		7EC4E13223F8F69B1629B42AA455DA9F /* libReactNativeFingerprintScanner.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDAF54583946132D35A957921197D3E8 /* libReactNativeFingerprintScanner.a */; };
 		85277BB9448BC0DF88CC1F206C0E4BF7 /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19CB0B55DE702DF718E5FD31D6EF66FE /* libRCTSettings.a */; };
 		85A815D84AC90B46C352C4B867C1BF36 /* libRCTLinking-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF3D8AEB21F074871C1975441A32E214 /* libRCTLinking-tvOS.a */; };
 		962469C90FA6C9D7DB8B0F1D49DD98E7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCA4EA113044613D95E46BDAC0C1E3 /* AppDelegate.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		963E1215D830F1A7FF25B2365C494F64 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE06912F32A64660367B379A5FA9B59C /* libRCTAnimation.a */; };
+		9C3391094835A6A9B3A79A2E /* Pods_iotaWalletTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E0F74EC093A52113A8EC89B /* Pods_iotaWalletTests.framework */; };
 		9D768D7930E8E00194C0FCC710EDD212 /* libRCTNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1DE6816AFF1D8279218D82AD1FFCE5B /* libRCTNetwork.a */; };
 		A813279F828AD23228F254CEB4047F77 /* libRNRandomBytes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B844D632C9BC3C7BED60CFEE0A6A52B7 /* libRNRandomBytes.a */; };
 		AC1DC503F1AF3CEE085E1EAA4DB30EF4 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DF165D1193E4B4962DABF4E7264F91B /* libRCTWebSocket.a */; };
@@ -65,6 +68,7 @@
 		CB98FB9520A0A5BB0047877B /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB98FB9220A0A5BB0047877B /* SourceSansPro-Regular.ttf */; };
 		CB98FB9620A0A5BB0047877B /* SourceSansPro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB98FB9320A0A5BB0047877B /* SourceSansPro-Light.ttf */; };
 		CDC76600A03C06457F99259512D7F713 /* libRNIsDeviceRooted.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0431CEEC099BC4CE1F43E0550C4CC291 /* libRNIsDeviceRooted.a */; };
+		CF626DD9FBB494210B780417 /* Pods_iotaWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 890341AF0F2DE4E9DCB80928 /* Pods_iotaWallet.framework */; };
 		D51793D4E78BCB702D9FFAA1A3356153 /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48E60D4ABEBFCB6EC7FCE9538A5FF83F /* libRNSVG.a */; };
 		D54A6C850FD7BE61FF81BD7F6E7F25A3 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EEAE9D5C606B7556253D3AD01EB78CE0 /* Info.plist */; };
 		D67B7F52CD8EA6422597645960A1C079 /* libRCTWebSocket-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41ABB0EEDDF4C638791186862B6FCA44 /* libRCTWebSocket-tvOS.a */; };
@@ -675,10 +679,14 @@
 		78457F3624D0D3C241289BCB545E290E /* ReactNativeFingerprintScanner.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeFingerprintScanner.xcodeproj; path = "../node_modules/react-native-fingerprint-scanner/ios/ReactNativeFingerprintScanner.xcodeproj"; sourceTree = "<group>"; };
 		78890E2D6D34AE7E540EA17AF52C9982 /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		79A46F4458348360C0DFE21018DAAF14 /* RCTGeolocation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTGeolocation.xcodeproj; path = "../node_modules/react-native/Libraries/Geolocation/RCTGeolocation.xcodeproj"; sourceTree = "<group>"; };
+		7E0F74EC093A52113A8EC89B /* Pods_iotaWalletTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iotaWalletTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		80B6D6500ADF5EC9623540236CFDB5D5 /* RNHTMLtoPDF.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNHTMLtoPDF.xcodeproj; path = "../node_modules/react-native-html-to-pdf/ios/RNHTMLtoPDF.xcodeproj"; sourceTree = "<group>"; };
 		81FD04ABA0D7E5DDAC025C79AC565404 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		83245F96160937A7C8F0A1D783E30B0C /* iotaWalletUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iotaWalletUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		890341AF0F2DE4E9DCB80928 /* Pods_iotaWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iotaWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B49115E102EED64D1B7D7AC047F1ABF /* RNExitApp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNExitApp.xcodeproj; path = "../node_modules/react-native-exit-app/ios/RNExitApp.xcodeproj"; sourceTree = "<group>"; };
+		93AF27DC4948C2C2EF41D1FA /* Pods-iotaWallet-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iotaWallet-tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-iotaWallet-tvOS/Pods-iotaWallet-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		94C69E567EC4B020F5822FC7 /* Pods-iotaWallet-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iotaWallet-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iotaWallet-tvOS/Pods-iotaWallet-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		9E17389EF3AB0C14C6843EF1892D81D4 /* KCKeepAwake.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KCKeepAwake.xcodeproj; path = "../node_modules/react-native-keep-awake/ios/KCKeepAwake.xcodeproj"; sourceTree = "<group>"; };
 		9EE76A96BDAFEB3F2332A2982168E1CE /* RCTNetwork.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTNetwork.xcodeproj; path = "../node_modules/react-native/Libraries/Network/RCTNetwork.xcodeproj"; sourceTree = "<group>"; };
 		A1FAED857304034D3DCD87D13F961C48 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -711,6 +719,7 @@
 		CB98FB9320A0A5BB0047877B /* SourceSansPro-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceSansPro-Light.ttf"; path = "../../shared/custom-fonts/SourceSansPro-Light.ttf"; sourceTree = "<group>"; };
 		CFA2B84C183CC39F995C8E04CC713DDB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = iotaWallet/Images.xcassets; sourceTree = "<group>"; };
 		D2C796029F4A68C167C1F1F5176A5819 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D5BA67ADCF3A3E3973DDF764 /* Pods-iotaWallet-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iotaWallet-tvOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iotaWallet-tvOSTests/Pods-iotaWallet-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		D6579997ECA951BF786CFC9441D56F53 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DA959792AD9A5C3642835114D50DE868 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
 		DD581453BAAEDFD13B05710E1CA0B128 /* RCTImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTImage.xcodeproj; path = "../node_modules/react-native/Libraries/Image/RCTImage.xcodeproj"; sourceTree = "<group>"; };
@@ -728,8 +737,11 @@
 		F06C37C0B9522995FB8FC4AACEE1A4A1 /* RCTActionSheet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTActionSheet.xcodeproj; path = "../node_modules/react-native/Libraries/ActionSheetIOS/RCTActionSheet.xcodeproj"; sourceTree = "<group>"; };
 		F0BCFBFA4C88ED7E91943BDB49D788DE /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		F2FA8FCAB678228017DD1EBC70517E3F /* RCTVibration.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTVibration.xcodeproj; path = "../node_modules/react-native/Libraries/Vibration/RCTVibration.xcodeproj"; sourceTree = "<group>"; };
+		F5456B99539E3DFAFBC86D23 /* Pods-iotaWallet-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iotaWallet-tvOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iotaWallet-tvOSTests/Pods-iotaWallet-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F6D3ACED5A5A03890087B45B /* libPods-iotaWallet-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iotaWallet-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F799E10140F3477803D1C73A2F97B01B /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		F937ECCF0BA4BC3A155C89B3B7ECE27D /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		F94248EA7BCF6FA1B4742792 /* libPods-iotaWallet-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iotaWallet-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA966CD6F6AC4A56AAE33F729009A387 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FC0C813F80FE9398560C13E6CC59C201 /* iotaWallet-debug-config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "iotaWallet-debug-config.xcconfig"; sourceTree = "<group>"; };
 		FF6707891F5797B0CC78F1267EB8F1A2 /* RNSVG.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSVG.xcodeproj; path = "../node_modules/react-native-svg/ios/RNSVG.xcodeproj"; sourceTree = "<group>"; };
@@ -778,6 +790,7 @@
 				B2EB2350DDCA4C44B65F7114CC254AF1 /* libReactNativeNavigation.a in Frameworks */,
 				60BDD27C208D128D0085549F /* libRNSecureClipboard.a in Frameworks */,
 				4A4F5E775D301A641C32594E736C0E3A /* libz.tbd in Frameworks */,
+				CF626DD9FBB494210B780417 /* Pods_iotaWallet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -785,6 +798,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23DBCEF31158ED28593321DF /* libPods-iotaWallet-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -800,6 +814,7 @@
 				1D90A630DF083C6894C70C1D9936A0A9 /* libRCTText-tvOS.a in Frameworks */,
 				D67B7F52CD8EA6422597645960A1C079 /* libRCTWebSocket-tvOS.a in Frameworks */,
 				F43A0D26643270FD3A4BFD2691C35E43 /* libReact.a in Frameworks */,
+				735D5C80D9DA0474412A6BED /* libPods-iotaWallet-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -808,6 +823,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7DDAE78307EBAE89650EFFB4AE21EAC /* libReact.a in Frameworks */,
+				9C3391094835A6A9B3A79A2E /* Pods_iotaWalletTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -861,6 +877,10 @@
 			children = (
 				1A114AFE31653EBA7706861B9B5706C0 /* ios_bindings-fl.a */,
 				F799E10140F3477803D1C73A2F97B01B /* libz.tbd */,
+				890341AF0F2DE4E9DCB80928 /* Pods_iotaWallet.framework */,
+				F6D3ACED5A5A03890087B45B /* libPods-iotaWallet-tvOS.a */,
+				F94248EA7BCF6FA1B4742792 /* libPods-iotaWallet-tvOSTests.a */,
+				7E0F74EC093A52113A8EC89B /* Pods_iotaWalletTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -917,6 +937,7 @@
 				CB66259C2084BF2A00651519 /* Icons.ttf */,
 				AA20221A44EBECD2DE04895A475187C4 /* Inconsolata-Bold.ttf */,
 				60C4FCE77138FA022DBAD917D3C8B8C1 /* Inconsolata-Regular.ttf */,
+				D5D185367FBB3AAE41D341C7 /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -1247,6 +1268,17 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		D5D185367FBB3AAE41D341C7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				94C69E567EC4B020F5822FC7 /* Pods-iotaWallet-tvOS.debug.xcconfig */,
+				93AF27DC4948C2C2EF41D1FA /* Pods-iotaWallet-tvOS.release.xcconfig */,
+				F5456B99539E3DFAFBC86D23 /* Pods-iotaWallet-tvOSTests.debug.xcconfig */,
+				D5BA67ADCF3A3E3973DDF764 /* Pods-iotaWallet-tvOSTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		D8E8A3F5A608143069F7B59C205D415C /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1318,10 +1350,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 229CB618801D69BFDE51B861A2C58FE2 /* Build configuration list for PBXNativeTarget "iotaWallet-tvOS" */;
 			buildPhases = (
+				58346D29D233956FD8AD6589 /* [CP] Check Pods Manifest.lock */,
 				9289FDA5BF643E6CF6FB97742A554BFA /* Sources */,
 				553CB5E02E5676464BF53656B3C90944 /* Frameworks */,
 				BF58EB11F40804AD5DBB7F844142B92C /* Resources */,
 				1BD7EDA2A9AC2CE93A0870587E20D397 /* Bundle React Native Code And Images */,
+				67F853FE9A1E92F2ACF3C4E4 /* [CP] Embed Pods Frameworks */,
+				1D4BF030927D7A385794F7A6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1336,9 +1371,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4BA0D5F0EB15D5F5757C545788EF2CDB /* Build configuration list for PBXNativeTarget "iotaWalletTests" */;
 			buildPhases = (
+				5C36E36590116568CF5849E3 /* [CP] Check Pods Manifest.lock */,
 				C361C063B6547DE82583FABCA4550939 /* Sources */,
 				89D91232D91529099E9186998E61E7D7 /* Frameworks */,
 				8F6FA1D0FA4750EA28804258C2CB6AC6 /* Resources */,
+				C7CDE7D4C730FB6CCC133131 /* [CP] Embed Pods Frameworks */,
+				9214CD18F4B6E1293E5B8DAC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1353,6 +1391,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AF130F8FF7E392E4456F812995AD03FD /* Build configuration list for PBXNativeTarget "iotaWallet" */;
 			buildPhases = (
+				C670705588253B9974F1143C /* [CP] Check Pods Manifest.lock */,
 				3A19CAEF0494A213AEB368179B268023 /* Sources */,
 				05D2CE97116646D93A4B9C6E31EB5612 /* Frameworks */,
 				FA2076790B54965291BEF26A75A5EDB5 /* Resources */,
@@ -1360,6 +1399,8 @@
 				B59F787FE434CB99F8DA67C59029AF6B /* ShellScript */,
 				955BB2FC6B3E69FD9EEFE4CBF7027E30 /* ShellScript */,
 				92EB94016145B67667F30CE79B21D4D5 /* Embed Frameworks */,
+				19306BE67A64A428B81A1A08 /* [CP] Embed Pods Frameworks */,
+				A3D9CDA6BF35AA039A32A894 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1375,9 +1416,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 287E632BA696962784937BF4BE84857D /* Build configuration list for PBXNativeTarget "iotaWallet-tvOSTests" */;
 			buildPhases = (
+				1C8C88AE59968844F0D8C59F /* [CP] Check Pods Manifest.lock */,
 				20A48ED510B8A5A031F25EB34DD39B95 /* Sources */,
 				17A6B85936E519099FAD248D873A5E85 /* Frameworks */,
 				7B8DF15560086469F41BFCA408944F5D /* Resources */,
+				29A5ED0C3FA51FD62B893A5A /* [CP] Embed Pods Frameworks */,
+				0EBF048395227B2A8D062A63 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2214,6 +2258,39 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0EBF048395227B2A8D062A63 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iotaWallet-tvOSTests/Pods-iotaWallet-tvOSTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		19306BE67A64A428B81A1A08 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-iotaWallet/Pods-iotaWallet-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/IotaKit/IotaKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IotaKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iotaWallet/Pods-iotaWallet-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		1BD7EDA2A9AC2CE93A0870587E20D397 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2227,6 +2304,105 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+		};
+		1C8C88AE59968844F0D8C59F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iotaWallet-tvOSTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1D4BF030927D7A385794F7A6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iotaWallet-tvOS/Pods-iotaWallet-tvOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		29A5ED0C3FA51FD62B893A5A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iotaWallet-tvOSTests/Pods-iotaWallet-tvOSTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		58346D29D233956FD8AD6589 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iotaWallet-tvOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5C36E36590116568CF5849E3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iotaWalletTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		67F853FE9A1E92F2ACF3C4E4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iotaWallet-tvOS/Pods-iotaWallet-tvOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		76C74A58CB208D79D2DBCF9020787849 /* Bundle React Native code and images */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2242,6 +2418,21 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
+		9214CD18F4B6E1293E5B8DAC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iotaWalletTests/Pods-iotaWalletTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		955BB2FC6B3E69FD9EEFE4CBF7027E30 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2255,6 +2446,21 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" e741ca311eddc2a22fa56c2dad19b440babbddbc 981a9d74e52679b4082c8d7d4ea90916fa27524671f2378ebca21f44939dcb5b";
 		};
+		A3D9CDA6BF35AA039A32A894 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iotaWallet/Pods-iotaWallet-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B59F787FE434CB99F8DA67C59029AF6B /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2267,6 +2473,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [ \"$CONFIGURATION\" == \"Release\" ]\nthen /usr/bin/perl -pe 's/(BUILD_NUMBER = )(\\d+)/$1.($2+1)/eg' -i buildnumber.xcconfig\nfi";
+		};
+		C670705588253B9974F1143C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iotaWallet-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C7CDE7D4C730FB6CCC133131 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iotaWalletTests/Pods-iotaWalletTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2455,6 +2694,7 @@
 		};
 		611B7A6B86760C0E9A40C3C579A9579A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F5456B99539E3DFAFBC86D23 /* Pods-iotaWallet-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2580,6 +2820,7 @@
 		};
 		7DDD0F08DA9139FA743C2E673AD7F8C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 94C69E567EC4B020F5822FC7 /* Pods-iotaWallet-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -2619,6 +2860,7 @@
 		};
 		8E3378A29B8417F4F67AC30BA5829215 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D5BA67ADCF3A3E3973DDF764 /* Pods-iotaWallet-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2733,6 +2975,7 @@
 		};
 		C59D55A5A1CBBEE239AD9F272DAFE0EE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93AF27DC4948C2C2EF41D1FA /* Pods-iotaWallet-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

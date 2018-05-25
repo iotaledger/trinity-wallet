@@ -607,7 +607,7 @@ class PaperWallet extends Component {
                     <Button
                         style={{
                             wrapper: {
-                                width: width / 1.1,
+                                width: width / 1.36,
                                 height: height / 13,
                                 borderRadius: height / 90,
                                 backgroundColor: secondary.color,
