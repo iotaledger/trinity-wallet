@@ -100,6 +100,11 @@ const styles = StyleSheet.create({
         fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
     },
+    infoTextBold: {
+        fontFamily: 'SourceSansPro-Bold',
+        fontSize: GENERAL.fontSize3,
+        backgroundColor: 'transparent',
+    },
     okButton: {
         borderWidth: 1.2,
         borderRadius: GENERAL.borderRadius,
@@ -278,9 +283,9 @@ class NewSeedSetup extends Component {
                             <Trans i18nKey="walletSetup:explanation">
                                 <Text style={[styles.infoText, textColor, { paddingTop: height / 60 }]}>
                                     <Text style={styles.infoTextLight}>You can use it to access your funds from</Text>
-                                    <Text style={styles.infoTextRegular}> any wallet</Text>
+                                    <Text style={styles.infoTextBold}> any wallet</Text>
                                     <Text style={styles.infoTextLight}>, on</Text>
-                                    <Text style={styles.infoTextRegular}> any device</Text>
+                                    <Text style={styles.infoTextBold}> any device</Text>
                                     <Text style={styles.infoTextLight}>
                                         . But if you lose your seed, you also lose your IOTA.
                                     </Text>
