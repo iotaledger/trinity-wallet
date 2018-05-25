@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -88,8 +89,8 @@ export default function withChartData(ChartComponent) {
         render() {
             const { marketData, settings, theme, t } = this.props;
 
-            const dataSet = marketData.chartData[marketData.currency][marketData.timeframe];
-            console.log(marketData)
+            const currencyData = get(marketData.chartData, marketData.currency);
+            const dataSet = get(currencyData, marketData.timeframe) || [];
 
             const chartProps = {
                 setCurrency: this.changeCurrency,
