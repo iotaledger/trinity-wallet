@@ -17,7 +17,6 @@ import blackCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/c
 import timer from 'react-native-timer';
 import Modal from 'react-native-modal';
 import tinycolor from 'tinycolor2';
-import OnboardingButtons from '../containers/OnboardingButtons';
 import ModalButtons from '../containers/ModalButtons';
 import GENERAL from '../theme/general';
 import Button from '../components/Button';
@@ -546,7 +545,7 @@ class PaperWallet extends Component {
     };
 
     render() {
-        const { t, seed, theme: { body, primary, secondary } } = this.props;
+        const { t, seed, theme: { body, secondary } } = this.props;
         const { isModalActive, iotaLogoCheckbox } = this.state;
         const textColor = { color: body.color };
         const checksum = getChecksum(seed);

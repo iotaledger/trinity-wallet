@@ -52,6 +52,7 @@ class OnboardingButtons extends PureComponent {
             rightButtonTestID,
             leftButtonStyle,
             rightButtonStyle,
+            theme,
         } = this.props;
 
         return (
@@ -62,7 +63,7 @@ class OnboardingButtons extends PureComponent {
                         {},
                         {
                             wrapper: {
-                                backgroundColor: 'rgba(0,0,0,0.15)',
+                                backgroundColor: 'rgba(0,0,0,0.15)', // TODO: Use theme
                                 width: width / 2,
                             },
                             children: {
@@ -77,7 +78,17 @@ class OnboardingButtons extends PureComponent {
                 </Button>
                 <Button
                     onPress={onRightButtonPress}
-                    style={merge({}, { wrapper: { width: width / 2 } }, rightButtonStyle)}
+                    style={merge(
+                        {},
+                        {
+                            wrapper: {
+                                width: width / 2,
+                                backgroundColor: theme.primary.color,
+                            },
+                            children: { color: theme.primary.body },
+                        },
+                        rightButtonStyle,
+                    )}
                     testID={rightButtonTestID}
                 >
                     {rightButtonText}

@@ -3,7 +3,6 @@ import { translate, Trans } from 'react-i18next';
 import { StyleSheet, View, Text, BackHandler } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import tinycolor from 'tinycolor2';
 import Button from '../components/Button';
 import OnboardingButtons from '../containers/OnboardingButtons';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
@@ -180,9 +179,7 @@ class SaveYourSeed extends Component {
 
     render() {
         const { t, theme: { body, extra } } = this.props;
-        const isBgLight = tinycolor(body.bg).isLight();
         const textColor = { color: body.color };
-        const extraColorText = { color: isBgLight ? body.bg : extra.color };
 
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
