@@ -21,13 +21,12 @@
         "invalidResponseFetchingAccount":
             "The node returned an error while fetching your account information. Try changing node.",
         "invalidResponseSendingTransfer": "The node returned an error while sending the transfer. Try changing node.",
-        "invalidResponseSendingTransfer":
-            "The node returned an error while sending the transfer. Check the notifications for more information.",
         "nodeOutOfSync": "Node out of sync",
         "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
         "seed": "Seed",
         "checksum": "Checksum",
         "back": "BACK",
+        "goBack": "Go back",
         "goBackStep": "Go back a step",
         "backLowercase": "Back",
         "done": "DONE",
@@ -44,7 +43,7 @@
         "paperWallet": "Print paper copy",
         "addToPasswordManager": "Add to password manager",
         "shareSeed": "Share seed",
-        "proceed": "proceed",
+        "proceed": "Proceed",
         "qr": "QR",
         "notAvailable": "This function is not available",
         "notAvailableExplanation": "It will be added at a later stage.",
@@ -240,7 +239,8 @@
         "settings": "SETTINGS"
     },
     "languageSetup": {
-        "language": "Language"
+        "language": "Language",
+        "letsGetStarted": "Let's get started"
     },
     "login": {
         "emptyPassword": "Empty password",
@@ -280,7 +280,7 @@
         "storeSafely": "Store it safely.",
         "neverShare": "Never share your seed with anyone.",
         "iotaLogo": "IOTA logo",
-        "printWallet": "PRINT PAPER WALLET",
+        "printWallet": "Print paper wallet",
         "print": "PRINT",
         "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
         "publicInsecure": "But printing on public wifi or a public printer is insecure.",
@@ -308,11 +308,12 @@
         "printYourSeed": "Print your seed",
         "digitalCopy": "Digital copy",
         "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
-        "iHaveSavedMySeed": "I have backed up my seed",
+        "iHaveBackedUpMySeed": "I have backed up my seed",
         "letsWriteDownYourSeed": "Lets write down your seed",
         "youCanHighlightCharacters": "You can highlight 9 characters at a time",
         "printBlankWallet": "Print a blank wallet",
         "whatIsCheksum": "Every seed has a corresponding 3 character checksum",
+        "iHavesavedMySeed": "I've saved my seed",
         "checksumExplanation":
             "Whenever you add a seed to your wallet, you should ensure that the wallet-generated checksum matches the one you have written down.",
         "mustSaveYourSeed":

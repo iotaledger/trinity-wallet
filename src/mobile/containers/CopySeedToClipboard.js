@@ -13,12 +13,12 @@ import blackCheckboxCheckedImagePath from 'iota-wallet-shared-modules/images/che
 import blackCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked-black.png';
 import tinycolor from 'tinycolor2';
 import Modal from 'react-native-modal';
-import OnboardingButtons from '../containers/OnboardingButtons';
+import Button from '../components/Button';
+import ModalButtons from '../containers/ModalButtons';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import Seedbox from '../components/SeedBox';
 import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
-import CtaButton from '../components/CtaButton';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import { Icon } from '../theme/icons.js';
 import InfoBox from '../components/InfoBox';
@@ -90,20 +90,6 @@ const styles = StyleSheet.create({
         fontFamily: 'SourceSansPro-Bold',
         fontSize: width / 27.6,
         textDecorationLine: 'underline',
-    },
-    doneButton: {
-        borderWidth: 1.2,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 2.7,
-        height: height / 14,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        marginBottom: height / 20,
-    },
-    doneText: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
-        backgroundColor: 'transparent',
     },
     modalCheckboxContainer: {
         flexDirection: 'row',
@@ -284,7 +270,7 @@ class CopySeedToClipboard extends Component {
                     {t('global:androidCopyPasteWarning')}
                 </Text>
                 <View style={{ paddingTop: height / 18 }}>
-                    <OnboardingButtons
+                    <ModalButtons
                         onLeftButtonPress={() => this.hideModal()}
                         onRightButtonPress={() => this.onCopyPress(hasVisitedSeedShareTutorial)}
                         leftText={t('global:back')}
@@ -332,7 +318,7 @@ class CopySeedToClipboard extends Component {
                                 </TouchableOpacity>
                                 <Text style={[styles.infoTextBold, textColor]}>{t('doNotOpen')} </Text>
                                 <View style={{ paddingTop: height / 18 }}>
-                                    <OnboardingButtons
+                                    <ModalButtons
                                         onLeftButtonPress={() => this.hideModal()}
                                         onRightButtonPress={() => this.onCopyPress(checkbox)}
                                         leftText={t('global:back')}
@@ -378,24 +364,31 @@ class CopySeedToClipboard extends Component {
                     <View style={{ flex: 0.2 }} />
                     <Seedbox bodyColor={theme.body.color} borderColor={borderColor} textColor={textColor} seed={seed} />
                     <View style={{ flex: 0.2 }} />
-                    <CtaButton
-                        ctaColor={theme.primary.color}
-                        ctaBorderColor={theme.primary.hover}
-                        secondaryCtaColor={theme.primary.body}
-                        text={t(isAndroid ? 'global:shareSeed' : 'copyToClipboard').toUpperCase()}
-                        onPress={() => {
-                            this.openModal();
+                    <Button
+                        onPress={() => this.openModal()}
+                        style={{
+                            wrapper: {
+                                width: width / 1.65,
+                                height: height / 13,
+                                borderRadius: height / 90,
+                                backgroundColor: theme.extra.color,
+                            },
                         }}
-                        ctaWidth={width / 1.65}
-                    />
+                    >
+                        {t(isAndroid ? 'global:shareSeed' : 'copyToClipboard')}
+                    </Button>
                     <View style={{ flex: 0.5 }} />
                 </View>
                 <View style={styles.bottomContainer}>
-                    <TouchableOpacity onPress={() => this.onDonePress()}>
-                        <View style={[styles.doneButton, { borderColor: theme.secondary.color }]}>
-                            <Text style={[styles.doneText, { color: theme.secondary.color }]}>{t('global:done')}</Text>
-                        </View>
-                    </TouchableOpacity>
+                    <Button
+                        onPress={() => this.onDonePress()}
+                        style={{
+                            wrapper: { backgroundColor: theme.primary.color },
+                            children: { color: theme.primary.body },
+                        }}
+                    >
+                        {t('global:doneLowercase')}
+                    </Button>
                 </View>
                 <Modal
                     backdropTransitionInTiming={isAndroid ? 500 : 300}

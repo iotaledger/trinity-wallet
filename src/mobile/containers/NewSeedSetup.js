@@ -40,7 +40,6 @@ const styles = StyleSheet.create({
     bottomContainer: {
         flex: 0.6,
         justifyContent: 'flex-end',
-        paddingBottom: height / 20,
     },
     list: {
         justifyContent: 'center',
@@ -328,8 +327,9 @@ class NewSeedSetup extends Component {
         const { t, theme: { primary, body }, seed } = this.props;
         const { isModalActive } = this.state;
         const viewOpacity = this.state.randomised ? 1 : 0.2;
-        const opacity = this.state.randomised ? 1 : 0.1;
+        const opacity = this.state.randomised ? 1 : 0.4;
         const textColor = { color: body.color };
+
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
                 <DynamicStatusBar backgroundColor={body.bg} />
@@ -376,11 +376,11 @@ class NewSeedSetup extends Component {
                     <OnboardingButtons
                         onLeftButtonPress={() => this.onBackPress()}
                         onRightButtonPress={() => this.onNextPress()}
-                        leftText={t('global:back')}
-                        rightText={t('global:next')}
+                        leftButtonText={t('global:goBack')}
+                        rightButtonText={t('global:continue')}
                         leftButtonTestID="newSeedSetup-back"
                         rightButtonTestID="newSeedSetup-next"
-                        opacity={opacity}
+                        rightButtonStyle={{ wrapper: { opacity } }}
                     />
                 </View>
                 <Modal
@@ -392,7 +392,7 @@ class NewSeedSetup extends Component {
                     isVisible={isModalActive}
                     onBackButtonPress={() => this.hideModal()}
                     hideModalContentWhileAnimating
-                    useNativeDriver={isAndroid ? true : false}
+                    useNativeDriver={isAndroid}
                 >
                     {this.renderModalContent()}
                 </Modal>

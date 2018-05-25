@@ -17,9 +17,9 @@ import blackCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/c
 import timer from 'react-native-timer';
 import Modal from 'react-native-modal';
 import tinycolor from 'tinycolor2';
-import OnboardingButtons from '../containers/OnboardingButtons';
+import ModalButtons from '../containers/ModalButtons';
 import GENERAL from '../theme/general';
-import CtaButton from '../components/CtaButton';
+import Button from '../components/Button';
 import { isAndroid, isIOS } from '../utils/device';
 import { width, height } from '../utils/dimensions';
 import DynamicStatusBar from '../components/DynamicStatusBar';
@@ -83,20 +83,6 @@ const styles = StyleSheet.create({
         fontFamily: 'SourceSansPro-Bold',
         fontSize: GENERAL.fontSize3,
         textAlign: 'left',
-        backgroundColor: 'transparent',
-    },
-    doneButton: {
-        borderWidth: 1.2,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 2.7,
-        height: height / 14,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        marginBottom: height / 20,
-    },
-    doneText: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
     },
     paperWalletContainer: {
@@ -541,7 +527,7 @@ class PaperWallet extends Component {
                                 <Image source={this.getCheckbox(publicPrinterCheckbox)} style={styles.modalCheckbox} />
                             </TouchableOpacity>
                             <View style={{ paddingTop: height / 18 }}>
-                                <OnboardingButtons
+                                <ModalButtons
                                     onLeftButtonPress={() => this.hideModal()}
                                     onRightButtonPress={() => this.onPrintPress()}
                                     leftText={t('global:back')}
@@ -559,7 +545,7 @@ class PaperWallet extends Component {
     };
 
     render() {
-        const { t, seed, theme: { body, primary, secondary } } = this.props;
+        const { t, seed, theme: { primary, body, secondary } } = this.props;
         const { isModalActive, iotaLogoCheckbox } = this.state;
         const textColor = { color: body.color };
         const checksum = getChecksum(seed);
@@ -618,24 +604,32 @@ class PaperWallet extends Component {
                         <Text style={[styles.checkboxText, textColor]}>{t('iotaLogo')}</Text>
                     </TouchableOpacity>
                     <View style={{ flex: 0.3 }} />
-                    <CtaButton
-                        ctaColor={primary.color}
-                        ctaBorderColor={primary.hover}
-                        secondaryCtaColor={primary.body}
-                        text={t('printWallet')}
-                        onPress={() => {
-                            this.openModal();
+                    <Button
+                        style={{
+                            wrapper: {
+                                width: width / 1.1,
+                                height: height / 13,
+                                borderRadius: height / 90,
+                                backgroundColor: secondary.color,
+                            },
+                            children: { color: secondary.body },
                         }}
-                        ctaWidth={width / 1.1}
-                    />
+                        onPress={() => this.openModal()}
+                    >
+                        {t('printWallet')}
+                    </Button>
                     <View style={{ flex: 1.5 }} />
                 </View>
                 <View style={styles.bottomContainer}>
-                    <TouchableOpacity onPress={() => this.onDonePress()}>
-                        <View style={[styles.doneButton, { borderColor: secondary.color }]}>
-                            <Text style={[styles.doneText, { color: secondary.color }]}>{t('global:done')}</Text>
-                        </View>
-                    </TouchableOpacity>
+                    <Button
+                        onPress={() => this.onDonePress()}
+                        style={{
+                            wrapper: { backgroundColor: primary.color },
+                            children: { color: primary.body },
+                        }}
+                    >
+                        {t('global:doneLowercase')}
+                    </Button>
                 </View>
                 <Modal
                     backdropTransitionInTiming={isAndroid ? 500 : 300}
@@ -646,7 +640,7 @@ class PaperWallet extends Component {
                     isVisible={isModalActive}
                     onBackButtonPress={() => this.hideModal()}
                     hideModalContentWhileAnimating
-                    useNativeDriver={isAndroid ? true : false}
+                    useNativeDriver={isAndroid}
                 >
                     {this.renderModalContent()}
                 </Modal>

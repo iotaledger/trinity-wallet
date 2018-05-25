@@ -393,7 +393,7 @@ class UseExistingSeed extends Component {
                         isVisible={isModalActive}
                         onBackButtonPress={() => this.props.toggleModalActivity()}
                         hideModalContentWhileAnimating
-                        useNativeDriver={isAndroid ? true : false}
+                        useNativeDriver={isAndroid}
                     >
                         {this.renderModalContent()}
                     </Modal>

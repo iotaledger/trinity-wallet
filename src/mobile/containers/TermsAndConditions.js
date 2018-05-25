@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import Pdf from 'react-native-pdf';
 import { connect } from 'react-redux';
 import { acceptTerms } from 'iota-wallet-shared-modules/actions/settings';
 import WithBackPressCloseApp from '../components/BackPressCloseApp';
+import Button from '../components/Button';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
@@ -19,32 +20,18 @@ const styles = StyleSheet.create({
     topContainer: {
         flex: 5,
         alignItems: 'center',
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
     },
     bottomContainer: {
         flex: 0.8,
         alignItems: 'center',
         justifyContent: 'flex-end',
     },
-    nextButton: {
-        borderWidth: 1.2,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 2.7,
-        height: height / 14,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        marginBottom: height / 20,
-    },
-    nextText: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
-        backgroundColor: 'transparent',
-    },
     titleText: {
         fontFamily: 'SourceSansPro-Regular',
         fontSize: GENERAL.fontSize4,
         textAlign: 'center',
-        marginLeft: width / 20
+        marginLeft: width / 20,
     },
     pdf: {
         height: height / 1.5,
@@ -56,7 +43,7 @@ const styles = StyleSheet.create({
         width: width / 1.1,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
 });
 
@@ -97,25 +84,24 @@ class TermsAndConditions extends Component {
             <View style={[styles.container, { backgroundColor: body.bg }]}>
                 <DynamicStatusBar backgroundColor={body.bg} />
                 <View style={styles.topContainer}>
-                    <View style={{ height: height / 10 }}/>
-                    <View style={[ styles.titleContainer, { backgroundColor: bar.bg } ]}>
+                    <View style={{ height: height / 10 }} />
+                    <View style={[styles.titleContainer, { backgroundColor: bar.bg }]}>
                         <Icon name="iota" size={width / 14} color={bar.color} />
-                        <Text style={[ styles.titleText, textColor ]}>Terms and Conditions</Text>
+                        <Text style={[styles.titleText, textColor]}>Terms and Conditions</Text>
                     </View>
-                    <Pdf
-                        source={source}
-                        style={styles.pdf}
-                        scale={1.3}
-                        enableAntialiasing
-                    />
-                    <View style={{ height: height / 24 }}/>
+                    <Pdf source={source} style={styles.pdf} scale={1.3} enableAntialiasing />
+                    <View style={{ height: height / 24 }} />
                 </View>
                 <View style={styles.bottomContainer}>
-                    <TouchableOpacity onPress={() => this.onNextPress()} testID="languageSetup-next">
-                        <View style={[styles.nextButton, { borderColor: primary.color }]}>
-                            <Text style={[styles.nextText, { color: primary.color }]}>I AGREE</Text>
-                        </View>
-                    </TouchableOpacity>
+                    <Button
+                        onPress={() => this.onNextPress()}
+                        style={{
+                            wrapper: { backgroundColor: primary.color },
+                            children: { color: primary.body },
+                        }}
+                    >
+                        I agree
+                    </Button>
                 </View>
             </View>
         );
@@ -127,9 +113,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    acceptTerms
+    acceptTerms,
 };
 
-export default WithBackPressCloseApp()(
-    connect(mapStateToProps, mapDispatchToProps)(TermsAndConditions)
-);
+export default WithBackPressCloseApp()(connect(mapStateToProps, mapDispatchToProps)(TermsAndConditions));

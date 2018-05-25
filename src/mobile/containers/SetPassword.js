@@ -53,7 +53,6 @@ const styles = StyleSheet.create({
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 20,
     },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
@@ -264,8 +263,8 @@ class SetPassword extends Component {
                             <OnboardingButtons
                                 onLeftButtonPress={() => this.onBackPress()}
                                 onRightButtonPress={() => this.onDonePress()}
-                                leftText={t('global:back')}
-                                rightText={t('global:done')}
+                                leftButtonText={t('global:goBack')}
+                                rightButtonText={t('global:doneLowercase')}
                             />
                         </View>
                     </View>
