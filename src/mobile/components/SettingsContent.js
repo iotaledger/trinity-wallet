@@ -6,6 +6,7 @@ import AccountManagement from '../containers/AccountManagement';
 import ViewSeed from '../containers/ViewSeed';
 import ViewAddressesComponent from '../containers/ViewAddresses';
 import ProofOfWork from '../containers/Pow';
+import AutoPromotion from '../containers/AutoPromotion';
 import EditAccountNameComponent from '../containers/EditAccountName';
 import DeleteAccount from '../containers/DeleteAccount';
 import AddNewAccount from '../containers/AddNewAccount';
@@ -43,6 +44,7 @@ const SETTINGS_COMPONENTS = {
     securitySettings: SecuritySettings,
     modeSelection: ModeSelection,
     pow: ProofOfWork,
+    autoPromotion: AutoPromotion,
     about: About,
 };
 
