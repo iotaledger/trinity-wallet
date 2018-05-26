@@ -141,6 +141,7 @@ class Advanced extends PureComponent {
     startSnapshotTransition = async () => {
         const { wallet, addresses } = this.props;
         const seed = await getSeed(wallet.seedIndex, wallet.password);
+        // TODO: add genFn as an argument
         runTask('transitionForSnapshot', [seed, addresses]);
     };
 
@@ -148,6 +149,7 @@ class Advanced extends PureComponent {
         this.props.toggleModalActivity();
         const { wallet, transitionAddresses, selectedAccountName } = this.props;
         const seed = await getSeed(wallet.seedIndex, wallet.password);
+        // TODO: add powFn as an argument
         runTask('completeSnapshotTransition', [seed, selectedAccountName, transitionAddresses]);
     };
 
@@ -156,6 +158,7 @@ class Advanced extends PureComponent {
         const { wallet, transitionAddresses } = this.props;
         const seed = await getSeed(wallet.seedIndex, wallet.password);
         const currentIndex = transitionAddresses.length;
+        // TODO: add genFn as an argument
         runTask('generateAddressesAndGetBalance', [seed, currentIndex, null]);
     };
 
