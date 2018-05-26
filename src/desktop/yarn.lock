@@ -343,6 +343,14 @@ authenticator-cli@^1.0.3:
     cli "^0.11.1"
     qrcode-terminal "^0.10.0"
 
+authenticator-cli@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/authenticator-cli/-/authenticator-cli-1.0.5.tgz#4374783c654918050711f044e7b45526631243c2"
+  dependencies:
+    authenticator "^1.1.0"
+    cli "^1.0.1"
+    qrcode-terminal "^0.12.0"
+
 authenticator@^1.1.0:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/authenticator/-/authenticator-1.1.3.tgz#d86ec474630dc52adb3857fd8dc31ec1f5620164"
@@ -356,6 +364,14 @@ authenticator@^1.1.4:
   resolved "https://registry.yarnpkg.com/authenticator/-/authenticator-1.1.4.tgz#d9b1e070fb97edd6a9012d1c5668f119b2ce02a5"
   dependencies:
     authenticator-cli "^1.0.3"
+    notp "^2.0.3"
+    thirty-two "0.0.2"
+
+"authenticator@https://git.coolaj86.com/rajivshah3/node-authenticator.js.git":
+  version "1.1.4"
+  resolved "https://git.coolaj86.com/rajivshah3/node-authenticator.js.git#f67283c91cd0f0fada8b58964522b609d2edc290"
+  dependencies:
+    authenticator-cli "^1.0.5"
     notp "^2.0.3"
     thirty-two "0.0.2"
 
@@ -1675,6 +1691,13 @@ cli@^0.11.1:
   dependencies:
     exit "0.1.2"
     glob "^7.0.5"
+
+cli@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/cli/-/cli-1.0.1.tgz#22817534f24bfa4950c34d532d48ecbc621b8c14"
+  dependencies:
+    exit "0.1.2"
+    glob "^7.1.1"
 
 cliui@^3.2.0:
   version "3.2.0"
@@ -3415,7 +3438,7 @@ glob@^6.0.4:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-glob@^7.0.0, glob@^7.0.3, glob@^7.0.5, glob@^7.1.2, glob@~7.1.1:
+glob@^7.0.0, glob@^7.0.3, glob@^7.0.5, glob@^7.1.1, glob@^7.1.2, glob@~7.1.1:
   version "7.1.2"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.2.tgz#c19c9df9a028702d678612384a6552404c636d15"
   dependencies:
@@ -6266,6 +6289,10 @@ qr.js@0.0.0:
 qrcode-terminal@^0.10.0:
   version "0.10.0"
   resolved "https://registry.yarnpkg.com/qrcode-terminal/-/qrcode-terminal-0.10.0.tgz#a76a48e2610a18f97fa3a2bd532b682acff86c53"
+
+qrcode-terminal@^0.12.0:
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/qrcode-terminal/-/qrcode-terminal-0.12.0.tgz#bb5b699ef7f9f0505092a3748be4464fe71b5819"
 
 qrcode.react@^0.8.0:
   version "0.8.0"
