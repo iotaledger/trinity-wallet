@@ -12,6 +12,7 @@ import tinycolor from 'tinycolor2';
 import OnboardingButtons from '../containers/OnboardingButtons';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import InfoBox from '../components/InfoBox';
+import Header from '../components/Header';
 import GENERAL from '../theme/general';
 import { Icon } from '../theme/icons.js';
 import { isAndroid } from '../utils/device';
@@ -46,7 +47,6 @@ const styles = StyleSheet.create({
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 20,
     },
     backButton: {
         borderWidth: 1.2,
@@ -222,20 +222,19 @@ class SaveSeedConfirmation extends Component {
 
         return (
             <View>
-                <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
+                <Text style={[styles.infoText, textColor, { paddingTop: height / 80 }]}>
                     <Text style={styles.infoTextBold}>{t('reenterSeed')}</Text>
                 </Text>
                 <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
-                    <Text style={styles.infoTextNormal}>
-                        {t('reenterSeedWarning')}
-                        {isAndroid ? ` ${t('global:androidInsecureClipboardWarning')}` : null}
-                    </Text>
+                    <Text style={styles.infoTextNormal}>{t('reenterSeedWarning')}</Text>
                 </Text>
                 {isAndroid && (
                     <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
+                        <Text style={styles.infoTextNormal}>{t('global:androidInsecureClipboardWarning')} </Text>
                         <Text style={styles.infoTextBold}>{t('global:androidCopyPasteWarning')}</Text>
                     </Text>
                 )}
+                <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>{t('pleaseConfirm')}</Text>
             </View>
         );
     }
@@ -244,7 +243,7 @@ class SaveSeedConfirmation extends Component {
         const { t, theme: { body } } = this.props;
         const { hasSavedSeed, hasAgreedToNotCopyPaste } = this.state;
         const textColor = { color: body.color };
-        const opacity = hasSavedSeed && hasAgreedToNotCopyPaste ? 1 : 0.1;
+        const opacity = hasSavedSeed && hasAgreedToNotCopyPaste ? 1 : 0.4;
         const isSecondCheckbox = (idx) => idx === 1;
 
         return (
@@ -252,8 +251,11 @@ class SaveSeedConfirmation extends Component {
                 <DynamicStatusBar backgroundColor={body.bg} />
                 <View style={styles.topContainer}>
                     <Icon name="iota" size={width / 8} color={body.color} />
+                    <View style={{ flex: 0.7 }} />
+                    <Header textColor={body.color}>{t('didSaveSeed')}</Header>
                 </View>
                 <View style={styles.midContainer}>
+                    <View style={{ flex: 0.15 }} />
                     <InfoBox body={body} width={width / 1.1} text={this.renderInfoBoxContent()} />
                     <View style={{ flex: 0.3 }} />
                     <View style={styles.bottomMidContainer}>
@@ -277,7 +279,7 @@ class SaveSeedConfirmation extends Component {
                                 })}
                             </View>
                         ) : (
-                            <View style={{ flex: 1 }} />
+                            <View style={{ flex: 1.2 }} />
                         )}
                     </View>
                 </View>
@@ -285,9 +287,9 @@ class SaveSeedConfirmation extends Component {
                     <OnboardingButtons
                         onLeftButtonPress={() => this.onBackPress()}
                         onRightButtonPress={() => this.onNextPress()}
-                        leftText={t('global:back')}
-                        rightText={t('global:next')}
-                        opacity={opacity}
+                        leftButtonText={t('global:goBack')}
+                        rightButtonText={t('global:continue')}
+                        rightButtonStyle={{ wrapper: { opacity } }}
                     />
                 </View>
             </View>

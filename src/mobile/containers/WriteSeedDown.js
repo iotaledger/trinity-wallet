@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { translate, Trans } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getChecksum, MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/iota/utils';
 import Seedbox from '../components/SeedBox';
+import Button from '../components/Button';
 import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import { Icon } from '../theme/icons.js';
-import InfoBox from '../components/InfoBox';
 
 const styles = StyleSheet.create({
     container: {
@@ -33,6 +33,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'flex-end',
     },
+    textContainer: {
+        width: width / 1.25,
+        alignItems: 'center',
+    },
     optionButtonText: {
         color: '#8BD4FF',
         fontFamily: 'SourceSansPro-Light',
@@ -54,33 +58,19 @@ const styles = StyleSheet.create({
         color: 'white',
         fontFamily: 'SourceSansPro-Light',
         fontSize: GENERAL.fontSize3,
-        textAlign: 'left',
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
     infoTextNormal: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: GENERAL.fontSize3,
-        textAlign: 'left',
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
     infoTextBold: {
         fontFamily: 'SourceSansPro-Bold',
         fontSize: GENERAL.fontSize3,
-        textAlign: 'left',
-        backgroundColor: 'transparent',
-    },
-    doneButton: {
-        borderWidth: 1.2,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 2.7,
-        height: height / 14,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        marginBottom: height / 20,
-    },
-    doneText: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
     seedBox: {
@@ -172,21 +162,18 @@ class WriteSeedDown extends Component {
                 </View>
                 <View style={styles.midContainer}>
                     <View style={{ flex: 1 }} />
-                    <InfoBox
-                        body={theme.body}
-                        text={
-                            <Text style={[styles.infoText, textColor]}>
-                                <Text style={styles.infoTextNormal}>
-                                    {t('writeSeedDown:yourSeedIs', { maxSeedLength: MAX_SEED_LENGTH })}
-                                </Text>
-                                <Trans i18nKey="writeDownYourSeed">
-                                    <Text style={styles.infoTextNormal}> Write down your seed and checksum and </Text>
-                                    <Text style={styles.infoTextBold}>triple check</Text>
-                                    <Text style={styles.infoTextNormal}> that they are correct.</Text>
-                                </Trans>
-                            </Text>
-                        }
-                    />
+                    <View style={styles.textContainer}>
+                        <Text style={[styles.infoTextNormal, textColor]}>
+                            {t('writeSeedDown:yourSeedIs', { maxSeedLength: MAX_SEED_LENGTH })}
+                        </Text>
+                        <Text style={[styles.infoText, textColor, { paddingTop: height / 40 }]}>
+                            <Trans i18nKey="writeDownYourSeed">
+                                <Text style={styles.infoTextNormal}>Write down your seed and checksum and </Text>
+                                <Text style={styles.infoTextBold}>triple check</Text>
+                                <Text style={styles.infoTextNormal}> that they are correct.</Text>
+                            </Trans>
+                        </Text>
+                    </View>
                     <View style={{ flex: 0.5 }} />
                     <Seedbox bodyColor={theme.body.color} borderColor={borderColor} textColor={textColor} seed={seed} />
                     <View style={{ flex: 0.5 }} />
@@ -196,11 +183,15 @@ class WriteSeedDown extends Component {
                     <View style={{ flex: 1 }} />
                 </View>
                 <View style={styles.bottomContainer}>
-                    <TouchableOpacity onPress={() => this.onDonePress()}>
-                        <View style={[styles.doneButton, { borderColor: theme.secondary.color }]}>
-                            <Text style={[styles.doneText, { color: theme.secondary.color }]}>{t('global:done')}</Text>
-                        </View>
-                    </TouchableOpacity>
+                    <Button
+                        onPress={() => this.onDonePress()}
+                        style={{
+                            wrapper: { backgroundColor: theme.primary.color },
+                            children: { color: theme.primary.body },
+                        }}
+                    >
+                        {t('global:doneLowercase')}
+                    </Button>
                 </View>
             </View>
         );

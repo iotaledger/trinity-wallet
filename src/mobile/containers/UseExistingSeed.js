@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 9,
+        flex: 11,
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontSize: GENERAL.fontSize4,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
@@ -393,7 +393,7 @@ class UseExistingSeed extends Component {
                         isVisible={isModalActive}
                         onBackButtonPress={() => this.props.toggleModalActivity()}
                         hideModalContentWhileAnimating
-                        useNativeDriver={isAndroid ? true : false}
+                        useNativeDriver={isAndroid}
                     >
                         {this.renderModalContent()}
                     </Modal>

@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import Pdf from 'react-native-pdf';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import { acceptTerms } from 'iota-wallet-shared-modules/actions/settings';
 import WithBackPressCloseApp from '../components/BackPressCloseApp';
+import Button from '../components/Button';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
-import { Icon } from '../theme/icons.js';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 
 const styles = StyleSheet.create({
@@ -16,47 +17,23 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    topContainer: {
-        flex: 5,
-        alignItems: 'center',
-        justifyContent: 'flex-end'
-    },
-    bottomContainer: {
-        flex: 0.8,
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-    },
-    nextButton: {
-        borderWidth: 1.2,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 2.7,
-        height: height / 14,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        marginBottom: height / 20,
-    },
-    nextText: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
-        backgroundColor: 'transparent',
-    },
     titleText: {
-        fontFamily: 'SourceSansPro-Regular',
+        fontFamily: 'SourceSansPro-SemiBold',
         fontSize: GENERAL.fontSize4,
         textAlign: 'center',
-        marginLeft: width / 20
+        paddingTop: height / 55,
     },
     pdf: {
-        height: height / 1.5,
-        width: width / 1.1,
-        paddingBottom: height / 30,
+        flex: 1,
+        height: height - height / 8 - height / 11,
+        width: width,
     },
     titleContainer: {
         height: height / 8,
-        width: width / 1.1,
+        width: width,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
 });
 
@@ -69,6 +46,10 @@ class TermsAndConditions extends Component {
         theme: PropTypes.object.isRequired,
         /** User confirms that they agree to the terms and conditions */
         acceptTerms: PropTypes.func.isRequired,
+        /** Translation helper
+         * @param {string} translationString - locale string identifier to be translated
+         */
+        t: PropTypes.func.isRequired,
     };
 
     onNextPress() {
@@ -89,34 +70,26 @@ class TermsAndConditions extends Component {
     }
 
     render() {
-        const { theme: { primary, body, bar } } = this.props;
+        const { t, theme: { primary, body, bar } } = this.props;
         const source = require('iota-wallet-shared-modules/assets/terms.pdf');
         const textColor = { color: bar.color };
 
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
-                <DynamicStatusBar backgroundColor={body.bg} />
-                <View style={styles.topContainer}>
-                    <View style={{ height: height / 10 }}/>
-                    <View style={[ styles.titleContainer, { backgroundColor: bar.bg } ]}>
-                        <Icon name="iota" size={width / 14} color={bar.color} />
-                        <Text style={[ styles.titleText, textColor ]}>Terms and Conditions</Text>
-                    </View>
-                    <Pdf
-                        source={source}
-                        style={styles.pdf}
-                        scale={1.3}
-                        enableAntialiasing
-                    />
-                    <View style={{ height: height / 24 }}/>
+                <DynamicStatusBar backgroundColor={bar.bg} />
+                <View style={[styles.titleContainer, { backgroundColor: bar.bg }]}>
+                    <Text style={[styles.titleText, textColor]}>{t('termsAndConditions').toUpperCase()}</Text>
                 </View>
-                <View style={styles.bottomContainer}>
-                    <TouchableOpacity onPress={() => this.onNextPress()} testID="languageSetup-next">
-                        <View style={[styles.nextButton, { borderColor: primary.color }]}>
-                            <Text style={[styles.nextText, { color: primary.color }]}>I AGREE</Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
+                <Pdf source={source} style={styles.pdf} scale={1.3} enableAntialiasing />
+                <Button
+                    onPress={() => this.onNextPress()}
+                    style={{
+                        wrapper: { backgroundColor: primary.color },
+                        children: { color: primary.body },
+                    }}
+                >
+                    {t('agree')}
+                </Button>
             </View>
         );
     }
@@ -127,9 +100,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    acceptTerms
+    acceptTerms,
 };
 
 export default WithBackPressCloseApp()(
-    connect(mapStateToProps, mapDispatchToProps)(TermsAndConditions)
+    translate('terms')(connect(mapStateToProps, mapDispatchToProps)(TermsAndConditions)),
 );

@@ -13,12 +13,12 @@ import blackCheckboxCheckedImagePath from 'iota-wallet-shared-modules/images/che
 import blackCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked-black.png';
 import tinycolor from 'tinycolor2';
 import Modal from 'react-native-modal';
-import OnboardingButtons from '../containers/OnboardingButtons';
+import Button from '../components/Button';
+import ModalButtons from '../containers/ModalButtons';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import Seedbox from '../components/SeedBox';
 import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
-import CtaButton from '../components/CtaButton';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import { Icon } from '../theme/icons.js';
 import InfoBox from '../components/InfoBox';
@@ -47,6 +47,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'flex-end',
     },
+    textContainer: {
+        width: width / 1.25,
+        alignItems: 'center',
+    },
     optionButtonText: {
         color: '#8BD4FF',
         fontFamily: 'SourceSansPro-Light',
@@ -67,16 +71,34 @@ const styles = StyleSheet.create({
     infoText: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: GENERAL.fontSize3,
-        textAlign: 'left',
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
     infoTextNormal: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: GENERAL.fontSize3,
-        textAlign: 'left',
+        textAlign: 'center',
         backgroundColor: 'transparent',
     },
     infoTextBold: {
+        fontFamily: 'SourceSansPro-Bold',
+        fontSize: GENERAL.fontSize3,
+        textAlign: 'center',
+        backgroundColor: 'transparent',
+    },
+    modalInfoText: {
+        fontFamily: 'SourceSansPro-Light',
+        fontSize: GENERAL.fontSize3,
+        textAlign: 'left',
+        backgroundColor: 'transparent',
+    },
+    modalInfoTextNormal: {
+        fontFamily: 'SourceSansPro-Light',
+        fontSize: GENERAL.fontSize3,
+        textAlign: 'left',
+        backgroundColor: 'transparent',
+    },
+    modalInfoTextBold: {
         fontFamily: 'SourceSansPro-Bold',
         fontSize: GENERAL.fontSize3,
         textAlign: 'left',
@@ -91,20 +113,6 @@ const styles = StyleSheet.create({
         fontSize: width / 27.6,
         textDecorationLine: 'underline',
     },
-    doneButton: {
-        borderWidth: 1.2,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 2.7,
-        height: height / 14,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        marginBottom: height / 20,
-    },
-    doneText: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
-        backgroundColor: 'transparent',
-    },
     modalCheckboxContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -115,6 +123,7 @@ const styles = StyleSheet.create({
     modalCheckboxText: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: GENERAL.fontSize3,
+        marginLeft: width / 40,
     },
     modalCheckbox: {
         width: width / 20,
@@ -260,14 +269,14 @@ class CopySeedToClipboard extends Component {
 
         return (
             <View>
-                <Text style={[styles.infoText, textColor, { paddingTop: height / 40 }]}>
-                    <Text style={styles.infoTextNormal}>{t('global:masterKey')} </Text>
-                    <Text style={styles.infoTextNormal}>
+                <Text style={[styles.modalInfoText, textColor, { paddingTop: height / 40 }]}>
+                    <Text style={styles.modalInfoTextNormal}>{t('global:masterKey')} </Text>
+                    <Text style={styles.modalInfoTextNormal}>
                         {t('global:mustBeStoredAppropriately')} {t('global:androidInsecureClipboardWarning')}
                     </Text>
                 </Text>
-                <Text style={[styles.infoText, textColor, { paddingTop: height / 40 }]}>
-                    <Text style={styles.infoTextNormal}>{`${t('followTutorialToSecurelyShareSeed')}:`}</Text>
+                <Text style={[styles.modalInfoText, textColor, { paddingTop: height / 40 }]}>
+                    <Text style={styles.modalInfoTextNormal}>{`${t('followTutorialToSecurelyShareSeed')}:`}</Text>
                 </Text>
                 <Text style={[styles.infoLinkWrapper, textColor]}>
                     <Text
@@ -280,11 +289,11 @@ class CopySeedToClipboard extends Component {
                         Using Trinity Wallet with Keepass2Android
                     </Text>
                 </Text>
-                <Text style={[styles.infoTextBold, textColor, { paddingTop: height / 40 }]}>
+                <Text style={[styles.modalInfoTextBold, textColor, { paddingTop: height / 40 }]}>
                     {t('global:androidCopyPasteWarning')}
                 </Text>
                 <View style={{ paddingTop: height / 18 }}>
-                    <OnboardingButtons
+                    <ModalButtons
                         onLeftButtonPress={() => this.hideModal()}
                         onRightButtonPress={() => this.onCopyPress(hasVisitedSeedShareTutorial)}
                         leftText={t('global:back')}
@@ -314,11 +323,11 @@ class CopySeedToClipboard extends Component {
                             this.renderInfoBoxContentForAndroid()
                         ) : (
                             <View>
-                                <Text style={[styles.infoText, textColor, { paddingTop: height / 40 }]}>
-                                    <Text style={styles.infoTextNormal}>{t('global:masterKey')} </Text>
-                                    <Text style={styles.infoTextNormal}>{t('storeEncrypted')} </Text>
+                                <Text style={[styles.modalInfoText, textColor, { paddingTop: height / 40 }]}>
+                                    <Text style={styles.modalInfoTextNormal}>{t('global:masterKey')} </Text>
+                                    <Text style={styles.modalInfoTextNormal}>{t('storeEncrypted')} </Text>
                                 </Text>
-                                <Text style={[styles.infoTextBold, textColor, { paddingTop: height / 30 }]}>
+                                <Text style={[styles.modalInfoTextBold, textColor, { paddingTop: height / 30 }]}>
                                     {t('tapConfirm')}
                                 </Text>
                                 <TouchableOpacity
@@ -330,9 +339,9 @@ class CopySeedToClipboard extends Component {
                                         {t('passwordManagerCheckbox')}
                                     </Text>
                                 </TouchableOpacity>
-                                <Text style={[styles.infoTextBold, textColor]}>{t('doNotOpen')} </Text>
+                                <Text style={[styles.modalInfoTextBold, textColor]}>{t('doNotOpen')} </Text>
                                 <View style={{ paddingTop: height / 18 }}>
-                                    <OnboardingButtons
+                                    <ModalButtons
                                         onLeftButtonPress={() => this.hideModal()}
                                         onRightButtonPress={() => this.onCopyPress(checkbox)}
                                         leftText={t('global:back')}
@@ -364,38 +373,42 @@ class CopySeedToClipboard extends Component {
                 </View>
                 <View style={styles.midContainer}>
                     <View style={{ flex: 0.5 }} />
-                    <InfoBox
-                        body={theme.body}
-                        text={
-                            <Text>
-                                <Text style={[styles.infoTextNormal, textColor]}>
-                                    {`${t(isAndroid ? 'clickToSecurelyShare' : 'clickToCopy')} `}
-                                </Text>
-                                <Text style={[styles.infoTextBold, textColor]}>{t('doNotStore')}</Text>
-                            </Text>
-                        }
-                    />
+                    <View style={styles.textContainer}>
+                        <Text style={[styles.infoTextNormal, textColor]}>
+                            {`${t(isAndroid ? 'clickToSecurelyShare' : 'clickToCopy')} `}
+                        </Text>
+                        <Text style={[styles.infoTextBold, textColor, { paddingTop: height / 40 }]}>
+                            {t('doNotStore')}
+                        </Text>
+                    </View>
                     <View style={{ flex: 0.2 }} />
                     <Seedbox bodyColor={theme.body.color} borderColor={borderColor} textColor={textColor} seed={seed} />
                     <View style={{ flex: 0.2 }} />
-                    <CtaButton
-                        ctaColor={theme.primary.color}
-                        ctaBorderColor={theme.primary.hover}
-                        secondaryCtaColor={theme.primary.body}
-                        text={t(isAndroid ? 'global:shareSeed' : 'copyToClipboard').toUpperCase()}
-                        onPress={() => {
-                            this.openModal();
+                    <Button
+                        onPress={() => this.openModal()}
+                        style={{
+                            wrapper: {
+                                width: width / 1.65,
+                                height: height / 13,
+                                borderRadius: height / 90,
+                                backgroundColor: theme.extra.color,
+                            },
                         }}
-                        ctaWidth={width / 1.65}
-                    />
+                    >
+                        {t(isAndroid ? 'global:shareSeed' : 'copyToClipboard')}
+                    </Button>
                     <View style={{ flex: 0.5 }} />
                 </View>
                 <View style={styles.bottomContainer}>
-                    <TouchableOpacity onPress={() => this.onDonePress()}>
-                        <View style={[styles.doneButton, { borderColor: theme.secondary.color }]}>
-                            <Text style={[styles.doneText, { color: theme.secondary.color }]}>{t('global:done')}</Text>
-                        </View>
-                    </TouchableOpacity>
+                    <Button
+                        onPress={() => this.onDonePress()}
+                        style={{
+                            wrapper: { backgroundColor: theme.primary.color },
+                            children: { color: theme.primary.body },
+                        }}
+                    >
+                        {t('global:doneLowercase')}
+                    </Button>
                 </View>
                 <Modal
                     backdropTransitionInTiming={isAndroid ? 500 : 300}
