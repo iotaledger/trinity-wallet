@@ -328,6 +328,9 @@ export const promoteTransfer = (bundleHash, seenTailTransactions) => (dispatch, 
                     consistentTail,
                     accountState.unconfirmedBundleTails[bundleHash],
                     false,
+                    // Auto promote does not support local proof of work
+                    // Pass in null in replacement of proof of work function
+                    null,
                 ),
             ),
         )
