@@ -149,7 +149,6 @@ class Advanced extends PureComponent {
     startSnapshotTransition = async () => {
         const { wallet, addresses } = this.props;
         const seed = await getSeed(wallet.seedIndex, wallet.password);
-        // TODO: add genFn as an argument
         runTask('transitionForSnapshot', [seed, addresses]);
     };
 
@@ -157,10 +156,8 @@ class Advanced extends PureComponent {
         this.props.toggleModalActivity();
         const { wallet, transitionAddresses, selectedAccountName, settings, t} = this.props;
         const seed = await getSeed(wallet.seedIndex, wallet.password);
-        // TODO: add powFn as an argument
 
         let powFn = null;
-
         if (!settings.remotePoW) {
             // Temporarily return an error if WebGL cannot be initialized
             // Remove once we implement more PoW methods
@@ -174,8 +171,8 @@ class Advanced extends PureComponent {
             };
         }
 
+        // we aren't using the taskRunner here because you can't pass in powFn since it's a function
         this.props.completeSnapshotTransition(seed, selectedAccountName, transitionAddresses, powFn);
-        //runTask('completeSnapshotTransition', [seed, selectedAccountName, transitionAddresses, powFn]);
     };
 
     transitionBalanceWrong = async () => {
@@ -183,7 +180,6 @@ class Advanced extends PureComponent {
         const { wallet, transitionAddresses } = this.props;
         const seed = await getSeed(wallet.seedIndex, wallet.password);
         const currentIndex = transitionAddresses.length;
-        // TODO: add genFn as an argument
         runTask('generateAddressesAndGetBalance', [seed, currentIndex, null]);
     };
 
