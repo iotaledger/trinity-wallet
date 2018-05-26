@@ -136,23 +136,58 @@ const promoteTransactionAsync = (
         .then(() => hash);
 };
 
-const replayBundleAsync = (hash, depth = 3, minWeightMagnitude = 14) => {
-    return new Promise((resolve, reject) => {
-        iota.api.replayBundle(hash, depth, minWeightMagnitude, (err, txs) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(txs);
-            }
+const replayBundleAsync = (hash, powFn = null, depth = 3, minWeightMagnitude = 14) => {
+    const shouldOffloadPow = isNull(powFn);
+
+    if (shouldOffloadPow) {
+        return new Promise((resolve, reject) => {
+            iota.api.replayBundle(hash, depth, minWeightMagnitude, (err, txs) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(txs);
+                }
+            });
         });
-    });
+    }
+
+    const cached = {
+        trytes: [],
+        transactionObjects: [],
+    };
+
+    return getBundleAsync(hash)
+        .then((bundle) => {
+            if (isNull(bundle)) {
+                throw new Error(Errors.INVALID_BUNDLE);
+            }
+
+            const convertToTrytes = (tx) => iota.utils.toTrytes(tx);
+            cached.trytes = map(bundle, convertToTrytes).reverse();
+            cached.transactionObjects = bundle;
+
+            return getTransactionsToApproveAsync();
+        })
+        .then(
+            ({ trunkTransaction, branchTransaction }) =>
+                shouldOffloadPow
+                    ? attachToTangleAsync(trunkTransaction, branchTransaction, cached.trytes)
+                    : performPow(powFn, cached.trytes, trunkTransaction, branchTransaction),
+        )
+        .then(({ trytes, transactionObjects }) => {
+            cached.trytes = trytes;
+            cached.transactionObjects = transactionObjects;
+
+            return storeAndBroadcastAsync(cached.trytes);
+        })
+        .then(() => cached.transactionObjects);
 };
 
 const getBundleAsync = (tailTransactionHash) => {
     return new Promise((resolve, reject) => {
         iota.api.getBundle(tailTransactionHash, (err, bundle) => {
             if (err) {
-                if (err.message.includes('Invalid Bundle')) {
+                if (err.message.includes(Errors.INVALID_BUNDLE)) {
                     resolve(null);
                 } else {
                     reject(err);
