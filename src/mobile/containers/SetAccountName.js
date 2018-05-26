@@ -17,6 +17,7 @@ import { hasDuplicateAccountName, hasDuplicateSeed, getAllSeedsFromKeychain } fr
 import InfoBox from '../components/InfoBox';
 import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
+import Header from '../components/Header';
 
 console.ignoredYellowBox = true;
 
@@ -27,22 +28,21 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 0.7,
+        flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 16,
     },
     midContainer: {
-        flex: 4.8,
-        justifyContent: 'space-around',
+        flex: 3,
+        justifyContent: 'flex-start',
         alignItems: 'center',
         width,
     },
     bottomContainer: {
-        flex: 0.7,
+        flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 20,
     },
     titleContainer: {
         justifyContent: 'center',
@@ -245,9 +245,11 @@ export class SetAccountName extends Component {
                     <View>
                         <View style={styles.topContainer}>
                             <Icon name="iota" size={width / 8} color={theme.body.color} />
+                            <View style={{ flex: 0.7 }} />
+                            <Header textColor={theme.body.color}>{t('letsAddName')}</Header>
                         </View>
                         <View style={styles.midContainer}>
-                            <View style={{ flex: 0.5 }} />
+                            <View style={{ flex: 0.15 }} />
                             <CustomTextInput
                                 label={t('addAdditionalSeed:accountName')}
                                 onChangeText={(text) => this.setState({ accountName: text })}
@@ -276,8 +278,8 @@ export class SetAccountName extends Component {
                             <OnboardingButtons
                                 onLeftButtonPress={() => this.onBackPress()}
                                 onRightButtonPress={() => this.onDonePress()}
-                                leftText={t('global:back')}
-                                rightText={t('global:done')}
+                                leftButtonText={t('global:goBack')}
+                                rightButtonText={t('global:doneLowercase')}
                                 leftButtonTestID="setSeedName-back"
                                 rightButtonTestID="setSeedName-done"
                             />
