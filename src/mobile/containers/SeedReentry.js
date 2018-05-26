@@ -14,6 +14,7 @@ import GENERAL from '../theme/general';
 import InfoBox from '../components/InfoBox';
 import OnboardingButtons from '../containers/OnboardingButtons';
 import { Icon } from '../theme/icons';
+import Header from '../components/Header';
 
 const styles = StyleSheet.create({
     container: {
@@ -22,12 +23,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 0.5,
+        flex: 1,
         paddingTop: height / 16,
         justifyContent: 'flex-start',
+        alignItems: 'center',
     },
     midContainer: {
-        flex: 3.7,
+        flex: 3,
         alignItems: 'center',
         justifyContent: 'space-between',
         width,
@@ -36,7 +38,6 @@ const styles = StyleSheet.create({
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 20,
     },
     logoContainer: {
         justifyContent: 'center',
@@ -162,12 +163,12 @@ class SeedReentry extends Component {
                 <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
                     <View>
                         <View style={styles.topContainer}>
-                            <View style={styles.logoContainer}>
-                                <Icon name="iota" size={width / 8} color={theme.body.color} />
-                            </View>
+                            <Icon name="iota" size={width / 8} color={theme.body.color} />
+                            <View style={{ flex: 0.7 }} />
+                            <Header textColor={theme.body.color}>{t('pleaseConfirmYourSeed')}</Header>
                         </View>
                         <View style={styles.midContainer}>
-                            <View style={{ flex: 0.5 }} />
+                            <View style={{ flex: 0.15 }} />
                             <CustomTextInput
                                 label={t('global:seed')}
                                 onChangeText={(text) => this.setState({ seed: text })}
@@ -201,8 +202,8 @@ class SeedReentry extends Component {
                             <OnboardingButtons
                                 onLeftButtonPress={() => this.onBackPress()}
                                 onRightButtonPress={() => this.onDonePress()}
-                                leftText={t('global:back')}
-                                rightText={t('global:done')}
+                                leftButtonText={t(':goBack')}
+                                rightButtonText={t('global:doneLowercase')}
                             />
                         </View>
                     </View>
