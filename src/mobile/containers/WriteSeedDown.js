@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     },
     textContainer: {
         width: width / 1.25,
-        alignItems: 'center',
+        alignItems: 'center'
     },
     optionButtonText: {
         color: '#8BD4FF',
@@ -163,7 +163,7 @@ class WriteSeedDown extends Component {
                 <View style={styles.midContainer}>
                     <View style={{ flex: 1 }} />
                     <View style={styles.textContainer}>
-                        <Text style={[styles.infoTextNormal, textColor]}>
+                        <Text style={[styles.infoTextNormal, textColor ]}>
                             {t('writeSeedDown:yourSeedIs', { maxSeedLength: MAX_SEED_LENGTH })}
                         </Text>
                         <Text style={[styles.infoText, textColor, { paddingTop: height / 40 }]}>

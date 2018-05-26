@@ -38,7 +38,6 @@ const styles = StyleSheet.create({
         flex: 2,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 20,
     },
     generalText: {
         fontFamily: Fonts.secondary,
@@ -170,8 +169,8 @@ class Disable2FA extends Component {
                             <OnboardingButtons
                                 onLeftButtonPress={this.goBack}
                                 onRightButtonPress={this.disable2FA}
-                                leftText={t('cancel')}
-                                rightText={t('done')}
+                                leftButtonText={t('cancel')}
+                                rightButtonText={t('doneLowercase')}
                             />
                         </View>
                     </View>
