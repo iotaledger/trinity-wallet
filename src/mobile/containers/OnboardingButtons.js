@@ -63,11 +63,11 @@ class OnboardingButtons extends PureComponent {
                         {},
                         {
                             wrapper: {
-                                backgroundColor: 'rgba(0,0,0,0.15)', // TODO: Use theme
+                                backgroundColor: theme.dark.color,
                                 width: width / 2,
                             },
                             children: {
-                                color: '#ffffff',
+                                color: theme.dark.body,
                             },
                         },
                         leftButtonStyle,
