@@ -89,7 +89,6 @@ export default function withChartData(ChartComponent) {
             const { marketData, settings, theme, t } = this.props;
 
             const dataSet = marketData.chartData[marketData.currency][marketData.timeframe];
-            console.log(marketData)
 
             const chartProps = {
                 setCurrency: this.changeCurrency,
