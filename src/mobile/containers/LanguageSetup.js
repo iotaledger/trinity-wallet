@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Image } from 'react-native';
+import { StyleSheet, View, TouchableWithoutFeedback, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import i18next from 'i18next';
@@ -15,7 +15,7 @@ import WithBackPressCloseApp from '../components/BackPressCloseApp';
 import { width, height } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
 import DropdownComponent from '../containers/Dropdown';
-import GENERAL from '../theme/general';
+import Button from '../components/Button';
 import { Icon } from '../theme/icons.js';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 
@@ -40,20 +40,6 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-end',
-    },
-    nextButton: {
-        borderWidth: 1.2,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 2.7,
-        height: height / 14,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        marginBottom: height / 20,
-    },
-    nextText: {
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
-        backgroundColor: 'transparent',
     },
     helloBackground: {
         position: 'absolute',
@@ -115,6 +101,7 @@ class LanguageSetup extends Component {
 
     render() {
         const { t, theme: { body, primary } } = this.props;
+
         return (
             <TouchableWithoutFeedback
                 onPress={() => {
@@ -145,11 +132,16 @@ class LanguageSetup extends Component {
                             />
                         </View>
                         <View style={styles.bottomContainer}>
-                            <TouchableOpacity onPress={() => this.onNextPress()} testID="languageSetup-next">
-                                <View style={[styles.nextButton, { borderColor: primary.color }]}>
-                                    <Text style={[styles.nextText, { color: primary.color }]}>{t('global:next')}</Text>
-                                </View>
-                            </TouchableOpacity>
+                            <Button
+                                onPress={() => this.onNextPress()}
+                                testID="languageSetup-next"
+                                style={{
+                                    wrapper: { backgroundColor: primary.color },
+                                    children: { color: primary.body },
+                                }}
+                            >
+                                {t('letsGetStarted')}
+                            </Button>
                         </View>
                     </View>
                 </View>
