@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
         flex: 0.7,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 20,
     },
     iotaLogo: {
         height: width / 5,
@@ -104,8 +103,8 @@ export class Enter2FA extends Component {
                         <OnboardingButtons
                             onLeftButtonPress={this.handleBackPress}
                             onRightButtonPress={this.handleDonePress}
-                            leftText={t('global:back')}
-                            rightText={t('global:done')}
+                            leftButtonText={t('global:goBack')}
+                            rightButtonText={t('login:login')}
                         />
                     </View>
                 </View>

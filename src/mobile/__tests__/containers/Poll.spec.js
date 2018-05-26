@@ -26,6 +26,7 @@ const getProps = (overrides) =>
             isSendingTransfer: false,
             isGeneratingReceiveAddress: false,
             isFetchingLatestAccountInfoOnLogin: false,
+            isAutoPromotionEnabled: false,
             seedIndex: 0,
             selectedAccountName: 'foo account',
             unconfirmedBundleTails: {},
