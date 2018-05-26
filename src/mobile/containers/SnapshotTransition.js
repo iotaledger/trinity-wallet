@@ -17,7 +17,7 @@ import { toggleModalActivity } from 'iota-wallet-shared-modules/actions/ui';
 import { shouldPreventAction } from 'iota-wallet-shared-modules/selectors/global';
 import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/iota/utils';
 import StatefulDropdownAlert from '../containers/StatefulDropdownAlert';
-import OnboardingButtons from '../containers/OnboardingButtons';
+import ModalButtons from '../containers/ModalButtons';
 import GENERAL from '../theme/general';
 import { getSeedFromKeychain } from '../utils/keychain';
 import { width, height } from '../utils/dimensions';
@@ -257,7 +257,7 @@ class SnapshotTransition extends Component {
                         </Text>
                         <Text style={[styles.buttonQuestionText, textColor]}>{t('isThisCorrect')}</Text>
                     </View>
-                    <OnboardingButtons
+                    <ModalButtons
                         onLeftButtonPress={() => this.onBalanceIncompletePress()}
                         onRightButtonPress={() => this.onBalanceCompletePress()}
                         leftText={t('global:no')}
