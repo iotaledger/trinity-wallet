@@ -237,7 +237,7 @@ export class AdvancedSettings extends PureComponent {
                         </View>
                     </TouchableOpacity>
                 </View>
-                <View style={{ flex: 3 }}/>
+                <View style={{ flex: 2 }}/>
                 <View style={styles.itemContainer}>
                     <TouchableOpacity
                         onPress={() => this.props.setSetting('mainSettings')}
