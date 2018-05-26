@@ -162,8 +162,8 @@ const replayBundleAsync = (hash, powFn = null, depth = 3, minWeightMagnitude = 1
                 throw new Error(Errors.INVALID_BUNDLE);
             }
 
-            const convertToTrytes = (tx) => iota.utils.toTrytes(tx);
-            cached.trytes = map(bundle, convertToTrytes).reverse();
+            const convertToTrytes = (tx) => iota.utils.transactionTrytes(tx);
+            cached.trytes = map(bundle, convertToTrytes);
             cached.transactionObjects = bundle;
 
             return getTransactionsToApproveAsync();
