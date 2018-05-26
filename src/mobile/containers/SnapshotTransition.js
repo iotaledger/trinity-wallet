@@ -24,7 +24,7 @@ import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 import CtaButton from '../components/CtaButton';
 import InfoBox from '../components/InfoBox';
-import { getMultiAddressGenFn } from '../utils/nativeModules';
+import { getMultiAddressGenFn, getPowFn } from '../utils/nativeModules';
 import { isAndroid } from '../utils/device';
 
 const styles = StyleSheet.create({
@@ -169,6 +169,8 @@ class SnapshotTransition extends Component {
         toggleModalActivity: PropTypes.func.isRequired,
         /** Determines whether modal is open */
         isModalActive: PropTypes.bool.isRequired,
+        /** Whether to use remote PoW */
+        remotePoW: PropTypes.bool.isRequired,
     };
 
     constructor() {
@@ -185,14 +187,18 @@ class SnapshotTransition extends Component {
 
     onBalanceCompletePress() {
         this.hideModal();
-        const { transitionAddresses, selectedAccountName, password } = this.props;
+        const { transitionAddresses, selectedAccountName, password, remotePoW } = this.props;
         setTimeout(() => {
             getSeedFromKeychain(password, selectedAccountName)
                 .then((seed) => {
                     if (seed === null) {
                         throw new Error('Error');
                     } else {
-                        this.props.completeSnapshotTransition(seed, selectedAccountName, transitionAddresses);
+                        let powFn = null;
+                        if (remotePoW) {
+                            powFn = getPowFn();
+                        }
+                        this.props.completeSnapshotTransition(seed, selectedAccountName, transitionAddresses, powFn);
                     }
                 })
                 .catch((err) => console.error(err));
@@ -402,6 +408,7 @@ const mapStateToProps = (state) => ({
     isAttachingToTangle: state.ui.isAttachingToTangle,
     isTransitioning: state.ui.isTransitioning,
     isModalActive: state.ui.isModalActive,
+    remotePoW: state.settings.remotePoW,
 });
 
 const mapDispatchToProps = {
