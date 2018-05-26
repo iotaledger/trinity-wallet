@@ -181,7 +181,17 @@ export const broadcastBundle = (bundleHash, accountName) => (dispatch, getState)
         });
 };
 
-export const promoteTransaction = (bundleHash, accountName) => (dispatch, getState) => {
+/**
+ *  Promote transaction
+ *
+ *   @method promoteTransaction
+ *   @param {string} bundleHash
+ *   @param {string} accountName
+ *   @param {function} powFn
+ *
+ *   @returns {function} dispatch
+ **/
+export const promoteTransaction = (bundleHash, accountName, powFn) => (dispatch, getState) => {
     dispatch(promoteTransactionRequest(bundleHash));
 
     let accountState = null;
@@ -212,16 +222,19 @@ export const promoteTransaction = (bundleHash, accountName) => (dispatch, getSta
 
             return getFirstConsistentTail(tailTransactions, 0);
         })
-        .then((consistentTail) =>
-            dispatch(
+        .then((consistentTail) => {
+            const shouldOffloadPow = getRemotePoWFromState(getState());
+
+            return dispatch(
                 forceTransactionPromotion(
                     accountName,
                     consistentTail,
                     accountState.transfers[bundleHash].tailTransactions,
                     true,
+                    shouldOffloadPow ? null : powFn,
                 ),
-            ),
-        )
+            );
+        })
         .then((hash) => {
             dispatch(
                 generateAlert(
@@ -273,10 +286,11 @@ export const promoteTransaction = (bundleHash, accountName) => (dispatch, getSta
  *   @param {boolean} consistentTail
  *   @param {array} tails
  *   @param {boolean} shouldGenerateAlert
+ *   @param {function | null} powFn
  *
- *   @returns {Promise}
+ *   @returns {function} dispatch
  **/
-export const forceTransactionPromotion = (accountName, consistentTail, tails, shouldGenerateAlert) => (
+export const forceTransactionPromotion = (accountName, consistentTail, tails, shouldGenerateAlert, powFn = null) => (
     dispatch,
     getState,
 ) => {
@@ -285,7 +299,7 @@ export const forceTransactionPromotion = (accountName, consistentTail, tails, sh
         const topTx = head(tails);
         const hash = topTx.hash;
 
-        return replayBundleAsync(hash).then((reattachment) => {
+        return replayBundleAsync(hash, powFn).then((reattachment) => {
             if (shouldGenerateAlert) {
                 dispatch(
                     generateAlert(
@@ -306,11 +320,11 @@ export const forceTransactionPromotion = (accountName, consistentTail, tails, sh
 
             const tailTransaction = find(reattachment, { currentIndex: 0 });
 
-            return promoteTransactionAsync(tailTransaction.hash);
+            return promoteTransactionAsync(tailTransaction.hash, powFn);
         });
     }
 
-    return promoteTransactionAsync(consistentTail.hash);
+    return promoteTransactionAsync(consistentTail.hash, powFn);
 };
 
 export const makeTransaction = (seed, receiveAddress, value, message, accountName, powFn, genFn) => (
@@ -404,9 +418,11 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                     const addresses = accountState.addresses;
                     const transfers = accountState.transfers;
                     const pendingOutgoingTransfers = getPendingOutgoingTransfersForAddresses(addresses, transfers);
+
                     if (size(pendingOutgoingTransfers)) {
                         throw new Error(Errors.ADDRESS_HAS_PENDING_TRANSFERS);
                     }
+
                     if (size(get(inputs, 'inputs'))) {
                         throw new Error(Errors.FUNDS_AT_SPENT_ADDRESSES);
                     } else {
