@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     },
     closeButtonText: {
         color: 'white',
-        fontFamily: 'SourceSansPro-Regular',
+        fontFamily: 'SourceSansPro-SemiBold',
         fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
     },

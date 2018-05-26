@@ -40,8 +40,7 @@ const styles = StyleSheet.create({
     bottomContainer: {
         flex: 0.5,
         alignItems: 'center',
-        justifyContent: 'flex-end',
-        paddingBottom: height / 20,
+        justifyContent: 'flex-end'
     },
     generalText: {
         fontFamily: Fonts.secondary,
@@ -224,8 +223,8 @@ class WalletResetRequirePassword extends Component {
                             <OnboardingButtons
                                 onLeftButtonPress={this.goBack}
                                 onRightButtonPress={this.resetWallet}
-                                leftText={t('cancel')}
-                                rightText={t('reset')}
+                                leftButtonText={t('cancel')}
+                                rightButtonText={t('reset')}
                             />
                         </View>
                     </View>

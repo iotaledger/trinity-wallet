@@ -30,7 +30,7 @@ const getProps = (overrides) =>
             seed: 'SEED',
             onboardingComplete: false,
             seedCount: 0,
-            theme: { body: { bg: '#ffffff' }, primary: {} },
+            theme: { body: { bg: '#ffffff', color: '#000000' }, primary: {} },
             password: 'foo',
             shouldPreventAction: false,
         },

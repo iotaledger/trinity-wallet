@@ -14,9 +14,10 @@ const getProps = (overrides) =>
             unit: 'i',
             incoming: true,
             sign: '+',
+            icon: '-',
             style: {
                 titleColor: '#ffffff',
-                defaultTextColor: { color: '#ffffff' },
+                defaultTextColor: '#ffffff',
             },
         },
         overrides,
@@ -57,38 +58,20 @@ describe('Testing SimpleTransactionRow component', () => {
             expect(wrapper.name()).toEqual('View');
         });
 
-        it('should pass "receive" as a name prop to Icon component if "incoming" prop is true', () => {
-            const props = getProps();
-
-            const wrapper = shallow(<SimpleTransactionRow {...props} />);
-            const icon = wrapper.find('Icon');
-
-            expect(icon.props().name).toEqual('receive');
-        });
-
-        it('should pass "send" as a name prop to Icon component if "incoming" prop is false', () => {
-            const props = getProps({ incoming: false });
-
-            const wrapper = shallow(<SimpleTransactionRow {...props} />);
-            const icon = wrapper.find('Icon');
-
-            expect(icon.props().name).toEqual('send');
-        });
-
-        it('should return "confirmationStatus" prop as a direct child to second Text component', () => {
-            const props = getProps();
-
-            const wrapper = shallow(<SimpleTransactionRow {...props} />);
-            const text = wrapper.find('Text').at(1);
-
-            expect(text.children().text()).toEqual('pending');
-        });
-
-        it('should return "sign" prop as a child to third Text component', () => {
+        it('should return "confirmationStatus" prop as a direct child to third Text component', () => {
             const props = getProps();
 
             const wrapper = shallow(<SimpleTransactionRow {...props} />);
             const text = wrapper.find('Text').at(2);
+
+            expect(text.children().text()).toEqual('pending');
+        });
+
+        it('should return "sign" prop as a child to fourth Text component', () => {
+            const props = getProps();
+
+            const wrapper = shallow(<SimpleTransactionRow {...props} />);
+            const text = wrapper.find('Text').at(3);
 
             expect(
                 text
@@ -98,11 +81,11 @@ describe('Testing SimpleTransactionRow component', () => {
             ).toEqual('+');
         });
 
-        it('should return "value" prop as a child to third Text component', () => {
+        it('should return "value" prop as a child to fourth Text component', () => {
             const props = getProps();
 
             const wrapper = shallow(<SimpleTransactionRow {...props} />);
-            const text = wrapper.find('Text').at(2);
+            const text = wrapper.find('Text').at(3);
 
             expect(
                 text
@@ -112,11 +95,11 @@ describe('Testing SimpleTransactionRow component', () => {
             ).toEqual('100');
         });
 
-        it('should return "unit" prop as a child to third Text component', () => {
+        it('should return "unit" prop as a child to fourth Text component', () => {
             const props = getProps();
 
             const wrapper = shallow(<SimpleTransactionRow {...props} />);
-            const text = wrapper.find('Text').at(2);
+            const text = wrapper.find('Text').at(3);
 
             expect(
                 text
