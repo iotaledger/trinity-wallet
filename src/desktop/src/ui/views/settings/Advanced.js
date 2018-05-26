@@ -5,6 +5,7 @@ import { translate, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import { changePowSettings, setLockScreenTimeout } from 'actions/settings';
+import { completeSnapshotTransition } from 'actions/wallet';
 import { generateAlert } from 'actions/alerts';
 import { setVault, getSeed } from 'libs/crypto';
 
@@ -23,6 +24,7 @@ import Toggle from 'ui/components/Toggle';
 import TextInput from 'ui/components/input/Text';
 import Info from 'ui/components/Info';
 import Scrollbar from 'ui/components/Scrollbar';
+import Curl from 'curl.lib.js';
 
 /**
  * Advanced user settings component, including - wallet reset
@@ -57,6 +59,9 @@ class Advanced extends PureComponent {
          * @ignore
          */
         t: PropTypes.func.isRequired,
+        /** Current wallet settings
+         */
+        settings: PropTypes.object.isRequired,
         /** Current wallet state
          */
         wallet: PropTypes.object.isRequired,
@@ -88,6 +93,9 @@ class Advanced extends PureComponent {
         balanceCheckToggle: PropTypes.bool.isRequired,
         /** Currently selected account name */
         selectedAccountName: PropTypes.string.isRequired,
+        /** Function to complete the snapshot transition
+         */
+        completeSnapshotTransition: PropTypes.func.isRequired,
     };
 
     state = {
@@ -146,9 +154,25 @@ class Advanced extends PureComponent {
 
     transitionBalanceOk = async () => {
         this.props.toggleModalActivity();
-        const { wallet, transitionAddresses, selectedAccountName } = this.props;
+        const { wallet, transitionAddresses, selectedAccountName, settings, t} = this.props;
         const seed = await getSeed(wallet.seedIndex, wallet.password);
-        runTask('completeSnapshotTransition', [seed, selectedAccountName, transitionAddresses]);
+
+        let powFn = null;
+        if (!settings.remotePoW) {
+            // Temporarily return an error if WebGL cannot be initialized
+            // Remove once we implement more PoW methods
+            try {
+                Curl.init();
+            } catch (e) {
+                return generateAlert('error', t('pow:noWebGLSupport'), t('pow:noWebGLSupportExplanation'));
+            }
+            powFn = (trytes, minWeight) => {
+                return Curl.pow({ trytes, minWeight });
+            };
+        }
+
+        // we aren't using the taskRunner here because you can't pass in powFn since it's a function
+        this.props.completeSnapshotTransition(seed, selectedAccountName, transitionAddresses, powFn);
     };
 
     transitionBalanceWrong = async () => {
@@ -309,6 +333,7 @@ const mapStateToProps = (state) => ({
     ui: state.ui,
     selectedAccountName: getSelectedAccountName(state),
     addresses: getAddressesForSelectedAccount(state),
+    settings: state.settings,
     lockScreenTimeout: state.settings.lockScreenTimeout,
     transitionBalance: state.wallet.transitionBalance,
     balanceCheckToggle: state.wallet.balanceCheckToggle,
@@ -323,6 +348,7 @@ const mapDispatchToProps = {
     changePowSettings,
     setLockScreenTimeout,
     toggleModalActivity,
+    completeSnapshotTransition,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate()(Advanced));
