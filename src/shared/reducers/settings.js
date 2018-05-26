@@ -58,6 +58,7 @@ const initialState = {
         notes: [],
     },
     remotePoW: true,
+    autoPromotion: false,
     lockScreenTimeout: 3,
     autoNodeSwitching: true,
     versions: {},
@@ -73,6 +74,11 @@ const settingsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 remotePoW: action.payload,
+            };
+        case ActionTypes.SET_AUTO_PROMOTION:
+            return {
+                ...state,
+                autoPromotion: action.payload,
             };
         case ActionTypes.UPDATE_AUTO_NODE_SWITCHING:
             return {
