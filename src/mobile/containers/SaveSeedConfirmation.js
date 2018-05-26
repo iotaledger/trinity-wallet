@@ -226,9 +226,7 @@ class SaveSeedConfirmation extends Component {
                     <Text style={styles.infoTextBold}>{t('reenterSeed')}</Text>
                 </Text>
                 <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
-                    <Text style={styles.infoTextNormal}>
-                        {t('reenterSeedWarning')}
-                    </Text>
+                    <Text style={styles.infoTextNormal}>{t('reenterSeedWarning')}</Text>
                 </Text>
                 {isAndroid && (
                     <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>

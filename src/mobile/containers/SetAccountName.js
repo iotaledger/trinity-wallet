@@ -245,7 +245,7 @@ export class SetAccountName extends Component {
                     <View>
                         <View style={styles.topContainer}>
                             <Icon name="iota" size={width / 8} color={theme.body.color} />
-                            <View style={{ flex: 0.7 }}/>
+                            <View style={{ flex: 0.7 }} />
                             <Header textColor={theme.body.color}>{t('letsAddName')}</Header>
                         </View>
                         <View style={styles.midContainer}>

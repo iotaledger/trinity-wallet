@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     },
     textContainer: {
         width: width / 1.25,
-        alignItems: 'center'
+        alignItems: 'center',
     },
     modalInfoText: {
         fontFamily: 'SourceSansPro-Light',
@@ -547,7 +547,10 @@ class PaperWallet extends Component {
                                     style={styles.modalCheckboxContainer}
                                     onPress={() => this.onPublicPrinterCheckboxPress()}
                                 >
-                                    <Image source={this.getCheckbox(publicPrinterCheckbox)} style={styles.modalCheckbox} />
+                                    <Image
+                                        source={this.getCheckbox(publicPrinterCheckbox)}
+                                        style={styles.modalCheckbox}
+                                    />
                                     <Text style={[styles.modalCheckboxText, textColor]}>{t('printerCheckbox')}</Text>
                                 </TouchableOpacity>
                             </View>
@@ -585,8 +588,11 @@ class PaperWallet extends Component {
                 <View style={styles.midContainer}>
                     <View style={{ flex: 0.3 }} />
                     <View style={styles.textContainer}>
-                        <Text style={[ styles.infoTextNormal, textColor ]}>{t('clickToPrint')}</Text>
-                        <Text style={[ styles.infoTextBold, textColor, { paddingTop: height / 40 } ]}> {t('storeSafely')}</Text>
+                        <Text style={[styles.infoTextNormal, textColor]}>{t('clickToPrint')}</Text>
+                        <Text style={[styles.infoTextBold, textColor, { paddingTop: height / 40 }]}>
+                            {' '}
+                            {t('storeSafely')}
+                        </Text>
                     </View>
                     <View style={{ flex: 0.5 }} />
                     <View
