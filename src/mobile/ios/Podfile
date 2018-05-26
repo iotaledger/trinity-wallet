@@ -9,11 +9,6 @@ target 'iotaWallet' do
     pod 'Fabric'
     pod 'Crashlytics'
     pod 'IotaKit'
-
-    pod 'react-native-fetch-blob', :path => '../node_modules/react-native-fetch-blob'
-
-    pod 'react-native-pdf', :path => '../node_modules/react-native-pdf'
-
     target 'iotaWalletTests' do
         inherit! :search_paths
         # Pods for testing

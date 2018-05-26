@@ -33,7 +33,6 @@ const styles = StyleSheet.create({
         flex: 1.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 20,
     },
     subHeaderWrapper: {
         alignItems: 'center',
@@ -155,8 +154,8 @@ class WalletResetConfirmation extends Component {
                     <OnboardingButtons
                         onLeftButtonPress={this.goBack}
                         onRightButtonPress={this.requirePassword}
-                        leftText={t('global:no')}
-                        rightText={t('global:yes')}
+                        leftButtonText={t('global:noLowerCase')}
+                        rightButtonText={t('global:yesLowerCase')}
                     />
                 </View>
             </View>

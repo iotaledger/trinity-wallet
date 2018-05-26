@@ -40,7 +40,6 @@ const styles = StyleSheet.create({
     bottomContainer: {
         flex: 0.6,
         justifyContent: 'flex-end',
-        paddingBottom: height / 20,
     },
     list: {
         justifyContent: 'center',
@@ -74,7 +73,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     infoText: {
-        fontFamily: 'SourceSansPro-Light',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
         textAlign: 'left',
@@ -101,6 +100,11 @@ const styles = StyleSheet.create({
         fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
     },
+    infoTextBold: {
+        fontFamily: 'SourceSansPro-Bold',
+        fontSize: GENERAL.fontSize3,
+        backgroundColor: 'transparent',
+    },
     okButton: {
         borderWidth: 1.2,
         borderRadius: GENERAL.borderRadius,
@@ -110,7 +114,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
     },
     okText: {
-        fontFamily: 'SourceSansPro-Light',
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
     },
@@ -279,9 +283,9 @@ class NewSeedSetup extends Component {
                             <Trans i18nKey="walletSetup:explanation">
                                 <Text style={[styles.infoText, textColor, { paddingTop: height / 60 }]}>
                                     <Text style={styles.infoTextLight}>You can use it to access your funds from</Text>
-                                    <Text style={styles.infoTextRegular}> any wallet</Text>
+                                    <Text style={styles.infoTextBold}> any wallet</Text>
                                     <Text style={styles.infoTextLight}>, on</Text>
-                                    <Text style={styles.infoTextRegular}> any device</Text>
+                                    <Text style={styles.infoTextBold}> any device</Text>
                                     <Text style={styles.infoTextLight}>
                                         . But if you lose your seed, you also lose your IOTA.
                                     </Text>
@@ -325,11 +329,12 @@ class NewSeedSetup extends Component {
     }
 
     render() {
-        const { t, theme: { primary, body }, seed } = this.props;
+        const { t, theme: { primary, secondary, body }, seed } = this.props;
         const { isModalActive } = this.state;
         const viewOpacity = this.state.randomised ? 1 : 0.2;
-        const opacity = this.state.randomised ? 1 : 0.1;
+        const opacity = this.state.randomised ? 1 : 0.4;
         const textColor = { color: body.color };
+
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
                 <DynamicStatusBar backgroundColor={body.bg} />
@@ -337,9 +342,9 @@ class NewSeedSetup extends Component {
                     <Icon name="iota" size={width / 8} color={body.color} />
                     <View style={{ flex: 1 }} />
                     <CtaButton
-                        ctaColor={primary.color}
+                        ctaColor={secondary.color}
                         ctaBorderColor={primary.hover}
-                        secondaryCtaColor={primary.body}
+                        secondaryCtaColor={secondary.body}
                         text={t('pressForNewSeed')}
                         onPress={() => {
                             this.onGeneratePress();
@@ -376,11 +381,11 @@ class NewSeedSetup extends Component {
                     <OnboardingButtons
                         onLeftButtonPress={() => this.onBackPress()}
                         onRightButtonPress={() => this.onNextPress()}
-                        leftText={t('global:back')}
-                        rightText={t('global:next')}
+                        leftButtonText={t('global:goBack')}
+                        rightButtonText={t('global:continue')}
                         leftButtonTestID="newSeedSetup-back"
                         rightButtonTestID="newSeedSetup-next"
-                        opacity={opacity}
+                        rightButtonStyle={{ wrapper: { opacity } }}
                     />
                 </View>
                 <Modal
@@ -392,7 +397,7 @@ class NewSeedSetup extends Component {
                     isVisible={isModalActive}
                     onBackButtonPress={() => this.hideModal()}
                     hideModalContentWhileAnimating
-                    useNativeDriver={isAndroid ? true : false}
+                    useNativeDriver={isAndroid}
                 >
                     {this.renderModalContent()}
                 </Modal>
