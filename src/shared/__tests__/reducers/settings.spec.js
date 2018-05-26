@@ -67,6 +67,7 @@ describe('Reducer: settings', () => {
                 is2FAEnabled: false,
                 isFingerprintEnabled: false,
                 hasVisitedSeedShareTutorial: false,
+                acceptedTerms: false,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);

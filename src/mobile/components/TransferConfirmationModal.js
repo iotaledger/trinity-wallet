@@ -5,7 +5,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { round } from 'iota-wallet-shared-modules/libs/utils';
 import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/iota/utils';
 import StatefulDropdownAlert from '../containers/StatefulDropdownAlert';
-import OnboardingButtons from '../containers/OnboardingButtons';
+import ModalButtons from '../containers/ModalButtons';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
 
@@ -197,7 +197,7 @@ class TransferConfirmationModal extends Component {
                             </Text>
                         </View>
                     )}
-                    <OnboardingButtons
+                    <ModalButtons
                         onLeftButtonPress={() => this.props.hideModal()}
                         onRightButtonPress={() => this.onSendPress()}
                         leftText={t('global:cancel')}

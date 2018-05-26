@@ -292,7 +292,7 @@ class ViewSeed extends Component {
                                                                     { color: theme.primary.color },
                                                                 ]}
                                                             >
-                                                                {t('viewSeed:viewSeed')}
+                                                                {t('viewSeed:viewSeed').toUpperCase()}
                                                             </Text>
                                                         </View>
                                                     </TouchableOpacity>
