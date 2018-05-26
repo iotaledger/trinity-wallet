@@ -1,4 +1,5 @@
 import head from 'lodash/head';
+import isNull from 'lodash/isNull';
 import map from 'lodash/map';
 import size from 'lodash/size';
 import clone from 'lodash/clone';
@@ -7,6 +8,7 @@ import { iota } from './index';
 import Errors from '../errors';
 import { isWithinMinutes } from '../date';
 import { DEFAULT_BALANCES_THRESHOLD, DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../../config';
+import { performPow } from './transfers';
 
 const getBalancesAsync = (addresses, threshold = DEFAULT_BALANCES_THRESHOLD) => {
     return new Promise((resolve, reject) => {
@@ -81,20 +83,57 @@ const getLatestInclusionAsync = (hashes) => {
 
 const promoteTransactionAsync = (
     hash,
+    powFn = null,
     depth = DEFAULT_DEPTH,
     minWeightMagnitude = 14,
-    transfer = [{ address: 'U'.repeat(81), value: 0, message: '', tag: '' }],
+    transfer = { address: 'U'.repeat(81), value: 0, message: '', tag: '' },
     options = { interrupt: false, delay: 0 },
 ) => {
-    return new Promise((resolve, reject) => {
-        iota.api.promoteTransaction(hash, depth, minWeightMagnitude, transfer, options, (err) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(hash);
-            }
+    // If proof of work function is not provided, offload promotion to a remote node
+    const shouldOffloadPow = isNull(powFn);
+
+    if (shouldOffloadPow) {
+        return new Promise((resolve, reject) => {
+            iota.api.promoteTransaction(hash, depth, minWeightMagnitude, [transfer], options, (err) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(hash);
+                }
+            });
         });
-    });
+    }
+
+    const cached = {
+        trytes: [],
+    };
+
+    return iota.api
+        .isPromotable(hash)
+        .then((isPromotable) => {
+            if (!isPromotable) {
+                throw new Error(Errors.INCONSISTENT_SUBTANGLE);
+            }
+
+            return prepareTransfersAsync(transfer.address, [transfer]);
+        })
+        .then((trytes) => {
+            cached.trytes = trytes;
+
+            return getTransactionsToApproveAsync(hash);
+        })
+        .then(
+            ({ trunkTransaction, branchTransaction }) =>
+                shouldOffloadPow
+                    ? attachToTangleAsync(trunkTransaction, branchTransaction, cached.trytes)
+                    : performPow(powFn, cached.trytes, trunkTransaction, branchTransaction),
+        )
+        .then(({ trytes }) => {
+            cached.trytes = trytes;
+
+            return storeAndBroadcastAsync(cached.trytes);
+        })
+        .then(() => hash);
 };
 
 const replayBundleAsync = (hash, depth = 3, minWeightMagnitude = 14) => {
@@ -168,9 +207,9 @@ const sendTransferAsync = (seed, depth, minWeightMagnitude, transfers, options =
     });
 };
 
-const getTransactionsToApproveAsync = (depth = DEFAULT_DEPTH) => {
+const getTransactionsToApproveAsync = (reference = null, depth = DEFAULT_DEPTH) => {
     return new Promise((resolve, reject) => {
-        iota.api.getTransactionsToApprove(depth, null, (err, transactionsToApprove) => {
+        iota.api.getTransactionsToApprove(depth, reference, (err, transactionsToApprove) => {
             if (err) {
                 reject(err);
             } else {
