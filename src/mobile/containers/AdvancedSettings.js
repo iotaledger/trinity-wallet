@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     content: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     },
     backIcon: {
         width: width / 28,
@@ -237,7 +237,7 @@ export class AdvancedSettings extends PureComponent {
                         </View>
                     </TouchableOpacity>
                 </View>
-                <View style={{ flex: 2 }}/>
+                <View style={{ flex: 2 }} />
                 <View style={styles.itemContainer}>
                     <TouchableOpacity
                         onPress={() => this.props.setSetting('mainSettings')}
