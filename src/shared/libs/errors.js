@@ -12,4 +12,5 @@ export default {
     INCOMING_TRANSFERS: 'Incoming transfers to all selected inputs',
     NODE_NOT_SYNCED: 'Node not synced',
     INCONSISTENT_SUBTANGLE: 'Inconsistent subtangle',
+    INVALID_BUNDLE: 'Invalid bundle',
 };
