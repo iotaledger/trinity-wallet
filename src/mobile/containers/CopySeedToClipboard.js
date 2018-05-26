@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     },
     textContainer: {
         width: width / 1.25,
-        alignItems: 'center'
+        alignItems: 'center',
     },
     optionButtonText: {
         color: '#8BD4FF',
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     modalCheckboxText: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: GENERAL.fontSize3,
-        marginLeft: width / 40
+        marginLeft: width / 40,
     },
     modalCheckbox: {
         width: width / 20,
@@ -377,7 +377,9 @@ class CopySeedToClipboard extends Component {
                         <Text style={[styles.infoTextNormal, textColor]}>
                             {`${t(isAndroid ? 'clickToSecurelyShare' : 'clickToCopy')} `}
                         </Text>
-                        <Text style={[styles.infoTextBold, textColor, { paddingTop: height / 40 }]}>{t('doNotStore')}</Text>
+                        <Text style={[styles.infoTextBold, textColor, { paddingTop: height / 40 }]}>
+                            {t('doNotStore')}
+                        </Text>
                     </View>
                     <View style={{ flex: 0.2 }} />
                     <Seedbox bodyColor={theme.body.color} borderColor={borderColor} textColor={textColor} seed={seed} />

@@ -40,11 +40,13 @@
         "continue": "Continue",
         "enable": "Enable",
         "disable": "Disable",
-        "manualCopy": "Write Seed Down",
-        "paperWallet": "Print Paper Copy",
-        "addToPasswordManager": "Add to Password Manager",
-        "shareSeed": "Share Seed",
-        "proceed": "Proceed",
+        "enabled": "Enabled",
+        "disabled": "Disabled",
+        "manualCopy": "Write seed down",
+        "paperWallet": "Print paper copy",
+        "addToPasswordManager": "Add to password manager",
+        "shareSeed": "Share seed",
+        "proceed": "proceed",
         "qr": "QR",
         "notAvailable": "This function is not available",
         "notAvailableExplanation": "It will be added at a later stage.",
@@ -511,7 +513,11 @@
         "addCustomNode": "Add custom node",
         "manualSync": "Manual sync",
         "snapshotTransition": "Snapshot transition",
-        "pow": "Proof of Work"
+        "pow": "Proof of Work",
+        "autoPromotion": "Auto-promotion",
+        "autoPromotionExplanation":
+            "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
+        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
     },
     "advancedThemeCustomisation": {
         "background": "Background",
@@ -590,8 +596,6 @@
         "fingerprintAuthFailed": "Biometric authentication failed",
         "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
         "status": "Status",
-        "enabled": "Enabled",
-        "disabled": "Disabled",
         "fingerprintUnavailable": "Biometric authentication unavailable",
         "fingerprintUnavailableExplanation":
             "Your device does not support biometric authentication or it has not been configured in the device settings.",

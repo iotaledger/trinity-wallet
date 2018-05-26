@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
         borderLeftWidth: 0.5,
         width: 1,
         height: height / 40,
-        marginVertical: height / 150
+        marginVertical: height / 150,
     },
 });
 
@@ -201,7 +201,7 @@ class SaveYourSeed extends Component {
                 <DynamicStatusBar backgroundColor={body.bg} />
                 <View style={styles.topContainer}>
                     <Icon name="iota" size={width / 8} color={body.color} />
-                    <View style={{ flex: 0.7 }}/>
+                    <View style={{ flex: 0.7 }} />
                     <Header textColor={body.color}>{t('saveYourSeed')}</Header>
                 </View>
                 <View style={styles.midContainer}>
@@ -213,8 +213,8 @@ class SaveYourSeed extends Component {
                         </Text>
                     </Trans>
                     <View style={{ flex: 0.5 }} />
-                    <Text style={[ styles.infoTextSmall, textColor ]}>{t('mostSecure')}</Text>
-                    <View style={[ styles.line, lineColor]}/>
+                    <Text style={[styles.infoTextSmall, textColor]}>{t('mostSecure')}</Text>
+                    <View style={[styles.line, lineColor]} />
                     <View>
                         <Button
                             onPress={() => this.onWriteClick()}
@@ -230,7 +230,7 @@ class SaveYourSeed extends Component {
                             {t('global:manualCopy')}
                         </Button>
                     </View>
-                    <View style={[ styles.line, lineColor]}/>
+                    <View style={[styles.line, lineColor]} />
                     <Button
                         onPress={() => this.onCopyClick()}
                         style={{
@@ -244,7 +244,7 @@ class SaveYourSeed extends Component {
                     >
                         {t('global:addToPasswordManager')}
                     </Button>
-                    <View style={[ styles.line, lineColor]}/>
+                    <View style={[styles.line, lineColor]} />
                     <Button
                         onPress={() => this.onPrintClick()}
                         style={{
@@ -258,8 +258,8 @@ class SaveYourSeed extends Component {
                     >
                         {t('global:paperWallet')}
                     </Button>
-                    <View style={[ styles.line, lineColor]}/>
-                    <Text style={[ styles.infoTextSmall, textColor ]}>{t('leastSecure')}</Text>
+                    <View style={[styles.line, lineColor]} />
+                    <Text style={[styles.infoTextSmall, textColor]}>{t('leastSecure')}</Text>
                     <View style={{ flex: 1 }} />
                 </View>
                 <View style={styles.bottomContainer}>
