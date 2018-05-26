@@ -175,7 +175,7 @@ class SnapshotTransition extends Component {
 
     constructor() {
         super();
-        this.onSnapshotTransititionPress = this.onSnapshotTransititionPress.bind(this);
+        this.onSnapshotTransitionPress = this.onSnapshotTransitionPress.bind(this);
     }
 
     componentWillReceiveProps(newProps) {
