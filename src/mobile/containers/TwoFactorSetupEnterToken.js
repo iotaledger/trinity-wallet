@@ -38,7 +38,6 @@ const styles = StyleSheet.create({
         flex: 0.3,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 20,
     },
     subHeaderText: {
         fontFamily: Fonts.secondary,
@@ -182,8 +181,8 @@ class TwoFactorSetupEnterToken extends Component {
                         <OnboardingButtons
                             onLeftButtonPress={this.goBack}
                             onRightButtonPress={this.check2FA}
-                            leftText={t('global:back')}
-                            rightText={t('global:done')}
+                            leftButtonText={t('global:backLowercase')}
+                            rightButtonText={t('global:doneLowercase')}
                         />
                     </View>
                     <StatefulDropdownAlert textColor={theme.body.color} backgroundColor={theme.body.bg} />

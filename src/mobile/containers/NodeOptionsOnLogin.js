@@ -78,7 +78,7 @@ class NodeOptionsOnLogin extends Component {
                                     ctaColor={primary.color}
                                     ctaBorderColor={primary.hover}
                                     secondaryCtaColor={primary.body}
-                                    text={t('global:changeNode').toUpperCase()}
+                                    text={t('global:changeNode')}
                                     onPress={() => this.props.setLoginRoute('nodeSelection')}
                                     ctaWidth={width / 1.6}
                                 />
@@ -87,7 +87,7 @@ class NodeOptionsOnLogin extends Component {
                                     ctaColor={primary.color}
                                     ctaBorderColor={primary.hover}
                                     secondaryCtaColor={primary.body}
-                                    text={t('global:addCustomNode').toUpperCase()}
+                                    text={t('global:addCustomNode')}
                                     onPress={() => this.props.setLoginRoute('customNode')}
                                     ctaWidth={width / 1.6}
                                 />
