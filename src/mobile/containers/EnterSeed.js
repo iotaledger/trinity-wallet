@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingTop: height / 16,
         alignItems: 'center',
-        justifyContent: 'flex-start'
+        justifyContent: 'flex-start',
     },
     midContainer: {
         flex: 3,
