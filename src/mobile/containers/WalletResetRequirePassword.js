@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     bottomContainer: {
         flex: 0.5,
         alignItems: 'center',
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
     },
     generalText: {
         fontFamily: Fonts.secondary,

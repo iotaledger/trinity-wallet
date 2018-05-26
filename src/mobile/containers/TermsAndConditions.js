@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
         paddingTop: height / 55,
     },
     pdf: {
+        flex: 1,
         height: height - height / 8 - height / 11,
         width: width,
     },

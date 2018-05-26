@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     bottomWrapper: {
         flex: 1.5,
         alignItems: 'center',
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
     },
     subHeaderWrapper: {
         alignItems: 'center',
