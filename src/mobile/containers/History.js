@@ -26,6 +26,7 @@ import TransactionRow from '../components/TransactionRow';
 import HistoryModalContent from '../components/HistoryModalContent';
 import { width, height } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
+import { getPowFn } from '../utils/nativeModules';
 import CtaButton from '../components/CtaButton';
 
 const styles = StyleSheet.create({
@@ -214,6 +215,8 @@ class History extends Component {
             unit: formatUnit(item.value),
         });
 
+        const proofOfWorkFunction = getPowFn();
+
         const formattedTransfers = map(transfers, (transfer) => {
             const { timestamp, incoming, persistence, transferValue, inputs, outputs, bundle, message } = transfer;
             const value = round(formatValue(transferValue), 1);
@@ -246,7 +249,8 @@ class History extends Component {
                                         10000,
                                     );
                                 }
-                                this.props.promoteTransaction(bundle, selectedAccountName);
+
+                                return this.props.promoteTransaction(bundle, selectedAccountName, proofOfWorkFunction);
                             },
                             onPress: this.props.toggleModalActivity,
                             generateAlert: this.props.generateAlert,
