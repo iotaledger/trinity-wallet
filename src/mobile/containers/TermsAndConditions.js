@@ -56,7 +56,7 @@ class TermsAndConditions extends Component {
         const { theme } = this.props;
         this.props.acceptTerms();
         this.props.navigator.push({
-            screen: 'welcome',
+            screen: 'privacyPolicy',
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
@@ -88,7 +88,7 @@ class TermsAndConditions extends Component {
                         children: { color: primary.body },
                     }}
                 >
-                    {t('agree')}
+                    {t('accept')}
                 </Button>
             </View>
         );
