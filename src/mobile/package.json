@@ -11,7 +11,7 @@
     "ios": "./node_modules/.bin/react-native run-ios",
     "ios:dev": "cross-env NODE_ENV=development ./node_modules/.bin/react-native run-ios",
     "test": "./node_modules/.bin/jest --forceExit",
-    "postinstall": "./node_modules/.bin/rn-nodeify --hack --install && rm ./node_modules/react-native/local-cli/core/__fixtures__/files/package.json",
+    "postinstall": "./node_modules/.bin/rn-nodeify --hack --install && rm -f ./node_modules/react-native/local-cli/core/__fixtures__/files/package.json",
     "lint": "./node_modules/.bin/eslint --ext .js .",
     "release": "yarn version && cd ios && fastlane release && cd ../android && fastlane release && cd .. && echo Successfully incremented version and build numbers ⬆️ ✅! Please remember to run git add ., git commit, git push --tags, and git push",
     "audit": "./../../node_modules/.bin/auditjs -l error -w whitelist.json",

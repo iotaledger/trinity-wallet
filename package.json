@@ -10,7 +10,7 @@
         "lint:shared": "./node_modules/.bin/eslint src/shared/",
         "lint:desktop": "./node_modules/.bin/eslint src/desktop/",
         "format": "prettier --write \"**/*.{js,json,css}\"",
-        "precommit": "lint-staged && yarn lint && yarn test:all",
+        "precommit": "docker run -it trinity 'yarn test:all'",
         "test:all": "cd src/shared/ && yarn test && cd ../mobile/ && yarn test && cd ../",
         "full-setup": "yarn && node full-setup.js",
         "start:desktop": "cd src/desktop && yarn start",
