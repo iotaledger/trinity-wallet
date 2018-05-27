@@ -695,6 +695,10 @@
     },
     "terms": {
         "termsAndConditions": "Terms & Conditions",
+        "accept": "I accept"
+    },
+    "privacyPolicy": {
+        "privacyPolicy": "Privacy Policy",
         "agree": "I agree"
     }
 }
