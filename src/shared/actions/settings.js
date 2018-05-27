@@ -5,7 +5,7 @@ import { updatePersistedState } from '../libs/utils';
 import { generateAlert } from './alerts';
 import i18next from '../i18next';
 import { UPDATE_URL } from '../config';
-import { checkAttachToTangleAsync } from '../libs/iota/extendedApi';
+import { isNodeSynced, checkAttachToTangleAsync } from '../libs/iota/extendedApi';
 import Errors from '../libs/errors';
 
 export const ActionTypes = {
@@ -13,7 +13,8 @@ export const ActionTypes = {
     SET_NODE: 'IOTA/SETTINGS/FULLNODE',
     SET_NODE_REQUEST: 'IOTA/SETTINGS/SET_NODE_REQUEST',
     SET_NODE_ERROR: 'IOTA/SETTINGS/SET_NODE_ERROR',
-    ADD_CUSTOM_NODE: 'IOTA/SETTINGS/ADD_CUSTOM_NODE',
+    ADD_CUSTOM_NODE_REQUEST: 'IOTA/SETTINGS/ADD_CUSTOM_NODE_REQUEST',
+    ADD_CUSTOM_NODE_ERROR: 'IOTA/SETTINGS/ADD_CUSTOM_NODE_ERROR',
     ADD_CUSTOM_POW_NODE: 'IOTA/SETTINGS/ADD_CUSTOM_POW_NODE',
     SET_MODE: 'IOTA/SETTINGS/SET_MODE',
     SET_THEME: 'IOTA/SETTINGS/SET_THEME',
@@ -68,6 +69,14 @@ const setNodeRequest = () => ({
 
 const setNodeError = () => ({
     type: ActionTypes.SET_NODE_ERROR,
+});
+
+const addCustomNodeRequest = () => ({
+    type: ActionTypes.ADD_CUSTOM_NODE_REQUEST,
+});
+
+const addCustomNodeError = () => ({
+    type: ActionTypes.ADD_CUSTOM_NODE_ERROR,
 });
 
 export const setRandomlySelectedNode = (payload) => ({
@@ -173,74 +182,87 @@ export function setLanguage(language) {
     };
 }
 
-export function setFullNode(node) {
+export function setFullNode(node, addingCustomNode = false) {
+    const dispatcher = {
+        request: addingCustomNode ? addCustomNodeRequest : setNodeRequest,
+        error: addingCustomNode ? addCustomNodeError : setNodeError,
+    };
+
     return (dispatch) => {
-        dispatch(setNodeRequest());
-        checkAttachToTangleAsync(node)
-            .then((res) => {
+        dispatch(dispatcher.request());
+
+        // Passing in provider will create a new IOTA instance
+        isNodeSynced(node)
+            .then((isSynced) => {
+                if (isSynced) {
+                    throw new Error(Errors.NODE_NOT_SYNCED);
+                }
+
+                return checkAttachToTangleAsync(node);
+            }).then((res) => {
+                // Change IOTA provider on the global iota instance
                 changeIotaNode(node);
+
+                // Update node in redux store
                 dispatch(setNode(node));
+
                 if (res.error.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
+                    // Automatically default to local PoW if this node has no attach to tangle available
                     dispatch(setRemotePoW(false));
-                    return dispatch(
+
+                    dispatch(
                         generateAlert(
                             'success',
                             i18next.t('settings:nodeChangeSuccess'),
-                            i18next.t('settings:nodeChangeSuccessNoRemotePow', { node: node }),
+                            i18next.t('settings:nodeChangeSuccessNoRemotePow', { node }),
                             10000,
                         ),
                     );
-                } else if (res.error.includes('Invalid parameters')) {
-                    return dispatch(
+                } else if (res.error.includes(Errors.INVALID_PARAMETERS)) {
+                    dispatch(
                         generateAlert(
                             'success',
                             i18next.t('settings:nodeChangeSuccess'),
-                            i18next.t('settings:nodeChangeSuccessExplanation', { node: node }),
+                            i18next.t('settings:nodeChangeSuccessExplanation', { node }),
                             10000,
+                        ),
+                    );
+                } else {
+                    dispatch(dispatcher.error());
+
+                    dispatch(
+                        generateAlert(
+                            'error',
+                            i18next.t('settings:nodeChangeError'),
+                            i18next.t('settings:nodeChangeErrorExplanation'),
+                            7000,
+                            res,
                         ),
                     );
                 }
-                dispatch(setNodeError());
-                return dispatch(
-                    generateAlert(
-                        'error',
-                        i18next.t('settings:nodeChangeError'),
-                        i18next.t('settings:nodeChangeErrorExplanation'),
-                        7000,
-                        res,
-                    ),
-                );
             })
             .catch((err) => {
-                dispatch(setNodeError());
-                dispatch(
-                    generateAlert(
-                        'error',
+                dispatch(dispatcher.error());
+
+                if (err.message === Errors.NODE_NOT_SYNCED) {
+                    dispatch(generateAlert(
+                       'error',
                         i18next.t('settings:nodeChangeError'),
-                        i18next.t('settings:nodeChangeErrorExplanation'),
-                        7000,
-                        err,
-                    ),
-                );
+                        i18next.t('settings:thisNodeOutOfSync'),
+                        7000
+                    ));
+                } else {
+                    dispatch(
+                        generateAlert(
+                            'error',
+                            i18next.t('settings:nodeChangeError'),
+                            i18next.t('settings:nodeChangeErrorExplanation'),
+                            7000,
+                            err,
+                        ),
+                    );
+                }
             });
-    };
-}
-
-export function addCustomPoWNode(customNode) {
-    return (dispatch) => {
-        dispatch({
-            type: ActionTypes.ADD_CUSTOM_POW_NODE,
-            payload: customNode,
-        });
-    };
-}
-
-export function addCustomNode(customNode) {
-    return (dispatch) => {
-        dispatch({
-            type: ActionTypes.ADD_CUSTOM_NODE,
-            payload: customNode,
-        });
     };
 }
 
