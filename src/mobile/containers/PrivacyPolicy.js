@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { acceptPrivacy } from 'iota-wallet-shared-modules/actions/settings';
 import WithBackPressCloseApp from '../components/BackPressCloseApp';
+import i18next from '../i18next';
 import Button from '../components/Button';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
@@ -52,6 +53,10 @@ class PrivacyPolicy extends Component {
         t: PropTypes.func.isRequired,
     };
 
+    static isCurrentLanguageGerman() {
+        return i18next.language === 'de';
+    }
+
     onNextPress() {
         const { theme } = this.props;
         this.props.acceptPrivacy();
@@ -71,14 +76,18 @@ class PrivacyPolicy extends Component {
 
     render() {
         const { t, theme: { primary, body, bar } } = this.props;
-        const source = require('iota-wallet-shared-modules/assets/terms.pdf');
+        // RN doesn't like dynamic requires
+        const source = PrivacyPolicy.isCurrentLanguageGerman()
+            ? require('iota-wallet-shared-modules/assets/dePrivacyPolicy.pdf')
+            : require('iota-wallet-shared-modules/assets/enPrivacyPolicy.pdf');
+
         const textColor = { color: bar.color };
 
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
                 <DynamicStatusBar backgroundColor={bar.bg} />
                 <View style={[styles.titleContainer, { backgroundColor: bar.bg }]}>
-                    <Text style={[styles.titleText, textColor]}>{t('privacyPolicy').toUpperCase()}</Text>
+                    <Text style={[styles.titleText, textColor]}>{t('privacyPolicy')}</Text>
                 </View>
                 <Pdf source={source} style={styles.pdf} scale={1.3} enableAntialiasing />
                 <Button
