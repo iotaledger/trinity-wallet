@@ -81,7 +81,7 @@ class LanguageSetup extends Component {
     onNextPress() {
         const { theme: { body } } = this.props;
         this.props.navigator.push({
-            screen: 'welcome',
+            screen: 'termsAndConditions',
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
