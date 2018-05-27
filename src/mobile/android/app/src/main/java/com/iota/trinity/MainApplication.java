@@ -59,8 +59,6 @@ public class MainApplication extends NavigationApplication {
             // eg. new VectorIconsPackage()
             new SvgPackage(),
             new MainReactPackage(),
-            new RCTPdfView(),
-            new RNFetchBlobPackage(),
             new TranslucentModalReactPackage(),
             new RNDetectNavbarAndroidPackage(),
             new RNDeviceInfo(),
