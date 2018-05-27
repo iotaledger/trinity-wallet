@@ -12,7 +12,7 @@ import isEmpty from 'lodash/isEmpty';
 import omit from 'lodash/omit';
 import unionBy from 'lodash/unionBy';
 import {
-    getNodeInfoAsync,
+    isNodeSynced,
     findTransactionObjectsAsync,
     getLatestInclusionAsync,
     getTransactionsObjectsAsync,
@@ -37,6 +37,7 @@ import {
     markAddressesAsSpentSync,
     syncAddresses,
 } from './addresses';
+import Errors from '../errors';
 
 /**
  *   Takes in account data fetched from ledger.
@@ -83,7 +84,7 @@ const organiseAccountState = (accountName, partialAccountData) => {
 
 /**
  *   Gets information associated with a seed from the ledger.
- *   - Communicates with node by checking its information. (getNodeInfoAsync)
+ *   - Checks if the currently connected IRI node is healthy
  *   - Gets all used addresses and their transaction hashes from the ledger. (getFullAddressHistory)
  *   - Gets all transaction objects associated with the addresses. (getTransactionObjectsAsync(hashes))
  *   - Grabs all bundle hashes and get transaction objects associated with those. (findTransactionObjectsAsync({ bundles }))
@@ -110,8 +111,14 @@ export const getAccountData = (seed, accountName, genFn) => {
         transfers: [],
     };
 
-    return getNodeInfoAsync()
-        .then(() => getFullAddressHistory(seed, genFn))
+    return isNodeSynced()
+        .then((isSynced) => {
+            if (!isSynced) {
+                throw new Error(Errors.NODE_NOT_SYNCED);
+            }
+
+            return getFullAddressHistory(seed, genFn);
+        })
         .then(({ addresses, hashes }) => {
             data.addresses = addresses;
 
