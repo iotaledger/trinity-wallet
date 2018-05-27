@@ -27,8 +27,6 @@ import com.rajivshah.safetynet.RNGoogleSafetyNetPackage;
 import com.hieuvp.fingerprint.ReactNativeFingerprintScannerPackage;
 import com.rndetectnavbarandroid.RNDetectNavbarAndroidPackage;
 import me.listenzz.modal.TranslucentModalReactPackage;
-import com.RNFetchBlob.RNFetchBlobPackage;
-import org.wonday.pdf.RCTPdfView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -80,9 +78,7 @@ public class MainApplication extends NavigationApplication {
             BugsnagReactNative.getPackage(),
             new RNGoogleSafetyNetPackage(),
             new ReactNativeFingerprintScannerPackage(),
-            new ShareSecurePackage(),
-            new RNFetchBlobPackage(),
-            new RCTPdfView()
+            new ShareSecurePackage()
     );
   }
 
