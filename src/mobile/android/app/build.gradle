@@ -138,8 +138,6 @@ android {
     }
 }
 dependencies {
-    compile project(':react-native-pdf')
-    compile project(':react-native-fetch-blob')
     compile project(':react-native-modal-translucent')
     implementation project(':react-native-detect-navbar-android')
     implementation project(':react-native-fingerprint-scanner')
