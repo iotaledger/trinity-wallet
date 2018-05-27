@@ -195,6 +195,11 @@ const settingsReducer = (state = initialState, action) => {
                 ...state,
                 acceptedTerms: true,
             };
+        case ActionTypes.ACCEPT_PRIVACY:
+            return {
+              ...state,
+              acceptedPrivacy: true,
+            };
         case ActionTypes.SET_SEED_SHARE_TUTORIAL_VISITATION_STATUS:
             return {
                 ...state,
