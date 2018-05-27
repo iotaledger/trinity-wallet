@@ -13,4 +13,5 @@ export default {
     NODE_NOT_SYNCED: 'Node not synced',
     INCONSISTENT_SUBTANGLE: 'Inconsistent subtangle',
     INVALID_BUNDLE: 'Invalid bundle',
+    INVALID_PARAMETERS: 'Invalid parameters'
 };

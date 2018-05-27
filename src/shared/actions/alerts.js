@@ -37,6 +37,10 @@ export const generateAccountInfoErrorAlert = (err) => (dispatch) => {
     dispatch(prepareLogUpdate(err));
 };
 
+export const generateNodeOutOfSyncErrorAlert = () => (dispatch) => {
+    dispatch(generateAlert('error', i18next.t('global:nodeOutOfSync'), i18next.t('global:nodeOutOfSyncExplanation')));
+};
+
 export const generateTransitionErrorAlert = (err) => (dispatch) => {
     if (err.message.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
         dispatch(

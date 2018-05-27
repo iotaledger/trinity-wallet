@@ -267,15 +267,26 @@ export default (state = initialState, action) => {
                 ...state,
                 isModalActive: !state.isModalActive,
             };
-        case UiActionTypes.SET_CUSTOM_NODE_CHECK_STATUS:
-            return {
-                ...state,
-                isCheckingCustomNode: action.payload,
-            };
         case SettingsActionTypes.SET_NODE_REQUEST:
             return {
                 ...state,
                 isChangingNode: true,
+            };
+        case SettingsActionTypes.ADD_CUSTOM_NODE_REQUEST:
+            return {
+                ...state,
+                isCheckingCustomNode: true,
+            };
+        case SettingsActionTypes.ADD_CUSTOM_NODE_SUCCESS:
+            return {
+                ...state,
+                isCheckingCustomNode: false,
+                hasFailedAutopromotion: false,
+            };
+        case SettingsActionTypes.ADD_CUSTOM_NODE_ERROR:
+            return {
+                ...state,
+                isCheckingCustomNode: false,
             };
         case SettingsActionTypes.SET_NODE:
             return {
