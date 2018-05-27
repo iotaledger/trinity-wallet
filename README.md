@@ -22,9 +22,14 @@ git clone git@gitlab.com:iota-community/wallet.git
 cd wallet
 ```
 
-3. Run the setup
+3. Build docker image
 ```
-yarn full-setup
+docker build -t trinity .
+```
+
+To start a new container:
+```
+docker run -it trinity bash
 ```
 
 ## Branches
