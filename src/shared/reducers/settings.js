@@ -100,9 +100,10 @@ const settingsReducer = (state = initialState, action) => {
                 ...state,
                 node: action.payload,
             };
-        case ActionTypes.ADD_CUSTOM_POW_NODE:
+        case ActionTypes.ADD_CUSTOM_NODE_SUCCESS:
             return {
                 ...state,
+                node: action.payload,
                 nodes: union(state.nodes, [action.payload]),
                 customNodes: state.nodes.includes(action.payload)
                     ? state.customNodes

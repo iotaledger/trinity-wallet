@@ -1055,20 +1055,59 @@ describe('Reducer: ui', () => {
         });
     });
 
-    describe('IOTA/UI/SET_CUSTOM_NODE_CHECK_STATUS', () => {
-        it('should set "isCheckingCustomNode" state prop to payload', () => {
+    describe('IOTA/SETTINGS/ADD_CUSTOM_NODE_REQUEST', () => {
+        it('should set "isCheckingCustomNode" state prop to true', () => {
             const initialState = {
                 isCheckingCustomNode: false,
             };
 
             const action = {
-                type: 'IOTA/UI/SET_CUSTOM_NODE_CHECK_STATUS',
-                payload: true,
+                type: 'IOTA/SETTINGS/ADD_CUSTOM_NODE_REQUEST',
             };
 
             const newState = reducer(initialState, action);
             const expectedState = {
                 isCheckingCustomNode: true,
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
+
+    describe('IOTA/SETTINGS/ADD_CUSTOM_NODE_SUCCESS', () => {
+        it('should set "isCheckingCustomNode" and "hasFailedAutopromotion" state props to false', () => {
+            const initialState = {
+                isCheckingCustomNode: true,
+                hasFailedAutopromotion: true,
+            };
+
+            const action = {
+                type: 'IOTA/SETTINGS/ADD_CUSTOM_NODE_SUCCESS',
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                isCheckingCustomNode: false,
+                hasFailedAutopromotion: false,
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
+
+    describe('IOTA/SETTINGS/ADD_CUSTOM_NODE_ERROR', () => {
+        it('should set "isCheckingCustomNode" state prop to false', () => {
+            const initialState = {
+                isCheckingCustomNode: true,
+            };
+
+            const action = {
+                type: 'IOTA/SETTINGS/ADD_CUSTOM_NODE_ERROR',
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                isCheckingCustomNode: false,
             };
 
             expect(newState).to.eql(expectedState);
