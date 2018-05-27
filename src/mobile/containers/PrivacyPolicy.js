@@ -75,7 +75,6 @@ class PrivacyPolicy extends Component {
     }
 
     render() {
-        console.log(i18next);
         const { t, theme: { primary, body, bar } } = this.props;
         // RN doesn't like dynamic requires
         const source = PrivacyPolicy.isCurrentLanguageGerman()
