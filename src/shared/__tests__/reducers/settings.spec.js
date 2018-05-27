@@ -68,6 +68,7 @@ describe('Reducer: settings', () => {
                 isFingerprintEnabled: false,
                 hasVisitedSeedShareTutorial: false,
                 acceptedTerms: false,
+                acceptedPrivacy: false,
                 autoPromotion: false,
             };
 
