@@ -120,11 +120,12 @@ describe('actions: transfers', () => {
                 sandbox.restore();
             });
 
-            it('should create actions of type IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST, IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION, IOTA/ALERTS/SHOW and IOTA/TRANSFERS/PROMOTE_TRANSACTION_ERROR', () => {
+            it('should create actions of type IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST, IOTA/ALERTS/SHOW, IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION, IOTA/ALERTS/SHOW and IOTA/TRANSFERS/PROMOTE_TRANSACTION_ERROR', () => {
                 const store = mockStore({ accounts });
 
                 const expectedActions = [
                     'IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST',
+                    'IOTA/ALERTS/SHOW',
                     'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION',
                     'IOTA/ALERTS/SHOW',
                     'IOTA/TRANSFERS/PROMOTE_TRANSACTION_ERROR',
@@ -161,11 +162,12 @@ describe('actions: transfers', () => {
                 sandbox.restore();
             });
 
-            it('should create actions of type IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST, IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION, IOTA/TRANSFERS/PROMOTE_TRANSACTION_SUCCESS and IOTA/ALERTS/SHOW', () => {
+            it('should create actions of type IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST, IOTA/ALERTS/SHOW, IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION, IOTA/TRANSFERS/PROMOTE_TRANSACTION_SUCCESS and IOTA/ALERTS/SHOW', () => {
                 const store = mockStore({ accounts });
 
                 const expectedActions = [
                     'IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST',
+                    'IOTA/ALERTS/SHOW',
                     'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION',
                     'IOTA/ALERTS/SHOW',
                     'IOTA/TRANSFERS/PROMOTE_TRANSACTION_SUCCESS',
@@ -223,7 +225,7 @@ describe('actions: transfers', () => {
                 sandbox.restore();
             });
 
-            it('should create an action of type IOTA/ALERTS/SHOW twice', () => {
+            it('should create an action of type IOTA/ALERTS/SHOW thrice', () => {
                 const store = mockStore({ accounts });
 
                 return store
@@ -239,7 +241,7 @@ describe('actions: transfers', () => {
                                 .getActions()
                                 .map((action) => action.type)
                                 .filter((type) => type === 'IOTA/ALERTS/SHOW').length,
-                        ).to.equal(2);
+                        ).to.equal(3);
                     });
             });
 
