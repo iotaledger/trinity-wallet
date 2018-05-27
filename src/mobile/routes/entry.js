@@ -38,7 +38,7 @@ const renderInitialScreen = (store) => {
 
     i18next.changeLanguage(getLocaleFromLabel(state.settings.language));
 
-    const initialScreen = state.accounts.onboardingComplete ? 'login' : 'termsAndConditions';
+    const initialScreen = state.accounts.onboardingComplete ? 'login' : 'languageSetup';
 
     Navigation.startSingleScreenApp({
         screen: {
