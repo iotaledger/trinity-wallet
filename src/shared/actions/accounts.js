@@ -6,8 +6,10 @@ import {
     generateSyncingCompleteAlert,
     generateSyncingErrorAlert,
     generateAccountDeletedAlert,
+    generateNodeOutOfSyncErrorAlert,
 } from '../actions/alerts';
 import { pushScreen } from '../libs/utils';
+import Errors from '../libs/errors';
 
 export const ActionTypes = {
     UPDATE_ACCOUNT_INFO_AFTER_SPENDING: 'IOTA/ACCOUNTS/UPDATE_ACCOUNT_INFO_AFTER_SPENDING',
@@ -181,7 +183,12 @@ export const getFullAccountInfoAdditionalSeed = (
             navigator.pop({ animated: false });
         }
 
-        dispatch(generateAccountInfoErrorAlert(err));
+        if (err.message === Errors.NODE_NOT_SYNCED) {
+            dispatch(generateNodeOutOfSyncErrorAlert());
+        } else {
+            dispatch(generateAccountInfoErrorAlert(err));
+        }
+
         dispatch(fullAccountInfoAdditionalSeedFetchError());
     };
 
@@ -219,7 +226,11 @@ export const getFullAccountInfoFirstSeed = (seed, accountName, navigator = null,
                 // Add a slight delay to allow Login component and
                 // StatefulDropdownAlert component (mobile) to instantiate properly.
                 setTimeout(() => {
-                    dispatch(generateAccountInfoErrorAlert(err));
+                    if (err.message === Errors.NODE_NOT_SYNCED) {
+                        dispatch(generateNodeOutOfSyncErrorAlert());
+                    } else {
+                        dispatch(generateAccountInfoErrorAlert(err));
+                    }
                 }, 500);
             });
     };
@@ -235,7 +246,12 @@ export const manuallySyncAccount = (seed, accountName, genFn) => {
                 dispatch(manualSyncSuccess(data));
             })
             .catch((err) => {
-                dispatch(generateSyncingErrorAlert(err));
+                if (err.message === Errors.NODE_NOT_SYNCED) {
+                    dispatch(generateNodeOutOfSyncErrorAlert());
+                } else {
+                    dispatch(generateSyncingErrorAlert(err));
+                }
+
                 dispatch(manualSyncError());
             });
     };
