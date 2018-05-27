@@ -82,7 +82,9 @@ public class MainApplication extends NavigationApplication {
             BugsnagReactNative.getPackage(),
             new RNGoogleSafetyNetPackage(),
             new ReactNativeFingerprintScannerPackage(),
-            new ShareSecurePackage()
+            new ShareSecurePackage(),
+            new RNFetchBlobPackage(),
+            new RCTPdfView()
     );
   }
 

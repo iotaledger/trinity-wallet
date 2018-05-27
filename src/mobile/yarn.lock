@@ -5062,9 +5062,9 @@ react-native-optimized-flatlist@^1.0.4:
   version "1.1.0"
   resolved "git+https://github.com/laumair/react-native-os.git#527b0aef4e30041b5230f5b901767dd9f54903fe"
 
-react-native-pdf@^3.0.11:
-  version "3.0.11"
-  resolved "https://registry.yarnpkg.com/react-native-pdf/-/react-native-pdf-3.0.11.tgz#8b6cf7d643fa7206859085b541fce1a9901c2097"
+react-native-pdf@^3.0.12:
+  version "3.0.12"
+  resolved "https://registry.yarnpkg.com/react-native-pdf/-/react-native-pdf-3.0.12.tgz#55f2632f595951bb357007e962cf1040dc77ad4f"
   dependencies:
     crypto-js "^3.1.9-1"
     prop-types "^15.5.10"
