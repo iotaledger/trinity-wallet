@@ -14,8 +14,8 @@ export const ActionTypes = {
     SET_NODE_REQUEST: 'IOTA/SETTINGS/SET_NODE_REQUEST',
     SET_NODE_ERROR: 'IOTA/SETTINGS/SET_NODE_ERROR',
     ADD_CUSTOM_NODE_REQUEST: 'IOTA/SETTINGS/ADD_CUSTOM_NODE_REQUEST',
+    ADD_CUSTOM_NODE_SUCCESS: 'IOTA/SETTINGS/ADD_CUSTOM_NODE_SUCCESS',
     ADD_CUSTOM_NODE_ERROR: 'IOTA/SETTINGS/ADD_CUSTOM_NODE_ERROR',
-    ADD_CUSTOM_POW_NODE: 'IOTA/SETTINGS/ADD_CUSTOM_POW_NODE',
     SET_MODE: 'IOTA/SETTINGS/SET_MODE',
     SET_THEME: 'IOTA/SETTINGS/SET_THEME',
     SET_LANGUAGE: 'IOTA/SETTINGS/SET_LANGUAGE',
@@ -73,6 +73,11 @@ const setNodeError = () => ({
 
 const addCustomNodeRequest = () => ({
     type: ActionTypes.ADD_CUSTOM_NODE_REQUEST,
+});
+
+const addCustomNodeSuccess = (payload) => ({
+    type: ActionTypes.ADD_CUSTOM_NODE_SUCCESS,
+    payload,
 });
 
 const addCustomNodeError = () => ({
@@ -185,7 +190,25 @@ export function setLanguage(language) {
 export function setFullNode(node, addingCustomNode = false) {
     const dispatcher = {
         request: addingCustomNode ? addCustomNodeRequest : setNodeRequest,
+        success: addingCustomNode ? addCustomNodeSuccess : setNode,
         error: addingCustomNode ? addCustomNodeError : setNodeError,
+        alerts: {
+            defaultError: (err) =>
+                addingCustomNode
+                    ? generateAlert(
+                          'error',
+                          i18next.t('addCustomNode:customNodeCouldNotBeAdded'),
+                          i18next.t('addCustomNode:invalidNodeResponse'),
+                          7000,
+                      )
+                    : generateAlert(
+                          'error',
+                          i18next.t('settings:nodeChangeError'),
+                          i18next.t('settings:nodeChangeErrorExplanation'),
+                          7000,
+                          err,
+                      ),
+        },
     };
 
     return (dispatch) => {
@@ -194,17 +217,18 @@ export function setFullNode(node, addingCustomNode = false) {
         // Passing in provider will create a new IOTA instance
         isNodeSynced(node)
             .then((isSynced) => {
-                if (isSynced) {
+                if (!isSynced) {
                     throw new Error(Errors.NODE_NOT_SYNCED);
                 }
 
                 return checkAttachToTangleAsync(node);
-            }).then((res) => {
+            })
+            .then((res) => {
                 // Change IOTA provider on the global iota instance
                 changeIotaNode(node);
 
                 // Update node in redux store
-                dispatch(setNode(node));
+                dispatch(dispatcher.success(node));
 
                 if (res.error.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
                     // Automatically default to local PoW if this node has no attach to tangle available
@@ -230,37 +254,23 @@ export function setFullNode(node, addingCustomNode = false) {
                 } else {
                     dispatch(dispatcher.error());
 
-                    dispatch(
-                        generateAlert(
-                            'error',
-                            i18next.t('settings:nodeChangeError'),
-                            i18next.t('settings:nodeChangeErrorExplanation'),
-                            7000,
-                            res,
-                        ),
-                    );
+                    dispatch(dispatcher.alerts.defaultError());
                 }
             })
             .catch((err) => {
                 dispatch(dispatcher.error());
 
                 if (err.message === Errors.NODE_NOT_SYNCED) {
-                    dispatch(generateAlert(
-                       'error',
-                        i18next.t('settings:nodeChangeError'),
-                        i18next.t('settings:thisNodeOutOfSync'),
-                        7000
-                    ));
-                } else {
                     dispatch(
                         generateAlert(
                             'error',
                             i18next.t('settings:nodeChangeError'),
-                            i18next.t('settings:nodeChangeErrorExplanation'),
+                            i18next.t('settings:thisNodeOutOfSync'),
                             7000,
-                            err,
                         ),
                     );
+                } else {
+                    dispatch(dispatcher.alerts.defaultError(err));
                 }
             });
     };
