@@ -277,6 +277,12 @@ export default (state = initialState, action) => {
                 ...state,
                 isCheckingCustomNode: true,
             };
+        case SettingsActionTypes.ADD_CUSTOM_NODE_SUCCESS:
+            return {
+                ...state,
+                isCheckingCustomNode: false,
+                hasFailedAutopromotion: false,
+            };
         case SettingsActionTypes.ADD_CUSTOM_NODE_ERROR:
             return {
                 ...state,
@@ -285,7 +291,6 @@ export default (state = initialState, action) => {
         case SettingsActionTypes.SET_NODE:
             return {
                 ...state,
-                isCheckingCustomNode: false,
                 isChangingNode: false,
                 hasFailedAutopromotion: false,
             };
