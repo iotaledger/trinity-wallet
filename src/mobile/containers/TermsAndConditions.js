@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import PropTypes from 'prop-types';
-import Pdf from 'react-native-pdf';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { acceptTerms } from 'iota-wallet-shared-modules/actions/settings';
@@ -34,6 +33,14 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    placeholderContainer: {
+        flex: 1,
+        justifyContent: 'center',
+    },
+    placeholderText: {
+        fontFamily: 'SourceSansPro-SemiBold',
+        fontSize: GENERAL.fontSize3,
     },
 });
 
@@ -71,7 +78,6 @@ class TermsAndConditions extends Component {
 
     render() {
         const { t, theme: { primary, body, bar } } = this.props;
-        const source = require('iota-wallet-shared-modules/assets/terms.pdf');
         const textColor = { color: bar.color };
 
         return (
@@ -80,7 +86,9 @@ class TermsAndConditions extends Component {
                 <View style={[styles.titleContainer, { backgroundColor: bar.bg }]}>
                     <Text style={[styles.titleText, textColor]}>{t('termsAndConditions').toUpperCase()}</Text>
                 </View>
-                <Pdf source={source} style={styles.pdf} scale={1.3} enableAntialiasing />
+                <View style={styles.placeholderContainer}>
+                    <Text style={[styles.placeholderText, textColor]}>PLACEHOLDER</Text>
+                </View>
                 <Button
                     onPress={() => this.onNextPress()}
                     style={{
