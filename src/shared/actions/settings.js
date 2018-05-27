@@ -37,6 +37,7 @@ export const ActionTypes = {
     SET_2FA_STATUS: 'IOTA/SETTINGS/SET_2FA_STATUS',
     SET_FINGERPRINT_STATUS: 'IOTA/SETTINGS/SET_FINGERPRINT_STATUS',
     ACCEPT_TERMS: 'IOTA/SETTINGS/ACCEPT_TERMS',
+    ACCEPT_PRIVACY: 'IOTA/SETTINGS/ACCEPT_PRIVACY',
     SET_SEED_SHARE_TUTORIAL_VISITATION_STATUS: 'IOTA/SETTINGS/SET_SEED_SHARE_TUTORIAL_VISITATION_STATUS',
 };
 
@@ -47,6 +48,10 @@ export const setAppVersions = (payload) => ({
 
 export const acceptTerms = () => ({
     type: ActionTypes.ACCEPT_TERMS,
+});
+
+export const acceptPrivacy = () => ({
+  type: ActionTypes.ACCEPT_PRIVACY,
 });
 
 const currencyDataFetchRequest = () => ({
