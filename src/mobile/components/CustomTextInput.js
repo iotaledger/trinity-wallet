@@ -97,8 +97,6 @@ class CustomTextInput extends Component {
         onRef: PropTypes.func,
         /** Id for automated screenshots */
         testID: PropTypes.string,
-        /** Checks to see if the user is about to paste an address */
-        detectAddressInClipboard: PropTypes.func,
     };
 
     static defaultProps = {
@@ -140,9 +138,6 @@ class CustomTextInput extends Component {
 
     onFocus() {
         this.setState({ isFocused: true });
-        if (this.props.detectAddressInClipboard){
-            this.props.detectAddressInClipboard();
-        }
     }
 
     onBlur() {
