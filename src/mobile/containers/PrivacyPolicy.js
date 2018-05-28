@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, ScrollView } from 'react-native';
+import Markdown from 'react-native-markdown-renderer';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { acceptPrivacy } from 'iota-wallet-shared-modules/actions/settings';
+import { privacyPolicy } from 'iota-wallet-shared-modules/markdown';
 import WithBackPressCloseApp from '../components/BackPressCloseApp';
 import i18next from '../i18next';
 import Button from '../components/Button';
@@ -35,13 +37,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    placeholderContainer: {
-        flex: 1,
-        justifyContent: 'center',
-    },
-    placeholderText: {
-        fontFamily: 'SourceSansPro-SemiBold',
-        fontSize: GENERAL.fontSize3,
+    scrollView: {
+        backgroundColor: '#ffffff',
+        width,
+        paddingHorizontal: width / 20,
+        paddingVertical: height / 75,
     },
 });
 
@@ -62,6 +62,12 @@ class PrivacyPolicy extends Component {
 
     static isCurrentLanguageGerman() {
         return i18next.language === 'de';
+    }
+
+    constructor() {
+        super();
+
+        this.state = { hasReadyPrivacyPolicy: false };
     }
 
     onNextPress() {
@@ -91,18 +97,33 @@ class PrivacyPolicy extends Component {
                 <View style={[styles.titleContainer, { backgroundColor: bar.bg }]}>
                     <Text style={[styles.titleText, textColor]}>{t('privacyPolicy')}</Text>
                 </View>
-                <View style={styles.placeholderContainer}>
-                    <Text style={[styles.placeholderText, textColor]}>PLACEHOLDER</Text>
-                </View>
-                <Button
-                    onPress={() => this.onNextPress()}
-                    style={{
-                        wrapper: { backgroundColor: primary.color },
-                        children: { color: primary.body },
+                <ScrollView
+                    onScroll={(e) => {
+                        let paddingToBottom = 20;
+                        paddingToBottom += e.nativeEvent.layoutMeasurement.height;
+
+                        if (e.nativeEvent.contentOffset.y >= e.nativeEvent.contentSize.height - paddingToBottom) {
+                            if (!this.state.hasReadyPrivacyPolicy) {
+                                this.setState({ hasReadyPrivacyPolicy: true });
+                            }
+                        }
                     }}
+                    scrollEventThrottle={400}
+                    style={styles.scrollView}
                 >
-                    {t('agree')}
-                </Button>
+                    <Markdown styles={{ text: { fontFamily: 'SourceSansPro-Regular' } }}>{privacyPolicy}</Markdown>
+                </ScrollView>
+                {this.state.hasReadyPrivacyPolicy && (
+                    <Button
+                        onPress={() => this.onNextPress()}
+                        style={{
+                            wrapper: { backgroundColor: primary.color },
+                            children: { color: primary.body },
+                        }}
+                    >
+                        {t('agree')}
+                    </Button>
+                )}
             </View>
         );
     }
