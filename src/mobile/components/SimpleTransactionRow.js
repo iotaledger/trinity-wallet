@@ -4,6 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { formatTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/date';
 import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
+import { isAndroid } from '../utils/device';
 
 const styles = StyleSheet.create({
     container: {
@@ -27,10 +28,9 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        width: width / 26,
-        height: width / 26
-
-    }
+        width: width / 24,
+        height: width / 24,
+    },
 });
 
 export default class SimpleTransactionRow extends PureComponent {
@@ -61,8 +61,19 @@ export default class SimpleTransactionRow extends PureComponent {
         return (
             <View style={styles.container}>
                 <View style={{ flex: 0.6, alignItems: 'flex-start' }}>
-                    <View style={[ styles.iconContainer, { borderColor: style.defaultTextColor } ]}>
-                        <Text style={[ styles.icon, { color: style.titleColor, marginBottom: incoming ? 1 : 2.5 } ]}>{icon}</Text>
+                    <View style={[styles.iconContainer, { borderColor: style.defaultTextColor }]}>
+                        <Text
+                            style={[
+                                styles.icon,
+                                {
+                                    color: style.titleColor,
+                                    marginBottom: incoming ? (isAndroid ? 0 : 1) : isAndroid ? 2 : 2.5,
+                                    marginLeft: incoming ? (isAndroid ? 0 : 0.5) : 0,
+                                },
+                            ]}
+                        >
+                            {icon}
+                        </Text>
                     </View>
                 </View>
                 <View style={{ flex: 3.2, alignItems: 'flex-start' }}>
@@ -71,7 +82,7 @@ export default class SimpleTransactionRow extends PureComponent {
                     </Text>
                 </View>
                 <View style={{ flex: 2, alignItems: 'flex-start' }}>
-                    <Text style={[styles.text, { color: style.defaultTextColor } ]}>{confirmationStatus}</Text>
+                    <Text style={[styles.text, { color: style.defaultTextColor }]}>{confirmationStatus}</Text>
                 </View>
                 <View style={{ flex: 2, alignItems: 'flex-end' }}>
                     <Text style={[styles.text, { color: style.titleColor }]}>

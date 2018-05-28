@@ -3,7 +3,7 @@ import each from 'lodash/each';
 import map from 'lodash/map';
 import union from 'lodash/union';
 import { setPrice, setChartData, setMarketData } from './marketData';
-import { setNodeList, setRandomlySelectedNode } from './settings';
+import { setNodeList, setRandomlySelectedNode, setAutoPromotion } from './settings';
 import { getRandomNode, changeIotaNode } from '../libs/iota';
 import { formatChartData, getUrlTimeFormat, getUrlNumberFormat, rearrangeObjectKeys } from '../libs/utils';
 import { generateAccountInfoErrorAlert, generateAlert } from './alerts';
@@ -14,6 +14,7 @@ import { syncAccount } from '../libs/iota/accounts';
 import { forceTransactionPromotion } from './transfers';
 import { NODELIST_URL, nodes, nodesWithPoWEnabled } from '../config';
 import Errors from '../libs/errors';
+import i18next from '../i18next';
 
 export const ActionTypes = {
     SET_POLL_FOR: 'IOTA/POLLING/SET_POLL_FOR',
@@ -36,13 +37,7 @@ export const ActionTypes = {
     PROMOTE_TRANSACTION_SUCCESS: 'IOTA/POLLING/PROMOTE_TRANSACTION_SUCCESS',
     PROMOTE_TRANSACTION_ERROR: 'IOTA/POLLING/PROMOTE_TRANSACTION_ERROR',
     SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION: 'IOTA/POLLING/SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION',
-    SET_AUTOPROMOTION_FAILED_FLAG: 'IOTA/POLLING/SET_AUTOPROMOTION_FAILED_FLAG',
 };
-
-export const setAutoPromotionFailedFlag = (payload) => ({
-    type: ActionTypes.SET_AUTOPROMOTION_FAILED_FLAG,
-    payload,
-});
 
 const fetchPriceRequest = () => ({
     type: ActionTypes.FETCH_PRICE_REQUEST,
@@ -345,16 +340,14 @@ export const promoteTransfer = (bundleHash, seenTailTransactions) => (dispatch, 
         .catch((err) => {
             if (err.message.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
                 // FIXME: Temporary solution until local/remote PoW is reworked on auto-promotion
-                if (!getState().ui.hasFailedAutopromotion) {
-                    dispatch(
-                        generateAlert(
-                            'error',
-                            'Could not auto-promote transaction',
-                            'Remote Proof of Work is not available on your selected node. Please change node.',
-                        ),
-                    );
-                }
-                dispatch(setAutoPromotionFailedFlag(true));
+                dispatch(
+                    generateAlert(
+                        'error',
+                        i18next.t('global:autopromotionError'),
+                        i18next.t('global:autopromotionErrorExplanation'),
+                    ),
+                );
+                dispatch(setAutoPromotion(false));
             }
             dispatch(promoteTransactionError());
         });
