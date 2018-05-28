@@ -425,18 +425,14 @@ class Home extends Component {
                     backdropOpacity={0.8}
                     style={{ alignItems: 'center', margin: 0 }}
                     isVisible={this.state.showModal}
-                    onBackButtonPress={() => this.setState({ showModal: false })}
+                    onBackButtonPress={() => {
+                        this.completeTransitionTask();
+                        this.setState({ showModal: false });
+                    }}
                     useNativeDriver={isAndroid}
                     hideModalContentWhileAnimating
                 >
-                    <SnapshotTransitionModalContent
-                        theme={this.props.theme}
-                        t={this.props.t}
-                        onPress={() => {
-                            this.completeTransitionTask();
-                            this.setState({ showModal: false });
-                        }}
-                    />
+                    <SnapshotTransitionModalContent theme={this.props.theme} t={this.props.t} onPress={() => {}} />
                 </Modal>
             </UserInactivity>
         );
