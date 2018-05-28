@@ -520,7 +520,7 @@
         "autoPromotion": "Auto-promotion",
         "autoPromotionExplanation":
             "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
-        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
+        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work.",
     },
     "advancedThemeCustomisation": {
         "background": "Background",
@@ -650,6 +650,10 @@
         "powUpdatedExplanation": "Your proof of work configuration has been updated.",
         "noWebGLSupport": "WebGL not supported",
         "noWebGLSupportExplanation": "Your computer does not support WebGL. Please use remote PoW."
+    },
+    "autoPromotion": {
+      "autoPromotionUpdated": "Auto-promotion settings",
+      "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
     },
     "progressSteps": {
         "checkingNodeHealth": "Checking node health",
