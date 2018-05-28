@@ -118,7 +118,7 @@
         "pleaseWaitExplanation": "Trinity в данный момент выполняет другую задачу. Пожалуйста, подождите и повторите попытку.",
         "pleaseWaitTransferExplanation": "Ваш баланс в данный момент используется в одной из транзакций. Пожалуйста, подождите до тех пор, пока транзакции будут завершены, и затем повторите попытку.",
         "pleaseWaitIncomingTransferExplanation": "У вас есть входящие переводы. Пожалуйста, подождите, пока они не будут подтверждены, прежде чем пытаться снова.",
-        "snapshotTransitionInProgress": "Переход снимка в прогрессе",
+        "snapshotTransitionInProgress": "Процесс актуализации после снимка сети в прогрессе",
         "snapshotTransitionInProgressExplanation": "Пожалуйста, подождите пока синхронизация будет завершена.",
         "checkForUpdates": "Проверить наличие обновлений",
         "account": "Учетная запись",
@@ -150,8 +150,8 @@
         "mustBeStoredAppropriately": "Нужно хранить надлежащим образом.",
         "deviceMayBecomeUnresponsive": "Ваше устройство может не отвечать какое-то время",
         "isYourBalanceCorrect": "Верен ли Ваш баланс?",
-        "ifYourBalanceIsNotCorrect": "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
-        "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition."
+        "ifYourBalanceIsNotCorrect": "Если Ваш баланс не верен, то, скорее всего, Вы используете ключ, который не был актувлизирован после снимка сети.",
+        "headToAdvancedSettingsForTransition": "Перейдите в Дополнительные Настройки и выполните Snapshot переход."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ключ содержит недопустимые символы",
@@ -491,7 +491,7 @@
         "manualSync": "Ручная синхронизация",
         "snapshotTransition": "Snapshot переход",
         "pow": "Доказательство Работы (ДР)",
-        "autoPromotion": "Auto-promotion",
+        "autoPromotion": "Авто продвижение",
         "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
         "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
     },
@@ -631,16 +631,16 @@
         "broadcasting": "Трансляция"
     },
     "snapshotTransition": {
-        "cannotCompleteTransition": "Не удается завершить переход снимков",
+        "cannotCompleteTransition": "Не удается завершить процесс актуализации после снимка сети",
         "cannotCompleteTransitionExplanation": "Ваш баланс должен быть больше 0 для завершения перехода.",
-        "transitionComplete": "Переход снимка выполнен",
-        "transitionCompleteExplanation": "Переход снимка успешно завершен.",
+        "transitionComplete": "Актуализации после снимка сети выполнена",
+        "transitionCompleteExplanation": "Актуализация после снимка сети успешно завершена.",
         "detectedBalance": "Обнаружен баланс: {{amount}} {{unit}}",
         "isThisCorrect": "Правильно?",
-        "snapshotExplanation": "Иногда, снимок нужен для уменьшения Tangle.",
-        "hasSnapshotTakenPlace": "Имеет место снимок? Нажмите кнопку ниже для перехода.",
+        "snapshotExplanation": "Время от времени снимок сети производится для уменьшения размера Tangle.",
+        "hasSnapshotTakenPlace": "Был произведен снимок сети? Нажмите кнопку ниже для процесса актуализации.",
         "transition": "Переход",
-        "transitioning": "Переход для моментального снимка.",
+        "transitioning": "Процесс актуализации после снимка сети.",
         "generatingAndDetecting": "Genererer adresser og registrerer balance.",
         "attaching": "Привязка адресов к Tangle."
     },
@@ -663,10 +663,10 @@
     },
     "terms": {
         "termsAndConditions": "Условия использования",
-        "accept": "I accept"
+        "accept": "Я принимаю"
     },
     "privacyPolicy": {
-        "privacyPolicy": "Privacy Policy",
-        "agree": "I agree"
+        "privacyPolicy": "Политика конфиденциальности",
+        "agree": "Я согласен"
     }
 }
