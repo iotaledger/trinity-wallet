@@ -183,9 +183,6 @@ export default class HistoryModalContent extends PureComponent {
         /** Content styles */
         style: PropTypes.shape({
             titleColor: PropTypes.string.isRequired,
-            containerBorderColor: PropTypes.shape({ borderColor: PropTypes.string.isRequired }).isRequired,
-            containerBackgroundColor: PropTypes.shape({ backgroundColor: PropTypes.string.isRequired }).isRequired,
-            confirmationStatusColor: PropTypes.shape({ color: PropTypes.string.isRequired }).isRequired,
             defaultTextColor: PropTypes.shape({ color: PropTypes.string.isRequired }).isRequired,
             backgroundColor: PropTypes.string.isRequired,
             borderColor: PropTypes.shape({ borderColor: PropTypes.string.isRequired }).isRequired,
@@ -299,7 +296,7 @@ export default class HistoryModalContent extends PureComponent {
                                             {status} {value} {unit}
                                         </Text>
                                         <View style={styles.confirmationWrapper}>
-                                            <Text style={[styles.confirmation, style.confirmationStatusColor]}>
+                                            <Text style={[styles.confirmation, { color: style.titleColor } ]}>
                                                 {confirmation}
                                             </Text>
                                             <Text style={[styles.timestamp, style.defaultTextColor]}>
