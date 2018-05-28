@@ -4,7 +4,7 @@
         "cancel": "ОТМЕНИТЬ",
         "continue?": "Вы уверены, что хотите продолжить?",
         "noTransactions": "НЕДАВНЯЯ ИСТОРИЯ ОТСУТСТВУЕТ",
-        "refresh": "ОБНОВИТЬ",
+        "refresh": "Обновить",
         "balanceError": "Недостаточно средств",
         "balanceErrorMessage": "У вас недостаточно IOTA для завершения данного перевода.",
         "transferError": "Ошибка перевода",
@@ -16,10 +16,10 @@
         "keyReuse": "Отправка на введённый адрес",
         "keyReuseError": "Вы не можете сделать перевод на адрес, с которого уже был осуществлён перевод.",
         "invalidResponse": "Ошибка узла",
-        "invalidResponseExplanation": "Узел вернул ошибку. Проверьте уведомления для получения дополнительной информации.",
-        "invalidResponsePollingExplanation": "Узел вернул ошибку во время опроса. Проверьте уведомления для получения дополнительной информации.",
-        "invalidResponseFetchingAccount": "Узел возвратил ошибку при получении данных вашей учетной записи. Попробуйте изменить ваш узел или проверьте уведомления для получения дополнительной информации.",
-        "invalidResponseSendingTransfer": "Узел вернул ошибку пока отправлял трансфер. Проверьте уведомления для получения дополнительной информации.",
+        "invalidResponseExplanation": "Узел сообщил об ошибке. Попробуйте сменить узел.",
+        "invalidResponsePollingExplanation": "Узел сообщил об ошибке во время запроса. Попробуйте сменить узел.",
+        "invalidResponseFetchingAccount": "Узел сообщил об ошибке во время получения информации о Вашем счёте. Попробуйте поменять узел.",
+        "invalidResponseSendingTransfer": "Узел сообщил об ошибке при отправке перевода. Попробуйте сменить узел.",
         "nodeOutOfSync": "Узел не синхронизирован",
         "nodeOutOfSyncExplanation": "Выбранный Вами узел не синхронизирован. Пожалуйста, смените узел или попробуйте снова.",
         "thisNodeOutOfSync": "This node is out of sync. Please change node or try again.",
@@ -36,14 +36,14 @@
         "nextLowerCase": "Далее",
         "apply": "Применить",
         "save": "Сохранить",
-        "close": "ЗАКРЫТЬ",
+        "close": "Закрыть",
         "continue": "Продолжить",
         "enable": "Включить",
         "disable": "Отключить",
         "enabled": "Enabled",
         "disabled": "Disabled",
-        "manualCopy": "Запишите ключ",
-        "paperWallet": "Распечатать бумажную версию",
+        "manualCopy": "Write seed down",
+        "paperWallet": "Print paper copy",
         "addToPasswordManager": "Add to password manager",
         "shareSeed": "Share seed",
         "proceed": "Приступить",
@@ -63,6 +63,7 @@
         "yesLowerCase": "Да",
         "noLowerCase": "Нет",
         "okay": "ХОРОШО",
+        "okayLowercase": "Okay",
         "password": "Пароль",
         "passwordOrFingerprint": "Пароль или отпечаток пальца",
         "unrecognisedPassword": "Нераспознанный пароль",
@@ -123,7 +124,7 @@
         "account": "Учетная запись",
         "enterPasswordToAccessSettings": "Введите свой пароль для доступа к настройкам учетной записи",
         "enterYourPassword": "Введите ваш пароль",
-        "changeNode": "Изменить узел",
+        "changeNode": "Сменить узел",
         "addCustomNode": "Добавить пользовательский узел",
         "nodeChanged": "Узел изменён",
         "nodeChangedExplanation": "Узел был изменён успешно.",
@@ -147,7 +148,10 @@
         "androidCopyPasteWarning": "Никогда не пользуйтесь функцией \"Скопировать/Вставить\" на Андроиде.",
         "willNotCopyPasteSeed": "Я не буду копировать/вставлять мой ключ",
         "mustBeStoredAppropriately": "Нужно хранить надлежащим образом.",
-        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while"
+        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while",
+        "isYourBalanceCorrect": "Is your balance correct?",
+        "ifYourBalanceIsNotCorrect": "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
+        "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ключ содержит недопустимые символы",
@@ -239,9 +243,9 @@
         "emptyPasswordExplanation": "Вам необходимо ввести пароль для входа. Пожалуйста, попробуйте еще раз.",
         "enterPassword": "Пожалуйста, введите пароль.",
         "useSeed": "ИСПОЛЬЗУЙТЕ КЛЮЧ",
-        "login": "ВОЙТИ",
+        "login": "Войти",
         "selectDifferentNode": "Вы хотите выбрать другой узел?",
-        "setNode": "ВЫБРАТЬ УЗЕЛ",
+        "setNode": "Выбрать узел",
         "cannotConnect": "Не удается подключиться к узлу IOTA."
     },
     "loading": {
@@ -255,7 +259,7 @@
         "generatedSeed": "Созданный ключ",
         "seedNotGenerated": "Ключ не был сгенерирован",
         "seedNotGeneratedExplanation": "Пожалуйста, сгенерируйте новый ключ (seed).",
-        "pressForNewSeed": "СОЗДАТЬ НОВЫЙ КЛЮЧ",
+        "pressForNewSeed": "Создать новый ключ",
         "generateSuccess": "Ключ (seed) успешно сгенерирован",
         "individualLetters": "Нажмите на любые несколько символов в случайном порядке.",
         "individualLetterCount": "Нажмите на еще {{letterCount}} символов для большей рандомизации.",
@@ -271,7 +275,7 @@
         "storeSafely": "Надежно храните его.",
         "neverShare": "Никогда не сообщайте свой ключ кому-либо.",
         "iotaLogo": "Логотип IOTA",
-        "printWallet": "СОЗДАТЬ КОШЕЛЁК НА БУМАГЕ",
+        "printWallet": "Распечатать бумажный кошелек",
         "print": "НАПЕЧАТАТЬ",
         "paperConvenience": "Печать бумажной копии Вашего ключа - это удобный способ его хранения.",
         "publicInsecure": "Но печать через общественный Wi-Fi или на общедоступном принтере небезопасна.",
@@ -283,7 +287,7 @@
         "copyAddress": "Скопировать адрес",
         "addressCopied": "Адрес скопирован",
         "addressCopiedExplanation": "Ваш адрес скопирован в буфер обмена.",
-        "generateNewAddress": "НОВЫЙ АДРЕС",
+        "generateNewAddress": "Новый адрес",
         "message": "Сообщение (опционально)",
         "removeMessage": "УДАЛИТЬ СООБЩЕНИЕ",
         "noAddresses": "НЕТ АДРЕСОВ",
@@ -336,7 +340,7 @@
         "invalidMessageExplanation": "Сообщение содержит недопустимые символы.",
         "invalidMessageTooLong": "Сообщение слишком длинное",
         "invalidMessageTooLongExplanation": "Сообщение превышает Макс. количество символов (1093).",
-        "send": "ОТПРАВИТЬ",
+        "send": "Отправить",
         "invalidAmount": "Указана неверная сумма",
         "invalidAmountExplanation": "Пожалуйста, введите корректную сумму. Возможно, Вам будет полезно ознакомиться с объяснением системы единиц IOTA внизу страницы.",
         "maximumSelected": "Выбрана МАКСИМАЛЬНАЯ сумма",
@@ -425,7 +429,7 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Введите Ваш пароль для сброса настроек кошелька.",
-        "cancel": "ОТМЕНА",
+        "cancel": "Отмена",
         "reset": "СБРОС"
     },
     "walletSetup": {
@@ -531,7 +535,7 @@
         "pressToSync": "Нажмите на кнопку, чтобы синхронизировать Ваш счёт.",
         "thisMayTake": "Это может занять некоторое время. Устройство может работать медленнее, чем обычно.",
         "doNotClose": "Обратите внимание, что минимизация приложения прервёт синхронизацию.",
-        "syncAccount": "СИНХРОНИЗИРОВАТЬ СЧЁТ",
+        "syncAccount": "Синхронизация аккаунта",
         "syncingYourAccount": "Синхронизация Вашего счёта."
     },
     "useExistingSeed": {
@@ -541,8 +545,8 @@
     },
     "viewSeed": {
         "enterPassword": "Введите пароль чтобы увидеть Ваш ключ.",
-        "viewSeed": "ПОКАЗАТЬ КЛЮЧ",
-        "hideSeed": "СКРЫТЬ КЛЮЧ"
+        "viewSeed": "Показать ключ",
+        "hideSeed": "Скрыть ключ"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Вы создали резервную копию Вашего ключа?",
@@ -635,10 +639,10 @@
         "isThisCorrect": "Правильно?",
         "snapshotExplanation": "Иногда, снимок нужен для уменьшения Tangle.",
         "hasSnapshotTakenPlace": "Имеет место снимок? Нажмите кнопку ниже для перехода.",
-        "transition": "ПЕРЕХОД",
+        "transition": "Переход",
         "transitioning": "Переход для моментального снимка.",
         "generatingAndDetecting": "Genererer adresser og registrerer balance.",
-        "attaching": "Attaching addresses to Tangle"
+        "attaching": "Привязка адресов к Tangle."
     },
     "deepLink": {
         "autofill": "Автозаполнение прошло успешно",
