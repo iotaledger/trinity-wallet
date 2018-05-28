@@ -88,7 +88,7 @@ function createWindow() {
 
     windows.main.on('close', hideOnClose);
 
-    if (devMode) {
+   // if (devMode) {
         windows.main.webContents.openDevTools();
         const {
             default: installExtension,
@@ -98,7 +98,7 @@ function createWindow() {
 
         installExtension(REACT_DEVELOPER_TOOLS);
         installExtension(REDUX_DEVTOOLS);
-    }
+    //}
 
     windows.main.webContents.on('context-menu', (e, props) => {
         const InputMenu = electron.Menu.buildFromTemplate([

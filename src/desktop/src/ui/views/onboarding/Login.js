@@ -8,9 +8,10 @@ import authenticator from 'authenticator';
 import { generateAlert } from 'actions/alerts';
 import { getMarketData, getChartData, getPrice } from 'actions/marketData';
 import { getCurrencyData } from 'actions/settings';
-import { clearWalletData, setPassword } from 'actions/wallet';
-
+import { clearWalletData, setPassword, setDeepLink } from 'actions/wallet';
+import { setOnboardingSeed } from 'actions/ui';
 import { getSelectedAccountName } from 'selectors/accounts';
+
 
 import { runTask } from 'worker';
 
@@ -71,6 +72,9 @@ class Login extends React.Component {
          * @ignore
          */
         t: PropTypes.func.isRequired,
+        setDeepLink: PropTypes.func.isRequired,
+        /** Browser histoty object */
+        history: PropTypes.object.isRequired,
     };
 
     state = {
@@ -81,13 +85,20 @@ class Login extends React.Component {
 
     componentDidMount() {
         Electron.updateMenu('authorised', false);
+        try {
+            Electron.onEvent('url-params', this.setDeepUrl(this));
+        } catch (error) {
+            this.setState({
+                //fatalError: true,
+            });
+        }
 
         const { wallet } = this.props;
 
         if (wallet.ready && wallet.addingAdditionalAccount) {
             this.setupAccount();
         } else {
-            this.props.clearWalletData();
+            //this.props.clearWalletData();
             this.props.setPassword('');
         }
     }
@@ -244,6 +255,7 @@ const mapDispatchToProps = {
     getPrice,
     getMarketData,
     getCurrencyData,
+    setDeepLink,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate()(Login));
