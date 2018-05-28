@@ -3,7 +3,7 @@ import each from 'lodash/each';
 import map from 'lodash/map';
 import union from 'lodash/union';
 import { setPrice, setChartData, setMarketData } from './marketData';
-import { setNodeList, setRandomlySelectedNode } from './settings';
+import { setNodeList, setRandomlySelectedNode, setAutoPromotion } from './settings';
 import { getRandomNode, changeIotaNode } from '../libs/iota';
 import { formatChartData, getUrlTimeFormat, getUrlNumberFormat, rearrangeObjectKeys } from '../libs/utils';
 import { generateAccountInfoErrorAlert, generateAlert } from './alerts';
@@ -355,6 +355,7 @@ export const promoteTransfer = (bundleHash, seenTailTransactions) => (dispatch, 
                     );
                 }
                 dispatch(setAutoPromotionFailedFlag(true));
+                dispatch(setAutoPromotion(false));
             }
             dispatch(promoteTransactionError());
         });
