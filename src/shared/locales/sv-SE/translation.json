@@ -105,7 +105,7 @@
         "promoted": "Framgångsrik befordran av transaktion",
         "promotedExplanation": "Befordrade transaktion med hash {{hash}}",
         "autopromotionError": "Kunde inte befordra transaktionen automatiskt",
-        "autopromotionErrorExplanation": "Avlägsen PoW är inte tillgänglig på din valda nod. Vänligen byt nod.",
+        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
         "promotionError": "Kunde inte befordra transaktionen",
         "promotionErrorExplanation": "Någonting gick fel under befordran av transaktionen. Vänligen försök igen.",
         "noLongerValid": "Bunten du försökte befordra är inte giltig längre",
@@ -348,7 +348,7 @@
         "sendMax": "SKICKA MAX",
         "totalTime": "Total tid",
         "addressPasteDetected": "Kopierad adress upptäckt",
-        "addressPasteExplanation": "Det ser ut som du kommer att klistra in en adress. Kontrollera att den inklistrade adressen matchar den som du vill skicka till."
+        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
     },
     "setPassword": {
         "choosePassword": "Välj ett nytt lösenord",
@@ -619,6 +619,10 @@
         "powUpdatedExplanation": "Din PoW-konfiguration har blivit uppdaterad.",
         "noWebGLSupport": "WebGL stöds inte",
         "noWebGLSupportExplanation": "Din dator stöder inte WebGL. Använd avlägsen PoW."
+    },
+    "autoPromotion": {
+        "autoPromotionUpdated": "Auto-promotion settings",
+        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
     },
     "progressSteps": {
         "checkingNodeHealth": "Kontrollera nodens hälsa",
