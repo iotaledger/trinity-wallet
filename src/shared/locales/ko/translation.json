@@ -491,7 +491,7 @@
         "manualSync": "수동 동기화",
         "snapshotTransition": "스냅샷 이전",
         "pow": "작업증명",
-        "autoPromotion": "Auto-promotion",
+        "autoPromotion": "자동 프로모트",
         "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
         "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
     },
@@ -667,10 +667,10 @@
     },
     "terms": {
         "termsAndConditions": "이용 약관",
-        "accept": "I accept"
+        "accept": "동의합니다"
     },
     "privacyPolicy": {
-        "privacyPolicy": "Privacy Policy",
-        "agree": "I agree"
+        "privacyPolicy": "개인정보 정책",
+        "agree": "동의합니다"
     }
 }
