@@ -106,6 +106,12 @@ class App extends React.Component {
         };
     }
 
+    componentWillMount() {
+        if (this.props.isDeepLinkActive) {
+            this.props.history.push('/wallet/send');
+        }
+    }
+
     componentDidMount() {
         this.onMenuToggle = this.menuToggle.bind(this);
 
@@ -150,7 +156,7 @@ class App extends React.Component {
 
     componentWillUnmount() {
         Electron.removeEvent('menu', this.onMenuToggle);
-        Electron.removeEvent('url-params', this.onSetDeepUrl);
+        //Electron.removeEvent('url-params', this.onSetDeepUrl);
     }
 
     setDeepUrl(data) {
@@ -265,6 +271,7 @@ const mapStateToProps = (state) => ({
     wallet: state.wallet,
     activationCode: state.app.activationCode,
     themeName: state.settings.themeName,
+    isDeepLinkActive: state.wallet.deepLinkActive,
 });
 
 const mapDispatchToProps = {
