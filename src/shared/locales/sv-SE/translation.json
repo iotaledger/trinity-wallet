@@ -4,7 +4,7 @@
         "cancel": "AVBRYT",
         "continue?": "Är du säker på att du vill fortsätta?",
         "noTransactions": "Ingen historik",
-        "refresh": "UPPDATERA",
+        "refresh": "Ladda om",
         "balanceError": "Otillräckligt saldo",
         "balanceErrorMessage": "Du har inte tillräckligt med IOTA för att slutföra denna överföring.",
         "transferError": "Överföringsfel",
@@ -16,10 +16,10 @@
         "keyReuse": "Skickar till en förbrukad adress",
         "keyReuseError": "Du kan inte skicka till en adress som redan utnyttjats för en utgående transaktion.",
         "invalidResponse": "Fel på nod",
-        "invalidResponseExplanation": "Noden returnerade ett fel. Kontrollera meddelanden för mer information.",
-        "invalidResponsePollingExplanation": "Noden returnerade ett fel. Kontrollera meddelanden för mer information.",
-        "invalidResponseFetchingAccount": "Noden returnerade ett fel vid hämtning av din kontoinformation. Prova att ändra din nod eller kontrollera meddelanden för mer information.",
-        "invalidResponseSendingTransfer": "Noden returnerade ett fel vid överföringen. Kontrollera meddelanden för mer information.",
+        "invalidResponseExplanation": "Noden returnerade ett fel. Försök att ändra nod.",
+        "invalidResponsePollingExplanation": "Noden returnerade ett fel vid avsökning. Försök att ändra nod.",
+        "invalidResponseFetchingAccount": "Noden returnerade ett fel vid hämtning av din kontoinformation. Försök att byta nod.",
+        "invalidResponseSendingTransfer": "Noden returnerade ett fel vid sändning av överföringen. Försök att ändra nod.",
         "nodeOutOfSync": "Nod osynkad",
         "nodeOutOfSyncExplanation": "Din valda nod är osynkad. Vänligen ändra nod eller försök igen.",
         "thisNodeOutOfSync": "This node is out of sync. Please change node or try again.",
@@ -36,14 +36,14 @@
         "nextLowerCase": "Nästa",
         "apply": "Verkställ",
         "save": "Spara",
-        "close": "STÄNG",
+        "close": "Stäng",
         "continue": "Fortsätt",
         "enable": "Aktivera",
         "disable": "Avaktivera",
         "enabled": "Enabled",
         "disabled": "Disabled",
-        "manualCopy": "Skriv ner din seed",
-        "paperWallet": "Skriv ut papperskopia",
+        "manualCopy": "Write seed down",
+        "paperWallet": "Print paper copy",
         "addToPasswordManager": "Add to password manager",
         "shareSeed": "Share seed",
         "proceed": "Fortsätt",
@@ -63,6 +63,7 @@
         "yesLowerCase": "Ja",
         "noLowerCase": "Nej",
         "okay": "OKEJ",
+        "okayLowercase": "Okay",
         "password": "Lösenord",
         "passwordOrFingerprint": "Lösenord eller fingeravtryck",
         "unrecognisedPassword": "Fel lösenord",
@@ -147,7 +148,10 @@
         "androidCopyPasteWarning": "Kopiera/klistra aldrig din seed på en Android-enhet.",
         "willNotCopyPasteSeed": "Jag kommer inte kopiera/klistra min seed",
         "mustBeStoredAppropriately": "Den måste lagras på lämpligt sätt.",
-        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while"
+        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while",
+        "isYourBalanceCorrect": "Is your balance correct?",
+        "ifYourBalanceIsNotCorrect": "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
+        "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
@@ -239,9 +243,9 @@
         "emptyPasswordExplanation": "Du måste ange ett lösenord för att logga in. Vänligen försök igen.",
         "enterPassword": "Vänligen ange ditt lösenord.",
         "useSeed": "ANVÄND DIN SEED",
-        "login": "LOGGA IN",
+        "login": "Logga in",
         "selectDifferentNode": "Vill du välja en annan nod?",
-        "setNode": "VÄLJ NOD",
+        "setNode": "Ställ in nod",
         "cannotConnect": "Kan ej ansluta till IOTA nod."
     },
     "loading": {
@@ -255,7 +259,7 @@
         "generatedSeed": "Genererad seed",
         "seedNotGenerated": "En seed har inte blivit genererad",
         "seedNotGeneratedExplanation": "Var vänlig och generera en ny seed.",
-        "pressForNewSeed": "TRYCK FÖR NY SEED",
+        "pressForNewSeed": "Tryck för ny seed",
         "generateSuccess": "Seed genererad framgångsrikt",
         "individualLetters": "Tryck på enskilda bokstäver för att ändra de slumpmässigt.",
         "individualLetterCount": "Tryck på {{letterCount}} mer enskilda bokstäver för att slumpa dem.",
@@ -271,7 +275,7 @@
         "storeSafely": "Förvara den säkert.",
         "neverShare": "Dela aldrig din seed med någon.",
         "iotaLogo": "IOTA logotyp",
-        "printWallet": "SKRIV UT PAPPERSKOPIA",
+        "printWallet": "Skriv ut pappersplånbok",
         "print": "SKRIV UT",
         "paperConvenience": "Att skriva ut en papperskopia av din seed är ett lämpligt sätt att lagra den.",
         "publicInsecure": "Men utskrifter på öppet wifi eller en offentlig skrivare är osäkert.",
@@ -283,7 +287,7 @@
         "copyAddress": "Kopiera adress",
         "addressCopied": "Adress kopierad",
         "addressCopiedExplanation": "Din adress har kopierats till urklipp.",
-        "generateNewAddress": "NY ADRESS",
+        "generateNewAddress": "Ny adress",
         "message": "Valfritt meddelande",
         "removeMessage": "TA BORT MEDDELANDE",
         "noAddresses": "INGA ADRESSER",
@@ -336,7 +340,7 @@
         "invalidMessageExplanation": "Ditt meddelande innehåller ogiltiga tecken.",
         "invalidMessageTooLong": "Meddelandet för långt",
         "invalidMessageTooLongExplanation": "Meddelandet överskrider max. mängden tecken (1093).",
-        "send": "SKICKA",
+        "send": "Skicka",
         "invalidAmount": "Felaktigt belopp angivet",
         "invalidAmountExplanation": "Vänligen ange ett giltigt transaktionsbelopp. Det kan vara hjälpsamt att titta på IOTA enhetsförklaringen längst ner på sidan.",
         "maximumSelected": "MAXIMALT belopp valt",
@@ -425,7 +429,7 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Ange ditt lösenord för att återställa plånboken.",
-        "cancel": "AVBRYT",
+        "cancel": "Avbryt",
         "reset": "ÅTERSTÄLL"
     },
     "walletSetup": {
@@ -531,7 +535,7 @@
         "pressToSync": "Tryck på knappen nedan för att synka ditt konto.",
         "thisMayTake": "Det här kan ta ett tag. Din enhet kan tillfälligt bli långsammare.",
         "doNotClose": "Observera att minimering av appen kommer att avbryta synkroniseringen.",
-        "syncAccount": "SYNKA KONTO",
+        "syncAccount": "Synkronisera konto",
         "syncingYourAccount": "Synkar konto."
     },
     "useExistingSeed": {
@@ -541,8 +545,8 @@
     },
     "viewSeed": {
         "enterPassword": "Ange lösenord för att visa din seed.",
-        "viewSeed": "VISA SEED",
-        "hideSeed": "DÖLJ SEED"
+        "viewSeed": "Visa seed",
+        "hideSeed": "Dölj seed"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Sparade du din seed?",
@@ -635,10 +639,10 @@
         "isThisCorrect": "Är detta korrekt?",
         "snapshotExplanation": "Då och då sker en snapshot för att skära ner storleken på Tangle.",
         "hasSnapshotTakenPlace": "Har en snapshot tagit plats? Tryck på knappen nedan för övergång.",
-        "transition": "ÖVERGÅNG",
+        "transition": "Övergång",
         "transitioning": "Övergång för snapshoten.",
         "generatingAndDetecting": "Genererar adresser och upptäcker saldo.",
-        "attaching": "Fäster adresser till Tangle"
+        "attaching": "Fäster adresser till Tangle."
     },
     "deepLink": {
         "autofill": "Autofyll lyckat",
