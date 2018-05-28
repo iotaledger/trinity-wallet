@@ -173,7 +173,7 @@ export const accountInfoFetchError = () => ({
 
 export const setBasicAccountInfo = (payload) => ({
     type: ActionTypes.SET_BASIC_ACCOUNT_INFO,
-    payload
+    payload,
 });
 
 export const getFullAccountInfoAdditionalSeed = (
@@ -201,6 +201,7 @@ export const getFullAccountInfoAdditionalSeed = (
     dispatch(fullAccountInfoAdditionalSeedFetchRequest());
 
     const existingAccountNames = getAccountNamesFromState(getState());
+    const usedExistingSeed = getState().wallet.usedExistingSeed;
 
     getAccountData(seed, accountName, genFn)
         .then((data) => {
@@ -209,6 +210,7 @@ export const getFullAccountInfoAdditionalSeed = (
                 storeInKeychainPromise(password, seed, accountName)
                     .then(() => {
                         dispatch(setSeedIndex(existingAccountNames.length));
+                        dispatch(setBasicAccountInfo({ accountName, usedExistingSeed }));
                         dispatch(fullAccountInfoAdditionalSeedFetchSuccess(data));
                     })
                     .catch((err) => onError(err));

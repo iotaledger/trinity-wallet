@@ -11,6 +11,8 @@ describe('Reducer: accounts', () => {
                 firstUse: true,
                 onboardingComplete: false,
                 accountInfo: {},
+                setupInfo: {},
+                tasks: {},
                 unconfirmedBundleTails: {},
             };
 
@@ -692,6 +694,44 @@ describe('Reducer: accounts', () => {
 
             expect(newState.accountNames).to.not.eql(['baz', 'foo']);
             expect(newState.accountNames).to.not.eql(expectedState.accountNames);
+        });
+    });
+
+    describe('IOTA/ACCOUNTS/SET_BASIC_ACCOUNT_INFO', () => {
+        it('should assign "accountName" to "setupInfo" prop in state', () => {
+            const initialState = {
+                setupInfo: {},
+            };
+
+            const action = {
+                type: 'IOTA/ACCOUNTS/SET_BASIC_ACCOUNT_INFO',
+                payload: { accountName: 'foo', usedExistingSeed: false },
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                setupInfo: { foo: { usedExistingSeed: false } },
+            };
+
+            expect(newState.setupInfo).to.eql(expectedState.setupInfo);
+        });
+
+        it('should assign "accountName" to "tasks" prop in state', () => {
+            const initialState = {
+                tasks: {},
+            };
+
+            const action = {
+                type: 'IOTA/ACCOUNTS/SET_BASIC_ACCOUNT_INFO',
+                payload: { accountName: 'foo' },
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                tasks: { foo: { hasDisplayedTransitionModal: false } },
+            };
+
+            expect(newState.tasks).to.eql(expectedState.tasks);
         });
     });
 
