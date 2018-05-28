@@ -22,7 +22,7 @@
         "invalidResponseSendingTransfer": "Der Node hat einen Fehler beim Senden der Transaktion zurückgegeben. Versuche einen anderen Node.",
         "nodeOutOfSync": "Node nicht synchronisiert",
         "nodeOutOfSyncExplanation": "Dein gewählter Node ist nicht synchronisiert. Bitte wechsle den Node oder versuche es erneut.",
-        "thisNodeOutOfSync": "This node is out of sync. Please change node or try again.",
+        "thisNodeOutOfSync": "Dieser Node ist nicht synchronisiert. Bitte wechsle den Node oder versuche es erneut.",
         "seed": "Seed",
         "checksum": "Prüfsumme",
         "back": "ZURÜCK",
@@ -45,7 +45,7 @@
         "manualCopy": "Seed aufschreiben",
         "paperWallet": "Drucken in Papierform",
         "addToPasswordManager": "Zum Passwort-Manager hinzufügen",
-        "shareSeed": "Share seed",
+        "shareSeed": "Seed teilen",
         "proceed": "Fortfahren",
         "qr": "QR",
         "notAvailable": "Diese Funktion ist nicht verfügbar",
@@ -95,7 +95,7 @@
         "pressBackAgain": "Nochmal Zurück drücken, um die App zu beenden",
         "reattached": "Transaktion erneut angehangen",
         "reattachedExplanation": "Erneut angehangen mit Hash {{hash}}",
-        "promotingTransaction": "Promoting transaction",
+        "promotingTransaction": "Transfer wird promotet",
         "autopromoting": "Der Transfer wird autopromoted",
         "autopromotingExplanation": "Promoten der Transaktion mit dem Hash {{hash}}",
         "rebroadcasted": "Transaktion erneut übertragen",
@@ -148,10 +148,10 @@
         "androidCopyPasteWarning": "Verwende auf einem Android-Gerät niemals die \"kopieren / einfügen\" Funktion.",
         "willNotCopyPasteSeed": "Ich werde meinen Seed nicht kopieren/einfügen",
         "mustBeStoredAppropriately": "Er muss in angemessener Weise gesichert werden.",
-        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while",
-        "isYourBalanceCorrect": "Is your balance correct?",
+        "deviceMayBecomeUnresponsive": "Dein Gerät könnte für eine Weile nicht reagieren",
+        "isYourBalanceCorrect": "Stimmt dein Guthaben?",
         "ifYourBalanceIsNotCorrect": "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
-        "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition."
+        "headToAdvancedSettingsForTransition": "Wechsle zum denn erweitern Einstellungen und führe eine Snapshot-Wiederherstellung aus."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
@@ -663,10 +663,10 @@
     },
     "terms": {
         "termsAndConditions": "Geschäftsbedingungen",
-        "accept": "I accept"
+        "accept": "Ich stimme zu"
     },
     "privacyPolicy": {
-        "privacyPolicy": "Privacy Policy",
-        "agree": "I agree"
+        "privacyPolicy": "Datenschutzerklärung",
+        "agree": "Ich stimme zu"
     }
 }
