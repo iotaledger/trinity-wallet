@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { acceptPrivacy } from 'iota-wallet-shared-modules/actions/settings';
-import { privacyPolicy } from 'iota-wallet-shared-modules/markdown';
+import { enPrivacyPolicy, dePrivacyPolicy } from 'iota-wallet-shared-modules/markdown';
 import WithBackPressCloseApp from '../components/BackPressCloseApp';
 import i18next from '../i18next';
 import Button from '../components/Button';
@@ -67,7 +67,7 @@ class PrivacyPolicy extends Component {
     constructor() {
         super();
 
-        this.state = { hasReadyPrivacyPolicy: false };
+        this.state = { hasReadPrivacyPolicy: false };
     }
 
     onNextPress() {
@@ -103,17 +103,19 @@ class PrivacyPolicy extends Component {
                         paddingToBottom += e.nativeEvent.layoutMeasurement.height;
 
                         if (e.nativeEvent.contentOffset.y >= e.nativeEvent.contentSize.height - paddingToBottom) {
-                            if (!this.state.hasReadyPrivacyPolicy) {
-                                this.setState({ hasReadyPrivacyPolicy: true });
+                            if (!this.state.hasReadPrivacyPolicy) {
+                                this.setState({ hasReadPrivacyPolicy: true });
                             }
                         }
                     }}
                     scrollEventThrottle={400}
                     style={styles.scrollView}
                 >
-                    <Markdown styles={{ text: { fontFamily: 'SourceSansPro-Regular' } }}>{privacyPolicy}</Markdown>
+                    <Markdown styles={{ text: { fontFamily: 'SourceSansPro-Regular' } }}>
+                        {PrivacyPolicy.isCurrentLanguageGerman() ? dePrivacyPolicy : enPrivacyPolicy}
+                    </Markdown>
                 </ScrollView>
-                {this.state.hasReadyPrivacyPolicy && (
+                {this.state.hasReadPrivacyPolicy && (
                     <Button
                         onPress={() => this.onNextPress()}
                         style={{
