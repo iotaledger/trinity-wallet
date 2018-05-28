@@ -83,7 +83,7 @@ class LanguageSetup extends Component {
     }
 
     onNextPress() {
-        const { theme: { body } } = this.props;
+        const { theme: { body, bar }, acceptedTerms, acceptedPrivacy } = this.props;
 
         this.props.navigator.push({
             screen: this.getNextRoute(),
@@ -93,7 +93,7 @@ class LanguageSetup extends Component {
                 topBarElevationShadowEnabled: false,
                 screenBackgroundColor: body.bg,
                 drawUnderStatusBar: true,
-                statusBarColor: body.bg,
+                statusBarColor: !acceptedTerms || !acceptedPrivacy ? bar.bg : body.bg,
             },
             animated: false,
         });

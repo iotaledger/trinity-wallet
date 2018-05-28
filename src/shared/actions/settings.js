@@ -52,7 +52,7 @@ export const acceptTerms = () => ({
 });
 
 export const acceptPrivacy = () => ({
-  type: ActionTypes.ACCEPT_PRIVACY,
+    type: ActionTypes.ACCEPT_PRIVACY,
 });
 
 const currencyDataFetchRequest = () => ({
@@ -238,6 +238,7 @@ export function setFullNode(node, addingCustomNode = false) {
                 if (res.error.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
                     // Automatically default to local PoW if this node has no attach to tangle available
                     dispatch(setRemotePoW(false));
+                    dispatch(setAutoPromotion(false));
 
                     dispatch(
                         generateAlert(
@@ -306,7 +307,7 @@ export function changePowSettings() {
                         ),
                     );
                 }
-                dispatch(setRemotePoW(true));
+                dispatch(setRemotePoW(!settings.remotePoW));
                 dispatch(generateAlert('success', i18next.t('pow:powUpdated'), i18next.t('pow:powUpdatedExplanation')));
             });
         } else {
@@ -319,7 +320,37 @@ export function changePowSettings() {
 export function changeAutoPromotionSettings() {
     return (dispatch, getState) => {
         const settings = getState().settings;
-        dispatch(setAutoPromotion(!settings.autoPromotion));
+        if (!settings.autoPromotion) {
+            checkAttachToTangleAsync(settings.node).then((res) => {
+                if (res.error.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
+                    return dispatch(
+                        generateAlert(
+                            'error',
+                            i18next.t('global:attachToTangleUnavailable'),
+                            i18next.t('global:attachToTangleUnavailableExplanationShort'),
+                            10000,
+                        ),
+                    );
+                }
+                dispatch(setAutoPromotion(!settings.autoPromotion));
+                dispatch(
+                    generateAlert(
+                        'success',
+                        i18next.t('autoPromotion:autoPromotionUpdated'),
+                        i18next.t('autoPromotion:autoPromotionUpdatedExplanation'),
+                    ),
+                );
+            });
+        } else {
+            dispatch(setAutoPromotion(!settings.autoPromotion));
+            dispatch(
+                generateAlert(
+                    'success',
+                    i18next.t('autoPromotion:autoPromotionUpdated'),
+                    i18next.t('autoPromotion:autoPromotionUpdatedExplanation'),
+                ),
+            );
+        }
     };
 }
 

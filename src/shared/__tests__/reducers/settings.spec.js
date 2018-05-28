@@ -61,7 +61,7 @@ describe('Reducer: settings', () => {
                     version: DESKTOP_VERSION,
                     notes: [],
                 },
-                remotePoW: true,
+                remotePoW: false,
                 lockScreenTimeout: 3,
                 versions: {},
                 is2FAEnabled: false,
