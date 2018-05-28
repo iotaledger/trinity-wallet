@@ -348,7 +348,7 @@
         "sendMax": "SENDE MAX",
         "totalTime": "Gesamtzeit",
         "addressPasteDetected": "Eingefügte Adresse erkannt",
-        "addressPasteExplanation": "Scheinbar hast du eine Addresse eingefügt. Stelle sicher, dass es tatsächlich die ist, an die du senden möchtest."
+        "addressPasteExplanation": "Scheinbar hast Du eine Adresse eingefügt. Stelle sicher, dass es tatsächlich jene ist, an die Du senden möchtest."
     },
     "setPassword": {
         "choosePassword": "Wählen Sie ein neues Passwort",
