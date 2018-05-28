@@ -211,6 +211,7 @@ class UseExistingSeed extends Component {
             addingAdditionalAccount: true,
             additionalAccountName: accountName,
             seed,
+            usedExistingSeed: true,
         });
 
         this.props.navigator.push({

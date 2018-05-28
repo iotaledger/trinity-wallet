@@ -114,7 +114,7 @@ class EnterSeed extends React.Component {
                 t('seedTooShortExplanation', { maxLength: MAX_SEED_LENGTH, currentLength: seed.length }),
             );
         } else if (seed.length === MAX_SEED_LENGTH) {
-            this.props.setSeed(seed);
+            this.props.setSeed({ seed, usedExistingSeed: true });
             this.props.navigator.push({
                 screen: 'setAccountName',
                 navigatorStyle: {
