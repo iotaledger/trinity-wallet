@@ -3,8 +3,9 @@ import { StyleSheet, View, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { acceptTerms } from 'iota-wallet-shared-modules/actions/settings';
+import { acceptPrivacy } from 'iota-wallet-shared-modules/actions/settings';
 import WithBackPressCloseApp from '../components/BackPressCloseApp';
+import i18next from '../i18next';
 import Button from '../components/Button';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
@@ -45,25 +46,29 @@ const styles = StyleSheet.create({
 });
 
 /** Welcome screen component */
-class TermsAndConditions extends Component {
+class PrivacyPolicy extends Component {
     static propTypes = {
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
         /** Theme settings */
         theme: PropTypes.object.isRequired,
-        /** User confirms that they agree to the terms and conditions */
-        acceptTerms: PropTypes.func.isRequired,
+        /** User confirms that they agree to the privacy policy */
+        acceptPrivacy: PropTypes.func.isRequired,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          */
         t: PropTypes.func.isRequired,
     };
 
+    static isCurrentLanguageGerman() {
+        return i18next.language === 'de';
+    }
+
     onNextPress() {
         const { theme } = this.props;
-        this.props.acceptTerms();
+        this.props.acceptPrivacy();
         this.props.navigator.push({
-            screen: 'privacyPolicy',
+            screen: 'welcome',
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
@@ -84,7 +89,7 @@ class TermsAndConditions extends Component {
             <View style={[styles.container, { backgroundColor: body.bg }]}>
                 <DynamicStatusBar backgroundColor={bar.bg} />
                 <View style={[styles.titleContainer, { backgroundColor: bar.bg }]}>
-                    <Text style={[styles.titleText, textColor]}>{t('termsAndConditions').toUpperCase()}</Text>
+                    <Text style={[styles.titleText, textColor]}>{t('privacyPolicy')}</Text>
                 </View>
                 <View style={styles.placeholderContainer}>
                     <Text style={[styles.placeholderText, textColor]}>PLACEHOLDER</Text>
@@ -96,7 +101,7 @@ class TermsAndConditions extends Component {
                         children: { color: primary.body },
                     }}
                 >
-                    {t('accept')}
+                    {t('agree')}
                 </Button>
             </View>
         );
@@ -108,9 +113,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    acceptTerms,
+    acceptPrivacy,
 };
 
 export default WithBackPressCloseApp()(
-    translate('terms')(connect(mapStateToProps, mapDispatchToProps)(TermsAndConditions)),
+    translate('privacyPolicy')(connect(mapStateToProps, mapDispatchToProps)(PrivacyPolicy)),
 );
