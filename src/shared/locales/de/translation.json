@@ -110,7 +110,7 @@
         "promotionErrorExplanation": "Beim Senden der Transaktion ist etwas schief gegangen. Bitte versuche es erneut.",
         "noLongerValid": "Das Bundle, das du promoten möchtest, ist nicht mehr gültig",
         "transactionAlreadyConfirmed": "Transaktion bereits bestätigt",
-        "transactionAlreadyConfirmedExplanation": "Die Transaktion, die du versuchst zu promoten ist bereits bestätigt.",
+        "transactionAlreadyConfirmedExplanation": "Die Transaktion, die Du versuchst zu promoten ist bereits bestätigt.",
         "cannotSendToOwn": "An eigene Adresse senden",
         "cannotSendToOwnExplanation": "Du kannst keine Transaktion mit Wert an eine deiner eigenen Adressen senden.",
         "pleaseWait": "Bitte warten",
@@ -211,12 +211,12 @@
         "copyToClipboard": "Seed kopieren",
         "shareSeed": "Teile deinen Seed mit einem sicheren Passwort-Manager",
         "storeEncrypted": "Speichere deinen Seed verschlüsselt in einem Passwort-Manager.",
-        "doNotOpen": "Öffnen Sie keine anderen apps während dieses Prozesses.",
+        "doNotOpen": "Öffne keine anderen Apps während dieses Vorgangs.",
         "tapConfirm": "Bitte aktiviere folgende Kontrollbox um zu Bestätigen.",
         "passwordManagerCheckbox": "Ich werden meinen Seed in einem Passwort Manager speichern",
         "copy": "KOPIEREN",
         "noPasswordManagers": "Keine unterstützten Passwort-Manager installiert",
-        "noPasswordManagersExplanation": "Auf Ihrem Gerät wurden keine unterstützten Passwort Manager gefunden. Bitte installieren Sie Keepass2Android.",
+        "noPasswordManagersExplanation": "Auf Deinem Gerät wurden keine unterstützten Passwort Manager gefunden. Bitte installiere Keepass2Android.",
         "followTutorialToSecurelyShareSeed": "Falls du deinen Seed in einem Passwortmanager aufbewahren möchtest, beachte die Anweisungen auf folgender Seite"
     },
     "enterSeed": {
@@ -315,7 +315,7 @@
     "seedReentry": {
         "pleaseConfirmYourSeed": "Bitte bestätige deinen Seed",
         "trinityWillNeverAskToReenter": "Trinity wird dich niemals darum bitten deinen Seed einzugeben, außer du hast dein Wallet zurückgesetzt oder die App neu installiert.",
-        "enterYourSeed": "Gib Deinen Seed ein",
+        "enterYourSeed": "Gib deinen Seed ein",
         "incorrectSeed": "Ungültiger Seed",
         "incorrectSeedExplanation": "Der von dir eingegebene Seed ist nicht korrekt. Bitte versuche es noch einmal.",
         "thisIsACheck": "Dies ist eine Kontrolle um sicherzustellen, dass du deinen Seed gesichert hast.",
@@ -351,7 +351,7 @@
         "addressPasteExplanation": "Scheinbar hast Du eine Adresse eingefügt. Stelle sicher, dass es tatsächlich jene ist, an die Du senden möchtest."
     },
     "setPassword": {
-        "choosePassword": "Wählen Sie ein neues Passwort",
+        "choosePassword": "Wähle ein neues Passwort",
         "passwordTooShort": "Das Passwort ist zu kurz",
         "passwordTooShortExplanation": "Dein Passwort muss mindestens {{minLength}} Zeichen lang sein. Es ist im Moment {{currentLength}} Zeichen lang. Bitte versuche es erneut.",
         "passwordMismatch": "Die Passwörter stimmen nicht überein",
@@ -425,7 +425,7 @@
         "nodeChangeSuccessNoRemotePow": "Der Node wurde auf {{node}} geändert. Dieser Node Unterstützt keinen Proof of Work.",
         "nodeChangeSuccessExplanation": "Der Node wurde auf {{node}} geändert.",
         "nodeChangeError": "Fehler beim Ändern des Nodes",
-        "nodeChangeErrorExplanation": "Es gab einen Fehler beim Wechseln des Nodes. Bitte versuchen Sie nochmal."
+        "nodeChangeErrorExplanation": "Es gab einen Fehler beim Wechseln des Nodes. Bitte versuche es nochmal."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Gib dein Passwort ein, um das Wallet zurückzusetzen.",
@@ -618,7 +618,7 @@
         "powUpdated": "\"Proof of Work\" Einstellungen",
         "powUpdatedExplanation": "Deine Konfiguration des \"Proof of Work\" wurde aktualisiert.",
         "noWebGLSupport": "WebGL nicht unterstützt",
-        "noWebGLSupportExplanation": "Ihr Computer unterstützt WebGL nicht. Bitte verwenden Sie remote PoW."
+        "noWebGLSupportExplanation": "Dein Computer unterstützt WebGL nicht. Bitte verwende remote PoW."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Auto-Promotion Einstellungen",
