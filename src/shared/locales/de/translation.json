@@ -150,7 +150,7 @@
         "mustBeStoredAppropriately": "Er muss in angemessener Weise gesichert werden.",
         "deviceMayBecomeUnresponsive": "Dein Gerät könnte für eine Weile nicht reagieren",
         "isYourBalanceCorrect": "Stimmt dein Guthaben?",
-        "ifYourBalanceIsNotCorrect": "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
+        "ifYourBalanceIsNotCorrect": "Wenn dein Guthaben nicht stimmt, verwendest du wahrscheinlich einen Seed, der eine Snapshot-Wiederherstellung benötigt.",
         "headToAdvancedSettingsForTransition": "Wechsle zum denn erweitern Einstellungen und führe eine Snapshot-Wiederherstellung aus."
     },
     "addAdditionalSeed": {
@@ -492,8 +492,8 @@
         "snapshotTransition": "Snapshot-Wiederherstellung",
         "pow": "Proof of Work",
         "autoPromotion": "Auto-promotion",
-        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
-        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
+        "autoPromotionExplanation": "Auto-promotion hilft dir Transaktionen auf dem Tangle zu bestätigen. Aktiviere diese Einstellung, wenn du Schwierigkeiten hast deine Transaktionen zu bestätigen.",
+        "autoPromotionPoW": "Auto-promotion ist nur auf Nodes mit aktiviertem remote Proof of work möglich."
     },
     "advancedThemeCustomisation": {
         "background": "Hintergrund",
