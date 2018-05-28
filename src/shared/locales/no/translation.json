@@ -50,7 +50,7 @@
         "qr": "QR",
         "notAvailable": "Denne funksjonen er ikke tilgjengelig",
         "notAvailableExplanation": "Dette vil bli lagt til på et senere tidspunkt.",
-        "enterSeed": "Vennligst skriv inn din hovednøkkel.",
+        "enterSeed": "Vennligst skriv inn hovednøkkelen.",
         "mainWallet": "HOVEDKONTO",
         "secondWallet": "ANDRE KONTO",
         "thirdWallet": "TREDJE KONTO",
@@ -136,7 +136,7 @@
         "nodeAutoChangedExplanation": "Byttet til ny node {{- nodeAddress}} da den valgte noden er frakoblet.",
         "fingerprintOnSend": "Berør fingeravtrykkleseren for å autorisere transaksjonen",
         "masterKey": "Hovednøkkelen er det som gir deg tilgang til dine midler.",
-        "seedThief": "Hvis noen får tilgang til din hovednøkkel så kan de stjele dine IOTA.",
+        "seedThief": "Hvis noen får tilgang til hovednøkkelen kan de stjele dine IOTA.",
         "googlePlayServicesNotAvailable": "Google Play tjenester er ikke tilgjengelige",
         "couldNotVerifyDeviceIntegrity": "Kunne ikke verifisere enhetens integritet siden Google Play tjenesten ikke er tilgjengelig.",
         "clear": "FJERN",
@@ -157,7 +157,7 @@
         "seedInvalidChars": "Hovednøkkelen inneholder ugyldige tegn",
         "seedInvalidCharsExplanation": "Hovednøkkelen kan bare bestå av store bokstaver fra A til Z og tallet 9. Hovednøkkelen din inneholder ugyldige tegn. Vennligst prøv på nytt.",
         "seedTooShort": "Hovednøkkelen er for kort",
-        "seedTooShortExplanation": "Hovednøkler må være {{maxLength}} tegn. Din hovednøkkel er nå {{currentLength}} tegn. Prøv på nytt.",
+        "seedTooShortExplanation": "Hovednøkler må være {{maxLength}} tegn. Din hovednøkkel er nå {{currentLength}} tegn. Vennligst forsøk igjen.",
         "nameInUse": "Kontonavnet er allerede i bruk",
         "nameInUseExplanation": "Vennligst bruk et unikt kontonavn til din hovednøkkel.",
         "enterAccountName": "Angi et kontonavn.",
@@ -271,14 +271,14 @@
         "walletReady": "Lommeboken er nå satt opp og er klar til bruk. Hvis du vil gjøre endringer i fremtiden, kan du gjøre dette under Innstillinger i menyen."
     },
     "paperWallet": {
-        "clickToPrint": "Klikk knappen nedenfor for å skrive ut en papirkopi av din hovednøkkel.",
-        "storeSafely": "Lagre det trygt.",
-        "neverShare": "Del aldri hovednøkkelen din med noen.",
+        "clickToPrint": "Klikk på knappen nedenfor for å skrive ut en papirkopi av hovednøkkelen.",
+        "storeSafely": "Lagre den trygt.",
+        "neverShare": "Del aldri hovednøkkelen med noen.",
         "iotaLogo": "IOTA logo",
         "printWallet": "Print Papirlommebok",
         "print": "SKRIV UT",
         "paperConvenience": "En praktisk måte å oppbevare hovednøkkelen er å skrive den ut på papir.",
-        "publicInsecure": "Men å skrive ut på et offentlig nettverk eller printer er usikkert.",
+        "publicInsecure": "Men å skrive den ut på et offentlig nettverk eller printer er usikkert.",
         "tapCheckboxes": "Vennligst trykk på avkryssingsfeltet nedenfor for å bekrefte.",
         "wifiCheckbox": "Jeg vil ikke skrive ut på et offentlig nettverk",
         "printerCheckbox": "Jeg vil ikke skrive ut på en offentlig printer"
@@ -433,7 +433,7 @@
         "reset": "TILBAKESTILL"
     },
     "walletSetup": {
-        "creatingSeed": "Skaper en hovednøkkel",
+        "creatingSeed": "Genererer en hovednøkkel",
         "okay": "Ok. La oss sette opp lommeboken din!",
         "doYouAlreadyHaveASeed": "Har du allerede en hovednøkkel som du ønsker å benytte?",
         "doYouNeedASeed": "Trenger du å lage en ny hovednøkkel?",
@@ -521,7 +521,7 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Hvorfor kan ikke jeg bruke hele saldoen?",
-        "spentAddressExplanation": "Du har midler på én eller flere brukte adresser. Adresse gjenbruk er farlig i IOTA, så denne lommeboken tillater ikke å sende flere ganger fra samme adresse.",
+        "spentAddressExplanation": "Du har midler på én eller flere brukte adresser. Siden gjenbruk av adresser er utrygt tillater ikke lommeboken å sende flere ganger fra samme adresse.",
         "discordInformation": "Vennligst besøk #help kanalen på Discord for å finne ut hva du kan gjøre."
     },
     "deleteAccount": {
@@ -607,7 +607,7 @@
     "rootDetection": {
         "warning": "ADVARSEL",
         "appearsRooted": "Din enhet ser ut til å være rooted.",
-        "securityRisk": "Dette kan medføre en betydelig risiko for sikkerheten til din lommebok.",
+        "securityRisk": "Dette kan utgjøre en betydelig risiko for sikkerheten til din lommebok.",
         "continueDepsiteRisk": "Ønsker du å fortsette til tross for risikoen?"
     },
     "pow": {
