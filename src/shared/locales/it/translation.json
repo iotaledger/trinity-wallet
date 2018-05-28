@@ -105,7 +105,7 @@
         "promoted": "Transazione promossa con successo",
         "promotedExplanation": "Transazione con hash {{hash}} promossa",
         "autopromotionError": "Non si è potuto promuovere la transazione",
-        "autopromotionErrorExplanation": "L'opzione prova di lavoro remota non è disponibile nel nodo che hai selezionato. Si prega di cambiare nodo.",
+        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
         "promotionError": "Non si è potuto promuovere la transazione",
         "promotionErrorExplanation": "Qualcosa è andato storto nella promozione della transazione. Prova di nuovo.",
         "noLongerValid": "Il pacchetto che si sta tentando di promuovere non è più valido",
@@ -348,7 +348,7 @@
         "sendMax": "INVIA MASSIMO",
         "totalTime": "Tempo totale",
         "addressPasteDetected": "Rilevato indirizzo da incollare",
-        "addressPasteExplanation": "Sembra che stai per incollare un indirizzo. Assicurati che l'indirizzo incollato corrisponda a quello al quale si desidera inviare."
+        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
     },
     "setPassword": {
         "choosePassword": "Scegli una nuova password",
@@ -619,6 +619,10 @@
         "powUpdatedExplanation": "Configurazione proof-of-work aggiornata.",
         "noWebGLSupport": "WebGL non supportato",
         "noWebGLSupportExplanation": "Il computer non supporta WebGL. Si prega di usare il proof-of-work remoto."
+    },
+    "autoPromotion": {
+        "autoPromotionUpdated": "Auto-promotion settings",
+        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
     },
     "progressSteps": {
         "checkingNodeHealth": "Verifica dello stato del nodo",

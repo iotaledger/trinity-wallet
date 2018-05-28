@@ -105,7 +105,7 @@
         "promoted": "트랜잭션이 프로모트됨",
         "promotedExplanation": "다음의 트랜잭션 해시가 프로모트되었습니다: {{hash}}",
         "autopromotionError": "트랜잭션 자동 프로모션 사용 불가",
-        "autopromotionErrorExplanation": "현재 선택한 노드에서는 원격 작업증명을 할 수 없습니다. 노드를 변경해 주세요.",
+        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
         "promotionError": "트랜잭션을 프로모트할 수 없음",
         "promotionErrorExplanation": "트랜잭션을 프로모트하는 중에 오류가 발생했습니다. 다시 시도해 주세요.",
         "noLongerValid": "프로모트하려는 번들이 더 이상 유효하지 않습니다.",
@@ -348,7 +348,7 @@
         "sendMax": "최대 금액",
         "totalTime": "총 소요시간",
         "addressPasteDetected": "주소 붙여넣기가 확인됨",
-        "addressPasteExplanation": "주소를 붙여넣기 하는 것이 감지되었습니다. 붙여넣는 주소가 보내고자 하는 주소와 일치하는지 다시 한번 확인해 주세요."
+        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
     },
     "setPassword": {
         "choosePassword": "비밀번호 설정하기",
@@ -619,6 +619,10 @@
         "powUpdatedExplanation": "작업증명 설정이 저장되었습니다.",
         "noWebGLSupport": "WebGL 미지원",
         "noWebGLSupportExplanation": "사용하시는 컴퓨터는 WebGL을 지원하지 않습니다. 노드 작업증명을 사용해 주십시오."
+    },
+    "autoPromotion": {
+        "autoPromotionUpdated": "Auto-promotion settings",
+        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
     },
     "progressSteps": {
         "checkingNodeHealth": "노드 상태 확인중",

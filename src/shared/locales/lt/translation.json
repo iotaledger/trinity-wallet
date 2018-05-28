@@ -105,7 +105,7 @@
         "promoted": "Pavedimas sėkmingai iškeltas",
         "promotedExplanation": "Pavedimas iškeltas su šifru {{hash}}",
         "autopromotionError": "Automatiškai iškelti pavedimo nepavyko",
-        "autopromotionErrorExplanation": "Nuotolinis Proof of Work negalimas su jūsų pasirinktu serveriu. Prašome pakeisti serverį.",
+        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
         "promotionError": "Pavedimo iškelti nepavyko",
         "promotionErrorExplanation": "Įvyko klaida iškeliant jūsų pavedimą. Bandykite dar kartą.",
         "noLongerValid": "Paketas, kurį norite iškelti yra nepasiekamas",
@@ -348,7 +348,7 @@
         "sendMax": "SIŲSTI MAKS.",
         "totalTime": "Bendras laikas",
         "addressPasteDetected": "Aptiktas adreso įklijavimas",
-        "addressPasteExplanation": "Atrodo, kad jūs ketinate įklijuoti adresą. Įsitikinkite, kad įklijuojamas adresas tikrai sutampa su gavėjo adresu."
+        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
     },
     "setPassword": {
         "choosePassword": "Sukurti naują slaptažodį",
@@ -619,6 +619,10 @@
         "powUpdatedExplanation": "Jūsų proof of work konfigūracija atnaujinta.",
         "noWebGLSupport": "WebGL nepalaikomas",
         "noWebGLSupportExplanation": "Jūsų kompiuteris nepalaiko WebGL. Prašome naudoti nuotolinį PoW."
+    },
+    "autoPromotion": {
+        "autoPromotionUpdated": "Auto-promotion settings",
+        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
     },
     "progressSteps": {
         "checkingNodeHealth": "Tikrinama serverio būklė",
