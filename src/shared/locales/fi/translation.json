@@ -105,7 +105,7 @@
         "promoted": "Siirron edistys onnistui",
         "promotedExplanation": "Siirtoa tiivisteluvulla {{hash}} edistetty onnistuneesti",
         "autopromotionError": "Siirtoa ei voitu edistää",
-        "autopromotionErrorExplanation": "Laskentatyöteko (PoW) valitsemallasi palvelimella ei ole tällä hetkellä mahdollista. Vaihda palvelinta.",
+        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
         "promotionError": "Siirtoa ei voitu edistää",
         "promotionErrorExplanation": "Siirron edistämisessä tapahtui virhe. Yritä uudelleen.",
         "noLongerValid": "Kokoelma jonka siirtoa yrität edistää ei ole enää voimassa",
@@ -151,7 +151,7 @@
         "deviceMayBecomeUnresponsive": "Laitteesi saattaa toimia hitaasti hetken aikaa",
         "isYourBalanceCorrect": "Näkyykö saldosi oikein?",
         "ifYourBalanceIsNotCorrect": "Jos saldosi ei näy oikein, seed-lukusi ei ole ajantasalla.",
-        "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition."
+        "headToAdvancedSettingsForTransition": "Voin korjata tämän valitsemalla Lisäasetukset ja Snapshot-avustaja."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed-luku sisältää virheellisiä merkkejä",
@@ -348,7 +348,7 @@
         "sendMax": "LÄHETÄ MAX",
         "totalTime": "Kokonaisaika",
         "addressPasteDetected": "Osoitteen liittäminen havaittu",
-        "addressPasteExplanation": "Näyttää siltä että olet liittänyt osoitteen muualta. Varmista että liitetty osoite vastaa alkuperäistä."
+        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
     },
     "setPassword": {
         "choosePassword": "Luo uusi salasana",
@@ -619,6 +619,10 @@
         "powUpdatedExplanation": "Laskenta-asetuksesi (PoW) on päivitetty ajantasalle.",
         "noWebGLSupport": "WebGL ei tuettu",
         "noWebGLSupportExplanation": "Laitteesi ei tue WebGL -laskentaa. Asetuksista voit siirtää laskennan (PoW) ulkoiselle palvelimelle."
+    },
+    "autoPromotion": {
+        "autoPromotionUpdated": "Auto-promotion settings",
+        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
     },
     "progressSteps": {
         "checkingNodeHealth": "Varmistetaan palvelin tila",
