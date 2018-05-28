@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { acceptTerms } from 'iota-wallet-shared-modules/actions/settings';
-import WithBackPressCloseApp from '../components/BackPressCloseApp';
 import Button from '../components/Button';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
@@ -70,7 +69,7 @@ class TermsAndConditions extends Component {
                 topBarElevationShadowEnabled: false,
                 screenBackgroundColor: theme.body.bg,
                 drawUnderStatusBar: true,
-                statusBarColor: theme.body.bg,
+                statusBarColor: theme.bar.bg,
             },
             animated: false,
         });
@@ -111,6 +110,4 @@ const mapDispatchToProps = {
     acceptTerms,
 };
 
-export default WithBackPressCloseApp()(
-    translate('terms')(connect(mapStateToProps, mapDispatchToProps)(TermsAndConditions)),
-);
+export default translate('terms')(connect(mapStateToProps, mapDispatchToProps)(TermsAndConditions));

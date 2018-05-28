@@ -57,7 +57,7 @@ const initialState = {
         version: DESKTOP_VERSION,
         notes: [],
     },
-    remotePoW: true,
+    remotePoW: false,
     autoPromotion: false,
     lockScreenTimeout: 3,
     autoNodeSwitching: true,
