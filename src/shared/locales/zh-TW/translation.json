@@ -105,7 +105,7 @@
         "promoted": "成功促進交易",
         "promotedExplanation": "促進的交易雜湊值為 {{hash}}",
         "autopromotionError": "無法自動促進交易",
-        "autopromotionErrorExplanation": "你選擇的節點無法作為遠端工作量證明所使用，請變更節點。",
+        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
         "promotionError": "無法促進交易",
         "promotionErrorExplanation": "促進您的交易時發生一些錯誤，請再試一次。",
         "noLongerValid": "您嘗試促進的交易組已經無效",
@@ -348,7 +348,7 @@
         "sendMax": "全部傳送",
         "totalTime": "總計",
         "addressPasteDetected": "檢測到地址貼上",
-        "addressPasteExplanation": "看起來您正要貼上地址，請確認貼上的地址與您想送出去的相符。"
+        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
     },
     "setPassword": {
         "choosePassword": "選擇新的密碼",
@@ -619,6 +619,10 @@
         "powUpdatedExplanation": "您的工作量證明設定已更新。",
         "noWebGLSupport": "WebGL 不支援",
         "noWebGLSupportExplanation": "您的電腦不支援 WebGL，請使用遠端 PoW。"
+    },
+    "autoPromotion": {
+        "autoPromotionUpdated": "Auto-promotion settings",
+        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
     },
     "progressSteps": {
         "checkingNodeHealth": "檢查節點運行狀況",
