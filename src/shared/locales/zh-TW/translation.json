@@ -20,21 +20,33 @@
         "invalidResponsePollingExplanation": "節點在輪詢時回傳錯誤，請檢查通知了解詳細訊息。",
         "invalidResponseFetchingAccount": "節點在取得您的帳戶資訊時回傳錯誤，請變更您的節點或是檢查通知了解詳細資訊。",
         "invalidResponseSendingTransfer": "節點在傳送交易時回傳錯誤，請檢查通知了解詳細資訊。",
+        "nodeOutOfSync": "節點失去同步",
+        "nodeOutOfSyncExplanation": "您目前所選的節點並不同步，請變更節點或再試一次。",
+        "thisNodeOutOfSync": "This node is out of sync. Please change node or try again.",
         "seed": "種子碼",
+        "checksum": "檢查碼",
         "back": "返回",
+        "goBack": "返回",
+        "goBackStep": "返回上一步",
         "backLowercase": "返回",
         "done": "完成",
         "doneLowercase": "完成",
+        "prev": "上一步",
         "next": "下一步",
+        "nextLowerCase": "繼續",
         "apply": "套用",
         "save": "儲存",
         "close": "關閉",
         "continue": "繼續",
         "enable": "啟用",
         "disable": "停用",
+        "enabled": "Enabled",
+        "disabled": "Disabled",
         "manualCopy": "寫下種子碼",
         "paperWallet": "列印副本",
-        "copyToClipboard": "加入密碼管理工具",
+        "addToPasswordManager": "Add to password manager",
+        "shareSeed": "Share seed",
+        "proceed": "開始執行",
         "qr": "QR",
         "notAvailable": "此功能尚未開放",
         "notAvailableExplanation": "此功能將於稍後加入。",
@@ -48,6 +60,8 @@
         "otherWallet": "其他帳戶",
         "yes": "是",
         "no": "否",
+        "yesLowerCase": "是",
+        "noLowerCase": "否",
         "okay": "確認",
         "password": "密碼",
         "passwordOrFingerprint": "密碼或指紋",
@@ -61,9 +75,9 @@
         "node": "節點",
         "cannotPerformAction": "無法執行操作",
         "cannotPerformActionExplanation": "請到進階設定重置錢包。",
-        "attachToTangleUnavailable": "Remote Proof of Work is unavailable",
-        "attachToTangleUnavailableExplanation": "Remote Proof of Work is not available on your selected node. Either change node or set Proof of Work to Local in Advanced Settings.",
-        "attachToTangleUnavailableExplanationShort": "Remote Proof of Work is not available on your selected node.",
+        "attachToTangleUnavailable": "遠端工作量證明無法使用",
+        "attachToTangleUnavailableExplanation": "你選擇的節點無法作為遠端工作量證明所使用。您可以在進階設定中變更節點或是將工作量證明設定為本機。",
+        "attachToTangleUnavailableExplanationShort": "您所選的節點無法作為遠端工作量證明所使用。",
         "wallet": "錢包",
         "sent": "已支出",
         "received": "已接收",
@@ -80,6 +94,7 @@
         "pressBackAgain": "再按一次返回鍵退出",
         "reattached": "成功重新連接交易",
         "reattachedExplanation": "重新連接的交易雜湊值為 {{hash}}",
+        "promotingTransaction": "Promoting transaction",
         "autopromoting": "自動促進交易",
         "autopromotingExplanation": "使用雜湊值 {{hash}} 促進交易",
         "rebroadcasted": "成功重新廣播交易",
@@ -88,8 +103,8 @@
         "rebroadcastErrorExplanation": "重新廣播您的交易時發生一些錯誤，請再試一次。",
         "promoted": "成功促進交易",
         "promotedExplanation": "促進的交易雜湊值為 {{hash}}",
-        "autopromotionError": "Could not auto-promote transaction",
-        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node.",
+        "autopromotionError": "無法自動促進交易",
+        "autopromotionErrorExplanation": "你選擇的節點無法作為遠端工作量證明所使用，請變更節點。",
         "promotionError": "無法促進交易",
         "promotionErrorExplanation": "促進您的交易時發生一些錯誤，請再試一次。",
         "noLongerValid": "您嘗試促進的交易組已經無效",
@@ -101,6 +116,7 @@
         "pleaseWaitEllipses": "請稍後...",
         "pleaseWaitExplanation": "Trinity 正在執行其他功能，請稍後再試。",
         "pleaseWaitTransferExplanation": "您目前可用餘額正用於其他交易中，請等待確認後再試一次。",
+        "pleaseWaitIncomingTransferExplanation": "您有交易正在接收中，請等待它們確認後在試一次。",
         "snapshotTransitionInProgress": "快照轉換處理中",
         "snapshotTransitionInProgressExplanation": "請等待轉換完成。",
         "checkForUpdates": "檢查更新",
@@ -124,7 +140,14 @@
         "couldNotVerifyDeviceIntegrity": "因為 Google Play 服務無法使用，而無法檢驗裝置完整性。",
         "clear": "清除",
         "noNetworkConnection": "沒有網路連線",
-        "noNetworkConnectionExplanation": "您的網路連線顯示為離線。"
+        "noNetworkConnectionExplanation": "您的網路連線顯示為離線。",
+        "spentAddressExplanation": "警告：資金位於已支出的地址",
+        "discordInformation": "用相同的地址重複轉帳是非常危險的，請前往 Discord #help 頻道尋求協助。",
+        "androidInsecureClipboardWarning": "Android 提供的剪貼簿並不安全。",
+        "androidCopyPasteWarning": "請勿在 Android 裝置上複製/貼上您的種子碼。",
+        "willNotCopyPasteSeed": "我絕不會複製/貼上我的種子碼",
+        "mustBeStoredAppropriately": "種子碼必須妥善保存。",
+        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
@@ -156,7 +179,22 @@
         "ensureStrongPassword": "請確認您使用的密碼強度足夠且至少 12 個字元。",
         "currentPassword": "目前密碼",
         "newPassword": "新密碼",
-        "confirmPassword": "確認新密碼"
+        "confirmPassword": "確認新密碼",
+        "passwordTooWeak": "密碼過弱",
+        "passwordTooWeakReason": "您的密碼強度太弱。請使用單字組合，並避免常見的詞語、名稱或日期。",
+        "reasonRow": "直線狀的按鍵組合很容易猜測",
+        "reasonPattern": "格式太短的按鍵組合很容易猜測",
+        "reasonNames": "常見的名字和姓氏很容易猜測",
+        "reasonRepeats": "像「aaa」這樣的重複格式很容易猜測",
+        "reasonRepeats2": "像「abcabc」這樣的重複格式只比「abc」難猜測一點而已",
+        "reasonSequence": "像「abc」或「54321」等一連串的格式很容易猜測",
+        "reasonYears": "近幾年的年份很容易猜測",
+        "reasonDates": "日期通常很容易猜測",
+        "reasonTop10": "這次前十常見密碼",
+        "reasonTop100": "這是前百常見密碼",
+        "reasonCommon": "這是非常常見的密碼",
+        "reasonSimilar": "這和常用密碼非常類似",
+        "reasonWord": "只有一個單字很容易猜測"
     },
     "copyToClipboard": {
         "seedCleared": "種子碼已清除",
@@ -164,6 +202,7 @@
         "seedCopied": "複製種子碼到剪貼簿",
         "seedCopiedExplanation": "一旦按下「完成」或是 60 秒後種子將會被清除。",
         "clickToCopy": "按下方按鈕以複製您的種子碼至密碼管理工具。",
+        "clickToSecurelyShare": "按下方按鈕以安全地分享您的種子碼到密碼管理工具。",
         "doNotStore": "不要儲存種子碼於一般文字格式。",
         "copyToClipboard": "複製種子碼",
         "shareSeed": "將種子碼儲存至密碼管理工具",
@@ -172,8 +211,9 @@
         "tapConfirm": "請點擊以下方框來確認。",
         "passwordManagerCheckbox": "我會儲存我的種子碼到密碼管理工具中。",
         "copy": "複製",
-        "noPasswordManagers": "No supported password managers installed",
-        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android."
+        "noPasswordManagers": "未安裝支援的密碼管理工具",
+        "noPasswordManagersExplanation": "無法在您的裝置中找到有支援的密碼管理工具，請安裝像是 Keepass2Android。",
+        "followTutorialToSecurelyShareSeed": "如果您想儲存您的種子碼到密碼管理工具，您必須先看過以下連結的教學"
     },
     "enterSeed": {
         "invalidCharacters": "種子碼包含無效字元",
@@ -191,7 +231,8 @@
         "settings": "設定"
     },
     "languageSetup": {
-        "language": "語言"
+        "language": "語言",
+        "letsGetStarted": "讓我們開始吧！"
     },
     "login": {
         "emptyPassword": "密碼為空",
@@ -208,17 +249,21 @@
         "thisMayTake": "這可能需要一點時間。",
         "doNotMinimise": "請不要最小化或關閉應用程式。",
         "youMayNotice": "您的裝置可能會變慢。",
-        "takingAWhile": "This seems to be taking a while"
+        "takingAWhile": "這似乎會花些時間。"
     },
     "newSeedSetup": {
+        "generatedSeed": "產生種子碼",
         "seedNotGenerated": "尚未產生種子碼",
         "seedNotGeneratedExplanation": "請產生新的種子碼。",
         "pressForNewSeed": "按此取得新種子碼",
         "generateSuccess": "種子碼產生成功",
         "individualLetters": "請按各字母以隨機產生。",
+        "individualLetterCount": "請再按 {{letterCount}} 個獨立的字母來隨機產生。",
         "whatIsASeed": "什麼是種子碼？"
     },
     "onboardingComplete": {
+        "allDone": "全部完成了！",
+        "openYourWallet": "開啟您的錢包",
         "walletReady": "錢包已設置完成且能使用。若您在未來需要做任何變動，請到設定選單。"
     },
     "paperWallet": {
@@ -235,6 +280,7 @@
         "printerCheckbox": "我不會使用公共印表機來列印"
     },
     "receive": {
+        "copyAddress": "複製地址",
         "addressCopied": "已複製地址",
         "addressCopiedExplanation": "您的地址已複製到剪貼簿。",
         "generateNewAddress": "新地址",
@@ -244,13 +290,33 @@
         "spent": "已支出"
     },
     "saveYourSeed": {
+        "saveYourSeed": "備份您的種子碼",
+        "seedCleared": "種子碼已清除",
+        "mostSecure": "最安全",
+        "leastSecure": "最不安全",
+        "paperWallet": "紙錢包",
+        "writeYourSeedDown": "寫下您的種子碼",
+        "printYourSeed": "印出您的種子碼",
+        "digitalCopy": "數位副本",
+        "seedClearedExplanation": "為保您的安全，種子碼已從剪貼簿清除。",
+        "iHaveBackedUpMySeed": "我已儲存我的種子碼",
+        "letsWriteDownYourSeed": "請寫下您的種子碼",
+        "youCanHighlightCharacters": "您可以一次顯示 9 個字元",
+        "printBlankWallet": "印出空白錢包",
+        "whatIsCheksum": "每個種子碼都會有相對應 3 個字元的檢查碼",
+        "iHavesavedMySeed": "我已儲存我的種子碼",
+        "checksumExplanation": "每當您新增種子碼到錢包時，請確認錢包顯示的檢查碼和您當時寫下的相符。",
         "mustSaveYourSeed": "<0><0>您必須使用以下</0><1>其中一種</1><2>選項儲存您的種子碼。</2></0>"
     },
     "seedReentry": {
+        "pleaseConfirmYourSeed": "請確認您的種子碼",
+        "trinityWillNeverAskToReenter": "Trinity 絕不會要求重新輸入種子碼，除非您重置錢包或是應用程式。",
+        "enterYourSeed": "輸入您的種子碼",
         "incorrectSeed": "錯誤種子",
         "incorrectSeedExplanation": "您輸入的種子碼錯誤，請再試一次。",
         "thisIsACheck": "本頁面提醒您檢查是否已儲存種子碼。",
-        "ifYouHaveNotSaved": "假如你尚未儲存您的種子碼，請返回並儲存。"
+        "ifYouHaveNotSaved": "假如你尚未儲存您的種子碼，請返回並儲存。",
+        "enterSeedBelow": "請在下面輸入您剛產生的種子碼來確認您已經妥善備份了"
     },
     "send": {
         "invalidAddress": "地址無效",
@@ -276,9 +342,12 @@
         "maximumSelected": "已選擇金額上限",
         "iotaUnits": "IOTA 單位說明",
         "sendMax": "全部傳送",
-        "totalTime": "總計"
+        "totalTime": "總計",
+        "addressPasteDetected": "檢測到地址貼上",
+        "addressPasteExplanation": "看起來您正要貼上地址，請確認貼上的地址與您想送出去的相符。"
     },
     "setPassword": {
+        "choosePassword": "選擇新的密碼",
         "passwordTooShort": "密碼過短",
         "passwordTooShortExplanation": "您的密碼必須至少為 {{minLength}} 個字元，目前為 {{currentLength}} 個字元長，請再試一次。",
         "passwordMismatch": "密碼不符",
@@ -289,6 +358,7 @@
         "retypePassword": "重新輸入密碼"
     },
     "setSeedName": {
+        "letsAddName": "請輸入名稱",
         "canUseMultipleSeeds": "本錢包能使用多個種子碼，每個種子碼都需要一個帳戶名稱。",
         "youCanAdd": "您可至設定選單中加入更多種子碼。"
     },
@@ -314,7 +384,6 @@
         "twoFA": "雙重身分驗證",
         "changePassword": "修改密碼",
         "advanced": "進階設定",
-        "about": "About",
         "logout": "登出",
         "reset": "重設錢包",
         "syncingComplete": "同步完成",
@@ -345,14 +414,14 @@
         "fetchedConversionRatesExplanation": "成功取得 {{currency}} 最新匯率。",
         "undo": "復原",
         "redo": "重做",
-        "aboutTrinity": "About Trinity",
+        "aboutTrinity": "關於 Trinity",
         "lockScreenTimeout": "逾時鎖定螢幕 (分鐘)",
         "autoNodeSwitching": "當無法連上所選節點時自動切換節點。",
-        "nodeChangeSuccess": "Successfully changed node",
-        "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
-        "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
-        "nodeChangeError": "Error changing node",
-        "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
+        "nodeChangeSuccess": "成功變更節點",
+        "nodeChangeSuccessNoRemotePow": "節點已變更為 {{node}}，不過此節點並不支援遠端工作量證明。",
+        "nodeChangeSuccessExplanation": "節點已變更為 {{node}}。",
+        "nodeChangeError": "變更節點時出錯",
+        "nodeChangeErrorExplanation": "變更節點時發生錯誤，請再試一次。"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "輸入密碼以重設您的錢包。",
@@ -360,9 +429,13 @@
         "reset": "重設"
     },
     "walletSetup": {
+        "creatingSeed": "產生種子碼",
         "okay": "好囉，現在來設置您的錢包！",
         "doYouAlreadyHaveASeed": "您是否希望使用已擁有的種子碼?",
+        "doYouNeedASeed": "您需要產生新的種子碼嗎?",
         "seedExplanation": "IOTA 種子碼是由您帳戶的名稱和密碼結合成為 81 個字元長的字串。",
+        "noIHaveOne": "不，我有一個",
+        "yesINeedASeed": "是，我需要一個種子碼",
         "explanation": "<0><0>您可以用它來取得您的資金，這可以是</0><1>任何錢包</1><2>和</2><3>任何裝置</3><4>。但如果您遺失種子碼的話，就代表您損失您所有的 IOTA。</4></0>",
         "keepSafe": "請妥善保存您的種子碼。",
         "hint": "<0><0>提示：</0> 如果這是您第一次使用 IOTA 請按「否」。</0>"
@@ -413,7 +486,10 @@
         "addCustomNode": "新增自訂節點",
         "manualSync": "手動同步",
         "snapshotTransition": "快照轉換",
-        "pow": "工作量證明"
+        "pow": "工作量證明",
+        "autoPromotion": "Auto-promotion",
+        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
+        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
     },
     "advancedThemeCustomisation": {
         "background": "背景",
@@ -461,7 +537,7 @@
     "useExistingSeed": {
         "title": "輸入種子碼和帳戶名稱。",
         "incorrectFormat": "種子碼格式不符",
-        "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
+        "validSeedExplanation": "有效的種子碼應為 81 個字元而且僅包含 A-Z 或 9。"
     },
     "viewSeed": {
         "enterPassword": "輸入密碼查看您的種子碼。",
@@ -469,9 +545,11 @@
         "hideSeed": "隱藏種子碼"
     },
     "saveSeedConfirmation": {
+        "didSaveSeed": "您備份種子碼了嗎？",
         "alreadyHave": "我已儲存我的種子碼",
-        "reenter": "現在您將必須重新輸入您的種子碼。",
-        "reenterWarning": "如果您的裝置失效而且您沒有儲存種子碼的話，您將損失您的 IOTA。"
+        "reenterSeed": "下一步您會需要重新輸入您的種子碼。",
+        "reenterSeedWarning": "如果您尚未備份您的種子碼然後裝置停止的話，您將失去您所有的 IOTA。",
+        "pleaseConfirm": "請確認您已安全地儲存了您的種子碼。"
     },
     "walletResetConfirmation": {
         "cannotUndo": "此動作將無法復原。",
@@ -481,16 +559,14 @@
         "instructionsEnable": "觸摸指紋辨識器來啟用指紋驗證",
         "instructionsDisable": "觸摸指紋辨識器來停用指紋驗證",
         "fingerprintAuthEnabled": "生物識別驗證已啟用",
-        "fingerprintAuthEnabledExplanation": "You have successfully enabled biometric authentication.",
+        "fingerprintAuthEnabledExplanation": "您已成功啟用生物識別驗證。",
         "fingerprintAuthDisabled": "生物識別驗證已停用",
-        "fingerprintAuthDisabledExplanation": "You have successfully disabled biometric authentication.",
+        "fingerprintAuthDisabledExplanation": "您已成功停用生物識別驗證。",
         "fingerprintAuthFailed": "生物識別驗證失敗",
         "fingerprintAuthFailedExplanation": "指紋驗證失敗，請再試一次。",
         "status": "狀態",
-        "enabled": "已啟用",
-        "disabled": "已停用",
-        "fingerprintUnavailable": "Biometric authentication unavailable",
-        "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
+        "fingerprintUnavailable": "生物識別驗證無法使用",
+        "fingerprintUnavailableExplanation": "您的裝置不支援生物識別驗證，或者裝置設定中並沒有啟用此權限。",
         "buttonInstructionsDisable": "按下方按鈕停用指紋驗證。",
         "buttonInstructionsEnable": "按下方按鈕啟用指紋驗證。",
         "buttonInstructionsDisableIPhoneX": "按下方按鈕停用 Face ID。",
@@ -541,6 +617,7 @@
         "noWebGLSupportExplanation": "您的電腦不支援 WebGL，請使用遠端 PoW。"
     },
     "progressSteps": {
+        "checkingNodeHealth": "檢查節點運行狀況",
         "validatingReceiveAddress": "驗證收款地址",
         "syncingAccount": "同步帳戶中",
         "preparingInputs": "準備交易輸入",
@@ -579,5 +656,13 @@
     },
     "notificationLog": {
         "errorLog": "錯誤紀錄"
+    },
+    "terms": {
+        "termsAndConditions": "使用條款",
+        "accept": "I accept"
+    },
+    "privacyPolicy": {
+        "privacyPolicy": "Privacy Policy",
+        "agree": "I agree"
     }
 }
