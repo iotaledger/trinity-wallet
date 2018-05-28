@@ -4,7 +4,7 @@
         "cancel": "ATŠAUKTI",
         "continue?": "Ar tikrai norite tęsti?",
         "noTransactions": "ISTORIJOS NĖRA",
-        "refresh": "ATNAUJINTI",
+        "refresh": "Atnaujinti",
         "balanceError": "Nepakankamas likutis sąskaitoje",
         "balanceErrorMessage": "Nepakankamas IOTA likutis šiam pavedimui atlikti.",
         "transferError": "Pavedimo klaida",
@@ -16,10 +16,10 @@
         "keyReuse": "Siunčiama į panaudotą adresą",
         "keyReuseError": "Negalima atlikti pavedimo adresu, iš kurio jau buvo atliktas pavedimas.",
         "invalidResponse": "Serverio klaida",
-        "invalidResponseExplanation": "Serverio klaida. Skaitykite pranešimus dėl detalesnės informacijos.",
-        "invalidResponsePollingExplanation": "Siunčiant jūsų duomenis įvyko serverio klaida. Skaitykite pranešimus dėl detalesnės informacijos.",
-        "invalidResponseFetchingAccount": "Užkraunant jūsų paskyros informaciją įvyko serverio klaida. Bandykite pakeisti serverį arba skaitykite pranešimus dėl detalesnės informacijos.",
-        "invalidResponseSendingTransfer": "Apdorojant pavedimą įvyko serverio klaida. Skaitykite pranešimus dėl detalesnės informacijos.",
+        "invalidResponseExplanation": "Įvyko serverio klaida. Bandykite pakeisti serverį.",
+        "invalidResponsePollingExplanation": "Siunčiant jūsų duomenis įvyko serverio klaida. Bandykite pakeisti serverį.",
+        "invalidResponseFetchingAccount": "Užkraunant jūsų paskyros informaciją įvyko serverio klaida. Bandykite pakeisti serverį.",
+        "invalidResponseSendingTransfer": "Apdorojant pavedimą įvyko serverio klaida. Bandykite pakeisti serverį.",
         "nodeOutOfSync": "Serveris nesinchronizuotas",
         "nodeOutOfSyncExplanation": "Jūsų pasirinktas serveris nesinchronizuotas. Pakeiskite serverį arba bandykite dar kartą.",
         "thisNodeOutOfSync": "Šis serveris nesinchronizuotas. Pakeiskite serverį arba bandykite dar kartą.",
@@ -36,14 +36,14 @@
         "nextLowerCase": "Toliau",
         "apply": "Taikyti",
         "save": "Išsaugoti",
-        "close": "UŽDARYTI",
+        "close": "Uždaryti",
         "continue": "Tęsti",
         "enable": "Įjungti",
         "disable": "Išjungti",
         "enabled": "Įjungta",
         "disabled": "Išjungta",
-        "manualCopy": "Nusirašykite užraktą",
-        "paperWallet": "Atspausdinti",
+        "manualCopy": "Write seed down",
+        "paperWallet": "Print paper copy",
         "addToPasswordManager": "Pridėti į slaptažodžių tvarkyklę",
         "shareSeed": "Dalintis užraktu",
         "proceed": "Tęsti",
@@ -63,6 +63,7 @@
         "yesLowerCase": "Taip",
         "noLowerCase": "Ne",
         "okay": "GERAI",
+        "okayLowercase": "Okay",
         "password": "Slaptažodis",
         "passwordOrFingerprint": "Slaptažodis arba piršto antspaudas",
         "unrecognisedPassword": "Slaptažodis neatpažintas",
@@ -147,7 +148,10 @@
         "androidCopyPasteWarning": "Kopijuoti/Įklijuoti užraktą su Android įrenginiu nerekomenduojama.",
         "willNotCopyPasteSeed": "Aš nekopijuosiu/neįklijuosiu užrakto",
         "mustBeStoredAppropriately": "Jis privalo būti tinkamai laikomas.",
-        "deviceMayBecomeUnresponsive": "Jūsų įrenginys kurį laiką gali neatsakyti į užklausas"
+        "deviceMayBecomeUnresponsive": "Jūsų įrenginys kurį laiką gali neatsakyti į užklausas",
+        "isYourBalanceCorrect": "Is your balance correct?",
+        "ifYourBalanceIsNotCorrect": "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
+        "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Užraktas turi neleistinų simbolių",
@@ -239,9 +243,9 @@
         "emptyPasswordExplanation": "Prisijungimui reikalingas slaptažodis. Bandykite dar kartą.",
         "enterPassword": "Įveskite slaptažodį.",
         "useSeed": "PANAUDOTI UŽRAKTĄ",
-        "login": "PRISIJUNGTI",
+        "login": "Prisijungti",
         "selectDifferentNode": "Ar norite pakeisti serverį?",
-        "setNode": "NUSTATYTI SERVERĮ",
+        "setNode": "Nustatyti serverį",
         "cannotConnect": "Nepavyksta prisijungti prie IOTA serverio."
     },
     "loading": {
@@ -255,7 +259,7 @@
         "generatedSeed": "Sukurtas užraktas",
         "seedNotGenerated": "Sukurti užrakto nepavyko",
         "seedNotGeneratedExplanation": "Susikurkite naują užraktą.",
-        "pressForNewSeed": "SUKURTI NAUJĄ UŽRAKTĄ",
+        "pressForNewSeed": "Sukurti naują užraktą",
         "generateSuccess": "Užraktas sėkmingai sukurtas",
         "individualLetters": "Spauskite ant raidės, norėdami ją pakeisti kita.",
         "individualLetterCount": "Įveskite dar {{letterCount}} unikalius simbolius norėdami, kad jie būtų išmaišyti.",
@@ -271,8 +275,8 @@
         "storeSafely": "Saugiai jį laikykite.",
         "neverShare": "Su niekuo nesidalinkite savo užraktu.",
         "iotaLogo": "IOTA logotipas",
-        "printWallet": "ATSPAUSDINTI",
-        "print": "SPAUSDINTI",
+        "printWallet": "Atspausdinti popierinę piniginę",
+        "print": "ATSPAUSDINTI",
         "paperConvenience": "Vienas iš patogių užrakto laikymo būdų yra laikyti jį atspausdintame lape.",
         "publicInsecure": "Bet spausdinimas naudojant viešą wifi arba viešą spausdintuvą yra nesaugus.",
         "tapCheckboxes": "Sužymėkite varneles norėdami patvirtinti.",
@@ -283,7 +287,7 @@
         "copyAddress": "Kopijuoti adresą",
         "addressCopied": "Adresas nukopijuotas",
         "addressCopiedExplanation": "Jūsų adresas nukopijuotas į iškarpinę.",
-        "generateNewAddress": "NAUJAS ADRESAS",
+        "generateNewAddress": "Naujas adresas",
         "message": "Žinutė (neprivaloma)",
         "removeMessage": "PAŠALINTI ŽINUTĘ",
         "noAddresses": "ADRESŲ NĖRA",
@@ -336,7 +340,7 @@
         "invalidMessageExplanation": "Žinutėje yra neleistinų simbolių.",
         "invalidMessageTooLong": "Žinutė per ilga",
         "invalidMessageTooLongExplanation": "Žinutė viršija maks. leistinų simbolių skaičių (1093).",
-        "send": "SIŲSTI",
+        "send": "Siųsti",
         "invalidAmount": "Įvesta neleistina suma",
         "invalidAmountExplanation": "Įveskite leidžiamą pavedimo sumą. Galite pasinaudoti IOTA vienetų paaiškinimu šio puslapio apačioje.",
         "maximumSelected": "Pasirinkta MAKSIMALI suma",
@@ -425,7 +429,7 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Įveskite slaptažodį, norėdami iš naujo nustatyti piniginę.",
-        "cancel": "ATŠAUKTI",
+        "cancel": "Atšaukti",
         "reset": "IŠ NAUJO NUSTATYTI"
     },
     "walletSetup": {
@@ -531,7 +535,7 @@
         "pressToSync": "Spauskite žemiau esantį mygtuką, norėdami sinchronizuoti paskyrą.",
         "thisMayTake": "Tai gali užtrukti. Jūsų įrenginio greitis gali sulėtėti.",
         "doNotClose": "Atkreipkite dėmesį, kad programėlės minimizavimas atšauks sinchronizaciją.",
-        "syncAccount": "SINCHRONIZUOTI PASKYRĄ",
+        "syncAccount": "Sinchronizuoti paskyrą",
         "syncingYourAccount": "Paskyra sinchronizuojama."
     },
     "useExistingSeed": {
@@ -541,8 +545,8 @@
     },
     "viewSeed": {
         "enterPassword": "Įveskite slaptažodį, norėdami pamatyti užraktą.",
-        "viewSeed": "RODYTI UŽRAKTĄ",
-        "hideSeed": "PASLĖPTI UŽRAKTĄ"
+        "viewSeed": "Rodyti užraktą",
+        "hideSeed": "Slėpti užraktą"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Ar išsisaugojote savo užraktą?",
@@ -635,10 +639,10 @@
         "isThisCorrect": "Ar jis teisingas?",
         "snapshotExplanation": "Norint sumažinti Tangle dydį, retkarčiais yra atliekamas tinklo duomenų užfiksavimas.",
         "hasSnapshotTakenPlace": "Įvyko duomenų užfiksavimas? Spauskite žemiau esantį mygtuką, norėdami perkelti duomenis.",
-        "transition": "PERKELTI",
+        "transition": "Perkelti",
         "transitioning": "Perkeliami tinklo duomenys.",
         "generatingAndDetecting": "Kuriami adresai ir nustatinėjamas balansas.",
-        "attaching": "Adresai prijungiami prie Tangle"
+        "attaching": "Adresai prijungiami prie Tangle."
     },
     "deepLink": {
         "autofill": "Automatinis įkėlimas sėkmingas",
