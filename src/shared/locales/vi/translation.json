@@ -18,8 +18,7 @@
         "invalidResponse": "Node error",
         "invalidResponseExplanation": "The node returned an error. Try changing node.",
         "invalidResponsePollingExplanation": "The node returned an error while polling. Try changing node.",
-        "invalidResponseFetchingAccount":
-            "The node returned an error while fetching your account information. Try changing node.",
+        "invalidResponseFetchingAccount": "The node returned an error while fetching your account information. Try changing node.",
         "invalidResponseSendingTransfer": "The node returned an error while sending the transfer. Try changing node.",
         "nodeOutOfSync": "Node out of sync",
         "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
@@ -78,8 +77,7 @@
         "cannotPerformAction": "Không thể thực hiện thao tác này",
         "cannotPerformActionExplanation": "Vào thiết lập nâng cao để cài lại ví điện tử.",
         "attachToTangleUnavailable": "Remote Proof of Work is unavailable",
-        "attachToTangleUnavailableExplanation":
-            "Remote Proof of Work is not available on your selected node. Either change node or set Proof of Work to Local in Advanced Settings.",
+        "attachToTangleUnavailableExplanation": "Remote Proof of Work is not available on your selected node. Either change node or set Proof of Work to Local in Advanced Settings.",
         "attachToTangleUnavailableExplanationShort": "Remote Proof of Work is not available on your selected node.",
         "wallet": "Ví Điện Tử",
         "sent": "Đã Gửi",
@@ -107,8 +105,7 @@
         "promoted": "Successfully promoted transaction",
         "promotedExplanation": "Promoted transaction with hash {{hash}}",
         "autopromotionError": "Could not auto-promote transaction",
-        "autopromotionErrorExplanation":
-            "Remote Proof of Work is not available on your selected node. Please change node.",
+        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
         "promotionError": "Could not promote transaction",
         "promotionErrorExplanation": "Something went wrong while promoting your transaction. Please try again.",
         "noLongerValid": "The bundle you are trying to promote is no longer valid",
@@ -119,10 +116,8 @@
         "pleaseWait": "Vui lòng đợi",
         "pleaseWaitEllipses": "Please wait...",
         "pleaseWaitExplanation": "Trinity đang thực hiện một chức năng khác. Vui lòng đợi và thử lại.",
-        "pleaseWaitTransferExplanation":
-            "Số tiền của bạn đang được sử dụng trong một giao dịch khác. Vui lòng đợi xác nhận xong trước khi thử gửi lại.",
-        "pleaseWaitIncomingTransferExplanation":
-            "You have incoming transfers. Please wait for them to confirm before trying again.",
+        "pleaseWaitTransferExplanation": "Số tiền của bạn đang được sử dụng trong một giao dịch khác. Vui lòng đợi xác nhận xong trước khi thử gửi lại.",
+        "pleaseWaitIncomingTransferExplanation": "You have incoming transfers. Please wait for them to confirm before trying again.",
         "snapshotTransitionInProgress": "Snapshot transition in progress",
         "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete.",
         "checkForUpdates": "Check for Updates",
@@ -143,31 +138,26 @@
         "masterKey": "Your IOTA seed is the master key to your funds.",
         "seedThief": "If someone else has your seed they can steal your IOTA.",
         "googlePlayServicesNotAvailable": "Google Play Services not available",
-        "couldNotVerifyDeviceIntegrity":
-            "Could not verify device integrity because Google Play Services are not available.",
+        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available.",
         "clear": "CLEAR",
         "noNetworkConnection": "No network connection",
         "noNetworkConnectionExplanation": "Your internet connection appears to be offline.",
         "spentAddressExplanation": "WARNING: Funds on spent addresses",
-        "discordInformation":
-            "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do.",
+        "discordInformation": "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do.",
         "androidInsecureClipboardWarning": "Android does not provide a secure clipboard.",
         "androidCopyPasteWarning": "Never copy/paste your seed on an Android device.",
         "willNotCopyPasteSeed": "I will not copy/paste my seed",
         "mustBeStoredAppropriately": "It must be stored appropriately.",
         "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while",
         "isYourBalanceCorrect": "Is your balance correct?",
-        "ifYourBalanceIsNotCorrect":
-            "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
+        "ifYourBalanceIsNotCorrect": "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
         "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Từ khoá chứa ký tự không hợp lệ",
-        "seedInvalidCharsExplanation":
-            "Từ khoá chỉ có thể bao gồm chữ cái viết hoa A-Z và số 9. Từ khoá của bạn có ký tự không hợp lệ. Xin vui lòng thử lại.",
+        "seedInvalidCharsExplanation": "Từ khoá chỉ có thể bao gồm chữ cái viết hoa A-Z và số 9. Từ khoá của bạn có ký tự không hợp lệ. Xin vui lòng thử lại.",
         "seedTooShort": "Từ khoá quá ngắn",
-        "seedTooShortExplanation":
-            "Từ khoá có tối đa {{maxLength}} ký tự. Từ khoá của bạn hiện tại có {{currentLength}} ký tự. Xin vui lòng thử lại.",
+        "seedTooShortExplanation": "Từ khoá có tối đa {{maxLength}} ký tự. Từ khoá của bạn hiện tại có {{currentLength}} ký tự. Xin vui lòng thử lại.",
         "nameInUse": "Tên tài khoản đã được dùng",
         "nameInUseExplanation": "Xin vui lòng sử dụng tên tài khoản riêng cho từ khoá của bạn.",
         "enterAccountName": "Nhập tên tài khoản.",
@@ -189,15 +179,13 @@
         "passwordTooShort": "Mật khẩu quá ngắn",
         "passwordTooShortExplanation": "Mật khẩu ít nhất phải chứa 12 ký tự. Xin vui lòng thử lại.",
         "oldPassword": "Không thể dùng mật khẩu cũ",
-        "oldPasswordExplanation":
-            "Bạn không thể dùng mật khẩu cũ lúc tạo mật khẩu mới. Xin vui lòng thử lại với một mật khẩu mới.",
+        "oldPasswordExplanation": "Bạn không thể dùng mật khẩu cũ lúc tạo mật khẩu mới. Xin vui lòng thử lại với một mật khẩu mới.",
         "ensureStrongPassword": "Hãy đảm bảo bạn dùng mật khẩu mạnh với ít nhất 12 ký tự.",
         "currentPassword": "Mật Khẩu Hiện Tại",
         "newPassword": "Mật Khẩu Mới",
         "confirmPassword": "Xác Nhận Mật Khẩu Mới",
         "passwordTooWeak": "Password too weak",
-        "passwordTooWeakReason":
-            "Your password is too weak. Use a combination of words, and avoid common phrases, names or dates",
+        "passwordTooWeakReason": "Your password is too weak. Use a combination of words, and avoid common phrases, names or dates",
         "reasonRow": "Straight rows of keys are easy to guess",
         "reasonPattern": "Short patterns of keys are easy to guess",
         "reasonNames": "Common names and surnames are easy to guess",
@@ -228,20 +216,15 @@
         "passwordManagerCheckbox": "I will store my seed in a password manager",
         "copy": "COPY",
         "noPasswordManagers": "No supported password managers installed",
-        "noPasswordManagersExplanation":
-            "No supported password managers were found on your device. Please install Keepass2Android.",
-        "followTutorialToSecurelyShareSeed":
-            "If you wish to store your seed in a password manager, you must follow a tutorial from the following link"
+        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android.",
+        "followTutorialToSecurelyShareSeed": "If you wish to store your seed in a password manager, you must follow a tutorial from the following link"
     },
     "enterSeed": {
         "invalidCharacters": "Từ khoá chứa ký tự không hợp lệ",
-        "invalidCharactersExplanation":
-            "Từ khoá chỉ có thể bao gồm chữ cái viết hoa A-Z và số 9. Từ khoá của bạn có ký tự không hợp lệ. Xin vui lòng thử lại.",
+        "invalidCharactersExplanation": "Từ khoá chỉ có thể bao gồm chữ cái viết hoa A-Z và số 9. Từ khoá của bạn có ký tự không hợp lệ. Xin vui lòng thử lại.",
         "seedTooShort": "Từ khoá quá ngắn",
-        "seedTooShortExplanation":
-            "Từ khoá có tối đa {{maxLength}} ký tự. Từ khoá của bạn hiện tại có {{currentLength}} ký tự. Xin vui lòng thử lại.",
-        "seedExplanation":
-            "Từ khoá có tối đa {{maxLength}} ký tự, và bao gồm chữ viết hoa A-Z, hoặc số 9. Bạn không thể dùng từ khoá dài hơn {{maxLength}} ký tự.",
+        "seedTooShortExplanation": "Từ khoá có tối đa {{maxLength}} ký tự. Từ khoá của bạn hiện tại có {{currentLength}} ký tự. Xin vui lòng thử lại.",
+        "seedExplanation": "Từ khoá có tối đa {{maxLength}} ký tự, và bao gồm chữ viết hoa A-Z, hoặc số 9. Bạn không thể dùng từ khoá dài hơn {{maxLength}} ký tự.",
         "neverShare": "ĐỪNG BAO GIỜ CHIA SẺ TỪ KHOÁ CHO NGƯỜI KHÁC BIẾT"
     },
     "home": {
@@ -285,8 +268,7 @@
     "onboardingComplete": {
         "allDone": "All Done!",
         "openYourWallet": "Open your wallet",
-        "walletReady":
-            "Ví điện tử đã được thiết lập và sẵn sàng để sử dụng. Nếu bạn muốn thay đổi bất kỳ điều gì trong tương lai, hãy vào mục Thiết Lập."
+        "walletReady": "Ví điện tử đã được thiết lập và sẵn sàng để sử dụng. Nếu bạn muốn thay đổi bất kỳ điều gì trong tương lai, hãy vào mục Thiết Lập."
     },
     "paperWallet": {
         "clickToPrint": "Nhấn vào nút dưới đây để in ra giấy bản sao từ khoá của bạn.",
@@ -327,15 +309,12 @@
         "printBlankWallet": "Print a blank wallet",
         "whatIsCheksum": "Every seed has a corresponding 3 character checksum",
         "iHavesavedMySeed": "I've saved my seed",
-        "checksumExplanation":
-            "Whenever you add a seed to your wallet, you should ensure that the wallet-generated checksum matches the one you have written down.",
-        "mustSaveYourSeed":
-            "<0><0>Bạn phải lưu từ khoá với </0><1>ít nhất một</1><2>trong những sự lựa chọn dưới đây.</2></0>"
+        "checksumExplanation": "Whenever you add a seed to your wallet, you should ensure that the wallet-generated checksum matches the one you have written down.",
+        "mustSaveYourSeed": "<0><0>Bạn phải lưu từ khoá với </0><1>ít nhất một</1><2>trong những sự lựa chọn dưới đây.</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Please confirm your seed",
-        "trinityWillNeverAskToReenter":
-            "Trinity will never ask you to re-enter this seed unless you reset your wallet or the app.",
+        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or the app.",
         "enterYourSeed": "Enter your seed",
         "incorrectSeed": "Từ khoá không đúng",
         "incorrectSeedExplanation": "Từ khoá vừa nhập không chính xác. Xin vui lòng thử lại.",
@@ -363,42 +342,35 @@
         "invalidMessageTooLongExplanation": "The message exceeds the max. amount of characters (1093).",
         "send": "Gửi",
         "invalidAmount": "Số lượng nhập không đúng",
-        "invalidAmountExplanation":
-            "Xin vui lòng nhập số tiền muốn giao dịch. Các bạn nên đọc chú thích ở cuối trang này để hiểu thêm về đơn vị của IOTA.",
+        "invalidAmountExplanation": "Xin vui lòng nhập số tiền muốn giao dịch. Các bạn nên đọc chú thích ở cuối trang này để hiểu thêm về đơn vị của IOTA.",
         "maximumSelected": "Số lượng TỐI ĐA được chọn",
         "iotaUnits": "Đơn vị IOTA được giải thích",
         "sendMax": "GỬI TỐI ĐA",
         "totalTime": "Total time",
         "addressPasteDetected": "Address paste detected",
-        "addressPasteExplanation":
-            "It looks like you are about to paste an address. Make sure that the pasted address matches the one you want to send to."
+        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
     },
     "setPassword": {
         "choosePassword": "Choose a new password",
         "passwordTooShort": "Mật khẩu quá ngắn",
-        "passwordTooShortExplanation":
-            "Mật khẩu của bạn phải có ít nhất {{minLength}} ký tự. Mật khẩu hiện tại có {{currentLength}} ký tự. Xin vui lòng thử lại.",
+        "passwordTooShortExplanation": "Mật khẩu của bạn phải có ít nhất {{minLength}} ký tự. Mật khẩu hiện tại có {{currentLength}} ký tự. Xin vui lòng thử lại.",
         "passwordMismatch": "Mật khẩu không trùng khớp",
         "passwordMismatchExplanation": "Mật khẩu vừa nhập không trùng khớp. Xin vui lòng thử lại.",
         "nowWeNeedTo": "Bây giờ chúng ta cần cài mật khẩu.",
-        "anEncryptedCopy":
-            "Một bản sao mã hoá của từ khoá sẽ được lưu trên máy của bạn. Bạn sẽ phải xài mật khẩu này để truy cập ví điện tử của mình.",
+        "anEncryptedCopy": "Một bản sao mã hoá của từ khoá sẽ được lưu trên máy của bạn. Bạn sẽ phải xài mật khẩu này để truy cập ví điện tử của mình.",
         "ensure": "Hãy đảm bảo bạn dùng mật khẩu mạnh với ít nhất 12 ký tự.",
         "retypePassword": "Nhập Lại Mật Khẩu"
     },
     "setSeedName": {
         "letsAddName": "Let's add a name",
-        "canUseMultipleSeeds":
-            "Bạn có thể sử dụng nhiều từ khoá cho ví điện tử này. Mỗi từ khoá cần một tên tài khoản khác.",
+        "canUseMultipleSeeds": "Bạn có thể sử dụng nhiều từ khoá cho ví điện tử này. Mỗi từ khoá cần một tên tài khoản khác.",
         "youCanAdd": "Bạn có thể cho thêm nhiều từ khoá nữa trong mục Thiết Lập."
     },
     "modeSelection": {
         "expert": "Expert",
         "standard": "Standard",
-        "expertModeExplanation":
-            "Expert mode will provide access to additional features like manual promotion and reattachment.",
-        "modesExplanation":
-            "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
+        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "Đang chuyển khoản",
@@ -450,8 +422,7 @@
         "lockScreenTimeout": "Lock Screen Timeout (Minutes)",
         "autoNodeSwitching": "Automatically switch node when selected is unreachable",
         "nodeChangeSuccess": "Successfully changed node",
-        "nodeChangeSuccessNoRemotePow":
-            "The node was changed to {{node}}. This node does not support remote Proof of Work.",
+        "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
         "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
         "nodeChangeError": "Error changing node",
         "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
@@ -466,25 +437,21 @@
         "okay": "Ok. Hãy thiết lập ví điện tử của bạn!",
         "doYouAlreadyHaveASeed": "Bạn đã có từ khoá mà bạn muốn dùng chưa?",
         "doYouNeedASeed": "Do you need to create a new seed?",
-        "seedExplanation":
-            "Từ khoá của IOTA giống như là tên tài khoản và mật khẩu hợp lại với một dãy chữ có 81 ký tự.",
+        "seedExplanation": "Từ khoá của IOTA giống như là tên tài khoản và mật khẩu hợp lại với một dãy chữ có 81 ký tự.",
         "noIHaveOne": "No, I have one",
         "yesINeedASeed": "Yes, I need a seed",
-        "explanation":
-            "<0><0>Bạn có thể xài nó để truy cập vào tài khoản từ</0><1> bất kỳ ví điện tử nào</1><2>trên</2><3>bất kỳ máy nào</3><4>. Nhưng nếu bạn mất từ khoá, bạn sẽ mất hết IOTA của bạn.</4></0>",
+        "explanation": "<0><0>Bạn có thể xài nó để truy cập vào tài khoản từ</0><1> bất kỳ ví điện tử nào</1><2>trên</2><3>bất kỳ máy nào</3><4>. Nhưng nếu bạn mất từ khoá, bạn sẽ mất hết IOTA của bạn.</4></0>",
         "keepSafe": "Vui lòng giữ từ khoá ở một nơi an toàn.",
         "hint": "<0><0>Hint:</0> Click NO if this is your first time using IOTA.</0>"
     },
     "welcome": {
         "thankYou": "Thank you for downloading Trinity.",
         "weWillSpend": "Chúng ta sẽ dành vài phút để cài đặt ví điện tử cho bạn.",
-        "reminder":
-            "Bạn sẽ bị lôi cuốn bỏ qua một số bước, nhưng chúng tôi khuyên bạn nên làm theo từng bước để hoàn thành quy trình này."
+        "reminder": "Bạn sẽ bị lôi cuốn bỏ qua một số bước, nhưng chúng tôi khuyên bạn nên làm theo từng bước để hoàn thành quy trình này."
     },
     "writeSeedDown": {
         "yourSeedIs": "Từ khoá của bạn có {{maxSeedLength}} ký tự đọc từ trái sang phải.",
-        "writeDownYourSeed":
-            "<0> Ghi từ khoá và mã kiểm tra xuống và </0><1>kiểm tra 3 lần</1><2>để chắc chắn nó đúng.</2>"
+        "writeDownYourSeed": "<0> Ghi từ khoá và mã kiểm tra xuống và </0><1>kiểm tra 3 lần</1><2>để chắc chắn nó đúng.</2>"
     },
     "history": {
         "bundleHashCopied": "Đã sao chép nhóm hash",
@@ -525,8 +492,7 @@
         "snapshotTransition": "Snapshot transition",
         "pow": "Proof of Work",
         "autoPromotion": "Auto-promotion",
-        "autoPromotionExplanation":
-            "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
+        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
         "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
     },
     "advancedThemeCustomisation": {
@@ -555,8 +521,7 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Why can't I spend my full balance?",
-        "spentAddressExplanation":
-            "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
+        "spentAddressExplanation": "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
         "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
     },
     "deleteAccount": {
@@ -587,14 +552,12 @@
         "didSaveSeed": "Did you back up your seed?",
         "alreadyHave": "Tôi đã lưu từ khóa",
         "reenterSeed": "At the next step you will be asked to re-enter your seed.",
-        "reenterSeedWarning":
-            "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
+        "reenterSeedWarning": "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
         "pleaseConfirm": "Please confirm you have securely stored your seed."
     },
     "walletResetConfirmation": {
         "cannotUndo": "THAO TÁC NÀY KHÔNG THỂ ĐẢO NGƯỢC.",
-        "warning":
-            "<0><0>Tất cả những dữ liệu trong ví điện tử của bạn như </0><1>từ khóa, mật khẩu,</1><2> và</2><3>những thông tin khác</3><4> sẽ bị mất.</4></0>"
+        "warning": "<0><0>Tất cả những dữ liệu trong ví điện tử của bạn như </0><1>từ khóa, mật khẩu,</1><2> và</2><3>những thông tin khác</3><4> sẽ bị mất.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Touch fingerprint reader to enable fingerprint authentication",
@@ -607,8 +570,7 @@
         "fingerprintAuthFailedExplanation": "Xác thực vân tay không thành công. Xin vui lòng thử lại.",
         "status": "Tình Trạng",
         "fingerprintUnavailable": "Biometric authentication unavailable",
-        "fingerprintUnavailableExplanation":
-            "Your device does not support biometric authentication or it has not been configured in the device settings.",
+        "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Nhấn vào nút dưới đây để vô hiệu hóa xác thực vân tay.",
         "buttonInstructionsEnable": "Nhấn vào nút dưới đây để kích hoạt xác thực vân tay.",
         "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID.",
@@ -658,6 +620,10 @@
         "noWebGLSupport": "WebGL not supported",
         "noWebGLSupportExplanation": "Your computer does not support WebGL. Please use remote PoW."
     },
+    "autoPromotion": {
+        "autoPromotionUpdated": "Auto-promotion settings",
+        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
+    },
     "progressSteps": {
         "checkingNodeHealth": "Checking node health",
         "validatingReceiveAddress": "Validating receive address",
@@ -692,8 +658,7 @@
         "noUpdatesAvailable": "No updates available",
         "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
         "newVersionAvailable": "New version available",
-        "newVersionAvailableExplanation":
-            "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
+        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
         "downloadRelease": "Download release",
         "skipUpdate": "Skip update"
     },
