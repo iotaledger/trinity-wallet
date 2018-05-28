@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, PanResponder, ViewPropTypes } from 'react-native';
+import timer from 'react-native-timer';
 
 export default class UserInactivity extends Component {
     static propTypes = {
@@ -44,7 +45,7 @@ export default class UserInactivity extends Component {
     }
 
     componentWillUnmount() {
-        clearInterval(this.inactivityTimer);
+        timer.clearInterval('inactivityTimer');
         this.panResponder = null;
         this.inactivityTimer = null;
     }
@@ -82,7 +83,7 @@ export default class UserInactivity extends Component {
                 this.props.onInactivity(timeWentInactive);
             },
         );
-        clearInterval(this.inactivityTimer);
+        timer.clearInterval('inactivityTimer');
         this.inactivityTimer = null;
     };
 
@@ -92,11 +93,15 @@ export default class UserInactivity extends Component {
         }
         const { timeForInactivity, checkInterval } = this.props;
 
-        this.inactivityTimer = setInterval(() => {
-            if (new Date() - this.lastInteraction >= timeForInactivity) {
-                this.setIsInactive();
-            }
-        }, checkInterval);
+        this.inactivityTimer = timer.setInterval(
+            'inactivityTimer',
+            () => {
+                if (new Date() - this.lastInteraction >= timeForInactivity) {
+                    this.setIsInactive();
+                }
+            },
+            checkInterval,
+        );
     };
 
     render() {
