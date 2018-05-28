@@ -105,7 +105,7 @@
         "promoted": "Transaksjonen er promotert",
         "promotedExplanation": "Transaksjonen er promotert med hash {{hash}}",
         "autopromotionError": "Kunne ikke promotere transaksjonen automatisk",
-        "autopromotionErrorExplanation": "Ekstern PoW er ikke tilgjengelig på den valgte noden. Velg en annen node.",
+        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
         "promotionError": "Kunne ikke promotere transaksjonen",
         "promotionErrorExplanation": "Noe gikk galt under promoteringen av overføringen. Vennligst prøv igjen.",
         "noLongerValid": "Pakken du prøver å promotere er ikke lenger gyldig",
@@ -165,7 +165,7 @@
         "noNickname": "Ingen kontonavn angitt",
         "noNicknameExplanation": "Vennligst skriv inn et kontonavn for hovednøkkelen.",
         "seedInUse": "Hovednøkkelen er allerede i bruk",
-        "seedInUseExplanation": "Denne hovednøkkelen er allerede tilknyttet din lommebok. Bruk en annen."
+        "seedInUseExplanation": "Denne hovednøkkelen er allerede tilknyttet lommeboken. Vennligst bruk en annen."
     },
     "changePassword": {
         "oops": "Au da. Noe gikk galt",
@@ -205,11 +205,11 @@
         "seedClearedExplanation": "Hovednøkkelen har blitt fjernet fra utklippstavlen for din sikkerhet.",
         "seedCopied": "Kopierte hovednøkkelen til utklippstavle",
         "seedCopiedExplanation": "Hovednøkkelen vil bli fjernet med en gang du trykker \"FERDIG\" eller etter at 60 sekunder har passert.",
-        "clickToCopy": "Trykk på knappen nedenfor og kopier hovednøkkelen til en sikker passord-applikasjon.",
-        "clickToSecurelyShare": "Trykk på knappen nedenfor for å lagre hovednøkkelen i en passord-lagrings program.",
+        "clickToCopy": "Trykk på knappen nedenfor og kopier hovednøkkelen til en passord manager.",
+        "clickToSecurelyShare": "Trykk på knappen nedenfor for å lagre hovednøkkelen i en passord manager.",
         "doNotStore": "Oppbevar ikke din hovednøkkelen i klartekst.",
         "copyToClipboard": "Kopier hovednøkkel",
-        "shareSeed": "Kopier din hovednøkkel til en sikker passord applikasjon",
+        "shareSeed": "Kopier hovednøkkelen til en passord manager",
         "storeEncrypted": "Lagre hovednøkkelen din kryptert i en passord manager.",
         "doNotOpen": "Åpne ikke andre applikasjoner under denne prosessen.",
         "tapConfirm": "Vennligst huk av i boksen nedenfor for å bekrefte.",
@@ -217,7 +217,7 @@
         "copy": "KOPIER",
         "noPasswordManagers": "Ingen støttet passord manager er installert",
         "noPasswordManagersExplanation": "Ingen støttet passord manager ble funnet på enheten. Vennligst installer Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "Om du ønsker å lagre hovednøkkelen i et passord-lagrings program må du følge guiden fra følgende lenke"
+        "followTutorialToSecurelyShareSeed": "Dersom du ønsker å lagre hovednøkkelen i en passord manager må du følge guiden fra følgende lenke"
     },
     "enterSeed": {
         "invalidCharacters": "Hovednøkkelen inneholder ugyldige tegn",
@@ -348,7 +348,7 @@
         "sendMax": "SENDE MAX",
         "totalTime": "Total tid",
         "addressPasteDetected": "Adresse \"lim inn\" gjenkjent",
-        "addressPasteExplanation": "Det ser ut som du skal lime inn en adresse. Kontroller at den innlimte adressen samsvarer med den som du vil sende til."
+        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
     },
     "setPassword": {
         "choosePassword": "Velg et nytt passord",
@@ -440,13 +440,13 @@
         "seedExplanation": "IOTA hovednøkkelen er som et brukernavn og passord til kontoen, og består av en kombinert streng på 81 tegn.",
         "noIHaveOne": "Nei, jeg har en",
         "yesINeedASeed": "Ja, jeg trenger en hovednøkkel",
-        "explanation": "<0><0>Du kan bruke den til å få tilgang til dine midler fra</0> <1>enhver lommebok</1> <2>, på</2> <3>enhver enhet</3> <4>. Men hvis du mister hovednøkkelen mister du også dine IOTA.</4></0>",
+        "explanation": "<0><0>Du kan bruke den til å få tilgang til dine midler fra</0><1>enhver lommebok</1><2>, på</2><3>enhver enhet</3><4>. Men hvis du mister hovednøkkelen mister du også dine IOTA.</4</0>",
         "keepSafe": "Vennligst oppbevar hovednøkkelen sikkert.",
         "hint": "<0><0>Hint:</0> Klikk NEI hvis dette er første gangen du bruker IOTA.</0>"
     },
     "welcome": {
         "thankYou": "Takk for at du lastet ned Trinity.",
-        "weWillSpend": "Vi vil bruke de neste minuttene på å konfigurere lommeboken din.",
+        "weWillSpend": "Vi vil bruke de neste minuttene på å konfigurere lommeboken.",
         "reminder": "Du kan være fristet til å hoppe over enkelte trinn, men vi oppfordrer deg til å følge hele prosessen."
     },
     "writeSeedDown": {
@@ -557,7 +557,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "DENNE HANDLINGEN KAN IKKE ANGRES.",
-        "warning": "<0><0>Alle dine data, inkludert dine</0> <1>nøkler, passord</1> <2>og</2> <3>andre kontoopplysninger</3> <4> vil gå tapt.</4></0>"
+        "warning": "<0><0>Alle dine data, inkludert dine</0><1>hovednøkler, passord</1><2>og</2><3>andre kontoopplysninger</3><4> vil gå tapt.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Legg fingeren på fingeravtrykkleseren for å aktivere biometrisk autentisering",
@@ -619,6 +619,10 @@
         "powUpdatedExplanation": "Dine PoW (Proof of Work) innstillinger er oppdatert.",
         "noWebGLSupport": "WebGL støttes ikke",
         "noWebGLSupportExplanation": "Datamaskinen støtter ikke WebGL. Vennligst benytt ekstern PoW (Proof of Work)."
+    },
+    "autoPromotion": {
+        "autoPromotionUpdated": "Auto-promotion settings",
+        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
     },
     "progressSteps": {
         "checkingNodeHealth": "Undersøker nodens helse",
