@@ -22,7 +22,7 @@
         "invalidResponseSendingTransfer": "Il nodo ha restituito un errore durante l'invio del trasferimento. Provare a cambiare il nodo.",
         "nodeOutOfSync": "Nodo non sincronizzato",
         "nodeOutOfSyncExplanation": "Il nodo attualmente selezionato non è sincronizzato. Si prega di cambiare il nodo o riprovare.",
-        "thisNodeOutOfSync": "This node is out of sync. Please change node or try again.",
+        "thisNodeOutOfSync": "Questo nodo non è sincronizzato. Si prega di cambiare il nodo o riprovare.",
         "seed": "Seme",
         "checksum": "Codice di verifica",
         "back": "INDIETRO",
@@ -40,12 +40,12 @@
         "continue": "Continua",
         "enable": "Abilita",
         "disable": "Disabilita",
-        "enabled": "Enabled",
-        "disabled": "Disabled",
-        "manualCopy": "Write seed down",
-        "paperWallet": "Print paper copy",
-        "addToPasswordManager": "Add to password manager",
-        "shareSeed": "Share seed",
+        "enabled": "Abilitato",
+        "disabled": "Disabilitato",
+        "manualCopy": "Annota il seme",
+        "paperWallet": "Stampa copia cartacea",
+        "addToPasswordManager": "Aggiungi al gestore di password",
+        "shareSeed": "Condividi il seme",
         "proceed": "Procedi",
         "qr": "QR",
         "notAvailable": "Questa funzione non è disponibile",
@@ -63,7 +63,7 @@
         "yesLowerCase": "Sì",
         "noLowerCase": "No",
         "okay": "OK",
-        "okayLowercase": "Okay",
+        "okayLowercase": "Va bene",
         "password": "Password",
         "passwordOrFingerprint": "Password o impronta digitale",
         "unrecognisedPassword": "Password non riconosciuta",
@@ -95,7 +95,7 @@
         "pressBackAgain": "Premi di nuovo Indietro per chiudere la app",
         "reattached": "Transazione riattaccata con successo",
         "reattachedExplanation": "Transazione con hash {{hash}} riattaccata",
-        "promotingTransaction": "Promoting transaction",
+        "promotingTransaction": "Promozione della transazione",
         "autopromoting": "Promozione automatica del trasferimento",
         "autopromotingExplanation": "Promozione della transazione con hash {{hash}}",
         "rebroadcasted": "Transazione ritrasmessa con successo",
@@ -148,10 +148,10 @@
         "androidCopyPasteWarning": "Mai copiare/incollare il vostro seme su un dispositivo Android.",
         "willNotCopyPasteSeed": "Non farò copia/incolla del mio seme",
         "mustBeStoredAppropriately": "Deve essere memorizzato in modo appropriato.",
-        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while",
-        "isYourBalanceCorrect": "Is your balance correct?",
-        "ifYourBalanceIsNotCorrect": "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
-        "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition."
+        "deviceMayBecomeUnresponsive": "Il dispositivo potrebbe non rispondere per un po'",
+        "isYourBalanceCorrect": "Il tuo saldo è corretto?",
+        "ifYourBalanceIsNotCorrect": "Se il saldo non è corretto, è probabile che si sta utilizzando un seme pre-snapshot.",
+        "headToAdvancedSettingsForTransition": "Vai su Impostazioni Avanzate ed esegui Passaggio dopo uno snapshot."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
@@ -491,9 +491,9 @@
         "manualSync": "Sincronizzazione manuale",
         "snapshotTransition": "Passaggio dopo uno snapshot",
         "pow": "Prova di lavoro",
-        "autoPromotion": "Auto-promotion",
-        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
-        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
+        "autoPromotion": "Auto-Promozione",
+        "autoPromotionExplanation": "Auto-promozione contribuisce a confermare le transazioni sul Tangle. Abilitare questa impostazione se si hanno difficoltà a ottenere la conferma delle tue transazioni.",
+        "autoPromotionPoW": "Auto-promozione è possibile solo su nodi che supportano la prova di lavoro remota."
     },
     "advancedThemeCustomisation": {
         "background": "Sfondo",
@@ -663,10 +663,10 @@
     },
     "terms": {
         "termsAndConditions": "Termini e condizioni",
-        "accept": "I accept"
+        "accept": "Accetto"
     },
     "privacyPolicy": {
-        "privacyPolicy": "Privacy Policy",
-        "agree": "I agree"
+        "privacyPolicy": "Informativa Privacy",
+        "agree": "Concordo"
     }
 }
