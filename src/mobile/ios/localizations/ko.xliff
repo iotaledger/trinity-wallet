@@ -71,7 +71,10 @@
       <trans-unit id="NSHumanReadableCopyright">
         <source>2018 IOTA Foundation. All rights reserved.</source>
         <note>Copyright (human-readable)</note>
-        <target xml:lang="ko" state="translated">2018 IOTA 재단. 모든 권리 보유.</target>
+        <target xml:lang="ko" state="translated">2018 IOTA 재단. 이 앱에 대한 모든 권리는 재단 측에서 보유합니다.</target>
+        <alt-trans>
+          <target xml:lang="ko">2018 IOTA 재단. 모든 권리 보유.</target>
+        </alt-trans>
       </trans-unit>
       <trans-unit id="NSLocationWhenInUseUsageDescription">
         <source>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</source>

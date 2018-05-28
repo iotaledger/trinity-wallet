@@ -4,7 +4,7 @@
         "cancel": "रद्द",
         "continue?": "क्या तुम वाकई जारी रखना चाहते हो?",
         "noTransactions": "कोई लेने दें विवरण नहीं मिला",
-        "refresh": "रीफ़्रेश करें",
+        "refresh": "Refresh",
         "balanceError": "अपर्याप्त बैलेंस",
         "balanceErrorMessage": "आपके पास प्रर्याप्त IOTA नहीं है इस ट्रान्सेक्शन के लिए.",
         "transferError": "स्थानांतरण त्रुटि",
@@ -16,25 +16,37 @@
         "keyReuse": "Sending to spent address",
         "keyReuseError": "आप उस पते पर नहीं भेज सकते हैं जो पहले से ही खर्च किया गया है",
         "invalidResponse": "Node error",
-        "invalidResponseExplanation": "The node returned an error. Check the notifications for more information.",
-        "invalidResponsePollingExplanation": "The node returned an error while polling. Check the notifications for more information.",
-        "invalidResponseFetchingAccount": "The node returned an error while fetching your account information. Try changing your node or check the notifications for more information.",
-        "invalidResponseSendingTransfer": "The node returned an error while sending the transfer. Check the notifications for more information.",
+        "invalidResponseExplanation": "The node returned an error. Try changing node.",
+        "invalidResponsePollingExplanation": "The node returned an error while polling. Try changing node.",
+        "invalidResponseFetchingAccount": "The node returned an error while fetching your account information. Try changing node.",
+        "invalidResponseSendingTransfer": "The node returned an error while sending the transfer. Try changing node.",
+        "nodeOutOfSync": "Node out of sync",
+        "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
+        "thisNodeOutOfSync": "This node is out of sync. Please change node or try again.",
         "seed": "सीड",
+        "checksum": "चेकसम",
         "back": "वापस",
+        "goBack": "Go back",
+        "goBackStep": "Go back a step",
         "backLowercase": "वापस जाएँ।",
         "done": "संपन्न",
         "doneLowercase": "हो गया",
+        "prev": "PREV",
         "next": "आगे बढ़े",
+        "nextLowerCase": "Next",
         "apply": "लागू करें",
         "save": "सेव करें",
-        "close": "बंद करे",
+        "close": "Close",
         "continue": "जारी रखें",
         "enable": "Enable",
         "disable": "Disable",
-        "manualCopy": "सीड नीचे लिखें",
-        "paperWallet": "काग़ज़ की प्रतिलिपि मुद्रित करें",
-        "copyToClipboard": "पासवर्ड मैनेजर में जोड़े",
+        "enabled": "Enabled",
+        "disabled": "Disabled",
+        "manualCopy": "Write seed down",
+        "paperWallet": "Print paper copy",
+        "addToPasswordManager": "Add to password manager",
+        "shareSeed": "Share seed",
+        "proceed": "Proceed",
         "qr": "QR",
         "notAvailable": "यह फ़ंक्शन उपलब्ध नहीं है",
         "notAvailableExplanation": "इसे बाद के चरण में जोड़ा जाएगा ।",
@@ -48,7 +60,10 @@
         "otherWallet": "अन्य अकॉउंट",
         "yes": "हाँ",
         "no": "नहीं",
+        "yesLowerCase": "Yes",
+        "noLowerCase": "No",
         "okay": "OKAY",
+        "okayLowercase": "Okay",
         "password": "पासवर्ड",
         "passwordOrFingerprint": "पासवर्ड या अंगूठे का चिन्ह",
         "unrecognisedPassword": "पासवर्ड मेल नहीं खाया",
@@ -80,6 +95,7 @@
         "pressBackAgain": "एप बंद करने के लिए वापस फिर से दबाएं",
         "reattached": "Successfully reattached transaction",
         "reattachedExplanation": "Reattached transaction with hash {{hash}}",
+        "promotingTransaction": "Promoting transaction",
         "autopromoting": "ऑटोप्रोमोटिंग ट्रांसफर",
         "autopromotingExplanation": "हैश {{hash}} ट्रांजेक्शन को प्रमोट कर रहे है",
         "rebroadcasted": "Successfully rebroadcasted transaction",
@@ -101,14 +117,15 @@
         "pleaseWaitEllipses": "Please wait...",
         "pleaseWaitExplanation": "ट्रिनिटी एक और काम कर रहा है । कृपया प्रतीक्षा करें और पुन: प्रयास करे ।",
         "pleaseWaitTransferExplanation": "आपका उपलब्ध बैलेंस वर्तमान में अंय स्थानांतरण में उपयोग किया जा रहा है । पुन: प्रयास करने से पहले पुष्टि करने के लिए कृपया प्रतीक्षा करें ।",
+        "pleaseWaitIncomingTransferExplanation": "You have incoming transfers. Please wait for them to confirm before trying again.",
         "snapshotTransitionInProgress": "स्नैपशॉट प्रगति में",
         "snapshotTransitionInProgressExplanation": "इस प्रक्रिया के पूर्ण होने तक कृपया प्रतीक्षा करें ।",
         "checkForUpdates": "Check for Updates",
         "account": "Account",
         "enterPasswordToAccessSettings": "Enter your password to access account settings",
         "enterYourPassword": "Enter your password",
-        "changeNode": "Change node",
-        "addCustomNode": "Add custom node",
+        "changeNode": "Change Node",
+        "addCustomNode": "Add Custom Node",
         "nodeChanged": "Node changed",
         "nodeChangedExplanation": "The node has been changed successfully.",
         "nodeMustUseHTTPS": "Invalid node (non HTTPS)",
@@ -124,7 +141,17 @@
         "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available.",
         "clear": "CLEAR",
         "noNetworkConnection": "No network connection",
-        "noNetworkConnectionExplanation": "Your internet connection appears to be offline."
+        "noNetworkConnectionExplanation": "Your internet connection appears to be offline.",
+        "spentAddressExplanation": "WARNING: Funds on spent addresses",
+        "discordInformation": "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do.",
+        "androidInsecureClipboardWarning": "Android does not provide a secure clipboard.",
+        "androidCopyPasteWarning": "Never copy/paste your seed on an Android device.",
+        "willNotCopyPasteSeed": "I will not copy/paste my seed",
+        "mustBeStoredAppropriately": "It must be stored appropriately.",
+        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while",
+        "isYourBalanceCorrect": "Is your balance correct?",
+        "ifYourBalanceIsNotCorrect": "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
+        "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "सीड में अवैध वर्ण हैं।",
@@ -156,7 +183,22 @@
         "ensureStrongPassword": "सुनिश्चित करें कि आप एक मजबूत पासवर्ड का उपयोग करे, जिसमे कम से कम 12 वर्ण हो ।",
         "currentPassword": "वर्तमान पासवर्ड",
         "newPassword": "नया पासवर्ड",
-        "confirmPassword": "नए पासवर्ड की पुष्टि करें"
+        "confirmPassword": "नए पासवर्ड की पुष्टि करें",
+        "passwordTooWeak": "Password too weak",
+        "passwordTooWeakReason": "Your password is too weak. Use a combination of words, and avoid common phrases, names or dates",
+        "reasonRow": "Straight rows of keys are easy to guess",
+        "reasonPattern": "Short patterns of keys are easy to guess",
+        "reasonNames": "Common names and surnames are easy to guess",
+        "reasonRepeats": "Repeats like 'aaa' are easy to guess",
+        "reasonRepeats2": "Repeats like 'abcabcabc' are only slightly harder to guess than 'abc'",
+        "reasonSequence": "Sequences like abc or 54321 are easy to guess",
+        "reasonYears": "Recent years are easy to guess",
+        "reasonDates": "Dates are often easy to guess",
+        "reasonTop10": "This is a top 10 common password",
+        "reasonTop100": "This is a top 100 common password",
+        "reasonCommon": "This is a very common password",
+        "reasonSimilar": "This is similar to a commonly-used password",
+        "reasonWord": "A single word is easy to guess"
     },
     "copyToClipboard": {
         "seedCleared": "सीड हटाया गया",
@@ -164,8 +206,9 @@
         "seedCopied": "क्लिपबोर्ड पर प्रतिलिपि बनाई गई",
         "seedCopiedExplanation": "\"सम्पन्न\" को दबाने के 60 सेकंड बाद सीड स्वतः मिट जायेगा ।",
         "clickToCopy": "नीचे बटन पर क्लिक करें और एक पासवर्ड मैनेजर को अपने सीड की कॉपी करे।",
+        "clickToSecurelyShare": "Click the button below to securely share your seed to a password manager.",
         "doNotStore": "अपने सीड को सीधे शब्दों में संग्रहीत न करें",
-        "copyToClipboard": "सीड कॉपी करे",
+        "copyToClipboard": "Copy Seed",
         "shareSeed": "अपने सीड को एक सुरक्षित पासवर्ड मैनेजर में साझा करें",
         "storeEncrypted": "Store your seed encrypted in a password manager.",
         "doNotOpen": "Do not open any other apps during this process.",
@@ -173,7 +216,8 @@
         "passwordManagerCheckbox": "I will store my seed in a password manager",
         "copy": "COPY",
         "noPasswordManagers": "No supported password managers installed",
-        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android."
+        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android.",
+        "followTutorialToSecurelyShareSeed": "If you wish to store your seed in a password manager, you must follow a tutorial from the following link"
     },
     "enterSeed": {
         "invalidCharacters": "सीड में अवैध वर्ण हैं।",
@@ -191,16 +235,17 @@
         "settings": "सेटिंग्स"
     },
     "languageSetup": {
-        "language": "भाषा "
+        "language": "भाषा ",
+        "letsGetStarted": "Let's get started"
     },
     "login": {
         "emptyPassword": "खाली पासवर्ड",
         "emptyPasswordExplanation": "लॉग इन करने के लिए आपको एक पासवर्ड दर्ज करना होगा। कृपया फिर से प्रयास करें |",
         "enterPassword": "कृपया अपना पासवर्ड डालें",
         "useSeed": "बीज का प्रयोग करे",
-        "login": "लॉग इन करें",
+        "login": "Log In",
         "selectDifferentNode": "क्या आप एक अलग नोड का चयन करना चाहते हैं?",
-        "setNode": "नोड सेट करें",
+        "setNode": "Set Node",
         "cannotConnect": "IOTA नोड से कनेक्ट नहीं कर सकता ।"
     },
     "loading": {
@@ -211,14 +256,18 @@
         "takingAWhile": "This seems to be taking a while"
     },
     "newSeedSetup": {
+        "generatedSeed": "Generated seed",
         "seedNotGenerated": "सीड जेनेरेट नहीं हुआ है",
         "seedNotGeneratedExplanation": "कृपया एक नया सीड जेनेरेट करें ।",
-        "pressForNewSeed": "नए सीड के लिए प्रेस करे",
+        "pressForNewSeed": "Press for New Seed",
         "generateSuccess": "Seed generated successfully",
         "individualLetters": "अलग अलग लेटर को दबाये, ताकि आपका सीड अद्वितीय बन सके",
+        "individualLetterCount": "Press {{letterCount}} more individual letters to randomise them.",
         "whatIsASeed": "What is a seed?"
     },
     "onboardingComplete": {
+        "allDone": "All Done!",
+        "openYourWallet": "Open your wallet",
         "walletReady": "वॉलेट अब सेट है और उपयोग करने के लिए तैयार है । यदि आप भविष्य में कोई परिवर्तन करने की जरूरत है, सेटिंग्स मेनू में देखो ।"
     },
     "paperWallet": {
@@ -226,7 +275,7 @@
         "storeSafely": "इसे सुरक्षित रूप से संग्रहीत करे।",
         "neverShare": "कभी किसी के साथ अपने सीड का साझा न करे ।",
         "iotaLogo": "IOTA लोगो",
-        "printWallet": "पेपर वॉलेट प्रिंट करे|",
+        "printWallet": "Print Paper Wallet",
         "print": "PRINT",
         "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
         "publicInsecure": "But printing on public wifi or a public printer is insecure.",
@@ -235,22 +284,43 @@
         "printerCheckbox": "I will not print on a public printer"
     },
     "receive": {
+        "copyAddress": "Copy address",
         "addressCopied": "पता प्रतिलिपि बनाई गई",
         "addressCopiedExplanation": "आपका पता क्लिपबोर्ड पर कॉपी किया गया है।",
-        "generateNewAddress": "नया पता",
+        "generateNewAddress": "New Address",
         "message": "वैकल्पिक संदेश",
         "removeMessage": "संदेश हटाए",
         "noAddresses": "कोई पता नहीं",
         "spent": "खर्च"
     },
     "saveYourSeed": {
+        "saveYourSeed": "Back up your seed",
+        "seedCleared": "Seed cleared",
+        "mostSecure": "Most Secure",
+        "leastSecure": "Least Secure",
+        "paperWallet": "Paper Wallet",
+        "writeYourSeedDown": "Write your seed down",
+        "printYourSeed": "Print your seed",
+        "digitalCopy": "Digital copy",
+        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
+        "iHaveBackedUpMySeed": "मैंने अपना सीड सहेज लिया है",
+        "letsWriteDownYourSeed": "Lets write down your seed",
+        "youCanHighlightCharacters": "You can highlight 9 characters at a time",
+        "printBlankWallet": "Print a blank wallet",
+        "whatIsCheksum": "Every seed has a corresponding 3 character checksum",
+        "iHavesavedMySeed": "I've saved my seed",
+        "checksumExplanation": "Whenever you add a seed to your wallet, you should ensure that the wallet-generated checksum matches the one you have written down.",
         "mustSaveYourSeed": "<0> <0> आपको </0> <1> के साथ अपने सीड को नीचे सूचीबद्ध विकल्पों में से कम एक </1> <2> से बचाना होगा । </2> </0>"
     },
     "seedReentry": {
+        "pleaseConfirmYourSeed": "Please confirm your seed",
+        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or the app.",
+        "enterYourSeed": "Enter your seed",
         "incorrectSeed": "गलत सीड",
         "incorrectSeedExplanation": "आपके द्वारा दर्ज किया गया सीड गलत है । कृपया पुन: प्रयास करें ।",
         "thisIsACheck": "यह सुनिश्चित करने के लिए यह एक जांच है कि आपने अपना बीज सहेजा है",
-        "ifYouHaveNotSaved": "यदि आप अपने सीड कहीं नहीं सहेजा है, कृपया वापस जाओ और सीड को सहेज लो।"
+        "ifYouHaveNotSaved": "यदि आप अपने सीड कहीं नहीं सहेजा है, कृपया वापस जाओ और सीड को सहेज लो।",
+        "enterSeedBelow": "Enter your newly created seed below to confirm you have backed it up correctly"
     },
     "send": {
         "invalidAddress": "अवैध पता",
@@ -270,15 +340,18 @@
         "invalidMessageExplanation": "एड्रेस में अवैध वर्ण हैं।",
         "invalidMessageTooLong": "Message too long",
         "invalidMessageTooLongExplanation": "The message exceeds the max. amount of characters (1093).",
-        "send": "भेजे",
+        "send": "भेजें",
         "invalidAmount": "गलत राशि दर्ज की गई",
         "invalidAmountExplanation": "कृपया कोई मान्य हस्तांतरण राशि दर्ज करें । यह इस पृष्ठ के तल पर IOTA इकाई विवरण देखने के लिए सहायक हो सकता है ।",
         "maximumSelected": "अधिकतम चयनित राशि",
         "iotaUnits": "IOTA इकाइयों को समझाया गया है",
         "sendMax": "अधिकतम भेजें",
-        "totalTime": "Total time"
+        "totalTime": "Total time",
+        "addressPasteDetected": "Address paste detected",
+        "addressPasteExplanation": "It looks like you are about to paste an address. Make sure that the pasted address matches the one you want to send to."
     },
     "setPassword": {
+        "choosePassword": "Choose a new password",
         "passwordTooShort": "पासवर्ड बहुत छोटा है",
         "passwordTooShortExplanation": "आपका पासवर्ड कम से कम {{minLength}} वर्ण होना चाहिए। यह वर्तमान में {{currentLength}} वर्ण लंबा है कृपया पुन: प्रयास करें।",
         "passwordMismatch": "पासवर्ड्स समान नहीं हैं",
@@ -289,6 +362,7 @@
         "retypePassword": "पासवर्ड पुन: लिखें"
     },
     "setSeedName": {
+        "letsAddName": "Let's add a name",
         "canUseMultipleSeeds": "आप इस वॉलेट के साथ कई सीड का उपयोग कर सकते हैं । प्रत्येक सीड को खाता नाम की आवश्यकता है ।",
         "youCanAdd": "आप सेटिंग मेनू में और सीड अधिक जोड़ सकते हैं ।"
     },
@@ -314,7 +388,6 @@
         "twoFA": "Two-factor authentication",
         "changePassword": "पासवर्ड परिवर्तित करें",
         "advanced": "उच्च सेटिंग्स",
-        "about": "About",
         "logout": "लॉग आउट",
         "reset": "वॉलेट रिसेट",
         "syncingComplete": "सिंकिंग पूर्ण",
@@ -356,13 +429,17 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "इस खाते को हटाने के लिए अपना पासवर्ड दर्ज करें ।",
-        "cancel": "रद्द",
+        "cancel": "Cancel",
         "reset": "रीसेट"
     },
     "walletSetup": {
+        "creatingSeed": "Creating a seed",
         "okay": "चलो अपने वॉलेट को सेट करे!",
         "doYouAlreadyHaveASeed": "क्या आपके पास पहले से एक सीड है जिसे आप उपयोग करना चाहते हैं?",
+        "doYouNeedASeed": "Do you need to create a new seed?",
         "seedExplanation": "IOTA सीड आपके खाते में यूज़रनेम और पासवर्ड की तरह है, जो 81 अक्षरों में से एक शब्द में मिला है।",
+        "noIHaveOne": "No, I have one",
+        "yesINeedASeed": "Yes, I need a seed",
         "explanation": "<0> <0> आप इसका उपयोग </0> <1> किसी भी वॉलेट </1> <2>, पर </2> <3> किसी भी डिवाइस </3> <4> से अपने फण्ड तक पहुंचने के लिए कर सकते हैं । लेकिन अगर आप अपना सीड खो देते हैं तो आप भी अपना IOTA खो देते हैं । </4> </0>",
         "keepSafe": "कृपया अपने सीड को सुरक्षित रखें",
         "hint": "<0><0>Hint:</0> Click NO if this is your first time using IOTA.</0>"
@@ -413,7 +490,10 @@
         "addCustomNode": "कस्टम नोड जोड़ें",
         "manualSync": "मैन्युअल सिंक",
         "snapshotTransition": "स्नैपशॉट",
-        "pow": "Proof of Work"
+        "pow": "Proof of Work",
+        "autoPromotion": "Auto-promotion",
+        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
+        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
     },
     "advancedThemeCustomisation": {
         "background": "बैकग्राउंड",
@@ -455,7 +535,7 @@
         "pressToSync": "अपना खाता सिंक करने के लिए नीचे दिए बटन को दबाएं ।",
         "thisMayTake": "इसमें कुछ समय लग सकता है । आप अपने डिवाइस धीमा देख सकते हैं ।",
         "doNotClose": "कृपया ध्यान दें, ऐप को मिनिमाइज से सिंक रद्द हो जाएगा।",
-        "syncAccount": "सिंक खाता",
+        "syncAccount": "Sync Account",
         "syncingYourAccount": "अपना खाता सिंक्रनाइज़ कर रहा है ।"
     },
     "useExistingSeed": {
@@ -465,13 +545,15 @@
     },
     "viewSeed": {
         "enterPassword": "अपना सीड देखने के लिए पासवर्ड दर्ज करें ।",
-        "viewSeed": "सीड देखें",
-        "hideSeed": "सीड छुपाएं"
+        "viewSeed": "View Seed",
+        "hideSeed": "Hide Seed"
     },
     "saveSeedConfirmation": {
+        "didSaveSeed": "Did you back up your seed?",
         "alreadyHave": "मैंने अपना सीड सहेज लिया है",
-        "reenter": "अब फिर से अपना सीड डालने के लिए कहा जाएगा ।",
-        "reenterWarning": "यदि आपका डिवाइस विफल रहता है और आपने अपना सीड नहीं सहेजा है, तो आप अपना IOTA खो देंगे ।"
+        "reenterSeed": "At the next step you will be asked to re-enter your seed.",
+        "reenterSeedWarning": "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
+        "pleaseConfirm": "Please confirm you have securely stored your seed."
     },
     "walletResetConfirmation": {
         "cannotUndo": "यह क्रिया पूर्ववत् नहीं की जा सकती ।",
@@ -487,8 +569,6 @@
         "fingerprintAuthFailed": "Biometric authentication failed",
         "fingerprintAuthFailedExplanation": "फ़िंगरप्रिंट प्रमाणन विफल हुआ । कृपया पुन: प्रयास करें ।",
         "status": "स्टेटस",
-        "enabled": "चालू करे",
-        "disabled": "बंद करे",
         "fingerprintUnavailable": "Biometric authentication unavailable",
         "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "फ़िंगरप्रिंट प्रमाणीकरण को बंद करने के लिए नीचे बटन दबाएँ.",
@@ -541,6 +621,7 @@
         "noWebGLSupportExplanation": "Your computer does not support WebGL. Please use remote PoW."
     },
     "progressSteps": {
+        "checkingNodeHealth": "Checking node health",
         "validatingReceiveAddress": "प्राप्त पता की जाँच कर रहे है",
         "syncingAccount": "खाता सिंकिंग",
         "preparingInputs": "इनपुट की तैयारी",
@@ -558,10 +639,10 @@
         "isThisCorrect": "Is this correct?",
         "snapshotExplanation": "Every so often, a snapshot is performed to prune the size of the Tangle.",
         "hasSnapshotTakenPlace": "Has a snapshot taken place? Press the button below to transition.",
-        "transition": "TRANSITION",
+        "transition": "Transition",
         "transitioning": "Transitioning for the snapshot.",
         "generatingAndDetecting": "Generating addresses and detecting balance.",
-        "attaching": "Attaching addresses to Tangle"
+        "attaching": "Attaching addresses to Tangle."
     },
     "deepLink": {
         "autofill": "Autofill success",
@@ -579,5 +660,13 @@
     },
     "notificationLog": {
         "errorLog": "ERROR LOG"
+    },
+    "terms": {
+        "termsAndConditions": "Terms & Conditions",
+        "accept": "I accept"
+    },
+    "privacyPolicy": {
+        "privacyPolicy": "Privacy Policy",
+        "agree": "I agree"
     }
 }
