@@ -105,7 +105,7 @@
         "promoted": "Successfully promoted transaction",
         "promotedExplanation": "Promoted transaction with hash {{hash}}",
         "autopromotionError": "Could not auto-promote transaction",
-        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node.",
+        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
         "promotionError": "Could not promote transaction",
         "promotionErrorExplanation": "Terjadi kesalahan saat memajukan transaksi. Silakan coba lagi.",
         "noLongerValid": "Bundel yang anda coba untuk dimajukan sudah tidak berlaku",
@@ -348,7 +348,7 @@
         "sendMax": "KIRIM MAKS",
         "totalTime": "Total time",
         "addressPasteDetected": "Address paste detected",
-        "addressPasteExplanation": "It looks like you are about to paste an address. Make sure that the pasted address matches the one you want to send to."
+        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
     },
     "setPassword": {
         "choosePassword": "Choose a new password",
@@ -619,6 +619,10 @@
         "powUpdatedExplanation": "Konfigurasi Proof of Work anda telah diperbarui.",
         "noWebGLSupport": "WebGL tidak didukung",
         "noWebGLSupportExplanation": "Komputer anda tidak mendukung WebGL. Silahkan menggunakan Pow jarak jauh."
+    },
+    "autoPromotion": {
+        "autoPromotionUpdated": "Auto-promotion settings",
+        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
     },
     "progressSteps": {
         "checkingNodeHealth": "Checking node health",

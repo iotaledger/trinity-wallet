@@ -105,7 +105,7 @@
         "promoted": "Transação promovida com sucesso",
         "promotedExplanation": "Promoveu transação com hash {{hash}}",
         "autopromotionError": "Não foi possível promover transação automaticamente",
-        "autopromotionErrorExplanation": "Prova de Trabalho Remoto não está disponível no servidor selecionado. Por favor, mude o servidor.",
+        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
         "promotionError": "Não foi possível promover transação",
         "promotionErrorExplanation": "Algo deu errado ao criar sua transferência. Por favor, tente novamente.",
         "noLongerValid": "O pacote que você está tentando criar não é mais válido",
@@ -348,7 +348,7 @@
         "sendMax": "ENVIAR O MÁXIMO",
         "totalTime": "Tempo total",
         "addressPasteDetected": "Address paste detected",
-        "addressPasteExplanation": "It looks like you are about to paste an address. Make sure that the pasted address matches the one you want to send to."
+        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
     },
     "setPassword": {
         "choosePassword": "Choose a new password",
@@ -619,6 +619,10 @@
         "powUpdatedExplanation": "Suas configurações de Prova de Trabalho foram atualizadas.",
         "noWebGLSupport": "WebGL não suportado",
         "noWebGLSupportExplanation": "Seu computador não suporta WebGL. Por favor, use PoW remoto."
+    },
+    "autoPromotion": {
+        "autoPromotionUpdated": "Auto-promotion settings",
+        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
     },
     "progressSteps": {
         "checkingNodeHealth": "Checking node health",

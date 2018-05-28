@@ -105,7 +105,7 @@
         "promoted": "取引は正常に促進されました。",
         "promotedExplanation": "ハッシュ値{{hash}}の取引が促進されました。",
         "autopromotionError": "取引の自動促進ができませんでした。",
-        "autopromotionErrorExplanation": "選択しているノードではリモートによるプルーフ・オブ・ワークが利用できません。ノードを変更してください。",
+        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
         "promotionError": "取引を促進できませんでした。",
         "promotionErrorExplanation": "取引を促進中に不具合が発生しました。もう一度やり直してください。",
         "noLongerValid": "促進しようとしているバンドルは無効です。",
@@ -348,7 +348,7 @@
         "sendMax": "全額送金",
         "totalTime": "合計時間",
         "addressPasteDetected": "アドレスのペーストを検出",
-        "addressPasteExplanation": "アドレスをペーストしようとしています。ペーストするアドレスと送金先のアドレスが一致していることを確認してください。"
+        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
     },
     "setPassword": {
         "choosePassword": "新しいパスワードを選択",
@@ -602,7 +602,7 @@
         "mcap": "時価総額",
         "change": "変化率",
         "volume": "取引量(24h)",
-        "currentValue": "現在の価値"
+        "currentValue": "現在の価格"
     },
     "rootDetection": {
         "warning": "警告",
@@ -619,6 +619,10 @@
         "powUpdatedExplanation": "プルーフ・オブ・ワークの設定を更新しました。",
         "noWebGLSupport": "WebGLがサポートされていません。",
         "noWebGLSupportExplanation": "お使いのコンピューターは WebGLをサポートしていません。リモートのプルーフ・オブ・ワークをご利用ください。"
+    },
+    "autoPromotion": {
+        "autoPromotionUpdated": "Auto-promotion settings",
+        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
     },
     "progressSteps": {
         "checkingNodeHealth": "ノードの健全さをチェック中",
@@ -663,7 +667,7 @@
     },
     "terms": {
         "termsAndConditions": "利用規約",
-        "accept": "I accept"
+        "accept": "承諾する"
     },
     "privacyPolicy": {
         "privacyPolicy": "プライバシーポリシー",

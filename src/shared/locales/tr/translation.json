@@ -105,7 +105,7 @@
         "promoted": "İşlem başarıyla teşvik edildi",
         "promotedExplanation": "İşlem doğrulama bilgisi {{hash}} ile teşvik edildi",
         "autopromotionError": "Could not auto-promote transaction",
-        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node.",
+        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
         "promotionError": "İşlem teşvik edilemedi",
         "promotionErrorExplanation": "İşleminiz gönderilirken bir hata ile karşılaşıldı. Lütfen tekrar deneyin.",
         "noLongerValid": "Göndermeye çalıştığınız paket artık geçerli değil",
@@ -348,7 +348,7 @@
         "sendMax": "TÜMÜNÜ GÖNDER",
         "totalTime": "Toplam zaman",
         "addressPasteDetected": "Address paste detected",
-        "addressPasteExplanation": "It looks like you are about to paste an address. Make sure that the pasted address matches the one you want to send to."
+        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
     },
     "setPassword": {
         "choosePassword": "Choose a new password",
@@ -619,6 +619,10 @@
         "powUpdatedExplanation": "İş kanıtı yapılandırması güncellendi.",
         "noWebGLSupport": "WebGL desteklenmiyor",
         "noWebGLSupportExplanation": "Bilgisayarınız WebGL desteklemiyor. Lütfen uzaktan PoW kullanın."
+    },
+    "autoPromotion": {
+        "autoPromotionUpdated": "Auto-promotion settings",
+        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
     },
     "progressSteps": {
         "checkingNodeHealth": "Checking node health",
