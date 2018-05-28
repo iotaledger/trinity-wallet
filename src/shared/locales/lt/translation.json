@@ -150,8 +150,8 @@
         "mustBeStoredAppropriately": "Jis privalo būti tinkamai laikomas.",
         "deviceMayBecomeUnresponsive": "Jūsų įrenginys kurį laiką gali neatsakyti į užklausas",
         "isYourBalanceCorrect": "Ar jūsų balansas teisingas?",
-        "ifYourBalanceIsNotCorrect": "Jeigu jūsų balansas neteisingas, tikriausiai jūs naudojate užraktą, kuris nebuvo perkeltas tinklo duomenų perkėlimo metu.",
-        "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition."
+        "ifYourBalanceIsNotCorrect": "Jeigu jūsų balansas neteisingas, tikriausiai jūsų naudojamas užraktas nėra perkeltas įvykus viso tinklo duomenų perkėlimui.",
+        "headToAdvancedSettingsForTransition": "Eikite į išplėstinius parametrus ir atlikite tinklo duomenų perkėlimą."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Užraktas turi neleistinų simbolių",
@@ -348,7 +348,7 @@
         "sendMax": "SIŲSTI MAKS.",
         "totalTime": "Bendras laikas",
         "addressPasteDetected": "Aptiktas adreso įklijavimas",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
+        "addressPasteExplanation": "Atrodo, kad jūs įklijavote adresą. Įsitikinkite, kad adresas tikrai sutampa su gavėjo adresu."
     },
     "setPassword": {
         "choosePassword": "Sukurti naują slaptažodį",
@@ -621,8 +621,8 @@
         "noWebGLSupportExplanation": "Jūsų kompiuteris nepalaiko WebGL. Prašome naudoti nuotolinį PoW."
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Auto-promotion settings",
-        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
+        "autoPromotionUpdated": "Automatinio iškėlimo nustatymai",
+        "autoPromotionUpdatedExplanation": "Jūsų automatinio iškėlimo konfigūracija atnaujinta."
     },
     "progressSteps": {
         "checkingNodeHealth": "Tikrinama serverio būklė",
