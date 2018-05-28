@@ -4,7 +4,12 @@ import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { connect } from 'react-redux';
-import { increaseSeedCount, addAccountName, setOnboardingComplete } from 'iota-wallet-shared-modules/actions/accounts';
+import {
+    increaseSeedCount,
+    addAccountName,
+    setOnboardingComplete,
+    setBasicAccountInfo
+} from 'iota-wallet-shared-modules/actions/accounts';
 import { clearWalletData, clearSeed, setPassword } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import CustomTextInput from '../components/CustomTextInput';
@@ -108,6 +113,12 @@ class SetPassword extends Component {
         /** Theme settings */
         theme: PropTypes.object.isRequired,
         accountName: PropTypes.string.isRequired,
+        /** Set basic account information
+         * @param {object} accountInfo
+         */
+        setBasicAccountInfo: PropTypes.func.isRequired,
+        /** Determines if a user used an existing seed or generated a seed using wallet */
+        usedExistingSeed: PropTypes.bool.isRequired
     };
 
     constructor() {
@@ -119,12 +130,20 @@ class SetPassword extends Component {
     }
 
     onDonePress() {
-        const { theme: { body } } = this.props;
+        const { theme: { body }, usedExistingSeed } = this.props;
         const ifNoKeychainDuplicates = (pwdHash, seed, accountName) => {
             storeSeedInKeychain(pwdHash, seed, accountName)
                 .then(() => {
                     this.props.setPassword(pwdHash);
                     this.props.addAccountName(accountName);
+
+                    // Set basic account info
+                    this.props.setBasicAccountInfo({
+                       accountName,
+                       usedExistingSeed,
+                       hasDisplayedTransitionModal: false
+                    });
+
                     this.props.increaseSeedCount();
                     this.props.clearWalletData();
                     this.props.clearSeed();
@@ -301,6 +320,7 @@ class SetPassword extends Component {
 const mapStateToProps = (state) => ({
     seed: state.wallet.seed,
     accountName: state.wallet.accountName,
+    usedExistingSeed: state.wallet.usedExistingSeed,
     theme: state.settings.theme,
 });
 
@@ -312,6 +332,7 @@ const mapDispatchToProps = {
     addAccountName,
     generateAlert,
     setPassword,
+    setBasicAccountInfo
 };
 
 export default translate(['setPassword', 'global', 'addAdditionalSeed'])(
