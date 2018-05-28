@@ -39,6 +39,8 @@ export const ActionTypes = {
     ACCOUNT_INFO_FETCH_ERROR: 'IOTA/ACCOUNTS/ACCOUNT_INFO_FETCH_ERROR',
     SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION: 'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION',
     SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST: 'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST',
+    SET_BASIC_ACCOUNT_INFO: 'IOTA/ACCOUNTS/SET_BASIC_ACCOUNT_INFO',
+    MARK_TASK_AS_DONE: 'IOTA/ACCOUNTS/MARK_TASK_AS_DONE',
 };
 
 export const syncAccountBeforeManualPromotion = (payload) => ({
@@ -170,6 +172,16 @@ export const accountInfoFetchError = () => ({
     type: ActionTypes.ACCOUNT_INFO_FETCH_ERROR,
 });
 
+export const setBasicAccountInfo = (payload) => ({
+    type: ActionTypes.SET_BASIC_ACCOUNT_INFO,
+    payload,
+});
+
+export const markTaskAsDone = (payload) => ({
+    type: ActionTypes.MARK_TASK_AS_DONE,
+    payload,
+});
+
 export const getFullAccountInfoAdditionalSeed = (
     seed,
     accountName,
@@ -195,6 +207,7 @@ export const getFullAccountInfoAdditionalSeed = (
     dispatch(fullAccountInfoAdditionalSeedFetchRequest());
 
     const existingAccountNames = getAccountNamesFromState(getState());
+    const usedExistingSeed = getState().wallet.usedExistingSeed;
 
     getAccountData(seed, accountName, genFn)
         .then((data) => {
@@ -203,6 +216,7 @@ export const getFullAccountInfoAdditionalSeed = (
                 storeInKeychainPromise(password, seed, accountName)
                     .then(() => {
                         dispatch(setSeedIndex(existingAccountNames.length));
+                        dispatch(setBasicAccountInfo({ accountName, usedExistingSeed }));
                         dispatch(fullAccountInfoAdditionalSeedFetchSuccess(data));
                     })
                     .catch((err) => onError(err));
