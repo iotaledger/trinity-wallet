@@ -95,7 +95,7 @@
         "pressBackAgain": "Nochmal Zurück drücken, um die App zu beenden",
         "reattached": "Transaktion erneut angehangen",
         "reattachedExplanation": "Erneut angehangen mit Hash {{hash}}",
-        "promotingTransaction": "Transfer wird promotet",
+        "promotingTransaction": "Transaktion wird promotet",
         "autopromoting": "Der Transfer wird autopromoted",
         "autopromotingExplanation": "Promoten der Transaktion mit dem Hash {{hash}}",
         "rebroadcasted": "Transaktion erneut übertragen",
@@ -105,7 +105,7 @@
         "promoted": "Transaktion erfolgreich promoted",
         "promotedExplanation": "Promoten der Transaktion mit dem Hash {{hash}}",
         "autopromotionError": "Die Transaktion konnte nicht promotet werden",
-        "autopromotionErrorExplanation": "Proof of Work ist auf dem gewählten Node nicht verfügbar. Bitte ändere den Node.",
+        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
         "promotionError": "Die Transaktion konnte nicht promotet werden",
         "promotionErrorExplanation": "Beim Senden der Transaktion ist etwas schief gegangen. Bitte versuche es erneut.",
         "noLongerValid": "Das Bundle, das du promoten möchtest, ist nicht mehr gültig",
@@ -150,8 +150,8 @@
         "mustBeStoredAppropriately": "Er muss in angemessener Weise gesichert werden.",
         "deviceMayBecomeUnresponsive": "Dein Gerät könnte für eine Weile nicht reagieren",
         "isYourBalanceCorrect": "Stimmt dein Guthaben?",
-        "ifYourBalanceIsNotCorrect": "Wenn dein Guthaben nicht stimmt, verwendest du wahrscheinlich einen Seed, der eine Snapshot-Wiederherstellung benötigt.",
-        "headToAdvancedSettingsForTransition": "Wechsle zu den erweitern Einstellungen und führe eine Snapshot-Wiederherstellung aus."
+        "ifYourBalanceIsNotCorrect": "Wenn dein Guthaben nicht stimmt, verwendest du wahrscheinlich einen Seed, der einen Snapshot-Übergang benötigt.",
+        "headToAdvancedSettingsForTransition": "Wechsle zu den erweitern Einstellungen und führe einen Snapshot-Übergang aus."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
@@ -348,7 +348,7 @@
         "sendMax": "SENDE MAX",
         "totalTime": "Gesamtzeit",
         "addressPasteDetected": "Eingefügte Adresse erkannt",
-        "addressPasteExplanation": "Es sieht so aus als möchtest du eine Adresse einfügen. Stelle sicher, dass die eingefügte Adresse mit der Empfängeradresse übereinstimmt."
+        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
     },
     "setPassword": {
         "choosePassword": "Wählen Sie ein neues Passwort",
@@ -619,6 +619,10 @@
         "powUpdatedExplanation": "Deine Konfiguration des \"Proof of Work\" wurde aktualisiert.",
         "noWebGLSupport": "WebGL nicht unterstützt",
         "noWebGLSupportExplanation": "Ihr Computer unterstützt WebGL nicht. Bitte verwenden Sie remote PoW."
+    },
+    "autoPromotion": {
+        "autoPromotionUpdated": "Auto-promotion settings",
+        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
     },
     "progressSteps": {
         "checkingNodeHealth": "Überprüfe Zustand des Node",
