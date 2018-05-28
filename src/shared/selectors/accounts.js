@@ -184,8 +184,7 @@ export const getBalanceForSelectedAccount = createSelector(selectAccountInfo, (a
  **/
 export const getAvailableBalanceForSelectedAccount = createSelector(selectAccountInfo, (account) => {
     const unspentAddresses = filter(account.addresses, { spent: false });
-    const availableBalance = reduce(unspentAddresses, (res, item) => res + item.balance, 0);
-    return availableBalance;
+    return reduce(unspentAddresses, (res, item) => res + item.balance, 0);
 });
 
 /**
@@ -199,4 +198,82 @@ export const getSelectedAccountName = createSelector(
     getAccountNamesFromState,
     getSeedIndexFromState,
     (accountNames, seedIndex) => get(accountNames, seedIndex),
+);
+
+/**
+ *   Selects unconfirmedBundleTails prop from accounts reducer state object.
+ *   Uses getAccountFromState selector for slicing accounts state from the state object.
+ *
+ *   @method getUnconfirmedBundleTailsFromState
+ *   @param {object} state
+ *   @returns {object}
+ **/
+export const getSetupInfoFromAccounts = createSelector(getAccountsFromState, (state) => state.setupInfo || {});
+
+/**
+ *   Selects unconfirmedBundleTails prop from accounts reducer state object.
+ *   Uses getAccountFromState selector for slicing accounts state from the state object.
+ *
+ *   @method getUnconfirmedBundleTailsFromState
+ *   @param {object} state
+ *   @returns {object}
+ **/
+export const getTasksFromAccounts = createSelector(getAccountsFromState, (state) => state.tasks || {});
+
+/**
+ *   Selects unconfirmedBundleTails prop from accounts reducer state object.
+ *   Uses getAccountFromState selector for slicing accounts state from the state object.
+ *
+ *   @method getUnconfirmedBundleTailsFromState
+ *   @param {object} state
+ *   @returns {object}
+ **/
+export const getTasksForSelectedAccount = createSelector(
+    getSelectedAccountName,
+    getTasksFromAccounts,
+    (accountName, tasks) => get(tasks, accountName) || {},
+);
+
+/**
+ *   Selects unconfirmedBundleTails prop from accounts reducer state object.
+ *   Uses getAccountFromState selector for slicing accounts state from the state object.
+ *
+ *   @method getUnconfirmedBundleTailsFromState
+ *   @param {object} state
+ *   @returns {object}
+ **/
+export const getSetupInfoForSelectedAccount = createSelector(
+    getSelectedAccountName,
+    getSetupInfoFromAccounts,
+    (accountName, setupInfo) => get(setupInfo, accountName) || {},
+);
+
+/**
+ *   Selects account name for currently selected account.
+ *
+ *   @method getSelectedAccountName
+ *   @param {object} state
+ *   @returns {string}
+ **/
+export const shouldTransitionForSnapshot = createSelector(
+    getSetupInfoForSelectedAccount,
+    getBalanceForSelectedAccount,
+    (setupInfo, balance) => {
+        console.log('Setup info', setupInfo);
+        console.log('Balance', balance);
+
+        return get(setupInfo, 'usedExistingSeed') && balance === 0;
+    },
+);
+
+/**
+ *   Selects account name for currently selected account.
+ *
+ *   @method getSelectedAccountName
+ *   @param {object} state
+ *   @returns {string}
+ **/
+export const hasDisplayedSnapshotTransitionGuide = createSelector(
+    getTasksForSelectedAccount,
+    (tasks) => get(tasks, 'hasDisplayedTransitionGuide') || true,
 );
