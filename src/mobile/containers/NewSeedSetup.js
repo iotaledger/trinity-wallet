@@ -178,7 +178,7 @@ class NewSeedSetup extends Component {
     async onGeneratePress() {
         const { t } = this.props;
         const seed = await generateNewSeed(generateSecureRandom);
-        this.props.setSeed(seed);
+        this.props.setSeed({ seed, usedExistingSeed: false });
         this.setState({ randomised: true });
         this.props.generateAlert('success', t('generateSuccess'), t('individualLetters'));
     }
@@ -188,7 +188,7 @@ class NewSeedSetup extends Component {
         const { randomised } = this.state;
         if (randomised) {
             const updatedSeed = await randomiseSeedCharacter(seed, sectionID, generateSecureRandom);
-            this.props.setSeed(updatedSeed);
+            this.props.setSeed({ seed: updatedSeed, usedExistingSeed: false });
         }
     }
 
