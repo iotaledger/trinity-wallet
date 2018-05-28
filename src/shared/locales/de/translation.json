@@ -262,7 +262,7 @@
         "pressForNewSeed": "Drücke für neuen Seed",
         "generateSuccess": "Seed erfolgreich generiert",
         "individualLetters": "Tippe einzelne Buchstaben an, um sie neu zu generieren.",
-        "individualLetterCount": "Markiere {{letterCount}} weitere Zeichen um sie zufällig auszutauschen.",
+        "individualLetterCount": "Wähle {{letterCount}} weitere Zeichen um sie zufällig auszutauschen.",
         "whatIsASeed": "Was ist ein Seed?"
     },
     "onboardingComplete": {
@@ -493,7 +493,7 @@
         "pow": "Proof of Work",
         "autoPromotion": "Auto-Promotion",
         "autoPromotionExplanation": "Auto-Promotion hilft dir Transaktionen auf dem Tangle zu bestätigen. Aktiviere diese Einstellung, wenn du Schwierigkeiten hast deine Transaktionen zu bestätigen.",
-        "autoPromotionPoW": "Auto-Promotion ist nur auf Nodes mit aktiviertem \"Remote Proof-of-Work\" möglich."
+        "autoPromotionPoW": "Auto-Promotion ist nur auf Nodes mit aktiviertem \"Remote Proof of Work\" möglich."
     },
     "advancedThemeCustomisation": {
         "background": "Hintergrund",
