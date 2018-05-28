@@ -491,9 +491,9 @@
         "manualSync": "Manuell synchronisieren",
         "snapshotTransition": "Snapshot-Wiederherstellung",
         "pow": "Proof of Work",
-        "autoPromotion": "Auto-promotion",
-        "autoPromotionExplanation": "Auto-promotion hilft dir Transaktionen auf dem Tangle zu bestätigen. Aktiviere diese Einstellung, wenn du Schwierigkeiten hast deine Transaktionen zu bestätigen.",
-        "autoPromotionPoW": "Auto-promotion ist nur auf Nodes mit aktiviertem remote Proof of work möglich."
+        "autoPromotion": "Auto-Promotion",
+        "autoPromotionExplanation": "Auto-Promotion hilft dir Transaktionen auf dem Tangle zu bestätigen. Aktiviere diese Einstellung, wenn du Schwierigkeiten hast deine Transaktionen zu bestätigen.",
+        "autoPromotionPoW": "Auto-Promotion ist nur auf Nodes mit aktiviertem \"Remote Proof-of-Work\" möglich."
     },
     "advancedThemeCustomisation": {
         "background": "Hintergrund",
