@@ -302,25 +302,25 @@
         "writeYourSeedDown": "Anote su semilla",
         "printYourSeed": "Imprima su semilla",
         "digitalCopy": "Copia digital",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
+        "seedClearedExplanation": "La semilla ha sido borrada del portapapeles para su seguridad.",
         "iHaveBackedUpMySeed": "He guardado mi semilla",
-        "letsWriteDownYourSeed": "Lets write down your seed",
-        "youCanHighlightCharacters": "You can highlight 9 characters at a time",
-        "printBlankWallet": "Print a blank wallet",
-        "whatIsCheksum": "Every seed has a corresponding 3 character checksum",
-        "iHavesavedMySeed": "I've saved my seed",
-        "checksumExplanation": "Whenever you add a seed to your wallet, you should ensure that the wallet-generated checksum matches the one you have written down.",
+        "letsWriteDownYourSeed": "Vamos a anotar su semilla",
+        "youCanHighlightCharacters": "Puede resaltar 9 caracteres a la vez",
+        "printBlankWallet": "Imprima una cartera en blanco",
+        "whatIsCheksum": "Cada semilla tiene un checksum correspondiente de 3 caracteres",
+        "iHavesavedMySeed": "He guardado mi semilla",
+        "checksumExplanation": "Cada vez que añada una semilla a su cartera, debería asegurarse de que el checksum generado para la cartera coincide con el que ha anotado.",
         "mustSaveYourSeed": "<0><0>Debe guardar su semilla con</0><1>al menos una</1><2>de las opciones a continuación.</2></0>"
     },
     "seedReentry": {
-        "pleaseConfirmYourSeed": "Please confirm your seed",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or the app.",
-        "enterYourSeed": "Enter your seed",
+        "pleaseConfirmYourSeed": "Por favor confirme su semilla",
+        "trinityWillNeverAskToReenter": "Trinity nunca le preguntará que vuelva a introducir esta semilla a menos que restablezca la cartera o la aplicación.",
+        "enterYourSeed": "Introduzca su semilla",
         "incorrectSeed": "Semilla incorrecta",
         "incorrectSeedExplanation": "La semilla que ingreso es incorrecta. Por favor vuelva a intentarlo.",
         "thisIsACheck": "Esto es una comprobación para asegurarnos que ha guardado su semilla.",
         "ifYouHaveNotSaved": "Si no ha guardado su semilla, por favor regrese y hágalo.",
-        "enterSeedBelow": "Enter your newly created seed below to confirm you have backed it up correctly"
+        "enterSeedBelow": "Introduzca su recién creada semilla para confirmar que la guardado correctamente"
     },
     "send": {
         "invalidAddress": "Dirección inválida",
@@ -347,7 +347,7 @@
         "iotaUnits": "Explicación de la unidad IOTA",
         "sendMax": "ENVIAR MÁXIMO",
         "totalTime": "Tiempo total",
-        "addressPasteDetected": "Address paste detected",
+        "addressPasteDetected": "Se ha detectado una dirección pegada",
         "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
     },
     "setPassword": {
