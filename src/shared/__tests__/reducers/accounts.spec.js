@@ -728,7 +728,7 @@ describe('Reducer: accounts', () => {
 
             const newState = reducer(initialState, action);
             const expectedState = {
-                tasks: { foo: { hasDisplayedTransitionModal: false } },
+                tasks: { foo: { hasDisplayedTransitionGuide: false } },
             };
 
             expect(newState.tasks).to.eql(expectedState.tasks);

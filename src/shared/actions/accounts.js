@@ -40,6 +40,7 @@ export const ActionTypes = {
     SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION: 'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION',
     SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST: 'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST',
     SET_BASIC_ACCOUNT_INFO: 'IOTA/ACCOUNTS/SET_BASIC_ACCOUNT_INFO',
+    MARK_TASK_AS_DONE: 'IOTA/ACCOUNTS/MARK_TASK_AS_DONE',
 };
 
 export const syncAccountBeforeManualPromotion = (payload) => ({
@@ -173,6 +174,11 @@ export const accountInfoFetchError = () => ({
 
 export const setBasicAccountInfo = (payload) => ({
     type: ActionTypes.SET_BASIC_ACCOUNT_INFO,
+    payload,
+});
+
+export const markTaskAsDone = (payload) => ({
+    type: ActionTypes.MARK_TASK_AS_DONE,
     payload,
 });
 
