@@ -150,8 +150,8 @@
         "mustBeStoredAppropriately": "Musi być odpowiednio przechowywany.",
         "deviceMayBecomeUnresponsive": "Urządzenie może przestać odpowiadać przez pewien czas",
         "isYourBalanceCorrect": "Czy Twoje saldo jest poprawne?",
-        "ifYourBalanceIsNotCorrect": "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
-        "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition."
+        "ifYourBalanceIsNotCorrect": "Jeśli Twoje saldo nie jest prawidłowe, prawdopodobnie używasz klucza seed sprzed tzw. migawki (snapshot).",
+        "headToAdvancedSettingsForTransition": "Przejdź do ustawień zaawansowanych i skorzystaj ze Snapshot asystenta."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -348,7 +348,7 @@
         "sendMax": "WYŚLIJ WSZYSTKO",
         "totalTime": "Całkowity czas",
         "addressPasteDetected": "Wykryto wklejenie adresu",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
+        "addressPasteExplanation": "Wygląda na to, że wkleiłeś adres. Upewnij się, że wklejony adres odpowiada temu, na który chcesz wysłać."
     },
     "setPassword": {
         "choosePassword": "Wybierz nowe hasło",
