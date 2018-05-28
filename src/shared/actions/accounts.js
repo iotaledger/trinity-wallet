@@ -39,6 +39,7 @@ export const ActionTypes = {
     ACCOUNT_INFO_FETCH_ERROR: 'IOTA/ACCOUNTS/ACCOUNT_INFO_FETCH_ERROR',
     SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION: 'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION',
     SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST: 'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST',
+    SET_BASIC_ACCOUNT_INFO: 'IOTA/ACCOUNTS/SET_BASIC_ACCOUNT_INFO',
 };
 
 export const syncAccountBeforeManualPromotion = (payload) => ({
@@ -168,6 +169,11 @@ export const accountInfoFetchSuccess = (payload) => ({
 
 export const accountInfoFetchError = () => ({
     type: ActionTypes.ACCOUNT_INFO_FETCH_ERROR,
+});
+
+export const setBasicAccountInfo = (payload) => ({
+    type: ActionTypes.SET_BASIC_ACCOUNT_INFO,
+    payload
 });
 
 export const getFullAccountInfoAdditionalSeed = (
