@@ -625,7 +625,7 @@
         "autoPromotionUpdatedExplanation": "Su configuración para la auto-promoción ha sido actualizada."
     },
     "progressSteps": {
-        "checkingNodeHealth": "Checking node health",
+        "checkingNodeHealth": "Comprobando la salud del nodo",
         "validatingReceiveAddress": "Validando dirección de recepción",
         "syncingAccount": "Sincronizando cuenta",
         "preparingInputs": "Preparando entradas",
@@ -643,10 +643,10 @@
         "isThisCorrect": "Es esto correcto?",
         "snapshotExplanation": "Cada tanto, un snapshot es realizado para reducir el tamaño de la Tangle.",
         "hasSnapshotTakenPlace": "Ocurrió un snapshot recientemente? Presione el botón debajo para comenzar la transición.",
-        "transition": "Transition",
+        "transition": "Transición",
         "transitioning": "Transicionando para el snapshot.",
         "generatingAndDetecting": "Generando direcciones y detectando balances.",
-        "attaching": "Attaching addresses to Tangle."
+        "attaching": "Vinculando direcciones en el Tangle."
     },
     "deepLink": {
         "autofill": "Autocompletado exitoso",
@@ -666,11 +666,11 @@
         "errorLog": "ERROR DE LOG"
     },
     "terms": {
-        "termsAndConditions": "Terms & Conditions",
-        "accept": "I accept"
+        "termsAndConditions": "Términos y Condiciones",
+        "accept": "Acepto"
     },
     "privacyPolicy": {
-        "privacyPolicy": "Privacy Policy",
-        "agree": "I agree"
+        "privacyPolicy": "Política de Privacidad",
+        "agree": "De acuerdo"
     }
 }
