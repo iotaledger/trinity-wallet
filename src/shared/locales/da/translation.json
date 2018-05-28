@@ -22,21 +22,31 @@
         "invalidResponseSendingTransfer": "Noden returnerede en fejl under afsendelse af overførsel. Tjek meddelelserne for mere information.",
         "nodeOutOfSync": "Node er ude af synkronisering",
         "nodeOutOfSyncExplanation": "Dine valgte node er ude af synkronisering. Ændre venligst noden eller prøv igen.",
+        "thisNodeOutOfSync": "This node is out of sync. Please change node or try again.",
         "seed": "Hovednøgle",
+        "checksum": "Kontrolsum",
         "back": "TILBAGE",
+        "goBack": "Go back",
+        "goBackStep": "Go back a step",
         "backLowercase": "Tilbage",
         "done": "FÆRDIG",
         "doneLowercase": "Udført",
+        "prev": "PREV",
         "next": "NÆSTE",
+        "nextLowerCase": "Next",
         "apply": "Anvend",
         "save": "Gem",
         "close": "LUK",
         "continue": "Fortsæt",
         "enable": "Aktiver",
         "disable": "Deaktiver",
+        "enabled": "Enabled",
+        "disabled": "Disabled",
         "manualCopy": "Skriv din hovednøgle ned",
         "paperWallet": "Udskrive papirkopi",
-        "copyToClipboard": "Tilføj til passwordmanager",
+        "addToPasswordManager": "Add to password manager",
+        "shareSeed": "Share seed",
+        "proceed": "Proceed",
         "qr": "QR",
         "notAvailable": "Denne funktion er ikke tilgængelig",
         "notAvailableExplanation": "Dette vil blivee tilføjet på et senere tidspunkt.",
@@ -50,6 +60,8 @@
         "otherWallet": "ANDEN KONTO",
         "yes": "JA",
         "no": "NEJ",
+        "yesLowerCase": "Yes",
+        "noLowerCase": "No",
         "okay": "OKAY",
         "password": "Adgangskode",
         "passwordOrFingerprint": "Adgangskode eller fingeraftryk",
@@ -82,6 +94,7 @@
         "pressBackAgain": "Tryk tilbage igen for at lukke app'en",
         "reattached": "Gensendte transaktionen med succes",
         "reattachedExplanation": "Gensendte transaktion med hash-værdi {{hash}}",
+        "promotingTransaction": "Promoting transaction",
         "autopromoting": "Valider automatisk transaktion",
         "autopromotingExplanation": "Valider transaktion med hash {{hash}}",
         "rebroadcasted": "Transaktionen gensendt til netværket med succes",
@@ -129,7 +142,12 @@
         "noNetworkConnection": "Ingen netværksforbindelse",
         "noNetworkConnectionExplanation": "Forbindelsen til internettet ser ud til at være offline.",
         "spentAddressExplanation": "ADVARSEL: Midler på en brugt adresse",
-        "discordInformation": "At sende fra samme adresse mere end én gang er farligt. Gå venligst til #help kanalen på Discord for at finde ud af hvad du kan gøre."
+        "discordInformation": "At sende fra samme adresse mere end én gang er farligt. Gå venligst til #help kanalen på Discord for at finde ud af hvad du kan gøre.",
+        "androidInsecureClipboardWarning": "Android does not provide a secure clipboard.",
+        "androidCopyPasteWarning": "Never copy/paste your seed on an Android device.",
+        "willNotCopyPasteSeed": "I will not copy/paste my seed",
+        "mustBeStoredAppropriately": "It must be stored appropriately.",
+        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøglen indeholder ugyldige tegn",
@@ -161,7 +179,22 @@
         "ensureStrongPassword": "Sørg for, at du bruger en stærk adgangskode på mindst 12 tegn.",
         "currentPassword": "Nuværende adgangskode",
         "newPassword": "Ny adgangskode",
-        "confirmPassword": "Bekræft ny adgangskode"
+        "confirmPassword": "Bekræft ny adgangskode",
+        "passwordTooWeak": "Password too weak",
+        "passwordTooWeakReason": "Your password is too weak. Use a combination of words, and avoid common phrases, names or dates",
+        "reasonRow": "Straight rows of keys are easy to guess",
+        "reasonPattern": "Short patterns of keys are easy to guess",
+        "reasonNames": "Common names and surnames are easy to guess",
+        "reasonRepeats": "Repeats like 'aaa' are easy to guess",
+        "reasonRepeats2": "Repeats like 'abcabcabc' are only slightly harder to guess than 'abc'",
+        "reasonSequence": "Sequences like abc or 54321 are easy to guess",
+        "reasonYears": "Recent years are easy to guess",
+        "reasonDates": "Dates are often easy to guess",
+        "reasonTop10": "This is a top 10 common password",
+        "reasonTop100": "This is a top 100 common password",
+        "reasonCommon": "This is a very common password",
+        "reasonSimilar": "This is similar to a commonly-used password",
+        "reasonWord": "A single word is easy to guess"
     },
     "copyToClipboard": {
         "seedCleared": "Hovednøglen er fjernet",
@@ -169,6 +202,7 @@
         "seedCopied": "Hovednøglen er kopieret til din udklipsholder",
         "seedCopiedExplanation": "Din hovednøgle vil blive slettet, når du trykker på \"FÆRDIG\" eller efter 60 sekunder.",
         "clickToCopy": "Klik på knappen nedenfor for at kopiere din hovednøgle til en password manager.",
+        "clickToSecurelyShare": "Click the button below to securely share your seed to a password manager.",
         "doNotStore": "Opbevar ikke din hovednøgle i klartekst.",
         "copyToClipboard": "Kopier hovednøgle",
         "shareSeed": "Del din hovednøgle med en sikker password manager",
@@ -178,7 +212,8 @@
         "passwordManagerCheckbox": "Jeg vil gemme min hovednøgle i en password manager",
         "copy": "KOPIÉR",
         "noPasswordManagers": "Ingen understøttet password manager er installeret",
-        "noPasswordManagersExplanation": "Ingen understøttet password manager blev ikke fundet på din enhed. Installer venligst Keepass2Android."
+        "noPasswordManagersExplanation": "Ingen understøttet password manager blev ikke fundet på din enhed. Installer venligst Keepass2Android.",
+        "followTutorialToSecurelyShareSeed": "If you wish to store your seed in a password manager, you must follow a tutorial from the following link"
     },
     "enterSeed": {
         "invalidCharacters": "Hovednøglen indeholder ugyldige tegn",
@@ -196,7 +231,8 @@
         "settings": "INDSTILLINGER"
     },
     "languageSetup": {
-        "language": "Sprog"
+        "language": "Sprog",
+        "letsGetStarted": "Let's get started"
     },
     "login": {
         "emptyPassword": "Tom adgangskode",
@@ -216,14 +252,18 @@
         "takingAWhile": "Dette ser ud til at tage lidt tid"
     },
     "newSeedSetup": {
+        "generatedSeed": "Generated seed",
         "seedNotGenerated": "Hovednøglen er ikke blevet genereret",
         "seedNotGeneratedExplanation": "Vær venlig at generere en ny hovednøgle.",
         "pressForNewSeed": "GENERÈR NY HOVEDNØGLE",
         "generateSuccess": "Hovednøglen blev succesfuldt genereret",
         "individualLetters": "Tryk på individuelle bogstaver for at randomisere dem.",
+        "individualLetterCount": "Press {{letterCount}} more individual letters to randomise them.",
         "whatIsASeed": "Hvad er en hovednøgle?"
     },
     "onboardingComplete": {
+        "allDone": "All Done!",
+        "openYourWallet": "Open your wallet",
         "walletReady": "Tegnebogen er nu opsat og klar til brug. Hvis du fremover har brug for at foretage ændringer, kan dette gøres fra menuen \"Indstillinger\"."
     },
     "paperWallet": {
@@ -240,6 +280,7 @@
         "printerCheckbox": "Jeg printer ikke på en offentligt printer"
     },
     "receive": {
+        "copyAddress": "Copy address",
         "addressCopied": "Adresse kopieret",
         "addressCopiedExplanation": "Din adresse er blevet kopieret til udklipsholderen.",
         "generateNewAddress": "NY ADRESSE",
@@ -249,13 +290,33 @@
         "spent": "Forbrugt"
     },
     "saveYourSeed": {
+        "saveYourSeed": "Back up your seed",
+        "seedCleared": "Seed cleared",
+        "mostSecure": "Most Secure",
+        "leastSecure": "Least Secure",
+        "paperWallet": "Paper Wallet",
+        "writeYourSeedDown": "Write your seed down",
+        "printYourSeed": "Print your seed",
+        "digitalCopy": "Digital copy",
+        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
+        "iHaveBackedUpMySeed": "Jeg har sikkerhedskopieret min hovdenøgle",
+        "letsWriteDownYourSeed": "Lets write down your seed",
+        "youCanHighlightCharacters": "You can highlight 9 characters at a time",
+        "printBlankWallet": "Print a blank wallet",
+        "whatIsCheksum": "Every seed has a corresponding 3 character checksum",
+        "iHavesavedMySeed": "I've saved my seed",
+        "checksumExplanation": "Whenever you add a seed to your wallet, you should ensure that the wallet-generated checksum matches the one you have written down.",
         "mustSaveYourSeed": "<0><0>Du skal gemme din hovednøgle med </0><1>mindst én</1><2> af valgmulighederne herunder.</2></0>"
     },
     "seedReentry": {
+        "pleaseConfirmYourSeed": "Please confirm your seed",
+        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or the app.",
+        "enterYourSeed": "Enter your seed",
         "incorrectSeed": "Forkert hovednøgle",
         "incorrectSeedExplanation": "Hovednøglen du indtastede er forkert. Prøv venligst igen.",
         "thisIsACheck": "Dette er et tjek for at sikre, at du har gemt dit hovednøgle.",
-        "ifYouHaveNotSaved": "Gå venligst tilbage og gem din hovednøgle, hvis du ikke allerede har gjort dette."
+        "ifYouHaveNotSaved": "Gå venligst tilbage og gem din hovednøgle, hvis du ikke allerede har gjort dette.",
+        "enterSeedBelow": "Enter your newly created seed below to confirm you have backed it up correctly"
     },
     "send": {
         "invalidAddress": "Ugyldig adresse",
@@ -281,9 +342,12 @@
         "maximumSelected": "MAKSIMALT beløb valgt",
         "iotaUnits": "IOTA enheder forklaret",
         "sendMax": "SEND MAX",
-        "totalTime": "Tid i alt"
+        "totalTime": "Tid i alt",
+        "addressPasteDetected": "Address paste detected",
+        "addressPasteExplanation": "It looks like you are about to paste an address. Make sure that the pasted address matches the one you want to send to."
     },
     "setPassword": {
+        "choosePassword": "Choose a new password",
         "passwordTooShort": "Adgangskoden er for kort",
         "passwordTooShortExplanation": "Din adgangskode skal indeholde mindst {{minLength}} tegn. Den indeholder i øjeblikket {{currentLength}} tegn. Prøv venligst igen.",
         "passwordMismatch": "Adgangskoderne er ikke ens",
@@ -294,6 +358,7 @@
         "retypePassword": "Gentag adgangskode"
     },
     "setSeedName": {
+        "letsAddName": "Let's add a name",
         "canUseMultipleSeeds": "Du kan bruge adskillige hovednøgler med denne tegnebog. Hver hovednøgle kræver et kontonavn.",
         "youCanAdd": "Du kan tilføje flere hovednøgler i menuen \"Indstillinger\"."
     },
@@ -319,7 +384,6 @@
         "twoFA": "Totrinsbekræftelse",
         "changePassword": "Skift adgangskode",
         "advanced": "Avancerede indstillinger",
-        "about": "Om",
         "logout": "Log ud",
         "reset": "Nulstil tegnebog",
         "syncingComplete": "Synkronisering fuldført",
@@ -365,9 +429,13 @@
         "reset": "NULSTIL"
     },
     "walletSetup": {
+        "creatingSeed": "Creating a seed",
         "okay": "Okay. Lad os opsætte din tegnebog!",
         "doYouAlreadyHaveASeed": "Har du allerede en hovednøgle du gerne vil bruge?",
+        "doYouNeedASeed": "Do you need to create a new seed?",
         "seedExplanation": "En IOTA hovednøgle fungerer som din kontos brugernavn og adgangskode, og består af en kombineret streng på 81 tegn.",
+        "noIHaveOne": "No, I have one",
+        "yesINeedASeed": "Yes, I need a seed",
         "explanation": "<0><0>du kan bruge det til at hente dine midler fra</0><1> enhver tegnebog</1><2>, på</2><3> hvilken som helst enhed</3><4>. Men mister du din hovednøgle, mister du også dine IOTA.</4></0>",
         "keepSafe": "Du bedes opbevare din hovednøgle sikkert.",
         "hint": "<0><0>Hint:</0> Klik NEJ hvis det er første gang du bruger IOTA.</0>"
@@ -418,7 +486,10 @@
         "addCustomNode": "Tilføje brugerdefinerede node",
         "manualSync": "Manuel synkronisering",
         "snapshotTransition": "Snapshot synkronisering",
-        "pow": "Netværksvalidering"
+        "pow": "Netværksvalidering",
+        "autoPromotion": "Auto-promotion",
+        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
+        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
     },
     "advancedThemeCustomisation": {
         "background": "Baggrund",
@@ -474,9 +545,11 @@
         "hideSeed": "SKJUL HOVEDNØGLE"
     },
     "saveSeedConfirmation": {
+        "didSaveSeed": "Did you back up your seed?",
         "alreadyHave": "Jeg har sikkerhedskopieret min hovdenøgle",
-        "reenter": "Du vil nu blive bedt om at genindtaste din hovednøgle.",
-        "reenterWarning": "Hvis din enhed fejler og du ikke har sikkerhedskopieret din hovednøgle, vil du miste dine IOTA."
+        "reenterSeed": "At the next step you will be asked to re-enter your seed.",
+        "reenterSeedWarning": "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
+        "pleaseConfirm": "Please confirm you have securely stored your seed."
     },
     "walletResetConfirmation": {
         "cannotUndo": "DENNE HANDLING KAN IKKE FORTRYDES.",
@@ -492,8 +565,6 @@
         "fingerprintAuthFailed": "Biometrisk godkendelse fejlede",
         "fingerprintAuthFailedExplanation": "Godkendelse med fingeraftryk fejlede. Prøv venligst igen.",
         "status": "Status",
-        "enabled": "Aktiveret",
-        "disabled": "Deaktiveret",
         "fingerprintUnavailable": "Biometrisk godkendelse er utilgængeligt",
         "fingerprintUnavailableExplanation": "Din enhed understøtter ikke biometrisk godkendelse, eller også er dette ikke konfigureret under indstillingerne på din enhed.",
         "buttonInstructionsDisable": "Tryk på knappen nedenfor for at deaktivere godkendelse med fingeraftryk.",
@@ -546,7 +617,7 @@
         "noWebGLSupportExplanation": "Din computer understøtter ikke WebGL. Brug venligst ekstern netværksvalidering (PoW)."
     },
     "progressSteps": {
-        "validatingNodeHealth": "Validerer den valgte nodes sundhed",
+        "checkingNodeHealth": "Checking node health",
         "validatingReceiveAddress": "Validering modtageradresse",
         "syncingAccount": "Synkroniserer konto",
         "preparingInputs": "Forbereder input",
@@ -585,5 +656,13 @@
     },
     "notificationLog": {
         "errorLog": "FEJL LOG"
+    },
+    "terms": {
+        "termsAndConditions": "Terms & Conditions",
+        "accept": "I accept"
+    },
+    "privacyPolicy": {
+        "privacyPolicy": "Privacy Policy",
+        "agree": "I agree"
     }
 }
