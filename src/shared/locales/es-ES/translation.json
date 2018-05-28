@@ -186,19 +186,19 @@
         "confirmPassword": "Confirmar contraseña nueva",
         "passwordTooWeak": "Contraseña es demasiado débil",
         "passwordTooWeakReason": "Tu contraseña es demasiado débil. Utilizar una combinación de palabras y evitar frases comunes, nombres o fechas",
-        "reasonRow": "Filas rectas de teclas son fáciles de adivinar",
+        "reasonRow": "Filas de teclas rectas son fáciles de adivinar",
         "reasonPattern": "Patrones de teclas cortos son fáciles de adivinar",
-        "reasonNames": "Common names and surnames are easy to guess",
-        "reasonRepeats": "Repeats like 'aaa' are easy to guess",
-        "reasonRepeats2": "Repeats like 'abcabcabc' are only slightly harder to guess than 'abc'",
-        "reasonSequence": "Sequences like abc or 54321 are easy to guess",
-        "reasonYears": "Recent years are easy to guess",
-        "reasonDates": "Dates are often easy to guess",
-        "reasonTop10": "This is a top 10 common password",
-        "reasonTop100": "This is a top 100 common password",
-        "reasonCommon": "This is a very common password",
-        "reasonSimilar": "This is similar to a commonly-used password",
-        "reasonWord": "A single word is easy to guess"
+        "reasonNames": "Los nombres y apellidos comunes son fáciles de adivinar",
+        "reasonRepeats": "Las repeticiones como 'aaa' son fáciles de adivinar",
+        "reasonRepeats2": "Las repeticiones como 'abcabcabc' son solo un poco más difíciles de adivinar que 'abc'",
+        "reasonSequence": "Las secuencias como abc o 54321 son fáciles de adivinar",
+        "reasonYears": "Los años recientes son fáciles de adivinar",
+        "reasonDates": "Las fechas a menudo son fáciles de adivinar",
+        "reasonTop10": "Estas son las 10 contraseñas más comunes",
+        "reasonTop100": "Estas son las 100 contraseñas más comunes",
+        "reasonCommon": "Estas es un contraseña muy común",
+        "reasonSimilar": "Esto es similar a una contraseña comúnmente usada",
+        "reasonWord": "Un sola palabra es fácil de adivinar"
     },
     "copyToClipboard": {
         "seedCleared": "Semilla removida",
@@ -206,9 +206,9 @@
         "seedCopied": "Semilla copiada al portapapeles",
         "seedCopiedExplanation": "La semilla será borrada al presionar “Listo” o pasados 60 segundos.",
         "clickToCopy": "Pulse en el botón de abajo y copie su semilla en un administrador de contraseñas.",
-        "clickToSecurelyShare": "Click the button below to securely share your seed to a password manager.",
+        "clickToSecurelyShare": "Pulse en el botón de abajo para compartir su semilla de forma segura con un administrador de contraseñas.",
         "doNotStore": "No almacene su semilla en texto plano.",
-        "copyToClipboard": "Copy Seed",
+        "copyToClipboard": "Copie la semilla",
         "shareSeed": "Comparta su semilla en un administrador de contraseñas seguro",
         "storeEncrypted": "Almacene su semilla en un administrador de contraseñas.",
         "doNotOpen": "No abra ninguna otra aplicación durante este proceso.",
@@ -217,7 +217,7 @@
         "copy": "COPIAR",
         "noPasswordManagers": "Administradores de contraseña no encontrados",
         "noPasswordManagersExplanation": "No fueron encontrados administradores de contraseña en su dispositivo. Por favor instale Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "If you wish to store your seed in a password manager, you must follow a tutorial from the following link"
+        "followTutorialToSecurelyShareSeed": "Si usted desea almacenar su semilla en un administrador de contraseñas, debe seguir el tutorial que se encuentra en el siguiente enlace"
     },
     "enterSeed": {
         "invalidCharacters": "La semilla contiene caracteres inválidos",
@@ -236,16 +236,16 @@
     },
     "languageSetup": {
         "language": "Idioma",
-        "letsGetStarted": "Let's get started"
+        "letsGetStarted": "Vamos a empezar"
     },
     "login": {
         "emptyPassword": "Contraseña vacía",
         "emptyPasswordExplanation": "Debe introducir una contraseña para iniciar sesión. Por favor, inténtelo de nuevo.",
         "enterPassword": "Por favor introduzca su contraseña.",
         "useSeed": "USAR SEMILLA",
-        "login": "Log In",
+        "login": "Iniciar Sesión",
         "selectDifferentNode": "¿Deseas seleccionar un nodo distinto?",
-        "setNode": "Set Node",
+        "setNode": "Seleccionar nodo",
         "cannotConnect": "No es posible conectarse al nodo de IOTA."
     },
     "loading": {
@@ -256,7 +256,7 @@
         "takingAWhile": "Esto tomará un rato"
     },
     "newSeedSetup": {
-        "generatedSeed": "Generated seed",
+        "generatedSeed": "Generar semilla",
         "seedNotGenerated": "La semilla no se ha generado",
         "seedNotGeneratedExplanation": "Por favor genere una nueva semilla.",
         "pressForNewSeed": "Press for New Seed",
