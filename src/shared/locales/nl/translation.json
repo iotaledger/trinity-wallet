@@ -148,9 +148,9 @@
         "androidCopyPasteWarning": "Kopieer/plak nooit uw seed op een Android apparaat.",
         "willNotCopyPasteSeed": "Ik zal mijn seed niet kopiëren/plakken",
         "mustBeStoredAppropriately": "Het moet adequaat worden opgeslagen.",
-        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while",
+        "deviceMayBecomeUnresponsive": "Uw apparaat kan wellicht even niet reageren",
         "isYourBalanceCorrect": "Klopt uw saldo?",
-        "ifYourBalanceIsNotCorrect": "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
+        "ifYourBalanceIsNotCorrect": "Als uw saldo niet correct is, gebruikt u waarschijnlijk een pre-snapshot seed.",
         "headToAdvancedSettingsForTransition": "Ga naar Geavanceerde instellingen en voer een Snapshot transitie uit."
     },
     "addAdditionalSeed": {
@@ -492,8 +492,8 @@
         "snapshotTransition": "Snapshot transitie",
         "pow": "Bewijs van inspanning",
         "autoPromotion": "Auto-promotie",
-        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
-        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
+        "autoPromotionExplanation": "Auto-promotie helpt uw transactie bevestigen op de Tangle. Schakel deze instelling in wanneer u problemen ondervindt met bevestigen.",
+        "autoPromotionPoW": "Auto-promotie is alleen mogelijk op nodes die ondersteuning bieden voor extern Bewijs van Inspanning (Pow)."
     },
     "advancedThemeCustomisation": {
         "background": "Achtergrond",
@@ -621,8 +621,8 @@
         "noWebGLSupportExplanation": "Uw computer ondersteunt WebGL niet. Gebruik externe PoW."
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Auto-promotion settings",
-        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
+        "autoPromotionUpdated": "Auto-promotie instellingen",
+        "autoPromotionUpdatedExplanation": "Uw auto-promotie-configuratie is bijgewerkt."
     },
     "progressSteps": {
         "checkingNodeHealth": "Gezondheid node aan het checken",
@@ -667,10 +667,10 @@
     },
     "terms": {
         "termsAndConditions": "Algemene Voorwaarden",
-        "accept": "I accept"
+        "accept": "Ik ga akkoord"
     },
     "privacyPolicy": {
-        "privacyPolicy": "Privacy Policy",
-        "agree": "I agree"
+        "privacyPolicy": "Privacybeleid",
+        "agree": "Ik ga akkoord"
     }
 }
