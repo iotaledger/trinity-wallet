@@ -20,7 +20,6 @@ import { OptimizedFlatList } from 'react-native-optimized-flatlist';
 import { round } from 'iota-wallet-shared-modules/libs/utils';
 import { toggleModalActivity } from 'iota-wallet-shared-modules/actions/ui';
 import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/iota/utils';
-import tinycolor from 'tinycolor2';
 import WithManualRefresh from '../components/ManualRefresh';
 import TransactionRow from '../components/TransactionRow';
 import HistoryModalContent from '../components/HistoryModalContent';
@@ -33,6 +32,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
+        marginBottom: isAndroid ? 0 : height / 80
     },
     listView: {
         height: height * 0.7,
@@ -163,7 +163,7 @@ class History extends Component {
     prepTransactions() {
         const {
             transfers,
-            theme: { negative, primary, secondary, positive, body, bar },
+            theme: { primary, secondary, body, bar, dark },
             mode,
             t,
             selectedAccountName,
@@ -171,8 +171,6 @@ class History extends Component {
             isRefreshing,
             addresses,
         } = this.props;
-        const containerBorderColor = tinycolor(body.bg).isDark() ? 'rgba(255, 255, 255, 0.25)' : 'rgba(0, 0, 0, 0.25)';
-        const containerBackgroundColor = tinycolor(body.bg).isDark() ? 'rgba(255, 255, 255, 0.08)' : 'transparent';
 
         const computeConfirmation = (outputs, persistence, incoming, value) => {
             if (!persistence) {
@@ -227,6 +225,8 @@ class History extends Component {
                 time: timestamp,
                 message,
                 mode,
+                incoming,
+                icon: incoming ? '+' : '-',
                 bundleIsBeingPromoted: currentlyPromotingBundleHash === bundle && !persistence,
                 onPress: (modalProps) => {
                     if (isRefreshing) {
@@ -247,11 +247,11 @@ class History extends Component {
                     this.props.toggleModalActivity();
                 },
                 style: {
-                    titleColor: incoming ? primary.color : secondary.color,
-                    containerBorderColor: { borderColor: containerBorderColor },
-                    containerBackgroundColor: { backgroundColor: containerBackgroundColor },
-                    confirmationStatusColor: { color: !persistence ? negative.color : positive.color },
+                    titleColor: persistence ? incoming ? primary.color : secondary.color : '#fc6e6d',
+                    containerBackgroundColor: { backgroundColor: dark.color },
                     defaultTextColor: { color: body.color },
+                    rowTextColor: { color: dark.body },
+                    rowBorderColor: { borderColor: dark.body },
                     backgroundColor: body.bg,
                     borderColor: { borderColor: body.color },
                     barBg: bar.bg,
