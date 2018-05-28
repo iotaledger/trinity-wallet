@@ -16,13 +16,13 @@
         "keyReuse": "使用済みアドレスに送信しています。",
         "keyReuseError": "一度支払いに使われたアドレスに送金することはできません。",
         "invalidResponse": "ノードエラー",
-        "invalidResponseExplanation": "ノードがエラーを返しました。詳細については、通知をご確認下さい。",
-        "invalidResponsePollingExplanation": "ポーリング中にノードがエラーを返しました。詳細については、通知をご確認下さい。",
-        "invalidResponseFetchingAccount": "アカウント情報の取得中にノードがエラーを返しました。詳細については、通知をご確認下さい。",
-        "invalidResponseSendingTransfer": "送金中にノードがエラーを返しました。詳細については、通知をご確認下さい。",
+        "invalidResponseExplanation": "ノードがエラーを返しました。 ノードを変更してみてください。",
+        "invalidResponsePollingExplanation": "問い合わせ中にノードがエラーを返しました。 ノードを変更してみてください。",
+        "invalidResponseFetchingAccount": "アカウント情報の取得中にノードがエラーを返しました。 ノードを変更してみてください。",
+        "invalidResponseSendingTransfer": "送金中にノードがエラーを返しました。 ノードを変更してみてください。",
         "nodeOutOfSync": "ノードが同期していません。",
         "nodeOutOfSyncExplanation": "現在選択しているノードが同期していません。ノードを変更するか、もう一度お試しください。",
-        "thisNodeOutOfSync": "This node is out of sync. Please change node or try again.",
+        "thisNodeOutOfSync": "このノードは同期していません。ノードを変更するか、もう一度お試しください。",
         "seed": "シード",
         "checksum": "チェックサム",
         "back": "戻る",
@@ -40,17 +40,17 @@
         "continue": "次へ",
         "enable": "有効",
         "disable": "無効",
-        "enabled": "Enabled",
-        "disabled": "Disabled",
+        "enabled": "有効",
+        "disabled": "無効",
         "manualCopy": "シードを書き写す",
         "paperWallet": "印刷する",
-        "addToPasswordManager": "Add to password manager",
-        "shareSeed": "Share seed",
+        "addToPasswordManager": "パスワードマネージャーに追加する",
+        "shareSeed": "シードを共有",
         "proceed": "続ける",
         "qr": "QRコード",
         "notAvailable": "この機能は使えません。",
         "notAvailableExplanation": "この機能は将来追加される予定です。",
-        "enterSeed": "シードを入力して下さい。",
+        "enterSeed": "シードを入力してください。",
         "mainWallet": "メインアカウント",
         "secondWallet": "2番目のアカウント",
         "thirdWallet": "3番目のアカウント",
@@ -63,6 +63,7 @@
         "yesLowerCase": "はい",
         "noLowerCase": "いいえ",
         "okay": "OK",
+        "okayLowercase": "OK",
         "password": "パスワード",
         "passwordOrFingerprint": "パスワードや指紋",
         "unrecognisedPassword": "有効でないパスワードです。",
@@ -77,7 +78,7 @@
         "cannotPerformActionExplanation": "ウォレットをリセットするには、詳細設定に進みます。",
         "attachToTangleUnavailable": "リモートのプルーフ・オブ・ワーク利用不可",
         "attachToTangleUnavailableExplanation": "選択しているノードでリモートによるプルーフ・オブ・ワークが利用できません。ノードを変更するか、詳細設定でローカルによるプルーフ・オブ・ワークに切り替えてください。",
-        "attachToTangleUnavailableExplanationShort": "選択しているノードでリモートによるプルーフ・オブ・ワークが利用できません。",
+        "attachToTangleUnavailableExplanationShort": "選択しているノードではリモートによるプルーフ・オブ・ワークが利用できません。",
         "wallet": "ウォレット",
         "sent": "送金完了",
         "received": "受取完了",
@@ -94,22 +95,22 @@
         "pressBackAgain": "もう一度タップすると、アプリを閉じます。",
         "reattached": "取引は正常に再添付されました。",
         "reattachedExplanation": "ハッシュ値{{hash}}の取引が再添付されました。",
-        "promotingTransaction": "Promoting transaction",
+        "promotingTransaction": "取引を促進中",
         "autopromoting": "送金を自動促進中",
         "autopromotingExplanation": "ハッシュ値{{hash}}の取引を促進中",
         "rebroadcasted": "取引は正常に再ブロードキャストされました。",
         "rebroadcastedExplanation": "ハッシュ値{{hash}}の取引が再ブロードキャストされました。",
         "rebroadcastError": "取引を再ブロードキャストできませんでした。　",
-        "rebroadcastErrorExplanation": "取引を再ブロードキャスト中に不具合が発生しました。もう一度やり直して下さい。",
+        "rebroadcastErrorExplanation": "取引を再ブロードキャスト中に不具合が発生しました。もう一度やり直してください。",
         "promoted": "取引は正常に促進されました。",
         "promotedExplanation": "ハッシュ値{{hash}}の取引が促進されました。",
         "autopromotionError": "取引の自動促進ができませんでした。",
-        "autopromotionErrorExplanation": "選択しているノードでリモートによるプルーフ・オブ・ワークが利用できません。ノードを変更してください。",
+        "autopromotionErrorExplanation": "選択しているノードではリモートによるプルーフ・オブ・ワークが利用できません。ノードを変更してください。",
         "promotionError": "取引を促進できませんでした。",
-        "promotionErrorExplanation": "取引を促進中に不具合が発生しました。もう一度やり直して下さい。",
+        "promotionErrorExplanation": "取引を促進中に不具合が発生しました。もう一度やり直してください。",
         "noLongerValid": "促進しようとしているバンドルは無効です。",
-        "transactionAlreadyConfirmed": "取引はすでに承認済み",
-        "transactionAlreadyConfirmedExplanation": "促進しようとしている取引はすでに承認済みとなっています。",
+        "transactionAlreadyConfirmed": "取引はすでに確定済み",
+        "transactionAlreadyConfirmedExplanation": "促進しようとしている取引はすでに確定済みです。",
         "cannotSendToOwn": "自分のアドレスに送金する。",
         "cannotSendToOwnExplanation": "自分のアドレスに送金することができません。",
         "pleaseWait": "少々お待ちください",
@@ -124,7 +125,7 @@
         "enterPasswordToAccessSettings": "アカウント設定にアクセスするためにパスワードを入力してください。",
         "enterYourPassword": "パスワードを入力してください。",
         "changeNode": "ノード変更",
-        "addCustomNode": "カスタムノード追加",
+        "addCustomNode": "カスタムノードの追加",
         "nodeChanged": "ノード変更完了",
         "nodeChangedExplanation": "ノードが正常に変更されました。",
         "nodeMustUseHTTPS": "無効なノード (非HTTPS)",
@@ -147,21 +148,24 @@
         "androidCopyPasteWarning": "絶対にシードをAndroidデバイス上でコピー&ペーストしないでください。",
         "willNotCopyPasteSeed": "私はシードをコピー&ペーストしていません。",
         "mustBeStoredAppropriately": "シードは適切に保管しなければなりません。",
-        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while"
+        "deviceMayBecomeUnresponsive": "しばらくの間、お使いのデバイスが応答できなくなる恐れがあります",
+        "isYourBalanceCorrect": "残高は正しいですか？",
+        "ifYourBalanceIsNotCorrect": "もし残高が正しくなければ、スナップショット以前のシードが使われていると思われます。",
+        "headToAdvancedSettingsForTransition": "詳細設定にてスナップショットの移行を行なってください。"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだシードです。",
-        "seedInvalidCharsExplanation": "シードは英大文字AからZと数字の9のみで構成します。あなたのシードは無効な文字を含んでいます。もう一度やり直して下さい。",
+        "seedInvalidCharsExplanation": "シードはアルファベットの大文字（A〜Z）と数字の\"9\"のみで構成します。あなたのシードは無効な文字を含んでいます。もう一度やり直してください。",
         "seedTooShort": "シードが短すぎます。",
-        "seedTooShortExplanation": "シードは{{maxLength}}文字にする必要があります。現在のシードは{{currentLength}}文字です。もう一度やり直して下さい。",
+        "seedTooShortExplanation": "シードは{{maxLength}}文字にする必要があります。現在のシードは{{currentLength}}文字です。もう一度やり直してください。",
         "nameInUse": "このアカウント名はすでに使われています。",
         "nameInUseExplanation": "シードに唯一のアカウント名を付けてください。",
         "enterAccountName": "アカウント名を入力してください。",
         "accountName": "アカウント名",
         "noNickname": "アカウント名が入力されていません。",
-        "noNicknameExplanation": "シードのアカウント名を入力して下さい。",
-        "seedInUse": "このシードはすでに使われています。",
-        "seedInUseExplanation": "このシードは既にウォレットにリンクされています。違うシードをご使用下さい。"
+        "noNicknameExplanation": "シードのアカウント名を入力してください。",
+        "seedInUse": "このシードは登録済み",
+        "seedInUseExplanation": "このシードは既にウォレットに登録されています。違うシードをご使用ください。"
     },
     "changePassword": {
         "oops": "不具合が発生しました。",
@@ -200,8 +204,8 @@
         "seedCleared": "シードを消去しました。",
         "seedClearedExplanation": "安全のために、シードをクリップボードから消去しました。",
         "seedCopied": "シードをクリップボードにコピーしました。",
-        "seedCopiedExplanation": "\"完了\"を押す、または60秒後にはシードは消去されます。",
-        "clickToCopy": "下のボタンをクリックし、シードをパスワードマネージャーにコピーして下さい。",
+        "seedCopiedExplanation": "\"完了\"を押すか60秒後にはシードがクリップボードから消去されます。",
+        "clickToCopy": "下のボタンをクリックし、シードをパスワードマネージャーにコピーしてください。",
         "clickToSecurelyShare": "下のボタンをクリックすると、シードをパスワードマネージャに安全に共有できます。",
         "doNotStore": "シードは平文では絶対に保存しないでください。",
         "copyToClipboard": "シードをコピー",
@@ -217,10 +221,10 @@
     },
     "enterSeed": {
         "invalidCharacters": "無効な文字を含んだシードです。",
-        "invalidCharactersExplanation": "シードにはアルファベット大文字（A〜Z）と数字の\"9\"のみ使用できます。あなたのシードは無効な文字を含んでいます。もう一度やり直して下さい。",
+        "invalidCharactersExplanation": "シードにはアルファベットの大文字（A〜Z）と数字の\"9\"のみ使用できます。あなたのシードは無効な文字を含んでいます。もう一度やり直してください。",
         "seedTooShort": "シードが短すぎます。",
-        "seedTooShortExplanation": "シードは{{maxLength}}文字にする必要があります。あなたのシードは現在{{currentLength}}文字です。もう一度やり直して下さい。",
-        "seedExplanation": "シードは{{maxLength}}文字である必要があり、使用可能な文字は大文字アルファベット（A〜Z）、数字の\"9\"のみです。また、{{maxLength}}文字以上の長さにはできません。",
+        "seedTooShortExplanation": "シードは{{maxLength}}文字にする必要があります。あなたのシードは現在{{currentLength}}文字です。もう一度やり直してください。",
+        "seedExplanation": "シードは{{maxLength}}文字である必要があり、使用可能な文字はアルファベットの大文字（A〜Z）と数字の\"9\"のみです。また、{{maxLength}}文字以上の長さにはできません。",
         "neverShare": "シードを他の人に絶対に教えてはいけません。"
     },
     "home": {
@@ -241,7 +245,7 @@
         "useSeed": "シードでログイン",
         "login": "ログイン",
         "selectDifferentNode": "別のノードを選択しますか？",
-        "setNode": "ノード設定",
+        "setNode": "ノードの設定",
         "cannotConnect": "ノードに接続できません。"
     },
     "loading": {
@@ -255,7 +259,7 @@
         "generatedSeed": "生成されたシード",
         "seedNotGenerated": "シードが生成されていません。",
         "seedNotGeneratedExplanation": "新しいシードを生成してください。",
-        "pressForNewSeed": "新しいシードの元を作成",
+        "pressForNewSeed": "新しいシードの元を生成",
         "generateSuccess": "シードは正常に生成されました。",
         "individualLetters": "文字をタップして更にランダムにしてください。",
         "individualLetterCount": "シードをさらにランダムにするために、{{letterCount}}個以上の文字を押してください。",
@@ -276,8 +280,8 @@
         "paperConvenience": "シードのコピーを紙に印刷して保存することは便利な方法です。",
         "publicInsecure": "しかし、公共のWi-Fiや公共のプリンタでの印刷は安全ではないので行わないでください。",
         "tapCheckboxes": "確認するには、下の２つのチェックボックスをタップしてください。",
-        "wifiCheckbox": "私は公共のWi-Fiで印刷していません。",
-        "printerCheckbox": "私は公共のプリンタで印刷していません。"
+        "wifiCheckbox": "私は公共のWi-Fiで印刷しません。",
+        "printerCheckbox": "私は公共のプリンタで印刷しません。"
     },
     "receive": {
         "copyAddress": "アドレスをコピー",
@@ -306,14 +310,14 @@
         "whatIsCheksum": "すべてのシードには対応する3文字のチェックサムがあります。",
         "iHavesavedMySeed": "バックアップ完了",
         "checksumExplanation": "ウォレットにシードを追加するたびに、ウォレットによって生成されるチェックサムが、書き写したチェックサムと一致することを必ず確認してください。",
-        "mustSaveYourSeed": "<0><0>下の方法から</0><1>最低一つ選んで</1><2>シードを保存しましょう。</2></0>"
+        "mustSaveYourSeed": "<0><0>下の方法から</0><1>最低一つ選んで</1><2>シードを必ずバックアップしてください。</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "あなたのシードを確認してください。",
         "trinityWillNeverAskToReenter": "Trinityウォレットは、ウォレットやアプリをリセットしない限り、決してこのシードの再入力を求めません。",
         "enterYourSeed": "シードを入力してください。",
         "incorrectSeed": "シードが違います。",
-        "incorrectSeedExplanation": "入力したシードは正しくありません。もう一度やり直して下さい。",
+        "incorrectSeedExplanation": "入力したシードは正しくありません。もう一度やり直してください。",
         "thisIsACheck": "これはあなたがシードを保存したかの確認です。",
         "ifYouHaveNotSaved": "シードをまだ保存していない場合は戻ってください。",
         "enterSeedBelow": "下の空欄に新しく作成したシードを入力して、正しくバックアップできたことを確認してください。"
@@ -436,7 +440,7 @@
         "seedExplanation": "IOTAのシードはユーザー名とパスワードを一つにまとめた81文字の文字列ととらえるとよいでしょう。",
         "noIHaveOne": "既存のシードを入力",
         "yesINeedASeed": "新しいシードを作成",
-        "explanation": "<0><0>同じシードを使えば、</0><1>どのウォレット、</1><2>デバイスからでも</2><3>あなたの口座にアクセスすることができます。</3><4>Seedを紛失すると、口座とその預金にもアクセスできなくなります。</4></0>",
+        "explanation": "<0><0>同じシードを使えば、</0><1>どのウォレット、</1><2>デバイスからでも</2><3>あなたの口座にアクセスすることができます。</3><4>シードを紛失すると、口座とその預金にアクセスできなくなります。</4></0>",
         "keepSafe": "シードは安全に保管してください。",
         "hint": "<0><0>ヒント：</0>IOTAを初めて使う場合は、\"いいえ\"をクリックしてください。</0>"
     },
@@ -447,7 +451,7 @@
     },
     "writeSeedDown": {
         "yourSeedIs": "シードは左から右に読む{{maxSeedLength}}文字です。",
-        "writeDownYourSeed": "<0>シードとチェックサムを書き止め、</0><1>トリプルチェックを</1><2>して下さい。</2>"
+        "writeDownYourSeed": "<0>シードとチェックサムを書き止め、</0><1>トリプルチェックを</1><2>してください。</2>"
     },
     "history": {
         "bundleHashCopied": "バンドルのハッシュ値をコピーしました。",
@@ -487,9 +491,9 @@
         "manualSync": "手動同期",
         "snapshotTransition": "スナップショットの移行",
         "pow": "プルーフ・オブ・ワーク",
-        "autoPromotion": "Auto-promotion",
-        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
-        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
+        "autoPromotion": "自動促進",
+        "autoPromotionExplanation": "自動促進によってTangleによる取引承認を手助けします。取引承認に時間がかかる場合はこの設定をオンにしてください。",
+        "autoPromotionPoW": "自動促進はリモートによるプルーフ・オブ・ワークを許可するノードと接続している場合のみ有効です。"
     },
     "advancedThemeCustomisation": {
         "background": "背景",
@@ -535,31 +539,31 @@
         "syncingYourAccount": "アカウントを同期しています。"
     },
     "useExistingSeed": {
-        "title": "シードとアカウント名を入力して下さい。",
+        "title": "シードとアカウント名を入力してください。",
         "incorrectFormat": "不正確なシードの形式です。",
         "validSeedExplanation": "有効なシードは81文字で、A〜Zまたは9のみを含む必要があります。"
     },
     "viewSeed": {
-        "enterPassword": "シードを閲覧するにはパスワードを入力して下さい。",
-        "viewSeed": "シードを見る",
+        "enterPassword": "シードを閲覧するにはパスワードを入力してください。",
+        "viewSeed": "シードを表示",
         "hideSeed": "シードを隠す"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "シードのバックアップはされましたか？",
-        "alreadyHave": "私はシードを安全に保管しました。",
+        "alreadyHave": "私はシードをバックアップしました。",
         "reenterSeed": "次のステップで、シードを再入力するよう求められます。",
         "reenterSeedWarning": "もし、シードをバックアップせずにデバイスが故障した場合、そのシードにあるIOTAはすべて失われます。",
         "pleaseConfirm": "シードが安全に保管されていることを確認してください。"
     },
     "walletResetConfirmation": {
         "cannotUndo": "この操作は元に戻せません。",
-        "warning": "<0><0>シードやパスワード、</0><1>その他のアカウント情報など</1><2>すべての</2><3>ウォレットデータが</3><4>消えます。</4></0>"
+        "warning": "<0><0>シードやパスワード、</0><1>その他のアカウント情報など</1><2>すべての</2><3>ウォレットデータが</3><4>消去されます。</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "指紋認証を有効にするには、指紋リーダーに触れてください。",
         "instructionsDisable": "指紋認証を無効にするには、指紋リーダーに触れてください。",
         "fingerprintAuthEnabled": "生体認証を有効化",
-        "fingerprintAuthEnabledExplanation": "生体認証の有効化に成功しました。",
+        "fingerprintAuthEnabledExplanation": "生体認証を有効にしました。",
         "fingerprintAuthDisabled": "生体認証を無効化",
         "fingerprintAuthDisabledExplanation": "生体認証の無効化に成功しました。",
         "fingerprintAuthFailed": "生体認証に失敗しました。",
@@ -638,7 +642,7 @@
         "transition": "移行",
         "transitioning": "スナップショットを移行しています。",
         "generatingAndDetecting": "アドレス生成と残高検出を行なっています。",
-        "attaching": "タングルにアドレスを登録中"
+        "attaching": "タングルにアドレスを添付しています。"
     },
     "deepLink": {
         "autofill": "自動入力成功",
@@ -662,7 +666,7 @@
         "accept": "I accept"
     },
     "privacyPolicy": {
-        "privacyPolicy": "Privacy Policy",
-        "agree": "I agree"
+        "privacyPolicy": "プライバシーポリシー",
+        "agree": "同意します"
     }
 }

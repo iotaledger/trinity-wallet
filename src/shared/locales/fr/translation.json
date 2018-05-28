@@ -16,13 +16,13 @@
         "keyReuse": "Envoi à une adresse déjà utilisée",
         "keyReuseError": "Vous ne pouvez pas effectuer de transfert vers une adresse qui a déjà été débitée.",
         "invalidResponse": "Erreur de serveur",
-        "invalidResponseExplanation": "Le serveur a renvoyé une erreur. Vérifiez les notifications pour plus d'informations.",
-        "invalidResponsePollingExplanation": "Le serveur a renvoyé une erreur lors de la requête. Vérifiez les notifications pour plus d'informations.",
+        "invalidResponseExplanation": "Le serveur a renvoyé une erreur. Essayez de changer de serveur.",
+        "invalidResponsePollingExplanation": "Le serveur a renvoyé une erreur lors de l'interrogation. Essayez de changer de serveur.",
         "invalidResponseFetchingAccount": "Le serveur a renvoyé une réponse invalide lors de la récupération des informations de votre compte. Essayez de changer de serveur.",
-        "invalidResponseSendingTransfer": "Le serveur a renvoyé une erreur durant l'envoi du transfert. Vérifiez les notifications pour plus d’informations.",
+        "invalidResponseSendingTransfer": "Le serveur a renvoyé une erreur lors de l'envoie. Essayez de changer de serveur.",
         "nodeOutOfSync": "Serveur non synchronisé",
         "nodeOutOfSyncExplanation": "Votre serveur actuellement sélectionné est désynchronisé. S’il vous plaît changez le nœud ou essayez à nouveau.",
-        "thisNodeOutOfSync": "This node is out of sync. Please change node or try again.",
+        "thisNodeOutOfSync": "Votre serveur actuellement sélectionné est désynchronisé. Changez le serveur ou essayez à nouveau.",
         "seed": "Seed",
         "checksum": "Code de Vérification",
         "back": "RETOUR",
@@ -40,12 +40,12 @@
         "continue": "Continuer",
         "enable": "Activer",
         "disable": "Désactiver",
-        "enabled": "Enabled",
-        "disabled": "Disabled",
+        "enabled": "Activé",
+        "disabled": "Désactivé",
         "manualCopy": "Notez la seed",
         "paperWallet": "Imprimer une copie papier",
-        "addToPasswordManager": "Add to password manager",
-        "shareSeed": "Share seed",
+        "addToPasswordManager": "Ajouter à un gestionnaire de mot de passe",
+        "shareSeed": "Partager la seed",
         "proceed": "Continuer",
         "qr": "QR",
         "notAvailable": "Cette fonction n’est pas disponible",
@@ -63,6 +63,7 @@
         "yesLowerCase": "Oui",
         "noLowerCase": "Non",
         "okay": "OK",
+        "okayLowercase": "Ok",
         "password": "Mot de passe",
         "passwordOrFingerprint": "Mot de passe ou empreinte digitale",
         "unrecognisedPassword": "Mot de passe non reconnu",
@@ -94,7 +95,7 @@
         "pressBackAgain": "Appuyez sur le bouton retour pour fermer l'application",
         "reattached": "Transaction rattachée avec succès",
         "reattachedExplanation": "Transaction avec le hash {{hash}} rattachée",
-        "promotingTransaction": "Promoting transaction",
+        "promotingTransaction": "Promotion de la transaction",
         "autopromoting": "Promotion automatique du transfert",
         "autopromotingExplanation": "Promotion de la transaction avec le hash {{hash}}",
         "rebroadcasted": "Transaction retransmise avec succès",
@@ -147,7 +148,10 @@
         "androidCopyPasteWarning": "Ne jamais copier/coller votre seed sur un appareil Android.",
         "willNotCopyPasteSeed": "Je ne copierai/collerai pas ma seed",
         "mustBeStoredAppropriately": "Elle doit être stockée correctement.",
-        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while"
+        "deviceMayBecomeUnresponsive": "Votre appareil peut ne pas répondre pendant un certain temps",
+        "isYourBalanceCorrect": "Votre solde est-il correct ?",
+        "ifYourBalanceIsNotCorrect": "Si votre solde n’est pas correct, il est probable que vous utilisiez une seed antérieur à un snapshot.",
+        "headToAdvancedSettingsForTransition": "Dirigez-vous vers les paramètres avancés et effectuer une Transition de snapshot."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -190,7 +194,7 @@
         "reasonSequence": "Les suites comme 'abc' ou '54321' sont faciles à deviner",
         "reasonYears": "Les années récentes sont faciles à deviner",
         "reasonDates": "Les dates sont souvent faciles à deviner",
-        "reasonTop10": "Voila un top 10 des mots de passe les plus courants",
+        "reasonTop10": "Voila un top 10 des mots de passes les plus courants",
         "reasonTop100": "Voila un top 100 des mots de passe les plus courants",
         "reasonCommon": "C'est un mot de passe très courant",
         "reasonSimilar": "Ceci est similaire à un mot de passe souvent utilisé",
@@ -241,7 +245,7 @@
         "useSeed": "UTILISER LA SEED",
         "login": "Se Connecter",
         "selectDifferentNode": "Voulez-vous sélectionner un serveur différent ?",
-        "setNode": "CONFIGURER UN SERVEUR",
+        "setNode": "Choisir un serveur",
         "cannotConnect": "Impossible de se connecter à un serveur IOTA."
     },
     "loading": {
@@ -336,7 +340,7 @@
         "invalidMessageExplanation": "Votre message contient des caractères invalides.",
         "invalidMessageTooLong": "Message trop long",
         "invalidMessageTooLongExplanation": "Le message dépasse le nombre de caractères max. (1093).",
-        "send": "ENVOYER",
+        "send": "Envoyer",
         "invalidAmount": "Montant saisi incorrect",
         "invalidAmountExplanation": "Veuillez entrer un montant valide pour la transaction. Vous pouvez vous référer à l'explication des unités IOTA au bas de cette page si besoin.",
         "maximumSelected": "Montant MAXIMAL sélectionné",
@@ -487,9 +491,9 @@
         "manualSync": "Synchro manuelle",
         "snapshotTransition": "Transition du Snapshot",
         "pow": "Preuve de Travail",
-        "autoPromotion": "Auto-promotion",
-        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
-        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
+        "autoPromotion": "Promotion automatique",
+        "autoPromotionExplanation": "La promotion automatique aide à confirmer vos transactions sur le tangle. Activez ce paramètre si vous rencontrez des difficultés à confirmer vos transactions.",
+        "autoPromotionPoW": "La promotion automatique n’est possible sur les nœuds qui prennent en charge la preuve de travail à distance."
     },
     "advancedThemeCustomisation": {
         "background": "Arrière-plan",
@@ -531,7 +535,7 @@
         "pressToSync": "Appuyez sur le bouton ci-dessous pour synchroniser votre compte.",
         "thisMayTake": "Cela peut prendre un certain temps. Vous remarquerez peut-être un ralentissement de votre appareil.",
         "doNotClose": "Veuillez noter que réduire l'application annulera la synchronisation.",
-        "syncAccount": "SYNCHRONISER LE COMPTE",
+        "syncAccount": "Synchroniser le compte",
         "syncingYourAccount": "Synchronisation de votre compte."
     },
     "useExistingSeed": {
@@ -659,10 +663,10 @@
     },
     "terms": {
         "termsAndConditions": "Termes et conditions",
-        "accept": "I accept"
+        "accept": "J'accepte"
     },
     "privacyPolicy": {
-        "privacyPolicy": "Privacy Policy",
-        "agree": "I agree"
+        "privacyPolicy": "Politique de confidentialité",
+        "agree": "J'accepte"
     }
 }

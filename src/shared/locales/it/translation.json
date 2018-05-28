@@ -4,7 +4,7 @@
         "cancel": "ANNULLA",
         "continue?": "Sei sicuro di voler continuare?",
         "noTransactions": "Cronologia recente vuota",
-        "refresh": "AGGIORNA",
+        "refresh": "Aggiorna",
         "balanceError": "Saldo insufficiente",
         "balanceErrorMessage": "Non hai abbastanza IOTA per completare questo trasferimento.",
         "transferError": "Errore di trasferimento",
@@ -16,13 +16,13 @@
         "keyReuse": "Invio a un indirizzo usato per una spesa",
         "keyReuseError": "Non è possibile inviare a un indirizzo che è già stato usato per una spesa.",
         "invalidResponse": "Errore di nodo",
-        "invalidResponseExplanation": "Il nodo ha restituito un errore. Controllare le notifiche per ulteriori informazioni.",
-        "invalidResponsePollingExplanation": "Il nodo ha restituito un errore nella fase di contatto (polling). Controllare le notifiche per ulteriori informazioni.",
-        "invalidResponseFetchingAccount": "Il nodo ha restituito un errore durante il recupero di informazioni del tuo conto. Provare a cambiare il nodo o controllare le notifiche per ulteriori informazioni.",
-        "invalidResponseSendingTransfer": "Il nodo ha restituito un errore durante l'invio della transazione. Controllare le notifiche per ulteriori informazioni.",
+        "invalidResponseExplanation": "Il nodo ha restituito un errore. Provare a cambiare il nodo.",
+        "invalidResponsePollingExplanation": "Il nodo ha restituito un errore quando è stato interrogato. Provare a cambiare il nodo.",
+        "invalidResponseFetchingAccount": "Il nodo ha restituito un errore durante il recupero di informazioni del tuo conto. Prova a cambiare nodo.",
+        "invalidResponseSendingTransfer": "Il nodo ha restituito un errore durante l'invio del trasferimento. Provare a cambiare il nodo.",
         "nodeOutOfSync": "Nodo non sincronizzato",
         "nodeOutOfSyncExplanation": "Il nodo attualmente selezionato non è sincronizzato. Si prega di cambiare il nodo o riprovare.",
-        "thisNodeOutOfSync": "This node is out of sync. Please change node or try again.",
+        "thisNodeOutOfSync": "Questo nodo non è sincronizzato. Si prega di cambiare il nodo o riprovare.",
         "seed": "Seme",
         "checksum": "Codice di verifica",
         "back": "INDIETRO",
@@ -36,16 +36,16 @@
         "nextLowerCase": "Avanti",
         "apply": "Applica",
         "save": "Salva",
-        "close": "CHIUDI",
+        "close": "Chiudi",
         "continue": "Continua",
         "enable": "Abilita",
         "disable": "Disabilita",
-        "enabled": "Enabled",
-        "disabled": "Disabled",
+        "enabled": "Abilitato",
+        "disabled": "Disabilitato",
         "manualCopy": "Annota il seme",
         "paperWallet": "Stampa copia cartacea",
-        "addToPasswordManager": "Add to password manager",
-        "shareSeed": "Share seed",
+        "addToPasswordManager": "Aggiungi al gestore di password",
+        "shareSeed": "Condividi il seme",
         "proceed": "Procedi",
         "qr": "QR",
         "notAvailable": "Questa funzione non è disponibile",
@@ -63,6 +63,7 @@
         "yesLowerCase": "Sì",
         "noLowerCase": "No",
         "okay": "OK",
+        "okayLowercase": "Va bene",
         "password": "Password",
         "passwordOrFingerprint": "Password o impronta digitale",
         "unrecognisedPassword": "Password non riconosciuta",
@@ -94,7 +95,7 @@
         "pressBackAgain": "Premi di nuovo Indietro per chiudere la app",
         "reattached": "Transazione riattaccata con successo",
         "reattachedExplanation": "Transazione con hash {{hash}} riattaccata",
-        "promotingTransaction": "Promoting transaction",
+        "promotingTransaction": "Promozione della transazione",
         "autopromoting": "Promozione automatica del trasferimento",
         "autopromotingExplanation": "Promozione della transazione con hash {{hash}}",
         "rebroadcasted": "Transazione ritrasmessa con successo",
@@ -147,7 +148,10 @@
         "androidCopyPasteWarning": "Mai copiare/incollare il vostro seme su un dispositivo Android.",
         "willNotCopyPasteSeed": "Non farò copia/incolla del mio seme",
         "mustBeStoredAppropriately": "Deve essere memorizzato in modo appropriato.",
-        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while"
+        "deviceMayBecomeUnresponsive": "Il dispositivo potrebbe non rispondere per un po'",
+        "isYourBalanceCorrect": "Il tuo saldo è corretto?",
+        "ifYourBalanceIsNotCorrect": "Se il saldo non è corretto, è probabile che si sta utilizzando un seme pre-snapshot.",
+        "headToAdvancedSettingsForTransition": "Vai su Impostazioni Avanzate ed esegui Passaggio dopo uno snapshot."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
@@ -204,7 +208,7 @@
         "clickToCopy": "Fai clic sul pulsante qui sotto e copia il tuo seme su un gestore di password.",
         "clickToSecurelyShare": "Fai clic sul pulsante qui sotto per condividere in sicurezza il tuo seme con un gestore di password.",
         "doNotStore": "Non salvare il tuo seme in un file non crittografato.",
-        "copyToClipboard": "Copiare seed",
+        "copyToClipboard": "Copia seed",
         "shareSeed": "Passa il seme ad un gestore di password sicuro",
         "storeEncrypted": "Memorizza il tuo seme codificato con un gestore di password.",
         "doNotOpen": "Non aprire altre applicazioni durante questo processo.",
@@ -239,9 +243,9 @@
         "emptyPasswordExplanation": "È necessario immettere una password per il login. Si prega di riprovare.",
         "enterPassword": "Inserisci la tua password.",
         "useSeed": "USA IL SEME",
-        "login": "ACCEDI",
+        "login": "Accedi",
         "selectDifferentNode": "Vuoi selezionare un nodo diverso?",
-        "setNode": "IMPOSTA NODO",
+        "setNode": "Seleziona nodo",
         "cannotConnect": "Impossibile connettersi al nodo IOTA."
     },
     "loading": {
@@ -255,7 +259,7 @@
         "generatedSeed": "Seme generato",
         "seedNotGenerated": "Il seme non è stato generato",
         "seedNotGeneratedExplanation": "Si prega di generare un nuovo seme.",
-        "pressForNewSeed": "PREMI PER UN NUOVO SEME",
+        "pressForNewSeed": "Premi per nuovo seme",
         "generateSuccess": "Seme generato correttamente",
         "individualLetters": "Premi alcune singole lettere per renderle maggiormente casuali.",
         "individualLetterCount": "Premere altre {{letterCount}} singole lettere per renderle più casuali.",
@@ -271,7 +275,7 @@
         "storeSafely": "Conservala in modo sicuro.",
         "neverShare": "Non condividere mai il tuo seme con nessuno.",
         "iotaLogo": "Logo IOTA",
-        "printWallet": "STAMPA IL PORTAFOGLIO SU CARTA",
+        "printWallet": "Stampa portafoglio su carta",
         "print": "STAMPA",
         "paperConvenience": "Stampare una copia cartacea del tuo seme è un modo conveniente per memorizzarlo.",
         "publicInsecure": "Ma stampare attraverso Wi-Fi pubblico o su una stampante pubblica è insicuro.",
@@ -283,7 +287,7 @@
         "copyAddress": "Copia indirizzo",
         "addressCopied": "Indirizzo copiato",
         "addressCopiedExplanation": "Il tuo indirizzo è stato copiato negli Appunti.",
-        "generateNewAddress": "NUOVO INDIRIZZO",
+        "generateNewAddress": "Nuovo indirizzo",
         "message": "Messaggio opzionale",
         "removeMessage": "RIMUOVI IL MESSAGGIO",
         "noAddresses": "NESSUN INDIRIZZO",
@@ -336,7 +340,7 @@
         "invalidMessageExplanation": "Il tuo messaggio contiene caratteri non validi.",
         "invalidMessageTooLong": "Messaggio troppo lungo",
         "invalidMessageTooLongExplanation": "Il messaggio supera il numero massimo di caratteri (1093).",
-        "send": "INVIA",
+        "send": "Invia",
         "invalidAmount": "Inserito un importo non corretto",
         "invalidAmountExplanation": "Inserisci un importo di transazione valido. Può essere utile visualizzare la spiegazione di unità IOTA nella parte inferiore di questa pagina.",
         "maximumSelected": "Selezionato importo MASSIMO",
@@ -425,7 +429,7 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Immetti la tua password per reimpostare il portafoglio.",
-        "cancel": "ANNULLA",
+        "cancel": "Annulla",
         "reset": "REIMPOSTA"
     },
     "walletSetup": {
@@ -487,9 +491,9 @@
         "manualSync": "Sincronizzazione manuale",
         "snapshotTransition": "Passaggio dopo uno snapshot",
         "pow": "Prova di lavoro",
-        "autoPromotion": "Auto-promotion",
-        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
-        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
+        "autoPromotion": "Auto-Promozione",
+        "autoPromotionExplanation": "Auto-promozione contribuisce a confermare le transazioni sul Tangle. Abilitare questa impostazione se si hanno difficoltà a ottenere la conferma delle tue transazioni.",
+        "autoPromotionPoW": "Auto-promozione è possibile solo su nodi che supportano la prova di lavoro remota."
     },
     "advancedThemeCustomisation": {
         "background": "Sfondo",
@@ -531,7 +535,7 @@
         "pressToSync": "Premi il pulsante sotto per sincronizzare il conto.",
         "thisMayTake": "Questo potrebbe richiedere del tempo. È possibile notare rallentamenti del dispositivo.",
         "doNotClose": "Attenzione, se si minimizza l'app la sincronizzazione si annulla.",
-        "syncAccount": "SINCRONIZZA CONTO",
+        "syncAccount": "Sincronizza il conto",
         "syncingYourAccount": "Sto sincronizzando il tuo conto."
     },
     "useExistingSeed": {
@@ -541,8 +545,8 @@
     },
     "viewSeed": {
         "enterPassword": "Immetti la password per visualizzare il tuo seme.",
-        "viewSeed": "VISUALIZZA SEME",
-        "hideSeed": "NASCONDI SEME"
+        "viewSeed": "Visualizza seme",
+        "hideSeed": "Nascondi seme"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Hai salvato il tuo seme?",
@@ -635,10 +639,10 @@
         "isThisCorrect": "È corretto?",
         "snapshotExplanation": "Ogni tanto, viene fatto uno snapshot per ridurre la dimensione del Tangle.",
         "hasSnapshotTakenPlace": "È stato fatto uno snapshot? Premi il bottone sotto per passare al nuovo stato.",
-        "transition": "PASSAGGIO ALLO SNAPSHOT",
+        "transition": "Transizione",
         "transitioning": "Passaggio in corso allo snapshot.",
         "generatingAndDetecting": "Generazione di indirizzi e rilevamento del saldo.",
-        "attaching": "Attacco gli indirizzi al Tangle"
+        "attaching": "Attacco gli indirizzi al Tangle."
     },
     "deepLink": {
         "autofill": "Riempimento automatico",
@@ -659,10 +663,10 @@
     },
     "terms": {
         "termsAndConditions": "Termini e condizioni",
-        "accept": "I accept"
+        "accept": "Accetto"
     },
     "privacyPolicy": {
-        "privacyPolicy": "Privacy Policy",
-        "agree": "I agree"
+        "privacyPolicy": "Informativa Privacy",
+        "agree": "Concordo"
     }
 }
