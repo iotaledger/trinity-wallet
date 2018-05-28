@@ -348,7 +348,7 @@
         "sendMax": "SKICKA MAX",
         "totalTime": "Total tid",
         "addressPasteDetected": "Kopierad adress upptäckt",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
+        "addressPasteExplanation": "Det ser ut som att du har klistrat in en adress. Kontrollera att den inklistrade adressen matchar den som du vill skicka till."
     },
     "setPassword": {
         "choosePassword": "Välj ett nytt lösenord",
@@ -491,9 +491,9 @@
         "manualSync": "Synka manuellt",
         "snapshotTransition": "Snapshot-övergång",
         "pow": "PoW",
-        "autoPromotion": "Auto-promotion",
-        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
-        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
+        "autoPromotion": "Automatisk befordran",
+        "autoPromotionExplanation": "Automatisk befordran hjälper till att bekräfta dina transaktioner på Tangle. Aktivera den här inställningen om du har svårt att få dina transaktioner bekräftade.",
+        "autoPromotionPoW": "Automatisk befordran är endast tillgänglig på noder som stöder avlägsen PoW."
     },
     "advancedThemeCustomisation": {
         "background": "Bakgrund",
@@ -621,8 +621,8 @@
         "noWebGLSupportExplanation": "Din dator stöder inte WebGL. Använd avlägsen PoW."
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Auto-promotion settings",
-        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
+        "autoPromotionUpdated": "Automatisk befordran-inställningar",
+        "autoPromotionUpdatedExplanation": "Din automatisk befordran-konfiguration har blivit uppdaterad."
     },
     "progressSteps": {
         "checkingNodeHealth": "Kontrollera nodens hälsa",
@@ -667,10 +667,10 @@
     },
     "terms": {
         "termsAndConditions": "Villkor",
-        "accept": "I accept"
+        "accept": "Jag accepterar"
     },
     "privacyPolicy": {
-        "privacyPolicy": "Privacy Policy",
-        "agree": "I agree"
+        "privacyPolicy": "Integritetspolicy",
+        "agree": "Jag samtycker"
     }
 }
