@@ -17,7 +17,7 @@
         "keyReuseError": "Du kan ikke sende til en adresse som allerede er blitt brukt til å sende fra.",
         "invalidResponse": "Nodefeil",
         "invalidResponseExplanation": "Noden returnerte en feil. Forsøk å endre node.",
-        "invalidResponsePollingExplanation": "The node returned an error while polling. Try changing node.",
+        "invalidResponsePollingExplanation": "Noden returnerte en feilmelding under forespørselen. Forsøk å endre node.",
         "invalidResponseFetchingAccount": "Noden returnerte en feil under henting av din kontoinformasjon. Forsøk å endre node.",
         "invalidResponseSendingTransfer": "Noden returnerte en feil under sending av transaksjonen. Forsøk å endre node.",
         "nodeOutOfSync": "Noden er ikke synkronisert",
@@ -306,21 +306,21 @@
         "iHaveBackedUpMySeed": "Jeg har lagret min hovednøkkel",
         "letsWriteDownYourSeed": "La oss skrive ned din hovednøkkel",
         "youCanHighlightCharacters": "Du kan utheve 9 tegn om gangen",
-        "printBlankWallet": "Print a blank wallet",
+        "printBlankWallet": "Skriv ut en tom lommebok",
         "whatIsCheksum": "Alle hovednøkler har tilsvarende 3 tegn-kontrollsum",
         "iHavesavedMySeed": "Jeg har lagret min hovednøkkel",
-        "checksumExplanation": "Whenever you add a seed to your wallet, you should ensure that the wallet-generated checksum matches the one you have written down.",
+        "checksumExplanation": "Når du legger til en hovednøkkel i lommeboken, bør du forsikre deg om at kontrollsummen samsvarer med den du har skrevet ned.",
         "mustSaveYourSeed": "<0><0>Du må lagre din hovednøkkel med </0><1>minst én</1><2> av alternativene nedenfor.</2></0>"
     },
     "seedReentry": {
-        "pleaseConfirmYourSeed": "Please confirm your seed",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or the app.",
-        "enterYourSeed": "Enter your seed",
+        "pleaseConfirmYourSeed": "Vennligst bekreft din hovednøkkel",
+        "trinityWillNeverAskToReenter": "Trinity vil aldri be deg å skrive inn hovednøkkelen hvis du ikke tilbakestiller lommeboken eller applikasjonen.",
+        "enterYourSeed": "Angi din hovednøkkel",
         "incorrectSeed": "Feil hovednøkkel",
         "incorrectSeedExplanation": "Hovednøkkelen du skrev inn er feil. Prøv på nytt.",
         "thisIsACheck": "Dette er en kontroll for å sikre at du har lagret hovednøkkelen din.",
         "ifYouHaveNotSaved": "Dersom du ikke har lagret hovednøkkelen din, vennligst gå tilbake for å lagre.",
-        "enterSeedBelow": "Enter your newly created seed below to confirm you have backed it up correctly"
+        "enterSeedBelow": "Angi din nyopprettede hovednøkkel nedenfor for å bekrefte at du har sikkerhetskopiert den riktig"
     },
     "send": {
         "invalidAddress": "Ugyldig adresse",
@@ -347,11 +347,11 @@
         "iotaUnits": "IOTA enheter forklart",
         "sendMax": "SENDE MAX",
         "totalTime": "Total tid",
-        "addressPasteDetected": "Address paste detected",
-        "addressPasteExplanation": "It looks like you are about to paste an address. Make sure that the pasted address matches the one you want to send to."
+        "addressPasteDetected": "Adresse \"lim inn\" gjenkjent",
+        "addressPasteExplanation": "Det ser ut som du skal lime inn en adresse. Kontroller at den innlimte adressen samsvarer med den som du vil sende til."
     },
     "setPassword": {
-        "choosePassword": "Choose a new password",
+        "choosePassword": "Velg et nytt passord",
         "passwordTooShort": "Passordet er for kort",
         "passwordTooShortExplanation": "Passordet må være minst {{minLength}} tegn. Det er nå {{currentLength}} tegn. Prøv på nytt.",
         "passwordMismatch": "Passordene samsvarer ikke",
@@ -362,7 +362,7 @@
         "retypePassword": "Skriv inn passordet på nytt"
     },
     "setSeedName": {
-        "letsAddName": "Let's add a name",
+        "letsAddName": "La oss legge til et navn",
         "canUseMultipleSeeds": "Du kan lagre flere hovednøkler i denne lommeboken. Hver av disse må ha et eget kontonavn.",
         "youCanAdd": "Du kan legge til flere hovednøkler i menyen for Innstillinger."
     },
@@ -491,9 +491,9 @@
         "manualSync": "Manuell synkronisering",
         "snapshotTransition": "Snapshot synkronisering",
         "pow": "Bevis på arbeid",
-        "autoPromotion": "Auto-promotion",
-        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
-        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
+        "autoPromotion": "Auto promoter",
+        "autoPromotionExplanation": "Auto-promotering bidrar å bekrefte dine transaksjoner på nettverket. Aktiver denne innstillingen hvis du har problemer med å bekrefte dine transaksjoner.",
+        "autoPromotionPoW": "Automatisk promotering er kun mulig på noder som støtter ekstern PoW."
     },
     "advancedThemeCustomisation": {
         "background": "Bakgrunn",
@@ -535,7 +535,7 @@
         "pressToSync": "Trykk på knappen nedenfor for å synkronisere din konto.",
         "thisMayTake": "Dette kan ta en stund. Det kan hende din enhet blir tregere.",
         "doNotClose": "Minimaliserer du applikasjonen vil du avbryte synkroniseringen.",
-        "syncAccount": "Sync Account",
+        "syncAccount": "Synkroniser konto",
         "syncingYourAccount": "Synkroniserer din konto."
     },
     "useExistingSeed": {
@@ -552,8 +552,8 @@
         "didSaveSeed": "Har du lagret hovednøkkelen?",
         "alreadyHave": "Jeg har lagret min hovednøkkel",
         "reenterSeed": "På neste trinn vil du bli bedt om å skrive inn hovednøkkelen.",
-        "reenterSeedWarning": "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
-        "pleaseConfirm": "Please confirm you have securely stored your seed."
+        "reenterSeedWarning": "Hvis du ikke har lagret hovednøkkelen og enheten din blir ødelagt vil du miste tilgangen til dine IOTA.",
+        "pleaseConfirm": "Vennligst bekreft at du har lagret hovednøkkelen."
     },
     "walletResetConfirmation": {
         "cannotUndo": "DENNE HANDLINGEN KAN IKKE ANGRES.",
@@ -621,7 +621,7 @@
         "noWebGLSupportExplanation": "Datamaskinen støtter ikke WebGL. Vennligst benytt ekstern PoW (Proof of Work)."
     },
     "progressSteps": {
-        "checkingNodeHealth": "Checking node health",
+        "checkingNodeHealth": "Undersøker nodens helse",
         "validatingReceiveAddress": "Validerer mottaksadressen",
         "syncingAccount": "Synkroniser konto",
         "preparingInputs": "Forbereder input",
@@ -639,10 +639,10 @@
         "isThisCorrect": "Er dette riktig?",
         "snapshotExplanation": "Fra tid til annen gjennomføres det en snapshot for å redusere størrelsen på Tangle.",
         "hasSnapshotTakenPlace": "Har det vært gjennomført en snapshot? Trykk på knappen nedenfor for å bli overført.",
-        "transition": "Transition",
+        "transition": "Overgang",
         "transitioning": "Overfører til ny snapshot.",
         "generatingAndDetecting": "Genererer adresser og laster inn saldo.",
-        "attaching": "Attaching addresses to Tangle."
+        "attaching": "Kobler adressene til Tangle."
     },
     "deepLink": {
         "autofill": "Automatisk utfylling vellykket",
@@ -662,11 +662,11 @@
         "errorLog": "FEILMELDINGER"
     },
     "terms": {
-        "termsAndConditions": "Terms & Conditions",
-        "accept": "I accept"
+        "termsAndConditions": "Vilkår",
+        "accept": "Jeg aksepterer"
     },
     "privacyPolicy": {
-        "privacyPolicy": "Privacy Policy",
-        "agree": "I agree"
+        "privacyPolicy": "Personvernerklæring",
+        "agree": "Jeg aksepterer"
     }
 }
