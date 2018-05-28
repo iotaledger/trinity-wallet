@@ -22,7 +22,7 @@
         "invalidResponseSendingTransfer": "De node stuurde een fout terug tijdens het versturen van de transactie. Probeer van node te veranderen.",
         "nodeOutOfSync": "Node gedesynchroniseerd",
         "nodeOutOfSyncExplanation": "Uw huidige node is gedesynchroniseerd. Verander uw node of probeer opnieuw.",
-        "thisNodeOutOfSync": "De huidige node is niet gesynchroniseerd. Verander uw node of probeer opnieuw.",
+        "thisNodeOutOfSync": "De node is niet gesynchroniseerd. Verander uw node of probeer opnieuw.",
         "seed": "Seed",
         "checksum": "Controlesom",
         "back": "TERUG",
@@ -105,7 +105,7 @@
         "promoted": "Transactie succesvol gepromoot",
         "promotedExplanation": "Transactie met hash {{hash}} gepromoot",
         "autopromotionError": "Kon transactie niet automatisch promoten",
-        "autopromotionErrorExplanation": "Extern Bewijs van Inspanning (Pow) is niet beschikbaar op de geselecteerde node. Verander a.u.b. van node.",
+        "autopromotionErrorExplanation": "Extern Bewijs van Inspanning (PoW) is niet beschikbaar op de geselecteerde node. Verander van node en schakel auto-promotie opnieuw in.",
         "promotionError": "Kon transactie niet promoten",
         "promotionErrorExplanation": "Er ging iets mis bij het verzenden van uw transactie. Probeer het opnieuw.",
         "noLongerValid": "De bundel die u probeert te promoten is niet langer geldig",
@@ -492,8 +492,8 @@
         "snapshotTransition": "Snapshot transitie",
         "pow": "Bewijs van inspanning",
         "autoPromotion": "Auto-promotie",
-        "autoPromotionExplanation": "Auto-promotie helpt uw transactie bevestigen op de Tangle. Schakel deze instelling in wanneer u problemen ondervindt met bevestigen.",
-        "autoPromotionPoW": "Auto-promotie is alleen mogelijk op nodes die ondersteuning bieden voor extern Bewijs van Inspanning (Pow)."
+        "autoPromotionExplanation": "Auto-promotie helpt uw transactie te bevestigen op de Tangle. Schakel deze instelling in wanneer u problemen ondervindt met bevestigen.",
+        "autoPromotionPoW": "Auto-promotie is alleen mogelijk op nodes die ondersteuning bieden voor extern Bewijs van Inspanning (PoW)."
     },
     "advancedThemeCustomisation": {
         "background": "Achtergrond",
