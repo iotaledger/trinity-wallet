@@ -268,7 +268,7 @@
     "onboardingComplete": {
         "allDone": "끝났습니다!",
         "openYourWallet": "내 지갑 열기",
-        "walletReady": "지갑 설정이 끝났고, 사용 가능합니다. 추후 변경 사항이 있다면 설정 메뉴를 확인하세요."
+        "walletReady": "지갑 설정이 완료되었습니다. 추후 변경 사항이 있다면 설정 메뉴를 확인하세요."
     },
     "paperWallet": {
         "clickToPrint": "아래 버튼을 누르면 시드를 프린터로 인쇄합니다.",
