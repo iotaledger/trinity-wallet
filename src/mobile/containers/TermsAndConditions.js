@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
 import Markdown from 'react-native-markdown-renderer';
-import { termsAndConditions } from 'iota-wallet-shared-modules/markdown';
+import { enTermsAndConditions, deTermsAndConditions } from 'iota-wallet-shared-modules/markdown';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { acceptTerms } from 'iota-wallet-shared-modules/actions/settings';
@@ -11,6 +11,7 @@ import Button from '../components/Button';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
 import DynamicStatusBar from '../components/DynamicStatusBar';
+import i18next from '../i18next';
 
 const styles = StyleSheet.create({
     container: {
@@ -59,6 +60,10 @@ class TermsAndConditions extends Component {
         t: PropTypes.func.isRequired,
     };
 
+    static isCurrentLanguageGerman() {
+        return i18next.language === 'de';
+    }
+
     constructor() {
         super();
 
@@ -106,7 +111,9 @@ class TermsAndConditions extends Component {
                     scrollEventThrottle={400}
                     style={styles.scrollView}
                 >
-                    <Markdown styles={{ text: { fontFamily: 'SourceSansPro-Regular' } }}>{termsAndConditions}</Markdown>
+                    <Markdown styles={{ text: { fontFamily: 'SourceSansPro-Regular' } }}>
+                        {TermsAndConditions.isCurrentLanguageGerman() ? deTermsAndConditions : enTermsAndConditions}
+                    </Markdown>
                 </ScrollView>
                 {this.state.hasReadTerms && (
                     <Button
