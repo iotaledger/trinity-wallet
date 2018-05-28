@@ -23,6 +23,7 @@
 
 @implementation AppDelegate
 
+/* Commented out for disable-deep-links hotfix: 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
@@ -38,6 +39,8 @@
                   continueUserActivity:userActivity
                     restorationHandler:restorationHandler];
 }
+*/
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   NSURL *jsCodeLocation;
