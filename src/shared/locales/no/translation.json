@@ -304,11 +304,11 @@
         "digitalCopy": "Digital kopi",
         "seedClearedExplanation": "Hovednøkkelen er fjernet fra utklippstavlen for din sikkerhet.",
         "iHaveBackedUpMySeed": "Jeg har lagret min hovednøkkel",
-        "letsWriteDownYourSeed": "Lets write down your seed",
-        "youCanHighlightCharacters": "You can highlight 9 characters at a time",
+        "letsWriteDownYourSeed": "La oss skrive ned din hovednøkkel",
+        "youCanHighlightCharacters": "Du kan utheve 9 tegn om gangen",
         "printBlankWallet": "Print a blank wallet",
-        "whatIsCheksum": "Every seed has a corresponding 3 character checksum",
-        "iHavesavedMySeed": "I've saved my seed",
+        "whatIsCheksum": "Alle hovednøkler har tilsvarende 3 tegn-kontrollsum",
+        "iHavesavedMySeed": "Jeg har lagret min hovednøkkel",
         "checksumExplanation": "Whenever you add a seed to your wallet, you should ensure that the wallet-generated checksum matches the one you have written down.",
         "mustSaveYourSeed": "<0><0>Du må lagre din hovednøkkel med </0><1>minst én</1><2> av alternativene nedenfor.</2></0>"
     },
@@ -439,7 +439,7 @@
         "doYouNeedASeed": "Trenger du å lage en ny hovednøkkel?",
         "seedExplanation": "IOTA hovednøkkelen er som et brukernavn og passord til kontoen, og består av en kombinert streng på 81 tegn.",
         "noIHaveOne": "Nei, jeg har en",
-        "yesINeedASeed": "Yes, I need a seed",
+        "yesINeedASeed": "Ja, jeg trenger en hovednøkkel",
         "explanation": "<0><0>Du kan bruke den til å få tilgang til dine midler fra</0> <1>enhver lommebok</1> <2>, på</2> <3>enhver enhet</3> <4>. Men hvis du mister hovednøkkelen mister du også dine IOTA.</4></0>",
         "keepSafe": "Vennligst oppbevar hovednøkkelen sikkert.",
         "hint": "<0><0>Hint:</0> Klikk NEI hvis dette er første gangen du bruker IOTA.</0>"
@@ -545,13 +545,13 @@
     },
     "viewSeed": {
         "enterPassword": "Skriv inn passordet for å vise hovednøkkelen.",
-        "viewSeed": "View Seed",
-        "hideSeed": "Hide Seed"
+        "viewSeed": "Vis hovednøkkel",
+        "hideSeed": "Gjem hovednøkkel"
     },
     "saveSeedConfirmation": {
-        "didSaveSeed": "Did you back up your seed?",
+        "didSaveSeed": "Har du lagret hovednøkkelen?",
         "alreadyHave": "Jeg har lagret min hovednøkkel",
-        "reenterSeed": "At the next step you will be asked to re-enter your seed.",
+        "reenterSeed": "På neste trinn vil du bli bedt om å skrive inn hovednøkkelen.",
         "reenterSeedWarning": "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
         "pleaseConfirm": "Please confirm you have securely stored your seed."
     },
