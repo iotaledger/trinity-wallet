@@ -278,7 +278,7 @@
         "printWallet": "Drucke Paper Wallet",
         "print": "DRUCKEN",
         "paperConvenience": "Deinen Seed auszudrucken ist ein komfortabler Weg deinen Seed zu sichern.",
-        "publicInsecure": "Doch beachte, dass der Ausdruck über einen öffentlich zugänglichen Drucker oder während du dich im WLAN befindest, unsicher ist.",
+        "publicInsecure": "Doch beachte, dass das Drucken über öffentliche WLAN-Netzwerke oder Drucker unsicher ist.",
         "tapCheckboxes": "Bitte aktiviere folgende Kontrollboxen um zu Bestätigen.",
         "wifiCheckbox": "Ich werde nicht drucken während ich ein öffentliches WLAN verwende",
         "printerCheckbox": "Ich werde nicht auf einem öffentlich zugänglichen Drucker ausdrucken"
@@ -308,14 +308,14 @@
         "youCanHighlightCharacters": "Du kannst neun Buchstaben gleichzeitig auswählen",
         "printBlankWallet": "Ein leeres Wallet drucken",
         "whatIsCheksum": "Jeder Seed hat eine dreistellige Prüfsumme",
-        "iHavesavedMySeed": "Ich habe mein Seed gesichert",
+        "iHavesavedMySeed": "Ich habe meinen Seed gesichert",
         "checksumExplanation": "Überprüfe die automatisch generierte Prüfsumme jedes Mal wenn du einen Seed in Trinity hinzufügst.",
         "mustSaveYourSeed": "<0><0>Du musst deinen Seed mit </0><1>mindestens einer</1><2> der unten aufgelisteten Optionen sichern.</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Bitte bestätige deinen Seed",
-        "trinityWillNeverAskToReenter": "Trinity wird dich niemals darum bitten deinen Seed einzugeben, außer du möchtest dein Wallet zurücksetzen oder hast die App neu installiert.",
-        "enterYourSeed": "Geben Sie Ihren Seed ein",
+        "trinityWillNeverAskToReenter": "Trinity wird dich niemals darum bitten deinen Seed einzugeben, außer du hast dein Wallet zurückgesetzt oder die App neu installiert.",
+        "enterYourSeed": "Gib Deinen Seed ein",
         "incorrectSeed": "Ungültiger Seed",
         "incorrectSeedExplanation": "Der von dir eingegebene Seed ist nicht korrekt. Bitte versuche es noch einmal.",
         "thisIsACheck": "Dies ist eine Kontrolle um sicherzustellen, dass du deinen Seed gesichert hast.",
