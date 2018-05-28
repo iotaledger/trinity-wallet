@@ -147,7 +147,7 @@
         "androidCopyPasteWarning": "Kopijuoti/Įklijuoti užraktą su Android įrenginiu nerekomenduojama.",
         "willNotCopyPasteSeed": "Aš nekopijuosiu/neįklijuosiu užrakto",
         "mustBeStoredAppropriately": "Jis privalo būti tinkamai laikomas.",
-        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while"
+        "deviceMayBecomeUnresponsive": "Jūsų įrenginys kurį laiką gali neatsakyti į užklausas"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Užraktas turi neleistinų simbolių",
