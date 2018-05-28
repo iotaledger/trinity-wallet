@@ -105,7 +105,7 @@
         "promoted": "取引は正常に促進されました。",
         "promotedExplanation": "ハッシュ値{{hash}}の取引が促進されました。",
         "autopromotionError": "取引の自動促進ができませんでした。",
-        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
+        "autopromotionErrorExplanation": "選択しているノードではリモートによるプルーフ・オブ・ワークが利用できません。ノードを変更して自動促進を再度有効にしていください。",
         "promotionError": "取引を促進できませんでした。",
         "promotionErrorExplanation": "取引を促進中に不具合が発生しました。もう一度やり直してください。",
         "noLongerValid": "促進しようとしているバンドルは無効です。",
@@ -348,7 +348,7 @@
         "sendMax": "全額送金",
         "totalTime": "合計時間",
         "addressPasteDetected": "アドレスのペーストを検出",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
+        "addressPasteExplanation": "アドレスをペーストしたようです。送金先のアドレスと一致することを確かめてください。"
     },
     "setPassword": {
         "choosePassword": "新しいパスワードを選択",
