@@ -64,18 +64,20 @@ export default class SnapshotTransitionModalContent extends PureComponent {
                     text={
                         <View>
                             <Text style={[styles.infoTextBold, textColor, { paddingTop: height / 30 }]}>
-                                Is your balance correct?
+                                {t('global:isYourBalanceCorrect')}
                             </Text>
                             <Text style={[styles.infoTextLight, textColor, { paddingTop: height / 40 }]}>
-                                If your balance is not correct, it is likely that you are using a pre-snapshot seed.
+                                {t('global:ifYourBalanceIsNotCorrect')}
                             </Text>
                             <Text style={[styles.infoTextLight, textColor, { paddingTop: height / 40 }]}>
-                                Head to Advanced Settings and perform a Snapshot Transition.
+                                {t('global:headToAdvancedSettingsForTransition')}
                             </Text>
                             <View style={{ paddingTop: height / 18, alignItems: 'center' }}>
                                 <TouchableOpacity onPress={onPress}>
                                     <View style={[styles.button, borderColor, backgroundColor]}>
-                                        <Text style={[styles.buttonText, buttonTextColor]}>Okay</Text>
+                                        <Text style={[styles.buttonText, buttonTextColor]}>
+                                            {t('global:okayLowercase')}
+                                        </Text>
                                     </View>
                                 </TouchableOpacity>
                             </View>
