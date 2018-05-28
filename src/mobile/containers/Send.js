@@ -315,7 +315,7 @@ export class Send extends Component {
     }
 
     onSendPress() {
-        const { t, amount, address, message, denomination } = this.props;
+        const { t, amount, address, message, denomination, isIOSKeyboardActive } = this.props;
         const { currencySymbol } = this.state;
 
         const multiplier = this.getUnitMultiplier();
@@ -345,8 +345,10 @@ export class Send extends Component {
         if (!messageIsValid) {
             return this.props.generateAlert('error', t('invalidMessage'), t('invalidMessageExplanation'));
         }
-
-        return this.showModal('transferConfirmation');
+        this.showModal('transferConfirmation');
+        if (parseFloat(amount) * multiplier > 0) {
+            timer.setTimeout('addressPasteAlertDelay', () => this.detectAddressInClipboard(), isIOSKeyboardActive ? 1000 : 250);
+        }
     }
 
     onQRRead(data) {
