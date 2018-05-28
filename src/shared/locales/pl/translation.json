@@ -22,7 +22,7 @@
         "invalidResponseSendingTransfer": "Serwer zwrócił błąd podczas przetwarzania Twojego transferu. Sprawdź powiadomienia, aby uzyskać więcej informacji.",
         "nodeOutOfSync": "Serwer niezsynchronizowany",
         "nodeOutOfSyncExplanation": "Aktualnie wybrany serwer nie jest zsynchronizowany. Proszę zmienić serwer lub spróbować ponownie.",
-        "thisNodeOutOfSync": "This node is out of sync. Please change node or try again.",
+        "thisNodeOutOfSync": "Ten serwer nie jest zsynchronizowany. Proszę zmienić serwer lub spróbować ponownie.",
         "seed": "Seed",
         "checksum": "Suma kontrolna",
         "back": "WSTECZ",
@@ -40,12 +40,12 @@
         "continue": "Kontynuuj",
         "enable": "Włącz",
         "disable": "Wyłącz",
-        "enabled": "Enabled",
-        "disabled": "Disabled",
+        "enabled": "Włączono",
+        "disabled": "Wyłączono",
         "manualCopy": "Zanotuj swój seed",
         "paperWallet": "Wydrukuj wersje papierową",
-        "addToPasswordManager": "Add to password manager",
-        "shareSeed": "Share seed",
+        "addToPasswordManager": "Dodaj do menedżera haseł",
+        "shareSeed": "Udostępnij seed",
         "proceed": "Kontynuuj",
         "qr": "Kod QR",
         "notAvailable": "Funkcja niedostępna",
@@ -94,7 +94,7 @@
         "pressBackAgain": "Naciśnij przycisk wstecz ponownie, aby zamknąć aplikację",
         "reattached": "Reattach udany",
         "reattachedExplanation": "Wykonano reattach transakcji z hashem {{hash}}",
-        "promotingTransaction": "Promoting transaction",
+        "promotingTransaction": "Promowanie transakcji",
         "autopromoting": "Autopromowanie transferu",
         "autopromotingExplanation": "Promowanie transakcji z hashem {{hash}}",
         "rebroadcasted": "Rebroadcast udany",
@@ -147,7 +147,7 @@
         "androidCopyPasteWarning": "Nigdy nie kopiuj/wklejaj swojego klucza na urządzeniu z systemem Android.",
         "willNotCopyPasteSeed": "Nie będę kopiował/wklejał mojego klucza",
         "mustBeStoredAppropriately": "Musi być odpowiednio przechowywany.",
-        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while"
+        "deviceMayBecomeUnresponsive": "Urządzenie może przestać odpowiadać przez pewien czas"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -487,9 +487,9 @@
         "manualSync": "Ręczna synchronizacja",
         "snapshotTransition": "Snapshot asystent",
         "pow": "Konfiguracja Proof of Work",
-        "autoPromotion": "Auto-promotion",
-        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
-        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
+        "autoPromotion": "Autopromowanie",
+        "autoPromotionExplanation": "Autopromowanie pomaga w potwierdzeniu Twojej transakcji w sieci Tangle. Włącz to ustawienie, jeśli Twoje transakcje nie są potwierdzane w odpowiednim czasie.",
+        "autoPromotionPoW": "Autopromowanie możliwe jest jedynie na serwerach, które obsługują zdalny tryb Proof of Work."
     },
     "advancedThemeCustomisation": {
         "background": "Tło",
@@ -659,10 +659,10 @@
     },
     "terms": {
         "termsAndConditions": "Warunki i zasady",
-        "accept": "I accept"
+        "accept": "Akceptuję"
     },
     "privacyPolicy": {
-        "privacyPolicy": "Privacy Policy",
-        "agree": "I agree"
+        "privacyPolicy": "Polityka prywatności",
+        "agree": "Zgadzam się"
     }
 }
