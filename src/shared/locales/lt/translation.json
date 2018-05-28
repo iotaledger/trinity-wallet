@@ -150,7 +150,7 @@
         "mustBeStoredAppropriately": "Jis privalo būti tinkamai laikomas.",
         "deviceMayBecomeUnresponsive": "Jūsų įrenginys kurį laiką gali neatsakyti į užklausas",
         "isYourBalanceCorrect": "Ar jūsų balansas teisingas?",
-        "ifYourBalanceIsNotCorrect": "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
+        "ifYourBalanceIsNotCorrect": "Jeigu jūsų balansas neteisingas, tikriausiai jūs naudojate užraktą, kuris nebuvo perkeltas tinklo duomenų perkėlimo metu.",
         "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition."
     },
     "addAdditionalSeed": {
