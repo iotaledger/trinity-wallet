@@ -22,7 +22,7 @@
         "invalidResponseSendingTransfer": "Le serveur a renvoyé une erreur lors de l'envoie. Essayez de changer de serveur.",
         "nodeOutOfSync": "Serveur non synchronisé",
         "nodeOutOfSyncExplanation": "Votre serveur actuellement sélectionné est désynchronisé. S’il vous plaît changez le nœud ou essayez à nouveau.",
-        "thisNodeOutOfSync": "Votre serveur actuellement sélectionné est désynchronisé. Changez le nœud ou essayez à nouveau.",
+        "thisNodeOutOfSync": "Votre serveur actuellement sélectionné est désynchronisé. Changez le serveur ou essayez à nouveau.",
         "seed": "Seed",
         "checksum": "Code de Vérification",
         "back": "RETOUR",
@@ -63,7 +63,7 @@
         "yesLowerCase": "Oui",
         "noLowerCase": "Non",
         "okay": "OK",
-        "okayLowercase": "Okay",
+        "okayLowercase": "Ok",
         "password": "Mot de passe",
         "passwordOrFingerprint": "Mot de passe ou empreinte digitale",
         "unrecognisedPassword": "Mot de passe non reconnu",
@@ -148,10 +148,10 @@
         "androidCopyPasteWarning": "Ne jamais copier/coller votre seed sur un appareil Android.",
         "willNotCopyPasteSeed": "Je ne copierai/collerai pas ma seed",
         "mustBeStoredAppropriately": "Elle doit être stockée correctement.",
-        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while",
-        "isYourBalanceCorrect": "Is your balance correct?",
-        "ifYourBalanceIsNotCorrect": "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
-        "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition."
+        "deviceMayBecomeUnresponsive": "Votre appareil peut ne pas répondre pendant un certain temps",
+        "isYourBalanceCorrect": "Votre solde est-il correct ?",
+        "ifYourBalanceIsNotCorrect": "Si votre solde n’est pas correct, il est probable que vous utilisiez une seed antérieur à un snapshot.",
+        "headToAdvancedSettingsForTransition": "Dirigez-vous vers les paramètres avancés et effectuer une Transition de snapshot."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -194,7 +194,7 @@
         "reasonSequence": "Les suites comme 'abc' ou '54321' sont faciles à deviner",
         "reasonYears": "Les années récentes sont faciles à deviner",
         "reasonDates": "Les dates sont souvent faciles à deviner",
-        "reasonTop10": "Voila un top 10 des mots de passe les plus courants",
+        "reasonTop10": "Voila un top 10 des mots de passes les plus courants",
         "reasonTop100": "Voila un top 100 des mots de passe les plus courants",
         "reasonCommon": "C'est un mot de passe très courant",
         "reasonSimilar": "Ceci est similaire à un mot de passe souvent utilisé",
@@ -492,8 +492,8 @@
         "snapshotTransition": "Transition du Snapshot",
         "pow": "Preuve de Travail",
         "autoPromotion": "Promotion automatique",
-        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
-        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
+        "autoPromotionExplanation": "La promotion automatique aide à confirmer vos transactions sur le tangle. Activez ce paramètre si vous rencontrez des difficultés à confirmer vos transactions.",
+        "autoPromotionPoW": "La promotion automatique n’est possible sur les nœuds qui prennent en charge la preuve de travail à distance."
     },
     "advancedThemeCustomisation": {
         "background": "Arrière-plan",
@@ -663,10 +663,10 @@
     },
     "terms": {
         "termsAndConditions": "Termes et conditions",
-        "accept": "I accept"
+        "accept": "J'accepte"
     },
     "privacyPolicy": {
-        "privacyPolicy": "Privacy Policy",
-        "agree": "I agree"
+        "privacyPolicy": "Politique de confidentialité",
+        "agree": "J'accepte"
     }
 }
