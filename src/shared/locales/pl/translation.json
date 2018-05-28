@@ -105,7 +105,7 @@
         "promoted": "Promowanie transakcji pomyślne",
         "promotedExplanation": "Wypromowano transakcję z hashem {{hash}}",
         "autopromotionError": "Błąd auto-promowania transakcji",
-        "autopromotionErrorExplanation": "Zdalny tryb Proof of Work jest niedostępny na wybranym serwerze. Zmień serwer.",
+        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
         "promotionError": "Nie można wypromować transakcji",
         "promotionErrorExplanation": "Coś poszło nie tak podczas promowania Twojego transferu. Proszę spróbować ponownie.",
         "noLongerValid": "Pakiet, który próbujesz promować, nie jest już ważny",
@@ -348,7 +348,7 @@
         "sendMax": "WYŚLIJ WSZYSTKO",
         "totalTime": "Całkowity czas",
         "addressPasteDetected": "Wykryto wklejenie adresu",
-        "addressPasteExplanation": "Wygląda na to, że masz zamiar wkleić adres. Upewnij się, że wklejony adres odpowiada temu, na który chcesz wysłać."
+        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
     },
     "setPassword": {
         "choosePassword": "Wybierz nowe hasło",
@@ -619,6 +619,10 @@
         "powUpdatedExplanation": "Twoja konfiguracja Proof of Work została zaktualizowana.",
         "noWebGLSupport": "WebGL nieobsługiwane",
         "noWebGLSupportExplanation": "Twój komputer nie obsługuje technologii WebGL. Użyj zdalnego trybu PoW."
+    },
+    "autoPromotion": {
+        "autoPromotionUpdated": "Auto-promotion settings",
+        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
     },
     "progressSteps": {
         "checkingNodeHealth": "Sprawdzanie kondycji serwera",

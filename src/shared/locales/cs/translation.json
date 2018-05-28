@@ -105,7 +105,7 @@
         "promoted": "Successfully promoted transaction",
         "promotedExplanation": "Promoted transaction with hash {{hash}}",
         "autopromotionError": "Could not auto-promote transaction",
-        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node.",
+        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
         "promotionError": "Could not promote transaction",
         "promotionErrorExplanation": "Při podpoře transakce se něco nezdařilo. Prosím, zkuste to znovu.",
         "noLongerValid": "Balíček, který se snažíte podpořit, již není platný",
@@ -348,7 +348,7 @@
         "sendMax": "POSLAT MAXIMUM",
         "totalTime": "Total time",
         "addressPasteDetected": "Address paste detected",
-        "addressPasteExplanation": "It looks like you are about to paste an address. Make sure that the pasted address matches the one you want to send to."
+        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
     },
     "setPassword": {
         "choosePassword": "Choose a new password",
@@ -619,6 +619,10 @@
         "powUpdatedExplanation": "Nastavení proof of work bylo aktualizováno.",
         "noWebGLSupport": "WebGL není podporován",
         "noWebGLSupportExplanation": "Váš počítač nepodporuje WebGL. Prosím, použijte vzdálený PoW."
+    },
+    "autoPromotion": {
+        "autoPromotionUpdated": "Auto-promotion settings",
+        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
     },
     "progressSteps": {
         "checkingNodeHealth": "Checking node health",

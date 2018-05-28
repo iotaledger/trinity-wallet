@@ -22,7 +22,7 @@
         "invalidResponseSendingTransfer": "Palvelin antoi virheilmoituksen kesken siirron. Kokeile uudestaan vaihtamalla palvelinta.",
         "nodeOutOfSync": "Palvelin ei ole ajantasalla",
         "nodeOutOfSyncExplanation": "Palvelin jota käytät tällä hetkellä ei sisällä viimeisintä tietoa. Kokeile vaihtaa palvelin toiseen.",
-        "thisNodeOutOfSync": "This node is out of sync. Please change node or try again.",
+        "thisNodeOutOfSync": "Palvelin jota käytät tällä hetkellä ei sisällä viimeisintä tietoa. Kokeile vaihtaa palvelin toiseen.",
         "seed": "Seed-luku",
         "checksum": "Tarkistussumma",
         "back": "TAKAISIN",
@@ -40,12 +40,12 @@
         "continue": "Jatka",
         "enable": "Ota käyttöön",
         "disable": "Poista käytöstä",
-        "enabled": "Enabled",
-        "disabled": "Disabled",
-        "manualCopy": "Write seed down",
-        "paperWallet": "Print paper copy",
-        "addToPasswordManager": "Add to password manager",
-        "shareSeed": "Share seed",
+        "enabled": "Käytössä",
+        "disabled": "Pois käytöstä",
+        "manualCopy": "Kirjoita seed-luku paperille",
+        "paperWallet": "Tulosta seed-luku paperille",
+        "addToPasswordManager": "Lisää salasanan hallintasovellukseen",
+        "shareSeed": "Jaa seed-luku",
         "proceed": "Jatka",
         "qr": "QR",
         "notAvailable": "Tämä toiminto ei ole käytettävissä",
@@ -63,7 +63,7 @@
         "yesLowerCase": "Kyllä",
         "noLowerCase": "Ei",
         "okay": "OK",
-        "okayLowercase": "Okay",
+        "okayLowercase": "Selvä",
         "password": "Salasana",
         "passwordOrFingerprint": "Salasana tai sormenjälki",
         "unrecognisedPassword": "Tunnistamaton salasana",
@@ -95,7 +95,7 @@
         "pressBackAgain": "Paina paluu-painiketta sulkeaksesi sovelluksen",
         "reattached": "Siirron uudelleenliitos onnistui",
         "reattachedExplanation": "Siirto tiivisteluvulla {{hash}} onnistui",
-        "promotingTransaction": "Promoting transaction",
+        "promotingTransaction": "Edistetään siirtoa",
         "autopromoting": "Edistetään siirtoa automaattisesti",
         "autopromotingExplanation": "Edistetään siirtoa tiivisteluvulla {{hash}}",
         "rebroadcasted": "Siirron lähetys uudelleen onnistui",
@@ -105,7 +105,7 @@
         "promoted": "Siirron edistys onnistui",
         "promotedExplanation": "Siirtoa tiivisteluvulla {{hash}} edistetty onnistuneesti",
         "autopromotionError": "Siirtoa ei voitu edistää",
-        "autopromotionErrorExplanation": "Laskentatyöteko (PoW) valitsemallasi palvelimella ei ole tällä hetkellä mahdollista. Vaihda palvelinta.",
+        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
         "promotionError": "Siirtoa ei voitu edistää",
         "promotionErrorExplanation": "Siirron edistämisessä tapahtui virhe. Yritä uudelleen.",
         "noLongerValid": "Kokoelma jonka siirtoa yrität edistää ei ole enää voimassa",
@@ -148,10 +148,10 @@
         "androidCopyPasteWarning": "Älä kopio tai liitä seed-lukua Android-laitteella.",
         "willNotCopyPasteSeed": "En kopio tai liitä seed-lukua android puhelimessa",
         "mustBeStoredAppropriately": "Se on tallennettava turvallisesti.",
-        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while",
-        "isYourBalanceCorrect": "Is your balance correct?",
-        "ifYourBalanceIsNotCorrect": "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
-        "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition."
+        "deviceMayBecomeUnresponsive": "Laitteesi saattaa toimia hitaasti hetken aikaa",
+        "isYourBalanceCorrect": "Näkyykö saldosi oikein?",
+        "ifYourBalanceIsNotCorrect": "Jos saldosi ei näy oikein, seed-lukusi ei ole ajantasalla.",
+        "headToAdvancedSettingsForTransition": "Voin korjata tämän valitsemalla Lisäasetukset ja Snapshot-avustaja."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed-luku sisältää virheellisiä merkkejä",
@@ -348,7 +348,7 @@
         "sendMax": "LÄHETÄ MAX",
         "totalTime": "Kokonaisaika",
         "addressPasteDetected": "Osoitteen liittäminen havaittu",
-        "addressPasteExplanation": "Näyttää siltä että olet liittänyt osoitteen muualta. Varmista että liitetty osoite vastaa alkuperäistä."
+        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
     },
     "setPassword": {
         "choosePassword": "Luo uusi salasana",
@@ -491,9 +491,9 @@
         "manualSync": "Manuaalinen synkronointi",
         "snapshotTransition": "Snapshot-avustaja",
         "pow": "Laskenta-asetukset",
-        "autoPromotion": "Auto-promotion",
-        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
-        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
+        "autoPromotion": "Automaattinen edistäminen",
+        "autoPromotionExplanation": "Automaattinen edistäminen auttaa varmistamaan siirron tangle-verkossa. Laita tämä asetus päälle jos siirron varmistuksessa esiintyy ongelmia.",
+        "autoPromotionPoW": "Automaattinen edistäminen toimii vain palvelimilla jotka tukevat laskentatyöntekoa (PoW)."
     },
     "advancedThemeCustomisation": {
         "background": "Tausta",
@@ -620,6 +620,10 @@
         "noWebGLSupport": "WebGL ei tuettu",
         "noWebGLSupportExplanation": "Laitteesi ei tue WebGL -laskentaa. Asetuksista voit siirtää laskennan (PoW) ulkoiselle palvelimelle."
     },
+    "autoPromotion": {
+        "autoPromotionUpdated": "Auto-promotion settings",
+        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
+    },
     "progressSteps": {
         "checkingNodeHealth": "Varmistetaan palvelin tila",
         "validatingReceiveAddress": "Varmistetaan vastaanottajan osoite",
@@ -663,10 +667,10 @@
     },
     "terms": {
         "termsAndConditions": "Yleiset Sopimusehdot",
-        "accept": "I accept"
+        "accept": "Hyväksyn"
     },
     "privacyPolicy": {
-        "privacyPolicy": "Privacy Policy",
-        "agree": "I agree"
+        "privacyPolicy": "Tietosuojakäytäntö",
+        "agree": "Hyväksyn"
     }
 }
