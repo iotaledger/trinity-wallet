@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
+import Markdown from 'react-native-markdown-renderer';
+import { enTermsAndConditions, deTermsAndConditions } from 'iota-wallet-shared-modules/markdown';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { acceptTerms } from 'iota-wallet-shared-modules/actions/settings';
@@ -9,6 +11,7 @@ import Button from '../components/Button';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
 import DynamicStatusBar from '../components/DynamicStatusBar';
+import i18next from '../i18next';
 
 const styles = StyleSheet.create({
     container: {
@@ -34,13 +37,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    placeholderContainer: {
-        flex: 1,
-        justifyContent: 'center',
-    },
-    placeholderText: {
-        fontFamily: 'SourceSansPro-SemiBold',
-        fontSize: GENERAL.fontSize3,
+    scrollView: {
+        backgroundColor: '#ffffff',
+        width,
+        paddingHorizontal: width / 20,
+        paddingVertical: height / 75,
     },
 });
 
@@ -58,6 +59,16 @@ class TermsAndConditions extends Component {
          */
         t: PropTypes.func.isRequired,
     };
+
+    static isCurrentLanguageGerman() {
+        return i18next.language === 'de';
+    }
+
+    constructor() {
+        super();
+
+        this.state = { hasReadTerms: false };
+    }
 
     onNextPress() {
         const { theme } = this.props;
@@ -84,20 +95,37 @@ class TermsAndConditions extends Component {
             <View style={[styles.container, { backgroundColor: body.bg }]}>
                 <DynamicStatusBar backgroundColor={bar.bg} />
                 <View style={[styles.titleContainer, { backgroundColor: bar.bg }]}>
-                    <Text style={[styles.titleText, textColor]}>{t('termsAndConditions').toUpperCase()}</Text>
+                    <Text style={[styles.titleText, textColor]}>{t('termsAndConditions')}</Text>
                 </View>
-                <View style={styles.placeholderContainer}>
-                    <Text style={[styles.placeholderText, textColor]}>PLACEHOLDER</Text>
-                </View>
-                <Button
-                    onPress={() => this.onNextPress()}
-                    style={{
-                        wrapper: { backgroundColor: primary.color },
-                        children: { color: primary.body },
+                <ScrollView
+                    onScroll={(e) => {
+                        let paddingToBottom = 20;
+                        paddingToBottom += e.nativeEvent.layoutMeasurement.height;
+
+                        if (e.nativeEvent.contentOffset.y >= e.nativeEvent.contentSize.height - paddingToBottom) {
+                            if (!this.state.hasReadTerms) {
+                                this.setState({ hasReadTerms: true });
+                            }
+                        }
                     }}
+                    scrollEventThrottle={400}
+                    style={styles.scrollView}
                 >
-                    {t('accept')}
-                </Button>
+                    <Markdown styles={{ text: { fontFamily: 'SourceSansPro-Regular' } }}>
+                        {TermsAndConditions.isCurrentLanguageGerman() ? deTermsAndConditions : enTermsAndConditions}
+                    </Markdown>
+                </ScrollView>
+                {this.state.hasReadTerms && (
+                    <Button
+                        onPress={() => this.onNextPress()}
+                        style={{
+                            wrapper: { backgroundColor: primary.color },
+                            children: { color: primary.body },
+                        }}
+                    >
+                        {t('accept')}
+                    </Button>
+                )}
             </View>
         );
     }
