@@ -210,7 +210,18 @@ const account = (
                 tasks: {
                     ...state.tasks,
                     [action.payload.accountName]: {
-                        hasDisplayedTransitionModal: false, // Initialize with a default
+                        hasDisplayedTransitionGuide: false, // Initialize with a default
+                    },
+                },
+            };
+        case ActionTypes.MARK_TASK_AS_DONE:
+            return {
+                ...state,
+                tasks: {
+                    ...state.tasks,
+                    [action.payload.accountName]: {
+                        ...get(state.tasks, `${action.payload.accountName}`),
+                        [action.payload.task]: true,
                     },
                 },
             };
