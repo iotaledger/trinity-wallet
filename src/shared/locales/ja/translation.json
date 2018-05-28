@@ -621,8 +621,8 @@
         "noWebGLSupportExplanation": "お使いのコンピューターは WebGLをサポートしていません。リモートのプルーフ・オブ・ワークをご利用ください。"
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Auto-promotion settings",
-        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
+        "autoPromotionUpdated": "自動促進の設定",
+        "autoPromotionUpdatedExplanation": "自動促進の設定を更新しました。"
     },
     "progressSteps": {
         "checkingNodeHealth": "ノードの健全さをチェック中",
