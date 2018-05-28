@@ -29,7 +29,7 @@ const updateAccountInfo = (state, payload) => ({
 });
 
 const updateAccountName = (state, payload) => {
-    const { accountInfo, accountNames, unconfirmedBundleTails } = state;
+    const { accountInfo, accountNames, unconfirmedBundleTails, setupInfo, tasks } = state;
 
     const { oldAccountName, newAccountName } = payload;
 
@@ -54,6 +54,8 @@ const updateAccountName = (state, payload) => {
 
     return {
         accountInfo: renameKeys(accountInfo, keyMap),
+        tasks: renameKeys(tasks, keyMap),
+        setupInfo: renameKeys(setupInfo, keyMap),
         accountNames: map(accountNames, updateName),
         unconfirmedBundleTails: transform(unconfirmedBundleTails, updateAccountInUnconfirmedBundleTails, {}),
     };
@@ -97,6 +99,8 @@ const account = (
             return {
                 ...state,
                 accountInfo: omit(state.accountInfo, action.payload),
+                tasks: omit(state.tasks, action.payload),
+                setupInfo: omit(state.setupInfo, action.payload),
                 unconfirmedBundleTails: omitBy(state.unconfirmedBundleTails, (tailTransactions) =>
                     some(tailTransactions, (tx) => tx.account === action.payload),
                 ),
