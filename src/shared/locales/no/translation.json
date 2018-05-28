@@ -76,9 +76,9 @@
         "node": "Node",
         "cannotPerformAction": "Kan ikke utføre handling",
         "cannotPerformActionExplanation": "Gå til avanserte innstillinger for å tilbakestille lommeboken.",
-        "attachToTangleUnavailable": "Ekstern PoW er ikke tilgjengelig",
-        "attachToTangleUnavailableExplanation": "Ekstern PoW er ikke tilgjengelig på den valgte noden. Enten velg en annen node hvor dette er aktivert eller velg lokal PoW under avanserte innstillinger.",
-        "attachToTangleUnavailableExplanationShort": "Ekstern PoW er ikke tilgjengelig på den valgte noden.",
+        "attachToTangleUnavailable": "Ekstern PoW (Proof of Work) er ikke tilgjengelig",
+        "attachToTangleUnavailableExplanation": "Ekstern PoW (Proof of Work) er ikke tilgjengelig på den valgte noden. Enten velg en annen node hvor dette er aktivert eller velg lokal PoW (Proof of Work) under avanserte innstillinger.",
+        "attachToTangleUnavailableExplanationShort": "Ekstern PoW (Proof of Work) er ikke tilgjengelig på den valgte noden.",
         "wallet": "Lommebok",
         "sent": "Sendt",
         "received": "Mottatt",
@@ -105,7 +105,7 @@
         "promoted": "Transaksjonen er promotert",
         "promotedExplanation": "Transaksjonen er promotert med hash {{hash}}",
         "autopromotionError": "Kunne ikke promotere transaksjonen automatisk",
-        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
+        "autopromotionErrorExplanation": "Ekstern PoW (Proof of Work) er ikke tilgjengelig på den valgte noden. Vennligst endre node og aktiver automatisk promotering på nytt.",
         "promotionError": "Kunne ikke promotere transaksjonen",
         "promotionErrorExplanation": "Noe gikk galt under promoteringen av overføringen. Vennligst prøv igjen.",
         "noLongerValid": "Pakken du prøver å promotere er ikke lenger gyldig",
@@ -348,7 +348,7 @@
         "sendMax": "SENDE MAX",
         "totalTime": "Total tid",
         "addressPasteDetected": "Adresse \"lim inn\" gjenkjent",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
+        "addressPasteExplanation": "Det ser ut som at du har limt inn en adresse. Vær sikker på at denne adressen samsvarer med den du ønsker å sende til."
     },
     "setPassword": {
         "choosePassword": "Velg et nytt passord",
@@ -422,7 +422,7 @@
         "lockScreenTimeout": "Skjermen er låst grunnet inaktivitet",
         "autoNodeSwitching": "Endre node automatisk dersom den valgte noden er utilgjengelig",
         "nodeChangeSuccess": "Endring av node var vellykket",
-        "nodeChangeSuccessNoRemotePow": "Noden ble endret til {{node}}. Denne noden støtter ikke ekstern PoW.",
+        "nodeChangeSuccessNoRemotePow": "Noden ble endret til {{node}}. Denne noden støtter ikke ekstern PoW (Proof of Work).",
         "nodeChangeSuccessExplanation": "Noden ble endret til {{node}}.",
         "nodeChangeError": "Feil under endring av node",
         "nodeChangeErrorExplanation": "Det skjedde en feil under endring av node. Prøv igjen."
@@ -490,10 +490,10 @@
         "addCustomNode": "Legg til egendefinert node",
         "manualSync": "Manuell synkronisering",
         "snapshotTransition": "Snapshot synkronisering",
-        "pow": "Bevis på arbeid",
+        "pow": "PoW (Proof of Work)",
         "autoPromotion": "Auto promoter",
         "autoPromotionExplanation": "Auto-promotering bidrar å bekrefte dine transaksjoner på nettverket. Aktiver denne innstillingen hvis du har problemer med å bekrefte dine transaksjoner.",
-        "autoPromotionPoW": "Automatisk promotering er kun mulig på noder som støtter ekstern PoW."
+        "autoPromotionPoW": "Automatisk promotering er kun mulig på noder som støtter ekstern PoW (Proof of Work)."
     },
     "advancedThemeCustomisation": {
         "background": "Bakgrunn",
@@ -621,8 +621,8 @@
         "noWebGLSupportExplanation": "Datamaskinen støtter ikke WebGL. Vennligst benytt ekstern PoW (Proof of Work)."
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Auto-promotion settings",
-        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
+        "autoPromotionUpdated": "Innstillinger for automatisk promotering",
+        "autoPromotionUpdatedExplanation": "Dine innstillinger for automatisk promotering har blitt oppdatert."
     },
     "progressSteps": {
         "checkingNodeHealth": "Undersøker nodens helse",
