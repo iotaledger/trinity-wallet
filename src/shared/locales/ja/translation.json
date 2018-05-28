@@ -44,7 +44,7 @@
         "disabled": "無効",
         "manualCopy": "シードを書き写す",
         "paperWallet": "印刷する",
-        "addToPasswordManager": "Add to password manager",
+        "addToPasswordManager": "パスワードマネージャーに追加する",
         "shareSeed": "Share seed",
         "proceed": "続ける",
         "qr": "QRコード",
@@ -255,7 +255,7 @@
         "generatedSeed": "生成されたシード",
         "seedNotGenerated": "シードが生成されていません。",
         "seedNotGeneratedExplanation": "新しいシードを生成してください。",
-        "pressForNewSeed": "新しいシードの元を作成",
+        "pressForNewSeed": "新しいシードの元を生成",
         "generateSuccess": "シードは正常に生成されました。",
         "individualLetters": "文字をタップして更にランダムにしてください。",
         "individualLetterCount": "シードをさらにランダムにするために、{{letterCount}}個以上の文字を押してください。",
@@ -662,7 +662,7 @@
         "accept": "I accept"
     },
     "privacyPolicy": {
-        "privacyPolicy": "Privacy Policy",
-        "agree": "I agree"
+        "privacyPolicy": "プライバシーポリシー",
+        "agree": "同意します"
     }
 }
