@@ -19,7 +19,7 @@ export default class UserInactivity extends Component {
     };
 
     static defaultProps = {
-        timeForInactivity: 10000,
+        timeForInactivity: 300000,
         checkInterval: 2000,
         style: {
             flex: 1,
