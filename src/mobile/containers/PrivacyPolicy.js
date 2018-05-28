@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { acceptPrivacy } from 'iota-wallet-shared-modules/actions/settings';
-import WithBackPressCloseApp from '../components/BackPressCloseApp';
 import i18next from '../i18next';
 import Button from '../components/Button';
 import GENERAL from '../theme/general';
@@ -116,6 +115,4 @@ const mapDispatchToProps = {
     acceptPrivacy,
 };
 
-export default WithBackPressCloseApp()(
-    translate('privacyPolicy')(connect(mapStateToProps, mapDispatchToProps)(PrivacyPolicy)),
-);
+export default translate('privacyPolicy')(connect(mapStateToProps, mapDispatchToProps)(PrivacyPolicy));
