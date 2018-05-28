@@ -44,7 +44,7 @@
         "disabled": "Deaktivert",
         "manualCopy": "Skriv ned hovednøkkelen",
         "paperWallet": "Skriv ut papirkopi",
-        "addToPasswordManager": "Legg til i passord manageren",
+        "addToPasswordManager": "Legg til i en passord manager",
         "shareSeed": "Del hovednøkkelen",
         "proceed": "Fortsett",
         "qr": "QR",
@@ -450,8 +450,8 @@
         "reminder": "Du kan være fristet til å hoppe over enkelte trinn, men vi oppfordrer deg til å følge hele prosessen."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Din hovednøkkel er {{maxSeedLength}} tegn lest fra venstre mot høyre.",
-        "writeDownYourSeed": "<0>Skriv ned din hovednøkkel og kontrolltegn, og</0> <1>trippelsjekk</1> <2>at de er riktige.</2>"
+        "yourSeedIs": "Hovednøkkelen er på {{maxSeedLength}} tegn lest fra venstre mot høyre.",
+        "writeDownYourSeed": "<0>Skriv ned hovednøkkelen og kontrolltegnet. </0><1>trippelsjekk</1><2>så at de er riktige.</2>"
     },
     "history": {
         "bundleHashCopied": "Pakke hash kopiert",
@@ -612,7 +612,7 @@
     },
     "pow": {
         "feeless": "For å sende gebyrfrie transaksjoner i IOTA er det nødvendig å utføre litt PoW (Proof of Work).",
-        "localOrRemote": "PoW (Proof of Work) kan enten utføres lokalt på din enhet, eller settes bort til den noden som du er tilkoblet.",
+        "localOrRemote": "PoW kan enten utføres lokalt på din enhet, eller settes bort til noden som du er tilkoblet.",
         "local": "Lokal",
         "remote": "Ekstern",
         "powUpdated": "PoW (Proof of Work) innstillinger",
