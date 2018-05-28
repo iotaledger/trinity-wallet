@@ -602,7 +602,7 @@
         "mcap": "時価総額",
         "change": "変化率",
         "volume": "取引量(24h)",
-        "currentValue": "現在の価値"
+        "currentValue": "現在の価格"
     },
     "rootDetection": {
         "warning": "警告",
@@ -663,7 +663,7 @@
     },
     "terms": {
         "termsAndConditions": "利用規約",
-        "accept": "I accept"
+        "accept": "承諾する"
     },
     "privacyPolicy": {
         "privacyPolicy": "プライバシーポリシー",
