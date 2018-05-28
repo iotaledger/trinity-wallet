@@ -20,21 +20,33 @@
         "invalidResponsePollingExplanation": "The node returned an error while polling. Check the notifications for more information.",
         "invalidResponseFetchingAccount": "The node returned an error while fetching your account information. Try changing your node or check the notifications for more information.",
         "invalidResponseSendingTransfer": "The node returned an error while sending the transfer. Check the notifications for more information.",
+        "nodeOutOfSync": "Node out of sync",
+        "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
+        "thisNodeOutOfSync": "This node is out of sync. Please change node or try again.",
         "seed": "سييد",
+        "checksum": "رمز التحقق",
         "back": "رجوع",
+        "goBack": "Go back",
+        "goBackStep": "Go back a step",
         "backLowercase": "الى الخلف",
         "done": "انتهى",
         "doneLowercase": "انتهى",
+        "prev": "PREV",
         "next": "التالي",
+        "nextLowerCase": "Next",
         "apply": "تطبيق",
         "save": "حفظ",
         "close": "إغلاق",
         "continue": "مواصلة",
         "enable": "Enable",
         "disable": "Disable",
+        "enabled": "Enabled",
+        "disabled": "Disabled",
         "manualCopy": "اكتب القيمة الأولية",
         "paperWallet": "اطبع نسخة ورقية",
-        "copyToClipboard": "إضافة إلى إدارة كلمة المرور",
+        "addToPasswordManager": "Add to password manager",
+        "shareSeed": "Share seed",
+        "proceed": "Proceed",
         "qr": "رمز QR",
         "notAvailable": "لا تتوفر هذه الدالة",
         "notAvailableExplanation": "وسوف تضاف في مرحلة لاحقة.",
@@ -48,6 +60,8 @@
         "otherWallet": "حساب آخر",
         "yes": "نعم",
         "no": "لا",
+        "yesLowerCase": "Yes",
+        "noLowerCase": "No",
         "okay": "OKAY",
         "password": "كلمة المرور",
         "passwordOrFingerprint": "كلمة المرور أو البصمة",
@@ -80,6 +94,7 @@
         "pressBackAgain": "تجزئة الحزمة",
         "reattached": "Successfully reattached transaction",
         "reattachedExplanation": "Reattached transaction with hash {{hash}}",
+        "promotingTransaction": "Promoting transaction",
         "autopromoting": "نقل أوتوبروموتينج",
         "autopromotingExplanation": "Promoting transaction with hash {{hash}}",
         "rebroadcasted": "Successfully rebroadcasted transaction",
@@ -101,6 +116,7 @@
         "pleaseWaitEllipses": "Please wait...",
         "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
         "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again.",
+        "pleaseWaitIncomingTransferExplanation": "You have incoming transfers. Please wait for them to confirm before trying again.",
         "snapshotTransitionInProgress": "Snapshot transition in progress",
         "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete.",
         "checkForUpdates": "Check for Updates",
@@ -124,7 +140,14 @@
         "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available.",
         "clear": "CLEAR",
         "noNetworkConnection": "No network connection",
-        "noNetworkConnectionExplanation": "Your internet connection appears to be offline."
+        "noNetworkConnectionExplanation": "Your internet connection appears to be offline.",
+        "spentAddressExplanation": "WARNING: Funds on spent addresses",
+        "discordInformation": "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do.",
+        "androidInsecureClipboardWarning": "Android does not provide a secure clipboard.",
+        "androidCopyPasteWarning": "Never copy/paste your seed on an Android device.",
+        "willNotCopyPasteSeed": "I will not copy/paste my seed",
+        "mustBeStoredAppropriately": "It must be stored appropriately.",
+        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "أوتورياتاتشينج إلى تشابك",
@@ -156,7 +179,22 @@
         "ensureStrongPassword": "تأكد من استخدامك كلمة مرور قوية لا تقل عن 12 خانة.",
         "currentPassword": "كلمة المرور الحالية",
         "newPassword": "كلمة مرور جديدة",
-        "confirmPassword": "تأكيد كلمة المرور الجديدة"
+        "confirmPassword": "تأكيد كلمة المرور الجديدة",
+        "passwordTooWeak": "Password too weak",
+        "passwordTooWeakReason": "Your password is too weak. Use a combination of words, and avoid common phrases, names or dates",
+        "reasonRow": "Straight rows of keys are easy to guess",
+        "reasonPattern": "Short patterns of keys are easy to guess",
+        "reasonNames": "Common names and surnames are easy to guess",
+        "reasonRepeats": "Repeats like 'aaa' are easy to guess",
+        "reasonRepeats2": "Repeats like 'abcabcabc' are only slightly harder to guess than 'abc'",
+        "reasonSequence": "Sequences like abc or 54321 are easy to guess",
+        "reasonYears": "Recent years are easy to guess",
+        "reasonDates": "Dates are often easy to guess",
+        "reasonTop10": "This is a top 10 common password",
+        "reasonTop100": "This is a top 100 common password",
+        "reasonCommon": "This is a very common password",
+        "reasonSimilar": "This is similar to a commonly-used password",
+        "reasonWord": "A single word is easy to guess"
     },
     "copyToClipboard": {
         "seedCleared": "تم مسح القيم",
@@ -164,6 +202,7 @@
         "seedCopied": "تم نسخ السييد إلى الحافظة",
         "seedCopiedExplanation": "سيتم مسح السييد بمجرد الضغط على \"انتهى\" أو مرور 60 ثانية.",
         "clickToCopy": "انقر على الزر أدناه وانسخ السييد الخاص بك إلى مكان آمن.",
+        "clickToSecurelyShare": "Click the button below to securely share your seed to a password manager.",
         "doNotStore": "لا تخزن السييد الخاص بك في نص عادي.",
         "copyToClipboard": "Copy seed",
         "shareSeed": "Share your seed to a secure password manager",
@@ -173,7 +212,8 @@
         "passwordManagerCheckbox": "I will store my seed in a password manager",
         "copy": "COPY",
         "noPasswordManagers": "No supported password managers installed",
-        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android."
+        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android.",
+        "followTutorialToSecurelyShareSeed": "If you wish to store your seed in a password manager, you must follow a tutorial from the following link"
     },
     "enterSeed": {
         "invalidCharacters": "السييد يحتوي على أحرف غير صالحة",
@@ -191,7 +231,8 @@
         "settings": "إعدادات"
     },
     "languageSetup": {
-        "language": "اللغة"
+        "language": "اللغة",
+        "letsGetStarted": "Let's get started"
     },
     "login": {
         "emptyPassword": "كلمة المرور فارغة",
@@ -211,14 +252,18 @@
         "takingAWhile": "This seems to be taking a while"
     },
     "newSeedSetup": {
+        "generatedSeed": "Generated seed",
         "seedNotGenerated": "القيم لم يتم تكوينها",
         "seedNotGeneratedExplanation": "Please generate a new seed.",
         "pressForNewSeed": "اضغط لإنشاء قيم جديدة",
         "generateSuccess": "Seed generated successfully",
         "individualLetters": "اضغط على الأحرف بشكل فردي لكي تكن عشوائية.",
+        "individualLetterCount": "Press {{letterCount}} more individual letters to randomise them.",
         "whatIsASeed": "What is a seed?"
     },
     "onboardingComplete": {
+        "allDone": "All Done!",
+        "openYourWallet": "Open your wallet",
         "walletReady": "تم إعداد المحفظة الآن وجاهزة للاستخدام. إذا كنت بحاجة إلى إجراء أية تغييرات في المستقبل، فابحث في قائمة الإعدادات."
     },
     "paperWallet": {
@@ -235,6 +280,7 @@
         "printerCheckbox": "I will not print on a public printer"
     },
     "receive": {
+        "copyAddress": "Copy address",
         "addressCopied": "تم نسخ العنوان",
         "addressCopiedExplanation": "تم نسخ عنوانك إلى الحافظة.",
         "generateNewAddress": "عنوان جديد",
@@ -244,13 +290,33 @@
         "spent": "اُنفق"
     },
     "saveYourSeed": {
+        "saveYourSeed": "Back up your seed",
+        "seedCleared": "Seed cleared",
+        "mostSecure": "Most Secure",
+        "leastSecure": "Least Secure",
+        "paperWallet": "Paper Wallet",
+        "writeYourSeedDown": "Write your seed down",
+        "printYourSeed": "Print your seed",
+        "digitalCopy": "Digital copy",
+        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
+        "iHaveBackedUpMySeed": "لقد حفظت السييد الخاص بي",
+        "letsWriteDownYourSeed": "Lets write down your seed",
+        "youCanHighlightCharacters": "You can highlight 9 characters at a time",
+        "printBlankWallet": "Print a blank wallet",
+        "whatIsCheksum": "Every seed has a corresponding 3 character checksum",
+        "iHavesavedMySeed": "I've saved my seed",
+        "checksumExplanation": "Whenever you add a seed to your wallet, you should ensure that the wallet-generated checksum matches the one you have written down.",
         "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
     },
     "seedReentry": {
+        "pleaseConfirmYourSeed": "Please confirm your seed",
+        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or the app.",
+        "enterYourSeed": "Enter your seed",
         "incorrectSeed": "قيمة خاطئة",
         "incorrectSeedExplanation": "السييد المدخل غير صحيح. يرجى المحاولة مرة أخرى.",
         "thisIsACheck": "هذا فحص للتأكد من أنك قمت بحفظ السييد الخاصة بك.",
-        "ifYouHaveNotSaved": "إذا لم تقم بحفظ السييد الخاص بك، الرجاء العودة والقيام بذلك."
+        "ifYouHaveNotSaved": "إذا لم تقم بحفظ السييد الخاص بك، الرجاء العودة والقيام بذلك.",
+        "enterSeedBelow": "Enter your newly created seed below to confirm you have backed it up correctly"
     },
     "send": {
         "invalidAddress": "عنوان خاطئ",
@@ -276,9 +342,12 @@
         "maximumSelected": "تم اختيار الحد الأقصى",
         "iotaUnits": "IOTA units explained",
         "sendMax": "إرسال الكل",
-        "totalTime": "Total time"
+        "totalTime": "Total time",
+        "addressPasteDetected": "Address paste detected",
+        "addressPasteExplanation": "It looks like you are about to paste an address. Make sure that the pasted address matches the one you want to send to."
     },
     "setPassword": {
+        "choosePassword": "Choose a new password",
         "passwordTooShort": "كلمة المرور قصيرة جدا",
         "passwordTooShortExplanation": "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
         "passwordMismatch": "كلمتي المرور لا تتطابق",
@@ -289,6 +358,7 @@
         "retypePassword": "أعد كتابة كلمة المرور"
     },
     "setSeedName": {
+        "letsAddName": "Let's add a name",
         "canUseMultipleSeeds": "يمكنك استخدام اكثر من سييد مع هذه المحفظة. كل سييد يتطلب اسم حساب.",
         "youCanAdd": "يمكنك إضافة سييد آخر في قائمة الإعدادات."
     },
@@ -314,7 +384,6 @@
         "twoFA": "Two-factor authentication",
         "changePassword": "تغيير كلمة المرور",
         "advanced": "إعدادات متقدمة",
-        "about": "About",
         "logout": "تسجيل خروج",
         "reset": "إعادة تعيين المحفظة",
         "syncingComplete": "تم إكمال المزامنة",
@@ -360,9 +429,13 @@
         "reset": "إعادة"
     },
     "walletSetup": {
+        "creatingSeed": "Creating a seed",
         "okay": "حسنًا. لنقم بإعداد محفظتك!",
         "doYouAlreadyHaveASeed": "هل لديك seed ترغب في استخدامه؟",
+        "doYouNeedASeed": "Do you need to create a new seed?",
         "seedExplanation": "السييد مثل اسم المستخدم وكلمة المرور للحساب الخاص بك، جنبا إلى جنب في سلسلة واحدة مكونة من 81 خانة.",
+        "noIHaveOne": "No, I have one",
+        "yesINeedASeed": "Yes, I need a seed",
         "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
         "keepSafe": "يرجى الحفاظ على السييد الخاص بك في مكان آمن.",
         "hint": "<0><0>Hint:</0> Click NO if this is your first time using IOTA.</0>"
@@ -413,7 +486,10 @@
         "addCustomNode": "إضافة عقده معينة",
         "manualSync": "مزامنة يدوية",
         "snapshotTransition": "Snapshot transition",
-        "pow": "Proof of Work"
+        "pow": "Proof of Work",
+        "autoPromotion": "Auto-promotion",
+        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
+        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
     },
     "advancedThemeCustomisation": {
         "background": "خلفية",
@@ -469,9 +545,11 @@
         "hideSeed": "إخفاء السييد"
     },
     "saveSeedConfirmation": {
+        "didSaveSeed": "Did you back up your seed?",
         "alreadyHave": "لقد حفظت السييد الخاص بي",
-        "reenter": "سوف يطلب منك الآن إلى إعادة إدخال السييد الخاص بك.",
-        "reenterWarning": "إذا تعطل جهازك، ولم تقم بحفظ السييد الخاص بك، سوف تفقد رصيد IOTA الخاص بك."
+        "reenterSeed": "At the next step you will be asked to re-enter your seed.",
+        "reenterSeedWarning": "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
+        "pleaseConfirm": "Please confirm you have securely stored your seed."
     },
     "walletResetConfirmation": {
         "cannotUndo": "لا يمكن التراجع عن هذا الإجراء.",
@@ -487,8 +565,6 @@
         "fingerprintAuthFailed": "Biometric authentication failed",
         "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
         "status": "الحالة",
-        "enabled": "مفعل",
-        "disabled": "معطّل",
         "fingerprintUnavailable": "Biometric authentication unavailable",
         "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
@@ -541,6 +617,7 @@
         "noWebGLSupportExplanation": "Your computer does not support WebGL. Please use remote PoW."
     },
     "progressSteps": {
+        "checkingNodeHealth": "Checking node health",
         "validatingReceiveAddress": "Validating receive address",
         "syncingAccount": "Syncing account",
         "preparingInputs": "Preparing inputs",
@@ -579,5 +656,13 @@
     },
     "notificationLog": {
         "errorLog": "ERROR LOG"
+    },
+    "terms": {
+        "termsAndConditions": "Terms & Conditions",
+        "accept": "I accept"
+    },
+    "privacyPolicy": {
+        "privacyPolicy": "Privacy Policy",
+        "agree": "I agree"
     }
 }
