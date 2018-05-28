@@ -22,21 +22,31 @@
         "invalidResponseSendingTransfer": "Apdorojant pavedimą įvyko serverio klaida. Skaitykite pranešimus dėl detalesnės informacijos.",
         "nodeOutOfSync": "Serveris nesinchronizuotas",
         "nodeOutOfSyncExplanation": "Jūsų pasirinktas serveris nesinchronizuotas. Pakeiskite serverį arba bandykite dar kartą.",
+        "thisNodeOutOfSync": "This node is out of sync. Please change node or try again.",
         "seed": "Užraktas",
+        "checksum": "Kontrolinė suma",
         "back": "ATGAL",
+        "goBack": "Atgal",
+        "goBackStep": "Grįžkite atgal",
         "backLowercase": "Atgal",
         "done": "ATLIKTA",
         "doneLowercase": "Atlikta",
+        "prev": "ANKSTESNIS",
         "next": "TOLIAU",
+        "nextLowerCase": "Toliau",
         "apply": "Taikyti",
         "save": "Išsaugoti",
         "close": "UŽDARYTI",
         "continue": "Tęsti",
         "enable": "Įjungti",
         "disable": "Išjungti",
+        "enabled": "Enabled",
+        "disabled": "Disabled",
         "manualCopy": "Nusirašykite užraktą",
         "paperWallet": "Atspausdinti",
-        "copyToClipboard": "Pridėti į slaptažodžių tvarkyklę",
+        "addToPasswordManager": "Add to password manager",
+        "shareSeed": "Share seed",
+        "proceed": "Tęsti",
         "qr": "QR",
         "notAvailable": "Ši funkcija negalima",
         "notAvailableExplanation": "Ateityje ši funkcija bus pridėta.",
@@ -50,6 +60,8 @@
         "otherWallet": "KITA PASKYRA",
         "yes": "TAIP",
         "no": "NE",
+        "yesLowerCase": "Taip",
+        "noLowerCase": "Ne",
         "okay": "GERAI",
         "password": "Slaptažodis",
         "passwordOrFingerprint": "Slaptažodis arba piršto antspaudas",
@@ -82,6 +94,7 @@
         "pressBackAgain": "Spauskite atgal, norėdami uždaryti programėlę",
         "reattached": "Pavedimas sėkmingai prijungtas",
         "reattachedExplanation": "Pavedimas prijungtas su šifru {{hash}}",
+        "promotingTransaction": "Promoting transaction",
         "autopromoting": "Automatinis pavedimo iškelimas",
         "autopromotingExplanation": "Pavedimas iškeliamas naudojant šifrą {{hash}}",
         "rebroadcasted": "Pavedimas sėkmingai ištransliuotas",
@@ -129,7 +142,12 @@
         "noNetworkConnection": "Nėra tinklo ryšio",
         "noNetworkConnectionExplanation": "Panašu, kad jūsų interneto ryšys atjungtas.",
         "spentAddressExplanation": "ĮSPĖJIMAS: Lėšos panaudotame adrese",
-        "discordInformation": "Pinigų siuntimas iš to pačio adreso daugiau nei kartą yra nesaugus. Keliaukite į #help kanalą Discord programoje norėdami sužinoti ką daryti tokiu atveju."
+        "discordInformation": "Pinigų siuntimas iš to pačio adreso daugiau nei kartą yra nesaugus. Keliaukite į #help kanalą Discord programoje norėdami sužinoti ką daryti tokiu atveju.",
+        "androidInsecureClipboardWarning": "Android nesuteikia saugios iškarpinės.",
+        "androidCopyPasteWarning": "Kopijuoti/Įklijuoti užraktą su Android įrenginiu nerekomenduojama.",
+        "willNotCopyPasteSeed": "Aš nekopijuosiu/neįklijuosiu užrakto",
+        "mustBeStoredAppropriately": "Jis privalo būti tinkamai laikomas.",
+        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Užraktas turi neleistinų simbolių",
@@ -161,7 +179,22 @@
         "ensureStrongPassword": "Įsitikinkite, kad jūsų slaptažodis pakankamai stiprus, iš mažiausiai 12 simbolių.",
         "currentPassword": "Dabartinis slaptažodis",
         "newPassword": "Naujas slaptažodis",
-        "confirmPassword": "Pakartokite naują slaptažodį"
+        "confirmPassword": "Pakartokite naują slaptažodį",
+        "passwordTooWeak": "Slaptažodis per silpnas",
+        "passwordTooWeakReason": "Jūsų slaptažodis per silpnas. Naudokite žodžių derinius, ir venkite dažnai naudojamų frazių, vardų ar datų",
+        "reasonRow": "Vienoje eilėje einantys simboliai yra lengvai nuspėjami",
+        "reasonPattern": "Trumpi simbolių šablonai yra lengvai nuspėjami",
+        "reasonNames": "Įžymūs vardai ar pavardės yra lengvai nuspėjami",
+        "reasonRepeats": "Simbolių deriniai kaip \"aaa\" yra lengvai nuspėjami",
+        "reasonRepeats2": "Simbolių deriniai kaip \"abcabcabc\" yra tik nežymiai sunkiau nuspėjami nei \"abc\"",
+        "reasonSequence": "Sekos kaip \"abc\" ar \"54321\" yra lengvai nuspėjamos",
+        "reasonYears": "Pastarieji metai yra lengvai nuspėjami",
+        "reasonDates": "Datos yra lengvai nuspėjamos",
+        "reasonTop10": "Tai yra vienas iš top 10 populiariausių slaptažodžių",
+        "reasonTop100": "Tai yra vienas iš top 100 populiariausių slaptažodžių",
+        "reasonCommon": "Tai labai dažnai pasikartojantis slaptažodis",
+        "reasonSimilar": "Tai dažnai pasikartojantis slaptažodis",
+        "reasonWord": "Vienas žodis yra lengvai nuspėjamas"
     },
     "copyToClipboard": {
         "seedCleared": "Užraktas išvalytas",
@@ -169,6 +202,7 @@
         "seedCopied": "Užraktas nukopijuotas į iškarpinę",
         "seedCopiedExplanation": "Užraktas bus išvalytas, kai paspausite \"ATLIKTA\" arba praeis 60 sekundžių.",
         "clickToCopy": "Spauskite žemiau esantį mygtuką, norėdami nukopijuoti savo užraktą į slaptažodžių tvarkyklę.",
+        "clickToSecurelyShare": "Spauskite žemiau esantį mygtuką, norėdami saugiai įkelti užraktą į slaptažodžių tvarkyklę.",
         "doNotStore": "Nelaikykite užrakto nešifruotu formatu.",
         "copyToClipboard": "Kopijuoti užraktą",
         "shareSeed": "Įkelti užraktą į saugią slaptažodžių tvarkyklę",
@@ -178,7 +212,8 @@
         "passwordManagerCheckbox": "Savo užraktą laikysiu slaptažodžių tvarkyklėje",
         "copy": "KOPIJUOTI",
         "noPasswordManagers": "Nėra palaikomų slaptažodžių tvarkyklių",
-        "noPasswordManagersExplanation": "Jūsų įrenginyje nerasta palaikomų slaptažodžių tvarkyklių. Įdiekite Keepass2Android."
+        "noPasswordManagersExplanation": "Jūsų įrenginyje nerasta palaikomų slaptažodžių tvarkyklių. Įdiekite Keepass2Android.",
+        "followTutorialToSecurelyShareSeed": "Jei ketinate savo užraktą laikyti slaptažodžių tvarkyklėje, peržiūrėkite naudojimo instrukciją iš pateiktos nuorodos"
     },
     "enterSeed": {
         "invalidCharacters": "Užraktas sudarytas iš neleistinų simbolių",
@@ -196,7 +231,8 @@
         "settings": "NUSTATYMAI"
     },
     "languageSetup": {
-        "language": "Kalba"
+        "language": "Kalba",
+        "letsGetStarted": "Pradėkime"
     },
     "login": {
         "emptyPassword": "Neįvestas slaptažodis",
@@ -216,18 +252,22 @@
         "takingAWhile": "Atrodo, kad tai užtruks"
     },
     "newSeedSetup": {
+        "generatedSeed": "Sukurtas užraktas",
         "seedNotGenerated": "Sukurti užrakto nepavyko",
         "seedNotGeneratedExplanation": "Susikurkite naują užraktą.",
         "pressForNewSeed": "SUKURTI NAUJĄ UŽRAKTĄ",
         "generateSuccess": "Užraktas sėkmingai sukurtas",
         "individualLetters": "Spauskite ant raidės, norėdami ją pakeisti kita.",
+        "individualLetterCount": "Įveskite dar {{letterCount}} unikalius simbolius norėdami, kad jie būtų išmaišyti.",
         "whatIsASeed": "Kas yra užraktas?"
     },
     "onboardingComplete": {
+        "allDone": "Viskas baigta!",
+        "openYourWallet": "Atidarykite savo piniginę",
         "walletReady": "Piniginė paruošta naudojimui. Jeigu norėsite atlikti pakeitimus, eikite į Nustatymų meniu."
     },
     "paperWallet": {
-        "clickToPrint": "Spauskite žemiau esantį mygtuką, norėdami atsispausdinti užraktą.",
+        "clickToPrint": "Spauskite žemiau esantį mygtuką, norėdami atspausdinti užraktą.",
         "storeSafely": "Saugiai jį laikykite.",
         "neverShare": "Su niekuo nesidalinkite savo užraktu.",
         "iotaLogo": "IOTA logotipas",
@@ -240,6 +280,7 @@
         "printerCheckbox": "Nespausdinsiu naudodamas viešą spausdintuvą"
     },
     "receive": {
+        "copyAddress": "Kopijuoti adresą",
         "addressCopied": "Adresas nukopijuotas",
         "addressCopiedExplanation": "Jūsų adresas nukopijuotas į iškarpinę.",
         "generateNewAddress": "NAUJAS ADRESAS",
@@ -249,13 +290,33 @@
         "spent": "Panaudotas"
     },
     "saveYourSeed": {
+        "saveYourSeed": "Išsaugoti savo užraktą",
+        "seedCleared": "Užraktas išvalytas",
+        "mostSecure": "Saugiausia",
+        "leastSecure": "Mažiausiai saugu",
+        "paperWallet": "Popierinė piniginė",
+        "writeYourSeedDown": "Nusirašyti užraktą",
+        "printYourSeed": "Atspausdinti užraktą",
+        "digitalCopy": "Skaitmeninė kopija",
+        "seedClearedExplanation": "Užraktas išvalytas iš iškarpinės dėl jūsų saugumo.",
+        "iHaveBackedUpMySeed": "Užraktą išsisaugojau",
+        "letsWriteDownYourSeed": "Nusirašykite savo užraktą",
+        "youCanHighlightCharacters": "Žymėkitės po 9 simbolius per kartą",
+        "printBlankWallet": "Atspausdinti tuščią piniginę",
+        "whatIsCheksum": "Kiekvienas užraktas turi atitinkamą 3 simbolių kontrolinę sumą",
+        "iHavesavedMySeed": "Išsisaugojau savo užraktą",
+        "checksumExplanation": "Kai pridedate užraktą į savo piniginę, turite įsitikinti, kad piniginės sukurta kontrolinė suma sutampa su ta, kurią nusirašėte.",
         "mustSaveYourSeed": "<0><0>Užraktą privalote išsisaugoti pasinaudodami </0><1>bent vienu</1><2> iš šių būdų, nurodytų žemiau.</2></0>"
     },
     "seedReentry": {
+        "pleaseConfirmYourSeed": "Patvirtinkite savo užraktą",
+        "trinityWillNeverAskToReenter": "Trinity niekada jūsų neprašys pakartotinai įvesti savo užraktą, išskyrus, jeigu perkrausite savo piniginę ar programėlę.",
+        "enterYourSeed": "Įveskite savo užraktą",
         "incorrectSeed": "Neteisingas užraktas",
         "incorrectSeedExplanation": "Įvestas užraktas neteisingas. Bandykite dar kartą.",
         "thisIsACheck": "Tai patikrinimas, jog tikrai išsisaugojote savo užraktą.",
-        "ifYouHaveNotSaved": "Jei neišsisaugojote savo užrakto, grįžkite ir padarykite tai."
+        "ifYouHaveNotSaved": "Jei neišsisaugojote savo užrakto, grįžkite ir padarykite tai.",
+        "enterSeedBelow": "Įveskite savo naujai sukurtą užraktą, norėdami patvirtinti, kad jį teisingai išsisaugojote"
     },
     "send": {
         "invalidAddress": "Neteisingas adresas",
@@ -281,9 +342,12 @@
         "maximumSelected": "Pasirinkta MAKSIMALI suma",
         "iotaUnits": "IOTA vienetų paaiškinimas",
         "sendMax": "SIŲSTI MAKS.",
-        "totalTime": "Bendras laikas"
+        "totalTime": "Bendras laikas",
+        "addressPasteDetected": "Aptiktas adreso įklijavimas",
+        "addressPasteExplanation": "Atrodo, kad jūs ketinate įklijuoti adresą. Įsitikinkite, kad įklijuojamas adresas tikrai sutampa su gavėjo adresu."
     },
     "setPassword": {
+        "choosePassword": "Sukurti naują slaptažodį",
         "passwordTooShort": "Slaptažodis per trumpas",
         "passwordTooShortExplanation": "Slaptažodis privalo būti iš mažiausiai {{minLength}} simbolių. Jūsų įvedėte {{currentLength}}. Bandykite dar kartą.",
         "passwordMismatch": "Slaptažodžiai nesutampa",
@@ -294,6 +358,7 @@
         "retypePassword": "Pakartokite slaptažodį"
     },
     "setSeedName": {
+        "letsAddName": "Pridėkime vardą",
         "canUseMultipleSeeds": "Jūs galite naudoti daugybę užraktų su šia pinigine. Kiekvienas užraktas turi turėti paskyros vardą.",
         "youCanAdd": "Norėdami pridėti daugiau užraktų, eikite į Nustatymų meniu."
     },
@@ -319,7 +384,6 @@
         "twoFA": "Dviejų veiksnių autentifikavimas",
         "changePassword": "Keisti slaptažodį",
         "advanced": "Išplėstiniai parametrai",
-        "about": "Apie",
         "logout": "Atsijungti",
         "reset": "Iš naujo nustatyti piniginę",
         "syncingComplete": "Sinchronizacija baigta",
@@ -365,9 +429,13 @@
         "reset": "IŠ NAUJO NUSTATYTI"
     },
     "walletSetup": {
+        "creatingSeed": "Užraktas kuriamas",
         "okay": "Puiku. Atlikime piniginės nustatymus!",
         "doYouAlreadyHaveASeed": "Ar jau turite užraktą, kurį norėtumėte panaudoti?",
+        "doYouNeedASeed": "Ar jums reikia sukurti naują užraktą?",
         "seedExplanation": "IOTA užraktas yra kaip paskyros vartotojo vardas ir slaptažodis, sujungtas į vieną eilutę iš 81 simbolio.",
+        "noIHaveOne": "Ne, jau turiu",
+        "yesINeedASeed": "Taip, man reikia užrakto",
         "explanation": "<0><0>Jį galima panaudoti norint gauti prieigą prie savo lėšų iš </0><1>bet kokios piniginės</1><2> ir </2><3>bet kokio įrenginio</3><4>. Bet jei prarasite savo užraktą, prarasite ir savo IOTA.</4></0>",
         "keepSafe": "Laikykite užraktą saugiai.",
         "hint": "<0><0>Patarimas:</0> Spauskite NE, jei pirmą kartą naudojatės IOTA.</0>"
@@ -418,7 +486,10 @@
         "addCustomNode": "Pridėti vartotojo serverį",
         "manualSync": "Rankinė sinchronizacija",
         "snapshotTransition": "Tinklo duomenų perkėlimas",
-        "pow": "Proof of Work"
+        "pow": "Proof of Work",
+        "autoPromotion": "Auto-promotion",
+        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
+        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
     },
     "advancedThemeCustomisation": {
         "background": "Fonas",
@@ -474,9 +545,11 @@
         "hideSeed": "PASLĖPTI UŽRAKTĄ"
     },
     "saveSeedConfirmation": {
+        "didSaveSeed": "Ar išsisaugojote savo užraktą?",
         "alreadyHave": "Užraktą išsisaugojau",
-        "reenter": "Dabar turėsite dar kartą įvesti savo užraktą.",
-        "reenterWarning": "Jeigu jūsų įrenginys suges, o jūs būsite neišsisaugoję savo užrakto, prarasite savo IOTA."
+        "reenterSeed": "Kitame žingsnyje, jums reikės pakartotinai įvesti užraktą.",
+        "reenterSeedWarning": "Jei neišsisaugojote savo užrakto ir jūsų įrenginys suges, prarasite savo IOTA.",
+        "pleaseConfirm": "Patvirtinkite, kad jūsų užraktas saugiai išsaugotas."
     },
     "walletResetConfirmation": {
         "cannotUndo": "DUOMENYS BUS PAŠALINTI NEGRĮŽTAMAI.",
@@ -492,8 +565,6 @@
         "fingerprintAuthFailed": "Biometrinis autentifikavimas nesuveikė",
         "fingerprintAuthFailedExplanation": "Piršto antspaudo autentifikavimas nesuveikė. Bandykite dar kartą.",
         "status": "Būsena",
-        "enabled": "Įjungta",
-        "disabled": "Išjungta",
         "fingerprintUnavailable": "Biometrinis autentifikavimas nepasiekiamas",
         "fingerprintUnavailableExplanation": "Jūsų įrenginys nepalaiko biometrinio autentifikavimo arba ši funkcija yra nesukonfigūruota jūsų įrenginyje.",
         "buttonInstructionsDisable": "Spauskite žemiau esantį mygtuką, norėdami atjungti piršto antspaudo autentifikavimą.",
@@ -546,7 +617,7 @@
         "noWebGLSupportExplanation": "Jūsų kompiuteris nepalaiko WebGL. Prašome naudoti nuotolinį PoW."
     },
     "progressSteps": {
-        "validatingNodeHealth": "Tikrinama pasirinkto serverio būklė",
+        "checkingNodeHealth": "Tikrinama serverio būklė",
         "validatingReceiveAddress": "Tikrinamas pavedimų priėmimo adresas",
         "syncingAccount": "Paskyra sinchronizuojama",
         "preparingInputs": "Įvesties duomenų paruošimas",
@@ -585,5 +656,13 @@
     },
     "notificationLog": {
         "errorLog": "KLAIDŲ ŽURNALAS"
+    },
+    "terms": {
+        "termsAndConditions": "Sąlygos",
+        "accept": "I accept"
+    },
+    "privacyPolicy": {
+        "privacyPolicy": "Privacy Policy",
+        "agree": "I agree"
     }
 }
