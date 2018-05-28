@@ -16,13 +16,13 @@
         "keyReuse": "Enviando a dirección usada",
         "keyReuseError": "No puede enviar a una dirección que ya se ha usado.",
         "invalidResponse": "Error de nodo",
-        "invalidResponseExplanation": "The node returned an error. Try changing node.",
-        "invalidResponsePollingExplanation": "The node returned an error while polling. Try changing node.",
+        "invalidResponseExplanation": "El nodo devolvió un error. Pruebe cambiando de nodo.",
+        "invalidResponsePollingExplanation": "El nodo devolvió un error durante la solicitud. Pruebe cambiando de nodo.",
         "invalidResponseFetchingAccount": "El servidor devolvió un error mientras obtenía la información de su cuenta. Intenta cambiar el nodo.",
-        "invalidResponseSendingTransfer": "The node returned an error while sending the transfer. Try changing node.",
+        "invalidResponseSendingTransfer": "El nodo devolvió un error durante el envío de la transferencia. Pruebe cambiando de nodo.",
         "nodeOutOfSync": "Nodo desincronizado",
         "nodeOutOfSyncExplanation": "Su nodo seleccionado esta desincronizado. Por favor cámbielo y pruebe devuelta.",
-        "thisNodeOutOfSync": "This node is out of sync. Please change node or try again.",
+        "thisNodeOutOfSync": "Este nodo no está sincronizado. Por favor, cambie de nodo o pruebe de nuevo.",
         "seed": "Semilla",
         "checksum": "Checksum",
         "back": "ATRÁS",
@@ -105,7 +105,7 @@
         "promoted": "Transacción promovida exitosamente",
         "promotedExplanation": "Transacción promovida con hash {{hash}}",
         "autopromotionError": "No se pudo auto promover la transacción",
-        "autopromotionErrorExplanation": "PoW remoto no disponible en el nodo seleccionado. Por favor cámbielo.",
+        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
         "promotionError": "No se pudo promover la transacción",
         "promotionErrorExplanation": "Algo salio mal mientras se promovía su transacción. Por favor reintente.",
         "noLongerValid": "El paquete que esta intentando promover ya no es valido",
@@ -348,7 +348,7 @@
         "sendMax": "ENVIAR MÁXIMO",
         "totalTime": "Tiempo total",
         "addressPasteDetected": "Address paste detected",
-        "addressPasteExplanation": "It looks like you are about to paste an address. Make sure that the pasted address matches the one you want to send to."
+        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
     },
     "setPassword": {
         "choosePassword": "Choose a new password",
@@ -619,6 +619,10 @@
         "powUpdatedExplanation": "Su configuración de PoW fue actualizada.",
         "noWebGLSupport": "WebGL no soportado",
         "noWebGLSupportExplanation": "Su computadora no soporta WebGL. Por favor use PoW remoto."
+    },
+    "autoPromotion": {
+        "autoPromotionUpdated": "Auto-promotion settings",
+        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
     },
     "progressSteps": {
         "checkingNodeHealth": "Checking node health",
