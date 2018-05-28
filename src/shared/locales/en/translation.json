@@ -367,7 +367,7 @@
         "totalTime": "Total time",
         "addressPasteDetected": "Address paste detected",
         "addressPasteExplanation":
-            "It looks like you are about to paste an address. Make sure that the pasted address matches the one you want to send to."
+            "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
     },
     "setPassword": {
         "choosePassword": "Choose a new password",
