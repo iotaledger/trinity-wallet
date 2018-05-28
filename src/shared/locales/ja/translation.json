@@ -63,7 +63,7 @@
         "yesLowerCase": "はい",
         "noLowerCase": "いいえ",
         "okay": "OK",
-        "okayLowercase": "Okay",
+        "okayLowercase": "OK",
         "password": "パスワード",
         "passwordOrFingerprint": "パスワードや指紋",
         "unrecognisedPassword": "有効でないパスワードです。",
@@ -149,9 +149,9 @@
         "willNotCopyPasteSeed": "私はシードをコピー&ペーストしていません。",
         "mustBeStoredAppropriately": "シードは適切に保管しなければなりません。",
         "deviceMayBecomeUnresponsive": "しばらくの間、お使いのデバイスが応答できなくなる恐れがあります",
-        "isYourBalanceCorrect": "Is your balance correct?",
-        "ifYourBalanceIsNotCorrect": "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
-        "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition."
+        "isYourBalanceCorrect": "残高は正しいですか？",
+        "ifYourBalanceIsNotCorrect": "もし残高が正しくなければ、スナップショット以前のシードが使われていると思われます。",
+        "headToAdvancedSettingsForTransition": "詳細設定にてスナップショットの移行を行なってください。"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだシードです。",
@@ -492,8 +492,8 @@
         "snapshotTransition": "スナップショットの移行",
         "pow": "プルーフ・オブ・ワーク",
         "autoPromotion": "自動促進",
-        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
-        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
+        "autoPromotionExplanation": "自動促進によってTangleによる取引承認を手助けします。取引承認に時間がかかる場合はこの設定をオンにしてください。",
+        "autoPromotionPoW": "自動促進はリモートによるプルーフ・オブ・ワークを許可するノードと接続している場合のみ有効です。"
     },
     "advancedThemeCustomisation": {
         "background": "背景",
