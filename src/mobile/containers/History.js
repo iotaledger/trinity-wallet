@@ -239,19 +239,7 @@ class History extends Component {
                     this.setState({
                         modalProps: assign({}, modalProps, {
                             rebroadcast: (bundle) => this.props.broadcastBundle(bundle, selectedAccountName),
-                            promote: (bundle) => {
-                                // FIXME: Temporary solution until local/remote PoW is reworked on auto-promotion. Will display alert after first autopromote failure.
-                                if (hasFailedAutopromotion) {
-                                    return this.props.generateAlert(
-                                        'error',
-                                        t('global:attachToTangleUnavailable'),
-                                        t('global:attachToTangleUnavailableExplanationShort'),
-                                        10000,
-                                    );
-                                }
-
-                                return this.props.promoteTransaction(bundle, selectedAccountName, proofOfWorkFunction);
-                            },
+                            promote: (bundle) => this.props.promoteTransaction(bundle, selectedAccountName, proofOfWorkFunction),
                             onPress: this.props.toggleModalActivity,
                             generateAlert: this.props.generateAlert,
                             bundle,
@@ -346,7 +334,6 @@ class History extends Component {
             isPromotingTransaction,
             isBroadcastingBundle,
             currentlyPromotingBundleHash,
-            hasFailedAutopromotion,
         } = this.props;
         const { modalProps } = this.state;
 
@@ -373,10 +360,7 @@ class History extends Component {
                         >
                             <HistoryModalContent
                                 {...modalProps}
-                                disableWhen={
-                                    (isAutoPromoting || isPromotingTransaction || isBroadcastingBundle) &&
-                                    !hasFailedAutopromotion
-                                }
+                                disableWhen={ isAutoPromoting || isPromotingTransaction || isBroadcastingBundle }
                                 isBroadcastingBundle={isBroadcastingBundle}
                                 currentlyPromotingBundleHash={currentlyPromotingBundleHash}
                             />
