@@ -34,7 +34,6 @@ describe('Reducer: ui', () => {
                 isChangingNode: false,
                 currentlyPromotingBundleHash: '',
                 loginRoute: 'login',
-                hasFailedAutopromotion: false,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
@@ -1075,10 +1074,9 @@ describe('Reducer: ui', () => {
     });
 
     describe('IOTA/SETTINGS/ADD_CUSTOM_NODE_SUCCESS', () => {
-        it('should set "isCheckingCustomNode" and "hasFailedAutopromotion" state props to false', () => {
+        it('should set "isCheckingCustomNode" to false', () => {
             const initialState = {
                 isCheckingCustomNode: true,
-                hasFailedAutopromotion: true,
             };
 
             const action = {
@@ -1088,7 +1086,6 @@ describe('Reducer: ui', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 isCheckingCustomNode: false,
-                hasFailedAutopromotion: false,
             };
 
             expect(newState).to.eql(expectedState);
