@@ -69,7 +69,7 @@ class TermsAndConditions extends Component {
                 topBarElevationShadowEnabled: false,
                 screenBackgroundColor: theme.body.bg,
                 drawUnderStatusBar: true,
-                statusBarColor: theme.body.bg,
+                statusBarColor: theme.bar.bg,
             },
             animated: false,
         });
