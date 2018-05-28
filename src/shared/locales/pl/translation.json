@@ -42,8 +42,8 @@
         "disable": "Wyłącz",
         "enabled": "Włączono",
         "disabled": "Wyłączono",
-        "manualCopy": "Write seed down",
-        "paperWallet": "Print paper copy",
+        "manualCopy": "Zanotuj swój seed",
+        "paperWallet": "Wydrukuj kopię papierową",
         "addToPasswordManager": "Dodaj do menedżera haseł",
         "shareSeed": "Udostępnij seed",
         "proceed": "Kontynuuj",
@@ -63,7 +63,7 @@
         "yesLowerCase": "Tak",
         "noLowerCase": "Nie",
         "okay": "OKEJ",
-        "okayLowercase": "Okay",
+        "okayLowercase": "Okej",
         "password": "Hasło",
         "passwordOrFingerprint": "Hasło lub odcisk palca",
         "unrecognisedPassword": "Hasło nierozpoznane",
@@ -105,7 +105,7 @@
         "promoted": "Promowanie transakcji pomyślne",
         "promotedExplanation": "Wypromowano transakcję z hashem {{hash}}",
         "autopromotionError": "Błąd auto-promowania transakcji",
-        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
+        "autopromotionErrorExplanation": "Zdalny tryb Proof of Work jest niedostępny na wybranym serwerze. Zmień serwer oraz ponownie włącz opcję autopromowania.",
         "promotionError": "Nie można wypromować transakcji",
         "promotionErrorExplanation": "Coś poszło nie tak podczas promowania Twojego transferu. Proszę spróbować ponownie.",
         "noLongerValid": "Pakiet, który próbujesz promować, nie jest już ważny",
@@ -149,7 +149,7 @@
         "willNotCopyPasteSeed": "Nie będę kopiował/wklejał mojego klucza",
         "mustBeStoredAppropriately": "Musi być odpowiednio przechowywany.",
         "deviceMayBecomeUnresponsive": "Urządzenie może przestać odpowiadać przez pewien czas",
-        "isYourBalanceCorrect": "Is your balance correct?",
+        "isYourBalanceCorrect": "Czy Twoje saldo jest poprawne?",
         "ifYourBalanceIsNotCorrect": "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
         "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition."
     },
@@ -621,8 +621,8 @@
         "noWebGLSupportExplanation": "Twój komputer nie obsługuje technologii WebGL. Użyj zdalnego trybu PoW."
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Auto-promotion settings",
-        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
+        "autoPromotionUpdated": "Ustawienia autopromowania",
+        "autoPromotionUpdatedExplanation": "Twoja konfiguracja autopromowania została zaktualizowana."
     },
     "progressSteps": {
         "checkingNodeHealth": "Sprawdzanie kondycji serwera",
