@@ -16,10 +16,10 @@
         "keyReuse": "이미 사용한 주소로 보내는 중",
         "keyReuseError": "출금에 사용한 기록이 있는 주소로는 전송할 수 없습니다.",
         "invalidResponse": "노드 오류",
-        "invalidResponseExplanation": "노드가 오류를 응답하였습니다. 알림 내역을 확인하여 더 자세한 내용을 확인할 수 있습니다.",
-        "invalidResponsePollingExplanation": "요청 처리 중에 노드가 오류를 응답하였습니다. 알림 내역을 확인하여 더 자세한 내용을 확인할 수 있습니다.",
-        "invalidResponseFetchingAccount": "계정 정보를 불러오는 중에 노드가 오류를 응답하였습니다. 노드를 변경하시거나, 알림 내역을 확인하여 더 자세한 내용을 확인할 수 있습니다.",
-        "invalidResponseSendingTransfer": "거래를 전송하는 중에 노드가 오류를 응답하였습니다. 알림 내역을 확인하여 더 자세한 내용을 확인할 수 있습니다.",
+        "invalidResponseExplanation": "노드가 오류를 보냈습니다. 노드를 변경해 보세요.",
+        "invalidResponsePollingExplanation": "노드에 연결하는 도중에 오류가 발생했습니다. 노드를 변경해 보세요.",
+        "invalidResponseFetchingAccount": "계정 정보를 불러오는 도중에 노드에서 오류가 발생했습니다. 노드를 변경해 보세요.",
+        "invalidResponseSendingTransfer": "거래를 보내는 도중에 노드에서 오류가 발생했습니다. 노드를 변경해 보세요.",
         "nodeOutOfSync": "노드가 동기화되지 않음",
         "nodeOutOfSyncExplanation": "노드가 동기화되어있지 않습니다. 노드를 바꾸거나 다시 시도해보세요.",
         "thisNodeOutOfSync": "This node is out of sync. Please change node or try again.",
@@ -42,8 +42,8 @@
         "disable": "비활성화",
         "enabled": "Enabled",
         "disabled": "Disabled",
-        "manualCopy": "시드 기록하기",
-        "paperWallet": "종이에 인쇄하기",
+        "manualCopy": "Write seed down",
+        "paperWallet": "Print paper copy",
         "addToPasswordManager": "Add to password manager",
         "shareSeed": "Share seed",
         "proceed": "계속",
@@ -63,6 +63,7 @@
         "yesLowerCase": "네",
         "noLowerCase": "아니오",
         "okay": "확인",
+        "okayLowercase": "Okay",
         "password": "비밀번호",
         "passwordOrFingerprint": "비밀번호 또는 지문",
         "unrecognisedPassword": "잘못된 비밀번호",
@@ -147,7 +148,10 @@
         "androidCopyPasteWarning": "안드로이드 기기에서는 시드를 클립보드에 복사하지 말아주세요.",
         "willNotCopyPasteSeed": "시드를 클립보드에 복사하지 않겠습니다",
         "mustBeStoredAppropriately": "안전하게 보관해 주세요.",
-        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while"
+        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while",
+        "isYourBalanceCorrect": "Is your balance correct?",
+        "ifYourBalanceIsNotCorrect": "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
+        "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
@@ -241,7 +245,7 @@
         "useSeed": "시드 사용하기",
         "login": "로그인",
         "selectDifferentNode": "다른 노드를 선택하시겠습니까?",
-        "setNode": "노드 설정",
+        "setNode": "노드 선택",
         "cannotConnect": "IOTA 노드에 연결할 수 없습니다."
     },
     "loading": {
@@ -255,7 +259,7 @@
         "generatedSeed": "생성된 시드",
         "seedNotGenerated": "시드가 생성되지 않았습니다",
         "seedNotGeneratedExplanation": "새 시드를 생성해 주십시오.",
-        "pressForNewSeed": "여기를 눌러 새 시드 생성",
+        "pressForNewSeed": "새 시드",
         "generateSuccess": "시드 생성에 성공했습니다.",
         "individualLetters": "개별 문자를 눌러 해당 문자를 무작위로 바꿀 수 있습니다.",
         "individualLetterCount": "각각의 문자를 {{letterCount}}번 더 눌러서 무작위로 변경하세요.",
@@ -271,7 +275,7 @@
         "storeSafely": "안전하게 보관하세요.",
         "neverShare": "절대로 다른 사람에게 시드를 알려줘서는 안 됩니다.",
         "iotaLogo": "IOTA 로고",
-        "printWallet": "종이 지갑 인쇄하기",
+        "printWallet": "종이 지갑 인쇄",
         "print": "인쇄하기",
         "paperConvenience": "시드를 종이에 인쇄해 놓으면 편리하게 보관할 수 있습니다.",
         "publicInsecure": "하지만 공용 와이파이를 통해 인쇄하거나 공용 프린터를 사용해 인쇄하는 것은 위험합니다.",
@@ -638,7 +642,7 @@
         "transition": "이전",
         "transitioning": "스냅샷 이전 수행 중",
         "generatingAndDetecting": "주소를 생성하고 잔고를 찾는 중",
-        "attaching": "주소를 탱글에 어태치하는 중"
+        "attaching": "주소를 탱글에 어태치하는 중."
     },
     "deepLink": {
         "autofill": "자동 완성 성공",
