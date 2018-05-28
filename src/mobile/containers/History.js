@@ -123,8 +123,6 @@ class History extends Component {
         onRefresh: PropTypes.func.isRequired,
         /** Addresses for selected account */
         addresses: PropTypes.array.isRequired,
-        // FIXME: Temporary solution until local/remote PoW is reworked on auto-promotion. Will disable autopromotion UI feedback after first failure.
-        hasFailedAutopromotion: PropTypes.bool.isRequired,
     };
 
     constructor() {
@@ -172,7 +170,6 @@ class History extends Component {
             currentlyPromotingBundleHash,
             isRefreshing,
             addresses,
-            hasFailedAutopromotion,
         } = this.props;
         const containerBorderColor = tinycolor(body.bg).isDark() ? 'rgba(255, 255, 255, 0.25)' : 'rgba(0, 0, 0, 0.25)';
         const containerBackgroundColor = tinycolor(body.bg).isDark() ? 'rgba(255, 255, 255, 0.08)' : 'transparent';
@@ -230,8 +227,7 @@ class History extends Component {
                 time: timestamp,
                 message,
                 mode,
-                bundleIsBeingPromoted:
-                    currentlyPromotingBundleHash === bundle && !persistence && !hasFailedAutopromotion,
+                bundleIsBeingPromoted: currentlyPromotingBundleHash === bundle && !persistence,
                 onPress: (modalProps) => {
                     if (isRefreshing) {
                         return;
@@ -239,12 +235,12 @@ class History extends Component {
                     this.setState({
                         modalProps: assign({}, modalProps, {
                             rebroadcast: (bundle) => this.props.broadcastBundle(bundle, selectedAccountName),
-                            promote: (bundle) => this.props.promoteTransaction(bundle, selectedAccountName, proofOfWorkFunction),
+                            promote: (bundle) =>
+                                this.props.promoteTransaction(bundle, selectedAccountName, proofOfWorkFunction),
                             onPress: this.props.toggleModalActivity,
                             generateAlert: this.props.generateAlert,
                             bundle,
                             addresses: [...map(inputs, withUnitAndChecksum), ...map(outputs, withUnitAndChecksum)],
-                            hasFailedAutopromotion,
                         }),
                     });
 
@@ -360,7 +356,7 @@ class History extends Component {
                         >
                             <HistoryModalContent
                                 {...modalProps}
-                                disableWhen={ isAutoPromoting || isPromotingTransaction || isBroadcastingBundle }
+                                disableWhen={isAutoPromoting || isPromotingTransaction || isBroadcastingBundle}
                                 isBroadcastingBundle={isBroadcastingBundle}
                                 currentlyPromotingBundleHash={currentlyPromotingBundleHash}
                             />
@@ -387,7 +383,6 @@ const mapStateToProps = (state) => ({
     isAutoPromoting: state.polling.isAutoPromoting,
     isModalActive: state.ui.isModalActive,
     currentlyPromotingBundleHash: state.ui.currentlyPromotingBundleHash,
-    hasFailedAutopromotion: state.ui.hasFailedAutopromotion,
 });
 
 const mapDispatchToProps = {
