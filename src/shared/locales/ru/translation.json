@@ -492,8 +492,8 @@
         "snapshotTransition": "Snapshot переход",
         "pow": "Доказательство Работы (ДР)",
         "autoPromotion": "Авто продвижение",
-        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
-        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
+        "autoPromotionExplanation": "Авто-продвижение помогает Вашим транзакциям получить статус подтвержденных в Tangle. Включите эту опцию, если у Вас трудности с подтверждением Ваших транзакций.",
+        "autoPromotionPoW": "Авто-продвижение возможно только на узлах, которые поддерживают удалённое проведение Proof of Work."
     },
     "advancedThemeCustomisation": {
         "background": "Фон",
