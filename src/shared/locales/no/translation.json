@@ -611,7 +611,7 @@
         "continueDepsiteRisk": "Ønsker du å fortsette til tross for risikoen?"
     },
     "pow": {
-        "feeless": "Det er nødvendig for å utføre litt PoW (Proof of Work) for å sende gebyrfrie transaksjoner i IOTA.",
+        "feeless": "For å sende gebyrfrie transaksjoner i IOTA er det nødvendig å utføre litt PoW (Proof of Work).",
         "localOrRemote": "PoW (Proof of Work) kan enten utføres lokalt på din enhet, eller settes bort til den noden som du er tilkoblet.",
         "local": "Lokal",
         "remote": "Ekstern",
