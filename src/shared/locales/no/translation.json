@@ -4,7 +4,7 @@
         "cancel": "AVBRYT",
         "continue?": "Er du sikker på at du vil fortsette?",
         "noTransactions": "INGEN NYLIG HISTORIKK",
-        "refresh": "Refresh",
+        "refresh": "Oppdater",
         "balanceError": "Saldoen er for lav",
         "balanceErrorMessage": "Du har ikke nok IOTA til å fullføre denne transaksjonen.",
         "transferError": "Transaksjonsfeil",
@@ -16,10 +16,10 @@
         "keyReuse": "Sender til en tidligere brukt adresse",
         "keyReuseError": "Du kan ikke sende til en adresse som allerede er blitt brukt til å sende fra.",
         "invalidResponse": "Nodefeil",
-        "invalidResponseExplanation": "The node returned an error. Try changing node.",
+        "invalidResponseExplanation": "Noden returnerte en feil. Forsøk å endre node.",
         "invalidResponsePollingExplanation": "The node returned an error while polling. Try changing node.",
-        "invalidResponseFetchingAccount": "The node returned an error while fetching your account information. Try changing node.",
-        "invalidResponseSendingTransfer": "The node returned an error while sending the transfer. Try changing node.",
+        "invalidResponseFetchingAccount": "Noden returnerte en feil under henting av din kontoinformasjon. Forsøk å endre node.",
+        "invalidResponseSendingTransfer": "Noden returnerte en feil under sending av transaksjonen. Forsøk å endre node.",
         "nodeOutOfSync": "Noden er ikke synkronisert",
         "nodeOutOfSyncExplanation": "Din valgte node er ikke synkronisert. Velg en ny node og forsøk igjen.",
         "thisNodeOutOfSync": "Denne noden er ikke synkronisert. Vennligst endre node eller forsøk igjen.",
@@ -36,14 +36,14 @@
         "nextLowerCase": "Neste",
         "apply": "Bruk",
         "save": "Lagre",
-        "close": "Close",
+        "close": "Lukk",
         "continue": "Fortsett",
         "enable": "Aktiver",
         "disable": "Deaktiver",
         "enabled": "Aktivert",
         "disabled": "Deaktivert",
-        "manualCopy": "Write seed down",
-        "paperWallet": "Print paper copy",
+        "manualCopy": "Skriv ned hovednøkkelen",
+        "paperWallet": "Skriv ut papirkopi",
         "addToPasswordManager": "Legg til i passord-applikasjonen",
         "shareSeed": "Del hovednøkkelen",
         "proceed": "Fortsett",
@@ -195,10 +195,10 @@
         "reasonYears": "Nyere årstall er enkelt å gjette",
         "reasonDates": "Datoer er ofte enkelt å gjette",
         "reasonTop10": "Dette er topp 10 vanlige passord",
-        "reasonTop100": "This is a top 100 common password",
-        "reasonCommon": "This is a very common password",
-        "reasonSimilar": "This is similar to a commonly-used password",
-        "reasonWord": "A single word is easy to guess"
+        "reasonTop100": "Dette er topp 100 vanlige passord",
+        "reasonCommon": "Dette er et veldig vanlig passord",
+        "reasonSimilar": "Dette ligner på et vanlig brukt passord",
+        "reasonWord": "Ett ord er enkelt å gjette"
     },
     "copyToClipboard": {
         "seedCleared": "Hovednøkkel er fjernet",
@@ -206,7 +206,7 @@
         "seedCopied": "Kopierte hovednøkkelen til utklippstavle",
         "seedCopiedExplanation": "Hovednøkkelen vil bli fjernet med en gang du trykker \"FERDIG\" eller etter at 60 sekunder har passert.",
         "clickToCopy": "Trykk på knappen nedenfor og kopier hovednøkkelen til en sikker passord-applikasjon.",
-        "clickToSecurelyShare": "Click the button below to securely share your seed to a password manager.",
+        "clickToSecurelyShare": "Trykk på knappen nedenfor for å lagre hovednøkkelen i en passord-lagrings program.",
         "doNotStore": "Oppbevar ikke din hovednøkkelen i klartekst.",
         "copyToClipboard": "Copy Seed",
         "shareSeed": "Kopier din hovednøkkel til en sikker passord applikasjon",
@@ -217,7 +217,7 @@
         "copy": "KOPIER",
         "noPasswordManagers": "Ingen støttet password manager er innstallert",
         "noPasswordManagersExplanation": "Ingen støttet password manager ble funnet på enheten. Vennligst installer Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "If you wish to store your seed in a password manager, you must follow a tutorial from the following link"
+        "followTutorialToSecurelyShareSeed": "Om du ønsker å lagre hovednøkkelen i et passord-lagrings program må du følge guiden fra følgende lenke"
     },
     "enterSeed": {
         "invalidCharacters": "Hovednøkkelen inneholder ugyldige tegn",
@@ -236,7 +236,7 @@
     },
     "languageSetup": {
         "language": "Språk",
-        "letsGetStarted": "Let's get started"
+        "letsGetStarted": "La oss komme i gang"
     },
     "login": {
         "emptyPassword": "Tomt passord",
@@ -256,7 +256,7 @@
         "takingAWhile": "Dette ser ut til å ta litt tid"
     },
     "newSeedSetup": {
-        "generatedSeed": "Generated seed",
+        "generatedSeed": "Hovednøkkel er generert",
         "seedNotGenerated": "Hovednøkkel har ikke blitt generert",
         "seedNotGeneratedExplanation": "Vennligst generer ny hovednøkkel.",
         "pressForNewSeed": "Press for New Seed",
