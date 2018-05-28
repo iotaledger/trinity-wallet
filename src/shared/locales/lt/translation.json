@@ -22,7 +22,7 @@
         "invalidResponseSendingTransfer": "Apdorojant pavedimą įvyko serverio klaida. Skaitykite pranešimus dėl detalesnės informacijos.",
         "nodeOutOfSync": "Serveris nesinchronizuotas",
         "nodeOutOfSyncExplanation": "Jūsų pasirinktas serveris nesinchronizuotas. Pakeiskite serverį arba bandykite dar kartą.",
-        "thisNodeOutOfSync": "This node is out of sync. Please change node or try again.",
+        "thisNodeOutOfSync": "Šis serveris nesinchronizuotas. Pakeiskite serverį arba bandykite dar kartą.",
         "seed": "Užraktas",
         "checksum": "Kontrolinė suma",
         "back": "ATGAL",
