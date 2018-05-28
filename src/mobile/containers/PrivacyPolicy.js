@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { acceptPrivacy } from 'iota-wallet-shared-modules/actions/settings';
 import { enPrivacyPolicy, dePrivacyPolicy } from 'iota-wallet-shared-modules/markdown';
-import WithBackPressCloseApp from '../components/BackPressCloseApp';
 import i18next from '../i18next';
 import Button from '../components/Button';
 import GENERAL from '../theme/general';
