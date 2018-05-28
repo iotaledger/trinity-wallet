@@ -85,7 +85,7 @@
         "sending": "送金中",
         "receiving": "受取中",
         "confirmed": "確定済み",
-        "pending": "保留中",
+        "pending": "未確定",
         "bundleHash": "バンドルのハッシュ値",
         "addresses": "アドレス",
         "reattach": "再添付",
