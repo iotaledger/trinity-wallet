@@ -22,7 +22,7 @@
         "invalidResponseSendingTransfer": "Узел сообщил об ошибке при отправке перевода. Попробуйте сменить узел.",
         "nodeOutOfSync": "Узел не синхронизирован",
         "nodeOutOfSyncExplanation": "Выбранный Вами узел не синхронизирован. Пожалуйста, смените узел или попробуйте снова.",
-        "thisNodeOutOfSync": "This node is out of sync. Please change node or try again.",
+        "thisNodeOutOfSync": "Этот узел не синхронизирован. Пожалуйста, смените узел или попробуйте снова.",
         "seed": "Ключ",
         "checksum": "Контрольная сумма",
         "back": "НАЗАД",
@@ -40,12 +40,12 @@
         "continue": "Продолжить",
         "enable": "Включить",
         "disable": "Отключить",
-        "enabled": "Enabled",
-        "disabled": "Disabled",
-        "manualCopy": "Write seed down",
-        "paperWallet": "Print paper copy",
-        "addToPasswordManager": "Add to password manager",
-        "shareSeed": "Share seed",
+        "enabled": "Включено",
+        "disabled": "Выключено",
+        "manualCopy": "Запишите ключ",
+        "paperWallet": "Распечатать бумажную версию",
+        "addToPasswordManager": "Добавить в менеджер паролей",
+        "shareSeed": "Передать ключ",
         "proceed": "Приступить",
         "qr": "QR",
         "notAvailable": "Эта функция недоступна",
@@ -63,7 +63,7 @@
         "yesLowerCase": "Да",
         "noLowerCase": "Нет",
         "okay": "ХОРОШО",
-        "okayLowercase": "Okay",
+        "okayLowercase": "Хорошо",
         "password": "Пароль",
         "passwordOrFingerprint": "Пароль или отпечаток пальца",
         "unrecognisedPassword": "Нераспознанный пароль",
@@ -95,7 +95,7 @@
         "pressBackAgain": "Нажмите еще раз назад чтобы закрыть приложение",
         "reattached": "Повторная привязка транзакции прошла успешно",
         "reattachedExplanation": "Повторно присоединенная транзакция с хэшем {{hash}}",
-        "promotingTransaction": "Promoting transaction",
+        "promotingTransaction": "Продвижение транзакции",
         "autopromoting": "Передача автопромотирования",
         "autopromotingExplanation": "Содействие транзакций с хэш {{hash}}",
         "rebroadcasted": "Ретрансляция транзакции прошла успешно",
@@ -105,7 +105,7 @@
         "promoted": "Продвижение транзакции прошло успешно",
         "promotedExplanation": "Продвинутая транзакция с хэшем {{hash}}",
         "autopromotionError": "Не удалось выполнить авто-продвижение транзакции",
-        "autopromotionErrorExplanation": "Удалённое проведение Proof of Work недоступно на выбранном Вами узле. Пожалуйста, смените узел.",
+        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
         "promotionError": "Не удалось продвинуть транзакцию",
         "promotionErrorExplanation": "Что-то пошло не так при отправке Вашего перевода. Пожалуйста, повторите попытку.",
         "noLongerValid": "Пакет, который вы пытаетесь содействовать, больше не действителен",
@@ -118,7 +118,7 @@
         "pleaseWaitExplanation": "Trinity в данный момент выполняет другую задачу. Пожалуйста, подождите и повторите попытку.",
         "pleaseWaitTransferExplanation": "Ваш баланс в данный момент используется в одной из транзакций. Пожалуйста, подождите до тех пор, пока транзакции будут завершены, и затем повторите попытку.",
         "pleaseWaitIncomingTransferExplanation": "У вас есть входящие переводы. Пожалуйста, подождите, пока они не будут подтверждены, прежде чем пытаться снова.",
-        "snapshotTransitionInProgress": "Переход снимка в прогрессе",
+        "snapshotTransitionInProgress": "Процесс актуализации после снимка сети в прогрессе",
         "snapshotTransitionInProgressExplanation": "Пожалуйста, подождите пока синхронизация будет завершена.",
         "checkForUpdates": "Проверить наличие обновлений",
         "account": "Учетная запись",
@@ -148,10 +148,10 @@
         "androidCopyPasteWarning": "Никогда не пользуйтесь функцией \"Скопировать/Вставить\" на Андроиде.",
         "willNotCopyPasteSeed": "Я не буду копировать/вставлять мой ключ",
         "mustBeStoredAppropriately": "Нужно хранить надлежащим образом.",
-        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while",
-        "isYourBalanceCorrect": "Is your balance correct?",
-        "ifYourBalanceIsNotCorrect": "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
-        "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition."
+        "deviceMayBecomeUnresponsive": "Ваше устройство может не отвечать какое-то время",
+        "isYourBalanceCorrect": "Верен ли Ваш баланс?",
+        "ifYourBalanceIsNotCorrect": "Если Ваш баланс не верен, то, скорее всего, Вы используете ключ, который не был актувлизирован после снимка сети.",
+        "headToAdvancedSettingsForTransition": "Перейдите в Дополнительные Настройки и выполните Snapshot переход."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ключ содержит недопустимые символы",
@@ -348,7 +348,7 @@
         "sendMax": "МАКС. ПЕРЕВОД",
         "totalTime": "Общее время",
         "addressPasteDetected": "Обнаружена вставка адреса",
-        "addressPasteExplanation": "Похоже, что Вы собираетесь вставить адрес. Убедитесь, что вставленный адрес соответствует тому, на который Вы хотите отправить."
+        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
     },
     "setPassword": {
         "choosePassword": "Задайте новый пароль",
@@ -491,9 +491,9 @@
         "manualSync": "Ручная синхронизация",
         "snapshotTransition": "Snapshot переход",
         "pow": "Доказательство Работы (ДР)",
-        "autoPromotion": "Auto-promotion",
-        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
-        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
+        "autoPromotion": "Авто продвижение",
+        "autoPromotionExplanation": "Авто-продвижение помогает Вашим транзакциям получить статус подтвержденных в Tangle. Включите эту опцию, если у Вас трудности с подтверждением Ваших транзакций.",
+        "autoPromotionPoW": "Авто-продвижение возможно только на узлах, которые поддерживают удалённое проведение Proof of Work."
     },
     "advancedThemeCustomisation": {
         "background": "Фон",
@@ -620,6 +620,10 @@
         "noWebGLSupport": "WebGL не поддерживается",
         "noWebGLSupportExplanation": "Ваш компьютер не поддерживает WebGL. Пожалуйста, используйте удаленный PoW."
     },
+    "autoPromotion": {
+        "autoPromotionUpdated": "Auto-promotion settings",
+        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
+    },
     "progressSteps": {
         "checkingNodeHealth": "Проверка состояния узла",
         "validatingReceiveAddress": "Проверка адреса для приема средств",
@@ -631,16 +635,16 @@
         "broadcasting": "Трансляция"
     },
     "snapshotTransition": {
-        "cannotCompleteTransition": "Не удается завершить переход снимков",
+        "cannotCompleteTransition": "Не удается завершить процесс актуализации после снимка сети",
         "cannotCompleteTransitionExplanation": "Ваш баланс должен быть больше 0 для завершения перехода.",
-        "transitionComplete": "Переход снимка выполнен",
-        "transitionCompleteExplanation": "Переход снимка успешно завершен.",
+        "transitionComplete": "Актуализации после снимка сети выполнена",
+        "transitionCompleteExplanation": "Актуализация после снимка сети успешно завершена.",
         "detectedBalance": "Обнаружен баланс: {{amount}} {{unit}}",
         "isThisCorrect": "Правильно?",
-        "snapshotExplanation": "Иногда, снимок нужен для уменьшения Tangle.",
-        "hasSnapshotTakenPlace": "Имеет место снимок? Нажмите кнопку ниже для перехода.",
+        "snapshotExplanation": "Время от времени снимок сети производится для уменьшения размера Tangle.",
+        "hasSnapshotTakenPlace": "Был произведен снимок сети? Нажмите кнопку ниже для процесса актуализации.",
         "transition": "Переход",
-        "transitioning": "Переход для моментального снимка.",
+        "transitioning": "Процесс актуализации после снимка сети.",
         "generatingAndDetecting": "Genererer adresser og registrerer balance.",
         "attaching": "Привязка адресов к Tangle."
     },
@@ -663,10 +667,10 @@
     },
     "terms": {
         "termsAndConditions": "Условия использования",
-        "accept": "I accept"
+        "accept": "Я принимаю"
     },
     "privacyPolicy": {
-        "privacyPolicy": "Privacy Policy",
-        "agree": "I agree"
+        "privacyPolicy": "Политика конфиденциальности",
+        "agree": "Я согласен"
     }
 }

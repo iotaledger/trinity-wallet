@@ -105,7 +105,7 @@
         "promoted": "Transactie succesvol gepromoot",
         "promotedExplanation": "Transactie met hash {{hash}} gepromoot",
         "autopromotionError": "Kon transactie niet automatisch promoten",
-        "autopromotionErrorExplanation": "Extern Bewijs van Inspanning is niet beschikbaar op uw geselecteerde node. Verander van node.",
+        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
         "promotionError": "Kon transactie niet promoten",
         "promotionErrorExplanation": "Er ging iets mis bij het verzenden van uw transactie. Probeer het opnieuw.",
         "noLongerValid": "De bundel die u probeert te promoten is niet langer geldig",
@@ -348,7 +348,7 @@
         "sendMax": "MAX VERZENDEN",
         "totalTime": "Totale tijd",
         "addressPasteDetected": "Adres plakken gedetecteerd",
-        "addressPasteExplanation": "Het lijkt erop dat u een adres wil plakken. Zorg ervoor dat het geplakte adres overeenkomt met degene waarnaar u wil zenden."
+        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
     },
     "setPassword": {
         "choosePassword": "Kies een nieuw wachtwoord",
@@ -619,6 +619,10 @@
         "powUpdatedExplanation": "Uw bewijs van inspanning-configuratie is bijgewerkt.",
         "noWebGLSupport": "WebGL wordt niet ondersteund",
         "noWebGLSupportExplanation": "Uw computer ondersteunt WebGL niet. Gebruik externe PoW."
+    },
+    "autoPromotion": {
+        "autoPromotionUpdated": "Auto-promotion settings",
+        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
     },
     "progressSteps": {
         "checkingNodeHealth": "Gezondheid node aan het checken",
