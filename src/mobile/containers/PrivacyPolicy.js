@@ -139,6 +139,4 @@ const mapDispatchToProps = {
     acceptPrivacy,
 };
 
-export default WithBackPressCloseApp()(
-    translate('privacyPolicy')(connect(mapStateToProps, mapDispatchToProps)(PrivacyPolicy)),
-);
+export default translate('privacyPolicy')(connect(mapStateToProps, mapDispatchToProps)(PrivacyPolicy));

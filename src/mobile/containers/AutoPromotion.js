@@ -166,4 +166,6 @@ const mapDispatchToProps = {
     setSetting,
 };
 
-export default translate(['advancedSettings', 'global'])(connect(mapStateToProps, mapDispatchToProps)(AutoPromotion));
+export default translate(['advancedSettings', 'autoPromotion', 'global'])(
+    connect(mapStateToProps, mapDispatchToProps)(AutoPromotion),
+);

@@ -4,7 +4,7 @@
         "cancel": "ZRUŠIŤ",
         "continue?": "Ste si istý, že chcete pokračovať?",
         "noTransactions": "ŽIADNA NEDÁVNA HISTÓRIA",
-        "refresh": "OBNOVIŤ",
+        "refresh": "Obnoviť",
         "balanceError": "Nedostatok prostriedkov",
         "balanceErrorMessage": "Nemáte dostatočné množstvo IOTA pre dokončenie tejto transakcie.",
         "transferError": "Chyba transakcie",
@@ -16,12 +16,13 @@
         "keyReuse": "Posielate na už použitú adresu",
         "keyReuseError": "Nie je možné uskutočniť transakciu na adresu, ktorá už vykonala určitý prevod.",
         "invalidResponse": "Chyba Nodu",
-        "invalidResponseExplanation": "Node vrátil chybu. Pre viac informácií skontrolujte notifikácie.",
-        "invalidResponsePollingExplanation": "Node vrátil chybu. Pre viac informácií skontrolujte notifikácie.",
-        "invalidResponseFetchingAccount": "Node vrátil chybu pri získavaní informácií o Vášom účte. Pokúste sa zmeniť Váš Node, alebo pre viac informácií skontrolujte notifikácie.",
-        "invalidResponseSendingTransfer": "Node vrátil chybu pri odosielaní platby. Pre viac informácií skontrolujte notifikácie.",
+        "invalidResponseExplanation": "Node vrátil chybu. Vyskúšajte zmeniť node.",
+        "invalidResponsePollingExplanation": "The node returned an error while polling. Try changing node.",
+        "invalidResponseFetchingAccount": "Node vrátil chybu pri získavani informácií o účte. Vyskúšajte zmeniť node.",
+        "invalidResponseSendingTransfer": "Node vrátil chybu pri vytváraní transakcie. Vyskúšajte zmeniť node.",
         "nodeOutOfSync": "Váš node nie je synchronizovaný",
-        "nodeOutOfSyncExplanation": "Vami zvolený node nie je synchronizovaný. Prosím zmeňte node, alebo to skúste znova.",
+        "nodeOutOfSyncExplanation":
+            "Vami zvolený node nie je synchronizovaný. Prosím zmeňte node, alebo to skúste znova.",
         "thisNodeOutOfSync": "This node is out of sync. Please change node or try again.",
         "seed": "Seed",
         "checksum": "Kontrolný súčet",
@@ -36,14 +37,14 @@
         "nextLowerCase": "Ďalší",
         "apply": "Použiť",
         "save": "Uložiť",
-        "close": "ZATVORIŤ",
+        "close": "Zatvoriť",
         "continue": "Pokračovať",
         "enable": "Povoliť",
         "disable": "Vypnúť",
         "enabled": "Enabled",
         "disabled": "Disabled",
-        "manualCopy": "Zapíšte si Váš seed",
-        "paperWallet": "Vytlačte si papierovú kópiu",
+        "manualCopy": "Write seed down",
+        "paperWallet": "Print paper copy",
         "addToPasswordManager": "Add to password manager",
         "shareSeed": "Share seed",
         "proceed": "Pokračovať",
@@ -63,6 +64,7 @@
         "yesLowerCase": "Áno",
         "noLowerCase": "Nie",
         "okay": "V poriadku",
+        "okayLowercase": "Okay",
         "password": "Heslo",
         "passwordOrFingerprint": "Heslo alebo odtlačok prsta",
         "unrecognisedPassword": "Nesprávne heslo",
@@ -76,8 +78,10 @@
         "cannotPerformAction": "Nie je možné vykonať akciu",
         "cannotPerformActionExplanation": "Ak chcete resetovať peňaženku, prejdite na pokročilé nastavenia.",
         "attachToTangleUnavailable": "Vzdialený PoW (potvrdenie transakcie) nie je k dispozícii",
-        "attachToTangleUnavailableExplanation": "Vzdialený PoW (potvrdenie transakcie) nie je k dispozícii na Vami zvolenom node. Zmeňte node, alebo nastavte PoW v pokročilých nastaveniach na lokálny.",
-        "attachToTangleUnavailableExplanationShort": "Vzdialený PoW (potvrdenie transakcie) nie je k dispozícii na Vami zvolenom node.",
+        "attachToTangleUnavailableExplanation":
+            "Vzdialený PoW (potvrdenie transakcie) nie je k dispozícii na Vami zvolenom node. Zmeňte node, alebo nastavte PoW v pokročilých nastaveniach na lokálny.",
+        "attachToTangleUnavailableExplanationShort":
+            "Vzdialený PoW (potvrdenie transakcie) nie je k dispozícii na Vami zvolenom node.",
         "wallet": "Peňaženka",
         "sent": "Odoslané",
         "received": "Prijaté",
@@ -104,7 +108,8 @@
         "promoted": "Successfully promoted transaction",
         "promotedExplanation": "Promoted transaction with hash {{hash}}",
         "autopromotionError": "Could not auto-promote transaction",
-        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node.",
+        "autopromotionErrorExplanation":
+            "Remote Proof of Work is not available on your selected node. Please change node.",
         "promotionError": "Could not promote transaction",
         "promotionErrorExplanation": "Pri podpore transakcie sa niečo nepodarilo. Prosím, skúste to znova.",
         "noLongerValid": "Balíček, ktorý sa snažíte podporiť, už nie je platný",
@@ -115,15 +120,17 @@
         "pleaseWait": "Prosím čakajte",
         "pleaseWaitEllipses": "Prosím čakajte...",
         "pleaseWaitExplanation": "Trinity práve vykonáva inú funkciu. Počkajte chvíľu a skúste to znova.",
-        "pleaseWaitTransferExplanation": "Váš disponibilný zostatok sa momentálne používa v iných prevodoch. Počkajte prosím na jedno potvrdenie, kým to skúsite znova.",
-        "pleaseWaitIncomingTransferExplanation": "You have incoming transfers. Please wait for them to confirm before trying again.",
+        "pleaseWaitTransferExplanation":
+            "Váš disponibilný zostatok sa momentálne používa v iných prevodoch. Počkajte prosím na jedno potvrdenie, kým to skúsite znova.",
+        "pleaseWaitIncomingTransferExplanation":
+            "You have incoming transfers. Please wait for them to confirm before trying again.",
         "snapshotTransitionInProgress": "Prebieha aktualizácia údajov po snapshote",
         "snapshotTransitionInProgressExplanation": "Počkajte, kým prebehne aktualizácia údajov po snapshote.",
         "checkForUpdates": "Kontrola aktualizácií",
         "account": "Účet",
         "enterPasswordToAccessSettings": "Pre prístup k nastaveniam účtu zadajte Vaše heslo",
         "enterYourPassword": "Zadajte vaše heslo",
-        "changeNode": "Zmena Nodu",
+        "changeNode": "Zmeniť Node",
         "addCustomNode": "Pridať vlastný Node",
         "nodeChanged": "Node bol zmenený",
         "nodeChangedExplanation": "Node bol úspešne zmenený.",
@@ -137,23 +144,31 @@
         "masterKey": "Your IOTA seed is the master key to your funds.",
         "seedThief": "If someone else has your seed they can steal your IOTA.",
         "googlePlayServicesNotAvailable": "Google Play Services not available",
-        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available.",
+        "couldNotVerifyDeviceIntegrity":
+            "Could not verify device integrity because Google Play Services are not available.",
         "clear": "VYMAZAŤ",
         "noNetworkConnection": "Žiadne pripojenie k sieti",
         "noNetworkConnectionExplanation": "Internetové pripojenie sa zdá byť offline.",
         "spentAddressExplanation": "UPOZORNENIE: Prostriedky na adresách z ktorých bolo už odoslané",
-        "discordInformation": "Odosielanie z rovnakej adresy viackrát je nebezpečné. Prosím navštívte #help kanál na aplikácii Discord, aby Ste zistili, čo môžete urobiť.",
+        "discordInformation":
+            "Odosielanie z rovnakej adresy viackrát je nebezpečné. Prosím navštívte #help kanál na aplikácii Discord, aby Ste zistili, čo môžete urobiť.",
         "androidInsecureClipboardWarning": "Android does not provide a secure clipboard.",
         "androidCopyPasteWarning": "Never copy/paste your seed on an Android device.",
         "willNotCopyPasteSeed": "I will not copy/paste my seed",
         "mustBeStoredAppropriately": "It must be stored appropriately.",
-        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while"
+        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while",
+        "isYourBalanceCorrect": "Is your balance correct?",
+        "ifYourBalanceIsNotCorrect":
+            "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
+        "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
-        "seedInvalidCharsExplanation": "Seed môže obsahovať iba veľké písmená A-Z a číslo 9. Váš Seed obsahuje neplatné znaky. Prosím skúste znova.",
+        "seedInvalidCharsExplanation":
+            "Seed môže obsahovať iba veľké písmená A-Z a číslo 9. Váš Seed obsahuje neplatné znaky. Prosím skúste znova.",
         "seedTooShort": "Seed je príliš krátky",
-        "seedTooShortExplanation": "Seed musí mať {{maxLength}} znakov. Váš seed má {{currentLength}} znakov. Prosím skúste znova.",
+        "seedTooShortExplanation":
+            "Seed musí mať {{maxLength}} znakov. Váš seed má {{currentLength}} znakov. Prosím skúste znova.",
         "nameInUse": "Názov účtu je už používaný",
         "nameInUseExplanation": "Prosím použite jedinečný názov účtu pre Váš seed.",
         "enterAccountName": "Zadajte názov účtu.",
@@ -181,7 +196,8 @@
         "newPassword": "Nové heslo",
         "confirmPassword": "Potvrdenie nového hesla",
         "passwordTooWeak": "Heslo je príliš slabé",
-        "passwordTooWeakReason": "Vaše heslo je príliš slabé. Použite kombináciu slov, a vyhnite sa bežným frázam, menám alebo dátumom",
+        "passwordTooWeakReason":
+            "Vaše heslo je príliš slabé. Použite kombináciu slov, a vyhnite sa bežným frázam, menám alebo dátumom",
         "reasonRow": "Straight rows of keys are easy to guess",
         "reasonPattern": "Short patterns of keys are easy to guess",
         "reasonNames": "Common names and surnames are easy to guess",
@@ -204,7 +220,7 @@
         "clickToCopy": "Kliknite na tlačítko nižšie a skopírujte svoj seed do správcu hesiel.",
         "clickToSecurelyShare": "Click the button below to securely share your seed to a password manager.",
         "doNotStore": "Neprechovávajte svoj seed vo forme prostého textu.",
-        "copyToClipboard": "Kopírovať seed",
+        "copyToClipboard": "Copy Seed",
         "shareSeed": "Uložte svoj seed do zabezpečeného správcu hesiel",
         "storeEncrypted": "Store your seed encrypted in a password manager.",
         "doNotOpen": "Do not open any other apps during this process.",
@@ -212,15 +228,20 @@
         "passwordManagerCheckbox": "I will store my seed in a password manager",
         "copy": "COPY",
         "noPasswordManagers": "No supported password managers installed",
-        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "If you wish to store your seed in a password manager, you must follow a tutorial from the following link"
+        "noPasswordManagersExplanation":
+            "No supported password managers were found on your device. Please install Keepass2Android.",
+        "followTutorialToSecurelyShareSeed":
+            "If you wish to store your seed in a password manager, you must follow a tutorial from the following link"
     },
     "enterSeed": {
         "invalidCharacters": "Seed obsahuje neplatné znaky",
-        "invalidCharactersExplanation": "Seed môže obsahovať iba veľké písmená A-Z a číslo 9. Váš Seed obsahuje neplatné znaky. Prosím skúste znova.",
+        "invalidCharactersExplanation":
+            "Seed môže obsahovať iba veľké písmená A-Z a číslo 9. Váš Seed obsahuje neplatné znaky. Prosím skúste znova.",
         "seedTooShort": "Seed je príliš krátky",
-        "seedTooShortExplanation": "Seed musí mať {{maxLength}} znakov. Váš seed má {{currentLength}} znakov. Prosím skúste znova.",
-        "seedExplanation": "Seed by mal mať dĺžku {{maxLength}} znakov a mal by obsahovat velké písmena A-Z a číslo 9. Nie je možné použít Seed dlhší ako {{maxLength}} znakov.",
+        "seedTooShortExplanation":
+            "Seed musí mať {{maxLength}} znakov. Váš seed má {{currentLength}} znakov. Prosím skúste znova.",
+        "seedExplanation":
+            "Seed by mal mať dĺžku {{maxLength}} znakov a mal by obsahovat velké písmena A-Z a číslo 9. Nie je možné použít Seed dlhší ako {{maxLength}} znakov.",
         "neverShare": "NIKDY S NIKÝM NEZDIEĽAJTE VÁŠ SEED"
     },
     "home": {
@@ -239,9 +260,9 @@
         "emptyPasswordExplanation": "Pre prihlásenie musíte zadať heslo. Prosím skúste znova.",
         "enterPassword": "Prosím zadajte Vaše heslo.",
         "useSeed": "POUŽI SEED",
-        "login": "PRIHLÁSIŤ SA",
+        "login": "Prihlásiť sa",
         "selectDifferentNode": "Chcete vybrať iný uzol?",
-        "setNode": "NASTAVIŤ UZOL",
+        "setNode": "Nastaviť node",
         "cannotConnect": "K IOTA uzlu sa nedá pripojiť."
     },
     "loading": {
@@ -255,7 +276,7 @@
         "generatedSeed": "Generovaný seed",
         "seedNotGenerated": "Seed nebol vygenerovaný",
         "seedNotGeneratedExplanation": "Generujte prosím nový seed.",
-        "pressForNewSeed": "GENEROVAŤ NOVÝ SEED",
+        "pressForNewSeed": "Stlačte pre nový seed",
         "generateSuccess": "Seed úspešne vygenerovaný",
         "individualLetters": "Vyberte náhodné písmena.",
         "individualLetterCount": "Stlačte {{letterCount}} jednotlivé znaky pre zvýšenie náhodnosti.",
@@ -264,14 +285,15 @@
     "onboardingComplete": {
         "allDone": "Všetko je nastavené!",
         "openYourWallet": "Otvorte svoju peňaženku",
-        "walletReady": "Peňaženka je teraz nastavená a pripravená na použitie. V budúcnosti môžete čokoľvek upraviť v menu nastavenia."
+        "walletReady":
+            "Peňaženka je teraz nastavená a pripravená na použitie. V budúcnosti môžete čokoľvek upraviť v menu nastavenia."
     },
     "paperWallet": {
         "clickToPrint": "Kliknutím na tlačidlo nižšie vytlačíte papierovú kópiu vášho seedu.",
         "storeSafely": "Bezpečne uložte.",
         "neverShare": "Svoj seed nikdy s nikým nezdieľajte.",
         "iotaLogo": "IOTA logo",
-        "printWallet": "Tlač papierovej peňaženky",
+        "printWallet": "Vytlačiť papierovú peňaženku",
         "print": "PRINT",
         "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
         "publicInsecure": "But printing on public wifi or a public printer is insecure.",
@@ -283,7 +305,7 @@
         "copyAddress": "Copy address",
         "addressCopied": "Adresa skopírovaná",
         "addressCopiedExplanation": "Adresa bola skopírovaná do schránky.",
-        "generateNewAddress": "NOVÁ ADRESA",
+        "generateNewAddress": "New Address",
         "message": "Voliteľná správa",
         "removeMessage": "ODSTRÁNIŤ SPRÁVU",
         "noAddresses": "ŽIADNE ADRESY",
@@ -305,12 +327,15 @@
         "printBlankWallet": "Print a blank wallet",
         "whatIsCheksum": "Every seed has a corresponding 3 character checksum",
         "iHavesavedMySeed": "I've saved my seed",
-        "checksumExplanation": "Whenever you add a seed to your wallet, you should ensure that the wallet-generated checksum matches the one you have written down.",
-        "mustSaveYourSeed": "<0><0>Je potrebné uložiť Váš seed </0><1>aspoň jedným</1><2>z nižšie uvedených spôsobov.</2></0>"
+        "checksumExplanation":
+            "Whenever you add a seed to your wallet, you should ensure that the wallet-generated checksum matches the one you have written down.",
+        "mustSaveYourSeed":
+            "<0><0>Je potrebné uložiť Váš seed </0><1>aspoň jedným</1><2>z nižšie uvedených spôsobov.</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Please confirm your seed",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or the app.",
+        "trinityWillNeverAskToReenter":
+            "Trinity will never ask you to re-enter this seed unless you reset your wallet or the app.",
         "enterYourSeed": "Enter your seed",
         "incorrectSeed": "Neplatný seed",
         "incorrectSeedExplanation": "Seed, ktorý ste zadali, je neplatný. Prosím skúste znova.",
@@ -323,7 +348,8 @@
         "invalidAddressExplanation1": "Adresa by mala byť dlhá{{maxLength}} znakov a mala by mať kontrolný súčet.",
         "invalidAddressExplanation2": "Adresa obsahuje neplatné znaky.",
         "invalidAddressExplanation3": "Adresa má nesprávny kontrolný súčet.",
-        "invalidAddressExplanationGeneric": "Platné adresy by mali mať 90 znakov a môžu obsahovať len znaky A-Z alebo 9.",
+        "invalidAddressExplanationGeneric":
+            "Platné adresy by mali mať 90 znakov a môžu obsahovať len znaky A-Z alebo 9.",
         "notEnoughFunds": "Nedostatok prostriedkov",
         "notEnoughFundsExplanation": "Nemáte dostatok IOTA na dokončenie tejto transakcie.",
         "keyReuse": "Opakované použitie kľúča",
@@ -336,24 +362,28 @@
         "invalidMessageExplanation": "Vaša správa obsahuje neplatné znaky.",
         "invalidMessageTooLong": "Správa je príliš dlhá",
         "invalidMessageTooLongExplanation": "Správa prekračuje maximálny počet znakov (1093).",
-        "send": "ODOSLAŤ",
+        "send": "Odoslať",
         "invalidAmount": "Zadaná neplatná čiastka",
-        "invalidAmountExplanation": "Zadajte prosím platnú transakčnú čiastku. Informácie IOTA jednotkách nižšie na tejto stránke môžu byť nápomocné.",
+        "invalidAmountExplanation":
+            "Zadajte prosím platnú transakčnú čiastku. Informácie IOTA jednotkách nižšie na tejto stránke môžu byť nápomocné.",
         "maximumSelected": "Vybraná MAXIMÁLNA čiastka",
         "iotaUnits": "Informácie o IOTA jednotkách",
         "sendMax": "POSLAŤ VŠETKO",
         "totalTime": "Total time",
         "addressPasteDetected": "Address paste detected",
-        "addressPasteExplanation": "It looks like you are about to paste an address. Make sure that the pasted address matches the one you want to send to."
+        "addressPasteExplanation":
+            "It looks like you are about to paste an address. Make sure that the pasted address matches the one you want to send to."
     },
     "setPassword": {
         "choosePassword": "Choose a new password",
         "passwordTooShort": "Heslo je príliš krátke",
-        "passwordTooShortExplanation": "Heslo musí obsahovať minimálne {{minLength}} znakov. Vaše heslo má momentálne {{currentLength}} znakov. Skúste prosím znova.",
+        "passwordTooShortExplanation":
+            "Heslo musí obsahovať minimálne {{minLength}} znakov. Vaše heslo má momentálne {{currentLength}} znakov. Skúste prosím znova.",
         "passwordMismatch": "Neplatné heslo",
         "passwordMismatchExplanation": "Zadané heslo nie je platné. Skúste prosím znova.",
         "nowWeNeedTo": "Teraz je potrebné vytvoriť heslo.",
-        "anEncryptedCopy": "Vo vašom zariadení sa uloží zašifrovaná kópia Vášho seedu. Týmto heslom sa budete prihlasovať do svojej peňaženky.",
+        "anEncryptedCopy":
+            "Vo vašom zariadení sa uloží zašifrovaná kópia Vášho seedu. Týmto heslom sa budete prihlasovať do svojej peňaženky.",
         "ensure": "Uistite sa, že budete používať silné heslo s minimálne 12 znakmi.",
         "retypePassword": "Zadajte heslo znova"
     },
@@ -365,8 +395,10 @@
     "modeSelection": {
         "expert": "Expert",
         "standard": "Východzie",
-        "expertModeExplanation": "Režim experta umožní prístup k ďalším funkciám ako ručná propagácia a opätovné pripojenie.",
-        "modesExplanation": "Aktivujte režim experta iba v prípade, že ste skúsený užívateľ Tangle. Inak pre Vás môže byť mätúci."
+        "expertModeExplanation":
+            "Režim experta umožní prístup k ďalším funkciám ako ručná propagácia a opätovné pripojenie.",
+        "modesExplanation":
+            "Aktivujte režim experta iba v prípade, že ste skúsený užívateľ Tangle. Inak pre Vás môže byť mätúci."
     },
     "settings": {
         "transferSending": "Odosielanie transakcie",
@@ -418,14 +450,15 @@
         "lockScreenTimeout": "Zámok obrazovky po (minúty)",
         "autoNodeSwitching": "Automaticky prepnúť na iný Node, pokiaľ vybraný nie je dostupný",
         "nodeChangeSuccess": "Successfully changed node",
-        "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
+        "nodeChangeSuccessNoRemotePow":
+            "The node was changed to {{node}}. This node does not support remote Proof of Work.",
         "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
         "nodeChangeError": "Error changing node",
         "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Pre zmazanie peňaženky zadajte Vaše heslo.",
-        "cancel": "ZRUŠIŤ",
+        "cancel": "Cancel",
         "reset": "OBNOVIŤ"
     },
     "walletSetup": {
@@ -433,21 +466,25 @@
         "okay": "Ok. Prejdime k nastaveniu Vašej peňaženky!",
         "doYouAlreadyHaveASeed": "Máte už vlastný seed, ktorý by ste chceli použiť?",
         "doYouNeedASeed": "Do you need to create a new seed?",
-        "seedExplanation": "IOTA seed je niečo ako Vaše užívateľské meno a zároveň heslo k Vášmu účtu, spojené do jedného reťazca 81 znakov.",
+        "seedExplanation":
+            "IOTA seed je niečo ako Vaše užívateľské meno a zároveň heslo k Vášmu účtu, spojené do jedného reťazca 81 znakov.",
         "noIHaveOne": "No, I have one",
         "yesINeedASeed": "Yes, I need a seed",
-        "explanation": "<0><0>Môžete ho použiť na prístup k svojim prostriedkom z</0> <1>akejkoľvek peňaženky</1> <2>, na</2> <3>na akomkoľvek zariadení</3> <4>. Ak však stratíte svoj seed, stratíte tiež všetky Vaše IOTA.</4></0>",
+        "explanation":
+            "<0><0>Môžete ho použiť na prístup k svojim prostriedkom z</0> <1>akejkoľvek peňaženky</1> <2>, na</2> <3>na akomkoľvek zariadení</3> <4>. Ak však stratíte svoj seed, stratíte tiež všetky Vaše IOTA.</4></0>",
         "keepSafe": "Svoj seed prosím uchovávajte v bezpečí.",
         "hint": "<0><0>Tip:</0>Ak IOTA peňaženku používate prvýkrát, kliknite na tlačidlo NIE</0>"
     },
     "welcome": {
         "thankYou": "Ďakujeme, že ste si stiahli Trinity.",
         "weWillSpend": "Nasledujúcich pár minút strávime nastavením Vašej peňaženky.",
-        "reminder": "Možno budete v pokušení niektoré kroky vynechať, dôrazne však odporúčame, aby ste dokončili všetky."
+        "reminder":
+            "Možno budete v pokušení niektoré kroky vynechať, dôrazne však odporúčame, aby ste dokončili všetky."
     },
     "writeSeedDown": {
         "yourSeedIs": "Váš seed je {{maxSeedLength}} znakov čítaných zľava doprava.",
-        "writeDownYourSeed": "<0> Zapíšte si svoj seed a kontrolný súčet </0><1>dôkladne skontrolujte</1><2> ich správnosť.</2>"
+        "writeDownYourSeed":
+            "<0> Zapíšte si svoj seed a kontrolný súčet </0><1>dôkladne skontrolujte</1><2> ich správnosť.</2>"
     },
     "history": {
         "bundleHashCopied": "Balíček hash skopírovaný",
@@ -488,7 +525,8 @@
         "snapshotTransition": "Aktualizácia údajov po Snapshote",
         "pow": "Proof of Work",
         "autoPromotion": "Auto-promotion",
-        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
+        "autoPromotionExplanation":
+            "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
         "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
     },
     "advancedThemeCustomisation": {
@@ -517,7 +555,8 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Prečo nemôžem použiť celý zostatok môjho účtu?",
-        "spentAddressExplanation": "Máte prostriedky na jednej alebo niekoľkých použitých adresách. Opätovné použitie adries v IOTA je nebezpečné, preto Vám táto penaženka neumožní odosielať z rovnakej adresy viac ako jeden krát.",
+        "spentAddressExplanation":
+            "Máte prostriedky na jednej alebo niekoľkých použitých adresách. Opätovné použitie adries v IOTA je nebezpečné, preto Vám táto penaženka neumožní odosielať z rovnakej adresy viac ako jeden krát.",
         "discordInformation": "Pokiaľ chcete zistiť Vaše možnosti, prejdite do #help v aplikácii Discord."
     },
     "deleteAccount": {
@@ -531,7 +570,7 @@
         "pressToSync": "Stlačením tlačidla nižšie synchronizujte svoj účet.",
         "thisMayTake": "To môže chvíľu trvať. Môžete pozorovať spomalenie svojho zariadenia.",
         "doNotClose": "Upozorňujeme, že minimalizácia aplikácie zruší synchronizáciu.",
-        "syncAccount": "SYNCHRONIZOVAŤ ÚČET",
+        "syncAccount": "Sync Account",
         "syncingYourAccount": "Váš účet sa synchronizuje."
     },
     "useExistingSeed": {
@@ -541,19 +580,21 @@
     },
     "viewSeed": {
         "enterPassword": "Pre zobrazenie svojho seedu vložte heslo.",
-        "viewSeed": "ZOBRAZIŤ SEED",
-        "hideSeed": "SKRYŤ SEED"
+        "viewSeed": "View Seed",
+        "hideSeed": "Hide Seed"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Did you back up your seed?",
         "alreadyHave": "Svoj seed mám uložený",
         "reenterSeed": "At the next step you will be asked to re-enter your seed.",
-        "reenterSeedWarning": "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
+        "reenterSeedWarning":
+            "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
         "pleaseConfirm": "Please confirm you have securely stored your seed."
     },
     "walletResetConfirmation": {
         "cannotUndo": "TÁTO AKCIA SA NEDÁ VRÁTIŤ.",
-        "warning": "<0><0>Všetky dáta Vašej peňaženky vrátane Vášho</0> <1>seedu, hesla</1> <2>a</2> <3>ďalších informácií o účte</3> <4>budú stratené.</4></0>"
+        "warning":
+            "<0><0>Všetky dáta Vašej peňaženky vrátane Vášho</0> <1>seedu, hesla</1> <2>a</2> <3>ďalších informácií o účte</3> <4>budú stratené.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Ak chcete zapnúť funkciu overenie odtlačkom prsta, priložte prst na čítačku",
@@ -566,7 +607,8 @@
         "fingerprintAuthFailedExplanation": "Overenie odtlačkom prsta zlyhalo. Skúste prosím znova.",
         "status": "Stav",
         "fingerprintUnavailable": "Biometric authentication unavailable",
-        "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
+        "fingerprintUnavailableExplanation":
+            "Your device does not support biometric authentication or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Tlačidlom nižšie deaktivujete overovanie odtlačkom prsta.",
         "buttonInstructionsEnable": "Tlačidlom nižšie aktivujete overovanie odtlačkom prsta.",
         "buttonInstructionsDisableIPhoneX": "Stlačením tlačidla nižšie vypnete overenie pomocou rozpoznávania tváre.",
@@ -628,17 +670,18 @@
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Nie je možné dokončiť aktualizáciu údajov po snapshote",
-        "cannotCompleteTransitionExplanation": "Pre dokončenie aktualizácie údajov po snapshote musí byť zostatok na Vašom konte väčší ako 0.",
+        "cannotCompleteTransitionExplanation":
+            "Pre dokončenie aktualizácie údajov po snapshote musí byť zostatok na Vašom konte väčší ako 0.",
         "transitionComplete": "Aktualizácia údajov po snapshote je kompletná",
         "transitionCompleteExplanation": "Aktualizácia údajov po snapshote prebehla úspešne.",
         "detectedBalance": "Zistený zostatok: {{amount}} {{unit}}",
         "isThisCorrect": "Je to správne?",
         "snapshotExplanation": "V nepravidelných intervaloch prebieha Snapshot, aby sa zmenšila veľkosť Tangle.",
         "hasSnapshotTakenPlace": "Prebehol Snapshot? Stlačením tlačidla nižšie aktualizujete údajov po Snapshote.",
-        "transition": "Aktualizácia údajov po Snapshote",
+        "transition": "Transition",
         "transitioning": "Aktualizácia údajov po Snapshote.",
         "generatingAndDetecting": "Generujem adresy a zisťujem zostatok.",
-        "attaching": "Pripájam adresy do siete Tangle"
+        "attaching": "Attaching addresses to Tangle."
     },
     "deepLink": {
         "autofill": "Automatické vyplnenie úspešné",
@@ -650,7 +693,8 @@
         "noUpdatesAvailable": "Nie sú dostupné žiadne aktualizácie",
         "noUpdatesAvailableExplanation": "Máte najnovšiu verziu IOTA Trinity Desktop peňaženky!",
         "newVersionAvailable": "K dispozícií je nová verzia",
-        "newVersionAvailableExplanation": "Je k dispozícii nová verzia<strong>Trinity</strong>peňaženky<strong>{{version}}</strong>. Pred aktualizáciou si pozorne prečítajte detaily k tomuto vydanie a overte si zdroj, z ktorého softvér sťahujete:",
+        "newVersionAvailableExplanation":
+            "Je k dispozícii nová verzia<strong>Trinity</strong>peňaženky<strong>{{version}}</strong>. Pred aktualizáciou si pozorne prečítajte detaily k tomuto vydanie a overte si zdroj, z ktorého softvér sťahujete:",
         "downloadRelease": "Stiahnuť aktualizáciu",
         "skipUpdate": "Aktualizovať neskôr"
     },
