@@ -348,10 +348,10 @@
         "sendMax": "ENVIAR MÁXIMO",
         "totalTime": "Tiempo total",
         "addressPasteDetected": "Se ha detectado una dirección pegada",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
+        "addressPasteExplanation": "Parace que ha pegado una dirección. Asegúrese de que la dirección coincida con aquella a la que quiere enviar."
     },
     "setPassword": {
-        "choosePassword": "Choose a new password",
+        "choosePassword": "Elija una nueva contraseña",
         "passwordTooShort": "La contraseña es demasiado corta",
         "passwordTooShortExplanation": "Su contraseña debe tener al menos {{minLength}} caracteres. Actualmente tiene {{currentLength}} caracteres. Por favor inténtelo nuevamente.",
         "passwordMismatch": "Las contraseñas no coinciden",
@@ -362,7 +362,7 @@
         "retypePassword": "Escribe la contraseña de nuevo"
     },
     "setSeedName": {
-        "letsAddName": "Let's add a name",
+        "letsAddName": "Vamos a añadir un nombre",
         "canUseMultipleSeeds": "Puede utilizar múltiples semillas con esta cartera. Cada semilla requiere un nombre de cuenta.",
         "youCanAdd": "Puede añadir más semillas en el menú de Ajustes."
     },
@@ -429,17 +429,17 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Ingrese su contraseña para reiniciar la cartera.",
-        "cancel": "Cancel",
+        "cancel": "Cancelar",
         "reset": "REINICIAR"
     },
     "walletSetup": {
-        "creatingSeed": "Creating a seed",
+        "creatingSeed": "Creando una semilla",
         "okay": "De acuerdo. ¡Vamos a configurar su cartera!",
         "doYouAlreadyHaveASeed": "¿Ya tiene un semilla que le gustaría usar?",
-        "doYouNeedASeed": "Do you need to create a new seed?",
+        "doYouNeedASeed": "¿Necesita crear una nueva semilla?",
         "seedExplanation": "Una semilla de IOTA funciona simultáneamente como nombre del usuario y contraseña para su cuenta, combinados en una cadena de 81 caracteres.",
-        "noIHaveOne": "No, I have one",
-        "yesINeedASeed": "Yes, I need a seed",
+        "noIHaveOne": "No, ya tengo una",
+        "yesINeedASeed": "Sí, necesito una semilla",
         "explanation": "<0><0>Puede usar esto para acceder a sus fondos desde</0><1>cualquier cartera</1><2>, en</2><3> cualquier dispositivo</3><4>. Pero si pierde su semilla, también perderá sus IOTA.</4></0>",
         "keepSafe": "Por favor guarde su semilla de manera segura.",
         "hint": "<0><0>Pista:</0> Click en NO si es su primera vez usando IOTA.</0>"
@@ -491,9 +491,9 @@
         "manualSync": "Sincronización manual",
         "snapshotTransition": "Transición de snapshot",
         "pow": "Prueba de trabajo",
-        "autoPromotion": "Auto-promotion",
-        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
-        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
+        "autoPromotion": "Auto-promoción",
+        "autoPromotionExplanation": "La auto-promoción ayuda a confirmar sus transacciones en el Tangle. Habilite esta opción si está experimentando dificultades para conseguir que se confirmen sus transacciones.",
+        "autoPromotionPoW": "La auto-promoción solo es posible en los nodos que soportan PoW remota."
     },
     "advancedThemeCustomisation": {
         "background": "Fondo",
@@ -535,7 +535,7 @@
         "pressToSync": "Presione el botón debajo para sincronizar su cuenta.",
         "thisMayTake": "Esto puede tomar un rato. Es probable que su dispositivo se ralentice.",
         "doNotClose": "Atención! minimizar la aplicación cancelara la sincronización.",
-        "syncAccount": "Sync Account",
+        "syncAccount": "Sincronizar Cuenta",
         "syncingYourAccount": "Sincronizando su cuenta."
     },
     "useExistingSeed": {
@@ -545,15 +545,15 @@
     },
     "viewSeed": {
         "enterPassword": "Introduzca la contraseña para ver su semilla.",
-        "viewSeed": "View Seed",
-        "hideSeed": "Hide Seed"
+        "viewSeed": "Ver semilla",
+        "hideSeed": "Ocultar semilla"
     },
     "saveSeedConfirmation": {
-        "didSaveSeed": "Did you back up your seed?",
+        "didSaveSeed": "¿Hizo una copia de seguridad de la semilla?",
         "alreadyHave": "He guardado mi semilla",
-        "reenterSeed": "At the next step you will be asked to re-enter your seed.",
-        "reenterSeedWarning": "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
-        "pleaseConfirm": "Please confirm you have securely stored your seed."
+        "reenterSeed": "En el próximo paso, se le pedirá que vuelva a introducir la semilla.",
+        "reenterSeedWarning": "Si no ha guardado su semilla y su dispositivo falla, usted perderá todas sus IOTA.",
+        "pleaseConfirm": "Por favor confirme que ha almacenado seguramente su semilla."
     },
     "walletResetConfirmation": {
         "cannotUndo": "ESTA ACCIÓN NO SE PUEDE DESHACER.",
@@ -621,8 +621,8 @@
         "noWebGLSupportExplanation": "Su computadora no soporta WebGL. Por favor use PoW remoto."
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Auto-promotion settings",
-        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
+        "autoPromotionUpdated": "Ajustes de auto-promoción",
+        "autoPromotionUpdatedExplanation": "Su configuración para la auto-promoción ha sido actualizada."
     },
     "progressSteps": {
         "checkingNodeHealth": "Checking node health",
