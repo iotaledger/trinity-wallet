@@ -66,8 +66,8 @@ const account = (
         firstUse: true,
         onboardingComplete: false,
         accountInfo: {},
-        setupInfo: {}, // { usedExistingSeed: true }
-        tasks: {}, // { hasDisplayedTransitionModalOnLoad: false }
+        setupInfo: {},
+        tasks: {},
         unconfirmedBundleTails: {}, // Regardless of the selected account, this would hold all the unconfirmed transfers by bundles.
     },
     action,
@@ -204,15 +204,15 @@ const account = (
                 setupInfo: {
                     ...state.setupInfo,
                     [action.payload.accountName]: {
-                        usedExistingSeed: action.payload.usedExistingSeed
-                    }
+                        usedExistingSeed: action.payload.usedExistingSeed,
+                    },
                 },
                 tasks: {
                     ...state.tasks,
                     [action.payload.accountName]: {
-                        hasDisplayedTransitionModal: action.payload.hasDisplayedTransitionModal
-                    }
-                }
+                        hasDisplayedTransitionModal: false, // Initialize with a default
+                    },
+                },
             };
         default:
             return state;

@@ -8,7 +8,7 @@ import {
     increaseSeedCount,
     addAccountName,
     setOnboardingComplete,
-    setBasicAccountInfo
+    setBasicAccountInfo,
 } from 'iota-wallet-shared-modules/actions/accounts';
 import { clearWalletData, clearSeed, setPassword } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
@@ -118,7 +118,7 @@ class SetPassword extends Component {
          */
         setBasicAccountInfo: PropTypes.func.isRequired,
         /** Determines if a user used an existing seed or generated a seed using wallet */
-        usedExistingSeed: PropTypes.bool.isRequired
+        usedExistingSeed: PropTypes.bool.isRequired,
     };
 
     constructor() {
@@ -138,11 +138,7 @@ class SetPassword extends Component {
                     this.props.addAccountName(accountName);
 
                     // Set basic account info
-                    this.props.setBasicAccountInfo({
-                       accountName,
-                       usedExistingSeed,
-                       hasDisplayedTransitionModal: false
-                    });
+                    this.props.setBasicAccountInfo({ accountName, usedExistingSeed });
 
                     this.props.increaseSeedCount();
                     this.props.clearWalletData();
@@ -332,7 +328,7 @@ const mapDispatchToProps = {
     addAccountName,
     generateAlert,
     setPassword,
-    setBasicAccountInfo
+    setBasicAccountInfo,
 };
 
 export default translate(['setPassword', 'global', 'addAdditionalSeed'])(

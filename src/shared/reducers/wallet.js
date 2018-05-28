@@ -18,7 +18,7 @@ const initialState = {
     addingAdditionalAccount: false,
     balanceCheckToggle: false,
     deepLinkActive: false,
-    hasConnection: true
+    hasConnection: true,
 };
 
 export default (state = initialState, action) => {
@@ -32,7 +32,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 seed: action.payload.seed,
-                usedExistingSeed: action.payload.usedExistingSeed
+                usedExistingSeed: action.payload.usedExistingSeed,
             };
         case ActionTypes.SET_ACCOUNT_NAME:
             return {
@@ -79,6 +79,7 @@ export default (state = initialState, action) => {
                 isGeneratingReceiveAddress: false,
                 currentSetting: 'mainSettings',
                 deepLinkActive: false,
+                usedExistingSeed: false,
             };
         case ActionTypes.CLEAR_SEED:
             return {
@@ -164,7 +165,7 @@ export default (state = initialState, action) => {
         case ActionTypes.CONNECTION_CHANGED:
             return {
                 ...state,
-                hasConnection: action.payload.isConnected
+                hasConnection: action.payload.isConnected,
             };
         default:
             return state;
