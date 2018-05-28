@@ -45,7 +45,12 @@ import {
     getUnspentInputs,
     getSpentAddressesFromTransactions,
 } from '../libs/iota/inputs';
-import { generateAlert, generateTransferErrorAlert, generatePromotionErrorAlert } from './alerts';
+import {
+    generateAlert,
+    generateTransferErrorAlert,
+    generatePromotionErrorAlert,
+    generateNodeOutOfSyncErrorAlert,
+} from './alerts';
 import i18next from '../i18next.js';
 import Errors from '../libs/errors';
 
@@ -194,6 +199,13 @@ export const broadcastBundle = (bundleHash, accountName) => (dispatch, getState)
 export const promoteTransaction = (bundleHash, accountName, powFn) => (dispatch, getState) => {
     dispatch(promoteTransactionRequest(bundleHash));
 
+    dispatch(
+        generateAlert(
+            'info',
+            i18next.t('global:promotingTransaction'),
+            i18next.t('global:deviceMayBecomeUnresponsive'),
+        ),
+    );
     let accountState = null;
     let chainBrokenInternally = false;
 
@@ -556,13 +568,7 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 const message = error.message;
 
                 if (message === Errors.NODE_NOT_SYNCED) {
-                    return dispatch(
-                        generateAlert(
-                            'error',
-                            i18next.t('global:nodeOutOfSync'),
-                            i18next.t('global:nodeOutOfSyncExplanation'),
-                        ),
-                    );
+                    return dispatch(generateNodeOutOfSyncErrorAlert());
                 } else if (message === Errors.KEY_REUSE && chainBrokenInternally) {
                     return dispatch(
                         generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError')),
