@@ -1,4 +1,6 @@
-import privacyPolicy from './privacyPolicy';
-import termsAndConditions from './termsAndConditions';
+import enPrivacyPolicy from './enPrivacyPolicy';
+import dePrivacyPolicy from './dePrivacyPolicy';
+import enTermsAndConditions from './enTermsAndConditions';
+import deTermsAndConditions from './deTermsAndConditions';
 
-export { privacyPolicy, termsAndConditions };
+export { enPrivacyPolicy, dePrivacyPolicy, enTermsAndConditions, deTermsAndConditions };
