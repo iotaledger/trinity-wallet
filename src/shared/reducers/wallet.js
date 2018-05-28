@@ -7,6 +7,7 @@ const initialState = {
     receiveAddress: ' ',
     password: '',
     seed: Array(82).join(' '),
+    usedExistingSeed: false,
     accountName: 'MAIN WALLET',
     seedIndex: 0,
     usedSeedToLogin: false,
@@ -30,7 +31,8 @@ export default (state = initialState, action) => {
         case ActionTypes.SET_SEED:
             return {
                 ...state,
-                seed: action.payload,
+                seed: action.payload.seed,
+                usedExistingSeed: action.payload.usedExistingSeed
             };
         case ActionTypes.SET_ACCOUNT_NAME:
             return {
