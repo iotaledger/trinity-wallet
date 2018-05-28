@@ -432,7 +432,14 @@ class Home extends Component {
                     useNativeDriver={isAndroid}
                     hideModalContentWhileAnimating
                 >
-                    <SnapshotTransitionModalContent theme={this.props.theme} t={this.props.t} onPress={() => {}} />
+                    <SnapshotTransitionModalContent
+                        theme={this.props.theme}
+                        t={this.props.t}
+                        onPress={() => {
+                            this.completeTransitionTask();
+                            this.setState({ showModal: false });
+                        }}
+                    />
                 </Modal>
             </UserInactivity>
         );
