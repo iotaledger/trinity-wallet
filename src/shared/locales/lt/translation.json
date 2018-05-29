@@ -602,7 +602,8 @@
         "mcap": "MCAP",
         "change": "Pokytis",
         "volume": "Apyvarta (24val.)",
-        "currentValue": "Dabartinė vertė"
+        "currentValue": "Dabartinė vertė",
+        "error": "Error fetching chart data"
     },
     "rootDetection": {
         "warning": "PAVOJUS",
