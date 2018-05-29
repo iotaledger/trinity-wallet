@@ -476,10 +476,10 @@
         "customNodeAddedSuccessfully": "कस्टम नोड सफलतापूर्वक जोड़ा गया है ।",
         "customNode": "कस्टम नोड",
         "invalidNodeResponse": "नोड ने कोई अमान्य प्रतिक्रिया दिया ।",
-        "httpNodeError": "Trinity Mobile only supports https nodes.",
+        "httpNodeError": "ट्रिनिटी मोबाइल केवल https नोड्स का समर्थन करता है ।",
         "add": "जोड़ें",
         "nodeFieldEmpty": "यह फील्ड रिक्त है।",
-        "nodeFieldEmptyExplanation": "Please enter a custom node."
+        "nodeFieldEmptyExplanation": "कृपया कोई कस्टम नोड दर्ज करें ।"
     },
     "addNewAccount": {
         "useExistingSeed": "मौजूदा सीड का उपयोग करें",
@@ -491,7 +491,7 @@
         "manualSync": "मैन्युअल सिंक",
         "snapshotTransition": "स्नैपशॉट",
         "pow": "Proof of Work",
-        "autoPromotion": "Auto-promotion",
+        "autoPromotion": "ऑटो प्रमोशन",
         "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
         "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
     },
@@ -521,7 +521,7 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "मैं अपना पूरा बैलेंस क्यों नहीं खर्च कर सकता?",
-        "spentAddressExplanation": "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
+        "spentAddressExplanation": "आपके एक या अधिक खर्च हो चुके एड्रेस पर बैलेंस है | एड्रेस का दोबारा उपयोग करना खतरनाक हो सकता है, इसलिए यह वॉलेट आपको एक ही पते से एक से अधिक बार भेजने की अनुमति नहीं देता है ।",
         "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
     },
     "deleteAccount": {
@@ -535,32 +535,32 @@
         "pressToSync": "अपना खाता सिंक करने के लिए नीचे दिए बटन को दबाएं ।",
         "thisMayTake": "इसमें कुछ समय लग सकता है । आप अपने डिवाइस धीमा देख सकते हैं ।",
         "doNotClose": "कृपया ध्यान दें, ऐप को मिनिमाइज से सिंक रद्द हो जाएगा।",
-        "syncAccount": "Sync Account",
+        "syncAccount": "सिंक खाता",
         "syncingYourAccount": "अपना खाता सिंक्रनाइज़ कर रहा है ।"
     },
     "useExistingSeed": {
         "title": "सीड और खाता नाम दर्ज करें ।",
-        "incorrectFormat": "Incorrect seed format",
-        "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
+        "incorrectFormat": "सीड का फॉर्मेट सही नहीं है",
+        "validSeedExplanation": "वैध सीड 81 वर्ण होना चाहिए और केवल A-Z या 9 होते हैं ।"
     },
     "viewSeed": {
         "enterPassword": "अपना सीड देखने के लिए पासवर्ड दर्ज करें ।",
         "viewSeed": "सीड देखें",
-        "hideSeed": "Hide Seed"
+        "hideSeed": "सीड छुपाएं"
     },
     "saveSeedConfirmation": {
-        "didSaveSeed": "Did you back up your seed?",
+        "didSaveSeed": "क्या आपने सीड का बैक अप ले लिया?",
         "alreadyHave": "मैंने अपना सीड सहेज लिया है",
-        "reenterSeed": "At the next step you will be asked to re-enter your seed.",
-        "reenterSeedWarning": "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
-        "pleaseConfirm": "Please confirm you have securely stored your seed."
+        "reenterSeed": "अगले कदम पर आप अपने सीड फिर से दर्ज करने के लिए कहा जाएगा ।",
+        "reenterSeedWarning": "आप अपने सीड का समर्थन नहीं किया है और अपने डिवाइस विफल रहता है, तो आप अपने IOTA के सभी खो देंगे ।",
+        "pleaseConfirm": "कृपया पुष्टि करें कि आप सुरक्षित रूप से अपने सीड संग्रहीत है ।"
     },
     "walletResetConfirmation": {
         "cannotUndo": "यह क्रिया पूर्ववत् नहीं की जा सकती ।",
         "warning": "<0> <0> अपने वॉलेट डेटा के सभी </0> <1> सीड्स, पासवर्ड, </1> <2> और </2> <3> सहित अन्य अकाउंट की जानकारी </3> <4> खो जाएंगे । </4> </0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Touch fingerprint reader to enable fingerprint authentication",
+        "instructionsEnable": "फ़िंगरप्रिंट प्रमाणीकरण चालू करने के लिए अपने डिवाइस के फ़िंगरप्रिंट रीडर को स्पर्श करें.",
         "instructionsDisable": "फ़िंगरप्रिंट प्रमाणीकरण बंद करने के लिए अपने डिवाइस के फ़िंगरप्रिंट रीडर को स्पर्श करें.",
         "fingerprintAuthEnabled": "फ़िंगरप्रिंट प्रमाणीकरण चालू किया गया",
         "fingerprintAuthEnabledExplanation": "आपने सफलतापूर्वक फिंगरप्रिंट प्रमाणीकरण चालू कर दिया है",
@@ -603,7 +603,7 @@
         "change": "बदलें",
         "volume": "वॉल्यूम (24 घ)",
         "currentValue": "वर्तमान वैल्यू",
-        "error": "Error fetching chart data"
+        "error": "चार्ट डेटा लाने में त्रुटि"
     },
     "rootDetection": {
         "warning": "चेतावनी!",
