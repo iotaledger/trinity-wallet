@@ -603,7 +603,7 @@
         "change": "Verschil",
         "volume": "Volume (24u)",
         "currentValue": "Huidige waarde",
-        "error": "Error fetching chart data"
+        "error": "Fout bij het ophalen van grafiek data"
     },
     "rootDetection": {
         "warning": "WAARSCHUWING",
