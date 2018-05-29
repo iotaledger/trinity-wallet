@@ -42,8 +42,8 @@
         "disable": "Wyłącz",
         "enabled": "Włączono",
         "disabled": "Wyłączono",
-        "manualCopy": "Write seed down",
-        "paperWallet": "Print paper copy",
+        "manualCopy": "Zanotuj swój seed",
+        "paperWallet": "Wydrukuj kopię papierową",
         "addToPasswordManager": "Dodaj do menedżera haseł",
         "shareSeed": "Udostępnij seed",
         "proceed": "Kontynuuj",
@@ -63,7 +63,7 @@
         "yesLowerCase": "Tak",
         "noLowerCase": "Nie",
         "okay": "OKEJ",
-        "okayLowercase": "Okay",
+        "okayLowercase": "Okej",
         "password": "Hasło",
         "passwordOrFingerprint": "Hasło lub odcisk palca",
         "unrecognisedPassword": "Hasło nierozpoznane",
@@ -105,7 +105,7 @@
         "promoted": "Promowanie transakcji pomyślne",
         "promotedExplanation": "Wypromowano transakcję z hashem {{hash}}",
         "autopromotionError": "Błąd auto-promowania transakcji",
-        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
+        "autopromotionErrorExplanation": "Zdalny tryb Proof of Work jest niedostępny na wybranym serwerze. Zmień serwer oraz ponownie włącz opcję autopromowania.",
         "promotionError": "Nie można wypromować transakcji",
         "promotionErrorExplanation": "Coś poszło nie tak podczas promowania Twojego transferu. Proszę spróbować ponownie.",
         "noLongerValid": "Pakiet, który próbujesz promować, nie jest już ważny",
@@ -149,9 +149,9 @@
         "willNotCopyPasteSeed": "Nie będę kopiował/wklejał mojego klucza",
         "mustBeStoredAppropriately": "Musi być odpowiednio przechowywany.",
         "deviceMayBecomeUnresponsive": "Urządzenie może przestać odpowiadać przez pewien czas",
-        "isYourBalanceCorrect": "Is your balance correct?",
-        "ifYourBalanceIsNotCorrect": "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
-        "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition."
+        "isYourBalanceCorrect": "Czy Twoje saldo jest poprawne?",
+        "ifYourBalanceIsNotCorrect": "Jeśli Twoje saldo nie jest poprawne, prawdopodobnie używasz klucza seed sprzed tzw. migawki (snapshot).",
+        "headToAdvancedSettingsForTransition": "Przejdź do ustawień zaawansowanych i skorzystaj z funkcji Snapshot asystent."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -165,7 +165,7 @@
         "noNickname": "Nie wprowadzono nazwy konta",
         "noNicknameExplanation": "Wpisz nazwę konta dla Twojego klucza seed.",
         "seedInUse": "Seed jest już w użyciu",
-        "seedInUseExplanation": "Ten seed został już wcześniej powiązany z Twoim portfelem. Proszę użyj innego."
+        "seedInUseExplanation": "Ten seed został już wcześniej powiązany z Twoim portfelem. Proszę użyć innego."
     },
     "changePassword": {
         "oops": "Ups! Coś poszło nie tak",
@@ -191,7 +191,7 @@
         "reasonNames": "Powszechne imiona i nazwiska są łatwe do odgadnięcia",
         "reasonRepeats": "Powtórzenia takie jak 'aaa' są łatwe do odgadnięcia",
         "reasonRepeats2": "Powtórzenia takie jak 'abcabcabc' są jedynie nieco trudniejsze do odgadnięcia niż 'abc'",
-        "reasonSequence": "Sekwencje takie jak abc lub 54321 są łatwe do odgadnięcia",
+        "reasonSequence": "Sekwencje takie jak 'abc' lub '54321' są łatwe do odgadnięcia",
         "reasonYears": "Ostatnie lata są łatwe do odgadnięcia",
         "reasonDates": "Daty są często łatwe do odgadnięcia",
         "reasonTop10": "To jedno z 10 najpopularniejszych haseł",
@@ -348,7 +348,7 @@
         "sendMax": "WYŚLIJ WSZYSTKO",
         "totalTime": "Całkowity czas",
         "addressPasteDetected": "Wykryto wklejenie adresu",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
+        "addressPasteExplanation": "Wygląda na to, że wkleiłeś adres. Upewnij się, że wklejony adres odpowiada temu, na który chcesz wysłać."
     },
     "setPassword": {
         "choosePassword": "Wybierz nowe hasło",
@@ -363,7 +363,7 @@
     },
     "setSeedName": {
         "letsAddName": "Nazwij swoje konto",
-        "canUseMultipleSeeds": "Możesz używać wielu kluczy seed w tym portfelu. Każdy jeden wymaga jednak osobnej nazwy konta.",
+        "canUseMultipleSeeds": "Możesz używać wielu kluczy seed w tym portfelu. Każdy wymaga jednak osobnej nazwy konta.",
         "youCanAdd": "Możesz dodać więcej kluczy seed w menu ustawień."
     },
     "modeSelection": {
@@ -492,7 +492,7 @@
         "snapshotTransition": "Snapshot asystent",
         "pow": "Konfiguracja Proof of Work",
         "autoPromotion": "Autopromowanie",
-        "autoPromotionExplanation": "Autopromowanie pomaga w potwierdzeniu Twojej transakcji w sieci Tangle. Włącz to ustawienie, jeśli Twoje transakcje nie są potwierdzane w odpowiednim czasie.",
+        "autoPromotionExplanation": "Autopromowanie pomaga w potwierdzaniu Twoich transakcji w sieci Tangle. Włącz tę funkcję, jeśli Twoje transakcje nie są potwierdzane w odpowiednim czasie.",
         "autoPromotionPoW": "Autopromowanie możliwe jest jedynie na serwerach, które obsługują zdalny tryb Proof of Work."
     },
     "advancedThemeCustomisation": {
@@ -521,7 +521,7 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Dlaczego nie mogę zużyć całego stanu mojego konta?",
-        "spentAddressExplanation": "Masz fundusze na jednym lub kilku zużytych adresach. Ponowne użycie adresów w IOTA jest niebezpieczne, więc portfel ten nie pozwala wysyłać z tego samego adresu więcej niż jeden raz.",
+        "spentAddressExplanation": "Posiadasz środki na jednym lub kilku zużytych adresach. Ponowne użycie adresów w IOTA jest niebezpieczne, więc portfel ten nie pozwala wysyłać z tego samego adresu więcej niż jeden raz.",
         "discordInformation": "Wejdź na kanał #help czatu Discord, aby dowiedzieć się, co możesz zrobić."
     },
     "deleteAccount": {
@@ -602,11 +602,12 @@
         "mcap": "Market",
         "change": "Zmiana",
         "volume": "Wolumen (24h)",
-        "currentValue": "Bieżąca wartość"
+        "currentValue": "Bieżąca wartość",
+        "error": "Błąd pobierania danych do wykresu"
     },
     "rootDetection": {
         "warning": "OSTRZEŻENIE",
-        "appearsRooted": "Twoje urządzenie wydaje się być odblokowane (dostęp root).",
+        "appearsRooted": "Twoje urządzenie wygląda na odblokowane (dostęp root).",
         "securityRisk": "To może stanowić istotne zagrożenie dla bezpieczeństwa Twojego portfela.",
         "continueDepsiteRisk": "Czy chcesz kontynuować pomimo tego ryzyka?"
     },
@@ -621,8 +622,8 @@
         "noWebGLSupportExplanation": "Twój komputer nie obsługuje technologii WebGL. Użyj zdalnego trybu PoW."
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Auto-promotion settings",
-        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
+        "autoPromotionUpdated": "Ustawienia autopromowania",
+        "autoPromotionUpdatedExplanation": "Twoja konfiguracja autopromowania została zaktualizowana."
     },
     "progressSteps": {
         "checkingNodeHealth": "Sprawdzanie kondycji serwera",
@@ -641,7 +642,7 @@
         "transitionCompleteExplanation": "Aktualizacja środków zakończyła się sukcesem.",
         "detectedBalance": "Wykryte saldo: {{amount}} {{unit}}",
         "isThisCorrect": "Czy jest ono poprawne?",
-        "snapshotExplanation": "Aby zmniejszyć rozmiar sieci Tangle, co jakiś czas przeprowadzany jest tzw. snapshot.",
+        "snapshotExplanation": "Aby zmniejszyć rozmiar sieci Tangle, co jakiś czas przeprowadzana jest tzw. migawka (snapshot).",
         "hasSnapshotTakenPlace": "Czy snapshot został wykonany? Kliknij poniższy przycisk, aby rozpocząć aktualizację swoich środków.",
         "transition": "Aktualizacja",
         "transitioning": "Trwa aktualizacja Twoich środków.",
