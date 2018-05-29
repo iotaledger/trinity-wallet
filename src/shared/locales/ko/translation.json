@@ -451,7 +451,7 @@
     },
     "writeSeedDown": {
         "yourSeedIs": "시드는 {{maxSeedLength}}글자로 구성되며, 왼쪽에서 오른쪽으로 읽습니다.",
-        "writeDownYourSeed": "<0>시드와 체크섬을 기록하고, 정확히 기록하였는지 최소 </0><1>세 번 이상 확인하세요.</1><2></2>"
+        "writeDownYourSeed": "<0>시드와 체크섬을 기록하고, 정확히 기록하였는지 최소 </0><1>세 번 이상 확인</1><2>하세요.</2>"
     },
     "history": {
         "bundleHashCopied": "번들 해시 복사함",
@@ -570,7 +570,7 @@
         "fingerprintAuthFailedExplanation": "지문 인증이 실패했습니다. 다시 시도해 주세요.",
         "status": "상태",
         "fingerprintUnavailable": "생체 인증을 사용할 수 없음",
-        "fingerprintUnavailableExplanation": "본 기기는 생체 인증을 사용할 수 없거나, 사용하지 않도록 설정되어 있습니다.",
+        "fingerprintUnavailableExplanation": "본 기기는 생체 인증을 사용할 수 없거나 사용하지 않도록 설정되어 있습니다.",
         "buttonInstructionsDisable": "아래 버튼을 눌러 지문 인증을 비활성화할 수 있습니다.",
         "buttonInstructionsEnable": "아래 버튼을 눌러 지문 인증을 활성화할 수 있습니다.",
         "buttonInstructionsDisableIPhoneX": "아래 버튼을 눌러 Face ID를 비활성할 수 있습니다.",
