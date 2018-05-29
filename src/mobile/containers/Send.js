@@ -347,7 +347,11 @@ export class Send extends Component {
         }
         this.showModal('transferConfirmation');
         if (parseFloat(amount) * multiplier > 0) {
-            timer.setTimeout('addressPasteAlertDelay', () => this.detectAddressInClipboard(), isIOSKeyboardActive ? 1000 : 250);
+            timer.setTimeout(
+                'addressPasteAlertDelay',
+                () => this.detectAddressInClipboard(),
+                isIOSKeyboardActive ? 1000 : 250,
+            );
         }
     }
 
