@@ -602,7 +602,8 @@
         "mcap": "Market",
         "change": "Zmiana",
         "volume": "Wolumen (24h)",
-        "currentValue": "Bieżąca wartość"
+        "currentValue": "Bieżąca wartość",
+        "error": "Error fetching chart data"
     },
     "rootDetection": {
         "warning": "OSTRZEŻENIE",
