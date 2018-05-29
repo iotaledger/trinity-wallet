@@ -603,7 +603,7 @@
         "change": "Cambio",
         "volume": "Volume (24h)",
         "currentValue": "Valore corrente",
-        "error": "Error fetching chart data"
+        "error": "Errore durante il recupero dati per il grafico"
     },
     "rootDetection": {
         "warning": "ATTENZIONE",
