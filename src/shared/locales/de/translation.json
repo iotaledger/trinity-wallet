@@ -129,7 +129,7 @@
         "nodeChanged": "Node gewechselt",
         "nodeChangedExplanation": "Der Node wurde erfolgreich gewechselt.",
         "nodeMustUseHTTPS": "Ungültiger Node (kein HTTPS)",
-        "nodeMustUseHTTPSExplanation": "Benutzerdefinierte Nodes müssen eine Verschlüsselung verwenden (HTTPS).",
+        "nodeMustUseHTTPSExplanation": "Benutzerdefinierte Nodes müssen HTTPS verwenden.",
         "nodeDuplicated": "Doppelter Node",
         "nodeDuplicatedExplanation": "Dieser Node ist bereits vorhanden.",
         "nodeAutoChanged": "Node automatisch gewechselt",
@@ -278,7 +278,7 @@
         "printWallet": "Drucke Paper Wallet",
         "print": "DRUCKEN",
         "paperConvenience": "Deinen Seed auszudrucken ist ein komfortabler Weg deinen Seed zu sichern.",
-        "publicInsecure": "Doch beachte, dass das Drucken über öffentliche WLAN-Netzwerke oder Drucker unsicher ist.",
+        "publicInsecure": "Doch beachte, dass Drucken in öffentlichen WLAN's oder über öffentliche Drucker unsicher ist.",
         "tapCheckboxes": "Bitte aktiviere folgende Kontrollboxen um zu Bestätigen.",
         "wifiCheckbox": "Ich werde nicht drucken während ich ein öffentliches WLAN verwende",
         "printerCheckbox": "Ich werde nicht auf einem öffentlich zugänglichen Drucker ausdrucken"
