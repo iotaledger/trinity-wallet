@@ -88,9 +88,7 @@ class Login extends React.Component {
         try {
             Electron.onEvent('url-params', this.setDeepUrl(this));
         } catch (error) {
-            this.setState({
-                //fatalError: true,
-            });
+            //handle error
         }
 
         const { wallet } = this.props;
