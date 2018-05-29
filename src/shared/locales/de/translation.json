@@ -151,7 +151,7 @@
         "deviceMayBecomeUnresponsive": "Dein Gerät könnte für eine Weile nicht reagieren",
         "isYourBalanceCorrect": "Stimmt dein Guthaben?",
         "ifYourBalanceIsNotCorrect": "Wenn dein Guthaben nicht stimmt, verwendest du wahrscheinlich einen Seed, der eine Snapshot-Wiederherstellung benötigt.",
-        "headToAdvancedSettingsForTransition": "Wechsle zu den erweitern Einstellungen und führe einen Snapshot-Übergang aus."
+        "headToAdvancedSettingsForTransition": "Wechsle zu den erweitern Einstellungen und führe eine Snapshot-Wiederherstellung aus."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
