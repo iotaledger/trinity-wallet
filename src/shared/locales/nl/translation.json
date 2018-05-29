@@ -22,7 +22,7 @@
         "invalidResponseSendingTransfer": "De node stuurde een fout terug tijdens het versturen van de transactie. Probeer van node te veranderen.",
         "nodeOutOfSync": "Node gedesynchroniseerd",
         "nodeOutOfSyncExplanation": "Uw huidige node is gedesynchroniseerd. Verander uw node of probeer opnieuw.",
-        "thisNodeOutOfSync": "This node is out of sync. Please change node or try again.",
+        "thisNodeOutOfSync": "De node is niet gesynchroniseerd. Verander uw node of probeer opnieuw.",
         "seed": "Seed",
         "checksum": "Controlesom",
         "back": "TERUG",
@@ -40,12 +40,12 @@
         "continue": "Doorgaan",
         "enable": "Inschakelen",
         "disable": "Uitschakelen",
-        "enabled": "Enabled",
-        "disabled": "Disabled",
-        "manualCopy": "Write seed down",
-        "paperWallet": "Print paper copy",
-        "addToPasswordManager": "Add to password manager",
-        "shareSeed": "Share seed",
+        "enabled": "Ingeschakeld",
+        "disabled": "Uitgeschakeld",
+        "manualCopy": "Schrijf uw seed op",
+        "paperWallet": "Print uw seed uit",
+        "addToPasswordManager": "Toevoegen aan wachtwoordmanager",
+        "shareSeed": "Deel seed",
         "proceed": "Doorgaan",
         "qr": "QR",
         "notAvailable": "Deze functie is niet beschikbaar",
@@ -63,7 +63,7 @@
         "yesLowerCase": "Ja",
         "noLowerCase": "Nee",
         "okay": "OKE",
-        "okayLowercase": "Okay",
+        "okayLowercase": "Oké",
         "password": "Wachtwoord",
         "passwordOrFingerprint": "Wachtwoord of vingerafdruk",
         "unrecognisedPassword": "Onjuist wachtwoord",
@@ -95,7 +95,7 @@
         "pressBackAgain": "Druk nogmaals op terug om de app te sluiten",
         "reattached": "Transactie succesvol herkoppeld",
         "reattachedExplanation": "Transactie met hash {{hash}} herkoppeld",
-        "promotingTransaction": "Promoting transaction",
+        "promotingTransaction": "Transactie promoten",
         "autopromoting": "Transactie automatisch promoten",
         "autopromotingExplanation": "Transactie met hash {{hash}} promoten",
         "rebroadcasted": "Transactie succesvol heruitgezonden",
@@ -105,7 +105,7 @@
         "promoted": "Transactie succesvol gepromoot",
         "promotedExplanation": "Transactie met hash {{hash}} gepromoot",
         "autopromotionError": "Kon transactie niet automatisch promoten",
-        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
+        "autopromotionErrorExplanation": "Extern Bewijs van Inspanning (PoW) is niet beschikbaar op de geselecteerde node. Verander van node en schakel auto-promotie opnieuw in.",
         "promotionError": "Kon transactie niet promoten",
         "promotionErrorExplanation": "Er ging iets mis bij het verzenden van uw transactie. Probeer het opnieuw.",
         "noLongerValid": "De bundel die u probeert te promoten is niet langer geldig",
@@ -148,10 +148,10 @@
         "androidCopyPasteWarning": "Kopieer/plak nooit uw seed op een Android apparaat.",
         "willNotCopyPasteSeed": "Ik zal mijn seed niet kopiëren/plakken",
         "mustBeStoredAppropriately": "Het moet adequaat worden opgeslagen.",
-        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while",
-        "isYourBalanceCorrect": "Is your balance correct?",
-        "ifYourBalanceIsNotCorrect": "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
-        "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition."
+        "deviceMayBecomeUnresponsive": "Uw apparaat kan wellicht even niet reageren",
+        "isYourBalanceCorrect": "Klopt uw saldo?",
+        "ifYourBalanceIsNotCorrect": "Als uw saldo niet correct is, gebruikt u waarschijnlijk een pre-snapshot seed.",
+        "headToAdvancedSettingsForTransition": "Ga naar Geavanceerde instellingen en voer een Snapshot transitie uit."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "De seed bevat ongeldige tekens",
@@ -348,7 +348,7 @@
         "sendMax": "MAX VERZENDEN",
         "totalTime": "Totale tijd",
         "addressPasteDetected": "Adres plakken gedetecteerd",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
+        "addressPasteExplanation": "Het lijkt erop dat u een adres wil plakken. Zorg ervoor dat dit adres overeenkomt met het adres waarnaar u wilt zenden."
     },
     "setPassword": {
         "choosePassword": "Kies een nieuw wachtwoord",
@@ -491,9 +491,9 @@
         "manualSync": "Handmatig synchroniseren",
         "snapshotTransition": "Snapshot transitie",
         "pow": "Bewijs van inspanning",
-        "autoPromotion": "Auto-promotion",
-        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
-        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
+        "autoPromotion": "Auto-promotie",
+        "autoPromotionExplanation": "Auto-promotie helpt uw transactie te bevestigen op de Tangle. Schakel deze instelling in wanneer u problemen ondervindt met bevestigen.",
+        "autoPromotionPoW": "Auto-promotie is alleen mogelijk op nodes die ondersteuning bieden voor extern Bewijs van Inspanning (PoW)."
     },
     "advancedThemeCustomisation": {
         "background": "Achtergrond",
@@ -602,7 +602,8 @@
         "mcap": "MCAP",
         "change": "Verschil",
         "volume": "Volume (24u)",
-        "currentValue": "Huidige waarde"
+        "currentValue": "Huidige waarde",
+        "error": "Error fetching chart data"
     },
     "rootDetection": {
         "warning": "WAARSCHUWING",
@@ -621,8 +622,8 @@
         "noWebGLSupportExplanation": "Uw computer ondersteunt WebGL niet. Gebruik externe PoW."
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Auto-promotion settings",
-        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
+        "autoPromotionUpdated": "Auto-promotie instellingen",
+        "autoPromotionUpdatedExplanation": "Uw auto-promotie-configuratie is bijgewerkt."
     },
     "progressSteps": {
         "checkingNodeHealth": "Gezondheid node aan het checken",
@@ -667,10 +668,10 @@
     },
     "terms": {
         "termsAndConditions": "Algemene Voorwaarden",
-        "accept": "I accept"
+        "accept": "Ik ga akkoord"
     },
     "privacyPolicy": {
-        "privacyPolicy": "Privacy Policy",
-        "agree": "I agree"
+        "privacyPolicy": "Privacybeleid",
+        "agree": "Ik ga akkoord"
     }
 }

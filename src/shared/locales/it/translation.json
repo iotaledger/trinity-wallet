@@ -105,7 +105,7 @@
         "promoted": "Transazione promossa con successo",
         "promotedExplanation": "Transazione con hash {{hash}} promossa",
         "autopromotionError": "Non si è potuto promuovere la transazione",
-        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
+        "autopromotionErrorExplanation": "L'opzione prova di lavoro remota non è disponibile nel nodo che hai selezionato. Si prega di cambiare nodo ed abilitare l'auto promozione.",
         "promotionError": "Non si è potuto promuovere la transazione",
         "promotionErrorExplanation": "Qualcosa è andato storto nella promozione della transazione. Prova di nuovo.",
         "noLongerValid": "Il pacchetto che si sta tentando di promuovere non è più valido",
@@ -348,7 +348,7 @@
         "sendMax": "INVIA MASSIMO",
         "totalTime": "Tempo totale",
         "addressPasteDetected": "Rilevato indirizzo da incollare",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
+        "addressPasteExplanation": "Sembra che hai incollato un indirizzo. Assicurati che l'indirizzo incollato corrisponda a quello al quale desideri inviare."
     },
     "setPassword": {
         "choosePassword": "Scegli una nuova password",
@@ -602,7 +602,8 @@
         "mcap": "MCAP",
         "change": "Cambio",
         "volume": "Volume (24h)",
-        "currentValue": "Valore corrente"
+        "currentValue": "Valore corrente",
+        "error": "Errore durante il recupero dati per il grafico"
     },
     "rootDetection": {
         "warning": "ATTENZIONE",
@@ -621,8 +622,8 @@
         "noWebGLSupportExplanation": "Il computer non supporta WebGL. Si prega di usare il proof-of-work remoto."
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Auto-promotion settings",
-        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
+        "autoPromotionUpdated": "Impostazioni auto promozione",
+        "autoPromotionUpdatedExplanation": "Configurazione auto promozione aggiornata."
     },
     "progressSteps": {
         "checkingNodeHealth": "Verifica dello stato del nodo",

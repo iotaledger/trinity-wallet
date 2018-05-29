@@ -44,13 +44,13 @@
         "disabled": "Deaktivert",
         "manualCopy": "Skriv ned hovednøkkelen",
         "paperWallet": "Skriv ut papirkopi",
-        "addToPasswordManager": "Legg til i passord manageren",
+        "addToPasswordManager": "Legg til i en passord manager",
         "shareSeed": "Del hovednøkkelen",
         "proceed": "Fortsett",
         "qr": "QR",
         "notAvailable": "Denne funksjonen er ikke tilgjengelig",
         "notAvailableExplanation": "Dette vil bli lagt til på et senere tidspunkt.",
-        "enterSeed": "Vennligst skriv inn din hovednøkkel.",
+        "enterSeed": "Vennligst skriv inn hovednøkkelen.",
         "mainWallet": "HOVEDKONTO",
         "secondWallet": "ANDRE KONTO",
         "thirdWallet": "TREDJE KONTO",
@@ -76,9 +76,9 @@
         "node": "Node",
         "cannotPerformAction": "Kan ikke utføre handling",
         "cannotPerformActionExplanation": "Gå til avanserte innstillinger for å tilbakestille lommeboken.",
-        "attachToTangleUnavailable": "Ekstern PoW er ikke tilgjengelig",
-        "attachToTangleUnavailableExplanation": "Ekstern PoW er ikke tilgjengelig på den valgte noden. Enten velg en annen node hvor dette er aktivert eller velg lokal PoW under avanserte innstillinger.",
-        "attachToTangleUnavailableExplanationShort": "Ekstern PoW er ikke tilgjengelig på den valgte noden.",
+        "attachToTangleUnavailable": "Ekstern PoW (Proof of Work) er ikke tilgjengelig",
+        "attachToTangleUnavailableExplanation": "Ekstern PoW (Proof of Work) er ikke tilgjengelig på den valgte noden. Enten velg en annen node hvor dette er aktivert eller velg lokal PoW (Proof of Work) under avanserte innstillinger.",
+        "attachToTangleUnavailableExplanationShort": "Ekstern PoW (Proof of Work) er ikke tilgjengelig på den valgte noden.",
         "wallet": "Lommebok",
         "sent": "Sendt",
         "received": "Mottatt",
@@ -105,7 +105,7 @@
         "promoted": "Transaksjonen er promotert",
         "promotedExplanation": "Transaksjonen er promotert med hash {{hash}}",
         "autopromotionError": "Kunne ikke promotere transaksjonen automatisk",
-        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
+        "autopromotionErrorExplanation": "Ekstern PoW (Proof of Work) er ikke tilgjengelig på den valgte noden. Vennligst endre node og aktiver automatisk promotering på nytt.",
         "promotionError": "Kunne ikke promotere transaksjonen",
         "promotionErrorExplanation": "Noe gikk galt under promoteringen av overføringen. Vennligst prøv igjen.",
         "noLongerValid": "Pakken du prøver å promotere er ikke lenger gyldig",
@@ -136,7 +136,7 @@
         "nodeAutoChangedExplanation": "Byttet til ny node {{- nodeAddress}} da den valgte noden er frakoblet.",
         "fingerprintOnSend": "Berør fingeravtrykkleseren for å autorisere transaksjonen",
         "masterKey": "Hovednøkkelen er det som gir deg tilgang til dine midler.",
-        "seedThief": "Hvis noen får tilgang til din hovednøkkel så kan de stjele dine IOTA.",
+        "seedThief": "Hvis noen får tilgang til hovednøkkelen kan de stjele dine IOTA.",
         "googlePlayServicesNotAvailable": "Google Play tjenester er ikke tilgjengelige",
         "couldNotVerifyDeviceIntegrity": "Kunne ikke verifisere enhetens integritet siden Google Play tjenesten ikke er tilgjengelig.",
         "clear": "FJERN",
@@ -157,7 +157,7 @@
         "seedInvalidChars": "Hovednøkkelen inneholder ugyldige tegn",
         "seedInvalidCharsExplanation": "Hovednøkkelen kan bare bestå av store bokstaver fra A til Z og tallet 9. Hovednøkkelen din inneholder ugyldige tegn. Vennligst prøv på nytt.",
         "seedTooShort": "Hovednøkkelen er for kort",
-        "seedTooShortExplanation": "Hovednøkler må være {{maxLength}} tegn. Din hovednøkkel er nå {{currentLength}} tegn. Prøv på nytt.",
+        "seedTooShortExplanation": "Hovednøkler må være {{maxLength}} tegn. Din hovednøkkel er nå {{currentLength}} tegn. Vennligst forsøk igjen.",
         "nameInUse": "Kontonavnet er allerede i bruk",
         "nameInUseExplanation": "Vennligst bruk et unikt kontonavn til din hovednøkkel.",
         "enterAccountName": "Angi et kontonavn.",
@@ -271,14 +271,14 @@
         "walletReady": "Lommeboken er nå satt opp og er klar til bruk. Hvis du vil gjøre endringer i fremtiden, kan du gjøre dette under Innstillinger i menyen."
     },
     "paperWallet": {
-        "clickToPrint": "Klikk knappen nedenfor for å skrive ut en papirkopi av din hovednøkkel.",
-        "storeSafely": "Lagre det trygt.",
-        "neverShare": "Del aldri hovednøkkelen din med noen.",
+        "clickToPrint": "Klikk på knappen nedenfor for å skrive ut en papirkopi av hovednøkkelen.",
+        "storeSafely": "Lagre den trygt.",
+        "neverShare": "Del aldri hovednøkkelen med noen.",
         "iotaLogo": "IOTA logo",
         "printWallet": "Print Papirlommebok",
         "print": "SKRIV UT",
         "paperConvenience": "En praktisk måte å oppbevare hovednøkkelen er å skrive den ut på papir.",
-        "publicInsecure": "Men å skrive ut på et offentlig nettverk eller printer er usikkert.",
+        "publicInsecure": "Men å skrive den ut på et offentlig nettverk eller printer er usikkert.",
         "tapCheckboxes": "Vennligst trykk på avkryssingsfeltet nedenfor for å bekrefte.",
         "wifiCheckbox": "Jeg vil ikke skrive ut på et offentlig nettverk",
         "printerCheckbox": "Jeg vil ikke skrive ut på en offentlig printer"
@@ -348,7 +348,7 @@
         "sendMax": "SENDE MAX",
         "totalTime": "Total tid",
         "addressPasteDetected": "Adresse \"lim inn\" gjenkjent",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
+        "addressPasteExplanation": "Det ser ut som at du har limt inn en adresse. Vær sikker på at denne adressen samsvarer med den du ønsker å sende til."
     },
     "setPassword": {
         "choosePassword": "Velg et nytt passord",
@@ -422,7 +422,7 @@
         "lockScreenTimeout": "Skjermen er låst grunnet inaktivitet",
         "autoNodeSwitching": "Endre node automatisk dersom den valgte noden er utilgjengelig",
         "nodeChangeSuccess": "Endring av node var vellykket",
-        "nodeChangeSuccessNoRemotePow": "Noden ble endret til {{node}}. Denne noden støtter ikke ekstern PoW.",
+        "nodeChangeSuccessNoRemotePow": "Noden ble endret til {{node}}. Denne noden støtter ikke ekstern PoW (Proof of Work).",
         "nodeChangeSuccessExplanation": "Noden ble endret til {{node}}.",
         "nodeChangeError": "Feil under endring av node",
         "nodeChangeErrorExplanation": "Det skjedde en feil under endring av node. Prøv igjen."
@@ -433,7 +433,7 @@
         "reset": "TILBAKESTILL"
     },
     "walletSetup": {
-        "creatingSeed": "Skaper en hovednøkkel",
+        "creatingSeed": "Genererer en hovednøkkel",
         "okay": "Ok. La oss sette opp lommeboken din!",
         "doYouAlreadyHaveASeed": "Har du allerede en hovednøkkel som du ønsker å benytte?",
         "doYouNeedASeed": "Trenger du å lage en ny hovednøkkel?",
@@ -450,8 +450,8 @@
         "reminder": "Du kan være fristet til å hoppe over enkelte trinn, men vi oppfordrer deg til å følge hele prosessen."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Din hovednøkkel er {{maxSeedLength}} tegn lest fra venstre mot høyre.",
-        "writeDownYourSeed": "<0>Skriv ned din hovednøkkel og kontrolltegn, og</0> <1>trippelsjekk</1> <2>at de er riktige.</2>"
+        "yourSeedIs": "Hovednøkkelen er på {{maxSeedLength}} tegn lest fra venstre mot høyre.",
+        "writeDownYourSeed": "<0>Skriv ned hovednøkkelen og kontrolltegnet. </0><1>trippelsjekk</1><2>så at de er riktige.</2>"
     },
     "history": {
         "bundleHashCopied": "Pakke hash kopiert",
@@ -490,10 +490,10 @@
         "addCustomNode": "Legg til egendefinert node",
         "manualSync": "Manuell synkronisering",
         "snapshotTransition": "Snapshot synkronisering",
-        "pow": "Bevis på arbeid",
+        "pow": "PoW (Proof of Work)",
         "autoPromotion": "Auto promoter",
         "autoPromotionExplanation": "Auto-promotering bidrar å bekrefte dine transaksjoner på nettverket. Aktiver denne innstillingen hvis du har problemer med å bekrefte dine transaksjoner.",
-        "autoPromotionPoW": "Automatisk promotering er kun mulig på noder som støtter ekstern PoW."
+        "autoPromotionPoW": "Automatisk promotering er kun mulig på noder som støtter ekstern PoW (Proof of Work)."
     },
     "advancedThemeCustomisation": {
         "background": "Bakgrunn",
@@ -521,7 +521,7 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Hvorfor kan ikke jeg bruke hele saldoen?",
-        "spentAddressExplanation": "Du har midler på én eller flere brukte adresser. Adresse gjenbruk er farlig i IOTA, så denne lommeboken tillater ikke å sende flere ganger fra samme adresse.",
+        "spentAddressExplanation": "Du har midler på én eller flere brukte adresser. Siden gjenbruk av adresser er utrygt tillater ikke lommeboken å sende flere ganger fra samme adresse.",
         "discordInformation": "Vennligst besøk #help kanalen på Discord for å finne ut hva du kan gjøre."
     },
     "deleteAccount": {
@@ -602,17 +602,18 @@
         "mcap": "MCAP",
         "change": "Endring",
         "volume": "Volum (24 timer)",
-        "currentValue": "Nåværende verdi"
+        "currentValue": "Nåværende verdi",
+        "error": "Error fetching chart data"
     },
     "rootDetection": {
         "warning": "ADVARSEL",
         "appearsRooted": "Din enhet ser ut til å være rooted.",
-        "securityRisk": "Dette kan medføre en betydelig risiko for sikkerheten til din lommebok.",
+        "securityRisk": "Dette kan utgjøre en betydelig risiko for sikkerheten til din lommebok.",
         "continueDepsiteRisk": "Ønsker du å fortsette til tross for risikoen?"
     },
     "pow": {
-        "feeless": "Det er nødvendig for å utføre litt PoW (Proof of Work) for å sende gebyrfrie transaksjoner i IOTA.",
-        "localOrRemote": "PoW (Proof of Work) kan enten utføres lokalt på din enhet, eller settes bort til den noden som du er tilkoblet.",
+        "feeless": "For å sende gebyrfrie transaksjoner i IOTA er det nødvendig å utføre litt PoW (Proof of Work).",
+        "localOrRemote": "PoW kan enten utføres lokalt på din enhet, eller settes bort til noden som du er tilkoblet.",
         "local": "Lokal",
         "remote": "Ekstern",
         "powUpdated": "PoW (Proof of Work) innstillinger",
@@ -621,8 +622,8 @@
         "noWebGLSupportExplanation": "Datamaskinen støtter ikke WebGL. Vennligst benytt ekstern PoW (Proof of Work)."
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Auto-promotion settings",
-        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
+        "autoPromotionUpdated": "Innstillinger for automatisk promotering",
+        "autoPromotionUpdatedExplanation": "Dine innstillinger for automatisk promotering har blitt oppdatert."
     },
     "progressSteps": {
         "checkingNodeHealth": "Undersøker nodens helse",
