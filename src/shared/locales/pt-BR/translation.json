@@ -552,8 +552,8 @@
         "didSaveSeed": "Você fez backup de sua seed?",
         "alreadyHave": "Eu tenho minha Seed armazenada",
         "reenterSeed": "No próximo passo você deverá re-digitar sua seed.",
-        "reenterSeedWarning": "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
-        "pleaseConfirm": "Please confirm you have securely stored your seed."
+        "reenterSeedWarning": "Se você não fez o backup de sua seed e seu dispositivo falhar, você perderá toda sua IOTA.",
+        "pleaseConfirm": "Por favor, confirme que você tem armazenado sua seed de modo seguro."
     },
     "walletResetConfirmation": {
         "cannotUndo": "ESTA AÇÃO NÃO PODE SER DESFEITA.",
@@ -621,11 +621,11 @@
         "noWebGLSupportExplanation": "Seu computador não suporta WebGL. Por favor, use PoW remoto."
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Auto-promotion settings",
-        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
+        "autoPromotionUpdated": "Configurações de autopromoção",
+        "autoPromotionUpdatedExplanation": "Suas configurações de autopromoção foram atualizadas."
     },
     "progressSteps": {
-        "checkingNodeHealth": "Checking node health",
+        "checkingNodeHealth": "Verificando a saúde do servidor",
         "validatingReceiveAddress": "Validando o endereço de recebimento",
         "syncingAccount": "Sincronizando a conta",
         "preparingInputs": "Preparando entradas",
@@ -643,10 +643,10 @@
         "isThisCorrect": "Isto está correto?",
         "snapshotExplanation": "De vez em quando, o processo 'Snapshot' é ativado para analisar o tamanho do Tangle.",
         "hasSnapshotTakenPlace": "Ocorreu o processo Snapshot? Pressione o botão abaixo para fazer a transição.",
-        "transition": "Transition",
+        "transition": "Transição",
         "transitioning": "Fazendo a transição para o Snapshot.",
         "generatingAndDetecting": "Gerando endereços e detectando saldo.",
-        "attaching": "Attaching addresses to Tangle."
+        "attaching": "Anexando endereços para o Tangle."
     },
     "deepLink": {
         "autofill": "Sucesso no preenchimento automático",
@@ -666,11 +666,11 @@
         "errorLog": "LOG DE ERROS"
     },
     "terms": {
-        "termsAndConditions": "Terms & Conditions",
-        "accept": "I accept"
+        "termsAndConditions": "Termos e Condições",
+        "accept": "Eu concordo"
     },
     "privacyPolicy": {
-        "privacyPolicy": "Privacy Policy",
-        "agree": "I agree"
+        "privacyPolicy": "Política de Privacidade",
+        "agree": "Eu concordo"
     }
 }
