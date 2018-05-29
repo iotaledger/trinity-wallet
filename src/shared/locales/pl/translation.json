@@ -191,7 +191,7 @@
         "reasonNames": "Powszechne imiona i nazwiska są łatwe do odgadnięcia",
         "reasonRepeats": "Powtórzenia takie jak 'aaa' są łatwe do odgadnięcia",
         "reasonRepeats2": "Powtórzenia takie jak 'abcabcabc' są jedynie nieco trudniejsze do odgadnięcia niż 'abc'",
-        "reasonSequence": "Sekwencje takie jak abc lub 54321 są łatwe do odgadnięcia",
+        "reasonSequence": "Sekwencje takie jak 'abc' lub '54321' są łatwe do odgadnięcia",
         "reasonYears": "Ostatnie lata są łatwe do odgadnięcia",
         "reasonDates": "Daty są często łatwe do odgadnięcia",
         "reasonTop10": "To jedno z 10 najpopularniejszych haseł",
@@ -492,7 +492,7 @@
         "snapshotTransition": "Snapshot asystent",
         "pow": "Konfiguracja Proof of Work",
         "autoPromotion": "Autopromowanie",
-        "autoPromotionExplanation": "Autopromowanie pomaga w potwierdzeniu Twojej transakcji w sieci Tangle. Włącz to ustawienie, jeśli Twoje transakcje nie są potwierdzane w odpowiednim czasie.",
+        "autoPromotionExplanation": "Autopromowanie pomaga w potwierdzaniu Twoich transakcji w sieci Tangle. Włącz tę funkcję, jeśli Twoje transakcje nie są potwierdzane w odpowiednim czasie.",
         "autoPromotionPoW": "Autopromowanie możliwe jest jedynie na serwerach, które obsługują zdalny tryb Proof of Work."
     },
     "advancedThemeCustomisation": {
