@@ -133,7 +133,7 @@
         "nodeDuplicated": "डुप्लिकेट नोड",
         "nodeDuplicatedExplanation": "कस्टम नोड पहले से ही सूचीबद्ध है ।",
         "nodeAutoChanged": "स्वत:-स्विच नोड",
-        "nodeAutoChangedExplanation": "Switched to new node {{- nodeAddress}} as selected node is offline.",
+        "nodeAutoChangedExplanation": "नए नोड चुने, {{- nodeAddress}} चयनित नोड ऑफ़लाइन है ।",
         "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer",
         "masterKey": "Your IOTA seed is the master key to your funds.",
         "seedThief": "If someone else has your seed they can steal your IOTA.",
