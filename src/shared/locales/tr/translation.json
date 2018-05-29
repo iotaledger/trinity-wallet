@@ -640,7 +640,8 @@
         "mcap": "MCAP",
         "change": "Değiştir",
         "volume": "Hacim (24 saat)",
-        "currentValue": "Anlık değer"
+        "currentValue": "Anlık değer",
+        "error": "Error fetching chart data"
     },
     "rootDetection": {
         "warning": "UYARI",

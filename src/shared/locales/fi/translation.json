@@ -646,7 +646,8 @@
         "mcap": "MARVO",
         "change": "Muutos",
         "volume": "Vaihto (24h)",
-        "currentValue": "Nykyinen arvo"
+        "currentValue": "Nykyinen arvo",
+        "error": "Error fetching chart data"
     },
     "rootDetection": {
         "warning": "VAROITUS",

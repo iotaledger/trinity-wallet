@@ -636,7 +636,8 @@
         "mcap": "MCAP",
         "change": "Změna",
         "volume": "Objem (24h)",
-        "currentValue": "Současná hodnota"
+        "currentValue": "Současná hodnota",
+        "error": "Error fetching chart data"
     },
     "rootDetection": {
         "warning": "VAROVÁNÍ",
