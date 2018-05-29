@@ -18,11 +18,11 @@
         "invalidResponse": "Erreur de serveur",
         "invalidResponseExplanation": "Le serveur a renvoyé une erreur. Essayez de changer de serveur.",
         "invalidResponsePollingExplanation": "Le serveur a renvoyé une erreur lors de l'interrogation. Essayez de changer de serveur.",
-        "invalidResponseFetchingAccount": "Le serveur a renvoyé une réponse invalide lors de la récupération des informations de votre compte. Essayez de changer de serveur.",
-        "invalidResponseSendingTransfer": "Le serveur a renvoyé une erreur lors de l'envoie. Essayez de changer de serveur.",
+        "invalidResponseFetchingAccount": "Le serveur a renvoyé une erreur lors de la récupération des informations de votre compte. Essayez de changer de serveur.",
+        "invalidResponseSendingTransfer": "Le serveur a renvoyé une erreur lors de l'envoi. Essayez de changer de serveur.",
         "nodeOutOfSync": "Serveur non synchronisé",
-        "nodeOutOfSyncExplanation": "Votre serveur actuellement sélectionné est désynchronisé. S’il vous plaît changez le nœud ou essayez à nouveau.",
-        "thisNodeOutOfSync": "Votre serveur actuellement sélectionné est désynchronisé. Changez le serveur ou essayez à nouveau.",
+        "nodeOutOfSyncExplanation": "Le serveur actuellement sélectionné est désynchronisé. Veuillez changer le serveur ou essayer à nouveau.",
+        "thisNodeOutOfSync": "Ce serveur est désynchronisé. Veuillez changer le serveur ou essayer à nouveau.",
         "seed": "Seed",
         "checksum": "Code de Vérification",
         "back": "RETOUR",
@@ -150,8 +150,8 @@
         "mustBeStoredAppropriately": "Elle doit être stockée correctement.",
         "deviceMayBecomeUnresponsive": "Votre appareil peut ne pas répondre pendant un certain temps",
         "isYourBalanceCorrect": "Votre solde est-il correct ?",
-        "ifYourBalanceIsNotCorrect": "Si votre solde n’est pas correct, il est probable que vous utilisiez une seed antérieur à un snapshot.",
-        "headToAdvancedSettingsForTransition": "Dirigez-vous vers les paramètres avancés et effectuer une Transition de snapshot."
+        "ifYourBalanceIsNotCorrect": "Si votre solde n’est pas correct, il est probable que vous utilisiez une seed antérieure à un snapshot.",
+        "headToAdvancedSettingsForTransition": "Dirigez-vous vers les paramètres avancés et effectuez une Transition de snapshot."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -348,7 +348,7 @@
         "sendMax": "ENVOYER LE MAX",
         "totalTime": "Temps total",
         "addressPasteDetected": "Adresse collée détectée",
-        "addressPasteExplanation": "On dirait que vous êtes sur le point de coller une adresse. Assurez-vous que l’adresse collée corresponde à celle que vous voulez utiliser."
+        "addressPasteExplanation": "On dirait que vous avez collé une adresse. Assurez-vous que l’adresse collée corresponde à celle que vous voulez utiliser."
     },
     "setPassword": {
         "choosePassword": "Choisissez un nouveau mot de passe",
@@ -492,7 +492,7 @@
         "snapshotTransition": "Transition du Snapshot",
         "pow": "Preuve de Travail",
         "autoPromotion": "Promotion automatique",
-        "autoPromotionExplanation": "La promotion automatique aide à confirmer vos transactions sur le tangle. Activez ce paramètre si vous rencontrez des difficultés à confirmer vos transactions.",
+        "autoPromotionExplanation": "La promotion automatique aide à confirmer vos transactions sur le Tangle. Activez ce paramètre si vous rencontrez des difficultés à confirmer vos transactions.",
         "autoPromotionPoW": "La promotion automatique n’est possible sur les nœuds qui prennent en charge la preuve de travail à distance."
     },
     "advancedThemeCustomisation": {
@@ -603,7 +603,7 @@
         "change": "Variation",
         "volume": "Volume (24h)",
         "currentValue": "Valeur actuelle",
-        "error": "Erreur de récupération données graphique"
+        "error": "Erreur de récupération des données du graphique"
     },
     "rootDetection": {
         "warning": "ATTENTION",
@@ -622,8 +622,8 @@
         "noWebGLSupportExplanation": "Votre ordinateur ne supporte pas WebGL. Veuillez utiliser la Preuve de Travail à distance."
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Paramètres de l’auto-promotion",
-        "autoPromotionUpdatedExplanation": "Votre configuration de la preuve de travail à été mise à jour."
+        "autoPromotionUpdated": "Paramètres de la promotion automatique",
+        "autoPromotionUpdatedExplanation": "Votre configuration de la promotion automatique a été mise à jour."
     },
     "progressSteps": {
         "checkingNodeHealth": "Vérifier l'état du serveur",
