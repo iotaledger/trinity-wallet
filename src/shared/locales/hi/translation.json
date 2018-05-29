@@ -45,7 +45,7 @@
         "manualCopy": "सीड नीचे लिखें",
         "paperWallet": "काग़ज़ की प्रतिलिपि मुद्रित करें",
         "addToPasswordManager": "पासवर्ड मैनेजर में जोड़े",
-        "shareSeed": "Share seed",
+        "shareSeed": "सीड साझा करे",
         "proceed": "आगे बढ़ें",
         "qr": "QR",
         "notAvailable": "यह फ़ंक्शन उपलब्ध नहीं है",
@@ -100,11 +100,11 @@
         "autopromotingExplanation": "हैश {{hash}} ट्रांजेक्शन को प्रमोट कर रहे है",
         "rebroadcasted": "Successfully rebroadcasted transaction",
         "rebroadcastedExplanation": "Rebroadcasted transaction with hash {{hash}}",
-        "rebroadcastError": "Could not rebroadcast transaction",
-        "rebroadcastErrorExplanation": "Something went wrong while rebroadcasting your transaction. Please try again.",
+        "rebroadcastError": "ट्रांसैक्शन को प्रोमोट नहीं कर सकते",
+        "rebroadcastErrorExplanation": "ट्रांसफर करते समय कुछ गड़बड़ हो गई । कृपया पुन: प्रयास करें ।",
         "promoted": "Successfully promoted transaction",
-        "promotedExplanation": "Promoted transaction with hash {{hash}}",
-        "autopromotionError": "Could not auto-promote transaction",
+        "promotedExplanation": "हैश {{hash}} ट्रांजेक्शन को प्रमोट कर रहे है",
+        "autopromotionError": "ट्रांसैक्शन को प्रोमोट नहीं कर सकते",
         "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
         "promotionError": "Could not promote transaction",
         "promotionErrorExplanation": "Something went wrong while promoting your transaction. Please try again.",
@@ -140,8 +140,8 @@
         "googlePlayServicesNotAvailable": "Google Play Services not available",
         "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available.",
         "clear": "CLEAR",
-        "noNetworkConnection": "No network connection",
-        "noNetworkConnectionExplanation": "Your internet connection appears to be offline.",
+        "noNetworkConnection": "नेटवर्क कनेक्शन नहीं है",
+        "noNetworkConnectionExplanation": "लगता है इंटरनेट कनेक्शन ऑफलाइन है।",
         "spentAddressExplanation": "WARNING: Funds on spent addresses",
         "discordInformation": "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do.",
         "androidInsecureClipboardWarning": "Android does not provide a secure clipboard.",
@@ -263,7 +263,7 @@
         "generateSuccess": "Seed generated successfully",
         "individualLetters": "अलग अलग लेटर को दबाये, ताकि आपका सीड अद्वितीय बन सके",
         "individualLetterCount": "Press {{letterCount}} more individual letters to randomise them.",
-        "whatIsASeed": "What is a seed?"
+        "whatIsASeed": "सीड क्या है?"
     },
     "onboardingComplete": {
         "allDone": "All Done!",
@@ -284,10 +284,10 @@
         "printerCheckbox": "I will not print on a public printer"
     },
     "receive": {
-        "copyAddress": "Copy address",
+        "copyAddress": "पता कॉपी करें",
         "addressCopied": "पता प्रतिलिपि बनाई गई",
         "addressCopiedExplanation": "आपका पता क्लिपबोर्ड पर कॉपी किया गया है।",
-        "generateNewAddress": "New Address",
+        "generateNewAddress": "नया एड्रेस",
         "message": "वैकल्पिक संदेश",
         "removeMessage": "संदेश हटाए",
         "noAddresses": "कोई पता नहीं",
@@ -295,11 +295,11 @@
     },
     "saveYourSeed": {
         "saveYourSeed": "Back up your seed",
-        "seedCleared": "Seed cleared",
+        "seedCleared": "सीड हटाया गया",
         "mostSecure": "Most Secure",
         "leastSecure": "Least Secure",
-        "paperWallet": "Paper Wallet",
-        "writeYourSeedDown": "Write your seed down",
+        "paperWallet": "पेपर वॉलेट",
+        "writeYourSeedDown": "सीड लिखें",
         "printYourSeed": "अपना सीड प्रिंट करें",
         "digitalCopy": "डिजिटल कॉपी",
         "seedClearedExplanation": "आपकी सुरक्षा के लिए सीड को क्लिपबोर्ड से मिटा कर दिया गया है ।",
@@ -308,12 +308,12 @@
         "youCanHighlightCharacters": "आप एक बार में 9 वर्णों को हाइलाइट कर सकते हैं",
         "printBlankWallet": "Print a blank wallet",
         "whatIsCheksum": "Every seed has a corresponding 3 character checksum",
-        "iHavesavedMySeed": "I've saved my seed",
+        "iHavesavedMySeed": "मैंने अपना सीड सहेज लिया है",
         "checksumExplanation": "Whenever you add a seed to your wallet, you should ensure that the wallet-generated checksum matches the one you have written down.",
         "mustSaveYourSeed": "<0> <0> आपको </0> <1> के साथ अपने सीड को नीचे सूचीबद्ध विकल्पों में से कम एक </1> <2> से बचाना होगा । </2> </0>"
     },
     "seedReentry": {
-        "pleaseConfirmYourSeed": "Please confirm your seed",
+        "pleaseConfirmYourSeed": "कृपया अपने सीड की पुष्टि करें।",
         "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or the app.",
         "enterYourSeed": "Enter your seed",
         "incorrectSeed": "गलत सीड",
@@ -402,7 +402,7 @@
         "poorConnectionExplanation": "किसी खराब कनेक्शन के कारण मुद्रा परिवर्तित करने में विफल ।",
         "hide": "छिपाएँ",
         "hideOthers": "अन्य छुपाएं",
-        "show": "Show",
+        "show": "दिखाएँ",
         "showAll": "सभी दिखाएँ",
         "quit": "बंद करें",
         "edit": "संशोधन करें",
@@ -412,12 +412,12 @@
         "selectAll": "सभी का चयन करें",
         "securitySettings": "सुरक्षा सेटिंग्स",
         "fingerprint": "बायोमेट्रिक प्रमाणीकरण",
-        "couldNotFetchRates": "Could not fetch rate",
+        "couldNotFetchRates": "रेट सूची लायी नहीं जा सकी",
         "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rate for {{currency}}.",
         "fetchedConversionRates": "Fetched conversion rate",
         "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rate for {{currency}}.",
-        "undo": "Undo",
-        "redo": "Redo",
+        "undo": "पूर्ववत्",
+        "redo": "फिर से करें",
         "aboutTrinity": "About Trinity",
         "lockScreenTimeout": "Lock Screen Timeout (Minutes)",
         "autoNodeSwitching": "Automatically switch node when selected is unreachable",
@@ -439,7 +439,7 @@
         "doYouNeedASeed": "Do you need to create a new seed?",
         "seedExplanation": "IOTA सीड आपके खाते में यूज़रनेम और पासवर्ड की तरह है, जो 81 अक्षरों में से एक शब्द में मिला है।",
         "noIHaveOne": "No, I have one",
-        "yesINeedASeed": "Yes, I need a seed",
+        "yesINeedASeed": "हाँ, मुझे सीड की जरुरत है",
         "explanation": "<0> <0> आप इसका उपयोग </0> <1> किसी भी वॉलेट </1> <2>, पर </2> <3> किसी भी डिवाइस </3> <4> से अपने फण्ड तक पहुंचने के लिए कर सकते हैं । लेकिन अगर आप अपना सीड खो देते हैं तो आप भी अपना IOTA खो देते हैं । </4> </0>",
         "keepSafe": "कृपया अपने सीड को सुरक्षित रखें",
         "hint": "<0><0>Hint:</0> Click NO if this is your first time using IOTA.</0>"
@@ -592,36 +592,36 @@
         "key": "कुँजी",
         "twoFAEnabled": "2FA अब चालू है",
         "twoFAEnabledExplanation": "आपने सफलतापूर्वक 2FA प्रमाणीकरण चालू कर दिया है",
-        "twoFADisabled": "2FA is now disabled",
-        "twoFADisabledExplanation": "You have successfully disabled Two Factor Authentication.",
+        "twoFADisabled": "2FA अब चालू है",
+        "twoFADisabledExplanation": "आपने सफलतापूर्वक 2FA प्रमाणीकरण चालू कर दिया है",
         "enterCode": "अपने 2FA एप्लिकेशन से कोड दर्ज करें",
         "code": "कोड",
-        "twoFaToken": "2FA Token"
+        "twoFaToken": "2FA टोकन"
     },
     "chart": {
         "mcap": "MCAP",
         "change": "बदलें",
         "volume": "वॉल्यूम (24 घ)",
-        "currentValue": "Current value"
+        "currentValue": "वर्तमान वैल्यू"
     },
     "rootDetection": {
         "warning": "चेतावनी!",
-        "appearsRooted": "Your device appears to be rooted.",
-        "securityRisk": "This can pose a significant risk to the security of your wallet.",
-        "continueDepsiteRisk": "Do you wish to continue despite this risk?"
+        "appearsRooted": "आपका डिवाइस निहित प्रतीत होता है ।",
+        "securityRisk": "यह अपने वॉलेट की सुरक्षा के लिए एक महत्वपूर्ण जोखिम पैदा कर सकते हैं ।",
+        "continueDepsiteRisk": "क्या आप इस जोखिम के बावजूद जारी रखना चाहते हैं?"
     },
     "pow": {
         "feeless": "IOTA में निशुल्क ट्रांजेक्शन भेजने के लिए काम का थोड़ा सा सबूत पूरा करना जरूरी होता है ।",
         "localOrRemote": "काम का सबूत या तो अपने डिवाइस पर स्थानीय रूप से पूरा किया जा सकता है, या एक नोड के लिए बिकवाली की ।",
         "local": "स्थानीय",
         "remote": "दूरस्थ",
-        "powUpdated": "Proof of work settings",
-        "powUpdatedExplanation": "Your proof of work configuration has been updated.",
-        "noWebGLSupport": "WebGL not supported",
-        "noWebGLSupportExplanation": "Your computer does not support WebGL. Please use remote PoW."
+        "powUpdated": "कार्य सेटिंग्स का प्रमाण",
+        "powUpdatedExplanation": "आपका कार्य कॉन्फ़िगरेशन का प्रमाण अपडेट किया गया है ।",
+        "noWebGLSupport": "WebGL सपोर्ट नहीं करता",
+        "noWebGLSupportExplanation": "आपका कंप्यूटर WebGL का सपोर्ट नहीं करता । कृपया दूरस्थ PoW का उपयोग करें ।"
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Auto-promotion settings",
+        "autoPromotionUpdated": "ऑटो प्रमोशन सेटिंग",
         "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
     },
     "progressSteps": {
@@ -660,7 +660,7 @@
         "newVersionAvailable": "नया संस्करण उपलब्ध है",
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
         "downloadRelease": "डाउनलोड रिलीज",
-        "skipUpdate": "Skip update"
+        "skipUpdate": "अपडेट को नज़रअंदाज़ करे"
     },
     "notificationLog": {
         "errorLog": "त्रुटि लॉग"
