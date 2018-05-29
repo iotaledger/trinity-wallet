@@ -105,7 +105,7 @@
         "promoted": "Transaction promue avec succès",
         "promotedExplanation": "Transaction avec le hash {{hash}} promue",
         "autopromotionError": "Impossible de promouvoir la transaction",
-        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
+        "autopromotionErrorExplanation": "Preuve de travail à distance non disponible sur le nœud sélectionné. Merci de changer de nœud.",
         "promotionError": "Impossible de promouvoir la transaction",
         "promotionErrorExplanation": "Une erreur est survenue pendant la promotion de votre transaction. Veuillez réessayer.",
         "noLongerValid": "Le paquet que vous essayez de promouvoir n'est plus valide",
@@ -348,7 +348,7 @@
         "sendMax": "ENVOYER LE MAX",
         "totalTime": "Temps total",
         "addressPasteDetected": "Adresse collée détectée",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
+        "addressPasteExplanation": "On dirait que vous êtes sur le point de coller une adresse. Assurez-vous que l’adresse collée corresponde à celle que vous voulez utiliser."
     },
     "setPassword": {
         "choosePassword": "Choisissez un nouveau mot de passe",
@@ -603,7 +603,7 @@
         "change": "Variation",
         "volume": "Volume (24h)",
         "currentValue": "Valeur actuelle",
-        "error": "Error fetching chart data"
+        "error": "Erreur de récupération données graphique"
     },
     "rootDetection": {
         "warning": "ATTENTION",
@@ -622,8 +622,8 @@
         "noWebGLSupportExplanation": "Votre ordinateur ne supporte pas WebGL. Veuillez utiliser la Preuve de Travail à distance."
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Auto-promotion settings",
-        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
+        "autoPromotionUpdated": "Paramètres de l’auto-promotion",
+        "autoPromotionUpdatedExplanation": "Votre configuration de la preuve de travail à été mise à jour."
     },
     "progressSteps": {
         "checkingNodeHealth": "Vérifier l'état du serveur",
