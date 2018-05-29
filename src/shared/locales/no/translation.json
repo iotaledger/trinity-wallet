@@ -603,7 +603,7 @@
         "change": "Endring",
         "volume": "Volum (24 timer)",
         "currentValue": "Nåværende verdi",
-        "error": "Error fetching chart data"
+        "error": "Feil under henting av henting diagramdata"
     },
     "rootDetection": {
         "warning": "ADVARSEL",
