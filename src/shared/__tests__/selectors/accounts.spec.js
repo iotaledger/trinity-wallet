@@ -12,6 +12,12 @@ import {
     getAddressesForSelectedAccount,
     getBalanceForSelectedAccount,
     getSelectedAccountName,
+    getSetupInfoFromAccounts,
+    getTasksFromAccounts,
+    getSetupInfoForSelectedAccount,
+    getTasksForSelectedAccount,
+    shouldTransitionForSnapshot,
+    hasDisplayedSnapshotTransitionGuide,
 } from '../../selectors/accounts';
 
 describe('selectors: accounts', () => {
@@ -390,6 +396,221 @@ describe('selectors: accounts', () => {
 
         it('should return account name for seed index', () => {
             expect(getSelectedAccountName(state)).to.equal('foo');
+        });
+    });
+
+    describe('#getSetupInfoFromAccounts', () => {
+        describe('when "setupInfo" prop is not defined as a nested prop under "accounts" reducer', () => {
+            it('should return an empty object', () => {
+                expect(getSetupInfoFromAccounts({ accounts: { foo: {} } })).to.eql({});
+            });
+        });
+
+        describe('when "setupInfo" prop is defined as a nested prop under "accounts" reducer', () => {
+            it('should return value for "setupInfo" prop', () => {
+                expect(getSetupInfoFromAccounts({ accounts: { setupInfo: { foo: {} } } })).to.eql({ foo: {} });
+            });
+        });
+    });
+
+    describe('#getTasksFromAccounts', () => {
+        describe('when "tasks" prop is not defined as a nested prop under "accounts" reducer', () => {
+            it('should return an empty object', () => {
+                expect(getTasksFromAccounts({ accounts: { foo: {} } })).to.eql({});
+            });
+        });
+
+        describe('when "tasks" prop is defined as a nested prop under "accounts" reducer', () => {
+            it('should return value for "tasks" prop', () => {
+                expect(getTasksFromAccounts({ accounts: { tasks: { foo: {} } } })).to.eql({ foo: {} });
+            });
+        });
+    });
+
+    describe('#getSetupInfoForSelectedAccount', () => {
+        describe('when account name is not defined as a nested prop under setupInfo object', () => {
+            it('should return an empty object', () => {
+                expect(
+                    getSetupInfoForSelectedAccount({
+                        accounts: {
+                            accountInfo: {},
+                            setupInfo: {
+                                foo: { prop: true },
+                            },
+                            accountNames: ['foo', 'baz'],
+                        },
+                        wallet: {
+                            seedIndex: 1,
+                        },
+                    }),
+                ).to.eql({});
+            });
+        });
+
+        describe('when account name is defined as a nested prop under setupInfo object', () => {
+            it('should return value for selected account', () => {
+                expect(
+                    getSetupInfoForSelectedAccount({
+                        accounts: {
+                            accountInfo: {},
+                            setupInfo: {
+                                foo: { prop: true },
+                            },
+                            accountNames: ['foo', 'baz'],
+                        },
+                        wallet: {
+                            seedIndex: 0,
+                        },
+                    }),
+                ).to.eql({ prop: true });
+            });
+        });
+    });
+
+    describe('#getTasksForSelectedAccount', () => {
+        describe('when account name is not defined as a nested prop under tasks object', () => {
+            it('should return an empty object', () => {
+                expect(
+                    getTasksForSelectedAccount({
+                        accounts: {
+                            accountInfo: {},
+                            tasks: {
+                                foo: { prop: true },
+                            },
+                            accountNames: ['foo', 'baz'],
+                        },
+                        wallet: {
+                            seedIndex: 1,
+                        },
+                    }),
+                ).to.eql({});
+            });
+        });
+
+        describe('when account name is defined as a nested prop under tasks object', () => {
+            it('should return value for selected account', () => {
+                expect(
+                    getTasksForSelectedAccount({
+                        accounts: {
+                            accountInfo: {},
+                            tasks: {
+                                foo: { prop: true },
+                            },
+                            accountNames: ['foo', 'baz'],
+                        },
+                        wallet: {
+                            seedIndex: 0,
+                        },
+                    }),
+                ).to.eql({ prop: true });
+            });
+        });
+    });
+
+    describe('#shouldTransitionForSnapshot', () => {
+        describe('when "usedExistingSeed" prop under "setupInfo" is false and balance is 0', () => {
+            it('should return false', () => {
+                expect(
+                    shouldTransitionForSnapshot({
+                        accounts: {
+                            accountInfo: {
+                                foo: { balance: 0 },
+                            },
+                            setupInfo: {
+                                foo: { usedExistingSeed: false },
+                            },
+                            accountNames: ['foo', 'baz'],
+                        },
+                        wallet: {
+                            seedIndex: 0,
+                        },
+                    }),
+                ).to.equal(false);
+            });
+        });
+
+        describe('when "usedExistingSeed" prop under "setupInfo" is true and balance is not 0', () => {
+            it('should return false', () => {
+                expect(
+                    shouldTransitionForSnapshot({
+                        accounts: {
+                            accountInfo: {
+                                foo: { balance: 1 },
+                            },
+                            setupInfo: {
+                                foo: { usedExistingSeed: true },
+                            },
+                            accountNames: ['foo', 'baz'],
+                        },
+                        wallet: {
+                            seedIndex: 0,
+                        },
+                    }),
+                ).to.equal(false);
+            });
+        });
+
+        describe('when "usedExistingSeed" prop under "setupInfo" is true and balance is 0', () => {
+            it('should return true', () => {
+                expect(
+                    shouldTransitionForSnapshot({
+                        accounts: {
+                            accountInfo: {
+                                foo: { balance: 0 },
+                            },
+                            setupInfo: {
+                                foo: { usedExistingSeed: true },
+                            },
+                            accountNames: ['foo', 'baz'],
+                        },
+                        wallet: {
+                            seedIndex: 0,
+                        },
+                    }),
+                ).to.equal(true);
+            });
+        });
+    });
+
+    describe('#hasDisplayedSnapshotTransitionGuide', () => {
+        describe('when "hasDisplayedTransitionGuide" prop under "tasks" is not defined', () => {
+            it('should return true', () => {
+                expect(
+                    hasDisplayedSnapshotTransitionGuide({
+                        accounts: {
+                            accountInfo: {},
+                            tasks: {
+                                foo: { unknownProp: false },
+                            },
+                            accountNames: ['foo', 'baz'],
+                        },
+                        wallet: {
+                            seedIndex: 0,
+                        },
+                    }),
+                ).to.equal(true);
+            });
+        });
+
+        describe('when "hasDisplayedTransitionGuide" prop under "tasks" is defined', () => {
+            it('should return value of "hasDisplayedTransitionGuide"', () => {
+                expect(
+                    hasDisplayedSnapshotTransitionGuide({
+                        accounts: {
+                            accountInfo: {},
+                            tasks: {
+                                // Set hasDisplayedTransitionGuide to string instead of boolean
+                                // to check for false positives
+                                foo: { hasDisplayedTransitionGuide: 'raw' },
+                            },
+                            accountNames: ['foo', 'baz'],
+                        },
+                        wallet: {
+                            seedIndex: 0,
+                        },
+                    }),
+                ).to.equal('raw');
+            });
         });
     });
 });

@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     textWrapper: {
         flex: 4,
         height: height / 15,
-        marginLeft: width / 35
+        marginLeft: width / 35,
     },
     innerWrapper: {
         flexDirection: 'row',
@@ -93,8 +93,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         width: width / 16,
-        height: width / 16
-    }
+        height: width / 16,
+    },
 });
 
 export default class TransactionRow extends PureComponent {
@@ -172,8 +172,18 @@ export default class TransactionRow extends PureComponent {
                             </View>
                         )}
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <View style={[ styles.iconContainer, style.rowBorderColor ]}>
-                                <Text style={[ styles.icon, { color: style.titleColor, paddingBottom: incoming ? isAndroid ? 0.5 : 1.5 : isAndroid ? 4 : 5.5 } ]}>{icon}</Text>
+                            <View style={[styles.iconContainer, style.rowBorderColor]}>
+                                <Text
+                                    style={[
+                                        styles.icon,
+                                        {
+                                            color: style.titleColor,
+                                            paddingBottom: incoming ? (isAndroid ? 0.5 : 1.5) : isAndroid ? 4 : 5.5,
+                                        },
+                                    ]}
+                                >
+                                    {icon}
+                                </Text>
                             </View>
                             <View style={styles.textWrapper}>
                                 <View style={styles.innerWrapper}>
@@ -182,13 +192,15 @@ export default class TransactionRow extends PureComponent {
                                             {bundleIsBeingPromoted ? 'RETRYING' : confirmation.toUpperCase()}
                                         </Text>
                                     </View>
-                                    <Text style={[styles.confirmationStatus, { color: style.titleColor } ]}>
+                                    <Text style={[styles.confirmationStatus, { color: style.titleColor }]}>
                                         {value} {unit}
                                     </Text>
                                 </View>
                                 <View style={styles.messageOuterWrapper}>
                                     <View style={styles.messageInnerWrapper}>
-                                        <Text style={[styles.messageTitle, style.rowTextColor]}>{t('send:message')}:</Text>
+                                        <Text style={[styles.messageTitle, style.rowTextColor]}>
+                                            {t('send:message')}:
+                                        </Text>
                                         <Text style={[styles.message, style.rowTextColor]} numberOfLines={1}>
                                             {message}
                                         </Text>

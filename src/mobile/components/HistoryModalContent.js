@@ -296,7 +296,7 @@ export default class HistoryModalContent extends PureComponent {
                                             {status} {value} {unit}
                                         </Text>
                                         <View style={styles.confirmationWrapper}>
-                                            <Text style={[styles.confirmation, { color: style.titleColor } ]}>
+                                            <Text style={[styles.confirmation, { color: style.titleColor }]}>
                                                 {confirmation}
                                             </Text>
                                             <Text style={[styles.timestamp, style.defaultTextColor]}>

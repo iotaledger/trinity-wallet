@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import isUndefined from 'lodash/isUndefined';
 import keys from 'lodash/keys';
 import pickBy from 'lodash/pickBy';
 import reduce from 'lodash/reduce';
@@ -201,30 +202,29 @@ export const getSelectedAccountName = createSelector(
 );
 
 /**
- *   Selects unconfirmedBundleTails prop from accounts reducer state object.
+ *   Selects getSetupInfoFromAccounts prop from accounts reducer state object.
  *   Uses getAccountFromState selector for slicing accounts state from the state object.
  *
- *   @method getUnconfirmedBundleTailsFromState
+ *   @method getSetupInfoFromAccounts
  *   @param {object} state
  *   @returns {object}
  **/
 export const getSetupInfoFromAccounts = createSelector(getAccountsFromState, (state) => state.setupInfo || {});
 
 /**
- *   Selects unconfirmedBundleTails prop from accounts reducer state object.
+ *   Selects getTasksFromAccounts prop from accounts reducer state object.
  *   Uses getAccountFromState selector for slicing accounts state from the state object.
  *
- *   @method getUnconfirmedBundleTailsFromState
+ *   @method getTasksFromAccounts
  *   @param {object} state
  *   @returns {object}
  **/
 export const getTasksFromAccounts = createSelector(getAccountsFromState, (state) => state.tasks || {});
 
 /**
- *   Selects unconfirmedBundleTails prop from accounts reducer state object.
- *   Uses getAccountFromState selector for slicing accounts state from the state object.
+ *   Selects tasks for selected account
  *
- *   @method getUnconfirmedBundleTailsFromState
+ *   @method getTasksForSelectedAccount
  *   @param {object} state
  *   @returns {object}
  **/
@@ -235,10 +235,9 @@ export const getTasksForSelectedAccount = createSelector(
 );
 
 /**
- *   Selects unconfirmedBundleTails prop from accounts reducer state object.
- *   Uses getAccountFromState selector for slicing accounts state from the state object.
+ *   Selects setupInfo for selected account
  *
- *   @method getUnconfirmedBundleTailsFromState
+ *   @method getSetupInfoForSelectedAccount
  *   @param {object} state
  *   @returns {object}
  **/
@@ -249,31 +248,29 @@ export const getSetupInfoForSelectedAccount = createSelector(
 );
 
 /**
- *   Selects account name for currently selected account.
+ *   Determines if snapshot transition info modal should be displayed
+ *   Criteria for determining that is if a user used existing seed i.e. not generated from Trinity
+ *   and the balance on the seed is zero.
  *
- *   @method getSelectedAccountName
+ *   @method shouldTransitionForSnapshot
  *   @param {object} state
  *   @returns {string}
  **/
 export const shouldTransitionForSnapshot = createSelector(
     getSetupInfoForSelectedAccount,
     getBalanceForSelectedAccount,
-    (setupInfo, balance) => {
-        console.log('Setup info', setupInfo);
-        console.log('Balance', balance);
-
-        return get(setupInfo, 'usedExistingSeed') && balance === 0;
-    },
+    (setupInfo, balance) => get(setupInfo, 'usedExistingSeed') && balance === 0,
 );
 
 /**
- *   Selects account name for currently selected account.
+ *   Determines if the snapshot transition modal guide should be displayed to the user.
  *
- *   @method getSelectedAccountName
+ *   @method hasDisplayedSnapshotTransitionGuide
  *   @param {object} state
  *   @returns {string}
  **/
-export const hasDisplayedSnapshotTransitionGuide = createSelector(
-    getTasksForSelectedAccount,
-    (tasks) => get(tasks, 'hasDisplayedTransitionGuide') || true,
-);
+export const hasDisplayedSnapshotTransitionGuide = createSelector(getTasksForSelectedAccount, (tasks) => {
+    const hasDisplayedTransitionGuide = get(tasks, 'hasDisplayedTransitionGuide');
+
+    return isUndefined(hasDisplayedTransitionGuide) ? true : hasDisplayedTransitionGuide;
+});
