@@ -623,10 +623,10 @@
     },
     "autoPromotion": {
         "autoPromotionUpdated": "ऑटो प्रमोशन सेटिंग",
-        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
+        "autoPromotionUpdatedExplanation": "आपका स्वत:-प्रचार कॉंफ़िगरेशन अपडेट कर दिया गया है ।"
     },
     "progressSteps": {
-        "checkingNodeHealth": "Checking node health",
+        "checkingNodeHealth": "नोड स्वास्थ्य जांच रहा है",
         "validatingReceiveAddress": "प्राप्त पता की जाँच कर रहे है",
         "syncingAccount": "खाता सिंकिंग",
         "preparingInputs": "इनपुट की तैयारी",
@@ -640,9 +640,9 @@
         "cannotCompleteTransitionExplanation": "इस प्रक्रिया को पूरा करने के लिए आपका बैलेंस 0 से अधिक होना चाहिए ।",
         "transitionComplete": "स्नैपशॉट पूर्ण",
         "transitionCompleteExplanation": "स्नैपशॉट सफलतापूर्वक पूर्ण हुआ ।",
-        "detectedBalance": "Detected balance: {{amount}} {{unit}}",
-        "isThisCorrect": "Is this correct?",
-        "snapshotExplanation": "Every so often, a snapshot is performed to prune the size of the Tangle.",
+        "detectedBalance": "शेष अमाउंट: {{amount}}{{unit}}",
+        "isThisCorrect": "क्या यह सही है?",
+        "snapshotExplanation": "टेंगल के साइज को छोटा करने के लिए एक स्नैपशॉट किया जाता है",
         "hasSnapshotTakenPlace": "Has a snapshot taken place? Press the button below to transition.",
         "transition": "Transition",
         "transitioning": "Transitioning for the snapshot.",
