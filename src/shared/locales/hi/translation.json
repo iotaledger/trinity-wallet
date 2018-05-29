@@ -134,8 +134,8 @@
         "nodeDuplicatedExplanation": "कस्टम नोड पहले से ही सूचीबद्ध है ।",
         "nodeAutoChanged": "स्वत:-स्विच नोड",
         "nodeAutoChangedExplanation": "नए नोड चुने, {{- nodeAddress}} चयनित नोड ऑफ़लाइन है ।",
-        "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer",
-        "masterKey": "Your IOTA seed is the master key to your funds.",
+        "fingerprintOnSend": "ट्रांसफर को प्रमाणित करने के लिए फ़िंगरप्रिंट रीडर स्पर्श करें",
+        "masterKey": "अपके IOTA सीड अपने फण्ड के लिए मुख्य कुंजी है ।",
         "seedThief": "If someone else has your seed they can steal your IOTA.",
         "googlePlayServicesNotAvailable": "Google Play Services not available",
         "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available.",
@@ -281,7 +281,7 @@
         "publicInsecure": "But printing on public wifi or a public printer is insecure.",
         "tapCheckboxes": "Please tap the checkboxes below to confirm.",
         "wifiCheckbox": "I will not print on public wifi",
-        "printerCheckbox": "I will not print on a public printer"
+        "printerCheckbox": "मैं किसी सार्वजनिक प्रिंटर पर प्रिंट नहीं करूंगा"
     },
     "receive": {
         "copyAddress": "पता कॉपी करें",
@@ -294,10 +294,10 @@
         "spent": "खर्च"
     },
     "saveYourSeed": {
-        "saveYourSeed": "Back up your seed",
+        "saveYourSeed": "अपने सीड का बैक अप लें",
         "seedCleared": "सीड हटाया गया",
-        "mostSecure": "Most Secure",
-        "leastSecure": "Least Secure",
+        "mostSecure": "सबसे सुरक्षित",
+        "leastSecure": "सबसे कम सुरक्षित",
         "paperWallet": "पेपर वॉलेट",
         "writeYourSeedDown": "सीड लिखें",
         "printYourSeed": "अपना सीड प्रिंट करें",
@@ -306,8 +306,8 @@
         "iHaveBackedUpMySeed": "मैंने अपना सीड सहेज लिया है",
         "letsWriteDownYourSeed": "अपने सीड लिख लेवे",
         "youCanHighlightCharacters": "आप एक बार में 9 वर्णों को हाइलाइट कर सकते हैं",
-        "printBlankWallet": "Print a blank wallet",
-        "whatIsCheksum": "Every seed has a corresponding 3 character checksum",
+        "printBlankWallet": "खाली वॉलेट प्रिंट करे",
+        "whatIsCheksum": "हर सीड एक के 3 वर्ण checksum है",
         "iHavesavedMySeed": "मैंने अपना सीड सहेज लिया है",
         "checksumExplanation": "Whenever you add a seed to your wallet, you should ensure that the wallet-generated checksum matches the one you have written down.",
         "mustSaveYourSeed": "<0> <0> आपको </0> <1> के साथ अपने सीड को नीचे सूचीबद्ध विकल्पों में से कम एक </1> <2> से बचाना होगा । </2> </0>"
@@ -561,21 +561,21 @@
     },
     "fingerprintSetup": {
         "instructionsEnable": "Touch fingerprint reader to enable fingerprint authentication",
-        "instructionsDisable": "Touch fingerprint reader to disable fingerprint authentication",
-        "fingerprintAuthEnabled": "Biometric authentication enabled",
-        "fingerprintAuthEnabledExplanation": "You have successfully enabled biometric authentication.",
-        "fingerprintAuthDisabled": "Biometric authentication disabled",
-        "fingerprintAuthDisabledExplanation": "You have successfully disabled biometric authentication.",
-        "fingerprintAuthFailed": "Biometric authentication failed",
+        "instructionsDisable": "फ़िंगरप्रिंट प्रमाणीकरण बंद करने के लिए अपने डिवाइस के फ़िंगरप्रिंट रीडर को स्पर्श करें.",
+        "fingerprintAuthEnabled": "फ़िंगरप्रिंट प्रमाणीकरण चालू किया गया",
+        "fingerprintAuthEnabledExplanation": "आपने सफलतापूर्वक फिंगरप्रिंट प्रमाणीकरण चालू कर दिया है",
+        "fingerprintAuthDisabled": "फ़िंगरप्रिंट प्रमाणीकरण बंद किया गया",
+        "fingerprintAuthDisabledExplanation": "आपने सफलतापूर्वक फिंगरप्रिंट प्रमाणीकरण बंद कर दिया है",
+        "fingerprintAuthFailed": "फ़िंगरप्रिंट प्रमाणीकरण असफल रहा",
         "fingerprintAuthFailedExplanation": "फ़िंगरप्रिंट प्रमाणन विफल हुआ । कृपया पुन: प्रयास करें ।",
         "status": "स्टेटस",
-        "fingerprintUnavailable": "Biometric authentication unavailable",
-        "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
+        "fingerprintUnavailable": "बायोमेट्रिक प्रमाणीकरण अनुपलब्ध",
+        "fingerprintUnavailableExplanation": "आपका डिवाइस बायोमेट्रिक प्रमाणीकरण का समर्थन नहीं करता है या यह डिवाइस सेटिंग्स में कॉंफ़िगर नहीं किया गया है ।",
         "buttonInstructionsDisable": "फ़िंगरप्रिंट प्रमाणीकरण को बंद करने के लिए नीचे बटन दबाएँ.",
         "buttonInstructionsEnable": "फ़िंगरप्रिंट प्रमाणीकरण को चालू करने के लिए नीचे बटन दबाएँ.",
-        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID.",
-        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID.",
-        "instructionsLogin": "Touch fingerprint reader to log in"
+        "buttonInstructionsDisableIPhoneX": "चेहरा आईडी को निष्क्रिय करने के लिए नीचे बटन दबाएँ.",
+        "buttonInstructionsEnableIPhoneX": "चेहरा आईडी सक्षम करने के लिए नीचे दिए गए बटन दबाएँ.",
+        "instructionsLogin": "लॉग इन करने के लिए फ़िंगरप्रिंट रीडर स्पर्श करें ।"
     },
     "transferConfirmation": {
         "youAreAbout": "आप पते पर {{contents}} भेजने वाले है",
@@ -602,7 +602,8 @@
         "mcap": "MCAP",
         "change": "बदलें",
         "volume": "वॉल्यूम (24 घ)",
-        "currentValue": "वर्तमान वैल्यू"
+        "currentValue": "वर्तमान वैल्यू",
+        "error": "Error fetching chart data"
     },
     "rootDetection": {
         "warning": "चेतावनी!",
