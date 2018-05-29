@@ -77,8 +77,7 @@
         "cannotPerformAction": "無法執行操作",
         "cannotPerformActionExplanation": "請到進階設定重置錢包。",
         "attachToTangleUnavailable": "遠端工作量證明無法使用",
-        "attachToTangleUnavailableExplanation":
-            "你選擇的節點無法作為遠端工作量證明所使用。您可以在進階設定中變更節點或是將工作量證明設定為本機。",
+        "attachToTangleUnavailableExplanation": "你選擇的節點無法作為遠端工作量證明所使用。您可以在進階設定中變更節點或是將工作量證明設定為本機。",
         "attachToTangleUnavailableExplanationShort": "您所選的節點無法作為遠端工作量證明所使用。",
         "wallet": "錢包",
         "sent": "已支出",
@@ -158,8 +157,7 @@
         "seedInvalidChars": "種子碼包含無效字元",
         "seedInvalidCharsExplanation": "種子碼只能由大寫A-Z字母和數字9組成。您的種子碼包含無效字元。請再試一次。",
         "seedTooShort": "種子碼過短",
-        "seedTooShortExplanation":
-            "種子碼必須是 {{maxLength}} 個字元，您的種子目前為 {{currentLength}} 個字元，請再試一次。",
+        "seedTooShortExplanation": "種子碼必須是 {{maxLength}} 個字元，您的種子目前為 {{currentLength}} 個字元，請再試一次。",
         "nameInUse": "帳戶名稱已使用",
         "nameInUseExplanation": "種子碼請使用獨特帳戶名稱",
         "enterAccountName": "輸入帳戶名稱",
@@ -225,10 +223,8 @@
         "invalidCharacters": "種子碼包含無效字元",
         "invalidCharactersExplanation": "種子碼只能由大寫 A-Z 字母和數字 9 組成，您的種子碼包含無效字元，請再試一次。",
         "seedTooShort": "種子碼過短",
-        "seedTooShortExplanation":
-            "您的密碼必須至少是 {{maxLength}} 個字元，目前為 {{currentLength}} 個字元長，請再試一次。",
-        "seedExplanation":
-            "種子碼應為 {{maxLength}} 個字元長並包含大寫字母 A-Z 或數字 9，您的種子碼不能長於 {{maxLength}} 個字元。",
+        "seedTooShortExplanation": "您的密碼必須至少是 {{maxLength}} 個字元，目前為 {{currentLength}} 個字元長，請再試一次。",
+        "seedExplanation": "種子碼應為 {{maxLength}} 個字元長並包含大寫字母 A-Z 或數字 9，您的種子碼不能長於 {{maxLength}} 個字元。",
         "neverShare": "千萬別和他人分享您的種子碼"
     },
     "home": {
@@ -357,8 +353,7 @@
     "setPassword": {
         "choosePassword": "選擇新的密碼",
         "passwordTooShort": "密碼過短",
-        "passwordTooShortExplanation":
-            "您的密碼必須至少為 {{minLength}} 個字元，目前為 {{currentLength}} 個字元長，請再試一次。",
+        "passwordTooShortExplanation": "您的密碼必須至少為 {{minLength}} 個字元，目前為 {{currentLength}} 個字元長，請再試一次。",
         "passwordMismatch": "密碼不符",
         "passwordMismatchExplanation": "您輸入的密碼不符，請再試一次。",
         "nowWeNeedTo": "現在我們需要設置密碼。",
@@ -445,8 +440,7 @@
         "seedExplanation": "IOTA 種子碼是由您帳戶的名稱和密碼結合成為 81 個字元長的字串。",
         "noIHaveOne": "不，我有一個",
         "yesINeedASeed": "是，我需要一個種子碼",
-        "explanation":
-            "<0><0>您可以用它來取得您的資金，這可以是</0><1>任何錢包</1><2>和</2><3>任何裝置</3><4>。但如果您遺失種子碼的話，就代表您損失您所有的 IOTA。</4></0>",
+        "explanation": "<0><0>您可以用它來取得您的資金，這可以是</0><1>任何錢包</1><2>和</2><3>任何裝置</3><4>。但如果您遺失種子碼的話，就代表您損失您所有的 IOTA。</4></0>",
         "keepSafe": "請妥善保存您的種子碼。",
         "hint": "<0><0>提示：</0> 如果這是您第一次使用 IOTA 請按「否」。</0>"
     },
@@ -527,8 +521,7 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "我為何無法支出所有餘額？",
-        "spentAddressExplanation":
-            "您有資金位於已支出的地址，在 IOTA 中重複使用地址是很危險的事情，所以本錢包會禁止您用相同的地址重複轉帳。",
+        "spentAddressExplanation": "您有資金位於已支出的地址，在 IOTA 中重複使用地址是很危險的事情，所以本錢包會禁止您用相同的地址重複轉帳。",
         "discordInformation": "請前往 Discord 頻道 #help 或 #zh 尋求協助。"
     },
     "deleteAccount": {
@@ -564,8 +557,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "此動作將無法復原。",
-        "warning":
-            "<0><0>所有的錢包資訊包含您的</0><1>種子碼、密碼</1><2>以及</2><3>其他帳戶訊息</3><4>都將遺失。</4></0>"
+        "warning": "<0><0>所有的錢包資訊包含您的</0><1>種子碼、密碼</1><2>以及</2><3>其他帳戶訊息</3><4>都將遺失。</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "觸摸指紋辨識器來啟用指紋驗證",
@@ -611,7 +603,7 @@
         "change": "變化率",
         "volume": "交易量 (24h)",
         "currentValue": "目前價值",
-        "error": "Error fetching chart data"
+        "error": "取得圖表資訊時出錯"
     },
     "rootDetection": {
         "warning": "警告！",
@@ -667,8 +659,7 @@
         "noUpdatesAvailable": "尚無更新",
         "noUpdatesAvailableExplanation": "您的 IOTA Trinity 桌面版錢包已經是最新版本！",
         "newVersionAvailable": "有新版本可用",
-        "newVersionAvailableExplanation":
-            "有新的 <strong>Trinity</strong> 版本 <strong>{{version}}</strong> 可以使用，請仔細閱讀詳細資料並驗證下載來源後再更新：",
+        "newVersionAvailableExplanation": "有新的 <strong>Trinity</strong> 版本 <strong>{{version}}</strong> 可以使用，請仔細閱讀詳細資料並驗證下載來源後再更新：",
         "downloadRelease": "下載更新版本",
         "skipUpdate": "跳過更新"
     },
