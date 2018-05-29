@@ -105,7 +105,7 @@
         "promoted": "Transazione promossa con successo",
         "promotedExplanation": "Transazione con hash {{hash}} promossa",
         "autopromotionError": "Non si è potuto promuovere la transazione",
-        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
+        "autopromotionErrorExplanation": "L'opzione prova di lavoro remota non è disponibile nel nodo che hai selezionato. Si prega di cambiare nodo ed abilitare l'auto promozione.",
         "promotionError": "Non si è potuto promuovere la transazione",
         "promotionErrorExplanation": "Qualcosa è andato storto nella promozione della transazione. Prova di nuovo.",
         "noLongerValid": "Il pacchetto che si sta tentando di promuovere non è più valido",
@@ -621,8 +621,8 @@
         "noWebGLSupportExplanation": "Il computer non supporta WebGL. Si prega di usare il proof-of-work remoto."
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Auto-promotion settings",
-        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
+        "autoPromotionUpdated": "Impostazioni auto promozione",
+        "autoPromotionUpdatedExplanation": "Configurazione auto promozione aggiornata."
     },
     "progressSteps": {
         "checkingNodeHealth": "Verifica dello stato del nodo",
