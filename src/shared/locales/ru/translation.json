@@ -105,7 +105,7 @@
         "promoted": "Продвижение транзакции прошло успешно",
         "promotedExplanation": "Продвинутая транзакция с хэшем {{hash}}",
         "autopromotionError": "Не удалось выполнить авто-продвижение транзакции",
-        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
+        "autopromotionErrorExplanation": "Удалённое проведение Proof of Work недоступно на выбранном Вами узле. Пожалуйста, смените узел и включите авто-продвижение.",
         "promotionError": "Не удалось продвинуть транзакцию",
         "promotionErrorExplanation": "Что-то пошло не так при отправке Вашего перевода. Пожалуйста, повторите попытку.",
         "noLongerValid": "Пакет, который вы пытаетесь содействовать, больше не действителен",
@@ -348,7 +348,7 @@
         "sendMax": "МАКС. ПЕРЕВОД",
         "totalTime": "Общее время",
         "addressPasteDetected": "Обнаружена вставка адреса",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
+        "addressPasteExplanation": "Похоже, что Вы вставили адрес. Убедитесь, что этот адрес соответствует тому, на который Вы хотите отправить."
     },
     "setPassword": {
         "choosePassword": "Задайте новый пароль",
@@ -602,7 +602,8 @@
         "mcap": "MCAP",
         "change": "Изменение",
         "volume": "Объем (24ч)",
-        "currentValue": "Текущее значение"
+        "currentValue": "Текущее значение",
+        "error": "Error fetching chart data"
     },
     "rootDetection": {
         "warning": "ВНИМАНИЕ",
@@ -621,8 +622,8 @@
         "noWebGLSupportExplanation": "Ваш компьютер не поддерживает WebGL. Пожалуйста, используйте удаленный PoW."
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Auto-promotion settings",
-        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
+        "autoPromotionUpdated": "Параметры авто-продвижения",
+        "autoPromotionUpdatedExplanation": "Ваша конфигурация авто-продвижения была обновлена."
     },
     "progressSteps": {
         "checkingNodeHealth": "Проверка состояния узла",

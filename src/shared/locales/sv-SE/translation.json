@@ -22,7 +22,7 @@
         "invalidResponseSendingTransfer": "Noden returnerade ett fel vid sändning av överföringen. Försök att ändra nod.",
         "nodeOutOfSync": "Nod osynkad",
         "nodeOutOfSyncExplanation": "Din valda nod är osynkad. Vänligen ändra nod eller försök igen.",
-        "thisNodeOutOfSync": "This node is out of sync. Please change node or try again.",
+        "thisNodeOutOfSync": "Din valda nod är osynkad. Vänligen ändra nod eller försök igen.",
         "seed": "Seed",
         "checksum": "Kontrollnummer",
         "back": "TILLBAKA",
@@ -40,12 +40,12 @@
         "continue": "Fortsätt",
         "enable": "Aktivera",
         "disable": "Avaktivera",
-        "enabled": "Enabled",
-        "disabled": "Disabled",
-        "manualCopy": "Write seed down",
-        "paperWallet": "Print paper copy",
-        "addToPasswordManager": "Add to password manager",
-        "shareSeed": "Share seed",
+        "enabled": "Aktiverad",
+        "disabled": "Avaktiverad",
+        "manualCopy": "Skriv ner din seed",
+        "paperWallet": "Skriv ut papperskopia",
+        "addToPasswordManager": "Lägg till i lösenordshanteraren",
+        "shareSeed": "Dela seed",
         "proceed": "Fortsätt",
         "qr": "QR",
         "notAvailable": "Denna funktion är inte tillgänglig",
@@ -63,7 +63,7 @@
         "yesLowerCase": "Ja",
         "noLowerCase": "Nej",
         "okay": "OKEJ",
-        "okayLowercase": "Okay",
+        "okayLowercase": "Okej",
         "password": "Lösenord",
         "passwordOrFingerprint": "Lösenord eller fingeravtryck",
         "unrecognisedPassword": "Fel lösenord",
@@ -95,7 +95,7 @@
         "pressBackAgain": "Tryck tillbaka igen för att stänga appen",
         "reattached": "Framgångsrik återfästning av transaktion",
         "reattachedExplanation": "Återfäste transaktion med hash {{hash}}",
-        "promotingTransaction": "Promoting transaction",
+        "promotingTransaction": "Befordrar transaktion",
         "autopromoting": "Auto-befordrar överföring",
         "autopromotingExplanation": "Befordrar transaktion med hashen {{hash}}",
         "rebroadcasted": "Framgångsrik återsändning av transaktion",
@@ -105,7 +105,7 @@
         "promoted": "Framgångsrik befordran av transaktion",
         "promotedExplanation": "Befordrade transaktion med hash {{hash}}",
         "autopromotionError": "Kunde inte befordra transaktionen automatiskt",
-        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
+        "autopromotionErrorExplanation": "Avlägsen PoW är inte tillgänglig på din valda nod. Vänligen byt nod och återaktivera automatisk befordran.",
         "promotionError": "Kunde inte befordra transaktionen",
         "promotionErrorExplanation": "Någonting gick fel under befordran av transaktionen. Vänligen försök igen.",
         "noLongerValid": "Bunten du försökte befordra är inte giltig längre",
@@ -148,10 +148,10 @@
         "androidCopyPasteWarning": "Kopiera/klistra aldrig din seed på en Android-enhet.",
         "willNotCopyPasteSeed": "Jag kommer inte kopiera/klistra min seed",
         "mustBeStoredAppropriately": "Den måste lagras på lämpligt sätt.",
-        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while",
-        "isYourBalanceCorrect": "Is your balance correct?",
-        "ifYourBalanceIsNotCorrect": "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
-        "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition."
+        "deviceMayBecomeUnresponsive": "Din enhet kan sluta reagera ett tag",
+        "isYourBalanceCorrect": "Stämmer ditt saldo?",
+        "ifYourBalanceIsNotCorrect": "Om ditt saldo inte är korrekt, är det troligt att du använder en seed från tidigare än snapshot.",
+        "headToAdvancedSettingsForTransition": "Gå till avancerade inställningar och utför en snapshot-övergång."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
@@ -348,7 +348,7 @@
         "sendMax": "SKICKA MAX",
         "totalTime": "Total tid",
         "addressPasteDetected": "Kopierad adress upptäckt",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
+        "addressPasteExplanation": "Det ser ut som att du har klistrat in en adress. Kontrollera att den inklistrade adressen matchar den som du vill skicka till."
     },
     "setPassword": {
         "choosePassword": "Välj ett nytt lösenord",
@@ -491,9 +491,9 @@
         "manualSync": "Synka manuellt",
         "snapshotTransition": "Snapshot-övergång",
         "pow": "PoW",
-        "autoPromotion": "Auto-promotion",
-        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
-        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
+        "autoPromotion": "Automatisk befordran",
+        "autoPromotionExplanation": "Automatisk befordran hjälper till att bekräfta dina transaktioner på Tangle. Aktivera den här inställningen om du har svårt att få dina transaktioner bekräftade.",
+        "autoPromotionPoW": "Automatisk befordran är endast tillgänglig på noder som stöder avlägsen PoW."
     },
     "advancedThemeCustomisation": {
         "background": "Bakgrund",
@@ -602,7 +602,8 @@
         "mcap": "MCAP",
         "change": "Ändring",
         "volume": "Volym (24h)",
-        "currentValue": "Nuvarande värde"
+        "currentValue": "Nuvarande värde",
+        "error": "Error fetching chart data"
     },
     "rootDetection": {
         "warning": "VARNING",
@@ -621,8 +622,8 @@
         "noWebGLSupportExplanation": "Din dator stöder inte WebGL. Använd avlägsen PoW."
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Auto-promotion settings",
-        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
+        "autoPromotionUpdated": "Automatisk befordran-inställningar",
+        "autoPromotionUpdatedExplanation": "Din automatisk befordran-konfiguration har blivit uppdaterad."
     },
     "progressSteps": {
         "checkingNodeHealth": "Kontrollera nodens hälsa",
@@ -667,10 +668,10 @@
     },
     "terms": {
         "termsAndConditions": "Villkor",
-        "accept": "I accept"
+        "accept": "Jag accepterar"
     },
     "privacyPolicy": {
-        "privacyPolicy": "Privacy Policy",
-        "agree": "I agree"
+        "privacyPolicy": "Integritetspolicy",
+        "agree": "Jag samtycker"
     }
 }
