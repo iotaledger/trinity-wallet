@@ -315,12 +315,12 @@
     "seedReentry": {
         "pleaseConfirmYourSeed": "कृपया अपने सीड की पुष्टि करें।",
         "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or the app.",
-        "enterYourSeed": "Enter your seed",
+        "enterYourSeed": "अपना सीड डालें",
         "incorrectSeed": "गलत सीड",
         "incorrectSeedExplanation": "आपके द्वारा दर्ज किया गया सीड गलत है । कृपया पुन: प्रयास करें ।",
         "thisIsACheck": "यह सुनिश्चित करने के लिए यह एक जांच है कि आपने अपना बीज सहेजा है",
         "ifYouHaveNotSaved": "यदि आप अपने सीड कहीं नहीं सहेजा है, कृपया वापस जाओ और सीड को सहेज लो।",
-        "enterSeedBelow": "Enter your newly created seed below to confirm you have backed it up correctly"
+        "enterSeedBelow": "आप इसे सही ढंग से बैकअप ले लिया है, इसकी पुष्टि करने के लिए नीचे अपने नए बनाए सीड दर्ज करें"
     },
     "send": {
         "invalidAddress": "अवैध पता",
@@ -339,7 +339,7 @@
         "invalidMessage": "अमान्य संदेश",
         "invalidMessageExplanation": "एड्रेस में अवैध वर्ण हैं।",
         "invalidMessageTooLong": "संदेश बहुत लंबा है",
-        "invalidMessageTooLongExplanation": "The message exceeds the max. amount of characters (1093).",
+        "invalidMessageTooLongExplanation": "मैसेज की लम्बाई अधिकतम मान्य (१०९३) से ज्यादा है |",
         "send": "भेजें",
         "invalidAmount": "गलत राशि दर्ज की गई",
         "invalidAmountExplanation": "कृपया कोई मान्य हस्तांतरण राशि दर्ज करें । यह इस पृष्ठ के तल पर IOTA इकाई विवरण देखने के लिए सहायक हो सकता है ।",
@@ -347,7 +347,7 @@
         "iotaUnits": "IOTA इकाइयों को समझाया गया है",
         "sendMax": "अधिकतम भेजें",
         "totalTime": "कुल समय",
-        "addressPasteDetected": "Address paste detected",
+        "addressPasteDetected": "एड्रेस पेस्ट डेटेक्टेड",
         "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
     },
     "setPassword": {
@@ -659,7 +659,7 @@
         "noUpdatesAvailable": "कोई अपडेट उपलब्ध नहीं",
         "noUpdatesAvailableExplanation": "आपको IOTA ट्रिनिटी डेस्कटॉप वॉलेट का नवीनतम संस्करण मिल गया है!",
         "newVersionAvailable": "नया संस्करण उपलब्ध है",
-        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
+        "newVersionAvailableExplanation": "एक नया <strong>ट्रिनिटी </strong><strong> {{version}}</strong> वर्जन उपलब्ध है । कृपया जारी विवरण को ध्यानपूर्वक पढ़ें और अपडेट करने से पहले डाउनलोड को सत्यापित करें:",
         "downloadRelease": "डाउनलोड रिलीज",
         "skipUpdate": "अपडेट को नज़रअंदाज़ करे"
     },
