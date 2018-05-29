@@ -150,7 +150,7 @@
         "mustBeStoredAppropriately": "Er muss in angemessener Weise gesichert werden.",
         "deviceMayBecomeUnresponsive": "Dein Gerät könnte für eine Weile nicht reagieren",
         "isYourBalanceCorrect": "Stimmt dein Guthaben?",
-        "ifYourBalanceIsNotCorrect": "Wenn dein Guthaben nicht stimmt, verwendest du wahrscheinlich einen Seed, der einen Snapshot-Übergang benötigt.",
+        "ifYourBalanceIsNotCorrect": "Wenn dein Guthaben nicht stimmt, verwendest du wahrscheinlich einen Seed, der eine Snapshot-Wiederherstellung benötigt.",
         "headToAdvancedSettingsForTransition": "Wechsle zu den erweitern Einstellungen und führe einen Snapshot-Übergang aus."
     },
     "addAdditionalSeed": {
@@ -643,7 +643,7 @@
         "isThisCorrect": "Ist das korrekt?",
         "snapshotExplanation": "In unregelmäßigen Abständen wird ein Snapshot durchgeführt, um die Größe vom Tangle zu reduzieren.",
         "hasSnapshotTakenPlace": "Falls ein Snapshot stattgefunden hat, kannst du hier deinen Kontostand wiederherstellen.",
-        "transition": "Übergang",
+        "transition": "Wiederherstellen",
         "transitioning": "Daten werden wiederhergestellt.",
         "generatingAndDetecting": "Adressen werden generiert und Kontostand wird erkannt.",
         "attaching": "Adressen werden dem Tangle angehängt."
