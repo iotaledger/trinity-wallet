@@ -456,6 +456,10 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 transferInputs = get(inputs, 'inputs');
 
                 return getAddressesUptoRemainder(accountState.addresses, seed, genFn, [
+                    // Make sure inputs are blacklisted
+                    ...map(transferInputs, (input) => input.address),
+                    // When sending to one of own addresses
+                    // Make sure receive address is also blacklisted
                     iota.utils.noChecksum(receiveAddress),
                 ]);
             })
