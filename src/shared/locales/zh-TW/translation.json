@@ -602,7 +602,8 @@
         "mcap": "總市值",
         "change": "變化率",
         "volume": "交易量 (24h)",
-        "currentValue": "目前價值"
+        "currentValue": "目前價值",
+        "error": "Error fetching chart data"
     },
     "rootDetection": {
         "warning": "警告！",
