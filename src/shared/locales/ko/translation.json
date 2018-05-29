@@ -602,7 +602,8 @@
         "mcap": "시가총액",
         "change": "전일대비",
         "volume": "거래량 (24시간)",
-        "currentValue": "현재 호가"
+        "currentValue": "현재 호가",
+        "error": "Error fetching chart data"
     },
     "rootDetection": {
         "warning": "경고",
