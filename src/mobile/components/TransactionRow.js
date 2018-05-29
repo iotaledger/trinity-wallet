@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     textWrapper: {
         flex: 4,
         height: height / 15,
-        marginLeft: width / 35
+        marginLeft: width / 35,
     },
     innerWrapper: {
         flexDirection: 'row',
@@ -93,8 +93,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         width: width / 16,
-        height: width / 16
-    }
+        height: width / 16,
+    },
 });
 
 export default class TransactionRow extends PureComponent {
@@ -136,18 +136,7 @@ export default class TransactionRow extends PureComponent {
     };
 
     render() {
-        const {
-            icon,
-            confirmation,
-            value,
-            unit,
-            time,
-            message,
-            t,
-            style,
-            onPress,
-            bundleIsBeingPromoted,
-        } = this.props;
+        const { icon, confirmation, value, unit, time, message, t, style, onPress, bundleIsBeingPromoted } = this.props;
 
         return (
             <TouchableOpacity onPress={() => onPress(this.props)}>
@@ -170,8 +159,13 @@ export default class TransactionRow extends PureComponent {
                         )}
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                                <Icon name={icon} size={width / 11} color={style.titleColor} iconStyle={{ position: 'absolute' }} />
-                                <View style={[ styles.iconContainer, style.rowBorderColor, { position: 'absolute' } ]}/>
+                                <Icon
+                                    name={icon}
+                                    size={width / 11}
+                                    color={style.titleColor}
+                                    iconStyle={{ position: 'absolute' }}
+                                />
+                                <View style={[styles.iconContainer, style.rowBorderColor, { position: 'absolute' }]} />
                             </View>
                             <View style={styles.textWrapper}>
                                 <View style={styles.innerWrapper}>
@@ -180,13 +174,15 @@ export default class TransactionRow extends PureComponent {
                                             {bundleIsBeingPromoted ? 'RETRYING' : confirmation.toUpperCase()}
                                         </Text>
                                     </View>
-                                    <Text style={[styles.confirmationStatus, { color: style.titleColor } ]}>
+                                    <Text style={[styles.confirmationStatus, { color: style.titleColor }]}>
                                         {value} {unit}
                                     </Text>
                                 </View>
                                 <View style={styles.messageOuterWrapper}>
                                     <View style={styles.messageInnerWrapper}>
-                                        <Text style={[styles.messageTitle, style.rowTextColor]}>{t('send:message')}:</Text>
+                                        <Text style={[styles.messageTitle, style.rowTextColor]}>
+                                            {t('send:message')}:
+                                        </Text>
                                         <Text style={[styles.message, style.rowTextColor]} numberOfLines={1}>
                                             {message}
                                         </Text>

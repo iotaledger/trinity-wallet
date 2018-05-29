@@ -52,7 +52,7 @@ export const acceptTerms = () => ({
 });
 
 export const acceptPrivacy = () => ({
-  type: ActionTypes.ACCEPT_PRIVACY,
+    type: ActionTypes.ACCEPT_PRIVACY,
 });
 
 const currencyDataFetchRequest = () => ({
@@ -320,27 +320,27 @@ export function changePowSettings() {
 export function changeAutoPromotionSettings() {
     return (dispatch, getState) => {
         const settings = getState().settings;
-        if (!settings.autoPromotion){
-              checkAttachToTangleAsync(settings.node).then((res) => {
-                  if (res.error.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
-                      return dispatch(
-                          generateAlert(
-                              'error',
-                              i18next.t('global:attachToTangleUnavailable'),
-                              i18next.t('global:attachToTangleUnavailableExplanationShort'),
-                              10000,
-                          ),
-                      );
-                  }
-                  dispatch(setAutoPromotion(!settings.autoPromotion));
-                  dispatch(
-                      generateAlert(
-                          'success',
-                          i18next.t('autoPromotion:autoPromotionUpdated'),
-                          i18next.t('autoPromotion:autoPromotionUpdatedExplanation'),
-                      ),
-                  );
-              });
+        if (!settings.autoPromotion) {
+            checkAttachToTangleAsync(settings.node).then((res) => {
+                if (res.error.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
+                    return dispatch(
+                        generateAlert(
+                            'error',
+                            i18next.t('global:attachToTangleUnavailable'),
+                            i18next.t('global:attachToTangleUnavailableExplanationShort'),
+                            10000,
+                        ),
+                    );
+                }
+                dispatch(setAutoPromotion(!settings.autoPromotion));
+                dispatch(
+                    generateAlert(
+                        'success',
+                        i18next.t('autoPromotion:autoPromotionUpdated'),
+                        i18next.t('autoPromotion:autoPromotionUpdatedExplanation'),
+                    ),
+                );
+            });
         } else {
             dispatch(setAutoPromotion(!settings.autoPromotion));
             dispatch(
