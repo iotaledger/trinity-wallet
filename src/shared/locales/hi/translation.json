@@ -236,7 +236,7 @@
     },
     "languageSetup": {
         "language": "भाषा ",
-        "letsGetStarted": "Let's get started"
+        "letsGetStarted": "आओ शुरू करें"
     },
     "login": {
         "emptyPassword": "खाली पासवर्ड",
@@ -256,11 +256,11 @@
         "takingAWhile": "कुछ समय ले सकता है"
     },
     "newSeedSetup": {
-        "generatedSeed": "Generated seed",
+        "generatedSeed": "सीड बनाये",
         "seedNotGenerated": "सीड जेनेरेट नहीं हुआ है",
         "seedNotGeneratedExplanation": "कृपया एक नया सीड जेनेरेट करें ।",
-        "pressForNewSeed": "Press for New Seed",
-        "generateSuccess": "Seed generated successfully",
+        "pressForNewSeed": "नए सीड के लिए प्रेस के लिए दबाये",
+        "generateSuccess": "सफलतापूर्वक नए सीड बन गए",
         "individualLetters": "अलग अलग लेटर को दबाये, ताकि आपका सीड अद्वितीय बन सके",
         "individualLetterCount": "Press {{letterCount}} more individual letters to randomise them.",
         "whatIsASeed": "सीड क्या है?"
