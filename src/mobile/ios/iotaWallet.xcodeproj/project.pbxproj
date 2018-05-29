@@ -59,8 +59,8 @@
 		C51860C3A5258461508F6E3006EA337D /* Inconsolata-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA20221A44EBECD2DE04895A475187C4 /* Inconsolata-Bold.ttf */; };
 		C63F4449914D3D19E3C83C38F602BFB5 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F4F16E746AE853607E2E4D649F9E40 /* libRNDeviceInfo.a */; };
 		CA8AF202D45B7B9C48CB844FE4029B34 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38822DC4E60A1BDF9DF917E7C1541B3D /* libRCTLinking.a */; };
+		CB0E8B9C20BD9CF100A59C9F /* Icons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB0E8B9B20BD9CF100A59C9F /* Icons.ttf */; };
 		CB61A46620B89E3B004088AA /* SourceSansPro-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB61A46520B89E3A004088AA /* SourceSansPro-SemiBold.ttf */; };
-		CB66259D2084BF2A00651519 /* Icons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB66259C2084BF2A00651519 /* Icons.ttf */; };
 		CB6626F52085057F00651519 /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB6626F42085056C00651519 /* libSplashScreen.a */; };
 		CB866281209F36CA00C026E3 /* EntangledIOS.m in Sources */ = {isa = PBXBuildFile; fileRef = CB86627D209F36CA00C026E3 /* EntangledIOS.m */; };
 		CB98FB9420A0A5BB0047877B /* SourceSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB98FB9120A0A5BB0047877B /* SourceSansPro-Bold.ttf */; };
@@ -693,8 +693,8 @@
 		C76D226F8C33DAB67AA9C4D76FCA89C2 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		C883F8A0B4031CE53D5E48217339975E /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C989B5B2E21BB76597A51E0EFEA9B547 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CB0E8B9B20BD9CF100A59C9F /* Icons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Icons.ttf; path = ../../shared/icons/Icons.ttf; sourceTree = "<group>"; };
 		CB61A46520B89E3A004088AA /* SourceSansPro-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceSansPro-SemiBold.ttf"; path = "../../shared/custom-fonts/SourceSansPro-SemiBold.ttf"; sourceTree = "<group>"; };
-		CB66259C2084BF2A00651519 /* Icons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Icons.ttf; path = ../../shared/icons/Icons.ttf; sourceTree = "<group>"; };
 		CB6626ED2085056C00651519 /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
 		CB86627D209F36CA00C026E3 /* EntangledIOS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntangledIOS.m; sourceTree = "<group>"; };
 		CB86627F209F36CA00C026E3 /* EntangledIOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntangledIOS.h; sourceTree = "<group>"; };
@@ -903,6 +903,7 @@
 		3FA554CD0D5061D20FBDC112457CF26E = {
 			isa = PBXGroup;
 			children = (
+				CB0E8B9B20BD9CF100A59C9F /* Icons.ttf */,
 				CB61A46520B89E3A004088AA /* SourceSansPro-SemiBold.ttf */,
 				CB98FB9120A0A5BB0047877B /* SourceSansPro-Bold.ttf */,
 				CB98FB9320A0A5BB0047877B /* SourceSansPro-Light.ttf */,
@@ -917,7 +918,6 @@
 				3B537B39817BE965218CAE954AED9DE5 /* iotaWallet */,
 				E5A4C15555A5061D24DCE7B856718C84 /* iotaWalletTests */,
 				0615A4F7D0026D822A624F7C6A4761CD /* iotaWalletUITests */,
-				CB66259C2084BF2A00651519 /* Icons.ttf */,
 				AA20221A44EBECD2DE04895A475187C4 /* Inconsolata-Bold.ttf */,
 				60C4FCE77138FA022DBAD917D3C8B8C1 /* Inconsolata-Regular.ttf */,
 				D5D185367FBB3AAE41D341C7 /* Pods */,
@@ -2188,11 +2188,11 @@
 				54D44899635E65A34FCEAC3EA412BE26 /* Images.xcassets in Resources */,
 				C51860C3A5258461508F6E3006EA337D /* Inconsolata-Bold.ttf in Resources */,
 				5403F0AF99C33584CC25CA8D4422B333 /* Inconsolata-Regular.ttf in Resources */,
+				CB0E8B9C20BD9CF100A59C9F /* Icons.ttf in Resources */,
 				CB98FB9620A0A5BB0047877B /* SourceSansPro-Light.ttf in Resources */,
 				CB61A46620B89E3B004088AA /* SourceSansPro-SemiBold.ttf in Resources */,
 				D54A6C850FD7BE61FF81BD7F6E7F25A3 /* Info.plist in Resources */,
 				29169BFF0B0644DA1F501101B010A604 /* InfoPlist.strings in Resources */,
-				CB66259D2084BF2A00651519 /* Icons.ttf in Resources */,
 				29E9C75A4A87FFC827469A3CFB2D3C89 /* Launch Screen.storyboard in Resources */,
 				CB98FB9420A0A5BB0047877B /* SourceSansPro-Bold.ttf in Resources */,
 				CB98FB9520A0A5BB0047877B /* SourceSansPro-Regular.ttf in Resources */,
