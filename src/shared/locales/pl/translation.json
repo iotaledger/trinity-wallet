@@ -603,7 +603,7 @@
         "change": "Zmiana",
         "volume": "Wolumen (24h)",
         "currentValue": "Bieżąca wartość",
-        "error": "Error fetching chart data"
+        "error": "Błąd pobierania danych do wykresu"
     },
     "rootDetection": {
         "warning": "OSTRZEŻENIE",
