@@ -6,7 +6,7 @@ import { formatTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/
 import spinner from 'iota-wallet-shared-modules/animations/spinner.json';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
-import { isAndroid } from '../utils/device';
+import { Icon } from '../theme/icons';
 
 const styles = StyleSheet.create({
     container: {
@@ -129,8 +129,6 @@ export default class TransactionRow extends PureComponent {
         bundleIsBeingPromoted: PropTypes.bool.isRequired,
         /** Icon symbol */
         icon: PropTypes.string.isRequired,
-        /** Determines whether a transaction is incoming or outgoing */
-        incoming: PropTypes.bool.isRequired,
     };
 
     static defaultProps = {
@@ -138,26 +136,14 @@ export default class TransactionRow extends PureComponent {
     };
 
     render() {
-        const {
-            incoming,
-            icon,
-            confirmation,
-            value,
-            unit,
-            time,
-            message,
-            t,
-            style,
-            onPress,
-            bundleIsBeingPromoted,
-        } = this.props;
+        const { icon, confirmation, value, unit, time, message, t, style, onPress, bundleIsBeingPromoted } = this.props;
 
         return (
             <TouchableOpacity onPress={() => onPress(this.props)}>
                 <View style={styles.topWrapper}>
                     <View style={[styles.container, style.containerBackgroundColor]}>
                         {bundleIsBeingPromoted && (
-                            <View style={{ position: 'absolute', left: width / 3.4, top: height / 70 }}>
+                            <View style={{ position: 'absolute', left: width / 3.2, top: height / 70 }}>
                                 <LottieView
                                     source={spinner}
                                     style={styles.animation}
@@ -172,18 +158,14 @@ export default class TransactionRow extends PureComponent {
                             </View>
                         )}
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <View style={[styles.iconContainer, style.rowBorderColor]}>
-                                <Text
-                                    style={[
-                                        styles.icon,
-                                        {
-                                            color: style.titleColor,
-                                            paddingBottom: incoming ? (isAndroid ? 0.5 : 1.5) : isAndroid ? 4 : 5.5,
-                                        },
-                                    ]}
-                                >
-                                    {icon}
-                                </Text>
+                            <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                                <Icon
+                                    name={icon}
+                                    size={width / 11}
+                                    color={style.titleColor}
+                                    iconStyle={{ position: 'absolute' }}
+                                />
+                                <View style={[styles.iconContainer, style.rowBorderColor, { position: 'absolute' }]} />
                             </View>
                             <View style={styles.textWrapper}>
                                 <View style={styles.innerWrapper}>
