@@ -167,7 +167,7 @@ const mapStateToProps = (state) => ({
     alerts: state.alerts,
     isModalActive: state.ui.isModalActive,
     hasConnection: state.wallet.hasConnection,
-    theme: state.settings.theme
+    theme: state.settings.theme,
 });
 
 const mapDispatchToProps = { disposeOffAlert };

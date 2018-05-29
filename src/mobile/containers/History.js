@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        marginBottom: isAndroid ? 0 : height / 80
+        marginBottom: isAndroid ? 0 : height / 80,
     },
     listView: {
         height: height * 0.7,
@@ -247,7 +247,7 @@ class History extends Component {
                     this.props.toggleModalActivity();
                 },
                 style: {
-                    titleColor: persistence ? incoming ? primary.color : secondary.color : '#fc6e6d',
+                    titleColor: persistence ? (incoming ? primary.color : secondary.color) : '#fc6e6d',
                     containerBackgroundColor: { backgroundColor: dark.color },
                     defaultTextColor: { color: body.color },
                     rowTextColor: { color: dark.body },
