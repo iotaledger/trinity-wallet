@@ -128,7 +128,7 @@
         "addCustomNode": "Benutzerdefinierten Node hinzufügen",
         "nodeChanged": "Node gewechselt",
         "nodeChangedExplanation": "Der Node wurde erfolgreich gewechselt.",
-        "nodeMustUseHTTPS": "Ungültiger Node (fehlende Verschlüsselung)",
+        "nodeMustUseHTTPS": "Ungültiger Node (kein HTTPS)",
         "nodeMustUseHTTPSExplanation": "Benutzerdefinierte Nodes müssen eine Verschlüsselung verwenden (HTTPS).",
         "nodeDuplicated": "Doppelter Node",
         "nodeDuplicatedExplanation": "Dieser Node ist bereits vorhanden.",
