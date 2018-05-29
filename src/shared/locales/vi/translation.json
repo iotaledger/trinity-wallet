@@ -76,7 +76,7 @@
         "node": "Nút mạng",
         "cannotPerformAction": "Không thể thực hiện thao tác này",
         "cannotPerformActionExplanation": "Vào thiết lập nâng cao để cài lại ví điện tử.",
-        "attachToTangleUnavailable": "Remote Proof of Work is unavailable",
+        "attachToTangleUnavailable": "Không dùng được Proof of Work từ xa",
         "attachToTangleUnavailableExplanation": "Remote Proof of Work is not available on your selected node. Either change node or set Proof of Work to Local in Advanced Settings.",
         "attachToTangleUnavailableExplanationShort": "Remote Proof of Work is not available on your selected node.",
         "wallet": "Ví Điện Tử",
@@ -659,7 +659,7 @@
         "noUpdatesAvailable": "No updates available",
         "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
         "newVersionAvailable": "New version available",
-        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
+        "newVersionAvailableExplanation": "Phiên bản mới <strong>Trinity</strong> <strong>{{version}}</strong> đã có sẵn. Xin vui lòng đọc kĩ các chi tiết phát hành và xác minh mã nguồn tải về trước khi cập nhật:",
         "downloadRelease": "Download release",
         "skipUpdate": "Skip update"
     },
@@ -667,11 +667,11 @@
         "errorLog": "ERROR LOG"
     },
     "terms": {
-        "termsAndConditions": "Terms & Conditions",
-        "accept": "I accept"
+        "termsAndConditions": "Điều Khoản & Điều Kiện",
+        "accept": "Tôi chấp nhận"
     },
     "privacyPolicy": {
-        "privacyPolicy": "Privacy Policy",
-        "agree": "I agree"
+        "privacyPolicy": "Chính Sách Quyền Riêng Tư",
+        "agree": "Tôi đồng ý"
     }
 }
