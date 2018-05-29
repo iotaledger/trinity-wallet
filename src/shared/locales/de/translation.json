@@ -309,7 +309,7 @@
         "printBlankWallet": "Ein leeres Wallet drucken",
         "whatIsCheksum": "Jeder Seed hat eine dreistellige Prüfsumme",
         "iHavesavedMySeed": "Ich habe meinen Seed gesichert",
-        "checksumExplanation": "Überprüfe die automatisch generierte Prüfsumme jedes Mal wenn du einen Seed in Trinity hinzufügst.",
+        "checksumExplanation": "Bitte überprüfe jedes Mal wenn Du einen Seed dem Wallet hinzufügst, ob die automatisch generierte Prüfsumme mit jener übereinstimmt, die Du aufgeschrieben hast.",
         "mustSaveYourSeed": "<0><0>Du musst deinen Seed mit </0><1>mindestens einer</1><2> der unten aufgelisteten Optionen sichern.</2></0>"
     },
     "seedReentry": {
