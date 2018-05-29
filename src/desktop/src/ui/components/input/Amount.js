@@ -48,6 +48,11 @@ export default class AmountInput extends React.PureComponent {
 
     componentWillMount() {
         this.stateToProps(this.props);
+        // if (this.props.amount) {
+        //     this.setState({
+        //         value: this.props.amount
+        //     });
+        // }
     }
 
     componentWillReceiveProps(nextProps) {
@@ -115,7 +120,7 @@ export default class AmountInput extends React.PureComponent {
         if (this.state.iotas !== parseInt(props.amount)) {
             this.setState({
                 iotas: props.amount.length ? parseInt(props.amount) : 0,
-                value: props.amount.length ? round(parseInt(props.amount) / this.getUnitMultiplier()) : 0,
+                value: props.amount.length ? parseInt(props.amount) / this.getUnitMultiplier(this.state.unit) : 0,
             });
         }
     };
