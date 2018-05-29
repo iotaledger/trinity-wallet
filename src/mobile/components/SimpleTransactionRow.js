@@ -29,8 +29,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         width: width / 24,
-        height: width / 24
-    }
+        height: width / 24,
+    },
 });
 
 export default class SimpleTransactionRow extends PureComponent {
@@ -60,8 +60,18 @@ export default class SimpleTransactionRow extends PureComponent {
             <View style={styles.container}>
                 <View style={{ flex: 0.6, alignItems: 'flex-start' }}>
                     <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                        <Icon name={icon} size={width / 18} color={style.titleColor} iconStyle={{ position: 'absolute' }} />
-                        <View style={[ styles.iconContainer, { borderColor: style.defaultTextColor, position: 'absolute' } ]}/>
+                        <Icon
+                            name={icon}
+                            size={width / 18}
+                            color={style.titleColor}
+                            iconStyle={{ position: 'absolute' }}
+                        />
+                        <View
+                            style={[
+                                styles.iconContainer,
+                                { borderColor: style.defaultTextColor, position: 'absolute' },
+                            ]}
+                        />
                     </View>
                 </View>
                 <View style={{ flex: 3.2, alignItems: 'flex-start' }}>
@@ -70,7 +80,7 @@ export default class SimpleTransactionRow extends PureComponent {
                     </Text>
                 </View>
                 <View style={{ flex: 2, alignItems: 'flex-start' }}>
-                    <Text style={[styles.text, { color: style.defaultTextColor } ]}>{confirmationStatus}</Text>
+                    <Text style={[styles.text, { color: style.defaultTextColor }]}>{confirmationStatus}</Text>
                 </View>
                 <View style={{ flex: 2, alignItems: 'flex-end' }}>
                     <Text style={[styles.text, { color: style.titleColor }]}>

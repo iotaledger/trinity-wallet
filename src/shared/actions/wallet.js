@@ -83,6 +83,8 @@ export const setReady = () => ({
     payload: true,
 });
 
+// TODO: Change name to something like setSeedInfo
+// as payload now has other meta data
 export const setSeed = (payload) => ({
     type: ActionTypes.SET_SEED,
     payload,

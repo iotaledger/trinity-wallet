@@ -29,7 +29,7 @@ const updateAccountInfo = (state, payload) => ({
 });
 
 const updateAccountName = (state, payload) => {
-    const { accountInfo, accountNames, unconfirmedBundleTails } = state;
+    const { accountInfo, accountNames, unconfirmedBundleTails, setupInfo, tasks } = state;
 
     const { oldAccountName, newAccountName } = payload;
 
@@ -54,6 +54,8 @@ const updateAccountName = (state, payload) => {
 
     return {
         accountInfo: renameKeys(accountInfo, keyMap),
+        tasks: renameKeys(tasks, keyMap),
+        setupInfo: renameKeys(setupInfo, keyMap),
         accountNames: map(accountNames, updateName),
         unconfirmedBundleTails: transform(unconfirmedBundleTails, updateAccountInUnconfirmedBundleTails, {}),
     };
@@ -66,6 +68,8 @@ const account = (
         firstUse: true,
         onboardingComplete: false,
         accountInfo: {},
+        setupInfo: {},
+        tasks: {},
         unconfirmedBundleTails: {}, // Regardless of the selected account, this would hold all the unconfirmed transfers by bundles.
     },
     action,
@@ -95,6 +99,8 @@ const account = (
             return {
                 ...state,
                 accountInfo: omit(state.accountInfo, action.payload),
+                tasks: omit(state.tasks, action.payload),
+                setupInfo: omit(state.setupInfo, action.payload),
                 unconfirmedBundleTails: omitBy(state.unconfirmedBundleTails, (tailTransactions) =>
                     some(tailTransactions, (tx) => tx.account === action.payload),
                 ),
@@ -193,6 +199,33 @@ const account = (
                         balance: action.balance,
                         addresses: action.addresses,
                         transfers: state.accountInfo[action.accountName].transfers,
+                    },
+                },
+            };
+        case ActionTypes.SET_BASIC_ACCOUNT_INFO:
+            return {
+                ...state,
+                setupInfo: {
+                    ...state.setupInfo,
+                    [action.payload.accountName]: {
+                        usedExistingSeed: action.payload.usedExistingSeed,
+                    },
+                },
+                tasks: {
+                    ...state.tasks,
+                    [action.payload.accountName]: {
+                        hasDisplayedTransitionGuide: false, // Initialize with a default
+                    },
+                },
+            };
+        case ActionTypes.MARK_TASK_AS_DONE:
+            return {
+                ...state,
+                tasks: {
+                    ...state.tasks,
+                    [action.payload.accountName]: {
+                        ...get(state.tasks, `${action.payload.accountName}`),
+                        [action.payload.task]: true,
                     },
                 },
             };
