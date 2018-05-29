@@ -10,10 +10,10 @@
         "transferError": "送金エラー",
         "transferErrorMessage": "送金中に不具合が発生しました。もう一度やり直してください。",
         "transferSent": "送金完了",
-        "transferSentMessage": "送金情報がタングルに送られました。",
+        "transferSentMessage": "送金情報はタングルに送信されました。",
         "messageSent": "メッセージを送信",
         "messageSentMessage": "メッセージはタングルに送信されました。",
-        "keyReuse": "使用済みアドレスに送信しています。",
+        "keyReuse": "使用済みアドレスに送金しています。",
         "keyReuseError": "一度支払いに使われたアドレスに送金することはできません。",
         "invalidResponse": "ノードエラー",
         "invalidResponseExplanation": "ノードがエラーを返しました。 ノードを変更してみてください。",
@@ -21,7 +21,7 @@
         "invalidResponseFetchingAccount": "アカウント情報の取得中にノードがエラーを返しました。 ノードを変更してみてください。",
         "invalidResponseSendingTransfer": "送金中にノードがエラーを返しました。 ノードを変更してみてください。",
         "nodeOutOfSync": "ノードが同期していません。",
-        "nodeOutOfSyncExplanation": "現在選択しているノードが同期していません。ノードを変更するか、もう一度お試しください。",
+        "nodeOutOfSyncExplanation": "現在選択しているノードは同期していません。ノードを変更するか、もう一度お試しください。",
         "thisNodeOutOfSync": "このノードは同期していません。ノードを変更するか、もう一度お試しください。",
         "seed": "シード",
         "checksum": "チェックサム",
@@ -37,7 +37,7 @@
         "apply": "決定",
         "save": "保存",
         "close": "閉じる",
-        "continue": "次へ",
+        "continue": "続ける",
         "enable": "有効",
         "disable": "無効",
         "enabled": "有効",
@@ -77,15 +77,15 @@
         "cannotPerformAction": "操作を実行できません。",
         "cannotPerformActionExplanation": "ウォレットをリセットするには、詳細設定に進みます。",
         "attachToTangleUnavailable": "リモートのプルーフ・オブ・ワーク利用不可",
-        "attachToTangleUnavailableExplanation": "選択しているノードでリモートによるプルーフ・オブ・ワークが利用できません。ノードを変更するか、詳細設定でローカルによるプルーフ・オブ・ワークに切り替えてください。",
-        "attachToTangleUnavailableExplanationShort": "選択しているノードではリモートによるプルーフ・オブ・ワークが利用できません。",
+        "attachToTangleUnavailableExplanation": "現在選択しているノードではリモートによるプルーフ・オブ・ワークが利用できません。ノードを変更するか、詳細設定でローカルによるプルーフ・オブ・ワークに切り替えてください。",
+        "attachToTangleUnavailableExplanationShort": "現在選択しているノードではリモートによるプルーフ・オブ・ワークが利用できません。",
         "wallet": "ウォレット",
         "sent": "送金完了",
         "received": "受取完了",
         "sending": "送金中",
         "receiving": "受取中",
         "confirmed": "確定済み",
-        "pending": "保留中",
+        "pending": "未確定",
         "bundleHash": "バンドルのハッシュ値",
         "addresses": "アドレス",
         "reattach": "再添付",
@@ -105,7 +105,7 @@
         "promoted": "取引は正常に促進されました。",
         "promotedExplanation": "ハッシュ値{{hash}}の取引が促進されました。",
         "autopromotionError": "取引の自動促進ができませんでした。",
-        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
+        "autopromotionErrorExplanation": "現在選択しているノードではリモートによるプルーフ・オブ・ワークが利用できません。ノードを変更して自動促進を再度有効にしていください。",
         "promotionError": "取引を促進できませんでした。",
         "promotionErrorExplanation": "取引を促進中に不具合が発生しました。もう一度やり直してください。",
         "noLongerValid": "促進しようとしているバンドルは無効です。",
@@ -146,7 +146,7 @@
         "discordInformation": "同じアドレスから複数回送金するのは危険です。どうしたらいいのかはDiscordの#Japaneseチャンネルか#helpチャンネルにお尋ねください。",
         "androidInsecureClipboardWarning": "Androidは安全なクリップボードを提供していません。",
         "androidCopyPasteWarning": "絶対にシードをAndroidデバイス上でコピー&ペーストしないでください。",
-        "willNotCopyPasteSeed": "私はシードをコピー&ペーストしていません。",
+        "willNotCopyPasteSeed": "私はシードをコピー&ペーストしません。",
         "mustBeStoredAppropriately": "シードは適切に保管しなければなりません。",
         "deviceMayBecomeUnresponsive": "しばらくの間、お使いのデバイスが応答できなくなる恐れがあります",
         "isYourBalanceCorrect": "残高は正しいですか？",
@@ -314,7 +314,7 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "あなたのシードを確認してください。",
-        "trinityWillNeverAskToReenter": "Trinityウォレットは、ウォレットやアプリをリセットしない限り、決してこのシードの再入力を求めません。",
+        "trinityWillNeverAskToReenter": "Trinityウォレットは、ウォレットやアプリをリセットしない限り、決してシードの再入力を求めません。",
         "enterYourSeed": "シードを入力してください。",
         "incorrectSeed": "シードが違います。",
         "incorrectSeedExplanation": "入力したシードは正しくありません。もう一度やり直してください。",
@@ -348,7 +348,7 @@
         "sendMax": "全額送金",
         "totalTime": "合計時間",
         "addressPasteDetected": "アドレスのペーストを検出",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
+        "addressPasteExplanation": "アドレスをペーストしたようです。送金先のアドレスと一致することを確かめてください。"
     },
     "setPassword": {
         "choosePassword": "新しいパスワードを選択",
@@ -460,7 +460,7 @@
         "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。",
         "messageCopied": "メッセージをコピーしました。",
         "messageCopiedExplanation": "メッセージをクリップボードにコピーしました。",
-        "send": "送金.",
+        "send": "送金",
         "receive": "受取"
     },
     "accountManagement": {
@@ -565,7 +565,7 @@
         "fingerprintAuthEnabled": "生体認証を有効化",
         "fingerprintAuthEnabledExplanation": "生体認証を有効にしました。",
         "fingerprintAuthDisabled": "生体認証を無効化",
-        "fingerprintAuthDisabledExplanation": "生体認証の無効化に成功しました。",
+        "fingerprintAuthDisabledExplanation": "生体認証を無効にしました。",
         "fingerprintAuthFailed": "生体認証に失敗しました。",
         "fingerprintAuthFailedExplanation": "指紋認証に失敗しました。もう一度やり直してください。",
         "status": "ステータス",
@@ -592,8 +592,8 @@
         "key": "キー",
         "twoFAEnabled": "二要素認証が有効になりました。",
         "twoFAEnabledExplanation": "二要素認証を有効にしました。",
-        "twoFADisabled": "二要素認証が無効になりました。",
-        "twoFADisabledExplanation": "二要素認証の無効化に成功しました。",
+        "twoFADisabled": "二要素認証を無効化",
+        "twoFADisabledExplanation": "二要素認証を無効にしました。",
         "enterCode": "二要素認証アプリのコードを入力してください。",
         "code": "コード",
         "twoFaToken": "二要素認証トークン"
@@ -602,7 +602,8 @@
         "mcap": "時価総額",
         "change": "変化率",
         "volume": "取引量(24h)",
-        "currentValue": "現在の価格"
+        "currentValue": "現在の価格",
+        "error": "チャートのデータ取得エラー"
     },
     "rootDetection": {
         "warning": "警告",
@@ -621,8 +622,8 @@
         "noWebGLSupportExplanation": "お使いのコンピューターは WebGLをサポートしていません。リモートのプルーフ・オブ・ワークをご利用ください。"
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Auto-promotion settings",
-        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
+        "autoPromotionUpdated": "自動促進の設定",
+        "autoPromotionUpdatedExplanation": "自動促進の設定を更新しました。"
     },
     "progressSteps": {
         "checkingNodeHealth": "ノードの健全さをチェック中",

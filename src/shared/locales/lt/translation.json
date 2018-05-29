@@ -42,8 +42,8 @@
         "disable": "Išjungti",
         "enabled": "Įjungta",
         "disabled": "Išjungta",
-        "manualCopy": "Write seed down",
-        "paperWallet": "Print paper copy",
+        "manualCopy": "Nusirašykite užraktą",
+        "paperWallet": "Atspausdinti",
         "addToPasswordManager": "Pridėti į slaptažodžių tvarkyklę",
         "shareSeed": "Dalintis užraktu",
         "proceed": "Tęsti",
@@ -63,7 +63,7 @@
         "yesLowerCase": "Taip",
         "noLowerCase": "Ne",
         "okay": "GERAI",
-        "okayLowercase": "Okay",
+        "okayLowercase": "Gerai",
         "password": "Slaptažodis",
         "passwordOrFingerprint": "Slaptažodis arba piršto antspaudas",
         "unrecognisedPassword": "Slaptažodis neatpažintas",
@@ -105,7 +105,7 @@
         "promoted": "Pavedimas sėkmingai iškeltas",
         "promotedExplanation": "Pavedimas iškeltas su šifru {{hash}}",
         "autopromotionError": "Automatiškai iškelti pavedimo nepavyko",
-        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
+        "autopromotionErrorExplanation": "Nuotolinis Proof of Work negalimas su pasirinktu serveriu. Pakeiskite serverį ir iš naujo įjunkite automatinį iškėlimą.",
         "promotionError": "Pavedimo iškelti nepavyko",
         "promotionErrorExplanation": "Įvyko klaida iškeliant jūsų pavedimą. Bandykite dar kartą.",
         "noLongerValid": "Paketas, kurį norite iškelti yra nepasiekamas",
@@ -149,9 +149,9 @@
         "willNotCopyPasteSeed": "Aš nekopijuosiu/neįklijuosiu užrakto",
         "mustBeStoredAppropriately": "Jis privalo būti tinkamai laikomas.",
         "deviceMayBecomeUnresponsive": "Jūsų įrenginys kurį laiką gali neatsakyti į užklausas",
-        "isYourBalanceCorrect": "Is your balance correct?",
-        "ifYourBalanceIsNotCorrect": "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
-        "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition."
+        "isYourBalanceCorrect": "Ar jūsų balansas teisingas?",
+        "ifYourBalanceIsNotCorrect": "Jeigu jūsų balansas neteisingas, tikriausiai jūsų naudojamas užraktas nėra perkeltas įvykus viso tinklo duomenų perkėlimui.",
+        "headToAdvancedSettingsForTransition": "Eikite į išplėstinius parametrus ir atlikite tinklo duomenų perkėlimą."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Užraktas turi neleistinų simbolių",
@@ -348,7 +348,7 @@
         "sendMax": "SIŲSTI MAKS.",
         "totalTime": "Bendras laikas",
         "addressPasteDetected": "Aptiktas adreso įklijavimas",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
+        "addressPasteExplanation": "Atrodo, kad jūs įklijavote adresą. Įsitikinkite, kad adresas tikrai sutampa su gavėjo adresu."
     },
     "setPassword": {
         "choosePassword": "Sukurti naują slaptažodį",
@@ -602,7 +602,8 @@
         "mcap": "MCAP",
         "change": "Pokytis",
         "volume": "Apyvarta (24val.)",
-        "currentValue": "Dabartinė vertė"
+        "currentValue": "Dabartinė vertė",
+        "error": "Klaida užkraunant grafiko duomenis"
     },
     "rootDetection": {
         "warning": "PAVOJUS",
@@ -621,8 +622,8 @@
         "noWebGLSupportExplanation": "Jūsų kompiuteris nepalaiko WebGL. Prašome naudoti nuotolinį PoW."
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Auto-promotion settings",
-        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
+        "autoPromotionUpdated": "Automatinio iškėlimo nustatymai",
+        "autoPromotionUpdatedExplanation": "Jūsų automatinio iškėlimo konfigūracija atnaujinta."
     },
     "progressSteps": {
         "checkingNodeHealth": "Tikrinama serverio būklė",
