@@ -660,11 +660,11 @@
         "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
         "newVersionAvailable": "New version available",
         "newVersionAvailableExplanation": "Phiên bản mới <strong>Trinity</strong> <strong>{{version}}</strong> đã có sẵn. Xin vui lòng đọc kĩ các chi tiết phát hành và xác minh mã nguồn tải về trước khi cập nhật:",
-        "downloadRelease": "Download release",
-        "skipUpdate": "Skip update"
+        "downloadRelease": "Tải phiên bản",
+        "skipUpdate": "Bỏ qua cập nhật"
     },
     "notificationLog": {
-        "errorLog": "ERROR LOG"
+        "errorLog": "SỔ GHI LỖI"
     },
     "terms": {
         "termsAndConditions": "Điều Khoản & Điều Kiện",
