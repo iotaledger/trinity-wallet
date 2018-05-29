@@ -363,7 +363,7 @@
     },
     "setSeedName": {
         "letsAddName": "Nazwij swoje konto",
-        "canUseMultipleSeeds": "Możesz używać wielu kluczy seed w tym portfelu. Każdy jeden wymaga jednak osobnej nazwy konta.",
+        "canUseMultipleSeeds": "Możesz używać wielu kluczy seed w tym portfelu. Każdy wymaga jednak osobnej nazwy konta.",
         "youCanAdd": "Możesz dodać więcej kluczy seed w menu ustawień."
     },
     "modeSelection": {
@@ -521,7 +521,7 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Dlaczego nie mogę zużyć całego stanu mojego konta?",
-        "spentAddressExplanation": "Masz fundusze na jednym lub kilku zużytych adresach. Ponowne użycie adresów w IOTA jest niebezpieczne, więc portfel ten nie pozwala wysyłać z tego samego adresu więcej niż jeden raz.",
+        "spentAddressExplanation": "Posiadasz środki na jednym lub kilku zużytych adresach. Ponowne użycie adresów w IOTA jest niebezpieczne, więc portfel ten nie pozwala wysyłać z tego samego adresu więcej niż jeden raz.",
         "discordInformation": "Wejdź na kanał #help czatu Discord, aby dowiedzieć się, co możesz zrobić."
     },
     "deleteAccount": {
@@ -606,7 +606,7 @@
     },
     "rootDetection": {
         "warning": "OSTRZEŻENIE",
-        "appearsRooted": "Twoje urządzenie wydaje się być odblokowane (dostęp root).",
+        "appearsRooted": "Twoje urządzenie wygląda na odblokowane (dostęp root).",
         "securityRisk": "To może stanowić istotne zagrożenie dla bezpieczeństwa Twojego portfela.",
         "continueDepsiteRisk": "Czy chcesz kontynuować pomimo tego ryzyka?"
     },
