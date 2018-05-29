@@ -219,6 +219,7 @@ const styles = StyleSheet.create({
         fontFamily: 'SourceSansPro-Light',
         fontSize: GENERAL.fontSize3,
         paddingLeft: width / 20,
+        flex: 6,
     },
     modalCheckbox: {
         width: width / 20,
@@ -535,7 +536,7 @@ class PaperWallet extends Component {
                             <Text style={[styles.modalInfoTextBold, textColor, { paddingVertical: height / 30 }]}>
                                 {t('tapCheckboxes')}
                             </Text>
-                            <View style={{ alignItems: 'flex-start' }}>
+                            <View style={{ alignItems: 'space-between' }}>
                                 <TouchableOpacity
                                     style={[styles.modalCheckboxContainer, { paddingTop: height / 60 }]}
                                     onPress={() => this.onPublicWifiCheckboxPress()}
