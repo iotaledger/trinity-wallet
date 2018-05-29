@@ -18,12 +18,11 @@
         "invalidResponse": "노드 오류",
         "invalidResponseExplanation": "노드가 오류를 보냈습니다. 노드를 변경해 보세요.",
         "invalidResponsePollingExplanation": "노드에 연결하는 도중에 오류가 발생했습니다. 노드를 변경해 보세요.",
-        "invalidResponseFetchingAccount":
-            "계정 정보를 불러오는 도중에 노드에서 오류가 발생했습니다. 노드를 변경해 보세요.",
+        "invalidResponseFetchingAccount": "계정 정보를 불러오는 도중에 노드에서 오류가 발생했습니다. 노드를 변경해 보세요.",
         "invalidResponseSendingTransfer": "거래를 보내는 도중에 노드에서 오류가 발생했습니다. 노드를 변경해 보세요.",
         "nodeOutOfSync": "노드가 동기화되지 않음",
         "nodeOutOfSyncExplanation": "노드가 동기화되어있지 않습니다. 노드를 바꾸거나 다시 시도해보세요.",
-        "thisNodeOutOfSync": "This node is out of sync. Please change node or try again.",
+        "thisNodeOutOfSync": "노드가 동기화되어있지 않습니다. 노드를 바꾸거나 다시 시도해보세요.",
         "seed": "시드",
         "checksum": "체크섬",
         "back": "뒤로",
@@ -41,12 +40,12 @@
         "continue": "계속",
         "enable": "활성화",
         "disable": "비활성화",
-        "enabled": "Enabled",
-        "disabled": "Disabled",
-        "manualCopy": "Write seed down",
-        "paperWallet": "Print paper copy",
-        "addToPasswordManager": "Add to password manager",
-        "shareSeed": "Share seed",
+        "enabled": "활성화됨",
+        "disabled": "비활성화됨",
+        "manualCopy": "시드 기록하기",
+        "paperWallet": "종이에 인쇄하기",
+        "addToPasswordManager": "비밀번호 관리자에 입력하기",
+        "shareSeed": "시드 보내기",
         "proceed": "계속",
         "qr": "QR",
         "notAvailable": "현재 사용할 수 없는 기능",
@@ -64,7 +63,7 @@
         "yesLowerCase": "네",
         "noLowerCase": "아니오",
         "okay": "확인",
-        "okayLowercase": "Okay",
+        "okayLowercase": "확인",
         "password": "비밀번호",
         "passwordOrFingerprint": "비밀번호 또는 지문",
         "unrecognisedPassword": "잘못된 비밀번호",
@@ -78,8 +77,7 @@
         "cannotPerformAction": "작업을 수행할 수 없음",
         "cannotPerformActionExplanation": "고급 설정에서 지갑을 초기화하세요.",
         "attachToTangleUnavailable": "원격 작업증명을 사용할 수 없음",
-        "attachToTangleUnavailableExplanation":
-            "현재 선택한 노드에서는 원격 작업증명을 할 수 없습니다. 노드를 변경하거나 고급 설정에서 작업증명 주체를 기기로 변경하세요.",
+        "attachToTangleUnavailableExplanation": "현재 선택한 노드에서는 원격 작업증명을 할 수 없습니다. 노드를 변경하거나 고급 설정에서 작업증명 주체를 기기로 변경하세요.",
         "attachToTangleUnavailableExplanationShort": "현재 선택한 노드에서는 원격 작업증명을 할 수 없습니다.",
         "wallet": "지갑",
         "sent": "보냄",
@@ -97,7 +95,7 @@
         "pressBackAgain": "앱을 닫으려면 뒤로가기를 다시 누르세요.",
         "reattached": "트랜잭션이 다시 어태치됨",
         "reattachedExplanation": "다음의 트랜잭션 해시가 다시 어태치되었습니다: {{hash}}",
-        "promotingTransaction": "Promoting transaction",
+        "promotingTransaction": "트랜잭션 프로모트 중",
         "autopromoting": "거래 자동 프로모트 중",
         "autopromotingExplanation": "다음의 트랜잭션 해시를 프로모트합니다: {{hash}}",
         "rebroadcasted": "트랜잭션이 다시 송출됨",
@@ -106,9 +104,8 @@
         "rebroadcastErrorExplanation": "트랜잭션을 재송출하는 중에 오류가 발생했습니다. 다시 시도해 주세요.",
         "promoted": "트랜잭션이 프로모트됨",
         "promotedExplanation": "다음의 트랜잭션 해시가 프로모트되었습니다: {{hash}}",
-        "autopromotionError": "트랜잭션 자동 프로모션 사용 불가",
-        "autopromotionErrorExplanation":
-            "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
+        "autopromotionError": "트랜잭션 자동 프로모트 사용 불가",
+        "autopromotionErrorExplanation": "현재 선택한 노드에서는 원격 작업증명을 할 수 없습니다. 노드를 변경한 후 자동 프로모트를 다시 선택해 주세요.",
         "promotionError": "트랜잭션을 프로모트할 수 없음",
         "promotionErrorExplanation": "트랜잭션을 프로모트하는 중에 오류가 발생했습니다. 다시 시도해 주세요.",
         "noLongerValid": "프로모트하려는 번들이 더 이상 유효하지 않습니다.",
@@ -119,8 +116,7 @@
         "pleaseWait": "잠시 기다려 주세요",
         "pleaseWaitEllipses": "잠시 기다려 주세요...",
         "pleaseWaitExplanation": "트리니티가 다른 작업을 수행하는 중입니다. 잠시 후 다시 시도해 주세요.",
-        "pleaseWaitTransferExplanation":
-            "현재 잔액이 다른 거래에 사용되고 있습니다. 진행중인 거래가 승인된 후 다시 시도해 주세요.",
+        "pleaseWaitTransferExplanation": "현재 잔액이 다른 거래에 사용되고 있습니다. 진행중인 거래가 승인된 후 다시 시도해 주세요.",
         "pleaseWaitIncomingTransferExplanation": "아직 받는 중인 거래가 있습니다. 거래가 승인될 때까지 기다려 주세요.",
         "snapshotTransitionInProgress": "스냅샷 이전 진행 중",
         "snapshotTransitionInProgressExplanation": "스냅샷 이전 작업이 완료될 때까지 기다려 주세요.",
@@ -147,25 +143,21 @@
         "noNetworkConnection": "네트워크에 연결되지 않음",
         "noNetworkConnectionExplanation": "인터넷 연결이 오프라인 상태입니다.",
         "spentAddressExplanation": "경고: 이미 사용한 주소에 잔고가 있습니다",
-        "discordInformation":
-            "동일한 주소에서 한 번 이상 전송하는 행위는 위험합니다. 디스코드 #help 채널로 오셔서 대처 방안에 대해 알아보세요.",
+        "discordInformation": "동일한 주소에서 한 번 이상 전송하는 행위는 위험합니다. 디스코드 #help 채널로 오셔서 대처 방안에 대해 알아보세요.",
         "androidInsecureClipboardWarning": "안드로이드는 클립보드의 보안성이 떨어집니다.",
         "androidCopyPasteWarning": "안드로이드 기기에서는 시드를 클립보드에 복사하지 말아주세요.",
         "willNotCopyPasteSeed": "시드를 클립보드에 복사하지 않겠습니다",
         "mustBeStoredAppropriately": "안전하게 보관해 주세요.",
-        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while",
-        "isYourBalanceCorrect": "Is your balance correct?",
-        "ifYourBalanceIsNotCorrect":
-            "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
-        "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition."
+        "deviceMayBecomeUnresponsive": "기기가 잠시 느려질 수 있습니다",
+        "isYourBalanceCorrect": "이 잔액이 옳습니까?",
+        "ifYourBalanceIsNotCorrect": "잔액이 옳지 않다면 스냅샷 전의 시드를 사용중일 수 있습니다.",
+        "headToAdvancedSettingsForTransition": "고급 설정에서 스냅샷 이전을 수행해 주세요."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
-        "seedInvalidCharsExplanation":
-            "시드는 A부터 Z까지의 대문자와 숫자 9만 포함할 수 있습니다. 입력하신 시드에는 잘못된 문자가 포함되어 있습니다. 다시 시도해 주세요.",
+        "seedInvalidCharsExplanation": "시드는 A부터 Z까지의 대문자와 숫자 9만 포함할 수 있습니다. 입력하신 시드에는 잘못된 문자가 포함되어 있습니다. 다시 시도해 주세요.",
         "seedTooShort": "시드가 너무 짧음",
-        "seedTooShortExplanation":
-            "시드는 {{maxLength}}글자로 구성되어야 합니다. 입력하신 시드는 {{currentLength}}글자로 구성되어 있습니다. 다시 시도해 주세요.",
+        "seedTooShortExplanation": "시드는 {{maxLength}}글자로 구성되어야 합니다. 입력하신 시드는 {{currentLength}}글자로 구성되어 있습니다. 다시 시도해 주세요.",
         "nameInUse": "계정 이름 중복",
         "nameInUseExplanation": "계정 이름은 다른 시드와 중복되지 말아야 합니다.",
         "enterAccountName": "계정 이름을 입력해 주세요.",
@@ -187,15 +179,13 @@
         "passwordTooShort": "비밀번호가 너무 짧음",
         "passwordTooShortExplanation": "비밀번호는 최소 12글자로 구성되어야 합니다. 다시 시도해 주세요.",
         "oldPassword": "이전 비밀번호 재사용 불가",
-        "oldPasswordExplanation":
-            "이전 비밀번호를 새 비밀번호로 사용할 수 없습니다. 새로운 비밀번호로 다시 시도해 주세요.",
+        "oldPasswordExplanation": "이전 비밀번호를 새 비밀번호로 사용할 수 없습니다. 새로운 비밀번호로 다시 시도해 주세요.",
         "ensureStrongPassword": "최소 12글자로 구성된 비밀번호를 사용해 주세요.",
         "currentPassword": "현재 비밀번호",
         "newPassword": "새 비밀번호",
         "confirmPassword": "새 비밀번호 확인",
         "passwordTooWeak": "너무 약한 비밀번호",
-        "passwordTooWeakReason":
-            "비밀번호가 너무 약합니다. 여러 단어의 조합을 사용하고, 흔한 문장, 이름, 날짜 등은 피해 주세요.",
+        "passwordTooWeakReason": "비밀번호가 너무 약합니다. 여러 단어의 조합을 사용하고, 흔한 문장, 이름, 날짜 등은 피해 주세요.",
         "reasonRow": "연속되는 키의 입력은 추측하기 쉽습니다",
         "reasonPattern": "반복되는 짧은 패턴은 추측하기 쉽습니다",
         "reasonNames": "흔한 이름은 추측하기 쉽습니다",
@@ -226,20 +216,15 @@
         "passwordManagerCheckbox": "비밀번호 관리자에 시드를 저장하겠습니다.",
         "copy": "복사하기",
         "noPasswordManagers": "지원되는 비밀번호 관리자가 설치되어있지 않습니다",
-        "noPasswordManagersExplanation":
-            "기기에서 지원되는 비밀번호 관리자를 찾지 못했습니다. Keepass2Android를 설치해 주세요.",
-        "followTutorialToSecurelyShareSeed":
-            "시드를 비밀번호 관리자에 저장하시기 전에 아래의 안내문을 읽어보셔야 합니다."
+        "noPasswordManagersExplanation": "기기에서 지원되는 비밀번호 관리자를 찾지 못했습니다. Keepass2Android를 설치해 주세요.",
+        "followTutorialToSecurelyShareSeed": "시드를 비밀번호 관리자에 저장하시기 전에 아래의 안내문을 읽어보셔야 합니다."
     },
     "enterSeed": {
         "invalidCharacters": "시드에 잘못된 문자 포함됨",
-        "invalidCharactersExplanation":
-            "시드는 A부터 Z까지의 대문자와 숫자 9만 포함할 수 있습니다. 입력하신 시드에는 잘못된 문자가 포함되어 있습니다. 다시 시도해 주세요.",
+        "invalidCharactersExplanation": "시드는 A부터 Z까지의 대문자와 숫자 9만 포함할 수 있습니다. 입력하신 시드에는 잘못된 문자가 포함되어 있습니다. 다시 시도해 주세요.",
         "seedTooShort": "시드가 너무 짧음",
-        "seedTooShortExplanation":
-            "시드는 {{maxLength}}글자로 구성되어야 합니다. 입력하신 시드는 {{currentLength}}글자로 구성되어 있습니다. 다시 시도해 주세요.",
-        "seedExplanation":
-            "시드는 {{maxLength}}글자로 구성되며, A부터 Z까지의 대문자와 숫자 9만 포함할 수 있습니다. {{maxLength}}자보다 더 긴 시드는 사용할 수 없습니다.",
+        "seedTooShortExplanation": "시드는 {{maxLength}}글자로 구성되어야 합니다. 입력하신 시드는 {{currentLength}}글자로 구성되어 있습니다. 다시 시도해 주세요.",
+        "seedExplanation": "시드는 {{maxLength}}글자로 구성되며, A부터 Z까지의 대문자와 숫자 9만 포함할 수 있습니다. {{maxLength}}자보다 더 긴 시드는 사용할 수 없습니다.",
         "neverShare": "절대로 다른 사람에게 시드를 알려주지 마세요."
     },
     "home": {
@@ -283,7 +268,7 @@
     "onboardingComplete": {
         "allDone": "끝났습니다!",
         "openYourWallet": "내 지갑 열기",
-        "walletReady": "지갑 설정이 끝났고, 사용 가능합니다. 추후 변경 사항이 있다면 설정 메뉴를 확인하세요."
+        "walletReady": "지갑 설정이 완료되었습니다. 추후 변경 사항이 있다면 설정 메뉴를 확인하세요."
     },
     "paperWallet": {
         "clickToPrint": "아래 버튼을 누르면 시드를 프린터로 인쇄합니다.",
@@ -325,13 +310,11 @@
         "whatIsCheksum": "모든 시드에는 3글자로 구성된 체크섬이 존재합니다",
         "iHavesavedMySeed": "시드를 저장하였습니다",
         "checksumExplanation": "지갑에 시드를 추가할 때 보여지는 체크섬이 기록한 체크섬과 일치하는지를 확인해 주세요",
-        "mustSaveYourSeed":
-            "<0><0>반드시 아래 나열된 방법 중 </0><1>하나 이상</1><2>을 사용하여 시드를 기록해야 합니다.</2></0>"
+        "mustSaveYourSeed": "<0><0>반드시 아래 나열된 방법 중 </0><1>하나 이상</1><2>을 사용하여 시드를 기록해야 합니다.</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "시드를 확인해 주세요",
-        "trinityWillNeverAskToReenter":
-            "지갑이나 앱을 초기화하지 않았다면 트리니티는 절대로 시드 입력을 요구하지 않습니다.",
+        "trinityWillNeverAskToReenter": "지갑이나 앱을 초기화하지 않았다면 트리니티는 절대로 시드 입력을 요구하지 않습니다.",
         "enterYourSeed": "시드를 입력해 주세요",
         "incorrectSeed": "잘못된 시드",
         "incorrectSeedExplanation": "입력하신 시드가 잘못되었습니다. 다시 시도해 주세요.",
@@ -365,14 +348,12 @@
         "sendMax": "최대 금액",
         "totalTime": "총 소요시간",
         "addressPasteDetected": "주소 붙여넣기가 확인됨",
-        "addressPasteExplanation":
-            "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
+        "addressPasteExplanation": "받을 주소를 붙여넣은 것으로 보입니다. 붙여넣는 주소가 보내고자 하는 주소와 일치하는지 다시 한번 확인해 주세요."
     },
     "setPassword": {
         "choosePassword": "비밀번호 설정하기",
         "passwordTooShort": "비밀번호가 너무 짧음",
-        "passwordTooShortExplanation":
-            "비밀번호는 최소 {{minLength}}글자로 구성되어야 합니다. 입력하신 비밀번호는 {{currentLength}}글자로 구성되어 있습니다. 다시 시도해 주십시오.",
+        "passwordTooShortExplanation": "비밀번호는 최소 {{minLength}}글자로 구성되어야 합니다. 입력하신 비밀번호는 {{currentLength}}글자로 구성되어 있습니다. 다시 시도해 주십시오.",
         "passwordMismatch": "비밀번호가 일치하지 않음",
         "passwordMismatchExplanation": "비밀번호가 일치하지 않습니다. 다시 시도해 주세요.",
         "nowWeNeedTo": "이제 비밀번호를 설정해야 합니다.",
@@ -382,16 +363,14 @@
     },
     "setSeedName": {
         "letsAddName": "이름을 지정해 주세요",
-        "canUseMultipleSeeds":
-            "하나의 지갑에 여러 개의 시드를 등록하여 사용할 수 있습니다. 각각의 시드는 계정 이름이 필요합니다.",
+        "canUseMultipleSeeds": "하나의 지갑에 여러 개의 시드를 등록하여 사용할 수 있습니다. 각각의 시드는 계정 이름이 필요합니다.",
         "youCanAdd": "설정 메뉴에서 시드를 추가할 수 있습니다."
     },
     "modeSelection": {
         "expert": "전문가",
         "standard": "기본",
         "expertModeExplanation": "전문가 모드에서는 프로모트 및 다시 어태치를 직접 실행할 수 있습니다.",
-        "modesExplanation":
-            "전문가 모드는 탱글에 익숙한 사용자만 사용하시길 권장합니다. 탱글에 익숙하지 않으면 사용하기 어려울 수 있습니다."
+        "modesExplanation": "전문가 모드는 탱글에 익숙한 사용자만 사용하시길 권장합니다. 탱글에 익숙하지 않으면 사용하기 어려울 수 있습니다."
     },
     "settings": {
         "transferSending": "거래 전송중",
@@ -458,12 +437,10 @@
         "okay": "좋습니다. 이제 지갑을 만들어 봅시다!",
         "doYouAlreadyHaveASeed": "이미 사용하고자 하는 시드를 가지고 있습니까?",
         "doYouNeedASeed": "새 시드가 필요하신가요?",
-        "seedExplanation":
-            "IOTA의 시드는 81글자로 구성되며, 계정에 있어 아이디와 비밀번호를 합친 것과 같은 역할을 합니다.",
-        "noIHaveOne": "아니요, 이미 가지고 있습니다",
+        "seedExplanation": "IOTA의 시드는 81글자로 구성되며, 계정에 있어 아이디와 비밀번호를 합친 것과 같은 역할을 합니다.",
+        "noIHaveOne": "아니요, 이미 있습니다",
         "yesINeedASeed": "네, 시드가 필요합니다",
-        "explanation":
-            "<0><0>이 시드를 이용하여 </0><1>어느 지갑에서나</1><2>, </2><3>어느 기기에서나</3><4> 가지고 있는 자산에 접근할 수 있습니다. 그러나 이 시드를 잃어버릴 경우 이 시드에 담긴 IOTA 또한 잃게 됩니다.</4></0>",
+        "explanation": "<0><0>이 시드를 이용하여 </0><1>어느 지갑에서나</1><2>, </2><3>어느 기기에서나</3><4> 가지고 있는 자산에 접근할 수 있습니다. 그러나 이 시드를 잃어버릴 경우 이 시드에 담긴 IOTA 또한 잃게 됩니다.</4></0>",
         "keepSafe": "시드는 반드시 안전히 보관해야 합니다.",
         "hint": "<0><0>힌트:</0> IOTA를 처음 사용하신다면 \"아니오\"를 누르세요.</0>"
     },
@@ -474,8 +451,7 @@
     },
     "writeSeedDown": {
         "yourSeedIs": "시드는 {{maxSeedLength}}글자로 구성되며, 왼쪽에서 오른쪽으로 읽습니다.",
-        "writeDownYourSeed":
-            "<0>시드와 체크섬을 기록하고, 정확히 기록하였는지 최소 </0><1>세 번 이상 확인하세요.</1><2></2>"
+        "writeDownYourSeed": "<0>시드와 체크섬을 기록하고, 정확히 기록하였는지 최소 </0><1>세 번 이상 확인</1><2>하세요.</2>"
     },
     "history": {
         "bundleHashCopied": "번들 해시 복사함",
@@ -515,10 +491,9 @@
         "manualSync": "수동 동기화",
         "snapshotTransition": "스냅샷 이전",
         "pow": "작업증명",
-        "autoPromotion": "Auto-promotion",
-        "autoPromotionExplanation":
-            "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
-        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
+        "autoPromotion": "자동 프로모트",
+        "autoPromotionExplanation": "자동 프로모트를 사용하면 트랜잭션이 승인되는데에 도움이 됩니다. 트랜잭션이 잘 승인되지 않는다면 이 기능을 사용해 보세요.",
+        "autoPromotionPoW": "자동 프로모트는 원격 작업증명을 지원하는 노드에서만 사용 가능합니다."
     },
     "advancedThemeCustomisation": {
         "background": "배경",
@@ -546,8 +521,7 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "왜 거래에 잔고를 전부 사용할 수 없죠?",
-        "spentAddressExplanation":
-            "이미 사용한 하나 이상의 주소에 잔고가 있습니다. IOTA 상에서의 주소 재사용은 보안상 위험하므로, 지갑 차원에서 하나의 주소를 두 번 이상 사용하는 것을 금지하고 있습니다.",
+        "spentAddressExplanation": "이미 사용한 하나 이상의 주소에 잔고가 있습니다. IOTA 상에서의 주소 재사용은 보안상 위험하므로, 지갑 차원에서 하나의 주소를 두 번 이상 사용하는 것을 금지하고 있습니다.",
         "discordInformation": "IOTA 디스코드의 #help 채널을 통해 도움을 받을 수 있습니다."
     },
     "deleteAccount": {
@@ -578,8 +552,7 @@
         "didSaveSeed": "시드를 저장하셨나요?",
         "alreadyHave": "시드를 저장했습니다",
         "reenterSeed": "다음 단계에서 시드를 다시 입력하셔야 합니다.",
-        "reenterSeedWarning":
-            "기기가 고장났을 때 기존에 별도로 저장해 둔 시드가 없다면, 지갑에 저장한 IOTA를 모두 잃게 됩니다.",
+        "reenterSeedWarning": "기기가 고장났을 때 기존에 별도로 저장해 둔 시드가 없다면 지갑에 저장한 IOTA를 모두 잃게 됩니다.",
         "pleaseConfirm": "시드를 안전하게 저장하였는지 확인해 주세요."
     },
     "walletResetConfirmation": {
@@ -597,8 +570,7 @@
         "fingerprintAuthFailedExplanation": "지문 인증이 실패했습니다. 다시 시도해 주세요.",
         "status": "상태",
         "fingerprintUnavailable": "생체 인증을 사용할 수 없음",
-        "fingerprintUnavailableExplanation":
-            "본 기기는 생체 인증을 사용할 수 없거나, 사용하지 않도록 설정되어 있습니다.",
+        "fingerprintUnavailableExplanation": "본 기기는 생체 인증을 사용할 수 없거나 사용하지 않도록 설정되어 있습니다.",
         "buttonInstructionsDisable": "아래 버튼을 눌러 지문 인증을 비활성화할 수 있습니다.",
         "buttonInstructionsEnable": "아래 버튼을 눌러 지문 인증을 활성화할 수 있습니다.",
         "buttonInstructionsDisableIPhoneX": "아래 버튼을 눌러 Face ID를 비활성할 수 있습니다.",
@@ -630,7 +602,8 @@
         "mcap": "시가총액",
         "change": "전일대비",
         "volume": "거래량 (24시간)",
-        "currentValue": "현재 호가"
+        "currentValue": "현재 호가",
+        "error": "Error fetching chart data"
     },
     "rootDetection": {
         "warning": "경고",
@@ -649,8 +622,8 @@
         "noWebGLSupportExplanation": "사용하시는 컴퓨터는 WebGL을 지원하지 않습니다. 노드 작업증명을 사용해 주십시오."
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Auto-promotion settings",
-        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
+        "autoPromotionUpdated": "자동 프로모트 설정",
+        "autoPromotionUpdatedExplanation": "자동 프로모트 설정이 저장되었습니다."
     },
     "progressSteps": {
         "checkingNodeHealth": "노드 상태 확인중",
@@ -670,8 +643,7 @@
         "detectedBalance": "감지된 잔고: {{amount}} {{unit}}",
         "isThisCorrect": "정확합니까?",
         "snapshotExplanation": "탱글의 용량을 줄이기 위해 종종 스냅샷이 일어납니다.",
-        "hasSnapshotTakenPlace":
-            "최근에 스냅샷이 일어난 적이 있습니까? 그렇다면 아래 버튼을 눌러 이전을 시작할 수 있습니다.",
+        "hasSnapshotTakenPlace": "최근에 스냅샷이 일어난 적이 있습니까? 그렇다면 아래 버튼을 눌러 이전을 시작할 수 있습니다.",
         "transition": "이전",
         "transitioning": "스냅샷 이전 수행 중",
         "generatingAndDetecting": "주소를 생성하고 잔고를 찾는 중",
@@ -683,13 +655,11 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "업데이트를 받아오는 중 오류 발생",
-        "errorRetrievingUpdateDataExplanation":
-            "업데이트 데이터를 받아오는 중 오류가 발생하였습니다. 다시 시도해 주세요.",
+        "errorRetrievingUpdateDataExplanation": "업데이트 데이터를 받아오는 중 오류가 발생하였습니다. 다시 시도해 주세요.",
         "noUpdatesAvailable": "사용 가능한 업데이트 없음",
         "noUpdatesAvailableExplanation": "IOTA 트리니티 데스크탑 지갑의 최신 버전을 사용하고 있습니다!",
         "newVersionAvailable": "새 버전 이용 가능",
-        "newVersionAvailableExplanation":
-            "<strong>트리니티</strong> 버전 <strong>{{version}}</strong>을 사용할 수 있습니다. 업데이트를 하기 전에 내역을 자세히 읽고 다운로드 출처를 확인해 주십시오:",
+        "newVersionAvailableExplanation": "<strong>트리니티</strong> 버전 <strong>{{version}}</strong>을 사용할 수 있습니다. 업데이트를 하기 전에 내역을 자세히 읽고 다운로드 출처를 확인해 주십시오:",
         "downloadRelease": "새 버전 다운로드",
         "skipUpdate": "업데이트 건너뛰기"
     },
@@ -698,10 +668,10 @@
     },
     "terms": {
         "termsAndConditions": "이용 약관",
-        "accept": "I accept"
+        "accept": "동의합니다"
     },
     "privacyPolicy": {
-        "privacyPolicy": "Privacy Policy",
-        "agree": "I agree"
+        "privacyPolicy": "개인정보 정책",
+        "agree": "동의합니다"
     }
 }
