@@ -77,7 +77,7 @@
         "cannotPerformAction": "Impossible d’effectuer cette action",
         "cannotPerformActionExplanation": "Allez dans les réglages avancés pour réinitialiser le portefeuille.",
         "attachToTangleUnavailable": "Preuve du travail à distance non disponible",
-        "attachToTangleUnavailableExplanation": "Preuve du travail à distance non disponible sur le nœud sélectionné. Modifiez le nœud ou sélectionner \"PoW local\" dans les paramètres avancés.",
+        "attachToTangleUnavailableExplanation": "Preuve du travail à distance non disponible sur le serveur sélectionné. Modifiez le serveur ou sélectionnez Preuve de Travail en local dans les paramètres avancés.",
         "attachToTangleUnavailableExplanationShort": "Preuve de travail à distance non disponible sur le nœud sélectionné.",
         "wallet": "Portefeuille",
         "sent": "Envoyé",
@@ -144,7 +144,7 @@
         "noNetworkConnectionExplanation": "Votre connexion à internet semble être hors-ligne.",
         "spentAddressExplanation": "ATTENTION : Fonds sur des adresses déjà utilisées",
         "discordInformation": "Envoyer des fonds depuis une adresse déjà utilisée est dangereux. Merci de prendre contact avec le canal #help sur Discord pour savoir ce qu'il est possible de faire.",
-        "androidInsecureClipboardWarning": "Android ne fournit pas un presse-papiers sécurisé.",
+        "androidInsecureClipboardWarning": "Android ne fournit pas de presse-papier sécurisé.",
         "androidCopyPasteWarning": "Ne jamais copier/coller votre seed sur un appareil Android.",
         "willNotCopyPasteSeed": "Je ne copierai/collerai pas ma seed",
         "mustBeStoredAppropriately": "Elle doit être stockée correctement.",
@@ -314,13 +314,13 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Merci de confirmer votre seed",
-        "trinityWillNeverAskToReenter": "Trinity ne vous demandera jamais de réécrire votre seed à moins que vous réinitialisez votre portefeuille ou réinstallez l’application.",
+        "trinityWillNeverAskToReenter": "Trinity ne vous demandera jamais de réécrire votre seed, à moins que vous réinitialisez votre portefeuille ou réinstallez l’application.",
         "enterYourSeed": "Entrez votre seed",
         "incorrectSeed": "Seed incorrecte",
         "incorrectSeedExplanation": "La seed que vous avez saisie est incorrecte. Veuillez réessayer.",
         "thisIsACheck": "Il s’agit d’une vérification pour s’assurer que vous avez enregistré votre seed.",
         "ifYouHaveNotSaved": "Si vous n’avez pas enregistré votre seed, veuillez revenir en arrière et le faire.",
-        "enterSeedBelow": "Entrez votre seed nouvellement créé ci-dessous pour confirmer que vous l'avez sauvegardé correctement"
+        "enterSeedBelow": "Entrez votre seed nouvellement créé ci-dessous pour confirmer que vous l'avez sauvegardée correctement"
     },
     "send": {
         "invalidAddress": "Adresse invalide",
@@ -549,11 +549,11 @@
         "hideSeed": "Masquer la seed"
     },
     "saveSeedConfirmation": {
-        "didSaveSeed": "Avez vous enregistré votre seed ?",
+        "didSaveSeed": "Avez-vous enregistré votre seed ?",
         "alreadyHave": "J’ai enregistré ma seed",
         "reenterSeed": "À l’étape suivante, on vous demandera d’entrer de nouveau votre seed.",
         "reenterSeedWarning": "Si vous n’avez pas sauvegardé votre seed et que votre appareil tombe en panne, vous perdrez tous vos IOTA.",
-        "pleaseConfirm": "Veuillez confirmer que vous avez stocké en toute sécurité votre seed."
+        "pleaseConfirm": "Veuillez confirmer que vous avez stocké votre seed en toute sécurité."
     },
     "walletResetConfirmation": {
         "cannotUndo": "CETTE ACTION EST IRRÉVERSIBLE.",
