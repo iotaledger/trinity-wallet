@@ -6,7 +6,7 @@ import { formatTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/
 import spinner from 'iota-wallet-shared-modules/animations/spinner.json';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
-import { isAndroid } from '../utils/device';
+import { Icon } from '../theme/icons';
 
 const styles = StyleSheet.create({
     container: {
@@ -173,7 +173,7 @@ export default class TransactionRow extends PureComponent {
                         )}
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <View style={[ styles.iconContainer, style.rowBorderColor ]}>
-                                <Text style={[ styles.icon, { color: style.titleColor, paddingBottom: incoming ? isAndroid ? 0.5 : 1.5 : isAndroid ? 4 : 5.5 } ]}>{icon}</Text>
+                                <Icon name={icon} size={width / 20} color={style.titleColor} iconStyle={{ position: 'absolute' }} />
                             </View>
                             <View style={styles.textWrapper}>
                                 <View style={styles.innerWrapper}>
