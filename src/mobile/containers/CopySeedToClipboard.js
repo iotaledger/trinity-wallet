@@ -286,7 +286,7 @@ class CopySeedToClipboard extends Component {
                             Linking.openURL('https://gist.github.com/marcusjang/0491b719ace4b1875147568431b70ebd');
                         }}
                     >
-                        Using Trinity Wallet with Keepass2Android
+                        {t('global:usingTrinityWalletWithKeePass')}
                     </Text>
                 </Text>
                 <Text style={[styles.modalInfoTextBold, textColor, { paddingTop: height / 40 }]}>
