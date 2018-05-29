@@ -29,8 +29,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         width: width / 24,
-        height: width / 24
-    }
+        height: width / 24,
+    },
 });
 
 export default class SimpleTransactionRow extends PureComponent {
@@ -61,8 +61,19 @@ export default class SimpleTransactionRow extends PureComponent {
         return (
             <View style={styles.container}>
                 <View style={{ flex: 0.6, alignItems: 'flex-start' }}>
-                    <View style={[ styles.iconContainer, { borderColor: style.defaultTextColor } ]}>
-                        <Text style={[ styles.icon, { color: style.titleColor, marginBottom: incoming ? isAndroid ? 0 : 1 : isAndroid ? 2 : 2.5, marginLeft: incoming ? isAndroid ? 0 : 0.5 : 0 } ]}>{icon}</Text>
+                    <View style={[styles.iconContainer, { borderColor: style.defaultTextColor }]}>
+                        <Text
+                            style={[
+                                styles.icon,
+                                {
+                                    color: style.titleColor,
+                                    marginBottom: incoming ? (isAndroid ? 0 : 1) : isAndroid ? 2 : 2.5,
+                                    marginLeft: incoming ? (isAndroid ? 0 : 0.5) : 0,
+                                },
+                            ]}
+                        >
+                            {icon}
+                        </Text>
                     </View>
                 </View>
                 <View style={{ flex: 3.2, alignItems: 'flex-start' }}>
@@ -71,7 +82,7 @@ export default class SimpleTransactionRow extends PureComponent {
                     </Text>
                 </View>
                 <View style={{ flex: 2, alignItems: 'flex-start' }}>
-                    <Text style={[styles.text, { color: style.defaultTextColor } ]}>{confirmationStatus}</Text>
+                    <Text style={[styles.text, { color: style.defaultTextColor }]}>{confirmationStatus}</Text>
                 </View>
                 <View style={{ flex: 2, alignItems: 'flex-end' }}>
                     <Text style={[styles.text, { color: style.titleColor }]}>
