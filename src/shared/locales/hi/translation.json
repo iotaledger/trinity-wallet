@@ -643,21 +643,21 @@
         "detectedBalance": "शेष अमाउंट: {{amount}}{{unit}}",
         "isThisCorrect": "क्या यह सही है?",
         "snapshotExplanation": "टेंगल के साइज को छोटा करने के लिए एक स्नैपशॉट किया जाता है",
-        "hasSnapshotTakenPlace": "Has a snapshot taken place? Press the button below to transition.",
-        "transition": "Transition",
-        "transitioning": "Transitioning for the snapshot.",
-        "generatingAndDetecting": "Generating addresses and detecting balance.",
-        "attaching": "Attaching addresses to Tangle."
+        "hasSnapshotTakenPlace": "क्या स्नैपशॉट चालू हो गया है? ट्रांजीशन के लिए नीचे बटन दबाएं ।",
+        "transition": "ट्रांजीशन",
+        "transitioning": "स्नैपशॉट के लिए स्नैपशॉट ।",
+        "generatingAndDetecting": "बैलेंस चेक करने के साथ नया एड्रेस गेनेराते हो रहा है |",
+        "attaching": "एड्रेस को टैंगल से अटैच कर रहे है"
     },
     "deepLink": {
-        "autofill": "Autofill success",
-        "autofillExplanation": "Transaction data autofilled from link."
+        "autofill": "ऑटो फील सफल",
+        "autofillExplanation": "लिंक से लेनदेन डेटा का स्वत: भरण"
     },
     "updates": {
-        "errorRetrievingUpdateData": "Error retrieving update data",
-        "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
+        "errorRetrievingUpdateData": "अपडेट डेटा पुनर्प्राप्त करने में त्रुटि",
+        "errorRetrievingUpdateDataExplanation": "अपडेट डेटा पुनर्प्राप्त करने में कोई त्रुटि आई । कृपया पुन: प्रयास करें ।",
         "noUpdatesAvailable": "कोई अपडेट उपलब्ध नहीं",
-        "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
+        "noUpdatesAvailableExplanation": "आपको IOTA ट्रिनिटी डेस्कटॉप वॉलेट का नवीनतम संस्करण मिल गया है!",
         "newVersionAvailable": "नया संस्करण उपलब्ध है",
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
         "downloadRelease": "डाउनलोड रिलीज",
