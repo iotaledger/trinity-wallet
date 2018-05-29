@@ -602,7 +602,8 @@
         "mcap": "MCAP",
         "change": "Cambio",
         "volume": "Volume (24h)",
-        "currentValue": "Valore corrente"
+        "currentValue": "Valore corrente",
+        "error": "Error fetching chart data"
     },
     "rootDetection": {
         "warning": "ATTENZIONE",
