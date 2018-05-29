@@ -438,11 +438,11 @@
         "doYouAlreadyHaveASeed": "क्या आपके पास पहले से एक सीड है जिसे आप उपयोग करना चाहते हैं?",
         "doYouNeedASeed": "क्या आपको एक नया सीड बनाने की जरूरत है?",
         "seedExplanation": "IOTA सीड आपके खाते में यूज़रनेम और पासवर्ड की तरह है, जो 81 अक्षरों में से एक शब्द में मिला है।",
-        "noIHaveOne": "No, I have one",
+        "noIHaveOne": "नहीं, मेरे पास पहले से है",
         "yesINeedASeed": "हाँ, मुझे सीड की जरुरत है",
         "explanation": "<0> <0> आप इसका उपयोग </0> <1> किसी भी वॉलेट </1> <2>, पर </2> <3> किसी भी डिवाइस </3> <4> से अपने फण्ड तक पहुंचने के लिए कर सकते हैं । लेकिन अगर आप अपना सीड खो देते हैं तो आप भी अपना IOTA खो देते हैं । </4> </0>",
         "keepSafe": "कृपया अपने सीड को सुरक्षित रखें",
-        "hint": "<0><0>Hint:</0> Click NO if this is your first time using IOTA.</0>"
+        "hint": "<0> <0> संकेत: </0> क्लिक करें यदि यह आपकी पहली बार IOTA. </0> का उपयोग कर रहा है"
     },
     "welcome": {
         "thankYou": "वॉलेट डाउनलोड करने के लिए धन्यवाद",
@@ -458,8 +458,8 @@
         "bundleHashCopiedExplanation": "बंडल हैश को क्लिपबोर्ड पर कॉपी किया गया है ।",
         "addressCopied": "पता प्रतिलिपि बनाई गई",
         "addressCopiedExplanation": "पते की क्लिपबोर्ड पर कॉपी बनाई गई है ।",
-        "messageCopied": "Message copied",
-        "messageCopiedExplanation": "The message has been copied to the clipboard.",
+        "messageCopied": "संदेश की प्रतिलिपि बनाई गई",
+        "messageCopiedExplanation": "पते की क्लिपबोर्ड पर कॉपी बनाई गई है ।",
         "send": "भेजे",
         "receive": "प्राप्त करे"
     },
@@ -471,11 +471,11 @@
         "addNewAccount": "नया खाता जोड़ें"
     },
     "addCustomNode": {
-        "customNodeAdded": "Custom node added",
-        "customNodeCouldNotBeAdded": "Custom node could not be added",
-        "customNodeAddedSuccessfully": "The custom node has been added successfully.",
+        "customNodeAdded": "कस्टम नोड जोड़ा गया",
+        "customNodeCouldNotBeAdded": "कस्टम नोड जोड़ा नहीं जा सका",
+        "customNodeAddedSuccessfully": "कस्टम नोड सफलतापूर्वक जोड़ा गया है ।",
         "customNode": "कस्टम नोड",
-        "invalidNodeResponse": "The node returned an invalid response",
+        "invalidNodeResponse": "नोड ने कोई अमान्य प्रतिक्रिया दिया ।",
         "httpNodeError": "Trinity Mobile only supports https nodes.",
         "add": "जोड़ें",
         "nodeFieldEmpty": "यह फील्ड रिक्त है।",
