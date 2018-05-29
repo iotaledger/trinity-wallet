@@ -603,7 +603,7 @@
         "change": "Ändring",
         "volume": "Volym (24h)",
         "currentValue": "Nuvarande värde",
-        "error": "Error fetching chart data"
+        "error": "Fel vid hämtning av valutavärde"
     },
     "rootDetection": {
         "warning": "VARNING",
