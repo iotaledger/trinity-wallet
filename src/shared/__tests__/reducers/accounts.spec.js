@@ -11,6 +11,8 @@ describe('Reducer: accounts', () => {
                 firstUse: true,
                 onboardingComplete: false,
                 accountInfo: {},
+                setupInfo: {},
+                tasks: {},
                 unconfirmedBundleTails: {},
             };
 
@@ -97,6 +99,54 @@ describe('Reducer: accounts', () => {
             expect(newState.accountInfo).to.eql(expectedState.accountInfo);
         });
 
+        it('should update account name in "tasks" state prop', () => {
+            const initialState = {
+                tasks: {
+                    foo: {},
+                    baz: {},
+                },
+            };
+
+            const action = actions.changeAccountName({
+                oldAccountName: 'foo',
+                newAccountName: 'bar',
+            });
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                tasks: {
+                    bar: {},
+                    baz: {},
+                },
+            };
+
+            expect(newState.tasks).to.eql(expectedState.tasks);
+        });
+
+        it('should update account name in "setupInfo" state prop', () => {
+            const initialState = {
+                setupInfo: {
+                    foo: {},
+                    baz: {},
+                },
+            };
+
+            const action = actions.changeAccountName({
+                oldAccountName: 'foo',
+                newAccountName: 'bar',
+            });
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                setupInfo: {
+                    bar: {},
+                    baz: {},
+                },
+            };
+
+            expect(newState.setupInfo).to.eql(expectedState.setupInfo);
+        });
+
         it('should update account name in "accountNames" state prop', () => {
             const initialState = {
                 accountNames: ['foo', 'baz'],
@@ -156,6 +206,36 @@ describe('Reducer: accounts', () => {
             };
 
             expect(newState.accountInfo).to.eql(expectedState.accountInfo);
+        });
+
+        it('should omit payload prop from "tasks"', () => {
+            const initialState = {
+                tasks: { foo: {} },
+            };
+
+            const action = actions.removeAccount('foo');
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                tasks: {},
+            };
+
+            expect(newState.tasks).to.eql(expectedState.tasks);
+        });
+
+        it('should omit payload prop from "setupInfo"', () => {
+            const initialState = {
+                setupInfo: { foo: {} },
+            };
+
+            const action = actions.removeAccount('foo');
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                setupInfo: {},
+            };
+
+            expect(newState.setupInfo).to.eql(expectedState.setupInfo);
         });
 
         it('should remove payload from accountNames array', () => {
@@ -692,6 +772,73 @@ describe('Reducer: accounts', () => {
 
             expect(newState.accountNames).to.not.eql(['baz', 'foo']);
             expect(newState.accountNames).to.not.eql(expectedState.accountNames);
+        });
+    });
+
+    describe('IOTA/ACCOUNTS/SET_BASIC_ACCOUNT_INFO', () => {
+        it('should assign "accountName" to "setupInfo" prop in state', () => {
+            const initialState = {
+                setupInfo: {},
+            };
+
+            const action = {
+                type: 'IOTA/ACCOUNTS/SET_BASIC_ACCOUNT_INFO',
+                payload: { accountName: 'foo', usedExistingSeed: false },
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                setupInfo: { foo: { usedExistingSeed: false } },
+            };
+
+            expect(newState.setupInfo).to.eql(expectedState.setupInfo);
+        });
+
+        it('should assign "accountName" to "tasks" prop in state', () => {
+            const initialState = {
+                tasks: {},
+            };
+
+            const action = {
+                type: 'IOTA/ACCOUNTS/SET_BASIC_ACCOUNT_INFO',
+                payload: { accountName: 'foo' },
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                tasks: { foo: { hasDisplayedTransitionGuide: false } },
+            };
+
+            expect(newState.tasks).to.eql(expectedState.tasks);
+        });
+    });
+
+    describe('IOTA/ACCOUNTS/MARK_TASK_AS_DONE', () => {
+        it('should mark "task" in payload for "accountName" as true', () => {
+            const initialState = {
+                tasks: {
+                    foo: { taskOne: false, taskTwo: false },
+                    baz: { taskOne: false, taskTwo: true },
+                },
+            };
+
+            const action = {
+                type: 'IOTA/ACCOUNTS/MARK_TASK_AS_DONE',
+                payload: {
+                    accountName: 'foo',
+                    task: 'taskOne',
+                },
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                tasks: {
+                    foo: { taskOne: true, taskTwo: false },
+                    baz: { taskOne: false, taskTwo: true },
+                },
+            };
+
+            expect(newState).to.eql(expectedState);
         });
     });
 

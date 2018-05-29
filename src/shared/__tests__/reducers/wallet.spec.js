@@ -20,6 +20,7 @@ describe('Reducer: wallet', () => {
                 balanceCheckToggle: false,
                 deepLinkActive: false,
                 hasConnection: true,
+                usedExistingSeed: false,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
@@ -45,14 +46,14 @@ describe('Reducer: wallet', () => {
     });
 
     describe('IOTA/WALLET/SET_SEED', () => {
-        it('should assign payload to "seed" in state', () => {
+        it('should assign "seed" in payload to "seed" prop in state', () => {
             const initialState = {
                 seed: '',
             };
 
             const action = {
                 type: 'IOTA/WALLET/SET_SEED',
-                payload: '9'.repeat(81),
+                payload: { seed: '9'.repeat(81) },
             };
 
             const newState = reducer(initialState, action);
@@ -60,7 +61,25 @@ describe('Reducer: wallet', () => {
                 seed: '9'.repeat(81),
             };
 
-            expect(newState).to.eql(expectedState);
+            expect(newState.seed).to.eql(expectedState.seed);
+        });
+
+        it('should assign "usedExistingSeed" in payload to "usedExistingSeed" prop in state', () => {
+            const initialState = {
+                usedExistingSeed: true,
+            };
+
+            const action = {
+                type: 'IOTA/WALLET/SET_SEED',
+                payload: { usedExistingSeed: false },
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                usedExistingSeed: false,
+            };
+
+            expect(newState.usedExistingSeed).to.eql(expectedState.usedExistingSeed);
         });
     });
 
