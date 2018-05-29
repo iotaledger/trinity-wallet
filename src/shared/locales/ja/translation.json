@@ -603,7 +603,7 @@
         "change": "変化率",
         "volume": "取引量(24h)",
         "currentValue": "現在の価格",
-        "error": "Error fetching chart data"
+        "error": "チャートのデータ取得エラー"
     },
     "rootDetection": {
         "warning": "警告",
