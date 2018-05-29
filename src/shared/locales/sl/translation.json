@@ -18,7 +18,8 @@
         "invalidResponse": "Node error",
         "invalidResponseExplanation": "The node returned an error. Try changing node.",
         "invalidResponsePollingExplanation": "The node returned an error while polling. Try changing node.",
-        "invalidResponseFetchingAccount": "The node returned an error while fetching your account information. Try changing node.",
+        "invalidResponseFetchingAccount":
+            "The node returned an error while fetching your account information. Try changing node.",
         "invalidResponseSendingTransfer": "The node returned an error while sending the transfer. Try changing node.",
         "nodeOutOfSync": "Node out of sync",
         "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
@@ -77,7 +78,8 @@
         "cannotPerformAction": "Dejanja ni mogoče izvesti",
         "cannotPerformActionExplanation": "Pojdite v napredne nastavitve za ponastavitev denarnice.",
         "attachToTangleUnavailable": "Remote Proof of Work is unavailable",
-        "attachToTangleUnavailableExplanation": "Remote Proof of Work is not available on your selected node. Either change node or set Proof of Work to Local in Advanced Settings.",
+        "attachToTangleUnavailableExplanation":
+            "Remote Proof of Work is not available on your selected node. Either change node or set Proof of Work to Local in Advanced Settings.",
         "attachToTangleUnavailableExplanationShort": "Remote Proof of Work is not available on your selected node.",
         "wallet": "Denarnica",
         "sent": "Poslano",
@@ -105,7 +107,8 @@
         "promoted": "Successfully promoted transaction",
         "promotedExplanation": "Promoted transaction with hash {{hash}}",
         "autopromotionError": "Could not auto-promote transaction",
-        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
+        "autopromotionErrorExplanation":
+            "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
         "promotionError": "Could not promote transaction",
         "promotionErrorExplanation": "Something went wrong while promoting your transaction. Please try again.",
         "noLongerValid": "The bundle you are trying to promote is no longer valid",
@@ -116,8 +119,10 @@
         "pleaseWait": "Prosim, počakajte",
         "pleaseWaitEllipses": "Please wait...",
         "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
-        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again.",
-        "pleaseWaitIncomingTransferExplanation": "You have incoming transfers. Please wait for them to confirm before trying again.",
+        "pleaseWaitTransferExplanation":
+            "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again.",
+        "pleaseWaitIncomingTransferExplanation":
+            "You have incoming transfers. Please wait for them to confirm before trying again.",
         "snapshotTransitionInProgress": "Snapshot transition in progress",
         "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete.",
         "checkForUpdates": "Check for Updates",
@@ -138,26 +143,31 @@
         "masterKey": "Your IOTA seed is the master key to your funds.",
         "seedThief": "If someone else has your seed they can steal your IOTA.",
         "googlePlayServicesNotAvailable": "Google Play Services not available",
-        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available.",
+        "couldNotVerifyDeviceIntegrity":
+            "Could not verify device integrity because Google Play Services are not available.",
         "clear": "CLEAR",
         "noNetworkConnection": "No network connection",
         "noNetworkConnectionExplanation": "Your internet connection appears to be offline.",
         "spentAddressExplanation": "WARNING: Funds on spent addresses",
-        "discordInformation": "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do.",
+        "discordInformation":
+            "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do.",
         "androidInsecureClipboardWarning": "Android does not provide a secure clipboard.",
         "androidCopyPasteWarning": "Never copy/paste your seed on an Android device.",
         "willNotCopyPasteSeed": "I will not copy/paste my seed",
         "mustBeStoredAppropriately": "It must be stored appropriately.",
         "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while",
         "isYourBalanceCorrect": "Is your balance correct?",
-        "ifYourBalanceIsNotCorrect": "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
+        "ifYourBalanceIsNotCorrect":
+            "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
         "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Generirana vrednost vsebuje neveljavne znake",
-        "seedInvalidCharsExplanation": "Generirana vrednost lahko vsebuje samo črke od A-Z in številko 9. Vaša generirana vrednost ima neveljavne znake. Prosimo poskusite ponovno.",
+        "seedInvalidCharsExplanation":
+            "Generirana vrednost lahko vsebuje samo črke od A-Z in številko 9. Vaša generirana vrednost ima neveljavne znake. Prosimo poskusite ponovno.",
         "seedTooShort": "Seed je prekratek",
-        "seedTooShortExplanation": "Generirana vrednost mora biti {{maxLength}} znakov dolga. Vaša generirana vrednost je trenutno {{currentLength}} znakov dolga. Prosimo poskusite znova.",
+        "seedTooShortExplanation":
+            "Generirana vrednost mora biti {{maxLength}} znakov dolga. Vaša generirana vrednost je trenutno {{currentLength}} znakov dolga. Prosimo poskusite znova.",
         "nameInUse": "Ime računa je že v uporabi",
         "nameInUseExplanation": "Prosimo vnesite edinstveno ime računa za pridobitev generirane vrednosti.",
         "enterAccountName": "Vnesite ime računa.",
@@ -169,7 +179,8 @@
     },
     "changePassword": {
         "oops": "Oops! Nekaj je šlo narobe",
-        "oopsExplanation": "Izgleda kot da je nekaj šlo narobe pri posodabljanju vašega gesla. Prosimo poskusite ponovno.",
+        "oopsExplanation":
+            "Izgleda kot da je nekaj šlo narobe pri posodabljanju vašega gesla. Prosimo poskusite ponovno.",
         "passwordUpdated": "Geslo posodobljeno",
         "passwordUpdatedExplanation": "Vaše geslo je bilo uspešno posodobljeno.",
         "incorrectPassword": "Napačno geslo",
@@ -179,13 +190,15 @@
         "passwordTooShort": "Geslo je prekratko",
         "passwordTooShortExplanation": "Your password must be at least 8 characters. Please try again.",
         "oldPassword": "Ni mogoče nastavite starega gesla",
-        "oldPasswordExplanation": "Nemorete uporabljati prejšnjega gesla kot vaše novo geslo. Prosimo poskusite ponovno z novim geslom.",
+        "oldPasswordExplanation":
+            "Nemorete uporabljati prejšnjega gesla kot vaše novo geslo. Prosimo poskusite ponovno z novim geslom.",
         "ensureStrongPassword": "Zagotovite da bo vaše geslo zapleteno in dolgo vsaj 12 znakov.",
         "currentPassword": "Trenutno Geslo",
         "newPassword": "Novo Geslo",
         "confirmPassword": "Potrdite Novo Geslo",
         "passwordTooWeak": "Password too weak",
-        "passwordTooWeakReason": "Your password is too weak. Use a combination of words, and avoid common phrases, names or dates",
+        "passwordTooWeakReason":
+            "Your password is too weak. Use a combination of words, and avoid common phrases, names or dates",
         "reasonRow": "Straight rows of keys are easy to guess",
         "reasonPattern": "Short patterns of keys are easy to guess",
         "reasonNames": "Common names and surnames are easy to guess",
@@ -216,15 +229,20 @@
         "passwordManagerCheckbox": "I will store my seed in a password manager",
         "copy": "COPY",
         "noPasswordManagers": "No supported password managers installed",
-        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "If you wish to store your seed in a password manager, you must follow a tutorial from the following link"
+        "noPasswordManagersExplanation":
+            "No supported password managers were found on your device. Please install Keepass2Android.",
+        "followTutorialToSecurelyShareSeed":
+            "If you wish to store your seed in a password manager, you must follow a tutorial from the following link"
     },
     "enterSeed": {
         "invalidCharacters": "Generirana vrednost vsebuje beveljavne znake",
-        "invalidCharactersExplanation": "Generirana vrednost lahko vsebuje samo velike črke od A-Z in število 9. Vaša generirana vrednost ima neveljavne znake. Prosimo poskusite znova.",
+        "invalidCharactersExplanation":
+            "Generirana vrednost lahko vsebuje samo velike črke od A-Z in število 9. Vaša generirana vrednost ima neveljavne znake. Prosimo poskusite znova.",
         "seedTooShort": "Seed je prekratek",
-        "seedTooShortExplanation": "Generirano vrednost mora biti {{maxLength}} znakov dolgo. Vaša generirano vrednost je trenutno {{currentLength}} znakov dolga. Prosimo poskusite ponovno.",
-        "seedExplanation": "Generirana vrednost mora biti {{maxLength}} znakov dolgo in mora vsebovati velike črke od A-Z ali število 9. Ne morete uporabljati generiranih vrednosti ki so daljše od {{maxLength}}.",
+        "seedTooShortExplanation":
+            "Generirano vrednost mora biti {{maxLength}} znakov dolgo. Vaša generirano vrednost je trenutno {{currentLength}} znakov dolga. Prosimo poskusite ponovno.",
+        "seedExplanation":
+            "Generirana vrednost mora biti {{maxLength}} znakov dolgo in mora vsebovati velike črke od A-Z ali število 9. Ne morete uporabljati generiranih vrednosti ki so daljše od {{maxLength}}.",
         "neverShare": "Z NIKOMER NIKOLI NE DELITE VAŠEGA SEEDA"
     },
     "home": {
@@ -268,7 +286,8 @@
     "onboardingComplete": {
         "allDone": "All Done!",
         "openYourWallet": "Open your wallet",
-        "walletReady": "Denarnica je nastavljena in pripravljena za uporabo. Če želite boste v prihodnosti želeleli kaj spreminjati poglejte v meni za nastavitve."
+        "walletReady":
+            "Denarnica je nastavljena in pripravljena za uporabo. Če želite boste v prihodnosti želeleli kaj spreminjati poglejte v meni za nastavitve."
     },
     "paperWallet": {
         "clickToPrint": "Kliknite na spodnji gumb za printanje semena v papirnati obliki.",
@@ -309,12 +328,15 @@
         "printBlankWallet": "Print a blank wallet",
         "whatIsCheksum": "Every seed has a corresponding 3 character checksum",
         "iHavesavedMySeed": "I've saved my seed",
-        "checksumExplanation": "Whenever you add a seed to your wallet, you should ensure that the wallet-generated checksum matches the one you have written down.",
-        "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
+        "checksumExplanation":
+            "Whenever you add a seed to your wallet, you should ensure that the wallet-generated checksum matches the one you have written down.",
+        "mustSaveYourSeed":
+            "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Please confirm your seed",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or the app.",
+        "trinityWillNeverAskToReenter":
+            "Trinity will never ask you to re-enter this seed unless you reset your wallet or the app.",
         "enterYourSeed": "Enter your seed",
         "incorrectSeed": "Napačno generirano število",
         "incorrectSeedExplanation": "Generirana vrednost ki ste jo vnesli ni pravila. Prosimo poskusite kasneje.",
@@ -342,35 +364,42 @@
         "invalidMessageTooLongExplanation": "The message exceeds the max. amount of characters (1093).",
         "send": "Pošlji",
         "invalidAmount": "Neveljavna vsota",
-        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
+        "invalidAmountExplanation":
+            "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "NAJVIŠJI izbrani znesek",
         "iotaUnits": "IOTA units explained",
         "sendMax": "POŠLJI MAX",
         "totalTime": "Total time",
         "addressPasteDetected": "Address paste detected",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
+        "addressPasteExplanation":
+            "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
     },
     "setPassword": {
         "choosePassword": "Choose a new password",
         "passwordTooShort": "Geslo je prekratko",
-        "passwordTooShortExplanation": "Vaše geslo mora biti vsaj {{minLength}} znakov dolgo. Vaše trenutno geslo je {{currentLength}} znakov dolgo. Prosimo poskusite ponovno.",
+        "passwordTooShortExplanation":
+            "Vaše geslo mora biti vsaj {{minLength}} znakov dolgo. Vaše trenutno geslo je {{currentLength}} znakov dolgo. Prosimo poskusite ponovno.",
         "passwordMismatch": "Gesli se ne ujemata",
         "passwordMismatchExplanation": "Vnešeni gesli se ne ujemata. Prosimo, poskusite ponovno.",
         "nowWeNeedTo": "Ok, zdaj moramo nastaviti geslo.",
-        "anEncryptedCopy": "Šifrirana kopija vaše generirane vrednosti bo shranjena v napravi. Uporabite geslo za dostop do vaše denarnice v prihodnosti.",
+        "anEncryptedCopy":
+            "Šifrirana kopija vaše generirane vrednosti bo shranjena v napravi. Uporabite geslo za dostop do vaše denarnice v prihodnosti.",
         "ensure": "Zagotovite da bo vaše geslo zapleteno in dolgo vsaj 12 znakov.",
         "retypePassword": "Ponovno vnesite geslo"
     },
     "setSeedName": {
         "letsAddName": "Let's add a name",
-        "canUseMultipleSeeds": "Uporabite lahko več generiranih vrednosti s to denarnico. Vsaka generirana vrednost potrebuje ime računa.",
+        "canUseMultipleSeeds":
+            "Uporabite lahko več generiranih vrednosti s to denarnico. Vsaka generirana vrednost potrebuje ime računa.",
         "youCanAdd": "Dodate lahko več generiranih vrednosti v meniju za nastavitve."
     },
     "modeSelection": {
         "expert": "Strokovnjak",
         "standard": "Standard",
-        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
-        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
+        "expertModeExplanation":
+            "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "modesExplanation":
+            "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "Prenos pošiljanja",
@@ -422,7 +451,8 @@
         "lockScreenTimeout": "Lock Screen Timeout (Minutes)",
         "autoNodeSwitching": "Automatically switch node when selected is unreachable",
         "nodeChangeSuccess": "Successfully changed node",
-        "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
+        "nodeChangeSuccessNoRemotePow":
+            "The node was changed to {{node}}. This node does not support remote Proof of Work.",
         "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
         "nodeChangeError": "Error changing node",
         "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
@@ -440,7 +470,8 @@
         "seedExplanation": "IOTA seed je kot uporabniško ime in geslo za vaš račun, združeni v enoten niz 81 znakov.",
         "noIHaveOne": "No, I have one",
         "yesINeedASeed": "Yes, I need a seed",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
+        "explanation":
+            "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
         "keepSafe": "Prosimo vas, da imate seed shranjen na varnem.",
         "hint": "<0><0>Hint:</0> Click NO if this is your first time using IOTA.</0>"
     },
@@ -451,7 +482,8 @@
     },
     "writeSeedDown": {
         "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
-        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
+        "writeDownYourSeed":
+            "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
     },
     "history": {
         "bundleHashCopied": "Bundle hash copied",
@@ -492,7 +524,8 @@
         "snapshotTransition": "Snapshot transition",
         "pow": "Proof of Work",
         "autoPromotion": "Auto-promotion",
-        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
+        "autoPromotionExplanation":
+            "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
         "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
     },
     "advancedThemeCustomisation": {
@@ -521,7 +554,8 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Why can't I spend my full balance?",
-        "spentAddressExplanation": "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
+        "spentAddressExplanation":
+            "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
         "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
     },
     "deleteAccount": {
@@ -552,12 +586,14 @@
         "didSaveSeed": "Did you back up your seed?",
         "alreadyHave": "I have saved my seed",
         "reenterSeed": "At the next step you will be asked to re-enter your seed.",
-        "reenterSeedWarning": "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
+        "reenterSeedWarning":
+            "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
         "pleaseConfirm": "Please confirm you have securely stored your seed."
     },
     "walletResetConfirmation": {
         "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
-        "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
+        "warning":
+            "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Touch fingerprint reader to enable fingerprint authentication",
@@ -570,7 +606,8 @@
         "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
         "status": "Status",
         "fingerprintUnavailable": "Biometric authentication unavailable",
-        "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
+        "fingerprintUnavailableExplanation":
+            "Your device does not support biometric authentication or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
         "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID.",
@@ -658,7 +695,8 @@
         "noUpdatesAvailable": "No updates available",
         "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
         "newVersionAvailable": "New version available",
-        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
+        "newVersionAvailableExplanation":
+            "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
         "downloadRelease": "Download release",
         "skipUpdate": "Skip update"
     },
