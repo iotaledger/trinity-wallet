@@ -603,7 +603,7 @@
         "change": "Pokytis",
         "volume": "Apyvarta (24val.)",
         "currentValue": "Dabartinė vertė",
-        "error": "Error fetching chart data"
+        "error": "Klaida užkraunant grafiko duomenis"
     },
     "rootDetection": {
         "warning": "PAVOJUS",
