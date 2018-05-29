@@ -602,7 +602,8 @@
         "mcap": "MCAP",
         "change": "Ändring",
         "volume": "Volym (24h)",
-        "currentValue": "Nuvarande värde"
+        "currentValue": "Nuvarande värde",
+        "error": "Error fetching chart data"
     },
     "rootDetection": {
         "warning": "VARNING",
