@@ -351,7 +351,7 @@
         "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
     },
     "setPassword": {
-        "choosePassword": "Choose a new password",
+        "choosePassword": "नया पासवर्ड दर्ज करें।",
         "passwordTooShort": "पासवर्ड बहुत छोटा है",
         "passwordTooShortExplanation": "आपका पासवर्ड कम से कम {{minLength}} वर्ण होना चाहिए। यह वर्तमान में {{currentLength}} वर्ण लंबा है कृपया पुन: प्रयास करें।",
         "passwordMismatch": "पासवर्ड्स समान नहीं हैं",
@@ -362,7 +362,7 @@
         "retypePassword": "पासवर्ड पुन: लिखें"
     },
     "setSeedName": {
-        "letsAddName": "Let's add a name",
+        "letsAddName": "आइए एक नाम जोड़ें",
         "canUseMultipleSeeds": "आप इस वॉलेट के साथ कई सीड का उपयोग कर सकते हैं । प्रत्येक सीड को खाता नाम की आवश्यकता है ।",
         "youCanAdd": "आप सेटिंग मेनू में और सीड अधिक जोड़ सकते हैं ।"
     },
