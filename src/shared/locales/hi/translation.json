@@ -187,11 +187,11 @@
         "passwordTooWeak": "पासवर्ड बहुत कमज़ोर",
         "passwordTooWeakReason": "आपका पासवर्ड बहुत कमज़ोर है । शब्दों के संयोजन का उपयोग करें, और सामांय वाक्यांशों, नामों या दिनांकों से बचें",
         "reasonRow": "चाबी की सीधी पंक्तियाँ अनुमान लगाना आसान है",
-        "reasonPattern": "Short patterns of keys are easy to guess",
+        "reasonPattern": "Keys के लघु पैटर्न अनुमान लगाने के लिए आसान हैं",
         "reasonNames": "आम नाम और उपनाम का अनुमान लगाना आसान है",
-        "reasonRepeats": "Repeats like 'aaa' are easy to guess",
-        "reasonRepeats2": "Repeats like 'abcabcabc' are only slightly harder to guess than 'abc'",
-        "reasonSequence": "Sequences like abc or 54321 are easy to guess",
+        "reasonRepeats": "' एएए ' की तरह दोहराता है अनुमान लगाना आसान",
+        "reasonRepeats2": "'Abcabcabc' जैसे दोहराना 'abc' से अनुमान लगाने के लिए थोड़ा कठिन है",
+        "reasonSequence": "एबीसी या 54321 जैसे अनुक्रम अनुमान लगाना आसान है",
         "reasonYears": "हाल के वर्षों का अनुमान लगाना आसान है",
         "reasonDates": "तिथियाँ अक्सर अनुमान करने के लिए आसान हैं",
         "reasonTop10": "यह एक शीर्ष 10 आम पासवर्ड है",
@@ -210,14 +210,14 @@
         "doNotStore": "अपने सीड को सीधे शब्दों में संग्रहीत न करें",
         "copyToClipboard": "सीड कॉपी करे",
         "shareSeed": "अपने सीड को एक सुरक्षित पासवर्ड मैनेजर में साझा करें",
-        "storeEncrypted": "Store your seed encrypted in a password manager.",
-        "doNotOpen": "Do not open any other apps during this process.",
-        "tapConfirm": "Please tap the checkbox below to confirm.",
-        "passwordManagerCheckbox": "I will store my seed in a password manager",
-        "copy": "COPY",
-        "noPasswordManagers": "No supported password managers installed",
-        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "If you wish to store your seed in a password manager, you must follow a tutorial from the following link"
+        "storeEncrypted": "एन्क्रिप्ट कर पासवर्ड मैनेजर में अपने सीड को स्टोर करे",
+        "doNotOpen": "इस प्रक्रिया के दौरान किसी भी अन्य एप्लीकेशन न खोले।",
+        "tapConfirm": "कृपया पुष्टि करने के लिए नीचे चेकबॉक्स टैप करें ।",
+        "passwordManagerCheckbox": "मैं अपने सीड को पासवर्ड मैनेजर में स्टोर करूंगा",
+        "copy": "प्रतिलिपि",
+        "noPasswordManagers": "कोई समर्थित पासवर्ड प्रबंधक स्थापित नहीं",
+        "noPasswordManagersExplanation": "आपके डिवाइस पर कोई समर्थित पासवर्ड प्रबंधक नहीं मिले । कृपया Keepass2Android स्थापित करें ।",
+        "followTutorialToSecurelyShareSeed": "आप एक पासवर्ड प्रबंधक में अपने सीड स्टोर करना चाहते हैं, तो आप निम्न लिंक से एक ट्यूटोरियल का पालन करना होगा"
     },
     "enterSeed": {
         "invalidCharacters": "सीड में अवैध वर्ण हैं।",
@@ -262,7 +262,7 @@
         "pressForNewSeed": "नए सीड के लिए प्रेस के लिए दबाये",
         "generateSuccess": "सफलतापूर्वक नए सीड बन गए",
         "individualLetters": "अलग अलग लेटर को दबाये, ताकि आपका सीड अद्वितीय बन सके",
-        "individualLetterCount": "Press {{letterCount}} more individual letters to randomise them.",
+        "individualLetterCount": "उन्हें यादृच्छिक बनाने के लिए {{letterCount}} अधिक व्यक्तिगत अक्षर दबाएं।",
         "whatIsASeed": "सीड क्या है?"
     },
     "onboardingComplete": {
@@ -278,8 +278,8 @@
         "printWallet": "काग़ज़ वॉलेट प्रिंट करें",
         "print": "प्रिंट",
         "paperConvenience": "अपने सीड की एक कागज प्रति प्रिंट एक सुविधाजनक तरीका है सहेजने के लिए |",
-        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
-        "tapCheckboxes": "Please tap the checkboxes below to confirm.",
+        "publicInsecure": "लेकिन सार्वजनिक वाईफ़ाई या एक सार्वजनिक प्रिंटर पर मुद्रण असुरक्षित है ।",
+        "tapCheckboxes": "कृपया पुष्टि करने के लिए नीचे चेकबॉक्स टैप करें ।",
         "wifiCheckbox": "मैं किसी सार्वजनिक प्रिंटर पर प्रिंट नहीं करूंगा",
         "printerCheckbox": "मैं किसी सार्वजनिक प्रिंटर पर प्रिंट नहीं करूंगा"
     },
@@ -422,8 +422,8 @@
         "lockScreenTimeout": "लॉक स्क्रीन टाइमआउट (मिनट)",
         "autoNodeSwitching": "चयनित न होने पर नोड स्वचालित रूप से स्विच करें",
         "nodeChangeSuccess": "नोड सफलतापूर्वक परिवर्तित",
-        "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
-        "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
+        "nodeChangeSuccessNoRemotePow": "नोड को {{node}} में बदल दिया गया था। यह नोड कार्य के रिमोट सबूत का समर्थन नहीं करता है।",
+        "nodeChangeSuccessExplanation": "नोड को {{node}} में बदल दिया गया था।",
         "nodeChangeError": "नोड बदलने में त्रुटि",
         "nodeChangeErrorExplanation": "नोड परिवर्तित करने में कोई त्रुटि थी । कृपया पुन: प्रयास करें ।"
     },
@@ -492,8 +492,8 @@
         "snapshotTransition": "स्नैपशॉट",
         "pow": "Proof of Work",
         "autoPromotion": "ऑटो प्रमोशन",
-        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
-        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
+        "autoPromotionExplanation": "ऑटो प्रमोशन आपके लेनदेन की पुष्टि करने में मदद करता है । इस सेटिंग को सक्षम करें यदि आपको पुष्टि करने के लिए अपने लेन-देन में कठिनाई हो रही है ।",
+        "autoPromotionPoW": "स्वत: पदोन्नति केवल उन नोड्स पर संभव है जो कार्य के दूरस्थ प्रमाण का समर्थन करते हैं।"
     },
     "advancedThemeCustomisation": {
         "background": "बैकग्राउंड",
@@ -522,10 +522,10 @@
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "मैं अपना पूरा बैलेंस क्यों नहीं खर्च कर सकता?",
         "spentAddressExplanation": "आपके एक या अधिक खर्च हो चुके एड्रेस पर बैलेंस है | एड्रेस का दोबारा उपयोग करना खतरनाक हो सकता है, इसलिए यह वॉलेट आपको एक ही पते से एक से अधिक बार भेजने की अनुमति नहीं देता है ।",
-        "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
+        "discordInformation": "यह पता लगाने के लिए कि आप क्या कर सकते हैं, कृपया डिस्कॉर्ड पर #help चैनल पर जाएं।"
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Are you sure you want to delete</1><2></2><3>{{accountName}}?</3>",
+        "areYouSure": "<0> </ 0> <1> क्या आप वाकई <3> {{accountName}}? </ 3> हटाना चाहते हैं </ 1> <2> </ 2>",
         "yourSeedWillBeRemoved": "आपके सीड और लेन-देन विवरण को हटा दिया जाएगा ।",
         "thisAction": "यह पूर्ववत् नहीं किया जा सकता है!",
         "enterPassword": "इस खाते को हटाने के लिए अपना पासवर्ड दर्ज करें ।"
