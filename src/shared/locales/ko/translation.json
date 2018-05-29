@@ -104,8 +104,8 @@
         "rebroadcastErrorExplanation": "트랜잭션을 재송출하는 중에 오류가 발생했습니다. 다시 시도해 주세요.",
         "promoted": "트랜잭션이 프로모트됨",
         "promotedExplanation": "다음의 트랜잭션 해시가 프로모트되었습니다: {{hash}}",
-        "autopromotionError": "트랜잭션 자동 프로모션 사용 불가",
-        "autopromotionErrorExplanation": "현재 선택한 노드에서는 원격 작업증명을 할 수 없습니다. 노드를 변경한 후 자동 프로모션을 다시 선택해 주세요.",
+        "autopromotionError": "트랜잭션 자동 프로모트 사용 불가",
+        "autopromotionErrorExplanation": "현재 선택한 노드에서는 원격 작업증명을 할 수 없습니다. 노드를 변경한 후 자동 프로모트를 다시 선택해 주세요.",
         "promotionError": "트랜잭션을 프로모트할 수 없음",
         "promotionErrorExplanation": "트랜잭션을 프로모트하는 중에 오류가 발생했습니다. 다시 시도해 주세요.",
         "noLongerValid": "프로모트하려는 번들이 더 이상 유효하지 않습니다.",
@@ -148,10 +148,10 @@
         "androidCopyPasteWarning": "안드로이드 기기에서는 시드를 클립보드에 복사하지 말아주세요.",
         "willNotCopyPasteSeed": "시드를 클립보드에 복사하지 않겠습니다",
         "mustBeStoredAppropriately": "안전하게 보관해 주세요.",
-        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while",
-        "isYourBalanceCorrect": "Is your balance correct?",
-        "ifYourBalanceIsNotCorrect": "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
-        "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition."
+        "deviceMayBecomeUnresponsive": "기기가 잠시 느려질 수 있습니다",
+        "isYourBalanceCorrect": "이 잔액이 옳습니까?",
+        "ifYourBalanceIsNotCorrect": "잔액이 옳지 않다면 스냅샷 전의 시드를 사용중일 수 있습니다.",
+        "headToAdvancedSettingsForTransition": "고급 설정에서 스냅샷 이전을 수행해 주세요."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
@@ -492,8 +492,8 @@
         "snapshotTransition": "스냅샷 이전",
         "pow": "작업증명",
         "autoPromotion": "자동 프로모트",
-        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
-        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
+        "autoPromotionExplanation": "자동 프로모트를 사용하면 트랜잭션이 승인되는데에 도움이 됩니다. 트랜잭션이 잘 승인되지 않는다면 이 기능을 사용해 보세요.",
+        "autoPromotionPoW": "자동 프로모트는 원격 작업증명을 지원하는 노드에서만 사용 가능합니다."
     },
     "advancedThemeCustomisation": {
         "background": "배경",
@@ -621,8 +621,8 @@
         "noWebGLSupportExplanation": "사용하시는 컴퓨터는 WebGL을 지원하지 않습니다. 노드 작업증명을 사용해 주십시오."
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Auto-promotion settings",
-        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
+        "autoPromotionUpdated": "자동 프로모트 설정",
+        "autoPromotionUpdatedExplanation": "자동 프로모트 설정이 저장되었습니다."
     },
     "progressSteps": {
         "checkingNodeHealth": "노드 상태 확인중",
