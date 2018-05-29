@@ -129,8 +129,6 @@ export default class TransactionRow extends PureComponent {
         bundleIsBeingPromoted: PropTypes.bool.isRequired,
         /** Icon symbol */
         icon: PropTypes.string.isRequired,
-        /** Determines whether a transaction is incoming or outgoing */
-        incoming: PropTypes.bool.isRequired,
     };
 
     static defaultProps = {
@@ -139,7 +137,6 @@ export default class TransactionRow extends PureComponent {
 
     render() {
         const {
-            incoming,
             icon,
             confirmation,
             value,
@@ -157,7 +154,7 @@ export default class TransactionRow extends PureComponent {
                 <View style={styles.topWrapper}>
                     <View style={[styles.container, style.containerBackgroundColor]}>
                         {bundleIsBeingPromoted && (
-                            <View style={{ position: 'absolute', left: width / 3.4, top: height / 70 }}>
+                            <View style={{ position: 'absolute', left: width / 3.2, top: height / 70 }}>
                                 <LottieView
                                     source={spinner}
                                     style={styles.animation}
@@ -172,8 +169,9 @@ export default class TransactionRow extends PureComponent {
                             </View>
                         )}
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <View style={[ styles.iconContainer, style.rowBorderColor ]}>
-                                <Icon name={icon} size={width / 20} color={style.titleColor} iconStyle={{ position: 'absolute' }} />
+                            <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                                <Icon name={icon} size={width / 11} color={style.titleColor} iconStyle={{ position: 'absolute' }} />
+                                <View style={[ styles.iconContainer, style.rowBorderColor, { position: 'absolute' } ]}/>
                             </View>
                             <View style={styles.textWrapper}>
                                 <View style={styles.innerWrapper}>
