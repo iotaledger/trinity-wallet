@@ -348,7 +348,7 @@
         "sendMax": "अधिकतम भेजें",
         "totalTime": "कुल समय",
         "addressPasteDetected": "एड्रेस पेस्ट डेटेक्टेड",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
+        "addressPasteExplanation": "ऐसा लगता है कि आपने एक एड्रेस पेस्ट किया है । सुनिश्चित करें कि एड्रेस उस एक से मेल खाता है जिसे आप भेजना चाहते हैं ।"
     },
     "setPassword": {
         "choosePassword": "नया पासवर्ड दर्ज करें।",
@@ -414,29 +414,29 @@
         "fingerprint": "बायोमेट्रिक प्रमाणीकरण",
         "couldNotFetchRates": "रेट सूची लायी नहीं जा सकी",
         "couldNotFetchRatesExplanation": "{{currency}} के लिए रूपांतरण दरें लाते समय कुछ गलत हो गया था",
-        "fetchedConversionRates": "Fetched conversion rate",
-        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rate for {{currency}}.",
+        "fetchedConversionRates": "फ़ेच की गई कनवर्ज़न दर",
+        "fetchedConversionRatesExplanation": "{{currency}} के लिए नवीनतम रूपांतरण दरों को सफलतापूर्वक दिलवाया ।",
         "undo": "पूर्ववत्",
         "redo": "फिर से करें",
-        "aboutTrinity": "About Trinity",
-        "lockScreenTimeout": "Lock Screen Timeout (Minutes)",
-        "autoNodeSwitching": "Automatically switch node when selected is unreachable",
-        "nodeChangeSuccess": "Successfully changed node",
+        "aboutTrinity": "ट्रिनिटी के बारे में",
+        "lockScreenTimeout": "लॉक स्क्रीन टाइमआउट (मिनट)",
+        "autoNodeSwitching": "चयनित न होने पर नोड स्वचालित रूप से स्विच करें",
+        "nodeChangeSuccess": "नोड सफलतापूर्वक परिवर्तित",
         "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
         "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
-        "nodeChangeError": "Error changing node",
-        "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
+        "nodeChangeError": "नोड बदलने में त्रुटि",
+        "nodeChangeErrorExplanation": "नोड परिवर्तित करने में कोई त्रुटि थी । कृपया पुन: प्रयास करें ।"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "इस खाते को हटाने के लिए अपना पासवर्ड दर्ज करें ।",
-        "cancel": "Cancel",
+        "cancel": "निरस्त करें",
         "reset": "रीसेट"
     },
     "walletSetup": {
-        "creatingSeed": "Creating a seed",
+        "creatingSeed": "नया सीड बनाये",
         "okay": "चलो अपने वॉलेट को सेट करे!",
         "doYouAlreadyHaveASeed": "क्या आपके पास पहले से एक सीड है जिसे आप उपयोग करना चाहते हैं?",
-        "doYouNeedASeed": "Do you need to create a new seed?",
+        "doYouNeedASeed": "क्या आपको एक नया सीड बनाने की जरूरत है?",
         "seedExplanation": "IOTA सीड आपके खाते में यूज़रनेम और पासवर्ड की तरह है, जो 81 अक्षरों में से एक शब्द में मिला है।",
         "noIHaveOne": "No, I have one",
         "yesINeedASeed": "हाँ, मुझे सीड की जरुरत है",
