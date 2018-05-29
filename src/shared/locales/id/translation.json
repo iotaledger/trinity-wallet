@@ -638,7 +638,8 @@
         "mcap": "MCAP",
         "change": "Ubah",
         "volume": "Volume (24jam)",
-        "currentValue": "Nilai saat ini"
+        "currentValue": "Nilai saat ini",
+        "error": "Error fetching chart data"
     },
     "rootDetection": {
         "warning": "PERINGATAN",
