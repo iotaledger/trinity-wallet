@@ -226,7 +226,7 @@ class History extends Component {
                 message,
                 mode,
                 incoming,
-                icon: incoming ? '+' : '-',
+                icon: incoming ? 'plus' : 'minus',
                 bundleIsBeingPromoted: currentlyPromotingBundleHash === bundle && !persistence,
                 onPress: (modalProps) => {
                     if (isRefreshing) {
