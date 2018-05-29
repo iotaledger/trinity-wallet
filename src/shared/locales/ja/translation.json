@@ -106,7 +106,7 @@
         "promotedExplanation": "ハッシュ値{{hash}}の取引が促進されました。",
         "autopromotionError": "取引の自動促進ができませんでした。",
         "autopromotionErrorExplanation": "現在選択しているノードではリモートによるプルーフ・オブ・ワークが利用できません。ノードを変更して自動促進を再度有効にしていください。",
-        "promotionError": "トランザクションを促進できませんでした。",
+        "promotionError": "取引を促進できませんでした。",
         "promotionErrorExplanation": "取引を促進中に不具合が発生しました。もう一度やり直してください。",
         "noLongerValid": "促進しようとしているバンドルは無効です。",
         "transactionAlreadyConfirmed": "取引はすでに確定済み",
