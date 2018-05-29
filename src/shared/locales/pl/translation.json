@@ -165,7 +165,7 @@
         "noNickname": "Nie wprowadzono nazwy konta",
         "noNicknameExplanation": "Wpisz nazwę konta dla Twojego klucza seed.",
         "seedInUse": "Seed jest już w użyciu",
-        "seedInUseExplanation": "Ten seed został już wcześniej powiązany z Twoim portfelem. Proszę użyj innego."
+        "seedInUseExplanation": "Ten seed został już wcześniej powiązany z Twoim portfelem. Proszę użyć innego."
     },
     "changePassword": {
         "oops": "Ups! Coś poszło nie tak",
