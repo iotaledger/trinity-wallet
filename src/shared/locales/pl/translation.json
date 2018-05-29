@@ -150,8 +150,8 @@
         "mustBeStoredAppropriately": "Musi być odpowiednio przechowywany.",
         "deviceMayBecomeUnresponsive": "Urządzenie może przestać odpowiadać przez pewien czas",
         "isYourBalanceCorrect": "Czy Twoje saldo jest poprawne?",
-        "ifYourBalanceIsNotCorrect": "Jeśli Twoje saldo nie jest prawidłowe, prawdopodobnie używasz klucza seed sprzed tzw. migawki (snapshot).",
-        "headToAdvancedSettingsForTransition": "Przejdź do ustawień zaawansowanych i skorzystaj ze Snapshot asystenta."
+        "ifYourBalanceIsNotCorrect": "Jeśli Twoje saldo nie jest poprawne, prawdopodobnie używasz klucza seed sprzed tzw. migawki (snapshot).",
+        "headToAdvancedSettingsForTransition": "Przejdź do ustawień zaawansowanych i skorzystaj z funkcji Snapshot asystent."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -641,7 +641,7 @@
         "transitionCompleteExplanation": "Aktualizacja środków zakończyła się sukcesem.",
         "detectedBalance": "Wykryte saldo: {{amount}} {{unit}}",
         "isThisCorrect": "Czy jest ono poprawne?",
-        "snapshotExplanation": "Aby zmniejszyć rozmiar sieci Tangle, co jakiś czas przeprowadzany jest tzw. snapshot.",
+        "snapshotExplanation": "Aby zmniejszyć rozmiar sieci Tangle, co jakiś czas przeprowadzana jest tzw. migawka (snapshot).",
         "hasSnapshotTakenPlace": "Czy snapshot został wykonany? Kliknij poniższy przycisk, aby rozpocząć aktualizację swoich środków.",
         "transition": "Aktualizacja",
         "transitioning": "Trwa aktualizacja Twoich środków.",
