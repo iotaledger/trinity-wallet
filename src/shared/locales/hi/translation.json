@@ -192,8 +192,8 @@
         "reasonRepeats": "Repeats like 'aaa' are easy to guess",
         "reasonRepeats2": "Repeats like 'abcabcabc' are only slightly harder to guess than 'abc'",
         "reasonSequence": "Sequences like abc or 54321 are easy to guess",
-        "reasonYears": "Recent years are easy to guess",
-        "reasonDates": "Dates are often easy to guess",
+        "reasonYears": "हाल के वर्षों का अनुमान लगाना आसान है",
+        "reasonDates": "तिथियाँ अक्सर अनुमान करने के लिए आसान हैं",
         "reasonTop10": "यह एक शीर्ष 10 आम पासवर्ड है",
         "reasonTop100": "यह एक शीर्ष 100 आम पासवर्ड है",
         "reasonCommon": "यह एक आम पासवर्ड है",
@@ -267,7 +267,7 @@
     },
     "onboardingComplete": {
         "allDone": "All Done!",
-        "openYourWallet": "Open your wallet",
+        "openYourWallet": "अपना वॉलेट खोलें",
         "walletReady": "वॉलेट अब सेट है और उपयोग करने के लिए तैयार है । यदि आप भविष्य में कोई परिवर्तन करने की जरूरत है, सेटिंग्स मेनू में देखो ।"
     },
     "paperWallet": {
@@ -275,9 +275,9 @@
         "storeSafely": "इसे सुरक्षित रूप से संग्रहीत करे।",
         "neverShare": "कभी किसी के साथ अपने सीड का साझा न करे ।",
         "iotaLogo": "IOTA लोगो",
-        "printWallet": "Print Paper Wallet",
-        "print": "PRINT",
-        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
+        "printWallet": "काग़ज़ वॉलेट प्रिंट करें",
+        "print": "प्रिंट",
+        "paperConvenience": "अपने सीड की एक कागज प्रति प्रिंट एक सुविधाजनक तरीका है सहेजने के लिए |",
         "publicInsecure": "But printing on public wifi or a public printer is insecure.",
         "tapCheckboxes": "Please tap the checkboxes below to confirm.",
         "wifiCheckbox": "I will not print on public wifi",
