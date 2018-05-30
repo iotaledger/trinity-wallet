@@ -136,7 +136,7 @@
         "nodeAutoChangedExplanation": "Bytte till ny nod {{- nodeAddress}} då din valda nod är offline.",
         "fingerprintOnSend": "Tryck på fingeravtrycksläsaren för att skicka överföringen",
         "masterKey": "Din IOTA-seed är huvudnyckeln till dina pengar.",
-        "seedThief": "Om någon annan har seed kan de stjäla din IOTA.",
+        "seedThief": "Om någon annan har din seed kan de stjäla dina IOTA.",
         "googlePlayServicesNotAvailable": "Google Play-tjänsten är inte tillgänglig",
         "couldNotVerifyDeviceIntegrity": "Kunde inte verifiera enhetens integritet eftersom Google Play-tjänsten inte är tillgänglig.",
         "clear": "RENSA",
