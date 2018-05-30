@@ -604,13 +604,13 @@
         "change": "Změna",
         "volume": "Objem (24h)",
         "currentValue": "Současná hodnota",
-        "error": "Error fetching chart data"
+        "error": "Při načítání dat grafu došlo k chybě"
     },
     "rootDetection": {
         "warning": "VAROVÁNÍ",
-        "appearsRooted": "Your device appears to be rooted.",
-        "securityRisk": "This can pose a significant risk to the security of your wallet.",
-        "continueDepsiteRisk": "Do you wish to continue despite this risk?"
+        "appearsRooted": "Vaše zařízení vypadá odemčené - root access.",
+        "securityRisk": "To může představovat značné riziko pro bezpečnost vaší peněženky.",
+        "continueDepsiteRisk": "Přejete si pokračovat i přes toto riziko?"
     },
     "pow": {
         "feeless": "Pro odeslání bezplatné transakce v IOTA je potřebné vykonat malý důkaz práce - proof of work.",
@@ -645,10 +645,10 @@
         "isThisCorrect": "Je to správně?",
         "snapshotExplanation": "V nepravidelných intervalech probíhá Snapshot, aby se zmenšila velikost Tanglu.",
         "hasSnapshotTakenPlace": "Proběhl Snapshot? Stisknutím tlačítka níže provedete aktualizaci údajů po Snapshotu.",
-        "transition": "Transition",
+        "transition": "Aktualizace",
         "transitioning": "Aktualizace údajů po Snapshotu.",
         "generatingAndDetecting": "Generuji adresy a zjišťuji zůstatek.",
-        "attaching": "Attaching addresses to Tangle."
+        "attaching": "Připojuji adresy do sítě Tangle."
     },
     "deepLink": {
         "autofill": "Automatické vyplňování úspěšné",
@@ -668,11 +668,11 @@
         "errorLog": "PROTOKOL CHYB"
     },
     "terms": {
-        "termsAndConditions": "Terms & Conditions",
-        "accept": "I accept"
+        "termsAndConditions": "Obchodní podmínky",
+        "accept": "Souhlasím"
     },
     "privacyPolicy": {
-        "privacyPolicy": "Privacy Policy",
+        "privacyPolicy": "Zásady ochrany osobních údajů",
         "agree": "Souhlasím"
     }
 }
