@@ -151,7 +151,8 @@
         "deviceMayBecomeUnresponsive": "您的裝置可能會在一段時間內無法回應",
         "isYourBalanceCorrect": "您的餘額正確嗎？",
         "ifYourBalanceIsNotCorrect": "如果您的餘額不正確的話，有可能您最後一次使用種子碼是在快照發生之前。",
-        "headToAdvancedSettingsForTransition": "前往進階設定然後執行快照轉換。"
+        "headToAdvancedSettingsForTransition": "前往進階設定然後執行快照轉換。",
+        "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
