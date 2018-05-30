@@ -479,8 +479,8 @@
         "invalidNodeResponse": "The node returned an invalid response",
         "httpNodeError": "Mobilní verze Trinity podporuje pouze https Nody.",
         "add": "Přidat",
-        "nodeFieldEmpty": "Text field is empty",
-        "nodeFieldEmptyExplanation": "Please enter a custom node."
+        "nodeFieldEmpty": "Textové pole je prázdné",
+        "nodeFieldEmptyExplanation": "Prosím vložte Vlastní Node."
     },
     "addNewAccount": {
         "useExistingSeed": "Použít stávající Seed",
@@ -536,13 +536,13 @@
         "pressToSync": "Pro synchronizaci Vašeho účtu klikněte na tlačítko níže.",
         "thisMayTake": "Toto může chvíli trvat. Vaše zařízení se může zpomalit.",
         "doNotClose": "Upozorňujeme, že minimalizace aplikace zruší synchronizaci.",
-        "syncAccount": "Sync Account",
+        "syncAccount": "Synchronizovat účet",
         "syncingYourAccount": "Synchronizuji Váš účet."
     },
     "useExistingSeed": {
         "title": "Zadejte Seed a název účtu.",
-        "incorrectFormat": "Incorrect seed format",
-        "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
+        "incorrectFormat": "Nesprávný formát Seedu",
+        "validSeedExplanation": "Platný Seed má 81 znaků a obsahuje pouze A-Z nebo 9."
     },
     "viewSeed": {
         "enterPassword": "Pro zobrazení Vašeho Seedu zadejte heslo.",
