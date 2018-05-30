@@ -231,6 +231,7 @@ export function setFullNode(node, addingCustomNode = false) {
             .then((res) => {
                 // Change IOTA provider on the global iota instance
                 changeIotaNode(node);
+                console.log(res);
 
                 // Update node in redux store
                 dispatch(dispatcher.success(node));
