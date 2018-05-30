@@ -258,7 +258,7 @@
     "newSeedSetup": {
         "generatedSeed": "Tạo từ khóa",
         "seedNotGenerated": "Từ khoá chưa được tạo ra",
-        "seedNotGeneratedExplanation": "Please generate a new seed.",
+        "seedNotGeneratedExplanation": "Vui lòng tạo từ khoá mới.",
         "pressForNewSeed": "Press for New Seed",
         "generateSuccess": "Seed generated successfully",
         "individualLetters": "Nhấn từng chữ cái để xáo trộn chúng.",
@@ -545,7 +545,7 @@
     },
     "viewSeed": {
         "enterPassword": "Nhập mật khẩu để xem từ khóa.",
-        "viewSeed": "View Seed",
+        "viewSeed": "Xem Từ Khoá",
         "hideSeed": "Hide Seed"
     },
     "saveSeedConfirmation": {
