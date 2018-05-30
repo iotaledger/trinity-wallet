@@ -616,8 +616,8 @@
         "localOrRemote": "Skaičiavimai gali būti atlikti lokaliai, jūsų įrenginyje, arba perkelti į serverį.",
         "local": "Lokalus",
         "remote": "Nuotolinis",
-        "powUpdated": "Proof of work nustatymai",
-        "powUpdatedExplanation": "Jūsų proof of work konfigūracija atnaujinta.",
+        "powUpdated": "Skaičiavimų nustatymai",
+        "powUpdatedExplanation": "Jūsų skaičiavimų konfigūracija atnaujinta.",
         "noWebGLSupport": "WebGL nepalaikomas",
         "noWebGLSupportExplanation": "Jūsų kompiuteris nepalaiko WebGL. Prašome naudoti nuotolinį PoW."
     },
