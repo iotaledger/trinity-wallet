@@ -191,7 +191,7 @@
         "reasonPattern": "Krátké vzory klíčů se dají lehce uhodnout",
         "reasonNames": "Běžná jména a příjmení se dají lehce uhodnout",
         "reasonRepeats": "Opakování jako 'aaa' se dají lehce uhodnout",
-        "reasonRepeats2": "Repeats like 'abcabcabc' are only slightly harder to guess than 'abc'",
+        "reasonRepeats2": "Uhodnout opakování, jako 'abcabcabc', je pouze o málo složitější, jako samotné 'abc'",
         "reasonSequence": "Sequences like abc or 54321 are easy to guess",
         "reasonYears": "Recent years are easy to guess",
         "reasonDates": "Dates are often easy to guess",
