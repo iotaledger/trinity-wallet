@@ -1,13 +1,13 @@
 export default `
-## **IOTA Wallet App - Datenschutzrichtlinie**
+## **Trinity Wallet App - Datenschutzrichtlinie**
 
 ### **Allgemeine Informationen**
 
-Diese Datenschutzrichtlinie ( **„Datenschutzrichtlinie zur App&quot;** ) beschreibt, wie die IOTA Stiftung ( **„IOTA&quot;** , **„wir&#39;&#39;** , **„uns&#39;&#39;** , **„unser(e)&#39;&#39;**) Ihre personenbezogenen Daten in Verbindung mit der Nutzung der **„IOTA Wallet App&quot;** erhebt und verarbeitet.
+Diese Datenschutzrichtlinie ( **„Datenschutzrichtlinie zur App&quot;** ) beschreibt, wie die IOTA Stiftung ( **„IOTA Stiftung&quot;** , **„wir&#39;&#39;** , **„uns&#39;&#39;** , **„unser(e)&#39;&#39;**) Ihre personenbezogenen Daten in Verbindung mit der Nutzung der **„Trinity Wallet App&quot;** erhebt und verarbeitet.
 
-Diese Datenschutzrichtlinie zur App richtet sich an die Nutzer der IOTA Wallet App. Wenn Sie mehr darüber erfahren wollen, wie IOTA personenbezogene Daten (wie nachstehend definiert) in Zusammenhang mit anderen Dienstleistungen und Aktivitäten von IOTA erhebt und verarbeitet, können Sie die allgemeine [Datenschutzrichtlinie](https://www.iota.org/research/privacy-policy)von IOTA einsehen.
+Diese Datenschutzrichtlinie zur App richtet sich an die Nutzer der Trinity Wallet App. Wenn Sie mehr darüber erfahren wollen, wie IOTA Stiftung personenbezogene Daten (wie nachstehend definiert) in Zusammenhang mit anderen Dienstleistungen und Aktivitäten der IOTA Stiftung erhebt und verarbeitet, können Sie die allgemeine [Datenschutzrichtlinie](https://www.iota.org/research/privacy-policy)der IOTA Stiftung einsehen.
 
-Bitte lesen Sie unsere Datenschutzrichtlinie zur App sorgfältig durch, um eine klare Vorstellung davon zu bekommen, wie wir mit den über die IOTA Wallet App über Sie erhobenen personenbezogenen Daten umgehen.
+Bitte lesen Sie unsere Datenschutzrichtlinie zur App sorgfältig durch, um eine klare Vorstellung davon zu bekommen, wie wir mit den über die Trinity Wallet App über Sie erhobenen personenbezogenen Daten umgehen.
 
 ### **Was sind personenbezogene Daten?**
 
@@ -15,15 +15,15 @@ Der Begriff **„personenbezogene Daten&quot;** bezeichnet alle Informationen, d
 
 ### **Wie wir personenbezogene Daten erheben**
 
-Wenn Sie die IOTA Wallet App auf Ihrem Telefon installieren und nutzen, erhebt und verarbeitet die IOTA Stiftung die personenbezogenen Daten, die für den Betrieb der App und die Verwaltung und Erbringung der App-Dienste erforderlich sind.
+Wenn Sie die Trinity Wallet App auf Ihrem Telefon installieren und nutzen, erhebt und verarbeitet die IOTA Stiftung die personenbezogenen Daten, die für den Betrieb der App und die Verwaltung und Erbringung der App-Dienste erforderlich sind.
 
 Darüber hinaus erhebt und verarbeitet die IOTA Stiftung personenbezogene Daten, wie Ihre E-Mail-Adresse oder Telefonnummer, wenn:
 
-- Sie IOTA solche personenbezogenen Daten zur Verfügung stellen, um Benachrichtigungen per E-Mail zu ermöglichen oder
-- Sie IOTA aus irgendeinem Grund kontaktieren oder darum bitten, von IOTA kontaktiert zu werden oder
-- Sie IOTA aus irgendeinem Grund Ihre personenbezogenen Daten zur Verfügung stellen.
+- Sie der IOTA Stiftung solche personenbezogenen Daten zur Verfügung stellen, um Benachrichtigungen per E-Mail zu ermöglichen oder
+- Sie der IOTA Stiftung aus irgendeinem Grund kontaktieren oder darum bitten, der IOTA Stiftung kontaktiert zu werden oder
+- Sie der IOTA Stiftung aus irgendeinem Grund Ihre personenbezogenen Daten zur Verfügung stellen.
 
-Um E-Mail-Benachrichtigungen an Sie zu ermöglichen, kann IOTA Ihre E-Mail-Adresse auf ihren Servern speichern.
+Um E-Mail-Benachrichtigungen an Sie zu ermöglichen, kann IOTA Stiftung Ihre E-Mail-Adresse auf ihren Servern speichern.
 
 ### **Welche personenbezogenen Daten wir erheben**
 
@@ -31,17 +31,17 @@ Es ist wichtig, darauf hinzuweisen, dass private Schlüssel von Nutzern niemals 
 
 Die IOTA Stiftung führt für ihre Server Zugangsprotokolle, denen sich IP-Adresse, Uhrzeit und Zugangsangaben entnehmen lassen.
 
-Wir erheben gegebenenfalls Informationen über die allgemeine Nutzung der IOTA Wallet App, beispielsweise Informationen über Fehler, Protokollinformationen über bei der IOTA Wallet App aufgetretene Fehler oder andere damit in Zusammenhang stehende Informationen, die für die Erbringung der Dienste von IOTA, für den Zweck der Verwaltung oder für die Fehleranalyse erforderlich sind oder die IOTA helfen, ihre Dienstleistungen zu verbessern.
+Wir erheben gegebenenfalls Informationen über die allgemeine Nutzung der Trinity Wallet App, beispielsweise Informationen über Fehler, Protokollinformationen über bei der Trinity Wallet App aufgetretene Fehler oder andere damit in Zusammenhang stehende Informationen, die für die Erbringung der Dienste der IOTA Stiftung, für den Zweck der Verwaltung oder für die Fehleranalyse erforderlich sind oder die der IOTA Stiftung helfen, ihre Dienstleistungen zu verbessern.
 
-### **Zweck der Verarbeitung personenbezogener Daten**
+## **Zweck der Verarbeitung personenbezogener Daten**
 
-Wir verarbeiten personenbezogene Daten, um den Betrieb und die Nutzung der IOTA Wallet App sowie die Verwaltung und Organisation der IOTA Wallet App und der über die App angebotenen Dienste zu ermöglichen.
+Wir verarbeiten personenbezogene Daten, um den Betrieb und die Nutzung der Trinity Wallet App sowie die Verwaltung und Organisation der Trinity Wallet App und der über die App angebotenen Dienste zu ermöglichen.
 
-### **Rechtliche Grundlage für die Verarbeitung personenbezogener Daten**
+## **Rechtliche Grundlage für die Verarbeitung personenbezogener Daten**
 
 Bei der Verarbeitung Ihrer personenbezogenen Daten in Verbindung mit den in der Datenschutzrichtlinie zur App genannten Zwecken können wir uns, je nach dem Umständen, auf eine oder mehrere der folgenden Rechtsgrundlagen stützen:
 
-
+-
   - wir haben Ihre ausdrückliche Zustimmung zur Verarbeitung erhalten (diese Rechtsgrundlage wird nur in Verbindung mit einer vollkommen freiwilligen Verarbeitung herangezogen – sie wird nicht für eine Verarbeitung herangezogen, die in irgendeiner Weise erforderlich oder obligatorisch ist);
   - die Verarbeitung ist in Verbindung mit einer vertraglichen Beziehung erforderlich, die Sie gegebenenfalls mit uns eingehen;
   - die Verarbeitung ist aufgrund einschlägiger Gesetze erforderlich;
@@ -50,7 +50,7 @@ Bei der Verarbeitung Ihrer personenbezogenen Daten in Verbindung mit den in der 
 
 ### **Verwendung von Cookies**
 
-Wir verwenden Cookies, um Ihre Nutzererfahrung zu verbessern, wenn Sie auf die IOTA Wallet App zugreifen. Für die Cookies, die wir verwenden, ist Ihre Zustimmung nicht erforderlich, denn es handelt sich bei diesen lediglich um:
+Wir verwenden Cookies, um Ihre Nutzererfahrung zu verbessern, wenn Sie auf die Trinity Wallet App zugreifen. Für die Cookies, die wir verwenden, ist Ihre Zustimmung nicht erforderlich, denn es handelt sich bei diesen lediglich um:
 
 - Nutzereingaben-Cookies (Sitzungs-ID), wie First-Party-Cookies, für die Dauer einer Sitzung, um die Eingaben des Nutzers nachzuverfolgen, wenn dieser Online-Formulare ausfüllt oder etwas in einem Einkaufswagen ablegt, etc.; in einigen Fällen handelt es sich um permanente, auf eine Dauer von einigen Stunden beschränkte Cookies;
 - Authentifizierungs-Cookies für die Dauer einer Sitzung, um den Nutzer zu identifizieren, sobald er sich eingeloggt hat;
@@ -62,7 +62,7 @@ Wir verwenden Cookies, um Ihre Nutzererfahrung zu verbessern, wenn Sie auf die I
 
 Sie können das Ablegen von Cookies jederzeit ablehnen, indem Sie die Einstellungen Ihres Browsers entsprechend ändern.
 
-### **Wie wir Ihre personenbezogenen Daten schützen und speichern**
+## **Wie wir Ihre personenbezogenen Daten schützen und speichern**
 
 Wir führen geeignete technische und organisatorische Maßnahmen durch, um ein Sicherheitsniveau zu gewährleisten, das dem jeweiligen Risiko entspricht. Dazu zählen beispielsweise, soweit jeweils angemessen, unter anderem folgende Maßnahmen:
 
@@ -73,9 +73,9 @@ Wir führen geeignete technische und organisatorische Maßnahmen durch, um ein S
 
 Bei der Beurteilung der Angemessenheit des Sicherheitsniveaus sind vor allem die mit der Verarbeitung verbundenen Risiken zu berücksichtigen, insbesondere die Risiken der zufälligen oder rechtswidrigen Zerstörung, des Verlustes, der Veränderung, der unbefugten Offenlegung oder des unbefugten Zugriffs, denen die übertragenen, gespeicherten oder in sonstiger Weise verarbeiteten personenbezogenen Daten ausgesetzt sind.
 
-### **Wie wir Ihre personenbezogenen Daten weiterleiten und offenlegen**
+## **Wie wir Ihre personenbezogenen Daten weiterleiten und offenlegen**
 
-Um die IOTA Wallet App ordnungsgemäß betreiben und für Sie die über die IOTA Wallet App angebotenen Dienste erbringen zu können, verwenden wir die folgende Analytik-Software:
+Um die Trinity Wallet App ordnungsgemäß betreiben und für Sie die über die Trinity Wallet App angebotenen Dienste erbringen zu können, verwenden wir die folgende Analytik-Software:
 
 **Bugsnag**
 
@@ -89,7 +89,7 @@ Wir verwenden Google SafetyNet Attestation API der Google LLC, 1600 Amphitheatre
 
 Soweit wir Auftragsverarbeiter in die Erbringung unserer Dienste und die Erfüllung unserer vertraglichen Verpflichtungen miteinbeziehen und eine solche Einbeziehung die Übermittlung personenbezogener Daten erfordert, haben wir mit diesen Auftragsverarbeitern Vereinbarungen zur Auftragsverarbeitung gemäß Art. 28 der Europäischen Datenschutz-Grundverordnung 2016/679 ( **„DSGVO&quot;** ) abgeschlossen und, soweit erforderlich, weitere geeignete Garantien gemäß Art. 46-49 DSGVO vorgesehen. Sie können eine Liste der Auftragsverarbeiter, denen gegenüber wir Ihre personenbezogenen Daten offenlegen, anfordern, indem Sie uns eine E-Mail an [privacy@iota.org](mailto:privacy@iota.org) senden.
 
-**Bitte beachten Sie, dass IOTA Ihre personenbezogenen Daten gegebenenfalls direkt aus dem Land bezieht, in dem Sie ansässig sind und diese Daten dann auf Servern in Europa und in den Vereinigten Staaten von Amerika speichert. Für die USA gibt es keinen Anerkennungsbeschluss der Europäischen Kommission, durch den ein angemessenes Datenschutzniveau garantiert wird. Aus diesem Grund hat IOTA für geeignete Garantien gesorgt, um Ihre personenbezogenen Daten in den USA zu schützen. Sie können eine Kopie dieser Garantien anfordern, indem Sie eine E-Mail an** [**privacy@iota.org**](mailto:privacy@iota.org) **senden.**
+**Bitte beachten Sie, dass IOTA Stiftung Ihre personenbezogenen Daten gegebenenfalls direkt aus dem Land bezieht, in dem Sie ansässig sind und diese Daten dann auf Servern in Europa und in den Vereinigten Staaten von Amerika speichert. Für die USA gibt es keinen Anerkennungsbeschluss der Europäischen Kommission, durch den ein angemessenes Datenschutzniveau garantiert wird. Aus diesem Grund hat IOTA Stiftung für geeignete Garantien gesorgt, um Ihre personenbezogenen Daten in den USA zu schützen. Sie können eine Kopie dieser Garantien anfordern, indem Sie eine E-Mail an** [**privacy@iota.org**](mailto:privacy@iota.org) **senden.**
 
 ### **Verarbeitung Ihrer sensiblen personenbezogenen Daten**
 
@@ -101,13 +101,13 @@ Wir beabsichtigen nicht, sensible personenbezogene Daten von Ihnen zu erheben od
 
 ### **Folgen, wenn wir Ihre personenbezogenen Daten nicht erheben dürfen**
 
-Wir benötigen Ihre personenbezogenen Daten, um Ihnen die Nutzung der IOTA Wallet App zu ermöglichen und für Sie die über die IOTA Wallet App angebotenen Dienste zu erbringen und so unsere vertraglichen Verpflichtungen Ihnen gegenüber zu erfüllen. Wenn Sie uns Ihre personenbezogenen Daten nicht zur Verfügung stellen, sind wir vielleicht nicht in der Lage, die Dienstleistungen zu erbringen, die Sie von uns erwarten.
+Wir benötigen Ihre personenbezogenen Daten, um Ihnen die Nutzung der Trinity Wallet App zu ermöglichen und für Sie die über die Trinity Wallet App angebotenen Dienste zu erbringen und so unsere vertraglichen Verpflichtungen Ihnen gegenüber zu erfüllen. Wenn Sie uns Ihre personenbezogenen Daten nicht zur Verfügung stellen, sind wir vielleicht nicht in der Lage, die Dienstleistungen zu erbringen, die Sie von uns erwarten.
 
 ### **Einwilligung und Widerruf der Einwilligung**
 
-Jede Einwilligung wird freiwillig erteilt. Wenn Sie uns Ihre Einwilligung erteilen, haben Sie das Recht, diese jederzeit zu widerrufen. Der Widerruf der Einwilligung berührt nicht die Rechtmäßigkeit der bis zum Widerruf erfolgten Verarbeitung. Nach dem Widerruf Ihrer Einwilligung werden wir die Verarbeitung Ihrer personenbezogenen Daten einstellen und die personenbezogenen Daten auch nicht länger speichern, sofern die weitere Verarbeitung nicht auf anderer Rechtsgrundlage notwendig und rechtlich zulässig ist. Dieser Abschnitt gilt nur für eine vollkommen freiwillige Verarbeitung – er gilt nicht für eine Verarbeitung, die in irgendeiner Weise erforderlich oder obligatorisch ist, wie dies beispielsweise in Bezug auf diejenigen personenbezogenen Daten der Fall ist, die für die Installation und den Betrieb der IOTA Wallet App benötigt werden.
+Jede Einwilligung wird freiwillig erteilt. Wenn Sie uns Ihre Einwilligung erteilen, haben Sie das Recht, diese jederzeit zu widerrufen. Der Widerruf der Einwilligung berührt nicht die Rechtmäßigkeit der bis zum Widerruf erfolgten Verarbeitung. Nach dem Widerruf Ihrer Einwilligung werden wir die Verarbeitung Ihrer personenbezogenen Daten einstellen und die personenbezogenen Daten auch nicht länger speichern, sofern die weitere Verarbeitung nicht auf anderer Rechtsgrundlage notwendig und rechtlich zulässig ist. Dieser Abschnitt gilt nur für eine vollkommen freiwillige Verarbeitung – er gilt nicht für eine Verarbeitung, die in irgendeiner Weise erforderlich oder obligatorisch ist, wie dies beispielsweise in Bezug auf diejenigen personenbezogenen Daten der Fall ist, die für die Installation und den Betrieb der Trinity Wallet App benötigt werden.
 
-Um Ihre Einwilligung zu widerrufen, senden Sie uns bitte eine E-Mail an [privacy@iota.org](mailto:privacy@iota.org)oder schreiben Sie an IOTA Stiftung, c/o Nextland, Strassburgerstr. 55, 10405 Berlin.
+Um Ihre Einwilligung zu widerrufen, senden Sie uns bitte eine E-Mail an [privacy@iota.org](mailto:privacy@iota.org)oder schreiben Sie an die IOTA Stiftung, c/o Nextland, Strassburgerstr. 55, 10405 Berlin.
 
 ### **Wann wir Ihre personenbezogenen Daten löschen**
 
@@ -135,7 +135,7 @@ Unseren Datenschutzbeauftragten erreichen Sie unter:
 
 ### **Änderungen dieser Datenschutzrichtlinie zur App**
 
-Diese Datenschutzrichtlinie zur IOTA Wallet App kann von Zeit zu Zeit geändert oder aktualisiert werden, um Änderungen unserer bei der Verarbeitung personenbezogener Daten verwendeten Praktiken oder Änderungen der einschlägigen Gesetze Rechnung zu tragen. Wir bitten Sie, diese Datenschutzrichtlinie sorgfältig durchzulesen und diese Seite regelmäßig zu überprüfen, um Änderungen, die wir gegebenenfalls nach Maßgabe der Bestimmungen dieser Datenschutzrichtlinie vorgenommen haben, einzusehen. Ihre fortgesetzte Nutzung unserer Dienste oder der Website stellt Ihrerseits die Zustimmung dar, sich an diese Datenschutzrichtlinie in der jeweils geänderten oder aktualisierten Form zu halten.
+Diese Datenschutzrichtlinie zur Trinity Wallet App kann von Zeit zu Zeit geändert oder aktualisiert werden, um Änderungen unserer bei der Verarbeitung personenbezogener Daten verwendeten Praktiken oder Änderungen der einschlägigen Gesetze Rechnung zu tragen. Wir bitten Sie, diese Datenschutzrichtlinie sorgfältig durchzulesen und diese Seite regelmäßig zu überprüfen, um Änderungen, die wir gegebenenfalls nach Maßgabe der Bestimmungen dieser Datenschutzrichtlinie vorgenommen haben, einzusehen. Ihre fortgesetzte Nutzung unserer Dienste oder der Website stellt Ihrerseits die Zustimmung dar, sich an diese Datenschutzrichtlinie in der jeweils geänderten oder aktualisierten Form zu halten.
 
 ### **Fragen**
 
