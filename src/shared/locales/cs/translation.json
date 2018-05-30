@@ -150,9 +150,9 @@
         "mustBeStoredAppropriately": "It must be stored appropriately.",
         "deviceMayBecomeUnresponsive": "Vaše zařízení může na chvíli přestat reagovat",
         "isYourBalanceCorrect": "Je váš zůstatek v pořádku?",
-        "ifYourBalanceIsNotCorrect": "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
+        "ifYourBalanceIsNotCorrect": "Pokud váš zůstatek není správný, je pravděpodobné, že používáte seed z doby před snapshotem.",
         "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition.",
-        "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android"
+        "usingTrinityWalletWithKeePass": "Použití Trinity peněženky s Keepass2Android"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
@@ -186,7 +186,7 @@
         "newPassword": "Nové heslo",
         "confirmPassword": "Potvrďte nové heslo",
         "passwordTooWeak": "Heslo je příliš slabé",
-        "passwordTooWeakReason": "Your password is too weak. Use a combination of words, and avoid common phrases, names or dates",
+        "passwordTooWeakReason": "Vaše heslo je příliš slabé. Použijte kombinaci slov. Snažte se vyhnout použití běžných frází, jmen, nebo datumů",
         "reasonRow": "Straight rows of keys are easy to guess",
         "reasonPattern": "Short patterns of keys are easy to guess",
         "reasonNames": "Common names and surnames are easy to guess",
