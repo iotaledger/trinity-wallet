@@ -151,7 +151,8 @@
         "deviceMayBecomeUnresponsive": "Uw apparaat kan wellicht even niet reageren",
         "isYourBalanceCorrect": "Klopt uw saldo?",
         "ifYourBalanceIsNotCorrect": "Als uw saldo niet correct is, gebruikt u waarschijnlijk een pre-snapshot seed.",
-        "headToAdvancedSettingsForTransition": "Ga naar Geavanceerde instellingen en voer een Snapshot transitie uit."
+        "headToAdvancedSettingsForTransition": "Ga naar Geavanceerde instellingen en voer een Snapshot transitie uit.",
+        "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "De seed bevat ongeldige tekens",
