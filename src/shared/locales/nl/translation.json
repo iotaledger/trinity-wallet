@@ -231,8 +231,8 @@
         "balance": "SALDO",
         "send": "STUUR",
         "receive": "ONTVANG",
-        "history": "GESCHIEDENIS",
-        "settings": "INSTELLINGEN"
+        "history": "HISTORIE",
+        "settings": "OPTIES"
     },
     "languageSetup": {
         "language": "Taal",
