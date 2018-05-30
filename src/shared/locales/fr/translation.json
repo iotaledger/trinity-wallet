@@ -151,7 +151,8 @@
         "deviceMayBecomeUnresponsive": "Votre appareil peut ne pas répondre pendant un certain temps",
         "isYourBalanceCorrect": "Votre solde est-il correct ?",
         "ifYourBalanceIsNotCorrect": "Si votre solde n’est pas correct, il est probable que vous utilisiez une seed antérieure à un snapshot.",
-        "headToAdvancedSettingsForTransition": "Dirigez-vous vers les paramètres avancés et effectuez une Transition de snapshot."
+        "headToAdvancedSettingsForTransition": "Dirigez-vous vers les paramètres avancés et effectuez une Transition de snapshot.",
+        "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
