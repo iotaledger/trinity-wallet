@@ -534,7 +534,7 @@
         "outOfSync": "Ar jūsų pavedimų istorija atrodo nesinchronizuota?",
         "pressToSync": "Spauskite žemiau esantį mygtuką, norėdami sinchronizuoti paskyrą.",
         "thisMayTake": "Tai gali užtrukti. Jūsų įrenginio greitis gali sulėtėti.",
-        "doNotClose": "Atkreipkite dėmesį, kad programėlės minimizavimas atšauks sinchronizaciją.",
+        "doNotClose": "Įspėjame, kad programėlės minimizavimas atšauks sinchronizaciją.",
         "syncAccount": "Sinchronizuoti paskyrą",
         "syncingYourAccount": "Paskyra sinchronizuojama."
     },
