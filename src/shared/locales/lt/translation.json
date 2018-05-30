@@ -275,7 +275,7 @@
         "storeSafely": "Saugiai jį laikykite.",
         "neverShare": "Su niekuo nesidalinkite savo užraktu.",
         "iotaLogo": "IOTA logotipas",
-        "printWallet": "Atspausdinti popierinę piniginę",
+        "printWallet": "Atspausdinti popierinę versiją",
         "print": "ATSPAUSDINTI",
         "paperConvenience": "Vienas iš patogių užrakto laikymo būdų yra laikyti jį atspausdintame lape.",
         "publicInsecure": "Bet spausdinimas naudojant viešą wifi arba viešą spausdintuvą yra nesaugus.",
@@ -294,7 +294,7 @@
         "spent": "Panaudotas"
     },
     "saveYourSeed": {
-        "saveYourSeed": "Išsaugoti savo užraktą",
+        "saveYourSeed": "Išsisaugokite savo užraktą",
         "seedCleared": "Užraktas išvalytas",
         "mostSecure": "Saugiausia",
         "leastSecure": "Mažiausiai saugu",
