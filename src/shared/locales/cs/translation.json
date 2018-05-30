@@ -236,16 +236,16 @@
     },
     "languageSetup": {
         "language": "Jazyk",
-        "letsGetStarted": "Let's get started"
+        "letsGetStarted": "Pojďme začít"
     },
     "login": {
         "emptyPassword": "Prázdné heslo",
         "emptyPasswordExplanation": "Musíte zadat heslo pro přihlášení. Prosím zkuste znovu.",
         "enterPassword": "Prosím zadejte Vaše heslo.",
         "useSeed": "POUŽIJ SEED",
-        "login": "Log In",
+        "login": "Přihlásit se",
         "selectDifferentNode": "Chcete vybrat jiný Node?",
-        "setNode": "Set Node",
+        "setNode": "Nastavit Node",
         "cannotConnect": "K Nodu IOTA se nelze připojit."
     },
     "loading": {
@@ -253,20 +253,20 @@
         "thisMayTake": "Toto může chvíli trvat.",
         "doNotMinimise": "Neminimalizujte, ani nezavírejte aplikaci.",
         "youMayNotice": "Může dojít ke zpomalení Vašeho zařízení.",
-        "takingAWhile": "This seems to be taking a while"
+        "takingAWhile": "Zdá se, že to bude chvilku trvat"
     },
     "newSeedSetup": {
-        "generatedSeed": "Generated seed",
+        "generatedSeed": "Vygenerovaný Seed",
         "seedNotGenerated": "Seed nebyl vygenerován",
         "seedNotGeneratedExplanation": "Prosím vygenerujte nový Seed.",
-        "pressForNewSeed": "Press for New Seed",
-        "generateSuccess": "Seed generated successfully",
+        "pressForNewSeed": "Stiskni pro nový Seed",
+        "generateSuccess": "Seed úspěšně vygenerovaný",
         "individualLetters": "Vyberte náhodná písmena.",
-        "individualLetterCount": "Press {{letterCount}} more individual letters to randomise them.",
-        "whatIsASeed": "What is a seed?"
+        "individualLetterCount": "Stiskni {{letterCount}} jednotlivé znaky pro zvýšení náhodnosti.",
+        "whatIsASeed": "Co je to Seed?"
     },
     "onboardingComplete": {
-        "allDone": "All Done!",
+        "allDone": "Všechno je nastavené!",
         "openYourWallet": "Open your wallet",
         "walletReady": "Peněženka je nyní nastavena a připravena k použití. Pokud budete potřebovat něco měnit najdete to v Menu Nastavení."
     },
