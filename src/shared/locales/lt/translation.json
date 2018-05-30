@@ -362,15 +362,15 @@
         "retypePassword": "Pakartokite slaptažodį"
     },
     "setSeedName": {
-        "letsAddName": "Pridėkime vardą",
+        "letsAddName": "Sukurkite vardą",
         "canUseMultipleSeeds": "Jūs galite naudoti daugybę užraktų su šia pinigine. Kiekvienas užraktas turi turėti paskyros vardą.",
         "youCanAdd": "Norėdami pridėti daugiau užraktų, eikite į Nustatymų meniu."
     },
     "modeSelection": {
-        "expert": "Ekspertinis",
-        "standard": "Standartinis",
-        "expertModeExplanation": "Ekspertinis rėžimas suteikia prieigą prie papildomų funkcijų tokių kaip rankinis iškėlimas ir pakartotinis prijungimas.",
-        "modesExplanation": "Ekspertinį rėžimą naudokite tik jeigu esate pakankamai susipažinęs su Tangle. Kitu atveju jums gali kilti daug neaiškumų."
+        "expert": "Expert",
+        "standard": "Standard",
+        "expertModeExplanation": "Expert rėžimas suteikia prieigą prie papildomų funkcijų tokių kaip rankinis iškėlimas ir pakartotinis prijungimas.",
+        "modesExplanation": "Expert rėžimą naudokite tik jeigu esate pakankamai susipažinęs su Tangle. Kitu atveju jums gali kilti daug neaiškumų."
     },
     "settings": {
         "transferSending": "Apdorojamas pavedimas",
