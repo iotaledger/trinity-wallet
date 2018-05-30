@@ -40,8 +40,8 @@
         "continue": "繼續",
         "enable": "啟用",
         "disable": "停用",
-        "enabled": "已啟用",
-        "disabled": "已停用",
+        "enabled": "啟用",
+        "disabled": "停用",
         "manualCopy": "寫下種子碼",
         "paperWallet": "列印紙本",
         "addToPasswordManager": "新增至密碼管理工具",
@@ -253,7 +253,7 @@
         "thisMayTake": "這可能需要一點時間",
         "doNotMinimise": "請不要最小化或關閉應用程式。",
         "youMayNotice": "您的裝置可能會變慢。",
-        "takingAWhile": "這似乎會花些時間。"
+        "takingAWhile": "這似乎會花些時間"
     },
     "newSeedSetup": {
         "generatedSeed": "產生種子碼",
