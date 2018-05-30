@@ -267,7 +267,7 @@
     },
     "onboardingComplete": {
         "allDone": "Všechno je nastavené!",
-        "openYourWallet": "Open your wallet",
+        "openYourWallet": "Otevřít Vaši peněženku",
         "walletReady": "Peněženka je nyní nastavena a připravena k použití. Pokud budete potřebovat něco měnit najdete to v Menu Nastavení."
     },
     "paperWallet": {
@@ -275,8 +275,8 @@
         "storeSafely": "Bezpečně uložte!",
         "neverShare": "Nikdy s nikým nesdílejte Váš Seed!",
         "iotaLogo": "IOTA logo",
-        "printWallet": "Print Paper Wallet",
-        "print": "PRINT",
+        "printWallet": "Vytisknout papírovou peněženku",
+        "print": "TISK",
         "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
         "publicInsecure": "But printing on public wifi or a public printer is insecure.",
         "tapCheckboxes": "Please tap the checkboxes below to confirm.",
@@ -287,7 +287,7 @@
         "copyAddress": "Copy address",
         "addressCopied": "Adresa zkopírována",
         "addressCopiedExplanation": "Adresa byla zkopírována do schránky.",
-        "generateNewAddress": "New Address",
+        "generateNewAddress": "Nová adresa",
         "message": "Volitelná zpráva",
         "removeMessage": "ODSTRANIT ZPRÁVU",
         "noAddresses": "ŽÁDNÉ ADRESY",
@@ -346,7 +346,7 @@
         "maximumSelected": "Vybrána MAXIMÁLNÍ částka",
         "iotaUnits": "Informace o IOTA jednotkách.",
         "sendMax": "POSLAT MAXIMUM",
-        "totalTime": "Total time",
+        "totalTime": "Celkový čas",
         "addressPasteDetected": "Address paste detected",
         "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
     },
