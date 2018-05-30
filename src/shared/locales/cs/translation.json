@@ -665,7 +665,7 @@
         "skipUpdate": "Aktualizovat později"
     },
     "notificationLog": {
-        "errorLog": "ERROR LOG"
+        "errorLog": "PROTOKOL CHYB"
     },
     "terms": {
         "termsAndConditions": "Terms & Conditions",
@@ -673,6 +673,6 @@
     },
     "privacyPolicy": {
         "privacyPolicy": "Privacy Policy",
-        "agree": "I agree"
+        "agree": "Souhlasím"
     }
 }
