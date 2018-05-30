@@ -328,7 +328,7 @@
         "invalidAddressExplanation1": "Adresa by měla být dlouhá {{maxLength}} znaků a měla by mít kontrolní součet.",
         "invalidAddressExplanation2": "Adresa obsahuje neplatné znaky.",
         "invalidAddressExplanation3": "Adresa má chybnou délku.",
-        "invalidAddressExplanationGeneric": "Platné adresy by měly být 90 znaků a obsahovat pouze A-Z nebo 9.",
+        "invalidAddressExplanationGeneric": "Platné adresy mají 90 znaků a obsahují pouze A-Z nebo 9.",
         "notEnoughFunds": "Nedostatek prostředků",
         "notEnoughFundsExplanation": "Nemáte dostatek IOTA k dokončení této transakce.",
         "keyReuse": "Opakované použití klíče",
@@ -546,8 +546,8 @@
     },
     "viewSeed": {
         "enterPassword": "Pro zobrazení Vašeho Seedu zadejte heslo.",
-        "viewSeed": "View Seed",
-        "hideSeed": "Hide Seed"
+        "viewSeed": "Zobrazit Seed",
+        "hideSeed": "Skrýt Seed"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Did you back up your seed?",
