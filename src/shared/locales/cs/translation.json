@@ -439,8 +439,8 @@
         "doYouAlreadyHaveASeed": "Máte už vlastní Seed, který byste rádi použili?",
         "doYouNeedASeed": "Potřebujete vytvořit nový Seed?",
         "seedExplanation": "IOTA Seed je jako uživatelské jméno a heslo k Vašemu účtu, zkombinované do řady 81 znaků.",
-        "noIHaveOne": "No, I have one",
-        "yesINeedASeed": "Yes, I need a seed",
+        "noIHaveOne": "Ne, již mám Seed",
+        "yesINeedASeed": "Ano, potřebuji Seed",
         "explanation": "<0><0>Můžete ho použít pro přístup ke svým prostředkům z</0> <1>jakékoliv peněženky</1> <2>, na</2> <3>jakémkoliv zařízení</3> <4>. Ale pokud ztratíte svůj Seed, ztratíte také všechny Vaše IOTA.</4></0>",
         "keepSafe": "Uchovávejte Váš seed v bezpečí.",
         "hint": "<0><0>Tip:</0> Pokud IOTA peněženku používáte poprvé, klepněte na tlačítko NE</0>"
@@ -459,8 +459,8 @@
         "bundleHashCopiedExplanation": "Balíček hash byl zkopírován do schránky.",
         "addressCopied": "Adresa zkopírována",
         "addressCopiedExplanation": "Adresa byla zkopírována do schránky.",
-        "messageCopied": "Message copied",
-        "messageCopiedExplanation": "The message has been copied to the clipboard.",
+        "messageCopied": "Zpráva byla zkopírována",
+        "messageCopiedExplanation": "Zpráva byla zkopírována do schránky.",
         "send": "ODESLAT",
         "receive": "PŘÍJEM"
     },
@@ -472,12 +472,12 @@
         "addNewAccount": "Přidat nový účet"
     },
     "addCustomNode": {
-        "customNodeAdded": "Custom node added",
+        "customNodeAdded": "Vlastní Node přidán",
         "customNodeCouldNotBeAdded": "Custom node could not be added",
         "customNodeAddedSuccessfully": "The custom node has been added successfully.",
         "customNode": "Vlastní Node",
         "invalidNodeResponse": "The node returned an invalid response",
-        "httpNodeError": "Trinity Mobile only supports https nodes.",
+        "httpNodeError": "Mobilní verze Trinity podporuje pouze https Nody.",
         "add": "Přidat",
         "nodeFieldEmpty": "Text field is empty",
         "nodeFieldEmptyExplanation": "Please enter a custom node."
