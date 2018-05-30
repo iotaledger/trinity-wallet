@@ -6,6 +6,6 @@
       }
     </style>
   </defs>
-  <title>1024-Plus</title>
-  <polygon class="cls-1" points="696 493 534.5 493 534.5 331.5 492.5 331.5 492.5 493 331 493 331 535 492.5 535 492.5 696.5 534.5 696.5 534.5 535 696 535 696 493"/>
+  <title>1024-minus</title>
+  <rect class="cls-1" x="492.5" y="331.5" width="42" height="365" transform="translate(-0.5 1027.5) rotate(-90)"/>
 </svg>
