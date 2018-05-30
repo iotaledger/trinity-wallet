@@ -211,14 +211,14 @@
         "doNotStore": "Neuchovávejte Váš Seed ve formátu prostého textu.",
         "copyToClipboard": "Kopíruj Seed",
         "shareSeed": "Svůj Seed si uložte do zabezpečeného správce hesel",
-        "storeEncrypted": "Store your seed encrypted in a password manager.",
-        "doNotOpen": "Do not open any other apps during this process.",
-        "tapConfirm": "Please tap the checkbox below to confirm.",
-        "passwordManagerCheckbox": "I will store my seed in a password manager",
-        "copy": "COPY",
-        "noPasswordManagers": "No supported password managers installed",
-        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "If you wish to store your seed in a password manager, you must follow a tutorial from the following link"
+        "storeEncrypted": "Váš seed ve správci hesel uchovávejte zakryptovaný.",
+        "doNotOpen": "V průběhu tohoto zpracování, neotvírejte jakékoliv jiné programy.",
+        "tapConfirm": "Pro potvrzení, prosím, zaškrtněte políčko níže.",
+        "passwordManagerCheckbox": "Uložím svůj seed ve správci hesel",
+        "copy": "KOPÍROVAT",
+        "noPasswordManagers": "Žádní podporovaní správci hesel nejsou nainstalováni",
+        "noPasswordManagersExplanation": "Na zařízení nebyli nalezeni žádní správci hesel. Prosím, nainstalujte si Keepass2Android.",
+        "followTutorialToSecurelyShareSeed": "Pokud si přejete uložit váš seed do správce hesel, musíte se řídit pokyny na následujícím odkazu"
     },
     "enterSeed": {
         "invalidCharacters": "Seed obsahuje neplatné znaky",
@@ -278,10 +278,10 @@
         "iotaLogo": "IOTA logo",
         "printWallet": "Vytisknout papírovou peněženku",
         "print": "TISK",
-        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
-        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
-        "tapCheckboxes": "Please tap the checkboxes below to confirm.",
-        "wifiCheckbox": "I will not print on public wifi",
+        "paperConvenience": "Vytištění papírové kopie vašeho seedu je vhodný způsob, jak ho uchovat.",
+        "publicInsecure": "Ale tisk na veřejné wifi síti, nebo na veřejné tiskárně není bezpečné.",
+        "tapCheckboxes": "Pro potvrzení, prosím, zaškrtněte políčka níže.",
+        "wifiCheckbox": "Nebudu tisknout na veřejné wifi síti",
         "printerCheckbox": "I will not print on a public printer"
     },
     "receive": {
