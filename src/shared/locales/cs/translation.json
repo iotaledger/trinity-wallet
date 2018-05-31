@@ -282,7 +282,7 @@
         "publicInsecure": "Ale tisk na veřejné wifi síti, nebo na veřejné tiskárně není bezpečné.",
         "tapCheckboxes": "Pro potvrzení, prosím, zaškrtněte políčka níže.",
         "wifiCheckbox": "Nebudu tisknout na veřejné wifi síti",
-        "printerCheckbox": "I will not print on a public printer"
+        "printerCheckbox": "Nebudu tisknout na veřejné tiskárně"
     },
     "receive": {
         "copyAddress": "Kopírovat adresu",
@@ -295,7 +295,7 @@
         "spent": "Utraceno"
     },
     "saveYourSeed": {
-        "saveYourSeed": "Back up your seed",
+        "saveYourSeed": "Zálohujte Váš Seed",
         "seedCleared": "Seed cleared",
         "mostSecure": "Nejbezpečnější",
         "leastSecure": "Nejméně bezpečné",
@@ -315,7 +315,7 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Prosím, potvrďte Váš Seed",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or the app.",
+        "trinityWillNeverAskToReenter": "Trinity Vás nikdy nebude vyzývat ke znovu-vložení tohoto Seedu. Výjimkou je reset vaší peněženky, popřípadě aplikace.",
         "enterYourSeed": "Zadejte Váš Seed",
         "incorrectSeed": "Neplatný Seed",
         "incorrectSeedExplanation": "Zadán neplatný Seed. Zkuste to prosím znovu.",
@@ -348,11 +348,11 @@
         "iotaUnits": "Informace o IOTA jednotkách.",
         "sendMax": "POSLAT MAXIMUM",
         "totalTime": "Celkový čas",
-        "addressPasteDetected": "Zjištění vložení adresy",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
+        "addressPasteDetected": "Zjištěno kopírování adresy",
+        "addressPasteExplanation": "Vaše adresa byla zkopírována ze schránky. Zkontrolujte, že vložená adresa je opravdu ta, kam chcete prostředky poslat."
     },
     "setPassword": {
-        "choosePassword": "Choose a new password",
+        "choosePassword": "Zvolte nové heslo",
         "passwordTooShort": "Heslo je příliš krátké",
         "passwordTooShortExplanation": "Heslo musí obsahovat minimálně {{minLength}} znaků. Nyní je {{currentLength}} znaků dlouhé. Prosím zkuste to znovu.",
         "passwordMismatch": "Hesla se neshodují",
@@ -363,7 +363,7 @@
         "retypePassword": "Znovu zadejte heslo"
     },
     "setSeedName": {
-        "letsAddName": "Let's add a name",
+        "letsAddName": "Přidejte jméno",
         "canUseMultipleSeeds": "V této peněžence můžete použít více Seedů. Každý Seed vyžaduje nový název účtu.",
         "youCanAdd": "Můžete zadat více Seedů v menu Nastavení."
     },
