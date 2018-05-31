@@ -264,11 +264,11 @@
         "generateSuccess": "Seed generated successfully",
         "individualLetters": "Nhấn từng chữ cái để xáo trộn chúng.",
         "individualLetterCount": "Press {{letterCount}} more individual letters to randomise them.",
-        "whatIsASeed": "What is a seed?"
+        "whatIsASeed": "Từ khoá là gì?"
     },
     "onboardingComplete": {
         "allDone": "Hoàn Tất!",
-        "openYourWallet": "Open your wallet",
+        "openYourWallet": "Mở ví của bạn",
         "walletReady": "Ví điện tử đã được thiết lập và sẵn sàng để sử dụng. Nếu bạn muốn thay đổi bất kỳ điều gì trong tương lai, hãy vào mục Thiết Lập."
     },
     "paperWallet": {
@@ -419,7 +419,7 @@
         "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rate for {{currency}}.",
         "undo": "Undo",
         "redo": "Redo",
-        "aboutTrinity": "About Trinity",
+        "aboutTrinity": "Về Trinity",
         "lockScreenTimeout": "Lock Screen Timeout (Minutes)",
         "autoNodeSwitching": "Automatically switch node when selected is unreachable",
         "nodeChangeSuccess": "Successfully changed node",
@@ -430,23 +430,23 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Nhập mật khẩu để cài lại ví điện tử.",
-        "cancel": "Cancel",
+        "cancel": "Hủy",
         "reset": "CÀI LẠI"
     },
     "walletSetup": {
-        "creatingSeed": "Creating a seed",
+        "creatingSeed": "Đang tạo từ khoá",
         "okay": "Ok. Hãy thiết lập ví điện tử của bạn!",
         "doYouAlreadyHaveASeed": "Bạn đã có từ khoá mà bạn muốn dùng chưa?",
-        "doYouNeedASeed": "Do you need to create a new seed?",
+        "doYouNeedASeed": "Bạn có cần tạo từ khoá mới không?",
         "seedExplanation": "Từ khoá của IOTA giống như là tên tài khoản và mật khẩu hợp lại với một dãy chữ có 81 ký tự.",
-        "noIHaveOne": "No, I have one",
-        "yesINeedASeed": "Yes, I need a seed",
+        "noIHaveOne": "Không, tôi đã có rồi",
+        "yesINeedASeed": "Có, tôi cần từ khoá",
         "explanation": "<0><0>Bạn có thể xài nó để truy cập vào tài khoản từ</0><1> bất kỳ ví điện tử nào</1><2>trên</2><3>bất kỳ máy nào</3><4>. Nhưng nếu bạn mất từ khoá, bạn sẽ mất hết IOTA của bạn.</4></0>",
         "keepSafe": "Vui lòng giữ từ khoá ở một nơi an toàn.",
-        "hint": "<0><0>Hint:</0> Click NO if this is your first time using IOTA.</0>"
+        "hint": "<0><0>Gợi ý:</0> Chọn KHÔNG nếu đây là lần đầu tiên bạn xài IOTA.</0>"
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity.",
+        "thankYou": "Cám ơn bạn đã tải ví Trinity về.",
         "weWillSpend": "Chúng ta sẽ dành vài phút để cài đặt ví điện tử cho bạn.",
         "reminder": "Bạn sẽ bị lôi cuốn bỏ qua một số bước, nhưng chúng tôi khuyên bạn nên làm theo từng bước để hoàn thành quy trình này."
     },
@@ -459,7 +459,7 @@
         "bundleHashCopiedExplanation": "Nhóm hash đã được sao chép vào bộ nhớ tạm thời.",
         "addressCopied": "Đã sao chép địa chỉ",
         "addressCopiedExplanation": "Địa chỉ đã được sao chép vào bộ nhớ tạm thời.",
-        "messageCopied": "Message copied",
+        "messageCopied": "Đã chép thư",
         "messageCopiedExplanation": "The message has been copied to the clipboard.",
         "send": "GỬI",
         "receive": "NHẬN"
