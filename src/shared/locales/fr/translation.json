@@ -216,8 +216,8 @@
         "tapConfirm": "Veuillez cocher la case ci-dessous pour confirmer.",
         "passwordManagerCheckbox": "Je stockerai ma seed dans un gestionnaire de mot de passe",
         "copy": "COPIER",
-        "noPasswordManagers": "Aucun gestionnaires de mots de passe supporté installé",
-        "noPasswordManagersExplanation": "Aucun gestionnaire de mots de passe supporté n'a été trouvé sur votre appareil. S’il vous plaît installez Keepass2Android.",
+        "noPasswordManagers": "Aucun gestionnaire de mots de passe supporté installé",
+        "noPasswordManagersExplanation": "Aucun gestionnaire de mots de passe supporté n'a été trouvé sur votre appareil. Veuillez installer Keepass2Android.",
         "followTutorialToSecurelyShareSeed": "Si vous souhaitez conserver votre seed dans un gestionnaire de mots de passe, vous devriez suivre le tutoriel à partir du lien suivant"
     },
     "enterSeed": {
@@ -244,7 +244,7 @@
         "emptyPasswordExplanation": "Un mot de passe est requis pour la connexion. Veuillez réessayer.",
         "enterPassword": "Veuillez saisir votre mot de passe.",
         "useSeed": "UTILISER LA SEED",
-        "login": "Se Connecter",
+        "login": "Connexion",
         "selectDifferentNode": "Voulez-vous sélectionner un serveur différent ?",
         "setNode": "Choisir un serveur",
         "cannotConnect": "Impossible de se connecter à un serveur IOTA."
@@ -310,7 +310,7 @@
         "printBlankWallet": "Imprimer un portefeuille vide",
         "whatIsCheksum": "Chaque seed a une somme de contrôle de 3 caractères",
         "iHavesavedMySeed": "J’ai enregistré ma seed",
-        "checksumExplanation": "Chaque fois que vous ajoutez une seed à votre portefeuille, vous devez vous assurer que les checksums affichés correspondent bien à celle de votre seed.",
+        "checksumExplanation": "Chaque fois que vous ajoutez une seed à votre portefeuille, vous devez vous assurer que les sommes de contrôle affichées correspondent bien à celle de votre seed.",
         "mustSaveYourSeed": "<0><0>Vous devez sauvegarder votre seed avec </0><1>au moins une</1><2> des options citées ci-dessous.</2></0>"
     },
     "seedReentry": {
