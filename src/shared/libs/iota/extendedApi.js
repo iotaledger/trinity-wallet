@@ -317,7 +317,6 @@ const getTrytesAsync = (hashes, provider = null) => {
     return new Promise((resolve, reject) => {
         const instance = provider ? new IOTA({ provider }) : iota;
 
-        console.log('Instance', instance.provider);
         instance.api.getTrytes(hashes, (err, trytes) => {
             if (err) {
                 reject(err);
@@ -332,7 +331,6 @@ const isNodeSynced = (provider = null) => {
     const cached = {
         latestMilestone: '9'.repeat(81),
     };
-    console.log('Provider', provider);
 
     return getNodeInfoAsync(provider)
         .then(({ latestMilestone, latestSolidSubtangleMilestone }) => {
