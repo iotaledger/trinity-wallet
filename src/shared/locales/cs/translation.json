@@ -492,7 +492,7 @@
         "manualSync": "Manuální synchronizace",
         "snapshotTransition": "Aktualizace údajů po Snapshotu",
         "pow": "Proof of Work",
-        "autoPromotion": "Auto-promotion",
+        "autoPromotion": "Auto-propagace",
         "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
         "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
     },
