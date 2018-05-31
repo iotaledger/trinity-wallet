@@ -316,12 +316,12 @@
     "seedReentry": {
         "pleaseConfirmYourSeed": "Prosím, potvrďte Váš Seed",
         "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or the app.",
-        "enterYourSeed": "Enter your seed",
+        "enterYourSeed": "Zadejte Váš Seed",
         "incorrectSeed": "Neplatný Seed",
         "incorrectSeedExplanation": "Zadán neplatný Seed. Zkuste to prosím znovu.",
         "thisIsACheck": "Kontrola zda jste si správně uložili Váš Seed.",
         "ifYouHaveNotSaved": "Pokud jste Váš Seed neuložili, vraťte se prosím zpět a uložte si jej.",
-        "enterSeedBelow": "Enter your newly created seed below to confirm you have backed it up correctly"
+        "enterSeedBelow": "Zadejte Váš nově vytvořený Seed níže, pro potvrzení, že jste si ho správně zazálohovali"
     },
     "send": {
         "invalidAddress": "Neplatná adresa",
@@ -348,7 +348,7 @@
         "iotaUnits": "Informace o IOTA jednotkách.",
         "sendMax": "POSLAT MAXIMUM",
         "totalTime": "Celkový čas",
-        "addressPasteDetected": "Address paste detected",
+        "addressPasteDetected": "Zjištění vložení adresy",
         "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
     },
     "setPassword": {
