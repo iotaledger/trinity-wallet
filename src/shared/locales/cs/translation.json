@@ -142,7 +142,7 @@
         "clear": "VYMAZAT",
         "noNetworkConnection": "Žádné síťové připojení",
         "noNetworkConnectionExplanation": "Internetové připojení se zdá byť offline.",
-        "spentAddressExplanation": "WARNING: Funds on spent addresses",
+        "spentAddressExplanation": "VAROVÁNÍ: Zjištěny prostředky na již použitých adresách",
         "discordInformation": "Odesílání ze stejné adresy více než jednou je nebezpečné. Pro více informací je vám k dispozici kanál #help na službě Discord.",
         "androidInsecureClipboardWarning": "Schránka v systému Android není bezpečná.",
         "androidCopyPasteWarning": "Nikdy nekopírujte/nevkládejte Váš Seed na Android zařízení.",
