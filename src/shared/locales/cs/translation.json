@@ -110,7 +110,7 @@
         "promotionErrorExplanation": "Při podpoře transakce se něco nezdařilo. Prosím, zkuste to znovu.",
         "noLongerValid": "Balíček, který se snažíte podpořit, již není platný",
         "transactionAlreadyConfirmed": "Transakce již byla potvrzena",
-        "transactionAlreadyConfirmedExplanation": "The transaction you are trying to promote is already confirmed.",
+        "transactionAlreadyConfirmedExplanation": "Transakce, kterou se snažíte podpořit je již potvrzena.",
         "cannotSendToOwn": "Odesílání na vlastní adresu",
         "cannotSendToOwnExplanation": "Nemůžete převést částku na vlastní adresy.",
         "pleaseWait": "Prosím čekejte",
