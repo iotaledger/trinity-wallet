@@ -308,9 +308,9 @@
         "letsWriteDownYourSeed": "Poznamenejte si někam Váš Seed",
         "youCanHighlightCharacters": "Můžete zvýraznit 9 znaků najednou",
         "printBlankWallet": "Tisk prázdné peněženky",
-        "whatIsCheksum": "Every seed has a corresponding 3 character checksum",
+        "whatIsCheksum": "Každý Seed má odpovídající 3 znakový kontrolní součet",
         "iHavesavedMySeed": "Svůj Seed mám uložený",
-        "checksumExplanation": "Whenever you add a seed to your wallet, you should ensure that the wallet-generated checksum matches the one you have written down.",
+        "checksumExplanation": "Vždy, když přidáte Seed do Vaší peněženky, byste se měli ujistit, že kontrolní součet vygenerovaný peněženkou odpovídá tomu, který jste si zapsali.",
         "mustSaveYourSeed": "<0><0>Musíte uložit nejméně </0><1>jeden Seed</1><2>z níže uvedených možností.</2></0>"
     },
     "seedReentry": {
@@ -426,7 +426,7 @@
         "nodeChangeSuccessNoRemotePow": "Node byl změněn na {{node}}. Tento Node nepodporuje režim vzdálený Proof of Work.",
         "nodeChangeSuccessExplanation": "Node byl změněn na {{node}}.",
         "nodeChangeError": "Chyba změny Node",
-        "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
+        "nodeChangeErrorExplanation": "Při změně Nodu došlo k chybě. Prosím, zkuste to znovu."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Pro smazání peněženky zadejte Vaše heslo.",
@@ -473,10 +473,10 @@
     },
     "addCustomNode": {
         "customNodeAdded": "Vlastní Node přidán",
-        "customNodeCouldNotBeAdded": "Custom node could not be added",
-        "customNodeAddedSuccessfully": "The custom node has been added successfully.",
+        "customNodeCouldNotBeAdded": "Nelze přidat vlastní Node",
+        "customNodeAddedSuccessfully": "Vlastní Node byl úspěšně přidán.",
         "customNode": "Vlastní Node",
-        "invalidNodeResponse": "The node returned an invalid response",
+        "invalidNodeResponse": "Node vrátil neplatnou odpověď",
         "httpNodeError": "Mobilní verze Trinity podporuje pouze https Nody.",
         "add": "Přidat",
         "nodeFieldEmpty": "Textové pole je prázdné",
@@ -493,7 +493,7 @@
         "snapshotTransition": "Aktualizace údajů po Snapshotu",
         "pow": "Proof of Work",
         "autoPromotion": "Automatická podpora",
-        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
+        "autoPromotionExplanation": "Automatická podpora Vám pomůže potvrdit Vaši transakci v síti Tangle. Povolte toto nastavení, pokud máte problémy s potvrzováním transakcí.",
         "autoPromotionPoW": "Automatická podpora je možná pouze na Nodech, které podporují vzdálený Proof of Work."
     },
     "advancedThemeCustomisation": {
@@ -550,11 +550,11 @@
         "hideSeed": "Skrýt Seed"
     },
     "saveSeedConfirmation": {
-        "didSaveSeed": "Did you back up your seed?",
+        "didSaveSeed": "Zazálohovali jste si Váš Seed?",
         "alreadyHave": "Svůj Seed mám uložený",
-        "reenterSeed": "At the next step you will be asked to re-enter your seed.",
-        "reenterSeedWarning": "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
-        "pleaseConfirm": "Please confirm you have securely stored your seed."
+        "reenterSeed": "V dalším kroku budete požádáni o znovu vložení Vašeho Seedu.",
+        "reenterSeedWarning": "Pokud jste si nezálohovali Váš Seed a Vaše zařízení bude poškozeno, ztratíte všechny Vaše IOTY.",
+        "pleaseConfirm": "Prosím potvrďte, že máte bezpečně uložen Váš Seed."
     },
     "walletResetConfirmation": {
         "cannotUndo": "TATO AKCE NEMŮŽE BÝT VRÁCENA.",
@@ -564,14 +564,14 @@
         "instructionsEnable": "Chcete-li zapnout funkci ověření otiskem prstu, přiložte prst na čtečku",
         "instructionsDisable": "Chcete-li vypnout funkci ověření otiskem prstu, přiložte prst na čtečku",
         "fingerprintAuthEnabled": "Ověření pomocí otisků prstů je zapnuté",
-        "fingerprintAuthEnabledExplanation": "You have successfully enabled biometric authentication.",
+        "fingerprintAuthEnabledExplanation": "Úspěšně jste povolili biometrickou autentizaci.",
         "fingerprintAuthDisabled": "Ověření pomocí otisků prstů je vypnuté",
-        "fingerprintAuthDisabledExplanation": "You have successfully disabled biometric authentication.",
+        "fingerprintAuthDisabledExplanation": "Úspěšně jste zakázali biometrickou autentizaci.",
         "fingerprintAuthFailed": "Ověření pomocí otisků prstů selhalo",
         "fingerprintAuthFailedExplanation": "Ověření pomocí otisku prstu selhalo. Prosím zkuste znovu.",
         "status": "Stav",
-        "fingerprintUnavailable": "Biometric authentication unavailable",
-        "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
+        "fingerprintUnavailable": "Biometrická autentizace není k dispozici",
+        "fingerprintUnavailableExplanation": "Vaše zařízení nepodporuje biometrickou autentizaci, nebo v nastavení zařízení nebylo povoleno její používání.",
         "buttonInstructionsDisable": "Stisknutím tlačítka níže vypnete ověřování otisku prstů.",
         "buttonInstructionsEnable": "Stisknutím tlačítka níže aktivujete ověření otisků prstů.",
         "buttonInstructionsDisableIPhoneX": "Stisknutím tlačítka níže vypnete ověření pomocí rozpoznávání obličeje.",
