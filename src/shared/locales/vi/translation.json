@@ -648,7 +648,7 @@
         "transition": "Transition",
         "transitioning": "Transitioning for the snapshot.",
         "generatingAndDetecting": "Generating addresses and detecting balance.",
-        "attaching": "Attaching addresses to Tangle."
+        "attaching": "Kết nối địa chỉ vào mạng Tangle."
     },
     "deepLink": {
         "autofill": "Autofill success",
@@ -659,7 +659,7 @@
         "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
         "noUpdatesAvailable": "No updates available",
         "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
-        "newVersionAvailable": "New version available",
+        "newVersionAvailable": "Đã có phiên bản mới",
         "newVersionAvailableExplanation": "Phiên bản mới <strong>Trinity</strong> <strong>{{version}}</strong> đã có sẵn. Xin vui lòng đọc kĩ các chi tiết phát hành và xác minh mã nguồn tải về trước khi cập nhật:",
         "downloadRelease": "Tải phiên bản",
         "skipUpdate": "Bỏ qua cập nhật"
