@@ -152,7 +152,7 @@
         "isYourBalanceCorrect": "Votre solde est-il correct ?",
         "ifYourBalanceIsNotCorrect": "Si votre solde n’est pas correct, il est probable que vous utilisiez une seed antérieure à un snapshot.",
         "headToAdvancedSettingsForTransition": "Dirigez-vous vers les paramètres avancés et effectuez une Transition de snapshot.",
-        "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android"
+        "usingTrinityWalletWithKeePass": "Utilisation de Trinity avec Keepass2Android"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -195,7 +195,7 @@
         "reasonSequence": "Les suites comme 'abc' ou '54321' sont faciles à deviner",
         "reasonYears": "Les années récentes sont faciles à deviner",
         "reasonDates": "Les dates sont souvent faciles à deviner",
-        "reasonTop10": "Voila un top 10 des mots de passes les plus courants",
+        "reasonTop10": "Voila un top 10 des mots de passe les plus courants",
         "reasonTop100": "Voila un top 100 des mots de passe les plus courants",
         "reasonCommon": "C'est un mot de passe très courant",
         "reasonSimilar": "Ceci est similaire à un mot de passe souvent utilisé",
