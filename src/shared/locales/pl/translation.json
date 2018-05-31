@@ -550,7 +550,7 @@
         "hideSeed": "Ukryj seed"
     },
     "saveSeedConfirmation": {
-        "didSaveSeed": "Czy zrobiłeś kopię swojego klucza seed?",
+        "didSaveSeed": "Czy zrobiłeś kopię swojego klucza?",
         "alreadyHave": "Zapisałem swój seed",
         "reenterSeed": "W następnym kroku zostaniesz poproszony o ponowne wprowadzenie swojego klucza seed.",
         "reenterSeedWarning": "Jeśli nie zapisałeś swojego klucza, a Twoje urządzenie ulegnie uszkodzeniu, stracisz swoje środki IOTA.",
