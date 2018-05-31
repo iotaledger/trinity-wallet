@@ -123,7 +123,7 @@
         "checkForUpdates": "Kiểm Tra Cập Nhật Mới",
         "account": "Tài Khoản",
         "enterPasswordToAccessSettings": "Enter your password to access account settings",
-        "enterYourPassword": "Enter your password",
+        "enterYourPassword": "Nhập mật khẩu của bạn",
         "changeNode": "Đổi Nút Mạng",
         "addCustomNode": "Add Custom Node",
         "nodeChanged": "Nút mạng đã thay đổi",
@@ -288,7 +288,7 @@
         "copyAddress": "Copy address",
         "addressCopied": "Đã sao chép địa chỉ",
         "addressCopiedExplanation": "Địa chỉ đã được sao chép vào bộ nhớ tạm thời.",
-        "generateNewAddress": "New Address",
+        "generateNewAddress": "Địa Chỉ Mới",
         "message": "Tin nhắn tuỳ chọn",
         "removeMessage": "HUỶ BỎ TIN NHẮN",
         "noAddresses": "KHÔNG CÓ ĐỊA CHỈ",
@@ -310,7 +310,7 @@
         "printBlankWallet": "Print a blank wallet",
         "whatIsCheksum": "Every seed has a corresponding 3 character checksum",
         "iHavesavedMySeed": "I've saved my seed",
-        "checksumExplanation": "Whenever you add a seed to your wallet, you should ensure that the wallet-generated checksum matches the one you have written down.",
+        "checksumExplanation": "Khi bạn cho từ khoá vào ví, bạn nên chắc chắn rằng mã kiểm tra của ví trùng khớp với mã bạn đã ghi xuống.",
         "mustSaveYourSeed": "<0><0>Bạn phải lưu từ khoá với </0><1>ít nhất một</1><2>trong những sự lựa chọn dưới đây.</2></0>"
     },
     "seedReentry": {
@@ -328,7 +328,7 @@
         "invalidAddressExplanation1": "Địa chỉ phải có {{maxLength}} ký tự và phải có sự kiểm tra tổng.",
         "invalidAddressExplanation2": "Địa chỉ có chứa ký tự không hợp lệ.",
         "invalidAddressExplanation3": "Địa chỉ chứa kiểm tra tổng không hợp lệ.",
-        "invalidAddressExplanationGeneric": "Valid addresses should be 90 characters and contain only A-Z or 9.",
+        "invalidAddressExplanationGeneric": "Địa chỉ hợp lệ sẽ có 90 ký tự và chỉ chứa đựng chữ cái A-Z và số 9.",
         "notEnoughFunds": "Không đủ tiền",
         "notEnoughFundsExplanation": "Bạn không có đủ IOTA để hoàn thành giao dịch này.",
         "keyReuse": "Tái sử dụng mã key",
@@ -633,21 +633,21 @@
         "preparingInputs": "Preparing inputs",
         "preparingTransfers": "Preparing transfers",
         "gettingTransactionsToApprove": "Getting transactions to approve",
-        "proofOfWork": "Completing proof of work",
-        "broadcasting": "Broadcasting"
+        "proofOfWork": "Đang hoàn thành proof of work",
+        "broadcasting": "Đang phát sóng"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Cannot complete snapshot transition",
         "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
         "transitionComplete": "Snapshot transition complete",
         "transitionCompleteExplanation": "The snapshot transition has completed successfully.",
-        "detectedBalance": "Detected balance: {{amount}} {{unit}}",
-        "isThisCorrect": "Is this correct?",
+        "detectedBalance": "Số tiền tìm thấy: {{amount}}{{unit}}",
+        "isThisCorrect": "Chính xác không?",
         "snapshotExplanation": "Every so often, a snapshot is performed to prune the size of the Tangle.",
         "hasSnapshotTakenPlace": "Has a snapshot taken place? Press the button below to transition.",
         "transition": "Transition",
         "transitioning": "Transitioning for the snapshot.",
-        "generatingAndDetecting": "Generating addresses and detecting balance.",
+        "generatingAndDetecting": "Tạo địa chỉ mới và tìm ra số tiền trong tài khoản.",
         "attaching": "Kết nối địa chỉ vào mạng Tangle."
     },
     "deepLink": {
