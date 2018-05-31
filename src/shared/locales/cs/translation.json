@@ -102,9 +102,9 @@
         "rebroadcastedExplanation": "Znovu odeslaná transakce s hash {{hash}}",
         "rebroadcastError": "Nezdařilo se znovu odeslat transakci",
         "rebroadcastErrorExplanation": "Něco se pokazilo při novém odesílání Vaší transakce. Prosím, zkuste to znovu.",
-        "promoted": "Successfully promoted transaction",
-        "promotedExplanation": "Promoted transaction with hash {{hash}}",
-        "autopromotionError": "Could not auto-promote transaction",
+        "promoted": "Úspěšně podpořená transakce",
+        "promotedExplanation": "Podpořená transakce s hashem {{hash}}",
+        "autopromotionError": "Nelze automaticky podpořit transakci",
         "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
         "promotionError": "Nezdařilo se podpořit transakci",
         "promotionErrorExplanation": "Při podpoře transakce se něco nezdařilo. Prosím, zkuste to znovu.",
@@ -492,7 +492,7 @@
         "manualSync": "Manuální synchronizace",
         "snapshotTransition": "Aktualizace údajů po Snapshotu",
         "pow": "Proof of Work",
-        "autoPromotion": "Auto-propagace",
+        "autoPromotion": "Automatická podpora",
         "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
         "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
     },
@@ -624,10 +624,10 @@
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Auto-promotion settings",
-        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
+        "autoPromotionUpdatedExplanation": "Vaše konfigurace automatické podpory byla aktualizována."
     },
     "progressSteps": {
-        "checkingNodeHealth": "Checking node health",
+        "checkingNodeHealth": "Kontrola stavu nodu",
         "validatingReceiveAddress": "Ověřování přijímací adresy",
         "syncingAccount": "Synchronizace účtu",
         "preparingInputs": "Příprava vstupních dat",
