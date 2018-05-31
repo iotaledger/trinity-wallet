@@ -152,7 +152,7 @@
         "isYourBalanceCorrect": "Seu saldo está correto?",
         "ifYourBalanceIsNotCorrect": "Se o seu saldo não estiver correto, é provável que você esteja usando um servidor pré-snapshot.",
         "headToAdvancedSettingsForTransition": "Vá até as Configurações Avançadas e realize uma Transição de Snapshot.",
-        "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android"
+        "usingTrinityWalletWithKeePass": "Usando a carteira Trinity com Keepass2Android"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém caracteres inválidos",
@@ -604,7 +604,7 @@
         "change": "Variação",
         "volume": "Volume (24h)",
         "currentValue": "Valor atual",
-        "error": "Error fetching chart data"
+        "error": "Erro ao buscar dados da tabela"
     },
     "rootDetection": {
         "warning": "ATENÇÃO",
