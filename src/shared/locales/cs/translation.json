@@ -303,7 +303,7 @@
         "writeYourSeedDown": "Zapište si Váš Seed",
         "printYourSeed": "Tisk vašeho Seedu",
         "digitalCopy": "Digitální kopie",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
+        "seedClearedExplanation": "Pro větší bezpečnost byl Seed ze schránky vymazán.",
         "iHaveBackedUpMySeed": "Svůj Seed mám uložený",
         "letsWriteDownYourSeed": "Poznamenejte si někam Váš Seed",
         "youCanHighlightCharacters": "Můžete zvýraznit 9 znaků najednou",
@@ -448,7 +448,7 @@
     "welcome": {
         "thankYou": "Děkujeme, že jste si stáhli Trinity.",
         "weWillSpend": "Nyní si vyhraďte pár minut pro správné nastavení Vaší peněženky.",
-        "reminder": "Možná budete chtít vynechat některé kroky, ale doporučujeme Vám, abyste je dokončily všechny."
+        "reminder": "Možná budete chtít vynechat některé kroky, ale doporučujeme Vám, abyste je dokončili všechny."
     },
     "writeSeedDown": {
         "yourSeedIs": "Váš Seed je {{maxSeedLength}} znaků čtených zleva doprava.",
