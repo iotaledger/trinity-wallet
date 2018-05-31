@@ -105,7 +105,7 @@
         "promoted": "Úspěšně podpořená transakce",
         "promotedExplanation": "Podpořená transakce s hashem {{hash}}",
         "autopromotionError": "Nelze automaticky podpořit transakci",
-        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
+        "autopromotionErrorExplanation": "Vzdálený Proof of Work není, na Vámi vybraném Nodu, k dispozici. Prosím, změňte Node a zvolte automatickou podporu.",
         "promotionError": "Nezdařilo se podpořit transakci",
         "promotionErrorExplanation": "Při podpoře transakce se něco nezdařilo. Prosím, zkuste to znovu.",
         "noLongerValid": "Balíček, který se snažíte podpořit, již není platný",
@@ -494,7 +494,7 @@
         "pow": "Proof of Work",
         "autoPromotion": "Automatická podpora",
         "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
-        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
+        "autoPromotionPoW": "Automatická podpora je možná pouze na Nodech, které podporují vzdálený Proof of Work."
     },
     "advancedThemeCustomisation": {
         "background": "Pozadí",
@@ -623,7 +623,7 @@
         "noWebGLSupportExplanation": "Váš počítač nepodporuje WebGL. Prosím, použijte vzdálený PoW."
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Auto-promotion settings",
+        "autoPromotionUpdated": "Nastavení automatické podpory",
         "autoPromotionUpdatedExplanation": "Vaše konfigurace automatické podpory byla aktualizována."
     },
     "progressSteps": {
