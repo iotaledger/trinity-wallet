@@ -152,7 +152,7 @@
         "isYourBalanceCorrect": "Stimmt dein Guthaben?",
         "ifYourBalanceIsNotCorrect": "Wenn dein Guthaben nicht stimmt, verwendest du wahrscheinlich einen Seed, der eine Snapshot-Wiederherstellung benötigt.",
         "headToAdvancedSettingsForTransition": "Wechsle zu den erweiterten Einstellungen und führe eine Snapshot-Wiederherstellung aus.",
-        "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android"
+        "usingTrinityWalletWithKeePass": "Trinity Brieftasche mit Keepass2Android verwenden"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
