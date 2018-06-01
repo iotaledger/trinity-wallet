@@ -532,7 +532,7 @@
         "enterPassword": "Pre zmazanie účtu vložte svoje heslo."
     },
     "manualSync": {
-        "outOfSync": "Vyzerá to, že Vaša transakčná história nemusí byť synchronizovaná?",
+        "outOfSync": "Vyzerá to, že vaša transakčná história nemusí byť synchronizovaná?",
         "pressToSync": "Stlačením tlačidla nižšie synchronizujte svoj účet.",
         "thisMayTake": "To môže chvíľu trvať. Môžete pozorovať spomalenie svojho zariadenia.",
         "doNotClose": "Upozorňujeme, že minimalizácia aplikácie zruší synchronizáciu.",
@@ -540,33 +540,33 @@
         "syncingYourAccount": "Váš účet sa synchronizuje."
     },
     "useExistingSeed": {
-        "title": "Zadajte svoj seed a názov účtu.",
-        "incorrectFormat": "Nesprávny formát seedu",
-        "validSeedExplanation": "Platný seed má mať 81 znakov a obsahuje iba znaky A-Z alebo 9."
+        "title": "Zadajte svoj Seed a názov účtu.",
+        "incorrectFormat": "Nesprávny formát Seedu",
+        "validSeedExplanation": "Platný Seed má 81 znakov a obsahuje iba znaky A-Z alebo 9."
     },
     "viewSeed": {
-        "enterPassword": "Pre zobrazenie svojho seedu vložte heslo.",
-        "viewSeed": "Zobraziť seed",
-        "hideSeed": "Skryť seed"
+        "enterPassword": "Pre zobrazenie svojho Seedu vložte heslo.",
+        "viewSeed": "Zobraziť Seed",
+        "hideSeed": "Skryť Seed"
     },
     "saveSeedConfirmation": {
-        "didSaveSeed": "Zazálohovali ste si svoj seed?",
-        "alreadyHave": "Svoj seed mám uložený",
-        "reenterSeed": "V ďalšom kroku budete požiadaný o znovuvloženie vášho seedu.",
-        "reenterSeedWarning": "Ak ste si nezazálohovali váš seed a vaše zariadenie bude poškodené, stratíte všetky vaše IOTY.",
-        "pleaseConfirm": "Potvrďte, prosím, že máte váš seed bezpečne uložený."
+        "didSaveSeed": "Zazálohovali ste si váš Seed?",
+        "alreadyHave": "Svoj Seed mám zálohovaný",
+        "reenterSeed": "V ďalšom kroku budete požiadaný o znovuvloženie vášho Seedu.",
+        "reenterSeedWarning": "Ak ste si nezazálohovali váš Seed a vaše zariadenie bude poškodené, stratíte všetky vaše IOTY.",
+        "pleaseConfirm": "Potvrďte, prosím, že máte váš Seed bezpečne uložený."
     },
     "walletResetConfirmation": {
         "cannotUndo": "TÁTO AKCIA SA NEDÁ VRÁTIŤ.",
-        "warning": "<0><0>Všetky dáta Vašej peňaženky vrátane Vášho</0> <1>seedu, hesla</1> <2>a</2> <3>ďalších informácií o účte</3> <4>budú stratené.</4></0>"
+        "warning": "<0><0>Všetky dáta vašej peňaženky vrátane vášho</0> <1>Seedu, hesla</1> <2>a</2> <3>ďalších informácií o účte</3> <4>budú stratené.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Ak chcete zapnúť funkciu overenie odtlačkom prsta, priložte prst na čítačku",
         "instructionsDisable": "Ak chcete vypnúť funkciu overenie odtlačkom prsta, priložte prst na čítačku",
-        "fingerprintAuthEnabled": "Overenie pomocou odtlačkov prstov je zapnuté",
-        "fingerprintAuthEnabledExplanation": "Úspešne ste aktivovali biometrické overenie.",
+        "fingerprintAuthEnabled": "Overenie je zapnuté",
+        "fingerprintAuthEnabledExplanation": "Úspešne ste povolili biometrické overenie.",
         "fingerprintAuthDisabled": "Overenie pomocou odtlačkov prstov je vypnuté",
-        "fingerprintAuthDisabledExplanation": "Úspešne ste deaktivovali biometrické overenie.",
+        "fingerprintAuthDisabledExplanation": "Úspešne ste vypli biometrické overenie.",
         "fingerprintAuthFailed": "Overenie pomocou odtlačkov prstov zlyhalo",
         "fingerprintAuthFailedExplanation": "Overenie odtlačkom prsta zlyhalo. Skúste prosím znova.",
         "status": "Stav",
