@@ -166,7 +166,7 @@
         "noNickname": "Neįvestas paskyros vardas",
         "noNicknameExplanation": "Įveskite paskyros vardą savo užraktui.",
         "seedInUse": "Toks užraktas jau egzistuoja",
-        "seedInUseExplanation": "Šis užraktas jau susietas su jūsų pinigine. Prašome sukurti naują užraktą."
+        "seedInUseExplanation": "Šis užraktas jau susietas su jūsų pinigine. Sukurkite naują užraktą."
     },
     "changePassword": {
         "oops": "Ups! Įvyko klaida",
@@ -377,7 +377,7 @@
         "transferSending": "Pavedimas apdorojamas",
         "transferSendingExplanation": "Palaukite, kol jūsų pavedimas bus išsiųstas.",
         "generatingAddress": "Kuriamas pavedimų priėmimo adresas",
-        "generatingAddressExplanation": "Prašome palaukti, kol adresas bus sukurtas.",
+        "generatingAddressExplanation": "Palaukite, kol adresas bus sukurtas.",
         "mode": "Rėžimas",
         "theme": "Tema",
         "currency": "Valiuta",
@@ -480,7 +480,7 @@
         "httpNodeError": "Trinity Mobile palaiko tik https serverius.",
         "add": "Pridėti",
         "nodeFieldEmpty": "Teksto laukas tuščias",
-        "nodeFieldEmptyExplanation": "Prašome įvesti vartotojo serverį."
+        "nodeFieldEmptyExplanation": "Įveskite vartotojo serverį."
     },
     "addNewAccount": {
         "useExistingSeed": "Naudoti seną užraktą",
@@ -523,7 +523,7 @@
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Kodėl negaliu išleisti viso savo balanso?",
         "spentAddressExplanation": "Jūs laikote lėšas viename ar daugiau adresų, kurie buvo panaudoti. Adresų pakartotinis naudojimas yra pavojingas IOTA sistemoje, todėl piniginė neleidžia daryti pavedimų iš to pačio adreso daugiau nei kartą.",
-        "discordInformation": "Prašome apsilankyti mūsų #help kanale, Discord programėleje, norėdami sužinoti ką toliau daryti."
+        "discordInformation": "Apsilankykite mūsų #help kanale, Discord programėleje, norėdami sužinoti ką toliau daryti."
     },
     "deleteAccount": {
         "areYouSure": "<0></0><1>Ar tikrai norite ištrinti</1><2></2><3>{{accountName}}?</3>",
@@ -586,7 +586,7 @@
         "wrongCode": "Neteisingas kodas",
         "wrongCodeExplanation": "Kodas, kurį įvedėte yra neteisingas.",
         "emptyCode": "Neįvestas kodas",
-        "emptyCodeExplanation": "Prašome įvesti kodą ir bandykite dar kartą.",
+        "emptyCodeExplanation": "Įveskite kodą ir bandykite dar kartą.",
         "keyCopied": "Kodas nukopijuotas į iškarpinę",
         "keyCopiedExplanation": "Jūsų 2FA kodas nukopijuotas į iškarpinę.",
         "addKey": "Pridėti šį kodą į 2FA programėlę",
@@ -660,7 +660,7 @@
         "noUpdatesAvailable": "Nėra naujų atnaujinimų",
         "noUpdatesAvailableExplanation": "Jūs turite naujausią IOTA Trinity darbalaukio piniginės versiją!",
         "newVersionAvailable": "Galima nauja versija",
-        "newVersionAvailableExplanation": "Galima nauja <strong>Trinity</strong> <strong>{{version}}</strong> versija. Prašome atidžiai perskaityti naujo leidinio informaciją ir patvirtinkite atsisiuntimo šaltinį prieš atnaujinant:",
+        "newVersionAvailableExplanation": "Galima nauja <strong>Trinity</strong> <strong>{{version}}</strong> versija. Atidžiai perskaitykite naujo leidinio informaciją ir patvirtinkite atsisiuntimo šaltinį prieš atnaujinant:",
         "downloadRelease": "Atsisiųsti leidinį",
         "skipUpdate": "Praleisti atnaujinimus"
     },
