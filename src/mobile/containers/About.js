@@ -7,14 +7,14 @@ import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
 import { Icon } from '../theme/icons.js';
 import { width, height } from '../utils/dimensions';
+import GENERAL from '../theme/general';
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
     topContainer: {
-        flex: 10,
-        justifyContent: 'flex-end',
+        flex: 11,
     },
     bottomContainer: {
         flex: 1,
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: width / 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'flex-end',
+        alignItems: 'center',
     },
     backIcon: {
         width: width / 28,
@@ -30,13 +30,13 @@ const styles = StyleSheet.create({
     },
     titleText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 25,
     },
     backText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
@@ -83,10 +83,10 @@ class AdvancedSettings extends PureComponent {
         return (
             <View style={styles.container}>
                 <View style={{ flex: 7, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={[styles.infoText, textColor, { marginTop: height / 15 }]}>
+                    <Text style={[styles.titleText, textColor, { marginTop: height / 15 }]}>
                         Trinity Wallet. IOTA Foundation {this.getYear()}.
                     </Text>
-                    <Text style={[styles.infoText, textColor, { paddingTop: height / 30 }]}>
+                    <Text style={[styles.titleText, textColor, { paddingTop: height / 30 }]}>
                         v {getVersion()} ({getBuildNumber()})
                     </Text>
                 </View>

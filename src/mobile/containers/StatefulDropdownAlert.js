@@ -1,6 +1,6 @@
 import { translate } from 'react-i18next';
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 import { disposeOffAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { connect } from 'react-redux';
@@ -8,6 +8,7 @@ import tinycolor from 'tinycolor2';
 import DropdownAlert from 'react-native-dropdownalert/DropdownAlert';
 import { width, height } from '../utils/dimensions';
 import { isIPhoneX } from '../utils/device';
+import GENERAL from '../theme/general';
 
 const errorIcon = require('iota-wallet-shared-modules/images/error.png');
 const successIcon = require('iota-wallet-shared-modules/images/successIcon.png');
@@ -16,7 +17,7 @@ const infoIcon = require('iota-wallet-shared-modules/images/infoIcon.png');
 
 const styles = StyleSheet.create({
     dropdownTitle: {
-        fontSize: width / 25.9,
+        fontSize: GENERAL.fontSize3,
         textAlign: 'left',
         fontWeight: 'bold',
         color: 'white',
@@ -30,7 +31,7 @@ const styles = StyleSheet.create({
         paddingVertical: height / 30,
     },
     dropdownMessage: {
-        fontSize: width / 29.6,
+        fontSize: GENERAL.fontSize2,
         textAlign: 'left',
         fontWeight: 'normal',
         color: 'white',
@@ -57,6 +58,8 @@ class StatefulDropdownAlert extends Component {
         isModalActive: PropTypes.bool.isRequired,
         /** Determines whether has internet connection */
         hasConnection: PropTypes.bool.isRequired,
+        /** Theme settings */
+        theme: PropTypes.object.isRequired,
     };
 
     static defaultProps = {
@@ -73,10 +76,11 @@ class StatefulDropdownAlert extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        const { alerts, isModalActive } = this.props;
+        const { alerts, isModalActive, backgroundColor } = this.props;
         const hasAnAlert = newProps.alerts.category && newProps.alerts.title && newProps.alerts.message;
         const alertIsNew = alerts.message !== newProps.alerts.message;
-        const shouldGenerateAlert = hasAnAlert && alertIsNew;
+        const alertIsNotEmpty = newProps.alerts.message !== '';
+        const shouldGenerateAlert = hasAnAlert && alertIsNew && alertIsNotEmpty;
 
         if (shouldGenerateAlert) {
             if (this.dropdown) {
@@ -86,9 +90,17 @@ class StatefulDropdownAlert extends Component {
 
         if (isModalActive !== newProps.isModalActive) {
             this.dropdown.close();
+            StatusBar.setBackgroundColor(backgroundColor, false);
         }
 
         this.disposeIfConnectionIsRestored(newProps);
+    }
+
+    shouldComponentUpdate(newProps) {
+        if (newProps.alerts.message === '' || newProps.alerts.title === '') {
+            return false;
+        }
+        return true;
     }
 
     componentWillUnmount() {
@@ -123,14 +135,14 @@ class StatefulDropdownAlert extends Component {
 
     render() {
         const { closeInterval } = this.props.alerts;
-        const { backgroundColor, onRef, isModalActive } = this.props;
+        const { backgroundColor, onRef, isModalActive, theme: { positive, negative } } = this.props;
         const closeAfter = closeInterval;
         const statusBarStyle = this.getStatusBarStyle();
         return (
             <DropdownAlert
                 ref={onRef || this.refFunc}
-                successColor="#009f3f"
-                errorColor="#A10702"
+                successColor={positive.color}
+                errorColor={negative.color}
                 errorImageSrc={errorIcon}
                 successImageSrc={successIcon}
                 warnImageSrc={warnIcon}
@@ -144,8 +156,8 @@ class StatefulDropdownAlert extends Component {
                 onCancel={this.props.disposeOffAlert}
                 onClose={this.props.disposeOffAlert}
                 closeInterval={closeAfter}
-                translucent={!isModalActive}
                 tapToCloseEnabled={this.props.hasConnection}
+                translucent={!isModalActive}
             />
         );
     }
@@ -155,6 +167,7 @@ const mapStateToProps = (state) => ({
     alerts: state.alerts,
     isModalActive: state.ui.isModalActive,
     hasConnection: state.wallet.hasConnection,
+    theme: state.settings.theme,
 });
 
 const mapDispatchToProps = { disposeOffAlert };

@@ -13,7 +13,7 @@ import { toggleModalActivity } from 'iota-wallet-shared-modules/actions/ui';
 import StatefulDropdownAlert from '../containers/StatefulDropdownAlert';
 import Fonts from '../theme/fonts';
 import { deleteSeedFromKeychain } from '../utils/keychain';
-import OnboardingButtons from '../containers/OnboardingButtons';
+import ModalButtons from '../containers/ModalButtons';
 import { width, height } from '../utils/dimensions';
 import { getPasswordHash } from '../utils/crypto';
 import CustomTextInput from '../components/CustomTextInput';
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
         width: width / 1.2,
     },
     topContainer: {
-        flex: 9,
+        flex: 11,
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -72,32 +72,32 @@ const styles = StyleSheet.create({
     },
     titleTextLeft: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
     titleTextRight: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
         marginRight: width / 20,
     },
     infoText: {
         fontFamily: Fonts.secondary,
-        fontSize: width / 25.9,
+        fontSize: GENERAL.fontSize3,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
     modalInfoText: {
         fontFamily: Fonts.secondary,
-        fontSize: width / 25.9,
+        fontSize: GENERAL.fontSize3,
         textAlign: 'center',
         backgroundColor: 'transparent',
         paddingHorizontal: width / 15,
     },
     warningText: {
         fontFamily: Fonts.secondary,
-        fontSize: width / 25.9,
+        fontSize: GENERAL.fontSize3,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
@@ -221,7 +221,7 @@ class DeleteAccount extends Component {
                     <Text style={[styles.modalInfoText, { paddingBottom: height / 16 }, textColor]}>
                         {selectedAccountName} ?
                     </Text>
-                    <OnboardingButtons
+                    <ModalButtons
                         onLeftButtonPress={() => this.onNoPress()}
                         onRightButtonPress={() => this.onYesPress()}
                         leftText={t('global:no')}
@@ -259,7 +259,7 @@ class DeleteAccount extends Component {
                                 <Text style={[styles.infoText, textColor]}>{selectedAccountName}?</Text>
                                 {/*</Trans>*/}
                                 {/*eslint-enable react/jsx-boolean-value*/}
-                                <View style={{ flex: 0.6 }} />
+                                <View style={{ flex: 0.4 }} />
                                 <Text style={[styles.infoText, textColor]}>{t('yourSeedWillBeRemoved')}</Text>
                                 <View style={{ flex: 0.25 }} />
                                 <Text style={[styles.warningText, { color: primaryColor }]}>{t('thisAction')}</Text>

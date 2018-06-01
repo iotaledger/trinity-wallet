@@ -12,7 +12,6 @@ import {
     categoriseTransactionsByPersistence,
     getPendingTxTailsHashes,
     markTransfersConfirmed,
-    hasNewTransfers,
     getTransactionsDiff,
     categoriseTransactions,
     normaliseBundle,
@@ -24,6 +23,7 @@ import {
     constructNormalisedBundles,
     prepareForAutoPromotion,
     getOwnTransactionHashes,
+    pickNewTailTransactions,
 } from '../../../libs/iota/transfers';
 import { iota, SwitchingConfig } from '../../../libs/iota/index';
 import trytes from '../../__samples__/trytes';
@@ -221,21 +221,6 @@ describe('libs: iota/transfers', () => {
 
                 expect(markTransfersConfirmed(normalisedTransfers, confirmedTransactionsHashes)).to.eql(result);
             });
-        });
-    });
-
-    describe('#hasNewTransfers', () => {
-        it('should return true if second argument size is greater than first argument size', () => {
-            expect(hasNewTransfers([], [1])).to.equal(true);
-        });
-
-        it('should return false if second argument size is greater than first argument size', () => {
-            expect(hasNewTransfers({}, { foo: 'bar' })).to.equal(false);
-            expect(hasNewTransfers([], [])).to.equal(false);
-            expect(hasNewTransfers([1], [])).to.equal(false);
-            expect(hasNewTransfers(null, [])).to.equal(false);
-            expect(hasNewTransfers(null, undefined)).to.equal(false);
-            expect(hasNewTransfers(0, 10)).to.equal(false);
         });
     });
 
@@ -1057,6 +1042,64 @@ describe('libs: iota/transfers', () => {
                 const result = getOwnTransactionHashes(mockTransactions.normalizedBundles[bundle], addressData);
 
                 expect(result).to.eql(results[idx]);
+            });
+        });
+    });
+
+    describe('#pickNewTailTransactions', () => {
+        let tailTransactionFromUnseenBundle;
+        let transactionObjects;
+
+        before(() => {
+            tailTransactionFromUnseenBundle = {
+                currentIndex: 0,
+                bundle: 'U'.repeat(81),
+                hash: '9'.repeat(81),
+            };
+
+            transactionObjects = [
+                tailTransactionFromUnseenBundle,
+                {
+                    currentIndex: 1,
+                    bundle: 'U'.repeat(81),
+                    hash: 'A'.repeat(81),
+                },
+                {
+                    currentIndex: 2,
+                    bundle: 'U'.repeat(81),
+                    hash: 'B'.repeat(81),
+                },
+            ];
+        });
+
+        describe('when tail transaction object is from an unseen bundle', () => {
+            it('should return tail transaction', () => {
+                expect(pickNewTailTransactions(transactionObjects, mockTransactions.normalizedBundles)).to.eql([
+                    tailTransactionFromUnseenBundle,
+                ]);
+            });
+        });
+
+        describe('when tail transaction object is from a seen bundle', () => {
+            it('should only return new (unseen) tail transaction', () => {
+                const newTailTransactionForSeenBundle = {
+                    currentIndex: 0,
+                    bundle: 'HAXVESTQCJHLGZYTEG9DGBXHWNURRIAUXJEW9LGDQKJEFEXAWLSEOOMNATDGXGVDAIAAKLOPZHLLXPNTZ',
+                    hash: 'R'.repeat(81),
+                };
+
+                const oldTailTransactionForSeenBundle = {
+                    currentIndex: 0,
+                    bundle: 'HAXVESTQCJHLGZYTEG9DGBXHWNURRIAUXJEW9LGDQKJEFEXAWLSEOOMNATDGXGVDAIAAKLOPZHLLXPNTZ',
+                    hash: 'RXPWGHVYSRKQWRONOWMPAQJUMBZCUTXGAPAOKAFCTDUNNBN9VKUUJQOGZGNUYBFCJABFZWFCHBMKA9999',
+                };
+
+                expect(
+                    pickNewTailTransactions(
+                        [newTailTransactionForSeenBundle, oldTailTransactionForSeenBundle],
+                        mockTransactions.normalizedBundles,
+                    ),
+                ).to.eql([newTailTransactionForSeenBundle]);
             });
         });
     });

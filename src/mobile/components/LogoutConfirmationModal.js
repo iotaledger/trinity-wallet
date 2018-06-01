@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
 import { translate } from 'react-i18next';
-import OnboardingButtons from '../containers/OnboardingButtons';
+import ModalButtons from '../containers/ModalButtons';
 import GENERAL from '../theme/general';
 import StatefulDropdownAlert from '../containers/StatefulDropdownAlert';
 import { width, height } from '../utils/dimensions';
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     questionText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
         paddingBottom: height / 16,
     },
 });
@@ -58,7 +58,7 @@ export class LogoutConfirmationModal extends PureComponent {
             <View style={styles.modalContainer}>
                 <View style={[styles.modalContent, borderColor, backgroundColor]}>
                     <Text style={[styles.questionText, textColor]}>{t('logoutConfirmation')}</Text>
-                    <OnboardingButtons
+                    <ModalButtons
                         onLeftButtonPress={() => this.props.hideModal()}
                         onRightButtonPress={() => this.props.logout()}
                         leftText={t('global:no')}

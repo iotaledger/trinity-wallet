@@ -14,6 +14,7 @@ import OnboardingButtons from '../containers/OnboardingButtons';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
+import GENERAL from '../theme/general';
 
 const styles = StyleSheet.create({
     container: {
@@ -37,11 +38,10 @@ const styles = StyleSheet.create({
         flex: 0.3,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 20,
     },
     subHeaderText: {
         fontFamily: Fonts.secondary,
-        fontSize: width / 20.7,
+        fontSize: GENERAL.fontSize4,
         textAlign: 'center',
         backgroundColor: 'transparent',
         marginBottom: height / 8,
@@ -181,8 +181,8 @@ class TwoFactorSetupEnterToken extends Component {
                         <OnboardingButtons
                             onLeftButtonPress={this.goBack}
                             onRightButtonPress={this.check2FA}
-                            leftText={t('global:back')}
-                            rightText={t('global:done')}
+                            leftButtonText={t('global:backLowercase')}
+                            rightButtonText={t('global:doneLowercase')}
                         />
                     </View>
                     <StatefulDropdownAlert textColor={theme.body.color} backgroundColor={theme.body.bg} />

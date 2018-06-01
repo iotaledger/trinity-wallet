@@ -8,6 +8,7 @@ import { translate } from 'react-i18next';
 import DropdownComponent from '../containers/Dropdown';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons';
+import GENERAL from '../theme/general';
 
 const styles = StyleSheet.create({
     container: {
@@ -16,9 +17,9 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     topContainer: {
-        flex: 9,
+        flex: 11,
         justifyContent: 'flex-end',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     bottomContainer: {
         flex: 1,
@@ -41,14 +42,14 @@ const styles = StyleSheet.create({
     titleTextLeft: {
         color: 'white',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
     titleTextRight: {
         color: 'white',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
         marginRight: width / 20,
     },
@@ -136,7 +137,7 @@ class NodeSelection extends Component {
                             options={nodes}
                             background
                         />
-                        {isChangingNode &&
+                        {isChangingNode && (
                             <View style={styles.innerContainer}>
                                 <ActivityIndicator
                                     animating
@@ -145,7 +146,7 @@ class NodeSelection extends Component {
                                     color={primary.color}
                                 />
                             </View>
-                        }
+                        )}
                         <View style={{ flex: 0.25 }} />
                     </View>
                     <View style={styles.bottomContainer}>
