@@ -213,7 +213,7 @@
         "shareSeed": "Uložte svoj seed do zabezpečeného správcu hesiel",
         "storeEncrypted": "Uchovávajte svoj seed zašifrovaný v správcovi hesiel.",
         "doNotOpen": "Počas tohto procesu neotvárajte žiadne iné aplikácie.",
-        "tapConfirm": "Please tap the checkbox below to confirm.",
+        "tapConfirm": "Pre potvrdenie, prosím, zaškrtnite políčko nižšie.",
         "passwordManagerCheckbox": "I will store my seed in a password manager",
         "copy": "KOPÍROVAŤ",
         "noPasswordManagers": "No supported password managers installed",
