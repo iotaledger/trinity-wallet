@@ -5,12 +5,18 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { acceptPrivacy } from 'iota-wallet-shared-modules/actions/settings';
-import { enPrivacyPolicy, dePrivacyPolicy } from 'iota-wallet-shared-modules/markdown';
+import {
+    enPrivacyPolicyAndroid,
+    enPrivacyPolicyIOS,
+    dePrivacyPolicyAndroid,
+    dePrivacyPolicyIOS,
+} from 'iota-wallet-shared-modules/markdown';
 import i18next from '../i18next';
 import Button from '../components/Button';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
 import DynamicStatusBar from '../components/DynamicStatusBar';
+import { isAndroid } from '../utils/device';
 
 const styles = StyleSheet.create({
     container: {
@@ -63,6 +69,20 @@ class PrivacyPolicy extends Component {
         return i18next.language === 'de';
     }
 
+    static getPrivacyPolicy() {
+        const isCurrentLanguageGerman = PrivacyPolicy.isCurrentLanguageGerman();
+
+        if (isCurrentLanguageGerman && isAndroid) {
+            return dePrivacyPolicyAndroid;
+        } else if (isCurrentLanguageGerman && !isAndroid) {
+            return dePrivacyPolicyIOS;
+        } else if (!isCurrentLanguageGerman && isAndroid) {
+            return enPrivacyPolicyAndroid;
+        } else if (!isCurrentLanguageGerman && !isAndroid) {
+            return enPrivacyPolicyIOS;
+        }
+    }
+
     constructor() {
         super();
 
@@ -111,7 +131,7 @@ class PrivacyPolicy extends Component {
                     style={styles.scrollView}
                 >
                     <Markdown styles={{ text: { fontFamily: 'SourceSansPro-Regular' } }}>
-                        {PrivacyPolicy.isCurrentLanguageGerman() ? dePrivacyPolicy : enPrivacyPolicy}
+                        {PrivacyPolicy.getPrivacyPolicy()}
                     </Markdown>
                 </ScrollView>
                 {this.state.hasReadPrivacyPolicy && (
