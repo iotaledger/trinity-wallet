@@ -164,9 +164,9 @@
         "enterAccountName": "Zadajte názov účtu.",
         "accountName": "Názov účtu",
         "noNickname": "Nebol zadaný názov účtu",
-        "noNicknameExplanation": "Zadajte prosím názov účtu pre váš Seed.",
+        "noNicknameExplanation": "Zadajte, prosím, názov účtu pre váš Seed.",
         "seedInUse": "Seed je už používaný",
-        "seedInUseExplanation": "Tento Seed je už prepojený s vašou peňaženkou. Použite prosím iný."
+        "seedInUseExplanation": "Tento Seed je už prepojený s vašou peňaženkou. Použite, prosím, iný."
     },
     "changePassword": {
         "oops": "Ups! Vyskytla sa chyba",
@@ -205,8 +205,8 @@
         "seedCleared": "Schránka vyčistená",
         "seedClearedExplanation": "Seed bol z bezpečnostných dôvodov vymazaný zo schránky.",
         "seedCopied": "Seed bol skopírovaný do schránky",
-        "seedCopiedExplanation": "Seed bude zo schránky vymazaný po tom, čo stlačíte \"Hotovo\" alebo po uplynutí 60 sekúnd.",
-        "clickToCopy": "Kliknite na tlačítko nižšie a skopírujte svoj Seed do správcu hesiel.",
+        "seedCopiedExplanation": "Seed bude zo schránky vymazaný po tom, čo stlačíte \"HOTOVO\" alebo po uplynutí 60 sekúnd.",
+        "clickToCopy": "Kliknite na tlačítko nižšie a skopírujte svoj Seed do právcu hesiel.",
         "clickToSecurelyShare": "Kliknutím na tlačítko nižšie skopírujete svoj Seed do správcu hesiel.",
         "doNotStore": "Neuchovávajte svoj Seed vo forme prostého textu.",
         "copyToClipboard": "Kopírovať Seed",
@@ -226,7 +226,7 @@
         "seedTooShort": "Seed je príliš krátky",
         "seedTooShortExplanation": "Seed musí mať {{maxLength}} znakov. Váš Seed má {{currentLength}} znakov. Prosím, skúste to znova.",
         "seedExplanation": "Seed by mal mať dĺžku {{maxLength}} znakov a mal by obsahovat velké písmena A-Z a číslo 9. Nie je možné použít Seed dlhší ako {{maxLength}} znakov.",
-        "neverShare": "NIKDY NIKOMU NEPREZRÁDZAJTE VÁS SEED"
+        "neverShare": "NIKDY NIKOMU NEPREZRÁDZAJTE VÁŠ SEED"
     },
     "home": {
         "balance": "ZOSTATOK",
@@ -332,7 +332,7 @@
         "notEnoughFunds": "Nedostatok prostriedkov",
         "notEnoughFundsExplanation": "Nemáte dostatok IOTA na dokončenie tejto transakcie.",
         "keyReuse": "Opakované použitie kľúča",
-        "keyReuseExplanation": "Adresa, na ktorú sa pokúšate zasielať, už bola použitá. Skúste, prosím, inú adresu.",
+        "keyReuseExplanation": "Adresa, na ktorú sa pokúšate odoslať transakciu, už bola použitá. Skúste, prosím, inú adresu.",
         "recipientAddress": "Adresa príjemcu",
         "amount": "Čiastka",
         "max": "MAX",
@@ -343,7 +343,7 @@
         "invalidMessageTooLongExplanation": "Správa prekračuje maximálny počet znakov (1093).",
         "send": "Odoslať",
         "invalidAmount": "Zadaná neplatná čiastka",
-        "invalidAmountExplanation": "Zadajte, prosím, platnú transakčnú čiastka. Nižšie nájdete nápomocné informácie o IOTA jednotkách.",
+        "invalidAmountExplanation": "Zadajte, prosím, platnú transakčnú čiastku. Nižšie nájdete nápomocné informácie o IOTA jednotkách.",
         "maximumSelected": "Vybraná MAXIMÁLNA čiastka",
         "iotaUnits": "Informácie o IOTA jednotkách",
         "sendMax": "POSLAŤ VŠETKO",
