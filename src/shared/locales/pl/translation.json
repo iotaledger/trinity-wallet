@@ -104,7 +104,7 @@
         "rebroadcastErrorExplanation": "Coś poszło nie tak podczas nadawania Twojego transferu. Proszę spróbować ponownie.",
         "promoted": "Promowanie transakcji pomyślne",
         "promotedExplanation": "Wypromowano transakcję z hashem {{hash}}",
-        "autopromotionError": "Błąd auto-promowania transakcji",
+        "autopromotionError": "Błąd autopromowania transakcji",
         "autopromotionErrorExplanation": "Zdalny tryb Proof of Work jest niedostępny na wybranym serwerze. Zmień serwer oraz ponownie włącz opcję autopromowania.",
         "promotionError": "Nie można wypromować transakcji",
         "promotionErrorExplanation": "Coś poszło nie tak podczas promowania Twojego transferu. Proszę spróbować ponownie.",
@@ -151,7 +151,8 @@
         "deviceMayBecomeUnresponsive": "Urządzenie może przestać odpowiadać przez pewien czas",
         "isYourBalanceCorrect": "Czy Twoje saldo jest poprawne?",
         "ifYourBalanceIsNotCorrect": "Jeśli Twoje saldo nie jest poprawne, prawdopodobnie używasz klucza seed sprzed tzw. migawki (snapshot).",
-        "headToAdvancedSettingsForTransition": "Przejdź do ustawień zaawansowanych i skorzystaj z funkcji Snapshot asystent."
+        "headToAdvancedSettingsForTransition": "Przejdź do ustawień zaawansowanych i skorzystaj z funkcji Snapshot asystent.",
+        "usingTrinityWalletWithKeePass": "Używanie portfela Trinity z Keepass2Android"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -549,7 +550,7 @@
         "hideSeed": "Ukryj seed"
     },
     "saveSeedConfirmation": {
-        "didSaveSeed": "Czy zrobiłeś kopię swojego klucza seed?",
+        "didSaveSeed": "Czy zrobiłeś kopię swojego klucza?",
         "alreadyHave": "Zapisałem swój seed",
         "reenterSeed": "W następnym kroku zostaniesz poproszony o ponowne wprowadzenie swojego klucza seed.",
         "reenterSeedWarning": "Jeśli nie zapisałeś swojego klucza, a Twoje urządzenie ulegnie uszkodzeniu, stracisz swoje środki IOTA.",
