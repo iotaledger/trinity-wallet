@@ -308,7 +308,7 @@
         "letsWriteDownYourSeed": "Zapíšte si váš seed",
         "youCanHighlightCharacters": "Môžete zvýrazniť 9 znakov súčasne",
         "printBlankWallet": "Tlač prázdnej peňaženky",
-        "whatIsCheksum": "Every seed has a corresponding 3 character checksum",
+        "whatIsCheksum": "Každý seed má zodpovedajúci 3-znakový kontrolný súčet",
         "iHavesavedMySeed": "Svoj seed mám uložený",
         "checksumExplanation": "Vždy, keď pridáte Seed do vašej peňaženky, mali by ste sa uistiť, že kontrolný súčet vygenerovaný peňaženkou zodpovedá tomu, ktorý ste si zapísali.",
         "mustSaveYourSeed": "<0><0>Je potrebné uložiť Váš seed </0><1>aspoň jedným</1><2>z nižšie uvedených spôsobov.</2></0>"
@@ -348,8 +348,8 @@
         "iotaUnits": "Informácie o IOTA jednotkách",
         "sendMax": "POSLAŤ VŠETKO",
         "totalTime": "Celkový čas",
-        "addressPasteDetected": "Address paste detected",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
+        "addressPasteDetected": "Zistené kopírovanie adresy",
+        "addressPasteExplanation": "Vyzerá to, že ste skopírovali adresu zo schránky. Uistite sa, že vložená adresa je naozaj tá, na ktorú chcete odoslať prostriedky."
     },
     "setPassword": {
         "choosePassword": "Zvoľte si nové heslo",
@@ -363,7 +363,7 @@
         "retypePassword": "Zadajte heslo znova"
     },
     "setSeedName": {
-        "letsAddName": "Let's add a name",
+        "letsAddName": "Pridajte názov",
         "canUseMultipleSeeds": "V tejto peňaženke môžete používať viac seedov. Každý seed vyžaduje nový názov účtu.",
         "youCanAdd": "V menu nastavení môžete pridať ďalšie seedy."
     },
@@ -382,7 +382,7 @@
         "theme": "Motív",
         "currency": "Mena",
         "cannotChangeNode": "Nedá sa zmeniť node",
-        "cannotChangeNodeWhileSending": "Cannot change node while sending.",
+        "cannotChangeNodeWhileSending": "Node sa nedá zmeniť počas odosielania.",
         "language": "Jazyk",
         "accountManagement": "Správa účtov",
         "addNewSeed": "Pridať nový seed",
@@ -413,19 +413,19 @@
         "selectAll": "Vybrať všetko",
         "securitySettings": "Nastavenie zabezpečenia",
         "fingerprint": "Biometrické overovanie",
-        "couldNotFetchRates": "Could not fetch rate",
-        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rate for {{currency}}.",
-        "fetchedConversionRates": "Fetched conversion rate",
-        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rate for {{currency}}.",
+        "couldNotFetchRates": "Nie je možné načítať kurzy",
+        "couldNotFetchRatesExplanation": "Došlo k chybe pri načítaní konverzných kurzov pre {{currency}}.",
+        "fetchedConversionRates": "Konverzné kurzy boli načítané",
+        "fetchedConversionRatesExplanation": "Najnovšie konverzné kurzy pre {{currency}} boli úspešne načítané.",
         "undo": "Zrušiť",
         "redo": "Znova",
         "aboutTrinity": "O Trinity",
         "lockScreenTimeout": "Zámok obrazovky po (minúty)",
         "autoNodeSwitching": "Automaticky prepnúť na iný Node, pokiaľ vybraný nie je dostupný",
-        "nodeChangeSuccess": "Successfully changed node",
-        "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
-        "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
-        "nodeChangeError": "Error changing node",
+        "nodeChangeSuccess": "Node bol úspešne zmenený",
+        "nodeChangeSuccessNoRemotePow": "Node bol zmenený na {{node}}. Tento node nepodporuje vzdialený Proof Work.",
+        "nodeChangeSuccessExplanation": "Node bol zmenený na {{node}}.",
+        "nodeChangeError": "Chyba zmeny nodu",
         "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
     },
     "resetWalletRequirePassword": {
