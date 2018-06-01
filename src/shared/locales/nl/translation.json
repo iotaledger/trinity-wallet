@@ -151,7 +151,8 @@
         "deviceMayBecomeUnresponsive": "Uw apparaat kan wellicht even niet reageren",
         "isYourBalanceCorrect": "Klopt uw saldo?",
         "ifYourBalanceIsNotCorrect": "Als uw saldo niet correct is, gebruikt u waarschijnlijk een pre-snapshot seed.",
-        "headToAdvancedSettingsForTransition": "Ga naar Geavanceerde instellingen en voer een Snapshot transitie uit."
+        "headToAdvancedSettingsForTransition": "Ga naar Geavanceerde instellingen en voer een Snapshot transitie uit.",
+        "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "De seed bevat ongeldige tekens",
@@ -231,8 +232,8 @@
         "balance": "SALDO",
         "send": "STUUR",
         "receive": "ONTVANG",
-        "history": "GESCHIEDENIS",
-        "settings": "INSTELLINGEN"
+        "history": "HISTORIE",
+        "settings": "OPTIES"
     },
     "languageSetup": {
         "language": "Taal",
@@ -603,7 +604,7 @@
         "change": "Verschil",
         "volume": "Volume (24u)",
         "currentValue": "Huidige waarde",
-        "error": "Error fetching chart data"
+        "error": "Fout bij het ophalen van grafiek data"
     },
     "rootDetection": {
         "warning": "WAARSCHUWING",

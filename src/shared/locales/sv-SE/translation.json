@@ -136,7 +136,7 @@
         "nodeAutoChangedExplanation": "Bytte till ny nod {{- nodeAddress}} då din valda nod är offline.",
         "fingerprintOnSend": "Tryck på fingeravtrycksläsaren för att skicka överföringen",
         "masterKey": "Din IOTA-seed är huvudnyckeln till dina pengar.",
-        "seedThief": "Om någon annan har seed kan de stjäla din IOTA.",
+        "seedThief": "Om någon annan har din seed kan de stjäla dina IOTA.",
         "googlePlayServicesNotAvailable": "Google Play-tjänsten är inte tillgänglig",
         "couldNotVerifyDeviceIntegrity": "Kunde inte verifiera enhetens integritet eftersom Google Play-tjänsten inte är tillgänglig.",
         "clear": "RENSA",
@@ -151,7 +151,8 @@
         "deviceMayBecomeUnresponsive": "Din enhet kan sluta reagera ett tag",
         "isYourBalanceCorrect": "Stämmer ditt saldo?",
         "ifYourBalanceIsNotCorrect": "Om ditt saldo inte är korrekt, är det troligt att du använder en seed från tidigare än snapshot.",
-        "headToAdvancedSettingsForTransition": "Gå till avancerade inställningar och utför en snapshot-övergång."
+        "headToAdvancedSettingsForTransition": "Gå till avancerade inställningar och utför en snapshot-övergång.",
+        "usingTrinityWalletWithKeePass": "Använder Trinity med Keepass2Android"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
@@ -603,7 +604,7 @@
         "change": "Ändring",
         "volume": "Volym (24h)",
         "currentValue": "Nuvarande värde",
-        "error": "Error fetching chart data"
+        "error": "Fel vid hämtning av valutavärde"
     },
     "rootDetection": {
         "warning": "VARNING",
