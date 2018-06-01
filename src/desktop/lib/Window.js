@@ -9,6 +9,7 @@ const Converter = require('iota.lib.js/lib/crypto/converter/converter');
 const currentWindow = require('electron').remote.getCurrentWindow();
 
 const trytesTrits = [
+    [0, 0, 0],
     [1, 0, 0],
     [-1, 1, 0],
     [0, 1, 0],
@@ -35,7 +36,6 @@ const trytesTrits = [
     [0, -1, 0],
     [1, -1, 0],
     [-1, 0, 0],
-    [0, 0, 0],
 ];
 
 const capitalize = (string) => {
@@ -52,7 +52,7 @@ const Electron = {
                 typeof content === 'string'
                     ? content
                     : Array.from(content)
-                          .map((byte) => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9'.charAt(byte % 27))
+                          .map((byte) => '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.charAt(byte % 27))
                           .join('');
             clipboard.writeText(clip);
             clip = null;

@@ -73,7 +73,7 @@ export default class SeedInput extends React.PureComponent {
         let clipboard = e.clipboardData
             .getData('Text')
             .split('')
-            .map((char) => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9'.indexOf(char.toUpperCase()))
+            .map((char) => '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.indexOf(char.toUpperCase()))
             .filter((char) => char > -1);
 
         const cursor = this.getCursor(this.input);
@@ -126,13 +126,11 @@ export default class SeedInput extends React.PureComponent {
     keyDown = (e) => {
         const key = e.key;
 
-        console.log(e.target.textContent);
-
         if (['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown'].indexOf(key) > -1) {
             return true;
         }
 
-        const byte = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9'.indexOf(key.toUpperCase());
+        const byte = '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.indexOf(key.toUpperCase());
 
         if (!e.metaKey) {
             e.preventDefault();
