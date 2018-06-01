@@ -152,7 +152,7 @@
         "isYourBalanceCorrect": "이 잔액이 옳습니까?",
         "ifYourBalanceIsNotCorrect": "잔액이 옳지 않다면 스냅샷 전의 시드를 사용중일 수 있습니다.",
         "headToAdvancedSettingsForTransition": "고급 설정에서 스냅샷 이전을 수행해 주세요.",
-        "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android"
+        "usingTrinityWalletWithKeePass": "트리니티 지갑과 Keepass2Android 같이 사용하기"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
@@ -604,7 +604,7 @@
         "change": "전일대비",
         "volume": "거래량 (24시간)",
         "currentValue": "현재 호가",
-        "error": "Error fetching chart data"
+        "error": "차트 데이터 가져오는 중 오류 발생"
     },
     "rootDetection": {
         "warning": "경고",
