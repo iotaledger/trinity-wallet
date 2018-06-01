@@ -579,8 +579,8 @@
         "instructionsLogin": "Palieskite piršto antspaudo skaitytuvą, norėdami prisijungti"
     },
     "transferConfirmation": {
-        "youAreAbout": "Jūs ketinate pervesti {{contents}} šiuo adresu",
-        "aMessage": "žinutė"
+        "youAreAbout": "Jūs ruošiatės išsiųsti {{contents}} į adresą",
+        "aMessage": "žinutę"
     },
     "twoFA": {
         "wrongCode": "Neteisingas kodas",
