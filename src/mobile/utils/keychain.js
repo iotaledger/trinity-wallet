@@ -48,6 +48,7 @@ export const getSecretBoxFromKeychainAndOpenIt = async (alias, key) => {
     const boxUInt8 = await decodeBase64(secretBox.box);
     const nonceUInt8 = await decodeBase64(secretBox.nonce);
     const keyUInt8 = hexStringToByte(key);
+
     return await openSecretBox(boxUInt8, nonceUInt8, keyUInt8);
 };
 
@@ -163,10 +164,27 @@ export const clearKeychain = async (aliasOne = 'authKey', aliasTwo = 'seeds') =>
     return await keychain.clear(aliasTwo);
 };
 
-export const changePassword = async (oldPwdHash, newPwdHash, alias = 'seeds') => {
-    const seedInfo = await getSecretBoxFromKeychainAndOpenIt(alias, oldPwdHash);
-    await keychain.clear(alias);
-    return await createAndStoreBoxInKeychain(newPwdHash, seedInfo, alias);
+export const changePassword = async (oldPwdHash, newPwdHash, aliasOne = 'seeds', aliasTwo = 'authKey') => {
+    const seedInfo = await getSecretBoxFromKeychainAndOpenIt(aliasOne, oldPwdHash);
+
+    // Clear keychain for alias "seeds"
+    await keychain.clear(aliasOne);
+
+    const authKey = await getTwoFactorAuthKeyFromKeychain(oldPwdHash);
+
+    if (authKey) {
+        await keychain.clear(aliasTwo);
+    }
+
+    // Create a secret box with new password hash
+    await createAndStoreBoxInKeychain(newPwdHash, seedInfo, aliasOne);
+
+    // Only update keychain with authKey alias if wallet has a twoFa key
+    if (authKey) {
+        return await storeTwoFactorAuthKeyInKeychain(newPwdHash, authKey);
+    }
+
+    return Promise.resolve();
 };
 
 export default keychain;
