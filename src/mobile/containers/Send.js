@@ -4,7 +4,7 @@ import reduce from 'lodash/reduce';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard, Clipboard } from 'react-native';
 import timer from 'react-native-timer';
 import { connect } from 'react-redux';
 import {
@@ -57,6 +57,7 @@ import { Icon } from '../theme/icons.js';
 import { width } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
 import { getAddressGenFn, getPowFn } from '../utils/nativeModules';
+import GENERAL from '../theme/general';
 
 const styles = StyleSheet.create({
     container: {
@@ -73,34 +74,22 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center',
     },
-    fieldContainer: {
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        flex: 0.7,
-    },
     maxContainer: {
         justifyContent: 'flex-start',
         alignItems: 'flex-end',
         width: width / 1.2,
         paddingRight: 1,
-        flex: 0.8,
-    },
-    messageFieldContainer: {
-        flex: 0.7,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        borderWidth: 1,
-        borderColor: 'white',
+        flex: 0.4,
     },
     maxButtonText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 31.8,
+        fontSize: GENERAL.fontSize2,
         backgroundColor: 'transparent',
         marginRight: width / 50,
     },
     infoText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 29.6,
+        fontSize: GENERAL.fontSize3,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
@@ -110,7 +99,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     progressSummaryText: {
-        fontSize: width / 30.9,
+        fontSize: GENERAL.fontSize2,
     },
 });
 
@@ -184,6 +173,7 @@ export class Send extends Component {
             sending: false,
             currencySymbol: getCurrencySymbol(this.props.currency),
         };
+        this.detectAddressInClipboard = this.detectAddressInClipboard.bind(this);
     }
 
     componentWillMount() {
@@ -325,7 +315,7 @@ export class Send extends Component {
     }
 
     onSendPress() {
-        const { t, amount, address, message, denomination } = this.props;
+        const { t, amount, address, message, denomination, isIOSKeyboardActive } = this.props;
         const { currencySymbol } = this.state;
 
         const multiplier = this.getUnitMultiplier();
@@ -355,8 +345,14 @@ export class Send extends Component {
         if (!messageIsValid) {
             return this.props.generateAlert('error', t('invalidMessage'), t('invalidMessageExplanation'));
         }
-
-        return this.showModal('transferConfirmation');
+        this.showModal('transferConfirmation');
+        if (parseFloat(amount) * multiplier > 0) {
+            timer.setTimeout(
+                'addressPasteAlertDelay',
+                () => this.detectAddressInClipboard(),
+                isIOSKeyboardActive ? 1000 : 250,
+            );
+        }
     }
 
     onQRRead(data) {
@@ -365,6 +361,10 @@ export class Send extends Component {
         const parsedData = parse(data);
         const dataSubstring = data.substring(5);
         this.hideModal();
+
+        // Clear clipboard
+        Clipboard.setString(' ');
+
         if (parsedData.address) {
             // For codes containing JSON (iotaledger and Trinity)
             this.props.setSendAddressField(parsedData.address);
@@ -402,18 +402,18 @@ export class Send extends Component {
     getModalProps() {
         const { isModalActive, body } = this.props;
         const props = {
-          animationIn: isAndroid ? 'bounceInUp' : 'zoomIn',
-          animationOut: isAndroid ? 'bounceOut' : 'zoomOut',
-          animationInTiming: isAndroid ? 1000 : 300,
-          animationOutTiming: 200,
-          backdropTransitionInTiming: isAndroid ? 500 : 300,
-          backdropTransitionOutTiming: 200,
-          backdropColor: body.bg,
-          style: { alignItems: 'center', margin: 0 },
-          isVisible: isModalActive,
-          onBackButtonPress: () => this.props.toggleModalActivity(),
-          hideModalContentWhileAnimating: true,
-          useNativeDriver: isAndroid ? true : false,
+            animationIn: isAndroid ? 'bounceInUp' : 'zoomIn',
+            animationOut: isAndroid ? 'bounceOut' : 'zoomOut',
+            animationInTiming: isAndroid ? 1000 : 300,
+            animationOutTiming: 200,
+            backdropTransitionInTiming: isAndroid ? 500 : 300,
+            backdropTransitionOutTiming: 200,
+            backdropColor: body.bg,
+            style: { alignItems: 'center', margin: 0 },
+            isVisible: isModalActive,
+            onBackButtonPress: () => this.props.toggleModalActivity(),
+            hideModalContentWhileAnimating: true,
+            useNativeDriver: isAndroid ? true : false,
         };
         return props;
     }
@@ -514,6 +514,14 @@ export class Send extends Component {
                 </Text>
             </Text>
         );
+    }
+
+    async detectAddressInClipboard() {
+        const { t } = this.props;
+        const clipboardContent = await Clipboard.getString();
+        if (clipboardContent.match(VALID_ADDRESS_WITH_CHECKSUM_REGEX)) {
+            this.props.generateAlert('info', t('addressPasteDetected'), t('addressPasteExplanation'));
+        }
     }
 
     resetToggleSwitch() {
@@ -705,25 +713,25 @@ export class Send extends Component {
                     </Modal>
                 );
             case 'transferConfirmation':
-                  return (
-                      <Modal {...modalProps}>
-                          <TransferConfirmationModal
-                              value={parseFloat(amount) * this.getUnitMultiplier()}
-                              amount={amount}
-                              conversionText={this.getConversionTextIota()}
-                              address={address}
-                              sendTransfer={() => this.sendWithDelay()}
-                              hideModal={(callback) => this.hideModal(callback)}
-                              body={body}
-                              bar={bar}
-                              borderColor={{ borderColor: body.color }}
-                              textColor={{ color: body.color }}
-                              setSendingTransferFlag={() => this.setSendingTransferFlag()}
-                              selectedAccountName={selectedAccountName}
-                              activateFingerprintScanner={() => this.activateFingerprintScanner()}
-                              isFingerprintEnabled={isFingerprintEnabled}
-                          />
-                      </Modal>
+                return (
+                    <Modal {...modalProps}>
+                        <TransferConfirmationModal
+                            value={parseFloat(amount) * this.getUnitMultiplier()}
+                            amount={amount}
+                            conversionText={this.getConversionTextIota()}
+                            address={address}
+                            sendTransfer={() => this.sendWithDelay()}
+                            hideModal={(callback) => this.hideModal(callback)}
+                            body={body}
+                            bar={bar}
+                            borderColor={{ borderColor: body.color }}
+                            textColor={{ color: body.color }}
+                            setSendingTransferFlag={() => this.setSendingTransferFlag()}
+                            selectedAccountName={selectedAccountName}
+                            activateFingerprintScanner={() => this.activateFingerprintScanner()}
+                            isFingerprintEnabled={isFingerprintEnabled}
+                        />
+                    </Modal>
                 );
             case 'unitInfo':
                 return (
@@ -818,66 +826,66 @@ export class Send extends Component {
                             value={address}
                             editable={!isSending}
                             selectTextOnFocus={!isSending}
+                            detectAddressInClipboard={this.detectAddressInClipboard}
                         />
                         <View style={{ flex: 0.17 }} />
-                        <View style={styles.fieldContainer}>
-                            <CustomTextInput
-                                onRef={(c) => {
-                                    this.amountField = c;
-                                }}
-                                keyboardType="numeric"
-                                label={t('amount')}
-                                onChangeText={(text) => this.onAmountType(text)}
-                                containerStyle={{ width: width / 1.2 }}
-                                autoCorrect={false}
-                                enablesReturnKeyAutomatically
-                                returnKeyType="next"
-                                onSubmitEditing={() => {
-                                    if (amount) {
-                                        this.messageField.focus();
-                                    }
-                                }}
-                                widget="denomination"
-                                conversionText={conversionText}
-                                currencyConversion
-                                theme={theme}
-                                denominationText={denomination}
-                                onDenominationPress={() => {
+                        <CustomTextInput
+                            onRef={(c) => {
+                                this.amountField = c;
+                            }}
+                            keyboardType="numeric"
+                            label={t('amount')}
+                            onChangeText={(text) => this.onAmountType(text)}
+                            containerStyle={{ width: width / 1.2 }}
+                            autoCorrect={false}
+                            enablesReturnKeyAutomatically
+                            returnKeyType="next"
+                            onSubmitEditing={() => {
+                                if (amount) {
+                                    this.messageField.focus();
+                                }
+                            }}
+                            widget="denomination"
+                            conversionText={conversionText}
+                            currencyConversion
+                            theme={theme}
+                            denominationText={denomination}
+                            onDenominationPress={() => {
+                                if (!isSending) {
+                                    this.onDenominationPress();
+                                }
+                            }}
+                            value={amount}
+                            editable={!isSending}
+                            selectTextOnFocus={!isSending}
+                        />
+                        <View style={{ flex: 0.09 }} />
+                        <View style={[styles.maxContainer, { opacity: opacity }]}>
+                            <TouchableOpacity
+                                onPress={() => {
                                     if (!isSending) {
-                                        this.onDenominationPress();
+                                        this.onMaxPress();
                                     }
                                 }}
-                                value={amount}
-                                editable={!isSending}
-                                selectTextOnFocus={!isSending}
-                            />
-                            <View style={{ flex: 0.2 }} />
-                            <View style={[styles.maxContainer, { opacity: opacity }]}>
-                                <TouchableOpacity
-                                    onPress={() => {
-                                        if (!isSending) {
-                                            this.onMaxPress();
-                                        }
+                            >
+                                <View
+                                    style={{
+                                        flexDirection: 'row',
+                                        alignItems: 'center',
+                                        justifyContent: 'flex-start',
                                     }}
                                 >
-                                    <View
-                                        style={{
-                                            flexDirection: 'row',
-                                            alignItems: 'center',
-                                            justifyContent: 'flex-start',
-                                        }}
-                                    >
-                                        <Text style={[styles.maxButtonText, { color: maxColor }]}>{maxText}</Text>
-                                        <Toggle
-                                            opacity={opacity}
-                                            active={maxPressed}
-                                            bodyColor={body.color}
-                                            primaryColor={primary.color}
-                                        />
-                                    </View>
-                                </TouchableOpacity>
-                            </View>
+                                    <Text style={[styles.maxButtonText, { color: maxColor }]}>{maxText}</Text>
+                                    <Toggle
+                                        opacity={opacity}
+                                        active={maxPressed}
+                                        bodyColor={body.color}
+                                        primaryColor={primary.color}
+                                    />
+                                </View>
+                            </TouchableOpacity>
                         </View>
+                        <View style={{ flex: 0.1 }} />
                         <CustomTextInput
                             onRef={(c) => {
                                 this.messageField = c;
@@ -936,7 +944,7 @@ export class Send extends Component {
                         )}
                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                             <TouchableOpacity
-                                onPress={() => this.showModal('unitInfo') }
+                                onPress={() => this.showModal('unitInfo')}
                                 hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
                             >
                                 <View style={styles.info}>

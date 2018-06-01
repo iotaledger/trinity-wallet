@@ -10,6 +10,7 @@ import { I18N_LOCALE_LABELS, getLocaleFromLabel } from 'iota-wallet-shared-modul
 import { selectLocale } from 'iota-wallet-shared-modules/libs/locale';
 import DropdownComponent from '../containers/Dropdown';
 import { Icon } from '../theme/icons.js';
+import GENERAL from '../theme/general';
 
 const { width } = Dimensions.get('window');
 const { height } = global;
@@ -29,8 +30,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 9,
-        justifyContent: 'flex-start',
+        flex: 11,
     },
     itemLeft: {
         flexDirection: 'row',
@@ -44,13 +44,13 @@ const styles = StyleSheet.create({
     },
     titleTextLeft: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
     titleTextRight: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
         marginRight: width / 20,
     },

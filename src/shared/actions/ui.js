@@ -10,8 +10,7 @@ export const ActionTypes = {
     SET_ONBOARDING_NAME: 'IOTA/UI/SET_ONBOARDING_NAME',
     SET_DO_NOT_MINIMISE: 'IOTA/UI/SET_DO_NOT_MINIMISE',
     TOGGLE_MODAL_ACTIVITY: 'IOTA/UI/TOGGLE_MODAL_ACTIVITY',
-    SET_CUSTOM_NODE_CHECK_STATUS: 'IOTA/UI/SET_CUSTOM_NODE_CHECK_STATUS',
-    SET_LOGIN_ROUTE: 'IOTA/UI/SET_LOGIN_ROUTE'
+    SET_LOGIN_ROUTE: 'IOTA/UI/SET_LOGIN_ROUTE',
 };
 
 export const setSendAddressField = (payload) => ({
@@ -48,11 +47,6 @@ export const setUserActivity = (payload) => ({
     payload,
 });
 
-export const setCustomNodeCheckStatus = (payload) => ({
-    type: ActionTypes.SET_CUSTOM_NODE_CHECK_STATUS,
-    payload,
-});
-
 export const setOnboardingSeed = (seed, isGenerated) => {
     return {
         type: ActionTypes.SET_ONBOARDING_SEED,
@@ -83,6 +77,6 @@ export const toggleModalActivity = () => {
 export const setLoginRoute = (payload) => {
     return {
         type: ActionTypes.SET_LOGIN_ROUTE,
-        payload
+        payload,
     };
 };

@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
-import OnboardingButtons from '../containers/OnboardingButtons';
+import ModalButtons from '../containers/ModalButtons';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
 
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     warningText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 22,
+        fontSize: GENERAL.fontSize4,
         textAlign: 'center',
         color: 'red',
         paddingVertical: height / 25,
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     questionText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 24,
+        fontSize: GENERAL.fontSize3,
         paddingBottom: height / 35,
         textAlign: 'center',
     },
@@ -62,7 +62,7 @@ export class RootDetectionModal extends PureComponent {
                         <Text style={[styles.questionText, textColor]}>{t('securityRisk')}</Text>
                         <Text style={[styles.questionText, textColor]}>{t('continueDepsiteRisk')}</Text>
                     </View>
-                    <OnboardingButtons
+                    <ModalButtons
                         onLeftButtonPress={() => this.props.closeApp()}
                         onRightButtonPress={() => this.props.hideModal()}
                         leftText={t('global:no')}

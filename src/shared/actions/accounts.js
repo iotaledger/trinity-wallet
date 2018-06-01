@@ -6,8 +6,10 @@ import {
     generateSyncingCompleteAlert,
     generateSyncingErrorAlert,
     generateAccountDeletedAlert,
+    generateNodeOutOfSyncErrorAlert,
 } from '../actions/alerts';
 import { pushScreen } from '../libs/utils';
+import Errors from '../libs/errors';
 
 export const ActionTypes = {
     UPDATE_ACCOUNT_INFO_AFTER_SPENDING: 'IOTA/ACCOUNTS/UPDATE_ACCOUNT_INFO_AFTER_SPENDING',
@@ -37,6 +39,8 @@ export const ActionTypes = {
     ACCOUNT_INFO_FETCH_ERROR: 'IOTA/ACCOUNTS/ACCOUNT_INFO_FETCH_ERROR',
     SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION: 'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION',
     SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST: 'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST',
+    SET_BASIC_ACCOUNT_INFO: 'IOTA/ACCOUNTS/SET_BASIC_ACCOUNT_INFO',
+    MARK_TASK_AS_DONE: 'IOTA/ACCOUNTS/MARK_TASK_AS_DONE',
 };
 
 export const syncAccountBeforeManualPromotion = (payload) => ({
@@ -168,6 +172,16 @@ export const accountInfoFetchError = () => ({
     type: ActionTypes.ACCOUNT_INFO_FETCH_ERROR,
 });
 
+export const setBasicAccountInfo = (payload) => ({
+    type: ActionTypes.SET_BASIC_ACCOUNT_INFO,
+    payload,
+});
+
+export const markTaskAsDone = (payload) => ({
+    type: ActionTypes.MARK_TASK_AS_DONE,
+    payload,
+});
+
 export const getFullAccountInfoAdditionalSeed = (
     seed,
     accountName,
@@ -181,13 +195,19 @@ export const getFullAccountInfoAdditionalSeed = (
             navigator.pop({ animated: false });
         }
 
-        dispatch(generateAccountInfoErrorAlert(err));
+        if (err.message === Errors.NODE_NOT_SYNCED) {
+            dispatch(generateNodeOutOfSyncErrorAlert());
+        } else {
+            dispatch(generateAccountInfoErrorAlert(err));
+        }
+
         dispatch(fullAccountInfoAdditionalSeedFetchError());
     };
 
     dispatch(fullAccountInfoAdditionalSeedFetchRequest());
 
     const existingAccountNames = getAccountNamesFromState(getState());
+    const usedExistingSeed = getState().wallet.usedExistingSeed;
 
     getAccountData(seed, accountName, genFn)
         .then((data) => {
@@ -196,6 +216,7 @@ export const getFullAccountInfoAdditionalSeed = (
                 storeInKeychainPromise(password, seed, accountName)
                     .then(() => {
                         dispatch(setSeedIndex(existingAccountNames.length));
+                        dispatch(setBasicAccountInfo({ accountName, usedExistingSeed }));
                         dispatch(fullAccountInfoAdditionalSeedFetchSuccess(data));
                     })
                     .catch((err) => onError(err));
@@ -219,7 +240,11 @@ export const getFullAccountInfoFirstSeed = (seed, accountName, navigator = null,
                 // Add a slight delay to allow Login component and
                 // StatefulDropdownAlert component (mobile) to instantiate properly.
                 setTimeout(() => {
-                    dispatch(generateAccountInfoErrorAlert(err));
+                    if (err.message === Errors.NODE_NOT_SYNCED) {
+                        dispatch(generateNodeOutOfSyncErrorAlert());
+                    } else {
+                        dispatch(generateAccountInfoErrorAlert(err));
+                    }
                 }, 500);
             });
     };
@@ -235,7 +260,12 @@ export const manuallySyncAccount = (seed, accountName, genFn) => {
                 dispatch(manualSyncSuccess(data));
             })
             .catch((err) => {
-                dispatch(generateSyncingErrorAlert(err));
+                if (err.message === Errors.NODE_NOT_SYNCED) {
+                    dispatch(generateNodeOutOfSyncErrorAlert());
+                } else {
+                    dispatch(generateSyncingErrorAlert(err));
+                }
+
                 dispatch(manualSyncError());
             });
     };

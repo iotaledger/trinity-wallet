@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from 'react-native';
+import { StyleSheet, View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 import Modal from 'react-native-modal';
 import { connect } from 'react-redux';
-import tinycolor from 'tinycolor2';
 import CustomTextInput from '../components/CustomTextInput';
 import FingerPrintModal from '../components/FingerprintModal';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 import { isAndroid } from '../utils/device';
+import Button from '../components/Button';
 
 const styles = StyleSheet.create({
     topContainer: {
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 20.7,
+        fontSize: GENERAL.fontSize4,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     loginButton: {
         borderWidth: 1.2,
         borderRadius: GENERAL.borderRadius,
-        width: width / 3,
+        width: width / 2.7,
         height: height / 14,
         alignItems: 'center',
         justifyContent: 'space-around',
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     },
     loginText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 24.4,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
     },
 });
@@ -134,11 +134,6 @@ class EnterPassword extends Component {
     render() {
         const { isModalVisible } = this.state;
         const { t, theme, isFingerprintEnabled } = this.props;
-        // FIXME: A quick workaround while theming is being finalised
-        const isBgLight = tinycolor(theme.body.bg).isLight();
-        const primaryTextColor = { color: isBgLight ? theme.primary.body : theme.primary.color };
-        const borderColor = { borderColor: isBgLight ? 'transparent' : theme.primary.color };
-        const backgroundColor = { backgroundColor: isBgLight ? theme.primary.color : 'transparent' };
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -163,11 +158,15 @@ class EnterPassword extends Component {
                         />
                     </View>
                     <View style={styles.bottomContainer}>
-                        <TouchableOpacity onPress={this.handleLogin}>
-                            <View style={[styles.loginButton, borderColor, backgroundColor]}>
-                                <Text style={[styles.loginText, primaryTextColor]}>{t('login')}</Text>
-                            </View>
-                        </TouchableOpacity>
+                        <Button
+                            onPress={this.handleLogin}
+                            style={{
+                                wrapper: { backgroundColor: theme.primary.color },
+                                children: { color: theme.primary.body },
+                            }}
+                        >
+                            {t('login')}
+                        </Button>
                     </View>
                     <Modal
                         animationIn={isAndroid ? 'bounceInUp' : 'zoomIn'}

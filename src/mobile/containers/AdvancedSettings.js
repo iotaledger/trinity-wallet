@@ -7,22 +7,11 @@ import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { Icon } from '../theme/icons.js';
 import { width, height } from '../utils/dimensions';
+import GENERAL from '../theme/general';
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-    },
-    topContainer: {
-        flex: 10,
-        justifyContent: 'flex-end',
-    },
-    bottomContainer: {
-        flex: 1,
-        width,
-        paddingHorizontal: width / 15,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'flex-end',
     },
     itemContainer: {
         flex: 1,
@@ -35,19 +24,24 @@ const styles = StyleSheet.create({
         width,
         paddingHorizontal: width / 15,
     },
+    content: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
     backIcon: {
         width: width / 28,
         height: width / 28,
     },
     titleText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 25,
     },
     backText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
@@ -57,13 +51,12 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
     },
     separatorContainer: {
-        flex: 0.5,
+        flex: 1,
         justifyContent: 'center',
     },
     settingText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 23,
-        marginLeft: width / 12,
+        fontSize: GENERAL.fontSize3,
         width: width / 2.4,
         backgroundColor: 'transparent',
     },
@@ -156,96 +149,105 @@ export class AdvancedSettings extends PureComponent {
 
         return (
             <View style={styles.container}>
-                <View style={{ flex: 7 }}>
-                    <View style={styles.itemContainer}>
-                        <TouchableOpacity
-                            onPress={this.onNodeSelection}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.item}>
-                                <Icon name="node" size={width / 22} color={bodyColor} />
+                <View style={styles.itemContainer}>
+                    <TouchableOpacity
+                        onPress={this.onNodeSelection}
+                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                    >
+                        <View style={styles.item}>
+                            <Icon name="node" size={width / 22} color={bodyColor} />
+                            <View style={styles.content}>
                                 <Text style={[styles.titleText, textColor]}>{t('selectNode')}</Text>
                                 <Text numberOfLines={1} style={[styles.settingText, textColor]}>
                                     {node}
                                 </Text>
                             </View>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.itemContainer}>
-                        <TouchableOpacity
-                            onPress={this.onAddCustomNode}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.item}>
-                                <Icon name="plus" size={width / 22} color={bodyColor} />
-                                <Text style={[styles.titleText, textColor]}>{t('addCustomNode')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.itemContainer}>
-                        <TouchableOpacity
-                            onPress={() => this.props.setSetting('pow')}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.item}>
-                                <Icon name="pow" size={width / 22} color={bodyColor} />
-                                <Text style={[styles.titleText, textColor]}>{t('pow')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.separatorContainer}>
-                        <View style={[styles.separator, borderColor]} />
-                    </View>
-                    <View style={styles.itemContainer}>
-                        <TouchableOpacity
-                            onPress={() => this.props.setSetting('snapshotTransition')}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.item}>
-                                <Icon name="snapshot" size={width / 22} color={bodyColor} />
-                                <Text style={[styles.titleText, textColor]}>{t('snapshotTransition')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.itemContainer}>
-                        <TouchableOpacity
-                            onPress={() => this.props.setSetting('manualSync')}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.item}>
-                                <Icon name="sync" size={width / 22} color={bodyColor} />
-                                <Text style={[styles.titleText, textColor]}>{t('manualSync')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.separatorContainer}>
-                        <View style={[styles.separator, borderColor]} />
-                    </View>
-                    <View style={styles.itemContainer}>
-                        <TouchableOpacity
-                            onPress={this.reset}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.item}>
-                                <Icon name="trash" size={width / 22} color={bodyColor} />
-                                <Text style={[styles.titleText, textColor]}>{t('settings:reset')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
+                        </View>
+                    </TouchableOpacity>
                 </View>
-                <View style={{ flex: 3, justifyContent: 'flex-end' }}>
-                    <View style={{ flex: 2 }} />
-                    <View style={styles.itemContainer}>
-                        <TouchableOpacity
-                            onPress={() => this.props.setSetting('mainSettings')}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.item}>
-                                <Icon name="chevronLeft" size={width / 28} color={bodyColor} />
-                                <Text style={[styles.backText, textColor]}>{t('global:backLowercase')}</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
+                <View style={styles.itemContainer}>
+                    <TouchableOpacity
+                        onPress={this.onAddCustomNode}
+                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                    >
+                        <View style={styles.item}>
+                            <Icon name="plus" size={width / 22} color={bodyColor} />
+                            <Text style={[styles.titleText, textColor]}>{t('addCustomNode')}</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.itemContainer}>
+                    <TouchableOpacity
+                        onPress={() => this.props.setSetting('pow')}
+                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                    >
+                        <View style={styles.item}>
+                            <Icon name="pow" size={width / 22} color={bodyColor} />
+                            <Text style={[styles.titleText, textColor]}>{t('pow')}</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.itemContainer}>
+                    <TouchableOpacity
+                        onPress={() => this.props.setSetting('autoPromotion')}
+                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                    >
+                        <View style={styles.item}>
+                            <Icon name="sync" size={width / 22} color={bodyColor} />
+                            <Text style={[styles.titleText, textColor]}>{t('autoPromotion')}</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.separatorContainer}>
+                    <View style={[styles.separator, borderColor]} />
+                </View>
+                <View style={styles.itemContainer}>
+                    <TouchableOpacity
+                        onPress={() => this.props.setSetting('snapshotTransition')}
+                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                    >
+                        <View style={styles.item}>
+                            <Icon name="snapshot" size={width / 22} color={bodyColor} />
+                            <Text style={[styles.titleText, textColor]}>{t('snapshotTransition')}</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.itemContainer}>
+                    <TouchableOpacity
+                        onPress={() => this.props.setSetting('manualSync')}
+                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                    >
+                        <View style={styles.item}>
+                            <Icon name="sync" size={width / 22} color={bodyColor} />
+                            <Text style={[styles.titleText, textColor]}>{t('manualSync')}</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.separatorContainer}>
+                    <View style={[styles.separator, borderColor]} />
+                </View>
+                <View style={styles.itemContainer}>
+                    <TouchableOpacity
+                        onPress={this.reset}
+                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                    >
+                        <View style={styles.item}>
+                            <Icon name="trash" size={width / 22} color={bodyColor} />
+                            <Text style={[styles.titleText, textColor]}>{t('settings:reset')}</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+                <View style={{ flex: 2 }} />
+                <View style={styles.itemContainer}>
+                    <TouchableOpacity
+                        onPress={() => this.props.setSetting('mainSettings')}
+                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                    >
+                        <View style={styles.item}>
+                            <Icon name="chevronLeft" size={width / 28} color={bodyColor} />
+                            <Text style={[styles.backText, textColor]}>{t('global:backLowercase')}</Text>
+                        </View>
+                    </TouchableOpacity>
                 </View>
             </View>
         );

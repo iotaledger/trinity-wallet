@@ -19,6 +19,7 @@ import QRScannerComponent from '../components/QrScanner';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 import { isAndroid } from '../utils/device';
+import GENERAL from '../theme/general';
 
 const styles = StyleSheet.create({
     container: {
@@ -33,7 +34,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 9,
+        flex: 11,
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 20.7,
+        fontSize: GENERAL.fontSize4,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
@@ -89,13 +90,13 @@ const styles = StyleSheet.create({
     },
     titleTextLeft: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
     titleTextRight: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
         marginRight: width / 20,
     },
@@ -210,6 +211,7 @@ class UseExistingSeed extends Component {
             addingAdditionalAccount: true,
             additionalAccountName: accountName,
             seed,
+            usedExistingSeed: true,
         });
 
         this.props.navigator.push({
@@ -392,7 +394,7 @@ class UseExistingSeed extends Component {
                         isVisible={isModalActive}
                         onBackButtonPress={() => this.props.toggleModalActivity()}
                         hideModalContentWhileAnimating
-                        useNativeDriver={isAndroid ? true : false}
+                        useNativeDriver={isAndroid}
                     >
                         {this.renderModalContent()}
                     </Modal>
