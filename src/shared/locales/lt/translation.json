@@ -357,7 +357,7 @@
         "passwordTooShortExplanation": "Slaptažodis privalo būti iš mažiausiai {{minLength}} simbolių. Jūsų įvedėte {{currentLength}}. Bandykite dar kartą.",
         "passwordMismatch": "Slaptažodžiai nesutampa",
         "passwordMismatchExplanation": "Įvesti slaptažodžiai nesutampa. Bandykite dar kartą.",
-        "nowWeNeedTo": "Dabar reikia sukurti slaptažodį.",
+        "nowWeNeedTo": "Sukurkite savo slaptažodį.",
         "anEncryptedCopy": "Užšifruota jūsų užrakto kopija bus laikoma jūsų įrenginyje. Nuo šiol prisijungiant prie piniginės, naudokitės šiuo slaptažodžiu.",
         "ensure": "Įsitikinkite, kad jūsų slaptažodis pakankamai stiprus, iš mažiausiai 12 simbolių.",
         "retypePassword": "Pakartokite slaptažodį"
