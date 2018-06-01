@@ -1,5 +1,6 @@
 import get from 'lodash/get';
 import each from 'lodash/each';
+import isArray from 'lodash/isArray';
 import map from 'lodash/map';
 import union from 'lodash/union';
 import { setPrice, setChartData, setMarketData } from './marketData';
@@ -166,7 +167,12 @@ export const fetchNodeList = (chooseRandomNode = false) => {
             }
         };
 
-        fetch(NODELIST_URL)
+        fetch(NODELIST_URL, {
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+            },
+        })
             .then(
                 (response) => response.json(),
                 () => {
@@ -177,7 +183,7 @@ export const fetchNodeList = (chooseRandomNode = false) => {
                 },
             )
             .then((response) => {
-                if (response.length) {
+                if (isArray(response) && response.length) {
                     const remoteNodes = response
                         .map((node) => node.node)
                         .filter((node) => typeof node === 'string' && node.indexOf('https://') === 0);
