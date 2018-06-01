@@ -1,6 +1,7 @@
+import isBoolean from 'lodash/isBoolean';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import Modal from 'react-native-modal';
 import RNExitApp from 'react-native-exit-app';
@@ -12,6 +13,7 @@ import GENERAL from '../theme/general';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import RootDetectionModalComponent from '../components/RootDetectionModal';
 import DynamicStatusBar from '../components/DynamicStatusBar';
+import Button from '../components/Button';
 import { width, height } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
 import { doAttestationFromSafetyNet } from '../utils/safetynet';
@@ -38,34 +40,20 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-end',
     },
-    nextButton: {
-        borderWidth: 1.2,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 3,
-        height: height / 14,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        marginBottom: height / 20,
-    },
-    nextText: {
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 24.4,
-        backgroundColor: 'transparent',
-    },
     infoTextContainer: {
         paddingHorizontal: width / 15,
         alignItems: 'center',
     },
     infoTextLight: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize4,
         backgroundColor: 'transparent',
         paddingTop: height / 30,
         textAlign: 'center',
     },
     infoTextRegular: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize4,
         backgroundColor: 'transparent',
         paddingTop: height / 30,
         textAlign: 'center',
@@ -89,6 +77,10 @@ class Welcome extends Component {
          * @param {string} text - notification explanation
          */
         generateAlert: PropTypes.func.isRequired,
+        /**
+         * Determines if wallet has an active internet connection
+         */
+        hasConnection: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
@@ -142,7 +134,7 @@ class Welcome extends Component {
                     return doAttestationFromSafetyNet();
                 })
                 .then((isRooted) => {
-                    if (isRooted) {
+                    if (isBoolean(isRooted) && isRooted) {
                         this.setState({ isModalVisible: true });
                     }
                 })
@@ -181,7 +173,7 @@ class Welcome extends Component {
 
     render() {
         const { isModalVisible } = this.state;
-        const { t, theme } = this.props;
+        const { t, theme, hasConnection } = this.props;
 
         const textColor = { color: theme.body.color };
         return (
@@ -198,11 +190,23 @@ class Welcome extends Component {
                     </View>
                 </View>
                 <View style={styles.bottomContainer}>
-                    <TouchableOpacity onPress={() => this.onNextPress()} testID="welcome-next">
-                        <View style={[styles.nextButton, { borderColor: theme.primary.color }]}>
-                            <Text style={[styles.nextText, { color: theme.primary.color }]}>{t('global:next')}</Text>
-                        </View>
-                    </TouchableOpacity>
+                    <Button
+                        onPress={() => {
+                            if (hasConnection) {
+                                this.onNextPress();
+                            }
+                        }}
+                        style={{
+                            wrapper: {
+                                opacity: hasConnection ? 1 : 0.6,
+                                backgroundColor: theme.primary.color,
+                            },
+                            children: { color: theme.primary.body },
+                        }}
+                        testID="welcome-next"
+                    >
+                        {t('global:continue')}
+                    </Button>
                 </View>
                 <Modal
                     animationIn="zoomIn"
@@ -216,7 +220,7 @@ class Welcome extends Component {
                     style={{ alignItems: 'center', margin: 0 }}
                     isVisible={isModalVisible}
                     onBackButtonPress={() => this.setState({ isModalVisible: false })}
-                    useNativeDriver={isAndroid ? true : false}
+                    useNativeDriver={!!isAndroid}
                 >
                     <View style={[styles.modalContent, { backgroundColor: theme.body.bg }]}>
                         {this.state.modalContent}
@@ -230,6 +234,7 @@ class Welcome extends Component {
 
 const mapStateToProps = (state) => ({
     theme: state.settings.theme,
+    hasConnection: state.wallet.hasConnection,
 });
 
 const mapDispatchToProps = {

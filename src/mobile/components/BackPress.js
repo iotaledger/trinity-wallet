@@ -69,6 +69,7 @@ export default () => (C) => {
                 case 'manualSync':
                 case 'snapshotTransition':
                 case 'pow':
+                case 'autoPromotion':
                     this.props.setSetting('advancedSettings');
                     return true;
                 case 'viewSeed':

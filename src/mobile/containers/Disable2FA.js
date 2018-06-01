@@ -16,6 +16,7 @@ import OnboardingButtons from '../containers/OnboardingButtons';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
+import GENERAL from '../theme/general';
 
 const styles = StyleSheet.create({
     container: {
@@ -37,18 +38,17 @@ const styles = StyleSheet.create({
         flex: 2,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 20,
     },
     generalText: {
         fontFamily: Fonts.secondary,
-        fontSize: width / 20.7,
+        fontSize: GENERAL.fontSize4,
         textAlign: 'center',
         paddingBottom: height / 10,
         backgroundColor: 'transparent',
     },
     questionText: {
         fontFamily: Fonts.secondary,
-        fontSize: width / 20.25,
+        fontSize: GENERAL.fontSize4,
         textAlign: 'center',
         paddingLeft: width / 7,
         paddingRight: width / 7,
@@ -169,8 +169,8 @@ class Disable2FA extends Component {
                             <OnboardingButtons
                                 onLeftButtonPress={this.goBack}
                                 onRightButtonPress={this.disable2FA}
-                                leftText={t('cancel')}
-                                rightText={t('done')}
+                                leftButtonText={t('cancel')}
+                                rightButtonText={t('doneLowercase')}
                             />
                         </View>
                     </View>

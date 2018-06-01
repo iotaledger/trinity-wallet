@@ -25,7 +25,6 @@ const styles = StyleSheet.create({
         flex: 0.7,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 20,
     },
     titleContainer: {
         justifyContent: 'center',
@@ -34,7 +33,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 20.7,
+        fontSize: GENERAL.fontSize4,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
@@ -45,14 +44,14 @@ const styles = StyleSheet.create({
     loginButton: {
         borderWidth: 1.2,
         borderRadius: GENERAL.borderRadius,
-        width: width / 3,
+        width: width / 2.7,
         height: height / 14,
         alignItems: 'center',
         justifyContent: 'space-around',
     },
     loginText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 24.4,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
     },
 });
@@ -124,8 +123,8 @@ export class EnterPasswordOnLogin extends Component {
                         <OnboardingButtons
                             onLeftButtonPress={this.changeNode}
                             onRightButtonPress={this.handleLogin}
-                            leftText={t('setNode')}
-                            rightText={t('login')}
+                            leftButtonText={t('setNode')}
+                            rightButtonText={t('login')}
                         />
                     </View>
                 </View>

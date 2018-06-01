@@ -5,6 +5,7 @@ import sinon from 'sinon';
 import * as actions from '../../actions/transfers';
 import * as transferUtils from '../../libs/iota/transfers';
 import * as accountsUtils from '../../libs/iota/accounts';
+import * as extendedApis from '../../libs/iota/extendedApi';
 import * as inputUtils from '../../libs/iota/inputs';
 import { iota, SwitchingConfig } from '../../libs/iota/index';
 import accounts from '../__samples__/accounts';
@@ -119,11 +120,12 @@ describe('actions: transfers', () => {
                 sandbox.restore();
             });
 
-            it('should create actions of type IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST, IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION, IOTA/ALERTS/SHOW and IOTA/TRANSFERS/PROMOTE_TRANSACTION_ERROR', () => {
+            it('should create actions of type IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST, IOTA/ALERTS/SHOW, IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION, IOTA/ALERTS/SHOW and IOTA/TRANSFERS/PROMOTE_TRANSACTION_ERROR', () => {
                 const store = mockStore({ accounts });
 
                 const expectedActions = [
                     'IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST',
+                    'IOTA/ALERTS/SHOW',
                     'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION',
                     'IOTA/ALERTS/SHOW',
                     'IOTA/TRANSFERS/PROMOTE_TRANSACTION_ERROR',
@@ -160,11 +162,12 @@ describe('actions: transfers', () => {
                 sandbox.restore();
             });
 
-            it('should create actions of type IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST, IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION, IOTA/TRANSFERS/PROMOTE_TRANSACTION_SUCCESS and IOTA/ALERTS/SHOW', () => {
+            it('should create actions of type IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST, IOTA/ALERTS/SHOW, IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION, IOTA/TRANSFERS/PROMOTE_TRANSACTION_SUCCESS and IOTA/ALERTS/SHOW', () => {
                 const store = mockStore({ accounts });
 
                 const expectedActions = [
                     'IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST',
+                    'IOTA/ALERTS/SHOW',
                     'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION',
                     'IOTA/ALERTS/SHOW',
                     'IOTA/TRANSFERS/PROMOTE_TRANSACTION_SUCCESS',
@@ -222,7 +225,7 @@ describe('actions: transfers', () => {
                 sandbox.restore();
             });
 
-            it('should create an action of type IOTA/ALERTS/SHOW twice', () => {
+            it('should create an action of type IOTA/ALERTS/SHOW thrice', () => {
                 const store = mockStore({ accounts });
 
                 return store
@@ -238,7 +241,7 @@ describe('actions: transfers', () => {
                                 .getActions()
                                 .map((action) => action.type)
                                 .filter((type) => type === 'IOTA/ALERTS/SHOW').length,
-                        ).to.equal(2);
+                        ).to.equal(3);
                     });
             });
 
@@ -381,6 +384,7 @@ describe('actions: transfers', () => {
                 sandbox = sinon.sandbox.create();
 
                 sandbox.stub(iota.api, 'getNodeInfo').yields(null, {});
+                sandbox.stub(extendedApis, 'isNodeSynced').resolves(true);
                 sandbox.stub(iota.api, 'getTransactionsToApprove').yields(null, {
                     trunkTransaction:
                         'PMEL9E9ZACLGEUPHNX9TSLEBDKTIGXDERNQSURABASAIGPWTFB9WUIXQVPKIFTHUQBRXEYQJANBDZ9999',
@@ -399,13 +403,13 @@ describe('actions: transfers', () => {
             });
 
             describe('when transaction is successful', () => {
-                it('should create eight actions of type IOTA/PROGRESS/SET_NEXT_STEP_AS_ACTIVE', () => {
+                it('should create nine actions of type IOTA/PROGRESS/SET_NEXT_STEP_AS_ACTIVE', () => {
                     const prepareTransfers = sinon.stub(iota.api, 'prepareTransfers').yields(null, trytes.value);
                     const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false]);
 
                     const getUnspentInputs = sinon.stub(inputUtils, 'getUnspentInputs').resolves({
-                        allBalance: 110,
-                        totalBalance: 10,
+                        totalBalance: 110,
+                        availableBalance: 10,
                         inputs: [
                             {
                                 address:
@@ -436,7 +440,7 @@ describe('actions: transfers', () => {
                                     .getActions()
                                     .map((action) => action.type)
                                     .filter((type) => type === 'IOTA/PROGRESS/SET_NEXT_STEP_AS_ACTIVE').length,
-                            ).to.equal(8);
+                            ).to.equal(9);
 
                             syncAccountAfterSpending.restore();
                             getUnspentInputs.restore();
@@ -487,8 +491,8 @@ describe('actions: transfers', () => {
                             .stub(iota.api, 'wereAddressesSpentFrom')
                             .yields(null, [false]);
                         sinon.stub(inputUtils, 'getUnspentInputs').resolves({
-                            allBalance: 110,
-                            totalBalance: 10,
+                            totalBalance: 110,
+                            availableBalance: 10,
                             inputs: [
                                 {
                                     address:
@@ -522,8 +526,8 @@ describe('actions: transfers', () => {
                     });
                 });
 
-                describe('when has pending transfers on inputs', () => {
-                    it('should create action of type IOTA/ALERTS/SHOW with a message "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again."', () => {
+                describe('when has funds at spent addresses', () => {
+                    it('should create action of type IOTA/ALERTS/SHOW with a message "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do."', () => {
                         const store = mockStore({ accounts });
 
                         const wereAddressesSpentFrom = sinon
@@ -531,8 +535,8 @@ describe('actions: transfers', () => {
                             .yields(null, [false]);
 
                         sinon.stub(inputUtils, 'getUnspentInputs').resolves({
-                            allBalance: 110,
-                            totalBalance: 10,
+                            totalBalance: 110,
+                            availableBalance: 0,
                             inputs: [
                                 {
                                     address:
@@ -558,7 +562,7 @@ describe('actions: transfers', () => {
                                 expect(
                                     store.getActions().find((action) => action.type === 'IOTA/ALERTS/SHOW').message,
                                 ).to.equal(
-                                    'Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again.',
+                                    'Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do.',
                                 );
 
                                 wereAddressesSpentFrom.restore();
@@ -577,8 +581,8 @@ describe('actions: transfers', () => {
                             .yields(null, [false]);
 
                         sinon.stub(inputUtils, 'getUnspentInputs').resolves({
-                            allBalance: 110,
-                            totalBalance: 10,
+                            totalBalance: 110,
+                            availableBalance: 10,
                             inputs: [
                                 {
                                     address:
