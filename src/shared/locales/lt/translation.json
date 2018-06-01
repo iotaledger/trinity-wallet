@@ -657,7 +657,7 @@
     "updates": {
         "errorRetrievingUpdateData": "Klaida siunčiant atnaujinimus",
         "errorRetrievingUpdateDataExplanation": "Įvyko klaida siunčiant atnaujinimus. Bandykite dar kartą.",
-        "noUpdatesAvailable": "Nėra naujų atnaujinimų",
+        "noUpdatesAvailable": "Atnaujinimų nėra",
         "noUpdatesAvailableExplanation": "Jūs turite naujausią IOTA Trinity darbalaukio piniginės versiją!",
         "newVersionAvailable": "Galima nauja versija",
         "newVersionAvailableExplanation": "Galima nauja <strong>Trinity</strong> <strong>{{version}}</strong> versija. Atidžiai perskaitykite naujo leidinio informaciją ir patvirtinkite atsisiuntimo šaltinį prieš atnaujinant:",
@@ -668,7 +668,7 @@
         "errorLog": "KLAIDŲ ŽURNALAS"
     },
     "terms": {
-        "termsAndConditions": "Sąlygos",
+        "termsAndConditions": "Sąlygos ir nuostatos",
         "accept": "Sutinku"
     },
     "privacyPolicy": {
