@@ -105,7 +105,7 @@
         "promoted": "Siirron edistys onnistui",
         "promotedExplanation": "Siirtoa tiivisteluvulla {{hash}} edistetty onnistuneesti",
         "autopromotionError": "Siirtoa ei voitu edistää",
-        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
+        "autopromotionErrorExplanation": "Laskentatyöteko (PoW) valitsemallasi palvelimella ei ole tällä hetkellä mahdollista. Vaihda palvelinta ja laita siirron edistäminen päälle asetuksista.",
         "promotionError": "Siirtoa ei voitu edistää",
         "promotionErrorExplanation": "Siirron edistämisessä tapahtui virhe. Yritä uudelleen.",
         "noLongerValid": "Kokoelma jonka siirtoa yrität edistää ei ole enää voimassa",
@@ -152,7 +152,7 @@
         "isYourBalanceCorrect": "Näkyykö saldosi oikein?",
         "ifYourBalanceIsNotCorrect": "Jos saldosi ei näy oikein, seed-lukusi ei ole ajantasalla.",
         "headToAdvancedSettingsForTransition": "Voin korjata tämän valitsemalla Lisäasetukset ja Snapshot-avustaja.",
-        "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android"
+        "usingTrinityWalletWithKeePass": "Trinity lompakon käyttö Keepas2Android sovelluksen kanssa"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed-luku sisältää virheellisiä merkkejä",
@@ -349,7 +349,7 @@
         "sendMax": "LÄHETÄ MAX",
         "totalTime": "Kokonaisaika",
         "addressPasteDetected": "Osoitteen liittäminen havaittu",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
+        "addressPasteExplanation": "Näyttää siltä että olet liittänyt osoitteen muualta. Varmista että liitetty osoite vastaa alkuperäistä."
     },
     "setPassword": {
         "choosePassword": "Luo uusi salasana",
@@ -492,7 +492,7 @@
         "manualSync": "Manuaalinen synkronointi",
         "snapshotTransition": "Snapshot-avustaja",
         "pow": "Laskenta-asetukset",
-        "autoPromotion": "Automaattinen edistäminen",
+        "autoPromotion": "Siirron edistäminen",
         "autoPromotionExplanation": "Automaattinen edistäminen auttaa varmistamaan siirron tangle-verkossa. Laita tämä asetus päälle jos siirron varmistuksessa esiintyy ongelmia.",
         "autoPromotionPoW": "Automaattinen edistäminen toimii vain palvelimilla jotka tukevat laskentatyöntekoa (PoW)."
     },
@@ -604,7 +604,7 @@
         "change": "Muutos",
         "volume": "Vaihto (24h)",
         "currentValue": "Nykyinen arvo",
-        "error": "Error fetching chart data"
+        "error": "Kurssitietojen hakeminen epäonnistui"
     },
     "rootDetection": {
         "warning": "VAROITUS",
@@ -623,8 +623,8 @@
         "noWebGLSupportExplanation": "Laitteesi ei tue WebGL -laskentaa. Asetuksista voit siirtää laskennan (PoW) ulkoiselle palvelimelle."
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Auto-promotion settings",
-        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
+        "autoPromotionUpdated": "Siirron edistäminen",
+        "autoPromotionUpdatedExplanation": "Siirron edistäminen käytössä."
     },
     "progressSteps": {
         "checkingNodeHealth": "Varmistetaan palvelin tila",
