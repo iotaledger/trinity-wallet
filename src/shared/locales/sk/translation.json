@@ -416,31 +416,31 @@
         "couldNotFetchRates": "Nie je možné načítať kurzy",
         "couldNotFetchRatesExplanation": "Došlo k chybe pri načítaní konverzného kurzu pre {{currency}}.",
         "fetchedConversionRates": "Konverzný kurz bol načítaný",
-        "fetchedConversionRatesExplanation": "Najnovšie konverzné kurzy pre {{currency}} boli úspešne načítané.",
+        "fetchedConversionRatesExplanation": "Najnovší konverzný kurz pre {{currency}} bol úspešne načítaný.",
         "undo": "Zrušiť",
         "redo": "Znova",
         "aboutTrinity": "O Trinity",
         "lockScreenTimeout": "Zámok obrazovky po (minúty)",
         "autoNodeSwitching": "Automaticky prepnúť na iný Node, pokiaľ vybraný nie je dostupný",
         "nodeChangeSuccess": "Node bol úspešne zmenený",
-        "nodeChangeSuccessNoRemotePow": "Node bol zmenený na {{node}}. Tento node nepodporuje vzdialený Proof Work.",
+        "nodeChangeSuccessNoRemotePow": "Node bol zmenený na {{node}}. Tento Node nepodporuje vzdialený Proof of Work.",
         "nodeChangeSuccessExplanation": "Node bol zmenený na {{node}}.",
-        "nodeChangeError": "Chyba zmeny nodu",
-        "nodeChangeErrorExplanation": "Pri zmene nodu došlo k chybe. Prosím, skúste to znova."
+        "nodeChangeError": "Chyba zmeny Nodu",
+        "nodeChangeErrorExplanation": "Pri zmene Nodu došlo k chybe. Prosím, skúste to znova."
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Pre zmazanie peňaženky zadajte Vaše heslo.",
+        "enterPassword": "Pre reset peňaženky zadajte vaše heslo.",
         "cancel": "Zrušiť",
-        "reset": "OBNOVIŤ"
+        "reset": "RESETOVAŤ"
     },
     "walletSetup": {
-        "creatingSeed": "Vytváranie seedu",
+        "creatingSeed": "Vytváranie Seedu",
         "okay": "Ok. Prejdime k nastaveniu Vašej peňaženky!",
-        "doYouAlreadyHaveASeed": "Máte už vlastný seed, ktorý by ste chceli použiť?",
-        "doYouNeedASeed": "Potrebujete vytvoriť nový seed?",
-        "seedExplanation": "IOTA seed je niečo ako Vaše užívateľské meno a zároveň heslo k Vášmu účtu, spojené do jedného reťazca 81 znakov.",
-        "noIHaveOne": "Nie, už mám seed",
-        "yesINeedASeed": "Áno, potrebujem seed",
+        "doYouAlreadyHaveASeed": "Máte už vlastný Seed, ktorý by ste chceli použiť?",
+        "doYouNeedASeed": "Potrebujete vytvoriť nový Seed?",
+        "seedExplanation": "IOTA Seed je niečo ako vaše užívateľské meno a zároveň heslo k vášmu účtu, dlhé 81 znakov.",
+        "noIHaveOne": "Nie, už mám Seed",
+        "yesINeedASeed": "Áno, potrebujem Seed",
         "explanation": "<0><0>Môžete ho použiť na prístup k svojim prostriedkom z</0> <1>akejkoľvek peňaženky</1> <2>, na</2> <3>na akomkoľvek zariadení</3> <4>. Ak však stratíte svoj seed, stratíte tiež všetky Vaše IOTA.</4></0>",
         "keepSafe": "Svoj seed prosím uchovávajte v bezpečí.",
         "hint": "<0><0>Tip:</0>Ak IOTA peňaženku používate prvýkrát, kliknite na tlačidlo NIE</0>"
