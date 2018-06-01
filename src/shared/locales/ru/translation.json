@@ -13,7 +13,7 @@
         "transferSentMessage": "Ваш перевод отправлен в Tangle.",
         "messageSent": "Сообщение отправлено",
         "messageSentMessage": "Ваше сообщение отправлено в Tangle.",
-        "keyReuse": "Отправка на введённый адрес",
+        "keyReuse": "Отправка на использованный адрес",
         "keyReuseError": "Вы не можете сделать перевод на адрес, с которого уже был осуществлён перевод.",
         "invalidResponse": "Ошибка узла",
         "invalidResponseExplanation": "Узел сообщил об ошибке. Попробуйте сменить узел.",
@@ -123,7 +123,7 @@
         "checkForUpdates": "Проверить наличие обновлений",
         "account": "Учетная запись",
         "enterPasswordToAccessSettings": "Введите свой пароль для доступа к настройкам учетной записи",
-        "enterYourPassword": "Введите ваш пароль",
+        "enterYourPassword": "Введите Ваш пароль",
         "changeNode": "Сменить узел",
         "addCustomNode": "Добавить пользовательский узел",
         "nodeChanged": "Узел изменён",
@@ -133,7 +133,7 @@
         "nodeDuplicated": "Дублированный узел",
         "nodeDuplicatedExplanation": "Пользовательский узел уже указан.",
         "nodeAutoChanged": "Авто-переключаемый узел",
-        "nodeAutoChangedExplanation": "Перешел на новый узел {{- nodeAddress}}, так как выбранный узел находится в автономном режиме.",
+        "nodeAutoChangedExplanation": "Подключено к новому узлу {{- nodeAddress}}, так как выбранный Вами узел сейчас оффлайн.",
         "fingerprintOnSend": "Прикоснитесь к датчику отпечатка для подтверждения перевода",
         "masterKey": "Ваш ключ IOTA (seed) - это главный ключ к Вашим средствам.",
         "seedThief": "Если кто-то еще знает Ваш ключ, он может украсть Ваши IOTA.",
@@ -151,7 +151,8 @@
         "deviceMayBecomeUnresponsive": "Ваше устройство может не отвечать какое-то время",
         "isYourBalanceCorrect": "Верен ли Ваш баланс?",
         "ifYourBalanceIsNotCorrect": "Если Ваш баланс не верен, то, скорее всего, Вы используете ключ, который не был актувлизирован после снимка сети.",
-        "headToAdvancedSettingsForTransition": "Перейдите в Дополнительные Настройки и выполните Snapshot переход."
+        "headToAdvancedSettingsForTransition": "Перейдите в Дополнительные Настройки и выполните Snapshot переход.",
+        "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ключ содержит недопустимые символы",
@@ -251,7 +252,7 @@
     "loading": {
         "loadingFirstTime": "Загрузка ключа в самый первый раз.",
         "thisMayTake": "Это может занять некоторое время.",
-        "doNotMinimise": "Не минимизировать или закрыть приложение.",
+        "doNotMinimise": "Не сворачивайте и не закрывайте приложение.",
         "youMayNotice": "Вы можете заметить замедление работы Вашего устройства.",
         "takingAWhile": "Кажется, это займёт какое-то время"
     },
@@ -370,7 +371,7 @@
         "expert": "Эксперт",
         "standard": "Стандартный",
         "expertModeExplanation": "Экспертный режим даст Вам доступ к дополнительным функциям, таким как ручное содействие и повторное присоединение транзакций.",
-        "modesExplanation": "Экспертный режим предназначен только для опытных пользователей Tangle. В ином случае он Вас может ввести в заблуждение."
+        "modesExplanation": "Экспертный режим предназначен только для опытных пользователей Tangle. В ином случае он может ввести Вас в заблуждение."
     },
     "settings": {
         "transferSending": "Осуществляется перевод",
@@ -420,7 +421,7 @@
         "redo": "Вернуть",
         "aboutTrinity": "О Тринити",
         "lockScreenTimeout": "Время ожидания блокировки экрана (минут)",
-        "autoNodeSwitching": "Автоматически менять узел, если выбранный нндоступен",
+        "autoNodeSwitching": "Автоматически менять узел, если выбранный недоступен",
         "nodeChangeSuccess": "Узел успешно изменен",
         "nodeChangeSuccessNoRemotePow": "Узел был изменён на {{node}}. Данный узел не поддерживает удаленное проведение Proof of Work.",
         "nodeChangeSuccessExplanation": "Узел был изменен на {{node}}.",
@@ -479,7 +480,7 @@
         "httpNodeError": "Мобильная версия Trinity поддерживает только https узлы.",
         "add": "Добавить",
         "nodeFieldEmpty": "Текстовое поле пусто",
-        "nodeFieldEmptyExplanation": "Пожалуйста, войдите в пользовательский узел."
+        "nodeFieldEmptyExplanation": "Пожалуйста, введите пользовательский узел."
     },
     "addNewAccount": {
         "useExistingSeed": "Использовать существующий ключ",
@@ -490,8 +491,8 @@
         "addCustomNode": "Добавить пользовательский узел",
         "manualSync": "Ручная синхронизация",
         "snapshotTransition": "Snapshot переход",
-        "pow": "Доказательство Работы (ДР)",
-        "autoPromotion": "Авто продвижение",
+        "pow": "Доказательство Работы (PoW)",
+        "autoPromotion": "Авто-продвижение",
         "autoPromotionExplanation": "Авто-продвижение помогает Вашим транзакциям получить статус подтвержденных в Tangle. Включите эту опцию, если у Вас трудности с подтверждением Ваших транзакций.",
         "autoPromotionPoW": "Авто-продвижение возможно только на узлах, которые поддерживают удалённое проведение Proof of Work."
     },
@@ -544,7 +545,7 @@
         "validSeedExplanation": "Корректный ключ должен содержать 81 символ и состоять только из A-Z и 9."
     },
     "viewSeed": {
-        "enterPassword": "Введите пароль чтобы увидеть Ваш ключ.",
+        "enterPassword": "Введите пароль, чтобы увидеть Ваш ключ.",
         "viewSeed": "Показать ключ",
         "hideSeed": "Скрыть ключ"
     },
@@ -603,7 +604,7 @@
         "change": "Изменение",
         "volume": "Объем (24ч)",
         "currentValue": "Текущее значение",
-        "error": "Error fetching chart data"
+        "error": "Ошибка при загрузке данных графика"
     },
     "rootDetection": {
         "warning": "ВНИМАНИЕ",
