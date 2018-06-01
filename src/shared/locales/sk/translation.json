@@ -243,11 +243,11 @@
         "emptyPassword": "Prázdne heslo",
         "emptyPasswordExplanation": "Pre prihlásenie musíte zadať heslo. Prosím, skúste to znova.",
         "enterPassword": "Prosím, zadajte vaše heslo.",
-        "useSeed": "POUŽI SEED",
+        "useSeed": "POUŽITE SEED",
         "login": "Prihlásiť sa",
-        "selectDifferentNode": "Chcete vybrať iný node?",
-        "setNode": "Nastaviť node",
-        "cannotConnect": "K IOTA uzlu sa nedá pripojiť."
+        "selectDifferentNode": "Chcete vybrať iný Node?",
+        "setNode": "Nastaviť Node",
+        "cannotConnect": "K IOTA Nodu sa nedá pripojiť."
     },
     "loading": {
         "loadingFirstTime": "Prvotné načítanie Seedu.",
@@ -264,23 +264,23 @@
         "generateSuccess": "Seed úspešne vygenerovaný",
         "individualLetters": "Vyberte náhodné písmena.",
         "individualLetterCount": "Stlačte {{letterCount}} jednotlivé znaky pre zvýšenie náhodnosti.",
-        "whatIsASeed": "Čo je to seed?"
+        "whatIsASeed": "Čo je to Seed?"
     },
     "onboardingComplete": {
         "allDone": "Všetko je nastavené!",
         "openYourWallet": "Otvorte svoju peňaženku",
-        "walletReady": "Peňaženka je teraz nastavená a pripravená na použitie. V budúcnosti môžete čokoľvek upraviť v menu nastavenia."
+        "walletReady": "Peňaženka je teraz nastavená a pripravená na použitie. V budúcnosti môžete čokoľvek upraviť v menu Nastavenia."
     },
     "paperWallet": {
-        "clickToPrint": "Kliknutím na tlačidlo nižšie vytlačíte papierovú kópiu vášho seedu.",
+        "clickToPrint": "Kliknutím na tlačidlo nižšie vytlačíte papierovú kópiu vášho Seedu.",
         "storeSafely": "Bezpečne uložte.",
-        "neverShare": "Svoj seed nikdy s nikým nezdieľajte.",
+        "neverShare": "Svoj Seed nikdy nikomu neprezrádzajte.",
         "iotaLogo": "IOTA logo",
         "printWallet": "Vytlačiť papierovú peňaženku",
         "print": "TLAČIŤ",
-        "paperConvenience": "Vytlačenie papierovej kópie vášho seedu je vhodný spôsob, ako ho uchovať.",
+        "paperConvenience": "Vytlačenie papierovej kópie vášho Seedu je vhodný spôsob, ako ho uchovať.",
         "publicInsecure": "Ale tlačenie cez verejnú wifi alebo na verejnej tlačiarni nie je bezpečné.",
-        "tapCheckboxes": "Pre potvrdenie, prosím, zaškrtnite políčko nižšie.",
+        "tapCheckboxes": "Pre potvrdenie, prosím, zaškrtnite políčka nižšie.",
         "wifiCheckbox": "Nebudem tlačiť cez verejnú wifi",
         "printerCheckbox": "Nebudem tlačiť na verejnej tlačiarni"
     },
@@ -295,13 +295,13 @@
         "spent": "Utratené"
     },
     "saveYourSeed": {
-        "saveYourSeed": "Zálohujte váš seed",
+        "saveYourSeed": "Zálohujte váš Seed",
         "seedCleared": "Seed bol vymazaný",
         "mostSecure": "Najbezpečnejšie",
         "leastSecure": "Najmenej bezpečné",
         "paperWallet": "Papierová peňaženka",
-        "writeYourSeedDown": "Zapíšte si váš seed",
-        "printYourSeed": "Vytlačte si váš seed",
+        "writeYourSeedDown": "Zapíšte si váš Seed",
+        "printYourSeed": "Vytlačte si váš Seed",
         "digitalCopy": "Digitálna kópia",
         "seedClearedExplanation": "Kvôli väčšej bezpečnosti bol seed zo schránky vymazaný.",
         "iHaveBackedUpMySeed": "Svoj seed mám uložený",
