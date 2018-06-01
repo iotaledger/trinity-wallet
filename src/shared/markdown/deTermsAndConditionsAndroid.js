@@ -28,7 +28,7 @@ Wenn wir lediglich eine neue Dienstleistung oder eine neue Funktionalit채t einf�
 
 10. Sie erkl채ren sich weiter mit der Bereitstellung etwaiger Updates zu der Trinity Wallet App einverstanden und haben erkannt, dass wenn Sie Updates nicht vornehmen dies zu einem Sicherheitsrisiko bis hin zum Verlust Ihrer Token f체hren kann.
 
-11. Zum Beziehen der App bzw. dem Herunterladen aus dem jeweiligen App Store (App-Store/Google Play) m체ssen zus채tzlich zu diesen Bedingungen die Allgemeinen Gesch채ftsbedingungen des jeweiligen Stores beachtet werden.
+11. Zum Beziehen der App bzw. dem Herunterladen aus dem App Store m체ssen zus채tzlich zu diesen Bedingungen die Allgemeinen Gesch채ftsbedingungen des Google Play Stores beachtet werden.
 
 ### **2. Datenschutz**
 
