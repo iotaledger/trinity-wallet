@@ -33,7 +33,7 @@
         "doneLowercase": "Hotovo",
         "prev": "Predchádzajúci",
         "next": "ĎALEJ",
-        "nextLowerCase": "Ďalší",
+        "nextLowerCase": "Ďalej",
         "apply": "Použiť",
         "save": "Uložiť",
         "close": "Zatvoriť",
@@ -455,8 +455,8 @@
         "writeDownYourSeed": "<0> Zapíšte si svoj Seed a kontrolný súčet a </0><1>dôkladne skontrolujte</1><2> ich správnosť.</2>"
     },
     "history": {
-        "bundleHashCopied": "Balíček hash skopírovaný",
-        "bundleHashCopiedExplanation": "Balíček hash bol skopírovaný do schránky.",
+        "bundleHashCopied": "Bundle hash skopírovaný",
+        "bundleHashCopiedExplanation": "Bundle hash bol skopírovaný do schránky.",
         "addressCopied": "Adresa skopírovaná",
         "addressCopiedExplanation": "Adresa bola skopírovaná do schránky.",
         "messageCopied": "Správa bola skopírovaná",
@@ -528,7 +528,7 @@
     "deleteAccount": {
         "areYouSure": "<0></0><1>Naozaj chcete odstrániť</1><2></2><3>{{accountName}}?</3>",
         "yourSeedWillBeRemoved": "Váš Seed a história transakcií budú odstránené.",
-        "thisAction": "Tento účet nie je možné obnoviť.",
+        "thisAction": "Túto akciu už nebude možné vrátiť späť.",
         "enterPassword": "Pre zmazanie účtu vložte svoje heslo."
     },
     "manualSync": {
