@@ -332,7 +332,7 @@
         "notEnoughFunds": "Nepakanka lėšų",
         "notEnoughFundsExplanation": "Pavedimo atlikti negalima, nes nepakankamas jūsų IOTA likutis.",
         "keyReuse": "Pakartotinis rakto naudojimas",
-        "keyReuseExplanation": "Adresas, kurį įvedėte, jau buvo panaudotas. Bandykite įvesti kitą adresą.",
+        "keyReuseExplanation": "Adresas, kurį įvedėte, jau buvo panaudotas. Įveskite kitą adresą.",
         "recipientAddress": "Gavėjo adresas",
         "amount": "Suma",
         "max": "MAKS.",
