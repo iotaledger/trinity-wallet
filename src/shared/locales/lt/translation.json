@@ -267,9 +267,9 @@
         "whatIsASeed": "Kas yra užraktas?"
     },
     "onboardingComplete": {
-        "allDone": "Viskas baigta!",
+        "allDone": "Baigta!",
         "openYourWallet": "Atidarykite savo piniginę",
-        "walletReady": "Piniginė paruošta naudojimui. Jeigu norėsite atlikti pakeitimus, eikite į Nustatymų meniu."
+        "walletReady": "Piniginė paruošta naudojimui. Jeigu norėsite atlikti pakeitimus, eikite į nustatymų meniu."
     },
     "paperWallet": {
         "clickToPrint": "Spauskite žemiau esantį mygtuką, norėdami atspausdinti užraktą.",
@@ -365,7 +365,7 @@
     "setSeedName": {
         "letsAddName": "Sukurkite vardą",
         "canUseMultipleSeeds": "Jūs galite naudoti daugybę užraktų su šia pinigine. Kiekvienas užraktas turi turėti paskyros vardą.",
-        "youCanAdd": "Norėdami pridėti daugiau užraktų, eikite į Nustatymų meniu."
+        "youCanAdd": "Norėdami pridėti daugiau užraktų, eikite į nustatymų meniu."
     },
     "modeSelection": {
         "expert": "Expert",
@@ -374,7 +374,7 @@
         "modesExplanation": "Expert rėžimą naudokite tik jeigu esate pakankamai susipažinęs su Tangle. Kitu atveju jums gali kilti daug neaiškumų."
     },
     "settings": {
-        "transferSending": "Apdorojamas pavedimas",
+        "transferSending": "Pavedimas apdorojamas",
         "transferSendingExplanation": "Palaukite, kol jūsų pavedimas bus išsiųstas.",
         "generatingAddress": "Kuriamas pavedimų priėmimo adresas",
         "generatingAddressExplanation": "Prašome palaukti, kol adresas bus sukurtas.",
@@ -447,7 +447,7 @@
     },
     "welcome": {
         "thankYou": "Dėkojame, kad naudojatės Trinity.",
-        "weWillSpend": "Užtruksime kelias minutes, kol sukonfiguruosime jūsų piniginę.",
+        "weWillSpend": "Užtruksime kelias minutes, kol sukonfigūruosime jūsų piniginę.",
         "reminder": "Jūs galimai norėsite praleisti keletą žingsnių, bet mes raginame atidžiai sekti visą procesą."
     },
     "writeSeedDown": {
