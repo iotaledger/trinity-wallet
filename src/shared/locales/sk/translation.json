@@ -202,31 +202,31 @@
         "reasonWord": "Jedno slovo sa dá ľahko uhádnuť"
     },
     "copyToClipboard": {
-        "seedCleared": "Seed odstránený",
+        "seedCleared": "Schránka vyčistená",
         "seedClearedExplanation": "Seed bol z bezpečnostných dôvodov vymazaný zo schránky.",
         "seedCopied": "Seed bol skopírovaný do schránky",
-        "seedCopiedExplanation": "Seed bude vymazaný potom čo stlačíte \"Hotovo\" alebo po uplynutí 60 sekúnd.",
-        "clickToCopy": "Kliknite na tlačítko nižšie a skopírujte svoj seed do správcu hesiel.",
-        "clickToSecurelyShare": "Kliknutím na tlačítko nižšie skopírujete svoj seed do správcu hesiel.",
-        "doNotStore": "Neprechovávajte svoj seed vo forme prostého textu.",
-        "copyToClipboard": "Kopírovať seed",
-        "shareSeed": "Uložte svoj seed do zabezpečeného správcu hesiel",
-        "storeEncrypted": "Uchovávajte svoj seed zašifrovaný v správcovi hesiel.",
+        "seedCopiedExplanation": "Seed bude zo schránky vymazaný po tom, čo stlačíte \"Hotovo\" alebo po uplynutí 60 sekúnd.",
+        "clickToCopy": "Kliknite na tlačítko nižšie a skopírujte svoj Seed do správcu hesiel.",
+        "clickToSecurelyShare": "Kliknutím na tlačítko nižšie skopírujete svoj Seed do správcu hesiel.",
+        "doNotStore": "Neuchovávajte svoj Seed vo forme prostého textu.",
+        "copyToClipboard": "Kopírovať Seed",
+        "shareSeed": "Uložte svoj Seed do zabezpečeného správcu hesiel",
+        "storeEncrypted": "Uchovávajte svoj Seed zašifrovaný v správcovi hesiel.",
         "doNotOpen": "Počas tohto procesu neotvárajte žiadne iné aplikácie.",
         "tapConfirm": "Pre potvrdenie, prosím, zaškrtnite políčko nižšie.",
-        "passwordManagerCheckbox": "Svoj seed uložím do správcu hesiel",
+        "passwordManagerCheckbox": "Svoj Seed uložím do správcu hesiel",
         "copy": "KOPÍROVAŤ",
         "noPasswordManagers": "Nie sú nainštalovaní žiadni podporovaní správcovia hesiel",
         "noPasswordManagersExplanation": "Na vašom zariadení neboli nájdení žiadni podporovaní správcovia hesiel. Prosím, nainštalujte si Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "Ak si želáte uložiť váš seed v správcovi hesiel, musíte sa riadiť pokynmi na nasledujúcom odkaze"
+        "followTutorialToSecurelyShareSeed": "Ak si želáte uložiť váš Seed v správcovi hesiel, musíte sa riadiť pokynmi na nasledujúcom odkaze"
     },
     "enterSeed": {
         "invalidCharacters": "Seed obsahuje neplatné znaky",
-        "invalidCharactersExplanation": "Seed môže obsahovať iba veľké písmená A-Z a číslo 9. Váš Seed obsahuje neplatné znaky. Prosím skúste znova.",
+        "invalidCharactersExplanation": "Seed môže obsahovať iba veľké písmená A-Z a číslo 9. Váš Seed obsahuje neplatné znaky. Prosím, skúste to znova.",
         "seedTooShort": "Seed je príliš krátky",
-        "seedTooShortExplanation": "Seed musí mať {{maxLength}} znakov. Váš seed má {{currentLength}} znakov. Prosím skúste znova.",
+        "seedTooShortExplanation": "Seed musí mať {{maxLength}} znakov. Váš Seed má {{currentLength}} znakov. Prosím, skúste to znova.",
         "seedExplanation": "Seed by mal mať dĺžku {{maxLength}} znakov a mal by obsahovat velké písmena A-Z a číslo 9. Nie je možné použít Seed dlhší ako {{maxLength}} znakov.",
-        "neverShare": "NIKDY S NIKÝM NEZDIEĽAJTE VÁŠ SEED"
+        "neverShare": "NIKDY NIKOMU NEPREZRÁDZAJTE VÁS SEED"
     },
     "home": {
         "balance": "ZOSTATOK",
@@ -237,12 +237,12 @@
     },
     "languageSetup": {
         "language": "Jazyk",
-        "letsGetStarted": "Poďme začať"
+        "letsGetStarted": "Môžeme začať"
     },
     "login": {
         "emptyPassword": "Prázdne heslo",
-        "emptyPasswordExplanation": "Pre prihlásenie musíte zadať heslo. Prosím skúste znova.",
-        "enterPassword": "Prosím zadajte Vaše heslo.",
+        "emptyPasswordExplanation": "Pre prihlásenie musíte zadať heslo. Prosím, skúste to znova.",
+        "enterPassword": "Prosím, zadajte vaše heslo.",
         "useSeed": "POUŽI SEED",
         "login": "Prihlásiť sa",
         "selectDifferentNode": "Chcete vybrať iný node?",
