@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 import { changePowSettings, setLockScreenTimeout } from 'actions/settings';
 import { generateAlert } from 'actions/alerts';
-import { setVault, getSeed } from 'libs/crypto';
+import { setSeed, getSeed } from 'libs/crypto';
 
 import { toggleModalActivity } from 'actions/ui';
 import { getSelectedAccountName, getAddressesForSelectedAccount } from 'selectors/accounts';
@@ -113,7 +113,7 @@ class Advanced extends PureComponent {
         const { t, generateAlert } = this.props;
 
         try {
-            await setVault(password, {}, true);
+            await setSeed(password, '', [], true);
             localStorage.clear();
             Electron.clearStorage();
             location.reload();
@@ -134,27 +134,27 @@ class Advanced extends PureComponent {
 
     syncAccount = async () => {
         const { wallet, selectedAccountName } = this.props;
-        const seed = await getSeed(wallet.seedIndex, wallet.password);
+        const seed = await getSeed(wallet.password, selectedAccountName, true);
         runTask('manuallySyncAccount', [seed, selectedAccountName]);
     };
 
     startSnapshotTransition = async () => {
-        const { wallet, addresses } = this.props;
-        const seed = await getSeed(wallet.seedIndex, wallet.password);
+        const { wallet, addresses, selectedAccountName } = this.props;
+        const seed = await getSeed(wallet.password, selectedAccountName, true);
         runTask('transitionForSnapshot', [seed, addresses]);
     };
 
     transitionBalanceOk = async () => {
         this.props.toggleModalActivity();
         const { wallet, transitionAddresses, selectedAccountName } = this.props;
-        const seed = await getSeed(wallet.seedIndex, wallet.password);
+        const seed = await getSeed(wallet.password, selectedAccountName, true);
         runTask('completeSnapshotTransition', [seed, selectedAccountName, transitionAddresses]);
     };
 
     transitionBalanceWrong = async () => {
         this.props.toggleModalActivity();
-        const { wallet, transitionAddresses } = this.props;
-        const seed = await getSeed(wallet.seedIndex, wallet.password);
+        const { wallet, transitionAddresses, selectedAccountName } = this.props;
+        const seed = await getSeed(wallet.password, selectedAccountName, true);
         const currentIndex = transitionAddresses.length;
         runTask('generateAddressesAndGetBalance', [seed, currentIndex, null]);
     };
