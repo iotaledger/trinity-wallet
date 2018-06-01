@@ -214,12 +214,12 @@ export const checkActivationCode = async (code, uuid) => {
 
 export const seedToHex = (bytes) => {
     return Array.from(bytes)
-        .map((byte) => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9'.charAt(byte % 27))
+        .map((byte) => '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.charAt(byte % 27))
         .join('');
 };
 
 export const byteToChar = (byte) => {
-    return 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9'.charAt(byte % 27);
+    return '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.charAt(byte % 27);
 };
 
 const bufferToHex = (buffer) => {
