@@ -188,7 +188,7 @@
         "passwordTooWeak": "Heslo je príliš slabé",
         "passwordTooWeakReason": "Vaše heslo je príliš slabé. Použite kombináciu slov a vyhnite sa bežným frázam, menám alebo dátumom",
         "reasonRow": "Postupné rady znakov sa dajú ľahko uhádnuť",
-        "reasonPattern": "Krátke rady znakov sa dajú ľahko uhádnuť",
+        "reasonPattern": "Krátke vzory znakov sa dajú ľahko uhádnuť",
         "reasonNames": "Bežné mená a priezviská sú ľahko uhádnuť",
         "reasonRepeats": "Opakujúce sa znaky ako 'aaa' sa dajú ľahko uhádnuť",
         "reasonRepeats2": "Uhádnuť opakujúce sa znaky ako 'abcabcabc' je len o trochu ťažšie, ako 'abc'",
@@ -334,7 +334,7 @@
         "keyReuse": "Opakované použitie kľúča",
         "keyReuseExplanation": "Adresa, na ktorú sa pokúšate zasielať, už bola použitá. Skúste, prosím, inú adresu.",
         "recipientAddress": "Adresa príjemcu",
-        "amount": "Suma",
+        "amount": "Čiastka",
         "max": "MAX",
         "message": "Správa",
         "invalidMessage": "Neplatná správa",
@@ -343,7 +343,7 @@
         "invalidMessageTooLongExplanation": "Správa prekračuje maximálny počet znakov (1093).",
         "send": "Odoslať",
         "invalidAmount": "Zadaná neplatná čiastka",
-        "invalidAmountExplanation": "Zadajte prosím platnú transakčnú čiastku. Informácie IOTA jednotkách nižšie na tejto stránke môžu byť nápomocné.",
+        "invalidAmountExplanation": "Zadajte, prosím, platnú transakčnú čiastka. Nižšie nájdete nápomocné informácie o IOTA jednotkách.",
         "maximumSelected": "Vybraná MAXIMÁLNA čiastka",
         "iotaUnits": "Informácie o IOTA jednotkách",
         "sendMax": "POSLAŤ VŠETKO",
@@ -354,22 +354,22 @@
     "setPassword": {
         "choosePassword": "Zvoľte si nové heslo",
         "passwordTooShort": "Heslo je príliš krátke",
-        "passwordTooShortExplanation": "Heslo musí obsahovať minimálne {{minLength}} znakov. Vaše heslo má momentálne {{currentLength}} znakov. Skúste prosím znova.",
-        "passwordMismatch": "Neplatné heslo",
-        "passwordMismatchExplanation": "Zadané heslo nie je platné. Skúste prosím znova.",
+        "passwordTooShortExplanation": "Heslo musí obsahovať minimálne {{minLength}} znakov. Vaše heslo má momentálne {{currentLength}} znakov. Prosím, skúste to znova.",
+        "passwordMismatch": "Heslá sa nezhodujú",
+        "passwordMismatchExplanation": "Zadané heslo je neplatné. Prosím, skúste to znova.",
         "nowWeNeedTo": "Teraz je potrebné vytvoriť heslo.",
-        "anEncryptedCopy": "Vo vašom zariadení sa uloží zašifrovaná kópia Vášho seedu. Týmto heslom sa budete prihlasovať do svojej peňaženky.",
+        "anEncryptedCopy": "Vo vašom zariadení sa uloží zašifrovaná kópia vášho Seedu. Týmto heslom sa budete prihlasovať do svojej peňaženky.",
         "ensure": "Uistite sa, že budete používať silné heslo s minimálne 12 znakmi.",
         "retypePassword": "Zadajte heslo znova"
     },
     "setSeedName": {
-        "letsAddName": "Pridajte názov",
-        "canUseMultipleSeeds": "V tejto peňaženke môžete používať viac seedov. Každý seed vyžaduje nový názov účtu.",
-        "youCanAdd": "V menu nastavení môžete pridať ďalšie seedy."
+        "letsAddName": "Zadajte názov",
+        "canUseMultipleSeeds": "V tejto peňaženke môžete používať viac Seedov. Každý Seed vyžaduje nový názov účtu.",
+        "youCanAdd": "Viac Seedov môžete pridať v menu Nastavenia."
     },
     "modeSelection": {
         "expert": "Expert",
-        "standard": "Východzie",
+        "standard": "Základné",
         "expertModeExplanation": "Režim experta umožní prístup k ďalším funkciám ako ručná propagácia a opätovné pripojenie.",
         "modesExplanation": "Aktivujte režim experta iba v prípade, že ste skúsený užívateľ Tangle. Inak pre Vás môže byť mätúci."
     },
