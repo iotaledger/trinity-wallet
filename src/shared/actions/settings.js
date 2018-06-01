@@ -142,7 +142,7 @@ export const setSeedShareTutorialVisitationStatus = (payload) => ({
 });
 
 export function getCurrencyData(currency, withAlerts = false) {
-    const url = 'https://api.fixer.io/latest?base=USD';
+    const url = 'https://trinity-exchange-rates.herokuapp.com/api/latest?base=USD';
     return (dispatch) => {
         dispatch(currencyDataFetchRequest());
 
