@@ -105,7 +105,7 @@
         "promoted": "Transakcia úspešne spropagovaná",
         "promotedExplanation": "Vykonaná propagácia transakcie s hash {{hash}}",
         "autopromotionError": "Auto-propagácia zlyhala",
-        "autopromotionErrorExplanation": "Vzdialený Proof of Work nie je na vami zvolenom node k dispozícii. Prosím, zmeňte node a aktivujte auto-propagáciu.",
+        "autopromotionErrorExplanation": "Vzdialený Proof of Work nie je na vami zvolenom node k dispozícii. Prosím, zmeňte node a aktivujte auto-promotion.",
         "promotionError": "Auto-propagácia zlyhala",
         "promotionErrorExplanation": "Pri podpore transakcie sa niečo nepodarilo. Prosím, skúste to znova.",
         "noLongerValid": "Balíček, ktorý sa snažíte podporiť, už nie je platný",
@@ -285,7 +285,7 @@
         "printerCheckbox": "I will not print on a public printer"
     },
     "receive": {
-        "copyAddress": "Copy address",
+        "copyAddress": "Skopírovať adresu",
         "addressCopied": "Adresa skopírovaná",
         "addressCopiedExplanation": "Adresa bola skopírovaná do schránky.",
         "generateNewAddress": "Nová adresa",
@@ -302,7 +302,7 @@
         "paperWallet": "Papierová peňaženka",
         "writeYourSeedDown": "Zapíšte si váš seed",
         "printYourSeed": "Print your seed",
-        "digitalCopy": "Digital copy",
+        "digitalCopy": "Digitálna kópia",
         "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
         "iHaveBackedUpMySeed": "Svoj seed mám uložený",
         "letsWriteDownYourSeed": "Lets write down your seed",
@@ -381,7 +381,7 @@
         "mode": "Režim",
         "theme": "Motív",
         "currency": "Mena",
-        "cannotChangeNode": "Cannot change node",
+        "cannotChangeNode": "Nedá sa zmeniť node",
         "cannotChangeNodeWhileSending": "Cannot change node while sending.",
         "language": "Jazyk",
         "accountManagement": "Správa účtov",
@@ -439,8 +439,8 @@
         "doYouAlreadyHaveASeed": "Máte už vlastný seed, ktorý by ste chceli použiť?",
         "doYouNeedASeed": "Do you need to create a new seed?",
         "seedExplanation": "IOTA seed je niečo ako Vaše užívateľské meno a zároveň heslo k Vášmu účtu, spojené do jedného reťazca 81 znakov.",
-        "noIHaveOne": "No, I have one",
-        "yesINeedASeed": "Yes, I need a seed",
+        "noIHaveOne": "Nie, už mám seed",
+        "yesINeedASeed": "Áno, potrebujem seed",
         "explanation": "<0><0>Môžete ho použiť na prístup k svojim prostriedkom z</0> <1>akejkoľvek peňaženky</1> <2>, na</2> <3>na akomkoľvek zariadení</3> <4>. Ak však stratíte svoj seed, stratíte tiež všetky Vaše IOTA.</4></0>",
         "keepSafe": "Svoj seed prosím uchovávajte v bezpečí.",
         "hint": "<0><0>Tip:</0>Ak IOTA peňaženku používate prvýkrát, kliknite na tlačidlo NIE</0>"
@@ -459,8 +459,8 @@
         "bundleHashCopiedExplanation": "Balíček hash bol skopírovaný do schránky.",
         "addressCopied": "Adresa skopírovaná",
         "addressCopiedExplanation": "Adresa bola skopírovaná do schránky.",
-        "messageCopied": "Message copied",
-        "messageCopiedExplanation": "The message has been copied to the clipboard.",
+        "messageCopied": "Správa bola skopírovaná",
+        "messageCopiedExplanation": "Správa bola skopírovaná do schránky.",
         "send": "ODOSLAŤ",
         "receive": "PRÍJEM"
     },
@@ -472,15 +472,15 @@
         "addNewAccount": "Pridať nový účet"
     },
     "addCustomNode": {
-        "customNodeAdded": "Custom node added",
-        "customNodeCouldNotBeAdded": "Custom node could not be added",
-        "customNodeAddedSuccessfully": "The custom node has been added successfully.",
+        "customNodeAdded": "Vlastný node pridaný",
+        "customNodeCouldNotBeAdded": "Nedá sa pridať vlastný node",
+        "customNodeAddedSuccessfully": "Vlastný node bol úspešne pridaný.",
         "customNode": "Vlastný Node",
-        "invalidNodeResponse": "The node returned an invalid response",
-        "httpNodeError": "Trinity Mobile only supports https nodes.",
+        "invalidNodeResponse": "Node vrátil neplatnú odpoveď",
+        "httpNodeError": "Mobilná verzia Trinity podporuje iba https nody.",
         "add": "Pridať",
-        "nodeFieldEmpty": "Text field is empty",
-        "nodeFieldEmptyExplanation": "Please enter a custom node."
+        "nodeFieldEmpty": "Textové pole je prázdne",
+        "nodeFieldEmptyExplanation": "Prosím, vložte vlastný node."
     },
     "addNewAccount": {
         "useExistingSeed": "Použiť existujúci seed",
