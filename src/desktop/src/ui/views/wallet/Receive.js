@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import QRCode from 'qrcode.react';
+import QRCode from 'qr.js/lib/QRCode';
 import { selectAccountInfo, getSelectedAccountName } from 'selectors/accounts';
 import { runTask } from 'worker';
 
@@ -30,8 +30,6 @@ class Receive extends React.PureComponent {
         accountName: PropTypes.string.isRequired,
         /** Current receive address */
         receiveAddress: PropTypes.string.isRequired,
-        /** Current active seed index */
-        seedIndex: PropTypes.number,
         /** Current password value */
         password: PropTypes.string,
         /** Is the wallet currently syncing */
@@ -70,13 +68,13 @@ class Receive extends React.PureComponent {
     }
 
     onGeneratePress = async () => {
-        const { password, accountName, account, seedIndex, isSyncing, isTransitioning, generateAlert, t } = this.props;
+        const { password, accountName, account, isSyncing, isTransitioning, generateAlert, t } = this.props;
 
         if (isSyncing || isTransitioning) {
             return generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
         }
 
-        const seed = await getSeed(seedIndex, password);
+        const seed = await getSeed(password, accountName, true);
 
         runTask('generateNewAddress', [seed, accountName, account]);
     };
@@ -85,10 +83,30 @@ class Receive extends React.PureComponent {
         const { t, receiveAddress, isGeneratingReceiveAddress } = this.props;
         const { message } = this.state;
 
+        const qr = new QRCode(-1, 1);
+
+        qr.addData(JSON.stringify({ address: receiveAddress, message: message }));
+        qr.make();
+
+        const cells = qr.modules;
+
         return (
             <div className={classNames(css.receive, receiveAddress.length < 2 ? css.empty : css.full)}>
                 <div className={isGeneratingReceiveAddress ? css.loading : null}>
-                    <QRCode value={JSON.stringify({ address: receiveAddress, message: message })} size={145} />
+                    <svg width="150" height="150" viewBox={`0 0 ${cells.length} ${cells.length}`}>
+                        {cells.map((row, rowIndex) => {
+                            return row.map((cell, cellIndex) => (
+                                <rect
+                                    height={1}
+                                    key={cellIndex}
+                                    style={{ fill: cell ? '#000000' : 'none' }}
+                                    width={1}
+                                    x={cellIndex}
+                                    y={rowIndex}
+                                />
+                            ));
+                        })}
+                    </svg>
                     {receiveAddress.length < 2 ? (
                         <Button className="icon" disabled={receiveAddress.length > 2} onClick={this.onGeneratePress}>
                             <Icon icon="sync" size={32} />
@@ -140,7 +158,6 @@ const mapStateToProps = (state) => ({
     account: selectAccountInfo(state),
     accountName: getSelectedAccountName(state),
     password: state.wallet.password,
-    seedIndex: state.wallet.seedIndex,
 });
 
 const mapDispatchToProps = {
