@@ -313,9 +313,11 @@ const attachToTangleAsync = (
     });
 };
 
-const getTrytesAsync = (hashes) => {
+const getTrytesAsync = (hashes, provider = null) => {
     return new Promise((resolve, reject) => {
-        iota.api.getTrytes(hashes, (err, trytes) => {
+        const instance = provider ? new IOTA({ provider }) : iota;
+
+        instance.api.getTrytes(hashes, (err, trytes) => {
             if (err) {
                 reject(err);
             } else {
@@ -334,7 +336,7 @@ const isNodeSynced = (provider = null) => {
         .then(({ latestMilestone, latestSolidSubtangleMilestone }) => {
             cached.latestMilestone = latestMilestone;
             if (cached.latestMilestone === latestSolidSubtangleMilestone && cached.latestMilestone !== '9'.repeat(81)) {
-                return getTrytesAsync([cached.latestMilestone]);
+                return getTrytesAsync([cached.latestMilestone], provider);
             }
 
             throw new Error(Errors.NODE_NOT_SYNCED);
