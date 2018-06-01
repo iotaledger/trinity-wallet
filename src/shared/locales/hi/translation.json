@@ -151,7 +151,8 @@
         "deviceMayBecomeUnresponsive": "आपका डिवाइस कुछ समय के लिए अनुत्तरदायी हो सकता है",
         "isYourBalanceCorrect": "क्या आपका बैलेंस सही है?",
         "ifYourBalanceIsNotCorrect": "यदि आपका बैलेंस सही नहीं है, तो संभव है कि आप पूर्व-स्नैपशॉट सीड का उपयोग कर रहे हों ।",
-        "headToAdvancedSettingsForTransition": "एडवांस सेटिंग के लिए आगे बढ़े और स्नैपशॉट ट्रांजिट करे"
+        "headToAdvancedSettingsForTransition": "एडवांस सेटिंग के लिए आगे बढ़े और स्नैपशॉट ट्रांजिट करे",
+        "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "सीड में अवैध वर्ण हैं।",

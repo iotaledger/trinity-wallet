@@ -90,7 +90,7 @@
         "addresses": "アドレス",
         "reattach": "再添付",
         "promote": "促進",
-        "retry": "再試行",
+        "retry": "再添付",
         "rebroadcast": "再ブロードキャスト",
         "pressBackAgain": "もう一度タップすると、アプリを閉じます。",
         "reattached": "取引は正常に再添付されました。",
@@ -151,7 +151,8 @@
         "deviceMayBecomeUnresponsive": "しばらくの間、お使いのデバイスが応答できなくなる恐れがあります",
         "isYourBalanceCorrect": "残高は正しいですか？",
         "ifYourBalanceIsNotCorrect": "もし残高が正しくなければ、スナップショット以前のシードが使われていると思われます。",
-        "headToAdvancedSettingsForTransition": "詳細設定にてスナップショットの移行を行なってください。"
+        "headToAdvancedSettingsForTransition": "詳細設定にてスナップショットの移行を行なってください。",
+        "usingTrinityWalletWithKeePass": "Keepass2AndroidでTrinityウォレットを使用する"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだシードです。",
@@ -358,7 +359,7 @@
         "passwordMismatchExplanation": "入力した 2 つのパスワードが一致しません、もう一度やり直してください。",
         "nowWeNeedTo": "次にパスワードの設定です。",
         "anEncryptedCopy": "暗号化されたシードのコピーがデバイスに保存されます。今後パスワードを使用してウォレットにアクセスします。",
-        "ensure": "破られにくいよう、パスワードは最低でも12文字以上にすることをお勧めします。",
+        "ensure": "12文字以上の強力なパスワードを指定してください。",
         "retypePassword": "パスワードを再入力してください。"
     },
     "setSeedName": {

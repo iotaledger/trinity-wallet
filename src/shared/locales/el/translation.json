@@ -18,8 +18,7 @@
         "invalidResponse": "Node error",
         "invalidResponseExplanation": "The node returned an error. Try changing node.",
         "invalidResponsePollingExplanation": "The node returned an error while polling. Try changing node.",
-        "invalidResponseFetchingAccount":
-            "The node returned an error while fetching your account information. Try changing node.",
+        "invalidResponseFetchingAccount": "The node returned an error while fetching your account information. Try changing node.",
         "invalidResponseSendingTransfer": "The node returned an error while sending the transfer. Try changing node.",
         "nodeOutOfSync": "Node out of sync",
         "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
@@ -78,8 +77,7 @@
         "cannotPerformAction": "Δεν είναι δυνατό να εκτελεστεί η ενέργεια",
         "cannotPerformActionExplanation": "Πηγαίνετε στο ρυθμίσεις για προχωρημένους για να επαναφέρετε το πορτοφόλι.",
         "attachToTangleUnavailable": "Remote Proof of Work is unavailable",
-        "attachToTangleUnavailableExplanation":
-            "Remote Proof of Work is not available on your selected node. Either change node or set Proof of Work to Local in Advanced Settings.",
+        "attachToTangleUnavailableExplanation": "Remote Proof of Work is not available on your selected node. Either change node or set Proof of Work to Local in Advanced Settings.",
         "attachToTangleUnavailableExplanationShort": "Remote Proof of Work is not available on your selected node.",
         "wallet": "Πορτοφόλι",
         "sent": "Εστάλη",
@@ -107,23 +105,19 @@
         "promoted": "Successfully promoted transaction",
         "promotedExplanation": "Promoted transaction with hash {{hash}}",
         "autopromotionError": "Could not auto-promote transaction",
-        "autopromotionErrorExplanation":
-            "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
+        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
         "promotionError": "Could not promote transaction",
         "promotionErrorExplanation": "Something went wrong while promoting your transaction. Please try again.",
         "noLongerValid": "Η δέσμη που προσπαθείτε να προωθήσετε δεν είναι πλέον έγκυρη",
         "transactionAlreadyConfirmed": "Transaction already confirmed",
         "transactionAlreadyConfirmedExplanation": "The transaction you are trying to promote is already confirmed.",
         "cannotSendToOwn": "Αποστολή σε ιδιωτική διεύθυνση",
-        "cannotSendToOwnExplanation":
-            "Δεν μπορείτε να κάνετε μια τιμή μεταφοράς σε μία από τις δικές  σας διευθύνσεις ",
+        "cannotSendToOwnExplanation": "Δεν μπορείτε να κάνετε μια τιμή μεταφοράς σε μία από τις δικές  σας διευθύνσεις ",
         "pleaseWait": "Παρακαλώ περίμενε",
         "pleaseWaitEllipses": "Please wait...",
         "pleaseWaitExplanation": "Το trinity εκτελεί μια άλλη λειτουργία. Παρακαλώ περιμένετε και προσπαθήστε ξανά.",
-        "pleaseWaitTransferExplanation":
-            "Το διαθέσιμο υπόλοιπό σας χρησιμοποιείται αυτήν τη στιγμή σε άλλες μεταφορές. Σας παρακαλώ να περιμένετε  για επιβεβαίωση πριν να προσπαθήσετε πάλι.",
-        "pleaseWaitIncomingTransferExplanation":
-            "You have incoming transfers. Please wait for them to confirm before trying again.",
+        "pleaseWaitTransferExplanation": "Το διαθέσιμο υπόλοιπό σας χρησιμοποιείται αυτήν τη στιγμή σε άλλες μεταφορές. Σας παρακαλώ να περιμένετε  για επιβεβαίωση πριν να προσπαθήσετε πάλι.",
+        "pleaseWaitIncomingTransferExplanation": "You have incoming transfers. Please wait for them to confirm before trying again.",
         "snapshotTransitionInProgress": "Στιγμιότυπο μετάβασης σε εξέλιξη",
         "snapshotTransitionInProgressExplanation": "Παρακαλώ περιμένετε μέχρι να ολοκληρωθεί η μετάβαση.",
         "checkForUpdates": "Έλεγχος για ενημερώσεις",
@@ -144,31 +138,27 @@
         "masterKey": "Your IOTA seed is the master key to your funds.",
         "seedThief": "If someone else has your seed they can steal your IOTA.",
         "googlePlayServicesNotAvailable": "Google Play Services not available",
-        "couldNotVerifyDeviceIntegrity":
-            "Could not verify device integrity because Google Play Services are not available.",
+        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available.",
         "clear": "CLEAR",
         "noNetworkConnection": "No network connection",
         "noNetworkConnectionExplanation": "Your internet connection appears to be offline.",
         "spentAddressExplanation": "WARNING: Funds on spent addresses",
-        "discordInformation":
-            "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do.",
+        "discordInformation": "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do.",
         "androidInsecureClipboardWarning": "Android does not provide a secure clipboard.",
         "androidCopyPasteWarning": "Never copy/paste your seed on an Android device.",
         "willNotCopyPasteSeed": "I will not copy/paste my seed",
         "mustBeStoredAppropriately": "It must be stored appropriately.",
         "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while",
         "isYourBalanceCorrect": "Is your balance correct?",
-        "ifYourBalanceIsNotCorrect":
-            "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
-        "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition."
+        "ifYourBalanceIsNotCorrect": "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
+        "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition.",
+        "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Το seed σας περιέχει μη έγκυρους χαρακτήρες",
-        "seedInvalidCharsExplanation":
-            "Στο seed  μπορείτε να  χρησιμοποιείται μόνο από τα κεφαλαία γράμματα A-Z και τον αριθμό 9.Το seed σας έχει μη έγκυρους χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
+        "seedInvalidCharsExplanation": "Στο seed  μπορείτε να  χρησιμοποιείται μόνο από τα κεφαλαία γράμματα A-Z και τον αριθμό 9.Το seed σας έχει μη έγκυρους χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
         "seedTooShort": "Το seed είναι  μικρό.",
-        "seedTooShortExplanation":
-            "Tα seed  πρέπει να έχουν μέγιστο χαρακτήρες μήκος. Το seed  σας είναι επί του παρόντος έχει περισσότερους  χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
+        "seedTooShortExplanation": "Tα seed  πρέπει να έχουν μέγιστο χαρακτήρες μήκος. Το seed  σας είναι επί του παρόντος έχει περισσότερους  χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
         "nameInUse": "Όνομα λογαριασμού ήδη σε χρήση",
         "nameInUseExplanation": "Παρακαλούμε να χρησιμοποιήσετε ένα μοναδικό όνομα λογαριασμού για το seed σας.",
         "enterAccountName": "Εισάγετε ένα όνομα λογαριασμού.",
@@ -176,13 +166,11 @@
         "noNickname": "Δεν έγινε εισαγωγή ονόματος λογαριασμού.",
         "noNicknameExplanation": "Παρακαλούμε εισάγετε ένα όνομα λογαριασμού για το Seed σας.",
         "seedInUse": "Seed  είναι ήδη σε χρήση",
-        "seedInUseExplanation":
-            "Αυτό το seed είναι ήδη συνδεδεμένος στο πορτοφόλι σας. Παρακαλούμε να χρησιμοποιήσετε έναν άλλο."
+        "seedInUseExplanation": "Αυτό το seed είναι ήδη συνδεδεμένος στο πορτοφόλι σας. Παρακαλούμε να χρησιμοποιήσετε έναν άλλο."
     },
     "changePassword": {
         "oops": "Ωχ! Κάτι πήγε στραβά",
-        "oopsExplanation":
-            "Φαίνεται κάτι να πήγε στραβά κατά την ενημέρωση του κωδικού πρόσβασης. Παρακαλώ δοκιμάστε ξανά.",
+        "oopsExplanation": "Φαίνεται κάτι να πήγε στραβά κατά την ενημέρωση του κωδικού πρόσβασης. Παρακαλώ δοκιμάστε ξανά.",
         "passwordUpdated": "Κωδικός πρόσβασης ενημερώθηκε",
         "passwordUpdatedExplanation": "O κωδικός πρόσβασής σας έχει ενημερωθεί επιτυχώς.",
         "incorrectPassword": "Λάθος  κωδικό πρόσβασης",
@@ -190,19 +178,15 @@
         "passwordsDoNotMatch": "Οι κωδικοί πρόσβασης δεν ταιριάζουν",
         "passwordsDoNotMatchExplanation": "Οι κωδικοί πρόσβασης δεν ταιριάζουν, παρακαλώ προσπαθήστε ξανά.",
         "passwordTooShort": "Ο κωδικός πρόσβασης είναι πολύ σύντομος",
-        "passwordTooShortExplanation":
-            "Τον κωδικό πρόσβασής σας πρέπει να είναι τουλάχιστον 12 χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
+        "passwordTooShortExplanation": "Τον κωδικό πρόσβασής σας πρέπει να είναι τουλάχιστον 12 χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
         "oldPassword": "Δεν μπορείτε ορίσετε τον παλιό κωδικό πρόσβασης",
-        "oldPasswordExplanation":
-            "Δεν μπορείτε να χρησιμοποιήσετε τον παλιό κωδικό πρόσβασης ως τον νέο σας κωδικό. Παρακαλούμε δοκιμάστε ξανά με ένα νέο κωδικό πρόσβασης.",
-        "ensureStrongPassword":
-            "Βεβαιωθείτε ότι χρησιμοποιείτε έναν ισχυρό κωδικό πρόσβασης τουλάχιστον 12 χαρακτήρων.",
+        "oldPasswordExplanation": "Δεν μπορείτε να χρησιμοποιήσετε τον παλιό κωδικό πρόσβασης ως τον νέο σας κωδικό. Παρακαλούμε δοκιμάστε ξανά με ένα νέο κωδικό πρόσβασης.",
+        "ensureStrongPassword": "Βεβαιωθείτε ότι χρησιμοποιείτε έναν ισχυρό κωδικό πρόσβασης τουλάχιστον 12 χαρακτήρων.",
         "currentPassword": "Τρέχων κωδικός πρόσβασης",
         "newPassword": "Νέος κωδικός πρόσβασης",
         "confirmPassword": "Επιβεβαίωση νέου κωδικού πρόσβασης",
         "passwordTooWeak": "Password too weak",
-        "passwordTooWeakReason":
-            "Your password is too weak. Use a combination of words, and avoid common phrases, names or dates",
+        "passwordTooWeakReason": "Your password is too weak. Use a combination of words, and avoid common phrases, names or dates",
         "reasonRow": "Straight rows of keys are easy to guess",
         "reasonPattern": "Short patterns of keys are easy to guess",
         "reasonNames": "Common names and surnames are easy to guess",
@@ -222,8 +206,7 @@
         "seedClearedExplanation": "Ο σπόρος έχει εκκαθαριστεί από το πρόχειρο για την ασφάλειά σας.",
         "seedCopied": "Ο σπόρος αντιγράφηκε στο πρόχειρο",
         "seedCopiedExplanation": "O σπόρος θα εκκαθαριστεί μόλις πατήσετε \"ΤΕΛΟΣ\" ή περάσουν 60 δευτερόλεπτα.",
-        "clickToCopy":
-            "Κάντε κλικ στο παρακάτω κουμπί και αντιγράψτε το σπόρο σας σε έναν διαχειριστή κωδικών πρόσβασης.",
+        "clickToCopy": "Κάντε κλικ στο παρακάτω κουμπί και αντιγράψτε το σπόρο σας σε έναν διαχειριστή κωδικών πρόσβασης.",
         "clickToSecurelyShare": "Click the button below to securely share your seed to a password manager.",
         "doNotStore": "Μην αποθηκεύετε το σπόρο σας σε μορφή απλού κειμένου.",
         "copyToClipboard": "Copy Seed",
@@ -234,20 +217,15 @@
         "passwordManagerCheckbox": "I will store my seed in a password manager",
         "copy": "COPY",
         "noPasswordManagers": "No supported password managers installed",
-        "noPasswordManagersExplanation":
-            "No supported password managers were found on your device. Please install Keepass2Android.",
-        "followTutorialToSecurelyShareSeed":
-            "If you wish to store your seed in a password manager, you must follow a tutorial from the following link"
+        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android.",
+        "followTutorialToSecurelyShareSeed": "If you wish to store your seed in a password manager, you must follow a tutorial from the following link"
     },
     "enterSeed": {
         "invalidCharacters": "Ο σπόρος περιέχει μη έγκυρους χαρακτήρες",
-        "invalidCharactersExplanation":
-            "Οι σπόροι μπορούν να συνίστανται μόνο από τα κεφαλαία γράμματα A-Z και τον αριθμό 9. Ο σπόρος σας έχει μη έγκυρους χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
+        "invalidCharactersExplanation": "Οι σπόροι μπορούν να συνίστανται μόνο από τα κεφαλαία γράμματα A-Z και τον αριθμό 9. Ο σπόρος σας έχει μη έγκυρους χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
         "seedTooShort": "Ο σπόρος είναι πολύ μικρός",
-        "seedTooShortExplanation":
-            "Οι σπόροι πρέπει να έχουν {{maxLength}} χαρακτήρες μήκος. Ο σπόρος σας επί του παρόντος έχει {{currentLength}} χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
-        "seedExplanation":
-            "Οι σπόροι πρέπει να είναι {{maxLength}} χαρακτήρων και πρέπει να περιέχουν τα κεφαλαία γράμματα A-Z, ή τον αριθμό 9. Δεν μπορείτε να χρησιμοποιήσετε σπόρους που είναι μεγαλύτεροι από {{maxLength}} χαρακτήρες.",
+        "seedTooShortExplanation": "Οι σπόροι πρέπει να έχουν {{maxLength}} χαρακτήρες μήκος. Ο σπόρος σας επί του παρόντος έχει {{currentLength}} χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
+        "seedExplanation": "Οι σπόροι πρέπει να είναι {{maxLength}} χαρακτήρων και πρέπει να περιέχουν τα κεφαλαία γράμματα A-Z, ή τον αριθμό 9. Δεν μπορείτε να χρησιμοποιήσετε σπόρους που είναι μεγαλύτεροι από {{maxLength}} χαρακτήρες.",
         "neverShare": "ΜΗ ΜΟΙΡΑΖΕΣΤΕ ΠΟΤΕ ΤΟΝ ΣΠΟΡΟ ΣΑΣ ΜΕ ΚΑΝΕΝΑΝ"
     },
     "home": {
@@ -263,8 +241,7 @@
     },
     "login": {
         "emptyPassword": "Κενός κωδικός πρόσβασης",
-        "emptyPasswordExplanation":
-            "Πρέπει να εισαγάγετε έναν κωδικό πρόσβασης για να συνδεθείτε. Παρακαλώ δοκιμάστε ξανά.",
+        "emptyPasswordExplanation": "Πρέπει να εισαγάγετε έναν κωδικό πρόσβασης για να συνδεθείτε. Παρακαλώ δοκιμάστε ξανά.",
         "enterPassword": "Παρακαλώ εισάγετε τον κωδικό σας.",
         "useSeed": "ΧΡΗΣΗ ΣΠΟΡΟΥ",
         "login": "Log In",
@@ -292,8 +269,7 @@
     "onboardingComplete": {
         "allDone": "All Done!",
         "openYourWallet": "Open your wallet",
-        "walletReady":
-            "Το πορτοφόλι είναι πλέον εγκατεστημένο και έτοιμο για χρήση. Εάν χρειάζεται να κάνετε οποιεσδήποτε αλλαγές στο μέλλον, κοιτάξτε στο μενού ρυθμίσεων."
+        "walletReady": "Το πορτοφόλι είναι πλέον εγκατεστημένο και έτοιμο για χρήση. Εάν χρειάζεται να κάνετε οποιεσδήποτε αλλαγές στο μέλλον, κοιτάξτε στο μενού ρυθμίσεων."
     },
     "paperWallet": {
         "clickToPrint": "Κάντε κλικ στο παρακάτω κουμπί για να εκτυπώσετε ένα αντίγραφο του σπόρου σας.",
@@ -334,15 +310,12 @@
         "printBlankWallet": "Print a blank wallet",
         "whatIsCheksum": "Every seed has a corresponding 3 character checksum",
         "iHavesavedMySeed": "I've saved my seed",
-        "checksumExplanation":
-            "Whenever you add a seed to your wallet, you should ensure that the wallet-generated checksum matches the one you have written down.",
-        "mustSaveYourSeed":
-            "<0><0>Θα πρέπει να αποθηκεύσετε το seed σας με</0> <1>τουλάχιστον ένα</1> <2>από τους παρακάτω τρόπους.</2></0>"
+        "checksumExplanation": "Whenever you add a seed to your wallet, you should ensure that the wallet-generated checksum matches the one you have written down.",
+        "mustSaveYourSeed": "<0><0>Θα πρέπει να αποθηκεύσετε το seed σας με</0> <1>τουλάχιστον ένα</1> <2>από τους παρακάτω τρόπους.</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Please confirm your seed",
-        "trinityWillNeverAskToReenter":
-            "Trinity will never ask you to re-enter this seed unless you reset your wallet or the app.",
+        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or the app.",
         "enterYourSeed": "Enter your seed",
         "incorrectSeed": "Λάθος σπόρος",
         "incorrectSeedExplanation": "Ο σπόρος που πληκτρολογήσατε είναι εσφαλμένος. Παρακαλώ δοκιμάστε ξανά.",
@@ -352,17 +325,14 @@
     },
     "send": {
         "invalidAddress": "Μη έγκυρη διεύθυνση",
-        "invalidAddressExplanation1":
-            "Η διεύθυνση πρέπει να είναι {{maxLength}} χαρακτήρες και θα πρέπει να έχει ένα άθροισμα ελέγχου.",
+        "invalidAddressExplanation1": "Η διεύθυνση πρέπει να είναι {{maxLength}} χαρακτήρες και θα πρέπει να έχει ένα άθροισμα ελέγχου.",
         "invalidAddressExplanation2": "Η διεύθυνση περιέχει μη έγκυρους χαρακτήρες.",
         "invalidAddressExplanation3": "Η διεύθυνση περιέχει ένα μη έγκυρο άθροισμα ελέγχου.",
-        "invalidAddressExplanationGeneric":
-            "Έγκυρες διευθύνσεις θα πρέπει να αποτελούνται από  90 χαρακτήρες και να περιέχει μόνο A-Z ή 9.",
+        "invalidAddressExplanationGeneric": "Έγκυρες διευθύνσεις θα πρέπει να αποτελούνται από  90 χαρακτήρες και να περιέχει μόνο A-Z ή 9.",
         "notEnoughFunds": "Ανεπαρκές χρηματικό υπόλοιπο",
         "notEnoughFundsExplanation": "Δεν έχετε αρκετά ΙΟΤΑ για να ολοκληρώσετε αυτή τη μεταφορά.",
         "keyReuse": "Επαναχρησιμοποίηση κλειδιού",
-        "keyReuseExplanation":
-            "Η διεύθυνση στην οποία προσπαθείτε να στείλετε έχει ήδη χρησιμοποιηθεί. Παρακαλώ δοκιμάστε μια άλλη διεύθυνση.",
+        "keyReuseExplanation": "Η διεύθυνση στην οποία προσπαθείτε να στείλετε έχει ήδη χρησιμοποιηθεί. Παρακαλώ δοκιμάστε μια άλλη διεύθυνση.",
         "recipientAddress": "Διεύθυνση Παραλήπτη",
         "amount": "Ποσό",
         "max": "ΜΕΓΙΣΤΟ",
@@ -373,43 +343,35 @@
         "invalidMessageTooLongExplanation": "The message exceeds the max. amount of characters (1093).",
         "send": "Αποστολή",
         "invalidAmount": "Εισήχθη λάθος ποσό",
-        "invalidAmountExplanation":
-            "Παρακαλώ εισάγετε ένα έγκυρο ποσό συναλλαγής. Μπορεί να είναι χρήσιμος να δείτε την  μονάδα IOTA  στο κάτω μέρος αυτής της σελίδας.",
+        "invalidAmountExplanation": "Παρακαλώ εισάγετε ένα έγκυρο ποσό συναλλαγής. Μπορεί να είναι χρήσιμος να δείτε την  μονάδα IOTA  στο κάτω μέρος αυτής της σελίδας.",
         "maximumSelected": "ΜΕΓΙΣΤΟ ποσό επιλέχθηκε",
         "iotaUnits": "Επεξήγηση των υποδιαιρέσεων του IOTA",
         "sendMax": "ΑΠΟΣΤΟΛΗ ΜΕΓΙΣΤΟΥ ΠΟΣΟΥ",
         "totalTime": "Total time",
         "addressPasteDetected": "Address paste detected",
-        "addressPasteExplanation":
-            "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
+        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
     },
     "setPassword": {
         "choosePassword": "Choose a new password",
         "passwordTooShort": "Ο κωδικός πρόσβασης είναι πολύ σύντομος",
-        "passwordTooShortExplanation":
-            "Οι σπόροι πρέπει να έχουν {{minLength}} χαρακτήρες μήκος. Ο σπόρος σας επί του παρόντος έχει {{currentLength}} χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
+        "passwordTooShortExplanation": "Οι σπόροι πρέπει να έχουν {{minLength}} χαρακτήρες μήκος. Ο σπόρος σας επί του παρόντος έχει {{currentLength}} χαρακτήρες. Παρακαλώ δοκιμάστε ξανά.",
         "passwordMismatch": "Οι κωδικοί πρόσβασης δεν ταιριάζουν",
-        "passwordMismatchExplanation":
-            "Οι κωδικοί πρόσβασης που έχετε καταχωρήσει δεν ταιριάζουν. Παρακαλώ ξαναπροσπαθήστε.",
+        "passwordMismatchExplanation": "Οι κωδικοί πρόσβασης που έχετε καταχωρήσει δεν ταιριάζουν. Παρακαλώ ξαναπροσπαθήστε.",
         "nowWeNeedTo": "Τώρα πρέπει να ορίσουμε έναν κωδικό πρόσβασης.",
-        "anEncryptedCopy":
-            "Ένα κρυπτογραφημένο αντίγραφο του σπόρου σας θα αποθηκευτεί στη συσκευή σας. Θα μπορείτε να χρησιμοποιήσετε αυτόν τον κωδικό πρόσβασης για να αποκτήσετε πρόσβαση το πορτοφόλι σας στο μέλλον.",
+        "anEncryptedCopy": "Ένα κρυπτογραφημένο αντίγραφο του σπόρου σας θα αποθηκευτεί στη συσκευή σας. Θα μπορείτε να χρησιμοποιήσετε αυτόν τον κωδικό πρόσβασης για να αποκτήσετε πρόσβαση το πορτοφόλι σας στο μέλλον.",
         "ensure": "Βεβαιωθείτε ότι χρησιμοποιείτε έναν ισχυρό κωδικό πρόσβασης τουλάχιστον 12 χαρακτήρων.",
         "retypePassword": "Πληκτρολογήστε ξανά τον κωδικό πρόσβασης"
     },
     "setSeedName": {
         "letsAddName": "Let's add a name",
-        "canUseMultipleSeeds":
-            "Μπορείτε να χρησιμοποιήσετε πολλούς σπόρους με αυτό το πορτοφόλι. Κάθε Σπόρος απαιτεί ένα όνομα λογαριασμού.",
+        "canUseMultipleSeeds": "Μπορείτε να χρησιμοποιήσετε πολλούς σπόρους με αυτό το πορτοφόλι. Κάθε Σπόρος απαιτεί ένα όνομα λογαριασμού.",
         "youCanAdd": "Μπορείτε να προσθέσετε περισσότερους σπόρους από το μενού ρυθμίσεων."
     },
     "modeSelection": {
         "expert": "Ειδικός",
         "standard": "Κανονικός",
-        "expertModeExplanation":
-            "Κατάσταση λειτουργίας  θα παρέχουν πρόσβαση σε πρόσθετες δυνατότητες όπως Χειροκίνητη προώθηση και την εκ νέου προσάρτηση.",
-        "modesExplanation":
-            "Ενεργοποιήσετε την κατάσταση λειτουργίας  μόνο αν είστε ένας έμπειρος χρήστης Tangle. Μπορείτε να σας μπερδέψει   διαφορετικά"
+        "expertModeExplanation": "Κατάσταση λειτουργίας  θα παρέχουν πρόσβαση σε πρόσθετες δυνατότητες όπως Χειροκίνητη προώθηση και την εκ νέου προσάρτηση.",
+        "modesExplanation": "Ενεργοποιήσετε την κατάσταση λειτουργίας  μόνο αν είστε ένας έμπειρος χρήστης Tangle. Μπορείτε να σας μπερδέψει   διαφορετικά"
     },
     "settings": {
         "transferSending": "Αποστολή μεταφοράς",
@@ -461,8 +423,7 @@
         "lockScreenTimeout": "Lock Screen Timeout (Minutes)",
         "autoNodeSwitching": "Automatically switch node when selected is unreachable",
         "nodeChangeSuccess": "Successfully changed node",
-        "nodeChangeSuccessNoRemotePow":
-            "The node was changed to {{node}}. This node does not support remote Proof of Work.",
+        "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
         "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
         "nodeChangeError": "Error changing node",
         "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
@@ -477,24 +438,20 @@
         "okay": "Εντάξει. Ας εγκαταστήσουμε το πορτοφόλι σας!",
         "doYouAlreadyHaveASeed": "Έχετε ήδη έναν σπόρο που θα θέλατε να χρησιμοποιήσετε;",
         "doYouNeedASeed": "Do you need to create a new seed?",
-        "seedExplanation":
-            "Ο σπόρος ΙΟΤΑ είναι όπως ένα όνομα χρήστη και κωδικός πρόσβασης για το λογαριασμό σας, σε συνδυασμένα σε μια συμβολοσειρά 81 χαρακτήρων.",
+        "seedExplanation": "Ο σπόρος ΙΟΤΑ είναι όπως ένα όνομα χρήστη και κωδικός πρόσβασης για το λογαριασμό σας, σε συνδυασμένα σε μια συμβολοσειρά 81 χαρακτήρων.",
         "noIHaveOne": "No, I have one",
         "yesINeedASeed": "Yes, I need a seed",
-        "explanation":
-            "<0><0>Μπορείτε να το χρησιμοποιήσετε για να αποκτήσετε πρόσβαση σας κεφάλαια από</0> <1>κάθε πορτοφόλι</1> <2>, από</2> <3>οποιαδήποτε συσκευή</3> <4>. Αλλά αν χάσετε το seed σας, χάνετε επίσης και τα ΙΟΤΑ σας.</4></0>",
+        "explanation": "<0><0>Μπορείτε να το χρησιμοποιήσετε για να αποκτήσετε πρόσβαση σας κεφάλαια από</0> <1>κάθε πορτοφόλι</1> <2>, από</2> <3>οποιαδήποτε συσκευή</3> <4>. Αλλά αν χάσετε το seed σας, χάνετε επίσης και τα ΙΟΤΑ σας.</4></0>",
         "keepSafe": "Παρακαλώ κρατήστε το σπόρο σας ασφαλή.",
         "hint": "<0><0>Hint:</0> Click NO if this is your first time using IOTA.</0>"
     },
     "welcome": {
         "thankYou": "Σας ευχαριστούμε για τη λήψη του Trinity.",
         "weWillSpend": "Θα περάσουμε τα επόμενα λίγα λεπτά εγκαθιστώντας το πορτοφόλι σας.",
-        "reminder":
-            "Μπορεί να μπείτε στον πειρασμό να παραλείψετε ορισμένα βήματα, αλλά σας προτρέπουμε να ακολουθήσετε την πλήρη διαδικασία."
+        "reminder": "Μπορεί να μπείτε στον πειρασμό να παραλείψετε ορισμένα βήματα, αλλά σας προτρέπουμε να ακολουθήσετε την πλήρη διαδικασία."
     },
     "writeSeedDown": {
-        "yourSeedIs":
-            "Το seed σας έχει μέγεθος {{maxSeedLength}} χαρακτήρες που διαβάζονται από αριστερά προς τα δεξιά.",
+        "yourSeedIs": "Το seed σας έχει μέγεθος {{maxSeedLength}} χαρακτήρες που διαβάζονται από αριστερά προς τα δεξιά.",
         "writeDownYourSeed": "<0>Σημειώστε το seed και το checksum και</0> <1>επαληθεύστε</1> <2>ότι είναι σωστά.</2>"
     },
     "history": {
@@ -536,8 +493,7 @@
         "snapshotTransition": "Στιγμιότυπο μετάβασης",
         "pow": "Proof of Work",
         "autoPromotion": "Auto-promotion",
-        "autoPromotionExplanation":
-            "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
+        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
         "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
     },
     "advancedThemeCustomisation": {
@@ -566,8 +522,7 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Why can't I spend my full balance?",
-        "spentAddressExplanation":
-            "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
+        "spentAddressExplanation": "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
         "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
     },
     "deleteAccount": {
@@ -598,14 +553,12 @@
         "didSaveSeed": "Did you back up your seed?",
         "alreadyHave": "Έχω αποθηκεύσει το σπόρο μου",
         "reenterSeed": "At the next step you will be asked to re-enter your seed.",
-        "reenterSeedWarning":
-            "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
+        "reenterSeedWarning": "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
         "pleaseConfirm": "Please confirm you have securely stored your seed."
     },
     "walletResetConfirmation": {
         "cannotUndo": "ΑΥΤΗ Η ΕΝΕΡΓΕΙΑ ΔΕΝ ΜΠΟΡΕΙ ΝΑ ΑΝΑΙΡΕΘΕΙ.",
-        "warning":
-            "<0><0>Όλοι τα δεδομένα του πορτοφολιού συμπεριλαμβανομένων</0> <1>του seed, του κωδικού πρόσβασης,</1> <2>και</2> <3>άλλες πληροφορίες του λογαριασμού</3> <4>θα χαθούν.</4></0>"
+        "warning": "<0><0>Όλοι τα δεδομένα του πορτοφολιού συμπεριλαμβανομένων</0> <1>του seed, του κωδικού πρόσβασης,</1> <2>και</2> <3>άλλες πληροφορίες του λογαριασμού</3> <4>θα χαθούν.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Touch fingerprint reader to enable fingerprint authentication",
@@ -615,16 +568,12 @@
         "fingerprintAuthDisabled": "Biometric authentication disabled",
         "fingerprintAuthDisabledExplanation": "You have successfully disabled biometric authentication.",
         "fingerprintAuthFailed": "Biometric authentication failed",
-        "fingerprintAuthFailedExplanation":
-            "Η είσοδος με χρήση δακτυλικού αποτυπωμάτος απέτυχε. Παρακαλώ δοκιμάστε ξανά.",
+        "fingerprintAuthFailedExplanation": "Η είσοδος με χρήση δακτυλικού αποτυπωμάτος απέτυχε. Παρακαλώ δοκιμάστε ξανά.",
         "status": "Κατάσταση",
         "fingerprintUnavailable": "Biometric authentication unavailable",
-        "fingerprintUnavailableExplanation":
-            "Your device does not support biometric authentication or it has not been configured in the device settings.",
-        "buttonInstructionsDisable":
-            "Πατήστε το παρακάτω κουμπί για να απενεργοποιήσετε την είσοδο με χρήση δακτυλικών αποτυπωμάτων.",
-        "buttonInstructionsEnable":
-            "Πατήστε το παρακάτω κουμπί για να ενεργοποιήσετε την είσοδο με χρήση δακτυλικών αποτυπωμάτων.",
+        "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
+        "buttonInstructionsDisable": "Πατήστε το παρακάτω κουμπί για να απενεργοποιήσετε την είσοδο με χρήση δακτυλικών αποτυπωμάτων.",
+        "buttonInstructionsEnable": "Πατήστε το παρακάτω κουμπί για να ενεργοποιήσετε την είσοδο με χρήση δακτυλικών αποτυπωμάτων.",
         "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID.",
         "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID.",
         "instructionsLogin": "Touch fingerprint reader to log in"
@@ -664,10 +613,8 @@
         "continueDepsiteRisk": "Do you wish to continue despite this risk?"
     },
     "pow": {
-        "feeless":
-            "Είναι απαραίτητο να ολοκληρώσετε μια μικρή απόδειξη εργασίας να στείλετε χωρίς επιβάρυνση  συναλλαγές στο  IOTA ",
-        "localOrRemote":
-            "Απόδειξη εργασίας μπορεί να ολοκληρωθεί τοπικά στη συσκευή σας, είτε  μετατόπιση φόρτου σε έναν κόμβο.",
+        "feeless": "Είναι απαραίτητο να ολοκληρώσετε μια μικρή απόδειξη εργασίας να στείλετε χωρίς επιβάρυνση  συναλλαγές στο  IOTA ",
+        "localOrRemote": "Απόδειξη εργασίας μπορεί να ολοκληρωθεί τοπικά στη συσκευή σας, είτε  μετατόπιση φόρτου σε έναν κόμβο.",
         "local": "Τοπικά",
         "remote": "Απομακρυσμένo",
         "powUpdated": "Proof of work ρυθμίσεις.",
@@ -691,8 +638,7 @@
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Δεν μπορεί να ολοκληρώσει τη μετάβαση στιγμιότυπο",
-        "cannotCompleteTransitionExplanation":
-            "Το υπόλοιπό σας πρέπει να είναι μεγαλύτερη από το 0 για να ολοκληρωθεί η μετάβαση.",
+        "cannotCompleteTransitionExplanation": "Το υπόλοιπό σας πρέπει να είναι μεγαλύτερη από το 0 για να ολοκληρωθεί η μετάβαση.",
         "transitionComplete": "Snapshot ολοκληρώθηκε. ",
         "transitionCompleteExplanation": "Το snapshot έχει ολοκληρωθεί με επιτυχία.",
         "detectedBalance": "Detected balance: {{amount}} {{unit}}",
@@ -714,8 +660,7 @@
         "noUpdatesAvailable": "No updates available",
         "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
         "newVersionAvailable": "New version available",
-        "newVersionAvailableExplanation":
-            "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
+        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
         "downloadRelease": "Download release",
         "skipUpdate": "Skip update"
     },
