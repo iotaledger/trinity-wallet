@@ -5,7 +5,7 @@
         "continue?": "Ar tikrai norite tęsti?",
         "noTransactions": "ISTORIJOS NĖRA",
         "refresh": "Atnaujinti",
-        "balanceError": "Nepakankamas likutis sąskaitoje",
+        "balanceError": "Nepakankamas likutis",
         "balanceErrorMessage": "Nepakankamas IOTA likutis šiam pavedimui atlikti.",
         "transferError": "Pavedimo klaida",
         "transferErrorMessage": "Įvyko klaida apdorojant jūsų pavedimą. Bandykite dar kartą.",
