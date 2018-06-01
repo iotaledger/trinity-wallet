@@ -21,7 +21,7 @@
         "invalidResponseFetchingAccount": "Palvelin antoi virheilmoituksen haettaessa tilitietoja. Kokeile uudestaan vaihtamalla palvelinta.",
         "invalidResponseSendingTransfer": "Palvelin antoi virheilmoituksen kesken siirron. Kokeile uudestaan vaihtamalla palvelinta.",
         "nodeOutOfSync": "Palvelin ei ole ajantasalla",
-        "nodeOutOfSyncExplanation": "Palvelin jota käytät tällä hetkellä ei sisällä viimeisintä tietoa. Kokeile vaihtaa palvelin toiseen.",
+        "nodeOutOfSyncExplanation": "Palvelin jota käytät tällä hetkellä ei sisällä viimeisintä tietoa. Kokeile vaihtaa palvelin toiseen tai yritä uudestaan.",
         "thisNodeOutOfSync": "Palvelin jota käytät tällä hetkellä ei sisällä viimeisintä tietoa. Kokeile vaihtaa palvelin toiseen.",
         "seed": "Seed-luku",
         "checksum": "Tarkistussumma",
