@@ -21,7 +21,8 @@
         position: relative;
         input,
         textarea,
-        select {
+        select,
+        .editable {
             font-family: 'SourceSansPro';
             font-weight: 300;
             font-size: var(--font-size-default);
@@ -42,6 +43,33 @@
             &:disabled {
                 pointer-events: none;
                 opacity: 0.5;
+            }
+        }
+        .editable {
+            display: block;
+            font-family: 'SourceCodePro';
+            white-space: nowrap;
+            overflow: hidden;
+            height: 46px;
+            text-align: left;
+            max-width: 520px;
+            padding: 0 40px 0 0;
+            > div {
+                padding: 0 20px;
+                overflow: hidden;
+
+                span {
+                   display: inline-block;
+                   position: relative;
+                   height: 100%;
+                    &:before {
+                        display: inline-block;
+                        position: absolute;
+                        left: 0px;
+                        content: attr(data-letter);
+                        pointer-events: none;
+                    }
+                }
             }
         }
         select {
