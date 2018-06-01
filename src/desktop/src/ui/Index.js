@@ -107,12 +107,6 @@ class App extends React.Component {
         };
     }
 
-    componentWillMount() {
-        if (this.props.isDeepLinkActive) {
-            this.props.history.push('/wallet/send');
-        }
-    }
-
     componentDidMount() {
         this.onMenuToggle = this.menuToggle.bind(this);
 
