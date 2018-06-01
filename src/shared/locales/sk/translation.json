@@ -465,29 +465,29 @@
         "receive": "PRÍJEM"
     },
     "accountManagement": {
-        "viewSeed": "Zobraziť seed",
-        "viewAddresses": "Zobraziť adresu",
+        "viewSeed": "Zobraziť Seed",
+        "viewAddresses": "Zobraziť adresy",
         "editAccountName": "Upraviť názov účtu",
         "deleteAccount": "Vymazať účet",
         "addNewAccount": "Pridať nový účet"
     },
     "addCustomNode": {
-        "customNodeAdded": "Vlastný node pridaný",
-        "customNodeCouldNotBeAdded": "Nedá sa pridať vlastný node",
-        "customNodeAddedSuccessfully": "Vlastný node bol úspešne pridaný.",
+        "customNodeAdded": "Vlastný Node pridaný",
+        "customNodeCouldNotBeAdded": "Nedá sa pridať vlastný Node",
+        "customNodeAddedSuccessfully": "Vlastný Node bol úspešne pridaný.",
         "customNode": "Vlastný Node",
         "invalidNodeResponse": "Node vrátil neplatnú odpoveď",
-        "httpNodeError": "Mobilná verzia Trinity podporuje iba https nody.",
+        "httpNodeError": "Mobilná verzia Trinity podporuje iba https Nody.",
         "add": "Pridať",
         "nodeFieldEmpty": "Textové pole je prázdne",
-        "nodeFieldEmptyExplanation": "Prosím, vložte vlastný node."
+        "nodeFieldEmptyExplanation": "Prosím, vložte vlastný Node."
     },
     "addNewAccount": {
         "useExistingSeed": "Použiť existujúci seed",
-        "createNewSeed": "Vytvoriť nový seed"
+        "createNewSeed": "Vytvoriť nový Seed"
     },
     "advancedSettings": {
-        "selectNode": "Vybrať node",
+        "selectNode": "Vybrať Node",
         "addCustomNode": "Pridať vlastný Node",
         "manualSync": "Manuálna synchronizácia",
         "snapshotTransition": "Aktualizácia údajov po Snapshote",
