@@ -344,7 +344,7 @@
         "send": "Siųsti",
         "invalidAmount": "Įvesta neleistina suma",
         "invalidAmountExplanation": "Įveskite leidžiamą pavedimo sumą. Galite pasinaudoti IOTA vienetų paaiškinimu šio puslapio apačioje.",
-        "maximumSelected": "Pasirinkta MAKSIMALI suma",
+        "maximumSelected": "Įvesta MAKSIMALI suma",
         "iotaUnits": "IOTA vienetų paaiškinimas",
         "sendMax": "SIŲSTI MAKS.",
         "totalTime": "Bendras laikas",
