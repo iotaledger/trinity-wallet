@@ -62,8 +62,8 @@
         "no": "NIE",
         "yesLowerCase": "Áno",
         "noLowerCase": "Nie",
-        "okay": "V poriadku",
-        "okayLowercase": "Okej",
+        "okay": "DOBRE",
+        "okayLowercase": "Dobre",
         "password": "Heslo",
         "passwordOrFingerprint": "Heslo alebo odtlačok prsta",
         "unrecognisedPassword": "Nesprávne heslo",
@@ -105,7 +105,7 @@
         "promoted": "Transakcia úspešne spropagovaná",
         "promotedExplanation": "Vykonaná propagácia transakcie s hash {{hash}}",
         "autopromotionError": "Auto-propagácia zlyhala",
-        "autopromotionErrorExplanation": "Vzdialený Proof of Work nie je na vami zvolenom node k dispozícii. Prosím, zmeňte node a aktivujte auto-promotion.",
+        "autopromotionErrorExplanation": "Vzdialený Proof of Work nie je na vami zvolenom node k dispozícii. Prosím, zmeňte node a aktivujte Auto-promotion.",
         "promotionError": "Auto-propagácia zlyhala",
         "promotionErrorExplanation": "Pri podpore transakcie sa niečo nepodarilo. Prosím, skúste to znova.",
         "noLongerValid": "Balíček, ktorý sa snažíte podporiť, už nie je platný",
@@ -493,8 +493,8 @@
         "snapshotTransition": "Aktualizácia údajov po Snapshote",
         "pow": "Proof of Work",
         "autoPromotion": "Auto-promotion",
-        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
-        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
+        "autoPromotionExplanation": "Auto-promotion vám pomôže potvrdiť vašu transakciu v sieti Tangle. Povoľte toto nastavenie, ak máte problémy s potvrdzovaním transakcií.",
+        "autoPromotionPoW": "Auto-promotion je možná iba na nodoch, ktoré podporujú vzdialený Proof of Work."
     },
     "advancedThemeCustomisation": {
         "background": "Pozadie",
@@ -536,21 +536,21 @@
         "pressToSync": "Stlačením tlačidla nižšie synchronizujte svoj účet.",
         "thisMayTake": "To môže chvíľu trvať. Môžete pozorovať spomalenie svojho zariadenia.",
         "doNotClose": "Upozorňujeme, že minimalizácia aplikácie zruší synchronizáciu.",
-        "syncAccount": "Sync Account",
+        "syncAccount": "Synchronizácia účtu",
         "syncingYourAccount": "Váš účet sa synchronizuje."
     },
     "useExistingSeed": {
         "title": "Zadajte svoj seed a názov účtu.",
-        "incorrectFormat": "Incorrect seed format",
-        "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
+        "incorrectFormat": "Nesprávny formát seedu",
+        "validSeedExplanation": "Platný seed má mať 81 znakov a obsahuje iba znaky A-Z alebo 9."
     },
     "viewSeed": {
         "enterPassword": "Pre zobrazenie svojho seedu vložte heslo.",
-        "viewSeed": "View Seed",
-        "hideSeed": "Hide Seed"
+        "viewSeed": "Zobraziť seed",
+        "hideSeed": "Skryť seed"
     },
     "saveSeedConfirmation": {
-        "didSaveSeed": "Did you back up your seed?",
+        "didSaveSeed": "Zazálohovali ste si svoj seed?",
         "alreadyHave": "Svoj seed mám uložený",
         "reenterSeed": "At the next step you will be asked to re-enter your seed.",
         "reenterSeedWarning": "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
@@ -610,7 +610,7 @@
         "warning": "VAROVANIE",
         "appearsRooted": "Your device appears to be rooted.",
         "securityRisk": "This can pose a significant risk to the security of your wallet.",
-        "continueDepsiteRisk": "Do you wish to continue despite this risk?"
+        "continueDepsiteRisk": "Želáte si pokračovať aj napriek tomuto riziku?"
     },
     "pow": {
         "feeless": "Pre odoslanie bezplatnej transakcie v IOTA je potrebné vykonať malý dôkaz práce (proof of work).",
@@ -623,11 +623,11 @@
         "noWebGLSupportExplanation": "Váš počítač nepodporuje WebGL. Použite vzdialenú PoW."
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Auto-promotion settings",
-        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
+        "autoPromotionUpdated": "Nastavenie Auto-promotion",
+        "autoPromotionUpdatedExplanation": "Vaše nastavenie Auto-promotion bolo aktualizované."
     },
     "progressSteps": {
-        "checkingNodeHealth": "Checking node health",
+        "checkingNodeHealth": "Kontrola stavu nodu",
         "validatingReceiveAddress": "Overovanie prijímacie adresy",
         "syncingAccount": "Synchronizácia účtu",
         "preparingInputs": "Príprava vstupných dát",
@@ -645,10 +645,10 @@
         "isThisCorrect": "Je to správne?",
         "snapshotExplanation": "V nepravidelných intervaloch prebieha Snapshot, aby sa zmenšila veľkosť Tangle.",
         "hasSnapshotTakenPlace": "Prebehol Snapshot? Stlačením tlačidla nižšie aktualizujete údajov po Snapshote.",
-        "transition": "Transition",
+        "transition": "Aktualizácia",
         "transitioning": "Aktualizácia údajov po Snapshote.",
         "generatingAndDetecting": "Generujem adresy a zisťujem zostatok.",
-        "attaching": "Attaching addresses to Tangle."
+        "attaching": "Pripájam adresy do siete Tangle."
     },
     "deepLink": {
         "autofill": "Automatické vyplnenie úspešné",
@@ -668,11 +668,11 @@
         "errorLog": "ERROR LOG"
     },
     "terms": {
-        "termsAndConditions": "Terms & Conditions",
-        "accept": "I accept"
+        "termsAndConditions": "Podmienky používania",
+        "accept": "Akceptujem"
     },
     "privacyPolicy": {
-        "privacyPolicy": "Privacy Policy",
-        "agree": "I agree"
+        "privacyPolicy": "Zásady ochrany osobných údajov",
+        "agree": "Súhlasim"
     }
 }
