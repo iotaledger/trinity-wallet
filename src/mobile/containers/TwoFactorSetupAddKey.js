@@ -38,24 +38,23 @@ const styles = StyleSheet.create({
         flex: 0.3,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 20,
     },
     subHeaderText: {
         fontFamily: Fonts.secondary,
-        fontSize: width / 20.7,
+        fontSize: GENERAL.fontSize4,
         textAlign: 'center',
         backgroundColor: 'transparent',
         marginBottom: height / 15,
     },
     infoText: {
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
         textAlign: 'center',
         paddingTop: height / 60,
         backgroundColor: 'transparent',
     },
     infoTextLight: {
         fontFamily: Fonts.tertiary,
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
     },
     qrContainer: {
@@ -178,8 +177,8 @@ export class TwoFactorSetupAddKey extends Component {
                     <OnboardingButtons
                         onLeftButtonPress={this.goBack}
                         onRightButtonPress={this.navigateToEnterToken}
-                        leftText={t('global:back')}
-                        rightText={t('global:next')}
+                        leftButtonText={t('global:goBack')}
+                        rightButtonText={t('global:nextLowerCase')}
                     />
                 </View>
                 <StatefulDropdownAlert textColor={body.color} backgroundColor={body.bg} />

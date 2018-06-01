@@ -18,6 +18,7 @@ import StatefulDropdownAlert from './StatefulDropdownAlert';
 import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
 import { Icon } from '../theme/icons.js';
+import Button from '../components/Button';
 import { isAndroid, isIPhoneX } from '../utils/device';
 
 const styles = StyleSheet.create({
@@ -46,29 +47,13 @@ const styles = StyleSheet.create({
     },
     subHeaderText: {
         fontFamily: Fonts.secondary,
-        fontSize: width / 20.7,
+        fontSize: GENERAL.fontSize4,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
     iotaLogo: {
         height: width / 5,
         width: width / 5,
-    },
-    backButton: {
-        borderColor: '#9DFFAF',
-        borderWidth: 1.2,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 3,
-        height: height / 14,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        marginBottom: height / 20,
-    },
-    backText: {
-        color: '#9DFFAF',
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 24.4,
-        backgroundColor: 'transparent',
     },
     fingerprint: {
         height: width / 5,
@@ -247,11 +232,15 @@ class FingerprintEnable extends Component {
                     </Text>
                 </View>
                 <View style={styles.bottomWrapper}>
-                    <TouchableOpacity onPress={this.navigateToHome}>
-                        <View style={[styles.backButton, { borderColor: theme.secondary.color }]}>
-                            <Text style={[styles.backText, { color: theme.secondary.color }]}>{t('global:back')}</Text>
-                        </View>
-                    </TouchableOpacity>
+                    <Button
+                        onPress={() => this.navigateToHome()}
+                        style={{
+                            wrapper: { backgroundColor: theme.primary.color },
+                            children: { color: theme.primary.body },
+                        }}
+                    >
+                        {t('global:doneLowercase')}
+                    </Button>
                 </View>
                 <StatefulDropdownAlert textColor={theme.body.color} backgroundColor={theme.body.bg} />
                 <Modal

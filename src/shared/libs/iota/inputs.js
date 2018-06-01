@@ -1,7 +1,9 @@
 import get from 'lodash/get';
 import each from 'lodash/each';
 import isNull from 'lodash/isNull';
+import map from 'lodash/map';
 import keys from 'lodash/keys';
+import reduce from 'lodash/reduce';
 import size from 'lodash/size';
 import { filterSpentAddresses, filterAddressesWithIncomingTransfers } from './addresses';
 import { DEFAULT_SECURITY } from '../../config';
@@ -15,17 +17,17 @@ import { DEFAULT_SECURITY } from '../../config';
  *   @param {number} start - Index to start the search from
  *   @param {number} threshold - Maximum value (balance) to stop the search
  *   @param {number} [security= 2]
- *   @returns {object} inputs, totalBalance
+ *   @returns {object} inputs, availableBalance
  **/
 export const prepareInputs = (addressData, start, threshold, security = DEFAULT_SECURITY) => {
     const inputs = [];
-    let totalBalance = 0;
+    let availableBalance = 0;
 
     // Return prematurely in case threshold is zero
     // This check prevents adding input on the first iteration
     // if address data has addresses with balance.
     if (!threshold) {
-        return { inputs, totalBalance };
+        return { inputs, availableBalance };
     }
 
     const addresses = keys(addressData).slice(start);
@@ -38,9 +40,9 @@ export const prepareInputs = (addressData, start, threshold, security = DEFAULT_
             const input = { address, balance, keyIndex, security };
 
             inputs.push(input);
-            totalBalance += balance;
+            availableBalance += balance;
 
-            const hasReachedThreshold = totalBalance >= threshold;
+            const hasReachedThreshold = availableBalance >= threshold;
 
             if (hasReachedThreshold) {
                 return false;
@@ -48,7 +50,7 @@ export const prepareInputs = (addressData, start, threshold, security = DEFAULT_
         }
     });
 
-    return { inputs, totalBalance };
+    return { inputs, availableBalance };
 };
 
 /**
@@ -58,21 +60,23 @@ export const prepareInputs = (addressData, start, threshold, security = DEFAULT_
  *
  *   @method getUnspentInputs
  *   @param {object} addressData - Addresses dictionary with balance and spend status
+ *   @param {array} spentAddresses - Locally computed spent addresses from transactions
  *   @param {array}  pendingValueTransfers
  *   @param {number} start - Index to start the search from
  *   @param {number} threshold - Maximum value (balance) to stop the search
  *   @param {object} inputs - Could be initialised with null. In case its null default inputs would be defined.
- *   @returns {promise<object>}
+ *
+ *   @returns {Promise}
  **/
-export const getUnspentInputs = (addressData, pendingValueTransfers, start, threshold, inputs) => {
+export const getUnspentInputs = (addressData, spentAddresses, pendingValueTransfers, start, threshold, inputs) => {
     if (isNull(inputs)) {
-        inputs = { inputs: [], totalBalance: 0, allBalance: 0 };
+        inputs = { inputs: [], availableBalance: 0, totalBalance: 0 };
     }
 
     const preparedInputs = prepareInputs(addressData, start, threshold);
-    inputs.allBalance += preparedInputs.inputs.reduce((sum, input) => sum + input.balance, 0);
+    inputs.totalBalance += preparedInputs.inputs.reduce((sum, input) => sum + input.balance, 0);
 
-    return filterSpentAddresses(preparedInputs.inputs).then((unspentInputs) => {
+    return filterSpentAddresses(preparedInputs.inputs, spentAddresses).then((unspentInputs) => {
         const filtered = filterAddressesWithIncomingTransfers(unspentInputs, pendingValueTransfers);
 
         const collected = filtered.reduce((sum, input) => sum + input.balance, 0);
@@ -84,18 +88,18 @@ export const getUnspentInputs = (addressData, pendingValueTransfers, start, thre
             const ordered = preparedInputs.inputs.sort((a, b) => a.keyIndex - b.keyIndex).reverse();
             const end = ordered[0].keyIndex;
 
-            return getUnspentInputs(addressData, pendingValueTransfers, end + 1, diff, {
+            return getUnspentInputs(addressData, spentAddresses, pendingValueTransfers, end + 1, diff, {
                 inputs: inputs.inputs.concat(filtered),
-                totalBalance: inputs.totalBalance + collected,
-                allBalance: inputs.allBalance,
+                availableBalance: inputs.availableBalance + collected,
+                totalBalance: inputs.totalBalance,
             });
         }
 
-        return Promise.resolve({
+        return {
             inputs: inputs.inputs.concat(filtered),
-            totalBalance: inputs.totalBalance + collected,
-            allBalance: inputs.allBalance,
-        });
+            availableBalance: inputs.availableBalance + collected,
+            totalBalance: inputs.totalBalance,
+        };
     });
 };
 
@@ -106,6 +110,7 @@ export const getUnspentInputs = (addressData, pendingValueTransfers, start, thre
  *
  *   @method getStartingSearchIndexToPrepareInputs
  *   @param {object} addressData - Addresses dictionary with balance and spend status
+ *
  *   @returns {number} index
  **/
 export const getStartingSearchIndexToPrepareInputs = (addressData) => {
@@ -115,4 +120,24 @@ export const getStartingSearchIndexToPrepareInputs = (addressData) => {
         .find((address) => addressData[address].balance > 0);
 
     return address ? addressData[address].index : 0;
+};
+
+/**
+ *   Gets addresses used as inputs in transactions
+ *
+ *   @method getStartingSearchIndexToPrepareInputs
+ *   @param {object | array} normalizedTransactions
+ *
+ *   @returns {array} - spent addresses
+ **/
+export const getSpentAddressesFromTransactions = (normalizedTransactions) => {
+    return reduce(
+        normalizedTransactions,
+        (acc, transaction) => {
+            acc.push(...map(transaction.inputs, (input) => input.address));
+
+            return acc;
+        },
+        [],
+    );
 };

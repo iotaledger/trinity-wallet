@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { translate, Trans } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableOpacity, BackHandler } from 'react-native';
+import { StyleSheet, View, Text, BackHandler } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import tinycolor from 'tinycolor2';
+import Button from '../components/Button';
 import OnboardingButtons from '../containers/OnboardingButtons';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
+import Header from '../components/Header';
 
 const styles = StyleSheet.create({
     container: {
@@ -25,19 +25,19 @@ const styles = StyleSheet.create({
         paddingTop: height / 16,
     },
     midContainer: {
-        flex: 4,
+        flex: 3,
         alignItems: 'center',
         justifyContent: 'center',
     },
     bottomContainer: {
+        flex: 0.5,
         justifyContent: 'center',
         flexDirection: 'row',
         alignItems: 'flex-end',
-        paddingBottom: height / 20,
     },
     optionButtonText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 25.3,
+        fontSize: GENERAL.fontSize3,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
@@ -50,23 +50,35 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
     },
     infoText: {
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 23,
+        fontFamily: 'SourceSansPro-Regular',
+        fontSize: GENERAL.fontSize4,
         backgroundColor: 'transparent',
         paddingHorizontal: width / 9,
         textAlign: 'center',
     },
     infoTextNormal: {
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 23,
+        fontFamily: 'SourceSansPro-Regular',
+        fontSize: GENERAL.fontSize4,
         backgroundColor: 'transparent',
         textAlign: 'center',
     },
     infoTextBold: {
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize4,
         backgroundColor: 'transparent',
         textAlign: 'center',
+    },
+    infoTextSmall: {
+        fontFamily: 'SourceSansPro-Regular',
+        fontSize: GENERAL.fontSize3,
+        backgroundColor: 'transparent',
+        textAlign: 'center',
+    },
+    line: {
+        borderLeftWidth: 0.5,
+        width: 1,
+        height: height / 40,
+        marginVertical: height / 150,
     },
 });
 
@@ -146,6 +158,7 @@ class SaveYourSeed extends Component {
             animated: false,
         });
     }
+
     onPrintClick() {
         const { theme: { body } } = this.props;
         this.props.navigator.push({
@@ -161,6 +174,7 @@ class SaveYourSeed extends Component {
             animated: false,
         });
     }
+
     onCopyClick() {
         const { theme: { body } } = this.props;
         this.props.navigator.push({
@@ -179,22 +193,18 @@ class SaveYourSeed extends Component {
 
     render() {
         const { t, theme: { body, extra } } = this.props;
-        const isBgLight = tinycolor(body.bg).isLight();
         const textColor = { color: body.color };
-        const extraColorText = { color: isBgLight ? body.bg : extra.color };
-        const extraColorBorder = {
-            borderColor: isBgLight ? 'transparent' : extra.color,
-            backgroundColor: isBgLight ? extra.color : body.bg,
-        };
+        const lineColor = { borderLeftColor: body.color };
 
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
                 <DynamicStatusBar backgroundColor={body.bg} />
                 <View style={styles.topContainer}>
                     <Icon name="iota" size={width / 8} color={body.color} />
+                    <View style={{ flex: 0.7 }} />
+                    <Header textColor={body.color}>{t('saveYourSeed')}</Header>
                 </View>
                 <View style={styles.midContainer}>
-                    <View style={{ flex: 0.4 }} />
                     <Trans i18nKey="saveYourSeed:mustSaveYourSeed">
                         <Text style={[styles.infoText, textColor]}>
                             <Text style={styles.infoTextNormal}>You must save your seed with </Text>
@@ -203,41 +213,61 @@ class SaveYourSeed extends Component {
                         </Text>
                     </Trans>
                     <View style={{ flex: 0.5 }} />
+                    <Text style={[styles.infoTextSmall, textColor]}>{t('mostSecure')}</Text>
+                    <View style={[styles.line, lineColor]} />
                     <View>
-                        <TouchableOpacity onPress={() => this.onWriteClick()}>
-                            <View style={[styles.optionButton, extraColorBorder]}>
-                                <Text style={[styles.optionButtonText, extraColorText]}>
-                                    {t('global:manualCopy').toUpperCase()}
-                                </Text>
-                            </View>
-                        </TouchableOpacity>
+                        <Button
+                            onPress={() => this.onWriteClick()}
+                            style={{
+                                wrapper: {
+                                    width: width / 1.36,
+                                    height: height / 13,
+                                    borderRadius: height / 90,
+                                    backgroundColor: extra.color,
+                                },
+                            }}
+                        >
+                            {t('global:manualCopy')}
+                        </Button>
                     </View>
-                    <View style={{ paddingTop: height / 25 }}>
-                        <TouchableOpacity onPress={() => this.onPrintClick()}>
-                            <View style={[styles.optionButton, extraColorBorder]}>
-                                <Text style={[styles.optionButtonText, extraColorText]}>
-                                    {t('global:paperWallet').toUpperCase()}
-                                </Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={{ paddingTop: height / 25 }}>
-                        <TouchableOpacity onPress={() => this.onCopyClick()}>
-                            <View style={[styles.optionButton, extraColorBorder]}>
-                                <Text style={[styles.optionButtonText, extraColorText]}>
-                                    {t('global:copyToClipboard').toUpperCase()}
-                                </Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
+                    <View style={[styles.line, lineColor]} />
+                    <Button
+                        onPress={() => this.onCopyClick()}
+                        style={{
+                            wrapper: {
+                                width: width / 1.36,
+                                height: height / 13,
+                                borderRadius: height / 90,
+                                backgroundColor: extra.color,
+                            },
+                        }}
+                    >
+                        {t('global:addToPasswordManager')}
+                    </Button>
+                    <View style={[styles.line, lineColor]} />
+                    <Button
+                        onPress={() => this.onPrintClick()}
+                        style={{
+                            wrapper: {
+                                width: width / 1.36,
+                                height: height / 13,
+                                borderRadius: height / 90,
+                                backgroundColor: extra.color,
+                            },
+                        }}
+                    >
+                        {t('global:paperWallet')}
+                    </Button>
+                    <View style={[styles.line, lineColor]} />
+                    <Text style={[styles.infoTextSmall, textColor]}>{t('leastSecure')}</Text>
                     <View style={{ flex: 1 }} />
                 </View>
                 <View style={styles.bottomContainer}>
                     <OnboardingButtons
                         onLeftButtonPress={() => this.onBackPress()}
                         onRightButtonPress={() => this.onDonePress()}
-                        leftText={t('global:back')}
-                        rightText={t('global:done')}
+                        leftButtonText={t('global:goBack')}
+                        rightButtonText={t('iHavesavedMySeed')}
                     />
                 </View>
                 <StatefulDropdownAlert backgroundColor={body.bg} />
@@ -251,8 +281,4 @@ const mapStateToProps = (state) => ({
     onboardingComplete: state.accounts.onboardingComplete,
 });
 
-const mapDispatchToProps = {
-    generateAlert,
-};
-
-export default translate(['saveYourSeed', 'global'])(connect(mapStateToProps, mapDispatchToProps)(SaveYourSeed));
+export default translate(['saveYourSeed', 'global'])(connect(mapStateToProps, null)(SaveYourSeed));

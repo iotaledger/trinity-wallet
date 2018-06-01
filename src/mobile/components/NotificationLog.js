@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        width
+        width,
     },
     modalContent: {
         borderRadius: GENERAL.borderRadius,
@@ -29,12 +29,12 @@ const styles = StyleSheet.create({
     titleText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 25.9,
+        fontSize: GENERAL.fontSize3,
     },
     itemText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 34.5,
+        fontSize: GENERAL.fontSize1,
     },
     line: {
         borderBottomWidth: height / 1000,
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     },
     clearText: {
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: width / 34.5,
+        fontSize: GENERAL.fontSize1,
         backgroundColor: 'transparent',
     },
 });

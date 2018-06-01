@@ -4,7 +4,12 @@ import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { connect } from 'react-redux';
-import { increaseSeedCount, addAccountName, setOnboardingComplete } from 'iota-wallet-shared-modules/actions/accounts';
+import {
+    increaseSeedCount,
+    addAccountName,
+    setOnboardingComplete,
+    setBasicAccountInfo,
+} from 'iota-wallet-shared-modules/actions/accounts';
 import { clearWalletData, clearSeed, setPassword } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import CustomTextInput from '../components/CustomTextInput';
@@ -21,6 +26,8 @@ import { isAndroid } from '../utils/device';
 import { width, height } from '../utils/dimensions';
 import InfoBox from '../components/InfoBox';
 import { Icon } from '../theme/icons.js';
+import GENERAL from '../theme/general';
+import Header from '../components/Header';
 
 const MIN_PASSWORD_LENGTH = 12;
 console.ignoredYellowBox = ['Native TextInput'];
@@ -32,13 +39,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 0.5,
+        flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 16,
     },
     midContainer: {
-        flex: 3.7,
+        flex: 3,
         justifyContent: 'space-around',
         alignItems: 'center',
         width,
@@ -52,17 +59,16 @@ const styles = StyleSheet.create({
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 20,
     },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },
     warningText: {
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
         textAlign: 'left',
         paddingTop: height / 70,
         backgroundColor: 'transparent',
@@ -107,6 +113,12 @@ class SetPassword extends Component {
         /** Theme settings */
         theme: PropTypes.object.isRequired,
         accountName: PropTypes.string.isRequired,
+        /** Set basic account information
+         * @param {object} accountInfo
+         */
+        setBasicAccountInfo: PropTypes.func.isRequired,
+        /** Determines if a user used an existing seed or generated a seed using wallet */
+        usedExistingSeed: PropTypes.bool.isRequired,
     };
 
     constructor() {
@@ -118,12 +130,16 @@ class SetPassword extends Component {
     }
 
     onDonePress() {
-        const { theme: { body } } = this.props;
+        const { theme: { body }, usedExistingSeed } = this.props;
         const ifNoKeychainDuplicates = (pwdHash, seed, accountName) => {
             storeSeedInKeychain(pwdHash, seed, accountName)
                 .then(() => {
                     this.props.setPassword(pwdHash);
                     this.props.addAccountName(accountName);
+
+                    // Set basic account info
+                    this.props.setBasicAccountInfo({ accountName, usedExistingSeed });
+
                     this.props.increaseSeedCount();
                     this.props.clearWalletData();
                     this.props.clearSeed();
@@ -206,9 +222,10 @@ class SetPassword extends Component {
                     <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
                         <View style={styles.topContainer}>
                             <Icon name="iota" size={width / 8} color={theme.body.color} />
+                            <View style={{ flex: 0.7 }} />
+                            <Header textColor={theme.body.color}>{t('choosePassword')}</Header>
                         </View>
                         <View style={styles.midContainer}>
-                            <View style={{ flex: 0.8 }} />
                             <InfoBox
                                 body={theme.body}
                                 text={
@@ -263,8 +280,8 @@ class SetPassword extends Component {
                             <OnboardingButtons
                                 onLeftButtonPress={() => this.onBackPress()}
                                 onRightButtonPress={() => this.onDonePress()}
-                                leftText={t('global:back')}
-                                rightText={t('global:done')}
+                                leftButtonText={t('global:goBack')}
+                                rightButtonText={t('global:doneLowercase')}
                             />
                         </View>
                     </View>
@@ -299,6 +316,7 @@ class SetPassword extends Component {
 const mapStateToProps = (state) => ({
     seed: state.wallet.seed,
     accountName: state.wallet.accountName,
+    usedExistingSeed: state.wallet.usedExistingSeed,
     theme: state.settings.theme,
 });
 
@@ -310,6 +328,7 @@ const mapDispatchToProps = {
     addAccountName,
     generateAlert,
     setPassword,
+    setBasicAccountInfo,
 };
 
 export default translate(['setPassword', 'global', 'addAdditionalSeed'])(

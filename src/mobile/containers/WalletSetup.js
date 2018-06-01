@@ -9,6 +9,8 @@ import InfoBox from '../components/InfoBox';
 import { Icon } from '../theme/icons.js';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import { width, height } from '../utils/dimensions';
+import GENERAL from '../theme/general';
+import Header from '../components/Header';
 
 const styles = StyleSheet.create({
     container: {
@@ -17,36 +19,35 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 0.5,
+        flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 16,
     },
     midContainer: {
-        flex: 4,
+        flex: 3,
         alignItems: 'center',
     },
     bottomContainer: {
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: height / 20,
     },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
         textAlign: 'left',
         paddingTop: height / 60,
         backgroundColor: 'transparent',
     },
     infoTextLight: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
     },
     infoTextRegular: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
     },
     greetingTextContainer: {
@@ -56,13 +57,13 @@ const styles = StyleSheet.create({
     },
     greetingText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize4,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
     questionText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize4,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
@@ -86,7 +87,7 @@ class WalletSetup extends Component {
         theme: PropTypes.object.isRequired,
     };
 
-    onYesPress() {
+    redirectToEnterSeedScreen() {
         const { theme } = this.props;
 
         this.props.navigator.push({
@@ -103,7 +104,7 @@ class WalletSetup extends Component {
         });
     }
 
-    onNoPress() {
+    redirectToNewSeedSetupScreen() {
         const { theme } = this.props;
         this.props.navigator.push({
             screen: 'newSeedSetup',
@@ -128,13 +129,14 @@ class WalletSetup extends Component {
                 <DynamicStatusBar backgroundColor={theme.body.bg} />
                 <View style={styles.topContainer}>
                     <Icon name="iota" size={width / 8} color={theme.body.color} />
+                    <View style={{ flex: 0.7 }} />
+                    <Header textColor={theme.body.color}>{t('creatingSeed')}</Header>
                 </View>
                 <View style={styles.midContainer}>
-                    <View style={{ flex: 0.7 }} />
                     <View style={styles.greetingTextContainer}>
-                        <Text style={[styles.greetingText, textColor]}>{t('okay')}</Text>
+                        <Text style={[styles.greetingText, textColor]}>{t('doYouNeedASeed')}</Text>
                     </View>
-                    <View style={{ flex: 0.5 }} />
+                    <View style={{ flex: 0.2 }} />
                     <InfoBox
                         body={theme.body}
                         text={
@@ -159,18 +161,13 @@ class WalletSetup extends Component {
                             </View>
                         }
                     />
-                    <View style={{ flex: 0.5 }} />
-                    <View style={styles.greetingTextContainer}>
-                        <Text style={[styles.questionText, textColor]}>{t('doYouAlreadyHaveASeed')}</Text>
-                    </View>
-                    <View style={{ flex: 0.5 }} />
                 </View>
                 <View style={styles.bottomContainer}>
                     <OnboardingButtons
-                        onLeftButtonPress={() => this.onNoPress()}
-                        onRightButtonPress={() => this.onYesPress()}
-                        leftText={t('global:no')}
-                        rightText={t('global:yes')}
+                        onLeftButtonPress={() => this.redirectToEnterSeedScreen()}
+                        onRightButtonPress={() => this.redirectToNewSeedSetupScreen()}
+                        leftButtonText={t('noIHaveOne')}
+                        rightButtonText={t('yesINeedASeed')}
                         leftButtonTestID="walletSetup-no"
                         rightButtonTestID="walletSetup-yes"
                     />

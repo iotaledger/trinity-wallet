@@ -63,7 +63,7 @@ class SeedBox extends PureComponent {
 
     render() {
         const { textColor, bodyColor, seed, scale } = this.props;
-        const fontSize = { fontSize: width / 25 * scale };
+        const fontSize = { fontSize: GENERAL.fontSize3 * scale };
         const textBoxPadding = { paddingVertical: height / 200 * scale };
 
         return (

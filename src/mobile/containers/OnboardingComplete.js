@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, View, Text, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import balloonsImagePath from 'iota-wallet-shared-modules/images/balloons.png';
 import { connect } from 'react-redux';
@@ -9,6 +9,7 @@ import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons';
 import DynamicStatusBar from '../components/DynamicStatusBar';
+import Button from '../components/Button';
 
 const styles = StyleSheet.create({
     container: {
@@ -32,20 +33,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-end',
     },
-    nextButton: {
-        borderWidth: 1.2,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 3,
-        height: height / 14,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        marginBottom: height / 20,
-    },
-    nextText: {
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 24.4,
-        backgroundColor: 'transparent',
-    },
     infoTextContainer: {
         paddingHorizontal: width / 8,
         alignItems: 'center',
@@ -55,7 +42,7 @@ const styles = StyleSheet.create({
     },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize4,
         backgroundColor: 'transparent',
         textAlign: 'center',
         lineHeight: height / 30,
@@ -100,7 +87,7 @@ class OnboardingComplete extends Component {
     }
 
     render() {
-        const { t, theme: { body, positive } } = this.props;
+        const { t, theme: { body, primary } } = this.props;
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
                 <DynamicStatusBar backgroundColor={body.bg} />
@@ -114,11 +101,16 @@ class OnboardingComplete extends Component {
                     <Image source={balloonsImagePath} style={styles.party} />
                 </View>
                 <View style={styles.bottomContainer}>
-                    <TouchableOpacity onPress={() => this.onNextPress()}>
-                        <View style={[styles.nextButton, { borderColor: positive.color }]}>
-                            <Text style={[styles.nextText, { color: positive.color }]}>{t('global:next')}</Text>
-                        </View>
-                    </TouchableOpacity>
+                    <Button
+                        onPress={() => this.onNextPress()}
+                        testID="languageSetup-next"
+                        style={{
+                            wrapper: { backgroundColor: primary.color },
+                            children: { color: primary.body },
+                        }}
+                    >
+                        {t('openYourWallet')}
+                    </Button>
                 </View>
             </View>
         );

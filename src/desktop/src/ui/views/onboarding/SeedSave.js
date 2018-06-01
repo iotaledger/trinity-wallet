@@ -46,7 +46,7 @@ class SeedSave extends PureComponent {
         const { t } = this.props;
         const { writeIndex, writeVisible, seed } = this.state;
 
-        const checkSum = Electron.getChecksum(seed);
+        const checksum = Electron.getChecksum(seed);
 
         const qr = new QRCode(-1, 1);
 
@@ -142,7 +142,7 @@ class SeedSave extends PureComponent {
                                     title={t('saveYourSeed:whatIsCheksum')}
                                     tip={t('saveYourSeed:checksumExplanation')}
                                 />{' '}
-                                {t('saveYourSeed:optionalChecksum')}: <strong>{checkSum}</strong>
+                                {t('checksum')}: <strong>{checksum}</strong>
                             </div>
                             <nav className={css.arrows}>
                                 <a
@@ -204,7 +204,7 @@ class SeedSave extends PureComponent {
                                 ));
                             })}
                             <text x="373" y="735">
-                                {checkSum}
+                                {checksum}
                             </text>
                         </svg>
                     )}

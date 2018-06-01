@@ -1,0 +1,9 @@
+actions_path 'actions/'
+default_platform :android
+
+lane :release do
+  package_json = load_json(json_path: '../package.json')
+  version = package_json['version']
+  increment_version_code
+  increment_version_name(version_name: version)
+end

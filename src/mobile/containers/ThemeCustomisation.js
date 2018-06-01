@@ -52,8 +52,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 9,
-        justifyContent: 'flex-start',
+        flex: 11,
         alignItems: 'center',
     },
     itemLeft: {
@@ -68,13 +67,13 @@ const styles = StyleSheet.create({
     },
     titleTextLeft: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
     titleTextRight: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
         marginRight: width / 20,
     },
@@ -92,7 +91,7 @@ const styles = StyleSheet.create({
     },
     advancedText: {
         fontFamily: 'SourceSansPro-Bold',
-        fontSize: width / 34.5,
+        fontSize: GENERAL.fontSize1,
         backgroundColor: 'transparent',
     },
     frameBar: {
@@ -106,7 +105,7 @@ const styles = StyleSheet.create({
     },
     frameBarTitle: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 24.4,
+        fontSize: GENERAL.fontSize3,
         color: '#ffffff',
         zIndex: 1,
     },
@@ -137,7 +136,7 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 25.9,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
     },
     ctaButton: {
@@ -151,7 +150,7 @@ const styles = StyleSheet.create({
     ctaText: {
         color: 'white',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
     },
 });
@@ -242,7 +241,7 @@ class ThemeCustomisation extends Component {
                                 <Text
                                     style={{
                                         fontFamily: 'SourceSansPro-Regular',
-                                        fontSize: width / 29.6,
+                                        fontSize: GENERAL.fontSize2,
                                         color: body.color,
                                     }}
                                 >

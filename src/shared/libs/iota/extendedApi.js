@@ -1,9 +1,14 @@
+import head from 'lodash/head';
+import isNull from 'lodash/isNull';
 import map from 'lodash/map';
 import size from 'lodash/size';
 import clone from 'lodash/clone';
 import IOTA from 'iota.lib.js';
 import { iota } from './index';
+import Errors from '../errors';
+import { isWithinMinutes } from '../date';
 import { DEFAULT_BALANCES_THRESHOLD, DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../../config';
+import { performPow } from './transfers';
 
 const getBalancesAsync = (addresses, threshold = DEFAULT_BALANCES_THRESHOLD) => {
     return new Promise((resolve, reject) => {
@@ -78,39 +83,111 @@ const getLatestInclusionAsync = (hashes) => {
 
 const promoteTransactionAsync = (
     hash,
-    depth = 3,
+    powFn = null,
+    depth = DEFAULT_DEPTH,
     minWeightMagnitude = 14,
-    transfer = [{ address: 'U'.repeat(81), value: 0, message: '', tag: '' }],
+    transfer = { address: 'U'.repeat(81), value: 0, message: '', tag: '' },
     options = { interrupt: false, delay: 0 },
 ) => {
-    return new Promise((resolve, reject) => {
-        iota.api.promoteTransaction(hash, depth, minWeightMagnitude, transfer, options, (err) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(hash);
-            }
+    // If proof of work function is not provided, offload promotion to a remote node
+    const shouldOffloadPow = isNull(powFn);
+
+    if (shouldOffloadPow) {
+        return new Promise((resolve, reject) => {
+            iota.api.promoteTransaction(hash, depth, minWeightMagnitude, [transfer], options, (err) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(hash);
+                }
+            });
         });
-    });
+    }
+
+    const cached = {
+        trytes: [],
+    };
+
+    return iota.api
+        .isPromotable(hash)
+        .then((isPromotable) => {
+            if (!isPromotable) {
+                throw new Error(Errors.INCONSISTENT_SUBTANGLE);
+            }
+
+            return prepareTransfersAsync(transfer.address, [transfer]);
+        })
+        .then((trytes) => {
+            cached.trytes = trytes;
+
+            return getTransactionsToApproveAsync(hash);
+        })
+        .then(
+            ({ trunkTransaction, branchTransaction }) =>
+                shouldOffloadPow
+                    ? attachToTangleAsync(trunkTransaction, branchTransaction, cached.trytes)
+                    : performPow(powFn, cached.trytes, trunkTransaction, branchTransaction),
+        )
+        .then(({ trytes }) => {
+            cached.trytes = trytes;
+
+            return storeAndBroadcastAsync(cached.trytes);
+        })
+        .then(() => hash);
 };
 
-const replayBundleAsync = (hash, depth = 3, minWeightMagnitude = 14) => {
-    return new Promise((resolve, reject) => {
-        iota.api.replayBundle(hash, depth, minWeightMagnitude, (err, txs) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(txs);
-            }
+const replayBundleAsync = (hash, powFn = null, depth = 3, minWeightMagnitude = 14) => {
+    const shouldOffloadPow = isNull(powFn);
+
+    if (shouldOffloadPow) {
+        return new Promise((resolve, reject) => {
+            iota.api.replayBundle(hash, depth, minWeightMagnitude, (err, txs) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(txs);
+                }
+            });
         });
-    });
+    }
+
+    const cached = {
+        trytes: [],
+        transactionObjects: [],
+    };
+
+    return getBundleAsync(hash)
+        .then((bundle) => {
+            if (isNull(bundle)) {
+                throw new Error(Errors.INVALID_BUNDLE);
+            }
+
+            const convertToTrytes = (tx) => iota.utils.transactionTrytes(tx);
+            cached.trytes = map(bundle, convertToTrytes);
+            cached.transactionObjects = bundle;
+
+            return getTransactionsToApproveAsync();
+        })
+        .then(
+            ({ trunkTransaction, branchTransaction }) =>
+                shouldOffloadPow
+                    ? attachToTangleAsync(trunkTransaction, branchTransaction, cached.trytes)
+                    : performPow(powFn, cached.trytes, trunkTransaction, branchTransaction),
+        )
+        .then(({ trytes, transactionObjects }) => {
+            cached.trytes = trytes;
+            cached.transactionObjects = transactionObjects;
+
+            return storeAndBroadcastAsync(cached.trytes);
+        })
+        .then(() => cached.transactionObjects);
 };
 
 const getBundleAsync = (tailTransactionHash) => {
     return new Promise((resolve, reject) => {
         iota.api.getBundle(tailTransactionHash, (err, bundle) => {
             if (err) {
-                if (err.message.includes('Invalid Bundle')) {
+                if (err.message.includes(Errors.INVALID_BUNDLE)) {
                     resolve(null);
                 } else {
                     reject(err);
@@ -165,9 +242,9 @@ const sendTransferAsync = (seed, depth, minWeightMagnitude, transfers, options =
     });
 };
 
-const getTransactionsToApproveAsync = (depth = DEFAULT_DEPTH) => {
+const getTransactionsToApproveAsync = (reference = null, depth = DEFAULT_DEPTH) => {
     return new Promise((resolve, reject) => {
-        iota.api.getTransactionsToApprove(depth, null, (err, transactionsToApprove) => {
+        iota.api.getTransactionsToApprove(depth, reference, (err, transactionsToApprove) => {
             if (err) {
                 reject(err);
             } else {
@@ -236,6 +313,41 @@ const attachToTangleAsync = (
     });
 };
 
+const getTrytesAsync = (hashes, provider = null) => {
+    return new Promise((resolve, reject) => {
+        const instance = provider ? new IOTA({ provider }) : iota;
+
+        instance.api.getTrytes(hashes, (err, trytes) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(trytes);
+            }
+        });
+    });
+};
+
+const isNodeSynced = (provider = null) => {
+    const cached = {
+        latestMilestone: '9'.repeat(81),
+    };
+
+    return getNodeInfoAsync(provider)
+        .then(({ latestMilestone, latestSolidSubtangleMilestone }) => {
+            cached.latestMilestone = latestMilestone;
+            if (cached.latestMilestone === latestSolidSubtangleMilestone && cached.latestMilestone !== '9'.repeat(81)) {
+                return getTrytesAsync([cached.latestMilestone], provider);
+            }
+
+            throw new Error(Errors.NODE_NOT_SYNCED);
+        })
+        .then((trytes) => {
+            const { timestamp } = iota.utils.fastTransactionObject(cached.latestMilestone, head(trytes));
+
+            return isWithinMinutes(timestamp * 1000, 5);
+        });
+};
+
 export {
     getBalancesAsync,
     getNodeInfoAsync,
@@ -254,4 +366,5 @@ export {
     storeAndBroadcastAsync,
     attachToTangleAsync,
     checkAttachToTangleAsync,
+    isNodeSynced,
 };

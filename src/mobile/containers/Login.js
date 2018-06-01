@@ -1,4 +1,3 @@
-import get from 'lodash/get';
 import { translate } from 'react-i18next';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -10,7 +9,6 @@ import SplashScreen from 'react-native-splash-screen';
 import { Linking, StyleSheet, View } from 'react-native';
 import { parseAddress } from 'iota-wallet-shared-modules/libs/iota/utils';
 import { setFullNode } from 'iota-wallet-shared-modules/actions/settings';
-import { getVersion, getBuildNumber } from 'react-native-device-info';
 import { setPassword, setSetting, setDeepLink } from 'iota-wallet-shared-modules/actions/wallet';
 import { setUserActivity, setLoginPasswordField, setLoginRoute } from 'iota-wallet-shared-modules/actions/ui';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
@@ -20,12 +18,11 @@ import NodeOptionsOnLogin from './NodeOptionsOnLogin';
 import EnterPasswordOnLoginComponent from '../components/EnterPasswordOnLogin';
 import Enter2FAComponent from '../components/Enter2FA';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
-import { getAllSeedsFromKeychain, getTwoFactorAuthKeyFromKeychain, logTwoFa } from '../utils/keychain';
+import { getAllSeedsFromKeychain, getTwoFactorAuthKeyFromKeychain } from '../utils/keychain';
 import { getPasswordHash } from '../utils/crypto';
-import { migrate } from '../../shared/actions/app';
-import { persistor, persistConfig } from '../store';
-import { width, height } from '../utils/dimensions';
+import { height } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
+import GENERAL from '../theme/general';
 
 const styles = StyleSheet.create({
     container: {
@@ -36,13 +33,13 @@ const styles = StyleSheet.create({
     questionText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
         paddingBottom: height / 40,
     },
     infoText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
         paddingBottom: height / 16,
     },
 });
@@ -50,8 +47,6 @@ const styles = StyleSheet.create({
 /** Login component */
 class Login extends Component {
     static propTypes = {
-        /** Application version number and version name */
-        versions: PropTypes.object.isRequired,
         /** Set new password hash
          * @param {string} passwordHash
          */
@@ -70,12 +65,6 @@ class Login extends Component {
          * @param {object} options - minimzed, active, inactive
          */
         setUserActivity: PropTypes.func.isRequired,
-        /** Migrate application state
-         * @param {object} versions - app version number and version name
-         * @param {object} persistConfig - redux persist configuration object
-         * @param {object} persistor - refux persist persistor instance
-         */
-        migrate: PropTypes.func.isRequired,
         /** Set password
          * @param {string} password
          */
@@ -118,7 +107,7 @@ class Login extends Component {
         if (!isAndroid) {
             SplashScreen.hide();
         }
-        this.checkForUpdates();
+
         KeepAwake.deactivate();
         this.props.setUserActivity({ inactive: false });
     }
@@ -162,7 +151,6 @@ class Login extends Component {
             return;
         }
         if (token) {
-            logTwoFa(pwdHash);
             const key = await getTwoFactorAuthKeyFromKeychain(pwdHash);
             if (key === null) {
                 this.props.generateAlert(
@@ -190,18 +178,6 @@ class Login extends Component {
             this.props.setDeepLink(parsedData.amount.toString() || '0', parsedData.address, parsedData.message || null);
         } else {
             generateAlert('error', t('send:invalidAddress'), t('send:invalidAddressExplanation1'));
-        }
-    }
-
-    checkForUpdates() {
-        const latestVersion = getVersion();
-        const latestBuildNumber = getBuildNumber();
-        const { versions } = this.props;
-        const currentVersion = get(versions, 'version');
-        const currentBuildNumber = get(versions, 'buildNumber');
-
-        if (latestVersion !== currentVersion || latestBuildNumber !== currentBuildNumber) {
-            this.props.migrate({ version: latestVersion, buildNumber: latestBuildNumber }, persistConfig, persistor);
         }
     }
 
@@ -233,7 +209,7 @@ class Login extends Component {
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
                 <DynamicStatusBar backgroundColor={body.bg} />
-                {loginRoute === 'login' &&
+                {loginRoute === 'login' && (
                     <EnterPasswordOnLoginComponent
                         theme={theme}
                         onLoginPress={this.onLoginPress}
@@ -241,14 +217,15 @@ class Login extends Component {
                         setLoginPasswordField={(pword) => this.props.setLoginPasswordField(pword)}
                         password={password}
                     />
-                }
-                {loginRoute === 'complete2FA' &&
-                    <Enter2FAComponent verify={this.onComplete2FA} cancel={() => this.props.setLoginRoute('login')} theme={theme} />
-                }
-                {loginRoute !== 'complete2FA' &&
-                    loginRoute !== 'login' &&
-                    <NodeOptionsOnLogin />
-                }
+                )}
+                {loginRoute === 'complete2FA' && (
+                    <Enter2FAComponent
+                        verify={this.onComplete2FA}
+                        cancel={() => this.props.setLoginRoute('login')}
+                        theme={theme}
+                    />
+                )}
+                {loginRoute !== 'complete2FA' && loginRoute !== 'login' && <NodeOptionsOnLogin />}
                 <StatefulDropdownAlert backgroundColor={body.bg} />
             </View>
         );
@@ -260,12 +237,11 @@ const mapStateToProps = (state) => ({
     nodes: state.settings.nodes,
     theme: state.settings.theme,
     is2FAEnabled: state.settings.is2FAEnabled,
-    versions: state.settings.versions,
     accountInfo: state.accounts.accountInfo,
     password: state.ui.loginPasswordFieldText,
     pwdHash: state.wallet.password,
     loginRoute: state.ui.loginRoute,
-    hasConnection: state.wallet.hasConnection
+    hasConnection: state.wallet.hasConnection,
 });
 
 const mapDispatchToProps = {
@@ -274,10 +250,9 @@ const mapDispatchToProps = {
     setFullNode,
     setSetting,
     setUserActivity,
-    migrate,
     setLoginPasswordField,
     setDeepLink,
-    setLoginRoute
+    setLoginRoute,
 };
 
 export default WithBackPressCloseApp()(

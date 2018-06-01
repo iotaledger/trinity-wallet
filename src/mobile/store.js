@@ -1,4 +1,4 @@
-// import get from 'lodash/get';
+import get from 'lodash/get';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
 import { AsyncStorage } from 'react-native';
 import store, { persistStore, purgeStoredState, createPersistor } from '../shared/store';
@@ -11,7 +11,8 @@ export const persistConfig = {
     blacklist: ['app', 'keychain', 'polling', 'ui', 'progress', 'deepLinks', 'wallet'],
 };
 
-/* const shouldMigrate = (restoredState) => {
+/* eslint-disable no-unused-vars */
+const shouldMigrate = (restoredState) => {
     const restoredVersion = get(restoredState, 'settings.versions.version');
     const restoredBuildNumber = get(restoredState, 'settings.versions.buildNumber');
 
@@ -19,11 +20,13 @@ export const persistConfig = {
     const currentBuildNumber = getBuildNumber();
 
     return restoredVersion !== currentVersion || restoredBuildNumber !== currentBuildNumber;
-}; */
+};
+/* eslint-enable no-unused-vars */
 
 const migrate = (state, restoredState) => {
+    // TODO: Doing a dirty patch to disable migration setup for alpha v0.2.0
+    // since this would be installed as a fresh application.
     const hasAnUpdate = false;
-    /* shouldMigrate(restoredState); */
 
     if (!hasAnUpdate) {
         state.dispatch(
