@@ -369,7 +369,7 @@
     },
     "modeSelection": {
         "expert": "Expert",
-        "standard": "Základné",
+        "standard": "Štandardný",
         "expertModeExplanation": "Režim Expert umožní prístup k ďalším funkciám ako manuálna podpora a opätovné pripojenie.",
         "modesExplanation": "Režim Expert aktivujte iba v prípade, že ste skúsený užívateľ Tangle. Inak pre vás môže byť mätúci."
     },
@@ -483,7 +483,7 @@
         "nodeFieldEmptyExplanation": "Prosím, vložte vlastný Node."
     },
     "addNewAccount": {
-        "useExistingSeed": "Použiť existujúci seed",
+        "useExistingSeed": "Použiť existujúci Seed",
         "createNewSeed": "Vytvoriť nový Seed"
     },
     "advancedSettings": {
@@ -522,7 +522,7 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Prečo nemôžem použiť celý zostatok môjho účtu?",
-        "spentAddressExplanation": "Máte prostriedky na jednej alebo niekoľkých použitých adresách. Opätovné použitie adries v IOTA je nebezpečné, preto vám táto penaženka neumožní odosielať z rovnakej adresy viac ako jeden krát.",
+        "spentAddressExplanation": "Máte prostriedky na jednej alebo niekoľkých použitých adresách. Opätovné použitie adries v IOTA je nebezpečné, preto vám táto peňaženka neumožní odoslať z rovnakej adresy viac ako jedenkrát.",
         "discordInformation": "Pokiaľ chcete zistiť vaše možnosti, prejdite do #help v aplikácii Discord."
     },
     "deleteAccount": {
@@ -532,7 +532,7 @@
         "enterPassword": "Pre zmazanie účtu vložte svoje heslo."
     },
     "manualSync": {
-        "outOfSync": "Vyzerá to, že vaša transakčná história nemusí byť synchronizovaná?",
+        "outOfSync": "Vyzerá to, že vaša transakčná história nie je synchronizovaná?",
         "pressToSync": "Stlačením tlačidla nižšie synchronizujte svoj účet.",
         "thisMayTake": "To môže chvíľu trvať. Môžete pozorovať spomalenie svojho zariadenia.",
         "doNotClose": "Upozorňujeme, že minimalizácia aplikácie zruší synchronizáciu.",
@@ -545,7 +545,7 @@
         "validSeedExplanation": "Platný Seed má 81 znakov a obsahuje iba znaky A-Z alebo 9."
     },
     "viewSeed": {
-        "enterPassword": "Pre zobrazenie svojho Seedu vložte heslo.",
+        "enterPassword": "Pre zobrazenie vášho Seedu vložte heslo.",
         "viewSeed": "Zobraziť Seed",
         "hideSeed": "Skryť Seed"
     },
