@@ -24,6 +24,7 @@ export class Poll extends Component {
         allPollingServices: PropTypes.array.isRequired, // oneOf
         selectedAccountName: PropTypes.string.isRequired,
         unconfirmedBundleTails: PropTypes.object.isRequired,
+        isAutoPromotionEnabled: PropTypes.bool.isRequired,
         setPollFor: PropTypes.func.isRequired,
         fetchMarketData: PropTypes.func.isRequired,
         fetchPrice: PropTypes.func.isRequired,
@@ -38,6 +39,10 @@ export class Poll extends Component {
 
         this.fetchLatestAccountInfo = this.fetchLatestAccountInfo.bind(this);
         this.promote = this.promote.bind(this);
+
+        this.state = {
+            autoPromoteSkips: 0,
+        };
     }
 
     componentDidMount() {
@@ -114,23 +119,31 @@ export class Poll extends Component {
     }
 
     promote() {
-        const {
-            unconfirmedBundleTails,
-            allPollingServices,
-            pollFor
-        } = this.props;
+        const { isAutoPromotionEnabled, unconfirmedBundleTails, allPollingServices, pollFor } = this.props;
+
+        const { autoPromoteSkips } = this.state;
+
+        if (isAutoPromotionEnabled && !isEmpty(unconfirmedBundleTails)) {
+            if (autoPromoteSkips > 0) {
+                this.setState({
+                    autoPromoteSkips: autoPromoteSkips - 1,
+                });
+            } else {
+                const bundles = keys(unconfirmedBundleTails);
+                const bundleHash = bundles[0];
+
+                this.setState({
+                    autoPromoteSkips: 2,
+                });
+
+                return this.props.promoteTransfer(bundleHash, unconfirmedBundleTails[bundleHash]);
+            }
+        }
 
         const index = allPollingServices.indexOf(pollFor);
         const next = index === size(allPollingServices) - 1 ? 0 : index + 1;
 
-        if (!isEmpty(unconfirmedBundleTails)) {
-            const bundles = keys(unconfirmedBundleTails);
-            const bundleHash = bundles[0];
-
-            return this.props.promoteTransfer(bundleHash, unconfirmedBundleTails[bundleHash]);
-        }
-
-        // In case there are no unconfirmed bundle tails, move to the next service item
+        // In case there are no unconfirmed bundle tails or auto-promotion is disabled, move to the next service item
         return this.props.setPollFor(allPollingServices[next]);
     }
 
@@ -148,6 +161,7 @@ const mapStateToProps = (state) => ({
     isFetchingMarketData: state.polling.isFetchingMarketData,
     isFetchingAccountInfo: state.polling.isFetchingAccountInfo,
     isAutoPromoting: state.polling.isAutoPromoting,
+    isAutoPromotionEnabled: state.settings.autoPromotion,
     isPromotingTransaction: state.ui.isPromotingTransaction,
     isSyncing: state.ui.isSyncing,
     addingAdditionalAccount: state.wallet.addingAdditionalAccount,

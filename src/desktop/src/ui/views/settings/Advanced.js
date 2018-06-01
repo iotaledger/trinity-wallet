@@ -154,7 +154,7 @@ class Advanced extends PureComponent {
 
     transitionBalanceOk = async () => {
         this.props.toggleModalActivity();
-        const { wallet, transitionAddresses, selectedAccountName, settings, t } = this.props;
+        const { wallet, transitionAddresses, selectedAccountName, settings, t} = this.props;
         const seed = await getSeed(wallet.seedIndex, wallet.password);
 
         let powFn = null;

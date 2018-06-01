@@ -13,7 +13,7 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.iota.wallet</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -21,22 +21,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.1</string>
+	<string>0.2.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleURLName</key>
-			<string>com.iota.urischeme</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>iota</string>
-			</array>
-		</dict>
-	</array>
 	<key>CFBundleVersion</key>
-	<string>35</string>
+	<string>7</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -75,6 +64,8 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>NSAppleMusicUsageDescription</key>
 	<string>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
@@ -85,6 +76,8 @@
 	<string>Trinity requires access to the camera in order to enable QR scanning.</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Trinity requires access to Face ID in order to enable biometric authentication.</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>2018 IOTA Foundation. All rights reserved.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</string>
 	<key>NSMotionUsageDescription</key>
@@ -103,6 +96,7 @@
 		<string>Inconsolata-Regular.ttf</string>
 		<string>Inconsolata-Bold.ttf</string>
 		<string>Icons.ttf</string>
+		<string>SourceSansPro-SemiBold.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>Launch Screen</string>
@@ -120,7 +114,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>NSHumanReadableCopyright</key>
-	<string>2018 IOTA Foundation. All rights reserved.</string>
 </dict>
 </plist>

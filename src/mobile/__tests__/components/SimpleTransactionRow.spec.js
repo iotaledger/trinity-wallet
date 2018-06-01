@@ -12,11 +12,11 @@ const getProps = (overrides) =>
             confirmationStatus: 'pending',
             value: 100,
             unit: 'i',
-            incoming: true,
             sign: '+',
+            icon: 'plus',
             style: {
                 titleColor: '#ffffff',
-                defaultTextColor: { color: '#ffffff' },
+                defaultTextColor: '#ffffff',
             },
         },
         overrides,
@@ -40,10 +40,6 @@ describe('Testing SimpleTransactionRow component', () => {
             expect(SimpleTransactionRow.propTypes.unit).toEqual(PropTypes.string.isRequired);
         });
 
-        it('should require a incoming boolean as a prop', () => {
-            expect(SimpleTransactionRow.propTypes.incoming).toEqual(PropTypes.bool.isRequired);
-        });
-
         it('should require a sign string as a prop', () => {
             expect(SimpleTransactionRow.propTypes.sign).toEqual(PropTypes.string.isRequired);
         });
@@ -55,24 +51,6 @@ describe('Testing SimpleTransactionRow component', () => {
 
             const wrapper = shallow(<SimpleTransactionRow {...props} />);
             expect(wrapper.name()).toEqual('View');
-        });
-
-        it('should pass "receive" as a name prop to Icon component if "incoming" prop is true', () => {
-            const props = getProps();
-
-            const wrapper = shallow(<SimpleTransactionRow {...props} />);
-            const icon = wrapper.find('Icon');
-
-            expect(icon.props().name).toEqual('receive');
-        });
-
-        it('should pass "send" as a name prop to Icon component if "incoming" prop is false', () => {
-            const props = getProps({ incoming: false });
-
-            const wrapper = shallow(<SimpleTransactionRow {...props} />);
-            const icon = wrapper.find('Icon');
-
-            expect(icon.props().name).toEqual('send');
         });
 
         it('should return "confirmationStatus" prop as a direct child to second Text component', () => {

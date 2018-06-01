@@ -1,13 +1,17 @@
 import get from 'lodash/get';
+import omitBy from 'lodash/omitBy';
+import each from 'lodash/each';
 import size from 'lodash/size';
 import isArray from 'lodash/isArray';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
+import includes from 'lodash/includes';
 import isString from 'lodash/isString';
 import keys from 'lodash/keys';
 import merge from 'lodash/merge';
 import filter from 'lodash/filter';
 import cloneDeep from 'lodash/cloneDeep';
+import unset from 'lodash/unset';
 
 export function round(value, precision) {
     const multiplier = Math.pow(10, precision || 0);
@@ -73,16 +77,31 @@ export const rearrangeObjectKeys = (obj, prop) => {
 };
 
 export const updatePersistedState = (incomingState, restoredState) => {
-    const { settings: { nodes, theme, versions } } = incomingState;
+    const blacklistedStateProps = ['app', 'keychain', 'polling', 'ui', 'progress', 'deepLinks', 'wallet'];
+
+    const incomingStateWithWhitelistedProps = omitBy(incomingState, (value, key) =>
+        includes(blacklistedStateProps, key),
+    );
+
+    const { settings: { theme, versions } } = incomingStateWithWhitelistedProps;
     const restoredCopy = cloneDeep(restoredState);
 
     if ('settings' in restoredCopy) {
-        restoredCopy.settings.nodes = nodes;
         restoredCopy.settings.theme = theme;
         restoredCopy.settings.versions = versions;
     }
 
-    return merge({}, incomingState, restoredCopy);
+    if ('accounts' in restoredCopy) {
+        const accountNames = keys(restoredCopy.accounts.accountInfo);
+
+        each(accountNames, (accountName) => {
+            restoredCopy.accounts.accountInfo[accountName].hashes = [];
+        });
+
+        unset(restoredCopy.accounts, ['txHashesForUnspentAddresses', 'pendingTxHashesForSpentAddresses']);
+    }
+
+    return merge({}, incomingStateWithWhitelistedProps, restoredCopy);
 };
 
 // Takes in the navigator object and pushes.
