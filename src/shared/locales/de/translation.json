@@ -145,13 +145,14 @@
         "spentAddressExplanation": "WARNUNG: Guthaben auf verwendeten Adressen",
         "discordInformation": "Es ist gefährlich, mehr als einmal von der gleichen Adresse zu senden. Bitte besuche den #help Kanal in Discord um herauszufinden, wie du das Problem lösen kannst.",
         "androidInsecureClipboardWarning": "Leider bietet Android keine sichere Zwischenablage.",
-        "androidCopyPasteWarning": "Verwende auf einem Android-Gerät niemals die \"kopieren / einfügen\" Funktion.",
+        "androidCopyPasteWarning": "Verwende auf einem Android-Gerät niemals die \"Kopieren / Einfügen\"-Funktion für den Seed.",
         "willNotCopyPasteSeed": "Ich werde meinen Seed nicht kopieren/einfügen",
         "mustBeStoredAppropriately": "Er muss in angemessener Weise gesichert werden.",
         "deviceMayBecomeUnresponsive": "Dein Gerät könnte für eine Weile nicht reagieren",
         "isYourBalanceCorrect": "Stimmt dein Guthaben?",
         "ifYourBalanceIsNotCorrect": "Wenn dein Guthaben nicht stimmt, verwendest du wahrscheinlich einen Seed, der eine Snapshot-Wiederherstellung benötigt.",
-        "headToAdvancedSettingsForTransition": "Wechsle zu den erweiterten Einstellungen und führe eine Snapshot-Wiederherstellung aus."
+        "headToAdvancedSettingsForTransition": "Wechsle zu den erweiterten Einstellungen und führe eine Snapshot-Wiederherstellung aus.",
+        "usingTrinityWalletWithKeePass": "Trinity Brieftasche mit Keepass2Android verwenden"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",

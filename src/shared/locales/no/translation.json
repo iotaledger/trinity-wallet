@@ -151,7 +151,8 @@
         "deviceMayBecomeUnresponsive": "Enheten kan slutte å svare en stund",
         "isYourBalanceCorrect": "Er din balanse riktig?",
         "ifYourBalanceIsNotCorrect": "Hvis balansen din ikke er riktig, er det sannsynlig at du benytter en hovednøkkel fra før snapshot.",
-        "headToAdvancedSettingsForTransition": "Gå til avanserte innstillinger og utfør en Snapshot overgang."
+        "headToAdvancedSettingsForTransition": "Gå til avanserte innstillinger og utfør en Snapshot overgang.",
+        "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøkkelen inneholder ugyldige tegn",
@@ -603,7 +604,7 @@
         "change": "Endring",
         "volume": "Volum (24 timer)",
         "currentValue": "Nåværende verdi",
-        "error": "Error fetching chart data"
+        "error": "Feil under henting av henting diagramdata"
     },
     "rootDetection": {
         "warning": "ADVARSEL",

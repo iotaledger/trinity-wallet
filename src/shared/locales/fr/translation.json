@@ -18,11 +18,11 @@
         "invalidResponse": "Erreur de serveur",
         "invalidResponseExplanation": "Le serveur a renvoyé une erreur. Essayez de changer de serveur.",
         "invalidResponsePollingExplanation": "Le serveur a renvoyé une erreur lors de l'interrogation. Essayez de changer de serveur.",
-        "invalidResponseFetchingAccount": "Le serveur a renvoyé une réponse invalide lors de la récupération des informations de votre compte. Essayez de changer de serveur.",
-        "invalidResponseSendingTransfer": "Le serveur a renvoyé une erreur lors de l'envoie. Essayez de changer de serveur.",
+        "invalidResponseFetchingAccount": "Le serveur a renvoyé une erreur lors de la récupération des informations de votre compte. Essayez de changer de serveur.",
+        "invalidResponseSendingTransfer": "Le serveur a renvoyé une erreur lors de l'envoi. Essayez de changer de serveur.",
         "nodeOutOfSync": "Serveur non synchronisé",
-        "nodeOutOfSyncExplanation": "Votre serveur actuellement sélectionné est désynchronisé. S’il vous plaît changez le nœud ou essayez à nouveau.",
-        "thisNodeOutOfSync": "Votre serveur actuellement sélectionné est désynchronisé. Changez le serveur ou essayez à nouveau.",
+        "nodeOutOfSyncExplanation": "Le serveur actuellement sélectionné est désynchronisé. Veuillez changer le serveur ou essayer à nouveau.",
+        "thisNodeOutOfSync": "Ce serveur est désynchronisé. Veuillez changer le serveur ou essayer à nouveau.",
         "seed": "Seed",
         "checksum": "Code de Vérification",
         "back": "RETOUR",
@@ -77,7 +77,7 @@
         "cannotPerformAction": "Impossible d’effectuer cette action",
         "cannotPerformActionExplanation": "Allez dans les réglages avancés pour réinitialiser le portefeuille.",
         "attachToTangleUnavailable": "Preuve du travail à distance non disponible",
-        "attachToTangleUnavailableExplanation": "Preuve du travail à distance non disponible sur le nœud sélectionné. Modifiez le nœud ou sélectionner \"PoW local\" dans les paramètres avancés.",
+        "attachToTangleUnavailableExplanation": "Preuve du travail à distance non disponible sur le serveur sélectionné. Modifiez le serveur ou sélectionnez Preuve de Travail en local dans les paramètres avancés.",
         "attachToTangleUnavailableExplanationShort": "Preuve de travail à distance non disponible sur le nœud sélectionné.",
         "wallet": "Portefeuille",
         "sent": "Envoyé",
@@ -144,14 +144,15 @@
         "noNetworkConnectionExplanation": "Votre connexion à internet semble être hors-ligne.",
         "spentAddressExplanation": "ATTENTION : Fonds sur des adresses déjà utilisées",
         "discordInformation": "Envoyer des fonds depuis une adresse déjà utilisée est dangereux. Merci de prendre contact avec le canal #help sur Discord pour savoir ce qu'il est possible de faire.",
-        "androidInsecureClipboardWarning": "Android ne fournit pas un presse-papiers sécurisé.",
+        "androidInsecureClipboardWarning": "Android ne fournit pas de presse-papier sécurisé.",
         "androidCopyPasteWarning": "Ne jamais copier/coller votre seed sur un appareil Android.",
         "willNotCopyPasteSeed": "Je ne copierai/collerai pas ma seed",
         "mustBeStoredAppropriately": "Elle doit être stockée correctement.",
         "deviceMayBecomeUnresponsive": "Votre appareil peut ne pas répondre pendant un certain temps",
         "isYourBalanceCorrect": "Votre solde est-il correct ?",
-        "ifYourBalanceIsNotCorrect": "Si votre solde n’est pas correct, il est probable que vous utilisiez une seed antérieur à un snapshot.",
-        "headToAdvancedSettingsForTransition": "Dirigez-vous vers les paramètres avancés et effectuer une Transition de snapshot."
+        "ifYourBalanceIsNotCorrect": "Si votre solde n’est pas correct, il est probable que vous utilisiez une seed antérieure à un snapshot.",
+        "headToAdvancedSettingsForTransition": "Dirigez-vous vers les paramètres avancés et effectuez une Transition de snapshot.",
+        "usingTrinityWalletWithKeePass": "Utilisation de Trinity avec Keepass2Android"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -194,7 +195,7 @@
         "reasonSequence": "Les suites comme 'abc' ou '54321' sont faciles à deviner",
         "reasonYears": "Les années récentes sont faciles à deviner",
         "reasonDates": "Les dates sont souvent faciles à deviner",
-        "reasonTop10": "Voila un top 10 des mots de passes les plus courants",
+        "reasonTop10": "Voila un top 10 des mots de passe les plus courants",
         "reasonTop100": "Voila un top 100 des mots de passe les plus courants",
         "reasonCommon": "C'est un mot de passe très courant",
         "reasonSimilar": "Ceci est similaire à un mot de passe souvent utilisé",
@@ -215,8 +216,8 @@
         "tapConfirm": "Veuillez cocher la case ci-dessous pour confirmer.",
         "passwordManagerCheckbox": "Je stockerai ma seed dans un gestionnaire de mot de passe",
         "copy": "COPIER",
-        "noPasswordManagers": "Aucun gestionnaires de mots de passe supporté installé",
-        "noPasswordManagersExplanation": "Aucun gestionnaire de mots de passe supporté n'a été trouvé sur votre appareil. S’il vous plaît installez Keepass2Android.",
+        "noPasswordManagers": "Aucun gestionnaire de mots de passe supporté installé",
+        "noPasswordManagersExplanation": "Aucun gestionnaire de mots de passe supporté n'a été trouvé sur votre appareil. Veuillez installer Keepass2Android.",
         "followTutorialToSecurelyShareSeed": "Si vous souhaitez conserver votre seed dans un gestionnaire de mots de passe, vous devriez suivre le tutoriel à partir du lien suivant"
     },
     "enterSeed": {
@@ -243,7 +244,7 @@
         "emptyPasswordExplanation": "Un mot de passe est requis pour la connexion. Veuillez réessayer.",
         "enterPassword": "Veuillez saisir votre mot de passe.",
         "useSeed": "UTILISER LA SEED",
-        "login": "Se Connecter",
+        "login": "Connexion",
         "selectDifferentNode": "Voulez-vous sélectionner un serveur différent ?",
         "setNode": "Choisir un serveur",
         "cannotConnect": "Impossible de se connecter à un serveur IOTA."
@@ -309,18 +310,18 @@
         "printBlankWallet": "Imprimer un portefeuille vide",
         "whatIsCheksum": "Chaque seed a une somme de contrôle de 3 caractères",
         "iHavesavedMySeed": "J’ai enregistré ma seed",
-        "checksumExplanation": "Chaque fois que vous ajoutez une seed à votre portefeuille, vous devez vous assurer que les checksums affichés correspondent bien à celle de votre seed.",
+        "checksumExplanation": "Chaque fois que vous ajoutez une seed à votre portefeuille, vous devez vous assurer que les sommes de contrôle affichées correspondent bien à celle de votre seed.",
         "mustSaveYourSeed": "<0><0>Vous devez sauvegarder votre seed avec </0><1>au moins une</1><2> des options citées ci-dessous.</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Merci de confirmer votre seed",
-        "trinityWillNeverAskToReenter": "Trinity ne vous demandera jamais de réécrire votre seed à moins que vous réinitialisez votre portefeuille ou réinstallez l’application.",
+        "trinityWillNeverAskToReenter": "Trinity ne vous demandera jamais de réécrire votre seed, à moins que vous réinitialisez votre portefeuille ou réinstallez l’application.",
         "enterYourSeed": "Entrez votre seed",
         "incorrectSeed": "Seed incorrecte",
         "incorrectSeedExplanation": "La seed que vous avez saisie est incorrecte. Veuillez réessayer.",
         "thisIsACheck": "Il s’agit d’une vérification pour s’assurer que vous avez enregistré votre seed.",
         "ifYouHaveNotSaved": "Si vous n’avez pas enregistré votre seed, veuillez revenir en arrière et le faire.",
-        "enterSeedBelow": "Entrez votre seed nouvellement créé ci-dessous pour confirmer que vous l'avez sauvegardé correctement"
+        "enterSeedBelow": "Entrez votre seed nouvellement créé ci-dessous pour confirmer que vous l'avez sauvegardée correctement"
     },
     "send": {
         "invalidAddress": "Adresse invalide",
@@ -348,7 +349,7 @@
         "sendMax": "ENVOYER LE MAX",
         "totalTime": "Temps total",
         "addressPasteDetected": "Adresse collée détectée",
-        "addressPasteExplanation": "On dirait que vous êtes sur le point de coller une adresse. Assurez-vous que l’adresse collée corresponde à celle que vous voulez utiliser."
+        "addressPasteExplanation": "On dirait que vous avez collé une adresse. Assurez-vous que l’adresse collée corresponde à celle que vous voulez utiliser."
     },
     "setPassword": {
         "choosePassword": "Choisissez un nouveau mot de passe",
@@ -492,7 +493,7 @@
         "snapshotTransition": "Transition du Snapshot",
         "pow": "Preuve de Travail",
         "autoPromotion": "Promotion automatique",
-        "autoPromotionExplanation": "La promotion automatique aide à confirmer vos transactions sur le tangle. Activez ce paramètre si vous rencontrez des difficultés à confirmer vos transactions.",
+        "autoPromotionExplanation": "La promotion automatique aide à confirmer vos transactions sur le Tangle. Activez ce paramètre si vous rencontrez des difficultés à confirmer vos transactions.",
         "autoPromotionPoW": "La promotion automatique n’est possible sur les nœuds qui prennent en charge la preuve de travail à distance."
     },
     "advancedThemeCustomisation": {
@@ -549,11 +550,11 @@
         "hideSeed": "Masquer la seed"
     },
     "saveSeedConfirmation": {
-        "didSaveSeed": "Avez vous enregistré votre seed ?",
+        "didSaveSeed": "Avez-vous enregistré votre seed ?",
         "alreadyHave": "J’ai enregistré ma seed",
         "reenterSeed": "À l’étape suivante, on vous demandera d’entrer de nouveau votre seed.",
         "reenterSeedWarning": "Si vous n’avez pas sauvegardé votre seed et que votre appareil tombe en panne, vous perdrez tous vos IOTA.",
-        "pleaseConfirm": "Veuillez confirmer que vous avez stocké en toute sécurité votre seed."
+        "pleaseConfirm": "Veuillez confirmer que vous avez stocké votre seed en toute sécurité."
     },
     "walletResetConfirmation": {
         "cannotUndo": "CETTE ACTION EST IRRÉVERSIBLE.",
@@ -603,7 +604,7 @@
         "change": "Variation",
         "volume": "Volume (24h)",
         "currentValue": "Valeur actuelle",
-        "error": "Erreur de récupération données graphique"
+        "error": "Erreur de récupération des données du graphique"
     },
     "rootDetection": {
         "warning": "ATTENTION",
@@ -622,8 +623,8 @@
         "noWebGLSupportExplanation": "Votre ordinateur ne supporte pas WebGL. Veuillez utiliser la Preuve de Travail à distance."
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Paramètres de l’auto-promotion",
-        "autoPromotionUpdatedExplanation": "Votre configuration de la preuve de travail à été mise à jour."
+        "autoPromotionUpdated": "Paramètres de la promotion automatique",
+        "autoPromotionUpdatedExplanation": "Votre configuration de la promotion automatique a été mise à jour."
     },
     "progressSteps": {
         "checkingNodeHealth": "Vérifier l'état du serveur",
