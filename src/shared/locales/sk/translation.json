@@ -441,18 +441,18 @@
         "seedExplanation": "IOTA Seed je niečo ako vaše užívateľské meno a zároveň heslo k vášmu účtu, dlhé 81 znakov.",
         "noIHaveOne": "Nie, už mám Seed",
         "yesINeedASeed": "Áno, potrebujem Seed",
-        "explanation": "<0><0>Môžete ho použiť na prístup k svojim prostriedkom z</0> <1>akejkoľvek peňaženky</1> <2>, na</2> <3>na akomkoľvek zariadení</3> <4>. Ak však stratíte svoj seed, stratíte tiež všetky Vaše IOTA.</4></0>",
-        "keepSafe": "Svoj seed prosím uchovávajte v bezpečí.",
+        "explanation": "<0><0>Môžete ho použiť na prístup k svojim prostriedkom z</0> <1>akejkoľvek peňaženky</1><2>, na</2> <3>akomkoľvek zariadení</3><4>. Ak však stratíte svoj Seed, stratíte tiež všetky vaše IOTA.</4></0>",
+        "keepSafe": "Prosím, uchovávajte svoj Seed v bezpečí.",
         "hint": "<0><0>Tip:</0>Ak IOTA peňaženku používate prvýkrát, kliknite na tlačidlo NIE</0>"
     },
     "welcome": {
         "thankYou": "Ďakujeme, že ste si stiahli Trinity.",
-        "weWillSpend": "Nasledujúcich pár minút strávime nastavením Vašej peňaženky.",
+        "weWillSpend": "Nasledujúcich pár minút strávime nastavením vašej peňaženky.",
         "reminder": "Možno budete v pokušení niektoré kroky vynechať, dôrazne však odporúčame, aby ste dokončili všetky."
     },
     "writeSeedDown": {
-        "yourSeedIs": "Váš seed je {{maxSeedLength}} znakov čítaných zľava doprava.",
-        "writeDownYourSeed": "<0> Zapíšte si svoj seed a kontrolný súčet </0><1>dôkladne skontrolujte</1><2> ich správnosť.</2>"
+        "yourSeedIs": "Váš Seed je {{maxSeedLength}} znakov čítaných zľava doprava.",
+        "writeDownYourSeed": "<0> Zapíšte si svoj Seed a kontrolný súčet a </0><1>dôkladne skontrolujte</1><2> ich správnosť.</2>"
     },
     "history": {
         "bundleHashCopied": "Balíček hash skopírovaný",
