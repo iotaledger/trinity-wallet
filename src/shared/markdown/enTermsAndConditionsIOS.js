@@ -28,7 +28,7 @@ If we are only introducing a new service or a new function or making changes tha
 
 10. You also declare that you agree to the provision of any updates for the Trinity Wallet App and realise that failure to update can result in a security risk or even loss of your IOTA tokens.
 
-11. The General Terms and Conditions of Business of the respective app store must be observed in addition to these conditions to procure the app or download it from the respective store (Apple Store/Google Play).
+11. The General Terms and Conditions of Business of the app store must be observed in addition to these conditions to procure the app or download it from Apple Stores.
 
 ### **2. Data Protection**
 
