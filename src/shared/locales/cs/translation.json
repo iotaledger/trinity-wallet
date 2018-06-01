@@ -384,7 +384,7 @@
         "cannotChangeNode": "Nelze změnit Node",
         "cannotChangeNodeWhileSending": "Node nelze během odesílání změnit.",
         "language": "Jazyk",
-        "accountManagement": "Správa účtů",
+        "accountManagement": "Správa účtu",
         "addNewSeed": "Přidat nový Seed",
         "twoFA": "Dvoufaktorové ověření 2FA",
         "changePassword": "Změnit heslo",
