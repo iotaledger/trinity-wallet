@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
 import Markdown from 'react-native-markdown-renderer';
-import { enTermsAndConditions, deTermsAndConditions } from 'iota-wallet-shared-modules/markdown';
+import {
+    enTermsAndConditionsAndroid,
+    enTermsAndConditionsIOS,
+    deTermsAndConditionsAndroid,
+    deTermsAndConditionsIOS,
+} from 'iota-wallet-shared-modules/markdown';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { acceptTerms } from 'iota-wallet-shared-modules/actions/settings';
@@ -11,6 +16,7 @@ import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import i18next from '../i18next';
+import { isAndroid } from '../utils/device';
 
 const styles = StyleSheet.create({
     container: {
@@ -63,6 +69,20 @@ class TermsAndConditions extends Component {
         return i18next.language === 'de';
     }
 
+    static getTermsAndConditions() {
+        const isCurrentLanguageGerman = TermsAndConditions.isCurrentLanguageGerman();
+
+        if (isCurrentLanguageGerman && isAndroid) {
+            return deTermsAndConditionsAndroid;
+        } else if (isCurrentLanguageGerman && !isAndroid) {
+            return deTermsAndConditionsIOS;
+        } else if (!isCurrentLanguageGerman && isAndroid) {
+            return enTermsAndConditionsAndroid;
+        } else if (!isCurrentLanguageGerman && !isAndroid) {
+            return enTermsAndConditionsIOS;
+        }
+    }
+
     constructor() {
         super();
 
@@ -111,7 +131,7 @@ class TermsAndConditions extends Component {
                     style={styles.scrollView}
                 >
                     <Markdown styles={{ text: { fontFamily: 'SourceSansPro-Regular' } }}>
-                        {TermsAndConditions.isCurrentLanguageGerman() ? deTermsAndConditions : enTermsAndConditions}
+                        {TermsAndConditions.getTermsAndConditions()}
                     </Markdown>
                 </ScrollView>
                 {this.state.hasReadTerms && (
