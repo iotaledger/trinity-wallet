@@ -8,7 +8,7 @@
         "balanceError": "Nedostatok prostriedkov",
         "balanceErrorMessage": "Nemáte dostatočné množstvo IOTA pre dokončenie tejto transakcie.",
         "transferError": "Chyba transakcie",
-        "transferErrorMessage": "Nastala chyba počas odosielania vašej transakcie. Skúste to, prosím, znova.",
+        "transferErrorMessage": "Nastala chyba počas odosielania vašej transakcie. Prosím, skúste to znova.",
         "transferSent": "Transakcia bola odoslaná",
         "transferSentMessage": "Vaša transakcia bola odoslaná do Tangle.",
         "messageSent": "Správa odoslaná",
@@ -614,20 +614,20 @@
     },
     "pow": {
         "feeless": "Pre odoslanie bezplatnej transakcie v IOTA je potrebné vykonať malý dôkaz práce (proof of work).",
-        "localOrRemote": "Proof of Work môže byť dokončený lokálne vo vašom zariadení alebo prevedený do Nodu.",
+        "localOrRemote": "Proof of work môže byť dokončený lokálne vo vašom zariadení alebo prevedený do Nodu.",
         "local": "Lokálny",
         "remote": "Vzdialený",
         "powUpdated": "Proof of work nastavenia",
-        "powUpdatedExplanation": "Nastavenia proof of work bolo aktualizované.",
+        "powUpdatedExplanation": "Nastavenie proof of work bolo aktualizované.",
         "noWebGLSupport": "WebGL nie je podporovaný",
-        "noWebGLSupportExplanation": "Váš počítač nepodporuje WebGL. Použite vzdialenú PoW."
+        "noWebGLSupportExplanation": "Váš počítač nepodporuje WebGL. Použite vzdialený PoW."
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Nastavenie Auto-promotion",
-        "autoPromotionUpdatedExplanation": "Vaše nastavenie Auto-promotion bolo aktualizované."
+        "autoPromotionUpdated": "Nastavenia automatickej podpory",
+        "autoPromotionUpdatedExplanation": "Vaše nastavenie automatickej podpory bolo aktualizované."
     },
     "progressSteps": {
-        "checkingNodeHealth": "Kontrola stavu nodu",
+        "checkingNodeHealth": "Kontrola stavu Nodu",
         "validatingReceiveAddress": "Overovanie prijímacie adresy",
         "syncingAccount": "Synchronizácia účtu",
         "preparingInputs": "Príprava vstupných dát",
@@ -637,15 +637,15 @@
         "broadcasting": "Odosielanie transakcií do siete"
     },
     "snapshotTransition": {
-        "cannotCompleteTransition": "Nie je možné dokončiť aktualizáciu údajov po snapshote",
-        "cannotCompleteTransitionExplanation": "Pre dokončenie aktualizácie údajov po snapshote musí byť zostatok na Vašom konte väčší ako 0.",
-        "transitionComplete": "Aktualizácia údajov po snapshote je kompletná",
-        "transitionCompleteExplanation": "Aktualizácia údajov po snapshote prebehla úspešne.",
+        "cannotCompleteTransition": "Nie je možné dokončiť aktualizáciu údajov po Snapshote",
+        "cannotCompleteTransitionExplanation": "Pre dokončenie aktualizácie údajov po Snapshote musí byť zostatok na vašom účte väčší ako 0.",
+        "transitionComplete": "Aktualizácia údajov po Snapshote je kompletná",
+        "transitionCompleteExplanation": "Aktualizácia údajov po Snapshote prebehla úspešne.",
         "detectedBalance": "Zistený zostatok: {{amount}} {{unit}}",
         "isThisCorrect": "Je to správne?",
         "snapshotExplanation": "V nepravidelných intervaloch prebieha Snapshot, aby sa zmenšila veľkosť Tangle.",
-        "hasSnapshotTakenPlace": "Prebehol Snapshot? Stlačením tlačidla nižšie aktualizujete údajov po Snapshote.",
-        "transition": "Aktualizácia",
+        "hasSnapshotTakenPlace": "Prebehol Snapshot? Stlačením tlačidla nižšie prevediete aktualizáciu údajov po Snapshote.",
+        "transition": "Aktualizovať",
         "transitioning": "Aktualizácia údajov po Snapshote.",
         "generatingAndDetecting": "Generujem adresy a zisťujem zostatok.",
         "attaching": "Pripájam adresy do siete Tangle."
