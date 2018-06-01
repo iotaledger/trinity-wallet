@@ -589,7 +589,7 @@
         "emptyCodeExplanation": "Įveskite kodą ir bandykite dar kartą.",
         "keyCopied": "Kodas nukopijuotas į iškarpinę",
         "keyCopiedExplanation": "Jūsų 2FA kodas nukopijuotas į iškarpinę.",
-        "addKey": "Pridėti šį kodą į 2FA programėlę",
+        "addKey": "Pridėkite šį kodą į 2FA programėlę",
         "key": "Kodas",
         "twoFAEnabled": "2FA įjungtas",
         "twoFAEnabledExplanation": "Sėkmingai įjungėte dviejų veiksnių autentifikavimą.",
@@ -655,7 +655,7 @@
         "autofillExplanation": "Pavedimo duomenys automatiškai įkelti iš nuorodos."
     },
     "updates": {
-        "errorRetrievingUpdateData": "Klaida atsiunčiant atnaujinimus",
+        "errorRetrievingUpdateData": "Klaida siunčiant atnaujinimus",
         "errorRetrievingUpdateDataExplanation": "Įvyko klaida siunčiant atnaujinimus. Bandykite dar kartą.",
         "noUpdatesAvailable": "Nėra naujų atnaujinimų",
         "noUpdatesAvailableExplanation": "Jūs turite naujausią IOTA Trinity darbalaukio piniginės versiją!",
