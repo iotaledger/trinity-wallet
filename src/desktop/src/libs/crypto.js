@@ -1,24 +1,21 @@
 /*global Electron*/
-import sjcl from 'sjcl';
-import { createRandomSeed as createRandomSeedWrapped, MAX_SEED_LENGTH } from 'libs/iota/utils';
+import { MAX_SEED_LENGTH } from 'libs/iota/utils';
 
 /**
- * Create random bytes array
+ * Create random byte array
  * @param {Number} length - The random number array size.
  * @ignore
  */
 function randomBytes(size) {
-    if (size > 65536 || size < 0) {
+    if (size !== parseInt(size, 10) || size < 0) {
         return false;
     }
 
-    const rawBytes = new global.Uint8Array(size);
+    const rawBytes = new Uint8Array(size);
 
-    global.crypto.getRandomValues(rawBytes);
+    const bytes = global.crypto.getRandomValues(rawBytes);
 
-    const bytes = Buffer.from(rawBytes.buffer);
-
-    return bytes;
+    return Array.from(bytes);
 }
 
 /**
@@ -27,133 +24,181 @@ function randomBytes(size) {
  * @returns {String} Random seed string
  */
 export const createRandomSeed = (length = MAX_SEED_LENGTH) => {
-    return createRandomSeedWrapped(randomBytes, length);
+    return randomBytes(length);
 };
 
 /**
- * Save and encrypt seed data to local storage
- * @param {String} password - Storage encryption currrent password
- * @param {Object} content - Enrcypted content. Defaults to current content, if exists
- * @param {Boolean} rewrite - Should the vault be owerritten ignoring existing state
+ * Encrypt plain text
+ * @param {String} Content - content to encrypt
+ * @param {String} Password - plain text password to be used for encryption
+ * @returns {String} -  Ecnrypted initialization vector + content
  */
-export const setVault = async (password, content, rewrite) => {
-    if (!rewrite) {
-        const vault = await Electron.readKeychain();
-        if (vault) {
-            try {
-                const decryptedVault = JSON.parse(sjcl.decrypt(password, vault));
-                content = Object.assign({}, decryptedVault, content);
-            } catch (err) {
-                throw new Error('Incorrect password');
-            }
-        } else if (!content) {
-            throw new Error('Empty content');
-        }
+const encrypt = async (contentPlain, passwordPlain) => {
+    const content = new TextEncoder().encode(JSON.stringify(contentPlain));
+
+    const password = new TextEncoder().encode(passwordPlain);
+    const passwordhash = await crypto.subtle.digest('SHA-256', password);
+
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+
+    const algorithm = { name: 'AES-GCM', iv: iv };
+
+    const key = await crypto.subtle.importKey('raw', passwordhash, algorithm, false, ['encrypt']);
+
+    const cipherBuffer = await crypto.subtle.encrypt(algorithm, key, content);
+    const cipherArray = new Uint8Array(cipherBuffer);
+    const cipherHex = cipherArray.toString();
+
+    const ivHex = iv.toString();
+
+    return `${ivHex}|${cipherHex}`;
+};
+
+/**
+ * Decrypt cyphertext
+ * @param {String} Content - Encrypted initialization vector + content
+ * @param {String} Password - plain text password to be used for decryption
+ * @returns {String} -  Derypted content
+ */
+const decrypt = async (cipherText, passwordPlain) => {
+    const cipherParts = cipherText.split('|');
+
+    if (cipherParts.length !== 2 || !passwordPlain) {
+        return false;
     }
+    try {
+        const password = new TextEncoder().encode(passwordPlain);
+        const passwordHash = await crypto.subtle.digest('SHA-256', password);
 
-    await Electron.setKeychain(sjcl.encrypt(password, JSON.stringify(content)));
-    return true;
+        const ivArray = cipherParts[0].split(',');
+        const iv = Uint8Array.from(ivArray);
+
+        const algorithm = { name: 'AES-GCM', iv: iv };
+
+        const key = await crypto.subtle.importKey('raw', passwordHash, algorithm, false, ['decrypt']);
+
+        const cipherArray = cipherParts[1].split(',');
+        const cipher = Uint8Array.from(cipherArray);
+
+        const plainBuffer = await crypto.subtle.decrypt(algorithm, key, cipher);
+        const plainText = new TextDecoder().decode(plainBuffer);
+
+        return JSON.parse(plainText);
+    } catch (err) {
+        throw new Error('Wrong password');
+    }
 };
 
-/**
- * Get and decrypt seed data from local storage
- * @param {String} password - Storage encryption password
- * @returns {Object} Decrypted seed data
- */
-export const getVault = async (password) => {
+export const vaultAuth = async (password) => {
     const vault = await Electron.readKeychain();
     if (!vault) {
         throw new Error('Local storage not available');
     }
     try {
-        const decryptedVault = JSON.parse(sjcl.decrypt(password, vault));
-        return decryptedVault;
+        const decryptedVault = await decrypt(vault, password);
+        if (decryptedVault.twoFaKey) {
+            return decryptedVault.twoFaKey;
+        }
+        return true;
+    } catch (err) {
+        throw err;
+    }
+};
+
+export const updatePassword = async (passwordCurrent, passwordNew) => {
+    const vault = await Electron.readKeychain();
+    if (!vault) {
+        throw new Error('Local storage not available');
+    }
+    try {
+        const decryptedVault = await decrypt(vault, passwordCurrent);
+
+        const updatedVault = await encrypt(decryptedVault, passwordNew);
+
+        Electron.setKeychain(updatedVault);
+
+        return true;
     } catch (err) {
         throw err;
     }
 };
 
 /**
- * Get and decrypt seed data from local storage
- * @param {Number} index - Target seed item index
- * @param {String} password - Storage encryption password
- * @returns {String} - Decrypted seed
+ * Get seed from keychain
+ * @param {String} Password - plain text password to be used for decryption
+ * @param {String} SeedName - seed name to retreive from keychain
+ * @returns {Array} -  Derypted seed
  */
-export const getSeed = async (index, password) => {
-    const vault = await getVault(password);
-    if (!vault.seeds[index]) {
-        throw new Error('Incorrect seed index');
-    } else {
-        return vault.seeds[index];
-    }
-};
-
-/**
- * Set and encrypt new seed data from local storage
- * @param {Number} index - Target seed item index
- * @param {String} password - Storage encryption password
- * @returns {String} - Decrypted seed
- */
-export const setSeed = async (password, seed) => {
-    const vault = await getVault(password);
-    vault.seeds.push(seed);
-    setVault(password, { seeds: vault.seeds });
-};
-
-/**
- * Get and decrypt seed data from local storage
- * @param {String} password - Storage encryption password
- * @returns {Object} Decrypted seed data
- */
-export const updateVaultPassword = async (passwordOld, passwordNew) => {
+export const getSeed = async (password, seedName, plainText) => {
     const vault = await Electron.readKeychain();
     if (!vault) {
         throw new Error('Local storage not available');
     }
     try {
-        const decryptedVault = JSON.parse(sjcl.decrypt(passwordOld, vault));
-        await Electron.setKeychain(sjcl.encrypt(passwordNew, JSON.stringify(decryptedVault)));
+        const decryptedVault = await decrypt(vault, password);
+
+        if (!decryptedVault.seeds || !decryptedVault.seeds[seedName]) {
+            throw new Error('Incorrect seed index');
+        } else {
+            return plainText ? seedToHex(decryptedVault.seeds[seedName]) : decryptedVault.seeds[seedName];
+        }
+    } catch (err) {
+        throw err;
+    }
+};
+
+export const setSeed = async (password, seedName, seed, overwrite) => {
+    const vault = overwrite ? { seeds: {} } : await Electron.readKeychain();
+    if (!vault) {
+        throw new Error('Local storage not available');
+    }
+    try {
+        const decryptedVault = overwrite ? vault : await decrypt(vault, password);
+        decryptedVault.seeds[seedName] = Array.from(seed);
+
+        const updatedVault = await encrypt(decryptedVault, password);
+
+        Electron.setKeychain(updatedVault);
+    } catch (err) {
+        throw err;
+    }
+};
+
+export const uniqueSeed = async (password, seed) => {
+    const vault = await Electron.readKeychain();
+    if (!vault) {
+        throw new Error('Local storage not available');
+    }
+    try {
+        const decryptedVault = await decrypt(vault, password);
+
+        if (!decryptedVault.seeds) {
+            throw new Error('Vault error');
+        }
+
+        for (let i = 0; i < decryptedVault.seeds.length; i++) {
+            if (
+                decryptedVault.seeds[i].length === seed.length &&
+                seed.every((v, i) => v % 27 === decryptedVault.seeds[i] % 27)
+            ) {
+                return false;
+            }
+        }
         return true;
     } catch (err) {
-        throw new Error('Incorrect password');
+        throw err;
     }
 };
 
-/**
- * Save and encrypt two-factor authentication key
- * @param {String} password - Storage encryption password
- * @param {String} key - Two-factor authorisation key
- */
-export const setTwoFA = async (password, key) => {
-    const vault = await getVault(password);
-    vault.twoFAkey = key;
-    await setVault(password, vault);
-};
-
-/**
- * Get and decrypt two-factor-authentication key
- * @param {String} password - Storage encryption password
- * @returns {String} Decrypted two-factor private key
- */
-export const getTwoFA = async (password) => {
-    const vault = await getVault(password);
-    return vault.twoFAkey;
-};
-
-/**
- * Remove two-factor authentication key
- * @param {String} password - Storage encryption password
- * @param {String} key - Two-factor authorisation key
- */
-export const removeTwoFA = async (password, key) => {
-    const vault = await getVault(password);
-
-    if (vault.twoFAkey === key) {
-        delete vault.twoFAkey;
-        await Electron.setKeychain(sjcl.encrypt(password, JSON.stringify(vault)));
-    } else {
-        throw new Error('Two-factor key mismatch');
+export const sha256 = async (inputPlain) => {
+    if (typeof inputPlain !== 'string' || inputPlain.length < 1) {
+        return false;
     }
+    const input = new TextEncoder().encode(inputPlain);
+    const hash = await crypto.subtle.digest('SHA-256', input);
+    const plainHash = bufferToHex(hash);
+
+    return plainHash;
 };
 
 /**
@@ -161,7 +206,32 @@ export const removeTwoFA = async (password, key) => {
  * @param {String} code - Target activation code
  * @param {String} uuid - UUID of the machine
  */
-export const checkActivationCode = (code, uuid) => {
+export const checkActivationCode = async (code, uuid) => {
     const key = 'LURGzCPEHqhjvYLwAJXRv5Fc';
-    return code === sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(key + uuid));
+    const hash = await sha256(key + uuid);
+    return code === hash;
+};
+
+export const seedToHex = (bytes) => {
+    return Array.from(bytes)
+        .map((byte) => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9'.charAt(byte % 27))
+        .join('');
+};
+
+export const byteToChar = (byte) => {
+    return 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9'.charAt(byte % 27);
+};
+
+const bufferToHex = (buffer) => {
+    const hexCodes = [];
+    const view = new DataView(buffer);
+    for (let i = 0; i < view.byteLength; i += 4) {
+        const value = view.getUint32(i);
+        const stringValue = value.toString(16);
+        const padding = '00000000';
+        const paddedValue = (padding + stringValue).slice(-padding.length);
+        hexCodes.push(paddedValue);
+    }
+
+    return hexCodes.join('');
 };
