@@ -50,7 +50,7 @@
         "qr": "QR",
         "notAvailable": "Táto funkcia nie je dostupná",
         "notAvailableExplanation": "Toto bude pridané v ďalšej fáze.",
-        "enterSeed": "Zadajte Váš seed, prosím.",
+        "enterSeed": "Zadajte váš Seed, prosím.",
         "mainWallet": "HLAVNÝ ÚČET",
         "secondWallet": "DRUHÝ ÚČET",
         "thirdWallet": "TRETÍ ÚČET",
@@ -390,7 +390,7 @@
         "changePassword": "Zmeniť heslo",
         "advanced": "Pokročilé nastavenia",
         "logout": "Odhlásiť",
-        "reset": "Resetovať peňaženku",
+        "reset": "Obnoviť peňaženku",
         "syncingComplete": "Synchronizácia dokončená",
         "syncingCompleteExplanation": "Váš účet sa úspešne synchronizoval.",
         "nicknameChanged": "Názov účtu bol zmenený",
@@ -429,9 +429,9 @@
         "nodeChangeErrorExplanation": "Pri zmene Nodu došlo k chybe. Prosím, skúste to znova."
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Pre reset peňaženky zadajte vaše heslo.",
+        "enterPassword": "Pre zmazanie peňaženky zadajte Vaše heslo.",
         "cancel": "Zrušiť",
-        "reset": "RESETOVAŤ"
+        "reset": "OBNOVIŤ"
     },
     "walletSetup": {
         "creatingSeed": "Vytváranie Seedu",
@@ -492,9 +492,9 @@
         "manualSync": "Manuálna synchronizácia",
         "snapshotTransition": "Aktualizácia údajov po Snapshote",
         "pow": "Proof of Work",
-        "autoPromotion": "Auto-promotion",
-        "autoPromotionExplanation": "Auto-promotion vám pomôže potvrdiť vašu transakciu v sieti Tangle. Povoľte toto nastavenie, ak máte problémy s potvrdzovaním transakcií.",
-        "autoPromotionPoW": "Auto-promotion je možná iba na nodoch, ktoré podporujú vzdialený Proof of Work."
+        "autoPromotion": "Automatická podpora",
+        "autoPromotionExplanation": "Automatická podpora vám pomôže potvrdiť vašu transakciu v sieti Tangle. Povoľte toto nastavenie, ak máte problémy s potvrdzovaním transakcií.",
+        "autoPromotionPoW": "Automatická podpora je možná iba na Nodoch, ktoré podporujú vzdialený Proof of Work."
     },
     "advancedThemeCustomisation": {
         "background": "Pozadie",
@@ -510,7 +510,7 @@
         "logoutConfirmation": "Určite sa chcete odhlásiť?"
     },
     "qrScanner": {
-        "scan": "Naskenujte Váš QR kód"
+        "scan": "Naskenujte QR kód"
     },
     "unitInfoModal": {
         "unitSystem": "JEDNOTKOVÝ SYSTÉM",
@@ -522,8 +522,8 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Prečo nemôžem použiť celý zostatok môjho účtu?",
-        "spentAddressExplanation": "Máte prostriedky na jednej alebo niekoľkých použitých adresách. Opätovné použitie adries v IOTA je nebezpečné, preto Vám táto penaženka neumožní odosielať z rovnakej adresy viac ako jeden krát.",
-        "discordInformation": "Pokiaľ chcete zistiť Vaše možnosti, prejdite do #help v aplikácii Discord."
+        "spentAddressExplanation": "Máte prostriedky na jednej alebo niekoľkých použitých adresách. Opätovné použitie adries v IOTA je nebezpečné, preto vám táto penaženka neumožní odosielať z rovnakej adresy viac ako jeden krát.",
+        "discordInformation": "Pokiaľ chcete zistiť vaše možnosti, prejdite do #help v aplikácii Discord."
     },
     "deleteAccount": {
         "areYouSure": "<0></0><1>Naozaj chcete odstrániť</1><2></2><3>{{accountName}}?</3>",
