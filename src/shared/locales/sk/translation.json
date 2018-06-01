@@ -426,18 +426,18 @@
         "nodeChangeSuccessNoRemotePow": "Node bol zmenený na {{node}}. Tento node nepodporuje vzdialený Proof Work.",
         "nodeChangeSuccessExplanation": "Node bol zmenený na {{node}}.",
         "nodeChangeError": "Chyba zmeny nodu",
-        "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
+        "nodeChangeErrorExplanation": "Pri zmene nodu došlo k chybe. Prosím, skúste to znova."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Pre zmazanie peňaženky zadajte Vaše heslo.",
-        "cancel": "Cancel",
+        "cancel": "Zrušiť",
         "reset": "OBNOVIŤ"
     },
     "walletSetup": {
-        "creatingSeed": "Creating a seed",
+        "creatingSeed": "Vytváranie seedu",
         "okay": "Ok. Prejdime k nastaveniu Vašej peňaženky!",
         "doYouAlreadyHaveASeed": "Máte už vlastný seed, ktorý by ste chceli použiť?",
-        "doYouNeedASeed": "Do you need to create a new seed?",
+        "doYouNeedASeed": "Potrebujete vytvoriť nový seed?",
         "seedExplanation": "IOTA seed je niečo ako Vaše užívateľské meno a zároveň heslo k Vášmu účtu, spojené do jedného reťazca 81 znakov.",
         "noIHaveOne": "Nie, už mám seed",
         "yesINeedASeed": "Áno, potrebujem seed",
@@ -552,9 +552,9 @@
     "saveSeedConfirmation": {
         "didSaveSeed": "Zazálohovali ste si svoj seed?",
         "alreadyHave": "Svoj seed mám uložený",
-        "reenterSeed": "At the next step you will be asked to re-enter your seed.",
-        "reenterSeedWarning": "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
-        "pleaseConfirm": "Please confirm you have securely stored your seed."
+        "reenterSeed": "V ďalšom kroku budete požiadaný o znovuvloženie vášho seedu.",
+        "reenterSeedWarning": "Ak ste si nezazálohovali váš seed a vaše zariadenie bude poškodené, stratíte všetky vaše IOTY.",
+        "pleaseConfirm": "Potvrďte, prosím, že máte váš seed bezpečne uložený."
     },
     "walletResetConfirmation": {
         "cannotUndo": "TÁTO AKCIA SA NEDÁ VRÁTIŤ.",
@@ -564,14 +564,14 @@
         "instructionsEnable": "Ak chcete zapnúť funkciu overenie odtlačkom prsta, priložte prst na čítačku",
         "instructionsDisable": "Ak chcete vypnúť funkciu overenie odtlačkom prsta, priložte prst na čítačku",
         "fingerprintAuthEnabled": "Overenie pomocou odtlačkov prstov je zapnuté",
-        "fingerprintAuthEnabledExplanation": "You have successfully enabled biometric authentication.",
+        "fingerprintAuthEnabledExplanation": "Úspešne ste aktivovali biometrické overenie.",
         "fingerprintAuthDisabled": "Overenie pomocou odtlačkov prstov je vypnuté",
-        "fingerprintAuthDisabledExplanation": "You have successfully disabled biometric authentication.",
+        "fingerprintAuthDisabledExplanation": "Úspešne ste deaktivovali biometrické overenie.",
         "fingerprintAuthFailed": "Overenie pomocou odtlačkov prstov zlyhalo",
         "fingerprintAuthFailedExplanation": "Overenie odtlačkom prsta zlyhalo. Skúste prosím znova.",
         "status": "Stav",
-        "fingerprintUnavailable": "Biometric authentication unavailable",
-        "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
+        "fingerprintUnavailable": "Biometrické overenie nie je k dispozícii",
+        "fingerprintUnavailableExplanation": "Vaše zariadenie nepodporuje biometrické overenie alebo nebolo povolené v nastaveniach vášho zariadenia.",
         "buttonInstructionsDisable": "Tlačidlom nižšie deaktivujete overovanie odtlačkom prsta.",
         "buttonInstructionsEnable": "Tlačidlom nižšie aktivujete overovanie odtlačkom prsta.",
         "buttonInstructionsDisableIPhoneX": "Stlačením tlačidla nižšie vypnete overenie pomocou rozpoznávania tváre.",
@@ -604,12 +604,12 @@
         "change": "Zmena",
         "volume": "Objem (24h)",
         "currentValue": "Súčasná hodnota",
-        "error": "Error fetching chart data"
+        "error": "Pri načítaní dát grafu došlo k chybe"
     },
     "rootDetection": {
         "warning": "VAROVANIE",
-        "appearsRooted": "Your device appears to be rooted.",
-        "securityRisk": "This can pose a significant risk to the security of your wallet.",
+        "appearsRooted": "Vaše zariadenie vyzerá byť rootované.",
+        "securityRisk": "To môže predstavovať významné riziko pre bezpečnosť vašej peňaženky.",
         "continueDepsiteRisk": "Želáte si pokračovať aj napriek tomuto riziku?"
     },
     "pow": {
