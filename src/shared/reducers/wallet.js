@@ -7,6 +7,7 @@ const initialState = {
     receiveAddress: ' ',
     password: '',
     seed: Array(82).join(' '),
+    usedExistingSeed: false,
     accountName: 'MAIN WALLET',
     seedIndex: 0,
     usedSeedToLogin: false,
@@ -17,7 +18,7 @@ const initialState = {
     addingAdditionalAccount: false,
     balanceCheckToggle: false,
     deepLinkActive: false,
-    hasConnection: true
+    hasConnection: true,
 };
 
 export default (state = initialState, action) => {
@@ -30,7 +31,8 @@ export default (state = initialState, action) => {
         case ActionTypes.SET_SEED:
             return {
                 ...state,
-                seed: action.payload,
+                seed: action.payload.seed,
+                usedExistingSeed: action.payload.usedExistingSeed,
             };
         case ActionTypes.SET_ACCOUNT_NAME:
             return {
@@ -76,6 +78,8 @@ export default (state = initialState, action) => {
                 seedIndex: 0,
                 isGeneratingReceiveAddress: false,
                 currentSetting: 'mainSettings',
+                //deepLinkActive: false,
+                usedExistingSeed: false,
             };
         case ActionTypes.CLEAR_SEED:
             return {
@@ -161,7 +165,7 @@ export default (state = initialState, action) => {
         case ActionTypes.CONNECTION_CHANGED:
             return {
                 ...state,
-                hasConnection: action.payload.isConnected
+                hasConnection: action.payload.isConnected,
             };
         default:
             return state;

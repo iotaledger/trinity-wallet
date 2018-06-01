@@ -38,6 +38,7 @@ export default class AmountInput extends React.PureComponent {
          * @param {string} value - Current ammount value
          */
         onChange: PropTypes.func.isRequired,
+        deepLinkActive: PropTypes.bool.isRequired,
     };
 
     state = {
@@ -47,16 +48,19 @@ export default class AmountInput extends React.PureComponent {
     };
 
     componentWillMount() {
-        this.stateToProps(this.props);
-        // if (this.props.amount) {
-        //     this.setState({
-        //         value: this.props.amount
-        //     });
-        // }
+        if (this.props.deepLinkActive) {
+            this.deepLinkInject(this.props.amount);
+        } else {
+            this.stateToProps(this.props);
+        }
     }
 
     componentWillReceiveProps(nextProps) {
-        this.stateToProps(nextProps);
+        if (this.props.deepLinkActive) {
+            this.deepLinkInject(this.props.amount);
+        } else {
+            this.stateToProps(nextProps);
+        }
     }
 
     onChange = (value) => {
@@ -76,7 +80,7 @@ export default class AmountInput extends React.PureComponent {
         }
 
         // Convert to iotas
-        const iotas = round(value * this.getUnitMultiplier());
+        const iotas = round(value * this.getUnitMultiplier(this.state.unit));
 
         if (iotas > TOTAL_IOTA_SUPPLY) {
             return;
@@ -116,8 +120,16 @@ export default class AmountInput extends React.PureComponent {
         return multiplier;
     }
 
+    deepLinkInject = (amount) => {
+        this.unitChange('Mi');
+        this.onChange(amount);
+    };
+
     stateToProps = (props) => {
-        if (this.state.iotas !== parseInt(props.amount)) {
+        if (props.deepLinkActive) {
+            this.unitChange('Mi');
+        }
+        if (this.state.iotas !== parseInt(props.amount) && !props.deepLinkActive) {
             this.setState({
                 iotas: props.amount.length ? parseInt(props.amount) : 0,
                 value: props.amount.length ? parseInt(props.amount) / this.getUnitMultiplier(this.state.unit) : 0,
@@ -132,7 +144,7 @@ export default class AmountInput extends React.PureComponent {
     };
 
     unitChange = (unit) => {
-        if (unit === this.state.unit) {
+        if (unit === this.state.unit && !this.props.deepLinkActive) {
             return;
         }
 

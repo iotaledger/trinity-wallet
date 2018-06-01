@@ -90,18 +90,7 @@ class Login extends React.Component {
 
     componentDidMount() {
         Electron.updateMenu('authorised', false);
-        try {
-            Electron.onEvent('url-params', this.setDeepUrl(this));
-            // this.onSetDeepUrl = );
-
-            // Electron.changeLanguage(this.props.t);
-            // Electron.requestDeepLink();
-        } catch (error) {
-            // eslint-disable-next-line react/no-did-mount-set-state
-            this.setState({
-                //fatalError: true,
-            });
-        }
+        Electron.onEvent('url-params', this.setDeepUrl(this));
 
         const { wallet } = this.props;
 
@@ -110,9 +99,6 @@ class Login extends React.Component {
         } else {
             //this.props.clearWalletData();
             this.props.setPassword('');
-            // if (this.props.wallet.deepLinkActive) {
-            //     this.props.history.push('/wallet/send');
-            // }
         }
     }
 

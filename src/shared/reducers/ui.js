@@ -35,7 +35,6 @@ const initialState = {
     isChangingNode: false,
     currentlyPromotingBundleHash: '',
     loginRoute: 'login',
-    hasFailedAutopromotion: false,
 };
 
 export default (state = initialState, action) => {
@@ -170,9 +169,6 @@ export default (state = initialState, action) => {
                 isSyncing: false,
                 inactive: false,
                 minimised: false,
-                // sendAddressFieldText: '',
-                // sendAmountFieldText: '',
-                // sendMessageFieldText: '',
                 loginPasswordFieldText: '',
                 sendDenomination: 'i',
                 onboarding: {
@@ -267,21 +263,30 @@ export default (state = initialState, action) => {
                 ...state,
                 isModalActive: !state.isModalActive,
             };
-        case UiActionTypes.SET_CUSTOM_NODE_CHECK_STATUS:
-            return {
-                ...state,
-                isCheckingCustomNode: action.payload,
-            };
         case SettingsActionTypes.SET_NODE_REQUEST:
             return {
                 ...state,
                 isChangingNode: true,
             };
+        case SettingsActionTypes.ADD_CUSTOM_NODE_REQUEST:
+            return {
+                ...state,
+                isCheckingCustomNode: true,
+            };
+        case SettingsActionTypes.ADD_CUSTOM_NODE_SUCCESS:
+            return {
+                ...state,
+                isCheckingCustomNode: false,
+            };
+        case SettingsActionTypes.ADD_CUSTOM_NODE_ERROR:
+            return {
+                ...state,
+                isCheckingCustomNode: false,
+            };
         case SettingsActionTypes.SET_NODE:
             return {
                 ...state,
                 isChangingNode: false,
-                hasFailedAutopromotion: false,
             };
         case SettingsActionTypes.SET_NODE_ERROR:
             return {
@@ -292,11 +297,6 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 loginRoute: action.payload,
-            };
-        case PollingActionTypes.SET_AUTOPROMOTION_FAILED_FLAG:
-            return {
-                ...state,
-                hasFailedAutopromotion: action.payload,
             };
         default:
             return state;
