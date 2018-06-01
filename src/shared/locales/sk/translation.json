@@ -95,7 +95,7 @@
         "pressBackAgain": "Opätovným stlačením tlačidla Späť zatvoríte aplikáciu",
         "reattached": "Úspešne znovupripojená transakcia",
         "reattachedExplanation": "Znovupripojená transakcia s hash {{hash}}",
-        "promotingTransaction": "Promoting transaction",
+        "promotingTransaction": "Podpora transakcie",
         "autopromoting": "Automatická podpora transferu",
         "autopromotingExplanation": "Podpora transakcií z hash {{hash}}",
         "rebroadcasted": "Úspešne znovuodoslaná transakcia",
@@ -146,7 +146,7 @@
         "discordInformation": "Odosielanie z rovnakej adresy viackrát je nebezpečné. Prosím navštívte #help kanál na aplikácii Discord, aby Ste zistili, čo môžete urobiť.",
         "androidInsecureClipboardWarning": "Android does not provide a secure clipboard.",
         "androidCopyPasteWarning": "Never copy/paste your seed on an Android device.",
-        "willNotCopyPasteSeed": "Nebudem kopírovať/vkladať môj seed",
+        "willNotCopyPasteSeed": "Nebudem kopírovať/vkladať svoj seed",
         "mustBeStoredAppropriately": "It must be stored appropriately.",
         "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while",
         "isYourBalanceCorrect": "Je zostatok správny?",
@@ -309,19 +309,19 @@
         "youCanHighlightCharacters": "You can highlight 9 characters at a time",
         "printBlankWallet": "Print a blank wallet",
         "whatIsCheksum": "Every seed has a corresponding 3 character checksum",
-        "iHavesavedMySeed": "Svoj Seed mám uložený",
+        "iHavesavedMySeed": "Svoj seed mám uložený",
         "checksumExplanation": "Vždy, keď pridáte Seed do vašej peňaženky, mali by ste sa uistiť, že kontrolný súčet vygenerovaný peňaženkou zodpovedá tomu, ktorý ste si zapísali.",
         "mustSaveYourSeed": "<0><0>Je potrebné uložiť Váš seed </0><1>aspoň jedným</1><2>z nižšie uvedených spôsobov.</2></0>"
     },
     "seedReentry": {
-        "pleaseConfirmYourSeed": "Prosím, potvrďte váš Seed",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or the app.",
-        "enterYourSeed": "Zadajte váš seed",
+        "pleaseConfirmYourSeed": "Prosím, potvrďte váš seed",
+        "trinityWillNeverAskToReenter": "Trinity vás nikdy nebude vyzývať k opätovnému vloženiu tohto Seedu. Výnimkou je reset vašej peňaženky, prípadne celej aplikácie.",
+        "enterYourSeed": "Vložte váš seed",
         "incorrectSeed": "Neplatný seed",
         "incorrectSeedExplanation": "Seed, ktorý ste zadali, je neplatný. Prosím skúste znova.",
         "thisIsACheck": "Týmto sa uistíte, že ste si uložili svoj seed.",
         "ifYouHaveNotSaved": "Ak ste si neuložili svoj seed, vráťte sa prosím späť a urobte tak.",
-        "enterSeedBelow": "Enter your newly created seed below to confirm you have backed it up correctly"
+        "enterSeedBelow": "Zadajte nižšie váš novovytvorený Seed pre potvrdenie, že ste si ho správne zazálohovali"
     },
     "send": {
         "invalidAddress": "Neplatná adresa",
