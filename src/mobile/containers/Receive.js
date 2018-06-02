@@ -3,6 +3,8 @@ import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, TouchableOpacity, Clipboard, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
+import { QRCode as QR } from 'qrcode';
+import Share from 'react-native-share';
 import { connect } from 'react-redux';
 import { generateNewAddress, setReceiveAddress } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
@@ -195,6 +197,27 @@ class Receive extends Component {
         }
     }
 
+    onQRPress() {
+        const { t, receiveAddress } = this.props;
+        const { message } = this.state;
+        const obj = JSON.stringify({ address: receiveAddress, message });
+        if (receiveAddress !== ' ') {
+            QR.toDataURL(obj, { type: 'image/png' }).then((url) => {
+                Share.open({
+                    url,
+                    type: 'image/png',
+                    message: receiveAddress,
+                })
+                    .then(() => {
+                        this.props.generateAlert('success', t('codeSent'), t('codeSent'));
+                    })
+                    .catch(() => {
+                        this.props.generateAlert('error', t('codeNotSent'), t('codeNotSent'));
+                    });
+            });
+        }
+    }
+
     getOpacity() {
         if (!isAndroid) {
             return 0.2;
@@ -244,12 +267,14 @@ class Receive extends Component {
                 <View style={styles.container}>
                     <View style={{ flex: 0.55 }} />
                     <View style={[styles.qrContainer, qrOpacity, { borderColor: 'transparent' }]}>
-                        <QRCode
-                            value={JSON.stringify({ address: receiveAddress, message })}
-                            size={width / 2.8}
-                            color="black"
-                            backgroundColor="transparent"
-                        />
+                        <TouchableOpacity onPress={() => this.onQRPress(receiveAddress)}>
+                            <QRCode
+                                value={JSON.stringify({ address: receiveAddress, message })}
+                                size={width / 2.8}
+                                color="black"
+                                backgroundColor="transparent"
+                            />
+                        </TouchableOpacity>
                     </View>
                     <View style={{ flex: 0.25 }} />
                     {receiveAddress.length > 1 ? (
