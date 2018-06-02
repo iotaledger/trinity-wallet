@@ -467,7 +467,7 @@
     "accountManagement": {
         "viewSeed": "Pokaż seed",
         "viewAddresses": "Pokaż adresy",
-        "editAccountName": "Edytuj nazwę konta",
+        "editAccountName": "Zmień nazwę",
         "deleteAccount": "Usuń konto",
         "addNewAccount": "Dodaj nowe konto"
     },
