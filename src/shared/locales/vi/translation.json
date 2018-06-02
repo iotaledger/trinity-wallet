@@ -216,9 +216,9 @@
         "tapConfirm": "Please tap the checkbox below to confirm.",
         "passwordManagerCheckbox": "I will store my seed in a password manager",
         "copy": "CHÉP",
-        "noPasswordManagers": "No supported password managers installed",
-        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "If you wish to store your seed in a password manager, you must follow a tutorial from the following link"
+        "noPasswordManagers": "Không tìm thấy trình quản lý mật khẩu nào phù hợp",
+        "noPasswordManagersExplanation": "Không tìm thấy trình quản lý mật khẩu nào phù hợp trên thiết bị. Vui lòng cài đặt Keepass2Android.",
+        "followTutorialToSecurelyShareSeed": "Nếu bạn muốn lưu trữ chuỗi mật mã của bạn trrong một trình quản lý mật khẩu, vui lòng làm theo các bước trong hướng dẫn sau đây"
     },
     "enterSeed": {
         "invalidCharacters": "Từ khoá chứa ký tự không hợp lệ",
@@ -260,10 +260,10 @@
         "generatedSeed": "Tạo từ khóa",
         "seedNotGenerated": "Từ khoá chưa được tạo ra",
         "seedNotGeneratedExplanation": "Vui lòng tạo từ khoá mới.",
-        "pressForNewSeed": "Press for New Seed",
-        "generateSuccess": "Seed generated successfully",
+        "pressForNewSeed": "Bấm vào đây để tạo chuỗi mật mã mới",
+        "generateSuccess": "Chuỗi mật mã đã được tạo thành công",
         "individualLetters": "Nhấn từng chữ cái để xáo trộn chúng.",
-        "individualLetterCount": "Press {{letterCount}} more individual letters to randomise them.",
+        "individualLetterCount": "Hãy bấm vào {{letterCount}} chữ cái để thay đổi chúng một cách ngẫu nhiên.",
         "whatIsASeed": "Từ khoá là gì?"
     },
     "onboardingComplete": {
@@ -278,8 +278,8 @@
         "iotaLogo": "IOTA logo",
         "printWallet": "In Ví Giấy",
         "print": "IN",
-        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
-        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
+        "paperConvenience": "In chuỗi mật mã của bạn ra giấy là một cách thuận tiện để lưu trữ nó.",
+        "publicInsecure": "Nhưng in bằng mạng Wifi công cộng hoặc bằng máy in công cộng là không an toàn.",
         "tapCheckboxes": "Please tap the checkboxes below to confirm.",
         "wifiCheckbox": "I will not print on public wifi",
         "printerCheckbox": "I will not print on a public printer"
@@ -295,7 +295,7 @@
         "spent": "Đã Gửi"
     },
     "saveYourSeed": {
-        "saveYourSeed": "Back up your seed",
+        "saveYourSeed": "Sao lưu chuỗi mật mã của bạn",
         "seedCleared": "Seed cleared",
         "mostSecure": "Most Secure",
         "leastSecure": "Least Secure",
