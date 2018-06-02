@@ -225,7 +225,7 @@ class AddCustomNode extends Component {
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="done"
-                            keyboardType={isIOS ? "url" : "default"}
+                            keyboardType={isIOS ? 'url' : 'default'}
                             onSubmitEditing={() => this.addNode()}
                             theme={theme}
                             editable={!isCheckingCustomNode}
