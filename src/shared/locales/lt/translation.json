@@ -370,15 +370,15 @@
     "modeSelection": {
         "expert": "Expert",
         "standard": "Standard",
-        "expertModeExplanation": "Expert rėžimas suteikia prieigą prie papildomų funkcijų tokių kaip rankinis iškėlimas ir pakartotinis prijungimas.",
-        "modesExplanation": "Expert rėžimą naudokite tik jeigu esate pakankamai susipažinęs su Tangle. Kitu atveju jums gali kilti daug neaiškumų."
+        "expertModeExplanation": "Eksperto režimas suteikia prieigą prie papildomų funkcijų, tokių kaip rankinis iškėlimas ir pakartotinis prijungimas.",
+        "modesExplanation": "Eksperto režimą naudokite tik jeigu esate pakankamai susipažinęs su Tangle. Kitu atveju jums gali kilti daug neaiškumų."
     },
     "settings": {
         "transferSending": "Pavedimas apdorojamas",
         "transferSendingExplanation": "Palaukite, kol jūsų pavedimas bus išsiųstas.",
         "generatingAddress": "Kuriamas pavedimų priėmimo adresas",
         "generatingAddressExplanation": "Palaukite, kol adresas bus sukurtas.",
-        "mode": "Rėžimas",
+        "mode": "Režimas",
         "theme": "Tema",
         "currency": "Valiuta",
         "cannotChangeNode": "Serverio pakeisti negalima",
