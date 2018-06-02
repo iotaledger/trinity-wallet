@@ -150,8 +150,8 @@
         "mustBeStoredAppropriately": "Musí byť uložené zodpovedajúcim spôsobom.",
         "deviceMayBecomeUnresponsive": "Vaše zariadenie môže na chvíľu prestať reagovať",
         "isYourBalanceCorrect": "Je váš zostatok správny?",
-        "ifYourBalanceIsNotCorrect": "Pokiaľ váš zostatok nie je správny, je pravdepodobné, že používate Seed z doby pred snapshotom.",
-        "headToAdvancedSettingsForTransition": "Choďte do Pokročilého nastavenia a urobte Aktualizáciu údajov po Snapshote.",
+        "ifYourBalanceIsNotCorrect": "Pokiaľ váš zostatok nie je správny, je pravdepodobné, že používate Seed z doby pred Snapshotom.",
+        "headToAdvancedSettingsForTransition": "Choďte do Pokročilých nastavení a urobte Aktualizáciu údajov po Snapshote.",
         "usingTrinityWalletWithKeePass": "Použitie Trinity peňaženky s Keepass2Android"
     },
     "addAdditionalSeed": {
@@ -189,7 +189,7 @@
         "passwordTooWeakReason": "Vaše heslo je príliš slabé. Použite kombináciu slov a vyhnite sa bežným frázam, menám alebo dátumom",
         "reasonRow": "Postupné rady znakov sa dajú ľahko uhádnuť",
         "reasonPattern": "Krátke vzory znakov sa dajú ľahko uhádnuť",
-        "reasonNames": "Bežné mená a priezviská sú ľahko uhádnuť",
+        "reasonNames": "Bežné mená a priezviská sa dajú ľahko uhádnuť",
         "reasonRepeats": "Opakujúce sa znaky ako 'aaa' sa dajú ľahko uhádnuť",
         "reasonRepeats2": "Uhádnuť opakujúce sa znaky ako 'abcabcabc' je len o trochu ťažšie, ako 'abc'",
         "reasonSequence": "Sekvencie ako 'abc' alebo '54321' sa dajú ľahko uhádnuť",
