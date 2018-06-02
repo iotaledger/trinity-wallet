@@ -441,7 +441,7 @@
         "seedExplanation": "Từ khoá của IOTA giống như là tên tài khoản và mật khẩu hợp lại với một dãy chữ có 81 ký tự.",
         "noIHaveOne": "Không, tôi đã có rồi",
         "yesINeedASeed": "Có, tôi cần từ khoá",
-        "explanation": "<0><0>Bạn có thể xài nó để truy cập vào tài khoản từ</0><1> bất kỳ ví điện tử nào</1><2>trên</2><3>bất kỳ máy nào</3><4>. Nhưng nếu bạn mất từ khoá, bạn sẽ mất hết IOTA của bạn.</4></0>",
+        "explanation": "<0><0>Bạn có thể xài nó để truy cập vào tài khoản từ</0><1> bất kỳ ví điện tử nào</1><2> trên </2><3>bất kỳ máy nào</3><4>. Nhưng nếu bạn mất từ khoá, bạn sẽ mất hết IOTA của bạn.</4></0>",
         "keepSafe": "Vui lòng giữ từ khoá ở một nơi an toàn.",
         "hint": "<0><0>Gợi ý:</0> Chọn KHÔNG nếu đây là lần đầu tiên bạn xài IOTA.</0>"
     },
