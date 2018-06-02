@@ -597,7 +597,7 @@
         "twoFADisabledExplanation": "Pomyślnie wyłączono funkcję autoryzacji dwustopniowej.",
         "enterCode": "Wpisz kod z aplikacji autoryzacji dwustopniowej",
         "code": "Kod",
-        "twoFaToken": "Token 2FA"
+        "twoFaToken": "Kod 2FA"
     },
     "chart": {
         "mcap": "Market",
