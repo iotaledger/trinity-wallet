@@ -1,0 +1,196 @@
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.button {
+    position: relative;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    cursor: pointer;
+    display: inline-block;
+    height: 50px;
+    line-height: 46px;
+    letter-spacing: 0.2px;
+    min-width: 200px;
+    text-align: center;
+    padding: 0 24px 0;
+    user-select: none;
+    overflow: visible;
+    font-weight: 400;
+    font-size: 16px;
+    transition: padding 0.2s cubic-bezier(0.55, 0, 0.1, 1);
+    &:focus {
+        outline: none;
+    }
+    &.small,
+    &.outlineSmall {
+        padding: 0 16px;
+        height: 42px;
+        line-height: 42px;
+        min-width: 30px;
+        border-radius: 2px;
+        font-size: 13px;
+    }
+    &.large,
+    &.inline {
+        padding: 0 32px;
+        line-height: 44px;
+        height: 46px;
+        font-size: 16px;
+        text-transform: capitalize;
+    }
+    &:disabled,
+    &.disabled {
+        opacity: 0.3;
+        pointer-events: none;
+    }
+    &.square {
+        border-radius: 0px;
+        font-size: 18px;
+        height: 70px;
+        line-height: 70px;
+    }
+    &:before {
+        content: '';
+        box-sizing: border-box;
+        position: absolute;
+        top: 50%;
+        left: 18px;
+        width: 16px;
+        height: 16px;
+        margin: -8px 0 0 -8px;
+        border-radius: 50%;
+        border: 1px solid transparent;
+        border-top-color: var(--color-Border);
+        opacity: 0;
+    }
+}
+
+.primary {
+    composes: button;
+    color: var(--primary-body);
+    background: var(--primary);
+    &:hover {
+        background: var(--primary-hover);
+    }
+}
+
+.secondary {
+    composes: button;
+    color: var(--secondary-body);
+    background: var(--secondary);
+    &:hover {
+        background: var(--secondary-hover);
+    }
+}
+
+.positive {
+    composes: button;
+    color: var(--positive-body);
+    background: var(--positive);
+    &:hover {
+        background: var(--positive-hover);
+    }
+}
+
+.negative {
+    composes: button;
+    color: var(--negative-body);
+    background: var(--negative);
+    &:hover {
+        background: var(--negative-hover);
+    }
+}
+
+.extra {
+    composes: button;
+    color: var(--extra-body);
+    background: var(--extra);
+    &:hover {
+        background: var(--extra-hover);
+        border-color: var(--extra-hover);
+    }
+}
+
+.dark {
+    composes: button;
+    color: var(--dark-body);
+    background: var(--dark);
+    &:hover {
+        background: var(--dark-hover);
+    }
+}
+
+.outline,
+.outlineSmall {
+    background: var(--body-bg);
+    border: 1px solid;
+    &:hover {
+        background: var(--body-bg);
+    }
+
+    &.primary {
+        color: var(--primary);
+        &:hover {
+            color: var(--primary-hover);
+        }
+    }
+
+    &.secondary {
+        border-color: var(--secondary);
+        color: var(--secondary);
+        &:hover {
+            border-color: var(--secondary-hover);
+        }
+    }
+    &.positive {
+        color: var(--positive);
+        &:hover {
+            color: var(--positive-hover);
+        }
+    }
+    &.negative {
+        color: var(--negative);
+        &:hover {
+            color: var(--negative-hover);
+        }
+    }
+    &.extra {
+        color: var(--extra);
+        &:hover {
+            color: var(--extra-hover);
+        }
+    }
+}
+
+.icon {
+    border: none;
+    background: none;
+    color: var(--body);
+    font-weight: 300;
+    cursor: pointer;
+    height: auto;
+    padding: 0px;
+    > span {
+        display: block;
+        cursor: pointer;
+    }
+    &:hover {
+        background: none;
+        > span {
+            color: var(--primary);
+        }
+    }
+}
+
+.loading {
+    pointer-events: none;
+    padding: 0 12px 0 36px;
+    &:before {
+        transition: all 0.8s cubic-bezier(0.55, 0, 0.1, 1);
+        opacity: 1;
+        animation: spin 0.6s ease infinite;
+    }
+}

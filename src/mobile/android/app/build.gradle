@@ -88,9 +88,9 @@ android {
     compileSdkVersion 27
     buildToolsVersion '27.0.3'
     defaultConfig {
-        applicationId "com.iota.wallet"
-        versionCode 35
-        versionName "3.5.1"
+        applicationId "com.iota.trinity"
+        versionCode 9
+        versionName "0.2.1"
         minSdkVersion 21
         targetSdkVersion 26
         multiDexEnabled true
@@ -138,6 +138,7 @@ android {
     }
 }
 dependencies {
+    compile project(':react-native-modal-translucent')
     implementation project(':react-native-detect-navbar-android')
     implementation project(':react-native-fingerprint-scanner')
     implementation project(':react-native-fabric')

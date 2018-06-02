@@ -11,6 +11,7 @@ import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 import InfoBox from '../components/InfoBox';
 import Toggle from '../components/Toggle';
+import GENERAL from '../theme/general';
 
 const styles = StyleSheet.create({
     container: {
@@ -27,13 +28,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 9,
+        flex: 11,
         justifyContent: 'space-around',
         alignItems: 'center',
     },
     infoText: {
         fontFamily: Fonts.secondary,
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
         paddingTop: height / 60,
         backgroundColor: 'transparent',
         textAlign: 'left',
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
     },
     titleTextLeft: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
@@ -54,7 +55,7 @@ const styles = StyleSheet.create({
     },
     toggleText: {
         fontFamily: Fonts.secondary,
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize4,
         backgroundColor: 'transparent',
         textAlign: 'center',
     },

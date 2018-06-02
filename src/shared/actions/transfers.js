@@ -15,6 +15,7 @@ import {
     getTransactionsToApproveAsync,
     attachToTangleAsync,
     storeAndBroadcastAsync,
+    isNodeSynced,
 } from '../libs/iota/extendedApi';
 import {
     selectedAccountStateFactory,
@@ -44,7 +45,12 @@ import {
     getUnspentInputs,
     getSpentAddressesFromTransactions,
 } from '../libs/iota/inputs';
-import { generateAlert, generateTransferErrorAlert, generatePromotionErrorAlert } from './alerts';
+import {
+    generateAlert,
+    generateTransferErrorAlert,
+    generatePromotionErrorAlert,
+    generateNodeOutOfSyncErrorAlert,
+} from './alerts';
 import i18next from '../i18next.js';
 import Errors from '../libs/errors';
 
@@ -180,9 +186,26 @@ export const broadcastBundle = (bundleHash, accountName) => (dispatch, getState)
         });
 };
 
-export const promoteTransaction = (bundleHash, accountName) => (dispatch, getState) => {
+/**
+ *  Promote transaction
+ *
+ *   @method promoteTransaction
+ *   @param {string} bundleHash
+ *   @param {string} accountName
+ *   @param {function} powFn
+ *
+ *   @returns {function} dispatch
+ **/
+export const promoteTransaction = (bundleHash, accountName, powFn) => (dispatch, getState) => {
     dispatch(promoteTransactionRequest(bundleHash));
 
+    dispatch(
+        generateAlert(
+            'info',
+            i18next.t('global:promotingTransaction'),
+            i18next.t('global:deviceMayBecomeUnresponsive'),
+        ),
+    );
     let accountState = null;
     let chainBrokenInternally = false;
 
@@ -211,16 +234,19 @@ export const promoteTransaction = (bundleHash, accountName) => (dispatch, getSta
 
             return getFirstConsistentTail(tailTransactions, 0);
         })
-        .then((consistentTail) =>
-            dispatch(
+        .then((consistentTail) => {
+            const shouldOffloadPow = getRemotePoWFromState(getState());
+
+            return dispatch(
                 forceTransactionPromotion(
                     accountName,
                     consistentTail,
                     accountState.transfers[bundleHash].tailTransactions,
                     true,
+                    shouldOffloadPow ? null : powFn,
                 ),
-            ),
-        )
+            );
+        })
         .then((hash) => {
             dispatch(
                 generateAlert(
@@ -272,10 +298,11 @@ export const promoteTransaction = (bundleHash, accountName) => (dispatch, getSta
  *   @param {boolean} consistentTail
  *   @param {array} tails
  *   @param {boolean} shouldGenerateAlert
+ *   @param {function | null} powFn
  *
- *   @returns {Promise}
+ *   @returns {function} dispatch
  **/
-export const forceTransactionPromotion = (accountName, consistentTail, tails, shouldGenerateAlert) => (
+export const forceTransactionPromotion = (accountName, consistentTail, tails, shouldGenerateAlert, powFn = null) => (
     dispatch,
     getState,
 ) => {
@@ -284,7 +311,7 @@ export const forceTransactionPromotion = (accountName, consistentTail, tails, sh
         const topTx = head(tails);
         const hash = topTx.hash;
 
-        return replayBundleAsync(hash).then((reattachment) => {
+        return replayBundleAsync(hash, powFn).then((reattachment) => {
             if (shouldGenerateAlert) {
                 dispatch(
                     generateAlert(
@@ -305,11 +332,11 @@ export const forceTransactionPromotion = (accountName, consistentTail, tails, sh
 
             const tailTransaction = find(reattachment, { currentIndex: 0 });
 
-            return promoteTransactionAsync(tailTransaction.hash);
+            return promoteTransactionAsync(tailTransaction.hash, powFn);
         });
     }
 
-    return promoteTransactionAsync(consistentTail.hash);
+    return promoteTransactionAsync(consistentTail.hash, powFn);
 };
 
 export const makeTransaction = (seed, receiveAddress, value, message, accountName, powFn, genFn) => (
@@ -332,13 +359,23 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
     // Have them wrapped in a separate private function so in case it is a value transfer,
     // it can be chained together with the rest of the promise chain.
     const withPreTransactionSecurityChecks = () => {
-        // Validating receive address
+        // Checking node's health
         dispatch(setNextStepAsActive());
 
-        // Make sure that the address a user is about to send to is not already used.
-        // err -> Since shouldAllowSendingToAddress consumes wereAddressesSpentFrom endpoint
-        // Omit input preparation in case the address is already spent from.
-        return shouldAllowSendingToAddress([address])
+        return isNodeSynced()
+            .then((isSynced) => {
+                if (isSynced) {
+                    // Validating receive address
+                    dispatch(setNextStepAsActive());
+
+                    // Make sure that the address a user is about to send to is not already used.
+                    // err -> Since shouldAllowSendingToAddress consumes wereAddressesSpentFrom endpoint
+                    // Omit input preparation in case the address is already spent from.
+                    return shouldAllowSendingToAddress([address]);
+                }
+
+                throw new Error(Errors.NODE_NOT_SYNCED);
+            })
             .then((shouldAllowSending) => {
                 if (shouldAllowSending) {
                     // Syncing account
@@ -377,10 +414,10 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 );
             })
             .then((inputs) => {
-                // allBalance -> total balance associated with addresses.
+                // totalBalance -> total balance associated with addresses.
                 // Contains balance from addresses regardless of the fact they are spent from.
                 // Less than the value user is about to send to -> Not enough balance.
-                if (get(inputs, 'allBalance') < value) {
+                if (get(inputs, 'totalBalance') < value) {
                     chainBrokenInternally = true;
                     throw new Error(Errors.NOT_ENOUGH_BALANCE);
 
@@ -388,15 +425,20 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                     // Contains balance from those addresses only that are not spent from.
                     // Less than value user is about to send to -> Has already spent from addresses and the txs aren't confirmed.
                     // TODO: At this point, we could leverage the change addresses and allow user making a transfer on top from those.
-                } else if (get(inputs, 'totalBalance') < value) {
+                } else if (get(inputs, 'availableBalance') < value) {
                     chainBrokenInternally = true;
                     const addresses = accountState.addresses;
                     const transfers = accountState.transfers;
                     const pendingOutgoingTransfers = getPendingOutgoingTransfersForAddresses(addresses, transfers);
+
                     if (size(pendingOutgoingTransfers)) {
                         throw new Error(Errors.ADDRESS_HAS_PENDING_TRANSFERS);
-                    } else {
+                    }
+
+                    if (size(get(inputs, 'inputs'))) {
                         throw new Error(Errors.FUNDS_AT_SPENT_ADDRESSES);
+                    } else {
+                        throw new Error(Errors.INCOMING_TRANSFERS);
                     }
                 }
 
@@ -414,6 +456,10 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 transferInputs = get(inputs, 'inputs');
 
                 return getAddressesUptoRemainder(accountState.addresses, seed, genFn, [
+                    // Make sure inputs are blacklisted
+                    ...map(transferInputs, (input) => input.address),
+                    // When sending to one of own addresses
+                    // Make sure receive address is also blacklisted
                     iota.utils.noChecksum(receiveAddress),
                 ]);
             })
@@ -525,7 +571,9 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
 
                 const message = error.message;
 
-                if (message === Errors.KEY_REUSE && chainBrokenInternally) {
+                if (message === Errors.NODE_NOT_SYNCED) {
+                    return dispatch(generateNodeOutOfSyncErrorAlert());
+                } else if (message === Errors.KEY_REUSE && chainBrokenInternally) {
                     return dispatch(
                         generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError')),
                     );
@@ -553,6 +601,15 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                             'error',
                             i18next.t('global:spentAddressExplanation'),
                             i18next.t('global:discordInformation'),
+                            20000,
+                        ),
+                    );
+                } else if (message === Errors.INCOMING_TRANSFERS && chainBrokenInternally) {
+                    return dispatch(
+                        generateAlert(
+                            'error',
+                            i18next.t('global:pleaseWait'),
+                            i18next.t('global:pleaseWaitIncomingTransferExplanation'),
                             20000,
                         ),
                     );

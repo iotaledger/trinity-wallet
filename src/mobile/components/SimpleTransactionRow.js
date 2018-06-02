@@ -3,20 +3,33 @@ import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
 import { formatTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/date';
 import { width, height } from '../utils/dimensions';
-import { Icon } from '../theme/icons.js';
+import GENERAL from '../theme/general';
+import { Icon } from '../theme/icons';
 
 const styles = StyleSheet.create({
     container: {
-        width,
         flexDirection: 'row',
         height: height / 40,
         alignItems: 'center',
-        paddingHorizontal: width / 10,
+        width: width / 1.15,
     },
     text: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 32,
+        fontSize: GENERAL.fontSize2,
+    },
+    icon: {
+        fontSize: GENERAL.fontSize3,
+        fontFamily: 'SourceSansPro-Regular',
+        backgroundColor: 'transparent',
+    },
+    iconContainer: {
+        borderRadius: width / 30,
+        borderWidth: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: width / 24,
+        height: width / 24,
     },
 });
 
@@ -30,31 +43,44 @@ export default class SimpleTransactionRow extends PureComponent {
         value: PropTypes.number.isRequired,
         /** Transaction value unit */
         unit: PropTypes.string.isRequired,
-        /** Determines whether a transaction is incoming or outgoing */
-        incoming: PropTypes.bool.isRequired,
         /** TransactionRow styles */
         style: PropTypes.shape({
             titleColor: PropTypes.string.isRequired,
-            defaultTextColor: PropTypes.shape({ color: PropTypes.string.isRequired }).isRequired,
+            defaultTextColor: PropTypes.string.isRequired,
         }).isRequired,
+        /** Sign for value */
         sign: PropTypes.string.isRequired,
+        /** Icon symbol */
+        icon: PropTypes.string.isRequired,
     };
 
     render() {
-        const { time, confirmationStatus, value, unit, sign, incoming, style } = this.props;
-
+        const { time, confirmationStatus, value, unit, sign, style, icon } = this.props;
         return (
             <View style={styles.container}>
-                <View style={{ flex: 0.8, alignItems: 'flex-start' }}>
-                    <Icon name={incoming ? 'receive' : 'send'} size={width / 30} color={style.iconColor} />
+                <View style={{ flex: 0.6, alignItems: 'flex-start' }}>
+                    <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                        <Icon
+                            name={icon}
+                            size={width / 18}
+                            color={style.titleColor}
+                            iconStyle={{ position: 'absolute' }}
+                        />
+                        <View
+                            style={[
+                                styles.iconContainer,
+                                { borderColor: style.defaultTextColor, position: 'absolute' },
+                            ]}
+                        />
+                    </View>
                 </View>
-                <View style={{ flex: 3, alignItems: 'flex-start' }}>
-                    <Text style={[styles.text, style.defaultTextColor, { padding: 5 }]}>
+                <View style={{ flex: 3.2, alignItems: 'flex-start' }}>
+                    <Text style={[styles.text, { color: style.defaultTextColor }, { padding: 5 }]}>
                         {formatTime(convertUnixTimeToJSDate(time))}
                     </Text>
                 </View>
                 <View style={{ flex: 2, alignItems: 'flex-start' }}>
-                    <Text style={[styles.text, style.defaultTextColor]}>{confirmationStatus}</Text>
+                    <Text style={[styles.text, { color: style.defaultTextColor }]}>{confirmationStatus}</Text>
                 </View>
                 <View style={{ flex: 2, alignItems: 'flex-end' }}>
                     <Text style={[styles.text, { color: style.titleColor }]}>

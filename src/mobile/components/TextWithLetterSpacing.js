@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
 
 const TextWithLetterSpacing = (props) => {
     const { children, spacing, viewStyle, textStyle } = props;
-    const letters = children.split('');
+    const letters = children.toString().split('');
 
     return (
         <View style={[styles.container, viewStyle]}>

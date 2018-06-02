@@ -7,9 +7,10 @@ import { translate } from 'react-i18next';
 import withChartData from 'iota-wallet-shared-modules/containers/components/Chart';
 import { width, height } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
+import GENERAL from '../theme/general';
 
 const chartWidth = width;
-const chartHeight = height * 0.38;
+const chartHeight = height * 0.36;
 
 const styles = StyleSheet.create({
     buttonContainer: {
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: width / 25,
         paddingHorizontal: width / 35,
-        paddingVertical: height / 110,
+        paddingVertical: height / 100,
     },
     container: {
         flex: 1,
@@ -42,15 +43,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     chartContainer: {
-        flex: 5,
+        flex: 4.7,
         width: width / 1.15,
         justifyContent: 'center',
         alignItems: 'center',
         zIndex: 0,
-        paddingLeft: width / 8.5,
+        paddingLeft: width / 8.95,
     },
     emptyChartContainer: {
-        flex: 5,
+        flex: 4.7,
         width: width / 1.15,
         justifyContent: 'center',
         alignItems: 'center',
@@ -58,32 +59,35 @@ const styles = StyleSheet.create({
     },
     emptyChartText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
     },
     marketDataContainer: {
-        flex: 1,
+        flex: 1.3,
         flexDirection: 'row',
         backgroundColor: 'transparent',
         justifyContent: 'space-between',
         alignItems: 'flex-start',
+        width: width / 1.15,
     },
     buttonText: {
-        fontWeight: 'normal',
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 35,
+        fontFamily: 'SourceSansPro-Bold',
+        fontSize: GENERAL.fontSize1,
     },
     iotaPrice: {
         fontWeight: 'normal',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 24,
+        fontSize: GENERAL.fontSize4,
     },
     marketFigure: {
         fontWeight: 'normal',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 37.6,
+        fontSize: GENERAL.fontSize2,
+        marginTop: height / 200,
     },
     marketFigureTitle: {
-        fontWeight: 'bold',
+        fontSize: GENERAL.fontSize2,
+        fontFamily: 'SourceSansPro-Bold',
+        opacity: 0.6,
     },
 });
 
@@ -156,7 +160,7 @@ class Chart extends PureComponent {
         const mcapFormatted = priceData.mcap.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
         const textColor = { color: theme.body.color };
-        const borderColor = { borderColor: theme.body.color };
+        const borderColor = { borderColor: theme.secondary.color };
         return (
             <View style={styles.container}>
                 <View style={{ flex: 0.65 }} />
@@ -184,7 +188,7 @@ class Chart extends PureComponent {
                 </View>
                 {chartData.data.length === 0 || chartData.data === undefined ? (
                     <View style={styles.emptyChartContainer}>
-                        <Text style={[styles.emptyChartText, textColor]}>Error fetching chart data</Text>
+                        <Text style={[styles.emptyChartText, textColor]}>{t('chart:error')}</Text>
                     </View>
                 ) : (
                     <View style={styles.chartContainer}>
@@ -203,6 +207,7 @@ class Chart extends PureComponent {
                                         strokeWidth: 1.2,
                                     },
                                 }}
+                                interpolation="basis"
                                 scale={{ x: 'time', y: 'linear' }}
                                 animate={{
                                     duration: 450,
@@ -215,12 +220,12 @@ class Chart extends PureComponent {
                                     axis: { stroke: 'transparent' },
                                     tickLabels: {
                                         fill: theme.body.color,
-                                        fontSize: width / 44,
+                                        fontSize: GENERAL.fontSize0,
                                         fontFamily: 'SourceSansPro-Regular',
                                     },
                                 }}
                                 gridComponent={
-                                    <Line type="grid" style={{ stroke: theme.body.color, strokeWidth: 0.1 }} />
+                                    <Line type="grid" style={{ stroke: theme.body.color, strokeWidth: 0.05 }} />
                                 }
                                 tickLabelComponent={<VictoryLabel x={width / 100} textAnchor="start" />}
                                 tickValues={chartData.yAxis.ticks}
@@ -229,15 +234,22 @@ class Chart extends PureComponent {
                     </View>
                 )}
                 <View style={styles.marketDataContainer}>
-                    <Text style={[styles.marketFigure, textColor]}>
-                        <Text style={[styles.marketFigureTitle, textColor]}>{t('chart:mcap')}</Text> {priceData.globalSymbol} {mcapFormatted}
-                    </Text>
-                    <Text style={[styles.marketFigure, textColor]}>
-                        <Text style={styles.marketFigureTitle}>{t('chart:change')}</Text> {priceData.change24h}%
-                    </Text>
-                    <Text style={[styles.marketFigure, textColor]}>
-                        <Text style={styles.marketFigureTitle}>{t('chart:volume')}</Text> {priceData.globalSymbol} {volumeFormatted}
-                    </Text>
+                    <View style={{ alignItems: 'flex-start' }}>
+                        <Text style={[styles.marketFigureTitle, textColor]}>{t('chart:mcap')}</Text>
+                        <Text style={[styles.marketFigure, textColor]}>
+                            {priceData.globalSymbol} {mcapFormatted}
+                        </Text>
+                    </View>
+                    <View style={{ alignItems: 'center' }}>
+                        <Text style={[styles.marketFigureTitle, textColor]}>{t('chart:change')}</Text>
+                        <Text style={[styles.marketFigure, textColor]}>{priceData.change24h}%</Text>
+                    </View>
+                    <View style={{ alignItems: 'flex-end' }}>
+                        <Text style={[styles.marketFigureTitle, textColor]}>{t('chart:volume')}</Text>
+                        <Text style={[styles.marketFigure, textColor]}>
+                            {priceData.globalSymbol} {volumeFormatted}
+                        </Text>
+                    </View>
                 </View>
                 <View style={{ flex: 0.38 }} />
             </View>

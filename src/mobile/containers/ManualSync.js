@@ -14,6 +14,7 @@ import { getMultiAddressGenFn } from '../utils/nativeModules';
 import { Icon } from '../theme/icons';
 import CtaButton from '../components/CtaButton';
 import InfoBox from '../components/InfoBox';
+import GENERAL from '../theme/general';
 
 const styles = StyleSheet.create({
     container: {
@@ -30,7 +31,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 9,
+        flex: 11,
         justifyContent: 'center',
     },
     innerContainer: {
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
     },
     titleText: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 23,
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
     },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 27.6,
+        fontSize: GENERAL.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
     },

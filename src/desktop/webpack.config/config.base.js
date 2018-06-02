@@ -26,7 +26,7 @@ module.exports = {
                 ],
             },
             {
-                test: /\.css$/,
+                test: /\.scss$/,
                 exclude: /node_modules/,
                 use: [
                     devMode
@@ -47,7 +47,12 @@ module.exports = {
                             sourceMap: true,
                         },
                     },
-                    'postcss-loader',
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            includePaths: ['./src/'],
+                        },
+                    },
                 ],
             },
             {
@@ -59,6 +64,7 @@ module.exports = {
                         options: {
                             limit: 8192,
                             name: 'images/[hash:8].[ext]',
+                            publicPath: '../',
                         },
                     },
                 ],
@@ -66,7 +72,7 @@ module.exports = {
             {
                 test: /\.workers?\.js$/,
                 exclude: /node_modules/,
-                use: [{ loader: 'worker-loader', options: { publicPath: '/' } }, { loader: 'babel-loader' }],
+                use: [{ loader: 'worker-loader', options: { publicPath: '../' } }, { loader: 'babel-loader' }],
             },
             { test: /\.node$/, loader: 'node-loader' },
         ],

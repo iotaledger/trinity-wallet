@@ -4,7 +4,7 @@
         "cancel": "İPTAL",
         "continue?": "Devam etmek istediğine emin misin?",
         "noTransactions": "GÖNDERİ GEÇMİŞİ YOK",
-        "refresh": "YENİLE",
+        "refresh": "Yenile",
         "balanceError": "Yetersiz bakiye",
         "balanceErrorMessage": "Bu aktarımı tamamlamak için yeterli Iota'nız yok.",
         "transferError": "Aktarım hatası",
@@ -16,25 +16,37 @@
         "keyReuse": "Alım adresine gönderiliyor",
         "keyReuseError": "Daha önce alım yapılmış bir adrese gönderim yapamazsınız.",
         "invalidResponse": "Ağ hatası",
-        "invalidResponseExplanation": "Ağ bir hata verdi. Daha fazla bilgi için bildirimlere bakın.",
-        "invalidResponsePollingExplanation": "Ağ yoklama sırasında bir hata verdi. Daha fazla bilgi için bildirimlere bakın.",
-        "invalidResponseFetchingAccount": "Ağ hesap bilgilerinizi alırken bir hata verdi. Ağınızı değiştirin veya daha fazla bilgi için bildirimlere bakın.",
-        "invalidResponseSendingTransfer": "Ağ transferi gönderirken bir hata ile karşılaştı. Daha fazla bilgi için bildirimlere bakın.",
+        "invalidResponseExplanation": "The node returned an error. Try changing node.",
+        "invalidResponsePollingExplanation": "The node returned an error while polling. Try changing node.",
+        "invalidResponseFetchingAccount": "The node returned an error while fetching your account information. Try changing node.",
+        "invalidResponseSendingTransfer": "The node returned an error while sending the transfer. Try changing node.",
+        "nodeOutOfSync": "Ağ senkronize değil",
+        "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
+        "thisNodeOutOfSync": "This node is out of sync. Please change node or try again.",
         "seed": "Oluşum",
+        "checksum": "Sağlama",
         "back": "Geri",
+        "goBack": "Geri git",
+        "goBackStep": "Bir adım geri git",
         "backLowercase": "Geri",
         "done": "Tamamlandı",
         "doneLowercase": "Tamam",
+        "prev": "PREV",
         "next": "SONRAKİ",
+        "nextLowerCase": "Next",
         "apply": "Uygula",
         "save": "Kaydet",
-        "close": "KAPAT",
+        "close": "Close",
         "continue": "Devam Et",
         "enable": "Etkinleştir",
         "disable": "Devre Dışı Bırak",
-        "manualCopy": "Cüzdan şifreni yaz",
-        "paperWallet": "Kağıdın bir kopyasını al",
-        "copyToClipboard": "Şifre yöneticisine ekle",
+        "enabled": "Enabled",
+        "disabled": "Disabled",
+        "manualCopy": "Write seed down",
+        "paperWallet": "Print paper copy",
+        "addToPasswordManager": "Add to password manager",
+        "shareSeed": "Share seed",
+        "proceed": "Proceed",
         "qr": "QR",
         "notAvailable": "Bu işlev kullanılabilir değil",
         "notAvailableExplanation": "Daha sonraki bir aşamada eklenecektir.",
@@ -48,7 +60,10 @@
         "otherWallet": "DİĞER HESAP",
         "yes": "EVET",
         "no": "HAYIR",
+        "yesLowerCase": "Yes",
+        "noLowerCase": "No",
         "okay": "TAMAM",
+        "okayLowercase": "Okay",
         "password": "Şifre",
         "passwordOrFingerprint": "Parola veya parmak izi",
         "unrecognisedPassword": "Tanınmayan şifre",
@@ -80,6 +95,7 @@
         "pressBackAgain": "Uygulamayı kapatmak için geri tuşuna bir daha bas",
         "reattached": "Geçiş başarıyla tekrar eklendi",
         "reattachedExplanation": "İşlem doğrulama bilgisi {{hash}} ile yeniden eklendi",
+        "promotingTransaction": "Promoting transaction",
         "autopromoting": "Otomatik teşvik transferi",
         "autopromotingExplanation": "Doğrulama verisi {{hash}} işlemi gönderiliyor",
         "rebroadcasted": "İşlem başarıyla yayınlandı",
@@ -89,7 +105,7 @@
         "promoted": "İşlem başarıyla teşvik edildi",
         "promotedExplanation": "İşlem doğrulama bilgisi {{hash}} ile teşvik edildi",
         "autopromotionError": "Could not auto-promote transaction",
-        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node.",
+        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
         "promotionError": "İşlem teşvik edilemedi",
         "promotionErrorExplanation": "İşleminiz gönderilirken bir hata ile karşılaşıldı. Lütfen tekrar deneyin.",
         "noLongerValid": "Göndermeye çalıştığınız paket artık geçerli değil",
@@ -101,14 +117,15 @@
         "pleaseWaitEllipses": "Lütfen bekleyin...",
         "pleaseWaitExplanation": "Trinity başka bir fonksiyonu gerçekleştiriyor. Lütfen bekleyin ve tekrar deneyin.",
         "pleaseWaitTransferExplanation": "Kullanılabilir bakiyenizi diğer transferler kullanıyor. Lütfen yeniden denemeden önce birinin onaylanmasını bekleyin.",
+        "pleaseWaitIncomingTransferExplanation": "You have incoming transfers. Please wait for them to confirm before trying again.",
         "snapshotTransitionInProgress": "Anlık görüntü geçiş aşamasında",
         "snapshotTransitionInProgressExplanation": "Lütfen geçiş tamamlanana kadar bekleyin.",
         "checkForUpdates": "Güncellemeleri Denetle",
         "account": "Hesap",
         "enterPasswordToAccessSettings": "Hesap ayarlarına erişmek için parolanızı girin",
         "enterYourPassword": "Şifrenizi girin",
-        "changeNode": "Ağ değiştir",
-        "addCustomNode": "Özel ağ ekle",
+        "changeNode": "Change Node",
+        "addCustomNode": "Add Custom Node",
         "nodeChanged": "Ağ değişti",
         "nodeChangedExplanation": "Ağ başarılı bir şekilde değiştirildi.",
         "nodeMustUseHTTPS": "Geçersiz ağ (Güvenli ağ değil)",
@@ -124,7 +141,18 @@
         "couldNotVerifyDeviceIntegrity": "Cihaz bütünlüğü Google Play Servisleri mevcut olmadığı için doğrulanamıyor.",
         "clear": "TEMİZLE",
         "noNetworkConnection": "Ağ bağlantısı yok",
-        "noNetworkConnectionExplanation": "İnternet bağlantınız çevrimdışı görünüyor."
+        "noNetworkConnectionExplanation": "İnternet bağlantınız çevrimdışı görünüyor.",
+        "spentAddressExplanation": "WARNING: Funds on spent addresses",
+        "discordInformation": "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do.",
+        "androidInsecureClipboardWarning": "Android does not provide a secure clipboard.",
+        "androidCopyPasteWarning": "Never copy/paste your seed on an Android device.",
+        "willNotCopyPasteSeed": "I will not copy/paste my seed",
+        "mustBeStoredAppropriately": "It must be stored appropriately.",
+        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while",
+        "isYourBalanceCorrect": "Is your balance correct?",
+        "ifYourBalanceIsNotCorrect": "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
+        "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition.",
+        "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Geçersiz karakterler içeriyor",
@@ -156,7 +184,22 @@
         "ensureStrongPassword": "En az 12 karakter uzunluğunda güçlü bir parola kullandığınızdan emin olun.",
         "currentPassword": "Geçerli Şifre",
         "newPassword": "Yeni Şifre",
-        "confirmPassword": "Yeni Şifreyi Onayla"
+        "confirmPassword": "Yeni Şifreyi Onayla",
+        "passwordTooWeak": "Password too weak",
+        "passwordTooWeakReason": "Your password is too weak. Use a combination of words, and avoid common phrases, names or dates",
+        "reasonRow": "Straight rows of keys are easy to guess",
+        "reasonPattern": "Short patterns of keys are easy to guess",
+        "reasonNames": "Common names and surnames are easy to guess",
+        "reasonRepeats": "Repeats like 'aaa' are easy to guess",
+        "reasonRepeats2": "Repeats like 'abcabcabc' are only slightly harder to guess than 'abc'",
+        "reasonSequence": "Sequences like abc or 54321 are easy to guess",
+        "reasonYears": "Recent years are easy to guess",
+        "reasonDates": "Dates are often easy to guess",
+        "reasonTop10": "This is a top 10 common password",
+        "reasonTop100": "This is a top 100 common password",
+        "reasonCommon": "This is a very common password",
+        "reasonSimilar": "This is similar to a commonly-used password",
+        "reasonWord": "A single word is easy to guess"
     },
     "copyToClipboard": {
         "seedCleared": "Tohum temizlendi",
@@ -164,8 +207,9 @@
         "seedCopied": "Cüzdan şifresi panoya kopyalandı",
         "seedCopiedExplanation": "\"Bitti\" ya da 60 saniye geçtiğinizde cüzdan şifresi temizlenecektir.",
         "clickToCopy": "Aşağıdaki düğmeyi tıklayın ve cüzdan şifrenizi bir şifre yöneticisine kopyalayın.",
+        "clickToSecurelyShare": "Click the button below to securely share your seed to a password manager.",
         "doNotStore": "Cüzdan şifresini düz metin halinde saklamayın.",
-        "copyToClipboard": "Tohumu kopyala",
+        "copyToClipboard": "Copy Seed",
         "shareSeed": "Oluşumunuzu güvenli bir şifre yöneticisine paylaşın",
         "storeEncrypted": "Oluşumunuzu şifrelenmiş bir şifre yöneticisinde saklayınız.",
         "doNotOpen": "Bu süreçte başka bir uygulama açmayınız.",
@@ -173,7 +217,8 @@
         "passwordManagerCheckbox": "Oluşumumu bir şifre yöneticisinde saklayacağım",
         "copy": "KOPYALA",
         "noPasswordManagers": "No supported password managers installed",
-        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android."
+        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android.",
+        "followTutorialToSecurelyShareSeed": "If you wish to store your seed in a password manager, you must follow a tutorial from the following link"
     },
     "enterSeed": {
         "invalidCharacters": "Cüzdan şifresi geçersiz karakterler içerir",
@@ -191,16 +236,17 @@
         "settings": "AYARLAR"
     },
     "languageSetup": {
-        "language": "Dil"
+        "language": "Dil",
+        "letsGetStarted": "Let's get started"
     },
     "login": {
         "emptyPassword": "Şifre boş",
         "emptyPasswordExplanation": "Giriş yapmak için bir şifre girmelisin. Lütfen tekrar dene.",
         "enterPassword": "Lütfen şifrenizi girin.",
         "useSeed": "CÜZDAN ŞİFRESİNİ KULLAN",
-        "login": "GİRİŞ YAP",
+        "login": "Log In",
         "selectDifferentNode": "Farklı düğüm seçmek istiyor musunuz?",
-        "setNode": "Node'u kur",
+        "setNode": "Set Node",
         "cannotConnect": "IOTA node'una bağlanılamıyor."
     },
     "loading": {
@@ -211,14 +257,18 @@
         "takingAWhile": "This seems to be taking a while"
     },
     "newSeedSetup": {
+        "generatedSeed": "Generated seed",
         "seedNotGenerated": "Cüzdan şifresi üretilmedi",
         "seedNotGeneratedExplanation": "Lütfen yeni bir tohum yaratın.",
-        "pressForNewSeed": "YENİ CÜZDAN ŞİFRESİ İÇİN TIKLAYIN",
+        "pressForNewSeed": "Press for New Seed",
         "generateSuccess": "Oluşum başarıyla oluşturuldu",
         "individualLetters": "Randomize etmek için tek tek harflere basın.",
+        "individualLetterCount": "Press {{letterCount}} more individual letters to randomise them.",
         "whatIsASeed": "Oluşum nedir?"
     },
     "onboardingComplete": {
+        "allDone": "All Done!",
+        "openYourWallet": "Open your wallet",
         "walletReady": "Cüzdan kuruldu ve kullanıma hazır. Gelecekte herhangi bir değişiklik yapmanız gerekirse, Ayarlar menüsüne bakın."
     },
     "paperWallet": {
@@ -226,7 +276,7 @@
         "storeSafely": "Güvenle saklayın.",
         "neverShare": "Cüzdan şifrenizi sakın kimseyle paylaşmayın.",
         "iotaLogo": "IOTA logosu",
-        "printWallet": "KAĞIT CÜZDANI YAZDIR",
+        "printWallet": "Print Paper Wallet",
         "print": "YAZDIR",
         "paperConvenience": "Oluşumunuzun bir kopyasını yazdırmak onu saklamak için etkili bir yöntemdir.",
         "publicInsecure": "Fakat halka açık bir Wi-fi'da veya halka açık bir yazıcıyla yazdırmak güvenli değildir.",
@@ -235,22 +285,43 @@
         "printerCheckbox": "Halka açık bir yazıcıda yazdırmayacağım"
     },
     "receive": {
+        "copyAddress": "Copy address",
         "addressCopied": "Adres kopyalandı",
         "addressCopiedExplanation": "Adresin panoya kopyalanmış.",
-        "generateNewAddress": "YENİ ADRES",
+        "generateNewAddress": "New Address",
         "message": "İsteğe bağlı mesaj",
         "removeMessage": "MESAJI SİL",
         "noAddresses": "ADRESİ YOK",
         "spent": "Harcanan"
     },
     "saveYourSeed": {
+        "saveYourSeed": "Back up your seed",
+        "seedCleared": "Seed cleared",
+        "mostSecure": "Most Secure",
+        "leastSecure": "Least Secure",
+        "paperWallet": "Paper Wallet",
+        "writeYourSeedDown": "Write your seed down",
+        "printYourSeed": "Print your seed",
+        "digitalCopy": "Digital copy",
+        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
+        "iHaveBackedUpMySeed": "Seed'imi kaydettim",
+        "letsWriteDownYourSeed": "Lets write down your seed",
+        "youCanHighlightCharacters": "You can highlight 9 characters at a time",
+        "printBlankWallet": "Print a blank wallet",
+        "whatIsCheksum": "Every seed has a corresponding 3 character checksum",
+        "iHavesavedMySeed": "I've saved my seed",
+        "checksumExplanation": "Whenever you add a seed to your wallet, you should ensure that the wallet-generated checksum matches the one you have written down.",
         "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
     },
     "seedReentry": {
+        "pleaseConfirmYourSeed": "Please confirm your seed",
+        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or the app.",
+        "enterYourSeed": "Enter your seed",
         "incorrectSeed": "Yanlış cüzdan şifresi",
         "incorrectSeedExplanation": "Bu cüzdan şifresi yanlış girildi. Lütfen tekrar deneyin.",
         "thisIsACheck": "Bu, cüzdan şifresini kurduğunuzdan emin olmak için yapılan bir kontrol.",
-        "ifYouHaveNotSaved": "Cüzdan şifrenizi kurtarmadıysanız, lütfen geri dönüp onu halledin."
+        "ifYouHaveNotSaved": "Cüzdan şifrenizi kurtarmadıysanız, lütfen geri dönüp onu halledin.",
+        "enterSeedBelow": "Enter your newly created seed below to confirm you have backed it up correctly"
     },
     "send": {
         "invalidAddress": "Geçersiz adres",
@@ -270,15 +341,18 @@
         "invalidMessageExplanation": "Mesajınız geçersiz karakterler içeriyor.",
         "invalidMessageTooLong": "Mesaj çok uzun",
         "invalidMessageTooLongExplanation": "İleti maksimum karakter sayısını (1093) aşıyor.",
-        "send": "Gönder",
+        "send": "Göndermek",
         "invalidAmount": "Yanlış tutar girildi",
         "invalidAmountExplanation": "Lütfen geçerli bir işlem miktarı girin. Bu sayfanın altındaki IOTA birim açıklamasına bakmanız yararlı olabilir.",
         "maximumSelected": "En fazla tutar seçildi",
         "iotaUnits": "IOTA birim açıklaması",
         "sendMax": "TÜMÜNÜ GÖNDER",
-        "totalTime": "Toplam zaman"
+        "totalTime": "Toplam zaman",
+        "addressPasteDetected": "Address paste detected",
+        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
     },
     "setPassword": {
+        "choosePassword": "Choose a new password",
         "passwordTooShort": "Parola çok kısa",
         "passwordTooShortExplanation": "Tohumlar {{minLength}} karakter uzunluğunda olmalıdır. Tohumunuz şu anda {{currentLength}} karakter uzunluktadır. Lütfen yeniden deneyin.",
         "passwordMismatch": "Parolalar eşleşmiyor",
@@ -289,6 +363,7 @@
         "retypePassword": "Şifrenizi tekrar girin"
     },
     "setSeedName": {
+        "letsAddName": "Let's add a name",
         "canUseMultipleSeeds": "Bu cüzdanı ile birden çok tohum kullanabilirsiniz. Her tohum bir hesap adı gerektirir.",
         "youCanAdd": "Ayarlar menüsünden daha fazla tohum ekleyebilirsiniz."
     },
@@ -314,7 +389,6 @@
         "twoFA": "İki aşamalı doğrulama",
         "changePassword": "Parola Değiştir",
         "advanced": "Gelişmiş ayarlar",
-        "about": "About",
         "logout": "Çıkış yap",
         "reset": "Cüzdanı Sıfırla",
         "syncingComplete": "Senkronizasyon Tamamlandı",
@@ -345,10 +419,10 @@
         "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rate for {{currency}}.",
         "undo": "Geri al",
         "redo": "Tekrarla",
-        "aboutTrinity": "About Trinity",
+        "aboutTrinity": "Trinity hakkında",
         "lockScreenTimeout": "Kilit Ekranı Zaman Aşımı (Dakika)",
         "autoNodeSwitching": "Seçili ağa ulaşılamazsa otomatik olarak ağ değiştir",
-        "nodeChangeSuccess": "Successfully changed node",
+        "nodeChangeSuccess": "Ağ başaıyla değiştirildi",
         "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
         "nodeChangeSuccessExplanation": "Ağ {{node}} olarak değiştirildi.",
         "nodeChangeError": "Ağ değiştirme hatası",
@@ -356,13 +430,17 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Cüzdanınızı sıfırlamak için şifrenizi girin.",
-        "cancel": "İPTAL",
+        "cancel": "Cancel",
         "reset": "SIFIRLA"
     },
     "walletSetup": {
+        "creatingSeed": "Creating a seed",
         "okay": "Tamam. Cüzdanını ayarlayabilirsin!",
         "doYouAlreadyHaveASeed": "Kullanmak istediğiniz bir cüzdan şifreniz var mı?",
+        "doYouNeedASeed": "Do you need to create a new seed?",
         "seedExplanation": "IOTA cüzdan şifresi, hesabınız için bir kullanıcı adı ve şifre gibi, 81 karakterden oluşan bir diziyle birleştirilmiştir.",
+        "noIHaveOne": "No, I have one",
+        "yesINeedASeed": "Yes, I need a seed",
         "explanation": "<0><0>Oluşumunuzu</0><1> herhangi bir cüzdandan</1><2>, veya</2><3> herhangi bir cihazdan valıklarınıza ulaşmak için kullanabilirsiniz</3><4>. Ama oluşumunuzu kaybederseniz tüm IOTA'nızı da kaybedersiniz.</4></0>",
         "keepSafe": "Lütfen cüzdan şifrenizi güvende tutun.",
         "hint": "<0><0>İpucu:</0> İlk kez IOTA kullanıyorsanız HAYIR'a tıklayın.</0>"
@@ -413,7 +491,10 @@
         "addCustomNode": "Özel düğüm Ekle",
         "manualSync": "Manuel Senkronizasyon",
         "snapshotTransition": "Anlık görüntü geçişi",
-        "pow": "İş kanıtı"
+        "pow": "İş kanıtı",
+        "autoPromotion": "Auto-promotion",
+        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
+        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
     },
     "advancedThemeCustomisation": {
         "background": "Arka plan",
@@ -455,7 +536,7 @@
         "pressToSync": "Hesabınızı senkronize etmek için aşağıdaki tuşa basın.",
         "thisMayTake": "Bu biraz zaman alabilir. Cihazınızın yavaşladığını fark edebilirsiniz.",
         "doNotClose": "Önemli, uygulamayı küçültmek senkronizasyonu iptal edecektir.",
-        "syncAccount": "HESABI EŞİTLE",
+        "syncAccount": "Sync Account",
         "syncingYourAccount": "Hesabınız eşitleniyor."
     },
     "useExistingSeed": {
@@ -465,13 +546,15 @@
     },
     "viewSeed": {
         "enterPassword": "Seed'ini görüntülemek için parolanı ver.",
-        "viewSeed": "Seed'i görüntüle",
-        "hideSeed": "Oluşumu gizle"
+        "viewSeed": "View Seed",
+        "hideSeed": "Hide Seed"
     },
     "saveSeedConfirmation": {
+        "didSaveSeed": "Did you back up your seed?",
         "alreadyHave": "Seed'imi kaydettim",
-        "reenter": "Şimdi, seed'ini bir daha vermen lâzim olacak.",
-        "reenterWarning": "Cihazın bozulursa ve seed'ini kaydetmediysen, IOTA'larını kaybetirsin."
+        "reenterSeed": "At the next step you will be asked to re-enter your seed.",
+        "reenterSeedWarning": "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
+        "pleaseConfirm": "Please confirm you have securely stored your seed."
     },
     "walletResetConfirmation": {
         "cannotUndo": "BU AKSYON IPTAL EDILEMEZ.",
@@ -487,8 +570,6 @@
         "fingerprintAuthFailed": "Biyometrik doğrulama başarısız",
         "fingerprintAuthFailedExplanation": "Parmak izi doğrulaması başarısız. Lütfen tekrar deneyin.",
         "status": "Durum",
-        "enabled": "Etkin",
-        "disabled": "Etkisiz",
         "fingerprintUnavailable": "Biometric authentication unavailable",
         "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Parmak izi doğrulamayı devre dışı bırakmak için aşağıdaki tuşa basın.",
@@ -522,7 +603,8 @@
         "mcap": "MCAP",
         "change": "Değiştir",
         "volume": "Hacim (24 saat)",
-        "currentValue": "Anlık değer"
+        "currentValue": "Anlık değer",
+        "error": "Error fetching chart data"
     },
     "rootDetection": {
         "warning": "UYARI",
@@ -540,7 +622,12 @@
         "noWebGLSupport": "WebGL desteklenmiyor",
         "noWebGLSupportExplanation": "Bilgisayarınız WebGL desteklemiyor. Lütfen uzaktan PoW kullanın."
     },
+    "autoPromotion": {
+        "autoPromotionUpdated": "Auto-promotion settings",
+        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
+    },
     "progressSteps": {
+        "checkingNodeHealth": "Checking node health",
         "validatingReceiveAddress": "Alıcı adresi doğrulanıyor",
         "syncingAccount": "Hesap senkronize ediliyor",
         "preparingInputs": "Girişler hazırlanıyor",
@@ -558,10 +645,10 @@
         "isThisCorrect": "Bu doğru mu?",
         "snapshotExplanation": "Tangle'ın boyutunu küçültmek için sık sık bir anlık görüntü oluşturulur.",
         "hasSnapshotTakenPlace": "Bir anlık görüntü mü oluşturuldu? Geçişi sağlamak için lütfen aşağıdaki tuşa basın.",
-        "transition": "GEÇİŞ",
+        "transition": "Transition",
         "transitioning": "Anlık görüntü için geçiş sağlanıyor.",
         "generatingAndDetecting": "Adresler yaratılıyor ve varlıklar algılanıyor.",
-        "attaching": "Tangle'a adresler ekleniyor"
+        "attaching": "Attaching addresses to Tangle."
     },
     "deepLink": {
         "autofill": "Otomatik doldurma başarılı",
@@ -579,5 +666,13 @@
     },
     "notificationLog": {
         "errorLog": "HATA KAYDI"
+    },
+    "terms": {
+        "termsAndConditions": "Terms & Conditions",
+        "accept": "I accept"
+    },
+    "privacyPolicy": {
+        "privacyPolicy": "Privacy Policy",
+        "agree": "I agree"
     }
 }

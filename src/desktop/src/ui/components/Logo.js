@@ -5,7 +5,7 @@ import Lottie from 'react-lottie';
 import * as loading from 'animations/loading-white.json';
 import Icon from 'ui/components/Icon';
 
-import css from './logo.css';
+import css from './logo.scss';
 
 /**
  * IOTA animated/static logo component

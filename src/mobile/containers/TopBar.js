@@ -28,6 +28,7 @@ import Modal from 'react-native-modal';
 import NotificationLogComponent from '../components/NotificationLog';
 import { Icon } from '../theme/icons.js';
 import { isAndroid } from '../utils/device';
+import GENERAL from '../theme/general';
 
 const { height, width } = Dimensions.get('window');
 
@@ -46,15 +47,15 @@ const styles = StyleSheet.create({
         width,
     },
     mainTitle: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 24.4,
-        paddingBottom: isAndroid ? 0 : height / 170,
-        maxWidth: width / 1.35
+        fontFamily: 'SourceSansPro-SemiBold',
+        fontSize: GENERAL.fontSize4,
+        paddingBottom: height / 170,
+        maxWidth: width / 1.35,
     },
     subtitle: {
         textAlign: 'center',
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 27.6,
+        fontFamily: 'SourceSansPro-SemiBold',
+        fontSize: width / 28,
     },
     childView: {
         height: height / 14,
@@ -201,8 +202,20 @@ class TopBar extends Component {
     }
 
     shouldDisable() {
-        const { isGeneratingReceiveAddress, isSendingTransfer, isSyncing, isTransitioning, isFetchingLatestAccountInfo } = this.props;
-        return isGeneratingReceiveAddress || isSendingTransfer || isSyncing || isTransitioning || isFetchingLatestAccountInfo;
+        const {
+            isGeneratingReceiveAddress,
+            isSendingTransfer,
+            isSyncing,
+            isTransitioning,
+            isFetchingLatestAccountInfo,
+        } = this.props;
+        return (
+            isGeneratingReceiveAddress ||
+            isSendingTransfer ||
+            isSyncing ||
+            isTransitioning ||
+            isFetchingLatestAccountInfo
+        );
     }
 
     showModal() {
@@ -226,7 +239,7 @@ class TopBar extends Component {
             isIOSKeyboardActive,
             notificationLog,
             mode,
-            minimised
+            minimised,
         } = this.props;
         const selectedTitle = get(accountNames, `[${seedIndex}]`) || ''; // fallback
         const selectedSubtitle = TopBar.humanizeBalance(balance);
@@ -254,89 +267,93 @@ class TopBar extends Component {
                         }
                     }}
                 >
-                    {!isIOSKeyboardActive && !minimised &&
-                        <View
-                            style={{ width, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}
-                        >
-                            {hasNotifications && !isIOSKeyboardActive && mode === 'Expert' ? (
-                                <TouchableOpacity
-                                    hitSlop={{ left: width / 18, right: width / 18, top: 0, bottom: 0 }}
-                                    style={styles.notificationContainer}
-                                    onPress={() => this.showModal()}
-                                >
-                                    <Animated.View
-                                        style={{
-                                            height: topBarHeight,
-                                            width: width / 18,
-                                            justifyContent: 'center',
-                                            paddingTop: isAndroid ? 0 : height / 170,
-                                        }}
+                    {(!isIOSKeyboardActive &&
+                        !minimised && (
+                            <View
+                                style={{
+                                    width,
+                                    flexDirection: 'row',
+                                    alignItems: 'center',
+                                    justifyContent: 'space-between',
+                                }}
+                            >
+                                {hasNotifications && !isIOSKeyboardActive && mode === 'Expert' ? (
+                                    <TouchableOpacity
+                                        hitSlop={{ left: width / 18, right: width / 18, top: 0, bottom: 0 }}
+                                        style={styles.notificationContainer}
+                                        onPress={() => this.showModal()}
                                     >
-                                        <Icon name="notification" size={width / 18} color={bar.color} />
-                                    </Animated.View>
-                                </TouchableOpacity>
-                            ) : (
-                                <View style={styles.notificationContainer}>
-                                    <View style={styles.empty} />
-                                </View>
-                                )}
-                            <View>
-                                <Text
-                                    numberOfLines={1}
-                                    style={
-                                        shouldDisable
-                                            ? StyleSheet.flatten([
-                                                styles.mainTitle,
-                                                styles.disabled,
-                                                { color: bar.color, marginTop: height / 55 },
-                                            ])
-                                            : [styles.mainTitle, { color: bar.color, marginTop: height / 55 }]
-                                    }
-                                >
-                                    {selectedTitle}
-                                </Text>
-                                <Text
-                                    style={
-                                        shouldDisable
-                                            ? StyleSheet.flatten([
-                                                styles.subtitle,
-                                                styles.disabled,
-                                                { color: subtitleColor },
-                                            ])
-                                            : [styles.subtitle, { color: subtitleColor }]
-                                    }
-                                >
-                                    {selectedSubtitle}
-                                </Text>
-                            </View>
-                            <View style={styles.chevronWrapper}>
-                                {hasMultipleSeeds ? (
-                                    <Animated.View
-                                        style={{
-                                            height: topBarHeight,
-                                            justifyContent: 'center',
-                                            paddingTop: isAndroid ? 0 : height / 170,
-                                        }}
-                                    >
-                                        <Icon
-                                            name={isTopBarActive ? 'chevronUp' : 'chevronDown'}
-                                            size={width / 22}
-                                            color={bar.color}
-                                            style={[
-                                                shouldDisable
-                                                    ? StyleSheet.flatten([styles.chevron, styles.disabledImage])
-                                                    : styles.chevron,
-                                            ]}
-                                        />
-                                    </Animated.View>
+                                        <Animated.View
+                                            style={{
+                                                height: topBarHeight,
+                                                width: width / 18,
+                                                justifyContent: 'center',
+                                                paddingTop: isAndroid ? 0 : height / 170,
+                                            }}
+                                        >
+                                            <Icon name="notification" size={width / 18} color={bar.color} />
+                                        </Animated.View>
+                                    </TouchableOpacity>
                                 ) : (
-                                    <View style={styles.empty} />
+                                    <View style={styles.notificationContainer}>
+                                        <View style={styles.empty} />
+                                    </View>
+                                )}
+                                <View>
+                                    <Text
+                                        numberOfLines={1}
+                                        style={
+                                            shouldDisable
+                                                ? StyleSheet.flatten([
+                                                      styles.mainTitle,
+                                                      styles.disabled,
+                                                      { color: bar.color, marginTop: height / 55 },
+                                                  ])
+                                                : [styles.mainTitle, { color: bar.color, marginTop: height / 55 }]
+                                        }
+                                    >
+                                        {selectedTitle}
+                                    </Text>
+                                    <Text
+                                        style={
+                                            shouldDisable
+                                                ? StyleSheet.flatten([
+                                                      styles.subtitle,
+                                                      styles.disabled,
+                                                      { color: subtitleColor },
+                                                  ])
+                                                : [styles.subtitle, { color: subtitleColor }]
+                                        }
+                                    >
+                                        {selectedSubtitle}
+                                    </Text>
+                                </View>
+                                <View style={styles.chevronWrapper}>
+                                    {hasMultipleSeeds ? (
+                                        <Animated.View
+                                            style={{
+                                                height: topBarHeight,
+                                                justifyContent: 'center',
+                                                paddingTop: isAndroid ? 0 : height / 170,
+                                            }}
+                                        >
+                                            <Icon
+                                                name={isTopBarActive ? 'chevronUp' : 'chevronDown'}
+                                                size={width / 22}
+                                                color={bar.color}
+                                                style={[
+                                                    shouldDisable
+                                                        ? StyleSheet.flatten([styles.chevron, styles.disabledImage])
+                                                        : styles.chevron,
+                                                ]}
+                                            />
+                                        </Animated.View>
+                                    ) : (
+                                        <View style={styles.empty} />
                                     )}
+                                </View>
                             </View>
-                        </View>
-                        ||
-                        <View />
-                    }
+                        )) || <View />}
                 </TouchableWithoutFeedback>
             </Animated.View>
         );
@@ -447,10 +464,7 @@ class TopBar extends Component {
                             },
                         ]}
                     >
-                        <View
-                            scrollEnabled={false}
-                            style={styles.scrollViewContainer}
-                        >
+                        <View scrollEnabled={false} style={styles.scrollViewContainer}>
                             {children}
                         </View>
                         <Modal

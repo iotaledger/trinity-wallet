@@ -15,6 +15,11 @@ Install _fastlane_ using
 or alternatively using `brew cask install fastlane`
 
 # Available Actions
+### build_release
+```
+fastlane build_release
+```
+
 ### screenshots
 ```
 fastlane screenshots
@@ -23,6 +28,16 @@ fastlane screenshots
 ### refresh_dsyms
 ```
 fastlane refresh_dsyms
+```
+
+### release
+```
+fastlane release
+```
+
+### deploy
+```
+fastlane deploy
 ```
 
 ### localization

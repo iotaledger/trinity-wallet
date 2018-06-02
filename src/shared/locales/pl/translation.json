@@ -4,7 +4,7 @@
         "cancel": "ANULUJ",
         "continue?": "Czy na pewno chcesz kontynuować?",
         "noTransactions": "BRAK OSTATNIEJ AKTYWNOŚCI",
-        "refresh": "ODŚWIEŻ",
+        "refresh": "Odśwież",
         "balanceError": "Brak wystarczających środków",
         "balanceErrorMessage": "Nie masz wystarczających środków IOTA, aby wykonać ten transfer.",
         "transferError": "Błąd transferu",
@@ -16,25 +16,37 @@
         "keyReuse": "Wysyłka na zużyty adres",
         "keyReuseError": "Nie możesz wysłać na adres, który został już obciążony.",
         "invalidResponse": "Błąd serwera",
-        "invalidResponseExplanation": "Serwer zwrócił błąd. Sprawdź powiadomienia, aby uzyskać więcej informacji.",
-        "invalidResponsePollingExplanation": "Serwer zwrócił błąd podczas połączenia. Sprawdź powiadomienia, aby uzyskać więcej informacji.",
-        "invalidResponseFetchingAccount": "Serwer zwrócił błąd podczas pobierania informacji o Twoim koncie. Spróbuj zmienić serwer lub sprawdź powiadomienia, aby uzyskać więcej informacji.",
-        "invalidResponseSendingTransfer": "Serwer zwrócił błąd podczas przetwarzania Twojego transferu. Sprawdź powiadomienia, aby uzyskać więcej informacji.",
+        "invalidResponseExplanation": "Serwer zwrócił błąd. Spróbuj zmienić serwer.",
+        "invalidResponsePollingExplanation": "Serwer zwrócił błąd podczas połączenia. Spróbuj zmienić serwer.",
+        "invalidResponseFetchingAccount": "Serwer zwrócił błąd podczas pobierania informacji o Twoim koncie. Spróbuj zmienić serwer.",
+        "invalidResponseSendingTransfer": "Serwer zwrócił błąd podczas wykonywania transakcji. Spróbuj zmienić serwer.",
+        "nodeOutOfSync": "Serwer niezsynchronizowany",
+        "nodeOutOfSyncExplanation": "Aktualnie wybrany serwer nie jest zsynchronizowany. Proszę zmienić serwer lub spróbować ponownie.",
+        "thisNodeOutOfSync": "Ten serwer nie jest zsynchronizowany. Proszę zmienić serwer lub spróbować ponownie.",
         "seed": "Seed",
+        "checksum": "Suma kontrolna",
         "back": "WSTECZ",
+        "goBack": "Wróć",
+        "goBackStep": "Poprzedni krok",
         "backLowercase": "Wstecz",
         "done": "GOTOWE",
         "doneLowercase": "Gotowe",
+        "prev": "POPRZ.",
         "next": "DALEJ",
+        "nextLowerCase": "Dalej",
         "apply": "Zastosuj",
         "save": "Zapisz",
-        "close": "ZAMKNIJ",
+        "close": "Zamknij",
         "continue": "Kontynuuj",
         "enable": "Włącz",
         "disable": "Wyłącz",
+        "enabled": "Włączono",
+        "disabled": "Wyłączono",
         "manualCopy": "Zanotuj swój seed",
-        "paperWallet": "Wydrukuj wersje papierową",
-        "copyToClipboard": "Dodaj do menedżera haseł",
+        "paperWallet": "Wydrukuj kopię papierową",
+        "addToPasswordManager": "Dodaj do menedżera haseł",
+        "shareSeed": "Udostępnij seed",
+        "proceed": "Kontynuuj",
         "qr": "Kod QR",
         "notAvailable": "Funkcja niedostępna",
         "notAvailableExplanation": "Ta funkcja zostanie dodana na późniejszym etapie.",
@@ -48,7 +60,10 @@
         "otherWallet": "INNE KONTO",
         "yes": "TAK",
         "no": "NIE",
+        "yesLowerCase": "Tak",
+        "noLowerCase": "Nie",
         "okay": "OKEJ",
+        "okayLowercase": "Okej",
         "password": "Hasło",
         "passwordOrFingerprint": "Hasło lub odcisk palca",
         "unrecognisedPassword": "Hasło nierozpoznane",
@@ -80,6 +95,7 @@
         "pressBackAgain": "Naciśnij przycisk wstecz ponownie, aby zamknąć aplikację",
         "reattached": "Reattach udany",
         "reattachedExplanation": "Wykonano reattach transakcji z hashem {{hash}}",
+        "promotingTransaction": "Promowanie transakcji",
         "autopromoting": "Autopromowanie transferu",
         "autopromotingExplanation": "Promowanie transakcji z hashem {{hash}}",
         "rebroadcasted": "Rebroadcast udany",
@@ -88,8 +104,8 @@
         "rebroadcastErrorExplanation": "Coś poszło nie tak podczas nadawania Twojego transferu. Proszę spróbować ponownie.",
         "promoted": "Promowanie transakcji pomyślne",
         "promotedExplanation": "Wypromowano transakcję z hashem {{hash}}",
-        "autopromotionError": "Błąd auto-promowania transakcji",
-        "autopromotionErrorExplanation": "Zdalny tryb Proof of Work jest niedostępny na wybranym serwerze. Zmień serwer.",
+        "autopromotionError": "Błąd autopromowania transakcji",
+        "autopromotionErrorExplanation": "Zdalny tryb Proof of Work jest niedostępny na wybranym serwerze. Zmień serwer oraz ponownie włącz opcję autopromowania.",
         "promotionError": "Nie można wypromować transakcji",
         "promotionErrorExplanation": "Coś poszło nie tak podczas promowania Twojego transferu. Proszę spróbować ponownie.",
         "noLongerValid": "Pakiet, który próbujesz promować, nie jest już ważny",
@@ -101,6 +117,7 @@
         "pleaseWaitEllipses": "Proszę czekać...",
         "pleaseWaitExplanation": "Trinity wykonuje inną funkcję. Zaczekaj i spróbuj ponownie.",
         "pleaseWaitTransferExplanation": "Dostępne saldo jest aktualnie używane w innych transferach. Poczekaj na ich potwierdzenie, zanim spróbujesz ponownie.",
+        "pleaseWaitIncomingTransferExplanation": "Posiadasz na swoim koncie niepotwierdzone transfery przychodzące. Zaczekaj na ich potwierdzenie przed ponowną próbą.",
         "snapshotTransitionInProgress": "Aktualizacja środków w toku",
         "snapshotTransitionInProgressExplanation": "Proszę czekać na zakończenie aktualizacji środków.",
         "checkForUpdates": "Sprawdź aktualizacje",
@@ -108,7 +125,7 @@
         "enterPasswordToAccessSettings": "Wprowadź swoje hasło, aby uzyskać dostęp do ustawień konta",
         "enterYourPassword": "Wprowadź swoje hasło",
         "changeNode": "Zmień serwer",
-        "addCustomNode": "Dodaj serwer",
+        "addCustomNode": "Dodaj niestandardowy serwer",
         "nodeChanged": "Serwer zmieniony",
         "nodeChangedExplanation": "Serwer został zmieniony pomyślnie.",
         "nodeMustUseHTTPS": "Serwer bez obsługi HTTPS",
@@ -124,7 +141,18 @@
         "couldNotVerifyDeviceIntegrity": "Nie można zweryfikować integralności urządzenia, ponieważ Usługi Google Play są niedostępne.",
         "clear": "WYCZYŚĆ",
         "noNetworkConnection": "Brak połączenia z siecią",
-        "noNetworkConnectionExplanation": "Wygląda na to, że utracono dostęp do internetu."
+        "noNetworkConnectionExplanation": "Wygląda na to, że utracono dostęp do internetu.",
+        "spentAddressExplanation": "UWAGA: Środki na zużytym adresie",
+        "discordInformation": "Wysyłanie z tego samego adresu więcej niż jeden raz jest niebezpieczne. Wejdź na kanał #help czatu Discord, aby dowiedzieć się, co możesz zrobić.",
+        "androidInsecureClipboardWarning": "System Android nie zapewnia bezpiecznego schowka.",
+        "androidCopyPasteWarning": "Nigdy nie kopiuj/wklejaj swojego klucza na urządzeniu z systemem Android.",
+        "willNotCopyPasteSeed": "Nie będę kopiował/wklejał mojego klucza",
+        "mustBeStoredAppropriately": "Musi być odpowiednio przechowywany.",
+        "deviceMayBecomeUnresponsive": "Urządzenie może przestać odpowiadać przez pewien czas",
+        "isYourBalanceCorrect": "Czy Twoje saldo jest poprawne?",
+        "ifYourBalanceIsNotCorrect": "Jeśli Twoje saldo nie jest poprawne, prawdopodobnie używasz klucza seed sprzed tzw. migawki (snapshot).",
+        "headToAdvancedSettingsForTransition": "Przejdź do ustawień zaawansowanych i skorzystaj z funkcji Snapshot asystent.",
+        "usingTrinityWalletWithKeePass": "Używanie portfela Trinity z Keepass2Android"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -138,7 +166,7 @@
         "noNickname": "Nie wprowadzono nazwy konta",
         "noNicknameExplanation": "Wpisz nazwę konta dla Twojego klucza seed.",
         "seedInUse": "Seed jest już w użyciu",
-        "seedInUseExplanation": "Ten seed został już wcześniej powiązany z Twoim portfelem. Proszę użyj innego."
+        "seedInUseExplanation": "Ten seed został już wcześniej powiązany z Twoim portfelem. Proszę użyć innego."
     },
     "changePassword": {
         "oops": "Ups! Coś poszło nie tak",
@@ -156,7 +184,22 @@
         "ensureStrongPassword": "Upewnij się, że używasz silnego hasła, składającego się z co najmniej 12 znaków.",
         "currentPassword": "Bieżące hasło",
         "newPassword": "Nowe hasło",
-        "confirmPassword": "Potwierdź nowe hasło"
+        "confirmPassword": "Potwierdź nowe hasło",
+        "passwordTooWeak": "Zbyt słabe hasło",
+        "passwordTooWeakReason": "Hasło jest zbyt słabe. Użyj kombinacji słów oraz unikaj powszechnych zwrotów, imion lub dat",
+        "reasonRow": "Proste rzędy klawiszy są łatwe do odgadnięcia",
+        "reasonPattern": "Krótkie odstępy klawiszy są łatwe do odgadnięcia",
+        "reasonNames": "Powszechne imiona i nazwiska są łatwe do odgadnięcia",
+        "reasonRepeats": "Powtórzenia takie jak 'aaa' są łatwe do odgadnięcia",
+        "reasonRepeats2": "Powtórzenia takie jak 'abcabcabc' są jedynie nieco trudniejsze do odgadnięcia niż 'abc'",
+        "reasonSequence": "Sekwencje takie jak 'abc' lub '54321' są łatwe do odgadnięcia",
+        "reasonYears": "Ostatnie lata są łatwe do odgadnięcia",
+        "reasonDates": "Daty są często łatwe do odgadnięcia",
+        "reasonTop10": "To jedno z 10 najpopularniejszych haseł",
+        "reasonTop100": "To jedno ze 100 najpopularniejszych haseł",
+        "reasonCommon": "To jest bardzo popularne hasło",
+        "reasonSimilar": "Jest to podobne do powszechnie używanego hasła",
+        "reasonWord": "Jedno słowo jest łatwe do odgadnięcia"
     },
     "copyToClipboard": {
         "seedCleared": "Seed wyczyszczony",
@@ -164,6 +207,7 @@
         "seedCopied": "Seed skopiowany do schowka",
         "seedCopiedExplanation": "Seed zostanie wyczyszczony po naciśnięciu \"GOTOWE\", lub po upływie 60 sekund.",
         "clickToCopy": "Kliknij poniższy przycisk i skopiuj swój klucz seed do menedżera haseł.",
+        "clickToSecurelyShare": "Naciśnij poniższy przycisk, aby bezpiecznie udostępnić seed do menedżera haseł.",
         "doNotStore": "Nie przechowuj tego klucza w formie zwykłego tekstu.",
         "copyToClipboard": "Kopiuj seed",
         "shareSeed": "Udostępnij swój klucz seed do bezpiecznego menedżera haseł",
@@ -173,7 +217,8 @@
         "passwordManagerCheckbox": "Będę przechowywać mój seed w menedżerze haseł",
         "copy": "KOPIUJ",
         "noPasswordManagers": "Brak obsługiwanych menedżerów haseł",
-        "noPasswordManagersExplanation": "Na Twoim urządzeniu nie znaleziono obsługiwanych menedżerów haseł. Zainstaluj Keepass2Android."
+        "noPasswordManagersExplanation": "Na Twoim urządzeniu nie znaleziono obsługiwanych menedżerów haseł. Zainstaluj Keepass2Android.",
+        "followTutorialToSecurelyShareSeed": "Jeśli chcesz przechowywać swój seed w menedżerze haseł, musisz wykonać samouczek z poniższego linku"
     },
     "enterSeed": {
         "invalidCharacters": "Seed zawiera nieprawidłowe znaki",
@@ -181,7 +226,7 @@
         "seedTooShort": "Seed jest zbyt krótki",
         "seedTooShortExplanation": "Seed musi zawierać {{maxLength}} znaków. Obecna ilość znaków wynosi {{currentLength}}. Proszę spróbować ponownie.",
         "seedExplanation": "Seed powinien składać się z {{maxLength}} znaków i zawierać wielkie litery A-Z oraz cyfry 9. Seed nie może być dłuższy niż {{maxLength}} znaków.",
-        "neverShare": "NIGDY NIE UDOSTĘPNIAJ NIKOMU SWOJEGO KLUCZA SEED"
+        "neverShare": "NIE UDOSTĘPNIAJ SWOJEGO KLUCZA NIKOMU"
     },
     "home": {
         "balance": "SALDO",
@@ -191,16 +236,17 @@
         "settings": "USTAWIENIA"
     },
     "languageSetup": {
-        "language": "Język"
+        "language": "Język",
+        "letsGetStarted": "Zaczynamy"
     },
     "login": {
         "emptyPassword": "Puste hasło",
         "emptyPasswordExplanation": "Musisz wprowadzić hasło, aby się zalogować. Proszę spróbować ponownie.",
         "enterPassword": "Wprowadź swoje hasło.",
         "useSeed": "UŻYJ KLUCZA SEED",
-        "login": "ZALOGUJ",
+        "login": "Zaloguj",
         "selectDifferentNode": "Czy chcesz wybrać inny serwer?",
-        "setNode": "SERWER",
+        "setNode": "Ustaw serwer",
         "cannotConnect": "Nie można połączyć się z serwerem."
     },
     "loading": {
@@ -208,25 +254,29 @@
         "thisMayTake": "To może chwilę potrwać.",
         "doNotMinimise": "Nie minimalizuj ani nie zamykaj aplikacji.",
         "youMayNotice": "Możesz zaobserwować spowolnienie Twojego urządzenia.",
-        "takingAWhile": "Wydaje się, że zajmuje to trochę czasu"
+        "takingAWhile": "Logowanie trwa dłużej niż zwykle"
     },
     "newSeedSetup": {
+        "generatedSeed": "Generowanie klucza seed",
         "seedNotGenerated": "Seed nie został wygenerowany",
         "seedNotGeneratedExplanation": "Wygeneruj nowy klucz seed.",
-        "pressForNewSeed": "WYGENERUJ NOWY SEED",
-        "generateSuccess": "Klucz seed został wygenerowany pomyślnie",
-        "individualLetters": "Naciśnij na dane pole, aby wylosować je ponownie.",
+        "pressForNewSeed": "Generuj nowy klucz seed",
+        "generateSuccess": "Klucz seed wygenerowany",
+        "individualLetters": "Naciśnij na dane pola, aby wylosować je ponownie.",
+        "individualLetterCount": "Naciśnij {{letterCount}} więcej pojedynczych liter, aby je wylosować.",
         "whatIsASeed": "Czym jest seed?"
     },
     "onboardingComplete": {
+        "allDone": "Wszystko gotowe!",
+        "openYourWallet": "Otwórz swój portfel",
         "walletReady": "Portfel został skonfigurowany i jest gotowy do użycia. Jeśli będziesz chciał wprowadzić zmiany, skorzystaj z menu ustawień."
     },
     "paperWallet": {
         "clickToPrint": "Kliknij poniższy przycisk, aby wydrukować kopię Twojego klucza seed.",
         "storeSafely": "Przechowuj go bezpiecznie.",
-        "neverShare": "Nigdy nie udostępniaj nikomu swojego klucza seed.",
+        "neverShare": "Nie udostępniaj swojego klucza nikomu.",
         "iotaLogo": "Logo IOTA",
-        "printWallet": "DRUKUJ PAPIEROWY PORTFEL",
+        "printWallet": "Wydrukuj portfel papierowy",
         "print": "DRUKUJ",
         "paperConvenience": "Wydruk papierowej kopii klucza seed jest wygodnym sposobem na jego przechowywanie.",
         "publicInsecure": "Jednak drukowanie na publicznej sieci WiFi lub publicznej drukarce jest niebezpieczne.",
@@ -235,22 +285,43 @@
         "printerCheckbox": "Nie będę drukował na publicznej drukarce"
     },
     "receive": {
+        "copyAddress": "Kopiuj adres",
         "addressCopied": "Adres skopiowany",
         "addressCopiedExplanation": "Twój adres został skopiowany do schowka.",
-        "generateNewAddress": "NOWY ADRES",
+        "generateNewAddress": "Nowy adres",
         "message": "Wiadomość opcjonalna",
         "removeMessage": "USUŃ WIADOMOŚĆ",
         "noAddresses": "BRAK ADRESÓW",
         "spent": "Adres zużyty"
     },
     "saveYourSeed": {
+        "saveYourSeed": "Zrób kopię swojego klucza",
+        "seedCleared": "Seed wyczyszczony",
+        "mostSecure": "Najbardziej bezpieczne",
+        "leastSecure": "Najmniej bezpieczne",
+        "paperWallet": "Papierowy portfel",
+        "writeYourSeedDown": "Zanotuj swój seed",
+        "printYourSeed": "Wydrukuj swój seed",
+        "digitalCopy": "Kopia cyfrowa",
+        "seedClearedExplanation": "Seed został usunięty ze schowka dla Twojego bezpieczeństwa.",
+        "iHaveBackedUpMySeed": "Zapisałem swój seed",
+        "letsWriteDownYourSeed": "Zapiszmy Twój seed",
+        "youCanHighlightCharacters": "Możesz wyróżnić 9 znaków naraz",
+        "printBlankWallet": "Wydrukuj niewypełniony portfel",
+        "whatIsCheksum": "Każdy seed posiada swoją 3-znakową sumę kontrolną",
+        "iHavesavedMySeed": "Zapisałem swój seed",
+        "checksumExplanation": "Za każdym razem, gdy dodajesz seed do portfela, powinieneś upewnić się, że suma kontrolna generowana przez portfel jest zgodna z tą, którą zapisałeś.",
         "mustSaveYourSeed": "<0><0>Musisz zapisać swój seed, wybierając </0><1>co najmniej jedną</1><2> z poniższych opcji.</2></0>"
     },
     "seedReentry": {
+        "pleaseConfirmYourSeed": "Potwierdź swój klucz seed",
+        "trinityWillNeverAskToReenter": "Trinity nigdy nie poprosi o ponowne wprowadzenie Twojego klucza seed, chyba że zresetujesz swój portfel bądź dokonasz reinstalacji aplikacji.",
+        "enterYourSeed": "Wprowadź swój seed",
         "incorrectSeed": "Nieprawidłowy seed",
         "incorrectSeedExplanation": "Wprowadzony seed jest niepoprawny. Proszę spróbować ponownie.",
         "thisIsACheck": "To jest test w celu upewnienia się, że zapisałeś swój seed.",
-        "ifYouHaveNotSaved": "Jeśli nie zapisałeś swojego klucza seed, wróć do poprzedniego ekranu i zrób to."
+        "ifYouHaveNotSaved": "Jeśli nie zapisałeś swojego klucza seed, wróć do poprzedniego ekranu i zrób to.",
+        "enterSeedBelow": "Wprowadź swój nowo utworzony seed poniżej, aby potwierdzić, że posiadasz jego poprawną kopię"
     },
     "send": {
         "invalidAddress": "Błędny adres",
@@ -270,15 +341,18 @@
         "invalidMessageExplanation": "Twoja wiadomość zawiera nieprawidłowe znaki.",
         "invalidMessageTooLong": "Wiadomość za długa",
         "invalidMessageTooLongExplanation": "Wiadomość przekracza maksymalną ilość znaków (1093).",
-        "send": "WYŚLIJ",
+        "send": "Wyślij",
         "invalidAmount": "Wprowadzono niepoprawną ilość",
         "invalidAmountExplanation": "Wprowadź poprawną kwotę transakcji. Pomocne może być zapoznanie się z objaśnieniem jednostek IOTA na dole tej strony.",
         "maximumSelected": "Wybrano MAKSYMALNĄ ilość",
         "iotaUnits": "Objaśnienie jednostek IOTA",
         "sendMax": "WYŚLIJ WSZYSTKO",
-        "totalTime": "Całkowity czas"
+        "totalTime": "Całkowity czas",
+        "addressPasteDetected": "Wykryto wklejenie adresu",
+        "addressPasteExplanation": "Wygląda na to, że wkleiłeś adres. Upewnij się, że wklejony adres odpowiada temu, na który chcesz wysłać."
     },
     "setPassword": {
+        "choosePassword": "Wybierz nowe hasło",
         "passwordTooShort": "Hasło jest zbyt krótkie",
         "passwordTooShortExplanation": "Twoje hasło musi mieć co najmniej {{minLength}} znaków. Obecna ilość znaków wynosi {{currentLength}}. Proszę spróbować ponownie.",
         "passwordMismatch": "Hasła nie są zgodne",
@@ -289,7 +363,8 @@
         "retypePassword": "Wpisz hasło ponownie"
     },
     "setSeedName": {
-        "canUseMultipleSeeds": "Możesz używać wielu kluczy seed w tym portfelu. Każdy jeden wymaga jednak osobnej nazwy konta.",
+        "letsAddName": "Nazwij swoje konto",
+        "canUseMultipleSeeds": "Możesz używać wielu kluczy seed w tym portfelu. Każdy wymaga jednak osobnej nazwy konta.",
         "youCanAdd": "Możesz dodać więcej kluczy seed w menu ustawień."
     },
     "modeSelection": {
@@ -314,7 +389,6 @@
         "twoFA": "Autoryzacja dwustopniowa",
         "changePassword": "Zmień hasło",
         "advanced": "Ustawienia zaawansowane",
-        "about": "O programie",
         "logout": "Wyloguj",
         "reset": "Zresetuj portfel",
         "syncingComplete": "Synchronizacja zakończona",
@@ -356,13 +430,17 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Wprowadź swoje hasło, aby zresetować portfel.",
-        "cancel": "ANULUJ",
+        "cancel": "Anuluj",
         "reset": "RESETUJ"
     },
     "walletSetup": {
+        "creatingSeed": "Tworzenie klucza seed",
         "okay": "W porządku. Ustawmy Twój portfel!",
         "doYouAlreadyHaveASeed": "Czy posiadasz już seed, którego chciałbyś użyć?",
+        "doYouNeedASeed": "Czy chcesz utworzyć nowy seed?",
         "seedExplanation": "Seed IOTA jest swego rodzaju połączeniem nazwy użytkownika oraz hasła do Twojego konta, składającym się na ciąg 81 znaków.",
+        "noIHaveOne": "Nie, mam już klucz",
+        "yesINeedASeed": "Tak, potrzebuję klucza",
         "explanation": "<0><0>Możesz go użyć, aby uzyskać dostęp do swoich środków z</0><1> dowolnego portfela</1><2>, na</2><3> dowolnym urządzeniu</3><4>. Jeśli utracisz seed, stracisz swoje środki IOTA.</4></0>",
         "keepSafe": "Proszę dbaj o bezpieczeństwo swojego klucza seed.",
         "hint": "<0><0>Wskazówka:</0> Kliknij przycisk NIE, jeśli używasz IOTA po raz pierwszy.</0>"
@@ -413,7 +491,10 @@
         "addCustomNode": "Dodaj serwer",
         "manualSync": "Ręczna synchronizacja",
         "snapshotTransition": "Snapshot asystent",
-        "pow": "Konfiguracja Proof of Work"
+        "pow": "Konfiguracja Proof of Work",
+        "autoPromotion": "Autopromowanie",
+        "autoPromotionExplanation": "Autopromowanie pomaga w potwierdzaniu Twoich transakcji w sieci Tangle. Włącz tę funkcję, jeśli Twoje transakcje nie są potwierdzane w odpowiednim czasie.",
+        "autoPromotionPoW": "Autopromowanie możliwe jest jedynie na serwerach, które obsługują zdalny tryb Proof of Work."
     },
     "advancedThemeCustomisation": {
         "background": "Tło",
@@ -441,7 +522,7 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Dlaczego nie mogę zużyć całego stanu mojego konta?",
-        "spentAddressExplanation": "Masz fundusze na jednym lub kilku zużytych adresach. Ponowne użycie adresów w IOTA jest niebezpieczne, więc portfel ten nie pozwala wysyłać z tego samego adresu więcej niż jeden raz.",
+        "spentAddressExplanation": "Posiadasz środki na jednym lub kilku zużytych adresach. Ponowne użycie adresów w IOTA jest niebezpieczne, więc portfel ten nie pozwala wysyłać z tego samego adresu więcej niż jeden raz.",
         "discordInformation": "Wejdź na kanał #help czatu Discord, aby dowiedzieć się, co możesz zrobić."
     },
     "deleteAccount": {
@@ -455,7 +536,7 @@
         "pressToSync": "Naciśnij poniższy przycisk, aby zsynchronizować swoje konto.",
         "thisMayTake": "To może chwilę potrwać. Możesz zaobserwować spowolnienie Twojego urządzenia.",
         "doNotClose": "Pamiętaj, że zminimalizowanie aplikacji spowoduje przerwanie synchronizacji.",
-        "syncAccount": "SYNCHRONIZUJ KONTO",
+        "syncAccount": "Synchronizuj konto",
         "syncingYourAccount": "Synchronizuje Twoje konto."
     },
     "useExistingSeed": {
@@ -465,13 +546,15 @@
     },
     "viewSeed": {
         "enterPassword": "Wprowadź hasło, aby wyświetlić swój seed.",
-        "viewSeed": "POKAŻ SEED",
-        "hideSeed": "UKRYJ SEED"
+        "viewSeed": "Pokaż seed",
+        "hideSeed": "Ukryj seed"
     },
     "saveSeedConfirmation": {
+        "didSaveSeed": "Czy zrobiłeś kopię swojego klucza?",
         "alreadyHave": "Zapisałem swój seed",
-        "reenter": "Teraz będziesz poproszony/a o ponowne wprowadzenie swojego klucza seed.",
-        "reenterWarning": "Jeśli Twoje urządzenie ulegnie uszkodzeniu, a nie zapisałeś swojego klucza, stracisz swoje środki IOTA."
+        "reenterSeed": "W następnym kroku zostaniesz poproszony o ponowne wprowadzenie swojego klucza seed.",
+        "reenterSeedWarning": "Jeśli nie zapisałeś swojego klucza, a Twoje urządzenie ulegnie uszkodzeniu, stracisz swoje środki IOTA.",
+        "pleaseConfirm": "Proszę potwierdzić, że bezpiecznie przechowujesz swój klucz seed."
     },
     "walletResetConfirmation": {
         "cannotUndo": "TEJ CZYNNOŚCI NIE MOŻNA COFNĄĆ.",
@@ -487,8 +570,6 @@
         "fingerprintAuthFailed": "Błąd autoryzacji odciskiem palca",
         "fingerprintAuthFailedExplanation": "Nie rozpoznano odcisku palca. Spróbuj ponownie.",
         "status": "Status",
-        "enabled": "Włączono",
-        "disabled": "Wyłączono",
         "fingerprintUnavailable": "Logowanie odciskiem palca niedostępne",
         "fingerprintUnavailableExplanation": "Twoje urządzenie nie obsługuje funkcji rozpoznawania odcisku palca lub funkcja ta nie została skonfigurowana w ustawieniach urządzenia.",
         "buttonInstructionsDisable": "Naciśnij poniższy przycisk, aby wyłączyć logowanie odciskiem palca.",
@@ -522,11 +603,12 @@
         "mcap": "Market",
         "change": "Zmiana",
         "volume": "Wolumen (24h)",
-        "currentValue": "Bieżąca wartość"
+        "currentValue": "Bieżąca wartość",
+        "error": "Błąd pobierania danych do wykresu"
     },
     "rootDetection": {
         "warning": "OSTRZEŻENIE",
-        "appearsRooted": "Twoje urządzenie wydaje się być odblokowane (dostęp root).",
+        "appearsRooted": "Twoje urządzenie wygląda na odblokowane (dostęp root).",
         "securityRisk": "To może stanowić istotne zagrożenie dla bezpieczeństwa Twojego portfela.",
         "continueDepsiteRisk": "Czy chcesz kontynuować pomimo tego ryzyka?"
     },
@@ -540,7 +622,12 @@
         "noWebGLSupport": "WebGL nieobsługiwane",
         "noWebGLSupportExplanation": "Twój komputer nie obsługuje technologii WebGL. Użyj zdalnego trybu PoW."
     },
+    "autoPromotion": {
+        "autoPromotionUpdated": "Ustawienia autopromowania",
+        "autoPromotionUpdatedExplanation": "Twoja konfiguracja autopromowania została zaktualizowana."
+    },
     "progressSteps": {
+        "checkingNodeHealth": "Sprawdzanie kondycji serwera",
         "validatingReceiveAddress": "Sprawdzanie adresu odbiorczego",
         "syncingAccount": "Synchronizacja konta",
         "preparingInputs": "Przygotowywanie danych wejściowych",
@@ -556,12 +643,12 @@
         "transitionCompleteExplanation": "Aktualizacja środków zakończyła się sukcesem.",
         "detectedBalance": "Wykryte saldo: {{amount}} {{unit}}",
         "isThisCorrect": "Czy jest ono poprawne?",
-        "snapshotExplanation": "Aby zmniejszyć rozmiar sieci Tangle, co jakiś czas przeprowadzany jest tzw. snapshot.",
+        "snapshotExplanation": "Aby zmniejszyć rozmiar sieci Tangle, co jakiś czas przeprowadzana jest tzw. migawka (snapshot).",
         "hasSnapshotTakenPlace": "Czy snapshot został wykonany? Kliknij poniższy przycisk, aby rozpocząć aktualizację swoich środków.",
-        "transition": "AKTUALIZUJ",
+        "transition": "Aktualizacja",
         "transitioning": "Trwa aktualizacja Twoich środków.",
         "generatingAndDetecting": "Generuję adresy oraz wykrywam saldo.",
-        "attaching": "Dołączam adresy do sieci Tangle"
+        "attaching": "Dołączam adresy do sieci Tangle."
     },
     "deepLink": {
         "autofill": "Autouzupełniono",
@@ -579,5 +666,13 @@
     },
     "notificationLog": {
         "errorLog": "DZIENNIK BŁĘDÓW"
+    },
+    "terms": {
+        "termsAndConditions": "Warunki i zasady",
+        "accept": "Akceptuję"
+    },
+    "privacyPolicy": {
+        "privacyPolicy": "Polityka prywatności",
+        "agree": "Zgadzam się"
     }
 }

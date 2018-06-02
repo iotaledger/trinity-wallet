@@ -123,14 +123,14 @@ class Feedback extends React.PureComponent {
                         An anonymised state of the application will be sent together with your message. No sensitive
                         information (e.g. seeds, password, addresses or balance) will leave your computer.
                     </Info>
-                    <fieldset>
+                    <footer>
                         <Button onClick={() => this.setState({ open: false })} variant="secondary">
                             {t('cancel')}
                         </Button>
                         <Button type="submit" loading={loading} variant="positive">
                             {t('send:send')}
                         </Button>
-                    </fieldset>
+                    </footer>
                 </form>
             </Modal>
         );

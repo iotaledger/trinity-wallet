@@ -151,9 +151,10 @@ function injectAPIProxy() {
     iotaAPI.api = new Proxy(...args);
 }
 
-export const getRandomNode = () => {
-    const x = Math.floor(Math.random() * nodes.length);
-    return nodes[x];
+export const getRandomNode = (nodesList) => {
+    const x = Math.floor(Math.random() * nodesList.length);
+
+    return nodesList[x];
 };
 
 export const checkNode = (cb) => {

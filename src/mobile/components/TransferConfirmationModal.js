@@ -5,7 +5,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { round } from 'iota-wallet-shared-modules/libs/utils';
 import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/iota/utils';
 import StatefulDropdownAlert from '../containers/StatefulDropdownAlert';
-import OnboardingButtons from '../containers/OnboardingButtons';
+import ModalButtons from '../containers/ModalButtons';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
 
@@ -34,33 +34,33 @@ const styles = StyleSheet.create({
     text: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 29.6,
+        fontSize: GENERAL.fontSize2,
     },
     regularText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 29.6,
+        fontSize: GENERAL.fontSize2,
     },
     boldText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 25.9,
+        fontSize: GENERAL.fontSize3,
     },
     middleText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 31.8,
+        fontSize: GENERAL.fontSize2,
         paddingBottom: height / 80,
     },
     addressText: {
         backgroundColor: 'transparent',
         fontFamily: 'Inconsolata-Bold',
-        fontSize: width / 21.8,
+        fontSize: GENERAL.fontSize4,
     },
     iotaText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: width / 25.9,
+        fontSize: GENERAL.fontSize3,
     },
 });
 
@@ -197,7 +197,7 @@ class TransferConfirmationModal extends Component {
                             </Text>
                         </View>
                     )}
-                    <OnboardingButtons
+                    <ModalButtons
                         onLeftButtonPress={() => this.props.hideModal()}
                         onRightButtonPress={() => this.onSendPress()}
                         leftText={t('global:cancel')}

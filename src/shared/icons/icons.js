@@ -23,6 +23,7 @@ module.exports = {
     history: '🕐',
     user: '👽',
     plus: '🔹',
+    minus: '➖',
     cross: '╳',
     bookmark: '📖',
     trash: '🗑',

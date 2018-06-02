@@ -61,11 +61,15 @@ describe('Reducer: settings', () => {
                     version: DESKTOP_VERSION,
                     notes: [],
                 },
-                remotePoW: true,
+                remotePoW: false,
                 lockScreenTimeout: 3,
                 versions: {},
                 is2FAEnabled: false,
                 isFingerprintEnabled: false,
+                hasVisitedSeedShareTutorial: false,
+                acceptedTerms: false,
+                acceptedPrivacy: false,
+                autoPromotion: false,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
@@ -123,16 +127,16 @@ describe('Reducer: settings', () => {
         });
     });
 
-    describe('ADD_CUSTOM_POW_NODE', () => {
+    describe('IOTA/SETTINGS/ADD_CUSTOM_NODE_SUCCESS', () => {
         describe('when payload exists in "nodes" state prop', () => {
-            it('should return state prop "nodes" as is', () => {
+            it('should return existing state prop "nodes"', () => {
                 const initialState = {
                     nodes: ['http://localhost:9000', 'http://localhost:5000'],
                     customNodes: [],
                 };
 
                 const action = {
-                    type: 'IOTA/SETTINGS/ADD_CUSTOM_POW_NODE',
+                    type: 'IOTA/SETTINGS/ADD_CUSTOM_NODE_SUCCESS',
                     payload: 'http://localhost:9000',
                 };
 
@@ -142,7 +146,7 @@ describe('Reducer: settings', () => {
                     customNodes: [],
                 };
 
-                expect(newState).to.eql(expectedState);
+                expect(newState.nodes).to.eql(expectedState.nodes);
             });
         });
 
@@ -154,7 +158,7 @@ describe('Reducer: settings', () => {
                 };
 
                 const action = {
-                    type: 'IOTA/SETTINGS/ADD_CUSTOM_POW_NODE',
+                    type: 'IOTA/SETTINGS/ADD_CUSTOM_NODE_SUCCESS',
                     payload: 'http://localhost:3000',
                 };
 
@@ -164,7 +168,8 @@ describe('Reducer: settings', () => {
                     customNodes: ['http://localhost:3000'],
                 };
 
-                expect(newState).to.eql(expectedState);
+                expect(newState.nodes).to.eql(expectedState.nodes);
+                expect(newState.customNodes).to.eql(expectedState.customNodes);
             });
         });
     });
@@ -557,6 +562,23 @@ describe('Reducer: settings', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 versions: { build: '3.4.4' },
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
+
+    describe('SET_SEED_SHARE_TUTORIAL_VISITATION_STATUS', () => {
+        it('should set hasVisitedSeedShareTutorial to payload', () => {
+            const initialState = {
+                hasVisitedSeedShareTutorial: false,
+            };
+
+            const action = actions.setSeedShareTutorialVisitationStatus(true);
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                hasVisitedSeedShareTutorial: true,
             };
 
             expect(newState).to.eql(expectedState);
