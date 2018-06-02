@@ -185,7 +185,7 @@
         "currentPassword": "Mật Khẩu Hiện Tại",
         "newPassword": "Mật Khẩu Mới",
         "confirmPassword": "Xác Nhận Mật Khẩu Mới",
-        "passwordTooWeak": "Password too weak",
+        "passwordTooWeak": "Mật khẩu quá yếu",
         "passwordTooWeakReason": "Your password is too weak. Use a combination of words, and avoid common phrases, names or dates",
         "reasonRow": "Straight rows of keys are easy to guess",
         "reasonPattern": "Short patterns of keys are easy to guess",
