@@ -225,7 +225,7 @@
         "invalidCharactersExplanation": "Seed môže obsahovať iba veľké písmená A-Z a číslo 9. Váš Seed obsahuje neplatné znaky. Prosím, skúste to znova.",
         "seedTooShort": "Seed je príliš krátky",
         "seedTooShortExplanation": "Seed musí mať {{maxLength}} znakov. Váš Seed má {{currentLength}} znakov. Prosím, skúste to znova.",
-        "seedExplanation": "Seed by mal mať dĺžku {{maxLength}} znakov a mal by obsahovat velké písmena A-Z a číslo 9. Nie je možné použít Seed dlhší ako {{maxLength}} znakov.",
+        "seedExplanation": "Seed by mal mať dĺžku {{maxLength}} znakov a mal by obsahovať veľké písmená A-Z a číslo 9. Nie je možné použiť Seed dlhší ako {{maxLength}} znakov.",
         "neverShare": "NIKDY NIKOMU NEPREZRÁDZAJTE VÁŠ SEED"
     },
     "home": {
@@ -253,14 +253,14 @@
         "loadingFirstTime": "Prvotné načítanie Seedu.",
         "thisMayTake": "Môže to chvíľu trvať.",
         "doNotMinimise": "Neminimalizujte, ani nezatvárajte aplikáciu.",
-        "youMayNotice": "Môžete zaregistrovať spomalenie Vášho zariadenia.",
+        "youMayNotice": "Môžete zaregistrovať spomalenie vášho zariadenia.",
         "takingAWhile": "Vyzerá, že to bude chvíľu trvať"
     },
     "newSeedSetup": {
         "generatedSeed": "Generovaný seed",
         "seedNotGenerated": "Seed nebol vygenerovaný",
-        "seedNotGeneratedExplanation": "Generujte prosím nový seed.",
-        "pressForNewSeed": "Stlačte pre nový seed",
+        "seedNotGeneratedExplanation": "Generujte, prosím, nový Seed.",
+        "pressForNewSeed": "Stlačte pre nový Seed",
         "generateSuccess": "Seed úspešne vygenerovaný",
         "individualLetters": "Vyberte náhodné písmena.",
         "individualLetterCount": "Stlačte {{letterCount}} jednotlivé znaky pre zvýšenie náhodnosti.",
