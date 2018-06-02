@@ -192,14 +192,14 @@
         "reasonNames": "Common names and surnames are easy to guess",
         "reasonRepeats": "Repeats like 'aaa' are easy to guess",
         "reasonRepeats2": "Repeats like 'abcabcabc' are only slightly harder to guess than 'abc'",
-        "reasonSequence": "Sequences like abc or 54321 are easy to guess",
-        "reasonYears": "Recent years are easy to guess",
-        "reasonDates": "Dates are often easy to guess",
-        "reasonTop10": "This is a top 10 common password",
-        "reasonTop100": "This is a top 100 common password",
-        "reasonCommon": "This is a very common password",
-        "reasonSimilar": "This is similar to a commonly-used password",
-        "reasonWord": "A single word is easy to guess"
+        "reasonSequence": "Chuỗi từ abc hoặc 54321 rất dễ bị đoán ra",
+        "reasonYears": "Năm gần đây rất dễ bị đoán ra",
+        "reasonDates": "Ngày rất dễ bị đoán ra",
+        "reasonTop10": "Đây là 10 mật khẩu thường gặp nhất",
+        "reasonTop100": "Đây là 100 mật khẩu thường gặp nhất",
+        "reasonCommon": "Đây là mật khẩu thường gặp",
+        "reasonSimilar": "Cái này tương tự với mật khẩu thường gặp",
+        "reasonWord": "Một từ rất dễ bị đoán ra"
     },
     "copyToClipboard": {
         "seedCleared": "Từ khoá đã xoá",
@@ -492,7 +492,7 @@
         "manualSync": "Đồng bộ bằng tay",
         "snapshotTransition": "Snapshot transition",
         "pow": "Proof of Work",
-        "autoPromotion": "Auto-promotion",
+        "autoPromotion": "Tự động thúc đẩy",
         "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
         "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
     },
@@ -547,7 +547,7 @@
     "viewSeed": {
         "enterPassword": "Nhập mật khẩu để xem từ khóa.",
         "viewSeed": "Xem Từ Khoá",
-        "hideSeed": "Hide Seed"
+        "hideSeed": "Ẩn từ khóa"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Did you back up your seed?",
@@ -593,17 +593,17 @@
         "key": "Mã",
         "twoFAEnabled": "2FA được kích hoạt",
         "twoFAEnabledExplanation": "Bạn đã kích hoạt thành công 2FA.",
-        "twoFADisabled": "2FA is now disabled",
+        "twoFADisabled": "2FA đã bị tắt",
         "twoFADisabledExplanation": "You have successfully disabled Two Factor Authentication.",
         "enterCode": "Nhập mã từ chương trình 2FA của bạn",
         "code": "Mã Số",
-        "twoFaToken": "2FA Token"
+        "twoFaToken": "Mã 2FA"
     },
     "chart": {
         "mcap": "MCAP",
         "change": "Change",
         "volume": "Volume (24h)",
-        "currentValue": "Current value",
+        "currentValue": "Giá trị hiện tại",
         "error": "Error fetching chart data"
     },
     "rootDetection": {
@@ -629,7 +629,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Checking node health",
         "validatingReceiveAddress": "Validating receive address",
-        "syncingAccount": "Syncing account",
+        "syncingAccount": "Đang đồng bộ tài khoản",
         "preparingInputs": "Preparing inputs",
         "preparingTransfers": "Chuẩn bị chuyển khoản",
         "gettingTransactionsToApprove": "Getting transactions to approve",
