@@ -26,7 +26,7 @@
     "compile:win": "npm run build && electron-builder --win --x64",
     "compile:win64": "npm run build && electron-builder --win --x64",
     "compile:win32": "npm run build && electron-builder --win --x32",
-    "audit": "./../../node_modules/.bin/auditjs -l error"
+    "audit": "docker run -it trinity './node_modules/.bin/auditjs -l error'"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

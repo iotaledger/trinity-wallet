@@ -1,11 +1,13 @@
 FROM node:8.11.2-stretch
 
 VOLUME /dist
+VOLUME /source
 
 RUN apt-get update && apt-get install -y git python \
     gcc-multilib g++-multilib \
     build-essential libssl-dev rpm \
-    libsecret-1-dev software-properties-common apt-transport-https
+    libsecret-1-dev software-properties-common apt-transport-https \
+    default-jdk
 
 
 # install wine (needed for windows build)
@@ -17,15 +19,6 @@ RUN dpkg --add-architecture i386 && \
     apt-get install --install-recommends -y winehq-stable
 
 
-COPY . /trinity
-WORKDIR /trinity
-
-RUN yarn full-setup
-
-# setup shared
-WORKDIR /trinity/src/shared
-RUN yarn
-
-WORKDIR /trinity
+WORKDIR /source
 
 ENTRYPOINT ["/bin/bash", "-c"]

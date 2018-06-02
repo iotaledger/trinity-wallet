@@ -7,7 +7,7 @@ This is the shared repository for the IOTA Trinity mobile and desktop wallets. T
 
 ## Prerequisites
 
-- Node.js (8+) 
+- Node.js (8+)
 - Yarn
 
 ## Instructions
@@ -29,14 +29,14 @@ docker build -t trinity .
 
 To start a new container:
 ```
-docker run -it trinity bash
+docker run -v $PWD:/source -it trinity bash
 ```
 
 ## Branches
 
 To create a new feature or bugfix (or chore) please create a new branch and use a prefix (e.g `feature/my-awesome-new-feature` or `bugfix/something-not-working`). The prefixes we use are `bugfix`, `feature`, `chore` and `hotfix`. Please don't use anything else.
 
-If you are adding any text in your work, please follow the instructions in LOCALIZATION.md. 
+If you are adding any text in your work, please follow the instructions in LOCALIZATION.md.
 
 When creating a new branch try to always branch off from `develop`. Avoid branching off from other branches unless it's absolutely necessary.
 
