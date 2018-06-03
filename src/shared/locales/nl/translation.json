@@ -311,7 +311,7 @@
         "whatIsCheksum": "Elke seed heeft een overeenkomstige controlesom van 3 karakters",
         "iHavesavedMySeed": "Ik heb mijn seed opgeslagen",
         "checksumExplanation": "Wanneer u uw seed toevoegt aan uw portemonnee, moet u er zeker van zijn dat de gegenereerde controlesom hetzelfde is als degene die u heeft opgeschreven.",
-        "mustSaveYourSeed": "<0><0>U moet uw seed opslaan met </0><1>tenminste één</1><2>van de onderstaande opties.</2></0>"
+        "mustSaveYourSeed": "<0><0>U moet uw seed opslaan met </0><1>tenminste één</1><2> van de onderstaande opties.</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Bevestig uw seed",
