@@ -215,8 +215,8 @@
         "doNotOpen": "在此过程中，请勿打开其他任何应用程序。",
         "tapConfirm": "请勾选下面的复选框予以确认。",
         "passwordManagerCheckbox": "I will store my seed in a password manager",
-        "copy": "COPY",
-        "noPasswordManagers": "No supported password managers installed",
+        "copy": "复制",
+        "noPasswordManagers": "未安装支持的密码管理器",
         "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android.",
         "followTutorialToSecurelyShareSeed": "If you wish to store your seed in a password manager, you must follow a tutorial from the following link"
     },
@@ -237,16 +237,16 @@
     },
     "languageSetup": {
         "language": "语言",
-        "letsGetStarted": "Let's get started"
+        "letsGetStarted": "让我们开始吧！"
     },
     "login": {
         "emptyPassword": "密码为空",
         "emptyPasswordExplanation": "您必须输入密码才能登录。请重试。",
         "enterPassword": "请输入您的密码.",
         "useSeed": "使用种子",
-        "login": "Log In",
+        "login": "登录",
         "selectDifferentNode": "是否要选择其他节点？",
-        "setNode": "Set Node",
+        "setNode": "设置节点",
         "cannotConnect": "无法连接到IOTA节点。"
     },
     "loading": {
@@ -254,17 +254,17 @@
         "thisMayTake": "可能需要一段时间",
         "doNotMinimise": "不要最小化或关闭应用程序。",
         "youMayNotice": "您的设备可能会变慢。",
-        "takingAWhile": "This seems to be taking a while"
+        "takingAWhile": "这似乎需要花一些时间"
     },
     "newSeedSetup": {
-        "generatedSeed": "Generated seed",
+        "generatedSeed": "生成的种子",
         "seedNotGenerated": "尚未生成种子",
         "seedNotGeneratedExplanation": "请生成一个新的种子。",
-        "pressForNewSeed": "Press for New Seed",
-        "generateSuccess": "Seed generated successfully",
+        "pressForNewSeed": "点击获得新的种子",
+        "generateSuccess": "种子成功生成",
         "individualLetters": "通过点击各个字母来随机生成。",
         "individualLetterCount": "Press {{letterCount}} more individual letters to randomise them.",
-        "whatIsASeed": "What is a seed?"
+        "whatIsASeed": "什么是种子？"
     },
     "onboardingComplete": {
         "allDone": "All Done!",
@@ -285,24 +285,24 @@
         "printerCheckbox": "I will not print on a public printer"
     },
     "receive": {
-        "copyAddress": "Copy address",
+        "copyAddress": "复制地址",
         "addressCopied": "已复制地址",
         "addressCopiedExplanation": "您的地址已复制到剪贴板。",
-        "generateNewAddress": "New Address",
+        "generateNewAddress": "新地址",
         "message": "可选消息",
         "removeMessage": "移除消息",
         "noAddresses": "无地址",
         "spent": "支出"
     },
     "saveYourSeed": {
-        "saveYourSeed": "Back up your seed",
-        "seedCleared": "Seed cleared",
-        "mostSecure": "Most Secure",
-        "leastSecure": "Least Secure",
-        "paperWallet": "Paper Wallet",
-        "writeYourSeedDown": "Write your seed down",
-        "printYourSeed": "Print your seed",
-        "digitalCopy": "Digital copy",
+        "saveYourSeed": "备份您的种子",
+        "seedCleared": "种子已清除",
+        "mostSecure": "最安全的",
+        "leastSecure": "最低安全的",
+        "paperWallet": "纸钱包",
+        "writeYourSeedDown": "写下您的种子",
+        "printYourSeed": "打印您的种子",
+        "digitalCopy": "数字备份",
         "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
         "iHaveBackedUpMySeed": "我已经保存了我的种子",
         "letsWriteDownYourSeed": "Lets write down your seed",
