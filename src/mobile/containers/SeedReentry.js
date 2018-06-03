@@ -171,7 +171,7 @@ class SeedReentry extends Component {
                             <View style={{ flex: 0.15 }} />
                             <CustomTextInput
                                 label={t('global:seed')}
-                                onChangeText={(text) => this.setState({ seed: text })}
+                                onChangeText={(text) => this.setState({ seed: text.toUpperCase() })}
                                 containerStyle={{ width: width / 1.2 }}
                                 maxLength={MAX_SEED_LENGTH}
                                 autoCapitalize="characters"
