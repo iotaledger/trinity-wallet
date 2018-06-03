@@ -119,7 +119,7 @@
         "pleaseWaitTransferExplanation": "Số tiền của bạn đang được sử dụng trong một giao dịch khác. Vui lòng đợi xác nhận xong trước khi thử gửi lại.",
         "pleaseWaitIncomingTransferExplanation": "Bạn có chuyển khoản sắp đến. Xin vui lòng chờ được chứng thực trước khi thử lại.",
         "snapshotTransitionInProgress": "Đang thực hiện chuyển đổi Snapshot",
-        "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete.",
+        "snapshotTransitionInProgressExplanation": "Vui lòng đợi đến khi quá trình chuyển đổi được hoàn tất.",
         "checkForUpdates": "Kiểm Tra Cập Nhật Mới",
         "account": "Tài Khoản",
         "enterPasswordToAccessSettings": "Enter your password to access account settings",
