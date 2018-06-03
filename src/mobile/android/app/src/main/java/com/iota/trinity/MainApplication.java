@@ -19,6 +19,8 @@ import com.rnprint.RNPrint.RNPrintPackage;
 import com.github.wumke.RNExitApp.RNExitAppPackage;
 import net.rhogan.rnsecurerandom.RNSecureRandomPackage;
 import org.iota.mobile.IOTAMobilePackage;
+
+import cl.json.ShareApplication;
 import module.share.ShareSecurePackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import my.fin.RNIsDeviceRootedPackage;
@@ -27,13 +29,14 @@ import com.rajivshah.safetynet.RNGoogleSafetyNetPackage;
 import com.hieuvp.fingerprint.ReactNativeFingerprintScannerPackage;
 import com.rndetectnavbarandroid.RNDetectNavbarAndroidPackage;
 import me.listenzz.modal.TranslucentModalReactPackage;
+import cl.json.RNSharePackage;
 
 import java.util.Arrays;
 import java.util.List;
 
 import ca.jaysoo.extradimensions.ExtraDimensionsPackage;
 
-public class MainApplication extends NavigationApplication {
+public class MainApplication extends NavigationApplication implements ShareApplication {
 
   @Override
   protected void attachBaseContext(Context base) {
@@ -78,12 +81,18 @@ public class MainApplication extends NavigationApplication {
             BugsnagReactNative.getPackage(),
             new RNGoogleSafetyNetPackage(),
             new ReactNativeFingerprintScannerPackage(),
-            new ShareSecurePackage()
+            new ShareSecurePackage(),
+            new RNSharePackage()
     );
   }
 
   @Override
   public List<ReactPackage> createAdditionalReactPackages() {
     return getPackages();
+  }
+
+  @Override
+  public String getFileProviderAuthority() {
+    return "com.iota.trinity.provider";
   }
 }
