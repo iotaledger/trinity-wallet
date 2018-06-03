@@ -1,8 +1,8 @@
 {
     "global": {
-        "send": "SEND",
-        "cancel": "CANCEL",
-        "continue?": "Are you sure you want to continue?",
+        "send": "அனுப்பு",
+        "cancel": "ரத்து",
+        "continue?": "தொடர விரும்புகிறீர்களா?",
         "noTransactions": "NO RECENT HISTORY",
         "refresh": "Refresh",
         "balanceError": "Not enough balance",
@@ -230,7 +230,7 @@
     },
     "home": {
         "balance": "BALANCE",
-        "send": "SEND",
+        "send": "அனுப்பு",
         "receive": "RECEIVE",
         "history": "HISTORY",
         "settings": "SETTINGS"
@@ -461,7 +461,7 @@
         "addressCopiedExplanation": "The address has been copied to the clipboard.",
         "messageCopied": "Message copied",
         "messageCopiedExplanation": "The message has been copied to the clipboard.",
-        "send": "SEND",
+        "send": "அனுப்பு",
         "receive": "RECEIVE"
     },
     "accountManagement": {
