@@ -22,14 +22,19 @@ git clone git@gitlab.com:iota-community/wallet.git
 cd wallet
 ```
 
-3. Build docker image
+3. Build docker image (neccesary every time source is changed)
 ```
 docker build -t trinity .
 ```
 
 To start a new container:
 ```
-docker run -v $PWD:/source -it trinity bash
+docker run -v $PWD/.git:/app/.git -it trinity bash
+```
+
+To build binaries:
+```
+docker run -v $PWD/.git:/app/.git -v $PWD/dist:/dist -it trinity ./build.sh
 ```
 
 ## Branches
