@@ -200,7 +200,7 @@ class Receive extends Component {
     onQRPress() {
         const { t, receiveAddress } = this.props;
         if (receiveAddress !== ' ') {
-            captureRef(this.qr, { format: 'png', result: 'data-uri'}).then((url) => {
+            captureRef(this.qr, { format: 'png', result: 'data-uri' }).then((url) => {
                 console.log(url);
                 Share.open({
                     url,
@@ -214,8 +214,8 @@ class Receive extends Component {
                         this.props.generateAlert('error', t('codeNotSent'), t('codeNotSent'));
                     });
             });
+        }
     }
-  }
 
     getOpacity() {
         if (!isAndroid) {
@@ -265,7 +265,11 @@ class Receive extends Component {
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
                 <View style={styles.container}>
                     <View style={{ flex: 0.55 }} />
-                    <View style={[styles.qrContainer, qrOpacity, { borderColor: 'transparent' }]} ref={(c) => this.qr = c}>
+                    {/*eslint-disable no-return-assign*/}
+                    <View
+                        style={[styles.qrContainer, qrOpacity, { borderColor: 'transparent' }]}
+                        ref={(c) => (this.qr = c)}
+                    >
                         <TouchableOpacity onPress={() => this.onQRPress()}>
                             <QRCode
                                 value={JSON.stringify({ address: receiveAddress, message })}
@@ -275,6 +279,7 @@ class Receive extends Component {
                             />
                         </TouchableOpacity>
                     </View>
+                    {/*eslint-enable no-return-assign*/}
                     <View style={{ flex: 0.25 }} />
                     {receiveAddress.length > 1 ? (
                         <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
