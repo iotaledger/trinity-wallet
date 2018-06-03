@@ -424,17 +424,17 @@
         "autoNodeSwitching": "当选定的节点不可访问时自动切换节点。",
         "nodeChangeSuccess": "成功更改节点",
         "nodeChangeSuccessNoRemotePow": "节点已经更改为{{node}}。此节点不支持远程工作证明。",
-        "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
-        "nodeChangeError": "Error changing node",
-        "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
+        "nodeChangeSuccessExplanation": "该节点已经更改为{{node}}。",
+        "nodeChangeError": "更改节点时出错。",
+        "nodeChangeErrorExplanation": "更改节点时出错。请重试。"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "输入您的密码以重置钱包。",
-        "cancel": "Cancel",
+        "cancel": "取消",
         "reset": "重置"
     },
     "walletSetup": {
-        "creatingSeed": "Creating a seed",
+        "creatingSeed": "创建种子",
         "okay": "好，让我们来开始设置您的钱包 ！",
         "doYouAlreadyHaveASeed": "您是否希望使用一个已有的种子？",
         "doYouNeedASeed": "Do you need to create a new seed?",
