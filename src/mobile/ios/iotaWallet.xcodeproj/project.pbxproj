@@ -30,6 +30,9 @@
 		5403F0AF99C33584CC25CA8D4422B333 /* Inconsolata-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 60C4FCE77138FA022DBAD917D3C8B8C1 /* Inconsolata-Regular.ttf */; };
 		54D44899635E65A34FCEAC3EA412BE26 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFA2B84C183CC39F995C8E04CC713DDB /* Images.xcassets */; };
 		5613EA5FACE7DF227C991290F2E89D02 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE06912F32A64660367B379A5FA9B59C /* libRCTAnimation.a */; };
+		601BFCEE20C367660097D329 /* libRNShare.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 601BFCED20C367310097D329 /* libRNShare.a */; };
+		601BFCF020C3677F0097D329 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 601BFCEF20C3677E0097D329 /* Social.framework */; };
+		601BFCF220C3679D0097D329 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 601BFCF120C3679D0097D329 /* MessageUI.framework */; };
 		6056CF5520827D3C0006A2F3 /* libRNCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6056CF5420827D2F0006A2F3 /* libRNCamera.a */; };
 		6056CF5C20827E370006A2F3 /* libReactNativePermissions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6056CF5B20827E2E0006A2F3 /* libReactNativePermissions.a */; };
 		609C11CD20A12E8900349263 /* EntangledKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 609C11CC20A12E8900349263 /* EntangledKit.framework */; };
@@ -263,6 +266,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = ECE344CBB22E9B14926747E3FB76B0F3;
 			remoteInfo = "third-party-tvOS";
+		};
+		601BFCEC20C367310097D329 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 601BFCE820C367300097D329 /* RNShare.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNShare;
 		};
 		6056CF5320827D2F0006A2F3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -647,6 +657,9 @@
 		5BC0CFE5E7DFF31220E78B818DA00C4B /* BugsnagReactNative.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BugsnagReactNative.xcodeproj; path = "../node_modules/bugsnag-react-native/cocoa/BugsnagReactNative.xcodeproj"; sourceTree = "<group>"; };
 		5C64D2219E425907A910B0F3A28CD9F1 /* iotaWalletTests-debug-config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "iotaWalletTests-debug-config.xcconfig"; sourceTree = "<group>"; };
 		5D730345CF75A62E99A5B317731440D2 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		601BFCE820C367300097D329 /* RNShare.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNShare.xcodeproj; path = "../node_modules/react-native-share/ios/RNShare.xcodeproj"; sourceTree = "<group>"; };
+		601BFCEF20C3677E0097D329 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		601BFCF120C3679D0097D329 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		6056CF4F20827D2F0006A2F3 /* RNCamera.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RNCamera.xcodeproj"; sourceTree = "<group>"; };
 		6056CF5620827E2E0006A2F3 /* ReactNativePermissions.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativePermissions.xcodeproj; path = "../node_modules/react-native-permissions/ios/ReactNativePermissions.xcodeproj"; sourceTree = "<group>"; };
 		609C11CC20A12E8900349263 /* EntangledKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EntangledKit.framework; sourceTree = "<group>"; };
@@ -737,6 +750,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				601BFCF220C3679D0097D329 /* MessageUI.framework in Frameworks */,
+				601BFCF020C3677F0097D329 /* Social.framework in Frameworks */,
+				601BFCEE20C367660097D329 /* libRNShare.a in Frameworks */,
 				CB6626F52085057F00651519 /* libSplashScreen.a in Frameworks */,
 				6056CF5C20827E370006A2F3 /* libReactNativePermissions.a in Frameworks */,
 				6056CF5520827D3C0006A2F3 /* libRNCamera.a in Frameworks */,
@@ -857,6 +873,8 @@
 		0FE432859717DE312B0951A32FFC9F0C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				601BFCF120C3679D0097D329 /* MessageUI.framework */,
+				601BFCEF20C3677E0097D329 /* Social.framework */,
 				1A114AFE31653EBA7706861B9B5706C0 /* ios_bindings-fl.a */,
 				F799E10140F3477803D1C73A2F97B01B /* libz.tbd */,
 				890341AF0F2DE4E9DCB80928 /* Pods_iotaWallet.framework */,
@@ -979,6 +997,14 @@
 			path = Config;
 			sourceTree = "<group>";
 		};
+		601BFCE920C367300097D329 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				601BFCED20C367310097D329 /* libRNShare.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		6056CF5020827D2F0006A2F3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1006,6 +1032,7 @@
 		6C07637C2BD02779C4E072737C53A2E3 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				601BFCE820C367300097D329 /* RNShare.xcodeproj */,
 				60BDD276208D12790085549F /* RNSecureClipboard.xcodeproj */,
 				CB6626ED2085056C00651519 /* SplashScreen.xcodeproj */,
 				6056CF5620827E2E0006A2F3 /* ReactNativePermissions.xcodeproj */,
@@ -1632,6 +1659,10 @@
 					ProjectRef = 2D84DC61092C2CB09498AB83CAA9B91F /* RNSecureRandom.xcodeproj */;
 				},
 				{
+					ProductGroup = 601BFCE920C367300097D329 /* Products */;
+					ProjectRef = 601BFCE820C367300097D329 /* RNShare.xcodeproj */;
+				},
+				{
 					ProductGroup = DD933FDF72C371158E64AB9B49B85780 /* Products */;
 					ProjectRef = FF6707891F5797B0CC78F1267EB8F1A2 /* RNSVG.xcodeproj */;
 				},
@@ -1783,6 +1814,13 @@
 			fileType = archive.ar;
 			path = "libRNDeviceInfo-tvOS.a";
 			remoteRef = 5A109CA5CC18A16B6414EEC4BBD87090 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		601BFCED20C367310097D329 /* libRNShare.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNShare.a;
+			remoteRef = 601BFCEC20C367310097D329 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		6056CF5420827D2F0006A2F3 /* libRNCamera.a */ = {
