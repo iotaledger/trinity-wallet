@@ -203,6 +203,7 @@ class Receive extends Component {
         const obj = JSON.stringify({ address: receiveAddress, message });
         if (receiveAddress !== ' ') {
             QR.toDataURL(obj, { type: 'image/png' }).then((url) => {
+                url = 'data:image/png;base64,' + url;
                 Share.open({
                     url,
                     type: 'image/png',
