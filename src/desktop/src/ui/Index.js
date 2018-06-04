@@ -150,7 +150,7 @@ class App extends React.Component {
 
     componentWillUnmount() {
         Electron.removeEvent('menu', this.onMenuToggle);
-        Electron.removeEvent('url-params', this.onSetDeepUrl);
+        //Electron.removeEvent('url-params', this.onSetDeepUrl);
     }
 
     setDeepUrl(data) {
@@ -265,6 +265,7 @@ const mapStateToProps = (state) => ({
     wallet: state.wallet,
     activationCode: state.app.activationCode,
     themeName: state.settings.themeName,
+    isDeepLinkActive: state.wallet.deepLinkActive,
 });
 
 const mapDispatchToProps = {

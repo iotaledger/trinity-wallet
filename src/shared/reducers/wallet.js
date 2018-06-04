@@ -78,7 +78,7 @@ export default (state = initialState, action) => {
                 seedIndex: 0,
                 isGeneratingReceiveAddress: false,
                 currentSetting: 'mainSettings',
-                deepLinkActive: false,
+                //deepLinkActive: false,
                 usedExistingSeed: false,
             };
         case ActionTypes.CLEAR_SEED:

@@ -194,6 +194,7 @@ export default function withSendData(SendComponent) {
                     address: ui.sendAddressFieldText,
                     amount: ui.sendAmountFieldText,
                     message: ui.sendMessageFieldText,
+                    deepLinkActive: this.props.deepLinkActive,
                 },
                 setSendAddressField,
                 setSendAmountField,

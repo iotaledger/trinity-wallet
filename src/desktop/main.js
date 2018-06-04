@@ -70,17 +70,13 @@ function createWindow() {
 
     windows.main.on('close', hideOnClose);
 
-    if (devMode) {
-        windows.main.webContents.openDevTools();
-        const {
-            default: installExtension,
-            REACT_DEVELOPER_TOOLS,
-            REDUX_DEVTOOLS,
-        } = require('electron-devtools-installer');
+    // if (devMode) {
+    windows.main.webContents.openDevTools();
+    const { default: installExtension, REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } = require('electron-devtools-installer');
 
-        installExtension(REACT_DEVELOPER_TOOLS);
-        installExtension(REDUX_DEVTOOLS);
-    }
+    installExtension(REACT_DEVELOPER_TOOLS);
+    installExtension(REDUX_DEVTOOLS);
+    // }
 
     windows.main.webContents.on('context-menu', (e, props) => {
         const InputMenu = electron.Menu.buildFromTemplate([
