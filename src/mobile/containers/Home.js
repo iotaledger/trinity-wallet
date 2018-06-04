@@ -451,7 +451,6 @@ const mapStateToProps = (state) => ({
     inactive: state.ui.inactive,
     minimised: state.ui.minimised,
     theme: state.settings.theme,
-    currentRoute: state.home.childRoute,
     isSyncing: state.ui.isSyncing,
     isCheckingCustomNode: state.ui.isCheckingCustomNode,
     isSendingTransfer: state.ui.isSendingTransfer,
