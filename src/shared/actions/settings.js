@@ -130,9 +130,12 @@ export const setLockScreenTimeout = (payload) => ({
 });
 
 export function setLocale(locale) {
-    return {
-        type: ActionTypes.SET_LOCALE,
-        payload: locale,
+    return (dispatch) => {
+        i18next.changeLanguage(locale);
+        return dispatch({
+            type: ActionTypes.SET_LOCALE,
+            payload: locale,
+        });
     };
 }
 
