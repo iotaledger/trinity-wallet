@@ -102,7 +102,7 @@ class SeedSave extends PureComponent {
                         {t('goBackStep')}
                     </Button>
                     <Button to="/onboarding/seed-verify" className="square" variant="primary">
-                        {t('saveYourSeed:iHaveSavedMySeed')}
+                        {t('saveYourSeed:iHavesavedMySeed')}
                     </Button>
                 </footer>
                 <Modal
@@ -172,7 +172,7 @@ class SeedSave extends PureComponent {
                             variant="primary"
                             className="square"
                         >
-                            {t('done')}
+                            {t('doneLowercase')}
                         </Button>
                     </footer>
                 </Modal>
