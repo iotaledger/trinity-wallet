@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 
+import { getSelectedAccountName } from 'selectors/accounts';
 import { generateAlert } from 'actions/alerts';
 
-import { setVault } from 'libs/crypto';
+import { removeSeed } from 'libs/crypto';
 import { deleteAccount } from 'actions/accounts';
 import ModalPassword from 'ui/components/modal/Password';
 
@@ -17,8 +18,6 @@ import Confirm from 'ui/components/modal/Confirm';
  */
 class Remove extends PureComponent {
     static propTypes = {
-        /** Current seed index */
-        seedIndex: PropTypes.number.isRequired,
         /** Current account name */
         accountName: PropTypes.string.isRequired,
         /** Remove account
@@ -44,22 +43,17 @@ class Remove extends PureComponent {
 
     state = {
         removeConfirm: false,
-        password: null,
-        vault: null,
     };
 
-    removeAccount = () => {
-        const { accountName, seedIndex, history, t, generateAlert, deleteAccount } = this.props;
-        const { password, vault } = this.state;
+    removeAccount = async (password) => {
+        const { accountName, history, t, generateAlert, deleteAccount } = this.props;
 
         this.setState({
             removeConfirm: false,
         });
 
         try {
-            const seeds = vault.seeds.filter((seed, index) => index !== seedIndex);
-
-            setVault(password, { seeds: seeds });
+            await removeSeed(password, accountName);
 
             deleteAccount(accountName);
 
@@ -85,7 +79,7 @@ class Remove extends PureComponent {
                 <ModalPassword
                     isOpen
                     inline
-                    onSuccess={(password, vault) => this.setState({ password, vault })}
+                    onSuccess={(password) => this.removeAccount(password)}
                     onClose={() => this.setState({ removeConfirm: false })}
                     content={{
                         title: t('deleteAccount:enterPassword'),
@@ -118,8 +112,7 @@ class Remove extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    seedIndex: state.wallet.seedIndex,
-    accountName: state.accounts.accountNames[state.wallet.seedIndex],
+    accountName: getSelectedAccountName(state),
 });
 
 const mapDispatchToProps = {

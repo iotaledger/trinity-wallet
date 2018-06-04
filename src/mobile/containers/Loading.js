@@ -276,6 +276,7 @@ class Loading extends Component {
                     },
                     animated: false,
                 });
+                timer.clearInterval('inactivityTimer');
             } else {
                 Navigation.startSingleScreenApp({
                     screen: {

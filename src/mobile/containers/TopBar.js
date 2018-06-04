@@ -47,15 +47,15 @@ const styles = StyleSheet.create({
         width,
     },
     mainTitle: {
-        fontFamily: 'SourceSansPro-Regular',
+        fontFamily: 'SourceSansPro-SemiBold',
         fontSize: GENERAL.fontSize4,
-        paddingBottom: isAndroid ? 0 : height / 170,
+        paddingBottom: height / 170,
         maxWidth: width / 1.35,
     },
     subtitle: {
         textAlign: 'center',
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontFamily: 'SourceSansPro-SemiBold',
+        fontSize: width / 28,
     },
     childView: {
         height: height / 14,

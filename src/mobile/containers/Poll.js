@@ -133,7 +133,7 @@ export class Poll extends Component {
                 const bundleHash = bundles[0];
 
                 this.setState({
-                    autoPromoteSkips: 3,
+                    autoPromoteSkips: 2,
                 });
 
                 return this.props.promoteTransfer(bundleHash, unconfirmedBundleTails[bundleHash]);

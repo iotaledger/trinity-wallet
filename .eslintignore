@@ -5,3 +5,5 @@ node_modules/*
 *.min.js
 src/mobile/shim.js
 dist/
+src/shared/locales/*
+!src/shared/locales/en/translation.json

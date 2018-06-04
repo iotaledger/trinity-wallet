@@ -116,6 +116,7 @@ export class SetAccountName extends Component {
             this.props.setAdditionalAccountInfo({
                 addingAdditionalAccount: true,
                 additionalAccountName: accountName,
+                usedExistingSeed: false,
             });
 
             this.navigateTo('loading');
