@@ -175,6 +175,7 @@ class TwoFactorSetupEnterToken extends Component {
                             returnKeyType="done"
                             onSubmitEditing={this.check2FA}
                             theme={theme}
+                            keyboardType="numeric"
                         />
                     </View>
                     <View style={styles.bottomWrapper}>
