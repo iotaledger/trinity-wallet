@@ -214,10 +214,10 @@
         "storeEncrypted": "将您的种子加密保存在密码管理器中。",
         "doNotOpen": "在此过程中，请勿打开其他任何应用程序。",
         "tapConfirm": "请勾选下面的复选框予以确认。",
-        "passwordManagerCheckbox": "I will store my seed in a password manager",
+        "passwordManagerCheckbox": "我会把我的种子存储在密码管理器中",
         "copy": "复制",
         "noPasswordManagers": "未安装支持的密码管理器",
-        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android.",
+        "noPasswordManagersExplanation": "在您的设备上找不到支持的密码管理器。请安装 Keepass2Android。",
         "followTutorialToSecurelyShareSeed": "If you wish to store your seed in a password manager, you must follow a tutorial from the following link"
     },
     "enterSeed": {
@@ -668,8 +668,8 @@
         "errorLog": "错误日志"
     },
     "terms": {
-        "termsAndConditions": "Terms & Conditions",
-        "accept": "I accept"
+        "termsAndConditions": "条款和条件",
+        "accept": "我接受"
     },
     "privacyPolicy": {
         "privacyPolicy": "隐私政策",
