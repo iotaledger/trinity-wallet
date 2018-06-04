@@ -155,8 +155,10 @@ const Electron = {
         onboardingGenerated = generated ? true : false;
     },
 
-    getOnboardingSeed: () => {
-        return onboardingSeed;
+    getOnboardingSeed: (plainText) => {
+        return plainText
+            ? onboardingSeed.map((byte) => '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.charAt(byte % 27)).join('')
+            : onboardingSeed;
     },
 
     getOnboardingGenerated: () => {

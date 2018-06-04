@@ -20,8 +20,8 @@ function randomBytes(size) {
 
 /**
  * Create random seed
- * @param {Number} length - The random seed length
- * @returns {String} Random seed string
+ * @param {Number} length - Random seed length
+ * @returns {String} Random seed
  */
 export const createRandomSeed = (length = MAX_SEED_LENGTH) => {
     return randomBytes(length);
@@ -57,7 +57,7 @@ const encrypt = async (contentPlain, passwordPlain) => {
 /**
  * Decrypt cyphertext
  * @param {String} Content - Encrypted initialization vector + content
- * @param {String} Password - plain text password to be used for decryption
+ * @param {String} Password - Plain text password to be used for decryption
  * @returns {String} -  Derypted content
  */
 const decrypt = async (cipherText, passwordPlain) => {
@@ -89,6 +89,11 @@ const decrypt = async (cipherText, passwordPlain) => {
     }
 };
 
+/**
+ * Check for valid vault password
+ * @param {String} Password - Plain text password to be used for decryption
+ * @returns {String} - If exists, two factor authentication key
+ */
 export const vaultAuth = async (password) => {
     const vault = await Electron.readKeychain();
     if (!vault) {
@@ -105,6 +110,11 @@ export const vaultAuth = async (password) => {
     }
 };
 
+/**
+ * Update vault password
+ * @param {String} PasswordCurrent - Current plain text password
+ * @param {String} PasswordNew - New plain text password
+ */
 export const updatePassword = async (passwordCurrent, passwordNew) => {
     const vault = await Electron.readKeychain();
     if (!vault) {
@@ -127,6 +137,7 @@ export const updatePassword = async (passwordCurrent, passwordNew) => {
  * Get seed from keychain
  * @param {String} Password - plain text password to be used for decryption
  * @param {String} SeedName - seed name to retreive from keychain
+ * @param {Boolean} PlainText - should the seed be returned in plain ACII text
  * @returns {Array} -  Derypted seed
  */
 export const getSeed = async (password, seedName, plainText) => {
@@ -147,6 +158,13 @@ export const getSeed = async (password, seedName, plainText) => {
     }
 };
 
+/**
+ * Save seed to keychain
+ * @param {String} Password - plain text password to be used for cryption
+ * @param {String} SeedName - seed name to set to keychain
+ * @param {Array} Seed - seed array
+ * @param {Boolean} Overwrite - should the vault be overwritten
+ */
 export const setSeed = async (password, seedName, seed, overwrite) => {
     const vault = overwrite ? { seeds: {} } : await Electron.readKeychain();
     if (!vault) {
@@ -164,6 +182,60 @@ export const setSeed = async (password, seedName, seed, overwrite) => {
     }
 };
 
+/**
+ * Remove seed from keychain
+ * @param {String} Password - plain text password to be used for decryption
+ * @param {String} SeedName - seed name to remove from keychain
+ */
+export const removeSeed = async (password, seedName) => {
+    const vault = await Electron.readKeychain();
+    if (!vault) {
+        throw new Error('Local storage not available');
+    }
+    try {
+        const decryptedVault = await decrypt(vault, password);
+        delete decryptedVault.seeds[seedName];
+
+        const updatedVault = await encrypt(decryptedVault, password);
+
+        Electron.setKeychain(updatedVault);
+    } catch (err) {
+        throw err;
+    }
+};
+
+/**
+ * Remove seed from keychain
+ * @param {String} Password - plain text password to be used for decryption
+ * @param {String} SeedName - seed name to remove from keychain
+ */
+export const renameSeed = async (password, seedName, newSeedName) => {
+    const vault = await Electron.readKeychain();
+    if (!vault) {
+        throw new Error('Local storage not available');
+    }
+    try {
+        const decryptedVault = await decrypt(vault, password);
+
+        const seed = decryptedVault.seeds[seedName];
+        delete decryptedVault.seeds[seedName];
+
+        decryptedVault.seeds[newSeedName] = seed;
+
+        const updatedVault = await encrypt(decryptedVault, password);
+
+        Electron.setKeychain(updatedVault);
+    } catch (err) {
+        throw err;
+    }
+};
+
+/**
+ * Unique seed check
+ * @param {String} Password - plain text password to be used for decryption
+ * @param {Array} Seed - seed to check for
+ * @returns {Boolean} is the seed is unique
+ */
 export const uniqueSeed = async (password, seed) => {
     const vault = await Electron.readKeychain();
     if (!vault) {
@@ -190,6 +262,11 @@ export const uniqueSeed = async (password, seed) => {
     }
 };
 
+/**
+ * Hash text using SHA-256
+ * @param {String} Password - plain text to hash
+ * @returns {String} SHA-256 hash
+ */
 export const sha256 = async (inputPlain) => {
     if (typeof inputPlain !== 'string' || inputPlain.length < 1) {
         return false;
@@ -212,16 +289,31 @@ export const checkActivationCode = async (code, uuid) => {
     return code === hash;
 };
 
-export const seedToHex = (bytes) => {
+/**
+ * Convert byte seed array to string
+ * @param {Array} seed - Target seed array
+ * @returns {String} plain text seed string
+ */
+const seedToHex = (bytes) => {
     return Array.from(bytes)
-        .map((byte) => '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.charAt(byte % 27))
+        .map((byte) => byteToChar(byte % 27))
         .join('');
 };
 
+/**
+ * Convert single character byte to string
+ * @param {Number} byte - Input byte
+ * @returns {String} output character
+ */
 export const byteToChar = (byte) => {
     return '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.charAt(byte % 27);
 };
 
+/**
+ * Convert buffer to plain text
+ * @param {Buffer} - Input buffer
+ * @returns {String} output string
+ */
 const bufferToHex = (buffer) => {
     const hexCodes = [];
     const view = new DataView(buffer);
