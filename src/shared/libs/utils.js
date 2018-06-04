@@ -12,6 +12,7 @@ import merge from 'lodash/merge';
 import filter from 'lodash/filter';
 import cloneDeep from 'lodash/cloneDeep';
 import unset from 'lodash/unset';
+import { NTP_SERVER_URL, NTP_SERVER_PORT } from '../config';
 
 export function round(value, precision) {
     const multiplier = Math.pow(10, precision || 0);
@@ -174,3 +175,25 @@ export function formatChartData(json, currency, timeframe) {
     }
     return failedData;
 }
+
+/**
+ * Fetch network time
+ *
+ * @method getNetworkTimeAsync
+ * @param {function} ntpClient
+ * @param {string} url
+ * @param {number} port
+ *
+ * @returns {Promise<string>}
+ */
+export const getNetworkTimeAsync = (ntpClient, url = NTP_SERVER_URL, port = NTP_SERVER_PORT) => {
+    return new Promise((resolve, reject) => {
+        ntpClient.getNetworkTime(url, port, (err, date) => {
+            if (err) {
+                reject(err);
+            }
+
+            resolve(date);
+        });
+    });
+};

@@ -1346,7 +1346,7 @@ buffer@^4.9.1:
     ieee754 "^1.1.4"
     isarray "^1.0.0"
 
-buffer@^5.0.0:
+buffer@^5.0.0, buffer@^5.0.6:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/buffer/-/buffer-5.1.0.tgz#c913e43678c7cb7c8bd16afbcddb6c5505e8f9fe"
   dependencies:
@@ -1364,6 +1364,10 @@ bugsnag-react-native@^2.9.3:
 builtin-modules@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/builtin-modules/-/builtin-modules-1.1.1.tgz#270f076c5a72c02f5b65a47df94c5fe3a278892f"
+
+builtin-status-codes@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/builtin-status-codes/-/builtin-status-codes-3.0.0.tgz#85982878e21b98e1c66425e03d0174788f569ee8"
 
 bytes@2.1.0:
   version "2.1.0"
@@ -1682,6 +1686,10 @@ console-control-strings@^1.0.0, console-control-strings@~1.1.0:
 constants-browserify@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/constants-browserify/-/constants-browserify-0.0.1.tgz#92577db527ba6c4cf0a4568d84bc031f441e21f2"
+
+constants-browserify@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/constants-browserify/-/constants-browserify-1.0.0.tgz#c20b96d8c617748aaf1c16021760cd27fcb8cb75"
 
 content-type-parser@^1.0.1:
   version "1.0.2"
@@ -2065,7 +2073,7 @@ dom-walk@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/dom-walk/-/dom-walk-0.1.1.tgz#672226dc74c8f799ad35307df936aba11acd6018"
 
-domain-browser@^1.1.7:
+domain-browser@^1.1.1, domain-browser@^1.1.7:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/domain-browser/-/domain-browser-1.2.0.tgz#3d31f50191a6749dd1375a7f522e823d42e54eda"
 
@@ -2286,7 +2294,7 @@ event-target-shim@^1.0.5:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/event-target-shim/-/event-target-shim-1.1.1.tgz#a86e5ee6bdaa16054475da797ccddf0c55698491"
 
-events@^1.0.2, events@^1.1.1:
+events@^1.0.0, events@^1.0.2, events@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/events/-/events-1.1.1.tgz#9ebdb7635ad099c70dcc4c2a1f5004288e8bd924"
 
@@ -4240,6 +4248,33 @@ node-int64@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/node-int64/-/node-int64-0.4.0.tgz#87a9065cdb355d3182d8f94ce11188b825c68a3b"
 
+node-libs-react-native@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/node-libs-react-native/-/node-libs-react-native-1.0.1.tgz#3ea47db38894cc0ec34750c3553d0782f202e66a"
+  dependencies:
+    assert "^1.4.1"
+    browserify-zlib "^0.1.4"
+    buffer "^5.0.6"
+    console-browserify "^1.1.0"
+    constants-browserify "^1.0.0"
+    domain-browser "^1.1.1"
+    events "^1.0.0"
+    https-browserify "0.0.1"
+    os-browserify "^0.2.0"
+    path-browserify "0.0.0"
+    process "^0.11.0"
+    punycode "^2.1.0"
+    querystring-es3 "^0.2.0"
+    react-native-crypto "^2.0.1"
+    react-native-randombytes "^2.2.0"
+    readable-stream "^2.2.9"
+    stream-http "^2.3.1"
+    string_decoder "^0.10.25"
+    timers-browserify "^2.0.2"
+    tty-browserify "0.0.0"
+    url "^0.11.0"
+    util "^0.10.3"
+
 node-notifier@^5.0.2, node-notifier@^5.1.2:
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/node-notifier/-/node-notifier-5.2.1.tgz#fa313dd08f5517db0e2502e5758d664ac69f9dea"
@@ -4488,6 +4523,10 @@ options@>=0.0.5:
 os-browserify@^0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/os-browserify/-/os-browserify-0.1.2.tgz#49ca0293e0b19590a5f5de10c7f265a617d8fe54"
+
+os-browserify@^0.2.0:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/os-browserify/-/os-browserify-0.2.1.tgz#63fc4ccee5d2d7763d26bbf8601078e6c2e0044f"
 
 os-homedir@^1.0.0:
   version "1.0.2"
@@ -4740,7 +4779,7 @@ process-nextick-args@~2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-2.0.0.tgz#a37d732f4271b4ab1ad070d35508e8290788ffaa"
 
-process@^0.11.10, process@^0.11.9, process@~0.11.0:
+process@^0.11.0, process@^0.11.10, process@^0.11.9, process@~0.11.0:
   version "0.11.10"
   resolved "https://registry.yarnpkg.com/process/-/process-0.11.10.tgz#7332300e840161bda3e69a1d1d91a7d4bc16f182"
 
@@ -4803,6 +4842,10 @@ punycode@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-1.4.1.tgz#c0d5a63b2718800ad8e1eb0fa5269c84dd41845e"
 
+punycode@^2.1.0:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
+
 qrcode-terminal@^0.12.0:
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/qrcode-terminal/-/qrcode-terminal-0.12.0.tgz#bb5b699ef7f9f0505092a3748be4464fe71b5819"
@@ -4824,7 +4867,7 @@ qs@~6.5.1:
   version "6.5.2"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
 
-querystring-es3@^0.2.1:
+querystring-es3@^0.2.0, querystring-es3@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/querystring-es3/-/querystring-es3-0.2.1.tgz#9ec61f79049875707d69414596fd907a4d711e73"
 
@@ -4945,7 +4988,7 @@ react-native-camera@^1.1.4:
     lodash "^4.17.4"
     prop-types "^15.5.10"
 
-react-native-crypto@^2.0.2:
+react-native-crypto@^2.0.1, react-native-crypto@^2.0.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/react-native-crypto/-/react-native-crypto-2.1.2.tgz#cfe68cad51cd1f73a4202b7ac164f96c1144cb2a"
   dependencies:
@@ -5078,6 +5121,13 @@ react-native-navigation@^1.1.431:
   dependencies:
     lodash "4.x.x"
 
+react-native-ntp-client@^0.5.5:
+  version "0.5.5"
+  resolved "https://registry.yarnpkg.com/react-native-ntp-client/-/react-native-ntp-client-0.5.5.tgz#185caaebaac2b70ad2360b8a06c859070b2750b1"
+  dependencies:
+    node-libs-react-native "1.0.1"
+    react-native-udp "2.1.0"
+
 react-native-optimized-flatlist@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/react-native-optimized-flatlist/-/react-native-optimized-flatlist-1.0.4.tgz#15c817ffb545e3c62e56a1b3c4654c1316414941"
@@ -5115,6 +5165,13 @@ react-native-qrcode-svg@^5.0.3:
   dependencies:
     prop-types "^15.5.10"
     qrcode "^0.9.0"
+
+react-native-randombytes@^2.2.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/react-native-randombytes/-/react-native-randombytes-2.3.0.tgz#3ed6f8a4a803c453d787961047f6b2650d7c7335"
+  dependencies:
+    buffer "^4.9.1"
+    sjcl "^1.0.3"
 
 react-native-randombytes@^3.2.0:
   version "3.2.0"
@@ -5178,6 +5235,16 @@ react-native-triangle@0.0.8:
   dependencies:
     create-react-class "^15.6.0"
     prop-types "^15.5.10"
+
+react-native-udp@2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-udp/-/react-native-udp-2.1.0.tgz#d6704da39df280034e6a34be46c41b9b55bbfc23"
+  dependencies:
+    base64-js "0.0.8"
+    events "^1.0.2"
+    inherits "^2.0.1"
+    ip-regex "^1.0.3"
+    util "^0.10.3"
 
 react-native-udp@^1.2.9:
   version "1.2.9"
@@ -5366,7 +5433,7 @@ readable-stream@^1.0.26-4, readable-stream@^1.0.27-1, readable-stream@^1.0.33, r
     isarray "0.0.1"
     string_decoder "~0.10.x"
 
-readable-stream@^2.0.1, readable-stream@^2.0.2, readable-stream@^2.0.6, readable-stream@^2.1.5, readable-stream@^2.2.2:
+readable-stream@^2.0.1, readable-stream@^2.0.2, readable-stream@^2.0.6, readable-stream@^2.1.5, readable-stream@^2.2.2, readable-stream@^2.2.9, readable-stream@^2.3.6:
   version "2.3.6"
   resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.3.6.tgz#b11c27d88b8ff1fbe070643cf94b0c79ae1b0aaf"
   dependencies:
@@ -5753,7 +5820,7 @@ set-value@^2.0.0:
     is-plain-object "^2.0.3"
     split-string "^3.0.1"
 
-setimmediate@^1.0.5:
+setimmediate@^1.0.4, setimmediate@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/setimmediate/-/setimmediate-1.0.5.tgz#290cbb232e306942d7d7ea9b83732ab7856f8285"
 
@@ -5960,6 +6027,16 @@ stream-counter@~0.2.0:
   dependencies:
     readable-stream "~1.1.8"
 
+stream-http@^2.3.1:
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/stream-http/-/stream-http-2.8.3.tgz#b2d242469288a5a27ec4fe8933acf623de6514fc"
+  dependencies:
+    builtin-status-codes "^3.0.0"
+    inherits "^2.0.1"
+    readable-stream "^2.3.6"
+    to-arraybuffer "^1.0.0"
+    xtend "^4.0.0"
+
 stream@0.0.2:
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/stream/-/stream-0.0.2.tgz#7f5363f057f6592c5595f00bc80a27f5cec1f0ef"
@@ -5991,7 +6068,7 @@ string-width@^2.0.0, string-width@^2.1.0:
     is-fullwidth-code-point "^2.0.0"
     strip-ansi "^4.0.0"
 
-string_decoder@^0.10.31, string_decoder@~0.10.x:
+string_decoder@^0.10.25, string_decoder@^0.10.31, string_decoder@~0.10.x:
   version "0.10.31"
   resolved "https://registry.yarnpkg.com/string_decoder/-/string_decoder-0.10.31.tgz#62e203bc41766c6c28c9fc84301dab1c5310fa94"
 
@@ -6121,6 +6198,12 @@ timers-browserify@^1.4.2:
   dependencies:
     process "~0.11.0"
 
+timers-browserify@^2.0.2:
+  version "2.0.10"
+  resolved "https://registry.yarnpkg.com/timers-browserify/-/timers-browserify-2.0.10.tgz#1d28e3d2aadf1d5a5996c4e9f95601cd053480ae"
+  dependencies:
+    setimmediate "^1.0.4"
+
 tiny-queue@0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/tiny-queue/-/tiny-queue-0.2.0.tgz#c49fcb5c87555be1b4a5df7eb87101d5b78bc9dc"
@@ -6138,6 +6221,10 @@ tmp@^0.0.33:
 tmpl@1.0.x:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/tmpl/-/tmpl-1.0.4.tgz#23640dd7b42d00433911140820e5cf440e521dd1"
+
+to-arraybuffer@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/to-arraybuffer/-/to-arraybuffer-1.0.1.tgz#7d229b1fcc637e466ca081180836a7aabff83f43"
 
 to-fast-properties@^1.0.3:
   version "1.0.3"
@@ -6308,6 +6395,13 @@ url-parse@^1.2.0:
 url@^0.10.3:
   version "0.10.3"
   resolved "https://registry.yarnpkg.com/url/-/url-0.10.3.tgz#021e4d9c7705f21bbf37d03ceb58767402774c64"
+  dependencies:
+    punycode "1.3.2"
+    querystring "0.2.0"
+
+url@^0.11.0:
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/url/-/url-0.11.0.tgz#3838e97cfc60521eb73c525a8e55bfdd9e2e28f1"
   dependencies:
     punycode "1.3.2"
     querystring "0.2.0"
