@@ -2,3 +2,5 @@ src/mobile/android
 src/mobile/ios
 src/mobile/logo-spin/logo-spin-glow-blnk.hyperesources
 package.json
+src/shared/locales/*
+!src/shared/locales/en/translation.json
