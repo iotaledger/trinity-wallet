@@ -45,7 +45,12 @@ import {
     getUnspentInputs,
     getSpentAddressesFromTransactions,
 } from '../libs/iota/inputs';
-import { generateAlert, generateTransferErrorAlert, generatePromotionErrorAlert } from './alerts';
+import {
+    generateAlert,
+    generateTransferErrorAlert,
+    generatePromotionErrorAlert,
+    generateNodeOutOfSyncErrorAlert,
+} from './alerts';
 import i18next from '../i18next.js';
 import Errors from '../libs/errors';
 
@@ -181,9 +186,26 @@ export const broadcastBundle = (bundleHash, accountName) => (dispatch, getState)
         });
 };
 
-export const promoteTransaction = (bundleHash, accountName) => (dispatch, getState) => {
+/**
+ *  Promote transaction
+ *
+ *   @method promoteTransaction
+ *   @param {string} bundleHash
+ *   @param {string} accountName
+ *   @param {function} powFn
+ *
+ *   @returns {function} dispatch
+ **/
+export const promoteTransaction = (bundleHash, accountName, powFn) => (dispatch, getState) => {
     dispatch(promoteTransactionRequest(bundleHash));
 
+    dispatch(
+        generateAlert(
+            'info',
+            i18next.t('global:promotingTransaction'),
+            i18next.t('global:deviceMayBecomeUnresponsive'),
+        ),
+    );
     let accountState = null;
     let chainBrokenInternally = false;
 
@@ -212,16 +234,19 @@ export const promoteTransaction = (bundleHash, accountName) => (dispatch, getSta
 
             return getFirstConsistentTail(tailTransactions, 0);
         })
-        .then((consistentTail) =>
-            dispatch(
+        .then((consistentTail) => {
+            const shouldOffloadPow = getRemotePoWFromState(getState());
+
+            return dispatch(
                 forceTransactionPromotion(
                     accountName,
                     consistentTail,
                     accountState.transfers[bundleHash].tailTransactions,
                     true,
+                    shouldOffloadPow ? null : powFn,
                 ),
-            ),
-        )
+            );
+        })
         .then((hash) => {
             dispatch(
                 generateAlert(
@@ -273,10 +298,11 @@ export const promoteTransaction = (bundleHash, accountName) => (dispatch, getSta
  *   @param {boolean} consistentTail
  *   @param {array} tails
  *   @param {boolean} shouldGenerateAlert
+ *   @param {function | null} powFn
  *
- *   @returns {Promise}
+ *   @returns {function} dispatch
  **/
-export const forceTransactionPromotion = (accountName, consistentTail, tails, shouldGenerateAlert) => (
+export const forceTransactionPromotion = (accountName, consistentTail, tails, shouldGenerateAlert, powFn = null) => (
     dispatch,
     getState,
 ) => {
@@ -285,7 +311,7 @@ export const forceTransactionPromotion = (accountName, consistentTail, tails, sh
         const topTx = head(tails);
         const hash = topTx.hash;
 
-        return replayBundleAsync(hash).then((reattachment) => {
+        return replayBundleAsync(hash, powFn).then((reattachment) => {
             if (shouldGenerateAlert) {
                 dispatch(
                     generateAlert(
@@ -306,11 +332,11 @@ export const forceTransactionPromotion = (accountName, consistentTail, tails, sh
 
             const tailTransaction = find(reattachment, { currentIndex: 0 });
 
-            return promoteTransactionAsync(tailTransaction.hash);
+            return promoteTransactionAsync(tailTransaction.hash, powFn);
         });
     }
 
-    return promoteTransactionAsync(consistentTail.hash);
+    return promoteTransactionAsync(consistentTail.hash, powFn);
 };
 
 export const makeTransaction = (seed, receiveAddress, value, message, accountName, powFn, genFn) => (
@@ -404,9 +430,11 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                     const addresses = accountState.addresses;
                     const transfers = accountState.transfers;
                     const pendingOutgoingTransfers = getPendingOutgoingTransfersForAddresses(addresses, transfers);
+
                     if (size(pendingOutgoingTransfers)) {
                         throw new Error(Errors.ADDRESS_HAS_PENDING_TRANSFERS);
                     }
+
                     if (size(get(inputs, 'inputs'))) {
                         throw new Error(Errors.FUNDS_AT_SPENT_ADDRESSES);
                     } else {
@@ -428,6 +456,10 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 transferInputs = get(inputs, 'inputs');
 
                 return getAddressesUptoRemainder(accountState.addresses, seed, genFn, [
+                    // Make sure inputs are blacklisted
+                    ...map(transferInputs, (input) => input.address),
+                    // When sending to one of own addresses
+                    // Make sure receive address is also blacklisted
                     iota.utils.noChecksum(receiveAddress),
                 ]);
             })
@@ -540,13 +572,7 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 const message = error.message;
 
                 if (message === Errors.NODE_NOT_SYNCED) {
-                    return dispatch(
-                        generateAlert(
-                            'error',
-                            i18next.t('global:nodeOutOfSync'),
-                            i18next.t('global:nodeOutOfSyncExplanation'),
-                        ),
-                    );
+                    return dispatch(generateNodeOutOfSyncErrorAlert());
                 } else if (message === Errors.KEY_REUSE && chainBrokenInternally) {
                     return dispatch(
                         generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError')),

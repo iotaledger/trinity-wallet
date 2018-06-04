@@ -5,6 +5,8 @@ import { generateAlert, generateTransitionErrorAlert } from '../actions/alerts';
 import { getNewAddress, formatAddressData, syncAddresses, getLatestAddress } from '../libs/iota/addresses';
 import { DEFAULT_MIN_WEIGHT_MAGNITUDE, DEFAULT_DEPTH } from '../config';
 import i18next from '../i18next';
+import { performPow } from '../libs/iota/transfers';
+import { getTransactionsToApproveAsync, prepareTransfersAsync, storeAndBroadcastAsync } from '../libs/iota/extendedApi';
 
 export const ActionTypes = {
     GENERATE_NEW_ADDRESS_REQUEST: 'IOTA/WALLET/GENERATE_NEW_ADDRESS_REQUEST',
@@ -81,6 +83,8 @@ export const setReady = () => ({
     payload: true,
 });
 
+// TODO: Change name to something like setSeedInfo
+// as payload now has other meta data
 export const setSeed = (payload) => ({
     type: ActionTypes.SET_SEED,
     payload,
@@ -164,8 +168,16 @@ export const transitionForSnapshot = (seed, addresses, genFn) => {
     };
 };
 
-export const completeSnapshotTransition = (seed, accountName, addresses) => {
+export const completeSnapshotTransition = (seed, accountName, addresses, powFn) => {
     return (dispatch) => {
+        dispatch(
+            generateAlert(
+                'info',
+                i18next.t('snapshotTransition:attaching'),
+                i18next.t('global:deviceMayBecomeUnresponsive'),
+            ),
+        );
+
         iota.api.getBalances(addresses, 1, (error, success) => {
             if (!error) {
                 const allBalances = success.balances.map((a) => Number(a));
@@ -195,6 +207,43 @@ export const completeSnapshotTransition = (seed, accountName, addresses) => {
                             addressSpendStatus,
                         );
                         const attachToTangleBundle = createAttachToTangleBundle(seed, relevantAddresses);
+
+                        // do the PoW for the transition bundle locally
+                        if (powFn) {
+                            let trytes = null;
+                            prepareTransfersAsync(seed, attachToTangleBundle)
+                                .then((transferTrytes) => {
+                                    trytes = transferTrytes;
+                                    return getTransactionsToApproveAsync();
+                                })
+                                .then(({ trunkTransaction, branchTransaction }) => {
+                                    dispatch(snapshotAttachToTangleRequest());
+                                    return performPow(powFn, trytes, trunkTransaction, branchTransaction);
+                                })
+                                .then(({ trytes }) => {
+                                    return storeAndBroadcastAsync(trytes);
+                                })
+                                .then(() => {
+                                    dispatch(updateAccountAfterTransition(accountName, formattedAddressData, balance));
+                                    dispatch(snapshotTransitionSuccess());
+                                    dispatch(snapshotAttachToTangleComplete());
+                                    dispatch(
+                                        generateAlert(
+                                            'success',
+                                            i18next.t('snapshotTransition:transitionComplete'),
+                                            i18next.t('snapshotTransition:transitionCompleteExplanation'),
+                                            20000,
+                                        ),
+                                    );
+                                })
+                                .catch((error) => {
+                                    dispatch(snapshotTransitionError());
+                                    dispatch(snapshotAttachToTangleComplete());
+                                    dispatch(generateTransitionErrorAlert(error));
+                                });
+                            return;
+                        }
+
                         const args = [seed, DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE, attachToTangleBundle];
                         dispatch(snapshotAttachToTangleRequest());
                         iota.api.sendTransfer(...args, (error) => {

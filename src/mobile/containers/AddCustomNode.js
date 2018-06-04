@@ -10,9 +10,7 @@ import {
     Keyboard,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { changeIotaNode } from 'iota-wallet-shared-modules/libs/iota';
-import { getNodeInfoAsync as checkNode } from 'iota-wallet-shared-modules/libs/iota/extendedApi';
-import { setFullNode, addCustomPoWNode } from 'iota-wallet-shared-modules/actions/settings';
+import { setFullNode } from 'iota-wallet-shared-modules/actions/settings';
 import { setCustomNodeCheckStatus } from 'iota-wallet-shared-modules/actions/ui';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { translate } from 'react-i18next';
@@ -20,6 +18,7 @@ import { width, height } from '../utils/dimensions';
 import CustomTextInput from '../components/CustomTextInput';
 import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
+import { isIOS } from '../utils/device';
 
 const styles = StyleSheet.create({
     container: {
@@ -82,6 +81,8 @@ const styles = StyleSheet.create({
  */
 class AddCustomNode extends Component {
     static propTypes = {
+        /** Currently selected IRI node */
+        node: PropTypes.string.isRequired,
         /** Available IRI nodes */
         nodes: PropTypes.array.isRequired,
         /** Theme settings */
@@ -102,16 +103,8 @@ class AddCustomNode extends Component {
          * @param {String} text - notification explanation
          */
         generateAlert: PropTypes.func.isRequired,
-        /** Add custom node to the list of available nodes
-         * @param {string} customNode
-         */
-        addCustomPoWNode: PropTypes.func.isRequired,
         /** Determines if the newly added custom node is being checked */
         isCheckingCustomNode: PropTypes.bool.isRequired,
-        /** Set status for custom node check
-         * @param {boolean} status
-         */
-        setCustomNodeCheckStatus: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -122,21 +115,20 @@ class AddCustomNode extends Component {
         };
     }
 
+    componentWillReceiveProps(newProps) {
+        const { node } = this.props;
+        const hasChangedNode = node !== newProps.node;
+
+        if (hasChangedNode) {
+            this.props.backPress();
+        }
+    }
+
     onAddNodeError() {
         return this.props.generateAlert(
             'error',
             this.props.t('addCustomNode:customNodeCouldNotBeAdded'),
             this.props.t('addCustomNode:invalidNodeResponse'),
-        );
-    }
-
-    onAddNodeSuccess(customNode) {
-        this.props.addCustomPoWNode(customNode);
-
-        return this.props.generateAlert(
-            'success',
-            this.props.t('addCustomNode:customNodeAdded'),
-            this.props.t('addCustomNode:customNodeAddedSuccessfully'),
         );
     }
 
@@ -161,11 +153,6 @@ class AddCustomNode extends Component {
         return this.props.generateAlert('error', t('nodeFieldEmpty'), t('nodeFieldEmptyExplanation'));
     }
 
-    setNode(selectedNode) {
-        changeIotaNode(selectedNode);
-        this.props.setFullNode(selectedNode);
-    }
-
     addNode() {
         const { nodes } = this.props;
 
@@ -184,19 +171,7 @@ class AddCustomNode extends Component {
         }
 
         if (!nodes.includes(customNode.replace(/ /g, ''))) {
-            this.props.setCustomNodeCheckStatus(true);
-
-            checkNode(customNode)
-                .then(() => {
-                    this.props.setCustomNodeCheckStatus(false);
-                    this.onAddNodeSuccess(customNode);
-                    this.setNode(customNode);
-                    this.props.backPress();
-                })
-                .catch(() => {
-                    this.props.setCustomNodeCheckStatus(false);
-                    this.onAddNodeError();
-                });
+            this.props.setFullNode(customNode, true);
         } else {
             this.onDuplicateNodeError();
         }
@@ -250,6 +225,7 @@ class AddCustomNode extends Component {
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="done"
+                            keyboardType={isIOS ? 'url' : 'default'}
                             onSubmitEditing={() => this.addNode()}
                             theme={theme}
                             editable={!isCheckingCustomNode}
@@ -278,6 +254,7 @@ class AddCustomNode extends Component {
 }
 
 const mapStateToProps = (state) => ({
+    node: state.settings.node,
     nodes: state.settings.nodes,
     theme: state.settings.theme,
     isCheckingCustomNode: state.ui.isCheckingCustomNode,
@@ -286,7 +263,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     setFullNode,
     generateAlert,
-    addCustomPoWNode,
     setCustomNodeCheckStatus,
 };
 

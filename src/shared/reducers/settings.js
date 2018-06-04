@@ -57,7 +57,7 @@ const initialState = {
         version: DESKTOP_VERSION,
         notes: [],
     },
-    remotePoW: true,
+    remotePoW: false,
     autoPromotion: false,
     lockScreenTimeout: 3,
     autoNodeSwitching: true,
@@ -65,6 +65,7 @@ const initialState = {
     is2FAEnabled: false,
     isFingerprintEnabled: false,
     acceptedTerms: false,
+    acceptedPrivacy: false,
     hasVisitedSeedShareTutorial: false,
 };
 
@@ -100,9 +101,10 @@ const settingsReducer = (state = initialState, action) => {
                 ...state,
                 node: action.payload,
             };
-        case ActionTypes.ADD_CUSTOM_POW_NODE:
+        case ActionTypes.ADD_CUSTOM_NODE_SUCCESS:
             return {
                 ...state,
+                node: action.payload,
                 nodes: union(state.nodes, [action.payload]),
                 customNodes: state.nodes.includes(action.payload)
                     ? state.customNodes
@@ -194,6 +196,11 @@ const settingsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 acceptedTerms: true,
+            };
+        case ActionTypes.ACCEPT_PRIVACY:
+            return {
+                ...state,
+                acceptedPrivacy: true,
             };
         case ActionTypes.SET_SEED_SHARE_TUTORIAL_VISITATION_STATUS:
             return {

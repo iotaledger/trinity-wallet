@@ -58,6 +58,8 @@ class StatefulDropdownAlert extends Component {
         isModalActive: PropTypes.bool.isRequired,
         /** Determines whether has internet connection */
         hasConnection: PropTypes.bool.isRequired,
+        /** Theme settings */
+        theme: PropTypes.object.isRequired,
     };
 
     static defaultProps = {
@@ -133,14 +135,14 @@ class StatefulDropdownAlert extends Component {
 
     render() {
         const { closeInterval } = this.props.alerts;
-        const { backgroundColor, onRef, isModalActive } = this.props;
+        const { backgroundColor, onRef, isModalActive, theme: { positive, negative } } = this.props;
         const closeAfter = closeInterval;
         const statusBarStyle = this.getStatusBarStyle();
         return (
             <DropdownAlert
                 ref={onRef || this.refFunc}
-                successColor="#009f3f"
-                errorColor="#A10702"
+                successColor={positive.color}
+                errorColor={negative.color}
                 errorImageSrc={errorIcon}
                 successImageSrc={successIcon}
                 warnImageSrc={warnIcon}
@@ -165,6 +167,7 @@ const mapStateToProps = (state) => ({
     alerts: state.alerts,
     isModalActive: state.ui.isModalActive,
     hasConnection: state.wallet.hasConnection,
+    theme: state.settings.theme,
 });
 
 const mapDispatchToProps = { disposeOffAlert };

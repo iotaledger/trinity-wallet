@@ -74,24 +74,12 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center',
     },
-    fieldContainer: {
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        flex: 0.7,
-    },
     maxContainer: {
         justifyContent: 'flex-start',
         alignItems: 'flex-end',
         width: width / 1.2,
         paddingRight: 1,
-        flex: 0.8,
-    },
-    messageFieldContainer: {
-        flex: 0.7,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        borderWidth: 1,
-        borderColor: 'white',
+        flex: 0.4,
     },
     maxButtonText: {
         fontFamily: 'SourceSansPro-Regular',
@@ -327,7 +315,7 @@ export class Send extends Component {
     }
 
     onSendPress() {
-        const { t, amount, address, message, denomination } = this.props;
+        const { t, amount, address, message, denomination, isIOSKeyboardActive } = this.props;
         const { currencySymbol } = this.state;
 
         const multiplier = this.getUnitMultiplier();
@@ -357,8 +345,14 @@ export class Send extends Component {
         if (!messageIsValid) {
             return this.props.generateAlert('error', t('invalidMessage'), t('invalidMessageExplanation'));
         }
-
-        return this.showModal('transferConfirmation');
+        this.showModal('transferConfirmation');
+        if (parseFloat(amount) * multiplier > 0) {
+            timer.setTimeout(
+                'addressPasteAlertDelay',
+                () => this.detectAddressInClipboard(),
+                isIOSKeyboardActive ? 1000 : 250,
+            );
+        }
     }
 
     onQRRead(data) {
@@ -367,6 +361,10 @@ export class Send extends Component {
         const parsedData = parse(data);
         const dataSubstring = data.substring(5);
         this.hideModal();
+
+        // Clear clipboard
+        Clipboard.setString(' ');
+
         if (parsedData.address) {
             // For codes containing JSON (iotaledger and Trinity)
             this.props.setSendAddressField(parsedData.address);
@@ -831,64 +829,63 @@ export class Send extends Component {
                             detectAddressInClipboard={this.detectAddressInClipboard}
                         />
                         <View style={{ flex: 0.17 }} />
-                        <View style={styles.fieldContainer}>
-                            <CustomTextInput
-                                onRef={(c) => {
-                                    this.amountField = c;
-                                }}
-                                keyboardType="numeric"
-                                label={t('amount')}
-                                onChangeText={(text) => this.onAmountType(text)}
-                                containerStyle={{ width: width / 1.2 }}
-                                autoCorrect={false}
-                                enablesReturnKeyAutomatically
-                                returnKeyType="next"
-                                onSubmitEditing={() => {
-                                    if (amount) {
-                                        this.messageField.focus();
-                                    }
-                                }}
-                                widget="denomination"
-                                conversionText={conversionText}
-                                currencyConversion
-                                theme={theme}
-                                denominationText={denomination}
-                                onDenominationPress={() => {
+                        <CustomTextInput
+                            onRef={(c) => {
+                                this.amountField = c;
+                            }}
+                            keyboardType="numeric"
+                            label={t('amount')}
+                            onChangeText={(text) => this.onAmountType(text)}
+                            containerStyle={{ width: width / 1.2 }}
+                            autoCorrect={false}
+                            enablesReturnKeyAutomatically
+                            returnKeyType="next"
+                            onSubmitEditing={() => {
+                                if (amount) {
+                                    this.messageField.focus();
+                                }
+                            }}
+                            widget="denomination"
+                            conversionText={conversionText}
+                            currencyConversion
+                            theme={theme}
+                            denominationText={denomination}
+                            onDenominationPress={() => {
+                                if (!isSending) {
+                                    this.onDenominationPress();
+                                }
+                            }}
+                            value={amount}
+                            editable={!isSending}
+                            selectTextOnFocus={!isSending}
+                        />
+                        <View style={{ flex: 0.09 }} />
+                        <View style={[styles.maxContainer, { opacity: opacity }]}>
+                            <TouchableOpacity
+                                onPress={() => {
                                     if (!isSending) {
-                                        this.onDenominationPress();
+                                        this.onMaxPress();
                                     }
                                 }}
-                                value={amount}
-                                editable={!isSending}
-                                selectTextOnFocus={!isSending}
-                            />
-                            <View style={{ flex: 0.2 }} />
-                            <View style={[styles.maxContainer, { opacity: opacity }]}>
-                                <TouchableOpacity
-                                    onPress={() => {
-                                        if (!isSending) {
-                                            this.onMaxPress();
-                                        }
+                            >
+                                <View
+                                    style={{
+                                        flexDirection: 'row',
+                                        alignItems: 'center',
+                                        justifyContent: 'flex-start',
                                     }}
                                 >
-                                    <View
-                                        style={{
-                                            flexDirection: 'row',
-                                            alignItems: 'center',
-                                            justifyContent: 'flex-start',
-                                        }}
-                                    >
-                                        <Text style={[styles.maxButtonText, { color: maxColor }]}>{maxText}</Text>
-                                        <Toggle
-                                            opacity={opacity}
-                                            active={maxPressed}
-                                            bodyColor={body.color}
-                                            primaryColor={primary.color}
-                                        />
-                                    </View>
-                                </TouchableOpacity>
-                            </View>
+                                    <Text style={[styles.maxButtonText, { color: maxColor }]}>{maxText}</Text>
+                                    <Toggle
+                                        opacity={opacity}
+                                        active={maxPressed}
+                                        bodyColor={body.color}
+                                        primaryColor={primary.color}
+                                    />
+                                </View>
+                            </TouchableOpacity>
                         </View>
+                        <View style={{ flex: 0.1 }} />
                         <CustomTextInput
                             onRef={(c) => {
                                 this.messageField = c;

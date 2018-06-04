@@ -5,6 +5,7 @@ import { BackHandler, View, Text, StyleSheet, TouchableOpacity } from 'react-nat
 import { Navigation } from 'react-native-navigation';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { translate } from 'react-i18next';
+import timer from 'react-native-timer';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
@@ -87,7 +88,7 @@ class AddNewAccount extends Component {
                 keepStyleAcrossPush: false,
             },
         });
-
+        timer.clearInterval('inactivityTimer');
         BackHandler.removeEventListener('homeBackPress');
     }
 
