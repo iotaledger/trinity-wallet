@@ -8,6 +8,7 @@ import i18next from 'libs/i18next';
 import { translate } from 'react-i18next';
 
 import { parseAddress } from 'libs/iota/utils';
+import { setSeed } from 'libs/crypto';
 
 import { setPassword, clearWalletData, setDeepLink } from 'actions/wallet';
 import { getUpdateData, updateTheme } from 'actions/settings';
@@ -139,6 +140,15 @@ class App extends React.Component {
 
         /* On Login */
         if (!this.props.wallet.ready && nextProps.wallet.ready && currentKey === 'onboarding') {
+            // If additional seed was loaded for first time
+            if (this.props.wallet.addingAdditionalAccount && !nextProps.wallet.addingAdditionalAccount) {
+                setSeed(
+                    this.props.wallet.password,
+                    this.props.wallet.additionalAccountName,
+                    Electron.getOnboardingSeed(),
+                );
+                Electron.setOnboardingSeed(null);
+            }
             Electron.updateMenu('authorised', true);
             this.props.history.push('/wallet/');
         }

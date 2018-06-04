@@ -48,7 +48,7 @@ export default class SeedInput extends React.PureComponent {
     }
 
     componentDidUpdate() {
-        if (this.input) {
+        if (this.input && this.props.seed.length >= this.state.cursor) {
             const range = document.createRange();
             const sel = window.getSelection();
             range.setStart(this.input, this.state.cursor);
@@ -88,6 +88,12 @@ export default class SeedInput extends React.PureComponent {
         });
 
         this.props.onChange(seed);
+
+        // Hotfix: If paste happens on first render, the content of all attributes display the same content
+        setTimeout(() => {
+            this.props.onChange([]);
+            this.props.onChange(seed);
+        }, 10);
 
         clipboard = null;
         Electron.garbageCollect();
