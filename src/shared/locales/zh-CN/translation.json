@@ -494,7 +494,7 @@
         "pow": "工作证明",
         "autoPromotion": "自动提升促进",
         "autoPromotionExplanation": "自动提升促进有助于您的交易在缠结中被确认。如果您的交易确认存在苦难，请启用此设置。",
-        "autoPromotionPoW": "只有支持远程工作证明的节点才可以进行自动提升促进。"
+        "autoPromotionPoW": "只有支持远程工作证明的节点才可以进行交易的自动提升促进。"
     },
     "advancedThemeCustomisation": {
         "background": "背景",
@@ -521,7 +521,7 @@
         "one": "一"
     },
     "usedAddressModal": {
-        "cantSpendFullBalanceQuestion": "Why can't I spend my full balance?",
+        "cantSpendFullBalanceQuestion": "为什么我不能够使用全部余额？",
         "spentAddressExplanation": "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
         "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
     },
@@ -536,7 +536,7 @@
         "pressToSync": "点击下面按钮以同步您的帐户。",
         "thisMayTake": "这可能需要一段时间。你可能注意到你的设备变慢了。",
         "doNotClose": "请注意, 最小化应用程序将取消同步。",
-        "syncAccount": "Sync Account",
+        "syncAccount": "同步账户",
         "syncingYourAccount": "正在同步您的账号"
     },
     "useExistingSeed": {
@@ -546,13 +546,13 @@
     },
     "viewSeed": {
         "enterPassword": "输入密码查看您的种子。",
-        "viewSeed": "View Seed",
-        "hideSeed": "Hide Seed"
+        "viewSeed": "查看种子",
+        "hideSeed": "隐藏种子"
     },
     "saveSeedConfirmation": {
-        "didSaveSeed": "Did you back up your seed?",
+        "didSaveSeed": "您把你的种子备份了吗？",
         "alreadyHave": "我已经保存了我的种子",
-        "reenterSeed": "At the next step you will be asked to re-enter your seed.",
+        "reenterSeed": "在下一步，您讲被要求重新输入您的种子。",
         "reenterSeedWarning": "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
         "pleaseConfirm": "Please confirm you have securely stored your seed."
     },
@@ -603,14 +603,14 @@
         "mcap": "MCAP",
         "change": "变化率",
         "volume": "交易量(24h)",
-        "currentValue": "Current value",
-        "error": "Error fetching chart data"
+        "currentValue": "当前值",
+        "error": "获取图标数据时出错"
     },
     "rootDetection": {
         "warning": "警告",
-        "appearsRooted": "Your device appears to be rooted.",
-        "securityRisk": "This can pose a significant risk to the security of your wallet.",
-        "continueDepsiteRisk": "Do you wish to continue despite this risk?"
+        "appearsRooted": "您的设备似乎已经root过了。",
+        "securityRisk": "这可能会对你的钱包安全造成很大的风险。",
+        "continueDepsiteRisk": "尽管有此风险，您是否仍要继续？"
     },
     "pow": {
         "feeless": "有必要完成一点工作量证明来在IOTA中发送免收手续费的事务",
@@ -619,15 +619,15 @@
         "remote": "远程",
         "powUpdated": "工作量证明设置",
         "powUpdatedExplanation": "您的工作量证明配置已更新",
-        "noWebGLSupport": "WebGL not supported",
-        "noWebGLSupportExplanation": "Your computer does not support WebGL. Please use remote PoW."
+        "noWebGLSupport": "不支持WebGL",
+        "noWebGLSupportExplanation": "您的计算机不支持WebGL。请使用远程PoW。"
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Auto-promotion settings",
-        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
+        "autoPromotionUpdated": "自动提升促进设置。",
+        "autoPromotionUpdatedExplanation": "您的自动提升促进配置已经更新。"
     },
     "progressSteps": {
-        "checkingNodeHealth": "Checking node health",
+        "checkingNodeHealth": "检查节点运行状况。",
         "validatingReceiveAddress": "验证接收地址",
         "syncingAccount": "正在同步账户",
         "preparingInputs": "准备输入",
@@ -641,11 +641,11 @@
         "cannotCompleteTransitionExplanation": "您的余额必须大于0才能完成事务。",
         "transitionComplete": "快照转换完成。",
         "transitionCompleteExplanation": "快照转换已成功完成。",
-        "detectedBalance": "Detected balance: {{amount}} {{unit}}",
+        "detectedBalance": "检测到的余额：{{amount}}{{unit}}",
         "isThisCorrect": "对吗？",
         "snapshotExplanation": "Every so often, a snapshot is performed to prune the size of the Tangle.",
         "hasSnapshotTakenPlace": "Has a snapshot taken place? Press the button below to transition.",
-        "transition": "Transition",
+        "transition": "转换",
         "transitioning": "Transitioning for the snapshot.",
         "generatingAndDetecting": "Generating addresses and detecting balance.",
         "attaching": "Attaching addresses to Tangle."
@@ -662,17 +662,17 @@
         "newVersionAvailable": "New version available",
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
         "downloadRelease": "Download release",
-        "skipUpdate": "Skip update"
+        "skipUpdate": "忽略更新"
     },
     "notificationLog": {
-        "errorLog": "ERROR LOG"
+        "errorLog": "错误日志"
     },
     "terms": {
         "termsAndConditions": "Terms & Conditions",
         "accept": "I accept"
     },
     "privacyPolicy": {
-        "privacyPolicy": "Privacy Policy",
-        "agree": "I agree"
+        "privacyPolicy": "隐私政策",
+        "agree": "我同意"
     }
 }
