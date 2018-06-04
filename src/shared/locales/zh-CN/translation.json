@@ -491,10 +491,10 @@
         "addCustomNode": "添加自定义节点",
         "manualSync": "手动同步",
         "snapshotTransition": "快照转换",
-        "pow": "Proof of Work",
-        "autoPromotion": "Auto-promotion",
-        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
-        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
+        "pow": "工作证明",
+        "autoPromotion": "自动提升促进",
+        "autoPromotionExplanation": "自动提升促进有助于您的交易在缠结中被确认。如果您的交易确认存在苦难，请启用此设置。",
+        "autoPromotionPoW": "只有支持远程工作证明的节点才可以进行自动提升促进。"
     },
     "advancedThemeCustomisation": {
         "background": "背景",
