@@ -1,3 +1,4 @@
+/*global Electron*/
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
@@ -22,6 +23,7 @@ class Done extends React.PureComponent {
 
     setComplete = () => {
         const { history } = this.props;
+        Electron.garbageCollect();
         history.push('/onboarding/');
     };
 

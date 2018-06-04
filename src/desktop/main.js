@@ -4,6 +4,8 @@ const initMenu = require('./lib/Menu.js');
 const path = require('path');
 const electronSettings = require('electron-settings');
 
+app.commandLine.appendSwitch('js-flags', '--expose-gc');
+
 const BrowserWindow = electron.BrowserWindow;
 const devMode = process.env.NODE_ENV === 'development';
 
