@@ -218,7 +218,7 @@
         "copy": "复制",
         "noPasswordManagers": "未安装支持的密码管理器",
         "noPasswordManagersExplanation": "在您的设备上找不到支持的密码管理器。请安装 Keepass2Android。",
-        "followTutorialToSecurelyShareSeed": "If you wish to store your seed in a password manager, you must follow a tutorial from the following link"
+        "followTutorialToSecurelyShareSeed": "如果您希望将您的种子存储在密码管理器中, 请务必遵循以下链接中的教程"
     },
     "enterSeed": {
         "invalidCharacters": "种子包含无效字符",
@@ -263,11 +263,11 @@
         "pressForNewSeed": "点击获得新的种子",
         "generateSuccess": "种子成功生成",
         "individualLetters": "通过点击各个字母来随机生成。",
-        "individualLetterCount": "Press {{letterCount}} more individual letters to randomise them.",
+        "individualLetterCount": "按 {{letterCount}} 个单独的字母随机选择它们。",
         "whatIsASeed": "什么是种子？"
     },
     "onboardingComplete": {
-        "allDone": "All Done!",
+        "allDone": "全部完成！",
         "openYourWallet": "Open your wallet",
         "walletReady": "钱包现在已设置好并可以使用。如果您需要在将来进行任何更改，请在设置菜单中查找。"
     },
@@ -597,10 +597,10 @@
         "twoFADisabledExplanation": "You have successfully disabled Two Factor Authentication.",
         "enterCode": "输入您的2FA 应用程序中的验证码",
         "code": "验证码",
-        "twoFaToken": "2FA Token"
+        "twoFaToken": "2FA两步认证令牌"
     },
     "chart": {
-        "mcap": "MCAP",
+        "mcap": "市值",
         "change": "变化率",
         "volume": "交易量(24h)",
         "currentValue": "当前值",
@@ -643,25 +643,25 @@
         "transitionCompleteExplanation": "快照转换已成功完成。",
         "detectedBalance": "检测到的余额：{{amount}}{{unit}}",
         "isThisCorrect": "对吗？",
-        "snapshotExplanation": "Every so often, a snapshot is performed to prune the size of the Tangle.",
-        "hasSnapshotTakenPlace": "Has a snapshot taken place? Press the button below to transition.",
+        "snapshotExplanation": "经常会执行快照来修剪缠结的大小。",
+        "hasSnapshotTakenPlace": "是否已经发生快照？请点击下面的按钮来进行转换。",
         "transition": "转换",
-        "transitioning": "Transitioning for the snapshot.",
-        "generatingAndDetecting": "Generating addresses and detecting balance.",
-        "attaching": "Attaching addresses to Tangle."
+        "transitioning": "正在转换快照。",
+        "generatingAndDetecting": "生成地址并正在检测余额。",
+        "attaching": "将地址添加到缠结中。"
     },
     "deepLink": {
-        "autofill": "Autofill success",
-        "autofillExplanation": "Transaction data autofilled from link."
+        "autofill": "自动填充成功",
+        "autofillExplanation": "从连接中自动填充了交易数据。"
     },
     "updates": {
-        "errorRetrievingUpdateData": "Error retrieving update data",
+        "errorRetrievingUpdateData": "提取更新数据时发生错误",
         "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
         "noUpdatesAvailable": "No updates available",
         "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
-        "newVersionAvailable": "New version available",
+        "newVersionAvailable": "新版本可用",
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
-        "downloadRelease": "Download release",
+        "downloadRelease": "下载软件的发布版本",
         "skipUpdate": "忽略更新"
     },
     "notificationLog": {
