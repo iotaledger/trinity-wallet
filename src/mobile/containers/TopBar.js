@@ -124,6 +124,10 @@ class TopBar extends Component {
         minimised: PropTypes.bool.isRequired,
         /** Determines if there is already a network call going on for fetching latest acocunt info */
         isFetchingLatestAccountInfo: PropTypes.bool.isRequired,
+        /** Currently selected home screen route */
+        currentRoute: PropTypes.string.isRequired,
+        /** Receive address value */
+        receiveAddress: PropTypes.string.isRequired,
     };
 
     static filterSeedTitles(accountNames, currentSeedIndex) {
@@ -240,10 +244,15 @@ class TopBar extends Component {
             notificationLog,
             mode,
             minimised,
+            currentRoute,
+            receiveAddress,
         } = this.props;
         const selectedTitle = get(accountNames, `[${seedIndex}]`) || ''; // fallback
         const selectedSubtitle = TopBar.humanizeBalance(balance);
         const subtitleColor = tinycolor(bar.color).isDark() ? '#262626' : '#d3d3d3';
+
+        /* Hide balance when displaying receive address QR */
+        const balanceOpacity = currentRoute === 'receive' && receiveAddress.length !== 1 ? 0 : 1;
 
         const getBalance = (currentIdx) => {
             const account = accountInfo[accountNames[currentIdx]];
@@ -314,19 +323,21 @@ class TopBar extends Component {
                                     >
                                         {selectedTitle}
                                     </Text>
-                                    <Text
-                                        style={
-                                            shouldDisable
-                                                ? StyleSheet.flatten([
-                                                      styles.subtitle,
-                                                      styles.disabled,
-                                                      { color: subtitleColor },
-                                                  ])
-                                                : [styles.subtitle, { color: subtitleColor }]
-                                        }
-                                    >
-                                        {selectedSubtitle}
-                                    </Text>
+                                    <View style={{ opacity: balanceOpacity }}>
+                                        <Text
+                                            style={
+                                                shouldDisable
+                                                    ? StyleSheet.flatten([
+                                                          styles.subtitle,
+                                                          styles.disabled,
+                                                          { color: subtitleColor },
+                                                      ])
+                                                    : [styles.subtitle, { color: subtitleColor }]
+                                            }
+                                        >
+                                            {selectedSubtitle}
+                                        </Text>
+                                    </View>
                                 </View>
                                 <View style={styles.chevronWrapper}>
                                     {hasMultipleSeeds ? (
@@ -520,6 +531,8 @@ const mapStateToProps = (state) => ({
     primary: state.settings.theme.primary,
     notificationLog: state.alerts.notificationLog,
     isFetchingLatestAccountInfo: state.ui.isFetchingLatestAccountInfoOnLogin,
+    currentRoute: state.home.childRoute,
+    receiveAddress: state.wallet.receiveAddress,
 });
 
 const mapDispatchToProps = {
