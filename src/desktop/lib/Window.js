@@ -3,16 +3,62 @@ const packageFile = require('../package.json');
 const machineUuid = require('machine-uuid');
 const keytar = require('keytar');
 const settings = require('electron-settings');
+const Kerl = require('iota.lib.js/lib/crypto/kerl/kerl');
+const Curl = require('iota.lib.js/lib/crypto/curl/curl');
+const Converter = require('iota.lib.js/lib/crypto/converter/converter');
 const currentWindow = require('electron').remote.getCurrentWindow();
+
+const trytesTrits = [
+    [0, 0, 0],
+    [1, 0, 0],
+    [-1, 1, 0],
+    [0, 1, 0],
+    [1, 1, 0],
+    [-1, -1, 1],
+    [0, -1, 1],
+    [1, -1, 1],
+    [-1, 0, 1],
+    [0, 0, 1],
+    [1, 0, 1],
+    [-1, 1, 1],
+    [0, 1, 1],
+    [1, 1, 1],
+    [-1, -1, -1],
+    [0, -1, -1],
+    [1, -1, -1],
+    [-1, 0, -1],
+    [0, 0, -1],
+    [1, 0, -1],
+    [-1, 1, -1],
+    [0, 1, -1],
+    [1, 1, -1],
+    [-1, -1, 0],
+    [0, -1, 0],
+    [1, -1, 0],
+    [-1, 0, 0],
+];
 
 const capitalize = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 };
 
+let onboardingSeed = null;
+let onboardingGenerated = false;
+
 const Electron = {
     clipboard: (content) => {
-        if (content.length > 0) {
-            clipboard.writeText(content);
+        if (content) {
+            let clip =
+                typeof content === 'string'
+                    ? content
+                    : Array.from(content)
+                          .map((byte) => '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.charAt(byte % 27))
+                          .join('');
+            clipboard.writeText(clip);
+            clip = null;
+            if (typeof content !== 'string') {
+                global.gc();
+            }
         } else {
             clipboard.clear();
         }
@@ -102,6 +148,43 @@ const Electron = {
 
     showMenu: () => {
         ipc.send('menu.popup');
+    },
+
+    setOnboardingSeed: (seed, generated) => {
+        onboardingSeed = seed;
+        onboardingGenerated = generated ? true : false;
+    },
+
+    getOnboardingSeed: (plainText) => {
+        return plainText
+            ? onboardingSeed.map((byte) => '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.charAt(byte % 27)).join('')
+            : onboardingSeed;
+    },
+
+    getOnboardingGenerated: () => {
+        return onboardingGenerated;
+    },
+
+    getChecksum: (bytes) => {
+        let trits = [];
+
+        for (let i = 0; i < bytes.length; i++) {
+            trits = trits.concat(trytesTrits[bytes[i] % 27]);
+        }
+
+        const kerl = new Kerl();
+        const checksumTrits = [];
+        kerl.initialize();
+        kerl.absorb(trits, 0, trits.length);
+        kerl.squeeze(checksumTrits, 0, Curl.HASH_LENGTH);
+
+        const checksum = Converter.trytes(checksumTrits.slice(-9));
+
+        return checksum;
+    },
+
+    garbageCollect: () => {
+        global.gc();
     },
 
     changeLanguage: (t) => {

@@ -169,7 +169,7 @@ class AccountManagement extends Component {
                         </View>
                     </TouchableOpacity>
                 </View>
-                <View style={{ flex: 5 }}/>
+                <View style={{ flex: 5 }} />
                 <View style={styles.itemContainer}>
                     <TouchableOpacity
                         onPress={() => this.props.setSetting('mainSettings')}

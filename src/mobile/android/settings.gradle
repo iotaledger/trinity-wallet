@@ -1,8 +1,4 @@
 rootProject.name = 'iotaWallet'
-include ':react-native-pdf'
-project(':react-native-pdf').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-pdf/android')
-include ':react-native-fetch-blob'
-project(':react-native-fetch-blob').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-fetch-blob/android')
 include ':react-native-modal-translucent'
 project(':react-native-modal-translucent').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-modal-translucent/android')
 include ':react-native-detect-navbar-android'
@@ -62,3 +58,7 @@ include ':react-native-google-safetynet'
 project(':react-native-google-safetynet').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-google-safetynet/android')
 include ':react-native-fingerprint-scanner'
 project(':react-native-fingerprint-scanner').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-fingerprint-scanner/android')
+include ':react-native-pdf'
+project(':react-native-pdf').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-pdf/android')
+include ':react-native-fetch-blob'
+project(':react-native-fetch-blob').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-fetch-blob/android')

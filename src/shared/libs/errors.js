@@ -11,4 +11,7 @@ export default {
     TRANSACTION_ALREADY_CONFIRMED: 'Transaction already confirmed.',
     INCOMING_TRANSFERS: 'Incoming transfers to all selected inputs',
     NODE_NOT_SYNCED: 'Node not synced',
+    INCONSISTENT_SUBTANGLE: 'Inconsistent subtangle',
+    INVALID_BUNDLE: 'Invalid bundle',
+    INVALID_PARAMETERS: 'Invalid parameters',
 };

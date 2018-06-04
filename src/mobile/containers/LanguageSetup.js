@@ -66,6 +66,10 @@ class LanguageSetup extends Component {
          * @param {string} language
          */
         setLanguage: PropTypes.func.isRequired,
+        /** Determines whether a user has accepted privacy agreement */
+        acceptedPrivacy: PropTypes.bool.isRequired,
+        /** Determines whether a user has accepted terms and conditions */
+        acceptedTerms: PropTypes.bool.isRequired,
     };
 
     componentWillMount() {
@@ -79,19 +83,34 @@ class LanguageSetup extends Component {
     }
 
     onNextPress() {
-        const { theme: { body } } = this.props;
+        const { theme: { body, bar }, acceptedTerms, acceptedPrivacy } = this.props;
+
         this.props.navigator.push({
-            screen: 'welcome',
+            screen: this.getNextRoute(),
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
                 topBarElevationShadowEnabled: false,
                 screenBackgroundColor: body.bg,
                 drawUnderStatusBar: true,
-                statusBarColor: body.bg,
+                statusBarColor: !acceptedTerms || !acceptedPrivacy ? bar.bg : body.bg,
             },
             animated: false,
         });
+    }
+
+    getNextRoute() {
+        const { acceptedTerms, acceptedPrivacy } = this.props;
+
+        let nextRoute = 'welcome';
+
+        if (!acceptedTerms && !acceptedPrivacy) {
+            nextRoute = 'termsAndConditions';
+        } else if (acceptedTerms && !acceptedPrivacy) {
+            nextRoute = 'privacyPolicy';
+        }
+
+        return nextRoute;
     }
 
     clickDropdownItem(language) {
@@ -152,6 +171,8 @@ class LanguageSetup extends Component {
 
 const mapStateToProps = (state) => ({
     theme: state.settings.theme,
+    acceptedPrivacy: state.settings.acceptedPrivacy,
+    acceptedTerms: state.settings.acceptedTerms,
 });
 
 const mapDispatchToProps = {
