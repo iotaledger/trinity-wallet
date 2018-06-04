@@ -232,7 +232,7 @@ class CustomTextInput extends Component {
                         onFocus={() => this.onFocus()}
                         onBlur={() => this.onBlur()}
                         onChangeText={onChangeText}
-                        selectionColor={theme.label.hover}
+                        selectionColor={theme.input.color}
                         underlineColorAndroid="transparent"
                     />
                     {(widget === 'qr' && this.renderQR({ borderLeftColor: theme.input.alt })) ||
