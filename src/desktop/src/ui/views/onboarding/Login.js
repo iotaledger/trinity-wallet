@@ -4,19 +4,18 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import authenticator from 'authenticator';
-import sjcl from 'sjcl';
-
-import { getVault, getSeed } from 'libs/crypto';
 
 import { generateAlert } from 'actions/alerts';
 import { getMarketData, getChartData, getPrice } from 'actions/marketData';
 import { getCurrencyData } from 'actions/settings';
 import { clearWalletData, setPassword } from 'actions/wallet';
-import { setOnboardingSeed } from 'actions/ui';
+
+import { getSelectedAccountName } from 'selectors/accounts';
 
 import { runTask } from 'worker';
 
 import { capitalize } from 'libs/helpers';
+import { vaultAuth, getSeed, setSeed, sha256 } from 'libs/crypto';
 
 import PasswordInput from 'ui/components/input/Password';
 import Text from 'ui/components/input/Text';
@@ -31,6 +30,8 @@ class Login extends React.Component {
          * @ignore
          */
         accounts: PropTypes.object.isRequired,
+        /** Current account name */
+        accountName: PropTypes.string.isRequired,
         /** wallet state data
          * @ignore
          */
@@ -46,13 +47,6 @@ class Login extends React.Component {
          * @ignore
          */
         setPassword: PropTypes.func.isRequired,
-        /** Set onboarding seed state
-         * @param {String} seed - New seed
-         * @param {Boolean} isGenerated - Is the new seed generated
-         */
-        setOnboardingSeed: PropTypes.func.isRequired,
-        /** Onboarding set seed and name */
-        onboarding: PropTypes.object.isRequired,
         /** Clear wallet state data
          * @ignore
          */
@@ -105,11 +99,11 @@ class Login extends React.Component {
     };
 
     setupAccount = async () => {
-        const { accounts, wallet, currency, onboarding, setOnboardingSeed } = this.props;
+        const { accounts, wallet, currency, accountName } = this.props;
 
         const seed = wallet.addingAdditionalAccount
-            ? onboarding.seed
-            : await getSeed(wallet.seedIndex, wallet.password);
+            ? Electron.getOnboardingSeed()
+            : await getSeed(wallet.password, accountName, true);
 
         this.props.getPrice();
         this.props.getChartData();
@@ -117,12 +111,13 @@ class Login extends React.Component {
         this.props.getCurrencyData(currency);
 
         if (accounts.firstUse) {
-            runTask('getFullAccountInfoFirstSeed', [seed, accounts.accountNames[wallet.seedIndex]]);
+            runTask('getFullAccountInfoFirstSeed', [seed, accountName]);
         } else if (wallet.addingAdditionalAccount) {
-            setOnboardingSeed(null);
+            Electron.setOnboardingSeed(null);
+            setSeed(wallet.password, accountName, seed);
             runTask('getFullAccountInfoAdditionalSeed', [seed, wallet.additionalAccountName, wallet.password]);
         } else {
-            runTask('getAccountInfo', [seed, accounts.accountNames[wallet.seedIndex]]);
+            runTask('getAccountInfo', [seed, accountName]);
         }
     };
 
@@ -132,15 +127,15 @@ class Login extends React.Component {
         }
 
         const { password, code, verifyTwoFA } = this.state;
-        const { setPassword, wallet, generateAlert, t } = this.props;
+        const { setPassword, generateAlert, t } = this.props;
 
-        const passwordHash = sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(password));
-        let vault = null;
+        const passwordHash = await sha256(password);
+        let authorised = false;
 
         try {
-            vault = await getVault(passwordHash);
+            authorised = await vaultAuth(passwordHash);
 
-            if (vault.twoFAkey && !authenticator.verifyToken(vault.twoFAkey, code)) {
+            if (typeof authorised === 'string' && !authenticator.verifyToken(authorised, code)) {
                 if (verifyTwoFA) {
                     generateAlert('error', t('twoFA:wrongCode'), t('twoFA:wrongCodeExplanation'));
                 }
@@ -155,17 +150,15 @@ class Login extends React.Component {
             generateAlert('error', t('unrecognisedPassword'), t('unrecognisedPasswordExplanation'));
         }
 
-        if (vault) {
+        if (authorised) {
             setPassword(passwordHash);
-
-            const seed = vault.seeds[wallet.seedIndex];
 
             this.setState({
                 password: '',
                 verifyTwoFA: false,
             });
 
-            this.setupAccount(seed);
+            this.setupAccount();
         }
     };
 
@@ -236,6 +229,7 @@ class Login extends React.Component {
 const mapStateToProps = (state) => ({
     accounts: state.accounts,
     wallet: state.wallet,
+    accountName: getSelectedAccountName(state),
     ui: state.ui,
     firstUse: state.accounts.firstUse,
     currency: state.settings.currency,
@@ -245,7 +239,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     generateAlert,
     setPassword,
-    setOnboardingSeed,
     clearWalletData,
     getChartData,
     getPrice,
