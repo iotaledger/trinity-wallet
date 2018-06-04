@@ -26,9 +26,8 @@ const initialState = {
     sendDenomination: 'i',
     onboarding: {
         name: '',
-        seed: null,
-        isGenerated: false,
     },
+    hideEmptyTransactions: true,
     doNotMinimise: false,
     isModalActive: false,
     isCheckingCustomNode: false,
@@ -300,6 +299,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 loginRoute: action.payload,
+            };
+        case UiActionTypes.TOGGLE_EMPTY_TRANSACTIONS:
+            return {
+                ...state,
+                hideEmptyTransactions: !state.hideEmptyTransactions,
             };
         default:
             return state;

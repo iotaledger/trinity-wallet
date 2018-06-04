@@ -31,7 +31,7 @@ class Login extends React.Component {
          */
         accounts: PropTypes.object.isRequired,
         /** Current account name */
-        accountName: PropTypes.string.isRequired,
+        currentAccountName: PropTypes.string,
         /** wallet state data
          * @ignore
          */
@@ -99,11 +99,13 @@ class Login extends React.Component {
     };
 
     setupAccount = async () => {
-        const { accounts, wallet, currency, accountName } = this.props;
+        const { accounts, wallet, currency, currentAccountName } = this.props;
 
         const seed = wallet.addingAdditionalAccount
             ? Electron.getOnboardingSeed()
             : await getSeed(wallet.password, accountName, true);
+
+        const accountName = wallet.addingAdditionalAccount ? wallet.additionalAccountName : currentAccountName;
 
         this.props.getPrice();
         this.props.getChartData();
@@ -229,7 +231,7 @@ class Login extends React.Component {
 const mapStateToProps = (state) => ({
     accounts: state.accounts,
     wallet: state.wallet,
-    accountName: getSelectedAccountName(state),
+    currentAccountName: getSelectedAccountName(state),
     ui: state.ui,
     firstUse: state.accounts.firstUse,
     currency: state.settings.currency,
