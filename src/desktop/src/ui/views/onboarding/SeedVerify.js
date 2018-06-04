@@ -99,7 +99,8 @@ class SeedVerify extends React.PureComponent {
 
     render() {
         const { t } = this.props;
-        const { seed = '', isGenerated } = this.state;
+        const { seed, isGenerated } = this.state;
+
         return (
             <form onSubmit={(e) => this.setSeed(e)}>
                 <section>

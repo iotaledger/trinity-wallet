@@ -15,7 +15,7 @@ import { getSelectedAccountName } from 'selectors/accounts';
 import { runTask } from 'worker';
 
 import { capitalize } from 'libs/helpers';
-import { vaultAuth, getSeed, setSeed, sha256 } from 'libs/crypto';
+import { vaultAuth, getSeed, sha256 } from 'libs/crypto';
 
 import PasswordInput from 'ui/components/input/Password';
 import Text from 'ui/components/input/Text';
@@ -101,11 +101,11 @@ class Login extends React.Component {
     setupAccount = async () => {
         const { accounts, wallet, currency, currentAccountName } = this.props;
 
-        const seed = wallet.addingAdditionalAccount
-            ? Electron.getOnboardingSeed()
-            : await getSeed(wallet.password, accountName, true);
-
         const accountName = wallet.addingAdditionalAccount ? wallet.additionalAccountName : currentAccountName;
+
+        const seed = wallet.addingAdditionalAccount
+            ? Electron.getOnboardingSeed(true)
+            : await getSeed(wallet.password, accountName, true);
 
         this.props.getPrice();
         this.props.getChartData();
@@ -115,8 +115,6 @@ class Login extends React.Component {
         if (accounts.firstUse) {
             runTask('getFullAccountInfoFirstSeed', [seed, accountName]);
         } else if (wallet.addingAdditionalAccount) {
-            Electron.setOnboardingSeed(null);
-            setSeed(wallet.password, accountName, seed);
             runTask('getFullAccountInfoAdditionalSeed', [seed, wallet.additionalAccountName, wallet.password]);
         } else {
             runTask('getAccountInfo', [seed, accountName]);
