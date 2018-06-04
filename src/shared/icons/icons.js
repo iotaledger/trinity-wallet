@@ -3,6 +3,10 @@ module.exports = {
     wallet: '💰',
     camera: '📷',
     eye: '👁',
+    arrowUp: '⬆',
+    arrowDown: '⬇',
+    arrowLeft: '⬅',
+    arrowRight: '➡',
     chevronDown: '🔻',
     chevronUp: '🔺',
     chevronRight: '🔜',
@@ -41,4 +45,5 @@ module.exports = {
     copy: '📋',
     print: '🖨',
     fingerprint: '🖕',
+    write: '✍️',
 };
