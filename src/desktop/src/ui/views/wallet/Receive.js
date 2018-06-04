@@ -61,6 +61,12 @@ class Receive extends React.PureComponent {
         message: '',
     };
 
+    componentDidMount() {
+        if (this.props.receiveAddress) {
+            this.props.setReceiveAddress(' ');
+        }
+    }
+
     componentWillUnmount() {
         if (this.props.receiveAddress) {
             this.props.setReceiveAddress(' ');
