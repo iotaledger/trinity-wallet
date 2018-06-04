@@ -38,6 +38,7 @@ module.exports = {
     edit: '🔤',
     addresses: '📇',
     tick: '✅',
+    tickRound: '☑',
     key: '🔑',
     sync: '🔄',
     biometric: '🙎',
@@ -46,4 +47,5 @@ module.exports = {
     print: '🖨',
     fingerprint: '🖕',
     write: '✍️',
+    search: '🔍',
 };
