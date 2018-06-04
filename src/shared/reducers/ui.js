@@ -26,16 +26,14 @@ const initialState = {
     sendDenomination: 'i',
     onboarding: {
         name: '',
-        seed: null,
-        isGenerated: false,
     },
+    hideEmptyTransactions: true,
     doNotMinimise: false,
     isModalActive: false,
     isCheckingCustomNode: false,
     isChangingNode: false,
     currentlyPromotingBundleHash: '',
     loginRoute: 'login',
-    hasFailedAutopromotion: false,
 };
 
 export default (state = initialState, action) => {
@@ -267,21 +265,30 @@ export default (state = initialState, action) => {
                 ...state,
                 isModalActive: !state.isModalActive,
             };
-        case UiActionTypes.SET_CUSTOM_NODE_CHECK_STATUS:
-            return {
-                ...state,
-                isCheckingCustomNode: action.payload,
-            };
         case SettingsActionTypes.SET_NODE_REQUEST:
             return {
                 ...state,
                 isChangingNode: true,
             };
+        case SettingsActionTypes.ADD_CUSTOM_NODE_REQUEST:
+            return {
+                ...state,
+                isCheckingCustomNode: true,
+            };
+        case SettingsActionTypes.ADD_CUSTOM_NODE_SUCCESS:
+            return {
+                ...state,
+                isCheckingCustomNode: false,
+            };
+        case SettingsActionTypes.ADD_CUSTOM_NODE_ERROR:
+            return {
+                ...state,
+                isCheckingCustomNode: false,
+            };
         case SettingsActionTypes.SET_NODE:
             return {
                 ...state,
                 isChangingNode: false,
-                hasFailedAutopromotion: false,
             };
         case SettingsActionTypes.SET_NODE_ERROR:
             return {
@@ -293,10 +300,10 @@ export default (state = initialState, action) => {
                 ...state,
                 loginRoute: action.payload,
             };
-        case PollingActionTypes.SET_AUTOPROMOTION_FAILED_FLAG:
+        case UiActionTypes.TOGGLE_EMPTY_TRANSACTIONS:
             return {
                 ...state,
-                hasFailedAutopromotion: action.payload,
+                hideEmptyTransactions: !state.hideEmptyTransactions,
             };
         default:
             return state;

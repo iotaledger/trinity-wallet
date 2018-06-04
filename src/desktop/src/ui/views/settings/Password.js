@@ -2,14 +2,13 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import sjcl from 'sjcl';
 import zxcvbn from 'zxcvbn';
 
 import { generateAlert } from 'actions/alerts';
 import { setPassword } from 'actions/wallet';
 
 import { passwordReasons } from 'libs/i18next';
-import { updateVaultPassword } from 'libs/crypto';
+import { updatePassword, sha256 } from 'libs/crypto';
 
 import Password from 'ui/components/input/Password';
 import Button from 'ui/components/Button';
@@ -70,10 +69,10 @@ class PasswordSettings extends PureComponent {
         }
 
         try {
-            const passwordNewHash = sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(passwordNew));
-            const passwordCurrentHash = sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(passwordCurrent));
+            const passwordNewHash = await sha256(passwordNew);
+            const passwordCurrentHash = await sha256(passwordCurrent);
 
-            await updateVaultPassword(passwordCurrentHash, passwordNewHash);
+            await updatePassword(passwordCurrentHash, passwordNewHash);
 
             setPassword(passwordNewHash);
 

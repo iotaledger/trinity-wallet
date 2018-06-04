@@ -44,7 +44,7 @@ class Activation extends React.PureComponent {
         });
     }
 
-    setCode = (e) => {
+    setCode = async (e) => {
         const { setActivationCode, generateAlert } = this.props;
         const { uuid, input, loading } = this.state;
 
@@ -90,15 +90,18 @@ class Activation extends React.PureComponent {
                         input: '',
                     });
                 });
-        } else if (checkActivationCode(input, uuid)) {
-            setActivationCode(input);
         } else {
-            generateAlert(
-                'error',
-                'Incorrect activation code',
-                'You entered an invalid activation code or e-mail.',
-                999999,
-            );
+            const isCodeValid = await checkActivationCode(input, uuid);
+
+            if (isCodeValid) {
+                setActivationCode(input);
+            } else {
+                generateAlert(
+                    'error',
+                    'Incorrect activation code',
+                    'You entered an invalid activation code or e-mail.',
+                );
+            }
         }
     };
 

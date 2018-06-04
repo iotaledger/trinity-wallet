@@ -1,16 +1,16 @@
+/* global Electron */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import sjcl from 'sjcl';
 import zxcvbn from 'zxcvbn';
 
 import { generateAlert } from 'actions/alerts';
 import { addAccountName, increaseSeedCount, setOnboardingComplete } from 'actions/accounts';
 import { setAdditionalAccountInfo, setSeedIndex, setPassword } from 'actions/wallet';
-import { setOnboardingSeed, setOnboardingName } from 'actions/ui';
+import { setOnboardingName } from 'actions/ui';
 
-import { setVault } from 'libs/crypto';
+import { setSeed, sha256 } from 'libs/crypto';
 import { passwordReasons } from 'libs/i18next';
 
 import Button from 'ui/components/Button';
@@ -46,11 +46,6 @@ class AccountPassword extends React.PureComponent {
          * @param {String} name - New accounts name
          */
         setOnboardingName: PropTypes.func.isRequired,
-        /** Set onboarding seed state
-         * @param {String} seed - New seed
-         * @param {Boolean} isGenerated - Is the new seed generated
-         */
-        setOnboardingSeed: PropTypes.func.isRequired,
         /** Set onboarding status to complete */
         setOnboardingComplete: PropTypes.func.isRequired,
         /** Onboarding set seed and name */
@@ -92,7 +87,6 @@ class AccountPassword extends React.PureComponent {
             increaseSeedCount,
             setAdditionalAccountInfo,
             setSeedIndex,
-            setOnboardingSeed,
             setOnboardingName,
             setOnboardingComplete,
             history,
@@ -134,14 +128,14 @@ class AccountPassword extends React.PureComponent {
             loading: true,
         });
 
-        const passwordHash = firstAccount ? sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(password)) : password;
+        const passwordHash = firstAccount ? await sha256(password) : password;
 
         if (firstAccount) {
             addAccountName(onboarding.name);
             increaseSeedCount();
             setPassword(passwordHash);
-            await setVault(passwordHash, { seeds: [onboarding.seed] }, firstAccount);
-            setOnboardingSeed(null);
+            await setSeed(passwordHash, onboarding.name, Electron.getOnboardingSeed(), true);
+            Electron.setOnboardingSeed(null);
         }
 
         setOnboardingName('');
@@ -230,7 +224,6 @@ const mapDispatchToProps = {
     setPassword,
     addAccountName,
     setAdditionalAccountInfo,
-    setOnboardingSeed,
     setOnboardingName,
     setOnboardingComplete,
     generateAlert,
