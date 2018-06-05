@@ -66,7 +66,7 @@ class Home extends Component {
          */
         generateAlert: PropTypes.func.isRequired,
         /** Set application activity state
-         * @param {object} options - minimzed, active, inactive
+         * @param {object} options - minimised, active, inactive
          */
         setUserActivity: PropTypes.func.isRequired,
         /** Determines if the application is inactive */
@@ -332,15 +332,14 @@ class Home extends Component {
                             <KeyboardAvoidingView style={styles.midContainer} behavior={isAndroid ? null : 'padding'}>
                                 <Animated.View useNativeDriver style={{ flex: this.viewFlex }} />
                                 <View style={{ flex: 4.72 }}>
-                                    {!minimised &&
-                                        ((
-                                            <TabContent
-                                                navigator={navigator}
-                                                onTabSwitch={(name) => this.onTabSwitch(name)}
-                                                handleCloseTopBar={() => this.handleCloseTopBar()}
-                                                isIOSKeyboardActive={isIOSKeyboardActive}
-                                            />
-                                        ) || <View />)}
+                                    {!minimised && (
+                                        <TabContent
+                                            navigator={navigator}
+                                            onTabSwitch={(name) => this.onTabSwitch(name)}
+                                            handleCloseTopBar={() => this.handleCloseTopBar()}
+                                            isIOSKeyboardActive={isIOSKeyboardActive}
+                                        />
+                                    )}
                                 </View>
                             </KeyboardAvoidingView>
                             <View style={styles.bottomContainer}>

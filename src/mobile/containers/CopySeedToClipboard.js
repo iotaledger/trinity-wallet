@@ -14,6 +14,7 @@ import blackCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/c
 import FlagSecure from 'react-native-flag-secure-android';
 import tinycolor from 'tinycolor2';
 import Modal from 'react-native-modal';
+import WithUserActivity from '../components/UserActivity';
 import Button from '../components/Button';
 import ModalButtons from '../containers/ModalButtons';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
@@ -157,6 +158,8 @@ class CopySeedToClipboard extends Component {
          * @param {boolean} status
          */
         setSeedShareTutorialVisitationStatus: PropTypes.func.isRequired,
+        /** Determines if the application is minimised */
+        minimised: PropTypes.bool.isRequired,
     };
 
     constructor() {
@@ -370,70 +373,79 @@ class CopySeedToClipboard extends Component {
     };
 
     render() {
-        const { t, theme, seed } = this.props;
+        const { t, theme, seed, minimised } = this.props;
         const { isModalActive } = this.state;
         const textColor = { color: theme.body.color };
         const borderColor = { borderColor: theme.body.color };
 
         return (
             <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
-                <DynamicStatusBar backgroundColor={theme.body.bg} />
-                <View style={styles.topContainer}>
-                    <Icon name="iota" size={width / 8} color={theme.body.color} />
-                </View>
-                <View style={styles.midContainer}>
-                    <View style={{ flex: 0.5 }} />
-                    <View style={styles.textContainer}>
-                        <Text style={[styles.infoTextNormal, textColor]}>
-                            {`${t(isAndroid ? 'clickToSecurelyShare' : 'clickToCopy')} `}
-                        </Text>
-                        <Text style={[styles.infoTextBold, textColor, { paddingTop: height / 40 }]}>
-                            {t('doNotStore')}
-                        </Text>
+                {!minimised && (
+                    <View>
+                        <DynamicStatusBar backgroundColor={theme.body.bg} />
+                        <View style={styles.topContainer}>
+                            <Icon name="iota" size={width / 8} color={theme.body.color} />
+                        </View>
+                        <View style={styles.midContainer}>
+                            <View style={{ flex: 0.5 }} />
+                            <View style={styles.textContainer}>
+                                <Text style={[styles.infoTextNormal, textColor]}>
+                                    {`${t(isAndroid ? 'clickToSecurelyShare' : 'clickToCopy')} `}
+                                </Text>
+                                <Text style={[styles.infoTextBold, textColor, { paddingTop: height / 40 }]}>
+                                    {t('doNotStore')}
+                                </Text>
+                            </View>
+                            <View style={{ flex: 0.2 }} />
+                            <Seedbox
+                                bodyColor={theme.body.color}
+                                borderColor={borderColor}
+                                textColor={textColor}
+                                seed={seed}
+                            />
+                            <View style={{ flex: 0.2 }} />
+                            <Button
+                                onPress={() => this.openModal()}
+                                style={{
+                                    wrapper: {
+                                        width: width / 1.65,
+                                        height: height / 13,
+                                        borderRadius: height / 90,
+                                        backgroundColor: theme.extra.color,
+                                    },
+                                }}
+                            >
+                                {t(isAndroid ? 'global:shareSeed' : 'copyToClipboard')}
+                            </Button>
+                            <View style={{ flex: 0.5 }} />
+                        </View>
+                        <View style={styles.bottomContainer}>
+                            <Button
+                                onPress={() => this.onDonePress()}
+                                style={{
+                                    wrapper: { backgroundColor: theme.primary.color },
+                                    children: { color: theme.primary.body },
+                                }}
+                            >
+                                {t('global:doneLowercase')}
+                            </Button>
+                        </View>
+                        <Modal
+                            backdropTransitionInTiming={isAndroid ? 500 : 300}
+                            backdropTransitionOutTiming={200}
+                            backdropColor={theme.body.bg}
+                            backdropOpacity={0.8}
+                            style={{ alignItems: 'center', margin: 0 }}
+                            isVisible={isModalActive}
+                            onBackButtonPress={() => this.hideModal()}
+                            hideModalContentWhileAnimating
+                            useNativeDriver={!!isAndroid}
+                        >
+                            {this.renderModalContent()}
+                        </Modal>
+                        <StatefulDropdownAlert backgroundColor={theme.body.bg} />
                     </View>
-                    <View style={{ flex: 0.2 }} />
-                    <Seedbox bodyColor={theme.body.color} borderColor={borderColor} textColor={textColor} seed={seed} />
-                    <View style={{ flex: 0.2 }} />
-                    <Button
-                        onPress={() => this.openModal()}
-                        style={{
-                            wrapper: {
-                                width: width / 1.65,
-                                height: height / 13,
-                                borderRadius: height / 90,
-                                backgroundColor: theme.extra.color,
-                            },
-                        }}
-                    >
-                        {t(isAndroid ? 'global:shareSeed' : 'copyToClipboard')}
-                    </Button>
-                    <View style={{ flex: 0.5 }} />
-                </View>
-                <View style={styles.bottomContainer}>
-                    <Button
-                        onPress={() => this.onDonePress()}
-                        style={{
-                            wrapper: { backgroundColor: theme.primary.color },
-                            children: { color: theme.primary.body },
-                        }}
-                    >
-                        {t('global:doneLowercase')}
-                    </Button>
-                </View>
-                <Modal
-                    backdropTransitionInTiming={isAndroid ? 500 : 300}
-                    backdropTransitionOutTiming={200}
-                    backdropColor={theme.body.bg}
-                    backdropOpacity={0.8}
-                    style={{ alignItems: 'center', margin: 0 }}
-                    isVisible={isModalActive}
-                    onBackButtonPress={() => this.hideModal()}
-                    hideModalContentWhileAnimating
-                    useNativeDriver={!!isAndroid}
-                >
-                    {this.renderModalContent()}
-                </Modal>
-                <StatefulDropdownAlert backgroundColor={theme.body.bg} />
+                )}
             </View>
         );
     }
@@ -443,6 +455,7 @@ const mapStateToProps = (state) => ({
     seed: state.wallet.seed,
     theme: state.settings.theme,
     hasVisitedSeedShareTutorial: state.settings.hasVisitedSeedShareTutorial,
+    minimised: state.ui.minimised,
 });
 
 const mapDispatchToProps = {
@@ -450,6 +463,6 @@ const mapDispatchToProps = {
     setSeedShareTutorialVisitationStatus,
 };
 
-export default translate(['copyToClipboard', 'global'])(
-    connect(mapStateToProps, mapDispatchToProps)(CopySeedToClipboard),
+export default WithUserActivity()(
+    translate(['copyToClipboard', 'global'])(connect(mapStateToProps, mapDispatchToProps)(CopySeedToClipboard)),
 );
