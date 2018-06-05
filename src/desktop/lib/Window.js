@@ -139,7 +139,11 @@ const Electron = {
     },
 
     maximize: () => {
-        currentWindow.maximize();
+        if (currentWindow.isMaximized()) {
+            currentWindow.unmaximize();
+        } else {
+            currentWindow.maximize();
+        }
     },
 
     close: () => {
