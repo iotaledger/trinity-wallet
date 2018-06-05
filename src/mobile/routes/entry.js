@@ -1,3 +1,4 @@
+import ntpClient from 'react-native-ntp-client';
 import get from 'lodash/get';
 import { Navigation } from 'react-native-navigation';
 import { translate } from 'react-i18next';
@@ -6,6 +7,7 @@ import { Provider } from 'react-redux';
 import { changeIotaNode, SwitchingConfig } from 'iota-wallet-shared-modules/libs/iota';
 import { fetchNodeList as fetchNodes } from 'iota-wallet-shared-modules/actions/polling';
 import { ActionTypes } from 'iota-wallet-shared-modules/actions/wallet';
+import { getNetworkTimeAsync } from 'iota-wallet-shared-modules/libs/utils';
 import i18next from 'i18next';
 import { getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
 import { isIOS } from '../utils/device';
@@ -132,5 +134,22 @@ export default (store) => {
         renderInitialScreen(store);
     };
 
-    hasConnection('https://www.google.com').then((isConnected) => initialize(isConnected));
+    hasConnection('https://www.google.com').then((isConnected) => {
+        const localTime = new Date().getTime();
+
+        // Verify whether the network call failed
+        // because of an out of sync clock
+        if (!isConnected) {
+            getNetworkTimeAsync(ntpClient)
+                .then((date) => {
+                    const networkTime = date.getTime();
+                    const diff = networkTime - localTime;
+
+                    initialize(Math.floor(diff / 3600000) >= 1);
+                })
+                .catch(() => initialize(isConnected));
+        } else {
+            initialize(isConnected);
+        }
+    });
 };
