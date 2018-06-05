@@ -138,7 +138,7 @@ export default class SeedInput extends React.PureComponent {
 
         const byte = '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.indexOf(key.toUpperCase());
 
-        if (!e.metaKey) {
+        if (!e.metaKey && !e.ctrlKey) {
             e.preventDefault();
             if (byte > -1 || key === 'Backspace') {
                 const cursor = this.getCursor(this.input);
