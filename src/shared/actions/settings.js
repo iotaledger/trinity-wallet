@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import keys from 'lodash/keys';
 import { getStoredState } from 'redux-persist';
 import { changeIotaNode } from '../libs/iota';
 import { updatePersistedState } from '../libs/utils';
@@ -165,10 +166,12 @@ export function getCurrencyData(currency, withAlerts = false) {
             )
             .then((json) => {
                 const conversionRate = get(json, `rates.${currency}`) || 1;
+                const availableCurrencies = keys(get(json, 'rates'));
                 dispatch(
                     currencyDataFetchSuccess({
                         conversionRate,
                         currency,
+                        availableCurrencies,
                     }),
                 );
 
