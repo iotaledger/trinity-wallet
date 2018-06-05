@@ -32,8 +32,20 @@ if (shouldQuit) {
 
 let settings = null;
 
+let windowState = {
+    width: 1024,
+    height: 768,
+    x: null,
+    y: null,
+    maximized: false,
+};
+
 try {
     const data = electronSettings.get('reduxPersist:settings');
+    const windowStateData = electronSettings.get('window-state');
+    if (windowStateData) {
+        windowState = windowStateData;
+    }
     settings = JSON.parse(data);
 } catch (error) {}
 
@@ -48,8 +60,10 @@ function createWindow() {
     });
 
     windows.main = new BrowserWindow({
-        width: 1024,
-        height: 768,
+        width: windowState.width,
+        height: windowState.height,
+        x: windowState.x,
+        y: windowState.y,
         minWidth: 500,
         minHeight: 720,
         frame: process.platform === 'linux',
@@ -63,6 +77,10 @@ function createWindow() {
             webviewTag: false,
         },
     });
+
+    if (windowState.maximized) {
+        windows.main.maximize();
+    }
 
     const url = devMode ? 'http://localhost:1074/' : 'iota://dist/index.html';
 
@@ -148,6 +166,16 @@ app.on('window-all-closed', () => {
 
 app.on('before-quit', () => {
     if (windows.main && !windows.main.isDestroyed()) {
+        const bounds = windows.main.getBounds();
+
+        electronSettings.set('window-state', {
+            x: bounds.x,
+            y: bounds.y,
+            width: bounds.width,
+            height: bounds.height,
+            maximized: windows.main.isMaximized(),
+        });
+
         windows.main.removeListener('close', hideOnClose);
     }
 });
