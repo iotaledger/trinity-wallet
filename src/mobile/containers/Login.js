@@ -62,7 +62,7 @@ class Login extends Component {
         /** Determines whether two factor authentication is enabled */
         is2FAEnabled: PropTypes.bool.isRequired,
         /** Set application activity state
-         * @param {object} options - minimzed, active, inactive
+         * @param {object} options - minimised, active, inactive
          */
         setUserActivity: PropTypes.func.isRequired,
         /** Set password

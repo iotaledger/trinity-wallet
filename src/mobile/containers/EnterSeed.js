@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
 import FlagSecure from 'react-native-flag-secure-android';
+import WithUserActivity from '../components/UserActivity';
 import Checksum from '../components/Checksum';
 import CustomTextInput from '../components/CustomTextInput';
 import InfoBox from '../components/InfoBox';
@@ -89,6 +90,8 @@ class EnterSeed extends React.Component {
         navigator: PropTypes.object.isRequired,
         /** Theme settings */
         theme: PropTypes.object.isRequired,
+        /** Determines if the application is minimised */
+        minimised: PropTypes.bool.isRequired,
     };
 
     constructor(props) {
@@ -197,82 +200,86 @@ class EnterSeed extends React.Component {
 
     render() {
         const { seed } = this.state;
-        const { t, theme } = this.props;
+        const { t, theme, minimised } = this.props;
 
         return (
             <TouchableWithoutFeedback style={{ flex: 0.8 }} onPress={Keyboard.dismiss} accessible={false}>
                 <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
-                    <StatusBar barStyle="light-content" backgroundColor={theme.body.bg} />
-                    <View style={styles.topContainer}>
-                        <Icon name="iota" size={width / 8} color={theme.body.color} />
-                        <View style={{ flex: 0.7 }} />
-                        <Header textColor={theme.body.color}>{t('seedReentry:enterYourSeed')}</Header>
-                    </View>
-                    <View style={styles.midContainer}>
-                        <View style={{ flex: 0.15 }} />
-                        <CustomTextInput
-                            label={t('global:seed')}
-                            onChangeText={(text) => this.setState({ seed: text.toUpperCase() })}
-                            containerStyle={{ width: width / 1.2 }}
-                            theme={theme}
-                            autoCapitalize="characters"
-                            autoCorrect={false}
-                            enablesReturnKeyAutomatically
-                            returnKeyType="done"
-                            onSubmitEditing={() => this.onDonePress()}
-                            maxLength={MAX_SEED_LENGTH}
-                            value={seed}
-                            widget="qr"
-                            onQRPress={() => this.onQRPress()}
-                            testID="enterSeed-seedbox"
-                        />
-                        <View style={{ flex: 0.4 }} />
-                        <Checksum seed={seed} theme={theme} />
-                        <View style={{ flex: 0.4 }} />
-                        <InfoBox
-                            body={theme.body}
-                            text={
-                                <View>
-                                    <Text style={[styles.infoText, { color: theme.body.color }]}>
-                                        {t('seedExplanation', { maxLength: MAX_SEED_LENGTH })}
-                                    </Text>
-                                    <Text style={[styles.warningText, { color: theme.body.color }]}>
-                                        {'\n'}
-                                        {t('neverShare')}
-                                    </Text>
-                                </View>
-                            }
-                        />
-                        <View style={{ flex: 0.7 }} />
-                    </View>
-                    <View style={styles.bottomContainer}>
-                        <OnboardingButtons
-                            onLeftButtonPress={() => this.onBackPress()}
-                            onRightButtonPress={() => this.onDonePress()}
-                            leftButtonText={t('global:goBack')}
-                            rightButtonText={t('global:continue')}
-                            leftButtonTestID="enterSeed-back"
-                            rightButtonTestID="enterSeed-next"
-                        />
-                    </View>
-                    <StatefulDropdownAlert textColor="white" backgroundColor={theme.body.bg} />
-                    <Modal
-                        animationIn={isAndroid ? 'bounceInUp' : 'zoomIn'}
-                        animationOut={isAndroid ? 'bounceOut' : 'zoomOut'}
-                        animationInTiming={isAndroid ? 1000 : 300}
-                        animationOutTiming={200}
-                        backdropTransitionInTiming={isAndroid ? 500 : 300}
-                        backdropTransitionOutTiming={200}
-                        backdropColor="#102832"
-                        backdropOpacity={1}
-                        style={{ alignItems: 'center', margin: 0 }}
-                        isVisible={this.state.isModalVisible}
-                        onBackButtonPress={() => this.setState({ isModalVisible: false })}
-                        hideModalContentWhileAnimating
-                        useNativeDriver={isAndroid ? true : false}
-                    >
-                        {this.renderModalContent()}
-                    </Modal>
+                    {!minimised && (
+                        <View>
+                            <StatusBar barStyle="light-content" backgroundColor={theme.body.bg} />
+                            <View style={styles.topContainer}>
+                                <Icon name="iota" size={width / 8} color={theme.body.color} />
+                                <View style={{ flex: 0.7 }} />
+                                <Header textColor={theme.body.color}>{t('seedReentry:enterYourSeed')}</Header>
+                            </View>
+                            <View style={styles.midContainer}>
+                                <View style={{ flex: 0.15 }} />
+                                <CustomTextInput
+                                    label={t('global:seed')}
+                                    onChangeText={(text) => this.setState({ seed: text.toUpperCase() })}
+                                    containerStyle={{ width: width / 1.2 }}
+                                    theme={theme}
+                                    autoCapitalize="characters"
+                                    autoCorrect={false}
+                                    enablesReturnKeyAutomatically
+                                    returnKeyType="done"
+                                    onSubmitEditing={() => this.onDonePress()}
+                                    maxLength={MAX_SEED_LENGTH}
+                                    value={seed}
+                                    widget="qr"
+                                    onQRPress={() => this.onQRPress()}
+                                    testID="enterSeed-seedbox"
+                                />
+                                <View style={{ flex: 0.4 }} />
+                                <Checksum seed={seed} theme={theme} />
+                                <View style={{ flex: 0.4 }} />
+                                <InfoBox
+                                    body={theme.body}
+                                    text={
+                                        <View>
+                                            <Text style={[styles.infoText, { color: theme.body.color }]}>
+                                                {t('seedExplanation', { maxLength: MAX_SEED_LENGTH })}
+                                            </Text>
+                                            <Text style={[styles.warningText, { color: theme.body.color }]}>
+                                                {'\n'}
+                                                {t('neverShare')}
+                                            </Text>
+                                        </View>
+                                    }
+                                />
+                                <View style={{ flex: 0.7 }} />
+                            </View>
+                            <View style={styles.bottomContainer}>
+                                <OnboardingButtons
+                                    onLeftButtonPress={() => this.onBackPress()}
+                                    onRightButtonPress={() => this.onDonePress()}
+                                    leftButtonText={t('global:goBack')}
+                                    rightButtonText={t('global:continue')}
+                                    leftButtonTestID="enterSeed-back"
+                                    rightButtonTestID="enterSeed-next"
+                                />
+                            </View>
+                            <StatefulDropdownAlert textColor="white" backgroundColor={theme.body.bg} />
+                            <Modal
+                                animationIn={isAndroid ? 'bounceInUp' : 'zoomIn'}
+                                animationOut={isAndroid ? 'bounceOut' : 'zoomOut'}
+                                animationInTiming={isAndroid ? 1000 : 300}
+                                animationOutTiming={200}
+                                backdropTransitionInTiming={isAndroid ? 500 : 300}
+                                backdropTransitionOutTiming={200}
+                                backdropColor="#102832"
+                                backdropOpacity={1}
+                                style={{ alignItems: 'center', margin: 0 }}
+                                isVisible={this.state.isModalVisible}
+                                onBackButtonPress={() => this.setState({ isModalVisible: false })}
+                                hideModalContentWhileAnimating
+                                useNativeDriver={isAndroid ? true : false}
+                            >
+                                {this.renderModalContent()}
+                            </Modal>
+                        </View>
+                    )}
                 </View>
             </TouchableWithoutFeedback>
         );
@@ -281,6 +288,7 @@ class EnterSeed extends React.Component {
 
 const mapStateToProps = (state) => ({
     theme: state.settings.theme,
+    minimised: state.ui.minimised,
 });
 
 const mapDispatchToProps = {
@@ -288,4 +296,6 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default translate(['enterSeed', 'global'])(connect(mapStateToProps, mapDispatchToProps)(EnterSeed));
+export default WithUserActivity()(
+    translate(['enterSeed', 'global'])(connect(mapStateToProps, mapDispatchToProps)(EnterSeed)),
+);

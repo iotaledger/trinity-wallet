@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/iota/utils';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import FlagSecure from 'react-native-flag-secure-android';
+import WithUserActivity from '../components/UserActivity';
 import Checksum from '../components/Checksum';
 import { width, height } from '../utils/dimensions';
 import DynamicStatusBar from '../components/DynamicStatusBar';
@@ -110,6 +111,8 @@ class SeedReentry extends Component {
         navigator: PropTypes.object.isRequired,
         /** Seed value */
         seed: PropTypes.string.isRequired,
+        /** Determines if the application is minimised */
+        minimised: PropTypes.bool.isRequired,
     };
 
     constructor() {
@@ -171,61 +174,67 @@ class SeedReentry extends Component {
 
     render() {
         const { seed } = this.state;
-        const { t, theme } = this.props;
+        const { t, theme, minimised } = this.props;
         const textColor = { color: theme.body.color };
 
         return (
             <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
-                <DynamicStatusBar backgroundColor={theme.body.bg} />
-                <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
+                {!minimised && (
                     <View>
-                        <View style={styles.topContainer}>
-                            <Icon name="iota" size={width / 8} color={theme.body.color} />
-                            <View style={{ flex: 0.7 }} />
-                            <Header textColor={theme.body.color}>{t('pleaseConfirmYourSeed')}</Header>
-                        </View>
-                        <View style={styles.midContainer}>
-                            <View style={{ flex: 0.15 }} />
-                            <CustomTextInput
-                                label={t('global:seed')}
-                                onChangeText={(text) => this.setState({ seed: text.toUpperCase() })}
-                                containerStyle={{ width: width / 1.2 }}
-                                maxLength={MAX_SEED_LENGTH}
-                                autoCapitalize="characters"
-                                autoCorrect={false}
-                                enablesReturnKeyAutomatically
-                                returnKeyType="done"
-                                onSubmitEditing={() => this.onDonePress()}
-                                theme={theme}
-                                value={seed}
-                            />
-                            <View style={{ flex: 0.15 }} />
-                            <Checksum seed={seed} theme={theme} />
-                            <View style={{ flex: 0.15 }} />
-                            <InfoBox
-                                body={theme.body}
-                                text={
-                                    <View>
-                                        <Text style={[styles.infoTextBottom, textColor]}>{t('ifYouHaveNotSaved')}</Text>
-                                        <Text style={[styles.warningText, textColor]}>
-                                            {t('trinityWillNeverAskToReenter')}
-                                        </Text>
-                                    </View>
-                                }
-                            />
-                            <View style={{ flex: 0.5 }} />
-                        </View>
-                        <View style={styles.bottomContainer}>
-                            <OnboardingButtons
-                                onLeftButtonPress={() => this.onBackPress()}
-                                onRightButtonPress={() => this.onDonePress()}
-                                leftButtonText={t(':goBack')}
-                                rightButtonText={t('global:doneLowercase')}
-                            />
-                        </View>
+                        <DynamicStatusBar backgroundColor={theme.body.bg} />
+                        <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
+                            <View>
+                                <View style={styles.topContainer}>
+                                    <Icon name="iota" size={width / 8} color={theme.body.color} />
+                                    <View style={{ flex: 0.7 }} />
+                                    <Header textColor={theme.body.color}>{t('pleaseConfirmYourSeed')}</Header>
+                                </View>
+                                <View style={styles.midContainer}>
+                                    <View style={{ flex: 0.15 }} />
+                                    <CustomTextInput
+                                        label={t('global:seed')}
+                                        onChangeText={(text) => this.setState({ seed: text.toUpperCase() })}
+                                        containerStyle={{ width: width / 1.2 }}
+                                        maxLength={MAX_SEED_LENGTH}
+                                        autoCapitalize="characters"
+                                        autoCorrect={false}
+                                        enablesReturnKeyAutomatically
+                                        returnKeyType="done"
+                                        onSubmitEditing={() => this.onDonePress()}
+                                        theme={theme}
+                                        value={seed}
+                                    />
+                                    <View style={{ flex: 0.15 }} />
+                                    <Checksum seed={seed} theme={theme} />
+                                    <View style={{ flex: 0.15 }} />
+                                    <InfoBox
+                                        body={theme.body}
+                                        text={
+                                            <View>
+                                                <Text style={[styles.infoTextBottom, textColor]}>
+                                                    {t('ifYouHaveNotSaved')}
+                                                </Text>
+                                                <Text style={[styles.warningText, textColor]}>
+                                                    {t('trinityWillNeverAskToReenter')}
+                                                </Text>
+                                            </View>
+                                        }
+                                    />
+                                    <View style={{ flex: 0.5 }} />
+                                </View>
+                                <View style={styles.bottomContainer}>
+                                    <OnboardingButtons
+                                        onLeftButtonPress={() => this.onBackPress()}
+                                        onRightButtonPress={() => this.onDonePress()}
+                                        leftButtonText={t(':goBack')}
+                                        rightButtonText={t('global:doneLowercase')}
+                                    />
+                                </View>
+                            </View>
+                        </TouchableWithoutFeedback>
+                        <StatefulDropdownAlert backgroundColor={theme.body.bg} />
                     </View>
-                </TouchableWithoutFeedback>
-                <StatefulDropdownAlert backgroundColor={theme.body.bg} />
+                )}
             </View>
         );
     }
@@ -234,10 +243,13 @@ class SeedReentry extends Component {
 const mapStateToProps = (state) => ({
     seed: state.wallet.seed,
     theme: state.settings.theme,
+    minimised: state.ui.minimised,
 });
 
 const mapDispatchToProps = {
     generateAlert,
 };
 
-export default translate(['seedReentry', 'global'])(connect(mapStateToProps, mapDispatchToProps)(SeedReentry));
+export default WithUserActivity()(
+    translate(['seedReentry', 'global'])(connect(mapStateToProps, mapDispatchToProps)(SeedReentry)),
+);
