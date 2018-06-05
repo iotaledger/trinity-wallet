@@ -67,6 +67,7 @@ const initialState = {
     acceptedTerms: false,
     acceptedPrivacy: false,
     hasVisitedSeedShareTutorial: false,
+    hideEmptyTransactions: false
 };
 
 const settingsReducer = (state = initialState, action) => {
@@ -206,6 +207,11 @@ const settingsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 hasVisitedSeedShareTutorial: action.payload,
+            };
+        case ActionTypes.TOGGLE_EMPTY_TRANSACTIONS:
+            return {
+                ...state,
+                hideEmptyTransactions: !state.hideEmptyTransactions,
             };
     }
 
