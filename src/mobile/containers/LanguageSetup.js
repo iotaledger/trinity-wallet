@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import { StyleSheet, View, TouchableWithoutFeedback, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import i18next from 'i18next';
 import SplashScreen from 'react-native-splash-screen';
 import { getDeviceLocale } from 'react-native-device-info';
 import { I18N_LOCALE_LABELS, getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
-import { setLanguage } from 'iota-wallet-shared-modules/actions/settings';
+import { setLanguage, setLocale } from 'iota-wallet-shared-modules/actions/settings';
 import helloBackImagePath from 'iota-wallet-shared-modules/images/hello-back.png';
 import { detectLocale, selectLocale } from 'iota-wallet-shared-modules/libs/locale';
 import { connect } from 'react-redux';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
+import i18next from '../i18next';
 import WithBackPressCloseApp from '../components/BackPressCloseApp';
 import { width, height } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
@@ -66,6 +66,11 @@ class LanguageSetup extends Component {
          * @param {string} language
          */
         setLanguage: PropTypes.func.isRequired,
+        /**
+         * Change selected locale
+         * @param {string}
+         */
+        setLocale: PropTypes.func.isRequired,
         /** Determines whether a user has accepted privacy agreement */
         acceptedPrivacy: PropTypes.bool.isRequired,
         /** Determines whether a user has accepted terms and conditions */
@@ -116,6 +121,7 @@ class LanguageSetup extends Component {
     clickDropdownItem(language) {
         i18next.changeLanguage(getLocaleFromLabel(language));
         this.props.setLanguage(language);
+        this.props.setLocale(getLocaleFromLabel(language));
     }
 
     render() {
@@ -178,6 +184,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     setSetting,
     setLanguage,
+    setLocale,
 };
 
 export default WithBackPressCloseApp()(
