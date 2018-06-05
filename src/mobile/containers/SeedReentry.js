@@ -5,6 +5,7 @@ import { Keyboard, StyleSheet, View, Text, TouchableWithoutFeedback } from 'reac
 import { connect } from 'react-redux';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/iota/utils';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import FlagSecure from 'react-native-flag-secure-android';
 import Checksum from '../components/Checksum';
 import { width, height } from '../utils/dimensions';
 import DynamicStatusBar from '../components/DynamicStatusBar';
@@ -15,6 +16,7 @@ import InfoBox from '../components/InfoBox';
 import OnboardingButtons from '../containers/OnboardingButtons';
 import { Icon } from '../theme/icons';
 import Header from '../components/Header';
+import { isAndroid } from '../utils/device';
 
 const styles = StyleSheet.create({
     container: {
@@ -118,9 +120,24 @@ class SeedReentry extends Component {
         };
     }
 
+    componentDidMount() {
+        if (isAndroid) {
+            FlagSecure.activate();
+        }
+    }
+
+    componentWillUnmount() {
+        if (isAndroid) {
+            FlagSecure.deactivate();
+        }
+    }
+
     onDonePress() {
         const { t, seed, theme: { body } } = this.props;
         if (this.state.seed === seed) {
+            if (isAndroid) {
+                FlagSecure.deactivate();
+            }
             this.props.navigator.push({
                 screen: 'setAccountName',
                 navigatorStyle: {
