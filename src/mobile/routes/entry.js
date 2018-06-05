@@ -120,11 +120,12 @@ const hasConnection = (url, options = { fallbackUrl: 'https://www.baidu.com' }) 
 // Initialization function
 // Passed as a callback to persistStore to adjust the rendering time
 export default (store) => {
-    const initialize = (isConnected) => {
+    const initialize = (isConnected, isClockSynced = true) => {
         store.dispatch({
             type: ActionTypes.CONNECTION_CHANGED,
-            payload: { isConnected },
+            payload: { isConnected, isClockSynced },
         });
+
         fetchNodeList(store);
         startListeningToConnectivityChanges(store);
 
@@ -145,7 +146,7 @@ export default (store) => {
                     const networkTime = date.getTime();
                     const diff = networkTime - localTime;
 
-                    initialize(Math.floor(diff / 3600000) >= 1);
+                    initialize(isConnected, Math.floor(diff / 3600000) <= 1);
                 })
                 .catch(() => initialize(isConnected));
         } else {
