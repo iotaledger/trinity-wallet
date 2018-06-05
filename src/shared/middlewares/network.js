@@ -7,11 +7,15 @@ const networkMiddleware = (store) => (next) => (action) => {
     /* eslint-enable no-unused-vars */
 
     if (action.type === ActionTypes.CONNECTION_CHANGED && !action.payload.isConnected) {
+        const { isClockSynced } = action.payload;
+
         next({
             type: AlertsActionTypes.SHOW,
             category: 'error',
-            title: i18next.t('global:noNetworkConnection'),
-            message: i18next.t('global:noNetworkConnectionExplanation'),
+            title: i18next.t(!isClockSynced ? 'global:clockOutOfSync' : 'global:noNetworkConnection'),
+            message: i18next.t(
+                !isClockSynced ? 'global:clockOutOfSyncExplanation' : 'global:noNetworkConnectionExplanation',
+            ),
             closeInterval: 3600000,
         });
 
