@@ -11,6 +11,7 @@ import whiteCheckboxCheckedImagePath from 'iota-wallet-shared-modules/images/che
 import whiteCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked-white.png';
 import blackCheckboxCheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-checked-black.png';
 import blackCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked-black.png';
+import FlagSecure from 'react-native-flag-secure-android';
 import tinycolor from 'tinycolor2';
 import Modal from 'react-native-modal';
 import Button from '../components/Button';
@@ -168,10 +169,19 @@ class CopySeedToClipboard extends Component {
         };
     }
 
+    componentDidMount() {
+        if (isAndroid) {
+            FlagSecure.activate();
+        }
+    }
+
     componentWillUnmount() {
         timer.clearTimeout('clipboardClear');
         timer.clearTimeout('delayShare');
         this.clearClipboard();
+        if (isAndroid) {
+            FlagSecure.deactivate();
+        }
     }
 
     /**
