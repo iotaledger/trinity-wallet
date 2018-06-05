@@ -4,12 +4,14 @@ import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getChecksum, MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/iota/utils';
+import FlagSecure from 'react-native-flag-secure-android';
 import Seedbox from '../components/SeedBox';
 import Button from '../components/Button';
 import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import { Icon } from '../theme/icons.js';
+import { isAndroid } from '../utils/device';
 
 const styles = StyleSheet.create({
     container: {
@@ -35,7 +37,7 @@ const styles = StyleSheet.create({
     },
     textContainer: {
         width: width / 1.25,
-        alignItems: 'center'
+        alignItems: 'center',
     },
     optionButtonText: {
         color: '#8BD4FF',
@@ -144,6 +146,18 @@ class WriteSeedDown extends Component {
         seed: PropTypes.string.isRequired,
     };
 
+    componentDidMount() {
+        if (isAndroid) {
+            FlagSecure.activate();
+        }
+    }
+
+    componentWillUnmount() {
+        if (isAndroid) {
+            FlagSecure.deactivate();
+        }
+    }
+
     onDonePress() {
         this.props.navigator.pop({ animated: false });
     }
@@ -163,7 +177,7 @@ class WriteSeedDown extends Component {
                 <View style={styles.midContainer}>
                     <View style={{ flex: 1 }} />
                     <View style={styles.textContainer}>
-                        <Text style={[styles.infoTextNormal, textColor ]}>
+                        <Text style={[styles.infoTextNormal, textColor]}>
                             {t('writeSeedDown:yourSeedIs', { maxSeedLength: MAX_SEED_LENGTH })}
                         </Text>
                         <Text style={[styles.infoText, textColor, { paddingTop: height / 40 }]}>

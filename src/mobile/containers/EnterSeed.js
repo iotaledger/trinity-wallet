@@ -7,6 +7,7 @@ import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
+import FlagSecure from 'react-native-flag-secure-android';
 import Checksum from '../components/Checksum';
 import CustomTextInput from '../components/CustomTextInput';
 import InfoBox from '../components/InfoBox';
@@ -99,6 +100,18 @@ class EnterSeed extends React.Component {
         };
     }
 
+    componentDidMount() {
+        if (isAndroid) {
+            FlagSecure.activate();
+        }
+    }
+
+    componentWillUnmount() {
+        if (isAndroid) {
+            FlagSecure.deactivate();
+        }
+    }
+
     /**
      * Validate seed
      */
@@ -114,6 +127,9 @@ class EnterSeed extends React.Component {
                 t('seedTooShortExplanation', { maxLength: MAX_SEED_LENGTH, currentLength: seed.length }),
             );
         } else if (seed.length === MAX_SEED_LENGTH) {
+            if (isAndroid) {
+                FlagSecure.deactivate();
+            }
             this.props.setSeed({ seed, usedExistingSeed: true });
             this.props.navigator.push({
                 screen: 'setAccountName',

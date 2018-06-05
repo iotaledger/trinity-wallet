@@ -14,6 +14,7 @@ import whiteCheckboxCheckedImagePath from 'iota-wallet-shared-modules/images/che
 import whiteCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked-white.png';
 import blackCheckboxCheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-checked-black.png';
 import blackCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked-black.png';
+import FlagSecure from 'react-native-flag-secure-android';
 import timer from 'react-native-timer';
 import Modal from 'react-native-modal';
 import tinycolor from 'tinycolor2';
@@ -264,6 +265,18 @@ class PaperWallet extends Component {
 
     componentWillMount() {
         timer.clearTimeout('delayPrint');
+    }
+
+    componentDidMount() {
+        if (isAndroid) {
+            FlagSecure.activate();
+        }
+    }
+
+    componentWillUnmount() {
+        if (isAndroid) {
+            FlagSecure.deactivate();
+        }
     }
 
     onDonePress() {

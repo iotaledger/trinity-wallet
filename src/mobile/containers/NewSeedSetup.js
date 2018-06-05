@@ -11,6 +11,7 @@ import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { generateNewSeed, randomiseSeedCharacter } from 'iota-wallet-shared-modules/libs/crypto';
 import { Navigation } from 'react-native-navigation';
 import Modal from 'react-native-modal';
+import FlagSecure from 'react-native-flag-secure-android';
 import CtaButton from '../components/CtaButton';
 import { width, height } from '../utils/dimensions';
 import OnboardingButtons from '../containers/OnboardingButtons';
@@ -173,11 +174,18 @@ class NewSeedSetup extends Component {
         if (this.props.onboardingComplete) {
             BackHandler.removeEventListener('newSeedSetupBackPress');
         }
+        if (isAndroid) {
+            FlagSecure.deactivate();
+        }
     }
 
     async onGeneratePress() {
         const { t } = this.props;
         const seed = await generateNewSeed(generateSecureRandom);
+        // Block screenshots
+        if (isAndroid) {
+            FlagSecure.activate();
+        }
         this.props.setSeed({ seed, usedExistingSeed: false });
         this.setState({ randomised: true });
         this.props.generateAlert('success', t('generateSuccess'), t('individualLetters'));
@@ -194,6 +202,9 @@ class NewSeedSetup extends Component {
 
     onNextPress() {
         const { t, theme: { body } } = this.props;
+        if (isAndroid) {
+            FlagSecure.deactivate();
+        }
         if (this.state.randomised) {
             this.props.navigator.push({
                 screen: 'saveYourSeed',
