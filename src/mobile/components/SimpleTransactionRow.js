@@ -9,7 +9,7 @@ import { Icon } from '../theme/icons';
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        height: height / 40,
+        height: height / 36,
         alignItems: 'center',
         width: width / 1.15,
     },
