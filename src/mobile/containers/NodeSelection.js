@@ -92,6 +92,14 @@ class NodeSelection extends Component {
         setLoginRoute: PropTypes.func.isRequired,
     };
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            node: this.props.node,
+        };
+    }
+
     componentWillReceiveProps(newProps) {
         const { node } = this.props;
         if (node !== newProps.node) {
@@ -112,9 +120,14 @@ class NodeSelection extends Component {
         this.setNode(nextNode);
     }
 
+    hasChangedNode() {
+        return this.state.node !== this.props.node;
+    }
+
     render() {
         const { isChangingNode, node, nodes, t, theme: { body, primary } } = this.props;
         const textColor = { color: body.color };
+        const hasChangedNode = this.hasChangedNode();
 
         return (
             <TouchableWithoutFeedback
@@ -134,6 +147,7 @@ class NodeSelection extends Component {
                             title={t('global:node')}
                             dropdownWidth={{ width: width / 1.5 }}
                             defaultOption={node}
+                            saveSelection={(node) => this.setState({ node })}
                             options={nodes}
                             background
                         />
@@ -159,15 +173,17 @@ class NodeSelection extends Component {
                                 <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={() => this.saveNodeSelection()}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.itemRight}>
-                                <Text style={[styles.titleTextRight, textColor]}>{t('global:save')}</Text>
-                                <Icon name="tick" size={width / 28} color={body.color} />
-                            </View>
-                        </TouchableOpacity>
+                        {hasChangedNode && (
+                            <TouchableOpacity
+                                onPress={() => this.saveNodeSelection()}
+                                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                            >
+                                <View style={styles.itemRight}>
+                                    <Text style={[styles.titleTextRight, textColor]}>{t('global:save')}</Text>
+                                    <Icon name="tick" size={width / 28} color={body.color} />
+                                </View>
+                            </TouchableOpacity>
+                        )}
                     </View>
                 </View>
             </TouchableWithoutFeedback>
