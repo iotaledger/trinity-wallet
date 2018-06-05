@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { getTransfersForSelectedAccount } from '../../selectors/accounts';
-import { toggleEmptyTransactions } from '../../actions/ui';
+import { toggleEmptyTransactions } from '../../actions/settings';
 
 /**
  * List component container
@@ -23,6 +23,7 @@ export default function withListData(ListComponent) {
             theme: PropTypes.object.isRequired,
             updateAccount: PropTypes.func.isRequired,
             toggleEmptyTransactions: PropTypes.func.isRequired,
+            hideEmptyTransactions: PropTypes.bool.isRequired,
         };
         render() {
             const {
@@ -34,6 +35,7 @@ export default function withListData(ListComponent) {
                 setItem,
                 currentItem,
                 toggleEmptyTransactions,
+                hideEmptyTransactions,
                 theme,
                 ui,
                 t,
@@ -52,7 +54,7 @@ export default function withListData(ListComponent) {
                 filter,
                 isBusy,
                 isLoading: ui.isFetchingLatestAccountInfoOnLogin,
-                hideEmptyTransactions: ui.hideEmptyTransactions,
+                hideEmptyTransactions,
                 toggleEmptyTransactions: toggleEmptyTransactions,
                 t,
             };
@@ -68,6 +70,7 @@ export default function withListData(ListComponent) {
         transfers: getTransfersForSelectedAccount(state),
         theme: state.settings.theme,
         ui: state.ui,
+        hideEmptyTransactions: state.settings.hideEmptyTransactions,
     });
 
     const mapDispatchToProps = {

@@ -10,8 +10,7 @@ export const ActionTypes = {
     SET_ONBOARDING_NAME: 'IOTA/UI/SET_ONBOARDING_NAME',
     SET_DO_NOT_MINIMISE: 'IOTA/UI/SET_DO_NOT_MINIMISE',
     TOGGLE_MODAL_ACTIVITY: 'IOTA/UI/TOGGLE_MODAL_ACTIVITY',
-    SET_LOGIN_ROUTE: 'IOTA/UI/SET_LOGIN_ROUTE',
-    TOGGLE_EMPTY_TRANSACTIONS: 'IOTA/UI/TOGGLE_EMPTY_TRANSACTIONS',
+    SET_LOGIN_ROUTE: 'IOTA/UI/SET_LOGIN_ROUTE'
 };
 
 export const setSendAddressField = (payload) => ({
@@ -72,12 +71,6 @@ export const setDoNotMinimise = (payload) => {
 export const toggleModalActivity = () => {
     return {
         type: ActionTypes.TOGGLE_MODAL_ACTIVITY,
-    };
-};
-
-export const toggleEmptyTransactions = () => {
-    return {
-        type: ActionTypes.TOGGLE_EMPTY_TRANSACTIONS,
     };
 };
 
