@@ -288,7 +288,7 @@ class NewSeedSetup extends Component {
             <View style={{ backgroundColor: body.bg }}>
                 <InfoBox
                     body={body}
-                    width={width / 1.3}
+                    width={width / 1.15}
                     text={
                         <View>
                             <Text style={[styles.infoText, textColor, { paddingTop: height / 40 }]}>

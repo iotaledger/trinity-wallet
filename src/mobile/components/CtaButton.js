@@ -43,7 +43,7 @@ class CtaButton extends PureComponent {
 
     static defaultProps = {
         fontSize: GENERAL.fontSize3,
-        ctaWidth: width / 1.2,
+        ctaWidth: width / 1.15,
         ctaHeight: height / 14,
         testID: '',
     };
