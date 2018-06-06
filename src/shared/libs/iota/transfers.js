@@ -267,6 +267,17 @@ export const categoriseBundleByInputsOutputs = (bundle, addresses, outputsThresh
 
     const removeUnnecessaryProps = (object) => omit(object, ['currentIndex', 'lastIndex']);
 
+    // Note: Ideally we should categorise all outputs
+    // But some bundles esp carriota field donation bundles are huge
+    // and on devices with restricted storage storing them can cause the problem.
+
+    // Now this does not mean that large bundles should not be validated.
+    // Categorisation should always happen after the bundle is construction and validated.
+
+    // This step can lead to an inconsistent behavior if addresses aren't properly synced
+    // That is why as a safety check remainder transaction objects would always be considered as outputs
+
+    // TODO: But to make this process more secure, always sync addresses during poll
     return size(categorisedBundle.outputs) <= outputsThreshold
         ? {
               inputs: map(categorisedBundle.inputs, removeUnnecessaryProps),
