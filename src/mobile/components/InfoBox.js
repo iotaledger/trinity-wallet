@@ -55,7 +55,7 @@ class InfoBox extends PureComponent {
     };
 
     static defaultProps = {
-        width: width / 1.2,
+        width: width / 1.15,
     };
 
     render() {
