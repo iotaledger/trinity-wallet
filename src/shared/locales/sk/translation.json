@@ -456,6 +456,8 @@
     },
     "history": {
         "bundleHashCopied": "Bundle hash skopírovaný",
+        "noTransactionsFound": "No transactions found",
+        "hideZeroBalance": "Hide zero balance",
         "bundleHashCopiedExplanation": "Bundle hash bol skopírovaný do schránky.",
         "addressCopied": "Adresa skopírovaná",
         "addressCopiedExplanation": "Adresa bola skopírovaná do schránky.",
