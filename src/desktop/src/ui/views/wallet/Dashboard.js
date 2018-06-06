@@ -10,6 +10,8 @@ import { runTask } from 'worker';
 import { getSeed } from 'libs/crypto';
 import { capitalize } from 'libs/helpers';
 
+import { getSelectedAccountName } from 'selectors/accounts';
+
 import Icon from 'ui/components/Icon';
 import List from 'ui/components/List';
 import Chart from 'ui/components/Chart';
@@ -25,12 +27,8 @@ import css from './dashboard.scss';
  */
 class Dashboard extends React.PureComponent {
     static propTypes = {
-        /** Current seed index */
-        seedIndex: PropTypes.number.isRequired,
-        /** Accounts state state data
-         * @ignore
-         */
-        accounts: PropTypes.object.isRequired,
+        /** Current account name */
+        accountName: PropTypes.string.isRequired,
         /** Current password value */
         password: PropTypes.string,
         /** Is a deep link set active */
@@ -55,11 +53,11 @@ class Dashboard extends React.PureComponent {
     }
 
     updateAccount = async () => {
-        const { accounts, password, seedIndex } = this.props;
+        const { password, accountName } = this.props;
 
-        const seed = await getSeed(seedIndex, password);
+        const seed = await getSeed(password, accountName, true);
 
-        runTask('getAccountInfo', [seed, accounts.accountNames[seedIndex]]);
+        runTask('getAccountInfo', [seed, accountName]);
     };
 
     render() {
@@ -124,9 +122,8 @@ class Dashboard extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    seedIndex: state.wallet.seedIndex,
+    accountName: getSelectedAccountName(state),
     password: state.wallet.password,
-    accounts: state.accounts,
     isDeepLinkActive: state.wallet.deepLinkActive,
 });
 
