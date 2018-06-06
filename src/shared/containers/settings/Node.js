@@ -5,7 +5,7 @@ import { translate } from 'react-i18next';
 
 import { changeIotaNode } from '../../libs/iota';
 import { getNodeInfoAsync as checkNode } from '../../libs/iota/extendedApi';
-import { setFullNode, addCustomPoWNode, updateAutoNodeSwitching } from '../../actions/settings';
+import { setFullNode, updateAutoNodeSwitching } from '../../actions/settings';
 import { generateAlert } from '../../actions/alerts';
 
 /**
@@ -18,7 +18,6 @@ export default function withNodeData(NodeComponent) {
             node: PropTypes.string.isRequired,
             nodes: PropTypes.array.isRequired,
             setFullNode: PropTypes.func.isRequired,
-            addCustomPoWNode: PropTypes.func.isRequired,
             autoNodeSwitching: PropTypes.bool.isRequired,
             updateAutoNodeSwitching: PropTypes.func.isRequired,
             generateAlert: PropTypes.func.isRequired,
@@ -36,7 +35,7 @@ export default function withNodeData(NodeComponent) {
         }
 
         changeNode = (nodeSelected, customNode) => {
-            const { nodes, node, setFullNode, addCustomPoWNode, generateAlert, backPress, t } = this.props;
+            const { nodes, node, setFullNode, generateAlert, backPress, t } = this.props;
 
             if (!nodeSelected) {
                 return;
@@ -69,11 +68,7 @@ export default function withNodeData(NodeComponent) {
                 .then(() => {
                     this.setState({ loading: false });
                     changeIotaNode(nodeSelected);
-                    setFullNode(nodeSelected);
-
-                    if (nodes.indexOf(nodeSelected) < 0) {
-                        addCustomPoWNode(nodeSelected);
-                    }
+                    setFullNode(nodeSelected, nodes.indexOf(nodeSelected) < 0);
 
                     generateAlert('success', t('nodeChanged'), t('nodeChangedExplanation'));
 
@@ -121,7 +116,6 @@ export default function withNodeData(NodeComponent) {
 
     const mapDispatchToProps = {
         setFullNode,
-        addCustomPoWNode,
         generateAlert,
         updateAutoNodeSwitching,
     };
