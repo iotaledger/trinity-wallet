@@ -456,6 +456,8 @@
     },
     "history": {
         "bundleHashCopied": "Salin rangkaian hash",
+        "noTransactionsFound": "No transactions found",
+        "hideZeroBalance": "Hide zero balance",
         "bundleHashCopiedExplanation": "Rangkaian hash telah disalin ke papan klip.",
         "addressCopied": "Alamat telah disalin",
         "addressCopiedExplanation": "Alamat telah disalin ke papan klip.",
