@@ -16,13 +16,19 @@ import isEmpty from 'lodash/isEmpty';
 import isFunction from 'lodash/isFunction';
 import filter from 'lodash/filter';
 import some from 'lodash/some';
+import size from 'lodash/size';
 import reduce from 'lodash/reduce';
 import transform from 'lodash/transform';
 import difference from 'lodash/difference';
 import unionBy from 'lodash/unionBy';
 import orderBy from 'lodash/orderBy';
 import pickBy from 'lodash/pickBy';
-import { DEFAULT_TAG, DEFAULT_BALANCES_THRESHOLD, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../../config';
+import {
+    DEFAULT_TAG,
+    DEFAULT_BALANCES_THRESHOLD,
+    DEFAULT_MIN_WEIGHT_MAGNITUDE,
+    BUNDLE_OUTPUTS_THRESHOLD,
+} from '../../config';
 import { iota } from './index';
 import { getBalancesSync, accumulateBalance } from './addresses';
 import {
@@ -230,11 +236,13 @@ export const transformTransactionsByBundleHash = (transactions) => {
  *
  *   @method categoriseTransactionsByInputsOutputs
  *   @param {array} bundle
+ *   @param {array} addresses
+ *   @param {number} outputsThreshold
  *
  *   @returns {object}
  **/
-export const categoriseBundleByInputsOutputs = (bundle) => {
-    return transform(
+export const categoriseBundleByInputsOutputs = (bundle, addresses, outputsThreshold = BUNDLE_OUTPUTS_THRESHOLD) => {
+    const categorisedBundle = transform(
         bundle,
         (acc, tx) => {
             const meta = {
@@ -255,6 +263,13 @@ export const categoriseBundleByInputsOutputs = (bundle) => {
             outputs: [],
         },
     );
+
+    return size(categorisedBundle.outputs) <= outputsThreshold
+        ? categorisedBundle
+        : {
+              ...categorisedBundle,
+              outputs: filter(categorisedBundle.outputs, (output) => includes(addresses, output.address)),
+          };
 };
 
 /**
