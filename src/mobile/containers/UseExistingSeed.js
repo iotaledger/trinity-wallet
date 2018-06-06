@@ -322,7 +322,11 @@ class UseExistingSeed extends Component {
                         <View style={{ flex: 0.4 }} />
                         <CustomTextInput
                             label={t('global:seed')}
-                            onChangeText={(value) => this.setState({ seed: value.toUpperCase() })}
+                            onChangeText={(text) => {
+                                if (text.match(VALID_SEED_REGEX) || text.length === 0) {
+                                    this.setState({ seed: text.toUpperCase() });
+                                }
+                            }}
                             containerStyle={{ width: width / 1.15 }}
                             autoCapitalize="characters"
                             maxLength={MAX_SEED_LENGTH}
