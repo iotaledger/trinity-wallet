@@ -456,6 +456,8 @@
     },
     "history": {
         "bundleHashCopied": "Πακέτο κατακερματισμού αντιγράφηκε",
+        "noTransactionsFound": "No transactions found",
+        "hideZeroBalance": "Hide zero balance",
         "bundleHashCopiedExplanation": "Το πακέτο κατακερματισμού έχει αντιγραφεί στο Πρόχειρο.",
         "addressCopied": "Η διεύθυνση αντιγράφηκε",
         "addressCopiedExplanation": "Η διεύθυνση έχει αντιγραφεί στο Πρόχειρο.",
