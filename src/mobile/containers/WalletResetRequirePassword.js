@@ -209,7 +209,7 @@ class WalletResetRequirePassword extends Component {
                                 label={t('global:password')}
                                 onChangeText={(password) => this.setState({ password })}
                                 value={this.state.password}
-                                containerStyle={{ width: width / 1.2 }}
+                                containerStyle={{ width: width / 1.15 }}
                                 autoCapitalize="none"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically

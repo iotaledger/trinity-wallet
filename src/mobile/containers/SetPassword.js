@@ -243,7 +243,7 @@ class SetPassword extends Component {
                             <CustomTextInput
                                 label={t('global:password')}
                                 onChangeText={(password) => this.setState({ password })}
-                                containerStyle={{ width: width / 1.2 }}
+                                containerStyle={{ width: width / 1.15 }}
                                 autoCapitalize="none"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
@@ -264,7 +264,7 @@ class SetPassword extends Component {
                                 }}
                                 label={t('retypePassword')}
                                 onChangeText={(reentry) => this.setState({ reentry })}
-                                containerStyle={{ width: width / 1.2 }}
+                                containerStyle={{ width: width / 1.15 }}
                                 autoCapitalize="none"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
