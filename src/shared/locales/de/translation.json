@@ -456,6 +456,8 @@
     },
     "history": {
         "bundleHashCopied": "Bundle-Hash kopiert",
+        "noTransactionsFound": "No transactions found",
+        "hideZeroBalance": "Hide zero balance",
         "bundleHashCopiedExplanation": "Dein Bundle-Hash wurde in die Zwischenablage kopiert.",
         "addressCopied": "Adresse kopiert",
         "addressCopiedExplanation": "Die Adresse wurde in die Zwischenablage kopiert.",
