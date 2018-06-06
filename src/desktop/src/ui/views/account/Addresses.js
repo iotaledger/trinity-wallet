@@ -30,7 +30,7 @@ class Addresses extends PureComponent {
         return (
             <ul className={css.addresses}>
                 <Scrollbar>
-                    {Object.keys(account.addresses).map((address) => {
+                    {Object.keys(account.addresses).reverse().map((address) => {
                         const text = address.match(/.{1,3}/g).join(' ');
                         return (
                             <li key={address}>

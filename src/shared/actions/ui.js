@@ -77,6 +77,6 @@ export const toggleModalActivity = () => {
 export const setLoginRoute = (payload) => {
     return {
         type: ActionTypes.SET_LOGIN_ROUTE,
-        payload
+        payload,
     };
 };
