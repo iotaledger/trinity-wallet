@@ -323,7 +323,7 @@ class UseExistingSeed extends Component {
                         <CustomTextInput
                             label={t('global:seed')}
                             onChangeText={(value) => this.setState({ seed: value.toUpperCase() })}
-                            containerStyle={{ width: width / 1.2 }}
+                            containerStyle={{ width: width / 1.15 }}
                             autoCapitalize="characters"
                             maxLength={MAX_SEED_LENGTH}
                             value={seed}
@@ -348,7 +348,7 @@ class UseExistingSeed extends Component {
                             }}
                             label={t('addAdditionalSeed:accountName')}
                             onChangeText={(value) => this.setState({ accountName: value })}
-                            containerStyle={{ width: width / 1.2 }}
+                            containerStyle={{ width: width / 1.15 }}
                             autoCapitalize="words"
                             maxLength={MAX_SEED_LENGTH}
                             autoCorrect={false}

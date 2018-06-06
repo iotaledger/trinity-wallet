@@ -125,7 +125,6 @@ const styles = StyleSheet.create({
     modalCheckboxText: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: GENERAL.fontSize3,
-        marginLeft: width / 40,
     },
     modalCheckbox: {
         width: width / 20,

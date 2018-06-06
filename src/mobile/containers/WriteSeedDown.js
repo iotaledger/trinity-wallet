@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end',
     },
     textContainer: {
-        width: width / 1.25,
+        width: width / 1.155,
         alignItems: 'center',
     },
     optionButtonText: {
