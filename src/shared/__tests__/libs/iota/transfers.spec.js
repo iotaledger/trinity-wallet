@@ -673,34 +673,81 @@ describe('libs: iota/transfers', () => {
             ];
         });
 
-        it('should categorise non-remainder transaction objects with negative value to "inputs"', () => {
-            expect(categoriseBundleByInputsOutputs(bundle).inputs).to.eql([
-                {
-                    value: -2201,
-                    address: 'JMJHGMMVBEOWEVMEUYFYWJGZK9ITVBZAIWXITUANTYYLAKSHYRCZBBN9ULEDLRYITFNQMAUPZP9WMLEHB',
-                    checksum: 'MCDWJFKKC',
-                },
-            ]);
+        describe('when transaction object is not remainder and has negative value', () => {
+            it('should categorise as "inputs"', () => {
+                expect(categoriseBundleByInputsOutputs(bundle, [], 1).inputs).to.eql([
+                    {
+                        value: -2201,
+                        address: 'JMJHGMMVBEOWEVMEUYFYWJGZK9ITVBZAIWXITUANTYYLAKSHYRCZBBN9ULEDLRYITFNQMAUPZP9WMLEHB',
+                        checksum: 'MCDWJFKKC',
+                    },
+                ]);
+            });
         });
 
-        it('should categorise transaction objects with non-negative values to "outputs"', () => {
-            expect(categoriseBundleByInputsOutputs(bundle).outputs).to.eql([
-                {
-                    value: 1,
-                    address: 'AWHJTOTMFXZUAVJAWHXULZJFTQNHYAIQHIDKOSTEMR9ZBHWFWDLIQYPHDKTVXYDJYRHKMXYLDUULJMMWW',
-                    checksum: 'BQGLCYXGY',
-                },
-                {
-                    value: 0,
-                    address: 'JMJHGMMVBEOWEVMEUYFYWJGZK9ITVBZAIWXITUANTYYLAKSHYRCZBBN9ULEDLRYITFNQMAUPZP9WMLEHB',
-                    checksum: 'MCDWJFKKC',
-                },
-                {
-                    value: 2201,
-                    address: 'GEFNJWYGCACGXYEXAS999VIRYWLJSAQJNRTSTDNOKKR9SULNXGHPVHCHJQVMIKEVJNKMEQMYMFZUXZPGC',
-                    checksum: 'RYN9LQCEC',
-                },
-            ]);
+        describe('when transaction object is remainder and has non-negative value', () => {
+            it('should categorise transaction objects as "outputs" if outputs size is less than outputs threshold size', () => {
+                const outputsThreshold = 4;
+                expect(categoriseBundleByInputsOutputs(bundle, [], outputsThreshold).outputs).to.eql([
+                    {
+                        value: 1,
+                        address: 'AWHJTOTMFXZUAVJAWHXULZJFTQNHYAIQHIDKOSTEMR9ZBHWFWDLIQYPHDKTVXYDJYRHKMXYLDUULJMMWW',
+                        checksum: 'BQGLCYXGY',
+                    },
+                    {
+                        value: 0,
+                        address: 'JMJHGMMVBEOWEVMEUYFYWJGZK9ITVBZAIWXITUANTYYLAKSHYRCZBBN9ULEDLRYITFNQMAUPZP9WMLEHB',
+                        checksum: 'MCDWJFKKC',
+                    },
+                    {
+                        value: 2201,
+                        address: 'GEFNJWYGCACGXYEXAS999VIRYWLJSAQJNRTSTDNOKKR9SULNXGHPVHCHJQVMIKEVJNKMEQMYMFZUXZPGC',
+                        checksum: 'RYN9LQCEC',
+                    },
+                ]);
+            });
+
+            it('should categorise transaction objects as "outputs" if outputs size is equal to outputs threshold size', () => {
+                const outputsThreshold = 3;
+                expect(categoriseBundleByInputsOutputs(bundle, [], outputsThreshold).outputs).to.eql([
+                    {
+                        value: 1,
+                        address: 'AWHJTOTMFXZUAVJAWHXULZJFTQNHYAIQHIDKOSTEMR9ZBHWFWDLIQYPHDKTVXYDJYRHKMXYLDUULJMMWW',
+                        checksum: 'BQGLCYXGY',
+                    },
+                    {
+                        value: 0,
+                        address: 'JMJHGMMVBEOWEVMEUYFYWJGZK9ITVBZAIWXITUANTYYLAKSHYRCZBBN9ULEDLRYITFNQMAUPZP9WMLEHB',
+                        checksum: 'MCDWJFKKC',
+                    },
+                    {
+                        value: 2201,
+                        address: 'GEFNJWYGCACGXYEXAS999VIRYWLJSAQJNRTSTDNOKKR9SULNXGHPVHCHJQVMIKEVJNKMEQMYMFZUXZPGC',
+                        checksum: 'RYN9LQCEC',
+                    },
+                ]);
+            });
+
+            it('should categorise transaction objects with own addresses as "outputs" if outputs size is greater than outputs threshold size', () => {
+                const outputsThreshold = 1;
+                const addresses = [
+                    'AWHJTOTMFXZUAVJAWHXULZJFTQNHYAIQHIDKOSTEMR9ZBHWFWDLIQYPHDKTVXYDJYRHKMXYLDUULJMMWW',
+                    'JMJHGMMVBEOWEVMEUYFYWJGZK9ITVBZAIWXITUANTYYLAKSHYRCZBBN9ULEDLRYITFNQMAUPZP9WMLEHB',
+                ];
+
+                expect(categoriseBundleByInputsOutputs(bundle, addresses, outputsThreshold).outputs).to.eql([
+                    {
+                        value: 1,
+                        address: 'AWHJTOTMFXZUAVJAWHXULZJFTQNHYAIQHIDKOSTEMR9ZBHWFWDLIQYPHDKTVXYDJYRHKMXYLDUULJMMWW',
+                        checksum: 'BQGLCYXGY',
+                    },
+                    {
+                        value: 0,
+                        address: 'JMJHGMMVBEOWEVMEUYFYWJGZK9ITVBZAIWXITUANTYYLAKSHYRCZBBN9ULEDLRYITFNQMAUPZP9WMLEHB',
+                        checksum: 'MCDWJFKKC',
+                    },
+                ]);
+            });
         });
     });
 
