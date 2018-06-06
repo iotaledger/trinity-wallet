@@ -321,6 +321,12 @@ async@^1.5.0:
   version "1.5.2"
   resolved "https://registry.yarnpkg.com/async/-/async-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"
 
+async@^2.5.0:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/async/-/async-2.6.1.tgz#b245a23ca71930044ec53fa46aa00a3e87c6a610"
+  dependencies:
+    lodash "^4.17.10"
+
 async@^2.6.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/async/-/async-2.6.0.tgz#61a29abb6fcc026fea77e56d1c6ec53a795951f4"
@@ -343,6 +349,14 @@ authenticator-cli@^1.0.3:
     cli "^0.11.1"
     qrcode-terminal "^0.10.0"
 
+authenticator-cli@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/authenticator-cli/-/authenticator-cli-1.0.5.tgz#4374783c654918050711f044e7b45526631243c2"
+  dependencies:
+    authenticator "^1.1.0"
+    cli "^1.0.1"
+    qrcode-terminal "^0.12.0"
+
 authenticator@^1.1.0:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/authenticator/-/authenticator-1.1.3.tgz#d86ec474630dc52adb3857fd8dc31ec1f5620164"
@@ -356,6 +370,14 @@ authenticator@^1.1.4:
   resolved "https://registry.yarnpkg.com/authenticator/-/authenticator-1.1.4.tgz#d9b1e070fb97edd6a9012d1c5668f119b2ce02a5"
   dependencies:
     authenticator-cli "^1.0.3"
+    notp "^2.0.3"
+    thirty-two "0.0.2"
+
+"authenticator@https://git.coolaj86.com/rajivshah3/node-authenticator.js.git":
+  version "1.1.4"
+  resolved "https://git.coolaj86.com/rajivshah3/node-authenticator.js.git#f67283c91cd0f0fada8b58964522b609d2edc290"
+  dependencies:
+    authenticator-cli "^1.0.5"
     notp "^2.0.3"
     thirty-two "0.0.2"
 
@@ -1104,6 +1126,10 @@ big.js@^3.1.3:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/big.js/-/big.js-3.2.0.tgz#a5fc298b81b9e0dca2e458824784b65c52ba588e"
 
+bignumber.js@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/bignumber.js/-/bignumber.js-4.1.0.tgz#db6f14067c140bd46624815a7916c92d9b6c24b1"
+
 binary-extensions@^1.0.0:
   version "1.11.0"
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-1.11.0.tgz#46aa1751fb6a2f93ee5e689bb1087d4b14c6c205"
@@ -1675,6 +1701,13 @@ cli@^0.11.1:
   dependencies:
     exit "0.1.2"
     glob "^7.0.5"
+
+cli@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/cli/-/cli-1.0.1.tgz#22817534f24bfa4950c34d532d48ecbc621b8c14"
+  dependencies:
+    exit "0.1.2"
+    glob "^7.1.1"
 
 cliui@^3.2.0:
   version "3.2.0"
@@ -3415,7 +3448,7 @@ glob@^6.0.4:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-glob@^7.0.0, glob@^7.0.3, glob@^7.0.5, glob@^7.1.2, glob@~7.1.1:
+glob@^7.0.0, glob@^7.0.3, glob@^7.0.5, glob@^7.1.1, glob@^7.1.2, glob@~7.1.1:
   version "7.1.2"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.2.tgz#c19c9df9a028702d678612384a6552404c636d15"
   dependencies:
@@ -4007,6 +4040,15 @@ iota.crypto.js@iotaledger/iota.crypto.js:
   resolved "https://codeload.github.com/iotaledger/iota.crypto.js/tar.gz/05c5b4485ad8232fd5b9145e02fe988a035a7704"
   dependencies:
     crypto-js "^3.1.9-1"
+
+iota.lib.js@^0.4.7:
+  version "0.4.7"
+  resolved "https://registry.yarnpkg.com/iota.lib.js/-/iota.lib.js-0.4.7.tgz#c2af1a7886b8b0e239a4b54b5caa9dd239c2d7eb"
+  dependencies:
+    async "^2.5.0"
+    bignumber.js "^4.1.0"
+    crypto-js "^3.1.9-1"
+    xmlhttprequest "^1.8.0"
 
 ipaddr.js@1.6.0:
   version "1.6.0"
@@ -4754,7 +4796,7 @@ lodash.uniq@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
 
-lodash@^4.0.0:
+lodash@^4.0.0, lodash@^4.17.10:
   version "4.17.10"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
 
@@ -6259,13 +6301,17 @@ q@^1.1.2:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
 
-qr.js@0.0.0:
+qr.js@^0.0.0:
   version "0.0.0"
   resolved "https://registry.yarnpkg.com/qr.js/-/qr.js-0.0.0.tgz#cace86386f59a0db8050fa90d9b6b0e88a1e364f"
 
 qrcode-terminal@^0.10.0:
   version "0.10.0"
   resolved "https://registry.yarnpkg.com/qrcode-terminal/-/qrcode-terminal-0.10.0.tgz#a76a48e2610a18f97fa3a2bd532b682acff86c53"
+
+qrcode-terminal@^0.12.0:
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/qrcode-terminal/-/qrcode-terminal-0.12.0.tgz#bb5b699ef7f9f0505092a3748be4464fe71b5819"
 
 qrcode.react@^0.8.0:
   version "0.8.0"
@@ -7319,10 +7365,6 @@ single-line-log@^1.1.2:
   resolved "https://registry.yarnpkg.com/single-line-log/-/single-line-log-1.1.2.tgz#c2f83f273a3e1a16edb0995661da0ed5ef033364"
   dependencies:
     string-width "^1.0.1"
-
-sjcl@^1.0.7:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/sjcl/-/sjcl-1.0.7.tgz#32b365a50dc9bba26b88ba3c9df8ea34217d9f45"
 
 slash@^1.0.0:
   version "1.0.0"
@@ -8602,6 +8644,10 @@ xmlbuilder@^9.0.7:
 xmldom@0.1.x:
   version "0.1.27"
   resolved "https://registry.yarnpkg.com/xmldom/-/xmldom-0.1.27.tgz#d501f97b3bdb403af8ef9ecc20573187aadac0e9"
+
+xmlhttprequest@^1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/xmlhttprequest/-/xmlhttprequest-1.8.0.tgz#67fe075c5c24fef39f9d65f5f7b7fe75171968fc"
 
 "xtend@>=4.0.0 <4.1.0-0", xtend@^4.0.0, xtend@^4.0.1, xtend@~4.0.0, xtend@~4.0.1:
   version "4.0.1"

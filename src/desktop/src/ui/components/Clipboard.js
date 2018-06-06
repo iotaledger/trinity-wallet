@@ -13,7 +13,7 @@ import css from './clipboard.scss';
 class Clipboard extends React.PureComponent {
     static propTypes = {
         /** Target content copied to clipboard */
-        text: PropTypes.string.isRequired,
+        text: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
         /** EOptional element chidlren content */
         children: PropTypes.any,
         /** Timeout to clear the clipboard */
