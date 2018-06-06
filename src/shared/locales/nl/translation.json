@@ -456,6 +456,8 @@
     },
     "history": {
         "bundleHashCopied": "Bundel hash gekopieerd",
+        "noTransactionsFound": "No transactions found",
+        "hideZeroBalance": "Hide zero balance",
         "bundleHashCopiedExplanation": "De bundel-hash is gekopieerd naar het klembord.",
         "addressCopied": "Adres gekopieerd",
         "addressCopiedExplanation": "Het adres is naar het klembord gekopieerd.",
