@@ -456,6 +456,8 @@
     },
     "history": {
         "bundleHashCopied": "Bundle hash copied",
+        "noTransactionsFound": "No transactions found",
+        "hideZeroBalance": "Hide zero balance",
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
         "addressCopied": "הכתובת הועתקה",
         "addressCopiedExplanation": "הכתובת הועתקה לשורת ההעתקה.",
