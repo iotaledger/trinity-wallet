@@ -120,7 +120,7 @@ class Pow extends Component {
                         >
                             <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                                 <View style={styles.toggleTextContainer}>
-                                    <Text style={[styles.toggleText, textColor, { paddingRight: width / 45 }]}>
+                                    <Text style={[styles.toggleText, textColor, { marginRight: width / 45 }]}>
                                         {t('local')}
                                     </Text>
                                 </View>
@@ -131,7 +131,7 @@ class Pow extends Component {
                                     scale={1.3}
                                 />
                                 <View style={styles.toggleTextContainer}>
-                                    <Text style={[styles.toggleText, textColor, { paddingLeft: width / 45 }]}>
+                                    <Text style={[styles.toggleText, textColor, { marginLeft: width / 45 }]}>
                                         {t('remote')}
                                     </Text>
                                 </View>
