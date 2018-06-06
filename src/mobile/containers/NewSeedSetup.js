@@ -331,7 +331,7 @@ class NewSeedSetup extends Component {
                 onPress={() => this.onCharPress(index)}
                 style={[styles.tileContainer, { backgroundColor: input.bg }]}
                 underlayColor={primary.color}
-                hitSlop={{ top: height / 80, bottom: height / 80, left: height / 80, right: height / 80 }}
+                hitSlop={{ top: 5, bottom: 5, left: 5, right: 5 }}
             >
                 <View style={styles.tile}>
                     <Text style={[styles.tileText, { color: input.color, opacity: randomised ? 1 : 0.1 }]}>
