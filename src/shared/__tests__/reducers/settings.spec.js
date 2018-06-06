@@ -70,6 +70,7 @@ describe('Reducer: settings', () => {
                 acceptedTerms: false,
                 acceptedPrivacy: false,
                 autoPromotion: false,
+                hideEmptyTransactions: false,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
@@ -99,7 +100,10 @@ describe('Reducer: settings', () => {
                 locale: 'en',
             };
 
-            const action = actions.setLocale('foo');
+            const action = {
+                type: 'IOTA/SETTINGS/LOCALE',
+                payload: 'foo',
+            };
 
             const newState = reducer(initialState, action);
             const expectedState = {

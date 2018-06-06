@@ -26,6 +26,8 @@ const initialState = {
     sendDenomination: 'i',
     onboarding: {
         name: '',
+        seed: null,
+        isGenerated: false,
     },
     doNotMinimise: false,
     isModalActive: false,
