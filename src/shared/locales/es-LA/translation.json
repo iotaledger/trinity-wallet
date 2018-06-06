@@ -243,7 +243,7 @@
     },
     "saveYourSeed": {
         "mustSaveYourSeed":
-            "<0><0>Debes guardar tu seed con</0><1>al menos una</1><2>de las opciones a continuación.</2></0>"
+            "<0><0>Debes guardar tu seed con </0><1>al menos una</1><2> de las opciones a continuación.</2></0>"
     },
     "seedReentry": {
         "incorrectSeed": "Semilla incorrecta",

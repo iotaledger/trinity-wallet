@@ -4995,6 +4995,10 @@ react-native-fit-image@^1.5.2:
   dependencies:
     prop-types "^15.5.10"
 
+"react-native-flag-secure-android@github:kristiansorens/react-native-flag-secure-android":
+  version "1.0.0"
+  resolved "https://codeload.github.com/kristiansorens/react-native-flag-secure-android/tar.gz/e234251220f5d745eec8ebde3e83d4d369e81a14"
+
 react-native-fs@^2.8.1:
   version "2.9.12"
   resolved "https://registry.yarnpkg.com/react-native-fs/-/react-native-fs-2.9.12.tgz#88d6c1e8eb26acbebca955e1cbd9c47d2c9452ba"
