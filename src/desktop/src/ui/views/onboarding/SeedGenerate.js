@@ -1,13 +1,9 @@
+/* global Electron */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { translate, Interpolate } from 'react-i18next';
-import { isValidSeed } from 'libs/iota/utils';
-import { createRandomSeed } from 'libs/crypto';
+import { createRandomSeed, byteToChar } from 'libs/crypto';
 import { capitalize } from 'libs/helpers';
-
-import { setOnboardingSeed } from 'actions/ui';
-import { generateAlert } from 'actions/alerts';
 
 import Button from 'ui/components/Button';
 import Icon from 'ui/components/Icon';
@@ -19,24 +15,10 @@ import css from './index.scss';
  */
 class GenerateSeed extends React.PureComponent {
     static propTypes = {
-        /** Set onboarding seed state
-         * @param {String} seed - New seed
-         * @param {Boolean} isGenerated - Is the new seed generated
-         */
-        setOnboardingSeed: PropTypes.func.isRequired,
-        /** Current new seed */
-        newSeed: PropTypes.string,
         /** Browser history object */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
-        /** Create a notification message
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         * @ignore
-         */
-        generateAlert: PropTypes.func.isRequired,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
@@ -45,7 +27,8 @@ class GenerateSeed extends React.PureComponent {
     };
 
     state = {
-        seed: this.props.newSeed || createRandomSeed(),
+        seed: Electron.getOnboardingSeed() || createRandomSeed(),
+        existingSeed: Electron.getOnboardingSeed(),
         clicks: [],
     };
 
@@ -56,20 +39,17 @@ class GenerateSeed extends React.PureComponent {
     };
 
     onRequestNext = () => {
-        const { setOnboardingSeed, history, generateAlert, t } = this.props;
+        const { history } = this.props;
         const { seed } = this.state;
 
-        if (!seed || !isValidSeed(seed)) {
-            return generateAlert('error', t('seedReentry:incorrectSeed'), t('seedReentry:incorrectSeedExplanation'));
-        }
-        setOnboardingSeed(seed, true);
+        Electron.setOnboardingSeed(seed, true);
         history.push('/onboarding/seed-save');
     };
 
     onRequestPrevious = () => {
-        const { history, setOnboardingSeed } = this.props;
+        const { history } = this.props;
 
-        setOnboardingSeed(null);
+        Electron.setOnboardingSeed(null);
         history.push('/onboarding/seed-intro');
     };
 
@@ -82,10 +62,8 @@ class GenerateSeed extends React.PureComponent {
 
         const newClicks = clicks.indexOf(position) < 0 ? clicks.concat([position]) : clicks;
 
-        const newSeed = seed
-            .split('')
-            .map((letter, index) => (index === Number(position) ? createRandomSeed(1) : letter))
-            .join('');
+        const newSeed = seed.slice(0);
+        newSeed[position] = createRandomSeed(1)[0];
 
         this.setState(() => ({
             seed: newSeed,
@@ -95,18 +73,18 @@ class GenerateSeed extends React.PureComponent {
 
     generateNewSeed = () => {
         const newSeed = createRandomSeed();
-
-        this.props.setOnboardingSeed(null);
+        Electron.setOnboardingSeed(null);
 
         this.setState(() => ({
             seed: newSeed,
+            existingSeed: false,
             clicks: [],
         }));
     };
 
     render() {
-        const { newSeed, t } = this.props;
-        const { seed, clicks } = this.state;
+        const { t } = this.props;
+        const { seed, existingSeed, clicks } = this.state;
 
         const clicksLeft = 10 - clicks.length;
 
@@ -117,8 +95,8 @@ class GenerateSeed extends React.PureComponent {
                     <Interpolate
                         i18nKey="newSeedSetup:individualLetterCount"
                         letterCount={
-                            !newSeed && clicksLeft > 0 ? (
-                                <strong className={css.highlight}>{!newSeed ? clicksLeft : 0}</strong>
+                            !existingSeed && clicksLeft > 0 ? (
+                                <strong className={css.highlight}>{!existingSeed ? clicksLeft : 0}</strong>
                             ) : null
                         }
                     >
@@ -128,7 +106,8 @@ class GenerateSeed extends React.PureComponent {
                     </Interpolate>
                     <div className={css.seed}>
                         <div>
-                            {seed.split('').map((letter, index) => {
+                            {seed.map((byte, index) => {
+                                const letter = byteToChar(byte);
                                 return (
                                     <button
                                         onClick={(e) => this.updateLetter(e, index)}
@@ -151,12 +130,14 @@ class GenerateSeed extends React.PureComponent {
                         {t('goBackStep')}
                     </Button>
                     <Button
-                        disabled={!newSeed && clicksLeft > 0}
+                        disabled={!existingSeed && clicksLeft > 0}
                         onClick={this.onRequestNext}
                         className="square"
                         variant="primary"
                     >
-                        {!newSeed && clicksLeft > 0 ? `Randomise ${clicksLeft} characters to continue` : t('continue')}
+                        {!existingSeed && clicksLeft > 0
+                            ? `Randomise ${clicksLeft} characters to continue`
+                            : t('continue')}
                     </Button>
                 </footer>
             </form>
@@ -164,13 +145,4 @@ class GenerateSeed extends React.PureComponent {
     }
 }
 
-const mapStateToProps = (state) => ({
-    newSeed: state.ui.onboarding.seed,
-});
-
-const mapDispatchToProps = {
-    setOnboardingSeed,
-    generateAlert,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(GenerateSeed));
+export default translate()(GenerateSeed);
