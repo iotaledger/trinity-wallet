@@ -217,7 +217,11 @@ class EnterSeed extends React.Component {
                                 <View style={{ flex: 0.15 }} />
                                 <CustomTextInput
                                     label={t('global:seed')}
-                                    onChangeText={(text) => this.setState({ seed: text.toUpperCase() })}
+                                    onChangeText={(text) => {
+                                        if (text.match(VALID_SEED_REGEX) || text.length === 0) {
+                                            this.setState({ seed: text.toUpperCase() });
+                                        }
+                                    }}
                                     containerStyle={{ width: width / 1.15 }}
                                     theme={theme}
                                     autoCapitalize="characters"
