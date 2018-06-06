@@ -456,8 +456,8 @@
     },
     "history": {
         "bundleHashCopied": "Paketo šifras nukopijuotas",
-        "noTransactionsFound": "No transactions found",
-        "hideZeroBalance": "Hide zero balance",
+        "noTransactionsFound": "Pavedimų nėra",
+        "hideZeroBalance": "Slėpti nulinius pavedimus",
         "bundleHashCopiedExplanation": "Paketo šifras nukopijuotas į iškarpinę.",
         "addressCopied": "Adresas nukopijuotas",
         "addressCopiedExplanation": "Adresas nukopijuotas į iškarpinę.",
