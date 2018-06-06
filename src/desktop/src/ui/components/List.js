@@ -24,8 +24,12 @@ class List extends React.PureComponent {
         isBusy: PropTypes.bool.isRequired,
         /** Is history updating */
         isLoading: PropTypes.bool.isRequired,
+        /** Hide empty transactions flag */
+        hideEmptyTransactions: PropTypes.bool.isRequired,
         /** Should update history */
         updateAccount: PropTypes.func.isRequired,
+        /** Toggle hide empty transactions */
+        toggleEmptyTransactions: PropTypes.func.isRequired,
         /** Transaction history */
         transfers: PropTypes.object.isRequired,
         /** Set active history item
@@ -43,6 +47,7 @@ class List extends React.PureComponent {
 
     state = {
         filter: 'All',
+        search: '',
         loaded: true,
     };
 
@@ -63,24 +68,67 @@ class List extends React.PureComponent {
     }
 
     render() {
-        const { isLoading, isBusy, updateAccount, transfers, setItem, currentItem, t } = this.props;
-        const { filter, loaded } = this.state;
+        const {
+            isLoading,
+            isBusy,
+            hideEmptyTransactions,
+            toggleEmptyTransactions,
+            updateAccount,
+            transfers,
+            setItem,
+            currentItem,
+            t,
+        } = this.props;
+        const { filter, loaded, search } = this.state;
 
         const filters = ['All', 'Sent', 'Received', 'Pending'];
         const transfersList = map(transfers, (tx) => tx);
 
-        const formattedTx = transfersList.filter((tx) => {
-            const isReceived = tx.incoming;
-            const isConfirmed = tx.persistence;
+        const totals = {
+            All: 0,
+            Sent: 0,
+            Received: 0,
+            Pending: 0,
+        };
 
-            return !(
-                (filter === 'Sent' && (isReceived || !isConfirmed)) ||
-                (filter === 'Received' && (!isReceived || !isConfirmed)) ||
-                (filter === 'Pending' && isConfirmed)
-            );
+        const historyTx = orderBy(transfersList, 'timestamp', ['desc']).filter((transfer) => {
+            const isReceived = transfer.incoming;
+            const isConfirmed = transfer.persistence;
+
+            if (hideEmptyTransactions && transfer.transferValue === 0) {
+                return false;
+            }
+
+            if (
+                transfer.message.toLowerCase().indexOf(search) < 0 &&
+                transfer.bundle !== search &&
+                transfer.hash !== search &&
+                (!/^\+?\d+$/.test(search) || transfer.transferValue < parseInt(search))
+            ) {
+                return false;
+            }
+
+            totals.All++;
+
+            if (!isConfirmed) {
+                totals.Pending++;
+                if (filter === 'Pending') {
+                    return true;
+                }
+            } else if (isReceived) {
+                totals.Received++;
+                if (filter === 'Received') {
+                    return true;
+                }
+            } else {
+                totals.Sent++;
+                if (filter === 'Sent') {
+                    return true;
+                }
+            }
+
+            return filter === 'All';
         });
-
-        const historyTx = orderBy(formattedTx, 'timestamp', ['desc']);
 
         const activeTransfer = currentItem ? historyTx.filter((tx) => tx.hash === currentItem)[0] : null;
 
@@ -88,32 +136,50 @@ class List extends React.PureComponent {
             <React.Fragment>
                 <nav className={css.nav}>
                     <ul>
-                        <a key="active" onClick={() => this.switchFilter(filter)} className={classNames(css.active)}>
+                        <a key="active" onClick={() => this.switchFilter(filter)}>
                             {filter === 'All' ? 'All' : t(filter.toLowerCase())} <small>({historyTx.length})</small>
                             <Icon icon="chevronDown" size={8} />
                         </a>
-                        {loaded
-                            ? filters.map((item) => {
-                                  if (filter === item) {
-                                      return null;
-                                  }
-                                  return (
-                                      <a
-                                          key={item}
-                                          onClick={() => this.switchFilter(item)}
-                                          className={classNames(filter === item ? css.active : null)}
-                                      >
-                                          {item === 'All' ? 'All' : t(item.toLowerCase())}
-                                      </a>
-                                  );
-                              })
-                            : null}
+                        {loaded ? (
+                            <li>
+                                {filters.map((item) => {
+                                    return (
+                                        <a
+                                            key={item}
+                                            onClick={() => this.switchFilter(item)}
+                                            className={classNames(
+                                                totals[item] === 0 ? css.disabled : filter === item ? css.active : null,
+                                            )}
+                                        >
+                                            {item === 'All' ? 'All' : t(item.toLowerCase())} ({totals[item]})
+                                        </a>
+                                    );
+                                })}
+
+                                <div>
+                                    <a
+                                        className={classNames(css.checkbox, hideEmptyTransactions ? css.on : css.off)}
+                                        onClick={() => toggleEmptyTransactions()}
+                                    >
+                                        {t('history:hideZeroBalance')}
+                                    </a>
+                                </div>
+                            </li>
+                        ) : null}
                     </ul>
+                    <div className={css.search}>
+                        <input
+                            className={search.length > 0 ? css.filled : null}
+                            value={search}
+                            onChange={(e) => this.setState({ search: e.target.value })}
+                        />
+                        <Icon icon="search" size={20} />
+                    </div>
                     <a
                         onClick={() => updateAccount()}
                         className={classNames(css.refresh, isBusy ? css.busy : null, isLoading ? css.loading : null)}
                     >
-                        <Icon icon="sync" size={20} />
+                        <Icon icon="sync" size={24} />
                     </a>
                 </nav>
                 <hr />
@@ -123,14 +189,6 @@ class List extends React.PureComponent {
                             historyTx.map((transfer, key) => {
                                 const isReceived = transfer.incoming;
                                 const isConfirmed = transfer.persistence;
-
-                                if (
-                                    (filter === 'Sent' && (isReceived || !isConfirmed)) ||
-                                    (filter === 'Received' && (!isReceived || !isConfirmed)) ||
-                                    (filter === 'Pending' && isConfirmed)
-                                ) {
-                                    return null;
-                                }
 
                                 return (
                                     <a
@@ -156,7 +214,9 @@ class List extends React.PureComponent {
                                 );
                             })
                         ) : (
-                            <p className={css.empty}>{t('noTransactions')}</p>
+                            <p className={css.empty}>
+                                {!transfersList.length ? t('noTransactions') : t('history:noTransactionsFound')}
+                            </p>
                         )}
                     </Scrollbar>
                 </div>
