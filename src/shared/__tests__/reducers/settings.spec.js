@@ -21,7 +21,6 @@ describe('Reducer: settings', () => {
                     'GBP',
                     'EUR',
                     'AUD',
-                    'ARS',
                     'BGN',
                     'BRL',
                     'CAD',
@@ -35,6 +34,7 @@ describe('Reducer: settings', () => {
                     'IDR',
                     'ILS',
                     'INR',
+                    'ISK',
                     'JPY',
                     'KRW',
                     'MXN',
@@ -214,7 +214,7 @@ describe('Reducer: settings', () => {
                 currency: 'USD',
             };
 
-            const action = actions.currencyDataFetchSuccess({ currency: 'EUR' });
+            const action = actions.currencyDataFetchSuccess({ currency: 'EUR', availableCurrencies: [] });
 
             const newState = reducer(initialState, action);
             const expectedState = {
@@ -229,7 +229,7 @@ describe('Reducer: settings', () => {
                 conversionRate: 1,
             };
 
-            const action = actions.currencyDataFetchSuccess({ conversionRate: 2 });
+            const action = actions.currencyDataFetchSuccess({ conversionRate: 2, availableCurrencies: [] });
 
             const newState = reducer(initialState, action);
             const expectedState = {

@@ -1,5 +1,6 @@
 import merge from 'lodash/merge';
 import union from 'lodash/union';
+import sortBy from 'lodash/sortBy';
 import { ActionTypes } from '../actions/settings';
 import { DESKTOP_VERSION, defaultNode as node, nodes } from '../config';
 import themes from '../themes/themes';
@@ -17,7 +18,6 @@ const initialState = {
         'GBP',
         'EUR',
         'AUD',
-        'ARS',
         'BGN',
         'BRL',
         'CAD',
@@ -31,6 +31,7 @@ const initialState = {
         'IDR',
         'ILS',
         'INR',
+        'ISK',
         'JPY',
         'KRW',
         'MXN',
@@ -67,7 +68,7 @@ const initialState = {
     acceptedTerms: false,
     acceptedPrivacy: false,
     hasVisitedSeedShareTutorial: false,
-    hideEmptyTransactions: false
+    hideEmptyTransactions: false,
 };
 
 const settingsReducer = (state = initialState, action) => {
@@ -136,6 +137,10 @@ const settingsReducer = (state = initialState, action) => {
                 ...state,
                 currency: action.payload.currency,
                 conversionRate: action.payload.conversionRate,
+                availableCurrencies:
+                    action.payload.availableCurrencies.length > 0
+                        ? sortBy(action.payload.availableCurrencies, ['desc'])
+                        : state.availableCurrencies,
             };
         case ActionTypes.UPDATE_THEME:
             return {
