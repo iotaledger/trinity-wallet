@@ -456,6 +456,8 @@
     },
     "history": {
         "bundleHashCopied": "Đã sao chép nhóm hash",
+        "noTransactionsFound": "No transactions found",
+        "hideZeroBalance": "Hide zero balance",
         "bundleHashCopiedExplanation": "Nhóm hash đã được sao chép vào bộ nhớ tạm thời.",
         "addressCopied": "Đã sao chép địa chỉ",
         "addressCopiedExplanation": "Địa chỉ đã được sao chép vào bộ nhớ tạm thời.",
