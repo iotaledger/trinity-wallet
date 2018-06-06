@@ -456,6 +456,8 @@
     },
     "history": {
         "bundleHashCopied": "Kokoelman tiivisteluku kopioitu",
+        "noTransactionsFound": "No transactions found",
+        "hideZeroBalance": "Hide zero balance",
         "bundleHashCopiedExplanation": "Kokoelman tiivisteluku on kopioitu leikepöydälle.",
         "addressCopied": "Osoite kopioitu",
         "addressCopiedExplanation": "Osoite on kopioitu leikepöydälle.",
