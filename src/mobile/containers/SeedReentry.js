@@ -3,15 +3,17 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { Keyboard, StyleSheet, View, Text, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
-import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/iota/utils';
+import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/iota/utils';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import FlagSecure from 'react-native-flag-secure-android';
+import Modal from 'react-native-modal';
 import WithUserActivity from '../components/UserActivity';
 import Checksum from '../components/Checksum';
 import { width, height } from '../utils/dimensions';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import CustomTextInput from '../components/CustomTextInput';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
+import QRScannerComponent from '../components/QrScanner';
 import GENERAL from '../theme/general';
 import InfoBox from '../components/InfoBox';
 import OnboardingButtons from '../containers/OnboardingButtons';
@@ -120,6 +122,7 @@ class SeedReentry extends Component {
 
         this.state = {
             seed: '',
+            isModalVisible: false,
         };
     }
 
@@ -172,6 +175,48 @@ class SeedReentry extends Component {
         });
     }
 
+    onQRPress() {
+        this.showModal();
+    }
+
+    /**
+     * Parse and validate QR data
+     * @param  {String} data QR data
+     */
+    onQRRead(data) {
+        const dataString = data.toString();
+        const { t } = this.props;
+        if (dataString.length === 81 && dataString.match(VALID_SEED_REGEX)) {
+            this.setState({
+                seed: data,
+            });
+        } else {
+            this.props.generateAlert(
+                'error',
+                t('enterSeed:invalidCharacters'),
+                t('enterSeed:invalidCharactersExplanation'),
+            );
+        }
+        this.hideModal();
+    }
+
+    showModal = () => this.setState({ isModalVisible: true });
+
+    hideModal = () => this.setState({ isModalVisible: false });
+
+    renderModalContent = () => {
+        const { theme: { body, primary } } = this.props;
+
+        return (
+            <QRScannerComponent
+                primary={primary}
+                body={body}
+                onQRRead={(data) => this.onQRRead(data)}
+                hideModal={() => this.hideModal()}
+            />
+        );
+    };
+
     render() {
         const { seed } = this.state;
         const { t, theme, minimised } = this.props;
@@ -203,6 +248,8 @@ class SeedReentry extends Component {
                                         onSubmitEditing={() => this.onDonePress()}
                                         theme={theme}
                                         value={seed}
+                                        widget="qr"
+                                        onQRPress={() => this.onQRPress()}
                                     />
                                     <View style={{ flex: 0.15 }} />
                                     <Checksum seed={seed} theme={theme} />
@@ -233,6 +280,23 @@ class SeedReentry extends Component {
                             </View>
                         </TouchableWithoutFeedback>
                         <StatefulDropdownAlert backgroundColor={theme.body.bg} />
+                        <Modal
+                            animationIn={isAndroid ? 'bounceInUp' : 'zoomIn'}
+                            animationOut={isAndroid ? 'bounceOut' : 'zoomOut'}
+                            animationInTiming={isAndroid ? 1000 : 300}
+                            animationOutTiming={200}
+                            backdropTransitionInTiming={isAndroid ? 500 : 300}
+                            backdropTransitionOutTiming={200}
+                            backdropColor="#102832"
+                            backdropOpacity={1}
+                            style={{ alignItems: 'center', margin: 0 }}
+                            isVisible={this.state.isModalVisible}
+                            onBackButtonPress={() => this.setState({ isModalVisible: false })}
+                            hideModalContentWhileAnimating
+                            useNativeDriver={isAndroid ? true : false}
+                        >
+                            {this.renderModalContent()}
+                        </Modal>
                     </View>
                 )}
             </View>
