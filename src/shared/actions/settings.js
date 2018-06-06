@@ -41,6 +41,7 @@ export const ActionTypes = {
     ACCEPT_TERMS: 'IOTA/SETTINGS/ACCEPT_TERMS',
     ACCEPT_PRIVACY: 'IOTA/SETTINGS/ACCEPT_PRIVACY',
     SET_SEED_SHARE_TUTORIAL_VISITATION_STATUS: 'IOTA/SETTINGS/SET_SEED_SHARE_TUTORIAL_VISITATION_STATUS',
+    TOGGLE_EMPTY_TRANSACTIONS: 'IOTA/SETTINGS/TOGGLE_EMPTY_TRANSACTIONS',
 };
 
 export const setAppVersions = (payload) => ({
@@ -131,9 +132,12 @@ export const setLockScreenTimeout = (payload) => ({
 });
 
 export function setLocale(locale) {
-    return {
-        type: ActionTypes.SET_LOCALE,
-        payload: locale,
+    return (dispatch) => {
+        i18next.changeLanguage(locale);
+        return dispatch({
+            type: ActionTypes.SET_LOCALE,
+            payload: locale,
+        });
     };
 }
 
@@ -433,6 +437,12 @@ export const set2FAStatus = (payload) => ({
     type: ActionTypes.SET_2FA_STATUS,
     payload,
 });
+
+export const toggleEmptyTransactions = () => {
+    return {
+        type: ActionTypes.TOGGLE_EMPTY_TRANSACTIONS,
+    };
+};
 
 export const setFingerprintStatus = (payload) => ({
     type: ActionTypes.SET_FINGERPRINT_STATUS,

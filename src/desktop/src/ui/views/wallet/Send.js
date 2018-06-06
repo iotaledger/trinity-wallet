@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { formatValue, formatUnit } from 'libs/iota/utils';
 import Curl from 'curl.lib.js';
 
-import { getVault } from 'libs/crypto';
+import { getSeed } from 'libs/crypto';
 
 import AddressInput from 'ui/components/input/Address';
 import AmountInput from 'ui/components/input/Amount';
@@ -32,8 +32,8 @@ class Send extends React.PureComponent {
         isSending: PropTypes.bool.isRequired,
         /** Current password value */
         password: PropTypes.string.isRequired,
-        /** Current seed index */
-        seedIndex: PropTypes.number.isRequired,
+        /** Current account name */
+        accountName: PropTypes.string.isRequired,
         /** Total current account wallet ballance in iotas */
         balance: PropTypes.number.isRequired,
         /** Fiat currency settings
@@ -112,7 +112,7 @@ class Send extends React.PureComponent {
     }
 
     confirmTransfer = async () => {
-        const { fields, password, seedIndex, sendTransfer, settings, generateAlert, t } = this.props;
+        const { fields, password, accountName, sendTransfer, settings, generateAlert, t } = this.props;
 
         this.setState({
             isTransferModalVisible: false,
@@ -133,8 +133,7 @@ class Send extends React.PureComponent {
             };
         }
 
-        const vault = await getVault(password);
-        const seed = vault.seeds[seedIndex];
+        const seed = await getSeed(password, accountName, true);
 
         sendTransfer(seed, fields.address, parseInt(fields.amount) || 0, fields.message, null, powFn);
     };
