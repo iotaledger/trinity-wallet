@@ -8,6 +8,7 @@ import head from 'lodash/head';
 import has from 'lodash/has';
 import map from 'lodash/map';
 import mapValues from 'lodash/mapValues';
+import omit from 'lodash/omit';
 import omitBy from 'lodash/omitBy';
 import pick from 'lodash/pick';
 import includes from 'lodash/includes';
@@ -234,7 +235,7 @@ export const transformTransactionsByBundleHash = (transactions) => {
 /**
  *   Categorise bundle by inputs and outputs.
  *
- *   @method categoriseTransactionsByInputsOutputs
+ *   @method categoriseBundleByInputsOutputs
  *   @param {array} bundle
  *   @param {array} addresses
  *   @param {number} outputsThreshold
@@ -242,17 +243,17 @@ export const transformTransactionsByBundleHash = (transactions) => {
  *   @returns {object}
  **/
 export const categoriseBundleByInputsOutputs = (bundle, addresses, outputsThreshold = BUNDLE_OUTPUTS_THRESHOLD) => {
+    const isRemainder = (tx) => tx.currentIndex === tx.lastIndex && tx.lastIndex !== 0;
+
     const categorisedBundle = transform(
         bundle,
         (acc, tx) => {
             const meta = {
-                ...pick(tx, ['address', 'value', 'hash']),
+                ...pick(tx, ['address', 'value', 'hash', 'currentIndex', 'lastIndex']),
                 checksum: iota.utils.addChecksum(tx.address).slice(tx.address.length),
             };
 
-            const isRemainder = tx.currentIndex === tx.lastIndex && tx.lastIndex !== 0;
-
-            if (tx.value < 0 && !isRemainder) {
+            if (tx.value < 0 && !isRemainder(tx)) {
                 acc.inputs.push(meta);
             } else {
                 acc.outputs.push(meta);
@@ -264,11 +265,22 @@ export const categoriseBundleByInputsOutputs = (bundle, addresses, outputsThresh
         },
     );
 
+    const removeUnnecessaryProps = (object) => omit(object, ['currentIndex', 'lastIndex']);
+
     return size(categorisedBundle.outputs) <= outputsThreshold
-        ? categorisedBundle
+        ? {
+              inputs: map(categorisedBundle.inputs, removeUnnecessaryProps),
+              outputs: map(categorisedBundle.outputs, removeUnnecessaryProps),
+          }
         : {
-              ...categorisedBundle,
-              outputs: filter(categorisedBundle.outputs, (output) => includes(addresses, output.address)),
+              inputs: map(categorisedBundle.inputs, removeUnnecessaryProps),
+              outputs: map(
+                  filter(
+                      categorisedBundle.outputs,
+                      (output) => includes(addresses, output.address) || isRemainder(output),
+                  ),
+                  removeUnnecessaryProps,
+              ),
           };
 };
 
@@ -614,7 +626,7 @@ export const normaliseBundle = (bundle, addresses, tailTransactions, persistence
 
     return {
         ...pick(transfer, ['hash', 'bundle', 'timestamp', 'attachmentTimestamp']),
-        ...categoriseBundleByInputsOutputs(bundle),
+        ...categoriseBundleByInputsOutputs(bundle, addresses),
         persistence,
         incoming: isReceivedTransfer(bundle, addresses),
         transferValue: getTransferValue(bundle, addresses),
