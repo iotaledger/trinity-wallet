@@ -456,7 +456,7 @@
     },
     "history": {
         "bundleHashCopied": "번들 해시 복사함",
-        "noTransactionsFound": "No transactions found",
+        "noTransactionsFound": "트랜잭션 없음",
         "hideZeroBalance": "Hide zero balance",
         "bundleHashCopiedExplanation": "번들 해시를 클립보드에 복사하였습니다.",
         "addressCopied": "주소 복사함",
