@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import map from 'lodash/map';
 import orderBy from 'lodash/orderBy';
 import classNames from 'classnames';
+import Curl from 'curl.lib.js';
+
 import { formatValue, formatUnit } from 'libs/iota/utils';
 import { round } from 'libs/utils';
 import { formatTime, formatModalTime, convertUnixTimeToJSDate } from 'libs/date';
@@ -10,6 +12,7 @@ import { formatTime, formatModalTime, convertUnixTimeToJSDate } from 'libs/date'
 import Clipboard from 'ui/components/Clipboard';
 import Icon from 'ui/components/Icon';
 import Scrollbar from 'ui/components/Scrollbar';
+import Button from 'ui/components/Button';
 
 import withListData from 'containers/components/List';
 
@@ -24,8 +27,14 @@ class List extends React.PureComponent {
         isBusy: PropTypes.bool.isRequired,
         /** Wallet mode */
         mode: PropTypes.string.isRequired,
+        /** Is remote PoW enabled */
+        remotePoW: PropTypes.bool.isRequired,
         /** Is history updating */
         isLoading: PropTypes.bool.isRequired,
+        /** Bundle hash for the transaction that is currently being promoted */
+        currentlyPromotingBundleHash: PropTypes.string.isRequired,
+        /** Determines if wallet is broadcasting bundle */
+        isBroadcastingBundle: PropTypes.bool.isRequired,
         /** Hide empty transactions flag */
         hideEmptyTransactions: PropTypes.bool.isRequired,
         /** Should update history */
@@ -34,6 +43,15 @@ class List extends React.PureComponent {
         toggleEmptyTransactions: PropTypes.func.isRequired,
         /** Transaction history */
         transfers: PropTypes.object.isRequired,
+        /** Promotes bundle
+         * @param {string} bundle - bundle hash
+         * @param {func} powFn - local Proof of Work function
+         */
+        promoteTransaction: PropTypes.func.isRequired,
+        /** Broadcast bundle
+         * @param {string} bundle - bundle hash
+         */
+        broadcastBundle: PropTypes.func.isRequired,
         /** Set active history item
          * @param {Number} index - Current item index
          */
@@ -76,9 +94,9 @@ class List extends React.PureComponent {
             <div className={css.addresses}>
                 <strong>{t('addresses')}:</strong>
                 <Scrollbar>
-                    {tx.inputs.concat(tx.outputs).map((input) => {
+                    {tx.inputs.concat(tx.outputs).map((input, index) => {
                         return (
-                            <p key={input.address}>
+                            <p key={`${index}-${input.address}`}>
                                 <span>
                                     <Clipboard
                                         text={`${input.address}${input.checksum}`}
@@ -98,10 +116,36 @@ class List extends React.PureComponent {
         );
     }
 
+    promoteTransaction(e, bundle) {
+        e.stopPropagation();
+
+        let powFn = null;
+
+        if (!this.props.remotePoW) {
+            // Temporarily return an error if WebGL cannot be initialized
+            // Remove once we implement more PoW methods
+            try {
+                Curl.init();
+            } catch (e) {}
+            powFn = (trytes, minWeight) => {
+                return Curl.pow({ trytes, minWeight });
+            };
+        }
+
+        this.props.promoteTransaction(bundle, powFn);
+    }
+
+    broadcastBundle(e, bundle) {
+        e.stopPropagation();
+        this.props.broadcastBundle(bundle);
+    }
+
     render() {
         const {
             isLoading,
             isBusy,
+            currentlyPromotingBundleHash,
+            isBroadcastingBundle,
             mode,
             hideEmptyTransactions,
             toggleEmptyTransactions,
@@ -297,6 +341,27 @@ class List extends React.PureComponent {
                                         />
                                     </Scrollbar>
                                 </div>
+                                {!activeTransfer.persistence ? (
+                                    <nav>
+                                        <Button
+                                            className="small"
+                                            loading={currentlyPromotingBundleHash === activeTransfer.bundle}
+                                            onClick={(e) => this.promoteTransaction(e, activeTransfer.bundle)}
+                                        >
+                                            {t('retry')}
+                                        </Button>
+                                        {mode === 'Expert' ? (
+                                            <Button
+                                                variant="secondary"
+                                                className="small"
+                                                loading={isBroadcastingBundle}
+                                                onClick={(e) => this.broadcastBundle(e, activeTransfer.bundle)}
+                                            >
+                                                {t('rebroadcast')}
+                                            </Button>
+                                        ) : null}
+                                    </nav>
+                                ) : null}
                             </div>
                         ) : null}
                     </div>
