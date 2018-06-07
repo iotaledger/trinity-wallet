@@ -14,6 +14,7 @@ export default function withListData(ListComponent) {
         static propTypes = {
             transfers: PropTypes.object.isRequired,
             ui: PropTypes.object.isRequired,
+            mode: PropTypes.string.isRequired,
             limit: PropTypes.number,
             filter: PropTypes.string,
             compact: PropTypes.bool,
@@ -32,6 +33,7 @@ export default function withListData(ListComponent) {
                 limit,
                 compact,
                 filter,
+                mode,
                 setItem,
                 currentItem,
                 toggleEmptyTransactions,
@@ -43,6 +45,8 @@ export default function withListData(ListComponent) {
 
             const isBusy = ui.isSyncing || ui.isSendingTransfer || ui.isAttachingToTangle || ui.isTransitioning;
 
+            console.log(mode);
+
             const ListProps = {
                 transfers,
                 updateAccount,
@@ -53,6 +57,7 @@ export default function withListData(ListComponent) {
                 limit,
                 filter,
                 isBusy,
+                mode,
                 isLoading: ui.isFetchingLatestAccountInfoOnLogin,
                 hideEmptyTransactions,
                 toggleEmptyTransactions: toggleEmptyTransactions,
@@ -69,6 +74,7 @@ export default function withListData(ListComponent) {
         accounts: state.accounts,
         transfers: getTransfersForSelectedAccount(state),
         theme: state.settings.theme,
+        mode: state.settings.mode,
         ui: state.ui,
         hideEmptyTransactions: state.settings.hideEmptyTransactions,
     });
