@@ -7,8 +7,6 @@ import { setMode } from 'actions/settings';
 import Info from 'ui/components/Info';
 import Toggle from 'ui/components/Toggle';
 
-import css from './index.scss';
-
 /** Wallet mode component */
 class Mode extends React.PureComponent {
     static propTypes = {

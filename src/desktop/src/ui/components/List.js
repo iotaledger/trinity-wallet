@@ -6,7 +6,6 @@ import classNames from 'classnames';
 import { formatValue, formatUnit } from 'libs/iota/utils';
 import { round } from 'libs/utils';
 import { formatTime, formatModalTime, convertUnixTimeToJSDate } from 'libs/date';
-import { capitalize } from 'libs/helpers';
 
 import Clipboard from 'ui/components/Clipboard';
 import Icon from 'ui/components/Icon';
@@ -79,7 +78,7 @@ class List extends React.PureComponent {
                 <Scrollbar>
                     {tx.inputs.concat(tx.outputs).map((input) => {
                         return (
-                            <p>
+                            <p key={input.address}>
                                 <span>
                                     <Clipboard
                                         text={`${input.address}${input.checksum}`}
@@ -273,7 +272,9 @@ class List extends React.PureComponent {
                                     <small>
                                         {!activeTransfer.persistence
                                             ? t('pending')
-                                            : activeTransfer.incoming ? t('received') : t('sent')}
+                                            : activeTransfer.incoming
+                                                ? t('received')
+                                                : t('sent')}
                                         <em>{formatModalTime(convertUnixTimeToJSDate(activeTransfer.timestamp))}</em>
                                     </small>
                                 </p>
