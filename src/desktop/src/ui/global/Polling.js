@@ -23,6 +23,7 @@ class Polling extends React.PureComponent {
         getAccountInfo: PropTypes.func.isRequired,
         allPollingServices: PropTypes.array.isRequired,
         unconfirmedBundleTails: PropTypes.object.isRequired,
+        autoPromotion: PropTypes.bool.isRequired, 
         setPollFor: PropTypes.func.isRequired,
         fetchMarketData: PropTypes.func.isRequired,
         fetchPrice: PropTypes.func.isRequired,
@@ -108,19 +109,19 @@ class Polling extends React.PureComponent {
     };
 
     promote = () => {
-        const { unconfirmedBundleTails, allPollingServices, pollFor } = this.props;
+        const { unconfirmedBundleTails, allPollingServices, pollFor, autoPromotion } = this.props;
 
         const index = allPollingServices.indexOf(pollFor);
         const next = index === size(allPollingServices) - 1 ? 0 : index + 1;
 
-        if (!isEmpty(unconfirmedBundleTails)) {
+        if (autoPromotion && !isEmpty(unconfirmedBundleTails)) {
             const bundles = keys(unconfirmedBundleTails);
             const top = bundles[0];
 
             return this.props.promoteTransfer(top, unconfirmedBundleTails[top]);
         }
 
-        // In case there are no unconfirmed bundle tails, move to the next service item
+        // In case there are no unconfirmed bundle tails or auto-promotion is off, move to the next service item
         return this.props.setPollFor(allPollingServices[next]);
     };
 
@@ -142,6 +143,7 @@ const mapStateToProps = (state) => ({
     isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
     isSendingTransfer: state.ui.isSendingTransfer,
     isFetchingLatestAccountInfoOnLogin: state.ui.isFetchingLatestAccountInfoOnLogin,
+    autoPromotion: state.settings.autoPromotion,
     accountNames: state.accounts.accountNames,
     unconfirmedBundleTails: state.accounts.unconfirmedBundleTails,
     isTransitioning: state.ui.isTransitioning,
