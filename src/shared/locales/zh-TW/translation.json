@@ -456,8 +456,8 @@
     },
     "history": {
         "bundleHashCopied": "交易組雜湊值已複製",
-        "noTransactionsFound": "No transactions found",
-        "hideZeroBalance": "Hide zero balance",
+        "noTransactionsFound": "找不到交易紀錄",
+        "hideZeroBalance": "隱藏零元紀錄",
         "bundleHashCopiedExplanation": "交易組的雜湊值已複製到剪貼簿。",
         "addressCopied": "地址已複製",
         "addressCopiedExplanation": "您的地址已複製到剪貼簿。",
