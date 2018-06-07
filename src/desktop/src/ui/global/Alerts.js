@@ -11,6 +11,8 @@ import css from './alerts.scss';
  * Alerts UI helper component
  */
 class Alerts extends React.PureComponent {
+    static timeout = null;
+
     static propTypes = {
         /** Dispose alert function
          * @ignore
@@ -21,8 +23,6 @@ class Alerts extends React.PureComponent {
          */
         alerts: PropTypes.object.isRequired,
     };
-
-    static timeout = null;
 
     componentWillReceiveProps(nextProps) {
         if (this.timeout) {
