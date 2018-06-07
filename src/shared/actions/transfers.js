@@ -433,12 +433,12 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
 
                     if (size(pendingOutgoingTransfers)) {
                         throw new Error(Errors.ADDRESS_HAS_PENDING_TRANSFERS);
-                    }
-
-                    if (size(get(inputs, 'inputs'))) {
-                        throw new Error(Errors.FUNDS_AT_SPENT_ADDRESSES);
                     } else {
-                        throw new Error(Errors.INCOMING_TRANSFERS);
+                        if (size(get(inputs, 'spentAddresses'))) {
+                            throw new Error(Errors.FUNDS_AT_SPENT_ADDRESSES);
+                        } else if (size(get(inputs, 'addressesWithIncomingTransfers'))) {
+                            throw new Error(Errors.INCOMING_TRANSFERS);
+                        }
                     }
                 }
 
