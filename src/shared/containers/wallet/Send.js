@@ -69,6 +69,7 @@ export default function withSendData(SendComponent) {
                       t('progressSteps:broadcasting'),
                   ]
                 : [
+                      t('progressSteps:checkingNodeHealth'),
                       t('progressSteps:validatingReceiveAddress'),
                       t('progressSteps:syncingAccount'),
                       t('progressSteps:preparingInputs'),
@@ -210,7 +211,7 @@ export default function withSendData(SendComponent) {
                     remotePoW: settings.remotePoW,
                 },
                 progress: {
-                    progress: Math.round(progress.activeStepIndex / progress.activeSteps.length * 100),
+                    progress: Math.round((progress.activeStepIndex / progress.activeSteps.length) * 100),
                     title: progressTitle,
                 },
                 accountName,
@@ -250,5 +251,10 @@ export default function withSendData(SendComponent) {
         resetProgress,
     };
 
-    return translate()(connect(mapStateToProps, mapDispatchToProps)(SendData));
+    return translate()(
+        connect(
+            mapStateToProps,
+            mapDispatchToProps,
+        )(SendData),
+    );
 }
