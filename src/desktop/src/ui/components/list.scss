@@ -123,7 +123,7 @@
                     bottom: 0px;
                     border-bottom: 1px solid var(--body-alt);
                 }
-                &:first-child{
+                &:first-child {
                     border-radius: 0 4px 0 0;
                 }
                 &:last-child {
@@ -344,7 +344,7 @@
 
             &.hash {
                 display: block;
-                font-family: monospace;
+                font-family: 'SourceCodePro';
                 word-break: break-word;
             }
         }
@@ -394,6 +394,39 @@
         pointer-events: all;
         > div {
             transform: translate(0, -50%) scale(1);
+        }
+    }
+
+    .addresses {
+        strong {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 12px;
+        }
+        p {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            line-height: 14px;
+            font-family: 'SourceCodePro';
+            word-break: break-word;
+
+            em {
+                flex: 0 0 20%;
+                text-align: right;
+                font-family: 'SourceSansPro';
+                font-weight: 400;
+            }
+        }
+        > div {
+            max-height: calc(100vh - 640px);
+            width: calc(100% + 20px);
+            position: relative;
+            overflow: hidden;
+
+            @media (max-width: 940px) {
+                max-height: calc(100vh - 680px);
+            }
         }
     }
 }
