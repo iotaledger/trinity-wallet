@@ -26,12 +26,16 @@
     }
     &.small,
     &.outlineSmall {
-        padding: 0 16px;
+        padding: 0 24px;
         height: 42px;
         line-height: 42px;
         min-width: 30px;
         border-radius: 2px;
         font-size: 13px;
+
+        &.loading {
+            padding: 0 12px 0 36px;
+        }
     }
     &.large,
     &.inline {

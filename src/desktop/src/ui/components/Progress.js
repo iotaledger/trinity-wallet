@@ -18,9 +18,9 @@ export default class Progress extends React.PureComponent {
 
         return (
             <div className={css.progress}>
-                <p>{title || 'Receiveing something'}</p>
+                <p>{title}</p>
                 <div>
-                    <div style={{ width: `${progress}%` }} />
+                    <div style={{ width: `${Math.min(progress, 100)}%` }} />
                 </div>
             </div>
         );
