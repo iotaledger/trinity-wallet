@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import { formatValue, formatUnit } from 'libs/iota/utils';
 import { round } from 'libs/utils';
 import { formatTime, formatModalTime, convertUnixTimeToJSDate } from 'libs/date';
+import { capitalize } from 'libs/helpers';
 
 import Clipboard from 'ui/components/Clipboard';
 import Icon from 'ui/components/Icon';
@@ -22,6 +23,8 @@ class List extends React.PureComponent {
     static propTypes = {
         /** Can history be updated */
         isBusy: PropTypes.bool.isRequired,
+        /** Wallet mode */
+        mode: PropTypes.string.isRequired,
         /** Is history updating */
         isLoading: PropTypes.bool.isRequired,
         /** Hide empty transactions flag */
@@ -67,10 +70,40 @@ class List extends React.PureComponent {
         }, 200);
     }
 
+    listAddresses(tx) {
+        const { t } = this.props;
+
+        return (
+            <div className={css.addresses}>
+                <strong>{t('addresses')}:</strong>
+                <Scrollbar>
+                    {tx.inputs.concat(tx.outputs).map((input) => {
+                        return (
+                            <p>
+                                <span>
+                                    <Clipboard
+                                        text={`${input.address}${input.checksum}`}
+                                        title={t('history:addressCopied')}
+                                        success={t('history:addressCopiedExplanation')}
+                                    />
+                                </span>
+                                <em>
+                                    {round(formatValue(input.value), 1)}
+                                    {formatUnit(input.value)}
+                                </em>
+                            </p>
+                        );
+                    })}
+                </Scrollbar>
+            </div>
+        );
+    }
+
     render() {
         const {
             isLoading,
             isBusy,
+            mode,
             hideEmptyTransactions,
             toggleEmptyTransactions,
             updateAccount,
@@ -252,6 +285,7 @@ class List extends React.PureComponent {
                                         success={t('history:bundleHashCopiedExplanation')}
                                     />
                                 </p>
+                                {mode === 'Expert' ? this.listAddresses(activeTransfer) : null}
                                 <div className={css.message}>
                                     <strong>{t('send:message')}</strong>
                                     <Scrollbar>
