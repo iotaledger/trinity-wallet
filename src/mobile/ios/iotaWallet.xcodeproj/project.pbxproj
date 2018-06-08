@@ -65,6 +65,7 @@
 		CB98FB9420A0A5BB0047877B /* SourceSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB98FB9120A0A5BB0047877B /* SourceSansPro-Bold.ttf */; };
 		CB98FB9520A0A5BB0047877B /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB98FB9220A0A5BB0047877B /* SourceSansPro-Regular.ttf */; };
 		CB98FB9620A0A5BB0047877B /* SourceSansPro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB98FB9320A0A5BB0047877B /* SourceSansPro-Light.ttf */; };
+		CBA5F52620CAAB2A00774D4B /* SourceCodePro-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CBA5F52520CAAB2A00774D4B /* SourceCodePro-Medium.ttf */; };
 		CBA69EF920C8139300DD4CEB /* Icons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CBA69EF820C8139300DD4CEB /* Icons.ttf */; };
 		CDC76600A03C06457F99259512D7F713 /* libRNIsDeviceRooted.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0431CEEC099BC4CE1F43E0550C4CC291 /* libRNIsDeviceRooted.a */; };
 		CF626DD9FBB494210B780417 /* Pods_iotaWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 890341AF0F2DE4E9DCB80928 /* Pods_iotaWallet.framework */; };
@@ -700,6 +701,7 @@
 		CB98FB9120A0A5BB0047877B /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceSansPro-Bold.ttf"; path = "../../shared/custom-fonts/SourceSansPro-Bold.ttf"; sourceTree = "<group>"; };
 		CB98FB9220A0A5BB0047877B /* SourceSansPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceSansPro-Regular.ttf"; path = "../../shared/custom-fonts/SourceSansPro-Regular.ttf"; sourceTree = "<group>"; };
 		CB98FB9320A0A5BB0047877B /* SourceSansPro-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceSansPro-Light.ttf"; path = "../../shared/custom-fonts/SourceSansPro-Light.ttf"; sourceTree = "<group>"; };
+		CBA5F52520CAAB2A00774D4B /* SourceCodePro-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceCodePro-Medium.ttf"; path = "../../shared/custom-fonts/SourceCodePro-Medium.ttf"; sourceTree = "<group>"; };
 		CBA69EF820C8139300DD4CEB /* Icons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Icons.ttf; path = ../../shared/icons/Icons.ttf; sourceTree = "<group>"; };
 		CFA2B84C183CC39F995C8E04CC713DDB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = iotaWallet/Images.xcassets; sourceTree = "<group>"; };
 		D2C796029F4A68C167C1F1F5176A5819 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -903,6 +905,7 @@
 		3FA554CD0D5061D20FBDC112457CF26E = {
 			isa = PBXGroup;
 			children = (
+				CBA5F52520CAAB2A00774D4B /* SourceCodePro-Medium.ttf */,
 				CBA69EF820C8139300DD4CEB /* Icons.ttf */,
 				CB61A46520B89E3A004088AA /* SourceSansPro-SemiBold.ttf */,
 				CB98FB9120A0A5BB0047877B /* SourceSansPro-Bold.ttf */,
@@ -2188,6 +2191,7 @@
 				54D44899635E65A34FCEAC3EA412BE26 /* Images.xcassets in Resources */,
 				C51860C3A5258461508F6E3006EA337D /* Inconsolata-Bold.ttf in Resources */,
 				5403F0AF99C33584CC25CA8D4422B333 /* Inconsolata-Regular.ttf in Resources */,
+				CBA5F52620CAAB2A00774D4B /* SourceCodePro-Medium.ttf in Resources */,
 				CBA69EF920C8139300DD4CEB /* Icons.ttf in Resources */,
 				CB98FB9620A0A5BB0047877B /* SourceSansPro-Light.ttf in Resources */,
 				CB61A46620B89E3B004088AA /* SourceSansPro-SemiBold.ttf in Resources */,
