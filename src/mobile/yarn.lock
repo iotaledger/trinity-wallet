@@ -5014,6 +5014,10 @@ react-native-google-safetynet@^0.2.3:
     jws "^3.1.4"
     react-native-securerandom "^0.1.1"
 
+react-native-haptic-feedback@^1.1.7:
+  version "1.1.7"
+  resolved "https://registry.yarnpkg.com/react-native-haptic-feedback/-/react-native-haptic-feedback-1.1.7.tgz#9ff27b9a83ce7983ce5f298362129a6b4b958d56"
+
 react-native-html-to-pdf@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/react-native-html-to-pdf/-/react-native-html-to-pdf-0.4.0.tgz#93a1af31db12c0e7f4ec51c569070d8e61177479"
