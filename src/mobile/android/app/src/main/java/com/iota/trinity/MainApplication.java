@@ -28,6 +28,7 @@ import com.hieuvp.fingerprint.ReactNativeFingerprintScannerPackage;
 import com.rndetectnavbarandroid.RNDetectNavbarAndroidPackage;
 import me.listenzz.modal.TranslucentModalReactPackage;
 import com.kristiansorens.flagsecure.FlagSecurePackage;
+import com.reactlibrary.RNReactNativeHapticFeedbackPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -80,7 +81,8 @@ public class MainApplication extends NavigationApplication {
             BugsnagReactNative.getPackage(),
             new RNGoogleSafetyNetPackage(),
             new ReactNativeFingerprintScannerPackage(),
-            new ShareSecurePackage()
+            new ShareSecurePackage(),
+            new RNReactNativeHapticFeedbackPackage()
     );
   }
 
