@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
         fontSize: GENERAL.fontSize3,
         color: 'white',
         fontFamily: 'SourceSansPro-Regular',
-        paddingLeft: width / 70,
+        marginLeft: width / 70,
     },
     okButton: {
         borderWidth: 1.2,
