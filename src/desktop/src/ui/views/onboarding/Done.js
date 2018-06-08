@@ -24,7 +24,7 @@ class Done extends React.PureComponent {
     setComplete = () => {
         const { history } = this.props;
         Electron.garbageCollect();
-        history.push('/onboarding/');
+        history.push('/onboarding/login');
     };
 
     render() {
