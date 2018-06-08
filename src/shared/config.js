@@ -34,3 +34,5 @@ export const DEFAULT_MIN_WEIGHT_MAGNITUDE = 14;
 export const DEFAULT_TAG = 'TRINITY';
 export const DEFAULT_SECURITY = 2;
 export const DEFAULT_BALANCES_THRESHOLD = 100;
+
+export const BUNDLE_OUTPUTS_THRESHOLD = 50;
