@@ -3,16 +3,17 @@ import { translate, Trans } from 'react-i18next';
 import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getChecksum, MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/iota/utils';
+import { getChecksum } from 'iota-wallet-shared-modules/libs/iota/utils';
 import FlagSecure from 'react-native-flag-secure-android';
+import SeedPicker from '../components/SeedPicker';
 import WithUserActivity from '../components/UserActivity';
-import Seedbox from '../components/SeedBox';
 import Button from '../components/Button';
 import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import { Icon } from '../theme/icons.js';
 import { isAndroid } from '../utils/device';
+import Header from '../components/Header';
 
 const styles = StyleSheet.create({
     container: {
@@ -21,20 +22,19 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topContainer: {
-        flex: 0.5,
+        flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingTop: height / 16,
     },
     midContainer: {
-        flex: 4.5,
+        flex: 3,
         alignItems: 'center',
         justifyContent: 'center',
     },
     bottomContainer: {
+        flex: 0.5,
         justifyContent: 'flex-end',
-        flexDirection: 'row',
-        alignItems: 'flex-end',
     },
     textContainer: {
         width: width / 1.155,
@@ -149,6 +149,13 @@ class WriteSeedDown extends Component {
         minimised: PropTypes.bool.isRequired,
     };
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            currentSeedRow: 0,
+        };
+    }
+
     componentDidMount() {
         if (isAndroid) {
             FlagSecure.activate();
@@ -178,13 +185,11 @@ class WriteSeedDown extends Component {
                         <DynamicStatusBar backgroundColor={theme.body.bg} />
                         <View style={styles.topContainer}>
                             <Icon name="iota" size={width / 8} color={theme.body.color} />
+                            <View style={{ flex: 0.7 }} />
+                            <Header textColor={theme.body.color}>{t('manualCopy')}</Header>
                         </View>
                         <View style={styles.midContainer}>
-                            <View style={{ flex: 1 }} />
                             <View style={styles.textContainer}>
-                                <Text style={[styles.infoTextNormal, textColor]}>
-                                    {t('writeSeedDown:yourSeedIs', { maxSeedLength: MAX_SEED_LENGTH })}
-                                </Text>
                                 <Text style={[styles.infoText, textColor, { paddingTop: height / 40 }]}>
                                     <Trans i18nKey="writeDownYourSeed">
                                         <Text style={styles.infoTextNormal}>
@@ -196,23 +201,25 @@ class WriteSeedDown extends Component {
                                 </Text>
                             </View>
                             <View style={{ flex: 0.5 }} />
-                            <Seedbox
-                                bodyColor={theme.body.color}
-                                borderColor={borderColor}
-                                textColor={textColor}
+                            <SeedPicker
                                 seed={seed}
+                                theme={theme}
+                                onValueChange={(index) => this.setState({ currentSeedRow: index })}
                             />
                             <View style={{ flex: 0.5 }} />
                             <View style={[styles.checksum, borderColor]}>
                                 <Text style={[styles.checksumText, textColor]}>{checksum}</Text>
                             </View>
-                            <View style={{ flex: 1 }} />
+                            <View style={{ flex: 0.2 }} />
                         </View>
                         <View style={styles.bottomContainer}>
                             <Button
                                 onPress={() => this.onDonePress()}
                                 style={{
-                                    wrapper: { backgroundColor: theme.primary.color },
+                                    wrapper: {
+                                        backgroundColor: theme.primary.color,
+                                        opacity: this.state.currentSeedRow === 8 ? 1 : 0.2,
+                                    },
                                     children: { color: theme.primary.body },
                                 }}
                             >
