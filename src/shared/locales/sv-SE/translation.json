@@ -456,8 +456,8 @@
     },
     "history": {
         "bundleHashCopied": "Hashbunt kopierad",
-        "noTransactionsFound": "No transactions found",
-        "hideZeroBalance": "Hide zero balance",
+        "noTransactionsFound": "Inga transaktioner hittade",
+        "hideZeroBalance": "Dölj noll saldo",
         "bundleHashCopiedExplanation": "Hashbunten har kopierats till urklipp.",
         "addressCopied": "Adress kopierad",
         "addressCopiedExplanation": "Din adress har kopierats till urklipp.",
