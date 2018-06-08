@@ -591,7 +591,7 @@
         "emptyCodeExplanation": "Var vänlig och ange en kod och försök igen.",
         "keyCopied": "Nyckel kopierad till urklipp",
         "keyCopiedExplanation": "Din 2FA nyckel har kopierats till urklipp.",
-        "addKey": "Lägg till denna nyckeln till din 2FA app",
+        "addKey": "Lägg till denna nyckel i din 2FA-app",
         "key": "Nyckel",
         "twoFAEnabled": "2FA är nu aktiverat",
         "twoFAEnabledExplanation": "Du har framgångsrikt aktiverat tvåfaktorsautentisering.",
