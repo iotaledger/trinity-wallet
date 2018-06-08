@@ -171,6 +171,9 @@ class NewSeedSetup extends Component {
                 return true;
             });
         }
+        if (isAndroid) {
+            FlagSecure.activate();
+        }
     }
 
     componentWillUnmount() {
@@ -185,10 +188,6 @@ class NewSeedSetup extends Component {
     async onGeneratePress() {
         const { t } = this.props;
         const seed = await generateNewSeed(generateSecureRandom);
-        // Block screenshots
-        if (isAndroid) {
-            FlagSecure.activate();
-        }
         this.props.setSeed({ seed, usedExistingSeed: false });
         this.setState({ randomised: true });
         this.props.generateAlert('success', t('generateSuccess'), t('individualLetters'));
