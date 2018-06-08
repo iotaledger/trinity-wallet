@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { translate, Trans } from 'react-i18next';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getChecksum } from 'iota-wallet-shared-modules/libs/iota/utils';
 import FlagSecure from 'react-native-flag-secure-android';
+import Modal from 'react-native-modal';
 import SeedPicker from '../components/SeedPicker';
 import WithUserActivity from '../components/UserActivity';
 import Button from '../components/Button';
@@ -14,6 +15,7 @@ import DynamicStatusBar from '../components/DynamicStatusBar';
 import { Icon } from '../theme/icons.js';
 import { isAndroid } from '../utils/device';
 import Header from '../components/Header';
+import InfoBox from '../components/InfoBox';
 
 const styles = StyleSheet.create({
     container: {
@@ -117,18 +119,41 @@ const styles = StyleSheet.create({
         height: height / 80,
     },
     checksum: {
-        width: width / 8,
-        height: height / 20,
-        borderRadius: GENERAL.borderRadiusSmall,
-        borderColor: 'white',
-        borderWidth: 1,
         justifyContent: 'center',
+        flexDirection: 'row',
         alignItems: 'center',
     },
     checksumText: {
-        fontSize: GENERAL.fontSize2,
+        fontSize: GENERAL.fontSize3,
         color: 'white',
         fontFamily: 'SourceSansPro-Regular',
+        paddingLeft: width / 70,
+    },
+    okButton: {
+        borderWidth: 1.2,
+        borderRadius: GENERAL.borderRadius,
+        width: width / 2.7,
+        height: height / 14,
+        alignItems: 'center',
+        justifyContent: 'space-around',
+    },
+    okText: {
+        fontFamily: 'SourceSansPro-Regular',
+        fontSize: GENERAL.fontSize3,
+        backgroundColor: 'transparent',
+    },
+    modalText: {
+        color: 'white',
+        fontFamily: 'SourceSansPro-Light',
+        fontSize: GENERAL.fontSize3,
+        textAlign: 'left',
+        backgroundColor: 'transparent',
+    },
+    modalTextBold: {
+        fontFamily: 'SourceSansPro-Bold',
+        fontSize: GENERAL.fontSize3,
+        textAlign: 'left',
+        backgroundColor: 'transparent',
     },
 });
 
@@ -153,7 +178,9 @@ class WriteSeedDown extends Component {
         super(props);
         this.state = {
             currentSeedRow: 0,
+            isModalActive: false,
         };
+        this.openModal = this.openModal.bind(this);
     }
 
     componentDidMount() {
@@ -172,11 +199,52 @@ class WriteSeedDown extends Component {
         this.props.navigator.pop({ animated: false });
     }
 
+    openModal() {
+        this.setState({ isModalActive: true });
+    }
+
+    closeModal() {
+        this.setState({ isModalActive: false });
+    }
+
+    renderModalContent = () => {
+        const { t, theme: { body, primary } } = this.props;
+        const textColor = { color: body.color };
+
+        return (
+            <View style={{ backgroundColor: body.bg }}>
+                <InfoBox
+                    body={body}
+                    width={width / 1.15}
+                    text={
+                        <View>
+                            <Text style={[styles.modalTextBold, textColor, { paddingTop: height / 40 }]}>
+                                {t('saveYourSeed:whatIsCheksum')}
+                            </Text>
+                            <Text style={[styles.modalText, textColor, { paddingTop: height / 60 }]}>
+                                {t('saveYourSeed:checksumExplanation')}
+                            </Text>
+                            <View style={{ paddingTop: height / 20, alignItems: 'center' }}>
+                                <TouchableOpacity onPress={() => this.closeModal()}>
+                                    <View style={[styles.okButton, { borderColor: primary.color }]}>
+                                        <Text style={[styles.okText, { color: primary.color }]}>
+                                            {t('global:okay')}
+                                        </Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    }
+                />
+            </View>
+        );
+    };
+
     render() {
         const { t, theme, seed, minimised } = this.props;
+        const { isModalActive } = this.state;
         const checksum = getChecksum(seed);
         const textColor = { color: theme.body.color };
-        const borderColor = { borderColor: theme.body.color };
 
         return (
             <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
@@ -207,9 +275,15 @@ class WriteSeedDown extends Component {
                                 onValueChange={(index) => this.setState({ currentSeedRow: index })}
                             />
                             <View style={{ flex: 0.5 }} />
-                            <View style={[styles.checksum, borderColor]}>
-                                <Text style={[styles.checksumText, textColor]}>{checksum}</Text>
-                            </View>
+                            <TouchableOpacity onPress={this.openModal}>
+                                <View style={styles.checksum}>
+                                    <Icon name="info" size={width / 20} color={theme.body.color} />
+                                    <Text style={[styles.checksumText, textColor]}>{t('checksum')}:</Text>
+                                    <Text style={[styles.checksumText, { color: theme.primary.color }]}>
+                                        {checksum}
+                                    </Text>
+                                </View>
+                            </TouchableOpacity>
                             <View style={{ flex: 0.2 }} />
                         </View>
                         <View style={styles.bottomContainer}>
@@ -226,6 +300,19 @@ class WriteSeedDown extends Component {
                                 {t('global:doneLowercase')}
                             </Button>
                         </View>
+                        <Modal
+                            backdropTransitionInTiming={isAndroid ? 500 : 300}
+                            backdropTransitionOutTiming={200}
+                            backdropColor={theme.body.bg}
+                            backdropOpacity={0.8}
+                            style={{ alignItems: 'center', margin: 0 }}
+                            isVisible={isModalActive}
+                            onBackButtonPress={() => this.hideModal()}
+                            hideModalContentWhileAnimating
+                            useNativeDriver={!!isAndroid}
+                        >
+                            {this.renderModalContent()}
+                        </Modal>
                     </View>
                 )}
             </View>
