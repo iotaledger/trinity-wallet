@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, PanResponder } from 'react-native';
 import PropTypes from 'prop-types';
+import ReactNativeHapticFeedback from 'react-native-haptic-feedback';
 import { height, width } from '../utils/dimensions';
 import TextWithLetterSpacing from '../components/TextWithLetterSpacing';
 
@@ -12,19 +13,23 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    rowContainer: {
+    outerViewContainer: {
+        height: 2 * scaleMultiplier,
+        overflow: 'hidden',
+        zIndex: 1,
+    },
+    outerView: {
+        alignItems: 'center',
+        zIndex: 1,
+    },
+    innerViewContainer: {
         height: scaleMultiplier,
         overflow: 'hidden',
         zIndex: 1,
     },
-    rowWrapper: {
+    innerView: {
         alignItems: 'center',
         zIndex: 1,
-    },
-    row: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        height: scaleMultiplier,
     },
     rowText: {
         fontFamily: 'SourceCodePro-Medium',
@@ -47,7 +52,25 @@ const styles = StyleSheet.create({
     numberText: {
         fontFamily: 'SourceSansPro-Regular',
         fontSize: width / 26,
-        backgroundColor: 'transparent',
+    },
+    rowContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        height: scaleMultiplier,
+    },
+    outerOpacityView: {
+        position: 'absolute',
+        width,
+        height: scaleMultiplier,
+        zIndex: 1,
+        opacity: 0.9,
+    },
+    innerOpacityView: {
+        position: 'absolute',
+        width,
+        height: scaleMultiplier,
+        zIndex: 1,
+        opacity: 0.5,
     },
 });
 
@@ -91,14 +114,9 @@ export default class SeedPicker extends Component {
     move(dy) {
         const { selectedIndex } = this.state;
         this.middleHeight = Math.abs(-selectedIndex * scaleMultiplier + dy);
-        this.outerTop.setNativeProps({
+        this.top.setNativeProps({
             style: {
                 marginTop: (2 - selectedIndex) * scaleMultiplier + dy,
-            },
-        });
-        this.innerTop.setNativeProps({
-            style: {
-                marginTop: (1 - selectedIndex) * scaleMultiplier + dy,
             },
         });
         this.middle.setNativeProps({
@@ -106,14 +124,9 @@ export default class SeedPicker extends Component {
                 marginTop: -selectedIndex * scaleMultiplier + dy,
             },
         });
-        this.innerBottom.setNativeProps({
+        this.bottom.setNativeProps({
             style: {
                 marginTop: (-selectedIndex - 1) * scaleMultiplier + dy,
-            },
-        });
-        this.outerBottom.setNativeProps({
-            style: {
-                marginTop: (-selectedIndex - 2) * scaleMultiplier + dy,
             },
         });
     }
@@ -121,7 +134,6 @@ export default class SeedPicker extends Component {
     handlePanResponderMove(evt, gestureState) {
         const dy = gestureState.dy;
         const { rows } = this.state;
-
         if (this.isMoving) {
             return;
         }
@@ -144,6 +156,9 @@ export default class SeedPicker extends Component {
                 : Math.floor(middleHeight / scaleMultiplier);
         this.move(0);
         this.setState({ selectedIndex: this.index });
+        if (this.index !== this.state.selectedIndex) {
+            ReactNativeHapticFeedback.trigger('selection', false);
+        }
         this.props.onValueChange(this.index);
     }
 
@@ -151,10 +166,11 @@ export default class SeedPicker extends Component {
         const { theme: { primary, secondary, body } } = this.props;
         const { selectedIndex } = this.state;
         const rows = [];
+
         items.forEach((item, index) => {
             const textColor = index === selectedIndex ? primary.color : secondary.color;
             rows[index] = (
-                <View style={styles.row} key={index}>
+                <View style={styles.rowContainer} key={index}>
                     <View style={styles.numberContainer}>
                         <View style={[styles.numberWrapper, { backgroundColor: textColor }]}>
                             <Text style={[styles.numberText, { color: body.bg }]}>{index + 1}</Text>
@@ -178,58 +194,39 @@ export default class SeedPicker extends Component {
     }
 
     render() {
+        const { theme: { body } } = this.props;
         const { rows, selectedIndex } = this.state;
+        const length = rows.length;
         const rowComponents = this.renderRows(rows);
 
-        const outerTopRowStyle = {
+        const topViewStyle = {
             marginTop: (2 - selectedIndex) * scaleMultiplier,
-            height: scaleMultiplier,
-            opacity: 0.3,
+            height: length * scaleMultiplier,
         };
-        const innerTopRowStyle = {
-            marginTop: (1 - selectedIndex) * scaleMultiplier,
-            height: scaleMultiplier,
-            opacity: 0.6,
-        };
-        const middleRowStyle = {
+        const middleViewStyle = {
             marginTop: -selectedIndex * scaleMultiplier,
         };
-        const innerBottomRowStyle = {
+        const bottomViewStyle = {
             marginTop: (-selectedIndex - 1) * scaleMultiplier,
-            height: scaleMultiplier,
-            opacity: 0.6,
+            height: length * scaleMultiplier,
         };
-        const outerBottomRowStyle = {
-            marginTop: (-selectedIndex - 2) * scaleMultiplier,
-            height: scaleMultiplier,
-            opacity: 0.3,
-        };
-
         return (
             <View style={[styles.container]} {...this.panResponder.panHandlers}>
-                <View style={styles.rowContainer}>
+                <View style={styles.outerViewContainer}>
                     <View
-                        style={[styles.rowWrapper, outerTopRowStyle]}
-                        ref={(outerTop) => {
-                            this.outerTop = outerTop;
+                        style={[styles.outerView, topViewStyle]}
+                        ref={(top) => {
+                            this.top = top;
                         }}
                     >
                         {rowComponents}
                     </View>
+                    <View style={[styles.innerOpacityView, { top: scaleMultiplier, backgroundColor: body.bg }]} />
+                    <View style={[styles.outerOpacityView, { top: 0, backgroundColor: body.bg }]} />
                 </View>
-                <View style={styles.rowContainer}>
+                <View style={styles.innerViewContainer}>
                     <View
-                        style={[styles.rowWrapper, innerTopRowStyle]}
-                        ref={(innerTop) => {
-                            this.innerTop = innerTop;
-                        }}
-                    >
-                        {rowComponents}
-                    </View>
-                </View>
-                <View style={styles.rowContainer}>
-                    <View
-                        style={[styles.rowWrapper, middleRowStyle]}
+                        style={[styles.innerView, middleViewStyle]}
                         ref={(middle) => {
                             this.middle = middle;
                         }}
@@ -237,25 +234,17 @@ export default class SeedPicker extends Component {
                         {rowComponents}
                     </View>
                 </View>
-                <View style={styles.rowContainer}>
+                <View style={styles.outerViewContainer}>
                     <View
-                        style={[styles.rowWrapper, innerBottomRowStyle]}
-                        ref={(innerBottom) => {
-                            this.innerBottom = innerBottom;
+                        style={[styles.outerView, bottomViewStyle]}
+                        ref={(bottom) => {
+                            this.bottom = bottom;
                         }}
                     >
                         {rowComponents}
                     </View>
-                </View>
-                <View style={styles.rowContainer}>
-                    <View
-                        style={[styles.rowWrapper, outerBottomRowStyle]}
-                        ref={(outerBottom) => {
-                            this.outerBottom = outerBottom;
-                        }}
-                    >
-                        {rowComponents}
-                    </View>
+                    <View style={[styles.innerOpacityView, { bottom: scaleMultiplier, backgroundColor: body.bg }]} />
+                    <View style={[styles.outerOpacityView, { bottom: 0, backgroundColor: body.bg }]} />
                 </View>
             </View>
         );
