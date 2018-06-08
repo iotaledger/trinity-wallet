@@ -104,6 +104,12 @@ export default (state = initialState, action) => {
                 addingAdditionalAccount: false,
                 additionalAccountName: '',
             };
+        case AccountsActionTypes.FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_ERROR:
+            return {
+                ...state,
+                ready: true,
+                addingAdditionalAccount: false,
+            };
         case AccountsActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_REQUEST:
             return {
                 ...state,
