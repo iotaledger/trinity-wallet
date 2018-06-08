@@ -5,6 +5,7 @@ import { translate } from 'react-i18next';
 
 import { setOnboardingName } from 'actions/ui';
 import { generateAlert } from 'actions/alerts';
+import { setAdditionalAccountInfo } from 'actions/wallet';
 
 import Button from 'ui/components/Button';
 import Input from 'ui/components/input/Text';
@@ -14,12 +15,18 @@ import Input from 'ui/components/input/Text';
  */
 class AccountName extends React.PureComponent {
     static propTypes = {
+        /** If first account is beeing created */
+        firstAccount: PropTypes.bool.isRequired,
         /** Current accounts info */
         accountInfo: PropTypes.object,
         /** Current seed count */
         seedCount: PropTypes.number.isRequired,
         /** Set onboarding seed name */
         setOnboardingName: PropTypes.func.isRequired,
+        /** Set additional account info
+         * @param {Object} data - Additional account data
+         */
+        setAdditionalAccountInfo: PropTypes.func.isRequired,
         /** Onboarding set seed and name */
         onboarding: PropTypes.object.isRequired,
         /** Browser history object */
@@ -64,7 +71,15 @@ class AccountName extends React.PureComponent {
 
     setName = (e) => {
         e.preventDefault();
-        const { setOnboardingName, accountInfo, history, generateAlert, t } = this.props;
+        const {
+            firstAccount,
+            setOnboardingName,
+            setAdditionalAccountInfo,
+            accountInfo,
+            history,
+            generateAlert,
+            t,
+        } = this.props;
 
         const accountNames = Object.keys(accountInfo);
 
@@ -81,7 +96,16 @@ class AccountName extends React.PureComponent {
         }
 
         setOnboardingName(this.state.name);
-        history.push('/onboarding/account-password');
+
+        if (!firstAccount) {
+            setAdditionalAccountInfo({
+                addingAdditionalAccount: true,
+                additionalAccountName: this.state.name,
+            });
+            history.push('/onboarding/login');
+        } else {
+            history.push('/onboarding/account-password');
+        }
     };
 
     render() {
@@ -117,6 +141,7 @@ class AccountName extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
+    firstAccount: !state.wallet.ready,
     seedCount: state.accounts.accountNames.length,
     accountInfo: state.accounts.accountInfo,
     onboarding: state.ui.onboarding,
@@ -125,6 +150,10 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     generateAlert,
     setOnboardingName,
+    setAdditionalAccountInfo,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(AccountName));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(translate()(AccountName));
