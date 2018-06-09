@@ -214,7 +214,7 @@
         "storeEncrypted": "Lưu trữ chuỗi mật mã của bạn sau khi được mã hóa trong một trình quản lý mật khẩu.",
         "doNotOpen": "Không mở bất kỳ ứng dụng nào khác trong quá trình này.",
         "tapConfirm": "Vui lòng bấm vào hộp đánh dấu ở dưới để xác nhận.",
-        "passwordManagerCheckbox": "I will store my seed in a password manager",
+        "passwordManagerCheckbox": "Tôi sẽ lưu từ khoá trong chương trình quản lý mật khẩu",
         "copy": "CHÉP",
         "noPasswordManagers": "Không tìm thấy trình quản lý mật khẩu nào phù hợp",
         "noPasswordManagersExplanation": "Không tìm thấy trình quản lý mật khẩu nào phù hợp trên thiết bị. Vui lòng cài đặt Keepass2Android.",
@@ -237,7 +237,7 @@
     },
     "languageSetup": {
         "language": "Ngôn Ngữ",
-        "letsGetStarted": "Let's get started"
+        "letsGetStarted": "Hãy bắt đầu thôi"
     },
     "login": {
         "emptyPassword": "Mật khẩu trống",
@@ -246,15 +246,15 @@
         "useSeed": "DÙNG TỪ KHOÁ",
         "login": "Đăng Nhập",
         "selectDifferentNode": "Bạn muốn chọn một nút mạng khác không?",
-        "setNode": "Set Node",
+        "setNode": "Chọn Nút Mạng",
         "cannotConnect": "Không thể kết nối vào nút mạng của IOTA."
     },
     "loading": {
         "loadingFirstTime": "Đang tải từ khoá lần đầu tiên.",
         "thisMayTake": "Thao tác này sẽ hơi lâu.",
-        "doNotMinimise": "Do not minimise or close the app.",
+        "doNotMinimise": "Đừng thu nhỏ hoặc đóng chương trình.",
         "youMayNotice": "Bạn có thể thấy máy của bạn chậm lại.",
-        "takingAWhile": "This seems to be taking a while"
+        "takingAWhile": "Điều này sẽ mất một thời gian"
     },
     "newSeedSetup": {
         "generatedSeed": "Tạo từ khóa",
@@ -280,12 +280,12 @@
         "print": "IN",
         "paperConvenience": "In chuỗi mật mã của bạn ra giấy là một cách thuận tiện để lưu trữ nó.",
         "publicInsecure": "Nhưng in bằng mạng Wifi công cộng hoặc bằng máy in công cộng là không an toàn.",
-        "tapCheckboxes": "Please tap the checkboxes below to confirm.",
-        "wifiCheckbox": "I will not print on public wifi",
-        "printerCheckbox": "I will not print on a public printer"
+        "tapCheckboxes": "Vui lòng bấm vào những hộp đánh dấu ở dưới để xác nhận.",
+        "wifiCheckbox": "Tôi sẽ không in trên wifi công cộng",
+        "printerCheckbox": "Tôi sẽ không in trên máy in công cộng"
     },
     "receive": {
-        "copyAddress": "Copy address",
+        "copyAddress": "Chép địa chỉ",
         "addressCopied": "Đã sao chép địa chỉ",
         "addressCopiedExplanation": "Địa chỉ đã được sao chép vào bộ nhớ tạm thời.",
         "generateNewAddress": "Địa Chỉ Mới",
@@ -296,16 +296,16 @@
     },
     "saveYourSeed": {
         "saveYourSeed": "Sao lưu chuỗi mật mã của bạn",
-        "seedCleared": "Seed cleared",
-        "mostSecure": "Most Secure",
-        "leastSecure": "Least Secure",
-        "paperWallet": "Paper Wallet",
-        "writeYourSeedDown": "Write your seed down",
-        "printYourSeed": "Print your seed",
-        "digitalCopy": "Digital copy",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
+        "seedCleared": "Đã xoá từ khoá",
+        "mostSecure": "An Toàn Tối Đa",
+        "leastSecure": "An Toàn Tối Thiểu",
+        "paperWallet": "Ví Giấy",
+        "writeYourSeedDown": "Viết từ khoá xuống",
+        "printYourSeed": "In từ khóa",
+        "digitalCopy": "Bản chép kỹ thuật số",
+        "seedClearedExplanation": "Từ khoá đã được xoá khỏi bộ nhớ tạm để bảo mật.",
         "iHaveBackedUpMySeed": "Tôi đã lưu từ khóa",
-        "letsWriteDownYourSeed": "Lets write down your seed",
+        "letsWriteDownYourSeed": "Hãy ghi từ khóa xuống",
         "youCanHighlightCharacters": "You can highlight 9 characters at a time",
         "printBlankWallet": "Print a blank wallet",
         "whatIsCheksum": "Every seed has a corresponding 3 character checksum",
@@ -536,7 +536,7 @@
     "manualSync": {
         "outOfSync": "Does your transaction history look like it may be out of sync?",
         "pressToSync": "Press the button below to sync your account.",
-        "thisMayTake": "This may take a while. You may notice your device slowing down.",
+        "thisMayTake": "Điều này sẽ mất một thời gian. Bạn sẽ thấy máy của bạn chậm hơn một chút.",
         "doNotClose": "Please note, minimising the app will cancel the sync.",
         "syncAccount": "Sync Account",
         "syncingYourAccount": "Đang đồng bộ tài khoản."
