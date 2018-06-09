@@ -32,10 +32,12 @@ import {
     getOwnTransactionHashes,
 } from './transfers';
 import {
-    getFullAddressHistory,
     getAddressDataAndFormatBalance,
+    getFullAddressHistory,
     markAddressesAsSpentSync,
     syncAddresses,
+    accumulateBalance,
+    formatAddressData,
 } from './addresses';
 import Errors from '../errors';
 
@@ -58,28 +60,24 @@ const organiseAccountState = (accountName, partialAccountData) => {
         balance: 0,
         addresses: {},
         unconfirmedBundleTails: {},
-        hashes: [],
+        hashes: partialAccountData.hashes,
     };
+
+    const { addresses, balances, wereSpent } = partialAccountData;
+
+    organisedState.addresses = formatAddressData(addresses, balances, wereSpent);
+
+    organisedState.balance = accumulateBalance(partialAccountData.balances);
 
     const normalisedTransactionsList = map(organisedState.transfers, (tx) => tx);
 
-    return getAddressDataAndFormatBalance(partialAccountData.addresses)
-        .then(({ addresses, balance }) => {
-            organisedState.addresses = addresses;
-            organisedState.balance = balance;
-
-            return prepareForAutoPromotion(normalisedTransactionsList, organisedState.addresses, accountName);
-        })
-        .then((unconfirmedBundleTails) => {
+    return prepareForAutoPromotion(normalisedTransactionsList, organisedState.addresses, accountName).then(
+        (unconfirmedBundleTails) => {
             organisedState.unconfirmedBundleTails = unconfirmedBundleTails;
 
-            return findTransactionsAsync({ addresses: keys(organisedState.addresses) });
-        })
-        .then((hashes) => {
-            organisedState.hashes = hashes;
-
             return organisedState;
-        });
+        },
+    );
 };
 
 /**
@@ -106,9 +104,12 @@ export const getAccountData = (seed, accountName, genFn) => {
         transactionObjects: [],
     };
 
-    const data = {
+    let data = {
         addresses: [],
         transfers: [],
+        balances: [],
+        wereSpent: [],
+        hashes: [],
     };
 
     return isNodeSynced()
@@ -119,10 +120,10 @@ export const getAccountData = (seed, accountName, genFn) => {
 
             return getFullAddressHistory(seed, genFn);
         })
-        .then(({ addresses, hashes }) => {
-            data.addresses = addresses;
+        .then((history) => {
+            data = { ...data, ...history };
 
-            return getTransactionsObjectsAsync(hashes);
+            return getTransactionsObjectsAsync(history.hashes);
         })
         .then((transactionObjects) => {
             each(transactionObjects, (tx) => {
