@@ -153,7 +153,7 @@
         "isYourBalanceCorrect": "您的餘額正確嗎？",
         "ifYourBalanceIsNotCorrect": "如果您的餘額不正確的話，有可能您最後一次使用種子碼是在快照發生之前。",
         "headToAdvancedSettingsForTransition": "前往進階設定然後執行快照轉換。",
-        "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android"
+        "usingTrinityWalletWithKeePass": "在 Trinity 錢包使用 Keepass2Android"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
@@ -462,6 +462,8 @@
     },
     "history": {
         "bundleHashCopied": "交易組雜湊值已複製",
+        "noTransactionsFound": "找不到交易紀錄",
+        "hideZeroBalance": "隱藏零元紀錄",
         "bundleHashCopiedExplanation": "交易組的雜湊值已複製到剪貼簿。",
         "addressCopied": "地址已複製",
         "addressCopiedExplanation": "您的地址已複製到剪貼簿。",
