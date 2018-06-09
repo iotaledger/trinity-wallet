@@ -46,7 +46,7 @@
         "paperWallet": "打印副本",
         "addToPasswordManager": "添加到密码管理器",
         "shareSeed": "共享种子",
-        "proceed": "Proceed",
+        "proceed": "继续操作",
         "qr": "二维码",
         "notAvailable": "此功能不可用",
         "notAvailableExplanation": "它将在稍后阶段添加。",
@@ -596,7 +596,7 @@
         "twoFAEnabled": "2FA 现在已启用",
         "twoFAEnabledExplanation": "您已成功启用了双因子验证（2FA）。",
         "twoFADisabled": "2FA 现在已禁用",
-        "twoFADisabledExplanation": "You have successfully disabled Two Factor Authentication.",
+        "twoFADisabledExplanation": "您已成功禁用了双重身份验证。",
         "enterCode": "输入您的2FA 应用程序中的验证码",
         "code": "验证码",
         "twoFaToken": "2FA两步认证令牌"
@@ -658,11 +658,11 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "提取更新数据时发生错误",
-        "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
-        "noUpdatesAvailable": "No updates available",
-        "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
+        "errorRetrievingUpdateDataExplanation": "检索更新数据时出错。请重试。",
+        "noUpdatesAvailable": "没有可用的更新",
+        "noUpdatesAvailableExplanation": "你已经得到了最新版本的IOTA 三体桌面钱包!",
         "newVersionAvailable": "新版本可用",
-        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
+        "newVersionAvailableExplanation": "新的 <strong>三体</strong> <strong>{{version}}</strong> 版本可用。请仔细阅读软件发布详细信息, 并在更新前验证下载源:",
         "downloadRelease": "下载软件的发布版本",
         "skipUpdate": "忽略更新"
     },
