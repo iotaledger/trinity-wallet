@@ -443,7 +443,7 @@
         "yesINeedASeed": "是的，我需要一个新的种子",
         "explanation": "<0> <0> 您可以使用它访问您的资金从 </0> <1> 任何钱包 </1> <2>, 在 </2> <3> 任何设备 </3> <4>。但是, 如果你失去了你的种子, 你也失去了你的丝毫. </4> </0>",
         "keepSafe": "请您保管好你的种子.",
-        "hint": "<0><0>Hint:</0> Click NO if this is your first time using IOTA.</0>"
+        "hint": "<0> <0> 提示: </0> 如果这是您第一次使用 IOTA, 请单击 \"否\". </0>"
     },
     "welcome": {
         "thankYou": "感谢下载Trinity",
@@ -524,11 +524,11 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "为什么我不能够使用全部余额？",
-        "spentAddressExplanation": "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
-        "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
+        "spentAddressExplanation": "你有资金在一个或者多个已用的地址上。在IOTA中地址重用是危险的，因此钱包不允许你多次从同一个地址中发送交易。",
+        "discordInformation": "请到 Discord中的#help 频道找出你能做什么。"
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Are you sure you want to delete</1><2></2><3>{{accountName}}?</3>",
+        "areYouSure": "<0> </0> <1> 是否确认要删除 </1> <2> </2> <3>{{accountName}}?</3>",
         "yourSeedWillBeRemoved": "您的种子和交易记录将被删除。",
         "thisAction": "本操作无法撤销。",
         "enterPassword": "请输入您的密码以确认将帐号删除。"
