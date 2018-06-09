@@ -149,53 +149,56 @@ const getAddressesUptoLatestUnused = (
 ) => {
     let thisBatchOfAddresses = [];
 
-    return getNewAddress(seed, options, genFn)
-        .then((addresses) => {
-            thisBatchOfAddresses = addresses;
+    const callback = (err, addresses) => {
+        if (err) {
+            throw new Error(err);
+        }
 
-            return findAddressesData(addresses);
-        })
-        .then(({ hashes, balances, wereSpent }) => {
-            const shouldGenerateNextBatch =
-                size(hashes) || some(balances, (balance) => balance > 0) || some(wereSpent, (spent) => spent);
+        thisBatchOfAddresses = addresses;
+        return findAddressesData(addresses);
+    };
 
-            if (shouldGenerateNextBatch) {
-                addressesUptoLatestUnused = [...addressesUptoLatestUnused, ...thisBatchOfAddresses];
+    return getNewAddress(seed, options, genFn, callback).then(({ hashes, balances, wereSpent }) => {
+        const shouldGenerateNextBatch =
+            size(hashes) || some(balances, (balance) => balance > 0) || some(wereSpent, (spent) => spent);
 
-                const newOptions = assign({}, options, { index: options.total + options.index });
+        if (shouldGenerateNextBatch) {
+            addressesUptoLatestUnused = [...addressesUptoLatestUnused, ...thisBatchOfAddresses];
 
-                return getAddressesUptoLatestUnused(
-                    seed,
-                    genFn,
-                    newOptions,
-                    addressesUptoLatestUnused,
-                    assign({}, addressData, {
-                        hashes: union(addressData.hashes, hashes),
-                        balances: [...addressData.balances, ...balances],
-                        wereSpent: [...addressData.wereSpent, ...wereSpent],
-                    }),
-                );
-            }
+            const newOptions = assign({}, options, { index: options.total + options.index });
 
-            const lastAddressIndex = size(addressesUptoLatestUnused) - 1;
-
-            // Before traversing backwards to remove the unused addresses,
-            // Set the first address from the newly fetched addresses as the latest address.
-            const latestAddress = head(thisBatchOfAddresses);
-
-            return removeUnusedAddresses(lastAddressIndex, latestAddress, addressesUptoLatestUnused.slice()).then(
-                (addresses) => {
-                    return {
-                        addresses,
-                        ...addressData,
-                        // Append 0 balance to the latest unused address
-                        balances: [...addressData.balances, 0],
-                        // Append false as spent status to the latest unused address
-                        wereSpent: [...addresses.wereSpent, false],
-                    };
-                },
+            return getAddressesUptoLatestUnused(
+                seed,
+                genFn,
+                newOptions,
+                addressesUptoLatestUnused,
+                assign({}, addressData, {
+                    hashes: union(addressData.hashes, hashes),
+                    balances: [...addressData.balances, ...balances],
+                    wereSpent: [...addressData.wereSpent, ...wereSpent],
+                }),
             );
-        });
+        }
+
+        const lastAddressIndex = size(addressesUptoLatestUnused) - 1;
+
+        // Before traversing backwards to remove the unused addresses,
+        // Set the first address from the newly fetched addresses as the latest address.
+        const latestAddress = head(thisBatchOfAddresses);
+
+        return removeUnusedAddresses(lastAddressIndex, latestAddress, addressesUptoLatestUnused.slice()).then(
+            (addresses) => {
+                return {
+                    addresses,
+                    ...addressData,
+                    // Append 0 balance to the latest unused address
+                    balances: [...addressData.balances, 0],
+                    // Append false as spent status to the latest unused address
+                    wereSpent: [...addressData.wereSpent, false],
+                };
+            },
+        );
+    });
 };
 
 export const formatAddressData = (addresses, balances, addressesSpendStatus) => {
