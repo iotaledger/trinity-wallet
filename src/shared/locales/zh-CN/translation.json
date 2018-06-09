@@ -543,7 +543,7 @@
     },
     "useExistingSeed": {
         "title": "输入种子和帐户名称。",
-        "incorrectFormat": "Incorrect seed format",
+        "incorrectFormat": "种子格式不正确",
         "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
     },
     "viewSeed": {
