@@ -143,7 +143,7 @@
         "noNetworkConnection": "Nėra tinklo ryšio",
         "noNetworkConnectionExplanation": "Panašu, kad jūsų interneto ryšys atjungtas.",
         "spentAddressExplanation": "ĮSPĖJIMAS: Lėšos panaudotame adrese",
-        "discordInformation": "Pinigų siuntimas iš to pačio adreso daugiau nei kartą yra nesaugus. Keliaukite į #help kanalą Discord programoje norėdami sužinoti ką daryti tokiu atveju.",
+        "discordInformation": "Pinigų siuntimas iš to pačio adreso daugiau nei kartą yra nesaugus. Apsilankykite #help kanale Discord programoje norėdami sužinoti ką daryti tokiu atveju.",
         "androidInsecureClipboardWarning": "Android nesuteikia saugios iškarpinės.",
         "androidCopyPasteWarning": "Kopijuoti/Įklijuoti užraktą su Android įrenginiu nerekomenduojama.",
         "willNotCopyPasteSeed": "Aš nekopijuosiu/neįklijuosiu užrakto",
