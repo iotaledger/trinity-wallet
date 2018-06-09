@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import keys from 'lodash/keys';
 import { getStoredState } from 'redux-persist';
 import { changeIotaNode } from '../libs/iota';
 import { updatePersistedState } from '../libs/utils';
@@ -40,6 +41,7 @@ export const ActionTypes = {
     ACCEPT_TERMS: 'IOTA/SETTINGS/ACCEPT_TERMS',
     ACCEPT_PRIVACY: 'IOTA/SETTINGS/ACCEPT_PRIVACY',
     SET_SEED_SHARE_TUTORIAL_VISITATION_STATUS: 'IOTA/SETTINGS/SET_SEED_SHARE_TUTORIAL_VISITATION_STATUS',
+    TOGGLE_EMPTY_TRANSACTIONS: 'IOTA/SETTINGS/TOGGLE_EMPTY_TRANSACTIONS',
 };
 
 export const setAppVersions = (payload) => ({
@@ -130,9 +132,12 @@ export const setLockScreenTimeout = (payload) => ({
 });
 
 export function setLocale(locale) {
-    return {
-        type: ActionTypes.SET_LOCALE,
-        payload: locale,
+    return (dispatch) => {
+        i18next.changeLanguage(locale);
+        return dispatch({
+            type: ActionTypes.SET_LOCALE,
+            payload: locale,
+        });
     };
 }
 
@@ -142,7 +147,7 @@ export const setSeedShareTutorialVisitationStatus = (payload) => ({
 });
 
 export function getCurrencyData(currency, withAlerts = false) {
-    const url = 'https://api.fixer.io/latest?base=USD';
+    const url = 'https://trinity-exchange-rates.herokuapp.com/api/latest?base=USD';
     return (dispatch) => {
         dispatch(currencyDataFetchRequest());
 
@@ -165,10 +170,12 @@ export function getCurrencyData(currency, withAlerts = false) {
             )
             .then((json) => {
                 const conversionRate = get(json, `rates.${currency}`) || 1;
+                const availableCurrencies = keys(get(json, 'rates'));
                 dispatch(
                     currencyDataFetchSuccess({
                         conversionRate,
                         currency,
+                        availableCurrencies,
                     }),
                 );
 
@@ -430,6 +437,12 @@ export const set2FAStatus = (payload) => ({
     type: ActionTypes.SET_2FA_STATUS,
     payload,
 });
+
+export const toggleEmptyTransactions = () => {
+    return {
+        type: ActionTypes.TOGGLE_EMPTY_TRANSACTIONS,
+    };
+};
 
 export const setFingerprintStatus = (payload) => ({
     type: ActionTypes.SET_FINGERPRINT_STATUS,

@@ -17,7 +17,7 @@
 
 .dashboard {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     display: flex;
     position: relative;
     flex-direction: column;
@@ -53,6 +53,7 @@
 
             @media screen and (max-width: 860px) {
                 display: block;
+                max-height: calc(100vh - 290px);
             }
 
             section {

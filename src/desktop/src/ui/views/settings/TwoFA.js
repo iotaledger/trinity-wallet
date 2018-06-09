@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import QRCode from 'qrcode.react';
+import QRCode from 'qr.js/lib/QRCode';
 import authenticator from 'authenticator';
 
 import { getTwoFA, setTwoFA, removeTwoFA } from 'libs/crypto';
@@ -164,10 +164,30 @@ class TwoFA extends React.Component {
             return null;
         }
 
+        const qr = new QRCode(-1, 1);
+
+        qr.addData(authenticator.generateTotpUri(key, 'Trinity desktop wallet'));
+        qr.make();
+
+        const cells = qr.modules;
+
         return (
             <form className={css.twoFa} onSubmit={(e) => this.verifyCode(e)}>
                 <h3>1. {t('twoFA:addKey')}</h3>
-                <QRCode size={180} value={authenticator.generateTotpUri(key, 'Trinity desktop wallet')} />
+                <svg width="160" height="160" viewBox={`0 0 ${cells.length} ${cells.length}`}>
+                    {cells.map((row, rowIndex) => {
+                        return row.map((cell, cellIndex) => (
+                            <rect
+                                height={1}
+                                key={cellIndex}
+                                style={{ fill: cell ? '#000000' : 'none' }}
+                                width={1}
+                                x={cellIndex}
+                                y={rowIndex}
+                            />
+                        ));
+                    })}
+                </svg>
                 <small>
                     {t('twoFA:key')}:{' '}
                     <Clipboard text={key} title={t('twoFA:keyCopied')} success={t('twoFA:keyCopiedExplanation')}>

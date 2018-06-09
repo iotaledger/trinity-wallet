@@ -82,7 +82,6 @@ const initMenu = (app, getWindow) => {
                         submenu: [
                             {
                                 label: language.language,
-                                accelerator: 'Command+,',
                                 click: () => navigate('settings/language'),
                                 enabled: state.enabled,
                             },
