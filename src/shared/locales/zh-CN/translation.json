@@ -268,7 +268,7 @@
     },
     "onboardingComplete": {
         "allDone": "全部完成！",
-        "openYourWallet": "Open your wallet",
+        "openYourWallet": "打开你的钱包",
         "walletReady": "钱包现在已设置好并可以使用。如果您需要在将来进行任何更改，请在设置菜单中查找。"
     },
     "paperWallet": {
