@@ -544,7 +544,7 @@
     "useExistingSeed": {
         "title": "输入种子和帐户名称。",
         "incorrectFormat": "种子格式不正确",
-        "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
+        "validSeedExplanation": "有效的种子应该是81个字符，并且只包含 A-Z 或9。"
     },
     "viewSeed": {
         "enterPassword": "输入密码查看您的种子。",
@@ -555,15 +555,15 @@
         "didSaveSeed": "您把你的种子备份了吗？",
         "alreadyHave": "我已经保存了我的种子",
         "reenterSeed": "在下一步，您讲被要求重新输入您的种子。",
-        "reenterSeedWarning": "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
-        "pleaseConfirm": "Please confirm you have securely stored your seed."
+        "reenterSeedWarning": "如果你没有备份你的种子，当你的设备失败的话, 你就会失去你的IOTA。",
+        "pleaseConfirm": "请确认您已安全地储存了您的种子。"
     },
     "walletResetConfirmation": {
         "cannotUndo": "此操作无法撤消",
         "warning": "<0><0>所有的钱包数据，包括你的 </0><1> 密码,</1><2> 和 </2><3> 其他帐户信息</3><4> 会丢失的。</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Touch fingerprint reader to enable fingerprint authentication",
+        "instructionsEnable": "触摸指纹阅读器以启用指纹验证。",
         "instructionsDisable": "Touch fingerprint reader to disable fingerprint authentication",
         "fingerprintAuthEnabled": "Biometric authentication enabled",
         "fingerprintAuthEnabledExplanation": "You have successfully enabled biometric authentication.",
