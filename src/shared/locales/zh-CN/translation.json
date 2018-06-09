@@ -4,7 +4,7 @@
         "cancel": "取消",
         "continue?": "是否确定继续？",
         "noTransactions": "没有最近的历史记录",
-        "refresh": "Refresh",
+        "refresh": "刷新",
         "balanceError": "余额不足",
         "balanceErrorMessage": "您的IOTA不足以完成本次交易。",
         "transferError": "交易错误",
@@ -15,39 +15,38 @@
         "messageSentMessage": "您的消息已经发送给Tangle。",
         "keyReuse": "发送到用过的地址",
         "keyReuseError": "您不能发送到发起付款的地址。",
-        "invalidResponse": "Node error",
-        "invalidResponseExplanation": "The node returned an error. Try changing node.",
-        "invalidResponsePollingExplanation": "The node returned an error while polling. Try changing node.",
-        "invalidResponseFetchingAccount":
-            "The node returned an error while fetching your account information. Try changing node.",
-        "invalidResponseSendingTransfer": "The node returned an error while sending the transfer. Try changing node.",
-        "nodeOutOfSync": "Node out of sync",
-        "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
-        "thisNodeOutOfSync": "This node is out of sync. Please change node or try again.",
+        "invalidResponse": "节点错误",
+        "invalidResponseExplanation": "节点返回有错误，请尝试更改节点。",
+        "invalidResponsePollingExplanation": "该节点在轮询时返回有错误，请尝试更改节点。",
+        "invalidResponseFetchingAccount": "该节点在获取账户信息时返回有错误，请尝试更改节点。",
+        "invalidResponseSendingTransfer": "该节点在发送转账时返回有错误，请尝试更改节点。",
+        "nodeOutOfSync": "节点不同步。",
+        "nodeOutOfSyncExplanation": "当前选定的节点不同步。请更改节点或重试。",
+        "thisNodeOutOfSync": "此节点不同步，请更改节点或重试。",
         "seed": "种子",
         "checksum": "校验和",
         "back": "返回",
-        "goBack": "Go back",
-        "goBackStep": "Go back a step",
+        "goBack": "返回",
+        "goBackStep": "返回上一步",
         "backLowercase": "退回",
         "done": "完成",
         "doneLowercase": "完成",
-        "prev": "PREV",
+        "prev": "前一页",
         "next": "下一步",
-        "nextLowerCase": "Next",
+        "nextLowerCase": "下一页",
         "apply": "应用",
         "save": "保存",
-        "close": "Close",
+        "close": "关闭",
         "continue": "继续",
         "enable": "启用",
         "disable": "停用",
-        "enabled": "Enabled",
-        "disabled": "Disabled",
-        "manualCopy": "Write seed down",
-        "paperWallet": "Print paper copy",
-        "addToPasswordManager": "Add to password manager",
-        "shareSeed": "Share seed",
-        "proceed": "Proceed",
+        "enabled": "已启用",
+        "disabled": "已禁用",
+        "manualCopy": "记下种子",
+        "paperWallet": "打印副本",
+        "addToPasswordManager": "添加到密码管理器",
+        "shareSeed": "共享种子",
+        "proceed": "继续操作",
         "qr": "二维码",
         "notAvailable": "此功能不可用",
         "notAvailableExplanation": "它将在稍后阶段添加。",
@@ -61,10 +60,10 @@
         "otherWallet": "其他帐户",
         "yes": "是的",
         "no": "没有",
-        "yesLowerCase": "Yes",
-        "noLowerCase": "No",
-        "okay": "OKAY",
-        "okayLowercase": "Okay",
+        "yesLowerCase": "是",
+        "noLowerCase": "否",
+        "okay": "好的",
+        "okayLowercase": "好的",
         "password": "密码",
         "passwordOrFingerprint": "密码或指纹",
         "unrecognisedPassword": "密码不正确",
@@ -77,10 +76,9 @@
         "node": "节点",
         "cannotPerformAction": "无法执行操作",
         "cannotPerformActionExplanation": "转到高级设置以重置钱包。",
-        "attachToTangleUnavailable": "Remote Proof of Work is unavailable",
-        "attachToTangleUnavailableExplanation":
-            "Remote Proof of Work is not available on your selected node. Either change node or set Proof of Work to Local in Advanced Settings.",
-        "attachToTangleUnavailableExplanationShort": "Remote Proof of Work is not available on your selected node.",
+        "attachToTangleUnavailable": "远程工作证明 (PoW) 不可用",
+        "attachToTangleUnavailableExplanation": "在所选节点上远程工作证明不可用。请更改节点，或者在高级设置中设置为本地进行工作证明。",
+        "attachToTangleUnavailableExplanationShort": "在所选节点上远程工作证明不可用。",
         "wallet": "钱包",
         "sent": "发送",
         "received": "收到",
@@ -92,74 +90,69 @@
         "addresses": "地址",
         "reattach": "重新连接",
         "promote": "提升",
-        "retry": "RETRY",
+        "retry": "重试",
         "rebroadcast": "重新广播",
         "pressBackAgain": "再次按返回关闭应用程序",
-        "reattached": "Successfully reattached transaction",
-        "reattachedExplanation": "Reattached transaction with hash {{hash}}",
-        "promotingTransaction": "Promoting transaction",
+        "reattached": "重新添加交易成功。",
+        "reattachedExplanation": "重新添加交易的哈希为{{hash}}",
+        "promotingTransaction": "促进交易",
         "autopromoting": "自动提示转移",
         "autopromotingExplanation": "使用哈希{{hash}} 促进事务",
-        "rebroadcasted": "Successfully rebroadcasted transaction",
-        "rebroadcastedExplanation": "Rebroadcasted transaction with hash {{hash}}",
-        "rebroadcastError": "Could not rebroadcast transaction",
-        "rebroadcastErrorExplanation": "Something went wrong while rebroadcasting your transaction. Please try again.",
-        "promoted": "Successfully promoted transaction",
-        "promotedExplanation": "Promoted transaction with hash {{hash}}",
-        "autopromotionError": "Could not auto-promote transaction",
-        "autopromotionErrorExplanation":
-            "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
-        "promotionError": "Could not promote transaction",
-        "promotionErrorExplanation": "Something went wrong while promoting your transaction. Please try again.",
+        "rebroadcasted": "重新广播交易成功。",
+        "rebroadcastedExplanation": "重新广播交易的哈希为{{hash}}",
+        "rebroadcastError": "无法重新广播交易",
+        "rebroadcastErrorExplanation": "重新广播交易时出错，请重试。",
+        "promoted": "成功提升交易",
+        "promotedExplanation": "促进确认的交易哈希为{{hash}}",
+        "autopromotionError": "无法自动提升促进交易",
+        "autopromotionErrorExplanation": "在所选节点上远程工作证明不可用。请更换节点并重新启用自动提升促进交易。",
+        "promotionError": "无法提升促进交易",
+        "promotionErrorExplanation": "在提升促进交易时出错，请重试。",
         "noLongerValid": "您想要提升的捆绑包已经失效",
-        "transactionAlreadyConfirmed": "Transaction already confirmed",
-        "transactionAlreadyConfirmedExplanation": "The transaction you are trying to promote is already confirmed.",
+        "transactionAlreadyConfirmed": "交易已经被确认",
+        "transactionAlreadyConfirmedExplanation": "您要提升的交易已经被确认。",
         "cannotSendToOwn": "发送到自己的地址",
         "cannotSendToOwnExplanation": "您不能转账到您自己的地址。",
         "pleaseWait": "请稍等",
         "pleaseWaitEllipses": "请等待...",
         "pleaseWaitExplanation": "Trinity正在执行另一个功能。请稍候再试一次。",
         "pleaseWaitTransferExplanation": "您的可用余额目前正在其他转帐中使用。请等待确认后再试一次。",
-        "pleaseWaitIncomingTransferExplanation":
-            "You have incoming transfers. Please wait for them to confirm before trying again.",
+        "pleaseWaitIncomingTransferExplanation": "您有进入的转账。请等待他们确认后再重试。",
         "snapshotTransitionInProgress": "正在进行快照转换",
         "snapshotTransitionInProgressExplanation": "请稍候, 直到转换完成。",
         "checkForUpdates": "检查更新",
         "account": "账户",
         "enterPasswordToAccessSettings": "输入密码以访问帐户设置",
         "enterYourPassword": "请输入密码",
-        "changeNode": "Change Node",
-        "addCustomNode": "Add Custom Node",
-        "nodeChanged": "Node changed",
-        "nodeChangedExplanation": "The node has been changed successfully.",
-        "nodeMustUseHTTPS": "Invalid node (non HTTPS)",
-        "nodeMustUseHTTPSExplanation": "Only custom nodes using HTTPS are allowed.",
-        "nodeDuplicated": "Duplicated node",
-        "nodeDuplicatedExplanation": "The custom node is already listed.",
-        "nodeAutoChanged": "Auto-switched node",
-        "nodeAutoChangedExplanation": "Switched to new node {{- nodeAddress}} as selected node is offline.",
-        "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer",
-        "masterKey": "Your IOTA seed is the master key to your funds.",
-        "seedThief": "If someone else has your seed they can steal your IOTA.",
-        "googlePlayServicesNotAvailable": "Google Play Services not available",
-        "couldNotVerifyDeviceIntegrity":
-            "Could not verify device integrity because Google Play Services are not available.",
-        "clear": "CLEAR",
-        "noNetworkConnection": "No network connection",
-        "noNetworkConnectionExplanation": "Your internet connection appears to be offline.",
-        "spentAddressExplanation": "WARNING: Funds on spent addresses",
-        "discordInformation":
-            "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do.",
-        "androidInsecureClipboardWarning": "Android does not provide a secure clipboard.",
-        "androidCopyPasteWarning": "Never copy/paste your seed on an Android device.",
-        "willNotCopyPasteSeed": "I will not copy/paste my seed",
-        "mustBeStoredAppropriately": "It must be stored appropriately.",
-        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while",
-        "isYourBalanceCorrect": "Is your balance correct?",
-        "ifYourBalanceIsNotCorrect":
-            "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
-        "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition.",
-        "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android"
+        "changeNode": "更改节点",
+        "addCustomNode": "添加定制节点",
+        "nodeChanged": "节点已更改",
+        "nodeChangedExplanation": "节点已经更改成功。",
+        "nodeMustUseHTTPS": "非法节点 (没有HTTPS)",
+        "nodeMustUseHTTPSExplanation": "仅允许使用HTTPS的自定义节点。",
+        "nodeDuplicated": "重复节点",
+        "nodeDuplicatedExplanation": "自定义节点已经列出。",
+        "nodeAutoChanged": "自动切换节点",
+        "nodeAutoChangedExplanation": "当选定的节点离线时切换到新节点{{- nodeAddress}}",
+        "fingerprintOnSend": "请触摸指纹阅读器以授权转账",
+        "masterKey": "您的IOTA种子是你的资金主钥匙。",
+        "seedThief": "如果别人有您的种子，那他们就可以偷走你的IOTA。",
+        "googlePlayServicesNotAvailable": "Google Play服务不可用。",
+        "couldNotVerifyDeviceIntegrity": "因为Google Play服务不可用，无法验证设备完整性。",
+        "clear": "清除",
+        "noNetworkConnection": "没有网络连接",
+        "noNetworkConnectionExplanation": "您的网络连接似乎脱机离线。",
+        "spentAddressExplanation": "警告：资金用于已用地址。",
+        "discordInformation": "从同一地址多次发送是危险的。请到Discord的 #help 频道寻找帮助。",
+        "androidInsecureClipboardWarning": "安卓系统不能提供安全的剪贴板。",
+        "androidCopyPasteWarning": "切勿在安卓设备上复制/粘贴你的种子。",
+        "willNotCopyPasteSeed": "我不会复制/粘贴我的种子。",
+        "mustBeStoredAppropriately": "必须适当地存储种子。",
+        "deviceMayBecomeUnresponsive": "您的设备可能会在一段时间内无法响应。",
+        "isYourBalanceCorrect": "您的余额是正确的吗？",
+        "ifYourBalanceIsNotCorrect": "如果您的余额不正确，很可能您使用的是快照前的种子。",
+        "headToAdvancedSettingsForTransition": "请去高级设置中设置，并执行快照转换。",
+        "usingTrinityWalletWithKeePass": "与Keepass2Android 一同使用 Trinity钱包。"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "种子包含无效字符",
@@ -192,22 +185,21 @@
         "currentPassword": "当前密码",
         "newPassword": "新密码",
         "confirmPassword": "确认新密码",
-        "passwordTooWeak": "Password too weak",
-        "passwordTooWeakReason":
-            "Your password is too weak. Use a combination of words, and avoid common phrases, names or dates",
-        "reasonRow": "Straight rows of keys are easy to guess",
-        "reasonPattern": "Short patterns of keys are easy to guess",
-        "reasonNames": "Common names and surnames are easy to guess",
-        "reasonRepeats": "Repeats like 'aaa' are easy to guess",
-        "reasonRepeats2": "Repeats like 'abcabcabc' are only slightly harder to guess than 'abc'",
-        "reasonSequence": "Sequences like abc or 54321 are easy to guess",
-        "reasonYears": "Recent years are easy to guess",
-        "reasonDates": "Dates are often easy to guess",
-        "reasonTop10": "This is a top 10 common password",
-        "reasonTop100": "This is a top 100 common password",
-        "reasonCommon": "This is a very common password",
-        "reasonSimilar": "This is similar to a commonly-used password",
-        "reasonWord": "A single word is easy to guess"
+        "passwordTooWeak": "您的密码太弱。",
+        "passwordTooWeakReason": "您的密码太弱。请使用单词组合，避免使用常用短语，名字或者日期。",
+        "reasonRow": "键盘上直排顺序的字母易于被猜测到。",
+        "reasonPattern": "较短的种子模式易于被猜测到。",
+        "reasonNames": "常见的名字和姓氏很容易被猜测到。",
+        "reasonRepeats": "像'aaa'这种重复组合很容易被猜测到。",
+        "reasonRepeats2": "像‘abcabcabc'这种重复仅仅是比'abc'这种模式稍微难一点被猜测到。",
+        "reasonSequence": "像'abc'或者 '54321'这种顺序模式很容易被猜测到。",
+        "reasonYears": "最近的年份很容易被猜测到。",
+        "reasonDates": "日期通常很容易被猜测到。",
+        "reasonTop10": "这是最常见的10个密码",
+        "reasonTop100": "这是最常见的100个密码",
+        "reasonCommon": "这是非常常见的密码",
+        "reasonSimilar": "这类似于常见的密码",
+        "reasonWord": "单个单词容易被猜测到。"
     },
     "copyToClipboard": {
         "seedCleared": "种子已清除",
@@ -215,28 +207,25 @@
         "seedCopied": "将种子复制到剪贴板",
         "seedCopiedExplanation": "只要按下\"完成\"或60秒后种子将被清除",
         "clickToCopy": "点击下面的按钮将种子复制到密码管理器",
-        "clickToSecurelyShare": "Click the button below to securely share your seed to a password manager.",
+        "clickToSecurelyShare": "单击下面的按钮，将您的种子安全地与密码管理器共享。",
         "doNotStore": "不要将您的种子保存在纯文本文件中。",
-        "copyToClipboard": "Copy Seed",
+        "copyToClipboard": "复制种子",
         "shareSeed": "将种子共享到安全密码管理器中",
-        "storeEncrypted": "Store your seed encrypted in a password manager.",
-        "doNotOpen": "Do not open any other apps during this process.",
-        "tapConfirm": "Please tap the checkbox below to confirm.",
-        "passwordManagerCheckbox": "I will store my seed in a password manager",
-        "copy": "COPY",
-        "noPasswordManagers": "No supported password managers installed",
-        "noPasswordManagersExplanation":
-            "No supported password managers were found on your device. Please install Keepass2Android.",
-        "followTutorialToSecurelyShareSeed":
-            "If you wish to store your seed in a password manager, you must follow a tutorial from the following link"
+        "storeEncrypted": "将您的种子加密保存在密码管理器中。",
+        "doNotOpen": "在此过程中，请勿打开其他任何应用程序。",
+        "tapConfirm": "请勾选下面的复选框予以确认。",
+        "passwordManagerCheckbox": "我会把我的种子存储在密码管理器中",
+        "copy": "复制",
+        "noPasswordManagers": "未安装支持的密码管理器",
+        "noPasswordManagersExplanation": "在您的设备上找不到支持的密码管理器。请安装 Keepass2Android。",
+        "followTutorialToSecurelyShareSeed": "如果您希望将您的种子存储在密码管理器中, 请务必遵循以下链接中的教程"
     },
     "enterSeed": {
         "invalidCharacters": "种子包含无效字符",
         "invalidCharactersExplanation": "种子只能由大写A-Z字母和数字9组成。您的种子包含无效字符。请再试一遍。",
         "seedTooShort": "种子太短",
         "seedTooShortExplanation": "种子长度必须为{{maxLength}} 。您的种子当前为{{currentLength}} 个字符。请重试。",
-        "seedExplanation":
-            "种子的长度应该有{{maxLength}} 个字符，包含大写字母 A - Z 或者数字9。您不能使用超过 {{maxLength}} 个字符。",
+        "seedExplanation": "种子的长度应该有{{maxLength}} 个字符，包含大写字母 A - Z 或者数字9。您不能使用超过 {{maxLength}} 个字符。",
         "neverShare": "永远不要与任何人分享你的种子"
     },
     "home": {
@@ -248,16 +237,16 @@
     },
     "languageSetup": {
         "language": "语言",
-        "letsGetStarted": "Let's get started"
+        "letsGetStarted": "让我们开始吧！"
     },
     "login": {
         "emptyPassword": "密码为空",
         "emptyPasswordExplanation": "您必须输入密码才能登录。请重试。",
         "enterPassword": "请输入您的密码.",
         "useSeed": "使用种子",
-        "login": "Log In",
+        "login": "登录",
         "selectDifferentNode": "是否要选择其他节点？",
-        "setNode": "Set Node",
+        "setNode": "设置节点",
         "cannotConnect": "无法连接到IOTA节点。"
     },
     "loading": {
@@ -265,21 +254,21 @@
         "thisMayTake": "可能需要一段时间",
         "doNotMinimise": "不要最小化或关闭应用程序。",
         "youMayNotice": "您的设备可能会变慢。",
-        "takingAWhile": "This seems to be taking a while"
+        "takingAWhile": "这似乎需要花一些时间"
     },
     "newSeedSetup": {
-        "generatedSeed": "Generated seed",
+        "generatedSeed": "生成的种子",
         "seedNotGenerated": "尚未生成种子",
         "seedNotGeneratedExplanation": "请生成一个新的种子。",
-        "pressForNewSeed": "Press for New Seed",
-        "generateSuccess": "Seed generated successfully",
+        "pressForNewSeed": "点击获得新的种子",
+        "generateSuccess": "种子成功生成",
         "individualLetters": "通过点击各个字母来随机生成。",
-        "individualLetterCount": "Press {{letterCount}} more individual letters to randomise them.",
-        "whatIsASeed": "What is a seed?"
+        "individualLetterCount": "按 {{letterCount}} 个单独的字母随机选择它们。",
+        "whatIsASeed": "什么是种子？"
     },
     "onboardingComplete": {
-        "allDone": "All Done!",
-        "openYourWallet": "Open your wallet",
+        "allDone": "全部完成！",
+        "openYourWallet": "打开你的钱包",
         "walletReady": "钱包现在已设置好并可以使用。如果您需要在将来进行任何更改，请在设置菜单中查找。"
     },
     "paperWallet": {
@@ -287,54 +276,52 @@
         "storeSafely": "妥善保存.",
         "neverShare": "永远不要与任何人分享您的种子。",
         "iotaLogo": "IOTA标志",
-        "printWallet": "Print Paper Wallet",
-        "print": "PRINT",
-        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
-        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
-        "tapCheckboxes": "Please tap the checkboxes below to confirm.",
-        "wifiCheckbox": "I will not print on public wifi",
-        "printerCheckbox": "I will not print on a public printer"
+        "printWallet": "打印纸钱包",
+        "print": "打印",
+        "paperConvenience": "打印一份纸板的种子副本是一种方便的存储方式。",
+        "publicInsecure": "但是在公共Wifi 或者公共打印机上打印是不安全的。",
+        "tapCheckboxes": "请点击下面的复选框确认。",
+        "wifiCheckbox": "我不会通过公共WIFI来连接打印。",
+        "printerCheckbox": "我不会在公共打印机上打印"
     },
     "receive": {
-        "copyAddress": "Copy address",
+        "copyAddress": "复制地址",
         "addressCopied": "已复制地址",
         "addressCopiedExplanation": "您的地址已复制到剪贴板。",
-        "generateNewAddress": "New Address",
+        "generateNewAddress": "新地址",
         "message": "可选消息",
         "removeMessage": "移除消息",
         "noAddresses": "无地址",
         "spent": "支出"
     },
     "saveYourSeed": {
-        "saveYourSeed": "Back up your seed",
-        "seedCleared": "Seed cleared",
-        "mostSecure": "Most Secure",
-        "leastSecure": "Least Secure",
-        "paperWallet": "Paper Wallet",
-        "writeYourSeedDown": "Write your seed down",
-        "printYourSeed": "Print your seed",
-        "digitalCopy": "Digital copy",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
+        "saveYourSeed": "备份您的种子",
+        "seedCleared": "种子已清除",
+        "mostSecure": "最安全的",
+        "leastSecure": "最低安全的",
+        "paperWallet": "纸钱包",
+        "writeYourSeedDown": "写下您的种子",
+        "printYourSeed": "打印您的种子",
+        "digitalCopy": "数字备份",
+        "seedClearedExplanation": "为了安全，已从剪贴板中清除掉了该种子。",
         "iHaveBackedUpMySeed": "我已经保存了我的种子",
-        "letsWriteDownYourSeed": "Lets write down your seed",
-        "youCanHighlightCharacters": "You can highlight 9 characters at a time",
-        "printBlankWallet": "Print a blank wallet",
-        "whatIsCheksum": "Every seed has a corresponding 3 character checksum",
-        "iHavesavedMySeed": "I've saved my seed",
-        "checksumExplanation":
-            "Whenever you add a seed to your wallet, you should ensure that the wallet-generated checksum matches the one you have written down.",
+        "letsWriteDownYourSeed": "让我们记下您的种子",
+        "youCanHighlightCharacters": "您可以一次突出显示9个字符",
+        "printBlankWallet": "打印空白钱包",
+        "whatIsCheksum": "每个种子都有相应的3个字符的校验和。",
+        "iHavesavedMySeed": "我已经保存了我的种子",
+        "checksumExplanation": "当你把种子添加到你的钱包的时候，你应该确保钱包生成的校验码与你已经记下来的校验码是匹配的。",
         "mustSaveYourSeed": "<0> <0> 您必须使用 </0> <1> 至少用下面列出的选项的 </1> <2> 保存种子. </2> </0>"
     },
     "seedReentry": {
-        "pleaseConfirmYourSeed": "Please confirm your seed",
-        "trinityWillNeverAskToReenter":
-            "Trinity will never ask you to re-enter this seed unless you reset your wallet or the app.",
-        "enterYourSeed": "Enter your seed",
+        "pleaseConfirmYourSeed": "请确认你的种子",
+        "trinityWillNeverAskToReenter": "三体钱包不会要求你重新输入种子，除非你重置了你的钱包或者应用程序。",
+        "enterYourSeed": "输入您的种子",
         "incorrectSeed": "错误的种子",
         "incorrectSeedExplanation": "你输入的种子不正确。请再试一次",
         "thisIsACheck": "请确保您已经保存了种子",
         "ifYouHaveNotSaved": "如果你没有保存你的种子, 请返回保存。",
-        "enterSeedBelow": "Enter your newly created seed below to confirm you have backed it up correctly"
+        "enterSeedBelow": "在下面输入你新建的种子以确认您已经正确地备份了该种子。"
     },
     "send": {
         "invalidAddress": "地址无效",
@@ -352,24 +339,22 @@
         "message": "信息",
         "invalidMessage": "无效消息",
         "invalidMessageExplanation": "您的消息中包含无效字符.",
-        "invalidMessageTooLong": "Message too long",
-        "invalidMessageTooLongExplanation": "The message exceeds the max. amount of characters (1093).",
+        "invalidMessageTooLong": "消息太长",
+        "invalidMessageTooLongExplanation": "消息查过了最大允许的字符数量(1093)。",
         "send": "发送",
         "invalidAmount": "输入的金额不正确",
         "invalidAmountExplanation": "请输入有效的交易金额。查看本页底部的IOTA单位说明可能会有所帮助。",
         "maximumSelected": "已选择最大金额",
         "iotaUnits": "IOTA单位解释",
         "sendMax": "全部发送",
-        "totalTime": "Total time",
-        "addressPasteDetected": "Address paste detected",
-        "addressPasteExplanation":
-            "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
+        "totalTime": "总时间",
+        "addressPasteDetected": "检测到地址粘贴",
+        "addressPasteExplanation": "看起来你已经粘贴了地址。请确保该地址与您想要发送的地址是一致的。"
     },
     "setPassword": {
-        "choosePassword": "Choose a new password",
+        "choosePassword": "选择新的密码",
         "passwordTooShort": "密码太短",
-        "passwordTooShortExplanation":
-            "您的密码长度必须为至少{{minLength}} 个字符 。当前为{{currentLength}} 个字符。请重试。",
+        "passwordTooShortExplanation": "您的密码长度必须为至少{{minLength}} 个字符 。当前为{{currentLength}} 个字符。请重试。",
         "passwordMismatch": "密码不相符",
         "passwordMismatchExplanation": "您输入的密码不匹配。请再试一次。",
         "nowWeNeedTo": "现在我们需要设置一个密码。",
@@ -378,7 +363,7 @@
         "retypePassword": "请重新输入密码"
     },
     "setSeedName": {
-        "letsAddName": "Let's add a name",
+        "letsAddName": "让我们加上一个名字",
         "canUseMultipleSeeds": "你可以用这个钱包使用多个种子。每个种子都需要一个帐户名。",
         "youCanAdd": "您可以在设置菜单中添加更多种子。"
     },
@@ -396,8 +381,8 @@
         "mode": "模式",
         "theme": "主题",
         "currency": "货币",
-        "cannotChangeNode": "Cannot change node",
-        "cannotChangeNodeWhileSending": "Cannot change node while sending.",
+        "cannotChangeNode": "无法更改节点",
+        "cannotChangeNodeWhileSending": "在发送时无法更改节点",
         "language": "语言",
         "accountManagement": "帐号管理",
         "addNewSeed": "添加新种子",
@@ -428,39 +413,37 @@
         "selectAll": "全选",
         "securitySettings": "安全设置",
         "fingerprint": "生物识别认证",
-        "couldNotFetchRates": "Could not fetch rate",
-        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rate for {{currency}}.",
-        "fetchedConversionRates": "Fetched conversion rate",
-        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rate for {{currency}}.",
+        "couldNotFetchRates": "无法获取价格",
+        "couldNotFetchRatesExplanation": "获取{{currency}} 价格时发生错误。",
+        "fetchedConversionRates": "提取到转换汇率价格",
+        "fetchedConversionRatesExplanation": "成功获取到{{currency}} 的最新价格。",
         "undo": "撤销",
         "redo": "重做",
-        "aboutTrinity": "About Trinity",
-        "lockScreenTimeout": "Lock Screen Timeout (Minutes)",
-        "autoNodeSwitching": "Automatically switch node when selected is unreachable",
-        "nodeChangeSuccess": "Successfully changed node",
-        "nodeChangeSuccessNoRemotePow":
-            "The node was changed to {{node}}. This node does not support remote Proof of Work.",
-        "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
-        "nodeChangeError": "Error changing node",
-        "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
+        "aboutTrinity": "关于三体钱包",
+        "lockScreenTimeout": "锁定屏幕超时(分钟)",
+        "autoNodeSwitching": "当选定的节点不可访问时自动切换节点。",
+        "nodeChangeSuccess": "成功更改节点",
+        "nodeChangeSuccessNoRemotePow": "节点已经更改为{{node}}。此节点不支持远程工作证明。",
+        "nodeChangeSuccessExplanation": "该节点已经更改为{{node}}。",
+        "nodeChangeError": "更改节点时出错。",
+        "nodeChangeErrorExplanation": "更改节点时出错。请重试。"
     },
     "resetWalletRequirePassword": {
         "enterPassword": "输入您的密码以重置钱包。",
-        "cancel": "Cancel",
+        "cancel": "取消",
         "reset": "重置"
     },
     "walletSetup": {
-        "creatingSeed": "Creating a seed",
+        "creatingSeed": "创建种子",
         "okay": "好，让我们来开始设置您的钱包 ！",
         "doYouAlreadyHaveASeed": "您是否希望使用一个已有的种子？",
-        "doYouNeedASeed": "Do you need to create a new seed?",
+        "doYouNeedASeed": "你需要创建一个新的种子吗？",
         "seedExplanation": "IOTA种子就像您账户的用户名和密码被转化成了一个长度为81个字符的字符串。",
-        "noIHaveOne": "No, I have one",
-        "yesINeedASeed": "Yes, I need a seed",
-        "explanation":
-            "<0> <0> 您可以使用它访问您的资金从 </0> <1> 任何钱包 </1> <2>, 在 </2> <3> 任何设备 </3> <4>。但是, 如果你失去了你的种子, 你也失去了你的丝毫. </4> </0>",
+        "noIHaveOne": "不, 我有一个",
+        "yesINeedASeed": "是的，我需要一个新的种子",
+        "explanation": "<0> <0> 您可以使用它访问您的资金从 </0> <1> 任何钱包 </1> <2>, 在 </2> <3> 任何设备 </3> <4>。但是, 如果你失去了你的种子, 你也失去了你的丝毫. </4> </0>",
         "keepSafe": "请您保管好你的种子.",
-        "hint": "<0><0>Hint:</0> Click NO if this is your first time using IOTA.</0>"
+        "hint": "<0> <0> 提示: </0> 如果这是您第一次使用 IOTA, 请单击 \"否\". </0>"
     },
     "welcome": {
         "thankYou": "感谢下载Trinity",
@@ -473,11 +456,13 @@
     },
     "history": {
         "bundleHashCopied": "绑定哈希值已复制",
+        "noTransactionsFound": "没有找到任何交易",
+        "hideZeroBalance": "隐藏零余额",
         "bundleHashCopiedExplanation": "绑定哈希值已复制到剪贴板。",
         "addressCopied": "已复制地址",
         "addressCopiedExplanation": "地址已复制到剪贴板。",
-        "messageCopied": "Message copied",
-        "messageCopiedExplanation": "The message has been copied to the clipboard.",
+        "messageCopied": "消息已复制",
+        "messageCopiedExplanation": "消息已经被复制到剪贴板中了。",
         "send": "发送",
         "receive": "接收"
     },
@@ -489,15 +474,15 @@
         "addNewAccount": "添加新帐户"
     },
     "addCustomNode": {
-        "customNodeAdded": "Custom node added",
-        "customNodeCouldNotBeAdded": "Custom node could not be added",
-        "customNodeAddedSuccessfully": "The custom node has been added successfully.",
+        "customNodeAdded": "已添加自定义节点",
+        "customNodeCouldNotBeAdded": "无法添加自定义节点",
+        "customNodeAddedSuccessfully": "已成功添加自定义节点。",
         "customNode": "自定义节点",
-        "invalidNodeResponse": "The node returned an invalid response",
-        "httpNodeError": "Trinity Mobile only supports https nodes.",
+        "invalidNodeResponse": "节点返回无效响应",
+        "httpNodeError": "三体钱包移动版只支持https节点",
         "add": "新增",
-        "nodeFieldEmpty": "Text field is empty",
-        "nodeFieldEmptyExplanation": "Please enter a custom node."
+        "nodeFieldEmpty": "文本字段为空",
+        "nodeFieldEmptyExplanation": "请输入自定义节点。"
     },
     "addNewAccount": {
         "useExistingSeed": "使用现有种子",
@@ -508,11 +493,10 @@
         "addCustomNode": "添加自定义节点",
         "manualSync": "手动同步",
         "snapshotTransition": "快照转换",
-        "pow": "Proof of Work",
-        "autoPromotion": "Auto-promotion",
-        "autoPromotionExplanation":
-            "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
-        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
+        "pow": "工作证明",
+        "autoPromotion": "自动提升促进",
+        "autoPromotionExplanation": "自动提升促进有助于您的交易在缠结中被确认。如果您的交易确认存在苦难，请启用此设置。",
+        "autoPromotionPoW": "只有支持远程工作证明的节点才可以进行交易的自动提升促进。"
     },
     "advancedThemeCustomisation": {
         "background": "背景",
@@ -539,13 +523,12 @@
         "one": "一"
     },
     "usedAddressModal": {
-        "cantSpendFullBalanceQuestion": "Why can't I spend my full balance?",
-        "spentAddressExplanation":
-            "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
-        "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
+        "cantSpendFullBalanceQuestion": "为什么我不能够使用全部余额？",
+        "spentAddressExplanation": "你有资金在一个或者多个已用的地址上。在IOTA中地址重用是危险的，因此钱包不允许你多次从同一个地址中发送交易。",
+        "discordInformation": "请到 Discord中的#help 频道找出你能做什么。"
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Are you sure you want to delete</1><2></2><3>{{accountName}}?</3>",
+        "areYouSure": "<0> </0> <1> 是否确认要删除 </1> <2> </2> <3>{{accountName}}?</3>",
         "yourSeedWillBeRemoved": "您的种子和交易记录将被删除。",
         "thisAction": "本操作无法撤销。",
         "enterPassword": "请输入您的密码以确认将帐号删除。"
@@ -555,50 +538,47 @@
         "pressToSync": "点击下面按钮以同步您的帐户。",
         "thisMayTake": "这可能需要一段时间。你可能注意到你的设备变慢了。",
         "doNotClose": "请注意, 最小化应用程序将取消同步。",
-        "syncAccount": "Sync Account",
+        "syncAccount": "同步账户",
         "syncingYourAccount": "正在同步您的账号"
     },
     "useExistingSeed": {
         "title": "输入种子和帐户名称。",
-        "incorrectFormat": "Incorrect seed format",
-        "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
+        "incorrectFormat": "种子格式不正确",
+        "validSeedExplanation": "有效的种子应该是81个字符，并且只包含 A-Z 或9。"
     },
     "viewSeed": {
         "enterPassword": "输入密码查看您的种子。",
-        "viewSeed": "View Seed",
-        "hideSeed": "Hide Seed"
+        "viewSeed": "查看种子",
+        "hideSeed": "隐藏种子"
     },
     "saveSeedConfirmation": {
-        "didSaveSeed": "Did you back up your seed?",
+        "didSaveSeed": "您把你的种子备份了吗？",
         "alreadyHave": "我已经保存了我的种子",
-        "reenterSeed": "At the next step you will be asked to re-enter your seed.",
-        "reenterSeedWarning":
-            "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
-        "pleaseConfirm": "Please confirm you have securely stored your seed."
+        "reenterSeed": "在下一步，您讲被要求重新输入您的种子。",
+        "reenterSeedWarning": "如果你没有备份你的种子，当你的设备失败的话, 你就会失去你的IOTA。",
+        "pleaseConfirm": "请确认您已安全地储存了您的种子。"
     },
     "walletResetConfirmation": {
         "cannotUndo": "此操作无法撤消",
-        "warning":
-            "<0><0>所有的钱包数据，包括你的 </0><1> 密码,</1><2> 和 </2><3> 其他帐户信息</3><4> 会丢失的。</4></0>"
+        "warning": "<0><0>所有的钱包数据，包括你的 </0><1> 密码,</1><2> 和 </2><3> 其他帐户信息</3><4> 会丢失的。</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Touch fingerprint reader to enable fingerprint authentication",
-        "instructionsDisable": "Touch fingerprint reader to disable fingerprint authentication",
-        "fingerprintAuthEnabled": "Biometric authentication enabled",
-        "fingerprintAuthEnabledExplanation": "You have successfully enabled biometric authentication.",
-        "fingerprintAuthDisabled": "Biometric authentication disabled",
-        "fingerprintAuthDisabledExplanation": "You have successfully disabled biometric authentication.",
-        "fingerprintAuthFailed": "Biometric authentication failed",
+        "instructionsEnable": "触摸指纹阅读器以启用指纹验证。",
+        "instructionsDisable": "触摸指纹读取器以禁用指纹认证",
+        "fingerprintAuthEnabled": "已启用生物识别身份验证",
+        "fingerprintAuthEnabledExplanation": "您已成功启用生物识别身份验证。",
+        "fingerprintAuthDisabled": "已禁用生物识别身份验证",
+        "fingerprintAuthDisabledExplanation": "您已成功禁用生物识别身份验证。",
+        "fingerprintAuthFailed": "生物识别认证失败",
         "fingerprintAuthFailedExplanation": "指纹验证失败。请重试。",
         "status": "状态",
-        "fingerprintUnavailable": "Biometric authentication unavailable",
-        "fingerprintUnavailableExplanation":
-            "Your device does not support biometric authentication or it has not been configured in the device settings.",
+        "fingerprintUnavailable": "生物识别身份验证不可用",
+        "fingerprintUnavailableExplanation": "您的设备不支持生物识别身份验证, 或者它尚未在设备设置中配置。",
         "buttonInstructionsDisable": "点击下面的按钮禁用指纹身份验证。",
         "buttonInstructionsEnable": "点击下面的按钮启用指纹身份验证。",
-        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID.",
-        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID.",
-        "instructionsLogin": "Touch fingerprint reader to log in"
+        "buttonInstructionsDisableIPhoneX": "按下按钮以禁用Face ID。",
+        "buttonInstructionsEnableIPhoneX": "按下按钮以启用Face ID。",
+        "instructionsLogin": "触摸指纹读取器登录"
     },
     "transferConfirmation": {
         "youAreAbout": "您将发送{{contents}} 到地址",
@@ -616,23 +596,23 @@
         "twoFAEnabled": "2FA 现在已启用",
         "twoFAEnabledExplanation": "您已成功启用了双因子验证（2FA）。",
         "twoFADisabled": "2FA 现在已禁用",
-        "twoFADisabledExplanation": "You have successfully disabled Two Factor Authentication.",
+        "twoFADisabledExplanation": "您已成功禁用了双重身份验证。",
         "enterCode": "输入您的2FA 应用程序中的验证码",
         "code": "验证码",
-        "twoFaToken": "2FA Token"
+        "twoFaToken": "2FA两步认证令牌"
     },
     "chart": {
-        "mcap": "MCAP",
+        "mcap": "市值",
         "change": "变化率",
         "volume": "交易量(24h)",
-        "currentValue": "Current value",
-        "error": "Error fetching chart data"
+        "currentValue": "当前值",
+        "error": "获取图标数据时出错"
     },
     "rootDetection": {
         "warning": "警告",
-        "appearsRooted": "Your device appears to be rooted.",
-        "securityRisk": "This can pose a significant risk to the security of your wallet.",
-        "continueDepsiteRisk": "Do you wish to continue despite this risk?"
+        "appearsRooted": "您的设备似乎已经root过了。",
+        "securityRisk": "这可能会对你的钱包安全造成很大的风险。",
+        "continueDepsiteRisk": "尽管有此风险，您是否仍要继续？"
     },
     "pow": {
         "feeless": "有必要完成一点工作量证明来在IOTA中发送免收手续费的事务",
@@ -641,15 +621,15 @@
         "remote": "远程",
         "powUpdated": "工作量证明设置",
         "powUpdatedExplanation": "您的工作量证明配置已更新",
-        "noWebGLSupport": "WebGL not supported",
-        "noWebGLSupportExplanation": "Your computer does not support WebGL. Please use remote PoW."
+        "noWebGLSupport": "不支持WebGL",
+        "noWebGLSupportExplanation": "您的计算机不支持WebGL。请使用远程PoW。"
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Auto-promotion settings",
-        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
+        "autoPromotionUpdated": "自动提升促进设置。",
+        "autoPromotionUpdatedExplanation": "您的自动提升促进配置已经更新。"
     },
     "progressSteps": {
-        "checkingNodeHealth": "Checking node health",
+        "checkingNodeHealth": "检查节点运行状况。",
         "validatingReceiveAddress": "验证接收地址",
         "syncingAccount": "正在同步账户",
         "preparingInputs": "准备输入",
@@ -663,39 +643,38 @@
         "cannotCompleteTransitionExplanation": "您的余额必须大于0才能完成事务。",
         "transitionComplete": "快照转换完成。",
         "transitionCompleteExplanation": "快照转换已成功完成。",
-        "detectedBalance": "Detected balance: {{amount}} {{unit}}",
+        "detectedBalance": "检测到的余额：{{amount}}{{unit}}",
         "isThisCorrect": "对吗？",
-        "snapshotExplanation": "Every so often, a snapshot is performed to prune the size of the Tangle.",
-        "hasSnapshotTakenPlace": "Has a snapshot taken place? Press the button below to transition.",
-        "transition": "Transition",
-        "transitioning": "Transitioning for the snapshot.",
-        "generatingAndDetecting": "Generating addresses and detecting balance.",
-        "attaching": "Attaching addresses to Tangle."
+        "snapshotExplanation": "经常会执行快照来修剪缠结的大小。",
+        "hasSnapshotTakenPlace": "是否已经发生快照？请点击下面的按钮来进行转换。",
+        "transition": "转换",
+        "transitioning": "正在转换快照。",
+        "generatingAndDetecting": "生成地址并正在检测余额。",
+        "attaching": "将地址添加到缠结中。"
     },
     "deepLink": {
-        "autofill": "Autofill success",
-        "autofillExplanation": "Transaction data autofilled from link."
+        "autofill": "自动填充成功",
+        "autofillExplanation": "从连接中自动填充了交易数据。"
     },
     "updates": {
-        "errorRetrievingUpdateData": "Error retrieving update data",
-        "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
-        "noUpdatesAvailable": "No updates available",
-        "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
-        "newVersionAvailable": "New version available",
-        "newVersionAvailableExplanation":
-            "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
-        "downloadRelease": "Download release",
-        "skipUpdate": "Skip update"
+        "errorRetrievingUpdateData": "提取更新数据时发生错误",
+        "errorRetrievingUpdateDataExplanation": "检索更新数据时出错。请重试。",
+        "noUpdatesAvailable": "没有可用的更新",
+        "noUpdatesAvailableExplanation": "你已经得到了最新版本的IOTA 三体桌面钱包!",
+        "newVersionAvailable": "新版本可用",
+        "newVersionAvailableExplanation": "新的 <strong>三体</strong> <strong>{{version}}</strong> 版本可用。请仔细阅读软件发布详细信息, 并在更新前验证下载源:",
+        "downloadRelease": "下载软件的发布版本",
+        "skipUpdate": "忽略更新"
     },
     "notificationLog": {
-        "errorLog": "ERROR LOG"
+        "errorLog": "错误日志"
     },
     "terms": {
-        "termsAndConditions": "Terms & Conditions",
-        "accept": "I accept"
+        "termsAndConditions": "条款和条件",
+        "accept": "我接受"
     },
     "privacyPolicy": {
-        "privacyPolicy": "Privacy Policy",
-        "agree": "I agree"
+        "privacyPolicy": "隐私政策",
+        "agree": "我同意"
     }
 }
