@@ -280,9 +280,9 @@
         "print": "打印",
         "paperConvenience": "打印一份纸板的种子副本是一种方便的存储方式。",
         "publicInsecure": "但是在公共Wifi 或者公共打印机上打印是不安全的。",
-        "tapCheckboxes": "Please tap the checkboxes below to confirm.",
-        "wifiCheckbox": "I will not print on public wifi",
-        "printerCheckbox": "I will not print on a public printer"
+        "tapCheckboxes": "请点击下面的复选框确认。",
+        "wifiCheckbox": "我不会通过公共WIFI来连接打印。",
+        "printerCheckbox": "我不会在公共打印机上打印"
     },
     "receive": {
         "copyAddress": "复制地址",
@@ -310,18 +310,18 @@
         "printBlankWallet": "打印空白钱包",
         "whatIsCheksum": "每个种子都有相应的3个字符的校验和。",
         "iHavesavedMySeed": "我已经保存了我的种子",
-        "checksumExplanation": "Whenever you add a seed to your wallet, you should ensure that the wallet-generated checksum matches the one you have written down.",
+        "checksumExplanation": "当你把种子添加到你的钱包的时候，你应该确保钱包生成的校验码与你已经记下来的校验码是匹配的。",
         "mustSaveYourSeed": "<0> <0> 您必须使用 </0> <1> 至少用下面列出的选项的 </1> <2> 保存种子. </2> </0>"
     },
     "seedReentry": {
-        "pleaseConfirmYourSeed": "Please confirm your seed",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or the app.",
+        "pleaseConfirmYourSeed": "请确认你的种子",
+        "trinityWillNeverAskToReenter": "三体钱包不会要求你重新输入种子，除非你重置了你的钱包或者应用程序。",
         "enterYourSeed": "输入您的种子",
         "incorrectSeed": "错误的种子",
         "incorrectSeedExplanation": "你输入的种子不正确。请再试一次",
         "thisIsACheck": "请确保您已经保存了种子",
         "ifYouHaveNotSaved": "如果你没有保存你的种子, 请返回保存。",
-        "enterSeedBelow": "Enter your newly created seed below to confirm you have backed it up correctly"
+        "enterSeedBelow": "在下面输入你新建的种子以确认您已经正确地备份了该种子。"
     },
     "send": {
         "invalidAddress": "地址无效",
@@ -340,16 +340,16 @@
         "invalidMessage": "无效消息",
         "invalidMessageExplanation": "您的消息中包含无效字符.",
         "invalidMessageTooLong": "消息太长",
-        "invalidMessageTooLongExplanation": "The message exceeds the max. amount of characters (1093).",
+        "invalidMessageTooLongExplanation": "消息查过了最大允许的字符数量(1093)。",
         "send": "发送",
         "invalidAmount": "输入的金额不正确",
         "invalidAmountExplanation": "请输入有效的交易金额。查看本页底部的IOTA单位说明可能会有所帮助。",
         "maximumSelected": "已选择最大金额",
         "iotaUnits": "IOTA单位解释",
         "sendMax": "全部发送",
-        "totalTime": "Total time",
-        "addressPasteDetected": "Address paste detected",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
+        "totalTime": "总时间",
+        "addressPasteDetected": "检测到地址粘贴",
+        "addressPasteExplanation": "看起来你已经粘贴了地址。请确保该地址与您想要发送的地址是一致的。"
     },
     "setPassword": {
         "choosePassword": "选择新的密码",
@@ -437,10 +437,10 @@
         "creatingSeed": "创建种子",
         "okay": "好，让我们来开始设置您的钱包 ！",
         "doYouAlreadyHaveASeed": "您是否希望使用一个已有的种子？",
-        "doYouNeedASeed": "Do you need to create a new seed?",
+        "doYouNeedASeed": "你需要创建一个新的种子吗？",
         "seedExplanation": "IOTA种子就像您账户的用户名和密码被转化成了一个长度为81个字符的字符串。",
-        "noIHaveOne": "No, I have one",
-        "yesINeedASeed": "Yes, I need a seed",
+        "noIHaveOne": "不, 我有一个",
+        "yesINeedASeed": "是的，我需要一个新的种子",
         "explanation": "<0> <0> 您可以使用它访问您的资金从 </0> <1> 任何钱包 </1> <2>, 在 </2> <3> 任何设备 </3> <4>。但是, 如果你失去了你的种子, 你也失去了你的丝毫. </4> </0>",
         "keepSafe": "请您保管好你的种子.",
         "hint": "<0><0>Hint:</0> Click NO if this is your first time using IOTA.</0>"
@@ -456,13 +456,13 @@
     },
     "history": {
         "bundleHashCopied": "绑定哈希值已复制",
-        "noTransactionsFound": "No transactions found",
-        "hideZeroBalance": "Hide zero balance",
+        "noTransactionsFound": "没有找到任何交易",
+        "hideZeroBalance": "隐藏零余额",
         "bundleHashCopiedExplanation": "绑定哈希值已复制到剪贴板。",
         "addressCopied": "已复制地址",
         "addressCopiedExplanation": "地址已复制到剪贴板。",
-        "messageCopied": "Message copied",
-        "messageCopiedExplanation": "The message has been copied to the clipboard.",
+        "messageCopied": "消息已复制",
+        "messageCopiedExplanation": "消息已经被复制到剪贴板中了。",
         "send": "发送",
         "receive": "接收"
     },
@@ -474,15 +474,15 @@
         "addNewAccount": "添加新帐户"
     },
     "addCustomNode": {
-        "customNodeAdded": "Custom node added",
-        "customNodeCouldNotBeAdded": "Custom node could not be added",
-        "customNodeAddedSuccessfully": "The custom node has been added successfully.",
+        "customNodeAdded": "已添加自定义节点",
+        "customNodeCouldNotBeAdded": "无法添加自定义节点",
+        "customNodeAddedSuccessfully": "已成功添加自定义节点。",
         "customNode": "自定义节点",
-        "invalidNodeResponse": "The node returned an invalid response",
-        "httpNodeError": "Trinity Mobile only supports https nodes.",
+        "invalidNodeResponse": "节点返回无效响应",
+        "httpNodeError": "三体钱包移动版只支持https节点",
         "add": "新增",
-        "nodeFieldEmpty": "Text field is empty",
-        "nodeFieldEmptyExplanation": "Please enter a custom node."
+        "nodeFieldEmpty": "文本字段为空",
+        "nodeFieldEmptyExplanation": "请输入自定义节点。"
     },
     "addNewAccount": {
         "useExistingSeed": "使用现有种子",
