@@ -5,7 +5,7 @@
         "continue?": "Ar tikrai norite tęsti?",
         "noTransactions": "ISTORIJOS NĖRA",
         "refresh": "Atnaujinti",
-        "balanceError": "Nepakankamas likutis sąskaitoje",
+        "balanceError": "Nepakankamas likutis",
         "balanceErrorMessage": "Nepakankamas IOTA likutis šiam pavedimui atlikti.",
         "transferError": "Pavedimo klaida",
         "transferErrorMessage": "Įvyko klaida apdorojant jūsų pavedimą. Bandykite dar kartą.",
@@ -17,14 +17,11 @@
         "keyReuseError": "Negalima atlikti pavedimo adresu, iš kurio jau buvo atliktas pavedimas.",
         "invalidResponse": "Serverio klaida",
         "invalidResponseExplanation": "Įvyko serverio klaida. Bandykite pakeisti serverį.",
-        "invalidResponsePollingExplanation":
-            "Siunčiant jūsų duomenis įvyko serverio klaida. Bandykite pakeisti serverį.",
-        "invalidResponseFetchingAccount":
-            "Užkraunant jūsų paskyros informaciją įvyko serverio klaida. Bandykite pakeisti serverį.",
+        "invalidResponsePollingExplanation": "Siunčiant jūsų duomenis įvyko serverio klaida. Bandykite pakeisti serverį.",
+        "invalidResponseFetchingAccount": "Užkraunant jūsų paskyros informaciją įvyko serverio klaida. Bandykite pakeisti serverį.",
         "invalidResponseSendingTransfer": "Apdorojant pavedimą įvyko serverio klaida. Bandykite pakeisti serverį.",
         "nodeOutOfSync": "Serveris nesinchronizuotas",
-        "nodeOutOfSyncExplanation":
-            "Jūsų pasirinktas serveris nesinchronizuotas. Pakeiskite serverį arba bandykite dar kartą.",
+        "nodeOutOfSyncExplanation": "Jūsų pasirinktas serveris nesinchronizuotas. Pakeiskite serverį arba bandykite dar kartą.",
         "thisNodeOutOfSync": "Šis serveris nesinchronizuotas. Pakeiskite serverį arba bandykite dar kartą.",
         "seed": "Užraktas",
         "checksum": "Kontrolinė suma",
@@ -72,17 +69,15 @@
         "unrecognisedPassword": "Slaptažodis neatpažintas",
         "unrecognisedPasswordExplanation": "Slaptažodis neatpažintas. Bandykite dar kartą.",
         "syncInProgress": "Sinchronizuojama",
-        "syncInProgressExplanation": "Prašome palaukti, kol sinchronizacija bus baigta.",
+        "syncInProgressExplanation": "Palaukite, kol sinchronizacija bus baigta.",
         "somethingWentWrong": "Įvyko klaida",
         "somethingWentWrongRestart": "Paleiskite programėlę iš naujo.",
         "somethingWentWrongTryAgain": "Bandykite dar kartą.",
         "node": "Serveris",
         "cannotPerformAction": "Šio veiksmo atlikti negalima",
-        "cannotPerformActionExplanation":
-            "Eikite į išplėstinius parametrus, norėdami iš naujo atlikti piniginės nustatymus.",
+        "cannotPerformActionExplanation": "Eikite į išplėstinius parametrus, norėdami iš naujo atlikti piniginės nustatymus.",
         "attachToTangleUnavailable": "Nuotolinis skaičiavimas negalimas",
-        "attachToTangleUnavailableExplanation":
-            "Nuotolinis skaičiavimas negalimas su jūsų pasirinktu serveriu. Pakeiskite serverį arba nustatykite lokalų skaičiavimą išplėstiniuose parametruose.",
+        "attachToTangleUnavailableExplanation": "Nuotolinis skaičiavimas negalimas su jūsų pasirinktu serveriu. Pakeiskite serverį arba nustatykite lokalų skaičiavimą išplėstiniuose parametruose.",
         "attachToTangleUnavailableExplanationShort": "Nuotolinis skaičiavimas negalimas su jūsų pasirinktu serveriu.",
         "wallet": "Piniginė",
         "sent": "Išsiųsta",
@@ -95,13 +90,13 @@
         "addresses": "Adresai",
         "reattach": "PRIJUNGTI IŠ NAUJO",
         "promote": "IŠKELTI",
-        "retry": "BANDYKITE DAR KARTĄ",
+        "retry": "BANDYTI DAR KARTĄ",
         "rebroadcast": "TRANSLIUOTI IŠ NAUJO",
         "pressBackAgain": "Spauskite atgal, norėdami uždaryti programėlę",
         "reattached": "Pavedimas sėkmingai prijungtas",
         "reattachedExplanation": "Pavedimas prijungtas su šifru {{hash}}",
         "promotingTransaction": "Pavedimas iškeliamas",
-        "autopromoting": "Automatinis pavedimo iškelimas",
+        "autopromoting": "Automatinis pavedimo iškėlimas",
         "autopromotingExplanation": "Pavedimas iškeliamas naudojant šifrą {{hash}}",
         "rebroadcasted": "Pavedimas sėkmingai ištransliuotas",
         "rebroadcastedExplanation": "Pavedimas ištransliuotas su šifru {{hash}}",
@@ -110,24 +105,21 @@
         "promoted": "Pavedimas sėkmingai iškeltas",
         "promotedExplanation": "Pavedimas iškeltas su šifru {{hash}}",
         "autopromotionError": "Automatiškai iškelti pavedimo nepavyko",
-        "autopromotionErrorExplanation":
-            "Nuotolinis skaičiavimas negalimas su pasirinktu serveriu. Pakeiskite serverį ir iš naujo įjunkite automatinį iškėlimą.",
+        "autopromotionErrorExplanation": "Nuotolinis skaičiavimas negalimas su pasirinktu serveriu. Pakeiskite serverį ir iš naujo įjunkite automatinį iškėlimą.",
         "promotionError": "Pavedimo iškelti nepavyko",
         "promotionErrorExplanation": "Įvyko klaida iškeliant jūsų pavedimą. Bandykite dar kartą.",
-        "noLongerValid": "Paketas, kurį norite iškelti yra nepasiekamas",
+        "noLongerValid": "Paketas, kurį norite iškelti yra nepasiekiamas",
         "transactionAlreadyConfirmed": "Šis pavedimas jau patvirtintas",
         "transactionAlreadyConfirmedExplanation": "Pavedimas, kurį bandote iškelti jau yra patvirtintas.",
-        "cannotSendToOwn": "Gavėjo adresas sutampa su siuntėjo adresu",
+        "cannotSendToOwn": "Gavėjo adresas sutampa su siuntėjo",
         "cannotSendToOwnExplanation": "Į savo adresą atlikti pavedimo negalima.",
         "pleaseWait": "Prašome palaukti",
         "pleaseWaitEllipses": "Prašome palaukti...",
         "pleaseWaitExplanation": "Trinity atlieka kitą veiksmą. Prašome palaukti ir bandyti dar kartą.",
-        "pleaseWaitTransferExplanation":
-            "Jūsų balansas yra kitų pavedimų apdorojimo procese. Prašome palaukti, kol vienas iš tų pavedimų bus atliktas ir bandykite dar kartą.",
-        "pleaseWaitIncomingTransferExplanation":
-            "Jūs turite ateinančių pavedimų. Palaukite kol jie bus patvirtinti ir tada bandykite dar kartą.",
+        "pleaseWaitTransferExplanation": "Jūsų balansas yra kitų pavedimų apdorojimo procese. Palaukite, kol vienas iš tų pavedimų bus atliktas ir bandykite dar kartą.",
+        "pleaseWaitIncomingTransferExplanation": "Jūs turite ateinančių pavedimų. Palaukite kol jie bus patvirtinti ir bandykite dar kartą.",
         "snapshotTransitionInProgress": "Vyksta tinklo duomenų perkėlimas",
-        "snapshotTransitionInProgressExplanation": "Prašome palaukti, kol perkėlimas bus baigtas.",
+        "snapshotTransitionInProgressExplanation": "Palaukite, kol perkėlimas bus baigtas.",
         "checkForUpdates": "Tikrinti, ar yra atnaujinimų",
         "account": "Paskyra",
         "enterPasswordToAccessSettings": "Įveskite slaptažodį, kad gautumėte prieigą prie nustatymų",
@@ -135,44 +127,38 @@
         "changeNode": "Pakeisti serverį",
         "addCustomNode": "Pridėti vartotojo serverį",
         "nodeChanged": "Serveris pakeistas",
-        "nodeChangedExplanation": "Serveris buvo sėkmingai pakeistas.",
+        "nodeChangedExplanation": "Serveris sėkmingai pakeistas.",
         "nodeMustUseHTTPS": "Neteisingas serveris (ne HTTPS)",
         "nodeMustUseHTTPSExplanation": "Vartotojo serveriai galimi tik naudojantys HTTPS.",
         "nodeDuplicated": "Dubliuotas serveris",
         "nodeDuplicatedExplanation": "Toks vartotojo serveris jau yra įvestas.",
         "nodeAutoChanged": "Automatiškai pakeistas serveris",
-        "nodeAutoChangedExplanation":
-            "Pakeista į naują serverį {{- nodeAddress}}, nes pasirinktas serveris nepasiekiamas.",
+        "nodeAutoChangedExplanation": "Pakeista į naują serverį {{- nodeAddress}}, nes pasirinktas serveris nepasiekiamas.",
         "fingerprintOnSend": "Palieskite piršto antspaudo skaitytuvą, norėdami patvirtinti pavedimą",
         "masterKey": "Jūsų IOTA užraktas yra pagrindinis raktas į jūsų lėšas.",
         "seedThief": "Jeigu kas nors sužinos jūsų užraktą, jie galės pavogti jūsų IOTA.",
         "googlePlayServicesNotAvailable": "Google Play paslaugos nepasiekiamos",
-        "couldNotVerifyDeviceIntegrity":
-            "Įrenginio vientisumo patvirtinti nepavyksta, nes Google Play paslaugos nepasiekiamos.",
+        "couldNotVerifyDeviceIntegrity": "Įrenginio vientisumo patvirtinti nepavyksta, nes Google Play paslaugos nepasiekiamos.",
         "clear": "IŠVALYTI",
         "noNetworkConnection": "Nėra tinklo ryšio",
         "noNetworkConnectionExplanation": "Panašu, kad jūsų interneto ryšys atjungtas.",
         "spentAddressExplanation": "ĮSPĖJIMAS: Lėšos panaudotame adrese",
-        "discordInformation":
-            "Pinigų siuntimas iš to pačio adreso daugiau nei kartą yra nesaugus. Keliaukite į #help kanalą Discord programoje norėdami sužinoti ką daryti tokiu atveju.",
+        "discordInformation": "Pinigų siuntimas iš to pačio adreso daugiau nei kartą yra nesaugus. Keliaukite į #help kanalą Discord programoje norėdami sužinoti ką daryti tokiu atveju.",
         "androidInsecureClipboardWarning": "Android nesuteikia saugios iškarpinės.",
         "androidCopyPasteWarning": "Kopijuoti/Įklijuoti užraktą su Android įrenginiu nerekomenduojama.",
         "willNotCopyPasteSeed": "Aš nekopijuosiu/neįklijuosiu užrakto",
         "mustBeStoredAppropriately": "Jis privalo būti tinkamai laikomas.",
         "deviceMayBecomeUnresponsive": "Jūsų įrenginys kurį laiką gali neatsakyti į užklausas",
         "isYourBalanceCorrect": "Ar jūsų balansas teisingas?",
-        "ifYourBalanceIsNotCorrect":
-            "Jeigu jūsų balansas neteisingas, tikriausiai jūsų naudojamas užraktas nėra perkeltas įvykus viso tinklo duomenų perkėlimui.",
+        "ifYourBalanceIsNotCorrect": "Jeigu jūsų balansas neteisingas, tikriausiai jūsų naudojamas užraktas nėra perkeltas įvykus viso tinklo duomenų perkėlimui.",
         "headToAdvancedSettingsForTransition": "Eikite į išplėstinius parametrus ir atlikite tinklo duomenų perkėlimą.",
         "usingTrinityWalletWithKeePass": "Trinity naudojimas su Keepass2Android"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Užraktas turi neleistinų simbolių",
-        "seedInvalidCharsExplanation":
-            "Užraktas gali susidėti tik iš didžiųjų raidžių (A-Z) ir skaičiaus 9. Jūsų užraktas turi neleistinų simbolių. Bandykite dar kartą.",
+        "seedInvalidCharsExplanation": "Užraktas gali susidėti tik iš didžiųjų raidžių (A-Z) ir skaičiaus 9. Jūsų užraktas turi neleistinų simbolių. Bandykite dar kartą.",
         "seedTooShort": "Užraktas per trumpas",
-        "seedTooShortExplanation":
-            "Užraktas privalo būti iš {{maxLength}} simbolio. Jūsų užraktas susidaro iš {{currentLength}}. Bandykite dar kartą.",
+        "seedTooShortExplanation": "Užraktas privalo būti iš {{maxLength}} simbolio. Jūsų užraktas susidaro iš {{currentLength}}. Bandykite dar kartą.",
         "nameInUse": "Toks paskyros vardas jau egzistuoja",
         "nameInUseExplanation": "Sugalvokite unikalų paskyros vardą savo užraktui.",
         "enterAccountName": "Įveskite paskyros vardą.",
@@ -180,7 +166,7 @@
         "noNickname": "Neįvestas paskyros vardas",
         "noNicknameExplanation": "Įveskite paskyros vardą savo užraktui.",
         "seedInUse": "Toks užraktas jau egzistuoja",
-        "seedInUseExplanation": "Šis užraktas jau susietas su jūsų pinigine. Prašome sukurti naują užraktą."
+        "seedInUseExplanation": "Šis užraktas jau susietas su jūsų pinigine. Sukurkite naują užraktą."
     },
     "changePassword": {
         "oops": "Ups! Įvyko klaida",
@@ -200,8 +186,7 @@
         "newPassword": "Naujas slaptažodis",
         "confirmPassword": "Pakartokite naują slaptažodį",
         "passwordTooWeak": "Slaptažodis per silpnas",
-        "passwordTooWeakReason":
-            "Jūsų slaptažodis per silpnas. Naudokite žodžių derinius, ir venkite dažnai naudojamų frazių, vardų ar datų",
+        "passwordTooWeakReason": "Jūsų slaptažodis per silpnas. Naudokite žodžių derinius, ir venkite dažnai naudojamų frazių, vardų ar datų",
         "reasonRow": "Vienoje eilėje einantys simboliai yra lengvai nuspėjami",
         "reasonPattern": "Trumpi simbolių šablonai yra lengvai nuspėjami",
         "reasonNames": "Įžymūs vardai ar pavardės yra lengvai nuspėjami",
@@ -222,8 +207,7 @@
         "seedCopied": "Užraktas nukopijuotas į iškarpinę",
         "seedCopiedExplanation": "Užraktas bus išvalytas, kai paspausite \"ATLIKTA\" arba praeis 60 sekundžių.",
         "clickToCopy": "Spauskite žemiau esantį mygtuką, norėdami nukopijuoti savo užraktą į slaptažodžių tvarkyklę.",
-        "clickToSecurelyShare":
-            "Spauskite žemiau esantį mygtuką, norėdami saugiai įkelti užraktą į slaptažodžių tvarkyklę.",
+        "clickToSecurelyShare": "Spauskite žemiau esantį mygtuką, norėdami saugiai įkelti užraktą į slaptažodžių tvarkyklę.",
         "doNotStore": "Nelaikykite užrakto nešifruotu formatu.",
         "copyToClipboard": "Kopijuoti užraktą",
         "shareSeed": "Įkelti užraktą į saugią slaptažodžių tvarkyklę",
@@ -233,20 +217,15 @@
         "passwordManagerCheckbox": "Savo užraktą laikysiu slaptažodžių tvarkyklėje",
         "copy": "KOPIJUOTI",
         "noPasswordManagers": "Nėra palaikomų slaptažodžių tvarkyklių",
-        "noPasswordManagersExplanation":
-            "Jūsų įrenginyje nerasta palaikomų slaptažodžių tvarkyklių. Įdiekite Keepass2Android.",
-        "followTutorialToSecurelyShareSeed":
-            "Jei ketinate savo užraktą laikyti slaptažodžių tvarkyklėje, peržiūrėkite naudojimo instrukciją iš pateiktos nuorodos"
+        "noPasswordManagersExplanation": "Jūsų įrenginyje nerasta palaikomų slaptažodžių tvarkyklių. Įdiekite Keepass2Android.",
+        "followTutorialToSecurelyShareSeed": "Jei ketinate savo užraktą laikyti slaptažodžių tvarkyklėje, peržiūrėkite naudojimo instrukciją iš pateiktos nuorodos"
     },
     "enterSeed": {
         "invalidCharacters": "Užraktas sudarytas iš neleistinų simbolių",
-        "invalidCharactersExplanation":
-            "Užraktas gali susidėti tik iš didžiųjų raidžių (A-Z) ir skaičiaus 9. Jūsų užraktas turi neleistinų simbolių. Bandykite dar kartą.",
+        "invalidCharactersExplanation": "Užraktas gali susidėti tik iš didžiųjų raidžių (A-Z) ir skaičiaus 9. Jūsų užraktas turi neleistinų simbolių. Bandykite dar kartą.",
         "seedTooShort": "Užraktas per trumpas",
-        "seedTooShortExplanation":
-            "Užraktas privalo būti iš {{maxLength}} simbolio. Jūsų užraktas susidaro iš {{currentLength}}. Bandykite dar kartą.",
-        "seedExplanation":
-            "Užraktas turi būti iš {{maxLength}} simbolio, galimos tik didžiosios raidės (A-Z) arba skaičius 9. Užraktas negali turėti daugiau nei {{maxLength}} simbolį.",
+        "seedTooShortExplanation": "Užraktas privalo būti iš {{maxLength}} simbolio. Jūsų užraktas susidaro iš {{currentLength}}. Bandykite dar kartą.",
+        "seedExplanation": "Užraktas turi būti iš {{maxLength}} simbolio, galimos tik didžiosios raidės (A-Z) arba skaičius 9. Užraktas negali turėti daugiau nei {{maxLength}} simbolį.",
         "neverShare": "SU NIEKUO NESIDALINKITE SAVO UŽRAKTU"
     },
     "home": {
@@ -288,9 +267,9 @@
         "whatIsASeed": "Kas yra užraktas?"
     },
     "onboardingComplete": {
-        "allDone": "Viskas baigta!",
+        "allDone": "Baigta!",
         "openYourWallet": "Atidarykite savo piniginę",
-        "walletReady": "Piniginė paruošta naudojimui. Jeigu norėsite atlikti pakeitimus, eikite į Nustatymų meniu."
+        "walletReady": "Piniginė paruošta naudojimui. Jeigu norėsite atlikti pakeitimus, eikite į nustatymų meniu."
     },
     "paperWallet": {
         "clickToPrint": "Spauskite žemiau esantį mygtuką, norėdami atspausdinti užraktą.",
@@ -327,19 +306,16 @@
         "seedClearedExplanation": "Užraktas išvalytas iš iškarpinės dėl jūsų saugumo.",
         "iHaveBackedUpMySeed": "Užraktą išsisaugojau",
         "letsWriteDownYourSeed": "Nusirašykite savo užraktą",
-        "youCanHighlightCharacters": "Žymėkitės po 9 simbolius per kartą",
+        "youCanHighlightCharacters": "Žymėkitės po 9 simbolius į eilutę",
         "printBlankWallet": "Atspausdinti tuščią piniginę",
         "whatIsCheksum": "Kiekvienas užraktas turi atitinkamą 3 simbolių kontrolinę sumą",
         "iHavesavedMySeed": "Išsisaugojau savo užraktą",
-        "checksumExplanation":
-            "Kai pridedate užraktą į savo piniginę, turite įsitikinti, kad piniginės sukurta kontrolinė suma sutampa su ta, kurią nusirašėte.",
-        "mustSaveYourSeed":
-            "<0><0>Užraktą privalote išsisaugoti pasinaudodami </0><1>bent vienu</1><2> iš šių būdų, nurodytų žemiau.</2></0>"
+        "checksumExplanation": "Kai pridedate užraktą į savo piniginę, turite įsitikinti, kad piniginės sukurta kontrolinė suma sutampa su ta, kurią nusirašėte.",
+        "mustSaveYourSeed": "<0><0>Užraktą privalote išsisaugoti pasinaudodami </0><1>bent vienu</1><2> iš šių būdų, nurodytų žemiau.</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Patvirtinkite savo užraktą",
-        "trinityWillNeverAskToReenter":
-            "Trinity niekada jūsų neprašys pakartotinai įvesti savo užraktą, išskyrus, jeigu perkrausite savo piniginę ar programėlę.",
+        "trinityWillNeverAskToReenter": "Trinity niekada jūsų neprašys pakartotinai įvesti savo užraktą, išskyrus, jeigu perkrausite savo piniginę ar programėlę.",
         "enterYourSeed": "Įveskite savo užraktą",
         "incorrectSeed": "Neteisingas užraktas",
         "incorrectSeedExplanation": "Įvestas užraktas neteisingas. Bandykite dar kartą.",
@@ -349,16 +325,14 @@
     },
     "send": {
         "invalidAddress": "Neteisingas adresas",
-        "invalidAddressExplanation1":
-            "Adresas turi būti sudarytas iš {{maxLength}} simbolių ir turi turėti kontrolinę sumą.",
+        "invalidAddressExplanation1": "Adresas turi būti sudarytas iš {{maxLength}} simbolių ir turi turėti kontrolinę sumą.",
         "invalidAddressExplanation2": "Adrese yra neleistinų simbolių.",
         "invalidAddressExplanation3": "Adresas turi neteisingą kontrolinė sumą.",
-        "invalidAddressExplanationGeneric":
-            "Adresai turi būti sudaryti iš 90 simbolių, galimos raidės A-Z arba skaičius 9.",
+        "invalidAddressExplanationGeneric": "Adresai turi būti sudaryti iš 90 simbolių, galimos raidės A-Z arba skaičius 9.",
         "notEnoughFunds": "Nepakanka lėšų",
         "notEnoughFundsExplanation": "Pavedimo atlikti negalima, nes nepakankamas jūsų IOTA likutis.",
         "keyReuse": "Pakartotinis rakto naudojimas",
-        "keyReuseExplanation": "Adresas, kurį įvedėte, jau buvo panaudotas. Bandykite įvesti kitą adresą.",
+        "keyReuseExplanation": "Adresas, kurį įvedėte, jau buvo panaudotas. Įveskite kitą adresą.",
         "recipientAddress": "Gavėjo adresas",
         "amount": "Suma",
         "max": "MAKS.",
@@ -369,49 +343,42 @@
         "invalidMessageTooLongExplanation": "Žinutė viršija maks. leistinų simbolių skaičių (1093).",
         "send": "Siųsti",
         "invalidAmount": "Įvesta neleistina suma",
-        "invalidAmountExplanation":
-            "Įveskite leidžiamą pavedimo sumą. Galite pasinaudoti IOTA vienetų paaiškinimu šio puslapio apačioje.",
-        "maximumSelected": "Pasirinkta MAKSIMALI suma",
+        "invalidAmountExplanation": "Įveskite leidžiamą pavedimo sumą. Galite pasinaudoti IOTA vienetų paaiškinimu šio puslapio apačioje.",
+        "maximumSelected": "Įvesta MAKSIMALI suma",
         "iotaUnits": "IOTA vienetų paaiškinimas",
         "sendMax": "SIŲSTI MAKS.",
         "totalTime": "Bendras laikas",
         "addressPasteDetected": "Aptiktas adreso įklijavimas",
-        "addressPasteExplanation":
-            "Atrodo, kad jūs įklijavote adresą. Įsitikinkite, kad adresas tikrai sutampa su gavėjo adresu."
+        "addressPasteExplanation": "Atrodo, kad jūs įklijavote adresą. Įsitikinkite, kad adresas tikrai sutampa su gavėjo adresu."
     },
     "setPassword": {
         "choosePassword": "Sukurti naują slaptažodį",
         "passwordTooShort": "Slaptažodis per trumpas",
-        "passwordTooShortExplanation":
-            "Slaptažodis privalo būti iš mažiausiai {{minLength}} simbolių. Jūsų įvedėte {{currentLength}}. Bandykite dar kartą.",
+        "passwordTooShortExplanation": "Slaptažodis privalo būti iš mažiausiai {{minLength}} simbolių. Jūsų įvedėte {{currentLength}}. Bandykite dar kartą.",
         "passwordMismatch": "Slaptažodžiai nesutampa",
         "passwordMismatchExplanation": "Įvesti slaptažodžiai nesutampa. Bandykite dar kartą.",
-        "nowWeNeedTo": "Dabar reikia sukurti slaptažodį.",
-        "anEncryptedCopy":
-            "Užšifruota jūsų užrakto kopija bus laikoma jūsų įrenginyje. Nuo šiol prisijungiant prie piniginės, naudokitės šiuo slaptažodžiu.",
+        "nowWeNeedTo": "Sukurkite savo slaptažodį.",
+        "anEncryptedCopy": "Užšifruota jūsų užrakto kopija bus laikoma jūsų įrenginyje. Nuo šiol prisijungiant prie piniginės, naudokitės šiuo slaptažodžiu.",
         "ensure": "Įsitikinkite, kad jūsų slaptažodis pakankamai stiprus, iš mažiausiai 12 simbolių.",
         "retypePassword": "Pakartokite slaptažodį"
     },
     "setSeedName": {
         "letsAddName": "Sukurkite vardą",
-        "canUseMultipleSeeds":
-            "Jūs galite naudoti daugybę užraktų su šia pinigine. Kiekvienas užraktas turi turėti paskyros vardą.",
-        "youCanAdd": "Norėdami pridėti daugiau užraktų, eikite į Nustatymų meniu."
+        "canUseMultipleSeeds": "Jūs galite naudoti daugybę užraktų su šia pinigine. Kiekvienas užraktas turi turėti paskyros vardą.",
+        "youCanAdd": "Norėdami pridėti daugiau užraktų, eikite į nustatymų meniu."
     },
     "modeSelection": {
         "expert": "Expert",
         "standard": "Standard",
-        "expertModeExplanation":
-            "Expert rėžimas suteikia prieigą prie papildomų funkcijų tokių kaip rankinis iškėlimas ir pakartotinis prijungimas.",
-        "modesExplanation":
-            "Expert rėžimą naudokite tik jeigu esate pakankamai susipažinęs su Tangle. Kitu atveju jums gali kilti daug neaiškumų."
+        "expertModeExplanation": "Eksperto režimas suteikia prieigą prie papildomų funkcijų, tokių kaip rankinis iškėlimas ir pakartotinis prijungimas.",
+        "modesExplanation": "Eksperto režimą naudokite tik jeigu esate pakankamai susipažinęs su Tangle. Kitu atveju jums gali kilti daug neaiškumų."
     },
     "settings": {
-        "transferSending": "Apdorojamas pavedimas",
+        "transferSending": "Pavedimas apdorojamas",
         "transferSendingExplanation": "Palaukite, kol jūsų pavedimas bus išsiųstas.",
         "generatingAddress": "Kuriamas pavedimų priėmimo adresas",
-        "generatingAddressExplanation": "Prašome palaukti, kol adresas bus sukurtas.",
-        "mode": "Rėžimas",
+        "generatingAddressExplanation": "Palaukite, kol adresas bus sukurtas.",
+        "mode": "Režimas",
         "theme": "Tema",
         "currency": "Valiuta",
         "cannotChangeNode": "Serverio pakeisti negalima",
@@ -431,8 +398,7 @@
         "accountDeleted": "Paskyra ištrinta",
         "accountDeletedExplanation": "Paskyra pašalinta iš piniginės.",
         "cannotPerformAction": "Šio veiksmo atlikti negalima",
-        "cannotPerformActionExplanation":
-            "Eikite į išplėstinius parametrus, norėdami iš naujo atlikti piniginės nustatymus.",
+        "cannotPerformActionExplanation": "Eikite į išplėstinius parametrus, norėdami iš naujo atlikti piniginės nustatymus.",
         "poorConnection": "Prastas ryšys",
         "poorConnectionExplanation": "Valiutos pakeisti nepavyko dėl prasto ryšio.",
         "hide": "Slėpti",
@@ -472,27 +438,26 @@
         "okay": "Puiku. Atlikime piniginės nustatymus!",
         "doYouAlreadyHaveASeed": "Ar jau turite užraktą, kurį norėtumėte panaudoti?",
         "doYouNeedASeed": "Ar jums reikia sukurti naują užraktą?",
-        "seedExplanation":
-            "IOTA užraktas yra kaip paskyros vartotojo vardas ir slaptažodis, sujungtas į vieną eilutę iš 81 simbolio.",
+        "seedExplanation": "IOTA užraktas yra kaip paskyros vartotojo vardas ir slaptažodis, sujungtas į vieną eilutę iš 81 simbolio.",
         "noIHaveOne": "Ne, jau turiu",
         "yesINeedASeed": "Taip, man reikia užrakto",
-        "explanation":
-            "<0><0>Jį galima panaudoti norint gauti prieigą prie savo lėšų iš </0><1>bet kokios piniginės</1><2> ir </2><3>bet kokio įrenginio</3><4>. Bet jei prarasite savo užraktą, prarasite ir savo IOTA.</4></0>",
+        "explanation": "<0><0>Jį galima panaudoti norint gauti prieigą prie savo lėšų iš </0><1>bet kokios piniginės</1><2> ir </2><3>bet kokio įrenginio</3><4>. Bet jei prarasite savo užraktą, prarasite ir savo IOTA.</4></0>",
         "keepSafe": "Laikykite užraktą saugiai.",
         "hint": "<0><0>Patarimas:</0> Spauskite NE, jei pirmą kartą naudojatės IOTA.</0>"
     },
     "welcome": {
         "thankYou": "Dėkojame, kad naudojatės Trinity.",
-        "weWillSpend": "Užtruksime kelias minutes, kol sukonfiguruosime jūsų piniginę.",
+        "weWillSpend": "Užtruksime kelias minutes, kol sukonfigūruosime jūsų piniginę.",
         "reminder": "Jūs galimai norėsite praleisti keletą žingsnių, bet mes raginame atidžiai sekti visą procesą."
     },
     "writeSeedDown": {
         "yourSeedIs": "Jūsų užraktas sudarytas iš {{maxSeedLength}} simbolio, skaityti iš kairės į dešinę.",
-        "writeDownYourSeed":
-            "<0>Nusirašykite savo užraktą ir kontrolinę sumą, </0><1>tris kartus patikrinkite</1><2> ar kodai sutampa</2>"
+        "writeDownYourSeed": "<0>Nusirašykite savo užraktą ir kontrolinę sumą, </0><1>tris kartus patikrinkite</1><2> ar kodai sutampa</2>"
     },
     "history": {
         "bundleHashCopied": "Paketo šifras nukopijuotas",
+        "noTransactionsFound": "Pavedimų nėra",
+        "hideZeroBalance": "Slėpti nulinius pavedimus",
         "bundleHashCopiedExplanation": "Paketo šifras nukopijuotas į iškarpinę.",
         "addressCopied": "Adresas nukopijuotas",
         "addressCopiedExplanation": "Adresas nukopijuotas į iškarpinę.",
@@ -516,8 +481,8 @@
         "invalidNodeResponse": "Serverio klaida",
         "httpNodeError": "Trinity Mobile palaiko tik https serverius.",
         "add": "Pridėti",
-        "nodeFieldEmpty": "Adreso laukas yra tuščias",
-        "nodeFieldEmptyExplanation": "Prašome įvesti vartotojo serverį."
+        "nodeFieldEmpty": "Teksto laukas tuščias",
+        "nodeFieldEmptyExplanation": "Įveskite vartotojo serverį."
     },
     "addNewAccount": {
         "useExistingSeed": "Naudoti seną užraktą",
@@ -530,8 +495,7 @@
         "snapshotTransition": "Tinklo duomenų perkėlimas",
         "pow": "Skaičiavimų įrodymas",
         "autoPromotion": "Automatinis iškėlimas",
-        "autoPromotionExplanation":
-            "Automatinis iškėlimas padeda greičiau patvirtinti jūsų pavedimus. Įjunkite šią funkciją, jeigu jūsų pavedimai ilgai nėra patvirtinami.",
+        "autoPromotionExplanation": "Automatinis iškėlimas padeda greičiau patvirtinti jūsų pavedimus. Įjunkite šią funkciją, jeigu jūsų pavedimai ilgai nėra patvirtinami.",
         "autoPromotionPoW": "Automatinis iškėlimas įmanomas tik tuose serveriuose, kurie palaiko nuotolinį skaičiavimą."
     },
     "advancedThemeCustomisation": {
@@ -560,10 +524,8 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Kodėl negaliu išleisti viso savo balanso?",
-        "spentAddressExplanation":
-            "Jūs laikote lėšas viename ar daugiau adresų, kurie buvo panaudoti. Adresų pakartotinis naudojimas yra pavojingas IOTA sistemoje, todėl piniginė neleidžia daryti pavedimų iš to pačio adreso daugiau nei kartą.",
-        "discordInformation":
-            "Prašome apsilankyti mūsų #help kanale, Discord programėleje, norėdami sužinoti ką toliau daryti."
+        "spentAddressExplanation": "Jūs laikote lėšas viename ar daugiau adresų, kurie buvo panaudoti. Adresų pakartotinis naudojimas yra pavojingas IOTA sistemoje, todėl piniginė neleidžia daryti pavedimų iš to pačio adreso daugiau nei kartą.",
+        "discordInformation": "Apsilankykite mūsų #help kanale, Discord programėleje, norėdami sužinoti ką toliau daryti."
     },
     "deleteAccount": {
         "areYouSure": "<0></0><1>Ar tikrai norite ištrinti</1><2></2><3>{{accountName}}?</3>",
@@ -598,14 +560,11 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "DUOMENYS BUS PAŠALINTI NEGRĮŽTAMAI.",
-        "warning":
-            "<0><0>Visi jūsų piniginės duomenys, įskaitant </0><1>užraktus, slaptažodžius</1><2> ir </2><3>kitą paskyrų informaciją</3><4>, bus ištrinti.</4></0>"
+        "warning": "<0><0>Visi jūsų piniginės duomenys, įskaitant </0><1>užraktus, slaptažodžius</1><2> ir </2><3>kitą paskyrų informaciją</3><4>, bus ištrinti.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable":
-            "Palieskite piršto antspaudo skaitytuvą, norėdami įjungti piršto antspaudo autentifikavimą",
-        "instructionsDisable":
-            "Palieskite piršto antspaudo skaitytuvą, norėdami išjungti piršto antspaudo autentifikavimą",
+        "instructionsEnable": "Palieskite piršto antspaudo skaitytuvą, norėdami įjungti piršto antspaudo autentifikavimą",
+        "instructionsDisable": "Palieskite piršto antspaudo skaitytuvą, norėdami išjungti piršto antspaudo autentifikavimą",
         "fingerprintAuthEnabled": "Biometrinis autentifikavimas įjungtas",
         "fingerprintAuthEnabledExplanation": "Jūs sėkmingai įjungėte biometrinį autentifikavimą.",
         "fingerprintAuthDisabled": "Biometrinis autentifikavimas išjungtas",
@@ -614,28 +573,25 @@
         "fingerprintAuthFailedExplanation": "Piršto antspaudo autentifikavimas nesuveikė. Bandykite dar kartą.",
         "status": "Būsena",
         "fingerprintUnavailable": "Biometrinis autentifikavimas nepasiekiamas",
-        "fingerprintUnavailableExplanation":
-            "Jūsų įrenginys nepalaiko biometrinio autentifikavimo arba ši funkcija yra nesukonfigūruota jūsų įrenginyje.",
-        "buttonInstructionsDisable":
-            "Spauskite žemiau esantį mygtuką, norėdami atjungti piršto antspaudo autentifikavimą.",
-        "buttonInstructionsEnable":
-            "Spauskite žemiau esantį mygtuką, norėdami įjungti piršto antspaudo autentifikavimą.",
+        "fingerprintUnavailableExplanation": "Jūsų įrenginys nepalaiko biometrinio autentifikavimo arba ši funkcija yra nesukonfigūruota jūsų įrenginyje.",
+        "buttonInstructionsDisable": "Spauskite žemiau esantį mygtuką, norėdami atjungti piršto antspaudo autentifikavimą.",
+        "buttonInstructionsEnable": "Spauskite žemiau esantį mygtuką, norėdami įjungti piršto antspaudo autentifikavimą.",
         "buttonInstructionsDisableIPhoneX": "Spauskite žemiau esantį mygtuką, norėdami išjungti Face ID.",
         "buttonInstructionsEnableIPhoneX": "Spauskite žemiau esantį mygtuką, norėdami įjungti Face ID.",
         "instructionsLogin": "Palieskite piršto antspaudo skaitytuvą, norėdami prisijungti"
     },
     "transferConfirmation": {
-        "youAreAbout": "Jūs ketinate pervesti {{contents}} šiuo adresu",
-        "aMessage": "žinutė"
+        "youAreAbout": "Jūs ruošiatės išsiųsti {{contents}} į adresą",
+        "aMessage": "žinutę"
     },
     "twoFA": {
         "wrongCode": "Neteisingas kodas",
         "wrongCodeExplanation": "Kodas, kurį įvedėte yra neteisingas.",
         "emptyCode": "Neįvestas kodas",
-        "emptyCodeExplanation": "Prašome įvesti kodą ir bandykite dar kartą.",
+        "emptyCodeExplanation": "Įveskite kodą ir bandykite dar kartą.",
         "keyCopied": "Kodas nukopijuotas į iškarpinę",
         "keyCopiedExplanation": "Jūsų 2FA kodas nukopijuotas į iškarpinę.",
-        "addKey": "Pridėti šį kodą į 2FA programėlę",
+        "addKey": "Pridėkite šį kodą į 2FA programėlę",
         "key": "Kodas",
         "twoFAEnabled": "2FA įjungtas",
         "twoFAEnabledExplanation": "Sėkmingai įjungėte dviejų veiksnių autentifikavimą.",
@@ -690,8 +646,7 @@
         "detectedBalance": "Aptiktas balansas: {{amount}}{{unit}}",
         "isThisCorrect": "Ar jis teisingas?",
         "snapshotExplanation": "Norint sumažinti Tangle dydį, retkarčiais yra atliekamas tinklo duomenų užfiksavimas.",
-        "hasSnapshotTakenPlace":
-            "Įvyko duomenų užfiksavimas? Spauskite žemiau esantį mygtuką, norėdami perkelti duomenis.",
+        "hasSnapshotTakenPlace": "Įvyko duomenų užfiksavimas? Spauskite žemiau esantį mygtuką, norėdami perkelti duomenis.",
         "transition": "Perkelti",
         "transitioning": "Perkeliami tinklo duomenys.",
         "generatingAndDetecting": "Kuriami adresai ir nustatinėjamas balansas.",
@@ -702,13 +657,12 @@
         "autofillExplanation": "Pavedimo duomenys automatiškai įkelti iš nuorodos."
     },
     "updates": {
-        "errorRetrievingUpdateData": "Klaida atsiunčiant atnaujinimus",
+        "errorRetrievingUpdateData": "Klaida siunčiant atnaujinimus",
         "errorRetrievingUpdateDataExplanation": "Įvyko klaida siunčiant atnaujinimus. Bandykite dar kartą.",
-        "noUpdatesAvailable": "Nėra naujų atnaujinimų",
+        "noUpdatesAvailable": "Atnaujinimų nėra",
         "noUpdatesAvailableExplanation": "Jūs turite naujausią IOTA Trinity darbalaukio piniginės versiją!",
         "newVersionAvailable": "Galima nauja versija",
-        "newVersionAvailableExplanation":
-            "Galima nauja <strong>Trinity</strong> <strong>{{version}}</strong> versija. Prašome atidžiai perskaityti naujo leidinio informaciją ir patvirtinkite atsisiuntimo šaltinį prieš atnaujinant:",
+        "newVersionAvailableExplanation": "Galima nauja <strong>Trinity</strong> <strong>{{version}}</strong> versija. Atidžiai perskaitykite naujo leidinio informaciją ir patvirtinkite atsisiuntimo šaltinį prieš atnaujinant:",
         "downloadRelease": "Atsisiųsti leidinį",
         "skipUpdate": "Praleisti atnaujinimus"
     },
@@ -716,7 +670,7 @@
         "errorLog": "KLAIDŲ ŽURNALAS"
     },
     "terms": {
-        "termsAndConditions": "Sąlygos",
+        "termsAndConditions": "Sąlygos ir nuostatos",
         "accept": "Sutinku"
     },
     "privacyPolicy": {
