@@ -13,125 +13,17 @@ import keys from 'lodash/keys';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import findKey from 'lodash/findKey';
+import some from 'lodash/some';
 import size from 'lodash/size';
 import pickBy from 'lodash/pickBy';
 import omitBy from 'lodash/omitBy';
 import flatMap from 'lodash/flatMap';
+import union from 'lodash/union';
 import { iota } from './index';
-import { getBalancesAsync, wereAddressesSpentFromAsync } from './extendedApi';
+import { getBalancesAsync, wereAddressesSpentFromAsync, findTransactionsAsync } from './extendedApi';
 
 const errors = require('iota.lib.js/lib/errors/inputErrors');
 const async = require('async');
-
-/**
- *   Starts traversing from specified index backwards
- *   Keeps on calling findTransactions to see if there's any associated tx with address
- *   Stops at the point where it finds an address with hash
- *   Basically just removes the unused addresses
- *
- *   @method removeUnusedAddresses
- *   @param {function} resolve
- *   @param {function} reject
- *   @param {number} index
- *   @param {string} latestAddress
- *   @param {array} finalAddresses
- **/
-const removeUnusedAddresses = (resolve, reject, index, latestAddress, finalAddresses) => {
-    if (!finalAddresses[index]) {
-        resolve([...finalAddresses, latestAddress]);
-        return;
-    }
-
-    iota.api.findTransactions({ addresses: [finalAddresses[index]] }, (err, hashes) => {
-        if (err) {
-            reject(err);
-        } else {
-            // If an address has affiliated txs
-            if (size(hashes)) {
-                // Always have one unused (latest address) as part of the final addresses
-                resolve([...finalAddresses, latestAddress]);
-            } else {
-                removeUnusedAddresses(
-                    resolve,
-                    reject,
-                    index - 1,
-                    // The address with no associated
-                    // transaction hashes would be the
-                    // new latest address.
-                    finalAddresses[index],
-                    finalAddresses.slice(0, index),
-                );
-            }
-        }
-    });
-};
-
-/**
- *   Returns a promise meant for returning all associated addresses with a seed
- *
- *   @method getFullAddressHistory
- *   @param {string} seed
- *   @param {function} genFn
- *   @returns {Promise}
- **/
-export const getFullAddressHistory = (seed, genFn) => {
-    return new Promise((res, rej) => {
-        const opts = { index: 0, total: 10, returnAll: true, security: 2 };
-        getAddressesUptoLatestUnused(res, rej, seed, opts, genFn, []);
-    });
-};
-
-/**
- *   Returns associated addresses with a seed
- *   Generates addresses in batches and upon each execution increase the index to fetch the next batch
- *   Stops at the point where there are no transaction hashes associated with last (total defaults to --> 10) addresses
- *
- *   @method getAddressesUptoLatestUnused
- *   @param {function} resolve
- *   @param {function} reject
- *   @param {string} seed
- *   @param {object} [opts={index: 0, total: 10, returnAll: true, security: 2}]
- *   @param {function} genFn
- *   @param {array} allAddresses
- *   @param {array} transactionHashes
- *
- **/
-const getAddressesUptoLatestUnused = (resolve, reject, seed, opts, genFn, allAddresses, transactionHashes = []) => {
-    getNewAddress(seed, opts, genFn, (err, addresses) => {
-        if (err) {
-            reject(err);
-        } else {
-            iota.api.findTransactions({ addresses }, (err, hashes) => {
-                if (size(hashes)) {
-                    allAddresses = [...allAddresses, ...addresses];
-                    const newOpts = assign({}, opts, { index: opts.total + opts.index });
-                    getAddressesUptoLatestUnused(resolve, reject, seed, newOpts, genFn, allAddresses, [
-                        ...transactionHashes,
-                        ...hashes,
-                    ]);
-                } else {
-                    // Traverse backwards to remove all unused addresses
-                    new Promise((res, rej) => {
-                        const lastAddressIndex = size(allAddresses) - 1;
-
-                        // Before traversing backwards to remove the unused addresses,
-                        // Set the first address from the newly fetched addresses as the latest address.
-                        const latestAddress = head(addresses);
-
-                        removeUnusedAddresses(res, rej, lastAddressIndex, latestAddress, allAddresses.slice());
-                    })
-                        .then((finalAddresses) => {
-                            resolve({
-                                addresses: finalAddresses,
-                                hashes: transactionHashes,
-                            });
-                        })
-                        .catch((err) => reject(err));
-                }
-            });
-        }
-    });
-};
 
 /**
  *   Accepts addresses as an array.
@@ -181,16 +73,146 @@ export const getAddressDataAndFormatBalance = (addresses) => {
         });
 };
 
-export const formatAddressData = (addresses, balances, addressesSpendStatus) => {
-    const addressData = assign({}, ...addresses.map((n, index) => ({ [n]: { index, balance: 0, spent: false } })));
+/**
+ *   Returns a promise meant for returning all associated addresses with a seed
+ *
+ *   @method getFullAddressHistory
+ *   @param {string} seed
+ *   @param {function} genFn
+ *   @returns {Promise}
+ **/
+export const getFullAddressHistory = (seed, genFn) => {
+    return getAddressesUptoLatestUnused(seed, genFn, { index: 0, total: 10, returnAll: true, security: 2 });
+};
 
-    for (let i = 0; i < addresses.length; i++) {
-        addressData[addresses[i]].index = i;
-        addressData[addresses[i]].balance = balances[i];
-        addressData[addresses[i]].spent = addressesSpendStatus[i];
+const findAddressesData = (addresses) => {
+    return Promise.all([
+        findTransactionsAsync({ addresses }),
+        getBalancesAsync(addresses),
+        wereAddressesSpentFromAsync(addresses),
+    ]).then((data) => {
+        const [hashes, balances, wereSpent] = data;
+
+        return {
+            hashes,
+            balances: map(balances.balances, Number),
+            wereSpent,
+        };
+    });
+};
+
+/**
+ *   Starts traversing from specified index backwards
+ *   Keeps on calling findTransactions to see if there's any associated tx with address
+ *   Stops at the point where it finds an address with hash
+ *   Basically just removes the unused addresses
+ *
+ *   @method removeUnusedAddresses
+ *   @param {number} index
+ *   @param {string} latestAddress
+ *   @param {array} finalAddresses
+ **/
+const removeUnusedAddresses = (index, latestAddress, finalAddresses) => {
+    if (!finalAddresses[index]) {
+        return Promise.resolve([...finalAddresses, latestAddress]);
     }
 
-    return addressData;
+    return findAddressesData([finalAddresses[index]]).then(({ hashes, balances, wereSpent }) => {
+        if (size(hashes) === 0 && some(balances, (balance) => balance === 0) && some(wereSpent, (spent) => !spent)) {
+            return removeUnusedAddresses(index - 1, finalAddresses[index], finalAddresses.slice(0, index));
+        }
+
+        return [...finalAddresses, latestAddress];
+    });
+};
+
+/**
+ *   Returns associated addresses with a seed
+ *   Generates addresses in batches and upon each execution increase the index to fetch the next batch
+ *   Stops at the point where there are no transaction hashes associated with last (total defaults to --> 10) addresses
+ *
+ *   @method getAddressesUptoLatestUnused
+ *   @param {string} seed
+ *   @param {function} genFn
+ *   @param {object} [options={index: 0, total: 10, returnAll: true, security: 2}]
+ *   @param {function} genFn
+ *   @param {array} addressesUptoLatestUnused
+ *   @param {object} addressData
+ *
+ **/
+const getAddressesUptoLatestUnused = (
+    seed,
+    genFn,
+    options,
+    addressesUptoLatestUnused = [],
+    addressData = { hashes: [], balances: [], wereSpent: [] },
+) => {
+    let thisBatchOfAddresses = [];
+
+    return getNewAddress(seed, options, genFn)
+        .then((addresses) => {
+            thisBatchOfAddresses = addresses;
+
+            return findAddressesData(addresses);
+        })
+        .then(({ hashes, balances, wereSpent }) => {
+            const shouldGenerateNextBatch =
+                size(hashes) || some(balances, (balance) => balance > 0) || some(wereSpent, (spent) => spent);
+
+            if (shouldGenerateNextBatch) {
+                addressesUptoLatestUnused = [...addressesUptoLatestUnused, ...thisBatchOfAddresses];
+
+                const newOptions = assign({}, options, { index: options.total + options.index });
+
+                return getAddressesUptoLatestUnused(
+                    seed,
+                    genFn,
+                    newOptions,
+                    addressesUptoLatestUnused,
+                    assign({}, addressData, {
+                        hashes: union(addressData.hashes, hashes),
+                        balances: [...addressData.balances, ...balances],
+                        wereSpent: [...addressData.wereSpent, ...wereSpent],
+                    }),
+                );
+            }
+
+            const lastAddressIndex = size(addressesUptoLatestUnused) - 1;
+
+            // Before traversing backwards to remove the unused addresses,
+            // Set the first address from the newly fetched addresses as the latest address.
+            const latestAddress = head(thisBatchOfAddresses);
+
+            return removeUnusedAddresses(lastAddressIndex, latestAddress, addressesUptoLatestUnused.slice()).then(
+                (addresses) => {
+                    return {
+                        addresses,
+                        ...addressData,
+                        // Append 0 balance to the latest unused address
+                        balances: [...addressData.balances, 0],
+                        // Append false as spent status to the latest unused address
+                        wereSpent: [...addresses.wereSpent, false],
+                    };
+                },
+            );
+        });
+};
+
+export const formatAddressData = (addresses, balances, addressesSpendStatus) => {
+    return reduce(
+        addresses,
+        (acc, address, index) => {
+            acc[address] = {
+                index,
+                spent: addressesSpendStatus[index],
+                balance: balances[index],
+                checksum: iota.utils.addChecksum(address).slice(address.length),
+            };
+
+            return acc;
+        },
+        {},
+    );
 };
 
 /**
