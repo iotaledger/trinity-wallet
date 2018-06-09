@@ -277,9 +277,9 @@
         "neverShare": "永远不要与任何人分享您的种子。",
         "iotaLogo": "IOTA标志",
         "printWallet": "Print Paper Wallet",
-        "print": "PRINT",
-        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
-        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
+        "print": "打印",
+        "paperConvenience": "打印一份纸板的种子副本是一种方便的存储方式。",
+        "publicInsecure": "但是在公共Wifi 或者公共打印机上打印是不安全的。",
         "tapCheckboxes": "Please tap the checkboxes below to confirm.",
         "wifiCheckbox": "I will not print on public wifi",
         "printerCheckbox": "I will not print on a public printer"
