@@ -438,7 +438,7 @@
         "okay": "Εντάξει. Ας εγκαταστήσουμε το πορτοφόλι σας!",
         "doYouAlreadyHaveASeed": "Έχετε ήδη έναν σπόρο που θα θέλατε να χρησιμοποιήσετε;",
         "doYouNeedASeed": "Do you need to create a new seed?",
-        "seedExplanation": "Ο σπόρος ΙΟΤΑ είναι όπως ένα όνομα χρήστη και κωδικός πρόσβασης για το λογαριασμό σας, σε συνδυασμένα σε μια συμβολοσειρά 81 χαρακτήρων.",
+        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
         "noIHaveOne": "No, I have one",
         "yesINeedASeed": "Yes, I need a seed",
         "explanation": "<0><0>Μπορείτε να το χρησιμοποιήσετε για να αποκτήσετε πρόσβαση σας κεφάλαια από</0> <1>κάθε πορτοφόλι</1> <2>, από</2> <3>οποιαδήποτε συσκευή</3> <4>. Αλλά αν χάσετε το seed σας, χάνετε επίσης και τα ΙΟΤΑ σας.</4></0>",
