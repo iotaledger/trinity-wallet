@@ -18,6 +18,7 @@ import { width, height } from '../utils/dimensions';
 import CustomTextInput from '../components/CustomTextInput';
 import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
+import { isIOS } from '../utils/device';
 
 const styles = StyleSheet.create({
     container: {
@@ -219,11 +220,12 @@ class AddCustomNode extends Component {
                         <CustomTextInput
                             label={t('customNode')}
                             onChangeText={(customNode) => this.setState({ customNode })}
-                            containerStyle={{ width: width / 1.2 }}
+                            containerStyle={{ width: width / 1.15 }}
                             autoCapitalize="none"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="done"
+                            keyboardType={isIOS ? 'url' : 'default'}
                             onSubmitEditing={() => this.addNode()}
                             theme={theme}
                             editable={!isCheckingCustomNode}

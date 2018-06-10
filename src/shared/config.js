@@ -1,4 +1,4 @@
-export const DESKTOP_VERSION = '0.1.5';
+export const DESKTOP_VERSION = '0.1.6';
 
 export const defaultNode = 'https://trinity.iota.fm:443';
 
@@ -34,3 +34,5 @@ export const DEFAULT_MIN_WEIGHT_MAGNITUDE = 14;
 export const DEFAULT_TAG = 'TRINITY';
 export const DEFAULT_SECURITY = 2;
 export const DEFAULT_BALANCES_THRESHOLD = 100;
+
+export const BUNDLE_OUTPUTS_THRESHOLD = 50;

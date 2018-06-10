@@ -51,6 +51,18 @@ class About extends React.PureComponent {
 
                     <article>
                         <Scrollbar>
+                            <h5>0.1.6.</h5>
+                            <ul>
+                                <li>New: Search and Hide zero balance functionality to history view</li>
+                                <li>Updated: Clear memory from plain text seed on onboarding</li>
+                                <li>Updated: Restore wallet size and position on reopening</li>
+                                <li>Fixed: Narrow sidebar layout on Setting and Dashboard views</li>
+                                <li>Fixed: Wrong address displayed if closing Receive while generating</li>
+                                <li>Fixed: Dynamic node list does not load correctly</li>
+                                <li>Fixed: Adding custom node results in error</li>
+                                <li>Fixed: Reverse address list order on Address list view</li>
+                                <li>Fixed: on Windows wallet does not revert to original size after maximize</li>
+                            </ul>
                             <h5>0.1.5.</h5>
                             <ul>
                                 <li>New: Major user interface and theming update</li>

@@ -18,7 +18,8 @@
         "invalidResponse": "Node error",
         "invalidResponseExplanation": "The node returned an error. Try changing node.",
         "invalidResponsePollingExplanation": "The node returned an error while polling. Try changing node.",
-        "invalidResponseFetchingAccount": "The node returned an error while fetching your account information. Try changing node.",
+        "invalidResponseFetchingAccount":
+            "The node returned an error while fetching your account information. Try changing node.",
         "invalidResponseSendingTransfer": "The node returned an error while sending the transfer. Try changing node.",
         "nodeOutOfSync": "Node out of sync",
         "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
@@ -77,7 +78,8 @@
         "cannotPerformAction": "Não é possível executar a ação",
         "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
         "attachToTangleUnavailable": "Remote Proof of Work is unavailable",
-        "attachToTangleUnavailableExplanation": "Remote Proof of Work is not available on your selected node. Either change node or set Proof of Work to Local in Advanced Settings.",
+        "attachToTangleUnavailableExplanation":
+            "Remote Proof of Work is not available on your selected node. Either change node or set Proof of Work to Local in Advanced Settings.",
         "attachToTangleUnavailableExplanationShort": "Remote Proof of Work is not available on your selected node.",
         "wallet": "Wallet",
         "sent": "Sent",
@@ -105,7 +107,8 @@
         "promoted": "Successfully promoted transaction",
         "promotedExplanation": "Promoted transaction with hash {{hash}}",
         "autopromotionError": "Could not auto-promote transaction",
-        "autopromotionErrorExplanation": "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
+        "autopromotionErrorExplanation":
+            "Remote Proof of Work is not available on your selected node. Please change node and reenable auto-promotion.",
         "promotionError": "Could not promote transaction",
         "promotionErrorExplanation": "Something went wrong while promoting your transaction. Please try again.",
         "noLongerValid": "The bundle you are trying to promote is no longer valid",
@@ -116,8 +119,10 @@
         "pleaseWait": "Please wait",
         "pleaseWaitEllipses": "Please wait...",
         "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
-        "pleaseWaitTransferExplanation": "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again.",
-        "pleaseWaitIncomingTransferExplanation": "You have incoming transfers. Please wait for them to confirm before trying again.",
+        "pleaseWaitTransferExplanation":
+            "Your available balance is currently being used in other transfers. Please wait for one to confirm before trying again.",
+        "pleaseWaitIncomingTransferExplanation":
+            "You have incoming transfers. Please wait for them to confirm before trying again.",
         "snapshotTransitionInProgress": "Snapshot transition in progress",
         "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete.",
         "checkForUpdates": "Check for Updates",
@@ -138,27 +143,32 @@
         "masterKey": "Your IOTA seed is the master key to your funds.",
         "seedThief": "If someone else has your seed they can steal your IOTA.",
         "googlePlayServicesNotAvailable": "Google Play Services not available",
-        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available.",
+        "couldNotVerifyDeviceIntegrity":
+            "Could not verify device integrity because Google Play Services are not available.",
         "clear": "CLEAR",
         "noNetworkConnection": "No network connection",
         "noNetworkConnectionExplanation": "Your internet connection appears to be offline.",
         "spentAddressExplanation": "WARNING: Funds on spent addresses",
-        "discordInformation": "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do.",
+        "discordInformation":
+            "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do.",
         "androidInsecureClipboardWarning": "Android does not provide a secure clipboard.",
         "androidCopyPasteWarning": "Never copy/paste your seed on an Android device.",
         "willNotCopyPasteSeed": "I will not copy/paste my seed",
         "mustBeStoredAppropriately": "It must be stored appropriately.",
         "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while",
         "isYourBalanceCorrect": "Is your balance correct?",
-        "ifYourBalanceIsNotCorrect": "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
+        "ifYourBalanceIsNotCorrect":
+            "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
         "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition.",
         "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém caracteres inválidos",
-        "seedInvalidCharsExplanation": "As Seeds só podem conter letras maiúsculas (A-Z) e o número 9. A sua Seed tem caracteres inválidos. Por favor, tente de novo.",
+        "seedInvalidCharsExplanation":
+            "As Seeds só podem conter letras maiúsculas (A-Z) e o número 9. A sua Seed tem caracteres inválidos. Por favor, tente de novo.",
         "seedTooShort": "A Seed é demasiado curta",
-        "seedTooShortExplanation": "As Seeds devem ter {{maxLength}} caracteres. Neste momento a sua Seed tem {{currentLength}} caracteres. Por favor, tente de novo.",
+        "seedTooShortExplanation":
+            "As Seeds devem ter {{maxLength}} caracteres. Neste momento a sua Seed tem {{currentLength}} caracteres. Por favor, tente de novo.",
         "nameInUse": "Este nome da conta já está a ser utilizado",
         "nameInUseExplanation": "Por favor, use um nome de conta exclusivo para a sua Seed.",
         "enterAccountName": "Entre um nome de conta.",
@@ -180,13 +190,15 @@
         "passwordTooShort": "A palavra-passe é demasiado curta",
         "passwordTooShortExplanation": "A palavra-passe deve ter pelo menos 12 caracteres. Por favor, tente novamente.",
         "oldPassword": "Não é possível utilizar a palavra-passe antiga",
-        "oldPasswordExplanation": "Não pode usar a sua palavra-passe antiga como a sua nova palavra-passe. Por favor tente de novo com uma palavra-passe nova.",
+        "oldPasswordExplanation":
+            "Não pode usar a sua palavra-passe antiga como a sua nova palavra-passe. Por favor tente de novo com uma palavra-passe nova.",
         "ensureStrongPassword": "Assegure-se de que utiliza uma palavra-passe segura, com pelo menos 12 caracteres.",
         "currentPassword": "Palavra-passe atual",
         "newPassword": "Nova Palavra-Passe",
         "confirmPassword": "Confirme a Nova Palavra-Passe",
         "passwordTooWeak": "Password too weak",
-        "passwordTooWeakReason": "Your password is too weak. Use a combination of words, and avoid common phrases, names or dates",
+        "passwordTooWeakReason":
+            "Your password is too weak. Use a combination of words, and avoid common phrases, names or dates",
         "reasonRow": "Straight rows of keys are easy to guess",
         "reasonPattern": "Short patterns of keys are easy to guess",
         "reasonNames": "Common names and surnames are easy to guess",
@@ -217,15 +229,20 @@
         "passwordManagerCheckbox": "I will store my seed in a password manager",
         "copy": "COPY",
         "noPasswordManagers": "No supported password managers installed",
-        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "If you wish to store your seed in a password manager, you must follow a tutorial from the following link"
+        "noPasswordManagersExplanation":
+            "No supported password managers were found on your device. Please install Keepass2Android.",
+        "followTutorialToSecurelyShareSeed":
+            "If you wish to store your seed in a password manager, you must follow a tutorial from the following link"
     },
     "enterSeed": {
         "invalidCharacters": "A Seed contém caracteres inválidos",
-        "invalidCharactersExplanation": "As Seed só podem conter letras maíusculas (A-Z) e o número 9. A sua Seed tem caracteres inválidos. Por favor, tente de novo.",
+        "invalidCharactersExplanation":
+            "As Seed só podem conter letras maíusculas (A-Z) e o número 9. A sua Seed tem caracteres inválidos. Por favor, tente de novo.",
         "seedTooShort": "A Seed é demasiado curta",
-        "seedTooShortExplanation": "As Seeds devem ter {{maxLength}} caracteres. Neste momento a sua Seed tem {{currentLength}} caracteres. Por favor, tente de novo.",
-        "seedExplanation": "As Seeds devem ter {{maxLength}} caracteres, letras maíusculas (A-Z) e o número 9. Não pode utilizar Seeds com mais de {{maxLength}} caracteres.",
+        "seedTooShortExplanation":
+            "As Seeds devem ter {{maxLength}} caracteres. Neste momento a sua Seed tem {{currentLength}} caracteres. Por favor, tente de novo.",
+        "seedExplanation":
+            "As Seeds devem ter {{maxLength}} caracteres, letras maíusculas (A-Z) e o número 9. Não pode utilizar Seeds com mais de {{maxLength}} caracteres.",
         "neverShare": "NUNCA PARTILHE A SUA SEED COM NINGUÉM"
     },
     "home": {
@@ -269,7 +286,8 @@
     "onboardingComplete": {
         "allDone": "All Done!",
         "openYourWallet": "Open your wallet",
-        "walletReady": "A carteira está configurada e pronta para ser utilizada. Se posteriormente necessitar de efetuar alterações, utilize o menu \"Configurações\"."
+        "walletReady":
+            "A carteira está configurada e pronta para ser utilizada. Se posteriormente necessitar de efetuar alterações, utilize o menu \"Configurações\"."
     },
     "paperWallet": {
         "clickToPrint": "Prima o botão em baixo para imprimir uma cópia em papel da sua Seed.",
@@ -310,12 +328,15 @@
         "printBlankWallet": "Print a blank wallet",
         "whatIsCheksum": "Every seed has a corresponding 3 character checksum",
         "iHavesavedMySeed": "I've saved my seed",
-        "checksumExplanation": "Whenever you add a seed to your wallet, you should ensure that the wallet-generated checksum matches the one you have written down.",
-        "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
+        "checksumExplanation":
+            "Whenever you add a seed to your wallet, you should ensure that the wallet-generated checksum matches the one you have written down.",
+        "mustSaveYourSeed":
+            "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Please confirm your seed",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or the app.",
+        "trinityWillNeverAskToReenter":
+            "Trinity will never ask you to re-enter this seed unless you reset your wallet or the app.",
         "enterYourSeed": "Enter your seed",
         "incorrectSeed": "Seed incorreta",
         "incorrectSeedExplanation": "A Seed que introduziu está incorreta. Por favor, tente novamente.",
@@ -332,7 +353,8 @@
         "notEnoughFunds": "Fundos insuficientes",
         "notEnoughFundsExplanation": "Não contém fundos suficientes para realizar esta transferência.",
         "keyReuse": "Reutilização da chave",
-        "keyReuseExplanation": "Está a tentar enviar para um endereço que já foi utilizado. Por favor, tente outro endereço.",
+        "keyReuseExplanation":
+            "Está a tentar enviar para um endereço que já foi utilizado. Por favor, tente outro endereço.",
         "recipientAddress": "Endereço do destinatário",
         "amount": "Quantia",
         "max": "MAX",
@@ -343,22 +365,26 @@
         "invalidMessageTooLongExplanation": "The message exceeds the max. amount of characters (1093).",
         "send": "Enviar",
         "invalidAmount": "Incorrect amount entered",
-        "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
+        "invalidAmountExplanation":
+            "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "Selecionado o montante MÁXIMO",
         "iotaUnits": "IOTA units explained",
         "sendMax": "SEND MAX",
         "totalTime": "Total time",
         "addressPasteDetected": "Address paste detected",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
+        "addressPasteExplanation":
+            "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
     },
     "setPassword": {
         "choosePassword": "Choose a new password",
         "passwordTooShort": "A palavra-passe é demasiado curta",
-        "passwordTooShortExplanation": "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
+        "passwordTooShortExplanation":
+            "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
         "passwordMismatch": "As palavras-passe não coincidem",
         "passwordMismatchExplanation": "As palavras-passe que inseriu não coincidem. Por favor tente de novo.",
         "nowWeNeedTo": "Agora precisamos de gerar uma palavra-passe.",
-        "anEncryptedCopy": "Um cópia cifrada da sua Seed será guardada no seu dispositivo. Utilizará esta palavra-passe para aceder, futuramente, à sua carteira.",
+        "anEncryptedCopy":
+            "Um cópia cifrada da sua Seed será guardada no seu dispositivo. Utilizará esta palavra-passe para aceder, futuramente, à sua carteira.",
         "ensure": "Assegure-se de que utiliza uma palavra-passe segura, com pelo menos 12 caracteres.",
         "retypePassword": "Digite de novo a password"
     },
@@ -370,8 +396,10 @@
     "modeSelection": {
         "expert": "Expert",
         "standard": "Standard",
-        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
-        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
+        "expertModeExplanation":
+            "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "modesExplanation":
+            "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
     "settings": {
         "transferSending": "A realizar transferência",
@@ -423,7 +451,8 @@
         "lockScreenTimeout": "Lock Screen Timeout (Minutes)",
         "autoNodeSwitching": "Automatically switch node when selected is unreachable",
         "nodeChangeSuccess": "Successfully changed node",
-        "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
+        "nodeChangeSuccessNoRemotePow":
+            "The node was changed to {{node}}. This node does not support remote Proof of Work.",
         "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
         "nodeChangeError": "Error changing node",
         "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
@@ -438,10 +467,12 @@
         "okay": "Ok. Vamos configurar a sua carteira!",
         "doYouAlreadyHaveASeed": "Já possui uma Seed que gostaria de utilizar?",
         "doYouNeedASeed": "Do you need to create a new seed?",
-        "seedExplanation": "A Seed IOTA, uma sequência especial de 81 caracteres, é tudo quanto necessita para aceder à sua conta.",
+        "seedExplanation":
+            "A Seed IOTA, uma sequência especial de 81 caracteres, é tudo quanto necessita para aceder à sua conta.",
         "noIHaveOne": "No, I have one",
         "yesINeedASeed": "Yes, I need a seed",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
+        "explanation":
+            "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
         "keepSafe": "Por favor, mantenha a sua Seed protegida e segura.",
         "hint": "<0><0>Hint:</0> Click NO if this is your first time using IOTA.</0>"
     },
@@ -452,10 +483,13 @@
     },
     "writeSeedDown": {
         "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
-        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
+        "writeDownYourSeed":
+            "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
     },
     "history": {
         "bundleHashCopied": "Bundle hash copied",
+        "noTransactionsFound": "No transactions found",
+        "hideZeroBalance": "Hide zero balance",
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
         "addressCopied": "Endereço copiado",
         "addressCopiedExplanation": "O seu endereço foi copiado para a área de transferência.",
@@ -493,7 +527,8 @@
         "snapshotTransition": "Snapshot transition",
         "pow": "Proof of Work",
         "autoPromotion": "Auto-promotion",
-        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
+        "autoPromotionExplanation":
+            "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
         "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
     },
     "advancedThemeCustomisation": {
@@ -522,7 +557,8 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Why can't I spend my full balance?",
-        "spentAddressExplanation": "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
+        "spentAddressExplanation":
+            "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
         "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
     },
     "deleteAccount": {
@@ -553,12 +589,14 @@
         "didSaveSeed": "Did you back up your seed?",
         "alreadyHave": "I have saved my seed",
         "reenterSeed": "At the next step you will be asked to re-enter your seed.",
-        "reenterSeedWarning": "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
+        "reenterSeedWarning":
+            "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
         "pleaseConfirm": "Please confirm you have securely stored your seed."
     },
     "walletResetConfirmation": {
         "cannotUndo": "ESTA AÇÃO NÃO PODE SER ANULADA.",
-        "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
+        "warning":
+            "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Touch fingerprint reader to enable fingerprint authentication",
@@ -571,7 +609,8 @@
         "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
         "status": "Status",
         "fingerprintUnavailable": "Biometric authentication unavailable",
-        "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
+        "fingerprintUnavailableExplanation":
+            "Your device does not support biometric authentication or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
         "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID.",
@@ -660,7 +699,8 @@
         "noUpdatesAvailable": "No updates available",
         "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
         "newVersionAvailable": "New version available",
-        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
+        "newVersionAvailableExplanation":
+            "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
         "downloadRelease": "Download release",
         "skipUpdate": "Skip update"
     },

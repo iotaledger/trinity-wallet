@@ -169,7 +169,6 @@ export const fetchNodeList = (chooseRandomNode = false) => {
 
         fetch(NODELIST_URL, {
             headers: {
-                'Content-Type': 'application/json',
                 Accept: 'application/json',
             },
         })

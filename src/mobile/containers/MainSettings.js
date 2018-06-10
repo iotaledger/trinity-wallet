@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     content: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     },
     titleText: {
         fontFamily: 'SourceSansPro-Regular',
@@ -274,7 +274,7 @@ export class MainSettings extends Component {
                         </View>
                     </TouchableOpacity>
                 </View>
-                <View style={{ flex: 1 }}/>
+                <View style={{ flex: 1 }} />
                 <Modal
                     animationIn={isAndroid ? 'bounceInUp' : 'zoomIn'}
                     animationOut={isAndroid ? 'bounceOut' : 'zoomOut'}
