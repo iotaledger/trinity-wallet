@@ -438,7 +438,7 @@
         "okay": "Tamam. Cüzdanını ayarlayabilirsin!",
         "doYouAlreadyHaveASeed": "Kullanmak istediğiniz bir cüzdan şifreniz var mı?",
         "doYouNeedASeed": "Do you need to create a new seed?",
-        "seedExplanation": "IOTA cüzdan şifresi, hesabınız için bir kullanıcı adı ve şifre gibi, 81 karakterden oluşan bir diziyle birleştirilmiştir.",
+        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
         "noIHaveOne": "No, I have one",
         "yesINeedASeed": "Yes, I need a seed",
         "explanation": "<0><0>Oluşumunuzu</0><1> herhangi bir cüzdandan</1><2>, veya</2><3> herhangi bir cihazdan valıklarınıza ulaşmak için kullanabilirsiniz</3><4>. Ama oluşumunuzu kaybederseniz tüm IOTA'nızı da kaybedersiniz.</4></0>",
