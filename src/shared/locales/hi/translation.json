@@ -438,7 +438,7 @@
         "okay": "चलो अपने वॉलेट को सेट करे!",
         "doYouAlreadyHaveASeed": "क्या आपके पास पहले से एक सीड है जिसे आप उपयोग करना चाहते हैं?",
         "doYouNeedASeed": "क्या आपको एक नया सीड बनाने की जरूरत है?",
-        "seedExplanation": "IOTA सीड आपके खाते में यूज़रनेम और पासवर्ड की तरह है, जो 81 अक्षरों में से एक शब्द में मिला है।",
+        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
         "noIHaveOne": "नहीं, मेरे पास पहले से है",
         "yesINeedASeed": "हाँ, मुझे सीड की जरुरत है",
         "explanation": "<0> <0> आप इसका उपयोग </0> <1> किसी भी वॉलेट </1> <2>, पर </2> <3> किसी भी डिवाइस </3> <4> से अपने फण्ड तक पहुंचने के लिए कर सकते हैं । लेकिन अगर आप अपना सीड खो देते हैं तो आप भी अपना IOTA खो देते हैं । </4> </0>",
