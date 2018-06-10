@@ -438,7 +438,7 @@
         "okay": "Oke. Laten we uw portemonnee instellen!",
         "doYouAlreadyHaveASeed": "Heeft u al een seed die u zou willen gebruiken?",
         "doYouNeedASeed": "Wilt u een nieuwe seed maken?",
-        "seedExplanation": "De IOTA-seed is als een gebruikersnaam en wachtwoord voor uw account, samengevoegd in een tekenreeks van 81 karakters.",
+        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
         "noIHaveOne": "Nee, ik heb er een",
         "yesINeedASeed": "Ja, ik heb een seed nodig",
         "explanation": "<0><0>U krijgt hiermee toegang tot uw saldo vanuit </0><1>elke portemonnee</1><2>, op</2> <3>elk apparaat</3><4>. Maar als u uw seed verliest, verliest u daarmee ook uw IOTA.</4></0>",
