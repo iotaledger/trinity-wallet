@@ -438,7 +438,7 @@
         "okay": "좋습니다. 이제 지갑을 만들어 봅시다!",
         "doYouAlreadyHaveASeed": "이미 사용하고자 하는 시드를 가지고 있습니까?",
         "doYouNeedASeed": "새 시드가 필요하신가요?",
-        "seedExplanation": "IOTA의 시드는 81글자로 구성되며, 계정에 있어 아이디와 비밀번호를 합친 것과 같은 역할을 합니다.",
+        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
         "noIHaveOne": "아니요, 이미 있습니다",
         "yesINeedASeed": "네, 시드가 필요합니다",
         "explanation": "<0><0>이 시드를 이용하여 </0><1>어느 지갑에서나</1><2>, </2><3>어느 기기에서나</3><4> 가지고 있는 자산에 접근할 수 있습니다. 그러나 이 시드를 잃어버릴 경우 이 시드에 담긴 IOTA 또한 잃게 됩니다.</4></0>",
