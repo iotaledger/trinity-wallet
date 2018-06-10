@@ -30,6 +30,7 @@ import com.hieuvp.fingerprint.ReactNativeFingerprintScannerPackage;
 import com.rndetectnavbarandroid.RNDetectNavbarAndroidPackage;
 import me.listenzz.modal.TranslucentModalReactPackage;
 import cl.json.RNSharePackage;
+import fr.greweb.reactnativeviewshot;
 
 import java.util.Arrays;
 import java.util.List;
@@ -82,7 +83,8 @@ public class MainApplication extends NavigationApplication implements ShareAppli
             new RNGoogleSafetyNetPackage(),
             new ReactNativeFingerprintScannerPackage(),
             new ShareSecurePackage(),
-            new RNSharePackage()
+            new RNSharePackage(),
+            new RNViewShotPackage()
     );
   }
 
