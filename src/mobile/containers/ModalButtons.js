@@ -67,7 +67,7 @@ class ModalButtons extends PureComponent {
 
     static defaultProps = {
         buttonWidth: { width: width / 2.7 },
-        containerWidth: { width: width / 1.2 },
+        containerWidth: { width: width / 1.15 },
     };
 
     render() {
