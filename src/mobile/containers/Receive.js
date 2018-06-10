@@ -198,20 +198,19 @@ class Receive extends Component {
     }
 
     onQRPress() {
-        const { t, receiveAddress } = this.props;
+        const { receiveAddress } = this.props;
         if (receiveAddress !== ' ') {
             captureRef(this.qr, { format: 'png', result: 'data-uri' }).then((url) => {
                 Share.open({
                     url,
                     type: 'image/png',
                     message: receiveAddress,
-                })
-                    .then(() => {
-                        this.props.generateAlert('success', t('codeSent'), t('codeSent'));
-                    })
-                    .catch(() => {
-                        this.props.generateAlert('error', t('codeNotSent'), t('codeNotSent'));
-                    });
+                }).catch((err) => {
+                    // Handling promise rejection from `react-native-share` so that Bugsnag does not report it as an error
+                    /*eslint-disable no-console*/
+                    console.log(err);
+                    /*eslint-enable no-console*/
+                });
             });
         }
     }
