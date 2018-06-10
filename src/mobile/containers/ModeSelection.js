@@ -132,7 +132,7 @@ class ModeSelection extends Component {
                         >
                             <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                                 <View style={styles.toggleTextContainer}>
-                                    <Text style={[styles.toggleText, textColor, { paddingRight: width / 45 }]}>
+                                    <Text style={[styles.toggleText, textColor, { marginRight: width / 45 }]}>
                                         {t('standard')}
                                     </Text>
                                 </View>
@@ -143,7 +143,7 @@ class ModeSelection extends Component {
                                     scale={1.3}
                                 />
                                 <View style={styles.toggleTextContainer}>
-                                    <Text style={[styles.toggleText, textColor, { paddingLeft: width / 45 }]}>
+                                    <Text style={[styles.toggleText, textColor, { marginLeft: width / 45 }]}>
                                         {t('expert')}
                                     </Text>
                                 </View>

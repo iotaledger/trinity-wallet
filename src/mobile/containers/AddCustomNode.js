@@ -220,7 +220,7 @@ class AddCustomNode extends Component {
                         <CustomTextInput
                             label={t('customNode')}
                             onChangeText={(customNode) => this.setState({ customNode })}
-                            containerStyle={{ width: width / 1.2 }}
+                            containerStyle={{ width: width / 1.15 }}
                             autoCapitalize="none"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically

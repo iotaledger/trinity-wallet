@@ -145,7 +145,7 @@ class EnterPassword extends Component {
                         <CustomTextInput
                             label={t('global:password')}
                             onChangeText={(text) => this.setState({ password: text })}
-                            containerStyle={{ width: width / 1.2 }}
+                            containerStyle={{ width: width / 1.15 }}
                             autoCapitalize="none"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically

@@ -467,7 +467,7 @@
         "okay": "Okay. Let's set up your wallet!",
         "doYouAlreadyHaveASeed": "Do you already have a seed that you would like to use?",
         "doYouNeedASeed": "Do you need to create a new seed?",
-        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long.",
+        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
         "noIHaveOne": "No, I have one",
         "yesINeedASeed": "Yes, I need a seed",
         "explanation":
