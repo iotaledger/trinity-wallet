@@ -438,7 +438,7 @@
         "okay": "Bien ! Configurons votre portefeuille !",
         "doYouAlreadyHaveASeed": "Détenez-vous déjà une seed que vous désirez utiliser ?",
         "doYouNeedASeed": "Avez-vous besoin de créer une nouvelle seed ?",
-        "seedExplanation": "Votre seed IOTA est la clé principale de vos fonds. Elle est composée de 81 caractères.",
+        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
         "noIHaveOne": "Non, j’en ai déjà une",
         "yesINeedASeed": "Oui, j’ai besoin d’une seed",
         "explanation": "<0><0>Vous pouvez l'utiliser pour accéder à vos fonds à partir de</0><1> n'importe quel portefeuille</1><2>, depuis</2><3> n'importe quel appareil</3><4>. Mais si vous perdez votre seed, vous perdez également vos IOTA.</4></0>",
