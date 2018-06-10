@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     maxContainer: {
         justifyContent: 'flex-start',
         alignItems: 'flex-end',
-        width: width / 1.2,
+        width: width / 1.15,
         paddingRight: 1,
         flex: 0.4,
     },
@@ -806,7 +806,7 @@ export class Send extends Component {
                             maxLength={90}
                             label={t('recipientAddress')}
                             onChangeText={(text) => this.props.setSendAddressField(text)}
-                            containerStyle={{ width: width / 1.2 }}
+                            containerStyle={{ width: width / 1.15 }}
                             autoCapitalize="characters"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
@@ -836,7 +836,7 @@ export class Send extends Component {
                             keyboardType="numeric"
                             label={t('amount')}
                             onChangeText={(text) => this.onAmountType(text)}
-                            containerStyle={{ width: width / 1.2 }}
+                            containerStyle={{ width: width / 1.15 }}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="next"
@@ -893,7 +893,7 @@ export class Send extends Component {
                             keyboardType="default"
                             label={t('message')}
                             onChangeText={(text) => this.props.setSendMessageField(text)}
-                            containerStyle={{ width: width / 1.2 }}
+                            containerStyle={{ width: width / 1.15 }}
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="send"

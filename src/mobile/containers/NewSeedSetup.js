@@ -171,6 +171,9 @@ class NewSeedSetup extends Component {
                 return true;
             });
         }
+        if (isAndroid) {
+            FlagSecure.activate();
+        }
     }
 
     componentWillUnmount() {
@@ -185,10 +188,6 @@ class NewSeedSetup extends Component {
     async onGeneratePress() {
         const { t } = this.props;
         const seed = await generateNewSeed(generateSecureRandom);
-        // Block screenshots
-        if (isAndroid) {
-            FlagSecure.activate();
-        }
         this.props.setSeed({ seed, usedExistingSeed: false });
         this.setState({ randomised: true });
         this.props.generateAlert('success', t('generateSuccess'), t('individualLetters'));
@@ -288,7 +287,7 @@ class NewSeedSetup extends Component {
             <View style={{ backgroundColor: body.bg }}>
                 <InfoBox
                     body={body}
-                    width={width / 1.3}
+                    width={width / 1.15}
                     text={
                         <View>
                             <Text style={[styles.infoText, textColor, { paddingTop: height / 40 }]}>
@@ -331,7 +330,7 @@ class NewSeedSetup extends Component {
                 onPress={() => this.onCharPress(index)}
                 style={[styles.tileContainer, { backgroundColor: input.bg }]}
                 underlayColor={primary.color}
-                hitSlop={{ top: height / 80, bottom: height / 80, left: height / 80, right: height / 80 }}
+                hitSlop={{ top: 5, bottom: 5, left: 5, right: 5 }}
             >
                 <View style={styles.tile}>
                     <Text style={[styles.tileText, { color: input.color, opacity: randomised ? 1 : 0.1 }]}>
