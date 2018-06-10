@@ -438,7 +438,7 @@
         "okay": "Oke. Mari menyiapkan dompet Anda!",
         "doYouAlreadyHaveASeed": "Apakah anda sudah memiliki Seed yang ingin digunakan?",
         "doYouNeedASeed": "Do you need to create a new seed?",
-        "seedExplanation": "Seed di IOTA adalah nama pengguna dan kata sandi di akun anda yang dicampur dalam rangkaian 81 karakter.",
+        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
         "noIHaveOne": "No, I have one",
         "yesINeedASeed": "Yes, I need a seed",
         "explanation": "<0><0>Anda dapat mengakses dana anda dari</0><1> dompet manapun</1><2>, di</2><3> perangkat apapun</3><4>. Tetapi jika anda lupa Seed, Anda akan kehilangan IOTA.</4></0>",
