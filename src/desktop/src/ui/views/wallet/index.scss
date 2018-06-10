@@ -9,6 +9,8 @@ $sidebar-narrow: 70px;
         background: var(--bar-bg);
         flex: 0 0 $sidebar;
         height: 100vh;
+        position: relative;
+        z-index: 4;
 
         > div {
             flex: 0 0 200px;

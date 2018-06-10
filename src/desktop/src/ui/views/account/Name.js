@@ -4,6 +4,8 @@ import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getSelectedAccountName } from 'selectors/accounts';
 
+import { renameSeed } from 'libs/crypto';
+
 import { changeAccountName } from 'actions/accounts';
 import { generateAlert } from 'actions/alerts';
 
@@ -17,6 +19,8 @@ class AccountName extends PureComponent {
     static propTypes = {
         /** Current accounts info */
         accountInfo: PropTypes.object,
+        /** Currrent vault password */
+        password: PropTypes.string.isRequired,
         /** Selected account name */
         accountName: PropTypes.string.isRequired,
         /** Change current account name
@@ -44,7 +48,7 @@ class AccountName extends PureComponent {
 
     /** Change account name in state and in vault */
     setAccountName() {
-        const { accountName, changeAccountName, accountInfo, generateAlert, t } = this.props;
+        const { accountName, password, changeAccountName, accountInfo, generateAlert, t } = this.props;
 
         const accountNames = Object.keys(accountInfo);
 
@@ -55,7 +59,7 @@ class AccountName extends PureComponent {
             return;
         }
 
-        if (accountNames.indexOf(newAccountName) > -1) {
+        if (accountNames.map((accountName) => accountName.toLowerCase()).indexOf(name.toLowerCase()) > -1) {
             generateAlert('error', t('addAdditionalSeed:nameInUse'), t('addAdditionalSeed:nameInUseExplanation'));
             return;
         }
@@ -66,6 +70,8 @@ class AccountName extends PureComponent {
             oldAccountName: accountName,
             newAccountName,
         });
+
+        renameSeed(password, accountName, newAccountName);
     }
 
     render() {
@@ -97,6 +103,7 @@ class AccountName extends PureComponent {
 const mapStateToProps = (state) => ({
     accountInfo: state.accounts.accountInfo,
     accountName: getSelectedAccountName(state),
+    password: state.wallet.password,
 });
 
 const mapDispatchToProps = {

@@ -1,11 +1,12 @@
+/* global Electron */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { translate, Trans } from 'react-i18next';
-import { connect } from 'react-redux';
-import QRCode from 'qrcode.react';
 
-import { getChecksum } from 'libs/iota/utils';
+import QRCode from 'qr.js/lib/QRCode';
+
+import { byteToChar } from 'libs/crypto';
 
 import Modal from 'ui/components/modal/Modal';
 import Button from 'ui/components/Button';
@@ -28,8 +29,6 @@ const wallets = {
  */
 class SeedSave extends PureComponent {
     static propTypes = {
-        /** Current user defined seed */
-        seed: PropTypes.string,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          * @ignore
@@ -38,13 +37,25 @@ class SeedSave extends PureComponent {
     };
 
     state = {
+        seed: Electron.getOnboardingSeed(),
         writeIndex: 1,
         writeVisible: false,
     };
 
     render() {
-        const { t, seed } = this.props;
-        const { writeIndex, writeVisible } = this.state;
+        const { t } = this.props;
+        const { writeIndex, writeVisible, seed } = this.state;
+
+        const checksum = Electron.getChecksum(seed);
+
+        const qr = new QRCode(-1, 1);
+
+        seed.forEach((byte) => {
+            qr.addData(byteToChar(byte));
+        });
+        qr.make();
+
+        const cells = qr.modules;
 
         return (
             <form>
@@ -68,6 +79,7 @@ class SeedSave extends PureComponent {
                             <h4>{t('saveYourSeed:digitalCopy')}</h4>
                             <p>{t('copyToClipboard')}</p>
                         </Clipboard>
+
                         <a onClick={() => this.setState({ writeVisible: true, writeIndex: 1 })} className={css.secure}>
                             <h3>{t('saveYourSeed:mostSecure')}</h3>
                             <div>
@@ -90,7 +102,7 @@ class SeedSave extends PureComponent {
                         {t('goBackStep')}
                     </Button>
                     <Button to="/onboarding/seed-verify" className="square" variant="primary">
-                        {t('saveYourSeed:iHaveSavedMySeed')}
+                        {t('saveYourSeed:iHavesavedMySeed')}
                     </Button>
                 </footer>
                 <Modal
@@ -104,15 +116,22 @@ class SeedSave extends PureComponent {
                         <div className={classNames(css.seed, css.narrow)}>
                             <div>
                                 {seed &&
-                                    seed.match(/.{1,3}/g).map((letter, index) => {
+                                    seed.map((byte, index) => {
+                                        if (index % 3 !== 0) {
+                                            return null;
+                                        }
+                                        const letter = `${byteToChar(byte)}${byteToChar(seed[index + 1])}${byteToChar(
+                                            seed[index + 2],
+                                        )}`;
+
                                         return (
                                             <span
                                                 className={
-                                                    writeIndex !== Math.floor(index / 3) + 1 ? css.disabled : null
+                                                    writeIndex !== Math.floor(index / 9) + 1 ? css.disabled : null
                                                 }
                                                 key={`${index}${letter}`}
                                             >
-                                                {index % 3 === 0 ? <em>{index / 3 + 1}</em> : null}
+                                                {index % 9 === 0 ? <em>{index / 9 + 1}</em> : null}
                                                 {letter}
                                             </span>
                                         );
@@ -123,7 +142,7 @@ class SeedSave extends PureComponent {
                                     title={t('saveYourSeed:whatIsCheksum')}
                                     tip={t('saveYourSeed:checksumExplanation')}
                                 />{' '}
-                                {t('checksum')}: <strong>{seed ? getChecksum(seed) : null}</strong>
+                                {t('checksum')}: <strong>{checksum}</strong>
                             </div>
                             <nav className={css.arrows}>
                                 <a
@@ -153,7 +172,7 @@ class SeedSave extends PureComponent {
                             variant="primary"
                             className="square"
                         >
-                            {t('done')}
+                            {t('doneLowercase')}
                         </Button>
                     </footer>
                 </Modal>
@@ -161,7 +180,8 @@ class SeedSave extends PureComponent {
                     {writeVisible && seed ? null : (
                         <svg viewBox="0 0 595 841" xmlns="http://www.w3.org/2000/svg">
                             {seed &&
-                                seed.split('').map((letter, index) => {
+                                seed.map((byte, index) => {
+                                    const letter = byteToChar(byte % 27);
                                     const space = index % 9 > 5 ? 38 : index % 9 > 2 ? 19 : 0;
                                     const x = 193 + (index % 9) * 26 + space;
                                     const y = 365 + Math.floor(index / 9) * 32.8;
@@ -171,12 +191,23 @@ class SeedSave extends PureComponent {
                                         </text>
                                     );
                                 })}
+                            {cells.map((row, rowIndex) => {
+                                return row.map((cell, cellIndex) => (
+                                    <rect
+                                        height={1.6}
+                                        key={cellIndex}
+                                        style={{ fill: cell ? '#000000' : 'none' }}
+                                        width={1.6}
+                                        x={160 + cellIndex * 1.6}
+                                        y={698 + rowIndex * 1.6}
+                                    />
+                                ));
+                            })}
                             <text x="373" y="735">
-                                {seed ? getChecksum(seed) : null}
+                                {checksum}
                             </text>
                         </svg>
                     )}
-                    {seed ? <QRCode value={seed} size={200} /> : null}
                     <img width="auto" height="100vh" src={writeVisible ? paperWallet : wallets.paperWalletFilled} />
                 </div>
             </form>
@@ -184,8 +215,4 @@ class SeedSave extends PureComponent {
     }
 }
 
-const mapStateToProps = (state) => ({
-    seed: state.ui.onboarding.seed,
-});
-
-export default connect(mapStateToProps)(translate()(SeedSave));
+export default translate()(SeedSave);

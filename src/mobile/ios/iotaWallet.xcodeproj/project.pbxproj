@@ -63,13 +63,14 @@
 		C51860C3A5258461508F6E3006EA337D /* Inconsolata-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA20221A44EBECD2DE04895A475187C4 /* Inconsolata-Bold.ttf */; };
 		C63F4449914D3D19E3C83C38F602BFB5 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F4F16E746AE853607E2E4D649F9E40 /* libRNDeviceInfo.a */; };
 		CA8AF202D45B7B9C48CB844FE4029B34 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38822DC4E60A1BDF9DF917E7C1541B3D /* libRCTLinking.a */; };
-		CB0E8B9C20BD9CF100A59C9F /* Icons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB0E8B9B20BD9CF100A59C9F /* Icons.ttf */; };
 		CB61A46620B89E3B004088AA /* SourceSansPro-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB61A46520B89E3A004088AA /* SourceSansPro-SemiBold.ttf */; };
 		CB6626F52085057F00651519 /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB6626F42085056C00651519 /* libSplashScreen.a */; };
 		CB866281209F36CA00C026E3 /* EntangledIOS.m in Sources */ = {isa = PBXBuildFile; fileRef = CB86627D209F36CA00C026E3 /* EntangledIOS.m */; };
 		CB98FB9420A0A5BB0047877B /* SourceSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB98FB9120A0A5BB0047877B /* SourceSansPro-Bold.ttf */; };
 		CB98FB9520A0A5BB0047877B /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB98FB9220A0A5BB0047877B /* SourceSansPro-Regular.ttf */; };
 		CB98FB9620A0A5BB0047877B /* SourceSansPro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB98FB9320A0A5BB0047877B /* SourceSansPro-Light.ttf */; };
+		CBA5F52620CAAB2A00774D4B /* SourceCodePro-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CBA5F52520CAAB2A00774D4B /* SourceCodePro-Medium.ttf */; };
+		CBA69EF920C8139300DD4CEB /* Icons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CBA69EF820C8139300DD4CEB /* Icons.ttf */; };
 		CDC76600A03C06457F99259512D7F713 /* libRNIsDeviceRooted.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0431CEEC099BC4CE1F43E0550C4CC291 /* libRNIsDeviceRooted.a */; };
 		CF626DD9FBB494210B780417 /* Pods_iotaWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 890341AF0F2DE4E9DCB80928 /* Pods_iotaWallet.framework */; };
 		D51793D4E78BCB702D9FFAA1A3356153 /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48E60D4ABEBFCB6EC7FCE9538A5FF83F /* libRNSVG.a */; };
@@ -715,7 +716,6 @@
 		C76D226F8C33DAB67AA9C4D76FCA89C2 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		C883F8A0B4031CE53D5E48217339975E /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C989B5B2E21BB76597A51E0EFEA9B547 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		CB0E8B9B20BD9CF100A59C9F /* Icons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Icons.ttf; path = ../../shared/icons/Icons.ttf; sourceTree = "<group>"; };
 		CB61A46520B89E3A004088AA /* SourceSansPro-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceSansPro-SemiBold.ttf"; path = "../../shared/custom-fonts/SourceSansPro-SemiBold.ttf"; sourceTree = "<group>"; };
 		CB6626ED2085056C00651519 /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
 		CB86627D209F36CA00C026E3 /* EntangledIOS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntangledIOS.m; sourceTree = "<group>"; };
@@ -723,6 +723,8 @@
 		CB98FB9120A0A5BB0047877B /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceSansPro-Bold.ttf"; path = "../../shared/custom-fonts/SourceSansPro-Bold.ttf"; sourceTree = "<group>"; };
 		CB98FB9220A0A5BB0047877B /* SourceSansPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceSansPro-Regular.ttf"; path = "../../shared/custom-fonts/SourceSansPro-Regular.ttf"; sourceTree = "<group>"; };
 		CB98FB9320A0A5BB0047877B /* SourceSansPro-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceSansPro-Light.ttf"; path = "../../shared/custom-fonts/SourceSansPro-Light.ttf"; sourceTree = "<group>"; };
+		CBA5F52520CAAB2A00774D4B /* SourceCodePro-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceCodePro-Medium.ttf"; path = "../../shared/custom-fonts/SourceCodePro-Medium.ttf"; sourceTree = "<group>"; };
+		CBA69EF820C8139300DD4CEB /* Icons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Icons.ttf; path = ../../shared/icons/Icons.ttf; sourceTree = "<group>"; };
 		CFA2B84C183CC39F995C8E04CC713DDB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = iotaWallet/Images.xcassets; sourceTree = "<group>"; };
 		D2C796029F4A68C167C1F1F5176A5819 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D5BA67ADCF3A3E3973DDF764 /* Pods-iotaWallet-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iotaWallet-tvOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iotaWallet-tvOSTests/Pods-iotaWallet-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -931,7 +933,8 @@
 		3FA554CD0D5061D20FBDC112457CF26E = {
 			isa = PBXGroup;
 			children = (
-				CB0E8B9B20BD9CF100A59C9F /* Icons.ttf */,
+				CBA5F52520CAAB2A00774D4B /* SourceCodePro-Medium.ttf */,
+				CBA69EF820C8139300DD4CEB /* Icons.ttf */,
 				CB61A46520B89E3A004088AA /* SourceSansPro-SemiBold.ttf */,
 				CB98FB9120A0A5BB0047877B /* SourceSansPro-Bold.ttf */,
 				CB98FB9320A0A5BB0047877B /* SourceSansPro-Light.ttf */,
@@ -1484,8 +1487,9 @@
 						TestTargetID = 4848851A00274CA2FFBE307BAEB5F278;
 					};
 					4848851A00274CA2FFBE307BAEB5F278 = {
+						DevelopmentTeam = UG77RJKZHH;
 						LastSwiftMigration = 920;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
@@ -2256,7 +2260,8 @@
 				54D44899635E65A34FCEAC3EA412BE26 /* Images.xcassets in Resources */,
 				C51860C3A5258461508F6E3006EA337D /* Inconsolata-Bold.ttf in Resources */,
 				5403F0AF99C33584CC25CA8D4422B333 /* Inconsolata-Regular.ttf in Resources */,
-				CB0E8B9C20BD9CF100A59C9F /* Icons.ttf in Resources */,
+				CBA5F52620CAAB2A00774D4B /* SourceCodePro-Medium.ttf in Resources */,
+				CBA69EF920C8139300DD4CEB /* Icons.ttf in Resources */,
 				CB98FB9620A0A5BB0047877B /* SourceSansPro-Light.ttf in Resources */,
 				CB61A46620B89E3B004088AA /* SourceSansPro-SemiBold.ttf in Resources */,
 				D54A6C850FD7BE61FF81BD7F6E7F25A3 /* Info.plist in Resources */,
@@ -2739,10 +2744,10 @@
 				CODE_SIGN_ENTITLEMENTS = iotaWallet/iotaWallet.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 9;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = UG77RJKZHH;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3047,9 +3052,9 @@
 				CODE_SIGN_ENTITLEMENTS = iotaWallet/iotaWallet.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 9;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = UG77RJKZHH;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

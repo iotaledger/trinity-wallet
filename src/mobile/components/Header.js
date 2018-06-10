@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
     header: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: width / 16,
+        textAlign: 'center',
     },
 });
 

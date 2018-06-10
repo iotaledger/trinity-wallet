@@ -75,7 +75,7 @@ class AccountName extends React.PureComponent {
             return;
         }
 
-        if (accountNames.indexOf(name) > -1) {
+        if (accountNames.map((accountName) => accountName.toLowerCase()).indexOf(name.toLowerCase()) > -1) {
             generateAlert('error', t('addAdditionalSeed:nameInUse'), t('addAdditionalSeed:nameInUseExplanation'));
             return;
         }
