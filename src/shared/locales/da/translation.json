@@ -438,7 +438,7 @@
         "okay": "Okay. Lad os opsætte din tegnebog!",
         "doYouAlreadyHaveASeed": "Har du allerede en hovednøgle du gerne vil bruge?",
         "doYouNeedASeed": "Do you need to create a new seed?",
-        "seedExplanation": "En IOTA hovednøgle fungerer som din kontos brugernavn og adgangskode, og består af en kombineret streng på 81 tegn.",
+        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
         "noIHaveOne": "No, I have one",
         "yesINeedASeed": "Yes, I need a seed",
         "explanation": "<0><0>du kan bruge det til at hente dine midler fra</0><1> enhver tegnebog</1><2>, på</2><3> hvilken som helst enhed</3><4>. Men mister du din hovednøgle, mister du også dine IOTA.</4></0>",
