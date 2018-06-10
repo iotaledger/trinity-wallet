@@ -290,7 +290,12 @@ const checkAttachToTangleAsync = (node) => {
         method: 'POST',
         body: JSON.stringify({ command: 'attachToTangle' }),
         headers: { 'X-IOTA-API-Version': '1' },
-    }).then((res) => res.json());
+    })
+        .then((res) => res.json())
+        .catch(() => {
+            // return a fake normal IRI response when attachToTangle is not available
+            return { error: Errors.ATTACH_TO_TANGLE_UNAVAILABLE };
+        });
 };
 
 const attachToTangleAsync = (

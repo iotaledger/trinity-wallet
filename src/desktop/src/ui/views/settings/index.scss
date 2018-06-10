@@ -1,10 +1,10 @@
 $header: 60px;
+$sidebar-narrow: 70px;
 
 .settings {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding-top: 60px;
 
     header {
         display: flex;
@@ -34,12 +34,12 @@ $header: 60px;
 
     section:first-of-type {
         flex: 0 0 240px;
-        padding: $header 0 20px;
+        padding: 120px 0 20px;
     }
 
     section:last-of-type {
         flex: 1;
-        padding: 0 20px;
+        padding: 60px 20px 0;
 
         > div {
             height: calc(100vh - 120px);
@@ -88,7 +88,7 @@ $header: 60px;
         }
 
         section:first-of-type {
-            flex: 0 0 var(--sidebar-width-narrow);
+            flex: 0 0 $sidebar-narrow;
             height: 100vh;
             background: var(--bar-bg);
         }
