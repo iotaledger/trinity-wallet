@@ -438,7 +438,7 @@
         "okay": "Vamos configurar a sua carteira!",
         "doYouAlreadyHaveASeed": "Já possui uma Seed que gostaria de utilizar?",
         "doYouNeedASeed": "Precisa criar uma nova seed?",
-        "seedExplanation": "A Seed IOTA representa, simultaneamente, o nome do usuário e a senha de sua conta, combinados em uma sequência de 81 caracteres.",
+        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
         "noIHaveOne": "Não, eu tenho uma",
         "yesINeedASeed": "Sim, eu preciso de uma seed",
         "explanation": "<0><0>Você pode usá-la para acessar seus fundos a partir de</0><1> qualquer carteira</1><2>, em </2><3>qualquer dispositivo</3><4>. Mas se você perder sua Seed, também perderá as suas IOTAs.</4></0>",
