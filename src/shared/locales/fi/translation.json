@@ -438,7 +438,7 @@
         "okay": "Okei. Luodaan sinulle lompakko!",
         "doYouAlreadyHaveASeed": "Onko sinulla jo seed-luku jota haluat käyttää?",
         "doYouNeedASeed": "Haluatko luoda uuden seed-luvun?",
-        "seedExplanation": "IOTA seed-luku on käyttäjänimen ja salasanan yhdistelmä tilillesi. Seed-luku koostuu yhdestä 81-merkin pituisesta merkkijonosta.",
+        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
         "noIHaveOne": "En, minulla on jo",
         "yesINeedASeed": "Kyllä, luodaan seed-luku",
         "explanation": "<0><0>Voit käyttää seed-lukuasi päästäksesi käsiksi varoihisi mistä tahansa</0><1> lompakosta</1><2>, millä tahansa tuetulla</2><3> laitteella</3><4>. Muista kuitenkin että jos hävität seed-lukusi, menetät myös pääsyn varoihisi.</4></0>",
