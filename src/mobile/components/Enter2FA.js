@@ -88,7 +88,7 @@ export class Enter2FA extends Component {
                         <CustomTextInput
                             label={t('twoFaToken')}
                             onChangeText={this.handleChange2FAToken}
-                            containerStyle={{ width: width / 1.2 }}
+                            containerStyle={{ width: width / 1.15 }}
                             autoCapitalize="none"
                             keyboardType="numeric"
                             autoCorrect={false}

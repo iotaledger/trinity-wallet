@@ -215,6 +215,7 @@ export default class HistoryModalContent extends PureComponent {
         const types = {
             bundle: [t('bundleHashCopied'), t('bundleHashCopiedExplanation')],
             address: [t('addressCopied'), t('addressCopiedExplanation')],
+            message: [t('messageCopied'), t('messageCopiedExplanation')],
         };
 
         Clipboard.setString(item);
@@ -325,7 +326,9 @@ export default class HistoryModalContent extends PureComponent {
                                         </View>
                                     )}
                                     <Text style={[styles.heading, style.defaultTextColor]}>{t('send:message')}:</Text>
-                                    <Text style={[styles.text, style.defaultTextColor]}>{message}</Text>
+                                    <TouchableOpacity onPress={() => this.copy(message, 'message')}>
+                                        <Text style={[styles.text, style.defaultTextColor]}>{message}</Text>
+                                    </TouchableOpacity>
                                     {!confirmationBool &&
                                         mode === 'Expert' &&
                                         value > 0 && (

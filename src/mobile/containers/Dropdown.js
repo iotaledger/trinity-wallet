@@ -131,7 +131,7 @@ export class Dropdown extends Component {
         background: false,
         saveSelection: () => {},
         title: '',
-        dropdownWidth: { width: width / 1.2 },
+        dropdownWidth: { width: width / 1.15 },
     };
 
     constructor(props) {

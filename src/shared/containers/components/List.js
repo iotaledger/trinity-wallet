@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { getTransfersForSelectedAccount } from '../../selectors/accounts';
+import { toggleEmptyTransactions } from '../../actions/settings';
 
 /**
  * List component container
@@ -21,9 +22,24 @@ export default function withListData(ListComponent) {
             t: PropTypes.func.isRequired,
             theme: PropTypes.object.isRequired,
             updateAccount: PropTypes.func.isRequired,
+            toggleEmptyTransactions: PropTypes.func.isRequired,
+            hideEmptyTransactions: PropTypes.bool.isRequired,
         };
         render() {
-            const { updateAccount, transfers, limit, compact, filter, setItem, currentItem, theme, ui, t } = this.props;
+            const {
+                updateAccount,
+                transfers,
+                limit,
+                compact,
+                filter,
+                setItem,
+                currentItem,
+                toggleEmptyTransactions,
+                hideEmptyTransactions,
+                theme,
+                ui,
+                t,
+            } = this.props;
 
             const isBusy = ui.isSyncing || ui.isSendingTransfer || ui.isAttachingToTangle || ui.isTransitioning;
 
@@ -38,6 +54,8 @@ export default function withListData(ListComponent) {
                 filter,
                 isBusy,
                 isLoading: ui.isFetchingLatestAccountInfoOnLogin,
+                hideEmptyTransactions,
+                toggleEmptyTransactions: toggleEmptyTransactions,
                 t,
             };
 
@@ -52,7 +70,12 @@ export default function withListData(ListComponent) {
         transfers: getTransfersForSelectedAccount(state),
         theme: state.settings.theme,
         ui: state.ui,
+        hideEmptyTransactions: state.settings.hideEmptyTransactions,
     });
 
-    return connect(mapStateToProps, {})(translate()(ListData));
+    const mapDispatchToProps = {
+        toggleEmptyTransactions,
+    };
+
+    return connect(mapStateToProps, mapDispatchToProps)(translate()(ListData));
 }

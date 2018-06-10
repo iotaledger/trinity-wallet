@@ -31,6 +31,8 @@ import com.rndetectnavbarandroid.RNDetectNavbarAndroidPackage;
 import me.listenzz.modal.TranslucentModalReactPackage;
 import cl.json.RNSharePackage;
 import fr.greweb.reactnativeviewshot;
+import com.kristiansorens.flagsecure.FlagSecurePackage;
+import com.reactlibrary.RNReactNativeHapticFeedbackPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -61,6 +63,7 @@ public class MainApplication extends NavigationApplication implements ShareAppli
             // eg. new VectorIconsPackage()
             new SvgPackage(),
             new MainReactPackage(),
+            new FlagSecurePackage(),
             new TranslucentModalReactPackage(),
             new RNDetectNavbarAndroidPackage(),
             new RNDeviceInfo(),
@@ -83,6 +86,7 @@ public class MainApplication extends NavigationApplication implements ShareAppli
             new RNGoogleSafetyNetPackage(),
             new ReactNativeFingerprintScannerPackage(),
             new ShareSecurePackage(),
+            new RNReactNativeHapticFeedbackPackage(),
             new RNSharePackage(),
             new RNViewShotPackage()
     );
