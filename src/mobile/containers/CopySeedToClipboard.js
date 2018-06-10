@@ -125,7 +125,6 @@ const styles = StyleSheet.create({
     modalCheckboxText: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: GENERAL.fontSize3,
-        marginLeft: width / 40,
     },
     modalCheckbox: {
         width: width / 20,
@@ -411,8 +410,9 @@ class CopySeedToClipboard extends Component {
                                         width: width / 1.65,
                                         height: height / 13,
                                         borderRadius: height / 90,
-                                        backgroundColor: theme.extra.color,
+                                        backgroundColor: theme.secondary.color,
                                     },
+                                    children: { color: theme.secondary.body },
                                 }}
                             >
                                 {t(isAndroid ? 'global:shareSeed' : 'copyToClipboard')}
