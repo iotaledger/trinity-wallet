@@ -438,7 +438,7 @@
         "okay": "Ok. Prejdime k nastaveniu Vašej peňaženky!",
         "doYouAlreadyHaveASeed": "Máte už vlastný Seed, ktorý by ste chceli použiť?",
         "doYouNeedASeed": "Potrebujete vytvoriť nový Seed?",
-        "seedExplanation": "IOTA Seed je niečo ako vaše užívateľské meno a zároveň heslo k vášmu účtu, dlhé 81 znakov.",
+        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
         "noIHaveOne": "Nie, už mám Seed",
         "yesINeedASeed": "Áno, potrebujem Seed",
         "explanation": "<0><0>Môžete ho použiť na prístup k svojim prostriedkom z</0> <1>akejkoľvek peňaženky</1><2>, na</2> <3>akomkoľvek zariadení</3><4>. Ak však stratíte svoj Seed, stratíte tiež všetky vaše IOTA.</4></0>",
