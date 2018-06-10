@@ -438,7 +438,7 @@
         "okay": "W porządku. Ustawmy Twój portfel!",
         "doYouAlreadyHaveASeed": "Czy posiadasz już seed, którego chciałbyś użyć?",
         "doYouNeedASeed": "Czy chcesz utworzyć nowy seed?",
-        "seedExplanation": "Seed IOTA jest swego rodzaju połączeniem nazwy użytkownika oraz hasła do Twojego konta, składającym się na ciąg 81 znaków.",
+        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
         "noIHaveOne": "Nie, mam już klucz",
         "yesINeedASeed": "Tak, potrzebuję klucza",
         "explanation": "<0><0>Możesz go użyć, aby uzyskać dostęp do swoich środków z</0><1> dowolnego portfela</1><2>, na</2><3> dowolnym urządzeniu</3><4>. Jeśli utracisz seed, stracisz swoje środki IOTA.</4></0>",
