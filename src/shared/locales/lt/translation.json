@@ -438,7 +438,7 @@
         "okay": "Puiku. Atlikime piniginės nustatymus!",
         "doYouAlreadyHaveASeed": "Ar jau turite užraktą, kurį norėtumėte panaudoti?",
         "doYouNeedASeed": "Ar jums reikia sukurti naują užraktą?",
-        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
+        "seedExplanation": "IOTA užraktas yra pagrindinis raktas į jūsų lėšas. Jis sudarytas iš 81 simbolio, raidžių A-Z ir skaičiaus 9.",
         "noIHaveOne": "Ne, jau turiu",
         "yesINeedASeed": "Taip, man reikia užrakto",
         "explanation": "<0><0>Jį galima panaudoti norint gauti prieigą prie savo lėšų iš </0><1>bet kokios piniginės</1><2> ir </2><3>bet kokio įrenginio</3><4>. Bet jei prarasite savo užraktą, prarasite ir savo IOTA.</4></0>",
