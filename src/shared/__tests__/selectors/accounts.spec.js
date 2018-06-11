@@ -18,6 +18,8 @@ import {
     getTasksForSelectedAccount,
     shouldTransitionForSnapshot,
     hasDisplayedSnapshotTransitionGuide,
+    getFailedTxBundleHashesFromAccounts,
+    getFailedTxBundleHashesForSelectedAccount,
 } from '../../selectors/accounts';
 
 describe('selectors: accounts', () => {
@@ -463,6 +465,62 @@ describe('selectors: accounts', () => {
                         },
                     }),
                 ).to.eql({ prop: true });
+            });
+        });
+    });
+
+    describe('#getFailedTxBundleHashesFromAccounts', () => {
+        describe('when "failedTxBundleHashes" prop is not defined as a nested prop under "accounts" reducer', () => {
+            it('should return an empty object', () => {
+                expect(getFailedTxBundleHashesFromAccounts({ accounts: { foo: {} } })).to.eql({});
+            });
+        });
+
+        describe('when "failedTxBundleHashes" prop is defined as a nested prop under "accounts" reducer', () => {
+            it('should return value for "failedTxBundleHashes" prop', () => {
+                expect(getFailedTxBundleHashesFromAccounts({ accounts: { failedTxBundleHashes: { foo: [] } } })).to.eql(
+                    { foo: [] },
+                );
+            });
+        });
+    });
+
+    describe('#getFailedTxBundleHashesForSelectedAccount', () => {
+        describe('when account name is not defined as a nested prop under failedTxBundleHashes object', () => {
+            it('should return an empty array', () => {
+                expect(
+                    getFailedTxBundleHashesForSelectedAccount({
+                        accounts: {
+                            accountInfo: {},
+                            failedTxBundleHashes: {
+                                foo: [],
+                            },
+                            accountNames: ['foo', 'baz'],
+                        },
+                        wallet: {
+                            seedIndex: 1,
+                        },
+                    }),
+                ).to.eql([]);
+            });
+        });
+
+        describe('when account name is defined as a nested prop under failedTxBundleHashes object', () => {
+            it('should return value for selected account', () => {
+                expect(
+                    getFailedTxBundleHashesForSelectedAccount({
+                        accounts: {
+                            accountInfo: {},
+                            failedTxBundleHashes: {
+                                foo: [{}, {}],
+                            },
+                            accountNames: ['foo'],
+                        },
+                        wallet: {
+                            seedIndex: 0,
+                        },
+                    }),
+                ).to.eql([{}, {}]);
             });
         });
     });
