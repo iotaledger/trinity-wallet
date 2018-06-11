@@ -5018,9 +5018,9 @@ react-native-haptic-feedback@^1.1.7:
   version "1.1.7"
   resolved "https://registry.yarnpkg.com/react-native-haptic-feedback/-/react-native-haptic-feedback-1.1.7.tgz#9ff27b9a83ce7983ce5f298362129a6b4b958d56"
 
-react-native-html-to-pdf@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/react-native-html-to-pdf/-/react-native-html-to-pdf-0.4.0.tgz#93a1af31db12c0e7f4ec51c569070d8e61177479"
+"react-native-html-to-pdf@git+https://github.com/blink22/react-native-html-to-pdf#master":
+  version "0.5.0"
+  resolved "git+https://github.com/blink22/react-native-html-to-pdf#24c5e9cf81bf9255f20551273c7e7bf1b7b254d5"
 
 "react-native-http@github:tradle/react-native-http#834492d":
   version "1.0.0"
@@ -5100,9 +5100,9 @@ react-native-permissions@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/react-native-permissions/-/react-native-permissions-1.1.1.tgz#4876004681ff8556454613d85249b01baff9b35b"
 
-react-native-print@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/react-native-print/-/react-native-print-0.3.0.tgz#870082cdd14cc1a064cf0fa3b7460932cb032768"
+react-native-print@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/react-native-print/-/react-native-print-0.5.0.tgz#f95301fe4979afeac6816d8019754ec7bdf7bfe6"
 
 react-native-progress@^3.4.0:
   version "3.4.0"
