@@ -326,7 +326,7 @@
         "letsWriteDownYourSeed": "Lets write down your seed",
         "youCanHighlightCharacters": "You can highlight 9 characters at a time",
         "printBlankWallet": "Print a blank wallet",
-        "whatIsCheksum": "Every seed has a corresponding 3 character checksum",
+        "whatIsCheksum": "Every seed has a corresponding 3-character checksum",
         "iHavesavedMySeed": "I've saved my seed",
         "checksumExplanation":
             "Whenever you add a seed to your wallet, you should ensure that the wallet-generated checksum matches the one you have written down.",
