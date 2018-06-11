@@ -7,7 +7,6 @@ import { getChecksum } from 'iota-wallet-shared-modules/libs/iota/utils';
 import FlagSecure from 'react-native-flag-secure-android';
 import Modal from 'react-native-modal';
 import RNPrint from 'react-native-print';
-import timer from 'react-native-timer';
 import SeedPicker from '../components/SeedPicker';
 import WithUserActivity from '../components/UserActivity';
 import OnboardingButtons from '../containers/OnboardingButtons';
@@ -196,7 +195,6 @@ class WriteSeedDown extends Component {
         if (isAndroid) {
             FlagSecure.deactivate();
         }
-        timer.clearTimeout('delayPrint');
     }
 
     onNavigatorEvent(event) {
@@ -208,7 +206,7 @@ class WriteSeedDown extends Component {
     }
 
     onPrintPress() {
-        timer.setTimeout('delayPrint', () => this.print(), 500);
+        this.print();
     }
 
     onDonePress() {
