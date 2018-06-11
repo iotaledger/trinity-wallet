@@ -77,7 +77,7 @@ class SeedSave extends PureComponent {
                                 <Icon icon="password" size={24} />
                             </div>
                             <h4>{t('saveYourSeed:digitalCopy')}</h4>
-                            <p>{t('copyToClipboard')}</p>
+                            <p>{t('copyToClipboard:copyToClipboard')}</p>
                         </Clipboard>
 
                         <a onClick={() => this.setState({ writeVisible: true, writeIndex: 1 })} className={css.secure}>
