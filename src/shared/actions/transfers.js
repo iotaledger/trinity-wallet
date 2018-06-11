@@ -521,12 +521,10 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 cached.trytes = trytes;
                 cached.transactionObjects = transactionObjects;
 
-                // Broadcasting
-                dispatch(setNextStepAsActive());
-
-                return storeAndBroadcastAsync(cached.trytes);
-            })
-            .then(() => {
+                // Before making a network request for storing/rebroadcasting
+                // Save the trytes locally since they are already signed
+                // and a failure in any case of broadcast/store deliberately or otherwise
+                // can reveal signatures.
                 const { newState } = syncAccountAfterSpending(
                     accountName,
                     cached.transactionObjects,
@@ -534,11 +532,16 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                     !isZeroValue,
                 );
 
-                // Progress summary
+                dispatch(updateAccountInfoAfterSpending(newState));
+
+                // Broadcasting
                 dispatch(setNextStepAsActive());
 
-                // TODO: Validate bundle
-                dispatch(updateAccountInfoAfterSpending(newState));
+                return storeAndBroadcastAsync(cached.trytes);
+            })
+            .then(() => {
+                // Progress summary
+                dispatch(setNextStepAsActive());
 
                 // Delay dispatching alerts to display the progress summary
                 setTimeout(() => {
