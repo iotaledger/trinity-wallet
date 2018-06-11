@@ -305,7 +305,7 @@ class WriteSeedDown extends Component {
                         <View style={styles.topContainer}>
                             <Icon name="iota" size={width / 8} color={theme.body.color} />
                             <View style={{ flex: 0.7 }} />
-                            <Header textColor={theme.body.color}>{t('manualCopy')}</Header>
+                            <Header textColor={theme.body.color}>{t('saveYourSeed:writeYourSeedDown')}</Header>
                         </View>
                         <View style={styles.midContainer}>
                             <View style={styles.textContainer}>
@@ -346,7 +346,7 @@ class WriteSeedDown extends Component {
                                 onLeftButtonPress={() => this.onPrintPress()}
                                 onRightButtonPress={() => (isCopyComplete ? this.onDonePress() : null)}
                                 leftButtonText={t('saveYourSeed:printBlankWallet')}
-                                rightButtonText={t('global:doneLowercase')}
+                                rightButtonText={isCopyComplete ? t('global:doneLowercase') : t('scrollToBottom')}
                                 rightButtonStyle={{ wrapper: { opacity: isCopyComplete ? 1 : 0.2 } }}
                             />
                         </View>
