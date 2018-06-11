@@ -130,13 +130,14 @@ class WalletSetup extends Component {
                 <View style={styles.topContainer}>
                     <Icon name="iota" size={width / 8} color={theme.body.color} />
                     <View style={{ flex: 0.7 }} />
-                    <Header textColor={theme.body.color}>{t('creatingSeed')}</Header>
+                    <Header textColor={theme.body.color}>{t('welcome:thankYou')}</Header>
                 </View>
                 <View style={styles.midContainer}>
+                    <View style={{ flex: 0.05 }} />
                     <View style={styles.greetingTextContainer}>
                         <Text style={[styles.greetingText, textColor]}>{t('doYouNeedASeed')}</Text>
                     </View>
-                    <View style={{ flex: 0.2 }} />
+                    <View style={{ flex: 0.25 }} />
                     <InfoBox
                         body={theme.body}
                         text={
@@ -151,13 +152,10 @@ class WalletSetup extends Component {
                                         </Text>
                                         <Text style={styles.infoTextRegular}> any wallet</Text>
                                         <Text style={styles.infoTextLight}>, on</Text>
-                                        <Text style={styles.infoTextRegular}> any device</Text>
-                                        <Text style={styles.infoTextLight}>
-                                            . But if you lose your seed, you also lose your IOTA.
-                                        </Text>
+                                        <Text style={styles.infoTextRegular}> any device.</Text>
                                     </Text>
                                 </Trans>
-                                <Text style={[styles.infoText, textColor]}>{t('keepSafe')}</Text>
+                                <Text style={[styles.infoText, textColor]}>{t('loseSeed')}</Text>
                             </View>
                         }
                     />
