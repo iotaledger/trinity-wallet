@@ -38,6 +38,8 @@ import {
     updateAccountInfoAfterSpending,
     syncAccountBeforeManualPromotion,
     syncAccountBeforeManualRebroadcast,
+    markBundleBroadcastStatusAsPending,
+    markBundleBroadcastStatusAsCompleted,
 } from './accounts';
 import { shouldAllowSendingToAddress, getAddressesUptoRemainder } from '../libs/iota/addresses';
 import {
@@ -534,12 +536,34 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
 
                 dispatch(updateAccountInfoAfterSpending(newState));
 
+                // Temporarily mark this transaction as failed.
+                // The next step is to send the signed trytes to the network
+                // However, there is an attack vector involved if these trytes are sent naively
+                // If one of these (store/broadcast) network calls fail,
+                // A user would have to re-sign his inputs and there is a chance he reveals more parts of the
+                // private key if the first call was deliberately rejected.
+
+                dispatch(
+                    markBundleBroadcastStatusAsPending({
+                        accountName,
+                        bundleHash: head(cached.transactionObjects).bundle,
+                    }),
+                );
+
                 // Broadcasting
                 dispatch(setNextStepAsActive());
 
                 return storeAndBroadcastAsync(cached.trytes);
             })
             .then(() => {
+                // Safely mark this transaction as completed if it was successfully broadcast/stored on the tangle.
+                dispatch(
+                    markBundleBroadcastStatusAsCompleted({
+                        accountName,
+                        bundleHash: head(cached.transactionObjects).bundle,
+                    }),
+                );
+
                 // Progress summary
                 dispatch(setNextStepAsActive());
 
