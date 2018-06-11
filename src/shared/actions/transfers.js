@@ -352,6 +352,9 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
     // Use a local variable to keep track if the promise chain was interrupted internally.
     let chainBrokenInternally = false;
 
+    // Keep track if the signed trytes are being broadcast
+    let isBroadcasting = false;
+
     // Initialize account state
     // Reassign with latest state when account is synced
     let accountState = selectedAccountStateFactory(accountName)(getState());
@@ -542,7 +545,6 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 // If one of these (store/broadcast) network calls fail,
                 // A user would have to re-sign his inputs and there is a chance he reveals more parts of the
                 // private key if the first call was deliberately rejected.
-
                 dispatch(
                     markBundleBroadcastStatusAsPending({
                         accountName,
@@ -553,6 +555,7 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 // Broadcasting
                 dispatch(setNextStepAsActive());
 
+                isBroadcasting = true;
                 return storeAndBroadcastAsync(cached.trytes);
             })
             .then(() => {
@@ -594,6 +597,16 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
             })
             .catch((error) => {
                 dispatch(sendTransferError());
+
+                if (isBroadcasting) {
+                    return dispatch(
+                        generateAlert(
+                            'error',
+                            i18next.t('global:rebroadcastError'),
+                            i18next.t('global:signedTrytesBroadcastErrorExplanation'),
+                        ),
+                    );
+                }
 
                 const message = error.message;
 
