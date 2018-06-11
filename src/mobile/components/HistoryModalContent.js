@@ -17,6 +17,7 @@ import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
 import CtaButton from '../components/CtaButton';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -200,6 +201,10 @@ export default class HistoryModalContent extends PureComponent {
         this.state = {
             scrollable: false,
         };
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('HistoryModalContent');
     }
 
     setScrollable(y) {

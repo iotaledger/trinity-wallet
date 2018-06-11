@@ -27,6 +27,7 @@ import { width, height } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
 import { getPowFn } from '../utils/nativeModules';
 import CtaButton from '../components/CtaButton';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -132,6 +133,10 @@ class History extends Component {
             modalProps: null,
         };
         this.resetModalProps = this.resetModalProps.bind(this);
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('History');
     }
 
     shouldComponentUpdate(newProps) {
