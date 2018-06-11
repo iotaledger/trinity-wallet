@@ -2,7 +2,6 @@ $sidebar: 177px;
 $sidebar-narrow: 70px;
 
 .wallet {
-
     > aside {
         display: flex;
         flex-direction: column;
@@ -25,7 +24,7 @@ $sidebar-narrow: 70px;
         nav {
             flex-grow: 1;
             &:first-of-type {
-                span {
+                a > span {
                     display: none;
                 }
             }
@@ -36,6 +35,7 @@ $sidebar-narrow: 70px;
 
             a {
                 display: block;
+                position: relative;
                 color: var(--bar);
                 font-size: 14px;
                 border-right: 2px solid transparent;
@@ -47,8 +47,24 @@ $sidebar-narrow: 70px;
                 max-width: 200px;
                 overflow: hidden;
 
+                > div {
+                    display: none;
+                    position: absolute;
+                    top: -1px;
+                    right: 0px;
+                    z-index: 2;
+                    opacity: 0.4;
+                    &:hover{
+                       opacity: 1;
+                    }
+                }
+
                 &:hover {
                     background: var(--bar-alt);
+
+                    > div {
+                        display: block;
+                    }
                 }
                 &[aria-current='true'],
                 &.active {
@@ -95,7 +111,7 @@ $sidebar-narrow: 70px;
             nav {
                 &:first-of-type {
                     position: relative;
-                    span {
+                    a>span {
                         display: inline-block;
                     }
                 }
