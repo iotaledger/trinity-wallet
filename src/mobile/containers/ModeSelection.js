@@ -12,6 +12,7 @@ import { Icon } from '../theme/icons.js';
 import InfoBox from '../components/InfoBox';
 import Toggle from '../components/Toggle';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -96,6 +97,10 @@ class ModeSelection extends Component {
         super(props);
 
         this.changeMode = this.changeMode.bind(this);
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('ModeSelection');
     }
 
     changeMode() {

@@ -20,6 +20,7 @@ import OnboardingButtons from '../containers/OnboardingButtons';
 import { Icon } from '../theme/icons';
 import Header from '../components/Header';
 import { isAndroid } from '../utils/device';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -127,6 +128,7 @@ class SeedReentry extends Component {
     }
 
     componentDidMount() {
+        leaveNavigationBreadcrumb('SeedReentry');
         if (isAndroid) {
             FlagSecure.activate();
         }

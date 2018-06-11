@@ -11,6 +11,7 @@ import DynamicStatusBar from '../components/DynamicStatusBar';
 import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
 import Header from '../components/Header';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -86,6 +87,10 @@ class WalletSetup extends Component {
         /** Theme settings */
         theme: PropTypes.object.isRequired,
     };
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('WalletSetup');
+    }
 
     redirectToEnterSeedScreen() {
         const { theme } = this.props;

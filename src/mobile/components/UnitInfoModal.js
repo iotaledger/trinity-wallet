@@ -7,6 +7,7 @@ import StatefulDropdownAlert from '../containers/StatefulDropdownAlert';
 import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
 import { Icon } from '../theme/icons.js';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     modalContainer: {
@@ -83,6 +84,10 @@ class UnitInfoModal extends PureComponent {
          */
         t: PropTypes.func.isRequired,
     };
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('UnitInfoModal');
+    }
 
     render() {
         const { t, textColor, borderColor, lineColor, bar } = this.props;

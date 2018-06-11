@@ -16,6 +16,7 @@ import Header from '../components/Header';
 import GENERAL from '../theme/general';
 import { Icon } from '../theme/icons.js';
 import { isAndroid } from '../utils/device';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 import { width, height } from '../utils/dimensions';
 
@@ -146,6 +147,7 @@ class SaveSeedConfirmation extends Component {
     }
 
     componentDidMount() {
+        leaveNavigationBreadcrumb('SaveSeedConfirmation');
         this.timeout = setTimeout(this.onTimerComplete.bind(this), 3000);
     }
 
