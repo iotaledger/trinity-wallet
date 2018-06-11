@@ -9,6 +9,7 @@ import timer from 'react-native-timer';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -66,6 +67,10 @@ class AddNewAccount extends Component {
         super();
 
         this.addNewSeed = this.addNewSeed.bind(this);
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('AddNewAccount');
     }
 
     addNewSeed() {

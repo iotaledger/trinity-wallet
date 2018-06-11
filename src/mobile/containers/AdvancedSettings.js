@@ -8,6 +8,7 @@ import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { Icon } from '../theme/icons.js';
 import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -97,6 +98,10 @@ export class AdvancedSettings extends PureComponent {
         this.reset = this.reset.bind(this);
         this.onNodeSelection = this.onNodeSelection.bind(this);
         this.onAddCustomNode = this.onAddCustomNode.bind(this);
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('AdvancedSettings');
     }
 
     onNodeSelection() {

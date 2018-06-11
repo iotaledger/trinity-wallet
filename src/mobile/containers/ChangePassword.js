@@ -13,6 +13,7 @@ import GENERAL from '../theme/general';
 import CustomTextInput from '../components/CustomTextInput';
 import { Icon } from '../theme/icons.js';
 import InfoBox from '../components/InfoBox';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -122,6 +123,10 @@ class ChangePassword extends Component {
             newPassword: '',
             confirmedNewPassword: '',
         };
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('ChangePassword');
     }
 
     isValid(currentPwdHash) {

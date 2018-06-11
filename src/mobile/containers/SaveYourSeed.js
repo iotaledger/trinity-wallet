@@ -11,6 +11,7 @@ import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 import Header from '../components/Header';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -98,6 +99,7 @@ class SaveYourSeed extends Component {
     };
 
     componentDidMount() {
+        leaveNavigationBreadcrumb('SaveYourSeed');
         if (this.props.onboardingComplete) {
             BackHandler.addEventListener('saveYourSeedBackPress', () => {
                 this.onBackPress();
@@ -226,7 +228,7 @@ class SaveYourSeed extends Component {
                                     backgroundColor: secondary.color,
                                 },
                                 children: {
-                                    color: secondary.body
+                                    color: secondary.body,
                                 },
                             }}
                         >
@@ -244,7 +246,7 @@ class SaveYourSeed extends Component {
                                 backgroundColor: secondary.color,
                             },
                             children: {
-                                color: secondary.body
+                                color: secondary.body,
                             },
                         }}
                     >
@@ -261,7 +263,7 @@ class SaveYourSeed extends Component {
                                 backgroundColor: secondary.color,
                             },
                             children: {
-                                color: secondary.body
+                                color: secondary.body,
                             },
                         }}
                     >

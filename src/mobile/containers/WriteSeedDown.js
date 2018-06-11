@@ -16,6 +16,7 @@ import { Icon } from '../theme/icons.js';
 import { isAndroid } from '../utils/device';
 import Header from '../components/Header';
 import InfoBox from '../components/InfoBox';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -184,6 +185,7 @@ class WriteSeedDown extends Component {
     }
 
     componentDidMount() {
+        leaveNavigationBreadcrumb('WriteSeedDown');
         if (isAndroid) {
             FlagSecure.activate();
         }

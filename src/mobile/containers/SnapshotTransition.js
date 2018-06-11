@@ -26,6 +26,7 @@ import CtaButton from '../components/CtaButton';
 import InfoBox from '../components/InfoBox';
 import { getMultiAddressGenFn, getPowFn } from '../utils/nativeModules';
 import { isAndroid } from '../utils/device';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     modalContainer: {
@@ -176,6 +177,10 @@ class SnapshotTransition extends Component {
     constructor() {
         super();
         this.onSnapshotTransitionPress = this.onSnapshotTransitionPress.bind(this);
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('SnapshotTransition');
     }
 
     componentWillReceiveProps(newProps) {

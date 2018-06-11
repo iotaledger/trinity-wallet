@@ -25,6 +25,7 @@ import DynamicStatusBar from '../components/DynamicStatusBar';
 import { Icon } from '../theme/icons.js';
 import InfoBox from '../components/InfoBox';
 import { isAndroid } from '../utils/device';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -172,6 +173,7 @@ class CopySeedToClipboard extends Component {
     }
 
     componentDidMount() {
+        leaveNavigationBreadcrumb('CopySeedToClipboard');
         if (isAndroid) {
             FlagSecure.activate();
         }

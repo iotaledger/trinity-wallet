@@ -19,6 +19,7 @@ import StatefulDropdownAlert from './StatefulDropdownAlert';
 import { Icon } from '../theme/icons.js';
 import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -107,6 +108,7 @@ class WalletResetRequirePassword extends Component {
     }
 
     componentDidMount() {
+        leaveNavigationBreadcrumb('WalletResetRequirePassword');
         BackHandler.addEventListener('hardwareBackPress', () => {
             this.goBack();
             return true;
