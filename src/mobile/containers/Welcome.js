@@ -17,6 +17,7 @@ import Button from '../components/Button';
 import { width, height } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
 import { doAttestationFromSafetyNet } from '../utils/safetynet';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -102,6 +103,7 @@ class Welcome extends Component {
     }
 
     componentDidMount() {
+        leaveNavigationBreadcrumb('Welcome');
         this.showModalIfRooted();
     }
 

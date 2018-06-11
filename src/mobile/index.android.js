@@ -8,5 +8,5 @@ const packageJson = require('./package.json');
 /*eslint-disable no-console*/
 const configuration = new Configuration();
 configuration.appVersion = packageJson.version;
-const bugsnag = new Client(configuration);
+export const bugsnag = new Client(configuration);
 AppRegistry.registerComponent('iotaWallet', () => Wallet);

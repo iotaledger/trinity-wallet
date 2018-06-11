@@ -9,5 +9,5 @@ const packageJson = require('./package.json');
 console.disableYellowBox = true;
 const configuration = new Configuration();
 configuration.appVersion = packageJson.version;
-const bugsnag = new Client(configuration);
+export const bugsnag = new Client(configuration);
 AppRegistry.registerComponent('iotaWallet', () => Wallet);

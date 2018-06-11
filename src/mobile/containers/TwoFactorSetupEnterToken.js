@@ -15,6 +15,7 @@ import StatefulDropdownAlert from './StatefulDropdownAlert';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -85,6 +86,7 @@ class TwoFactorSetupEnterToken extends Component {
     }
 
     componentDidMount() {
+        leaveNavigationBreadcrumb('TwoFactorSetupEnterToken');
         BackHandler.addEventListener('hardwareBackPress', () => {
             this.goBack();
             return true;

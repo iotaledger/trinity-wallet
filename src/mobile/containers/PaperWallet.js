@@ -28,6 +28,7 @@ import DynamicStatusBar from '../components/DynamicStatusBar';
 import { Icon } from '../theme/icons.js';
 import InfoBox from '../components/InfoBox';
 import Seedbox from '../components/SeedBox';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -271,6 +272,7 @@ class PaperWallet extends Component {
     }
 
     componentDidMount() {
+        leaveNavigationBreadcrumb('PaperWallet');
         if (isAndroid) {
             FlagSecure.activate();
         }

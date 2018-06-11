@@ -20,6 +20,7 @@ import { Icon } from '../theme/icons.js';
 import { isAndroid } from '../utils/device';
 import GENERAL from '../theme/general';
 import Header from '../components/Header';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 console.ignoredYellowBox = ['Native TextInput'];
 
@@ -104,6 +105,7 @@ class EnterSeed extends React.Component {
     }
 
     componentDidMount() {
+        leaveNavigationBreadcrumb('EnterSeed');
         if (isAndroid) {
             FlagSecure.activate();
         }
