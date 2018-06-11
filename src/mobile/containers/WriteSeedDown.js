@@ -227,13 +227,14 @@ class WriteSeedDown extends Component {
                   #wallet {
                      padding: 0px;
                      margin: 0px;
-                     width: 100vw;
-                     height: 100vh;
-                     overflow: hidden;
                      text-align: center;
+                     overflow: hidden;
+                     height: ${isAndroid ? '100vh' : null};
+                     width: ${isAndroid ? '100vw' : null};
                   }
                   svg{
-                     height: 100vh;
+                     height: ${isAndroid ? '100vh' : '110vh'};
+                     width: 100vw;
                   }
                </style>
             </head>

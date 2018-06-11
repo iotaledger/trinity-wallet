@@ -15,7 +15,7 @@ import com.oblador.keychain.KeychainPackage;
 import com.peel.react.rnos.RNOSModule;
 import com.reactnativenavigation.NavigationApplication;
 import com.rnfs.RNFSPackage;
-import com.rnprint.RNPrint.RNPrintPackage;
+import com.christopherdro.RNPrint.RNPrintPackage;
 import com.github.wumke.RNExitApp.RNExitAppPackage;
 import net.rhogan.rnsecurerandom.RNSecureRandomPackage;
 import org.iota.mobile.IOTAMobilePackage;
