@@ -438,7 +438,7 @@
         "okay": "Va bene. Cominciamo a impostare il tuo portafoglio!",
         "doYouAlreadyHaveASeed": "Possiedi già un seme che desideri utilizzare?",
         "doYouNeedASeed": "È necessario creare un nuovo seme?",
-        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
+        "seedExplanation": "Il tuo seme IOTA è la chiave d'accesso primario ai tuoi fondi. Consta di 81 caratteri, contiene solo lettere A-Z o il numero 9.",
         "noIHaveOne": "No, ne ho uno",
         "yesINeedASeed": "Sì, ho bisogno di un seme",
         "explanation": "<0><0>Puoi utilizzarlo per accedere ai tuoi fondi da</0><1> qualsiasi portafoglio</1><2>, su</2><3> qualsiasi dispositivo</3><4>. Ma se perdi il tuo seme, perdi anche i tuoi IOTA</4></0>",
