@@ -330,7 +330,7 @@ export default class HistoryModalContent extends PureComponent {
                                     <TouchableOpacity onPress={() => this.copy(message, 'message')}>
                                         <Text style={[styles.text, style.defaultTextColor]}>{message}</Text>
                                     </TouchableOpacity>
-                                    {!confirmationBool &&
+                                    {(!confirmationBool &&
                                         mode === 'Expert' && (
                                             <View style={[styles.buttonsContainer]}>
                                                 {(!bundleIsBeingPromoted && (
@@ -376,33 +376,36 @@ export default class HistoryModalContent extends PureComponent {
                                                     </View>
                                                 )}
                                             </View>
-                                        )}
-                                    {!confirmationBool &&
-                                        mode === 'Standard' && (
-                                            <View style={[styles.buttonsContainer]}>
-                                                {(!bundleIsBeingPromoted && (
-                                                    <View style={[styles.buttonContainer, opacity]}>
-                                                        <CtaButton
-                                                            ctaColor={style.primaryColor}
-                                                            secondaryCtaColor={style.primaryBody}
-                                                            ctaWidth={width / 1.3}
-                                                            ctaHeight={height / 17}
-                                                            fontSize={GENERAL.fontSize2}
-                                                            text={t('retry')}
-                                                            onPress={() => {
-                                                                if (!disableWhen) {
-                                                                    promote(bundle);
-                                                                }
-                                                            }}
-                                                        />
-                                                    </View>
-                                                )) || (
-                                                    <View style={styles.buttonContainer}>
-                                                        <ActivityIndicator color={style.secondaryColor} size="large" />
-                                                    </View>
-                                                )}
-                                            </View>
-                                        )}
+                                        )) ||
+                                        (!confirmationBool &&
+                                            mode === 'Standard' && (
+                                                <View style={[styles.buttonsContainer]}>
+                                                    {(!bundleIsBeingPromoted && (
+                                                        <View style={[styles.buttonContainer, opacity]}>
+                                                            <CtaButton
+                                                                ctaColor={style.primaryColor}
+                                                                secondaryCtaColor={style.primaryBody}
+                                                                ctaWidth={width / 1.3}
+                                                                ctaHeight={height / 17}
+                                                                fontSize={GENERAL.fontSize2}
+                                                                text={t('retry')}
+                                                                onPress={() => {
+                                                                    if (!disableWhen) {
+                                                                        promote(bundle);
+                                                                    }
+                                                                }}
+                                                            />
+                                                        </View>
+                                                    )) || (
+                                                        <View style={styles.buttonContainer}>
+                                                            <ActivityIndicator
+                                                                color={style.secondaryColor}
+                                                                size="large"
+                                                            />
+                                                        </View>
+                                                    )}
+                                                </View>
+                                            ))}
                                 </View>
                             </TouchableWithoutFeedback>
                         </ScrollView>
