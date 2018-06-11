@@ -43,7 +43,6 @@
         "disable": "Disable",
         "enabled": "Enabled",
         "disabled": "Disabled",
-        "manualCopy": "Write seed down",
         "paperWallet": "Print paper copy",
         "addToPasswordManager": "Add to password manager",
         "shareSeed": "Share seed",
@@ -471,19 +470,19 @@
         "noIHaveOne": "No, I have one",
         "yesINeedASeed": "Yes, I need a seed",
         "explanation":
-            "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
+            "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
+        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
         "keepSafe": "Please keep your seed safe.",
         "hint": "<0><0>Hint:</0> Click NO if this is your first time using IOTA.</0>"
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity.",
-        "weWillSpend": "We will spend the next few minutes setting up your wallet.",
-        "reminder": "You may be tempted to skip some steps, but we urge you to follow the complete process."
+        "thankYou": "Thank you for downloading Trinity"
     },
     "writeSeedDown": {
         "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
         "writeDownYourSeed":
-            "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
+            "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>",
+        "scrollToBottom": "Scroll to the bottom"
     },
     "history": {
         "bundleHashCopied": "Bundle hash copied",
