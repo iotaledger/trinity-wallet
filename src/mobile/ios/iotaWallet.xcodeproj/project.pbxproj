@@ -12,7 +12,6 @@
 		0C51C393ABBB0B4BD4B93D710474ACE6 /* iotaWalletUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DBF0EEB7DBFA315A0D6839E79A5924 /* iotaWalletUITests.swift */; };
 		150B45CC76085653FBC10B5A7B4E16F0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFCA4EA113044613D95E46BDAC0C1E3 /* AppDelegate.m */; };
 		1601D2D3FEE3505B87365030187ECFDB /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 667F57494F99C69927244B789F08BA39 /* Lottie.framework */; };
-		1C24EC71B4226833AA94DABC1F7B3655 /* libRNHTMLtoPDF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F895569100D60BA0DB0B50251B734B60 /* libRNHTMLtoPDF.a */; };
 		1D90A630DF083C6894C70C1D9936A0A9 /* libRCTText-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F586ACB1B483D19A73242AC34185FAD /* libRCTText-tvOS.a */; };
 		227F5ECF692F599792F69DC4D573B2E6 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E329CD2AEA74CC4A8A6F37DBBEF1EA5E /* libRCTActionSheet.a */; };
 		23DBCEF31158ED28593321DF /* libPods-iotaWallet-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F94248EA7BCF6FA1B4742792 /* libPods-iotaWallet-tvOSTests.a */; };
@@ -68,6 +67,7 @@
 		CBA5F52620CAAB2A00774D4B /* SourceCodePro-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CBA5F52520CAAB2A00774D4B /* SourceCodePro-Medium.ttf */; };
 		CBA69EF920C8139300DD4CEB /* Icons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CBA69EF820C8139300DD4CEB /* Icons.ttf */; };
 		CBC214EA20CE82EC005D8ACB /* libRNReactNativeHapticFeedback.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBC214E920CE82DC005D8ACB /* libRNReactNativeHapticFeedback.a */; };
+		CBC214F420CE8BBD005D8ACB /* libRNHTMLtoPDF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBC214F120CE8BB5005D8ACB /* libRNHTMLtoPDF.a */; };
 		CDC76600A03C06457F99259512D7F713 /* libRNIsDeviceRooted.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0431CEEC099BC4CE1F43E0550C4CC291 /* libRNIsDeviceRooted.a */; };
 		CF626DD9FBB494210B780417 /* Pods_iotaWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 890341AF0F2DE4E9DCB80928 /* Pods_iotaWallet.framework */; };
 		D51793D4E78BCB702D9FFAA1A3356153 /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48E60D4ABEBFCB6EC7FCE9538A5FF83F /* libRNSVG.a */; };
@@ -343,13 +343,6 @@
 			remoteGlobalIDString = 05DCE99E5CDB80B53B40FFB5818D5E46;
 			remoteInfo = RNPrintTests;
 		};
-		81C198CF38E2E5542F5A88F622A38E4D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 80B6D6500ADF5EC9623540236CFDB5D5 /* RNHTMLtoPDF.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = FA39CDB283A30EB40B05C763E7999EC4;
-			remoteInfo = RNHTMLtoPDF;
-		};
 		896DF047E1C2AB724B776DE78051C2CB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2D84DC61092C2CB09498AB83CAA9B91F /* RNSecureRandom.xcodeproj */;
@@ -377,13 +370,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = FE5372B7E44DB7690403082B29D16439;
 			remoteInfo = RCTNetwork;
-		};
-		A381E113946ADEA0DEB24509E339DEF5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 80B6D6500ADF5EC9623540236CFDB5D5 /* RNHTMLtoPDF.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 35A5970BFE2A623437AB09192BD1B986;
-			remoteInfo = RNHTMLtoPDFTests;
 		};
 		A9F53FC6236324E5330CA31A17570E7E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -468,6 +454,20 @@
 			proxyType = 2;
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNReactNativeHapticFeedback;
+		};
+		CBC214F020CE8BB5005D8ACB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CBC214EB20CE8BB5005D8ACB /* RNHTMLtoPDF.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 117405EF1B9954BF004425E1;
+			remoteInfo = RNHTMLtoPDF;
+		};
+		CBC214F220CE8BB5005D8ACB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CBC214EB20CE8BB5005D8ACB /* RNHTMLtoPDF.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 117405FA1B9954BF004425E1;
+			remoteInfo = RNHTMLtoPDFTests;
 		};
 		CBC5562B207BA79E00BA0A7F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -674,7 +674,6 @@
 		78890E2D6D34AE7E540EA17AF52C9982 /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		79A46F4458348360C0DFE21018DAAF14 /* RCTGeolocation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTGeolocation.xcodeproj; path = "../node_modules/react-native/Libraries/Geolocation/RCTGeolocation.xcodeproj"; sourceTree = "<group>"; };
 		7E0F74EC093A52113A8EC89B /* Pods_iotaWalletTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iotaWalletTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		80B6D6500ADF5EC9623540236CFDB5D5 /* RNHTMLtoPDF.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNHTMLtoPDF.xcodeproj; path = "../node_modules/react-native-html-to-pdf/ios/RNHTMLtoPDF.xcodeproj"; sourceTree = "<group>"; };
 		81FD04ABA0D7E5DDAC025C79AC565404 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		83245F96160937A7C8F0A1D783E30B0C /* iotaWalletUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iotaWalletUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		890341AF0F2DE4E9DCB80928 /* Pods_iotaWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iotaWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -712,6 +711,7 @@
 		CBA5F52520CAAB2A00774D4B /* SourceCodePro-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceCodePro-Medium.ttf"; path = "../../shared/custom-fonts/SourceCodePro-Medium.ttf"; sourceTree = "<group>"; };
 		CBA69EF820C8139300DD4CEB /* Icons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Icons.ttf; path = ../../shared/icons/Icons.ttf; sourceTree = "<group>"; };
 		CBC214E420CE82DC005D8ACB /* RNReactNativeHapticFeedback.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNReactNativeHapticFeedback.xcodeproj; path = "../node_modules/react-native-haptic-feedback/ios/RNReactNativeHapticFeedback.xcodeproj"; sourceTree = "<group>"; };
+		CBC214EB20CE8BB5005D8ACB /* RNHTMLtoPDF.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNHTMLtoPDF.xcodeproj; path = "../node_modules/react-native-html-to-pdf/ios/RNHTMLtoPDF.xcodeproj"; sourceTree = "<group>"; };
 		CFA2B84C183CC39F995C8E04CC713DDB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = iotaWallet/Images.xcassets; sourceTree = "<group>"; };
 		D2C796029F4A68C167C1F1F5176A5819 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D5BA67ADCF3A3E3973DDF764 /* Pods-iotaWallet-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iotaWallet-tvOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iotaWallet-tvOSTests/Pods-iotaWallet-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -748,6 +748,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBC214F420CE8BBD005D8ACB /* libRNHTMLtoPDF.a in Frameworks */,
 				CBC214EA20CE82EC005D8ACB /* libRNReactNativeHapticFeedback.a in Frameworks */,
 				CB6626F52085057F00651519 /* libSplashScreen.a in Frameworks */,
 				6056CF5C20827E370006A2F3 /* libReactNativePermissions.a in Frameworks */,
@@ -772,7 +773,6 @@
 				C63F4449914D3D19E3C83C38F602BFB5 /* libRNDeviceInfo.a in Frameworks */,
 				3D089B147B065DF500AFDE15871144F7 /* libRNExitApp.a in Frameworks */,
 				53D5C66F9CFCE4AF6BAE7EBD7DEF9413 /* libRNFS.a in Frameworks */,
-				1C24EC71B4226833AA94DABC1F7B3655 /* libRNHTMLtoPDF.a in Frameworks */,
 				CDC76600A03C06457F99259512D7F713 /* libRNIsDeviceRooted.a in Frameworks */,
 				D9A1C4460153C2A24C3B5ACB9EF492CF /* libRNKeychain.a in Frameworks */,
 				BC0B4879EC021013E3B1766E92C2A64B /* libRNPrint.a in Frameworks */,
@@ -847,15 +847,6 @@
 				A9DBF0EEB7DBFA315A0D6839E79A5924 /* iotaWalletUITests.swift */,
 			);
 			path = iotaWalletUITests;
-			sourceTree = "<group>";
-		};
-		0A90F56C7BA7E496AEFF20E872B57C80 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				F895569100D60BA0DB0B50251B734B60 /* libRNHTMLtoPDF.a */,
-				135AB875317E08104518902ADDADC808 /* RNHTMLtoPDFTests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		0DC16A5D78CFE5D3D027B03E9EB1EC3B /* Products */ = {
@@ -1019,6 +1010,7 @@
 		6C07637C2BD02779C4E072737C53A2E3 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				CBC214EB20CE8BB5005D8ACB /* RNHTMLtoPDF.xcodeproj */,
 				CBC214E420CE82DC005D8ACB /* RNReactNativeHapticFeedback.xcodeproj */,
 				60BDD276208D12790085549F /* RNSecureClipboard.xcodeproj */,
 				CB6626ED2085056C00651519 /* SplashScreen.xcodeproj */,
@@ -1043,7 +1035,6 @@
 				C39F11B2595A5CFD8F2D51D3B914CD41 /* RNDeviceInfo.xcodeproj */,
 				8B49115E102EED64D1B7D7AC047F1ABF /* RNExitApp.xcodeproj */,
 				6F63CB3492A71A3A73B8764893BE0F6F /* RNFS.xcodeproj */,
-				80B6D6500ADF5EC9623540236CFDB5D5 /* RNHTMLtoPDF.xcodeproj */,
 				DE78092CD0C5D3A0316145EFC00548CB /* RNIsDeviceRooted.xcodeproj */,
 				205C47BA61DC4D6733E748712B4E50C6 /* RNKeychain.xcodeproj */,
 				1380447C6001F40A66D38FBD8AFC3309 /* RNPrint.xcodeproj */,
@@ -1206,6 +1197,15 @@
 			isa = PBXGroup;
 			children = (
 				CBC214E920CE82DC005D8ACB /* libRNReactNativeHapticFeedback.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CBC214EC20CE8BB5005D8ACB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CBC214F120CE8BB5005D8ACB /* libRNHTMLtoPDF.a */,
+				CBC214F320CE8BB5005D8ACB /* RNHTMLtoPDFTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1627,8 +1627,8 @@
 					ProjectRef = 6F63CB3492A71A3A73B8764893BE0F6F /* RNFS.xcodeproj */;
 				},
 				{
-					ProductGroup = 0A90F56C7BA7E496AEFF20E872B57C80 /* Products */;
-					ProjectRef = 80B6D6500ADF5EC9623540236CFDB5D5 /* RNHTMLtoPDF.xcodeproj */;
+					ProductGroup = CBC214EC20CE8BB5005D8ACB /* Products */;
+					ProjectRef = CBC214EB20CE8BB5005D8ACB /* RNHTMLtoPDF.xcodeproj */;
 				},
 				{
 					ProductGroup = EAA54CFDD3A644A7FEB765E4C340E9D9 /* Products */;
@@ -1705,13 +1705,6 @@
 			fileType = archive.ar;
 			path = "libRCTText-tvOS.a";
 			remoteRef = 775CC7B8AD67A515B51E9A77C07B744D /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		135AB875317E08104518902ADDADC808 /* RNHTMLtoPDFTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = RNHTMLtoPDFTests.xctest;
-			remoteRef = A381E113946ADEA0DEB24509E339DEF5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		19CB0B55DE702DF718E5FD31D6EF66FE /* libRCTSettings.a */ = {
@@ -2015,6 +2008,20 @@
 			remoteRef = CBC214E820CE82DC005D8ACB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		CBC214F120CE8BB5005D8ACB /* libRNHTMLtoPDF.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNHTMLtoPDF.a;
+			remoteRef = CBC214F020CE8BB5005D8ACB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CBC214F320CE8BB5005D8ACB /* RNHTMLtoPDFTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = RNHTMLtoPDFTests.xctest;
+			remoteRef = CBC214F220CE8BB5005D8ACB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		CBC5562C207BA79E00BA0A7F /* Lottie.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -2174,13 +2181,6 @@
 			fileType = archive.ar;
 			path = "libRCTImage-tvOS.a";
 			remoteRef = 07DD23F296417D4BA008AE2ABBCB6EBF /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		F895569100D60BA0DB0B50251B734B60 /* libRNHTMLtoPDF.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNHTMLtoPDF.a;
-			remoteRef = 81C198CF38E2E5542F5A88F622A38E4D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
