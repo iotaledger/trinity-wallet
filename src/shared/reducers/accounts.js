@@ -29,7 +29,7 @@ const updateAccountInfo = (state, payload) => ({
 });
 
 const updateAccountName = (state, payload) => {
-    const { accountInfo, accountNames, unconfirmedBundleTails, setupInfo, tasks } = state;
+    const { accountInfo, accountNames, unconfirmedBundleTails, setupInfo, tasks, failedTxBundleHashes } = state;
 
     const { oldAccountName, newAccountName } = payload;
 
@@ -54,6 +54,7 @@ const updateAccountName = (state, payload) => {
 
     return {
         accountInfo: renameKeys(accountInfo, keyMap),
+        failedTxBundleHashes: renameKeys(failedTxBundleHashes, keyMap),
         tasks: renameKeys(tasks, keyMap),
         setupInfo: renameKeys(setupInfo, keyMap),
         accountNames: map(accountNames, updateName),
@@ -67,6 +68,7 @@ const account = (
         accountNames: [],
         firstUse: true,
         onboardingComplete: false,
+        failedTxBundleHashes: {},
         accountInfo: {},
         setupInfo: {},
         tasks: {},
@@ -99,6 +101,7 @@ const account = (
             return {
                 ...state,
                 accountInfo: omit(state.accountInfo, action.payload),
+                failedTxBundleHashes: omit(state.failedTxBundleHashes, action.payload),
                 tasks: omit(state.tasks, action.payload),
                 setupInfo: omit(state.setupInfo, action.payload),
                 unconfirmedBundleTails: omitBy(state.unconfirmedBundleTails, (tailTransactions) =>
@@ -227,6 +230,28 @@ const account = (
                         ...get(state.tasks, `${action.payload.accountName}`),
                         [action.payload.task]: true,
                     },
+                },
+            };
+        case ActionTypes.MARK_BUNDLE_BROADCAST_STATUS_AS_PENDING:
+            return {
+                ...state,
+                failedTxBundleHashes: {
+                    ...state.failedTxBundleHashes,
+                    [action.payload.accountName]: [
+                        ...(state.failedTxBundleHashes[action.payload.accountName] || []),
+                        action.payload.bundleHash,
+                    ],
+                },
+            };
+        case ActionTypes.MARK_BUNDLE_BROADCAST_STATUS_AS_COMPLETED:
+            return {
+                ...state,
+                failedTxBundleHashes: {
+                    ...state.failedTxBundleHashes,
+                    [action.payload.accountName]: filter(
+                        state.failedTxBundleHashes[action.payload.accountName],
+                        (bundleHash) => bundleHash !== action.payload.bundleHash,
+                    ),
                 },
             };
         default:
