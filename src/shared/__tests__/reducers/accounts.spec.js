@@ -103,8 +103,8 @@ describe('Reducer: accounts', () => {
         it('should update account name in "failedTxBundleHashes" state prop', () => {
             const initialState = {
                 failedTxBundleHashes: {
-                    foo: {},
-                    baz: {},
+                    foo: [],
+                    baz: [],
                 },
             };
 
@@ -116,8 +116,8 @@ describe('Reducer: accounts', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 failedTxBundleHashes: {
-                    bar: {},
-                    baz: {},
+                    bar: [],
+                    baz: [],
                 },
             };
 
@@ -235,7 +235,7 @@ describe('Reducer: accounts', () => {
 
         it('should omit payload prop from "failedTxBundleHashes"', () => {
             const initialState = {
-                failedTxBundleHashes: { foo: {} },
+                failedTxBundleHashes: { foo: [] },
             };
 
             const action = actions.removeAccount('foo');
