@@ -438,7 +438,7 @@
         "okay": "好，让我们来开始设置您的钱包 ！",
         "doYouAlreadyHaveASeed": "您是否希望使用一个已有的种子？",
         "doYouNeedASeed": "你需要创建一个新的种子吗？",
-        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
+        "seedExplanation": "你的种子是你资金的主要钥匙。它是81个字符长, 只使用字母 A-Z 或数字9。",
         "noIHaveOne": "不, 我有一个",
         "yesINeedASeed": "是的，我需要一个新的种子",
         "explanation": "<0> <0> 您可以使用它访问您的资金从 </0> <1> 任何钱包 </1> <2>, 在 </2> <3> 任何设备 </3> <4>。但是, 如果你失去了你的种子, 你也失去了你的丝毫. </4> </0>",
