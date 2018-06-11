@@ -274,3 +274,29 @@ export const hasDisplayedSnapshotTransitionGuide = createSelector(getTasksForSel
 
     return isUndefined(hasDisplayedTransitionGuide) ? true : hasDisplayedTransitionGuide;
 });
+
+/**
+ *   Selects getFailedTxBundleHashesFromAccounts prop from accounts reducer state object.
+ *   Uses getAccountFromState selector for slicing accounts state from the state object.
+ *
+ *   @method getFailedTxBundleHashesFromAccounts
+ *   @param {object} state
+ *   @returns {object}
+ **/
+export const getFailedTxBundleHashesFromAccounts = createSelector(
+    getAccountsFromState,
+    (state) => state.failedTxBundleHashes || {},
+);
+
+/**
+ *   Selects failedTxBundleHashes for selected account
+ *
+ *   @method getFailedTxBundleHashesForSelectedAccount
+ *   @param {object} state
+ *   @returns {object}
+ **/
+export const getFailedTxBundleHashesForSelectedAccount = createSelector(
+    getSelectedAccountName,
+    getFailedTxBundleHashesFromAccounts,
+    (accountName, failedTxBundleHashes) => get(failedTxBundleHashes, accountName) || [],
+);
