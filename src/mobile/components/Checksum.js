@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     },
 });
 
-class Checksum extends Component {
+export class Checksum extends Component {
     static propTypes = {
         /** Seed value */
         seed: PropTypes.string.isRequired,
