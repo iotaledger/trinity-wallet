@@ -491,6 +491,8 @@
     },
     "history": {
         "bundleHashCopied": "बंडल हैश की प्रतिलिपि बनाई गई",
+        "noTransactionsFound": "No transactions found",
+        "hideZeroBalance": "Hide zero balance",
         "bundleHashCopiedExplanation": "बंडल हैश को क्लिपबोर्ड पर कॉपी किया गया है ।",
         "addressCopied": "पता प्रतिलिपि बनाई गई",
         "addressCopiedExplanation": "पते की क्लिपबोर्ड पर कॉपी बनाई गई है ।",
