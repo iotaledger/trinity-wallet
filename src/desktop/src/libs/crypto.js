@@ -63,8 +63,8 @@ const encrypt = async (contentPlain, passwordPlain) => {
 const decrypt = async (cipherText, passwordPlain) => {
     const cipherParts = cipherText.split('|');
 
-    if (cipherParts.length !== 2 || !passwordPlain) {
-        return false;
+    if (cipherParts.length !== 2 || typeof passwordPlain !== 'string' || !passwordPlain.length) {
+        throw new Error('Wrong password');
     }
     try {
         const password = new TextEncoder().encode(passwordPlain);

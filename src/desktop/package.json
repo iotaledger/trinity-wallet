@@ -35,6 +35,7 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-react-hmre": "^1.1.1",
     "classnames": "^2.2.5",
     "concurrently": "^3.5.1",
     "copy-webpack-plugin": "^4.5.1",
@@ -119,7 +120,7 @@
     }
   },
   "dependencies": {
-    "authenticator": "https://git.coolaj86.com/rajivshah3/node-authenticator.js.git",
+    "authenticator": "^1.1.5",
     "bugsnag-js": "^4.7.1",
     "bugsnag-react": "^1.1.1",
     "curl.lib.js": "^1.0.22",
