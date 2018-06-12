@@ -8,7 +8,7 @@ import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import FlagSecure from 'react-native-flag-secure-android';
 import Modal from 'react-native-modal';
 import WithUserActivity from '../components/UserActivity';
-import Checksum from '../components/Checksum';
+import ChecksumComponent from '../components/Checksum';
 import ChecksumModalComponent from '../components/ChecksumModal';
 import { width, height } from '../utils/dimensions';
 import DynamicStatusBar from '../components/DynamicStatusBar';
@@ -264,7 +264,11 @@ class SeedReentry extends Component {
                                         onQRPress={() => this.onQRPress()}
                                     />
                                     <View style={{ flex: 0.15 }} />
-                                    <Checksum seed={seed} theme={theme} showModal={() => this.showModal('checksum')} />
+                                    <ChecksumComponent
+                                        seed={seed}
+                                        theme={theme}
+                                        showModal={() => this.showModal('checksum')}
+                                    />
                                     <View style={{ flex: 0.15 }} />
                                     <InfoBox
                                         body={theme.body}
