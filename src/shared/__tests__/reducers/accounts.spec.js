@@ -962,35 +962,6 @@ describe('Reducer: accounts', () => {
         });
     });
 
-    describe('IOTA/ACCOUNTS/MARK_TASK_AS_DONE', () => {
-        it('should mark "task" in payload for "accountName" as true', () => {
-            const initialState = {
-                tasks: {
-                    foo: { taskOne: false, taskTwo: false },
-                    baz: { taskOne: false, taskTwo: true },
-                },
-            };
-
-            const action = {
-                type: 'IOTA/ACCOUNTS/MARK_TASK_AS_DONE',
-                payload: {
-                    accountName: 'foo',
-                    task: 'taskOne',
-                },
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                tasks: {
-                    foo: { taskOne: true, taskTwo: false },
-                    baz: { taskOne: false, taskTwo: true },
-                },
-            };
-
-            expect(newState).to.eql(expectedState);
-        });
-    });
-
     [
         'IOTA/ACCOUNTS/UPDATE_ACCOUNT_INFO_AFTER_SPENDING',
         'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION',
