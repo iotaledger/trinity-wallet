@@ -597,6 +597,7 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                         markBundleBroadcastStatusAsPending({
                             accountName,
                             bundleHash: head(cached.transactionObjects).bundle,
+                            transactionObjects: cached.transactionObjects,
                         }),
                     );
 
