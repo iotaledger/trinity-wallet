@@ -10,6 +10,7 @@ import transform from 'lodash/transform';
 import union from 'lodash/union';
 import { ActionTypes } from '../actions/accounts';
 import { ActionTypes as PollingActionTypes } from '../actions/polling';
+import { ActionTypes as TransfersActionTypes } from '../actions/transfers';
 import { renameKeys } from '../libs/utils';
 
 const updateAccountInfo = (state, payload) => ({
@@ -117,6 +118,7 @@ const account = (
         case PollingActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
         case PollingActionTypes.SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION:
         case ActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
+        case TransfersActionTypes.RETRY_FAILED_TRANSACTION_SUCCESS:
             return {
                 ...state,
                 ...updateAccountInfo(state, action.payload),

@@ -444,3 +444,51 @@ export const syncAccountOnValueTransactionFailure = (name, newTransfer, accountS
         transfer: newTransfer,
     };
 };
+
+/**
+ *  Sync account when a failed transaction was successfully stored and broadcast to the network
+ *
+ *   @method syncAccountOnValueTransactionFailure
+ *   @param {string} accountName
+ *   @param {array} transaction
+ *   @param {object} accountState
+ *
+ *   @returns {object}
+ **/
+export const syncAccountOnSuccessfulRetryAttempt = (accountName, transaction, accountState) => {
+    const tailTransaction = find(transaction, { currentIndex: 0 });
+    const newNormalisedTransfer = normaliseBundle(transaction, keys(accountState.addresses), [tailTransaction], false);
+
+    const transfers = merge({}, accountState.transfers, newNormalisedTransfer);
+
+    // Currently we solely rely on wereAddressesSpentFrom and since this failed transaction
+    // was never broadcast, the addresses would be marked false
+    // The transaction would still stop spending from these addresses because during input
+    // selection, local transaction history is also checked.
+    // FIXME: After using a permanent local address status, this would be unnecessary
+    const addressData = markAddressesAsSpentSync([transaction], accountState.addresses);
+
+    const bundle = get(transaction, '[0].bundle');
+    const unconfirmedBundleTails = merge({}, accountState.unconfirmedBundleTails, {
+        [bundle]: [
+            {
+                hash: tailTransaction.hash,
+                attachmentTimestamp: tailTransaction.attachmentTimestamp,
+                account: accountName,
+            },
+        ],
+    });
+
+    const newState = {
+        ...accountState,
+        unconfirmedBundleTails,
+        transfers,
+        addresses: addressData,
+    };
+
+    return {
+        newState,
+        normalisedTransfer: newNormalisedTransfer,
+        transfer: transaction,
+    };
+};
