@@ -1,3 +1,4 @@
+import differenceBy from 'lodash/differenceBy';
 import get from 'lodash/get';
 import each from 'lodash/each';
 import isNull from 'lodash/isNull';
@@ -70,14 +71,29 @@ export const prepareInputs = (addressData, start, threshold, security = DEFAULT_
  **/
 export const getUnspentInputs = (addressData, spentAddresses, pendingValueTransfers, start, threshold, inputs) => {
     if (isNull(inputs)) {
-        inputs = { inputs: [], availableBalance: 0, totalBalance: 0 };
+        inputs = {
+            inputs: [],
+            availableBalance: 0,
+            totalBalance: 0,
+            spentAddresses: [],
+            addressesWithIncomingTransfers: [],
+        };
     }
 
     const preparedInputs = prepareInputs(addressData, start, threshold);
     inputs.totalBalance += preparedInputs.inputs.reduce((sum, input) => sum + input.balance, 0);
 
     return filterSpentAddresses(preparedInputs.inputs, spentAddresses).then((unspentInputs) => {
+        // Keep track of all spent addresses that are filtered
+        inputs.spentAddresses = [...inputs.spentAddresses, ...differenceBy(preparedInputs.inputs, unspentInputs)];
+
         const filtered = filterAddressesWithIncomingTransfers(unspentInputs, pendingValueTransfers);
+
+        // Keep track of all addresses with incoming transfers
+        inputs.addressesWithIncomingTransfers = [
+            ...inputs.addressesWithIncomingTransfers,
+            ...differenceBy(unspentInputs, filtered),
+        ];
 
         const collected = filtered.reduce((sum, input) => sum + input.balance, 0);
 
@@ -92,6 +108,8 @@ export const getUnspentInputs = (addressData, spentAddresses, pendingValueTransf
                 inputs: inputs.inputs.concat(filtered),
                 availableBalance: inputs.availableBalance + collected,
                 totalBalance: inputs.totalBalance,
+                spentAddresses: inputs.spentAddresses,
+                addressesWithIncomingTransfers: inputs.addressesWithIncomingTransfers,
             });
         }
 
@@ -99,6 +117,8 @@ export const getUnspentInputs = (addressData, spentAddresses, pendingValueTransf
             inputs: inputs.inputs.concat(filtered),
             availableBalance: inputs.availableBalance + collected,
             totalBalance: inputs.totalBalance,
+            spentAddresses: inputs.spentAddresses,
+            addressesWithIncomingTransfers: inputs.addressesWithIncomingTransfers,
         };
     });
 };

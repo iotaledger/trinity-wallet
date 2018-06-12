@@ -334,10 +334,8 @@
         "printBlankWallet": "Imprima una cartera en blanco",
         "whatIsCheksum": "Cada semilla tiene un checksum correspondiente de 3 caracteres",
         "iHavesavedMySeed": "He guardado mi semilla",
-        "checksumExplanation":
-            "Cada vez que añada una semilla a su cartera, debería asegurarse de que el checksum generado para la cartera coincide con el que ha anotado.",
-        "mustSaveYourSeed":
-            "<0><0>Debe guardar su semilla con</0><1>al menos una</1><2>de las opciones a continuación.</2></0>"
+        "checksumExplanation": "Cada vez que añada una semilla a su cartera, debería asegurarse de que el checksum generado para la cartera coincide con el que ha anotado.",
+        "mustSaveYourSeed": "<0><0>Debe guardar su semilla con </0><1>al menos una</1><2> de las opciones a continuación.</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Por favor confirme su semilla",
@@ -496,6 +494,8 @@
     },
     "history": {
         "bundleHashCopied": "Hash del paquete copiado",
+        "noTransactionsFound": "No transactions found",
+        "hideZeroBalance": "Hide zero balance",
         "bundleHashCopiedExplanation": "El hash del paquete se ha copiado en el portapapeles.",
         "addressCopied": "Dirección Copiada",
         "addressCopiedExplanation": "La dirección se ha copiado al portapapeles.",

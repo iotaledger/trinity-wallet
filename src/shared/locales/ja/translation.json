@@ -486,6 +486,8 @@
     },
     "history": {
         "bundleHashCopied": "バンドルのハッシュ値をコピーしました。",
+        "noTransactionsFound": "取引がありません",
+        "hideZeroBalance": "残高0を非表示",
         "bundleHashCopiedExplanation": "バンドルのハッシュ値をクリップボードにコピーしました。",
         "addressCopied": "アドレスをコピーしました。",
         "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。",

@@ -14,9 +14,11 @@ import whiteCheckboxCheckedImagePath from 'iota-wallet-shared-modules/images/che
 import whiteCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked-white.png';
 import blackCheckboxCheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-checked-black.png';
 import blackCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked-black.png';
+import FlagSecure from 'react-native-flag-secure-android';
 import timer from 'react-native-timer';
 import Modal from 'react-native-modal';
 import tinycolor from 'tinycolor2';
+import WithUserActivity from '../components/UserActivity';
 import ModalButtons from '../containers/ModalButtons';
 import GENERAL from '../theme/general';
 import Button from '../components/Button';
@@ -242,6 +244,8 @@ class PaperWallet extends Component {
         seed: PropTypes.string.isRequired,
         /** Theme settings */
         theme: PropTypes.object.isRequired,
+        /** Determines if the application is minimised */
+        minimised: PropTypes.bool.isRequired,
     };
 
     static callback(dataURL) {
@@ -264,6 +268,18 @@ class PaperWallet extends Component {
 
     componentWillMount() {
         timer.clearTimeout('delayPrint');
+    }
+
+    componentDidMount() {
+        if (isAndroid) {
+            FlagSecure.activate();
+        }
+    }
+
+    componentWillUnmount() {
+        if (isAndroid) {
+            FlagSecure.deactivate();
+        }
     }
 
     onDonePress() {
@@ -574,7 +590,7 @@ class PaperWallet extends Component {
     };
 
     render() {
-        const { t, seed, theme: { primary, body, secondary } } = this.props;
+        const { t, seed, theme: { primary, body, secondary }, minimised } = this.props;
         const { isModalActive, iotaLogoCheckbox } = this.state;
         const textColor = { color: body.color };
         const checksum = getChecksum(seed);
@@ -582,94 +598,101 @@ class PaperWallet extends Component {
 
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
-                <DynamicStatusBar backgroundColor={body.bg} />
-                <View style={styles.topContainer}>
-                    <Icon name="iota" size={width / 8} color={body.color} />
-                </View>
-                <View style={styles.midContainer}>
-                    <View style={{ flex: 0.3 }} />
-                    <View style={styles.textContainer}>
-                        <Text style={[styles.infoTextNormal, textColor]}>{t('clickToPrint')}</Text>
-                        <Text style={[styles.infoTextBold, textColor, { paddingTop: height / 40 }]}>
-                            {' '}
-                            {t('storeSafely')}
-                        </Text>
-                    </View>
-                    <View style={{ flex: 0.5 }} />
-                    <View
-                        style={[
-                            styles.paperWalletContainer,
-                            isBgLight ? { borderColor: body.color, borderWidth: 1 } : null,
-                        ]}
-                    >
-                        <Seedbox
-                            scale={0.51}
-                            bodyColor="black"
-                            borderColor={{ borderColor: 'black' }}
-                            textColor={{ color: 'black' }}
-                            seed={seed}
-                        />
-                        <View style={styles.paperWalletTextContainer}>
-                            {this.renderIotaLogo()}
-                            <Text style={styles.paperWalletText}>{t('neverShare')}</Text>
-                            <View style={styles.checksum}>
-                                <Text style={styles.checksumText}>{checksum}</Text>
-                            </View>
+                {!minimised && (
+                    <View>
+                        <DynamicStatusBar backgroundColor={body.bg} />
+                        <View style={styles.topContainer}>
+                            <Icon name="iota" size={width / 8} color={body.color} />
                         </View>
-                        <QRCode
-                            value={seed}
-                            getRef={(c) => {
-                                this.svg = c;
-                            }}
-                            size={width / 3.5}
-                        />
+                        <View style={styles.midContainer}>
+                            <View style={{ flex: 0.3 }} />
+                            <View style={styles.textContainer}>
+                                <Text style={[styles.infoTextNormal, textColor]}>{t('clickToPrint')}</Text>
+                                <Text style={[styles.infoTextBold, textColor, { paddingTop: height / 40 }]}>
+                                    {' '}
+                                    {t('storeSafely')}
+                                </Text>
+                            </View>
+                            <View style={{ flex: 0.5 }} />
+                            <View
+                                style={[
+                                    styles.paperWalletContainer,
+                                    isBgLight ? { borderColor: body.color, borderWidth: 1 } : null,
+                                ]}
+                            >
+                                <Seedbox
+                                    scale={0.51}
+                                    bodyColor="black"
+                                    borderColor={{ borderColor: 'black' }}
+                                    textColor={{ color: 'black' }}
+                                    seed={seed}
+                                />
+                                <View style={styles.paperWalletTextContainer}>
+                                    {this.renderIotaLogo()}
+                                    <Text style={styles.paperWalletText}>{t('neverShare')}</Text>
+                                    <View style={styles.checksum}>
+                                        <Text style={styles.checksumText}>{checksum}</Text>
+                                    </View>
+                                </View>
+                                <QRCode
+                                    value={seed}
+                                    getRef={(c) => {
+                                        this.svg = c;
+                                    }}
+                                    size={width / 3.5}
+                                />
+                            </View>
+                            <View style={{ flex: 0.3 }} />
+                            <TouchableOpacity
+                                style={styles.checkboxContainer}
+                                onPress={() => this.onIotaLogoCheckboxPress()}
+                            >
+                                <Image source={this.getCheckbox(iotaLogoCheckbox)} style={styles.checkbox} />
+                                <Text style={[styles.checkboxText, textColor]}>{t('iotaLogo')}</Text>
+                            </TouchableOpacity>
+                            <View style={{ flex: 0.3 }} />
+                            <Button
+                                style={{
+                                    wrapper: {
+                                        width: width / 1.36,
+                                        height: height / 13,
+                                        borderRadius: height / 90,
+                                        backgroundColor: secondary.color,
+                                    },
+                                    children: { color: secondary.body },
+                                }}
+                                onPress={() => this.openModal()}
+                            >
+                                {t('printWallet')}
+                            </Button>
+                            <View style={{ flex: 1.5 }} />
+                        </View>
+                        <View style={styles.bottomContainer}>
+                            <Button
+                                onPress={() => this.onDonePress()}
+                                style={{
+                                    wrapper: { backgroundColor: primary.color },
+                                    children: { color: primary.body },
+                                }}
+                            >
+                                {t('global:doneLowercase')}
+                            </Button>
+                        </View>
+                        <Modal
+                            backdropTransitionInTiming={isAndroid ? 500 : 300}
+                            backdropTransitionOutTiming={200}
+                            backdropColor={body.bg}
+                            backdropOpacity={0.8}
+                            style={{ alignItems: 'center', margin: 0 }}
+                            isVisible={isModalActive}
+                            onBackButtonPress={() => this.hideModal()}
+                            hideModalContentWhileAnimating
+                            useNativeDriver={isAndroid}
+                        >
+                            {this.renderModalContent()}
+                        </Modal>
                     </View>
-                    <View style={{ flex: 0.3 }} />
-                    <TouchableOpacity style={styles.checkboxContainer} onPress={() => this.onIotaLogoCheckboxPress()}>
-                        <Image source={this.getCheckbox(iotaLogoCheckbox)} style={styles.checkbox} />
-                        <Text style={[styles.checkboxText, textColor]}>{t('iotaLogo')}</Text>
-                    </TouchableOpacity>
-                    <View style={{ flex: 0.3 }} />
-                    <Button
-                        style={{
-                            wrapper: {
-                                width: width / 1.36,
-                                height: height / 13,
-                                borderRadius: height / 90,
-                                backgroundColor: secondary.color,
-                            },
-                            children: { color: secondary.body },
-                        }}
-                        onPress={() => this.openModal()}
-                    >
-                        {t('printWallet')}
-                    </Button>
-                    <View style={{ flex: 1.5 }} />
-                </View>
-                <View style={styles.bottomContainer}>
-                    <Button
-                        onPress={() => this.onDonePress()}
-                        style={{
-                            wrapper: { backgroundColor: primary.color },
-                            children: { color: primary.body },
-                        }}
-                    >
-                        {t('global:doneLowercase')}
-                    </Button>
-                </View>
-                <Modal
-                    backdropTransitionInTiming={isAndroid ? 500 : 300}
-                    backdropTransitionOutTiming={200}
-                    backdropColor={body.bg}
-                    backdropOpacity={0.8}
-                    style={{ alignItems: 'center', margin: 0 }}
-                    isVisible={isModalActive}
-                    onBackButtonPress={() => this.hideModal()}
-                    hideModalContentWhileAnimating
-                    useNativeDriver={isAndroid}
-                >
-                    {this.renderModalContent()}
-                </Modal>
+                )}
             </View>
         );
     }
@@ -678,6 +701,7 @@ class PaperWallet extends Component {
 const mapStateToProps = (state) => ({
     seed: state.wallet.seed,
     theme: state.settings.theme,
+    minimised: state.ui.minimised,
 });
 
-export default translate(['paperWallet', 'global'])(connect(mapStateToProps)(PaperWallet));
+export default WithUserActivity()(translate(['paperWallet', 'global'])(connect(mapStateToProps)(PaperWallet)));
