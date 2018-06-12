@@ -15,7 +15,7 @@ import DynamicStatusBar from '../components/DynamicStatusBar';
 import { Icon } from '../theme/icons.js';
 import { isAndroid } from '../utils/device';
 import Header from '../components/Header';
-import Checksum from '../components/Checksum';
+import ChecksumComponent from '../components/Checksum';
 import ChecksumModalComponent from '../components/ChecksumModal';
 
 const styles = StyleSheet.create({
@@ -264,7 +264,7 @@ class WriteSeedDown extends Component {
                                 }}
                             />
                             <View style={{ flex: 0.5 }} />
-                            <Checksum seed={seed} theme={theme} showModal={this.openModal} />
+                            <ChecksumComponent seed={seed} theme={theme} showModal={this.openModal} />
                             <View style={{ flex: 0.25 }} />
                         </View>
                         <View style={styles.bottomContainer}>
