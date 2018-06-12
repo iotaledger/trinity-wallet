@@ -494,6 +494,8 @@
     },
     "history": {
         "bundleHashCopied": "Bundt-hash kopieret",
+        "noTransactionsFound": "No transactions found",
+        "hideZeroBalance": "Hide zero balance",
         "bundleHashCopiedExplanation": "Den gruppérede hash er blevet kopiret til udklipsholderen.",
         "addressCopied": "Adresse kopieret",
         "addressCopiedExplanation": "Adressen er blevet kopieret til udklipsholderen.",

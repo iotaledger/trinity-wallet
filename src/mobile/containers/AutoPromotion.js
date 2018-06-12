@@ -120,7 +120,7 @@ class AutoPromotion extends Component {
                         >
                             <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                                 <View style={styles.toggleTextContainer}>
-                                    <Text style={[styles.toggleText, textColor, { paddingRight: width / 45 }]}>
+                                    <Text style={[styles.toggleText, textColor, { marginRight: width / 45 }]}>
                                         {t('disabled')}
                                     </Text>
                                 </View>
@@ -131,7 +131,7 @@ class AutoPromotion extends Component {
                                     scale={1.3}
                                 />
                                 <View style={styles.toggleTextContainer}>
-                                    <Text style={[styles.toggleText, textColor, { paddingLeft: width / 45 }]}>
+                                    <Text style={[styles.toggleText, textColor, { marginLeft: width / 45 }]}>
                                         {t('enabled')}
                                     </Text>
                                 </View>

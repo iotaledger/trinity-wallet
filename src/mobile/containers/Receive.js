@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
         height: width / 4.2,
         justifyContent: 'center',
         paddingHorizontal: width / 30,
-        width: width / 1.2,
+        width: width / 1.15,
     },
     receiveAddressText: {
         fontFamily: 'Inconsolata-Bold',
@@ -285,7 +285,7 @@ class Receive extends Component {
                         }}
                         label={t('message')}
                         onChangeText={(text) => this.setState({ message: text })}
-                        containerStyle={{ width: width / 1.2 }}
+                        containerStyle={{ width: width / 1.15 }}
                         autoCorrect={false}
                         enablesReturnKeyAutomatically
                         returnKeyType="done"

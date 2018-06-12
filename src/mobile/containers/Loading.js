@@ -206,7 +206,7 @@ class Loading extends Component {
         this.animation.play();
         if (!firstUse && !addingAdditionalAccount) {
             this.setAnimationOneTimout();
-            timer.setTimeout('waitTimeout', () => this.onWaitTimeout(), 10000);
+            timer.setTimeout('waitTimeout', () => this.onWaitTimeout(), 15000);
         }
         this.getWalletData();
         if ((firstUse || addingAdditionalAccount) && !isAndroid) {
