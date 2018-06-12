@@ -886,7 +886,7 @@ describe('Reducer: accounts', () => {
         it('should assign "accountName" in payload to "failedTxBundleHashes" prop in state', () => {
             const initialState = {
                 failedTxBundleHashes: {
-                    foo: [],
+                    foo: {},
                 },
             };
 
@@ -895,24 +895,27 @@ describe('Reducer: accounts', () => {
                 payload: {
                     accountName: 'baz',
                     bundleHash: 'TTT',
+                    transactionObjects: [{}],
                 },
             };
 
             const newState = reducer(initialState, action);
             const expectedState = {
                 failedTxBundleHashes: {
-                    foo: [],
-                    baz: ['TTT'],
+                    foo: {},
+                    baz: {
+                        TTT: [{}],
+                    },
                 },
             };
 
             expect(newState).to.eql(expectedState);
         });
 
-        it('should concat "bundleHash" with existing failed transaction bundle hashes', () => {
+        it('should assign "bundleHash" to existing failed transaction bundle hashes', () => {
             const initialState = {
                 failedTxBundleHashes: {
-                    foo: ['AAA'],
+                    foo: { AAA: [{}] },
                 },
             };
 
@@ -921,13 +924,17 @@ describe('Reducer: accounts', () => {
                 payload: {
                     accountName: 'foo',
                     bundleHash: 'TTT',
+                    transactionObjects: [{}, {}],
                 },
             };
 
             const newState = reducer(initialState, action);
             const expectedState = {
                 failedTxBundleHashes: {
-                    foo: ['AAA', 'TTT'],
+                    foo: {
+                        AAA: [{}],
+                        TTT: [{}, {}],
+                    },
                 },
             };
 
@@ -939,7 +946,9 @@ describe('Reducer: accounts', () => {
         it('should remove "bundleHash" from "failedTxBundleHashes"', () => {
             const initialState = {
                 failedTxBundleHashes: {
-                    foo: ['AAA'],
+                    foo: {
+                        AAA: [{}],
+                    },
                 },
             };
 
@@ -954,7 +963,7 @@ describe('Reducer: accounts', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 failedTxBundleHashes: {
-                    foo: [],
+                    foo: {},
                 },
             };
 
