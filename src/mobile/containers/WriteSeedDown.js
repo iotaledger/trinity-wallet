@@ -223,7 +223,7 @@ class WriteSeedDown extends Component {
 
     renderModalContent = () => {
         const { theme: { body, primary } } = this.props;
-        return <ChecksumModalComponent body={body} primary={primary} closeModal={() => this.hideModal()} />;
+        return <ChecksumModalComponent body={body} primary={primary} closeModal={() => this.closeModal()} />;
     };
 
     render() {
@@ -280,11 +280,11 @@ class WriteSeedDown extends Component {
                             backdropTransitionInTiming={isAndroid ? 500 : 300}
                             backdropTransitionOutTiming={200}
                             backdropColor={theme.body.bg}
-                            backdropOpacity={0.8}
+                            backdropOpacity={0.9}
                             style={{ alignItems: 'center', margin: 0 }}
                             isVisible={isModalActive}
-                            onBackButtonPress={() => this.hideModal()}
-                            hideModalContentWhileAnimating
+                            onBackButtonPress={() => this.closeModal()}
+                            closeModalContentWhileAnimating
                             useNativeDriver={!!isAndroid}
                         >
                             {this.renderModalContent()}

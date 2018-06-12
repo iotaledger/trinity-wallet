@@ -26,7 +26,6 @@ import com.bugsnag.BugsnagReactNative;
 import com.rajivshah.safetynet.RNGoogleSafetyNetPackage;
 import com.hieuvp.fingerprint.ReactNativeFingerprintScannerPackage;
 import com.rndetectnavbarandroid.RNDetectNavbarAndroidPackage;
-import me.listenzz.modal.TranslucentModalReactPackage;
 import com.kristiansorens.flagsecure.FlagSecurePackage;
 import com.reactlibrary.RNReactNativeHapticFeedbackPackage;
 
@@ -60,7 +59,6 @@ public class MainApplication extends NavigationApplication {
             new SvgPackage(),
             new MainReactPackage(),
             new FlagSecurePackage(),
-            new TranslucentModalReactPackage(),
             new RNDetectNavbarAndroidPackage(),
             new RNDeviceInfo(),
             new RNOSModule(),

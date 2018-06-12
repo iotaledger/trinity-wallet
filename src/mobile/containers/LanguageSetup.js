@@ -140,6 +140,8 @@ class LanguageSetup extends Component {
 
     showModalIfRooted() {
         // FIXME: Have UI indicators for this request
+        this.setState({ isModalVisible: true });
+
         if (isAndroid) {
             RNIsDeviceRooted.isDeviceRooted()
                 .then((isRooted) => {
@@ -260,7 +262,7 @@ class LanguageSetup extends Component {
                         backdropTransitionInTiming={300}
                         backdropTransitionOutTiming={200}
                         backdropColor={body.bg}
-                        backdropOpacity={0.8}
+                        backdropOpacity={0.9}
                         style={{ alignItems: 'center', margin: 0 }}
                         isVisible={isModalVisible}
                         onBackButtonPress={() => this.setState({ isModalVisible: false })}
