@@ -37,6 +37,9 @@ import {
     getTransactionsObjectsAsync,
     getLatestInclusionAsync,
     findTransactionObjectsAsync,
+    getTransactionsToApproveAsync,
+    attachToTangleAsync,
+    storeAndBroadcastAsync,
 } from './extendedApi';
 import { convertFromTrytes } from './utils';
 import Errors from './../errors';
@@ -962,4 +965,33 @@ export const pickNewTailTransactions = (transactionObjects, existingNormalisedTr
     each(transactionObjects, storeUnseenTailTransactions);
 
     return tailTransactions;
+};
+
+export const retryFailedTransaction = (transactionObjects, powFn, shouldOffloadPow) => {
+    const convertToTrytes = (tx) => iota.utils.transactionTrytes(tx);
+
+    const fakeNonce = '9'.repeat(27);
+    const hasFakeNonce = (tx) => tx.nonce !== fakeNonce;
+
+    const cached = {
+        transactionObjects: cloneDeep(transactionObjects),
+        trytes: map(transactionObjects, convertToTrytes),
+    };
+
+    if (some(transactionObjects, hasFakeNonce)) {
+        return getTransactionsToApproveAsync()
+            .then(({ trunkTransaction, branchTransaction }) => {
+                return shouldOffloadPow
+                    ? attachToTangleAsync(trunkTransaction, branchTransaction, cached.trytes)
+                    : performPow(powFn, cached.trytes, trunkTransaction, branchTransaction);
+            })
+            .then(({ trytes, transactionObjects }) => {
+                cached.trytes = trytes;
+                cached.transactionObjects = transactionObjects;
+
+                return storeAndBroadcastAsync(cached.trytes).then(() => cached);
+            });
+    }
+
+    return storeAndBroadcastAsync(cached.trytes).then(() => cached);
 };
