@@ -32,14 +32,18 @@ import {
     performPow,
     getPendingOutgoingTransfersForAddresses,
 } from '../libs/iota/transfers';
-import { syncAccountAfterReattachment, syncAccount, syncAccountAfterSpending } from '../libs/iota/accounts';
+import {
+    syncAccountAfterReattachment,
+    syncAccount,
+    syncAccountAfterSpending,
+    syncAccountOnValueTransactionFailure,
+} from '../libs/iota/accounts';
 import {
     updateAccountAfterReattachment,
     updateAccountInfoAfterSpending,
     syncAccountBeforeManualPromotion,
     syncAccountBeforeManualRebroadcast,
     markBundleBroadcastStatusAsPending,
-    markBundleBroadcastStatusAsCompleted,
 } from './accounts';
 import { shouldAllowSendingToAddress, getAddressesUptoRemainder } from '../libs/iota/addresses';
 import {
@@ -352,8 +356,8 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
     // Use a local variable to keep track if the promise chain was interrupted internally.
     let chainBrokenInternally = false;
 
-    // Keep track if the signed trytes are being broadcast
-    let isBroadcasting = false;
+    // Keep track if the inputs are signed
+    let hasSignedInputs = false;
 
     // Initialize account state
     // Reassign with latest state when account is synced
@@ -505,7 +509,14 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 return prepareTransfersAsync(seed, transfer, options);
             })
             .then((trytes) => {
+                if (!isZeroValue) {
+                    hasSignedInputs = true;
+                }
+
                 cached.trytes = trytes;
+
+                const convertToTransactionObjects = (tryteString) => iota.utils.transactionObject(tryteString);
+                cached.transactionObjects = map(cached.trytes, convertToTransactionObjects);
 
                 // Getting transactions to approve
                 dispatch(setNextStepAsActive());
@@ -526,10 +537,12 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 cached.trytes = trytes;
                 cached.transactionObjects = transactionObjects;
 
-                // Before making a network request for storing/rebroadcasting
-                // Save the trytes locally since they are already signed
-                // and a failure in any case of broadcast/store deliberately or otherwise
-                // can reveal signatures.
+                // Broadcasting
+                dispatch(setNextStepAsActive());
+
+                return storeAndBroadcastAsync(cached.trytes);
+            })
+            .then(() => {
                 const { newState } = syncAccountAfterSpending(
                     accountName,
                     cached.transactionObjects,
@@ -538,34 +551,6 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 );
 
                 dispatch(updateAccountInfoAfterSpending(newState));
-
-                // Temporarily mark this transaction as failed.
-                // The next step is to send the signed trytes to the network
-                // However, there is an attack vector involved if these trytes are sent naively
-                // If one of these (store/broadcast) network calls fail,
-                // A user would have to re-sign his inputs and there is a chance he reveals more parts of the
-                // private key if the first call was deliberately rejected.
-                dispatch(
-                    markBundleBroadcastStatusAsPending({
-                        accountName,
-                        bundleHash: head(cached.transactionObjects).bundle,
-                    }),
-                );
-
-                // Broadcasting
-                dispatch(setNextStepAsActive());
-
-                isBroadcasting = true;
-                return storeAndBroadcastAsync(cached.trytes);
-            })
-            .then(() => {
-                // Safely mark this transaction as completed if it was successfully broadcast/stored on the tangle.
-                dispatch(
-                    markBundleBroadcastStatusAsCompleted({
-                        accountName,
-                        bundleHash: head(cached.transactionObjects).bundle,
-                    }),
-                );
 
                 // Progress summary
                 dispatch(setNextStepAsActive());
@@ -596,9 +581,29 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 }, 5000);
             })
             .catch((error) => {
+                console.log('Error', error);
                 dispatch(sendTransferError());
 
-                if (isBroadcasting) {
+                if (hasSignedInputs) {
+                    const { newState } = syncAccountOnValueTransactionFailure(
+                        accountName,
+                        cached.transactionObjects,
+                        accountState,
+                    );
+
+                    // Temporarily mark this transaction as failed.
+                    // As the inputs were signed and already exposed to the network
+                    dispatch(
+                        markBundleBroadcastStatusAsPending({
+                            accountName,
+                            bundleHash: head(cached.transactionObjects).bundle,
+                        }),
+                    );
+
+                    dispatch(updateAccountInfoAfterSpending(newState));
+                    // Clear send screen text fields
+                    dispatch(clearSendFields());
+
                     return dispatch(
                         generateAlert(
                             'error',
