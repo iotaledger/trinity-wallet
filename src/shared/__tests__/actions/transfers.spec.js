@@ -121,7 +121,7 @@ describe('actions: transfers', () => {
             });
 
             it('should create actions of type IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST, IOTA/ALERTS/SHOW, IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION, IOTA/ALERTS/SHOW and IOTA/TRANSFERS/PROMOTE_TRANSACTION_ERROR', () => {
-                const store = mockStore({ accounts });
+                const store = mockStore({ accounts, settings: { remotePoW: false } });
 
                 const expectedActions = [
                     'IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST',
@@ -163,7 +163,7 @@ describe('actions: transfers', () => {
             });
 
             it('should create actions of type IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST, IOTA/ALERTS/SHOW, IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION, IOTA/TRANSFERS/PROMOTE_TRANSACTION_SUCCESS and IOTA/ALERTS/SHOW', () => {
-                const store = mockStore({ accounts });
+                const store = mockStore({ accounts, settings: { remotePoW: false } });
 
                 const expectedActions = [
                     'IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST',
@@ -186,7 +186,7 @@ describe('actions: transfers', () => {
             });
 
             it('should not create an action of type IOTA/ACCOUNTS/UPDATE_ACCOUNT_AFTER_REATTACHMENT', () => {
-                const store = mockStore({ accounts });
+                const store = mockStore({ accounts, settings: { remotePoW: false } });
 
                 return store
                     .dispatch(
@@ -226,7 +226,7 @@ describe('actions: transfers', () => {
             });
 
             it('should create an action of type IOTA/ALERTS/SHOW thrice', () => {
-                const store = mockStore({ accounts });
+                const store = mockStore({ accounts, settings: { remotePoW: false } });
 
                 return store
                     .dispatch(
@@ -246,7 +246,7 @@ describe('actions: transfers', () => {
             });
 
             it('should call accounts util "syncAccountAfterReattachment"', () => {
-                const store = mockStore({ accounts });
+                const store = mockStore({ accounts, settings: { remotePoW: false } });
 
                 return store
                     .dispatch(
@@ -262,7 +262,7 @@ describe('actions: transfers', () => {
             });
 
             it('should create an action of type IOTA/ACCOUNTS/UPDATE_ACCOUNT_AFTER_REATTACHMENT', () => {
-                const store = mockStore({ accounts });
+                const store = mockStore({ accounts, settings: { remotePoW: false } });
 
                 return store
                     .dispatch(
