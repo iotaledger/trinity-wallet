@@ -21,6 +21,7 @@ import {
     selectedAccountStateFactory,
     getRemotePoWFromState,
     selectFirstAddressFromAccountFactory,
+    getFailedTxBundleHashesForSelectedAccount,
 } from '../selectors/accounts';
 import { setNextStepAsActive } from './progress';
 import { clearSendFields } from './ui';
@@ -37,6 +38,7 @@ import {
     syncAccount,
     syncAccountAfterSpending,
     syncAccountOnValueTransactionFailure,
+    syncAccountOnSuccessfulRetryAttempt,
 } from '../libs/iota/accounts';
 import {
     updateAccountAfterReattachment,
@@ -44,6 +46,7 @@ import {
     syncAccountBeforeManualPromotion,
     syncAccountBeforeManualRebroadcast,
     markBundleBroadcastStatusAsPending,
+    markBundleBroadcastStatusAsCompleted,
 } from './accounts';
 import { shouldAllowSendingToAddress, getAddressesUptoRemainder } from '../libs/iota/addresses';
 import {
@@ -70,6 +73,9 @@ export const ActionTypes = {
     SEND_TRANSFER_REQUEST: 'IOTA/TRANSFERS/SEND_TRANSFER_REQUEST',
     SEND_TRANSFER_SUCCESS: 'IOTA/TRANSFERS/SEND_TRANSFER_SUCCESS',
     SEND_TRANSFER_ERROR: 'IOTA/TRANSFERS/SEND_TRANSFER_ERROR',
+    RETRY_FAILED_TRANSACTION_REQUEST: 'IOTA/TRANSFERS/RETRY_FAILED_TRANSACTION_REQUEST',
+    RETRY_FAILED_TRANSACTION_SUCCESS: 'IOTA/TRANSFERS/RETRY_FAILED_TRANSACTION_SUCCESS',
+    RETRY_FAILED_TRANSACTION_ERROR: 'IOTA/TRANSFERS/RETRY_FAILED_TRANSACTION_ERROR',
 };
 
 const broadcastBundleRequest = () => ({
@@ -108,6 +114,19 @@ export const sendTransferSuccess = (payload) => ({
 
 export const sendTransferError = () => ({
     type: ActionTypes.SEND_TRANSFER_ERROR,
+});
+
+export const retryFailedTransactionRequest = () => ({
+    type: ActionTypes.RETRY_FAILED_TRANSACTION_REQUEST,
+});
+
+export const retryFailedTransactionSuccess = (payload) => ({
+    type: ActionTypes.RETRY_FAILED_TRANSACTION_SUCCESS,
+    payload,
+});
+
+export const retryFailedTransactionError = () => ({
+    type: ActionTypes.RETRY_FAILED_TRANSACTION_ERROR,
 });
 
 /**
@@ -540,7 +559,8 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 // Broadcasting
                 dispatch(setNextStepAsActive());
 
-                return storeAndBroadcastAsync(cached.trytes);
+                // return storeAndBroadcastAsync(cached.trytes);
+                throw new Error('BRRR');
             })
             .then(() => {
                 const { newState } = syncAccountAfterSpending(
@@ -581,7 +601,6 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 }, 5000);
             })
             .catch((error) => {
-                console.log('Error', error);
                 dispatch(sendTransferError());
 
                 if (hasSignedInputs) {
@@ -681,4 +700,28 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 return dispatch(generateTransferErrorAlert(error));
             })
     );
+};
+
+export const retryFailedTransaction = (accountName, bundleHash, powFn) => (dispatch, getState) => {
+    const existingAccountState = selectedAccountStateFactory(accountName)(getState());
+    const existingFailedTransactionsForThisAccount = getFailedTxBundleHashesForSelectedAccount(getState());
+    const shouldOffloadPow = getRemotePoWFromState(getState());
+
+    dispatch(retryFailedTransactionRequest());
+
+    return retryFailedTransaction(existingFailedTransactionsForThisAccount[bundleHash], powFn, shouldOffloadPow)
+        .then(({ transactionObjects }) => {
+            dispatch(markBundleBroadcastStatusAsCompleted({ accountName, bundleHash }));
+
+            const { newState } = syncAccountOnSuccessfulRetryAttempt(
+                accountName,
+                transactionObjects,
+                existingAccountState,
+            );
+
+            return dispatch(retryFailedTransactionSuccess(newState));
+        })
+        .catch(() => {
+            dispatch(retryFailedTransactionError());
+        });
 };
