@@ -14,7 +14,7 @@ import { toggleModalActivity, setDoNotMinimise } from 'iota-wallet-shared-module
 import timer from 'react-native-timer';
 import { hasDuplicateAccountName, hasDuplicateSeed, getAllSeedsFromKeychain } from '../utils/keychain';
 import CustomTextInput from '../components/CustomTextInput';
-import Checksum from '../components/Checksum';
+import ChecksumComponent from '../components/Checksum';
 import ChecksumModalComponent from '../components/ChecksumModal';
 import QRScannerComponent from '../components/QrScanner';
 import { width, height } from '../utils/dimensions';
@@ -356,7 +356,7 @@ class UseExistingSeed extends Component {
                             onQRPress={() => this.onQRPress()}
                         />
                         <View style={{ flex: 0.45 }} />
-                        <Checksum seed={seed} theme={theme} showModal={() => this.showModal('checksum')} />
+                        <ChecksumComponent seed={seed} theme={theme} showModal={() => this.showModal('checksum')} />
                         <View style={{ flex: 0.45 }} />
                         <CustomTextInput
                             onRef={(c) => {
