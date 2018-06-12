@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
 import FlagSecure from 'react-native-flag-secure-android';
 import WithUserActivity from '../components/UserActivity';
-import Checksum from '../components/Checksum';
+import ChecksumComponent from '../components/Checksum';
 import CustomTextInput from '../components/CustomTextInput';
 import ChecksumModalComponent from '../components/ChecksumModal';
 import InfoBox from '../components/InfoBox';
@@ -244,7 +244,11 @@ class EnterSeed extends React.Component {
                                     testID="enterSeed-seedbox"
                                 />
                                 <View style={{ flex: 0.4 }} />
-                                <Checksum seed={seed} theme={theme} showModal={() => this.showModal('checksum')} />
+                                <ChecksumComponent
+                                    seed={seed}
+                                    theme={theme}
+                                    showModal={() => this.showModal('checksum')}
+                                />
                                 <View style={{ flex: 0.4 }} />
                                 <InfoBox
                                     body={theme.body}
