@@ -506,6 +506,8 @@
     },
     "history": {
         "bundleHashCopied": "Hash du paquet copié",
+        "noTransactionsFound": "No transactions found",
+        "hideZeroBalance": "Hide zero balance",
         "bundleHashCopiedExplanation": "Le hash du paquet a été copié dans le presse-papier.",
         "addressCopied": "Adressée copiée",
         "addressCopiedExplanation": "L'adresse a été copiée dans le presse-papier.",

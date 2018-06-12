@@ -537,7 +537,8 @@ describe('actions: transfers', () => {
                         sinon.stub(inputUtils, 'getUnspentInputs').resolves({
                             totalBalance: 110,
                             availableBalance: 0,
-                            inputs: [
+                            inputs: [],
+                            spentAddresses: [
                                 {
                                     address:
                                         'MVVQANCKCPSDGEHFEVT9RVYJWOPPEGZSAVLIZ9MGNRPJPUORYFOTP9FNCLBFMQKUXMHNRGZDTWUI9UDHW',
