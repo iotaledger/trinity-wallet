@@ -478,22 +478,22 @@ describe('selectors: accounts', () => {
 
         describe('when "failedTxBundleHashes" prop is defined as a nested prop under "accounts" reducer', () => {
             it('should return value for "failedTxBundleHashes" prop', () => {
-                expect(getFailedTxBundleHashesFromAccounts({ accounts: { failedTxBundleHashes: { foo: [] } } })).to.eql(
-                    { foo: [] },
-                );
+                expect(
+                    getFailedTxBundleHashesFromAccounts({ accounts: { failedTxBundleHashes: { foo: { AAA: [{}] } } } }),
+                ).to.eql({ foo: { AAA: [{}] } });
             });
         });
     });
 
     describe('#getFailedTxBundleHashesForSelectedAccount', () => {
         describe('when account name is not defined as a nested prop under failedTxBundleHashes object', () => {
-            it('should return an empty array', () => {
+            it('should return an empty object', () => {
                 expect(
                     getFailedTxBundleHashesForSelectedAccount({
                         accounts: {
                             accountInfo: {},
                             failedTxBundleHashes: {
-                                foo: [],
+                                foo: { AAA: [{}] },
                             },
                             accountNames: ['foo', 'baz'],
                         },
@@ -501,7 +501,7 @@ describe('selectors: accounts', () => {
                             seedIndex: 1,
                         },
                     }),
-                ).to.eql([]);
+                ).to.eql({});
             });
         });
 
@@ -512,7 +512,9 @@ describe('selectors: accounts', () => {
                         accounts: {
                             accountInfo: {},
                             failedTxBundleHashes: {
-                                foo: [{}, {}],
+                                foo: {
+                                    AAA: [{}, {}],
+                                },
                             },
                             accountNames: ['foo'],
                         },
@@ -520,7 +522,7 @@ describe('selectors: accounts', () => {
                             seedIndex: 0,
                         },
                     }),
-                ).to.eql([{}, {}]);
+                ).to.eql({ AAA: [{}, {}] });
             });
         });
     });
