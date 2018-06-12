@@ -319,8 +319,6 @@
         "leastSecure": "Least Secure",
         "paperWallet": "Paper Wallet",
         "writeYourSeedDown": "Write your seed down",
-        "printYourSeed": "Print your seed",
-        "digitalCopy": "Digital copy",
         "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
         "iHaveBackedUpMySeed": "I have backed up my seed",
         "letsWriteDownYourSeed": "Lets write down your seed",
