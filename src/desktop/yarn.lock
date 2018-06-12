@@ -410,17 +410,9 @@ authenticator-cli@^1.0.5:
     cli "^1.0.1"
     qrcode-terminal "^0.12.0"
 
-authenticator@^1.1.0:
+authenticator@^1.1.0, authenticator@^1.1.5:
   version "1.1.5"
   resolved "https://registry.yarnpkg.com/authenticator/-/authenticator-1.1.5.tgz#ebc6d01ea91b91d631c6549f8cde82ec38f487f1"
-  dependencies:
-    authenticator-cli "^1.0.5"
-    notp "^2.0.3"
-    thirty-two "0.0.2"
-
-"authenticator@https://git.coolaj86.com/rajivshah3/node-authenticator.js.git":
-  version "1.1.4"
-  resolved "https://git.coolaj86.com/rajivshah3/node-authenticator.js.git#f67283c91cd0f0fada8b58964522b609d2edc290"
   dependencies:
     authenticator-cli "^1.0.5"
     notp "^2.0.3"
