@@ -51,6 +51,16 @@ class About extends React.PureComponent {
 
                     <article>
                         <Scrollbar>
+                            <h5>0.1.7.</h5>
+                            <ul>
+                                <li>New: Wallet Expert mode settings</li>
+                                <li>New: Manual promote and rebroadcast functionality</li>
+                                <li>New: Auto-promotion enable/disable settings</li>
+                                <li>Fixed: On send incorrect progress steps displayed</li>
+                                <li>Fixed: Cannot enable Two-Factor authentication</li>
+                                <li>Fixed: Node error on Adding additional Seed hangs wallet</li>
+                                <li>Fixed: QR seed scanning hangs wallet</li>
+                            </ul>
                             <h5>0.1.6.</h5>
                             <ul>
                                 <li>New: Search and Hide zero balance functionality to history view</li>
