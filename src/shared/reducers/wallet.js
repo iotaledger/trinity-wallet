@@ -19,6 +19,7 @@ const initialState = {
     balanceCheckToggle: false,
     deepLinkActive: false,
     hasConnection: true,
+    unit: 'Mi',
 };
 
 export default (state = initialState, action) => {
@@ -78,7 +79,6 @@ export default (state = initialState, action) => {
                 seedIndex: 0,
                 isGeneratingReceiveAddress: false,
                 currentSetting: 'mainSettings',
-                //deepLinkActive: false,
                 usedExistingSeed: false,
             };
         case ActionTypes.CLEAR_SEED:
@@ -166,6 +166,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 hasConnection: action.payload.isConnected,
+            };
+        case ActionTypes.SET_UNIT:
+            return {
+                ...state,
+                unit: action.payload,
             };
         default:
             return state;

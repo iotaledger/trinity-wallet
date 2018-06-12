@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { formatIota, TOTAL_IOTA_SUPPLY } from 'libs/iota/utils';
 import { round } from 'libs/utils';
 import { getCurrencySymbol } from 'libs/currency';
+import { setUnit } from 'actions/wallet';
 
 import Icon from 'ui/components/Icon';
 import css from './input.scss';
@@ -39,6 +40,8 @@ export default class AmountInput extends React.PureComponent {
          */
         onChange: PropTypes.func.isRequired,
         deepLinkActive: PropTypes.bool.isRequired,
+        setUnit: PropTypes.func.isRequired,
+        unit: PropTypes.func.isRequired,
     };
 
     state = {
@@ -96,6 +99,7 @@ export default class AmountInput extends React.PureComponent {
     };
 
     getUnitMultiplier(unit) {
+        this.state.setUnit(unit);
         let multiplier = 1;
         const target = unit || this.state.unit;
         switch (target) {

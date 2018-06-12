@@ -34,6 +34,7 @@ export const ActionTypes = {
     CONNECTION_CHANGED: 'IOTA/WALLET/CONNECTION_CHANGED',
     SET_DEEP_LINK: 'IOTA/APP/WALLET/SET_DEEP_LINK',
     SET_DEEP_LINK_INACTIVE: 'IOTA/APP/WALLET/SET_DEEP_LINK_INACTIVE',
+    SET_UNIT: 'IOTA/APP/WALLET/SET_UNIT',
 };
 
 export const generateNewAddressRequest = () => ({
@@ -341,3 +342,8 @@ export const setDeepLinkInactive = () => {
         type: ActionTypes.SET_DEEP_LINK_INACTIVE,
     };
 };
+
+export const setUnit = (payload) => ({
+    type: ActionTypes.SET_UNIT,
+    payload,
+});
