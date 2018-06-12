@@ -407,3 +407,40 @@ export const syncAccountAfterReattachment = (accountName, reattachment, accountS
         normalisedReattachment,
     };
 };
+
+/**
+ *  Sync local account in case signed inputs were exposed to the network (and the network call failed)
+ *
+ *   @method syncAccountOnValueTransactionFailure
+ *   @param {string} name
+ *   @param {array} newTransfer
+ *   @param {object} accountState
+ *
+ *   @returns {object}
+ **/
+export const syncAccountOnValueTransactionFailure = (name, newTransfer, accountState) => {
+    const tailTransaction = find(newTransfer, { currentIndex: 0 });
+    const normalisedTransfer = normaliseBundle(newTransfer, keys(accountState.addresses), [tailTransaction], false);
+
+    // Assign normalised transfer to existing transfers
+    const transfers = mergeNewTransfers(
+        {
+            [normalisedTransfer.bundle]: normalisedTransfer,
+        },
+        accountState.transfers,
+    );
+
+    const addressData = markAddressesAsSpentSync([newTransfer], accountState.addresses);
+
+    const newState = {
+        ...accountState,
+        transfers,
+        addresses: addressData,
+    };
+
+    return {
+        newState,
+        normalisedTransfer,
+        transfer: newTransfer,
+    };
+};
