@@ -490,6 +490,8 @@
     },
     "history": {
         "bundleHashCopied": "Puntra räsi kopeeritud",
+        "noTransactionsFound": "No transactions found",
+        "hideZeroBalance": "Hide zero balance",
         "bundleHashCopiedExplanation": "Puntra räsi on kopeeritud.",
         "addressCopied": "Aadress kopeeritud",
         "addressCopiedExplanation": "Aadress on kopeeritud.",

@@ -488,6 +488,8 @@
     },
     "history": {
         "bundleHashCopied": "Hashbunt kopierad",
+        "noTransactionsFound": "Inga transaktioner hittade",
+        "hideZeroBalance": "Dölj nollvärden",
         "bundleHashCopiedExplanation": "Hashbunten har kopierats till urklipp.",
         "addressCopied": "Adress kopierad",
         "addressCopiedExplanation": "Din adress har kopierats till urklipp.",
@@ -625,7 +627,7 @@
         "emptyCodeExplanation": "Var vänlig och ange en kod och försök igen.",
         "keyCopied": "Nyckel kopierad till urklipp",
         "keyCopiedExplanation": "Din 2FA nyckel har kopierats till urklipp.",
-        "addKey": "Lägg till denna nyckeln till din 2FA app",
+        "addKey": "Lägg till denna nyckel i din 2FA-app",
         "key": "Nyckel",
         "twoFAEnabled": "2FA är nu aktiverat",
         "twoFAEnabledExplanation": "Du har framgångsrikt aktiverat tvåfaktorsautentisering.",
