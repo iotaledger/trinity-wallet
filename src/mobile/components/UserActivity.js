@@ -6,6 +6,7 @@ import { AppState } from 'react-native';
 import { connect } from 'react-redux';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { setUserActivity, toggleModalActivity } from 'iota-wallet-shared-modules/actions/ui';
+import { isIOS } from '../utils/device';
 
 export default () => (C) => {
     class WithUserActivity extends Component {
@@ -21,12 +22,16 @@ export default () => (C) => {
         handleAppStateChange = (nextAppState) => {
             const { doNotMinimise, isModalActive } = this.props;
             if (nextAppState.match(/inactive|background/) && !doNotMinimise) {
-                this.props.setUserActivity({ minimised: true });
-                if (isModalActive){
+                if (isIOS) {
+                    this.props.setUserActivity({ minimised: true });
+                }
+                if (isModalActive) {
                     this.props.toggleModalActivity();
                 }
             } else if (nextAppState === 'active') {
-                this.props.setUserActivity({ minimised: false });
+                if (isIOS) {
+                    this.props.setUserActivity({ minimised: false });
+                }
             }
         };
 
@@ -37,7 +42,7 @@ export default () => (C) => {
 
     WithUserActivity.propTypes = {
         /** Set application activity state
-         * @param {object} options - minimzed, active, inactive
+         * @param {object} options - minimised, active, inactive
          */
         setUserActivity: PropTypes.func.isRequired,
         /** Generate a notification alert

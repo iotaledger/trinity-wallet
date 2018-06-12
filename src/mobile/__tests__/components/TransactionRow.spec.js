@@ -99,7 +99,7 @@ describe('Testing TransactionRow component', () => {
             const props = getProps();
 
             const wrapper = shallow(<TransactionRow {...props} />);
-            expect(wrapper.find('View').length).toEqual(11);
+            expect(wrapper.find('View').length).toEqual(10);
         });
 
         it('should return five Text components', () => {
