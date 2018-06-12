@@ -497,6 +497,8 @@
     },
     "history": {
         "bundleHashCopied": "Hash pakietu skopiowany",
+        "noTransactionsFound": "Nie znaleziono transakcji",
+        "hideZeroBalance": "Ukryj zerowe",
         "bundleHashCopiedExplanation": "Hash pakietu został skopiowany do schowka.",
         "addressCopied": "Adres skopiowany",
         "addressCopiedExplanation": "Adres został skopiowany do schowka.",
@@ -508,7 +510,7 @@
     "accountManagement": {
         "viewSeed": "Pokaż seed",
         "viewAddresses": "Pokaż adresy",
-        "editAccountName": "Edytuj nazwę konta",
+        "editAccountName": "Zmień nazwę",
         "deleteAccount": "Usuń konto",
         "addNewAccount": "Dodaj nowe konto"
     },
@@ -645,7 +647,7 @@
         "twoFADisabledExplanation": "Pomyślnie wyłączono funkcję autoryzacji dwustopniowej.",
         "enterCode": "Wpisz kod z aplikacji autoryzacji dwustopniowej",
         "code": "Kod",
-        "twoFaToken": "Token 2FA"
+        "twoFaToken": "Kod 2FA"
     },
     "chart": {
         "mcap": "Market",

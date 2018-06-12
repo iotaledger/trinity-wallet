@@ -416,17 +416,16 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 );
             })
             .then((inputs) => {
-                // totalBalance -> total balance associated with addresses.
+                // totalBalance: total balance associated with addresses.
                 // Contains balance from addresses regardless of the fact they are spent from.
-                // Less than the value user is about to send to -> Not enough balance.
+                // If its less than the value user is about to send to, it will generate an alert with Not enough balance.
                 if (get(inputs, 'totalBalance') < value) {
                     chainBrokenInternally = true;
                     throw new Error(Errors.NOT_ENOUGH_BALANCE);
 
-                    // totalBalance -> balance after filtering out addresses that are spent.
-                    // Contains balance from those addresses only that are not spent from.
-                    // Less than value user is about to send to -> Has already spent from addresses and the txs aren't confirmed.
-                    // TODO: At this point, we could leverage the change addresses and allow user making a transfer on top from those.
+                    // availableBalance: balance after filtering out addresses that are spent and also addresses with incoming transfers..
+                    // Contains only spendable balance
+                    // Note: At this point, we could leverage the change addresses and allow user making a transfer on top from those.
                 } else if (get(inputs, 'availableBalance') < value) {
                     chainBrokenInternally = true;
                     const addresses = accountState.addresses;
@@ -435,12 +434,12 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
 
                     if (size(pendingOutgoingTransfers)) {
                         throw new Error(Errors.ADDRESS_HAS_PENDING_TRANSFERS);
-                    }
-
-                    if (size(get(inputs, 'inputs'))) {
-                        throw new Error(Errors.FUNDS_AT_SPENT_ADDRESSES);
                     } else {
-                        throw new Error(Errors.INCOMING_TRANSFERS);
+                        if (size(get(inputs, 'spentAddresses'))) {
+                            throw new Error(Errors.FUNDS_AT_SPENT_ADDRESSES);
+                        } else if (size(get(inputs, 'addressesWithIncomingTransfers'))) {
+                            throw new Error(Errors.INCOMING_TRANSFERS);
+                        }
                     }
                 }
 
