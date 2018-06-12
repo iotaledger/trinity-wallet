@@ -299,8 +299,8 @@ class SeedReentry extends Component {
                             animationOutTiming={200}
                             backdropTransitionInTiming={isAndroid ? 500 : 300}
                             backdropTransitionOutTiming={200}
-                            backdropColor="#102832"
-                            backdropOpacity={1}
+                            backdropColor={theme.body.bg}
+                            backdropOpacity={0.9}
                             style={{ alignItems: 'center', margin: 0 }}
                             isVisible={this.state.isModalVisible}
                             onBackButtonPress={() => this.setState({ isModalVisible: false })}

@@ -405,7 +405,7 @@ class UseExistingSeed extends Component {
                         backdropTransitionInTiming={isAndroid ? 500 : 300}
                         backdropTransitionOutTiming={200}
                         backdropColor={theme.body.bg}
-                        backdropOpacity={1}
+                        backdropOpacity={0.9}
                         style={{ alignItems: 'center', margin: 0 }}
                         isVisible={isModalActive}
                         onBackButtonPress={() => this.props.toggleModalActivity()}

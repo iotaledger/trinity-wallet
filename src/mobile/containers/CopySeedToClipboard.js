@@ -434,7 +434,7 @@ class CopySeedToClipboard extends Component {
                             backdropTransitionInTiming={isAndroid ? 500 : 300}
                             backdropTransitionOutTiming={200}
                             backdropColor={theme.body.bg}
-                            backdropOpacity={0.8}
+                            backdropOpacity={0.9}
                             style={{ alignItems: 'center', margin: 0 }}
                             isVisible={isModalActive}
                             onBackButtonPress={() => this.hideModal()}
