@@ -11,47 +11,38 @@ import { Icon } from '../theme/icons';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        alignItems: 'center',
+    },
+    row: {
+        flex: 1,
         borderRadius: GENERAL.borderRadius,
         paddingVertical: height / 55,
-        paddingHorizontal: width / 25,
-        width: width / 1.2,
+        width: width / 1.15,
         justifyContent: 'center',
         marginBottom: height / 60,
     },
-    topWrapper: {
-        flex: 1,
+    iconWrapper: {
         alignItems: 'center',
+        justifyContent: 'center',
+        marginHorizontal: width / 32,
+        width: width / 20,
     },
     textWrapper: {
-        flex: 4,
+        flex: 1,
         height: height / 15,
-        marginLeft: width / 35,
+        marginRight: width / 32,
     },
-    innerWrapper: {
+    topWrapper: {
         flexDirection: 'row',
         flex: 1,
         justifyContent: 'space-between',
         alignItems: 'flex-start',
     },
-    messageOuterWrapper: {
+    bottomWrapper: {
         flexDirection: 'row',
         flex: 1,
         justifyContent: 'space-between',
         alignItems: 'flex-end',
-    },
-    messageInnerWrapper: {
-        flexDirection: 'row',
-        flex: 1,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-    },
-    timeWrapper: {
-        flex: 1,
-        alignItems: 'flex-end',
-    },
-    statusWrapper: {
-        flexDirection: 'row',
-        backgroundColor: 'transparent',
     },
     statusText: {
         fontFamily: 'SourceSansPro-SemiBold',
@@ -61,6 +52,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Light',
         fontSize: width / 28,
+        flex: 1,
+        paddingRight: width / 70,
     },
     messageTitle: {
         backgroundColor: 'transparent',
@@ -87,13 +80,23 @@ const styles = StyleSheet.create({
         fontFamily: 'SourceSansPro-Light',
         backgroundColor: 'transparent',
     },
-    iconContainer: {
+    iconBorder: {
         borderRadius: width / 30,
         borderWidth: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        width: width / 16,
-        height: width / 16,
+        width: width / 20,
+        height: width / 20,
+    },
+    messageWrapper: {
+        flex: 3,
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+    },
+    timestampWrapper: {
+        flex: 1,
+        alignItems: 'flex-end',
     },
 });
 
@@ -140,8 +143,8 @@ export default class TransactionRow extends PureComponent {
 
         return (
             <TouchableOpacity onPress={() => onPress(this.props)}>
-                <View style={styles.topWrapper}>
-                    <View style={[styles.container, style.containerBackgroundColor]}>
+                <View style={styles.container}>
+                    <View style={[styles.row, style.containerBackgroundColor]}>
                         {bundleIsBeingPromoted && (
                             <View style={{ position: 'absolute', left: width / 3.2, top: height / 70 }}>
                                 <LottieView
@@ -158,28 +161,26 @@ export default class TransactionRow extends PureComponent {
                             </View>
                         )}
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                            <View style={styles.iconWrapper}>
                                 <Icon
                                     name={icon}
-                                    size={width / 11}
+                                    size={width / 36}
                                     color={style.titleColor}
                                     iconStyle={{ position: 'absolute' }}
                                 />
-                                <View style={[styles.iconContainer, style.rowBorderColor, { position: 'absolute' }]} />
+                                <View style={[styles.iconBorder, style.rowBorderColor, { position: 'absolute' }]} />
                             </View>
                             <View style={styles.textWrapper}>
-                                <View style={styles.innerWrapper}>
-                                    <View style={styles.statusWrapper}>
-                                        <Text style={[styles.statusText, { color: style.titleColor }]}>
-                                            {bundleIsBeingPromoted ? 'RETRYING' : confirmation.toUpperCase()}
-                                        </Text>
-                                    </View>
+                                <View style={styles.topWrapper}>
+                                    <Text style={[styles.statusText, { color: style.titleColor }]}>
+                                        {bundleIsBeingPromoted ? 'RETRYING' : confirmation.toUpperCase()}
+                                    </Text>
                                     <Text style={[styles.confirmationStatus, { color: style.titleColor }]}>
                                         {value} {unit}
                                     </Text>
                                 </View>
-                                <View style={styles.messageOuterWrapper}>
-                                    <View style={styles.messageInnerWrapper}>
+                                <View style={styles.bottomWrapper}>
+                                    <View style={styles.messageWrapper}>
                                         <Text style={[styles.messageTitle, style.rowTextColor]}>
                                             {t('send:message')}:
                                         </Text>
@@ -187,7 +188,7 @@ export default class TransactionRow extends PureComponent {
                                             {message}
                                         </Text>
                                     </View>
-                                    <View style={styles.timeWrapper}>
+                                    <View style={styles.timestampWrapper}>
                                         <Text style={[styles.timestamp, style.rowTextColor]}>
                                             {formatTime(convertUnixTimeToJSDate(time))}
                                         </Text>

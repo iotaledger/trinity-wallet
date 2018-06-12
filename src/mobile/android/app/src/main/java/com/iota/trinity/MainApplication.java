@@ -27,6 +27,8 @@ import com.rajivshah.safetynet.RNGoogleSafetyNetPackage;
 import com.hieuvp.fingerprint.ReactNativeFingerprintScannerPackage;
 import com.rndetectnavbarandroid.RNDetectNavbarAndroidPackage;
 import me.listenzz.modal.TranslucentModalReactPackage;
+import com.kristiansorens.flagsecure.FlagSecurePackage;
+import com.reactlibrary.RNReactNativeHapticFeedbackPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -57,6 +59,7 @@ public class MainApplication extends NavigationApplication {
             // eg. new VectorIconsPackage()
             new SvgPackage(),
             new MainReactPackage(),
+            new FlagSecurePackage(),
             new TranslucentModalReactPackage(),
             new RNDetectNavbarAndroidPackage(),
             new RNDeviceInfo(),
@@ -78,7 +81,8 @@ public class MainApplication extends NavigationApplication {
             BugsnagReactNative.getPackage(),
             new RNGoogleSafetyNetPackage(),
             new ReactNativeFingerprintScannerPackage(),
-            new ShareSecurePackage()
+            new ShareSecurePackage(),
+            new RNReactNativeHapticFeedbackPackage()
     );
   }
 

@@ -62,3 +62,7 @@ include ':react-native-pdf'
 project(':react-native-pdf').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-pdf/android')
 include ':react-native-fetch-blob'
 project(':react-native-fetch-blob').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-fetch-blob/android')
+include ':react-native-flag-secure-android'
+project(':react-native-flag-secure-android').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-flag-secure-android/android')
+include ':react-native-haptic-feedback'
+project(':react-native-haptic-feedback').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-haptic-feedback/android')

@@ -192,7 +192,7 @@ class SaveYourSeed extends Component {
     }
 
     render() {
-        const { t, theme: { body, extra } } = this.props;
+        const { t, theme: { body, secondary } } = this.props;
         const textColor = { color: body.color };
         const lineColor = { borderLeftColor: body.color };
 
@@ -223,7 +223,10 @@ class SaveYourSeed extends Component {
                                     width: width / 1.36,
                                     height: height / 13,
                                     borderRadius: height / 90,
-                                    backgroundColor: extra.color,
+                                    backgroundColor: secondary.color,
+                                },
+                                children: {
+                                    color: secondary.body
                                 },
                             }}
                         >
@@ -238,7 +241,10 @@ class SaveYourSeed extends Component {
                                 width: width / 1.36,
                                 height: height / 13,
                                 borderRadius: height / 90,
-                                backgroundColor: extra.color,
+                                backgroundColor: secondary.color,
+                            },
+                            children: {
+                                color: secondary.body
                             },
                         }}
                     >
@@ -252,7 +258,10 @@ class SaveYourSeed extends Component {
                                 width: width / 1.36,
                                 height: height / 13,
                                 borderRadius: height / 90,
-                                backgroundColor: extra.color,
+                                backgroundColor: secondary.color,
+                            },
+                            children: {
+                                color: secondary.body
                             },
                         }}
                     >
