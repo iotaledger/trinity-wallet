@@ -237,10 +237,12 @@ const account = (
                 ...state,
                 failedTxBundleHashes: {
                     ...state.failedTxBundleHashes,
-                    [action.payload.accountName]: [
-                        ...(state.failedTxBundleHashes[action.payload.accountName] || []),
-                        action.payload.bundleHash,
-                    ],
+                    [action.payload.accountName]: {
+                        ...state.failedTxBundleHashes[action.payload.accountName],
+                        ...{
+                            [action.payload.bundleHash]: action.payload.transactionObjects,
+                        },
+                    },
                 },
             };
         case ActionTypes.MARK_BUNDLE_BROADCAST_STATUS_AS_COMPLETED:
@@ -248,9 +250,9 @@ const account = (
                 ...state,
                 failedTxBundleHashes: {
                     ...state.failedTxBundleHashes,
-                    [action.payload.accountName]: filter(
+                    [action.payload.accountName]: omit(
                         state.failedTxBundleHashes[action.payload.accountName],
-                        (bundleHash) => bundleHash !== action.payload.bundleHash,
+                        action.payload.bundleHash,
                     ),
                 },
             };

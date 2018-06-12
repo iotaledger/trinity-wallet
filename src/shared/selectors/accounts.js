@@ -298,5 +298,5 @@ export const getFailedTxBundleHashesFromAccounts = createSelector(
 export const getFailedTxBundleHashesForSelectedAccount = createSelector(
     getSelectedAccountName,
     getFailedTxBundleHashesFromAccounts,
-    (accountName, failedTxBundleHashes) => get(failedTxBundleHashes, accountName) || [],
+    (accountName, failedTxBundleHashes) => get(failedTxBundleHashes, accountName) || {},
 );
