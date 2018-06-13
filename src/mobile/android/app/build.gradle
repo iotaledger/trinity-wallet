@@ -151,7 +151,6 @@ dependencies {
     implementation('com.google.android.gms:play-services-vision:10.2.0') {
         force = true
     }
-    implementation project(':react-native-html-to-pdf')
     implementation project(':react-native-print')
     implementation project(':react-native-udp')
     implementation project(':react-native-tcp')
