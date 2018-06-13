@@ -189,6 +189,17 @@ export default class HistoryModalContent extends PureComponent {
         }).isRequired,
         /** Bundle hash for the transaction that is currently being promoted */
         currentlyPromotingBundleHash: PropTypes.string.isRequired,
+        /* eslint-disable react/no-unused-prop-types */
+        /** Checks if the bundle hash belongs to a failed transaction
+         * @param {string} bundleHash
+         */
+        checkIfFailedTransaction: PropTypes.func.isRequired,
+        /** Retries failed transaction
+         * @param {string} bundleHash
+         */
+        retryFailedTransaction: PropTypes.func.isRequired,
+        /** Determines if a failed transaction is being retried */
+        isRetryingFailedTransaction: PropTypes.bool.isRequired,
     };
 
     static defaultProps = {
@@ -351,7 +362,7 @@ export default class HistoryModalContent extends PureComponent {
                                                     </View>
                                                 )) || (
                                                     <View style={styles.buttonContainer}>
-                                                        <ActivityIndicator color={style.primaryColor} size="large" />
+                                                        <ActivityIndicator color={style.secondaryColor} size="large" />
                                                     </View>
                                                 )}
                                                 {(!isBroadcastingBundle && (
