@@ -5018,10 +5018,6 @@ react-native-haptic-feedback@^1.1.7:
   version "1.1.7"
   resolved "https://registry.yarnpkg.com/react-native-haptic-feedback/-/react-native-haptic-feedback-1.1.7.tgz#9ff27b9a83ce7983ce5f298362129a6b4b958d56"
 
-"react-native-html-to-pdf@git+https://github.com/blink22/react-native-html-to-pdf#master":
-  version "0.5.0"
-  resolved "git+https://github.com/blink22/react-native-html-to-pdf#24c5e9cf81bf9255f20551273c7e7bf1b7b254d5"
-
 "react-native-http@github:tradle/react-native-http#834492d":
   version "1.0.0"
   resolved "https://codeload.github.com/tradle/react-native-http/tar.gz/834492dbc792b1dec8ec8f0a1c9671f640339f01"
