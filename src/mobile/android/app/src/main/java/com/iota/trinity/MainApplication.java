@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 import com.bitgo.randombytes.RandomBytesPackage;
 import com.airbnb.android.react.lottie.LottiePackage;
-import com.christopherdro.htmltopdf.RNHTMLtoPDFPackage;
 import com.corbt.keepawake.KCKeepAwakePackage;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -62,7 +61,6 @@ public class MainApplication extends NavigationApplication {
             new RNDetectNavbarAndroidPackage(),
             new RNDeviceInfo(),
             new RNOSModule(),
-            new RNHTMLtoPDFPackage(),
             new RNPrintPackage(),
 	          new RNCameraPackage(),
 	          new RNFSPackage(),

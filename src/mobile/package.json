@@ -62,7 +62,6 @@
     "react-native-fs": "^2.8.1",
     "react-native-google-safetynet": "^0.2.3",
     "react-native-haptic-feedback": "^1.1.7",
-    "react-native-html-to-pdf": "git+https://github.com/blink22/react-native-html-to-pdf#master",
     "react-native-http": "github:tradle/react-native-http#834492d",
     "react-native-is-device-rooted": "https://github.com/rajivshah3/react-native-isDeviceRooted#latest",
     "react-native-keep-awake": "^2.0.6",

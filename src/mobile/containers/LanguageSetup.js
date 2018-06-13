@@ -140,8 +140,6 @@ class LanguageSetup extends Component {
 
     showModalIfRooted() {
         // FIXME: Have UI indicators for this request
-        this.setState({ isModalVisible: true });
-
         if (isAndroid) {
             RNIsDeviceRooted.isDeviceRooted()
                 .then((isRooted) => {
