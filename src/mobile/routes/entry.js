@@ -7,6 +7,7 @@ import { changeIotaNode, SwitchingConfig } from 'iota-wallet-shared-modules/libs
 import { fetchNodeList as fetchNodes } from 'iota-wallet-shared-modules/actions/polling';
 import { ActionTypes } from 'iota-wallet-shared-modules/actions/wallet';
 import i18next from 'i18next';
+import tenaciousFetch from 'tenacious-fetch';
 import { getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
 import { isIOS } from '../utils/device';
 import keychain from '../utils/keychain';
@@ -101,13 +102,21 @@ const startListeningToConnectivityChanges = (store) => {
  *
  *   @returns {Promise}
  **/
-const hasConnection = (url, options = { fallbackUrl: 'https://www.baidu.com' }) => {
+const hasConnection = (
+    url,
+    options = { fallbackUrl1: 'https://www.google.com', fallbackUrl2: 'https://www.sogou.com' },
+) => {
     return NetInfo.getConnectionInfo().then(() =>
-        fetch(url, { timeout: 3000 })
-            .then((response) => response.status === 200)
+        tenaciousFetch(url, { fetcher: fetch, timeout: 3000 })
+            .then((response) => {
+                return response.status === 200;
+            })
             .catch(() => {
-                if (url !== options.fallbackUrl) {
-                    return hasConnection(options.fallbackUrl);
+                if (url !== options.fallbackUrl1 && url !== options.fallbackUrl2) {
+                    return hasConnection(options.fallbackUrl1);
+                }
+                if (url === options.fallbackUrl1) {
+                    return hasConnection(options.fallbackUrl2);
                 }
 
                 return false;
@@ -132,5 +141,5 @@ export default (store) => {
         renderInitialScreen(store);
     };
 
-    hasConnection('https://www.google.com').then((isConnected) => initialize(isConnected));
+    hasConnection('https://iota.org').then((isConnected) => initialize(isConnected));
 };

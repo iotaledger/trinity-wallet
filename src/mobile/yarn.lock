@@ -6082,6 +6082,10 @@ temp@0.8.3:
     os-tmpdir "^1.0.0"
     rimraf "~2.2.6"
 
+tenacious-fetch@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/tenacious-fetch/-/tenacious-fetch-2.0.0.tgz#dc89cdb04626e3473c42e77158da9aa1cc6d2fac"
+
 test-exclude@^4.2.1:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/test-exclude/-/test-exclude-4.2.1.tgz#dfa222f03480bca69207ca728b37d74b45f724fa"
