@@ -17,7 +17,7 @@ const initialState = {
     transitionAddresses: [],
     addingAdditionalAccount: false,
     balanceCheckToggle: false,
-    deepLinkActive: false,
+    deepLinkActived: false,
     hasConnection: true,
     unit: 'Mi',
 };
@@ -155,12 +155,12 @@ export default (state = initialState, action) => {
         case ActionTypes.SET_DEEP_LINK:
             return {
                 ...state,
-                deepLinkActive: true,
+                deepLinkActived: true,
             };
         case ActionTypes.SET_DEEP_LINK_INACTIVE:
             return {
                 ...state,
-                deepLinkActive: false,
+                deepLinkActived: false,
             };
         case ActionTypes.CONNECTION_CHANGED:
             return {

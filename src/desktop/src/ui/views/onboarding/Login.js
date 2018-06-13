@@ -104,7 +104,7 @@ class Login extends React.Component {
 
     setDeepUrl(data) {
         const { sendAddressFieldText, sendAmountFieldText, sendMessageFieldText } = data.props.ui;
-        if (this.props.wallet.deepLinkActive) {
+        if (this.props.wallet.deepLinkActived) {
             this.props.setDeepLink(String(sendAmountFieldText) || '', sendAddressFieldText, sendMessageFieldText || '');
         }
     }
