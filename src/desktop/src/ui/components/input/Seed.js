@@ -2,7 +2,7 @@
 import React from 'react';
 import QrReader from 'react-qr-reader';
 import PropTypes from 'prop-types';
-import { MAX_SEED_LENGTH, VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'libs/iota/utils';
+import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'libs/iota/utils';
 
 import { byteToChar } from 'libs/crypto';
 
