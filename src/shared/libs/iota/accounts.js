@@ -458,8 +458,9 @@ export const syncAccountOnValueTransactionFailure = (name, newTransfer, accountS
 export const syncAccountOnSuccessfulRetryAttempt = (accountName, transaction, accountState) => {
     const tailTransaction = find(transaction, { currentIndex: 0 });
     const newNormalisedTransfer = normaliseBundle(transaction, keys(accountState.addresses), [tailTransaction], false);
+    const bundle = get(transaction, '[0].bundle');
 
-    const transfers = merge({}, accountState.transfers, newNormalisedTransfer);
+    const transfers = merge({}, accountState.transfers, { [bundle]: newNormalisedTransfer });
 
     // Currently we solely rely on wereAddressesSpentFrom and since this failed transaction
     // was never broadcast, the addresses would be marked false
@@ -469,7 +470,6 @@ export const syncAccountOnSuccessfulRetryAttempt = (accountName, transaction, ac
     const addressData = markAddressesAsSpentSync([transaction], accountState.addresses);
     const ownTransactionHashesForThisTransfer = getOwnTransactionHashes(newNormalisedTransfer, accountState.addresses);
 
-    const bundle = get(transaction, '[0].bundle');
     const unconfirmedBundleTails = merge({}, accountState.unconfirmedBundleTails, {
         [bundle]: [
             {
