@@ -32,6 +32,7 @@ import {
     filterInvalidPendingTransactions,
     performPow,
     getPendingOutgoingTransfersForAddresses,
+    retryFailedTransaction as retry,
 } from '../libs/iota/transfers';
 import {
     syncAccountAfterReattachment,
@@ -559,8 +560,7 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 // Broadcasting
                 dispatch(setNextStepAsActive());
 
-                // return storeAndBroadcastAsync(cached.trytes);
-                throw new Error('BRRR');
+                return storeAndBroadcastAsync(cached.trytes);
             })
             .then(() => {
                 const { newState } = syncAccountAfterSpending(
@@ -709,7 +709,7 @@ export const retryFailedTransaction = (accountName, bundleHash, powFn) => (dispa
 
     dispatch(retryFailedTransactionRequest());
 
-    return retryFailedTransaction(existingFailedTransactionsForThisAccount[bundleHash], powFn, shouldOffloadPow)
+    return retry(existingFailedTransactionsForThisAccount[bundleHash], powFn, shouldOffloadPow)
         .then(({ transactionObjects }) => {
             dispatch(markBundleBroadcastStatusAsCompleted({ accountName, bundleHash }));
 

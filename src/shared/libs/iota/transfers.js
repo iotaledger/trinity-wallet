@@ -971,8 +971,7 @@ export const retryFailedTransaction = (transactionObjects, powFn, shouldOffloadP
     const convertToTrytes = (tx) => iota.utils.transactionTrytes(tx);
 
     const fakeNonce = '9'.repeat(27);
-    const hasFakeNonce = (tx) => tx.nonce !== fakeNonce;
-
+    const hasFakeNonce = (tx) => tx.nonce === fakeNonce;
     const cached = {
         transactionObjects: cloneDeep(transactionObjects),
         trytes: map(transactionObjects, convertToTrytes),

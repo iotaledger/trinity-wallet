@@ -467,6 +467,7 @@ export const syncAccountOnSuccessfulRetryAttempt = (accountName, transaction, ac
     // selection, local transaction history is also checked.
     // FIXME: After using a permanent local address status, this would be unnecessary
     const addressData = markAddressesAsSpentSync([transaction], accountState.addresses);
+    const ownTransactionHashesForThisTransfer = getOwnTransactionHashes(newNormalisedTransfer, accountState.addresses);
 
     const bundle = get(transaction, '[0].bundle');
     const unconfirmedBundleTails = merge({}, accountState.unconfirmedBundleTails, {
@@ -484,6 +485,7 @@ export const syncAccountOnSuccessfulRetryAttempt = (accountName, transaction, ac
         unconfirmedBundleTails,
         transfers,
         addresses: addressData,
+        hashes: [...accountState.hashes, ...ownTransactionHashesForThisTransfer],
     };
 
     return {
