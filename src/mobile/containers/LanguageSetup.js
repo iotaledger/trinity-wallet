@@ -1,4 +1,3 @@
-import isBoolean from 'lodash/isBoolean';
 import React, { Component } from 'react';
 import { StyleSheet, View, TouchableWithoutFeedback, Image } from 'react-native';
 import PropTypes from 'prop-types';
@@ -9,12 +8,8 @@ import { I18N_LOCALE_LABELS, getLocaleFromLabel } from 'iota-wallet-shared-modul
 import { setLanguage, setLocale } from 'iota-wallet-shared-modules/actions/settings';
 import helloBackImagePath from 'iota-wallet-shared-modules/images/hello-back.png';
 import { detectLocale, selectLocale } from 'iota-wallet-shared-modules/libs/locale';
-import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { connect } from 'react-redux';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
-import Modal from 'react-native-modal';
-import RNExitApp from 'react-native-exit-app';
-import RNIsDeviceRooted from 'react-native-is-device-rooted';
 import i18next from '../i18next';
 import WithBackPressCloseApp from '../components/BackPressCloseApp';
 import { width, height } from '../utils/dimensions';
@@ -23,8 +18,6 @@ import DropdownComponent from '../containers/Dropdown';
 import Button from '../components/Button';
 import { Icon } from '../theme/icons.js';
 import DynamicStatusBar from '../components/DynamicStatusBar';
-import RootDetectionModalComponent from '../components/RootDetectionModal';
-import { doAttestationFromSafetyNet } from '../utils/safetynet';
 
 const styles = StyleSheet.create({
     container: {
@@ -82,27 +75,13 @@ class LanguageSetup extends Component {
         acceptedPrivacy: PropTypes.bool.isRequired,
         /** Determines whether a user has accepted terms and conditions */
         acceptedTerms: PropTypes.bool.isRequired,
-        /** Generate a notification alert
-         * @param {string} type - notification type - success, error
-         * @param {string} title - notification title
-         * @param {string} text - notification explanation
-         */
-        generateAlert: PropTypes.func.isRequired,
     };
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            isModalVisible: false,
-        };
-    }
 
     componentWillMount() {
         i18next.changeLanguage(defaultLocale);
     }
 
     componentDidMount() {
-        this.showModalIfRooted();
         if (!isAndroid) {
             SplashScreen.hide();
         }
@@ -138,77 +117,14 @@ class LanguageSetup extends Component {
         return nextRoute;
     }
 
-    showModalIfRooted() {
-        // FIXME: Have UI indicators for this request
-        if (isAndroid) {
-            RNIsDeviceRooted.isDeviceRooted()
-                .then((isRooted) => {
-                    if (isRooted) {
-                        throw new Error('device rooted.');
-                    }
-                    return doAttestationFromSafetyNet();
-                })
-                .then((isRooted) => {
-                    if (isBoolean(isRooted) && isRooted) {
-                        this.setState({ isModalVisible: true });
-                    }
-                })
-                .catch((error) => {
-                    if (error.message === 'device rooted.') {
-                        this.setState({ isModalVisible: true });
-                    }
-                    if (error.message === 'play services not available.') {
-                        this.props.generateAlert(
-                            'error',
-                            this.props.t('global:googlePlayServicesNotAvailable'),
-                            this.props.t('global:couldNotVerifyDeviceIntegrity'),
-                        );
-                    }
-                });
-        } else {
-            RNIsDeviceRooted.isDeviceRooted()
-                .then((isRooted) => {
-                    if (isRooted) {
-                        this.setState({ isModalVisible: true });
-                    }
-                })
-                .catch((err) => console.error(err)); // eslint-disable-line no-console
-        }
-    }
-
-    hideModal() {
-        this.setState({ isModalVisible: false });
-    }
-
-    closeApp() {
-        this.hideModal();
-        RNExitApp.exitApp();
-    }
-
     clickDropdownItem(language) {
         i18next.changeLanguage(getLocaleFromLabel(language));
         this.props.setLanguage(language);
         this.props.setLocale(getLocaleFromLabel(language));
     }
 
-    renderModalContent() {
-        const { theme: { body, negative } } = this.props;
-        return (
-            <RootDetectionModalComponent
-                style={{ flex: 1 }}
-                hideModal={() => this.hideModal()}
-                closeApp={() => this.closeApp()}
-                backgroundColor={body.bg}
-                warningColor={{ color: negative.color }}
-                textColor={{ color: body.color }}
-                borderColor={{ borderColor: body.color }}
-            />
-        );
-    }
-
     render() {
         const { t, theme: { body, primary } } = this.props;
-        const { isModalVisible } = this.state;
 
         return (
             <TouchableWithoutFeedback
@@ -252,22 +168,6 @@ class LanguageSetup extends Component {
                             </Button>
                         </View>
                     </View>
-                    <Modal
-                        animationIn="zoomIn"
-                        animationOut="zoomOut"
-                        animationInTiming={300}
-                        animationOutTiming={200}
-                        backdropTransitionInTiming={300}
-                        backdropTransitionOutTiming={200}
-                        backdropColor={body.bg}
-                        backdropOpacity={0.9}
-                        style={{ alignItems: 'center', margin: 0 }}
-                        isVisible={isModalVisible}
-                        onBackButtonPress={() => this.setState({ isModalVisible: false })}
-                        useNativeDriver={!!isAndroid}
-                    >
-                        {this.renderModalContent()}
-                    </Modal>
                 </View>
             </TouchableWithoutFeedback>
         );
@@ -284,7 +184,6 @@ const mapDispatchToProps = {
     setSetting,
     setLanguage,
     setLocale,
-    generateAlert,
 };
 
 export default WithBackPressCloseApp()(
