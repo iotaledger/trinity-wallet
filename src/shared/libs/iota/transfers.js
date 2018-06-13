@@ -967,6 +967,17 @@ export const pickNewTailTransactions = (transactionObjects, existingNormalisedTr
     return tailTransactions;
 };
 
+/**
+ *   Retry failed transaction with signed inputs
+ *
+ *   @method retryFailedTransaction
+ *
+ *   @param {array} transactionObjects
+ *   @param {function} powFn
+ *   @param {boolean} shouldOffloadPow
+ *
+ *   @returns {array}
+ **/
 export const retryFailedTransaction = (transactionObjects, powFn, shouldOffloadPow) => {
     const convertToTrytes = (tx) => iota.utils.transactionTrytes(tx);
 
