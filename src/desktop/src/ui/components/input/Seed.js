@@ -2,7 +2,7 @@
 import React from 'react';
 import QrReader from 'react-qr-reader';
 import PropTypes from 'prop-types';
-import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'libs/iota/utils';
+import { MAX_SEED_LENGTH, VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'libs/iota/utils';
 
 import { byteToChar } from 'libs/crypto';
 
@@ -60,7 +60,7 @@ export default class SeedInput extends React.PureComponent {
     }
 
     onScanEvent = (input) => {
-        if (input !== null && input.match(VALID_SEED_REGEX)) {
+        if (input && input.match(VALID_SEED_REGEX) && input.length === MAX_SEED_LENGTH) {
             this.setState(() => ({
                 showScanner: false,
             }));
