@@ -175,7 +175,7 @@ class Loading extends Component {
          */
         generateAlert: PropTypes.func.isRequired,
         /** If user has opened a deep link */
-        deepLinkActive: PropTypes.bool.isRequired,
+        deepLinkActived: PropTypes.bool.isRequired,
         /** Sets which login page should be displayed
          * @param {string} route - current route
          */
@@ -202,7 +202,7 @@ class Loading extends Component {
             password,
             navigator,
             t,
-            deepLinkActive,
+            deepLinkActived,
         } = this.props;
         leaveNavigationBreadcrumb('Loading');
         this.animation.play();
@@ -215,7 +215,7 @@ class Loading extends Component {
             this.animateElipses(['.', '..', ''], 0);
         }
         KeepAwake.activate();
-        if (deepLinkActive) {
+        if (deepLinkActived) {
             this.props.changeHomeScreenRoute('send');
         } else {
             this.props.changeHomeScreenRoute('balance');
@@ -462,7 +462,7 @@ const mapStateToProps = (state) => ({
     password: state.wallet.password,
     theme: state.settings.theme,
     currency: state.settings.currency,
-    deepLinkActive: state.wallet.deepLinkActive,
+    deepLinkActived: state.wallet.deepLinkActived,
 });
 
 const mapDispatchToProps = {

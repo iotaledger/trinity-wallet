@@ -62,7 +62,7 @@ const getProps = (overrides) =>
             makeTransaction: noop,
             generateTransferErrorAlert: noop,
             availableBalance: 100,
-            deepLinkActive: false,
+            deepLinkActived: false,
             setDeepLinkInactive: noop,
             isFingerprintEnabled: false,
             setDoNotMinimise: noop,

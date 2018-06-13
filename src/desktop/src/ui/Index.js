@@ -275,7 +275,7 @@ const mapStateToProps = (state) => ({
     wallet: state.wallet,
     activationCode: state.app.activationCode,
     themeName: state.settings.themeName,
-    isDeepLinkActive: state.wallet.deepLinkActive,
+    isDeepLinkActived: state.wallet.deepLinkActived,
 });
 
 const mapDispatchToProps = {
