@@ -27,6 +27,7 @@ import com.hieuvp.fingerprint.ReactNativeFingerprintScannerPackage;
 import com.rndetectnavbarandroid.RNDetectNavbarAndroidPackage;
 import com.kristiansorens.flagsecure.FlagSecurePackage;
 import com.reactlibrary.RNReactNativeHapticFeedbackPackage;
+import me.listenzz.modal.TranslucentModalReactPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -57,6 +58,7 @@ public class MainApplication extends NavigationApplication {
             // eg. new VectorIconsPackage()
             new SvgPackage(),
             new MainReactPackage(),
+            new TranslucentModalReactPackage(),
             new FlagSecurePackage(),
             new RNDetectNavbarAndroidPackage(),
             new RNDeviceInfo(),
