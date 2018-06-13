@@ -330,7 +330,7 @@ class List extends React.PureComponent {
                                         success={t('history:bundleHashCopiedExplanation')}
                                     />
                                 </p>
-                                {mode === 'Expert' ? this.listAddresses(activeTransfer) : null}
+                                {mode === 'Expert' && this.listAddresses(activeTransfer)}
                                 <div className={css.message}>
                                     <strong>{t('send:message')}</strong>
                                     <Scrollbar>
@@ -341,7 +341,7 @@ class List extends React.PureComponent {
                                         />
                                     </Scrollbar>
                                 </div>
-                                {!activeTransfer.persistence ? (
+                                {!activeTransfer.persistence && (
                                     <nav>
                                         <Button
                                             className="small"
@@ -350,7 +350,7 @@ class List extends React.PureComponent {
                                         >
                                             {t('retry')}
                                         </Button>
-                                        {mode === 'Expert' ? (
+                                        {mode === 'Expert' && (
                                             <Button
                                                 variant="secondary"
                                                 className="small"
@@ -359,9 +359,9 @@ class List extends React.PureComponent {
                                             >
                                                 {t('rebroadcast')}
                                             </Button>
-                                        ) : null}
+                                        )}
                                     </nav>
-                                ) : null}
+                                )}
                             </div>
                         ) : null}
                     </div>

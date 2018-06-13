@@ -153,8 +153,7 @@ class App extends React.Component {
                     Electron.setOnboardingSeed(null);
                 } else {
                     // There was an error adding additional seed
-                    this.props.history.push('/onboarding/account-name');
-                    return;
+                    return this.props.history.push('/onboarding/account-name');
                 }
             }
 
