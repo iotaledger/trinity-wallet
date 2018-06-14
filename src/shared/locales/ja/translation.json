@@ -17,14 +17,11 @@
         "keyReuseError": "一度支払いに使われたアドレスに送金することはできません。",
         "invalidResponse": "ノードエラー",
         "invalidResponseExplanation": "ノードがエラーを返しました。 ノードを変更してみてください。",
-        "invalidResponsePollingExplanation":
-            "問い合わせ中にノードがエラーを返しました。 ノードを変更してみてください。",
-        "invalidResponseFetchingAccount":
-            "アカウント情報の取得中にノードがエラーを返しました。 ノードを変更してみてください。",
+        "invalidResponsePollingExplanation": "問い合わせ中にノードがエラーを返しました。 ノードを変更してみてください。",
+        "invalidResponseFetchingAccount": "アカウント情報の取得中にノードがエラーを返しました。 ノードを変更してみてください。",
         "invalidResponseSendingTransfer": "送金中にノードがエラーを返しました。 ノードを変更してみてください。",
         "nodeOutOfSync": "ノードが同期していません。",
-        "nodeOutOfSyncExplanation":
-            "現在選択しているノードは同期していません。ノードを変更するか、もう一度お試しください。",
+        "nodeOutOfSyncExplanation": "現在選択しているノードは同期していません。ノードを変更するか、もう一度お試しください。",
         "thisNodeOutOfSync": "このノードは同期していません。ノードを変更するか、もう一度お試しください。",
         "seed": "シード",
         "checksum": "チェックサム",
@@ -45,7 +42,6 @@
         "disable": "無効",
         "enabled": "有効",
         "disabled": "無効",
-        "manualCopy": "シードを書き写す",
         "paperWallet": "印刷する",
         "addToPasswordManager": "パスワードマネージャーに追加する",
         "shareSeed": "シードを共有",
@@ -80,10 +76,8 @@
         "cannotPerformAction": "操作を実行できません。",
         "cannotPerformActionExplanation": "ウォレットをリセットするには、詳細設定に進みます。",
         "attachToTangleUnavailable": "リモートのプルーフ・オブ・ワーク利用不可",
-        "attachToTangleUnavailableExplanation":
-            "現在選択しているノードではリモートによるプルーフ・オブ・ワークが利用できません。ノードを変更するか、詳細設定でローカルによるプルーフ・オブ・ワークに切り替えてください。",
-        "attachToTangleUnavailableExplanationShort":
-            "現在選択しているノードではリモートによるプルーフ・オブ・ワークが利用できません。",
+        "attachToTangleUnavailableExplanation": "現在選択しているノードではリモートによるプルーフ・オブ・ワークが利用できません。ノードを変更するか、詳細設定でローカルによるプルーフ・オブ・ワークに切り替えてください。",
+        "attachToTangleUnavailableExplanationShort": "現在選択しているノードではリモートによるプルーフ・オブ・ワークが利用できません。",
         "wallet": "ウォレット",
         "sent": "送金完了",
         "received": "受取完了",
@@ -110,8 +104,7 @@
         "promoted": "取引は正常に促進されました。",
         "promotedExplanation": "ハッシュ値{{hash}}の取引が促進されました。",
         "autopromotionError": "取引の自動促進ができませんでした。",
-        "autopromotionErrorExplanation":
-            "現在選択しているノードではリモートによるプルーフ・オブ・ワークが利用できません。ノードを変更して自動促進を再度有効にしていください。",
+        "autopromotionErrorExplanation": "現在選択しているノードではリモートによるプルーフ・オブ・ワークが利用できません。ノードを変更して自動促進を再度有効にしていください。",
         "promotionError": "取引を促進できませんでした。",
         "promotionErrorExplanation": "取引を促進中に不具合が発生しました。もう一度やり直してください。",
         "noLongerValid": "促進しようとしているバンドルは無効です。",
@@ -122,10 +115,8 @@
         "pleaseWait": "少々お待ちください",
         "pleaseWaitEllipses": "少々お待ちください...",
         "pleaseWaitExplanation": "Trinityは別の機能を実行しています。お待ち頂き、もう一度実行してください。",
-        "pleaseWaitTransferExplanation":
-            "利用可能な残高は、現在、別の送金で使用されています。送金が確定されるまで少々お待ちください。",
-        "pleaseWaitIncomingTransferExplanation":
-            "受取中の取引があります。再試行する前に取引が確定するまでお待ちください。",
+        "pleaseWaitTransferExplanation": "利用可能な残高は、現在、別の送金で使用されています。送金が確定されるまで少々お待ちください。",
+        "pleaseWaitIncomingTransferExplanation": "受取中の取引があります。再試行する前に取引が確定するまでお待ちください。",
         "snapshotTransitionInProgress": "スナップショットの移行が進行中",
         "snapshotTransitionInProgressExplanation": "移行が完了するまで少々お待ちください。",
         "checkForUpdates": "更新を確認",
@@ -141,38 +132,32 @@
         "nodeDuplicated": "重複したノード",
         "nodeDuplicatedExplanation": "このカスタムノードは既にリストにあります。",
         "nodeAutoChanged": "ノードの自動切り替え",
-        "nodeAutoChangedExplanation":
-            "選択したノードがオフラインであるため、新しいノード {{- nodeAddress}} に切り替えました。",
+        "nodeAutoChangedExplanation": "選択したノードがオフラインであるため、新しいノード {{- nodeAddress}} に切り替えました。",
         "fingerprintOnSend": "指紋認証リーダーをタッチして送金を許可してください。",
         "masterKey": "IOTAのシードはあなたの資金のマスターキーです。",
         "seedThief": "もし他の人があなたのシードを持つと、あなたのIOTAは盗まれてしまいます。",
         "googlePlayServicesNotAvailable": "Google Playサービスが利用できません。",
-        "couldNotVerifyDeviceIntegrity":
-            "Google Playサービスが利用できないため、デバイスの整合性を確認できませんでした。",
+        "couldNotVerifyDeviceIntegrity": "Google Playサービスが利用できないため、デバイスの整合性を確認できませんでした。",
         "clear": "消去",
         "noNetworkConnection": "ネットワーク接続がありません。",
         "noNetworkConnectionExplanation": "インターネット接続がオフラインになっているようです。",
         "spentAddressExplanation": "警告：使用済みアドレスの資金です！",
-        "discordInformation":
-            "同じアドレスから複数回送金するのは危険です。どうしたらいいのかはDiscordの#Japaneseチャンネルか#helpチャンネルにお尋ねください。",
+        "discordInformation": "同じアドレスから複数回送金するのは危険です。どうしたらいいのかはDiscordの#Japaneseチャンネルか#helpチャンネルにお尋ねください。",
         "androidInsecureClipboardWarning": "Androidは安全なクリップボードを提供していません。",
         "androidCopyPasteWarning": "絶対にシードをAndroidデバイス上でコピー&ペーストしないでください。",
         "willNotCopyPasteSeed": "私はシードをコピー&ペーストしません。",
         "mustBeStoredAppropriately": "シードは適切に保管しなければなりません。",
-        "deviceMayBecomeUnresponsive": "しばらくの間、お使いのデバイスが応答できなくなる恐れがあります",
+        "deviceMayBecomeUnresponsive": "しばらくの間、お使いのデバイスが応答しなくなることがあります。",
         "isYourBalanceCorrect": "残高は正しいですか？",
-        "ifYourBalanceIsNotCorrect":
-            "もし残高が正しくなければ、スナップショット以前のシードが使われていると思われます。",
+        "ifYourBalanceIsNotCorrect": "もし残高が正しくなければ、スナップショット以前のシードが使われていると思われます。",
         "headToAdvancedSettingsForTransition": "詳細設定にてスナップショットの移行を行なってください。",
         "usingTrinityWalletWithKeePass": "Keepass2AndroidでTrinityウォレットを使用する"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだシードです。",
-        "seedInvalidCharsExplanation":
-            "シードはアルファベットの大文字（A〜Z）と数字の\"9\"のみで構成します。あなたのシードは無効な文字を含んでいます。もう一度やり直してください。",
+        "seedInvalidCharsExplanation": "シードはアルファベットの大文字（A〜Z）と数字の\"9\"のみで構成します。あなたのシードは無効な文字を含んでいます。もう一度やり直してください。",
         "seedTooShort": "シードが短すぎます。",
-        "seedTooShortExplanation":
-            "シードは{{maxLength}}文字にする必要があります。現在のシードは{{currentLength}}文字です。もう一度やり直してください。",
+        "seedTooShortExplanation": "シードは{{maxLength}}文字にする必要があります。現在のシードは{{currentLength}}文字です。もう一度やり直してください。",
         "nameInUse": "このアカウント名はすでに使われています。",
         "nameInUseExplanation": "シードに唯一のアカウント名を付けてください。",
         "enterAccountName": "アカウント名を入力してください。",
@@ -194,15 +179,13 @@
         "passwordTooShort": "パスワードが短すぎます。",
         "passwordTooShortExplanation": "パスワードは12文字以上である必要があります。もう一度やり直してください。",
         "oldPassword": "古いパスワードは使えません。",
-        "oldPasswordExplanation":
-            "古いパスワードは新しいパスワードとして使えません。新しいパスワードでもう一度やり直してください。",
+        "oldPasswordExplanation": "古いパスワードは新しいパスワードとして使えません。新しいパスワードでもう一度やり直してください。",
         "ensureStrongPassword": "12文字以上の強力なパスワードを指定してください。",
         "currentPassword": "現在のパスワード",
         "newPassword": "新しいパスワード",
         "confirmPassword": "新しいパスワードを確認",
         "passwordTooWeak": "パスワードが弱すぎます。",
-        "passwordTooWeakReason":
-            "パスワードの安全度が非常に低いです。 言葉の組み合わせを使用し、一般的なフレーズ、名前、または日付を避けてください。",
+        "passwordTooWeakReason": "パスワードの安全度が非常に低いです。 言葉の組み合わせを使用し、一般的なフレーズ、名前、または日付を避けてください。",
         "reasonRow": "直線状のキー列は簡単に推測できます。",
         "reasonPattern": "短いパターンのキーは簡単に推測できます。",
         "reasonNames": "一般的な名前と名字は簡単に推測できます。",
@@ -233,20 +216,15 @@
         "passwordManagerCheckbox": "私はシードをパスワードマネージャーに保存します。",
         "copy": "コピー",
         "noPasswordManagers": "サポートされているパスワードマネージャーがインストールされていません。",
-        "noPasswordManagersExplanation":
-            "お使いのデバイスにサポートされているパスワードマネージャーが見つかりませんでした。 Keepass2Androidをインストールしてください。",
-        "followTutorialToSecurelyShareSeed":
-            "シードをパスワードマネージャーに保存する場合は、次のリンクからチュートリアルを実行する必要があります。"
+        "noPasswordManagersExplanation": "お使いのデバイスにサポートされているパスワードマネージャーが見つかりませんでした。 Keepass2Androidをインストールしてください。",
+        "followTutorialToSecurelyShareSeed": "シードをパスワードマネージャーに保存する場合は、次のリンクからチュートリアルを実行する必要があります。"
     },
     "enterSeed": {
         "invalidCharacters": "無効な文字を含んだシードです。",
-        "invalidCharactersExplanation":
-            "シードにはアルファベットの大文字（A〜Z）と数字の\"9\"のみ使用できます。あなたのシードは無効な文字を含んでいます。もう一度やり直してください。",
+        "invalidCharactersExplanation": "シードにはアルファベットの大文字（A〜Z）と数字の\"9\"のみ使用できます。あなたのシードは無効な文字を含んでいます。もう一度やり直してください。",
         "seedTooShort": "シードが短すぎます。",
-        "seedTooShortExplanation":
-            "シードは{{maxLength}}文字にする必要があります。あなたのシードは現在{{currentLength}}文字です。もう一度やり直してください。",
-        "seedExplanation":
-            "シードは{{maxLength}}文字である必要があり、使用可能な文字はアルファベットの大文字（A〜Z）と数字の\"9\"のみです。また、{{maxLength}}文字以上の長さにはできません。",
+        "seedTooShortExplanation": "シードは{{maxLength}}文字にする必要があります。あなたのシードは現在{{currentLength}}文字です。もう一度やり直してください。",
+        "seedExplanation": "シードは{{maxLength}}文字である必要があり、使用可能な文字はアルファベットの大文字（A〜Z）と数字の\"9\"のみです。また、{{maxLength}}文字以上の長さにはできません。",
         "neverShare": "シードを他の人に絶対に教えてはいけません。"
     },
     "home": {
@@ -329,17 +307,14 @@
         "letsWriteDownYourSeed": "シードを書き写しましょう。",
         "youCanHighlightCharacters": "一度に9文字を強調表示しています。",
         "printBlankWallet": "空のペーパーウォレットを印刷",
-        "whatIsCheksum": "すべてのシードには対応する3文字のチェックサムがあります。",
+        "whatIsChecksum": "すべてのシードには対応する3文字のチェックサムがあります。",
         "iHavesavedMySeed": "バックアップ完了",
-        "checksumExplanation":
-            "ウォレットにシードを追加するたびに、ウォレットによって生成されるチェックサムが、書き写したチェックサムと一致することを必ず確認してください。",
-        "mustSaveYourSeed":
-            "<0><0>下の方法から</0><1>最低一つ選んで</1><2>シードを必ずバックアップしてください。</2></0>"
+        "checksumExplanation": "ウォレットにシードを追加するたびに、ウォレットによって生成されるチェックサムが、書き写したチェックサムと一致することを必ず確認してください。",
+        "mustSaveYourSeed": "<0><0>下の方法から</0><1>最低一つ選んで</1><2>シードを必ずバックアップしてください。</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "あなたのシードを確認してください。",
-        "trinityWillNeverAskToReenter":
-            "Trinityウォレットは、ウォレットやアプリをリセットしない限り、決してシードの再入力を求めません。",
+        "trinityWillNeverAskToReenter": "Trinityウォレットは、ウォレットやアプリをリセットしない限り、決してシードの再入力を求めません。",
         "enterYourSeed": "シードを入力してください。",
         "incorrectSeed": "シードが違います。",
         "incorrectSeedExplanation": "入力したシードは正しくありません。もう一度やり直してください。",
@@ -378,13 +353,11 @@
     "setPassword": {
         "choosePassword": "新しいパスワードを選択",
         "passwordTooShort": "パスワードが短すぎます。",
-        "passwordTooShortExplanation":
-            "パスワードは少なくとも{{minLength}}文字以上にする必要があります。今は{{currentLength}}文字です。もう一度やり直してください。",
+        "passwordTooShortExplanation": "パスワードは少なくとも{{minLength}}文字以上にする必要があります。今は{{currentLength}}文字です。もう一度やり直してください。",
         "passwordMismatch": "パスワードが一致しません。",
         "passwordMismatchExplanation": "入力した 2 つのパスワードが一致しません、もう一度やり直してください。",
         "nowWeNeedTo": "次にパスワードの設定です。",
-        "anEncryptedCopy":
-            "暗号化されたシードのコピーがデバイスに保存されます。今後パスワードを使用してウォレットにアクセスします。",
+        "anEncryptedCopy": "暗号化されたシードのコピーがデバイスに保存されます。今後パスワードを使用してウォレットにアクセスします。",
         "ensure": "12文字以上の強力なパスワードを指定してください。",
         "retypePassword": "パスワードを再入力してください。"
     },
@@ -397,8 +370,7 @@
         "expert": "上級",
         "standard": "標準",
         "expertModeExplanation": "上級モードでは手動促進や再添付などの追加機能をご利用になれます。",
-        "modesExplanation":
-            "経験豊富なタングルユーザーのみ上級モードを有効にしましょう。そうでないと混乱してしまいますよ。"
+        "modesExplanation": "経験豊富なタングルユーザーのみ上級モードを有効にしましょう。そうでないと混乱してしまいますよ。"
     },
     "settings": {
         "transferSending": "送金中",
@@ -450,8 +422,7 @@
         "lockScreenTimeout": "ロック画面までの時間(分)",
         "autoNodeSwitching": "選択したノードが接続不能になると自動的にノードを切り替える。",
         "nodeChangeSuccess": "ノード変更成功",
-        "nodeChangeSuccessNoRemotePow":
-            "ノードを{{node}}に変更しました。このノードはリモートによるプルーフ・オブ・ワークをサポートしていません。",
+        "nodeChangeSuccessNoRemotePow": "ノードを{{node}}に変更しました。このノードはリモートによるプルーフ・オブ・ワークをサポートしていません。",
         "nodeChangeSuccessExplanation": "ノードを{{node}}に変更しました。",
         "nodeChangeError": "ノード変更失敗",
         "nodeChangeErrorExplanation": "ノードの変更中にエラーが発生しました。もう一度やり直してください。"
@@ -466,23 +437,21 @@
         "okay": "それではウォレットの設定を行いましょう。",
         "doYouAlreadyHaveASeed": "IOTAのシードはすでにお持ちでしょうか？",
         "doYouNeedASeed": "新しいシードの作成は必要でしょうか？",
-        "seedExplanation":
-            "IOTAのシードはユーザー名とパスワードを一つにまとめた81文字の文字列ととらえるとよいでしょう。",
+        "seedExplanation": "IOTAのシードはあなたの資金のマスターキーです。シードは81文字で、アルファベットの大文字（A〜Z）と数字の\"9\"のみ使用できます。",
         "noIHaveOne": "既存のシードを入力",
         "yesINeedASeed": "新しいシードを作成",
-        "explanation":
-            "<0><0>同じシードを使えば、</0><1>どのウォレット、</1><2>デバイスからでも</2><3>あなたの口座にアクセスすることができます。</3><4>シードを紛失すると、口座とその預金にアクセスできなくなります。</4></0>",
+        "explanation": "<0><0>同じシードを使えばどのウォレットからでも</0><1>どの端末からでも</1><2>同じ資金に</2><3>アクセスすることができます。</3></0>",
+        "loseSeed": "しかし、シードを失えば、資金を失うことになります。",
         "keepSafe": "シードは安全に保管してください。",
         "hint": "<0><0>ヒント：</0>IOTAを初めて使う場合は、\"いいえ\"をクリックしてください。</0>"
     },
     "welcome": {
-        "thankYou": "Trinityをダウンロードしていただきありがとうございます。",
-        "weWillSpend": "ウォレットの設定には数分かかります。",
-        "reminder": "いくつかの手順を飛ばすのも可能ではありますが、全ての手順を踏むことをお勧めします。"
+        "thankYou": "Trinityウォレットをダウンロードしていただきありがとうございます。"
     },
     "writeSeedDown": {
         "yourSeedIs": "シードは左から右に読む{{maxSeedLength}}文字です。",
-        "writeDownYourSeed": "<0>シードとチェックサムを書き止め、</0><1>トリプルチェックを</1><2>してください。</2>"
+        "writeDownYourSeed": "<0>シードとチェックサムを書き止め、</0><1>トリプルチェックを</1><2>してください。</2>",
+        "scrollToBottom": "下までスクロール"
     },
     "history": {
         "bundleHashCopied": "バンドルのハッシュ値をコピーしました。",
@@ -525,10 +494,8 @@
         "snapshotTransition": "スナップショットの移行",
         "pow": "プルーフ・オブ・ワーク",
         "autoPromotion": "自動促進",
-        "autoPromotionExplanation":
-            "自動促進によってTangleによる取引承認を手助けします。取引承認に時間がかかる場合はこの設定をオンにしてください。",
-        "autoPromotionPoW":
-            "自動促進はリモートによるプルーフ・オブ・ワークを許可するノードと接続している場合のみ有効です。"
+        "autoPromotionExplanation": "自動促進によってTangleによる取引承認を手助けします。取引承認に時間がかかる場合はこの設定をオンにしてください。",
+        "autoPromotionPoW": "自動促進はリモートによるプルーフ・オブ・ワークを許可するノードと接続している場合のみ有効です。"
     },
     "advancedThemeCustomisation": {
         "background": "背景",
@@ -556,8 +523,7 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "どうして全ての残高を使えないのか？",
-        "spentAddressExplanation":
-            "１つまたはそれ以上の使用済みアドレスに資金があります。アドレスの再利用はIOTAでは非常に危険です。よって、このウォレットでは同じアドレスから複数回送金することはできません。",
+        "spentAddressExplanation": "１つまたはそれ以上の使用済みアドレスに資金があります。アドレスの再利用はIOTAでは非常に危険です。よって、このウォレットでは同じアドレスから複数回送金することはできません。",
         "discordInformation": "どうしたらいいのかはDiscordの#Japaneseチャンネルか#helpチャンネルにお尋ねください。"
     },
     "deleteAccount": {
@@ -588,14 +554,12 @@
         "didSaveSeed": "シードのバックアップはされましたか？",
         "alreadyHave": "私はシードをバックアップしました。",
         "reenterSeed": "次のステップで、シードを再入力するよう求められます。",
-        "reenterSeedWarning":
-            "もし、シードをバックアップせずにデバイスが故障した場合、そのシードにあるIOTAはすべて失われます。",
+        "reenterSeedWarning": "もし、シードをバックアップせずにデバイスが故障した場合、そのシードにあるIOTAはすべて失われます。",
         "pleaseConfirm": "シードが安全に保管されていることを確認してください。"
     },
     "walletResetConfirmation": {
         "cannotUndo": "この操作は元に戻せません。",
-        "warning":
-            "<0><0>シードやパスワード、</0><1>その他のアカウント情報など</1><2>すべての</2><3>ウォレットデータが</3><4>消去されます。</4></0>"
+        "warning": "<0><0>シードやパスワード、</0><1>その他のアカウント情報など</1><2>すべての</2><3>ウォレットデータが</3><4>消去されます。</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "指紋認証を有効にするには、指紋リーダーに触れてください。",
@@ -608,8 +572,7 @@
         "fingerprintAuthFailedExplanation": "指紋認証に失敗しました。もう一度やり直してください。",
         "status": "ステータス",
         "fingerprintUnavailable": "生体認証が利用できません。",
-        "fingerprintUnavailableExplanation":
-            "お使いのデバイスは生体認証をサポートしていないか、デバイス設定で設定されていません。",
+        "fingerprintUnavailableExplanation": "お使いのデバイスは生体認証をサポートしていないか、デバイス設定で設定されていません。",
         "buttonInstructionsDisable": "指紋認証を無効にするには、下のボタンを押してください。",
         "buttonInstructionsEnable": "指紋認証を有効にするには、下のボタンを押してください。",
         "buttonInstructionsDisableIPhoneX": "顔認証を無効にするには、下のボタンを押してください。",
@@ -652,15 +615,13 @@
     },
     "pow": {
         "feeless": "IOTAの取引手数料無しの送金を行うには小規模のプルーフ・オブ・ワークを行う必要があります。",
-        "localOrRemote":
-            "プルーフ・オブ・ワークはデバイス上でローカルに行うか、ノードにお任せしてリモートで行うことができます。",
+        "localOrRemote": "プルーフ・オブ・ワークはデバイス上でローカルに行うか、ノードにお任せしてリモートで行うことができます。",
         "local": "ローカル",
         "remote": "リモート",
         "powUpdated": "プルーフ・オブ・ワークの設定",
         "powUpdatedExplanation": "プルーフ・オブ・ワークの設定を更新しました。",
         "noWebGLSupport": "WebGLがサポートされていません。",
-        "noWebGLSupportExplanation":
-            "お使いのコンピューターは WebGLをサポートしていません。リモートのプルーフ・オブ・ワークをご利用ください。"
+        "noWebGLSupportExplanation": "お使いのコンピューターは WebGLをサポートしていません。リモートのプルーフ・オブ・ワークをご利用ください。"
     },
     "autoPromotion": {
         "autoPromotionUpdated": "自動促進の設定",
@@ -696,13 +657,11 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "更新データの取得エラー",
-        "errorRetrievingUpdateDataExplanation":
-            "更新データの取得中にエラーが発生しました。もう一度やり直してください。",
+        "errorRetrievingUpdateDataExplanation": "更新データの取得中にエラーが発生しました。もう一度やり直してください。",
         "noUpdatesAvailable": "利用可能な更新はありません。",
         "noUpdatesAvailableExplanation": "最新版のIOTA Trinity デスクトップウォレットです。",
         "newVersionAvailable": "新しいバージョンが利用可能です。",
-        "newVersionAvailableExplanation":
-            "新しい<strong>Trinity</strong><strong>{{version}}</strong>バージョンがご利用可能です。更新する前に、リリースの詳細を注意深く読み、ダウンロード元をご確認ください：",
+        "newVersionAvailableExplanation": "新しい<strong>Trinity</strong><strong>{{version}}</strong>バージョンがご利用可能です。更新する前に、リリースの詳細を注意深く読み、ダウンロード元をご確認ください：",
         "downloadRelease": "リリースをダウンロード",
         "skipUpdate": "更新をスキップ"
     },
