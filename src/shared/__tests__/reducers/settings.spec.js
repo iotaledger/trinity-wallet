@@ -69,7 +69,7 @@ describe('Reducer: settings', () => {
                 hasVisitedSeedShareTutorial: false,
                 acceptedTerms: false,
                 acceptedPrivacy: false,
-                autoPromotion: false,
+                autoPromotion: true,
                 hideEmptyTransactions: false,
             };
 
