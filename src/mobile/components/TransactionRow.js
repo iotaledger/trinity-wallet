@@ -146,7 +146,7 @@ export default class TransactionRow extends PureComponent {
                 <View style={styles.container}>
                     <View style={[styles.row, style.containerBackgroundColor]}>
                         {bundleIsBeingPromoted && (
-                            <View style={{ position: 'absolute', left: width / 3.2, top: height / 70 }}>
+                            <View style={{ position: 'absolute', left: width / 3.4, top: height / 70 }}>
                                 <LottieView
                                     source={spinner}
                                     style={styles.animation}
