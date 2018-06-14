@@ -42,7 +42,6 @@
         "disable": "अक्षम करें",
         "enabled": "सक्षम किया गया",
         "disabled": "अक्षम कर दिया गया",
-        "manualCopy": "सीड नीचे लिखें",
         "paperWallet": "काग़ज़ की प्रतिलिपि मुद्रित करें",
         "addToPasswordManager": "पासवर्ड मैनेजर में जोड़े",
         "shareSeed": "सीड साझा करे",
@@ -148,7 +147,7 @@
         "androidCopyPasteWarning": "एक Android डिवाइस पर अपने सीड कभी भी कॉपी पेस्ट न करे |",
         "willNotCopyPasteSeed": "मैं अपने सीड को कॉपी पेस्ट नहीं करूंगा",
         "mustBeStoredAppropriately": "यह उचित रूप से संग्रहीत किया जाना चाहिए ।",
-        "deviceMayBecomeUnresponsive": "आपका डिवाइस कुछ समय के लिए अनुत्तरदायी हो सकता है",
+        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while.",
         "isYourBalanceCorrect": "क्या आपका बैलेंस सही है?",
         "ifYourBalanceIsNotCorrect": "यदि आपका बैलेंस सही नहीं है, तो संभव है कि आप पूर्व-स्नैपशॉट सीड का उपयोग कर रहे हों ।",
         "headToAdvancedSettingsForTransition": "एडवांस सेटिंग के लिए आगे बढ़े और स्नैपशॉट ट्रांजिट करे",
@@ -308,7 +307,7 @@
         "letsWriteDownYourSeed": "अपने सीड लिख लेवे",
         "youCanHighlightCharacters": "आप एक बार में 9 वर्णों को हाइलाइट कर सकते हैं",
         "printBlankWallet": "खाली वॉलेट प्रिंट करे",
-        "whatIsCheksum": "हर सीड एक के 3 वर्ण checksum है",
+        "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
         "iHavesavedMySeed": "मैंने अपना सीड सहेज लिया है",
         "checksumExplanation": "जब भी आप अपने वॉलेट में कोई बीज जोड़ते हैं, तो आपको यह सुनिश्चित करना चाहिए कि वॉलेट जेनरेट किया गया checksum आपके द्वारा लिखे गए एक से मेल खाता है ।",
         "mustSaveYourSeed": "<0> <0> आपको </0> <1> के साथ अपने सीड को नीचे सूचीबद्ध विकल्पों में से कम एक </1> <2> से बचाना होगा । </2> </0>"
@@ -441,18 +440,18 @@
         "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
         "noIHaveOne": "नहीं, मेरे पास पहले से है",
         "yesINeedASeed": "हाँ, मुझे सीड की जरुरत है",
-        "explanation": "<0> <0> आप इसका उपयोग </0> <1> किसी भी वॉलेट </1> <2>, पर </2> <3> किसी भी डिवाइस </3> <4> से अपने फण्ड तक पहुंचने के लिए कर सकते हैं । लेकिन अगर आप अपना सीड खो देते हैं तो आप भी अपना IOTA खो देते हैं । </4> </0>",
+        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
+        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
         "keepSafe": "कृपया अपने सीड को सुरक्षित रखें",
         "hint": "<0> <0> संकेत: </0> क्लिक करें यदि यह आपकी पहली बार IOTA. </0> का उपयोग कर रहा है"
     },
     "welcome": {
-        "thankYou": "वॉलेट डाउनलोड करने के लिए धन्यवाद",
-        "weWillSpend": "हम आपके वॉलेट की सेटिंग अगले कुछ मिनटों में करेंगे",
-        "reminder": "आप कुछ स्टेप को छोड़कर आगे बढ़ने का प्रयास कर सकते है, लेकिन हम आपको पूरी प्रक्रिया का पालन करने का आग्रह करते हैं।"
+        "thankYou": "Thank you for downloading Trinity"
     },
     "writeSeedDown": {
         "yourSeedIs": "आपका सीड {{maxSeedLength}} अक्षरों की लंबाई है, इसे बाएं से दाएं को पढ़ें",
-        "writeDownYourSeed": "<0> अपना सीड और चेकसम लिखें और </ 0> <1> ट्रिपल चेक कर ले </ 1> <2> यह सही है। </ 2>"
+        "writeDownYourSeed": "<0> अपना सीड और चेकसम लिखें और </ 0> <1> ट्रिपल चेक कर ले </ 1> <2> यह सही है। </ 2>",
+        "scrollToBottom": "Scroll to the bottom"
     },
     "history": {
         "bundleHashCopied": "बंडल हैश की प्रतिलिपि बनाई गई",
