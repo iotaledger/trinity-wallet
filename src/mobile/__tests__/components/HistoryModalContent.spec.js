@@ -54,6 +54,8 @@ const getProps = (overrides) =>
                 barBg: 'black',
                 barColor: 'white',
                 buttonsOpacity: { opacity: 1 },
+                primaryColor: '#ffffff',
+                primaryBody: '#000000',
             },
             isBroadcastingBundle: false,
             currentlyPromotingBundleHash: 'foo',
@@ -123,20 +125,6 @@ describe('Testing HistoryModalContent component', () => {
 
             const wrapper = shallow(<HistoryModalContent {...props} />);
             expect(wrapper.name()).toEqual('TouchableWithoutFeedback');
-        });
-
-        it('should return six View components', () => {
-            const props = getProps();
-
-            const wrapper = shallow(<HistoryModalContent {...props} />);
-            expect(wrapper.find('View').length).toEqual(7);
-        });
-
-        it('should return eight Text components', () => {
-            const props = getProps();
-
-            const wrapper = shallow(<HistoryModalContent {...props} />);
-            expect(wrapper.find('Text').length).toEqual(7);
         });
 
         it('should return a ScrollView component', () => {
