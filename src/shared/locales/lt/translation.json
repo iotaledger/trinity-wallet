@@ -440,13 +440,13 @@
         "seedExplanation": "IOTA užraktas yra pagrindinis raktas į jūsų lėšas. Jis sudarytas iš 81 simbolio, raidžių A-Z ir skaičiaus 9.",
         "noIHaveOne": "Ne, jau turiu",
         "yesINeedASeed": "Taip, man reikia užrakto",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
-        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
+        "explanation": "<0><0>Jį galima panaudoti norint gauti prieigą prie savo lėšų iš </0><1>bet kokios piniginės</1><2> ir </2><3>bet kokio įrenginio.</3></0>",
+        "loseSeed": "Bet jei prarasite savo užraktą, prarasite ir savo IOTA.",
         "keepSafe": "Laikykite užraktą saugiai.",
         "hint": "<0><0>Patarimas:</0> Spauskite NE, jei pirmą kartą naudojatės IOTA.</0>"
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity"
+        "thankYou": "Dėkojame, kad naudojatės Trinity"
     },
     "writeSeedDown": {
         "yourSeedIs": "Jūsų užraktas sudarytas iš {{maxSeedLength}} simbolio, skaityti iš kairės į dešinę.",
