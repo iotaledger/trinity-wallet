@@ -42,7 +42,6 @@
         "disable": "Uitschakelen",
         "enabled": "Ingeschakeld",
         "disabled": "Uitgeschakeld",
-        "manualCopy": "Schrijf uw seed op",
         "paperWallet": "Print uw seed uit",
         "addToPasswordManager": "Toevoegen aan wachtwoordmanager",
         "shareSeed": "Deel seed",
@@ -148,7 +147,7 @@
         "androidCopyPasteWarning": "Kopieer/plak nooit uw seed op een Android apparaat.",
         "willNotCopyPasteSeed": "Ik zal mijn seed niet kopiëren/plakken",
         "mustBeStoredAppropriately": "Het moet adequaat worden opgeslagen.",
-        "deviceMayBecomeUnresponsive": "Uw apparaat kan wellicht even niet reageren",
+        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while.",
         "isYourBalanceCorrect": "Klopt uw saldo?",
         "ifYourBalanceIsNotCorrect": "Als uw saldo niet correct is, gebruikt u waarschijnlijk een pre-snapshot seed.",
         "headToAdvancedSettingsForTransition": "Ga naar Geavanceerde instellingen en voer een Snapshot transitie uit.",
@@ -308,7 +307,7 @@
         "letsWriteDownYourSeed": "Laten we uw seed opschrijven",
         "youCanHighlightCharacters": "U kan 9 karakters tegelijk markeren",
         "printBlankWallet": "Print een lege portemonnee",
-        "whatIsCheksum": "Elke seed heeft een overeenkomstige controlesom van 3 karakters",
+        "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
         "iHavesavedMySeed": "Ik heb mijn seed opgeslagen",
         "checksumExplanation": "Wanneer u uw seed toevoegt aan uw portemonnee, moet u er zeker van zijn dat de gegenereerde controlesom hetzelfde is als degene die u heeft opgeschreven.",
         "mustSaveYourSeed": "<0><0>U moet uw seed opslaan met </0><1>tenminste één</1><2> van de onderstaande opties.</2></0>"
@@ -441,18 +440,18 @@
         "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
         "noIHaveOne": "Nee, ik heb er een",
         "yesINeedASeed": "Ja, ik heb een seed nodig",
-        "explanation": "<0><0>U krijgt hiermee toegang tot uw saldo vanuit </0><1>elke portemonnee</1><2>, op</2> <3>elk apparaat</3><4>. Maar als u uw seed verliest, verliest u daarmee ook uw IOTA.</4></0>",
+        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
+        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
         "keepSafe": "Houd uw seed veilig.",
         "hint": "<0><0>Hint:</0> Klik op NEE als dit de eerste keer is dat u IOTA gebruikt.</0>"
     },
     "welcome": {
-        "thankYou": "Bedankt voor het downloaden van Trinity.",
-        "weWillSpend": "De komende minuten zijn we bezig met het installeren van uw portemonnee.",
-        "reminder": "Het is belangrijk om dit proces helemaal te voltooien. Sla geen stappen over."
+        "thankYou": "Thank you for downloading Trinity"
     },
     "writeSeedDown": {
         "yourSeedIs": "Uw seed is {{maxSeedLength}} tekens van links naar rechts gelezen.",
-        "writeDownYourSeed": "<0>Schrijf uw seed en controlesom nauwkeurig op en</0> <1>controleer nogmaals</1> <2>of ze overeenkomen.</2>"
+        "writeDownYourSeed": "<0>Schrijf uw seed en controlesom nauwkeurig op en</0> <1>controleer nogmaals</1> <2>of ze overeenkomen.</2>",
+        "scrollToBottom": "Scroll to the bottom"
     },
     "history": {
         "bundleHashCopied": "Bundel hash gekopieerd",
