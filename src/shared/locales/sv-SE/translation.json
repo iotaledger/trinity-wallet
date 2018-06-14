@@ -42,7 +42,6 @@
         "disable": "Avaktivera",
         "enabled": "Aktiverad",
         "disabled": "Avaktiverad",
-        "manualCopy": "Skriv ner din seed",
         "paperWallet": "Skriv ut papperskopia",
         "addToPasswordManager": "Lägg till i lösenordshanteraren",
         "shareSeed": "Dela seed",
@@ -148,7 +147,7 @@
         "androidCopyPasteWarning": "Kopiera/klistra aldrig din seed på en Android-enhet.",
         "willNotCopyPasteSeed": "Jag kommer inte kopiera/klistra min seed",
         "mustBeStoredAppropriately": "Den måste lagras på lämpligt sätt.",
-        "deviceMayBecomeUnresponsive": "Din enhet kan sluta reagera ett tag",
+        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while.",
         "isYourBalanceCorrect": "Stämmer ditt saldo?",
         "ifYourBalanceIsNotCorrect": "Om ditt saldo inte är korrekt, är det troligt att du använder en seed från tidigare än snapshot.",
         "headToAdvancedSettingsForTransition": "Gå till avancerade inställningar och utför en snapshot-övergång.",
@@ -308,7 +307,7 @@
         "letsWriteDownYourSeed": "Skriv ner din seed",
         "youCanHighlightCharacters": "Du kan markera 9 tecken i taget",
         "printBlankWallet": "Skriv ut en tom plånbok",
-        "whatIsCheksum": "Varje seed har en tillhörande 3-tecken kontrollsumma",
+        "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
         "iHavesavedMySeed": "Jag har sparat min seed",
         "checksumExplanation": "När du lägger till en seed i din plånbok, bör du kontrollera att den plånboksgenererade kontrollsumman matchar den du har skrivit ned.",
         "mustSaveYourSeed": "<0><0>Du måste spara din seed med</0><1>minst ett</1><2> av alternativen listade nedan.</2></0>"
@@ -441,18 +440,18 @@
         "seedExplanation": "Din IOTA-seed är huvudnyckeln till dina pengar. Den är 81 tecken lång och innehåller endast bokstäverna A-Z eller numret 9.",
         "noIHaveOne": "Nej, jag har en",
         "yesINeedASeed": "Ja, jag behöver en seed",
-        "explanation": "<0><0>Du kan använda det för att komma åt dina tillgångar från</0><1> valfri plånbok</1><2>, samt</2><3> valfri apparat</3><4>. Förlorar du din seed, kommer du samtidigt förlora dina IOTA.</4></0>",
+        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
+        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
         "keepSafe": "Vänligen förvara din seed säkert.",
         "hint": "<0><0>Tips:</0> Klicka på NEJ om detta är första gången du använder IOTA.</0>"
     },
     "welcome": {
-        "thankYou": "Tack för att du laddade ner Trinity.",
-        "weWillSpend": "Vi kommer att tillbringa de närmsta minuterna åt att konfigurera din plånbok.",
-        "reminder": "Det kanske är lockande att hoppa över några steg, men vi uppmanar dig till att följa hela processen."
+        "thankYou": "Thank you for downloading Trinity"
     },
     "writeSeedDown": {
         "yourSeedIs": "Din seed är {{maxSeedLength}} tecken lästa från vänster till höger.",
-        "writeDownYourSeed": "<0> Skriv ner din seed och checksumma och </0><1>dubbelkolla</1><2> att det stämmer.</2>"
+        "writeDownYourSeed": "<0> Skriv ner din seed och checksumma och </0><1>dubbelkolla</1><2> att det stämmer.</2>",
+        "scrollToBottom": "Scroll to the bottom"
     },
     "history": {
         "bundleHashCopied": "Hashbunt kopierad",
