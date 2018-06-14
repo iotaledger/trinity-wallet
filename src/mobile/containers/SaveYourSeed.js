@@ -173,9 +173,7 @@ class SaveYourSeed extends Component {
             },
             animated: false,
         });
-        if (this.state.copyPressed) {
-            this.clearClipboard();
-        }
+        this.clearClipboard();
     }
 
     onBackPress() {
@@ -271,21 +269,23 @@ class SaveYourSeed extends Component {
     }
 
     /**
-     * Alert the user that the clipboard was cleared
+     * iOS: Alert the user that the clipboard was cleared
      */
     clearClipboard() {
         const { t } = this.props;
-        Clipboard.setString(' ');
-        timer.setTimeout(
-            'clipboardClear',
-            () =>
-                this.props.generateAlert(
-                    'info',
-                    t('copyToClipboard:seedCleared'),
-                    t('copyToClipboard:seedClearedExplanation'),
-                ),
-            500,
-        );
+        if (this.state.copyPressed) {
+            Clipboard.setString(' ');
+            timer.setTimeout(
+                'clipboardClear',
+                () =>
+                    this.props.generateAlert(
+                        'info',
+                        t('copyToClipboard:seedCleared'),
+                        t('copyToClipboard:seedClearedExplanation'),
+                    ),
+                500,
+            );
+        }
     }
 
     async print() {
