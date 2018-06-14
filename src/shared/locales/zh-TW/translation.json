@@ -42,7 +42,6 @@
         "disable": "停用",
         "enabled": "啟用",
         "disabled": "停用",
-        "manualCopy": "寫下種子碼",
         "paperWallet": "列印紙本",
         "addToPasswordManager": "新增至密碼管理工具",
         "shareSeed": "分享種子碼",
@@ -148,7 +147,7 @@
         "androidCopyPasteWarning": "請勿在 Android 裝置上複製/貼上您的種子碼。",
         "willNotCopyPasteSeed": "我絕不會複製/貼上我的種子碼",
         "mustBeStoredAppropriately": "種子碼必須妥善保存。",
-        "deviceMayBecomeUnresponsive": "您的裝置可能會在一段時間內無法回應",
+        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while.",
         "isYourBalanceCorrect": "您的餘額正確嗎？",
         "ifYourBalanceIsNotCorrect": "如果您的餘額不正確的話，有可能您最後一次使用種子碼是在快照發生之前。",
         "headToAdvancedSettingsForTransition": "前往進階設定然後執行快照轉換。",
@@ -308,7 +307,7 @@
         "letsWriteDownYourSeed": "請寫下您的種子碼",
         "youCanHighlightCharacters": "您可以一次顯示 9 個字元",
         "printBlankWallet": "印出空白錢包",
-        "whatIsCheksum": "每個種子碼都會有相對應 3 個字元的檢查碼",
+        "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
         "iHavesavedMySeed": "我已儲存我的種子碼",
         "checksumExplanation": "每當您新增種子碼到錢包時，請確認錢包顯示的檢查碼和您當時寫下的相符。",
         "mustSaveYourSeed": "<0><0>您必須使用以下</0><1>其中一種</1><2>選項儲存您的種子碼。</2></0>"
@@ -441,18 +440,18 @@
         "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
         "noIHaveOne": "不，我有一個",
         "yesINeedASeed": "是，我需要一個種子碼",
-        "explanation": "<0><0>您可以用它來取得您的資金，這可以是</0><1>任何錢包</1><2>和</2><3>任何裝置</3><4>。但如果您遺失種子碼的話，就代表您損失您所有的 IOTA。</4></0>",
+        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
+        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
         "keepSafe": "請妥善保存您的種子碼。",
         "hint": "<0><0>提示：</0> 如果這是您第一次使用 IOTA 請按「否」。</0>"
     },
     "welcome": {
-        "thankYou": "感謝您下載 Trinity。",
-        "weWillSpend": "接下來幾分鐘我們將為您設置您的錢包。",
-        "reminder": "您或許希望跳過一些步驟，但我們建議您按完整程序設置。"
+        "thankYou": "Thank you for downloading Trinity"
     },
     "writeSeedDown": {
         "yourSeedIs": "您的種子碼由左至右總計 {{maxSeedLength}} 個字元。",
-        "writeDownYourSeed": "<0> 記下您的種子碼和檢查碼</0><1>請再三確認</1><2>它們是正確無誤的。</2>"
+        "writeDownYourSeed": "<0> 記下您的種子碼和檢查碼</0><1>請再三確認</1><2>它們是正確無誤的。</2>",
+        "scrollToBottom": "Scroll to the bottom"
     },
     "history": {
         "bundleHashCopied": "交易組雜湊值已複製",
