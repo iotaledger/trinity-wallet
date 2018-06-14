@@ -48,20 +48,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'flex-end',
     },
-    optionButtonText: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-    },
-    optionButton: {
-        borderWidth: 1.5,
-        borderRadius: GENERAL.borderRadiusLarge,
-        width: width / 1.36,
-        height: height / 14,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-    },
     infoText: {
         fontFamily: 'SourceSansPro-Regular',
         fontSize: GENERAL.fontSize4,
@@ -151,6 +137,9 @@ class SaveYourSeed extends Component {
         this.clearClipboard();
     }
 
+    /**
+     * Hide navbar when returning from print
+     */
     onNavigatorEvent(event) {
         if (event.id === 'willAppear') {
             this.props.navigator.toggleNavBar({
@@ -215,6 +204,9 @@ class SaveYourSeed extends Component {
         this.openModal('passwordManagerModal');
     }
 
+    /**
+     * Generates html for seed qr
+     */
     getQrHTMLString(seed) {
         const qr = new QRCode(-1, 1);
         each(seed, (char) => {
@@ -239,6 +231,9 @@ class SaveYourSeed extends Component {
         return qrString;
     }
 
+    /**
+     * Constucts html text components for all seed characters
+     */
     getSeedHTMLString(seed) {
         let seedChars = '';
         for (let i = 0; i < seed.length; i++) {
@@ -253,7 +248,10 @@ class SaveYourSeed extends Component {
         return seedChars;
     }
 
-    getContentHTML() {
+    /**
+     * Constructs paper wallet html string for printing
+     */
+    getHTMLContent() {
         const { seed } = this.props;
         const checksumString = `<text x="372.7" y="735">${getChecksum(seed)}</text>`;
         const qrString = this.getQrHTMLString(seed);
@@ -269,7 +267,7 @@ class SaveYourSeed extends Component {
     }
 
     /**
-     * iOS: Alert the user that the clipboard was cleared
+     * iOS: Alerts the user that the clipboard was cleared
      */
     clearClipboard() {
         const { t } = this.props;
@@ -288,6 +286,9 @@ class SaveYourSeed extends Component {
         }
     }
 
+    /**
+     *  Triggers paper wallet print
+     */
     async print() {
         this.hideModal();
         const paperWalletHTML = `
@@ -322,7 +323,7 @@ class SaveYourSeed extends Component {
              @font-face { font-family: "Monospace"; src: "iota-wallet-shared-modules/custom-fonts/SourceCodePro-Medium.ttf"
           </style>
           <body>
-            ${this.getContentHTML()}
+            ${this.getHTMLContent()}
             ${paperWalletFilled}
           </body>
         </html>`;
@@ -344,12 +345,12 @@ class SaveYourSeed extends Component {
     }
 
     /**
-     * Copy the seed to the clipboard and remove it after 30 seconds
+     * iOS: Copies seed to the clipboard and clears after 60 seconds
+     * Android: Passes seed to Keepass share intent
      */
     copy() {
         const { t, seed } = this.props;
         if (isAndroid) {
-            console.log('should work');
             timer.setTimeout(
                 'delayShare',
                 () => {
