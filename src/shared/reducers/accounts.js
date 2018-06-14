@@ -234,7 +234,7 @@ const account = (
                     },
                 },
             };
-        case ActionTypes.MARK_BUNDLE_BROADCAST_STATUS_AS_PENDING:
+        case ActionTypes.MARK_BUNDLE_BROADCAST_STATUS_PENDING:
             return {
                 ...state,
                 failedBundleHashes: {
@@ -247,7 +247,7 @@ const account = (
                     },
                 },
             };
-        case ActionTypes.MARK_BUNDLE_BROADCAST_STATUS_AS_COMPLETED:
+        case ActionTypes.MARK_BUNDLE_BROADCAST_STATUS_COMPLETE:
             return {
                 ...state,
                 failedBundleHashes: {

@@ -412,13 +412,12 @@ export const syncAccountAfterReattachment = (accountName, reattachment, accountS
  *  Sync local account in case signed inputs were exposed to the network (and the network call failed)
  *
  *   @method syncAccountOnValueTransactionFailure
- *   @param {string} name
  *   @param {array} newTransfer
  *   @param {object} accountState
  *
  *   @returns {object}
  **/
-export const syncAccountOnValueTransactionFailure = (name, newTransfer, accountState) => {
+export const syncAccountOnValueTransactionFailure = (newTransfer, accountState) => {
     const tailTransaction = find(newTransfer, { currentIndex: 0 });
     const normalisedTransfer = normaliseBundle(newTransfer, keys(accountState.addresses), [tailTransaction], false);
 
