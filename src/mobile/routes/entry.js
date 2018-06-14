@@ -7,7 +7,7 @@ import { changeIotaNode, SwitchingConfig } from 'iota-wallet-shared-modules/libs
 import { fetchNodeList as fetchNodes } from 'iota-wallet-shared-modules/actions/polling';
 import { ActionTypes } from 'iota-wallet-shared-modules/actions/wallet';
 import i18next from 'i18next';
-import tenaciousFetch from 'tenacious-fetch';
+import axios from 'axios';
 import { getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
 import { isIOS } from '../utils/device';
 import keychain from '../utils/keychain';
@@ -107,7 +107,8 @@ const hasConnection = (
     options = { fallbackUrl1: 'https://www.google.com', fallbackUrl2: 'https://www.sogou.com' },
 ) => {
     return NetInfo.getConnectionInfo().then(() =>
-        tenaciousFetch(url, { fetcher: fetch, timeout: 3000 })
+        axios
+            .get(url, { timeout: 3000 })
             .then((response) => {
                 return response.status === 200;
             })
