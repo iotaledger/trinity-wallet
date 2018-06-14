@@ -60,7 +60,7 @@ const getProps = (overrides) =>
             isBroadcastingBundle: false,
             currentlyPromotingBundleHash: 'foo',
             hasFailedAutopromotion: false,
-            checkIfFailedTransaction: noop,
+            isFailedTransaction: noop,
             retryFailedTransaction: noop,
             isRetryingFailedTransaction: false,
         },

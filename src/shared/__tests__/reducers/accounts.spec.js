@@ -11,7 +11,7 @@ describe('Reducer: accounts', () => {
                 firstUse: true,
                 onboardingComplete: false,
                 accountInfo: {},
-                failedTxBundleHashes: {},
+                failedBundleHashes: {},
                 setupInfo: {},
                 tasks: {},
                 unconfirmedBundleTails: {},
@@ -100,9 +100,9 @@ describe('Reducer: accounts', () => {
             expect(newState.accountInfo).to.eql(expectedState.accountInfo);
         });
 
-        it('should update account name in "failedTxBundleHashes" state prop', () => {
+        it('should update account name in "failedBundleHashes" state prop', () => {
             const initialState = {
-                failedTxBundleHashes: {
+                failedBundleHashes: {
                     foo: [],
                     baz: [],
                 },
@@ -115,13 +115,13 @@ describe('Reducer: accounts', () => {
 
             const newState = reducer(initialState, action);
             const expectedState = {
-                failedTxBundleHashes: {
+                failedBundleHashes: {
                     bar: [],
                     baz: [],
                 },
             };
 
-            expect(newState.failedTxBundleHashes).to.eql(expectedState.failedTxBundleHashes);
+            expect(newState.failedBundleHashes).to.eql(expectedState.failedBundleHashes);
         });
 
         it('should update account name in "tasks" state prop', () => {
@@ -233,19 +233,19 @@ describe('Reducer: accounts', () => {
             expect(newState.accountInfo).to.eql(expectedState.accountInfo);
         });
 
-        it('should omit payload prop from "failedTxBundleHashes"', () => {
+        it('should omit payload prop from "failedBundleHashes"', () => {
             const initialState = {
-                failedTxBundleHashes: { foo: [] },
+                failedBundleHashes: { foo: [] },
             };
 
             const action = actions.removeAccount('foo');
 
             const newState = reducer(initialState, action);
             const expectedState = {
-                failedTxBundleHashes: {},
+                failedBundleHashes: {},
             };
 
-            expect(newState.failedTxBundleHashes).to.eql(expectedState.failedTxBundleHashes);
+            expect(newState.failedBundleHashes).to.eql(expectedState.failedBundleHashes);
         });
 
         it('should omit payload prop from "tasks"', () => {
@@ -883,9 +883,9 @@ describe('Reducer: accounts', () => {
     });
 
     describe('IOTA/ACCOUNTS/MARK_BUNDLE_BROADCAST_STATUS_AS_PENDING', () => {
-        it('should assign "accountName" in payload to "failedTxBundleHashes" prop in state', () => {
+        it('should assign "accountName" in payload to "failedBundleHashes" prop in state', () => {
             const initialState = {
-                failedTxBundleHashes: {
+                failedBundleHashes: {
                     foo: {},
                 },
             };
@@ -901,7 +901,7 @@ describe('Reducer: accounts', () => {
 
             const newState = reducer(initialState, action);
             const expectedState = {
-                failedTxBundleHashes: {
+                failedBundleHashes: {
                     foo: {},
                     baz: {
                         TTT: [{}],
@@ -914,7 +914,7 @@ describe('Reducer: accounts', () => {
 
         it('should assign "bundleHash" to existing failed transaction bundle hashes', () => {
             const initialState = {
-                failedTxBundleHashes: {
+                failedBundleHashes: {
                     foo: { AAA: [{}] },
                 },
             };
@@ -930,7 +930,7 @@ describe('Reducer: accounts', () => {
 
             const newState = reducer(initialState, action);
             const expectedState = {
-                failedTxBundleHashes: {
+                failedBundleHashes: {
                     foo: {
                         AAA: [{}],
                         TTT: [{}, {}],
@@ -943,9 +943,9 @@ describe('Reducer: accounts', () => {
     });
 
     describe('IOTA/ACCOUNTS/MARK_BUNDLE_BROADCAST_STATUS_AS_COMPLETED', () => {
-        it('should remove "bundleHash" from "failedTxBundleHashes"', () => {
+        it('should remove "bundleHash" from "failedBundleHashes"', () => {
             const initialState = {
-                failedTxBundleHashes: {
+                failedBundleHashes: {
                     foo: {
                         AAA: [{}],
                     },
@@ -962,7 +962,7 @@ describe('Reducer: accounts', () => {
 
             const newState = reducer(initialState, action);
             const expectedState = {
-                failedTxBundleHashes: {
+                failedBundleHashes: {
                     foo: {},
                 },
             };
