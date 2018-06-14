@@ -89,7 +89,6 @@ class LanguageSetup extends Component {
 
     onNextPress() {
         const { theme: { body, bar }, acceptedTerms, acceptedPrivacy } = this.props;
-
         this.props.navigator.push({
             screen: this.getNextRoute(),
             navigatorStyle: {
@@ -107,7 +106,7 @@ class LanguageSetup extends Component {
     getNextRoute() {
         const { acceptedTerms, acceptedPrivacy } = this.props;
 
-        let nextRoute = 'welcome';
+        let nextRoute = 'walletSetup';
 
         if (!acceptedTerms && !acceptedPrivacy) {
             nextRoute = 'termsAndConditions';
