@@ -226,11 +226,11 @@ class SaveYourSeed extends Component {
                                     backgroundColor: secondary.color,
                                 },
                                 children: {
-                                    color: secondary.body
+                                    color: secondary.body,
                                 },
                             }}
                         >
-                            {t('global:manualCopy')}
+                            {t('saveYourSeed:writeYourSeedDown')}
                         </Button>
                     </View>
                     <View style={[styles.line, lineColor]} />
@@ -244,7 +244,7 @@ class SaveYourSeed extends Component {
                                 backgroundColor: secondary.color,
                             },
                             children: {
-                                color: secondary.body
+                                color: secondary.body,
                             },
                         }}
                     >
@@ -261,7 +261,7 @@ class SaveYourSeed extends Component {
                                 backgroundColor: secondary.color,
                             },
                             children: {
-                                color: secondary.body
+                                color: secondary.body,
                             },
                         }}
                     >

@@ -95,7 +95,6 @@ class Pow extends Component {
     render() {
         const { t, remotePoW, theme: { body, primary } } = this.props;
         const textColor = { color: body.color };
-        const infoTextPadding = { paddingTop: height / 50 };
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -107,7 +106,7 @@ class Pow extends Component {
                             text={
                                 <View>
                                     <Text style={[styles.infoText, textColor]}>{t('feeless')}</Text>
-                                    <Text style={[styles.infoText, textColor, infoTextPadding]}>
+                                    <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
                                         {t('localOrRemote')}
                                     </Text>
                                 </View>
