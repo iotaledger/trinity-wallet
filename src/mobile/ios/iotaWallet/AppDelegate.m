@@ -9,9 +9,6 @@
 
 #import "AppDelegate.h"
 #import "SplashScreen.h"
-#import <Fabric/Fabric.h>
-#import <Crashlytics/Crashlytics.h>
-
 #import <BugsnagReactNative/BugsnagReactNative.h>
 
 
@@ -47,7 +44,6 @@
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   self.window.backgroundColor = [UIColor whiteColor];
   [[RCCManager sharedInstance] initBridgeWithBundleURL:jsCodeLocation launchOptions:launchOptions];
-  [Fabric with:@[[Crashlytics class]]];
   [BugsnagReactNative start];
   // TODO: Move this to where you establish a user session
   [self logUser];
@@ -58,9 +54,6 @@
 - (void) logUser {
   // TODO: Use the current user's information
   // You can call any combination of these three methods
-  [CrashlyticsKit setUserIdentifier:@"12345"];
-  [CrashlyticsKit setUserEmail:@"user@fabric.io"];
-  [CrashlyticsKit setUserName:@"Test User"];
 }
 
 

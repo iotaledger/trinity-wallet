@@ -59,7 +59,7 @@ const initialState = {
         notes: [],
     },
     remotePoW: false,
-    autoPromotion: false,
+    autoPromotion: true,
     lockScreenTimeout: 3,
     autoNodeSwitching: true,
     versions: {},
