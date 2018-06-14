@@ -42,7 +42,6 @@
         "disable": "Désactiver",
         "enabled": "Activé",
         "disabled": "Désactivé",
-        "manualCopy": "Notez la seed",
         "paperWallet": "Imprimer une copie papier",
         "addToPasswordManager": "Ajouter à un gestionnaire de mot de passe",
         "shareSeed": "Partager la seed",
@@ -148,7 +147,7 @@
         "androidCopyPasteWarning": "Ne jamais copier/coller votre seed sur un appareil Android.",
         "willNotCopyPasteSeed": "Je ne copierai/collerai pas ma seed",
         "mustBeStoredAppropriately": "Elle doit être stockée correctement.",
-        "deviceMayBecomeUnresponsive": "Votre appareil peut ne pas répondre pendant un certain temps",
+        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while.",
         "isYourBalanceCorrect": "Votre solde est-il correct ?",
         "ifYourBalanceIsNotCorrect": "Si votre solde n’est pas correct, il est probable que vous utilisiez une seed antérieure à un snapshot.",
         "headToAdvancedSettingsForTransition": "Dirigez-vous vers les paramètres avancés et effectuez une Transition de snapshot.",
@@ -308,7 +307,7 @@
         "letsWriteDownYourSeed": "Notez votre seed",
         "youCanHighlightCharacters": "Vous pouvez sélectionner 9 caractères à la fois",
         "printBlankWallet": "Imprimer un portefeuille vide",
-        "whatIsCheksum": "Chaque seed a une somme de contrôle de 3 caractères",
+        "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
         "iHavesavedMySeed": "J’ai enregistré ma seed",
         "checksumExplanation": "Chaque fois que vous ajoutez une seed à votre portefeuille, vous devez vous assurer que les sommes de contrôle affichées correspondent bien à celle de votre seed.",
         "mustSaveYourSeed": "<0><0>Vous devez sauvegarder votre seed avec </0><1>au moins une</1><2> des options citées ci-dessous.</2></0>"
@@ -441,18 +440,18 @@
         "seedExplanation": "Votre seed IOTA est la clé d'accès à vos fonds. Elle est composée de 81 caractères, utilisant uniquement des lettres A-Z ou le numéro 9.",
         "noIHaveOne": "Non, j’en ai déjà une",
         "yesINeedASeed": "Oui, j’ai besoin d’une seed",
-        "explanation": "<0><0>Vous pouvez l'utiliser pour accéder à vos fonds à partir de</0><1> n'importe quel portefeuille</1><2>, depuis</2><3> n'importe quel appareil</3><4>. Mais si vous perdez votre seed, vous perdez également vos IOTA.</4></0>",
+        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
+        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
         "keepSafe": "Merci de garder votre seed en sécurité.",
         "hint": "<0><0>Astuce :</0> Cliquez sur NON si c'est la première fois que vous utilisez IOTA.</0>"
     },
     "welcome": {
-        "thankYou": "Merci d’avoir téléchargé Trinity.",
-        "weWillSpend": "Durant les prochaines minutes, nous allons configurer votre portefeuille.",
-        "reminder": "Vous pourriez être tenté de brûler certaines étapes, mais il est impératif de suivre la procédure complète."
+        "thankYou": "Thank you for downloading Trinity"
     },
     "writeSeedDown": {
         "yourSeedIs": "Votre seed se lit de gauche à droite et comporte {{maxSeedLength}} caractères.",
-        "writeDownYourSeed": "<0>Notez votre seed et le code de vérification et </0><1>vérifiez à plusieurs reprises</1><2> qu’ils sont corrects.</2>"
+        "writeDownYourSeed": "<0>Notez votre seed et le code de vérification et </0><1>vérifiez à plusieurs reprises</1><2> qu’ils sont corrects.</2>",
+        "scrollToBottom": "Scroll to the bottom"
     },
     "history": {
         "bundleHashCopied": "Hash du paquet copié",
