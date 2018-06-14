@@ -882,7 +882,7 @@ describe('Reducer: accounts', () => {
         });
     });
 
-    describe('IOTA/ACCOUNTS/MARK_BUNDLE_BROADCAST_STATUS_AS_PENDING', () => {
+    describe('IOTA/ACCOUNTS/MARK_BUNDLE_BROADCAST_STATUS_PENDING', () => {
         it('should assign "accountName" in payload to "failedBundleHashes" prop in state', () => {
             const initialState = {
                 failedBundleHashes: {
@@ -891,7 +891,7 @@ describe('Reducer: accounts', () => {
             };
 
             const action = {
-                type: 'IOTA/ACCOUNTS/MARK_BUNDLE_BROADCAST_STATUS_AS_PENDING',
+                type: 'IOTA/ACCOUNTS/MARK_BUNDLE_BROADCAST_STATUS_PENDING',
                 payload: {
                     accountName: 'baz',
                     bundleHash: 'TTT',
@@ -920,7 +920,7 @@ describe('Reducer: accounts', () => {
             };
 
             const action = {
-                type: 'IOTA/ACCOUNTS/MARK_BUNDLE_BROADCAST_STATUS_AS_PENDING',
+                type: 'IOTA/ACCOUNTS/MARK_BUNDLE_BROADCAST_STATUS_PENDING',
                 payload: {
                     accountName: 'foo',
                     bundleHash: 'TTT',
@@ -942,7 +942,7 @@ describe('Reducer: accounts', () => {
         });
     });
 
-    describe('IOTA/ACCOUNTS/MARK_BUNDLE_BROADCAST_STATUS_AS_COMPLETED', () => {
+    describe('IOTA/ACCOUNTS/MARK_BUNDLE_BROADCAST_STATUS_COMPLETE', () => {
         it('should remove "bundleHash" from "failedBundleHashes"', () => {
             const initialState = {
                 failedBundleHashes: {
@@ -953,7 +953,7 @@ describe('Reducer: accounts', () => {
             };
 
             const action = {
-                type: 'IOTA/ACCOUNTS/MARK_BUNDLE_BROADCAST_STATUS_AS_COMPLETED',
+                type: 'IOTA/ACCOUNTS/MARK_BUNDLE_BROADCAST_STATUS_COMPLETE',
                 payload: {
                     accountName: 'foo',
                     bundleHash: 'AAA',

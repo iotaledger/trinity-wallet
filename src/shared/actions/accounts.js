@@ -41,8 +41,8 @@ export const ActionTypes = {
     SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST: 'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST',
     SET_BASIC_ACCOUNT_INFO: 'IOTA/ACCOUNTS/SET_BASIC_ACCOUNT_INFO',
     MARK_TASK_AS_DONE: 'IOTA/ACCOUNTS/MARK_TASK_AS_DONE',
-    MARK_BUNDLE_BROADCAST_STATUS_AS_PENDING: 'IOTA/ACCOUNTS/MARK_BUNDLE_BROADCAST_STATUS_AS_PENDING',
-    MARK_BUNDLE_BROADCAST_STATUS_AS_COMPLETED: 'IOTA/ACCOUNTS/MARK_BUNDLE_BROADCAST_STATUS_AS_COMPLETED',
+    MARK_BUNDLE_BROADCAST_STATUS_PENDING: 'IOTA/ACCOUNTS/MARK_BUNDLE_BROADCAST_STATUS_PENDING',
+    MARK_BUNDLE_BROADCAST_STATUS_COMPLETE: 'IOTA/ACCOUNTS/MARK_BUNDLE_BROADCAST_STATUS_COMPLETE',
 };
 
 export const syncAccountBeforeManualPromotion = (payload) => ({
@@ -184,13 +184,13 @@ export const markTaskAsDone = (payload) => ({
     payload,
 });
 
-export const markBundleBroadcastStatusAsPending = (payload) => ({
-    type: ActionTypes.MARK_BUNDLE_BROADCAST_STATUS_AS_PENDING,
+export const markBundleBroadcastStatusPending = (payload) => ({
+    type: ActionTypes.MARK_BUNDLE_BROADCAST_STATUS_PENDING,
     payload,
 });
 
-export const markBundleBroadcastStatusAsCompleted = (payload) => ({
-    type: ActionTypes.MARK_BUNDLE_BROADCAST_STATUS_AS_COMPLETED,
+export const markBundleBroadcastStatusComplete = (payload) => ({
+    type: ActionTypes.MARK_BUNDLE_BROADCAST_STATUS_COMPLETE,
     payload,
 });
 
