@@ -447,7 +447,7 @@ export const syncAccountOnValueTransactionFailure = (newTransfer, accountState) 
 /**
  *  Sync account when a failed transaction was successfully stored and broadcast to the network
  *
- *   @method syncAccountOnValueTransactionFailure
+ *   @method syncAccountOnSuccessfulRetryAttempt
  *   @param {string} accountName
  *   @param {array} transaction
  *   @param {object} accountState
