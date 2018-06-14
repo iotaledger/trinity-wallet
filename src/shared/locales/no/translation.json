@@ -42,7 +42,6 @@
         "disable": "Deaktiver",
         "enabled": "Aktivert",
         "disabled": "Deaktivert",
-        "manualCopy": "Skriv ned hovednøkkelen",
         "paperWallet": "Skriv ut papirkopi",
         "addToPasswordManager": "Legg til i en passord manager",
         "shareSeed": "Del hovednøkkelen",
@@ -148,7 +147,7 @@
         "androidCopyPasteWarning": "Aldri klipp og lim hovednøkkelen på en Android enhet.",
         "willNotCopyPasteSeed": "Jeg skal ikke klippe og lime hovednøkkelen",
         "mustBeStoredAppropriately": "Den må lagres på riktig måte.",
-        "deviceMayBecomeUnresponsive": "Enheten kan slutte å svare en stund",
+        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while.",
         "isYourBalanceCorrect": "Er din balanse riktig?",
         "ifYourBalanceIsNotCorrect": "Hvis balansen din ikke er riktig, er det sannsynlig at du benytter en hovednøkkel fra før snapshot.",
         "headToAdvancedSettingsForTransition": "Gå til avanserte innstillinger og utfør en Snapshot overgang.",
@@ -308,7 +307,7 @@
         "letsWriteDownYourSeed": "La oss skrive ned din hovednøkkel",
         "youCanHighlightCharacters": "Du kan utheve 9 tegn om gangen",
         "printBlankWallet": "Skriv ut en tom lommebok",
-        "whatIsCheksum": "Alle hovednøkler har tilsvarende 3 tegn-kontrollsum",
+        "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
         "iHavesavedMySeed": "Jeg har lagret min hovednøkkel",
         "checksumExplanation": "Når du legger til en hovednøkkel i lommeboken, bør du forsikre deg om at kontrollsummen samsvarer med den du har skrevet ned.",
         "mustSaveYourSeed": "<0><0>Du må lagre din hovednøkkel med </0><1>minst én</1><2> av alternativene nedenfor.</2></0>"
@@ -441,18 +440,18 @@
         "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
         "noIHaveOne": "Nei, jeg har en",
         "yesINeedASeed": "Ja, jeg trenger en hovednøkkel",
-        "explanation": "<0><0>Du kan bruke den til å få tilgang til dine midler fra</0><1>enhver lommebok</1><2>, på</2><3>enhver enhet</3><4>. Men hvis du mister hovednøkkelen mister du også dine IOTA.</4</0>",
+        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
+        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
         "keepSafe": "Vennligst oppbevar hovednøkkelen sikkert.",
         "hint": "<0><0>Hint:</0> Klikk NEI hvis dette er første gangen du bruker IOTA.</0>"
     },
     "welcome": {
-        "thankYou": "Takk for at du lastet ned Trinity.",
-        "weWillSpend": "Vi vil bruke de neste minuttene på å konfigurere lommeboken.",
-        "reminder": "Du kan være fristet til å hoppe over enkelte trinn, men vi oppfordrer deg til å følge hele prosessen."
+        "thankYou": "Thank you for downloading Trinity"
     },
     "writeSeedDown": {
         "yourSeedIs": "Hovednøkkelen er på {{maxSeedLength}} tegn lest fra venstre mot høyre.",
-        "writeDownYourSeed": "<0>Skriv ned hovednøkkelen og kontrolltegnet. </0><1>trippelsjekk</1><2>så at de er riktige.</2>"
+        "writeDownYourSeed": "<0>Skriv ned hovednøkkelen og kontrolltegnet. </0><1>trippelsjekk</1><2>så at de er riktige.</2>",
+        "scrollToBottom": "Scroll to the bottom"
     },
     "history": {
         "bundleHashCopied": "Pakke hash kopiert",
