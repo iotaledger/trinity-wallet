@@ -44,23 +44,6 @@ const styles = StyleSheet.create({
         width: width / 1.155,
         alignItems: 'center',
     },
-    optionButtonText: {
-        color: '#8BD4FF',
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: width / 25.3,
-        textAlign: 'center',
-        paddingHorizontal: width / 20,
-        backgroundColor: 'transparent',
-    },
-    optionButton: {
-        borderColor: '#8BD4FF',
-        borderWidth: 1.5,
-        borderRadius: GENERAL.borderRadiusLarge,
-        width: width / 1.6,
-        height: height / 14,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-    },
     infoText: {
         color: 'white',
         fontFamily: 'SourceSansPro-Light',
@@ -79,46 +62,6 @@ const styles = StyleSheet.create({
         fontSize: GENERAL.fontSize3,
         textAlign: 'center',
         backgroundColor: 'transparent',
-    },
-    seedBox: {
-        borderColor: 'white',
-        borderWidth: 1,
-        borderRadius: GENERAL.borderRadiusLarge,
-        width: width / 1.65,
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingVertical: height / 80,
-    },
-    seedBoxTextContainer: {
-        width: width / 1.65,
-        flexDirection: 'row',
-        alignItems: 'flex-start',
-        justifyContent: 'center',
-        paddingTop: height / 160,
-        paddingLeft: width / 70,
-    },
-    seedBoxTextLeft: {
-        color: 'white',
-        fontFamily: 'Inconsolata-Bold',
-        fontSize: width / 25,
-        textAlign: 'justify',
-        letterSpacing: 8,
-        backgroundColor: 'transparent',
-        paddingRight: width / 70,
-        paddingVertical: 2,
-    },
-    seedBoxTextRight: {
-        color: 'white',
-        fontFamily: 'Inconsolata-Bold',
-        fontSize: width / 25,
-        textAlign: 'justify',
-        letterSpacing: 8,
-        backgroundColor: 'transparent',
-        paddingVertical: 2,
-    },
-    arrow: {
-        width: width / 2,
-        height: height / 80,
     },
 });
 
@@ -177,6 +120,9 @@ class WriteSeedDown extends Component {
         this.props.navigator.pop({ animated: false });
     }
 
+    /**
+     *  Triggers blank paper wallet print
+     */
     async print() {
         const blankWalletHTML = `
             <!DOCTYPE html>
