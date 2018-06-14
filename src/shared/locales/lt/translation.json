@@ -451,7 +451,7 @@
     "writeSeedDown": {
         "yourSeedIs": "Jūsų užraktas sudarytas iš {{maxSeedLength}} simbolio, skaityti iš kairės į dešinę.",
         "writeDownYourSeed": "<0>Nusirašykite savo užraktą ir kontrolinę sumą, </0><1>tris kartus patikrinkite</1><2> ar kodai sutampa</2>",
-        "scrollToBottom": "Scroll to the bottom"
+        "scrollToBottom": "Paslinkti į apačią"
     },
     "history": {
         "bundleHashCopied": "Paketo šifras nukopijuotas",
