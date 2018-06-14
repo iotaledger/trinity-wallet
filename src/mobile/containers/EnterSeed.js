@@ -9,8 +9,9 @@ import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
 import FlagSecure from 'react-native-flag-secure-android';
 import WithUserActivity from '../components/UserActivity';
-import Checksum from '../components/Checksum';
+import ChecksumComponent from '../components/Checksum';
 import CustomTextInput from '../components/CustomTextInput';
+import ChecksumModalComponent from '../components/ChecksumModal';
 import InfoBox from '../components/InfoBox';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import QRScannerComponent from '../components/QrScanner';
@@ -157,7 +158,7 @@ class EnterSeed extends React.Component {
         });
     }
     onQRPress() {
-        this.showModal();
+        this.showModal('qr');
     }
 
     /**
@@ -177,7 +178,7 @@ class EnterSeed extends React.Component {
         this.hideModal();
     }
 
-    showModal = () => this.setState({ isModalVisible: true });
+    showModal = (modalContent) => this.setState({ modalContent, isModalVisible: true });
 
     hideModal = () => this.setState({ isModalVisible: false });
 
@@ -187,21 +188,28 @@ class EnterSeed extends React.Component {
         }
     };
 
-    renderModalContent = () => {
+    renderModalContent = (modalContent) => {
         const { theme: { body, primary } } = this.props;
-
-        return (
-            <QRScannerComponent
-                primary={primary}
-                body={body}
-                onQRRead={(data) => this.onQRRead(data)}
-                hideModal={() => this.hideModal()}
-            />
-        );
+        let content = '';
+        switch (modalContent) {
+            case 'qr':
+                content = (
+                    <QRScannerComponent
+                        primary={primary}
+                        body={body}
+                        onQRRead={(data) => this.onQRRead(data)}
+                        hideModal={() => this.hideModal()}
+                    />
+                );
+                break;
+            case 'checksum':
+                content = <ChecksumModalComponent body={body} primary={primary} closeModal={() => this.hideModal()} />;
+        }
+        return content;
     };
 
     render() {
-        const { seed } = this.state;
+        const { seed, modalContent } = this.state;
         const { t, theme, minimised } = this.props;
 
         return (
@@ -238,7 +246,11 @@ class EnterSeed extends React.Component {
                                     testID="enterSeed-seedbox"
                                 />
                                 <View style={{ flex: 0.4 }} />
-                                <Checksum seed={seed} theme={theme} />
+                                <ChecksumComponent
+                                    seed={seed}
+                                    theme={theme}
+                                    showModal={() => this.showModal('checksum')}
+                                />
                                 <View style={{ flex: 0.4 }} />
                                 <InfoBox
                                     body={theme.body}
@@ -274,15 +286,15 @@ class EnterSeed extends React.Component {
                                 animationOutTiming={200}
                                 backdropTransitionInTiming={isAndroid ? 500 : 300}
                                 backdropTransitionOutTiming={200}
-                                backdropColor="#102832"
-                                backdropOpacity={1}
+                                backdropColor={theme.body.bg}
+                                backdropOpacity={0.9}
                                 style={{ alignItems: 'center', margin: 0 }}
                                 isVisible={this.state.isModalVisible}
                                 onBackButtonPress={() => this.setState({ isModalVisible: false })}
                                 hideModalContentWhileAnimating
                                 useNativeDriver={isAndroid ? true : false}
                             >
-                                {this.renderModalContent()}
+                                {this.renderModalContent(modalContent)}
                             </Modal>
                         </View>
                     )}

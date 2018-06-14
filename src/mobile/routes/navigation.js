@@ -5,13 +5,10 @@ import Loading from '../containers/Loading';
 import NewSeedSetup from '../containers/NewSeedSetup';
 import WalletSetup from '../containers/WalletSetup';
 import LanguageSetup from '../containers/LanguageSetup';
-import Welcome from '../containers/Welcome';
 import EnterSeed from '../containers/EnterSeed';
 import SaveYourSeed from '../containers/SaveYourSeed';
 import SetPassword from '../containers/SetPassword';
 import WriteSeedDown from '../containers/WriteSeedDown';
-import CopySeedToClipboard from '../containers/CopySeedToClipboard';
-import PaperWallet from '../containers/PaperWallet';
 import SaveSeedConfirmation from '../containers/SaveSeedConfirmation';
 import Login from '../containers/Login';
 import WalletResetConfirmation from '../containers/WalletResetConfirmation';
@@ -45,10 +42,7 @@ export default function registerScreens(store, Provider) {
     Navigation.registerComponent('setPassword', () => getGenerator(SetPassword), store, Provider);
     Navigation.registerComponent('login', () => getGenerator(Login), store, Provider);
     Navigation.registerComponent('writeSeedDown', () => getGenerator(WriteSeedDown), store, Provider);
-    Navigation.registerComponent('paperWallet', () => getGenerator(PaperWallet), store, Provider);
-    Navigation.registerComponent('copySeedToClipboard', () => getGenerator(CopySeedToClipboard), store, Provider);
     Navigation.registerComponent('languageSetup', () => getGenerator(LanguageSetup), store, Provider);
-    Navigation.registerComponent('welcome', () => getGenerator(Welcome), store, Provider);
     Navigation.registerComponent('walletResetConfirm', () => getGenerator(WalletResetConfirmation), store, Provider);
     Navigation.registerComponent(
         'walletResetRequirePassword',

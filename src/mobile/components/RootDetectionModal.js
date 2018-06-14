@@ -20,17 +20,18 @@ const styles = StyleSheet.create({
     warningText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize4,
+        fontSize: GENERAL.fontSize6,
         textAlign: 'center',
         color: 'red',
         paddingVertical: height / 25,
     },
-    questionText: {
+    infoText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
         fontSize: GENERAL.fontSize3,
         paddingBottom: height / 35,
         textAlign: 'center',
+        width: width / 1.3,
     },
 });
 
@@ -50,6 +51,8 @@ export class RootDetectionModal extends PureComponent {
         textColor: PropTypes.object.isRequired,
         /** Modal border color */
         borderColor: PropTypes.object.isRequired,
+        /** Modal warning text color */
+        warningColor: PropTypes.object.isRequired,
     };
 
     componentDidMount() {
@@ -57,15 +60,15 @@ export class RootDetectionModal extends PureComponent {
     }
 
     render() {
-        const { t, backgroundColor, textColor, borderColor } = this.props;
+        const { t, backgroundColor, textColor, borderColor, warningColor } = this.props;
         return (
             <View style={{ width: width / 1.15, alignItems: 'center', backgroundColor: backgroundColor }}>
                 <View style={[styles.modalContent, borderColor]}>
-                    <Text style={styles.warningText}>{t('warning')}</Text>
+                    <Text style={[styles.warningText, warningColor]}>{t('warning')}</Text>
                     <View style={{ marginBottom: height / 35 }}>
-                        <Text style={[styles.questionText, textColor]}>{t('appearsRooted')}</Text>
-                        <Text style={[styles.questionText, textColor]}>{t('securityRisk')}</Text>
-                        <Text style={[styles.questionText, textColor]}>{t('continueDepsiteRisk')}</Text>
+                        <Text style={[styles.infoText, textColor]}>{t('appearsRooted')}</Text>
+                        <Text style={[styles.infoText, textColor]}>{t('securityRisk')}</Text>
+                        <Text style={[styles.infoText, textColor]}>{t('continueDepsiteRisk')}</Text>
                     </View>
                     <ModalButtons
                         onLeftButtonPress={() => this.props.closeApp()}
