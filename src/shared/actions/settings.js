@@ -242,7 +242,10 @@ export function setFullNode(node, addingCustomNode = false) {
                 // Update node in redux store
                 dispatch(dispatcher.success(node));
 
-                if (res.error.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
+                if (
+                    res.error.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE) ||
+                    res.error.includes(Errors.COMMAND_UNKNOWN('[attachToTangle]'))
+                ) {
                     // Automatically default to local PoW if this node has no attach to tangle available
                     dispatch(setRemotePoW(false));
                     dispatch(setAutoPromotion(false));
