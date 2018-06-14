@@ -6,7 +6,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-
     - IotaKit
 
 SPEC CHECKSUMS:
