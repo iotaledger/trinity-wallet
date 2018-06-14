@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 import com.bitgo.randombytes.RandomBytesPackage;
 import com.airbnb.android.react.lottie.LottiePackage;
-import com.christopherdro.htmltopdf.RNHTMLtoPDFPackage;
 import com.corbt.keepawake.KCKeepAwakePackage;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -15,7 +14,7 @@ import com.oblador.keychain.KeychainPackage;
 import com.peel.react.rnos.RNOSModule;
 import com.reactnativenavigation.NavigationApplication;
 import com.rnfs.RNFSPackage;
-import com.rnprint.RNPrint.RNPrintPackage;
+import com.christopherdro.RNPrint.RNPrintPackage;
 import com.github.wumke.RNExitApp.RNExitAppPackage;
 import net.rhogan.rnsecurerandom.RNSecureRandomPackage;
 import org.iota.mobile.IOTAMobilePackage;
@@ -28,11 +27,11 @@ import com.bugsnag.BugsnagReactNative;
 import com.rajivshah.safetynet.RNGoogleSafetyNetPackage;
 import com.hieuvp.fingerprint.ReactNativeFingerprintScannerPackage;
 import com.rndetectnavbarandroid.RNDetectNavbarAndroidPackage;
-import me.listenzz.modal.TranslucentModalReactPackage;
 import cl.json.RNSharePackage;
 import fr.greweb.reactnativeviewshot;
 import com.kristiansorens.flagsecure.FlagSecurePackage;
 import com.reactlibrary.RNReactNativeHapticFeedbackPackage;
+import me.listenzz.modal.TranslucentModalReactPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -63,12 +62,11 @@ public class MainApplication extends NavigationApplication implements ShareAppli
             // eg. new VectorIconsPackage()
             new SvgPackage(),
             new MainReactPackage(),
-            new FlagSecurePackage(),
             new TranslucentModalReactPackage(),
+            new FlagSecurePackage(),
             new RNDetectNavbarAndroidPackage(),
             new RNDeviceInfo(),
             new RNOSModule(),
-            new RNHTMLtoPDFPackage(),
             new RNPrintPackage(),
 	          new RNCameraPackage(),
 	          new RNFSPackage(),

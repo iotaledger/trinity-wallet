@@ -42,7 +42,6 @@
         "disable": "Vô hiệu hoá",
         "enabled": "Kích Hoạt",
         "disabled": "Vô Hiệu",
-        "manualCopy": "Viết từ khoá xuống",
         "paperWallet": "In giấy bản sao",
         "addToPasswordManager": "Cho vào phần mềm quản lí mật khẩu",
         "shareSeed": "Chia sẻ từ khoá",
@@ -148,7 +147,7 @@
         "androidCopyPasteWarning": "Không bao giờ được sao chép/dán chuỗi mật mã của bạn khi sử dụng thiết bị Android.",
         "willNotCopyPasteSeed": "Tôi sẽ không chép/dán từ khoá",
         "mustBeStoredAppropriately": "Nó phải được lưu giữ thích đáng.",
-        "deviceMayBecomeUnresponsive": "Thiết bị của bạn có thể ngưng phản hồi trong một thời gian",
+        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while.",
         "isYourBalanceCorrect": "Bản quyết toán của bạn chính xác không?",
         "ifYourBalanceIsNotCorrect": "Nếu số dư của bạn là sai, có khả năng rằng bạn đang dử dụng chuỗi mật mã trước khi Snapshot gần đây nhất xảy ra.",
         "headToAdvancedSettingsForTransition": "Tới mục \"Cài đặt nâng cao\" để thực hiện quá trình chuyển đổi sang Snapshot mới nhất.",
@@ -308,7 +307,7 @@
         "letsWriteDownYourSeed": "Hãy ghi từ khóa xuống",
         "youCanHighlightCharacters": "Bạn có thể đánh dấu 9 ký tự trong một lần",
         "printBlankWallet": "In một ví trống",
-        "whatIsCheksum": "Mỗi từ khóa có một kiểm tra 3 ký tự tương ứng",
+        "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
         "iHavesavedMySeed": "Tôi đã lưu từ khóa",
         "checksumExplanation": "Khi bạn cho từ khoá vào ví, bạn nên chắc chắn rằng mã kiểm tra của ví trùng khớp với mã bạn đã ghi xuống.",
         "mustSaveYourSeed": "<0><0>Bạn phải lưu từ khoá với </0><1>ít nhất một</1><2>trong những sự lựa chọn dưới đây.</2></0>"
@@ -438,21 +437,21 @@
         "okay": "Ok. Hãy thiết lập ví điện tử của bạn!",
         "doYouAlreadyHaveASeed": "Bạn đã có từ khoá mà bạn muốn dùng chưa?",
         "doYouNeedASeed": "Bạn có cần tạo từ khoá mới không?",
-        "seedExplanation": "Từ khoá của IOTA giống như là tên tài khoản và mật khẩu hợp lại với một dãy chữ có 81 ký tự.",
+        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
         "noIHaveOne": "Không, tôi đã có rồi",
         "yesINeedASeed": "Có, tôi cần từ khoá",
-        "explanation": "<0><0>Bạn có thể xài nó để truy cập vào tài khoản từ</0><1> bất kỳ ví điện tử nào</1><2> trên </2><3>bất kỳ máy nào</3><4>. Nhưng nếu bạn mất từ khoá, bạn sẽ mất hết IOTA của bạn.</4></0>",
+        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
+        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
         "keepSafe": "Vui lòng giữ từ khoá ở một nơi an toàn.",
         "hint": "<0><0>Gợi ý:</0> Chọn KHÔNG nếu đây là lần đầu tiên bạn xài IOTA.</0>"
     },
     "welcome": {
-        "thankYou": "Cám ơn bạn đã tải ví Trinity về.",
-        "weWillSpend": "Chúng ta sẽ dành vài phút để cài đặt ví điện tử cho bạn.",
-        "reminder": "Bạn sẽ bị lôi cuốn bỏ qua một số bước, nhưng chúng tôi khuyên bạn nên làm theo từng bước để hoàn thành quy trình này."
+        "thankYou": "Thank you for downloading Trinity"
     },
     "writeSeedDown": {
         "yourSeedIs": "Từ khoá của bạn có {{maxSeedLength}} ký tự đọc từ trái sang phải.",
-        "writeDownYourSeed": "<0> Ghi từ khoá và mã kiểm tra xuống và </0><1>kiểm tra 3 lần</1><2>để chắc chắn nó đúng.</2>"
+        "writeDownYourSeed": "<0> Ghi từ khoá và mã kiểm tra xuống và </0><1>kiểm tra 3 lần</1><2>để chắc chắn nó đúng.</2>",
+        "scrollToBottom": "Scroll to the bottom"
     },
     "history": {
         "bundleHashCopied": "Đã sao chép nhóm hash",
