@@ -12,6 +12,7 @@ import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
 import InfoBox from '../components/InfoBox';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     infoText: {
@@ -83,6 +84,10 @@ export class PasswordManagerModal extends PureComponent {
         this.state = {
             checked: false,
         };
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('PasswordManagerModal');
     }
 
     onCopyPress() {
