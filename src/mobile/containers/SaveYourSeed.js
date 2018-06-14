@@ -482,7 +482,7 @@ class SaveYourSeed extends Component {
                     <View style={[styles.line, lineColor]} />
                     {/* FIXME Temporarily disable paper wallet on Android */}
                     {!isAndroid && (
-                        <View>
+                        <View style={{ alignItems: 'center' }}>
                             <Button
                                 onPress={() => this.onPrintPaperWallet()}
                                 style={{
