@@ -5,6 +5,11 @@ import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import { EnterPasswordOnLogin } from '../../components/EnterPasswordOnLogin';
 
+jest.mock('bugsnag-react-native', () => ({
+    Configuration: jest.fn(),
+    Client: jest.fn(() => ({ leaveBreadcrumb: jest.fn() })),
+}));
+
 const getProps = (overrides) =>
     assign(
         {},

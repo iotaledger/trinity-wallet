@@ -62,6 +62,11 @@ const getProps = (overrides) =>
         overrides,
     );
 
+jest.mock('bugsnag-react-native', () => ({
+    Configuration: jest.fn(),
+    Client: jest.fn(() => ({ leaveBreadcrumb: jest.fn() })),
+}));
+
 describe('Testing HistoryModalContent component', () => {
     describe('propTypes', () => {
         it('should require an onPress function as a prop', () => {
