@@ -480,23 +480,28 @@ class SaveYourSeed extends Component {
                         {t('global:addToPasswordManager')}
                     </Button>
                     <View style={[styles.line, lineColor]} />
-                    <Button
-                        onPress={() => this.onPrintPaperWallet()}
-                        style={{
-                            wrapper: {
-                                width: width / 1.36,
-                                height: height / 13,
-                                borderRadius: height / 90,
-                                backgroundColor: secondary.color,
-                            },
-                            children: {
-                                color: secondary.body,
-                            },
-                        }}
-                    >
-                        {t('global:paperWallet')}
-                    </Button>
-                    <View style={[styles.line, lineColor]} />
+                    {/* FIXME Temporarily disable paper wallet on Android */}
+                    {!isAndroid && (
+                        <View>
+                            <Button
+                                onPress={() => this.onPrintPaperWallet()}
+                                style={{
+                                    wrapper: {
+                                        width: width / 1.36,
+                                        height: height / 13,
+                                        borderRadius: height / 90,
+                                        backgroundColor: secondary.color,
+                                    },
+                                    children: {
+                                        color: secondary.body,
+                                    },
+                                }}
+                            >
+                                {t('global:paperWallet')}
+                            </Button>
+                            <View style={[styles.line, lineColor]} />
+                        </View>
+                    )}
                     <Text style={[styles.infoTextSmall, textColor]}>{t('leastSecure')}</Text>
                     <View style={{ flex: 1 }} />
                 </View>
