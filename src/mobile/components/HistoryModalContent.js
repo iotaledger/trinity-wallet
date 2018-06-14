@@ -373,7 +373,7 @@ export default class HistoryModalContent extends PureComponent {
                                     </TouchableOpacity>
                                     {(!confirmationBool &&
                                         mode === 'Expert' &&
-                                        !isFailed(
+                                        !isFailed && (
                                             <View style={[styles.buttonsContainer]}>
                                                 {(!bundleIsBeingPromoted && this.renderButton()) || (
                                                     <View style={styles.buttonContainer}>
@@ -383,7 +383,7 @@ export default class HistoryModalContent extends PureComponent {
                                                 {(!isBroadcastingBundle &&
                                                     this.renderButton({
                                                         ctaColor: style.secondaryColor,
-                                                        secondaryCtaColor: style.secondaryColor,
+                                                        secondaryCtaColor: style.secondaryBody,
                                                         text: t('rebroadcast'),
                                                         onPress: () => {
                                                             if (!disableWhen) {
@@ -395,7 +395,7 @@ export default class HistoryModalContent extends PureComponent {
                                                         <ActivityIndicator color={style.secondaryColor} size="large" />
                                                     </View>
                                                 )}
-                                            </View>,
+                                            </View>
                                         )) ||
                                         (!confirmationBool &&
                                             mode === 'Standard' &&
