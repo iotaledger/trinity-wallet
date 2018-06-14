@@ -42,7 +42,6 @@
         "disable": "Deshabilitar",
         "enabled": "Habilitado",
         "disabled": "Deshabilitado",
-        "manualCopy": "Escribe la semilla",
         "paperWallet": "Imprimir copia en papel",
         "addToPasswordManager": "Agregar a administrador de contraseñas",
         "shareSeed": "Share seed",
@@ -148,7 +147,7 @@
         "androidCopyPasteWarning": "Never copy/paste your seed on an Android device.",
         "willNotCopyPasteSeed": "I will not copy/paste my seed",
         "mustBeStoredAppropriately": "It must be stored appropriately.",
-        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while",
+        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while.",
         "isYourBalanceCorrect": "Is your balance correct?",
         "ifYourBalanceIsNotCorrect": "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
         "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition.",
@@ -308,11 +307,10 @@
         "letsWriteDownYourSeed": "Lets write down your seed",
         "youCanHighlightCharacters": "You can highlight 9 characters at a time",
         "printBlankWallet": "Print a blank wallet",
-        "whatIsCheksum": "Every seed has a corresponding 3 character checksum",
+        "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
         "iHavesavedMySeed": "I've saved my seed",
         "checksumExplanation": "Whenever you add a seed to your wallet, you should ensure that the wallet-generated checksum matches the one you have written down.",
-        "mustSaveYourSeed":
-            "<0><0>Debes guardar tu seed con </0><1>al menos una</1><2> de las opciones a continuación.</2></0>"
+        "mustSaveYourSeed": "<0><0>Debes guardar tu seed con</0><1>al menos una</1><2>de las opciones a continuación.</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Please confirm your seed",
@@ -439,21 +437,21 @@
         "okay": "OK. ¡Vamos a configurar tu billetera!",
         "doYouAlreadyHaveASeed": "¿Ya tienes una semilla que te gustaría utilizar?",
         "doYouNeedASeed": "Do you need to create a new seed?",
-        "seedExplanation": "La seed de IOTA es, simultáneamente, el nombre del usuario y la contraseña para tu cuenta, combinada en una cadena de 81 caracteres.",
+        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
         "noIHaveOne": "No, I have one",
         "yesINeedASeed": "Yes, I need a seed",
-        "explanation": "<0><0>Puedes usarla para acceder a tus fondos desde</0><1>cualquier billetera</1><2>, en</2><3> cualquier dispositivo</3><4>. Pero si pierdes tu semilla, también perderás tus IOTA.</4></0>",
+        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
+        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
         "keepSafe": "Por favor mantén tu semilla a salvo.",
         "hint": "<0><0>Pista:</0> Haga clic en NO Si esta es su primera vez con IOTA.</0>"
     },
     "welcome": {
-        "thankYou": "Gracias por descargar Trinity.",
-        "weWillSpend": "Vamos a pasar los minutos siguientes configurando tu billetera.",
-        "reminder": "Puedes estar tentado a saltar algunos pasos, pero te instamos a seguir el proceso completo."
+        "thankYou": "Thank you for downloading Trinity"
     },
     "writeSeedDown": {
         "yourSeedIs": "Su semilla tiene {{maxSeedLength}} caracteres leídos de izquierda a derecha.",
-        "writeDownYourSeed": "<0>Escriba su semilla y código de verificación y </0><1>vuelva a chequear</1><2>que son correctos.</2>"
+        "writeDownYourSeed": "<0>Escriba su semilla y código de verificación y </0><1>vuelva a chequear</1><2>que son correctos.</2>",
+        "scrollToBottom": "Scroll to the bottom"
     },
     "history": {
         "bundleHashCopied": "Hash del paquete copiado",
