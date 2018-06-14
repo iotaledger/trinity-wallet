@@ -93,7 +93,7 @@ class PrivacyPolicy extends Component {
         const { theme } = this.props;
         this.props.acceptPrivacy();
         this.props.navigator.push({
-            screen: 'welcome',
+            screen: 'walletSetup',
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,

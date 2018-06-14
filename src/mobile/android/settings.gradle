@@ -13,8 +13,6 @@ include ':react-native-os'
 project(':react-native-os').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-os/android')
 include ':react-native-camera'
 project(':react-native-camera').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-camera/android')
-include ':react-native-html-to-pdf'
-project(':react-native-html-to-pdf').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-html-to-pdf/android')
 include ':react-native-print'
 project(':react-native-print').projectDir = new File(rootProject.projectDir,'../node_modules/react-native-print/android')
 include ':react-native-udp'
