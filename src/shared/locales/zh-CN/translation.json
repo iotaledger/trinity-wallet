@@ -42,7 +42,6 @@
         "disable": "停用",
         "enabled": "已启用",
         "disabled": "已禁用",
-        "manualCopy": "记下种子",
         "paperWallet": "打印副本",
         "addToPasswordManager": "添加到密码管理器",
         "shareSeed": "共享种子",
@@ -148,7 +147,7 @@
         "androidCopyPasteWarning": "切勿在安卓设备上复制/粘贴你的种子。",
         "willNotCopyPasteSeed": "我不会复制/粘贴我的种子。",
         "mustBeStoredAppropriately": "必须适当地存储种子。",
-        "deviceMayBecomeUnresponsive": "您的设备可能会在一段时间内无法响应。",
+        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while.",
         "isYourBalanceCorrect": "您的余额是正确的吗？",
         "ifYourBalanceIsNotCorrect": "如果您的余额不正确，很可能您使用的是快照前的种子。",
         "headToAdvancedSettingsForTransition": "请去高级设置中设置，并执行快照转换。",
@@ -308,7 +307,7 @@
         "letsWriteDownYourSeed": "让我们记下您的种子",
         "youCanHighlightCharacters": "您可以一次突出显示9个字符",
         "printBlankWallet": "打印空白钱包",
-        "whatIsCheksum": "每个种子都有相应的3个字符的校验和。",
+        "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
         "iHavesavedMySeed": "我已经保存了我的种子",
         "checksumExplanation": "当你把种子添加到你的钱包的时候，你应该确保钱包生成的校验码与你已经记下来的校验码是匹配的。",
         "mustSaveYourSeed": "<0> <0> 您必须使用 </0> <1> 至少用下面列出的选项的 </1> <2> 保存种子. </2> </0>"
@@ -438,21 +437,21 @@
         "okay": "好，让我们来开始设置您的钱包 ！",
         "doYouAlreadyHaveASeed": "您是否希望使用一个已有的种子？",
         "doYouNeedASeed": "你需要创建一个新的种子吗？",
-        "seedExplanation": "IOTA种子就像您账户的用户名和密码被转化成了一个长度为81个字符的字符串。",
+        "seedExplanation": "你的种子是你资金的主要钥匙。它是81个字符长, 只使用字母 A-Z 或数字9。",
         "noIHaveOne": "不, 我有一个",
         "yesINeedASeed": "是的，我需要一个新的种子",
-        "explanation": "<0> <0> 您可以使用它访问您的资金从 </0> <1> 任何钱包 </1> <2>, 在 </2> <3> 任何设备 </3> <4>。但是, 如果你失去了你的种子, 你也失去了你的丝毫. </4> </0>",
+        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
+        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
         "keepSafe": "请您保管好你的种子.",
         "hint": "<0> <0> 提示: </0> 如果这是您第一次使用 IOTA, 请单击 \"否\". </0>"
     },
     "welcome": {
-        "thankYou": "感谢下载Trinity",
-        "weWillSpend": "接下来我们将花几分钟来设置您的钱包。",
-        "reminder": "您可以跳过某些步骤，但我们强烈建议你按照步骤完成整个过程。"
+        "thankYou": "Thank you for downloading Trinity"
     },
     "writeSeedDown": {
         "yourSeedIs": "你的种子是从左向右读的{{maxSeedLength}} 字符。",
-        "writeDownYourSeed": "<0> 记下种子和校验和 </0><1> 三重检查 </1><2> 他们是正确的. </2>"
+        "writeDownYourSeed": "<0> 记下种子和校验和 </0><1> 三重检查 </1><2> 他们是正确的. </2>",
+        "scrollToBottom": "Scroll to the bottom"
     },
     "history": {
         "bundleHashCopied": "绑定哈希值已复制",
