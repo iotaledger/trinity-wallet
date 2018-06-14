@@ -42,7 +42,6 @@
         "disable": "Отключить",
         "enabled": "Включено",
         "disabled": "Выключено",
-        "manualCopy": "Запишите ключ",
         "paperWallet": "Распечатать бумажную версию",
         "addToPasswordManager": "Добавить в менеджер паролей",
         "shareSeed": "Передать ключ",
@@ -148,7 +147,7 @@
         "androidCopyPasteWarning": "Никогда не пользуйтесь функцией \"Скопировать/Вставить\" на Андроиде.",
         "willNotCopyPasteSeed": "Я не буду копировать/вставлять мой ключ",
         "mustBeStoredAppropriately": "Нужно хранить надлежащим образом.",
-        "deviceMayBecomeUnresponsive": "Ваше устройство может не отвечать какое-то время",
+        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while.",
         "isYourBalanceCorrect": "Верен ли Ваш баланс?",
         "ifYourBalanceIsNotCorrect": "Если Ваш баланс не верен, то, скорее всего, Вы используете ключ, который не был актувлизирован после снимка сети.",
         "headToAdvancedSettingsForTransition": "Перейдите в Дополнительные Настройки и выполните Snapshot переход.",
@@ -308,7 +307,7 @@
         "letsWriteDownYourSeed": "Запишите Ваш ключ",
         "youCanHighlightCharacters": "Одновременно можно выделить 9 символов",
         "printBlankWallet": "Распечатать чистый кошелёк",
-        "whatIsCheksum": "У каждого ключа есть соответствующая контрольная сумма из трёх символов",
+        "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
         "iHavesavedMySeed": "Я сохранил свой ключ",
         "checksumExplanation": "Каждый раз, когда Вы добавляете ключ к Вашему кошельку, Вы должны убедиться, что контрольная сумма, сгенерированная кошельком, соответствует той, которую Вы записали.",
         "mustSaveYourSeed": "<0><0>Вы должны сохранить свой ключ </ 0><1>как минимум одним</ 1> <2> из перечисленных ниже способов.</ 2></ 0>"
@@ -441,18 +440,18 @@
         "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
         "noIHaveOne": "Нет, у меня уже есть ключ",
         "yesINeedASeed": "Да, мне нужен ключ",
-        "explanation": "<0><0>Вы можете использовать его для получения доступа к Вашим средствам</0><1> в любом кошельке</1><2>, </2><3>на любом устройстве</3><4 >. Но если Вы потеряете Ваш ключ, Вы также потеряете Ваши IOTA.</4></0>",
+        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
+        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
         "keepSafe": "Пожалуйста, храните Ваш ключ в безопасности.",
         "hint": "<0><0>Подсказка:</0> нажмите кнопку Нет, если это ваш первый раз, когда вы используете IOTA.</0>"
     },
     "welcome": {
-        "thankYou": "Благодарим за загрузку Тринити.",
-        "weWillSpend": "В последующие несколько минут мы будем его настраивать.",
-        "reminder": "Возможно Вы захотите пропустить некоторые шаги, но мы настоятельно рекомендуем Вам пройти весь процесс."
+        "thankYou": "Thank you for downloading Trinity"
     },
     "writeSeedDown": {
         "yourSeedIs": "Ваш ключ состоит из {{maxSeedLength}} символов, читая слева направо.",
-        "writeDownYourSeed": "<0> Запишите Ваш ключ, контрольную сумму и </ 0><1>трижды проверьте </ 1><2> что они верны.</ 2>"
+        "writeDownYourSeed": "<0> Запишите Ваш ключ, контрольную сумму и </ 0><1>трижды проверьте </ 1><2> что они верны.</ 2>",
+        "scrollToBottom": "Scroll to the bottom"
     },
     "history": {
         "bundleHashCopied": "Хэш пакет скопирован",
