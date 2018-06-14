@@ -34,13 +34,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-end',
     },
-    subHeaderWrapper: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingHorizontal: width / 10,
-    },
     subHeaderText: {
-        fontSize: GENERAL.fontSize4,
+        fontSize: GENERAL.fontSize5,
         fontFamily: 'SourceSansPro-Regular',
         textAlign: 'center',
         backgroundColor: 'transparent',
@@ -146,9 +141,9 @@ class WalletResetConfirmation extends Component {
                         }
                     />
                     <View style={{ flex: 0.4 }} />
-                    <Text style={[styles.subHeaderText, primaryColor]}>{t('walletResetConfirmation:cannotUndo')}</Text>
-                    <View style={{ flex: 0.2 }} />
                     <Text style={[styles.confirmationText, textColor]}>{t('global:continue?')}</Text>
+                    <View style={{ flex: 0.2 }} />
+                    <Text style={[styles.subHeaderText, primaryColor]}>{t('walletResetConfirmation:cannotUndo')}</Text>
                 </View>
                 <View style={styles.bottomWrapper}>
                     <OnboardingButtons
