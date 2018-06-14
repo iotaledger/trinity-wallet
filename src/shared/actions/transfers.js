@@ -21,7 +21,7 @@ import {
     selectedAccountStateFactory,
     getRemotePoWFromState,
     selectFirstAddressFromAccountFactory,
-    getFailedTxBundleHashesForSelectedAccount,
+    getFailedBundleHashesForSelectedAccount,
 } from '../selectors/accounts';
 import { setNextStepAsActive } from './progress';
 import { clearSendFields } from './ui';
@@ -706,7 +706,7 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
 
 export const retryFailedTransaction = (accountName, bundleHash, powFn) => (dispatch, getState) => {
     const existingAccountState = selectedAccountStateFactory(accountName)(getState());
-    const existingFailedTransactionsForThisAccount = getFailedTxBundleHashesForSelectedAccount(getState());
+    const existingFailedTransactionsForThisAccount = getFailedBundleHashesForSelectedAccount(getState());
     const shouldOffloadPow = getRemotePoWFromState(getState());
 
     dispatch(retryFailedTransactionRequest());

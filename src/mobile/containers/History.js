@@ -20,7 +20,7 @@ import {
     getTransfersForSelectedAccount,
     getSelectedAccountName,
     getAddressesForSelectedAccount,
-    getFailedTxBundleHashesForSelectedAccount,
+    getFailedBundleHashesForSelectedAccount,
 } from 'iota-wallet-shared-modules/selectors/accounts';
 import { OptimizedFlatList } from 'react-native-optimized-flatlist';
 import { round } from 'iota-wallet-shared-modules/libs/utils';
@@ -130,7 +130,7 @@ class History extends Component {
         /** Addresses for selected account */
         addresses: PropTypes.array.isRequired,
         /** Failed transactions bundle hashes for selected account */
-        failedTxBundleHashes: PropTypes.object.isRequired,
+        failedBundleHashes: PropTypes.object.isRequired,
         /** Make a retry attempt for a failed transaction
          * @param {string} accountName
          * @param {string} bundleHash
@@ -350,7 +350,7 @@ class History extends Component {
             isBroadcastingBundle,
             currentlyPromotingBundleHash,
             isRetryingFailedTransaction,
-            failedTxBundleHashes,
+            failedBundleHashes,
         } = this.props;
         const { modalProps } = this.state;
 
@@ -386,7 +386,7 @@ class History extends Component {
                                 isBroadcastingBundle={isBroadcastingBundle}
                                 isRetryingFailedTransaction={isRetryingFailedTransaction}
                                 currentlyPromotingBundleHash={currentlyPromotingBundleHash}
-                                checkIfFailedTransaction={(bundle) => has(failedTxBundleHashes, bundle)}
+                                isFailedTransaction={(bundle) => has(failedBundleHashes, bundle)}
                             />
                         </Modal>
                     )}
@@ -411,7 +411,7 @@ const mapStateToProps = (state) => ({
     isAutoPromoting: state.polling.isAutoPromoting,
     isModalActive: state.ui.isModalActive,
     currentlyPromotingBundleHash: state.ui.currentlyPromotingBundleHash,
-    failedTxBundleHashes: getFailedTxBundleHashesForSelectedAccount(state),
+    failedBundleHashes: getFailedBundleHashesForSelectedAccount(state),
     isRetryingFailedTransaction: state.ui.isRetryingFailedTransaction,
 });
 

@@ -18,8 +18,8 @@ import {
     getTasksForSelectedAccount,
     shouldTransitionForSnapshot,
     hasDisplayedSnapshotTransitionGuide,
-    getFailedTxBundleHashesFromAccounts,
-    getFailedTxBundleHashesForSelectedAccount,
+    getFailedBundleHashesFromAccounts,
+    getFailedBundleHashesForSelectedAccount,
 } from '../../selectors/accounts';
 
 describe('selectors: accounts', () => {
@@ -469,30 +469,30 @@ describe('selectors: accounts', () => {
         });
     });
 
-    describe('#getFailedTxBundleHashesFromAccounts', () => {
-        describe('when "failedTxBundleHashes" prop is not defined as a nested prop under "accounts" reducer', () => {
+    describe('#getFailedBundleHashesFromAccounts', () => {
+        describe('when "failedBundleHashes" prop is not defined as a nested prop under "accounts" reducer', () => {
             it('should return an empty object', () => {
-                expect(getFailedTxBundleHashesFromAccounts({ accounts: { foo: {} } })).to.eql({});
+                expect(getFailedBundleHashesFromAccounts({ accounts: { foo: {} } })).to.eql({});
             });
         });
 
-        describe('when "failedTxBundleHashes" prop is defined as a nested prop under "accounts" reducer', () => {
-            it('should return value for "failedTxBundleHashes" prop', () => {
+        describe('when "failedBundleHashes" prop is defined as a nested prop under "accounts" reducer', () => {
+            it('should return value for "failedBundleHashes" prop', () => {
                 expect(
-                    getFailedTxBundleHashesFromAccounts({ accounts: { failedTxBundleHashes: { foo: { AAA: [{}] } } } }),
+                    getFailedBundleHashesFromAccounts({ accounts: { failedBundleHashes: { foo: { AAA: [{}] } } } }),
                 ).to.eql({ foo: { AAA: [{}] } });
             });
         });
     });
 
-    describe('#getFailedTxBundleHashesForSelectedAccount', () => {
-        describe('when account name is not defined as a nested prop under failedTxBundleHashes object', () => {
+    describe('#getFailedBundleHashesForSelectedAccount', () => {
+        describe('when account name is not defined as a nested prop under "failedBundleHashes" object', () => {
             it('should return an empty object', () => {
                 expect(
-                    getFailedTxBundleHashesForSelectedAccount({
+                    getFailedBundleHashesForSelectedAccount({
                         accounts: {
                             accountInfo: {},
-                            failedTxBundleHashes: {
+                            failedBundleHashes: {
                                 foo: { AAA: [{}] },
                             },
                             accountNames: ['foo', 'baz'],
@@ -505,13 +505,13 @@ describe('selectors: accounts', () => {
             });
         });
 
-        describe('when account name is defined as a nested prop under failedTxBundleHashes object', () => {
+        describe('when account name is defined as a nested prop under "failedBundleHashes" object', () => {
             it('should return value for selected account', () => {
                 expect(
-                    getFailedTxBundleHashesForSelectedAccount({
+                    getFailedBundleHashesForSelectedAccount({
                         accounts: {
                             accountInfo: {},
-                            failedTxBundleHashes: {
+                            failedBundleHashes: {
                                 foo: {
                                     AAA: [{}, {}],
                                 },
