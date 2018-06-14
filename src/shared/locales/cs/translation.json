@@ -42,7 +42,6 @@
         "disable": "Vypnout",
         "enabled": "Zapnuto",
         "disabled": "Vypnuto",
-        "manualCopy": "Napište Seed",
         "paperWallet": "Tisk papírové kopie",
         "addToPasswordManager": "Přidat do Správce hesel",
         "shareSeed": "Sdílet Seed",
@@ -148,7 +147,7 @@
         "androidCopyPasteWarning": "Nikdy nekopírujte/nevkládejte Váš Seed na Android zařízení.",
         "willNotCopyPasteSeed": "Nebudu kopírovat/vkládat svůj seed",
         "mustBeStoredAppropriately": "Musí být uloženo odpovídajícím způsobem.",
-        "deviceMayBecomeUnresponsive": "Vaše zařízení může na chvíli přestat reagovat",
+        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while.",
         "isYourBalanceCorrect": "Je Váš zůstatek v pořádku?",
         "ifYourBalanceIsNotCorrect": "Pokud Váš zůstatek není správný, je pravděpodobné, že používáte Seed z doby před snapshotem.",
         "headToAdvancedSettingsForTransition": "Jděte do Pokročilého nastavení a proveďte aktualizaci po Snapshotu.",
@@ -308,7 +307,7 @@
         "letsWriteDownYourSeed": "Poznamenejte si někam Váš Seed",
         "youCanHighlightCharacters": "Můžete zvýraznit 9 znaků najednou",
         "printBlankWallet": "Tisk prázdné peněženky",
-        "whatIsCheksum": "Každý Seed má odpovídající 3 znakový kontrolní součet",
+        "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
         "iHavesavedMySeed": "Svůj Seed mám uložený",
         "checksumExplanation": "Vždy, když přidáte Seed do Vaší peněženky, byste se měli ujistit, že kontrolní součet vygenerovaný peněženkou odpovídá tomu, který jste si zapsali.",
         "mustSaveYourSeed": "<0><0>Musíte uložit nejméně </0><1>jeden Seed</1><2>z níže uvedených možností.</2></0>"
@@ -441,18 +440,18 @@
         "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
         "noIHaveOne": "Ne, již mám Seed",
         "yesINeedASeed": "Ano, potřebuji Seed",
-        "explanation": "<0><0>Můžete ho použít pro přístup ke svým prostředkům z</0> <1>jakékoliv peněženky</1> <2>, na</2> <3>jakémkoliv zařízení</3> <4>. Ale pokud ztratíte svůj Seed, ztratíte také všechny Vaše IOTA.</4></0>",
+        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
+        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
         "keepSafe": "Uchovávejte Váš Seed v bezpečí.",
         "hint": "<0><0>Tip:</0> Pokud IOTA peněženku používáte poprvé, klepněte na tlačítko NE</0>"
     },
     "welcome": {
-        "thankYou": "Děkujeme, že jste si stáhli Trinity.",
-        "weWillSpend": "Nyní si vyhraďte pár minut pro správné nastavení Vaší peněženky.",
-        "reminder": "Možná budete chtít vynechat některé kroky, ale doporučujeme Vám, abyste je dokončili všechny."
+        "thankYou": "Thank you for downloading Trinity"
     },
     "writeSeedDown": {
         "yourSeedIs": "Váš Seed je {{maxSeedLength}} znaků čtených zleva doprava.",
-        "writeDownYourSeed": "<0> Zapište si svůj Seed a kontrolní součet </0><1>a důkladně zkontrolujte</1><2> jejich správnost.</2>"
+        "writeDownYourSeed": "<0> Zapište si svůj Seed a kontrolní součet </0><1>a důkladně zkontrolujte</1><2> jejich správnost.</2>",
+        "scrollToBottom": "Scroll to the bottom"
     },
     "history": {
         "bundleHashCopied": "Balíček hash zkopírován",
