@@ -147,7 +147,7 @@
         "androidCopyPasteWarning": "Nunca copiar/colar sua Seed em um dispositivo Android.",
         "willNotCopyPasteSeed": "Eu não vou copiar/colar minha Seed",
         "mustBeStoredAppropriately": "Ela deve ser armazenada adequadamente.",
-        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while.",
+        "deviceMayBecomeUnresponsive": "Seu dispositivo pode ficar sem responder por um tempo.",
         "isYourBalanceCorrect": "Seu saldo está correto?",
         "ifYourBalanceIsNotCorrect": "Se o seu saldo não estiver correto, é provável que você esteja usando um servidor pré-snapshot.",
         "headToAdvancedSettingsForTransition": "Vá até as Configurações Avançadas e realize uma Transição de Snapshot.",
@@ -307,7 +307,7 @@
         "letsWriteDownYourSeed": "Vamos anotar sua seed",
         "youCanHighlightCharacters": "Você pode destacar 9 caracteres de cada vez",
         "printBlankWallet": "Imprimir uma carteira em branco",
-        "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
+        "whatIsChecksum": "Toda seed tem uma soma de verificação correspondente a 3 caracteres",
         "iHavesavedMySeed": "Eu salvei a minha seed",
         "checksumExplanation": "Sempre que você adicionar uma seed para a sua carteira, você deve verificar que as somas de verificação geradas pela carteira são iguais as quais você tem anotado.",
         "mustSaveYourSeed": "<0><0>Você deve salvar sua Seed usando </0><1>pelo menos uma</1><2> das opções abaixo.</2></0>"
