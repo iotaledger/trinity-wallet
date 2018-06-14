@@ -276,27 +276,27 @@ export const hasDisplayedSnapshotTransitionGuide = createSelector(getTasksForSel
 });
 
 /**
- *   Selects getFailedTxBundleHashesFromAccounts prop from accounts reducer state object.
+ *   Selects failedBundleHashes prop from accounts reducer state object.
  *   Uses getAccountFromState selector for slicing accounts state from the state object.
  *
- *   @method getFailedTxBundleHashesFromAccounts
+ *   @method getFailedBundleHashesFromAccounts
  *   @param {object} state
  *   @returns {object}
  **/
-export const getFailedTxBundleHashesFromAccounts = createSelector(
+export const getFailedBundleHashesFromAccounts = createSelector(
     getAccountsFromState,
-    (state) => state.failedTxBundleHashes || {},
+    (state) => state.failedBundleHashes || {},
 );
 
 /**
- *   Selects failedTxBundleHashes for selected account
+ *   Selects failedBundleHashes for selected account
  *
- *   @method getFailedTxBundleHashesForSelectedAccount
+ *   @method getFailedBundleHashesForSelectedAccount
  *   @param {object} state
  *   @returns {object}
  **/
-export const getFailedTxBundleHashesForSelectedAccount = createSelector(
+export const getFailedBundleHashesForSelectedAccount = createSelector(
     getSelectedAccountName,
-    getFailedTxBundleHashesFromAccounts,
-    (accountName, failedTxBundleHashes) => get(failedTxBundleHashes, accountName) || {},
+    getFailedBundleHashesFromAccounts,
+    (accountName, failedBundleHashes) => get(failedBundleHashes, accountName) || {},
 );

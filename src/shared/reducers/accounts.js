@@ -30,7 +30,7 @@ const updateAccountInfo = (state, payload) => ({
 });
 
 const updateAccountName = (state, payload) => {
-    const { accountInfo, accountNames, unconfirmedBundleTails, setupInfo, tasks, failedTxBundleHashes } = state;
+    const { accountInfo, accountNames, unconfirmedBundleTails, setupInfo, tasks, failedBundleHashes } = state;
 
     const { oldAccountName, newAccountName } = payload;
 
@@ -55,7 +55,7 @@ const updateAccountName = (state, payload) => {
 
     return {
         accountInfo: renameKeys(accountInfo, keyMap),
-        failedTxBundleHashes: renameKeys(failedTxBundleHashes, keyMap),
+        failedBundleHashes: renameKeys(failedBundleHashes, keyMap),
         tasks: renameKeys(tasks, keyMap),
         setupInfo: renameKeys(setupInfo, keyMap),
         accountNames: map(accountNames, updateName),
@@ -69,7 +69,7 @@ const account = (
         accountNames: [],
         firstUse: true,
         onboardingComplete: false,
-        failedTxBundleHashes: {},
+        failedBundleHashes: {},
         accountInfo: {},
         setupInfo: {},
         tasks: {},
@@ -102,7 +102,7 @@ const account = (
             return {
                 ...state,
                 accountInfo: omit(state.accountInfo, action.payload),
-                failedTxBundleHashes: omit(state.failedTxBundleHashes, action.payload),
+                failedBundleHashes: omit(state.failedBundleHashes, action.payload),
                 tasks: omit(state.tasks, action.payload),
                 setupInfo: omit(state.setupInfo, action.payload),
                 unconfirmedBundleTails: omitBy(state.unconfirmedBundleTails, (tailTransactions) =>
@@ -237,10 +237,10 @@ const account = (
         case ActionTypes.MARK_BUNDLE_BROADCAST_STATUS_AS_PENDING:
             return {
                 ...state,
-                failedTxBundleHashes: {
-                    ...state.failedTxBundleHashes,
+                failedBundleHashes: {
+                    ...state.failedBundleHashes,
                     [action.payload.accountName]: {
-                        ...state.failedTxBundleHashes[action.payload.accountName],
+                        ...state.failedBundleHashes[action.payload.accountName],
                         ...{
                             [action.payload.bundleHash]: action.payload.transactionObjects,
                         },
@@ -250,10 +250,10 @@ const account = (
         case ActionTypes.MARK_BUNDLE_BROADCAST_STATUS_AS_COMPLETED:
             return {
                 ...state,
-                failedTxBundleHashes: {
-                    ...state.failedTxBundleHashes,
+                failedBundleHashes: {
+                    ...state.failedBundleHashes,
                     [action.payload.accountName]: omit(
-                        state.failedTxBundleHashes[action.payload.accountName],
+                        state.failedBundleHashes[action.payload.accountName],
                         action.payload.bundleHash,
                     ),
                 },
