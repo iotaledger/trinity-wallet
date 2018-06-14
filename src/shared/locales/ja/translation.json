@@ -42,7 +42,6 @@
         "disable": "無効",
         "enabled": "有効",
         "disabled": "無効",
-        "manualCopy": "シードを書き写す",
         "paperWallet": "印刷する",
         "addToPasswordManager": "パスワードマネージャーに追加する",
         "shareSeed": "シードを共有",
@@ -148,7 +147,7 @@
         "androidCopyPasteWarning": "絶対にシードをAndroidデバイス上でコピー&ペーストしないでください。",
         "willNotCopyPasteSeed": "私はシードをコピー&ペーストしません。",
         "mustBeStoredAppropriately": "シードは適切に保管しなければなりません。",
-        "deviceMayBecomeUnresponsive": "しばらくの間、お使いのデバイスが応答できなくなる恐れがあります",
+        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while.",
         "isYourBalanceCorrect": "残高は正しいですか？",
         "ifYourBalanceIsNotCorrect": "もし残高が正しくなければ、スナップショット以前のシードが使われていると思われます。",
         "headToAdvancedSettingsForTransition": "詳細設定にてスナップショットの移行を行なってください。",
@@ -308,7 +307,7 @@
         "letsWriteDownYourSeed": "シードを書き写しましょう。",
         "youCanHighlightCharacters": "一度に9文字を強調表示しています。",
         "printBlankWallet": "空のペーパーウォレットを印刷",
-        "whatIsCheksum": "すべてのシードには対応する3文字のチェックサムがあります。",
+        "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
         "iHavesavedMySeed": "バックアップ完了",
         "checksumExplanation": "ウォレットにシードを追加するたびに、ウォレットによって生成されるチェックサムが、書き写したチェックサムと一致することを必ず確認してください。",
         "mustSaveYourSeed": "<0><0>下の方法から</0><1>最低一つ選んで</1><2>シードを必ずバックアップしてください。</2></0>"
@@ -441,18 +440,18 @@
         "seedExplanation": "IOTAのシードはあなたの資金のマスターキーです。シードは81文字で、アルファベットの大文字（A〜Z）と数字の\"9\"のみ使用できます。",
         "noIHaveOne": "既存のシードを入力",
         "yesINeedASeed": "新しいシードを作成",
-        "explanation": "<0><0>同じシードを使えば、</0><1>どのウォレット、</1><2>デバイスからでも</2><3>あなたの口座にアクセスすることができます。</3><4>シードを紛失すると、口座とその預金にアクセスできなくなります。</4></0>",
+        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
+        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
         "keepSafe": "シードは安全に保管してください。",
         "hint": "<0><0>ヒント：</0>IOTAを初めて使う場合は、\"いいえ\"をクリックしてください。</0>"
     },
     "welcome": {
-        "thankYou": "Trinityをダウンロードしていただきありがとうございます。",
-        "weWillSpend": "ウォレットの設定には数分かかります。",
-        "reminder": "いくつかの手順を飛ばすのも可能ではありますが、全ての手順を踏むことをお勧めします。"
+        "thankYou": "Thank you for downloading Trinity"
     },
     "writeSeedDown": {
         "yourSeedIs": "シードは左から右に読む{{maxSeedLength}}文字です。",
-        "writeDownYourSeed": "<0>シードとチェックサムを書き止め、</0><1>トリプルチェックを</1><2>してください。</2>"
+        "writeDownYourSeed": "<0>シードとチェックサムを書き止め、</0><1>トリプルチェックを</1><2>してください。</2>",
+        "scrollToBottom": "Scroll to the bottom"
     },
     "history": {
         "bundleHashCopied": "バンドルのハッシュ値をコピーしました。",
