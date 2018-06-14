@@ -147,7 +147,7 @@
         "androidCopyPasteWarning": "Nigdy nie kopiuj/wklejaj swojego klucza na urządzeniu z systemem Android.",
         "willNotCopyPasteSeed": "Nie będę kopiował/wklejał mojego klucza",
         "mustBeStoredAppropriately": "Musi być odpowiednio przechowywany.",
-        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while.",
+        "deviceMayBecomeUnresponsive": "Twoje urządzenie może przestać odpowiadać przez pewien czas.",
         "isYourBalanceCorrect": "Czy Twoje saldo jest poprawne?",
         "ifYourBalanceIsNotCorrect": "Jeśli Twoje saldo nie jest poprawne, prawdopodobnie używasz klucza seed sprzed tzw. migawki (snapshot).",
         "headToAdvancedSettingsForTransition": "Przejdź do ustawień zaawansowanych i skorzystaj z funkcji Snapshot asystent.",
@@ -446,12 +446,12 @@
         "hint": "<0><0>Wskazówka:</0> Kliknij przycisk NIE, jeśli używasz IOTA po raz pierwszy.</0>"
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity"
+        "thankYou": "Dziękujemy za pobranie portfela IOTA"
     },
     "writeSeedDown": {
         "yourSeedIs": "Twój seed ma {{maxSeedLength}} znaków, czytany od lewej do prawej.",
         "writeDownYourSeed": "<0> Zanotuj swój seed i sumę kontrolną oraz </0><1>trzykrotnie upewnij się</1><2>, że są one poprawne.</2>",
-        "scrollToBottom": "Scroll to the bottom"
+        "scrollToBottom": "Przewiń w dół"
     },
     "history": {
         "bundleHashCopied": "Hash pakietu skopiowany",
