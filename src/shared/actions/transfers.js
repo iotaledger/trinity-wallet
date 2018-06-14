@@ -46,8 +46,8 @@ import {
     updateAccountInfoAfterSpending,
     syncAccountBeforeManualPromotion,
     syncAccountBeforeManualRebroadcast,
-    markBundleBroadcastStatusAsPending,
-    markBundleBroadcastStatusAsCompleted,
+    markBundleBroadcastStatusComplete,
+    markBundleBroadcastStatusPending,
 } from './accounts';
 import { shouldAllowSendingToAddress, getAddressesUptoRemainder } from '../libs/iota/addresses';
 import {
@@ -576,46 +576,38 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
 
                 // Progress summary
                 dispatch(setNextStepAsActive());
+                if (isZeroValue) {
+                    dispatch(
+                        generateAlert(
+                            'success',
+                            i18next.t('global:messageSent'),
+                            i18next.t('global:messageSentMessage'),
+                            20000,
+                        ),
+                    );
+                } else {
+                    dispatch(
+                        generateAlert(
+                            'success',
+                            i18next.t('global:transferSent'),
+                            i18next.t('global:transferSentMessage'),
+                            20000,
+                        ),
+                    );
+                }
 
-                // Delay dispatching alerts to display the progress summary
-                setTimeout(() => {
-                    if (isZeroValue) {
-                        dispatch(
-                            generateAlert(
-                                'success',
-                                i18next.t('global:messageSent'),
-                                i18next.t('global:messageSentMessage'),
-                                20000,
-                            ),
-                        );
-                    } else {
-                        dispatch(
-                            generateAlert(
-                                'success',
-                                i18next.t('global:transferSent'),
-                                i18next.t('global:transferSentMessage'),
-                                20000,
-                            ),
-                        );
-                    }
-
-                    return dispatch(completeTransfer({ address, value }));
-                }, 5000);
+                setTimeout(() => dispatch(completeTransfer({ address, value })), 5000);
             })
             .catch((error) => {
                 dispatch(sendTransferError());
 
                 if (hasSignedInputs) {
-                    const { newState } = syncAccountOnValueTransactionFailure(
-                        accountName,
-                        cached.transactionObjects,
-                        accountState,
-                    );
+                    const { newState } = syncAccountOnValueTransactionFailure(cached.transactionObjects, accountState);
 
                     // Temporarily mark this transaction as failed.
                     // As the inputs were signed and already exposed to the network
                     dispatch(
-                        markBundleBroadcastStatusAsPending({
+                        markBundleBroadcastStatusPending({
                             accountName,
                             bundleHash: head(cached.transactionObjects).bundle,
                             transactionObjects: cached.transactionObjects,
@@ -713,7 +705,7 @@ export const retryFailedTransaction = (accountName, bundleHash, powFn) => (dispa
 
     return retry(existingFailedTransactionsForThisAccount[bundleHash], powFn, shouldOffloadPow)
         .then(({ transactionObjects }) => {
-            dispatch(markBundleBroadcastStatusAsCompleted({ accountName, bundleHash }));
+            dispatch(markBundleBroadcastStatusComplete({ accountName, bundleHash }));
 
             const { newState } = syncAccountOnSuccessfulRetryAttempt(
                 accountName,

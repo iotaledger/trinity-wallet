@@ -76,7 +76,7 @@ describe('libs: iota/accounts', () => {
             const inputAddress = 'MVVQANCKCPSDGEHFEVT9RVYJWOPPEGZSAVLIZ9MGNRPJPUORYFOTP9FNCLBFMQKUXMHNRGZDTWUI9UDHW';
             expect(accountState.addresses[inputAddress].spent).to.equal(false);
 
-            const result = syncAccountOnValueTransactionFailure(accountName, transactionObjects, accountState);
+            const result = syncAccountOnValueTransactionFailure(transactionObjects, accountState);
 
             expect(result.newState.addresses[inputAddress].spent).to.equal(true);
         });
@@ -87,7 +87,7 @@ describe('libs: iota/accounts', () => {
 
             expect(bundle in accountState.transfers).to.equal(false);
 
-            const result = syncAccountOnValueTransactionFailure(accountName, transactionObjects, accountState);
+            const result = syncAccountOnValueTransactionFailure(transactionObjects, accountState);
 
             const normalisedTransfer = {
                 hash: 'LTIIFRUPLKCUNUB9YDN9NSIVHIQXGNWUXSWTKVHBYFVQYYIQZUTBRQREQ9ZIZUXRVUKYWPH9TRVB99999',
