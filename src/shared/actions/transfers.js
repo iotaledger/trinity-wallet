@@ -224,14 +224,16 @@ export const broadcastBundle = (bundleHash, accountName) => (dispatch, getState)
  **/
 export const promoteTransaction = (bundleHash, accountName, powFn) => (dispatch, getState) => {
     dispatch(promoteTransactionRequest(bundleHash));
-
-    dispatch(
-        generateAlert(
-            'info',
-            i18next.t('global:promotingTransaction'),
-            i18next.t('global:deviceMayBecomeUnresponsive'),
-        ),
-    );
+    const remotePoW = getState().settings.remotePoW;
+    if (!remotePoW) {
+        dispatch(
+            generateAlert(
+                'info',
+                i18next.t('global:promotingTransaction'),
+                i18next.t('global:deviceMayBecomeUnresponsive'),
+            ),
+        );
+    }
     let accountState = null;
     let chainBrokenInternally = false;
 
