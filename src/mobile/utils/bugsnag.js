@@ -1,14 +1,14 @@
-import { isIOS } from './device';
-import { breadcrumbIOS } from './bugsnagIOS';
-import { breadcrumbAndroid } from './bugsnagAndroid';
+import { Client, Configuration } from 'bugsnag-react-native';
+import packageJson from '../package';
+
+const configuration = new Configuration();
+configuration.appVersion = packageJson.version;
+
+const bugsnag = new Client(configuration);
 
 export const leaveNavigationBreadcrumb = (component) => {
-    let breadcrumbFn = null;
-    if (isIOS) {
-        breadcrumbFn = breadcrumbIOS;
-    } else {
-        breadcrumbFn = breadcrumbAndroid;
-    }
-
-    breadcrumbFn(component);
+    bugsnag.leaveBreadcrumb('Navigated to ' + component, {
+        type: 'navigation',
+        component: component,
+    });
 };
