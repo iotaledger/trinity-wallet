@@ -133,7 +133,8 @@ export default class SeedPicker extends Component {
     }
 
     handlePanResponderMove(evt, gestureState) {
-        const dy = gestureState.dy;
+        let dy = gestureState.dy;
+        dy = dy / 2;
         const { rows, aboveMidOnMove } = this.state;
         if (this.isMoving) {
             return;
