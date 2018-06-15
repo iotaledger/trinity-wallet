@@ -193,6 +193,7 @@ class SaveYourSeed extends Component {
                 screenBackgroundColor: body.bg,
                 drawUnderStatusBar: true,
                 statusBarColor: body.bg,
+                navBarButtonColor: isAndroid ? 'transparent' : 'black',
             },
             animated: false,
         });
