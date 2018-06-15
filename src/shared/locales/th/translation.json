@@ -293,7 +293,9 @@
         "message": "ข้อความทางเลือก",
         "removeMessage": "ลบข้อความ",
         "noAddresses": "ไม่มีที่อยู่",
-        "spent": "Spent"
+        "spent": "Spent",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
     },
     "saveYourSeed": {
         "saveYourSeed": "Back up your seed",
