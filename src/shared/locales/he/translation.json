@@ -224,6 +224,7 @@
         "invalidCharacters": "הסיד מכיל תווים לא חוקיים",
         "invalidCharactersExplanation": "סיד יכול להיות מורכב רק מאותיות גדולות באנגלית והמספר 9. לסיד שלך יש תווים לא חוקיים. בבקשה נסה שוב.",
         "seedTooShort": "הסיד קצר מידי",
+        "seedTooLong": "Seed is too long",
         "seedTooShortExplanation": "סידים חיבים להכיל {{maxLength}} תווים. הסיד שלך מכיל {{currentLength}} תווים. בבקשה נסה שוב.",
         "seedExplanation": "סידים צריכים להיות באורך של {{maxLength}} תווים, ולהיות מורכבים מאותיות גדולות באנגלית A-Z, או 9. אתה לא יכול להשתמש בסידים באורך שגדול מ{{maxLength}} תווים.",
         "neverShare": "אף פעם אל תשתף את הסיד שלך עם אף אחד!!!"
