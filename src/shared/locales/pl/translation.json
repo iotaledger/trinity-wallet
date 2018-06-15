@@ -293,7 +293,9 @@
         "message": "Wiadomość opcjonalna",
         "removeMessage": "USUŃ WIADOMOŚĆ",
         "noAddresses": "BRAK ADRESÓW",
-        "spent": "Adres zużyty"
+        "spent": "Adres zużyty",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
     },
     "saveYourSeed": {
         "saveYourSeed": "Zrób kopię swojego klucza",
