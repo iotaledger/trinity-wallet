@@ -293,7 +293,9 @@
         "message": "메시지 (선택)",
         "removeMessage": "메시지 삭제하기",
         "noAddresses": "주소 없음",
-        "spent": "이미 사용함"
+        "spent": "이미 사용함",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
     },
     "saveYourSeed": {
         "saveYourSeed": "시드 저장하기",
