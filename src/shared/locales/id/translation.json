@@ -224,6 +224,7 @@
         "invalidCharacters": "Seed berisi karakter yang tidak valid",
         "invalidCharactersExplanation": "Seed Anda memiliki karakter yang tidak valid. Seed hanya boleh terdiri dari huruf A-Z dan angka 9. Silakan coba lagi.",
         "seedTooShort": "Seed terlalu singkat",
+        "seedTooLong": "Seed is too long",
         "seedTooShortExplanation": "Seed harus terdiri dari setidaknya {{maxLength}} karakter. Seed Anda adalah {{currentLength}} karakter. Silahkan coba lagi.",
         "seedExplanation": "Seed harus {{maxLength}} karakter dan harus berisi huruf A-Z, atau nomor 9. Anda tidak dapat menggunakan Seed lebih dari {{maxLength}} karakter.",
         "neverShare": "JANGAN PERNAH MEMBERITAHUKAN SEED ANDA DENGAN SIAPAPUN"
