@@ -283,6 +283,7 @@ class SaveYourSeed extends Component {
                     ),
                 500,
             );
+            this.setState({ copyPressed: false });
         }
     }
 
