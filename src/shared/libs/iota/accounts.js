@@ -407,3 +407,89 @@ export const syncAccountAfterReattachment = (accountName, reattachment, accountS
         normalisedReattachment,
     };
 };
+
+/**
+ *  Sync local account in case signed inputs were exposed to the network (and the network call failed)
+ *
+ *   @method syncAccountOnValueTransactionFailure
+ *   @param {array} newTransfer
+ *   @param {object} accountState
+ *
+ *   @returns {object}
+ **/
+export const syncAccountOnValueTransactionFailure = (newTransfer, accountState) => {
+    const tailTransaction = find(newTransfer, { currentIndex: 0 });
+    const normalisedTransfer = normaliseBundle(newTransfer, keys(accountState.addresses), [tailTransaction], false);
+
+    // Assign normalised transfer to existing transfers
+    const transfers = mergeNewTransfers(
+        {
+            [normalisedTransfer.bundle]: normalisedTransfer,
+        },
+        accountState.transfers,
+    );
+
+    const addressData = markAddressesAsSpentSync([newTransfer], accountState.addresses);
+
+    const newState = {
+        ...accountState,
+        transfers,
+        addresses: addressData,
+    };
+
+    return {
+        newState,
+        normalisedTransfer,
+        transfer: newTransfer,
+    };
+};
+
+/**
+ *  Sync account when a failed transaction was successfully stored and broadcast to the network
+ *
+ *   @method syncAccountOnSuccessfulRetryAttempt
+ *   @param {string} accountName
+ *   @param {array} transaction
+ *   @param {object} accountState
+ *
+ *   @returns {object}
+ **/
+export const syncAccountOnSuccessfulRetryAttempt = (accountName, transaction, accountState) => {
+    const tailTransaction = find(transaction, { currentIndex: 0 });
+    const newNormalisedTransfer = normaliseBundle(transaction, keys(accountState.addresses), [tailTransaction], false);
+    const bundle = get(transaction, '[0].bundle');
+
+    const transfers = merge({}, accountState.transfers, { [bundle]: newNormalisedTransfer });
+
+    // Currently we solely rely on wereAddressesSpentFrom and since this failed transaction
+    // was never broadcast, the addresses would be marked false
+    // The transaction would still stop spending from these addresses because during input
+    // selection, local transaction history is also checked.
+    // FIXME: After using a permanent local address status, this would be unnecessary
+    const addressData = markAddressesAsSpentSync([transaction], accountState.addresses);
+    const ownTransactionHashesForThisTransfer = getOwnTransactionHashes(newNormalisedTransfer, accountState.addresses);
+
+    const unconfirmedBundleTails = merge({}, accountState.unconfirmedBundleTails, {
+        [bundle]: [
+            {
+                hash: tailTransaction.hash,
+                attachmentTimestamp: tailTransaction.attachmentTimestamp,
+                account: accountName,
+            },
+        ],
+    });
+
+    const newState = {
+        ...accountState,
+        unconfirmedBundleTails,
+        transfers,
+        addresses: addressData,
+        hashes: [...accountState.hashes, ...ownTransactionHashesForThisTransfer],
+    };
+
+    return {
+        newState,
+        normalisedTransfer: newNormalisedTransfer,
+        transfer: transaction,
+    };
+};

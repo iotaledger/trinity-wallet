@@ -1,3 +1,4 @@
+import assign from 'lodash/assign';
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -190,6 +191,17 @@ export default class HistoryModalContent extends PureComponent {
         }).isRequired,
         /** Bundle hash for the transaction that is currently being promoted */
         currentlyPromotingBundleHash: PropTypes.string.isRequired,
+        /* eslint-disable react/no-unused-prop-types */
+        /** Checks if the bundle hash belongs to a failed transaction
+         * @param {string} bundleHash
+         */
+        isFailedTransaction: PropTypes.func.isRequired,
+        /** Retries failed transaction
+         * @param {string} bundleHash
+         */
+        retryFailedTransaction: PropTypes.func.isRequired,
+        /** Determines if a failed transaction is being retried */
+        isRetryingFailedTransaction: PropTypes.bool.isRequired,
     };
 
     static defaultProps = {
@@ -262,6 +274,33 @@ export default class HistoryModalContent extends PureComponent {
         );
     }
 
+    renderButton(buttonProps) {
+        const { disableWhen, style, bundle, t, promote } = this.props;
+        const opacity = { opacity: disableWhen ? (isAndroid ? 0.3 : 0.2) : 1 };
+
+        const defaultProps = {
+            ctaColor: style.primaryColor,
+            secondaryCtaColor: style.primaryBody,
+            ctaWidth: width / 2.75,
+            ctaHeight: height / 17,
+            fontSize: GENERAL.fontSize2,
+            text: t('retry'),
+            onPress: () => {
+                if (!disableWhen) {
+                    promote(bundle);
+                }
+            },
+        };
+
+        const props = assign({}, defaultProps, buttonProps);
+
+        return (
+            <View style={[styles.buttonContainer, opacity]}>
+                <CtaButton {...props} />
+            </View>
+        );
+    }
+
     render() {
         const {
             status,
@@ -277,14 +316,16 @@ export default class HistoryModalContent extends PureComponent {
             style,
             mode,
             rebroadcast,
-            promote,
             disableWhen,
             isBroadcastingBundle,
+            retryFailedTransaction,
+            isRetryingFailedTransaction,
             currentlyPromotingBundleHash,
+            isFailedTransaction,
         } = this.props;
         const { scrollable } = this.state;
         const bundleIsBeingPromoted = currentlyPromotingBundleHash === bundle && !confirmationBool;
-        const opacity = { opacity: disableWhen ? (isAndroid ? 0.3 : 0.2) : 1 };
+        const isFailed = isFailedTransaction(bundle);
 
         return (
             <TouchableWithoutFeedback style={styles.container} onPress={onPress}>
@@ -331,46 +372,25 @@ export default class HistoryModalContent extends PureComponent {
                                         <Text style={[styles.text, style.defaultTextColor]}>{message}</Text>
                                     </TouchableOpacity>
                                     {(!confirmationBool &&
-                                        mode === 'Expert' && (
+                                        mode === 'Expert' &&
+                                        !isFailed && (
                                             <View style={[styles.buttonsContainer]}>
-                                                {(!bundleIsBeingPromoted && (
-                                                    <View style={[styles.buttonContainer, opacity]}>
-                                                        <CtaButton
-                                                            ctaColor={style.primaryColor}
-                                                            secondaryCtaColor={style.primaryBody}
-                                                            ctaWidth={width / 2.75}
-                                                            ctaHeight={height / 17}
-                                                            fontSize={GENERAL.fontSize2}
-                                                            text={t('retry')}
-                                                            onPress={() => {
-                                                                if (!disableWhen) {
-                                                                    promote(bundle);
-                                                                }
-                                                            }}
-                                                        />
-                                                    </View>
-                                                )) || (
+                                                {(!bundleIsBeingPromoted && this.renderButton()) || (
                                                     <View style={styles.buttonContainer}>
-                                                        <ActivityIndicator color={style.primaryColor} size="large" />
+                                                        <ActivityIndicator color={style.secondaryColor} size="large" />
                                                     </View>
                                                 )}
-                                                {(!isBroadcastingBundle && (
-                                                    <View style={[styles.buttonContainer, opacity]}>
-                                                        <CtaButton
-                                                            ctaColor={style.secondaryColor}
-                                                            secondaryCtaColor={style.secondaryBody}
-                                                            ctaWidth={width / 2.75}
-                                                            ctaHeight={height / 17}
-                                                            fontSize={GENERAL.fontSize2}
-                                                            text={t('rebroadcast')}
-                                                            onPress={() => {
-                                                                if (!disableWhen) {
-                                                                    rebroadcast(bundle);
-                                                                }
-                                                            }}
-                                                        />
-                                                    </View>
-                                                )) || (
+                                                {(!isBroadcastingBundle &&
+                                                    this.renderButton({
+                                                        ctaColor: style.secondaryColor,
+                                                        secondaryCtaColor: style.secondaryBody,
+                                                        text: t('rebroadcast'),
+                                                        onPress: () => {
+                                                            if (!disableWhen) {
+                                                                rebroadcast(bundle);
+                                                            }
+                                                        },
+                                                    })) || (
                                                     <View style={styles.buttonContainer}>
                                                         <ActivityIndicator color={style.secondaryColor} size="large" />
                                                     </View>
@@ -378,25 +398,11 @@ export default class HistoryModalContent extends PureComponent {
                                             </View>
                                         )) ||
                                         (!confirmationBool &&
-                                            mode === 'Standard' && (
+                                            mode === 'Standard' &&
+                                            !isFailed && (
                                                 <View style={[styles.buttonsContainer]}>
-                                                    {(!bundleIsBeingPromoted && (
-                                                        <View style={[styles.buttonContainer, opacity]}>
-                                                            <CtaButton
-                                                                ctaColor={style.primaryColor}
-                                                                secondaryCtaColor={style.primaryBody}
-                                                                ctaWidth={width / 1.3}
-                                                                ctaHeight={height / 17}
-                                                                fontSize={GENERAL.fontSize2}
-                                                                text={t('retry')}
-                                                                onPress={() => {
-                                                                    if (!disableWhen) {
-                                                                        promote(bundle);
-                                                                    }
-                                                                }}
-                                                            />
-                                                        </View>
-                                                    )) || (
+                                                    {(!bundleIsBeingPromoted &&
+                                                        this.renderButton({ ctaWidth: width / 1.3 })) || (
                                                         <View style={styles.buttonContainer}>
                                                             <ActivityIndicator
                                                                 color={style.secondaryColor}
@@ -405,7 +411,24 @@ export default class HistoryModalContent extends PureComponent {
                                                         </View>
                                                     )}
                                                 </View>
-                                            ))}
+                                            )) ||
+                                        (isFailed && (
+                                            <View style={[styles.buttonsContainer]}>
+                                                {(!isRetryingFailedTransaction &&
+                                                    this.renderButton({
+                                                        ctaWidth: width / 1.3,
+                                                        onPress: () => {
+                                                            if (!disableWhen) {
+                                                                retryFailedTransaction(bundle);
+                                                            }
+                                                        },
+                                                    })) || (
+                                                    <View style={styles.buttonContainer}>
+                                                        <ActivityIndicator color={style.secondaryColor} size="large" />
+                                                    </View>
+                                                )}
+                                            </View>
+                                        ))}
                                 </View>
                             </TouchableWithoutFeedback>
                         </ScrollView>
