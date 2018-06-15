@@ -151,7 +151,8 @@
         "isYourBalanceCorrect": "क्या आपका बैलेंस सही है?",
         "ifYourBalanceIsNotCorrect": "यदि आपका बैलेंस सही नहीं है, तो संभव है कि आप पूर्व-स्नैपशॉट सीड का उपयोग कर रहे हों ।",
         "headToAdvancedSettingsForTransition": "एडवांस सेटिंग के लिए आगे बढ़े और स्नैपशॉट ट्रांजिट करे",
-        "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android"
+        "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android",
+        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "सीड में अवैध वर्ण हैं।",
