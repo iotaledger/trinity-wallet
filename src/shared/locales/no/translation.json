@@ -151,7 +151,8 @@
         "isYourBalanceCorrect": "Er din balanse riktig?",
         "ifYourBalanceIsNotCorrect": "Hvis balansen din ikke er riktig, er det sannsynlig at du benytter en hovednøkkel fra før snapshot.",
         "headToAdvancedSettingsForTransition": "Gå til avanserte innstillinger og utfør en Snapshot overgang.",
-        "usingTrinityWalletWithKeePass": "Bruker Trinity med Keepass2Android"
+        "usingTrinityWalletWithKeePass": "Bruker Trinity med Keepass2Android",
+        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøkkelen inneholder ugyldige tegn",
