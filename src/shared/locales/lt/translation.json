@@ -293,7 +293,9 @@
         "message": "Žinutė (neprivaloma)",
         "removeMessage": "PAŠALINTI ŽINUTĘ",
         "noAddresses": "ADRESŲ NĖRA",
-        "spent": "Panaudotas"
+        "spent": "Panaudotas",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
     },
     "saveYourSeed": {
         "saveYourSeed": "Išsisaugokite savo užraktą",
