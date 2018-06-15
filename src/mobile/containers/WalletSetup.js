@@ -16,6 +16,7 @@ import DynamicStatusBar from '../components/DynamicStatusBar';
 import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
 import Header from '../components/Header';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 import RootDetectionModalComponent from '../components/RootDetectionModal';
 import { doAttestationFromSafetyNet } from '../utils/safetynet';
 import { isAndroid } from '../utils/device';
@@ -109,6 +110,7 @@ class WalletSetup extends Component {
     }
 
     componentDidMount() {
+        leaveNavigationBreadcrumb('WalletSetup');
         this.showModalIfRooted();
     }
 

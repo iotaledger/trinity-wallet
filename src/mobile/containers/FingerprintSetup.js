@@ -20,6 +20,7 @@ import GENERAL from '../theme/general';
 import { Icon } from '../theme/icons.js';
 import Button from '../components/Button';
 import { isAndroid, isIPhoneX } from '../utils/device';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -94,6 +95,10 @@ class FingerprintEnable extends Component {
         this.navigateToHome = this.navigateToHome.bind(this);
         this.onFingerprintPress = this.onFingerprintPress.bind(this);
         this.hideModal = this.hideModal.bind(this);
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('FingerprintEnable');
     }
 
     componentWillUnmount() {

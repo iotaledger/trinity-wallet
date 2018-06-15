@@ -7,6 +7,7 @@ import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -79,6 +80,10 @@ class SecuritySettings extends Component {
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
     };
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('SecuritySettings');
+    }
 
     on2FASetupPress() {
         const { is2FAEnabled, theme: { body } } = this.props;

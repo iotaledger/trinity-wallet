@@ -8,6 +8,7 @@ import { translate } from 'react-i18next';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -88,6 +89,10 @@ class AccountManagement extends Component {
         super();
 
         this.deleteAccount = this.deleteAccount.bind(this);
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('AccountManagement');
     }
 
     deleteAccount() {

@@ -22,6 +22,7 @@ import DynamicStatusBar from '../components/DynamicStatusBar';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
 import Header from '../components/Header';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 import { isAndroid } from '../utils/device';
 import { Icon } from '../theme/icons.js';
 
@@ -47,20 +48,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'row',
         alignItems: 'flex-end',
-    },
-    optionButtonText: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-    },
-    optionButton: {
-        borderWidth: 1.5,
-        borderRadius: GENERAL.borderRadiusLarge,
-        width: width / 1.36,
-        height: height / 14,
-        alignItems: 'center',
-        justifyContent: 'space-around',
     },
     infoText: {
         fontFamily: 'SourceSansPro-Regular',
@@ -133,6 +120,7 @@ class SaveYourSeed extends Component {
     }
 
     componentDidMount() {
+        leaveNavigationBreadcrumb('SaveYourSeed');
         if (this.props.onboardingComplete) {
             BackHandler.addEventListener('saveYourSeedBackPress', () => {
                 this.onBackPress();
@@ -151,6 +139,9 @@ class SaveYourSeed extends Component {
         this.clearClipboard();
     }
 
+    /**
+     * Hide navbar when returning from print
+     */
     onNavigatorEvent(event) {
         if (event.id === 'willAppear') {
             this.props.navigator.toggleNavBar({
@@ -173,9 +164,7 @@ class SaveYourSeed extends Component {
             },
             animated: false,
         });
-        if (this.state.copyPressed) {
-            this.clearClipboard();
-        }
+        this.clearClipboard();
     }
 
     onBackPress() {
@@ -217,6 +206,9 @@ class SaveYourSeed extends Component {
         this.openModal('passwordManagerModal');
     }
 
+    /**
+     * Generates html for seed qr
+     */
     getQrHTMLString(seed) {
         const qr = new QRCode(-1, 1);
         each(seed, (char) => {
@@ -241,6 +233,9 @@ class SaveYourSeed extends Component {
         return qrString;
     }
 
+    /**
+     * Constucts html text components for all seed characters
+     */
     getSeedHTMLString(seed) {
         let seedChars = '';
         for (let i = 0; i < seed.length; i++) {
@@ -255,7 +250,10 @@ class SaveYourSeed extends Component {
         return seedChars;
     }
 
-    getContentHTML() {
+    /**
+     * Constructs paper wallet html string for printing
+     */
+    getHTMLContent() {
         const { seed } = this.props;
         const checksumString = `<text x="372.7" y="735">${getChecksum(seed)}</text>`;
         const qrString = this.getQrHTMLString(seed);
@@ -271,23 +269,29 @@ class SaveYourSeed extends Component {
     }
 
     /**
-     * Alert the user that the clipboard was cleared
+     * iOS: Alerts the user that the clipboard was cleared
      */
     clearClipboard() {
         const { t } = this.props;
-        Clipboard.setString(' ');
-        timer.setTimeout(
-            'clipboardClear',
-            () =>
-                this.props.generateAlert(
-                    'info',
-                    t('copyToClipboard:seedCleared'),
-                    t('copyToClipboard:seedClearedExplanation'),
-                ),
-            500,
-        );
+        if (this.state.copyPressed) {
+            Clipboard.setString(' ');
+            timer.setTimeout(
+                'clipboardClear',
+                () =>
+                    this.props.generateAlert(
+                        'info',
+                        t('copyToClipboard:seedCleared'),
+                        t('copyToClipboard:seedClearedExplanation'),
+                    ),
+                500,
+            );
+            this.setState({ copyPressed: false });
+        }
     }
 
+    /**
+     *  Triggers paper wallet print
+     */
     async print() {
         this.hideModal();
         const paperWalletHTML = `
@@ -322,7 +326,7 @@ class SaveYourSeed extends Component {
              @font-face { font-family: "Monospace"; src: "iota-wallet-shared-modules/custom-fonts/SourceCodePro-Medium.ttf"
           </style>
           <body>
-            ${this.getContentHTML()}
+            ${this.getHTMLContent()}
             ${paperWalletFilled}
           </body>
         </html>`;
@@ -344,12 +348,12 @@ class SaveYourSeed extends Component {
     }
 
     /**
-     * Copy the seed to the clipboard and remove it after 30 seconds
+     * iOS: Copies seed to the clipboard and clears after 60 seconds
+     * Android: Passes seed to Keepass share intent
      */
     copy() {
         const { t, seed } = this.props;
         if (isAndroid) {
-            console.log('should work');
             timer.setTimeout(
                 'delayShare',
                 () => {
@@ -480,23 +484,28 @@ class SaveYourSeed extends Component {
                         {t('global:addToPasswordManager')}
                     </Button>
                     <View style={[styles.line, lineColor]} />
-                    <Button
-                        onPress={() => this.onPrintPaperWallet()}
-                        style={{
-                            wrapper: {
-                                width: width / 1.36,
-                                height: height / 13,
-                                borderRadius: height / 90,
-                                backgroundColor: secondary.color,
-                            },
-                            children: {
-                                color: secondary.body,
-                            },
-                        }}
-                    >
-                        {t('global:paperWallet')}
-                    </Button>
-                    <View style={[styles.line, lineColor]} />
+                    {/* FIXME Temporarily disable paper wallet on Android */}
+                    {!isAndroid && (
+                        <View style={{ alignItems: 'center' }}>
+                            <Button
+                                onPress={() => this.onPrintPaperWallet()}
+                                style={{
+                                    wrapper: {
+                                        width: width / 1.36,
+                                        height: height / 13,
+                                        borderRadius: height / 90,
+                                        backgroundColor: secondary.color,
+                                    },
+                                    children: {
+                                        color: secondary.body,
+                                    },
+                                }}
+                            >
+                                {t('global:paperWallet')}
+                            </Button>
+                            <View style={[styles.line, lineColor]} />
+                        </View>
+                    )}
                     <Text style={[styles.infoTextSmall, textColor]}>{t('leastSecure')}</Text>
                     <View style={{ flex: 1 }} />
                 </View>
