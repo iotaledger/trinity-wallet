@@ -293,7 +293,9 @@
         "message": "Valfritt meddelande",
         "removeMessage": "TA BORT MEDDELANDE",
         "noAddresses": "INGA ADRESSER",
-        "spent": "Förbrukat"
+        "spent": "Förbrukat",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
     },
     "saveYourSeed": {
         "saveYourSeed": "Spara din seed",
