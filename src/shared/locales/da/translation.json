@@ -224,6 +224,7 @@
         "invalidCharacters": "Hovednøglen indeholder ugyldige tegn",
         "invalidCharactersExplanation": "Hovednøglen må kun indeholde store bogstaver fra A-Z og tallet 9. Dit seed har ugyldige tegn. Prøv venligst igen.",
         "seedTooShort": "Hovednøglen er for kort",
+        "seedTooLong": "Seed is too long",
         "seedTooShortExplanation": "Hovednøgler skal indeholde {{maxLength}} tegn. Din hovednøgle er i øjeblikket {{currentLength}} tegn langt. Prøv venligst igen.",
         "seedExplanation": "Din hovednøgle skal indeholde {{maxLength}} tegn og bestå af store bogstaver fra A-Z eller tallet 9. Din hovednøgle kan ikke have mere end {{maxLength}} tegn i alt.",
         "neverShare": "DEL ALDRIG DIN HOVEDNØGLE MED NOGEN"
