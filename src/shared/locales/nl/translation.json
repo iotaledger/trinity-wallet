@@ -224,6 +224,7 @@
         "invalidCharacters": "Seed bevat ongeldige tekens",
         "invalidCharactersExplanation": "Seeds kunnen alleen de hoofdletters A-Z en het getal 9 bevatten. Uw seed bevat ongeldige tekens. Probeer het opnieuw.",
         "seedTooShort": "Seed is te kort",
+        "seedTooLong": "Seed is too long",
         "seedTooShortExplanation": "Seeds moeten minstens {{maxLength}} tekens lang zijn. Uw seed is momenteel {{currentLength}} tekens lang. Probeer het opnieuw.",
         "seedExplanation": "Seeds moeten {{maxLength}} tekens lang zijn en moeten hoofdletters A-Z of het getal 9 bevatten. U kunt geen seed gebruiken met meer dan {{maxLength}} tekens.",
         "neverShare": "DEEL UW SEED NOOIT MET IEMAND ANDERS"
