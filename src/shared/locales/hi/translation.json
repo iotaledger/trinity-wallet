@@ -293,7 +293,9 @@
         "message": "वैकल्पिक संदेश",
         "removeMessage": "संदेश हटाए",
         "noAddresses": "कोई पता नहीं",
-        "spent": "खर्च"
+        "spent": "खर्च",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
     },
     "saveYourSeed": {
         "saveYourSeed": "अपने सीड का बैक अप लें",
