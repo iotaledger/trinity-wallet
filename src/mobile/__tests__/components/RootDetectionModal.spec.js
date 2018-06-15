@@ -15,6 +15,7 @@ const getProps = (overrides) =>
             backgroundColor: '#ffffff',
             textColor: {},
             borderColor: {},
+            warningColor: {},
         },
         overrides,
     );
