@@ -293,7 +293,9 @@
         "message": "Voliteľná správa",
         "removeMessage": "ODSTRÁNIŤ SPRÁVU",
         "noAddresses": "ŽIADNE ADRESY",
-        "spent": "Utratené"
+        "spent": "Utratené",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
     },
     "saveYourSeed": {
         "saveYourSeed": "Zálohujte váš Seed",
