@@ -17,6 +17,7 @@ import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import { isAndroid } from '../utils/device';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -87,6 +88,10 @@ class PrivacyPolicy extends Component {
         super();
 
         this.state = { hasReadPrivacyPolicy: false };
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('PrivacyPolicy');
     }
 
     onNextPress() {

@@ -6,6 +6,7 @@ import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import KeepAwake from 'react-native-keep-awake';
 import SettingsContent from '../components/SettingsContent';
 import { height } from '../utils/dimensions';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -37,6 +38,10 @@ class Settings extends Component {
         /** Close active top bar */
         closeTopBar: PropTypes.func.isRequired,
     };
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('Settings');
+    }
 
     componentWillReceiveProps(newProps) {
         if (!this.props.isSyncing && newProps.isSyncing) {

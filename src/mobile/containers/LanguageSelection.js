@@ -11,6 +11,7 @@ import i18next from '../i18next';
 import DropdownComponent from '../containers/Dropdown';
 import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const { width } = Dimensions.get('window');
 const { height } = global;
@@ -89,6 +90,10 @@ class LanguageSelection extends Component {
         super();
 
         this.languageSelected = currentLanguageLabel;
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('LanguageSelection');
     }
 
     saveLanguageSelection() {

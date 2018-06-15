@@ -15,6 +15,7 @@ import DynamicStatusBar from '../components/DynamicStatusBar';
 import { Icon } from '../theme/icons.js';
 import { isAndroid } from '../utils/device';
 import Header from '../components/Header';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 import ChecksumComponent from '../components/Checksum';
 import ChecksumModalComponent from '../components/ChecksumModal';
 
@@ -149,6 +150,7 @@ class WriteSeedDown extends Component {
     }
 
     componentDidMount() {
+        leaveNavigationBreadcrumb('WriteSeedDown');
         if (isAndroid) {
             FlagSecure.activate();
         }

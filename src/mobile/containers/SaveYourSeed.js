@@ -22,6 +22,7 @@ import DynamicStatusBar from '../components/DynamicStatusBar';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
 import Header from '../components/Header';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 import { isAndroid } from '../utils/device';
 import { Icon } from '../theme/icons.js';
 
@@ -133,6 +134,7 @@ class SaveYourSeed extends Component {
     }
 
     componentDidMount() {
+        leaveNavigationBreadcrumb('SaveYourSeed');
         if (this.props.onboardingComplete) {
             BackHandler.addEventListener('saveYourSeedBackPress', () => {
                 this.onBackPress();

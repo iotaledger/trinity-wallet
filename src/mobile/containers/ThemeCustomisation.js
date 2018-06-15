@@ -11,6 +11,7 @@ import Dropdown from '../containers/Dropdown'; // eslint-disable-line import/no-
 import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
 import { Icon } from '../theme/icons.js';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -184,6 +185,10 @@ class ThemeCustomisation extends Component {
             themeName: props.themeName,
             themes: Object.keys(THEMES),
         };
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('ThemeCustomisation');
     }
 
     onApplyPress(theme, themeName) {
