@@ -224,6 +224,7 @@
         "invalidCharacters": "Cüzdan şifresi geçersiz karakterler içerir",
         "invalidCharactersExplanation": "Cüzdan şifreleri yalnızca A-Z büyük harflerinden ve 9 numaradan oluşabilir. Tohumunuz geçersiz karakterlere sahiptir. Lütfen tekrar deneyin.",
         "seedTooShort": "Cüzdan şifresi çok kısa",
+        "seedTooLong": "Seed is too long",
         "seedTooShortExplanation": "Cüzdan şifrenizin uzunluğu {{maxLength}} olmalıdır. Cüzdan şifreniz şu anda {{currentLength}} karakter uzunluğunda. Lütfen tekrar deneyin.",
         "seedExplanation": "Cüzdan şifreleri {{maxLength}} karakter uzunluğunda olmalı ve A-Z büyük harfleri veya sayı 9 olmalıdır. {{maxLength}} karakterden uzun cüzdan şifrelerini kullanamazsınız.",
         "neverShare": "CÜZDAN ŞİFRENİZİ ASLA KİMSEYLE PAYLAŞMAYIN"
