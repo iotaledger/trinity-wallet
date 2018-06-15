@@ -89,7 +89,7 @@ android {
     buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.iota.trinity"
-        versionCode 9
+        versionCode 10
         versionName "0.2.1"
         minSdkVersion 21
         targetSdkVersion 26
