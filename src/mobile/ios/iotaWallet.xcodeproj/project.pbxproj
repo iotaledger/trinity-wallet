@@ -1361,6 +1361,8 @@
 				553CB5E02E5676464BF53656B3C90944 /* Frameworks */,
 				BF58EB11F40804AD5DBB7F844142B92C /* Resources */,
 				1BD7EDA2A9AC2CE93A0870587E20D397 /* Bundle React Native Code And Images */,
+				D5F63564B5DECAF86AEB4186 /* [CP] Embed Pods Frameworks */,
+				61147FEF369C0848FE75C8B9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1379,6 +1381,8 @@
 				C361C063B6547DE82583FABCA4550939 /* Sources */,
 				89D91232D91529099E9186998E61E7D7 /* Frameworks */,
 				8F6FA1D0FA4750EA28804258C2CB6AC6 /* Resources */,
+				42EE0954DAABE43DCFDAE706 /* [CP] Embed Pods Frameworks */,
+				29F1C250D1932F2224494234 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1401,6 +1405,7 @@
 				B59F787FE434CB99F8DA67C59029AF6B /* ShellScript */,
 				92EB94016145B67667F30CE79B21D4D5 /* Embed Frameworks */,
 				19306BE67A64A428B81A1A08 /* [CP] Embed Pods Frameworks */,
+				FDC9C8E5CA56415F0C8A93B8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1420,6 +1425,8 @@
 				20A48ED510B8A5A031F25EB34DD39B95 /* Sources */,
 				17A6B85936E519099FAD248D873A5E85 /* Frameworks */,
 				7B8DF15560086469F41BFCA408944F5D /* Resources */,
+				E59DC477D138C251C4FF830D /* [CP] Embed Pods Frameworks */,
+				276E1A33EA1006E155E2D840 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2302,6 +2309,51 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		276E1A33EA1006E155E2D840 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iotaWallet-tvOSTests/Pods-iotaWallet-tvOSTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		29F1C250D1932F2224494234 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iotaWalletTests/Pods-iotaWalletTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		42EE0954DAABE43DCFDAE706 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iotaWalletTests/Pods-iotaWalletTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		58346D29D233956FD8AD6589 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2336,6 +2388,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		61147FEF369C0848FE75C8B9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iotaWallet-tvOS/Pods-iotaWallet-tvOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		76C74A58CB208D79D2DBCF9020787849 /* Bundle React Native code and images */ = {
@@ -2381,6 +2448,51 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D5F63564B5DECAF86AEB4186 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iotaWallet-tvOS/Pods-iotaWallet-tvOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E59DC477D138C251C4FF830D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iotaWallet-tvOSTests/Pods-iotaWallet-tvOSTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FDC9C8E5CA56415F0C8A93B8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iotaWallet/Pods-iotaWallet-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
