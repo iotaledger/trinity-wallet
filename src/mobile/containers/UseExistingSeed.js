@@ -411,7 +411,7 @@ class UseExistingSeed extends Component {
                         backdropTransitionOutTiming={200}
                         backdropColor={theme.body.bg}
                         backdropOpacity={0.9}
-                        style={{ alignItems: 'center', margin: 0 }}
+                        style={{ alignItems: 'center', margin: 0, height }}
                         isVisible={isModalActive}
                         onBackButtonPress={() => this.props.toggleModalActivity()}
                         hideModalContentWhileAnimating
