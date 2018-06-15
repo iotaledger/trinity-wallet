@@ -151,7 +151,8 @@
         "isYourBalanceCorrect": "残高は正しいですか？",
         "ifYourBalanceIsNotCorrect": "もし残高が正しくなければ、スナップショット以前のシードが使われていると思われます。",
         "headToAdvancedSettingsForTransition": "詳細設定にてスナップショットの移行を行なってください。",
-        "usingTrinityWalletWithKeePass": "Keepass2AndroidでTrinityウォレットを使用する"
+        "usingTrinityWalletWithKeePass": "Keepass2AndroidでTrinityウォレットを使用する",
+        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだシードです。",
