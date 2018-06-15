@@ -264,19 +264,19 @@ class Receive extends Component {
                 <View style={styles.container}>
                     <View style={{ flex: 0.55 }} />
                     {/*eslint-disable no-return-assign*/}
-                    <View
-                        style={[styles.qrContainer, qrOpacity, { borderColor: 'transparent' }]}
-                        ref={(c) => (this.qr = c)}
-                    >
-                        <TouchableOpacity onPress={() => this.onQRPress()}>
+                    <TouchableOpacity onPress={() => this.onQRPress()}>
+                        <View
+                            style={[styles.qrContainer, qrOpacity, { borderColor: 'transparent' }]}
+                            ref={(c) => (this.qr = c)}
+                        >
                             <QRCode
                                 value={JSON.stringify({ address: receiveAddress, message })}
                                 size={width / 2.8}
                                 color="black"
                                 backgroundColor="transparent"
                             />
-                        </TouchableOpacity>
-                    </View>
+                        </View>
+                    </TouchableOpacity>
                     {/*eslint-enable no-return-assign*/}
                     <View style={{ flex: 0.25 }} />
                     {receiveAddress.length > 1 ? (
