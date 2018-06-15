@@ -6,6 +6,10 @@ import { shallow } from 'enzyme';
 import { QRScanner as QrScannerComponent } from '../../components/QrScanner';
 
 jest.mock('react-native-camera', () => ({}));
+jest.mock('bugsnag-react-native', () => ({
+    Configuration: jest.fn(),
+    Client: jest.fn(() => ({ leaveBreadcrumb: jest.fn() })),
+}));
 
 const getProps = (overrides) =>
     assign(

@@ -11,6 +11,7 @@ import DynamicStatusBar from '../components/DynamicStatusBar';
 import { Icon } from '../theme/icons.js';
 import InfoBox from '../components/InfoBox';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -83,6 +84,10 @@ class WalletResetConfirmation extends Component {
 
         this.goBack = this.goBack.bind(this);
         this.requirePassword = this.requirePassword.bind(this);
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('WalletResetConfirmation');
     }
 
     navigateTo(url) {

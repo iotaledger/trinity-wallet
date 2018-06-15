@@ -9,6 +9,7 @@ import { width, height } from '../utils/dimensions';
 import DropdownComponent from '../containers/Dropdown';
 import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -95,6 +96,10 @@ export class CurrencySelection extends Component {
          */
         getCurrencyData: PropTypes.func.isRequired,
     };
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('CurrencySelection');
+    }
 
     componentWillReceiveProps(newProps) {
         const props = this.props;

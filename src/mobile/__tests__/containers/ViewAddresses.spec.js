@@ -11,6 +11,11 @@ jest.mock('react-native-is-device-rooted', () => ({
     isDeviceLocked: () => false,
 }));
 
+jest.mock('bugsnag-react-native', () => ({
+    Configuration: jest.fn(),
+    Client: jest.fn(() => ({ leaveBreadcrumb: jest.fn() })),
+}));
+
 const getProps = (overrides) =>
     assign(
         {},

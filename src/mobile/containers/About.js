@@ -8,6 +8,7 @@ import { getVersion, getBuildNumber } from 'react-native-device-info';
 import { Icon } from '../theme/icons.js';
 import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -69,6 +70,10 @@ class AdvancedSettings extends PureComponent {
         /** Theme settings */
         theme: PropTypes.object.isRequired,
     };
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('About');
+    }
 
     getYear() {
         const date = new Date();
