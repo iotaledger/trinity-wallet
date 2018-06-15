@@ -152,7 +152,7 @@
         "ifYourBalanceIsNotCorrect": "もし残高が正しくなければ、スナップショット以前のシードが使われていると思われます。",
         "headToAdvancedSettingsForTransition": "詳細設定にてスナップショットの移行を行なってください。",
         "usingTrinityWalletWithKeePass": "Keepass2AndroidでTrinityウォレットを使用する",
-        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
+        "signedTrytesBroadcastErrorExplanation": "取引をブロードキャスト中にネットワークにエラーが発生しました。"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだシードです。",
@@ -224,7 +224,7 @@
         "invalidCharacters": "無効な文字を含んだシードです。",
         "invalidCharactersExplanation": "シードにはアルファベットの大文字（A〜Z）と数字の\"9\"のみ使用できます。あなたのシードは無効な文字を含んでいます。もう一度やり直してください。",
         "seedTooShort": "シードが短すぎます。",
-        "seedTooLong": "Seed is too long",
+        "seedTooLong": "シードが長すぎます。",
         "seedTooShortExplanation": "シードは{{maxLength}}文字にする必要があります。あなたのシードは現在{{currentLength}}文字です。もう一度やり直してください。",
         "seedExplanation": "シードは{{maxLength}}文字である必要があり、使用可能な文字はアルファベットの大文字（A〜Z）と数字の\"9\"のみです。また、{{maxLength}}文字以上の長さにはできません。",
         "neverShare": "シードを他の人に絶対に教えてはいけません。"
