@@ -294,7 +294,7 @@
         "removeMessage": "USUŃ WIADOMOŚĆ",
         "noAddresses": "BRAK ADRESÓW",
         "spent": "Adres zużyty",
-        "missingPermission": "File system permission required",
+        "missingPermission": "Wymagany dostęp do systemu plików",
         "missingPermissionExplanation": "W celu udostępniania kodów QR, wymagany jest dostęp do systemu plików."
     },
     "saveYourSeed": {
