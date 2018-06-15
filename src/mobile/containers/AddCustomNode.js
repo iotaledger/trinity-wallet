@@ -19,6 +19,7 @@ import CustomTextInput from '../components/CustomTextInput';
 import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
 import { isIOS } from '../utils/device';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -113,6 +114,10 @@ class AddCustomNode extends Component {
         this.state = {
             customNode: '',
         };
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('AddCustomNode');
     }
 
     componentWillReceiveProps(newProps) {

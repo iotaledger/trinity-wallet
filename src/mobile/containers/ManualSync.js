@@ -15,6 +15,7 @@ import { Icon } from '../theme/icons';
 import CtaButton from '../components/CtaButton';
 import InfoBox from '../components/InfoBox';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -102,6 +103,10 @@ export class ManualSync extends Component {
          */
         manuallySyncAccount: PropTypes.func.isRequired,
     };
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('ManualSync');
+    }
 
     sync() {
         const { password, selectedAccountName, t, shouldPreventAction } = this.props;

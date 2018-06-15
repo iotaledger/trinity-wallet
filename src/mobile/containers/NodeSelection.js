@@ -9,6 +9,7 @@ import DropdownComponent from '../containers/Dropdown';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -98,6 +99,10 @@ class NodeSelection extends Component {
         this.state = {
             node: this.props.node,
         };
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('NodeSelection');
     }
 
     componentWillReceiveProps(newProps) {

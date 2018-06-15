@@ -10,6 +10,7 @@ import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import Button from '../components/Button';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -68,6 +69,10 @@ class OnboardingComplete extends Component {
         /** Theme settings */
         theme: PropTypes.object.isRequired,
     };
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('OnboardingComplete');
+    }
 
     onNextPress() {
         const { theme: { body } } = this.props;
