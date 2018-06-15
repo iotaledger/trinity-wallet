@@ -17,6 +17,7 @@ import StatefulDropdownAlert from './StatefulDropdownAlert';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -89,6 +90,10 @@ class Disable2FA extends Component {
 
         this.goBack = this.goBack.bind(this);
         this.disable2FA = this.disable2FA.bind(this);
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('Disable2FA');
     }
 
     /**

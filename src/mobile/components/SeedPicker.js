@@ -86,6 +86,7 @@ export default class SeedPicker extends Component {
         this.state = {
             selectedIndex: 0,
             rows: this.getRows(),
+            aboveMidOnMove: false,
         };
     }
 
@@ -132,8 +133,9 @@ export default class SeedPicker extends Component {
     }
 
     handlePanResponderMove(evt, gestureState) {
-        const dy = gestureState.dy;
-        const { rows } = this.state;
+        let dy = gestureState.dy;
+        dy = dy / 2;
+        const { rows, aboveMidOnMove } = this.state;
         if (this.isMoving) {
             return;
         }
@@ -146,6 +148,13 @@ export default class SeedPicker extends Component {
                     : dy,
             );
         }
+        if (this.middleHeight % scaleMultiplier >= scaleMultiplier / 2 && !aboveMidOnMove) {
+            this.setState({ aboveMidOnMove: true });
+            ReactNativeHapticFeedback.trigger('selection', false);
+        }
+        if (this.middleHeight % scaleMultiplier <= scaleMultiplier / 2) {
+            this.setState({ aboveMidOnMove: false });
+        }
     }
 
     handlePanResponderRelease() {
@@ -156,9 +165,6 @@ export default class SeedPicker extends Component {
                 : Math.floor(middleHeight / scaleMultiplier);
         this.move(0);
         this.setState({ selectedIndex: this.index });
-        if (this.index !== this.state.selectedIndex) {
-            ReactNativeHapticFeedback.trigger('selection', false);
-        }
         this.props.onValueChange(this.index);
     }
 

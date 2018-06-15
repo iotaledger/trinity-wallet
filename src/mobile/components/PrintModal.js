@@ -11,6 +11,7 @@ import ModalButtons from '../containers/ModalButtons';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
 import InfoBox from '../components/InfoBox';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -73,6 +74,10 @@ export class RootDetectionModal extends PureComponent {
             publicWifiChecked: false,
             publicPrinterChecked: false,
         };
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('PrintModal');
     }
 
     onPublicWifiCheckboxPress() {

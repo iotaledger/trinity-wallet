@@ -67,7 +67,10 @@ export class Checksum extends Component {
         const { t, theme } = this.props;
 
         return (
-            <TouchableOpacity onPress={() => this.props.showModal()}>
+            <TouchableOpacity
+                onPress={() => this.props.showModal()}
+                hitSlop={{ top: width / 30, bottom: width / 30, left: width / 30, right: width / 30 }}
+            >
                 <View style={styles.checksumContainer}>
                     <Icon name="info" size={width / 22} color={theme.body.color} />
                     <Text style={[styles.checksumText, { color: theme.body.color }]}>{t('checksum')}:</Text>

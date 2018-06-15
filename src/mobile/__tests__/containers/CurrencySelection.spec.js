@@ -5,11 +5,13 @@ import PropTypes from 'prop-types';
 import { shallow } from 'enzyme';
 import { CurrencySelection } from '../../containers/CurrencySelection';
 
-/* eslint-disable no-undef */
-
 jest.mock('react-native-is-device-rooted', () => ({
     isDeviceRooted: () => true,
     isDeviceLocked: () => false,
+}));
+jest.mock('bugsnag-react-native', () => ({
+    Configuration: jest.fn(),
+    Client: jest.fn(() => ({ leaveBreadcrumb: jest.fn() })),
 }));
 
 const getProps = (overrides) =>

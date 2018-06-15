@@ -21,6 +21,7 @@ import OnboardingButtons from '../containers/OnboardingButtons';
 import { Icon } from '../theme/icons';
 import Header from '../components/Header';
 import { isAndroid } from '../utils/device';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -128,6 +129,7 @@ class SeedReentry extends Component {
     }
 
     componentDidMount() {
+        leaveNavigationBreadcrumb('SeedReentry');
         if (isAndroid) {
             FlagSecure.activate();
         }
@@ -157,8 +159,14 @@ class SeedReentry extends Component {
                 },
                 animated: false,
             });
-        } else {
+        } else if (this.state.seed.length === MAX_SEED_LENGTH && this.state.seed.match(VALID_SEED_REGEX)) {
             this.props.generateAlert('error', t('incorrectSeed'), t('incorrectSeedExplanation'));
+        } else {
+            this.props.generateAlert(
+                'error',
+                t('useExistingSeed:incorrectFormat'),
+                t('useExistingSeed:validSeedExplanation'),
+            );
         }
     }
 
@@ -187,15 +195,15 @@ class SeedReentry extends Component {
     onQRRead(data) {
         const dataString = data.toString();
         const { t } = this.props;
-        if (dataString.length === 81 && dataString.match(VALID_SEED_REGEX)) {
+        if (dataString.length === MAX_SEED_LENGTH && dataString.match(VALID_SEED_REGEX)) {
             this.setState({
                 seed: data,
             });
         } else {
             this.props.generateAlert(
                 'error',
-                t('enterSeed:invalidCharacters'),
-                t('enterSeed:invalidCharactersExplanation'),
+                t('useExistingSeed:incorrectFormat'),
+                t('useExistingSeed:validSeedExplanation'),
             );
         }
         this.hideModal();

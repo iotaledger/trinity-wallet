@@ -1,5 +1,6 @@
 import assign from 'lodash/assign';
 import map from 'lodash/map';
+import has from 'lodash/has';
 import includes from 'lodash/includes';
 import get from 'lodash/get';
 import orderBy from 'lodash/orderBy';
@@ -10,11 +11,16 @@ import { StyleSheet, View, TouchableWithoutFeedback, RefreshControl, ActivityInd
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { broadcastBundle, promoteTransaction } from 'iota-wallet-shared-modules/actions/transfers';
+import {
+    broadcastBundle,
+    promoteTransaction,
+    retryFailedTransaction,
+} from 'iota-wallet-shared-modules/actions/transfers';
 import {
     getTransfersForSelectedAccount,
     getSelectedAccountName,
     getAddressesForSelectedAccount,
+    getFailedBundleHashesForSelectedAccount,
 } from 'iota-wallet-shared-modules/selectors/accounts';
 import { OptimizedFlatList } from 'react-native-optimized-flatlist';
 import { round } from 'iota-wallet-shared-modules/libs/utils';
@@ -27,6 +33,7 @@ import { width, height } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
 import { getPowFn } from '../utils/nativeModules';
 import CtaButton from '../components/CtaButton';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -123,6 +130,16 @@ class History extends Component {
         onRefresh: PropTypes.func.isRequired,
         /** Addresses for selected account */
         addresses: PropTypes.array.isRequired,
+        /** Failed transactions bundle hashes for selected account */
+        failedBundleHashes: PropTypes.object.isRequired,
+        /** Make a retry attempt for a failed transaction
+         * @param {string} accountName
+         * @param {string} bundleHash
+         * @param {function} powFn
+         */
+        retryFailedTransaction: PropTypes.func.isRequired,
+        /** Determines if a failed transaction is being retried */
+        isRetryingFailedTransaction: PropTypes.bool.isRequired,
     };
 
     constructor() {
@@ -132,6 +149,10 @@ class History extends Component {
             modalProps: null,
         };
         this.resetModalProps = this.resetModalProps.bind(this);
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('History');
     }
 
     shouldComponentUpdate(newProps) {
@@ -232,8 +253,11 @@ class History extends Component {
                     if (isRefreshing) {
                         return;
                     }
+
                     this.setState({
                         modalProps: assign({}, modalProps, {
+                            retryFailedTransaction: (bundle) =>
+                                this.props.retryFailedTransaction(selectedAccountName, bundle, proofOfWorkFunction),
                             rebroadcast: (bundle) => this.props.broadcastBundle(bundle, selectedAccountName),
                             promote: (bundle) =>
                                 this.props.promoteTransaction(bundle, selectedAccountName, proofOfWorkFunction),
@@ -330,6 +354,8 @@ class History extends Component {
             isPromotingTransaction,
             isBroadcastingBundle,
             currentlyPromotingBundleHash,
+            isRetryingFailedTransaction,
+            failedBundleHashes,
         } = this.props;
         const { modalProps } = this.state;
 
@@ -356,9 +382,16 @@ class History extends Component {
                         >
                             <HistoryModalContent
                                 {...modalProps}
-                                disableWhen={isAutoPromoting || isPromotingTransaction || isBroadcastingBundle}
+                                disableWhen={
+                                    isAutoPromoting ||
+                                    isPromotingTransaction ||
+                                    isBroadcastingBundle ||
+                                    isRetryingFailedTransaction
+                                }
                                 isBroadcastingBundle={isBroadcastingBundle}
+                                isRetryingFailedTransaction={isRetryingFailedTransaction}
                                 currentlyPromotingBundleHash={currentlyPromotingBundleHash}
+                                isFailedTransaction={(bundle) => has(failedBundleHashes, bundle)}
                             />
                         </Modal>
                     )}
@@ -383,6 +416,8 @@ const mapStateToProps = (state) => ({
     isAutoPromoting: state.polling.isAutoPromoting,
     isModalActive: state.ui.isModalActive,
     currentlyPromotingBundleHash: state.ui.currentlyPromotingBundleHash,
+    failedBundleHashes: getFailedBundleHashesForSelectedAccount(state),
+    isRetryingFailedTransaction: state.ui.isRetryingFailedTransaction,
 });
 
 const mapDispatchToProps = {
@@ -390,6 +425,7 @@ const mapDispatchToProps = {
     broadcastBundle,
     promoteTransaction,
     toggleModalActivity,
+    retryFailedTransaction,
 };
 
 export default WithManualRefresh()(

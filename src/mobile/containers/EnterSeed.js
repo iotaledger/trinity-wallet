@@ -21,6 +21,7 @@ import { Icon } from '../theme/icons.js';
 import { isAndroid } from '../utils/device';
 import GENERAL from '../theme/general';
 import Header from '../components/Header';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 console.ignoredYellowBox = ['Native TextInput'];
 
@@ -105,6 +106,7 @@ class EnterSeed extends React.Component {
     }
 
     componentDidMount() {
+        leaveNavigationBreadcrumb('EnterSeed');
         if (isAndroid) {
             FlagSecure.activate();
         }
@@ -166,10 +168,16 @@ class EnterSeed extends React.Component {
     onQRRead(data) {
         const dataString = data.toString();
         const { t } = this.props;
-        if (dataString.length === 81 && dataString.match(VALID_SEED_REGEX)) {
+        if (dataString.length === MAX_SEED_LENGTH && dataString.match(VALID_SEED_REGEX)) {
             this.setState({
                 seed: data,
             });
+        } else if (dataString.length !== MAX_SEED_LENGTH) {
+            this.props.generateAlert(
+                'error',
+                dataString.length > MAX_SEED_LENGTH ? t('seedTooLong') : t('seedTooShort'),
+                t('seedTooShortExplanation', { maxLength: MAX_SEED_LENGTH, currentLength: dataString.length }),
+            );
         } else {
             this.props.generateAlert('error', t('invalidCharacters'), t('invalidCharactersExplanation'));
         }
