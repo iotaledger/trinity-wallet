@@ -224,6 +224,7 @@
         "invalidCharacters": "Užraktas sudarytas iš neleistinų simbolių",
         "invalidCharactersExplanation": "Užraktas gali susidėti tik iš didžiųjų raidžių (A-Z) ir skaičiaus 9. Jūsų užraktas turi neleistinų simbolių. Bandykite dar kartą.",
         "seedTooShort": "Užraktas per trumpas",
+        "seedTooLong": "Užraktas per ilgas",
         "seedTooShortExplanation": "Užraktas privalo būti iš {{maxLength}} simbolio. Jūsų užraktas susidaro iš {{currentLength}}. Bandykite dar kartą.",
         "seedExplanation": "Užraktas turi būti iš {{maxLength}} simbolio, galimos tik didžiosios raidės (A-Z) arba skaičius 9. Užraktas negali turėti daugiau nei {{maxLength}} simbolį.",
         "neverShare": "SU NIEKUO NESIDALINKITE SAVO UŽRAKTU"
