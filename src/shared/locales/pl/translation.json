@@ -151,7 +151,8 @@
         "isYourBalanceCorrect": "Czy Twoje saldo jest poprawne?",
         "ifYourBalanceIsNotCorrect": "Jeśli Twoje saldo nie jest poprawne, prawdopodobnie używasz klucza seed sprzed tzw. migawki (snapshot).",
         "headToAdvancedSettingsForTransition": "Przejdź do ustawień zaawansowanych i skorzystaj z funkcji Snapshot asystent.",
-        "usingTrinityWalletWithKeePass": "Używanie portfela Trinity z Keepass2Android"
+        "usingTrinityWalletWithKeePass": "Używanie portfela Trinity z Keepass2Android",
+        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
