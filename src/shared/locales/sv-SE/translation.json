@@ -151,7 +151,8 @@
         "isYourBalanceCorrect": "Stämmer ditt saldo?",
         "ifYourBalanceIsNotCorrect": "Om ditt saldo inte är korrekt, är det troligt att du använder en seed från tidigare än snapshot.",
         "headToAdvancedSettingsForTransition": "Gå till avancerade inställningar och utför en snapshot-övergång.",
-        "usingTrinityWalletWithKeePass": "Använder Trinity med Keepass2Android"
+        "usingTrinityWalletWithKeePass": "Använder Trinity med Keepass2Android",
+        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
