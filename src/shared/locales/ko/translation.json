@@ -151,7 +151,8 @@
         "isYourBalanceCorrect": "이 잔액이 옳습니까?",
         "ifYourBalanceIsNotCorrect": "잔액이 옳지 않다면 스냅샷 전의 시드를 사용중일 수 있습니다.",
         "headToAdvancedSettingsForTransition": "고급 설정에서 스냅샷 이전을 수행해 주세요.",
-        "usingTrinityWalletWithKeePass": "트리니티 지갑과 Keepass2Android 같이 사용하기"
+        "usingTrinityWalletWithKeePass": "트리니티 지갑과 Keepass2Android 같이 사용하기",
+        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
