@@ -224,6 +224,7 @@
         "invalidCharacters": "La seed contient des caractères invalides",
         "invalidCharactersExplanation": "Les seeds ne peuvent être constituées que de lettres majuscules de A à Z et du chiffre 9. Votre seed comporte des caractères invalides. Veuillez réessayer.",
         "seedTooShort": "La seed est trop courte",
+        "seedTooLong": "Seed is too long",
         "seedTooShortExplanation": "Les seeds doivent comporter au moins {{maxLength}} caractères. Votre seed comporte actuellement {{currentLength}} caractères. Veuillez réessayer.",
         "seedExplanation": "Les seeds doivent comporter {{maxLength}} caractères et doivent contenir des majuscules de A à Z, ou le chiffre 9. Vous ne pouvez pas utiliser les seeds de plus de {{maxLength}} caractères.",
         "neverShare": "NE PARTAGEZ JAMAIS VOTRE SEED"
