@@ -295,7 +295,7 @@
         "noAddresses": "BRAK ADRESÓW",
         "spent": "Adres zużyty",
         "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
+        "missingPermissionExplanation": "W celu udostępniania kodów QR, wymagany jest dostęp do systemu plików."
     },
     "saveYourSeed": {
         "saveYourSeed": "Zrób kopię swojego klucza",
