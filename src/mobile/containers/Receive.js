@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, TouchableOpacity, Clipboard, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import {
+    StyleSheet,
+    View,
+    Text,
+    TouchableOpacity,
+    Clipboard,
+    TouchableWithoutFeedback,
+    Keyboard,
+    PermissionsAndroid,
+} from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 import Share from 'react-native-share';
 import { captureRef } from 'react-native-view-shot';
@@ -197,22 +206,35 @@ class Receive extends Component {
         }
     }
 
-    onQRPress() {
-        const { receiveAddress } = this.props;
+    async onQRPress() {
+        const { t, receiveAddress } = this.props;
+        // Ensure user has granted necessary permission on Android
+        if (isAndroid) {
+            const hasPermission = await this.getFileSystemPermissions();
+            if (!hasPermission) {
+                return this.props.generateAlert('error', t('missingPermission'), t('missingPermissionExplanation'));
+            }
+        }
         if (receiveAddress !== ' ') {
             captureRef(this.qr, { format: 'png', result: 'data-uri' }).then((url) => {
                 Share.open({
                     url,
                     type: 'image/png',
-                    message: receiveAddress,
                 }).catch((err) => {
                     // Handling promise rejection from `react-native-share` so that Bugsnag does not report it as an error
                     /*eslint-disable no-console*/
                     console.log(err);
-                    /*eslint-enable no-console*/
                 });
             });
         }
+    }
+
+    async getFileSystemPermissions() {
+        const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE);
+        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+            return true;
+        }
+        return false;
     }
 
     getOpacity() {
