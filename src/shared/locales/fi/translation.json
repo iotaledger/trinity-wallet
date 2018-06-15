@@ -151,7 +151,8 @@
         "isYourBalanceCorrect": "Näkyykö saldosi oikein?",
         "ifYourBalanceIsNotCorrect": "Jos saldosi ei näy oikein, seed-lukusi ei ole ajantasalla.",
         "headToAdvancedSettingsForTransition": "Voin korjata tämän valitsemalla Lisäasetukset ja Snapshot-avustaja.",
-        "usingTrinityWalletWithKeePass": "Trinity lompakon käyttö Keepas2Android sovelluksen kanssa"
+        "usingTrinityWalletWithKeePass": "Trinity lompakon käyttö Keepas2Android sovelluksen kanssa",
+        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed-luku sisältää virheellisiä merkkejä",
