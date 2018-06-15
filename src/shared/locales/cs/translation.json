@@ -224,6 +224,7 @@
         "invalidCharacters": "Seed obsahuje neplatné znaky",
         "invalidCharactersExplanation": "Seed musí obsahovat pouze velká písmena A-Z a číslo 9. Váš Seed obsahuje neplatné znaky. Prosím zkuste to znovu.",
         "seedTooShort": "Seed je příliš krátký",
+        "seedTooLong": "Seed is too long",
         "seedTooShortExplanation": "Seed musí obsahovat {{maxLength}} znaků. Váš Seed obsahuje {{currentLength}} znaků. Prosím zkuste to znovu.",
         "seedExplanation": "Seed by měl mít {{maxLength}} znaků a měl by obsahovat velká písmena A-Z, nebo číslo 9. Nelze použít Seed delší než {{maxLength}} znaků.",
         "neverShare": "NIKOMU NIKDY NESDĚLUJTE VÁŠ SEED"
