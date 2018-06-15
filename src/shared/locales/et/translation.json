@@ -224,6 +224,7 @@
         "invalidCharacters": "Seeme sisaldab sobimatuid tähemärke",
         "invalidCharactersExplanation": "Seemned võivad koosneda ainult suurtest tähtedest A-Z ja numbrist 9. Teie seemnes on sobimatuid tähemärke. Palun proovige uuesti.",
         "seedTooShort": "Seeme on liiga ühike",
+        "seedTooLong": "Seed is too long",
         "seedTooShortExplanation": "Seemned peavad olema {{maxLength}} tähemärki pikad. Teie seeme on praegu {{currentLength}} tähemärgi pikkune. Palun proovige uuesti.",
         "seedExplanation": "Seemned peaksid olema {{maxLength}} tähemärki pikad ja peaksid sisaldama suuri tähti A-Z või numbrit 9. Te ei saa kasutada seemneid, mis on lühemad kui {{maxLength}} tähemärki.",
         "neverShare": "ÄRA JAGA KUNAGI OMA SEEMET KELLEGAGI"
