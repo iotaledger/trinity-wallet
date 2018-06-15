@@ -151,7 +151,8 @@
         "isYourBalanceCorrect": "Bản quyết toán của bạn chính xác không?",
         "ifYourBalanceIsNotCorrect": "Nếu số dư của bạn là sai, có khả năng rằng bạn đang dử dụng chuỗi mật mã trước khi Snapshot gần đây nhất xảy ra.",
         "headToAdvancedSettingsForTransition": "Tới mục \"Cài đặt nâng cao\" để thực hiện quá trình chuyển đổi sang Snapshot mới nhất.",
-        "usingTrinityWalletWithKeePass": "Sử dụng Trinity Wallet với Keepass2Android"
+        "usingTrinityWalletWithKeePass": "Sử dụng Trinity Wallet với Keepass2Android",
+        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Từ khoá chứa ký tự không hợp lệ",
