@@ -293,7 +293,9 @@
         "message": "Сообщение (опционально)",
         "removeMessage": "УДАЛИТЬ СООБЩЕНИЕ",
         "noAddresses": "НЕТ АДРЕСОВ",
-        "spent": "Использованный адрес"
+        "spent": "Использованный адрес",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
     },
     "saveYourSeed": {
         "saveYourSeed": "Создать резервную копию Вашего ключа",
