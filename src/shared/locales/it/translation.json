@@ -151,7 +151,8 @@
         "isYourBalanceCorrect": "Il tuo saldo è corretto?",
         "ifYourBalanceIsNotCorrect": "Se il saldo non è corretto, è probabile che si sta utilizzando un seme pre-snapshot.",
         "headToAdvancedSettingsForTransition": "Vai su Impostazioni Avanzate ed esegui Passaggio dopo uno snapshot.",
-        "usingTrinityWalletWithKeePass": "Uso del portafoglio Trinity con Keepass2Android"
+        "usingTrinityWalletWithKeePass": "Uso del portafoglio Trinity con Keepass2Android",
+        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
