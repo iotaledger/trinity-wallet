@@ -130,7 +130,10 @@ class WalletResetConfirmation extends Component {
                     <Icon name="iota" size={width / 8} color={theme.body.color} />
                 </View>
                 <View style={styles.midWrapper}>
+                    <Text style={[styles.confirmationText, textColor]}>{t('global:continue?')}</Text>
                     <View style={{ flex: 0.2 }} />
+                    <Text style={[styles.subHeaderText, primaryColor]}>{t('walletResetConfirmation:cannotUndo')}</Text>
+                    <View style={{ flex: 0.4 }} />
                     <InfoBox
                         body={theme.body}
                         text={
@@ -145,10 +148,6 @@ class WalletResetConfirmation extends Component {
                             </Trans>
                         }
                     />
-                    <View style={{ flex: 0.4 }} />
-                    <Text style={[styles.confirmationText, textColor]}>{t('global:continue?')}</Text>
-                    <View style={{ flex: 0.2 }} />
-                    <Text style={[styles.subHeaderText, primaryColor]}>{t('walletResetConfirmation:cannotUndo')}</Text>
                 </View>
                 <View style={styles.bottomWrapper}>
                     <OnboardingButtons

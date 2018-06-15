@@ -13,6 +13,7 @@ import {
 } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { getSelectedAccountName, getAddressesForSelectedAccount } from 'iota-wallet-shared-modules/selectors/accounts';
+import KeepAwake from 'react-native-keep-awake';
 import { toggleModalActivity } from 'iota-wallet-shared-modules/actions/ui';
 import { shouldPreventAction } from 'iota-wallet-shared-modules/selectors/global';
 import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/iota/utils';
@@ -184,9 +185,14 @@ class SnapshotTransition extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        const { balanceCheckToggle } = this.props;
+        const { balanceCheckToggle, isTransitioning } = this.props;
         if (balanceCheckToggle !== newProps.balanceCheckToggle) {
             this.showModal();
+        }
+        if (!isTransitioning && newProps.isSendingTransfer) {
+            KeepAwake.activate();
+        } else if (isTransitioning && !newProps.isSendingTransfer) {
+            KeepAwake.deactivate();
         }
     }
 

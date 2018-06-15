@@ -219,7 +219,7 @@ class NewSeedSetup extends Component {
                     screenBackgroundColor: body.bg,
                     drawUnderStatusBar: true,
                     statusBarColor: body.bg,
-                    navBarButtonColor: 'transparent',
+                    navBarButtonColor: isAndroid ? 'transparent' : 'black',
                 },
                 animated: false,
             });
