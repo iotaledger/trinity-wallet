@@ -176,6 +176,8 @@ dependencies {
     implementation project(':bugsnag-react-native')
     implementation project(':react-native-fingerprint-scanner')
     implementation project(':react-native-google-safetynet')
+    implementation project(':react-native-share')
+    implementation project(':react-native-view-shot')
     implementation project(':react-native-flag-secure-android')
     implementation project(':react-native-haptic-feedback')
 }

@@ -807,7 +807,11 @@ export class Send extends Component {
                             }}
                             maxLength={90}
                             label={t('recipientAddress')}
-                            onChangeText={(text) => this.props.setSendAddressField(text)}
+                            onChangeText={(text) => {
+                                if (text.match(VALID_SEED_REGEX) || text.length === 0) {
+                                    this.props.setSendAddressField(text);
+                                }
+                            }}
                             containerStyle={{ width: width / 1.15 }}
                             autoCapitalize="characters"
                             autoCorrect={false}
