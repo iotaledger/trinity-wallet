@@ -224,6 +224,7 @@
         "invalidCharacters": "السييد يحتوي على أحرف غير صالحة",
         "invalidCharactersExplanation": "يجب ان يتكون السييد من احرف انجليزية كبيرة A-Z والرقم 9 فقط. السييد الخاص بك يحتوي على أحرف غير صالحة. يرجى المحاولة مرة أخرى.",
         "seedTooShort": "السييد قصير جداً",
+        "seedTooLong": "Seed is too long",
         "seedTooShortExplanation": "يجب أن تكون البذور {{maxLength}} حرفاً. البذور الخاص بك حاليا {{currentLength}} حرفاً. الرجاء المحاولة مرة أخرى.",
         "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
         "neverShare": "لا تقم ابداً بمشاركة السييد الخاص بك مع اي شخص"
