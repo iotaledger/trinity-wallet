@@ -293,7 +293,9 @@
         "message": "Προαιρετικό μήνυμα",
         "removeMessage": "ΑΦΑΙΡΕΣΗ ΜΗΝΥΜΑΤΟΣ",
         "noAddresses": "Καμία διαθέσιμη διεύθυνση ",
-        "spent": "Δαπανήθηκαν"
+        "spent": "Δαπανήθηκαν",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
     },
     "saveYourSeed": {
         "saveYourSeed": "Back up your seed",
