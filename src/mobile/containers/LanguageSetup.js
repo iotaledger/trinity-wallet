@@ -18,6 +18,7 @@ import DropdownComponent from '../containers/Dropdown';
 import Button from '../components/Button';
 import { Icon } from '../theme/icons.js';
 import DynamicStatusBar from '../components/DynamicStatusBar';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -82,6 +83,7 @@ class LanguageSetup extends Component {
     }
 
     componentDidMount() {
+        leaveNavigationBreadcrumb('LanguageSetup');
         if (!isAndroid) {
             SplashScreen.hide();
         }

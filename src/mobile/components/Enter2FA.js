@@ -7,6 +7,7 @@ import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
 import OnboardingButtons from '../containers/OnboardingButtons';
 import { Icon } from '../theme/icons.js';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     topContainer: {
@@ -62,6 +63,10 @@ export class Enter2FA extends Component {
     state = {
         token2FA: '',
     };
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('Enter2FA');
+    }
 
     handleChange2FAToken = (token2FA) => this.setState({ token2FA });
 

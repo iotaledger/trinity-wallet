@@ -19,6 +19,7 @@ import GenerateAddressButton from '../components/GenerateAddressButton';
 import { width, height } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
 import { getAddressGenFn } from '../utils/nativeModules';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -140,6 +141,10 @@ class Receive extends Component {
         };
 
         this.onGeneratePress = this.onGeneratePress.bind(this);
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('Receive');
     }
 
     shouldComponentUpdate(newProps) {
