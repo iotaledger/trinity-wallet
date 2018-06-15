@@ -224,6 +224,7 @@
         "invalidCharacters": "Seeden innehåller ogiltiga tecken",
         "invalidCharactersExplanation": "Seeden får enbart innehålla bokstäverna A-Z och numret 9. Din seed innehåller felaktiga tecken. Försök igen.",
         "seedTooShort": "Seeden är för kort",
+        "seedTooLong": "Seed is too long",
         "seedTooShortExplanation": "Din seed måste vara minst {{maxLength}} tecken. Den är för närvarande {{currentLength}} tecken lång. Vänligen försök igen.",
         "seedExplanation": "Seed ska vara {{maxLength}} tecken lång och får endast innehålla bokstäverna A-Z och nummer 9. Din seed får inte vara längre än {{maxLength}} tecken.",
         "neverShare": "DELA ALDRIG DIN SEED MED NÅGON"
