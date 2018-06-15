@@ -293,7 +293,9 @@
         "message": "Optionale Nachricht",
         "removeMessage": "NACHRICHT LÖSCHEN",
         "noAddresses": "KEINE ADRESSEN",
-        "spent": "Ausgegeben"
+        "spent": "Ausgegeben",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
     },
     "saveYourSeed": {
         "saveYourSeed": "Seed sichern",
