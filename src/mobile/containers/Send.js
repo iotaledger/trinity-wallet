@@ -54,7 +54,7 @@ import UnitInfoModal from '../components/UnitInfoModal';
 import CustomTextInput from '../components/CustomTextInput';
 import CtaButton from '../components/CtaButton';
 import { Icon } from '../theme/icons.js';
-import { width } from '../utils/dimensions';
+import { height, width } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
 import { getAddressGenFn, getPowFn } from '../utils/nativeModules';
 import GENERAL from '../theme/general';
@@ -411,7 +411,7 @@ export class Send extends Component {
             backdropTransitionInTiming: isAndroid ? 500 : 300,
             backdropTransitionOutTiming: 200,
             backdropColor: body.bg,
-            style: { alignItems: 'center', margin: 0 },
+            style: { alignItems: 'center', margin: 0, height },
             isVisible: isModalActive,
             onBackButtonPress: () => this.props.toggleModalActivity(),
             hideModalContentWhileAnimating: true,
