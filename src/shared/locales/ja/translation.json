@@ -294,8 +294,8 @@
         "removeMessage": "メッセージを削除",
         "noAddresses": "アドレスなし",
         "spent": "使用済",
-        "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
+        "missingPermission": "ファイルシステム権限が必要です。",
+        "missingPermissionExplanation": "QRコードを共有するには、ファイルシステムへのアクセス権が必要です。"
     },
     "saveYourSeed": {
         "saveYourSeed": "シードをバックアップしてください。",
