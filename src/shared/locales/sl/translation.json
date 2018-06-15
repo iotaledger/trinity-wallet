@@ -224,6 +224,7 @@
         "invalidCharacters": "Generirana vrednost vsebuje beveljavne znake",
         "invalidCharactersExplanation": "Generirana vrednost lahko vsebuje samo velike črke od A-Z in število 9. Vaša generirana vrednost ima neveljavne znake. Prosimo poskusite znova.",
         "seedTooShort": "Seed je prekratek",
+        "seedTooLong": "Seed is too long",
         "seedTooShortExplanation": "Generirano vrednost mora biti {{maxLength}} znakov dolgo. Vaša generirano vrednost je trenutno {{currentLength}} znakov dolga. Prosimo poskusite ponovno.",
         "seedExplanation": "Generirana vrednost mora biti {{maxLength}} znakov dolgo in mora vsebovati velike črke od A-Z ali število 9. Ne morete uporabljati generiranih vrednosti ki so daljše od {{maxLength}}.",
         "neverShare": "Z NIKOMER NIKOLI NE DELITE VAŠEGA SEEDA"
