@@ -5,6 +5,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import ModalButtons from '../containers/ModalButtons';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     modalContent: {
@@ -53,6 +54,10 @@ export class RootDetectionModal extends PureComponent {
         /** Modal warning text color */
         warningColor: PropTypes.object.isRequired,
     };
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('RootDetectionModal');
+    }
 
     render() {
         const { t, backgroundColor, textColor, borderColor, warningColor } = this.props;

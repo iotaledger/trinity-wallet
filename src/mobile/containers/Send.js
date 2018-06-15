@@ -58,6 +58,7 @@ import { width } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
 import { getAddressGenFn, getPowFn } from '../utils/nativeModules';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -190,6 +191,7 @@ export class Send extends Component {
     }
 
     componentDidMount() {
+        leaveNavigationBreadcrumb('Send');
         const { t, deepLinkActive } = this.props;
         if (!this.props.isSendingTransfer) {
             this.props.resetProgress();

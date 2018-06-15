@@ -8,6 +8,7 @@ import StatefulDropdownAlert from '../containers/StatefulDropdownAlert';
 import ModalButtons from '../containers/ModalButtons';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     modalContainer: {
@@ -105,6 +106,10 @@ class TransferConfirmationModal extends Component {
         this.state = {
             sending: false,
         };
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('TransferConfirmationModal');
     }
 
     onSendPress() {

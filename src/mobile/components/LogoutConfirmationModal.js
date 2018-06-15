@@ -6,6 +6,7 @@ import ModalButtons from '../containers/ModalButtons';
 import GENERAL from '../theme/general';
 import StatefulDropdownAlert from '../containers/StatefulDropdownAlert';
 import { width, height } from '../utils/dimensions';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     modalContainer: {
@@ -50,6 +51,10 @@ export class LogoutConfirmationModal extends PureComponent {
         /** Bar background color */
         barBg: PropTypes.string.isRequired,
     };
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('LogoutConfirmationModal');
+    }
 
     render() {
         const { t, backgroundColor, barBg, textColor, borderColor } = this.props;

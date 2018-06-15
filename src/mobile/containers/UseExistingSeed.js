@@ -21,6 +21,7 @@ import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 import { isAndroid } from '../utils/device';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -153,6 +154,10 @@ class UseExistingSeed extends Component {
             seed: '',
             accountName: this.getDefaultAccountName(),
         };
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('UseExistingSeed');
     }
 
     componentWillUnmount() {
