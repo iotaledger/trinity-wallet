@@ -152,7 +152,7 @@
         "ifYourBalanceIsNotCorrect": "Jeigu jūsų balansas neteisingas, tikriausiai jūsų naudojamas užraktas nėra perkeltas įvykus viso tinklo duomenų perkėlimui.",
         "headToAdvancedSettingsForTransition": "Eikite į išplėstinius parametrus ir atlikite tinklo duomenų perkėlimą.",
         "usingTrinityWalletWithKeePass": "Trinity naudojimas su Keepass2Android",
-        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
+        "signedTrytesBroadcastErrorExplanation": "Įvyko tinklo klaida transliuojant jūsų pavedimą."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Užraktas turi neleistinų simbolių",
