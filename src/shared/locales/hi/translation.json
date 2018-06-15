@@ -224,6 +224,7 @@
         "invalidCharacters": "सीड में अवैध वर्ण हैं।",
         "invalidCharactersExplanation": "सीड केवल कैपिटल अक्षर A-Z और संख्या 9 से मिलकर बना सकते हैं । आपके बीज में अमांय वर्ण हैं । कृपया पुन: प्रयास करें ।",
         "seedTooShort": "सीड बहुत छोटा है",
+        "seedTooLong": "Seed is too long",
         "seedTooShortExplanation": "आपका पासवर्ड कम से कम {{maxLength}} वर्ण होना चाहिए। यह वर्तमान में {{currentLength}} वर्ण लंबा है कृपया पुन: प्रयास करें।",
         "seedExplanation": "सीड {{maxLength}} वर्ण लंबा होना चाहिए, और इसमें कैपिटल अक्षर A-Z या 9 नंबर होना चाहिए। आप {{maxLength}} वर्णों से अधिक लम्बे seed का उपयोग नहीं कर सकते।",
         "neverShare": "कभी किसी के साथ अपने सीड साझा नहीं करें"
