@@ -19,6 +19,7 @@ import InfoBox from '../components/InfoBox';
 import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
 import Header from '../components/Header';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 console.ignoredYellowBox = true;
 
@@ -104,6 +105,7 @@ export class SetAccountName extends Component {
     }
 
     async componentDidMount() {
+        leaveNavigationBreadcrumb('SetAccountName');
         const { t } = this.props;
         const clipboardContent = await Clipboard.getString();
         if (clipboardContent.match(VALID_SEED_REGEX)) {

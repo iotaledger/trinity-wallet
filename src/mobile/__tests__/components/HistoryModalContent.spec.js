@@ -60,9 +60,17 @@ const getProps = (overrides) =>
             isBroadcastingBundle: false,
             currentlyPromotingBundleHash: 'foo',
             hasFailedAutopromotion: false,
+            isFailedTransaction: noop,
+            retryFailedTransaction: noop,
+            isRetryingFailedTransaction: false,
         },
         overrides,
     );
+
+jest.mock('bugsnag-react-native', () => ({
+    Configuration: jest.fn(),
+    Client: jest.fn(() => ({ leaveBreadcrumb: jest.fn() })),
+}));
 
 describe('Testing HistoryModalContent component', () => {
     describe('propTypes', () => {

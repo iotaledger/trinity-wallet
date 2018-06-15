@@ -22,6 +22,7 @@ import DynamicStatusBar from '../components/DynamicStatusBar';
 import InfoBox from '../components/InfoBox';
 import { Icon } from '../theme/icons.js';
 import { isAndroid } from '../utils/device';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -165,6 +166,7 @@ class NewSeedSetup extends Component {
     }
 
     componentDidMount() {
+        leaveNavigationBreadcrumb('NewSeedSetup');
         if (this.props.onboardingComplete) {
             BackHandler.addEventListener('newSeedSetupBackPress', () => {
                 this.goBack();
@@ -217,7 +219,7 @@ class NewSeedSetup extends Component {
                     screenBackgroundColor: body.bg,
                     drawUnderStatusBar: true,
                     statusBarColor: body.bg,
-                    navBarButtonColor: 'transparent',
+                    navBarButtonColor: isAndroid ? 'transparent' : 'black',
                 },
                 animated: false,
             });

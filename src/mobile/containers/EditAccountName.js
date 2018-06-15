@@ -13,6 +13,7 @@ import CustomTextInput from '../components/CustomTextInput';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -103,6 +104,10 @@ export class EditAccountName extends Component {
         this.state = {
             accountName: props.selectedAccountName,
         };
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('EditAccountName');
     }
 
     componentWillReceiveProps(newProps) {
