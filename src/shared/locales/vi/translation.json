@@ -293,7 +293,9 @@
         "message": "Tin nhắn tuỳ chọn",
         "removeMessage": "HUỶ BỎ TIN NHẮN",
         "noAddresses": "KHÔNG CÓ ĐỊA CHỈ",
-        "spent": "Đã Gửi"
+        "spent": "Đã Gửi",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
     },
     "saveYourSeed": {
         "saveYourSeed": "Sao lưu chuỗi mật mã của bạn",
