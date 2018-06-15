@@ -293,7 +293,9 @@
         "message": "選擇性訊息",
         "removeMessage": "移除訊息",
         "noAddresses": "無地址",
-        "spent": "已支出"
+        "spent": "已支出",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
     },
     "saveYourSeed": {
         "saveYourSeed": "備份您的種子碼",
