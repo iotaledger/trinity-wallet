@@ -444,7 +444,7 @@
         "seedExplanation": "Dein Seed ist der Hauptzugang zu deinem Guthaben. Er ist 81 Zeichen lang und besteht aus den Buchstaben A-Z, sowie der Zahl 9.",
         "noIHaveOne": "Ich habe einen",
         "yesINeedASeed": "Ich brauche einen",
-        "explanation": "<0><0>Du kannst ihn verwenden, um mit</0><1> jeder Wallet</1><2> auf</2> <3>jedem Gerät</3> <0>auf dein Konto zuzugreifen.</0>",
+        "explanation": "<0><0>Du kannst ihn verwenden, um mit</0><1> jeder Wallet</1><2> auf</2> <3> jedem Gerät</3><0> auf dein Konto zuzugreifen.</0>",
         "loseSeed": "Aber wenn du deinen Seed verlierst, verlierst du auch deine IOTA.",
         "keepSafe": "Bewahre deinen Seed sicher auf.",
         "hint": "<0><0>Hinweis:</0> Klicke NEIN, wenn dies das erste mal ist, dass du IOTA benutzt.</0>"
