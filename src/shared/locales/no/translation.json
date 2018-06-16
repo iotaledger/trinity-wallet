@@ -444,23 +444,23 @@
         "seedExplanation": "Hovednøkkelen gir tilgang til dine IOTA og består av 81 tegn bestående av bokstavene A til Z eller tallet 9.",
         "noIHaveOne": "Nei, jeg har en",
         "yesINeedASeed": "Ja, jeg trenger en hovednøkkel",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
-        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
+        "explanation": "<0><0>Du kan bruke den til å få tilgang til dine midler med</0><1>hvilken som helst lommebok</1><2>, på</2><3> enhver enhet.</3></0>",
+        "loseSeed": "Dersom du mister hovednøkkelen mister du også tilgangen til dine IOTA.",
         "keepSafe": "Vennligst oppbevar hovednøkkelen sikkert.",
         "hint": "<0><0>Hint:</0> Klikk NEI hvis dette er første gangen du bruker IOTA.</0>"
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity"
+        "thankYou": "Takk for at du lastet ned Trinity"
     },
     "writeSeedDown": {
         "yourSeedIs": "Hovednøkkelen er på {{maxSeedLength}} tegn lest fra venstre mot høyre.",
         "writeDownYourSeed": "<0>Skriv ned hovednøkkelen og kontrolltegnet. </0><1>trippelsjekk</1><2>så at de er riktige.</2>",
-        "scrollToBottom": "Scroll to the bottom"
+        "scrollToBottom": "Skroll ned til bunnen"
     },
     "history": {
         "bundleHashCopied": "Pakke hash kopiert",
-        "noTransactionsFound": "No transactions found",
-        "hideZeroBalance": "Hide zero balance",
+        "noTransactionsFound": "Ingen transaksjon ble funnet",
+        "hideZeroBalance": "Gjem nullbeløp",
         "bundleHashCopiedExplanation": "Pakke hash har blitt kopiert til utklippstavlen.",
         "addressCopied": "Addresse kopiert",
         "addressCopiedExplanation": "Adressen har blitt kopiert til utklippstavlen.",
