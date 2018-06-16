@@ -245,7 +245,7 @@
         "emptyPasswordExplanation": "Du musst ein Passwort eingeben um dich anzumelden. Bitte versuche es erneut.",
         "enterPassword": "Bitte gib dein Passwort ein.",
         "useSeed": "SEED VERWENDEN",
-        "login": "Einloggen",
+        "login": "Anmelden",
         "selectDifferentNode": "Möchtest du einen anderen Node auswählen?",
         "setNode": "Node wählen",
         "cannotConnect": "Verbindung zum Node nicht möglich."
