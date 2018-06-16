@@ -83,7 +83,7 @@ export default class AmountInput extends React.PureComponent {
         }
 
         // Convert to iotas
-        const iotas = round(value * this.getUnitMultiplier(this.state.unit));
+        const iotas = round(value * this.getUnitMultiplier());
 
         if (iotas > TOTAL_IOTA_SUPPLY) {
             return;
@@ -99,7 +99,7 @@ export default class AmountInput extends React.PureComponent {
     };
 
     getUnitMultiplier(unit) {
-        this.state.setUnit(unit);
+
         let multiplier = 1;
         const target = unit || this.state.unit;
         switch (target) {
@@ -136,7 +136,7 @@ export default class AmountInput extends React.PureComponent {
         if (this.state.iotas !== parseInt(props.amount) && !props.deepLinkActived) {
             this.setState({
                 iotas: props.amount.length ? parseInt(props.amount) : 0,
-                value: props.amount.length ? parseInt(props.amount) / this.getUnitMultiplier(this.state.unit) : 0,
+                value: props.amount.length ? parseInt(props.amount) / this.getUnitMultiplier() : 0,
             });
         }
     };
@@ -148,7 +148,7 @@ export default class AmountInput extends React.PureComponent {
     };
 
     unitChange = (unit) => {
-        if (unit === this.state.unit && !this.props.deepLinkActived) {
+        if (unit === this.state.unit) {
             return;
         }
 

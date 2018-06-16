@@ -160,7 +160,6 @@ class App extends React.Component {
 
     componentWillUnmount() {
         Electron.removeEvent('menu', this.onMenuToggle);
-        //Electron.removeEvent('url-params', this.onSetDeepUrl);
     }
 
     setDeepUrl(data) {

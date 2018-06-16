@@ -96,7 +96,7 @@ class Login extends React.Component {
         if (wallet.ready && wallet.addingAdditionalAccount) {
             this.setupAccount();
         } else {
-            //this.props.clearWalletData();
+            this.props.clearWalletData();
             this.props.setPassword('');
         }
     }
