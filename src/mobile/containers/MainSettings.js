@@ -14,6 +14,7 @@ import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons';
 import { isAndroid } from '../utils/device';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -96,6 +97,10 @@ export class MainSettings extends Component {
 
         this.toggleModalDisplay = this.toggleModalDisplay.bind(this);
         this.logout = this.logout.bind(this);
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('MainSettings');
     }
 
     toggleModalDisplay() {
@@ -283,7 +288,7 @@ export class MainSettings extends Component {
                     backdropTransitionInTiming={isAndroid ? 500 : 300}
                     backdropTransitionOutTiming={200}
                     backdropColor={theme.body.bg}
-                    backdropOpacity={0.8}
+                    backdropOpacity={0.9}
                     style={{ alignItems: 'center', justifyContent: 'center', margin: 0 }}
                     isVisible={this.state.isModalActive}
                     onBackButtonPress={this.toggleModalDisplay}

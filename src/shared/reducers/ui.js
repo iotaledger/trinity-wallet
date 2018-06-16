@@ -35,6 +35,7 @@ const initialState = {
     isChangingNode: false,
     currentlyPromotingBundleHash: '',
     loginRoute: 'login',
+    isRetryingFailedTransaction: false,
 };
 
 export default (state = initialState, action) => {
@@ -169,9 +170,9 @@ export default (state = initialState, action) => {
                 isSyncing: false,
                 inactive: false,
                 minimised: false,
-                sendAddressFieldText: '',
-                sendAmountFieldText: '',
-                sendMessageFieldText: '',
+                // sendAddressFieldText: '',
+                // sendAmountFieldText: '',
+                // sendMessageFieldText: '',
                 loginPasswordFieldText: '',
                 sendDenomination: 'i',
                 onboarding: {
@@ -300,6 +301,17 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 loginRoute: action.payload,
+            };
+        case TransfersActionTypes.RETRY_FAILED_TRANSACTION_REQUEST:
+            return {
+                ...state,
+                isRetryingFailedTransaction: true,
+            };
+        case TransfersActionTypes.RETRY_FAILED_TRANSACTION_SUCCESS:
+        case TransfersActionTypes.RETRY_FAILED_TRANSACTION_ERROR:
+            return {
+                ...state,
+                isRetryingFailedTransaction: false,
             };
         default:
             return state;

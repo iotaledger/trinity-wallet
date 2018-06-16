@@ -10,6 +10,7 @@ import transform from 'lodash/transform';
 import union from 'lodash/union';
 import { ActionTypes } from '../actions/accounts';
 import { ActionTypes as PollingActionTypes } from '../actions/polling';
+import { ActionTypes as TransfersActionTypes } from '../actions/transfers';
 import { renameKeys } from '../libs/utils';
 
 const updateAccountInfo = (state, payload) => ({
@@ -29,7 +30,7 @@ const updateAccountInfo = (state, payload) => ({
 });
 
 const updateAccountName = (state, payload) => {
-    const { accountInfo, accountNames, unconfirmedBundleTails, setupInfo, tasks } = state;
+    const { accountInfo, accountNames, unconfirmedBundleTails, setupInfo, tasks, failedBundleHashes } = state;
 
     const { oldAccountName, newAccountName } = payload;
 
@@ -54,6 +55,7 @@ const updateAccountName = (state, payload) => {
 
     return {
         accountInfo: renameKeys(accountInfo, keyMap),
+        failedBundleHashes: renameKeys(failedBundleHashes, keyMap),
         tasks: renameKeys(tasks, keyMap),
         setupInfo: renameKeys(setupInfo, keyMap),
         accountNames: map(accountNames, updateName),
@@ -67,6 +69,7 @@ const account = (
         accountNames: [],
         firstUse: true,
         onboardingComplete: false,
+        failedBundleHashes: {},
         accountInfo: {},
         setupInfo: {},
         tasks: {},
@@ -99,6 +102,7 @@ const account = (
             return {
                 ...state,
                 accountInfo: omit(state.accountInfo, action.payload),
+                failedBundleHashes: omit(state.failedBundleHashes, action.payload),
                 tasks: omit(state.tasks, action.payload),
                 setupInfo: omit(state.setupInfo, action.payload),
                 unconfirmedBundleTails: omitBy(state.unconfirmedBundleTails, (tailTransactions) =>
@@ -114,6 +118,7 @@ const account = (
         case PollingActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
         case PollingActionTypes.SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION:
         case ActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:
+        case TransfersActionTypes.RETRY_FAILED_TRANSACTION_SUCCESS:
             return {
                 ...state,
                 ...updateAccountInfo(state, action.payload),
@@ -227,6 +232,30 @@ const account = (
                         ...get(state.tasks, `${action.payload.accountName}`),
                         [action.payload.task]: true,
                     },
+                },
+            };
+        case ActionTypes.MARK_BUNDLE_BROADCAST_STATUS_PENDING:
+            return {
+                ...state,
+                failedBundleHashes: {
+                    ...state.failedBundleHashes,
+                    [action.payload.accountName]: {
+                        ...state.failedBundleHashes[action.payload.accountName],
+                        ...{
+                            [action.payload.bundleHash]: action.payload.transactionObjects,
+                        },
+                    },
+                },
+            };
+        case ActionTypes.MARK_BUNDLE_BROADCAST_STATUS_COMPLETE:
+            return {
+                ...state,
+                failedBundleHashes: {
+                    ...state.failedBundleHashes,
+                    [action.payload.accountName]: omit(
+                        state.failedBundleHashes[action.payload.accountName],
+                        action.payload.bundleHash,
+                    ),
                 },
             };
         default:

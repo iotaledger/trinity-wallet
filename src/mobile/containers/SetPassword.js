@@ -28,6 +28,7 @@ import InfoBox from '../components/InfoBox';
 import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
 import Header from '../components/Header';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const MIN_PASSWORD_LENGTH = 12;
 console.ignoredYellowBox = ['Native TextInput'];
@@ -127,6 +128,10 @@ class SetPassword extends Component {
             password: '',
             reentry: '',
         };
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('SetPassword');
     }
 
     onDonePress() {

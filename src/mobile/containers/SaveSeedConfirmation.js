@@ -9,6 +9,7 @@ import blackCheckboxCheckedImagePath from 'iota-wallet-shared-modules/images/che
 import blackCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked-black.png';
 import { connect } from 'react-redux';
 import tinycolor from 'tinycolor2';
+import StatefulDropdownAlert from './StatefulDropdownAlert';
 import OnboardingButtons from '../containers/OnboardingButtons';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import InfoBox from '../components/InfoBox';
@@ -16,6 +17,7 @@ import Header from '../components/Header';
 import GENERAL from '../theme/general';
 import { Icon } from '../theme/icons.js';
 import { isAndroid } from '../utils/device';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 import { width, height } from '../utils/dimensions';
 
@@ -146,6 +148,7 @@ class SaveSeedConfirmation extends Component {
     }
 
     componentDidMount() {
+        leaveNavigationBreadcrumb('SaveSeedConfirmation');
         this.timeout = setTimeout(this.onTimerComplete.bind(this), 3000);
     }
 
@@ -292,6 +295,7 @@ class SaveSeedConfirmation extends Component {
                         rightButtonStyle={{ wrapper: { opacity } }}
                     />
                 </View>
+                <StatefulDropdownAlert backgroundColor={body.bg} />
             </View>
         );
     }

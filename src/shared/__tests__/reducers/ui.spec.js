@@ -34,6 +34,7 @@ describe('Reducer: ui', () => {
                 isChangingNode: false,
                 currentlyPromotingBundleHash: '',
                 loginRoute: 'login',
+                isRetryingFailedTransaction: false,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
@@ -1095,7 +1096,7 @@ describe('Reducer: ui', () => {
     describe('IOTA/SETTINGS/ADD_CUSTOM_NODE_ERROR', () => {
         it('should set "isCheckingCustomNode" state prop to false', () => {
             const initialState = {
-                isCheckingCustomNode: true,
+                isCheckingCustomNode: false,
             };
 
             const action = {
@@ -1105,6 +1106,63 @@ describe('Reducer: ui', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 isCheckingCustomNode: false,
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
+
+    describe('IOTA/TRANSFERS/RETRY_FAILED_TRANSACTION_REQUEST', () => {
+        it('should set "isRetryingFailedTransaction" state prop to true', () => {
+            const initialState = {
+                isRetryingFailedTransaction: true,
+            };
+
+            const action = {
+                type: 'IOTA/TRANSFERS/RETRY_FAILED_TRANSACTION_REQUEST',
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                isRetryingFailedTransaction: true,
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
+
+    describe('IOTA/TRANSFERS/RETRY_FAILED_TRANSACTION_SUCCESS', () => {
+        it('should set "isRetryingFailedTransaction" state prop to false', () => {
+            const initialState = {
+                isRetryingFailedTransaction: true,
+            };
+
+            const action = {
+                type: 'IOTA/TRANSFERS/RETRY_FAILED_TRANSACTION_SUCCESS',
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                isRetryingFailedTransaction: false,
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
+
+    describe('IOTA/TRANSFERS/RETRY_FAILED_TRANSACTION_ERROR', () => {
+        it('should set "isRetryingFailedTransaction" state prop to false', () => {
+            const initialState = {
+                isRetryingFailedTransaction: true,
+            };
+
+            const action = {
+                type: 'IOTA/TRANSFERS/RETRY_FAILED_TRANSACTION_ERROR',
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                isRetryingFailedTransaction: false,
             };
 
             expect(newState).to.eql(expectedState);

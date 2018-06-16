@@ -14,6 +14,7 @@ import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -106,6 +107,10 @@ export class ViewAddresses extends Component {
          */
         t: PropTypes.func.isRequired,
     };
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('ViewAddresses');
+    }
 
     prepAddresses() {
         const { addresses } = this.props.selectedAccount;

@@ -11,6 +11,7 @@ import DynamicStatusBar from '../components/DynamicStatusBar';
 import { Icon } from '../theme/icons.js';
 import InfoBox from '../components/InfoBox';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -34,13 +35,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-end',
     },
-    subHeaderWrapper: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingHorizontal: width / 10,
-    },
     subHeaderText: {
-        fontSize: GENERAL.fontSize4,
+        fontSize: GENERAL.fontSize5,
         fontFamily: 'SourceSansPro-Regular',
         textAlign: 'center',
         backgroundColor: 'transparent',
@@ -90,6 +86,10 @@ class WalletResetConfirmation extends Component {
         this.requirePassword = this.requirePassword.bind(this);
     }
 
+    componentDidMount() {
+        leaveNavigationBreadcrumb('WalletResetConfirmation');
+    }
+
     navigateTo(url) {
         const { theme } = this.props;
 
@@ -130,7 +130,10 @@ class WalletResetConfirmation extends Component {
                     <Icon name="iota" size={width / 8} color={theme.body.color} />
                 </View>
                 <View style={styles.midWrapper}>
+                    <Text style={[styles.confirmationText, textColor]}>{t('global:continue?')}</Text>
                     <View style={{ flex: 0.2 }} />
+                    <Text style={[styles.subHeaderText, primaryColor]}>{t('walletResetConfirmation:cannotUndo')}</Text>
+                    <View style={{ flex: 0.4 }} />
                     <InfoBox
                         body={theme.body}
                         text={
@@ -145,10 +148,6 @@ class WalletResetConfirmation extends Component {
                             </Trans>
                         }
                     />
-                    <View style={{ flex: 0.4 }} />
-                    <Text style={[styles.subHeaderText, primaryColor]}>{t('walletResetConfirmation:cannotUndo')}</Text>
-                    <View style={{ flex: 0.2 }} />
-                    <Text style={[styles.confirmationText, textColor]}>{t('global:continue?')}</Text>
                 </View>
                 <View style={styles.bottomWrapper}>
                     <OnboardingButtons

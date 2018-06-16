@@ -54,10 +54,11 @@ import UnitInfoModal from '../components/UnitInfoModal';
 import CustomTextInput from '../components/CustomTextInput';
 import CtaButton from '../components/CtaButton';
 import { Icon } from '../theme/icons.js';
-import { width } from '../utils/dimensions';
+import { height, width } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
 import { getAddressGenFn, getPowFn } from '../utils/nativeModules';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -143,7 +144,7 @@ export class Send extends Component {
         password: PropTypes.string.isRequired,
         generateTransferErrorAlert: PropTypes.func.isRequired,
         /** Determines if the wallet has just opened a deep link */
-        deepLinkActive: PropTypes.bool.isRequired,
+        deepLinkActived: PropTypes.bool.isRequired,
         /** Resets deep link status */
         setDeepLinkInactive: PropTypes.func.isRequired,
         /** Determines if user has activated fingerprint auth */
@@ -190,11 +191,12 @@ export class Send extends Component {
     }
 
     componentDidMount() {
-        const { t, deepLinkActive } = this.props;
+        leaveNavigationBreadcrumb('Send');
+        const { t, deepLinkActived } = this.props;
         if (!this.props.isSendingTransfer) {
             this.props.resetProgress();
         }
-        if (deepLinkActive) {
+        if (deepLinkActived) {
             this.props.generateAlert('success', t('deepLink:autofill'), t('deepLink:autofillExplanation'));
             this.props.setDeepLinkInactive();
         }
@@ -409,7 +411,7 @@ export class Send extends Component {
             backdropTransitionInTiming: isAndroid ? 500 : 300,
             backdropTransitionOutTiming: 200,
             backdropColor: body.bg,
-            style: { alignItems: 'center', margin: 0 },
+            style: { alignItems: 'center', margin: 0, height },
             isVisible: isModalActive,
             onBackButtonPress: () => this.props.toggleModalActivity(),
             hideModalContentWhileAnimating: true,
@@ -805,7 +807,11 @@ export class Send extends Component {
                             }}
                             maxLength={90}
                             label={t('recipientAddress')}
-                            onChangeText={(text) => this.props.setSendAddressField(text)}
+                            onChangeText={(text) => {
+                                if (text.match(VALID_SEED_REGEX) || text.length === 0) {
+                                    this.props.setSendAddressField(text);
+                                }
+                            }}
                             containerStyle={{ width: width / 1.15 }}
                             autoCapitalize="characters"
                             autoCorrect={false}
@@ -992,7 +998,7 @@ const mapStateToProps = (state) => ({
     timeTakenByEachProgressStep: state.progress.timeTakenByEachStep,
     remotePoW: state.settings.remotePoW,
     password: state.wallet.password,
-    deepLinkActive: state.wallet.deepLinkActive,
+    deepLinkActived: state.wallet.deepLinkActived,
     isFingerprintEnabled: state.settings.isFingerprintEnabled,
     isModalActive: state.ui.isModalActive,
 });

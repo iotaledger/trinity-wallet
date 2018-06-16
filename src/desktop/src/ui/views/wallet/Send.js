@@ -27,6 +27,7 @@ class Send extends React.PureComponent {
             address: PropTypes.string.isRequired,
             amount: PropTypes.string.isRequired,
             message: PropTypes.string.isRequired,
+            deepLinkActived: PropTypes.bool.isRequired,
         }),
         /** Current send status */
         isSending: PropTypes.bool.isRequired,
@@ -84,6 +85,7 @@ class Send extends React.PureComponent {
          * @ignore
          */
         t: PropTypes.func.isRequired,
+        deepLinkActived: PropTypes.bool.isRequired,
     };
 
     state = {
@@ -177,6 +179,7 @@ class Send extends React.PureComponent {
                         label={t('send:amount')}
                         labelMax={t('send:max')}
                         balance={balance}
+                        deepLinkActived={fields.deepLinkActived}
                         onChange={(value) => this.props.setSendAmountField(value)}
                     />
                     <TextInput

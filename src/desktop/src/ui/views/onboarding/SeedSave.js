@@ -136,7 +136,7 @@ class SeedSave extends PureComponent {
                             </div>
                             <div>
                                 <Tooltip
-                                    title={t('saveYourSeed:whatIsCheksum')}
+                                    title={t('saveYourSeed:whatIsChecksum')}
                                     tip={t('saveYourSeed:checksumExplanation')}
                                 />{' '}
                                 {t('checksum')}: <strong>{checksum}</strong>

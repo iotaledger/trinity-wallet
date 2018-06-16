@@ -31,6 +31,7 @@ import { width, height } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
 import TextWithLetterSpacing from '../components/TextWithLetterSpacing';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -52,7 +53,7 @@ const styles = StyleSheet.create({
     },
     iotaBalance: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize5,
+        fontSize: GENERAL.fontSize6,
         backgroundColor: 'transparent',
     },
     iotaUnit: {
@@ -149,6 +150,10 @@ export class Balance extends Component {
         this.state = {
             balanceIsShort: true,
         };
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('Balance');
     }
 
     componentWillReceiveProps(newProps) {
