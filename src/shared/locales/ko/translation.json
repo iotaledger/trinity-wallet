@@ -579,8 +579,8 @@
         "fingerprintUnavailableExplanation": "본 기기는 생체 인증을 사용할 수 없거나 사용하지 않도록 설정되어 있습니다.",
         "buttonInstructionsDisable": "아래 버튼을 눌러 지문 인증을 비활성화할 수 있습니다.",
         "buttonInstructionsEnable": "아래 버튼을 눌러 지문 인증을 활성화할 수 있습니다.",
-        "buttonInstructionsDisableIPhoneX": "아래 버튼을 눌러 Face ID를 비활성할 수 있습니다.",
-        "buttonInstructionsEnableIPhoneX": "아래 버튼을 눌러 Face ID를 활성할 수 있습니다.",
+        "buttonInstructionsDisableIPhoneX": "아래 버튼을 눌러 Face ID를 비활성화할 수 있습니다.",
+        "buttonInstructionsEnableIPhoneX": "아래 버튼을 눌러 Face ID를 활성화할 수 있습니다.",
         "instructionsLogin": "로그인하려면 손가락을 지문 센서 위에 올리세요"
     },
     "transferConfirmation": {
