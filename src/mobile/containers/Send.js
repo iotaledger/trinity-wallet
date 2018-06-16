@@ -471,10 +471,10 @@ export class Send extends Component {
     }
 
     getConversionTextIota() {
-        const { amount, usdPrice, conversionRate } = this.props;
+        const { amount, usdPrice, conversionRate, t } = this.props;
         const { currencySymbol } = this.state;
         if (this.shouldConversionTextShowInvalid()) {
-            return 'INVALID';
+            return t('invalid');
         }
 
         const convertedValue = round(
