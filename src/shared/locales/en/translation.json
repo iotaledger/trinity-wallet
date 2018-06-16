@@ -498,7 +498,9 @@
         "messageCopied": "Message copied",
         "messageCopiedExplanation": "The message has been copied to the clipboard.",
         "send": "SEND",
-        "receive": "RECEIVE"
+        "receive": "RECEIVE",
+        "empty": "Empty",
+        "retrying": "RETRYING"
     },
     "accountManagement": {
         "viewSeed": "View seed",
@@ -538,7 +540,8 @@
         "frame": "Frame"
     },
     "themeCustomisation": {
-        "theme": "Theme"
+        "theme": "Theme",
+        "mockup": "Mockup"
     },
     "currencySelection": {
         "currency": "Currency"
@@ -642,7 +645,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change",
+        "change": "Change (24h)",
         "volume": "Volume (24h)",
         "currentValue": "Current value",
         "error": "Error fetching chart data"
