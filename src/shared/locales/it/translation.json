@@ -294,8 +294,8 @@
         "removeMessage": "RIMUOVI IL MESSAGGIO",
         "noAddresses": "NESSUN INDIRIZZO",
         "spent": "Speso",
-        "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
+        "missingPermission": "È richiesto l'accesso al file system",
+        "missingPermissionExplanation": "L'accesso al file system è necessario al fine di condividere codici QR."
     },
     "saveYourSeed": {
         "saveYourSeed": "Esegui il backup del tuo seme",
