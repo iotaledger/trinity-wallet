@@ -152,7 +152,7 @@
         "ifYourBalanceIsNotCorrect": "Se il saldo non è corretto, è probabile che si sta utilizzando un seme pre-snapshot.",
         "headToAdvancedSettingsForTransition": "Vai su Impostazioni Avanzate ed esegui Passaggio dopo uno snapshot.",
         "usingTrinityWalletWithKeePass": "Uso del portafoglio Trinity con Keepass2Android",
-        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
+        "signedTrytesBroadcastErrorExplanation": "C'è stato un errore di rete durante la trasmissione della transazione."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
@@ -224,7 +224,7 @@
         "invalidCharacters": "Il seme contiene caratteri non validi",
         "invalidCharactersExplanation": "I semi possono contenere solo le lettere maiuscole A-Z e il numero 9. Il tuo seme ha caratteri non validi. Si prega di riprovare.",
         "seedTooShort": "Il seme è troppo corto",
-        "seedTooLong": "Seed is too long",
+        "seedTooLong": "Il seme è troppo lungo",
         "seedTooShortExplanation": "I semi devono avere {{maxLength}} caratteri. Il tuo seme ha attualmente {{currentLength}} caratteri. Si prega di riprovare.",
         "seedExplanation": "I semi devono essere lunghi {{maxLength}} caratteri e devono contenere lettere maiuscole A-Z, o il numero 9. Non è possibile utilizzare semi con più di {{maxLength}} caratteri.",
         "neverShare": "NON MOSTRARE MAI IL TUO SEME A NESSUNO"
