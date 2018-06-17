@@ -352,7 +352,8 @@
         "sendMax": "ส่งสูงสุด",
         "totalTime": "Total time",
         "addressPasteDetected": "Address paste detected",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
+        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to.",
+        "invalid": "INVALID"
     },
     "setPassword": {
         "choosePassword": "Choose a new password",
@@ -467,7 +468,9 @@
         "messageCopied": "Message copied",
         "messageCopiedExplanation": "The message has been copied to the clipboard.",
         "send": "ส่ง",
-        "receive": "รับ"
+        "receive": "รับ",
+        "empty": "Empty",
+        "retrying": "RETRYING"
     },
     "accountManagement": {
         "viewSeed": "View seed",
@@ -506,7 +509,8 @@
         "frame": "กรอบ"
     },
     "themeCustomisation": {
-        "theme": "ชุดรูปแบบ"
+        "theme": "ชุดรูปแบบ",
+        "mockup": "Mockup"
     },
     "currencySelection": {
         "currency": "สกุลเงิน"
@@ -606,7 +610,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change",
+        "change": "Change (24h)",
         "volume": "Volume (24h)",
         "currentValue": "Current value",
         "error": "Error fetching chart data"
