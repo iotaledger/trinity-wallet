@@ -352,7 +352,8 @@
         "sendMax": "अधिकतम भेजें",
         "totalTime": "कुल समय",
         "addressPasteDetected": "एड्रेस पेस्ट डेटेक्टेड",
-        "addressPasteExplanation": "ऐसा लगता है कि आपने एक एड्रेस पेस्ट किया है । सुनिश्चित करें कि एड्रेस उस एक से मेल खाता है जिसे आप भेजना चाहते हैं ।"
+        "addressPasteExplanation": "ऐसा लगता है कि आपने एक एड्रेस पेस्ट किया है । सुनिश्चित करें कि एड्रेस उस एक से मेल खाता है जिसे आप भेजना चाहते हैं ।",
+        "invalid": "INVALID"
     },
     "setPassword": {
         "choosePassword": "नया पासवर्ड दर्ज करें।",
@@ -467,7 +468,9 @@
         "messageCopied": "संदेश की प्रतिलिपि बनाई गई",
         "messageCopiedExplanation": "पते की क्लिपबोर्ड पर कॉपी बनाई गई है ।",
         "send": "भेजे",
-        "receive": "प्राप्त करे"
+        "receive": "प्राप्त करे",
+        "empty": "Empty",
+        "retrying": "RETRYING"
     },
     "accountManagement": {
         "viewSeed": "सीड देखें",
@@ -506,7 +509,8 @@
         "frame": "फ्रेम"
     },
     "themeCustomisation": {
-        "theme": "थीम"
+        "theme": "थीम",
+        "mockup": "Mockup"
     },
     "currencySelection": {
         "currency": "करेंसी"
@@ -606,7 +610,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "बदलें",
+        "change": "Change (24h)",
         "volume": "वॉल्यूम (24 घ)",
         "currentValue": "वर्तमान वैल्यू",
         "error": "चार्ट डेटा लाने में त्रुटि"
