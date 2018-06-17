@@ -352,7 +352,8 @@
         "sendMax": "GỬI TỐI ĐA",
         "totalTime": "Total time",
         "addressPasteDetected": "Address paste detected",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
+        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to.",
+        "invalid": "INVALID"
     },
     "setPassword": {
         "choosePassword": "Choose a new password",
@@ -467,7 +468,9 @@
         "messageCopied": "Đã chép thư",
         "messageCopiedExplanation": "The message has been copied to the clipboard.",
         "send": "GỬI",
-        "receive": "NHẬN"
+        "receive": "NHẬN",
+        "empty": "Empty",
+        "retrying": "RETRYING"
     },
     "accountManagement": {
         "viewSeed": "Xem từ khoá",
@@ -506,7 +509,8 @@
         "frame": "Khung"
     },
     "themeCustomisation": {
-        "theme": "Giao Diện"
+        "theme": "Giao Diện",
+        "mockup": "Mockup"
     },
     "currencySelection": {
         "currency": "Tiền Tệ"
@@ -606,7 +610,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change",
+        "change": "Change (24h)",
         "volume": "Volume (24h)",
         "currentValue": "Giá trị hiện tại",
         "error": "Error fetching chart data"
