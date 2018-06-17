@@ -250,7 +250,7 @@ class ThemeCustomisation extends Component {
                                         color: body.color,
                                     }}
                                 >
-                                    MOCKUP
+                                    {t('themeCustomisation:mockup').toUpperCase()}
                                 </Text>
                             </View>
                             <View style={[styles.frameBar, { backgroundColor: bar.bg }]}>
