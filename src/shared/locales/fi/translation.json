@@ -295,7 +295,7 @@
         "noAddresses": "EI OSOITTEITA",
         "spent": "Käytetty",
         "missingPermission": "Tiedostojärjestelmän kirjoitusoikeudet tarvitaan",
-        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
+        "missingPermissionExplanation": "Tiedostojärjestelmän kirjoitusoikeudet tarvitaan, jotta voit jakaa QR-koodeja."
     },
     "saveYourSeed": {
         "saveYourSeed": "Tallenna seed-luku",
@@ -445,7 +445,7 @@
         "seedExplanation": "Seed-luku on yleisavain ja samalla myös pääsy varoihin. Se on 81 merkkiä pitkä ja sisältää ainoastaan merkkejä A-Z tai 9.",
         "noIHaveOne": "En, minulla on jo",
         "yesINeedASeed": "Kyllä, luodaan seed-luku",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
+        "explanation": "<0><0>Voit käyttää sitä päästäksesi käsiksi varoihisi mistä tahansa</0><1> lompakosta</1><2>, millä tahansa tuetulla</2><3> laitteella.</3></0>",
         "loseSeed": "Jos unohdat tai kadotat seed-lukusi, menetät myös pääsyn varoihin.",
         "keepSafe": "Muista aina pitää seed-lukusi turvassa.",
         "hint": "<0><0>Ohje:</0> Valitse EI jos käytät IOTA-lompakkoa ensimmäistä kertaa.</0>"
@@ -470,7 +470,7 @@
         "send": "LÄHETYS",
         "receive": "SAAPUVA",
         "empty": "Empty",
-        "retrying": "RETRYING"
+        "retrying": "YRITETÄÄN UUDELLEEN"
     },
     "accountManagement": {
         "viewSeed": "Katso seed-luku",
@@ -510,7 +510,7 @@
     },
     "themeCustomisation": {
         "theme": "Teema",
-        "mockup": "Mockup"
+        "mockup": "Malli"
     },
     "currencySelection": {
         "currency": "Valuutta"
