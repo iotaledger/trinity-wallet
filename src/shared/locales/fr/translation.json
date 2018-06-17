@@ -352,7 +352,8 @@
         "sendMax": "ENVOYER LE MAX",
         "totalTime": "Temps total",
         "addressPasteDetected": "Adresse collée détectée",
-        "addressPasteExplanation": "On dirait que vous avez collé une adresse. Assurez-vous que l’adresse collée corresponde à celle que vous voulez utiliser."
+        "addressPasteExplanation": "On dirait que vous avez collé une adresse. Assurez-vous que l’adresse collée corresponde à celle que vous voulez utiliser.",
+        "invalid": "INVALID"
     },
     "setPassword": {
         "choosePassword": "Choisissez un nouveau mot de passe",
@@ -467,7 +468,9 @@
         "messageCopied": "Message copié",
         "messageCopiedExplanation": "Le message a été copié dans le presse-papier.",
         "send": "ENVOI",
-        "receive": "RÉCEPTION"
+        "receive": "RÉCEPTION",
+        "empty": "Empty",
+        "retrying": "RETRYING"
     },
     "accountManagement": {
         "viewSeed": "Afficher la seed",
@@ -506,7 +509,8 @@
         "frame": "Contours"
     },
     "themeCustomisation": {
-        "theme": "Thème"
+        "theme": "Thème",
+        "mockup": "Mockup"
     },
     "currencySelection": {
         "currency": "Devise"
@@ -606,7 +610,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Variation",
+        "change": "Change (24h)",
         "volume": "Volume (24h)",
         "currentValue": "Valeur actuelle",
         "error": "Erreur de récupération des données du graphique"
