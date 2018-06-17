@@ -352,7 +352,8 @@
         "sendMax": "全部发送",
         "totalTime": "总时间",
         "addressPasteDetected": "检测到地址粘贴",
-        "addressPasteExplanation": "看起来你已经粘贴了地址。请确保该地址与您想要发送的地址是一致的。"
+        "addressPasteExplanation": "看起来你已经粘贴了地址。请确保该地址与您想要发送的地址是一致的。",
+        "invalid": "INVALID"
     },
     "setPassword": {
         "choosePassword": "选择新的密码",
@@ -467,7 +468,9 @@
         "messageCopied": "消息已复制",
         "messageCopiedExplanation": "消息已经被复制到剪贴板中了。",
         "send": "发送",
-        "receive": "接收"
+        "receive": "接收",
+        "empty": "Empty",
+        "retrying": "RETRYING"
     },
     "accountManagement": {
         "viewSeed": "查看种子",
@@ -506,7 +509,8 @@
         "frame": "框架"
     },
     "themeCustomisation": {
-        "theme": "主题"
+        "theme": "主题",
+        "mockup": "Mockup"
     },
     "currencySelection": {
         "currency": "货币"
@@ -606,7 +610,7 @@
     },
     "chart": {
         "mcap": "市值",
-        "change": "变化率",
+        "change": "Change (24h)",
         "volume": "交易量(24h)",
         "currentValue": "当前值",
         "error": "获取图标数据时出错"
