@@ -352,7 +352,8 @@
         "sendMax": "全額送金",
         "totalTime": "合計時間",
         "addressPasteDetected": "アドレスのペーストを検出",
-        "addressPasteExplanation": "アドレスをペーストしたようです。送金先のアドレスと一致することを確かめてください。"
+        "addressPasteExplanation": "アドレスをペーストしたようです。送金先のアドレスと一致することを確かめてください。",
+        "invalid": "INVALID"
     },
     "setPassword": {
         "choosePassword": "新しいパスワードを選択",
@@ -467,7 +468,9 @@
         "messageCopied": "メッセージをコピーしました。",
         "messageCopiedExplanation": "メッセージをクリップボードにコピーしました。",
         "send": "送金",
-        "receive": "受取"
+        "receive": "受取",
+        "empty": "Empty",
+        "retrying": "RETRYING"
     },
     "accountManagement": {
         "viewSeed": "シードを表示",
@@ -506,7 +509,8 @@
         "frame": "フレーム"
     },
     "themeCustomisation": {
-        "theme": "テーマ"
+        "theme": "テーマ",
+        "mockup": "Mockup"
     },
     "currencySelection": {
         "currency": "通貨"
@@ -606,7 +610,7 @@
     },
     "chart": {
         "mcap": "時価総額",
-        "change": "変化率",
+        "change": "Change (24h)",
         "volume": "取引量(24h)",
         "currentValue": "現在の価格",
         "error": "チャートのデータ取得エラー"
