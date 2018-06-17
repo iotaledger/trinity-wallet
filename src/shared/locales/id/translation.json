@@ -352,7 +352,8 @@
         "sendMax": "KIRIM MAKS",
         "totalTime": "Total time",
         "addressPasteDetected": "Address paste detected",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
+        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to.",
+        "invalid": "INVALID"
     },
     "setPassword": {
         "choosePassword": "Choose a new password",
@@ -467,7 +468,9 @@
         "messageCopied": "Message copied",
         "messageCopiedExplanation": "The message has been copied to the clipboard.",
         "send": "KIRIM",
-        "receive": "TERIMA"
+        "receive": "TERIMA",
+        "empty": "Empty",
+        "retrying": "RETRYING"
     },
     "accountManagement": {
         "viewSeed": "Lihat seed",
@@ -506,7 +509,8 @@
         "frame": "Batas"
     },
     "themeCustomisation": {
-        "theme": "Tema"
+        "theme": "Tema",
+        "mockup": "Mockup"
     },
     "currencySelection": {
         "currency": "Mata Uang"
@@ -606,7 +610,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Ubah",
+        "change": "Change (24h)",
         "volume": "Volume (24jam)",
         "currentValue": "Nilai saat ini",
         "error": "Error fetching chart data"
