@@ -352,7 +352,8 @@
         "sendMax": "МАКС. ПЕРЕВОД",
         "totalTime": "Общее время",
         "addressPasteDetected": "Обнаружена вставка адреса",
-        "addressPasteExplanation": "Похоже, что Вы вставили адрес. Убедитесь, что этот адрес соответствует тому, на который Вы хотите отправить."
+        "addressPasteExplanation": "Похоже, что Вы вставили адрес. Убедитесь, что этот адрес соответствует тому, на который Вы хотите отправить.",
+        "invalid": "INVALID"
     },
     "setPassword": {
         "choosePassword": "Задайте новый пароль",
@@ -467,7 +468,9 @@
         "messageCopied": "Сообщение скопировано",
         "messageCopiedExplanation": "Сообщение скопировано в буфер обмена.",
         "send": "Отправление",
-        "receive": "Получение"
+        "receive": "Получение",
+        "empty": "Empty",
+        "retrying": "RETRYING"
     },
     "accountManagement": {
         "viewSeed": "Показать ключ",
@@ -506,7 +509,8 @@
         "frame": "Фрейм"
     },
     "themeCustomisation": {
-        "theme": "Тема оформления"
+        "theme": "Тема оформления",
+        "mockup": "Mockup"
     },
     "currencySelection": {
         "currency": "Валюта"
@@ -606,7 +610,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Изменение",
+        "change": "Change (24h)",
         "volume": "Объем (24ч)",
         "currentValue": "Текущее значение",
         "error": "Ошибка при загрузке данных графика"
