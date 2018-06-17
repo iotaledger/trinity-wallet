@@ -352,7 +352,8 @@
         "sendMax": "ENVIAR O MÁXIMO",
         "totalTime": "Tempo total",
         "addressPasteDetected": "Colação de endereço detectado",
-        "addressPasteExplanation": "Parece que você colou um endereço. Certifique-se de que o endereço coincide com o qual você quer enviar."
+        "addressPasteExplanation": "Parece que você colou um endereço. Certifique-se de que o endereço coincide com o qual você quer enviar.",
+        "invalid": "INVALID"
     },
     "setPassword": {
         "choosePassword": "Escolher uma nova senha",
@@ -467,7 +468,9 @@
         "messageCopied": "Mensagem copiada",
         "messageCopiedExplanation": "A mensagem foi copiada para a área de transferência.",
         "send": "ENVIAR",
-        "receive": "RECEBER"
+        "receive": "RECEBER",
+        "empty": "Empty",
+        "retrying": "RETRYING"
     },
     "accountManagement": {
         "viewSeed": "Ver Seed",
@@ -506,7 +509,8 @@
         "frame": "Bordas"
     },
     "themeCustomisation": {
-        "theme": "Tema"
+        "theme": "Tema",
+        "mockup": "Mockup"
     },
     "currencySelection": {
         "currency": "Moeda"
@@ -606,7 +610,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Variação",
+        "change": "Change (24h)",
         "volume": "Volume (24h)",
         "currentValue": "Valor atual",
         "error": "Erro ao buscar dados da tabela"
