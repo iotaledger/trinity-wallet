@@ -352,7 +352,8 @@
         "sendMax": "SAADA MAKS.",
         "totalTime": "Total time",
         "addressPasteDetected": "Address paste detected",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
+        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to.",
+        "invalid": "INVALID"
     },
     "setPassword": {
         "choosePassword": "Choose a new password",
@@ -467,7 +468,9 @@
         "messageCopied": "Message copied",
         "messageCopiedExplanation": "The message has been copied to the clipboard.",
         "send": "SAADA",
-        "receive": "LAEKUS"
+        "receive": "LAEKUS",
+        "empty": "Empty",
+        "retrying": "RETRYING"
     },
     "accountManagement": {
         "viewSeed": "Vaata seemet",
@@ -506,7 +509,8 @@
         "frame": "Raam"
     },
     "themeCustomisation": {
-        "theme": "Teema"
+        "theme": "Teema",
+        "mockup": "Mockup"
     },
     "currencySelection": {
         "currency": "Valuuta"
@@ -606,7 +610,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Muutus",
+        "change": "Change (24h)",
         "volume": "Maht (24h)",
         "currentValue": "Current value",
         "error": "Error fetching chart data"
