@@ -454,10 +454,10 @@ export class Send extends Component {
     }
 
     getConversionTextFiat() {
-        const { amount, usdPrice, conversionRate } = this.props;
+        const { amount, usdPrice, conversionRate, t } = this.props;
 
         if (this.shouldConversionTextShowInvalid()) {
-            return 'INVALID';
+            return t('invalid');
         }
 
         const convertedValue = round(amount / usdPrice / conversionRate, 10);
@@ -471,10 +471,10 @@ export class Send extends Component {
     }
 
     getConversionTextIota() {
-        const { amount, usdPrice, conversionRate } = this.props;
+        const { amount, usdPrice, conversionRate, t } = this.props;
         const { currencySymbol } = this.state;
         if (this.shouldConversionTextShowInvalid()) {
-            return 'INVALID';
+            return t('invalid');
         }
 
         const convertedValue = round(

@@ -173,7 +173,7 @@ export default class TransactionRow extends PureComponent {
                             <View style={styles.textWrapper}>
                                 <View style={styles.topWrapper}>
                                     <Text style={[styles.statusText, { color: style.titleColor }]}>
-                                        {bundleIsBeingPromoted ? 'RETRYING' : confirmation.toUpperCase()}
+                                        {bundleIsBeingPromoted ? t('history:retrying') : confirmation.toUpperCase()}
                                     </Text>
                                     <Text style={[styles.confirmationStatus, { color: style.titleColor }]}>
                                         {value} {unit}
@@ -185,7 +185,7 @@ export default class TransactionRow extends PureComponent {
                                             {t('send:message')}:
                                         </Text>
                                         <Text style={[styles.message, style.rowTextColor]} numberOfLines={1}>
-                                            {message}
+                                            {message === 'Empty' ? t('history:empty') : message}
                                         </Text>
                                     </View>
                                     <View style={styles.timestampWrapper}>
