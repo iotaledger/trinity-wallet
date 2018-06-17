@@ -469,7 +469,7 @@
         "messageCopiedExplanation": "Viesti on kopioitu leikepöydälle.",
         "send": "LÄHETYS",
         "receive": "SAAPUVA",
-        "empty": "Empty",
+        "empty": "Tyhjennä",
         "retrying": "YRITETÄÄN UUDELLEEN"
     },
     "accountManagement": {
