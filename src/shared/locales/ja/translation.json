@@ -353,7 +353,7 @@
         "totalTime": "合計時間",
         "addressPasteDetected": "アドレスのペーストを検出",
         "addressPasteExplanation": "アドレスをペーストしたようです。送金先のアドレスと一致することを確かめてください。",
-        "invalid": "INVALID"
+        "invalid": "無効"
     },
     "setPassword": {
         "choosePassword": "新しいパスワードを選択",
@@ -469,8 +469,8 @@
         "messageCopiedExplanation": "メッセージをクリップボードにコピーしました。",
         "send": "送金",
         "receive": "受取",
-        "empty": "Empty",
-        "retrying": "RETRYING"
+        "empty": "空",
+        "retrying": "再添付"
     },
     "accountManagement": {
         "viewSeed": "シードを表示",
@@ -610,7 +610,7 @@
     },
     "chart": {
         "mcap": "時価総額",
-        "change": "Change (24h)",
+        "change": "変動 (24h)",
         "volume": "取引量(24h)",
         "currentValue": "現在の価格",
         "error": "チャートのデータ取得エラー"
