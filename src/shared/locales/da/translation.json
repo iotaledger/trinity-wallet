@@ -352,7 +352,8 @@
         "sendMax": "SEND MAX",
         "totalTime": "Tid i alt",
         "addressPasteDetected": "Address paste detected",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
+        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to.",
+        "invalid": "INVALID"
     },
     "setPassword": {
         "choosePassword": "Choose a new password",
@@ -467,7 +468,9 @@
         "messageCopied": "Besked kopieret",
         "messageCopiedExplanation": "Adressen er blevet kopieret til udklipsholderen.",
         "send": "SEND",
-        "receive": "MODTAG"
+        "receive": "MODTAG",
+        "empty": "Empty",
+        "retrying": "RETRYING"
     },
     "accountManagement": {
         "viewSeed": "Se hovednøgle",
@@ -506,7 +509,8 @@
         "frame": "Ramme"
     },
     "themeCustomisation": {
-        "theme": "Tema"
+        "theme": "Tema",
+        "mockup": "Mockup"
     },
     "currencySelection": {
         "currency": "Valuta"
@@ -606,7 +610,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Ændring",
+        "change": "Change (24h)",
         "volume": "Volumen (24t)",
         "currentValue": "Aktuel værdi",
         "error": "Error fetching chart data"
