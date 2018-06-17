@@ -147,7 +147,7 @@
         "androidCopyPasteWarning": "Älä kopio tai liitä seed-lukua Android-laitteella.",
         "willNotCopyPasteSeed": "En kopio tai liitä seed-lukua android puhelimessa",
         "mustBeStoredAppropriately": "Se on tallennettava turvallisesti.",
-        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while.",
+        "deviceMayBecomeUnresponsive": "Laitteesi saattaa toimia hitaasti hetken aikaa.",
         "isYourBalanceCorrect": "Näkyykö saldosi oikein?",
         "ifYourBalanceIsNotCorrect": "Jos saldosi ei näy oikein, seed-lukusi ei ole ajantasalla.",
         "headToAdvancedSettingsForTransition": "Voin korjata tämän valitsemalla Lisäasetukset ja Snapshot-avustaja.",
@@ -311,7 +311,7 @@
         "letsWriteDownYourSeed": "Tallennetaan seed-lukusi",
         "youCanHighlightCharacters": "Voit korostaa 9 merkkiä kerrallaan",
         "printBlankWallet": "Tulosta tyhjä lompakko",
-        "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
+        "whatIsChecksum": "Jokaisella seed-luvulla on kolmen merkin pituinen tarkistussumma",
         "iHavesavedMySeed": "Seed-luku turvassa",
         "checksumExplanation": "Kun lisäät seed-luvun lompakkoon, varmista että kolmen merkin pituinen tarkistussumma vastaa alkuperäistä.",
         "mustSaveYourSeed": "<0><0>Tallenna seed-lukusi käyttäen </0><1>vähintään yhtä</1><2> alla olevista vaihtoehdoista.</2></0>"
@@ -353,7 +353,7 @@
         "totalTime": "Kokonaisaika",
         "addressPasteDetected": "Osoitteen liittäminen havaittu",
         "addressPasteExplanation": "Näyttää siltä että olet liittänyt osoitteen muualta. Varmista että liitetty osoite vastaa alkuperäistä.",
-        "invalid": "INVALID"
+        "invalid": "VIRHEELLINEN"
     },
     "setPassword": {
         "choosePassword": "Luo uusi salasana",
@@ -610,7 +610,7 @@
     },
     "chart": {
         "mcap": "MARVO",
-        "change": "Change (24h)",
+        "change": "Muutos (24h)",
         "volume": "Vaihto (24h)",
         "currentValue": "Nykyinen arvo",
         "error": "Kurssitietojen hakeminen epäonnistui"
