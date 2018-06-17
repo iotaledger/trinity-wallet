@@ -352,7 +352,8 @@
         "sendMax": "WYŚLIJ WSZYSTKO",
         "totalTime": "Całkowity czas",
         "addressPasteDetected": "Wykryto wklejenie adresu",
-        "addressPasteExplanation": "Wygląda na to, że wkleiłeś adres. Upewnij się, że wklejony adres odpowiada temu, na który chcesz wysłać."
+        "addressPasteExplanation": "Wygląda na to, że wkleiłeś adres. Upewnij się, że wklejony adres odpowiada temu, na który chcesz wysłać.",
+        "invalid": "INVALID"
     },
     "setPassword": {
         "choosePassword": "Wybierz nowe hasło",
@@ -467,7 +468,9 @@
         "messageCopied": "Wiadomość skopiowana",
         "messageCopiedExplanation": "Wiadomość została skopiowana do schowka.",
         "send": "WYPŁATA",
-        "receive": "WPŁATA"
+        "receive": "WPŁATA",
+        "empty": "Empty",
+        "retrying": "RETRYING"
     },
     "accountManagement": {
         "viewSeed": "Pokaż seed",
@@ -506,7 +509,8 @@
         "frame": "Ramka"
     },
     "themeCustomisation": {
-        "theme": "Motyw"
+        "theme": "Motyw",
+        "mockup": "Mockup"
     },
     "currencySelection": {
         "currency": "Waluta"
@@ -606,7 +610,7 @@
     },
     "chart": {
         "mcap": "Market",
-        "change": "Zmiana",
+        "change": "Change (24h)",
         "volume": "Wolumen (24h)",
         "currentValue": "Bieżąca wartość",
         "error": "Błąd pobierania danych do wykresu"
