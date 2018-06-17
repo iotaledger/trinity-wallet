@@ -352,7 +352,8 @@
         "sendMax": "POSLAT MAXIMUM",
         "totalTime": "Celkový čas",
         "addressPasteDetected": "Zjištěno kopírování adresy",
-        "addressPasteExplanation": "Vaše adresa byla zkopírována ze schránky. Zkontrolujte, že vložená adresa je opravdu ta, kam chcete prostředky poslat."
+        "addressPasteExplanation": "Vaše adresa byla zkopírována ze schránky. Zkontrolujte, že vložená adresa je opravdu ta, kam chcete prostředky poslat.",
+        "invalid": "INVALID"
     },
     "setPassword": {
         "choosePassword": "Zvolte nové heslo",
@@ -467,7 +468,9 @@
         "messageCopied": "Zpráva byla zkopírována",
         "messageCopiedExplanation": "Zpráva byla zkopírována do schránky.",
         "send": "ODESLAT",
-        "receive": "PŘÍJEM"
+        "receive": "PŘÍJEM",
+        "empty": "Empty",
+        "retrying": "RETRYING"
     },
     "accountManagement": {
         "viewSeed": "Zobrazit Seed",
@@ -506,7 +509,8 @@
         "frame": "Rám"
     },
     "themeCustomisation": {
-        "theme": "Motiv"
+        "theme": "Motiv",
+        "mockup": "Mockup"
     },
     "currencySelection": {
         "currency": "Měna"
@@ -606,7 +610,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Změna",
+        "change": "Change (24h)",
         "volume": "Objem (24h)",
         "currentValue": "Současná hodnota",
         "error": "Při načítání dat grafu došlo k chybě"
