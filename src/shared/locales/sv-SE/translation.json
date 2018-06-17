@@ -352,7 +352,8 @@
         "sendMax": "SKICKA MAX",
         "totalTime": "Total tid",
         "addressPasteDetected": "Kopierad adress upptäckt",
-        "addressPasteExplanation": "Det ser ut som att du har klistrat in en adress. Kontrollera att den inklistrade adressen matchar den som du vill skicka till."
+        "addressPasteExplanation": "Det ser ut som att du har klistrat in en adress. Kontrollera att den inklistrade adressen matchar den som du vill skicka till.",
+        "invalid": "INVALID"
     },
     "setPassword": {
         "choosePassword": "Välj ett nytt lösenord",
@@ -467,7 +468,9 @@
         "messageCopied": "Meddelandet kopierat",
         "messageCopiedExplanation": "Meddelandet har kopierats till urklipp.",
         "send": "SKICKA",
-        "receive": "TA EMOT"
+        "receive": "TA EMOT",
+        "empty": "Empty",
+        "retrying": "RETRYING"
     },
     "accountManagement": {
         "viewSeed": "Visa seed",
@@ -506,7 +509,8 @@
         "frame": "Ram"
     },
     "themeCustomisation": {
-        "theme": "Teman"
+        "theme": "Teman",
+        "mockup": "Mockup"
     },
     "currencySelection": {
         "currency": "Valuta"
@@ -606,7 +610,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Ändring",
+        "change": "Change (24h)",
         "volume": "Volym (24h)",
         "currentValue": "Nuvarande värde",
         "error": "Fel vid hämtning av valutavärde"
