@@ -352,7 +352,8 @@
         "sendMax": "최대 금액",
         "totalTime": "총 소요시간",
         "addressPasteDetected": "주소 붙여넣기가 확인됨",
-        "addressPasteExplanation": "받을 주소를 붙여넣은 것으로 보입니다. 붙여넣는 주소가 보내고자 하는 주소와 일치하는지 다시 한번 확인해 주세요."
+        "addressPasteExplanation": "받을 주소를 붙여넣은 것으로 보입니다. 붙여넣는 주소가 보내고자 하는 주소와 일치하는지 다시 한번 확인해 주세요.",
+        "invalid": "INVALID"
     },
     "setPassword": {
         "choosePassword": "비밀번호 설정하기",
@@ -467,7 +468,9 @@
         "messageCopied": "메시지 복사함",
         "messageCopiedExplanation": "메시지를 클립보드에 복사했습니다.",
         "send": "보냄",
-        "receive": "받음"
+        "receive": "받음",
+        "empty": "Empty",
+        "retrying": "RETRYING"
     },
     "accountManagement": {
         "viewSeed": "시드 보기",
@@ -506,7 +509,8 @@
         "frame": "테두리"
     },
     "themeCustomisation": {
-        "theme": "테마"
+        "theme": "테마",
+        "mockup": "Mockup"
     },
     "currencySelection": {
         "currency": "통화"
@@ -606,7 +610,7 @@
     },
     "chart": {
         "mcap": "시가총액",
-        "change": "전일대비",
+        "change": "Change (24h)",
         "volume": "거래량 (24시간)",
         "currentValue": "현재 호가",
         "error": "차트 데이터 가져오는 중 오류 발생"
