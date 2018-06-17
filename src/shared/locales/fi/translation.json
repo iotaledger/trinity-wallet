@@ -352,7 +352,8 @@
         "sendMax": "LÄHETÄ MAX",
         "totalTime": "Kokonaisaika",
         "addressPasteDetected": "Osoitteen liittäminen havaittu",
-        "addressPasteExplanation": "Näyttää siltä että olet liittänyt osoitteen muualta. Varmista että liitetty osoite vastaa alkuperäistä."
+        "addressPasteExplanation": "Näyttää siltä että olet liittänyt osoitteen muualta. Varmista että liitetty osoite vastaa alkuperäistä.",
+        "invalid": "INVALID"
     },
     "setPassword": {
         "choosePassword": "Luo uusi salasana",
@@ -467,7 +468,9 @@
         "messageCopied": "Viesti kopioitu",
         "messageCopiedExplanation": "Viesti on kopioitu leikepöydälle.",
         "send": "LÄHETYS",
-        "receive": "SAAPUVA"
+        "receive": "SAAPUVA",
+        "empty": "Empty",
+        "retrying": "RETRYING"
     },
     "accountManagement": {
         "viewSeed": "Katso seed-luku",
@@ -506,7 +509,8 @@
         "frame": "Kehys"
     },
     "themeCustomisation": {
-        "theme": "Teema"
+        "theme": "Teema",
+        "mockup": "Mockup"
     },
     "currencySelection": {
         "currency": "Valuutta"
@@ -606,7 +610,7 @@
     },
     "chart": {
         "mcap": "MARVO",
-        "change": "Muutos",
+        "change": "Change (24h)",
         "volume": "Vaihto (24h)",
         "currentValue": "Nykyinen arvo",
         "error": "Kurssitietojen hakeminen epäonnistui"
