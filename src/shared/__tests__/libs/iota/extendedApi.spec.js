@@ -51,6 +51,46 @@ describe('libs: iota/extendedApi', () => {
             });
         });
 
+        describe('when latestSolidSubtangleMilestoneIndex is 1 less than latestMilestoneIndex', () => {
+            beforeEach(() => {
+                sandbox.stub(iota.api, 'getNodeInfo').yields(null, {
+                    latestMilestoneIndex: 426550,
+                    latestSolidSubtangleMilestoneIndex: 426550 - 1,
+                    latestMilestone: 'U'.repeat(81),
+                    latestSolidSubtangleMilestone: 'A'.repeat(81),
+                });
+            });
+
+            it('should return false if "timestamp" on trytes is from five minutes ago', () => {
+                const getTrytes = sinon.stub(iota.api, 'getTrytes').yields(null, trytes.zeroValue);
+
+                return isNodeSynced().then((result) => {
+                    expect(result).to.equal(false);
+                    getTrytes.restore();
+                });
+            });
+
+            it('should return true if "timestamp" on trytes is within five minutes', () => {
+                const trytesWithOldTimestamp = trytes.zeroValue;
+                const trytesWithLatestTimestamp = map(trytesWithOldTimestamp, (tryteString) => {
+                    const transactionObject = iota.utils.transactionObject(tryteString);
+                    const timestampLessThanAMinuteAgo = Date.now() - 60000;
+
+                    return iota.utils.transactionTrytes({
+                        ...transactionObject,
+                        timestamp: Math.round(timestampLessThanAMinuteAgo / 1000),
+                    });
+                });
+
+                const getTrytes = sinon.stub(iota.api, 'getTrytes').yields(null, trytesWithLatestTimestamp);
+
+                return isNodeSynced().then((result) => {
+                    expect(result).to.equal(true);
+                    getTrytes.restore();
+                });
+            });
+        });
+
         describe(`when latestMilestone is not ${'9'.repeat(81)} and is equal to latestSolidSubtangleMilestone`, () => {
             beforeEach(() => {
                 sandbox.stub(iota.api, 'getNodeInfo').yields(null, {
