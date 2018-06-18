@@ -152,7 +152,7 @@
         "ifYourBalanceIsNotCorrect": "Si su saldo no es correcto, es probable que esté usando una semilla previa al snapshot.",
         "headToAdvancedSettingsForTransition": "Diríjase a Configuración Avanzada y realice una Snapshot Transition.",
         "usingTrinityWalletWithKeePass": "Usando cartera Trinity con Keepass2Android",
-        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
+        "signedTrytesBroadcastErrorExplanation": "Hubo un error mientras se estaba transmitiendo su transacción."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La semilla contiene caracteres inválidos",
@@ -224,7 +224,7 @@
         "invalidCharacters": "La semilla contiene caracteres inválidos",
         "invalidCharactersExplanation": "Las semillas sólo pueden estar compuestas de letras A-Z y el número 9. Su semilla contiene caracteres inválidos. Por favor inténtelo de nuevo.",
         "seedTooShort": "La semilla es demasiado corta",
-        "seedTooLong": "Seed is too long",
+        "seedTooLong": "La semilla es muy larga",
         "seedTooShortExplanation": "Las semillas deben tener {{maxLength}} caracteres. Su semilla tiene actualmente {{currentLength}} caracteres. Por favor inténtelo nuevamente.",
         "seedExplanation": "Las semillas deben ser de {{maxLength}} caracteres de longitud y contener letras mayúsculas de la A a la Z, o el número 9. No se pueden usar semillas de más de {{maxLength}} caracteres.",
         "neverShare": "NUNCA COMPARTA SU SEMILLA CON NADIE"
@@ -294,8 +294,8 @@
         "removeMessage": "ELIMINAR MENSAJE",
         "noAddresses": "SIN DIRECCIONES",
         "spent": "Gastado",
-        "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
+        "missingPermission": "Permisos de sistema requeridos",
+        "missingPermissionExplanation": "El acceso a los archivos del sistema son requeridos para compartir los códigos QR."
     },
     "saveYourSeed": {
         "saveYourSeed": "Haga una copia de respaldo de su semilla",
@@ -353,7 +353,7 @@
         "totalTime": "Tiempo total",
         "addressPasteDetected": "Se ha detectado una dirección pegada",
         "addressPasteExplanation": "Parace que ha pegado una dirección. Asegúrese de que la dirección coincida con aquella a la que quiere enviar.",
-        "invalid": "INVALID"
+        "invalid": "INVALIDO"
     },
     "setPassword": {
         "choosePassword": "Elija una nueva contraseña",
@@ -469,8 +469,8 @@
         "messageCopiedExplanation": "El mensaje fue copiado al portapapeles.",
         "send": "ENVIAR",
         "receive": "RECIBIR",
-        "empty": "Empty",
-        "retrying": "RETRYING"
+        "empty": "Vacío",
+        "retrying": "REINTENTANDO"
     },
     "accountManagement": {
         "viewSeed": "Ver semilla",
@@ -510,7 +510,7 @@
     },
     "themeCustomisation": {
         "theme": "Tema",
-        "mockup": "Mockup"
+        "mockup": "Maqueta"
     },
     "currencySelection": {
         "currency": "Divisa"
@@ -523,11 +523,11 @@
     },
     "unitInfoModal": {
         "unitSystem": "UNIDAD DE SISTEMA",
-        "trillion": "Trillón",
-        "billion": "Billón",
+        "trillion": "Billón",
+        "billion": "Mil millones",
         "million": "Millón",
         "thousand": "Mil",
-        "one": "Un"
+        "one": "Unidad"
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Porque no puedo gastar todos mis fondos?",
@@ -610,7 +610,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change (24h)",
+        "change": "Cambio (24h)",
         "volume": "Volumen (24h)",
         "currentValue": "Valor actual",
         "error": "Error obteniendo datos de gráfico"
