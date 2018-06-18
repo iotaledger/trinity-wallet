@@ -294,8 +294,8 @@
         "removeMessage": "TA BORT MEDDELANDE",
         "noAddresses": "INGA ADRESSER",
         "spent": "Förbrukat",
-        "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
+        "missingPermission": "Åtkomst till filsystem krävs",
+        "missingPermissionExplanation": "Åtkomst till filsystem krävs för att dela QR-koder."
     },
     "saveYourSeed": {
         "saveYourSeed": "Spara din seed",
@@ -311,7 +311,7 @@
         "letsWriteDownYourSeed": "Skriv ner din seed",
         "youCanHighlightCharacters": "Du kan markera 9 tecken i taget",
         "printBlankWallet": "Skriv ut en tom plånbok",
-        "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
+        "whatIsChecksum": "Varje seed har en tillhörande 3-tecken kontrollsumma",
         "iHavesavedMySeed": "Jag har sparat min seed",
         "checksumExplanation": "När du lägger till en seed i din plånbok, bör du kontrollera att den plånboksgenererade kontrollsumman matchar den du har skrivit ned.",
         "mustSaveYourSeed": "<0><0>Du måste spara din seed med</0><1>minst ett</1><2> av alternativen listade nedan.</2></0>"
@@ -353,7 +353,7 @@
         "totalTime": "Total tid",
         "addressPasteDetected": "Kopierad adress upptäckt",
         "addressPasteExplanation": "Det ser ut som att du har klistrat in en adress. Kontrollera att den inklistrade adressen matchar den som du vill skicka till.",
-        "invalid": "INVALID"
+        "invalid": "OGILTIG"
     },
     "setPassword": {
         "choosePassword": "Välj ett nytt lösenord",
@@ -445,18 +445,18 @@
         "seedExplanation": "Din IOTA-seed är huvudnyckeln till dina pengar. Den är 81 tecken lång och innehåller endast bokstäverna A-Z eller numret 9.",
         "noIHaveOne": "Nej, jag har en",
         "yesINeedASeed": "Ja, jag behöver en seed",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
-        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
+        "explanation": "<0><0>Du kan använda den för att komma åt dina pengar från</0> <1>vilken plånbok som helst</1> <2>på</2> <3>vilken enhet som helst.</3></0>",
+        "loseSeed": "Men om du förlorar din seed, då förlorar du också dina IOTA.",
         "keepSafe": "Vänligen förvara din seed säkert.",
         "hint": "<0><0>Tips:</0> Klicka på NEJ om detta är första gången du använder IOTA.</0>"
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity"
+        "thankYou": "Tack för att du laddade ned Trinity"
     },
     "writeSeedDown": {
         "yourSeedIs": "Din seed är {{maxSeedLength}} tecken lästa från vänster till höger.",
         "writeDownYourSeed": "<0> Skriv ner din seed och checksumma och </0><1>dubbelkolla</1><2> att det stämmer.</2>",
-        "scrollToBottom": "Scroll to the bottom"
+        "scrollToBottom": "Scrolla till botten"
     },
     "history": {
         "bundleHashCopied": "Hashbunt kopierad",
@@ -469,8 +469,8 @@
         "messageCopiedExplanation": "Meddelandet har kopierats till urklipp.",
         "send": "SKICKA",
         "receive": "TA EMOT",
-        "empty": "Empty",
-        "retrying": "RETRYING"
+        "empty": "Tom",
+        "retrying": "FÖRSÖKER IGEN"
     },
     "accountManagement": {
         "viewSeed": "Visa seed",
@@ -510,7 +510,7 @@
     },
     "themeCustomisation": {
         "theme": "Teman",
-        "mockup": "Mockup"
+        "mockup": "Exempel"
     },
     "currencySelection": {
         "currency": "Valuta"
@@ -610,7 +610,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change (24h)",
+        "change": "Förändring (24h)",
         "volume": "Volym (24h)",
         "currentValue": "Nuvarande värde",
         "error": "Fel vid hämtning av valutavärde"
