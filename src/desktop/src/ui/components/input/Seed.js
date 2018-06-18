@@ -2,7 +2,7 @@
 import React from 'react';
 import QrReader from 'react-qr-reader';
 import PropTypes from 'prop-types';
-import { MAX_SEED_LENGTH } from 'libs/iota/utils';
+import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'libs/iota/utils';
 
 import { byteToChar } from 'libs/crypto';
 
@@ -59,12 +59,15 @@ export default class SeedInput extends React.PureComponent {
         }
     }
 
-    onScanEvent = (address) => {
-        if (address !== null) {
+    onScanEvent = (input) => {
+        if (input && input.match(VALID_SEED_REGEX) && input.length === MAX_SEED_LENGTH) {
             this.setState(() => ({
                 showScanner: false,
             }));
-            this.props.onChange(address);
+
+            const seed = input.split('').map((char) => '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.indexOf(char.toUpperCase()));
+
+            this.props.onChange(seed);
         }
     };
 
@@ -214,7 +217,7 @@ export default class SeedInput extends React.PureComponent {
                 {showScanner && (
                     <Modal isOpen onClose={this.closeScanner}>
                         <div className={css.qrScanner}>
-                            <QrReader delay={350} onScan={this.onScanEvent} />
+                            <QrReader delay={350} onScan={this.onScanEvent} onError={() => {}} />
                             <Button type="button" onClick={this.closeScanner} variant="secondary">
                                 {closeLabel}
                             </Button>

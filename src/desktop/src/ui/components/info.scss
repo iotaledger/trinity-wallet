@@ -28,4 +28,11 @@
         background: var(--box-alt);
         border-radius: 28px;
     }
+
+    p {
+        margin-bottom: 0px;
+    }
+    p + p {
+        margin-top: 16px;
+    }
 }
