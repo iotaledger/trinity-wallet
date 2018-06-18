@@ -1,7 +1,6 @@
 /* global Electron */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { translate, Trans } from 'react-i18next';
 
 import QRCode from 'qr.js/lib/QRCode';
@@ -11,11 +10,12 @@ import { byteToChar } from 'libs/crypto';
 import Modal from 'ui/components/modal/Modal';
 import Button from 'ui/components/Button';
 import Icon from 'ui/components/Icon';
-import Clipboard from 'ui/components/Clipboard';
-import Tooltip from 'ui/components/Tooltip';
 
 import paperWallet from 'themes/paper-wallet.svg';
 import paperWalletFilled from 'themes/paper-wallet-filled.svg';
+
+import SeedSaveWrite from './SeedSaveWrite';
+import SeedSaveExport from './SeedSaveExport';
 
 import css from './index.scss';
 
@@ -38,13 +38,13 @@ class SeedSave extends PureComponent {
 
     state = {
         seed: Electron.getOnboardingSeed(),
-        writeIndex: 1,
         writeVisible: false,
+        exportVisible: false,
     };
 
     render() {
         const { t } = this.props;
-        const { writeIndex, writeVisible, seed } = this.state;
+        const { writeVisible, exportVisible, seed } = this.state;
 
         const checksum = Electron.getChecksum(seed);
 
@@ -67,18 +67,12 @@ class SeedSave extends PureComponent {
                         </p>
                     </Trans>
                     <nav className={css.choice}>
-                        <Clipboard
-                            text={seed || ''}
-                            timeout={60}
-                            title={t('copyToClipboard:seedCopied')}
-                            success={t('copyToClipboard:seedCopiedExplanation')}
-                        >
+                        <a onClick={() => this.setState({ exportVisible: true })}>
                             <div>
                                 <Icon icon="password" size={24} />
                             </div>
                             <h4>{t('addToPasswordManager')}</h4>
-                        </Clipboard>
-
+                        </a>
                         <a onClick={() => this.setState({ writeVisible: true, writeIndex: 1 })} className={css.secure}>
                             <h3>{t('saveYourSeed:mostSecure')}</h3>
                             <div>
@@ -104,74 +98,18 @@ class SeedSave extends PureComponent {
                 </footer>
                 <Modal
                     variant="fullscreen"
-                    isOpen={writeVisible}
-                    onClose={() => this.setState({ writeVisible: false })}
+                    isOpen={writeVisible || exportVisible}
+                    onClose={() => this.setState({ writeVisible: false, exportVisible: false })}
                 >
-                    <section>
-                        <h1>{t('saveYourSeed:letsWriteDownYourSeed')}</h1>
-                        <p>{t('saveYourSeed:youCanHighlightCharacters')}</p>
-                        <div className={classNames(css.seed, css.narrow)}>
-                            <div>
-                                {seed &&
-                                    seed.map((byte, index) => {
-                                        if (index % 3 !== 0) {
-                                            return null;
-                                        }
-                                        const letter = `${byteToChar(byte)}${byteToChar(seed[index + 1])}${byteToChar(
-                                            seed[index + 2],
-                                        )}`;
-
-                                        return (
-                                            <span
-                                                className={
-                                                    writeIndex !== Math.floor(index / 9) + 1 ? css.disabled : null
-                                                }
-                                                key={`${index}${letter}`}
-                                            >
-                                                {index % 9 === 0 ? <em>{index / 9 + 1}</em> : null}
-                                                {letter}
-                                            </span>
-                                        );
-                                    })}
-                            </div>
-                            <div>
-                                <Tooltip
-                                    title={t('saveYourSeed:whatIsCheksum')}
-                                    tip={t('saveYourSeed:checksumExplanation')}
-                                />{' '}
-                                {t('checksum')}: <strong>{checksum}</strong>
-                            </div>
-                            <nav className={css.arrows}>
-                                <a
-                                    onClick={() => this.setState({ writeIndex: writeIndex - 1 })}
-                                    className={writeIndex === 1 ? css.disabled : null}
-                                >
-                                    <Icon icon="arrowUp" size={21} />
-                                </a>
-                                <a
-                                    onClick={() => this.setState({ writeIndex: writeIndex + 1 })}
-                                    className={writeIndex === 9 ? css.disabled : null}
-                                >
-                                    <Icon icon="arrowDown" size={24} />
-                                </a>
-                            </nav>
-                        </div>
-                    </section>
-                    <footer>
-                        <Button onClick={() => window.print()} className="square" variant="secondary">
-                            {t('saveYourSeed:printBlankWallet')}
-                        </Button>
-                        <Button
-                            onClick={(e) => {
-                                e.preventDefault();
-                                this.setState({ writeVisible: false });
-                            }}
-                            variant="primary"
-                            className="square"
-                        >
-                            {t('doneLowercase')}
-                        </Button>
-                    </footer>
+                    {writeVisible ? (
+                        <SeedSaveWrite
+                            seed={seed}
+                            checksum={checksum}
+                            onClose={() => this.setState({ writeVisible: false })}
+                        />
+                    ) : (
+                        <SeedSaveExport seed={seed} onClose={() => this.setState({ exportVisible: false })} />
+                    )}
                 </Modal>
                 <div className={css.print} onClick={() => window.print()}>
                     {writeVisible && seed ? null : (
