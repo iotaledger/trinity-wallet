@@ -304,8 +304,6 @@
         "leastSecure": "最低限の安全",
         "paperWallet": "ペーパーウォレット",
         "writeYourSeedDown": "手書きで保存",
-        "printYourSeed": "印刷して保存",
-        "digitalCopy": "デジタルにコピー",
         "seedClearedExplanation": "安全のために、シードをクリップボードから消去しました。",
         "iHaveBackedUpMySeed": "私はシードをバックアップしました。",
         "letsWriteDownYourSeed": "シードを書き写しましょう。",
