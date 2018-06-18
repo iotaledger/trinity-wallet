@@ -304,8 +304,6 @@
         "leastSecure": "Наименее безопасно",
         "paperWallet": "Бумажный кошелек",
         "writeYourSeedDown": "Запишите Ваш ключ",
-        "printYourSeed": "Распечатайте Ваш ключ",
-        "digitalCopy": "Цифровая копия",
         "seedClearedExplanation": "Ключ был удален из буфера обмена для Вашей безопасности.",
         "iHaveBackedUpMySeed": "Я сохранил свой ключ",
         "letsWriteDownYourSeed": "Запишите Ваш ключ",
