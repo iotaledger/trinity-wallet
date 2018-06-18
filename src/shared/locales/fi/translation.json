@@ -304,8 +304,6 @@
         "leastSecure": "Vähiten Turvallinen",
         "paperWallet": "Paperilompakko",
         "writeYourSeedDown": "Kirjoita seed-luku paperille",
-        "printYourSeed": "Tulosta seed-luku paperille",
-        "digitalCopy": "Digitaalinen kopio",
         "seedClearedExplanation": "Seed-luku on turvallisuussyistä poistettu leikepöydältä.",
         "iHaveBackedUpMySeed": "Seed-luku turvassa",
         "letsWriteDownYourSeed": "Tallennetaan seed-lukusi",
