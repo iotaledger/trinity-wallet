@@ -63,8 +63,8 @@ const encrypt = async (contentPlain, passwordPlain) => {
 const decrypt = async (cipherText, passwordPlain) => {
     const cipherParts = cipherText.split('|');
 
-    if (cipherParts.length !== 2 || !passwordPlain) {
-        return false;
+    if (cipherParts.length !== 2 || typeof passwordPlain !== 'string' || !passwordPlain.length) {
+        throw new Error('Wrong password');
     }
     try {
         const password = new TextEncoder().encode(passwordPlain);
@@ -173,6 +173,32 @@ export const setSeed = async (password, seedName, seed, overwrite) => {
     try {
         const decryptedVault = overwrite ? vault : await decrypt(vault, password);
         decryptedVault.seeds[seedName] = Array.from(seed);
+
+        const updatedVault = await encrypt(decryptedVault, password);
+
+        Electron.setKeychain(updatedVault);
+    } catch (err) {
+        throw err;
+    }
+};
+
+/**
+ * Set Two-Factor authentication key
+ * @param {String} Password - plain text password to be used for decryption
+ * @param {String} Key - two-factor authentication key
+ */
+export const setTwoFA = async (password, key) => {
+    const vault = await Electron.readKeychain();
+    if (!vault) {
+        throw new Error('Local storage not available');
+    }
+    try {
+        const decryptedVault = await decrypt(vault, password);
+        if (key) {
+            decryptedVault.twoFaKey = key;
+        } else {
+            delete decryptedVault.twoFaKey;
+        }
 
         const updatedVault = await encrypt(decryptedVault, password);
 

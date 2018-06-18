@@ -1,4 +1,4 @@
-export const DESKTOP_VERSION = '0.1.6';
+export const DESKTOP_VERSION = '0.1.7';
 
 export const defaultNode = 'https://trinity.iota.fm:443';
 
