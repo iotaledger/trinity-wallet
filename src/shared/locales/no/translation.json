@@ -304,8 +304,6 @@
         "leastSecure": "Minst sikkert",
         "paperWallet": "Papirlommebok",
         "writeYourSeedDown": "Skriv ned hovednøkkelen",
-        "printYourSeed": "Skriv ut hovednøkkelen",
-        "digitalCopy": "Digital kopi",
         "seedClearedExplanation": "Hovednøkkelen er fjernet fra utklippstavlen for din sikkerhet.",
         "iHaveBackedUpMySeed": "Jeg har lagret min hovednøkkel",
         "letsWriteDownYourSeed": "La oss skrive ned din hovednøkkel",
