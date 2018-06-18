@@ -2,19 +2,26 @@
 import React from 'react';
 import QrReader from 'react-qr-reader';
 import PropTypes from 'prop-types';
-import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'libs/iota/utils';
+import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 
+import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'libs/iota/utils';
 import { byteToChar } from 'libs/crypto';
 
+import { generateAlert } from 'actions/alerts';
+
 import Modal from 'ui/components/modal/Modal';
+import Password from 'ui/components/modal/Password';
 import Button from 'ui/components/Button';
 import Icon from 'ui/components/Icon';
+import Dropzone from 'ui/components/Dropzone';
+
 import css from './input.scss';
 
 /**
  * Seed input component
  */
-export default class SeedInput extends React.PureComponent {
+class SeedInput extends React.PureComponent {
     static propTypes = {
         /** Current seed value */
         seed: PropTypes.array.isRequired,
@@ -28,10 +35,23 @@ export default class SeedInput extends React.PureComponent {
          * @param {string} value - Current seed value
          */
         onChange: PropTypes.func.isRequired,
+        /** Create a notification message
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
+         * @ignore
+         */
+        generateAlert: PropTypes.func.isRequired,
+        /** Translation helper
+         * @param {string} translationString - locale string identifier to be translated
+         * @ignore
+         */
+        t: PropTypes.func.isRequired,
     };
 
     state = {
         showScanner: false,
+        importBuffer: null,
         cursor: 0,
     };
 
@@ -48,7 +68,7 @@ export default class SeedInput extends React.PureComponent {
     }
 
     componentDidUpdate() {
-        if (this.input && this.props.seed.length >= this.state.cursor) {
+        if (this.input && this.props.seed && this.props.seed.length >= this.state.cursor) {
             const range = document.createRange();
             const sel = window.getSelection();
             range.setStart(this.input, this.state.cursor);
@@ -66,6 +86,7 @@ export default class SeedInput extends React.PureComponent {
             }));
 
             const seed = input.split('').map((char) => '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.indexOf(char.toUpperCase()));
+            Electron.garbageCollect();
 
             this.props.onChange(seed);
         }
@@ -104,6 +125,12 @@ export default class SeedInput extends React.PureComponent {
         return false;
     };
 
+    onDrop = async (buffer) => {
+        this.setState({
+            importBuffer: buffer,
+        });
+    };
+
     getCursor = (element) => {
         const range = document.getSelection().getRangeAt(0);
 
@@ -130,6 +157,28 @@ export default class SeedInput extends React.PureComponent {
         this.setState(() => ({
             showScanner: true,
         }));
+    };
+
+    decryptFile = async (password) => {
+        const { generateAlert, t } = this.props;
+
+        try {
+            const seed = await Electron.importSeed(this.state.importBuffer, password);
+
+            this.props.onChange(seed);
+
+            this.setState({
+                importBuffer: null,
+            });
+
+            Electron.garbageCollect();
+        } catch (error) {
+            if (error.code === 'InvalidKey') {
+                generateAlert('error', t('unrecognisedPassword'), t('unrecognisedPasswordExplanation'));
+            } else {
+                generateAlert('error', 'Error opening keystore file', 'There was an error opening keystore file');
+            }
+        }
     };
 
     keyDown = (e) => {
@@ -181,7 +230,7 @@ export default class SeedInput extends React.PureComponent {
 
     render() {
         const { seed, label, closeLabel } = this.props;
-        const { showScanner } = this.state;
+        const { importBuffer, showScanner } = this.state;
 
         const checkSum = seed.length < MAX_SEED_LENGTH ? '< 81' : Electron.getChecksum(seed);
 
@@ -224,7 +273,29 @@ export default class SeedInput extends React.PureComponent {
                         </div>
                     </Modal>
                 )}
+                <Dropzone onDrop={this.onDrop} />
+                {importBuffer && (
+                    <Password
+                        content={{
+                            title: 'Enter password',
+                            message: 'Enter password to open the keyfile',
+                            confirm: 'Open',
+                        }}
+                        isOpen
+                        onClose={() => this.setState({ importBuffer: null })}
+                        onSubmit={(password) => this.decryptFile(password)}
+                    />
+                )}
             </div>
         );
     }
 }
+
+const mapDispatchToProps = {
+    generateAlert,
+};
+
+export default connect(
+    null,
+    mapDispatchToProps,
+)(translate()(SeedInput));
