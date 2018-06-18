@@ -304,8 +304,6 @@
         "leastSecure": "Moins sécurisé",
         "paperWallet": "Portefeuille papier",
         "writeYourSeedDown": "Notez votre seed",
-        "printYourSeed": "Imprimer votre seed",
-        "digitalCopy": "Copie numérique",
         "seedClearedExplanation": "La seed a été effacée du presse-papier pour plus de sécurité.",
         "iHaveBackedUpMySeed": "J’ai enregistré ma seed",
         "letsWriteDownYourSeed": "Notez votre seed",
