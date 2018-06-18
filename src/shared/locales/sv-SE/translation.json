@@ -304,8 +304,6 @@
         "leastSecure": "Minst säkert",
         "paperWallet": "Pappersplånbok",
         "writeYourSeedDown": "Skriv ner din seed",
-        "printYourSeed": "Skriv ut din seed",
-        "digitalCopy": "Digital kopia",
         "seedClearedExplanation": "Seeden har blivit rensad från urklipp för din säkerhet.",
         "iHaveBackedUpMySeed": "Jag har sparat min seed",
         "letsWriteDownYourSeed": "Skriv ner din seed",
