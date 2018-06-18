@@ -294,8 +294,8 @@
         "removeMessage": "PAŠALINTI ŽINUTĘ",
         "noAddresses": "ADRESŲ NĖRA",
         "spent": "Panaudotas",
-        "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
+        "missingPermission": "Reikalingas failų sistemos leidimas",
+        "missingPermissionExplanation": "Reikalinga prieiga prie failų sistemos norint dalintis QR kodais."
     },
     "saveYourSeed": {
         "saveYourSeed": "Išsisaugokite savo užraktą",
