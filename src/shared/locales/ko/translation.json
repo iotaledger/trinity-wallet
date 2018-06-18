@@ -304,8 +304,6 @@
         "leastSecure": "덜 안전함",
         "paperWallet": "종이 지갑",
         "writeYourSeedDown": "시드 기록하기",
-        "printYourSeed": "시드 인쇄하기",
-        "digitalCopy": "암호화하여 저장",
         "seedClearedExplanation": "보안을 위해 클립보드에서 시드가 삭제되었습니다.",
         "iHaveBackedUpMySeed": "시드를 저장했습니다",
         "letsWriteDownYourSeed": "시드를 종이에 기록하세요",
