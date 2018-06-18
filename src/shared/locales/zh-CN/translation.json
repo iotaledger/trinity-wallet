@@ -304,8 +304,6 @@
         "leastSecure": "最低安全的",
         "paperWallet": "纸钱包",
         "writeYourSeedDown": "写下您的种子",
-        "printYourSeed": "打印您的种子",
-        "digitalCopy": "数字备份",
         "seedClearedExplanation": "为了安全，已从剪贴板中清除掉了该种子。",
         "iHaveBackedUpMySeed": "我已经保存了我的种子",
         "letsWriteDownYourSeed": "让我们记下您的种子",
