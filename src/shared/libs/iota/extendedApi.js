@@ -338,14 +338,25 @@ const isNodeSynced = (provider = null) => {
     };
 
     return getNodeInfoAsync(provider)
-        .then(({ latestMilestone, latestSolidSubtangleMilestone }) => {
-            cached.latestMilestone = latestMilestone;
-            if (cached.latestMilestone === latestSolidSubtangleMilestone && cached.latestMilestone !== '9'.repeat(81)) {
-                return getTrytesAsync([cached.latestMilestone], provider);
-            }
+        .then(
+            ({
+                latestMilestone,
+                latestMilestoneIndex,
+                latestSolidSubtangleMilestone,
+                latestSolidSubtangleMilestoneIndex,
+            }) => {
+                cached.latestMilestone = latestMilestone;
+                if (
+                    (cached.latestMilestone === latestSolidSubtangleMilestone ||
+                        latestMilestoneIndex - 1 === latestSolidSubtangleMilestoneIndex) &&
+                    cached.latestMilestone !== '9'.repeat(81)
+                ) {
+                    return getTrytesAsync([cached.latestMilestone], provider);
+                }
 
-            throw new Error(Errors.NODE_NOT_SYNCED);
-        })
+                throw new Error(Errors.NODE_NOT_SYNCED);
+            },
+        )
         .then((trytes) => {
             const { timestamp } = iota.utils.fastTransactionObject(cached.latestMilestone, head(trytes));
 
