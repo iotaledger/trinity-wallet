@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { translate, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 
-import { changePowSettings, setLockScreenTimeout } from 'actions/settings';
+import { changePowSettings, changeAutoPromotionSettings, setLockScreenTimeout } from 'actions/settings';
 import { completeSnapshotTransition } from 'actions/wallet';
 import { generateAlert } from 'actions/alerts';
 import { setSeed, getSeed } from 'libs/crypto';
@@ -33,10 +33,16 @@ class Advanced extends PureComponent {
     static propTypes = {
         /** RemotePow PoW enable state */
         remotePoW: PropTypes.bool.isRequired,
+        /** Auto-promotion enable state */
+        autoPromotion: PropTypes.bool.isRequired,
         /** Update remote PoW settings state
          * @ignore
          */
         changePowSettings: PropTypes.func.isRequired,
+        /** Update auto-promotion settings state
+         * @ignore
+         */
+        changeAutoPromotionSettings: PropTypes.func.isRequired,
         /**
          * Update the lock screen timeout state
          * @ignore
@@ -184,7 +190,15 @@ class Advanced extends PureComponent {
     };
 
     render() {
-        const { remotePoW, changePowSettings, lockScreenTimeout, ui, t } = this.props;
+        const {
+            remotePoW,
+            autoPromotion,
+            changePowSettings,
+            changeAutoPromotionSettings,
+            lockScreenTimeout,
+            ui,
+            t,
+        } = this.props;
 
         // snapshot transition
         const { isTransitioning, isAttachingToTangle, isModalActive, transitionBalance } = this.props;
@@ -228,6 +242,16 @@ class Advanced extends PureComponent {
                         onChange={() => changePowSettings()}
                         on={t('pow:remote')}
                         off={t('pow:local')}
+                    />
+                    <hr />
+
+                    <h3>{t('advancedSettings:autoPromotion')}</h3>
+                    <Info>{t('advancedSettings:autoPromotionExplanation')}</Info>
+                    <Toggle
+                        checked={autoPromotion}
+                        onChange={() => changeAutoPromotionSettings()}
+                        on={t('enabled')}
+                        off={t('disabled')}
                     />
                     <hr />
 
@@ -329,6 +353,7 @@ class Advanced extends PureComponent {
 
 const mapStateToProps = (state) => ({
     remotePoW: state.settings.remotePoW,
+    autoPromotion: state.settings.autoPromotion,
     wallet: state.wallet,
     ui: state.ui,
     selectedAccountName: getSelectedAccountName(state),
@@ -346,9 +371,13 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     generateAlert,
     changePowSettings,
+    changeAutoPromotionSettings,
     setLockScreenTimeout,
     toggleModalActivity,
     completeSnapshotTransition,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(Advanced));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(translate()(Advanced));
