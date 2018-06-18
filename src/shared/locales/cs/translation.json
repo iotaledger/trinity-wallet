@@ -304,8 +304,6 @@
         "leastSecure": "Nejméně bezpečné",
         "paperWallet": "Papírová peněženka",
         "writeYourSeedDown": "Zapište si Váš Seed",
-        "printYourSeed": "Tisk vašeho Seedu",
-        "digitalCopy": "Digitální kopie",
         "seedClearedExplanation": "Pro větší bezpečnost byl Seed ze schránky vymazán.",
         "iHaveBackedUpMySeed": "Svůj Seed mám uložený",
         "letsWriteDownYourSeed": "Poznamenejte si někam Váš Seed",
