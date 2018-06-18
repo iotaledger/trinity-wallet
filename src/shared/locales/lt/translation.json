@@ -353,7 +353,7 @@
         "totalTime": "Bendras laikas",
         "addressPasteDetected": "Aptiktas adreso įklijavimas",
         "addressPasteExplanation": "Atrodo, kad jūs įklijavote adresą. Įsitikinkite, kad adresas tikrai sutampa su gavėjo adresu.",
-        "invalid": "INVALID"
+        "invalid": "KLAIDA"
     },
     "setPassword": {
         "choosePassword": "Sukurti naują slaptažodį",
@@ -469,8 +469,8 @@
         "messageCopiedExplanation": "Žinutė nukopijuota į iškarpinę.",
         "send": "SIŲSTA",
         "receive": "GAUTA",
-        "empty": "Empty",
-        "retrying": "RETRYING"
+        "empty": "Tuščia",
+        "retrying": "BANDOMA IŠ NAUJO"
     },
     "accountManagement": {
         "viewSeed": "Rodyti užraktą",
@@ -510,7 +510,7 @@
     },
     "themeCustomisation": {
         "theme": "Tema",
-        "mockup": "Mockup"
+        "mockup": "Maketas"
     },
     "currencySelection": {
         "currency": "Valiuta"
@@ -610,7 +610,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change (24h)",
+        "change": "Pokytis (24val.)",
         "volume": "Apyvarta (24val.)",
         "currentValue": "Dabartinė vertė",
         "error": "Klaida užkraunant grafiko duomenis"
