@@ -60,6 +60,13 @@ const styles = StyleSheet.create({
         height: width / 5,
         width: width / 5,
     },
+    modal: {
+        height,
+        width,
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 0,
+    },
 });
 
 /** Fingerprint enable component */
@@ -257,7 +264,7 @@ class FingerprintEnable extends Component {
                     backdropTransitionOutTiming={200}
                     backdropOpacity={0.9}
                     backdropColor={theme.body.bg}
-                    style={{ alignItems: 'center', margin: 0 }}
+                    style={styles.modal}
                     isVisible={isModalVisible}
                     onBackButtonPress={this.hideModal}
                     hideModalContentWhileAnimating
