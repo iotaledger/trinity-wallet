@@ -68,6 +68,9 @@ const styles = StyleSheet.create({
         height: height / 5,
     },
     modal: {
+        height,
+        width,
+        justifyContent: 'center',
         alignItems: 'center',
         margin: 0,
     },

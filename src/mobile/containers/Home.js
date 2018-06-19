@@ -29,7 +29,7 @@ import Tabs from '../components/Tabs';
 import Tab from '../components/Tab';
 import TabContent from '../components/TabContent';
 import EnterPassword from '../containers/EnterPassword';
-import { height } from '../utils/dimensions';
+import { width, height } from '../utils/dimensions';
 import { isAndroid, isIPhoneX } from '../utils/device';
 
 const styles = StyleSheet.create({
@@ -44,6 +44,13 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    modal: {
+        height,
+        width,
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 0,
     },
 });
 
@@ -422,7 +429,7 @@ class Home extends Component {
                     backdropTransitionOutTiming={200}
                     backdropColor={body.bg}
                     backdropOpacity={0.9}
-                    style={{ alignItems: 'center', margin: 0 }}
+                    style={styles.modal}
                     isVisible={this.state.showModal}
                     onBackButtonPress={() => {
                         this.completeTransitionTask();

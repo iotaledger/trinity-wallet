@@ -60,6 +60,13 @@ const styles = StyleSheet.create({
         fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
     },
+    modal: {
+        height,
+        width,
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 0,
+    },
 });
 
 /** Enter password component */
@@ -182,7 +189,7 @@ class EnterPassword extends Component {
                         backdropTransitionOutTiming={200}
                         backdropOpacity={0.9}
                         backdropColor={theme.body.bg}
-                        style={{ alignItems: 'center', margin: 0 }}
+                        style={styles.modal}
                         isVisible={isModalVisible}
                         onBackButtonPress={this.hideModal}
                         hideModalContentWhileAnimating

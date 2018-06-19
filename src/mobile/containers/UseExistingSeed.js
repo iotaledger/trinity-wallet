@@ -102,6 +102,13 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         marginRight: width / 20,
     },
+    modal: {
+        height,
+        width,
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 0,
+    },
 });
 
 /** Use Existing Seed component */
@@ -411,7 +418,7 @@ class UseExistingSeed extends Component {
                         backdropTransitionOutTiming={200}
                         backdropColor={theme.body.bg}
                         backdropOpacity={0.9}
-                        style={{ alignItems: 'center', margin: 0, height }}
+                        style={styles.modal}
                         isVisible={isModalActive}
                         onBackButtonPress={() => this.props.toggleModalActivity()}
                         hideModalContentWhileAnimating
