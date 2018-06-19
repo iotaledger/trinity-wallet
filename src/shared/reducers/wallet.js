@@ -17,7 +17,7 @@ const initialState = {
     transitionAddresses: [],
     addingAdditionalAccount: false,
     balanceCheckToggle: false,
-    deepLinkActive: false,
+    deepLinkActived: false,
     hasConnection: true,
 };
 
@@ -78,7 +78,6 @@ export default (state = initialState, action) => {
                 seedIndex: 0,
                 isGeneratingReceiveAddress: false,
                 currentSetting: 'mainSettings',
-                deepLinkActive: false,
                 usedExistingSeed: false,
             };
         case ActionTypes.CLEAR_SEED:
@@ -161,12 +160,12 @@ export default (state = initialState, action) => {
         case ActionTypes.SET_DEEP_LINK:
             return {
                 ...state,
-                deepLinkActive: true,
+                deepLinkActived: true,
             };
         case ActionTypes.SET_DEEP_LINK_INACTIVE:
             return {
                 ...state,
-                deepLinkActive: false,
+                deepLinkActived: false,
             };
         case ActionTypes.CONNECTION_CHANGED:
             return {

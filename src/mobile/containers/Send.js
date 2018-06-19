@@ -144,7 +144,7 @@ export class Send extends Component {
         password: PropTypes.string.isRequired,
         generateTransferErrorAlert: PropTypes.func.isRequired,
         /** Determines if the wallet has just opened a deep link */
-        deepLinkActive: PropTypes.bool.isRequired,
+        deepLinkActived: PropTypes.bool.isRequired,
         /** Resets deep link status */
         setDeepLinkInactive: PropTypes.func.isRequired,
         /** Determines if user has activated fingerprint auth */
@@ -192,11 +192,11 @@ export class Send extends Component {
 
     componentDidMount() {
         leaveNavigationBreadcrumb('Send');
-        const { t, deepLinkActive } = this.props;
+        const { t, deepLinkActived } = this.props;
         if (!this.props.isSendingTransfer) {
             this.props.resetProgress();
         }
-        if (deepLinkActive) {
+        if (deepLinkActived) {
             this.props.generateAlert('success', t('deepLink:autofill'), t('deepLink:autofillExplanation'));
             this.props.setDeepLinkInactive();
         }
@@ -998,7 +998,7 @@ const mapStateToProps = (state) => ({
     timeTakenByEachProgressStep: state.progress.timeTakenByEachStep,
     remotePoW: state.settings.remotePoW,
     password: state.wallet.password,
-    deepLinkActive: state.wallet.deepLinkActive,
+    deepLinkActived: state.wallet.deepLinkActived,
     isFingerprintEnabled: state.settings.isFingerprintEnabled,
     isModalActive: state.ui.isModalActive,
 });

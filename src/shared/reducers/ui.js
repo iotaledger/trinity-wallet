@@ -170,9 +170,6 @@ export default (state = initialState, action) => {
                 isSyncing: false,
                 inactive: false,
                 minimised: false,
-                sendAddressFieldText: '',
-                sendAmountFieldText: '',
-                sendMessageFieldText: '',
                 loginPasswordFieldText: '',
                 sendDenomination: 'i',
                 onboarding: {

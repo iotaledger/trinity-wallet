@@ -32,7 +32,7 @@ class Dashboard extends React.PureComponent {
         /** Current password value */
         password: PropTypes.string,
         /** Is a deep link set active */
-        isDeepLinkActive: PropTypes.bool,
+        isDeepLinkActived: PropTypes.bool,
         /* Browser location objects */
         location: PropTypes.object,
         /** Browser history object */
@@ -47,7 +47,7 @@ class Dashboard extends React.PureComponent {
     };
 
     componentWillMount() {
-        if (this.props.isDeepLinkActive) {
+        if (this.props.isDeepLinkActived) {
             this.props.history.push('/wallet/send');
         }
     }
@@ -124,7 +124,8 @@ class Dashboard extends React.PureComponent {
 const mapStateToProps = (state) => ({
     accountName: getSelectedAccountName(state),
     password: state.wallet.password,
-    isDeepLinkActive: state.wallet.deepLinkActive,
+    accounts: state.accounts,
+    isDeepLinkActived: state.wallet.deepLinkActived,
 });
 
 export default translate()(connect(mapStateToProps)(Dashboard));

@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { formatIota, TOTAL_IOTA_SUPPLY } from 'libs/iota/utils';
 import { round } from 'libs/utils';
 import { getCurrencySymbol } from 'libs/currency';
+import { setUnit } from 'actions/wallet';
 
 import Icon from 'ui/components/Icon';
 import css from './input.scss';
@@ -38,6 +39,9 @@ export default class AmountInput extends React.PureComponent {
          * @param {string} value - Current ammount value
          */
         onChange: PropTypes.func.isRequired,
+        deepLinkActived: PropTypes.bool.isRequired,
+        setUnit: PropTypes.func.isRequired,
+        unit: PropTypes.func.isRequired,
     };
 
     state = {
@@ -47,11 +51,19 @@ export default class AmountInput extends React.PureComponent {
     };
 
     componentWillMount() {
-        this.stateToProps(this.props);
+        if (this.props.deepLinkActived) {
+            this.deepLinkInject(this.props.amount);
+        } else {
+            this.stateToProps(this.props);
+        }
     }
 
     componentWillReceiveProps(nextProps) {
-        this.stateToProps(nextProps);
+        if (this.props.deepLinkActived) {
+            this.deepLinkInject(this.props.amount);
+        } else {
+            this.stateToProps(nextProps);
+        }
     }
 
     onChange = (value) => {
@@ -87,6 +99,7 @@ export default class AmountInput extends React.PureComponent {
     };
 
     getUnitMultiplier(unit) {
+
         let multiplier = 1;
         const target = unit || this.state.unit;
         switch (target) {
@@ -111,11 +124,19 @@ export default class AmountInput extends React.PureComponent {
         return multiplier;
     }
 
+    deepLinkInject = (amount) => {
+        this.unitChange('Mi');
+        this.onChange(amount);
+    };
+
     stateToProps = (props) => {
-        if (this.state.iotas !== parseInt(props.amount)) {
+        if (props.deepLinkActived) {
+            this.unitChange('Mi');
+        }
+        if (this.state.iotas !== parseInt(props.amount) && !props.deepLinkActived) {
             this.setState({
                 iotas: props.amount.length ? parseInt(props.amount) : 0,
-                value: props.amount.length ? round(parseInt(props.amount) / this.getUnitMultiplier()) : 0,
+                value: props.amount.length ? parseInt(props.amount) / this.getUnitMultiplier() : 0,
             });
         }
     };

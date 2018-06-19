@@ -33,7 +33,7 @@ export default function withSendData(SendComponent) {
             theme: PropTypes.object.isRequired,
             t: PropTypes.func.isRequired,
             setDeepLinkInactive: PropTypes.func.isRequired,
-            deepLinkActive: PropTypes.bool.isRequired,
+            deepLinkActived: PropTypes.bool.isRequired,
             setSendAddressField: PropTypes.func.isRequired,
             setSendAmountField: PropTypes.func.isRequired,
             setSendMessageField: PropTypes.func.isRequired,
@@ -83,7 +83,7 @@ export default function withSendData(SendComponent) {
         }
 
         checkDeepLink = (props) => {
-            if (props.deepLinkActive) {
+            if (props.deepLinkActived) {
                 this.props.generateAlert(
                     'success',
                     this.props.t('deepLink:autofill'),
@@ -196,6 +196,7 @@ export default function withSendData(SendComponent) {
                     address: ui.sendAddressFieldText,
                     amount: ui.sendAmountFieldText,
                     message: ui.sendMessageFieldText,
+                    deepLinkActived: this.props.deepLinkActived,
                 },
                 setSendAddressField,
                 setSendAmountField,
@@ -237,7 +238,7 @@ export default function withSendData(SendComponent) {
         theme: state.settings.theme,
         progress: state.progress,
         ui: state.ui,
-        deepLinkActive: state.wallet.deepLinkActive,
+        deepLinkActived: state.wallet.deepLinkActived,
     });
 
     const mapDispatchToProps = {
