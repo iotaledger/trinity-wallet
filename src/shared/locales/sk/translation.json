@@ -308,7 +308,7 @@
         "iHaveBackedUpMySeed": "Svoj Seed mám zálohovaný",
         "letsWriteDownYourSeed": "Zapíšte si váš Seed",
         "youCanHighlightCharacters": "Môžete zvýrazniť 9 znakov súčasne",
-        "printBlankWallet": "Tlač prázdnej šablony",
+        "printBlankWallet": "Tlač prázdnej šablóny",
         "whatIsChecksum": "Každý Seed má zodpovedajúci 3-znakový kontrolný súčet",
         "iHavesavedMySeed": "Svoj Seed mám uložený",
         "checksumExplanation": "Vždy, keď pridáte Seed do vašej peňaženky, mali by ste sa uistiť, že kontrolný súčet vygenerovaný peňaženkou zodpovedá tomu, ktorý ste si zapísali.",
@@ -508,7 +508,7 @@
     },
     "themeCustomisation": {
         "theme": "Motív",
-        "mockup": "Šablona"
+        "mockup": "Šablóna"
     },
     "currencySelection": {
         "currency": "Mena"
