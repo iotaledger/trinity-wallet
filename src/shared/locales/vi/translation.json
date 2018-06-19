@@ -151,7 +151,8 @@
         "isYourBalanceCorrect": "Bản quyết toán của bạn chính xác không?",
         "ifYourBalanceIsNotCorrect": "Nếu số dư của bạn là sai, có khả năng rằng bạn đang dử dụng chuỗi mật mã trước khi Snapshot gần đây nhất xảy ra.",
         "headToAdvancedSettingsForTransition": "Tới mục \"Cài đặt nâng cao\" để thực hiện quá trình chuyển đổi sang Snapshot mới nhất.",
-        "usingTrinityWalletWithKeePass": "Sử dụng Trinity Wallet với Keepass2Android"
+        "usingTrinityWalletWithKeePass": "Sử dụng Trinity Wallet với Keepass2Android",
+        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Từ khoá chứa ký tự không hợp lệ",
@@ -223,6 +224,7 @@
         "invalidCharacters": "Từ khoá chứa ký tự không hợp lệ",
         "invalidCharactersExplanation": "Từ khoá chỉ có thể bao gồm chữ cái viết hoa A-Z và số 9. Từ khoá của bạn có ký tự không hợp lệ. Xin vui lòng thử lại.",
         "seedTooShort": "Từ khoá quá ngắn",
+        "seedTooLong": "Seed is too long",
         "seedTooShortExplanation": "Từ khoá có tối đa {{maxLength}} ký tự. Từ khoá của bạn hiện tại có {{currentLength}} ký tự. Xin vui lòng thử lại.",
         "seedExplanation": "Từ khoá có tối đa {{maxLength}} ký tự, và bao gồm chữ viết hoa A-Z, hoặc số 9. Bạn không thể dùng từ khoá dài hơn {{maxLength}} ký tự.",
         "neverShare": "ĐỪNG BAO GIỜ CHIA SẺ TỪ KHOÁ CHO NGƯỜI KHÁC BIẾT"
@@ -291,7 +293,9 @@
         "message": "Tin nhắn tuỳ chọn",
         "removeMessage": "HUỶ BỎ TIN NHẮN",
         "noAddresses": "KHÔNG CÓ ĐỊA CHỈ",
-        "spent": "Đã Gửi"
+        "spent": "Đã Gửi",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
     },
     "saveYourSeed": {
         "saveYourSeed": "Sao lưu chuỗi mật mã của bạn",
@@ -300,8 +304,6 @@
         "leastSecure": "An Toàn Tối Thiểu",
         "paperWallet": "Ví Giấy",
         "writeYourSeedDown": "Viết từ khoá xuống",
-        "printYourSeed": "In từ khóa",
-        "digitalCopy": "Bản chép kỹ thuật số",
         "seedClearedExplanation": "Từ khoá đã được xoá khỏi bộ nhớ tạm để bảo mật.",
         "iHaveBackedUpMySeed": "Tôi đã lưu từ khóa",
         "letsWriteDownYourSeed": "Hãy ghi từ khóa xuống",
@@ -348,7 +350,8 @@
         "sendMax": "GỬI TỐI ĐA",
         "totalTime": "Total time",
         "addressPasteDetected": "Address paste detected",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
+        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to.",
+        "invalid": "INVALID"
     },
     "setPassword": {
         "choosePassword": "Choose a new password",
@@ -463,7 +466,9 @@
         "messageCopied": "Đã chép thư",
         "messageCopiedExplanation": "The message has been copied to the clipboard.",
         "send": "GỬI",
-        "receive": "NHẬN"
+        "receive": "NHẬN",
+        "empty": "Empty",
+        "retrying": "RETRYING"
     },
     "accountManagement": {
         "viewSeed": "Xem từ khoá",
@@ -502,7 +507,8 @@
         "frame": "Khung"
     },
     "themeCustomisation": {
-        "theme": "Giao Diện"
+        "theme": "Giao Diện",
+        "mockup": "Mockup"
     },
     "currencySelection": {
         "currency": "Tiền Tệ"
@@ -602,7 +608,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change",
+        "change": "Change (24h)",
         "volume": "Volume (24h)",
         "currentValue": "Giá trị hiện tại",
         "error": "Error fetching chart data"
