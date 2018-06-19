@@ -14,10 +14,6 @@ import InfoBox from '../components/InfoBox';
 import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
-    container: {
-        width: width / 1.1,
-        paddingVertical: height / 20,
-    },
     checkboxContainer: {
         flexDirection: 'row',
         justifyContent: 'center',

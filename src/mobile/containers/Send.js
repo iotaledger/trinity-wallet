@@ -411,7 +411,7 @@ export class Send extends Component {
             backdropTransitionInTiming: isAndroid ? 500 : 300,
             backdropTransitionOutTiming: 200,
             backdropColor: body.bg,
-            style: { alignItems: 'center', margin: 0, height },
+            style: { justifyContent: 'center', alignItems: 'center', margin: 0, height, width },
             isVisible: isModalActive,
             onBackButtonPress: () => this.props.toggleModalActivity(),
             hideModalContentWhileAnimating: true,

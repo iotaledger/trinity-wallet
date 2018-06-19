@@ -31,11 +31,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         paddingTop: height / 55,
     },
-    pdf: {
-        flex: 1,
-        height: height - height / 8 - height / 11,
-        width: width,
-    },
     titleContainer: {
         height: height / 8,
         width: width,
