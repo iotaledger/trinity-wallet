@@ -52,10 +52,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
-    iotaLogo: {
-        height: width / 5,
-        width: width / 5,
-    },
     fingerprint: {
         height: width / 5,
         width: width / 5,

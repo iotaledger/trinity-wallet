@@ -7,7 +7,6 @@ import Modal from 'react-native-modal';
 import { connect } from 'react-redux';
 import CustomTextInput from '../components/CustomTextInput';
 import FingerPrintModal from '../components/FingerprintModal';
-import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 import { isAndroid } from '../utils/device';
@@ -30,35 +29,6 @@ const styles = StyleSheet.create({
         flex: 0.7,
         alignItems: 'center',
         justifyContent: 'flex-end',
-    },
-    titleContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingTop: height / 8,
-    },
-    title: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize4,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-    },
-    iotaLogo: {
-        height: width / 5,
-        width: width / 5,
-    },
-    loginButton: {
-        borderWidth: 1.2,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 2.7,
-        height: height / 14,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        marginBottom: height / 20,
-    },
-    loginText: {
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
-        backgroundColor: 'transparent',
     },
     modal: {
         height,

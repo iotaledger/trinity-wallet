@@ -360,9 +360,7 @@ class TopBar extends Component {
                                                 size={width / 22}
                                                 color={bar.color}
                                                 style={[
-                                                    shouldDisable
-                                                        ? StyleSheet.flatten([styles.chevron, styles.disabledImage])
-                                                        : styles.chevron,
+                                                    shouldDisable ? StyleSheet.flatten([styles.disabledImage]) : null,
                                                 ]}
                                             />
                                         </Animated.View>

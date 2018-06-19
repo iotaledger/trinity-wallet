@@ -45,10 +45,6 @@ const styles = StyleSheet.create({
         height: height * 0.7,
         justifyContent: 'flex-end',
     },
-    separator: {
-        flex: 1,
-        height: height / 60,
-    },
     noTransactionsContainer: {
         justifyContent: 'center',
         alignItems: 'center',

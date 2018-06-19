@@ -46,10 +46,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-end',
     },
-    logoContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
     infoTextBottom: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: GENERAL.fontSize3,
@@ -60,39 +56,6 @@ const styles = StyleSheet.create({
         fontFamily: 'SourceSansPro-Bold',
         fontSize: GENERAL.fontSize3,
         paddingTop: height / 60,
-    },
-    qrImage: {
-        height: width / 28,
-        width: width / 28,
-        marginRight: width / 100,
-    },
-    qrButton: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderColor: 'white',
-        borderWidth: 1,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 6,
-        height: height / 16,
-    },
-    qrText: {
-        color: 'white',
-        fontFamily: 'SourceSansPro-Bold',
-        fontSize: GENERAL.fontSize1,
-        backgroundColor: 'transparent',
-    },
-    textFieldContainer: {
-        flex: 1,
-        paddingRight: width / 30,
-    },
-    textField: {
-        fontFamily: 'Inconsolata-Bold',
-    },
-    qrButtonContainer: {
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        paddingBottom: height / 90,
     },
     modal: {
         height,
