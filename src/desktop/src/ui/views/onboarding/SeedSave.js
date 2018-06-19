@@ -73,7 +73,7 @@ class SeedSave extends PureComponent {
                             </div>
                             <h4>{t('addToPasswordManager')}</h4>
                         </a>
-                        <a onClick={() => this.setState({ writeVisible: true, writeIndex: 1 })} className={css.secure}>
+                        <a onClick={() => this.setState({ writeVisible: true })} className={css.secure}>
                             <h3>{t('saveYourSeed:mostSecure')}</h3>
                             <div>
                                 <Icon icon="write" size={24} />
