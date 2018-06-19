@@ -261,7 +261,9 @@ class SeedInput extends React.PureComponent {
                         </div>
                     </div>
                     <small>{label}</small>
+                    <Dropzone onDrop={this.onDrop} />
                 </fieldset>
+
                 {seed.length ? <span className={css.info}>{checkSum}</span> : null}
                 {showScanner && (
                     <Modal isOpen onClose={this.closeScanner}>
@@ -273,7 +275,7 @@ class SeedInput extends React.PureComponent {
                         </div>
                     </Modal>
                 )}
-                <Dropzone onDrop={this.onDrop} />
+
                 {importBuffer && (
                     <Password
                         content={{
