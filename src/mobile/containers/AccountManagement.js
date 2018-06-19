@@ -40,6 +40,12 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
     },
+    backText: {
+        fontFamily: 'SourceSansPro-Regular',
+        fontSize: GENERAL.fontSize3,
+        backgroundColor: 'transparent',
+        marginLeft: width / 20,
+    },
 });
 
 /**
