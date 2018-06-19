@@ -134,7 +134,7 @@
         "nodeAutoChanged": "Automatické prepnutie Nodu",
         "nodeAutoChangedExplanation": "Prepnuté na nový Node {{- nodeAddress}} keďže predtým vybraný je offline.",
         "fingerprintOnSend": "Pre overenie prenosu priložte prst na čítačku",
-        "masterKey": "Váš IOTA Seed je hlavným kľúčom k vašim prostriedkom.",
+        "masterKey": "Váš IOTA Seed je hlavným prístupovým kľúčom k vašim prostriedkom.",
         "seedThief": "Ak získa niekto iný váš Seed, môže ukradnúť vaše IOTA.",
         "googlePlayServicesNotAvailable": "Služby Google Play nie sú dostupné",
         "couldNotVerifyDeviceIntegrity": "Integrita zariadenia nemôže byť overená, pretože služby Google Play nie sú dostupné.",
@@ -146,7 +146,7 @@
         "androidInsecureClipboardWarning": "Schránka v systéme Android nie je bezpečná.",
         "androidCopyPasteWarning": "Nikdy nekopírujte/nevkladajte váš Seed do Android zariadenia.",
         "willNotCopyPasteSeed": "Nebudem kopírovať/vkladať svoj Seed",
-        "mustBeStoredAppropriately": "Musí byť uložené zodpovedajúcim spôsobom.",
+        "mustBeStoredAppropriately": "Musí byť uložený zodpovedajúcim spôsobom.",
         "deviceMayBecomeUnresponsive": "Vaše zariadenie môže na chvíľu prestať reagovať.",
         "isYourBalanceCorrect": "Je váš zostatok správny?",
         "ifYourBalanceIsNotCorrect": "Pokiaľ váš zostatok nie je správny, je pravdepodobné, že používate Seed z doby pred Snapshotom.",
@@ -263,7 +263,7 @@
         "seedNotGeneratedExplanation": "Generujte, prosím, nový Seed.",
         "pressForNewSeed": "Stlačte pre nový Seed",
         "generateSuccess": "Seed úspešne vygenerovaný",
-        "individualLetters": "Vyberte náhodné písmena.",
+        "individualLetters": "Vyberte náhodné znaky.",
         "individualLetterCount": "Stlačte {{letterCount}} jednotlivé znaky pre zvýšenie náhodnosti.",
         "whatIsASeed": "Čo je to Seed?"
     },
@@ -308,15 +308,15 @@
         "iHaveBackedUpMySeed": "Svoj Seed mám zálohovaný",
         "letsWriteDownYourSeed": "Zapíšte si váš Seed",
         "youCanHighlightCharacters": "Môžete zvýrazniť 9 znakov súčasne",
-        "printBlankWallet": "Tlač prázdnej peňaženky",
+        "printBlankWallet": "Tlač prázdnej šablony",
         "whatIsChecksum": "Každý Seed má zodpovedajúci 3-znakový kontrolný súčet",
         "iHavesavedMySeed": "Svoj Seed mám uložený",
         "checksumExplanation": "Vždy, keď pridáte Seed do vašej peňaženky, mali by ste sa uistiť, že kontrolný súčet vygenerovaný peňaženkou zodpovedá tomu, ktorý ste si zapísali.",
-        "mustSaveYourSeed": "<0><0>Je potrebné zálohovať váš Seed </0><1>aspoň jedným</1><2>z nižšie uvedených spôsobov.</2></0>"
+        "mustSaveYourSeed": "<0><0>Je potrebné zálohovať váš Seed </0><1>aspoň jedným</1><2> z nižšie uvedených spôsobov.</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Prosím, potvrďte váš Seed",
-        "trinityWillNeverAskToReenter": "Trinity vás nikdy nebude vyzývať k opätovnému vloženiu tohto Seedu. Výnimkou je reset vašej peňaženky, prípadne celej aplikácie.",
+        "trinityWillNeverAskToReenter": "Trinity vás už nikdy nebude vyzývať k opätovnému vloženiu tohto Seedu. Výnimkou je reset vašej peňaženky, prípadne celej aplikácie.",
         "enterYourSeed": "Vložte váš Seed",
         "incorrectSeed": "Neplatný Seed",
         "incorrectSeedExplanation": "Seed, ktorý ste zadali, je neplatný. Prosím, skúste to znova.",
@@ -571,7 +571,7 @@
         "instructionsEnable": "Ak chcete zapnúť funkciu overenie odtlačkom prsta, priložte prst na čítačku",
         "instructionsDisable": "Ak chcete vypnúť funkciu overenie odtlačkom prsta, priložte prst na čítačku",
         "fingerprintAuthEnabled": "Biometrické overovanie je zapnuté",
-        "fingerprintAuthEnabledExplanation": "Úspešne ste povolili biometrické overenie.",
+        "fingerprintAuthEnabledExplanation": "Úspešne ste povolili biometrické overovanie.",
         "fingerprintAuthDisabled": "Biometrické overovanie je vypnuté",
         "fingerprintAuthDisabledExplanation": "Úspešne ste vypli biometrické overenie.",
         "fingerprintAuthFailed": "Biometrické overenie zlyhalo",
@@ -680,6 +680,6 @@
     },
     "privacyPolicy": {
         "privacyPolicy": "Zásady ochrany osobných údajov",
-        "agree": "Súhlasim"
+        "agree": "Súhlasím"
     }
 }
