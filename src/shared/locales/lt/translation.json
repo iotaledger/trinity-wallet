@@ -89,7 +89,7 @@
         "addresses": "Adresai",
         "reattach": "PRIJUNGTI IŠ NAUJO",
         "promote": "IŠKELTI",
-        "retry": "BANDYTI DAR KARTĄ",
+        "retry": "SIŲSTI IŠ NAUJO",
         "rebroadcast": "TRANSLIUOTI IŠ NAUJO",
         "pressBackAgain": "Spauskite atgal, norėdami uždaryti programėlę",
         "reattached": "Pavedimas sėkmingai prijungtas",
@@ -380,7 +380,7 @@
         "transferSendingExplanation": "Palaukite, kol jūsų pavedimas bus išsiųstas.",
         "generatingAddress": "Kuriamas pavedimų priėmimo adresas",
         "generatingAddressExplanation": "Palaukite, kol adresas bus sukurtas.",
-        "mode": "Režimas",
+        "mode": "Rėžimas",
         "theme": "Tema",
         "currency": "Valiuta",
         "cannotChangeNode": "Serverio pakeisti negalima",
@@ -468,7 +468,7 @@
         "send": "SIŲSTA",
         "receive": "GAUTA",
         "empty": "Tuščia",
-        "retrying": "BANDOMA IŠ NAUJO"
+        "retrying": "SIUNČIAMA"
     },
     "accountManagement": {
         "viewSeed": "Rodyti užraktą",
