@@ -30,10 +30,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
-    backIcon: {
-        width: width / 28,
-        height: width / 28,
-    },
     titleText: {
         fontFamily: 'SourceSansPro-Regular',
         fontSize: GENERAL.fontSize3,

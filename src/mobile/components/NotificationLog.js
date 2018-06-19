@@ -46,9 +46,6 @@ const styles = StyleSheet.create({
         flex: 1,
         height: height / 60,
     },
-    listView: {
-        maxHeight: height / 1.1,
-    },
     clearButton: {
         borderWidth: 1.5,
         borderRadius: GENERAL.borderRadius,
