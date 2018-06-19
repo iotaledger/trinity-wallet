@@ -14,21 +14,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    topContainer: {
-        flex: 11,
-    },
-    bottomContainer: {
-        flex: 1,
-        width,
-        paddingHorizontal: width / 15,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-    backIcon: {
-        width: width / 28,
-        height: width / 28,
-    },
     titleText: {
         fontFamily: 'SourceSansPro-Regular',
         fontSize: GENERAL.fontSize3,

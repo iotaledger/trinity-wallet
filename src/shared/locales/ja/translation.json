@@ -151,7 +151,8 @@
         "isYourBalanceCorrect": "残高は正しいですか？",
         "ifYourBalanceIsNotCorrect": "もし残高が正しくなければ、スナップショット以前のシードが使われていると思われます。",
         "headToAdvancedSettingsForTransition": "詳細設定にてスナップショットの移行を行なってください。",
-        "usingTrinityWalletWithKeePass": "Keepass2AndroidでTrinityウォレットを使用する"
+        "usingTrinityWalletWithKeePass": "Keepass2AndroidでTrinityウォレットを使用する",
+        "signedTrytesBroadcastErrorExplanation": "取引をブロードキャスト中にネットワークにエラーが発生しました。"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだシードです。",
@@ -223,6 +224,7 @@
         "invalidCharacters": "無効な文字を含んだシードです。",
         "invalidCharactersExplanation": "シードにはアルファベットの大文字（A〜Z）と数字の\"9\"のみ使用できます。あなたのシードは無効な文字を含んでいます。もう一度やり直してください。",
         "seedTooShort": "シードが短すぎます。",
+        "seedTooLong": "シードが長すぎます。",
         "seedTooShortExplanation": "シードは{{maxLength}}文字にする必要があります。あなたのシードは現在{{currentLength}}文字です。もう一度やり直してください。",
         "seedExplanation": "シードは{{maxLength}}文字である必要があり、使用可能な文字はアルファベットの大文字（A〜Z）と数字の\"9\"のみです。また、{{maxLength}}文字以上の長さにはできません。",
         "neverShare": "シードを他の人に絶対に教えてはいけません。"
@@ -291,7 +293,9 @@
         "message": "任意のメッセージ",
         "removeMessage": "メッセージを削除",
         "noAddresses": "アドレスなし",
-        "spent": "使用済"
+        "spent": "使用済",
+        "missingPermission": "ファイルシステム権限が必要です。",
+        "missingPermissionExplanation": "QRコードを共有するには、ファイルシステムへのアクセス権が必要です。"
     },
     "saveYourSeed": {
         "saveYourSeed": "シードをバックアップしてください。",
@@ -300,8 +304,6 @@
         "leastSecure": "最低限の安全",
         "paperWallet": "ペーパーウォレット",
         "writeYourSeedDown": "手書きで保存",
-        "printYourSeed": "印刷して保存",
-        "digitalCopy": "デジタルにコピー",
         "seedClearedExplanation": "安全のために、シードをクリップボードから消去しました。",
         "iHaveBackedUpMySeed": "私はシードをバックアップしました。",
         "letsWriteDownYourSeed": "シードを書き写しましょう。",
@@ -348,7 +350,8 @@
         "sendMax": "全額送金",
         "totalTime": "合計時間",
         "addressPasteDetected": "アドレスのペーストを検出",
-        "addressPasteExplanation": "アドレスをペーストしたようです。送金先のアドレスと一致することを確かめてください。"
+        "addressPasteExplanation": "アドレスをペーストしたようです。送金先のアドレスと一致することを確かめてください。",
+        "invalid": "無効"
     },
     "setPassword": {
         "choosePassword": "新しいパスワードを選択",
@@ -463,7 +466,9 @@
         "messageCopied": "メッセージをコピーしました。",
         "messageCopiedExplanation": "メッセージをクリップボードにコピーしました。",
         "send": "送金",
-        "receive": "受取"
+        "receive": "受取",
+        "empty": "空",
+        "retrying": "再添付"
     },
     "accountManagement": {
         "viewSeed": "シードを表示",
@@ -502,7 +507,8 @@
         "frame": "フレーム"
     },
     "themeCustomisation": {
-        "theme": "テーマ"
+        "theme": "テーマ",
+        "mockup": "モックアップ"
     },
     "currencySelection": {
         "currency": "通貨"
@@ -602,7 +608,7 @@
     },
     "chart": {
         "mcap": "時価総額",
-        "change": "変化率",
+        "change": "変動 (24h)",
         "volume": "取引量(24h)",
         "currentValue": "現在の価格",
         "error": "チャートのデータ取得エラー"
