@@ -359,9 +359,7 @@ class TopBar extends Component {
                                                 name={isTopBarActive ? 'chevronUp' : 'chevronDown'}
                                                 size={width / 22}
                                                 color={bar.color}
-                                                style={[
-                                                    shouldDisable ? StyleSheet.flatten([styles.disabledImage]) : null,
-                                                ]}
+                                                style={[shouldDisable ? styles.disabledImage : null]}
                                             />
                                         </Animated.View>
                                     ) : (
