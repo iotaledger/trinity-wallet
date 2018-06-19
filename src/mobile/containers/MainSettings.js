@@ -57,6 +57,13 @@ const styles = StyleSheet.create({
         fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
     },
+    modal: {
+        height,
+        width,
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 0,
+    },
 });
 
 /** Main Settings component */
@@ -289,7 +296,7 @@ export class MainSettings extends Component {
                     backdropTransitionOutTiming={200}
                     backdropColor={theme.body.bg}
                     backdropOpacity={0.9}
-                    style={{ alignItems: 'center', justifyContent: 'center', margin: 0 }}
+                    style={styles.modal}
                     isVisible={this.state.isModalActive}
                     onBackButtonPress={this.toggleModalDisplay}
                     useNativeDriver={isAndroid ? true : false}

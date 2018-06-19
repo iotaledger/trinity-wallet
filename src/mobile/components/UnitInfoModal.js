@@ -55,10 +55,6 @@ const styles = StyleSheet.create({
         height: width / 2.3,
         marginHorizontal: width / 75,
     },
-    iotaIcon: {
-        width: width / 10,
-        height: width / 10,
-    },
     iotaText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',

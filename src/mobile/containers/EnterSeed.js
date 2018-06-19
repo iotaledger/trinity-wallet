@@ -48,15 +48,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-end',
     },
-    logoContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    titleContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: GENERAL.fontSize3,
@@ -294,7 +285,7 @@ class EnterSeed extends React.Component {
                                 backdropTransitionOutTiming={200}
                                 backdropColor={theme.body.bg}
                                 backdropOpacity={0.9}
-                                style={{ alignItems: 'center', margin: 0 }}
+                                style={{ height, width, justifyContent: 'center', alignItems: 'center', margin: 0 }}
                                 isVisible={this.state.isModalVisible}
                                 onBackButtonPress={() => this.setState({ isModalVisible: false })}
                                 hideModalContentWhileAnimating
