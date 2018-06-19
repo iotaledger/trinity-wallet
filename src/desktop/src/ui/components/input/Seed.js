@@ -126,6 +126,10 @@ class SeedInput extends React.PureComponent {
     };
 
     onDrop = async (buffer) => {
+        if (!buffer) {
+            return this.props.generateAlert('error', 'Error opening keystore file', 'There was an error opening keystore file');
+        }
+
         this.setState({
             importBuffer: buffer,
         });
@@ -165,16 +169,26 @@ class SeedInput extends React.PureComponent {
         try {
             const seed = await Electron.importSeed(this.state.importBuffer, password);
 
-            this.props.onChange(seed);
-
             this.setState({
                 importBuffer: null,
             });
+
+            if (!seed || seed.length !== MAX_SEED_LENGTH) {
+                throw Error('SeedNotFound');
+            }
+
+            this.props.onChange(seed);
 
             Electron.garbageCollect();
         } catch (error) {
             if (error.code === 'InvalidKey') {
                 generateAlert('error', t('unrecognisedPassword'), t('unrecognisedPasswordExplanation'));
+            } else if (error.message === 'SeedNotFound') {
+                generateAlert(
+                    'error',
+                    'Seed not found in keyfile',
+                    'Incorrect seed format or no seed was found in the keyfile',
+                );
             } else {
                 generateAlert('error', 'Error opening keystore file', 'There was an error opening keystore file');
             }
