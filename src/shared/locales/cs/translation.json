@@ -151,7 +151,8 @@
         "isYourBalanceCorrect": "Je Váš zůstatek v pořádku?",
         "ifYourBalanceIsNotCorrect": "Pokud Váš zůstatek není správný, je pravděpodobné, že používáte Seed z doby před snapshotem.",
         "headToAdvancedSettingsForTransition": "Jděte do Pokročilého nastavení a proveďte aktualizaci po Snapshotu.",
-        "usingTrinityWalletWithKeePass": "Použití Trinity peněženky s Keepass2Android"
+        "usingTrinityWalletWithKeePass": "Použití Trinity peněženky s Keepass2Android",
+        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
@@ -223,6 +224,7 @@
         "invalidCharacters": "Seed obsahuje neplatné znaky",
         "invalidCharactersExplanation": "Seed musí obsahovat pouze velká písmena A-Z a číslo 9. Váš Seed obsahuje neplatné znaky. Prosím zkuste to znovu.",
         "seedTooShort": "Seed je příliš krátký",
+        "seedTooLong": "Seed is too long",
         "seedTooShortExplanation": "Seed musí obsahovat {{maxLength}} znaků. Váš Seed obsahuje {{currentLength}} znaků. Prosím zkuste to znovu.",
         "seedExplanation": "Seed by měl mít {{maxLength}} znaků a měl by obsahovat velká písmena A-Z, nebo číslo 9. Nelze použít Seed delší než {{maxLength}} znaků.",
         "neverShare": "NIKOMU NIKDY NESDĚLUJTE VÁŠ SEED"
@@ -291,7 +293,9 @@
         "message": "Volitelná zpráva",
         "removeMessage": "ODSTRANIT ZPRÁVU",
         "noAddresses": "ŽÁDNÉ ADRESY",
-        "spent": "Utraceno"
+        "spent": "Utraceno",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
     },
     "saveYourSeed": {
         "saveYourSeed": "Zálohujte Váš Seed",
@@ -300,8 +304,6 @@
         "leastSecure": "Nejméně bezpečné",
         "paperWallet": "Papírová peněženka",
         "writeYourSeedDown": "Zapište si Váš Seed",
-        "printYourSeed": "Tisk vašeho Seedu",
-        "digitalCopy": "Digitální kopie",
         "seedClearedExplanation": "Pro větší bezpečnost byl Seed ze schránky vymazán.",
         "iHaveBackedUpMySeed": "Svůj Seed mám uložený",
         "letsWriteDownYourSeed": "Poznamenejte si někam Váš Seed",
@@ -348,7 +350,8 @@
         "sendMax": "POSLAT MAXIMUM",
         "totalTime": "Celkový čas",
         "addressPasteDetected": "Zjištěno kopírování adresy",
-        "addressPasteExplanation": "Vaše adresa byla zkopírována ze schránky. Zkontrolujte, že vložená adresa je opravdu ta, kam chcete prostředky poslat."
+        "addressPasteExplanation": "Vaše adresa byla zkopírována ze schránky. Zkontrolujte, že vložená adresa je opravdu ta, kam chcete prostředky poslat.",
+        "invalid": "INVALID"
     },
     "setPassword": {
         "choosePassword": "Zvolte nové heslo",
@@ -463,7 +466,9 @@
         "messageCopied": "Zpráva byla zkopírována",
         "messageCopiedExplanation": "Zpráva byla zkopírována do schránky.",
         "send": "ODESLAT",
-        "receive": "PŘÍJEM"
+        "receive": "PŘÍJEM",
+        "empty": "Empty",
+        "retrying": "RETRYING"
     },
     "accountManagement": {
         "viewSeed": "Zobrazit Seed",
@@ -502,7 +507,8 @@
         "frame": "Rám"
     },
     "themeCustomisation": {
-        "theme": "Motiv"
+        "theme": "Motiv",
+        "mockup": "Mockup"
     },
     "currencySelection": {
         "currency": "Měna"
@@ -602,7 +608,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Změna",
+        "change": "Change (24h)",
         "volume": "Objem (24h)",
         "currentValue": "Současná hodnota",
         "error": "Při načítání dat grafu došlo k chybě"
