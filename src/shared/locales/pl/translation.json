@@ -151,7 +151,8 @@
         "isYourBalanceCorrect": "Czy Twoje saldo jest poprawne?",
         "ifYourBalanceIsNotCorrect": "Jeśli Twoje saldo nie jest poprawne, prawdopodobnie używasz klucza seed sprzed tzw. migawki (snapshot).",
         "headToAdvancedSettingsForTransition": "Przejdź do ustawień zaawansowanych i skorzystaj z funkcji Snapshot asystent.",
-        "usingTrinityWalletWithKeePass": "Używanie portfela Trinity z Keepass2Android"
+        "usingTrinityWalletWithKeePass": "Używanie portfela Trinity z Keepass2Android",
+        "signedTrytesBroadcastErrorExplanation": "Wystąpił błąd sieci podczas wykonywania Twojej transakcji."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -223,6 +224,7 @@
         "invalidCharacters": "Seed zawiera nieprawidłowe znaki",
         "invalidCharactersExplanation": "Seed może składać się tylko z wielkich liter A-Z oraz cyfr 9. Twój seed zawiera nieprawidłowe znaki. Proszę spróbować ponownie.",
         "seedTooShort": "Seed jest zbyt krótki",
+        "seedTooLong": "Seed jest zbyt długi",
         "seedTooShortExplanation": "Seed musi zawierać {{maxLength}} znaków. Obecna ilość znaków wynosi {{currentLength}}. Proszę spróbować ponownie.",
         "seedExplanation": "Seed powinien składać się z {{maxLength}} znaków i zawierać wielkie litery A-Z oraz cyfry 9. Seed nie może być dłuższy niż {{maxLength}} znaków.",
         "neverShare": "NIE UDOSTĘPNIAJ SWOJEGO KLUCZA NIKOMU"
@@ -291,7 +293,9 @@
         "message": "Wiadomość opcjonalna",
         "removeMessage": "USUŃ WIADOMOŚĆ",
         "noAddresses": "BRAK ADRESÓW",
-        "spent": "Adres zużyty"
+        "spent": "Adres zużyty",
+        "missingPermission": "Wymagany dostęp do systemu plików",
+        "missingPermissionExplanation": "W celu udostępniania kodów QR, wymagany jest dostęp do systemu plików."
     },
     "saveYourSeed": {
         "saveYourSeed": "Zrób kopię swojego klucza",
@@ -300,8 +304,6 @@
         "leastSecure": "Najmniej bezpieczne",
         "paperWallet": "Papierowy portfel",
         "writeYourSeedDown": "Zanotuj swój seed",
-        "printYourSeed": "Wydrukuj swój seed",
-        "digitalCopy": "Kopia cyfrowa",
         "seedClearedExplanation": "Seed został usunięty ze schowka dla Twojego bezpieczeństwa.",
         "iHaveBackedUpMySeed": "Zapisałem swój seed",
         "letsWriteDownYourSeed": "Zapiszmy Twój seed",
@@ -348,7 +350,8 @@
         "sendMax": "WYŚLIJ WSZYSTKO",
         "totalTime": "Całkowity czas",
         "addressPasteDetected": "Wykryto wklejenie adresu",
-        "addressPasteExplanation": "Wygląda na to, że wkleiłeś adres. Upewnij się, że wklejony adres odpowiada temu, na który chcesz wysłać."
+        "addressPasteExplanation": "Wygląda na to, że wkleiłeś adres. Upewnij się, że wklejony adres odpowiada temu, na który chcesz wysłać.",
+        "invalid": "BŁĄD"
     },
     "setPassword": {
         "choosePassword": "Wybierz nowe hasło",
@@ -463,7 +466,9 @@
         "messageCopied": "Wiadomość skopiowana",
         "messageCopiedExplanation": "Wiadomość została skopiowana do schowka.",
         "send": "WYPŁATA",
-        "receive": "WPŁATA"
+        "receive": "WPŁATA",
+        "empty": "Brak",
+        "retrying": "PONAWIANIE"
     },
     "accountManagement": {
         "viewSeed": "Pokaż seed",
@@ -502,7 +507,8 @@
         "frame": "Ramka"
     },
     "themeCustomisation": {
-        "theme": "Motyw"
+        "theme": "Motyw",
+        "mockup": "Podgląd"
     },
     "currencySelection": {
         "currency": "Waluta"
@@ -602,7 +608,7 @@
     },
     "chart": {
         "mcap": "Market",
-        "change": "Zmiana",
+        "change": "Zmiana (24h)",
         "volume": "Wolumen (24h)",
         "currentValue": "Bieżąca wartość",
         "error": "Błąd pobierania danych do wykresu"

@@ -49,7 +49,7 @@ import {
     markBundleBroadcastStatusComplete,
     markBundleBroadcastStatusPending,
 } from './accounts';
-import { shouldAllowSendingToAddress, getAddressesUptoRemainder } from '../libs/iota/addresses';
+import { shouldAllowSendingToAddress, getAddressesUptoRemainder, isAnyAddressSpent } from '../libs/iota/addresses';
 import {
     getStartingSearchIndexToPrepareInputs,
     getUnspentInputs,
@@ -703,7 +703,14 @@ export const retryFailedTransaction = (accountName, bundleHash, powFn) => (dispa
 
     dispatch(retryFailedTransactionRequest());
 
-    return retry(existingFailedTransactionsForThisAccount[bundleHash], powFn, shouldOffloadPow)
+    return isAnyAddressSpent(existingFailedTransactionsForThisAccount[bundleHash])
+        .then((isSpent) => {
+            if (isSpent) {
+                throw new Error(Errors.ALREADY_SPENT_FROM_ADDRESSES);
+            }
+
+            return retry(existingFailedTransactionsForThisAccount[bundleHash], powFn, shouldOffloadPow);
+        })
         .then(({ transactionObjects }) => {
             dispatch(markBundleBroadcastStatusComplete({ accountName, bundleHash }));
 

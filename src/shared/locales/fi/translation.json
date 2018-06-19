@@ -147,11 +147,12 @@
         "androidCopyPasteWarning": "Älä kopio tai liitä seed-lukua Android-laitteella.",
         "willNotCopyPasteSeed": "En kopio tai liitä seed-lukua android puhelimessa",
         "mustBeStoredAppropriately": "Se on tallennettava turvallisesti.",
-        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while.",
+        "deviceMayBecomeUnresponsive": "Laitteesi saattaa toimia hitaasti hetken aikaa.",
         "isYourBalanceCorrect": "Näkyykö saldosi oikein?",
         "ifYourBalanceIsNotCorrect": "Jos saldosi ei näy oikein, seed-lukusi ei ole ajantasalla.",
         "headToAdvancedSettingsForTransition": "Voin korjata tämän valitsemalla Lisäasetukset ja Snapshot-avustaja.",
-        "usingTrinityWalletWithKeePass": "Trinity lompakon käyttö Keepas2Android sovelluksen kanssa"
+        "usingTrinityWalletWithKeePass": "Trinity lompakon käyttö Keepas2Android sovelluksen kanssa",
+        "signedTrytesBroadcastErrorExplanation": "Verkkovirhe tapahtuman päivityksessä."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed-luku sisältää virheellisiä merkkejä",
@@ -223,6 +224,7 @@
         "invalidCharacters": "Seed-luku sisältää virheellisiä merkkejä",
         "invalidCharactersExplanation": "Seed-luvut voivat muodostua ainoastaan isoista alkukirjaimista A-Z ja numerosta 9. Sinun seed-lukusi sisältää virheellisiä merkkejä. Yritä uudelleen.",
         "seedTooShort": "Seed-luku on liian lyhyt",
+        "seedTooLong": "Seed-luku on liian pitkä",
         "seedTooShortExplanation": "Seed-luvun on oltava {{maxLength}} merkkiä pitkä. Sinun seed-lukusi on tällä hetkellä {{currentLength}} merkkiä pitkä. Yritä uudelleen.",
         "seedExplanation": "Seed-lukusi tulee olla {{maxLength}} merkkiä pitkä ja sisältää isoja kirjaimia A-Z tai numeron yhdeksän (9). Yli {{maxLength}} merkkiä pitkiä Seed-lukuja ei voi käyttää.",
         "neverShare": "ÄLÄ KOSKAAN NÄYTÄ SEED-LUKUASI ULKOPUOLISILLE"
@@ -291,7 +293,9 @@
         "message": "Viesti (vapaaehtoinen)",
         "removeMessage": "POISTA VIESTI",
         "noAddresses": "EI OSOITTEITA",
-        "spent": "Käytetty"
+        "spent": "Käytetty",
+        "missingPermission": "Tiedostojärjestelmän kirjoitusoikeudet tarvitaan",
+        "missingPermissionExplanation": "Tiedostojärjestelmän kirjoitusoikeudet tarvitaan, jotta voit jakaa QR-koodeja."
     },
     "saveYourSeed": {
         "saveYourSeed": "Tallenna seed-luku",
@@ -300,14 +304,12 @@
         "leastSecure": "Vähiten Turvallinen",
         "paperWallet": "Paperilompakko",
         "writeYourSeedDown": "Kirjoita seed-luku paperille",
-        "printYourSeed": "Tulosta seed-luku paperille",
-        "digitalCopy": "Digitaalinen kopio",
         "seedClearedExplanation": "Seed-luku on turvallisuussyistä poistettu leikepöydältä.",
         "iHaveBackedUpMySeed": "Seed-luku turvassa",
         "letsWriteDownYourSeed": "Tallennetaan seed-lukusi",
         "youCanHighlightCharacters": "Voit korostaa 9 merkkiä kerrallaan",
         "printBlankWallet": "Tulosta tyhjä lompakko",
-        "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
+        "whatIsChecksum": "Jokaisella seed-luvulla on kolmen merkin pituinen tarkistussumma",
         "iHavesavedMySeed": "Seed-luku turvassa",
         "checksumExplanation": "Kun lisäät seed-luvun lompakkoon, varmista että kolmen merkin pituinen tarkistussumma vastaa alkuperäistä.",
         "mustSaveYourSeed": "<0><0>Tallenna seed-lukusi käyttäen </0><1>vähintään yhtä</1><2> alla olevista vaihtoehdoista.</2></0>"
@@ -348,7 +350,8 @@
         "sendMax": "LÄHETÄ MAX",
         "totalTime": "Kokonaisaika",
         "addressPasteDetected": "Osoitteen liittäminen havaittu",
-        "addressPasteExplanation": "Näyttää siltä että olet liittänyt osoitteen muualta. Varmista että liitetty osoite vastaa alkuperäistä."
+        "addressPasteExplanation": "Näyttää siltä että olet liittänyt osoitteen muualta. Varmista että liitetty osoite vastaa alkuperäistä.",
+        "invalid": "VIRHEELLINEN"
     },
     "setPassword": {
         "choosePassword": "Luo uusi salasana",
@@ -437,21 +440,21 @@
         "okay": "Okei. Luodaan sinulle lompakko!",
         "doYouAlreadyHaveASeed": "Onko sinulla jo seed-luku jota haluat käyttää?",
         "doYouNeedASeed": "Haluatko luoda uuden seed-luvun?",
-        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
+        "seedExplanation": "Seed-luku on yleisavain ja samalla myös pääsy varoihin. Se on 81 merkkiä pitkä ja sisältää ainoastaan merkkejä A-Z tai 9.",
         "noIHaveOne": "En, minulla on jo",
         "yesINeedASeed": "Kyllä, luodaan seed-luku",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
-        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
+        "explanation": "<0><0>Voit käyttää sitä päästäksesi käsiksi varoihisi mistä tahansa</0><1> lompakosta</1><2>, millä tahansa tuetulla</2><3> laitteella.</3></0>",
+        "loseSeed": "Jos unohdat tai kadotat seed-lukusi, menetät myös pääsyn varoihin.",
         "keepSafe": "Muista aina pitää seed-lukusi turvassa.",
         "hint": "<0><0>Ohje:</0> Valitse EI jos käytät IOTA-lompakkoa ensimmäistä kertaa.</0>"
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity"
+        "thankYou": "Kiitos, että olet ladannut Trinity:n"
     },
     "writeSeedDown": {
         "yourSeedIs": "Sinun seed-lukusi on {{maxSeedLength}} merkkiä luettuna vasemmalta oikealle.",
         "writeDownYourSeed": "<0>Kirjoita muistiin seed-lukusi ja tarkistussumma ja</0> <1>varmista kolmesti,</1> <2>että ne ovat oikein.</2>",
-        "scrollToBottom": "Scroll to the bottom"
+        "scrollToBottom": "Vieritä loppuun"
     },
     "history": {
         "bundleHashCopied": "Kokoelman tiivisteluku kopioitu",
@@ -463,7 +466,9 @@
         "messageCopied": "Viesti kopioitu",
         "messageCopiedExplanation": "Viesti on kopioitu leikepöydälle.",
         "send": "LÄHETYS",
-        "receive": "SAAPUVA"
+        "receive": "SAAPUVA",
+        "empty": "Tyhjennä",
+        "retrying": "YRITETÄÄN UUDELLEEN"
     },
     "accountManagement": {
         "viewSeed": "Katso seed-luku",
@@ -502,7 +507,8 @@
         "frame": "Kehys"
     },
     "themeCustomisation": {
-        "theme": "Teema"
+        "theme": "Teema",
+        "mockup": "Malli"
     },
     "currencySelection": {
         "currency": "Valuutta"
@@ -602,7 +608,7 @@
     },
     "chart": {
         "mcap": "MARVO",
-        "change": "Muutos",
+        "change": "Muutos (24h)",
         "volume": "Vaihto (24h)",
         "currentValue": "Nykyinen arvo",
         "error": "Kurssitietojen hakeminen epäonnistui"
