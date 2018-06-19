@@ -561,6 +561,20 @@ export const filterAddressesWithIncomingTransfers = (inputs, pendingValueTransfe
 };
 
 /**
+ *  Checks if any of the addresses used in a transaction is spent
+ *
+ *   @method isAnyAddressSpent
+ *   @param {array} transactionObjects
+
+ *   @returns {Promise<boolean>}
+ **/
+export const isAnyAddressSpent = (transactionObjects) => {
+    const addresses = map(transactionObjects, (tx) => tx.address);
+
+    return wereAddressesSpentFromAsync(addresses).then((wereSpent) => some(wereSpent, (spent) => spent));
+};
+
+/**
  * The same as iota.api.getNewAddress, but rewritten to support native address generation
  * See https://github.com/iotaledger/iota.lib.js/blob/a1b2e9e05d7cab3ef394900e5ca75fb46464e608/lib/api/api.js#L772
  *   @param {string} seed
