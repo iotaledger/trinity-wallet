@@ -25,22 +25,11 @@ const styles = StyleSheet.create({
         width,
         paddingHorizontal: width / 15,
     },
-    backIcon: {
-        width: width / 28,
-        height: width / 28,
-        marginRight: width / 20,
-    },
     titleText: {
         fontFamily: 'SourceSansPro-Regular',
         fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 25,
-    },
-    backText: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
-        backgroundColor: 'transparent',
-        marginLeft: width / 20,
     },
     separator: {
         borderBottomWidth: 0.25,
@@ -51,12 +40,11 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
     },
-    settingText: {
-        fontFamily: 'SourceSansPro-Light',
+    backText: {
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: GENERAL.fontSize3,
-        marginLeft: width / 12,
-        width: width / 2.4,
         backgroundColor: 'transparent',
+        marginLeft: width / 20,
     },
 });
 
@@ -115,7 +103,7 @@ class AccountManagement extends Component {
         const bodyColor = theme.body.color;
 
         return (
-            <View style={styles.advancedSettingsContainer}>
+            <View style={styles.container}>
                 <View style={styles.itemContainer}>
                     <TouchableOpacity
                         onPress={() => this.props.setSetting('viewSeed')}

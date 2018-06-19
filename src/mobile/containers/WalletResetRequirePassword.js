@@ -11,14 +11,12 @@ import { StyleSheet, View, Keyboard, TouchableWithoutFeedback, BackHandler } fro
 import OnboardingButtons from '../containers/OnboardingButtons';
 import { persistor } from '../store';
 import DynamicStatusBar from '../components/DynamicStatusBar';
-import Fonts from '../theme/fonts';
 import { clearKeychain } from '../utils/keychain';
 import { getPasswordHash } from '../utils/crypto';
 import CustomTextInput from '../components/CustomTextInput';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import { Icon } from '../theme/icons.js';
 import { width, height } from '../utils/dimensions';
-import GENERAL from '../theme/general';
 import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
@@ -42,18 +40,6 @@ const styles = StyleSheet.create({
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
-    },
-    generalText: {
-        fontFamily: Fonts.secondary,
-        fontSize: GENERAL.fontSize4,
-        textAlign: 'center',
-        paddingBottom: height / 10,
-        backgroundColor: 'transparent',
-    },
-    buttonsContainer: {
-        alignItems: 'flex-end',
-        justifyContent: 'center',
-        flexDirection: 'row',
     },
 });
 

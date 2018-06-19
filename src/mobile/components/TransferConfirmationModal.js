@@ -47,12 +47,6 @@ const styles = StyleSheet.create({
         fontFamily: 'SourceSansPro-Regular',
         fontSize: GENERAL.fontSize3,
     },
-    middleText: {
-        backgroundColor: 'transparent',
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize2,
-        paddingBottom: height / 80,
-    },
     addressText: {
         backgroundColor: 'transparent',
         fontFamily: 'Inconsolata-Bold',

@@ -151,7 +151,8 @@
         "isYourBalanceCorrect": "Ar jūsų balansas teisingas?",
         "ifYourBalanceIsNotCorrect": "Jeigu jūsų balansas neteisingas, tikriausiai jūsų naudojamas užraktas nėra perkeltas įvykus viso tinklo duomenų perkėlimui.",
         "headToAdvancedSettingsForTransition": "Eikite į išplėstinius parametrus ir atlikite tinklo duomenų perkėlimą.",
-        "usingTrinityWalletWithKeePass": "Trinity naudojimas su Keepass2Android"
+        "usingTrinityWalletWithKeePass": "Trinity naudojimas su Keepass2Android",
+        "signedTrytesBroadcastErrorExplanation": "Įvyko tinklo klaida transliuojant jūsų pavedimą."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Užraktas turi neleistinų simbolių",
@@ -223,6 +224,7 @@
         "invalidCharacters": "Užraktas sudarytas iš neleistinų simbolių",
         "invalidCharactersExplanation": "Užraktas gali susidėti tik iš didžiųjų raidžių (A-Z) ir skaičiaus 9. Jūsų užraktas turi neleistinų simbolių. Bandykite dar kartą.",
         "seedTooShort": "Užraktas per trumpas",
+        "seedTooLong": "Užraktas per ilgas",
         "seedTooShortExplanation": "Užraktas privalo būti iš {{maxLength}} simbolio. Jūsų užraktas susidaro iš {{currentLength}}. Bandykite dar kartą.",
         "seedExplanation": "Užraktas turi būti iš {{maxLength}} simbolio, galimos tik didžiosios raidės (A-Z) arba skaičius 9. Užraktas negali turėti daugiau nei {{maxLength}} simbolį.",
         "neverShare": "SU NIEKUO NESIDALINKITE SAVO UŽRAKTU"
@@ -291,7 +293,9 @@
         "message": "Žinutė (neprivaloma)",
         "removeMessage": "PAŠALINTI ŽINUTĘ",
         "noAddresses": "ADRESŲ NĖRA",
-        "spent": "Panaudotas"
+        "spent": "Panaudotas",
+        "missingPermission": "Reikalingas failų sistemos leidimas",
+        "missingPermissionExplanation": "Reikalinga prieiga prie failų sistemos norint dalintis QR kodais."
     },
     "saveYourSeed": {
         "saveYourSeed": "Išsisaugokite savo užraktą",
@@ -300,8 +304,6 @@
         "leastSecure": "Mažiausiai saugu",
         "paperWallet": "Popierinė piniginė",
         "writeYourSeedDown": "Nusirašyti užraktą",
-        "printYourSeed": "Atspausdinti užraktą",
-        "digitalCopy": "Skaitmeninė kopija",
         "seedClearedExplanation": "Užraktas išvalytas iš iškarpinės dėl jūsų saugumo.",
         "iHaveBackedUpMySeed": "Užraktą išsisaugojau",
         "letsWriteDownYourSeed": "Nusirašykite savo užraktą",
@@ -348,7 +350,8 @@
         "sendMax": "SIŲSTI MAKS.",
         "totalTime": "Bendras laikas",
         "addressPasteDetected": "Aptiktas adreso įklijavimas",
-        "addressPasteExplanation": "Atrodo, kad jūs įklijavote adresą. Įsitikinkite, kad adresas tikrai sutampa su gavėjo adresu."
+        "addressPasteExplanation": "Atrodo, kad jūs įklijavote adresą. Įsitikinkite, kad adresas tikrai sutampa su gavėjo adresu.",
+        "invalid": "KLAIDA"
     },
     "setPassword": {
         "choosePassword": "Sukurti naują slaptažodį",
@@ -463,7 +466,9 @@
         "messageCopied": "Žinutė nukopijuota",
         "messageCopiedExplanation": "Žinutė nukopijuota į iškarpinę.",
         "send": "SIŲSTA",
-        "receive": "GAUTA"
+        "receive": "GAUTA",
+        "empty": "Tuščia",
+        "retrying": "BANDOMA IŠ NAUJO"
     },
     "accountManagement": {
         "viewSeed": "Rodyti užraktą",
@@ -502,7 +507,8 @@
         "frame": "Rėmeliai"
     },
     "themeCustomisation": {
-        "theme": "Tema"
+        "theme": "Tema",
+        "mockup": "Maketas"
     },
     "currencySelection": {
         "currency": "Valiuta"
@@ -602,7 +608,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Pokytis",
+        "change": "Pokytis (24val.)",
         "volume": "Apyvarta (24val.)",
         "currentValue": "Dabartinė vertė",
         "error": "Klaida užkraunant grafiko duomenis"
