@@ -440,11 +440,11 @@
         "okay": "Ok. Prejdime k nastaveniu Vašej peňaženky!",
         "doYouAlreadyHaveASeed": "Máte už vlastný Seed, ktorý by ste chceli použiť?",
         "doYouNeedASeed": "Potrebujete vytvoriť nový Seed?",
-        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
+        "seedExplanation": "IOTA Seed je hlavným prístupovým kľúčom k vašim prostriedkom. Je dlhý 81 znakov a používa iba písmená A-Z alebo číslo 9.",
         "noIHaveOne": "Nie, už mám Seed",
         "yesINeedASeed": "Áno, potrebujem Seed",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
-        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
+        "explanation": "<0><0>Môžete ho použiť pre prístup k vašim prostriedkom z</0><1> akejkoľvek peňaženky</1><2>, na</2><3> akomkoľvek zariadení.</3></0>",
+        "loseSeed": "Ale ak stratíte váš Seed, stratíte tiež všetky vaše IOTY.",
         "keepSafe": "Prosím, uchovávajte svoj Seed v bezpečí.",
         "hint": "<0><0>Tip:</0>Ak IOTA peňaženku používate prvýkrát, kliknite na tlačidlo NIE</0>"
     },
@@ -454,7 +454,7 @@
     "writeSeedDown": {
         "yourSeedIs": "Váš Seed je {{maxSeedLength}} znakov čítaných zľava doprava.",
         "writeDownYourSeed": "<0> Zapíšte si svoj Seed a kontrolný súčet a </0><1>dôkladne skontrolujte</1><2> ich správnosť.</2>",
-        "scrollToBottom": "Scroll to the bottom"
+        "scrollToBottom": "Posunúť sa na koniec"
     },
     "history": {
         "bundleHashCopied": "Bundle hash skopírovaný",
