@@ -370,8 +370,8 @@
         "youCanAdd": "Norėdami pridėti daugiau užraktų, eikite į nustatymų meniu."
     },
     "modeSelection": {
-        "expert": "Expert",
-        "standard": "Standard",
+        "expert": "Eksperto",
+        "standard": "Standartinis",
         "expertModeExplanation": "Eksperto režimas suteikia prieigą prie papildomų funkcijų, tokių kaip rankinis iškėlimas ir pakartotinis prijungimas.",
         "modesExplanation": "Eksperto režimą naudokite tik jeigu esate pakankamai susipažinęs su Tangle. Kitu atveju jums gali kilti daug neaiškumų."
     },
@@ -380,7 +380,7 @@
         "transferSendingExplanation": "Palaukite, kol jūsų pavedimas bus išsiųstas.",
         "generatingAddress": "Kuriamas pavedimų priėmimo adresas",
         "generatingAddressExplanation": "Palaukite, kol adresas bus sukurtas.",
-        "mode": "Rėžimas",
+        "mode": "Režimas",
         "theme": "Tema",
         "currency": "Valiuta",
         "cannotChangeNode": "Serverio pakeisti negalima",
