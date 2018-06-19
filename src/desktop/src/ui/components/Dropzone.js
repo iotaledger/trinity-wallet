@@ -1,5 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
+
+import Icon from 'ui/components/Icon';
+
+import css from './dropzone.scss';
 
 class Dropzone extends React.Component {
     static propTypes = {
@@ -27,6 +32,10 @@ class Dropzone extends React.Component {
         document.addEventListener('drop', this.onDrop);
     }
 
+    componentDidMount() {
+        this.parentCount = 0;
+    }
+
     componentWillUnmount() {
         document.removeEventListener('dragenter', this.onDragEnter);
         document.removeEventListener('dragover', this.onDragOver);
@@ -36,6 +45,9 @@ class Dropzone extends React.Component {
 
     onDragEnter(e) {
         e.preventDefault();
+
+        ++this.parentCount;
+
         this.setState({
             isDragActive: true,
         });
@@ -50,6 +62,10 @@ class Dropzone extends React.Component {
     onDragLeave(e) {
         e.preventDefault();
 
+        if (--this.parentCount > 0) {
+            return;
+        }
+
         this.setState({
             isDragActive: false,
         });
@@ -60,7 +76,7 @@ class Dropzone extends React.Component {
 
         const { onDrop } = this.props;
 
-        const file = e.dataTransfer.files[0];
+        const file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
         const reader = new FileReader();
 
         reader.onload = (e) => {
@@ -75,8 +91,33 @@ class Dropzone extends React.Component {
         });
     }
 
+    open() {
+        this.fileInputEl.value = null;
+        this.fileInputEl.click();
+    }
+
     render() {
-        return this.state.isDragActive && <div className="dropzone" />;
+        const inputAttributes = {
+            type: 'file',
+            style: { display: 'none' },
+            multiple: false,
+            onChange: this.onDrop,
+            ref: (el) => {
+                this.fileInputEl = el;
+            },
+        };
+
+        return (
+            <React.Fragment>
+                <h5 onClick={() => this.open()}>
+                    <Icon icon="password" size={12} /> import keyfile
+                </h5>
+                <input {...inputAttributes} />
+                <div className={classNames(css.dropzone, this.state.isDragActive && css.active)}>
+                    <h1>Drop the keyfile here</h1>
+                </div>
+            </React.Fragment>
+        );
     }
 }
 
