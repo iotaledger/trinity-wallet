@@ -33,10 +33,6 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         paddingTop: height / 16,
     },
-    logoContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
     midContainer: {
         flex: 3,
         alignItems: 'center',
@@ -49,30 +45,6 @@ const styles = StyleSheet.create({
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
-    },
-    backButton: {
-        borderWidth: 1.2,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 3,
-        height: height / 14,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-    },
-    backText: {
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
-        backgroundColor: 'transparent',
-    },
-    infoTextContainer: {
-        width: width / 1.15,
-        alignItems: 'center',
-    },
-    infoTextLight: {
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize4,
-        backgroundColor: 'transparent',
-        lineHeight: height / 14,
-        textAlign: 'center',
     },
     checkboxContainer: {
         height: height / 15,

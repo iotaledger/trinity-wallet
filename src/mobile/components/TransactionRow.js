@@ -75,11 +75,6 @@ const styles = StyleSheet.create({
         width: width / 14,
         height: width / 17,
     },
-    icon: {
-        fontSize: width / 13,
-        fontFamily: 'SourceSansPro-Light',
-        backgroundColor: 'transparent',
-    },
     iconBorder: {
         borderRadius: width / 30,
         borderWidth: 1,

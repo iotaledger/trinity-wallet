@@ -48,15 +48,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-end',
     },
-    logoContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    titleContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: GENERAL.fontSize3,

@@ -40,16 +40,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    logoContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
     titleContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingBottom: height / 30,
-    },
-    subtitleContainer: {
         justifyContent: 'center',
         alignItems: 'center',
         paddingBottom: height / 30,
@@ -59,26 +50,6 @@ const styles = StyleSheet.create({
         fontSize: GENERAL.fontSize4,
         textAlign: 'center',
         backgroundColor: 'transparent',
-    },
-    iotaLogo: {
-        height: width / 5,
-        width: width / 5,
-    },
-    textFieldContainer: {
-        flex: 1,
-        paddingRight: width / 30,
-        justifyContent: 'center',
-    },
-    textField: {
-        fontFamily: 'SourceSansPro-Light',
-    },
-    accountNameContainer: {
-        flex: 4,
-        alignItems: 'center',
-    },
-    seedContainer: {
-        flex: 6.5,
-        alignItems: 'center',
     },
     itemLeft: {
         flexDirection: 'row',

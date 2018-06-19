@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { translate } from 'react-i18next';
 import CustomTextInput from '../components/CustomTextInput';
-import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
 import OnboardingButtons from '../containers/OnboardingButtons';
 import { Icon } from '../theme/icons.js';
@@ -25,23 +24,6 @@ const styles = StyleSheet.create({
         flex: 0.7,
         alignItems: 'center',
         justifyContent: 'flex-end',
-    },
-    iotaLogo: {
-        height: width / 5,
-        width: width / 5,
-    },
-    doneButton: {
-        borderWidth: 1.2,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 2.7,
-        height: height / 14,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-    },
-    doneText: {
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
-        backgroundColor: 'transparent',
     },
 });
 
