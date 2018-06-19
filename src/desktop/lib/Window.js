@@ -199,8 +199,8 @@ const Electron = {
             const content = await kdbx.exportVault(seed, password);
 
             const path = await dialog.showSaveDialog(currentWindow, {
-                title: 'Export vault file',
-                defaultPath: 'trinity-keyfile.kdbx',
+                title: 'Export keyfile',
+                defaultPath: 'trinity.kdbx',
                 buttonLabel: 'Export',
             });
 
