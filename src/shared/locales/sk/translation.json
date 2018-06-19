@@ -309,7 +309,7 @@
         "letsWriteDownYourSeed": "Zapíšte si váš Seed",
         "youCanHighlightCharacters": "Môžete zvýrazniť 9 znakov súčasne",
         "printBlankWallet": "Tlač prázdnej peňaženky",
-        "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
+        "whatIsChecksum": "Každý Seed má zodpovedajúci 3-znakový kontrolný súčet",
         "iHavesavedMySeed": "Svoj Seed mám uložený",
         "checksumExplanation": "Vždy, keď pridáte Seed do vašej peňaženky, mali by ste sa uistiť, že kontrolný súčet vygenerovaný peňaženkou zodpovedá tomu, ktorý ste si zapísali.",
         "mustSaveYourSeed": "<0><0>Je potrebné zálohovať váš Seed </0><1>aspoň jedným</1><2>z nižšie uvedených spôsobov.</2></0>"
@@ -351,7 +351,7 @@
         "totalTime": "Celkový čas",
         "addressPasteDetected": "Zistené kopírovanie adresy",
         "addressPasteExplanation": "Vyzerá to, že ste skopírovali adresu zo schránky. Uistite sa, že vložená adresa je naozaj tá, na ktorú chcete odoslať prostriedky.",
-        "invalid": "INVALID"
+        "invalid": "NEPLATNÝ"
     },
     "setPassword": {
         "choosePassword": "Zvoľte si nové heslo",
