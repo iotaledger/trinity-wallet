@@ -467,7 +467,7 @@
         "messageCopiedExplanation": "Il messaggio è stato copiato negli Appunti.",
         "send": "INVIA",
         "receive": "RICEVI",
-        "empty": "Empty",
+        "empty": "Vuota",
         "retrying": "RETRYING"
     },
     "accountManagement": {
