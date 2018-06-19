@@ -19,8 +19,7 @@ class SeedExport extends PureComponent {
     static propTypes = {
         /** Target Seed */
         seed: PropTypes.array.isRequired,
-        /**  On close event callback
-         */
+        /**  On close event callback */
         onClose: PropTypes.func.isRequired,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
@@ -60,7 +59,6 @@ class SeedExport extends PureComponent {
             );
         }
 
-        console.log(seed, password);
         const error = await Electron.exportSeed(seed, password);
 
         if (error) {
@@ -70,6 +68,8 @@ class SeedExport extends PureComponent {
         } else {
             generateAlert('success', 'Keyfile saved!', 'Lorem ipsum dolor sit amet!');
         }
+
+        Electron.garbageCollect();
 
         onClose();
     };

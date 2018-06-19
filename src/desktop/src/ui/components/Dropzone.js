@@ -6,9 +6,12 @@ import Icon from 'ui/components/Icon';
 
 import css from './dropzone.scss';
 
+/**
+ * File drag & drop component
+ */
 class Dropzone extends React.Component {
     static propTypes = {
-        /** File drop callback */
+        /** Succesfull file drop callback */
         onDrop: PropTypes.func.isRequired,
     };
 
@@ -76,8 +79,22 @@ class Dropzone extends React.Component {
 
         const { onDrop } = this.props;
 
+        this.setState({
+            isDragActive: false,
+        });
+
+        this.parentCount = 0;
+
         const file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
+
+        if (!file || file.size > 100000) {
+            return onDrop(null);
+        }
+
         const reader = new FileReader();
+
+        // Init with empty buffer first
+        onDrop([]);
 
         reader.onload = (e) => {
             const buffer = e.target.result;
@@ -85,15 +102,11 @@ class Dropzone extends React.Component {
         };
 
         reader.readAsArrayBuffer(file);
-
-        this.setState({
-            isDragActive: false,
-        });
     }
 
     open() {
-        this.fileInputEl.value = null;
-        this.fileInputEl.click();
+        this.fileInput.value = null;
+        this.fileInput.click();
     }
 
     render() {
@@ -103,7 +116,7 @@ class Dropzone extends React.Component {
             multiple: false,
             onChange: this.onDrop,
             ref: (el) => {
-                this.fileInputEl = el;
+                this.fileInput = el;
             },
         };
 
