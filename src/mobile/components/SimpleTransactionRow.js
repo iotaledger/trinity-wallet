@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
 import { formatTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/date';
 import { width, height } from '../utils/dimensions';
+import { locale } from '../utils/device';
 import GENERAL from '../theme/general';
 import { Icon } from '../theme/icons';
 
@@ -78,7 +79,7 @@ export default class SimpleTransactionRow extends PureComponent {
                 </View>
                 <View style={{ flex: 3.2, alignItems: 'flex-start', justifyContent: 'center' }}>
                     <Text style={[styles.text, { color: style.defaultTextColor }]}>
-                        {formatTime(convertUnixTimeToJSDate(time))}
+                        {formatTime(locale, convertUnixTimeToJSDate(time))}
                     </Text>
                 </View>
                 <View style={{ flex: 2, alignItems: 'flex-start', justifyContent: 'center' }}>
