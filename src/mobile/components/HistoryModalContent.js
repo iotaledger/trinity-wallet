@@ -51,9 +51,6 @@ const styles = StyleSheet.create({
         fontFamily: 'SourceSansPro-Regular',
         fontSize: GENERAL.fontSize2,
     },
-    valueText: {
-        marginLeft: 2,
-    },
     confirmationWrapper: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -112,9 +109,6 @@ const styles = StyleSheet.create({
         fontFamily: 'SourceSansPro-Bold',
         fontSize: GENERAL.fontSize3,
         textAlign: 'right',
-    },
-    buttonWhenDisabled: {
-        opacity: 0.4,
     },
     buttonsContainer: {
         flex: 1,

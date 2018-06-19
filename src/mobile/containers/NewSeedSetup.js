@@ -62,19 +62,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         margin: width / 80,
     },
-    generateButton: {
-        borderRadius: GENERAL.borderRadius,
-        width: width / 2.2,
-        height: height / 16,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderWidth: 1.2,
-    },
-    generateText: {
-        fontFamily: 'SourceSansPro-Bold',
-        fontSize: GENERAL.fontSize1,
-        backgroundColor: 'transparent',
-    },
     infoText: {
         fontFamily: 'SourceSansPro-Regular',
         fontSize: GENERAL.fontSize3,
@@ -95,11 +82,6 @@ const styles = StyleSheet.create({
     },
     infoTextLight: {
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
-        backgroundColor: 'transparent',
-    },
-    infoTextRegular: {
-        fontFamily: 'SourceSansPro-Regular',
         fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
     },

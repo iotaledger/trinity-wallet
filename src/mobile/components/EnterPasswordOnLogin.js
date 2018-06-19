@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import RNExitApp from 'react-native-exit-app';
 import { StyleSheet, View, TouchableWithoutFeedback, Keyboard, BackHandler } from 'react-native';
-import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
 import OnboardingButtons from '../containers/OnboardingButtons';
 import CustomTextInput from './CustomTextInput';
@@ -26,34 +25,6 @@ const styles = StyleSheet.create({
         flex: 0.7,
         alignItems: 'center',
         justifyContent: 'flex-end',
-    },
-    titleContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingTop: height / 8,
-    },
-    title: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize4,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-    },
-    iotaLogo: {
-        height: width / 5,
-        width: width / 5,
-    },
-    loginButton: {
-        borderWidth: 1.2,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 2.7,
-        height: height / 14,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-    },
-    loginText: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
-        backgroundColor: 'transparent',
     },
 });
 
