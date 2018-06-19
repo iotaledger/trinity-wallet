@@ -1,16 +1,3 @@
-PODS:
-  - IotaKit (0.7.1)
-
-DEPENDENCIES:
-  - IotaKit
-
-SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
-    - IotaKit
-
-SPEC CHECKSUMS:
-  IotaKit: bc3420ff86d7e7b12e2630cf5f4821130852e29a
-
-PODFILE CHECKSUM: 1d077836f7f12cdcc98878be9d98c2ac4476e7b0
+PODFILE CHECKSUM: b2b975234acca9a548eeaacfb1c530d53a40a211
 
 COCOAPODS: 1.5.3
