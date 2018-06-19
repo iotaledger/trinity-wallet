@@ -94,6 +94,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingBottom: height / 90,
     },
+    modal: {
+        height,
+        width,
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 0,
+    },
 });
 
 /** Seed Reentry component */
@@ -313,7 +320,7 @@ class SeedReentry extends Component {
                             backdropTransitionOutTiming={200}
                             backdropColor={theme.body.bg}
                             backdropOpacity={0.9}
-                            style={{ alignItems: 'center', margin: 0 }}
+                            style={styles.modal}
                             isVisible={this.state.isModalVisible}
                             onBackButtonPress={() => this.setState({ isModalVisible: false })}
                             hideModalContentWhileAnimating

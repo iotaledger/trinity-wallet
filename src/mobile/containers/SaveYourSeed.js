@@ -80,6 +80,13 @@ const styles = StyleSheet.create({
         height: height / 40,
         marginVertical: height / 150,
     },
+    modal: {
+        height,
+        width,
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 0,
+    },
 });
 
 /** Save Your Seed component */
@@ -524,7 +531,7 @@ class SaveYourSeed extends Component {
                     backdropTransitionOutTiming={200}
                     backdropColor={body.bg}
                     backdropOpacity={0.9}
-                    style={{ alignItems: 'center', margin: 0 }}
+                    style={styles.modal}
                     isVisible={isModalActive}
                     onBackButtonPress={() => this.hideModal()}
                     hideModalContentWhileAnimating

@@ -121,6 +121,13 @@ const styles = StyleSheet.create({
         fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
     },
+    modal: {
+        height,
+        width,
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 0,
+    },
 });
 
 /** New Seed Setup component */
@@ -411,7 +418,7 @@ class NewSeedSetup extends Component {
                             backdropTransitionOutTiming={200}
                             backdropColor={body.bg}
                             backdropOpacity={0.9}
-                            style={{ alignItems: 'center', margin: 0 }}
+                            style={styles.modal}
                             isVisible={isModalActive}
                             onBackButtonPress={() => this.hideModal()}
                             hideModalContentWhileAnimating
