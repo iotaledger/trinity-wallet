@@ -1,5 +1,4 @@
-import moment from 'moment';
-import i18next from '../i18next';
+import moment from 'moment/min/moment-with-locales.min.js';
 
 if (!global.Intl) {
     global.Intl = require('intl'); // polyfill for `Intl`
@@ -7,13 +6,25 @@ if (!global.Intl) {
 const IntlRelativeFormat = require('intl-relativeformat');
 
 export const formatTimeAs = {
-    timeOnly: (time) => moment(time).format('LT'),
-    hoursMinutesDayMonthYear: (time) => moment(time).format('HH:mm DD/MM/YYYY'),
-    hoursMinutesSecondsDayMonthYear: (time) => moment(time).format('hh:mm:ss DD/MM/YYYY'),
+    timeOnly: (locale, time) => {
+        const m = moment(time).locale(locale);
+        return m.format('LT');
+    },
+    hoursMinutesDayMonthYear: (locale, time) => {
+        const m = moment(time).locale(locale);
+        return m.format('LT L');
+    },
+    hoursMinutesSecondsDayMonthYear: (locale, time) => {
+        const m = moment(time).locale(locale);
+        return m.format('LTS L');
+    },
 };
 
 export const formatDayAs = {
-    dayMonthYear: (day) => moment(day).format('L'),
+    dayMonthYear: (locale, day) => {
+        const m = moment(day).locale(locale);
+        return m.format('L');
+    },
 };
 
 export const isToday = (day) => moment().isSame(moment(day), 'day');
@@ -33,9 +44,10 @@ export const isValid = (dateString, format = 'YYYY MMM DD') => moment(dateString
 
 export const getCurrentYear = () => new Date().getFullYear();
 
-export const formatTime = (ts) => {
-    const m = moment(ts).locale(i18next.languages);
-    const rf = new IntlRelativeFormat(i18next.languages);
+export const formatTime = (locale, ts) => {
+    const m = moment.utc(ts);
+    m.locale([locale, locale.substring(0, 2), 'en-gb']);
+    const rf = new IntlRelativeFormat([locale, locale.substring(0, 2), 'en-UK']);
     if (isToday(ts)) {
         return m.format('LT');
     }
@@ -43,11 +55,11 @@ export const formatTime = (ts) => {
         return rf.format(ts);
     }
 
-    return formatDayAs.dayMonthYear(ts);
+    return formatDayAs.dayMonthYear(locale, ts);
 };
 
-export const formatModalTime = (ts) => {
-    return formatTimeAs.hoursMinutesDayMonthYear(ts);
+export const formatModalTime = (locale, ts) => {
+    return formatTimeAs.hoursMinutesDayMonthYear(locale, ts);
 };
 
 export const convertUnixTimeToJSDate = (time) => convertUnixTimeToDateObject(time);
