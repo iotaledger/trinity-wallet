@@ -26,11 +26,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingTop: height / 10,
     },
-    saveText: {
-        fontFamily: 'SourceSansPro-Bold',
-        fontSize: GENERAL.fontSize1,
-        backgroundColor: 'transparent',
-    },
     bottomContainer: {
         flex: 1,
         width,

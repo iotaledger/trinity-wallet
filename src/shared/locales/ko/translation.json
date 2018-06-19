@@ -151,7 +151,8 @@
         "isYourBalanceCorrect": "이 잔액이 옳습니까?",
         "ifYourBalanceIsNotCorrect": "잔액이 옳지 않다면 스냅샷 전의 시드를 사용중일 수 있습니다.",
         "headToAdvancedSettingsForTransition": "고급 설정에서 스냅샷 이전을 수행해 주세요.",
-        "usingTrinityWalletWithKeePass": "트리니티 지갑과 Keepass2Android 같이 사용하기"
+        "usingTrinityWalletWithKeePass": "트리니티 지갑과 Keepass2Android 같이 사용하기",
+        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
@@ -223,6 +224,7 @@
         "invalidCharacters": "시드에 잘못된 문자 포함됨",
         "invalidCharactersExplanation": "시드는 A부터 Z까지의 대문자와 숫자 9만 포함할 수 있습니다. 입력하신 시드에는 잘못된 문자가 포함되어 있습니다. 다시 시도해 주세요.",
         "seedTooShort": "시드가 너무 짧음",
+        "seedTooLong": "Seed is too long",
         "seedTooShortExplanation": "시드는 {{maxLength}}글자로 구성되어야 합니다. 입력하신 시드는 {{currentLength}}글자로 구성되어 있습니다. 다시 시도해 주세요.",
         "seedExplanation": "시드는 {{maxLength}}글자로 구성되며, A부터 Z까지의 대문자와 숫자 9만 포함할 수 있습니다. {{maxLength}}자보다 더 긴 시드는 사용할 수 없습니다.",
         "neverShare": "절대로 다른 사람에게 시드를 알려주지 마세요."
@@ -291,7 +293,9 @@
         "message": "메시지 (선택)",
         "removeMessage": "메시지 삭제하기",
         "noAddresses": "주소 없음",
-        "spent": "이미 사용함"
+        "spent": "이미 사용함",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
     },
     "saveYourSeed": {
         "saveYourSeed": "시드 저장하기",
@@ -300,8 +304,6 @@
         "leastSecure": "덜 안전함",
         "paperWallet": "종이 지갑",
         "writeYourSeedDown": "시드 기록하기",
-        "printYourSeed": "시드 인쇄하기",
-        "digitalCopy": "암호화하여 저장",
         "seedClearedExplanation": "보안을 위해 클립보드에서 시드가 삭제되었습니다.",
         "iHaveBackedUpMySeed": "시드를 저장했습니다",
         "letsWriteDownYourSeed": "시드를 종이에 기록하세요",
@@ -348,7 +350,8 @@
         "sendMax": "최대 금액",
         "totalTime": "총 소요시간",
         "addressPasteDetected": "주소 붙여넣기가 확인됨",
-        "addressPasteExplanation": "받을 주소를 붙여넣은 것으로 보입니다. 붙여넣는 주소가 보내고자 하는 주소와 일치하는지 다시 한번 확인해 주세요."
+        "addressPasteExplanation": "받을 주소를 붙여넣은 것으로 보입니다. 붙여넣는 주소가 보내고자 하는 주소와 일치하는지 다시 한번 확인해 주세요.",
+        "invalid": "INVALID"
     },
     "setPassword": {
         "choosePassword": "비밀번호 설정하기",
@@ -463,7 +466,9 @@
         "messageCopied": "메시지 복사함",
         "messageCopiedExplanation": "메시지를 클립보드에 복사했습니다.",
         "send": "보냄",
-        "receive": "받음"
+        "receive": "받음",
+        "empty": "Empty",
+        "retrying": "RETRYING"
     },
     "accountManagement": {
         "viewSeed": "시드 보기",
@@ -502,7 +507,8 @@
         "frame": "테두리"
     },
     "themeCustomisation": {
-        "theme": "테마"
+        "theme": "테마",
+        "mockup": "Mockup"
     },
     "currencySelection": {
         "currency": "통화"
@@ -575,8 +581,8 @@
         "fingerprintUnavailableExplanation": "본 기기는 생체 인증을 사용할 수 없거나 사용하지 않도록 설정되어 있습니다.",
         "buttonInstructionsDisable": "아래 버튼을 눌러 지문 인증을 비활성화할 수 있습니다.",
         "buttonInstructionsEnable": "아래 버튼을 눌러 지문 인증을 활성화할 수 있습니다.",
-        "buttonInstructionsDisableIPhoneX": "아래 버튼을 눌러 Face ID를 비활성할 수 있습니다.",
-        "buttonInstructionsEnableIPhoneX": "아래 버튼을 눌러 Face ID를 활성할 수 있습니다.",
+        "buttonInstructionsDisableIPhoneX": "아래 버튼을 눌러 Face ID를 비활성화할 수 있습니다.",
+        "buttonInstructionsEnableIPhoneX": "아래 버튼을 눌러 Face ID를 활성화할 수 있습니다.",
         "instructionsLogin": "로그인하려면 손가락을 지문 센서 위에 올리세요"
     },
     "transferConfirmation": {
@@ -602,7 +608,7 @@
     },
     "chart": {
         "mcap": "시가총액",
-        "change": "전일대비",
+        "change": "Change (24h)",
         "volume": "거래량 (24시간)",
         "currentValue": "현재 호가",
         "error": "차트 데이터 가져오는 중 오류 발생"

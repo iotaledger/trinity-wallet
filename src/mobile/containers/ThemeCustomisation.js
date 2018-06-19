@@ -20,17 +20,6 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         width,
     },
-    themeSelectorContainer: {
-        width: width / 1.3,
-        height: height / 13,
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        zIndex: 2,
-    },
-    themeSelector: {
-        justifyContent: 'flex-start',
-        zIndex: 2,
-    },
     demoContainer: {
         paddingTop: height / 44,
         paddingHorizontal: height / 26,
@@ -78,23 +67,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         marginRight: width / 20,
     },
-    advancedButton: {
-        borderWidth: 1.5,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 2.7,
-        height: height / 15,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'transparent',
-        position: 'absolute',
-        bottom: height / 80,
-        zIndex: 3,
-    },
-    advancedText: {
-        fontFamily: 'SourceSansPro-Bold',
-        fontSize: GENERAL.fontSize1,
-        backgroundColor: 'transparent',
-    },
     frameBar: {
         width: width / 1.5,
         height: height / 15,
@@ -109,16 +81,6 @@ const styles = StyleSheet.create({
         fontSize: GENERAL.fontSize3,
         color: '#ffffff',
         zIndex: 1,
-    },
-    chevronWrapper: {
-        position: 'absolute',
-        right: width / 30,
-    },
-    chevron: {
-        height: width / 20,
-        width: width / 20,
-        position: 'absolute',
-        right: width / 30,
     },
     buttonsContainer: {
         alignItems: 'center',

@@ -151,7 +151,8 @@
         "isYourBalanceCorrect": "Is your balance correct?",
         "ifYourBalanceIsNotCorrect": "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
         "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition.",
-        "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android"
+        "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android",
+        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "أوتورياتاتشينج إلى تشابك",
@@ -223,6 +224,7 @@
         "invalidCharacters": "السييد يحتوي على أحرف غير صالحة",
         "invalidCharactersExplanation": "يجب ان يتكون السييد من احرف انجليزية كبيرة A-Z والرقم 9 فقط. السييد الخاص بك يحتوي على أحرف غير صالحة. يرجى المحاولة مرة أخرى.",
         "seedTooShort": "السييد قصير جداً",
+        "seedTooLong": "Seed is too long",
         "seedTooShortExplanation": "يجب أن تكون البذور {{maxLength}} حرفاً. البذور الخاص بك حاليا {{currentLength}} حرفاً. الرجاء المحاولة مرة أخرى.",
         "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
         "neverShare": "لا تقم ابداً بمشاركة السييد الخاص بك مع اي شخص"
@@ -291,7 +293,9 @@
         "message": "رسالة اختيارية",
         "removeMessage": "احذف الرسالة",
         "noAddresses": "لا توجد عناوين",
-        "spent": "اُنفق"
+        "spent": "اُنفق",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
     },
     "saveYourSeed": {
         "saveYourSeed": "Back up your seed",
@@ -300,8 +304,6 @@
         "leastSecure": "Least Secure",
         "paperWallet": "Paper Wallet",
         "writeYourSeedDown": "Write your seed down",
-        "printYourSeed": "Print your seed",
-        "digitalCopy": "Digital copy",
         "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
         "iHaveBackedUpMySeed": "لقد حفظت السييد الخاص بي",
         "letsWriteDownYourSeed": "Lets write down your seed",
@@ -348,7 +350,8 @@
         "sendMax": "إرسال الكل",
         "totalTime": "Total time",
         "addressPasteDetected": "Address paste detected",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
+        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to.",
+        "invalid": "INVALID"
     },
     "setPassword": {
         "choosePassword": "Choose a new password",
@@ -463,7 +466,9 @@
         "messageCopied": "Message copied",
         "messageCopiedExplanation": "The message has been copied to the clipboard.",
         "send": "إرسال",
-        "receive": "إستلام"
+        "receive": "إستلام",
+        "empty": "Empty",
+        "retrying": "RETRYING"
     },
     "accountManagement": {
         "viewSeed": "عرض السييد",
@@ -502,7 +507,8 @@
         "frame": "إطار"
     },
     "themeCustomisation": {
-        "theme": "التصميم"
+        "theme": "التصميم",
+        "mockup": "Mockup"
     },
     "currencySelection": {
         "currency": "عملة"
@@ -602,7 +608,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change",
+        "change": "Change (24h)",
         "volume": "Volume (24h)",
         "currentValue": "Current value",
         "error": "Error fetching chart data"

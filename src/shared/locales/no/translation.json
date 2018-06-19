@@ -147,11 +147,12 @@
         "androidCopyPasteWarning": "Aldri klipp og lim hovednøkkelen på en Android enhet.",
         "willNotCopyPasteSeed": "Jeg skal ikke klippe og lime hovednøkkelen",
         "mustBeStoredAppropriately": "Den må lagres på riktig måte.",
-        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while.",
+        "deviceMayBecomeUnresponsive": "Enheten kan slutte å svare en stund.",
         "isYourBalanceCorrect": "Er din balanse riktig?",
         "ifYourBalanceIsNotCorrect": "Hvis balansen din ikke er riktig, er det sannsynlig at du benytter en hovednøkkel fra før snapshot.",
         "headToAdvancedSettingsForTransition": "Gå til avanserte innstillinger og utfør en Snapshot overgang.",
-        "usingTrinityWalletWithKeePass": "Bruker Trinity med Keepass2Android"
+        "usingTrinityWalletWithKeePass": "Bruker Trinity med Keepass2Android",
+        "signedTrytesBroadcastErrorExplanation": "Det oppstod en nettverksfeil under kringkastingen av transaksjonen."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Hovednøkkelen inneholder ugyldige tegn",
@@ -223,6 +224,7 @@
         "invalidCharacters": "Hovednøkkelen inneholder ugyldige tegn",
         "invalidCharactersExplanation": "Hovednøkkelen kan kun bestå av store bokstaver fra A til Z og tallet 9. Din hovednøkkel inneholder ugyldige tegn. Vennligst prøv på nytt.",
         "seedTooShort": "Hovednøkkelen er for kort",
+        "seedTooLong": "Hovednøkkelen er for lang",
         "seedTooShortExplanation": "Hovednøkler må være {{maxLength}} tegn. Din hovednøkkel er nå {{currentLength}} tegn. Vennligst prøv på nytt.",
         "seedExplanation": "Hovednøkler skal være {{maxLength}} tegn, og bestå av store bokstaver fra A-Z eller tallet 9. Hovednøkkelen kan ikke ha flere enn {{maxLength}} tegn.",
         "neverShare": "OPPGI ALDRI DIN HOVEDNØKKEL TIL ANDRE"
@@ -291,7 +293,9 @@
         "message": "Valgfri melding",
         "removeMessage": "FJERN MELDINGEN",
         "noAddresses": "INGEN ADRESSER",
-        "spent": "Brukt"
+        "spent": "Brukt",
+        "missingPermission": "Trenger tillatelse til filsystemet",
+        "missingPermissionExplanation": "Tilgang til filsystemet er nødvendig for å dele QR-koder."
     },
     "saveYourSeed": {
         "saveYourSeed": "Ta vare på hovednøkkelen",
@@ -300,14 +304,12 @@
         "leastSecure": "Minst sikkert",
         "paperWallet": "Papirlommebok",
         "writeYourSeedDown": "Skriv ned hovednøkkelen",
-        "printYourSeed": "Skriv ut hovednøkkelen",
-        "digitalCopy": "Digital kopi",
         "seedClearedExplanation": "Hovednøkkelen er fjernet fra utklippstavlen for din sikkerhet.",
         "iHaveBackedUpMySeed": "Jeg har lagret min hovednøkkel",
         "letsWriteDownYourSeed": "La oss skrive ned din hovednøkkel",
         "youCanHighlightCharacters": "Du kan utheve 9 tegn om gangen",
         "printBlankWallet": "Skriv ut en tom lommebok",
-        "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
+        "whatIsChecksum": "Hver hovednøkkel har en egen 3-tegn kontrollsum",
         "iHavesavedMySeed": "Jeg har lagret min hovednøkkel",
         "checksumExplanation": "Når du legger til en hovednøkkel i lommeboken, bør du forsikre deg om at kontrollsummen samsvarer med den du har skrevet ned.",
         "mustSaveYourSeed": "<0><0>Du må lagre din hovednøkkel med </0><1>minst én</1><2> av alternativene nedenfor.</2></0>"
@@ -348,7 +350,8 @@
         "sendMax": "SENDE MAX",
         "totalTime": "Total tid",
         "addressPasteDetected": "Adresse \"lim inn\" gjenkjent",
-        "addressPasteExplanation": "Det ser ut som at du har limt inn en adresse. Vær sikker på at denne adressen samsvarer med den du ønsker å sende til."
+        "addressPasteExplanation": "Det ser ut som at du har limt inn en adresse. Vær sikker på at denne adressen samsvarer med den du ønsker å sende til.",
+        "invalid": "INVALID"
     },
     "setPassword": {
         "choosePassword": "Velg et nytt passord",
@@ -437,33 +440,35 @@
         "okay": "Ok. La oss sette opp lommeboken din!",
         "doYouAlreadyHaveASeed": "Har du allerede en hovednøkkel som du ønsker å benytte?",
         "doYouNeedASeed": "Trenger du å lage en ny hovednøkkel?",
-        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
+        "seedExplanation": "Hovednøkkelen gir tilgang til dine IOTA og består av 81 tegn bestående av bokstavene A til Z eller tallet 9.",
         "noIHaveOne": "Nei, jeg har en",
         "yesINeedASeed": "Ja, jeg trenger en hovednøkkel",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
-        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
+        "explanation": "<0><0>Du kan bruke den til å få tilgang til dine midler med</0><1>hvilken som helst lommebok</1><2>, på</2><3> enhver enhet.</3></0>",
+        "loseSeed": "Dersom du mister hovednøkkelen mister du også tilgangen til dine IOTA.",
         "keepSafe": "Vennligst oppbevar hovednøkkelen sikkert.",
         "hint": "<0><0>Hint:</0> Klikk NEI hvis dette er første gangen du bruker IOTA.</0>"
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity"
+        "thankYou": "Takk for at du lastet ned Trinity"
     },
     "writeSeedDown": {
         "yourSeedIs": "Hovednøkkelen er på {{maxSeedLength}} tegn lest fra venstre mot høyre.",
         "writeDownYourSeed": "<0>Skriv ned hovednøkkelen og kontrolltegnet. </0><1>trippelsjekk</1><2>så at de er riktige.</2>",
-        "scrollToBottom": "Scroll to the bottom"
+        "scrollToBottom": "Skroll ned til bunnen"
     },
     "history": {
         "bundleHashCopied": "Pakke hash kopiert",
-        "noTransactionsFound": "No transactions found",
-        "hideZeroBalance": "Hide zero balance",
+        "noTransactionsFound": "Ingen transaksjon ble funnet",
+        "hideZeroBalance": "Gjem nullbeløp",
         "bundleHashCopiedExplanation": "Pakke hash har blitt kopiert til utklippstavlen.",
         "addressCopied": "Addresse kopiert",
         "addressCopiedExplanation": "Adressen har blitt kopiert til utklippstavlen.",
         "messageCopied": "Meldingen er kopiert",
         "messageCopiedExplanation": "Meldingen har blitt kopiert til utklippstavlen.",
         "send": "SENT",
-        "receive": "MOTTA"
+        "receive": "MOTTA",
+        "empty": "Empty",
+        "retrying": "RETRYING"
     },
     "accountManagement": {
         "viewSeed": "Vis hovednøkkel",
@@ -502,7 +507,8 @@
         "frame": "Ramme"
     },
     "themeCustomisation": {
-        "theme": "Tema"
+        "theme": "Tema",
+        "mockup": "Mockup"
     },
     "currencySelection": {
         "currency": "Valuta"
@@ -602,7 +608,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Endring",
+        "change": "Change (24h)",
         "volume": "Volum (24 timer)",
         "currentValue": "Nåværende verdi",
         "error": "Feil under henting av henting diagramdata"
