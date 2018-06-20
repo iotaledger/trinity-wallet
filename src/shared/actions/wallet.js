@@ -5,6 +5,7 @@ import reduce from 'lodash/reduce';
 import { iota } from '../libs/iota';
 import { updateAddresses, updateAccountAfterTransition } from '../actions/accounts';
 import { generateAlert, generateTransitionErrorAlert } from '../actions/alerts';
+import { setActiveStepIndex, startTrackingProgress, reset as resetProgress } from '../actions/progress';
 import {
     getNewAddress,
     syncAddresses,
@@ -40,7 +41,6 @@ export const ActionTypes = {
     SNAPSHOT_ATTACH_TO_TANGLE_COMPLETE: 'IOTA/WALLET/SNAPSHOT_ATTACH_TO_TANGLE_COMPLETE',
     UPDATE_TRANSITION_BALANCE: 'IOTA/WALLET/UPDATE_TRANSITION_BALANCE',
     UPDATE_TRANSITION_ADDRESSES: 'IOTA/WALLET/UPDATE_TRANSITION_ADDRESSES',
-    SET_TRANSITION_ADDRESS_INDEX: 'IOTA/WALLET/SET_TRANSITION_ADDRESS_INDEX',
     SWITCH_BALANCE_CHECK_TOGGLE: 'IOTA/WALLET/SWITCH_BALANCE_CHECK_TOGGLE',
     CONNECTION_CHANGED: 'IOTA/WALLET/CONNECTION_CHANGED',
     SET_DEEP_LINK: 'IOTA/APP/WALLET/SET_DEEP_LINK',
@@ -151,11 +151,6 @@ export const switchBalanceCheckToggle = () => ({
     type: ActionTypes.SWITCH_BALANCE_CHECK_TOGGLE,
 });
 
-export const setTransitionAddressIndex = (payload) => ({
-    type: ActionTypes.SET_TRANSITION_ADDRESS_INDEX,
-    payload,
-});
-
 export const generateNewAddress = (seed, accountName, existingAccountData, genFn) => {
     return (dispatch) => {
         dispatch(generateNewAddressRequest());
@@ -211,13 +206,13 @@ export const completeSnapshotTransition = (seed, accountName, addresses, powFn) 
                 const relevantBalances = allBalances.slice(0, lastIndexWithBalance + 1);
                 const relevantAddresses = addresses.slice(0, lastIndexWithBalance + 1);
 
-                dispatch(snapshotAttachToTangleRequest());
+                dispatch(startTrackingProgress(relevantAddresses));
 
                 return reduce(
                     relevantAddresses,
                     (promise, address, index) => {
                         return promise.then((result) => {
-                            dispatch(setTransitionAddressIndex(index));
+                            dispatch(setActiveStepIndex(index));
 
                             return attachAndFormatAddress(address, relevantBalances[index], seed, powFn)
                                 .then(({ addressData, transfer }) => {
@@ -249,6 +244,8 @@ export const completeSnapshotTransition = (seed, accountName, addresses, powFn) 
                         20000,
                     ),
                 );
+
+                dispatch(resetProgress());
             })
             .catch((error) => {
                 dispatch(snapshotTransitionError());
