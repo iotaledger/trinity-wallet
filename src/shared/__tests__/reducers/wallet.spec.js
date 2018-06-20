@@ -21,6 +21,7 @@ describe('Reducer: wallet', () => {
                 deepLinkActive: false,
                 hasConnection: true,
                 usedExistingSeed: false,
+                transitionAddressIndex: -1,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
