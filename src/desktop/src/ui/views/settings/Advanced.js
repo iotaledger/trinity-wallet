@@ -7,7 +7,9 @@ import { connect } from 'react-redux';
 import { changePowSettings, changeAutoPromotionSettings, setLockScreenTimeout } from 'actions/settings';
 import { completeSnapshotTransition } from 'actions/wallet';
 import { generateAlert } from 'actions/alerts';
+
 import { setSeed, getSeed } from 'libs/crypto';
+import { getPoWFn } from 'libs/pow';
 
 import { toggleModalActivity } from 'actions/ui';
 import { getSelectedAccountName, getAddressesForSelectedAccount } from 'selectors/accounts';
@@ -165,16 +167,11 @@ class Advanced extends PureComponent {
 
         let powFn = null;
         if (!settings.remotePoW) {
-            // Temporarily return an error if WebGL cannot be initialized
-            // Remove once we implement more PoW methods
             try {
-                Curl.init();
+                powFn = getPoWFn();
             } catch (e) {
                 return generateAlert('error', t('pow:noWebGLSupport'), t('pow:noWebGLSupportExplanation'));
             }
-            powFn = (trytes, minWeight) => {
-                return Curl.pow({ trytes, minWeight });
-            };
         }
 
         // we aren't using the taskRunner here because you can't pass in powFn since it's a function
