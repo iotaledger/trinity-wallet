@@ -1,0 +1,18 @@
+.dropzone {
+    display: flex;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background: var(--body-bg);
+    pointer-events: none;
+    z-index: 10;
+    opacity: 0;
+
+    &.active {
+        opacity: 1;
+    }
+}
