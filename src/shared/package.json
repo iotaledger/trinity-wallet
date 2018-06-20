@@ -17,8 +17,6 @@
     "dependencies": {
         "async": "^2.6.0",
         "i18next": "^10.2.2",
-        "intl": "^1.2.5",
-        "intl-relativeformat": "^2.1.0",
         "iota.lib.js": "git+https://git@github.com/laumair/iota.lib.js#911e5e2",
         "lodash": "^4.17.10",
         "moment": "^2.19.1",
