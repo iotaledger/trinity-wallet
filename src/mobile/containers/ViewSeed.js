@@ -18,6 +18,7 @@ import GENERAL from '../theme/general';
 import CtaButton from '../components/CtaButton';
 import InfoBox from '../components/InfoBox';
 import { isAndroid } from '../utils/device';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -149,6 +150,7 @@ class ViewSeed extends Component {
     }
 
     componentDidMount() {
+        leaveNavigationBreadcrumb('ViewSeed');
         AppState.addEventListener('change', this.handleAppStateChange);
     }
 

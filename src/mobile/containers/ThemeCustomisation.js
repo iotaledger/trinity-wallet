@@ -11,6 +11,7 @@ import Dropdown from '../containers/Dropdown'; // eslint-disable-line import/no-
 import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
 import { Icon } from '../theme/icons.js';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -186,6 +187,10 @@ class ThemeCustomisation extends Component {
         };
     }
 
+    componentDidMount() {
+        leaveNavigationBreadcrumb('ThemeCustomisation');
+    }
+
     onApplyPress(theme, themeName) {
         const newTheme = cloneDeep(theme);
         this.props.updateTheme(newTheme, themeName);
@@ -245,7 +250,7 @@ class ThemeCustomisation extends Component {
                                         color: body.color,
                                     }}
                                 >
-                                    MOCKUP
+                                    {t('themeCustomisation:mockup').toUpperCase()}
                                 </Text>
                             </View>
                             <View style={[styles.frameBar, { backgroundColor: bar.bg }]}>

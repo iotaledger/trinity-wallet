@@ -64,7 +64,7 @@ class Theme extends React.PureComponent {
                     ))}
                 </Select>
                 <div className={css.mockup} style={{ background: theme.body.bg }}>
-                    <p style={{ color: theme.body.color }}>Mockup</p>
+                    <p style={{ color: theme.body.color }}>{t('themeCustomisation:mockup')}</p>
                     <div className={inputCSS.input} style={{ marginBottom: 10 }}>
                         <fieldset>
                             <a
@@ -106,7 +106,7 @@ class Theme extends React.PureComponent {
                 </div>
                 <fieldset>
                     <Button type="submit" disabled={!themeName || themeName === this.props.themeName}>
-                        Save
+                        {t('global:save')}
                     </Button>
                 </fieldset>
             </form>

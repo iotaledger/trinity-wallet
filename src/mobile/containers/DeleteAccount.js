@@ -20,6 +20,7 @@ import CustomTextInput from '../components/CustomTextInput';
 import GENERAL from '../theme/general';
 import { Icon } from '../theme/icons.js';
 import { isAndroid } from '../utils/device';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     modalContainer: {
@@ -147,6 +148,10 @@ class DeleteAccount extends Component {
             pressedContinue: false,
             password: '',
         };
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('DeleteAccount');
     }
 
     onBackPress() {

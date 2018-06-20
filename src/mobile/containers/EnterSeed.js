@@ -9,8 +9,9 @@ import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
 import FlagSecure from 'react-native-flag-secure-android';
 import WithUserActivity from '../components/UserActivity';
-import Checksum from '../components/Checksum';
+import ChecksumComponent from '../components/Checksum';
 import CustomTextInput from '../components/CustomTextInput';
+import ChecksumModalComponent from '../components/ChecksumModal';
 import InfoBox from '../components/InfoBox';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import QRScannerComponent from '../components/QrScanner';
@@ -20,6 +21,7 @@ import { Icon } from '../theme/icons.js';
 import { isAndroid } from '../utils/device';
 import GENERAL from '../theme/general';
 import Header from '../components/Header';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 console.ignoredYellowBox = ['Native TextInput'];
 
@@ -104,6 +106,7 @@ class EnterSeed extends React.Component {
     }
 
     componentDidMount() {
+        leaveNavigationBreadcrumb('EnterSeed');
         if (isAndroid) {
             FlagSecure.activate();
         }
@@ -155,7 +158,7 @@ class EnterSeed extends React.Component {
         });
     }
     onQRPress() {
-        this.showModal();
+        this.showModal('qr');
     }
 
     /**
@@ -165,17 +168,23 @@ class EnterSeed extends React.Component {
     onQRRead(data) {
         const dataString = data.toString();
         const { t } = this.props;
-        if (dataString.length === 81 && dataString.match(VALID_SEED_REGEX)) {
+        if (dataString.length === MAX_SEED_LENGTH && dataString.match(VALID_SEED_REGEX)) {
             this.setState({
                 seed: data,
             });
+        } else if (dataString.length !== MAX_SEED_LENGTH) {
+            this.props.generateAlert(
+                'error',
+                dataString.length > MAX_SEED_LENGTH ? t('seedTooLong') : t('seedTooShort'),
+                t('seedTooShortExplanation', { maxLength: MAX_SEED_LENGTH, currentLength: dataString.length }),
+            );
         } else {
             this.props.generateAlert('error', t('invalidCharacters'), t('invalidCharactersExplanation'));
         }
         this.hideModal();
     }
 
-    showModal = () => this.setState({ isModalVisible: true });
+    showModal = (modalContent) => this.setState({ modalContent, isModalVisible: true });
 
     hideModal = () => this.setState({ isModalVisible: false });
 
@@ -185,21 +194,28 @@ class EnterSeed extends React.Component {
         }
     };
 
-    renderModalContent = () => {
+    renderModalContent = (modalContent) => {
         const { theme: { body, primary } } = this.props;
-
-        return (
-            <QRScannerComponent
-                primary={primary}
-                body={body}
-                onQRRead={(data) => this.onQRRead(data)}
-                hideModal={() => this.hideModal()}
-            />
-        );
+        let content = '';
+        switch (modalContent) {
+            case 'qr':
+                content = (
+                    <QRScannerComponent
+                        primary={primary}
+                        body={body}
+                        onQRRead={(data) => this.onQRRead(data)}
+                        hideModal={() => this.hideModal()}
+                    />
+                );
+                break;
+            case 'checksum':
+                content = <ChecksumModalComponent body={body} primary={primary} closeModal={() => this.hideModal()} />;
+        }
+        return content;
     };
 
     render() {
-        const { seed } = this.state;
+        const { seed, modalContent } = this.state;
         const { t, theme, minimised } = this.props;
 
         return (
@@ -236,7 +252,11 @@ class EnterSeed extends React.Component {
                                     testID="enterSeed-seedbox"
                                 />
                                 <View style={{ flex: 0.4 }} />
-                                <Checksum seed={seed} theme={theme} />
+                                <ChecksumComponent
+                                    seed={seed}
+                                    theme={theme}
+                                    showModal={() => this.showModal('checksum')}
+                                />
                                 <View style={{ flex: 0.4 }} />
                                 <InfoBox
                                     body={theme.body}
@@ -272,15 +292,15 @@ class EnterSeed extends React.Component {
                                 animationOutTiming={200}
                                 backdropTransitionInTiming={isAndroid ? 500 : 300}
                                 backdropTransitionOutTiming={200}
-                                backdropColor="#102832"
-                                backdropOpacity={1}
+                                backdropColor={theme.body.bg}
+                                backdropOpacity={0.9}
                                 style={{ alignItems: 'center', margin: 0 }}
                                 isVisible={this.state.isModalVisible}
                                 onBackButtonPress={() => this.setState({ isModalVisible: false })}
                                 hideModalContentWhileAnimating
                                 useNativeDriver={isAndroid ? true : false}
                             >
-                                {this.renderModalContent()}
+                                {this.renderModalContent(modalContent)}
                             </Modal>
                         </View>
                     )}

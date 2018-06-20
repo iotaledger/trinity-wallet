@@ -5,6 +5,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import InfoBox from './InfoBox';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     infoTextBold: {
@@ -46,6 +47,10 @@ export default class SnapshotTransitionModalContent extends PureComponent {
         /** Container element callback function */
         onPress: PropTypes.func.isRequired,
     };
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('SnapshotTransitionModalContent');
+    }
 
     render() {
         const { theme, t, onPress } = this.props;
