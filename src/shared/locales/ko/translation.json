@@ -449,17 +449,17 @@
         "hint": "<0><0>힌트:</0> IOTA를 처음 사용하신다면 \"아니오\"를 누르세요.</0>"
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity"
+        "thankYou": "트리니티를 다운로드 해 주셔서 감사합니다."
     },
     "writeSeedDown": {
         "yourSeedIs": "시드는 {{maxSeedLength}}글자로 구성되며, 왼쪽에서 오른쪽으로 읽습니다.",
         "writeDownYourSeed": "<0>시드와 체크섬을 기록하고, 정확히 기록하였는지 최소 </0><1>세 번 이상 확인</1><2>하세요.</2>",
-        "scrollToBottom": "Scroll to the bottom"
+        "scrollToBottom": "맨 아래로 스크롤"
     },
     "history": {
         "bundleHashCopied": "번들 해시 복사함",
         "noTransactionsFound": "트랜잭션 없음",
-        "hideZeroBalance": "Hide zero balance",
+        "hideZeroBalance": "0i 거래 숨기기",
         "bundleHashCopiedExplanation": "번들 해시를 클립보드에 복사하였습니다.",
         "addressCopied": "주소 복사함",
         "addressCopiedExplanation": "주소를 클립보드에 복사했습니다.",
@@ -467,8 +467,8 @@
         "messageCopiedExplanation": "메시지를 클립보드에 복사했습니다.",
         "send": "보냄",
         "receive": "받음",
-        "empty": "Empty",
-        "retrying": "RETRYING"
+        "empty": "비어 있음",
+        "retrying": "재시도중"
     },
     "accountManagement": {
         "viewSeed": "시드 보기",
@@ -508,7 +508,7 @@
     },
     "themeCustomisation": {
         "theme": "테마",
-        "mockup": "Mockup"
+        "mockup": "예시"
     },
     "currencySelection": {
         "currency": "통화"
@@ -608,7 +608,7 @@
     },
     "chart": {
         "mcap": "시가총액",
-        "change": "Change (24h)",
+        "change": "변동 (24시)",
         "volume": "거래량 (24시간)",
         "currentValue": "현재 호가",
         "error": "차트 데이터 가져오는 중 오류 발생"
