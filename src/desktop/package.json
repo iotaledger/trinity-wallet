@@ -120,6 +120,7 @@
     }
   },
   "dependencies": {
+    "argon2": "^0.19.3",
     "authenticator": "^1.1.5",
     "bugsnag-js": "^4.7.1",
     "bugsnag-react": "^1.1.1",
@@ -127,6 +128,7 @@
     "date-fns": "^1.29.0",
     "electron-settings": "^3.2.0",
     "iota.lib.js": "^0.4.7",
+    "kdbxweb": "^1.2.3",
     "keytar": "^4.2.1",
     "machine-uuid": "^1.2.0",
     "perfect-scrollbar": "^1.4.0",
