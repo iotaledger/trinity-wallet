@@ -1,4 +1,6 @@
 export default {
+    CANNOT_TRANSITION_ADDRESSES_WITH_ZERO_BALANCE: 'Cannot transition addresses with zero balance.',
+    ADDRESS_ALREADY_ATTACHED: 'Address already attached.',
     KEY_REUSE: 'Key reuse detected.',
     NOT_ENOUGH_BALANCE: 'Not enough balance.',
     ADDRESS_HAS_PENDING_TRANSFERS: 'Input addresses already used in a pending transfer.',

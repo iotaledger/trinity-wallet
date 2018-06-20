@@ -20,7 +20,8 @@ import omitBy from 'lodash/omitBy';
 import flatMap from 'lodash/flatMap';
 import union from 'lodash/union';
 import { iota } from './index';
-import { getBalancesAsync, wereAddressesSpentFromAsync, findTransactionsAsync } from './extendedApi';
+import { getBalancesAsync, wereAddressesSpentFromAsync, findTransactionsAsync, sendTransferAsync } from './extendedApi';
+import Errors from '../errors';
 
 const errors = require('iota.lib.js/lib/errors/inputErrors');
 const async = require('async');
@@ -696,3 +697,36 @@ export const getNewAddress = (seed, options, genFn = null, callback) => {
 /*eslint-enable brace-style*/
 /*eslint-enable no-else-return*/
 /*eslint-enable no-loop-func*/
+
+export const attachAndFormatAddress = (address, balance, seed, powFn) => {
+    const transfers = [
+        {
+            address,
+            value: 0,
+        },
+    ];
+
+    let transfer = [];
+
+    return findTransactionsAsync({ addresses: [address] })
+        .then((hashes) => {
+            if (size(hashes)) {
+                throw new Error(Errors.ADDRESS_ALREADY_ATTACHED);
+            }
+
+            return sendTransferAsync(seed, transfers, powFn);
+        })
+        .then((transactionObjects) => {
+            transfer = transactionObjects;
+
+            return wereAddressesSpentFromAsync([address]);
+        })
+        .then((wereSpent) => {
+            const addressData = formatAddressData([address], [balance], wereSpent);
+
+            return {
+                addressData,
+                transfer,
+            };
+        });
+};
