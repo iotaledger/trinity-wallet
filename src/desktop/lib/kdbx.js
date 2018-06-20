@@ -39,7 +39,8 @@ const importVault = async (buffer, password) => {
 
     for (let i = 0; i < entries.length; i++) {
         if (entries[i].fields.Seed) {
-            seed = entries[i].fields.Seed.split('')
+            seed = entries[i].fields.Seed.getText()
+                .split('')
                 .map((char) => '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.indexOf(char.toUpperCase()))
                 .filter((byte) => byte > -1);
         }
