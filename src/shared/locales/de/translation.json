@@ -351,7 +351,7 @@
         "totalTime": "Gesamtzeit",
         "addressPasteDetected": "Eingefügte Adresse erkannt",
         "addressPasteExplanation": "Scheinbar hast Du eine Adresse eingefügt. Stelle sicher, dass es tatsächlich jene ist, an die Du senden möchtest.",
-        "invalid": "INVALID"
+        "invalid": "UNGÜLTIG"
     },
     "setPassword": {
         "choosePassword": "Wähle ein neues Passwort",
@@ -467,8 +467,8 @@
         "messageCopiedExplanation": "Die Nachricht wurde in die Zwischenablage kopiert.",
         "send": "SENDEN",
         "receive": "EMPFANGEN",
-        "empty": "Empty",
-        "retrying": "RETRYING"
+        "empty": "Keine Historie",
+        "retrying": "WIEDERHOLE"
     },
     "accountManagement": {
         "viewSeed": "Seed anzeigen",
@@ -508,7 +508,7 @@
     },
     "themeCustomisation": {
         "theme": "Design",
-        "mockup": "Mockup"
+        "mockup": "Vorschau"
     },
     "currencySelection": {
         "currency": "Währung"
@@ -608,7 +608,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change (24h)",
+        "change": "Änderung (24 Std.)",
         "volume": "Volumen (24h)",
         "currentValue": "Aktueller Wert",
         "error": "Fehler beim Abrufen der Diagrammdaten"
