@@ -37,7 +37,7 @@ import {
     getAvailableBalanceForSelectedAccount,
     getSelectedAccountName,
 } from 'iota-wallet-shared-modules/selectors/accounts';
-import { reset as resetProgress, startTrackingProgress } from 'iota-wallet-shared-modules/actions/progress';
+import { startTrackingProgress } from 'iota-wallet-shared-modules/actions/progress';
 import { generateAlert, generateTransferErrorAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 import Modal from 'react-native-modal';
@@ -135,7 +135,6 @@ export class Send extends Component {
         setSendAmountField: PropTypes.func.isRequired,
         setSendMessageField: PropTypes.func.isRequired,
         setSendDenomination: PropTypes.func.isRequired,
-        resetProgress: PropTypes.func.isRequired,
         startTrackingProgress: PropTypes.func.isRequired,
         denomination: PropTypes.string.isRequired,
         activeStepIndex: PropTypes.number.isRequired,
@@ -193,9 +192,7 @@ export class Send extends Component {
     componentDidMount() {
         leaveNavigationBreadcrumb('Send');
         const { t, deepLinkActive } = this.props;
-        if (!this.props.isSendingTransfer) {
-            this.props.resetProgress();
-        }
+
         if (deepLinkActive) {
             this.props.generateAlert('success', t('deepLink:autofill'), t('deepLink:autofillExplanation'));
             this.props.setDeepLinkInactive();
@@ -1013,7 +1010,6 @@ const mapDispatchToProps = {
     setSendAmountField,
     setSendMessageField,
     setSendDenomination,
-    resetProgress,
     startTrackingProgress,
     generateTransferErrorAlert,
     setDeepLinkInactive,
