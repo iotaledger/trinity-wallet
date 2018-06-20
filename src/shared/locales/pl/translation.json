@@ -568,12 +568,12 @@
         "warning": "<0><0>Wszystkie dane portfela, w tym </0><1>seed, hasło</1><2> oraz </2><3>pozostałe dane konta</3><4>, zostaną utracone.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Przyłóż palec do czytnika, aby włączyć funkcję logowania odciskiem palca",
-        "instructionsDisable": "Przyłóż palec do czytnika, aby wyłączyć funkcję logowania odciskiem palca",
+        "instructionsEnable": "Przyłóż palec do czytnika, aby włączyć funkcję autoryzacji odciskiem palca",
+        "instructionsDisable": "Przyłóż palec do czytnika, aby wyłączyć funkcję autoryzacji odciskiem palca",
         "fingerprintAuthEnabled": "Autoryzacja odciskiem palca włączona",
-        "fingerprintAuthEnabledExplanation": "Pomyślnie włączono funkcję logowania odciskiem palca.",
+        "fingerprintAuthEnabledExplanation": "Pomyślnie włączono funkcję autoryzacji odciskiem palca.",
         "fingerprintAuthDisabled": "Autoryzacja odciskiem palca wyłączona",
-        "fingerprintAuthDisabledExplanation": "Pomyślnie wyłączono funkcję logowania odciskiem palca.",
+        "fingerprintAuthDisabledExplanation": "Pomyślnie wyłączono funkcję autoryzacji odciskiem palca.",
         "fingerprintAuthFailed": "Błąd autoryzacji odciskiem palca",
         "fingerprintAuthFailedExplanation": "Nie rozpoznano odcisku palca. Spróbuj ponownie.",
         "status": "Status",
