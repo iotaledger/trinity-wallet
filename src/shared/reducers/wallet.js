@@ -15,7 +15,6 @@ const initialState = {
     additionalAccountName: '',
     transitionBalance: 0,
     transitionAddresses: [],
-    transitionAddressIndex: -1,
     addingAdditionalAccount: false,
     balanceCheckToggle: false,
     deepLinkActive: false,
@@ -167,11 +166,6 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 hasConnection: action.payload.isConnected,
-            };
-        case ActionTypes.SET_TRANSITION_ADDRESS_INDEX:
-            return {
-                ...state,
-                transitionAddressIndex: action.payload,
             };
         default:
             return state;
