@@ -467,7 +467,7 @@
         "messageCopiedExplanation": "Die Nachricht wurde in die Zwischenablage kopiert.",
         "send": "SENDEN",
         "receive": "EMPFANGEN",
-        "empty": "Keine Historie",
+        "empty": "Keine",
         "retrying": "WIEDERHOLE"
     },
     "accountManagement": {
