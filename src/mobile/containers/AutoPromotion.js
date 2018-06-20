@@ -11,6 +11,7 @@ import { Icon } from '../theme/icons';
 import InfoBox from '../components/InfoBox';
 import Toggle from '../components/Toggle';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -86,6 +87,10 @@ class AutoPromotion extends Component {
         super();
 
         this.onChange = this.onChange.bind(this);
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('AutoPromotion');
     }
 
     onChange() {

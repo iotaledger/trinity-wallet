@@ -22,6 +22,7 @@ import DynamicStatusBar from '../components/DynamicStatusBar';
 import InfoBox from '../components/InfoBox';
 import { Icon } from '../theme/icons.js';
 import { isAndroid } from '../utils/device';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -165,6 +166,7 @@ class NewSeedSetup extends Component {
     }
 
     componentDidMount() {
+        leaveNavigationBreadcrumb('NewSeedSetup');
         if (this.props.onboardingComplete) {
             BackHandler.addEventListener('newSeedSetupBackPress', () => {
                 this.goBack();
@@ -217,6 +219,7 @@ class NewSeedSetup extends Component {
                     screenBackgroundColor: body.bg,
                     drawUnderStatusBar: true,
                     statusBarColor: body.bg,
+                    navBarButtonColor: isAndroid ? 'transparent' : 'black',
                 },
                 animated: false,
             });
@@ -290,7 +293,7 @@ class NewSeedSetup extends Component {
                     width={width / 1.15}
                     text={
                         <View>
-                            <Text style={[styles.infoText, textColor, { paddingTop: height / 40 }]}>
+                            <Text style={[styles.infoTextLight, textColor, { paddingTop: height / 40 }]}>
                                 {t('walletSetup:seedExplanation', { maxLength: MAX_SEED_LENGTH })}
                             </Text>
                             <Trans i18nKey="walletSetup:explanation">
@@ -397,7 +400,7 @@ class NewSeedSetup extends Component {
                                 onLeftButtonPress={() => this.onBackPress()}
                                 onRightButtonPress={() => this.onNextPress()}
                                 leftButtonText={t('global:goBack')}
-                                rightButtonText={t('global:continue')}
+                                rightButtonText={t('saveYourSeed:saveYourSeed')}
                                 leftButtonTestID="newSeedSetup-back"
                                 rightButtonTestID="newSeedSetup-next"
                                 rightButtonStyle={{ wrapper: { opacity } }}
@@ -407,7 +410,7 @@ class NewSeedSetup extends Component {
                             backdropTransitionInTiming={isAndroid ? 500 : 300}
                             backdropTransitionOutTiming={200}
                             backdropColor={body.bg}
-                            backdropOpacity={0.8}
+                            backdropOpacity={0.9}
                             style={{ alignItems: 'center', margin: 0 }}
                             isVisible={isModalActive}
                             onBackButtonPress={() => this.hideModal()}

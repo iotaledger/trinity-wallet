@@ -8,7 +8,8 @@ import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import FlagSecure from 'react-native-flag-secure-android';
 import Modal from 'react-native-modal';
 import WithUserActivity from '../components/UserActivity';
-import Checksum from '../components/Checksum';
+import ChecksumComponent from '../components/Checksum';
+import ChecksumModalComponent from '../components/ChecksumModal';
 import { width, height } from '../utils/dimensions';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import CustomTextInput from '../components/CustomTextInput';
@@ -20,6 +21,7 @@ import OnboardingButtons from '../containers/OnboardingButtons';
 import { Icon } from '../theme/icons';
 import Header from '../components/Header';
 import { isAndroid } from '../utils/device';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -127,6 +129,7 @@ class SeedReentry extends Component {
     }
 
     componentDidMount() {
+        leaveNavigationBreadcrumb('SeedReentry');
         if (isAndroid) {
             FlagSecure.activate();
         }
@@ -156,8 +159,14 @@ class SeedReentry extends Component {
                 },
                 animated: false,
             });
-        } else {
+        } else if (this.state.seed.length === MAX_SEED_LENGTH && this.state.seed.match(VALID_SEED_REGEX)) {
             this.props.generateAlert('error', t('incorrectSeed'), t('incorrectSeedExplanation'));
+        } else {
+            this.props.generateAlert(
+                'error',
+                t('useExistingSeed:incorrectFormat'),
+                t('useExistingSeed:validSeedExplanation'),
+            );
         }
     }
 
@@ -176,7 +185,7 @@ class SeedReentry extends Component {
     }
 
     onQRPress() {
-        this.showModal();
+        this.showModal('qr');
     }
 
     /**
@@ -186,39 +195,46 @@ class SeedReentry extends Component {
     onQRRead(data) {
         const dataString = data.toString();
         const { t } = this.props;
-        if (dataString.length === 81 && dataString.match(VALID_SEED_REGEX)) {
+        if (dataString.length === MAX_SEED_LENGTH && dataString.match(VALID_SEED_REGEX)) {
             this.setState({
                 seed: data,
             });
         } else {
             this.props.generateAlert(
                 'error',
-                t('enterSeed:invalidCharacters'),
-                t('enterSeed:invalidCharactersExplanation'),
+                t('useExistingSeed:incorrectFormat'),
+                t('useExistingSeed:validSeedExplanation'),
             );
         }
         this.hideModal();
     }
 
-    showModal = () => this.setState({ isModalVisible: true });
+    showModal = (modalContent) => this.setState({ modalContent, isModalVisible: true });
 
     hideModal = () => this.setState({ isModalVisible: false });
 
-    renderModalContent = () => {
+    renderModalContent = (modalContent) => {
         const { theme: { body, primary } } = this.props;
-
-        return (
-            <QRScannerComponent
-                primary={primary}
-                body={body}
-                onQRRead={(data) => this.onQRRead(data)}
-                hideModal={() => this.hideModal()}
-            />
-        );
+        let content = '';
+        switch (modalContent) {
+            case 'qr':
+                content = (
+                    <QRScannerComponent
+                        primary={primary}
+                        body={body}
+                        onQRRead={(data) => this.onQRRead(data)}
+                        hideModal={() => this.hideModal()}
+                    />
+                );
+                break;
+            case 'checksum':
+                content = <ChecksumModalComponent body={body} primary={primary} closeModal={() => this.hideModal()} />;
+        }
+        return content;
     };
 
     render() {
-        const { seed } = this.state;
+        const { modalContent, seed } = this.state;
         const { t, theme, minimised } = this.props;
         const textColor = { color: theme.body.color };
 
@@ -256,7 +272,11 @@ class SeedReentry extends Component {
                                         onQRPress={() => this.onQRPress()}
                                     />
                                     <View style={{ flex: 0.15 }} />
-                                    <Checksum seed={seed} theme={theme} />
+                                    <ChecksumComponent
+                                        seed={seed}
+                                        theme={theme}
+                                        showModal={() => this.showModal('checksum')}
+                                    />
                                     <View style={{ flex: 0.15 }} />
                                     <InfoBox
                                         body={theme.body}
@@ -291,15 +311,15 @@ class SeedReentry extends Component {
                             animationOutTiming={200}
                             backdropTransitionInTiming={isAndroid ? 500 : 300}
                             backdropTransitionOutTiming={200}
-                            backdropColor="#102832"
-                            backdropOpacity={1}
+                            backdropColor={theme.body.bg}
+                            backdropOpacity={0.9}
                             style={{ alignItems: 'center', margin: 0 }}
                             isVisible={this.state.isModalVisible}
                             onBackButtonPress={() => this.setState({ isModalVisible: false })}
                             hideModalContentWhileAnimating
                             useNativeDriver={isAndroid ? true : false}
                         >
-                            {this.renderModalContent()}
+                            {this.renderModalContent(modalContent)}
                         </Modal>
                     </View>
                 )}

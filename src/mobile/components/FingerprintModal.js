@@ -4,6 +4,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { translate } from 'react-i18next';
 import GENERAL from '../theme/general';
 import Fonts from '../theme/fonts';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 import { width, height } from '../utils/dimensions';
 
@@ -44,6 +45,7 @@ export class FingerprintModal extends PureComponent {
     };
 
     componentDidMount() {
+        leaveNavigationBreadcrumb('FingerprintModal');
         this.props.hideModal = this.props.hideModal.bind(this);
     }
 

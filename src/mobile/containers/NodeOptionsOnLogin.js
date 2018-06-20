@@ -10,6 +10,7 @@ import NodeSelection from '../containers/NodeSelection';
 import AddCustomNode from '../containers/AddCustomNode';
 import { Icon } from '../theme/icons';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -63,6 +64,10 @@ class NodeOptionsOnLogin extends Component {
         /** Determines which page should be displayed at login */
         loginRoute: PropTypes.string.isRequired,
     };
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('NodeOptionsOnLogin');
+    }
 
     render() {
         const { t, loginRoute, theme: { body, primary } } = this.props;

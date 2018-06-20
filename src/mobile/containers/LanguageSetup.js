@@ -18,6 +18,7 @@ import DropdownComponent from '../containers/Dropdown';
 import Button from '../components/Button';
 import { Icon } from '../theme/icons.js';
 import DynamicStatusBar from '../components/DynamicStatusBar';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -82,6 +83,7 @@ class LanguageSetup extends Component {
     }
 
     componentDidMount() {
+        leaveNavigationBreadcrumb('LanguageSetup');
         if (!isAndroid) {
             SplashScreen.hide();
         }
@@ -89,7 +91,6 @@ class LanguageSetup extends Component {
 
     onNextPress() {
         const { theme: { body, bar }, acceptedTerms, acceptedPrivacy } = this.props;
-
         this.props.navigator.push({
             screen: this.getNextRoute(),
             navigatorStyle: {
@@ -107,7 +108,7 @@ class LanguageSetup extends Component {
     getNextRoute() {
         const { acceptedTerms, acceptedPrivacy } = this.props;
 
-        let nextRoute = 'welcome';
+        let nextRoute = 'walletSetup';
 
         if (!acceptedTerms && !acceptedPrivacy) {
             nextRoute = 'termsAndConditions';
