@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { formatValue, formatUnit } from 'libs/iota/utils';
-import Curl from 'curl.lib.js';
 
 import { getSeed } from 'libs/crypto';
+import { getPoWFn } from 'libs/pow';
 
 import AddressInput from 'ui/components/input/Address';
 import AmountInput from 'ui/components/input/Amount';
@@ -121,16 +121,11 @@ class Send extends React.PureComponent {
         let powFn = null;
 
         if (!settings.remotePoW) {
-            // Temporarily return an error if WebGL cannot be initialized
-            // Remove once we implement more PoW methods
             try {
-                Curl.init();
+                powFn = getPoWFn();
             } catch (e) {
                 return generateAlert('error', t('pow:noWebGLSupport'), t('pow:noWebGLSupportExplanation'));
             }
-            powFn = (trytes, minWeight) => {
-                return Curl.pow({ trytes, minWeight });
-            };
         }
 
         const seed = await getSeed(password, accountName, true);
