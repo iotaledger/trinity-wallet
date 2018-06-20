@@ -20,6 +20,11 @@ const getProps = (overrides) =>
         overrides,
     );
 
+jest.mock('bugsnag-react-native', () => ({
+    Configuration: jest.fn(),
+    Client: jest.fn(() => ({ leaveBreadcrumb: jest.fn() })),
+}));
+
 describe('Testing LogoutConfirmationModal component', () => {
     describe('propTypes', () => {
         it('should require a t function as a prop', () => {

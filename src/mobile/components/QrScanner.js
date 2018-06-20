@@ -7,6 +7,7 @@ import DynamicStatusBar from '../components/DynamicStatusBar';
 import GENERAL from '../theme/general';
 import { isAndroid } from '../utils/device';
 import { width, height } from '../utils/dimensions';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     qrInfoText: {
@@ -69,6 +70,7 @@ export class QRScanner extends Component {
     };
 
     componentDidMount() {
+        leaveNavigationBreadcrumb('QRScanner');
         if (this.props.onMount) {
             this.props.onMount();
         }

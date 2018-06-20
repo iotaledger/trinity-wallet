@@ -8,6 +8,7 @@ import { width, height } from '../utils/dimensions';
 import OnboardingButtons from '../containers/OnboardingButtons';
 import CustomTextInput from './CustomTextInput';
 import { Icon } from '../theme/icons.js';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     topContainer: {
@@ -77,6 +78,7 @@ export class EnterPasswordOnLogin extends Component {
     };
 
     componentDidMount() {
+        leaveNavigationBreadcrumb('EnterPasswordOnLogin');
         BackHandler.addEventListener('loginBackPress', () => {
             RNExitApp.exitApp();
             return true;

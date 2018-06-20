@@ -14,12 +14,14 @@ import { toggleModalActivity, setDoNotMinimise } from 'iota-wallet-shared-module
 import timer from 'react-native-timer';
 import { hasDuplicateAccountName, hasDuplicateSeed, getAllSeedsFromKeychain } from '../utils/keychain';
 import CustomTextInput from '../components/CustomTextInput';
-import Checksum from '../components/Checksum';
+import ChecksumComponent from '../components/Checksum';
+import ChecksumModalComponent from '../components/ChecksumModal';
 import QRScannerComponent from '../components/QrScanner';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 import { isAndroid } from '../utils/device';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -154,12 +156,16 @@ class UseExistingSeed extends Component {
         };
     }
 
+    componentDidMount() {
+        leaveNavigationBreadcrumb('UseExistingSeed');
+    }
+
     componentWillUnmount() {
         timer.clearTimeout('invalidSeedAlert');
     }
 
     onQRPress() {
-        this.showModal();
+        this.showModal('qr');
     }
 
     onQRRead(data) {
@@ -287,27 +293,38 @@ class UseExistingSeed extends Component {
         }
     }
 
-    showModal = () => this.props.toggleModalActivity();
+    showModal = (modalContent) => {
+        this.setState({ modalContent });
+        this.props.toggleModalActivity();
+    };
 
     hideModal = () => this.props.toggleModalActivity();
 
-    renderModalContent = () => {
+    renderModalContent = (modalContent) => {
         const { theme: { body, primary } } = this.props;
-        return (
-            <QRScannerComponent
-                primary={primary}
-                body={body}
-                onQRRead={(data) => this.onQRRead(data)}
-                hideModal={() => this.hideModal()}
-                onMount={() => this.props.setDoNotMinimise(true)}
-                onUnmount={() => this.props.setDoNotMinimise(false)}
-            />
-        );
+        let content = '';
+        switch (modalContent) {
+            case 'qr':
+                content = (
+                    <QRScannerComponent
+                        primary={primary}
+                        body={body}
+                        onQRRead={(data) => this.onQRRead(data)}
+                        hideModal={() => this.hideModal()}
+                        onMount={() => this.props.setDoNotMinimise(true)}
+                        onUnmount={() => this.props.setDoNotMinimise(false)}
+                    />
+                );
+                break;
+            case 'checksum':
+                content = <ChecksumModalComponent body={body} primary={primary} closeModal={() => this.hideModal()} />;
+        }
+        return content;
     };
 
     render() {
         const { t, theme, isModalActive } = this.props;
-        const { seed, accountName } = this.state;
+        const { modalContent, seed, accountName } = this.state;
 
         const textColor = { color: theme.body.color };
 
@@ -343,9 +360,9 @@ class UseExistingSeed extends Component {
                             widget="qr"
                             onQRPress={() => this.onQRPress()}
                         />
-                        <View style={{ flex: 0.6 }} />
-                        <Checksum seed={seed} theme={theme} />
-                        <View style={{ flex: 0.3 }} />
+                        <View style={{ flex: 0.45 }} />
+                        <ChecksumComponent seed={seed} theme={theme} showModal={() => this.showModal('checksum')} />
+                        <View style={{ flex: 0.45 }} />
                         <CustomTextInput
                             onRef={(c) => {
                                 this.accountNameField = c;
@@ -393,14 +410,14 @@ class UseExistingSeed extends Component {
                         backdropTransitionInTiming={isAndroid ? 500 : 300}
                         backdropTransitionOutTiming={200}
                         backdropColor={theme.body.bg}
-                        backdropOpacity={1}
-                        style={{ alignItems: 'center', margin: 0 }}
+                        backdropOpacity={0.9}
+                        style={{ alignItems: 'center', margin: 0, height }}
                         isVisible={isModalActive}
                         onBackButtonPress={() => this.props.toggleModalActivity()}
                         hideModalContentWhileAnimating
                         useNativeDriver={isAndroid}
                     >
-                        {this.renderModalContent()}
+                        {this.renderModalContent(modalContent)}
                     </Modal>
                 </View>
             </TouchableWithoutFeedback>

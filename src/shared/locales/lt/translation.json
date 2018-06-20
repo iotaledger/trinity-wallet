@@ -42,7 +42,6 @@
         "disable": "Išjungti",
         "enabled": "Įjungta",
         "disabled": "Išjungta",
-        "manualCopy": "Nusirašykite užraktą",
         "paperWallet": "Atspausdinti",
         "addToPasswordManager": "Pridėti į slaptažodžių tvarkyklę",
         "shareSeed": "Dalintis užraktu",
@@ -143,12 +142,12 @@
         "noNetworkConnection": "Nėra tinklo ryšio",
         "noNetworkConnectionExplanation": "Panašu, kad jūsų interneto ryšys atjungtas.",
         "spentAddressExplanation": "ĮSPĖJIMAS: Lėšos panaudotame adrese",
-        "discordInformation": "Pinigų siuntimas iš to pačio adreso daugiau nei kartą yra nesaugus. Keliaukite į #help kanalą Discord programoje norėdami sužinoti ką daryti tokiu atveju.",
+        "discordInformation": "Pinigų siuntimas iš to pačio adreso daugiau nei kartą yra nesaugus. Apsilankykite #help kanale Discord programoje norėdami sužinoti ką daryti tokiu atveju.",
         "androidInsecureClipboardWarning": "Android nesuteikia saugios iškarpinės.",
         "androidCopyPasteWarning": "Kopijuoti/Įklijuoti užraktą su Android įrenginiu nerekomenduojama.",
         "willNotCopyPasteSeed": "Aš nekopijuosiu/neįklijuosiu užrakto",
         "mustBeStoredAppropriately": "Jis privalo būti tinkamai laikomas.",
-        "deviceMayBecomeUnresponsive": "Jūsų įrenginys kurį laiką gali neatsakyti į užklausas",
+        "deviceMayBecomeUnresponsive": "Jūsų įrenginys kurį laiką gali neatsakyti į užklausas.",
         "isYourBalanceCorrect": "Ar jūsų balansas teisingas?",
         "ifYourBalanceIsNotCorrect": "Jeigu jūsų balansas neteisingas, tikriausiai jūsų naudojamas užraktas nėra perkeltas įvykus viso tinklo duomenų perkėlimui.",
         "headToAdvancedSettingsForTransition": "Eikite į išplėstinius parametrus ir atlikite tinklo duomenų perkėlimą.",
@@ -308,7 +307,7 @@
         "letsWriteDownYourSeed": "Nusirašykite savo užraktą",
         "youCanHighlightCharacters": "Žymėkitės po 9 simbolius į eilutę",
         "printBlankWallet": "Atspausdinti tuščią piniginę",
-        "whatIsCheksum": "Kiekvienas užraktas turi atitinkamą 3 simbolių kontrolinę sumą",
+        "whatIsChecksum": "Kiekvienas užraktas turi atitinkamą 3 simbolių kontrolinę sumą",
         "iHavesavedMySeed": "Išsisaugojau savo užraktą",
         "checksumExplanation": "Kai pridedate užraktą į savo piniginę, turite įsitikinti, kad piniginės sukurta kontrolinė suma sutampa su ta, kurią nusirašėte.",
         "mustSaveYourSeed": "<0><0>Užraktą privalote išsisaugoti pasinaudodami </0><1>bent vienu</1><2> iš šių būdų, nurodytų žemiau.</2></0>"
@@ -438,21 +437,21 @@
         "okay": "Puiku. Atlikime piniginės nustatymus!",
         "doYouAlreadyHaveASeed": "Ar jau turite užraktą, kurį norėtumėte panaudoti?",
         "doYouNeedASeed": "Ar jums reikia sukurti naują užraktą?",
-        "seedExplanation": "IOTA užraktas yra kaip paskyros vartotojo vardas ir slaptažodis, sujungtas į vieną eilutę iš 81 simbolio.",
+        "seedExplanation": "IOTA užraktas yra pagrindinis raktas į jūsų lėšas. Jis sudarytas iš 81 simbolio, raidžių A-Z ir skaičiaus 9.",
         "noIHaveOne": "Ne, jau turiu",
         "yesINeedASeed": "Taip, man reikia užrakto",
-        "explanation": "<0><0>Jį galima panaudoti norint gauti prieigą prie savo lėšų iš </0><1>bet kokios piniginės</1><2> ir </2><3>bet kokio įrenginio</3><4>. Bet jei prarasite savo užraktą, prarasite ir savo IOTA.</4></0>",
+        "explanation": "<0><0>Jį galima panaudoti norint gauti prieigą prie savo lėšų iš </0><1>bet kokios piniginės</1><2> ir </2><3>bet kokio įrenginio.</3></0>",
+        "loseSeed": "Bet jei prarasite savo užraktą, prarasite ir savo IOTA.",
         "keepSafe": "Laikykite užraktą saugiai.",
         "hint": "<0><0>Patarimas:</0> Spauskite NE, jei pirmą kartą naudojatės IOTA.</0>"
     },
     "welcome": {
-        "thankYou": "Dėkojame, kad naudojatės Trinity.",
-        "weWillSpend": "Užtruksime kelias minutes, kol sukonfigūruosime jūsų piniginę.",
-        "reminder": "Jūs galimai norėsite praleisti keletą žingsnių, bet mes raginame atidžiai sekti visą procesą."
+        "thankYou": "Dėkojame, kad naudojatės Trinity"
     },
     "writeSeedDown": {
         "yourSeedIs": "Jūsų užraktas sudarytas iš {{maxSeedLength}} simbolio, skaityti iš kairės į dešinę.",
-        "writeDownYourSeed": "<0>Nusirašykite savo užraktą ir kontrolinę sumą, </0><1>tris kartus patikrinkite</1><2> ar kodai sutampa</2>"
+        "writeDownYourSeed": "<0>Nusirašykite savo užraktą ir kontrolinę sumą, </0><1>tris kartus patikrinkite</1><2> ar kodai sutampa</2>",
+        "scrollToBottom": "Paslinkti į apačią"
     },
     "history": {
         "bundleHashCopied": "Paketo šifras nukopijuotas",

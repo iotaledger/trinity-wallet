@@ -6,6 +6,7 @@ import { translate } from 'react-i18next';
 import StatefulDropdownAlert from '../containers/StatefulDropdownAlert';
 import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
@@ -88,6 +89,10 @@ export class NotificationLog extends PureComponent {
          */
         t: PropTypes.func.isRequired,
     };
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('NotificationLog');
+    }
 
     clearNotificationLog() {
         this.props.hideModal();

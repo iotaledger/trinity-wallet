@@ -54,10 +54,11 @@ import UnitInfoModal from '../components/UnitInfoModal';
 import CustomTextInput from '../components/CustomTextInput';
 import CtaButton from '../components/CtaButton';
 import { Icon } from '../theme/icons.js';
-import { width } from '../utils/dimensions';
+import { height, width } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
 import { getAddressGenFn, getPowFn } from '../utils/nativeModules';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -190,6 +191,7 @@ export class Send extends Component {
     }
 
     componentDidMount() {
+        leaveNavigationBreadcrumb('Send');
         const { t, deepLinkActive } = this.props;
         if (!this.props.isSendingTransfer) {
             this.props.resetProgress();
@@ -409,7 +411,7 @@ export class Send extends Component {
             backdropTransitionInTiming: isAndroid ? 500 : 300,
             backdropTransitionOutTiming: 200,
             backdropColor: body.bg,
-            style: { alignItems: 'center', margin: 0 },
+            style: { alignItems: 'center', margin: 0, height },
             isVisible: isModalActive,
             onBackButtonPress: () => this.props.toggleModalActivity(),
             hideModalContentWhileAnimating: true,
@@ -452,10 +454,10 @@ export class Send extends Component {
     }
 
     getConversionTextFiat() {
-        const { amount, usdPrice, conversionRate } = this.props;
+        const { amount, usdPrice, conversionRate, t } = this.props;
 
         if (this.shouldConversionTextShowInvalid()) {
-            return 'INVALID';
+            return t('invalid');
         }
 
         const convertedValue = round(amount / usdPrice / conversionRate, 10);
@@ -469,10 +471,10 @@ export class Send extends Component {
     }
 
     getConversionTextIota() {
-        const { amount, usdPrice, conversionRate } = this.props;
+        const { amount, usdPrice, conversionRate, t } = this.props;
         const { currencySymbol } = this.state;
         if (this.shouldConversionTextShowInvalid()) {
-            return 'INVALID';
+            return t('invalid');
         }
 
         const convertedValue = round(
@@ -805,7 +807,11 @@ export class Send extends Component {
                             }}
                             maxLength={90}
                             label={t('recipientAddress')}
-                            onChangeText={(text) => this.props.setSendAddressField(text)}
+                            onChangeText={(text) => {
+                                if (text.match(VALID_SEED_REGEX) || text.length === 0) {
+                                    this.props.setSendAddressField(text);
+                                }
+                            }}
                             containerStyle={{ width: width / 1.15 }}
                             autoCapitalize="characters"
                             autoCorrect={false}

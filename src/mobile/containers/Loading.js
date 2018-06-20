@@ -31,6 +31,7 @@ import { getSeedFromKeychain, storeSeedInKeychain } from '../utils/keychain';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import { getAddressGenFn, getMultiAddressGenFn } from '../utils/nativeModules';
 import { isAndroid } from '../utils/device';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 import { width, height } from '../utils/dimensions';
 
@@ -203,6 +204,7 @@ class Loading extends Component {
             t,
             deepLinkActive,
         } = this.props;
+        leaveNavigationBreadcrumb('Loading');
         this.animation.play();
         if (!firstUse && !addingAdditionalAccount) {
             this.setAnimationOneTimout();

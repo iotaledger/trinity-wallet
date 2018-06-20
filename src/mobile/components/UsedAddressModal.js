@@ -5,6 +5,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import StatefulDropdownAlert from '../containers/StatefulDropdownAlert';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     modalContainer: {
@@ -59,6 +60,10 @@ class UsedAddressModal extends PureComponent {
         /** Theme bar */
         bar: PropTypes.object.isRequired,
     };
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('UsedAddressModal');
+    }
 
     render() {
         const { t, body, bar, textColor, borderColor } = this.props;

@@ -1,8 +1,19 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, TouchableOpacity, Clipboard, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import {
+    StyleSheet,
+    View,
+    Text,
+    TouchableOpacity,
+    Clipboard,
+    TouchableWithoutFeedback,
+    Keyboard,
+    PermissionsAndroid,
+} from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
+import Share from 'react-native-share';
+import { captureRef } from 'react-native-view-shot';
 import { connect } from 'react-redux';
 import { generateNewAddress, setReceiveAddress } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
@@ -19,6 +30,7 @@ import GenerateAddressButton from '../components/GenerateAddressButton';
 import { width, height } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
 import { getAddressGenFn } from '../utils/nativeModules';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -142,6 +154,10 @@ class Receive extends Component {
         this.onGeneratePress = this.onGeneratePress.bind(this);
     }
 
+    componentDidMount() {
+        leaveNavigationBreadcrumb('Receive');
+    }
+
     shouldComponentUpdate(newProps) {
         const { isSyncing, isTransitioning } = this.props;
 
@@ -195,6 +211,37 @@ class Receive extends Component {
         }
     }
 
+    async onQRPress() {
+        const { t, receiveAddress } = this.props;
+        // Ensure user has granted necessary permission on Android
+        if (isAndroid) {
+            const hasPermission = await this.getFileSystemPermissions();
+            if (!hasPermission) {
+                return this.props.generateAlert('error', t('missingPermission'), t('missingPermissionExplanation'));
+            }
+        }
+        if (receiveAddress !== ' ') {
+            captureRef(this.qr, { format: 'png', result: 'data-uri' }).then((url) => {
+                Share.open({
+                    url,
+                    type: 'image/png',
+                }).catch((err) => {
+                    // Handling promise rejection from `react-native-share` so that Bugsnag does not report it as an error
+                    /*eslint-disable no-console*/
+                    console.log(err);
+                });
+            });
+        }
+    }
+
+    async getFileSystemPermissions() {
+        const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE);
+        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+            return true;
+        }
+        return false;
+    }
+
     getOpacity() {
         if (!isAndroid) {
             return 0.2;
@@ -243,14 +290,21 @@ class Receive extends Component {
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
                 <View style={styles.container}>
                     <View style={{ flex: 0.55 }} />
-                    <View style={[styles.qrContainer, qrOpacity, { borderColor: 'transparent' }]}>
-                        <QRCode
-                            value={JSON.stringify({ address: receiveAddress, message })}
-                            size={width / 2.8}
-                            color="black"
-                            backgroundColor="transparent"
-                        />
-                    </View>
+                    {/*eslint-disable no-return-assign*/}
+                    <TouchableOpacity onPress={() => this.onQRPress()}>
+                        <View
+                            style={[styles.qrContainer, qrOpacity, { borderColor: 'transparent' }]}
+                            ref={(c) => (this.qr = c)}
+                        >
+                            <QRCode
+                                value={JSON.stringify({ address: receiveAddress, message })}
+                                size={width / 2.8}
+                                color="black"
+                                backgroundColor="transparent"
+                            />
+                        </View>
+                    </TouchableOpacity>
+                    {/*eslint-enable no-return-assign*/}
                     <View style={{ flex: 0.25 }} />
                     {receiveAddress.length > 1 ? (
                         <TouchableOpacity onPress={() => this.onAddressPress(receiveAddress)}>
