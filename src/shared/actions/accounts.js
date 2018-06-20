@@ -249,15 +249,16 @@ export const getFullAccountInfoFirstSeed = (seed, accountName, navigator = null,
                 pushScreen(navigator, 'login');
                 dispatch(fullAccountInfoFirstSeedFetchError());
 
-                // Add a slight delay to allow Login component and
-                // StatefulDropdownAlert component (mobile) to instantiate properly.
-                setTimeout(() => {
+                const dispatchErrors = () => {
                     if (err.message === Errors.NODE_NOT_SYNCED) {
                         dispatch(generateNodeOutOfSyncErrorAlert());
                     } else {
                         dispatch(generateAccountInfoErrorAlert(err));
                     }
-                }, 500);
+                };
+                // Add a slight delay to allow Login component and
+                // StatefulDropdownAlert component (mobile) to instantiate properly.
+                navigator ? setTimeout(dispatchErrors, 500) : dispatchErrors();
             });
     };
 };
