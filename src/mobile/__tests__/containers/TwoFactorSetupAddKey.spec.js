@@ -12,6 +12,11 @@ jest.mock('react-native-is-device-rooted', () => ({
     isDeviceLocked: () => false,
 }));
 
+jest.mock('bugsnag-react-native', () => ({
+    Configuration: jest.fn(),
+    Client: jest.fn(() => ({ leaveBreadcrumb: jest.fn() })),
+}));
+
 jest.mock('react-native-keychain', () => ({
     setGenericPassword: jest.fn(() => Promise.resolve({})),
     getGenericPassword: jest.fn(() => Promise.resolve({ username: 'foo', password: [{}], service: 'bundleId' })),

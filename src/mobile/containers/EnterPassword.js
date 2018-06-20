@@ -12,6 +12,7 @@ import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 import { isAndroid } from '../utils/device';
 import Button from '../components/Button';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     topContainer: {
@@ -94,6 +95,10 @@ class EnterPassword extends Component {
         };
         this.activateFingerprintScanner = this.activateFingerprintScanner.bind(this);
         this.hideModal = this.hideModal.bind(this);
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('EnterPassword');
     }
 
     componentWillUnmount() {
