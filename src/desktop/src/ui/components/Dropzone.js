@@ -104,7 +104,7 @@ class Dropzone extends React.Component {
         reader.readAsArrayBuffer(file);
     }
 
-    open() {
+    open = () => {
         this.fileInput.value = null;
         this.fileInput.click();
     }
@@ -122,7 +122,7 @@ class Dropzone extends React.Component {
 
         return (
             <React.Fragment>
-                <h5 onClick={() => this.open()}>
+                <h5 onClick={this.open}>
                     <Icon icon="password" size={12} /> import keyfile
                 </h5>
                 <input {...inputAttributes} />
