@@ -147,12 +147,12 @@
         "androidCopyPasteWarning": "안드로이드 기기에서는 시드를 클립보드에 복사하지 말아주세요.",
         "willNotCopyPasteSeed": "시드를 클립보드에 복사하지 않겠습니다",
         "mustBeStoredAppropriately": "안전하게 보관해 주세요.",
-        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while.",
+        "deviceMayBecomeUnresponsive": "기기가 잠시 느려질 수 있습니다.",
         "isYourBalanceCorrect": "이 잔액이 옳습니까?",
         "ifYourBalanceIsNotCorrect": "잔액이 옳지 않다면 스냅샷 전의 시드를 사용중일 수 있습니다.",
         "headToAdvancedSettingsForTransition": "고급 설정에서 스냅샷 이전을 수행해 주세요.",
         "usingTrinityWalletWithKeePass": "트리니티 지갑과 Keepass2Android 같이 사용하기",
-        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
+        "signedTrytesBroadcastErrorExplanation": "트랜잭션 송출 중 네트워크 오류가 발생했습니다."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
@@ -224,7 +224,7 @@
         "invalidCharacters": "시드에 잘못된 문자 포함됨",
         "invalidCharactersExplanation": "시드는 A부터 Z까지의 대문자와 숫자 9만 포함할 수 있습니다. 입력하신 시드에는 잘못된 문자가 포함되어 있습니다. 다시 시도해 주세요.",
         "seedTooShort": "시드가 너무 짧음",
-        "seedTooLong": "Seed is too long",
+        "seedTooLong": "시드가 너무 김",
         "seedTooShortExplanation": "시드는 {{maxLength}}글자로 구성되어야 합니다. 입력하신 시드는 {{currentLength}}글자로 구성되어 있습니다. 다시 시도해 주세요.",
         "seedExplanation": "시드는 {{maxLength}}글자로 구성되며, A부터 Z까지의 대문자와 숫자 9만 포함할 수 있습니다. {{maxLength}}자보다 더 긴 시드는 사용할 수 없습니다.",
         "neverShare": "절대로 다른 사람에게 시드를 알려주지 마세요."
@@ -294,8 +294,8 @@
         "removeMessage": "메시지 삭제하기",
         "noAddresses": "주소 없음",
         "spent": "이미 사용함",
-        "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
+        "missingPermission": "파일 시스템 권한 필요",
+        "missingPermissionExplanation": "QR 코드를 공유하려면 파일 시스템 권한이 필요합니다."
     },
     "saveYourSeed": {
         "saveYourSeed": "시드 저장하기",
@@ -309,7 +309,7 @@
         "letsWriteDownYourSeed": "시드를 종이에 기록하세요",
         "youCanHighlightCharacters": "9글자 단위로 강조해서 볼 수 있습니다",
         "printBlankWallet": "빈 지갑 인쇄하기",
-        "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
+        "whatIsChecksum": "모든 시드에는 3글자로 구성된 체크섬이 존재합니다",
         "iHavesavedMySeed": "시드를 저장하였습니다",
         "checksumExplanation": "지갑에 시드를 추가할 때 보여지는 체크섬이 기록한 체크섬과 일치하는지를 확인해 주세요",
         "mustSaveYourSeed": "<0><0>반드시 아래 나열된 방법 중 </0><1>하나 이상</1><2>을 사용하여 시드를 기록해야 합니다.</2></0>"
@@ -351,7 +351,7 @@
         "totalTime": "총 소요시간",
         "addressPasteDetected": "주소 붙여넣기가 확인됨",
         "addressPasteExplanation": "받을 주소를 붙여넣은 것으로 보입니다. 붙여넣는 주소가 보내고자 하는 주소와 일치하는지 다시 한번 확인해 주세요.",
-        "invalid": "INVALID"
+        "invalid": "유효하지 않음"
     },
     "setPassword": {
         "choosePassword": "비밀번호 설정하기",
@@ -440,11 +440,11 @@
         "okay": "좋습니다. 이제 지갑을 만들어 봅시다!",
         "doYouAlreadyHaveASeed": "이미 사용하고자 하는 시드를 가지고 있습니까?",
         "doYouNeedASeed": "새 시드가 필요하신가요?",
-        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
+        "seedExplanation": "IOTA 시드는 지갑에 있어 마스터키와 같은 역할을 합니다. 시드는 81글자로 이루어지며 A부터 Z까지의 대문자와 숫자 9만 포함할 수 있습니다.",
         "noIHaveOne": "아니요, 이미 있습니다",
         "yesINeedASeed": "네, 시드가 필요합니다",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
-        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
+        "explanation": "<0><0>시드를 사용하여 </0><1>어느 지갑이나</1><2>, </2><3>어느 기기에서나</3> 지갑에 접근할 수 있습니다.</0>",
+        "loseSeed": "하지만 만일 시드를 잃어버리게 된다면 IOTA를 모두 잃게 됩니다.",
         "keepSafe": "시드는 반드시 안전히 보관해야 합니다.",
         "hint": "<0><0>힌트:</0> IOTA를 처음 사용하신다면 \"아니오\"를 누르세요.</0>"
     },
