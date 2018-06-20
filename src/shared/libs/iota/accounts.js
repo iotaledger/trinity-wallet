@@ -494,3 +494,41 @@ export const syncAccountOnSuccessfulRetryAttempt = (accountName, transaction, ac
         transfer: transaction,
     };
 };
+
+/**
+ *  Sync local account in case signed inputs were exposed to the network (and the network call failed)
+ *
+ *   @method syncAccountOnValueTransactionFailure
+ *   @param {array} newTransfer
+ *   @param {object} addressData
+ *   @param {object} accountState
+ *
+ *   @returns {object}
+ **/
+export const syncAccountDuringSnapshotTransition = (newTransfer, addressData, accountState) => {
+    const tailTransaction = find(newTransfer, { currentIndex: 0 });
+    const latestAddressData = merge({}, accountState.addresses, addressData);
+
+    const normalisedTransfer = normaliseBundle(newTransfer, keys(latestAddressData), [tailTransaction], false);
+
+    // Assign normalised transfer to existing transfers
+    const transfers = mergeNewTransfers(
+        {
+            [normalisedTransfer.bundle]: normalisedTransfer,
+        },
+        accountState.transfers,
+    );
+
+    const newState = {
+        ...accountState,
+        balance: accumulateBalance(map(latestAddressData, (data) => data.balance)),
+        transfers,
+        addresses: latestAddressData,
+        hashes: [...accountState.hashes, map(newTransfer, (tx) => tx.hash)],
+    };
+
+    return {
+        newState,
+        normalisedTransfer,
+    };
+};

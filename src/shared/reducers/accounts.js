@@ -111,6 +111,7 @@ const account = (
                 accountNames: filter(state.accountNames, (name) => name !== action.payload),
                 seedCount: state.seedCount - 1,
             };
+        case ActionTypes.UPDATE_ACCOUNT_AFTER_TRANSITION:
         case ActionTypes.SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION:
         case ActionTypes.SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST:
         case ActionTypes.UPDATE_ACCOUNT_AFTER_REATTACHMENT:
@@ -194,18 +195,6 @@ const account = (
                 seedCount: state.seedCount + 1,
                 accountNames: union(state.accountNames, [action.payload.accountName]),
                 unconfirmedBundleTails: merge({}, state.unconfirmedBundleTails, action.payload.unconfirmedBundleTails),
-            };
-        case ActionTypes.UPDATE_ACCOUNT_AFTER_TRANSITION:
-            return {
-                ...state,
-                accountInfo: {
-                    ...state.accountInfo,
-                    [action.accountName]: {
-                        balance: action.balance,
-                        addresses: action.addresses,
-                        transfers: state.accountInfo[action.accountName].transfers,
-                    },
-                },
             };
         case ActionTypes.SET_BASIC_ACCOUNT_INFO:
             return {
