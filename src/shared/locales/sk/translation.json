@@ -89,7 +89,7 @@
         "addresses": "Adresy",
         "reattach": "PRIPOJIŤ ZNOVU",
         "promote": "PODPORIŤ",
-        "retry": "ZNOVA",
+        "retry": "OPAKOVANIE PODPORY",
         "rebroadcast": "OPAKOVANIE PRENOSU",
         "pressBackAgain": "Opätovným stlačením tlačidla Späť zatvoríte aplikáciu",
         "reattached": "Úspešne znovupripojená transakcia",
@@ -468,7 +468,7 @@
         "send": "ODOSLAŤ",
         "receive": "PRÍJEM",
         "empty": "Prázdne",
-        "retrying": "POKUS SA OPAKUJE"
+        "retrying": "OPAKOVANIE PODPORY"
     },
     "accountManagement": {
         "viewSeed": "Zobraziť Seed",
