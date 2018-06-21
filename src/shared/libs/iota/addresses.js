@@ -11,6 +11,7 @@ import isNumber from 'lodash/isNumber';
 import includes from 'lodash/includes';
 import keys from 'lodash/keys';
 import map from 'lodash/map';
+import merge from 'lodash/merge';
 import reduce from 'lodash/reduce';
 import findKey from 'lodash/findKey';
 import some from 'lodash/some';
@@ -698,7 +699,20 @@ export const getNewAddress = (seed, options, genFn = null, callback) => {
 /*eslint-enable no-else-return*/
 /*eslint-enable no-loop-func*/
 
-export const attachAndFormatAddress = (address, balance, seed, powFn) => {
+/**
+ *   Attach address to tangle if its not already attached
+ *
+ *   @method attachAndFormatAddress
+ *
+ *   @param {string} address
+ *   @param {number} index
+ *   @param {number} balance
+ *   @param {string} seed
+ *   @param {function} powFn
+ *
+ *   @returns {array}
+ **/
+export const attachAndFormatAddress = (address, index, balance, seed, powFn) => {
     const transfers = [
         {
             address,
@@ -724,8 +738,12 @@ export const attachAndFormatAddress = (address, balance, seed, powFn) => {
         .then((wereSpent) => {
             const addressData = formatAddressData([address], [balance], wereSpent);
 
+            // format address data assigns index based on the index in the array
+            // so assign the correct address index
             return {
-                addressData,
+                addressData: merge({}, addressData, {
+                    [address]: { index },
+                }),
                 transfer,
             };
         });
