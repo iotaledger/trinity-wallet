@@ -454,12 +454,12 @@
     "writeSeedDown": {
         "yourSeedIs": "Váš Seed je {{maxSeedLength}} znaků čtených zleva doprava.",
         "writeDownYourSeed": "<0> Zapište si svůj Seed a kontrolní součet </0><1>a důkladně zkontrolujte</1><2> jejich správnost.</2>",
-        "scrollToBottom": "Scroll to the bottom"
+        "scrollToBottom": "Posunout na konec"
     },
     "history": {
         "bundleHashCopied": "Balíček hash zkopírován",
-        "noTransactionsFound": "No transactions found",
-        "hideZeroBalance": "Hide zero balance",
+        "noTransactionsFound": "Nebyly nalezeny žádné transakce",
+        "hideZeroBalance": "Skrýt nulový zůstatek",
         "bundleHashCopiedExplanation": "Balíček hash byl zkopírován do schránky.",
         "addressCopied": "Adresa zkopírována",
         "addressCopiedExplanation": "Adresa byla zkopírována do schránky.",
@@ -467,7 +467,7 @@
         "messageCopiedExplanation": "Zpráva byla zkopírována do schránky.",
         "send": "ODESLAT",
         "receive": "PŘÍJEM",
-        "empty": "Empty",
+        "empty": "Prázdné",
         "retrying": "RETRYING"
     },
     "accountManagement": {
