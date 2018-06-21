@@ -467,7 +467,7 @@
         "messageCopiedExplanation": "메시지를 클립보드에 복사했습니다.",
         "send": "보냄",
         "receive": "받음",
-        "empty": "비어 있음",
+        "empty": "없음",
         "retrying": "재시도중"
     },
     "accountManagement": {
