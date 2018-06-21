@@ -214,7 +214,7 @@ export const completeSnapshotTransition = (seed, accountName, addresses, powFn) 
                         return promise.then((result) => {
                             dispatch(setActiveStepIndex(index));
 
-                            return attachAndFormatAddress(address, relevantBalances[index], seed, powFn)
+                            return attachAndFormatAddress(address, index, relevantBalances[index], seed, powFn)
                                 .then(({ addressData, transfer }) => {
                                     const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
