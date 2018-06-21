@@ -295,7 +295,7 @@
         "noAddresses": "ŽÁDNÉ ADRESY",
         "spent": "Utraceno",
         "missingPermission": "Požadovaný přístup k souborovému systému",
-        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
+        "missingPermissionExplanation": "Aby bylo možné sdílet QR kódy, musí být povolen přístup do souborového systému."
     },
     "saveYourSeed": {
         "saveYourSeed": "Zálohujte Váš Seed",
@@ -508,7 +508,7 @@
     },
     "themeCustomisation": {
         "theme": "Motiv",
-        "mockup": "Mockup"
+        "mockup": "Příklad"
     },
     "currencySelection": {
         "currency": "Měna"
