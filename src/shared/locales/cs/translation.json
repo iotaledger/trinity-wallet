@@ -152,7 +152,7 @@
         "ifYourBalanceIsNotCorrect": "Pokud Váš zůstatek není správný, je pravděpodobné, že používáte Seed z doby před snapshotem.",
         "headToAdvancedSettingsForTransition": "Jděte do Pokročilého nastavení a proveďte aktualizaci po Snapshotu.",
         "usingTrinityWalletWithKeePass": "Použití Trinity peněženky s Keepass2Android",
-        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
+        "signedTrytesBroadcastErrorExplanation": "Během transakce došlo k chybě sítě."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
@@ -294,7 +294,7 @@
         "removeMessage": "ODSTRANIT ZPRÁVU",
         "noAddresses": "ŽÁDNÉ ADRESY",
         "spent": "Utraceno",
-        "missingPermission": "File system permission required",
+        "missingPermission": "Požadovaný přístup k souborovému systému",
         "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
     },
     "saveYourSeed": {
@@ -468,7 +468,7 @@
         "send": "ODESLAT",
         "receive": "PŘÍJEM",
         "empty": "Prázdné",
-        "retrying": "RETRYING"
+        "retrying": "OPAKOVÁNÍ PODPORY"
     },
     "accountManagement": {
         "viewSeed": "Zobrazit Seed",
@@ -608,7 +608,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change (24h)",
+        "change": "Změna (24h)",
         "volume": "Objem (24h)",
         "currentValue": "Současná hodnota",
         "error": "Při načítání dat grafu došlo k chybě"
