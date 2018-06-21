@@ -604,7 +604,7 @@
         "twoFADisabledExplanation": "Jūs sėkmingai išjungėte dviejų veiksnių autentifikavimą.",
         "enterCode": "Įveskite kodą iš 2FA programėlės",
         "code": "Kodas",
-        "twoFaToken": "2FA žetonas"
+        "twoFaToken": "2FA kodas"
     },
     "chart": {
         "mcap": "MCAP",
