@@ -309,7 +309,7 @@
         "letsWriteDownYourSeed": "Poznamenejte si někam Váš Seed",
         "youCanHighlightCharacters": "Můžete zvýraznit 9 znaků najednou",
         "printBlankWallet": "Tisk prázdné peněženky",
-        "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
+        "whatIsChecksum": "Každý Seed má odpovídající 3-znakový kontrolní součet",
         "iHavesavedMySeed": "Svůj Seed mám uložený",
         "checksumExplanation": "Vždy, když přidáte Seed do Vaší peněženky, byste se měli ujistit, že kontrolní součet vygenerovaný peněženkou odpovídá tomu, který jste si zapsali.",
         "mustSaveYourSeed": "<0><0>Musíte uložit nejméně </0><1>jeden Seed</1><2>z níže uvedených možností.</2></0>"
@@ -351,7 +351,7 @@
         "totalTime": "Celkový čas",
         "addressPasteDetected": "Zjištěno kopírování adresy",
         "addressPasteExplanation": "Vaše adresa byla zkopírována ze schránky. Zkontrolujte, že vložená adresa je opravdu ta, kam chcete prostředky poslat.",
-        "invalid": "INVALID"
+        "invalid": "NEPLATNÉ"
     },
     "setPassword": {
         "choosePassword": "Zvolte nové heslo",
@@ -440,16 +440,16 @@
         "okay": "OK - přejděme nyní k nastavení Vaší peněženky!",
         "doYouAlreadyHaveASeed": "Máte už vlastní Seed, který byste rádi použili?",
         "doYouNeedASeed": "Potřebujete vytvořit nový Seed?",
-        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
+        "seedExplanation": "IOTA Seed je hlavním přístupovým klíčem k vašim prostředkům. Je dlouhý 81 znaků a používá pouze písmena A-Z nebo číslo 9.",
         "noIHaveOne": "Ne, již mám Seed",
         "yesINeedASeed": "Ano, potřebuji Seed",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
-        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
+        "explanation": "<0><0>Můžete ho použít pro přístup k vašim prostředkům z</0><1>jakékoliv jiné peněženky</1><2>, na</2><3>libovolném zařízení.</3></0>",
+        "loseSeed": "Ale pokud ztratíte Váš Seed, ztratíte vaše IOTY.",
         "keepSafe": "Uchovávejte Váš Seed v bezpečí.",
         "hint": "<0><0>Tip:</0> Pokud IOTA peněženku používáte poprvé, klepněte na tlačítko NE</0>"
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity"
+        "thankYou": "Děkujeme, že jste si stáhli Trinity"
     },
     "writeSeedDown": {
         "yourSeedIs": "Váš Seed je {{maxSeedLength}} znaků čtených zleva doprava.",
