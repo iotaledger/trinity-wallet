@@ -308,7 +308,7 @@
         "iHaveBackedUpMySeed": "Užraktą išsisaugojau",
         "letsWriteDownYourSeed": "Nusirašykite savo užraktą",
         "youCanHighlightCharacters": "Žymėkitės po 9 simbolius į eilutę",
-        "printBlankWallet": "Atspausdinti tuščią piniginę",
+        "printBlankWallet": "Atspausdinti neužpildytą versiją",
         "whatIsChecksum": "Kiekvienas užraktas turi atitinkamą 3 simbolių kontrolinę sumą",
         "iHavesavedMySeed": "Išsisaugojau savo užraktą",
         "checksumExplanation": "Kai pridedate užraktą į savo piniginę, turite įsitikinti, kad piniginės sukurta kontrolinė suma sutampa su ta, kurią nusirašėte.",
