@@ -524,7 +524,7 @@ export const syncAccountDuringSnapshotTransition = (newTransfer, addressData, ac
         balance: accumulateBalance(map(latestAddressData, (data) => data.balance)),
         transfers,
         addresses: latestAddressData,
-        hashes: [...accountState.hashes, map(newTransfer, (tx) => tx.hash)],
+        hashes: [...accountState.hashes, ...map(newTransfer, (tx) => tx.hash)],
     };
 
     return {

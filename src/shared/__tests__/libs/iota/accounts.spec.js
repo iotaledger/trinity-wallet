@@ -1,6 +1,10 @@
 import map from 'lodash/map';
 import { expect } from 'chai';
-import { syncAccountOnValueTransactionFailure, syncAccountOnSuccessfulRetryAttempt } from '../../../libs/iota/accounts';
+import {
+    syncAccountOnValueTransactionFailure,
+    syncAccountOnSuccessfulRetryAttempt,
+    syncAccountDuringSnapshotTransition,
+} from '../../../libs/iota/accounts';
 import mockAccounts from '../../__samples__/accounts';
 
 describe('libs: iota/accounts', () => {
@@ -210,7 +214,7 @@ describe('libs: iota/accounts', () => {
             expect(result.newState.transfers[bundle]).to.eql(normalisedTransfer);
         });
 
-        it('should concat new transaction hashes', () => {
+        it('should concat new transaction hashes for own addresses', () => {
             const accountState = {
                 ...mockAccounts.accountInfo[accountName],
                 ...mockAccounts.unconfirmedBundleTails,
@@ -243,6 +247,132 @@ describe('libs: iota/accounts', () => {
                     },
                 ],
             });
+        });
+    });
+
+    describe('#syncAccountDuringSnapshotTransition', () => {
+        let accountName;
+
+        before(() => {
+            accountName = 'TEST';
+        });
+
+        it('should merge addressData into existing addressData', () => {
+            const accountState = {
+                ...mockAccounts.accountInfo[accountName],
+                ...mockAccounts.unconfirmedBundleTails,
+                hashes: [],
+            };
+
+            const addressData = {
+                ['9'.repeat(81)]: {
+                    balance: 0,
+                    index: 10,
+                    checksum: 'FAKECHECKSUM',
+                    spent: false,
+                },
+            };
+
+            const { newState } = syncAccountDuringSnapshotTransition(transactionObjects, addressData, accountState);
+
+            const expectedResult = { ...mockAccounts.accountInfo[accountName].addresses, ...addressData };
+            expect(newState.addresses).to.eql(expectedResult);
+        });
+
+        it('should merge normalised transfer to existing transfers', () => {
+            const accountState = {
+                ...mockAccounts.accountInfo[accountName],
+                ...mockAccounts.unconfirmedBundleTails,
+                hashes: [],
+            };
+
+            const result = syncAccountDuringSnapshotTransition(
+                map(transactionObjects, (tx) => ({ ...tx, hash: '9'.repeat(81) })),
+                {},
+                accountState,
+            );
+
+            const bundle = 'VHMDWDTBGJLEWVESYLBOISSUIKROXZVWZE9EFKTDGLJGJEKJJAWLGFBBSCZGKXIPCHAJDTTQLHFAQCCDY';
+
+            const normalisedTransfer = {
+                hash: '9'.repeat(81),
+                bundle,
+                timestamp: 1528875229,
+                attachmentTimestamp: 1528875232150,
+                inputs: [
+                    {
+                        address: 'MVVQANCKCPSDGEHFEVT9RVYJWOPPEGZSAVLIZ9MGNRPJPUORYFOTP9FNCLBFMQKUXMHNRGZDTWUI9UDHW',
+                        value: -10,
+                        hash: '9'.repeat(81),
+                        checksum: 'GDMMKORSW',
+                    },
+                ],
+                outputs: [
+                    {
+                        address: 'YPVQNKQTFKIZPDPMU9HYUT9YDVHITGAD9CNINJK9HWOSZYBZZFXVET9NRNUSVWWVWOHP9LQIUXBKMMRXW',
+                        value: 2,
+                        hash: '9'.repeat(81),
+                        checksum: 'KWHYM9THA',
+                    },
+                    {
+                        address: 'MVVQANCKCPSDGEHFEVT9RVYJWOPPEGZSAVLIZ9MGNRPJPUORYFOTP9FNCLBFMQKUXMHNRGZDTWUI9UDHW',
+                        value: 0,
+                        hash: '9'.repeat(81),
+                        checksum: 'GDMMKORSW',
+                    },
+                ],
+                persistence: false,
+                incoming: false,
+                transferValue: 2,
+                message: 'Empty',
+                tailTransactions: [
+                    {
+                        hash: '9'.repeat(81),
+                        attachmentTimestamp: 1528875232150,
+                    },
+                ],
+            };
+
+            expect(result.newState.transfers[bundle]).to.eql(normalisedTransfer);
+        });
+
+        it('should concat new transaction hashes for all addresses in transaction', () => {
+            const accountState = {
+                ...mockAccounts.accountInfo[accountName],
+                ...mockAccounts.unconfirmedBundleTails,
+                hashes: [],
+            };
+
+            const result = syncAccountDuringSnapshotTransition(transactionObjects, {}, accountState);
+
+            expect(result.newState.hashes).to.eql([
+                'LTIIFRUPLKCUNUB9YDN9NSIVHIQXGNWUXSWTKVHBYFVQYYIQZUTBRQREQ9ZIZUXRVUKYWPH9TRVB99999',
+                'QQGYXVMROZNKYOSIQGKDEZINGYJCUGBABWRJAGKVSYFDVFEYBNJZZE9QRGLIKPYGTQOBTF9XMGX9Z9999',
+                'USUTETYIDHYU9LVMECMITNIXLOWIYXLEUYAZZFPUOJVGYENCEDZSXYYTOLTCAZMKKOAQYOHAYUYMA9999',
+            ]);
+        });
+
+        it('should accumulate balance on new address data', () => {
+            const accountState = {
+                ...mockAccounts.accountInfo[accountName],
+                ...mockAccounts.unconfirmedBundleTails,
+                hashes: [],
+            };
+
+            const addressData = {
+                ['9'.repeat(81)]: {
+                    balance: 200,
+                    index: 10,
+                    checksum: 'FAKECHECKSUM',
+                    spent: false,
+                },
+            };
+
+            expect(accountState.balance).to.equal(110);
+
+            const result = syncAccountDuringSnapshotTransition(transactionObjects, addressData, accountState);
+
+            expect(result.newState.balance).to.equal(310);
         });
     });
 });
