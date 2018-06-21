@@ -224,17 +224,13 @@ export const getFullAccountInfoAdditionalSeed = (
     getAccountData(seed, accountName, genFn)
         .then((data) => {
             dispatch(clearWalletData()); // Clean up partial state for reducer.
-            if (storeInKeychainPromise) {
-                storeInKeychainPromise(password, seed, accountName)
-                    .then(() => {
-                        dispatch(setSeedIndex(existingAccountNames.length));
-                        dispatch(setBasicAccountInfo({ accountName, usedExistingSeed }));
-                        dispatch(fullAccountInfoAdditionalSeedFetchSuccess(data));
-                    })
-                    .catch((err) => onError(err));
-            } else {
-                dispatch(fullAccountInfoAdditionalSeedFetchSuccess(data));
-            }
+            storeInKeychainPromise(password, seed, accountName)
+                .then(() => {
+                    dispatch(setSeedIndex(existingAccountNames.length));
+                    dispatch(setBasicAccountInfo({ accountName, usedExistingSeed }));
+                    dispatch(fullAccountInfoAdditionalSeedFetchSuccess(data));
+                })
+                .catch((err) => onError(err));
         })
         .catch((err) => onError(err));
 };
