@@ -54,6 +54,13 @@ const nodeSwitchedCallback = (newNode) => {
     });
 };
 
+const setAdditionalSeed = () => {
+    self.postMessage({
+        type: 'setAdditionalSeed',
+    });
+    return Promise.resolve();
+};
+
 // automatically inform the main app, when this instance of
 // the iota library automatically changed node
 SwitchingConfig.callbacks.push(nodeSwitchedCallback);
@@ -80,7 +87,10 @@ self.onmessage = ({ data }) => {
             break;
         // Execute the given action
         default:
-            if (typeof actions[type] === 'function') {
+            // Attach custom callback for adding additional seed
+            if (type === 'getFullAccountInfoAdditionalSeed') {
+                actions[type](...payload, setAdditionalSeed)(dispatch, getState);
+            } else if (typeof actions[type] === 'function') {
                 actions[type](...payload)(dispatch, getState);
             }
     }

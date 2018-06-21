@@ -142,19 +142,13 @@ class App extends React.Component {
         if (!this.props.wallet.ready && nextProps.wallet.ready && currentKey === 'onboarding') {
             Electron.updateMenu('authorised', true);
 
-            // If additional seed was loaded for first time
-            if (this.props.wallet.addingAdditionalAccount && !nextProps.wallet.addingAdditionalAccount) {
-                if (!nextProps.wallet.additionalAccountName.length) {
-                    setSeed(
-                        this.props.wallet.password,
-                        this.props.wallet.additionalAccountName,
-                        Electron.getOnboardingSeed(),
-                    );
-                    Electron.setOnboardingSeed(null);
-                } else {
-                    // There was an error adding additional seed
-                    return this.props.history.push('/onboarding/account-name');
-                }
+            // If there was an error adding additional seed, go back to onboarding
+            if (
+                this.props.wallet.addingAdditionalAccount &&
+                !nextProps.wallet.addingAdditionalAccount &&
+                nextProps.wallet.additionalAccountName.length
+            ) {
+                return this.props.history.push('/onboarding/account-name');
             }
 
             this.props.history.push('/wallet/');
