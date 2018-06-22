@@ -89,7 +89,7 @@
         "addresses": "Adresai",
         "reattach": "PRIJUNGTI IŠ NAUJO",
         "promote": "IŠKELTI",
-        "retry": "BANDYTI IŠ NAUJO",
+        "retry": "BANDYTI DAR KARTĄ",
         "rebroadcast": "TRANSLIUOTI IŠ NAUJO",
         "pressBackAgain": "Spauskite atgal, norėdami uždaryti programėlę",
         "reattached": "Pavedimas sėkmingai prijungtas",
@@ -468,7 +468,7 @@
         "send": "SIŲSTA",
         "receive": "GAUTA",
         "empty": "Tuščia",
-        "retrying": "SIUNČIAMA"
+        "retrying": "KRAUNAMA"
     },
     "accountManagement": {
         "viewSeed": "Rodyti užraktą",
