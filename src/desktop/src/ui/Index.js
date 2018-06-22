@@ -166,7 +166,11 @@ class App extends React.Component {
         const parsedData = parseAddress(data);
 
         if (parsedData) {
-            this.props.setDeepLink(String(parsedData.amount) || '', parsedData.address, parsedData.message || '');
+            this.props.setDeepLink(
+                parsedData.amount ? String(parsedData.amount) : '0',
+                parsedData.address,
+                parsedData.message || '',
+            );
             if (this.props.wallet.ready === true) {
                 this.props.history.push('/wallet/send');
             }
