@@ -5,7 +5,6 @@ import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Key
 import { connect } from 'react-redux';
 import { setPassword, setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import Fonts from '../theme/fonts';
 import { changePassword } from '../utils/keychain';
 import { getPasswordHash } from '../utils/crypto';
 import { width, height } from '../utils/dimensions';
@@ -34,28 +33,11 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         alignItems: 'center',
     },
-    infoTextWrapper: {
-        borderWidth: 1,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 1.6,
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingHorizontal: width / 40,
-        borderStyle: 'dotted',
-        paddingVertical: height / 50,
-    },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: GENERAL.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
-    },
-    textField: {
-        fontFamily: Fonts.tertiary,
-    },
-    textFieldContainer: {
-        width: width / 1.36,
-        paddingTop: height / 90,
     },
     itemLeft: {
         flexDirection: 'row',
@@ -66,11 +48,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'flex-end',
-    },
-    iconLeft: {
-        width: width / 28,
-        height: width / 28,
-        marginRight: width / 20,
     },
     titleTextLeft: {
         fontFamily: 'SourceSansPro-Regular',

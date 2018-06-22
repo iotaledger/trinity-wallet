@@ -24,11 +24,6 @@ const styles = StyleSheet.create({
         width,
         paddingHorizontal: width / 15,
     },
-    backIcon: {
-        width: width / 28,
-        height: width / 28,
-        marginRight: width / 20,
-    },
     titleText: {
         fontFamily: 'SourceSansPro-Regular',
         fontSize: GENERAL.fontSize3,
@@ -50,13 +45,6 @@ const styles = StyleSheet.create({
     separatorContainer: {
         flex: 1,
         justifyContent: 'center',
-    },
-    settingText: {
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
-        marginLeft: width / 12,
-        width: width / 2.4,
-        backgroundColor: 'transparent',
     },
 });
 

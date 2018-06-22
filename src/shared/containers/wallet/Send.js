@@ -69,6 +69,7 @@ export default function withSendData(SendComponent) {
                       t('progressSteps:broadcasting'),
                   ]
                 : [
+                      t('progressSteps:checkingNodeHealth'),
                       t('progressSteps:validatingReceiveAddress'),
                       t('progressSteps:syncingAccount'),
                       t('progressSteps:preparingInputs'),

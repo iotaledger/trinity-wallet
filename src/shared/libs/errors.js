@@ -17,4 +17,5 @@ export default {
     INCONSISTENT_SUBTANGLE: 'Inconsistent subtangle',
     INVALID_BUNDLE: 'Invalid bundle',
     INVALID_PARAMETERS: 'Invalid parameters',
+    ALREADY_SPENT_FROM_ADDRESSES: 'Already spent from addresses.',
 };

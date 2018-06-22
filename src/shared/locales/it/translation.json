@@ -151,7 +151,8 @@
         "isYourBalanceCorrect": "Il tuo saldo è corretto?",
         "ifYourBalanceIsNotCorrect": "Se il saldo non è corretto, è probabile che si sta utilizzando un seme pre-snapshot.",
         "headToAdvancedSettingsForTransition": "Vai su Impostazioni Avanzate ed esegui Passaggio dopo uno snapshot.",
-        "usingTrinityWalletWithKeePass": "Uso del portafoglio Trinity con Keepass2Android"
+        "usingTrinityWalletWithKeePass": "Uso del portafoglio Trinity con Keepass2Android",
+        "signedTrytesBroadcastErrorExplanation": "C'è stato un errore di rete durante la trasmissione della transazione."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
@@ -223,6 +224,7 @@
         "invalidCharacters": "Il seme contiene caratteri non validi",
         "invalidCharactersExplanation": "I semi possono contenere solo le lettere maiuscole A-Z e il numero 9. Il tuo seme ha caratteri non validi. Si prega di riprovare.",
         "seedTooShort": "Il seme è troppo corto",
+        "seedTooLong": "Il seme è troppo lungo",
         "seedTooShortExplanation": "I semi devono avere {{maxLength}} caratteri. Il tuo seme ha attualmente {{currentLength}} caratteri. Si prega di riprovare.",
         "seedExplanation": "I semi devono essere lunghi {{maxLength}} caratteri e devono contenere lettere maiuscole A-Z, o il numero 9. Non è possibile utilizzare semi con più di {{maxLength}} caratteri.",
         "neverShare": "NON MOSTRARE MAI IL TUO SEME A NESSUNO"
@@ -291,7 +293,9 @@
         "message": "Messaggio opzionale",
         "removeMessage": "RIMUOVI IL MESSAGGIO",
         "noAddresses": "NESSUN INDIRIZZO",
-        "spent": "Speso"
+        "spent": "Speso",
+        "missingPermission": "È richiesto l'accesso al file system",
+        "missingPermissionExplanation": "L'accesso al file system è necessario al fine di condividere codici QR."
     },
     "saveYourSeed": {
         "saveYourSeed": "Esegui il backup del tuo seme",
@@ -300,8 +304,6 @@
         "leastSecure": "Meno sicuro",
         "paperWallet": "Portafoglio su carta",
         "writeYourSeedDown": "Annota il seme",
-        "printYourSeed": "Stampa il tuo seme",
-        "digitalCopy": "Copia digitale",
         "seedClearedExplanation": "Il seme è stato cancellato dagli Appunti per sicurezza.",
         "iHaveBackedUpMySeed": "Ho salvato il mio seme",
         "letsWriteDownYourSeed": "Consente di annotare il vostro seme",
@@ -348,7 +350,8 @@
         "sendMax": "INVIA MASSIMO",
         "totalTime": "Tempo totale",
         "addressPasteDetected": "Rilevato indirizzo da incollare",
-        "addressPasteExplanation": "Sembra che hai incollato un indirizzo. Assicurati che l'indirizzo incollato corrisponda a quello al quale desideri inviare."
+        "addressPasteExplanation": "Sembra che hai incollato un indirizzo. Assicurati che l'indirizzo incollato corrisponda a quello al quale desideri inviare.",
+        "invalid": "INVALID"
     },
     "setPassword": {
         "choosePassword": "Scegli una nuova password",
@@ -463,7 +466,9 @@
         "messageCopied": "Messaggio copiato",
         "messageCopiedExplanation": "Il messaggio è stato copiato negli Appunti.",
         "send": "INVIA",
-        "receive": "RICEVI"
+        "receive": "RICEVI",
+        "empty": "Empty",
+        "retrying": "RETRYING"
     },
     "accountManagement": {
         "viewSeed": "Visualizza seme",
@@ -502,7 +507,8 @@
         "frame": "Bordi"
     },
     "themeCustomisation": {
-        "theme": "Tema"
+        "theme": "Tema",
+        "mockup": "Mockup"
     },
     "currencySelection": {
         "currency": "Valuta"
@@ -602,7 +608,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Cambio",
+        "change": "Change (24h)",
         "volume": "Volume (24h)",
         "currentValue": "Valore corrente",
         "error": "Errore durante il recupero dati per il grafico"
