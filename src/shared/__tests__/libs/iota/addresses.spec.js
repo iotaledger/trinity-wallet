@@ -2,9 +2,9 @@ import merge from 'lodash/merge';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import * as addressesUtils from '../../../libs/iota/addresses';
+import * as extendedApis from '../../../libs/iota/extendedApi';
 import accounts from '../../__samples__/accounts';
 import { iota, SwitchingConfig } from '../../../libs/iota/index';
-import * as extendedApis from '../../../libs/iota/extendedApi';
 
 describe('libs: iota/addresses', () => {
     before(() => {
@@ -393,6 +393,50 @@ describe('libs: iota/addresses', () => {
             it('should filter inputs containing spent addresses', () => {
                 return addressesUtils.filterSpentAddresses(inputs, ['U'.repeat(81)]).then((unspentInputs) => {
                     expect(unspentInputs).to.eql([{ address: 'V'.repeat(81) }]);
+                });
+            });
+        });
+    });
+
+    describe('#isAnyAddressSpent', () => {
+        let transactionObjects;
+
+        before(() => {
+            transactionObjects = [
+                {
+                    address: 'U'.repeat(81),
+                },
+                {
+                    address: 'V'.repeat(81),
+                },
+                {
+                    address: 'Y'.repeat(81),
+                },
+            ];
+        });
+
+        describe('when none of the addresses is spent', () => {
+            it('should return false', () => {
+                const wereAddressesSpentFrom = sinon
+                    .stub(iota.api, 'wereAddressesSpentFrom')
+                    .yields(null, [false, false, false]);
+
+                return addressesUtils.isAnyAddressSpent(transactionObjects).then((isSpent) => {
+                    expect(isSpent).to.eql(false);
+                    wereAddressesSpentFrom.restore();
+                });
+            });
+        });
+
+        describe('when one or more addresses are spent', () => {
+            it('should return true', () => {
+                const wereAddressesSpentFrom = sinon
+                    .stub(iota.api, 'wereAddressesSpentFrom')
+                    .yields(null, [false, true, false]);
+
+                return addressesUtils.isAnyAddressSpent(transactionObjects).then((isSpent) => {
+                    expect(isSpent).to.equal(true);
+                    wereAddressesSpentFrom.restore();
                 });
             });
         });

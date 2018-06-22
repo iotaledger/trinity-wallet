@@ -20,27 +20,13 @@ import Enter2FAComponent from '../components/Enter2FA';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import { getAllSeedsFromKeychain, getTwoFactorAuthKeyFromKeychain } from '../utils/keychain';
 import { getPasswordHash } from '../utils/crypto';
-import { height } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
-import GENERAL from '../theme/general';
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-    },
-    questionText: {
-        backgroundColor: 'transparent',
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
-        paddingBottom: height / 40,
-    },
-    infoText: {
-        backgroundColor: 'transparent',
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
-        paddingBottom: height / 16,
     },
 });
 

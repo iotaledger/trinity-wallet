@@ -34,11 +34,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-start',
     },
-    itemRight: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-    },
     titleTextLeft: {
         color: 'white',
         fontFamily: 'SourceSansPro-Regular',

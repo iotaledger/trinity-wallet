@@ -30,6 +30,13 @@ const styles = StyleSheet.create({
         height,
         justifyContent: 'center',
     },
+    modal: {
+        height,
+        width,
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 0,
+    },
     container: {
         flex: 1,
         alignItems: 'center',
@@ -319,7 +326,7 @@ class DeleteAccount extends Component {
                         backdropTransitionOutTiming={200}
                         backdropColor={backgroundColor}
                         backdropOpacity={0.6}
-                        style={{ alignItems: 'center', margin: 0 }}
+                        style={styles.modal}
                         isVisible={isModalActive}
                         onBackButtonPress={() => this.props.toggleModalActivity()}
                         hideModalContentWhileAnimating

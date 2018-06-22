@@ -50,14 +50,16 @@ try {
 } catch (error) {}
 
 function createWindow() {
-    protocol.registerFileProtocol('iota', (request, callback) => {
-        callback(
-            request.url
-                .replace('iota:/', app.getAppPath())
-                .split('?')[0]
-                .split('#')[0],
-        );
-    });
+    try {
+        protocol.registerFileProtocol('iota', (request, callback) => {
+            callback(
+                request.url
+                    .replace('iota:/', app.getAppPath())
+                    .split('?')[0]
+                    .split('#')[0],
+            );
+        });
+    } catch (error) {}
 
     windows.main = new BrowserWindow({
         width: windowState.width,
