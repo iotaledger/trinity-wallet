@@ -614,7 +614,7 @@
         "error": "Klaida užkraunant grafiko duomenis"
     },
     "rootDetection": {
-        "warning": "PAVOJUS",
+        "warning": "DĖMESIO",
         "appearsRooted": "Panašu, kad į jūsų įrenginį buvo įsilaužta.",
         "securityRisk": "Jūsų piniginės saugumui galimai iškilusi didelė grėsmė.",
         "continueDepsiteRisk": "Ar norite tęsti nepaisant šios rizikos?"
