@@ -66,9 +66,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         marginRight: width / 20,
     },
-    dropdownWidth: {
-        width: width / 1.5,
-    },
     activityIndicator: {
         flex: 1,
         justifyContent: 'center',

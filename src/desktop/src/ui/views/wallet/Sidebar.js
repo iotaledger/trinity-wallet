@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 
+import { shorten } from 'libs/helpers';
 import { formatIota } from 'libs/iota/utils';
 
 import { clearWalletData, setSeedIndex } from 'actions/wallet';
@@ -55,6 +56,13 @@ class Sidebar extends React.PureComponent {
         modalLogout: false,
     };
 
+    accountSettings = (e, index) => {
+        e.stopPropagation();
+
+        this.props.setSeedIndex(index);
+        this.props.history.push('/account/name');
+    };
+
     toggleLogout = () => {
         this.setState({
             modalLogout: !this.state.modalLogout,
@@ -95,8 +103,11 @@ class Sidebar extends React.PureComponent {
                                             history.push('/wallet/');
                                         }}
                                     >
-                                        <strong>{account}</strong>
+                                        <strong>{shorten(account, 16)}</strong>
                                         <small>{formatIota(accounts.accountInfo[account].balance)}</small>
+                                        <div onClick={(e) => this.accountSettings(e, index)}>
+                                            <Icon icon="settings" size={16} />
+                                        </div>
                                     </a>
                                 );
                             })}

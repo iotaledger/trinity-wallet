@@ -76,8 +76,7 @@ class SeedSave extends PureComponent {
                             <div>
                                 <Icon icon="password" size={24} />
                             </div>
-                            <h4>{t('saveYourSeed:digitalCopy')}</h4>
-                            <p>{t('copyToClipboard')}</p>
+                            <h4>{t('addToPasswordManager')}</h4>
                         </Clipboard>
 
                         <a onClick={() => this.setState({ writeVisible: true, writeIndex: 1 })} className={css.secure}>
@@ -85,15 +84,13 @@ class SeedSave extends PureComponent {
                             <div>
                                 <Icon icon="write" size={24} />
                             </div>
-                            <h4>{t('saveYourSeed:paperWallet')}</h4>
-                            <p>{t('saveYourSeed:writeYourSeedDown')}</p>
+                            <h4>{t('saveYourSeed:writeYourSeedDown')}</h4>
                         </a>
                         <a onClick={() => window.print()}>
                             <div>
                                 <Icon icon="print" size={24} />
                             </div>
-                            <h4>{t('saveYourSeed:Printed')}</h4>
-                            <p>{t('saveYourSeed:printYourSeed')}</p>
+                            <h4>{t('paperWallet')}</h4>
                         </a>
                     </nav>
                 </section>

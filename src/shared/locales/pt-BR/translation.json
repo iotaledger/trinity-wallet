@@ -151,7 +151,8 @@
         "isYourBalanceCorrect": "Seu saldo está correto?",
         "ifYourBalanceIsNotCorrect": "Se o seu saldo não estiver correto, é provável que você esteja usando um servidor pré-snapshot.",
         "headToAdvancedSettingsForTransition": "Vá até as Configurações Avançadas e realize uma Transição de Snapshot.",
-        "usingTrinityWalletWithKeePass": "Usando a carteira Trinity com Keepass2Android"
+        "usingTrinityWalletWithKeePass": "Usando a carteira Trinity com Keepass2Android",
+        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém caracteres inválidos",
@@ -223,6 +224,7 @@
         "invalidCharacters": "A Seed contém caracteres inválidos",
         "invalidCharactersExplanation": "Seeds só podem conter letras maiúsculas A-Z e o número 9. A sua Seed tem caracteres inválidos. Por favor, tente novamente.",
         "seedTooShort": "A Seed é muito curta",
+        "seedTooLong": "Seed is too long",
         "seedTooShortExplanation": "Seeds devem ter {{maxLength}} caracteres. Neste momento a sua Seed tem {{currentLength}} caracteres. Por favor, tente novamente.",
         "seedExplanation": "Seeds devem ter {{maxLength}} caracteres, letras maíusculas (A-Z) e o número 9. Você não pode usar Seeds com mais de {{maxLength}} caracteres.",
         "neverShare": "NUNCA REVELE A SUA SEED PARA NINGUÉM"
@@ -291,7 +293,9 @@
         "message": "Mensagem opcional",
         "removeMessage": "REMOVER MENSAGEM",
         "noAddresses": "NÃO EXISTEM ENDEREÇOS",
-        "spent": "Gasto"
+        "spent": "Gasto",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
     },
     "saveYourSeed": {
         "saveYourSeed": "Faça o backup de sua Seed",
@@ -300,8 +304,6 @@
         "leastSecure": "Menos Seguro",
         "paperWallet": "Carteira em Papel",
         "writeYourSeedDown": "Anotar seed",
-        "printYourSeed": "Imprimir sua seed",
-        "digitalCopy": "Cópia digital",
         "seedClearedExplanation": "Para sua segurança, a Seed foi removida da área de transferência.",
         "iHaveBackedUpMySeed": "Eu tenho minha Seed armazenada",
         "letsWriteDownYourSeed": "Vamos anotar sua seed",
@@ -348,7 +350,8 @@
         "sendMax": "ENVIAR O MÁXIMO",
         "totalTime": "Tempo total",
         "addressPasteDetected": "Colação de endereço detectado",
-        "addressPasteExplanation": "Parece que você colou um endereço. Certifique-se de que o endereço coincide com o qual você quer enviar."
+        "addressPasteExplanation": "Parece que você colou um endereço. Certifique-se de que o endereço coincide com o qual você quer enviar.",
+        "invalid": "INVALID"
     },
     "setPassword": {
         "choosePassword": "Escolher uma nova senha",
@@ -463,7 +466,9 @@
         "messageCopied": "Mensagem copiada",
         "messageCopiedExplanation": "A mensagem foi copiada para a área de transferência.",
         "send": "ENVIAR",
-        "receive": "RECEBER"
+        "receive": "RECEBER",
+        "empty": "Empty",
+        "retrying": "RETRYING"
     },
     "accountManagement": {
         "viewSeed": "Ver Seed",
@@ -502,7 +507,8 @@
         "frame": "Bordas"
     },
     "themeCustomisation": {
-        "theme": "Tema"
+        "theme": "Tema",
+        "mockup": "Mockup"
     },
     "currencySelection": {
         "currency": "Moeda"
@@ -602,7 +608,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Variação",
+        "change": "Change (24h)",
         "volume": "Volume (24h)",
         "currentValue": "Valor atual",
         "error": "Erro ao buscar dados da tabela"

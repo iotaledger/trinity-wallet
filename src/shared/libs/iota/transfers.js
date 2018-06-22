@@ -976,7 +976,7 @@ export const pickNewTailTransactions = (transactionObjects, existingNormalisedTr
  *   @param {function} powFn
  *   @param {boolean} shouldOffloadPow
  *
- *   @returns {array}
+ *   @returns {Promise<object>}
  **/
 export const retryFailedTransaction = (transactionObjects, powFn, shouldOffloadPow) => {
     const convertToTrytes = (tx) => iota.utils.transactionTrytes(tx);

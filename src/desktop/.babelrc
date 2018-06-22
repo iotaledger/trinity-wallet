@@ -1,5 +1,16 @@
 {
-    "presets": [["es2015", { "modules": false }], "react"],
+    "presets": [
+        [
+            "env",
+            {
+                "targets": {
+                    "chrome": 61
+                },
+                "include": ["transform-es2015-classes"]
+            }
+        ],
+        "react"
+    ],
     "plugins": ["transform-class-properties"],
     "env": {
         "development": {
