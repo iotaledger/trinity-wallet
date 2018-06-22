@@ -298,7 +298,7 @@
         "missingPermissionExplanation": "W celu udostępniania kodów QR, wymagany jest dostęp do systemu plików."
     },
     "saveYourSeed": {
-        "saveYourSeed": "Zrób kopię swojego klucza",
+        "saveYourSeed": "Zapisywanie klucza seed",
         "seedCleared": "Seed wyczyszczony",
         "mostSecure": "Najbardziej bezpieczne",
         "leastSecure": "Najmniej bezpieczne",
