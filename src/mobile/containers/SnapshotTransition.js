@@ -114,6 +114,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginVertical: height / 20,
     },
+    modal: {
+        height,
+        width,
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 0,
+    },
 });
 
 class SnapshotTransition extends Component {
@@ -432,7 +439,7 @@ class SnapshotTransition extends Component {
                     backdropTransitionOutTiming={200}
                     backdropColor={theme.body.bg}
                     backdropOpacity={0.6}
-                    style={{ alignItems: 'center', margin: 0 }}
+                    style={styles.modal}
                     isVisible={isModalActive}
                     onBackButtonPress={() => this.hideModal()}
                     hideModalContentWhileAnimating

@@ -6,7 +6,7 @@ target 'iotaWallet' do
     use_frameworks!
 
     # Pods for iotaWallet
-    pod 'IotaKit'
+    
     target 'iotaWalletTests' do
         inherit! :search_paths
         # Pods for testing
