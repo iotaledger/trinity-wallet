@@ -308,7 +308,7 @@
         "iHaveBackedUpMySeed": "Zapisałem swój seed",
         "letsWriteDownYourSeed": "Zapiszmy Twój seed",
         "youCanHighlightCharacters": "Możesz wyróżnić 9 znaków naraz",
-        "printBlankWallet": "Wydrukuj niewypełniony portfel",
+        "printBlankWallet": "Drukuj pusty portfel",
         "whatIsChecksum": "Każdy seed posiada swoją 3-znakową sumę kontrolną",
         "iHavesavedMySeed": "Zapisałem swój seed",
         "checksumExplanation": "Za każdym razem, gdy dodajesz seed do portfela, powinieneś upewnić się, że suma kontrolna generowana przez portfel jest zgodna z tą, którą zapisałeś.",
