@@ -316,9 +316,7 @@ class List extends React.PureComponent {
                                     <small>
                                         {!activeTransfer.persistence
                                             ? t('pending')
-                                            : activeTransfer.incoming
-                                                ? t('received')
-                                                : t('sent')}
+                                            : activeTransfer.incoming ? t('received') : t('sent')}
                                         <em>{formatModalTime(convertUnixTimeToJSDate(activeTransfer.timestamp))}</em>
                                     </small>
                                 </p>
