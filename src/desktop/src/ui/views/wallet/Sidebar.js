@@ -58,7 +58,7 @@ class Sidebar extends React.PureComponent {
 
     accountSettings = (e, index) => {
         e.stopPropagation();
-        
+
         this.props.setSeedIndex(index);
         this.props.history.push('/account/name');
     };
@@ -154,7 +154,4 @@ const mapDispatchToProps = {
     setSeedIndex,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(translate()(Sidebar));
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(Sidebar));
