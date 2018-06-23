@@ -1,13 +1,13 @@
 {
     "global": {
-        "send": "SEND",
-        "cancel": "CANCEL",
+        "send": "POŠALJI",
+        "cancel": "PONIŠTI",
         "continue?": "Are you sure you want to continue?",
         "noTransactions": "NO RECENT HISTORY",
-        "refresh": "Refresh",
-        "balanceError": "Not enough balance",
-        "balanceErrorMessage": "You do not have enough IOTA to complete this transfer.",
-        "transferError": "Transfer error",
+        "refresh": "Osvježi",
+        "balanceError": "Nedostatak sredstva",
+        "balanceErrorMessage": "Nemate dovoljno IOTA kako biste nastavili s prijenosom.",
+        "transferError": "Pogreška prilikom prijenosa",
         "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
         "transferSent": "Transfer sent",
         "transferSentMessage": "Your transfer has been sent to the Tangle.",
@@ -231,7 +231,7 @@
     },
     "home": {
         "balance": "BALANCE",
-        "send": "SEND",
+        "send": "POŠALJI",
         "receive": "RECEIVE",
         "history": "HISTORY",
         "settings": "SETTINGS"
@@ -331,7 +331,7 @@
         "invalidAddressExplanation3": "Address contains an invalid checksum.",
         "invalidAddressExplanationGeneric": "Valid addresses should be 90 characters and contain only A-Z or 9.",
         "notEnoughFunds": "Insufficient funds",
-        "notEnoughFundsExplanation": "You do not have enough IOTA to complete this transfer.",
+        "notEnoughFundsExplanation": "Nemate dovoljno IOTA kako biste nastavili s prijenosom.",
         "keyReuse": "Key reuse",
         "keyReuseExplanation": "The address you are trying to send to has already been used. Please try another address.",
         "recipientAddress": "Recipient address",
@@ -465,7 +465,7 @@
         "addressCopiedExplanation": "The address has been copied to the clipboard.",
         "messageCopied": "Message copied",
         "messageCopiedExplanation": "The message has been copied to the clipboard.",
-        "send": "SEND",
+        "send": "POŠALJI",
         "receive": "RECEIVE",
         "empty": "Empty",
         "retrying": "RETRYING"
