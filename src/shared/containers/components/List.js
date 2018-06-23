@@ -96,7 +96,7 @@ export default function withListData(ListComponent) {
         mode: state.settings.mode,
         ui: state.ui,
         hideEmptyTransactions: state.settings.hideEmptyTransactions,
-        remotePoW: state.settings.remotePoW
+        remotePoW: state.settings.remotePoW,
     });
 
     const mapDispatchToProps = {
@@ -105,8 +105,5 @@ export default function withListData(ListComponent) {
         promoteTransaction,
     };
 
-    return connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(translate()(ListData));
+    return connect(mapStateToProps, mapDispatchToProps)(translate()(ListData));
 }
