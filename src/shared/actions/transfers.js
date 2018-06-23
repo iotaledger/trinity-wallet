@@ -23,7 +23,7 @@ import {
     selectFirstAddressFromAccountFactory,
     getFailedBundleHashesForSelectedAccount,
 } from '../selectors/accounts';
-import { setNextStepAsActive } from './progress';
+import { setNextStepAsActive, reset as resetProgress } from './progress';
 import { clearSendFields } from './ui';
 import {
     isStillAValidTransaction,
@@ -596,7 +596,10 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                     );
                 }
 
-                setTimeout(() => dispatch(completeTransfer({ address, value })), 5000);
+                setTimeout(() => {
+                    dispatch(completeTransfer({ address, value }));
+                    dispatch(resetProgress());
+                }, 5000);
             })
             .catch((error) => {
                 dispatch(sendTransferError());
