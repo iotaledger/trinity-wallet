@@ -2,8 +2,8 @@
     "global": {
         "send": "POŠALJI",
         "cancel": "PONIŠTI",
-        "continue?": "Are you sure you want to continue?",
-        "noTransactions": "NO RECENT HISTORY",
+        "continue?": "Jeste li sigurni da želite nastaviti?",
+        "noTransactions": "NEMA NEDAVNE POVIJESTI",
         "refresh": "Osvježi",
         "balanceError": "Nedostatak sredstva",
         "balanceErrorMessage": "Nemate dovoljno IOTA kako biste nastavili s prijenosom.",
