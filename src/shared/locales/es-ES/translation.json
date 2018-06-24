@@ -468,7 +468,8 @@
         "send": "ENVIAR",
         "receive": "RECIBIR",
         "empty": "Vacío",
-        "retrying": "REINTENTANDO"
+        "retrying": "REINTENTANDO",
+        "yesterday": "Yesterday"
     },
     "accountManagement": {
         "viewSeed": "Ver semilla",
