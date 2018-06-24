@@ -468,7 +468,8 @@
         "send": "WYPŁATA",
         "receive": "WPŁATA",
         "empty": "Brak",
-        "retrying": "PONAWIANIE"
+        "retrying": "PONAWIANIE",
+        "yesterday": "Yesterday"
     },
     "accountManagement": {
         "viewSeed": "Pokaż seed",
