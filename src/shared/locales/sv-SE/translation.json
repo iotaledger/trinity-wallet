@@ -467,7 +467,7 @@
         "messageCopiedExplanation": "Meddelandet har kopierats till urklipp.",
         "send": "SKICKA",
         "receive": "TA EMOT",
-        "empty": "Tom",
+        "empty": "Tomt",
         "retrying": "FÖRSÖKER IGEN"
     },
     "accountManagement": {
