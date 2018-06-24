@@ -95,6 +95,7 @@
     "react-native-view-shot": "^2.3.0",
     "react-redux": "^5.0.6",
     "readable-stream": "^1.0.33",
+    "realm": "^2.10.0",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
