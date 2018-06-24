@@ -469,7 +469,7 @@
         "receive": "WPŁATA",
         "empty": "Brak",
         "retrying": "PONAWIANIE",
-        "yesterday": "Yesterday"
+        "yesterday": "Wczoraj"
     },
     "accountManagement": {
         "viewSeed": "Pokaż seed",
