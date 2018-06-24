@@ -354,7 +354,7 @@
         "invalid": "KLAIDA"
     },
     "setPassword": {
-        "choosePassword": "Sukurti naują slaptažodį",
+        "choosePassword": "Sukurkite naują slaptažodį",
         "passwordTooShort": "Slaptažodis per trumpas",
         "passwordTooShortExplanation": "Slaptažodis privalo būti iš mažiausiai {{minLength}} simbolių. Jūsų įvedėte {{currentLength}}. Bandykite dar kartą.",
         "passwordMismatch": "Slaptažodžiai nesutampa",
