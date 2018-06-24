@@ -468,7 +468,8 @@
         "send": "SIŲSTA",
         "receive": "GAUTA",
         "empty": "Tuščia",
-        "retrying": "KRAUNAMA"
+        "retrying": "KRAUNAMA",
+        "yesterday": "Yesterday"
     },
     "accountManagement": {
         "viewSeed": "Rodyti užraktą",
