@@ -26,7 +26,6 @@ import Toggle from 'ui/components/Toggle';
 import TextInput from 'ui/components/input/Text';
 import Info from 'ui/components/Info';
 import Scrollbar from 'ui/components/Scrollbar';
-import Curl from 'curl.lib.js';
 
 /**
  * Advanced user settings component, including - wallet reset

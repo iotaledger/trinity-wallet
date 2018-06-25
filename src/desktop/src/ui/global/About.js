@@ -28,12 +28,10 @@ class About extends React.PureComponent {
     }
 
     menuToggle(item) {
-        switch (item) {
-            case 'about':
-                this.setState({
-                    visible: true,
-                });
-                break;
+        if (item === 'about') {
+            this.setState({
+                visible: true,
+            });
         }
     }
 
