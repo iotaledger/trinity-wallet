@@ -194,7 +194,7 @@ class SeedInput extends React.PureComponent {
             if (byte > -1 || key === 'Backspace') {
                 const cursor = this.getCursor(this.input);
 
-                let seed = this.props.seed.slice(0);
+                const seed = this.props.seed.slice(0);
                 let cursorPos = cursor[0] <= cursor[1] ? cursor[0] + 1 : cursor[1] + 1;
 
                 if (key === 'Backspace') {
@@ -212,7 +212,6 @@ class SeedInput extends React.PureComponent {
                 }
 
                 if (seed.length > MAX_SEED_LENGTH) {
-                    seed = null;
                     return;
                 }
 
@@ -221,8 +220,6 @@ class SeedInput extends React.PureComponent {
                 });
 
                 this.props.onChange(seed);
-
-                seed = null;
             }
         }
     };

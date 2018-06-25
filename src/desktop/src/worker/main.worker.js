@@ -73,25 +73,20 @@ const getState = () => {
 self.onmessage = ({ data }) => {
     const { type, payload } = data;
 
-    switch (type) {
-        // Update the state of the Worker Redux store
-        // to correspond with the main app's one.
-        case 'setState':
-            if (state.settings.node !== payload.settings.node) {
-                changeIotaNode(payload.settings.node);
-            }
-            if (SwitchingConfig.autoSwitch !== payload.settings.autoNodeSwitching) {
-                SwitchingConfig.autoSwitch = payload.settings.autoNodeSwitching;
-            }
-            state = payload;
-            break;
-        // Execute the given action
-        default:
-            // Attach custom callback for adding additional seed
-            if (type === 'getFullAccountInfoAdditionalSeed') {
-                actions[type](...payload, setAdditionalSeed)(dispatch, getState);
-            } else if (typeof actions[type] === 'function') {
-                actions[type](...payload)(dispatch, getState);
-            }
+    if (type === 'setState') {
+        if (state.settings.node !== payload.settings.node) {
+            changeIotaNode(payload.settings.node);
+        }
+        if (SwitchingConfig.autoSwitch !== payload.settings.autoNodeSwitching) {
+            SwitchingConfig.autoSwitch = payload.settings.autoNodeSwitching;
+        }
+        state = payload;
+    } else {
+        // Attach custom callback for adding additional seed
+        if (type === 'getFullAccountInfoAdditionalSeed') {
+            actions[type](...payload, setAdditionalSeed)(dispatch, getState);
+        } else if (typeof actions[type] === 'function') {
+            actions[type](...payload)(dispatch, getState);
+        }
     }
 };
