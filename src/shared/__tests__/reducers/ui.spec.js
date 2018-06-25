@@ -35,6 +35,12 @@ describe('Reducer: ui', () => {
                 currentlyPromotingBundleHash: '',
                 loginRoute: 'login',
                 isRetryingFailedTransaction: false,
+                qrAmount: '',
+                qrDenomination: 'i',
+                qrMessage: '',
+                qrTag: '',
+                selectedQrTab: 'message',
+                isReceiveCardFlipped: false,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
