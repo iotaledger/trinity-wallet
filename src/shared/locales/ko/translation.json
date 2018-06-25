@@ -468,7 +468,8 @@
         "send": "보냄",
         "receive": "받음",
         "empty": "없음",
-        "retrying": "재시도중"
+        "retrying": "재시도중",
+        "yesterday": "Yesterday"
     },
     "accountManagement": {
         "viewSeed": "시드 보기",

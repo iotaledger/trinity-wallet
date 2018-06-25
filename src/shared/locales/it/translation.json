@@ -468,7 +468,8 @@
         "send": "INVIA",
         "receive": "RICEVI",
         "empty": "Vuota",
-        "retrying": "NUOVO TENTATIVO IN CORSO"
+        "retrying": "NUOVO TENTATIVO IN CORSO",
+        "yesterday": "Yesterday"
     },
     "accountManagement": {
         "viewSeed": "Visualizza seme",

@@ -468,7 +468,8 @@
         "send": "भेजे",
         "receive": "प्राप्त करे",
         "empty": "Empty",
-        "retrying": "RETRYING"
+        "retrying": "RETRYING",
+        "yesterday": "Yesterday"
     },
     "accountManagement": {
         "viewSeed": "सीड देखें",

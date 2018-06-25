@@ -468,7 +468,8 @@
         "send": "GỬI",
         "receive": "NHẬN",
         "empty": "Empty",
-        "retrying": "RETRYING"
+        "retrying": "RETRYING",
+        "yesterday": "Yesterday"
     },
     "accountManagement": {
         "viewSeed": "Xem từ khoá",

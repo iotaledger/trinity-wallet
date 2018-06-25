@@ -468,7 +468,8 @@
         "send": "SENDEN",
         "receive": "EMPFANGEN",
         "empty": "Keine",
-        "retrying": "WIEDERHOLE"
+        "retrying": "WIEDERHOLE",
+        "yesterday": "Yesterday"
     },
     "accountManagement": {
         "viewSeed": "Seed anzeigen",
