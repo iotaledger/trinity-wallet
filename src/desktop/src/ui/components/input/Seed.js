@@ -1,6 +1,7 @@
 /* global Electron */
 import React from 'react';
 import QrReader from 'react-qr-reader';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
@@ -52,6 +53,7 @@ class SeedInput extends React.PureComponent {
     state = {
         showScanner: false,
         importBuffer: null,
+        hidden: true,
         cursor: 0,
     };
 
@@ -92,42 +94,13 @@ class SeedInput extends React.PureComponent {
         }
     };
 
-    onPaste = (e) => {
-        e.preventDefault();
-        let clipboard = e.clipboardData
-            .getData('Text')
-            .split('')
-            .map((char) => '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.indexOf(char.toUpperCase()))
-            .filter((char) => char > -1);
-
-        const cursor = this.getCursor(this.input);
-
-        const seed = this.props.seed
-            .slice(0, Math.min(...cursor))
-            .concat(clipboard, this.props.seed.slice(Math.max(...cursor)))
-            .slice(0, MAX_SEED_LENGTH);
-
-        this.setState({
-            cursor: Math.min(Math.min(...cursor) + clipboard.length, MAX_SEED_LENGTH),
-        });
-
-        this.props.onChange(seed);
-
-        // Hotfix: If paste happens on first render, the content of all attributes display the same content
-        setTimeout(() => {
-            this.props.onChange([]);
-            this.props.onChange(seed);
-        }, 10);
-
-        clipboard = null;
-        Electron.garbageCollect();
-
-        return false;
-    };
-
     onDrop = async (buffer) => {
         if (!buffer) {
-            return this.props.generateAlert('error', 'Error opening keystore file', 'There was an error opening keystore file');
+            return this.props.generateAlert(
+                'error',
+                'Error opening keystore file',
+                'There was an error opening keystore file',
+            );
         }
 
         this.setState({
@@ -149,6 +122,12 @@ class SeedInput extends React.PureComponent {
         const end = postCaretRange.toString().length;
 
         return [start, end];
+    };
+
+    setVisibility = () => {
+        this.setState({
+            hidden: !this.state.hidden,
+        });
     };
 
     closeScanner = () => {
@@ -244,14 +223,17 @@ class SeedInput extends React.PureComponent {
 
     render() {
         const { seed, label, closeLabel } = this.props;
-        const { importBuffer, showScanner } = this.state;
+        const { importBuffer, showScanner, hidden } = this.state;
 
         const checkSum = seed.length < MAX_SEED_LENGTH ? '< 81' : Electron.getChecksum(seed);
 
         return (
-            <div className={css.input}>
+            <div className={classNames(css.input, css.seed)}>
                 <fieldset>
-                    <a onClick={this.openScanner}>
+                    <a className={hidden ? css.strike : null} onClick={this.setVisibility}>
+                        <Icon icon="eye" size={16} />
+                    </a>
+                    <a className={css.right} onClick={this.openScanner}>
                         <Icon icon="camera" size={16} />
                     </a>
                     <div className={css.editable}>
@@ -267,7 +249,11 @@ class SeedInput extends React.PureComponent {
                             {seed.map((byte, index) => {
                                 const letter = byteToChar(byte);
                                 return (
-                                    <span className={css.letter} data-letter={letter} key={`${index}-${byte}`}>
+                                    <span
+                                        className={css.letter}
+                                        data-letter={hidden ? letter : '•'}
+                                        key={`${index}-${byte}`}
+                                    >
                                         &nbsp;
                                     </span>
                                 );
