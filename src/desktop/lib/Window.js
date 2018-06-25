@@ -51,14 +51,13 @@ let onboardingGenerated = false;
 const Electron = {
     clipboard: (content) => {
         if (content) {
-            let clip =
+            const clip =
                 typeof content === 'string'
                     ? content
                     : Array.from(content)
                           .map((byte) => '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.charAt(byte % 27))
                           .join('');
             clipboard.writeText(clip);
-            clip = null;
             if (typeof content !== 'string') {
                 global.gc();
             }
