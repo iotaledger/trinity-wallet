@@ -16,7 +16,11 @@ import {
     ADDRESS_LENGTH,
 } from 'iota-wallet-shared-modules/libs/iota/utils';
 import { setDeepLinkInactive } from 'iota-wallet-shared-modules/actions/wallet';
-import { getCurrencySymbol } from 'iota-wallet-shared-modules/libs/currency';
+import {
+    getCurrencySymbol,
+    getNextDenomination,
+    getIOTAUnitMultiplier,
+} from 'iota-wallet-shared-modules/libs/currency';
 import {
     getFromKeychainRequest,
     getFromKeychainSuccess,
@@ -31,7 +35,7 @@ import {
     setDoNotMinimise,
     toggleModalActivity,
 } from 'iota-wallet-shared-modules/actions/ui';
-import { parse, round } from 'iota-wallet-shared-modules/libs/utils';
+import { round, parse } from 'iota-wallet-shared-modules/libs/utils';
 import {
     getBalanceForSelectedAccount,
     getAvailableBalanceForSelectedAccount,
@@ -52,6 +56,7 @@ import TransferConfirmationModal from '../components/TransferConfirmationModal';
 import UsedAddressModal from '../components/UsedAddressModal';
 import UnitInfoModal from '../components/UnitInfoModal';
 import CustomTextInput from '../components/CustomTextInput';
+import AmountTextInput from '../components/AmountTextInput';
 import CtaButton from '../components/CtaButton';
 import { Icon } from '../theme/icons.js';
 import { height, width } from '../utils/dimensions';
@@ -211,7 +216,7 @@ export class Send extends Component {
             KeepAwake.deactivate();
             this.setState({ sending: false });
 
-            // Reset toggle switch in case maximum was on
+            // Reset toggle switch in case send max is active
             this.resetToggleSwitch();
         }
 
@@ -252,17 +257,9 @@ export class Send extends Component {
     }
 
     onDenominationPress() {
-        const { t, body, denomination } = this.props;
-        const { currencySymbol } = this.state;
-        const availableDenominations = ['i', 'Ki', 'Mi', 'Gi', 'Ti', currencySymbol];
-        const indexOfDenomination = availableDenominations.indexOf(denomination);
-        const nextDenomination =
-            indexOfDenomination === -1 || indexOfDenomination === 5
-                ? availableDenominations[0]
-                : availableDenominations[indexOfDenomination + 1];
-
+        const { t, currency, denomination, theme: { body } } = this.props;
+        const nextDenomination = getNextDenomination(currency, denomination);
         this.props.setSendDenomination(nextDenomination);
-
         this.setState({
             maxPressed: false,
             maxColor: body.color,
@@ -420,74 +417,22 @@ export class Send extends Component {
         return props;
     }
 
+    /**
+     *   Gets multiplier used in converting IOTA denominations (Ti, Gi, Mi, Ki, i) and fiat to basic IOTA unit (i)
+     *   @method getUnitMultiplier
+     *   @returns {number}
+     **/
     getUnitMultiplier() {
         const { usdPrice, conversionRate, denomination } = this.props;
         const { currencySymbol } = this.state;
-        let multiplier = 1;
-        switch (denomination) {
-            case 'i':
-                break;
-            case 'Ki':
-                multiplier = 1000;
-                break;
-            case 'Mi':
-                multiplier = 1000000;
-                break;
-            case 'Gi':
-                multiplier = 1000000000;
-                break;
-            case 'Ti':
-                multiplier = 1000000000000;
-                break;
-            case currencySymbol:
-                multiplier = 1000000 / usdPrice / conversionRate;
-                break;
-            default:
-                break;
+        if (denomination === currencySymbol) {
+            return 1000000 / usdPrice / conversionRate;
         }
-
-        return multiplier;
+        return getIOTAUnitMultiplier(denomination);
     }
 
     setSendingTransferFlag() {
         this.setState({ sending: true });
-    }
-
-    getConversionTextFiat() {
-        const { amount, usdPrice, conversionRate, t } = this.props;
-
-        if (this.shouldConversionTextShowInvalid()) {
-            return t('invalid');
-        }
-
-        const convertedValue = round(amount / usdPrice / conversionRate, 10);
-        let conversionText = '';
-        if (convertedValue > 0 && convertedValue < 0.01) {
-            conversionText = '< 0.01 Mi';
-        } else if (convertedValue >= 0.01) {
-            conversionText = `= ${convertedValue.toFixed(2)} Mi`;
-        }
-        return conversionText;
-    }
-
-    getConversionTextIota() {
-        const { amount, usdPrice, conversionRate, t } = this.props;
-        const { currencySymbol } = this.state;
-        if (this.shouldConversionTextShowInvalid()) {
-            return t('invalid');
-        }
-
-        const convertedValue = round(
-            parseFloat(amount) * usdPrice / 1000000 * this.getUnitMultiplier() * conversionRate,
-            10,
-        );
-        let conversionText = '';
-        if (convertedValue > 0 && convertedValue < 0.01) {
-            conversionText = `< ${currencySymbol}0.01`;
-        } else if (convertedValue >= 0.01) {
-            conversionText = `= ${currencySymbol}${convertedValue.toFixed(2)}`;
-        }
-        return conversionText;
     }
 
     getSendMaxOpacity() {
@@ -518,6 +463,22 @@ export class Send extends Component {
         );
     }
 
+    getConversionTextIota() {
+        const { amount, usdPrice, conversionRate } = this.props;
+        const { currencySymbol } = this.state;
+        const convertedValue = round(
+            parseFloat(amount) * usdPrice / 1000000 * this.getUnitMultiplier() * conversionRate,
+            10,
+        );
+        let conversionText = '';
+        if (convertedValue > 0 && convertedValue < 0.01) {
+            conversionText = `< ${currencySymbol}0.01`;
+        } else if (convertedValue >= 0.01) {
+            conversionText = `= ${currencySymbol}${convertedValue.toFixed(2)}`;
+        }
+        return conversionText;
+    }
+
     async detectAddressInClipboard() {
         const { t } = this.props;
         const clipboardContent = await Clipboard.getString();
@@ -541,16 +502,6 @@ export class Send extends Component {
     clearInteractions() {
         this.props.closeTopBar();
         Keyboard.dismiss();
-    }
-
-    shouldConversionTextShowInvalid() {
-        const { amount, denomination } = this.props;
-        const { currencySymbol } = this.state;
-        const multiplier = this.getUnitMultiplier();
-        const isFiat = denomination === currencySymbol;
-        const amountIsValid = isValidAmount(amount, multiplier, isFiat);
-
-        return !amountIsValid && amount !== '';
     }
 
     showModal(modalContent) {
@@ -777,7 +728,7 @@ export class Send extends Component {
     }
 
     render() {
-        const { maxPressed, maxColor, maxText, sending, currencySymbol } = this.state;
+        const { maxPressed, maxColor, maxText, sending } = this.state;
         const {
             t,
             isSendingTransfer,
@@ -791,8 +742,6 @@ export class Send extends Component {
             primary,
         } = this.props;
         const textColor = { color: body.color };
-        const conversionText =
-            denomination === currencySymbol ? this.getConversionTextFiat() : this.getConversionTextIota();
         const opacity = this.getSendMaxOpacity();
         const isSending = sending || isSendingTransfer;
 
@@ -835,35 +784,23 @@ export class Send extends Component {
                             detectAddressInClipboard={this.detectAddressInClipboard}
                         />
                         <View style={{ flex: 0.17 }} />
-                        <CustomTextInput
+                        <AmountTextInput
+                            label={t('amount')}
+                            amount={amount}
+                            denomination={denomination}
+                            multiplier={this.getUnitMultiplier()}
+                            editable={!isSending}
+                            setAmount={(text) => this.props.setSendAmountField(text)}
+                            setDenomination={(text) => this.props.setSendDenomination(text)}
+                            containerStyle={{ width: width / 1.15 }}
                             onRef={(c) => {
                                 this.amountField = c;
                             }}
-                            keyboardType="numeric"
-                            label={t('amount')}
-                            onChangeText={(text) => this.onAmountType(text)}
-                            containerStyle={{ width: width / 1.15 }}
-                            autoCorrect={false}
-                            enablesReturnKeyAutomatically
-                            returnKeyType="next"
                             onSubmitEditing={() => {
                                 if (amount) {
                                     this.messageField.focus();
                                 }
                             }}
-                            widget="denomination"
-                            conversionText={conversionText}
-                            currencyConversion
-                            theme={theme}
-                            denominationText={denomination}
-                            onDenominationPress={() => {
-                                if (!isSending) {
-                                    this.onDenominationPress();
-                                }
-                            }}
-                            value={amount}
-                            editable={!isSending}
-                            selectTextOnFocus={!isSending}
                         />
                         <View style={{ flex: 0.09 }} />
                         <View style={[styles.maxContainer, { opacity: opacity }]}>
@@ -909,6 +846,7 @@ export class Send extends Component {
                             value={message}
                             editable={!isSending}
                             selectTextOnFocus={!isSending}
+                            multiplier={this.getUnitMultiplier()}
                         />
                     </View>
                     <View style={styles.bottomContainer}>
