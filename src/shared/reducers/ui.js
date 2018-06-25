@@ -36,6 +36,12 @@ const initialState = {
     currentlyPromotingBundleHash: '',
     loginRoute: 'login',
     isRetryingFailedTransaction: false,
+    qrMessage: '',
+    qrAmount: '',
+    qrTag: '',
+    qrDenomination: 'i',
+    selectedQrTab: 'message',
+    isReceiveCardFlipped: false,
 };
 
 export default (state = initialState, action) => {
@@ -312,6 +318,36 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isRetryingFailedTransaction: false,
+            };
+        case UiActionTypes.SET_QR_DENOMINATION:
+            return {
+                ...state,
+                qrDenomination: action.payload,
+            };
+        case UiActionTypes.SET_QR_MESSAGE:
+            return {
+                ...state,
+                qrMessage: action.payload,
+            };
+        case UiActionTypes.SET_QR_AMOUNT:
+            return {
+                ...state,
+                qrAmount: action.payload,
+            };
+        case UiActionTypes.SET_QR_TAG:
+            return {
+                ...state,
+                qrTag: action.payload,
+            };
+        case UiActionTypes.SET_SELECTED_QR_TAB:
+            return {
+                ...state,
+                selectedQrTab: action.payload,
+            };
+        case UiActionTypes.FLIP_RECEIVE_CARD:
+            return {
+                ...state,
+                isReceiveCardFlipped: !state.isReceiveCardFlipped,
             };
         default:
             return state;
