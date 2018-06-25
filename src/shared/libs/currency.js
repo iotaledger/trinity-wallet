@@ -72,3 +72,34 @@ export const getCurrencySymbol = (currency) => {
             return 'R';
     }
 };
+
+export const getNextDenomination = (currency, denomination) => {
+    const availableDenominations = ['i', 'Ki', 'Mi', 'Gi', 'Ti', getCurrencySymbol(currency)];
+    const indexOfDenomination = availableDenominations.indexOf(denomination);
+    const nextDenomination =
+        indexOfDenomination === -1 || indexOfDenomination === 5
+            ? availableDenominations[0]
+            : availableDenominations[indexOfDenomination + 1];
+    return nextDenomination;
+};
+
+export const getIOTAUnitMultiplier = (denomination) => {
+    let multiplier = 1;
+    switch (denomination) {
+        case 'i':
+            break;
+        case 'Ki':
+            multiplier = 1000;
+            break;
+        case 'Mi':
+            multiplier = 1000000;
+            break;
+        case 'Gi':
+            multiplier = 1000000000;
+            break;
+        case 'Ti':
+            multiplier = 1000000000000;
+            break;
+    }
+    return multiplier;
+};
