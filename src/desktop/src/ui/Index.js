@@ -8,7 +8,6 @@ import i18next from 'libs/i18next';
 import { translate } from 'react-i18next';
 
 import { parseAddress } from 'libs/iota/utils';
-import { setSeed } from 'libs/crypto';
 
 import { setPassword, clearWalletData, setDeepLink } from 'actions/wallet';
 import { getUpdateData, updateTheme } from 'actions/settings';
@@ -109,18 +108,18 @@ class App extends React.Component {
 
     componentDidMount() {
         this.onMenuToggle = this.menuToggle.bind(this);
-
-        this.checkVaultAvailability();
         this.props.fetchNodeList();
 
+        Electron.onEvent('menu', this.onMenuToggle);
+
+        Electron.changeLanguage(this.props.t);
+
+        this.onSetDeepUrl = this.setDeepUrl.bind(this);
+        Electron.onEvent('url-params', this.onSetDeepUrl);
+        Electron.requestDeepLink();
+
         try {
-            Electron.onEvent('menu', this.onMenuToggle);
-
-            this.onSetDeepUrl = this.setDeepUrl.bind(this);
-            Electron.onEvent('url-params', this.onSetDeepUrl);
-
-            Electron.changeLanguage(this.props.t);
-            Electron.requestDeepLink();
+            this.checkVaultAvailability();
         } catch (error) {
             // eslint-disable-next-line react/no-did-mount-set-state
             this.setState({
