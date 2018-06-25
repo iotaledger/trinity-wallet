@@ -467,8 +467,9 @@
         "messageCopiedExplanation": "Viesti on kopioitu leikepöydälle.",
         "send": "LÄHETYS",
         "receive": "SAAPUVA",
-        "empty": "Tyhjennä",
-        "retrying": "YRITETÄÄN UUDELLEEN"
+        "empty": "Tyhjä",
+        "retrying": "YRITETÄÄN UUDELLEEN",
+        "yesterday": "Yesterday"
     },
     "accountManagement": {
         "viewSeed": "Katso seed-luku",

@@ -468,7 +468,8 @@
         "send": "إرسال",
         "receive": "إستلام",
         "empty": "Empty",
-        "retrying": "RETRYING"
+        "retrying": "RETRYING",
+        "yesterday": "Yesterday"
     },
     "accountManagement": {
         "viewSeed": "عرض السييد",

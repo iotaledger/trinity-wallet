@@ -468,7 +468,8 @@
         "send": "נשלח",
         "receive": "התקבל",
         "empty": "Empty",
-        "retrying": "RETRYING"
+        "retrying": "RETRYING",
+        "yesterday": "Yesterday"
     },
     "accountManagement": {
         "viewSeed": "צפה בסיד",

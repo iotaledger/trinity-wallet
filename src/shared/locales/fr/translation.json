@@ -468,7 +468,8 @@
         "send": "ENVOI",
         "receive": "RÉCEPTION",
         "empty": "Vide",
-        "retrying": "NOUVEL ESSAI"
+        "retrying": "NOUVEL ESSAI",
+        "yesterday": "Yesterday"
     },
     "accountManagement": {
         "viewSeed": "Afficher la seed",
