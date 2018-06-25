@@ -75,6 +75,7 @@ class Dropzone extends React.Component {
     }
 
     onDrop(e) {
+        e.stopPropagation();
         e.preventDefault();
 
         const { onDrop } = this.props;
@@ -107,7 +108,7 @@ class Dropzone extends React.Component {
     open = () => {
         this.fileInput.value = null;
         this.fileInput.click();
-    }
+    };
 
     render() {
         const inputAttributes = {
