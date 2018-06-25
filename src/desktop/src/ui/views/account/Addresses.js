@@ -32,21 +32,23 @@ class Addresses extends PureComponent {
                 <Scrollbar>
                     {Object.keys(account.addresses)
                         .reverse()
-                        .map((address) => {
+                        .map((item) => {
+                            const address = item + account.addresses[item].checksum;
                             const text = address.match(/.{1,3}/g).join(' ');
                             return (
                                 <li key={address}>
-                                    <p className={account.addresses[address].spent ? css.spent : null}>
+                                    <p className={account.addresses[item].spent ? css.spent : null}>
                                         <Clipboard
                                             text={address}
-                                            label={text}
                                             title={t('receive:addressCopied')}
                                             success={t('receive:addressCopiedExplanation')}
-                                        />
+                                        >
+                                            {text}
+                                        </Clipboard>
                                     </p>
                                     <strong>
-                                        {formatValue(account.addresses[address].balance)}{' '}
-                                        {formatUnit(account.addresses[address].balance)}
+                                        {formatValue(account.addresses[item].balance)}
+                                        {formatUnit(account.addresses[item].balance)}
                                     </strong>
                                 </li>
                             );

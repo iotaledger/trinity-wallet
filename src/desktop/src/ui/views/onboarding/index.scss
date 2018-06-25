@@ -440,3 +440,30 @@ $footer: 70px;
         }
     }
 }
+
+.tutorial {
+    p {
+        max-width: 560px;
+        text-align: center;
+    }
+    ul {
+        list-style: none;
+
+        li {
+            line-height: 32px;
+            margin-bottom: 18px;
+
+            &:last-child {
+                margin-bottom: 0px;
+            }
+
+            pre {
+                font-family: 'SourceCodePro';
+                background: var(--box-bg);
+                padding: 8px 20px;
+                pointer-events: all;
+                user-select: all;
+            }
+        }
+    }
+}

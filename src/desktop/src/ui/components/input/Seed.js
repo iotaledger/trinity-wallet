@@ -71,13 +71,15 @@ class SeedInput extends React.PureComponent {
 
     componentDidUpdate() {
         if (this.input && this.props.seed && this.props.seed.length >= this.state.cursor) {
-            const range = document.createRange();
-            const sel = window.getSelection();
-            range.setStart(this.input, this.state.cursor);
-            range.collapse(true);
-            sel.removeAllRanges();
-            sel.addRange(range);
-            this.input.scrollLeft = range.startOffset * 10;
+            try {
+                const range = document.createRange();
+                const sel = window.getSelection();
+                range.setStart(this.input, this.state.cursor);
+                range.collapse(true);
+                sel.removeAllRanges();
+                sel.addRange(range);
+                this.input.scrollLeft = range.startOffset * 10;
+            } catch (error) {}
         }
     }
 
@@ -92,6 +94,10 @@ class SeedInput extends React.PureComponent {
 
             this.props.onChange(seed);
         }
+    };
+
+    onPaste = (e) => {
+        e.preventDefault();
     };
 
     onDrop = async (buffer) => {
