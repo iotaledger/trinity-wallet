@@ -468,7 +468,8 @@
         "send": "ΑΠΟΣΤΟΛΗ",
         "receive": "ΛΗΨΗ",
         "empty": "Empty",
-        "retrying": "RETRYING"
+        "retrying": "RETRYING",
+        "yesterday": "Yesterday"
     },
     "accountManagement": {
         "viewSeed": "Προβολή σπόρου",

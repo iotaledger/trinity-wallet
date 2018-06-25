@@ -468,7 +468,8 @@
         "send": "SKICKA",
         "receive": "TA EMOT",
         "empty": "Tomt",
-        "retrying": "FÖRSÖKER IGEN"
+        "retrying": "FÖRSÖKER IGEN",
+        "yesterday": "Yesterday"
     },
     "accountManagement": {
         "viewSeed": "Visa seed",

@@ -468,7 +468,8 @@
         "send": "ODESLAT",
         "receive": "PŘÍJEM",
         "empty": "Prázdné",
-        "retrying": "OPAKOVÁNÍ PODPORY"
+        "retrying": "OPAKOVÁNÍ PODPORY",
+        "yesterday": "Yesterday"
     },
     "accountManagement": {
         "viewSeed": "Zobrazit Seed",
