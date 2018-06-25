@@ -260,7 +260,7 @@ export const renameSeed = async (password, seedName, newSeedName) => {
  * Unique seed check
  * @param {String} Password - plain text password to be used for decryption
  * @param {Array} Seed - seed to check for
- * @returns {Boolean} is the seed is unique
+ * @returns {Boolean} is the seed unique
  */
 export const uniqueSeed = async (password, seed) => {
     const vault = await Electron.readKeychain();
@@ -274,11 +274,11 @@ export const uniqueSeed = async (password, seed) => {
             throw new Error('Vault error');
         }
 
-        for (let i = 0; i < decryptedVault.seeds.length; i++) {
-            if (
-                decryptedVault.seeds[i].length === seed.length &&
-                seed.every((v, i) => v % 27 === decryptedVault.seeds[i] % 27)
-            ) {
+        const accounts = Object.keys(decryptedVault.seeds);
+
+        for (let i = 0; i < accounts.length; i++) {
+            const vaultSeed = decryptedVault.seeds[accounts[i]];
+            if (vaultSeed.length === seed.length && seed.every((v, x) => v % 27 === vaultSeed[x] % 27)) {
                 return false;
             }
         }
