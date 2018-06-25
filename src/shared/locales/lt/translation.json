@@ -469,7 +469,7 @@
         "receive": "GAUTA",
         "empty": "Tuščia",
         "retrying": "KRAUNAMA",
-        "yesterday": "Yesterday"
+        "yesterday": "Vakar"
     },
     "accountManagement": {
         "viewSeed": "Rodyti užraktą",
