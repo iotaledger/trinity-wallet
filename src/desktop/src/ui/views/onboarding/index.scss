@@ -440,33 +440,3 @@ $footer: 70px;
         }
     }
 }
-
-.print {
-    display: none;
-
-    @media print {
-        display: block;
-        img,
-        svg,
-        div {
-            position: fixed;
-            top: 0px;
-            left: 0px;
-            width: 100vw;
-            height: 100vh;
-        }
-        svg text {
-            font-family: 'SourceCodePro';
-            font-size: 20px;
-            fill: #231f20;
-        }
-        canvas {
-            position: absolute;
-            left: 50%;
-            top: 81.5%;
-            width: 9vh !important;
-            height: 9vh !important;
-            transform: translate(-175%, 0);
-        }
-    }
-}
