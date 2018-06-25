@@ -13,6 +13,4 @@
 ### Fixes
 - Alter the way addresses are attached during snapshot transition
 - Fix crash when backing up seed to Keepass2Android on Android 6.0
-- Fix modal positioning
-- Fix nav bar color when printing
 - Fix promotion errors with IRI 1.5.0
