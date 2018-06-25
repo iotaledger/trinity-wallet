@@ -8,17 +8,34 @@ import css from 'ui/views/onboarding/index.scss';
 class FatalError extends React.PureComponent {
     linuxContent = () => {
         return (
-            <section>
-                <h2>Linux missing dependencies tutorial</h2>
-            </section>
+            <form className={css.tutorial}>
+                <h1>Missing security dependencies</h1>
+                <p>
+                    Your Linux distribution is missing libsecret library that is required for Trinity to securely store
+                    and retrieve sensitive information.
+                </p>
+                <p>Depending on your distribution, you will need to run the following command:</p>
+                <ul>
+                    <li>
+                        Debian/Ubuntu: <pre>sudo apt-get install libsecret-1-dev</pre>
+                    </li>
+                    <li>
+                        Red Hat-based: <pre>sudo yum install libsecret-devel</pre>
+                    </li>
+                    <li>
+                        Arch Linux: <pre>sudo pacman -S libsecret</pre>
+                    </li>
+                </ul>
+            </form>
         );
     };
 
     generalContent = () => {
         return (
-            <section>
-                <h2>Windows/Mac generic error</h2>
-            </section>
+            <form>
+                <h1>Error launching wallet</h1>
+                <p>There was a fatal error launching the wallet.</p>
+            </form>
         );
     };
 
@@ -26,8 +43,9 @@ class FatalError extends React.PureComponent {
         return (
             <main className={css.onboarding}>
                 <header />
-                {Electron.getOS() === 'linux' ? this.linuxContent() : this.generalContent()}
-                <footer />
+                <div>
+                    <div>{Electron.getOS() === 'linux' ? this.linuxContent() : this.generalContent()}</div>
+                </div>
             </main>
         );
     }
