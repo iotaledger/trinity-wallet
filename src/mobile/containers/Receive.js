@@ -17,7 +17,7 @@ import QRCode from 'react-native-qrcode-svg';
 import Share from 'react-native-share';
 import { captureRef } from 'react-native-view-shot';
 import { connect } from 'react-redux';
-import { generateNewAddress, setReceiveAddress } from 'iota-wallet-shared-modules/actions/wallet';
+import { generateNewAddress } from 'iota-wallet-shared-modules/actions/wallet';
 import { flipReceiveCard } from 'iota-wallet-shared-modules/actions/ui';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { selectAccountInfo, getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
@@ -183,10 +183,6 @@ class Receive extends Component {
         generateNewAddress: PropTypes.func.isRequired,
         /** Close active top bar */
         closeTopBar: PropTypes.func.isRequired,
-        /** Set receive address in reducer
-         * @param {string} address
-         */
-        setReceiveAddress: PropTypes.func.isRequired,
         /** Generate a notification alert
          * @param {string} type - notification type - success, error
          * @param {string} title - notification title
@@ -240,11 +236,13 @@ class Receive extends Component {
 
     componentWillMount() {
         const value = this.props.isCardFlipped ? 1 : 0;
+
+        this.rotateAnimatedValue = new Animated.Value(0);
         this.flipAnimatedValue = new Animated.Value(value);
         this.scaleAnimatedValueFront = new Animated.Value(value);
         this.scaleAnimatedValueBack = new Animated.Value(value);
-        this.rotateAnimatedValue = new Animated.Value(0);
         this.opacityAnimatedValue = new Animated.Value(value);
+
         this.rotateInterpolate = this.rotateAnimatedValue.interpolate({
             inputRange: [0, 1],
             outputRange: ['0deg', '360deg'],
@@ -293,10 +291,10 @@ class Receive extends Component {
         return true;
     }
 
-    componentWillUnmount() {
-        this.resetAddress();
-    }
-
+    /**
+     *   Gets seed from keychain and generates receive address.
+     *   @method onGeneratePress
+     **/
     async onGeneratePress() {
         const { t, selectedAccountData, selectedAccountName, isSyncing, isTransitioning, password } = this.props;
         if (isSyncing || isTransitioning) {
@@ -322,17 +320,25 @@ class Receive extends Component {
         this.props.generateNewAddress(seed, selectedAccountName, selectedAccountData, genFn);
     }
 
+    /**
+     *   Copies receive address to clipboard.
+     *   @method onCopyAddressPress
+     **/
     onCopyAddressPress() {
         const { t, receiveAddress } = this.props;
         Clipboard.setString(receiveAddress);
         this.props.generateAlert('success', t('addressCopied'), t('addressCopiedExplanation'));
     }
 
+    /**
+     *   Captures QR code and opens share intent.
+     *   @method onShareQRCodePress
+     **/
     async onShareQRCodePress() {
         const { t, receiveAddress } = this.props;
         // Ensure user has granted necessary permission on Android
         if (isAndroid) {
-            const hasPermission = await this.getFileSystemPermissions();
+            const hasPermission = await this.getAndroidFileSystemPermissions();
             if (!hasPermission) {
                 return this.props.generateAlert('error', t('missingPermission'), t('missingPermissionExplanation'));
             }
@@ -351,7 +357,12 @@ class Receive extends Component {
         }
     }
 
-    async getFileSystemPermissions() {
+    /**
+     *   Gets Android file system permissions necessary for sharing QR Codes.
+     *   @method getAndroidFileSystemPermissions
+     *   @returns {boolean}
+     **/
+    async getAndroidFileSystemPermissions() {
         const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE);
         if (granted === PermissionsAndroid.RESULTS.GRANTED) {
             return true;
@@ -388,18 +399,15 @@ class Receive extends Component {
         return getIOTAUnitMultiplier(qrDenomination);
     }
 
-    resetAddress() {
-        const { receiveAddress } = this.props;
-        if (receiveAddress) {
-            this.props.setReceiveAddress(' ');
-        }
-    }
-
     clearInteractions() {
         this.props.closeTopBar();
         Keyboard.dismiss();
     }
 
+    /**
+     *   Animates refresh icon while an address is being generated.
+     *   @method rotateIcon
+     **/
     rotateIcon() {
         this.rotateAnimatedValue.setValue(0);
         Animated.sequence([
@@ -417,6 +425,10 @@ class Receive extends Component {
         });
     }
 
+    /**
+     *   Animates flipcard.
+     *   @method flipCard
+     **/
     flipCard() {
         const { isCardFlipped } = this.props;
         const toValue = isCardFlipped ? 0 : 1;
@@ -653,7 +665,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     generateNewAddress,
-    setReceiveAddress,
     generateAlert,
     getFromKeychainRequest,
     getFromKeychainSuccess,

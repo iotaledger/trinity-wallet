@@ -34,7 +34,7 @@ class MultiTextInput extends Component {
     };
 
     /**
-     *   Updates qrAmount in store.
+     *   Updates amount field.
      *   @method onAmountType
      **/
     onAmountType(amount) {
@@ -43,7 +43,7 @@ class MultiTextInput extends Component {
     }
 
     /**
-     *   Updates qrDenomination in store.
+     *   Updates selected denomination.
      *   @method onDenominationPress
      **/
     onDenominationPress() {
@@ -53,7 +53,7 @@ class MultiTextInput extends Component {
     }
 
     /**
-     *   Gets text for amount field.
+     *   Gets conversion text for amount field.
      *   Returns INVALID if specified amount is not valid.
      *   @method getConversionText
      *   @returns {string}
@@ -69,9 +69,14 @@ class MultiTextInput extends Component {
         if (denomination === currencySymbol) {
             return this.getConversionTextFiat();
         }
-        return this.getConversionTextIota(currencySymbol);
+        return this.getConversionTextIOTA(currencySymbol);
     }
 
+    /**
+     *   Gets conversion text when fiat denomination is selected.
+     *   @method getConversionTextFiat
+     *   @returns {string}
+     **/
     getConversionTextFiat() {
         const { amount, usdPrice, conversionRate } = this.props;
         const convertedValue = round(amount / usdPrice / conversionRate, 10);
@@ -84,7 +89,12 @@ class MultiTextInput extends Component {
         return conversionText;
     }
 
-    getConversionTextIota(currencySymbol) {
+    /**
+     *   Gets conversion text when IOTA denominations are selected.
+     *   @method getConversionTextIOTA
+     *   @returns {string}
+     **/
+    getConversionTextIOTA(currencySymbol) {
         const { amount, usdPrice, conversionRate, multiplier } = this.props;
         const convertedValue = round(parseFloat(amount) * usdPrice / 1000000 * multiplier * conversionRate, 10);
         let conversionText = '';
