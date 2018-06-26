@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         marginBottom: height / 30,
     },
     textWrapper: {
-        flex: 0.7,
+        flex: 1,
     },
     text: {
         color: 'white',
