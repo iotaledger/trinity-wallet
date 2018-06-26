@@ -4,7 +4,7 @@ import { ActionTypes as AccountsActionTypes } from '../actions/accounts';
 
 const initialState = {
     ready: false,
-    receiveAddress: ' ',
+    receiveAddress: '',
     password: '',
     seed: Array(82).join(' '),
     usedExistingSeed: false,
@@ -73,7 +73,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 ready: false,
-                receiveAddress: ' ',
+                receiveAddress: '',
                 usedSeedToLogin: false,
                 seedIndex: 0,
                 isGeneratingReceiveAddress: false,
