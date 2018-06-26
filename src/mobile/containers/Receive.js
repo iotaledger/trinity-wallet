@@ -343,7 +343,7 @@ class Receive extends Component {
                 return this.props.generateAlert('error', t('missingPermission'), t('missingPermissionExplanation'));
             }
         }
-        if (receiveAddress !== ' ') {
+        if (receiveAddress) {
             captureRef(this.qr, { format: 'png', result: 'data-uri' }).then((url) => {
                 Share.open({
                     url,
@@ -571,13 +571,9 @@ class Receive extends Component {
                             <View style={styles.footerButtonContainer}>
                                 <TouchableOpacity
                                     style={[styles.footerButton, { backgroundColor: primary.color }]}
-                                    onPress={() =>
-                                        receiveAddress === ' ' ? this.onGeneratePress() : this.onCopyAddressPress()
-                                    }
+                                    onPress={() => this.onCopyAddressPress()}
                                 >
-                                    <Text style={[styles.buttonText, { color: primary.body }]}>
-                                        {receiveAddress === ' ' ? t('generateNewAddress') : t('copyAddress')}
-                                    </Text>
+                                    <Text style={[styles.buttonText, { color: primary.body }]}>{t('copyAddress')}</Text>
                                 </TouchableOpacity>
                             </View>
                         </Animated.View>

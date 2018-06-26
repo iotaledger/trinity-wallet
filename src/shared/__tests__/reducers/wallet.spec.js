@@ -6,7 +6,7 @@ describe('Reducer: wallet', () => {
         it('should have an initial state', () => {
             const initialState = {
                 ready: false,
-                receiveAddress: ' ',
+                receiveAddress: '',
                 password: '',
                 seed: Array(82).join(' '),
                 accountName: 'MAIN WALLET',
@@ -241,7 +241,7 @@ describe('Reducer: wallet', () => {
             expect(newState.ready).to.eql(expectedState.ready);
         });
 
-        it('should set "receiveAddress" state prop to " "', () => {
+        it('should set "receiveAddress" state prop to ""', () => {
             const initialState = {
                 receiveAddress: 'U'.repeat(81),
             };
@@ -252,7 +252,7 @@ describe('Reducer: wallet', () => {
 
             const newState = reducer(initialState, action);
             const expectedState = {
-                receiveAddress: ' ',
+                receiveAddress: '',
             };
 
             expect(newState.receiveAddress).to.eql(expectedState.receiveAddress);
