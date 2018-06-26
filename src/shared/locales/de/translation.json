@@ -469,7 +469,7 @@
         "receive": "EMPFANGEN",
         "empty": "Keine",
         "retrying": "WIEDERHOLE",
-        "yesterday": "Yesterday"
+        "yesterday": "Gestern"
     },
     "accountManagement": {
         "viewSeed": "Seed anzeigen",
