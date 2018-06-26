@@ -463,7 +463,7 @@ export class Send extends Component {
         );
     }
 
-    getConversionTextIota() {
+    getConversionTextIOTA() {
         const { amount, usdPrice, conversionRate } = this.props;
         const { currencySymbol } = this.state;
         const convertedValue = round(
@@ -671,7 +671,7 @@ export class Send extends Component {
                         <TransferConfirmationModal
                             value={parseFloat(amount) * this.getUnitMultiplier()}
                             amount={amount}
-                            conversionText={this.getConversionTextIota()}
+                            conversionText={this.getConversionTextIOTA()}
                             address={address}
                             sendTransfer={() => this.sendWithDelay()}
                             hideModal={(callback) => this.hideModal(callback)}
