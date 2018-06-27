@@ -16,6 +16,9 @@ $sidebar-narrow: 70px;
         a:hover {
             color: var(--primary);
         }
+        @media print {
+            display: none;
+        }
     }
 
     :global {
@@ -47,11 +50,27 @@ $sidebar-narrow: 70px;
                 padding-bottom: 60px;
             }
         }
+
+        @media print {
+            p,
+            fieldset {
+                display: none;
+            }
+        }
+
+        fieldset button {
+            margin-right: 20px;
+        }
     }
 
     nav {
         margin-bottom: 30px;
         max-width: 220px;
+
+        @media print {
+            display: none;
+        }
+
         a {
             display: flex;
             color: var(--body);
