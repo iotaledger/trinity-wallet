@@ -16,10 +16,12 @@ RCT_EXPORT_MODULE();
 // PoW
 RCT_EXPORT_METHOD(doPoW:(NSString *)trytes minWeightMagnitude:(int)minWeightMagnitude resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
-  char * trytesChars = [trytes cStringUsingEncoding:NSUTF8StringEncoding];
-  char * nonce = doPOW(trytesChars, minWeightMagnitude);
-  NSString * nonceString = [NSString stringWithFormat:@"%s", nonce];
-  resolve(nonceString);
+  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    char * trytesChars = [trytes cStringUsingEncoding:NSUTF8StringEncoding];
+    char * nonce = doPOW(trytesChars, minWeightMagnitude);
+    NSString * nonceString = [NSString stringWithFormat:@"%s", nonce];
+    resolve(nonceString);
+  });
 }
 
 
