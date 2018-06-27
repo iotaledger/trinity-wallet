@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { toggleTopBarDisplay } from 'iota-wallet-shared-modules/actions/home';
-import { setSeedIndex, setReceiveAddress } from 'iota-wallet-shared-modules/actions/wallet';
+import { setSeedIndex } from 'iota-wallet-shared-modules/actions/wallet';
 import { clearLog } from 'iota-wallet-shared-modules/actions/alerts';
 import { getBalanceForSelectedAccount, selectAccountInfo } from 'iota-wallet-shared-modules/selectors/accounts';
 import {
@@ -114,7 +114,6 @@ class TopBar extends Component {
         isTopBarActive: PropTypes.bool.isRequired,
         toggleTopBarDisplay: PropTypes.func.isRequired,
         setSeedIndex: PropTypes.func.isRequired,
-        setReceiveAddress: PropTypes.func.isRequired,
         selectedAccount: PropTypes.object.isRequired,
         body: PropTypes.object.isRequired,
         bar: PropTypes.object.isRequired,
@@ -133,8 +132,6 @@ class TopBar extends Component {
         isFetchingLatestAccountInfo: PropTypes.bool.isRequired,
         /** Currently selected home screen route */
         currentRoute: PropTypes.string.isRequired,
-        /** Receive address value */
-        receiveAddress: PropTypes.string.isRequired,
     };
 
     static filterSeedTitles(accountNames, currentSeedIndex) {
@@ -197,7 +194,6 @@ class TopBar extends Component {
         // TODO: Not sure why we are checking for address generation on change
         if (!isGeneratingReceiveAddress) {
             this.props.setSeedIndex(newSeedIdx);
-            this.props.setReceiveAddress(' ');
 
             if (hasAddresses) {
                 this.props.setPollFor('accountInfo'); // Override poll queue
@@ -252,14 +248,13 @@ class TopBar extends Component {
             mode,
             minimised,
             currentRoute,
-            receiveAddress,
         } = this.props;
         const selectedTitle = get(accountNames, `[${seedIndex}]`) || ''; // fallback
         const selectedSubtitle = TopBar.humanizeBalance(balance);
         const subtitleColor = tinycolor(bar.color).isDark() ? '#262626' : '#d3d3d3';
 
         /* Hide balance when displaying receive address QR */
-        const balanceOpacity = currentRoute === 'receive' && receiveAddress.length !== 1 ? 0 : 1;
+        const balanceOpacity = currentRoute === 'receive' ? 0 : 1;
 
         const getBalance = (currentIdx) => {
             const account = accountInfo[accountNames[currentIdx]];
@@ -535,13 +530,11 @@ const mapStateToProps = (state) => ({
     notificationLog: state.alerts.notificationLog,
     isFetchingLatestAccountInfo: state.ui.isFetchingLatestAccountInfoOnLogin,
     currentRoute: state.home.childRoute,
-    receiveAddress: state.wallet.receiveAddress,
 });
 
 const mapDispatchToProps = {
     toggleTopBarDisplay,
     setSeedIndex,
-    setReceiveAddress,
     setPollFor,
     clearLog,
 };

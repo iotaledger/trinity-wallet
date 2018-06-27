@@ -20,7 +20,11 @@ import { connect } from 'react-redux';
 import { generateNewAddress } from 'iota-wallet-shared-modules/actions/wallet';
 import { flipReceiveCard } from 'iota-wallet-shared-modules/actions/ui';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { selectAccountInfo, getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
+import {
+    selectAccountInfo,
+    getSelectedAccountName,
+    selectLatestAddressFromAccountFactory,
+} from 'iota-wallet-shared-modules/selectors/accounts';
 import { getCurrencySymbol, getIOTAUnitMultiplier } from 'iota-wallet-shared-modules/libs/currency';
 import {
     getFromKeychainRequest,
@@ -28,10 +32,12 @@ import {
     getFromKeychainError,
 } from 'iota-wallet-shared-modules/actions/keychain';
 import { isValidAmount } from 'iota-wallet-shared-modules/libs/iota/utils';
+import timer from 'react-native-timer';
 import { getSeedFromKeychain } from '../utils/keychain';
 import GENERAL from '../theme/general';
 import MultiTextInput from '../components/MultiTextInput';
 import { Icon } from '../theme/icons.js';
+import AnimatedText from '../components/AnimatedText';
 import { width, height } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
 import { getAddressGenFn } from '../utils/nativeModules';
@@ -230,7 +236,7 @@ class Receive extends Component {
         this.state = {
             currencySymbol: getCurrencySymbol(props.currency),
         };
-        this.onGeneratePress = this.onGeneratePress.bind(this);
+        this.generateAddress = this.generateAddress.bind(this);
         this.flipCard = this.flipCard.bind(this);
     }
 
@@ -238,12 +244,17 @@ class Receive extends Component {
         const value = this.props.isCardFlipped ? 1 : 0;
 
         this.rotateAnimatedValue = new Animated.Value(0);
+        this.textAnimatedValue = new Animated.Value(0);
         this.flipAnimatedValue = new Animated.Value(value);
         this.scaleAnimatedValueFront = new Animated.Value(value);
         this.scaleAnimatedValueBack = new Animated.Value(value);
         this.opacityAnimatedValue = new Animated.Value(value);
 
         this.rotateInterpolate = this.rotateAnimatedValue.interpolate({
+            inputRange: [0, 1],
+            outputRange: ['0deg', '360deg'],
+        });
+        this.textInterpolate = this.textAnimatedValue.interpolate({
             inputRange: [0, 1],
             outputRange: ['0deg', '360deg'],
         });
@@ -275,6 +286,7 @@ class Receive extends Component {
 
     componentDidMount() {
         leaveNavigationBreadcrumb('Receive');
+        timer.setTimeout('generateOnMountDelay', () => this.generateAddress(), 100);
     }
 
     shouldComponentUpdate(newProps) {
@@ -291,33 +303,8 @@ class Receive extends Component {
         return true;
     }
 
-    /**
-     *   Gets seed from keychain and generates receive address.
-     *   @method onGeneratePress
-     **/
-    async onGeneratePress() {
-        const { t, selectedAccountData, selectedAccountName, isSyncing, isTransitioning, password } = this.props;
-        if (isSyncing || isTransitioning) {
-            return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
-        }
-        const error = () => {
-            this.props.getFromKeychainError('receive', 'addressGeneration');
-            return this.props.generateAlert(
-                'error',
-                t('global:somethingWentWrong'),
-                t('global:somethingWentWrongTryAgain'),
-            );
-        };
-
-        this.props.getFromKeychainRequest('receive', 'addressGeneration');
-        this.rotateIcon();
-        const seed = await getSeedFromKeychain(password, selectedAccountName);
-        if (seed === null) {
-            return error();
-        }
-        this.props.getFromKeychainSuccess('receive', 'addressGeneration');
-        const genFn = getAddressGenFn();
-        this.props.generateNewAddress(seed, selectedAccountName, selectedAccountData, genFn);
+    componentWillUnmount() {
+        timer.clearTimeout('generateOnMountDelay');
     }
 
     /**
@@ -399,16 +386,50 @@ class Receive extends Component {
         return getIOTAUnitMultiplier(qrDenomination);
     }
 
+    /**
+     *   Gets seed from keychain and generates receive address.
+     *   @method generateAddress
+     **/
+    async generateAddress() {
+        const { t, selectedAccountData, selectedAccountName, isSyncing, isTransitioning, password } = this.props;
+        if (isSyncing || isTransitioning) {
+            return this.props.generateAlert('error', t('global:pleaseWait'), t('global:pleaseWaitExplanation'));
+        }
+        const error = () => {
+            this.props.getFromKeychainError('receive', 'addressGeneration');
+            return this.props.generateAlert(
+                'error',
+                t('global:somethingWentWrong'),
+                t('global:somethingWentWrongTryAgain'),
+            );
+        };
+
+        this.props.getFromKeychainRequest('receive', 'addressGeneration');
+        this.triggerRefreshAnimations();
+        const seed = await getSeedFromKeychain(password, selectedAccountName);
+        if (seed === null) {
+            return error();
+        }
+        this.props.getFromKeychainSuccess('receive', 'addressGeneration');
+        const genFn = getAddressGenFn();
+        this.props.generateNewAddress(seed, selectedAccountName, selectedAccountData, genFn);
+    }
+
     clearInteractions() {
         this.props.closeTopBar();
         Keyboard.dismiss();
     }
 
+    triggerRefreshAnimations() {
+        this.animateIcon();
+        this.animateText();
+    }
+
     /**
      *   Animates refresh icon while an address is being generated.
-     *   @method rotateIcon
+     *   @method animateIcon
      **/
-    rotateIcon() {
+    animateIcon() {
         this.rotateAnimatedValue.setValue(0);
         Animated.sequence([
             Animated.spring(this.rotateAnimatedValue, {
@@ -420,7 +441,27 @@ class Receive extends Component {
         ]).start(() => {
             const { isGeneratingReceiveAddress, isGettingSensitiveInfoToGenerateAddress } = this.props;
             if (isGeneratingReceiveAddress || isGettingSensitiveInfoToGenerateAddress) {
-                this.rotateIcon();
+                this.animateIcon();
+            }
+        });
+    }
+
+    /**
+     *   Animates refresh icon while an address is being generated.
+     *   @method animateIcon
+     **/
+    animateText() {
+        this.textAnimatedValue.setValue(0);
+        Animated.sequence([
+            Animated.timing(this.textAnimatedValue, {
+                toValue: 1,
+                useNativeDriver: true,
+                duration: 1000,
+            }),
+        ]).start(() => {
+            const { isGeneratingReceiveAddress, isGettingSensitiveInfoToGenerateAddress } = this.props;
+            if (isGeneratingReceiveAddress || isGettingSensitiveInfoToGenerateAddress) {
+                this.animateText();
             }
         });
     }
@@ -463,7 +504,15 @@ class Receive extends Component {
     }
 
     render() {
-        const { t, theme: { primary, dark, positive }, receiveAddress, isCardFlipped, qrMessage, qrTag } = this.props;
+        const {
+            t,
+            theme: { primary, dark, positive },
+            receiveAddress,
+            isGeneratingReceiveAddress,
+            isCardFlipped,
+            qrMessage,
+            qrTag,
+        } = this.props;
 
         const qrContent = JSON.stringify({
             address: receiveAddress,
@@ -477,6 +526,7 @@ class Receive extends Component {
         const flipStyleBack = { rotateY: this.flipInterpolateBack };
         const scaleStyleFront = { scale: this.scaleInterpolateFront };
         const scaleStyleBack = { scale: this.scaleInterpolateBack };
+        const textAnimatedStyle = { rotateY: this.textInterpolate };
 
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
@@ -522,7 +572,7 @@ class Receive extends Component {
                                 />
                                 {/* FIXME: Overflow: 'visible' is not supported on Android */}
                                 {isAndroid && (
-                                    <TouchableWithoutFeedback onPress={() => this.onGeneratePress()}>
+                                    <TouchableWithoutFeedback onPress={this.generateAddress}>
                                         <Animated.View
                                             style={[
                                                 styles.refreshIconBackgroundAndroid,
@@ -540,7 +590,7 @@ class Receive extends Component {
                                     </TouchableWithoutFeedback>
                                 )}
                             </View>
-                            <TouchableWithoutFeedback onPress={() => this.onGeneratePress()}>
+                            <TouchableWithoutFeedback onPress={this.generateAddress}>
                                 <View style={[styles.addressContainer, { backgroundColor: dark.color }]}>
                                     <Animated.View
                                         style={[
@@ -556,18 +606,38 @@ class Receive extends Component {
                                             style={styles.refreshIcon}
                                         />
                                     </Animated.View>
-                                    <Text style={[styles.addressText, { color: dark.body }]}>
+                                    <AnimatedText
+                                        animate={isGeneratingReceiveAddress}
+                                        textStyle={[
+                                            styles.addressText,
+                                            { transform: [textAnimatedStyle] },
+                                            { color: dark.body },
+                                        ]}
+                                    >
                                         {receiveAddress.substring(0, 30)}
-                                    </Text>
-                                    <Text style={[styles.addressText, { color: dark.body }]}>
+                                    </AnimatedText>
+                                    <AnimatedText
+                                        animate={isGeneratingReceiveAddress}
+                                        textStyle={[
+                                            styles.addressText,
+                                            { transform: [textAnimatedStyle] },
+                                            { color: dark.body },
+                                        ]}
+                                    >
                                         {receiveAddress.substring(30, 60)}
-                                    </Text>
-                                    <Text style={[styles.addressText, { color: dark.body }]}>
+                                    </AnimatedText>
+                                    <AnimatedText
+                                        animate={isGeneratingReceiveAddress}
+                                        textStyle={[
+                                            styles.addressText,
+                                            { transform: [textAnimatedStyle] },
+                                            { color: dark.body },
+                                        ]}
+                                    >
                                         {receiveAddress.substring(60, 90)}
-                                    </Text>
+                                    </AnimatedText>
                                 </View>
                             </TouchableWithoutFeedback>
-
                             <View style={styles.footerButtonContainer}>
                                 <TouchableOpacity
                                     style={[styles.footerButton, { backgroundColor: primary.color }]}
@@ -643,7 +713,7 @@ const mapStateToProps = (state) => ({
     selectedAccountName: getSelectedAccountName(state),
     isSyncing: state.ui.isSyncing,
     seedIndex: state.wallet.seedIndex,
-    receiveAddress: state.wallet.receiveAddress,
+    receiveAddress: selectLatestAddressFromAccountFactory(state),
     isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
     isGettingSensitiveInfoToGenerateAddress: state.keychain.isGettingSensitiveInfo.receive.addressGeneration,
     theme: state.settings.theme,
