@@ -169,13 +169,9 @@ class SeedInput extends React.PureComponent {
             if (error.code === 'InvalidKey') {
                 generateAlert('error', t('unrecognisedPassword'), t('unrecognisedPasswordExplanation'));
             } else if (error.message === 'SeedNotFound') {
-                generateAlert(
-                    'error',
-                    'Seed not found in keyfile',
-                    'Incorrect seed format or no seed was found in the keyfile',
-                );
+                generateAlert('error', t('seedVault:noSeedFound'), t('seedVault:noSeedFoundExplanation'));
             } else {
-                generateAlert('error', 'Error opening keystore file', 'There was an error opening keystore file');
+                generateAlert('error', t('seedVault:seedFileError'), t('seedVault:seedFileErrorExplanation'));
             }
         }
     };
@@ -225,7 +221,7 @@ class SeedInput extends React.PureComponent {
     };
 
     render() {
-        const { seed, label, closeLabel } = this.props;
+        const { seed, label, closeLabel, t } = this.props;
         const { importBuffer, showScanner, hidden } = this.state;
 
         const checkSum = seed.length < MAX_SEED_LENGTH ? '< 81' : Electron.getChecksum(seed);
@@ -282,9 +278,9 @@ class SeedInput extends React.PureComponent {
                 {importBuffer && (
                     <Password
                         content={{
-                            title: 'Enter password',
-                            message: 'Enter password to open the keyfile',
-                            confirm: 'Open',
+                            title: t('enterPassword'),
+                            message: t('seedVault:enterPasswordExplanation'),
+                            confirm: t('seedVault:importSeedVault'),
                         }}
                         isOpen
                         onClose={() => this.setState({ importBuffer: null })}

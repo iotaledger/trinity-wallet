@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
+import { connect } from 'react-redux';
 import classNames from 'classnames';
 
 import Icon from 'ui/components/Icon';
@@ -13,6 +15,11 @@ class Dropzone extends React.Component {
     static propTypes = {
         /** Succesfull file drop callback */
         onDrop: PropTypes.func.isRequired,
+        /** Translation helper
+         * @param {string} translationString - locale string identifier to be translated
+         * @ignore
+         */
+        t: PropTypes.func.isRequired,
     };
 
     constructor(props, context) {
@@ -111,6 +118,7 @@ class Dropzone extends React.Component {
     };
 
     render() {
+        const { t } = this.props;
         const inputAttributes = {
             type: 'file',
             style: { display: 'none' },
@@ -124,15 +132,15 @@ class Dropzone extends React.Component {
         return (
             <React.Fragment>
                 <h5 onClick={this.open}>
-                    <Icon icon="password" size={12} /> import keyfile
+                    <Icon icon="password" size={12} /> {t('seedVault:importSeedVault')}
                 </h5>
                 <input {...inputAttributes} />
                 <div className={classNames(css.dropzone, this.state.isDragActive && css.active)}>
-                    <h1>Drop the keyfile here</h1>
+                    <h1>{t('seedVault:dropSeedVaultHere')}</h1>
                 </div>
             </React.Fragment>
         );
     }
 }
 
-export default Dropzone;
+export default connect()(translate()(Dropzone));
