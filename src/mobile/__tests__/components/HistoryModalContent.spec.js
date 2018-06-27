@@ -29,7 +29,6 @@ const getProps = (overrides) =>
 
                 return translations[arg] ? translations[arg] : 'foo';
             },
-            rebroadcast: noop,
             promote: noop,
             disableWhen: false,
             status: 'Receive',
@@ -58,7 +57,6 @@ const getProps = (overrides) =>
                 primaryColor: '#ffffff',
                 primaryBody: '#000000',
             },
-            isBroadcastingBundle: false,
             currentlyPromotingBundleHash: 'foo',
             hasFailedAutopromotion: false,
             isFailedTransaction: noop,
@@ -115,16 +113,8 @@ describe('Testing HistoryModalContent component', () => {
             expect(HistoryModalContent.propTypes.bundle).toEqual(PropTypes.string.isRequired);
         });
 
-        it('should require a rebroadcast function as a prop', () => {
-            expect(HistoryModalContent.propTypes.rebroadcast).toEqual(PropTypes.func.isRequired);
-        });
-
         it('should require a disableWhen boolean as a prop', () => {
             expect(HistoryModalContent.propTypes.disableWhen).toEqual(PropTypes.bool.isRequired);
-        });
-
-        it('should require a isBroadcastingBundle boolean as a prop', () => {
-            expect(HistoryModalContent.propTypes.isBroadcastingBundle).toEqual(PropTypes.bool.isRequired);
         });
 
         it('should require a currentlyPromotingBundleHash string as a prop', () => {

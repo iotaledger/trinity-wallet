@@ -112,7 +112,6 @@ const account = (
                 seedCount: state.seedCount - 1,
             };
         case ActionTypes.SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION:
-        case ActionTypes.SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST:
         case ActionTypes.UPDATE_ACCOUNT_AFTER_REATTACHMENT:
         case ActionTypes.UPDATE_ACCOUNT_INFO_AFTER_SPENDING:
         case PollingActionTypes.ACCOUNT_INFO_FETCH_SUCCESS:

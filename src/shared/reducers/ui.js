@@ -9,7 +9,6 @@ const initialState = {
     isGeneratingReceiveAddress: false,
     isFetchingCurrencyData: false,
     hasErrorFetchingCurrencyData: false,
-    isBroadcastingBundle: false,
     isPromotingTransaction: false,
     isTransitioning: false,
     isAttachingToTangle: false,
@@ -102,17 +101,6 @@ export default (state = initialState, action) => {
                 ...state,
                 sendDenomination: action.payload,
             };
-        case TransfersActionTypes.BROADCAST_BUNDLE_REQUEST:
-            return {
-                ...state,
-                isBroadcastingBundle: true,
-            };
-        case TransfersActionTypes.BROADCAST_BUNDLE_SUCCESS:
-        case TransfersActionTypes.BROADCAST_BUNDLE_ERROR:
-            return {
-                ...state,
-                isBroadcastingBundle: false,
-            };
         case TransfersActionTypes.PROMOTE_TRANSACTION_REQUEST:
             return {
                 ...state,
@@ -166,7 +154,6 @@ export default (state = initialState, action) => {
                 isGeneratingReceiveAddress: false,
                 isFetchingCurrencyData: false,
                 hasErrorFetchingCurrencyData: false,
-                isBroadcastingBundle: false,
                 isPromotingTransaction: false,
                 isTransitioning: false,
                 isAttachingToTangle: false,

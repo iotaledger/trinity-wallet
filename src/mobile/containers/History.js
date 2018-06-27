@@ -11,11 +11,7 @@ import { StyleSheet, View, TouchableWithoutFeedback, RefreshControl, ActivityInd
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import {
-    broadcastBundle,
-    promoteTransaction,
-    retryFailedTransaction,
-} from 'iota-wallet-shared-modules/actions/transfers';
+import { promoteTransaction, retryFailedTransaction } from 'iota-wallet-shared-modules/actions/transfers';
 import {
     getTransfersForSelectedAccount,
     getSelectedAccountName,
@@ -93,10 +89,6 @@ class History extends Component {
          * @param {string} translationString - locale string identifier to be translated
          */
         t: PropTypes.func.isRequired,
-        /** Rebroadcast bundle
-         * @param {string} bundle - bundle hash
-         */
-        broadcastBundle: PropTypes.func.isRequired,
         /** Promotes bundle
          * @param {string} bundle - bundle hash
          */
@@ -109,8 +101,6 @@ class History extends Component {
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
         /** Determines if wallet is doing snapshot transition */
         isTransitioning: PropTypes.bool.isRequired,
-        /** Determines if wallet is broadcasting bundle */
-        isBroadcastingBundle: PropTypes.bool.isRequired,
         /** Determines if wallet is manually promoting transaction */
         isPromotingTransaction: PropTypes.bool.isRequired,
         /** Currently selected mode for wallet */
@@ -258,7 +248,6 @@ class History extends Component {
                         modalProps: assign({}, modalProps, {
                             retryFailedTransaction: (bundle) =>
                                 this.props.retryFailedTransaction(selectedAccountName, bundle, proofOfWorkFunction),
-                            rebroadcast: (bundle) => this.props.broadcastBundle(bundle, selectedAccountName),
                             promote: (bundle) =>
                                 this.props.promoteTransaction(bundle, selectedAccountName, proofOfWorkFunction),
                             onPress: this.props.toggleModalActivity,
@@ -352,7 +341,6 @@ class History extends Component {
             isModalActive,
             isAutoPromoting,
             isPromotingTransaction,
-            isBroadcastingBundle,
             currentlyPromotingBundleHash,
             isRetryingFailedTransaction,
             failedBundleHashes,
@@ -382,13 +370,7 @@ class History extends Component {
                         >
                             <HistoryModalContent
                                 {...modalProps}
-                                disableWhen={
-                                    isAutoPromoting ||
-                                    isPromotingTransaction ||
-                                    isBroadcastingBundle ||
-                                    isRetryingFailedTransaction
-                                }
-                                isBroadcastingBundle={isBroadcastingBundle}
+                                disableWhen={isAutoPromoting || isPromotingTransaction || isRetryingFailedTransaction}
                                 isRetryingFailedTransaction={isRetryingFailedTransaction}
                                 currentlyPromotingBundleHash={currentlyPromotingBundleHash}
                                 isFailedTransaction={(bundle) => has(failedBundleHashes, bundle)}
@@ -411,7 +393,6 @@ const mapStateToProps = (state) => ({
     isSendingTransfer: state.ui.isSendingTransfer,
     isSyncing: state.ui.isSyncing,
     isTransitioning: state.ui.isTransitioning,
-    isBroadcastingBundle: state.ui.isBroadcastingBundle,
     isPromotingTransaction: state.ui.isPromotingTransaction,
     isAutoPromoting: state.polling.isAutoPromoting,
     isModalActive: state.ui.isModalActive,
@@ -422,7 +403,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     generateAlert,
-    broadcastBundle,
     promoteTransaction,
     toggleModalActivity,
     retryFailedTransaction,
