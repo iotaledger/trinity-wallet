@@ -2,7 +2,7 @@ import takeRight from 'lodash/takeRight';
 import { iota } from '../libs/iota';
 import { updateAddresses, updateAccountAfterTransition } from '../actions/accounts';
 import { generateAlert, generateTransitionErrorAlert } from '../actions/alerts';
-import { getNewAddress, formatAddressData, syncAddresses, getLatestAddress } from '../libs/iota/addresses';
+import { getNewAddress, formatAddressData, syncAddresses } from '../libs/iota/addresses';
 import { DEFAULT_MIN_WEIGHT_MAGNITUDE, DEFAULT_DEPTH } from '../config';
 import i18next from '../i18next';
 import { performPow } from '../libs/iota/transfers';
@@ -47,11 +47,6 @@ export const generateNewAddressSuccess = (payload) => ({
 
 export const generateNewAddressError = () => ({
     type: ActionTypes.GENERATE_NEW_ADDRESS_ERROR,
-});
-
-export const setReceiveAddress = (payload) => ({
-    type: ActionTypes.SET_RECEIVE_ADDRESS,
-    payload,
 });
 
 export const setAccountName = (payload) => ({
@@ -146,9 +141,8 @@ export const generateNewAddress = (seed, accountName, existingAccountData, genFn
         dispatch(generateNewAddressRequest());
         return syncAddresses(seed, existingAccountData.addresses, genFn, true)
             .then((latestAddressData) => {
-                const receiveAddress = iota.utils.addChecksum(getLatestAddress(latestAddressData));
                 dispatch(updateAddresses(accountName, latestAddressData));
-                dispatch(generateNewAddressSuccess(receiveAddress));
+                dispatch(generateNewAddressSuccess());
             })
             .catch(() => dispatch(generateNewAddressError()));
     };
