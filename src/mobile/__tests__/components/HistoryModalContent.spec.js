@@ -35,6 +35,7 @@ const getProps = (overrides) =>
             status: 'Receive',
             confirmation: 'Received',
             value: 200,
+            fullValue: 200,
             unit: 'i',
             time: Date.now(),
             message: 'Pink floyd',
@@ -92,6 +93,10 @@ describe('Testing HistoryModalContent component', () => {
 
         it('should require a value number as a prop', () => {
             expect(HistoryModalContent.propTypes.value).toEqual(PropTypes.number.isRequired);
+        });
+
+        it('should require a fullValue number as a prop', () => {
+            expect(HistoryModalContent.propTypes.fullValue).toEqual(PropTypes.number.isRequired);
         });
 
         it('should require a unit string as a prop', () => {
@@ -156,7 +161,7 @@ describe('Testing HistoryModalContent component', () => {
             ).toEqual('Receive');
         });
 
-        it('should return value prop as third child to first Text component', () => {
+        it('should return fullValue prop as third child to first Text component', () => {
             const props = getProps();
 
             const wrapper = shallow(<HistoryModalContent {...props} />);
