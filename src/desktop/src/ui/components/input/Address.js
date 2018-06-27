@@ -11,7 +11,7 @@ import css from './input.scss';
 /**
  * Address input component
  */
-export default class AddressInput extends React.PureComponent {
+export default class Address extends React.PureComponent {
     static propTypes = {
         /** Current address value */
         address: PropTypes.string.isRequired,
