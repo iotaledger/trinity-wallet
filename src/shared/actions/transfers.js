@@ -4,11 +4,9 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 import filter from 'lodash/filter';
 import some from 'lodash/some';
-import sample from 'lodash/sample';
 import size from 'lodash/size';
 import { iota } from '../libs/iota';
 import {
-    broadcastBundleAsync,
     replayBundleAsync,
     promoteTransactionAsync,
     prepareTransfersAsync,
@@ -45,7 +43,6 @@ import {
     updateAccountAfterReattachment,
     updateAccountInfoAfterSpending,
     syncAccountBeforeManualPromotion,
-    syncAccountBeforeManualRebroadcast,
     markBundleBroadcastStatusComplete,
     markBundleBroadcastStatusPending,
 } from './accounts';
@@ -65,9 +62,6 @@ import i18next from '../i18next.js';
 import Errors from '../libs/errors';
 
 export const ActionTypes = {
-    BROADCAST_BUNDLE_REQUEST: 'IOTA/TRANSFERS/BROADCAST_BUNDLE_REQUEST',
-    BROADCAST_BUNDLE_SUCCESS: 'IOTA/TRANSFERS/BROADCAST_BUNDLE_SUCCESS',
-    BROADCAST_BUNDLE_ERROR: 'IOTA/TRANSFERS/BROADCAST_BUNDLE_ERROR',
     PROMOTE_TRANSACTION_REQUEST: 'IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST',
     PROMOTE_TRANSACTION_SUCCESS: 'IOTA/TRANSFERS/PROMOTE_TRANSACTION_SUCCESS',
     PROMOTE_TRANSACTION_ERROR: 'IOTA/TRANSFERS/PROMOTE_TRANSACTION_ERROR',
@@ -78,18 +72,6 @@ export const ActionTypes = {
     RETRY_FAILED_TRANSACTION_SUCCESS: 'IOTA/TRANSFERS/RETRY_FAILED_TRANSACTION_SUCCESS',
     RETRY_FAILED_TRANSACTION_ERROR: 'IOTA/TRANSFERS/RETRY_FAILED_TRANSACTION_ERROR',
 };
-
-const broadcastBundleRequest = () => ({
-    type: ActionTypes.BROADCAST_BUNDLE_REQUEST,
-});
-
-const broadcastBundleSuccess = () => ({
-    type: ActionTypes.BROADCAST_BUNDLE_SUCCESS,
-});
-
-const broadcastBundleError = () => ({
-    type: ActionTypes.BROADCAST_BUNDLE_ERROR,
-});
 
 const promoteTransactionRequest = (payload) => ({
     type: ActionTypes.PROMOTE_TRANSACTION_REQUEST,
@@ -140,76 +122,6 @@ export const completeTransfer = (payload) => {
         dispatch(clearSendFields());
         dispatch(sendTransferSuccess(payload));
     };
-};
-
-export const broadcastBundle = (bundleHash, accountName) => (dispatch, getState) => {
-    dispatch(broadcastBundleRequest());
-
-    let accountState = null;
-    let chainBrokenInternally = false;
-
-    return syncAccount(selectedAccountStateFactory(accountName)(getState()))
-        .then((newAccountState) => {
-            accountState = newAccountState;
-
-            dispatch(syncAccountBeforeManualRebroadcast(accountState));
-
-            const transaction = accountState.transfers[bundleHash];
-
-            if (transaction.persistence) {
-                chainBrokenInternally = true;
-                throw new Error(Errors.TRANSACTION_ALREADY_CONFIRMED);
-            }
-
-            return isStillAValidTransaction(transaction, accountState.addresses);
-        })
-        .then((isValid) => {
-            if (!isValid) {
-                chainBrokenInternally = true;
-                throw new Error(Errors.BUNDLE_NO_LONGER_VALID);
-            }
-
-            const transaction = accountState.transfers[bundleHash];
-            const tailTransaction = sample(transaction.tailTransactions);
-
-            return broadcastBundleAsync(tailTransaction.hash);
-        })
-        .then((hash) => {
-            dispatch(
-                generateAlert(
-                    'success',
-                    i18next.t('global:rebroadcasted'),
-                    i18next.t('global:rebroadcastedExplanation', { hash }),
-                ),
-            );
-
-            return dispatch(broadcastBundleSuccess());
-        })
-        .catch((err) => {
-            if (err.message === Errors.BUNDLE_NO_LONGER_VALID && chainBrokenInternally) {
-                dispatch(
-                    generateAlert('error', i18next.t('global:rebroadcastError'), i18next.t('global:noLongerValid')),
-                );
-            } else if (err.message === Errors.TRANSACTION_ALREADY_CONFIRMED && chainBrokenInternally) {
-                dispatch(
-                    generateAlert(
-                        'success',
-                        i18next.t('global:transactionAlreadyConfirmed'),
-                        i18next.t('global:transactionAlreadyConfirmedExplanation'),
-                    ),
-                );
-            } else {
-                dispatch(
-                    generateAlert(
-                        'error',
-                        i18next.t('global:rebroadcastError'),
-                        i18next.t('global:rebroadcastErrorExplanation'),
-                    ),
-                );
-            }
-
-            return dispatch(broadcastBundleError());
-        });
 };
 
 /**

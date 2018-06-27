@@ -8,7 +8,6 @@ describe('Reducer: ui', () => {
                 isGeneratingReceiveAddress: false,
                 isFetchingCurrencyData: false,
                 hasErrorFetchingCurrencyData: false,
-                isBroadcastingBundle: false,
                 isPromotingTransaction: false,
                 isTransitioning: false,
                 isAttachingToTangle: false,
@@ -341,63 +340,6 @@ describe('Reducer: ui', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 sendDenomination: 'Mi',
-            };
-
-            expect(newState).to.eql(expectedState);
-        });
-    });
-
-    describe('IOTA/TRANSFERS/BROADCAST_BUNDLE_REQUEST', () => {
-        it('should set "isBroadcastingBundle" state prop to true', () => {
-            const initialState = {
-                isBroadcastingBundle: false,
-            };
-
-            const action = {
-                type: 'IOTA/TRANSFERS/BROADCAST_BUNDLE_REQUEST',
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                isBroadcastingBundle: true,
-            };
-
-            expect(newState).to.eql(expectedState);
-        });
-    });
-
-    describe('IOTA/TRANSFERS/BROADCAST_BUNDLE_SUCCESS', () => {
-        it('should set "isBroadcastingBundle" state prop to false', () => {
-            const initialState = {
-                isBroadcastingBundle: true,
-            };
-
-            const action = {
-                type: 'IOTA/TRANSFERS/BROADCAST_BUNDLE_SUCCESS',
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                isBroadcastingBundle: false,
-            };
-
-            expect(newState).to.eql(expectedState);
-        });
-    });
-
-    describe('IOTA/TRANSFERS/BROADCAST_BUNDLE_ERROR', () => {
-        it('should set "isBroadcastingBundle" state prop to true', () => {
-            const initialState = {
-                isBroadcastingBundle: true,
-            };
-
-            const action = {
-                type: 'IOTA/TRANSFERS/BROADCAST_BUNDLE_ERROR',
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                isBroadcastingBundle: false,
             };
 
             expect(newState).to.eql(expectedState);

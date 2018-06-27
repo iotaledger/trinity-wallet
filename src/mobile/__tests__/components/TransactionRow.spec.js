@@ -22,7 +22,6 @@ const getProps = (overrides) =>
 
                 return translations[arg] ? translations[arg] : 'foo';
             },
-            rebroadcast: noop,
             promote: noop,
             confirmation: 'Received',
             icon: 'plus',
