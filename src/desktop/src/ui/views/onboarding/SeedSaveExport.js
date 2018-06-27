@@ -63,10 +63,10 @@ class SeedExport extends PureComponent {
 
         if (error) {
             if (error !== 'Export cancelled') {
-                return generateAlert('error', t('Error saving export file'), t('Error saving export file'));
+                return generateAlert('error', t('seedVault:exportFail'), t('seedVault:exportFailExplanation'));
             }
         } else {
-            generateAlert('success', 'Keyfile saved!', 'Lorem ipsum dolor sit amet!');
+            generateAlert('success', t('seedVault:exportSuccess'), t('seedVault:exportSuccessExplanation'));
         }
 
         Electron.garbageCollect();
@@ -82,10 +82,10 @@ class SeedExport extends PureComponent {
         return (
             <form onSubmit={(e) => this.exportSeed(e)}>
                 <section>
-                    <h1>Export seed keyfile</h1>
-                    <p>Whats a keyfile. What to do with it. How to do that.</p>
+                    <h1>{t('seedVault:exportSeedVault')}</h1>
+                    <p>{t('seedVault:seedVaultExplanation')}</p>
                     <p>
-                        <strong>Warning</strong>! Lorem ipsum dolor sit amet!
+                        <strong>{t('seedVault:seedVaultWarning')}</strong>
                     </p>
                     <PasswordInput
                         focus
@@ -116,7 +116,7 @@ class SeedExport extends PureComponent {
                         {t('goBack')}
                     </Button>
                     <Button type="submit" variant="primary" className="square">
-                        Export
+                        {t('export')}
                     </Button>
                 </footer>
             </form>
