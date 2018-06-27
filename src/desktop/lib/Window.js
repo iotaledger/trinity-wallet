@@ -289,8 +289,10 @@ document.addEventListener('drop', (e) => e.preventDefault());
 
 // Disable eval
 // eslint-disable-next-line
+/* TODO: Reenable for production code only
 window.eval = global.eval = function() {
     throw new Error('Eval support disabled');
 };
+*/
 
 global.Electron = Electron;
