@@ -151,6 +151,8 @@ export default class HistoryModalContent extends PureComponent {
         mode: PropTypes.oneOf(['Expert', 'Standard']).isRequired,
         /** Transaction value */
         value: PropTypes.number.isRequired,
+        /** Transaction value without rounding */
+        fullValue: PropTypes.number.isRequired,
         /** Transaction unit */
         unit: PropTypes.string.isRequired,
         /** Transaction time */
@@ -304,7 +306,7 @@ export default class HistoryModalContent extends PureComponent {
         const {
             status,
             onPress,
-            value,
+            fullValue,
             unit,
             confirmation,
             confirmationBool,
@@ -335,7 +337,7 @@ export default class HistoryModalContent extends PureComponent {
                                 <View style={{ flex: 1 }}>
                                     <View style={styles.statusWrapper}>
                                         <Text style={[styles.statusText, { color: style.titleColor }]}>
-                                            {status} {value} {unit}
+                                            {status} {fullValue} {unit}
                                         </Text>
                                         <View style={styles.confirmationWrapper}>
                                             <Text style={[styles.confirmation, { color: style.titleColor }]}>
