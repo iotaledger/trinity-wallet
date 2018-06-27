@@ -241,6 +241,7 @@ class History extends Component {
                 confirmation: computeConfirmation(outputs, persistence, incoming, value),
                 confirmationBool: persistence,
                 value,
+                fullValue: formatValue(transferValue),
                 unit: formatUnit(transferValue),
                 time: timestamp,
                 message,
