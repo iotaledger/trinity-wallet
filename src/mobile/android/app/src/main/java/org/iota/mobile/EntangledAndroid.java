@@ -6,9 +6,15 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.WritableNativeArray;
 
+import com.facebook.react.bridge.GuardedResultAsyncTask;
+import com.facebook.react.bridge.ReactContext;
+
 public class EntangledAndroid extends ReactContextBaseJavaModule {
+    private final ReactContext mContext;
+
     public EntangledAndroid(ReactApplicationContext reactContext) {
         super(reactContext);
+        mContext = reactContext;
     }
 
     @Override
@@ -45,8 +51,20 @@ public class EntangledAndroid extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void doPoW(String trytes, int mwm, Promise promise) {
-        String nonce = Interface.doPOW(trytes, mwm);
-        promise.resolve(nonce);
+    public void doPoW(final String trytes, final int mwm, final Promise promise) {
+        new GuardedResultAsyncTask<String>(mContext) {
+            @Override
+            protected String doInBackgroundGuarded() {
+                String nonce = Interface.doPOW(trytes, mwm);
+                return nonce;
+            }
+
+            @Override
+            protected void onPostExecuteGuarded(String result) {
+                promise.resolve(result);
+            }
+
+        }.execute();
+
     }
 }
