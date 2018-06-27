@@ -469,7 +469,7 @@
         "receive": "RICEVI",
         "empty": "Vuota",
         "retrying": "NUOVO TENTATIVO IN CORSO",
-        "yesterday": "Yesterday"
+        "yesterday": "Ieri"
     },
     "accountManagement": {
         "viewSeed": "Visualizza seme",
