@@ -33,8 +33,6 @@ class List extends React.PureComponent {
         isLoading: PropTypes.bool.isRequired,
         /** Bundle hash for the transaction that is currently being promoted */
         currentlyPromotingBundleHash: PropTypes.string.isRequired,
-        /** Determines if wallet is broadcasting bundle */
-        isBroadcastingBundle: PropTypes.bool.isRequired,
         /** Hide empty transactions flag */
         hideEmptyTransactions: PropTypes.bool.isRequired,
         /** Should update history */
@@ -48,10 +46,6 @@ class List extends React.PureComponent {
          * @param {func} powFn - local Proof of Work function
          */
         promoteTransaction: PropTypes.func.isRequired,
-        /** Broadcast bundle
-         * @param {string} bundle - bundle hash
-         */
-        broadcastBundle: PropTypes.func.isRequired,
         /** Set active history item
          * @param {Number} index - Current item index
          */
@@ -135,17 +129,11 @@ class List extends React.PureComponent {
         this.props.promoteTransaction(bundle, powFn);
     }
 
-    broadcastBundle(e, bundle) {
-        e.stopPropagation();
-        this.props.broadcastBundle(bundle);
-    }
-
     render() {
         const {
             isLoading,
             isBusy,
             currentlyPromotingBundleHash,
-            isBroadcastingBundle,
             mode,
             hideEmptyTransactions,
             toggleEmptyTransactions,
@@ -316,9 +304,7 @@ class List extends React.PureComponent {
                                     <small>
                                         {!activeTransfer.persistence
                                             ? t('pending')
-                                            : activeTransfer.incoming
-                                                ? t('received')
-                                                : t('sent')}
+                                            : activeTransfer.incoming ? t('received') : t('sent')}
                                         <em>{formatModalTime(convertUnixTimeToJSDate(activeTransfer.timestamp))}</em>
                                     </small>
                                 </p>
@@ -350,16 +336,6 @@ class List extends React.PureComponent {
                                         >
                                             {t('retry')}
                                         </Button>
-                                        {mode === 'Expert' && (
-                                            <Button
-                                                variant="secondary"
-                                                className="small"
-                                                loading={isBroadcastingBundle}
-                                                onClick={(e) => this.broadcastBundle(e, activeTransfer.bundle)}
-                                            >
-                                                {t('rebroadcast')}
-                                            </Button>
-                                        )}
                                     </nav>
                                 )}
                             </div>
