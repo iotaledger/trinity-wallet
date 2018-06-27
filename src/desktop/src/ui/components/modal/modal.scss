@@ -107,6 +107,11 @@ $footer: 70px;
 
         p {
             word-wrap: break-word;
+            margin-bottom: 40px;
+        }
+
+        p + p {
+            margin-top: -28px;
         }
 
         form {
@@ -114,6 +119,7 @@ $footer: 70px;
             padding: 0px;
             border: none;
             max-width: 580px;
+            width: calc(100vw - 40px);
         }
 
         @media (max-width: 960px) {

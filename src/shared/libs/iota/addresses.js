@@ -598,7 +598,17 @@ export const isAnyAddressSpent = (transactionObjects) => {
 export const getNewAddress = (seed, options, genFn = null, callback) => {
     // If desktop, use iota lib js API call
     if (genFn === null) {
-        return iota.api.getNewAddress(seed, options, callback);
+        genFn = (seed, index, security, total) => {
+            return new Promise((resolve, reject) => {
+                iota.api.getNewAddress(seed, { index, security, total }, (error, addresses) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        resolve(addresses);
+                    }
+                });
+            });
+        };
     }
 
     // If no options provided, switch arguments
