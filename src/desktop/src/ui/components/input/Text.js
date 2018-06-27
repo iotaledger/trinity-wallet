@@ -5,7 +5,7 @@ import css from './input.scss';
 /**
  * Single line input component
  */
-export default class TextInput extends React.PureComponent {
+export default class Text extends React.PureComponent {
     static propTypes = {
         /** Current input value */
         value: PropTypes.string.isRequired,
