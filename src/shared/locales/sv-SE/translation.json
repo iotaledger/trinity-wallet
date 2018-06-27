@@ -469,7 +469,7 @@
         "receive": "TA EMOT",
         "empty": "Tomt",
         "retrying": "FÖRSÖKER IGEN",
-        "yesterday": "Yesterday"
+        "yesterday": "Igår"
     },
     "accountManagement": {
         "viewSeed": "Visa seed",
