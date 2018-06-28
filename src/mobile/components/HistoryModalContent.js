@@ -16,7 +16,7 @@ import { formatModalTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-mod
 import StatefulDropdownAlert from '../containers/StatefulDropdownAlert';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
-import { isAndroid } from '../utils/device';
+import { isAndroid, locale } from '../utils/device';
 import CtaButton from '../components/CtaButton';
 import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
@@ -50,9 +50,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
         fontSize: GENERAL.fontSize2,
-    },
-    valueText: {
-        marginLeft: 2,
     },
     confirmationWrapper: {
         flexDirection: 'row',
@@ -112,9 +109,6 @@ const styles = StyleSheet.create({
         fontFamily: 'SourceSansPro-Bold',
         fontSize: GENERAL.fontSize3,
         textAlign: 'right',
-    },
-    buttonWhenDisabled: {
-        opacity: 0.4,
     },
     buttonsContainer: {
         flex: 1,
@@ -348,7 +342,7 @@ export default class HistoryModalContent extends PureComponent {
                                                 {confirmation}
                                             </Text>
                                             <Text style={[styles.timestamp, style.defaultTextColor]}>
-                                                {formatModalTime(convertUnixTimeToJSDate(time))}
+                                                {formatModalTime(locale, convertUnixTimeToJSDate(time))}
                                             </Text>
                                         </View>
                                     </View>

@@ -6,6 +6,7 @@ import { formatTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/
 import spinner from 'iota-wallet-shared-modules/animations/spinner.json';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
+import { locale } from '../utils/device';
 import { Icon } from '../theme/icons';
 
 const styles = StyleSheet.create({
@@ -74,11 +75,6 @@ const styles = StyleSheet.create({
     animation: {
         width: width / 14,
         height: width / 17,
-    },
-    icon: {
-        fontSize: width / 13,
-        fontFamily: 'SourceSansPro-Light',
-        backgroundColor: 'transparent',
     },
     iconBorder: {
         borderRadius: width / 30,
@@ -190,7 +186,7 @@ export default class TransactionRow extends PureComponent {
                                     </View>
                                     <View style={styles.timestampWrapper}>
                                         <Text style={[styles.timestamp, style.rowTextColor]}>
-                                            {formatTime(convertUnixTimeToJSDate(time))}
+                                            {formatTime(locale, convertUnixTimeToJSDate(time))}
                                         </Text>
                                     </View>
                                 </View>

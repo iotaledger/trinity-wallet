@@ -51,11 +51,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width,
     },
-    textfieldsContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        flex: 1,
-    },
     bottomContainer: {
         flex: 0.5,
         alignItems: 'center',

@@ -168,11 +168,8 @@ const replayBundleAsync = (hash, powFn = null, depth = 3, minWeightMagnitude = 1
 
             return getTransactionsToApproveAsync();
         })
-        .then(
-            ({ trunkTransaction, branchTransaction }) =>
-                shouldOffloadPow
-                    ? attachToTangleAsync(trunkTransaction, branchTransaction, cached.trytes)
-                    : performPow(powFn, cached.trytes, trunkTransaction, branchTransaction),
+        .then(({ trunkTransaction, branchTransaction }) =>
+            performPow(powFn, cached.trytes, trunkTransaction, branchTransaction),
         )
         .then(({ trytes, transactionObjects }) => {
             cached.trytes = trytes;
@@ -223,23 +220,56 @@ const broadcastBundleAsync = (tail) => {
     });
 };
 
-const sendTransferAsync = (seed, depth, minWeightMagnitude, transfers, options = null) => {
-    // https://github.com/iotaledger/iota.lib.js/blob/e60c728c836cb37f3d6fb8b0eff522d08b745caa/lib/api/api.js#L1058
-    let args = [seed, depth, minWeightMagnitude, transfers];
+const sendTransferAsync = (
+    seed,
+    transfers,
+    powFn = null,
+    options = null,
+    depth = DEFAULT_DEPTH,
+    minWeightMagnitude = DEFAULT_MIN_WEIGHT_MAGNITUDE,
+) => {
+    const shouldOffloadPow = isNull(powFn);
 
-    if (options) {
-        args = [...args, options];
+    if (shouldOffloadPow) {
+        // https://github.com/iotaledger/iota.lib.js/blob/e60c728c836cb37f3d6fb8b0eff522d08b745caa/lib/api/api.js#L1058
+        let args = [seed, depth, minWeightMagnitude, transfers];
+
+        if (options) {
+            args = [...args, options];
+        }
+
+        return new Promise((resolve, reject) => {
+            iota.api.sendTransfer(...args, (err, newTransfer) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(newTransfer);
+                }
+            });
+        });
     }
 
-    return new Promise((resolve, reject) => {
-        iota.api.sendTransfer(...args, (err, newTransfer) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(newTransfer);
-            }
-        });
-    });
+    const cached = {
+        trytes: [],
+        transactionObjects: [],
+    };
+
+    return prepareTransfersAsync(seed, transfers)
+        .then((trytes) => {
+            cached.trytes = trytes;
+
+            return getTransactionsToApproveAsync();
+        })
+        .then(({ trunkTransaction, branchTransaction }) =>
+            performPow(powFn, cached.trytes, trunkTransaction, branchTransaction),
+        )
+        .then(({ trytes, transactionObjects }) => {
+            cached.trytes = trytes;
+            cached.transactionObjects = transactionObjects;
+
+            return storeAndBroadcastAsync(cached.trytes);
+        })
+        .then(() => cached.transactionObjects);
 };
 
 const getTransactionsToApproveAsync = (reference = null, depth = DEFAULT_DEPTH) => {

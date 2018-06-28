@@ -47,15 +47,6 @@ const styles = StyleSheet.create({
         paddingBottom: height / 10,
         backgroundColor: 'transparent',
     },
-    questionText: {
-        fontFamily: Fonts.secondary,
-        fontSize: GENERAL.fontSize4,
-        textAlign: 'center',
-        paddingLeft: width / 7,
-        paddingRight: width / 7,
-        paddingTop: height / 25,
-        backgroundColor: 'transparent',
-    },
 });
 
 /** Disable Two Factor Authentication component */

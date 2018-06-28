@@ -14,9 +14,6 @@ const chartWidth = width;
 const chartHeight = height * 0.36;
 
 const styles = StyleSheet.create({
-    buttonContainer: {
-        flex: 1,
-    },
     button: {
         flex: 1,
         flexDirection: 'row',
