@@ -623,8 +623,8 @@
         "enterPasswordExplanation": "シード金庫を開くためにパスワードを入力してください",
         "noSeedFound": "シード金庫に有効なシードが含まれていません",
         "noSeedFoundExplanation": "シード金庫は空か、無効な形式のシードが含まれています。",
-        "seedFileError": "Failed to open SeedVault",
-        "seedFileErrorExplanation": "There was a problem opening the SeedVault. If you selected the correct file then it may be corrupted."
+        "seedFileError": "イオタ金庫を開けませんでした",
+        "seedFileErrorExplanation": "シード金庫を開く際に問題が発生しました。 正しいファイルを選択している場合、ファイルが破損している可能性があります。"
     },
     "chart": {
         "mcap": "時価総額",
