@@ -289,9 +289,4 @@ const mapDispatchToProps = {
     updateTheme,
 };
 
-export default withRouter(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(translate()(withAutoNodeSwitching(App))),
-);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(translate()(withAutoNodeSwitching(App))));

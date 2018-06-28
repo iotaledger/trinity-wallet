@@ -177,7 +177,4 @@ const mapDispatchToProps = {
     increaseSeedCount,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(translate()(AccountPassword));
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(AccountPassword));

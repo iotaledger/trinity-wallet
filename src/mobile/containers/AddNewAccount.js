@@ -35,11 +35,6 @@ const styles = StyleSheet.create({
         width,
         paddingHorizontal: width / 15,
     },
-    backIcon: {
-        width: width / 28,
-        height: width / 28,
-        marginRight: width / 20,
-    },
     itemContainer: {
         flex: 1,
         justifyContent: 'center',

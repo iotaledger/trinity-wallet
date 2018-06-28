@@ -151,7 +151,8 @@
         "isYourBalanceCorrect": "您的余额是正确的吗？",
         "ifYourBalanceIsNotCorrect": "如果您的余额不正确，很可能您使用的是快照前的种子。",
         "headToAdvancedSettingsForTransition": "请去高级设置中设置，并执行快照转换。",
-        "usingTrinityWalletWithKeePass": "与Keepass2Android 一同使用 Trinity钱包。"
+        "usingTrinityWalletWithKeePass": "与Keepass2Android 一同使用 Trinity钱包。",
+        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "种子包含无效字符",
@@ -223,6 +224,7 @@
         "invalidCharacters": "种子包含无效字符",
         "invalidCharactersExplanation": "种子只能由大写A-Z字母和数字9组成。您的种子包含无效字符。请再试一遍。",
         "seedTooShort": "种子太短",
+        "seedTooLong": "Seed is too long",
         "seedTooShortExplanation": "种子长度必须为{{maxLength}} 。您的种子当前为{{currentLength}} 个字符。请重试。",
         "seedExplanation": "种子的长度应该有{{maxLength}} 个字符，包含大写字母 A - Z 或者数字9。您不能使用超过 {{maxLength}} 个字符。",
         "neverShare": "永远不要与任何人分享你的种子"
@@ -291,7 +293,9 @@
         "message": "可选消息",
         "removeMessage": "移除消息",
         "noAddresses": "无地址",
-        "spent": "支出"
+        "spent": "支出",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
     },
     "saveYourSeed": {
         "saveYourSeed": "备份您的种子",
@@ -300,8 +304,6 @@
         "leastSecure": "最低安全的",
         "paperWallet": "纸钱包",
         "writeYourSeedDown": "写下您的种子",
-        "printYourSeed": "打印您的种子",
-        "digitalCopy": "数字备份",
         "seedClearedExplanation": "为了安全，已从剪贴板中清除掉了该种子。",
         "iHaveBackedUpMySeed": "我已经保存了我的种子",
         "letsWriteDownYourSeed": "让我们记下您的种子",
@@ -348,7 +350,8 @@
         "sendMax": "全部发送",
         "totalTime": "总时间",
         "addressPasteDetected": "检测到地址粘贴",
-        "addressPasteExplanation": "看起来你已经粘贴了地址。请确保该地址与您想要发送的地址是一致的。"
+        "addressPasteExplanation": "看起来你已经粘贴了地址。请确保该地址与您想要发送的地址是一致的。",
+        "invalid": "INVALID"
     },
     "setPassword": {
         "choosePassword": "选择新的密码",
@@ -463,7 +466,10 @@
         "messageCopied": "消息已复制",
         "messageCopiedExplanation": "消息已经被复制到剪贴板中了。",
         "send": "发送",
-        "receive": "接收"
+        "receive": "接收",
+        "empty": "Empty",
+        "retrying": "RETRYING",
+        "yesterday": "Yesterday"
     },
     "accountManagement": {
         "viewSeed": "查看种子",
@@ -502,7 +508,8 @@
         "frame": "框架"
     },
     "themeCustomisation": {
-        "theme": "主题"
+        "theme": "主题",
+        "mockup": "Mockup"
     },
     "currencySelection": {
         "currency": "货币"
@@ -602,7 +609,7 @@
     },
     "chart": {
         "mcap": "市值",
-        "change": "变化率",
+        "change": "Change (24h)",
         "volume": "交易量(24h)",
         "currentValue": "当前值",
         "error": "获取图标数据时出错"

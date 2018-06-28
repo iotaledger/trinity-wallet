@@ -70,16 +70,12 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
-    questionText: {
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize4,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-    },
-    buttonsContainer: {
-        alignItems: 'flex-end',
+    modal: {
+        height,
+        width,
         justifyContent: 'center',
-        flexDirection: 'row',
+        alignItems: 'center',
+        margin: 0,
     },
 });
 
@@ -269,7 +265,7 @@ class WalletSetup extends Component {
                     backdropTransitionOutTiming={200}
                     backdropColor={body.bg}
                     backdropOpacity={0.9}
-                    style={{ alignItems: 'center', margin: 0 }}
+                    style={styles.modal}
                     isVisible={isModalVisible}
                     onBackButtonPress={() => this.setState({ isModalVisible: false })}
                     useNativeDriver={!!isAndroid}

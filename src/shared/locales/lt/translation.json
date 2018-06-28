@@ -18,7 +18,7 @@
         "invalidResponse": "Serverio klaida",
         "invalidResponseExplanation": "Įvyko serverio klaida. Bandykite pakeisti serverį.",
         "invalidResponsePollingExplanation": "Siunčiant jūsų duomenis įvyko serverio klaida. Bandykite pakeisti serverį.",
-        "invalidResponseFetchingAccount": "Užkraunant jūsų paskyros informaciją įvyko serverio klaida. Bandykite pakeisti serverį.",
+        "invalidResponseFetchingAccount": "Užkraunant jūsų paskyros duomenis įvyko serverio klaida. Bandykite pakeisti serverį.",
         "invalidResponseSendingTransfer": "Apdorojant pavedimą įvyko serverio klaida. Bandykite pakeisti serverį.",
         "nodeOutOfSync": "Serveris nesinchronizuotas",
         "nodeOutOfSyncExplanation": "Jūsų pasirinktas serveris nesinchronizuotas. Pakeiskite serverį arba bandykite dar kartą.",
@@ -141,7 +141,7 @@
         "clear": "IŠVALYTI",
         "noNetworkConnection": "Nėra tinklo ryšio",
         "noNetworkConnectionExplanation": "Panašu, kad jūsų interneto ryšys atjungtas.",
-        "spentAddressExplanation": "ĮSPĖJIMAS: Lėšos panaudotame adrese",
+        "spentAddressExplanation": "DĖMESIO: Lėšos panaudotame adrese",
         "discordInformation": "Pinigų siuntimas iš to pačio adreso daugiau nei kartą yra nesaugus. Apsilankykite #help kanale Discord programoje norėdami sužinoti ką daryti tokiu atveju.",
         "androidInsecureClipboardWarning": "Android nesuteikia saugios iškarpinės.",
         "androidCopyPasteWarning": "Kopijuoti/Įklijuoti užraktą su Android įrenginiu nerekomenduojama.",
@@ -151,7 +151,8 @@
         "isYourBalanceCorrect": "Ar jūsų balansas teisingas?",
         "ifYourBalanceIsNotCorrect": "Jeigu jūsų balansas neteisingas, tikriausiai jūsų naudojamas užraktas nėra perkeltas įvykus viso tinklo duomenų perkėlimui.",
         "headToAdvancedSettingsForTransition": "Eikite į išplėstinius parametrus ir atlikite tinklo duomenų perkėlimą.",
-        "usingTrinityWalletWithKeePass": "Trinity naudojimas su Keepass2Android"
+        "usingTrinityWalletWithKeePass": "Trinity naudojimas su Keepass2Android",
+        "signedTrytesBroadcastErrorExplanation": "Įvyko tinklo klaida transliuojant jūsų pavedimą."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Užraktas turi neleistinų simbolių",
@@ -212,7 +213,7 @@
         "shareSeed": "Įkelti užraktą į saugią slaptažodžių tvarkyklę",
         "storeEncrypted": "Savo užraktą laikykite užšifruotą slaptažodžių tvarkyklėje.",
         "doNotOpen": "Šio proceso metu neįjunkite jokių kitų programėlių.",
-        "tapConfirm": "Sužymėkite varneles norėdami patvirtinti.",
+        "tapConfirm": "Uždėkite varnelę norėdami patvirtinti.",
         "passwordManagerCheckbox": "Savo užraktą laikysiu slaptažodžių tvarkyklėje",
         "copy": "KOPIJUOTI",
         "noPasswordManagers": "Nėra palaikomų slaptažodžių tvarkyklių",
@@ -223,6 +224,7 @@
         "invalidCharacters": "Užraktas sudarytas iš neleistinų simbolių",
         "invalidCharactersExplanation": "Užraktas gali susidėti tik iš didžiųjų raidžių (A-Z) ir skaičiaus 9. Jūsų užraktas turi neleistinų simbolių. Bandykite dar kartą.",
         "seedTooShort": "Užraktas per trumpas",
+        "seedTooLong": "Užraktas per ilgas",
         "seedTooShortExplanation": "Užraktas privalo būti iš {{maxLength}} simbolio. Jūsų užraktas susidaro iš {{currentLength}}. Bandykite dar kartą.",
         "seedExplanation": "Užraktas turi būti iš {{maxLength}} simbolio, galimos tik didžiosios raidės (A-Z) arba skaičius 9. Užraktas negali turėti daugiau nei {{maxLength}} simbolį.",
         "neverShare": "SU NIEKUO NESIDALINKITE SAVO UŽRAKTU"
@@ -291,7 +293,9 @@
         "message": "Žinutė (neprivaloma)",
         "removeMessage": "PAŠALINTI ŽINUTĘ",
         "noAddresses": "ADRESŲ NĖRA",
-        "spent": "Panaudotas"
+        "spent": "Panaudotas",
+        "missingPermission": "Reikalingas failų sistemos leidimas",
+        "missingPermissionExplanation": "Reikalinga prieiga prie failų sistemos norint dalintis QR kodais."
     },
     "saveYourSeed": {
         "saveYourSeed": "Išsisaugokite savo užraktą",
@@ -300,13 +304,11 @@
         "leastSecure": "Mažiausiai saugu",
         "paperWallet": "Popierinė piniginė",
         "writeYourSeedDown": "Nusirašyti užraktą",
-        "printYourSeed": "Atspausdinti užraktą",
-        "digitalCopy": "Skaitmeninė kopija",
         "seedClearedExplanation": "Užraktas išvalytas iš iškarpinės dėl jūsų saugumo.",
         "iHaveBackedUpMySeed": "Užraktą išsisaugojau",
         "letsWriteDownYourSeed": "Nusirašykite savo užraktą",
         "youCanHighlightCharacters": "Žymėkitės po 9 simbolius į eilutę",
-        "printBlankWallet": "Atspausdinti tuščią piniginę",
+        "printBlankWallet": "Atspausdinti neužpildytą versiją",
         "whatIsChecksum": "Kiekvienas užraktas turi atitinkamą 3 simbolių kontrolinę sumą",
         "iHavesavedMySeed": "Išsisaugojau savo užraktą",
         "checksumExplanation": "Kai pridedate užraktą į savo piniginę, turite įsitikinti, kad piniginės sukurta kontrolinė suma sutampa su ta, kurią nusirašėte.",
@@ -348,10 +350,11 @@
         "sendMax": "SIŲSTI MAKS.",
         "totalTime": "Bendras laikas",
         "addressPasteDetected": "Aptiktas adreso įklijavimas",
-        "addressPasteExplanation": "Atrodo, kad jūs įklijavote adresą. Įsitikinkite, kad adresas tikrai sutampa su gavėjo adresu."
+        "addressPasteExplanation": "Atrodo, kad jūs įklijavote adresą. Įsitikinkite, kad adresas tikrai sutampa su gavėjo adresu.",
+        "invalid": "KLAIDA"
     },
     "setPassword": {
-        "choosePassword": "Sukurti naują slaptažodį",
+        "choosePassword": "Sukurkite naują slaptažodį",
         "passwordTooShort": "Slaptažodis per trumpas",
         "passwordTooShortExplanation": "Slaptažodis privalo būti iš mažiausiai {{minLength}} simbolių. Jūsų įvedėte {{currentLength}}. Bandykite dar kartą.",
         "passwordMismatch": "Slaptažodžiai nesutampa",
@@ -367,8 +370,8 @@
         "youCanAdd": "Norėdami pridėti daugiau užraktų, eikite į nustatymų meniu."
     },
     "modeSelection": {
-        "expert": "Expert",
-        "standard": "Standard",
+        "expert": "Eksperto",
+        "standard": "Standartinis",
         "expertModeExplanation": "Eksperto režimas suteikia prieigą prie papildomų funkcijų, tokių kaip rankinis iškėlimas ir pakartotinis prijungimas.",
         "modesExplanation": "Eksperto režimą naudokite tik jeigu esate pakankamai susipažinęs su Tangle. Kitu atveju jums gali kilti daug neaiškumų."
     },
@@ -393,7 +396,7 @@
         "syncingComplete": "Sinchronizacija baigta",
         "syncingCompleteExplanation": "Jūsų paskyra sėkmingai sinchronizuota.",
         "nicknameChanged": "Paskyros vardas pakeistas",
-        "nicknameChangedExplanation": "Jūsų paskyros vardas pakeistas.",
+        "nicknameChangedExplanation": "Jūs sėkmingai pakeitėte paskyros vardą.",
         "accountDeleted": "Paskyra ištrinta",
         "accountDeletedExplanation": "Paskyra pašalinta iš piniginės.",
         "cannotPerformAction": "Šio veiksmo atlikti negalima",
@@ -421,7 +424,7 @@
         "aboutTrinity": "Apie Trinity",
         "lockScreenTimeout": "Ekrano užrakinimas (minutės)",
         "autoNodeSwitching": "Automatiškai pakeisti serverį, kai pasirinktas yra nepasiekiamas",
-        "nodeChangeSuccess": "Sėkmingai pakeistas serveris",
+        "nodeChangeSuccess": "Serveris sėkmingai pakeistas",
         "nodeChangeSuccessNoRemotePow": "Serveris pakeistas į {{node}}, Šis serveris nepalaiko nuotolinio skaičiavimo.",
         "nodeChangeSuccessExplanation": "Serveris pakeistas į {{node}}.",
         "nodeChangeError": "Klaida keičiant serverį",
@@ -451,7 +454,7 @@
     "writeSeedDown": {
         "yourSeedIs": "Jūsų užraktas sudarytas iš {{maxSeedLength}} simbolio, skaityti iš kairės į dešinę.",
         "writeDownYourSeed": "<0>Nusirašykite savo užraktą ir kontrolinę sumą, </0><1>tris kartus patikrinkite</1><2> ar kodai sutampa</2>",
-        "scrollToBottom": "Paslinkti į apačią"
+        "scrollToBottom": "Paslinkite iki apačios"
     },
     "history": {
         "bundleHashCopied": "Paketo šifras nukopijuotas",
@@ -463,7 +466,10 @@
         "messageCopied": "Žinutė nukopijuota",
         "messageCopiedExplanation": "Žinutė nukopijuota į iškarpinę.",
         "send": "SIŲSTA",
-        "receive": "GAUTA"
+        "receive": "GAUTA",
+        "empty": "Tuščia",
+        "retrying": "KRAUNAMA",
+        "yesterday": "Vakar"
     },
     "accountManagement": {
         "viewSeed": "Rodyti užraktą",
@@ -502,7 +508,8 @@
         "frame": "Rėmeliai"
     },
     "themeCustomisation": {
-        "theme": "Tema"
+        "theme": "Tema",
+        "mockup": "Maketas"
     },
     "currencySelection": {
         "currency": "Valiuta"
@@ -593,22 +600,22 @@
         "addKey": "Pridėkite šį kodą į 2FA programėlę",
         "key": "Kodas",
         "twoFAEnabled": "2FA įjungtas",
-        "twoFAEnabledExplanation": "Sėkmingai įjungėte dviejų veiksnių autentifikavimą.",
+        "twoFAEnabledExplanation": "Jūs sėkmingai įjungėte dviejų veiksnių autentifikavimą.",
         "twoFADisabled": "2FA išjungtas",
-        "twoFADisabledExplanation": "Sėkmingai išjungėte dviejų veiksnių autentifikavimą.",
+        "twoFADisabledExplanation": "Jūs sėkmingai išjungėte dviejų veiksnių autentifikavimą.",
         "enterCode": "Įveskite kodą iš 2FA programėlės",
         "code": "Kodas",
-        "twoFaToken": "2FA žetonas"
+        "twoFaToken": "2FA kodas"
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Pokytis",
+        "change": "Pokytis (24val.)",
         "volume": "Apyvarta (24val.)",
         "currentValue": "Dabartinė vertė",
         "error": "Klaida užkraunant grafiko duomenis"
     },
     "rootDetection": {
-        "warning": "PAVOJUS",
+        "warning": "DĖMESIO",
         "appearsRooted": "Panašu, kad į jūsų įrenginį buvo įsilaužta.",
         "securityRisk": "Jūsų piniginės saugumui galimai iškilusi didelė grėsmė.",
         "continueDepsiteRisk": "Ar norite tęsti nepaisant šios rizikos?"

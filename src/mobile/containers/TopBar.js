@@ -91,6 +91,13 @@ const styles = StyleSheet.create({
         height: width / 18,
         width: width / 18,
     },
+    modal: {
+        height,
+        width,
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 0,
+    },
 });
 
 class TopBar extends Component {
@@ -352,11 +359,7 @@ class TopBar extends Component {
                                                 name={isTopBarActive ? 'chevronUp' : 'chevronDown'}
                                                 size={width / 22}
                                                 color={bar.color}
-                                                style={[
-                                                    shouldDisable
-                                                        ? StyleSheet.flatten([styles.chevron, styles.disabledImage])
-                                                        : styles.chevron,
-                                                ]}
+                                                style={[shouldDisable ? styles.disabledImage : null]}
                                             />
                                         </Animated.View>
                                     ) : (
@@ -486,7 +489,7 @@ class TopBar extends Component {
                             backdropTransitionInTiming={isAndroid ? 500 : 300}
                             backdropTransitionOutTiming={200}
                             backdropColor={body.bg}
-                            style={{ alignItems: 'center', margin: 0 }}
+                            style={styles.modal}
                             isVisible={isModalVisible}
                             onBackButtonPress={() => this.hideModal()}
                             onBackdropPress={() => this.hideModal()}

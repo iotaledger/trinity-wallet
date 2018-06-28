@@ -62,19 +62,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         margin: width / 80,
     },
-    generateButton: {
-        borderRadius: GENERAL.borderRadius,
-        width: width / 2.2,
-        height: height / 16,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderWidth: 1.2,
-    },
-    generateText: {
-        fontFamily: 'SourceSansPro-Bold',
-        fontSize: GENERAL.fontSize1,
-        backgroundColor: 'transparent',
-    },
     infoText: {
         fontFamily: 'SourceSansPro-Regular',
         fontSize: GENERAL.fontSize3,
@@ -98,11 +85,6 @@ const styles = StyleSheet.create({
         fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
     },
-    infoTextRegular: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
-        backgroundColor: 'transparent',
-    },
     infoTextBold: {
         fontFamily: 'SourceSansPro-Bold',
         fontSize: GENERAL.fontSize3,
@@ -120,6 +102,13 @@ const styles = StyleSheet.create({
         fontFamily: 'SourceSansPro-Regular',
         fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
+    },
+    modal: {
+        height,
+        width,
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 0,
     },
 });
 
@@ -219,7 +208,7 @@ class NewSeedSetup extends Component {
                     screenBackgroundColor: body.bg,
                     drawUnderStatusBar: true,
                     statusBarColor: body.bg,
-                    navBarButtonColor: isAndroid ? 'transparent' : 'black',
+                    navBarButtonColor: isAndroid ? body.bg : 'black',
                 },
                 animated: false,
             });
@@ -411,7 +400,7 @@ class NewSeedSetup extends Component {
                             backdropTransitionOutTiming={200}
                             backdropColor={body.bg}
                             backdropOpacity={0.9}
-                            style={{ alignItems: 'center', margin: 0 }}
+                            style={styles.modal}
                             isVisible={isModalActive}
                             onBackButtonPress={() => this.hideModal()}
                             hideModalContentWhileAnimating

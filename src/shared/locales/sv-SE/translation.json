@@ -147,11 +147,12 @@
         "androidCopyPasteWarning": "Kopiera/klistra aldrig din seed på en Android-enhet.",
         "willNotCopyPasteSeed": "Jag kommer inte kopiera/klistra min seed",
         "mustBeStoredAppropriately": "Den måste lagras på lämpligt sätt.",
-        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while.",
+        "deviceMayBecomeUnresponsive": "Din enhet kan sluta reagera ett tag.",
         "isYourBalanceCorrect": "Stämmer ditt saldo?",
         "ifYourBalanceIsNotCorrect": "Om ditt saldo inte är korrekt, är det troligt att du använder en seed från tidigare än snapshot.",
         "headToAdvancedSettingsForTransition": "Gå till avancerade inställningar och utför en snapshot-övergång.",
-        "usingTrinityWalletWithKeePass": "Använder Trinity med Keepass2Android"
+        "usingTrinityWalletWithKeePass": "Använder Trinity med Keepass2Android",
+        "signedTrytesBroadcastErrorExplanation": "Ett nätverksfel uppstod under sändning av din transaktion."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
@@ -223,6 +224,7 @@
         "invalidCharacters": "Seeden innehåller ogiltiga tecken",
         "invalidCharactersExplanation": "Seeden får enbart innehålla bokstäverna A-Z och numret 9. Din seed innehåller felaktiga tecken. Försök igen.",
         "seedTooShort": "Seeden är för kort",
+        "seedTooLong": "Din seed är för lång",
         "seedTooShortExplanation": "Din seed måste vara minst {{maxLength}} tecken. Den är för närvarande {{currentLength}} tecken lång. Vänligen försök igen.",
         "seedExplanation": "Seed ska vara {{maxLength}} tecken lång och får endast innehålla bokstäverna A-Z och nummer 9. Din seed får inte vara längre än {{maxLength}} tecken.",
         "neverShare": "DELA ALDRIG DIN SEED MED NÅGON"
@@ -291,7 +293,9 @@
         "message": "Valfritt meddelande",
         "removeMessage": "TA BORT MEDDELANDE",
         "noAddresses": "INGA ADRESSER",
-        "spent": "Förbrukat"
+        "spent": "Förbrukat",
+        "missingPermission": "Åtkomst till filsystem krävs",
+        "missingPermissionExplanation": "Åtkomst till filsystem krävs för att dela QR-koder."
     },
     "saveYourSeed": {
         "saveYourSeed": "Spara din seed",
@@ -300,14 +304,12 @@
         "leastSecure": "Minst säkert",
         "paperWallet": "Pappersplånbok",
         "writeYourSeedDown": "Skriv ner din seed",
-        "printYourSeed": "Skriv ut din seed",
-        "digitalCopy": "Digital kopia",
         "seedClearedExplanation": "Seeden har blivit rensad från urklipp för din säkerhet.",
         "iHaveBackedUpMySeed": "Jag har sparat min seed",
         "letsWriteDownYourSeed": "Skriv ner din seed",
         "youCanHighlightCharacters": "Du kan markera 9 tecken i taget",
         "printBlankWallet": "Skriv ut en tom plånbok",
-        "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
+        "whatIsChecksum": "Varje seed har en tillhörande 3-tecken kontrollsumma",
         "iHavesavedMySeed": "Jag har sparat min seed",
         "checksumExplanation": "När du lägger till en seed i din plånbok, bör du kontrollera att den plånboksgenererade kontrollsumman matchar den du har skrivit ned.",
         "mustSaveYourSeed": "<0><0>Du måste spara din seed med</0><1>minst ett</1><2> av alternativen listade nedan.</2></0>"
@@ -348,7 +350,8 @@
         "sendMax": "SKICKA MAX",
         "totalTime": "Total tid",
         "addressPasteDetected": "Kopierad adress upptäckt",
-        "addressPasteExplanation": "Det ser ut som att du har klistrat in en adress. Kontrollera att den inklistrade adressen matchar den som du vill skicka till."
+        "addressPasteExplanation": "Det ser ut som att du har klistrat in en adress. Kontrollera att den inklistrade adressen matchar den som du vill skicka till.",
+        "invalid": "OGILTIG"
     },
     "setPassword": {
         "choosePassword": "Välj ett nytt lösenord",
@@ -440,18 +443,18 @@
         "seedExplanation": "Din IOTA-seed är huvudnyckeln till dina pengar. Den är 81 tecken lång och innehåller endast bokstäverna A-Z eller numret 9.",
         "noIHaveOne": "Nej, jag har en",
         "yesINeedASeed": "Ja, jag behöver en seed",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
-        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
+        "explanation": "<0><0>Du kan använda den för att komma åt dina pengar från</0> <1>vilken plånbok som helst</1> <2>på</2> <3>vilken enhet som helst.</3></0>",
+        "loseSeed": "Men om du förlorar din seed, då förlorar du också dina IOTA.",
         "keepSafe": "Vänligen förvara din seed säkert.",
         "hint": "<0><0>Tips:</0> Klicka på NEJ om detta är första gången du använder IOTA.</0>"
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity"
+        "thankYou": "Tack för att du laddade ned Trinity"
     },
     "writeSeedDown": {
         "yourSeedIs": "Din seed är {{maxSeedLength}} tecken lästa från vänster till höger.",
         "writeDownYourSeed": "<0> Skriv ner din seed och checksumma och </0><1>dubbelkolla</1><2> att det stämmer.</2>",
-        "scrollToBottom": "Scroll to the bottom"
+        "scrollToBottom": "Scrolla till botten"
     },
     "history": {
         "bundleHashCopied": "Hashbunt kopierad",
@@ -463,7 +466,10 @@
         "messageCopied": "Meddelandet kopierat",
         "messageCopiedExplanation": "Meddelandet har kopierats till urklipp.",
         "send": "SKICKA",
-        "receive": "TA EMOT"
+        "receive": "TA EMOT",
+        "empty": "Tomt",
+        "retrying": "FÖRSÖKER IGEN",
+        "yesterday": "Yesterday"
     },
     "accountManagement": {
         "viewSeed": "Visa seed",
@@ -502,7 +508,8 @@
         "frame": "Ram"
     },
     "themeCustomisation": {
-        "theme": "Teman"
+        "theme": "Teman",
+        "mockup": "Exempel"
     },
     "currencySelection": {
         "currency": "Valuta"
@@ -602,7 +609,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Ändring",
+        "change": "Förändring (24h)",
         "volume": "Volym (24h)",
         "currentValue": "Nuvarande värde",
         "error": "Fel vid hämtning av valutavärde"

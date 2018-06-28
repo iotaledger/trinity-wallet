@@ -147,11 +147,12 @@
         "androidCopyPasteWarning": "Nunca copiar/pegar tu seed en un dispositivo Android.",
         "willNotCopyPasteSeed": "No copiaré/pegaré mi semilla",
         "mustBeStoredAppropriately": "Debe ser almacenado apropiadamente.",
-        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while.",
+        "deviceMayBecomeUnresponsive": "Su dispositivo puede estar sin responder por un rato.",
         "isYourBalanceCorrect": "¿Su saldo es correcto?",
         "ifYourBalanceIsNotCorrect": "Si su saldo no es correcto, es probable que esté usando una semilla previa al snapshot.",
         "headToAdvancedSettingsForTransition": "Diríjase a Configuración Avanzada y realice una Snapshot Transition.",
-        "usingTrinityWalletWithKeePass": "Usando cartera Trinity con Keepass2Android"
+        "usingTrinityWalletWithKeePass": "Usando cartera Trinity con Keepass2Android",
+        "signedTrytesBroadcastErrorExplanation": "Hubo un error mientras se estaba transmitiendo su transacción."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La semilla contiene caracteres inválidos",
@@ -223,6 +224,7 @@
         "invalidCharacters": "La semilla contiene caracteres inválidos",
         "invalidCharactersExplanation": "Las semillas sólo pueden estar compuestas de letras A-Z y el número 9. Su semilla contiene caracteres inválidos. Por favor inténtelo de nuevo.",
         "seedTooShort": "La semilla es demasiado corta",
+        "seedTooLong": "La semilla es muy larga",
         "seedTooShortExplanation": "Las semillas deben tener {{maxLength}} caracteres. Su semilla tiene actualmente {{currentLength}} caracteres. Por favor inténtelo nuevamente.",
         "seedExplanation": "Las semillas deben ser de {{maxLength}} caracteres de longitud y contener letras mayúsculas de la A a la Z, o el número 9. No se pueden usar semillas de más de {{maxLength}} caracteres.",
         "neverShare": "NUNCA COMPARTA SU SEMILLA CON NADIE"
@@ -291,7 +293,9 @@
         "message": "Mensaje opcional",
         "removeMessage": "ELIMINAR MENSAJE",
         "noAddresses": "SIN DIRECCIONES",
-        "spent": "Gastado"
+        "spent": "Gastado",
+        "missingPermission": "Permisos de sistema requeridos",
+        "missingPermissionExplanation": "El acceso a los archivos del sistema son requeridos para compartir los códigos QR."
     },
     "saveYourSeed": {
         "saveYourSeed": "Haga una copia de respaldo de su semilla",
@@ -300,14 +304,12 @@
         "leastSecure": "Menos Seguro",
         "paperWallet": "Cartera en papel",
         "writeYourSeedDown": "Anote su semilla",
-        "printYourSeed": "Imprima su semilla",
-        "digitalCopy": "Copia digital",
         "seedClearedExplanation": "La semilla ha sido borrada del portapapeles para su seguridad.",
         "iHaveBackedUpMySeed": "He guardado mi semilla",
         "letsWriteDownYourSeed": "Vamos a anotar su semilla",
         "youCanHighlightCharacters": "Puede resaltar 9 caracteres a la vez",
         "printBlankWallet": "Imprima una cartera en blanco",
-        "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
+        "whatIsChecksum": "Cada semilla tiene su correspondiente checksum de 3 caracteres",
         "iHavesavedMySeed": "He guardado mi semilla",
         "checksumExplanation": "Cada vez que añada una semilla a su cartera, debería asegurarse de que el checksum generado para la cartera coincide con el que ha anotado.",
         "mustSaveYourSeed": "<0><0>Debe guardar su semilla con </0><1>al menos una</1><2> de las opciones a continuación.</2></0>"
@@ -348,7 +350,8 @@
         "sendMax": "ENVIAR MÁXIMO",
         "totalTime": "Tiempo total",
         "addressPasteDetected": "Se ha detectado una dirección pegada",
-        "addressPasteExplanation": "Parace que ha pegado una dirección. Asegúrese de que la dirección coincida con aquella a la que quiere enviar."
+        "addressPasteExplanation": "Parace que ha pegado una dirección. Asegúrese de que la dirección coincida con aquella a la que quiere enviar.",
+        "invalid": "INVALIDO"
     },
     "setPassword": {
         "choosePassword": "Elija una nueva contraseña",
@@ -440,18 +443,18 @@
         "seedExplanation": "Su semilla de IOTA es la clave maestra de sus fondos. Posee 81 carácteres y usa solo A-Z y el numero 9.",
         "noIHaveOne": "No, ya tengo una",
         "yesINeedASeed": "Sí, necesito una semilla",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
-        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
+        "explanation": "<0><0>Puedes usar esto para acceder a tu fondos desde</0><1> cualquier billetera</1><2>, en</2><3> cualquier dispositivo.</3></0>",
+        "loseSeed": "Pero si pierde su semilla, también perderá sus IOTA.",
         "keepSafe": "Por favor guarde su semilla de manera segura.",
         "hint": "<0><0>Pista:</0> Click en NO si es su primera vez usando IOTA.</0>"
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity"
+        "thankYou": "Gracias por descargar Trinity"
     },
     "writeSeedDown": {
         "yourSeedIs": "Su semilla tiene {{maxSeedLength}} caracteres leídos de izquierda a derecha.",
         "writeDownYourSeed": "<0>Escriba su semilla y código de verificación y </0><1>vuelva a comprobar</1><2> que son correctos.</2>",
-        "scrollToBottom": "Scroll to the bottom"
+        "scrollToBottom": "Deslicese hacia el fondo"
     },
     "history": {
         "bundleHashCopied": "Hash del paquete copiado",
@@ -463,7 +466,10 @@
         "messageCopied": "Mensaje copiado",
         "messageCopiedExplanation": "El mensaje fue copiado al portapapeles.",
         "send": "ENVIAR",
-        "receive": "RECIBIR"
+        "receive": "RECIBIR",
+        "empty": "Vacío",
+        "retrying": "REINTENTANDO",
+        "yesterday": "Yesterday"
     },
     "accountManagement": {
         "viewSeed": "Ver semilla",
@@ -502,7 +508,8 @@
         "frame": "Marco"
     },
     "themeCustomisation": {
-        "theme": "Tema"
+        "theme": "Tema",
+        "mockup": "Maqueta"
     },
     "currencySelection": {
         "currency": "Divisa"
@@ -515,11 +522,11 @@
     },
     "unitInfoModal": {
         "unitSystem": "UNIDAD DE SISTEMA",
-        "trillion": "Trillón",
-        "billion": "Billón",
+        "trillion": "Billón",
+        "billion": "Mil millones",
         "million": "Millón",
         "thousand": "Mil",
-        "one": "Un"
+        "one": "Unidad"
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Porque no puedo gastar todos mis fondos?",
@@ -602,7 +609,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Variación",
+        "change": "Cambio (24h)",
         "volume": "Volumen (24h)",
         "currentValue": "Valor actual",
         "error": "Error obteniendo datos de gráfico"

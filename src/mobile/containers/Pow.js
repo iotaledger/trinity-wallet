@@ -50,9 +50,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
-    toggle: {
-        marginHorizontal: width / 30,
-    },
     toggleText: {
         fontFamily: Fonts.secondary,
         fontSize: GENERAL.fontSize4,

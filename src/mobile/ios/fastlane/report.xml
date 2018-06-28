@@ -4,8 +4,33 @@
     
     
     
-     
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.001763">
+      
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.003049">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="1: clean_build_artifacts" time="0.00308">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="2: get_build_number" time="1.80463">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="3: download_dsyms" time="18.387958">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="4: upload_symbols_to_bugsnag" time="6.83375">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="5: clean_build_artifacts" time="0.004351">
         
       </testcase>
     
