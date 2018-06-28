@@ -124,12 +124,20 @@ const Electron = {
         return keys;
     },
 
-    readKeychain: () => {
-        return keytar.getPassword('Trinity desktop wallet', 'trinity');
+    listKeychain: () => {
+        return keytar.findCredentials('Trinity wallet');
     },
 
-    setKeychain: (content) => {
-        return keytar.setPassword('Trinity desktop wallet', 'trinity', content);
+    readKeychain: (accountName) => {
+        return keytar.getPassword('Trinity wallet', accountName);
+    },
+
+    setKeychain: (accountName, content) => {
+        return keytar.setPassword('Trinity wallet', accountName, content);
+    },
+
+    removeKeychain: (accountName) => {
+        return keytar.deletePassword('Trinity wallet', accountName);
     },
 
     getOS: () => {

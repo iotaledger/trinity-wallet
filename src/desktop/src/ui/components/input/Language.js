@@ -26,8 +26,10 @@ class LanguageSelect extends React.PureComponent {
     };
 
     changeLocale = (locale) => {
-        this.props.setLocale(locale);
-        i18next.changeLanguage(locale);
+        if (I18N_LOCALES.indexOf(locale) > -1) {
+            this.props.setLocale(locale);
+            i18next.changeLanguage(locale);
+        }
     };
 
     render() {
@@ -57,4 +59,7 @@ const mapDispatchToProps = {
     setLocale,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(LanguageSelect));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(translate()(LanguageSelect));
