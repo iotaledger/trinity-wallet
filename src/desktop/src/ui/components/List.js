@@ -314,7 +314,7 @@ class List extends React.PureComponent {
                                     >
                                         <div>
                                             <div className={isReceived ? css.plus : css.minus} />
-                                            <span>{formatTime(convertUnixTimeToJSDate(transfer.timestamp))}</span>
+                                            <span>{formatTime(navigator.language, convertUnixTimeToJSDate(transfer.timestamp))}</span>
                                             <span>
                                                 {!isConfirmed ? t('pending') : isReceived ? t('received') : t('sent')}
                                             </span>
@@ -354,7 +354,7 @@ class List extends React.PureComponent {
                                         {!activeTransfer.persistence
                                             ? t('pending')
                                             : activeTransfer.incoming ? t('received') : t('sent')}
-                                        <em>{formatModalTime(convertUnixTimeToJSDate(activeTransfer.timestamp))}</em>
+                                        <em>{formatModalTime(navigator.language, convertUnixTimeToJSDate(activeTransfer.timestamp))}</em>
                                     </small>
                                 </p>
                                 <h6>{t('bundleHash')}:</h6>
