@@ -25,10 +25,10 @@ class Theme extends PureComponent {
     }
 
     updateTheme(theme) {
-        Object.keys(theme).map((colorsName) => {
+        Object.keys(theme).forEach((colorsName) => {
             const colorSet = theme[colorsName];
 
-            Object.keys(colorSet).map((colorName) => {
+            Object.keys(colorSet).forEach((colorName) => {
                 if (colorName === 'color') {
                     document.documentElement.style.setProperty(`--${colorsName}`, colorSet.color);
                 } else {
