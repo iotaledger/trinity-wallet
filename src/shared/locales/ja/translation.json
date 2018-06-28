@@ -44,7 +44,7 @@
         "disable": "無効",
         "enabled": "有効",
         "disabled": "無効",
-        "enterPassword": "Enter password",
+        "enterPassword": "パスワードを入力してください",
         "paperWallet": "印刷する",
         "addToPasswordManager": "パスワードマネージャーに追加する",
         "shareSeed": "シードを共有",
@@ -611,7 +611,7 @@
         "twoFaToken": "二要素認証トークン"
     },
     "seedVault": {
-        "exportSeedVault": "Export SeedVault",
+        "exportSeedVault": "シード金庫へ書き出す",
         "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password. It is recommended that you store the file in a password manager like Keepass.",
         "seedVaultWarning": "Make sure you back up the file in multiple locations (e.g. hard drive, cloud, USB). If you lose this file and have not stored your seed elsewhere, you will lose your IOTA.",
         "exportFail": "SeedVault export failed",
