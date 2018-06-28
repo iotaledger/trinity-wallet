@@ -619,7 +619,7 @@
         "exportSuccess": "シード金庫を書き出しました",
         "exportSuccessExplanation": "暗号化されたシード（シード金庫）は正常に書き出されました。",
         "importSeedVault": "シード金庫を読み込む",
-        "dropSeedVaultHere": "Drop SeedVault here",
+        "dropSeedVaultHere": "シード金庫をここにドロップしてください",
         "enterPasswordExplanation": "シード金庫を開くためにパスワードを入力してください",
         "noSeedFound": "シード金庫に有効なシードが含まれていません",
         "noSeedFoundExplanation": "シード金庫は空か、無効な形式のシードが含まれています。",
