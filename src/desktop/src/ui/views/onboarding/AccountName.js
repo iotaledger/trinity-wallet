@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 
+import { MAX_ACC_LENGTH } from 'libs/crypto';
+
 import { setOnboardingName } from 'actions/ui';
 import { generateAlert } from 'actions/alerts';
 import { setAdditionalAccountInfo } from 'actions/wallet';
@@ -87,6 +89,15 @@ class AccountName extends React.PureComponent {
 
         if (!name.length) {
             generateAlert('error', t('addAdditionalSeed:noNickname'), t('addAdditionalSeed:noNicknameExplanation'));
+            return;
+        }
+
+        if (name.length > MAX_ACC_LENGTH) {
+            generateAlert(
+                'error',
+                t('addAdditionalSeed:accountNametooLong'),
+                t('addAdditionalSeed:accountNametooLongExplanation', { maxLength: MAX_ACC_LENGTH }),
+            );
             return;
         }
 

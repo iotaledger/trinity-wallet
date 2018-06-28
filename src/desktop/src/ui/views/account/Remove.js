@@ -81,8 +81,10 @@ class Remove extends PureComponent {
                     inline
                     onSuccess={(password) => this.removeAccount(password)}
                     onClose={() => this.setState({ removeConfirm: false })}
+                    category="negative"
                     content={{
                         title: t('deleteAccount:enterPassword'),
+                        confirm: t('accountManagement:deleteAccount'),
                     }}
                 />
             );
@@ -120,4 +122,7 @@ const mapDispatchToProps = {
     deleteAccount,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(Remove));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(translate()(Remove));
