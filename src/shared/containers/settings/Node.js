@@ -17,6 +17,7 @@ export default function withNodeData(NodeComponent) {
             nodes: PropTypes.array.isRequired,
             customNodes: PropTypes.array.isRequired,
             isChangingNode: PropTypes.bool.isRequired,
+            isCheckingCustomNode: PropTypes.bool.isRequired,
             setFullNode: PropTypes.func.isRequired,
             removeCustomNode: PropTypes.func.isRequired,
             autoNodeSwitching: PropTypes.bool.isRequired,
@@ -68,6 +69,7 @@ export default function withNodeData(NodeComponent) {
                 removeCustomNode,
                 backPress,
                 isChangingNode,
+                isCheckingCustomNode,
                 theme,
                 autoNodeSwitching,
                 t,
@@ -77,7 +79,7 @@ export default function withNodeData(NodeComponent) {
                 node,
                 nodes,
                 customNodes,
-                loading: isChangingNode,
+                loading: isChangingNode || isCheckingCustomNode,
                 setNode: this.changeNode,
                 removeCustomNode,
                 autoNodeSwitching: autoNodeSwitching,
@@ -100,6 +102,7 @@ export default function withNodeData(NodeComponent) {
         theme: state.settings.theme,
         autoNodeSwitching: state.settings.autoNodeSwitching,
         isChangingNode: state.ui.isChangingNode,
+        isCheckingCustomNode: state.ui.isCheckingCustomNode
     });
 
     const mapDispatchToProps = {
