@@ -17,6 +17,7 @@ export const ActionTypes = {
     ADD_CUSTOM_NODE_REQUEST: 'IOTA/SETTINGS/ADD_CUSTOM_NODE_REQUEST',
     ADD_CUSTOM_NODE_SUCCESS: 'IOTA/SETTINGS/ADD_CUSTOM_NODE_SUCCESS',
     ADD_CUSTOM_NODE_ERROR: 'IOTA/SETTINGS/ADD_CUSTOM_NODE_ERROR',
+    REMOVE_CUSTOM_NODE: 'IOTA/SETTINGS/REMOVE_CUSTOM_NODE',
     SET_MODE: 'IOTA/SETTINGS/SET_MODE',
     SET_THEME: 'IOTA/SETTINGS/SET_THEME',
     SET_LANGUAGE: 'IOTA/SETTINGS/SET_LANGUAGE',
@@ -108,6 +109,11 @@ export const setNode = (payload) => ({
 
 export const setNodeList = (payload) => ({
     type: ActionTypes.SET_NODELIST,
+    payload,
+});
+
+export const removeCustomNode = (payload) => ({
+    type: ActionTypes.REMOVE_CUSTOM_NODE,
     payload,
 });
 

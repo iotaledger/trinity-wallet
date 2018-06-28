@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 
-import { setFullNode, updateAutoNodeSwitching } from '../../actions/settings';
+import { setFullNode, removeCustomNode, updateAutoNodeSwitching } from '../../actions/settings';
 import { generateAlert } from '../../actions/alerts';
 
 /**
@@ -15,8 +15,10 @@ export default function withNodeData(NodeComponent) {
         static propTypes = {
             node: PropTypes.string.isRequired,
             nodes: PropTypes.array.isRequired,
+            customNodes: PropTypes.array.isRequired,
             isChangingNode: PropTypes.bool.isRequired,
             setFullNode: PropTypes.func.isRequired,
+            removeCustomNode: PropTypes.func.isRequired,
             autoNodeSwitching: PropTypes.bool.isRequired,
             updateAutoNodeSwitching: PropTypes.func.isRequired,
             generateAlert: PropTypes.func.isRequired,
@@ -59,13 +61,25 @@ export default function withNodeData(NodeComponent) {
         };
 
         render() {
-            const { node, nodes, backPress, isChangingNode, theme, autoNodeSwitching, t } = this.props;
+            const {
+                node,
+                nodes,
+                customNodes,
+                removeCustomNode,
+                backPress,
+                isChangingNode,
+                theme,
+                autoNodeSwitching,
+                t,
+            } = this.props;
 
             const nodeProps = {
-                node: node,
-                nodes: nodes,
+                node,
+                nodes,
+                customNodes,
                 loading: isChangingNode,
                 setNode: this.changeNode,
+                removeCustomNode,
                 autoNodeSwitching: autoNodeSwitching,
                 setAutoNodeSwitching: this.changeAutoNodeSwitching,
                 backPress: backPress,
@@ -82,6 +96,7 @@ export default function withNodeData(NodeComponent) {
     const mapStateToProps = (state) => ({
         node: state.settings.node,
         nodes: state.settings.nodes,
+        customNodes: state.settings.customNodes,
         theme: state.settings.theme,
         autoNodeSwitching: state.settings.autoNodeSwitching,
         isChangingNode: state.ui.isChangingNode,
@@ -89,9 +104,15 @@ export default function withNodeData(NodeComponent) {
 
     const mapDispatchToProps = {
         setFullNode,
+        removeCustomNode,
         generateAlert,
         updateAutoNodeSwitching,
     };
 
-    return translate()(connect(mapStateToProps, mapDispatchToProps)(NodeData));
+    return translate()(
+        connect(
+            mapStateToProps,
+            mapDispatchToProps,
+        )(NodeData),
+    );
 }
