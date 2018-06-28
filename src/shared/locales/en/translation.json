@@ -518,6 +518,7 @@
         "customNodeCouldNotBeAdded": "Custom node could not be added",
         "customNodeAddedSuccessfully": "The custom node has been added successfully.",
         "customNode": "Custom node",
+        "removeCustomNode": "Remove custom node",
         "invalidNodeResponse": "The node returned an invalid response",
         "httpNodeError": "Trinity Mobile only supports https nodes.",
         "add": "Add",
