@@ -8,6 +8,7 @@ import i18next from 'libs/i18next';
 import { translate } from 'react-i18next';
 
 import { parseAddress } from 'libs/iota/utils';
+import { ACC_MAIN } from 'libs/crypto';
 
 import { setPassword, clearWalletData, setDeepLink } from 'actions/wallet';
 import { getUpdateData, updateTheme } from 'actions/settings';
@@ -180,7 +181,7 @@ class App extends React.Component {
 
     async checkVaultAvailability() {
         try {
-            await Electron.readKeychain();
+            await Electron.readKeychain(ACC_MAIN);
         } catch (err) {
             this.setState({
                 fatalError: true,

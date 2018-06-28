@@ -8,7 +8,7 @@ import { changePowSettings, changeAutoPromotionSettings, setLockScreenTimeout } 
 import { completeSnapshotTransition } from 'actions/wallet';
 import { generateAlert } from 'actions/alerts';
 
-import { setSeed, getSeed } from 'libs/crypto';
+import { clearVault, getSeed } from 'libs/crypto';
 import { getPoWFn } from 'libs/pow';
 
 import { toggleModalActivity } from 'actions/ui';
@@ -128,7 +128,7 @@ class Advanced extends PureComponent {
         const { t, generateAlert } = this.props;
 
         try {
-            await setSeed(password, '', [], true);
+            await clearVault(password);
             localStorage.clear();
             Electron.clearStorage();
             location.reload();
