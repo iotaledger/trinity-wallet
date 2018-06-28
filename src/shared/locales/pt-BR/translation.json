@@ -623,12 +623,12 @@
         "enterPasswordExplanation": "Digite sua senha para abrir o SeedVault",
         "noSeedFound": "SeedVault não contém uma Seed válida",
         "noSeedFoundExplanation": "O SeedVault está vazio ou contém uma Seed com um formato inválido.",
-        "seedFileError": "Failed to open SeedVault",
-        "seedFileErrorExplanation": "There was a problem opening the SeedVault. If you selected the correct file then it may be corrupted."
+        "seedFileError": "Falha ao abrir o SeedVault",
+        "seedFileErrorExplanation": "Houve um problema ao abrir o SeedVault. Se você selecionou o arquivo correto então o mesmo pode estar corrompido."
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change (24h)",
+        "change": "Mudança (24h)",
         "volume": "Volume (24h)",
         "currentValue": "Valor atual",
         "error": "Erro ao buscar dados da tabela"
