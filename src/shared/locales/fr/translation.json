@@ -147,11 +147,12 @@
         "androidCopyPasteWarning": "Ne jamais copier/coller votre seed sur un appareil Android.",
         "willNotCopyPasteSeed": "Je ne copierai/collerai pas ma seed",
         "mustBeStoredAppropriately": "Elle doit être stockée correctement.",
-        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while.",
+        "deviceMayBecomeUnresponsive": "Votre appareil peut ne pas répondre pendant un certain temps.",
         "isYourBalanceCorrect": "Votre solde est-il correct ?",
         "ifYourBalanceIsNotCorrect": "Si votre solde n’est pas correct, il est probable que vous utilisiez une seed antérieure à un snapshot.",
         "headToAdvancedSettingsForTransition": "Dirigez-vous vers les paramètres avancés et effectuez une Transition de snapshot.",
-        "usingTrinityWalletWithKeePass": "Utilisation de Trinity avec Keepass2Android"
+        "usingTrinityWalletWithKeePass": "Utilisation de Trinity avec Keepass2Android",
+        "signedTrytesBroadcastErrorExplanation": "Une erreur réseau est survenue lors de la retransmission de votre transaction."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -223,6 +224,7 @@
         "invalidCharacters": "La seed contient des caractères invalides",
         "invalidCharactersExplanation": "Les seeds ne peuvent être constituées que de lettres majuscules de A à Z et du chiffre 9. Votre seed comporte des caractères invalides. Veuillez réessayer.",
         "seedTooShort": "La seed est trop courte",
+        "seedTooLong": "La seed est trop longue",
         "seedTooShortExplanation": "Les seeds doivent comporter au moins {{maxLength}} caractères. Votre seed comporte actuellement {{currentLength}} caractères. Veuillez réessayer.",
         "seedExplanation": "Les seeds doivent comporter {{maxLength}} caractères et doivent contenir des majuscules de A à Z, ou le chiffre 9. Vous ne pouvez pas utiliser les seeds de plus de {{maxLength}} caractères.",
         "neverShare": "NE PARTAGEZ JAMAIS VOTRE SEED"
@@ -291,7 +293,9 @@
         "message": "Message facultatif",
         "removeMessage": "SUPPRIMER LE MESSAGE",
         "noAddresses": "AUCUNE ADRESSE",
-        "spent": "Envoyé"
+        "spent": "Envoyé",
+        "missingPermission": "Autorisation de système de fichiers requise",
+        "missingPermissionExplanation": "Accès au système de fichiers est nécessaire afin de partager les codes QR."
     },
     "saveYourSeed": {
         "saveYourSeed": "Sauvegarder votre seed",
@@ -300,14 +304,12 @@
         "leastSecure": "Moins sécurisé",
         "paperWallet": "Portefeuille papier",
         "writeYourSeedDown": "Notez votre seed",
-        "printYourSeed": "Imprimer votre seed",
-        "digitalCopy": "Copie numérique",
         "seedClearedExplanation": "La seed a été effacée du presse-papier pour plus de sécurité.",
         "iHaveBackedUpMySeed": "J’ai enregistré ma seed",
         "letsWriteDownYourSeed": "Notez votre seed",
         "youCanHighlightCharacters": "Vous pouvez sélectionner 9 caractères à la fois",
         "printBlankWallet": "Imprimer un portefeuille vide",
-        "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
+        "whatIsChecksum": "Chaque seed a une somme de contrôle de 3 caractères correspondant",
         "iHavesavedMySeed": "J’ai enregistré ma seed",
         "checksumExplanation": "Chaque fois que vous ajoutez une seed à votre portefeuille, vous devez vous assurer que les sommes de contrôle affichées correspondent bien à celle de votre seed.",
         "mustSaveYourSeed": "<0><0>Vous devez sauvegarder votre seed avec </0><1>au moins une</1><2> des options citées ci-dessous.</2></0>"
@@ -348,7 +350,8 @@
         "sendMax": "ENVOYER LE MAX",
         "totalTime": "Temps total",
         "addressPasteDetected": "Adresse collée détectée",
-        "addressPasteExplanation": "On dirait que vous avez collé une adresse. Assurez-vous que l’adresse collée corresponde à celle que vous voulez utiliser."
+        "addressPasteExplanation": "On dirait que vous avez collé une adresse. Assurez-vous que l’adresse collée corresponde à celle que vous voulez utiliser.",
+        "invalid": "INVALIDE"
     },
     "setPassword": {
         "choosePassword": "Choisissez un nouveau mot de passe",
@@ -440,18 +443,18 @@
         "seedExplanation": "Votre seed IOTA est la clé d'accès à vos fonds. Elle est composée de 81 caractères, utilisant uniquement des lettres A-Z ou le numéro 9.",
         "noIHaveOne": "Non, j’en ai déjà une",
         "yesINeedASeed": "Oui, j’ai besoin d’une seed",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
-        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
+        "explanation": "<0><0>Vous pouvez l’utiliser pour accéder à vos fonds de</0><1> n’importe quel portefeuille</1><2>, sur</2> <3> n’importe quel appareil.</3></0>",
+        "loseSeed": "Mais si vous perdez votre seed, vous perdez aussi vos IOTA.",
         "keepSafe": "Merci de garder votre seed en sécurité.",
         "hint": "<0><0>Astuce :</0> Cliquez sur NON si c'est la première fois que vous utilisez IOTA.</0>"
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity"
+        "thankYou": "Merci d’avoir téléchargé Trinity"
     },
     "writeSeedDown": {
         "yourSeedIs": "Votre seed se lit de gauche à droite et comporte {{maxSeedLength}} caractères.",
         "writeDownYourSeed": "<0>Notez votre seed et le code de vérification et </0><1>vérifiez à plusieurs reprises</1><2> qu’ils sont corrects.</2>",
-        "scrollToBottom": "Scroll to the bottom"
+        "scrollToBottom": "Défiler jusqu'en bas"
     },
     "history": {
         "bundleHashCopied": "Hash du paquet copié",
@@ -463,7 +466,10 @@
         "messageCopied": "Message copié",
         "messageCopiedExplanation": "Le message a été copié dans le presse-papier.",
         "send": "ENVOI",
-        "receive": "RÉCEPTION"
+        "receive": "RÉCEPTION",
+        "empty": "Vide",
+        "retrying": "NOUVEL ESSAI",
+        "yesterday": "Yesterday"
     },
     "accountManagement": {
         "viewSeed": "Afficher la seed",
@@ -502,7 +508,8 @@
         "frame": "Contours"
     },
     "themeCustomisation": {
-        "theme": "Thème"
+        "theme": "Thème",
+        "mockup": "Maquette"
     },
     "currencySelection": {
         "currency": "Devise"
@@ -602,7 +609,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Variation",
+        "change": "Changement (24h)",
         "volume": "Volume (24h)",
         "currentValue": "Valeur actuelle",
         "error": "Erreur de récupération des données du graphique"

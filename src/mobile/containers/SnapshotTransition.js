@@ -1,3 +1,4 @@
+import size from 'lodash/size';
 import Modal from 'react-native-modal';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -25,6 +26,7 @@ import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 import CtaButton from '../components/CtaButton';
 import InfoBox from '../components/InfoBox';
+import ProgressBar from '../components/ProgressBar';
 import { getMultiAddressGenFn, getPowFn } from '../utils/nativeModules';
 import { isAndroid } from '../utils/device';
 import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
@@ -112,6 +114,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginVertical: height / 20,
     },
+    modal: {
+        height,
+        width,
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 0,
+    },
 });
 
 class SnapshotTransition extends Component {
@@ -173,7 +182,17 @@ class SnapshotTransition extends Component {
         isModalActive: PropTypes.bool.isRequired,
         /** Whether to use remote PoW */
         remotePoW: PropTypes.bool.isRequired,
+        activeStepIndex: PropTypes.number.isRequired,
+        activeSteps: PropTypes.array.isRequired,
     };
+
+    static renderProgressBarChildren(activeStepIndex, sizeOfActiveSteps) {
+        if (activeStepIndex === -1) {
+            return null;
+        }
+
+        return `Attaching address ${activeStepIndex + 1} / ${sizeOfActiveSteps}`;
+    }
 
     constructor() {
         super();
@@ -289,8 +308,18 @@ class SnapshotTransition extends Component {
     };
 
     render() {
-        const { isTransitioning, theme, t, isAttachingToTangle, isModalActive } = this.props;
+        const {
+            isTransitioning,
+            theme,
+            t,
+            isAttachingToTangle,
+            isModalActive,
+            activeStepIndex,
+            activeSteps,
+        } = this.props;
         const textColor = { color: theme.body.color };
+
+        const sizeOfActiveSteps = size(activeSteps);
 
         return (
             <View style={styles.container}>
@@ -363,12 +392,28 @@ class SnapshotTransition extends Component {
                                         </View>
                                     }
                                 />
-                                <ActivityIndicator
-                                    animating={isTransitioning}
-                                    style={styles.activityIndicator}
-                                    size="large"
-                                    color={theme.primary.color}
-                                />
+                                <View
+                                    style={{
+                                        flex: 1,
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                    }}
+                                >
+                                    <ProgressBar
+                                        style={{
+                                            textWrapper: { flex: 0.4 },
+                                        }}
+                                        indeterminate={activeStepIndex === -1}
+                                        progress={activeStepIndex / sizeOfActiveSteps}
+                                        color={theme.primary.color}
+                                        textColor={theme.body.color}
+                                    >
+                                        {SnapshotTransition.renderProgressBarChildren(
+                                            activeStepIndex,
+                                            sizeOfActiveSteps,
+                                        )}
+                                    </ProgressBar>
+                                </View>
                             </View>
                         )}
                 </View>
@@ -394,11 +439,11 @@ class SnapshotTransition extends Component {
                     backdropTransitionOutTiming={200}
                     backdropColor={theme.body.bg}
                     backdropOpacity={0.6}
-                    style={{ alignItems: 'center', margin: 0 }}
+                    style={styles.modal}
                     isVisible={isModalActive}
                     onBackButtonPress={() => this.hideModal()}
                     hideModalContentWhileAnimating
-                    useNativeDriver={isAndroid ? true : false}
+                    useNativeDriver={isAndroid}
                 >
                     {this.renderModalContent()}
                 </Modal>
@@ -420,6 +465,8 @@ const mapStateToProps = (state) => ({
     isTransitioning: state.ui.isTransitioning,
     isModalActive: state.ui.isModalActive,
     remotePoW: state.settings.remotePoW,
+    activeStepIndex: state.progress.activeStepIndex,
+    activeSteps: state.progress.activeSteps,
 });
 
 const mapDispatchToProps = {

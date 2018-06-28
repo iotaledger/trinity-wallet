@@ -23,7 +23,7 @@ import {
     selectFirstAddressFromAccountFactory,
     getFailedBundleHashesForSelectedAccount,
 } from '../selectors/accounts';
-import { setNextStepAsActive } from './progress';
+import { setNextStepAsActive, reset as resetProgress } from './progress';
 import { clearSendFields } from './ui';
 import {
     isStillAValidTransaction,
@@ -49,7 +49,7 @@ import {
     markBundleBroadcastStatusComplete,
     markBundleBroadcastStatusPending,
 } from './accounts';
-import { shouldAllowSendingToAddress, getAddressesUptoRemainder } from '../libs/iota/addresses';
+import { shouldAllowSendingToAddress, getAddressesUptoRemainder, isAnyAddressSpent } from '../libs/iota/addresses';
 import {
     getStartingSearchIndexToPrepareInputs,
     getUnspentInputs,
@@ -63,6 +63,7 @@ import {
 } from './alerts';
 import i18next from '../i18next.js';
 import Errors from '../libs/errors';
+import { DEFAULT_DEPTH } from '../config';
 
 export const ActionTypes = {
     BROADCAST_BUNDLE_REQUEST: 'IOTA/TRANSFERS/BROADCAST_BUNDLE_REQUEST',
@@ -323,17 +324,22 @@ export const promoteTransaction = (bundleHash, accountName, powFn) => (dispatch,
  *
  *   @method forceTransactionPromotion
  *   @param {string} accountName
- *   @param {boolean} consistentTail
+ *   @param {boolean | object} consistentTail
  *   @param {array} tails
  *   @param {boolean} shouldGenerateAlert
- *   @param {function | null} powFn
+ *   @param {function} powFn
+ *   @param {number} depth
  *
  *   @returns {function} dispatch
  **/
-export const forceTransactionPromotion = (accountName, consistentTail, tails, shouldGenerateAlert, powFn = null) => (
-    dispatch,
-    getState,
-) => {
+export const forceTransactionPromotion = (
+    accountName,
+    consistentTail,
+    tails,
+    shouldGenerateAlert,
+    powFn = null,
+    depth = DEFAULT_DEPTH,
+) => (dispatch, getState) => {
     if (!consistentTail) {
         // Grab hash from the top tail to replay
         const topTx = head(tails);
@@ -364,7 +370,29 @@ export const forceTransactionPromotion = (accountName, consistentTail, tails, sh
         });
     }
 
-    return promoteTransactionAsync(consistentTail.hash, powFn);
+    return promoteTransactionAsync(consistentTail.hash, powFn, depth)
+        .then((txs) => txs)
+        .catch((error) => {
+            const isReferenceTxOld = error.message.includes(Errors.REFERENCE_TRANSACTION_TOO_OLD);
+            const hasDefaultDepth = depth === DEFAULT_DEPTH;
+
+            if (isReferenceTxOld && hasDefaultDepth) {
+                return dispatch(
+                    forceTransactionPromotion(
+                        accountName,
+                        consistentTail,
+                        tails,
+                        shouldGenerateAlert,
+                        powFn,
+                        depth * 2,
+                    ),
+                );
+            } else if (isReferenceTxOld && !hasDefaultDepth) {
+                return dispatch(forceTransactionPromotion(accountName, null, tails, shouldGenerateAlert, powFn));
+            }
+
+            throw new Error(error.message);
+        });
 };
 
 export const makeTransaction = (seed, receiveAddress, value, message, accountName, powFn, genFn) => (
@@ -596,7 +624,10 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                     );
                 }
 
-                setTimeout(() => dispatch(completeTransfer({ address, value })), 5000);
+                setTimeout(() => {
+                    dispatch(completeTransfer({ address, value }));
+                    dispatch(resetProgress());
+                }, 5000);
             })
             .catch((error) => {
                 dispatch(sendTransferError());
@@ -703,7 +734,14 @@ export const retryFailedTransaction = (accountName, bundleHash, powFn) => (dispa
 
     dispatch(retryFailedTransactionRequest());
 
-    return retry(existingFailedTransactionsForThisAccount[bundleHash], powFn, shouldOffloadPow)
+    return isAnyAddressSpent(existingFailedTransactionsForThisAccount[bundleHash])
+        .then((isSpent) => {
+            if (isSpent) {
+                throw new Error(Errors.ALREADY_SPENT_FROM_ADDRESSES);
+            }
+
+            return retry(existingFailedTransactionsForThisAccount[bundleHash], powFn, shouldOffloadPow);
+        })
         .then(({ transactionObjects }) => {
             dispatch(markBundleBroadcastStatusComplete({ accountName, bundleHash }));
 

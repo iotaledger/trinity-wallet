@@ -46,10 +46,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-end',
     },
-    logoContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
     infoTextBottom: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: GENERAL.fontSize3,
@@ -61,38 +57,12 @@ const styles = StyleSheet.create({
         fontSize: GENERAL.fontSize3,
         paddingTop: height / 60,
     },
-    qrImage: {
-        height: width / 28,
-        width: width / 28,
-        marginRight: width / 100,
-    },
-    qrButton: {
-        flexDirection: 'row',
-        alignItems: 'center',
+    modal: {
+        height,
+        width,
         justifyContent: 'center',
-        borderColor: 'white',
-        borderWidth: 1,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 6,
-        height: height / 16,
-    },
-    qrText: {
-        color: 'white',
-        fontFamily: 'SourceSansPro-Bold',
-        fontSize: GENERAL.fontSize1,
-        backgroundColor: 'transparent',
-    },
-    textFieldContainer: {
-        flex: 1,
-        paddingRight: width / 30,
-    },
-    textField: {
-        fontFamily: 'Inconsolata-Bold',
-    },
-    qrButtonContainer: {
-        justifyContent: 'flex-end',
         alignItems: 'center',
-        paddingBottom: height / 90,
+        margin: 0,
     },
 });
 
@@ -313,7 +283,7 @@ class SeedReentry extends Component {
                             backdropTransitionOutTiming={200}
                             backdropColor={theme.body.bg}
                             backdropOpacity={0.9}
-                            style={{ alignItems: 'center', margin: 0 }}
+                            style={styles.modal}
                             isVisible={this.state.isModalVisible}
                             onBackButtonPress={() => this.setState({ isModalVisible: false })}
                             hideModalContentWhileAnimating

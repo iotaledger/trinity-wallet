@@ -7,7 +7,6 @@ import Modal from 'react-native-modal';
 import { connect } from 'react-redux';
 import CustomTextInput from '../components/CustomTextInput';
 import FingerPrintModal from '../components/FingerprintModal';
-import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 import { isAndroid } from '../utils/device';
@@ -31,34 +30,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-end',
     },
-    titleContainer: {
+    modal: {
+        height,
+        width,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: height / 8,
-    },
-    title: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize4,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-    },
-    iotaLogo: {
-        height: width / 5,
-        width: width / 5,
-    },
-    loginButton: {
-        borderWidth: 1.2,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 2.7,
-        height: height / 14,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        marginBottom: height / 20,
-    },
-    loginText: {
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
-        backgroundColor: 'transparent',
+        margin: 0,
     },
 });
 
@@ -182,7 +159,7 @@ class EnterPassword extends Component {
                         backdropTransitionOutTiming={200}
                         backdropOpacity={0.9}
                         backdropColor={theme.body.bg}
-                        style={{ alignItems: 'center', margin: 0 }}
+                        style={styles.modal}
                         isVisible={isModalVisible}
                         onBackButtonPress={this.hideModal}
                         hideModalContentWhileAnimating
