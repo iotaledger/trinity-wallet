@@ -100,11 +100,9 @@ export const increaseSeedCount = () => ({
     type: ActionTypes.INCREASE_SEED_COUNT,
 });
 
-export const updateAccountAfterTransition = (accountName, addresses, balance) => ({
+export const updateAccountAfterTransition = (payload) => ({
     type: ActionTypes.UPDATE_ACCOUNT_AFTER_TRANSITION,
-    accountName,
-    addresses,
-    balance,
+    payload,
 });
 
 export const setNewUnconfirmedBundleTails = (payload) => ({

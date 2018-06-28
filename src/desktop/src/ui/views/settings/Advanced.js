@@ -373,7 +373,4 @@ const mapDispatchToProps = {
     completeSnapshotTransition,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(translate()(Advanced));
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(Advanced));

@@ -147,11 +147,12 @@
         "androidCopyPasteWarning": "Nikdy nekopírujte/nevkládejte Váš Seed na Android zařízení.",
         "willNotCopyPasteSeed": "Nebudu kopírovat/vkládat svůj seed",
         "mustBeStoredAppropriately": "Musí být uloženo odpovídajícím způsobem.",
-        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while.",
+        "deviceMayBecomeUnresponsive": "Vaše zařízení může na chvíli přestat reagovat.",
         "isYourBalanceCorrect": "Je Váš zůstatek v pořádku?",
         "ifYourBalanceIsNotCorrect": "Pokud Váš zůstatek není správný, je pravděpodobné, že používáte Seed z doby před snapshotem.",
         "headToAdvancedSettingsForTransition": "Jděte do Pokročilého nastavení a proveďte aktualizaci po Snapshotu.",
-        "usingTrinityWalletWithKeePass": "Použití Trinity peněženky s Keepass2Android"
+        "usingTrinityWalletWithKeePass": "Použití Trinity peněženky s Keepass2Android",
+        "signedTrytesBroadcastErrorExplanation": "Během transakce došlo k chybě sítě."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
@@ -223,6 +224,7 @@
         "invalidCharacters": "Seed obsahuje neplatné znaky",
         "invalidCharactersExplanation": "Seed musí obsahovat pouze velká písmena A-Z a číslo 9. Váš Seed obsahuje neplatné znaky. Prosím zkuste to znovu.",
         "seedTooShort": "Seed je příliš krátký",
+        "seedTooLong": "Seed je příliš dlouhý",
         "seedTooShortExplanation": "Seed musí obsahovat {{maxLength}} znaků. Váš Seed obsahuje {{currentLength}} znaků. Prosím zkuste to znovu.",
         "seedExplanation": "Seed by měl mít {{maxLength}} znaků a měl by obsahovat velká písmena A-Z, nebo číslo 9. Nelze použít Seed delší než {{maxLength}} znaků.",
         "neverShare": "NIKOMU NIKDY NESDĚLUJTE VÁŠ SEED"
@@ -291,7 +293,9 @@
         "message": "Volitelná zpráva",
         "removeMessage": "ODSTRANIT ZPRÁVU",
         "noAddresses": "ŽÁDNÉ ADRESY",
-        "spent": "Utraceno"
+        "spent": "Utraceno",
+        "missingPermission": "Požadovaný přístup k souborovému systému",
+        "missingPermissionExplanation": "Aby bylo možné sdílet QR kódy, musí být povolen přístup do souborového systému."
     },
     "saveYourSeed": {
         "saveYourSeed": "Zálohujte Váš Seed",
@@ -300,14 +304,12 @@
         "leastSecure": "Nejméně bezpečné",
         "paperWallet": "Papírová peněženka",
         "writeYourSeedDown": "Zapište si Váš Seed",
-        "printYourSeed": "Tisk vašeho Seedu",
-        "digitalCopy": "Digitální kopie",
         "seedClearedExplanation": "Pro větší bezpečnost byl Seed ze schránky vymazán.",
         "iHaveBackedUpMySeed": "Svůj Seed mám uložený",
         "letsWriteDownYourSeed": "Poznamenejte si někam Váš Seed",
         "youCanHighlightCharacters": "Můžete zvýraznit 9 znaků najednou",
         "printBlankWallet": "Tisk prázdné peněženky",
-        "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
+        "whatIsChecksum": "Každý Seed má odpovídající 3-znakový kontrolní součet",
         "iHavesavedMySeed": "Svůj Seed mám uložený",
         "checksumExplanation": "Vždy, když přidáte Seed do Vaší peněženky, byste se měli ujistit, že kontrolní součet vygenerovaný peněženkou odpovídá tomu, který jste si zapsali.",
         "mustSaveYourSeed": "<0><0>Musíte uložit nejméně </0><1>jeden Seed</1><2>z níže uvedených možností.</2></0>"
@@ -348,7 +350,8 @@
         "sendMax": "POSLAT MAXIMUM",
         "totalTime": "Celkový čas",
         "addressPasteDetected": "Zjištěno kopírování adresy",
-        "addressPasteExplanation": "Vaše adresa byla zkopírována ze schránky. Zkontrolujte, že vložená adresa je opravdu ta, kam chcete prostředky poslat."
+        "addressPasteExplanation": "Vaše adresa byla zkopírována ze schránky. Zkontrolujte, že vložená adresa je opravdu ta, kam chcete prostředky poslat.",
+        "invalid": "NEPLATNÉ"
     },
     "setPassword": {
         "choosePassword": "Zvolte nové heslo",
@@ -437,33 +440,36 @@
         "okay": "OK - přejděme nyní k nastavení Vaší peněženky!",
         "doYouAlreadyHaveASeed": "Máte už vlastní Seed, který byste rádi použili?",
         "doYouNeedASeed": "Potřebujete vytvořit nový Seed?",
-        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
+        "seedExplanation": "IOTA Seed je hlavním přístupovým klíčem k vašim prostředkům. Je dlouhý 81 znaků a používá pouze písmena A-Z nebo číslo 9.",
         "noIHaveOne": "Ne, již mám Seed",
         "yesINeedASeed": "Ano, potřebuji Seed",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
-        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
+        "explanation": "<0><0>Můžete ho použít pro přístup k vašim prostředkům z</0><1>jakékoliv jiné peněženky</1><2>, na</2><3>libovolném zařízení.</3></0>",
+        "loseSeed": "Ale pokud ztratíte Váš Seed, ztratíte vaše IOTY.",
         "keepSafe": "Uchovávejte Váš Seed v bezpečí.",
         "hint": "<0><0>Tip:</0> Pokud IOTA peněženku používáte poprvé, klepněte na tlačítko NE</0>"
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity"
+        "thankYou": "Děkujeme, že jste si stáhli Trinity"
     },
     "writeSeedDown": {
         "yourSeedIs": "Váš Seed je {{maxSeedLength}} znaků čtených zleva doprava.",
         "writeDownYourSeed": "<0> Zapište si svůj Seed a kontrolní součet </0><1>a důkladně zkontrolujte</1><2> jejich správnost.</2>",
-        "scrollToBottom": "Scroll to the bottom"
+        "scrollToBottom": "Posunout na konec"
     },
     "history": {
         "bundleHashCopied": "Balíček hash zkopírován",
-        "noTransactionsFound": "No transactions found",
-        "hideZeroBalance": "Hide zero balance",
+        "noTransactionsFound": "Nebyly nalezeny žádné transakce",
+        "hideZeroBalance": "Skrýt nulový zůstatek",
         "bundleHashCopiedExplanation": "Balíček hash byl zkopírován do schránky.",
         "addressCopied": "Adresa zkopírována",
         "addressCopiedExplanation": "Adresa byla zkopírována do schránky.",
         "messageCopied": "Zpráva byla zkopírována",
         "messageCopiedExplanation": "Zpráva byla zkopírována do schránky.",
         "send": "ODESLAT",
-        "receive": "PŘÍJEM"
+        "receive": "PŘÍJEM",
+        "empty": "Prázdné",
+        "retrying": "OPAKOVÁNÍ PODPORY",
+        "yesterday": "Yesterday"
     },
     "accountManagement": {
         "viewSeed": "Zobrazit Seed",
@@ -502,7 +508,8 @@
         "frame": "Rám"
     },
     "themeCustomisation": {
-        "theme": "Motiv"
+        "theme": "Motiv",
+        "mockup": "Příklad"
     },
     "currencySelection": {
         "currency": "Měna"
@@ -602,7 +609,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Změna",
+        "change": "Změna (24h)",
         "volume": "Objem (24h)",
         "currentValue": "Současná hodnota",
         "error": "Při načítání dat grafu došlo k chybě"

@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
 const ProgressBar = (props) => {
     return (
         <View style={styles.container}>
-            <View style={styles.textWrapper}>
+            <View style={[styles.textWrapper, props.style.textWrapper]}>
                 <Text style={[styles.text, { color: props.textColor }]}>{props.children}</Text>
             </View>
             <Progress.Bar
@@ -56,6 +56,8 @@ ProgressBar.propTypes = {
     height: PropTypes.number,
     /** Progress bar text color */
     textColor: PropTypes.string,
+    /** Default style object */
+    style: PropTypes.object,
 };
 
 ProgressBar.defaultProps = {
@@ -65,6 +67,9 @@ ProgressBar.defaultProps = {
     indeterminate: false,
     color: 'rgba(247, 208, 2, 0.75)',
     textColor: 'rgba(247, 208, 2, 0.75)',
+    style: {
+        textWrapper: {},
+    },
 };
 
 export default ProgressBar;

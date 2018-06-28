@@ -151,7 +151,8 @@
         "isYourBalanceCorrect": "Верен ли Ваш баланс?",
         "ifYourBalanceIsNotCorrect": "Если Ваш баланс не верен, то, скорее всего, Вы используете ключ, который не был актувлизирован после снимка сети.",
         "headToAdvancedSettingsForTransition": "Перейдите в Дополнительные Настройки и выполните Snapshot переход.",
-        "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android"
+        "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android",
+        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ключ содержит недопустимые символы",
@@ -223,6 +224,7 @@
         "invalidCharacters": "Ключ содержит недопустимые символы",
         "invalidCharactersExplanation": "Ключ может содержать только заглавные буквы A-Z и цифру 9. Ваш ключ содержит недопустимые символы. Пожалуйста, попробуйте еще раз.",
         "seedTooShort": "Ключ слишком короткий",
+        "seedTooLong": "Seed is too long",
         "seedTooShortExplanation": "Ключ должен быть длиной в {{maxLength}} символ. Ваш текущий ключ имеет длину в {{currentLength}} символов. Пожалуйста, повторите попытку.",
         "seedExplanation": "Ключ должен быть длиной в {{maxLength}} символ и содержать только заглавные буквы A-Z и цифру 9. Ключи длиной более чем {{maxLength}} символ не допускаются.",
         "neverShare": "НИКОГДА НИКОМУ НЕ СООБЩАЙТЕ ВАШ КЛЮЧ"
@@ -291,7 +293,9 @@
         "message": "Сообщение (опционально)",
         "removeMessage": "УДАЛИТЬ СООБЩЕНИЕ",
         "noAddresses": "НЕТ АДРЕСОВ",
-        "spent": "Использованный адрес"
+        "spent": "Использованный адрес",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
     },
     "saveYourSeed": {
         "saveYourSeed": "Создать резервную копию Вашего ключа",
@@ -300,8 +304,6 @@
         "leastSecure": "Наименее безопасно",
         "paperWallet": "Бумажный кошелек",
         "writeYourSeedDown": "Запишите Ваш ключ",
-        "printYourSeed": "Распечатайте Ваш ключ",
-        "digitalCopy": "Цифровая копия",
         "seedClearedExplanation": "Ключ был удален из буфера обмена для Вашей безопасности.",
         "iHaveBackedUpMySeed": "Я сохранил свой ключ",
         "letsWriteDownYourSeed": "Запишите Ваш ключ",
@@ -348,7 +350,8 @@
         "sendMax": "МАКС. ПЕРЕВОД",
         "totalTime": "Общее время",
         "addressPasteDetected": "Обнаружена вставка адреса",
-        "addressPasteExplanation": "Похоже, что Вы вставили адрес. Убедитесь, что этот адрес соответствует тому, на который Вы хотите отправить."
+        "addressPasteExplanation": "Похоже, что Вы вставили адрес. Убедитесь, что этот адрес соответствует тому, на который Вы хотите отправить.",
+        "invalid": "INVALID"
     },
     "setPassword": {
         "choosePassword": "Задайте новый пароль",
@@ -463,7 +466,10 @@
         "messageCopied": "Сообщение скопировано",
         "messageCopiedExplanation": "Сообщение скопировано в буфер обмена.",
         "send": "Отправление",
-        "receive": "Получение"
+        "receive": "Получение",
+        "empty": "Empty",
+        "retrying": "RETRYING",
+        "yesterday": "Yesterday"
     },
     "accountManagement": {
         "viewSeed": "Показать ключ",
@@ -502,7 +508,8 @@
         "frame": "Фрейм"
     },
     "themeCustomisation": {
-        "theme": "Тема оформления"
+        "theme": "Тема оформления",
+        "mockup": "Mockup"
     },
     "currencySelection": {
         "currency": "Валюта"
@@ -602,7 +609,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Изменение",
+        "change": "Change (24h)",
         "volume": "Объем (24ч)",
         "currentValue": "Текущее значение",
         "error": "Ошибка при загрузке данных графика"

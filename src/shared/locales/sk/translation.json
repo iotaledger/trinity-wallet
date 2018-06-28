@@ -89,7 +89,7 @@
         "addresses": "Adresy",
         "reattach": "PRIPOJIŤ ZNOVU",
         "promote": "PODPORIŤ",
-        "retry": "ZNOVA",
+        "retry": "OPAKOVANIE PODPORY",
         "rebroadcast": "OPAKOVANIE PRENOSU",
         "pressBackAgain": "Opätovným stlačením tlačidla Späť zatvoríte aplikáciu",
         "reattached": "Úspešne znovupripojená transakcia",
@@ -134,7 +134,7 @@
         "nodeAutoChanged": "Automatické prepnutie Nodu",
         "nodeAutoChangedExplanation": "Prepnuté na nový Node {{- nodeAddress}} keďže predtým vybraný je offline.",
         "fingerprintOnSend": "Pre overenie prenosu priložte prst na čítačku",
-        "masterKey": "Váš IOTA Seed je hlavným kľúčom k vašim prostriedkom.",
+        "masterKey": "Váš IOTA Seed je hlavným prístupovým kľúčom k vašim prostriedkom.",
         "seedThief": "Ak získa niekto iný váš Seed, môže ukradnúť vaše IOTA.",
         "googlePlayServicesNotAvailable": "Služby Google Play nie sú dostupné",
         "couldNotVerifyDeviceIntegrity": "Integrita zariadenia nemôže byť overená, pretože služby Google Play nie sú dostupné.",
@@ -146,12 +146,13 @@
         "androidInsecureClipboardWarning": "Schránka v systéme Android nie je bezpečná.",
         "androidCopyPasteWarning": "Nikdy nekopírujte/nevkladajte váš Seed do Android zariadenia.",
         "willNotCopyPasteSeed": "Nebudem kopírovať/vkladať svoj Seed",
-        "mustBeStoredAppropriately": "Musí byť uložené zodpovedajúcim spôsobom.",
-        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while.",
+        "mustBeStoredAppropriately": "Musí byť uložený zodpovedajúcim spôsobom.",
+        "deviceMayBecomeUnresponsive": "Vaše zariadenie môže na chvíľu prestať reagovať.",
         "isYourBalanceCorrect": "Je váš zostatok správny?",
         "ifYourBalanceIsNotCorrect": "Pokiaľ váš zostatok nie je správny, je pravdepodobné, že používate Seed z doby pred Snapshotom.",
         "headToAdvancedSettingsForTransition": "Choďte do Pokročilých nastavení a urobte Aktualizáciu údajov po Snapshote.",
-        "usingTrinityWalletWithKeePass": "Použitie Trinity peňaženky s Keepass2Android"
+        "usingTrinityWalletWithKeePass": "Použitie Trinity peňaženky s Keepass2Android",
+        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
@@ -223,6 +224,7 @@
         "invalidCharacters": "Seed obsahuje neplatné znaky",
         "invalidCharactersExplanation": "Seed môže obsahovať iba veľké písmená A-Z a číslo 9. Váš Seed obsahuje neplatné znaky. Prosím, skúste to znova.",
         "seedTooShort": "Seed je príliš krátky",
+        "seedTooLong": "Seed je príliš dlhý",
         "seedTooShortExplanation": "Seed musí mať {{maxLength}} znakov. Váš Seed má {{currentLength}} znakov. Prosím, skúste to znova.",
         "seedExplanation": "Seed by mal mať dĺžku {{maxLength}} znakov a mal by obsahovať veľké písmená A-Z a číslo 9. Nie je možné použiť Seed dlhší ako {{maxLength}} znakov.",
         "neverShare": "NIKDY NIKOMU NEPREZRÁDZAJTE VÁŠ SEED"
@@ -261,7 +263,7 @@
         "seedNotGeneratedExplanation": "Generujte, prosím, nový Seed.",
         "pressForNewSeed": "Stlačte pre nový Seed",
         "generateSuccess": "Seed úspešne vygenerovaný",
-        "individualLetters": "Vyberte náhodné písmena.",
+        "individualLetters": "Vyberte náhodné znaky.",
         "individualLetterCount": "Stlačte {{letterCount}} jednotlivé znaky pre zvýšenie náhodnosti.",
         "whatIsASeed": "Čo je to Seed?"
     },
@@ -291,7 +293,9 @@
         "message": "Voliteľná správa",
         "removeMessage": "ODSTRÁNIŤ SPRÁVU",
         "noAddresses": "ŽIADNE ADRESY",
-        "spent": "Utratené"
+        "spent": "Utratené",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
     },
     "saveYourSeed": {
         "saveYourSeed": "Zálohujte váš Seed",
@@ -300,21 +304,19 @@
         "leastSecure": "Najmenej bezpečné",
         "paperWallet": "Papierová peňaženka",
         "writeYourSeedDown": "Zapíšte si váš Seed",
-        "printYourSeed": "Tlač vášho Seedu",
-        "digitalCopy": "Digitálna kópia",
         "seedClearedExplanation": "Kvôli väčšej bezpečnosti bol Seed zo schránky vymazaný.",
         "iHaveBackedUpMySeed": "Svoj Seed mám zálohovaný",
         "letsWriteDownYourSeed": "Zapíšte si váš Seed",
         "youCanHighlightCharacters": "Môžete zvýrazniť 9 znakov súčasne",
-        "printBlankWallet": "Tlač prázdnej peňaženky",
-        "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
+        "printBlankWallet": "Tlač prázdnej šablóny",
+        "whatIsChecksum": "Každý Seed má zodpovedajúci 3-znakový kontrolný súčet",
         "iHavesavedMySeed": "Svoj Seed mám uložený",
         "checksumExplanation": "Vždy, keď pridáte Seed do vašej peňaženky, mali by ste sa uistiť, že kontrolný súčet vygenerovaný peňaženkou zodpovedá tomu, ktorý ste si zapísali.",
-        "mustSaveYourSeed": "<0><0>Je potrebné zálohovať váš Seed </0><1>aspoň jedným</1><2>z nižšie uvedených spôsobov.</2></0>"
+        "mustSaveYourSeed": "<0><0>Je potrebné zálohovať váš Seed </0><1>aspoň jedným</1><2> z nižšie uvedených spôsobov.</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Prosím, potvrďte váš Seed",
-        "trinityWillNeverAskToReenter": "Trinity vás nikdy nebude vyzývať k opätovnému vloženiu tohto Seedu. Výnimkou je reset vašej peňaženky, prípadne celej aplikácie.",
+        "trinityWillNeverAskToReenter": "Trinity vás už nikdy nebude vyzývať k opätovnému vloženiu tohto Seedu. Výnimkou je reset vašej peňaženky, prípadne celej aplikácie.",
         "enterYourSeed": "Vložte váš Seed",
         "incorrectSeed": "Neplatný Seed",
         "incorrectSeedExplanation": "Seed, ktorý ste zadali, je neplatný. Prosím, skúste to znova.",
@@ -348,7 +350,8 @@
         "sendMax": "POSLAŤ VŠETKO",
         "totalTime": "Celkový čas",
         "addressPasteDetected": "Zistené kopírovanie adresy",
-        "addressPasteExplanation": "Vyzerá to, že ste skopírovali adresu zo schránky. Uistite sa, že vložená adresa je naozaj tá, na ktorú chcete odoslať prostriedky."
+        "addressPasteExplanation": "Vyzerá to, že ste skopírovali adresu zo schránky. Uistite sa, že vložená adresa je naozaj tá, na ktorú chcete odoslať prostriedky.",
+        "invalid": "NEPLATNÝ"
     },
     "setPassword": {
         "choosePassword": "Zvoľte si nové heslo",
@@ -437,33 +440,36 @@
         "okay": "Ok. Prejdime k nastaveniu Vašej peňaženky!",
         "doYouAlreadyHaveASeed": "Máte už vlastný Seed, ktorý by ste chceli použiť?",
         "doYouNeedASeed": "Potrebujete vytvoriť nový Seed?",
-        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
+        "seedExplanation": "IOTA Seed je hlavným prístupovým kľúčom k vašim prostriedkom. Je dlhý 81 znakov a používa iba písmená A-Z alebo číslo 9.",
         "noIHaveOne": "Nie, už mám Seed",
         "yesINeedASeed": "Áno, potrebujem Seed",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
-        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
+        "explanation": "<0><0>Môžete ho použiť pre prístup k vašim prostriedkom z</0><1> akejkoľvek peňaženky</1><2>, na</2><3> akomkoľvek zariadení.</3></0>",
+        "loseSeed": "Ale ak stratíte váš Seed, stratíte tiež všetky vaše IOTY.",
         "keepSafe": "Prosím, uchovávajte svoj Seed v bezpečí.",
         "hint": "<0><0>Tip:</0>Ak IOTA peňaženku používate prvýkrát, kliknite na tlačidlo NIE</0>"
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity"
+        "thankYou": "Ďakujeme, že ste si stiahli Trinity"
     },
     "writeSeedDown": {
         "yourSeedIs": "Váš Seed je {{maxSeedLength}} znakov čítaných zľava doprava.",
         "writeDownYourSeed": "<0> Zapíšte si svoj Seed a kontrolný súčet a </0><1>dôkladne skontrolujte</1><2> ich správnosť.</2>",
-        "scrollToBottom": "Scroll to the bottom"
+        "scrollToBottom": "Posunúť sa na koniec"
     },
     "history": {
         "bundleHashCopied": "Bundle hash skopírovaný",
-        "noTransactionsFound": "No transactions found",
-        "hideZeroBalance": "Hide zero balance",
+        "noTransactionsFound": "Nenašla sa žiadna transakcia",
+        "hideZeroBalance": "Skryť nulový zostatok",
         "bundleHashCopiedExplanation": "Bundle hash bol skopírovaný do schránky.",
         "addressCopied": "Adresa skopírovaná",
         "addressCopiedExplanation": "Adresa bola skopírovaná do schránky.",
         "messageCopied": "Správa bola skopírovaná",
         "messageCopiedExplanation": "Správa bola skopírovaná do schránky.",
         "send": "ODOSLAŤ",
-        "receive": "PRÍJEM"
+        "receive": "PRÍJEM",
+        "empty": "Prázdne",
+        "retrying": "OPAKOVANIE PODPORY",
+        "yesterday": "Yesterday"
     },
     "accountManagement": {
         "viewSeed": "Zobraziť Seed",
@@ -502,7 +508,8 @@
         "frame": "Rámec"
     },
     "themeCustomisation": {
-        "theme": "Motív"
+        "theme": "Motív",
+        "mockup": "Šablóna"
     },
     "currencySelection": {
         "currency": "Mena"
@@ -565,7 +572,7 @@
         "instructionsEnable": "Ak chcete zapnúť funkciu overenie odtlačkom prsta, priložte prst na čítačku",
         "instructionsDisable": "Ak chcete vypnúť funkciu overenie odtlačkom prsta, priložte prst na čítačku",
         "fingerprintAuthEnabled": "Biometrické overovanie je zapnuté",
-        "fingerprintAuthEnabledExplanation": "Úspešne ste povolili biometrické overenie.",
+        "fingerprintAuthEnabledExplanation": "Úspešne ste povolili biometrické overovanie.",
         "fingerprintAuthDisabled": "Biometrické overovanie je vypnuté",
         "fingerprintAuthDisabledExplanation": "Úspešne ste vypli biometrické overenie.",
         "fingerprintAuthFailed": "Biometrické overenie zlyhalo",
@@ -602,7 +609,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Zmena",
+        "change": "Zmena (24h)",
         "volume": "Objem (24h)",
         "currentValue": "Súčasná hodnota",
         "error": "Pri načítaní dát grafu došlo k chybe"
@@ -674,6 +681,6 @@
     },
     "privacyPolicy": {
         "privacyPolicy": "Zásady ochrany osobných údajov",
-        "agree": "Súhlasim"
+        "agree": "Súhlasím"
     }
 }

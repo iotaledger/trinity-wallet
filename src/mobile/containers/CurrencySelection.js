@@ -50,13 +50,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
-    infoText: {
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
-        backgroundColor: 'transparent',
-        paddingTop: height / 30,
-        textAlign: 'center',
-    },
     activityIndicator: {
         flex: 1,
         justifyContent: 'center',

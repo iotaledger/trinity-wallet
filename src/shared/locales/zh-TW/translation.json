@@ -151,7 +151,8 @@
         "isYourBalanceCorrect": "您的餘額正確嗎？",
         "ifYourBalanceIsNotCorrect": "如果您的餘額不正確的話，有可能您最後一次使用種子碼是在快照發生之前。",
         "headToAdvancedSettingsForTransition": "前往進階設定然後執行快照轉換。",
-        "usingTrinityWalletWithKeePass": "在 Trinity 錢包使用 Keepass2Android"
+        "usingTrinityWalletWithKeePass": "在 Trinity 錢包使用 Keepass2Android",
+        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
@@ -223,6 +224,7 @@
         "invalidCharacters": "種子碼包含無效字元",
         "invalidCharactersExplanation": "種子碼只能由大寫 A-Z 字母和數字 9 組成，您的種子碼包含無效字元，請再試一次。",
         "seedTooShort": "種子碼過短",
+        "seedTooLong": "Seed is too long",
         "seedTooShortExplanation": "您的密碼必須至少是 {{maxLength}} 個字元，目前為 {{currentLength}} 個字元長，請再試一次。",
         "seedExplanation": "種子碼應為 {{maxLength}} 個字元長並包含大寫字母 A-Z 或數字 9，您的種子碼不能長於 {{maxLength}} 個字元。",
         "neverShare": "千萬別和他人分享您的種子碼"
@@ -291,7 +293,9 @@
         "message": "選擇性訊息",
         "removeMessage": "移除訊息",
         "noAddresses": "無地址",
-        "spent": "已支出"
+        "spent": "已支出",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
     },
     "saveYourSeed": {
         "saveYourSeed": "備份您的種子碼",
@@ -300,8 +304,6 @@
         "leastSecure": "最不安全",
         "paperWallet": "紙錢包",
         "writeYourSeedDown": "寫下您的種子碼",
-        "printYourSeed": "印出您的種子碼",
-        "digitalCopy": "數位副本",
         "seedClearedExplanation": "為保您的安全，種子碼已從剪貼簿清除。",
         "iHaveBackedUpMySeed": "我已儲存我的種子碼",
         "letsWriteDownYourSeed": "請寫下您的種子碼",
@@ -348,7 +350,8 @@
         "sendMax": "全部傳送",
         "totalTime": "總計",
         "addressPasteDetected": "檢測到地址貼上",
-        "addressPasteExplanation": "看起來您已貼上地址，請確認貼上的地址與您想送出去的相符。"
+        "addressPasteExplanation": "看起來您已貼上地址，請確認貼上的地址與您想送出去的相符。",
+        "invalid": "INVALID"
     },
     "setPassword": {
         "choosePassword": "選擇新的密碼",
@@ -463,7 +466,10 @@
         "messageCopied": "訊息已複製",
         "messageCopiedExplanation": "訊息已複製到剪貼簿。",
         "send": "轉帳",
-        "receive": "收款"
+        "receive": "收款",
+        "empty": "Empty",
+        "retrying": "RETRYING",
+        "yesterday": "Yesterday"
     },
     "accountManagement": {
         "viewSeed": "檢視種子",
@@ -502,7 +508,8 @@
         "frame": "邊框"
     },
     "themeCustomisation": {
-        "theme": "佈景主題"
+        "theme": "佈景主題",
+        "mockup": "Mockup"
     },
     "currencySelection": {
         "currency": "貨幣"
@@ -602,7 +609,7 @@
     },
     "chart": {
         "mcap": "總市值",
-        "change": "變化率",
+        "change": "Change (24h)",
         "volume": "交易量 (24h)",
         "currentValue": "目前價值",
         "error": "取得圖表資訊時出錯"

@@ -127,8 +127,5 @@ export default function withListData(ListComponent) {
         generateAlert,
     };
 
-    return connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(translate()(ListData));
+    return connect(mapStateToProps, mapDispatchToProps)(translate()(ListData));
 }
