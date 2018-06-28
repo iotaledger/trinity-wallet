@@ -247,11 +247,17 @@ export function setFullNode(node, addingCustomNode = false) {
 
                 // Update node in redux store
                 dispatch(dispatcher.success(node));
-
-                if (
-                    res.error.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE) ||
-                    res.error.includes(Errors.COMMAND_UNKNOWN('[attachToTangle]'))
-                ) {
+               
+                if (res.error.includes(Errors.INVALID_PARAMETERS)) {
+                    dispatch(
+                        generateAlert(
+                            'success',
+                            i18next.t('settings:nodeChangeSuccess'),
+                            i18next.t('settings:nodeChangeSuccessExplanation', { node }),
+                            10000,
+                        ),
+                    );
+                } else {
                     // Automatically default to local PoW if this node has no attach to tangle available
                     dispatch(setRemotePoW(false));
                     dispatch(setAutoPromotion(false));
@@ -264,19 +270,6 @@ export function setFullNode(node, addingCustomNode = false) {
                             10000,
                         ),
                     );
-                } else if (res.error.includes(Errors.INVALID_PARAMETERS)) {
-                    dispatch(
-                        generateAlert(
-                            'success',
-                            i18next.t('settings:nodeChangeSuccess'),
-                            i18next.t('settings:nodeChangeSuccessExplanation', { node }),
-                            10000,
-                        ),
-                    );
-                } else {
-                    dispatch(dispatcher.error());
-
-                    dispatch(dispatcher.alerts.defaultError());
                 }
             })
             .catch((err) => {
