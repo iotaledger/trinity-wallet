@@ -50,6 +50,15 @@ class SetNode extends PureComponent {
         customNode: '',
     };
 
+    componentWillReceiveProps(nextProps) {
+        if (this.props.loading && !nextProps.loading) {
+            this.setState({
+                selection: null,
+                customNode: '',
+            });
+        }
+    }
+
     validNode = (node) => {
         return node.length > 0;
     };
