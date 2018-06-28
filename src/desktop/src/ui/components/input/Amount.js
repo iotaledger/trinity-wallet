@@ -115,7 +115,7 @@ export default class AmountInput extends React.PureComponent {
         if (this.state.iotas !== parseInt(props.amount)) {
             this.setState({
                 iotas: props.amount.length ? parseInt(props.amount) : 0,
-                value: props.amount.length ? round(parseInt(props.amount) / this.getUnitMultiplier()) : 0,
+                value: props.amount.length ? parseInt(props.amount) / this.getUnitMultiplier() : 0,
             });
         }
     };
@@ -175,7 +175,8 @@ export default class AmountInput extends React.PureComponent {
                             <p>
                                 = {getCurrencySymbol(settings.currency)}{' '}
                                 {(
-                                    round(amount * settings.usdPrice / 1000000 * settings.conversionRate * 100) / 100
+                                    round(((amount * settings.usdPrice) / 1000000) * settings.conversionRate * 100) /
+                                    100
                                 ).toFixed(2)}
                             </p>
                         ) : null}

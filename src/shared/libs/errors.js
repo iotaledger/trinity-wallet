@@ -18,4 +18,5 @@ export default {
     INVALID_BUNDLE: 'Invalid bundle',
     INVALID_PARAMETERS: 'Invalid parameters',
     ALREADY_SPENT_FROM_ADDRESSES: 'Already spent from addresses.',
+    REFERENCE_TRANSACTION_TOO_OLD: 'reference transaction is too old',
 };
