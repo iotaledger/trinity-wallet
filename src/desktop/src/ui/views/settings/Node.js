@@ -17,12 +17,18 @@ class SetNode extends PureComponent {
         node: PropTypes.string.isRequired,
         /** Available nodes list */
         nodes: PropTypes.array.isRequired,
+        /** Available custom nodes list */
+        customNodes: PropTypes.array.isRequired,
         /** Node validity check statuss */
         loading: PropTypes.bool.isRequired,
         /** Set new node
          * @param {string} url - Node url
          */
         setNode: PropTypes.func.isRequired,
+        /** Remove custom node
+         * @param {string} url - Node url
+         */
+        removeCustomNode: PropTypes.func.isRequired,
         /** Auto node switching enabled
          * @ignore
          */
@@ -69,7 +75,7 @@ class SetNode extends PureComponent {
     };
 
     render() {
-        const { nodes, node, loading, autoNodeSwitching, t } = this.props;
+        const { nodes, customNodes, node, loading, autoNodeSwitching, t } = this.props;
         const { selection, customNode } = this.state;
 
         const selectedNode = this.validNode(customNode) ? customNode : selection;
@@ -101,6 +107,12 @@ class SetNode extends PureComponent {
                     <Button type="submit" loading={loading} disabled={!selectedNode || selectedNode === node}>
                         {t('save')}
                     </Button>
+                    {selection !== node &&
+                        customNodes.indexOf(selection) > -1 && (
+                            <Button onClick={() => this.props.removeCustomNode(selection || node)} variant="negative">
+                                {t('addCustomNode:removeCustomNode')}
+                            </Button>
+                        )}
                 </fieldset>
             </form>
         );
