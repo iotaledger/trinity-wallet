@@ -1,12 +1,15 @@
 const { ipcRenderer: ipc, shell, clipboard } = require('electron');
+const { dialog } = require('electron').remote;
+const currentWindow = require('electron').remote.getCurrentWindow();
 const packageFile = require('../package.json');
 const machineUuid = require('machine-uuid');
 const keytar = require('keytar');
+const fs = require('fs');
 const settings = require('electron-settings');
 const Kerl = require('iota.lib.js/lib/crypto/kerl/kerl');
 const Curl = require('iota.lib.js/lib/crypto/curl/curl');
 const Converter = require('iota.lib.js/lib/crypto/converter/converter');
-const currentWindow = require('electron').remote.getCurrentWindow();
+const kdbx = require('./kdbx');
 
 const trytesTrits = [
     [0, 0, 0],
@@ -48,14 +51,13 @@ let onboardingGenerated = false;
 const Electron = {
     clipboard: (content) => {
         if (content) {
-            let clip =
+            const clip =
                 typeof content === 'string'
                     ? content
                     : Array.from(content)
                           .map((byte) => '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.charAt(byte % 27))
                           .join('');
             clipboard.writeText(clip);
-            clip = null;
             if (typeof content !== 'string') {
                 global.gc();
             }
@@ -191,6 +193,33 @@ const Electron = {
         global.gc();
     },
 
+    exportSeed: async (seed, password) => {
+        try {
+            const content = await kdbx.exportVault(seed, password);
+
+            const path = await dialog.showSaveDialog(currentWindow, {
+                title: 'Export keyfile',
+                defaultPath: 'trinity.kdbx',
+                buttonLabel: 'Export',
+            });
+
+            if (!path) {
+                throw Error('Export cancelled');
+            }
+
+            fs.writeFileSync(path, new Buffer(content));
+
+            return false;
+        } catch (error) {
+            return error.message;
+        }
+    },
+
+    importSeed: async (buffer, password) => {
+        const seed = await kdbx.importVault(buffer, password);
+        return seed;
+    },
+
     changeLanguage: (t) => {
         ipc.send('menu.language', {
             about: t('settings:about'),
@@ -253,5 +282,17 @@ const Electron = {
 
     _eventListeners: {},
 };
+
+// Disable default drag&drop
+document.addEventListener('dragover', (e) => e.preventDefault());
+document.addEventListener('drop', (e) => e.preventDefault());
+
+// Disable eval
+// eslint-disable-next-line
+/* TODO: Reenable for production code only
+window.eval = global.eval = function() {
+    throw new Error('Eval support disabled');
+};
+*/
 
 global.Electron = Electron;
