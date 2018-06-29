@@ -49,6 +49,12 @@ class About extends React.PureComponent {
 
                     <article>
                         <Scrollbar>
+                            <h5>0.1.9.</h5>
+                            <ul>
+                                <li>Add: Feature to remove custom added nodes</li>
+                                <li>Fix: Separate keychain seed accounts to individual entries</li>
+                                <li>Fix: Adding custom node yields incorrect error</li>
+                            </ul>
                             <h5>0.1.8.</h5>
                             <ul>
                                 <li>New: Add seed SeedFile import/export</li>
