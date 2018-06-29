@@ -48,8 +48,8 @@ const styles = StyleSheet.create({
     statusText: {
         justifyContent: 'space-between',
         backgroundColor: 'transparent',
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize2,
+        fontFamily: 'SourceSansPro-SemiBold',
+        fontSize: GENERAL.fontSize3,
     },
     confirmationWrapper: {
         flexDirection: 'row',
@@ -79,8 +79,8 @@ const styles = StyleSheet.create({
     },
     timestamp: {
         backgroundColor: 'transparent',
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize2,
+        fontFamily: 'SourceSansPro-SemiBold',
+        fontSize: GENERAL.fontSize3,
     },
     heading: {
         backgroundColor: 'transparent',
@@ -136,10 +136,8 @@ export default class HistoryModalContent extends PureComponent {
          * @param {string} bundle - bundle hash
          */
         promote: PropTypes.func.isRequired,
-        /** Transaction incoming/outgoing state */
-        status: PropTypes.string.isRequired,
         /** Transaction confirmation state */
-        confirmation: PropTypes.string.isRequired,
+        status: PropTypes.string.isRequired,
         /** Transaction boolean confirmation state */
         confirmationBool: PropTypes.bool.isRequired,
         /** Currently selected mode */
@@ -297,11 +295,10 @@ export default class HistoryModalContent extends PureComponent {
 
     render() {
         const {
-            status,
             onPress,
             fullValue,
             unit,
-            confirmation,
+            status,
             confirmationBool,
             time,
             bundle,
@@ -331,9 +328,6 @@ export default class HistoryModalContent extends PureComponent {
                                             {status} {fullValue} {unit}
                                         </Text>
                                         <View style={styles.confirmationWrapper}>
-                                            <Text style={[styles.confirmation, { color: style.titleColor }]}>
-                                                {confirmation}
-                                            </Text>
                                             <Text style={[styles.timestamp, style.defaultTextColor]}>
                                                 {formatModalTime(convertUnixTimeToJSDate(time))}
                                             </Text>

@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
         width: width / 1.15,
         justifyContent: 'center',
         marginBottom: height / 60,
+        height: height / 10,
     },
     iconWrapper: {
         alignItems: 'center',
@@ -102,7 +103,7 @@ export default class TransactionRow extends PureComponent {
          */
         t: PropTypes.func.isRequired,
         /** Transaction confirmation state */
-        confirmation: PropTypes.string.isRequired,
+        status: PropTypes.string.isRequired,
         /** Transaction value */
         value: PropTypes.number.isRequired,
         /** Transaction unit */
@@ -134,7 +135,7 @@ export default class TransactionRow extends PureComponent {
     };
 
     render() {
-        const { icon, confirmation, value, unit, time, message, t, style, onPress, bundleIsBeingPromoted } = this.props;
+        const { icon, status, value, unit, time, message, t, style, onPress, bundleIsBeingPromoted } = this.props;
 
         return (
             <TouchableOpacity onPress={() => onPress(this.props)}>
@@ -168,7 +169,7 @@ export default class TransactionRow extends PureComponent {
                             <View style={styles.textWrapper}>
                                 <View style={styles.topWrapper}>
                                     <Text style={[styles.statusText, { color: style.titleColor }]}>
-                                        {bundleIsBeingPromoted ? t('history:retrying') : confirmation.toUpperCase()}
+                                        {bundleIsBeingPromoted ? t('history:retrying') : status}
                                     </Text>
                                     <Text style={[styles.confirmationStatus, { color: style.titleColor }]}>
                                         {value} {unit}

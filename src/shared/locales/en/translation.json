@@ -497,10 +497,10 @@
         "addressCopiedExplanation": "The address has been copied to the clipboard.",
         "messageCopied": "Message copied",
         "messageCopiedExplanation": "The message has been copied to the clipboard.",
-        "send": "SEND",
-        "receive": "RECEIVE",
+        "send": "Send",
+        "receive": "Receive",
         "empty": "Empty",
-        "retrying": "RETRYING"
+        "retrying": "Retrying"
     },
     "accountManagement": {
         "viewSeed": "View seed",
