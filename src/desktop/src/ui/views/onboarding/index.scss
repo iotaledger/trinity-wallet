@@ -303,7 +303,11 @@ $footer: 70px;
                 z-index: 1;
             }
             span {
-                position: relative;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                margin: 1px 0 0 1px;
                 z-index: 3;
             }
         }
