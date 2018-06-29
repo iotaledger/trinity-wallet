@@ -46,6 +46,8 @@ module.exports = {
     copy: '📋',
     print: '🖨',
     fingerprint: '🖕',
+    fingerprintLarge: '🖕🏻',
+    fingerprintDisabled: '👇',
     write: '✍️',
     search: '🔍',
 };
