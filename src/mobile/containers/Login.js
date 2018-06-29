@@ -75,6 +75,8 @@ class Login extends Component {
          * @param {string} route - current route
          */
         setLoginRoute: PropTypes.func.isRequired,
+        /** Determines whether fingerprint auth is enabled */
+        isFingerprintEnabled: PropTypes.bool.isRequired,
     };
 
     constructor() {
@@ -190,7 +192,7 @@ class Login extends Component {
     }
 
     render() {
-        const { theme, password, loginRoute } = this.props;
+        const { theme, password, loginRoute, isFingerprintEnabled } = this.props;
         const body = theme.body;
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
@@ -202,6 +204,7 @@ class Login extends Component {
                         navigateToNodeOptions={() => this.props.setLoginRoute('nodeOptions')}
                         setLoginPasswordField={(pword) => this.props.setLoginPasswordField(pword)}
                         password={password}
+                        isFingerprintEnabled={isFingerprintEnabled}
                     />
                 )}
                 {loginRoute === 'complete2FA' && (
@@ -228,6 +231,7 @@ const mapStateToProps = (state) => ({
     pwdHash: state.wallet.password,
     loginRoute: state.ui.loginRoute,
     hasConnection: state.wallet.hasConnection,
+    isFingerprintEnabled: state.settings.isFingerprintEnabled,
 });
 
 const mapDispatchToProps = {
