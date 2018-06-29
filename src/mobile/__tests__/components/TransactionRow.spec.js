@@ -23,7 +23,7 @@ const getProps = (overrides) =>
                 return translations[arg] ? translations[arg] : 'foo';
             },
             promote: noop,
-            confirmation: 'Received',
+            status: 'Received',
             icon: 'plus',
             incoming: false,
             disableWhen: false,
@@ -57,8 +57,8 @@ describe('Testing TransactionRow component', () => {
             expect(TransactionRow.propTypes.t).toEqual(PropTypes.func.isRequired);
         });
 
-        it('should require a confirmation string as a prop', () => {
-            expect(TransactionRow.propTypes.confirmation).toEqual(PropTypes.string.isRequired);
+        it('should require a status string as a prop', () => {
+            expect(TransactionRow.propTypes.status).toEqual(PropTypes.string.isRequired);
         });
 
         it('should require a value number as a prop', () => {
@@ -136,7 +136,7 @@ describe('Testing TransactionRow component', () => {
             ).toEqual('i');
         });
 
-        it('should return confirmation prop in uppercase as a child to first Text component if "bundleIsBeingPromoted" prop is false', () => {
+        it('should return status prop as a child to first Text component if "bundleIsBeingPromoted" prop is false', () => {
             const props = getProps();
 
             const wrapper = shallow(<TransactionRow {...props} />);
@@ -146,7 +146,7 @@ describe('Testing TransactionRow component', () => {
                     .at(0)
                     .children()
                     .text(),
-            ).toEqual('RECEIVED');
+            ).toEqual('Received');
         });
 
         it('should return a translated "message" as first child to third Text component', () => {
