@@ -128,8 +128,22 @@ class Send extends React.PureComponent {
             } catch (e) {
                 return generateAlert('error', t('pow:noWebGLSupport'), t('pow:noWebGLSupportExplanation'));
             }
-            powFn = (trytes, minWeight) => {
-                return Curl.pow({ trytes, minWeight });
+            powFn = (trytes, trunkTransaction, branchTransaction, minWeight) => {
+                return trytes.reduce((promise, transactionTrytes, index) => {
+                    return promise.then((result) => {
+                        const trunk = !index ? trunkTransaction : result.hashes[index - 1];
+                        const branch = !index ? branchTransaction : trunkTransaction;
+
+                        return Curl.pow({
+                            trytes: transactionTrytes
+                                .substr(0, 2430)
+                                .concat(trunk)
+                                .concat(branch)
+                                .concat(transactionTrytes.substr(2430, trunk.length + branch.length)),
+                            minWeight,
+                        });
+                    });
+                }, Promise.resolve({ trytes: [], hashes: [] }));
             };
         }
 
