@@ -76,6 +76,9 @@ class EnterPassword extends Component {
 
     componentDidMount() {
         leaveNavigationBreadcrumb('EnterPassword');
+        if (this.props.isFingerprintEnabled) {
+            this.activateFingerprintScanner();
+        }
     }
 
     componentWillUnmount() {
@@ -181,6 +184,7 @@ class EnterPassword extends Component {
 
 const mapStateToProps = (state) => ({
     theme: state.settings.theme,
+    isFingerprintEnabled: state.settings.isFingerprintEnabled,
 });
 
 export default translate(['login', 'global'])(connect(mapStateToProps)(EnterPassword));
