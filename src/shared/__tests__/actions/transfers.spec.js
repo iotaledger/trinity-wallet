@@ -286,7 +286,7 @@ describe('actions: transfers', () => {
         let genFn;
 
         before(() => {
-            powFn = () => Promise.resolve('9'.repeat(27));
+            powFn = () => Promise.resolve({ trytes: [], hashes: [] });
             genFn = () => Promise.resolve('A'.repeat(81));
         });
 
