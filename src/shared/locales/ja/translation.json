@@ -468,7 +468,8 @@
         "send": "送金",
         "receive": "受取",
         "empty": "空",
-        "retrying": "再添付"
+        "retrying": "再添付",
+        "yesterday": "昨日"
     },
     "accountManagement": {
         "viewSeed": "シードを表示",

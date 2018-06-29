@@ -354,7 +354,7 @@
         "invalid": "KLAIDA"
     },
     "setPassword": {
-        "choosePassword": "Sukurti naują slaptažodį",
+        "choosePassword": "Sukurkite naują slaptažodį",
         "passwordTooShort": "Slaptažodis per trumpas",
         "passwordTooShortExplanation": "Slaptažodis privalo būti iš mažiausiai {{minLength}} simbolių. Jūsų įvedėte {{currentLength}}. Bandykite dar kartą.",
         "passwordMismatch": "Slaptažodžiai nesutampa",
@@ -454,7 +454,7 @@
     "writeSeedDown": {
         "yourSeedIs": "Jūsų užraktas sudarytas iš {{maxSeedLength}} simbolio, skaityti iš kairės į dešinę.",
         "writeDownYourSeed": "<0>Nusirašykite savo užraktą ir kontrolinę sumą, </0><1>tris kartus patikrinkite</1><2> ar kodai sutampa</2>",
-        "scrollToBottom": "Paslinkti į apačią"
+        "scrollToBottom": "Paslinkite iki apačios"
     },
     "history": {
         "bundleHashCopied": "Paketo šifras nukopijuotas",
@@ -468,7 +468,8 @@
         "send": "SIŲSTA",
         "receive": "GAUTA",
         "empty": "Tuščia",
-        "retrying": "KRAUNAMA"
+        "retrying": "KRAUNAMA",
+        "yesterday": "Vakar"
     },
     "accountManagement": {
         "viewSeed": "Rodyti užraktą",

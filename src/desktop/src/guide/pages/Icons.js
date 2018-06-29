@@ -5,7 +5,7 @@ import icons from 'icons/icons';
 
 import css from './icons.scss';
 
-const Colors = () => {
+const Icons = () => {
     return (
         <div>
             <h1>Icons</h1>
@@ -27,4 +27,4 @@ const Colors = () => {
     );
 };
 
-export default Colors;
+export default Icons;

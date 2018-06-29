@@ -28,12 +28,10 @@ class About extends React.PureComponent {
     }
 
     menuToggle(item) {
-        switch (item) {
-            case 'about':
-                this.setState({
-                    visible: true,
-                });
-                break;
+        if (item === 'about') {
+            this.setState({
+                visible: true,
+            });
         }
     }
 
@@ -51,6 +49,18 @@ class About extends React.PureComponent {
 
                     <article>
                         <Scrollbar>
+                            <h5>0.1.8.</h5>
+                            <ul>
+                                <li>New: Add seed SeedFile import/export</li>
+                                <li>New: Store failed transaction trytes locally for retry</li>
+                                <li>Add: Print filled paper wallet in Account settings</li>
+                                <li>Add: Obscure option for seed input fields</li>
+                                <li>Add: Linux missing dependencies tutorial</li>
+                                <li>Fix: Adding additional seed does not save seed in keystore</li>
+                                <li>Fix: Checksum missing at Account settings address list</li>
+                                <li>Fix: Transaction details button layout broken</li>
+                                <li>Fix: Reset onboarding when Adding additional seed is closed</li>
+                            </ul>
                             <h5>0.1.7.</h5>
                             <ul>
                                 <li>New: Wallet Expert mode settings</li>

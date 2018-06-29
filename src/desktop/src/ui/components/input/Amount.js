@@ -115,7 +115,7 @@ export default class AmountInput extends React.PureComponent {
         if (this.state.iotas !== parseInt(props.amount)) {
             this.setState({
                 iotas: props.amount.length ? parseInt(props.amount) : 0,
-                value: props.amount.length ? round(parseInt(props.amount) / this.getUnitMultiplier()) : 0,
+                value: props.amount.length ? parseInt(props.amount) / this.getUnitMultiplier() : 0,
             });
         }
     };

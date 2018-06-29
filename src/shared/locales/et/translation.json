@@ -468,7 +468,8 @@
         "send": "SAADA",
         "receive": "LAEKUS",
         "empty": "Empty",
-        "retrying": "RETRYING"
+        "retrying": "RETRYING",
+        "yesterday": "Yesterday"
     },
     "accountManagement": {
         "viewSeed": "Vaata seemet",
