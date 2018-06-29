@@ -15,11 +15,12 @@ const getProps = (overrides) =>
         {},
         {
             password: '',
-            theme: { body: {} },
+            theme: { body: {}, primary: {} },
             onLoginPress: noop,
             navigateToNodeOptions: noop,
             setLoginPasswordField: noop,
             t: () => '',
+            isFingerprintEnabled: false,
         },
         overrides,
     );
