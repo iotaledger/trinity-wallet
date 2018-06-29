@@ -37,7 +37,7 @@ import { getSeedFromKeychain } from '../utils/keychain';
 import GENERAL from '../theme/general';
 import MultiTextInput from '../components/MultiTextInput';
 import { Icon } from '../theme/icons.js';
-import AnimatedText from '../components/AnimatedText';
+import ScramblingText from '../components/ScramblingText';
 import { width, height } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
 import { getAddressGenFn } from '../utils/nativeModules';
@@ -229,32 +229,31 @@ class Receive extends Component {
         currency: PropTypes.string.isRequired,
         usdPrice: PropTypes.number.isRequired,
         conversionRate: PropTypes.number.isRequired,
+        seedIndex: PropTypes.number.isRequired,
     };
 
     constructor(props) {
         super(props);
         this.state = {
             currencySymbol: getCurrencySymbol(props.currency),
+            scramblingLetters: {},
         };
         this.generateAddress = this.generateAddress.bind(this);
         this.flipCard = this.flipCard.bind(this);
     }
 
     componentWillMount() {
+        this.scrambleLetters();
+
         const value = this.props.isCardFlipped ? 1 : 0;
 
         this.rotateAnimatedValue = new Animated.Value(0);
-        this.textAnimatedValue = new Animated.Value(0);
         this.flipAnimatedValue = new Animated.Value(value);
         this.scaleAnimatedValueFront = new Animated.Value(value);
         this.scaleAnimatedValueBack = new Animated.Value(value);
         this.opacityAnimatedValue = new Animated.Value(value);
 
         this.rotateInterpolate = this.rotateAnimatedValue.interpolate({
-            inputRange: [0, 1],
-            outputRange: ['0deg', '360deg'],
-        });
-        this.textInterpolate = this.textAnimatedValue.interpolate({
             inputRange: [0, 1],
             outputRange: ['0deg', '360deg'],
         });
@@ -286,7 +285,19 @@ class Receive extends Component {
 
     componentDidMount() {
         leaveNavigationBreadcrumb('Receive');
-        timer.setTimeout('generateOnMountDelay', () => this.generateAddress(), 100);
+        timer.setTimeout('generateAddressDelay', () => this.generateAddress(), 100);
+    }
+
+    componentWillReceiveProps(newProps) {
+        if (this.props.isGeneratingReceiveAddress && !newProps.isGeneratingReceiveAddress) {
+            timer.clearInterval('scramble');
+        }
+        if (!this.props.isGeneratingReceiveAddress && newProps.isGeneratingReceiveAddress) {
+            this.startLetterScramble();
+        }
+        if (this.props.seedIndex !== newProps.seedIndex) {
+            timer.setTimeout('generateAddressDelay', () => this.generateAddress(), 100);
+        }
     }
 
     shouldComponentUpdate(newProps) {
@@ -304,7 +315,7 @@ class Receive extends Component {
     }
 
     componentWillUnmount() {
-        timer.clearTimeout('generateOnMountDelay');
+        timer.clearTimeout('generateAddressDelay');
     }
 
     /**
@@ -387,6 +398,35 @@ class Receive extends Component {
     }
 
     /**
+     *   Gets a random character from valid receive address characters
+     *   @method getRandomChar
+     **/
+    getRandomChar() {
+        const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9';
+        return charset.charAt(Math.floor(Math.random() * 27));
+    }
+
+    /**
+     *   Starts scrambling letters at random intervals
+     *   @method startLetterScramble
+     **/
+    startLetterScramble() {
+        timer.setInterval('scramble', () => this.scrambleLetters(), Math.floor(Math.random() * 70) + 10);
+    }
+
+    /**
+     *   Updates state with a random array of 90 letters
+     *   @method scrambleLetters
+     **/
+    scrambleLetters() {
+        const scramblingLetters = [];
+        for (let j = 0; j < 90; j++) {
+            scramblingLetters.push(this.getRandomChar());
+        }
+        this.setState({ scramblingLetters });
+    }
+
+    /**
      *   Gets seed from keychain and generates receive address.
      *   @method generateAddress
      **/
@@ -422,7 +462,6 @@ class Receive extends Component {
 
     triggerRefreshAnimations() {
         this.animateIcon();
-        this.animateText();
     }
 
     /**
@@ -442,26 +481,6 @@ class Receive extends Component {
             const { isGeneratingReceiveAddress, isGettingSensitiveInfoToGenerateAddress } = this.props;
             if (isGeneratingReceiveAddress || isGettingSensitiveInfoToGenerateAddress) {
                 this.animateIcon();
-            }
-        });
-    }
-
-    /**
-     *   Animates refresh icon while an address is being generated.
-     *   @method animateIcon
-     **/
-    animateText() {
-        this.textAnimatedValue.setValue(0);
-        Animated.sequence([
-            Animated.timing(this.textAnimatedValue, {
-                toValue: 1,
-                useNativeDriver: true,
-                duration: 1000,
-            }),
-        ]).start(() => {
-            const { isGeneratingReceiveAddress, isGettingSensitiveInfoToGenerateAddress } = this.props;
-            if (isGeneratingReceiveAddress || isGettingSensitiveInfoToGenerateAddress) {
-                this.animateText();
             }
         });
     }
@@ -513,7 +532,7 @@ class Receive extends Component {
             qrMessage,
             qrTag,
         } = this.props;
-
+        const { scramblingLetters } = this.state;
         const qrContent = JSON.stringify({
             address: receiveAddress,
             value: this.getQrValue(),
@@ -526,7 +545,6 @@ class Receive extends Component {
         const flipStyleBack = { rotateY: this.flipInterpolateBack };
         const scaleStyleFront = { scale: this.scaleInterpolateFront };
         const scaleStyleBack = { scale: this.scaleInterpolateBack };
-        const textAnimatedStyle = { rotateY: this.textInterpolate };
 
         return (
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => this.clearInteractions()}>
@@ -606,36 +624,30 @@ class Receive extends Component {
                                             style={styles.refreshIcon}
                                         />
                                     </Animated.View>
-                                    <AnimatedText
-                                        animate={isGeneratingReceiveAddress}
-                                        textStyle={[
-                                            styles.addressText,
-                                            { transform: [textAnimatedStyle] },
-                                            { color: dark.body },
-                                        ]}
+                                    <ScramblingText
+                                        scramble={isGeneratingReceiveAddress}
+                                        textStyle={[styles.addressText, { color: dark.body }]}
+                                        scramblingLetters={scramblingLetters}
+                                        rowIndex={0}
                                     >
                                         {receiveAddress.substring(0, 30)}
-                                    </AnimatedText>
-                                    <AnimatedText
-                                        animate={isGeneratingReceiveAddress}
-                                        textStyle={[
-                                            styles.addressText,
-                                            { transform: [textAnimatedStyle] },
-                                            { color: dark.body },
-                                        ]}
+                                    </ScramblingText>
+                                    <ScramblingText
+                                        scramble={isGeneratingReceiveAddress}
+                                        textStyle={[styles.addressText, { color: dark.body }]}
+                                        scramblingLetters={scramblingLetters}
+                                        rowIndex={1}
                                     >
                                         {receiveAddress.substring(30, 60)}
-                                    </AnimatedText>
-                                    <AnimatedText
-                                        animate={isGeneratingReceiveAddress}
-                                        textStyle={[
-                                            styles.addressText,
-                                            { transform: [textAnimatedStyle] },
-                                            { color: dark.body },
-                                        ]}
+                                    </ScramblingText>
+                                    <ScramblingText
+                                        scramble={isGeneratingReceiveAddress}
+                                        textStyle={[styles.addressText, { color: dark.body }]}
+                                        scramblingLetters={scramblingLetters}
+                                        rowIndex={2}
                                     >
                                         {receiveAddress.substring(60, 90)}
-                                    </AnimatedText>
+                                    </ScramblingText>
                                 </View>
                             </TouchableWithoutFeedback>
                             <View style={styles.footerButtonContainer}>
