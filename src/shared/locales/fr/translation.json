@@ -298,7 +298,7 @@
         "noAddresses": "AUCUNE ADRESSE",
         "spent": "Envoyé",
         "missingPermission": "Autorisation de système de fichiers requise",
-        "missingPermissionExplanation": "Accès au système de fichiers est nécessaire afin de partager les codes QR."
+        "missingPermissionExplanation": "L'accès au système de fichiers est nécessaire afin de partager les codes QR."
     },
     "saveYourSeed": {
         "saveYourSeed": "Sauvegarder votre seed",
@@ -312,7 +312,7 @@
         "letsWriteDownYourSeed": "Notez votre seed",
         "youCanHighlightCharacters": "Vous pouvez sélectionner 9 caractères à la fois",
         "printBlankWallet": "Imprimer un portefeuille vide",
-        "whatIsChecksum": "Chaque seed a une somme de contrôle de 3 caractères correspondant",
+        "whatIsChecksum": "Chaque seed a une somme de contrôle de 3 caractères",
         "iHavesavedMySeed": "J’ai enregistré ma seed",
         "checksumExplanation": "Chaque fois que vous ajoutez une seed à votre portefeuille, vous devez vous assurer que les sommes de contrôle affichées correspondent bien à celle de votre seed.",
         "mustSaveYourSeed": "<0><0>Vous devez sauvegarder votre seed avec </0><1>au moins une</1><2> des options citées ci-dessous.</2></0>"
