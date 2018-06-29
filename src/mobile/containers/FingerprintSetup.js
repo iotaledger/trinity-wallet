@@ -48,13 +48,13 @@ const styles = StyleSheet.create({
     },
     subHeaderText: {
         fontFamily: Fonts.secondary,
-        fontSize: GENERAL.fontSize4,
+        fontSize: GENERAL.fontSize5,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
     fingerprint: {
-        height: width / 5,
-        width: width / 5,
+        height: width / 4.6,
+        width: width / 4.6,
     },
     modal: {
         height,
@@ -62,6 +62,15 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         margin: 0,
+    },
+    button: {
+        width: width / 1.65,
+        height: height / 3.3,
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: width / 12,
+        borderRadius: GENERAL.borderRadius,
+        borderWidth: 1,
     },
 });
 
@@ -215,7 +224,7 @@ class FingerprintEnable extends Component {
         const { t, isFingerprintEnabled, theme } = this.props;
         const backgroundColor = { backgroundColor: theme.body.bg };
         const textColor = { color: theme.body.color };
-        const authenticationStatus = isFingerprintEnabled ? t('enabled') : t('disabled');
+        const authenticationStatus = isFingerprintEnabled ? t('disable') : t('enable');
         const instructions = this.getButtonInstructions();
         const fingerprintImagePath = tinycolor(theme.body.bg).isDark()
             ? whiteFingerprintImagePath
@@ -231,13 +240,13 @@ class FingerprintEnable extends Component {
                     <View style={{ flex: 0.25 }} />
                     <Text style={[styles.subHeaderText, textColor]}>{instructions}</Text>
                     <View style={{ flex: 0.2 }} />
-                    <TouchableOpacity onPress={this.onFingerprintPress}>
+                    <TouchableOpacity
+                        onPress={this.onFingerprintPress}
+                        style={[styles.button, { borderColor: theme.body.color }]}
+                    >
                         <Image source={fingerprintImagePath} style={styles.fingerprint} />
+                        <Text style={[styles.subHeaderText, textColor]}>{authenticationStatus}</Text>
                     </TouchableOpacity>
-                    <View style={{ flex: 0.2 }} />
-                    <Text style={[styles.subHeaderText, textColor]}>
-                        {t('status')}: {authenticationStatus}
-                    </Text>
                 </View>
                 <View style={styles.bottomWrapper}>
                     <Button
