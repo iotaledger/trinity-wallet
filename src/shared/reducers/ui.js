@@ -175,6 +175,12 @@ export default (state = initialState, action) => {
                 },
                 doNotMinimise: false,
                 isModalActive: false,
+                qrMessage: '',
+                qrAmount: '',
+                qrTag: '',
+                qrDenomination: 'i',
+                selectedQrTab: 'message',
+                isReceiveCardFlipped: false,
             };
         case AccountsActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_REQUEST:
             return {
