@@ -37,14 +37,14 @@
         "apply": "Použít",
         "save": "Uložit",
         "close": "Zavřít",
-        "export": "Export",
-        "import": "Import",
+        "export": "Exportovat",
+        "import": "Importovat",
         "continue": "Pokračovat",
         "enable": "Zapnout",
         "disable": "Vypnout",
         "enabled": "Zapnuto",
         "disabled": "Vypnuto",
-        "enterPassword": "Enter password",
+        "enterPassword": "Zadejte Vaše heslo",
         "paperWallet": "Tisk papírové kopie",
         "addToPasswordManager": "Přidat do Správce hesel",
         "shareSeed": "Sdílet Seed",
@@ -472,7 +472,7 @@
         "receive": "PŘÍJEM",
         "empty": "Prázdné",
         "retrying": "OPAKOVÁNÍ PODPORY",
-        "yesterday": "Yesterday"
+        "yesterday": "Včera"
     },
     "accountManagement": {
         "viewSeed": "Zobrazit Seed",
