@@ -17,7 +17,7 @@ import {
     getAccountInfo,
     promoteTransfer,
 } from 'iota-wallet-shared-modules/actions/polling';
-import BackgroundTask from 'react-native-background-task';
+import BackgroundTask from 'react-native-background-task'; //eslint-disable-line import/no-unresolved
 import queueFactory from 'react-native-queue';
 
 BackgroundTask.define(async () => {
@@ -28,7 +28,9 @@ BackgroundTask.define(async () => {
     console.log('queueFactory initialized');
 
     // Register the background worker
+    /*eslint-disable no-unused-vars*/
     queue.addWorker('background-promoter', async (id, payload) => {
+        /*eslint-enable no-unused-vars*/
         console.log('We have transactions to promote!'); //eslint-disable-line no-console
         Poll.backgroundPromote();
     });
