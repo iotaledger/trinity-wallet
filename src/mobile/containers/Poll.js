@@ -17,6 +17,32 @@ import {
     getAccountInfo,
     promoteTransfer,
 } from 'iota-wallet-shared-modules/actions/polling';
+import BackgroundTask from 'react-native-background-task';
+import queueFactory from 'react-native-queue';
+
+BackgroundTask.define(async () => {
+    // Based on https://github.com/billmalarky/react-native-queue#os-background-task-full-example
+    console.log('Task defined');
+    // Initialize the queue
+    const queue = await queueFactory();
+    console.log('queueFactory initialized');
+
+    // Register the background worker
+    queue.addWorker('background-promoter', async (id, payload) => {
+        console.log('We have transactions to promote!'); //eslint-disable-line no-console
+        Poll.backgroundPromote();
+    });
+
+    console.log('Worker added');
+
+    // Start the queue with a lifespan of 25 sec
+    // IMPORTANT: OS background tasks are limited to 30 seconds or less.
+    // NOTE: Queue lifespan logic will attempt to stop queue processing 500ms less than passed lifespan for a healthy shutdown buffer.
+    await queue.start(25000);
+
+    // Tell OS that we're done the background task
+    BackgroundTask.finish();
+});
 
 export class Poll extends Component {
     static propTypes = {
@@ -42,12 +68,18 @@ export class Poll extends Component {
 
         this.state = {
             autoPromoteSkips: 0,
+            queue: null,
         };
+
+        queueFactory().then((queue) => {
+            this.setState({ queue });
+        });
     }
 
     componentDidMount() {
         this.startBackgroundProcesses();
         AppState.addEventListener('change', this.handleAppStateChange);
+        BackgroundTask.schedule();
     }
 
     componentWillUnmount() {
@@ -102,8 +134,25 @@ export class Poll extends Component {
         this.props.getAccountInfo(selectedAccountName);
     }
 
+    createPromoterJob() {
+        const { isAutoPromotionEnabled, unconfirmedBundleTails } = this.props;
+        const { queue } = this.state;
+
+        if (isAutoPromotionEnabled && !isEmpty(unconfirmedBundleTails) && queue !== null) {
+            queue.createJob(
+                'promote-transactions', // Job name
+                {}, // Empty payload, the promoter will get the hashes from the state
+                { attempts: 2, timeout: 20000 }, // Retry job up to 2 times if it fails and set a 20 sec timeout
+                false, // Must pass false as the last param so the queue starts up in the background task instead of immediately
+            );
+        }
+    }
+
     startBackgroundProcesses() {
         timer.setInterval(this, 'polling', () => this.fetch(this.props.pollFor), 8000);
+        if (this.state.queue === null) {
+            this.createPromoterJob(); // Only create the job if one does not already exist
+        }
     }
 
     handleAppStateChange = (nextAppState) => {
@@ -145,6 +194,19 @@ export class Poll extends Component {
 
         // In case there are no unconfirmed bundle tails or auto-promotion is disabled, move to the next service item
         return this.props.setPollFor(allPollingServices[next]);
+    }
+
+    // Same as function above but optimized for background tasks
+    backgroundPromote() {
+        console.log('Background promoter is running');
+        const { isAutoPromotionEnabled, unconfirmedBundleTails } = this.props;
+
+        if (isAutoPromotionEnabled && !isEmpty(unconfirmedBundleTails)) {
+            const bundles = keys(unconfirmedBundleTails);
+            const bundleHash = bundles[0];
+
+            return this.props.promoteTransfer(bundleHash, unconfirmedBundleTails[bundleHash]);
+        }
     }
 
     render() {
