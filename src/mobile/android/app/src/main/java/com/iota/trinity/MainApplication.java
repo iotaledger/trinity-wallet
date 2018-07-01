@@ -32,6 +32,9 @@ import fr.greweb.reactnativeviewshot.RNViewShotPackage;
 import com.kristiansorens.flagsecure.FlagSecurePackage;
 import com.reactlibrary.RNReactNativeHapticFeedbackPackage;
 import me.listenzz.modal.TranslucentModalReactPackage;
+import io.realm.react.RealmReactPackage;
+import com.jamesisaac.rnbackgroundtask;
+import com.transistorsoft.rnbackgroundfetch.RNBackgroundFetchPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -86,7 +89,10 @@ public class MainApplication extends NavigationApplication implements ShareAppli
             new ShareSecurePackage(),
             new RNReactNativeHapticFeedbackPackage(),
             new RNSharePackage(),
-            new RNViewShotPackage()
+            new RNViewShotPackage(),
+            new RealmReactPackage(),
+            new BackgroundTaskPackage(),
+            new RNBackgroundFetchPackage()
     );
   }
 
