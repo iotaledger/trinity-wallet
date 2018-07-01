@@ -1165,6 +1165,10 @@ base64-js@1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.1.2.tgz#d6400cac1c4c660976d90d07a04351d89395f5e8"
 
+base64-js@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.2.0.tgz#a39992d723584811982be5e290bb6a53d86700f1"
+
 base64-url@1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/base64-url/-/base64-url-1.2.1.tgz#199fd661702a0e7b7dcae6e0698bb089c52f6d78"
@@ -2600,6 +2604,10 @@ fast-json-stable-stringify@^2.0.0:
 fast-levenshtein@~2.0.4:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
+
+fast-plist@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/fast-plist/-/fast-plist-0.1.2.tgz#a45aff345196006d406ca6cdcd05f69051ef35b8"
 
 fb-watchman@^1.8.0:
   version "1.9.2"
@@ -5020,6 +5028,14 @@ plist@^1.2.0:
     xmlbuilder "4.0.0"
     xmldom "0.1.x"
 
+plist@^2.0.1:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/plist/-/plist-2.1.0.tgz#57ccdb7a0821df21831217a3cad54e3e146a1025"
+  dependencies:
+    base64-js "1.2.0"
+    xmlbuilder "8.2.2"
+    xmldom "0.1.x"
+
 plugin-error@^0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/plugin-error/-/plugin-error-0.1.2.tgz#3b9bb3335ccf00f425e07437e19276967da47ace"
@@ -5076,6 +5092,10 @@ process@~0.5.1:
 progress@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.0.tgz#8a1be366bf8fc23db2bd23f10c6fe920b4389d1f"
+
+promise-reflect@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/promise-reflect/-/promise-reflect-1.1.0.tgz#5d4fbb780f83b8b6dadca639362c40fbc1336010"
 
 promise@^7, promise@^7.1.1:
   version "7.3.1"
@@ -5202,7 +5222,7 @@ randomatic@^3.0.0:
     kind-of "^6.0.0"
     math-random "^1.0.1"
 
-randombytes@^2.0.0, randombytes@^2.0.1:
+randombytes@^2.0.0, randombytes@^2.0.1, randombytes@^2.0.3:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/randombytes/-/randombytes-2.0.6.tgz#d302c522948588848a8d300c932b44c24231da80"
   dependencies:
@@ -5274,6 +5294,18 @@ react-native-animatable@^1.2.4:
   resolved "https://registry.yarnpkg.com/react-native-animatable/-/react-native-animatable-1.2.4.tgz#b5fb7657e8f6edadbc26697057a327fb920b3039"
   dependencies:
     prop-types "^15.5.10"
+
+react-native-background-fetch@^2.4.3:
+  version "2.4.3"
+  resolved "https://registry.yarnpkg.com/react-native-background-fetch/-/react-native-background-fetch-2.4.3.tgz#4621cca2a8f9e96edbf0556afcd04873bd698f37"
+  dependencies:
+    fast-plist "^0.1.2"
+    plist "^2.0.1"
+    xcode "^0.9.1"
+
+react-native-background-task@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/react-native-background-task/-/react-native-background-task-0.2.1.tgz#9d110ed14b245e0d8b9ec8114ce24b33ddda65de"
 
 react-native-camera@^1.1.4:
   version "1.1.4"
@@ -5457,6 +5489,14 @@ react-native-qrcode-svg@^5.0.3:
     prop-types "^15.5.10"
     qrcode "^0.9.0"
 
+react-native-queue@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/react-native-queue/-/react-native-queue-1.2.1.tgz#75e903979969d026d6ffff270d41f02da77943d3"
+  dependencies:
+    promise-reflect "^1.1.0"
+    react-native-uuid "^1.4.9"
+    realm "^2.0.12"
+
 react-native-randombytes@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/react-native-randombytes/-/react-native-randombytes-3.2.0.tgz#81ad85c854992ad5b36427095aa179acaff84ed0"
@@ -5533,6 +5573,12 @@ react-native-udp@^1.2.9:
     inherits "^2.0.1"
     ip-regex "^1.0.3"
     util "^0.10.3"
+
+react-native-uuid@^1.4.9:
+  version "1.4.9"
+  resolved "https://registry.yarnpkg.com/react-native-uuid/-/react-native-uuid-1.4.9.tgz#a526742f8fddfe6414500655212ca8d109c40229"
+  dependencies:
+    randombytes "^2.0.3"
 
 react-native-vector-icons@^4.5.0:
   version "4.6.0"
@@ -5735,6 +5781,25 @@ readable-stream@~1.0.26, readable-stream@~1.0.26-4:
     inherits "~2.0.1"
     isarray "0.0.1"
     string_decoder "~0.10.x"
+
+realm@^2.0.12:
+  version "2.11.0"
+  resolved "https://registry.yarnpkg.com/realm/-/realm-2.11.0.tgz#641fffffa99ffbe9306c6ec64951e4c1ff780190"
+  dependencies:
+    command-line-args "^4.0.6"
+    decompress "^4.2.0"
+    deepmerge "2.1.0"
+    fs-extra "^4.0.2"
+    ini "^1.3.4"
+    nan "2.8.0"
+    node-fetch "^1.6.3"
+    node-pre-gyp "^0.6.36"
+    progress "^2.0.0"
+    prop-types "^15.5.10"
+    request "^2.78.0"
+    stream-counter "^1.0.0"
+    sync-request "^3.0.1"
+    url-parse "^1.2.0"
 
 realm@^2.10.0:
   version "2.10.0"

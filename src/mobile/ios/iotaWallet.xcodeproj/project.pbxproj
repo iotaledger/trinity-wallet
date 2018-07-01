@@ -34,6 +34,9 @@
 		601BFD6220C39A610097D329 /* libRNViewShot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 601BFD6120C39A580097D329 /* libRNViewShot.a */; };
 		6056CF5520827D3C0006A2F3 /* libRNCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6056CF5420827D2F0006A2F3 /* libRNCamera.a */; };
 		6056CF5C20827E370006A2F3 /* libReactNativePermissions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6056CF5B20827E2E0006A2F3 /* libReactNativePermissions.a */; };
+		60614CAE20E950AC002BC518 /* libRNBackgroundFetch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60614CAD20E95074002BC518 /* libRNBackgroundFetch.a */; };
+		60614CB020E950CA002BC518 /* TSBackgroundFetch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60614CAF20E950CA002BC518 /* TSBackgroundFetch.framework */; };
+		60614CB220E95120002BC518 /* RNBackgroundFetch+AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 60614CB120E95120002BC518 /* RNBackgroundFetch+AppDelegate.m */; };
 		6079C42420D95F18006B252E /* Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6079C42320D95F17006B252E /* Empty.swift */; };
 		609C11CD20A12E8900349263 /* EntangledKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 609C11CC20A12E8900349263 /* EntangledKit.framework */; };
 		60BDD27C208D128D0085549F /* libRNSecureClipboard.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60BDD27B208D12790085549F /* libRNSecureClipboard.a */; };
@@ -297,6 +300,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 9D23B34F1C767B80008B4819;
 			remoteInfo = ReactNativePermissions;
+		};
+		60614CAC20E95074002BC518 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 60614CA820E95072002BC518 /* RNBackgroundFetch.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 835318541D52293F005738CD;
+			remoteInfo = RNBackgroundFetch;
 		};
 		608A413C20DF0E1900E8A161 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -665,6 +675,9 @@
 		601BFD5C20C39A560097D329 /* RNViewShot.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNViewShot.xcodeproj; path = "../node_modules/react-native-view-shot/ios/RNViewShot.xcodeproj"; sourceTree = "<group>"; };
 		6056CF4F20827D2F0006A2F3 /* RNCamera.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RNCamera.xcodeproj"; sourceTree = "<group>"; };
 		6056CF5620827E2E0006A2F3 /* ReactNativePermissions.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativePermissions.xcodeproj; path = "../node_modules/react-native-permissions/ios/ReactNativePermissions.xcodeproj"; sourceTree = "<group>"; };
+		60614CA820E95072002BC518 /* RNBackgroundFetch.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNBackgroundFetch.xcodeproj; path = "../node_modules/react-native-background-fetch/ios/RNBackgroundFetch.xcodeproj"; sourceTree = "<group>"; };
+		60614CAF20E950CA002BC518 /* TSBackgroundFetch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TSBackgroundFetch.framework; path = "../node_modules/react-native-background-fetch/ios/RNBackgroundFetch/TSBackgroundFetch.framework"; sourceTree = "<group>"; };
+		60614CB120E95120002BC518 /* RNBackgroundFetch+AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "RNBackgroundFetch+AppDelegate.m"; path = "../node_modules/react-native-background-fetch/ios/RNBackgroundFetch/RNBackgroundFetch+AppDelegate.m"; sourceTree = "<group>"; };
 		6079C42320D95F17006B252E /* Empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Empty.swift; path = iotaWallet/Empty.swift; sourceTree = "<group>"; };
 		6079C42520D95F85006B252E /* iotaWallet-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "iotaWallet-Bridging-Header.h"; path = "iotaWallet/iotaWallet-Bridging-Header.h"; sourceTree = "<group>"; };
 		609C11CC20A12E8900349263 /* EntangledKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EntangledKit.framework; sourceTree = "<group>"; };
@@ -757,6 +770,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60614CB020E950CA002BC518 /* TSBackgroundFetch.framework in Frameworks */,
+				60614CAE20E950AC002BC518 /* libRNBackgroundFetch.a in Frameworks */,
 				601BFD6220C39A610097D329 /* libRNViewShot.a in Frameworks */,
 				601BFCF220C3679D0097D329 /* MessageUI.framework in Frameworks */,
 				601BFCF020C3677F0097D329 /* Social.framework in Frameworks */,
@@ -874,6 +889,7 @@
 		0FE432859717DE312B0951A32FFC9F0C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				60614CAF20E950CA002BC518 /* TSBackgroundFetch.framework */,
 				601BFCF120C3679D0097D329 /* MessageUI.framework */,
 				601BFCEF20C3677E0097D329 /* Social.framework */,
 				1A114AFE31653EBA7706861B9B5706C0 /* ios_bindings-fl.a */,
@@ -909,6 +925,7 @@
 			children = (
 				42B1F9997C45E2DF708A76D353723F28 /* AppDelegate.h */,
 				3AFCA4EA113044613D95E46BDAC0C1E3 /* AppDelegate.m */,
+				60614CB120E95120002BC518 /* RNBackgroundFetch+AppDelegate.m */,
 				CFA2B84C183CC39F995C8E04CC713DDB /* Images.xcassets */,
 				EEAE9D5C606B7556253D3AD01EB78CE0 /* Info.plist */,
 				49A551A49165ED5CFBE87EE1B7C5CCA8 /* InfoPlist.strings */,
@@ -1033,6 +1050,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		60614CA920E95072002BC518 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				60614CAD20E95074002BC518 /* libRNBackgroundFetch.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		608A413920DF0E1800E8A161 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1052,6 +1077,7 @@
 		6C07637C2BD02779C4E072737C53A2E3 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				60614CA820E95072002BC518 /* RNBackgroundFetch.xcodeproj */,
 				601BFD5C20C39A560097D329 /* RNViewShot.xcodeproj */,
 				601BFCE820C367300097D329 /* RNShare.xcodeproj */,
 				CBC214E420CE82DC005D8ACB /* RNReactNativeHapticFeedback.xcodeproj */,
@@ -1478,7 +1504,7 @@
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
-								enabled = 0;
+								enabled = 1;
 							};
 							com.apple.DataProtection = {
 								enabled = 1;
@@ -1626,6 +1652,10 @@
 				{
 					ProductGroup = 608A413920DF0E1800E8A161 /* Products */;
 					ProjectRef = 26DBB4EE00F34D56B2492812 /* RealmReact.xcodeproj */;
+				},
+				{
+					ProductGroup = 60614CA920E95072002BC518 /* Products */;
+					ProjectRef = 60614CA820E95072002BC518 /* RNBackgroundFetch.xcodeproj */;
 				},
 				{
 					ProductGroup = 6056CF5020827D2F0006A2F3 /* Products */;
@@ -1852,6 +1882,13 @@
 			fileType = archive.ar;
 			path = libReactNativePermissions.a;
 			remoteRef = 6056CF5A20827E2E0006A2F3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		60614CAD20E95074002BC518 /* libRNBackgroundFetch.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNBackgroundFetch.a;
+			remoteRef = 60614CAC20E95074002BC518 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		608A413D20DF0E1900E8A161 /* libRealmReact.a */ = {
@@ -2398,6 +2435,7 @@
 				962469C90FA6C9D7DB8B0F1D49DD98E7 /* AppDelegate.m in Sources */,
 				6079C42420D95F18006B252E /* Empty.swift in Sources */,
 				CB866281209F36CA00C026E3 /* EntangledIOS.m in Sources */,
+				60614CB220E95120002BC518 /* RNBackgroundFetch+AppDelegate.m in Sources */,
 				3E58EC90CE11629FBA816AAD96D16464 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2610,6 +2648,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/EntangledIOS",
+					"$(PROJECT_DIR)/../node_modules/react-native-background-fetch/ios/**",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				HEADER_SEARCH_PATHS = (
@@ -2954,6 +2993,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/EntangledIOS",
+					"$(PROJECT_DIR)/../node_modules/react-native-background-fetch/ios/**",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../node_modules/react-native-navigation/ios/**",
