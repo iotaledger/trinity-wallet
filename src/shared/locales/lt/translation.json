@@ -168,7 +168,7 @@
         "accountName": "Paskyros vardas",
         "noNickname": "Neįvestas paskyros vardas",
         "noNicknameExplanation": "Įveskite paskyros vardą savo užraktui.",
-        "seedInUse": "Toks užraktas jau egzistuoja",
+        "seedInUse": "Užraktas jau naudojamas",
         "seedInUseExplanation": "Šis užraktas jau susietas su jūsų pinigine. Sukurkite naują užraktą."
     },
     "changePassword": {
