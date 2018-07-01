@@ -24,6 +24,9 @@ allprojects {
         }
         google()
         maven { url 'https://maven.google.com' }
+        maven {
+            url "$rootDir/../node_modules/react-native-background-fetch/android/libs"
+        }
     }
 }
 
@@ -45,5 +48,3 @@ subprojects {
     }
     }
 }
-
-
