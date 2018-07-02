@@ -5,19 +5,21 @@ kdbxweb.CryptoEngine.argon2 = argon2;
 
 /**
  * Encrypt seed to KDBX database format
- * @param {Array} Seed - byte array seed
+ * @param {Array} Seeds - array of byte array seeds an their titles
  * @param {String} Password - plain text password for encryption
  * @returns {ArrayBuffer}  encrypted KDBX binary content
  */
-const exportVault = async (seed, password) => {
+const exportVault = async (seeds, password) => {
     const credentials = new kdbxweb.Credentials(kdbxweb.ProtectedValue.fromString(password));
     const db = kdbxweb.Kdbx.create(credentials, 'Trinity');
-    const entry = db.createEntry(db.getDefaultGroup());
 
-    entry.fields.Title = 'IOTA seed';
-    entry.fields.Seed = kdbxweb.ProtectedValue.fromString(
-        seed.map((byte) => '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.charAt(byte % 27)).join(''),
-    );
+    for (let i = 0; i < seeds.length; i++) {
+        const entry = db.createEntry(db.getDefaultGroup());
+        entry.fields.Title = seeds[i].title || `IOTA Seed #${i + 1}`;
+        entry.fields.Seed = kdbxweb.ProtectedValue.fromString(
+            seeds[i].seed.map((byte) => '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.charAt(byte % 27)).join(''),
+        );
+    }
 
     const chunk = await db.save();
 
