@@ -224,8 +224,8 @@ const Electron = {
     },
 
     importSeed: async (buffer, password) => {
-        const seed = await kdbx.importVault(buffer, password);
-        return seed;
+        const seeds = await kdbx.importVault(buffer, password);
+        return seeds;
     },
 
     changeLanguage: (t) => {
