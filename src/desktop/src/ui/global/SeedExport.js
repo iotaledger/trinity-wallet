@@ -20,6 +20,8 @@ class SeedExport extends PureComponent {
     static propTypes = {
         /** Target Seed */
         seed: PropTypes.array.isRequired,
+        /** Seed title */
+        title: PropTypes.array,
         /**  On close event callback */
         onClose: PropTypes.func.isRequired,
         /** Translation helper
@@ -53,7 +55,7 @@ class SeedExport extends PureComponent {
     };
 
     exportSeed = async (e) => {
-        const { seed, generateAlert, onClose, t } = this.props;
+        const { seed, title, generateAlert, onClose, t } = this.props;
         const { password, passwordConfirm } = this.state;
 
         if (e) {
@@ -78,7 +80,15 @@ class SeedExport extends PureComponent {
             );
         }
 
-        const error = await Electron.exportSeed(seed, password);
+        const error = await Electron.exportSeeds(
+            [
+                {
+                    title: title,
+                    seed: seed,
+                },
+            ],
+            password,
+        );
 
         this.setState({
             step: 1,

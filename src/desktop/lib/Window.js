@@ -201,9 +201,9 @@ const Electron = {
         global.gc();
     },
 
-    exportSeed: async (seed, password) => {
+    exportSeeds: async (seeds, password) => {
         try {
-            const content = await kdbx.exportVault(seed, password);
+            const content = await kdbx.exportVault(seeds, password);
 
             const path = await dialog.showSaveDialog(currentWindow, {
                 title: 'Export keyfile',
