@@ -16,6 +16,7 @@ import Password from 'ui/components/modal/Password';
 import Button from 'ui/components/Button';
 import Icon from 'ui/components/Icon';
 import Dropzone from 'ui/components/Dropzone';
+import Select from 'ui/components/input/Select';
 
 import css from './input.scss';
 
@@ -55,6 +56,8 @@ class SeedInput extends React.PureComponent {
         importBuffer: null,
         hidden: true,
         cursor: 0,
+        accounts: [],
+        accountIndex: -1,
     };
 
     componentDidMount() {
@@ -152,17 +155,30 @@ class SeedInput extends React.PureComponent {
         const { generateAlert, t } = this.props;
 
         try {
-            const seed = await Electron.importSeed(this.state.importBuffer, password);
+            let accounts = await Electron.importSeed(this.state.importBuffer, password);
 
             this.setState({
                 importBuffer: null,
             });
 
-            if (!seed || seed.length !== MAX_SEED_LENGTH) {
+            if (!accounts || !accounts.length) {
                 throw Error('SeedNotFound');
             }
 
-            this.props.onChange(seed);
+            accounts = accounts.filter((account) => {
+                return account.seed.length === MAX_SEED_LENGTH;
+            });
+
+            if (!accounts.length) {
+                throw Error('SeedNotFound');
+            } else if (accounts.length === 1) {
+                this.props.onChange(accounts[0].seed);
+            } else {
+                this.setState({
+                    accounts: accounts,
+                    accountIndex: -1,
+                });
+            }
 
             Electron.garbageCollect();
         } catch (error) {
@@ -174,6 +190,16 @@ class SeedInput extends React.PureComponent {
                 generateAlert('error', t('seedVault:seedFileError'), t('seedVault:seedFileErrorExplanation'));
             }
         }
+    };
+
+    chooseSeed = (e) => {
+        e.preventDefault();
+        const seed = this.state.accounts[this.state.accountIndex].seed;
+        this.props.onChange(seed);
+        this.setState({
+            accounts: [],
+            accountIndex: -1,
+        });
     };
 
     keyDown = (e) => {
@@ -222,7 +248,7 @@ class SeedInput extends React.PureComponent {
 
     render() {
         const { seed, label, closeLabel, t } = this.props;
-        const { importBuffer, showScanner, hidden } = this.state;
+        const { importBuffer, accounts, accountIndex, showScanner, hidden } = this.state;
 
         const checkSum = seed.length < MAX_SEED_LENGTH ? '< 81' : Electron.getChecksum(seed);
 
@@ -260,8 +286,8 @@ class SeedInput extends React.PureComponent {
                         </div>
                     </div>
                     <small>{label}</small>
-                    <Dropzone onDrop={this.onDrop} />
                 </fieldset>
+                <Dropzone onDrop={this.onDrop} />
 
                 {seed.length ? <span className={css.info}>{checkSum}</span> : null}
                 {showScanner && (
@@ -286,6 +312,37 @@ class SeedInput extends React.PureComponent {
                         onClose={() => this.setState({ importBuffer: null })}
                         onSubmit={(password) => this.decryptFile(password)}
                     />
+                )}
+
+                {accounts.length > 0 && (
+                    <Modal
+                        isOpen
+                        onClose={() => this.setState({ accounts: [] })}
+                        onSubmit={(password) => this.decryptFile(password)}
+                    >
+                        <h1>Choose seed</h1>
+                        <p>Your SeedFile contains multiple valid seeds, please choose which seed to import</p>
+                        <Select
+                            value={accountIndex}
+                            label={t('addAdditionalSeed:accountName')}
+                            onChange={(e) => this.setState({ accountIndex: e.target.value })}
+                        >
+                            <option style={{ display: 'none' }} disabled value="-1" />
+                            {accounts.map((account, index) => (
+                                <option key={`account-${index}`} value={index}>
+                                    {account.title}
+                                </option>
+                            ))}
+                        </Select>
+                        <footer>
+                            <Button onClick={() => this.setState({ accounts: [] })} variant="dark">
+                                {t('cancel')}
+                            </Button>
+                            <Button disabled={accountIndex < 0} onClick={this.chooseSeed} variant="primary">
+                                {t('seedVault:importSeedVault')}
+                            </Button>
+                        </footer>
+                    </Modal>
                 )}
             </div>
         );

@@ -49,9 +49,9 @@ class SeedSave extends PureComponent {
                     <nav className={css.choice}>
                         <a onClick={() => this.setState({ exportVisible: true })}>
                             <div>
-                                <Icon icon="password" size={24} />
+                                <Icon icon="vault" size={28} />
                             </div>
-                            <h4>{t('addToPasswordManager')}</h4>
+                            <h4>{t('seedVault:exportSeedVault')}</h4>
                         </a>
                         <a onClick={() => this.setState({ writeVisible: true })} className={css.secure}>
                             <h3>{t('saveYourSeed:mostSecure')}</h3>
