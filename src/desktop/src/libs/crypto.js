@@ -121,21 +121,17 @@ export const vaultAuth = async (password) => {
  * @returns {Boolean} True if vault cleared
  */
 export const clearVault = async (password) => {
-    try {
-        await vaultAuth(password);
+    await vaultAuth(password);
 
-        const vault = await Electron.listKeychain();
+    const vault = await Electron.listKeychain();
 
-        const accounts = Object.keys(vault);
+    const accounts = Object.keys(vault);
 
-        for (let i = 0; i < accounts.length; i++) {
-            await Electron.removeKeychain(vault[i].account);
-        }
-
-        return true;
-    } catch (err) {
-        throw err;
+    for (let i = 0; i < accounts.length; i++) {
+        await Electron.removeKeychain(vault[i].account);
     }
+
+    return true;
 };
 
 /**
