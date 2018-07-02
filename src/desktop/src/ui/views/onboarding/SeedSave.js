@@ -7,9 +7,9 @@ import Modal from 'ui/components/modal/Modal';
 import Button from 'ui/components/Button';
 import Icon from 'ui/components/Icon';
 import SeedPrint from 'ui/components/SeedPrint';
+import SeedExport from 'ui/global/SeedExport';
 
 import SeedSaveWrite from './SeedSaveWrite';
-import SeedSaveExport from './SeedSaveExport';
 
 import css from './index.scss';
 
@@ -88,7 +88,7 @@ class SeedSave extends PureComponent {
                             onClose={() => this.setState({ writeVisible: false })}
                         />
                     ) : (
-                        <SeedSaveExport seed={seed} onClose={() => this.setState({ exportVisible: false })} />
+                        <SeedExport seed={seed} onClose={() => this.setState({ exportVisible: false })} />
                     )}
                 </Modal>
                 {seed && <SeedPrint seed={seed} checksum={checksum} filled={!writeVisible} />}
