@@ -161,23 +161,26 @@
     }
 
     h5 {
-        display: flex;
-        align-items: center;
-        position: absolute;
-        top: 100%;
-        left: 14px;
-        padding: 16px 0 0 0;
+        display: block;
+        width: 100%;
+        border: 1px dashed var(--body-alt);
         font-size: 12px;
         line-height: 12px;
-        span {
-            margin: -2px 6px 0 0;
+        margin: 32px 0 0 0;
+        padding: 24px 0;
+        font-size: 14px;
+        text-align: center;
+        cursor: pointer;
+
+        svg {
+            display: block;
+            margin: 0 auto 20px;
+            pointer-events: none;
         }
-        &:hover {
-            color: var(--primary);
-            cursor: pointer;
-            span {
-                color: var(--body);
-            }
+        span {
+            display: block;
+            pointer-events: none;
+            line-height: 18px;
         }
     }
 

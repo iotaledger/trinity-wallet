@@ -178,6 +178,50 @@ describe('Reducer: settings', () => {
         });
     });
 
+    describe('IOTA/SETTINGS/REMOVE_CUSTOM_NODE', () => {
+        describe('when payload exists in "customNodes" state prop', () => {
+            it('should remove payload from state prop "customNodes"', () => {
+                const initialState = {
+                    nodes: ['http://localhost:9000', 'http://localhost:5000'],
+                    customNodes: ['http://localhost:5000'],
+                };
+
+                const action = {
+                    type: 'IOTA/SETTINGS/REMOVE_CUSTOM_NODE',
+                    payload: 'http://localhost:5000',
+                };
+
+                const newState = reducer(initialState, action);
+                const expectedState = {
+                    nodes: ['http://localhost:9000'],
+                    customNodes: [],
+                };
+
+                expect(newState.nodes).to.eql(expectedState.nodes);
+                expect(newState.customNodes).to.eql(expectedState.customNodes);
+            });
+        });
+
+        describe('when payload does not exist in "customNodes" state prop', () => {
+            it('should not change "customNodes" state prop', () => {
+                const initialState = {
+                    nodes: ['http://localhost:9000', 'http://localhost:5000'],
+                    customNodes: ['http://localhost:4000'],
+                };
+
+                const action = {
+                    type: 'IOTA/SETTINGS/REMOVE_CUSTOM_NODE',
+                    payload: 'http://localhost:5000',
+                };
+
+                const newState = reducer(initialState, action);
+
+                expect(newState.nodes).to.eql(initialState.nodes);
+                expect(newState.customNodes).to.eql(initialState.customNodes);
+            });
+        });
+    });
+
     describe('SET_MODE', () => {
         it('should set mode to payload', () => {
             const initialState = {

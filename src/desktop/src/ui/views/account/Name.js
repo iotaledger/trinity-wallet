@@ -4,7 +4,7 @@ import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { getSelectedAccountName } from 'selectors/accounts';
 
-import { renameSeed } from 'libs/crypto';
+import { renameSeed, MAX_ACC_LENGTH } from 'libs/crypto';
 
 import { changeAccountName } from 'actions/accounts';
 import { generateAlert } from 'actions/alerts';
@@ -56,6 +56,15 @@ class AccountName extends PureComponent {
 
         if (newAccountName.length < 1) {
             generateAlert('error', t('addAdditionalSeed:noNickname'), t('addAdditionalSeed:noNicknameExplanation'));
+            return;
+        }
+
+        if (newAccountName.length > MAX_ACC_LENGTH) {
+            generateAlert(
+                'error',
+                t('addAdditionalSeed:accountNameTooLong'),
+                t('addAdditionalSeed:accountNameTooLongExplanation', { maxLength: MAX_ACC_LENGTH }),
+            );
             return;
         }
 
@@ -111,4 +120,7 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(AccountName));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(translate()(AccountName));

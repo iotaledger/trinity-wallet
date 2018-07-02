@@ -132,10 +132,14 @@ class Dropzone extends React.Component {
         return (
             <React.Fragment>
                 <h5 onClick={this.open}>
-                    <Icon icon="password" size={12} /> {t('seedVault:importSeedVault')}
+                    <Icon icon="seedVault" size={48} />{' '}
+                    <span>
+                        {t('seedVault:')} Drop SeedVault file here<br /> or click to browse
+                    </span>
                 </h5>
                 <input {...inputAttributes} />
                 <div className={classNames(css.dropzone, this.state.isDragActive && css.active)}>
+                    <Icon icon="seedVault" size={160} />
                     <h1>{t('seedVault:dropSeedVaultHere')}</h1>
                 </div>
             </React.Fragment>
