@@ -5,6 +5,7 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.WritableNativeArray;
+import com.facebook.react.bridge.ReadableNativeArray;
 
 import com.facebook.react.bridge.GuardedResultAsyncTask;
 import com.facebook.react.bridge.ReactContext;
@@ -29,18 +30,30 @@ public class EntangledAndroid extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void generateAddresses(String seed, int index, int security, int total, Promise promise) {
-        WritableNativeArray addresses = new WritableNativeArray();
-        int i = 0;
+    public void generateAddresses(final String seed, final int index, final int security, final int total, final Promise promise) {
+        new GuardedResultAsyncTask<ReadableNativeArray>(mContext) {
+            @Override
+            protected ReadableNativeArray doInBackgroundGuarded() {
+                WritableNativeArray addresses = new WritableNativeArray();
+                int i = 0;
+                int addressIndex = index;
 
-        do {
-            String address = Interface.generateAddress(seed, index, security);
-            addresses.pushString(address);
-            i++;
-            index++;
-        } while (i < total);
+                do {
+                    String address = Interface.generateAddress(seed, addressIndex, security);
+                    addresses.pushString(address);
+                    i++;
+                    addressIndex++;
+                } while (i < total);
 
-        promise.resolve(addresses);
+                return addresses;
+            }
+
+            @Override
+            protected void onPostExecuteGuarded(ReadableNativeArray result) {
+                promise.resolve(result);
+            }
+
+        }.execute();
     }
 
 
@@ -65,6 +78,5 @@ public class EntangledAndroid extends ReactContextBaseJavaModule {
             }
 
         }.execute();
-
     }
 }
