@@ -62,8 +62,8 @@ class AccountName extends PureComponent {
         if (newAccountName.length > MAX_ACC_LENGTH) {
             generateAlert(
                 'error',
-                t('addAdditionalSeed:accountNametooLong'),
-                t('addAdditionalSeed:accountNametooLongExplanation', { maxLength: MAX_ACC_LENGTH }),
+                t('addAdditionalSeed:accountNameTooLong'),
+                t('addAdditionalSeed:accountNameTooLongExplanation', { maxLength: MAX_ACC_LENGTH }),
             );
             return;
         }

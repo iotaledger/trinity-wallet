@@ -83,6 +83,13 @@ class SetNode extends PureComponent {
         this.setState({ customNode: '' });
     };
 
+    removeNode = () => {
+        this.props.removeCustomNode(this.state.selection || this.props.node);
+        this.setState({
+            selection: null,
+        });
+    };
+
     render() {
         const { nodes, customNodes, node, loading, autoNodeSwitching, t } = this.props;
         const { selection, customNode } = this.state;
@@ -118,7 +125,7 @@ class SetNode extends PureComponent {
                     </Button>
                     {selection !== node &&
                         customNodes.indexOf(selection) > -1 && (
-                            <Button onClick={() => this.props.removeCustomNode(selection || node)} variant="negative">
+                            <Button onClick={this.removeNode} variant="negative">
                                 {t('addCustomNode:removeCustomNode')}
                             </Button>
                         )}
