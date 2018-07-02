@@ -286,8 +286,8 @@ class SeedInput extends React.PureComponent {
                         </div>
                     </div>
                     <small>{label}</small>
-                    <Dropzone onDrop={this.onDrop} />
                 </fieldset>
+                <Dropzone onDrop={this.onDrop} />
 
                 {seed.length ? <span className={css.info}>{checkSum}</span> : null}
                 {showScanner && (
