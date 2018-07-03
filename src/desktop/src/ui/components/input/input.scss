@@ -202,13 +202,14 @@
 
 .info {
     display: block;
-    float: right;
+    position: absolute;
+    top: 71px;
+    right: -5px;
     font-size: 11px;
     color: var(--input);
     line-height: 14px;
     padding: 4px 8px 2px;
     border-radius: 0 0 4px 4px;
-    position: relative;
     background: var(--input-bg);
     margin: -1px 38px 0 0;
     border: 1px solid var(--input-border);
