@@ -6,7 +6,7 @@ const iotaNativeBindings = new Object();
 iotaNativeBindings.asyncTransactionObject = (...args) => Promise.resolve(iota.utils.transactionObject(...args));
 
 /**
- * Override nativeBindings instance asyncTransactionObject method
+ * Override asyncTransactionObject method on nativeBindings instance
  *
  *   @method overrideAsyncTransactionObject
  *   @param {object} instance - iota instance
