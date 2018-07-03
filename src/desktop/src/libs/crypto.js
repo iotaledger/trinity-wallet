@@ -8,10 +8,11 @@ export const MAX_ACC_LENGTH = 250;
 
 /**
  * Create random byte array
- * @param {Number} length - Random number array length.
+ * @param {Number} Length - Random number array length.
+ * @param {Number} Max -  Random byte max range
  * @returns {Array} Random number array
  */
-function randomBytes(size) {
+function randomBytes(size, max) {
     if (size !== parseInt(size, 10) || size < 0) {
         return false;
     }
@@ -19,6 +20,12 @@ function randomBytes(size) {
     const rawBytes = new Uint8Array(size);
 
     const bytes = global.crypto.getRandomValues(rawBytes);
+
+    for (let i = 0; i < bytes.length; i++) {
+        while (bytes[i] > 256 - (256 % max)) {
+            bytes[i] = randomBytes(1, max)[0];
+        }
+    }
 
     return Array.from(bytes);
 }
@@ -29,7 +36,7 @@ function randomBytes(size) {
  * @returns {Array} Random byte array seed
  */
 export const createRandomSeed = (length = MAX_SEED_LENGTH) => {
-    return randomBytes(length);
+    return randomBytes(length, 27);
 };
 
 /**
