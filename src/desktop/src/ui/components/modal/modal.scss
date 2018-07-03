@@ -104,6 +104,7 @@ $footer: 70px;
         z-index: 2;
         transform: scale(1);
         transition: transform 0.2s ease-out;
+        text-align: center;
 
         p {
             word-wrap: break-word;
@@ -126,6 +127,13 @@ $footer: 70px;
             width: 100vw;
             padding: 0 20px;
         }
+
+        section > svg {
+            margin-bottom: 20px;
+        }
+
+
+
     }
 }
 
