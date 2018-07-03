@@ -27,4 +27,4 @@ const Icons = () => {
     );
 };
 
-export default Colors;
+export default Icons;
