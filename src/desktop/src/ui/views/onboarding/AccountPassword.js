@@ -10,7 +10,7 @@ import { addAccountName, increaseSeedCount, setOnboardingComplete } from 'action
 import { setPassword } from 'actions/wallet';
 import { setOnboardingName } from 'actions/ui';
 
-import { setSeed, sha256 } from 'libs/crypto';
+import { setSeed, setTwoFA, sha256 } from 'libs/crypto';
 import { passwordReasons } from 'libs/i18next';
 
 import Button from 'ui/components/Button';
@@ -114,7 +114,8 @@ class AccountPassword extends React.PureComponent {
         addAccountName(onboarding.name);
         increaseSeedCount();
         setPassword(passwordHash);
-        await setSeed(passwordHash, onboarding.name, Electron.getOnboardingSeed(), true);
+        await setSeed(passwordHash, onboarding.name, Electron.getOnboardingSeed());
+        await setTwoFA(passwordHash, null);
         Electron.setOnboardingSeed(null);
 
         setOnboardingName('');

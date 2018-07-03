@@ -11,6 +11,7 @@ import { passwordReasons } from 'libs/i18next';
 
 import PasswordInput from 'ui/components/input/Password';
 import Button from 'ui/components/Button';
+import Icon from 'ui/components/Icon';
 
 /**
  * Onboarding, Seed export step
@@ -29,8 +30,26 @@ class SeedExport extends PureComponent {
     };
 
     state = {
+        step: 1,
         password: '',
         passwordConfirm: '',
+    };
+
+    onClose = (e) => {
+        e.preventDefault();
+
+        this.setState({
+            step: 1,
+            password: '',
+            passwordConfirm: '',
+        });
+
+        this.props.onClose();
+    };
+
+    onStep = (e) => {
+        e.preventDefault();
+        this.setState({ step: 2 });
     };
 
     exportSeed = async (e) => {
@@ -61,6 +80,12 @@ class SeedExport extends PureComponent {
 
         const error = await Electron.exportSeed(seed, password);
 
+        this.setState({
+            step: 1,
+            password: '',
+            passwordConfirm: '',
+        });
+
         if (error) {
             if (error !== 'Export cancelled') {
                 return generateAlert('error', t('seedVault:exportFail'), t('seedVault:exportFailExplanation'));
@@ -75,18 +100,38 @@ class SeedExport extends PureComponent {
     };
 
     render() {
-        const { onClose, t } = this.props;
+        const { t } = this.props;
+
+        if (this.state.step === 1) {
+            return (
+                <form onSubmit={this.onStep}>
+                    <section>
+                        <Icon icon="seedVault" size={170} />
+                        <h1>{t('seedVault:exportSeedVault')}</h1>
+                        <p>{t('seedVault:seedVaultExplanation')}</p>
+                        <p>
+                            <strong>{t('seedVault:seedVaultWarning')}</strong>
+                        </p>
+                    </section>
+                    <footer>
+                        <Button onClick={this.onClose} className="square" variant="secondary">
+                            {t('goBack')}
+                        </Button>
+                        <Button type="submit" variant="primary" className="square">
+                            {t('continue')}
+                        </Button>
+                    </footer>
+                </form>
+            );
+        }
 
         const score = zxcvbn(this.state.password);
 
         return (
             <form onSubmit={(e) => this.exportSeed(e)}>
                 <section>
+                    <Icon icon="seedVault" size={170} />
                     <h1>{t('seedVault:exportSeedVault')}</h1>
-                    <p>{t('seedVault:seedVaultExplanation')}</p>
-                    <p>
-                        <strong>{t('seedVault:seedVaultWarning')}</strong>
-                    </p>
                     <PasswordInput
                         focus
                         value={this.state.password}
@@ -105,14 +150,7 @@ class SeedExport extends PureComponent {
                     />
                 </section>
                 <footer>
-                    <Button
-                        onClick={(e) => {
-                            e.preventDefault();
-                            onClose();
-                        }}
-                        className="square"
-                        variant="secondary"
-                    >
+                    <Button onClick={this.onClose} className="square" variant="secondary">
                         {t('goBack')}
                     </Button>
                     <Button type="submit" variant="primary" className="square">
