@@ -22,7 +22,7 @@ function randomBytes(size, max) {
     const bytes = global.crypto.getRandomValues(rawBytes);
 
     for (let i = 0; i < bytes.length; i++) {
-        while (bytes[i] > 256 - (256 % max)) {
+        while (bytes[i] >= 256 - (256 % max)) {
             bytes[i] = randomBytes(1, max)[0];
         }
     }
