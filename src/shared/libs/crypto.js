@@ -1,38 +1,27 @@
 import { MAX_SEED_LENGTH } from './iota/utils';
 
-export const generateNewSeed = (randomBytesFn) => {
+export async function generateNewSeed(randomBytesFn) {
     const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9';
     let seed = '';
-    return randomBytesFn(100).then((bytes) => {
-        Object.keys(bytes).forEach((key) => {
-            if (bytes[key] < 243 && seed.length < MAX_SEED_LENGTH) {
-                const randomNumber = bytes[key] % 27;
-                const randomLetter = charset.charAt(randomNumber);
-                seed += randomLetter;
-            }
-        });
-        return seed;
-    });
-};
+    while (seed.length < MAX_SEED_LENGTH) {
+        const byte = await randomBytesFn(1);
+        if (byte[0] < 243) {
+            seed += charset.charAt(byte[0] % 27);
+        }
+    }
+    return seed;
+}
 
-
-export const randomiseSeedCharacter = (seed, charId, randomBytesFn) => {
+export async function randomiseSeedCharacter(seed, charId, randomBytesFn) {
     const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9';
-    return randomBytesFn(5).then((bytes) => {
-        let i = 0;
-        let id = charId;
-        let updatedSeed = seed;
-        Object.keys(bytes).forEach((key) => {
-            if (bytes[key] < 243 && i < 1) {
-                const randomNumber = bytes[key] % 27;
-                const randomLetter = charset.charAt(randomNumber);
-                const substr1 = updatedSeed.substr(0, id);
-                id++;
-                const substr2 = updatedSeed.substr(id, 80);
-                updatedSeed = substr1 + randomLetter + substr2;
-                i++;
-            }
-        });
-        return updatedSeed;
-    });
-};
+    let updatedSeed = '';
+    let complete = false;
+    while (!complete) {
+        const byte = await randomBytesFn(1);
+        if (byte[0] < 243) {
+            updatedSeed = seed.substr(0, charId) + charset.charAt(byte[0] % 27) + seed.substr(charId + 1, 80);
+            complete = true;
+        }
+    }
+    return updatedSeed;
+}
