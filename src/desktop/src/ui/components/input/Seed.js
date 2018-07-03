@@ -7,8 +7,9 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 
 import { MAX_SEED_LENGTH, VALID_SEED_REGEX } from 'libs/iota/utils';
-import { byteToChar } from 'libs/crypto';
+import { byteToChar, MAX_ACC_LENGTH } from 'libs/crypto';
 
+import { setOnboardingName } from 'actions/ui';
 import { generateAlert } from 'actions/alerts';
 
 import Modal from 'ui/components/modal/Modal';
@@ -37,6 +38,10 @@ class SeedInput extends React.PureComponent {
          * @param {string} value - Current seed value
          */
         onChange: PropTypes.func.isRequired,
+        /** Should the onboarding name be updated to imported SeedVault account name */
+        updateImportName: PropTypes.bool,
+        /** Set onboarding seed name */
+        setOnboardingName: PropTypes.func.isRequired,
         /** Create a notification message
          * @param {String} type - notification type - success, error
          * @param {String} title - notification title
@@ -152,7 +157,7 @@ class SeedInput extends React.PureComponent {
     };
 
     decryptFile = async (password) => {
-        const { generateAlert, t } = this.props;
+        const { generateAlert, updateImportName, setOnboardingName, t } = this.props;
 
         try {
             let accounts = await Electron.importSeed(this.state.importBuffer, password);
@@ -173,6 +178,10 @@ class SeedInput extends React.PureComponent {
                 throw Error('SeedNotFound');
             } else if (accounts.length === 1) {
                 this.props.onChange(accounts[0].seed);
+
+                if (updateImportName && accounts[0].title.length < MAX_ACC_LENGTH) {
+                    setOnboardingName(accounts[0].title);
+                }
             } else {
                 this.setState({
                     accounts: accounts,
@@ -194,8 +203,14 @@ class SeedInput extends React.PureComponent {
 
     chooseSeed = (e) => {
         e.preventDefault();
-        const seed = this.state.accounts[this.state.accountIndex].seed;
-        this.props.onChange(seed);
+        const account = this.state.accounts[this.state.accountIndex];
+
+        this.props.onChange(account.seed);
+
+        if (this.props.updateImportName && account.title.length < MAX_ACC_LENGTH) {
+            this.props.setOnboardingName(account.title);
+        }
+
         this.setState({
             accounts: [],
             accountIndex: -1,
@@ -351,6 +366,7 @@ class SeedInput extends React.PureComponent {
 
 const mapDispatchToProps = {
     generateAlert,
+    setOnboardingName,
 };
 
 export default connect(

@@ -204,10 +204,11 @@ const Electron = {
     exportSeeds: async (seeds, password) => {
         try {
             const content = await kdbx.exportVault(seeds, password);
+            const now = new Date();
 
             const path = await dialog.showSaveDialog(currentWindow, {
                 title: 'Export keyfile',
-                defaultPath: 'trinity.kdbx',
+                defaultPath: `trinity-${now.toISOString().slice(0,16).replace(/[-:]/g,'').replace('T','-')}.kdbx`,
                 buttonLabel: 'Export',
             });
 
