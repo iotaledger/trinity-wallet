@@ -9,6 +9,8 @@
 - Add progress bar to snapshot transition
 - Add support for Croatian and Tamil
 - Redesign UI for receive page
+- Add explanation for why biometric authentication is disabled in some cases
+- Add animation when generating receive address
 
 
 ### Fixes and Improvements
@@ -16,3 +18,7 @@
 - Fix crash when backing up seed to Keepass2Android on Android 6.0
 - Fix promotion errors with IRI 1.5.0
 - Increase local PoW efficiency
+- Increase address generation efficiency
+- Use native methods for hashing
+- Remove manual rebroadcast
+- Automatically ask for biometric authentication on inactivity logout
