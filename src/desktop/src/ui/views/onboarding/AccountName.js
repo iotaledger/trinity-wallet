@@ -1,3 +1,4 @@
+/* global Electron */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -108,6 +109,10 @@ class AccountName extends React.PureComponent {
 
         setOnboardingName(this.state.name);
 
+        if (!Electron.getOnboardingSeed()) {
+            return history.push('/onboarding/seed-generate');
+        }
+
         if (!firstAccount) {
             setAdditionalAccountInfo({
                 addingAdditionalAccount: true,
@@ -120,7 +125,7 @@ class AccountName extends React.PureComponent {
     };
 
     render() {
-        const { t, onboarding } = this.props;
+        const { t } = this.props;
         const { name } = this.state;
         return (
             <form onSubmit={this.setName}>
@@ -136,7 +141,7 @@ class AccountName extends React.PureComponent {
                 </section>
                 <footer>
                     <Button
-                        to={`/onboarding/seed-${onboarding.isGenerated ? 'save' : 'verify'}`}
+                        to={`/onboarding/seed-${!Electron.getOnboardingSeed() ? 'intro' : 'verify'}`}
                         className="square"
                         variant="dark"
                     >
@@ -164,4 +169,7 @@ const mapDispatchToProps = {
     setAdditionalAccountInfo,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(AccountName));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(translate()(AccountName));

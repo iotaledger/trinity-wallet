@@ -49,8 +49,9 @@ class GenerateSeed extends React.PureComponent {
     onRequestPrevious = () => {
         const { history } = this.props;
 
-        Electron.setOnboardingSeed(null);
-        history.push('/onboarding/seed-intro');
+        this.generateNewSeed();
+
+        history.push('/onboarding/account-name');
     };
 
     updateLetter = (e, position) => {
