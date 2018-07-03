@@ -9,7 +9,7 @@ iotaNativeBindings.asyncTransactionObject = (...args) => Promise.resolve(iota.ut
  * Override asyncTransactionObject method on nativeBindings instance
  *
  *   @method overrideAsyncTransactionObject
- *   @param {object} instance - iota instance
+ *   @param {object} instance - nativeBindings instance
  *   @param {function} getDigestPromise
  *
  **/
@@ -28,7 +28,7 @@ export const overrideAsyncTransactionObject = (instance, getDigestPromise) => {
         };
     };
 
-    instance.utils.asyncTransactionObject = assignTxObjectConverter();
+    instance.asyncTransactionObject = assignTxObjectConverter();
 };
 
 export default iotaNativeBindings;
