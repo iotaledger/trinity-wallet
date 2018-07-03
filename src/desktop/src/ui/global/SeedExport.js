@@ -138,7 +138,7 @@ class SeedExport extends PureComponent {
         const score = zxcvbn(this.state.password);
 
         return (
-            <form onSubmit={(e) => this.exportSeed(e)}>
+            <form onSubmit={this.exportSeed}>
                 <section>
                     <Icon icon="seedVault" size={170} />
                     <h1>{t('seedVault:exportSeedVault')}</h1>

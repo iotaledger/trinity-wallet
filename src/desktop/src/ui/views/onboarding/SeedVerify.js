@@ -92,9 +92,10 @@ class SeedVerify extends React.PureComponent {
 
         if (!isGenerated) {
             Electron.setOnboardingSeed(seed, false);
+            history.push('/onboarding/account-name');
+        } else {
+            history.push('/onboarding/account-password');
         }
-
-        history.push('/onboarding/account-name');
     };
 
     render() {
@@ -113,7 +114,7 @@ class SeedVerify extends React.PureComponent {
                             <strong>{t('enterSeed:neverShare')}</strong>
                         </p>
                     )}
-                    <SeedInput seed={seed} focus onChange={this.onChange} label={t('seed')} closeLabel={t('back')} />
+                    <SeedInput seed={seed} focus updateImportName={!isGenerated} onChange={this.onChange} label={t('seed')} closeLabel={t('back')} />
                 </section>
                 <footer>
                     <Button to={`/onboarding/seed-${isGenerated ? 'save' : 'intro'}`} className="square" variant="dark">
