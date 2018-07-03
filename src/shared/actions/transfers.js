@@ -565,7 +565,8 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
 
                 cached.trytes = trytes;
 
-                const convertToTransactionObjects = (tryteString) => iota.utils.transactionObject(tryteString);
+                const convertToTransactionObjects = (tryteString) =>
+                    iota.utils.transactionObject(tryteString, '9'.repeat(81));
                 cached.transactionObjects = map(cached.trytes, convertToTransactionObjects);
 
                 // Getting transactions to approve
