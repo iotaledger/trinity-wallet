@@ -28,25 +28,28 @@ const exportVault = async (seed, password) => {
  * Get seed from encrypt KDBX database
  * @param {ArrayBuffer} Db - the encrypted binary KDBX database
  * @param {String} Password - plain text password for decryption
- * @returns {Array} decrypted byte array seed
+ * @returns {Array} array of decrypted byte array seeds
  */
 const importVault = async (buffer, password) => {
     const credentials = new kdbxweb.Credentials(kdbxweb.ProtectedValue.fromString(password));
 
     const db = await kdbxweb.Kdbx.load(buffer, credentials);
     const entries = db.getDefaultGroup().entries;
-    let seed = null;
+    const seeds = [];
 
     for (let i = 0; i < entries.length; i++) {
         if (entries[i].fields.Seed) {
-            seed = entries[i].fields.Seed.getText()
-                .split('')
-                .map((char) => '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.indexOf(char.toUpperCase()))
-                .filter((byte) => byte > -1);
+            seeds.push({
+                title: entries[i].fields.Title || `Seed #${i + 1}`,
+                seed: entries[i].fields.Seed.getText()
+                    .split('')
+                    .map((char) => '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.indexOf(char.toUpperCase()))
+                    .filter((byte) => byte > -1),
+            });
         }
     }
 
-    return seed;
+    return seeds;
 };
 
 const kdbx = {
