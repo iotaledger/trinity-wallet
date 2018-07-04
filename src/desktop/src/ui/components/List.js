@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import map from 'lodash/map';
 import orderBy from 'lodash/orderBy';
 import classNames from 'classnames';
-import Curl from 'curl.lib.js';
 
 import { formatValue, formatUnit } from 'libs/iota/utils';
 import { round } from 'libs/utils';
 import { formatTime, formatModalTime, convertUnixTimeToJSDate } from 'libs/date';
+import { getPoWFn } from 'libs/pow';
 
 import Clipboard from 'ui/components/Clipboard';
 import Icon from 'ui/components/Icon';
@@ -33,6 +33,8 @@ class List extends React.PureComponent {
         isLoading: PropTypes.bool.isRequired,
         /** Bundle hash for the transaction that is currently being promoted */
         currentlyPromotingBundleHash: PropTypes.string.isRequired,
+        /** Current transaction retry state */
+        isRetryingFailedTransaction: PropTypes.bool.isRequired,
         /** Hide empty transactions flag */
         hideEmptyTransactions: PropTypes.bool.isRequired,
         /** Should update history */
@@ -41,11 +43,24 @@ class List extends React.PureComponent {
         toggleEmptyTransactions: PropTypes.func.isRequired,
         /** Transaction history */
         transfers: PropTypes.object.isRequired,
+        /** Create a notification message
+         * @param {String} type - notification type - success, error
+         * @param {String} title - notification title
+         * @param {String} text - notification explanation
+         * @ignore
+         */
+        generateAlert: PropTypes.func.isRequired,
+        failedHashes: PropTypes.object.isRequired,
         /** Promotes bundle
          * @param {string} bundle - bundle hash
          * @param {func} powFn - local Proof of Work function
          */
         promoteTransaction: PropTypes.func.isRequired,
+        /** Retry failed bundle
+         * @param {string} bundle - bundle hash
+         * @param {func} powFn - local Proof of Work function
+         */
+        retryFailedTransaction: PropTypes.func.isRequired,
         /** Set active history item
          * @param {Number} index - Current item index
          */
@@ -113,20 +128,37 @@ class List extends React.PureComponent {
     promoteTransaction(e, bundle) {
         e.stopPropagation();
 
+        const { generateAlert, t } = this.props;
+
         let powFn = null;
 
         if (!this.props.remotePoW) {
-            // Temporarily return an error if WebGL cannot be initialized
-            // Remove once we implement more PoW methods
             try {
-                Curl.init();
-            } catch (e) {}
-            powFn = (trytes, minWeight) => {
-                return Curl.pow({ trytes, minWeight });
-            };
+                powFn = getPoWFn();
+            } catch (e) {
+                return generateAlert('error', t('pow:noWebGLSupport'), t('pow:noWebGLSupportExplanation'));
+            }
         }
 
         this.props.promoteTransaction(bundle, powFn);
+    }
+
+    retryFailedTransaction(e, bundle) {
+        e.stopPropagation();
+
+        const { generateAlert, t } = this.props;
+
+        let powFn = null;
+
+        if (!this.props.remotePoW) {
+            try {
+                powFn = getPoWFn();
+            } catch (e) {
+                return generateAlert('error', t('pow:noWebGLSupport'), t('pow:noWebGLSupportExplanation'));
+            }
+        }
+
+        this.props.retryFailedTransaction(bundle, powFn);
     }
 
     render() {
@@ -134,11 +166,13 @@ class List extends React.PureComponent {
             isLoading,
             isBusy,
             currentlyPromotingBundleHash,
+            isRetryingFailedTransaction,
             mode,
             hideEmptyTransactions,
             toggleEmptyTransactions,
             updateAccount,
             transfers,
+            failedHashes,
             setItem,
             currentItem,
             t,
@@ -194,7 +228,10 @@ class List extends React.PureComponent {
             return filter === 'All';
         });
 
+        const failedBundles = Object.keys(failedHashes);
+
         const activeTransfer = currentItem ? historyTx.filter((tx) => tx.hash === currentItem)[0] : null;
+        const isActiveFailed = activeTransfer && failedBundles.indexOf(activeTransfer.bundle) > -1;
 
         return (
             <React.Fragment>
@@ -265,7 +302,12 @@ class List extends React.PureComponent {
                                     >
                                         <div>
                                             <div className={isReceived ? css.plus : css.minus} />
-                                            <span>{formatTime(convertUnixTimeToJSDate(transfer.timestamp))}</span>
+                                            <span>
+                                                {formatTime(
+                                                    navigator.language,
+                                                    convertUnixTimeToJSDate(transfer.timestamp),
+                                                )}
+                                            </span>
                                             <span>
                                                 {!isConfirmed ? t('pending') : isReceived ? t('received') : t('sent')}
                                             </span>
@@ -305,7 +347,12 @@ class List extends React.PureComponent {
                                         {!activeTransfer.persistence
                                             ? t('pending')
                                             : activeTransfer.incoming ? t('received') : t('sent')}
-                                        <em>{formatModalTime(convertUnixTimeToJSDate(activeTransfer.timestamp))}</em>
+                                        <em>
+                                            {formatModalTime(
+                                                navigator.language,
+                                                convertUnixTimeToJSDate(activeTransfer.timestamp),
+                                            )}
+                                        </em>
                                     </small>
                                 </p>
                                 <h6>{t('bundleHash')}:</h6>
@@ -329,13 +376,24 @@ class List extends React.PureComponent {
                                 </div>
                                 {!activeTransfer.persistence && (
                                     <nav>
-                                        <Button
-                                            className="small"
-                                            loading={currentlyPromotingBundleHash === activeTransfer.bundle}
-                                            onClick={(e) => this.promoteTransaction(e, activeTransfer.bundle)}
-                                        >
-                                            {t('retry')}
-                                        </Button>
+                                        {isActiveFailed && (
+                                            <Button
+                                                className="small"
+                                                loading={isRetryingFailedTransaction}
+                                                onClick={(e) => this.retryFailedTransaction(e, activeTransfer.bundle)}
+                                            >
+                                                {t('retry')}
+                                            </Button>
+                                        )}
+                                        {!isActiveFailed && (
+                                            <Button
+                                                className="small"
+                                                loading={currentlyPromotingBundleHash === activeTransfer.bundle}
+                                                onClick={(e) => this.promoteTransaction(e, activeTransfer.bundle)}
+                                            >
+                                                {t('retry')}
+                                            </Button>
+                                        )}
                                     </nav>
                                 )}
                             </div>

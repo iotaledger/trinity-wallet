@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 
+import { MAX_ACC_LENGTH } from 'libs/crypto';
+
 import { setOnboardingName } from 'actions/ui';
 import { generateAlert } from 'actions/alerts';
 import { setAdditionalAccountInfo } from 'actions/wallet';
@@ -90,6 +92,15 @@ class AccountName extends React.PureComponent {
             return;
         }
 
+        if (name.length > MAX_ACC_LENGTH) {
+            generateAlert(
+                'error',
+                t('addAdditionalSeed:accountNameTooLong'),
+                t('addAdditionalSeed:accountNameTooLongExplanation', { maxLength: MAX_ACC_LENGTH }),
+            );
+            return;
+        }
+
         if (accountNames.map((accountName) => accountName.toLowerCase()).indexOf(name.toLowerCase()) > -1) {
             generateAlert('error', t('addAdditionalSeed:nameInUse'), t('addAdditionalSeed:nameInUseExplanation'));
             return;
@@ -153,7 +164,4 @@ const mapDispatchToProps = {
     setAdditionalAccountInfo,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(translate()(AccountName));
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(AccountName));

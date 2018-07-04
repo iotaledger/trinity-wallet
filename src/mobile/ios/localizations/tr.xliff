@@ -13,6 +13,7 @@
       <trans-unit id="NSLocationWhenInUseUsageDescription">
         <source/>
         <note>Privacy - Location When In Use Usage Description</note>
+        <target xml:lang="tr" state="translated"/>
       </trans-unit>
     </body>
   </file>
