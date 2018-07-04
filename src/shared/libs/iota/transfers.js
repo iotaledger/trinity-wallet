@@ -31,6 +31,7 @@ import {
     BUNDLE_OUTPUTS_THRESHOLD,
 } from '../../config';
 import { iota } from './index';
+import nativeBindings from './nativeBindings';
 import { getBalancesSync, accumulateBalance } from './addresses';
 import {
     getBalancesAsync,
@@ -836,7 +837,7 @@ export const performPow = (
     }
 
     const transactionObjects = map(trytes, (transactionTrytes) =>
-        assign({}, iota.utils.transactionObject(transactionTrytes), {
+        assign({}, iota.utils.transactionObject(transactionTrytes, '9'.repeat(81)), {
             attachmentTimestamp: Date.now(),
             attachmentTimestampLowerBound: 0,
             attachmentTimestampUpperBound: (Math.pow(3, 27) - 1) / 2,
@@ -865,15 +866,19 @@ export const performPow = (
 
                 const transactionTryteString = iota.utils.transactionTrytes(withParentTransactions);
 
-                return powFn(transactionTryteString, minWeightMagnitude).then((nonce) => {
-                    const trytesWithNonce = transactionTryteString.substr(0, 2673 - nonce.length).concat(nonce);
-                    const transactionObjectWithNonce = iota.utils.transactionObject(trytesWithNonce);
+                return powFn(transactionTryteString, minWeightMagnitude)
+                    .then((nonce) => {
+                        const trytesWithNonce = transactionTryteString.substr(0, 2673 - nonce.length).concat(nonce);
 
-                    result.trytes.unshift(trytesWithNonce);
-                    result.transactionObjects.unshift(transactionObjectWithNonce);
+                        result.trytes.unshift(trytesWithNonce);
 
-                    return result;
-                });
+                        return nativeBindings.asyncTransactionObject(trytesWithNonce);
+                    })
+                    .then((tx) => {
+                        result.transactionObjects.unshift(tx);
+
+                        return result;
+                    });
             });
         },
         Promise.resolve({ trytes: [], transactionObjects: [] }),
