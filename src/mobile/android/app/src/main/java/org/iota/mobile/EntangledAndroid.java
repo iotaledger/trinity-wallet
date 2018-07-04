@@ -52,10 +52,15 @@ public class EntangledAndroid extends ReactContextBaseJavaModule {
             protected void onPostExecuteGuarded(ReadableNativeArray result) {
                 promise.resolve(result);
             }
-
         }.execute();
     }
 
+    @ReactMethod
+    public void getDigest(String trytes, Promise promise) {
+      String digest = Interface.getDigest(trytes);
+
+      promise.resolve(digest);
+    }
 
     @ReactMethod
     public void generateSignature(String trytes, int index, int security, String bundleHash, Promise promise) {
