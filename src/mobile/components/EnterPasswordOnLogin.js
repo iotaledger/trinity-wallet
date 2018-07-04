@@ -135,7 +135,7 @@ export class EnterPasswordOnLogin extends Component {
         const textColor = { color: body.color };
 
         return (
-            <View>
+            <View style={{ backgroundColor: body.bg }}>
                 <InfoBox
                     body={body}
                     width={width / 1.15}
