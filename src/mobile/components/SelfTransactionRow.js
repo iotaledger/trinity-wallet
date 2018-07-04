@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginBottom: height / 60,
         height: height / 10,
+        borderWidth: 1,
     },
     iconWrapper: {
         alignItems: 'center',
@@ -152,7 +153,7 @@ export default class SelfTransactionRow extends PureComponent {
                             style: { ...style, titleColor: receiveStatusColor },
                         })
                     }
-                    style={[styles.row, style.containerBackgroundColor]}
+                    style={[styles.row, style.rowBorderColor, style.containerBackgroundColor]}
                 >
                     {bundleIsBeingPromoted && (
                         <View style={{ position: 'absolute', left: width / 3.4, top: height / 70 }}>
@@ -177,7 +178,7 @@ export default class SelfTransactionRow extends PureComponent {
                                 color={persistence ? style.primaryColor : style.pendingColor}
                                 iconStyle={{ position: 'absolute' }}
                             />
-                            <View style={[styles.iconBorder, style.rowBorderColor, { position: 'absolute' }]} />
+                            <View style={[styles.iconBorder, style.borderColor, { position: 'absolute' }]} />
                         </View>
                         <View style={styles.textWrapper}>
                             <View style={styles.topWrapper}>
@@ -213,7 +214,7 @@ export default class SelfTransactionRow extends PureComponent {
                     onPress={() =>
                         onPress({ ...this.props, status: sendStatus, style: { ...style, titleColor: sendStatusColor } })
                     }
-                    style={[styles.row, style.containerBackgroundColor]}
+                    style={[styles.row, style.rowBorderColor, style.containerBackgroundColor]}
                 >
                     {bundleIsBeingPromoted && (
                         <View style={{ position: 'absolute', left: width / 3.4, top: height / 70 }}>
@@ -238,7 +239,7 @@ export default class SelfTransactionRow extends PureComponent {
                                 color={persistence ? style.secondaryColor : style.pendingColor}
                                 iconStyle={{ position: 'absolute' }}
                             />
-                            <View style={[styles.iconBorder, style.rowBorderColor, { position: 'absolute' }]} />
+                            <View style={[styles.iconBorder, style.borderColor, { position: 'absolute' }]} />
                         </View>
                         <View style={styles.textWrapper}>
                             <View style={styles.topWrapper}>

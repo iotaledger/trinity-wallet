@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
         width: width / 1.15,
         height: height / 1.5,
         borderRadius: 6,
+        borderWidth: 1,
         backfaceVisibility: 'hidden',
     },
     flipCardBack: {
@@ -80,18 +81,19 @@ const styles = StyleSheet.create({
     },
     qrFrame: {
         padding: width / 20,
-        backgroundColor: 'white',
     },
     addressContainer: {
         flex: 2.9,
         justifyContent: 'center',
         alignItems: 'center',
+        borderTopWidth: 1,
     },
     multiInputContainer: {
         flex: 2.6,
         justifyContent: 'center',
         paddingHorizontal: width / 30,
         paddingVertical: height / 50,
+        borderTopWidth: 1,
     },
     addressButton: {
         flex: 1,
@@ -117,8 +119,9 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        borderBottomLeftRadius: GENERAL.borderRadius,
-        borderBottomRightRadius: GENERAL.borderRadius,
+        borderBottomLeftRadius: 6,
+        borderBottomRightRadius: 6,
+        borderWidth: 1,
     },
     refreshIconBackgroundAndroid: {
         width: width / 7,
@@ -128,6 +131,7 @@ const styles = StyleSheet.create({
         bottom: -width / 14,
         alignItems: 'center',
         justifyContent: 'center',
+        borderWidth: 1,
     },
     refreshIconBackground: {
         width: width / 7,
@@ -137,6 +141,7 @@ const styles = StyleSheet.create({
         top: -width / 14,
         alignItems: 'center',
         justifyContent: 'center',
+        borderWidth: 1,
     },
     refreshIcon: {
         backgroundColor: 'transparent',
@@ -553,6 +558,7 @@ class Receive extends Component {
                         <Animated.View
                             style={[
                                 styles.flipCard,
+                                { borderColor: primary.border },
                                 { zIndex: isCardFlipped ? 0 : 1 },
                                 { opacity: this.frontOpacity },
                                 {
@@ -565,8 +571,8 @@ class Receive extends Component {
                                 <View style={[styles.qrOptionsIndicator, { backgroundColor: positive.color }]} />
                             )}
                             <View style={styles.headerButtonsContainer}>
-                                <View style={[styles.leftHeaderButton, { backgroundColor: dark.body }]}>
-                                    <Text style={[styles.buttonText, { color: dark.color }]}>{t('yourAddress')}</Text>
+                                <View style={[styles.leftHeaderButton, { backgroundColor: '#F2F2F2' }]}>
+                                    <Text style={[styles.buttonText, { color: 'black' }]}>{t('yourAddress')}</Text>
                                 </View>
                                 <TouchableWithoutFeedback onPress={this.flipCard}>
                                     <View style={[styles.rightHeaderButton, { backgroundColor: primary.color }]}>
@@ -579,7 +585,7 @@ class Receive extends Component {
                             <View
                                 style={[
                                     styles.qrContainerFront,
-                                    { backgroundColor: dark.body, paddingBottom: width / 14 },
+                                    { backgroundColor: '#F2F2F2', paddingBottom: width / 14 },
                                 ]}
                             >
                                 <QRCode
@@ -594,7 +600,7 @@ class Receive extends Component {
                                         <Animated.View
                                             style={[
                                                 styles.refreshIconBackgroundAndroid,
-                                                { backgroundColor: dark.color },
+                                                { backgroundColor: dark.color, borderColor: primary.border },
                                                 { transform: [rotateStyle] },
                                             ]}
                                         >
@@ -609,11 +615,16 @@ class Receive extends Component {
                                 )}
                             </View>
                             <TouchableWithoutFeedback onPress={this.generateAddress}>
-                                <View style={[styles.addressContainer, { backgroundColor: dark.color }]}>
+                                <View
+                                    style={[
+                                        styles.addressContainer,
+                                        { backgroundColor: dark.color, borderColor: primary.border },
+                                    ]}
+                                >
                                     <Animated.View
                                         style={[
                                             styles.refreshIconBackground,
-                                            { backgroundColor: dark.color },
+                                            { backgroundColor: dark.color, borderColor: primary.border },
                                             { transform: [rotateStyle] },
                                         ]}
                                     >
@@ -652,7 +663,10 @@ class Receive extends Component {
                             </TouchableWithoutFeedback>
                             <View style={styles.footerButtonContainer}>
                                 <TouchableOpacity
-                                    style={[styles.footerButton, { backgroundColor: primary.color }]}
+                                    style={[
+                                        styles.footerButton,
+                                        { backgroundColor: primary.color, borderColor: primary.border },
+                                    ]}
                                     onPress={() => this.onCopyAddressPress()}
                                 >
                                     <Text style={[styles.buttonText, { color: primary.body }]}>{t('copyAddress')}</Text>
@@ -664,6 +678,7 @@ class Receive extends Component {
                             style={[
                                 styles.flipCard,
                                 styles.flipCardBack,
+                                { borderColor: primary.border },
                                 { zIndex: isCardFlipped ? 1 : 0 },
                                 { opacity: this.backOpacity },
                                 {
@@ -682,13 +697,13 @@ class Receive extends Component {
                                         </Text>
                                     </View>
                                 </TouchableWithoutFeedback>
-                                <View style={[styles.rightHeaderButton, { backgroundColor: dark.body }]}>
-                                    <Text style={[styles.buttonText, { color: dark.color }]}>{t('qrOptions')}</Text>
+                                <View style={[styles.rightHeaderButton, { backgroundColor: '#F2F2F2' }]}>
+                                    <Text style={[styles.buttonText, { color: 'black' }]}>{t('qrOptions')}</Text>
                                 </View>
                             </View>
-                            <View style={[styles.qrContainerBack, { backgroundColor: dark.body }]}>
+                            <View style={[styles.qrContainerBack, { backgroundColor: '#F2F2F2' }]}>
                                 <View
-                                    style={styles.qrFrame}
+                                    style={[styles.qrFrame, { backgroundColor: '#F2F2F2' }]}
                                     ref={(c) => {
                                         this.qr = c;
                                     }}
@@ -701,12 +716,20 @@ class Receive extends Component {
                                     />
                                 </View>
                             </View>
-                            <View style={[styles.multiInputContainer, { backgroundColor: dark.color }]}>
+                            <View
+                                style={[
+                                    styles.multiInputContainer,
+                                    { backgroundColor: dark.color, borderColor: primary.border },
+                                ]}
+                            >
                                 <MultiTextInput multiplier={this.getUnitMultiplier()} />
                             </View>
                             <View style={styles.footerButtonContainer}>
                                 <TouchableOpacity
-                                    style={[styles.footerButton, { backgroundColor: primary.color }]}
+                                    style={[
+                                        styles.footerButton,
+                                        { backgroundColor: primary.color, borderColor: primary.border },
+                                    ]}
                                     onPress={() => this.onShareQRCodePress()}
                                 >
                                     <Text style={[styles.buttonText, { color: primary.body }]}>{t('shareQr')}</Text>

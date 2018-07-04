@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
     row: {
         flex: 1,
         borderRadius: GENERAL.borderRadius,
+        borderWidth: 1,
         paddingVertical: height / 55,
         width: width / 1.15,
         justifyContent: 'center',
@@ -140,7 +141,7 @@ export default class TransactionRow extends PureComponent {
         return (
             <TouchableOpacity onPress={() => onPress(this.props)}>
                 <View style={styles.container}>
-                    <View style={[styles.row, style.containerBackgroundColor]}>
+                    <View style={[styles.row, style.containerBackgroundColor, style.rowBorderColor]}>
                         {bundleIsBeingPromoted && (
                             <View style={{ position: 'absolute', left: width / 3.4, top: height / 70 }}>
                                 <LottieView
@@ -164,7 +165,7 @@ export default class TransactionRow extends PureComponent {
                                     color={style.titleColor}
                                     iconStyle={{ position: 'absolute' }}
                                 />
-                                <View style={[styles.iconBorder, style.rowBorderColor, { position: 'absolute' }]} />
+                                <View style={[styles.iconBorder, style.borderColor, { position: 'absolute' }]} />
                             </View>
                             <View style={styles.textWrapper}>
                                 <View style={styles.topWrapper}>

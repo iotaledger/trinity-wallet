@@ -7,12 +7,14 @@ export default {
     bar: {
         color: '#F0F2F6',
         bg: '#000000',
+        hover: '#000000',
         alt: '#192733',
     },
     primary: {
         color: '#04a0f9',
         hover: '#038bd9',
         body: '#000000',
+        border: 'transparent',
     },
     secondary: {
         color: '#ab5bef',
@@ -44,11 +46,11 @@ export default {
         hover: '#19D5FC',
     },
     input: {
-        color: '#1E1E1E',
-        bg: '#FFFFFF',
-        alt: '#727272',
-        border: 'rgba(255, 255, 255, 0.25)',
-        hover: 'rgba(255, 255, 255, 0.7)',
+        color: '#ffffff',
+        bg: '#233549',
+        alt: '#94A8AC',
+        border: 'rgba(255, 255, 255, 0.1)',
+        hover: 'rgba(255, 255, 255, 0.4)',
     },
     chart: {
         color: '#ab5bef',
