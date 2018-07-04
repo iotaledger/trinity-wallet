@@ -48,8 +48,8 @@ const styles = StyleSheet.create({
     statusText: {
         justifyContent: 'space-between',
         backgroundColor: 'transparent',
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize2,
+        fontFamily: 'SourceSansPro-SemiBold',
+        fontSize: GENERAL.fontSize3,
     },
     confirmationWrapper: {
         flexDirection: 'row',
@@ -79,8 +79,8 @@ const styles = StyleSheet.create({
     },
     timestamp: {
         backgroundColor: 'transparent',
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize2,
+        fontFamily: 'SourceSansPro-SemiBold',
+        fontSize: GENERAL.fontSize3,
     },
     heading: {
         backgroundColor: 'transparent',
@@ -110,15 +110,14 @@ const styles = StyleSheet.create({
         fontSize: GENERAL.fontSize3,
         textAlign: 'right',
     },
-    buttonsContainer: {
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        marginTop: height / 40,
-        height: height / 17,
-    },
     buttonContainer: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        marginTop: height / 40,
+        height: height / 14,
+    },
+    buttonWrapper: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
@@ -133,24 +132,20 @@ export default class HistoryModalContent extends PureComponent {
          * @param {string} translationString - locale string identifier to be translated
          */
         t: PropTypes.func.isRequired,
-        /** Rebroadcast bundle
-         * @param {string} bundle - bundle hash
-         */
-        rebroadcast: PropTypes.func.isRequired,
         /** Promotes bundle
          * @param {string} bundle - bundle hash
          */
         promote: PropTypes.func.isRequired,
-        /** Transaction incoming/outgoing state */
-        status: PropTypes.string.isRequired,
         /** Transaction confirmation state */
-        confirmation: PropTypes.string.isRequired,
+        status: PropTypes.string.isRequired,
         /** Transaction boolean confirmation state */
         confirmationBool: PropTypes.bool.isRequired,
         /** Currently selected mode */
         mode: PropTypes.oneOf(['Expert', 'Standard']).isRequired,
         /** Transaction value */
         value: PropTypes.number.isRequired,
+        /** Transaction value without rounding */
+        fullValue: PropTypes.number.isRequired,
         /** Transaction unit */
         unit: PropTypes.string.isRequired,
         /** Transaction time */
@@ -175,8 +170,6 @@ export default class HistoryModalContent extends PureComponent {
          * @param {String} text - notification explanation
          */
         generateAlert: PropTypes.func.isRequired,
-        /** Determines if wallet is broadcasting bundle */
-        isBroadcastingBundle: PropTypes.bool.isRequired,
         /** Content styles */
         style: PropTypes.shape({
             titleColor: PropTypes.string.isRequired,
@@ -281,8 +274,8 @@ export default class HistoryModalContent extends PureComponent {
             ctaColor: style.primaryColor,
             secondaryCtaColor: style.primaryBody,
             ctaWidth: width / 2.75,
-            ctaHeight: height / 17,
-            fontSize: GENERAL.fontSize2,
+            ctaHeight: height / 15,
+            fontSize: GENERAL.fontSize3,
             text: t('retry'),
             onPress: () => {
                 if (!disableWhen) {
@@ -294,7 +287,7 @@ export default class HistoryModalContent extends PureComponent {
         const props = assign({}, defaultProps, buttonProps);
 
         return (
-            <View style={[styles.buttonContainer, opacity]}>
+            <View style={[styles.buttonWrapper, opacity]}>
                 <CtaButton {...props} />
             </View>
         );
@@ -302,11 +295,10 @@ export default class HistoryModalContent extends PureComponent {
 
     render() {
         const {
-            status,
             onPress,
-            value,
+            fullValue,
             unit,
-            confirmation,
+            status,
             confirmationBool,
             time,
             bundle,
@@ -314,9 +306,7 @@ export default class HistoryModalContent extends PureComponent {
             t,
             style,
             mode,
-            rebroadcast,
             disableWhen,
-            isBroadcastingBundle,
             retryFailedTransaction,
             isRetryingFailedTransaction,
             currentlyPromotingBundleHash,
@@ -335,12 +325,9 @@ export default class HistoryModalContent extends PureComponent {
                                 <View style={{ flex: 1 }}>
                                     <View style={styles.statusWrapper}>
                                         <Text style={[styles.statusText, { color: style.titleColor }]}>
-                                            {status} {value} {unit}
+                                            {status} {fullValue} {unit}
                                         </Text>
                                         <View style={styles.confirmationWrapper}>
-                                            <Text style={[styles.confirmation, { color: style.titleColor }]}>
-                                                {confirmation}
-                                            </Text>
                                             <Text style={[styles.timestamp, style.defaultTextColor]}>
                                                 {formatModalTime(locale, convertUnixTimeToJSDate(time))}
                                             </Text>
@@ -371,48 +358,18 @@ export default class HistoryModalContent extends PureComponent {
                                         <Text style={[styles.text, style.defaultTextColor]}>{message}</Text>
                                     </TouchableOpacity>
                                     {(!confirmationBool &&
-                                        mode === 'Expert' &&
                                         !isFailed && (
-                                            <View style={[styles.buttonsContainer]}>
-                                                {(!bundleIsBeingPromoted && this.renderButton()) || (
-                                                    <View style={styles.buttonContainer}>
-                                                        <ActivityIndicator color={style.secondaryColor} size="large" />
-                                                    </View>
-                                                )}
-                                                {(!isBroadcastingBundle &&
-                                                    this.renderButton({
-                                                        ctaColor: style.secondaryColor,
-                                                        secondaryCtaColor: style.secondaryBody,
-                                                        text: t('rebroadcast'),
-                                                        onPress: () => {
-                                                            if (!disableWhen) {
-                                                                rebroadcast(bundle);
-                                                            }
-                                                        },
-                                                    })) || (
-                                                    <View style={styles.buttonContainer}>
+                                            <View style={[styles.buttonContainer]}>
+                                                {(!bundleIsBeingPromoted &&
+                                                    this.renderButton({ ctaWidth: width / 1.3 })) || (
+                                                    <View style={styles.buttonWrapper}>
                                                         <ActivityIndicator color={style.secondaryColor} size="large" />
                                                     </View>
                                                 )}
                                             </View>
                                         )) ||
-                                        (!confirmationBool &&
-                                            mode === 'Standard' &&
-                                            !isFailed && (
-                                                <View style={[styles.buttonsContainer]}>
-                                                    {(!bundleIsBeingPromoted &&
-                                                        this.renderButton({ ctaWidth: width / 1.3 })) || (
-                                                        <View style={styles.buttonContainer}>
-                                                            <ActivityIndicator
-                                                                color={style.secondaryColor}
-                                                                size="large"
-                                                            />
-                                                        </View>
-                                                    )}
-                                                </View>
-                                            )) ||
                                         (isFailed && (
-                                            <View style={[styles.buttonsContainer]}>
+                                            <View style={[styles.buttonContainer]}>
                                                 {(!isRetryingFailedTransaction &&
                                                     this.renderButton({
                                                         ctaWidth: width / 1.3,
@@ -422,7 +379,7 @@ export default class HistoryModalContent extends PureComponent {
                                                             }
                                                         },
                                                     })) || (
-                                                    <View style={styles.buttonContainer}>
+                                                    <View style={styles.buttonWrapper}>
                                                         <ActivityIndicator color={style.secondaryColor} size="large" />
                                                     </View>
                                                 )}
