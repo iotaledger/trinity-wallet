@@ -317,10 +317,10 @@ class Home extends Component {
             minimised,
             isFingerprintEnabled,
             isModalActive,
-            theme: { bar, body, negative, positive, primary },
+            theme: { bar, body, negative, positive },
+            theme,
         } = this.props;
         const { isIOSKeyboardActive } = this.state;
-        const barTextColor = { color: bar.color };
         const textColor = { color: body.color };
 
         return (
@@ -350,50 +350,30 @@ class Home extends Component {
                                 </View>
                             </KeyboardAvoidingView>
                             <View style={styles.bottomContainer}>
-                                <Tabs onPress={(name) => this.onTabSwitch(name)} barBg={bar.bg}>
+                                <Tabs onPress={(name) => this.onTabSwitch(name)} theme={theme}>
                                     <Tab
                                         name="balance"
                                         icon="wallet"
-                                        iconColor={bar.color}
-                                        activeBorderColor={primary.color}
-                                        activeColor={bar.alt}
-                                        textColor={barTextColor}
+                                        theme={theme}
                                         text={t('home:balance').toUpperCase()}
                                     />
-                                    <Tab
-                                        name="send"
-                                        icon="send"
-                                        iconColor={bar.color}
-                                        activeBorderColor={primary.color}
-                                        activeColor={bar.alt}
-                                        textColor={barTextColor}
-                                        text={t('home:send').toUpperCase()}
-                                    />
+                                    <Tab name="send" icon="send" theme={theme} text={t('home:send').toUpperCase()} />
                                     <Tab
                                         name="receive"
                                         icon="receive"
-                                        iconColor={bar.color}
-                                        activeBorderColor={primary.color}
-                                        activeColor={bar.alt}
-                                        textColor={barTextColor}
+                                        theme={theme}
                                         text={t('home:receive').toUpperCase()}
                                     />
                                     <Tab
                                         name="history"
                                         icon="history"
-                                        iconColor={bar.color}
-                                        activeBorderColor={primary.color}
-                                        activeColor={bar.alt}
-                                        textColor={barTextColor}
+                                        theme={theme}
                                         text={t('home:history').toUpperCase()}
                                     />
                                     <Tab
                                         name="settings"
                                         icon="settings"
-                                        iconColor={bar.color}
-                                        activeBorderColor={primary.color}
-                                        activeColor={bar.alt}
-                                        textColor={barTextColor}
+                                        theme={theme}
                                         text={t('home:settings').toUpperCase()}
                                     />
                                 </Tabs>

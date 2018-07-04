@@ -28,16 +28,10 @@ class Tab extends PureComponent {
     static propTypes = {
         /** Tab icon name */
         icon: PropTypes.string.isRequired,
-        /** Tab text color */
-        textColor: PropTypes.object.isRequired,
         /** Tab text */
         text: PropTypes.string.isRequired,
-        /** Tab icon color */
-        iconColor: PropTypes.string.isRequired,
-        /** Color for active tab */
-        activeColor: PropTypes.string.isRequired,
-        /** Border color for active tab */
-        activeBorderColor: PropTypes.string.isRequired,
+        /** Theme settings */
+        theme: PropTypes.object.isRequired,
         /** Determines whether the tab is active or not */
         isActive: PropTypes.bool.isRequired,
         /** Press event callback function */
@@ -50,19 +44,19 @@ class Tab extends PureComponent {
     };
 
     render() {
-        const { onPress, icon, iconColor, text, textColor, activeColor, activeBorderColor, isActive } = this.props;
+        const { onPress, icon, text, theme: { bar, primary }, isActive } = this.props;
 
         return (
             <TouchableWithoutFeedback onPress={onPress}>
                 <View
                     style={
                         isActive
-                            ? [styles.button, { backgroundColor: activeColor, borderTopColor: activeBorderColor }]
+                            ? [styles.button, { backgroundColor: bar.alt, borderTopColor: primary.color }]
                             : styles.button
                     }
                 >
-                    <Icon name={icon} size={width / 18} color={iconColor} />
-                    <Text numberOfLines={1} style={[styles.iconTitle, textColor]}>
+                    <Icon name={icon} size={width / 18} color={bar.color} />
+                    <Text numberOfLines={1} style={[styles.iconTitle, { color: bar.color }]}>
                         {text}
                     </Text>
                 </View>
