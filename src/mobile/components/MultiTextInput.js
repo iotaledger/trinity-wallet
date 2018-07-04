@@ -132,14 +132,14 @@ class MultiTextInput extends Component {
                     <TouchableWithoutFeedback onPress={() => this.props.setSelectedQrTab('message')}>
                         <View style={styles.labelContainer}>
                             <Text style={[styles.label, this.getLabelStyle('message')]}>
-                                {t('message').toUpperCase()}
+                                {t('send:message').toUpperCase()}
                             </Text>
                         </View>
                     </TouchableWithoutFeedback>
                     <TouchableWithoutFeedback onPress={() => this.props.setSelectedQrTab('amount')}>
                         <View style={styles.labelContainer}>
                             <Text style={[styles.label, this.getLabelStyle('amount')]}>
-                                {t('amount').toUpperCase()}
+                                {t('send:amount').toUpperCase()}
                             </Text>
                         </View>
                     </TouchableWithoutFeedback>
