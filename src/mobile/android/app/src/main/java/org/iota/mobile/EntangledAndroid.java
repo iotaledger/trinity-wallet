@@ -29,6 +29,13 @@ public class EntangledAndroid extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
+    public void getDigest(String trytes, Promise promise) {
+      String digest = Interface.getDigest(trytes);
+
+      promise.resolve(digest);
+    }
+
+    @ReactMethod
     public void generateAddresses(String seed, int index, int security, int total, Promise promise) {
         WritableNativeArray addresses = new WritableNativeArray();
         int i = 0;
