@@ -49,7 +49,7 @@ class Seed extends PureComponent {
                     seedName={accountName}
                     content={{
                         title: t('viewSeed:enterPassword'),
-                        confirm: t('accountManagement:viewSeed')
+                        confirm: t('accountManagement:viewSeed'),
                     }}
                 />
             );

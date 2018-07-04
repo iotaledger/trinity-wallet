@@ -122,7 +122,4 @@ const mapDispatchToProps = {
     deleteAccount,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(translate()(Remove));
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(Remove));
