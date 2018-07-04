@@ -13,6 +13,15 @@
 
 RCT_EXPORT_MODULE();
 
+// Hashing
+RCT_EXPORT_METHOD(getDigest:(NSString *)trytes resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+{
+  char * digest = getDigest([trytes cStringUsingEncoding:NSUTF8StringEncoding]);
+  NSString * digestString = [NSString stringWithFormat:@"%s", digest];
+  
+  resolve(digestString);
+}
+
 // PoW
 RCT_EXPORT_METHOD(doPoW:(NSString *)trytes minWeightMagnitude:(int)minWeightMagnitude resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {

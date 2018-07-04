@@ -4,6 +4,9 @@ import { translate } from 'react-i18next';
 import { Text, TextInput, NetInfo } from 'react-native';
 import { Provider } from 'react-redux';
 import { changeIotaNode, SwitchingConfig } from 'iota-wallet-shared-modules/libs/iota';
+import iotaNativeBindings, {
+    overrideAsyncTransactionObject,
+} from 'iota-wallet-shared-modules/libs/iota/nativeBindings';
 import { fetchNodeList as fetchNodes } from 'iota-wallet-shared-modules/actions/polling';
 import { ActionTypes } from 'iota-wallet-shared-modules/actions/wallet';
 import i18next from 'i18next';
@@ -13,6 +16,7 @@ import { isIOS } from '../utils/device';
 import keychain from '../utils/keychain';
 import registerScreens from './navigation';
 import i18 from '../i18next';
+import { getDigestFn } from '../utils/nativeModules';
 
 const clearKeychain = () => {
     if (isIOS) {
@@ -128,6 +132,8 @@ const hasConnection = (
 // Initialization function
 // Passed as a callback to persistStore to adjust the rendering time
 export default (store) => {
+    overrideAsyncTransactionObject(iotaNativeBindings, getDigestFn());
+
     const initialize = (isConnected) => {
         store.dispatch({
             type: ActionTypes.CONNECTION_CHANGED,
