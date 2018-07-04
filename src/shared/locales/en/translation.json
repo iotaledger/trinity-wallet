@@ -307,13 +307,11 @@
         "addressCopied": "Address copied",
         "addressCopiedExplanation": "Your address has been copied to the clipboard.",
         "generateNewAddress": "New Address",
-        "message": "Message",
         "removeMessage": "REMOVE MESSAGE",
         "noAddresses": "NO ADDRESSES",
         "spent": "Spent",
         "missingPermission": "File system permission required",
         "missingPermissionExplanation": "Access to the file system is required in order to share QR codes.",
-        "amount": "Amount",
         "tag": "Tag"
     },
     "saveYourSeed": {
