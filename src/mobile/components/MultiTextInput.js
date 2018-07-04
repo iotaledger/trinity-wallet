@@ -103,6 +103,7 @@ class MultiTextInput extends Component {
             this.props.setQrTag(tag.toUpperCase());
         } else {
             this.props.generateAlert(
+                // FIXME: Localize after beta
                 'error',
                 'Maximum length reached',
                 'Tags can have a maximum length of 27 characters.',
