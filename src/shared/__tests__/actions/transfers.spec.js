@@ -110,8 +110,8 @@ describe('actions: transfers', () => {
             beforeEach(() => {
                 sandbox = sinon.sandbox.create();
 
-                sandbox.stub(iota.api, 'promoteTransaction').yields(null, '9'.repeat(81));
-                sandbox.stub(iota.api, 'replayBundle').yields(null, []);
+                sandbox.stub(extendedApis, 'promoteTransactionAsync').resolves('9'.repeat(81));
+                sandbox.stub(extendedApis, 'replayBundleAsync').resolves([]);
                 sandbox.stub(transferUtils, 'isStillAValidTransaction').resolves(false);
                 sandbox.stub(accountsUtils, 'syncAccount').resolves(accounts.accountInfo.TEST);
             });
@@ -151,7 +151,7 @@ describe('actions: transfers', () => {
                 sandbox = sinon.sandbox.create();
 
                 sandbox.stub(accountsUtils, 'syncAccount').resolves(accounts.accountInfo.TEST);
-                sandbox.stub(iota.api, 'promoteTransaction').yields(null, '9'.repeat(81));
+                sandbox.stub(extendedApis, 'promoteTransactionAsync').resolves('9'.repeat(81));
                 sandbox.stub(transferUtils, 'isStillAValidTransaction').resolves(true);
                 sandbox
                     .stub(transferUtils, 'getFirstConsistentTail')
@@ -210,7 +210,8 @@ describe('actions: transfers', () => {
             beforeEach(() => {
                 sandbox = sinon.sandbox.create();
 
-                sandbox.stub(iota.api, 'replayBundle').yields(null, []);
+                sandbox.stub(extendedApis, 'promoteTransactionAsync').resolves('9'.repeat(81));
+                sandbox.stub(extendedApis, 'replayBundleAsync').resolves([]);
                 sandbox.stub(transferUtils, 'isStillAValidTransaction').resolves(true);
                 sandbox.stub(transferUtils, 'getFirstConsistentTail').resolves(false);
                 sandbox.stub(accountsUtils, 'syncAccount').resolves(accounts.accountInfo.TEST);
