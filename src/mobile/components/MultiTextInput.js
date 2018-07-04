@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
     messageInputContainer: {
         flex: 1,
         borderRadius: GENERAL.borderRadiusSmall,
+        borderWidth: 1,
     },
 });
 
@@ -77,6 +78,13 @@ class MultiTextInput extends Component {
         multiplier: PropTypes.number.isRequired,
         generateAlert: PropTypes.func.isRequired,
     };
+
+    constructor() {
+        super();
+        this.state = {
+            isMessageInputFocused: false,
+        };
+    }
 
     /**
      *   Updates qrMessage in store (max length ).
@@ -116,6 +124,7 @@ class MultiTextInput extends Component {
 
     render() {
         const { theme, t, message, amount, denomination, selectedTab, multiplier } = this.props;
+        const { isMessageInputFocused } = this.state;
 
         return (
             <View style={[styles.fieldContainer]}>
@@ -144,7 +153,16 @@ class MultiTextInput extends Component {
                 </View>
                 <View style={styles.innerContainer}>
                     {selectedTab === 'message' && (
-                        <View style={[styles.messageInputContainer, { backgroundColor: theme.input.bg }, { height }]}>
+                        <View
+                            style={[
+                                styles.messageInputContainer,
+                                {
+                                    backgroundColor: theme.input.bg,
+                                    borderColor: isMessageInputFocused ? theme.input.hover : theme.input.border,
+                                },
+                                { height },
+                            ]}
+                        >
                             <TextInput
                                 style={[styles.messageInput, { color: theme.input.color }]}
                                 autoCorrect={false}
@@ -154,6 +172,8 @@ class MultiTextInput extends Component {
                                 underlineColorAndroid="transparent"
                                 multiline
                                 value={message}
+                                onFocus={() => this.setState({ isMessageInputFocused: true })}
+                                onBlur={() => this.setState({ isMessageInputFocused: false })}
                             />
                         </View>
                     )}

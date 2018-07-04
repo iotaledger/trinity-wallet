@@ -856,7 +856,6 @@ export class Send extends Component {
                                 <View style={{ flex: 1 }}>
                                     <CtaButton
                                         ctaColor={primary.color}
-                                        ctaBorderColor={primary.hover}
                                         secondaryCtaColor={primary.body}
                                         text={t('send')}
                                         onPress={() => {
