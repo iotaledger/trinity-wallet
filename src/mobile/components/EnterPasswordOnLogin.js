@@ -142,12 +142,10 @@ export class EnterPasswordOnLogin extends Component {
                     text={
                         <View>
                             <Text style={[styles.infoTextBold, textColor, { paddingTop: height / 40 }]}>
-                                Why is biometric authentication disabled?
+                                {t('whyBiometricDisabled')}
                             </Text>
                             <Text style={[styles.infoText, textColor, { paddingTop: height / 60 }]}>
-                                Biometric login is disabled on first app load for your security. When using Trinity, you
-                                will be logged out for inactivity. You can then log back in with biometric
-                                authentication.
+                                {t('whyBiometricDisabledExplanation')}
                             </Text>
                             <View style={{ paddingTop: height / 20, alignItems: 'center' }}>
                                 <TouchableOpacity onPress={() => this.hideModal()}>
