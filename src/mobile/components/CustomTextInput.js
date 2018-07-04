@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: GENERAL.borderRadiusSmall,
         height: height / 14,
+        borderWidth: 1,
     },
     widgetContainer: {
         borderLeftWidth: 2,
@@ -219,11 +220,22 @@ class CustomTextInput extends Component {
             fingerprintAuthentication,
             ...restProps
         } = this.props;
+        const { isFocused } = this.state;
 
         return (
             <View style={[styles.fieldContainer, containerStyle]}>
                 {label && <Text style={[styles.fieldLabel, this.getLabelStyle()]}>{label.toUpperCase()}</Text>}
-                <View style={[styles.innerContainer, { backgroundColor: theme.input.bg }, { height }]} testID={testID}>
+                <View
+                    style={[
+                        styles.innerContainer,
+                        {
+                            backgroundColor: theme.input.bg,
+                            borderColor: isFocused ? theme.input.hover : theme.input.border,
+                        },
+                        { height },
+                    ]}
+                    testID={testID}
+                >
                     <TextInput
                         {...restProps}
                         ref={onRef}
