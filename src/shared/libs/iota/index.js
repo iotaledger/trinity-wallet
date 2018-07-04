@@ -1,6 +1,6 @@
 import IOTA from 'iota.lib.js';
 import 'proxy-polyfill';
-import { defaultNode } from '../../config';
+import { defaultNode, nodes } from '../../config';
 
 const iotaAPI = new IOTA({ provider: defaultNode });
 
@@ -78,7 +78,7 @@ const autoNodeSwitchHandler = {
                     // Switch to another node and then apply function
                     let newNode;
                     for (;;) {
-                        const randomNode = getRandomNode();
+                        const randomNode = getRandomNode(nodes);
                         // Check whether same node was chosen
                         if (iotaAPI.provider === randomNode) {
                             continue;

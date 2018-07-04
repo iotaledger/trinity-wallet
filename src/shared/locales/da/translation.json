@@ -468,7 +468,8 @@
         "send": "SEND",
         "receive": "MODTAG",
         "empty": "Empty",
-        "retrying": "RETRYING"
+        "retrying": "RETRYING",
+        "yesterday": "Yesterday"
     },
     "accountManagement": {
         "viewSeed": "Se hovednøgle",

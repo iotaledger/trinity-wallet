@@ -11,6 +11,7 @@ import isNumber from 'lodash/isNumber';
 import includes from 'lodash/includes';
 import keys from 'lodash/keys';
 import map from 'lodash/map';
+import merge from 'lodash/merge';
 import reduce from 'lodash/reduce';
 import findKey from 'lodash/findKey';
 import some from 'lodash/some';
@@ -20,7 +21,8 @@ import omitBy from 'lodash/omitBy';
 import flatMap from 'lodash/flatMap';
 import union from 'lodash/union';
 import { iota } from './index';
-import { getBalancesAsync, wereAddressesSpentFromAsync, findTransactionsAsync } from './extendedApi';
+import { getBalancesAsync, wereAddressesSpentFromAsync, findTransactionsAsync, sendTransferAsync } from './extendedApi';
+import Errors from '../errors';
 
 const errors = require('iota.lib.js/lib/errors/inputErrors');
 const async = require('async');
@@ -596,7 +598,17 @@ export const isAnyAddressSpent = (transactionObjects) => {
 export const getNewAddress = (seed, options, genFn = null, callback) => {
     // If desktop, use iota lib js API call
     if (genFn === null) {
-        return iota.api.getNewAddress(seed, options, callback);
+        genFn = (seed, index, security, total) => {
+            return new Promise((resolve, reject) => {
+                iota.api.getNewAddress(seed, { index, security, total }, (error, addresses) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        resolve(addresses);
+                    }
+                });
+            });
+        };
     }
 
     // If no options provided, switch arguments
@@ -710,3 +722,53 @@ export const getNewAddress = (seed, options, genFn = null, callback) => {
 /*eslint-enable brace-style*/
 /*eslint-enable no-else-return*/
 /*eslint-enable no-loop-func*/
+
+/**
+ *   Attach address to tangle if its not already attached
+ *
+ *   @method attachAndFormatAddress
+ *
+ *   @param {string} address
+ *   @param {number} index
+ *   @param {number} balance
+ *   @param {string} seed
+ *   @param {function} powFn
+ *
+ *   @returns {array}
+ **/
+export const attachAndFormatAddress = (address, index, balance, seed, powFn) => {
+    const transfers = [
+        {
+            address,
+            value: 0,
+        },
+    ];
+
+    let transfer = [];
+
+    return findTransactionsAsync({ addresses: [address] })
+        .then((hashes) => {
+            if (size(hashes)) {
+                throw new Error(Errors.ADDRESS_ALREADY_ATTACHED);
+            }
+
+            return sendTransferAsync(seed, transfers, powFn);
+        })
+        .then((transactionObjects) => {
+            transfer = transactionObjects;
+
+            return wereAddressesSpentFromAsync([address]);
+        })
+        .then((wereSpent) => {
+            const addressData = formatAddressData([address], [balance], wereSpent);
+
+            // format address data assigns index based on the index in the array
+            // so assign the correct address index
+            return {
+                addressData: merge({}, addressData, {
+                    [address]: { index },
+                }),
+                transfer,
+            };
+        });
+};

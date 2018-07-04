@@ -6,7 +6,7 @@ import css from './input.scss';
 /**
  * Message input component
  */
-export default class MessageInput extends React.PureComponent {
+export default class Message extends React.PureComponent {
     static propTypes = {
         /** Current message value */
         message: PropTypes.string.isRequired,

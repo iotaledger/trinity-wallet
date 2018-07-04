@@ -32,7 +32,6 @@ lane :refresh_dsyms do
   clean_build_artifacts
   build_number = get_build_number(xcodeproj: 'iotaWallet.xcodeproj')
   download_dsyms(build_number: build_number)
-  upload_symbols_to_crashlytics
   upload_symbols_to_bugsnag
   clean_build_artifacts
 end

@@ -1,3 +1,4 @@
+/* global Electron */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
@@ -11,6 +12,7 @@ import { getSelectedAccountName } from 'selectors/accounts';
 import Button from 'ui/components/Button';
 import Clipboard from 'ui/components/Clipboard';
 import ModalPassword from 'ui/components/modal/Password';
+import SeedPrint from 'ui/components/SeedPrint';
 
 import css from './seed.scss';
 
@@ -47,10 +49,13 @@ class Seed extends PureComponent {
                     seedName={accountName}
                     content={{
                         title: t('viewSeed:enterPassword'),
+                        confirm: t('accountManagement:viewSeed'),
                     }}
                 />
             );
         }
+
+        const checksum = seed ? Electron.getChecksum(seed) : '';
 
         return (
             <form>
@@ -81,7 +86,9 @@ class Seed extends PureComponent {
                     <Button onClick={() => this.setState({ hidden: !hidden })}>
                         {hidden ? t('settings:show') : t('settings:hide')}
                     </Button>
+                    {!hidden && <Button onClick={() => window.print()}>{t('paperWallet')}</Button>}
                 </fieldset>
+                {!hidden && <SeedPrint seed={seed} checksum={checksum} filled />}
             </form>
         );
     }

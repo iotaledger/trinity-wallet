@@ -17,6 +17,7 @@ module.exports = {
     info: '🗯',
     twoFA: '💊',
     password: '🔒',
+    vault: '🔑',
     advanced: '🔬',
     mode: '🔣',
     logout: '🖐',

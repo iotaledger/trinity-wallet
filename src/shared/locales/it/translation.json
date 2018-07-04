@@ -351,7 +351,7 @@
         "totalTime": "Tempo totale",
         "addressPasteDetected": "Rilevato indirizzo da incollare",
         "addressPasteExplanation": "Sembra che hai incollato un indirizzo. Assicurati che l'indirizzo incollato corrisponda a quello al quale desideri inviare.",
-        "invalid": "INVALID"
+        "invalid": "NON VALIDO"
     },
     "setPassword": {
         "choosePassword": "Scegli una nuova password",
@@ -467,8 +467,9 @@
         "messageCopiedExplanation": "Il messaggio è stato copiato negli Appunti.",
         "send": "INVIA",
         "receive": "RICEVI",
-        "empty": "Empty",
-        "retrying": "RETRYING"
+        "empty": "Vuota",
+        "retrying": "NUOVO TENTATIVO IN CORSO",
+        "yesterday": "Yesterday"
     },
     "accountManagement": {
         "viewSeed": "Visualizza seme",
@@ -508,7 +509,7 @@
     },
     "themeCustomisation": {
         "theme": "Tema",
-        "mockup": "Mockup"
+        "mockup": "Esempio"
     },
     "currencySelection": {
         "currency": "Valuta"
@@ -608,7 +609,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change (24h)",
+        "change": "Cambiamento (24h)",
         "volume": "Volume (24h)",
         "currentValue": "Valore corrente",
         "error": "Errore durante il recupero dati per il grafico"

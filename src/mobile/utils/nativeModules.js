@@ -30,3 +30,7 @@ export const getPowFn = () => {
     }
     return powFn;
 };
+
+export const getDigestFn = () => {
+    return isAndroid ? NativeModules.EntangledAndroid.getDigest : NativeModules.EntangledIOS.getDigest;
+};

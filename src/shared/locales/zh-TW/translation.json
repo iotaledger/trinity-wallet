@@ -468,7 +468,8 @@
         "send": "轉帳",
         "receive": "收款",
         "empty": "Empty",
-        "retrying": "RETRYING"
+        "retrying": "RETRYING",
+        "yesterday": "Yesterday"
     },
     "accountManagement": {
         "viewSeed": "檢視種子",

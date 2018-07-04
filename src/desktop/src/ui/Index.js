@@ -8,7 +8,7 @@ import i18next from 'libs/i18next';
 import { translate } from 'react-i18next';
 
 import { parseAddress } from 'libs/iota/utils';
-import { setSeed } from 'libs/crypto';
+import { ACC_MAIN } from 'libs/crypto';
 
 import { setPassword, clearWalletData, setDeepLink } from 'actions/wallet';
 import { getUpdateData, updateTheme } from 'actions/settings';
@@ -109,18 +109,18 @@ class App extends React.Component {
 
     componentDidMount() {
         this.onMenuToggle = this.menuToggle.bind(this);
-
-        this.checkVaultAvailability();
         this.props.fetchNodeList();
 
+        Electron.onEvent('menu', this.onMenuToggle);
+
+        Electron.changeLanguage(this.props.t);
+
+        this.onSetDeepUrl = this.setDeepUrl.bind(this);
+        Electron.onEvent('url-params', this.onSetDeepUrl);
+        Electron.requestDeepLink();
+
         try {
-            Electron.onEvent('menu', this.onMenuToggle);
-
-            this.onSetDeepUrl = this.setDeepUrl.bind(this);
-            Electron.onEvent('url-params', this.onSetDeepUrl);
-
-            Electron.changeLanguage(this.props.t);
-            Electron.requestDeepLink();
+            this.checkVaultAvailability();
         } catch (error) {
             // eslint-disable-next-line react/no-did-mount-set-state
             this.setState({
@@ -142,19 +142,13 @@ class App extends React.Component {
         if (!this.props.wallet.ready && nextProps.wallet.ready && currentKey === 'onboarding') {
             Electron.updateMenu('authorised', true);
 
-            // If additional seed was loaded for first time
-            if (this.props.wallet.addingAdditionalAccount && !nextProps.wallet.addingAdditionalAccount) {
-                if (!nextProps.wallet.additionalAccountName.length) {
-                    setSeed(
-                        this.props.wallet.password,
-                        this.props.wallet.additionalAccountName,
-                        Electron.getOnboardingSeed(),
-                    );
-                    Electron.setOnboardingSeed(null);
-                } else {
-                    // There was an error adding additional seed
-                    return this.props.history.push('/onboarding/account-name');
-                }
+            // If there was an error adding additional seed, go back to onboarding
+            if (
+                this.props.wallet.addingAdditionalAccount &&
+                !nextProps.wallet.addingAdditionalAccount &&
+                nextProps.wallet.additionalAccountName.length
+            ) {
+                return this.props.history.push('/onboarding/account-name');
             }
 
             this.props.history.push('/wallet/');
@@ -172,7 +166,11 @@ class App extends React.Component {
         const parsedData = parseAddress(data);
 
         if (parsedData) {
-            this.props.setDeepLink(String(parsedData.amount) || '', parsedData.address, parsedData.message || '');
+            this.props.setDeepLink(
+                parsedData.amount ? String(parsedData.amount) : '0',
+                parsedData.address,
+                parsedData.message || '',
+            );
             if (this.props.wallet.ready === true) {
                 this.props.history.push('/wallet/send');
             }
@@ -183,7 +181,7 @@ class App extends React.Component {
 
     async checkVaultAvailability() {
         try {
-            await Electron.readKeychain();
+            await Electron.readKeychain(ACC_MAIN);
         } catch (err) {
             this.setState({
                 fatalError: true,
@@ -291,9 +289,4 @@ const mapDispatchToProps = {
     updateTheme,
 };
 
-export default withRouter(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(translate()(withAutoNodeSwitching(App))),
-);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(translate()(withAutoNodeSwitching(App))));
