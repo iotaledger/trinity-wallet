@@ -211,7 +211,7 @@ export default function withSendData(SendComponent) {
                     remotePoW: settings.remotePoW,
                 },
                 progress: {
-                    progress: Math.round((progress.activeStepIndex / progress.activeSteps.length) * 100),
+                    progress: Math.round(progress.activeStepIndex / progress.activeSteps.length * 100),
                     title: progressTitle,
                 },
                 accountName,
@@ -251,10 +251,5 @@ export default function withSendData(SendComponent) {
         resetProgress,
     };
 
-    return translate()(
-        connect(
-            mapStateToProps,
-            mapDispatchToProps,
-        )(SendData),
-    );
+    return translate()(connect(mapStateToProps, mapDispatchToProps)(SendData));
 }

@@ -35,7 +35,10 @@ class ModalPassword extends PureComponent {
          * @param {String} Password - Entered password plain text
          * @param {Object} Vault - Vault content
          */
-        onSuccess: PropTypes.func.isRequired,
+        onSuccess: PropTypes.func,
+        /** On password entered event callback
+         */
+        onSubmit: PropTypes.func,
         /** Create a notification message
          * @param {String} type - notification type - success, error
          * @param {String} title - notification title
@@ -64,9 +67,13 @@ class ModalPassword extends PureComponent {
 
     onSubmit = async (e) => {
         const { password } = this.state;
-        const { seedName, onSuccess, generateAlert, t } = this.props;
+        const { onSubmit, seedName, onSuccess, generateAlert, t } = this.props;
 
         e.preventDefault();
+
+        if (onSubmit) {
+            return onSubmit(password);
+        }
 
         let seed = null;
         const passwordHash = await sha256(password);

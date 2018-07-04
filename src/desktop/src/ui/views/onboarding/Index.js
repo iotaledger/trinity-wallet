@@ -1,3 +1,4 @@
+/* global Electron */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -46,6 +47,11 @@ class Onboarding extends React.PureComponent {
         }
     }
 
+    closeOnboarding = () => {
+        Electron.setOnboardingSeed(null);
+        this.props.history.push('/wallet/');
+    };
+
     steps(currentKey) {
         const steps = [
             'seed-intro',
@@ -74,7 +80,7 @@ class Onboarding extends React.PureComponent {
     }
 
     render() {
-        const { location, complete, isAuthorised, history } = this.props;
+        const { location, complete, isAuthorised } = this.props;
 
         const indexComponent = complete ? Login : Welcome;
 
@@ -86,7 +92,7 @@ class Onboarding extends React.PureComponent {
                     {!isAuthorised ? (
                         this.steps(currentKey)
                     ) : (
-                        <a onClick={() => history.push('/wallet/')}>
+                        <a onClick={this.closeOnboarding}>
                             <Icon icon="cross" size={24} />
                         </a>
                     )}

@@ -5,14 +5,15 @@
     padding: 0;
 
     p {
-        font-size: 14px;
+        font-family: 'SourceCodePro';
+        font-size: 12px;
         word-break: break-word;
     }
 
     li {
         display: flex;
         strong {
-            flex: 1 0 40px;
+            flex: 1 0 80px;
             text-align: right;
         }
     }

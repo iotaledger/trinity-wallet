@@ -94,11 +94,9 @@ export const increaseSeedCount = () => ({
     type: ActionTypes.INCREASE_SEED_COUNT,
 });
 
-export const updateAccountAfterTransition = (accountName, addresses, balance) => ({
+export const updateAccountAfterTransition = (payload) => ({
     type: ActionTypes.UPDATE_ACCOUNT_AFTER_TRANSITION,
-    accountName,
-    addresses,
-    balance,
+    payload,
 });
 
 export const setNewUnconfirmedBundleTails = (payload) => ({
@@ -218,17 +216,13 @@ export const getFullAccountInfoAdditionalSeed = (
     getAccountData(seed, accountName, genFn)
         .then((data) => {
             dispatch(clearWalletData()); // Clean up partial state for reducer.
-            if (storeInKeychainPromise) {
-                storeInKeychainPromise(password, seed, accountName)
-                    .then(() => {
-                        dispatch(setSeedIndex(existingAccountNames.length));
-                        dispatch(setBasicAccountInfo({ accountName, usedExistingSeed }));
-                        dispatch(fullAccountInfoAdditionalSeedFetchSuccess(data));
-                    })
-                    .catch((err) => onError(err));
-            } else {
-                dispatch(fullAccountInfoAdditionalSeedFetchSuccess(data));
-            }
+            storeInKeychainPromise(password, seed, accountName)
+                .then(() => {
+                    dispatch(setSeedIndex(existingAccountNames.length));
+                    dispatch(setBasicAccountInfo({ accountName, usedExistingSeed }));
+                    dispatch(fullAccountInfoAdditionalSeedFetchSuccess(data));
+                })
+                .catch((err) => onError(err));
         })
         .catch((err) => onError(err));
 };
@@ -243,15 +237,16 @@ export const getFullAccountInfoFirstSeed = (seed, accountName, navigator = null,
                 pushScreen(navigator, 'login');
                 dispatch(fullAccountInfoFirstSeedFetchError());
 
-                // Add a slight delay to allow Login component and
-                // StatefulDropdownAlert component (mobile) to instantiate properly.
-                setTimeout(() => {
+                const dispatchErrors = () => {
                     if (err.message === Errors.NODE_NOT_SYNCED) {
                         dispatch(generateNodeOutOfSyncErrorAlert());
                     } else {
                         dispatch(generateAccountInfoErrorAlert(err));
                     }
-                }, 500);
+                };
+                // Add a slight delay to allow Login component and
+                // StatefulDropdownAlert component (mobile) to instantiate properly.
+                navigator ? setTimeout(dispatchErrors, 500) : dispatchErrors();
             });
     };
 };

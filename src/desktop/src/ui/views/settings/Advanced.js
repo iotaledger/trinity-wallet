@@ -7,7 +7,9 @@ import { connect } from 'react-redux';
 import { changePowSettings, changeAutoPromotionSettings, setLockScreenTimeout } from 'actions/settings';
 import { completeSnapshotTransition } from 'actions/wallet';
 import { generateAlert } from 'actions/alerts';
-import { setSeed, getSeed } from 'libs/crypto';
+
+import { clearVault, getSeed } from 'libs/crypto';
+import { getPoWFn } from 'libs/pow';
 
 import { toggleModalActivity } from 'actions/ui';
 import { getSelectedAccountName, getAddressesForSelectedAccount } from 'selectors/accounts';
@@ -24,7 +26,6 @@ import Toggle from 'ui/components/Toggle';
 import TextInput from 'ui/components/input/Text';
 import Info from 'ui/components/Info';
 import Scrollbar from 'ui/components/Scrollbar';
-import Curl from 'curl.lib.js';
 
 /**
  * Advanced user settings component, including - wallet reset
@@ -127,7 +128,7 @@ class Advanced extends PureComponent {
         const { t, generateAlert } = this.props;
 
         try {
-            await setSeed(password, '', [], true);
+            await clearVault(password);
             localStorage.clear();
             Electron.clearStorage();
             location.reload();
@@ -165,16 +166,11 @@ class Advanced extends PureComponent {
 
         let powFn = null;
         if (!settings.remotePoW) {
-            // Temporarily return an error if WebGL cannot be initialized
-            // Remove once we implement more PoW methods
             try {
-                Curl.init();
+                powFn = getPoWFn();
             } catch (e) {
                 return generateAlert('error', t('pow:noWebGLSupport'), t('pow:noWebGLSupportExplanation'));
             }
-            powFn = (trytes, minWeight) => {
-                return Curl.pow({ trytes, minWeight });
-            };
         }
 
         // we aren't using the taskRunner here because you can't pass in powFn since it's a function
@@ -377,7 +373,4 @@ const mapDispatchToProps = {
     completeSnapshotTransition,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(translate()(Advanced));
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(Advanced));

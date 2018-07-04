@@ -467,8 +467,9 @@
         "messageCopiedExplanation": "Meddelandet har kopierats till urklipp.",
         "send": "SKICKA",
         "receive": "TA EMOT",
-        "empty": "Tom",
-        "retrying": "FÖRSÖKER IGEN"
+        "empty": "Tomt",
+        "retrying": "FÖRSÖKER IGEN",
+        "yesterday": "Yesterday"
     },
     "accountManagement": {
         "viewSeed": "Visa seed",

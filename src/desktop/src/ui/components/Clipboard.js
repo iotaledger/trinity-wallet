@@ -66,7 +66,4 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default connect(
-    null,
-    mapDispatchToProps,
-)(Clipboard);
+export default connect(null, mapDispatchToProps)(Clipboard);

@@ -102,7 +102,7 @@ class SeedVerify extends React.PureComponent {
         const { seed, isGenerated } = this.state;
 
         return (
-            <form onSubmit={(e) => this.setSeed(e)}>
+            <form>
                 <section>
                     <h1>{t('seedReentry:enterYourSeed')}</h1>
                     {isGenerated ? (
@@ -119,7 +119,7 @@ class SeedVerify extends React.PureComponent {
                     <Button to={`/onboarding/seed-${isGenerated ? 'save' : 'intro'}`} className="square" variant="dark">
                         {t('goBackStep')}
                     </Button>
-                    <Button type="submit" className="square" variant="primary">
+                    <Button onClick={this.setSeed} className="square" variant="primary">
                         {t('continue')}
                     </Button>
                 </footer>

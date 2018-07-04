@@ -468,7 +468,8 @@
         "send": "Отправление",
         "receive": "Получение",
         "empty": "Empty",
-        "retrying": "RETRYING"
+        "retrying": "RETRYING",
+        "yesterday": "Yesterday"
     },
     "accountManagement": {
         "viewSeed": "Показать ключ",

@@ -77,6 +77,7 @@ public class ShareSecure extends ReactContextBaseJavaModule {
             promise.reject(ERROR_INTENT_NOT_AVAILABLE, "Target intent not available.");
         } else {
             Intent chooser = Intent.createChooser(limitedShareIntents.remove(0), content.getString("title"));
+            chooser.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             chooser.putExtra(Intent.EXTRA_INITIAL_INTENTS, limitedShareIntents.toArray(new Parcelable[limitedShareIntents.size()]));
             this.reactContext.startActivity(chooser);
         }
