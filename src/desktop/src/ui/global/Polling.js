@@ -23,7 +23,7 @@ class Polling extends React.PureComponent {
         getAccountInfo: PropTypes.func.isRequired,
         allPollingServices: PropTypes.array.isRequired,
         unconfirmedBundleTails: PropTypes.object.isRequired,
-        autoPromotion: PropTypes.bool.isRequired, 
+        autoPromotion: PropTypes.bool.isRequired,
         setPollFor: PropTypes.func.isRequired,
         fetchMarketData: PropTypes.func.isRequired,
         fetchPrice: PropTypes.func.isRequired,

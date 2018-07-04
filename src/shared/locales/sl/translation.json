@@ -468,7 +468,8 @@
         "send": "Pošlji",
         "receive": "Prejmi",
         "empty": "Empty",
-        "retrying": "RETRYING"
+        "retrying": "RETRYING",
+        "yesterday": "Yesterday"
     },
     "accountManagement": {
         "viewSeed": "View seed",

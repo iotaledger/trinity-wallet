@@ -1,4 +1,6 @@
 export default {
+    CANNOT_TRANSITION_ADDRESSES_WITH_ZERO_BALANCE: 'Cannot transition addresses with zero balance.',
+    ADDRESS_ALREADY_ATTACHED: 'Address already attached.',
     KEY_REUSE: 'Key reuse detected.',
     NOT_ENOUGH_BALANCE: 'Not enough balance.',
     ADDRESS_HAS_PENDING_TRANSFERS: 'Input addresses already used in a pending transfer.',
@@ -16,4 +18,5 @@ export default {
     INVALID_BUNDLE: 'Invalid bundle',
     INVALID_PARAMETERS: 'Invalid parameters',
     ALREADY_SPENT_FROM_ADDRESSES: 'Already spent from addresses.',
+    REFERENCE_TRANSACTION_TOO_OLD: 'reference transaction is too old',
 };

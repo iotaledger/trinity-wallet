@@ -18,7 +18,7 @@
         "invalidResponse": "Serverio klaida",
         "invalidResponseExplanation": "Įvyko serverio klaida. Bandykite pakeisti serverį.",
         "invalidResponsePollingExplanation": "Siunčiant jūsų duomenis įvyko serverio klaida. Bandykite pakeisti serverį.",
-        "invalidResponseFetchingAccount": "Užkraunant jūsų paskyros informaciją įvyko serverio klaida. Bandykite pakeisti serverį.",
+        "invalidResponseFetchingAccount": "Užkraunant jūsų paskyros duomenis įvyko serverio klaida. Bandykite pakeisti serverį.",
         "invalidResponseSendingTransfer": "Apdorojant pavedimą įvyko serverio klaida. Bandykite pakeisti serverį.",
         "nodeOutOfSync": "Serveris nesinchronizuotas",
         "nodeOutOfSyncExplanation": "Jūsų pasirinktas serveris nesinchronizuotas. Pakeiskite serverį arba bandykite dar kartą.",
@@ -141,7 +141,7 @@
         "clear": "IŠVALYTI",
         "noNetworkConnection": "Nėra tinklo ryšio",
         "noNetworkConnectionExplanation": "Panašu, kad jūsų interneto ryšys atjungtas.",
-        "spentAddressExplanation": "ĮSPĖJIMAS: Lėšos panaudotame adrese",
+        "spentAddressExplanation": "DĖMESIO: Lėšos panaudotame adrese",
         "discordInformation": "Pinigų siuntimas iš to pačio adreso daugiau nei kartą yra nesaugus. Apsilankykite #help kanale Discord programoje norėdami sužinoti ką daryti tokiu atveju.",
         "androidInsecureClipboardWarning": "Android nesuteikia saugios iškarpinės.",
         "androidCopyPasteWarning": "Kopijuoti/Įklijuoti užraktą su Android įrenginiu nerekomenduojama.",
@@ -213,7 +213,7 @@
         "shareSeed": "Įkelti užraktą į saugią slaptažodžių tvarkyklę",
         "storeEncrypted": "Savo užraktą laikykite užšifruotą slaptažodžių tvarkyklėje.",
         "doNotOpen": "Šio proceso metu neįjunkite jokių kitų programėlių.",
-        "tapConfirm": "Sužymėkite varneles norėdami patvirtinti.",
+        "tapConfirm": "Uždėkite varnelę norėdami patvirtinti.",
         "passwordManagerCheckbox": "Savo užraktą laikysiu slaptažodžių tvarkyklėje",
         "copy": "KOPIJUOTI",
         "noPasswordManagers": "Nėra palaikomų slaptažodžių tvarkyklių",
@@ -308,7 +308,7 @@
         "iHaveBackedUpMySeed": "Užraktą išsisaugojau",
         "letsWriteDownYourSeed": "Nusirašykite savo užraktą",
         "youCanHighlightCharacters": "Žymėkitės po 9 simbolius į eilutę",
-        "printBlankWallet": "Atspausdinti tuščią piniginę",
+        "printBlankWallet": "Atspausdinti neužpildytą versiją",
         "whatIsChecksum": "Kiekvienas užraktas turi atitinkamą 3 simbolių kontrolinę sumą",
         "iHavesavedMySeed": "Išsisaugojau savo užraktą",
         "checksumExplanation": "Kai pridedate užraktą į savo piniginę, turite įsitikinti, kad piniginės sukurta kontrolinė suma sutampa su ta, kurią nusirašėte.",
@@ -354,7 +354,7 @@
         "invalid": "KLAIDA"
     },
     "setPassword": {
-        "choosePassword": "Sukurti naują slaptažodį",
+        "choosePassword": "Sukurkite naują slaptažodį",
         "passwordTooShort": "Slaptažodis per trumpas",
         "passwordTooShortExplanation": "Slaptažodis privalo būti iš mažiausiai {{minLength}} simbolių. Jūsų įvedėte {{currentLength}}. Bandykite dar kartą.",
         "passwordMismatch": "Slaptažodžiai nesutampa",
@@ -370,8 +370,8 @@
         "youCanAdd": "Norėdami pridėti daugiau užraktų, eikite į nustatymų meniu."
     },
     "modeSelection": {
-        "expert": "Expert",
-        "standard": "Standard",
+        "expert": "Eksperto",
+        "standard": "Standartinis",
         "expertModeExplanation": "Eksperto režimas suteikia prieigą prie papildomų funkcijų, tokių kaip rankinis iškėlimas ir pakartotinis prijungimas.",
         "modesExplanation": "Eksperto režimą naudokite tik jeigu esate pakankamai susipažinęs su Tangle. Kitu atveju jums gali kilti daug neaiškumų."
     },
@@ -396,7 +396,7 @@
         "syncingComplete": "Sinchronizacija baigta",
         "syncingCompleteExplanation": "Jūsų paskyra sėkmingai sinchronizuota.",
         "nicknameChanged": "Paskyros vardas pakeistas",
-        "nicknameChangedExplanation": "Jūsų paskyros vardas pakeistas.",
+        "nicknameChangedExplanation": "Jūs sėkmingai pakeitėte paskyros vardą.",
         "accountDeleted": "Paskyra ištrinta",
         "accountDeletedExplanation": "Paskyra pašalinta iš piniginės.",
         "cannotPerformAction": "Šio veiksmo atlikti negalima",
@@ -424,7 +424,7 @@
         "aboutTrinity": "Apie Trinity",
         "lockScreenTimeout": "Ekrano užrakinimas (minutės)",
         "autoNodeSwitching": "Automatiškai pakeisti serverį, kai pasirinktas yra nepasiekiamas",
-        "nodeChangeSuccess": "Sėkmingai pakeistas serveris",
+        "nodeChangeSuccess": "Serveris sėkmingai pakeistas",
         "nodeChangeSuccessNoRemotePow": "Serveris pakeistas į {{node}}, Šis serveris nepalaiko nuotolinio skaičiavimo.",
         "nodeChangeSuccessExplanation": "Serveris pakeistas į {{node}}.",
         "nodeChangeError": "Klaida keičiant serverį",
@@ -454,7 +454,7 @@
     "writeSeedDown": {
         "yourSeedIs": "Jūsų užraktas sudarytas iš {{maxSeedLength}} simbolio, skaityti iš kairės į dešinę.",
         "writeDownYourSeed": "<0>Nusirašykite savo užraktą ir kontrolinę sumą, </0><1>tris kartus patikrinkite</1><2> ar kodai sutampa</2>",
-        "scrollToBottom": "Paslinkti į apačią"
+        "scrollToBottom": "Paslinkite iki apačios"
     },
     "history": {
         "bundleHashCopied": "Paketo šifras nukopijuotas",
@@ -468,7 +468,8 @@
         "send": "SIŲSTA",
         "receive": "GAUTA",
         "empty": "Tuščia",
-        "retrying": "BANDOMA IŠ NAUJO"
+        "retrying": "KRAUNAMA",
+        "yesterday": "Vakar"
     },
     "accountManagement": {
         "viewSeed": "Rodyti užraktą",
@@ -599,12 +600,12 @@
         "addKey": "Pridėkite šį kodą į 2FA programėlę",
         "key": "Kodas",
         "twoFAEnabled": "2FA įjungtas",
-        "twoFAEnabledExplanation": "Sėkmingai įjungėte dviejų veiksnių autentifikavimą.",
+        "twoFAEnabledExplanation": "Jūs sėkmingai įjungėte dviejų veiksnių autentifikavimą.",
         "twoFADisabled": "2FA išjungtas",
-        "twoFADisabledExplanation": "Sėkmingai išjungėte dviejų veiksnių autentifikavimą.",
+        "twoFADisabledExplanation": "Jūs sėkmingai išjungėte dviejų veiksnių autentifikavimą.",
         "enterCode": "Įveskite kodą iš 2FA programėlės",
         "code": "Kodas",
-        "twoFaToken": "2FA žetonas"
+        "twoFaToken": "2FA kodas"
     },
     "chart": {
         "mcap": "MCAP",
@@ -614,7 +615,7 @@
         "error": "Klaida užkraunant grafiko duomenis"
     },
     "rootDetection": {
-        "warning": "PAVOJUS",
+        "warning": "DĖMESIO",
         "appearsRooted": "Panašu, kad į jūsų įrenginį buvo įsilaužta.",
         "securityRisk": "Jūsų piniginės saugumui galimai iškilusi didelė grėsmė.",
         "continueDepsiteRisk": "Ar norite tęsti nepaisant šios rizikos?"

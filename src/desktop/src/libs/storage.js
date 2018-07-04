@@ -1,5 +1,5 @@
 /*global Electron*/
-const persistElectronStorage = {
+const storage = {
     getItem: (key, callback) => {
         try {
             const item = Electron.getStorage(key);
@@ -32,4 +32,4 @@ const persistElectronStorage = {
     },
 };
 
-export default persistElectronStorage;
+export default storage;
