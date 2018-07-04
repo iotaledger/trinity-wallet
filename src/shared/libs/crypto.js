@@ -1,6 +1,6 @@
 import { MAX_SEED_LENGTH } from './iota/utils';
 
-export async function generateNewSeed(randomBytesFn) {
+export const generateNewSeed = async (randomBytesFn) => {
     const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9';
     let seed = '';
     while (seed.length < MAX_SEED_LENGTH) {
@@ -10,9 +10,9 @@ export async function generateNewSeed(randomBytesFn) {
         }
     }
     return seed;
-}
+};
 
-export async function randomiseSeedCharacter(seed, charId, randomBytesFn) {
+export const randomiseSeedCharacter = async (seed, charId, randomBytesFn) => {
     const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9';
     let updatedSeed = '';
     let complete = false;
@@ -24,4 +24,4 @@ export async function randomiseSeedCharacter(seed, charId, randomBytesFn) {
         }
     }
     return updatedSeed;
-}
+};
