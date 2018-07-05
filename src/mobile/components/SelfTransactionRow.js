@@ -6,6 +6,7 @@ import { formatTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/
 import spinner from 'iota-wallet-shared-modules/animations/spinner.json';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
+import { locale } from '../utils/device';
 import { Icon } from '../theme/icons';
 
 const styles = StyleSheet.create({
@@ -203,7 +204,7 @@ export default class SelfTransactionRow extends PureComponent {
                                 </View>
                                 <View style={styles.timestampWrapper}>
                                     <Text style={[styles.timestamp, style.rowTextColor]}>
-                                        {formatTime(convertUnixTimeToJSDate(time))}
+                                        {formatTime(locale, convertUnixTimeToJSDate(time))}
                                     </Text>
                                 </View>
                             </View>
@@ -264,7 +265,7 @@ export default class SelfTransactionRow extends PureComponent {
                                 </View>
                                 <View style={styles.timestampWrapper}>
                                     <Text style={[styles.timestamp, style.rowTextColor]}>
-                                        {formatTime(convertUnixTimeToJSDate(time))}
+                                        {formatTime(locale, convertUnixTimeToJSDate(time))}
                                     </Text>
                                 </View>
                             </View>
