@@ -37,14 +37,14 @@
         "apply": "应用",
         "save": "保存",
         "close": "关闭",
-        "export": "Export",
-        "import": "Import",
+        "export": "导出",
+        "import": "导入",
         "continue": "继续",
         "enable": "启用",
         "disable": "停用",
         "enabled": "已启用",
         "disabled": "已禁用",
-        "enterPassword": "Enter password",
+        "enterPassword": "请输入密码",
         "paperWallet": "打印副本",
         "addToPasswordManager": "添加到密码管理器",
         "shareSeed": "共享种子",
@@ -150,12 +150,12 @@
         "androidCopyPasteWarning": "切勿在安卓设备上复制/粘贴你的种子。",
         "willNotCopyPasteSeed": "我不会复制/粘贴我的种子。",
         "mustBeStoredAppropriately": "必须适当地存储种子。",
-        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while.",
+        "deviceMayBecomeUnresponsive": "您的设备可能会在一段时间内无法响应。",
         "isYourBalanceCorrect": "您的余额是正确的吗？",
         "ifYourBalanceIsNotCorrect": "如果您的余额不正确，很可能您使用的是快照前的种子。",
         "headToAdvancedSettingsForTransition": "请去高级设置中设置，并执行快照转换。",
         "usingTrinityWalletWithKeePass": "与Keepass2Android 一同使用 Trinity钱包。",
-        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
+        "signedTrytesBroadcastErrorExplanation": "在广播您的交易时遇到网络错误。"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "种子包含无效字符",
@@ -165,8 +165,8 @@
         "nameInUse": "帐户已使用",
         "nameInUseExplanation": "请为您的种子使用唯一的帐户名称。",
         "enterAccountName": "输入帐户名。",
-        "accountNameTooLong": "Account name too long",
-        "accountNameTooLongExplanation": "Account name maximum length is {{maxLength}} characters.",
+        "accountNameTooLong": "帐户名太长",
+        "accountNameTooLongExplanation": "帐户名的最大长度为 {{maxLength}} 个字符。",
         "accountName": "账户名",
         "noNickname": "未输入账户名",
         "noNicknameExplanation": "请输入您的种子的帐户名。",
@@ -229,7 +229,7 @@
         "invalidCharacters": "种子包含无效字符",
         "invalidCharactersExplanation": "种子只能由大写A-Z字母和数字9组成。您的种子包含无效字符。请再试一遍。",
         "seedTooShort": "种子太短",
-        "seedTooLong": "Seed is too long",
+        "seedTooLong": "种子太长",
         "seedTooShortExplanation": "种子长度必须为{{maxLength}} 。您的种子当前为{{currentLength}} 个字符。请重试。",
         "seedExplanation": "种子的长度应该有{{maxLength}} 个字符，包含大写字母 A - Z 或者数字9。您不能使用超过 {{maxLength}} 个字符。",
         "neverShare": "永远不要与任何人分享你的种子"
@@ -299,8 +299,8 @@
         "removeMessage": "移除消息",
         "noAddresses": "无地址",
         "spent": "支出",
-        "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
+        "missingPermission": "需要文件系统权限",
+        "missingPermissionExplanation": "为了共享 QR 码, 需要访问文件系统。"
     },
     "saveYourSeed": {
         "saveYourSeed": "备份您的种子",
@@ -314,7 +314,7 @@
         "letsWriteDownYourSeed": "让我们记下您的种子",
         "youCanHighlightCharacters": "您可以一次突出显示9个字符",
         "printBlankWallet": "打印空白钱包",
-        "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
+        "whatIsChecksum": "每个种子都有相应的3字符校验和",
         "iHavesavedMySeed": "我已经保存了我的种子",
         "checksumExplanation": "当你把种子添加到你的钱包的时候，你应该确保钱包生成的校验码与你已经记下来的校验码是匹配的。",
         "mustSaveYourSeed": "<0> <0> 您必须使用 </0> <1> 至少用下面列出的选项的 </1> <2> 保存种子. </2> </0>"
@@ -356,7 +356,7 @@
         "totalTime": "总时间",
         "addressPasteDetected": "检测到地址粘贴",
         "addressPasteExplanation": "看起来你已经粘贴了地址。请确保该地址与您想要发送的地址是一致的。",
-        "invalid": "INVALID"
+        "invalid": "无效"
     },
     "setPassword": {
         "choosePassword": "选择新的密码",
@@ -472,9 +472,9 @@
         "messageCopiedExplanation": "消息已经被复制到剪贴板中了。",
         "send": "发送",
         "receive": "接收",
-        "empty": "Empty",
-        "retrying": "RETRYING",
-        "yesterday": "Yesterday"
+        "empty": "清空",
+        "retrying": "重试",
+        "yesterday": "昨天"
     },
     "accountManagement": {
         "viewSeed": "查看种子",
@@ -488,7 +488,7 @@
         "customNodeCouldNotBeAdded": "无法添加自定义节点",
         "customNodeAddedSuccessfully": "已成功添加自定义节点。",
         "customNode": "自定义节点",
-        "removeCustomNode": "Remove custom node",
+        "removeCustomNode": "删除自定义节点",
         "invalidNodeResponse": "节点返回无效响应",
         "httpNodeError": "三体钱包移动版只支持https节点",
         "add": "新增",
@@ -614,24 +614,24 @@
         "twoFaToken": "2FA两步认证令牌"
     },
     "seedVault": {
-        "exportSeedVault": "Export SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password. It is recommended that you store the file in a password manager like Keepass.",
-        "seedVaultWarning": "Make sure you back up the file in multiple locations (e.g. hard drive, cloud, USB). If you lose this file and have not stored your seed elsewhere, you will lose your IOTA.",
-        "exportFail": "SeedVault export failed",
-        "exportFailExplanation": "There was an problem exporting the SeedVault. Please ensure you have the appropriate permissions and enough free space.",
-        "exportSuccess": "SeedVault exported",
-        "exportSuccessExplanation": "Your encrypted seed file was exported successfully.",
-        "importSeedVault": "Import SeedVault",
-        "dropSeedVaultHere": "Drop SeedVault here",
-        "enterPasswordExplanation": "Enter your password to open the SeedVault",
-        "noSeedFound": "SeedVault does not contain a valid seed",
-        "noSeedFoundExplanation": "The SeedVault is either empty or contains a seed in an invalid format.",
-        "seedFileError": "Failed to open SeedVault",
-        "seedFileErrorExplanation": "There was a problem opening the SeedVault. If you selected the correct file then it may be corrupted."
+        "exportSeedVault": "导出SeedVault",
+        "seedVaultExplanation": "SeedVault 是一个加密的文件, 用于安全地存储种子。种子通过密码进行加密, 无法在没有密码的情况下访问。建议您将该文件存储在像 Keepass 这样的密码管理器中。",
+        "seedVaultWarning": "请确保在多个位置备份文件 (例如硬盘、云、USB)。如果你失去了这个文件, 并没有在别处储存你的种子, 你就会失去你的IOTA。",
+        "exportFail": "SeedVault 导出失败",
+        "exportFailExplanation": "导出 SeedVault 时出现问题。请确保您拥有适当的权限和足够的可用空间。",
+        "exportSuccess": "SeedVault 导出成功",
+        "exportSuccessExplanation": "已成功导出加密的种子文件。",
+        "importSeedVault": "导入 SeedVault",
+        "dropSeedVaultHere": "把 SeedVault 放在这里",
+        "enterPasswordExplanation": "输入密码以打开 SeedVault",
+        "noSeedFound": "SeedVault 不包含有效种子",
+        "noSeedFoundExplanation": "SeedVault 是空的或包含无效格式的种子。",
+        "seedFileError": "打开SeedVault失败",
+        "seedFileErrorExplanation": "打开 SeedVault 时遇到问题。如果您选择了正确的文件, 那么它可能已损坏。"
     },
     "chart": {
         "mcap": "市值",
-        "change": "Change (24h)",
+        "change": "变化 (24h)",
         "volume": "交易量(24h)",
         "currentValue": "当前值",
         "error": "获取图标数据时出错"
