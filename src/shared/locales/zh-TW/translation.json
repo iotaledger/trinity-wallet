@@ -150,12 +150,12 @@
         "androidCopyPasteWarning": "請勿在 Android 裝置上複製/貼上您的種子碼。",
         "willNotCopyPasteSeed": "我絕不會複製/貼上我的種子碼",
         "mustBeStoredAppropriately": "種子碼必須妥善保存。",
-        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while.",
+        "deviceMayBecomeUnresponsive": "您的裝置可能會在一段時間內無法回應。",
         "isYourBalanceCorrect": "您的餘額正確嗎？",
         "ifYourBalanceIsNotCorrect": "如果您的餘額不正確的話，有可能您最後一次使用種子碼是在快照發生之前。",
         "headToAdvancedSettingsForTransition": "前往進階設定然後執行快照轉換。",
         "usingTrinityWalletWithKeePass": "在 Trinity 錢包使用 Keepass2Android",
-        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
+        "signedTrytesBroadcastErrorExplanation": "廣播您的交易時發生網路錯誤。"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
@@ -165,8 +165,8 @@
         "nameInUse": "帳戶名稱已使用",
         "nameInUseExplanation": "種子碼請使用獨特帳戶名稱",
         "enterAccountName": "輸入帳戶名稱",
-        "accountNameTooLong": "Account name too long",
-        "accountNameTooLongExplanation": "Account name maximum length is {{maxLength}} characters.",
+        "accountNameTooLong": "帳戶名稱過長",
+        "accountNameTooLongExplanation": "帳戶名稱最長為 {{maxLength}} 個字元。",
         "accountName": "帳戶名稱",
         "noNickname": "尚未輸入帳戶名稱",
         "noNicknameExplanation": "請輸入種子碼帳戶名稱",
@@ -229,7 +229,7 @@
         "invalidCharacters": "種子碼包含無效字元",
         "invalidCharactersExplanation": "種子碼只能由大寫 A-Z 字母和數字 9 組成，您的種子碼包含無效字元，請再試一次。",
         "seedTooShort": "種子碼過短",
-        "seedTooLong": "Seed is too long",
+        "seedTooLong": "種子碼過長",
         "seedTooShortExplanation": "您的密碼必須至少是 {{maxLength}} 個字元，目前為 {{currentLength}} 個字元長，請再試一次。",
         "seedExplanation": "種子碼應為 {{maxLength}} 個字元長並包含大寫字母 A-Z 或數字 9，您的種子碼不能長於 {{maxLength}} 個字元。",
         "neverShare": "千萬別和他人分享您的種子碼"
@@ -356,7 +356,7 @@
         "totalTime": "總計",
         "addressPasteDetected": "檢測到地址貼上",
         "addressPasteExplanation": "看起來您已貼上地址，請確認貼上的地址與您想送出去的相符。",
-        "invalid": "INVALID"
+        "invalid": "無效"
     },
     "setPassword": {
         "choosePassword": "選擇新的密碼",
@@ -631,7 +631,7 @@
     },
     "chart": {
         "mcap": "總市值",
-        "change": "Change (24h)",
+        "change": "變化率 (24h)",
         "volume": "交易量 (24h)",
         "currentValue": "目前價值",
         "error": "取得圖表資訊時出錯"
