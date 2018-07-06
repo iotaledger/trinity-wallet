@@ -88,7 +88,7 @@
 	<key>NSMotionUsageDescription</key>
 	<string>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</string>
+	<string>Trinity requires access to your photo library in order to save QR codes to the camera roll.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</string>
 	<key>NSSpeechRecognitionUsageDescription</key>

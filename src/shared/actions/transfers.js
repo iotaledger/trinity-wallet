@@ -63,6 +63,7 @@ import {
 } from './alerts';
 import i18next from '../i18next.js';
 import Errors from '../libs/errors';
+import { DEFAULT_DEPTH } from '../config';
 
 export const ActionTypes = {
     BROADCAST_BUNDLE_REQUEST: 'IOTA/TRANSFERS/BROADCAST_BUNDLE_REQUEST',
@@ -323,17 +324,22 @@ export const promoteTransaction = (bundleHash, accountName, powFn) => (dispatch,
  *
  *   @method forceTransactionPromotion
  *   @param {string} accountName
- *   @param {boolean} consistentTail
+ *   @param {boolean | object} consistentTail
  *   @param {array} tails
  *   @param {boolean} shouldGenerateAlert
- *   @param {function | null} powFn
+ *   @param {function} powFn
+ *   @param {number} depth
  *
  *   @returns {function} dispatch
  **/
-export const forceTransactionPromotion = (accountName, consistentTail, tails, shouldGenerateAlert, powFn = null) => (
-    dispatch,
-    getState,
-) => {
+export const forceTransactionPromotion = (
+    accountName,
+    consistentTail,
+    tails,
+    shouldGenerateAlert,
+    powFn = null,
+    depth = DEFAULT_DEPTH,
+) => (dispatch, getState) => {
     if (!consistentTail) {
         // Grab hash from the top tail to replay
         const topTx = head(tails);
@@ -364,7 +370,29 @@ export const forceTransactionPromotion = (accountName, consistentTail, tails, sh
         });
     }
 
-    return promoteTransactionAsync(consistentTail.hash, powFn);
+    return promoteTransactionAsync(consistentTail.hash, powFn, depth)
+        .then((txs) => txs)
+        .catch((error) => {
+            const isReferenceTxOld = error.message.includes(Errors.REFERENCE_TRANSACTION_TOO_OLD);
+            const hasDefaultDepth = depth === DEFAULT_DEPTH;
+
+            if (isReferenceTxOld && hasDefaultDepth) {
+                return dispatch(
+                    forceTransactionPromotion(
+                        accountName,
+                        consistentTail,
+                        tails,
+                        shouldGenerateAlert,
+                        powFn,
+                        depth * 2,
+                    ),
+                );
+            } else if (isReferenceTxOld && !hasDefaultDepth) {
+                return dispatch(forceTransactionPromotion(accountName, null, tails, shouldGenerateAlert, powFn));
+            }
+
+            throw new Error(error.message);
+        });
 };
 
 export const makeTransaction = (seed, receiveAddress, value, message, accountName, powFn, genFn) => (
@@ -537,7 +565,8 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
 
                 cached.trytes = trytes;
 
-                const convertToTransactionObjects = (tryteString) => iota.utils.transactionObject(tryteString);
+                const convertToTransactionObjects = (tryteString) =>
+                    iota.utils.transactionObject(tryteString, '9'.repeat(81));
                 cached.transactionObjects = map(cached.trytes, convertToTransactionObjects);
 
                 // Getting transactions to approve

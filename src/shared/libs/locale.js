@@ -68,6 +68,9 @@ function selectLocale(lang) {
     if (lang === 'hi') {
         return 'हिंदी - Hindi';
     }
+    if (lang === 'hr') {
+        return 'Hrvatski - Croatian';
+    }
     if (lang === 'id') {
         return 'Bahasa Indonesia - Indonesian';
     }
@@ -115,6 +118,9 @@ function selectLocale(lang) {
     }
     if (lang === 'sv_SE') {
         return 'Svenska - Swedish';
+    }
+    if (lang === 'ta') {
+        return 'தமிழ் - Tamil';
     }
     if (lang === 'th') {
         return 'ไทย - Thai';

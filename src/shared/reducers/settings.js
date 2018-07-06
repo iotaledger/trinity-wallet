@@ -112,6 +112,14 @@ const settingsReducer = (state = initialState, action) => {
                     ? state.customNodes
                     : union(state.customNodes, [action.payload]),
             };
+        case ActionTypes.REMOVE_CUSTOM_NODE:
+            return {
+                ...state,
+                nodes: state.customNodes.includes(action.payload)
+                    ? state.nodes.filter((node) => node !== action.payload)
+                    : state.nodes,
+                customNodes: state.customNodes.filter((node) => node !== action.payload),
+            };
         case ActionTypes.SET_NODELIST:
             return {
                 ...state,
