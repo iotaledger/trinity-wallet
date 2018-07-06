@@ -290,7 +290,7 @@ class Receive extends Component {
 
     componentDidMount() {
         leaveNavigationBreadcrumb('Receive');
-        timer.setTimeout('generateAddressDelay', () => this.generateAddress(), 100);
+        timer.setTimeout('generateAddressDelay', () => this.generateAddress(), 250);
     }
 
     componentWillReceiveProps(newProps) {
@@ -299,6 +299,7 @@ class Receive extends Component {
         }
         if (!this.props.isGeneratingReceiveAddress && newProps.isGeneratingReceiveAddress) {
             this.startLetterScramble();
+            this.triggerRefreshAnimations();
         }
         if (this.props.seedIndex !== newProps.seedIndex) {
             timer.setTimeout('generateAddressDelay', () => this.generateAddress(), 100);
@@ -450,7 +451,6 @@ class Receive extends Component {
         };
 
         this.props.getFromKeychainRequest('receive', 'addressGeneration');
-        this.triggerRefreshAnimations();
         const seed = await getSeedFromKeychain(password, selectedAccountName);
         if (seed === null) {
             return error();
