@@ -22,6 +22,7 @@ import queueFactory from 'react-native-queue';
 
 BackgroundTask.define(async () => {
     // Based on https://github.com/billmalarky/react-native-queue#os-background-task-full-example
+    // and https://github.com/billmalarky/react-native-queue/blob/master/docs/easy-os-background-tasks-in-react-native.md
     console.log('Task defined');
     // Initialize the queue
     const queue = await queueFactory();
