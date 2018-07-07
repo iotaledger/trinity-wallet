@@ -92,18 +92,14 @@
         "addresses": "Adresai",
         "reattach": "PRIJUNGTI IŠ NAUJO",
         "promote": "IŠKELTI",
-        "retry": "BANDYTI DAR KARTĄ",
-        "rebroadcast": "TRANSLIUOTI IŠ NAUJO",
+        "retry": "Retry",
         "pressBackAgain": "Spauskite atgal, norėdami uždaryti programėlę",
         "reattached": "Pavedimas sėkmingai prijungtas",
         "reattachedExplanation": "Pavedimas prijungtas su šifru {{hash}}",
         "promotingTransaction": "Pavedimas iškeliamas",
         "autopromoting": "Automatinis pavedimo iškėlimas",
         "autopromotingExplanation": "Pavedimas iškeliamas naudojant šifrą {{hash}}",
-        "rebroadcasted": "Pavedimas sėkmingai ištransliuotas",
-        "rebroadcastedExplanation": "Pavedimas ištransliuotas su šifru {{hash}}",
         "rebroadcastError": "Pavedimo ištransliuoti nepavyko",
-        "rebroadcastErrorExplanation": "Įvyko klaida bandant transliuoti jūsų pavedimą. Bandykite dar kartą.",
         "promoted": "Pavedimas sėkmingai iškeltas",
         "promotedExplanation": "Pavedimas iškeltas su šifru {{hash}}",
         "autopromotionError": "Automatiškai iškelti pavedimo nepavyko",
@@ -253,7 +249,9 @@
         "login": "Prisijungti",
         "selectDifferentNode": "Ar norite pakeisti serverį?",
         "setNode": "Nustatyti serverį",
-        "cannotConnect": "Nepavyksta prisijungti prie IOTA serverio."
+        "cannotConnect": "Nepavyksta prisijungti prie IOTA serverio.",
+        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "Užraktas užkraunamas pirmą kartą.",
@@ -291,16 +289,19 @@
         "printerCheckbox": "Nespausdinsiu naudodamas viešą spausdintuvą"
     },
     "receive": {
+        "yourAddress": "Your address",
+        "qrOptions": "QR options",
+        "shareQr": "Share QR code",
         "copyAddress": "Kopijuoti adresą",
         "addressCopied": "Adresas nukopijuotas",
         "addressCopiedExplanation": "Jūsų adresas nukopijuotas į iškarpinę.",
         "generateNewAddress": "Naujas adresas",
-        "message": "Žinutė (neprivaloma)",
         "removeMessage": "PAŠALINTI ŽINUTĘ",
         "noAddresses": "ADRESŲ NĖRA",
         "spent": "Panaudotas",
         "missingPermission": "Reikalingas failų sistemos leidimas",
-        "missingPermissionExplanation": "Reikalinga prieiga prie failų sistemos norint dalintis QR kodais."
+        "missingPermissionExplanation": "Reikalinga prieiga prie failų sistemos norint dalintis QR kodais.",
+        "tag": "Etiketė"
     },
     "saveYourSeed": {
         "saveYourSeed": "Išsisaugokite savo užraktą",
@@ -470,10 +471,10 @@
         "addressCopiedExplanation": "Adresas nukopijuotas į iškarpinę.",
         "messageCopied": "Žinutė nukopijuota",
         "messageCopiedExplanation": "Žinutė nukopijuota į iškarpinę.",
-        "send": "SIŲSTA",
-        "receive": "GAUTA",
+        "send": "Siųsti",
+        "receive": "Gauti",
         "empty": "Tuščia",
-        "retrying": "KRAUNAMA",
+        "retrying": "Retrying",
         "yesterday": "Vakar"
     },
     "accountManagement": {
