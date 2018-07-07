@@ -92,18 +92,14 @@
         "addresses": "Alamat",
         "reattach": "MENYAMBUNG KEMBALI",
         "promote": "MEMAJUKAN",
-        "retry": "RETRY",
-        "rebroadcast": "MENYIAR KEMBALI",
+        "retry": "Retry",
         "pressBackAgain": "Tekan tombol kembali sekali lagi untuk menutup app",
         "reattached": "Successfully reattached transaction",
         "reattachedExplanation": "Reattached transaction with hash {{hash}}",
         "promotingTransaction": "Promoting transaction",
         "autopromoting": "Otomatis memajukan transfer",
         "autopromotingExplanation": "Otomatis memajukan kembali transaksi dengan hash {{hash}}",
-        "rebroadcasted": "Successfully rebroadcasted transaction",
-        "rebroadcastedExplanation": "Rebroadcasted transaction with hash {{hash}}",
         "rebroadcastError": "Could not rebroadcast transaction",
-        "rebroadcastErrorExplanation": "Something went wrong while rebroadcasting your transaction. Please try again.",
         "promoted": "Successfully promoted transaction",
         "promotedExplanation": "Promoted transaction with hash {{hash}}",
         "autopromotionError": "Could not auto-promote transaction",
@@ -253,7 +249,9 @@
         "login": "Log In",
         "selectDifferentNode": "Apakah Anda ingin memilih node yang berbeda?",
         "setNode": "Set Node",
-        "cannotConnect": "Tidak dapat menyambung ke Node IOTA."
+        "cannotConnect": "Tidak dapat menyambung ke Node IOTA.",
+        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "Menyiapkan Seed untuk pertama kalinya.",
@@ -291,16 +289,19 @@
         "printerCheckbox": "I will not print on a public printer"
     },
     "receive": {
+        "yourAddress": "Your address",
+        "qrOptions": "QR options",
+        "shareQr": "Share QR code",
         "copyAddress": "Copy address",
         "addressCopied": "Alamat telah disalin",
         "addressCopiedExplanation": "Alamat Anda telah disalin ke papan klip.",
         "generateNewAddress": "New Address",
-        "message": "Pesan opsional",
         "removeMessage": "HAPUS PESAN",
         "noAddresses": "TIDAK ADA ALAMAT",
         "spent": "Dihabiskan",
         "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
+        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes.",
+        "tag": "Label"
     },
     "saveYourSeed": {
         "saveYourSeed": "Back up your seed",
@@ -470,10 +471,10 @@
         "addressCopiedExplanation": "Alamat telah disalin ke papan klip.",
         "messageCopied": "Message copied",
         "messageCopiedExplanation": "The message has been copied to the clipboard.",
-        "send": "KIRIM",
-        "receive": "TERIMA",
+        "send": "Kirim",
+        "receive": "Terima",
         "empty": "Empty",
-        "retrying": "RETRYING",
+        "retrying": "Retrying",
         "yesterday": "Yesterday"
     },
     "accountManagement": {
