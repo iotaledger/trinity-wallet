@@ -92,18 +92,14 @@
         "addresses": "アドレス",
         "reattach": "再添付",
         "promote": "促進",
-        "retry": "再添付",
-        "rebroadcast": "再ブロードキャスト",
+        "retry": "Retry",
         "pressBackAgain": "もう一度タップすると、アプリを閉じます。",
         "reattached": "取引は正常に再添付されました。",
         "reattachedExplanation": "ハッシュ値{{hash}}の取引が再添付されました。",
         "promotingTransaction": "取引を促進中",
         "autopromoting": "送金を自動促進中",
         "autopromotingExplanation": "ハッシュ値{{hash}}の取引を促進中",
-        "rebroadcasted": "取引は正常に再ブロードキャストされました。",
-        "rebroadcastedExplanation": "ハッシュ値{{hash}}の取引が再ブロードキャストされました。",
         "rebroadcastError": "取引を再ブロードキャストできませんでした。　",
-        "rebroadcastErrorExplanation": "取引を再ブロードキャスト中に不具合が発生しました。もう一度やり直してください。",
         "promoted": "取引は正常に促進されました。",
         "promotedExplanation": "ハッシュ値{{hash}}の取引が促進されました。",
         "autopromotionError": "取引の自動促進ができませんでした。",
@@ -253,7 +249,9 @@
         "login": "ログイン",
         "selectDifferentNode": "別のノードを選択しますか？",
         "setNode": "ノードの設定",
-        "cannotConnect": "ノードに接続できません。"
+        "cannotConnect": "ノードに接続できません。",
+        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "初めてのシードを読み込んでいます。",
@@ -291,16 +289,19 @@
         "printerCheckbox": "私は公共のプリンタで印刷しません。"
     },
     "receive": {
+        "yourAddress": "Your address",
+        "qrOptions": "QR options",
+        "shareQr": "Share QR code",
         "copyAddress": "アドレスをコピー",
         "addressCopied": "アドレスをコピーしました。",
         "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。",
         "generateNewAddress": "新しいアドレス",
-        "message": "任意のメッセージ",
         "removeMessage": "メッセージを削除",
         "noAddresses": "アドレスなし",
         "spent": "使用済",
         "missingPermission": "ファイルシステム権限が必要です。",
-        "missingPermissionExplanation": "QRコードを共有するには、ファイルシステムへのアクセス権が必要です。"
+        "missingPermissionExplanation": "QRコードを共有するには、ファイルシステムへのアクセス権が必要です。",
+        "tag": "タグ"
     },
     "saveYourSeed": {
         "saveYourSeed": "シードをバックアップしてください。",
@@ -473,7 +474,7 @@
         "send": "送金",
         "receive": "受取",
         "empty": "空",
-        "retrying": "再添付",
+        "retrying": "Retrying",
         "yesterday": "昨日"
     },
     "accountManagement": {
