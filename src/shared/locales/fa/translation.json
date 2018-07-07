@@ -1,7 +1,7 @@
 {
     "global": {
-        "send": "SEND",
-        "cancel": "CANCEL",
+        "send": "ارسال",
+        "cancel": "انصراف",
         "continue?": "Are you sure you want to continue?",
         "noTransactions": "NO RECENT HISTORY",
         "refresh": "Refresh",
@@ -232,7 +232,7 @@
     },
     "home": {
         "balance": "BALANCE",
-        "send": "SEND",
+        "send": "ارسال",
         "receive": "RECEIVE",
         "history": "HISTORY",
         "settings": "SETTINGS"
