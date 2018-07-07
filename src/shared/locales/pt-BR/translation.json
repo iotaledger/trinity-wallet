@@ -92,18 +92,14 @@
         "addresses": "Endereços",
         "reattach": "REANEXAR",
         "promote": "PROMOVER",
-        "retry": "TENTAR NOVAMENTE",
-        "rebroadcast": "RETRANSMITIR",
+        "retry": "Retry",
         "pressBackAgain": "Pressione o botão \"voltar\" novamente para fechar o aplicativo",
         "reattached": "Reanexo com sucesso",
         "reattachedExplanation": "Reanexando a transação com hash {{hash}}",
         "promotingTransaction": "Promovendo a transferência",
         "autopromoting": "Promovendo transferência automaticamente",
         "autopromotingExplanation": "Promovendo transação com hash {{hash}}",
-        "rebroadcasted": "Transação reenviada com sucesso",
-        "rebroadcastedExplanation": "A transação foi reenviada com hash {{hash}}",
         "rebroadcastError": "Não foi possível reenviar transação",
-        "rebroadcastErrorExplanation": "Algo deu errado ao criar sua transferência. Por favor, tente novamente.",
         "promoted": "Transação promovida com sucesso",
         "promotedExplanation": "Promoveu transação com hash {{hash}}",
         "autopromotionError": "Não foi possível promover transação automaticamente",
@@ -253,7 +249,9 @@
         "login": "Iniciar Sessão",
         "selectDifferentNode": "Você quer selecionar um servidor diferente?",
         "setNode": "Selecionar Servidor",
-        "cannotConnect": "Não é possível conectar ao servidor IOTA."
+        "cannotConnect": "Não é possível conectar ao servidor IOTA.",
+        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "Carregando a Seed pela primeira vez.",
@@ -291,16 +289,19 @@
         "printerCheckbox": "Eu não vou imprimir em uma impressora publica"
     },
     "receive": {
+        "yourAddress": "Your address",
+        "qrOptions": "QR options",
+        "shareQr": "Share QR code",
         "copyAddress": "Copiar endereço",
         "addressCopied": "Endereço copiado",
         "addressCopiedExplanation": "O seu endereço foi copiado para a área de transferência.",
         "generateNewAddress": "Novo Endereço",
-        "message": "Mensagem opcional",
         "removeMessage": "REMOVER MENSAGEM",
         "noAddresses": "NÃO EXISTEM ENDEREÇOS",
         "spent": "Gasto",
         "missingPermission": "Permissões do sistema de arquivo necessário",
-        "missingPermissionExplanation": "Acesso ao sistema de arquivo é necessário para compartilhar códigos QR."
+        "missingPermissionExplanation": "Acesso ao sistema de arquivo é necessário para compartilhar códigos QR.",
+        "tag": "Etiqueta"
     },
     "saveYourSeed": {
         "saveYourSeed": "Faça o backup de sua Seed",
@@ -470,10 +471,10 @@
         "addressCopiedExplanation": "O seu endereço foi copiado para a área de transferência.",
         "messageCopied": "Mensagem copiada",
         "messageCopiedExplanation": "A mensagem foi copiada para a área de transferência.",
-        "send": "ENVIAR",
-        "receive": "RECEBER",
+        "send": "Enviar",
+        "receive": "Receber",
         "empty": "Vazio",
-        "retrying": "TENTANDO NOVAMENTE",
+        "retrying": "Retrying",
         "yesterday": "Ontem"
     },
     "accountManagement": {
