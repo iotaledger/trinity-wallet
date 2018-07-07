@@ -301,7 +301,7 @@
         "spent": "Spent",
         "missingPermission": "File system permission required",
         "missingPermissionExplanation": "Access to the file system is required in order to share QR codes.",
-        "tag": "Tag"
+        "tag": "برچسب"
     },
     "saveYourSeed": {
         "saveYourSeed": "Back up your seed",
@@ -348,7 +348,7 @@
         "invalidMessageExplanation": "Your message contains invalid characters.",
         "invalidMessageTooLong": "Message too long",
         "invalidMessageTooLongExplanation": "The message exceeds the max. amount of characters (1093).",
-        "send": "Send",
+        "send": "ارسال",
         "invalidAmount": "Incorrect amount entered",
         "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "MAXIMUM amount selected",
@@ -471,8 +471,8 @@
         "addressCopiedExplanation": "The address has been copied to the clipboard.",
         "messageCopied": "Message copied",
         "messageCopiedExplanation": "The message has been copied to the clipboard.",
-        "send": "Send",
-        "receive": "Receive",
+        "send": "ارسال",
+        "receive": "دریافت",
         "empty": "Empty",
         "retrying": "Retrying",
         "yesterday": "Yesterday"
