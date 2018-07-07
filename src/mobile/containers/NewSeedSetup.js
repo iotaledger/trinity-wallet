@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         margin: width / 80,
+        borderWidth: 1,
     },
     infoText: {
         fontFamily: 'SourceSansPro-Regular',
@@ -320,7 +321,7 @@ class NewSeedSetup extends Component {
         return (
             <TouchableHighlight
                 onPress={() => this.onCharPress(index)}
-                style={[styles.tileContainer, { backgroundColor: input.bg }]}
+                style={[styles.tileContainer, { backgroundColor: input.bg, borderColor: primary.border }]}
                 underlayColor={primary.color}
                 hitSlop={{ top: 5, bottom: 5, left: 5, right: 5 }}
             >

@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: GENERAL.borderRadiusSmall,
         height: height / 14,
+        borderWidth: 1,
     },
     widgetContainer: {
         borderLeftWidth: 2,
@@ -64,7 +65,7 @@ class CustomTextInput extends Component {
         /** Theme settings */
         theme: PropTypes.object.isRequired,
         /** Label for text field */
-        label: PropTypes.string.isRequired,
+        label: PropTypes.string,
         /** Focus event callback function */
         onFocus: PropTypes.func,
         /** Blur event callback function */
@@ -121,7 +122,6 @@ class CustomTextInput extends Component {
 
     constructor(props) {
         super(props);
-
         this.state = { isFocused: false };
     }
 
@@ -183,7 +183,7 @@ class CustomTextInput extends Component {
     }
 
     renderFingerprintAuthentication(widgetBorderColor) {
-        const { theme, onFingerprintPress, containerStyle } = this.props;
+        const { theme, onFingerprintPress, containerStyle, widget } = this.props;
 
         return (
             <View style={[styles.widgetContainer, widgetBorderColor]}>
@@ -192,7 +192,7 @@ class CustomTextInput extends Component {
                     style={styles.widgetButton}
                     hitSlop={{ top: height / 60, bottom: height / 60, left: width / 75, right: width / 75 }}
                 >
-                    <Icon name="fingerprint" size={containerStyle.width / 15} color={theme.input.alt} />
+                    <Icon name={widget} size={containerStyle.width / 15} color={theme.input.alt} />
                 </TouchableOpacity>
             </View>
         );
@@ -220,11 +220,22 @@ class CustomTextInput extends Component {
             fingerprintAuthentication,
             ...restProps
         } = this.props;
+        const { isFocused } = this.state;
 
         return (
             <View style={[styles.fieldContainer, containerStyle]}>
-                <Text style={[styles.fieldLabel, this.getLabelStyle()]}>{label.toUpperCase()}</Text>
-                <View style={[styles.innerContainer, { backgroundColor: theme.input.bg }, { height }]} testID={testID}>
+                {label && <Text style={[styles.fieldLabel, this.getLabelStyle()]}>{label.toUpperCase()}</Text>}
+                <View
+                    style={[
+                        styles.innerContainer,
+                        {
+                            backgroundColor: theme.input.bg,
+                            borderColor: isFocused ? theme.input.hover : theme.input.border,
+                        },
+                        { height },
+                    ]}
+                    testID={testID}
+                >
                     <TextInput
                         {...restProps}
                         ref={onRef}

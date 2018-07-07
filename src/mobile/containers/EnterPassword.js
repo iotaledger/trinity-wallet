@@ -76,6 +76,9 @@ class EnterPassword extends Component {
 
     componentDidMount() {
         leaveNavigationBreadcrumb('EnterPassword');
+        if (this.props.isFingerprintEnabled) {
+            this.activateFingerprintScanner();
+        }
     }
 
     componentWillUnmount() {
@@ -135,6 +138,7 @@ class EnterPassword extends Component {
                             secureTextEntry
                             onSubmitEditing={this.handleLogin}
                             theme={theme}
+                            widget="fingerprint"
                             fingerprintAuthentication={isFingerprintEnabled}
                             onFingerprintPress={this.activateFingerprintScanner}
                         />
@@ -181,6 +185,7 @@ class EnterPassword extends Component {
 
 const mapStateToProps = (state) => ({
     theme: state.settings.theme,
+    isFingerprintEnabled: state.settings.isFingerprintEnabled,
 });
 
 export default translate(['login', 'global'])(connect(mapStateToProps)(EnterPassword));
