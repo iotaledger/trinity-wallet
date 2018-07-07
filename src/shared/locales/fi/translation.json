@@ -92,18 +92,14 @@
         "addresses": "Osoitteet",
         "reattach": "KIINNITÄ UUDELLEEN",
         "promote": "EDISTÄ",
-        "retry": "YRITÄ UUDELLEEN",
-        "rebroadcast": "PÄIVITÄ",
+        "retry": "Retry",
         "pressBackAgain": "Paina paluu-painiketta sulkeaksesi sovelluksen",
         "reattached": "Siirron uudelleenliitos onnistui",
         "reattachedExplanation": "Siirto tiivisteluvulla {{hash}} onnistui",
         "promotingTransaction": "Edistetään siirtoa",
         "autopromoting": "Edistetään siirtoa automaattisesti",
         "autopromotingExplanation": "Edistetään siirtoa tiivisteluvulla {{hash}}",
-        "rebroadcasted": "Siirron lähetys uudelleen onnistui",
-        "rebroadcastedExplanation": "Siirto tiivisteluvulla {{hash}} päivitetty verkkoon",
         "rebroadcastError": "Siirtoa ei voitu päivittää",
-        "rebroadcastErrorExplanation": "Päivitettäessä siirtoa uudelleen tapahtui virhe. Yritä hetken päästä uudestaan.",
         "promoted": "Siirron edistys onnistui",
         "promotedExplanation": "Siirtoa tiivisteluvulla {{hash}} edistetty onnistuneesti",
         "autopromotionError": "Siirtoa ei voitu edistää",
@@ -253,7 +249,9 @@
         "login": "Kirjaudu Sisään",
         "selectDifferentNode": "Haluatko valita toisen palvelimen?",
         "setNode": "Aseta Palvelin",
-        "cannotConnect": "Ei saada yhteyttä IOTA-palvelimeen."
+        "cannotConnect": "Ei saada yhteyttä IOTA-palvelimeen.",
+        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "Ladataan seed-lukua ensimmäistä kertaa.",
@@ -291,16 +289,19 @@
         "printerCheckbox": "En tulosta julkisella tulostimella"
     },
     "receive": {
+        "yourAddress": "Your address",
+        "qrOptions": "QR options",
+        "shareQr": "Share QR code",
         "copyAddress": "Kopioi osoite",
         "addressCopied": "Osoite kopioitu",
         "addressCopiedExplanation": "Osoitteesi on kopioitu leikepöydälle.",
         "generateNewAddress": "Uusi Osoite",
-        "message": "Viesti (vapaaehtoinen)",
         "removeMessage": "POISTA VIESTI",
         "noAddresses": "EI OSOITTEITA",
         "spent": "Käytetty",
         "missingPermission": "Tiedostojärjestelmän kirjoitusoikeudet tarvitaan",
-        "missingPermissionExplanation": "Tiedostojärjestelmän kirjoitusoikeudet tarvitaan, jotta voit jakaa QR-koodeja."
+        "missingPermissionExplanation": "Tiedostojärjestelmän kirjoitusoikeudet tarvitaan, jotta voit jakaa QR-koodeja.",
+        "tag": "Tunniste"
     },
     "saveYourSeed": {
         "saveYourSeed": "Tallenna seed-luku",
@@ -470,10 +471,10 @@
         "addressCopiedExplanation": "Osoite on kopioitu leikepöydälle.",
         "messageCopied": "Viesti kopioitu",
         "messageCopiedExplanation": "Viesti on kopioitu leikepöydälle.",
-        "send": "LÄHETYS",
-        "receive": "SAAPUVA",
+        "send": "Lähetä",
+        "receive": "Vastaanota",
         "empty": "Tyhjä",
-        "retrying": "YRITETÄÄN UUDELLEEN",
+        "retrying": "Retrying",
         "yesterday": "Yesterday"
     },
     "accountManagement": {
