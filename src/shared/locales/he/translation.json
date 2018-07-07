@@ -92,18 +92,14 @@
         "addresses": "כתובת",
         "reattach": "חבר",
         "promote": "שלח",
-        "retry": "RETRY",
-        "rebroadcast": "שלח מחדש",
+        "retry": "Retry",
         "pressBackAgain": "לחץ שוב חזור על מנת לסגור את האפליקציה",
         "reattached": "Successfully reattached transaction",
         "reattachedExplanation": "Reattached transaction with hash {{hash}}",
         "promotingTransaction": "Promoting transaction",
         "autopromoting": "Autopromoting transfer",
         "autopromotingExplanation": "Promoting transaction with hash {{hash}}",
-        "rebroadcasted": "Successfully rebroadcasted transaction",
-        "rebroadcastedExplanation": "Rebroadcasted transaction with hash {{hash}}",
         "rebroadcastError": "Could not rebroadcast transaction",
-        "rebroadcastErrorExplanation": "Something went wrong while rebroadcasting your transaction. Please try again.",
         "promoted": "Successfully promoted transaction",
         "promotedExplanation": "Promoted transaction with hash {{hash}}",
         "autopromotionError": "Could not auto-promote transaction",
@@ -253,7 +249,9 @@
         "login": "Log In",
         "selectDifferentNode": "אתה רוצה לבחור צומת אחרת?",
         "setNode": "Set Node",
-        "cannotConnect": "לא ניתן להתחבר לצומת."
+        "cannotConnect": "לא ניתן להתחבר לצומת.",
+        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "טוען את הסיד בפעם הראשונה.",
@@ -291,16 +289,19 @@
         "printerCheckbox": "I will not print on a public printer"
     },
     "receive": {
+        "yourAddress": "Your address",
+        "qrOptions": "QR options",
+        "shareQr": "Share QR code",
         "copyAddress": "Copy address",
         "addressCopied": "הכתובת הועתקה",
         "addressCopiedExplanation": "Your address has been copied to the clipboard.",
         "generateNewAddress": "New Address",
-        "message": "Optional message",
         "removeMessage": "REMOVE MESSAGE",
         "noAddresses": "NO ADDRESSES",
         "spent": "Spent",
         "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
+        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes.",
+        "tag": "תג"
     },
     "saveYourSeed": {
         "saveYourSeed": "Back up your seed",
@@ -470,10 +471,10 @@
         "addressCopiedExplanation": "הכתובת הועתקה לשורת ההעתקה.",
         "messageCopied": "Message copied",
         "messageCopiedExplanation": "The message has been copied to the clipboard.",
-        "send": "נשלח",
+        "send": "שליחה",
         "receive": "התקבל",
         "empty": "Empty",
-        "retrying": "RETRYING",
+        "retrying": "Retrying",
         "yesterday": "Yesterday"
     },
     "accountManagement": {
