@@ -10,41 +10,26 @@ const getProps = (overrides) =>
         {},
         {
             icon: 'iota',
-            textColor: {},
             text: 'foo',
-            iconColor: '#ffffff',
-            activeColor: '#dddddd',
-            activeBorderColor: '#dedede',
+            theme: { primary: {}, bar: {} },
             isActive: false,
             onPress: noop,
         },
         overrides,
     );
 
-describe('Testing SeedBox component', () => {
+describe('Testing Tab component', () => {
     describe('propTypes', () => {
         it('should require an icon string as a prop', () => {
             expect(Tab.propTypes.icon).toEqual(PropTypes.string.isRequired);
-        });
-
-        it('should require a textColor object as a prop', () => {
-            expect(Tab.propTypes.textColor).toEqual(PropTypes.object.isRequired);
         });
 
         it('should require a text string as a prop', () => {
             expect(Tab.propTypes.text).toEqual(PropTypes.string.isRequired);
         });
 
-        it('should require an iconColor string as a prop', () => {
-            expect(Tab.propTypes.iconColor).toEqual(PropTypes.string.isRequired);
-        });
-
-        it('should require an activeColor string as a prop', () => {
-            expect(Tab.propTypes.activeColor).toEqual(PropTypes.string.isRequired);
-        });
-
-        it('should require an activeBorderColor string as a prop', () => {
-            expect(Tab.propTypes.activeBorderColor).toEqual(PropTypes.string.isRequired);
+        it('should require a theme object as a prop', () => {
+            expect(Tab.propTypes.theme).toEqual(PropTypes.object.isRequired);
         });
 
         it('should accept an onPress function as a prop', () => {

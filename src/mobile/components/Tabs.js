@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
 
 class Tabs extends Component {
     render() {
-        const { children, onPress, currentRoute, barBg } = this.props;
+        const { children, onPress, currentRoute, theme: { bar } } = this.props;
 
         const childComponents = Children.map(children, (child) =>
             cloneElement(child, {
@@ -24,7 +24,7 @@ class Tabs extends Component {
             }),
         );
 
-        const tabContainer = <View style={[styles.tabBar, { backgroundColor: barBg }]}>{childComponents}</View>;
+        const tabContainer = <View style={[styles.tabBar, { backgroundColor: bar.bg }]}>{childComponents}</View>;
 
         return tabContainer;
     }
@@ -39,8 +39,8 @@ Tabs.propTypes = {
     onPress: PropTypes.func.isRequired,
     /** Currently selected home screen route */
     currentRoute: PropTypes.string.isRequired,
-    /** Tab bar background color */
-    barBg: PropTypes.string.isRequired,
+    /** Theme settings */
+    theme: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
