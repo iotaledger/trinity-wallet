@@ -16,7 +16,7 @@
         "keyReuse": "Sending to spent address",
         "keyReuseError": "You cannot send to an address that has already been spent from.",
         "invalidResponse": "خطای Node",
-        "invalidResponseExplanation": "The node returned an error. Try changing node.",
+        "invalidResponseExplanation": "Node یک خطا را دریافت کرد. سعی کنید Node را تغییر دهید.",
         "invalidResponsePollingExplanation": "The node returned an error while polling. Try changing node.",
         "invalidResponseFetchingAccount": "The node returned an error while fetching your account information. Try changing node.",
         "invalidResponseSendingTransfer": "The node returned an error while sending the transfer. Try changing node.",
