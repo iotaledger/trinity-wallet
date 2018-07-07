@@ -92,18 +92,14 @@
         "addresses": "Adresses",
         "reattach": "RATTACHER",
         "promote": "PROMOUVOIR",
-        "retry": "RÉESSAYER",
-        "rebroadcast": "RETRANSMETTRE",
+        "retry": "Retry",
         "pressBackAgain": "Appuyez sur le bouton retour pour fermer l'application",
         "reattached": "Transaction rattachée avec succès",
         "reattachedExplanation": "Transaction avec le hash {{hash}} rattachée",
         "promotingTransaction": "Promotion de la transaction",
         "autopromoting": "Promotion automatique du transfert",
         "autopromotingExplanation": "Promotion de la transaction avec le hash {{hash}}",
-        "rebroadcasted": "Transaction retransmise avec succès",
-        "rebroadcastedExplanation": "Transaction avec le hash {{hash}} retransmise",
         "rebroadcastError": "Impossible de retransmettre la transaction",
-        "rebroadcastErrorExplanation": "Une erreur est survenue pendant la retransmission de votre transaction. Veuillez réessayer.",
         "promoted": "Transaction promue avec succès",
         "promotedExplanation": "Transaction avec le hash {{hash}} promue",
         "autopromotionError": "Impossible de promouvoir la transaction",
@@ -253,7 +249,9 @@
         "login": "Connexion",
         "selectDifferentNode": "Voulez-vous sélectionner un serveur différent ?",
         "setNode": "Choisir un serveur",
-        "cannotConnect": "Impossible de se connecter à un serveur IOTA."
+        "cannotConnect": "Impossible de se connecter à un serveur IOTA.",
+        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "Chargement de la seed pour la première fois.",
@@ -291,16 +289,19 @@
         "printerCheckbox": "Je ne l'imprimerai pas sur une imprimante publique"
     },
     "receive": {
+        "yourAddress": "Your address",
+        "qrOptions": "QR options",
+        "shareQr": "Share QR code",
         "copyAddress": "Copier l'adresse",
         "addressCopied": "Adresse copiée",
         "addressCopiedExplanation": "Votre adresse a été copiée dans le presse-papier.",
         "generateNewAddress": "Nouvelle adresse",
-        "message": "Message facultatif",
         "removeMessage": "SUPPRIMER LE MESSAGE",
         "noAddresses": "AUCUNE ADRESSE",
         "spent": "Envoyé",
         "missingPermission": "Autorisation de système de fichiers requise",
-        "missingPermissionExplanation": "L'accès au système de fichiers est nécessaire afin de partager les codes QR."
+        "missingPermissionExplanation": "L'accès au système de fichiers est nécessaire afin de partager les codes QR.",
+        "tag": "Étiquette"
     },
     "saveYourSeed": {
         "saveYourSeed": "Sauvegarder votre seed",
@@ -470,10 +471,10 @@
         "addressCopiedExplanation": "L'adresse a été copiée dans le presse-papier.",
         "messageCopied": "Message copié",
         "messageCopiedExplanation": "Le message a été copié dans le presse-papier.",
-        "send": "ENVOI",
-        "receive": "RÉCEPTION",
+        "send": "Envoyer",
+        "receive": "Recevoir",
         "empty": "Vide",
-        "retrying": "NOUVEL ESSAI",
+        "retrying": "Retrying",
         "yesterday": "Hier"
     },
     "accountManagement": {
