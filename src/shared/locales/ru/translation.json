@@ -92,18 +92,14 @@
         "addresses": "Адреса",
         "reattach": "ПРИВЯЗАТЬ ПОВТОРНО",
         "promote": "СОДЕЙСТВИЕ",
-        "retry": "ПОВТОРИТЬ ПОПЫТКУ",
-        "rebroadcast": "РЕТРАНСЛИРОВАТЬ",
+        "retry": "Retry",
         "pressBackAgain": "Нажмите еще раз назад чтобы закрыть приложение",
         "reattached": "Повторная привязка транзакции прошла успешно",
         "reattachedExplanation": "Повторно присоединенная транзакция с хэшем {{hash}}",
         "promotingTransaction": "Продвижение транзакции",
         "autopromoting": "Передача автопромотирования",
         "autopromotingExplanation": "Содействие транзакций с хэш {{hash}}",
-        "rebroadcasted": "Ретрансляция транзакции прошла успешно",
-        "rebroadcastedExplanation": "Ретранслированная транзакция с хэшем {{hash}}",
         "rebroadcastError": "Не удалось ретранслировать транзакцию",
-        "rebroadcastErrorExplanation": "Что-то пошло не так при ретрансляции Вашей транзакции. Пожалуйста, повторите попытку.",
         "promoted": "Продвижение транзакции прошло успешно",
         "promotedExplanation": "Продвинутая транзакция с хэшем {{hash}}",
         "autopromotionError": "Не удалось выполнить авто-продвижение транзакции",
@@ -253,7 +249,9 @@
         "login": "Войти",
         "selectDifferentNode": "Вы хотите выбрать другой узел?",
         "setNode": "Выбрать узел",
-        "cannotConnect": "Не удается подключиться к узлу IOTA."
+        "cannotConnect": "Не удается подключиться к узлу IOTA.",
+        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "Загрузка ключа в самый первый раз.",
@@ -291,16 +289,19 @@
         "printerCheckbox": "Я не буду печатать на общедоступном принтере"
     },
     "receive": {
+        "yourAddress": "Your address",
+        "qrOptions": "QR options",
+        "shareQr": "Share QR code",
         "copyAddress": "Скопировать адрес",
         "addressCopied": "Адрес скопирован",
         "addressCopiedExplanation": "Ваш адрес скопирован в буфер обмена.",
         "generateNewAddress": "Новый адрес",
-        "message": "Сообщение (опционально)",
         "removeMessage": "УДАЛИТЬ СООБЩЕНИЕ",
         "noAddresses": "НЕТ АДРЕСОВ",
         "spent": "Использованный адрес",
         "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
+        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes.",
+        "tag": "Метка"
     },
     "saveYourSeed": {
         "saveYourSeed": "Создать резервную копию Вашего ключа",
@@ -470,10 +471,10 @@
         "addressCopiedExplanation": "Адрес скопирован в буфер обмена.",
         "messageCopied": "Сообщение скопировано",
         "messageCopiedExplanation": "Сообщение скопировано в буфер обмена.",
-        "send": "Отправление",
-        "receive": "Получение",
+        "send": "Отправить",
+        "receive": "Получить",
         "empty": "Empty",
-        "retrying": "RETRYING",
+        "retrying": "Retrying",
         "yesterday": "Yesterday"
     },
     "accountManagement": {
