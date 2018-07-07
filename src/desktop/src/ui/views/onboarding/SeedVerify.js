@@ -136,7 +136,4 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(translate()(SeedVerify));
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(SeedVerify));

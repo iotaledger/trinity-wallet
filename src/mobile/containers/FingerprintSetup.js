@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, TouchableOpacity, Image, Alert } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Alert } from 'react-native';
 import { setFingerprintStatus } from 'iota-wallet-shared-modules/actions/settings';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { connect } from 'react-redux';
 import FingerprintScanner from 'react-native-fingerprint-scanner';
 import { translate } from 'react-i18next';
-import tinycolor from 'tinycolor2';
 import Modal from 'react-native-modal';
-import whiteFingerprintImagePath from 'iota-wallet-shared-modules/images/fingerprint-white.png';
-import blackFingerprintImagePath from 'iota-wallet-shared-modules/images/fingerprint-black.png';
 import WithBackPressGoToHome from '../components/BackPressGoToHome';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import FingerPrintModal from '../components/FingerprintModal';
@@ -48,13 +45,15 @@ const styles = StyleSheet.create({
     },
     subHeaderText: {
         fontFamily: Fonts.secondary,
-        fontSize: GENERAL.fontSize4,
+        fontSize: GENERAL.fontSize5,
         textAlign: 'center',
         backgroundColor: 'transparent',
     },
-    fingerprint: {
-        height: width / 5,
-        width: width / 5,
+    infoText: {
+        fontFamily: Fonts.secondary,
+        fontSize: GENERAL.fontSize4,
+        textAlign: 'center',
+        backgroundColor: 'transparent',
     },
     modal: {
         height,
@@ -62,6 +61,15 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         margin: 0,
+    },
+    button: {
+        width: width / 1.65,
+        height: height / 3.3,
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: width / 12,
+        borderRadius: GENERAL.borderRadius,
+        borderWidth: 1,
     },
 });
 
@@ -215,11 +223,8 @@ class FingerprintEnable extends Component {
         const { t, isFingerprintEnabled, theme } = this.props;
         const backgroundColor = { backgroundColor: theme.body.bg };
         const textColor = { color: theme.body.color };
-        const authenticationStatus = isFingerprintEnabled ? t('enabled') : t('disabled');
+        const authenticationStatus = isFingerprintEnabled ? t('disable') : t('enable');
         const instructions = this.getButtonInstructions();
-        const fingerprintImagePath = tinycolor(theme.body.bg).isDark()
-            ? whiteFingerprintImagePath
-            : blackFingerprintImagePath;
 
         return (
             <View style={[styles.container, backgroundColor]}>
@@ -229,15 +234,15 @@ class FingerprintEnable extends Component {
                 </View>
                 <View style={styles.midWrapper}>
                     <View style={{ flex: 0.25 }} />
-                    <Text style={[styles.subHeaderText, textColor]}>{instructions}</Text>
+                    <Text style={[styles.infoText, textColor]}>{instructions}</Text>
                     <View style={{ flex: 0.2 }} />
-                    <TouchableOpacity onPress={this.onFingerprintPress}>
-                        <Image source={fingerprintImagePath} style={styles.fingerprint} />
+                    <TouchableOpacity
+                        onPress={this.onFingerprintPress}
+                        style={[styles.button, { borderColor: theme.body.color }]}
+                    >
+                        <Icon name="fingerprintLarge" size={width / 4.6} color={theme.body.color} />
+                        <Text style={[styles.subHeaderText, textColor]}>{authenticationStatus}</Text>
                     </TouchableOpacity>
-                    <View style={{ flex: 0.2 }} />
-                    <Text style={[styles.subHeaderText, textColor]}>
-                        {t('status')}: {authenticationStatus}
-                    </Text>
                 </View>
                 <View style={styles.bottomWrapper}>
                     <Button

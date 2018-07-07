@@ -1,7 +1,7 @@
 export default {
     body: { color: '#000000', bg: '#E4EAF5', alt: 'rgba(0, 0, 0, 0.25)' },
-    bar: { color: '#F0F2F6', bg: '#0B1333', alt: '#2D3657' },
-    primary: { color: '#0d6cfb', hover: '#0b5edb', body: '#FFFFFF' },
+    bar: { color: '#F0F2F6', bg: '#0B1333', hover: '#0B1333', alt: '#2D3657' },
+    primary: { color: '#0d6cfb', hover: '#0b5edb', body: '#FFFFFF', border: 'transparent' },
     secondary: { color: '#55a05b', hover: '#16217f', body: '#FFFFFF' },
     positive: { color: '#55a05b', hover: '#185B48', body: '#FFFFFF' },
     negative: { color: '#db703b', hover: '#9B000D', body: '#FFFFFF' },
@@ -10,7 +10,7 @@ export default {
     label: { color: '#000000', hover: '#008CE0' },
     input: {
         color: '#1E1E1E',
-        bg: '#FFFFFF',
+        bg: '#F2F2F2',
         alt: '#727272',
         border: 'rgba(0, 0, 0, 0.1)',
         hover: 'rgba(0, 0, 0, 0.4)',
