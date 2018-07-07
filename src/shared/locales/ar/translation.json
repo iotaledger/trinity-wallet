@@ -92,18 +92,14 @@
         "addresses": "عناوين",
         "reattach": "REATTACH",
         "promote": "PROMOTE",
-        "retry": "RETRY",
-        "rebroadcast": "REBROADCAST",
+        "retry": "Retry",
         "pressBackAgain": "تجزئة الحزمة",
         "reattached": "Successfully reattached transaction",
         "reattachedExplanation": "Reattached transaction with hash {{hash}}",
         "promotingTransaction": "Promoting transaction",
         "autopromoting": "نقل أوتوبروموتينج",
         "autopromotingExplanation": "Promoting transaction with hash {{hash}}",
-        "rebroadcasted": "Successfully rebroadcasted transaction",
-        "rebroadcastedExplanation": "Rebroadcasted transaction with hash {{hash}}",
         "rebroadcastError": "Could not rebroadcast transaction",
-        "rebroadcastErrorExplanation": "Something went wrong while rebroadcasting your transaction. Please try again.",
         "promoted": "Successfully promoted transaction",
         "promotedExplanation": "Promoted transaction with hash {{hash}}",
         "autopromotionError": "Could not auto-promote transaction",
@@ -253,7 +249,9 @@
         "login": "Log In",
         "selectDifferentNode": "هل تريد اختيار عقده مختلفة؟",
         "setNode": "Set Node",
-        "cannotConnect": "Cannot connect to IOTA node."
+        "cannotConnect": "Cannot connect to IOTA node.",
+        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "تحميل البذور لأول مرة.",
@@ -291,16 +289,19 @@
         "printerCheckbox": "I will not print on a public printer"
     },
     "receive": {
+        "yourAddress": "Your address",
+        "qrOptions": "QR options",
+        "shareQr": "Share QR code",
         "copyAddress": "Copy address",
         "addressCopied": "تم نسخ العنوان",
         "addressCopiedExplanation": "تم نسخ عنوانك إلى الحافظة.",
         "generateNewAddress": "New Address",
-        "message": "رسالة اختيارية",
         "removeMessage": "احذف الرسالة",
         "noAddresses": "لا توجد عناوين",
         "spent": "اُنفق",
         "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
+        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes.",
+        "tag": "علامة"
     },
     "saveYourSeed": {
         "saveYourSeed": "Back up your seed",
@@ -470,10 +471,10 @@
         "addressCopiedExplanation": "تم نسخ العنوان إلى الحافظة.",
         "messageCopied": "Message copied",
         "messageCopiedExplanation": "The message has been copied to the clipboard.",
-        "send": "إرسال",
-        "receive": "إستلام",
+        "send": "ارسال",
+        "receive": "استلام",
         "empty": "Empty",
-        "retrying": "RETRYING",
+        "retrying": "Retrying",
         "yesterday": "Yesterday"
     },
     "accountManagement": {
