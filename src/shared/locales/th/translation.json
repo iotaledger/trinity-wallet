@@ -92,18 +92,14 @@
         "addresses": "ที่อยู่",
         "reattach": "แนบอีกครั้ง",
         "promote": "เลื่อนขั้น",
-        "retry": "RETRY",
-        "rebroadcast": "กระจายข้อมูลอีกครั้ง",
+        "retry": "Retry",
         "pressBackAgain": "เลือก ย้อนกลับ อีกครั้ง เพื่อปิดแอพพลิเคชั่น",
         "reattached": "Successfully reattached transaction",
         "reattachedExplanation": "Reattached transaction with hash {{hash}}",
         "promotingTransaction": "Promoting transaction",
         "autopromoting": "เลื่อนขั้นการโอน โดยอัตโนมัติ",
         "autopromotingExplanation": "เลื่อนรายการอีกครั้งด้วย Hash {{hash}}",
-        "rebroadcasted": "Successfully rebroadcasted transaction",
-        "rebroadcastedExplanation": "Rebroadcasted transaction with hash {{hash}}",
         "rebroadcastError": "Could not rebroadcast transaction",
-        "rebroadcastErrorExplanation": "Something went wrong while rebroadcasting your transaction. Please try again.",
         "promoted": "Successfully promoted transaction",
         "promotedExplanation": "Promoted transaction with hash {{hash}}",
         "autopromotionError": "Could not auto-promote transaction",
@@ -253,7 +249,9 @@
         "login": "Log In",
         "selectDifferentNode": "คุณต้องการที่จะเลือก Node อื่นหรือไม่?",
         "setNode": "Set Node",
-        "cannotConnect": "ไม่สามารถเชื่อมต่อไปยัง IOTA Node"
+        "cannotConnect": "ไม่สามารถเชื่อมต่อไปยัง IOTA Node",
+        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "โหลด Seed (เลขที่บัญชี) ครั้งแรก",
@@ -291,16 +289,19 @@
         "printerCheckbox": "I will not print on a public printer"
     },
     "receive": {
+        "yourAddress": "Your address",
+        "qrOptions": "QR options",
+        "shareQr": "Share QR code",
         "copyAddress": "Copy address",
         "addressCopied": "คัดลอกที่อยู่แล้ว",
         "addressCopiedExplanation": "ที่อยู่ของคุณได้ถูกคัดลอกไปยังคลิปบอร์ด",
         "generateNewAddress": "New Address",
-        "message": "ข้อความทางเลือก",
         "removeMessage": "ลบข้อความ",
         "noAddresses": "ไม่มีที่อยู่",
         "spent": "Spent",
         "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
+        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes.",
+        "tag": "Tag"
     },
     "saveYourSeed": {
         "saveYourSeed": "Back up your seed",
@@ -470,10 +471,10 @@
         "addressCopiedExplanation": "The address has been copied to the clipboard.",
         "messageCopied": "Message copied",
         "messageCopiedExplanation": "The message has been copied to the clipboard.",
-        "send": "ส่ง",
-        "receive": "รับ",
+        "send": "Send",
+        "receive": "Receive",
         "empty": "Empty",
-        "retrying": "RETRYING",
+        "retrying": "Retrying",
         "yesterday": "Yesterday"
     },
     "accountManagement": {
