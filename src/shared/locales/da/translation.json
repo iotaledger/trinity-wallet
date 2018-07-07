@@ -92,18 +92,14 @@
         "addresses": "Adresser",
         "reattach": "GENSEND OVERFØRSEL",
         "promote": "PROMOVER",
-        "retry": "PRØV IGEN",
-        "rebroadcast": "Gensend transaktion til netværk",
+        "retry": "Retry",
         "pressBackAgain": "Tryk tilbage igen for at lukke app'en",
         "reattached": "Gensendte transaktionen med succes",
         "reattachedExplanation": "Gensendte transaktion med hash-værdi {{hash}}",
         "promotingTransaction": "Promoting transaction",
         "autopromoting": "Valider automatisk transaktion",
         "autopromotingExplanation": "Valider transaktion med hash {{hash}}",
-        "rebroadcasted": "Transaktionen gensendt til netværket med succes",
-        "rebroadcastedExplanation": "Gensend transaktion til netværk med hash-værdi {{hash}}",
         "rebroadcastError": "Kunne ikke gensende transaktionen til netværket",
-        "rebroadcastErrorExplanation": "Noget gik galt under gensendelsen af transaktionen til netværk. Prøv venligst igen.",
         "promoted": "Promoverede transaktionen succesfuldt",
         "promotedExplanation": "Promoverede transaktionen med hash-værdi {{hash}}",
         "autopromotionError": "Kunne ikke auto-promovere transaktionen",
@@ -253,7 +249,9 @@
         "login": "Log In",
         "selectDifferentNode": "Ønsker du at vælge en anden node?",
         "setNode": "Set Node",
-        "cannotConnect": "Kan ikke forbinde til IOTA node."
+        "cannotConnect": "Kan ikke forbinde til IOTA node.",
+        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "Indlæser hovednøgle for første gang.",
@@ -291,16 +289,19 @@
         "printerCheckbox": "Jeg printer ikke på en offentligt printer"
     },
     "receive": {
+        "yourAddress": "Your address",
+        "qrOptions": "QR options",
+        "shareQr": "Share QR code",
         "copyAddress": "Copy address",
         "addressCopied": "Adresse kopieret",
         "addressCopiedExplanation": "Din adresse er blevet kopieret til udklipsholderen.",
         "generateNewAddress": "New Address",
-        "message": "Valgfri besked",
         "removeMessage": "FJERN BESKED",
         "noAddresses": "INGEN ADRESSER",
         "spent": "Forbrugt",
         "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
+        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes.",
+        "tag": "Etiket"
     },
     "saveYourSeed": {
         "saveYourSeed": "Back up your seed",
@@ -470,10 +471,10 @@
         "addressCopiedExplanation": "Adressen er blevet kopieret til udklipsholderen.",
         "messageCopied": "Besked kopieret",
         "messageCopiedExplanation": "Adressen er blevet kopieret til udklipsholderen.",
-        "send": "SEND",
-        "receive": "MODTAG",
+        "send": "Send",
+        "receive": "Modtag",
         "empty": "Empty",
-        "retrying": "RETRYING",
+        "retrying": "Retrying",
         "yesterday": "Yesterday"
     },
     "accountManagement": {
