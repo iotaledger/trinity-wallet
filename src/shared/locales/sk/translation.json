@@ -92,18 +92,14 @@
         "addresses": "Adresy",
         "reattach": "PRIPOJIŤ ZNOVU",
         "promote": "PODPORIŤ",
-        "retry": "OPAKOVANIE PODPORY",
-        "rebroadcast": "OPAKOVANIE PRENOSU",
+        "retry": "Retry",
         "pressBackAgain": "Opätovným stlačením tlačidla Späť zatvoríte aplikáciu",
         "reattached": "Úspešne znovupripojená transakcia",
         "reattachedExplanation": "Znovupripojená transakcia s hash {{hash}}",
         "promotingTransaction": "Podpora transakcie",
         "autopromoting": "Automatická podpora transferu",
         "autopromotingExplanation": "Podpora transakcií z hash {{hash}}",
-        "rebroadcasted": "Úspešne znovuodoslaná transakcia",
-        "rebroadcastedExplanation": "Znovuodoslaná transakcia s hash {{hash}}",
         "rebroadcastError": "Nepodarilo sa znovuodoslanie transakcie",
-        "rebroadcastErrorExplanation": "Nastala chyba počas odosielania Vašej transakcie. Skúste to prosím znova.",
         "promoted": "Transakcia úspešne podporená",
         "promotedExplanation": "Podporená transakcia s hashom {{hash}}",
         "autopromotionError": "Automatická podpora transakcie zlyhala",
@@ -253,7 +249,9 @@
         "login": "Prihlásiť sa",
         "selectDifferentNode": "Chcete vybrať iný Node?",
         "setNode": "Nastaviť Node",
-        "cannotConnect": "K IOTA Nodu sa nedá pripojiť."
+        "cannotConnect": "K IOTA Nodu sa nedá pripojiť.",
+        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "Prvotné načítanie Seedu.",
@@ -291,16 +289,19 @@
         "printerCheckbox": "Nebudem tlačiť na verejnej tlačiarni"
     },
     "receive": {
+        "yourAddress": "Your address",
+        "qrOptions": "QR options",
+        "shareQr": "Share QR code",
         "copyAddress": "Skopírovať adresu",
         "addressCopied": "Adresa skopírovaná",
         "addressCopiedExplanation": "Adresa bola skopírovaná do schránky.",
         "generateNewAddress": "Nová adresa",
-        "message": "Voliteľná správa",
         "removeMessage": "ODSTRÁNIŤ SPRÁVU",
         "noAddresses": "ŽIADNE ADRESY",
         "spent": "Utratené",
         "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
+        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes.",
+        "tag": "Značka"
     },
     "saveYourSeed": {
         "saveYourSeed": "Zálohujte váš Seed",
@@ -470,10 +471,10 @@
         "addressCopiedExplanation": "Adresa bola skopírovaná do schránky.",
         "messageCopied": "Správa bola skopírovaná",
         "messageCopiedExplanation": "Správa bola skopírovaná do schránky.",
-        "send": "ODOSLAŤ",
-        "receive": "PRÍJEM",
+        "send": "Odoslať",
+        "receive": "Prijať",
         "empty": "Prázdne",
-        "retrying": "OPAKOVANIE PODPORY",
+        "retrying": "Retrying",
         "yesterday": "Yesterday"
     },
     "accountManagement": {
