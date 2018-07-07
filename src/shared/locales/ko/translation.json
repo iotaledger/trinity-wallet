@@ -92,18 +92,14 @@
         "addresses": "주소",
         "reattach": "다시 어태치",
         "promote": "프로모트",
-        "retry": "재시도",
-        "rebroadcast": "재송출",
+        "retry": "Retry",
         "pressBackAgain": "앱을 닫으려면 뒤로가기를 다시 누르세요.",
         "reattached": "트랜잭션이 다시 어태치됨",
         "reattachedExplanation": "다음의 트랜잭션 해시가 다시 어태치되었습니다: {{hash}}",
         "promotingTransaction": "트랜잭션 프로모트 중",
         "autopromoting": "거래 자동 프로모트 중",
         "autopromotingExplanation": "다음의 트랜잭션 해시를 프로모트합니다: {{hash}}",
-        "rebroadcasted": "트랜잭션이 다시 송출됨",
-        "rebroadcastedExplanation": "다음의 트랜잭션 해시가 다시 송출되었습니다: {{hash}}",
         "rebroadcastError": "트랜잭션을 재송출할 수 없음",
-        "rebroadcastErrorExplanation": "트랜잭션을 재송출하는 중에 오류가 발생했습니다. 다시 시도해 주세요.",
         "promoted": "트랜잭션이 프로모트됨",
         "promotedExplanation": "다음의 트랜잭션 해시가 프로모트되었습니다: {{hash}}",
         "autopromotionError": "트랜잭션 자동 프로모트 사용 불가",
@@ -253,7 +249,9 @@
         "login": "로그인",
         "selectDifferentNode": "다른 노드를 선택하시겠습니까?",
         "setNode": "노드 선택",
-        "cannotConnect": "IOTA 노드에 연결할 수 없습니다."
+        "cannotConnect": "IOTA 노드에 연결할 수 없습니다.",
+        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "처음으로 시드를 불러오는 중입니다.",
@@ -291,16 +289,19 @@
         "printerCheckbox": "공용 프린터를 사용해 인쇄하지 않겠습니다."
     },
     "receive": {
+        "yourAddress": "Your address",
+        "qrOptions": "QR options",
+        "shareQr": "Share QR code",
         "copyAddress": "주소 복사",
         "addressCopied": "주소가 복사됨",
         "addressCopiedExplanation": "주소가 클립보드에 복사되었습니다.",
         "generateNewAddress": "새 주소",
-        "message": "메시지 (선택)",
         "removeMessage": "메시지 삭제하기",
         "noAddresses": "주소 없음",
         "spent": "이미 사용함",
         "missingPermission": "파일 시스템 권한 필요",
-        "missingPermissionExplanation": "QR 코드를 공유하려면 파일 시스템 권한이 필요합니다."
+        "missingPermissionExplanation": "QR 코드를 공유하려면 파일 시스템 권한이 필요합니다.",
+        "tag": "태그"
     },
     "saveYourSeed": {
         "saveYourSeed": "시드 저장하기",
@@ -470,10 +471,10 @@
         "addressCopiedExplanation": "주소를 클립보드에 복사했습니다.",
         "messageCopied": "메시지 복사함",
         "messageCopiedExplanation": "메시지를 클립보드에 복사했습니다.",
-        "send": "보냄",
-        "receive": "받음",
+        "send": "보내기",
+        "receive": "받기",
         "empty": "없음",
-        "retrying": "재시도중",
+        "retrying": "Retrying",
         "yesterday": "Yesterday"
     },
     "accountManagement": {
