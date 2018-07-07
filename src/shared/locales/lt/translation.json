@@ -251,7 +251,7 @@
         "setNode": "Nustatyti serverį",
         "cannotConnect": "Nepavyksta prisijungti prie IOTA serverio.",
         "whyBiometricDisabled": "Kodėl biometrinis autentifikavimas išjungtas?",
-        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanation": "Pirmą kartą užkraunant programėlę, biometrinis prisijungimas yra išjungtas dėl jūsų saugumo. Trinity jus automatiškai atjungs jei tapsite neaktyvus. Tada vėl galėsite prisijungti su biometriniu prisijungimu."
     },
     "loading": {
         "loadingFirstTime": "Užraktas užkraunamas pirmą kartą.",
@@ -289,9 +289,9 @@
         "printerCheckbox": "Nespausdinsiu naudodamas viešą spausdintuvą"
     },
     "receive": {
-        "yourAddress": "Your address",
-        "qrOptions": "QR options",
-        "shareQr": "Share QR code",
+        "yourAddress": "Jūsų adresas",
+        "qrOptions": "QR nustatymai",
+        "shareQr": "Dalintis QR kodu",
         "copyAddress": "Kopijuoti adresą",
         "addressCopied": "Adresas nukopijuotas",
         "addressCopiedExplanation": "Jūsų adresas nukopijuotas į iškarpinę.",
@@ -474,7 +474,7 @@
         "send": "Siųsti",
         "receive": "Gauti",
         "empty": "Tuščia",
-        "retrying": "Retrying",
+        "retrying": "Kraunama",
         "yesterday": "Vakar"
     },
     "accountManagement": {
@@ -489,7 +489,7 @@
         "customNodeCouldNotBeAdded": "Vartotojo serverio pridėti nepavyko",
         "customNodeAddedSuccessfully": "Vartotojo serveris pridėtas sėkmingai.",
         "customNode": "Vartotojo serveris",
-        "removeCustomNode": "Remove custom node",
+        "removeCustomNode": "Pašalinti vartotojo serverį",
         "invalidNodeResponse": "Serverio klaida",
         "httpNodeError": "Trinity Mobile palaiko tik https serverius.",
         "add": "Pridėti",
@@ -615,7 +615,7 @@
         "twoFaToken": "2FA kodas"
     },
     "seedVault": {
-        "exportSeedVault": "Export SeedVault",
+        "exportSeedVault": "Eksportuoti SeedVault",
         "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password. It is recommended that you store the file in a password manager like Keepass.",
         "seedVaultWarning": "Make sure you back up the file in multiple locations (e.g. hard drive, cloud, USB). If you lose this file and have not stored your seed elsewhere, you will lose your IOTA.",
         "exportFail": "SeedVault export failed",
