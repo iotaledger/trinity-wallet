@@ -92,18 +92,14 @@
         "addresses": "Naslovi",
         "reattach": "PONOVNO PRIPNI",
         "promote": "SPODBUDI",
-        "retry": "RETRY",
-        "rebroadcast": "PONOVNO ODDAJ",
+        "retry": "Retry",
         "pressBackAgain": "Pritisnite nazaj ponovno za zapreti app",
         "reattached": "Successfully reattached transaction",
         "reattachedExplanation": "Reattached transaction with hash {{hash}}",
         "promotingTransaction": "Promoting transaction",
         "autopromoting": "Automatsko spodbujanje prenosa",
         "autopromotingExplanation": "Spodbujanje transakcije s hešom {{hash}}",
-        "rebroadcasted": "Successfully rebroadcasted transaction",
-        "rebroadcastedExplanation": "Rebroadcasted transaction with hash {{hash}}",
         "rebroadcastError": "Could not rebroadcast transaction",
-        "rebroadcastErrorExplanation": "Something went wrong while rebroadcasting your transaction. Please try again.",
         "promoted": "Successfully promoted transaction",
         "promotedExplanation": "Promoted transaction with hash {{hash}}",
         "autopromotionError": "Could not auto-promote transaction",
@@ -253,7 +249,9 @@
         "login": "Log In",
         "selectDifferentNode": "Ali želite izbrati drugo vozlišče?",
         "setNode": "Set Node",
-        "cannotConnect": "Cannot connect to IOTA node."
+        "cannotConnect": "Cannot connect to IOTA node.",
+        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "Nalaganje generirane vrednosti prvič.",
@@ -291,16 +289,19 @@
         "printerCheckbox": "I will not print on a public printer"
     },
     "receive": {
+        "yourAddress": "Your address",
+        "qrOptions": "QR options",
+        "shareQr": "Share QR code",
         "copyAddress": "Copy address",
         "addressCopied": "Naslov kopiran",
         "addressCopiedExplanation": "Vaš naslov je bil kopiran v odložišče.",
         "generateNewAddress": "New Address",
-        "message": "Neobvezno sporočilo",
         "removeMessage": "ODSTRANI SPOROČILO",
         "noAddresses": "NO ADDRESSES",
         "spent": "Porabljeno",
         "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
+        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes.",
+        "tag": "Značka"
     },
     "saveYourSeed": {
         "saveYourSeed": "Back up your seed",
@@ -473,7 +474,7 @@
         "send": "Pošlji",
         "receive": "Prejmi",
         "empty": "Empty",
-        "retrying": "RETRYING",
+        "retrying": "Retrying",
         "yesterday": "Yesterday"
     },
     "accountManagement": {
