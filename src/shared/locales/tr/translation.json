@@ -92,18 +92,14 @@
         "addresses": "Adresler",
         "reattach": "TEKRAR EKLE",
         "promote": "TEŞVİK ET",
-        "retry": "YENİDEN DENE",
-        "rebroadcast": "TEKRAR YAYINLA",
+        "retry": "Retry",
         "pressBackAgain": "Uygulamayı kapatmak için geri tuşuna bir daha bas",
         "reattached": "Geçiş başarıyla tekrar eklendi",
         "reattachedExplanation": "İşlem doğrulama bilgisi {{hash}} ile yeniden eklendi",
         "promotingTransaction": "Promoting transaction",
         "autopromoting": "Otomatik teşvik transferi",
         "autopromotingExplanation": "Doğrulama verisi {{hash}} işlemi gönderiliyor",
-        "rebroadcasted": "İşlem başarıyla yayınlandı",
-        "rebroadcastedExplanation": "İşlem doğrulama bilgisi {{hash}} ile yayınlandı",
         "rebroadcastError": "İşlem yayınlanamadı",
-        "rebroadcastErrorExplanation": "İşleminiz yayınlanırken bir şeyler ters gitti. Lütfen tekrar deneyin.",
         "promoted": "İşlem başarıyla teşvik edildi",
         "promotedExplanation": "İşlem doğrulama bilgisi {{hash}} ile teşvik edildi",
         "autopromotionError": "Could not auto-promote transaction",
@@ -253,7 +249,9 @@
         "login": "Log In",
         "selectDifferentNode": "Farklı düğüm seçmek istiyor musunuz?",
         "setNode": "Set Node",
-        "cannotConnect": "IOTA node'una bağlanılamıyor."
+        "cannotConnect": "IOTA node'una bağlanılamıyor.",
+        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "Cüzdan şifresi ilk kez yükleniyor.",
@@ -291,16 +289,19 @@
         "printerCheckbox": "Halka açık bir yazıcıda yazdırmayacağım"
     },
     "receive": {
+        "yourAddress": "Your address",
+        "qrOptions": "QR options",
+        "shareQr": "Share QR code",
         "copyAddress": "Copy address",
         "addressCopied": "Adres kopyalandı",
         "addressCopiedExplanation": "Adresin panoya kopyalanmış.",
         "generateNewAddress": "New Address",
-        "message": "İsteğe bağlı mesaj",
         "removeMessage": "MESAJI SİL",
         "noAddresses": "ADRESİ YOK",
         "spent": "Harcanan",
         "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
+        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes.",
+        "tag": "Etiket"
     },
     "saveYourSeed": {
         "saveYourSeed": "Back up your seed",
@@ -470,10 +471,10 @@
         "addressCopiedExplanation": "Adres panoya kopyalanmış.",
         "messageCopied": "Mesaj kopyalandı",
         "messageCopiedExplanation": "Mesaj panoya kopyalandı.",
-        "send": "GÖNDER",
-        "receive": "AL",
+        "send": "Göndermek",
+        "receive": "Almak",
         "empty": "Empty",
-        "retrying": "RETRYING",
+        "retrying": "Retrying",
         "yesterday": "Yesterday"
     },
     "accountManagement": {
