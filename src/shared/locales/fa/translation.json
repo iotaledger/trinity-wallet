@@ -2,9 +2,9 @@
     "global": {
         "send": "ارسال",
         "cancel": "انصراف",
-        "continue?": "Are you sure you want to continue?",
+        "continue?": "آیا اطمینان دارید که می‌خواهید ادامه دهید؟",
         "noTransactions": "NO RECENT HISTORY",
-        "refresh": "Refresh",
+        "refresh": "تازه کردن",
         "balanceError": "Not enough balance",
         "balanceErrorMessage": "You do not have enough IOTA to complete this transfer.",
         "transferError": "Transfer error",
