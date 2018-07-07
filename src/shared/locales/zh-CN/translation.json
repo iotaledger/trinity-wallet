@@ -92,18 +92,14 @@
         "addresses": "地址",
         "reattach": "重新连接",
         "promote": "提升",
-        "retry": "重试",
-        "rebroadcast": "重新广播",
+        "retry": "Retry",
         "pressBackAgain": "再次按返回关闭应用程序",
         "reattached": "重新添加交易成功。",
         "reattachedExplanation": "重新添加交易的哈希为{{hash}}",
         "promotingTransaction": "促进交易",
         "autopromoting": "自动提示转移",
         "autopromotingExplanation": "使用哈希{{hash}} 促进事务",
-        "rebroadcasted": "重新广播交易成功。",
-        "rebroadcastedExplanation": "重新广播交易的哈希为{{hash}}",
         "rebroadcastError": "无法重新广播交易",
-        "rebroadcastErrorExplanation": "重新广播交易时出错，请重试。",
         "promoted": "成功提升交易",
         "promotedExplanation": "促进确认的交易哈希为{{hash}}",
         "autopromotionError": "无法自动提升促进交易",
@@ -253,7 +249,9 @@
         "login": "登录",
         "selectDifferentNode": "是否要选择其他节点？",
         "setNode": "设置节点",
-        "cannotConnect": "无法连接到IOTA节点。"
+        "cannotConnect": "无法连接到IOTA节点。",
+        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "首次读取种子",
@@ -291,16 +289,19 @@
         "printerCheckbox": "我不会在公共打印机上打印"
     },
     "receive": {
+        "yourAddress": "Your address",
+        "qrOptions": "QR options",
+        "shareQr": "Share QR code",
         "copyAddress": "复制地址",
         "addressCopied": "已复制地址",
         "addressCopiedExplanation": "您的地址已复制到剪贴板。",
         "generateNewAddress": "新地址",
-        "message": "可选消息",
         "removeMessage": "移除消息",
         "noAddresses": "无地址",
         "spent": "支出",
         "missingPermission": "需要文件系统权限",
-        "missingPermissionExplanation": "为了共享 QR 码, 需要访问文件系统。"
+        "missingPermissionExplanation": "为了共享 QR 码, 需要访问文件系统。",
+        "tag": "标签"
     },
     "saveYourSeed": {
         "saveYourSeed": "备份您的种子",
@@ -473,7 +474,7 @@
         "send": "发送",
         "receive": "接收",
         "empty": "清空",
-        "retrying": "重试",
+        "retrying": "Retrying",
         "yesterday": "昨天"
     },
     "accountManagement": {
