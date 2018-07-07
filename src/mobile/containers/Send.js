@@ -367,6 +367,9 @@ export class Send extends Component {
             if (parsedData.message) {
                 this.props.setSendMessageField(parsedData.message);
             }
+            if (parsedData.amount) {
+                this.props.setSendAmountField(parsedData.address);
+            }
         } else if (dataString.startsWith('iota:') && dataSubstring.match(VALID_ADDRESS_WITH_CHECKSUM_REGEX)) {
             // For codes with iota: at the front (TheTangle.org)
             this.props.setSendAddressField(dataSubstring);
