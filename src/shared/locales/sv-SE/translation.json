@@ -92,18 +92,14 @@
         "addresses": "Adresser",
         "reattach": "ÅTERFÄST",
         "promote": "BEFORDRA",
-        "retry": "FÖRSÖK IGEN",
-        "rebroadcast": "ÅTERSÄND",
+        "retry": "Retry",
         "pressBackAgain": "Tryck tillbaka igen för att stänga appen",
         "reattached": "Framgångsrik återfästning av transaktion",
         "reattachedExplanation": "Återfäste transaktion med hash {{hash}}",
         "promotingTransaction": "Befordrar transaktion",
         "autopromoting": "Auto-befordrar överföring",
         "autopromotingExplanation": "Befordrar transaktion med hashen {{hash}}",
-        "rebroadcasted": "Framgångsrik återsändning av transaktion",
-        "rebroadcastedExplanation": "Återsände transaktion med hash {{hash}}",
         "rebroadcastError": "Kunde inte återsända transaktionen",
-        "rebroadcastErrorExplanation": "Någonting gick fel under återsändning av transaktionen. Vänligen försök igen.",
         "promoted": "Framgångsrik befordran av transaktion",
         "promotedExplanation": "Befordrade transaktion med hash {{hash}}",
         "autopromotionError": "Kunde inte befordra transaktionen automatiskt",
@@ -253,7 +249,9 @@
         "login": "Logga in",
         "selectDifferentNode": "Vill du välja en annan nod?",
         "setNode": "Ställ in nod",
-        "cannotConnect": "Kan ej ansluta till IOTA nod."
+        "cannotConnect": "Kan ej ansluta till IOTA nod.",
+        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "Laddar din adress för första gången.",
@@ -291,16 +289,19 @@
         "printerCheckbox": "Jag kommer inte att skriva ut på en offentlig skrivare"
     },
     "receive": {
+        "yourAddress": "Your address",
+        "qrOptions": "QR options",
+        "shareQr": "Share QR code",
         "copyAddress": "Kopiera adress",
         "addressCopied": "Adress kopierad",
         "addressCopiedExplanation": "Din adress har kopierats till urklipp.",
         "generateNewAddress": "Ny adress",
-        "message": "Valfritt meddelande",
         "removeMessage": "TA BORT MEDDELANDE",
         "noAddresses": "INGA ADRESSER",
         "spent": "Förbrukat",
         "missingPermission": "Åtkomst till filsystem krävs",
-        "missingPermissionExplanation": "Åtkomst till filsystem krävs för att dela QR-koder."
+        "missingPermissionExplanation": "Åtkomst till filsystem krävs för att dela QR-koder.",
+        "tag": "Tagg"
     },
     "saveYourSeed": {
         "saveYourSeed": "Spara din seed",
@@ -470,10 +471,10 @@
         "addressCopiedExplanation": "Din adress har kopierats till urklipp.",
         "messageCopied": "Meddelandet kopierat",
         "messageCopiedExplanation": "Meddelandet har kopierats till urklipp.",
-        "send": "SKICKA",
-        "receive": "TA EMOT",
+        "send": "Skicka",
+        "receive": "Motta",
         "empty": "Tomt",
-        "retrying": "FÖRSÖKER IGEN",
+        "retrying": "Retrying",
         "yesterday": "Igår"
     },
     "accountManagement": {
