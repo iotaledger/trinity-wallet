@@ -92,18 +92,14 @@
         "addresses": "पता",
         "reattach": "पुनः अटैच",
         "promote": "प्रमोट",
-        "retry": "पुन: प्रयास करें",
-        "rebroadcast": "पुनः ब्रॉडकास्ट",
+        "retry": "Retry",
         "pressBackAgain": "एप बंद करने के लिए वापस फिर से दबाएं",
         "reattached": "ट्रान्सेक्शन को सफलतापूर्वक री अटैच किया गया |",
         "reattachedExplanation": "हैश {{hash}} ट्रांजेक्शन को री अटैच कर रहे है",
         "promotingTransaction": "प्रोमोटिंग ट्रांसफर",
         "autopromoting": "ऑटोप्रोमोटिंग ट्रांसफर",
         "autopromotingExplanation": "हैश {{hash}} ट्रांजेक्शन को प्रमोट कर रहे है",
-        "rebroadcasted": "ट्रान्सेक्शन को सफलतापूर्वक री ब्रॉडकास्ट किया गया |",
-        "rebroadcastedExplanation": "हैश {{hash}} ट्रांजेक्शन को प्रमोट कर रहे है",
         "rebroadcastError": "ट्रांसैक्शन को प्रोमोट नहीं कर सकते",
-        "rebroadcastErrorExplanation": "ट्रांसफर करते समय कुछ गड़बड़ हो गई । कृपया पुन: प्रयास करें ।",
         "promoted": "ट्रान्सेक्शन को सफलतापूर्वक प्रोमोट किया गया |",
         "promotedExplanation": "हैश {{hash}} ट्रांजेक्शन को प्रमोट कर रहे है",
         "autopromotionError": "ट्रांसैक्शन को प्रोमोट नहीं कर सकते",
@@ -253,7 +249,9 @@
         "login": "लॉग इन करें",
         "selectDifferentNode": "क्या आप एक अलग नोड का चयन करना चाहते हैं?",
         "setNode": "नोड सेट करें",
-        "cannotConnect": "IOTA नोड से कनेक्ट नहीं कर सकता ।"
+        "cannotConnect": "IOTA नोड से कनेक्ट नहीं कर सकता ।",
+        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "पहली बार के लिए seed लोड हो रहा है ।",
@@ -291,16 +289,19 @@
         "printerCheckbox": "मैं किसी सार्वजनिक प्रिंटर पर प्रिंट नहीं करूंगा"
     },
     "receive": {
+        "yourAddress": "Your address",
+        "qrOptions": "QR options",
+        "shareQr": "Share QR code",
         "copyAddress": "पता कॉपी करें",
         "addressCopied": "पता प्रतिलिपि बनाई गई",
         "addressCopiedExplanation": "आपका पता क्लिपबोर्ड पर कॉपी किया गया है।",
         "generateNewAddress": "नया एड्रेस",
-        "message": "वैकल्पिक संदेश",
         "removeMessage": "संदेश हटाए",
         "noAddresses": "कोई पता नहीं",
         "spent": "खर्च",
         "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
+        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes.",
+        "tag": "टैग"
     },
     "saveYourSeed": {
         "saveYourSeed": "अपने सीड का बैक अप लें",
@@ -470,10 +471,10 @@
         "addressCopiedExplanation": "पते की क्लिपबोर्ड पर कॉपी बनाई गई है ।",
         "messageCopied": "संदेश की प्रतिलिपि बनाई गई",
         "messageCopiedExplanation": "पते की क्लिपबोर्ड पर कॉपी बनाई गई है ।",
-        "send": "भेजे",
-        "receive": "प्राप्त करे",
+        "send": "भेजें",
+        "receive": "प्राप्त करें",
         "empty": "Empty",
-        "retrying": "RETRYING",
+        "retrying": "Retrying",
         "yesterday": "Yesterday"
     },
     "accountManagement": {
