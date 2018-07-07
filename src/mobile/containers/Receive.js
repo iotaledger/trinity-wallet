@@ -540,7 +540,7 @@ class Receive extends Component {
         const { scramblingLetters } = this.state;
         const qrContent = JSON.stringify({
             address: receiveAddress,
-            value: this.getQrValue(),
+            amount: this.getQrValue(),
             message: qrMessage,
             tag: qrTag,
         });
