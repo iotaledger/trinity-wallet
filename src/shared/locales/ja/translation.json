@@ -290,8 +290,8 @@
     },
     "receive": {
         "yourAddress": "あなたのアドレス",
-        "qrOptions": "QR options",
-        "shareQr": "Share QR code",
+        "qrOptions": "QRコードオプション",
+        "shareQr": "QRコードを共有",
         "copyAddress": "アドレスをコピー",
         "addressCopied": "アドレスをコピーしました。",
         "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。",
