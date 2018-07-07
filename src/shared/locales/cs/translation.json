@@ -92,18 +92,14 @@
         "addresses": "Adresy",
         "reattach": "ZNOVU PŘIPOJIT",
         "promote": "PODPOŘIT",
-        "retry": "OPAKOVÁNÍ PODPORY",
-        "rebroadcast": "OPAKOVÁNÍ PŘENOSU",
+        "retry": "Retry",
         "pressBackAgain": "Opětovným stisknutím tlačítka Zpět zavřete aplikaci",
         "reattached": "Úspěšně znovupřipojená transakce",
         "reattachedExplanation": "Znovupřipojená transakce s hash {{hash}}",
         "promotingTransaction": "Podpora transakce",
         "autopromoting": "Automatická podpora přenosu",
         "autopromotingExplanation": "Podpora transakcí s hash {{hash}}",
-        "rebroadcasted": "Úspěšně znovu odeslaná transakce",
-        "rebroadcastedExplanation": "Znovu odeslaná transakce s hash {{hash}}",
         "rebroadcastError": "Nezdařilo se znovu odeslat transakci",
-        "rebroadcastErrorExplanation": "Něco se pokazilo při novém odesílání Vaší transakce. Prosím, zkuste to znovu.",
         "promoted": "Úspěšně podpořená transakce",
         "promotedExplanation": "Podpořená transakce s hashem {{hash}}",
         "autopromotionError": "Nelze automaticky podpořit transakci",
@@ -253,7 +249,9 @@
         "login": "Přihlásit se",
         "selectDifferentNode": "Chcete vybrat jiný Node?",
         "setNode": "Nastavit Node",
-        "cannotConnect": "K Nodu IOTA se nelze připojit."
+        "cannotConnect": "K Nodu IOTA se nelze připojit.",
+        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "První načítání Seedu.",
@@ -291,16 +289,19 @@
         "printerCheckbox": "Nebudu tisknout na veřejné tiskárně"
     },
     "receive": {
+        "yourAddress": "Your address",
+        "qrOptions": "QR options",
+        "shareQr": "Share QR code",
         "copyAddress": "Kopírovat adresu",
         "addressCopied": "Adresa zkopírována",
         "addressCopiedExplanation": "Adresa byla zkopírována do schránky.",
         "generateNewAddress": "Nová adresa",
-        "message": "Volitelná zpráva",
         "removeMessage": "ODSTRANIT ZPRÁVU",
         "noAddresses": "ŽÁDNÉ ADRESY",
         "spent": "Utraceno",
         "missingPermission": "Požadovaný přístup k souborovému systému",
-        "missingPermissionExplanation": "Aby bylo možné sdílet QR kódy, musí být povolen přístup do souborového systému."
+        "missingPermissionExplanation": "Aby bylo možné sdílet QR kódy, musí být povolen přístup do souborového systému.",
+        "tag": "Značka"
     },
     "saveYourSeed": {
         "saveYourSeed": "Zálohujte Váš Seed",
@@ -470,10 +471,10 @@
         "addressCopiedExplanation": "Adresa byla zkopírována do schránky.",
         "messageCopied": "Zpráva byla zkopírována",
         "messageCopiedExplanation": "Zpráva byla zkopírována do schránky.",
-        "send": "ODESLAT",
-        "receive": "PŘÍJEM",
+        "send": "Odeslat",
+        "receive": "Příjem",
         "empty": "Prázdné",
-        "retrying": "OPAKOVÁNÍ PODPORY",
+        "retrying": "Retrying",
         "yesterday": "Včera"
     },
     "accountManagement": {
