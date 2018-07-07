@@ -92,18 +92,14 @@
         "addresses": "Địa Chỉ",
         "reattach": "Kết Nối Lại",
         "promote": "THÚC ĐẨY",
-        "retry": "THỬ LẠI",
-        "rebroadcast": "PHÁT SÓNG LẠI",
+        "retry": "Retry",
         "pressBackAgain": "Nhấn nút lui lại lần nữa để đóng chương trình",
         "reattached": "Đã thành công kết nối lại giao dịch",
         "reattachedExplanation": "Đang kết nối giao dịch với hash {{hash}}",
         "promotingTransaction": "Thúc đẩy giao dịch",
         "autopromoting": "Tự động thúc đẩy chuyển khoảng",
         "autopromotingExplanation": "Tự động thúc đẩy chuyển khoản với hash {{hash}}",
-        "rebroadcasted": "Đã thành công phát sóng lại giao dịch",
-        "rebroadcastedExplanation": "Phát sóng lại giao dịch với hash {{hash}}",
         "rebroadcastError": "Không thể phát sóng lại giao dịch",
-        "rebroadcastErrorExplanation": "Có lỗi xảy ra khi phát sóng lại giao dịch của bạn. Xin vui lòng thử lại.",
         "promoted": "Đã thành công thúc đẩy giao dịch",
         "promotedExplanation": "Thúc đẩy giao dịch với hash {{hash}}",
         "autopromotionError": "Không thử tự động thúc đẩy giao dịch",
@@ -253,7 +249,9 @@
         "login": "Đăng Nhập",
         "selectDifferentNode": "Bạn muốn chọn một nút mạng khác không?",
         "setNode": "Chọn Nút Mạng",
-        "cannotConnect": "Không thể kết nối vào nút mạng của IOTA."
+        "cannotConnect": "Không thể kết nối vào nút mạng của IOTA.",
+        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "Đang tải từ khoá lần đầu tiên.",
@@ -291,16 +289,19 @@
         "printerCheckbox": "Tôi sẽ không in trên máy in công cộng"
     },
     "receive": {
+        "yourAddress": "Your address",
+        "qrOptions": "QR options",
+        "shareQr": "Share QR code",
         "copyAddress": "Chép địa chỉ",
         "addressCopied": "Đã sao chép địa chỉ",
         "addressCopiedExplanation": "Địa chỉ đã được sao chép vào bộ nhớ tạm thời.",
         "generateNewAddress": "Địa Chỉ Mới",
-        "message": "Tin nhắn tuỳ chọn",
         "removeMessage": "HUỶ BỎ TIN NHẮN",
         "noAddresses": "KHÔNG CÓ ĐỊA CHỈ",
         "spent": "Đã Gửi",
         "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
+        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes.",
+        "tag": "Tag"
     },
     "saveYourSeed": {
         "saveYourSeed": "Sao lưu chuỗi mật mã của bạn",
@@ -470,10 +471,10 @@
         "addressCopiedExplanation": "Địa chỉ đã được sao chép vào bộ nhớ tạm thời.",
         "messageCopied": "Đã chép thư",
         "messageCopiedExplanation": "The message has been copied to the clipboard.",
-        "send": "GỬI",
-        "receive": "NHẬN",
+        "send": "Gửi",
+        "receive": "Nhận",
         "empty": "Empty",
-        "retrying": "RETRYING",
+        "retrying": "Retrying",
         "yesterday": "Yesterday"
     },
     "accountManagement": {
