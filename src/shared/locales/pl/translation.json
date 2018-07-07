@@ -92,18 +92,14 @@
         "addresses": "Adresy",
         "reattach": "REATTACH",
         "promote": "PROMOWANIE",
-        "retry": "PONÓW",
-        "rebroadcast": "REBROADCAST",
+        "retry": "Retry",
         "pressBackAgain": "Naciśnij przycisk wstecz ponownie, aby zamknąć aplikację",
         "reattached": "Reattach udany",
         "reattachedExplanation": "Wykonano reattach transakcji z hashem {{hash}}",
         "promotingTransaction": "Promowanie transakcji",
         "autopromoting": "Autopromowanie transferu",
         "autopromotingExplanation": "Promowanie transakcji z hashem {{hash}}",
-        "rebroadcasted": "Rebroadcast udany",
-        "rebroadcastedExplanation": "Wykonano rebroadcast transakcji z hashem {{hash}}",
         "rebroadcastError": "Rebroadcast nieudany",
-        "rebroadcastErrorExplanation": "Coś poszło nie tak podczas nadawania Twojego transferu. Proszę spróbować ponownie.",
         "promoted": "Promowanie transakcji pomyślne",
         "promotedExplanation": "Wypromowano transakcję z hashem {{hash}}",
         "autopromotionError": "Błąd autopromowania transakcji",
@@ -253,7 +249,9 @@
         "login": "Zaloguj",
         "selectDifferentNode": "Czy chcesz wybrać inny serwer?",
         "setNode": "Serwer",
-        "cannotConnect": "Nie można połączyć się z serwerem."
+        "cannotConnect": "Nie można połączyć się z serwerem.",
+        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "Ładowanie klucza seed po raz pierwszy.",
@@ -291,16 +289,19 @@
         "printerCheckbox": "Nie będę drukował na publicznej drukarce"
     },
     "receive": {
+        "yourAddress": "Your address",
+        "qrOptions": "QR options",
+        "shareQr": "Share QR code",
         "copyAddress": "Kopiuj adres",
         "addressCopied": "Adres skopiowany",
         "addressCopiedExplanation": "Twój adres został skopiowany do schowka.",
         "generateNewAddress": "Nowy adres",
-        "message": "Wiadomość opcjonalna",
         "removeMessage": "USUŃ WIADOMOŚĆ",
         "noAddresses": "BRAK ADRESÓW",
         "spent": "Adres zużyty",
         "missingPermission": "Wymagany dostęp do systemu plików",
-        "missingPermissionExplanation": "W celu udostępniania kodów QR, wymagany jest dostęp do systemu plików."
+        "missingPermissionExplanation": "W celu udostępniania kodów QR, wymagany jest dostęp do systemu plików.",
+        "tag": "Tag"
     },
     "saveYourSeed": {
         "saveYourSeed": "Zapisywanie klucza seed",
@@ -470,10 +471,10 @@
         "addressCopiedExplanation": "Adres został skopiowany do schowka.",
         "messageCopied": "Wiadomość skopiowana",
         "messageCopiedExplanation": "Wiadomość została skopiowana do schowka.",
-        "send": "WYPŁATA",
-        "receive": "WPŁATA",
+        "send": "Wyślij",
+        "receive": "Odbierz",
         "empty": "Brak",
-        "retrying": "PONAWIANIE",
+        "retrying": "Retrying",
         "yesterday": "Wczoraj"
     },
     "accountManagement": {
