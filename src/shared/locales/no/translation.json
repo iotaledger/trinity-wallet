@@ -92,18 +92,14 @@
         "addresses": "Adresser",
         "reattach": "RE-TILKNYTTE",
         "promote": "PROMOTER",
-        "retry": "FORSØK IGJEN",
-        "rebroadcast": "KRINGKAST PÅ NYTT",
+        "retry": "Retry",
         "pressBackAgain": "Trykk tilbake igjen for å lukke applikasjonen",
         "reattached": "Transaksjonen er re-tilknyttet",
         "reattachedExplanation": "Transaksjonen er re-tilknyttet med hash {{hash}}",
         "promotingTransaction": "Promoterer transaksjonen",
         "autopromoting": "Promoterer transaksjon automatisk",
         "autopromotingExplanation": "Promoterer transaksjon med hash {{hash}}",
-        "rebroadcasted": "Transaksjonen er kringkastet på nytt",
-        "rebroadcastedExplanation": "Kringkaster transaksjonen på nytt med hash {{hash}}",
         "rebroadcastError": "Kunne ikke kringkaste transaksjonen på nytt",
-        "rebroadcastErrorExplanation": "Noe gikk galt under kringkastingen av transaksjonen. Vennligst prøv på nytt.",
         "promoted": "Transaksjonen er promotert",
         "promotedExplanation": "Transaksjonen er promotert med hash {{hash}}",
         "autopromotionError": "Kunne ikke promotere transaksjonen automatisk",
@@ -253,7 +249,9 @@
         "login": "Logg inn",
         "selectDifferentNode": "Vil du forsøke en annen node?",
         "setNode": "Angi Node",
-        "cannotConnect": "Kan ikke koble til IOTA node."
+        "cannotConnect": "Kan ikke koble til IOTA node.",
+        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "Laster hovednøkkel for første gang.",
@@ -291,16 +289,19 @@
         "printerCheckbox": "Jeg vil ikke skrive ut på en offentlig printer"
     },
     "receive": {
+        "yourAddress": "Your address",
+        "qrOptions": "QR options",
+        "shareQr": "Share QR code",
         "copyAddress": "Kopier adresse",
         "addressCopied": "Addresse kopiert",
         "addressCopiedExplanation": "Adressen er kopiert til utklippstavlen.",
         "generateNewAddress": "Ny adresse",
-        "message": "Valgfri melding",
         "removeMessage": "FJERN MELDINGEN",
         "noAddresses": "INGEN ADRESSER",
         "spent": "Brukt",
         "missingPermission": "Trenger tillatelse til filsystemet",
-        "missingPermissionExplanation": "Tilgang til filsystemet er nødvendig for å dele QR-koder."
+        "missingPermissionExplanation": "Tilgang til filsystemet er nødvendig for å dele QR-koder.",
+        "tag": "Etikett"
     },
     "saveYourSeed": {
         "saveYourSeed": "Ta vare på hovednøkkelen",
@@ -470,10 +471,10 @@
         "addressCopiedExplanation": "Adressen har blitt kopiert til utklippstavlen.",
         "messageCopied": "Meldingen er kopiert",
         "messageCopiedExplanation": "Meldingen har blitt kopiert til utklippstavlen.",
-        "send": "SENT",
-        "receive": "MOTTA",
+        "send": "Send",
+        "receive": "Motta",
         "empty": "Empty",
-        "retrying": "RETRYING",
+        "retrying": "Retrying",
         "yesterday": "Yesterday"
     },
     "accountManagement": {
