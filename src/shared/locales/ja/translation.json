@@ -92,7 +92,7 @@
         "addresses": "アドレス",
         "reattach": "再添付",
         "promote": "促進",
-        "retry": "Retry",
+        "retry": "再試行",
         "pressBackAgain": "もう一度タップすると、アプリを閉じます。",
         "reattached": "取引は正常に再添付されました。",
         "reattachedExplanation": "ハッシュ値{{hash}}の取引が再添付されました。",
@@ -250,8 +250,8 @@
         "selectDifferentNode": "別のノードを選択しますか？",
         "setNode": "ノードの設定",
         "cannotConnect": "ノードに接続できません。",
-        "whyBiometricDisabled": "Why is biometric authentication disabled?",
-        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabled": "生体認証が無効になっている理由。",
+        "whyBiometricDisabledExplanation": "生体認証によるログインはセキュリティ上、最初のアプリの読み込み時には無効になっています。Trinityを使用中、非アクティブが続くとログアウトします。その時には、生体認証を使ってログインすることができます。"
     },
     "loading": {
         "loadingFirstTime": "初めてのシードを読み込んでいます。",
@@ -289,7 +289,7 @@
         "printerCheckbox": "私は公共のプリンタで印刷しません。"
     },
     "receive": {
-        "yourAddress": "Your address",
+        "yourAddress": "あなたのアドレス",
         "qrOptions": "QR options",
         "shareQr": "Share QR code",
         "copyAddress": "アドレスをコピー",
@@ -474,7 +474,7 @@
         "send": "送金",
         "receive": "受取",
         "empty": "空",
-        "retrying": "Retrying",
+        "retrying": "再試行中",
         "yesterday": "昨日"
     },
     "accountManagement": {
