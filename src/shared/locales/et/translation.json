@@ -92,18 +92,14 @@
         "addresses": "Aadressid",
         "reattach": "KINNITA UUESTI",
         "promote": "EDENDA",
-        "retry": "RETRY",
-        "rebroadcast": "KUULUTA UUESTI",
+        "retry": "Retry",
         "pressBackAgain": "Rakenduse sulgemiseks vajutage uuesti tagasi nuppu",
         "reattached": "Successfully reattached transaction",
         "reattachedExplanation": "Reattached transaction with hash {{hash}}",
         "promotingTransaction": "Promoting transaction",
         "autopromoting": "Tehingu automaatne edendamine",
         "autopromotingExplanation": "Edendan tehingut räsiga {{hash}}",
-        "rebroadcasted": "Successfully rebroadcasted transaction",
-        "rebroadcastedExplanation": "Rebroadcasted transaction with hash {{hash}}",
         "rebroadcastError": "Could not rebroadcast transaction",
-        "rebroadcastErrorExplanation": "Something went wrong while rebroadcasting your transaction. Please try again.",
         "promoted": "Successfully promoted transaction",
         "promotedExplanation": "Promoted transaction with hash {{hash}}",
         "autopromotionError": "Could not auto-promote transaction",
@@ -253,7 +249,9 @@
         "login": "Log In",
         "selectDifferentNode": "Kas te tahate valida teise sõlme?",
         "setNode": "Set Node",
-        "cannotConnect": "Ei saa IOTA sõlmega ühendust."
+        "cannotConnect": "Ei saa IOTA sõlmega ühendust.",
+        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "Laadin esimest korda seemet.",
@@ -291,16 +289,19 @@
         "printerCheckbox": "I will not print on a public printer"
     },
     "receive": {
+        "yourAddress": "Your address",
+        "qrOptions": "QR options",
+        "shareQr": "Share QR code",
         "copyAddress": "Copy address",
         "addressCopied": "Aadress kopeeritud",
         "addressCopiedExplanation": "Teie aadress on kopeeritud.",
         "generateNewAddress": "New Address",
-        "message": "Valikuline sõnum",
         "removeMessage": "EEMALDA SÕNUM",
         "noAddresses": "AADRESSE POLE",
         "spent": "Kulutatud",
         "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
+        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes.",
+        "tag": "Silt"
     },
     "saveYourSeed": {
         "saveYourSeed": "Back up your seed",
@@ -470,10 +471,10 @@
         "addressCopiedExplanation": "Aadress on kopeeritud.",
         "messageCopied": "Message copied",
         "messageCopiedExplanation": "The message has been copied to the clipboard.",
-        "send": "SAADA",
-        "receive": "LAEKUS",
+        "send": "Saada",
+        "receive": "Võta vastu",
         "empty": "Empty",
-        "retrying": "RETRYING",
+        "retrying": "Retrying",
         "yesterday": "Yesterday"
     },
     "accountManagement": {
