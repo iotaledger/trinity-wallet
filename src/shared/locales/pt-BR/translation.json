@@ -37,11 +37,14 @@
         "apply": "Aplicar",
         "save": "Salvar",
         "close": "Fechar",
+        "export": "Exportar",
+        "import": "Importar",
         "continue": "Continuar",
         "enable": "Ativar",
         "disable": "Desativar",
         "enabled": "Ativado",
         "disabled": "Desativado",
+        "enterPassword": "Digite a senha",
         "paperWallet": "Imprimir Cópia",
         "addToPasswordManager": "Adicionar ao Gerenciador de Senhas",
         "shareSeed": "Compartilhar a Seed",
@@ -89,18 +92,14 @@
         "addresses": "Endereços",
         "reattach": "REANEXAR",
         "promote": "PROMOVER",
-        "retry": "TENTAR NOVAMENTE",
-        "rebroadcast": "RETRANSMITIR",
+        "retry": "Retry",
         "pressBackAgain": "Pressione o botão \"voltar\" novamente para fechar o aplicativo",
         "reattached": "Reanexo com sucesso",
         "reattachedExplanation": "Reanexando a transação com hash {{hash}}",
         "promotingTransaction": "Promovendo a transferência",
         "autopromoting": "Promovendo transferência automaticamente",
         "autopromotingExplanation": "Promovendo transação com hash {{hash}}",
-        "rebroadcasted": "Transação reenviada com sucesso",
-        "rebroadcastedExplanation": "A transação foi reenviada com hash {{hash}}",
         "rebroadcastError": "Não foi possível reenviar transação",
-        "rebroadcastErrorExplanation": "Algo deu errado ao criar sua transferência. Por favor, tente novamente.",
         "promoted": "Transação promovida com sucesso",
         "promotedExplanation": "Promoveu transação com hash {{hash}}",
         "autopromotionError": "Não foi possível promover transação automaticamente",
@@ -152,7 +151,7 @@
         "ifYourBalanceIsNotCorrect": "Se o seu saldo não estiver correto, é provável que você esteja usando um servidor pré-snapshot.",
         "headToAdvancedSettingsForTransition": "Vá até as Configurações Avançadas e realize uma Transição de Snapshot.",
         "usingTrinityWalletWithKeePass": "Usando a carteira Trinity com Keepass2Android",
-        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
+        "signedTrytesBroadcastErrorExplanation": "Houve um erro ao processar sua transação."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém caracteres inválidos",
@@ -162,6 +161,8 @@
         "nameInUse": "Nome da conta já está sendo utilizado",
         "nameInUseExplanation": "Por favor, use um nome de conta exclusivo para a sua Seed.",
         "enterAccountName": "Informe o nome de conta.",
+        "accountNameTooLong": "Nome de conta muito longa",
+        "accountNameTooLongExplanation": "Comprimento máximo do nome de conta é {{maxLength}} caracteres.",
         "accountName": "Nome da Conta",
         "noNickname": "Nome de conta não informado",
         "noNicknameExplanation": "Por favor, insira um nome de conta para a sua Seed.",
@@ -224,7 +225,7 @@
         "invalidCharacters": "A Seed contém caracteres inválidos",
         "invalidCharactersExplanation": "Seeds só podem conter letras maiúsculas A-Z e o número 9. A sua Seed tem caracteres inválidos. Por favor, tente novamente.",
         "seedTooShort": "A Seed é muito curta",
-        "seedTooLong": "Seed is too long",
+        "seedTooLong": "A Seed é muito longa",
         "seedTooShortExplanation": "Seeds devem ter {{maxLength}} caracteres. Neste momento a sua Seed tem {{currentLength}} caracteres. Por favor, tente novamente.",
         "seedExplanation": "Seeds devem ter {{maxLength}} caracteres, letras maíusculas (A-Z) e o número 9. Você não pode usar Seeds com mais de {{maxLength}} caracteres.",
         "neverShare": "NUNCA REVELE A SUA SEED PARA NINGUÉM"
@@ -248,7 +249,9 @@
         "login": "Iniciar Sessão",
         "selectDifferentNode": "Você quer selecionar um servidor diferente?",
         "setNode": "Selecionar Servidor",
-        "cannotConnect": "Não é possível conectar ao servidor IOTA."
+        "cannotConnect": "Não é possível conectar ao servidor IOTA.",
+        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "Carregando a Seed pela primeira vez.",
@@ -286,16 +289,19 @@
         "printerCheckbox": "Eu não vou imprimir em uma impressora publica"
     },
     "receive": {
+        "yourAddress": "Your address",
+        "qrOptions": "QR options",
+        "shareQr": "Share QR code",
         "copyAddress": "Copiar endereço",
         "addressCopied": "Endereço copiado",
         "addressCopiedExplanation": "O seu endereço foi copiado para a área de transferência.",
         "generateNewAddress": "Novo Endereço",
-        "message": "Mensagem opcional",
         "removeMessage": "REMOVER MENSAGEM",
         "noAddresses": "NÃO EXISTEM ENDEREÇOS",
         "spent": "Gasto",
-        "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes."
+        "missingPermission": "Permissões do sistema de arquivo necessário",
+        "missingPermissionExplanation": "Acesso ao sistema de arquivo é necessário para compartilhar códigos QR.",
+        "tag": "Etiqueta"
     },
     "saveYourSeed": {
         "saveYourSeed": "Faça o backup de sua Seed",
@@ -351,7 +357,7 @@
         "totalTime": "Tempo total",
         "addressPasteDetected": "Colação de endereço detectado",
         "addressPasteExplanation": "Parece que você colou um endereço. Certifique-se de que o endereço coincide com o qual você quer enviar.",
-        "invalid": "INVALID"
+        "invalid": "INVÁLIDO"
     },
     "setPassword": {
         "choosePassword": "Escolher uma nova senha",
@@ -465,11 +471,11 @@
         "addressCopiedExplanation": "O seu endereço foi copiado para a área de transferência.",
         "messageCopied": "Mensagem copiada",
         "messageCopiedExplanation": "A mensagem foi copiada para a área de transferência.",
-        "send": "ENVIAR",
-        "receive": "RECEBER",
-        "empty": "Empty",
-        "retrying": "RETRYING",
-        "yesterday": "Yesterday"
+        "send": "Enviar",
+        "receive": "Receber",
+        "empty": "Vazio",
+        "retrying": "Retrying",
+        "yesterday": "Ontem"
     },
     "accountManagement": {
         "viewSeed": "Ver Seed",
@@ -483,6 +489,7 @@
         "customNodeCouldNotBeAdded": "Servidor personalizado não pôde ser adicionado",
         "customNodeAddedSuccessfully": "O servidor personalizado foi adicionado com sucesso.",
         "customNode": "Servidor personalizado",
+        "removeCustomNode": "Remover servidor personalizado",
         "invalidNodeResponse": "O servidor retornou uma resposta inválida",
         "httpNodeError": "A Trinity suporta somente servidores https.",
         "add": "Adicionar",
@@ -509,7 +516,7 @@
     },
     "themeCustomisation": {
         "theme": "Tema",
-        "mockup": "Mockup"
+        "mockup": "Modelo"
     },
     "currencySelection": {
         "currency": "Moeda"
@@ -607,9 +614,25 @@
         "code": "Código",
         "twoFaToken": "Token 2FA"
     },
+    "seedVault": {
+        "exportSeedVault": "Exportar SeedVault",
+        "seedVaultExplanation": "Um SeedVault é um arquivo criptografado para armazenar sua Seed com segurança. A Seed é criptografada por trás de uma senha e não pode ser acessada sem a senha. É recomendável que você armazene o arquivo em um Gerenciador de senhas como Keepass.",
+        "seedVaultWarning": "Certifique-se de fazer backup do arquivo em vários locais (por exemplo, disco rígido, nuvem, USB). Se você perde esse arquivo e não armazenou sua semente em outro lugar, você vai perder seus IOTAs.",
+        "exportFail": "SeedVault exportação falhou",
+        "exportFailExplanation": "Houve um problema ao exportar o SeedVault. Por favor, certifique-se de que você tem as permissões apropriadas e espaço livre suficiente.",
+        "exportSuccess": "SeedVault exportada",
+        "exportSuccessExplanation": "Seu arquivo criptografado da Seed foi exportado com êxito.",
+        "importSeedVault": "Importar SeedVault",
+        "dropSeedVaultHere": "Arraste a SeedVault aqui",
+        "enterPasswordExplanation": "Digite sua senha para abrir o SeedVault",
+        "noSeedFound": "SeedVault não contém uma Seed válida",
+        "noSeedFoundExplanation": "O SeedVault está vazio ou contém uma Seed com um formato inválido.",
+        "seedFileError": "Falha ao abrir o SeedVault",
+        "seedFileErrorExplanation": "Houve um problema ao abrir o SeedVault. Se você selecionou o arquivo correto então o mesmo pode estar corrompido."
+    },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change (24h)",
+        "change": "Mudança (24h)",
         "volume": "Volume (24h)",
         "currentValue": "Valor atual",
         "error": "Erro ao buscar dados da tabela"
