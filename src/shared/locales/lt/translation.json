@@ -251,7 +251,7 @@
         "setNode": "Nustatyti serverį",
         "cannotConnect": "Nepavyksta prisijungti prie IOTA serverio.",
         "whyBiometricDisabled": "Kodėl biometrinis autentifikavimas išjungtas?",
-        "whyBiometricDisabledExplanation": "Pirmą kartą užkraunant programėlę, biometrinis prisijungimas yra išjungtas dėl jūsų saugumo. Trinity jus automatiškai atjungs jei tapsite neaktyvus. Tada vėl galėsite prisijungti su biometriniu prisijungimu."
+        "whyBiometricDisabledExplanation": "Pirmą kartą užkraunant programėlę, biometrinis prisijungimas yra išjungtas dėl jūsų saugumo. Trinity jus automatiškai atjungs jei tapsite neaktyviu. Tada vėl galėsite prisijungti su biometriniu prisijungimu."
     },
     "loading": {
         "loadingFirstTime": "Užraktas užkraunamas pirmą kartą.",
@@ -617,14 +617,14 @@
     "seedVault": {
         "exportSeedVault": "Eksportuoti SeedVault",
         "seedVaultExplanation": "SeedVault yra užšifruotas failas skirtas saugiai laikyti jūsų užraktą. Užraktas yra užšifruotas slaptažodžiu ir be slaptažodžio nepasiekiamas. Rekomenduojama failą laikyti slaptažodžių tvarkyklėje, pavyzdžiui, Keepass.",
-        "seedVaultWarning": "Make sure you back up the file in multiple locations (e.g. hard drive, cloud, USB). If you lose this file and have not stored your seed elsewhere, you will lose your IOTA.",
-        "exportFail": "SeedVault export failed",
-        "exportFailExplanation": "There was an problem exporting the SeedVault. Please ensure you have the appropriate permissions and enough free space.",
-        "exportSuccess": "SeedVault exported",
-        "exportSuccessExplanation": "Your encrypted seed file was exported successfully.",
-        "importSeedVault": "Import SeedVault",
-        "dropSeedVaultHere": "Drop SeedVault here",
-        "enterPasswordExplanation": "Enter your password to open the SeedVault",
+        "seedVaultWarning": "Įsitikinkite, kad išsisaugojote failą keliose vietose (kietajame diske, \"debesyje\", USB). Jei prarasite šį failą, o savo užrakto nebūsite išsisaugoję kitoje vietoje, jūs prarasite savo IOTA.",
+        "exportFail": "SeedVault eksportavimo klaida",
+        "exportFailExplanation": "Įvyko klaida eksportuojant SeedVault. Įsitikinkite, kad turite tinkamus leidimus ir pakankamai laisvos vietos.",
+        "exportSuccess": "SeedVault eksportuotas",
+        "exportSuccessExplanation": "Jūsų užšifruotas užrakto failas eksportuotas sėkmingai.",
+        "importSeedVault": "Importuoti SeedVault",
+        "dropSeedVaultHere": "Įkelti SeedVault čia",
+        "enterPasswordExplanation": "Įveskite slaptažodį norėdami atidaryti SeedVault",
         "noSeedFound": "SeedVault does not contain a valid seed",
         "noSeedFoundExplanation": "The SeedVault is either empty or contains a seed in an invalid format.",
         "seedFileError": "Failed to open SeedVault",
