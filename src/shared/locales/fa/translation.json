@@ -382,7 +382,7 @@
         "modesExplanation": "اگر واقعا حرفه ای هستید این حالت را فعال کنید اگر شما یک کاربر کم تجربه باشید این حالت پیچیده است. ممکن است در این حالت گمراه شوید."
     },
     "settings": {
-        "transferSending": "Transfer sending",
+        "transferSending": "انتقال فرستاده شد",
         "transferSendingExplanation": "لطفا منتظر بمانید تا انتقال شما فرستاده شود.",
         "generatingAddress": "تولید آدرس دریافت",
         "generatingAddressExplanation": "لطفا صبر کنید تا آدرس شما تولید شود.",
@@ -408,7 +408,7 @@
         "cannotPerformAction": "قادر به انجام عمل نیست",
         "cannotPerformActionExplanation": "برای بازنشانی کیف پول به تنظیمات پیشرفته بروید.",
         "poorConnection": "اتصال ضعیف",
-        "poorConnectionExplanation": "Failed to change currency due to a poor connection.",
+        "poorConnectionExplanation": "با توجه به اتصال ضعیف، نرخ ارز تغییر نکرد.",
         "hide": "پنهان کردن",
         "hideOthers": "پنهان کردن دیگران",
         "show": "نمایش",
@@ -421,9 +421,9 @@
         "selectAll": "انتخاب همه",
         "securitySettings": "تنظیمات امنیتی",
         "fingerprint": "احراز هویت بیومتریک",
-        "couldNotFetchRates": "Could not fetch rate",
-        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rate for {{currency}}.",
-        "fetchedConversionRates": "Fetched conversion rate",
+        "couldNotFetchRates": "نمیتوان نرخ را دریافت کرد",
+        "couldNotFetchRatesExplanation": "زمانی که نرخ تبدیل برای {{currency}} دریافت شد، اشتباهی رخ داد.",
+        "fetchedConversionRates": "نرخ تبدیل دریافت",
         "fetchedConversionRatesExplanation": "آخرین نرخ تبدیل برای {{currency}} موفقیت آمیز بود.",
         "undo": "برگردان",
         "redo": "انجام دوباره",
@@ -431,7 +431,7 @@
         "lockScreenTimeout": "زمان قفل کردن صفحه (دقیقه)",
         "autoNodeSwitching": "وقتی Node در دسترس نباشد، Node را به صورت خودکار انتخاب بکن",
         "nodeChangeSuccess": "Node با موفقیت تغییر کرده است",
-        "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
+        "nodeChangeSuccessNoRemotePow": "Node به {{node}} تغییر یافت. این Node از اثبات کار از راه دور پشتیبانی نمی کند.",
         "nodeChangeSuccessExplanation": "Node به {{node}} تغییر یافت.",
         "nodeChangeError": "خطا در تغییر Node",
         "nodeChangeErrorExplanation": "خطایی در تغییر Node به وجود آمد. لطفا دوباره تلاش کنید."
@@ -459,16 +459,16 @@
     },
     "writeSeedDown": {
         "yourSeedIs": "سید شما {{maxSeedLength}} کاراکتر از چپ به راست قابل خواندن میباشد.",
-        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>",
-        "scrollToBottom": "Scroll to the bottom"
+        "writeDownYourSeed": "<0>سید و کد اعتبارسنجی خود را بنویسید و </0><1>بررسی سه گانه</1><2>آنها درست هستند</2>",
+        "scrollToBottom": "به پایین حرکت کنید"
     },
     "history": {
-        "bundleHashCopied": "Bundle hash copied",
+        "bundleHashCopied": "بسته نرم افزاری هش کپی شد",
         "noTransactionsFound": "هیچ تراکنشی یافت نشد",
-        "hideZeroBalance": "Hide zero balance",
-        "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
+        "hideZeroBalance": "پنهان کردن موجودی صفر",
+        "bundleHashCopiedExplanation": "هش بسته نرم افزاری به کلیپ بورد کپی شد.",
         "addressCopied": "آدرس کپی شد",
-        "addressCopiedExplanation": "The address has been copied to the clipboard.",
+        "addressCopiedExplanation": "آدرس در کلیپ بورد کپی شد.",
         "messageCopied": "پیام کپی شد",
         "messageCopiedExplanation": "پیام به کلیپ بورد کپی شد.",
         "send": "ارسال",
@@ -537,7 +537,7 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "چرا من نمی توانم موجودی کامل خود را انتقال بدهم؟",
-        "spentAddressExplanation": "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
+        "spentAddressExplanation": "شما یک یا چند آدرس استفاده شده دارید. استفاده مجدد از آدرس در آیوتا خطرناک است، بنابراین این کیف پول اجازه نمی دهد که از یک آدرس بیش از یک بار ارسال کنید.",
         "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
     },
     "deleteAccount": {
