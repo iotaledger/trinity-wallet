@@ -538,18 +538,18 @@
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "چرا من نمی توانم موجودی کامل خود را انتقال بدهم؟",
         "spentAddressExplanation": "شما یک یا چند آدرس استفاده شده دارید. استفاده مجدد از آدرس در آیوتا خطرناک است، بنابراین این کیف پول اجازه نمی دهد که از یک آدرس بیش از یک بار ارسال کنید.",
-        "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
+        "discordInformation": "برای پیدا کردن راه حل برای مسئله خود، به کانال #help در برنامه Discord مراجعه کنید."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Are you sure you want to delete</1><2></2><3>{{accountName}}?</3>",
-        "yourSeedWillBeRemoved": "Your seed and transaction history will be removed.",
-        "thisAction": "This action cannot be undone.",
-        "enterPassword": "Enter your password to delete this account."
+        "areYouSure": "<0></0><1>آیا مطمئن هستید که میخواهید حذف کنید</1><2></2><3>{{accountName}}؟</3>",
+        "yourSeedWillBeRemoved": "سید شما و تاریخچه تراکنش های شما حذف خواهد شد.",
+        "thisAction": "این عمل غیر قابل بازگشت است.",
+        "enterPassword": "گذرواژه خود را برای حذف این حساب وارد کنید."
     },
     "manualSync": {
-        "outOfSync": "Does your transaction history look like it may be out of sync?",
-        "pressToSync": "Press the button below to sync your account.",
-        "thisMayTake": "This may take a while. You may notice your device slowing down.",
+        "outOfSync": "آیا تاریخچه تراکنش شما ممکن است خارج از همگام سازی باشد؟",
+        "pressToSync": "دکمه زیر را برای همگام سازی حساب خود فشار دهید.",
+        "thisMayTake": "این ممکن است مدتی طول بکشد. و باعث کندتر شدن دستگاه شما شود.",
         "doNotClose": "Please note, minimising the app will cancel the sync.",
         "syncAccount": "همگام سازی حساب",
         "syncingYourAccount": "همگام سازی حساب شما."
@@ -567,7 +567,7 @@
     "saveSeedConfirmation": {
         "didSaveSeed": "آیا از سید خود پشتیبانی گرفتید؟",
         "alreadyHave": "من از سید خود پشتیبانی گرفتم",
-        "reenterSeed": "At the next step you will be asked to re-enter your seed.",
+        "reenterSeed": "در مرحله بعد، از شما خواسته می شود تا سید خود را دوباره وارد کنید.",
         "reenterSeedWarning": "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
         "pleaseConfirm": "Please confirm you have securely stored your seed."
     },
