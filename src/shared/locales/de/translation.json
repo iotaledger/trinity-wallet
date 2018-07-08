@@ -250,8 +250,8 @@
         "selectDifferentNode": "Möchtest du einen anderen Node auswählen?",
         "setNode": "Node wählen",
         "cannotConnect": "Verbindung zum Node nicht möglich.",
-        "whyBiometricDisabled": "Why is biometric authentication disabled?",
-        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabled": "Warum ist die biometrische Authentifizierung deaktiviert?",
+        "whyBiometricDisabledExplanation": "Die biometrische Anmeldung ist für den ersten Start zu deiner eigenen Sicherheit deaktiviert. Während der Nutzung von Trinity wirst du bei Inaktivität ausgeloggt. Du kannst dich dann erneut mit biometrischer Authentifizierung einloggen."
     },
     "loading": {
         "loadingFirstTime": "Lade den Seed zum ersten Mal.",
@@ -289,9 +289,9 @@
         "printerCheckbox": "Ich werde nicht auf einem öffentlich zugänglichen Drucker ausdrucken"
     },
     "receive": {
-        "yourAddress": "Your address",
-        "qrOptions": "QR options",
-        "shareQr": "Share QR code",
+        "yourAddress": "Deine Adresse",
+        "qrOptions": "QR Optionen",
+        "shareQr": "QR code teilen",
         "copyAddress": "Adresse kopieren",
         "addressCopied": "Adresse kopiert",
         "addressCopiedExplanation": "Deine Adresse wurde in die Zwischenablage kopiert.",
@@ -474,7 +474,7 @@
         "send": "Senden",
         "receive": "Empfangen",
         "empty": "Keine",
-        "retrying": "Retrying",
+        "retrying": "Erneuter Versuch",
         "yesterday": "Gestern"
     },
     "accountManagement": {
