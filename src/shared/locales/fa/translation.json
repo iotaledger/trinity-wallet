@@ -132,14 +132,14 @@
         "nodeDuplicatedExplanation": "The custom node is already listed.",
         "nodeAutoChanged": "Auto-switched node",
         "nodeAutoChangedExplanation": "Switched to new node {{- nodeAddress}} as selected node is offline.",
-        "fingerprintOnSend": "Touch fingerprint reader to authorise the transfer",
-        "masterKey": "Your IOTA seed is the master key to your funds.",
-        "seedThief": "If someone else has your seed they can steal your IOTA.",
+        "fingerprintOnSend": "اثر انگشت خود را برای تایید انتقال به دستگاه لمس کنید",
+        "masterKey": "سید آیوتا شما کلید اصلی برای وجوه شما است.",
+        "seedThief": "اگر فرد دیگری سید شما را داشته باشد، می توانید آیوتای شما را به سرقت ببرد.",
         "googlePlayServicesNotAvailable": "خدمات گوگل پلی در دسترس نیست",
-        "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available.",
+        "couldNotVerifyDeviceIntegrity": "نمی توان یکپارچگی دستگاه را تایید کرد زیرا سرویس های Google Play در دسترس نیستند.",
         "clear": "پاک کردن",
         "noNetworkConnection": "اتصال شبکه اي وجود ندارد",
-        "noNetworkConnectionExplanation": "Your internet connection appears to be offline.",
+        "noNetworkConnectionExplanation": "به نظر می رسد که شما به اینترنت متصل نیستید و آفلاین هستید.",
         "spentAddressExplanation": "WARNING: Funds on spent addresses",
         "discordInformation": "Sending from the same address more than once is dangerous. Please head to the #help channel on Discord to find out what you can do.",
         "androidInsecureClipboardWarning": "Android does not provide a secure clipboard.",
@@ -497,15 +497,15 @@
         "nodeFieldEmptyExplanation": "Please enter a custom node."
     },
     "addNewAccount": {
-        "useExistingSeed": "Use existing seed",
+        "useExistingSeed": "استفاده از سیدهای موجود",
         "createNewSeed": "ساختن سید جدید"
     },
     "advancedSettings": {
         "selectNode": "انتخاب Node",
         "addCustomNode": "Add custom node",
-        "manualSync": "Manual sync",
+        "manualSync": "همگام سازی دستی",
         "snapshotTransition": "Snapshot transition",
-        "pow": "Proof of Work",
+        "pow": "اثبات کار",
         "autoPromotion": "Auto-promotion",
         "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
         "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
@@ -616,7 +616,7 @@
     },
     "seedVault": {
         "exportSeedVault": "استخراج سید Vault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password. It is recommended that you store the file in a password manager like Keepass.",
+        "seedVaultExplanation": "سید Vault یک فایل رمزگذاری شده برای ذخیره سازی ایمن سید ها است. سید شما رمزگذاری شده است و نمی توانید بدون گذرواژه آن را ببینید. توصیه می شود که برای ذخیره فایل ها از مدیریت گذرواژه مانند Keepass استفاده کنید.",
         "seedVaultWarning": "Make sure you back up the file in multiple locations (e.g. hard drive, cloud, USB). If you lose this file and have not stored your seed elsewhere, you will lose your IOTA.",
         "exportFail": "SeedVault export failed",
         "exportFailExplanation": "There was an problem exporting the SeedVault. Please ensure you have the appropriate permissions and enough free space.",
