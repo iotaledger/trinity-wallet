@@ -13,8 +13,8 @@
         "transferSentMessage": "انتقال شما به Tangle فرستاده شده است.",
         "messageSent": "پیام فرستاده شد",
         "messageSentMessage": "پیام شما به Tangle فرستاده شده است.",
-        "keyReuse": "Sending to spent address",
-        "keyReuseError": "You cannot send to an address that has already been spent from.",
+        "keyReuse": "ارسال به آدرس از قبل ساخته شده",
+        "keyReuseError": "شما نمیتوانید به آدرسی که قبلا از آن قبلا ساخته شده است ارسال کنید.",
         "invalidResponse": "خطای Node",
         "invalidResponseExplanation": "Node یک خطا را دریافت کرد. سعی کنید Node را تغییر دهید.",
         "invalidResponsePollingExplanation": "Node در حین نظرسنجی، یک خطا را دریافت کرد. سعی کنید Node را تغییر دهید.",
@@ -298,7 +298,7 @@
         "generateNewAddress": "آدرس جدید",
         "removeMessage": "حذف پیام",
         "noAddresses": "بدون آدرس",
-        "spent": "Spent",
+        "spent": "از قبل ساخته شده",
         "missingPermission": "نیاز به مجوز سیستم فایل است",
         "missingPermissionExplanation": "برای به اشتراک گذاشتن کدهای QR، دسترسی به سیستم فایل لازم است.",
         "tag": "برچسب"
@@ -682,7 +682,7 @@
         "attaching": "Attaching addresses to Tangle."
     },
     "deepLink": {
-        "autofill": "Autofill success",
+        "autofill": "موفقیت در تکمبل خودکار",
         "autofillExplanation": "Transaction data autofilled from link."
     },
     "updates": {
