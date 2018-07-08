@@ -293,7 +293,7 @@
         "qrOptions": "QR options",
         "shareQr": "Share QR code",
         "copyAddress": "کپی کردن آدرس",
-        "addressCopied": "Address copied",
+        "addressCopied": "آدرس کپی شد",
         "addressCopiedExplanation": "Your address has been copied to the clipboard.",
         "generateNewAddress": "New Address",
         "removeMessage": "REMOVE MESSAGE",
@@ -353,15 +353,15 @@
         "invalidAmountExplanation": "Please enter a valid transaction amount. It may be helpful to view the IOTA unit explanation at the bottom of this page.",
         "maximumSelected": "MAXIMUM amount selected",
         "iotaUnits": "IOTA units explained",
-        "sendMax": "SEND MAX",
-        "totalTime": "Total time",
+        "sendMax": "ارسال حداکثر",
+        "totalTime": "کل زمان",
         "addressPasteDetected": "Address paste detected",
         "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to.",
-        "invalid": "INVALID"
+        "invalid": "نامعتبر"
     },
     "setPassword": {
-        "choosePassword": "Choose a new password",
-        "passwordTooShort": "Password is too short",
+        "choosePassword": "یک گذرواژه جدید انتخاب کنید",
+        "passwordTooShort": "گذرواژه خیلی کوتاه است",
         "passwordTooShortExplanation": "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
         "passwordMismatch": "گذرواژه‌ ها یکسان نیستند",
         "passwordMismatchExplanation": "The passwords you have entered do not match. Please try again.",
@@ -377,7 +377,7 @@
     },
     "modeSelection": {
         "expert": "Expert",
-        "standard": "Standard",
+        "standard": "استاندارد",
         "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
         "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
@@ -386,8 +386,8 @@
         "transferSendingExplanation": "Please wait until your transfer has been sent.",
         "generatingAddress": "Generating receive address",
         "generatingAddressExplanation": "Please wait until your address has been generated.",
-        "mode": "Mode",
-        "theme": "Theme",
+        "mode": "حالت",
+        "theme": "پوسته",
         "currency": "Currency",
         "cannotChangeNode": "Cannot change node",
         "cannotChangeNodeWhileSending": "Cannot change node while sending.",
@@ -397,7 +397,7 @@
         "twoFA": "Two-factor authentication",
         "changePassword": "Change password",
         "advanced": "Advanced settings",
-        "logout": "Log out",
+        "logout": "خروج",
         "reset": "Reset wallet",
         "syncingComplete": "Syncing complete",
         "syncingCompleteExplanation": "Your account has synced successfully.",
@@ -409,16 +409,16 @@
         "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
         "poorConnection": "Poor connection",
         "poorConnectionExplanation": "Failed to change currency due to a poor connection.",
-        "hide": "Hide",
-        "hideOthers": "Hide Others",
-        "show": "Show",
-        "showAll": "Show All",
-        "quit": "Quit",
-        "edit": "Edit",
-        "cut": "Cut",
-        "copy": "Copy",
-        "paste": "Paste",
-        "selectAll": "Select All",
+        "hide": "پنهان کردن",
+        "hideOthers": "پنهان کردن دیگران",
+        "show": "نمایش",
+        "showAll": "نمایش همه",
+        "quit": "خروج",
+        "edit": "ویرایش",
+        "cut": "برش",
+        "copy": "کپی",
+        "paste": "جای‌گذاری",
+        "selectAll": "انتخاب همه",
         "securitySettings": "Security settings",
         "fingerprint": "Biometric authentication",
         "couldNotFetchRates": "Could not fetch rate",
@@ -467,22 +467,22 @@
         "noTransactionsFound": "No transactions found",
         "hideZeroBalance": "Hide zero balance",
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
-        "addressCopied": "Address copied",
+        "addressCopied": "آدرس کپی شد",
         "addressCopiedExplanation": "The address has been copied to the clipboard.",
         "messageCopied": "Message copied",
         "messageCopiedExplanation": "The message has been copied to the clipboard.",
         "send": "ارسال",
         "receive": "دریافت",
-        "empty": "Empty",
-        "retrying": "Retrying",
-        "yesterday": "Yesterday"
+        "empty": "خالی",
+        "retrying": "درحال تلاش دوباره",
+        "yesterday": "دیروز"
     },
     "accountManagement": {
         "viewSeed": "View seed",
-        "viewAddresses": "View addresses",
+        "viewAddresses": "مشاهده آدرس",
         "editAccountName": "Edit account name",
-        "deleteAccount": "Delete account",
-        "addNewAccount": "Add new account"
+        "deleteAccount": "حذف حساب",
+        "addNewAccount": "اضافه کردن حساب جدید"
     },
     "addCustomNode": {
         "customNodeAdded": "Custom node added",
@@ -492,16 +492,16 @@
         "removeCustomNode": "Remove custom node",
         "invalidNodeResponse": "The node returned an invalid response",
         "httpNodeError": "Trinity Mobile only supports https nodes.",
-        "add": "Add",
-        "nodeFieldEmpty": "Text field is empty",
+        "add": "اضافه کردن",
+        "nodeFieldEmpty": "فیلد متن خالی است",
         "nodeFieldEmptyExplanation": "Please enter a custom node."
     },
     "addNewAccount": {
         "useExistingSeed": "Use existing seed",
-        "createNewSeed": "Create new seed"
+        "createNewSeed": "ساختن سید جدید"
     },
     "advancedSettings": {
-        "selectNode": "Select node",
+        "selectNode": "انتخاب Node",
         "addCustomNode": "Add custom node",
         "manualSync": "Manual sync",
         "snapshotTransition": "Snapshot transition",
@@ -511,11 +511,11 @@
         "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
     },
     "advancedThemeCustomisation": {
-        "background": "Background",
+        "background": "پس زمینه",
         "frame": "Frame"
     },
     "themeCustomisation": {
-        "theme": "Theme",
+        "theme": "پوسته",
         "mockup": "Mockup"
     },
     "currencySelection": {
