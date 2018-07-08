@@ -2,10 +2,17 @@ import map from 'lodash/map';
 import noop from 'lodash/noop';
 import findLastIndex from 'lodash/findLastIndex';
 import reduce from 'lodash/reduce';
+import { iota } from '../libs/iota';
 import { updateAddresses, updateAccountAfterTransition } from '../actions/accounts';
 import { generateAlert, generateTransitionErrorAlert } from '../actions/alerts';
 import { setActiveStepIndex, startTrackingProgress, reset as resetProgress } from '../actions/progress';
-import { accumulateBalance, attachAndFormatAddress, getNewAddress, syncAddresses } from '../libs/iota/addresses';
+import {
+    getNewAddress,
+    syncAddresses,
+    getLatestAddress,
+    accumulateBalance,
+    attachAndFormatAddress,
+} from '../libs/iota/addresses';
 import i18next from '../i18next';
 import { syncAccountDuringSnapshotTransition } from '../libs/iota/accounts';
 import { getBalancesAsync } from '../libs/iota/extendedApi';
@@ -51,6 +58,11 @@ export const generateNewAddressSuccess = (payload) => ({
 
 export const generateNewAddressError = () => ({
     type: ActionTypes.GENERATE_NEW_ADDRESS_ERROR,
+});
+
+export const setReceiveAddress = (payload) => ({
+    type: ActionTypes.SET_RECEIVE_ADDRESS,
+    payload,
 });
 
 export const setAccountName = (payload) => ({
@@ -144,8 +156,9 @@ export const generateNewAddress = (seed, accountName, existingAccountData, genFn
         dispatch(generateNewAddressRequest());
         return syncAddresses(seed, existingAccountData.addresses, genFn, true)
             .then((latestAddressData) => {
+                const receiveAddress = iota.utils.addChecksum(getLatestAddress(latestAddressData));
                 dispatch(updateAddresses(accountName, latestAddressData));
-                dispatch(generateNewAddressSuccess());
+                dispatch(generateNewAddressSuccess(receiveAddress));
             })
             .catch(() => dispatch(generateNewAddressError()));
     };
