@@ -251,7 +251,7 @@
         "setNode": "Seleziona nodo",
         "cannotConnect": "Impossibile connettersi al nodo IOTA.",
         "whyBiometricDisabled": "Perché è disattivata l'autenticazione biometrica?",
-        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanation": "L'accesso biometrico è disattivato al primo avvio dell'app per la tua sicurezza. Durante l'uso di Trinity, verrai disconnesso in caso di inattività. Allora ti sarà possibile accedere nuovamente con l'autenticazione biometrica."
     },
     "loading": {
         "loadingFirstTime": "Carico il seme per la prima volta.",
@@ -289,9 +289,9 @@
         "printerCheckbox": "Non stamperò su una stampante pubblica"
     },
     "receive": {
-        "yourAddress": "Your address",
-        "qrOptions": "QR options",
-        "shareQr": "Share QR code",
+        "yourAddress": "Il tuo indirizzo",
+        "qrOptions": "Opzioni di QR",
+        "shareQr": "Condividi il codice QR",
         "copyAddress": "Copia indirizzo",
         "addressCopied": "Indirizzo copiato",
         "addressCopiedExplanation": "Il tuo indirizzo è stato copiato negli Appunti.",
@@ -474,7 +474,7 @@
         "send": "Invia",
         "receive": "Ricevi",
         "empty": "Vuota",
-        "retrying": "Retrying",
+        "retrying": "Sto riprovando",
         "yesterday": "Ieri"
     },
     "accountManagement": {
