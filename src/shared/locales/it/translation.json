@@ -92,7 +92,7 @@
         "addresses": "Indirizzi",
         "reattach": "RICOLLEGA",
         "promote": "PROMUOVI",
-        "retry": "Retry",
+        "retry": "Riprova",
         "pressBackAgain": "Premi di nuovo Indietro per chiudere la app",
         "reattached": "Transazione riattaccata con successo",
         "reattachedExplanation": "Transazione con hash {{hash}} riattaccata",
@@ -250,7 +250,7 @@
         "selectDifferentNode": "Vuoi selezionare un nodo diverso?",
         "setNode": "Seleziona nodo",
         "cannotConnect": "Impossibile connettersi al nodo IOTA.",
-        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "whyBiometricDisabled": "Perché è disattivata l'autenticazione biometrica?",
         "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
