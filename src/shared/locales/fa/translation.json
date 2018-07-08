@@ -628,28 +628,28 @@
         "noSeedFound": "سید Vault حاوی سید معتبر نیست",
         "noSeedFoundExplanation": "سید Vault یا خالی است یا حاوی یک سید در قالب نامعتبر است.",
         "seedFileError": "باز کردن فایل سید Vault ناموفق بود",
-        "seedFileErrorExplanation": "There was a problem opening the SeedVault. If you selected the correct file then it may be corrupted."
+        "seedFileErrorExplanation": "در باز کردن سید Vault با مشکل مواجه شد. اگر فایل درست را انتخاب کردید، ممکن است خراب شده باشد."
     },
     "chart": {
         "mcap": "MCAP",
         "change": "تغییر (24 ساعته)",
         "volume": "دوره (24 ساعته)",
         "currentValue": "مقدار فعلی",
-        "error": "Error fetching chart data"
+        "error": "خطا در استخراج داده های نمودار"
     },
     "rootDetection": {
         "warning": "اخطار",
-        "appearsRooted": "Your device appears to be rooted.",
-        "securityRisk": "This can pose a significant risk to the security of your wallet.",
-        "continueDepsiteRisk": "Do you wish to continue despite this risk?"
+        "appearsRooted": "به نظر می رسد دستگاه شما دسترسی به ریشه دارد.",
+        "securityRisk": "این می تواند امنیت کیف پول شما را به خطر بیندازد.",
+        "continueDepsiteRisk": "آیا مایلید که با وجود این خطر ادامه بدهید؟"
     },
     "pow": {
         "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
-        "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
+        "localOrRemote": "اثبات کار می تواند به صورت محلی بر روی دستگاه شما تکمیل شود یا به یک Node انجام شود.",
         "local": "محلی",
         "remote": "از راه دور",
         "powUpdated": "تنظیمات اثبات کار",
-        "powUpdatedExplanation": "Your proof of work configuration has been updated.",
+        "powUpdatedExplanation": "اثبات کار پیکربندی شما به روز رسانی شد.",
         "noWebGLSupport": "WebGL پشتیبانی نمی شود",
         "noWebGLSupportExplanation": "کامپیوتر شما WebGL پشتیبانی نمی کند. لطفا از اثبات کار از راه دور استفاده کنید."
     },
@@ -677,8 +677,8 @@
         "snapshotExplanation": "Every so often, a snapshot is performed to prune the size of the Tangle.",
         "hasSnapshotTakenPlace": "عکس فوری گرفته شده است؟ دکمه زیر را برای انتقال فشار دهید.",
         "transition": "انتقال",
-        "transitioning": "Transitioning for the snapshot.",
-        "generatingAndDetecting": "Generating addresses and detecting balance.",
+        "transitioning": "انتقال برای عکس فوری.",
+        "generatingAndDetecting": "تولید آدرس ها و شناسایی موجودی.",
         "attaching": "Attaching addresses to Tangle."
     },
     "deepLink": {
