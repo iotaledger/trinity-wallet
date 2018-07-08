@@ -568,24 +568,24 @@
         "didSaveSeed": "آیا از سید خود پشتیبانی گرفتید؟",
         "alreadyHave": "من از سید خود پشتیبانی گرفتم",
         "reenterSeed": "در مرحله بعد، از شما خواسته می شود تا سید خود را دوباره وارد کنید.",
-        "reenterSeedWarning": "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
-        "pleaseConfirm": "Please confirm you have securely stored your seed."
+        "reenterSeedWarning": "اگر از سید خودتان پشتیبانی تهیه نکنید و دستگاه شما خراب بشود، شما تمام آیوتای خود را از دست خواهید داد.",
+        "pleaseConfirm": "لطفا تایید کنید که سید خود را ایمن نگه داشته اید."
     },
     "walletResetConfirmation": {
-        "cannotUndo": "THIS ACTION CANNOT BE UNDONE.",
-        "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
+        "cannotUndo": "این دستور قابل بازگشت نیست.",
+        "warning": "<0><0>تمام اطلاعات کیف پول شما از جمله </0><1>سید، گذرواژه شما</1><2> و </2><3>اطلاعات حساب دیگر</3><4> از دست خواهد رفت.</4></0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Touch fingerprint reader to enable fingerprint authentication",
-        "instructionsDisable": "Touch fingerprint reader to disable fingerprint authentication",
-        "fingerprintAuthEnabled": "Biometric authentication enabled",
-        "fingerprintAuthEnabledExplanation": "You have successfully enabled biometric authentication.",
-        "fingerprintAuthDisabled": "Biometric authentication disabled",
-        "fingerprintAuthDisabledExplanation": "You have successfully disabled biometric authentication.",
-        "fingerprintAuthFailed": "Biometric authentication failed",
-        "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
+        "instructionsEnable": "برای فعال سازی امکان اثر انگشت، اثر انشگت خود را به دستگاه لمس کنید",
+        "instructionsDisable": "برای غیرفعال سازی امکان اثر انگشت، اثر انشگت خود را به دستگاه لمس کنید",
+        "fingerprintAuthEnabled": "احراز هویت بیومتریک فعال شد",
+        "fingerprintAuthEnabledExplanation": "احراز هویت بیومتریک با موفقیت فعال شد.",
+        "fingerprintAuthDisabled": "احراز هویت بیومتریک غیرفعال شد",
+        "fingerprintAuthDisabledExplanation": "احراز هویت بیومتریک با موفقیت غیرفعال شد.",
+        "fingerprintAuthFailed": "احراز هویت بیومتریک با شکست مواجه شد",
+        "fingerprintAuthFailedExplanation": "احراز هویت اثر انگشت با شکست مواجه شد. لطفا دوباره تلاش کنید.",
         "status": "وضعیت",
-        "fingerprintUnavailable": "Biometric authentication unavailable",
+        "fingerprintUnavailable": "احراز هویت بیومتریک در دسترس نیست",
         "fingerprintUnavailableExplanation": "دستگاه شما از تاییدیه بیومتریک پشتیبانی نمیکند یا در تنظیمات دستگاه پیکربندی نشده است.",
         "buttonInstructionsDisable": "برای غیرفعال کردن تایید اثر انگشت، دکمه زیر را فشار دهید.",
         "buttonInstructionsEnable": "برای فعال کردن تایید اثر انگشت، دکمه زیر را فشار دهید.",
@@ -594,7 +594,7 @@
         "instructionsLogin": "اثر انگشت برای ورود به سیستم را لمس کنید"
     },
     "transferConfirmation": {
-        "youAreAbout": "You are about to send {{contents}} to the address",
+        "youAreAbout": "شما در حال ارسال به آدرس {{contents}} هستید",
         "aMessage": "یک پیام"
     },
     "twoFA": {
@@ -696,7 +696,7 @@
         "skipUpdate": "رد شدن از به روز رسانی"
     },
     "notificationLog": {
-        "errorLog": "ERROR LOG"
+        "errorLog": "خطای LOG"
     },
     "terms": {
         "termsAndConditions": "شرایط و ضوابط",
