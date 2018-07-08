@@ -46,7 +46,8 @@ export const getCurrentYear = () => new Date().getFullYear();
 
 export const formatTime = (locale, ts) => {
     const m = moment.utc(ts);
-    m.locale([locale, locale.substring(0, 2), 'en-gb']);
+    locale = chooseMomentLocale(locale);
+    m.locale(locale);
     if (isToday(ts)) {
         return m.format('LT');
     }
@@ -76,4 +77,20 @@ export const isWithinMinutes = (time, minutes) => {
     const lessThanMinutesAgo = now - minutes * 60 * 1000;
 
     return time > lessThanMinutesAgo;
+};
+
+/**
+ * Checks if the device locale is available in moment and returns the locale to be loaded
+ * Mitigates https://github.com/moment/moment/issues/4027
+ * @param  {string} locale locale to be checked
+ * @return {string}        locale to be loaded by moment
+ */
+const chooseMomentLocale = (locale) => {
+    locale = locale.toLowerCase();
+    if (moment.locales().includes(locale)) {
+        return locale;
+    } else if (moment.locales().includes(locale.substring(0, 2))) {
+        return locale.substring(0, 2);
+    }
+    return 'en-gb';
 };
