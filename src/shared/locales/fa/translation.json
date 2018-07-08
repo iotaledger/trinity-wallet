@@ -432,26 +432,26 @@
         "autoNodeSwitching": "وقتی Node در دسترس نباشد، Node را به صورت خودکار انتخاب بکن",
         "nodeChangeSuccess": "Node با موفقیت تغییر کرده است",
         "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
-        "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
-        "nodeChangeError": "Error changing node",
-        "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
+        "nodeChangeSuccessExplanation": "Node به {{node}} تغییر یافت.",
+        "nodeChangeError": "خطا در تغییر Node",
+        "nodeChangeErrorExplanation": "خطایی در تغییر Node به وجود آمد. لطفا دوباره تلاش کنید."
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Enter your password to reset the wallet.",
+        "enterPassword": "گذرواژه خود را برای بازنشانی کیف پول وارد کنید.",
         "cancel": "لغو",
         "reset": "تنظیم مجدد"
     },
     "walletSetup": {
         "creatingSeed": "ساختن یک سید",
-        "okay": "Okay. Let's set up your wallet!",
-        "doYouAlreadyHaveASeed": "Do you already have a seed that you would like to use?",
-        "doYouNeedASeed": "Do you need to create a new seed?",
-        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
+        "okay": "باشه. بیایید کیف پول خود را تنظیم کنیم!",
+        "doYouAlreadyHaveASeed": "آیا شما قبلا سید ای دارید که می خواهید از آن استفاده کنید؟",
+        "doYouNeedASeed": "آیا شما نیاز به ایجاد یک سید جدید دارید؟",
+        "seedExplanation": "سید آیوتا شما کلید اصلی برای وجوه شما است. این سید 81 کاراکتر میباشد، و فقط با حروف A-Z یا تا شماره 9 تشکیل شده است.",
         "noIHaveOne": "نه، من یکی دارم",
         "yesINeedASeed": "بله، من نیاز به یک سید دارم",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
-        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
-        "keepSafe": "Please keep your seed safe.",
+        "explanation": "<0><0>شما می توانید از آن برای دسترسی به وجوه خود استفاده کنید</0><1>هر کیف پول</1><2>، بر روی</2><3> هر دستگاه.</3></0>",
+        "loseSeed": "اما اگر سید خود را از دست بدهید، آیوتای خود را نیز از دست می دهید.",
+        "keepSafe": "لطفا سید خود را جای امن نگهداری کنید.",
         "hint": "<0><0>Hint:</0> Click NO if this is your first time using IOTA.</0>"
     },
     "welcome": {
