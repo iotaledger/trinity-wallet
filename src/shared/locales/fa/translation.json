@@ -368,12 +368,12 @@
         "nowWeNeedTo": "Now we need to set up a password.",
         "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
         "ensure": "Ensure you use a strong password of at least 12 characters.",
-        "retypePassword": "Retype Password"
+        "retypePassword": "دوباره گذرواژه را وارد کنید"
     },
     "setSeedName": {
         "letsAddName": "Let's add a name",
-        "canUseMultipleSeeds": "You can use multiple seeds with this wallet. Each seed requires an account name.",
-        "youCanAdd": "You can add more seeds in the Settings menu."
+        "canUseMultipleSeeds": "می توانید از سید های متعدد با این کیف پول استفاده کنید. هر سید نیاز به یک نام حساب است.",
+        "youCanAdd": "می توانید سید های بیشتری را از منوی تنظیمات اضافه کنید."
     },
     "modeSelection": {
         "expert": "Expert",
@@ -452,13 +452,13 @@
         "explanation": "<0><0>شما می توانید از آن برای دسترسی به وجوه خود استفاده کنید</0><1>هر کیف پول</1><2>، بر روی</2><3> هر دستگاه.</3></0>",
         "loseSeed": "اما اگر سید خود را از دست بدهید، آیوتای خود را نیز از دست می دهید.",
         "keepSafe": "لطفا سید خود را جای امن نگهداری کنید.",
-        "hint": "<0><0>Hint:</0> Click NO if this is your first time using IOTA.</0>"
+        "hint": "<0><0>نکته:</0>بر روی نه کلیک کنید اگر شما برای اولین بار از آیوتا استفاده میکنید</0>"
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity"
+        "thankYou": "با تشکر از شما برای دانلود Trinity"
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
+        "yourSeedIs": "سید شما {{maxSeedLength}} کاراکتر از چپ به راست قابل خواندن میباشد.",
         "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>",
         "scrollToBottom": "Scroll to the bottom"
     },
@@ -469,7 +469,7 @@
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
         "addressCopied": "آدرس کپی شد",
         "addressCopiedExplanation": "The address has been copied to the clipboard.",
-        "messageCopied": "Message copied",
+        "messageCopied": "پیام کپی شد",
         "messageCopiedExplanation": "The message has been copied to the clipboard.",
         "send": "ارسال",
         "receive": "دریافت",
@@ -512,7 +512,7 @@
     },
     "advancedThemeCustomisation": {
         "background": "پس زمینه",
-        "frame": "Frame"
+        "frame": "قاب"
     },
     "themeCustomisation": {
         "theme": "پوسته",
@@ -551,13 +551,13 @@
         "pressToSync": "Press the button below to sync your account.",
         "thisMayTake": "This may take a while. You may notice your device slowing down.",
         "doNotClose": "Please note, minimising the app will cancel the sync.",
-        "syncAccount": "Sync Account",
-        "syncingYourAccount": "Syncing your account."
+        "syncAccount": "همگام سازی حساب",
+        "syncingYourAccount": "همگام سازی حساب شما."
     },
     "useExistingSeed": {
-        "title": "Enter a seed and account name.",
-        "incorrectFormat": "Incorrect seed format",
-        "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
+        "title": "سید و نام حساب را وارد کنید.",
+        "incorrectFormat": "قالب سید اشتباه است",
+        "validSeedExplanation": "سید های معتبر باید 81 کاراکتر باشد و فقط شامل حروف A-Z یا عدد تا 9 باشد."
     },
     "viewSeed": {
         "enterPassword": "گذرواژه خود را برای مشاهده سید وارد کنید.",
@@ -584,7 +584,7 @@
         "fingerprintAuthDisabledExplanation": "You have successfully disabled biometric authentication.",
         "fingerprintAuthFailed": "Biometric authentication failed",
         "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
-        "status": "Status",
+        "status": "وضعیت",
         "fingerprintUnavailable": "Biometric authentication unavailable",
         "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
@@ -595,12 +595,12 @@
     },
     "transferConfirmation": {
         "youAreAbout": "You are about to send {{contents}} to the address",
-        "aMessage": "a message"
+        "aMessage": "یک پیام"
     },
     "twoFA": {
-        "wrongCode": "Wrong code",
-        "wrongCodeExplanation": "The code you entered is incorrect.",
-        "emptyCode": "Empty code",
+        "wrongCode": "کد اشتباه است",
+        "wrongCodeExplanation": "کدی که وارد کرده‌اید اشتباه است.",
+        "emptyCode": "کد خالی است",
         "emptyCodeExplanation": "Please enter a code and try again.",
         "keyCopied": "کلید به کلیپ بورد کپی شد",
         "keyCopiedExplanation": "کلید 2FA شما به کلیپ بورد کپی شده است.",
@@ -638,7 +638,7 @@
         "error": "Error fetching chart data"
     },
     "rootDetection": {
-        "warning": "WARNING",
+        "warning": "اخطار",
         "appearsRooted": "Your device appears to be rooted.",
         "securityRisk": "This can pose a significant risk to the security of your wallet.",
         "continueDepsiteRisk": "Do you wish to continue despite this risk?"
@@ -646,8 +646,8 @@
     "pow": {
         "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
         "localOrRemote": "Proof of work can either be completed locally on your device, or offloaded to a node.",
-        "local": "Local",
-        "remote": "Remote",
+        "local": "محلی",
+        "remote": "از راه دور",
         "powUpdated": "Proof of work settings",
         "powUpdatedExplanation": "Your proof of work configuration has been updated.",
         "noWebGLSupport": "WebGL not supported",
