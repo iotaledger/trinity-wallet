@@ -47,7 +47,6 @@ export const getCurrentYear = () => new Date().getFullYear();
 export const formatTime = (locale, ts) => {
     const m = moment.utc(ts);
     locale = chooseMomentLocale(locale);
-    console.log(locale);
     m.locale(locale);
     if (isToday(ts)) {
         return m.format('LT');
