@@ -632,8 +632,8 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change (24h)",
-        "volume": "Volume (24h)",
+        "change": "تغییر (24h)",
+        "volume": "دوره (24 ساعته)",
         "currentValue": "Current value",
         "error": "Error fetching chart data"
     },
