@@ -194,13 +194,13 @@
         "reasonRepeats": "تکرار حرف ها کنار یکدیگر مانند 'aaa' آسان میباشند و قابل حدس زدن است",
         "reasonRepeats2": "تکرار حرف ها کنار یکدیگر مانند 'abcabcabc' فقط کمی سخت تر از حد انتظار 'abc' میباشد",
         "reasonSequence": "دنباله هایی مانند abc یا 54321 آسان است حدس بزنید",
-        "reasonYears": "Recent years are easy to guess",
-        "reasonDates": "Dates are often easy to guess",
-        "reasonTop10": "This is a top 10 common password",
-        "reasonTop100": "This is a top 100 common password",
+        "reasonYears": "استفاده از سال های گذشته آسان است قابل حدس زدن میباشد",
+        "reasonDates": "تاریخ ها اغلب آسان و قابل حدس زدن است",
+        "reasonTop10": "این عبارت در 10 کلمه برتر گذرواژه است",
+        "reasonTop100": "این عبارت در 100 کلمه برتر گذرواژه است",
         "reasonCommon": "این یک گذرواژه بسیار رایج است",
-        "reasonSimilar": "This is similar to a commonly-used password",
-        "reasonWord": "A single word is easy to guess"
+        "reasonSimilar": "این شبیه به یک گذرواژه معمولی است",
+        "reasonWord": "یک کلمه ساده آسان و قابل حدس زدن است"
     },
     "copyToClipboard": {
         "seedCleared": "کلیپ بورد پاک شد",
@@ -214,12 +214,12 @@
         "shareSeed": "سید خود را به یک مدیریت گذرواژه ایمن انتقال بدهید",
         "storeEncrypted": "سید خود را در یک مدیریت گذرواژه رمزگذاری کنید.",
         "doNotOpen": "در این فرایند برنامه های دیگر را باز نکنید.",
-        "tapConfirm": "Please tap the checkbox below to confirm.",
-        "passwordManagerCheckbox": "I will store my seed in a password manager",
+        "tapConfirm": "لطفا برای تایید صحت تیک این گزینه را بزنید.",
+        "passwordManagerCheckbox": "سید خود را در یک مدیریت گذرواژه ذخیره خواهم کرد",
         "copy": "کپی",
         "noPasswordManagers": "از مدیریت های گذرواژه نصب شده پشتیبانی نمیکند",
-        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "If you wish to store your seed in a password manager, you must follow a tutorial from the following link"
+        "noPasswordManagersExplanation": "هیچ مدیریت گذرواژه بر روی دستگاه شما یافت نشد. لطفا Keepass2Android را نصب کنید.",
+        "followTutorialToSecurelyShareSeed": "اگر می خواهید سید خود را در یک مدیریت گذرواژه ذخیره کنید، باید از لینک زیر استفاده کنید"
     },
     "enterSeed": {
         "invalidCharacters": "سید ورودی دارای کاراکتر های نامعتبر است",
@@ -239,7 +239,7 @@
     },
     "languageSetup": {
         "language": "زبان",
-        "letsGetStarted": "Let's get started"
+        "letsGetStarted": "بیا شروع کنیم"
     },
     "login": {
         "emptyPassword": "گذرواژه خالی است",
@@ -251,14 +251,14 @@
         "setNode": "تنظیم Node",
         "cannotConnect": "نمی تواند به Node آیوتا متصل شد.",
         "whyBiometricDisabled": "چرا احراز هویت بیومتریک غیرفعال است؟",
-        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanation": "ورود به سیستم بیومتریک بار اول برای امنیت شما غیر فعال است. هنگام استفاده از Trinity، برای غیرفعال شدن از سیستم خارج می شوید. سپس می توانید با احراز هویت بیومتریک وارد شوید."
     },
     "loading": {
         "loadingFirstTime": "بارگذاری سید برای اولین بار.",
         "thisMayTake": "این ممکن است مدتی طول بکشد.",
         "doNotMinimise": "Do not minimise or close the app.",
-        "youMayNotice": "You may notice your device slowing down.",
-        "takingAWhile": "This seems to be taking a while"
+        "youMayNotice": "ممکن است دستگاه شما را کندتر کند.",
+        "takingAWhile": "به نظر می رسد که این در حال استفاده است"
     },
     "newSeedSetup": {
         "generatedSeed": "سید تولید شد",
@@ -266,17 +266,17 @@
         "seedNotGeneratedExplanation": "لطفا یک سید جدید تولید کنید.",
         "pressForNewSeed": "برای ساخت سید جدید فشار بدهید",
         "generateSuccess": "سید با موفقیت تولید شد",
-        "individualLetters": "Press individual letters to randomise them.",
-        "individualLetterCount": "Press {{letterCount}} more individual letters to randomise them.",
+        "individualLetters": "نامه های فردی را به صورت تصادفی انتخاب کنید.",
+        "individualLetterCount": "نامه های فردی بیشتری {{letterCount}} برای تصدیق آنها را فشار دهید.",
         "whatIsASeed": "سید چیست؟"
     },
     "onboardingComplete": {
         "allDone": "همه کارها انجام شد!",
         "openYourWallet": "بازکردن کیف پول شما",
-        "walletReady": "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
+        "walletReady": "کیف پول در حال حاضر تنظیم شده و آماده استفاده است. اگر شما نیاز به تغییر دارید، از منوی تنظیمات میتوانید این کار را انجام دهید."
     },
     "paperWallet": {
-        "clickToPrint": "Click the button below to print a paper copy of your seed.",
+        "clickToPrint": "روی دکمه زیر کلیک کنید تا کپی کاغذی از سید شما چاپ شود.",
         "storeSafely": "Store it safely.",
         "neverShare": "Never share your seed with anyone.",
         "iotaLogo": "لوگو آیوتا",
