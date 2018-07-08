@@ -299,25 +299,25 @@
         "removeMessage": "حذف پیام",
         "noAddresses": "بدون آدرس",
         "spent": "Spent",
-        "missingPermission": "نیاز به مجوز فایل سیستم است",
-        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes.",
+        "missingPermission": "نیاز به مجوز سیستم فایل است",
+        "missingPermissionExplanation": "برای به اشتراک گذاشتن کدهای QR، دسترسی به سیستم فایل لازم است.",
         "tag": "برچسب"
     },
     "saveYourSeed": {
         "saveYourSeed": "Back up your seed",
-        "seedCleared": "Seed cleared",
-        "mostSecure": "Most Secure",
-        "leastSecure": "Least Secure",
-        "paperWallet": "Paper Wallet",
-        "writeYourSeedDown": "Write your seed down",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
+        "seedCleared": "سید پاک شد",
+        "mostSecure": "امن ترین",
+        "leastSecure": "کمترین امنیت",
+        "paperWallet": "کیف پول کاغذی",
+        "writeYourSeedDown": "سید خود را بنویسید",
+        "seedClearedExplanation": "سید برای امنیت شما از کلیپ بورد پاکسازی شده است.",
         "iHaveBackedUpMySeed": "I have backed up my seed",
         "letsWriteDownYourSeed": "Lets write down your seed",
-        "youCanHighlightCharacters": "You can highlight 9 characters at a time",
+        "youCanHighlightCharacters": "شما می توانید 9 کاراکتر را در یک زمان برجسته کنید",
         "printBlankWallet": "یک کیف پول خالی را چاپ کنید",
         "whatIsChecksum": "هر سید یک کد اعتبارسنجی 3 حرفی دارد",
         "iHavesavedMySeed": "من سید خود را ذخیره کردم",
-        "checksumExplanation": "Whenever you add a seed to your wallet, you should ensure that the wallet-generated checksum matches the one you have written down.",
+        "checksumExplanation": "هر گاه سید را به کیف پول خود اضافه می کنید، باید اطمینان حاصل کنید که کد اعتبارسنجی تولید شده از کیف پول مطابق با آنچه نوشته شده است.",
         "mustSaveYourSeed": "<0><0>You must back up your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
     },
     "seedReentry": {
@@ -388,7 +388,7 @@
         "generatingAddressExplanation": "Please wait until your address has been generated.",
         "mode": "حالت",
         "theme": "پوسته",
-        "currency": "Currency",
+        "currency": "واحد پول",
         "cannotChangeNode": "Cannot change node",
         "cannotChangeNodeWhileSending": "Cannot change node while sending.",
         "language": "زبان",
@@ -438,11 +438,11 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",
-        "cancel": "Cancel",
-        "reset": "RESET"
+        "cancel": "لغو",
+        "reset": "تنظیم مجدد"
     },
     "walletSetup": {
-        "creatingSeed": "Creating a seed",
+        "creatingSeed": "ساختن یک سید",
         "okay": "Okay. Let's set up your wallet!",
         "doYouAlreadyHaveASeed": "Do you already have a seed that you would like to use?",
         "doYouNeedASeed": "Do you need to create a new seed?",
@@ -660,7 +660,7 @@
     "progressSteps": {
         "checkingNodeHealth": "Checking node health",
         "validatingReceiveAddress": "Validating receive address",
-        "syncingAccount": "Syncing account",
+        "syncingAccount": "همگام سازی حساب",
         "preparingInputs": "Preparing inputs",
         "preparingTransfers": "Preparing transfers",
         "gettingTransactionsToApprove": "Getting transactions to approve",
@@ -688,22 +688,22 @@
     "updates": {
         "errorRetrievingUpdateData": "Error retrieving update data",
         "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
-        "noUpdatesAvailable": "No updates available",
+        "noUpdatesAvailable": "بروزرسانی موجود نيست",
         "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
-        "newVersionAvailable": "New version available",
+        "newVersionAvailable": "نسخه جدید موجود است",
         "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
         "downloadRelease": "Download release",
-        "skipUpdate": "Skip update"
+        "skipUpdate": "رد شدن از به روز رسانی"
     },
     "notificationLog": {
         "errorLog": "ERROR LOG"
     },
     "terms": {
-        "termsAndConditions": "Terms & Conditions",
-        "accept": "I accept"
+        "termsAndConditions": "شرایط و ضوابط",
+        "accept": "قبول می‌کنم"
     },
     "privacyPolicy": {
-        "privacyPolicy": "Privacy Policy",
-        "agree": "I agree"
+        "privacyPolicy": "سیاست حفظ حریم خصوصی",
+        "agree": "می پذیرم"
     }
 }
