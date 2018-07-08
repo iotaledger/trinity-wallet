@@ -277,14 +277,14 @@
     },
     "paperWallet": {
         "clickToPrint": "روی دکمه زیر کلیک کنید تا کپی کاغذی از سید شما چاپ شود.",
-        "storeSafely": "Store it safely.",
-        "neverShare": "Never share your seed with anyone.",
+        "storeSafely": "با خیال راحت ذخیره کنید.",
+        "neverShare": "هرگز سید خود را با کسی شریک نکنید.",
         "iotaLogo": "لوگو آیوتا",
         "printWallet": "چاپ کیف پول کاغذی",
         "print": "چاپ",
-        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
-        "publicInsecure": "But printing on public wifi or a public printer is insecure.",
-        "tapCheckboxes": "Please tap the checkboxes below to confirm.",
+        "paperConvenience": "چاپ کپی کاغذی از سید شما یک راه مناسب برای ذخیره آن است.",
+        "publicInsecure": "اما چاپ در وای فای عمومی یا چاپگر عمومی نا امن است.",
+        "tapCheckboxes": "لطفا برای تایید صحت تیک های زیر بزنید.",
         "wifiCheckbox": "من در وای فای عمومی چاپ نمی کنم",
         "printerCheckbox": "من بر روی چاپگر عمومی چاپ نمی کنم"
     },
@@ -312,23 +312,23 @@
         "writeYourSeedDown": "سید خود را بنویسید",
         "seedClearedExplanation": "سید برای امنیت شما از کلیپ بورد پاکسازی شده است.",
         "iHaveBackedUpMySeed": "من از سید خود پشتیبانی گرفتم",
-        "letsWriteDownYourSeed": "Lets write down your seed",
+        "letsWriteDownYourSeed": "به نوشتن سید خود شروع کنید",
         "youCanHighlightCharacters": "شما می توانید 9 کاراکتر را در یک زمان برجسته کنید",
         "printBlankWallet": "یک کیف پول خالی را چاپ کنید",
         "whatIsChecksum": "هر سید یک کد اعتبارسنجی 3 حرفی دارد",
         "iHavesavedMySeed": "من سید خود را ذخیره کردم",
         "checksumExplanation": "هر گاه سید را به کیف پول خود اضافه می کنید، باید اطمینان حاصل کنید که کد اعتبارسنجی تولید شده از کیف پول مطابق با آنچه نوشته شده است.",
-        "mustSaveYourSeed": "<0><0>You must back up your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
+        "mustSaveYourSeed": "<0><0>شما باید از سید خود پشتیبان تهیه کنید با </0><1>حداقل یکی</1><2>از گزینه های ذکر شده در لیست زیر</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "لطفا سید خود را تایید کنید",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or the app.",
+        "trinityWillNeverAskToReenter": "Trinity هرگز از شما نمی خواهد که سید خود را دوباره وارد کنید مگر اینکه شما کیف پول یا برنامه را بازنشانی کنید.",
         "enterYourSeed": "سید خود را وارد کنید",
         "incorrectSeed": "سید نادرست",
         "incorrectSeedExplanation": "سید وارد شده نادرست است. لطفا دوباره تلاش کنید.",
-        "thisIsACheck": "This is a check to make sure you backed up your seed.",
-        "ifYouHaveNotSaved": "If you have not backed up your seed, please go back and do so.",
-        "enterSeedBelow": "Enter your newly created seed below to confirm you have backed it up correctly"
+        "thisIsACheck": "این گزینه برای اطمینان از اینکه است که شما از سید خود پشتیبان تهیه کرد اید.",
+        "ifYouHaveNotSaved": "اگر شما از سید خود پشتیبان تهیه نکرد اید، لطفا به عقب برگردید و این کار را انجام دهید.",
+        "enterSeedBelow": "سید تازه ایجاد شده خود را در زیر وارد کنید تا تایید کنید که آن را به درستی از آن پشتبانی تهیه کرده اید"
     },
     "send": {
         "invalidAddress": "آدرس اشتباه است",
