@@ -644,7 +644,7 @@
         "continueDepsiteRisk": "آیا مایلید که با وجود این خطر ادامه بدهید؟"
     },
     "pow": {
-        "feeless": "It is necessary to complete a little proof of work to send feeless transactions in IOTA.",
+        "feeless": "لازم است برای اثبات کار برای ارسال تراکنش های feeless در آیوتا تکمیل کنید.",
         "localOrRemote": "اثبات کار می تواند به صورت محلی بر روی دستگاه شما تکمیل شود یا به یک Node انجام شود.",
         "local": "محلی",
         "remote": "از راه دور",
@@ -674,25 +674,25 @@
         "transitionCompleteExplanation": "انتقال عکس فوری با موفقیت انجام شد.",
         "detectedBalance": "موجودی شناسایی شده:{{unit}}{{amount}}",
         "isThisCorrect": "آیا این درست است؟",
-        "snapshotExplanation": "Every so often, a snapshot is performed to prune the size of the Tangle.",
+        "snapshotExplanation": "هراز گاهی، یک عکس فوری برای خاتمه دادن به اندازه Tangle انجام می شود.",
         "hasSnapshotTakenPlace": "عکس فوری گرفته شده است؟ دکمه زیر را برای انتقال فشار دهید.",
         "transition": "انتقال",
         "transitioning": "انتقال برای عکس فوری.",
         "generatingAndDetecting": "تولید آدرس ها و شناسایی موجودی.",
-        "attaching": "Attaching addresses to Tangle."
+        "attaching": "پیوستن آدرس ها به Tangle."
     },
     "deepLink": {
         "autofill": "موفقیت در تکمبل خودکار",
-        "autofillExplanation": "Transaction data autofilled from link."
+        "autofillExplanation": "داده های تراکنش خودکار از لینک پر شده است."
     },
     "updates": {
-        "errorRetrievingUpdateData": "Error retrieving update data",
-        "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
+        "errorRetrievingUpdateData": "خطا در بازیابی داده های به روزرسانی",
+        "errorRetrievingUpdateDataExplanation": "هنگام بازیابی داده های به روزرسانی مشکلی به وجود آمد. لطفا دوباره تلاش کنید.",
         "noUpdatesAvailable": "بروزرسانی موجود نيست",
-        "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
+        "noUpdatesAvailableExplanation": "شما آخرین نسخه از کیف پول دسکتاپ آیوتا Trinity را دریافت کرده اید!",
         "newVersionAvailable": "نسخه جدید موجود است",
-        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
-        "downloadRelease": "Download release",
+        "newVersionAvailableExplanation": "نسخه جدید <strong>Trinity</strong><strong>{{version}}</strong> در دسترس است. لطفا جزئیات نسخه جدید را به دقت بخوانید و قبل از به روز رسانی منبع دانلود را بررسی کنید:",
+        "downloadRelease": "دانلود آخرین نسخه",
         "skipUpdate": "رد شدن از به روز رسانی"
     },
     "notificationLog": {
