@@ -193,12 +193,12 @@
         "reasonNames": "Common names and surnames are easy to guess",
         "reasonRepeats": "Repeats like 'aaa' are easy to guess",
         "reasonRepeats2": "Repeats like 'abcabcabc' are only slightly harder to guess than 'abc'",
-        "reasonSequence": "Sequences like abc or 54321 are easy to guess",
+        "reasonSequence": "دنباله هایی مانند abc یا 54321 آسان است حدس بزنید",
         "reasonYears": "Recent years are easy to guess",
         "reasonDates": "Dates are often easy to guess",
         "reasonTop10": "This is a top 10 common password",
         "reasonTop100": "This is a top 100 common password",
-        "reasonCommon": "This is a very common password",
+        "reasonCommon": "این یک گذرواژه بسیار رایج است",
         "reasonSimilar": "This is similar to a commonly-used password",
         "reasonWord": "A single word is easy to guess"
     },
@@ -223,12 +223,12 @@
     },
     "enterSeed": {
         "invalidCharacters": "سید ورودی دارای کاراکتر های نامعتبر است",
-        "invalidCharactersExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
+        "invalidCharactersExplanation": "سید ها فقط می توانند شامل حرف های A-Z و تا شماره 9 باشند. سید شما دارای کاراکتر های نامعتبر است. لطفا دوباره تلاش کنید.",
         "seedTooShort": "سید خیلی کوتاه است",
         "seedTooLong": "سید خیلی طولانی است",
         "seedTooShortExplanation": "سید ها باید از {{maxLength}} کاراکتر بیشتر باشند. سید شما در حال حاضر {{currentLength}} کاراکتر میباشد. لطفا دوباره تلاش کنید.",
-        "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
-        "neverShare": "NEVER SHARE YOUR SEED WITH ANYONE"
+        "seedExplanation": "سید ها باید از {{maxLength}} کاراکتر طولانی باشند و باید حاوی حروف A-Z یا تا شماره 9 باشند. شما نمی توانید از سید های طولانی تر از {{maxLength}} کاراکتر استفاده کنید.",
+        "neverShare": "هرگز سید خود را با هیچ فردی به اشتراک نگذارید"
     },
     "home": {
         "balance": "موجودی",
@@ -243,8 +243,8 @@
     },
     "login": {
         "emptyPassword": "گذرواژه خالی است",
-        "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
-        "enterPassword": "Please enter your password.",
+        "emptyPasswordExplanation": "شما باید یک گذرواژه برای ورود وارد کنید. لطفا دوباره تلاش کنید.",
+        "enterPassword": "لطفا گذرواژه خود را وارد کنید.",
         "useSeed": "استفاده از سید",
         "login": "ورود",
         "selectDifferentNode": "Do you want to select a different node?",
