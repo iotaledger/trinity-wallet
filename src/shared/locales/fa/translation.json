@@ -447,8 +447,8 @@
         "doYouAlreadyHaveASeed": "Do you already have a seed that you would like to use?",
         "doYouNeedASeed": "Do you need to create a new seed?",
         "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
-        "noIHaveOne": "No, I have one",
-        "yesINeedASeed": "Yes, I need a seed",
+        "noIHaveOne": "نه، من یکی دارم",
+        "yesINeedASeed": "بله، من نیاز به یک سید دارم",
         "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
         "loseSeed": "But if you lose your seed, you also lose your IOTA.",
         "keepSafe": "Please keep your seed safe.",
@@ -464,7 +464,7 @@
     },
     "history": {
         "bundleHashCopied": "Bundle hash copied",
-        "noTransactionsFound": "No transactions found",
+        "noTransactionsFound": "هیچ تراکنشی یافت نشد",
         "hideZeroBalance": "Hide zero balance",
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
         "addressCopied": "آدرس کپی شد",
@@ -478,9 +478,9 @@
         "yesterday": "دیروز"
     },
     "accountManagement": {
-        "viewSeed": "View seed",
+        "viewSeed": "مشاهده سید",
         "viewAddresses": "مشاهده آدرس",
-        "editAccountName": "Edit account name",
+        "editAccountName": "ویرایش نام حساب",
         "deleteAccount": "حذف حساب",
         "addNewAccount": "اضافه کردن حساب جدید"
     },
@@ -519,21 +519,21 @@
         "mockup": "Mockup"
     },
     "currencySelection": {
-        "currency": "Currency"
+        "currency": "واحد پول"
     },
     "logoutConfirmationModal": {
-        "logoutConfirmation": "Are you sure you want to log out?"
+        "logoutConfirmation": "آیا مطمئنید که می‌خواهید خارج شوید؟"
     },
     "qrScanner": {
         "scan": "Scan your QR code"
     },
     "unitInfoModal": {
         "unitSystem": "UNIT SYSTEM",
-        "trillion": "Trillion",
-        "billion": "Billion",
-        "million": "Million",
-        "thousand": "Thousand",
-        "one": "One"
+        "trillion": "تریلیون",
+        "billion": "بیلیون",
+        "million": "میلیون",
+        "thousand": "هزار",
+        "one": "یک"
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Why can't I spend my full balance?",
