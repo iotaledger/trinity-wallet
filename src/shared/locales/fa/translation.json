@@ -654,28 +654,28 @@
         "noWebGLSupportExplanation": "کامپیوتر شما WebGL پشتیبانی نمی کند. لطفا از اثبات کار از راه دور استفاده کنید."
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Auto-promotion settings",
-        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
+        "autoPromotionUpdated": "تنظیمات ارتقا خودکار",
+        "autoPromotionUpdatedExplanation": "پیکربندی ارتقا خودکار به روز شده است."
     },
     "progressSteps": {
-        "checkingNodeHealth": "Checking node health",
-        "validatingReceiveAddress": "Validating receive address",
+        "checkingNodeHealth": "بررسی سلامت Node",
+        "validatingReceiveAddress": "تایید آدرس دریافتی",
         "syncingAccount": "همگام سازی حساب",
-        "preparingInputs": "Preparing inputs",
-        "preparingTransfers": "Preparing transfers",
-        "gettingTransactionsToApprove": "Getting transactions to approve",
-        "proofOfWork": "Completing proof of work",
-        "broadcasting": "Broadcasting"
+        "preparingInputs": "آماده سازی ورودی",
+        "preparingTransfers": "آماده سازی انتقال",
+        "gettingTransactionsToApprove": "گرفتن معاملات برای تایید",
+        "proofOfWork": "تکمیل اثبات کار",
+        "broadcasting": "در حال پخش"
     },
     "snapshotTransition": {
-        "cannotCompleteTransition": "Cannot complete snapshot transition",
-        "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
-        "transitionComplete": "Snapshot transition complete",
-        "transitionCompleteExplanation": "The snapshot transition has completed successfully.",
-        "detectedBalance": "Detected balance: {{amount}} {{unit}}",
-        "isThisCorrect": "Is this correct?",
+        "cannotCompleteTransition": "انتقال عکس فوری امکانپذیر نیست",
+        "cannotCompleteTransitionExplanation": "موجودی شما باید بزرگتر از 0 باشد تا انتقال کامل شود.",
+        "transitionComplete": "انتقال عکس فوری کامل شد",
+        "transitionCompleteExplanation": "انتقال عکس فوری با موفقیت انجام شد.",
+        "detectedBalance": "موجودی شناسایی شده:{{unit}}{{amount}}",
+        "isThisCorrect": "آیا این درست است؟",
         "snapshotExplanation": "Every so often, a snapshot is performed to prune the size of the Tangle.",
-        "hasSnapshotTakenPlace": "Has a snapshot taken place? Press the button below to transition.",
+        "hasSnapshotTakenPlace": "عکس فوری گرفته شده است؟ دکمه زیر را برای انتقال فشار دهید.",
         "transition": "انتقال",
         "transitioning": "Transitioning for the snapshot.",
         "generatingAndDetecting": "Generating addresses and detecting balance.",
