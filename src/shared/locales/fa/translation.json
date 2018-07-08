@@ -53,20 +53,20 @@
         "notAvailable": "This function is not available",
         "notAvailableExplanation": "It will be added at a later stage.",
         "enterSeed": "Please enter your seed.",
-        "mainWallet": "MAIN ACCOUNT",
-        "secondWallet": "SECOND ACCOUNT",
-        "thirdWallet": "THIRD ACCOUNT",
-        "fourthWallet": "FOURTH ACCOUNT",
-        "fifthWallet": "FIFTH ACCOUNT",
-        "sixthWallet": "SIXTH ACCOUNT",
-        "otherWallet": "OTHER ACCOUNT",
+        "mainWallet": "حساب اصلی",
+        "secondWallet": "حساب دوم",
+        "thirdWallet": "حساب سوم",
+        "fourthWallet": "حساب چهارم",
+        "fifthWallet": "حساب پنجم",
+        "sixthWallet": "حساب ششم",
+        "otherWallet": "حساب دیگر",
         "yes": "بله",
         "no": "نه",
         "yesLowerCase": "بله",
         "noLowerCase": "نه",
         "okay": "باشه",
-        "okayLowercase": "Okay",
-        "password": "Password",
+        "okayLowercase": "باشه",
+        "password": "گذرواژه",
         "passwordOrFingerprint": "Password or fingerprint",
         "unrecognisedPassword": "Unrecognised password",
         "unrecognisedPasswordExplanation": "The password was not recognised. Please try again.",
@@ -525,10 +525,10 @@
         "logoutConfirmation": "آیا مطمئنید که می‌خواهید خارج شوید؟"
     },
     "qrScanner": {
-        "scan": "Scan your QR code"
+        "scan": "اسکن کد QR شما"
     },
     "unitInfoModal": {
-        "unitSystem": "UNIT SYSTEM",
+        "unitSystem": "واحد سیستم",
         "trillion": "تریلیون",
         "billion": "بیلیون",
         "million": "میلیون",
@@ -560,9 +560,9 @@
         "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
     },
     "viewSeed": {
-        "enterPassword": "Enter password to view your seed.",
-        "viewSeed": "View Seed",
-        "hideSeed": "Hide Seed"
+        "enterPassword": "گذرواژه خود را برای مشاهده سید وارد کنید.",
+        "viewSeed": "مشاهده سید",
+        "hideSeed": "پنهان کردن سید"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Did you back up your seed?",
@@ -602,20 +602,20 @@
         "wrongCodeExplanation": "The code you entered is incorrect.",
         "emptyCode": "Empty code",
         "emptyCodeExplanation": "Please enter a code and try again.",
-        "keyCopied": "Key copied to clipboard",
-        "keyCopiedExplanation": "Your 2FA key has been copied to the clipboard.",
-        "addKey": "Add this key to your 2FA app",
-        "key": "Key",
-        "twoFAEnabled": "2FA is now enabled",
-        "twoFAEnabledExplanation": "You have successfully enabled Two Factor Authentication.",
-        "twoFADisabled": "2FA is now disabled",
-        "twoFADisabledExplanation": "You have successfully disabled Two Factor Authentication.",
-        "enterCode": "Enter the code from your 2FA app",
-        "code": "Code",
-        "twoFaToken": "2FA Token"
+        "keyCopied": "کلید به کلیپ بورد کپی شد",
+        "keyCopiedExplanation": "کلید 2FA شما به کلیپ بورد کپی شده است.",
+        "addKey": "این کلید را به برنامه 2FA اضافه کنید",
+        "key": "کلید",
+        "twoFAEnabled": "2FA در حال حاضر فعال است",
+        "twoFAEnabledExplanation": "شما دو عامل تایید هویت را با موفقیت فعال کردید.",
+        "twoFADisabled": "2FA در حال حاضر غیرفعال است",
+        "twoFADisabledExplanation": "شما دو عامل تایید هویت را با موفقیت غیرفعال کردید.",
+        "enterCode": "کد را از برنامه 2FA خود وارد کنید",
+        "code": "کد",
+        "twoFaToken": "نشانه 2FA"
     },
     "seedVault": {
-        "exportSeedVault": "Export SeedVault",
+        "exportSeedVault": "استخراج سید Vault",
         "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password. It is recommended that you store the file in a password manager like Keepass.",
         "seedVaultWarning": "Make sure you back up the file in multiple locations (e.g. hard drive, cloud, USB). If you lose this file and have not stored your seed elsewhere, you will lose your IOTA.",
         "exportFail": "SeedVault export failed",
