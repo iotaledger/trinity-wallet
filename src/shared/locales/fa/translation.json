@@ -311,7 +311,7 @@
         "paperWallet": "کیف پول کاغذی",
         "writeYourSeedDown": "سید خود را بنویسید",
         "seedClearedExplanation": "سید برای امنیت شما از کلیپ بورد پاکسازی شده است.",
-        "iHaveBackedUpMySeed": "I have backed up my seed",
+        "iHaveBackedUpMySeed": "من از سید خود پشتیبانی گرفتم",
         "letsWriteDownYourSeed": "Lets write down your seed",
         "youCanHighlightCharacters": "شما می توانید 9 کاراکتر را در یک زمان برجسته کنید",
         "printBlankWallet": "یک کیف پول خالی را چاپ کنید",
@@ -470,7 +470,7 @@
         "addressCopied": "آدرس کپی شد",
         "addressCopiedExplanation": "The address has been copied to the clipboard.",
         "messageCopied": "پیام کپی شد",
-        "messageCopiedExplanation": "The message has been copied to the clipboard.",
+        "messageCopiedExplanation": "پیام به کلیپ بورد کپی شد.",
         "send": "ارسال",
         "receive": "دریافت",
         "empty": "خالی",
@@ -485,16 +485,16 @@
         "addNewAccount": "اضافه کردن حساب جدید"
     },
     "addCustomNode": {
-        "customNodeAdded": "Custom node added",
-        "customNodeCouldNotBeAdded": "Custom node could not be added",
-        "customNodeAddedSuccessfully": "The custom node has been added successfully.",
-        "customNode": "Custom node",
-        "removeCustomNode": "Remove custom node",
-        "invalidNodeResponse": "The node returned an invalid response",
-        "httpNodeError": "Trinity Mobile only supports https nodes.",
+        "customNodeAdded": "Node سفارشی اضافه شد",
+        "customNodeCouldNotBeAdded": "Node سفارشی نمیتوان اضافه کرد",
+        "customNodeAddedSuccessfully": "Node سفارشی با موفقیت اضافه شد.",
+        "customNode": "Node سفارشی",
+        "removeCustomNode": "حذف Node سفارشی",
+        "invalidNodeResponse": "Node پاسخ نادرستی را دریافت کرد",
+        "httpNodeError": "Trinity موبایل تنها از Node هایی که https هستند پشتیبانی می کند.",
         "add": "اضافه کردن",
         "nodeFieldEmpty": "فیلد متن خالی است",
-        "nodeFieldEmptyExplanation": "Please enter a custom node."
+        "nodeFieldEmptyExplanation": "لطفا Node سفارشی خود را وارد کنید."
     },
     "addNewAccount": {
         "useExistingSeed": "استفاده از سیدهای موجود",
@@ -502,13 +502,13 @@
     },
     "advancedSettings": {
         "selectNode": "انتخاب Node",
-        "addCustomNode": "Add custom node",
+        "addCustomNode": "Node سفارشی را اضافه کنید",
         "manualSync": "همگام سازی دستی",
-        "snapshotTransition": "Snapshot transition",
+        "snapshotTransition": "انتقال عکس فوری",
         "pow": "اثبات کار",
-        "autoPromotion": "Auto-promotion",
-        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
-        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
+        "autoPromotion": "ارتقا خودکار",
+        "autoPromotionExplanation": "ارتقا خودکار کمک می کند تا معاملات خود را در Tangle تایید کنید. اگر شما دچار تردید در دریافت معاملات خود هستید این تنظیم را فعال کنید.",
+        "autoPromotionPoW": "ارتقا خودکار تنها در Node هایی است که از اثبات کار از راه دور پشتیبانی می کند."
     },
     "advancedThemeCustomisation": {
         "background": "پس زمینه",
@@ -536,7 +536,7 @@
         "one": "یک"
     },
     "usedAddressModal": {
-        "cantSpendFullBalanceQuestion": "Why can't I spend my full balance?",
+        "cantSpendFullBalanceQuestion": "چرا من نمی توانم موجودی کامل خود را انتقال بدهم؟",
         "spentAddressExplanation": "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
         "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
     },
@@ -565,8 +565,8 @@
         "hideSeed": "پنهان کردن سید"
     },
     "saveSeedConfirmation": {
-        "didSaveSeed": "Did you back up your seed?",
-        "alreadyHave": "I have backed up my seed",
+        "didSaveSeed": "آیا از سید خود پشتیبانی گرفتید؟",
+        "alreadyHave": "من از سید خود پشتیبانی گرفتم",
         "reenterSeed": "At the next step you will be asked to re-enter your seed.",
         "reenterSeedWarning": "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
         "pleaseConfirm": "Please confirm you have securely stored your seed."
@@ -651,7 +651,7 @@
         "powUpdated": "Proof of work settings",
         "powUpdatedExplanation": "Your proof of work configuration has been updated.",
         "noWebGLSupport": "WebGL not supported",
-        "noWebGLSupportExplanation": "Your computer does not support WebGL. Please use remote PoW."
+        "noWebGLSupportExplanation": "کامپیوتر شما WebGL پشتیبانی نمی کند. لطفا از اثبات کار از راه دور استفاده کنید."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Auto-promotion settings",
