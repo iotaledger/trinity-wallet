@@ -125,10 +125,13 @@ export const vaultAuth = async (password) => {
 /**
  * Clear the vault
  * @param {String} Password - Plain text password for decryption
+ * @param {Boolean} Reset - Should the vault be reset without authentication
  * @returns {Boolean} True if vault cleared
  */
-export const clearVault = async (password) => {
-    await vaultAuth(password);
+export const clearVault = async (password, reset) => {
+    if (!reset) {
+        await vaultAuth(password);
+    }
 
     const vault = await Electron.listKeychain();
 

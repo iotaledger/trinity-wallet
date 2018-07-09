@@ -10,7 +10,7 @@ import { addAccountName, increaseSeedCount, setOnboardingComplete } from 'action
 import { setPassword } from 'actions/wallet';
 import { setOnboardingName } from 'actions/ui';
 
-import { setSeed, setTwoFA, sha256 } from 'libs/crypto';
+import { setSeed, setTwoFA, sha256, clearVault } from 'libs/crypto';
 import { passwordReasons } from 'libs/i18next';
 
 import Button from 'ui/components/Button';
@@ -28,6 +28,8 @@ class AccountPassword extends React.PureComponent {
         /** Increase seed count
          */
         increaseSeedCount: PropTypes.func.isRequired,
+        /** Current seed count */
+        seedCount: PropTypes.number.isRequired,
         /** Set password state
          * @param {String} password - Current password
          * @ignore
@@ -72,6 +74,7 @@ class AccountPassword extends React.PureComponent {
             increaseSeedCount,
             setOnboardingName,
             setOnboardingComplete,
+            seedCount,
             history,
             generateAlert,
             onboarding,
@@ -111,9 +114,14 @@ class AccountPassword extends React.PureComponent {
 
         const passwordHash = await sha256(password);
 
-        addAccountName(onboarding.name);
+        if (seedCount === 0) {
+            await clearVault(null, true);
+        }
         increaseSeedCount();
+
+        addAccountName(onboarding.name);
         setPassword(passwordHash);
+
         await setSeed(passwordHash, onboarding.name, Electron.getOnboardingSeed());
         await setTwoFA(passwordHash, null);
         Electron.setOnboardingSeed(null);
@@ -166,6 +174,7 @@ class AccountPassword extends React.PureComponent {
 
 const mapStateToProps = (state) => ({
     onboarding: state.ui.onboarding,
+    seedCount: state.accounts.accountNames.length,
 });
 
 const mapDispatchToProps = {
@@ -177,4 +186,7 @@ const mapDispatchToProps = {
     increaseSeedCount,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(AccountPassword));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(translate()(AccountPassword));
