@@ -143,7 +143,6 @@ export const isValidAmount = (amount, multiplier, isFiat = false) => {
     if (value < 0) {
         return false;
     }
-
     return !isNaN(amount);
 };
 

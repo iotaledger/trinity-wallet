@@ -23,86 +23,6 @@ describe('actions: transfers', () => {
         SwitchingConfig.autoSwitch = true;
     });
 
-    describe('#broadcastBundle', () => {
-        describe('when bundle is invalid', () => {
-            let sandbox;
-
-            beforeEach(() => {
-                sandbox = sinon.sandbox.create();
-
-                sandbox.stub(iota.api, 'broadcastBundle').yields(null);
-                sandbox.stub(iota.api, 'getNodeInfo').yields(null, {});
-                sandbox.stub(transferUtils, 'isStillAValidTransaction').resolves(false);
-                sandbox.stub(accountsUtils, 'syncAccount').resolves(accounts.accountInfo.TEST);
-            });
-
-            afterEach(() => {
-                sandbox.restore();
-            });
-
-            it('should create actions of type IOTA/TRANSFERS/BROADCAST_BUNDLE_REQUEST, IOTA/ALERTS/SHOW, IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST and IOTA/TRANSFERS/BROADCAST_BUNDLE_ERROR', () => {
-                const store = mockStore({ accounts });
-
-                const expectedActions = [
-                    'IOTA/TRANSFERS/BROADCAST_BUNDLE_REQUEST',
-                    'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST',
-                    'IOTA/ALERTS/SHOW',
-                    'IOTA/TRANSFERS/BROADCAST_BUNDLE_ERROR',
-                ];
-
-                return store
-                    .dispatch(
-                        actions.broadcastBundle(
-                            'ABHSKIARZVHZ9GKX9DJDSB9YPFKPPHBOOHSKTENCWQHLRGXTFWEDKLREGF9WIFBYNUEXUTJUL9GYLAXRD',
-                            'TEST',
-                        ),
-                    )
-                    .then(() => {
-                        expect(store.getActions().map((action) => action.type)).to.eql(expectedActions);
-                    });
-            });
-        });
-
-        describe('when bundle is valid', () => {
-            let sandbox;
-
-            beforeEach(() => {
-                sandbox = sinon.sandbox.create();
-
-                sandbox.stub(iota.api, 'broadcastBundle').yields(null);
-                sandbox.stub(iota.api, 'getNodeInfo').yields(null, {});
-                sandbox.stub(transferUtils, 'isStillAValidTransaction').resolves(true);
-                sandbox.stub(accountsUtils, 'syncAccount').resolves(accounts.accountInfo.TEST);
-            });
-
-            afterEach(() => {
-                sandbox.restore();
-            });
-
-            it('should create actions of type IOTA/TRANSFERS/BROADCAST_BUNDLE_REQUEST, IOTA/TRANSFERS/BROADCAST_BUNDLE_SUCCESS, IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST and IOTA/ALERTS/SHOW', () => {
-                const store = mockStore({ accounts });
-
-                const expectedActions = [
-                    'IOTA/TRANSFERS/BROADCAST_BUNDLE_REQUEST',
-                    'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST',
-                    'IOTA/ALERTS/SHOW',
-                    'IOTA/TRANSFERS/BROADCAST_BUNDLE_SUCCESS',
-                ];
-
-                return store
-                    .dispatch(
-                        actions.broadcastBundle(
-                            'ABHSKIARZVHZ9GKX9DJDSB9YPFKPPHBOOHSKTENCWQHLRGXTFWEDKLREGF9WIFBYNUEXUTJUL9GYLAXRD',
-                            'TEST',
-                        ),
-                    )
-                    .then(() => {
-                        expect(store.getActions().map((action) => action.type)).to.eql(expectedActions);
-                    });
-            });
-        });
-    });
-
     describe('#promoteTransaction', () => {
         describe('when bundle is invalid', () => {
             let sandbox;
@@ -110,8 +30,8 @@ describe('actions: transfers', () => {
             beforeEach(() => {
                 sandbox = sinon.sandbox.create();
 
-                sandbox.stub(iota.api, 'promoteTransaction').yields(null, '9'.repeat(81));
-                sandbox.stub(iota.api, 'replayBundle').yields(null, []);
+                sandbox.stub(extendedApis, 'promoteTransactionAsync').resolves('9'.repeat(81));
+                sandbox.stub(extendedApis, 'replayBundleAsync').resolves([]);
                 sandbox.stub(transferUtils, 'isStillAValidTransaction').resolves(false);
                 sandbox.stub(accountsUtils, 'syncAccount').resolves(accounts.accountInfo.TEST);
             });
@@ -151,7 +71,7 @@ describe('actions: transfers', () => {
                 sandbox = sinon.sandbox.create();
 
                 sandbox.stub(accountsUtils, 'syncAccount').resolves(accounts.accountInfo.TEST);
-                sandbox.stub(iota.api, 'promoteTransaction').yields(null, '9'.repeat(81));
+                sandbox.stub(extendedApis, 'promoteTransactionAsync').resolves('9'.repeat(81));
                 sandbox.stub(transferUtils, 'isStillAValidTransaction').resolves(true);
                 sandbox
                     .stub(transferUtils, 'getFirstConsistentTail')
@@ -210,7 +130,8 @@ describe('actions: transfers', () => {
             beforeEach(() => {
                 sandbox = sinon.sandbox.create();
 
-                sandbox.stub(iota.api, 'replayBundle').yields(null, []);
+                sandbox.stub(extendedApis, 'promoteTransactionAsync').resolves('9'.repeat(81));
+                sandbox.stub(extendedApis, 'replayBundleAsync').resolves([]);
                 sandbox.stub(transferUtils, 'isStillAValidTransaction').resolves(true);
                 sandbox.stub(transferUtils, 'getFirstConsistentTail').resolves(false);
                 sandbox.stub(accountsUtils, 'syncAccount').resolves(accounts.accountInfo.TEST);

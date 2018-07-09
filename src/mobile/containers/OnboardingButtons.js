@@ -65,6 +65,8 @@ class OnboardingButtons extends PureComponent {
                             wrapper: {
                                 backgroundColor: theme.dark.color,
                                 width: width / 2,
+                                borderColor: theme.primary.border,
+                                borderWidth: 1,
                             },
                             children: {
                                 color: theme.dark.body,

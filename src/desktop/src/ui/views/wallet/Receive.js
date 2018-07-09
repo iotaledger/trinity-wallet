@@ -7,8 +7,8 @@ import QRCode from 'qr.js/lib/QRCode';
 import { selectAccountInfo, getSelectedAccountName } from 'selectors/accounts';
 import { runTask } from 'worker';
 
-import { setReceiveAddress } from 'actions/wallet';
 import { generateAlert } from 'actions/alerts';
+import { selectLatestAddressFromAccountFactory } from 'iota-wallet-shared-modules/selectors/accounts';
 
 import { getSeed } from 'libs/crypto';
 
@@ -38,11 +38,6 @@ class Receive extends React.PureComponent {
         isTransitioning: PropTypes.bool.isRequired,
         /** Is wallet generating receive address state */
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
-        /** Set receive address
-         * @param {string} address - target receive address
-         * @ignore
-         */
-        setReceiveAddress: PropTypes.func.isRequired,
         /** Create a notification message
          * @param {String} type - notification type - success, error
          * @param {String} title - notification title
@@ -60,18 +55,6 @@ class Receive extends React.PureComponent {
     state = {
         message: '',
     };
-
-    componentDidMount() {
-        if (this.props.receiveAddress) {
-            this.props.setReceiveAddress(' ');
-        }
-    }
-
-    componentWillUnmount() {
-        if (this.props.receiveAddress) {
-            this.props.setReceiveAddress(' ');
-        }
-    }
 
     onGeneratePress = async () => {
         const { password, accountName, account, isSyncing, isTransitioning, generateAlert, t } = this.props;
@@ -157,7 +140,7 @@ class Receive extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    receiveAddress: state.wallet.receiveAddress,
+    receiveAddress: selectLatestAddressFromAccountFactory(state),
     isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
     isSyncing: state.ui.isSyncing,
     isTransitioning: state.ui.isTransitioning,
@@ -167,8 +150,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    setReceiveAddress,
     generateAlert,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(Receive));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(translate()(Receive));
