@@ -291,7 +291,7 @@ class SeedInput extends React.PureComponent {
                                 return (
                                     <span
                                         className={css.letter}
-                                        data-letter={hidden ? letter : '•'}
+                                        data-letter={hidden ? '•' : letter}
                                         key={`${index}-${byte}`}
                                     >
                                         &nbsp;
