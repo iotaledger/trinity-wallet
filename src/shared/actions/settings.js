@@ -247,7 +247,7 @@ export function setFullNode(node, addingCustomNode = false) {
 
                 // Update node in redux store
                 dispatch(dispatcher.success(node));
-               
+
                 if (res.error.includes(Errors.INVALID_PARAMETERS)) {
                     dispatch(
                         generateAlert(

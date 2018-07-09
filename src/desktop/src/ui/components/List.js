@@ -33,8 +33,6 @@ class List extends React.PureComponent {
         isLoading: PropTypes.bool.isRequired,
         /** Bundle hash for the transaction that is currently being promoted */
         currentlyPromotingBundleHash: PropTypes.string.isRequired,
-        /** Determines if wallet is broadcasting bundle */
-        isBroadcastingBundle: PropTypes.bool.isRequired,
         /** Current transaction retry state */
         isRetryingFailedTransaction: PropTypes.bool.isRequired,
         /** Hide empty transactions flag */
@@ -58,10 +56,6 @@ class List extends React.PureComponent {
          * @param {func} powFn - local Proof of Work function
          */
         promoteTransaction: PropTypes.func.isRequired,
-        /** Broadcast bundle
-         * @param {string} bundle - bundle hash
-         */
-        broadcastBundle: PropTypes.func.isRequired,
         /** Retry failed bundle
          * @param {string} bundle - bundle hash
          * @param {func} powFn - local Proof of Work function
@@ -167,17 +161,11 @@ class List extends React.PureComponent {
         this.props.retryFailedTransaction(bundle, powFn);
     }
 
-    broadcastBundle(e, bundle) {
-        e.stopPropagation();
-        this.props.broadcastBundle(bundle);
-    }
-
     render() {
         const {
             isLoading,
             isBusy,
             currentlyPromotingBundleHash,
-            isBroadcastingBundle,
             isRetryingFailedTransaction,
             mode,
             hideEmptyTransactions,
@@ -314,7 +302,12 @@ class List extends React.PureComponent {
                                     >
                                         <div>
                                             <div className={isReceived ? css.plus : css.minus} />
-                                            <span>{formatTime(navigator.language, convertUnixTimeToJSDate(transfer.timestamp))}</span>
+                                            <span>
+                                                {formatTime(
+                                                    navigator.language,
+                                                    convertUnixTimeToJSDate(transfer.timestamp),
+                                                )}
+                                            </span>
                                             <span>
                                                 {!isConfirmed ? t('pending') : isReceived ? t('received') : t('sent')}
                                             </span>
@@ -354,7 +347,12 @@ class List extends React.PureComponent {
                                         {!activeTransfer.persistence
                                             ? t('pending')
                                             : activeTransfer.incoming ? t('received') : t('sent')}
-                                        <em>{formatModalTime(navigator.language, convertUnixTimeToJSDate(activeTransfer.timestamp))}</em>
+                                        <em>
+                                            {formatModalTime(
+                                                navigator.language,
+                                                convertUnixTimeToJSDate(activeTransfer.timestamp),
+                                            )}
+                                        </em>
                                     </small>
                                 </p>
                                 <h6>{t('bundleHash')}:</h6>
@@ -396,17 +394,6 @@ class List extends React.PureComponent {
                                                 {t('retry')}
                                             </Button>
                                         )}
-                                        {!isActiveFailed &&
-                                            mode === 'Expert' && (
-                                                <Button
-                                                    variant="secondary"
-                                                    className="small"
-                                                    loading={isBroadcastingBundle}
-                                                    onClick={(e) => this.broadcastBundle(e, activeTransfer.bundle)}
-                                                >
-                                                    {t('rebroadcast')}
-                                                </Button>
-                                            )}
                                     </nav>
                                 )}
                             </div>

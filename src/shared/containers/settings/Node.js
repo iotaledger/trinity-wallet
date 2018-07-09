@@ -102,7 +102,7 @@ export default function withNodeData(NodeComponent) {
         theme: state.settings.theme,
         autoNodeSwitching: state.settings.autoNodeSwitching,
         isChangingNode: state.ui.isChangingNode,
-        isCheckingCustomNode: state.ui.isCheckingCustomNode
+        isCheckingCustomNode: state.ui.isCheckingCustomNode,
     });
 
     const mapDispatchToProps = {
@@ -112,10 +112,5 @@ export default function withNodeData(NodeComponent) {
         updateAutoNodeSwitching,
     };
 
-    return translate()(
-        connect(
-            mapStateToProps,
-            mapDispatchToProps,
-        )(NodeData),
-    );
+    return translate()(connect(mapStateToProps, mapDispatchToProps)(NodeData));
 }
