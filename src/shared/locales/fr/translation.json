@@ -92,7 +92,7 @@
         "addresses": "Adresses",
         "reattach": "RATTACHER",
         "promote": "PROMOUVOIR",
-        "retry": "Retry",
+        "retry": "Réessayer",
         "pressBackAgain": "Appuyez sur le bouton retour pour fermer l'application",
         "reattached": "Transaction rattachée avec succès",
         "reattachedExplanation": "Transaction avec le hash {{hash}} rattachée",
@@ -161,8 +161,8 @@
         "nameInUse": "Nom de compte déjà utilisé",
         "nameInUseExplanation": "Veuillez utiliser un nom de compte unique pour votre seed.",
         "enterAccountName": "Veuillez saisir un nom de compte.",
-        "accountNameTooLong": "Account name too long",
-        "accountNameTooLongExplanation": "Account name maximum length is {{maxLength}} characters.",
+        "accountNameTooLong": "Nom de compte trop long",
+        "accountNameTooLongExplanation": "La longueur maximale du nom de compte est de {{maxLength}} caractères.",
         "accountName": "Nom du compte",
         "noNickname": "Aucun nom de compte saisi",
         "noNicknameExplanation": "Veuillez saisir un nom de compte pour votre seed.",
@@ -250,8 +250,8 @@
         "selectDifferentNode": "Voulez-vous sélectionner un serveur différent ?",
         "setNode": "Choisir un serveur",
         "cannotConnect": "Impossible de se connecter à un serveur IOTA.",
-        "whyBiometricDisabled": "Why is biometric authentication disabled?",
-        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabled": "Pourquoi l'authentification biométrique est-elle désactivée?",
+        "whyBiometricDisabledExplanation": "L'authentification biométrique est désactivée lors du premier chargement pour votre sécurité. Lorsque vous utilisez Trinity, vous serez déconnecté pour inactivité. Vous pourrez alors vous reconnecter avec l’authentification biométrique."
     },
     "loading": {
         "loadingFirstTime": "Chargement de la seed pour la première fois.",
@@ -289,9 +289,9 @@
         "printerCheckbox": "Je ne l'imprimerai pas sur une imprimante publique"
     },
     "receive": {
-        "yourAddress": "Your address",
+        "yourAddress": "Votre adresse",
         "qrOptions": "QR options",
-        "shareQr": "Share QR code",
+        "shareQr": "Partager le QR code",
         "copyAddress": "Copier l'adresse",
         "addressCopied": "Adresse copiée",
         "addressCopiedExplanation": "Votre adresse a été copiée dans le presse-papier.",
@@ -474,7 +474,7 @@
         "send": "Envoyer",
         "receive": "Recevoir",
         "empty": "Vide",
-        "retrying": "Retrying",
+        "retrying": "Nouvelle tentative",
         "yesterday": "Hier"
     },
     "accountManagement": {
@@ -489,7 +489,7 @@
         "customNodeCouldNotBeAdded": "Le serveur personnalisé n'a pas pu être ajouté",
         "customNodeAddedSuccessfully": "Le serveur personnalisé a été ajouté avec succès.",
         "customNode": "Serveur personnalisé",
-        "removeCustomNode": "Remove custom node",
+        "removeCustomNode": "Supprimer le serveur personnalisé",
         "invalidNodeResponse": "Le serveur a renvoyé une réponse invalide",
         "httpNodeError": "La version mobile de Trinity ne supporte que des serveur https.",
         "add": "Ajouter",

@@ -92,7 +92,7 @@
         "addresses": "Adresy",
         "reattach": "REATTACH",
         "promote": "PROMOWANIE",
-        "retry": "Retry",
+        "retry": "Ponów",
         "pressBackAgain": "Naciśnij przycisk wstecz ponownie, aby zamknąć aplikację",
         "reattached": "Reattach udany",
         "reattachedExplanation": "Wykonano reattach transakcji z hashem {{hash}}",
@@ -250,8 +250,8 @@
         "selectDifferentNode": "Czy chcesz wybrać inny serwer?",
         "setNode": "Serwer",
         "cannotConnect": "Nie można połączyć się z serwerem.",
-        "whyBiometricDisabled": "Why is biometric authentication disabled?",
-        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabled": "Dlaczego logowanie biometryczne jest niedostępne?",
+        "whyBiometricDisabledExplanation": "Dla Twojego bezpieczeństwa, logowanie odciskiem palca jest wyłączone przy pierwszym uruchomieniu aplikacji. Z tej metody logowania możesz skorzystać jedynie wtedy, gdy zostałeś wylogowany z Trinity ze względu na Twoją bezczynność w aplikacji."
     },
     "loading": {
         "loadingFirstTime": "Ładowanie klucza seed po raz pierwszy.",
@@ -289,9 +289,9 @@
         "printerCheckbox": "Nie będę drukował na publicznej drukarce"
     },
     "receive": {
-        "yourAddress": "Your address",
-        "qrOptions": "QR options",
-        "shareQr": "Share QR code",
+        "yourAddress": "Twój adres",
+        "qrOptions": "Opcje QR",
+        "shareQr": "Udostępnij kod QR",
         "copyAddress": "Kopiuj adres",
         "addressCopied": "Adres skopiowany",
         "addressCopiedExplanation": "Twój adres został skopiowany do schowka.",
@@ -474,7 +474,7 @@
         "send": "Wyślij",
         "receive": "Odbierz",
         "empty": "Brak",
-        "retrying": "Retrying",
+        "retrying": "Ponawianie",
         "yesterday": "Wczoraj"
     },
     "accountManagement": {
