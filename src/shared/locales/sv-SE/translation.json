@@ -37,14 +37,14 @@
         "apply": "Verkställ",
         "save": "Spara",
         "close": "Stäng",
-        "export": "Export",
-        "import": "Import",
+        "export": "Exportera",
+        "import": "Importera",
         "continue": "Fortsätt",
         "enable": "Aktivera",
         "disable": "Avaktivera",
         "enabled": "Aktiverad",
         "disabled": "Avaktiverad",
-        "enterPassword": "Enter password",
+        "enterPassword": "Ange lösenord",
         "paperWallet": "Skriv ut papperskopia",
         "addToPasswordManager": "Lägg till i lösenordshanteraren",
         "shareSeed": "Dela seed",
@@ -92,7 +92,7 @@
         "addresses": "Adresser",
         "reattach": "ÅTERFÄST",
         "promote": "BEFORDRA",
-        "retry": "Retry",
+        "retry": "Försök igen",
         "pressBackAgain": "Tryck tillbaka igen för att stänga appen",
         "reattached": "Framgångsrik återfästning av transaktion",
         "reattachedExplanation": "Återfäste transaktion med hash {{hash}}",
@@ -161,8 +161,8 @@
         "nameInUse": "Kontonamnet används redan",
         "nameInUseExplanation": "Vänligen använd ett unikt namn för din seed.",
         "enterAccountName": "Ange ditt kontonamn.",
-        "accountNameTooLong": "Account name too long",
-        "accountNameTooLongExplanation": "Account name maximum length is {{maxLength}} characters.",
+        "accountNameTooLong": "Kontonamnet är för långt",
+        "accountNameTooLongExplanation": "Maxlängden för kontonamn är {{maxLength}} tecken.",
         "accountName": "Kontonamn",
         "noNickname": "Inget kontonamn är angivet",
         "noNicknameExplanation": "Vänligen ange ett namn för din seed.",
@@ -250,8 +250,8 @@
         "selectDifferentNode": "Vill du välja en annan nod?",
         "setNode": "Ställ in nod",
         "cannotConnect": "Kan ej ansluta till IOTA nod.",
-        "whyBiometricDisabled": "Why is biometric authentication disabled?",
-        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabled": "Varför är biometrisk autentisering avaktiverad?",
+        "whyBiometricDisabledExplanation": "Biometrisk autentisering är avaktiverad vid första inloggning för din säkerhet. När du använder Trinity, så blir du utloggad vid inaktivitet. Du kan sedan logga in igen med biometrisk autentisering."
     },
     "loading": {
         "loadingFirstTime": "Laddar din adress för första gången.",
@@ -289,9 +289,9 @@
         "printerCheckbox": "Jag kommer inte att skriva ut på en offentlig skrivare"
     },
     "receive": {
-        "yourAddress": "Your address",
-        "qrOptions": "QR options",
-        "shareQr": "Share QR code",
+        "yourAddress": "Din adress",
+        "qrOptions": "QR alternativ",
+        "shareQr": "Dela QR-kod",
         "copyAddress": "Kopiera adress",
         "addressCopied": "Adress kopierad",
         "addressCopiedExplanation": "Din adress har kopierats till urklipp.",
@@ -474,7 +474,7 @@
         "send": "Skicka",
         "receive": "Motta",
         "empty": "Tomt",
-        "retrying": "Retrying",
+        "retrying": "Försöker igen",
         "yesterday": "Igår"
     },
     "accountManagement": {
@@ -489,7 +489,7 @@
         "customNodeCouldNotBeAdded": "Anpassad nod kunde inte bli tillagd",
         "customNodeAddedSuccessfully": "Den anpassade noden har lagts till framgångsrikt.",
         "customNode": "Anpassad nod",
-        "removeCustomNode": "Remove custom node",
+        "removeCustomNode": "Ta bort anpassad nod",
         "invalidNodeResponse": "Noden returnerade ett ogiltigt svar",
         "httpNodeError": "Trinity stödjer endast https-noder.",
         "add": "Lägg till",
@@ -615,7 +615,7 @@
         "twoFaToken": "2FA-token"
     },
     "seedVault": {
-        "exportSeedVault": "Export SeedVault",
+        "exportSeedVault": "Exportera SeedVault",
         "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password. It is recommended that you store the file in a password manager like Keepass.",
         "seedVaultWarning": "Make sure you back up the file in multiple locations (e.g. hard drive, cloud, USB). If you lose this file and have not stored your seed elsewhere, you will lose your IOTA.",
         "exportFail": "SeedVault export failed",
