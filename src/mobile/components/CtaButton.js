@@ -9,7 +9,6 @@ const styles = StyleSheet.create({
         borderRadius: height / 10,
         justifyContent: 'center',
         alignItems: 'center',
-        borderWidth: 1.2,
     },
     ctaButtonContainer: {
         alignItems: 'center',
@@ -63,7 +62,6 @@ class CtaButton extends PureComponent {
                         style={[
                             styles.ctaButton,
                             { backgroundColor: ctaColor },
-                            { borderColor: 'transparent' },
                             { width: ctaWidth },
                             { height: ctaHeight },
                         ]}

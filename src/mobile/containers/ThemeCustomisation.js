@@ -215,7 +215,7 @@ class ThemeCustomisation extends Component {
                                     {t('themeCustomisation:mockup').toUpperCase()}
                                 </Text>
                             </View>
-                            <View style={[styles.frameBar, { backgroundColor: bar.bg }]}>
+                            <View style={[styles.frameBar, { backgroundColor: bar.hover }]}>
                                 <Text style={[styles.frameBarTitle, { color: bar.color }]}>
                                     {t('global:mainWallet').toUpperCase()}
                                 </Text>

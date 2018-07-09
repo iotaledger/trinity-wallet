@@ -369,7 +369,4 @@ const mapDispatchToProps = {
     setOnboardingName,
 };
 
-export default connect(
-    null,
-    mapDispatchToProps,
-)(translate()(SeedInput));
+export default connect(null, mapDispatchToProps)(translate()(SeedInput));
