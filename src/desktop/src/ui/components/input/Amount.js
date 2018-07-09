@@ -175,8 +175,7 @@ export default class AmountInput extends React.PureComponent {
                             <p>
                                 = {getCurrencySymbol(settings.currency)}{' '}
                                 {(
-                                    round(((amount * settings.usdPrice) / 1000000) * settings.conversionRate * 100) /
-                                    100
+                                    round(amount * settings.usdPrice / 1000000 * settings.conversionRate * 100) / 100
                                 ).toFixed(2)}
                             </p>
                         ) : null}
