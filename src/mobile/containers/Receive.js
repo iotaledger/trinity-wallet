@@ -13,7 +13,6 @@ import {
     Animated,
     Easing,
 } from 'react-native';
-import QRCode from 'react-native-qrcode-svg';
 import Share from 'react-native-share';
 import { captureRef } from 'react-native-view-shot';
 import { connect } from 'react-redux';
@@ -36,6 +35,7 @@ import timer from 'react-native-timer';
 import { getSeedFromKeychain } from '../utils/keychain';
 import GENERAL from '../theme/general';
 import MultiTextInput from '../components/MultiTextInput';
+import CustomQrCodeComponent from '../components/CustomQRCode';
 import { Icon } from '../theme/icons.js';
 import ScramblingText from '../components/ScramblingText';
 import { width, height } from '../utils/dimensions';
@@ -241,7 +241,7 @@ class Receive extends Component {
         super(props);
         this.state = {
             currencySymbol: getCurrencySymbol(props.currency),
-            scramblingLetters: {},
+            scramblingLetters: [],
         };
         this.generateAddress = this.generateAddress.bind(this);
         this.flipCard = this.flipCard.bind(this);
@@ -588,7 +588,7 @@ class Receive extends Component {
                                     { backgroundColor: '#F2F2F2', paddingBottom: width / 14 },
                                 ]}
                             >
-                                <QRCode
+                                <CustomQrCodeComponent
                                     value={qrContent}
                                     size={width / 3}
                                     color="black"
@@ -708,7 +708,7 @@ class Receive extends Component {
                                         this.qr = c;
                                     }}
                                 >
-                                    <QRCode
+                                    <CustomQrCodeComponent
                                         value={qrContent}
                                         size={width / 3}
                                         color="black"
