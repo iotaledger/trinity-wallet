@@ -248,7 +248,9 @@ class Receive extends Component {
     }
 
     componentWillMount() {
-        this.scrambleLetters();
+        if (!isAndroid) {
+            this.scrambleLetters();
+        }
 
         const value = this.props.isCardFlipped ? 1 : 0;
 
@@ -298,7 +300,10 @@ class Receive extends Component {
             timer.clearInterval('scramble');
         }
         if (!this.props.isGeneratingReceiveAddress && newProps.isGeneratingReceiveAddress) {
-            this.startLetterScramble();
+            if (!isAndroid) {
+                this.startLetterScramble();
+            }
+
             this.triggerRefreshAnimations();
         }
         if (this.props.seedIndex !== newProps.seedIndex) {
