@@ -13,6 +13,8 @@ import PasswordInput from 'ui/components/input/Password';
 import Button from 'ui/components/Button';
 import Icon from 'ui/components/Icon';
 
+import css from './seedExport.scss';
+
 /**
  * Onboarding, Seed export step
  */
@@ -21,7 +23,7 @@ class SeedExport extends PureComponent {
         /** Target Seed */
         seed: PropTypes.array.isRequired,
         /** Seed title */
-        title: PropTypes.array,
+        title: PropTypes.string,
         /**  On close event callback */
         onClose: PropTypes.func.isRequired,
         /** Translation helper
@@ -114,10 +116,9 @@ class SeedExport extends PureComponent {
 
         if (this.state.step === 1) {
             return (
-                <form onSubmit={this.onStep}>
+                <form className={css.seedExport} onSubmit={this.onStep}>
                     <section>
-                        <Icon icon="seedVault" size={170} />
-                        <h1>{t('seedVault:exportSeedVault')}</h1>
+                        <h1><Icon icon="seedVault" size={120} />{t('seedVault:exportSeedVault')}</h1>
                         <p>{t('seedVault:seedVaultExplanation')}</p>
                         <p>
                             <strong>{t('seedVault:seedVaultWarning')}</strong>
@@ -138,10 +139,9 @@ class SeedExport extends PureComponent {
         const score = zxcvbn(this.state.password);
 
         return (
-            <form onSubmit={this.exportSeed}>
+            <form className={css.seedExport} onSubmit={this.exportSeed}>
                 <section>
-                    <Icon icon="seedVault" size={170} />
-                    <h1>{t('seedVault:exportSeedVault')}</h1>
+                    <h1><Icon icon="seedVault" size={120} />{t('seedVault:exportSeedVault')}</h1>
                     <PasswordInput
                         focus
                         value={this.state.password}
