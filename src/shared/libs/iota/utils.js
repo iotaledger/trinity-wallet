@@ -1,6 +1,7 @@
 import isNull from 'lodash/isNull';
 import size from 'lodash/size';
 import URL from 'url-parse';
+import { BigNumber } from 'bignumber.js';
 import { iota } from './index';
 
 export const MAX_SEED_LENGTH = 81;
@@ -127,7 +128,7 @@ export const isValidMessage = (message) => {
 };
 
 export const isValidAmount = (amount, multiplier, isFiat = false) => {
-    const value = parseFloat(amount) * multiplier;
+    const value = new BigNumber(parseFloat(amount)).times(new BigNumber(multiplier)).toNumber();
     // For sending a message
     if (amount === '') {
         return true;
