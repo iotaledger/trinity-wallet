@@ -4,16 +4,19 @@ import i18next from '../i18next';
 export const formatTimeAs = {
     timeOnly: (locale, time) => {
         const m = moment.utc(time);
+        locale = chooseMomentLocale(locale);
         m.locale(locale);
         return m.format('LT');
     },
     hoursMinutesDayMonthYear: (locale, time) => {
         const m = moment.utc(time);
+        locale = chooseMomentLocale(locale);
         m.locale(locale);
         return m.format('LT L');
     },
     hoursMinutesSecondsDayMonthYear: (locale, time) => {
         const m = moment.utc(time);
+        locale = chooseMomentLocale(locale);
         m.locale(locale);
         return m.format('LTS L');
     },
@@ -22,6 +25,7 @@ export const formatTimeAs = {
 export const formatDayAs = {
     dayMonthYear: (locale, day) => {
         const m = moment.utc(day);
+        locale = chooseMomentLocale(locale);
         m.locale(locale);
         return m.format('L');
     },
