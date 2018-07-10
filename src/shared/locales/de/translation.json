@@ -231,11 +231,11 @@
         "neverShare": "TEILE DEINEN SEED MIT NIEMANDEM"
     },
     "home": {
-        "balance": "KONTOSTAND",
+        "balance": "ÜBERSICHT",
         "send": "SENDEN",
         "receive": "EMPFANGEN",
         "history": "VERLAUF",
-        "settings": "EINSTELLUNG"
+        "settings": "OPTIONEN"
     },
     "languageSetup": {
         "language": "Sprache",
