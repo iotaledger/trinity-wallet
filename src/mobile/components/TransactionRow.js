@@ -6,52 +6,46 @@ import { formatTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/
 import spinner from 'iota-wallet-shared-modules/animations/spinner.json';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
+import { locale } from '../utils/device';
 import { Icon } from '../theme/icons';
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        borderRadius: GENERAL.borderRadius,
-        paddingVertical: height / 55,
-        paddingHorizontal: width / 25,
-        width: width / 1.2,
-        justifyContent: 'center',
-        marginBottom: height / 60,
-    },
-    topWrapper: {
-        flex: 1,
         alignItems: 'center',
     },
-    textWrapper: {
-        flex: 4,
-        height: height / 15,
-        marginLeft: width / 35,
+    row: {
+        flex: 1,
+        borderRadius: GENERAL.borderRadius,
+        borderWidth: 1,
+        paddingVertical: height / 55,
+        width: width / 1.15,
+        justifyContent: 'center',
+        marginBottom: height / 60,
+        height: height / 10,
     },
-    innerWrapper: {
+    iconWrapper: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginHorizontal: width / 32,
+        width: width / 20,
+    },
+    textWrapper: {
+        flex: 1,
+        height: height / 15,
+        marginRight: width / 32,
+    },
+    topWrapper: {
         flexDirection: 'row',
         flex: 1,
         justifyContent: 'space-between',
         alignItems: 'flex-start',
     },
-    messageOuterWrapper: {
+    bottomWrapper: {
         flexDirection: 'row',
         flex: 1,
         justifyContent: 'space-between',
         alignItems: 'flex-end',
-    },
-    messageInnerWrapper: {
-        flexDirection: 'row',
-        flex: 1,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-    },
-    timeWrapper: {
-        flex: 1,
-        alignItems: 'flex-end',
-    },
-    statusWrapper: {
-        flexDirection: 'row',
-        backgroundColor: 'transparent',
     },
     statusText: {
         fontFamily: 'SourceSansPro-SemiBold',
@@ -61,6 +55,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Light',
         fontSize: width / 28,
+        flex: 1,
+        paddingRight: width / 70,
     },
     messageTitle: {
         backgroundColor: 'transparent',
@@ -82,18 +78,23 @@ const styles = StyleSheet.create({
         width: width / 14,
         height: width / 17,
     },
-    icon: {
-        fontSize: width / 13,
-        fontFamily: 'SourceSansPro-Light',
-        backgroundColor: 'transparent',
-    },
-    iconContainer: {
+    iconBorder: {
         borderRadius: width / 30,
         borderWidth: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        width: width / 16,
-        height: width / 16,
+        width: width / 20,
+        height: width / 20,
+    },
+    messageWrapper: {
+        flex: 3,
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+    },
+    timestampWrapper: {
+        flex: 1,
+        alignItems: 'flex-end',
     },
 });
 
@@ -104,7 +105,7 @@ export default class TransactionRow extends PureComponent {
          */
         t: PropTypes.func.isRequired,
         /** Transaction confirmation state */
-        confirmation: PropTypes.string.isRequired,
+        status: PropTypes.string.isRequired,
         /** Transaction value */
         value: PropTypes.number.isRequired,
         /** Transaction unit */
@@ -136,14 +137,14 @@ export default class TransactionRow extends PureComponent {
     };
 
     render() {
-        const { icon, confirmation, value, unit, time, message, t, style, onPress, bundleIsBeingPromoted } = this.props;
+        const { icon, status, value, unit, time, message, t, style, onPress, bundleIsBeingPromoted } = this.props;
 
         return (
             <TouchableOpacity onPress={() => onPress(this.props)}>
-                <View style={styles.topWrapper}>
-                    <View style={[styles.container, style.containerBackgroundColor]}>
+                <View style={styles.container}>
+                    <View style={[styles.row, style.containerBackgroundColor, style.rowBorderColor]}>
                         {bundleIsBeingPromoted && (
-                            <View style={{ position: 'absolute', left: width / 3.2, top: height / 70 }}>
+                            <View style={{ position: 'absolute', left: width / 3.4, top: height / 70 }}>
                                 <LottieView
                                     source={spinner}
                                     style={styles.animation}
@@ -158,38 +159,36 @@ export default class TransactionRow extends PureComponent {
                             </View>
                         )}
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                            <View style={styles.iconWrapper}>
                                 <Icon
                                     name={icon}
-                                    size={width / 11}
+                                    size={width / 36}
                                     color={style.titleColor}
                                     iconStyle={{ position: 'absolute' }}
                                 />
-                                <View style={[styles.iconContainer, style.rowBorderColor, { position: 'absolute' }]} />
+                                <View style={[styles.iconBorder, style.borderColor, { position: 'absolute' }]} />
                             </View>
                             <View style={styles.textWrapper}>
-                                <View style={styles.innerWrapper}>
-                                    <View style={styles.statusWrapper}>
-                                        <Text style={[styles.statusText, { color: style.titleColor }]}>
-                                            {bundleIsBeingPromoted ? 'RETRYING' : confirmation.toUpperCase()}
-                                        </Text>
-                                    </View>
+                                <View style={styles.topWrapper}>
+                                    <Text style={[styles.statusText, { color: style.titleColor }]}>
+                                        {bundleIsBeingPromoted ? t('history:retrying') : status}
+                                    </Text>
                                     <Text style={[styles.confirmationStatus, { color: style.titleColor }]}>
                                         {value} {unit}
                                     </Text>
                                 </View>
-                                <View style={styles.messageOuterWrapper}>
-                                    <View style={styles.messageInnerWrapper}>
+                                <View style={styles.bottomWrapper}>
+                                    <View style={styles.messageWrapper}>
                                         <Text style={[styles.messageTitle, style.rowTextColor]}>
                                             {t('send:message')}:
                                         </Text>
                                         <Text style={[styles.message, style.rowTextColor]} numberOfLines={1}>
-                                            {message}
+                                            {message === 'Empty' ? t('history:empty') : message}
                                         </Text>
                                     </View>
-                                    <View style={styles.timeWrapper}>
+                                    <View style={styles.timestampWrapper}>
                                         <Text style={[styles.timestamp, style.rowTextColor]}>
-                                            {formatTime(convertUnixTimeToJSDate(time))}
+                                            {formatTime(locale, convertUnixTimeToJSDate(time))}
                                         </Text>
                                     </View>
                                 </View>

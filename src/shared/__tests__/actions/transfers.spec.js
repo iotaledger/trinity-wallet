@@ -23,86 +23,6 @@ describe('actions: transfers', () => {
         SwitchingConfig.autoSwitch = true;
     });
 
-    describe('#broadcastBundle', () => {
-        describe('when bundle is invalid', () => {
-            let sandbox;
-
-            beforeEach(() => {
-                sandbox = sinon.sandbox.create();
-
-                sandbox.stub(iota.api, 'broadcastBundle').yields(null);
-                sandbox.stub(iota.api, 'getNodeInfo').yields(null, {});
-                sandbox.stub(transferUtils, 'isStillAValidTransaction').resolves(false);
-                sandbox.stub(accountsUtils, 'syncAccount').resolves(accounts.accountInfo.TEST);
-            });
-
-            afterEach(() => {
-                sandbox.restore();
-            });
-
-            it('should create actions of type IOTA/TRANSFERS/BROADCAST_BUNDLE_REQUEST, IOTA/ALERTS/SHOW, IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST and IOTA/TRANSFERS/BROADCAST_BUNDLE_ERROR', () => {
-                const store = mockStore({ accounts });
-
-                const expectedActions = [
-                    'IOTA/TRANSFERS/BROADCAST_BUNDLE_REQUEST',
-                    'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST',
-                    'IOTA/ALERTS/SHOW',
-                    'IOTA/TRANSFERS/BROADCAST_BUNDLE_ERROR',
-                ];
-
-                return store
-                    .dispatch(
-                        actions.broadcastBundle(
-                            'ABHSKIARZVHZ9GKX9DJDSB9YPFKPPHBOOHSKTENCWQHLRGXTFWEDKLREGF9WIFBYNUEXUTJUL9GYLAXRD',
-                            'TEST',
-                        ),
-                    )
-                    .then(() => {
-                        expect(store.getActions().map((action) => action.type)).to.eql(expectedActions);
-                    });
-            });
-        });
-
-        describe('when bundle is valid', () => {
-            let sandbox;
-
-            beforeEach(() => {
-                sandbox = sinon.sandbox.create();
-
-                sandbox.stub(iota.api, 'broadcastBundle').yields(null);
-                sandbox.stub(iota.api, 'getNodeInfo').yields(null, {});
-                sandbox.stub(transferUtils, 'isStillAValidTransaction').resolves(true);
-                sandbox.stub(accountsUtils, 'syncAccount').resolves(accounts.accountInfo.TEST);
-            });
-
-            afterEach(() => {
-                sandbox.restore();
-            });
-
-            it('should create actions of type IOTA/TRANSFERS/BROADCAST_BUNDLE_REQUEST, IOTA/TRANSFERS/BROADCAST_BUNDLE_SUCCESS, IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST and IOTA/ALERTS/SHOW', () => {
-                const store = mockStore({ accounts });
-
-                const expectedActions = [
-                    'IOTA/TRANSFERS/BROADCAST_BUNDLE_REQUEST',
-                    'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST',
-                    'IOTA/ALERTS/SHOW',
-                    'IOTA/TRANSFERS/BROADCAST_BUNDLE_SUCCESS',
-                ];
-
-                return store
-                    .dispatch(
-                        actions.broadcastBundle(
-                            'ABHSKIARZVHZ9GKX9DJDSB9YPFKPPHBOOHSKTENCWQHLRGXTFWEDKLREGF9WIFBYNUEXUTJUL9GYLAXRD',
-                            'TEST',
-                        ),
-                    )
-                    .then(() => {
-                        expect(store.getActions().map((action) => action.type)).to.eql(expectedActions);
-                    });
-            });
-        });
-    });
-
     describe('#promoteTransaction', () => {
         describe('when bundle is invalid', () => {
             let sandbox;
@@ -110,8 +30,8 @@ describe('actions: transfers', () => {
             beforeEach(() => {
                 sandbox = sinon.sandbox.create();
 
-                sandbox.stub(iota.api, 'promoteTransaction').yields(null, '9'.repeat(81));
-                sandbox.stub(iota.api, 'replayBundle').yields(null, []);
+                sandbox.stub(extendedApis, 'promoteTransactionAsync').resolves('9'.repeat(81));
+                sandbox.stub(extendedApis, 'replayBundleAsync').resolves([]);
                 sandbox.stub(transferUtils, 'isStillAValidTransaction').resolves(false);
                 sandbox.stub(accountsUtils, 'syncAccount').resolves(accounts.accountInfo.TEST);
             });
@@ -121,7 +41,7 @@ describe('actions: transfers', () => {
             });
 
             it('should create actions of type IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST, IOTA/ALERTS/SHOW, IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION, IOTA/ALERTS/SHOW and IOTA/TRANSFERS/PROMOTE_TRANSACTION_ERROR', () => {
-                const store = mockStore({ accounts });
+                const store = mockStore({ accounts, settings: { remotePoW: false } });
 
                 const expectedActions = [
                     'IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST',
@@ -151,7 +71,7 @@ describe('actions: transfers', () => {
                 sandbox = sinon.sandbox.create();
 
                 sandbox.stub(accountsUtils, 'syncAccount').resolves(accounts.accountInfo.TEST);
-                sandbox.stub(iota.api, 'promoteTransaction').yields(null, '9'.repeat(81));
+                sandbox.stub(extendedApis, 'promoteTransactionAsync').resolves('9'.repeat(81));
                 sandbox.stub(transferUtils, 'isStillAValidTransaction').resolves(true);
                 sandbox
                     .stub(transferUtils, 'getFirstConsistentTail')
@@ -163,7 +83,7 @@ describe('actions: transfers', () => {
             });
 
             it('should create actions of type IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST, IOTA/ALERTS/SHOW, IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION, IOTA/TRANSFERS/PROMOTE_TRANSACTION_SUCCESS and IOTA/ALERTS/SHOW', () => {
-                const store = mockStore({ accounts });
+                const store = mockStore({ accounts, settings: { remotePoW: false } });
 
                 const expectedActions = [
                     'IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST',
@@ -186,7 +106,7 @@ describe('actions: transfers', () => {
             });
 
             it('should not create an action of type IOTA/ACCOUNTS/UPDATE_ACCOUNT_AFTER_REATTACHMENT', () => {
-                const store = mockStore({ accounts });
+                const store = mockStore({ accounts, settings: { remotePoW: false } });
 
                 return store
                     .dispatch(
@@ -210,7 +130,8 @@ describe('actions: transfers', () => {
             beforeEach(() => {
                 sandbox = sinon.sandbox.create();
 
-                sandbox.stub(iota.api, 'replayBundle').yields(null, []);
+                sandbox.stub(extendedApis, 'promoteTransactionAsync').resolves('9'.repeat(81));
+                sandbox.stub(extendedApis, 'replayBundleAsync').resolves([]);
                 sandbox.stub(transferUtils, 'isStillAValidTransaction').resolves(true);
                 sandbox.stub(transferUtils, 'getFirstConsistentTail').resolves(false);
                 sandbox.stub(accountsUtils, 'syncAccount').resolves(accounts.accountInfo.TEST);
@@ -226,7 +147,7 @@ describe('actions: transfers', () => {
             });
 
             it('should create an action of type IOTA/ALERTS/SHOW thrice', () => {
-                const store = mockStore({ accounts });
+                const store = mockStore({ accounts, settings: { remotePoW: false } });
 
                 return store
                     .dispatch(
@@ -246,7 +167,7 @@ describe('actions: transfers', () => {
             });
 
             it('should call accounts util "syncAccountAfterReattachment"', () => {
-                const store = mockStore({ accounts });
+                const store = mockStore({ accounts, settings: { remotePoW: false } });
 
                 return store
                     .dispatch(
@@ -262,7 +183,7 @@ describe('actions: transfers', () => {
             });
 
             it('should create an action of type IOTA/ACCOUNTS/UPDATE_ACCOUNT_AFTER_REATTACHMENT', () => {
-                const store = mockStore({ accounts });
+                const store = mockStore({ accounts, settings: { remotePoW: false } });
 
                 return store
                     .dispatch(
@@ -537,7 +458,8 @@ describe('actions: transfers', () => {
                         sinon.stub(inputUtils, 'getUnspentInputs').resolves({
                             totalBalance: 110,
                             availableBalance: 0,
-                            inputs: [
+                            inputs: [],
+                            spentAddresses: [
                                 {
                                     address:
                                         'MVVQANCKCPSDGEHFEVT9RVYJWOPPEGZSAVLIZ9MGNRPJPUORYFOTP9FNCLBFMQKUXMHNRGZDTWUI9UDHW',

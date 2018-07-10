@@ -4,11 +4,9 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 import filter from 'lodash/filter';
 import some from 'lodash/some';
-import sample from 'lodash/sample';
 import size from 'lodash/size';
 import { iota } from '../libs/iota';
 import {
-    broadcastBundleAsync,
     replayBundleAsync,
     promoteTransactionAsync,
     prepareTransfersAsync,
@@ -21,8 +19,9 @@ import {
     selectedAccountStateFactory,
     getRemotePoWFromState,
     selectFirstAddressFromAccountFactory,
+    getFailedBundleHashesForSelectedAccount,
 } from '../selectors/accounts';
-import { setNextStepAsActive } from './progress';
+import { setNextStepAsActive, reset as resetProgress } from './progress';
 import { clearSendFields } from './ui';
 import {
     isStillAValidTransaction,
@@ -31,15 +30,23 @@ import {
     filterInvalidPendingTransactions,
     performPow,
     getPendingOutgoingTransfersForAddresses,
+    retryFailedTransaction as retry,
 } from '../libs/iota/transfers';
-import { syncAccountAfterReattachment, syncAccount, syncAccountAfterSpending } from '../libs/iota/accounts';
+import {
+    syncAccountAfterReattachment,
+    syncAccount,
+    syncAccountAfterSpending,
+    syncAccountOnValueTransactionFailure,
+    syncAccountOnSuccessfulRetryAttempt,
+} from '../libs/iota/accounts';
 import {
     updateAccountAfterReattachment,
     updateAccountInfoAfterSpending,
     syncAccountBeforeManualPromotion,
-    syncAccountBeforeManualRebroadcast,
+    markBundleBroadcastStatusComplete,
+    markBundleBroadcastStatusPending,
 } from './accounts';
-import { shouldAllowSendingToAddress, getAddressesUptoRemainder } from '../libs/iota/addresses';
+import { shouldAllowSendingToAddress, getAddressesUptoRemainder, isAnyAddressSpent } from '../libs/iota/addresses';
 import {
     getStartingSearchIndexToPrepareInputs,
     getUnspentInputs,
@@ -53,30 +60,19 @@ import {
 } from './alerts';
 import i18next from '../i18next.js';
 import Errors from '../libs/errors';
+import { DEFAULT_DEPTH } from '../config';
 
 export const ActionTypes = {
-    BROADCAST_BUNDLE_REQUEST: 'IOTA/TRANSFERS/BROADCAST_BUNDLE_REQUEST',
-    BROADCAST_BUNDLE_SUCCESS: 'IOTA/TRANSFERS/BROADCAST_BUNDLE_SUCCESS',
-    BROADCAST_BUNDLE_ERROR: 'IOTA/TRANSFERS/BROADCAST_BUNDLE_ERROR',
     PROMOTE_TRANSACTION_REQUEST: 'IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST',
     PROMOTE_TRANSACTION_SUCCESS: 'IOTA/TRANSFERS/PROMOTE_TRANSACTION_SUCCESS',
     PROMOTE_TRANSACTION_ERROR: 'IOTA/TRANSFERS/PROMOTE_TRANSACTION_ERROR',
     SEND_TRANSFER_REQUEST: 'IOTA/TRANSFERS/SEND_TRANSFER_REQUEST',
     SEND_TRANSFER_SUCCESS: 'IOTA/TRANSFERS/SEND_TRANSFER_SUCCESS',
     SEND_TRANSFER_ERROR: 'IOTA/TRANSFERS/SEND_TRANSFER_ERROR',
+    RETRY_FAILED_TRANSACTION_REQUEST: 'IOTA/TRANSFERS/RETRY_FAILED_TRANSACTION_REQUEST',
+    RETRY_FAILED_TRANSACTION_SUCCESS: 'IOTA/TRANSFERS/RETRY_FAILED_TRANSACTION_SUCCESS',
+    RETRY_FAILED_TRANSACTION_ERROR: 'IOTA/TRANSFERS/RETRY_FAILED_TRANSACTION_ERROR',
 };
-
-const broadcastBundleRequest = () => ({
-    type: ActionTypes.BROADCAST_BUNDLE_REQUEST,
-});
-
-const broadcastBundleSuccess = () => ({
-    type: ActionTypes.BROADCAST_BUNDLE_SUCCESS,
-});
-
-const broadcastBundleError = () => ({
-    type: ActionTypes.BROADCAST_BUNDLE_ERROR,
-});
 
 const promoteTransactionRequest = (payload) => ({
     type: ActionTypes.PROMOTE_TRANSACTION_REQUEST,
@@ -104,6 +100,19 @@ export const sendTransferError = () => ({
     type: ActionTypes.SEND_TRANSFER_ERROR,
 });
 
+export const retryFailedTransactionRequest = () => ({
+    type: ActionTypes.RETRY_FAILED_TRANSACTION_REQUEST,
+});
+
+export const retryFailedTransactionSuccess = (payload) => ({
+    type: ActionTypes.RETRY_FAILED_TRANSACTION_SUCCESS,
+    payload,
+});
+
+export const retryFailedTransactionError = () => ({
+    type: ActionTypes.RETRY_FAILED_TRANSACTION_ERROR,
+});
+
 /**
  *   On successful transfer, update store, generate alert and clear send text fields
  *   @method completeTransfer
@@ -114,76 +123,6 @@ export const completeTransfer = (payload) => {
         dispatch(clearSendFields());
         dispatch(sendTransferSuccess(payload));
     };
-};
-
-export const broadcastBundle = (bundleHash, accountName) => (dispatch, getState) => {
-    dispatch(broadcastBundleRequest());
-
-    let accountState = null;
-    let chainBrokenInternally = false;
-
-    return syncAccount(selectedAccountStateFactory(accountName)(getState()))
-        .then((newAccountState) => {
-            accountState = newAccountState;
-
-            dispatch(syncAccountBeforeManualRebroadcast(accountState));
-
-            const transaction = accountState.transfers[bundleHash];
-
-            if (transaction.persistence) {
-                chainBrokenInternally = true;
-                throw new Error(Errors.TRANSACTION_ALREADY_CONFIRMED);
-            }
-
-            return isStillAValidTransaction(transaction, accountState.addresses);
-        })
-        .then((isValid) => {
-            if (!isValid) {
-                chainBrokenInternally = true;
-                throw new Error(Errors.BUNDLE_NO_LONGER_VALID);
-            }
-
-            const transaction = accountState.transfers[bundleHash];
-            const tailTransaction = sample(transaction.tailTransactions);
-
-            return broadcastBundleAsync(tailTransaction.hash);
-        })
-        .then((hash) => {
-            dispatch(
-                generateAlert(
-                    'success',
-                    i18next.t('global:rebroadcasted'),
-                    i18next.t('global:rebroadcastedExplanation', { hash }),
-                ),
-            );
-
-            return dispatch(broadcastBundleSuccess());
-        })
-        .catch((err) => {
-            if (err.message === Errors.BUNDLE_NO_LONGER_VALID && chainBrokenInternally) {
-                dispatch(
-                    generateAlert('error', i18next.t('global:rebroadcastError'), i18next.t('global:noLongerValid')),
-                );
-            } else if (err.message === Errors.TRANSACTION_ALREADY_CONFIRMED && chainBrokenInternally) {
-                dispatch(
-                    generateAlert(
-                        'success',
-                        i18next.t('global:transactionAlreadyConfirmed'),
-                        i18next.t('global:transactionAlreadyConfirmedExplanation'),
-                    ),
-                );
-            } else {
-                dispatch(
-                    generateAlert(
-                        'error',
-                        i18next.t('global:rebroadcastError'),
-                        i18next.t('global:rebroadcastErrorExplanation'),
-                    ),
-                );
-            }
-
-            return dispatch(broadcastBundleError());
-        });
 };
 
 /**
@@ -198,14 +137,16 @@ export const broadcastBundle = (bundleHash, accountName) => (dispatch, getState)
  **/
 export const promoteTransaction = (bundleHash, accountName, powFn) => (dispatch, getState) => {
     dispatch(promoteTransactionRequest(bundleHash));
-
-    dispatch(
-        generateAlert(
-            'info',
-            i18next.t('global:promotingTransaction'),
-            i18next.t('global:deviceMayBecomeUnresponsive'),
-        ),
-    );
+    const remotePoW = getState().settings.remotePoW;
+    if (!remotePoW) {
+        dispatch(
+            generateAlert(
+                'info',
+                i18next.t('global:promotingTransaction'),
+                i18next.t('global:deviceMayBecomeUnresponsive'),
+            ),
+        );
+    }
     let accountState = null;
     let chainBrokenInternally = false;
 
@@ -295,17 +236,22 @@ export const promoteTransaction = (bundleHash, accountName, powFn) => (dispatch,
  *
  *   @method forceTransactionPromotion
  *   @param {string} accountName
- *   @param {boolean} consistentTail
+ *   @param {boolean | object} consistentTail
  *   @param {array} tails
  *   @param {boolean} shouldGenerateAlert
- *   @param {function | null} powFn
+ *   @param {function} powFn
+ *   @param {number} depth
  *
  *   @returns {function} dispatch
  **/
-export const forceTransactionPromotion = (accountName, consistentTail, tails, shouldGenerateAlert, powFn = null) => (
-    dispatch,
-    getState,
-) => {
+export const forceTransactionPromotion = (
+    accountName,
+    consistentTail,
+    tails,
+    shouldGenerateAlert,
+    powFn = null,
+    depth = DEFAULT_DEPTH,
+) => (dispatch, getState) => {
     if (!consistentTail) {
         // Grab hash from the top tail to replay
         const topTx = head(tails);
@@ -336,7 +282,29 @@ export const forceTransactionPromotion = (accountName, consistentTail, tails, sh
         });
     }
 
-    return promoteTransactionAsync(consistentTail.hash, powFn);
+    return promoteTransactionAsync(consistentTail.hash, powFn, depth)
+        .then((txs) => txs)
+        .catch((error) => {
+            const isReferenceTxOld = error.message.includes(Errors.REFERENCE_TRANSACTION_TOO_OLD);
+            const hasDefaultDepth = depth === DEFAULT_DEPTH;
+
+            if (isReferenceTxOld && hasDefaultDepth) {
+                return dispatch(
+                    forceTransactionPromotion(
+                        accountName,
+                        consistentTail,
+                        tails,
+                        shouldGenerateAlert,
+                        powFn,
+                        depth * 2,
+                    ),
+                );
+            } else if (isReferenceTxOld && !hasDefaultDepth) {
+                return dispatch(forceTransactionPromotion(accountName, null, tails, shouldGenerateAlert, powFn));
+            }
+
+            throw new Error(error.message);
+        });
 };
 
 export const makeTransaction = (seed, receiveAddress, value, message, accountName, powFn, genFn) => (
@@ -349,6 +317,9 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
 
     // Use a local variable to keep track if the promise chain was interrupted internally.
     let chainBrokenInternally = false;
+
+    // Keep track if the inputs are signed
+    let hasSignedInputs = false;
 
     // Initialize account state
     // Reassign with latest state when account is synced
@@ -414,17 +385,16 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 );
             })
             .then((inputs) => {
-                // totalBalance -> total balance associated with addresses.
+                // totalBalance: total balance associated with addresses.
                 // Contains balance from addresses regardless of the fact they are spent from.
-                // Less than the value user is about to send to -> Not enough balance.
+                // If its less than the value user is about to send to, it will generate an alert with Not enough balance.
                 if (get(inputs, 'totalBalance') < value) {
                     chainBrokenInternally = true;
                     throw new Error(Errors.NOT_ENOUGH_BALANCE);
 
-                    // totalBalance -> balance after filtering out addresses that are spent.
-                    // Contains balance from those addresses only that are not spent from.
-                    // Less than value user is about to send to -> Has already spent from addresses and the txs aren't confirmed.
-                    // TODO: At this point, we could leverage the change addresses and allow user making a transfer on top from those.
+                    // availableBalance: balance after filtering out addresses that are spent and also addresses with incoming transfers..
+                    // Contains only spendable balance
+                    // Note: At this point, we could leverage the change addresses and allow user making a transfer on top from those.
                 } else if (get(inputs, 'availableBalance') < value) {
                     chainBrokenInternally = true;
                     const addresses = accountState.addresses;
@@ -433,12 +403,12 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
 
                     if (size(pendingOutgoingTransfers)) {
                         throw new Error(Errors.ADDRESS_HAS_PENDING_TRANSFERS);
-                    }
-
-                    if (size(get(inputs, 'inputs'))) {
-                        throw new Error(Errors.FUNDS_AT_SPENT_ADDRESSES);
                     } else {
-                        throw new Error(Errors.INCOMING_TRANSFERS);
+                        if (size(get(inputs, 'spentAddresses'))) {
+                            throw new Error(Errors.FUNDS_AT_SPENT_ADDRESSES);
+                        } else if (size(get(inputs, 'addressesWithIncomingTransfers'))) {
+                            throw new Error(Errors.INCOMING_TRANSFERS);
+                        }
                     }
                 }
 
@@ -501,7 +471,15 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 return prepareTransfersAsync(seed, transfer, options);
             })
             .then((trytes) => {
+                if (!isZeroValue) {
+                    hasSignedInputs = true;
+                }
+
                 cached.trytes = trytes;
+
+                const convertToTransactionObjects = (tryteString) =>
+                    iota.utils.transactionObject(tryteString, '9'.repeat(81));
+                cached.transactionObjects = map(cached.trytes, convertToTransactionObjects);
 
                 // Getting transactions to approve
                 dispatch(setNextStepAsActive());
@@ -535,39 +513,63 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                     !isZeroValue,
                 );
 
-                // Progress summary
-                dispatch(setNextStepAsActive());
-
-                // TODO: Validate bundle
                 dispatch(updateAccountInfoAfterSpending(newState));
 
-                // Delay dispatching alerts to display the progress summary
-                setTimeout(() => {
-                    if (isZeroValue) {
-                        dispatch(
-                            generateAlert(
-                                'success',
-                                i18next.t('global:messageSent'),
-                                i18next.t('global:messageSentMessage'),
-                                20000,
-                            ),
-                        );
-                    } else {
-                        dispatch(
-                            generateAlert(
-                                'success',
-                                i18next.t('global:transferSent'),
-                                i18next.t('global:transferSentMessage'),
-                                20000,
-                            ),
-                        );
-                    }
+                // Progress summary
+                dispatch(setNextStepAsActive());
+                if (isZeroValue) {
+                    dispatch(
+                        generateAlert(
+                            'success',
+                            i18next.t('global:messageSent'),
+                            i18next.t('global:messageSentMessage'),
+                            20000,
+                        ),
+                    );
+                } else {
+                    dispatch(
+                        generateAlert(
+                            'success',
+                            i18next.t('global:transferSent'),
+                            i18next.t('global:transferSentMessage'),
+                            20000,
+                        ),
+                    );
+                }
 
-                    return dispatch(completeTransfer({ address, value }));
+                setTimeout(() => {
+                    dispatch(completeTransfer({ address, value }));
+                    dispatch(resetProgress());
                 }, 5000);
             })
             .catch((error) => {
                 dispatch(sendTransferError());
+
+                if (hasSignedInputs) {
+                    const { newState } = syncAccountOnValueTransactionFailure(cached.transactionObjects, accountState);
+
+                    // Temporarily mark this transaction as failed.
+                    // As the inputs were signed and already exposed to the network
+                    dispatch(
+                        markBundleBroadcastStatusPending({
+                            accountName,
+                            bundleHash: head(cached.transactionObjects).bundle,
+                            transactionObjects: cached.transactionObjects,
+                        }),
+                    );
+
+                    dispatch(updateAccountInfoAfterSpending(newState));
+                    // Clear send screen text fields
+                    dispatch(clearSendFields());
+
+                    return dispatch(
+                        generateAlert(
+                            'error',
+                            i18next.t('global:rebroadcastError'),
+                            i18next.t('global:signedTrytesBroadcastErrorExplanation'),
+                        ),
+                    );
+                }
 
                 const message = error.message;
 
@@ -636,4 +638,35 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 return dispatch(generateTransferErrorAlert(error));
             })
     );
+};
+
+export const retryFailedTransaction = (accountName, bundleHash, powFn) => (dispatch, getState) => {
+    const existingAccountState = selectedAccountStateFactory(accountName)(getState());
+    const existingFailedTransactionsForThisAccount = getFailedBundleHashesForSelectedAccount(getState());
+    const shouldOffloadPow = getRemotePoWFromState(getState());
+
+    dispatch(retryFailedTransactionRequest());
+
+    return isAnyAddressSpent(existingFailedTransactionsForThisAccount[bundleHash])
+        .then((isSpent) => {
+            if (isSpent) {
+                throw new Error(Errors.ALREADY_SPENT_FROM_ADDRESSES);
+            }
+
+            return retry(existingFailedTransactionsForThisAccount[bundleHash], powFn, shouldOffloadPow);
+        })
+        .then(({ transactionObjects }) => {
+            dispatch(markBundleBroadcastStatusComplete({ accountName, bundleHash }));
+
+            const { newState } = syncAccountOnSuccessfulRetryAttempt(
+                accountName,
+                transactionObjects,
+                existingAccountState,
+            );
+
+            return dispatch(retryFailedTransactionSuccess(newState));
+        })
+        .catch(() => {
+            dispatch(retryFailedTransactionError());
+        });
 };

@@ -17,6 +17,7 @@ import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import { isAndroid } from '../utils/device';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -29,11 +30,6 @@ const styles = StyleSheet.create({
         fontSize: GENERAL.fontSize4,
         textAlign: 'center',
         paddingTop: height / 55,
-    },
-    pdf: {
-        flex: 1,
-        height: height - height / 8 - height / 11,
-        width: width,
     },
     titleContainer: {
         height: height / 8,
@@ -89,11 +85,15 @@ class PrivacyPolicy extends Component {
         this.state = { hasReadPrivacyPolicy: false };
     }
 
+    componentDidMount() {
+        leaveNavigationBreadcrumb('PrivacyPolicy');
+    }
+
     onNextPress() {
         const { theme } = this.props;
         this.props.acceptPrivacy();
         this.props.navigator.push({
-            screen: 'welcome',
+            screen: 'walletSetup',
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,

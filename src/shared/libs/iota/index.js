@@ -4,6 +4,7 @@ import { nodes, defaultNode, useLegacyQuorum } from '../../config';
 import { checkNode as _checkNode } from './multinode';
 import { getQuorumResult, getMostCommonElementwise } from './quorum';
 
+
 const iotaAPI = new IOTA({ provider: defaultNode });
 
 function injectQuorum() {
@@ -125,7 +126,7 @@ const autoNodeSwitchHandler = {
                     // Switch to another node and then apply function
                     let newNode;
                     for (;;) {
-                        const randomNode = getRandomNode();
+                        const randomNode = getRandomNode(nodes);
                         // Check whether same node was chosen
                         if (iotaAPI.provider === randomNode) {
                             continue;

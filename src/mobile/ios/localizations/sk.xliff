@@ -13,6 +13,7 @@
       <trans-unit id="NSLocationWhenInUseUsageDescription">
         <source/>
         <note>Privacy - Location When In Use Usage Description</note>
+        <target xml:lang="sk" state="translated"/>
       </trans-unit>
     </body>
   </file>
@@ -66,7 +67,10 @@
       <trans-unit id="NSFaceIDUsageDescription">
         <source>Trinity requires access to Face ID in order to enable biometric authentication.</source>
         <note>Privacy - Face ID Usage Description</note>
-        <target xml:lang="sk" state="translated">Trinity potrebuje prístup k identifikácii tvárou pre aktiváciu biometrické autentizácie.</target>
+        <target xml:lang="sk" state="translated">Trinity potrebuje prístup k identifikácii tváre pre aktiváciu biometrického overenia.</target>
+        <alt-trans>
+          <target xml:lang="sk">Trinity potrebuje prístup k identifikácii tvárou pre aktiváciu biometrické autentizácie.</target>
+        </alt-trans>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
         <source>2018 IOTA Foundation. All rights reserved.</source>

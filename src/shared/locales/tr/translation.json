@@ -37,12 +37,14 @@
         "apply": "Uygula",
         "save": "Kaydet",
         "close": "Close",
+        "export": "Export",
+        "import": "Import",
         "continue": "Devam Et",
         "enable": "Etkinleştir",
         "disable": "Devre Dışı Bırak",
         "enabled": "Enabled",
         "disabled": "Disabled",
-        "manualCopy": "Write seed down",
+        "enterPassword": "Enter password",
         "paperWallet": "Print paper copy",
         "addToPasswordManager": "Add to password manager",
         "shareSeed": "Share seed",
@@ -90,18 +92,14 @@
         "addresses": "Adresler",
         "reattach": "TEKRAR EKLE",
         "promote": "TEŞVİK ET",
-        "retry": "YENİDEN DENE",
-        "rebroadcast": "TEKRAR YAYINLA",
+        "retry": "Retry",
         "pressBackAgain": "Uygulamayı kapatmak için geri tuşuna bir daha bas",
         "reattached": "Geçiş başarıyla tekrar eklendi",
         "reattachedExplanation": "İşlem doğrulama bilgisi {{hash}} ile yeniden eklendi",
         "promotingTransaction": "Promoting transaction",
         "autopromoting": "Otomatik teşvik transferi",
         "autopromotingExplanation": "Doğrulama verisi {{hash}} işlemi gönderiliyor",
-        "rebroadcasted": "İşlem başarıyla yayınlandı",
-        "rebroadcastedExplanation": "İşlem doğrulama bilgisi {{hash}} ile yayınlandı",
         "rebroadcastError": "İşlem yayınlanamadı",
-        "rebroadcastErrorExplanation": "İşleminiz yayınlanırken bir şeyler ters gitti. Lütfen tekrar deneyin.",
         "promoted": "İşlem başarıyla teşvik edildi",
         "promotedExplanation": "İşlem doğrulama bilgisi {{hash}} ile teşvik edildi",
         "autopromotionError": "Could not auto-promote transaction",
@@ -148,11 +146,12 @@
         "androidCopyPasteWarning": "Never copy/paste your seed on an Android device.",
         "willNotCopyPasteSeed": "I will not copy/paste my seed",
         "mustBeStoredAppropriately": "It must be stored appropriately.",
-        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while",
+        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while.",
         "isYourBalanceCorrect": "Is your balance correct?",
         "ifYourBalanceIsNotCorrect": "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
         "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition.",
-        "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android"
+        "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android",
+        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Geçersiz karakterler içeriyor",
@@ -162,6 +161,8 @@
         "nameInUse": "Hesap adı zaten kullanılıyor",
         "nameInUseExplanation": "Lütfen tohumunuz için benzersiz bir hesap adı kullanın.",
         "enterAccountName": "Bir hesap adı girin.",
+        "accountNameTooLong": "Account name too long",
+        "accountNameTooLongExplanation": "Account name maximum length is {{maxLength}} characters.",
         "accountName": "Hesap adı",
         "noNickname": "Hiçbir hesap adı girilmedi",
         "noNicknameExplanation": "Lütfen tohumunuz için benzersiz bir hesap adı kullanın.",
@@ -224,6 +225,7 @@
         "invalidCharacters": "Cüzdan şifresi geçersiz karakterler içerir",
         "invalidCharactersExplanation": "Cüzdan şifreleri yalnızca A-Z büyük harflerinden ve 9 numaradan oluşabilir. Tohumunuz geçersiz karakterlere sahiptir. Lütfen tekrar deneyin.",
         "seedTooShort": "Cüzdan şifresi çok kısa",
+        "seedTooLong": "Seed is too long",
         "seedTooShortExplanation": "Cüzdan şifrenizin uzunluğu {{maxLength}} olmalıdır. Cüzdan şifreniz şu anda {{currentLength}} karakter uzunluğunda. Lütfen tekrar deneyin.",
         "seedExplanation": "Cüzdan şifreleri {{maxLength}} karakter uzunluğunda olmalı ve A-Z büyük harfleri veya sayı 9 olmalıdır. {{maxLength}} karakterden uzun cüzdan şifrelerini kullanamazsınız.",
         "neverShare": "CÜZDAN ŞİFRENİZİ ASLA KİMSEYLE PAYLAŞMAYIN"
@@ -247,7 +249,9 @@
         "login": "Log In",
         "selectDifferentNode": "Farklı düğüm seçmek istiyor musunuz?",
         "setNode": "Set Node",
-        "cannotConnect": "IOTA node'una bağlanılamıyor."
+        "cannotConnect": "IOTA node'una bağlanılamıyor.",
+        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "Cüzdan şifresi ilk kez yükleniyor.",
@@ -285,14 +289,19 @@
         "printerCheckbox": "Halka açık bir yazıcıda yazdırmayacağım"
     },
     "receive": {
+        "yourAddress": "Your address",
+        "qrOptions": "QR options",
+        "shareQr": "Share QR code",
         "copyAddress": "Copy address",
         "addressCopied": "Adres kopyalandı",
         "addressCopiedExplanation": "Adresin panoya kopyalanmış.",
         "generateNewAddress": "New Address",
-        "message": "İsteğe bağlı mesaj",
         "removeMessage": "MESAJI SİL",
         "noAddresses": "ADRESİ YOK",
-        "spent": "Harcanan"
+        "spent": "Harcanan",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes.",
+        "tag": "Etiket"
     },
     "saveYourSeed": {
         "saveYourSeed": "Back up your seed",
@@ -301,14 +310,12 @@
         "leastSecure": "Least Secure",
         "paperWallet": "Paper Wallet",
         "writeYourSeedDown": "Write your seed down",
-        "printYourSeed": "Print your seed",
-        "digitalCopy": "Digital copy",
         "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
         "iHaveBackedUpMySeed": "Seed'imi kaydettim",
         "letsWriteDownYourSeed": "Lets write down your seed",
         "youCanHighlightCharacters": "You can highlight 9 characters at a time",
         "printBlankWallet": "Print a blank wallet",
-        "whatIsCheksum": "Every seed has a corresponding 3 character checksum",
+        "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
         "iHavesavedMySeed": "I've saved my seed",
         "checksumExplanation": "Whenever you add a seed to your wallet, you should ensure that the wallet-generated checksum matches the one you have written down.",
         "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
@@ -349,7 +356,8 @@
         "sendMax": "TÜMÜNÜ GÖNDER",
         "totalTime": "Toplam zaman",
         "addressPasteDetected": "Address paste detected",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
+        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to.",
+        "invalid": "INVALID"
     },
     "setPassword": {
         "choosePassword": "Choose a new password",
@@ -438,31 +446,36 @@
         "okay": "Tamam. Cüzdanını ayarlayabilirsin!",
         "doYouAlreadyHaveASeed": "Kullanmak istediğiniz bir cüzdan şifreniz var mı?",
         "doYouNeedASeed": "Do you need to create a new seed?",
-        "seedExplanation": "IOTA cüzdan şifresi, hesabınız için bir kullanıcı adı ve şifre gibi, 81 karakterden oluşan bir diziyle birleştirilmiştir.",
+        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
         "noIHaveOne": "No, I have one",
         "yesINeedASeed": "Yes, I need a seed",
-        "explanation": "<0><0>Oluşumunuzu</0><1> herhangi bir cüzdandan</1><2>, veya</2><3> herhangi bir cihazdan valıklarınıza ulaşmak için kullanabilirsiniz</3><4>. Ama oluşumunuzu kaybederseniz tüm IOTA'nızı da kaybedersiniz.</4></0>",
+        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
+        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
         "keepSafe": "Lütfen cüzdan şifrenizi güvende tutun.",
         "hint": "<0><0>İpucu:</0> İlk kez IOTA kullanıyorsanız HAYIR'a tıklayın.</0>"
     },
     "welcome": {
-        "thankYou": "Trinity'i indirdiğiniz için teşekkür ederiz.",
-        "weWillSpend": "Önümüzdeki bir kaç dakikayı cüzdanınızı ayarlamak için harcayacağız.",
-        "reminder": "Bazı adımları geçebilirsin, ama tüm işlemi takip etmeni tavsiye ederim."
+        "thankYou": "Thank you for downloading Trinity"
     },
     "writeSeedDown": {
         "yourSeedIs": "Oluşumunuz soldan sağa {{maxSeedLength}} karakterden oluşur.",
-        "writeDownYourSeed": "<0> Oluşumunuzu ve sağlamanızı </0><1> birden çok kez </1><2> doğru olduğuna dair kontrol edin. </2>"
+        "writeDownYourSeed": "<0> Oluşumunuzu ve sağlamanızı </0><1> birden çok kez </1><2> doğru olduğuna dair kontrol edin. </2>",
+        "scrollToBottom": "Scroll to the bottom"
     },
     "history": {
         "bundleHashCopied": "Paket karması kopyalanır",
+        "noTransactionsFound": "No transactions found",
+        "hideZeroBalance": "Hide zero balance",
         "bundleHashCopiedExplanation": "Paket karması panoya kopyalanmış.",
         "addressCopied": "Adres kopyalandı",
         "addressCopiedExplanation": "Adres panoya kopyalanmış.",
         "messageCopied": "Mesaj kopyalandı",
         "messageCopiedExplanation": "Mesaj panoya kopyalandı.",
-        "send": "GÖNDER",
-        "receive": "AL"
+        "send": "Göndermek",
+        "receive": "Almak",
+        "empty": "Empty",
+        "retrying": "Retrying",
+        "yesterday": "Yesterday"
     },
     "accountManagement": {
         "viewSeed": "Kaynağı görüntüle",
@@ -476,6 +489,7 @@
         "customNodeCouldNotBeAdded": "Özel ağ eklenemedi",
         "customNodeAddedSuccessfully": "Özel ağ başarıyla eklendi.",
         "customNode": "Özel düğüm",
+        "removeCustomNode": "Remove custom node",
         "invalidNodeResponse": "Ağ geçersiz",
         "httpNodeError": "Trinity Mobile sadece https ağlarını destekler.",
         "add": "Ekle",
@@ -501,7 +515,8 @@
         "frame": "Çerçeve"
     },
     "themeCustomisation": {
-        "theme": "Tema"
+        "theme": "Tema",
+        "mockup": "Mockup"
     },
     "currencySelection": {
         "currency": "Kur"
@@ -599,9 +614,25 @@
         "code": "Kod",
         "twoFaToken": "2 Adımlı Doğrulama Kodu"
     },
+    "seedVault": {
+        "exportSeedVault": "Export SeedVault",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password. It is recommended that you store the file in a password manager like Keepass.",
+        "seedVaultWarning": "Make sure you back up the file in multiple locations (e.g. hard drive, cloud, USB). If you lose this file and have not stored your seed elsewhere, you will lose your IOTA.",
+        "exportFail": "SeedVault export failed",
+        "exportFailExplanation": "There was an problem exporting the SeedVault. Please ensure you have the appropriate permissions and enough free space.",
+        "exportSuccess": "SeedVault exported",
+        "exportSuccessExplanation": "Your encrypted seed file was exported successfully.",
+        "importSeedVault": "Import SeedVault",
+        "dropSeedVaultHere": "Drop SeedVault here",
+        "enterPasswordExplanation": "Enter your password to open the SeedVault",
+        "noSeedFound": "SeedVault does not contain a valid seed",
+        "noSeedFoundExplanation": "The SeedVault is either empty or contains a seed in an invalid format.",
+        "seedFileError": "Failed to open SeedVault",
+        "seedFileErrorExplanation": "There was a problem opening the SeedVault. If you selected the correct file then it may be corrupted."
+    },
     "chart": {
         "mcap": "MCAP",
-        "change": "Değiştir",
+        "change": "Change (24h)",
         "volume": "Hacim (24 saat)",
         "currentValue": "Anlık değer",
         "error": "Error fetching chart data"

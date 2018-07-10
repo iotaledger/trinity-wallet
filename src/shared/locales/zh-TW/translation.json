@@ -37,12 +37,14 @@
         "apply": "套用",
         "save": "儲存",
         "close": "關閉",
+        "export": "匯出",
+        "import": "匯入",
         "continue": "繼續",
         "enable": "啟用",
         "disable": "停用",
         "enabled": "啟用",
         "disabled": "停用",
-        "manualCopy": "寫下種子碼",
+        "enterPassword": "輸入密碼",
         "paperWallet": "列印紙本",
         "addToPasswordManager": "新增至密碼管理工具",
         "shareSeed": "分享種子碼",
@@ -90,18 +92,14 @@
         "addresses": "地址",
         "reattach": "重新連接",
         "promote": "促進",
-        "retry": "重試",
-        "rebroadcast": "重新廣播",
+        "retry": "Retry",
         "pressBackAgain": "再按一次返回鍵退出",
         "reattached": "成功重新連接交易",
         "reattachedExplanation": "重新連接的交易雜湊值為 {{hash}}",
         "promotingTransaction": "促進交易",
         "autopromoting": "自動促進交易",
         "autopromotingExplanation": "使用雜湊值 {{hash}} 促進交易",
-        "rebroadcasted": "成功重新廣播交易",
-        "rebroadcastedExplanation": "重新廣播的交易雜湊值為 {{hash}}",
         "rebroadcastError": "無法重新廣播交易",
-        "rebroadcastErrorExplanation": "重新廣播您的交易時發生一些錯誤，請再試一次。",
         "promoted": "成功促進交易",
         "promotedExplanation": "促進的交易雜湊值為 {{hash}}",
         "autopromotionError": "無法自動促進交易",
@@ -148,11 +146,12 @@
         "androidCopyPasteWarning": "請勿在 Android 裝置上複製/貼上您的種子碼。",
         "willNotCopyPasteSeed": "我絕不會複製/貼上我的種子碼",
         "mustBeStoredAppropriately": "種子碼必須妥善保存。",
-        "deviceMayBecomeUnresponsive": "您的裝置可能會在一段時間內無法回應",
+        "deviceMayBecomeUnresponsive": "您的裝置可能會在一段時間內無法回應。",
         "isYourBalanceCorrect": "您的餘額正確嗎？",
         "ifYourBalanceIsNotCorrect": "如果您的餘額不正確的話，有可能您最後一次使用種子碼是在快照發生之前。",
         "headToAdvancedSettingsForTransition": "前往進階設定然後執行快照轉換。",
-        "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android"
+        "usingTrinityWalletWithKeePass": "在 Trinity 錢包使用 Keepass2Android",
+        "signedTrytesBroadcastErrorExplanation": "廣播您的交易時發生網路錯誤。"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
@@ -162,6 +161,8 @@
         "nameInUse": "帳戶名稱已使用",
         "nameInUseExplanation": "種子碼請使用獨特帳戶名稱",
         "enterAccountName": "輸入帳戶名稱",
+        "accountNameTooLong": "帳戶名稱過長",
+        "accountNameTooLongExplanation": "帳戶名稱最長為 {{maxLength}} 個字元。",
         "accountName": "帳戶名稱",
         "noNickname": "尚未輸入帳戶名稱",
         "noNicknameExplanation": "請輸入種子碼帳戶名稱",
@@ -224,6 +225,7 @@
         "invalidCharacters": "種子碼包含無效字元",
         "invalidCharactersExplanation": "種子碼只能由大寫 A-Z 字母和數字 9 組成，您的種子碼包含無效字元，請再試一次。",
         "seedTooShort": "種子碼過短",
+        "seedTooLong": "種子碼過長",
         "seedTooShortExplanation": "您的密碼必須至少是 {{maxLength}} 個字元，目前為 {{currentLength}} 個字元長，請再試一次。",
         "seedExplanation": "種子碼應為 {{maxLength}} 個字元長並包含大寫字母 A-Z 或數字 9，您的種子碼不能長於 {{maxLength}} 個字元。",
         "neverShare": "千萬別和他人分享您的種子碼"
@@ -247,7 +249,9 @@
         "login": "登入",
         "selectDifferentNode": "您要選擇不同的節點嗎？",
         "setNode": "設置節點",
-        "cannotConnect": "無法連線到 IOTA 節點。"
+        "cannotConnect": "無法連線到 IOTA 節點。",
+        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "首次讀取種子碼。",
@@ -285,14 +289,19 @@
         "printerCheckbox": "我不會使用公共印表機來列印"
     },
     "receive": {
+        "yourAddress": "Your address",
+        "qrOptions": "QR options",
+        "shareQr": "Share QR code",
         "copyAddress": "複製地址",
         "addressCopied": "已複製地址",
         "addressCopiedExplanation": "您的地址已複製到剪貼簿。",
         "generateNewAddress": "產生新地址",
-        "message": "選擇性訊息",
         "removeMessage": "移除訊息",
         "noAddresses": "無地址",
-        "spent": "已支出"
+        "spent": "已支出",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes.",
+        "tag": "標籤"
     },
     "saveYourSeed": {
         "saveYourSeed": "備份您的種子碼",
@@ -301,14 +310,12 @@
         "leastSecure": "最不安全",
         "paperWallet": "紙錢包",
         "writeYourSeedDown": "寫下您的種子碼",
-        "printYourSeed": "印出您的種子碼",
-        "digitalCopy": "數位副本",
         "seedClearedExplanation": "為保您的安全，種子碼已從剪貼簿清除。",
         "iHaveBackedUpMySeed": "我已儲存我的種子碼",
         "letsWriteDownYourSeed": "請寫下您的種子碼",
         "youCanHighlightCharacters": "您可以一次顯示 9 個字元",
         "printBlankWallet": "印出空白錢包",
-        "whatIsCheksum": "每個種子碼都會有相對應 3 個字元的檢查碼",
+        "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
         "iHavesavedMySeed": "我已儲存我的種子碼",
         "checksumExplanation": "每當您新增種子碼到錢包時，請確認錢包顯示的檢查碼和您當時寫下的相符。",
         "mustSaveYourSeed": "<0><0>您必須使用以下</0><1>其中一種</1><2>選項儲存您的種子碼。</2></0>"
@@ -349,7 +356,8 @@
         "sendMax": "全部傳送",
         "totalTime": "總計",
         "addressPasteDetected": "檢測到地址貼上",
-        "addressPasteExplanation": "看起來您已貼上地址，請確認貼上的地址與您想送出去的相符。"
+        "addressPasteExplanation": "看起來您已貼上地址，請確認貼上的地址與您想送出去的相符。",
+        "invalid": "無效"
     },
     "setPassword": {
         "choosePassword": "選擇新的密碼",
@@ -438,31 +446,36 @@
         "okay": "好囉，現在來設置您的錢包！",
         "doYouAlreadyHaveASeed": "您是否希望使用已擁有的種子碼?",
         "doYouNeedASeed": "您需要產生新的種子碼嗎?",
-        "seedExplanation": "IOTA 種子碼是由您帳戶的名稱和密碼結合成為 81 個字元長的字串。",
+        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
         "noIHaveOne": "不，我有一個",
         "yesINeedASeed": "是，我需要一個種子碼",
-        "explanation": "<0><0>您可以用它來取得您的資金，這可以是</0><1>任何錢包</1><2>和</2><3>任何裝置</3><4>。但如果您遺失種子碼的話，就代表您損失您所有的 IOTA。</4></0>",
+        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
+        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
         "keepSafe": "請妥善保存您的種子碼。",
         "hint": "<0><0>提示：</0> 如果這是您第一次使用 IOTA 請按「否」。</0>"
     },
     "welcome": {
-        "thankYou": "感謝您下載 Trinity。",
-        "weWillSpend": "接下來幾分鐘我們將為您設置您的錢包。",
-        "reminder": "您或許希望跳過一些步驟，但我們建議您按完整程序設置。"
+        "thankYou": "Thank you for downloading Trinity"
     },
     "writeSeedDown": {
         "yourSeedIs": "您的種子碼由左至右總計 {{maxSeedLength}} 個字元。",
-        "writeDownYourSeed": "<0> 記下您的種子碼和檢查碼</0><1>請再三確認</1><2>它們是正確無誤的。</2>"
+        "writeDownYourSeed": "<0> 記下您的種子碼和檢查碼</0><1>請再三確認</1><2>它們是正確無誤的。</2>",
+        "scrollToBottom": "Scroll to the bottom"
     },
     "history": {
         "bundleHashCopied": "交易組雜湊值已複製",
+        "noTransactionsFound": "找不到交易紀錄",
+        "hideZeroBalance": "隱藏零元紀錄",
         "bundleHashCopiedExplanation": "交易組的雜湊值已複製到剪貼簿。",
         "addressCopied": "地址已複製",
         "addressCopiedExplanation": "您的地址已複製到剪貼簿。",
         "messageCopied": "訊息已複製",
         "messageCopiedExplanation": "訊息已複製到剪貼簿。",
-        "send": "轉帳",
-        "receive": "收款"
+        "send": "付款",
+        "receive": "收款",
+        "empty": "Empty",
+        "retrying": "Retrying",
+        "yesterday": "Yesterday"
     },
     "accountManagement": {
         "viewSeed": "檢視種子",
@@ -476,6 +489,7 @@
         "customNodeCouldNotBeAdded": "自訂節點無法加入",
         "customNodeAddedSuccessfully": "自訂節點已成功加入。",
         "customNode": "自訂節點",
+        "removeCustomNode": "Remove custom node",
         "invalidNodeResponse": "節點回傳無效回應。",
         "httpNodeError": "Trinity Mobile 僅支援 https 節點。",
         "add": "新增",
@@ -501,7 +515,8 @@
         "frame": "邊框"
     },
     "themeCustomisation": {
-        "theme": "佈景主題"
+        "theme": "佈景主題",
+        "mockup": "Mockup"
     },
     "currencySelection": {
         "currency": "貨幣"
@@ -599,9 +614,25 @@
         "code": "驗證碼",
         "twoFaToken": "2FA 金鑰"
     },
+    "seedVault": {
+        "exportSeedVault": "Export SeedVault",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password. It is recommended that you store the file in a password manager like Keepass.",
+        "seedVaultWarning": "Make sure you back up the file in multiple locations (e.g. hard drive, cloud, USB). If you lose this file and have not stored your seed elsewhere, you will lose your IOTA.",
+        "exportFail": "SeedVault export failed",
+        "exportFailExplanation": "There was an problem exporting the SeedVault. Please ensure you have the appropriate permissions and enough free space.",
+        "exportSuccess": "SeedVault exported",
+        "exportSuccessExplanation": "Your encrypted seed file was exported successfully.",
+        "importSeedVault": "Import SeedVault",
+        "dropSeedVaultHere": "Drop SeedVault here",
+        "enterPasswordExplanation": "Enter your password to open the SeedVault",
+        "noSeedFound": "SeedVault does not contain a valid seed",
+        "noSeedFoundExplanation": "The SeedVault is either empty or contains a seed in an invalid format.",
+        "seedFileError": "Failed to open SeedVault",
+        "seedFileErrorExplanation": "There was a problem opening the SeedVault. If you selected the correct file then it may be corrupted."
+    },
     "chart": {
         "mcap": "總市值",
-        "change": "變化率",
+        "change": "變化率 (24h)",
         "volume": "交易量 (24h)",
         "currentValue": "目前價值",
         "error": "取得圖表資訊時出錯"

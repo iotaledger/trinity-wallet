@@ -4,6 +4,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { translate } from 'react-i18next';
 import GENERAL from '../theme/general';
 import Fonts from '../theme/fonts';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 import { width, height } from '../utils/dimensions';
 
@@ -44,6 +45,7 @@ export class FingerprintModal extends PureComponent {
     };
 
     componentDidMount() {
+        leaveNavigationBreadcrumb('FingerprintModal');
         this.props.hideModal = this.props.hideModal.bind(this);
     }
 
@@ -73,7 +75,7 @@ export class FingerprintModal extends PureComponent {
 
         return (
             <TouchableOpacity
-                style={[{ width: width / 1.2, alignItems: 'center' }, backgroundColor]}
+                style={[{ width: width / 1.15, alignItems: 'center' }, backgroundColor]}
                 onPress={this.props.hideModal}
             >
                 <View style={[styles.modalContent, borderColor]}>

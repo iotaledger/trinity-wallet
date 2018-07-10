@@ -17,6 +17,13 @@ const getProps = (overrides) =>
         overrides,
     );
 
+jest.mock('react-native-camera', () => ({}));
+
+jest.mock('bugsnag-react-native', () => ({
+    Configuration: jest.fn(),
+    Client: jest.fn(() => ({ leaveBreadcrumb: jest.fn() })),
+}));
+
 describe('Testing Enter2FA component', () => {
     describe('propTypes', () => {
         it('should require a verify function as a prop', () => {

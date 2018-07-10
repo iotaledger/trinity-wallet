@@ -8,6 +8,7 @@ import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { setAccountName, setAdditionalAccountInfo } from 'iota-wallet-shared-modules/actions/wallet';
 import { connect } from 'react-redux';
 import { shouldPreventAction } from 'iota-wallet-shared-modules/selectors/global';
+import { VALID_SEED_REGEX } from 'iota-wallet-shared-modules/libs/iota/utils';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import CustomTextInput from '../components/CustomTextInput';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
@@ -18,6 +19,7 @@ import InfoBox from '../components/InfoBox';
 import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
 import Header from '../components/Header';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 console.ignoredYellowBox = true;
 
@@ -43,11 +45,6 @@ const styles = StyleSheet.create({
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
-    },
-    titleContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingTop: height / 15,
     },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
@@ -102,10 +99,18 @@ export class SetAccountName extends Component {
         };
     }
 
-    componentDidMount() {
+    async componentDidMount() {
+        leaveNavigationBreadcrumb('SetAccountName');
         const { t } = this.props;
-        Clipboard.setString(' ');
-        this.props.generateAlert('info', t('copyToClipboard:seedCleared'), t('copyToClipboard:seedClearedExplanation'));
+        const clipboardContent = await Clipboard.getString();
+        if (clipboardContent.match(VALID_SEED_REGEX)) {
+            Clipboard.setString(' ');
+            this.props.generateAlert(
+                'info',
+                t('copyToClipboard:seedCleared'),
+                t('copyToClipboard:seedClearedExplanation'),
+            );
+        }
     }
 
     onDonePress() {
@@ -254,7 +259,7 @@ export class SetAccountName extends Component {
                             <CustomTextInput
                                 label={t('addAdditionalSeed:accountName')}
                                 onChangeText={(text) => this.setState({ accountName: text })}
-                                containerStyle={{ width: width / 1.2 }}
+                                containerStyle={{ width: width / 1.15 }}
                                 autoCapitalize="words"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically

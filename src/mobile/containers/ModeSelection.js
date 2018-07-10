@@ -12,6 +12,7 @@ import { Icon } from '../theme/icons.js';
 import InfoBox from '../components/InfoBox';
 import Toggle from '../components/Toggle';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -49,9 +50,6 @@ const styles = StyleSheet.create({
         fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 20,
-    },
-    toggle: {
-        marginHorizontal: width / 30,
     },
     toggleText: {
         fontFamily: Fonts.secondary,
@@ -98,6 +96,10 @@ class ModeSelection extends Component {
         this.changeMode = this.changeMode.bind(this);
     }
 
+    componentDidMount() {
+        leaveNavigationBreadcrumb('ModeSelection');
+    }
+
     changeMode() {
         const { mode } = this.props;
         const nextMode = mode === 'Expert' ? 'Standard' : 'Expert';
@@ -132,7 +134,7 @@ class ModeSelection extends Component {
                         >
                             <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                                 <View style={styles.toggleTextContainer}>
-                                    <Text style={[styles.toggleText, textColor, { paddingRight: width / 45 }]}>
+                                    <Text style={[styles.toggleText, textColor, { marginRight: width / 45 }]}>
                                         {t('standard')}
                                     </Text>
                                 </View>
@@ -143,7 +145,7 @@ class ModeSelection extends Component {
                                     scale={1.3}
                                 />
                                 <View style={styles.toggleTextContainer}>
-                                    <Text style={[styles.toggleText, textColor, { paddingLeft: width / 45 }]}>
+                                    <Text style={[styles.toggleText, textColor, { marginLeft: width / 45 }]}>
                                         {t('expert')}
                                     </Text>
                                 </View>

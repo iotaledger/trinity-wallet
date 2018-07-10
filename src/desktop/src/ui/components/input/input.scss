@@ -7,21 +7,13 @@
     transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     position: relative;
 
-    &.disabled {
-        opacity: 0.25;
-        pointer-events: none;
-    }
-
-    &.padded {
-        margin-bottom: 18px;
-    }
-
     fieldset {
         border: none;
         position: relative;
         input,
         textarea,
-        select {
+        select,
+        .editable {
             font-family: 'SourceSansPro';
             font-weight: 300;
             font-size: var(--font-size-default);
@@ -42,6 +34,34 @@
             &:disabled {
                 pointer-events: none;
                 opacity: 0.5;
+            }
+        }
+        .editable {
+            display: block;
+            font-family: 'SourceCodePro';
+            white-space: nowrap;
+            overflow: hidden;
+            height: 46px;
+            text-align: left;
+            max-width: 520px;
+            padding: 0 40px 0 0;
+            > div {
+                padding: 0 20px;
+                overflow: hidden;
+
+                span {
+                    display: inline-block;
+                    position: relative;
+                    height: 100%;
+                    &:before {
+                        display: inline-block;
+                        position: absolute;
+                        left: 0px;
+                        content: attr(data-letter);
+                        pointer-events: none;
+                        line-height: 44px;
+                    }
+                }
             }
         }
         select {
@@ -109,6 +129,20 @@
             &:hover {
                 color: var(--input);
             }
+            &.right {
+                left: 0px;
+                right: auto;
+                background: red;
+                z-index: 2;
+                width: 42px;
+                background: var(--input-bg);
+                border-radius: 4px 0 0 4px;
+                border: 1px solid var(--input-border);
+                border-right: none;
+                &:before {
+                    display: none;
+                }
+            }
         }
         p {
             display: block;
@@ -123,6 +157,45 @@
         }
         a + input {
             padding-right: 40px;
+        }
+    }
+
+    h5 {
+        display: block;
+        width: 100%;
+        border: 1px dashed var(--body-alt);
+        font-size: 12px;
+        line-height: 12px;
+        margin: 32px 0 0 0;
+        padding: 24px 0;
+        font-size: 14px;
+        text-align: center;
+        cursor: pointer;
+
+        svg {
+            display: block;
+            margin: 0 auto 20px;
+            pointer-events: none;
+        }
+        span {
+            display: block;
+            pointer-events: none;
+            line-height: 18px;
+        }
+    }
+
+    &.disabled {
+        opacity: 0.25;
+        pointer-events: none;
+    }
+
+    &.padded {
+        margin-bottom: 18px;
+    }
+
+    &.seed {
+        fieldset .editable {
+            padding: 0 32px 0 21px;
         }
     }
 }

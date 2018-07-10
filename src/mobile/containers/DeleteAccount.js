@@ -20,6 +20,7 @@ import CustomTextInput from '../components/CustomTextInput';
 import GENERAL from '../theme/general';
 import { Icon } from '../theme/icons.js';
 import { isAndroid } from '../utils/device';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     modalContainer: {
@@ -28,6 +29,13 @@ const styles = StyleSheet.create({
         width,
         height,
         justifyContent: 'center',
+    },
+    modal: {
+        height,
+        width,
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 0,
     },
     container: {
         flex: 1,
@@ -40,7 +48,7 @@ const styles = StyleSheet.create({
         borderRadius: GENERAL.borderRadius,
         borderWidth: 2,
         paddingVertical: height / 18,
-        width: width / 1.2,
+        width: width / 1.15,
     },
     topContainer: {
         flex: 11,
@@ -147,6 +155,10 @@ class DeleteAccount extends Component {
             pressedContinue: false,
             password: '',
         };
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('DeleteAccount');
     }
 
     onBackPress() {
@@ -314,7 +326,7 @@ class DeleteAccount extends Component {
                         backdropTransitionOutTiming={200}
                         backdropColor={backgroundColor}
                         backdropOpacity={0.6}
-                        style={{ alignItems: 'center', margin: 0 }}
+                        style={styles.modal}
                         isVisible={isModalActive}
                         onBackButtonPress={() => this.props.toggleModalActivity()}
                         hideModalContentWhileAnimating

@@ -15,9 +15,15 @@ const getProps = (overrides) =>
             backgroundColor: '#ffffff',
             textColor: {},
             borderColor: {},
+            warningColor: {},
         },
         overrides,
     );
+
+jest.mock('bugsnag-react-native', () => ({
+    Configuration: jest.fn(),
+    Client: jest.fn(() => ({ leaveBreadcrumb: jest.fn() })),
+}));
 
 describe('Testing RootDetectionModal component', () => {
     describe('propTypes', () => {

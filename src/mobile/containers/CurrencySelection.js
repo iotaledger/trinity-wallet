@@ -9,6 +9,7 @@ import { width, height } from '../utils/dimensions';
 import DropdownComponent from '../containers/Dropdown';
 import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -49,13 +50,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
-    infoText: {
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
-        backgroundColor: 'transparent',
-        paddingTop: height / 30,
-        textAlign: 'center',
-    },
     activityIndicator: {
         flex: 1,
         justifyContent: 'center',
@@ -95,6 +89,10 @@ export class CurrencySelection extends Component {
          */
         getCurrencyData: PropTypes.func.isRequired,
     };
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('CurrencySelection');
+    }
 
     componentWillReceiveProps(newProps) {
         const props = this.props;

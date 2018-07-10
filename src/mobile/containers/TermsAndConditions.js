@@ -17,6 +17,7 @@ import { width, height } from '../utils/dimensions';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import i18next from '../i18next';
 import { isAndroid } from '../utils/device';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -29,11 +30,6 @@ const styles = StyleSheet.create({
         fontSize: GENERAL.fontSize4,
         textAlign: 'center',
         paddingTop: height / 55,
-    },
-    pdf: {
-        flex: 1,
-        height: height - height / 8 - height / 11,
-        width: width,
     },
     titleContainer: {
         height: height / 8,
@@ -87,6 +83,10 @@ class TermsAndConditions extends Component {
         super();
 
         this.state = { hasReadTerms: false };
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('TermsAndConditions');
     }
 
     onNextPress() {

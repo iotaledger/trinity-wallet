@@ -31,6 +31,7 @@ import { getSeedFromKeychain, storeSeedInKeychain } from '../utils/keychain';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import { getAddressGenFn, getMultiAddressGenFn } from '../utils/nativeModules';
 import { isAndroid } from '../utils/device';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 import { width, height } from '../utils/dimensions';
 
@@ -67,15 +68,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
-    },
-    changeNodeButton: {
-        borderWidth: 1.5,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 2.7,
-        height: height / 17,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'transparent',
     },
     nodeChangeButton: {
         borderWidth: 1.2,
@@ -203,10 +195,11 @@ class Loading extends Component {
             t,
             deepLinkActive,
         } = this.props;
+        leaveNavigationBreadcrumb('Loading');
         this.animation.play();
         if (!firstUse && !addingAdditionalAccount) {
             this.setAnimationOneTimout();
-            timer.setTimeout('waitTimeout', () => this.onWaitTimeout(), 10000);
+            timer.setTimeout('waitTimeout', () => this.onWaitTimeout(), 15000);
         }
         this.getWalletData();
         if ((firstUse || addingAdditionalAccount) && !isAndroid) {

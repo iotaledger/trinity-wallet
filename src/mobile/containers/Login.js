@@ -20,27 +20,13 @@ import Enter2FAComponent from '../components/Enter2FA';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import { getAllSeedsFromKeychain, getTwoFactorAuthKeyFromKeychain } from '../utils/keychain';
 import { getPasswordHash } from '../utils/crypto';
-import { height } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
-import GENERAL from '../theme/general';
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-    },
-    questionText: {
-        backgroundColor: 'transparent',
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
-        paddingBottom: height / 40,
-    },
-    infoText: {
-        backgroundColor: 'transparent',
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
-        paddingBottom: height / 16,
     },
 });
 
@@ -62,7 +48,7 @@ class Login extends Component {
         /** Determines whether two factor authentication is enabled */
         is2FAEnabled: PropTypes.bool.isRequired,
         /** Set application activity state
-         * @param {object} options - minimzed, active, inactive
+         * @param {object} options - minimised, active, inactive
          */
         setUserActivity: PropTypes.func.isRequired,
         /** Set password
@@ -89,6 +75,8 @@ class Login extends Component {
          * @param {string} route - current route
          */
         setLoginRoute: PropTypes.func.isRequired,
+        /** Determines whether fingerprint auth is enabled */
+        isFingerprintEnabled: PropTypes.bool.isRequired,
     };
 
     constructor() {
@@ -204,7 +192,7 @@ class Login extends Component {
     }
 
     render() {
-        const { theme, password, loginRoute } = this.props;
+        const { theme, password, loginRoute, isFingerprintEnabled } = this.props;
         const body = theme.body;
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
@@ -216,6 +204,7 @@ class Login extends Component {
                         navigateToNodeOptions={() => this.props.setLoginRoute('nodeOptions')}
                         setLoginPasswordField={(pword) => this.props.setLoginPasswordField(pword)}
                         password={password}
+                        isFingerprintEnabled={isFingerprintEnabled}
                     />
                 )}
                 {loginRoute === 'complete2FA' && (
@@ -242,6 +231,7 @@ const mapStateToProps = (state) => ({
     pwdHash: state.wallet.password,
     loginRoute: state.ui.loginRoute,
     hasConnection: state.wallet.hasConnection,
+    isFingerprintEnabled: state.settings.isFingerprintEnabled,
 });
 
 const mapDispatchToProps = {

@@ -69,6 +69,7 @@ export default function withSendData(SendComponent) {
                       t('progressSteps:broadcasting'),
                   ]
                 : [
+                      t('progressSteps:checkingNodeHealth'),
                       t('progressSteps:validatingReceiveAddress'),
                       t('progressSteps:syncingAccount'),
                       t('progressSteps:preparingInputs'),
@@ -180,6 +181,7 @@ export default function withSendData(SendComponent) {
                 setSendMessageField,
                 generateAlert,
                 progress,
+                accountName,
             } = this.props;
 
             const progressTitle =
@@ -200,7 +202,6 @@ export default function withSendData(SendComponent) {
                 setSendMessageField,
                 isSending: ui.isSendingTransfer,
                 password: wallet.password,
-                seedIndex: wallet.seedIndex,
                 validateInputs: this.validateInputs,
                 sendTransfer: this.sendTransfer,
                 settings: {
@@ -213,6 +214,7 @@ export default function withSendData(SendComponent) {
                     progress: Math.round(progress.activeStepIndex / progress.activeSteps.length * 100),
                     title: progressTitle,
                 },
+                accountName,
                 generateAlert,
                 balance,
                 theme,

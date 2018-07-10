@@ -37,12 +37,14 @@
         "apply": "Apply",
         "save": "შენახვა",
         "close": "Close",
+        "export": "Export",
+        "import": "Import",
         "continue": "Continue",
         "enable": "Enable",
         "disable": "Disable",
         "enabled": "Enabled",
         "disabled": "Disabled",
-        "manualCopy": "Write seed down",
+        "enterPassword": "Enter password",
         "paperWallet": "Print paper copy",
         "addToPasswordManager": "Add to password manager",
         "shareSeed": "Share seed",
@@ -90,18 +92,14 @@
         "addresses": "Addresses",
         "reattach": "REATTACH",
         "promote": "PROMOTE",
-        "retry": "RETRY",
-        "rebroadcast": "REBROADCAST",
+        "retry": "Retry",
         "pressBackAgain": "Press back again to close the app",
         "reattached": "Successfully reattached transaction",
         "reattachedExplanation": "Reattached transaction with hash {{hash}}",
         "promotingTransaction": "Promoting transaction",
         "autopromoting": "Autopromoting transfer",
         "autopromotingExplanation": "Promoting transaction with hash {{hash}}",
-        "rebroadcasted": "Successfully rebroadcasted transaction",
-        "rebroadcastedExplanation": "Rebroadcasted transaction with hash {{hash}}",
         "rebroadcastError": "Could not rebroadcast transaction",
-        "rebroadcastErrorExplanation": "Something went wrong while rebroadcasting your transaction. Please try again.",
         "promoted": "Successfully promoted transaction",
         "promotedExplanation": "Promoted transaction with hash {{hash}}",
         "autopromotionError": "Could not auto-promote transaction",
@@ -148,11 +146,12 @@
         "androidCopyPasteWarning": "Never copy/paste your seed on an Android device.",
         "willNotCopyPasteSeed": "I will not copy/paste my seed",
         "mustBeStoredAppropriately": "It must be stored appropriately.",
-        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while",
+        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while.",
         "isYourBalanceCorrect": "Is your balance correct?",
         "ifYourBalanceIsNotCorrect": "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
         "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition.",
-        "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android"
+        "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android",
+        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
@@ -162,6 +161,8 @@
         "nameInUse": "Account name already in use",
         "nameInUseExplanation": "Please use a unique account name for your seed.",
         "enterAccountName": "Enter an account name.",
+        "accountNameTooLong": "Account name too long",
+        "accountNameTooLongExplanation": "Account name maximum length is {{maxLength}} characters.",
         "accountName": "Account name",
         "noNickname": "No account name entered",
         "noNicknameExplanation": "Please enter an account name for your seed.",
@@ -224,6 +225,7 @@
         "invalidCharacters": "Seed contains invalid characters",
         "invalidCharactersExplanation": "Seeds can only consist of the capital letters A-Z and the number 9. Your seed has invalid characters. Please try again.",
         "seedTooShort": "Seed is too short",
+        "seedTooLong": "Seed is too long",
         "seedTooShortExplanation": "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
         "seedExplanation": "Seeds should be {{maxLength}} characters long, and should contain capital letters A-Z, or the number 9. You cannot use seeds longer than {{maxLength}} characters.",
         "neverShare": "NEVER SHARE YOUR SEED WITH ANYONE"
@@ -247,7 +249,9 @@
         "login": "Log In",
         "selectDifferentNode": "Do you want to select a different node?",
         "setNode": "Set Node",
-        "cannotConnect": "Cannot connect to IOTA node."
+        "cannotConnect": "Cannot connect to IOTA node.",
+        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "Loading seed for the first time.",
@@ -285,14 +289,19 @@
         "printerCheckbox": "I will not print on a public printer"
     },
     "receive": {
+        "yourAddress": "Your address",
+        "qrOptions": "QR options",
+        "shareQr": "Share QR code",
         "copyAddress": "Copy address",
         "addressCopied": "Address copied",
         "addressCopiedExplanation": "Your address has been copied to the clipboard.",
         "generateNewAddress": "New Address",
-        "message": "Optional message",
         "removeMessage": "REMOVE MESSAGE",
         "noAddresses": "NO ADDRESSES",
-        "spent": "Spent"
+        "spent": "Spent",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes.",
+        "tag": "Tag"
     },
     "saveYourSeed": {
         "saveYourSeed": "Back up your seed",
@@ -301,14 +310,12 @@
         "leastSecure": "Least Secure",
         "paperWallet": "Paper Wallet",
         "writeYourSeedDown": "Write your seed down",
-        "printYourSeed": "Print your seed",
-        "digitalCopy": "Digital copy",
         "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
         "iHaveBackedUpMySeed": "I have saved my seed",
         "letsWriteDownYourSeed": "Lets write down your seed",
         "youCanHighlightCharacters": "You can highlight 9 characters at a time",
         "printBlankWallet": "Print a blank wallet",
-        "whatIsCheksum": "Every seed has a corresponding 3 character checksum",
+        "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
         "iHavesavedMySeed": "I've saved my seed",
         "checksumExplanation": "Whenever you add a seed to your wallet, you should ensure that the wallet-generated checksum matches the one you have written down.",
         "mustSaveYourSeed": "<0><0>You must save your seed with </0><1>at least one</1><2> of the options listed below.</2></0>"
@@ -349,7 +356,8 @@
         "sendMax": "SEND MAX",
         "totalTime": "Total time",
         "addressPasteDetected": "Address paste detected",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to."
+        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to.",
+        "invalid": "INVALID"
     },
     "setPassword": {
         "choosePassword": "Choose a new password",
@@ -438,31 +446,36 @@
         "okay": "Okay. Let's set up your wallet!",
         "doYouAlreadyHaveASeed": "Do you already have a seed that you would like to use?",
         "doYouNeedASeed": "Do you need to create a new seed?",
-        "seedExplanation": "The IOTA seed is like a username and password to your account, combined into one string of 81 characters.",
+        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
         "noIHaveOne": "No, I have one",
         "yesINeedASeed": "Yes, I need a seed",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device</3><4>. But if you lose your seed, you also lose your IOTA.</4></0>",
+        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
+        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
         "keepSafe": "Please keep your seed safe.",
         "hint": "<0><0>Hint:</0> Click NO if this is your first time using IOTA.</0>"
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity.",
-        "weWillSpend": "We will spend the next few minutes setting up your wallet.",
-        "reminder": "You may be tempted to skip some steps, but we urge you to follow the complete process."
+        "thankYou": "Thank you for downloading Trinity"
     },
     "writeSeedDown": {
         "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
-        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>"
+        "writeDownYourSeed": "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>",
+        "scrollToBottom": "Scroll to the bottom"
     },
     "history": {
         "bundleHashCopied": "Bundle hash copied",
+        "noTransactionsFound": "No transactions found",
+        "hideZeroBalance": "Hide zero balance",
         "bundleHashCopiedExplanation": "The bundle hash has been copied to the clipboard.",
         "addressCopied": "Address copied",
         "addressCopiedExplanation": "The address has been copied to the clipboard.",
         "messageCopied": "Message copied",
         "messageCopiedExplanation": "The message has been copied to the clipboard.",
-        "send": "გაგზავნა",
-        "receive": "RECEIVE"
+        "send": "Send",
+        "receive": "Receive",
+        "empty": "Empty",
+        "retrying": "Retrying",
+        "yesterday": "Yesterday"
     },
     "accountManagement": {
         "viewSeed": "View seed",
@@ -476,6 +489,7 @@
         "customNodeCouldNotBeAdded": "Custom node could not be added",
         "customNodeAddedSuccessfully": "The custom node has been added successfully.",
         "customNode": "Custom node",
+        "removeCustomNode": "Remove custom node",
         "invalidNodeResponse": "The node returned an invalid response",
         "httpNodeError": "Trinity Mobile only supports https nodes.",
         "add": "Add",
@@ -501,7 +515,8 @@
         "frame": "Frame"
     },
     "themeCustomisation": {
-        "theme": "Theme"
+        "theme": "Theme",
+        "mockup": "Mockup"
     },
     "currencySelection": {
         "currency": "Currency"
@@ -599,9 +614,25 @@
         "code": "Code",
         "twoFaToken": "2FA Token"
     },
+    "seedVault": {
+        "exportSeedVault": "Export SeedVault",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password. It is recommended that you store the file in a password manager like Keepass.",
+        "seedVaultWarning": "Make sure you back up the file in multiple locations (e.g. hard drive, cloud, USB). If you lose this file and have not stored your seed elsewhere, you will lose your IOTA.",
+        "exportFail": "SeedVault export failed",
+        "exportFailExplanation": "There was an problem exporting the SeedVault. Please ensure you have the appropriate permissions and enough free space.",
+        "exportSuccess": "SeedVault exported",
+        "exportSuccessExplanation": "Your encrypted seed file was exported successfully.",
+        "importSeedVault": "Import SeedVault",
+        "dropSeedVaultHere": "Drop SeedVault here",
+        "enterPasswordExplanation": "Enter your password to open the SeedVault",
+        "noSeedFound": "SeedVault does not contain a valid seed",
+        "noSeedFoundExplanation": "The SeedVault is either empty or contains a seed in an invalid format.",
+        "seedFileError": "Failed to open SeedVault",
+        "seedFileErrorExplanation": "There was a problem opening the SeedVault. If you selected the correct file then it may be corrupted."
+    },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change",
+        "change": "Change (24h)",
         "volume": "Volume (24h)",
         "currentValue": "Current value",
         "error": "Error fetching chart data"

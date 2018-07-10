@@ -4,6 +4,7 @@ export default i18next.init(
     {
         fallbackLng: 'en',
         fallbackNS: 'global',
+        debug: false,
         parseMissingKeyHandler: (value) => `Translation not available for ${value}`,
         resources: {
             en: require('./locales/en/translation.json'),
@@ -19,6 +20,7 @@ export default i18next.init(
             fr: require('./locales/fr/translation.json'),
             he: require('./locales/he/translation.json'),
             hi: require('./locales/hi/translation.json'),
+            hr: require('./locales/hr/translation.json'),
             id: require('./locales/id/translation.json'),
             it: require('./locales/it/translation.json'),
             ja: require('./locales/ja/translation.json'),
@@ -35,6 +37,7 @@ export default i18next.init(
             sk: require('./locales/sk/translation.json'),
             sl: require('./locales/sl/translation.json'),
             sv_SE: require('./locales/sv-SE/translation.json'),
+            ta: require('./locales/ta/translation.json'),
             th: require('./locales/th/translation.json'),
             tr: require('./locales/tr/translation.json'),
             ur: require('./locales/ur/translation.json'),

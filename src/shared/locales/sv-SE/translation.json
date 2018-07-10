@@ -37,12 +37,14 @@
         "apply": "Verkställ",
         "save": "Spara",
         "close": "Stäng",
+        "export": "Exportera",
+        "import": "Importera",
         "continue": "Fortsätt",
         "enable": "Aktivera",
         "disable": "Avaktivera",
         "enabled": "Aktiverad",
         "disabled": "Avaktiverad",
-        "manualCopy": "Skriv ner din seed",
+        "enterPassword": "Ange lösenord",
         "paperWallet": "Skriv ut papperskopia",
         "addToPasswordManager": "Lägg till i lösenordshanteraren",
         "shareSeed": "Dela seed",
@@ -90,18 +92,14 @@
         "addresses": "Adresser",
         "reattach": "ÅTERFÄST",
         "promote": "BEFORDRA",
-        "retry": "FÖRSÖK IGEN",
-        "rebroadcast": "ÅTERSÄND",
+        "retry": "Försök igen",
         "pressBackAgain": "Tryck tillbaka igen för att stänga appen",
         "reattached": "Framgångsrik återfästning av transaktion",
         "reattachedExplanation": "Återfäste transaktion med hash {{hash}}",
         "promotingTransaction": "Befordrar transaktion",
         "autopromoting": "Auto-befordrar överföring",
         "autopromotingExplanation": "Befordrar transaktion med hashen {{hash}}",
-        "rebroadcasted": "Framgångsrik återsändning av transaktion",
-        "rebroadcastedExplanation": "Återsände transaktion med hash {{hash}}",
         "rebroadcastError": "Kunde inte återsända transaktionen",
-        "rebroadcastErrorExplanation": "Någonting gick fel under återsändning av transaktionen. Vänligen försök igen.",
         "promoted": "Framgångsrik befordran av transaktion",
         "promotedExplanation": "Befordrade transaktion med hash {{hash}}",
         "autopromotionError": "Kunde inte befordra transaktionen automatiskt",
@@ -148,11 +146,12 @@
         "androidCopyPasteWarning": "Kopiera/klistra aldrig din seed på en Android-enhet.",
         "willNotCopyPasteSeed": "Jag kommer inte kopiera/klistra min seed",
         "mustBeStoredAppropriately": "Den måste lagras på lämpligt sätt.",
-        "deviceMayBecomeUnresponsive": "Din enhet kan sluta reagera ett tag",
+        "deviceMayBecomeUnresponsive": "Din enhet kan sluta reagera ett tag.",
         "isYourBalanceCorrect": "Stämmer ditt saldo?",
         "ifYourBalanceIsNotCorrect": "Om ditt saldo inte är korrekt, är det troligt att du använder en seed från tidigare än snapshot.",
         "headToAdvancedSettingsForTransition": "Gå till avancerade inställningar och utför en snapshot-övergång.",
-        "usingTrinityWalletWithKeePass": "Använder Trinity med Keepass2Android"
+        "usingTrinityWalletWithKeePass": "Använder Trinity med Keepass2Android",
+        "signedTrytesBroadcastErrorExplanation": "Ett nätverksfel uppstod under sändning av din transaktion."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
@@ -162,6 +161,8 @@
         "nameInUse": "Kontonamnet används redan",
         "nameInUseExplanation": "Vänligen använd ett unikt namn för din seed.",
         "enterAccountName": "Ange ditt kontonamn.",
+        "accountNameTooLong": "Kontonamnet är för långt",
+        "accountNameTooLongExplanation": "Maxlängden för kontonamn är {{maxLength}} tecken.",
         "accountName": "Kontonamn",
         "noNickname": "Inget kontonamn är angivet",
         "noNicknameExplanation": "Vänligen ange ett namn för din seed.",
@@ -224,6 +225,7 @@
         "invalidCharacters": "Seeden innehåller ogiltiga tecken",
         "invalidCharactersExplanation": "Seeden får enbart innehålla bokstäverna A-Z och numret 9. Din seed innehåller felaktiga tecken. Försök igen.",
         "seedTooShort": "Seeden är för kort",
+        "seedTooLong": "Din seed är för lång",
         "seedTooShortExplanation": "Din seed måste vara minst {{maxLength}} tecken. Den är för närvarande {{currentLength}} tecken lång. Vänligen försök igen.",
         "seedExplanation": "Seed ska vara {{maxLength}} tecken lång och får endast innehålla bokstäverna A-Z och nummer 9. Din seed får inte vara längre än {{maxLength}} tecken.",
         "neverShare": "DELA ALDRIG DIN SEED MED NÅGON"
@@ -247,7 +249,9 @@
         "login": "Logga in",
         "selectDifferentNode": "Vill du välja en annan nod?",
         "setNode": "Ställ in nod",
-        "cannotConnect": "Kan ej ansluta till IOTA nod."
+        "cannotConnect": "Kan ej ansluta till IOTA nod.",
+        "whyBiometricDisabled": "Varför är biometrisk autentisering avaktiverad?",
+        "whyBiometricDisabledExplanation": "Biometrisk autentisering är avaktiverad vid första inloggning för din säkerhet. När du använder Trinity, så blir du utloggad vid inaktivitet. Du kan sedan logga in igen med biometrisk autentisering."
     },
     "loading": {
         "loadingFirstTime": "Laddar din adress för första gången.",
@@ -285,14 +289,19 @@
         "printerCheckbox": "Jag kommer inte att skriva ut på en offentlig skrivare"
     },
     "receive": {
+        "yourAddress": "Din adress",
+        "qrOptions": "QR alternativ",
+        "shareQr": "Dela QR-kod",
         "copyAddress": "Kopiera adress",
         "addressCopied": "Adress kopierad",
         "addressCopiedExplanation": "Din adress har kopierats till urklipp.",
         "generateNewAddress": "Ny adress",
-        "message": "Valfritt meddelande",
         "removeMessage": "TA BORT MEDDELANDE",
         "noAddresses": "INGA ADRESSER",
-        "spent": "Förbrukat"
+        "spent": "Förbrukat",
+        "missingPermission": "Åtkomst till filsystem krävs",
+        "missingPermissionExplanation": "Åtkomst till filsystem krävs för att dela QR-koder.",
+        "tag": "Tagg"
     },
     "saveYourSeed": {
         "saveYourSeed": "Spara din seed",
@@ -301,14 +310,12 @@
         "leastSecure": "Minst säkert",
         "paperWallet": "Pappersplånbok",
         "writeYourSeedDown": "Skriv ner din seed",
-        "printYourSeed": "Skriv ut din seed",
-        "digitalCopy": "Digital kopia",
         "seedClearedExplanation": "Seeden har blivit rensad från urklipp för din säkerhet.",
         "iHaveBackedUpMySeed": "Jag har sparat min seed",
         "letsWriteDownYourSeed": "Skriv ner din seed",
         "youCanHighlightCharacters": "Du kan markera 9 tecken i taget",
         "printBlankWallet": "Skriv ut en tom plånbok",
-        "whatIsCheksum": "Varje seed har en tillhörande 3-tecken kontrollsumma",
+        "whatIsChecksum": "Varje seed har en tillhörande 3-tecken kontrollsumma",
         "iHavesavedMySeed": "Jag har sparat min seed",
         "checksumExplanation": "När du lägger till en seed i din plånbok, bör du kontrollera att den plånboksgenererade kontrollsumman matchar den du har skrivit ned.",
         "mustSaveYourSeed": "<0><0>Du måste spara din seed med</0><1>minst ett</1><2> av alternativen listade nedan.</2></0>"
@@ -349,7 +356,8 @@
         "sendMax": "SKICKA MAX",
         "totalTime": "Total tid",
         "addressPasteDetected": "Kopierad adress upptäckt",
-        "addressPasteExplanation": "Det ser ut som att du har klistrat in en adress. Kontrollera att den inklistrade adressen matchar den som du vill skicka till."
+        "addressPasteExplanation": "Det ser ut som att du har klistrat in en adress. Kontrollera att den inklistrade adressen matchar den som du vill skicka till.",
+        "invalid": "OGILTIG"
     },
     "setPassword": {
         "choosePassword": "Välj ett nytt lösenord",
@@ -438,31 +446,36 @@
         "okay": "Okej. Låt oss konfigurera din plånbok!",
         "doYouAlreadyHaveASeed": "Har du redan en seed som du vill använda?",
         "doYouNeedASeed": "Behöver du skapa en ny seed?",
-        "seedExplanation": "IOTA seeden är som ett användarnamn och lösenord till ditt konto, de två kombineras till en teckensträng på 81 tecken.",
+        "seedExplanation": "Din IOTA-seed är huvudnyckeln till dina pengar. Den är 81 tecken lång och innehåller endast bokstäverna A-Z eller numret 9.",
         "noIHaveOne": "Nej, jag har en",
         "yesINeedASeed": "Ja, jag behöver en seed",
-        "explanation": "<0><0>Du kan använda det för att komma åt dina tillgångar från</0><1> valfri plånbok</1><2>, samt</2><3> valfri apparat</3><4>. Förlorar du din seed, kommer du samtidigt förlora dina IOTA.</4></0>",
+        "explanation": "<0><0>Du kan använda den för att komma åt dina pengar från</0> <1>vilken plånbok som helst</1> <2>på</2> <3>vilken enhet som helst.</3></0>",
+        "loseSeed": "Men om du förlorar din seed, då förlorar du också dina IOTA.",
         "keepSafe": "Vänligen förvara din seed säkert.",
         "hint": "<0><0>Tips:</0> Klicka på NEJ om detta är första gången du använder IOTA.</0>"
     },
     "welcome": {
-        "thankYou": "Tack för att du laddade ner Trinity.",
-        "weWillSpend": "Vi kommer att tillbringa de närmsta minuterna åt att konfigurera din plånbok.",
-        "reminder": "Det kanske är lockande att hoppa över några steg, men vi uppmanar dig till att följa hela processen."
+        "thankYou": "Tack för att du laddade ned Trinity"
     },
     "writeSeedDown": {
         "yourSeedIs": "Din seed är {{maxSeedLength}} tecken lästa från vänster till höger.",
-        "writeDownYourSeed": "<0> Skriv ner din seed och checksumma och </0><1>dubbelkolla</1><2> att det stämmer.</2>"
+        "writeDownYourSeed": "<0> Skriv ner din seed och checksumma och </0><1>dubbelkolla</1><2> att det stämmer.</2>",
+        "scrollToBottom": "Scrolla till botten"
     },
     "history": {
         "bundleHashCopied": "Hashbunt kopierad",
+        "noTransactionsFound": "Inga transaktioner hittade",
+        "hideZeroBalance": "Dölj nollvärden",
         "bundleHashCopiedExplanation": "Hashbunten har kopierats till urklipp.",
         "addressCopied": "Adress kopierad",
         "addressCopiedExplanation": "Din adress har kopierats till urklipp.",
         "messageCopied": "Meddelandet kopierat",
         "messageCopiedExplanation": "Meddelandet har kopierats till urklipp.",
-        "send": "SKICKA",
-        "receive": "TA EMOT"
+        "send": "Skicka",
+        "receive": "Motta",
+        "empty": "Tomt",
+        "retrying": "Försöker igen",
+        "yesterday": "Igår"
     },
     "accountManagement": {
         "viewSeed": "Visa seed",
@@ -476,6 +489,7 @@
         "customNodeCouldNotBeAdded": "Anpassad nod kunde inte bli tillagd",
         "customNodeAddedSuccessfully": "Den anpassade noden har lagts till framgångsrikt.",
         "customNode": "Anpassad nod",
+        "removeCustomNode": "Ta bort anpassad nod",
         "invalidNodeResponse": "Noden returnerade ett ogiltigt svar",
         "httpNodeError": "Trinity stödjer endast https-noder.",
         "add": "Lägg till",
@@ -501,7 +515,8 @@
         "frame": "Ram"
     },
     "themeCustomisation": {
-        "theme": "Teman"
+        "theme": "Teman",
+        "mockup": "Exempel"
     },
     "currencySelection": {
         "currency": "Valuta"
@@ -589,7 +604,7 @@
         "emptyCodeExplanation": "Var vänlig och ange en kod och försök igen.",
         "keyCopied": "Nyckel kopierad till urklipp",
         "keyCopiedExplanation": "Din 2FA nyckel har kopierats till urklipp.",
-        "addKey": "Lägg till denna nyckeln till din 2FA app",
+        "addKey": "Lägg till denna nyckel i din 2FA-app",
         "key": "Nyckel",
         "twoFAEnabled": "2FA är nu aktiverat",
         "twoFAEnabledExplanation": "Du har framgångsrikt aktiverat tvåfaktorsautentisering.",
@@ -599,9 +614,25 @@
         "code": "Kod",
         "twoFaToken": "2FA-token"
     },
+    "seedVault": {
+        "exportSeedVault": "Exportera SeedVault",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password. It is recommended that you store the file in a password manager like Keepass.",
+        "seedVaultWarning": "Make sure you back up the file in multiple locations (e.g. hard drive, cloud, USB). If you lose this file and have not stored your seed elsewhere, you will lose your IOTA.",
+        "exportFail": "SeedVault export failed",
+        "exportFailExplanation": "There was an problem exporting the SeedVault. Please ensure you have the appropriate permissions and enough free space.",
+        "exportSuccess": "SeedVault exported",
+        "exportSuccessExplanation": "Your encrypted seed file was exported successfully.",
+        "importSeedVault": "Import SeedVault",
+        "dropSeedVaultHere": "Drop SeedVault here",
+        "enterPasswordExplanation": "Enter your password to open the SeedVault",
+        "noSeedFound": "SeedVault does not contain a valid seed",
+        "noSeedFoundExplanation": "The SeedVault is either empty or contains a seed in an invalid format.",
+        "seedFileError": "Failed to open SeedVault",
+        "seedFileErrorExplanation": "There was a problem opening the SeedVault. If you selected the correct file then it may be corrupted."
+    },
     "chart": {
         "mcap": "MCAP",
-        "change": "Ändring",
+        "change": "Förändring (24h)",
         "volume": "Volym (24h)",
         "currentValue": "Nuvarande värde",
         "error": "Fel vid hämtning av valutavärde"

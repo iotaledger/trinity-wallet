@@ -11,6 +11,8 @@ import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { generateNewSeed, randomiseSeedCharacter } from 'iota-wallet-shared-modules/libs/crypto';
 import { Navigation } from 'react-native-navigation';
 import Modal from 'react-native-modal';
+import FlagSecure from 'react-native-flag-secure-android';
+import WithUserActivity from '../components/UserActivity';
 import CtaButton from '../components/CtaButton';
 import { width, height } from '../utils/dimensions';
 import OnboardingButtons from '../containers/OnboardingButtons';
@@ -20,6 +22,7 @@ import DynamicStatusBar from '../components/DynamicStatusBar';
 import InfoBox from '../components/InfoBox';
 import { Icon } from '../theme/icons.js';
 import { isAndroid } from '../utils/device';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -58,19 +61,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         margin: width / 80,
-    },
-    generateButton: {
-        borderRadius: GENERAL.borderRadius,
-        width: width / 2.2,
-        height: height / 16,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderWidth: 1.2,
-    },
-    generateText: {
-        fontFamily: 'SourceSansPro-Bold',
-        fontSize: GENERAL.fontSize1,
-        backgroundColor: 'transparent',
+        borderWidth: 1,
     },
     infoText: {
         fontFamily: 'SourceSansPro-Regular',
@@ -95,11 +86,6 @@ const styles = StyleSheet.create({
         fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
     },
-    infoTextRegular: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
-        backgroundColor: 'transparent',
-    },
     infoTextBold: {
         fontFamily: 'SourceSansPro-Bold',
         fontSize: GENERAL.fontSize3,
@@ -117,6 +103,13 @@ const styles = StyleSheet.create({
         fontFamily: 'SourceSansPro-Regular',
         fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
+    },
+    modal: {
+        height,
+        width,
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 0,
     },
 });
 
@@ -147,6 +140,8 @@ class NewSeedSetup extends Component {
          * @param {string} translationString - locale string identifier to be translated
          */
         t: PropTypes.func.isRequired,
+        /** Determines if the application is minimised */
+        minimised: PropTypes.bool.isRequired,
     };
 
     constructor() {
@@ -161,17 +156,24 @@ class NewSeedSetup extends Component {
     }
 
     componentDidMount() {
+        leaveNavigationBreadcrumb('NewSeedSetup');
         if (this.props.onboardingComplete) {
             BackHandler.addEventListener('newSeedSetupBackPress', () => {
                 this.goBack();
                 return true;
             });
         }
+        if (isAndroid) {
+            FlagSecure.activate();
+        }
     }
 
     componentWillUnmount() {
         if (this.props.onboardingComplete) {
             BackHandler.removeEventListener('newSeedSetupBackPress');
+        }
+        if (isAndroid) {
+            FlagSecure.deactivate();
         }
     }
 
@@ -194,6 +196,9 @@ class NewSeedSetup extends Component {
 
     onNextPress() {
         const { t, theme: { body } } = this.props;
+        if (isAndroid) {
+            FlagSecure.deactivate();
+        }
         if (this.state.randomised) {
             this.props.navigator.push({
                 screen: 'saveYourSeed',
@@ -204,6 +209,7 @@ class NewSeedSetup extends Component {
                     screenBackgroundColor: body.bg,
                     drawUnderStatusBar: true,
                     statusBarColor: body.bg,
+                    navBarButtonColor: isAndroid ? body.bg : 'black',
                 },
                 animated: false,
             });
@@ -274,10 +280,10 @@ class NewSeedSetup extends Component {
             <View style={{ backgroundColor: body.bg }}>
                 <InfoBox
                     body={body}
-                    width={width / 1.3}
+                    width={width / 1.15}
                     text={
                         <View>
-                            <Text style={[styles.infoText, textColor, { paddingTop: height / 40 }]}>
+                            <Text style={[styles.infoTextLight, textColor, { paddingTop: height / 40 }]}>
                                 {t('walletSetup:seedExplanation', { maxLength: MAX_SEED_LENGTH })}
                             </Text>
                             <Trans i18nKey="walletSetup:explanation">
@@ -315,9 +321,9 @@ class NewSeedSetup extends Component {
         return (
             <TouchableHighlight
                 onPress={() => this.onCharPress(index)}
-                style={[styles.tileContainer, { backgroundColor: input.bg }]}
+                style={[styles.tileContainer, { backgroundColor: input.bg, borderColor: primary.border }]}
                 underlayColor={primary.color}
-                hitSlop={{ top: height / 80, bottom: height / 80, left: height / 80, right: height / 80 }}
+                hitSlop={{ top: 5, bottom: 5, left: 5, right: 5 }}
             >
                 <View style={styles.tile}>
                     <Text style={[styles.tileText, { color: input.color, opacity: randomised ? 1 : 0.1 }]}>
@@ -329,7 +335,7 @@ class NewSeedSetup extends Component {
     }
 
     render() {
-        const { t, theme: { primary, secondary, body }, seed } = this.props;
+        const { t, theme: { primary, secondary, body }, seed, minimised } = this.props;
         const { isModalActive } = this.state;
         const viewOpacity = this.state.randomised ? 1 : 0.2;
         const opacity = this.state.randomised ? 1 : 0.4;
@@ -337,71 +343,75 @@ class NewSeedSetup extends Component {
 
         return (
             <View style={[styles.container, { backgroundColor: body.bg }]}>
-                <DynamicStatusBar backgroundColor={body.bg} />
-                <View style={styles.topContainer}>
-                    <Icon name="iota" size={width / 8} color={body.color} />
-                    <View style={{ flex: 1 }} />
-                    <CtaButton
-                        ctaColor={secondary.color}
-                        ctaBorderColor={primary.hover}
-                        secondaryCtaColor={secondary.body}
-                        text={t('pressForNewSeed')}
-                        onPress={() => {
-                            this.onGeneratePress();
-                        }}
-                        ctaWidth={width / 1.6}
-                        testID="newSeedSetup-newSeed"
-                    />
-                </View>
-                <View style={styles.midContainer}>
-                    <TouchableOpacity
-                        onPress={() => this.openModal()}
-                        style={{ marginTop: height / 65, marginBottom: height / 80 }}
-                    >
-                        <View style={styles.info}>
-                            <Icon
-                                name="info"
-                                size={width / 22}
-                                color={body.color}
-                                style={{ marginRight: width / 60 }}
+                {!minimised && (
+                    <View>
+                        <DynamicStatusBar backgroundColor={body.bg} />
+                        <View style={styles.topContainer}>
+                            <Icon name="iota" size={width / 8} color={body.color} />
+                            <View style={{ flex: 1 }} />
+                            <CtaButton
+                                ctaColor={secondary.color}
+                                ctaBorderColor={primary.hover}
+                                secondaryCtaColor={secondary.body}
+                                text={t('pressForNewSeed')}
+                                onPress={() => {
+                                    this.onGeneratePress();
+                                }}
+                                ctaWidth={width / 1.6}
+                                testID="newSeedSetup-newSeed"
                             />
-                            <Text style={[styles.infoText, textColor]}>{t('whatIsASeed')}</Text>
                         </View>
-                    </TouchableOpacity>
-                    <FlatList
-                        contentContainerStyle={[styles.list, { opacity: viewOpacity }]}
-                        data={split(seed, '')}
-                        keyExtractor={(item, index) => index}
-                        renderItem={({ item, index }) => this.renderChequerboard(item, index)}
-                        initialNumToRender={MAX_SEED_LENGTH}
-                        scrollEnabled={false}
-                    />
-                </View>
-                <View style={styles.bottomContainer}>
-                    <OnboardingButtons
-                        onLeftButtonPress={() => this.onBackPress()}
-                        onRightButtonPress={() => this.onNextPress()}
-                        leftButtonText={t('global:goBack')}
-                        rightButtonText={t('global:continue')}
-                        leftButtonTestID="newSeedSetup-back"
-                        rightButtonTestID="newSeedSetup-next"
-                        rightButtonStyle={{ wrapper: { opacity } }}
-                    />
-                </View>
-                <Modal
-                    backdropTransitionInTiming={isAndroid ? 500 : 300}
-                    backdropTransitionOutTiming={200}
-                    backdropColor={body.bg}
-                    backdropOpacity={0.8}
-                    style={{ alignItems: 'center', margin: 0 }}
-                    isVisible={isModalActive}
-                    onBackButtonPress={() => this.hideModal()}
-                    hideModalContentWhileAnimating
-                    useNativeDriver={isAndroid}
-                >
-                    {this.renderModalContent()}
-                </Modal>
-                {!isModalActive && <StatefulDropdownAlert backgroundColor={body.bg} />}
+                        <View style={styles.midContainer}>
+                            <TouchableOpacity
+                                onPress={() => this.openModal()}
+                                style={{ marginTop: height / 65, marginBottom: height / 80 }}
+                            >
+                                <View style={styles.info}>
+                                    <Icon
+                                        name="info"
+                                        size={width / 22}
+                                        color={body.color}
+                                        style={{ marginRight: width / 60 }}
+                                    />
+                                    <Text style={[styles.infoText, textColor]}>{t('whatIsASeed')}</Text>
+                                </View>
+                            </TouchableOpacity>
+                            <FlatList
+                                contentContainerStyle={[styles.list, { opacity: viewOpacity }]}
+                                data={split(seed, '')}
+                                keyExtractor={(item, index) => index}
+                                renderItem={({ item, index }) => this.renderChequerboard(item, index)}
+                                initialNumToRender={MAX_SEED_LENGTH}
+                                scrollEnabled={false}
+                            />
+                        </View>
+                        <View style={styles.bottomContainer}>
+                            <OnboardingButtons
+                                onLeftButtonPress={() => this.onBackPress()}
+                                onRightButtonPress={() => this.onNextPress()}
+                                leftButtonText={t('global:goBack')}
+                                rightButtonText={t('saveYourSeed:saveYourSeed')}
+                                leftButtonTestID="newSeedSetup-back"
+                                rightButtonTestID="newSeedSetup-next"
+                                rightButtonStyle={{ wrapper: { opacity } }}
+                            />
+                        </View>
+                        <Modal
+                            backdropTransitionInTiming={isAndroid ? 500 : 300}
+                            backdropTransitionOutTiming={200}
+                            backdropColor={body.bg}
+                            backdropOpacity={0.9}
+                            style={styles.modal}
+                            isVisible={isModalActive}
+                            onBackButtonPress={() => this.hideModal()}
+                            hideModalContentWhileAnimating
+                            useNativeDriver={isAndroid}
+                        >
+                            {this.renderModalContent()}
+                        </Modal>
+                        {!isModalActive && <StatefulDropdownAlert backgroundColor={body.bg} />}
+                    </View>
+                )}
             </View>
         );
     }
@@ -411,6 +421,7 @@ const mapStateToProps = (state) => ({
     seed: state.wallet.seed,
     theme: state.settings.theme,
     onboardingComplete: state.accounts.onboardingComplete,
+    minimised: state.ui.minimised,
 });
 
 const mapDispatchToProps = {
@@ -419,4 +430,6 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default translate(['newSeedSetup', 'global'])(connect(mapStateToProps, mapDispatchToProps)(NewSeedSetup));
+export default WithUserActivity()(
+    translate(['newSeedSetup', 'global'])(connect(mapStateToProps, mapDispatchToProps)(NewSeedSetup)),
+);

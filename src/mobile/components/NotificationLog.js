@@ -6,6 +6,8 @@ import { translate } from 'react-i18next';
 import StatefulDropdownAlert from '../containers/StatefulDropdownAlert';
 import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
+import { locale } from '../utils/device';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
@@ -44,9 +46,6 @@ const styles = StyleSheet.create({
     separator: {
         flex: 1,
         height: height / 60,
-    },
-    listView: {
-        maxHeight: height / 1.1,
     },
     clearButton: {
         borderWidth: 1.5,
@@ -89,6 +88,10 @@ export class NotificationLog extends PureComponent {
         t: PropTypes.func.isRequired,
     };
 
+    componentDidMount() {
+        leaveNavigationBreadcrumb('NotificationLog');
+    }
+
     clearNotificationLog() {
         this.props.hideModal();
         this.props.clearLog();
@@ -109,7 +112,8 @@ export class NotificationLog extends PureComponent {
                         renderRow={(dataSource) => (
                             <View>
                                 <Text style={[styles.itemText, textColor]}>
-                                    {formatTimeAs.hoursMinutesSecondsDayMonthYear(dataSource.time)} - {dataSource.error}
+                                    {formatTimeAs.hoursMinutesSecondsDayMonthYear(locale, dataSource.time)} -{' '}
+                                    {dataSource.error}
                                 </Text>
                             </View>
                         )}

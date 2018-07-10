@@ -37,12 +37,14 @@
         "apply": "적용",
         "save": "저장",
         "close": "닫기",
+        "export": "내보내기",
+        "import": "가져오기",
         "continue": "계속",
         "enable": "활성화",
         "disable": "비활성화",
         "enabled": "활성화됨",
         "disabled": "비활성화됨",
-        "manualCopy": "시드 기록하기",
+        "enterPassword": "비밀번호 입력",
         "paperWallet": "종이에 인쇄하기",
         "addToPasswordManager": "비밀번호 관리자에 입력하기",
         "shareSeed": "시드 보내기",
@@ -90,18 +92,14 @@
         "addresses": "주소",
         "reattach": "다시 어태치",
         "promote": "프로모트",
-        "retry": "재시도",
-        "rebroadcast": "재송출",
+        "retry": "다시 시도",
         "pressBackAgain": "앱을 닫으려면 뒤로가기를 다시 누르세요.",
         "reattached": "트랜잭션이 다시 어태치됨",
         "reattachedExplanation": "다음의 트랜잭션 해시가 다시 어태치되었습니다: {{hash}}",
         "promotingTransaction": "트랜잭션 프로모트 중",
         "autopromoting": "거래 자동 프로모트 중",
         "autopromotingExplanation": "다음의 트랜잭션 해시를 프로모트합니다: {{hash}}",
-        "rebroadcasted": "트랜잭션이 다시 송출됨",
-        "rebroadcastedExplanation": "다음의 트랜잭션 해시가 다시 송출되었습니다: {{hash}}",
         "rebroadcastError": "트랜잭션을 재송출할 수 없음",
-        "rebroadcastErrorExplanation": "트랜잭션을 재송출하는 중에 오류가 발생했습니다. 다시 시도해 주세요.",
         "promoted": "트랜잭션이 프로모트됨",
         "promotedExplanation": "다음의 트랜잭션 해시가 프로모트되었습니다: {{hash}}",
         "autopromotionError": "트랜잭션 자동 프로모트 사용 불가",
@@ -148,11 +146,12 @@
         "androidCopyPasteWarning": "안드로이드 기기에서는 시드를 클립보드에 복사하지 말아주세요.",
         "willNotCopyPasteSeed": "시드를 클립보드에 복사하지 않겠습니다",
         "mustBeStoredAppropriately": "안전하게 보관해 주세요.",
-        "deviceMayBecomeUnresponsive": "기기가 잠시 느려질 수 있습니다",
+        "deviceMayBecomeUnresponsive": "기기가 잠시 느려질 수 있습니다.",
         "isYourBalanceCorrect": "이 잔액이 옳습니까?",
         "ifYourBalanceIsNotCorrect": "잔액이 옳지 않다면 스냅샷 전의 시드를 사용중일 수 있습니다.",
         "headToAdvancedSettingsForTransition": "고급 설정에서 스냅샷 이전을 수행해 주세요.",
-        "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android"
+        "usingTrinityWalletWithKeePass": "트리니티 지갑과 Keepass2Android 같이 사용하기",
+        "signedTrytesBroadcastErrorExplanation": "트랜잭션 송출 중 네트워크 오류가 발생했습니다."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
@@ -162,6 +161,8 @@
         "nameInUse": "계정 이름 중복",
         "nameInUseExplanation": "계정 이름은 다른 시드와 중복되지 말아야 합니다.",
         "enterAccountName": "계정 이름을 입력해 주세요.",
+        "accountNameTooLong": "계정 이름이 너무 김",
+        "accountNameTooLongExplanation": "계정 이름의 최대 길이는 {{maxLength}}글자 입니다.",
         "accountName": "계정 이름",
         "noNickname": "계정 이름이 등록되지 않음",
         "noNicknameExplanation": "해당 시드에 사용할 계정 이름을 입력해 주세요.",
@@ -224,6 +225,7 @@
         "invalidCharacters": "시드에 잘못된 문자 포함됨",
         "invalidCharactersExplanation": "시드는 A부터 Z까지의 대문자와 숫자 9만 포함할 수 있습니다. 입력하신 시드에는 잘못된 문자가 포함되어 있습니다. 다시 시도해 주세요.",
         "seedTooShort": "시드가 너무 짧음",
+        "seedTooLong": "시드가 너무 김",
         "seedTooShortExplanation": "시드는 {{maxLength}}글자로 구성되어야 합니다. 입력하신 시드는 {{currentLength}}글자로 구성되어 있습니다. 다시 시도해 주세요.",
         "seedExplanation": "시드는 {{maxLength}}글자로 구성되며, A부터 Z까지의 대문자와 숫자 9만 포함할 수 있습니다. {{maxLength}}자보다 더 긴 시드는 사용할 수 없습니다.",
         "neverShare": "절대로 다른 사람에게 시드를 알려주지 마세요."
@@ -247,7 +249,9 @@
         "login": "로그인",
         "selectDifferentNode": "다른 노드를 선택하시겠습니까?",
         "setNode": "노드 선택",
-        "cannotConnect": "IOTA 노드에 연결할 수 없습니다."
+        "cannotConnect": "IOTA 노드에 연결할 수 없습니다.",
+        "whyBiometricDisabled": "왜 생체 인증이 비활성화되어 있나요?",
+        "whyBiometricDisabledExplanation": "앱 최초 실행 시 보안을 위해 생체 인증이 비활성화됩니다. 트리니티 사용 중 미사용으로 인해 앱이 잠길 경우 생체 인증을 사용하여 다시 로그인할 수 있습니다."
     },
     "loading": {
         "loadingFirstTime": "처음으로 시드를 불러오는 중입니다.",
@@ -285,14 +289,19 @@
         "printerCheckbox": "공용 프린터를 사용해 인쇄하지 않겠습니다."
     },
     "receive": {
+        "yourAddress": "주소",
+        "qrOptions": "QR 옵션",
+        "shareQr": "QR 코드 공유",
         "copyAddress": "주소 복사",
         "addressCopied": "주소가 복사됨",
         "addressCopiedExplanation": "주소가 클립보드에 복사되었습니다.",
         "generateNewAddress": "새 주소",
-        "message": "메시지 (선택)",
         "removeMessage": "메시지 삭제하기",
         "noAddresses": "주소 없음",
-        "spent": "이미 사용함"
+        "spent": "이미 사용함",
+        "missingPermission": "파일 시스템 권한 필요",
+        "missingPermissionExplanation": "QR 코드를 공유하려면 파일 시스템 권한이 필요합니다.",
+        "tag": "태그"
     },
     "saveYourSeed": {
         "saveYourSeed": "시드 저장하기",
@@ -301,14 +310,12 @@
         "leastSecure": "덜 안전함",
         "paperWallet": "종이 지갑",
         "writeYourSeedDown": "시드 기록하기",
-        "printYourSeed": "시드 인쇄하기",
-        "digitalCopy": "암호화하여 저장",
         "seedClearedExplanation": "보안을 위해 클립보드에서 시드가 삭제되었습니다.",
         "iHaveBackedUpMySeed": "시드를 저장했습니다",
         "letsWriteDownYourSeed": "시드를 종이에 기록하세요",
         "youCanHighlightCharacters": "9글자 단위로 강조해서 볼 수 있습니다",
         "printBlankWallet": "빈 지갑 인쇄하기",
-        "whatIsCheksum": "모든 시드에는 3글자로 구성된 체크섬이 존재합니다",
+        "whatIsChecksum": "모든 시드에는 3글자로 구성된 체크섬이 존재합니다",
         "iHavesavedMySeed": "시드를 저장하였습니다",
         "checksumExplanation": "지갑에 시드를 추가할 때 보여지는 체크섬이 기록한 체크섬과 일치하는지를 확인해 주세요",
         "mustSaveYourSeed": "<0><0>반드시 아래 나열된 방법 중 </0><1>하나 이상</1><2>을 사용하여 시드를 기록해야 합니다.</2></0>"
@@ -349,7 +356,8 @@
         "sendMax": "최대 금액",
         "totalTime": "총 소요시간",
         "addressPasteDetected": "주소 붙여넣기가 확인됨",
-        "addressPasteExplanation": "받을 주소를 붙여넣은 것으로 보입니다. 붙여넣는 주소가 보내고자 하는 주소와 일치하는지 다시 한번 확인해 주세요."
+        "addressPasteExplanation": "받을 주소를 붙여넣은 것으로 보입니다. 붙여넣는 주소가 보내고자 하는 주소와 일치하는지 다시 한번 확인해 주세요.",
+        "invalid": "유효하지 않음"
     },
     "setPassword": {
         "choosePassword": "비밀번호 설정하기",
@@ -438,31 +446,36 @@
         "okay": "좋습니다. 이제 지갑을 만들어 봅시다!",
         "doYouAlreadyHaveASeed": "이미 사용하고자 하는 시드를 가지고 있습니까?",
         "doYouNeedASeed": "새 시드가 필요하신가요?",
-        "seedExplanation": "IOTA의 시드는 81글자로 구성되며, 계정에 있어 아이디와 비밀번호를 합친 것과 같은 역할을 합니다.",
+        "seedExplanation": "IOTA 시드는 지갑에 있어 마스터키와 같은 역할을 합니다. 시드는 81글자로 이루어지며 A부터 Z까지의 대문자와 숫자 9만 포함할 수 있습니다.",
         "noIHaveOne": "아니요, 이미 있습니다",
         "yesINeedASeed": "네, 시드가 필요합니다",
-        "explanation": "<0><0>이 시드를 이용하여 </0><1>어느 지갑에서나</1><2>, </2><3>어느 기기에서나</3><4> 가지고 있는 자산에 접근할 수 있습니다. 그러나 이 시드를 잃어버릴 경우 이 시드에 담긴 IOTA 또한 잃게 됩니다.</4></0>",
+        "explanation": "<0><0>시드를 사용하여 </0><1>어느 지갑이나</1><2>, </2><3>어느 기기에서나</3> 지갑에 접근할 수 있습니다.</0>",
+        "loseSeed": "하지만 만일 시드를 잃어버리게 된다면 IOTA를 모두 잃게 됩니다.",
         "keepSafe": "시드는 반드시 안전히 보관해야 합니다.",
         "hint": "<0><0>힌트:</0> IOTA를 처음 사용하신다면 \"아니오\"를 누르세요.</0>"
     },
     "welcome": {
-        "thankYou": "트리니티를 다운로드해 주셔서 감사합니다.",
-        "weWillSpend": "지갑을 만드는 데에는 몇 분 정도 걸릴 예정입니다.",
-        "reminder": "건너뛰고 싶은 과정들이 있을 수 있지만, 반드시 모든 과정을 따라 주시길 바랍니다."
+        "thankYou": "트리니티를 다운로드 해 주셔서 감사합니다."
     },
     "writeSeedDown": {
         "yourSeedIs": "시드는 {{maxSeedLength}}글자로 구성되며, 왼쪽에서 오른쪽으로 읽습니다.",
-        "writeDownYourSeed": "<0>시드와 체크섬을 기록하고, 정확히 기록하였는지 최소 </0><1>세 번 이상 확인</1><2>하세요.</2>"
+        "writeDownYourSeed": "<0>시드와 체크섬을 기록하고, 정확히 기록하였는지 최소 </0><1>세 번 이상 확인</1><2>하세요.</2>",
+        "scrollToBottom": "맨 아래로 스크롤"
     },
     "history": {
         "bundleHashCopied": "번들 해시 복사함",
+        "noTransactionsFound": "트랜잭션 없음",
+        "hideZeroBalance": "0i 거래 숨기기",
         "bundleHashCopiedExplanation": "번들 해시를 클립보드에 복사하였습니다.",
         "addressCopied": "주소 복사함",
         "addressCopiedExplanation": "주소를 클립보드에 복사했습니다.",
         "messageCopied": "메시지 복사함",
         "messageCopiedExplanation": "메시지를 클립보드에 복사했습니다.",
-        "send": "보냄",
-        "receive": "받음"
+        "send": "보내기",
+        "receive": "받기",
+        "empty": "없음",
+        "retrying": "다시 시도 중",
+        "yesterday": "어제"
     },
     "accountManagement": {
         "viewSeed": "시드 보기",
@@ -476,6 +489,7 @@
         "customNodeCouldNotBeAdded": "커스텀 노드를 추가할 수 없습니다.",
         "customNodeAddedSuccessfully": "커스텀 노드를 추가했습니다.",
         "customNode": "커스텀 노드",
+        "removeCustomNode": "사용자 추가 노드 제거",
         "invalidNodeResponse": "노드가 잘못된 응답을 보냈습니다.",
         "httpNodeError": "트리니티 모바일 앱은 https 노드만 지원합니다.",
         "add": "추가",
@@ -501,7 +515,8 @@
         "frame": "테두리"
     },
     "themeCustomisation": {
-        "theme": "테마"
+        "theme": "테마",
+        "mockup": "예시"
     },
     "currencySelection": {
         "currency": "통화"
@@ -574,8 +589,8 @@
         "fingerprintUnavailableExplanation": "본 기기는 생체 인증을 사용할 수 없거나 사용하지 않도록 설정되어 있습니다.",
         "buttonInstructionsDisable": "아래 버튼을 눌러 지문 인증을 비활성화할 수 있습니다.",
         "buttonInstructionsEnable": "아래 버튼을 눌러 지문 인증을 활성화할 수 있습니다.",
-        "buttonInstructionsDisableIPhoneX": "아래 버튼을 눌러 Face ID를 비활성할 수 있습니다.",
-        "buttonInstructionsEnableIPhoneX": "아래 버튼을 눌러 Face ID를 활성할 수 있습니다.",
+        "buttonInstructionsDisableIPhoneX": "아래 버튼을 눌러 Face ID를 비활성화할 수 있습니다.",
+        "buttonInstructionsEnableIPhoneX": "아래 버튼을 눌러 Face ID를 활성화할 수 있습니다.",
         "instructionsLogin": "로그인하려면 손가락을 지문 센서 위에 올리세요"
     },
     "transferConfirmation": {
@@ -599,12 +614,28 @@
         "code": "코드",
         "twoFaToken": "OTP 토큰"
     },
+    "seedVault": {
+        "exportSeedVault": "SeedValut 내보내기",
+        "seedVaultExplanation": "SeedVault는 암호화된 시드를 저장하는 파일입니다. 시드는 비밀번호를 사용해 암호화되며, 해당 비밀번호 없이는 시드에 접근할 수 없습니다. 이 파일을 Keepass와 같은 암호 관리자를 이용해 보관하는 것이 좋습니다.",
+        "seedVaultWarning": "여러 위치(예: 하드 드라이브, 클라우드, USB)에 이 파일을 백업하십시오. 이 파일을 잃어버리고 별도로 시드를 보관하지 않은 경우 IOTA를 잃게 됩니다.",
+        "exportFail": "SeedVault 내보내기 실패",
+        "exportFailExplanation": "SeedVault를 내보내는 도중 문제가 발생하였습니다. 적절한 권한과 충분한 저장 공간이 있는지 다시 확인하세요.",
+        "exportSuccess": "SeedVault 내보냄",
+        "exportSuccessExplanation": "암호화된 시드 파일을 내보내는 데 성공했습니다.",
+        "importSeedVault": "SeedValut 가져오기",
+        "dropSeedVaultHere": "SeedVault를 여기에 끌어다 놓으세요",
+        "enterPasswordExplanation": "SeedVault를 열기 위해 비밀번호를 입력하세요",
+        "noSeedFound": "SeedVault 내 유효한 시드 없음",
+        "noSeedFoundExplanation": "SeedVault가 비어있거나 시드가 유효하지 않은 형식으로 저장되어 있습니다.",
+        "seedFileError": "SeedVault 열기 실패함",
+        "seedFileErrorExplanation": "SeedVault를 여는 도중 문제가 발생하였습니다. 파일이 손상되었을 수 있습니다."
+    },
     "chart": {
         "mcap": "시가총액",
-        "change": "전일대비",
+        "change": "변동 (24시)",
         "volume": "거래량 (24시간)",
         "currentValue": "현재 호가",
-        "error": "Error fetching chart data"
+        "error": "차트 데이터 가져오는 중 오류 발생"
     },
     "rootDetection": {
         "warning": "경고",

@@ -835,9 +835,9 @@ invariant@^2.0.0, invariant@^2.2.2:
   dependencies:
     loose-envify "^1.0.0"
 
-"iota.lib.js@git+https://git@github.com/laumair/iota.lib.js#911e5e2":
-  version "0.4.7"
-  resolved "git+https://git@github.com/laumair/iota.lib.js#911e5e242e7eec5b3ed54dde3c2779906538d725"
+"iota.lib.js@git+https://git@github.com/iotaledger/iota.lib.js#develop":
+  version "0.4.8"
+  resolved "git+https://git@github.com/iotaledger/iota.lib.js#49cec7296cb179a1c83b4b1fbb4c3fa129ca9f8f"
   dependencies:
     async "^2.5.0"
     bignumber.js "^4.1.0"
@@ -958,9 +958,9 @@ mocha@^4.0.1:
     mkdirp "0.5.1"
     supports-color "4.4.0"
 
-moment@^2.19.1:
-  version "2.19.3"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.19.3.tgz#bdb99d270d6d7fda78cc0fbace855e27fe7da69f"
+moment@^2.22.2:
+  version "2.22.2"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.22.2.tgz#3c257f9839fc0e93ff53149632239eb90783ff66"
 
 ms@2.0.0:
   version "2.0.0"

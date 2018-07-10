@@ -9,6 +9,7 @@ import timer from 'react-native-timer';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -33,11 +34,6 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         width,
         paddingHorizontal: width / 15,
-    },
-    backIcon: {
-        width: width / 28,
-        height: width / 28,
-        marginRight: width / 20,
     },
     itemContainer: {
         flex: 1,
@@ -66,6 +62,10 @@ class AddNewAccount extends Component {
         super();
 
         this.addNewSeed = this.addNewSeed.bind(this);
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('AddNewAccount');
     }
 
     addNewSeed() {

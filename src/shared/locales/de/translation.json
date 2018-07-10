@@ -27,7 +27,7 @@
         "checksum": "Prüfsumme",
         "back": "ZURÜCK",
         "goBack": "Zurück",
-        "goBackStep": "Schritt zurück",
+        "goBackStep": "Zurück",
         "backLowercase": "Zurück",
         "done": "FERTIG",
         "doneLowercase": "Fertig",
@@ -37,12 +37,14 @@
         "apply": "Anwenden",
         "save": "Speichern",
         "close": "Schließen",
+        "export": "Export",
+        "import": "Import",
         "continue": "Fortfahren",
         "enable": "Aktivieren",
         "disable": "Deaktivieren",
         "enabled": "Aktiviert",
         "disabled": "Deaktiviert",
-        "manualCopy": "Seed aufschreiben",
+        "enterPassword": "Passwort eingeben",
         "paperWallet": "Drucken in Papierform",
         "addToPasswordManager": "Zum Passwort-Manager hinzufügen",
         "shareSeed": "Seed teilen",
@@ -90,18 +92,14 @@
         "addresses": "Adressen",
         "reattach": "REATTACH",
         "promote": "PROMOTEN",
-        "retry": "WIEDERHOLEN",
-        "rebroadcast": "REBROADCAST",
+        "retry": "Wiederholen",
         "pressBackAgain": "Nochmal Zurück drücken, um die App zu beenden",
         "reattached": "Transaktion erneut angehangen",
         "reattachedExplanation": "Erneut angehangen mit Hash {{hash}}",
         "promotingTransaction": "Transaktion wird promotet",
         "autopromoting": "Der Transfer wird autopromoted",
         "autopromotingExplanation": "Promoten der Transaktion mit dem Hash {{hash}}",
-        "rebroadcasted": "Transaktion erneut übertragen",
-        "rebroadcastedExplanation": "Erneut übertragen mit Hash {{hash}}",
         "rebroadcastError": "Transaktion konnte nicht erneut übertragen werden",
-        "rebroadcastErrorExplanation": "Beim erneuten Übertragen der Transaktion ist etwas schief gegangen. Bitte versuche es erneut.",
         "promoted": "Transaktion erfolgreich promoted",
         "promotedExplanation": "Promoten der Transaktion mit dem Hash {{hash}}",
         "autopromotionError": "Die Transaktion konnte nicht promotet werden",
@@ -148,11 +146,12 @@
         "androidCopyPasteWarning": "Verwende auf einem Android-Gerät niemals die \"Kopieren / Einfügen\"-Funktion für den Seed.",
         "willNotCopyPasteSeed": "Ich werde meinen Seed nicht kopieren/einfügen",
         "mustBeStoredAppropriately": "Er muss in angemessener Weise gesichert werden.",
-        "deviceMayBecomeUnresponsive": "Dein Gerät könnte für eine Weile nicht reagieren",
+        "deviceMayBecomeUnresponsive": "Dein Gerät könnte für eine Weile nicht reagieren.",
         "isYourBalanceCorrect": "Stimmt dein Guthaben?",
         "ifYourBalanceIsNotCorrect": "Wenn dein Guthaben nicht stimmt, verwendest du wahrscheinlich einen Seed, der eine Snapshot-Wiederherstellung benötigt.",
         "headToAdvancedSettingsForTransition": "Wechsle zu den erweiterten Einstellungen und führe eine Snapshot-Wiederherstellung aus.",
-        "usingTrinityWalletWithKeePass": "Trinity Brieftasche mit Keepass2Android verwenden"
+        "usingTrinityWalletWithKeePass": "Trinity Brieftasche mit Keepass2Android verwenden",
+        "signedTrytesBroadcastErrorExplanation": "Während der Transkation ist ein Netzwerkfehler aufgetreten."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
@@ -162,6 +161,8 @@
         "nameInUse": "Dieser Kontoname wird bereits verwendet",
         "nameInUseExplanation": "Bitte verwende einen eindeutigen Kontonamen für deinen Seed.",
         "enterAccountName": "Gib einen Kontonamen ein.",
+        "accountNameTooLong": "Der Name für das Konto ist zu lang",
+        "accountNameTooLongExplanation": "Die maximale Länge für den Namen beträgt {{maxLength}} Zeichen.",
         "accountName": "Kontoname",
         "noNickname": "Kein Kontoname eingegeben",
         "noNicknameExplanation": "Bitte gib einen Kontonamen für deinen Seed ein.",
@@ -224,6 +225,7 @@
         "invalidCharacters": "Der Seed enthält ungültige Zeichen",
         "invalidCharactersExplanation": "Seeds können nur aus den Großbuchstaben A-Z und der Zahl 9 bestehen. Dein Seed enthält ungültige Zeichen. Bitte versuche es erneut.",
         "seedTooShort": "Der Seed ist zu kurz",
+        "seedTooLong": "Seed zu lang",
         "seedTooShortExplanation": "Seeds müssen {{maxLength}} Zeichen lang sein. Dein Seed ist im Moment {{currentLength}} Zeichen lang. Bitte versuche es erneut.",
         "seedExplanation": "Seeds sollten {{maxLength}} Zeichen lang sein und aus den Großbuchstaben A-Z und der Zahl 9 bestehen. Du kannst keinen Seed benutzen der länger als {{maxLength}} Zeichen ist.",
         "neverShare": "TEILE DEINEN SEED MIT NIEMANDEM"
@@ -244,10 +246,12 @@
         "emptyPasswordExplanation": "Du musst ein Passwort eingeben um dich anzumelden. Bitte versuche es erneut.",
         "enterPassword": "Bitte gib dein Passwort ein.",
         "useSeed": "SEED VERWENDEN",
-        "login": "Einloggen",
+        "login": "Anmelden",
         "selectDifferentNode": "Möchtest du einen anderen Node auswählen?",
         "setNode": "Node wählen",
-        "cannotConnect": "Verbindung zum Node nicht möglich."
+        "cannotConnect": "Verbindung zum Node nicht möglich.",
+        "whyBiometricDisabled": "Warum ist die biometrische Authentifizierung deaktiviert?",
+        "whyBiometricDisabledExplanation": "Die biometrische Anmeldung ist für den ersten Start zu deiner eigenen Sicherheit deaktiviert. Während der Nutzung von Trinity wirst du bei Inaktivität ausgeloggt. Du kannst dich dann erneut mit biometrischer Authentifizierung einloggen."
     },
     "loading": {
         "loadingFirstTime": "Lade den Seed zum ersten Mal.",
@@ -285,14 +289,19 @@
         "printerCheckbox": "Ich werde nicht auf einem öffentlich zugänglichen Drucker ausdrucken"
     },
     "receive": {
+        "yourAddress": "Deine Adresse",
+        "qrOptions": "QR Optionen",
+        "shareQr": "QR code teilen",
         "copyAddress": "Adresse kopieren",
         "addressCopied": "Adresse kopiert",
         "addressCopiedExplanation": "Deine Adresse wurde in die Zwischenablage kopiert.",
         "generateNewAddress": "Neue Adresse",
-        "message": "Optionale Nachricht",
         "removeMessage": "NACHRICHT LÖSCHEN",
         "noAddresses": "KEINE ADRESSEN",
-        "spent": "Ausgegeben"
+        "spent": "Ausgegeben",
+        "missingPermission": "Berechtigung für Dateisystem erforderlich",
+        "missingPermissionExplanation": "Um QR-Codes teilen zu konenn, muss der Zugriff auf das Dateisystem erlaubt werden.",
+        "tag": "Tag"
     },
     "saveYourSeed": {
         "saveYourSeed": "Seed sichern",
@@ -301,14 +310,12 @@
         "leastSecure": "Am unsichersten",
         "paperWallet": "Paper Wallet",
         "writeYourSeedDown": "Notiere deinen Seed",
-        "printYourSeed": "Drucke deinen Seed",
-        "digitalCopy": "Digitale Kopie",
         "seedClearedExplanation": "Dein Seed wurde aus Sicherheitsgründen aus der Zwischenablage entfernt.",
         "iHaveBackedUpMySeed": "Ich habe mein Seed gesichert",
         "letsWriteDownYourSeed": "Notiere deinen Seed",
         "youCanHighlightCharacters": "Du kannst neun Buchstaben gleichzeitig auswählen",
         "printBlankWallet": "Ein leeres Wallet drucken",
-        "whatIsCheksum": "Jeder Seed hat eine dreistellige Prüfsumme",
+        "whatIsChecksum": "Jeder Seed hat eine dreistellige Prüfsumme",
         "iHavesavedMySeed": "Ich habe meinen Seed gesichert",
         "checksumExplanation": "Bitte überprüfe jedes Mal wenn Du einen Seed dem Wallet hinzufügst, ob die automatisch generierte Prüfsumme mit jener übereinstimmt, die Du aufgeschrieben hast.",
         "mustSaveYourSeed": "<0><0>Du musst deinen Seed mit </0><1>mindestens einer</1><2> der unten aufgelisteten Optionen sichern.</2></0>"
@@ -349,7 +356,8 @@
         "sendMax": "SENDE MAX",
         "totalTime": "Gesamtzeit",
         "addressPasteDetected": "Eingefügte Adresse erkannt",
-        "addressPasteExplanation": "Scheinbar hast Du eine Adresse eingefügt. Stelle sicher, dass es tatsächlich jene ist, an die Du senden möchtest."
+        "addressPasteExplanation": "Scheinbar hast Du eine Adresse eingefügt. Stelle sicher, dass es tatsächlich jene ist, an die Du senden möchtest.",
+        "invalid": "UNGÜLTIG"
     },
     "setPassword": {
         "choosePassword": "Wähle ein neues Passwort",
@@ -438,31 +446,36 @@
         "okay": "Okay. Lass uns dein Wallet einrichten!",
         "doYouAlreadyHaveASeed": "Hast du bereits einen Seed den du verwenden möchtest?",
         "doYouNeedASeed": "Möchtest du einen neuen Seed erstellen?",
-        "seedExplanation": "Der IOTA Seed ist eine Art Benutzername und Passwort zu deinem Konto. Er besteht aus 81 Zeichen.",
-        "noIHaveOne": "Ich habe einen",
-        "yesINeedASeed": "Ich brauche einen",
-        "explanation": "<0><0>Du kannst ihn verwenden, um mit</0><1> jedem Wallet</1><2> und von </2><3> jedem Gerät</3><4> auf dein Guthaben zuzugreifen. Aber wenn du deinen Seed verlierst, dann verlierst du auch all deine IOTA.</4></0>",
+        "seedExplanation": "Dein Seed ist der Hauptzugang zu deinem Guthaben. Er ist 81 Zeichen lang und besteht aus den Buchstaben A-Z, sowie der Zahl 9.",
+        "noIHaveOne": "Ich habe einen Seed",
+        "yesINeedASeed": "Ich benötige einen Seed",
+        "explanation": "<0><0>Du kannst ihn verwenden, um mit</0><1> jeder Wallet</1><2> auf</2> <3> jedem Gerät</3><0> auf dein Konto zuzugreifen.</0>",
+        "loseSeed": "Aber wenn du deinen Seed verlierst, verlierst du auch deine IOTA.",
         "keepSafe": "Bewahre deinen Seed sicher auf.",
         "hint": "<0><0>Hinweis:</0> Klicke NEIN, wenn dies das erste mal ist, dass du IOTA benutzt.</0>"
     },
     "welcome": {
-        "thankYou": "Danke, dass du Trinity heruntergeladen hast.",
-        "weWillSpend": "Dein Wallet wird in den nächsten Minuten eingerichtet.",
-        "reminder": "Du könntest in Versuchung geraten, einige Schritte zu überspringen. Wir raten dir aber dringend dazu, den Prozess vollständig zu durchlaufen."
+        "thankYou": "Danke dass du Trinity heruntergeladen hast"
     },
     "writeSeedDown": {
         "yourSeedIs": "Dein Seed besteht aus {{maxSeedLength}} Zeichen, gelesen von links nach rechts.",
-        "writeDownYourSeed": "<0> Schreibe deinen Seed und deine Prüfsumme auf und </0><1>versichere dich</1><2>, dass diese korrekt sind.</2>"
+        "writeDownYourSeed": "<0> Schreibe deinen Seed und deine Prüfsumme auf und </0><1>versichere dich</1><2>, dass diese korrekt sind.</2>",
+        "scrollToBottom": "Zum Ende springen"
     },
     "history": {
         "bundleHashCopied": "Bundle-Hash kopiert",
+        "noTransactionsFound": "Keine Transaktionen gefunden",
+        "hideZeroBalance": "Nullsaldo ausblenden",
         "bundleHashCopiedExplanation": "Dein Bundle-Hash wurde in die Zwischenablage kopiert.",
         "addressCopied": "Adresse kopiert",
         "addressCopiedExplanation": "Die Adresse wurde in die Zwischenablage kopiert.",
         "messageCopied": "Nachricht kopiert",
         "messageCopiedExplanation": "Die Nachricht wurde in die Zwischenablage kopiert.",
-        "send": "SENDEN",
-        "receive": "EMPFANGEN"
+        "send": "Senden",
+        "receive": "Empfangen",
+        "empty": "Keine",
+        "retrying": "Erneuter Versuch",
+        "yesterday": "Gestern"
     },
     "accountManagement": {
         "viewSeed": "Seed anzeigen",
@@ -476,6 +489,7 @@
         "customNodeCouldNotBeAdded": "Benutzerdefinierter Node konnte nicht hinzugefügt werden",
         "customNodeAddedSuccessfully": "Die benutzerdefinierte Node wurde erfolgreich hinzugefügt.",
         "customNode": "Benutzerdefinierter Node",
+        "removeCustomNode": "Benutzerdefinierten Node entfernen",
         "invalidNodeResponse": "Der Node hat eine ungültige Antwort zurückgegeben",
         "httpNodeError": "Trinity Mobile unterstützt nur verschlüsselte Nodes (HTTPS).",
         "add": "Hinzufügen",
@@ -501,7 +515,8 @@
         "frame": "Rahmen"
     },
     "themeCustomisation": {
-        "theme": "Design"
+        "theme": "Design",
+        "mockup": "Vorschau"
     },
     "currencySelection": {
         "currency": "Währung"
@@ -599,9 +614,25 @@
         "code": "Code",
         "twoFaToken": "2FA Token"
     },
+    "seedVault": {
+        "exportSeedVault": "SeedVault exportieren",
+        "seedVaultExplanation": "Ein SeedVault ist eine verschlüsselte Datei, die deinen Seed enthält. Dein Seed wird in dieser Datei mit einem Passwort gesichert. Deine SeedVault-Datei solltest du in einem Passwortmanager wie KeePass aufbewahren.",
+        "seedVaultWarning": "Stelle sicher dass du die Datei an verschiedenen Orten ablegst (zum Beispiel auf einer externen Festplatte, einem Cloudspeicher, etc.). Falls du die Datei verlierst und dein Seed nicht an einem weiteren Ort gespeichert wurde, wirst du deine IOTA verlieren.",
+        "exportFail": "SeedVault Export fehlgeschlagen",
+        "exportFailExplanation": "Beim Export ist ein Fehler aufgetreten. Bitte stelle sicher dass du der Trinity-Wallet App die korrekten Berechtigungen gegeben hast und genug freier Speicher zu Verfügung steht.",
+        "exportSuccess": "SeedVault exportiert",
+        "exportSuccessExplanation": "Deine verschlüsselte Datei wurde erfolgreich exportiert.",
+        "importSeedVault": "SeedVault importieren",
+        "dropSeedVaultHere": "SeedVault hierher ziehen",
+        "enterPasswordExplanation": "Gib dein Passwort ein, um dein SeedVault zu öffnen",
+        "noSeedFound": "Dein SeedVault enthält keinen gültigen Seed",
+        "noSeedFoundExplanation": "Dein SeedVault ist entweder leer oder enthält einen Seed in einem ungültigen Format.",
+        "seedFileError": "Fehler beim Öffnen",
+        "seedFileErrorExplanation": "Beim Öffnen deines SeedVault ist ein Fehler aufgetreten. Stelle sicher dass du die korrekte Datei auswählt hast und die Datei nicht beschädigt ist."
+    },
     "chart": {
         "mcap": "MCAP",
-        "change": "Veränderung",
+        "change": "Änderung (24 Std.)",
         "volume": "Volumen (24h)",
         "currentValue": "Aktueller Wert",
         "error": "Fehler beim Abrufen der Diagrammdaten"

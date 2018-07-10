@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import sjcl from 'sjcl';
 
 import { generateAlert } from 'actions/alerts';
 
@@ -10,7 +9,7 @@ import Password from 'ui/components/input/Password';
 import Button from 'ui/components/Button';
 import Modal from 'ui/components/modal/Modal';
 
-import { getVault } from 'libs/crypto';
+import { getSeed, vaultAuth, sha256 } from 'libs/crypto';
 
 /**
  * Password confirmation dialog component
@@ -20,6 +19,8 @@ class ModalPassword extends PureComponent {
     static propTypes = {
         /** Password window content */
         content: PropTypes.object.isRequired,
+        /** Seed name that should be returned */
+        seedName: PropTypes.string,
         /** Password window type */
         category: PropTypes.oneOf(['primary', 'secondary', 'positive', 'negative', 'highlight', 'extra']),
         /** Dialog visibility state */
@@ -34,7 +35,10 @@ class ModalPassword extends PureComponent {
          * @param {String} Password - Entered password plain text
          * @param {Object} Vault - Vault content
          */
-        onSuccess: PropTypes.func.isRequired,
+        onSuccess: PropTypes.func,
+        /** On password entered event callback
+         */
+        onSubmit: PropTypes.func,
         /** Create a notification message
          * @param {String} type - notification type - success, error
          * @param {String} title - notification title
@@ -63,15 +67,19 @@ class ModalPassword extends PureComponent {
 
     onSubmit = async (e) => {
         const { password } = this.state;
-        const { onSuccess, generateAlert, t } = this.props;
+        const { onSubmit, seedName, onSuccess, generateAlert, t } = this.props;
 
         e.preventDefault();
 
-        let vault = null;
-        const passwordHash = sjcl.codec.hex.fromBits(sjcl.hash.sha256.hash(password));
+        if (onSubmit) {
+            return onSubmit(password);
+        }
+
+        let seed = null;
+        const passwordHash = await sha256(password);
 
         try {
-            vault = await getVault(passwordHash);
+            seed = seedName ? await getSeed(passwordHash, seedName) : await vaultAuth(passwordHash);
         } catch (err) {
             generateAlert(
                 'error',
@@ -81,9 +89,7 @@ class ModalPassword extends PureComponent {
             return;
         }
 
-        if (vault) {
-            onSuccess(passwordHash, vault);
-        }
+        onSuccess(passwordHash, seed);
     };
 
     render() {

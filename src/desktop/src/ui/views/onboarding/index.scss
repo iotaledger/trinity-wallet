@@ -239,8 +239,8 @@ $footer: 70px;
             color: var(--primary);
             letter-spacing: 1;
         }
-        >div{
-           padding-top: 4px;
+        > div {
+            padding-top: 4px;
         }
     }
 }
@@ -303,7 +303,11 @@ $footer: 70px;
                 z-index: 1;
             }
             span {
-                position: relative;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                margin: 1px 0 0 1px;
                 z-index: 3;
             }
         }
@@ -323,14 +327,10 @@ $footer: 70px;
 
         h4 {
             margin: 0px;
-            font-size: 21px;
+            font-size: 18px;
             line-height: 21px;
-            margin-bottom: 8px;
-        }
-        p {
-            font-size: 14px;
-            margin-bottom: 18px;
-            color: var(--body-alt);
+            margin-bottom: 38px;
+            padding: 0 20px;
         }
 
         h3 {
@@ -445,32 +445,29 @@ $footer: 70px;
     }
 }
 
-.print {
-    display: none;
+.tutorial {
+    p {
+        max-width: 560px;
+        text-align: center;
+    }
+    ul {
+        list-style: none;
 
-    @media print {
-        display: block;
-        img,
-        svg,
-        div {
-            position: fixed;
-            top: 0px;
-            left: 0px;
-            width: 100vw;
-            height: 100vh;
-        }
-        svg text {
-            font-family: 'SourceCodePro';
-            font-size: 20px;
-            fill: #231f20;
-        }
-        canvas {
-            position: absolute;
-            left: 50%;
-            top: 81.5%;
-            width: 9vh !important;
-            height: 9vh !important;
-            transform: translate(-175%, 0);
+        li {
+            line-height: 32px;
+            margin-bottom: 18px;
+
+            &:last-child {
+                margin-bottom: 0px;
+            }
+
+            pre {
+                font-family: 'SourceCodePro';
+                background: var(--box-bg);
+                padding: 8px 20px;
+                pointer-events: all;
+                user-select: all;
+            }
         }
     }
 }

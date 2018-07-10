@@ -14,12 +14,14 @@ import { toggleModalActivity, setDoNotMinimise } from 'iota-wallet-shared-module
 import timer from 'react-native-timer';
 import { hasDuplicateAccountName, hasDuplicateSeed, getAllSeedsFromKeychain } from '../utils/keychain';
 import CustomTextInput from '../components/CustomTextInput';
-import Checksum from '../components/Checksum';
+import ChecksumComponent from '../components/Checksum';
+import ChecksumModalComponent from '../components/ChecksumModal';
 import QRScannerComponent from '../components/QrScanner';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 import { isAndroid } from '../utils/device';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -38,16 +40,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    logoContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
     titleContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingBottom: height / 30,
-    },
-    subtitleContainer: {
         justifyContent: 'center',
         alignItems: 'center',
         paddingBottom: height / 30,
@@ -57,26 +50,6 @@ const styles = StyleSheet.create({
         fontSize: GENERAL.fontSize4,
         textAlign: 'center',
         backgroundColor: 'transparent',
-    },
-    iotaLogo: {
-        height: width / 5,
-        width: width / 5,
-    },
-    textFieldContainer: {
-        flex: 1,
-        paddingRight: width / 30,
-        justifyContent: 'center',
-    },
-    textField: {
-        fontFamily: 'SourceSansPro-Light',
-    },
-    accountNameContainer: {
-        flex: 4,
-        alignItems: 'center',
-    },
-    seedContainer: {
-        flex: 6.5,
-        alignItems: 'center',
     },
     itemLeft: {
         flexDirection: 'row',
@@ -99,6 +72,13 @@ const styles = StyleSheet.create({
         fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
         marginRight: width / 20,
+    },
+    modal: {
+        height,
+        width,
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 0,
     },
 });
 
@@ -154,12 +134,16 @@ class UseExistingSeed extends Component {
         };
     }
 
+    componentDidMount() {
+        leaveNavigationBreadcrumb('UseExistingSeed');
+    }
+
     componentWillUnmount() {
         timer.clearTimeout('invalidSeedAlert');
     }
 
     onQRPress() {
-        this.showModal();
+        this.showModal('qr');
     }
 
     onQRRead(data) {
@@ -287,27 +271,38 @@ class UseExistingSeed extends Component {
         }
     }
 
-    showModal = () => this.props.toggleModalActivity();
+    showModal = (modalContent) => {
+        this.setState({ modalContent });
+        this.props.toggleModalActivity();
+    };
 
     hideModal = () => this.props.toggleModalActivity();
 
-    renderModalContent = () => {
+    renderModalContent = (modalContent) => {
         const { theme: { body, primary } } = this.props;
-        return (
-            <QRScannerComponent
-                primary={primary}
-                body={body}
-                onQRRead={(data) => this.onQRRead(data)}
-                hideModal={() => this.hideModal()}
-                onMount={() => this.props.setDoNotMinimise(true)}
-                onUnmount={() => this.props.setDoNotMinimise(false)}
-            />
-        );
+        let content = '';
+        switch (modalContent) {
+            case 'qr':
+                content = (
+                    <QRScannerComponent
+                        primary={primary}
+                        body={body}
+                        onQRRead={(data) => this.onQRRead(data)}
+                        hideModal={() => this.hideModal()}
+                        onMount={() => this.props.setDoNotMinimise(true)}
+                        onUnmount={() => this.props.setDoNotMinimise(false)}
+                    />
+                );
+                break;
+            case 'checksum':
+                content = <ChecksumModalComponent body={body} primary={primary} closeModal={() => this.hideModal()} />;
+        }
+        return content;
     };
 
     render() {
         const { t, theme, isModalActive } = this.props;
-        const { seed, accountName } = this.state;
+        const { modalContent, seed, accountName } = this.state;
 
         const textColor = { color: theme.body.color };
 
@@ -322,8 +317,12 @@ class UseExistingSeed extends Component {
                         <View style={{ flex: 0.4 }} />
                         <CustomTextInput
                             label={t('global:seed')}
-                            onChangeText={(value) => this.setState({ seed: value.toUpperCase() })}
-                            containerStyle={{ width: width / 1.2 }}
+                            onChangeText={(text) => {
+                                if (text.match(VALID_SEED_REGEX) || text.length === 0) {
+                                    this.setState({ seed: text.toUpperCase() });
+                                }
+                            }}
+                            containerStyle={{ width: width / 1.15 }}
                             autoCapitalize="characters"
                             maxLength={MAX_SEED_LENGTH}
                             value={seed}
@@ -339,16 +338,16 @@ class UseExistingSeed extends Component {
                             widget="qr"
                             onQRPress={() => this.onQRPress()}
                         />
-                        <View style={{ flex: 0.6 }} />
-                        <Checksum seed={seed} theme={theme} />
-                        <View style={{ flex: 0.3 }} />
+                        <View style={{ flex: 0.45 }} />
+                        <ChecksumComponent seed={seed} theme={theme} showModal={() => this.showModal('checksum')} />
+                        <View style={{ flex: 0.45 }} />
                         <CustomTextInput
                             onRef={(c) => {
                                 this.accountNameField = c;
                             }}
                             label={t('addAdditionalSeed:accountName')}
                             onChangeText={(value) => this.setState({ accountName: value })}
-                            containerStyle={{ width: width / 1.2 }}
+                            containerStyle={{ width: width / 1.15 }}
                             autoCapitalize="words"
                             maxLength={MAX_SEED_LENGTH}
                             autoCorrect={false}
@@ -389,14 +388,14 @@ class UseExistingSeed extends Component {
                         backdropTransitionInTiming={isAndroid ? 500 : 300}
                         backdropTransitionOutTiming={200}
                         backdropColor={theme.body.bg}
-                        backdropOpacity={1}
-                        style={{ alignItems: 'center', margin: 0 }}
+                        backdropOpacity={0.9}
+                        style={styles.modal}
                         isVisible={isModalActive}
                         onBackButtonPress={() => this.props.toggleModalActivity()}
                         hideModalContentWhileAnimating
                         useNativeDriver={isAndroid}
                     >
-                        {this.renderModalContent()}
+                        {this.renderModalContent(modalContent)}
                     </Modal>
                 </View>
             </TouchableWithoutFeedback>

@@ -10,6 +10,7 @@ def enable_manual_provisioning(project_file)
   target.build_configurations.each do |item|
     item.build_settings['PROVISIONING_PROFILE[sdk=iphoneos*]'] = "335defd0-d0a9-493b-8b7e-44d98a11dde0"
     item.build_settings['DEVELOPMENT_TEAM'] = "UG77RJKZHH"
+    item.build_settings['CODE_SIGN_IDENTITY[sdk=iphoneos*]'] = "iPhone Distribution"
   end
   project.save
 end
@@ -31,7 +32,6 @@ lane :refresh_dsyms do
   clean_build_artifacts
   build_number = get_build_number(xcodeproj: 'iotaWallet.xcodeproj')
   download_dsyms(build_number: build_number)
-  upload_symbols_to_crashlytics
   upload_symbols_to_bugsnag
   clean_build_artifacts
 end

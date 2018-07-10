@@ -7,11 +7,11 @@ import Modal from 'react-native-modal';
 import { connect } from 'react-redux';
 import CustomTextInput from '../components/CustomTextInput';
 import FingerPrintModal from '../components/FingerprintModal';
-import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 import { isAndroid } from '../utils/device';
 import Button from '../components/Button';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     topContainer: {
@@ -30,34 +30,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-end',
     },
-    titleContainer: {
+    modal: {
+        height,
+        width,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: height / 8,
-    },
-    title: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize4,
-        textAlign: 'center',
-        backgroundColor: 'transparent',
-    },
-    iotaLogo: {
-        height: width / 5,
-        width: width / 5,
-    },
-    loginButton: {
-        borderWidth: 1.2,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 2.7,
-        height: height / 14,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        marginBottom: height / 20,
-    },
-    loginText: {
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
-        backgroundColor: 'transparent',
+        margin: 0,
     },
 });
 
@@ -94,6 +72,13 @@ class EnterPassword extends Component {
         };
         this.activateFingerprintScanner = this.activateFingerprintScanner.bind(this);
         this.hideModal = this.hideModal.bind(this);
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('EnterPassword');
+        if (this.props.isFingerprintEnabled) {
+            this.activateFingerprintScanner();
+        }
     }
 
     componentWillUnmount() {
@@ -145,7 +130,7 @@ class EnterPassword extends Component {
                         <CustomTextInput
                             label={t('global:password')}
                             onChangeText={(text) => this.setState({ password: text })}
-                            containerStyle={{ width: width / 1.2 }}
+                            containerStyle={{ width: width / 1.15 }}
                             autoCapitalize="none"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
@@ -153,6 +138,7 @@ class EnterPassword extends Component {
                             secureTextEntry
                             onSubmitEditing={this.handleLogin}
                             theme={theme}
+                            widget="fingerprint"
                             fingerprintAuthentication={isFingerprintEnabled}
                             onFingerprintPress={this.activateFingerprintScanner}
                         />
@@ -177,7 +163,7 @@ class EnterPassword extends Component {
                         backdropTransitionOutTiming={200}
                         backdropOpacity={0.9}
                         backdropColor={theme.body.bg}
-                        style={{ alignItems: 'center', margin: 0 }}
+                        style={styles.modal}
                         isVisible={isModalVisible}
                         onBackButtonPress={this.hideModal}
                         hideModalContentWhileAnimating
@@ -199,6 +185,7 @@ class EnterPassword extends Component {
 
 const mapStateToProps = (state) => ({
     theme: state.settings.theme,
+    isFingerprintEnabled: state.settings.isFingerprintEnabled,
 });
 
 export default translate(['login', 'global'])(connect(mapStateToProps)(EnterPassword));

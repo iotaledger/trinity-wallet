@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
 import { formatTime, convertUnixTimeToJSDate } from 'iota-wallet-shared-modules/libs/date';
 import { width, height } from '../utils/dimensions';
+import { locale } from '../utils/device';
 import GENERAL from '../theme/general';
 import { Icon } from '../theme/icons';
 
@@ -23,13 +24,18 @@ const styles = StyleSheet.create({
         fontFamily: 'SourceSansPro-Regular',
         backgroundColor: 'transparent',
     },
-    iconContainer: {
-        borderRadius: width / 30,
+    iconBorder: {
+        borderRadius: width / 56,
         borderWidth: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        width: width / 24,
-        height: width / 24,
+        width: width / 28,
+        height: width / 28,
+    },
+    iconContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: width / 28,
     },
 });
 
@@ -58,31 +64,28 @@ export default class SimpleTransactionRow extends PureComponent {
         const { time, confirmationStatus, value, unit, sign, style, icon } = this.props;
         return (
             <View style={styles.container}>
-                <View style={{ flex: 0.6, alignItems: 'flex-start' }}>
-                    <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                <View style={{ flex: 0.6, alignItems: 'flex-start', justifyContent: 'center' }}>
+                    <View style={styles.iconContainer}>
                         <Icon
                             name={icon}
-                            size={width / 18}
+                            size={width / 52}
                             color={style.titleColor}
                             iconStyle={{ position: 'absolute' }}
                         />
                         <View
-                            style={[
-                                styles.iconContainer,
-                                { borderColor: style.defaultTextColor, position: 'absolute' },
-                            ]}
+                            style={[styles.iconBorder, { borderColor: style.defaultTextColor, position: 'absolute' }]}
                         />
                     </View>
                 </View>
-                <View style={{ flex: 3.2, alignItems: 'flex-start' }}>
-                    <Text style={[styles.text, { color: style.defaultTextColor }, { padding: 5 }]}>
-                        {formatTime(convertUnixTimeToJSDate(time))}
+                <View style={{ flex: 3.2, alignItems: 'flex-start', justifyContent: 'center' }}>
+                    <Text style={[styles.text, { color: style.defaultTextColor }]}>
+                        {formatTime(locale, convertUnixTimeToJSDate(time))}
                     </Text>
                 </View>
-                <View style={{ flex: 2, alignItems: 'flex-start' }}>
+                <View style={{ flex: 2, alignItems: 'flex-start', justifyContent: 'center' }}>
                     <Text style={[styles.text, { color: style.defaultTextColor }]}>{confirmationStatus}</Text>
                 </View>
-                <View style={{ flex: 2, alignItems: 'flex-end' }}>
+                <View style={{ flex: 2, alignItems: 'flex-end', justifyContent: 'center' }}>
                     <Text style={[styles.text, { color: style.titleColor }]}>
                         {sign} {value} {unit}
                     </Text>

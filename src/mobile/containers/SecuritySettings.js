@@ -7,6 +7,7 @@ import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -22,11 +23,6 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         width,
         paddingHorizontal: width / 15,
-    },
-    backIcon: {
-        width: width / 28,
-        height: width / 28,
-        marginRight: width / 20,
     },
     titleText: {
         fontFamily: 'SourceSansPro-Regular',
@@ -50,13 +46,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
     },
-    settingText: {
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
-        marginLeft: width / 12,
-        width: width / 2.4,
-        backgroundColor: 'transparent',
-    },
 });
 
 /** Security Setting component */
@@ -79,6 +68,10 @@ class SecuritySettings extends Component {
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
     };
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('SecuritySettings');
+    }
 
     on2FASetupPress() {
         const { is2FAEnabled, theme: { body } } = this.props;

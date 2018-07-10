@@ -37,12 +37,14 @@
         "apply": "決定",
         "save": "保存",
         "close": "閉じる",
+        "export": "書き出す",
+        "import": "読み込む",
         "continue": "続ける",
         "enable": "有効",
         "disable": "無効",
         "enabled": "有効",
         "disabled": "無効",
-        "manualCopy": "シードを書き写す",
+        "enterPassword": "パスワードを入力してください",
         "paperWallet": "印刷する",
         "addToPasswordManager": "パスワードマネージャーに追加する",
         "shareSeed": "シードを共有",
@@ -90,18 +92,14 @@
         "addresses": "アドレス",
         "reattach": "再添付",
         "promote": "促進",
-        "retry": "再添付",
-        "rebroadcast": "再ブロードキャスト",
+        "retry": "再試行",
         "pressBackAgain": "もう一度タップすると、アプリを閉じます。",
         "reattached": "取引は正常に再添付されました。",
         "reattachedExplanation": "ハッシュ値{{hash}}の取引が再添付されました。",
         "promotingTransaction": "取引を促進中",
         "autopromoting": "送金を自動促進中",
         "autopromotingExplanation": "ハッシュ値{{hash}}の取引を促進中",
-        "rebroadcasted": "取引は正常に再ブロードキャストされました。",
-        "rebroadcastedExplanation": "ハッシュ値{{hash}}の取引が再ブロードキャストされました。",
         "rebroadcastError": "取引を再ブロードキャストできませんでした。　",
-        "rebroadcastErrorExplanation": "取引を再ブロードキャスト中に不具合が発生しました。もう一度やり直してください。",
         "promoted": "取引は正常に促進されました。",
         "promotedExplanation": "ハッシュ値{{hash}}の取引が促進されました。",
         "autopromotionError": "取引の自動促進ができませんでした。",
@@ -148,11 +146,12 @@
         "androidCopyPasteWarning": "絶対にシードをAndroidデバイス上でコピー&ペーストしないでください。",
         "willNotCopyPasteSeed": "私はシードをコピー&ペーストしません。",
         "mustBeStoredAppropriately": "シードは適切に保管しなければなりません。",
-        "deviceMayBecomeUnresponsive": "しばらくの間、お使いのデバイスが応答できなくなる恐れがあります",
+        "deviceMayBecomeUnresponsive": "しばらくの間、お使いのデバイスが応答しなくなることがあります。",
         "isYourBalanceCorrect": "残高は正しいですか？",
         "ifYourBalanceIsNotCorrect": "もし残高が正しくなければ、スナップショット以前のシードが使われていると思われます。",
         "headToAdvancedSettingsForTransition": "詳細設定にてスナップショットの移行を行なってください。",
-        "usingTrinityWalletWithKeePass": "Keepass2AndroidでTrinityウォレットを使用する"
+        "usingTrinityWalletWithKeePass": "Keepass2AndroidでTrinityウォレットを使用する",
+        "signedTrytesBroadcastErrorExplanation": "取引をブロードキャスト中にネットワークにエラーが発生しました。"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだシードです。",
@@ -162,6 +161,8 @@
         "nameInUse": "このアカウント名はすでに使われています。",
         "nameInUseExplanation": "シードに唯一のアカウント名を付けてください。",
         "enterAccountName": "アカウント名を入力してください。",
+        "accountNameTooLong": "アカウント名が長すぎます",
+        "accountNameTooLongExplanation": "アカウント名の最大文字数は{{maxLength}}です。",
         "accountName": "アカウント名",
         "noNickname": "アカウント名が入力されていません。",
         "noNicknameExplanation": "シードのアカウント名を入力してください。",
@@ -224,6 +225,7 @@
         "invalidCharacters": "無効な文字を含んだシードです。",
         "invalidCharactersExplanation": "シードにはアルファベットの大文字（A〜Z）と数字の\"9\"のみ使用できます。あなたのシードは無効な文字を含んでいます。もう一度やり直してください。",
         "seedTooShort": "シードが短すぎます。",
+        "seedTooLong": "シードが長すぎます。",
         "seedTooShortExplanation": "シードは{{maxLength}}文字にする必要があります。あなたのシードは現在{{currentLength}}文字です。もう一度やり直してください。",
         "seedExplanation": "シードは{{maxLength}}文字である必要があり、使用可能な文字はアルファベットの大文字（A〜Z）と数字の\"9\"のみです。また、{{maxLength}}文字以上の長さにはできません。",
         "neverShare": "シードを他の人に絶対に教えてはいけません。"
@@ -247,7 +249,9 @@
         "login": "ログイン",
         "selectDifferentNode": "別のノードを選択しますか？",
         "setNode": "ノードの設定",
-        "cannotConnect": "ノードに接続できません。"
+        "cannotConnect": "ノードに接続できません。",
+        "whyBiometricDisabled": "生体認証が無効になっている理由。",
+        "whyBiometricDisabledExplanation": "生体認証によるログインはセキュリティ上、最初のアプリの読み込み時には無効になっています。Trinityを使用中、非アクティブが続くとログアウトします。その時には、生体認証を使ってログインすることができます。"
     },
     "loading": {
         "loadingFirstTime": "初めてのシードを読み込んでいます。",
@@ -285,14 +289,19 @@
         "printerCheckbox": "私は公共のプリンタで印刷しません。"
     },
     "receive": {
+        "yourAddress": "あなたのアドレス",
+        "qrOptions": "QRコードオプション",
+        "shareQr": "QRコードを共有",
         "copyAddress": "アドレスをコピー",
         "addressCopied": "アドレスをコピーしました。",
         "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。",
         "generateNewAddress": "新しいアドレス",
-        "message": "任意のメッセージ",
         "removeMessage": "メッセージを削除",
         "noAddresses": "アドレスなし",
-        "spent": "使用済"
+        "spent": "使用済",
+        "missingPermission": "ファイルシステム権限が必要です。",
+        "missingPermissionExplanation": "QRコードを共有するには、ファイルシステムへのアクセス権が必要です。",
+        "tag": "タグ"
     },
     "saveYourSeed": {
         "saveYourSeed": "シードをバックアップしてください。",
@@ -301,14 +310,12 @@
         "leastSecure": "最低限の安全",
         "paperWallet": "ペーパーウォレット",
         "writeYourSeedDown": "手書きで保存",
-        "printYourSeed": "印刷して保存",
-        "digitalCopy": "デジタルにコピー",
         "seedClearedExplanation": "安全のために、シードをクリップボードから消去しました。",
         "iHaveBackedUpMySeed": "私はシードをバックアップしました。",
         "letsWriteDownYourSeed": "シードを書き写しましょう。",
         "youCanHighlightCharacters": "一度に9文字を強調表示しています。",
         "printBlankWallet": "空のペーパーウォレットを印刷",
-        "whatIsCheksum": "すべてのシードには対応する3文字のチェックサムがあります。",
+        "whatIsChecksum": "すべてのシードには対応する3文字のチェックサムがあります。",
         "iHavesavedMySeed": "バックアップ完了",
         "checksumExplanation": "ウォレットにシードを追加するたびに、ウォレットによって生成されるチェックサムが、書き写したチェックサムと一致することを必ず確認してください。",
         "mustSaveYourSeed": "<0><0>下の方法から</0><1>最低一つ選んで</1><2>シードを必ずバックアップしてください。</2></0>"
@@ -349,7 +356,8 @@
         "sendMax": "全額送金",
         "totalTime": "合計時間",
         "addressPasteDetected": "アドレスのペーストを検出",
-        "addressPasteExplanation": "アドレスをペーストしたようです。送金先のアドレスと一致することを確かめてください。"
+        "addressPasteExplanation": "アドレスをペーストしたようです。送金先のアドレスと一致することを確かめてください。",
+        "invalid": "無効"
     },
     "setPassword": {
         "choosePassword": "新しいパスワードを選択",
@@ -438,31 +446,36 @@
         "okay": "それではウォレットの設定を行いましょう。",
         "doYouAlreadyHaveASeed": "IOTAのシードはすでにお持ちでしょうか？",
         "doYouNeedASeed": "新しいシードの作成は必要でしょうか？",
-        "seedExplanation": "IOTAのシードはユーザー名とパスワードを一つにまとめた81文字の文字列ととらえるとよいでしょう。",
+        "seedExplanation": "IOTAのシードはあなたの資金のマスターキーです。シードは81文字で、アルファベットの大文字（A〜Z）と数字の\"9\"のみ使用できます。",
         "noIHaveOne": "既存のシードを入力",
         "yesINeedASeed": "新しいシードを作成",
-        "explanation": "<0><0>同じシードを使えば、</0><1>どのウォレット、</1><2>デバイスからでも</2><3>あなたの口座にアクセスすることができます。</3><4>シードを紛失すると、口座とその預金にアクセスできなくなります。</4></0>",
+        "explanation": "<0><0>同じシードを使えばどのウォレットからでも</0><1>どの端末からでも</1><2>同じ資金に</2><3>アクセスすることができます。</3></0>",
+        "loseSeed": "しかし、シードを失えば、資金を失うことになります。",
         "keepSafe": "シードは安全に保管してください。",
         "hint": "<0><0>ヒント：</0>IOTAを初めて使う場合は、\"いいえ\"をクリックしてください。</0>"
     },
     "welcome": {
-        "thankYou": "Trinityをダウンロードしていただきありがとうございます。",
-        "weWillSpend": "ウォレットの設定には数分かかります。",
-        "reminder": "いくつかの手順を飛ばすのも可能ではありますが、全ての手順を踏むことをお勧めします。"
+        "thankYou": "Trinityウォレットをダウンロードしていただきありがとうございます。"
     },
     "writeSeedDown": {
         "yourSeedIs": "シードは左から右に読む{{maxSeedLength}}文字です。",
-        "writeDownYourSeed": "<0>シードとチェックサムを書き止め、</0><1>トリプルチェックを</1><2>してください。</2>"
+        "writeDownYourSeed": "<0>シードとチェックサムを書き止め、</0><1>トリプルチェックを</1><2>してください。</2>",
+        "scrollToBottom": "下までスクロール"
     },
     "history": {
         "bundleHashCopied": "バンドルのハッシュ値をコピーしました。",
+        "noTransactionsFound": "取引がありません",
+        "hideZeroBalance": "残高0を非表示",
         "bundleHashCopiedExplanation": "バンドルのハッシュ値をクリップボードにコピーしました。",
         "addressCopied": "アドレスをコピーしました。",
         "addressCopiedExplanation": "アドレスをクリップボードにコピーしました。",
         "messageCopied": "メッセージをコピーしました。",
         "messageCopiedExplanation": "メッセージをクリップボードにコピーしました。",
         "send": "送金",
-        "receive": "受取"
+        "receive": "受取",
+        "empty": "空",
+        "retrying": "再試行中",
+        "yesterday": "昨日"
     },
     "accountManagement": {
         "viewSeed": "シードを表示",
@@ -476,6 +489,7 @@
         "customNodeCouldNotBeAdded": "カスタムノード追加不可",
         "customNodeAddedSuccessfully": "カスタムノードを正常に追加することができました。",
         "customNode": "カスタムノード",
+        "removeCustomNode": "カスタムノードを削除",
         "invalidNodeResponse": "ノードが無効な反応を返しました。",
         "httpNodeError": "Trinityモバイルウォレットはhttps化されたノードのみをサポートします。",
         "add": "追加",
@@ -501,7 +515,8 @@
         "frame": "フレーム"
     },
     "themeCustomisation": {
-        "theme": "テーマ"
+        "theme": "テーマ",
+        "mockup": "モックアップ"
     },
     "currencySelection": {
         "currency": "通貨"
@@ -599,9 +614,25 @@
         "code": "コード",
         "twoFaToken": "二要素認証トークン"
     },
+    "seedVault": {
+        "exportSeedVault": "シード金庫へ書き出す",
+        "seedVaultExplanation": "シード金庫はシードを安全に保管するための暗号化されたファイルです。シードはパスワードを使って暗号化されており、パスワードなしではアクセスできません。Keepassのようなパスワードマネージャーにシード金庫を保存することをお勧めします。",
+        "seedVaultWarning": "シード金庫を複数の場所（ハードドライブ、クラウド、USBなど）にバックアップしてください。シード金庫を紛失し、かつ他の場所にシードを保存していないと、IOTAが失われます。",
+        "exportFail": "シード金庫の書き出しに失敗しました",
+        "exportFailExplanation": "シード金庫を書き出す際に問題が発生しました。 適切な権限と十分な空き容量があることを確認してください。",
+        "exportSuccess": "シード金庫を書き出しました",
+        "exportSuccessExplanation": "暗号化されたシード（シード金庫）は正常に書き出されました。",
+        "importSeedVault": "シード金庫を読み込む",
+        "dropSeedVaultHere": "シード金庫をここにドロップしてください",
+        "enterPasswordExplanation": "シード金庫を開くためにパスワードを入力してください",
+        "noSeedFound": "シード金庫に有効なシードが含まれていません",
+        "noSeedFoundExplanation": "シード金庫は空か、無効な形式のシードが含まれています。",
+        "seedFileError": "イオタ金庫を開けませんでした",
+        "seedFileErrorExplanation": "シード金庫を開く際に問題が発生しました。 正しいファイルを選択している場合、ファイルが破損している可能性があります。"
+    },
     "chart": {
         "mcap": "時価総額",
-        "change": "変化率",
+        "change": "変動 (24h)",
         "volume": "取引量(24h)",
         "currentValue": "現在の価格",
         "error": "チャートのデータ取得エラー"

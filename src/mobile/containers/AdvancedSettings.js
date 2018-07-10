@@ -8,6 +8,7 @@ import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { Icon } from '../theme/icons.js';
 import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -28,10 +29,6 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
-    },
-    backIcon: {
-        width: width / 28,
-        height: width / 28,
     },
     titleText: {
         fontFamily: 'SourceSansPro-Regular',
@@ -97,6 +94,10 @@ export class AdvancedSettings extends PureComponent {
         this.reset = this.reset.bind(this);
         this.onNodeSelection = this.onNodeSelection.bind(this);
         this.onAddCustomNode = this.onAddCustomNode.bind(this);
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('AdvancedSettings');
     }
 
     onNodeSelection() {

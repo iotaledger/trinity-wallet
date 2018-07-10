@@ -15,6 +15,7 @@ import StatefulDropdownAlert from './StatefulDropdownAlert';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -95,6 +96,10 @@ export class TwoFactorSetupAddKey extends Component {
         this.state = {
             authKey: authenticator.generateKey(),
         };
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('TwoFactorSetupAddKey');
     }
 
     onKeyPress(key) {

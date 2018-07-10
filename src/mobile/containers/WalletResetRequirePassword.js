@@ -11,14 +11,13 @@ import { StyleSheet, View, Keyboard, TouchableWithoutFeedback, BackHandler } fro
 import OnboardingButtons from '../containers/OnboardingButtons';
 import { persistor } from '../store';
 import DynamicStatusBar from '../components/DynamicStatusBar';
-import Fonts from '../theme/fonts';
 import { clearKeychain } from '../utils/keychain';
 import { getPasswordHash } from '../utils/crypto';
 import CustomTextInput from '../components/CustomTextInput';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import { Icon } from '../theme/icons.js';
 import { width, height } from '../utils/dimensions';
-import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -41,18 +40,6 @@ const styles = StyleSheet.create({
         flex: 0.5,
         alignItems: 'center',
         justifyContent: 'flex-end',
-    },
-    generalText: {
-        fontFamily: Fonts.secondary,
-        fontSize: GENERAL.fontSize4,
-        textAlign: 'center',
-        paddingBottom: height / 10,
-        backgroundColor: 'transparent',
-    },
-    buttonsContainer: {
-        alignItems: 'flex-end',
-        justifyContent: 'center',
-        flexDirection: 'row',
     },
 });
 
@@ -107,6 +94,7 @@ class WalletResetRequirePassword extends Component {
     }
 
     componentDidMount() {
+        leaveNavigationBreadcrumb('WalletResetRequirePassword');
         BackHandler.addEventListener('hardwareBackPress', () => {
             this.goBack();
             return true;
@@ -209,7 +197,7 @@ class WalletResetRequirePassword extends Component {
                                 label={t('global:password')}
                                 onChangeText={(password) => this.setState({ password })}
                                 value={this.state.password}
-                                containerStyle={{ width: width / 1.2 }}
+                                containerStyle={{ width: width / 1.15 }}
                                 autoCapitalize="none"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically

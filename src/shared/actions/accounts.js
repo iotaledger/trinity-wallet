@@ -38,18 +38,14 @@ export const ActionTypes = {
     ACCOUNT_INFO_FETCH_SUCCESS: 'IOTA/ACCOUNTS/ACCOUNT_INFO_FETCH_SUCCESS',
     ACCOUNT_INFO_FETCH_ERROR: 'IOTA/ACCOUNTS/ACCOUNT_INFO_FETCH_ERROR',
     SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION: 'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION',
-    SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST: 'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST',
     SET_BASIC_ACCOUNT_INFO: 'IOTA/ACCOUNTS/SET_BASIC_ACCOUNT_INFO',
     MARK_TASK_AS_DONE: 'IOTA/ACCOUNTS/MARK_TASK_AS_DONE',
+    MARK_BUNDLE_BROADCAST_STATUS_PENDING: 'IOTA/ACCOUNTS/MARK_BUNDLE_BROADCAST_STATUS_PENDING',
+    MARK_BUNDLE_BROADCAST_STATUS_COMPLETE: 'IOTA/ACCOUNTS/MARK_BUNDLE_BROADCAST_STATUS_COMPLETE',
 };
 
 export const syncAccountBeforeManualPromotion = (payload) => ({
     type: ActionTypes.SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION,
-    payload,
-});
-
-export const syncAccountBeforeManualRebroadcast = (payload) => ({
-    type: ActionTypes.SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST,
     payload,
 });
 
@@ -98,11 +94,9 @@ export const increaseSeedCount = () => ({
     type: ActionTypes.INCREASE_SEED_COUNT,
 });
 
-export const updateAccountAfterTransition = (accountName, addresses, balance) => ({
+export const updateAccountAfterTransition = (payload) => ({
     type: ActionTypes.UPDATE_ACCOUNT_AFTER_TRANSITION,
-    accountName,
-    addresses,
-    balance,
+    payload,
 });
 
 export const setNewUnconfirmedBundleTails = (payload) => ({
@@ -182,6 +176,16 @@ export const markTaskAsDone = (payload) => ({
     payload,
 });
 
+export const markBundleBroadcastStatusPending = (payload) => ({
+    type: ActionTypes.MARK_BUNDLE_BROADCAST_STATUS_PENDING,
+    payload,
+});
+
+export const markBundleBroadcastStatusComplete = (payload) => ({
+    type: ActionTypes.MARK_BUNDLE_BROADCAST_STATUS_COMPLETE,
+    payload,
+});
+
 export const getFullAccountInfoAdditionalSeed = (
     seed,
     accountName,
@@ -212,17 +216,13 @@ export const getFullAccountInfoAdditionalSeed = (
     getAccountData(seed, accountName, genFn)
         .then((data) => {
             dispatch(clearWalletData()); // Clean up partial state for reducer.
-            if (storeInKeychainPromise) {
-                storeInKeychainPromise(password, seed, accountName)
-                    .then(() => {
-                        dispatch(setSeedIndex(existingAccountNames.length));
-                        dispatch(setBasicAccountInfo({ accountName, usedExistingSeed }));
-                        dispatch(fullAccountInfoAdditionalSeedFetchSuccess(data));
-                    })
-                    .catch((err) => onError(err));
-            } else {
-                dispatch(fullAccountInfoAdditionalSeedFetchSuccess(data));
-            }
+            storeInKeychainPromise(password, seed, accountName)
+                .then(() => {
+                    dispatch(setSeedIndex(existingAccountNames.length));
+                    dispatch(setBasicAccountInfo({ accountName, usedExistingSeed }));
+                    dispatch(fullAccountInfoAdditionalSeedFetchSuccess(data));
+                })
+                .catch((err) => onError(err));
         })
         .catch((err) => onError(err));
 };
@@ -237,15 +237,16 @@ export const getFullAccountInfoFirstSeed = (seed, accountName, navigator = null,
                 pushScreen(navigator, 'login');
                 dispatch(fullAccountInfoFirstSeedFetchError());
 
-                // Add a slight delay to allow Login component and
-                // StatefulDropdownAlert component (mobile) to instantiate properly.
-                setTimeout(() => {
+                const dispatchErrors = () => {
                     if (err.message === Errors.NODE_NOT_SYNCED) {
                         dispatch(generateNodeOutOfSyncErrorAlert());
                     } else {
                         dispatch(generateAccountInfoErrorAlert(err));
                     }
-                }, 500);
+                };
+                // Add a slight delay to allow Login component and
+                // StatefulDropdownAlert component (mobile) to instantiate properly.
+                navigator ? setTimeout(dispatchErrors, 500) : dispatchErrors();
             });
     };
 };

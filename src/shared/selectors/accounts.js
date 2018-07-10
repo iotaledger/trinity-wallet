@@ -1,6 +1,7 @@
 import get from 'lodash/get';
 import isUndefined from 'lodash/isUndefined';
 import keys from 'lodash/keys';
+import findKey from 'lodash/findKey';
 import pickBy from 'lodash/pickBy';
 import reduce from 'lodash/reduce';
 import filter from 'lodash/filter';
@@ -147,6 +148,21 @@ export const selectAccountInfo = createSelector(
 );
 
 /**
+ *   Selects latest address from account info state partial.
+ *
+ *   @method selectLatestAddressFromAccountFactory
+ *   @param {object} accountName
+ *   @returns {string}
+ **/
+export const selectLatestAddressFromAccountFactory = createSelector(selectAccountInfo, (state) => {
+    const latestAddress = findKey(
+        state.addresses,
+        (addressMeta) => addressMeta.index === keys(state.addresses).length - 1,
+    );
+    return latestAddress.concat(state.addresses[latestAddress].checksum);
+});
+
+/**
  *   Selects transfers from accountInfo object.
  *
  *   @method getTransfersForSelectedAccount
@@ -274,3 +290,29 @@ export const hasDisplayedSnapshotTransitionGuide = createSelector(getTasksForSel
 
     return isUndefined(hasDisplayedTransitionGuide) ? true : hasDisplayedTransitionGuide;
 });
+
+/**
+ *   Selects failedBundleHashes prop from accounts reducer state object.
+ *   Uses getAccountFromState selector for slicing accounts state from the state object.
+ *
+ *   @method getFailedBundleHashesFromAccounts
+ *   @param {object} state
+ *   @returns {object}
+ **/
+export const getFailedBundleHashesFromAccounts = createSelector(
+    getAccountsFromState,
+    (state) => state.failedBundleHashes || {},
+);
+
+/**
+ *   Selects failedBundleHashes for selected account
+ *
+ *   @method getFailedBundleHashesForSelectedAccount
+ *   @param {object} state
+ *   @returns {object}
+ **/
+export const getFailedBundleHashesForSelectedAccount = createSelector(
+    getSelectedAccountName,
+    getFailedBundleHashesFromAccounts,
+    (accountName, failedBundleHashes) => get(failedBundleHashes, accountName) || {},
+);

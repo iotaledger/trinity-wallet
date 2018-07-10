@@ -29,7 +29,7 @@ import Tabs from '../components/Tabs';
 import Tab from '../components/Tab';
 import TabContent from '../components/TabContent';
 import EnterPassword from '../containers/EnterPassword';
-import { height } from '../utils/dimensions';
+import { width, height } from '../utils/dimensions';
 import { isAndroid, isIPhoneX } from '../utils/device';
 
 const styles = StyleSheet.create({
@@ -44,6 +44,13 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    modal: {
+        height,
+        width,
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 0,
     },
 });
 
@@ -66,7 +73,7 @@ class Home extends Component {
          */
         generateAlert: PropTypes.func.isRequired,
         /** Set application activity state
-         * @param {object} options - minimzed, active, inactive
+         * @param {object} options - minimised, active, inactive
          */
         setUserActivity: PropTypes.func.isRequired,
         /** Determines if the application is inactive */
@@ -310,10 +317,10 @@ class Home extends Component {
             minimised,
             isFingerprintEnabled,
             isModalActive,
-            theme: { bar, body, negative, positive, primary },
+            theme: { bar, body, negative, positive },
+            theme,
         } = this.props;
         const { isIOSKeyboardActive } = this.state;
-        const barTextColor = { color: bar.color };
         const textColor = { color: body.color };
 
         return (
@@ -332,62 +339,41 @@ class Home extends Component {
                             <KeyboardAvoidingView style={styles.midContainer} behavior={isAndroid ? null : 'padding'}>
                                 <Animated.View useNativeDriver style={{ flex: this.viewFlex }} />
                                 <View style={{ flex: 4.72 }}>
-                                    {!minimised &&
-                                        ((
-                                            <TabContent
-                                                navigator={navigator}
-                                                onTabSwitch={(name) => this.onTabSwitch(name)}
-                                                handleCloseTopBar={() => this.handleCloseTopBar()}
-                                                isIOSKeyboardActive={isIOSKeyboardActive}
-                                            />
-                                        ) || <View />)}
+                                    {!minimised && (
+                                        <TabContent
+                                            navigator={navigator}
+                                            onTabSwitch={(name) => this.onTabSwitch(name)}
+                                            handleCloseTopBar={() => this.handleCloseTopBar()}
+                                            isIOSKeyboardActive={isIOSKeyboardActive}
+                                        />
+                                    )}
                                 </View>
                             </KeyboardAvoidingView>
                             <View style={styles.bottomContainer}>
-                                <Tabs onPress={(name) => this.onTabSwitch(name)} barBg={bar.bg}>
+                                <Tabs onPress={(name) => this.onTabSwitch(name)} theme={theme}>
                                     <Tab
                                         name="balance"
                                         icon="wallet"
-                                        iconColor={bar.color}
-                                        activeBorderColor={primary.color}
-                                        activeColor={bar.alt}
-                                        textColor={barTextColor}
+                                        theme={theme}
                                         text={t('home:balance').toUpperCase()}
                                     />
-                                    <Tab
-                                        name="send"
-                                        icon="send"
-                                        iconColor={bar.color}
-                                        activeBorderColor={primary.color}
-                                        activeColor={bar.alt}
-                                        textColor={barTextColor}
-                                        text={t('home:send').toUpperCase()}
-                                    />
+                                    <Tab name="send" icon="send" theme={theme} text={t('home:send').toUpperCase()} />
                                     <Tab
                                         name="receive"
                                         icon="receive"
-                                        iconColor={bar.color}
-                                        activeBorderColor={primary.color}
-                                        activeColor={bar.alt}
-                                        textColor={barTextColor}
+                                        theme={theme}
                                         text={t('home:receive').toUpperCase()}
                                     />
                                     <Tab
                                         name="history"
                                         icon="history"
-                                        iconColor={bar.color}
-                                        activeBorderColor={primary.color}
-                                        activeColor={bar.alt}
-                                        textColor={barTextColor}
+                                        theme={theme}
                                         text={t('home:history').toUpperCase()}
                                     />
                                     <Tab
                                         name="settings"
                                         icon="settings"
-                                        iconColor={bar.color}
-                                        activeBorderColor={primary.color}
-                                        activeColor={bar.alt}
-                                        textColor={barTextColor}
+                                        theme={theme}
                                         text={t('home:settings').toUpperCase()}
                                     />
                                 </Tabs>
@@ -422,8 +408,8 @@ class Home extends Component {
                     backdropTransitionInTiming={isAndroid ? 500 : 300}
                     backdropTransitionOutTiming={200}
                     backdropColor={body.bg}
-                    backdropOpacity={0.8}
-                    style={{ alignItems: 'center', margin: 0 }}
+                    backdropOpacity={0.9}
+                    style={styles.modal}
                     isVisible={this.state.showModal}
                     onBackButtonPress={() => {
                         this.completeTransitionTask();
@@ -451,7 +437,6 @@ const mapStateToProps = (state) => ({
     inactive: state.ui.inactive,
     minimised: state.ui.minimised,
     theme: state.settings.theme,
-    currentRoute: state.home.childRoute,
     isSyncing: state.ui.isSyncing,
     isCheckingCustomNode: state.ui.isCheckingCustomNode,
     isSendingTransfer: state.ui.isSendingTransfer,

@@ -11,6 +11,7 @@ import { Icon } from '../theme/icons';
 import InfoBox from '../components/InfoBox';
 import Toggle from '../components/Toggle';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -49,9 +50,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         marginLeft: width / 20,
     },
-    toggle: {
-        marginHorizontal: width / 30,
-    },
     toggleText: {
         fontFamily: Fonts.secondary,
         fontSize: GENERAL.fontSize4,
@@ -88,6 +86,10 @@ class Pow extends Component {
         this.onChange = this.onChange.bind(this);
     }
 
+    componentDidMount() {
+        leaveNavigationBreadcrumb('Pow');
+    }
+
     onChange() {
         this.props.changePowSettings();
     }
@@ -95,7 +97,6 @@ class Pow extends Component {
     render() {
         const { t, remotePoW, theme: { body, primary } } = this.props;
         const textColor = { color: body.color };
-        const infoTextPadding = { paddingTop: height / 50 };
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -107,7 +108,7 @@ class Pow extends Component {
                             text={
                                 <View>
                                     <Text style={[styles.infoText, textColor]}>{t('feeless')}</Text>
-                                    <Text style={[styles.infoText, textColor, infoTextPadding]}>
+                                    <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
                                         {t('localOrRemote')}
                                     </Text>
                                 </View>
@@ -120,7 +121,7 @@ class Pow extends Component {
                         >
                             <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                                 <View style={styles.toggleTextContainer}>
-                                    <Text style={[styles.toggleText, textColor, { paddingRight: width / 45 }]}>
+                                    <Text style={[styles.toggleText, textColor, { marginRight: width / 45 }]}>
                                         {t('local')}
                                     </Text>
                                 </View>
@@ -131,7 +132,7 @@ class Pow extends Component {
                                     scale={1.3}
                                 />
                                 <View style={styles.toggleTextContainer}>
-                                    <Text style={[styles.toggleText, textColor, { paddingLeft: width / 45 }]}>
+                                    <Text style={[styles.toggleText, textColor, { marginLeft: width / 45 }]}>
                                         {t('remote')}
                                     </Text>
                                 </View>

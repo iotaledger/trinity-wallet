@@ -14,6 +14,7 @@ import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons';
 import { isAndroid } from '../utils/device';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
     content: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     },
     titleText: {
         fontFamily: 'SourceSansPro-Regular',
@@ -55,6 +56,13 @@ const styles = StyleSheet.create({
         fontFamily: 'SourceSansPro-Light',
         fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
+    },
+    modal: {
+        height,
+        width,
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 0,
     },
 });
 
@@ -96,6 +104,10 @@ export class MainSettings extends Component {
 
         this.toggleModalDisplay = this.toggleModalDisplay.bind(this);
         this.logout = this.logout.bind(this);
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('MainSettings');
     }
 
     toggleModalDisplay() {
@@ -274,7 +286,7 @@ export class MainSettings extends Component {
                         </View>
                     </TouchableOpacity>
                 </View>
-                <View style={{ flex: 1 }}/>
+                <View style={{ flex: 1 }} />
                 <Modal
                     animationIn={isAndroid ? 'bounceInUp' : 'zoomIn'}
                     animationOut={isAndroid ? 'bounceOut' : 'zoomOut'}
@@ -283,8 +295,8 @@ export class MainSettings extends Component {
                     backdropTransitionInTiming={isAndroid ? 500 : 300}
                     backdropTransitionOutTiming={200}
                     backdropColor={theme.body.bg}
-                    backdropOpacity={0.8}
-                    style={{ alignItems: 'center', justifyContent: 'center', margin: 0 }}
+                    backdropOpacity={0.9}
+                    style={styles.modal}
                     isVisible={this.state.isModalActive}
                     onBackButtonPress={this.toggleModalDisplay}
                     useNativeDriver={isAndroid ? true : false}

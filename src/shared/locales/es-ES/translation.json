@@ -37,12 +37,14 @@
         "apply": "Aplicar",
         "save": "Guardar",
         "close": "Cerrar",
+        "export": "Export",
+        "import": "Import",
         "continue": "Continuar",
         "enable": "Habilitar",
         "disable": "Deshabilitar",
         "enabled": "Habilitado",
         "disabled": "Deshabilitado",
-        "manualCopy": "Anote la semilla",
+        "enterPassword": "Enter password",
         "paperWallet": "Imprima una copia en papel",
         "addToPasswordManager": "Añadir al administrador de contraseñas",
         "shareSeed": "Comparta la semilla",
@@ -90,18 +92,14 @@
         "addresses": "Direcciones",
         "reattach": "REVINCULAR",
         "promote": "PROMOVER",
-        "retry": "REINTENTAR",
-        "rebroadcast": "RETRANSMISIÓN",
+        "retry": "Retry",
         "pressBackAgain": "Pulse atrás otra vez para cerrar la aplicacion",
         "reattached": "Transacción revinculada exitosamente",
         "reattachedExplanation": "Transacción revinculada con hash {{hash}}",
         "promotingTransaction": "Promoviendo transacción",
         "autopromoting": "Auto-promoviendo la transferencia",
         "autopromotingExplanation": "Promoviendo la transacción con hash {{hash}}",
-        "rebroadcasted": "Transacción retransmitida exitosamente",
-        "rebroadcastedExplanation": "Transacción retransmitida con hash {{hash}}",
         "rebroadcastError": "No se pudo retransmitir la transacción",
-        "rebroadcastErrorExplanation": "Algo salio mal mientras se retransmitía su transacción. Por favor reintente.",
         "promoted": "Transacción promovida exitosamente",
         "promotedExplanation": "Transacción promovida con hash {{hash}}",
         "autopromotionError": "No se pudo auto promover la transacción",
@@ -148,11 +146,12 @@
         "androidCopyPasteWarning": "Nunca copiar/pegar tu seed en un dispositivo Android.",
         "willNotCopyPasteSeed": "No copiaré/pegaré mi semilla",
         "mustBeStoredAppropriately": "Debe ser almacenado apropiadamente.",
-        "deviceMayBecomeUnresponsive": "Su dispositivo puede dejar de responder durante un rato",
+        "deviceMayBecomeUnresponsive": "Su dispositivo puede estar sin responder por un rato.",
         "isYourBalanceCorrect": "¿Su saldo es correcto?",
         "ifYourBalanceIsNotCorrect": "Si su saldo no es correcto, es probable que esté usando una semilla previa al snapshot.",
         "headToAdvancedSettingsForTransition": "Diríjase a Configuración Avanzada y realice una Snapshot Transition.",
-        "usingTrinityWalletWithKeePass": "Usando cartera Trinity con Keepass2Android"
+        "usingTrinityWalletWithKeePass": "Usando cartera Trinity con Keepass2Android",
+        "signedTrytesBroadcastErrorExplanation": "Hubo un error mientras se estaba transmitiendo su transacción."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La semilla contiene caracteres inválidos",
@@ -162,6 +161,8 @@
         "nameInUse": "Nombre de cuenta en uso",
         "nameInUseExplanation": "Por favor, use un nombre de cuenta único para su semilla.",
         "enterAccountName": "Introduzca un nombre de cuenta.",
+        "accountNameTooLong": "Account name too long",
+        "accountNameTooLongExplanation": "Account name maximum length is {{maxLength}} characters.",
         "accountName": "Nombre de cuenta",
         "noNickname": "Falta ingresar un nombre de la cuenta",
         "noNicknameExplanation": "Por favor ingrese un nombre para la cuenta de su semilla.",
@@ -224,6 +225,7 @@
         "invalidCharacters": "La semilla contiene caracteres inválidos",
         "invalidCharactersExplanation": "Las semillas sólo pueden estar compuestas de letras A-Z y el número 9. Su semilla contiene caracteres inválidos. Por favor inténtelo de nuevo.",
         "seedTooShort": "La semilla es demasiado corta",
+        "seedTooLong": "La semilla es muy larga",
         "seedTooShortExplanation": "Las semillas deben tener {{maxLength}} caracteres. Su semilla tiene actualmente {{currentLength}} caracteres. Por favor inténtelo nuevamente.",
         "seedExplanation": "Las semillas deben ser de {{maxLength}} caracteres de longitud y contener letras mayúsculas de la A a la Z, o el número 9. No se pueden usar semillas de más de {{maxLength}} caracteres.",
         "neverShare": "NUNCA COMPARTA SU SEMILLA CON NADIE"
@@ -247,7 +249,9 @@
         "login": "Iniciar Sesión",
         "selectDifferentNode": "¿Deseas seleccionar un nodo distinto?",
         "setNode": "Seleccionar nodo",
-        "cannotConnect": "No es posible conectarse al nodo de IOTA."
+        "cannotConnect": "No es posible conectarse al nodo de IOTA.",
+        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "Cargando la semilla por primera vez.",
@@ -285,14 +289,19 @@
         "printerCheckbox": "No lo imprimiré en una impresora publica"
     },
     "receive": {
+        "yourAddress": "Your address",
+        "qrOptions": "QR options",
+        "shareQr": "Share QR code",
         "copyAddress": "Copie dirección",
         "addressCopied": "Dirección Copiada",
         "addressCopiedExplanation": "La dirección se ha copiado en el portapapeles.",
         "generateNewAddress": "Nueva Dirección",
-        "message": "Mensaje opcional",
         "removeMessage": "ELIMINAR MENSAJE",
         "noAddresses": "SIN DIRECCIONES",
-        "spent": "Gastado"
+        "spent": "Gastado",
+        "missingPermission": "Permisos de sistema requeridos",
+        "missingPermissionExplanation": "El acceso a los archivos del sistema son requeridos para compartir los códigos QR.",
+        "tag": "Etiqueta"
     },
     "saveYourSeed": {
         "saveYourSeed": "Haga una copia de respaldo de su semilla",
@@ -301,17 +310,15 @@
         "leastSecure": "Menos Seguro",
         "paperWallet": "Cartera en papel",
         "writeYourSeedDown": "Anote su semilla",
-        "printYourSeed": "Imprima su semilla",
-        "digitalCopy": "Copia digital",
         "seedClearedExplanation": "La semilla ha sido borrada del portapapeles para su seguridad.",
         "iHaveBackedUpMySeed": "He guardado mi semilla",
         "letsWriteDownYourSeed": "Vamos a anotar su semilla",
         "youCanHighlightCharacters": "Puede resaltar 9 caracteres a la vez",
         "printBlankWallet": "Imprima una cartera en blanco",
-        "whatIsCheksum": "Cada semilla tiene un checksum correspondiente de 3 caracteres",
+        "whatIsChecksum": "Cada semilla tiene su correspondiente checksum de 3 caracteres",
         "iHavesavedMySeed": "He guardado mi semilla",
         "checksumExplanation": "Cada vez que añada una semilla a su cartera, debería asegurarse de que el checksum generado para la cartera coincide con el que ha anotado.",
-        "mustSaveYourSeed": "<0><0>Debe guardar su semilla con</0><1>al menos una</1><2>de las opciones a continuación.</2></0>"
+        "mustSaveYourSeed": "<0><0>Debe guardar su semilla con </0><1>al menos una</1><2> de las opciones a continuación.</2></0>"
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Por favor confirme su semilla",
@@ -349,7 +356,8 @@
         "sendMax": "ENVIAR MÁXIMO",
         "totalTime": "Tiempo total",
         "addressPasteDetected": "Se ha detectado una dirección pegada",
-        "addressPasteExplanation": "Parace que ha pegado una dirección. Asegúrese de que la dirección coincida con aquella a la que quiere enviar."
+        "addressPasteExplanation": "Parace que ha pegado una dirección. Asegúrese de que la dirección coincida con aquella a la que quiere enviar.",
+        "invalid": "INVALIDO"
     },
     "setPassword": {
         "choosePassword": "Elija una nueva contraseña",
@@ -438,31 +446,36 @@
         "okay": "De acuerdo. ¡Vamos a configurar su cartera!",
         "doYouAlreadyHaveASeed": "¿Ya tiene un semilla que le gustaría usar?",
         "doYouNeedASeed": "¿Necesita crear una nueva semilla?",
-        "seedExplanation": "Una semilla de IOTA funciona simultáneamente como nombre del usuario y contraseña para su cuenta, combinados en una cadena de 81 caracteres.",
+        "seedExplanation": "Su semilla de IOTA es la clave maestra de sus fondos. Posee 81 carácteres y usa solo A-Z y el numero 9.",
         "noIHaveOne": "No, ya tengo una",
         "yesINeedASeed": "Sí, necesito una semilla",
-        "explanation": "<0><0>Puede usar esto para acceder a sus fondos desde</0><1>cualquier cartera</1><2>, en</2><3> cualquier dispositivo</3><4>. Pero si pierde su semilla, también perderá sus IOTA.</4></0>",
+        "explanation": "<0><0>Puedes usar esto para acceder a tu fondos desde</0><1> cualquier billetera</1><2>, en</2><3> cualquier dispositivo.</3></0>",
+        "loseSeed": "Pero si pierde su semilla, también perderá sus IOTA.",
         "keepSafe": "Por favor guarde su semilla de manera segura.",
         "hint": "<0><0>Pista:</0> Click en NO si es su primera vez usando IOTA.</0>"
     },
     "welcome": {
-        "thankYou": "Gracias por descargar Trinity.",
-        "weWillSpend": "Vamos a pasar unos pocos minutos configurando su cartera.",
-        "reminder": "Puede tentarte saltar algunos pasos, pero te sugerimos seguir el proceso completo."
+        "thankYou": "Gracias por descargar Trinity"
     },
     "writeSeedDown": {
         "yourSeedIs": "Su semilla tiene {{maxSeedLength}} caracteres leídos de izquierda a derecha.",
-        "writeDownYourSeed": "<0>Escriba su semilla y código de verificación y </0><1>vuelva a comprobar</1><2> que son correctos.</2>"
+        "writeDownYourSeed": "<0>Escriba su semilla y código de verificación y </0><1>vuelva a comprobar</1><2> que son correctos.</2>",
+        "scrollToBottom": "Deslicese hacia el fondo"
     },
     "history": {
         "bundleHashCopied": "Hash del paquete copiado",
+        "noTransactionsFound": "No sé encontraron transacciones",
+        "hideZeroBalance": "Esconder balance nulo",
         "bundleHashCopiedExplanation": "El hash del paquete se ha copiado en el portapapeles.",
         "addressCopied": "Dirección Copiada",
         "addressCopiedExplanation": "La dirección se ha copiado al portapapeles.",
         "messageCopied": "Mensaje copiado",
         "messageCopiedExplanation": "El mensaje fue copiado al portapapeles.",
-        "send": "ENVIAR",
-        "receive": "RECIBIR"
+        "send": "Enviar",
+        "receive": "Recibir",
+        "empty": "Vacío",
+        "retrying": "Retrying",
+        "yesterday": "Yesterday"
     },
     "accountManagement": {
         "viewSeed": "Ver semilla",
@@ -476,6 +489,7 @@
         "customNodeCouldNotBeAdded": "No se pudo añadir el nodo personalizado",
         "customNodeAddedSuccessfully": "El nodo personalizado fue añadido exitosamente.",
         "customNode": "Nodo personalizado",
+        "removeCustomNode": "Remove custom node",
         "invalidNodeResponse": "Respuesta inválida del nodo",
         "httpNodeError": "Trinity para movil solo soporta nodos con HTTPS.",
         "add": "Añadir",
@@ -501,7 +515,8 @@
         "frame": "Marco"
     },
     "themeCustomisation": {
-        "theme": "Tema"
+        "theme": "Tema",
+        "mockup": "Maqueta"
     },
     "currencySelection": {
         "currency": "Divisa"
@@ -514,11 +529,11 @@
     },
     "unitInfoModal": {
         "unitSystem": "UNIDAD DE SISTEMA",
-        "trillion": "Trillón",
-        "billion": "Billón",
+        "trillion": "Billón",
+        "billion": "Mil millones",
         "million": "Millón",
         "thousand": "Mil",
-        "one": "Un"
+        "one": "Unidad"
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Porque no puedo gastar todos mis fondos?",
@@ -599,9 +614,25 @@
         "code": "Código",
         "twoFaToken": "Código 2FA"
     },
+    "seedVault": {
+        "exportSeedVault": "Export SeedVault",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password. It is recommended that you store the file in a password manager like Keepass.",
+        "seedVaultWarning": "Make sure you back up the file in multiple locations (e.g. hard drive, cloud, USB). If you lose this file and have not stored your seed elsewhere, you will lose your IOTA.",
+        "exportFail": "SeedVault export failed",
+        "exportFailExplanation": "There was an problem exporting the SeedVault. Please ensure you have the appropriate permissions and enough free space.",
+        "exportSuccess": "SeedVault exported",
+        "exportSuccessExplanation": "Your encrypted seed file was exported successfully.",
+        "importSeedVault": "Import SeedVault",
+        "dropSeedVaultHere": "Drop SeedVault here",
+        "enterPasswordExplanation": "Enter your password to open the SeedVault",
+        "noSeedFound": "SeedVault does not contain a valid seed",
+        "noSeedFoundExplanation": "The SeedVault is either empty or contains a seed in an invalid format.",
+        "seedFileError": "Failed to open SeedVault",
+        "seedFileErrorExplanation": "There was a problem opening the SeedVault. If you selected the correct file then it may be corrupted."
+    },
     "chart": {
         "mcap": "MCAP",
-        "change": "Variación",
+        "change": "Cambio (24h)",
         "volume": "Volumen (24h)",
         "currentValue": "Valor actual",
         "error": "Error obteniendo datos de gráfico"

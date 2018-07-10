@@ -11,6 +11,7 @@ import { Icon } from '../theme/icons';
 import InfoBox from '../components/InfoBox';
 import Toggle from '../components/Toggle';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -88,6 +89,10 @@ class AutoPromotion extends Component {
         this.onChange = this.onChange.bind(this);
     }
 
+    componentDidMount() {
+        leaveNavigationBreadcrumb('AutoPromotion');
+    }
+
     onChange() {
         this.props.changeAutoPromotionSettings();
     }
@@ -120,7 +125,7 @@ class AutoPromotion extends Component {
                         >
                             <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                                 <View style={styles.toggleTextContainer}>
-                                    <Text style={[styles.toggleText, textColor, { paddingRight: width / 45 }]}>
+                                    <Text style={[styles.toggleText, textColor, { marginRight: width / 45 }]}>
                                         {t('disabled')}
                                     </Text>
                                 </View>
@@ -131,7 +136,7 @@ class AutoPromotion extends Component {
                                     scale={1.3}
                                 />
                                 <View style={styles.toggleTextContainer}>
-                                    <Text style={[styles.toggleText, textColor, { paddingLeft: width / 45 }]}>
+                                    <Text style={[styles.toggleText, textColor, { marginLeft: width / 45 }]}>
                                         {t('enabled')}
                                     </Text>
                                 </View>

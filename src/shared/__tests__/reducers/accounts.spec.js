@@ -11,6 +11,7 @@ describe('Reducer: accounts', () => {
                 firstUse: true,
                 onboardingComplete: false,
                 accountInfo: {},
+                failedBundleHashes: {},
                 setupInfo: {},
                 tasks: {},
                 unconfirmedBundleTails: {},
@@ -97,6 +98,30 @@ describe('Reducer: accounts', () => {
             };
 
             expect(newState.accountInfo).to.eql(expectedState.accountInfo);
+        });
+
+        it('should update account name in "failedBundleHashes" state prop', () => {
+            const initialState = {
+                failedBundleHashes: {
+                    foo: [],
+                    baz: [],
+                },
+            };
+
+            const action = actions.changeAccountName({
+                oldAccountName: 'foo',
+                newAccountName: 'bar',
+            });
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                failedBundleHashes: {
+                    bar: [],
+                    baz: [],
+                },
+            };
+
+            expect(newState.failedBundleHashes).to.eql(expectedState.failedBundleHashes);
         });
 
         it('should update account name in "tasks" state prop', () => {
@@ -206,6 +231,21 @@ describe('Reducer: accounts', () => {
             };
 
             expect(newState.accountInfo).to.eql(expectedState.accountInfo);
+        });
+
+        it('should omit payload prop from "failedBundleHashes"', () => {
+            const initialState = {
+                failedBundleHashes: { foo: [] },
+            };
+
+            const action = actions.removeAccount('foo');
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                failedBundleHashes: {},
+            };
+
+            expect(newState.failedBundleHashes).to.eql(expectedState.failedBundleHashes);
         });
 
         it('should omit payload prop from "tasks"', () => {
@@ -842,10 +882,98 @@ describe('Reducer: accounts', () => {
         });
     });
 
+    describe('IOTA/ACCOUNTS/MARK_BUNDLE_BROADCAST_STATUS_PENDING', () => {
+        it('should assign "accountName" in payload to "failedBundleHashes" prop in state', () => {
+            const initialState = {
+                failedBundleHashes: {
+                    foo: {},
+                },
+            };
+
+            const action = {
+                type: 'IOTA/ACCOUNTS/MARK_BUNDLE_BROADCAST_STATUS_PENDING',
+                payload: {
+                    accountName: 'baz',
+                    bundleHash: 'TTT',
+                    transactionObjects: [{}],
+                },
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                failedBundleHashes: {
+                    foo: {},
+                    baz: {
+                        TTT: [{}],
+                    },
+                },
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+
+        it('should assign "bundleHash" to existing failed transaction bundle hashes', () => {
+            const initialState = {
+                failedBundleHashes: {
+                    foo: { AAA: [{}] },
+                },
+            };
+
+            const action = {
+                type: 'IOTA/ACCOUNTS/MARK_BUNDLE_BROADCAST_STATUS_PENDING',
+                payload: {
+                    accountName: 'foo',
+                    bundleHash: 'TTT',
+                    transactionObjects: [{}, {}],
+                },
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                failedBundleHashes: {
+                    foo: {
+                        AAA: [{}],
+                        TTT: [{}, {}],
+                    },
+                },
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
+
+    describe('IOTA/ACCOUNTS/MARK_BUNDLE_BROADCAST_STATUS_COMPLETE', () => {
+        it('should remove "bundleHash" from "failedBundleHashes"', () => {
+            const initialState = {
+                failedBundleHashes: {
+                    foo: {
+                        AAA: [{}],
+                    },
+                },
+            };
+
+            const action = {
+                type: 'IOTA/ACCOUNTS/MARK_BUNDLE_BROADCAST_STATUS_COMPLETE',
+                payload: {
+                    accountName: 'foo',
+                    bundleHash: 'AAA',
+                },
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                failedBundleHashes: {
+                    foo: {},
+                },
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
+
     [
         'IOTA/ACCOUNTS/UPDATE_ACCOUNT_INFO_AFTER_SPENDING',
         'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION',
-        'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST',
         'IOTA/ACCOUNTS/UPDATE_ACCOUNT_AFTER_REATTACHMENT',
         'IOTA/ACCOUNTS/ACCOUNT_INFO_FETCH_SUCCESS',
         'IOTA/POLLING/ACCOUNT_INFO_FETCH_SUCCESS',

@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 
-import { changeIotaNode } from '../../libs/iota';
-import { getNodeInfoAsync as checkNode } from '../../libs/iota/extendedApi';
-import { setFullNode, addCustomPoWNode, updateAutoNodeSwitching } from '../../actions/settings';
+import { setFullNode, removeCustomNode, updateAutoNodeSwitching } from '../../actions/settings';
 import { generateAlert } from '../../actions/alerts';
 
 /**
@@ -17,8 +15,11 @@ export default function withNodeData(NodeComponent) {
         static propTypes = {
             node: PropTypes.string.isRequired,
             nodes: PropTypes.array.isRequired,
+            customNodes: PropTypes.array.isRequired,
+            isChangingNode: PropTypes.bool.isRequired,
+            isCheckingCustomNode: PropTypes.bool.isRequired,
             setFullNode: PropTypes.func.isRequired,
-            addCustomPoWNode: PropTypes.func.isRequired,
+            removeCustomNode: PropTypes.func.isRequired,
             autoNodeSwitching: PropTypes.bool.isRequired,
             updateAutoNodeSwitching: PropTypes.func.isRequired,
             generateAlert: PropTypes.func.isRequired,
@@ -27,16 +28,8 @@ export default function withNodeData(NodeComponent) {
             theme: PropTypes.object.isRequired,
         };
 
-        constructor(props) {
-            super(props);
-
-            this.state = {
-                loading: false,
-            };
-        }
-
         changeNode = (nodeSelected, customNode) => {
-            const { nodes, node, setFullNode, addCustomPoWNode, generateAlert, backPress, t } = this.props;
+            const { nodes, node, setFullNode, generateAlert, t } = this.props;
 
             if (!nodeSelected) {
                 return;
@@ -61,30 +54,7 @@ export default function withNodeData(NodeComponent) {
                 return;
             }
 
-            this.setState({
-                loading: true,
-            });
-
-            checkNode(nodeSelected)
-                .then(() => {
-                    this.setState({ loading: false });
-                    changeIotaNode(nodeSelected);
-                    setFullNode(nodeSelected);
-
-                    if (nodes.indexOf(nodeSelected) < 0) {
-                        addCustomPoWNode(nodeSelected);
-                    }
-
-                    generateAlert('success', t('nodeChanged'), t('nodeChangedExplanation'));
-
-                    if (typeof backPress === 'function') {
-                        backPress();
-                    }
-                })
-                .catch(() => {
-                    this.setState({ loading: false });
-                    generateAlert('error', t('global:invalidResponse'), t('global:invalidResponseExplanation'));
-                });
+            setFullNode(nodeSelected, nodes.indexOf(nodeSelected) < 0);
         };
 
         changeAutoNodeSwitching = () => {
@@ -92,13 +62,26 @@ export default function withNodeData(NodeComponent) {
         };
 
         render() {
-            const { node, nodes, backPress, theme, autoNodeSwitching, t } = this.props;
+            const {
+                node,
+                nodes,
+                customNodes,
+                removeCustomNode,
+                backPress,
+                isChangingNode,
+                isCheckingCustomNode,
+                theme,
+                autoNodeSwitching,
+                t,
+            } = this.props;
 
             const nodeProps = {
-                node: node,
-                nodes: nodes,
-                loading: this.state.loading,
+                node,
+                nodes,
+                customNodes,
+                loading: isChangingNode || isCheckingCustomNode,
                 setNode: this.changeNode,
+                removeCustomNode,
                 autoNodeSwitching: autoNodeSwitching,
                 setAutoNodeSwitching: this.changeAutoNodeSwitching,
                 backPress: backPress,
@@ -115,13 +98,16 @@ export default function withNodeData(NodeComponent) {
     const mapStateToProps = (state) => ({
         node: state.settings.node,
         nodes: state.settings.nodes,
+        customNodes: state.settings.customNodes,
         theme: state.settings.theme,
         autoNodeSwitching: state.settings.autoNodeSwitching,
+        isChangingNode: state.ui.isChangingNode,
+        isCheckingCustomNode: state.ui.isCheckingCustomNode,
     });
 
     const mapDispatchToProps = {
         setFullNode,
-        addCustomPoWNode,
+        removeCustomNode,
         generateAlert,
         updateAutoNodeSwitching,
     };

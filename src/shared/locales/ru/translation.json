@@ -37,12 +37,14 @@
         "apply": "Применить",
         "save": "Сохранить",
         "close": "Закрыть",
+        "export": "Export",
+        "import": "Import",
         "continue": "Продолжить",
         "enable": "Включить",
         "disable": "Отключить",
         "enabled": "Включено",
         "disabled": "Выключено",
-        "manualCopy": "Запишите ключ",
+        "enterPassword": "Enter password",
         "paperWallet": "Распечатать бумажную версию",
         "addToPasswordManager": "Добавить в менеджер паролей",
         "shareSeed": "Передать ключ",
@@ -90,18 +92,14 @@
         "addresses": "Адреса",
         "reattach": "ПРИВЯЗАТЬ ПОВТОРНО",
         "promote": "СОДЕЙСТВИЕ",
-        "retry": "ПОВТОРИТЬ ПОПЫТКУ",
-        "rebroadcast": "РЕТРАНСЛИРОВАТЬ",
+        "retry": "Retry",
         "pressBackAgain": "Нажмите еще раз назад чтобы закрыть приложение",
         "reattached": "Повторная привязка транзакции прошла успешно",
         "reattachedExplanation": "Повторно присоединенная транзакция с хэшем {{hash}}",
         "promotingTransaction": "Продвижение транзакции",
         "autopromoting": "Передача автопромотирования",
         "autopromotingExplanation": "Содействие транзакций с хэш {{hash}}",
-        "rebroadcasted": "Ретрансляция транзакции прошла успешно",
-        "rebroadcastedExplanation": "Ретранслированная транзакция с хэшем {{hash}}",
         "rebroadcastError": "Не удалось ретранслировать транзакцию",
-        "rebroadcastErrorExplanation": "Что-то пошло не так при ретрансляции Вашей транзакции. Пожалуйста, повторите попытку.",
         "promoted": "Продвижение транзакции прошло успешно",
         "promotedExplanation": "Продвинутая транзакция с хэшем {{hash}}",
         "autopromotionError": "Не удалось выполнить авто-продвижение транзакции",
@@ -148,11 +146,12 @@
         "androidCopyPasteWarning": "Никогда не пользуйтесь функцией \"Скопировать/Вставить\" на Андроиде.",
         "willNotCopyPasteSeed": "Я не буду копировать/вставлять мой ключ",
         "mustBeStoredAppropriately": "Нужно хранить надлежащим образом.",
-        "deviceMayBecomeUnresponsive": "Ваше устройство может не отвечать какое-то время",
+        "deviceMayBecomeUnresponsive": "Your device may become unresponsive for a while.",
         "isYourBalanceCorrect": "Верен ли Ваш баланс?",
         "ifYourBalanceIsNotCorrect": "Если Ваш баланс не верен, то, скорее всего, Вы используете ключ, который не был актувлизирован после снимка сети.",
         "headToAdvancedSettingsForTransition": "Перейдите в Дополнительные Настройки и выполните Snapshot переход.",
-        "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android"
+        "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android",
+        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ключ содержит недопустимые символы",
@@ -162,6 +161,8 @@
         "nameInUse": "Данное название счёта уже занято",
         "nameInUseExplanation": "Пожалуйста, используйте уникальное название счёта для Вашего ключа.",
         "enterAccountName": "Введите название счёта.",
+        "accountNameTooLong": "Account name too long",
+        "accountNameTooLongExplanation": "Account name maximum length is {{maxLength}} characters.",
         "accountName": "Название счёта",
         "noNickname": "Название счёта не было введено",
         "noNicknameExplanation": "Пожалуйста, введите название счёта для Вашего ключа.",
@@ -224,6 +225,7 @@
         "invalidCharacters": "Ключ содержит недопустимые символы",
         "invalidCharactersExplanation": "Ключ может содержать только заглавные буквы A-Z и цифру 9. Ваш ключ содержит недопустимые символы. Пожалуйста, попробуйте еще раз.",
         "seedTooShort": "Ключ слишком короткий",
+        "seedTooLong": "Seed is too long",
         "seedTooShortExplanation": "Ключ должен быть длиной в {{maxLength}} символ. Ваш текущий ключ имеет длину в {{currentLength}} символов. Пожалуйста, повторите попытку.",
         "seedExplanation": "Ключ должен быть длиной в {{maxLength}} символ и содержать только заглавные буквы A-Z и цифру 9. Ключи длиной более чем {{maxLength}} символ не допускаются.",
         "neverShare": "НИКОГДА НИКОМУ НЕ СООБЩАЙТЕ ВАШ КЛЮЧ"
@@ -247,7 +249,9 @@
         "login": "Войти",
         "selectDifferentNode": "Вы хотите выбрать другой узел?",
         "setNode": "Выбрать узел",
-        "cannotConnect": "Не удается подключиться к узлу IOTA."
+        "cannotConnect": "Не удается подключиться к узлу IOTA.",
+        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
         "loadingFirstTime": "Загрузка ключа в самый первый раз.",
@@ -285,14 +289,19 @@
         "printerCheckbox": "Я не буду печатать на общедоступном принтере"
     },
     "receive": {
+        "yourAddress": "Your address",
+        "qrOptions": "QR options",
+        "shareQr": "Share QR code",
         "copyAddress": "Скопировать адрес",
         "addressCopied": "Адрес скопирован",
         "addressCopiedExplanation": "Ваш адрес скопирован в буфер обмена.",
         "generateNewAddress": "Новый адрес",
-        "message": "Сообщение (опционально)",
         "removeMessage": "УДАЛИТЬ СООБЩЕНИЕ",
         "noAddresses": "НЕТ АДРЕСОВ",
-        "spent": "Использованный адрес"
+        "spent": "Использованный адрес",
+        "missingPermission": "File system permission required",
+        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes.",
+        "tag": "Метка"
     },
     "saveYourSeed": {
         "saveYourSeed": "Создать резервную копию Вашего ключа",
@@ -301,14 +310,12 @@
         "leastSecure": "Наименее безопасно",
         "paperWallet": "Бумажный кошелек",
         "writeYourSeedDown": "Запишите Ваш ключ",
-        "printYourSeed": "Распечатайте Ваш ключ",
-        "digitalCopy": "Цифровая копия",
         "seedClearedExplanation": "Ключ был удален из буфера обмена для Вашей безопасности.",
         "iHaveBackedUpMySeed": "Я сохранил свой ключ",
         "letsWriteDownYourSeed": "Запишите Ваш ключ",
         "youCanHighlightCharacters": "Одновременно можно выделить 9 символов",
         "printBlankWallet": "Распечатать чистый кошелёк",
-        "whatIsCheksum": "У каждого ключа есть соответствующая контрольная сумма из трёх символов",
+        "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
         "iHavesavedMySeed": "Я сохранил свой ключ",
         "checksumExplanation": "Каждый раз, когда Вы добавляете ключ к Вашему кошельку, Вы должны убедиться, что контрольная сумма, сгенерированная кошельком, соответствует той, которую Вы записали.",
         "mustSaveYourSeed": "<0><0>Вы должны сохранить свой ключ </ 0><1>как минимум одним</ 1> <2> из перечисленных ниже способов.</ 2></ 0>"
@@ -349,7 +356,8 @@
         "sendMax": "МАКС. ПЕРЕВОД",
         "totalTime": "Общее время",
         "addressPasteDetected": "Обнаружена вставка адреса",
-        "addressPasteExplanation": "Похоже, что Вы вставили адрес. Убедитесь, что этот адрес соответствует тому, на который Вы хотите отправить."
+        "addressPasteExplanation": "Похоже, что Вы вставили адрес. Убедитесь, что этот адрес соответствует тому, на который Вы хотите отправить.",
+        "invalid": "INVALID"
     },
     "setPassword": {
         "choosePassword": "Задайте новый пароль",
@@ -438,31 +446,36 @@
         "okay": "Хорошо, давайте настроим Ваш кошелек!",
         "doYouAlreadyHaveASeed": "У Вас уже есть ключ, который Вы хотели бы использовать?",
         "doYouNeedASeed": "Нужно ли Вам создать новый ключ?",
-        "seedExplanation": "Ключ (seed) IOTA, комбинация длиной в 81 символ, представляет собой одновременно и имя пользователя, и пароль к Вашему счету.",
+        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
         "noIHaveOne": "Нет, у меня уже есть ключ",
         "yesINeedASeed": "Да, мне нужен ключ",
-        "explanation": "<0><0>Вы можете использовать его для получения доступа к Вашим средствам</0><1> в любом кошельке</1><2>, </2><3>на любом устройстве</3><4 >. Но если Вы потеряете Ваш ключ, Вы также потеряете Ваши IOTA.</4></0>",
+        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
+        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
         "keepSafe": "Пожалуйста, храните Ваш ключ в безопасности.",
         "hint": "<0><0>Подсказка:</0> нажмите кнопку Нет, если это ваш первый раз, когда вы используете IOTA.</0>"
     },
     "welcome": {
-        "thankYou": "Благодарим за загрузку Тринити.",
-        "weWillSpend": "В последующие несколько минут мы будем его настраивать.",
-        "reminder": "Возможно Вы захотите пропустить некоторые шаги, но мы настоятельно рекомендуем Вам пройти весь процесс."
+        "thankYou": "Thank you for downloading Trinity"
     },
     "writeSeedDown": {
         "yourSeedIs": "Ваш ключ состоит из {{maxSeedLength}} символов, читая слева направо.",
-        "writeDownYourSeed": "<0> Запишите Ваш ключ, контрольную сумму и </ 0><1>трижды проверьте </ 1><2> что они верны.</ 2>"
+        "writeDownYourSeed": "<0> Запишите Ваш ключ, контрольную сумму и </ 0><1>трижды проверьте </ 1><2> что они верны.</ 2>",
+        "scrollToBottom": "Scroll to the bottom"
     },
     "history": {
         "bundleHashCopied": "Хэш пакет скопирован",
+        "noTransactionsFound": "No transactions found",
+        "hideZeroBalance": "Hide zero balance",
         "bundleHashCopiedExplanation": "Хэш пакет скопирован в буфер обмена.",
         "addressCopied": "Адрес скопирован",
         "addressCopiedExplanation": "Адрес скопирован в буфер обмена.",
         "messageCopied": "Сообщение скопировано",
         "messageCopiedExplanation": "Сообщение скопировано в буфер обмена.",
-        "send": "Отправление",
-        "receive": "Получение"
+        "send": "Отправить",
+        "receive": "Получить",
+        "empty": "Empty",
+        "retrying": "Retrying",
+        "yesterday": "Yesterday"
     },
     "accountManagement": {
         "viewSeed": "Показать ключ",
@@ -476,6 +489,7 @@
         "customNodeCouldNotBeAdded": "Не удалось добавить пользовательский узел",
         "customNodeAddedSuccessfully": "Пользовательский узел был успешно добавлен.",
         "customNode": "Пользовательский узел",
+        "removeCustomNode": "Remove custom node",
         "invalidNodeResponse": "На узле произошла ошибка",
         "httpNodeError": "Мобильная версия Trinity поддерживает только https узлы.",
         "add": "Добавить",
@@ -501,7 +515,8 @@
         "frame": "Фрейм"
     },
     "themeCustomisation": {
-        "theme": "Тема оформления"
+        "theme": "Тема оформления",
+        "mockup": "Mockup"
     },
     "currencySelection": {
         "currency": "Валюта"
@@ -599,9 +614,25 @@
         "code": "Код",
         "twoFaToken": "Токен 2FA"
     },
+    "seedVault": {
+        "exportSeedVault": "Export SeedVault",
+        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password. It is recommended that you store the file in a password manager like Keepass.",
+        "seedVaultWarning": "Make sure you back up the file in multiple locations (e.g. hard drive, cloud, USB). If you lose this file and have not stored your seed elsewhere, you will lose your IOTA.",
+        "exportFail": "SeedVault export failed",
+        "exportFailExplanation": "There was an problem exporting the SeedVault. Please ensure you have the appropriate permissions and enough free space.",
+        "exportSuccess": "SeedVault exported",
+        "exportSuccessExplanation": "Your encrypted seed file was exported successfully.",
+        "importSeedVault": "Import SeedVault",
+        "dropSeedVaultHere": "Drop SeedVault here",
+        "enterPasswordExplanation": "Enter your password to open the SeedVault",
+        "noSeedFound": "SeedVault does not contain a valid seed",
+        "noSeedFoundExplanation": "The SeedVault is either empty or contains a seed in an invalid format.",
+        "seedFileError": "Failed to open SeedVault",
+        "seedFileErrorExplanation": "There was a problem opening the SeedVault. If you selected the correct file then it may be corrupted."
+    },
     "chart": {
         "mcap": "MCAP",
-        "change": "Изменение",
+        "change": "Change (24h)",
         "volume": "Объем (24ч)",
         "currentValue": "Текущее значение",
         "error": "Ошибка при загрузке данных графика"

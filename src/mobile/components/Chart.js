@@ -8,14 +8,12 @@ import withChartData from 'iota-wallet-shared-modules/containers/components/Char
 import { width, height } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const chartWidth = width;
 const chartHeight = height * 0.36;
 
 const styles = StyleSheet.create({
-    buttonContainer: {
-        flex: 1,
-    },
     button: {
         flex: 1,
         flexDirection: 'row',
@@ -144,6 +142,10 @@ class Chart extends PureComponent {
         t: PropTypes.func.isRequired,
         getPriceForCurrency: PropTypes.func.isRequired,
     };
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('Chart');
+    }
 
     render() {
         const {

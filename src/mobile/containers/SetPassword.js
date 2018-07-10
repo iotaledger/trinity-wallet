@@ -28,6 +28,7 @@ import InfoBox from '../components/InfoBox';
 import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
 import Header from '../components/Header';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const MIN_PASSWORD_LENGTH = 12;
 console.ignoredYellowBox = ['Native TextInput'];
@@ -49,11 +50,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         alignItems: 'center',
         width,
-    },
-    textfieldsContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        flex: 1,
     },
     bottomContainer: {
         flex: 0.5,
@@ -127,6 +123,10 @@ class SetPassword extends Component {
             password: '',
             reentry: '',
         };
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('SetPassword');
     }
 
     onDonePress() {
@@ -243,7 +243,7 @@ class SetPassword extends Component {
                             <CustomTextInput
                                 label={t('global:password')}
                                 onChangeText={(password) => this.setState({ password })}
-                                containerStyle={{ width: width / 1.2 }}
+                                containerStyle={{ width: width / 1.15 }}
                                 autoCapitalize="none"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
@@ -264,7 +264,7 @@ class SetPassword extends Component {
                                 }}
                                 label={t('retypePassword')}
                                 onChangeText={(reentry) => this.setState({ reentry })}
-                                containerStyle={{ width: width / 1.2 }}
+                                containerStyle={{ width: width / 1.15 }}
                                 autoCapitalize="none"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
