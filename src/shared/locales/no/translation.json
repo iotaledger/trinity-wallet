@@ -619,7 +619,7 @@
         "seedVaultExplanation": "En SeedVault er en kryptert fil for å lagre din hovednøkkel sikkert. Hovednøkkelen din er kryptert bak et passord og kan ikke brukes uten passordet. Det anbefales at du lagrer filen i et passordverktøy som Keepass.",
         "seedVaultWarning": "Pass på å sikkerhetskopiere filen flere steder (f.eks harddisk, nettsky, USB). Hvis du mister denne filen og du ikke har hovednøkkelen din lagret et annet sted, mister du tilgangen til dine IOTA.",
         "exportFail": "SeedVault eksport mislyktes",
-        "exportFailExplanation": "There was an problem exporting the SeedVault. Please ensure you have the appropriate permissions and enough free space.",
+        "exportFailExplanation": "Det oppstod et problem med å eksportere SeedVault. Kontroller at du har riktige tillatelser og nok plass.",
         "exportSuccess": "SeedVault eksportert",
         "exportSuccessExplanation": "Den kryptert filen med hovednøkkelen ble eksportert.",
         "importSeedVault": "Importer SeedVault",
@@ -628,11 +628,11 @@
         "noSeedFound": "SeedVault inneholder ikke en gyldig hovednøkkel",
         "noSeedFoundExplanation": "SeedVault er enten tom eller inneholder en hovednøkkel i et ugyldig format.",
         "seedFileError": "Kunne ikke åpne SeedVault",
-        "seedFileErrorExplanation": "There was a problem opening the SeedVault. If you selected the correct file then it may be corrupted."
+        "seedFileErrorExplanation": "Det var et problem med åpning av SeedVault. Hvis du valgte den riktige filen kan så den være skadet."
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change (24h)",
+        "change": "Endring (24 timer)",
         "volume": "Volum (24 timer)",
         "currentValue": "Nåværende verdi",
         "error": "Feil under henting av henting diagramdata"
