@@ -173,7 +173,7 @@ class History extends Component {
         if (
             (transfer.value !== 0 &&
                 !transfer.incoming &&
-                transfer.outputs.some((tx) => addresses.includes(tx.address))) ||
+                transfer.outputs.every((tx) => addresses.includes(tx.address))) ||
             (transfer.value === 0 && transfer.outputs.every((tx) => addresses.includes(tx.address)))
         ) {
             return <SelfTransactionRow {...transfer} />;
