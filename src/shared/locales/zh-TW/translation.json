@@ -460,7 +460,7 @@
     "writeSeedDown": {
         "yourSeedIs": "您的種子碼由左至右總計 {{maxSeedLength}} 個字元。",
         "writeDownYourSeed": "<0> 記下您的種子碼和檢查碼</0><1>請再三確認</1><2>它們是正確無誤的。</2>",
-        "scrollToBottom": "Scroll to the bottom"
+        "scrollToBottom": "滑動至底部"
     },
     "history": {
         "bundleHashCopied": "交易組雜湊值已複製",
@@ -473,9 +473,9 @@
         "messageCopiedExplanation": "訊息已複製到剪貼簿。",
         "send": "付款",
         "receive": "收款",
-        "empty": "Empty",
-        "retrying": "Retrying",
-        "yesterday": "Yesterday"
+        "empty": "清空",
+        "retrying": "重試中",
+        "yesterday": "昨日"
     },
     "accountManagement": {
         "viewSeed": "檢視種子",
@@ -489,7 +489,7 @@
         "customNodeCouldNotBeAdded": "自訂節點無法加入",
         "customNodeAddedSuccessfully": "自訂節點已成功加入。",
         "customNode": "自訂節點",
-        "removeCustomNode": "Remove custom node",
+        "removeCustomNode": "移除自訂節點",
         "invalidNodeResponse": "節點回傳無效回應。",
         "httpNodeError": "Trinity Mobile 僅支援 https 節點。",
         "add": "新增",
@@ -516,7 +516,7 @@
     },
     "themeCustomisation": {
         "theme": "佈景主題",
-        "mockup": "Mockup"
+        "mockup": "樣式"
     },
     "currencySelection": {
         "currency": "貨幣"
@@ -615,10 +615,10 @@
         "twoFaToken": "2FA 金鑰"
     },
     "seedVault": {
-        "exportSeedVault": "Export SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password. It is recommended that you store the file in a password manager like Keepass.",
-        "seedVaultWarning": "Make sure you back up the file in multiple locations (e.g. hard drive, cloud, USB). If you lose this file and have not stored your seed elsewhere, you will lose your IOTA.",
-        "exportFail": "SeedVault export failed",
+        "exportSeedVault": "匯出 SeedVault",
+        "seedVaultExplanation": "SeedVault 是個能夠安全儲存您的種子碼的加密檔案。種子碼會透過您輸入的密碼加密，而且只能夠用該密碼取得。建議您將檔案儲存在像是 Keepass 這樣的密碼管理器中。",
+        "seedVaultWarning": "請確認您有備份檔案在許多不同位置 (像是硬碟、雲端、USB)。如果您遺失此檔案而且沒有在其他地方儲存種子碼的話，您將失去您的 IOTA。",
+        "exportFail": "SeedVault 匯出失敗",
         "exportFailExplanation": "There was an problem exporting the SeedVault. Please ensure you have the appropriate permissions and enough free space.",
         "exportSuccess": "SeedVault exported",
         "exportSuccessExplanation": "Your encrypted seed file was exported successfully.",
