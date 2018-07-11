@@ -250,8 +250,8 @@
         "selectDifferentNode": "您要選擇不同的節點嗎？",
         "setNode": "設置節點",
         "cannotConnect": "無法連線到 IOTA 節點。",
-        "whyBiometricDisabled": "為何生物識別驗證預設為停用？",
-        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabled": "為何生物識別驗證是停用的？",
+        "whyBiometricDisabledExplanation": "考量到您的安全，生物識別驗證在應用程式一開啟時是停用的。在使用 Trinity 時，要是一段時間沒有動作的話會將您登出。這時候再登入回來時，是可以使用生物識別驗證的。"
     },
     "loading": {
         "loadingFirstTime": "首次讀取種子碼。",
@@ -449,13 +449,13 @@
         "seedExplanation": "IOTA 種子碼就是您資金的主要金鑰。長度為 81 字元而且只使用字母 A-Z 或數字 9。",
         "noIHaveOne": "不，我有一個",
         "yesINeedASeed": "是，我需要一個種子碼",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
-        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
+        "explanation": "<0><0>您可以用它從</0><3>任何裝置上的</3><1>任何錢包</1><2>取得您的資金。</2></0>",
+        "loseSeed": "但如果您遺失您的種子碼，您也就會失去您的 IOTA。",
         "keepSafe": "請妥善保存您的種子碼。",
         "hint": "<0><0>提示：</0> 如果這是您第一次使用 IOTA 請按「否」。</0>"
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity"
+        "thankYou": "感謝您下載 Trinity"
     },
     "writeSeedDown": {
         "yourSeedIs": "您的種子碼由左至右總計 {{maxSeedLength}} 個字元。",
