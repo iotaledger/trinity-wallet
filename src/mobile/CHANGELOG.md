@@ -5,10 +5,11 @@
 ### Additions
 - Add more translations
 - Format date and time according to device locale settings
-  -  Known issue: Devices set to zh-Hans-CN or other Chinese locales may show the same formats as en-US locales
+  -  Known issue: Devices set to zh-Hans-CN or other Chinese locales may show the same formats as en-GB locales
 - Add progress bar to snapshot transition
 - Add support for Croatian and Tamil
-- Redesign UI for receive page
+- Redesign UI for Receive screen
+- Add option to encode an amount in QR codes
 - Add explanation for why biometric authentication is disabled in some cases
 - Add animation when generating receive address
 
@@ -22,3 +23,4 @@
 - Use native methods for hashing
 - Remove manual rebroadcast
 - Automatically ask for biometric authentication on inactivity logout
+- Display full transfer amount on transfer detail modals on the History screen
