@@ -27,7 +27,7 @@ describe('Testing CustomTextInput component', () => {
         });
 
         it('should require a label string as a prop', () => {
-            expect(CustomTextInput.propTypes.label).toEqual(PropTypes.string.isRequired);
+            expect(CustomTextInput.propTypes.label).toEqual(PropTypes.string);
         });
 
         it('should accept an onFocus function as a prop', () => {
