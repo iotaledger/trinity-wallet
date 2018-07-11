@@ -162,7 +162,7 @@
         "nameInUseExplanation": "Por favor, use un nombre de cuenta único para su semilla.",
         "enterAccountName": "Introduzca un nombre de cuenta.",
         "accountNameTooLong": "Nombre de cuenta demasiado largo",
-        "accountNameTooLongExplanation": "Account name maximum length is {{maxLength}} characters.",
+        "accountNameTooLongExplanation": "La longitud máxima del nombre de la cuenta es {{maxLength}} caracteres.",
         "accountName": "Nombre de cuenta",
         "noNickname": "Falta ingresar un nombre de la cuenta",
         "noNicknameExplanation": "Por favor ingrese un nombre para la cuenta de su semilla.",
@@ -250,8 +250,8 @@
         "selectDifferentNode": "¿Deseas seleccionar un nodo distinto?",
         "setNode": "Seleccionar nodo",
         "cannotConnect": "No es posible conectarse al nodo de IOTA.",
-        "whyBiometricDisabled": "Why is biometric authentication disabled?",
-        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabled": "Por que la autentificación biométrica está deshabilitada?",
+        "whyBiometricDisabledExplanation": "El inicio de sesión biométrico está deshabilitado en la primera carga de la aplicación por seguridad. Al utilizar Trinity, se cerrará la sesión por inactividad. Entonces podrá iniciar sesión de nuevo con la autentificación biométrica."
     },
     "loading": {
         "loadingFirstTime": "Cargando la semilla por primera vez.",
@@ -289,9 +289,9 @@
         "printerCheckbox": "No lo imprimiré en una impresora publica"
     },
     "receive": {
-        "yourAddress": "Your address",
-        "qrOptions": "QR options",
-        "shareQr": "Share QR code",
+        "yourAddress": "Su dirección",
+        "qrOptions": "Opciones QR",
+        "shareQr": "Compartir código QR",
         "copyAddress": "Copie dirección",
         "addressCopied": "Dirección Copiada",
         "addressCopiedExplanation": "La dirección se ha copiado en el portapapeles.",
@@ -474,8 +474,8 @@
         "send": "Enviar",
         "receive": "Recibir",
         "empty": "Vacío",
-        "retrying": "Retrying",
-        "yesterday": "Yesterday"
+        "retrying": "Reintentar",
+        "yesterday": "Ayer"
     },
     "accountManagement": {
         "viewSeed": "Ver semilla",
@@ -489,7 +489,7 @@
         "customNodeCouldNotBeAdded": "No se pudo añadir el nodo personalizado",
         "customNodeAddedSuccessfully": "El nodo personalizado fue añadido exitosamente.",
         "customNode": "Nodo personalizado",
-        "removeCustomNode": "Remove custom node",
+        "removeCustomNode": "Eliminar nodo personalizado",
         "invalidNodeResponse": "Respuesta inválida del nodo",
         "httpNodeError": "Trinity para movil solo soporta nodos con HTTPS.",
         "add": "Añadir",
@@ -615,8 +615,8 @@
         "twoFaToken": "Código 2FA"
     },
     "seedVault": {
-        "exportSeedVault": "Export SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password. It is recommended that you store the file in a password manager like Keepass.",
+        "exportSeedVault": "Exportar SeedVault",
+        "seedVaultExplanation": "Un SeedVault es un archivo encriptado para almacenar su semilla con seguridad. La semilla se encripta mediante una contraseña y no se puede acceder a ella sin la contraseña. Se recomienda almacenar el archivo con un gestor de contraseñas como Keepass.",
         "seedVaultWarning": "Make sure you back up the file in multiple locations (e.g. hard drive, cloud, USB). If you lose this file and have not stored your seed elsewhere, you will lose your IOTA.",
         "exportFail": "SeedVault export failed",
         "exportFailExplanation": "There was an problem exporting the SeedVault. Please ensure you have the appropriate permissions and enough free space.",
