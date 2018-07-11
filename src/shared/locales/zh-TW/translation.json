@@ -92,7 +92,7 @@
         "addresses": "地址",
         "reattach": "重新連接",
         "promote": "促進",
-        "retry": "Retry",
+        "retry": "重試",
         "pressBackAgain": "再按一次返回鍵退出",
         "reattached": "成功重新連接交易",
         "reattachedExplanation": "重新連接的交易雜湊值為 {{hash}}",
@@ -250,7 +250,7 @@
         "selectDifferentNode": "您要選擇不同的節點嗎？",
         "setNode": "設置節點",
         "cannotConnect": "無法連線到 IOTA 節點。",
-        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "whyBiometricDisabled": "為何生物識別驗證預設為停用？",
         "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
@@ -289,9 +289,9 @@
         "printerCheckbox": "我不會使用公共印表機來列印"
     },
     "receive": {
-        "yourAddress": "Your address",
-        "qrOptions": "QR options",
-        "shareQr": "Share QR code",
+        "yourAddress": "您的地址",
+        "qrOptions": "QR 碼選項",
+        "shareQr": "分享 QR 碼",
         "copyAddress": "複製地址",
         "addressCopied": "已複製地址",
         "addressCopiedExplanation": "您的地址已複製到剪貼簿。",
@@ -299,8 +299,8 @@
         "removeMessage": "移除訊息",
         "noAddresses": "無地址",
         "spent": "已支出",
-        "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes.",
+        "missingPermission": "需要檔案系統權限",
+        "missingPermissionExplanation": "分享 QR 碼必須要有訪問檔案系統的權限。",
         "tag": "標籤"
     },
     "saveYourSeed": {
@@ -315,7 +315,7 @@
         "letsWriteDownYourSeed": "請寫下您的種子碼",
         "youCanHighlightCharacters": "您可以一次顯示 9 個字元",
         "printBlankWallet": "印出空白錢包",
-        "whatIsChecksum": "Every seed has a corresponding 3-character checksum",
+        "whatIsChecksum": "每個種子碼會有相對應 3 字元的檢查碼",
         "iHavesavedMySeed": "我已儲存我的種子碼",
         "checksumExplanation": "每當您新增種子碼到錢包時，請確認錢包顯示的檢查碼和您當時寫下的相符。",
         "mustSaveYourSeed": "<0><0>您必須使用以下</0><1>其中一種</1><2>選項儲存您的種子碼。</2></0>"
@@ -446,7 +446,7 @@
         "okay": "好囉，現在來設置您的錢包！",
         "doYouAlreadyHaveASeed": "您是否希望使用已擁有的種子碼?",
         "doYouNeedASeed": "您需要產生新的種子碼嗎?",
-        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
+        "seedExplanation": "IOTA 種子碼就是您資金的主要金鑰。長度為 81 字元而且只使用字母 A-Z 或數字 9。",
         "noIHaveOne": "不，我有一個",
         "yesINeedASeed": "是，我需要一個種子碼",
         "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
