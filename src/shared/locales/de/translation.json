@@ -291,7 +291,7 @@
     "receive": {
         "yourAddress": "Deine Adresse",
         "qrOptions": "QR Optionen",
-        "shareQr": "QR code teilen",
+        "shareQr": "QR Code teilen",
         "copyAddress": "Adresse kopieren",
         "addressCopied": "Adresse kopiert",
         "addressCopiedExplanation": "Deine Adresse wurde in die Zwischenablage kopiert.",
