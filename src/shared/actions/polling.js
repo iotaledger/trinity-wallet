@@ -264,7 +264,7 @@ export const fetchChartData = () => {
  *
  *   @method getAccountInfo
  *   @param {string} accountName
- *   @returns {function} dispatch
+ *   @returnss {function} dispatch
  **/
 export const getAccountInfo = (accountName) => {
     return (dispatch, getState) => {
@@ -290,7 +290,7 @@ export const getAccountInfo = (accountName) => {
  *   @method promoteTransfer
  *   @param {string} bundleHash
  *   @param {array} seenTailTransactions
- *   @returns {function} - dispatch
+ *   @returnss {function} - dispatch
  **/
 export const promoteTransfer = (bundleHash, seenTailTransactions) => (dispatch, getState) => {
     dispatch(promoteTransactionRequest(bundleHash));
