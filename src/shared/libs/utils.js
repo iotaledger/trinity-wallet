@@ -183,7 +183,7 @@ export function formatChartData(json, currency, timeframe) {
  * @returns {Boolean}
  */
 export const isValidUrl = (url) => {
-    if (validUrl.isUri(url)) {
+    if (validUrl.isWebUri(url)) {
         return true;
     }
     return false;
