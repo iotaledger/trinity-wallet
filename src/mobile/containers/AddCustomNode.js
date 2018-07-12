@@ -131,7 +131,7 @@ class AddCustomNode extends Component {
         return this.props.generateAlert(
             'error',
             this.props.t('addCustomNode:customNodeCouldNotBeAdded'),
-            this.props.t('addCustomNode:invalidNode'),
+            this.props.t('addCustomNode:invalidURL'),
         );
     }
 
