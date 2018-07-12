@@ -186,6 +186,18 @@ export const markBundleBroadcastStatusComplete = (payload) => ({
     payload,
 });
 
+
+/**
+ * Get full account information for an additional seed
+ * @param  {string} seed
+ * @param  {string} accountName
+ * @param  {string} password
+ * @param  {function} storeInKeychainPromise
+ * @param  {object} [navigator=null]
+ * @param  {function} genFn
+ *
+ * @returns {function} dispatch
+ */
 export const getFullAccountInfoAdditionalSeed = (
     seed,
     accountName,
@@ -227,6 +239,15 @@ export const getFullAccountInfoAdditionalSeed = (
         .catch((err) => onError(err));
 };
 
+/**
+ * Get full account information for the first seed
+ * @param  {string} seed
+ * @param  {string} accountName
+ * @param  {object} [navigator=null]
+ * @param  {function} genFn
+ *
+ * @returns {function} dispatch
+ */
 export const getFullAccountInfoFirstSeed = (seed, accountName, navigator = null, genFn) => {
     return (dispatch) => {
         dispatch(fullAccountInfoFirstSeedFetchRequest());
@@ -251,6 +272,14 @@ export const getFullAccountInfoFirstSeed = (seed, accountName, navigator = null,
     };
 };
 
+/**
+ * Perform a manual sync for an account
+ * @param  {string} seed
+ * @param  {string} accountName
+ * @param  {function} genFn
+ *
+ * @returns {function} dispatch
+ */
 export const manuallySyncAccount = (seed, accountName, genFn) => {
     return (dispatch) => {
         dispatch(manualSyncRequest());
@@ -272,6 +301,15 @@ export const manuallySyncAccount = (seed, accountName, genFn) => {
     };
 };
 
+/**
+ * Get account information
+ * @param  {string} seed
+ * @param  {string} accountName
+ * @param  {object} [navigator=null]
+ * @param  {function} genFn
+ *
+ * @returns {function} dispatch
+ */
 export const getAccountInfo = (seed, accountName, navigator = null, genFn) => {
     return (dispatch, getState) => {
         dispatch(accountInfoFetchRequest());
@@ -291,6 +329,12 @@ export const getAccountInfo = (seed, accountName, navigator = null, genFn) => {
     };
 };
 
+/**
+ * Delete an account
+ * @param  {string} accountName
+ *
+ * @returns {function} dispatch
+ */
 export const deleteAccount = (accountName) => (dispatch) => {
     dispatch(removeAccount(accountName));
     dispatch(generateAccountDeletedAlert());
