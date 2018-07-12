@@ -135,7 +135,7 @@ export const completeTransfer = (payload) => {
  *   @param {string} accountName
  *   @param {function} powFn
  *
- *   @returnss {function} dispatch
+ *   @returns {function} dispatch
  **/
 export const promoteTransaction = (bundleHash, accountName, powFn) => (dispatch, getState) => {
     dispatch(promoteTransactionRequest(bundleHash));
@@ -244,7 +244,7 @@ export const promoteTransaction = (bundleHash, accountName, powFn) => (dispatch,
  *   @param {function} powFn
  *   @param {number} depth
  *
- *   @returnss {function} dispatch
+ *   @returns {function} dispatch
  **/
 export const forceTransactionPromotion = (
     accountName,
