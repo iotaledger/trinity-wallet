@@ -260,11 +260,11 @@ export const fetchChartData = () => {
 };
 
 /**
- *   Accepts account name and sync local account state with ledger's.
+ *   Accepts account name and syncs local account state with ledger's.
  *
  *   @method getAccountInfo
  *   @param {string} accountName
- *   @returnss {function} dispatch
+ *   @returns {function} dispatch
  **/
 export const getAccountInfo = (accountName) => {
     return (dispatch, getState) => {
@@ -285,12 +285,12 @@ export const getAccountInfo = (accountName) => {
  *   Accepts a bundle hash and all tail transaction objects relevant to the bundle.
  *   Check if a bundle is still valid.
  *   For cases where a bundle is invalid, it would remove it for promotion.
- *   For cases where a bundle in valid, find first consistent tail and promote it.
+ *   For cases where a bundle is valid, find first consistent tail and promote it.
  *
  *   @method promoteTransfer
  *   @param {string} bundleHash
  *   @param {array} seenTailTransactions
- *   @returnss {function} - dispatch
+ *   @returns {function} - dispatch
  **/
 export const promoteTransfer = (bundleHash, seenTailTransactions) => (dispatch, getState) => {
     dispatch(promoteTransactionRequest(bundleHash));
