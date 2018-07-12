@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { setFullNode } from 'iota-wallet-shared-modules/actions/settings';
+import { isValidUrl, isValidHttpsUrl } from 'iota-wallet-shared-modules/libs/utils';
 import { setCustomNodeCheckStatus } from 'iota-wallet-shared-modules/actions/ui';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { translate } from 'react-i18next';
@@ -130,7 +131,7 @@ class AddCustomNode extends Component {
         return this.props.generateAlert(
             'error',
             this.props.t('addCustomNode:customNodeCouldNotBeAdded'),
-            this.props.t('addCustomNode:invalidNodeResponse'),
+            this.props.t('addCustomNode:invalidNode'),
         );
     }
 
@@ -145,8 +146,8 @@ class AddCustomNode extends Component {
     onAddHttpNodeError() {
         return this.props.generateAlert(
             'error',
-            this.props.t('addCustomNode:customNodeCouldNotBeAdded'),
-            this.props.t('addCustomNode:httpNodeError'),
+            this.props.t('global:nodeMustUseHTTPS'),
+            this.props.t('global:nodeMustUseHTTPSExplanation'),
         );
     }
 
@@ -158,17 +159,20 @@ class AddCustomNode extends Component {
     addNode() {
         const { nodes } = this.props;
 
-        const { customNode } = this.state;
+        let { customNode } = this.state;
 
         if (!customNode) {
             return this.onEmptyFieldError();
         }
 
-        if (!customNode.startsWith('http')) {
+        // Remove spaces and trailing slash
+        customNode = customNode.replace(/ /g, '').replace(/\/$/, '');
+
+        if (!isValidUrl(customNode)) {
             return this.onAddNodeError();
         }
 
-        if (customNode.startsWith('http://')) {
+        if (!isValidHttpsUrl(customNode)) {
             return this.onAddHttpNodeError();
         }
 

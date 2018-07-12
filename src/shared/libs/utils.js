@@ -12,6 +12,7 @@ import merge from 'lodash/merge';
 import filter from 'lodash/filter';
 import cloneDeep from 'lodash/cloneDeep';
 import unset from 'lodash/unset';
+import validUrl from 'valid-url';
 
 export function round(value, precision) {
     const multiplier = Math.pow(10, precision || 0);
@@ -174,3 +175,29 @@ export function formatChartData(json, currency, timeframe) {
     }
     return failedData;
 }
+
+/**
+ * Checks if a URL is valid
+ * Uses https://github.com/ogt/valid-url
+ * @param  {string}  url
+ * @returns {Boolean}
+ */
+export const isValidUrl = (url) => {
+    if (validUrl.isUri(url)) {
+        return true;
+    }
+    return false;
+};
+
+/**
+ * Check if a URL uses HTTPS
+ * Uses https://github.com/ogt/valid-url
+ * @param  {string}  url
+ * @returns {Boolean}
+ */
+export const isValidHttpsUrl = (url) => {
+    if (validUrl.isHttpsUri(url)) {
+        return true;
+    }
+    return false;
+};
