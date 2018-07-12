@@ -117,6 +117,8 @@ export const retryFailedTransactionError = () => ({
  *   On successful transfer, update store, generate alert and clear send text fields
  *   @method completeTransfer
  *   @param {object} payload - sending status, address, transfer value
+ *
+ *   @returns {function} dispatch
  **/
 export const completeTransfer = (payload) => {
     return (dispatch) => {
@@ -133,7 +135,7 @@ export const completeTransfer = (payload) => {
  *   @param {string} accountName
  *   @param {function} powFn
  *
- *   @returns {function} dispatch
+ *   @returnss {function} dispatch
  **/
 export const promoteTransaction = (bundleHash, accountName, powFn) => (dispatch, getState) => {
     dispatch(promoteTransactionRequest(bundleHash));
@@ -242,7 +244,7 @@ export const promoteTransaction = (bundleHash, accountName, powFn) => (dispatch,
  *   @param {function} powFn
  *   @param {number} depth
  *
- *   @returns {function} dispatch
+ *   @returnss {function} dispatch
  **/
 export const forceTransactionPromotion = (
     accountName,
@@ -307,6 +309,18 @@ export const forceTransactionPromotion = (
         });
 };
 
+/**
+ * Sends a transaction
+ * @param  {string} seed
+ * @param  {string} receiveAddress
+ * @param  {number} value
+ * @param  {string} message
+ * @param  {string} accountName
+ * @param  {function} powFn
+ * @param  {function} genFn
+ *
+ * @returns {function} dispatch
+ */
 export const makeTransaction = (seed, receiveAddress, value, message, accountName, powFn, genFn) => (
     dispatch,
     getState,
@@ -640,6 +654,14 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
     );
 };
 
+/**
+ * Retry a transaction that previously failed to send
+ * @param  {string} accountName
+ * @param  {string} bundleHash
+ * @param  {function} powFn
+ *
+ * @returns {function} dispatch
+ */
 export const retryFailedTransaction = (accountName, bundleHash, powFn) => (dispatch, getState) => {
     const existingAccountState = selectedAccountStateFactory(accountName)(getState());
     const existingFailedTransactionsForThisAccount = getFailedBundleHashesForSelectedAccount(getState());
