@@ -302,9 +302,6 @@ const attachToTangleAsync = (
     trytes,
     minWeightMagnitude = DEFAULT_MIN_WEIGHT_MAGNITUDE,
 ) => {
-    console.log(trunkTransaction);
-    console.log(branchTransaction);
-    console.log(trytes);
     return new Promise((resolve, reject) => {
         iota.api.attachToTangle(
             trunkTransaction,
@@ -315,7 +312,6 @@ const attachToTangleAsync = (
                 if (err) {
                     reject(err);
                 } else {
-                    console.log(attachedTrytes);
                     const promise = () =>
                         reduce(
                             attachedTrytes,
