@@ -323,7 +323,7 @@ const attachToTangleAsync = (
                         );
 
                     promise()
-                        .then(({ transactionObjects }) =>
+                        .then((transactionObjects) =>
                             resolve({
                                 transactionObjects,
                                 trytes: attachedTrytes,
