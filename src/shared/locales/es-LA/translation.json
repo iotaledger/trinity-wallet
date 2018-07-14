@@ -21,7 +21,7 @@
         "invalidResponseFetchingAccount": "Error en el nodo al intentar obtener información de su cuenta. Intente cambiarlo o revise las notificaciones para más información.",
         "invalidResponseSendingTransfer": "Error en el nodo mientras se enviaba la transferencia. Revise las notificaciones para más información.",
         "nodeOutOfSync": "Node out of sync",
-        "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
+        "nodeOutOfSyncExplanation": "Su nodo seleccionado está desincronizado. Por favor cámbielo e intente de nuevo.",
         "thisNodeOutOfSync": "This node is out of sync. Please change node or try again.",
         "seed": "Semilla",
         "checksum": "Código de Verificación",
