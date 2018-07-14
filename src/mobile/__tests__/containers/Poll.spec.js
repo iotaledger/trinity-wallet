@@ -10,6 +10,12 @@ jest.mock('react-native-keychain', () => ({
     getGenericPassword: () => Promise.resolve({}),
 }));
 
+jest.mock('react-native-background-task', () => ({
+    define: jest.fn(),
+    finish: jest.fn(),
+    schedule: jest.fn(),
+}));
+
 const getProps = (overrides) =>
     assign(
         {},
