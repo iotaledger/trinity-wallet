@@ -29,12 +29,10 @@ BackgroundTask.define(async () => {
     console.log('queueFactory initialized');
 
     // Register the background worker
-    /*eslint-disable no-unused-vars*/
     queue.addWorker('promote-transactions', async (id, payload) => {
         console.log(id);
-        /*eslint-enable no-unused-vars*/
-        console.log('We have transactions to promote!'); //eslint-disable-line no-console
-        Poll.backgroundPromote();
+        console.log(payload);
+        await Poll.backgroundPromote(payload);
     });
 
     console.log('Worker added');
@@ -44,10 +42,10 @@ BackgroundTask.define(async () => {
     // Start the queue with a lifespan of 25 sec
     // IMPORTANT: OS background tasks are limited to 30 seconds or less.
     // NOTE: Queue lifespan logic will attempt to stop queue processing 500ms less than passed lifespan for a healthy shutdown buffer.
+    console.log('Queue starting');
     await queue.start(25000);
 
-    console.log('Queue started');
-
+    console.log('Finished');
     // Tell OS that we're done the background task
     BackgroundTask.finish();
 });
@@ -68,11 +66,26 @@ export class Poll extends Component {
         promoteTransfer: PropTypes.func.isRequired,
     };
 
+    // Same as promote() but refactored for background tasks
+    static async backgroundPromote(payload) {
+        console.log('Background promoter is running');
+
+        if (!isEmpty(payload)) {
+            console.log('Promoting');
+            return await Poll.boundPromoteTransfer(payload.bundleHash, payload.tails);
+        }
+    }
+
+    static async boundPromoteTransfer(bundleHash, tails) {
+        return await this.props.promoteTransfer(bundleHash, tails);
+    }
+
     constructor() {
         super();
 
         this.fetchLatestAccountInfo = this.fetchLatestAccountInfo.bind(this);
         this.promote = this.promote.bind(this);
+        Poll.boundPromoteTransfer = Poll.boundPromoteTransfer.bind(this);
 
         this.state = {
             autoPromoteSkips: 0,
@@ -83,7 +96,6 @@ export class Poll extends Component {
     }
 
     componentDidMount() {
-        this.startBackgroundProcesses();
         AppState.addEventListener('change', this.handleAppStateChange);
         BackgroundTask.schedule();
     }
@@ -94,14 +106,13 @@ export class Poll extends Component {
     }
 
     async init() {
-      const queue = await queueFactory();
-      /*eslint-disable no-unused-vars*/
-      queue.addWorker('promote-transactions', async (id, payload) => {
-          console.log(id);
-          /*eslint-enable no-unused-vars*/
-      });
+        const queue = await queueFactory();
+        queue.addWorker('promote-transactions', async (id, payload) => {
+            console.log(id);
+            console.log(payload);
+        });
 
-      this.state.queue = queue;
+        this.state.queue = queue;
     }
 
     shouldSkipCycle() {
@@ -155,24 +166,29 @@ export class Poll extends Component {
         const { isAutoPromotionEnabled, unconfirmedBundleTails } = this.props;
         const { queue } = this.state;
 
+        const bundles = keys(unconfirmedBundleTails);
+        const bundleHash = bundles[0];
         console.log(queue);
 
-        if (isAutoPromotionEnabled && !isEmpty(unconfirmedBundleTails) && queue !== null) {
+        if (isAutoPromotionEnabled && !isEmpty(unconfirmedBundleTails)) {
             queue.createJob(
                 'promote-transactions', // Job name
-                {}, // Empty payload, the promoter will get the hashes from the state
-                { attempts: 2, timeout: 20000 }, // Retry job up to 2 times if it fails and set a 20 sec timeout
+                {
+                    bundleHash: bundleHash,
+                    tails: unconfirmedBundleTails[bundleHash],
+                },
+                { attempts: 2, timeout: 23000 }, // Retry job up to 2 times if it fails and set a 20 sec timeout
                 false, // Must pass false as the last param so the queue starts up in the background task instead of immediately
             );
         } else {
-          timer.setTimeout(this, 'jobCreator', () => this.createPromoterJob(), 1000);
+            timer.setTimeout(this, 'jobCreator', () => this.createPromoterJob(), 1000);
         }
     }
 
     startBackgroundProcesses() {
         timer.setInterval(this, 'polling', () => this.fetch(this.props.pollFor), 8000);
-        if (this.state.queue !== null) {
-            this.createPromoterJob(); // Only create the job if one does not already exist
+        if (this.state.queue) {
+            this.createPromoterJob();
         }
     }
 
@@ -215,19 +231,6 @@ export class Poll extends Component {
 
         // In case there are no unconfirmed bundle tails or auto-promotion is disabled, move to the next service item
         return this.props.setPollFor(allPollingServices[next]);
-    }
-
-    // Same as function above but optimized for background tasks
-    backgroundPromote() {
-        console.log('Background promoter is running');
-        const { isAutoPromotionEnabled, unconfirmedBundleTails } = this.props;
-
-        if (isAutoPromotionEnabled && !isEmpty(unconfirmedBundleTails)) {
-            const bundles = keys(unconfirmedBundleTails);
-            const bundleHash = bundles[0];
-
-            return this.props.promoteTransfer(bundleHash, unconfirmedBundleTails[bundleHash]);
-        }
     }
 
     render() {
