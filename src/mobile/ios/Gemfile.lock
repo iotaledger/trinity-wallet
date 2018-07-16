@@ -15,7 +15,7 @@ GEM
     declarative-option (0.1.0)
     domain_name (0.5.20180417)
       unf (>= 0.0.5, < 1.0.0)
-    dotenv (2.4.0)
+    dotenv (2.5.0)
     emoji_regex (0.1.1)
     excon (0.62.0)
     faraday (0.15.2)
@@ -26,7 +26,7 @@ GEM
     faraday_middleware (0.12.2)
       faraday (>= 0.7.4, < 1.0)
     fastimage (2.1.3)
-    fastlane (2.98.0)
+    fastlane (2.99.1)
       CFPropertyList (>= 2.3, < 4.0.0)
       addressable (>= 2.3, < 3.0.0)
       babosa (>= 1.0.2, < 2.0.0)
@@ -62,13 +62,13 @@ GEM
       xcodeproj (>= 1.5.7, < 2.0.0)
       xcpretty (~> 0.2.8)
       xcpretty-travis-formatter (>= 0.0.3)
-    fastlane-plugin-bugsnag (1.3.2)
+    fastlane-plugin-bugsnag (1.3.3)
       git
       xml-simple
     fastlane-plugin-load_json (0.0.1)
     fastlane-plugin-localization (0.2.0)
     gh_inspector (1.1.3)
-    git (1.3.0)
+    git (1.4.0)
     google-api-client (0.21.2)
       addressable (~> 2.5, >= 2.5.1)
       googleauth (>= 0.5, < 0.7.0)
@@ -102,7 +102,7 @@ GEM
     multi_json (1.13.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
-    nanaimo (0.2.5)
+    nanaimo (0.2.6)
     naturally (2.2.0)
     os (0.9.6)
     plist (3.4.0)
@@ -120,7 +120,7 @@ GEM
       faraday (~> 0.9)
       jwt (>= 1.5, < 3.0)
       multi_json (~> 1.10)
-    simctl (1.6.4)
+    simctl (1.6.5)
       CFPropertyList
       naturally
     slack-notifier (2.3.2)
@@ -159,4 +159,4 @@ DEPENDENCIES
   fastlane-plugin-localization
 
 BUNDLED WITH
-   1.16.0
+   1.16.2
