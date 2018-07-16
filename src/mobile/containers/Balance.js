@@ -2,6 +2,8 @@ import map from 'lodash/map';
 import orderBy from 'lodash/orderBy';
 import includes from 'lodash/includes';
 import get from 'lodash/get';
+import cloneDeep from 'lodash/cloneDeep';
+import clone from 'lodash/clone';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
@@ -174,6 +176,37 @@ export class Balance extends Component {
     }
 
     /**
+     * Formats recent transactions to accommodate for sending to self
+     * @param {Array} transactions
+     * @return {Array} Formatted recent transactions
+     */
+    formatRelevantTransactions(transactions) {
+        const { addresses } = this.props;
+        const relevantTransactions = [];
+        map(transactions, (transaction) => {
+            if (relevantTransactions.length < 4) {
+                if (
+                    (transaction.transferValue !== 0 &&
+                        !transaction.incoming &&
+                        transaction.outputs.every((tx) => addresses.includes(tx.address))) ||
+                    (transaction.transferValue === 0 &&
+                        transaction.outputs.every((tx) => addresses.includes(tx.address)))
+                ) {
+                    const sendToSelfTransaction = clone(transaction);
+                    sendToSelfTransaction.incoming = true;
+                    relevantTransactions.push(sendToSelfTransaction);
+                    if (relevantTransactions.length < 4) {
+                        relevantTransactions.push(transaction);
+                    }
+                } else {
+                    relevantTransactions.push(transaction);
+                }
+            }
+        });
+        return relevantTransactions;
+    }
+
+    /**
      * Formats transaction data
      * @return {Array} Formatted transaction data
      */
@@ -181,7 +214,8 @@ export class Balance extends Component {
     prepTransactions() {
         const { t, addresses, transfers, primary, secondary, body } = this.props;
         const orderedTransfers = orderBy(transfers, (tx) => tx.timestamp, ['desc']);
-        const recentTransactions = orderedTransfers.slice(0, 4);
+        const recentTransactions = cloneDeep(orderedTransfers).slice(0, 4);
+        const relevantTransactions = this.formatRelevantTransactions(recentTransactions);
 
         const computeConfirmationStatus = (outputs, persistence, incoming, value) => {
             const receiveStatus = persistence ? t('received') : t('receiving');
@@ -220,8 +254,7 @@ export class Balance extends Component {
 
             return incoming ? '+' : '-';
         };
-
-        const formattedTransfers = map(recentTransactions, (transfer) => {
+        const formattedTransfers = map(relevantTransactions, (transfer) => {
             const { outputs, timestamp, incoming, persistence, transferValue } = transfer;
 
             return {
