@@ -12,6 +12,7 @@ import ViewSeed from '../containers/ViewSeed';
 import ViewAddressesComponent from '../containers/ViewAddresses';
 import ProofOfWork from '../containers/Pow';
 import AutoPromotion from '../containers/AutoPromotion';
+import BackgroundProcesses from '../containers/BackgroundProcesses';
 import EditAccountNameComponent from '../containers/EditAccountName';
 import DeleteAccount from '../containers/DeleteAccount';
 import AddNewAccount from '../containers/AddNewAccount';
@@ -53,6 +54,7 @@ const SETTINGS_COMPONENTS = {
     modeSelection: ModeSelection,
     pow: ProofOfWork,
     autoPromotion: AutoPromotion,
+    backgroundProcesses: BackgroundProcesses,
     about: About,
 };
 

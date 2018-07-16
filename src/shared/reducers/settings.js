@@ -98,6 +98,7 @@ const initialState = {
      * Determines if polling should auto promote unconfirmed transactions
      */
     autoPromotion: true,
+    backgroundProcesses: false,
     /**
      * Determines the time for locking user out of dashboard screens to lock/login screen
      */
@@ -159,6 +160,11 @@ const settingsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 autoPromotion: action.payload,
+            };
+        case ActionTypes.SET_BACKGROUND_PROCESSES:
+            return {
+                ...state,
+                backgroundProcesses: action.payload,
             };
         case ActionTypes.UPDATE_AUTO_NODE_SWITCHING:
             return {
