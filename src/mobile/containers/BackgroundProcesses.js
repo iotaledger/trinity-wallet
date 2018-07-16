@@ -10,6 +10,7 @@ import { Icon } from '../theme/icons';
 import InfoBox from '../components/InfoBox';
 import Toggle from '../components/Toggle';
 import GENERAL from '../theme/general';
+import { backgroundFetchStatus } from '../utils/device';
 import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
@@ -83,11 +84,19 @@ class BackgroundProcesses extends Component {
     constructor() {
         super();
 
+        this.state = {
+            status: 0,
+        };
+
         this.onChange = this.onChange.bind(this);
     }
 
     componentDidMount() {
         leaveNavigationBreadcrumb('BackgroundProcesses');
+        // Get system background fetch status
+        backgroundFetchStatus().then((status) => {
+            this.setState({ status });
+        });
     }
 
     onChange() {
@@ -95,6 +104,7 @@ class BackgroundProcesses extends Component {
     }
 
     render() {
+        const { status } = this.state;
         const { t, backgroundProcesses, theme: { body, primary } } = this.props;
         const textColor = { color: body.color };
         const infoTextPadding = { paddingTop: height / 50 };
@@ -127,10 +137,13 @@ class BackgroundProcesses extends Component {
                                     </Text>
                                 </View>
                                 <Toggle
-                                    active={backgroundProcesses}
+                                    /* Set toggle to "disabled" if background fetch is disabled by the system */
+                                    active={status < 2 ? false : backgroundProcesses}
                                     bodyColor={body.color}
                                     primaryColor={primary.color}
                                     scale={1.3}
+                                    /* Reduce toggle opacity if background fetch is disabled by the system */
+                                    opacity={status < 2 ? 0.1 : 1}
                                 />
                                 <View style={styles.toggleTextContainer}>
                                     <Text style={[styles.toggleText, textColor, { marginLeft: width / 45 }]}>

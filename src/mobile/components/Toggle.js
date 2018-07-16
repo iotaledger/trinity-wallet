@@ -46,7 +46,7 @@ class Toggle extends PureComponent {
                             height: size / 22,
                             borderRadius: size / 40,
                             paddingHorizontal: size / 300,
-                            opacity: isAndroid ? opacity * 2 : 1,
+                            opacity: isAndroid ? opacity * 2 : opacity,
                         },
                     ]}
                 >
