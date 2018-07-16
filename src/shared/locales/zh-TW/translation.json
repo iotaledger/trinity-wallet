@@ -621,14 +621,14 @@
         "exportFail": "SeedVault 匯出失敗",
         "exportFailExplanation": "匯出 SeedVault 時發生錯誤，請確認您有對應的權限以及足夠的可用空間。",
         "exportSuccess": "SeedVault 已匯出",
-        "exportSuccessExplanation": "Your encrypted seed file was exported successfully.",
-        "importSeedVault": "Import SeedVault",
-        "dropSeedVaultHere": "Drop SeedVault here",
-        "enterPasswordExplanation": "Enter your password to open the SeedVault",
-        "noSeedFound": "SeedVault does not contain a valid seed",
-        "noSeedFoundExplanation": "The SeedVault is either empty or contains a seed in an invalid format.",
-        "seedFileError": "Failed to open SeedVault",
-        "seedFileErrorExplanation": "There was a problem opening the SeedVault. If you selected the correct file then it may be corrupted."
+        "exportSuccessExplanation": "您的種子碼加密檔案已成功匯出。",
+        "importSeedVault": "匯入 SeedVault",
+        "dropSeedVaultHere": "將 SeedVault 放至這裡",
+        "enterPasswordExplanation": "輸入您的密碼來開啟 SeedVault",
+        "noSeedFound": "SeedVault 裡沒儲存有效的種子碼",
+        "noSeedFoundExplanation": "SeedVault 是空的或儲存格式不符的種子碼。",
+        "seedFileError": "開啟 SeedVault 失敗",
+        "seedFileErrorExplanation": "開啟 SeedVault 時遇到問題，如果您選擇的檔案是正確的，那麼它可能已損壞。"
     },
     "chart": {
         "mcap": "總市值",
