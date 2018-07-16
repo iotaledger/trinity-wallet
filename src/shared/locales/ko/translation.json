@@ -491,10 +491,10 @@
         "customNode": "커스텀 노드",
         "removeCustomNode": "사용자 추가 노드 제거",
         "invalidNodeResponse": "노드가 잘못된 응답을 보냈습니다.",
-        "httpNodeError": "트리니티 모바일 앱은 https 노드만 지원합니다.",
         "add": "추가",
         "nodeFieldEmpty": "입력한 텍스트가 없습니다.",
-        "nodeFieldEmptyExplanation": "커스텀 노드를 입력해 주세요."
+        "nodeFieldEmptyExplanation": "커스텀 노드를 입력해 주세요.",
+        "invalidURL": "Please enter a valid URL."
     },
     "addNewAccount": {
         "useExistingSeed": "기존 시드 사용",
