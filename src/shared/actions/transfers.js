@@ -655,7 +655,7 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
 };
 
 /**
- * Retry a transaction that previously failed to send
+ * Retries a transaction that previously failed to send.
  * @param  {string} accountName
  * @param  {string} bundleHash
  * @param  {function} powFn
