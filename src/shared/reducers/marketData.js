@@ -18,7 +18,7 @@ const initialState = {
      */
     mcap: '0',
     /**
-     * Total amount traded during a time period
+     * Total amount traded over twenty four hours
      */
     volume: '0',
     /**
