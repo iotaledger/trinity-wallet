@@ -3,8 +3,6 @@ import map from 'lodash/map';
 import clone from 'lodash/clone';
 import cloneDeep from 'lodash/cloneDeep';
 import has from 'lodash/has';
-import includes from 'lodash/includes';
-import get from 'lodash/get';
 import orderBy from 'lodash/orderBy';
 import React, { Component } from 'react';
 import Modal from 'react-native-modal';
@@ -13,6 +11,7 @@ import { StyleSheet, View, TouchableWithoutFeedback, RefreshControl, ActivityInd
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import { computeStatusText } from 'iota-wallet-shared-modules/libs/iota/transfers';
 import { promoteTransaction, retryFailedTransaction } from 'iota-wallet-shared-modules/actions/transfers';
 import {
     getTransfersForSelectedAccount,
@@ -178,12 +177,7 @@ class History extends Component {
         const { addresses } = this.props;
         const relevantTransactions = [];
         map(transactions, (transaction) => {
-            if (
-                (transaction.transferValue !== 0 &&
-                    !transaction.incoming &&
-                    transaction.outputs.every((tx) => addresses.includes(tx.address))) ||
-                (transaction.transferValue === 0 && transaction.outputs.every((tx) => addresses.includes(tx.address)))
-            ) {
+            if (!transaction.incoming && transaction.outputs.every((tx) => addresses.includes(tx.address))) {
                 const sendToSelfTransaction = clone(transaction);
                 sendToSelfTransaction.incoming = true;
                 relevantTransactions.push(sendToSelfTransaction);
@@ -212,36 +206,6 @@ class History extends Component {
         } = this.props;
         const relevantTransfers = this.formatRelevantTransactions(cloneDeep(transfers));
 
-        const computeStatusText = (outputs, persistence, incoming, value) => {
-            const receiveStatus = persistence ? t('received') : t('receiving');
-            const sendStatus = persistence ? t('sent') : t('sending');
-            if (value === 0) {
-                if (
-                    !includes(addresses, get(outputs, '[0].address')) &&
-                    includes(addresses, get(outputs, '[1].address'))
-                ) {
-                    return sendStatus;
-                }
-                return receiveStatus;
-            }
-
-            return incoming ? receiveStatus : sendStatus;
-        };
-
-        const computeIncoming = (outputs, incoming, value) => {
-            if (value === 0) {
-                if (
-                    !includes(addresses, get(outputs, '[0].address')) &&
-                    includes(addresses, get(outputs, '[1].address'))
-                ) {
-                    return false;
-                }
-                return true;
-            }
-
-            return incoming ? true : false;
-        };
-
         const withUnitAndChecksum = (item) => ({
             address: `${item.address}${item.checksum}`,
             value: round(formatValue(item.value), 1),
@@ -254,7 +218,7 @@ class History extends Component {
             const value = round(formatValue(transferValue), 1);
             return {
                 t,
-                status: computeStatusText(outputs, persistence, incoming, value),
+                status: computeStatusText(outputs, persistence, incoming),
                 confirmationBool: persistence,
                 persistence,
                 value,
@@ -263,9 +227,9 @@ class History extends Component {
                 time: timestamp,
                 message,
                 mode,
-                incoming: computeIncoming(outputs, incoming, value),
+                incoming,
                 addresses,
-                icon: computeIncoming(outputs, incoming, value) ? 'plus' : 'minus',
+                icon: incoming ? 'plus' : 'minus',
                 bundleIsBeingPromoted: currentlyPromotingBundleHash === bundle && !persistence,
                 outputs,
                 onPress: (modalProps) => {
@@ -289,9 +253,7 @@ class History extends Component {
                     this.props.toggleModalActivity();
                 },
                 style: {
-                    titleColor: persistence
-                        ? computeIncoming(outputs, incoming, value) ? primary.color : secondary.color
-                        : '#fc6e6d',
+                    titleColor: persistence ? (incoming ? primary.color : secondary.color) : '#fc6e6d',
                     pendingColor: '#fc6e6d',
                     containerBackgroundColor: { backgroundColor: dark.color },
                     defaultTextColor: { color: body.color },
