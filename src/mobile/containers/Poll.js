@@ -110,6 +110,7 @@ export class Poll extends Component {
     componentDidMount() {
         AppState.addEventListener('change', this.handleAppStateChange);
         BackgroundTask.schedule();
+        this.startBackgroundProcesses();
     }
 
     componentWillUnmount() {

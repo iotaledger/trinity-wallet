@@ -5,6 +5,13 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { Poll } from '../../containers/Poll';
 
+jest.mock('react-native-background-fetch', () => ({
+    stop: jest.fn(),
+    configure: jest.fn(),
+    finish: jest.fn(),
+    status: jest.fn(() => Promise.resolve(2)),
+}));
+
 jest.mock('react-native-keychain', () => ({
     setGenericPassword: () => Promise.resolve({}),
     getGenericPassword: () => Promise.resolve({}),
