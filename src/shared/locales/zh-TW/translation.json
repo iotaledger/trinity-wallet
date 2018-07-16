@@ -491,10 +491,10 @@
         "customNode": "自訂節點",
         "removeCustomNode": "移除自訂節點",
         "invalidNodeResponse": "節點回傳無效回應。",
-        "httpNodeError": "Trinity Mobile 僅支援 https 節點。",
         "add": "新增",
         "nodeFieldEmpty": "文字欄為空",
-        "nodeFieldEmptyExplanation": "請輸入自訂節點。"
+        "nodeFieldEmptyExplanation": "請輸入自訂節點。",
+        "invalidURL": "Please enter a valid URL."
     },
     "addNewAccount": {
         "useExistingSeed": "使用現有的種子碼",
