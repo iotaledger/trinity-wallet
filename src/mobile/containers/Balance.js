@@ -199,6 +199,20 @@ export class Balance extends Component {
             return incoming ? receiveStatus : sendStatus;
         };
 
+        const computeIncoming = (outputs, incoming, value) => {
+            if (value === 0) {
+                if (
+                    !includes(addresses, get(outputs, '[0].address')) &&
+                    includes(addresses, get(outputs, '[1].address'))
+                ) {
+                    return false;
+                }
+                return true;
+            }
+
+            return incoming ? true : false;
+        };
+
         const getSign = (value, incoming) => {
             if (value === 0) {
                 return '';
@@ -219,7 +233,10 @@ export class Balance extends Component {
                 icon: incoming ? 'plus' : 'minus',
                 incoming,
                 style: {
-                    titleColor: incoming ? primary.color : secondary.color,
+                    titleColor: persistence
+                        ? computeIncoming(outputs, incoming, transferValue) ? primary.color : secondary.color
+                        : '#fc6e6d',
+                    pendingColor: '#fc6e6d',
                     defaultTextColor: body.color,
                     iconColor: body.color,
                 },
