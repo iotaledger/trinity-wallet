@@ -234,7 +234,6 @@ class Receive extends Component {
         currency: PropTypes.string.isRequired,
         usdPrice: PropTypes.number.isRequired,
         conversionRate: PropTypes.number.isRequired,
-        seedIndex: PropTypes.number.isRequired,
     };
 
     constructor(props) {
@@ -292,7 +291,6 @@ class Receive extends Component {
 
     componentDidMount() {
         leaveNavigationBreadcrumb('Receive');
-        timer.setTimeout('generateAddressDelay', () => this.generateAddress(), 250);
     }
 
     componentWillReceiveProps(newProps) {
@@ -305,9 +303,6 @@ class Receive extends Component {
             }
 
             this.triggerRefreshAnimations();
-        }
-        if (this.props.seedIndex !== newProps.seedIndex) {
-            timer.setTimeout('generateAddressDelay', () => this.generateAddress(), 100);
         }
     }
 
@@ -323,10 +318,6 @@ class Receive extends Component {
         }
 
         return true;
-    }
-
-    componentWillUnmount() {
-        timer.clearTimeout('generateAddressDelay');
     }
 
     /**
@@ -752,7 +743,6 @@ const mapStateToProps = (state) => ({
     selectedAccountData: selectAccountInfo(state),
     selectedAccountName: getSelectedAccountName(state),
     isSyncing: state.ui.isSyncing,
-    seedIndex: state.wallet.seedIndex,
     receiveAddress: selectLatestAddressFromAccountFactory(state),
     isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
     isGettingSensitiveInfoToGenerateAddress: state.keychain.isGettingSensitiveInfo.receive.addressGeneration,
