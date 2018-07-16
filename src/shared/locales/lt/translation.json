@@ -494,7 +494,7 @@
         "add": "Pridėti",
         "nodeFieldEmpty": "Teksto laukas tuščias",
         "nodeFieldEmptyExplanation": "Įveskite vartotojo serverį.",
-        "invalidURL": "Please enter a valid URL."
+        "invalidURL": "Įveskite teisingą URL adresą."
     },
     "addNewAccount": {
         "useExistingSeed": "Naudoti seną užraktą",
