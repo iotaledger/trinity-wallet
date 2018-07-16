@@ -491,10 +491,10 @@
         "customNode": "自定义节点",
         "removeCustomNode": "删除自定义节点",
         "invalidNodeResponse": "节点返回无效响应",
-        "httpNodeError": "三体钱包移动版只支持https节点",
         "add": "新增",
         "nodeFieldEmpty": "文本字段为空",
-        "nodeFieldEmptyExplanation": "请输入自定义节点。"
+        "nodeFieldEmptyExplanation": "请输入自定义节点。",
+        "invalidURL": "Please enter a valid URL."
     },
     "addNewAccount": {
         "useExistingSeed": "使用现有种子",
