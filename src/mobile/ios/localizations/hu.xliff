@@ -62,17 +62,20 @@
       <trans-unit id="NSCameraUsageDescription">
         <source>Trinity requires access to the camera in order to enable QR scanning.</source>
         <note>Privacy - Camera Usage Description</note>
-        <target xml:lang="hu" state="needs-translation">Trinity requires access to the camera in order to enable QR scanning.</target>
+        <target xml:lang="hu" state="translated">A Trinity a QR kódok olvasásához hozzáférési jogosultságot igényel a kamerához.</target>
+        <alt-trans>
+          <target xml:lang="hu">A Trinity a QR kódok olvasása miatt hozzáférési jogosultságot igényel a kamerához.</target>
+        </alt-trans>
       </trans-unit>
       <trans-unit id="NSFaceIDUsageDescription">
         <source>Trinity requires access to Face ID in order to enable biometric authentication.</source>
         <note>Privacy - Face ID Usage Description</note>
-        <target xml:lang="hu" state="needs-translation">Trinity requires access to Face ID in order to enable biometric authentication.</target>
+        <target xml:lang="hu" state="translated">A Trinity a biometrikus azonosítás használatához hozzáférési jogosultságot igényel a Face ID funkcióhoz.</target>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
         <source>2018 IOTA Foundation. All rights reserved.</source>
         <note>Copyright (human-readable)</note>
-        <target xml:lang="hu" state="needs-translation">2018 IOTA Foundation. All rights reserved.</target>
+        <target xml:lang="hu" state="translated">2018 IOTA Foundation. Minden jog fenntartva.</target>
       </trans-unit>
       <trans-unit id="NSLocationWhenInUseUsageDescription">
         <source>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</source>
