@@ -491,10 +491,10 @@
         "customNode": "Servidor personalizado",
         "removeCustomNode": "Remover servidor personalizado",
         "invalidNodeResponse": "O servidor retornou uma resposta inválida",
-        "httpNodeError": "A Trinity suporta somente servidores https.",
         "add": "Adicionar",
         "nodeFieldEmpty": "O campo de texto está vazio",
-        "nodeFieldEmptyExplanation": "Por favor, insira um servidor personalizado."
+        "nodeFieldEmptyExplanation": "Por favor, insira um servidor personalizado.",
+        "invalidURL": "Please enter a valid URL."
     },
     "addNewAccount": {
         "useExistingSeed": "Usar Seed existente",
