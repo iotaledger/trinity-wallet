@@ -2,7 +2,13 @@ import { ActionTypes } from '../actions/home';
 import { ActionTypes as UIActionTypes } from '../actions/ui';
 
 const initialState = {
+    /**
+     * Mobile dashboard active route name
+     */
     childRoute: 'balance', // left most tab
+    /**
+     * Determines if the topbar on mobile dashboard is active or not
+     */
     isTopBarActive: false,
 };
 

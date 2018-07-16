@@ -13,6 +13,15 @@ import { ActionTypes as PollingActionTypes } from '../actions/polling';
 import { ActionTypes as TransfersActionTypes } from '../actions/transfers';
 import { renameKeys } from '../libs/utils';
 
+/**
+ * Updates account information for a single account
+ *
+ * @method updateAccountInfo
+ *
+ * @param state - Account state object
+ * @param payload - New account information
+ * @returns {{accountInfo: {}}}
+ */
 const updateAccountInfo = (state, payload) => ({
     accountInfo: {
         ...state.accountInfo,
@@ -29,6 +38,15 @@ const updateAccountInfo = (state, payload) => ({
     },
 });
 
+/**
+ * Updates account name
+ *
+ * @method updateAccountName
+ *
+ * @param state - Account state object
+ * @param payload - New account information
+ * @returns {{accountInfo: {}}}
+ */
 const updateAccountName = (state, payload) => {
     const { accountInfo, accountNames, unconfirmedBundleTails, setupInfo, tasks, failedBundleHashes } = state;
 
@@ -65,15 +83,44 @@ const updateAccountName = (state, payload) => {
 
 const account = (
     state = {
+        /**
+         * Keeps track of the number of total seeds (accounts) added in wallet
+         */
         seedCount: 0,
+        /**
+         * List of unique account names added in wallet
+         */
         accountNames: [],
+        /**
+         * Determines if the wallet is being setup for the first time
+         */
         firstUse: true,
+        /**
+         * Determines if onboarding process is completed
+         */
         onboardingComplete: false,
+        /**
+         * Keeps track of signed bundle hashes failed to broadcast
+         */
         failedBundleHashes: {},
+        /**
+         * Keeps track of each account information (addresses, transfers, balance)
+         */
         accountInfo: {},
+        /**
+         * Keeps track information during account setup.
+         * For example: Keeps track if a user used an existing seed or generated within Trinity
+         */
         setupInfo: {},
+        /**
+         * Keeps track on tasks wallet needs to perform
+         * For example: Keeps track if user was displayed with the transaction guide modal
+         */
         tasks: {},
-        unconfirmedBundleTails: {}, // Regardless of the selected account, this would hold all the unconfirmed transfers by bundles.
+        /**
+         * Keeps track of all unconfirmed transfers categorised by bundle hashes for all accounts
+         */
+        unconfirmedBundleTails: {},
     },
     action,
 ) => {

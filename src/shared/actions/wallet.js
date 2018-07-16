@@ -20,7 +20,6 @@ export const ActionTypes = {
     SET_ACCOUNT_NAME: 'IOTA/WALLET/SET_ACCOUNT_NAME',
     SET_PASSWORD: 'IOTA/WALLET/SET_PASSWORD',
     CLEAR_WALLET_DATA: 'IOTA/WALLET/CLEAR_WALLET_DATA',
-    SET_USED_SEED_TO_LOGIN: 'IOTA/WALLET/SET_USED_SEED_TO_LOGIN',
     SET_SEED_INDEX: 'IOTA/WALLET/SET_SEED_INDEX',
     SET_READY: 'IOTA/WALLET/SET_READY',
     SET_SEED: 'IOTA/WALLET/SET_SEED',
@@ -65,11 +64,6 @@ export const setPassword = (payload) => ({
 
 export const clearWalletData = () => ({
     type: ActionTypes.CLEAR_WALLET_DATA,
-});
-
-export const setUsedSeedToLogin = () => ({
-    type: ActionTypes.SET_USED_SEED_TO_LOGIN,
-    payload: true,
 });
 
 export const setSeedIndex = (payload) => ({
