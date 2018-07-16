@@ -140,7 +140,7 @@
       "/shared/"
     ],
     "transformIgnorePatterns": [
-      "node_modules/?!(react-native|iota-wallet-shared-modules)/"
+      "node_modules/?!(react-native|iota-wallet-shared-modules|realm)/"
     ]
   },
   "react-native": {

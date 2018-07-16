@@ -65,3 +65,6 @@ fastlane/screenshots
 
 
 # End of https://www.gitignore.io/api/visualstudiocode
+
+# Realm
+/reactNativeQueue.realm*
