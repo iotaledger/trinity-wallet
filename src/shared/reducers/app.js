@@ -2,6 +2,9 @@ import merge from 'lodash/merge';
 import { ActionTypes } from '../actions/app';
 
 const initialState = {
+    /**
+     * Desktop activation code
+     */
     activationCode: null,
 };
 
