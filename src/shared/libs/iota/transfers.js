@@ -42,6 +42,7 @@ import {
     attachToTangleAsync,
     storeAndBroadcastAsync,
 } from './extendedApi';
+import i18next from '../../i18next.js';
 import { convertFromTrytes } from './utils';
 import Errors from './../errors';
 
@@ -308,6 +309,14 @@ export const categoriseBundleByInputsOutputs = (bundle, addresses, outputsThresh
  *   @returns {boolean}
  **/
 export const isSentTransfer = (bundle, addresses) => {
+    const categorisedBundle = categoriseBundleByInputsOutputs(bundle, addresses);
+    const value = getTransferValue(bundle, addresses);
+    if (value === 0) {
+        return (
+            !includes(addresses, get(categorisedBundle.outputs, '[0].address')) &&
+            includes(addresses, get(categorisedBundle.outputs, '[1].address'))
+        );
+    }
     return some(bundle, (tx) => {
         const isRemainder = tx.currentIndex === tx.lastIndex && tx.lastIndex !== 0;
         return includes(addresses, tx.address) && tx.value < 0 && !isRemainder;
@@ -1009,4 +1018,21 @@ export const retryFailedTransaction = (transactionObjects, powFn, shouldOffloadP
     }
 
     return storeAndBroadcastAsync(cached.trytes).then(() => cached);
+};
+
+/**
+ *  Returns string for current transaction's status
+ *
+ *   @method computeStatusText
+ *
+ *   @param {array} outputs
+ *   @param {boolean} persistence
+ *   @param {boolean} incoming
+ *   @return {string} Status text
+ */
+
+export const computeStatusText = (outputs, persistence, incoming) => {
+    const receiveStatus = persistence ? i18next.t('global:received') : i18next.t('global:receiving');
+    const sendStatus = persistence ? i18next.t('global:sent') : i18next.t('global:sending');
+    return incoming ? receiveStatus : sendStatus;
 };

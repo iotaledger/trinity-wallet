@@ -1,7 +1,5 @@
 import map from 'lodash/map';
 import orderBy from 'lodash/orderBy';
-import includes from 'lodash/includes';
-import get from 'lodash/get';
 import cloneDeep from 'lodash/cloneDeep';
 import clone from 'lodash/clone';
 import React, { Component } from 'react';
@@ -19,6 +17,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { round, roundDown } from 'iota-wallet-shared-modules/libs/utils';
+import { computeStatusText } from 'iota-wallet-shared-modules/libs/iota/transfers';
 import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/iota/utils';
 import {
     getTransfersForSelectedAccount,
@@ -185,13 +184,7 @@ export class Balance extends Component {
         const relevantTransactions = [];
         map(transactions, (transaction) => {
             if (relevantTransactions.length < 4) {
-                if (
-                    (transaction.transferValue !== 0 &&
-                        !transaction.incoming &&
-                        transaction.outputs.every((tx) => addresses.includes(tx.address))) ||
-                    (transaction.transferValue === 0 &&
-                        transaction.outputs.every((tx) => addresses.includes(tx.address)))
-                ) {
+                if (!transaction.incoming && transaction.outputs.every((tx) => addresses.includes(tx.address))) {
                     const sendToSelfTransaction = clone(transaction);
                     sendToSelfTransaction.incoming = true;
                     relevantTransactions.push(sendToSelfTransaction);
@@ -212,46 +205,15 @@ export class Balance extends Component {
      */
 
     prepTransactions() {
-        const { t, addresses, transfers, primary, secondary, body } = this.props;
+        const { transfers, primary, secondary, body } = this.props;
         const orderedTransfers = orderBy(transfers, (tx) => tx.timestamp, ['desc']);
         const recentTransactions = cloneDeep(orderedTransfers).slice(0, 4);
         const relevantTransactions = this.formatRelevantTransactions(recentTransactions);
-
-        const computeConfirmationStatus = (outputs, persistence, incoming, value) => {
-            const receiveStatus = persistence ? t('received') : t('receiving');
-            const sendStatus = persistence ? t('sent') : t('sending');
-            if (value === 0) {
-                if (
-                    !includes(addresses, get(outputs, '[0].address')) &&
-                    includes(addresses, get(outputs, '[1].address'))
-                ) {
-                    return sendStatus;
-                }
-                return receiveStatus;
-            }
-
-            return incoming ? receiveStatus : sendStatus;
-        };
-
-        const computeIncoming = (outputs, incoming, value) => {
-            if (value === 0) {
-                if (
-                    !includes(addresses, get(outputs, '[0].address')) &&
-                    includes(addresses, get(outputs, '[1].address'))
-                ) {
-                    return false;
-                }
-                return true;
-            }
-
-            return incoming ? true : false;
-        };
 
         const getSign = (value, incoming) => {
             if (value === 0) {
                 return '';
             }
-
             return incoming ? '+' : '-';
         };
         const formattedTransfers = map(relevantTransactions, (transfer) => {
@@ -259,16 +221,14 @@ export class Balance extends Component {
 
             return {
                 time: timestamp,
-                confirmationStatus: computeConfirmationStatus(outputs, persistence, incoming, transferValue),
+                confirmationStatus: computeStatusText(outputs, persistence, incoming),
                 value: round(formatValue(transferValue), 1),
                 unit: formatUnit(transferValue),
                 sign: getSign(transferValue, incoming),
                 icon: incoming ? 'plus' : 'minus',
                 incoming,
                 style: {
-                    titleColor: persistence
-                        ? computeIncoming(outputs, incoming, transferValue) ? primary.color : secondary.color
-                        : '#fc6e6d',
+                    titleColor: persistence ? (incoming ? primary.color : secondary.color) : '#fc6e6d',
                     pendingColor: '#fc6e6d',
                     defaultTextColor: body.color,
                     iconColor: body.color,
