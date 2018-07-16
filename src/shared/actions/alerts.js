@@ -89,18 +89,25 @@ export const generateSyncingErrorAlert = (err) => (dispatch) => {
 
 export const generateTransferErrorAlert = (error) => (dispatch) =>
     dispatch(
-        generateAlert('error', i18next.t('global:transferError'), i18next.t('global:transferErrorMessage')),
-        20000,
-        error,
+        generateAlert(
+            'error',
+            i18next.t('global:transferError'),
+            i18next.t('global:transferErrorMessage'),
+            20000,
+            error,
+        ),
     );
 
 export const generatePromotionErrorAlert = (error) => (dispatch) =>
     dispatch(
-        generateAlert('error', i18next.t('global:promotionError'), i18next.t('global:promotionErrorExplanation')),
-        20000,
-        error,
+        generateAlert(
+            'error',
+            i18next.t('global:promotionError'),
+            i18next.t('global:promotionErrorExplanation'),
+            20000,
+            error,
+        ),
     );
-
 export const disposeOffAlert = () => (dispatch) => dispatch(dispose());
 
 export const prepareLogUpdate = (err) => (dispatch) => {
