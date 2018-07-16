@@ -491,10 +491,10 @@
         "customNode": "Aangepaste node",
         "removeCustomNode": "Remove custom node",
         "invalidNodeResponse": "De node stuurde een ongeldige reactie terug",
-        "httpNodeError": "Trinity Mobile ondersteunt alleen https nodes.",
         "add": "Toevoegen",
         "nodeFieldEmpty": "Tekst veld is leeg",
-        "nodeFieldEmptyExplanation": "Voer a.u.b. een aangepaste node in."
+        "nodeFieldEmptyExplanation": "Voer a.u.b. een aangepaste node in.",
+        "invalidURL": "Please enter a valid URL."
     },
     "addNewAccount": {
         "useExistingSeed": "Bestaande seed gebruiken",
