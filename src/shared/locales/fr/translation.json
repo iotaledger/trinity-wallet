@@ -491,10 +491,10 @@
         "customNode": "Serveur personnalisé",
         "removeCustomNode": "Supprimer le serveur personnalisé",
         "invalidNodeResponse": "Le serveur a renvoyé une réponse invalide",
-        "httpNodeError": "La version mobile de Trinity ne supporte que des serveur https.",
         "add": "Ajouter",
         "nodeFieldEmpty": "Le champ texte est vide",
-        "nodeFieldEmptyExplanation": "Veuillez entrer un serveur personnalisé."
+        "nodeFieldEmptyExplanation": "Veuillez entrer un serveur personnalisé.",
+        "invalidURL": "Please enter a valid URL."
     },
     "addNewAccount": {
         "useExistingSeed": "Utiliser une seed existante",
