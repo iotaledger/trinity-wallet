@@ -1,5 +1,7 @@
 import assign from 'lodash/assign';
 import map from 'lodash/map';
+import clone from 'lodash/clone';
+import cloneDeep from 'lodash/cloneDeep';
 import has from 'lodash/has';
 import includes from 'lodash/includes';
 import get from 'lodash/get';
@@ -24,7 +26,6 @@ import { toggleModalActivity } from 'iota-wallet-shared-modules/actions/ui';
 import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/iota/utils';
 import WithManualRefresh from '../components/ManualRefresh';
 import TransactionRow from '../components/TransactionRow';
-import SelfTransactionRow from '../components/SelfTransactionRow';
 import HistoryModalContent from '../components/HistoryModalContent';
 import { width, height } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
@@ -168,17 +169,30 @@ class History extends Component {
         return true;
     }
 
-    getTransactionRow(transfer) {
+    /**
+     * Formats transaction list to accommodate for sending to self
+     * @param {Array} transactions
+     * @return {Array} Formatted transaction list
+     */
+    formatRelevantTransactions(transactions) {
         const { addresses } = this.props;
-        if (
-            (transfer.value !== 0 &&
-                !transfer.incoming &&
-                transfer.outputs.every((tx) => addresses.includes(tx.address))) ||
-            (transfer.value === 0 && transfer.outputs.every((tx) => addresses.includes(tx.address)))
-        ) {
-            return <SelfTransactionRow {...transfer} />;
-        }
-        return <TransactionRow {...transfer} />;
+        const relevantTransactions = [];
+        map(transactions, (transaction) => {
+            if (
+                (transaction.transferValue !== 0 &&
+                    !transaction.incoming &&
+                    transaction.outputs.every((tx) => addresses.includes(tx.address))) ||
+                (transaction.transferValue === 0 && transaction.outputs.every((tx) => addresses.includes(tx.address)))
+            ) {
+                const sendToSelfTransaction = clone(transaction);
+                sendToSelfTransaction.incoming = true;
+                relevantTransactions.push(sendToSelfTransaction);
+                relevantTransactions.push(transaction);
+            } else {
+                relevantTransactions.push(transaction);
+            }
+        });
+        return relevantTransactions;
     }
 
     /**
@@ -196,6 +210,7 @@ class History extends Component {
             isRefreshing,
             addresses,
         } = this.props;
+        const relevantTransfers = this.formatRelevantTransactions(cloneDeep(transfers));
 
         const computeStatusText = (outputs, persistence, incoming, value) => {
             const receiveStatus = persistence ? t('received') : t('receiving');
@@ -234,8 +249,7 @@ class History extends Component {
         });
 
         const proofOfWorkFunction = getPowFn();
-
-        const formattedTransfers = map(transfers, (transfer) => {
+        const formattedTransfers = map(relevantTransfers, (transfer) => {
             const { timestamp, incoming, persistence, transferValue, inputs, outputs, bundle, message } = transfer;
             const value = round(formatValue(transferValue), 1);
             return {
@@ -315,7 +329,7 @@ class History extends Component {
                 initialNumToRender={8} // TODO: Should be dynamically computed.
                 removeClippedSubviews
                 keyExtractor={(item, index) => index}
-                renderItem={({ item }) => this.getTransactionRow(item)}
+                renderItem={({ item }) => <TransactionRow {...item} />}
                 refreshControl={
                     <RefreshControl
                         refreshing={isRefreshing && !noTransactions}
