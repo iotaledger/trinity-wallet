@@ -491,10 +491,10 @@
         "customNode": "Benutzerdefinierter Node",
         "removeCustomNode": "Benutzerdefinierten Node entfernen",
         "invalidNodeResponse": "Der Node hat eine ungültige Antwort zurückgegeben",
-        "httpNodeError": "Trinity Mobile unterstützt nur verschlüsselte Nodes (HTTPS).",
         "add": "Hinzufügen",
         "nodeFieldEmpty": "Textfeld ist leer",
-        "nodeFieldEmptyExplanation": "Bitte einen benutzerdefinierten Node hinzufügen."
+        "nodeFieldEmptyExplanation": "Bitte einen benutzerdefinierten Node hinzufügen.",
+        "invalidURL": "Please enter a valid URL."
     },
     "addNewAccount": {
         "useExistingSeed": "Vorhandenen Seed verwenden",
