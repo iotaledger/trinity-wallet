@@ -491,10 +491,10 @@
         "customNode": "Vartotojo serveris",
         "removeCustomNode": "Pašalinti vartotojo serverį",
         "invalidNodeResponse": "Serverio klaida",
-        "httpNodeError": "Trinity Mobile palaiko tik https serverius.",
         "add": "Pridėti",
         "nodeFieldEmpty": "Teksto laukas tuščias",
-        "nodeFieldEmptyExplanation": "Įveskite vartotojo serverį."
+        "nodeFieldEmptyExplanation": "Įveskite vartotojo serverį.",
+        "invalidURL": "Please enter a valid URL."
     },
     "addNewAccount": {
         "useExistingSeed": "Naudoti seną užraktą",
