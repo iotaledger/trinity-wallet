@@ -133,6 +133,18 @@ export const switchBalanceCheckToggle = () => ({
     type: ActionTypes.SWITCH_BALANCE_CHECK_TOGGLE,
 });
 
+/**
+ * Generate new receive address for wallet
+ *
+ * @method generateNewAddress
+ *
+ * @param {string} seed
+ * @param {string} accountName
+ * @param {object} existingAccountData
+ * @param {function} genFn
+ *
+ * @returns {function(*): Promise<any>}
+ */
 export const generateNewAddress = (seed, accountName, existingAccountData, genFn) => {
     return (dispatch) => {
         dispatch(generateNewAddressRequest());
@@ -145,6 +157,19 @@ export const generateNewAddress = (seed, accountName, existingAccountData, genFn
     };
 };
 
+/**
+ * Checks for balance against generated addresses for transition
+ * In case there are no addresses generated yet, it will generate a batch of addresses
+ * and will fetch balance against those
+ *
+ * @method transitionForSnapshot
+ *
+ * @param {string} seed
+ * @param {array} addresses
+ * @param {function} genFn
+ *
+ * @returns {function} - dispatch
+ */
 export const transitionForSnapshot = (seed, addresses, genFn) => {
     return (dispatch) => {
         dispatch(snapshotTransitionRequest());
@@ -159,6 +184,18 @@ export const transitionForSnapshot = (seed, addresses, genFn) => {
     };
 };
 
+/**
+ * Completes snapshot transition by sequentially attaching addresses to tangle
+ *
+ * @method completeSnapshotTransition
+ *
+ * @param {string} seed
+ * @param {string} accountName
+ * @param {array} addresses
+ * @param {function} powFn
+ *
+ * @returns {function}
+ */
 export const completeSnapshotTransition = (seed, accountName, addresses, powFn) => {
     return (dispatch, getState) => {
         dispatch(
@@ -236,6 +273,17 @@ export const completeSnapshotTransition = (seed, accountName, addresses, powFn) 
     };
 };
 
+/**
+ * Generates a batch of addresses from a seed and grabs balances for those addresses
+ *
+ * @method generateAddressesAndGetBalance
+ *
+ * @param {string} seed
+ * @param {number} index
+ * @param {function} genFn
+ *
+ * @returns {function}
+ */
 export const generateAddressesAndGetBalance = (seed, index, genFn) => {
     return (dispatch) => {
         const options = {
@@ -257,6 +305,15 @@ export const generateAddressesAndGetBalance = (seed, index, genFn) => {
     };
 };
 
+/**
+ * Fetch balances against addresses and update total transition balance
+ *
+ * @method getBalanceForCheck
+ *
+ * @param {array} addresses
+ *
+ * @returns {function}
+ */
 export const getBalanceForCheck = (addresses) => {
     return (dispatch) => {
         getBalancesAsync(addresses)
