@@ -41,14 +41,41 @@ export const setNextPollIfUnsuccessful = (state) => {
 
 const polling = (
     state = {
+        /**
+         * Polling service names
+         */
         allPollingServices: ['promotion', 'marketData', 'price', 'chartData', 'nodeList', 'accountInfo'],
+        /**
+         * Determines the service currently being run during the poll cycle
+         */
         pollFor: 'promotion',
+        /**
+         * Retry count in case a service fails to run during poll cycle
+         */
         retryCount: 0,
+        /**
+         * Determines if poll cycle is fetching price
+         */
         isFetchingPrice: false,
+        /**
+         * Determines if poll cycle is fetching chart information
+         */
         isFetchingChartData: false,
+        /**
+         * Determines if poll cycle is fetching market information
+         */
         isFetchingMarketData: false,
+        /**
+         * Determines if poll cycle is fetching account information from the tangle
+         */
         isFetchingAccountInfo: false,
+        /**
+         * Determines if poll cycle is fetching remote nodes list
+         */
         isFetchingNodeList: false,
+        /**
+         * Determines if poll cycle is promoting an unconfirmed transaction
+         */
         isAutoPromoting: false,
     },
     action,

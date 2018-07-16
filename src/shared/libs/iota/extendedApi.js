@@ -192,18 +192,6 @@ const wereAddressesSpentFromAsync = (addresses) => {
     });
 };
 
-const broadcastBundleAsync = (tail) => {
-    return new Promise((resolve, reject) => {
-        iota.api.broadcastBundle(tail, (err) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(tail);
-            }
-        });
-    });
-};
-
 const sendTransferAsync = (
     seed,
     transfers,
@@ -398,7 +386,6 @@ export {
     replayBundleAsync,
     getBundleAsync,
     wereAddressesSpentFromAsync,
-    broadcastBundleAsync,
     sendTransferAsync,
     getTransactionsToApproveAsync,
     prepareTransfersAsync,
