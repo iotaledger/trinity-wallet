@@ -127,8 +127,6 @@ export default class SelfTransactionRow extends PureComponent {
         onPress: PropTypes.func.isRequired,
         /** Determines whether bundle is currently being promoted */
         bundleIsBeingPromoted: PropTypes.bool.isRequired,
-        /** Icon symbol */
-        icon: PropTypes.string.isRequired,
         /** Determines whether bundle is confirmed */
         persistence: PropTypes.bool.isRequired,
     };
@@ -138,7 +136,7 @@ export default class SelfTransactionRow extends PureComponent {
     };
 
     render() {
-        const { icon, persistence, value, unit, time, message, t, style, onPress, bundleIsBeingPromoted } = this.props;
+        const { persistence, value, unit, time, message, t, style, onPress, bundleIsBeingPromoted } = this.props;
         const receiveStatus = persistence ? t('history:received') : t('history:receiving');
         const sendStatus = persistence ? t('history:sent') : t('history:sending');
         const receiveStatusColor = persistence ? style.primaryColor : '#fc6e6d';
@@ -174,7 +172,7 @@ export default class SelfTransactionRow extends PureComponent {
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <View style={styles.iconWrapper}>
                             <Icon
-                                name={icon}
+                                name="plus"
                                 size={width / 36}
                                 color={persistence ? style.primaryColor : style.pendingColor}
                                 iconStyle={{ position: 'absolute' }}
@@ -235,7 +233,7 @@ export default class SelfTransactionRow extends PureComponent {
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <View style={styles.iconWrapper}>
                             <Icon
-                                name={icon}
+                                name="minus"
                                 size={width / 36}
                                 color={persistence ? style.secondaryColor : style.pendingColor}
                                 iconStyle={{ position: 'absolute' }}
