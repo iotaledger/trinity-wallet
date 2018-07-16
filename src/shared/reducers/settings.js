@@ -60,6 +60,7 @@ const initialState = {
     },
     remotePoW: false,
     autoPromotion: true,
+    backgroundProcesses: false,
     lockScreenTimeout: 3,
     autoNodeSwitching: true,
     versions: {},
@@ -82,6 +83,11 @@ const settingsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 autoPromotion: action.payload,
+            };
+        case ActionTypes.SET_BACKGROUND_PROCESSES:
+            return {
+                ...state,
+                backgroundProcesses: action.payload,
             };
         case ActionTypes.UPDATE_AUTO_NODE_SWITCHING:
             return {

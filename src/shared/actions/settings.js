@@ -33,6 +33,7 @@ export const ActionTypes = {
     SET_NODELIST: 'IOTA/SETTINGS/SET_NODELIST',
     SET_REMOTE_POW: 'IOTA/SETTINGS/SET_REMOTE_POW',
     SET_AUTO_PROMOTION: 'IOTA/SETTINGS/SET_AUTO_PROMOTION',
+    SET_BACKGROUND_PROCESSES: 'IOTA/SETTINGS/SET_BACKGROUND_PROCESSES',
     UPDATE_AUTO_NODE_SWITCHING: 'IOTA/SETTINGS/UPDATE_AUTO_NODE_SWITCHING',
     SET_LOCK_SCREEN_TIMEOUT: 'IOTA/SETTINGS/SET_LOCK_SCREEN_TIMEOUT',
     SET_VERSIONS: 'IOTA/SETTINGS/WALLET/SET_VERSIONS',
@@ -124,6 +125,11 @@ export const setRemotePoW = (payload) => ({
 
 export const setAutoPromotion = (payload) => ({
     type: ActionTypes.SET_AUTO_PROMOTION,
+    payload,
+});
+
+export const setBackgroundProcesses = (payload) => ({
+    type: ActionTypes.SET_BACKGROUND_PROCESSES,
     payload,
 });
 

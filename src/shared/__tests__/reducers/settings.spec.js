@@ -70,6 +70,7 @@ describe('Reducer: settings', () => {
                 acceptedTerms: false,
                 acceptedPrivacy: false,
                 autoPromotion: true,
+                backgroundProcesses: false,
                 hideEmptyTransactions: false,
             };
 
