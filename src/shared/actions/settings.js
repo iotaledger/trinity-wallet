@@ -216,7 +216,7 @@ export function setLanguage(language) {
 }
 
 /**
- * Makes an API call to check if a node is healthy/active and then change the selected node for wallet
+ * Makes an API call to check if a node is healthy/active and then changes the selected node for wallet
  *
  * @method setFullNode
  *
