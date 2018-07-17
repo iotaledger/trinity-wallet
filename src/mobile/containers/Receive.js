@@ -132,6 +132,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderWidth: 1,
+        paddingTop: 1,
     },
     refreshIconBackground: {
         width: width / 7,
@@ -581,7 +582,7 @@ class Receive extends Component {
                             <View
                                 style={[
                                     styles.qrContainerFront,
-                                    { backgroundColor: '#F2F2F2', paddingBottom: width / 20 },
+                                    { backgroundColor: '#F2F2F2', paddingBottom: width / 25 },
                                 ]}
                             >
                                 <CustomQrCodeComponent

@@ -158,7 +158,7 @@ export class Send extends Component {
          */
         setDoNotMinimise: PropTypes.func.isRequired,
         /** Determines whether keyboard is open on iOS */
-        isIOSKeyboardActive: PropTypes.bool.isRequired,
+        isKeyboardActive: PropTypes.bool.isRequired,
         /** Sets whether modal is active or inactive */
         toggleModalActivity: PropTypes.func.isRequired,
         /** Determines whether modal is open */
@@ -311,7 +311,7 @@ export class Send extends Component {
     }
 
     onSendPress() {
-        const { t, amount, address, message, denomination, isIOSKeyboardActive } = this.props;
+        const { t, amount, address, message, denomination, isKeyboardActive } = this.props;
         const { currencySymbol } = this.state;
 
         const multiplier = this.getUnitMultiplier();
@@ -346,7 +346,7 @@ export class Send extends Component {
             timer.setTimeout(
                 'addressPasteAlertDelay',
                 () => this.detectAddressInClipboard(),
-                isIOSKeyboardActive ? 1000 : 250,
+                isKeyboardActive ? 1000 : 250,
             );
         }
     }
@@ -510,8 +510,8 @@ export class Send extends Component {
     }
 
     openModal = () => {
-        const { isIOSKeyboardActive } = this.props;
-        if (isIOSKeyboardActive) {
+        const { isKeyboardActive } = this.props;
+        if (isKeyboardActive) {
             this.blurTextFields();
             timer.setTimeout('modalShow', () => this.props.toggleModalActivity(), 500);
         } else {
