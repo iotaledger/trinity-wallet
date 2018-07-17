@@ -147,7 +147,12 @@ const replayBundleAsync = (
         .then(
             ({ trunkTransaction, branchTransaction }) =>
                 shouldOffloadPow
-                    ? attachToTangleAsync(trunkTransaction, branchTransaction, cached.trytes, minWeightMagnitude)
+                    ? attachToTangleAsync(
+                          trunkTransaction,
+                          branchTransaction,
+                          cached.trytes.reverse(),
+                          minWeightMagnitude,
+                      )
                     : performPow(powFn, cached.trytes, trunkTransaction, branchTransaction, minWeightMagnitude),
         )
         .then(({ trytes, transactionObjects }) => {
@@ -323,7 +328,7 @@ const attachToTangleAsync = (
                         );
 
                     promise()
-                        .then(({ transactionObjects }) =>
+                        .then((transactionObjects) =>
                             resolve({
                                 transactionObjects,
                                 trytes: attachedTrytes,

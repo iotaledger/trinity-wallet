@@ -92,7 +92,7 @@
         "addresses": "Endereços",
         "reattach": "REANEXAR",
         "promote": "PROMOVER",
-        "retry": "Retry",
+        "retry": "Tentar de novo",
         "pressBackAgain": "Pressione o botão \"voltar\" novamente para fechar o aplicativo",
         "reattached": "Reanexo com sucesso",
         "reattachedExplanation": "Reanexando a transação com hash {{hash}}",
@@ -250,8 +250,8 @@
         "selectDifferentNode": "Você quer selecionar um servidor diferente?",
         "setNode": "Selecionar Servidor",
         "cannotConnect": "Não é possível conectar ao servidor IOTA.",
-        "whyBiometricDisabled": "Why is biometric authentication disabled?",
-        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabled": "Autenticação biométrica desabilitada?",
+        "whyBiometricDisabledExplanation": "Logon biométrico está desabilitado ao abrir o aplicativo pela primeira vez para sua segurança. Ao usar a Trinity, você terá que fazer o login novamente devido a inatividade. Você poderá então entrar com autenticação biométrica."
     },
     "loading": {
         "loadingFirstTime": "Carregando a Seed pela primeira vez.",
@@ -289,9 +289,9 @@
         "printerCheckbox": "Eu não vou imprimir em uma impressora publica"
     },
     "receive": {
-        "yourAddress": "Your address",
-        "qrOptions": "QR options",
-        "shareQr": "Share QR code",
+        "yourAddress": "Seu endereço",
+        "qrOptions": "Opções de QR",
+        "shareQr": "Compartilhar código QR",
         "copyAddress": "Copiar endereço",
         "addressCopied": "Endereço copiado",
         "addressCopiedExplanation": "O seu endereço foi copiado para a área de transferência.",
@@ -474,7 +474,7 @@
         "send": "Enviar",
         "receive": "Receber",
         "empty": "Vazio",
-        "retrying": "Retrying",
+        "retrying": "Tentando de novo",
         "yesterday": "Ontem"
     },
     "accountManagement": {
@@ -491,10 +491,10 @@
         "customNode": "Servidor personalizado",
         "removeCustomNode": "Remover servidor personalizado",
         "invalidNodeResponse": "O servidor retornou uma resposta inválida",
-        "httpNodeError": "A Trinity suporta somente servidores https.",
         "add": "Adicionar",
         "nodeFieldEmpty": "O campo de texto está vazio",
-        "nodeFieldEmptyExplanation": "Por favor, insira um servidor personalizado."
+        "nodeFieldEmptyExplanation": "Por favor, insira um servidor personalizado.",
+        "invalidURL": "Please enter a valid URL."
     },
     "addNewAccount": {
         "useExistingSeed": "Usar Seed existente",

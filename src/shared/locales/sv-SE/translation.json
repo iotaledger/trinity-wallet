@@ -491,10 +491,10 @@
         "customNode": "Anpassad nod",
         "removeCustomNode": "Ta bort anpassad nod",
         "invalidNodeResponse": "Noden returnerade ett ogiltigt svar",
-        "httpNodeError": "Trinity stödjer endast https-noder.",
         "add": "Lägg till",
         "nodeFieldEmpty": "Textfältet är tomt",
-        "nodeFieldEmptyExplanation": "Ange en anpassad nod."
+        "nodeFieldEmptyExplanation": "Ange en anpassad nod.",
+        "invalidURL": "Please enter a valid URL."
     },
     "addNewAccount": {
         "useExistingSeed": "Använd befintlig seed",

@@ -8,7 +8,7 @@
         "balanceError": "Nepakankamas likutis",
         "balanceErrorMessage": "Nepakankamas IOTA likutis šiam pavedimui atlikti.",
         "transferError": "Pavedimo klaida",
-        "transferErrorMessage": "Įvyko klaida apdorojant jūsų pavedimą. Bandykite dar kartą.",
+        "transferErrorMessage": "Įvyko klaida atliekant pavedimą. Bandykite dar kartą.",
         "transferSent": "Pavedimas atliktas",
         "transferSentMessage": "Jūsų pavedimas išsiųstas į Tangle.",
         "messageSent": "Žinutė išsiųsta",
@@ -18,7 +18,7 @@
         "invalidResponse": "Serverio klaida",
         "invalidResponseExplanation": "Įvyko serverio klaida. Bandykite pakeisti serverį.",
         "invalidResponsePollingExplanation": "Siunčiant jūsų duomenis įvyko serverio klaida. Bandykite pakeisti serverį.",
-        "invalidResponseFetchingAccount": "Užkraunant jūsų paskyros duomenis įvyko serverio klaida. Bandykite pakeisti serverį.",
+        "invalidResponseFetchingAccount": "Įvyko klaida įkeliant Jūsų paskyros duomenis. Bandykite pakeisti serverį.",
         "invalidResponseSendingTransfer": "Apdorojant pavedimą įvyko serverio klaida. Bandykite pakeisti serverį.",
         "nodeOutOfSync": "Serveris nesinchronizuotas",
         "nodeOutOfSyncExplanation": "Jūsų pasirinktas serveris nesinchronizuotas. Pakeiskite serverį arba bandykite dar kartą.",
@@ -27,7 +27,7 @@
         "checksum": "Kontrolinė suma",
         "back": "ATGAL",
         "goBack": "Atgal",
-        "goBackStep": "Grįžkite atgal",
+        "goBackStep": "Grįžti atgal",
         "backLowercase": "Atgal",
         "done": "ATLIKTA",
         "doneLowercase": "Atlikta",
@@ -37,10 +37,10 @@
         "apply": "Taikyti",
         "save": "Išsaugoti",
         "close": "Uždaryti",
-        "export": "Eksportuoti",
-        "import": "Importuoti",
+        "export": "Iškelti",
+        "import": "Įkelti",
         "continue": "Tęsti",
-        "enable": "Įjungti",
+        "enable": "Įgalinti",
         "disable": "Išjungti",
         "enabled": "Įjungta",
         "disabled": "Išjungta",
@@ -301,7 +301,7 @@
         "spent": "Panaudotas",
         "missingPermission": "Reikalingas failų sistemos leidimas",
         "missingPermissionExplanation": "Reikalinga prieiga prie failų sistemos norint dalintis QR kodais.",
-        "tag": "Etiketė"
+        "tag": "Žyma"
     },
     "saveYourSeed": {
         "saveYourSeed": "Išsisaugokite savo užraktą",
@@ -491,10 +491,10 @@
         "customNode": "Vartotojo serveris",
         "removeCustomNode": "Pašalinti vartotojo serverį",
         "invalidNodeResponse": "Serverio klaida",
-        "httpNodeError": "Trinity Mobile palaiko tik https serverius.",
         "add": "Pridėti",
         "nodeFieldEmpty": "Teksto laukas tuščias",
-        "nodeFieldEmptyExplanation": "Įveskite vartotojo serverį."
+        "nodeFieldEmptyExplanation": "Įveskite vartotojo serverį.",
+        "invalidURL": "Įveskite teisingą URL adresą."
     },
     "addNewAccount": {
         "useExistingSeed": "Naudoti seną užraktą",
