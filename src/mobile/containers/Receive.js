@@ -590,20 +590,21 @@ class Receive extends Component {
                                 {/* FIXME: Overflow: 'visible' is not supported on Android */}
                                 {isAndroid && (
                                     <TouchableWithoutFeedback onPress={this.generateAddress}>
-                                        <Animated.View
+                                        <View
                                             style={[
                                                 styles.refreshIconBackgroundAndroid,
                                                 { backgroundColor: dark.color, borderColor: primary.border },
-                                                { transform: [rotateStyle] },
                                             ]}
                                         >
-                                            <Icon
-                                                name="sync"
-                                                size={width / 12}
-                                                color={dark.body}
-                                                style={styles.refreshIcon}
-                                            />
-                                        </Animated.View>
+                                            <Animated.View style={{ transform: [rotateStyle] }}>
+                                                <Icon
+                                                    name="sync"
+                                                    size={width / 12}
+                                                    color={dark.body}
+                                                    style={styles.refreshIcon}
+                                                />
+                                            </Animated.View>
+                                        </View>
                                     </TouchableWithoutFeedback>
                                 )}
                             </View>
@@ -614,20 +615,21 @@ class Receive extends Component {
                                         { backgroundColor: dark.color, borderColor: primary.border },
                                     ]}
                                 >
-                                    <Animated.View
+                                    <View
                                         style={[
                                             styles.refreshIconBackground,
                                             { backgroundColor: dark.color, borderColor: primary.border },
-                                            { transform: [rotateStyle] },
                                         ]}
                                     >
-                                        <Icon
-                                            name="sync"
-                                            size={width / 12}
-                                            color={dark.body}
-                                            style={styles.refreshIcon}
-                                        />
-                                    </Animated.View>
+                                        <Animated.View style={{ transform: [rotateStyle] }}>
+                                            <Icon
+                                                name="sync"
+                                                size={width / 12}
+                                                color={dark.body}
+                                                style={styles.refreshIcon}
+                                            />
+                                        </Animated.View>
+                                    </View>
                                     <ScramblingText
                                         scramble={isGeneratingReceiveAddress}
                                         textStyle={[styles.addressText, { color: dark.body }]}
