@@ -33,7 +33,6 @@ import com.kristiansorens.flagsecure.FlagSecurePackage;
 import com.reactlibrary.RNReactNativeHapticFeedbackPackage;
 import me.listenzz.modal.TranslucentModalReactPackage;
 import io.realm.react.RealmReactPackage;
-import com.jamesisaac.rnbackgroundtask.BackgroundTaskPackage;
 import com.transistorsoft.rnbackgroundfetch.RNBackgroundFetchPackage;
 
 import java.util.Arrays;
@@ -91,7 +90,6 @@ public class MainApplication extends NavigationApplication implements ShareAppli
             new RNSharePackage(),
             new RNViewShotPackage(),
             new RealmReactPackage(),
-            new BackgroundTaskPackage(),
             new RNBackgroundFetchPackage()
     );
   }

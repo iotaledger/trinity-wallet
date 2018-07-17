@@ -17,38 +17,46 @@ import {
     getAccountInfo,
     promoteTransfer,
 } from 'iota-wallet-shared-modules/actions/polling';
-import BackgroundTask from 'react-native-background-task'; //eslint-disable-line import/no-unresolved
+import BackgroundFetch from 'react-native-background-fetch';
 import queueFactory from 'react-native-queue';
 
-BackgroundTask.define(async () => {
-    // Based on https://github.com/billmalarky/react-native-queue#os-background-task-full-example
-    // and https://github.com/billmalarky/react-native-queue/blob/master/docs/easy-os-background-tasks-in-react-native.md
-    console.log('Task defined');
-    // Initialize the queue
-    const queue = await queueFactory();
-    console.log('queueFactory initialized');
+BackgroundFetch.configure(
+    {
+        minimumFetchInterval: 15,
+    },
+    async () => {
+        // Based on https://github.com/billmalarky/react-native-queue#os-background-task-full-example
+        // and https://github.com/billmalarky/react-native-queue/blob/master/docs/easy-os-background-tasks-in-react-native.md
+        console.log('Task defined');
+        // Initialize the queue
+        const queue = await queueFactory();
+        console.log('queueFactory initialized');
 
-    // Register the background worker
-    queue.addWorker('promote-transactions', async (id, payload) => {
-        console.log(id);
-        console.log(payload);
-        await Poll.backgroundPromote(payload);
-    });
+        // Register the background worker
+        queue.addWorker('promote-transactions', async (id, payload) => {
+            console.log(id);
+            console.log(payload);
+            await Poll.backgroundPromote(payload);
+        });
 
-    console.log('Worker added');
+        console.log('Worker added');
 
-    console.log(queue);
+        console.log(queue);
 
-    // Start the queue with a lifespan of 25 sec
-    // IMPORTANT: OS background tasks are limited to 30 seconds or less.
-    // NOTE: Queue lifespan logic will attempt to stop queue processing 500ms less than passed lifespan for a healthy shutdown buffer.
-    console.log('Queue starting');
-    await queue.start(25000);
+        // Start the queue with a lifespan of 25 sec
+        // IMPORTANT: OS background tasks are limited to 30 seconds or less.
+        // NOTE: Queue lifespan logic will attempt to stop queue processing 500ms less than passed lifespan for a healthy shutdown buffer.
+        console.log('Queue starting');
+        await queue.start(30000);
 
-    console.log('Finished');
-    // Tell OS that we're done the background task
-    BackgroundTask.finish();
-});
+        console.log('Finished');
+        // Tell OS that we're done the background task
+        BackgroundFetch.finish(BackgroundFetch.FETCH_RESULT_NEW_DATA);
+    },
+    (error) => {
+        console.log('RNBackgroundFetch failed to start: ' + error);
+    },
+);
 
 export class Poll extends Component {
     static propTypes = {
@@ -97,7 +105,7 @@ export class Poll extends Component {
 
     componentDidMount() {
         AppState.addEventListener('change', this.handleAppStateChange);
-        BackgroundTask.schedule();
+        BackgroundFetch.start();
         this.startBackgroundProcesses();
     }
 
@@ -178,7 +186,7 @@ export class Poll extends Component {
                     bundleHash: bundleHash,
                     tails: unconfirmedBundleTails[bundleHash],
                 },
-                { attempts: 2, timeout: 23000 }, // Retry job up to 2 times if it fails and set a 20 sec timeout
+                { attempts: 2, timeout: 27000 }, // Retry job up to 2 times if it fails and set a 27 sec timeout
                 false, // Must pass false as the last param so the queue starts up in the background task instead of immediately
             );
         } else {

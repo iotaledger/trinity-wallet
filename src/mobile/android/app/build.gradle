@@ -181,7 +181,6 @@ dependencies {
     implementation project(':react-native-flag-secure-android')
     implementation project(':react-native-haptic-feedback')
     implementation project(':realm')
-    implementation project(':react-native-background-task')
     implementation project(':react-native-background-fetch')
 }
 // Run this once to be able to run the application with BUCK
