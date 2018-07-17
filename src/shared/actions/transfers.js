@@ -562,7 +562,6 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
             })
             .catch((error) => {
                 dispatch(sendTransferError());
-                console.log(error);
                 if (hasSignedInputs) {
                     const { newState } = syncAccountOnValueTransactionFailure(cached.transactionObjects, accountState);
 
