@@ -1,8 +1,53 @@
 import IOTA from 'iota.lib.js';
 import 'proxy-polyfill';
-import { defaultNode, nodes } from '../../config';
+import { nodes, defaultNode, useLegacyQuorum } from '../../config';
+import { checkNode as _checkNode } from './multinode';
+import { getQuorumResult, getMostCommonElementwise } from './quorum';
+
 
 const iotaAPI = new IOTA({ provider: defaultNode });
+
+function injectQuorum() {
+    // quorum shim
+    if (useLegacyQuorum) {
+        iotaAPI.api = Object.assign(iotaAPI.api, {
+            getLatestInclusion: (transactions, callback) => {
+                getQuorumResult(
+                    (nodeapi, cb) => {
+                        nodeapi.api.getLatestInclusion(transactions, cb);
+                    },
+                    {
+                        timeout: 1000,
+                        unorderedArrays: false,
+                        safeResult: (results) => {
+                            // getLatestInclusion should default to false if we're not sure
+                            return getMostCommonElementwise(results, transactions.length, false)
+                        }
+                    },
+                    callback,
+                );
+            },
+            wereAddressesSpentFrom: (addresses, callback) => {
+                getQuorumResult(
+                    (nodeapi, cb) => {
+                        nodeapi.api.wereAddressesSpentFrom(addresses, cb);
+                    },
+                    {
+                        timeout: 1000,
+                        unorderedArrays: false,
+                        safeResult: (results) => {
+                            // wereAddressesSpentFrom should default to true if we're not sure
+                            return getMostCommonElementwise(results, addresses.length, true)
+                        }
+                    },
+                    callback,
+                );
+            },
+        });
+    }
+}
+
+injectQuorum();
 
 // Later used by the checkNodePatched function
 let unproxiedNodeInfo = iotaAPI.api.getNodeInfo.bind(iotaAPI.api);
@@ -13,6 +58,9 @@ export const changeIotaNode = (provider) => {
     unproxiedNodeInfo = iotaAPI.api.getNodeInfo.bind(iotaAPI.api);
     // re-inject proxy
     injectAPIProxy();
+
+    // re-inject quorum
+    injectQuorum();
 };
 
 // Holds the auto. node switching configuration and callbacks
@@ -108,6 +156,11 @@ export const getRandomNode = (nodesList) => {
     const x = Math.floor(Math.random() * nodesList.length);
 
     return nodesList[x];
+};
+
+export const checkNode = (cb) => {
+    // use checkNode from multinode
+    _checkNode(iota, cb);
 };
 
 injectAPIProxy();
