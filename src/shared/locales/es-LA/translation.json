@@ -199,8 +199,8 @@
         "reasonTop10": "Esta es una típica contraseña del top 10",
         "reasonTop100": "Esta es una típica contraseña del top 100",
         "reasonCommon": "Esta es una muy típica contraseña",
-        "reasonSimilar": "This is similar to a commonly-used password",
-        "reasonWord": "A single word is easy to guess"
+        "reasonSimilar": "Esto es similar a una típica contraseña",
+        "reasonWord": "Una sola palabra es fácil de adivinar"
     },
     "copyToClipboard": {
         "seedCleared": "Seed removida",
