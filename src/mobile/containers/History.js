@@ -1,8 +1,6 @@
 import assign from 'lodash/assign';
 import map from 'lodash/map';
 import has from 'lodash/has';
-import includes from 'lodash/includes';
-import get from 'lodash/get';
 import orderBy from 'lodash/orderBy';
 import React, { Component } from 'react';
 import Modal from 'react-native-modal';
@@ -11,6 +9,7 @@ import { StyleSheet, View, TouchableWithoutFeedback, RefreshControl, ActivityInd
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import { computeStatusText, formatRelevantTransactions } from 'iota-wallet-shared-modules/libs/iota/transfers';
 import { promoteTransaction, retryFailedTransaction } from 'iota-wallet-shared-modules/actions/transfers';
 import {
     getTransfersForSelectedAccount,
@@ -24,7 +23,6 @@ import { toggleModalActivity } from 'iota-wallet-shared-modules/actions/ui';
 import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/iota/utils';
 import WithManualRefresh from '../components/ManualRefresh';
 import TransactionRow from '../components/TransactionRow';
-import SelfTransactionRow from '../components/SelfTransactionRow';
 import HistoryModalContent from '../components/HistoryModalContent';
 import { width, height } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
@@ -168,19 +166,6 @@ class History extends Component {
         return true;
     }
 
-    getTransactionRow(transfer) {
-        const { addresses } = this.props;
-        if (
-            (transfer.value !== 0 &&
-                !transfer.incoming &&
-                transfer.outputs.every((tx) => addresses.includes(tx.address))) ||
-            (transfer.value === 0 && transfer.outputs.every((tx) => addresses.includes(tx.address)))
-        ) {
-            return <SelfTransactionRow {...transfer} />;
-        }
-        return <TransactionRow {...transfer} />;
-    }
-
     /**
      * Formats transaction data
      * @return {Array} Formatted transaction data
@@ -196,36 +181,7 @@ class History extends Component {
             isRefreshing,
             addresses,
         } = this.props;
-
-        const computeStatusText = (outputs, persistence, incoming, value) => {
-            const receiveStatus = persistence ? t('received') : t('receiving');
-            const sendStatus = persistence ? t('sent') : t('sending');
-            if (value === 0) {
-                if (
-                    !includes(addresses, get(outputs, '[0].address')) &&
-                    includes(addresses, get(outputs, '[1].address'))
-                ) {
-                    return sendStatus;
-                }
-                return receiveStatus;
-            }
-
-            return incoming ? receiveStatus : sendStatus;
-        };
-
-        const computeIncoming = (outputs, incoming, value) => {
-            if (value === 0) {
-                if (
-                    !includes(addresses, get(outputs, '[0].address')) &&
-                    includes(addresses, get(outputs, '[1].address'))
-                ) {
-                    return false;
-                }
-                return true;
-            }
-
-            return incoming ? true : false;
-        };
+        const relevantTransfers = formatRelevantTransactions(transfers, addresses);
 
         const withUnitAndChecksum = (item) => ({
             address: `${item.address}${item.checksum}`,
@@ -234,13 +190,12 @@ class History extends Component {
         });
 
         const proofOfWorkFunction = getPowFn();
-
-        const formattedTransfers = map(transfers, (transfer) => {
+        const formattedTransfers = map(relevantTransfers, (transfer) => {
             const { timestamp, incoming, persistence, transferValue, inputs, outputs, bundle, message } = transfer;
             const value = round(formatValue(transferValue), 1);
             return {
                 t,
-                status: computeStatusText(outputs, persistence, incoming, value),
+                status: computeStatusText(outputs, persistence, incoming),
                 confirmationBool: persistence,
                 persistence,
                 value,
@@ -249,9 +204,9 @@ class History extends Component {
                 time: timestamp,
                 message,
                 mode,
-                incoming: computeIncoming(outputs, incoming, value),
+                incoming,
                 addresses,
-                icon: computeIncoming(outputs, incoming, value) ? 'plus' : 'minus',
+                icon: incoming ? 'plus' : 'minus',
                 bundleIsBeingPromoted: currentlyPromotingBundleHash === bundle && !persistence,
                 outputs,
                 onPress: (modalProps) => {
@@ -275,9 +230,7 @@ class History extends Component {
                     this.props.toggleModalActivity();
                 },
                 style: {
-                    titleColor: persistence
-                        ? computeIncoming(outputs, incoming, value) ? primary.color : secondary.color
-                        : '#fc6e6d',
+                    titleColor: persistence ? (incoming ? primary.color : secondary.color) : '#fc6e6d',
                     pendingColor: '#fc6e6d',
                     containerBackgroundColor: { backgroundColor: dark.color },
                     defaultTextColor: { color: body.color },
@@ -315,7 +268,7 @@ class History extends Component {
                 initialNumToRender={8} // TODO: Should be dynamically computed.
                 removeClippedSubviews
                 keyExtractor={(item, index) => index}
-                renderItem={({ item }) => this.getTransactionRow(item)}
+                renderItem={({ item }) => <TransactionRow {...item} />}
                 refreshControl={
                     <RefreshControl
                         refreshing={isRefreshing && !noTransactions}

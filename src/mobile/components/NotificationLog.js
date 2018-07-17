@@ -98,36 +98,35 @@ export class NotificationLog extends PureComponent {
     }
 
     render() {
-        const { t, backgroundColor, textColor, borderColor, barColor, barBg, notificationLog, hideModal } = this.props;
+        const { t, backgroundColor, textColor, borderColor, barColor, barBg, notificationLog } = this.props;
         const lineBorder = { borderBottomColor: barColor };
         const trimmedLog = notificationLog.reverse().slice(0, 10);
 
         return (
-            <TouchableOpacity style={styles.modalContainer} onPress={() => hideModal()}>
-                <View style={[styles.modalContent, { backgroundColor }, borderColor]}>
-                    <Text style={[styles.titleText, textColor]}>{t('notificationLog:errorLog')}</Text>
-                    <View style={[styles.line, lineBorder]} />
-                    <ListView
-                        dataSource={ds.cloneWithRows(trimmedLog)}
-                        renderRow={(dataSource) => (
-                            <View>
-                                <Text style={[styles.itemText, textColor]}>
-                                    {formatTimeAs.hoursMinutesSecondsDayMonthYear(locale, dataSource.time)} -{' '}
-                                    {dataSource.error}
-                                </Text>
-                            </View>
-                        )}
-                        renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
-                        enableEmptySections
-                    />
-                    <TouchableOpacity onPress={() => this.clearNotificationLog()}>
-                        <View style={[styles.clearButton, borderColor]}>
-                            <Text style={[styles.clearText, textColor]}>{t('clear')}</Text>
+            <View style={[styles.modalContent, { backgroundColor }, borderColor]}>
+                <Text style={[styles.titleText, textColor]}>{t('notificationLog:errorLog')}</Text>
+                <View style={[styles.line, lineBorder]} />
+                <ListView
+                    dataSource={ds.cloneWithRows(trimmedLog)}
+                    renderRow={(dataSource) => (
+                        <View>
+                            <Text style={[styles.itemText, textColor]}>
+                                {formatTimeAs.hoursMinutesSecondsDayMonthYear(locale, dataSource.time)} -{' '}
+                                {dataSource.error}
+                            </Text>
                         </View>
-                    </TouchableOpacity>
-                </View>
+                    )}
+                    scrollEnabled
+                    renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
+                    enableEmptySections
+                />
+                <TouchableOpacity onPress={() => this.clearNotificationLog()}>
+                    <View style={[styles.clearButton, borderColor]}>
+                        <Text style={[styles.clearText, textColor]}>{t('clear')}</Text>
+                    </View>
+                </TouchableOpacity>
                 <StatefulDropdownAlert backgroundColor={barBg} />
-            </TouchableOpacity>
+            </View>
         );
     }
 }

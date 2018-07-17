@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
-import { Image } from 'react-native';
+import { Animated, View } from 'react-native';
 import PropTypes from 'prop-types';
 import QRCode from 'react-native-qrcode-svg';
-import fakeQRImagePath from 'iota-wallet-shared-modules/images/qr.png';
+import { isAndroid } from '../utils/device';
 
 class CustomQRCode extends PureComponent {
     static propTypes = {
@@ -12,13 +12,16 @@ class CustomQRCode extends PureComponent {
     };
 
     static defaultProps = {
-        waitFor: 250,
+        waitFor: isAndroid ? 5 : 0,
     };
 
     constructor() {
         super();
 
-        this.state = { renderQR: false };
+        this.state = {
+            renderQR: false,
+            animatedOpacity: new Animated.Value(0),
+        };
     }
 
     componentWillMount() {
@@ -28,6 +31,10 @@ class CustomQRCode extends PureComponent {
         }, this.props.waitFor);
     }
 
+    componentDidMount() {
+        this.onLoad();
+    }
+
     componentWillUnmount() {
         if (this.timeout) {
             clearTimeout(this.timeout);
@@ -35,24 +42,38 @@ class CustomQRCode extends PureComponent {
         }
     }
 
+    onLoad = () => {
+        Animated.timing(this.state.animatedOpacity, {
+            toValue: 1,
+            duration: 500,
+            useNativeDriver: true,
+        }).start();
+    };
+
     render() {
         const { renderQR } = this.state;
         const { size, backgroundColor, ...rest } = this.props;
+        const { animatedOpacity } = this.state;
 
         if (renderQR) {
-            return <QRCode size={size} backgroundColor={backgroundColor} {...rest} />;
+            return (
+                <Animated.View
+                    style={
+                        isAndroid
+                            ? {
+                                  opacity: animatedOpacity.interpolate({
+                                      inputRange: [0, 1],
+                                      outputRange: [0, 1],
+                                  }),
+                              }
+                            : null
+                    }
+                >
+                    <QRCode size={size} backgroundColor={backgroundColor} {...rest} />
+                </Animated.View>
+            );
         }
-
-        return (
-            <Image
-                source={fakeQRImagePath}
-                style={{
-                    height: size,
-                    width: size,
-                    backgroundColor,
-                }}
-            />
-        );
+        return <View />;
     }
 }
 
