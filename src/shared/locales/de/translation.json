@@ -494,7 +494,7 @@
         "add": "Hinzufügen",
         "nodeFieldEmpty": "Textfeld ist leer",
         "nodeFieldEmptyExplanation": "Bitte einen benutzerdefinierten Node hinzufügen.",
-        "invalidURL": "Please enter a valid URL."
+        "invalidURL": "Bitte gib eine gültige Adresse ein."
     },
     "addNewAccount": {
         "useExistingSeed": "Vorhandenen Seed verwenden",
