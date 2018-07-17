@@ -1,10 +1,25 @@
 import { ActionTypes } from '../actions/alerts';
 
 const initialState = {
+    /**
+     * Type of alert - Could be one of error, success, warning etc
+     */
     category: '',
+    /**
+     * Title of alert
+     */
     title: '',
+    /**
+     * Alert description
+     */
     message: '',
+    /**
+     * Close interval of the active alert
+     */
     closeInterval: 5500,
+    /**
+     * Keeps track of server side errors
+     */
     notificationLog: [],
 };
 
