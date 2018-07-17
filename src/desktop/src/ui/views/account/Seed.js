@@ -10,7 +10,6 @@ import { byteToChar } from 'libs/crypto';
 import { getSelectedAccountName } from 'selectors/accounts';
 
 import Button from 'ui/components/Button';
-import Clipboard from 'ui/components/Clipboard';
 import Modal from 'ui/components/modal/Modal';
 import ModalPassword from 'ui/components/modal/Password';
 import SeedPrint from 'ui/components/SeedPrint';
@@ -80,11 +79,7 @@ class Seed extends PureComponent {
             <React.Fragment>
                 <form>
                     <p className={css.seed}>
-                        <Clipboard
-                            text={seed || ''}
-                            title={t('copyToClipboard:seedCopied')}
-                            success={t('copyToClipboard:seedCopiedExplanation')}
-                        >
+                        <span>
                             {seed && action === 'view'
                                 ? seed.map((byte, index) => {
                                       if (index % 3 !== 0) {
@@ -100,7 +95,7 @@ class Seed extends PureComponent {
                                       );
                                   })
                                 : new Array(MAX_SEED_LENGTH / 3).join('... ')}
-                        </Clipboard>
+                        </span>
                     </p>
                     <fieldset>
                         <Button className="small" onClick={() => this.setState({ action: !action ? 'view' : null })}>
@@ -123,7 +118,7 @@ class Seed extends PureComponent {
                     isOpen={seed && action === 'export'}
                     onClose={() => this.setState({ action: null })}
                 >
-                    <SeedExport seed={seed} title={accountName} onClose={() => this.setState({ action: null })} />
+                    <SeedExport seed={seed || []} title={accountName} onClose={() => this.setState({ action: null })} />
                 </Modal>
             </React.Fragment>
         );
