@@ -21,7 +21,6 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     labelContainer: {
-        width: width / 5,
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
         height: height / 24,
