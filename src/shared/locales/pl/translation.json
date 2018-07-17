@@ -494,7 +494,7 @@
         "add": "Dodaj",
         "nodeFieldEmpty": "Pole adresu puste",
         "nodeFieldEmptyExplanation": "Proszę wpisać adres niestandardowego serwera.",
-        "invalidURL": "Please enter a valid URL."
+        "invalidURL": "Wprowadź prawidłowy adres URL."
     },
     "addNewAccount": {
         "useExistingSeed": "Użyj istniejącego klucza seed",
