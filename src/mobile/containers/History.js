@@ -1,7 +1,5 @@
 import assign from 'lodash/assign';
 import map from 'lodash/map';
-import clone from 'lodash/clone';
-import cloneDeep from 'lodash/cloneDeep';
 import has from 'lodash/has';
 import orderBy from 'lodash/orderBy';
 import React, { Component } from 'react';
@@ -11,7 +9,7 @@ import { StyleSheet, View, TouchableWithoutFeedback, RefreshControl, ActivityInd
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { computeStatusText } from 'iota-wallet-shared-modules/libs/iota/transfers';
+import { computeStatusText, formatRelevantTransactions } from 'iota-wallet-shared-modules/libs/iota/transfers';
 import { promoteTransaction, retryFailedTransaction } from 'iota-wallet-shared-modules/actions/transfers';
 import {
     getTransfersForSelectedAccount,
@@ -169,27 +167,6 @@ class History extends Component {
     }
 
     /**
-     * Formats transaction list to accommodate for sending to self
-     * @param {Array} transactions
-     * @return {Array} Formatted transaction list
-     */
-    formatRelevantTransactions(transactions) {
-        const { addresses } = this.props;
-        const relevantTransactions = [];
-        map(transactions, (transaction) => {
-            if (!transaction.incoming && transaction.outputs.every((tx) => addresses.includes(tx.address))) {
-                const sendToSelfTransaction = clone(transaction);
-                sendToSelfTransaction.incoming = true;
-                relevantTransactions.push(sendToSelfTransaction);
-                relevantTransactions.push(transaction);
-            } else {
-                relevantTransactions.push(transaction);
-            }
-        });
-        return relevantTransactions;
-    }
-
-    /**
      * Formats transaction data
      * @return {Array} Formatted transaction data
      */
@@ -204,7 +181,7 @@ class History extends Component {
             isRefreshing,
             addresses,
         } = this.props;
-        const relevantTransfers = this.formatRelevantTransactions(cloneDeep(transfers));
+        const relevantTransfers = formatRelevantTransactions(transfers, addresses);
 
         const withUnitAndChecksum = (item) => ({
             address: `${item.address}${item.checksum}`,

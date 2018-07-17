@@ -1,7 +1,5 @@
 import map from 'lodash/map';
 import orderBy from 'lodash/orderBy';
-import cloneDeep from 'lodash/cloneDeep';
-import clone from 'lodash/clone';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
@@ -17,7 +15,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { round, roundDown } from 'iota-wallet-shared-modules/libs/utils';
-import { computeStatusText } from 'iota-wallet-shared-modules/libs/iota/transfers';
+import { computeStatusText, formatRelevantRecentTransactions } from 'iota-wallet-shared-modules/libs/iota/transfers';
 import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/iota/utils';
 import {
     getTransfersForSelectedAccount,
@@ -175,40 +173,15 @@ export class Balance extends Component {
     }
 
     /**
-     * Formats recent transactions to accommodate for sending to self
-     * @param {Array} transactions
-     * @return {Array} Formatted recent transactions
-     */
-    formatRelevantTransactions(transactions) {
-        const { addresses } = this.props;
-        const relevantTransactions = [];
-        map(transactions, (transaction) => {
-            if (relevantTransactions.length < 4) {
-                if (!transaction.incoming && transaction.outputs.every((tx) => addresses.includes(tx.address))) {
-                    const sendToSelfTransaction = clone(transaction);
-                    sendToSelfTransaction.incoming = true;
-                    relevantTransactions.push(sendToSelfTransaction);
-                    if (relevantTransactions.length < 4) {
-                        relevantTransactions.push(transaction);
-                    }
-                } else {
-                    relevantTransactions.push(transaction);
-                }
-            }
-        });
-        return relevantTransactions;
-    }
-
-    /**
      * Formats transaction data
      * @return {Array} Formatted transaction data
      */
 
     prepTransactions() {
-        const { transfers, primary, secondary, body } = this.props;
+        const { transfers, primary, secondary, body, addresses } = this.props;
         const orderedTransfers = orderBy(transfers, (tx) => tx.timestamp, ['desc']);
-        const recentTransactions = cloneDeep(orderedTransfers).slice(0, 4);
-        const relevantTransactions = this.formatRelevantTransactions(recentTransactions);
+        const recentTransactions = orderedTransfers.slice(0, 4);
+        const relevantTransactions = formatRelevantRecentTransactions(recentTransactions, addresses);
 
         const getSign = (value, incoming) => {
             if (value === 0) {
