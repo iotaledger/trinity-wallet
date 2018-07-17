@@ -98,7 +98,7 @@ class TermsAndConditions extends Component {
                 navBarHidden: true,
                 navBarTransparent: true,
                 topBarElevationShadowEnabled: false,
-                screenBackgroundColor: theme.body.bg,
+                screenBackgroundColor: 'white',
                 drawUnderStatusBar: true,
                 statusBarColor: theme.bar.bg,
             },
