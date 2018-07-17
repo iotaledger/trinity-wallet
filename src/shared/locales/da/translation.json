@@ -491,10 +491,10 @@
         "customNode": "Brugerdefinerede node",
         "removeCustomNode": "Remove custom node",
         "invalidNodeResponse": "Noden returnerede et ugyldigt svar",
-        "httpNodeError": "Trinity Mobil understøtter kun HTTPS noder.",
         "add": "Tilføj",
         "nodeFieldEmpty": "Tekstfeltet er tomt",
-        "nodeFieldEmptyExplanation": "Angiv venligst en brugerdefineret node."
+        "nodeFieldEmptyExplanation": "Angiv venligst en brugerdefineret node.",
+        "invalidURL": "Please enter a valid URL."
     },
     "addNewAccount": {
         "useExistingSeed": "Brug eksisterende hovednøgle",

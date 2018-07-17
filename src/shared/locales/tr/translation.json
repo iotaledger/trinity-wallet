@@ -491,10 +491,10 @@
         "customNode": "Özel düğüm",
         "removeCustomNode": "Remove custom node",
         "invalidNodeResponse": "Ağ geçersiz",
-        "httpNodeError": "Trinity Mobile sadece https ağlarını destekler.",
         "add": "Ekle",
         "nodeFieldEmpty": "Bu alan boş",
-        "nodeFieldEmptyExplanation": "Lütfen özel ağınızı girin."
+        "nodeFieldEmptyExplanation": "Lütfen özel ağınızı girin.",
+        "invalidURL": "Please enter a valid URL."
     },
     "addNewAccount": {
         "useExistingSeed": "Mevcut kaynağı kullan",
