@@ -520,15 +520,13 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 return storeAndBroadcastAsync(cached.trytes);
             })
             .then(() => {
-                Promise.resolve(
-                    syncAccountAfterSpending(
-                        seed,
-                        accountName,
-                        cached.transactionObjects,
-                        accountState,
-                        !isZeroValue,
-                        genFn,
-                    ),
+                return syncAccountAfterSpending(
+                    seed,
+                    accountName,
+                    cached.transactionObjects,
+                    accountState,
+                    !isZeroValue,
+                    genFn,
                 ).then(({ newState }) => {
                     dispatch(updateAccountInfoAfterSpending(newState));
 
