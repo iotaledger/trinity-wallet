@@ -1180,6 +1180,10 @@ bignumber.js@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/bignumber.js/-/bignumber.js-4.1.0.tgz#db6f14067c140bd46624815a7916c92d9b6c24b1"
 
+bignumber.js@^7.2.1:
+  version "7.2.1"
+  resolved "https://registry.yarnpkg.com/bignumber.js/-/bignumber.js-7.2.1.tgz#80c048759d826800807c4bfd521e50edbba57a5f"
+
 bl@~0.8.1:
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/bl/-/bl-0.8.2.tgz#c9b6bca08d1bc2ea00fc8afb4f1a5fd1e1c66e4e"
@@ -2987,6 +2991,7 @@ iota-wallet-shared-modules@../shared/:
   version "0.0.0"
   dependencies:
     async "^2.6.0"
+    bignumber.js "^7.2.1"
     bluebird "^3.5.1"
     i18next "^10.2.2"
     iota.lib.js "git+https://git@github.com/iotaledger/iota.lib.js#develop"
@@ -3003,6 +3008,7 @@ iota-wallet-shared-modules@../shared/:
     reselect "^3.0.1"
     tinycolor2 "^1.4.1"
     url-parse "^1.2.0"
+    valid-url "^1.0.9"
 
 "iota.lib.js@git+https://git@github.com/iotaledger/iota.lib.js#develop":
   version "0.4.8"
@@ -6391,6 +6397,10 @@ uuid@3.0.1:
 uuid@^3.1.0:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.2.1.tgz#12c528bb9d58d0b9265d9a2f6f0fe8be17ff1f14"
+
+valid-url@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/valid-url/-/valid-url-1.0.9.tgz#1c14479b40f1397a75782f115e4086447433a200"
 
 validate-npm-package-license@^3.0.1:
   version "3.0.3"

@@ -5,6 +5,7 @@ import { translate } from 'react-i18next';
 
 import { setFullNode, removeCustomNode, updateAutoNodeSwitching } from '../../actions/settings';
 import { generateAlert } from '../../actions/alerts';
+import { isValidUrl, isValidHttpsUrl } from '../../libs/utils';
 
 /**
  * Node settings container
@@ -38,8 +39,14 @@ export default function withNodeData(NodeComponent) {
             // Remove spaces and trailing slash
             nodeSelected = nodeSelected.replace(/ /g, '').replace(/\/$/, '');
 
+            // Check if URL is valid
+            if (!isValidUrl(nodeSelected)) {
+                generateAlert('error', t('customNodeCouldNotBeAdded'), t('invalidURL'));
+                return;
+            }
+
             // Only allow HTTPS nodes
-            if (!nodeSelected.startsWith('https://')) {
+            if (!isValidHttpsUrl(nodeSelected)) {
                 generateAlert('error', t('nodeMustUseHTTPS'), t('nodeMustUseHTTPSExplanation'));
                 return;
             }

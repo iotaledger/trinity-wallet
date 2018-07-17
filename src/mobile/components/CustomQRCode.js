@@ -12,7 +12,7 @@ class CustomQRCode extends PureComponent {
     };
 
     static defaultProps = {
-        waitFor: 1000,
+        waitFor: 250,
     };
 
     constructor() {
