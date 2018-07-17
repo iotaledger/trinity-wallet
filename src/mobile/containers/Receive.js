@@ -405,7 +405,11 @@ class Receive extends Component {
      *   @method startLetterScramble
      **/
     startLetterScramble() {
-        timer.setInterval('scramble', () => this.scrambleLetters(), Math.floor(Math.random() * 100) + 25);
+        timer.setInterval(
+            'scramble',
+            () => this.scrambleLetters(),
+            isAndroid ? Math.floor(Math.random() * 125) + 50 : Math.floor(Math.random() * 100) + 25,
+        );
     }
 
     /**
