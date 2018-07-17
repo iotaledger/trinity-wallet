@@ -218,14 +218,14 @@
         "passwordManagerCheckbox": "Guardaré mi semilla en un administrador de contraseñas",
         "copy": "COPIAR",
         "noPasswordManagers": "No hay administradores de contraseña instalados",
-        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "If you wish to store your seed in a password manager, you must follow a tutorial from the following link"
+        "noPasswordManagersExplanation": "No fueron encontrados administradores de contraseña en su dispositivo. Por favor instale Keepass2Android.",
+        "followTutorialToSecurelyShareSeed": "Si usted desea almacenar su semilla en un administrador de contraseñas, debe seguir el tutorial que se encuentra en el siguiente enlace"
     },
     "enterSeed": {
         "invalidCharacters": "La semilla contiene caracteres inválidos",
         "invalidCharactersExplanation": "Las semillas sólo pueden estar compuestas de letras A-Z y el número 9. Tu semilla tiene caracteres inválidos. Por favor reintenta.",
         "seedTooShort": "La semilla es demasiado corta",
-        "seedTooLong": "Seed is too long",
+        "seedTooLong": "La semilla es muy larga",
         "seedTooShortExplanation": "Las semillas deben tener {{maxLength}} caracteres. Tu seed tiene actualmente {{currentLength}} caracteres. Por favor reintentalo.",
         "seedExplanation": "Las semillas deben ser de {{maxLength}} caracteres de longitud y contener letras mayúsculas de la A a la Z, o el número 9. No se pueden usar semillas de más de {{maxLength}} caracteres.",
         "neverShare": "NUNCA COMPARTAS TU SEMILLA CON NADIE"
@@ -239,7 +239,7 @@
     },
     "languageSetup": {
         "language": "Idioma",
-        "letsGetStarted": "Let's get started"
+        "letsGetStarted": "Vamos a empezar"
     },
     "login": {
         "emptyPassword": "Contraseña vacía",
@@ -250,29 +250,29 @@
         "selectDifferentNode": "Quieres seleccionar un nodo diferente?",
         "setNode": "ESTABLECER NODO",
         "cannotConnect": "No es posible conectarse al nodo de IOTA.",
-        "whyBiometricDisabled": "Why is biometric authentication disabled?",
-        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabled": "Por que la autentificación biométrica está deshabilitada?",
+        "whyBiometricDisabledExplanation": "El inicio de sesión biométrico está deshabilitado en la primera carga de la aplicación por seguridad. Al utilizar Trinity, se cerrará la sesión por inactividad. Entonces podrá iniciar sesión de nuevo con la autentificación biométrica."
     },
     "loading": {
         "loadingFirstTime": "Cargando la semilla por primera vez.",
         "thisMayTake": "Esto puede tomar un tiempo.",
         "doNotMinimise": "No minimizar o cerrar la aplicación.",
         "youMayNotice": "Puedes notar que se alenta tu dispositivo.",
-        "takingAWhile": "This seems to be taking a while"
+        "takingAWhile": "Esto tomará un rato"
     },
     "newSeedSetup": {
-        "generatedSeed": "Generated seed",
+        "generatedSeed": "Semilla generada",
         "seedNotGenerated": "La semilla no se ha generado",
         "seedNotGeneratedExplanation": "Por favor haz click en el botón generar nueva semilla.",
         "pressForNewSeed": "PULSAR PARA NUEVA SEMILLA",
-        "generateSuccess": "Seed generated successfully",
+        "generateSuccess": "Semilla generada exitosamente",
         "individualLetters": "Haz clic en las letras individuales para aleatorizarlas.",
-        "individualLetterCount": "Press {{letterCount}} more individual letters to randomise them.",
-        "whatIsASeed": "What is a seed?"
+        "individualLetterCount": "Pulse {{letterCount}} letras individuales más para aleatorizarlas.",
+        "whatIsASeed": "Que es una semilla?"
     },
     "onboardingComplete": {
-        "allDone": "All Done!",
-        "openYourWallet": "Open your wallet",
+        "allDone": "¡Todo terminado!",
+        "openYourWallet": "Abra su cartera",
         "walletReady": "La billetera está configurada y lista para usar. Si necesitas hacer cambios en el futuro, busca en el menú de Preferencias."
     },
     "paperWallet": {
@@ -281,7 +281,7 @@
         "neverShare": "Nunca compartas tu semilla con nadie.",
         "iotaLogo": "Logo IOTA",
         "printWallet": "IMPRIMIR BILLETERA DE PAPEL",
-        "print": "PRINT",
+        "print": "IMPRIMIR",
         "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
         "publicInsecure": "But printing on public wifi or a public printer is insecure.",
         "tapCheckboxes": "Please tap the checkboxes below to confirm.",
