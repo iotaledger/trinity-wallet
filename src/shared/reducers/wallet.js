@@ -3,20 +3,61 @@ import { ActionTypes } from '../actions/wallet';
 import { ActionTypes as AccountsActionTypes } from '../actions/accounts';
 
 const initialState = {
+    /**
+     * Determines if wallet should be redirected from loading to dashboard screen
+     */
     ready: false,
+    /**
+     * Wallet password hash
+     */
     password: '',
+    /**
+     * User's seed stored temporarily during account setup
+     */
     seed: Array(82).join(' '),
+    /**
+     * Determines if a user used an existing seed during account setup
+     */
     usedExistingSeed: false,
+    /**
+     * Account name set by user during initial account setup
+     */
     accountName: 'MAIN WALLET',
+    /**
+     * Active account index from the list of added account names
+     */
     seedIndex: 0,
-    usedSeedToLogin: false,
+    /**
+     * Active setting name on settings screen
+     */
     currentSetting: 'mainSettings',
+    /**
+     * Account name set by user during additional account setup
+     */
     additionalAccountName: '',
+    /**
+     * Total balance detected during snapshot transition
+     */
     transitionBalance: 0,
+    /**
+     * Total addresses found during snapshot transition that will be attached to tangle
+     */
     transitionAddresses: [],
+    /**
+     * Determines if wallet is adding additional account
+     */
     addingAdditionalAccount: false,
+    /**
+     * Determines if the transition addresses should be attached or more address with balance should be scanned
+     */
     balanceCheckToggle: false,
+    /**
+     * Determines if deep linking is activated on the wallet
+     */
     deepLinkActive: false,
+    /**
+     * Determines if wallet has an active internet connection
+     */
     hasConnection: true,
 };
 
@@ -53,16 +94,10 @@ export default (state = initialState, action) => {
                 ...state,
                 seedIndex: action.payload,
             };
-        case ActionTypes.SET_USED_SEED_TO_LOGIN:
-            return {
-                ...state,
-                usedSeedToLogin: action.payload,
-            };
         case ActionTypes.CLEAR_WALLET_DATA:
             return {
                 ...state,
                 ready: false,
-                usedSeedToLogin: false,
                 seedIndex: 0,
                 isGeneratingReceiveAddress: false,
                 currentSetting: 'mainSettings',

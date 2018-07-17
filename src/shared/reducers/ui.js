@@ -6,40 +6,133 @@ import { ActionTypes as AccountsActionTypes } from '../actions/accounts';
 import { ActionTypes as PollingActionTypes } from '../actions/polling';
 
 const initialState = {
+    /**
+     * Determines if the wallet is generating receive address
+     */
     isGeneratingReceiveAddress: false,
+    /**
+     * Determines if wallet is fetching currency information
+     */
     isFetchingCurrencyData: false,
+    /**
+     * Determines if wallet has an error while fetching currency information
+     */
     hasErrorFetchingCurrencyData: false,
+    /**
+     * Determines if wallet is manually promoting a transaction
+     */
     isPromotingTransaction: false,
+    /**
+     * Determines if wallet is snapshot transitioning
+     */
     isTransitioning: false,
+    /**
+     * Determines if wallet is attaching addresses to tangle
+     */
     isAttachingToTangle: false,
+    /**
+     * Determines if wallet is fetching account information from tangle after a successful login
+     */
     isFetchingLatestAccountInfoOnLogin: false,
+    /**
+     * Determines if wallet has an error fetching account information from tangle after a successful login
+     */
     hasErrorFetchingAccountInfoOnLogin: false,
+    /**
+     * Determines if wallet is making a transaction
+     */
     isSendingTransfer: false,
+    /**
+     * Determines if wallet is manually syncing
+     */
     isSyncing: false,
+    /**
+     * Determines if application is in an inactive state
+     */
     inactive: false,
+    /**
+     * Determines if application is in a minimised state
+     */
     minimised: false,
+    /**
+     * Recipient address text field data
+     */
     sendAddressFieldText: '',
+    /**
+     * Transaction amount text field data
+     */
     sendAmountFieldText: '',
+    /**
+     * Transaction message text field data
+     */
     sendMessageFieldText: '',
+    /**
+     * Password text field data on login
+     */
     loginPasswordFieldText: '',
+    /**
+     * Active denomination on send screen
+     */
     sendDenomination: 'i',
+    /**
+     * Desktop onboarding meta data
+     */
     onboarding: {
         name: '',
         seed: null,
         isGenerated: false,
     },
+    /**
+     * Keeps track if wallet is allowed to be minimised
+     */
     doNotMinimise: false,
+    /**
+     * Keeps track if modal is active on any screen
+     */
     isModalActive: false,
+    /**
+     * Determines if wallet is checking state/health of the newly added custom node
+     */
     isCheckingCustomNode: false,
+    /**
+     * Determines if wallet is changing selected node
+     */
     isChangingNode: false,
+    /**
+     * Keeps track of the bundle hash currently being promoted (manually/auto)
+     */
     currentlyPromotingBundleHash: '',
+    /**
+     * Custom route names on login screen (mobile)
+     */
     loginRoute: 'login',
+    /**
+     * Determines if wallet is retrying a failed transaction
+     */
     isRetryingFailedTransaction: false,
+    /**
+     * QR message data on receive screen
+     */
     qrMessage: '',
+    /**
+     * QR amount data on receive screen
+     */
     qrAmount: '',
+    /**
+     * QR tag data on receive screen
+     */
     qrTag: '',
+    /**
+     * Active QR denomination on receive screen
+     */
     qrDenomination: 'i',
+    /**
+     * Selected QR tab name on receive screen
+     */
     selectedQrTab: 'message',
+    /**
+     * Determines if receive card is flipped on receive screen
+     */
     isReceiveCardFlipped: false,
 };
 
