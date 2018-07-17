@@ -280,7 +280,7 @@ export const syncAccount = (
  *
  *   @returns {object}
  **/
-export const syncAccountAfterSpending = (name, newTransfer, accountState, isValueTransfer) => {
+export const syncAccountAfterSpending = (seed, name, newTransfer, accountState, isValueTransfer, genFn) => {
     const tailTransaction = find(newTransfer, { currentIndex: 0 });
     const normalisedTransfer = normaliseBundle(newTransfer, keys(accountState.addresses), [tailTransaction], false);
 
@@ -315,19 +315,20 @@ export const syncAccountAfterSpending = (name, newTransfer, accountState, isValu
     const addressData = markAddressesAsSpentSync([newTransfer], accountState.addresses);
     const ownTransactionHashesForThisTransfer = getOwnTransactionHashes(normalisedTransfer, accountState.addresses);
 
-    const newState = {
-        ...accountState,
-        transfers,
-        addresses: addressData,
-        unconfirmedBundleTails,
-        hashes: [...accountState.hashes, ...ownTransactionHashesForThisTransfer],
-    };
-
-    return {
-        newState,
-        normalisedTransfer,
-        transfer: newTransfer,
-    };
+    return syncAddresses(seed, addressData, genFn, true).then((newAddressData) => {
+        const newState = {
+            ...accountState,
+            transfers,
+            addresses: newAddressData,
+            unconfirmedBundleTails,
+            hashes: [...accountState.hashes, ...ownTransactionHashesForThisTransfer],
+        };
+        return {
+            newState,
+            normalisedTransfer,
+            transfer: newTransfer,
+        };
+    });
 };
 
 /**
