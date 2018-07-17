@@ -4,11 +4,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 
-import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'libs/iota/utils';
-import { getVault } from 'libs/crypto';
+import { MAX_SEED_LENGTH } from 'libs/iota/utils';
+import { uniqueSeed } from 'libs/crypto';
 
 import { generateAlert } from 'actions/alerts';
-import { setOnboardingSeed } from 'actions/ui';
 
 import Button from 'ui/components/Button';
 import SeedInput from 'ui/components/input/Seed';
@@ -20,13 +19,6 @@ class SeedVerify extends React.PureComponent {
     static propTypes = {
         /** Current wallet password */
         password: PropTypes.string.isRequired,
-        /** Current onboarding seed, generation state */
-        onboarding: PropTypes.object.isRequired,
-        /** Set onboarding seed state
-         * @param {String} seed - New seed
-         * @param {Boolean} isGenerated - Is the new seed generated
-         */
-        setOnboardingSeed: PropTypes.func.isRequired,
         /** Browser History object */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
@@ -46,18 +38,20 @@ class SeedVerify extends React.PureComponent {
     };
 
     state = {
-        seed: '',
+        seed: [],
+        isGenerated: Electron.getOnboardingGenerated(),
     };
 
     componentDidMount() {
-        if (this.props.onboarding.isGenerated) {
-            Electron.clipboard('');
+        if (Electron.getOnboardingSeed()) {
+            Electron.clipboard(null);
+            Electron.garbageCollect();
         }
     }
 
     onChange = (value) => {
         this.setState(() => ({
-            seed: value.replace(/[^a-zA-Z9]*/g, '').toUpperCase(),
+            seed: value,
         }));
     };
 
@@ -66,17 +60,21 @@ class SeedVerify extends React.PureComponent {
             e.preventDefault();
         }
 
-        const { history, password, setOnboardingSeed, generateAlert, onboarding, t } = this.props;
-        const { seed } = this.state;
+        const { history, password, generateAlert, t } = this.props;
+        const { seed, isGenerated } = this.state;
 
-        if (onboarding.isGenerated && seed !== onboarding.seed) {
+        if (
+            isGenerated &&
+            (seed.length !== Electron.getOnboardingSeed().length ||
+                !Electron.getOnboardingSeed().every((v, i) => v % 27 === seed[i] % 27))
+        ) {
             generateAlert('error', t('seedReentry:incorrectSeed'), t('seedReentry:incorrectSeedExplanation'));
             return;
         }
 
         if (password.length) {
-            const vault = await getVault(password);
-            if (vault.seeds.indexOf(seed) > -1) {
+            const isUniqueSeed = await uniqueSeed(password, seed);
+            if (!isUniqueSeed) {
                 generateAlert('error', t('addAdditionalSeed:seedInUse'), t('addAdditionalSeed:seedInUseExplanation'));
                 return;
             }
@@ -90,26 +88,24 @@ class SeedVerify extends React.PureComponent {
                 999999,
             );
             return;
-        } else if (!seed.match(VALID_SEED_REGEX)) {
-            generateAlert('error', t('enterSeed:invalidCharacters'), t('enterSeed:invalidCharactersExplanation'));
-            return;
         }
 
-        if (!onboarding.isGenerated) {
-            setOnboardingSeed(seed, false);
+        if (!isGenerated) {
+            Electron.setOnboardingSeed(seed, false);
         }
 
         history.push('/onboarding/account-name');
     };
 
     render() {
-        const { onboarding, t } = this.props;
-        const { seed = '' } = this.state;
+        const { t } = this.props;
+        const { seed, isGenerated } = this.state;
+
         return (
-            <form onSubmit={(e) => this.setSeed(e)}>
+            <form>
                 <section>
                     <h1>{t('seedReentry:enterYourSeed')}</h1>
-                    {onboarding.isGenerated ? (
+                    {isGenerated ? (
                         <p>{t('seedReentry:enterSeedBelow')}</p>
                     ) : (
                         <p>
@@ -120,14 +116,10 @@ class SeedVerify extends React.PureComponent {
                     <SeedInput seed={seed} focus onChange={this.onChange} label={t('seed')} closeLabel={t('back')} />
                 </section>
                 <footer>
-                    <Button
-                        to={`/onboarding/seed-${onboarding.isGenerated ? 'save' : 'intro'}`}
-                        className="square"
-                        variant="dark"
-                    >
+                    <Button to={`/onboarding/seed-${isGenerated ? 'save' : 'intro'}`} className="square" variant="dark">
                         {t('goBackStep')}
                     </Button>
-                    <Button type="submit" className="square" variant="primary">
+                    <Button onClick={this.setSeed} className="square" variant="primary">
                         {t('continue')}
                     </Button>
                 </footer>
@@ -137,13 +129,11 @@ class SeedVerify extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    onboarding: state.ui.onboarding,
     password: state.wallet.password,
 });
 
 const mapDispatchToProps = {
     generateAlert,
-    setOnboardingSeed,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate()(SeedVerify));

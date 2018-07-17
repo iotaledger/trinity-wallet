@@ -4,10 +4,12 @@ import PropTypes from 'prop-types';
 import { translate, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 
-import { changePowSettings, setLockScreenTimeout } from 'actions/settings';
+import { changePowSettings, changeAutoPromotionSettings, setLockScreenTimeout } from 'actions/settings';
 import { completeSnapshotTransition } from 'actions/wallet';
 import { generateAlert } from 'actions/alerts';
-import { setVault, getSeed } from 'libs/crypto';
+
+import { clearVault, getSeed } from 'libs/crypto';
+import { getPoWFn } from 'libs/pow';
 
 import { toggleModalActivity } from 'actions/ui';
 import { getSelectedAccountName, getAddressesForSelectedAccount } from 'selectors/accounts';
@@ -24,7 +26,6 @@ import Toggle from 'ui/components/Toggle';
 import TextInput from 'ui/components/input/Text';
 import Info from 'ui/components/Info';
 import Scrollbar from 'ui/components/Scrollbar';
-import Curl from 'curl.lib.js';
 
 /**
  * Advanced user settings component, including - wallet reset
@@ -33,10 +34,16 @@ class Advanced extends PureComponent {
     static propTypes = {
         /** RemotePow PoW enable state */
         remotePoW: PropTypes.bool.isRequired,
+        /** Auto-promotion enable state */
+        autoPromotion: PropTypes.bool.isRequired,
         /** Update remote PoW settings state
          * @ignore
          */
         changePowSettings: PropTypes.func.isRequired,
+        /** Update auto-promotion settings state
+         * @ignore
+         */
+        changeAutoPromotionSettings: PropTypes.func.isRequired,
         /**
          * Update the lock screen timeout state
          * @ignore
@@ -121,7 +128,7 @@ class Advanced extends PureComponent {
         const { t, generateAlert } = this.props;
 
         try {
-            await setVault(password, {}, true);
+            await clearVault(password);
             localStorage.clear();
             Electron.clearStorage();
             location.reload();
@@ -142,33 +149,28 @@ class Advanced extends PureComponent {
 
     syncAccount = async () => {
         const { wallet, selectedAccountName } = this.props;
-        const seed = await getSeed(wallet.seedIndex, wallet.password);
+        const seed = await getSeed(wallet.password, selectedAccountName, true);
         runTask('manuallySyncAccount', [seed, selectedAccountName]);
     };
 
     startSnapshotTransition = async () => {
-        const { wallet, addresses } = this.props;
-        const seed = await getSeed(wallet.seedIndex, wallet.password);
+        const { wallet, addresses, selectedAccountName } = this.props;
+        const seed = await getSeed(wallet.password, selectedAccountName, true);
         runTask('transitionForSnapshot', [seed, addresses]);
     };
 
     transitionBalanceOk = async () => {
         this.props.toggleModalActivity();
-        const { wallet, transitionAddresses, selectedAccountName, settings, t} = this.props;
-        const seed = await getSeed(wallet.seedIndex, wallet.password);
+        const { wallet, transitionAddresses, selectedAccountName, settings, t } = this.props;
+        const seed = await getSeed(wallet.password, selectedAccountName, true);
 
         let powFn = null;
         if (!settings.remotePoW) {
-            // Temporarily return an error if WebGL cannot be initialized
-            // Remove once we implement more PoW methods
             try {
-                Curl.init();
+                powFn = getPoWFn();
             } catch (e) {
                 return generateAlert('error', t('pow:noWebGLSupport'), t('pow:noWebGLSupportExplanation'));
             }
-            powFn = (trytes, minWeight) => {
-                return Curl.pow({ trytes, minWeight });
-            };
         }
 
         // we aren't using the taskRunner here because you can't pass in powFn since it's a function
@@ -177,14 +179,22 @@ class Advanced extends PureComponent {
 
     transitionBalanceWrong = async () => {
         this.props.toggleModalActivity();
-        const { wallet, transitionAddresses } = this.props;
-        const seed = await getSeed(wallet.seedIndex, wallet.password);
+        const { wallet, transitionAddresses, selectedAccountName } = this.props;
+        const seed = await getSeed(wallet.password, selectedAccountName, true);
         const currentIndex = transitionAddresses.length;
         runTask('generateAddressesAndGetBalance', [seed, currentIndex, null]);
     };
 
     render() {
-        const { remotePoW, changePowSettings, lockScreenTimeout, ui, t } = this.props;
+        const {
+            remotePoW,
+            autoPromotion,
+            changePowSettings,
+            changeAutoPromotionSettings,
+            lockScreenTimeout,
+            ui,
+            t,
+        } = this.props;
 
         // snapshot transition
         const { isTransitioning, isAttachingToTangle, isModalActive, transitionBalance } = this.props;
@@ -228,6 +238,16 @@ class Advanced extends PureComponent {
                         onChange={() => changePowSettings()}
                         on={t('pow:remote')}
                         off={t('pow:local')}
+                    />
+                    <hr />
+
+                    <h3>{t('advancedSettings:autoPromotion')}</h3>
+                    <Info>{t('advancedSettings:autoPromotionExplanation')}</Info>
+                    <Toggle
+                        checked={autoPromotion}
+                        onChange={() => changeAutoPromotionSettings()}
+                        on={t('enabled')}
+                        off={t('disabled')}
                     />
                     <hr />
 
@@ -329,6 +349,7 @@ class Advanced extends PureComponent {
 
 const mapStateToProps = (state) => ({
     remotePoW: state.settings.remotePoW,
+    autoPromotion: state.settings.autoPromotion,
     wallet: state.wallet,
     ui: state.ui,
     selectedAccountName: getSelectedAccountName(state),
@@ -346,6 +367,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     generateAlert,
     changePowSettings,
+    changeAutoPromotionSettings,
     setLockScreenTimeout,
     toggleModalActivity,
     completeSnapshotTransition,

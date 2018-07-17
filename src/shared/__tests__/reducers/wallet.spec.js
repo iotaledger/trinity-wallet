@@ -6,7 +6,6 @@ describe('Reducer: wallet', () => {
         it('should have an initial state', () => {
             const initialState = {
                 ready: false,
-                receiveAddress: ' ',
                 password: '',
                 seed: Array(82).join(' '),
                 accountName: 'MAIN WALLET',
@@ -20,6 +19,7 @@ describe('Reducer: wallet', () => {
                 balanceCheckToggle: false,
                 deepLinkActive: false,
                 hasConnection: true,
+                usedExistingSeed: false,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
@@ -45,14 +45,14 @@ describe('Reducer: wallet', () => {
     });
 
     describe('IOTA/WALLET/SET_SEED', () => {
-        it('should assign payload to "seed" in state', () => {
+        it('should assign "seed" in payload to "seed" prop in state', () => {
             const initialState = {
                 seed: '',
             };
 
             const action = {
                 type: 'IOTA/WALLET/SET_SEED',
-                payload: '9'.repeat(81),
+                payload: { seed: '9'.repeat(81) },
             };
 
             const newState = reducer(initialState, action);
@@ -60,7 +60,25 @@ describe('Reducer: wallet', () => {
                 seed: '9'.repeat(81),
             };
 
-            expect(newState).to.eql(expectedState);
+            expect(newState.seed).to.eql(expectedState.seed);
+        });
+
+        it('should assign "usedExistingSeed" in payload to "usedExistingSeed" prop in state', () => {
+            const initialState = {
+                usedExistingSeed: true,
+            };
+
+            const action = {
+                type: 'IOTA/WALLET/SET_SEED',
+                payload: { usedExistingSeed: false },
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                usedExistingSeed: false,
+            };
+
+            expect(newState.usedExistingSeed).to.eql(expectedState.usedExistingSeed);
         });
     });
 
@@ -98,46 +116,6 @@ describe('Reducer: wallet', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 password: 'foo',
-            };
-
-            expect(newState).to.eql(expectedState);
-        });
-    });
-
-    describe('IOTA/WALLET/SET_RECEIVE_ADDRESS', () => {
-        it('should assign payload to "receiveAddress" in state', () => {
-            const initialState = {
-                receiveAddress: '',
-            };
-
-            const action = {
-                type: 'IOTA/WALLET/SET_RECEIVE_ADDRESS',
-                payload: 'U'.repeat(81),
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                receiveAddress: 'U'.repeat(81),
-            };
-
-            expect(newState).to.eql(expectedState);
-        });
-    });
-
-    describe('IOTA/WALLET/GENERATE_NEW_ADDRESS_SUCCESS', () => {
-        it('should assign payload to "receiveAddress" in state', () => {
-            const initialState = {
-                receiveAddress: '',
-            };
-
-            const action = {
-                type: 'IOTA/WALLET/GENERATE_NEW_ADDRESS_SUCCESS',
-                payload: 'U'.repeat(81),
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                receiveAddress: 'U'.repeat(81),
             };
 
             expect(newState).to.eql(expectedState);
@@ -220,23 +198,6 @@ describe('Reducer: wallet', () => {
             };
 
             expect(newState.ready).to.eql(expectedState.ready);
-        });
-
-        it('should set "receiveAddress" state prop to " "', () => {
-            const initialState = {
-                receiveAddress: 'U'.repeat(81),
-            };
-
-            const action = {
-                type: 'IOTA/WALLET/CLEAR_WALLET_DATA',
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                receiveAddress: ' ',
-            };
-
-            expect(newState.receiveAddress).to.eql(expectedState.receiveAddress);
         });
 
         it('should set "usedSeedToLogin" state prop to false', () => {

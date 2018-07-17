@@ -13,6 +13,7 @@ import CustomTextInput from '../components/CustomTextInput';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -24,11 +25,6 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         paddingTop: height / 10,
-    },
-    saveText: {
-        fontFamily: 'SourceSansPro-Bold',
-        fontSize: GENERAL.fontSize1,
-        backgroundColor: 'transparent',
     },
     bottomContainer: {
         flex: 1,
@@ -105,6 +101,10 @@ export class EditAccountName extends Component {
         };
     }
 
+    componentDidMount() {
+        leaveNavigationBreadcrumb('EditAccountName');
+    }
+
     componentWillReceiveProps(newProps) {
         if (this.props.selectedAccountName !== newProps.selectedAccountName) {
             this.setState({ accountName: newProps.selectedAccountName });
@@ -154,7 +154,7 @@ export class EditAccountName extends Component {
                             <CustomTextInput
                                 label={t('accountName')}
                                 onChangeText={(accountName) => this.setState({ accountName })}
-                                containerStyle={{ width: width / 1.2 }}
+                                containerStyle={{ width: width / 1.15 }}
                                 autoCapitalize="none"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically

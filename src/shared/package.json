@@ -16,10 +16,11 @@
     "license": "MIT",
     "dependencies": {
         "async": "^2.6.0",
+        "bignumber.js": "^7.2.1",
         "i18next": "^10.2.2",
-        "iota.lib.js": "git+https://git@github.com/laumair/iota.lib.js#911e5e2",
+        "iota.lib.js": "git+https://git@github.com/iotaledger/iota.lib.js#develop",
         "lodash": "^4.17.10",
-        "moment": "^2.19.1",
+        "moment": "^2.22.2",
         "proxy-polyfill": "git+https://git@github.com/GoogleChrome/proxy-polyfill#9c009d7",
         "react": "^16.2.0",
         "react-i18next": "^7.3.4",
@@ -29,7 +30,8 @@
         "redux-thunk": "^2.2.0",
         "reselect": "^3.0.1",
         "tinycolor2": "^1.4.1",
-        "url-parse": "^1.2.0"
+        "url-parse": "^1.2.0",
+        "valid-url": "^1.0.9"
     },
     "devDependencies": {
         "babel-core": "^6.26.0",

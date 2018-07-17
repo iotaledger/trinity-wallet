@@ -28,12 +28,10 @@ class About extends React.PureComponent {
     }
 
     menuToggle(item) {
-        switch (item) {
-            case 'about':
-                this.setState({
-                    visible: true,
-                });
-                break;
+        if (item === 'about') {
+            this.setState({
+                visible: true,
+            });
         }
     }
 
@@ -51,6 +49,46 @@ class About extends React.PureComponent {
 
                     <article>
                         <Scrollbar>
+                            <h5>0.1.9.</h5>
+                            <ul>
+                                <li>Add: Feature to remove custom added nodes</li>
+                                <li>Fix: Separate keychain seed accounts to individual entries</li>
+                                <li>Fix: Adding custom node yields incorrect error</li>
+                            </ul>
+                            <h5>0.1.8.</h5>
+                            <ul>
+                                <li>New: Add seed SeedFile import/export</li>
+                                <li>New: Store failed transaction trytes locally for retry</li>
+                                <li>Add: Print filled paper wallet in Account settings</li>
+                                <li>Add: Obscure option for seed input fields</li>
+                                <li>Add: Linux missing dependencies tutorial</li>
+                                <li>Fix: Adding additional seed does not save seed in keystore</li>
+                                <li>Fix: Checksum missing at Account settings address list</li>
+                                <li>Fix: Transaction details button layout broken</li>
+                                <li>Fix: Reset onboarding when Adding additional seed is closed</li>
+                            </ul>
+                            <h5>0.1.7.</h5>
+                            <ul>
+                                <li>New: Wallet Expert mode settings</li>
+                                <li>New: Manual promote and rebroadcast functionality</li>
+                                <li>New: Auto-promotion enable/disable settings</li>
+                                <li>Fixed: On send incorrect progress steps displayed</li>
+                                <li>Fixed: Cannot enable Two-Factor authentication</li>
+                                <li>Fixed: Node error on Adding additional Seed hangs wallet</li>
+                                <li>Fixed: QR seed scanning hangs wallet</li>
+                            </ul>
+                            <h5>0.1.6.</h5>
+                            <ul>
+                                <li>New: Search and Hide zero balance functionality to history view</li>
+                                <li>Updated: Clear memory from plain text seed on onboarding</li>
+                                <li>Updated: Restore wallet size and position on reopening</li>
+                                <li>Fixed: Narrow sidebar layout on Setting and Dashboard views</li>
+                                <li>Fixed: Wrong address displayed if closing Receive while generating</li>
+                                <li>Fixed: Dynamic node list does not load correctly</li>
+                                <li>Fixed: Adding custom node results in error</li>
+                                <li>Fixed: Reverse address list order on Address list view</li>
+                                <li>Fixed: on Windows wallet does not revert to original size after maximize</li>
+                            </ul>
                             <h5>0.1.5.</h5>
                             <ul>
                                 <li>New: Major user interface and theming update</li>

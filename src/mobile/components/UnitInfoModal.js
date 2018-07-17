@@ -7,6 +7,7 @@ import StatefulDropdownAlert from '../containers/StatefulDropdownAlert';
 import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
 import { Icon } from '../theme/icons.js';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     modalContainer: {
@@ -33,7 +34,7 @@ const styles = StyleSheet.create({
     denominationText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize2,
+        fontSize: GENERAL.fontSize3,
         paddingVertical: width / 40,
     },
     titleText: {
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
     numberText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize2,
+        fontSize: GENERAL.fontSize3,
         paddingVertical: width / 40,
     },
     line: {
@@ -54,14 +55,10 @@ const styles = StyleSheet.create({
         height: width / 2.3,
         marginHorizontal: width / 75,
     },
-    iotaIcon: {
-        width: width / 10,
-        height: width / 10,
-    },
     iotaText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize1,
+        fontSize: GENERAL.fontSize2,
         paddingTop: width / 80,
     },
 });
@@ -83,6 +80,10 @@ class UnitInfoModal extends PureComponent {
          */
         t: PropTypes.func.isRequired,
     };
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('UnitInfoModal');
+    }
 
     render() {
         const { t, textColor, borderColor, lineColor, bar } = this.props;

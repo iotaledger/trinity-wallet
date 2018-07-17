@@ -8,6 +8,7 @@ import head from 'lodash/head';
 import has from 'lodash/has';
 import map from 'lodash/map';
 import mapValues from 'lodash/mapValues';
+import omit from 'lodash/omit';
 import omitBy from 'lodash/omitBy';
 import pick from 'lodash/pick';
 import includes from 'lodash/includes';
@@ -16,20 +17,30 @@ import isEmpty from 'lodash/isEmpty';
 import isFunction from 'lodash/isFunction';
 import filter from 'lodash/filter';
 import some from 'lodash/some';
+import size from 'lodash/size';
 import reduce from 'lodash/reduce';
 import transform from 'lodash/transform';
 import difference from 'lodash/difference';
 import unionBy from 'lodash/unionBy';
 import orderBy from 'lodash/orderBy';
 import pickBy from 'lodash/pickBy';
-import { DEFAULT_TAG, DEFAULT_BALANCES_THRESHOLD, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../../config';
+import {
+    DEFAULT_TAG,
+    DEFAULT_BALANCES_THRESHOLD,
+    DEFAULT_MIN_WEIGHT_MAGNITUDE,
+    BUNDLE_OUTPUTS_THRESHOLD,
+} from '../../config';
 import { iota } from './index';
+import nativeBindings from './nativeBindings';
 import { getBalancesSync, accumulateBalance } from './addresses';
 import {
     getBalancesAsync,
     getTransactionsObjectsAsync,
     getLatestInclusionAsync,
     findTransactionObjectsAsync,
+    getTransactionsToApproveAsync,
+    attachToTangleAsync,
+    storeAndBroadcastAsync,
 } from './extendedApi';
 import { convertFromTrytes } from './utils';
 import Errors from './../errors';
@@ -228,23 +239,25 @@ export const transformTransactionsByBundleHash = (transactions) => {
 /**
  *   Categorise bundle by inputs and outputs.
  *
- *   @method categoriseTransactionsByInputsOutputs
+ *   @method categoriseBundleByInputsOutputs
  *   @param {array} bundle
+ *   @param {array} addresses
+ *   @param {number} outputsThreshold
  *
  *   @returns {object}
  **/
-export const categoriseBundleByInputsOutputs = (bundle) => {
-    return transform(
+export const categoriseBundleByInputsOutputs = (bundle, addresses, outputsThreshold = BUNDLE_OUTPUTS_THRESHOLD) => {
+    const isRemainder = (tx) => tx.currentIndex === tx.lastIndex && tx.lastIndex !== 0;
+
+    const categorisedBundle = transform(
         bundle,
         (acc, tx) => {
             const meta = {
-                ...pick(tx, ['address', 'value', 'hash']),
+                ...pick(tx, ['address', 'value', 'hash', 'currentIndex', 'lastIndex']),
                 checksum: iota.utils.addChecksum(tx.address).slice(tx.address.length),
             };
 
-            const isRemainder = tx.currentIndex === tx.lastIndex && tx.lastIndex !== 0;
-
-            if (tx.value < 0 && !isRemainder) {
+            if (tx.value < 0 && !isRemainder(tx)) {
                 acc.inputs.push(meta);
             } else {
                 acc.outputs.push(meta);
@@ -255,6 +268,35 @@ export const categoriseBundleByInputsOutputs = (bundle) => {
             outputs: [],
         },
     );
+
+    const removeUnnecessaryProps = (object) => omit(object, ['currentIndex', 'lastIndex']);
+
+    // Note: Ideally we should categorise all outputs
+    // But some bundles esp carriota field donation bundles are huge
+    // and on devices with restricted storage storing them can cause the problem.
+
+    // Now this does not mean that large bundles should not be validated.
+    // Categorisation should always happen after the bundle is construction and validated.
+
+    // This step can lead to an inconsistent behavior if addresses aren't properly synced
+    // That is why as a safety check remainder transaction objects would always be considered as outputs
+
+    // TODO: But to make this process more secure, always sync addresses during poll
+    return size(categorisedBundle.outputs) <= outputsThreshold
+        ? {
+              inputs: map(categorisedBundle.inputs, removeUnnecessaryProps),
+              outputs: map(categorisedBundle.outputs, removeUnnecessaryProps),
+          }
+        : {
+              inputs: map(categorisedBundle.inputs, removeUnnecessaryProps),
+              outputs: map(
+                  filter(
+                      categorisedBundle.outputs,
+                      (output) => includes(addresses, output.address) || isRemainder(output),
+                  ),
+                  removeUnnecessaryProps,
+              ),
+          };
 };
 
 /**
@@ -599,7 +641,7 @@ export const normaliseBundle = (bundle, addresses, tailTransactions, persistence
 
     return {
         ...pick(transfer, ['hash', 'bundle', 'timestamp', 'attachmentTimestamp']),
-        ...categoriseBundleByInputsOutputs(bundle),
+        ...categoriseBundleByInputsOutputs(bundle, addresses),
         persistence,
         incoming: isReceivedTransfer(bundle, addresses),
         transferValue: getTransferValue(bundle, addresses),
@@ -795,7 +837,7 @@ export const performPow = (
     }
 
     const transactionObjects = map(trytes, (transactionTrytes) =>
-        assign({}, iota.utils.transactionObject(transactionTrytes), {
+        assign({}, iota.utils.transactionObject(transactionTrytes, '9'.repeat(81)), {
             attachmentTimestamp: Date.now(),
             attachmentTimestampLowerBound: 0,
             attachmentTimestampUpperBound: (Math.pow(3, 27) - 1) / 2,
@@ -824,15 +866,19 @@ export const performPow = (
 
                 const transactionTryteString = iota.utils.transactionTrytes(withParentTransactions);
 
-                return powFn(transactionTryteString, minWeightMagnitude).then((nonce) => {
-                    const trytesWithNonce = transactionTryteString.substr(0, 2673 - nonce.length).concat(nonce);
-                    const transactionObjectWithNonce = iota.utils.transactionObject(trytesWithNonce);
+                return powFn(transactionTryteString, minWeightMagnitude)
+                    .then((nonce) => {
+                        const trytesWithNonce = transactionTryteString.substr(0, 2673 - nonce.length).concat(nonce);
 
-                    result.trytes.unshift(trytesWithNonce);
-                    result.transactionObjects.unshift(transactionObjectWithNonce);
+                        result.trytes.unshift(trytesWithNonce);
 
-                    return result;
-                });
+                        return nativeBindings.asyncTransactionObject(trytesWithNonce);
+                    })
+                    .then((tx) => {
+                        result.transactionObjects.unshift(tx);
+
+                        return result;
+                    });
             });
         },
         Promise.resolve({ trytes: [], transactionObjects: [] }),
@@ -924,4 +970,43 @@ export const pickNewTailTransactions = (transactionObjects, existingNormalisedTr
     each(transactionObjects, storeUnseenTailTransactions);
 
     return tailTransactions;
+};
+
+/**
+ *   Retry failed transaction with signed inputs
+ *
+ *   @method retryFailedTransaction
+ *
+ *   @param {array} transactionObjects
+ *   @param {function} powFn
+ *   @param {boolean} shouldOffloadPow
+ *
+ *   @returns {Promise<object>}
+ **/
+export const retryFailedTransaction = (transactionObjects, powFn, shouldOffloadPow) => {
+    const convertToTrytes = (tx) => iota.utils.transactionTrytes(tx);
+
+    const fakeNonce = '9'.repeat(27);
+    const hasFakeNonce = (tx) => tx.nonce === fakeNonce;
+    const cached = {
+        transactionObjects: cloneDeep(transactionObjects),
+        trytes: map(transactionObjects, convertToTrytes),
+    };
+
+    if (some(transactionObjects, hasFakeNonce)) {
+        return getTransactionsToApproveAsync()
+            .then(({ trunkTransaction, branchTransaction }) => {
+                return shouldOffloadPow
+                    ? attachToTangleAsync(trunkTransaction, branchTransaction, cached.trytes)
+                    : performPow(powFn, cached.trytes, trunkTransaction, branchTransaction);
+            })
+            .then(({ trytes, transactionObjects }) => {
+                cached.trytes = trytes;
+                cached.transactionObjects = transactionObjects;
+
+                return storeAndBroadcastAsync(cached.trytes).then(() => cached);
+            });
+    }
+
+    return storeAndBroadcastAsync(cached.trytes).then(() => cached);
 };

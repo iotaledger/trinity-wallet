@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
+import Modal from 'react-native-modal';
 import { Linking, StyleSheet, View, KeyboardAvoidingView, Animated, Keyboard } from 'react-native';
+import {
+    shouldTransitionForSnapshot,
+    hasDisplayedSnapshotTransitionGuide,
+    getSelectedAccountName,
+} from 'iota-wallet-shared-modules/selectors/accounts';
 import { connect } from 'react-redux';
 import { changeHomeScreenRoute, toggleTopBarDisplay } from 'iota-wallet-shared-modules/actions/home';
+import { markTaskAsDone } from 'iota-wallet-shared-modules/actions/accounts';
 import { setPassword, setSetting, setDeepLink } from 'iota-wallet-shared-modules/actions/wallet';
 import { setUserActivity, toggleModalActivity } from 'iota-wallet-shared-modules/actions/ui';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
@@ -16,12 +23,13 @@ import StatefulDropdownAlert from './StatefulDropdownAlert';
 import TopBar from './TopBar';
 import WithUserActivity from '../components/UserActivity';
 import WithBackPress from '../components/BackPress';
+import SnapshotTransitionModalContent from '../components/SnapshotTransitionModalContent';
 import PollComponent from './Poll';
 import Tabs from '../components/Tabs';
 import Tab from '../components/Tab';
 import TabContent from '../components/TabContent';
 import EnterPassword from '../containers/EnterPassword';
-import { height } from '../utils/dimensions';
+import { width, height } from '../utils/dimensions';
 import { isAndroid, isIPhoneX } from '../utils/device';
 
 const styles = StyleSheet.create({
@@ -36,6 +44,13 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    modal: {
+        height,
+        width,
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 0,
     },
 });
 
@@ -58,7 +73,7 @@ class Home extends Component {
          */
         generateAlert: PropTypes.func.isRequired,
         /** Set application activity state
-         * @param {object} options - minimzed, active, inactive
+         * @param {object} options - minimised, active, inactive
          */
         setUserActivity: PropTypes.func.isRequired,
         /** Determines if the application is inactive */
@@ -99,6 +114,16 @@ class Home extends Component {
         isModalActive: PropTypes.bool.isRequired,
         /** Sets whether modal is active or inactive */
         toggleModalActivity: PropTypes.func.isRequired,
+        /** Determines whether to display the snapshot transition guide modal */
+        shouldTransitionForSnapshot: PropTypes.bool.isRequired,
+        /** Determines whether snapshot transition guide is already displayed for selected account */
+        hasDisplayedSnapshotTransitionGuide: PropTypes.bool.isRequired,
+        /** Mark task for account as done
+         * @param {object} { accountName, task }
+         */
+        markTaskAsDone: PropTypes.func.isRequired,
+        /** Currently selected account name */
+        selectedAccountName: PropTypes.string.isRequired,
     };
 
     constructor(props) {
@@ -107,8 +132,10 @@ class Home extends Component {
         this.setDeepUrl = this.setDeepUrl.bind(this);
         this.viewFlex = new Animated.Value(0.7);
         this.topBarHeight = isAndroid ? height / 8 : new Animated.Value(height / 8.8);
+
         this.state = {
             isIOSKeyboardActive: false,
+            showModal: false,
         };
     }
 
@@ -122,6 +149,8 @@ class Home extends Component {
 
     componentDidMount() {
         this.userInactivity.setActiveFromComponent();
+
+        this.displayUpdates();
     }
 
     shouldComponentUpdate(newProps) {
@@ -258,6 +287,28 @@ class Home extends Component {
         }).start();
     };
 
+    completeTransitionTask() {
+        // Just mark this task as done
+        // Since most likely the account needs
+        // no transition
+        this.props.markTaskAsDone({
+            accountName: this.props.selectedAccountName,
+            task: 'hasDisplayedTransitionGuide',
+        });
+    }
+
+    displayUpdates() {
+        const { hasDisplayedSnapshotTransitionGuide, shouldTransitionForSnapshot } = this.props;
+
+        if (!hasDisplayedSnapshotTransitionGuide) {
+            if (shouldTransitionForSnapshot) {
+                this.setState({ showModal: true });
+            } else {
+                this.completeTransitionTask();
+            }
+        }
+    }
+
     render() {
         const {
             t,
@@ -266,10 +317,10 @@ class Home extends Component {
             minimised,
             isFingerprintEnabled,
             isModalActive,
-            theme: { bar, body, negative, positive, primary },
+            theme: { bar, body, negative, positive },
+            theme,
         } = this.props;
         const { isIOSKeyboardActive } = this.state;
-        const barTextColor = { color: bar.color };
         const textColor = { color: body.color };
 
         return (
@@ -283,97 +334,99 @@ class Home extends Component {
             >
                 <View style={{ flex: 1, backgroundColor: body.bg }}>
                     <DynamicStatusBar backgroundColor={inactive ? body.bg : bar.bg} isModalActive={isModalActive} />
-                    {!inactive &&
-                    <View style={{ flex: 1 }}>
-                        <KeyboardAvoidingView
-                            style={styles.midContainer}
-                            behavior={isAndroid ? null : 'padding'}
-                        >
-                            <Animated.View useNativeDriver style={{ flex: this.viewFlex }} />
-                            <View style={{ flex: 4.72 }}>
-                                { !minimised && (
-                                    <TabContent
-                                        navigator={navigator}
-                                        onTabSwitch={(name) => this.onTabSwitch(name)}
-                                        handleCloseTopBar={() => this.handleCloseTopBar()}
-                                        isIOSKeyboardActive={isIOSKeyboardActive}
+                    {(!inactive && (
+                        <View style={{ flex: 1 }}>
+                            <KeyboardAvoidingView style={styles.midContainer} behavior={isAndroid ? null : 'padding'}>
+                                <Animated.View useNativeDriver style={{ flex: this.viewFlex }} />
+                                <View style={{ flex: 4.72 }}>
+                                    {!minimised && (
+                                        <TabContent
+                                            navigator={navigator}
+                                            onTabSwitch={(name) => this.onTabSwitch(name)}
+                                            handleCloseTopBar={() => this.handleCloseTopBar()}
+                                            isIOSKeyboardActive={isIOSKeyboardActive}
+                                        />
+                                    )}
+                                </View>
+                            </KeyboardAvoidingView>
+                            <View style={styles.bottomContainer}>
+                                <Tabs onPress={(name) => this.onTabSwitch(name)} theme={theme}>
+                                    <Tab
+                                        name="balance"
+                                        icon="wallet"
+                                        theme={theme}
+                                        text={t('home:balance').toUpperCase()}
                                     />
-                                    ||
-                                    <View/>
-                              )}
+                                    <Tab name="send" icon="send" theme={theme} text={t('home:send').toUpperCase()} />
+                                    <Tab
+                                        name="receive"
+                                        icon="receive"
+                                        theme={theme}
+                                        text={t('home:receive').toUpperCase()}
+                                    />
+                                    <Tab
+                                        name="history"
+                                        icon="history"
+                                        theme={theme}
+                                        text={t('home:history').toUpperCase()}
+                                    />
+                                    <Tab
+                                        name="settings"
+                                        icon="settings"
+                                        theme={theme}
+                                        text={t('home:settings').toUpperCase()}
+                                    />
+                                </Tabs>
                             </View>
-                        </KeyboardAvoidingView>
-                        <View style={styles.bottomContainer}>
-                            <Tabs onPress={(name) => this.onTabSwitch(name)} barBg={bar.bg}>
-                                <Tab
-                                    name="balance"
-                                    icon="wallet"
-                                    iconColor={bar.color}
-                                    activeBorderColor={primary.color}
-                                    activeColor={bar.alt}
-                                    textColor={barTextColor}
-                                    text={t('home:balance').toUpperCase()}
-                                />
-                                <Tab
-                                    name="send"
-                                    icon="send"
-                                    iconColor={bar.color}
-                                    activeBorderColor={primary.color}
-                                    activeColor={bar.alt}
-                                    textColor={barTextColor}
-                                    text={t('home:send').toUpperCase()}
-                                />
-                                <Tab
-                                    name="receive"
-                                    icon="receive"
-                                    iconColor={bar.color}
-                                    activeBorderColor={primary.color}
-                                    activeColor={bar.alt}
-                                    textColor={barTextColor}
-                                    text={t('home:receive').toUpperCase()}
-                                />
-                                <Tab
-                                    name="history"
-                                    icon="history"
-                                    iconColor={bar.color}
-                                    activeBorderColor={primary.color}
-                                    activeColor={bar.alt}
-                                    textColor={barTextColor}
-                                    text={t('home:history').toUpperCase()}
-                                />
-                                <Tab
-                                    name="settings"
-                                    icon="settings"
-                                    iconColor={bar.color}
-                                    activeBorderColor={primary.color}
-                                    activeColor={bar.alt}
-                                    textColor={barTextColor}
-                                    text={t('home:settings').toUpperCase()}
-                                />
-                            </Tabs>
+                            <TopBar
+                                minimised={minimised}
+                                isIOSKeyboardActive={isIOSKeyboardActive}
+                                topBarHeight={this.topBarHeight}
+                            />
                         </View>
-                        <TopBar minimised={minimised} isIOSKeyboardActive={isIOSKeyboardActive} topBarHeight={this.topBarHeight} />
-                    </View>
-                    ||
-                    <View style={[styles.inactivityLogoutContainer, { backgroundColor: body.bg }]}>
-                        <EnterPassword
-                            onLoginPress={this.onLoginPress}
-                            backgroundColor={body.bg}
-                            negativeColor={negative.color}
-                            positiveColor={positive.color}
-                            bodyColor={body.color}
-                            textColor={textColor}
-                            setUserActive={() => this.props.setUserActivity({ inactive: false })}
-                            generateAlert={(error, title, explanation) =>
-                                this.props.generateAlert(error, title, explanation)
-                            }
-                            isFingerprintEnabled={isFingerprintEnabled}
-                        />
-                    </View>
-                    }
+                    )) || (
+                        <View style={[styles.inactivityLogoutContainer, { backgroundColor: body.bg }]}>
+                            <EnterPassword
+                                onLoginPress={this.onLoginPress}
+                                backgroundColor={body.bg}
+                                negativeColor={negative.color}
+                                positiveColor={positive.color}
+                                bodyColor={body.color}
+                                textColor={textColor}
+                                setUserActive={() => this.props.setUserActivity({ inactive: false })}
+                                generateAlert={(error, title, explanation) =>
+                                    this.props.generateAlert(error, title, explanation)
+                                }
+                                isFingerprintEnabled={isFingerprintEnabled}
+                            />
+                        </View>
+                    )}
                     <PollComponent />
                     {!isModalActive && <StatefulDropdownAlert backgroundColor={bar.bg} />}
                 </View>
+                <Modal
+                    backdropTransitionInTiming={isAndroid ? 500 : 300}
+                    backdropTransitionOutTiming={200}
+                    backdropColor={body.bg}
+                    backdropOpacity={0.9}
+                    style={styles.modal}
+                    isVisible={this.state.showModal}
+                    onBackButtonPress={() => {
+                        this.completeTransitionTask();
+                        this.setState({ showModal: false });
+                    }}
+                    useNativeDriver={isAndroid}
+                    hideModalContentWhileAnimating
+                >
+                    <SnapshotTransitionModalContent
+                        theme={this.props.theme}
+                        t={this.props.t}
+                        onPress={() => {
+                            this.completeTransitionTask();
+                            this.setState({ showModal: false });
+                        }}
+                    />
+                </Modal>
             </UserInactivity>
         );
     }
@@ -384,7 +437,6 @@ const mapStateToProps = (state) => ({
     inactive: state.ui.inactive,
     minimised: state.ui.minimised,
     theme: state.settings.theme,
-    currentRoute: state.home.childRoute,
     isSyncing: state.ui.isSyncing,
     isCheckingCustomNode: state.ui.isCheckingCustomNode,
     isSendingTransfer: state.ui.isSendingTransfer,
@@ -393,6 +445,9 @@ const mapStateToProps = (state) => ({
     isTopBarActive: state.home.isTopBarActive,
     isFingerprintEnabled: state.settings.isFingerprintEnabled,
     isModalActive: state.ui.isModalActive,
+    shouldTransitionForSnapshot: shouldTransitionForSnapshot(state),
+    hasDisplayedSnapshotTransitionGuide: hasDisplayedSnapshotTransitionGuide(state),
+    selectedAccountName: getSelectedAccountName(state),
 });
 
 const mapDispatchToProps = {
@@ -404,6 +459,7 @@ const mapDispatchToProps = {
     toggleTopBarDisplay,
     setDeepLink,
     toggleModalActivity,
+    markTaskAsDone,
 };
 
 export default WithUserActivity()(

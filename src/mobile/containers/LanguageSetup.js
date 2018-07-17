@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import { StyleSheet, View, TouchableWithoutFeedback, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import i18next from 'i18next';
 import SplashScreen from 'react-native-splash-screen';
 import { getDeviceLocale } from 'react-native-device-info';
 import { I18N_LOCALE_LABELS, getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
-import { setLanguage } from 'iota-wallet-shared-modules/actions/settings';
+import { setLanguage, setLocale } from 'iota-wallet-shared-modules/actions/settings';
 import helloBackImagePath from 'iota-wallet-shared-modules/images/hello-back.png';
 import { detectLocale, selectLocale } from 'iota-wallet-shared-modules/libs/locale';
 import { connect } from 'react-redux';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
+import i18next from '../i18next';
 import WithBackPressCloseApp from '../components/BackPressCloseApp';
 import { width, height } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
@@ -18,6 +18,7 @@ import DropdownComponent from '../containers/Dropdown';
 import Button from '../components/Button';
 import { Icon } from '../theme/icons.js';
 import DynamicStatusBar from '../components/DynamicStatusBar';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -66,6 +67,15 @@ class LanguageSetup extends Component {
          * @param {string} language
          */
         setLanguage: PropTypes.func.isRequired,
+        /**
+         * Change selected locale
+         * @param {string}
+         */
+        setLocale: PropTypes.func.isRequired,
+        /** Determines whether a user has accepted privacy agreement */
+        acceptedPrivacy: PropTypes.bool.isRequired,
+        /** Determines whether a user has accepted terms and conditions */
+        acceptedTerms: PropTypes.bool.isRequired,
     };
 
     componentWillMount() {
@@ -73,30 +83,46 @@ class LanguageSetup extends Component {
     }
 
     componentDidMount() {
+        leaveNavigationBreadcrumb('LanguageSetup');
         if (!isAndroid) {
             SplashScreen.hide();
         }
     }
 
     onNextPress() {
-        const { theme: { body } } = this.props;
+        const { theme: { body, bar }, acceptedTerms, acceptedPrivacy } = this.props;
         this.props.navigator.push({
-            screen: 'welcome',
+            screen: this.getNextRoute(),
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,
                 topBarElevationShadowEnabled: false,
                 screenBackgroundColor: body.bg,
                 drawUnderStatusBar: true,
-                statusBarColor: body.bg,
+                statusBarColor: !acceptedTerms || !acceptedPrivacy ? bar.bg : body.bg,
             },
             animated: false,
         });
     }
 
+    getNextRoute() {
+        const { acceptedTerms, acceptedPrivacy } = this.props;
+
+        let nextRoute = 'walletSetup';
+
+        if (!acceptedTerms && !acceptedPrivacy) {
+            nextRoute = 'termsAndConditions';
+        } else if (acceptedTerms && !acceptedPrivacy) {
+            nextRoute = 'privacyPolicy';
+        }
+
+        return nextRoute;
+    }
+
     clickDropdownItem(language) {
         i18next.changeLanguage(getLocaleFromLabel(language));
         this.props.setLanguage(language);
+        this.props.setLocale(getLocaleFromLabel(language));
     }
 
     render() {
@@ -152,11 +178,14 @@ class LanguageSetup extends Component {
 
 const mapStateToProps = (state) => ({
     theme: state.settings.theme,
+    acceptedPrivacy: state.settings.acceptedPrivacy,
+    acceptedTerms: state.settings.acceptedTerms,
 });
 
 const mapDispatchToProps = {
     setSetting,
     setLanguage,
+    setLocale,
 };
 
 export default WithBackPressCloseApp()(

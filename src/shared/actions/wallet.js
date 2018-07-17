@@ -1,12 +1,16 @@
-import takeRight from 'lodash/takeRight';
-import { iota } from '../libs/iota';
+import map from 'lodash/map';
+import noop from 'lodash/noop';
+import findLastIndex from 'lodash/findLastIndex';
+import reduce from 'lodash/reduce';
 import { updateAddresses, updateAccountAfterTransition } from '../actions/accounts';
 import { generateAlert, generateTransitionErrorAlert } from '../actions/alerts';
-import { getNewAddress, formatAddressData, syncAddresses, getLatestAddress } from '../libs/iota/addresses';
-import { DEFAULT_MIN_WEIGHT_MAGNITUDE, DEFAULT_DEPTH } from '../config';
+import { setActiveStepIndex, startTrackingProgress, reset as resetProgress } from '../actions/progress';
+import { accumulateBalance, attachAndFormatAddress, getNewAddress, syncAddresses } from '../libs/iota/addresses';
 import i18next from '../i18next';
-import { performPow } from '../libs/iota/transfers';
-import { getTransactionsToApproveAsync, prepareTransfersAsync, storeAndBroadcastAsync } from '../libs/iota/extendedApi';
+import { syncAccountDuringSnapshotTransition } from '../libs/iota/accounts';
+import { getBalancesAsync } from '../libs/iota/extendedApi';
+import Errors from '../libs/errors';
+import { selectedAccountStateFactory } from '../selectors/accounts';
 
 export const ActionTypes = {
     GENERATE_NEW_ADDRESS_REQUEST: 'IOTA/WALLET/GENERATE_NEW_ADDRESS_REQUEST',
@@ -49,11 +53,6 @@ export const generateNewAddressError = () => ({
     type: ActionTypes.GENERATE_NEW_ADDRESS_ERROR,
 });
 
-export const setReceiveAddress = (payload) => ({
-    type: ActionTypes.SET_RECEIVE_ADDRESS,
-    payload,
-});
-
 export const setAccountName = (payload) => ({
     type: ActionTypes.SET_ACCOUNT_NAME,
     payload,
@@ -83,6 +82,8 @@ export const setReady = () => ({
     payload: true,
 });
 
+// TODO: Change name to something like setSeedInfo
+// as payload now has other meta data
 export const setSeed = (payload) => ({
     type: ActionTypes.SET_SEED,
     payload,
@@ -116,9 +117,8 @@ export const snapshotTransitionError = () => ({
     type: ActionTypes.SNAPSHOT_TRANSITION_ERROR,
 });
 
-export const snapshotAttachToTangleRequest = (payload) => ({
+export const snapshotAttachToTangleRequest = () => ({
     type: ActionTypes.SNAPSHOT_ATTACH_TO_TANGLE_REQUEST,
-    payload,
 });
 
 export const snapshotAttachToTangleComplete = () => ({
@@ -144,9 +144,8 @@ export const generateNewAddress = (seed, accountName, existingAccountData, genFn
         dispatch(generateNewAddressRequest());
         return syncAddresses(seed, existingAccountData.addresses, genFn, true)
             .then((latestAddressData) => {
-                const receiveAddress = iota.utils.addChecksum(getLatestAddress(latestAddressData));
                 dispatch(updateAddresses(accountName, latestAddressData));
-                dispatch(generateNewAddressSuccess(receiveAddress));
+                dispatch(generateNewAddressSuccess());
             })
             .catch(() => dispatch(generateNewAddressError()));
     };
@@ -167,7 +166,7 @@ export const transitionForSnapshot = (seed, addresses, genFn) => {
 };
 
 export const completeSnapshotTransition = (seed, accountName, addresses, powFn) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
         dispatch(
             generateAlert(
                 'info',
@@ -176,116 +175,82 @@ export const completeSnapshotTransition = (seed, accountName, addresses, powFn) 
             ),
         );
 
-        iota.api.getBalances(addresses, 1, (error, success) => {
-            if (!error) {
-                const allBalances = success.balances.map((a) => Number(a));
-                const balance = allBalances.reduce((a, b) => a + b, 0);
-                const lastAddressBalance = takeRight(allBalances.filter((balance) => balance > 0));
-                const lastIndexWithBalance = allBalances.lastIndexOf(lastAddressBalance.pop());
+        dispatch(snapshotAttachToTangleRequest());
+
+        // Find balance on all addresses
+        getBalancesAsync(addresses)
+            .then((balances) => {
+                const allBalances = map(balances.balances, Number);
+                const totalBalance = accumulateBalance(allBalances);
+                const hasZeroBalance = totalBalance === 0;
+
+                // If accumulated balance is zero, terminate the snapshot process
+                if (hasZeroBalance) {
+                    throw new Error(Errors.CANNOT_TRANSITION_ADDRESSES_WITH_ZERO_BALANCE);
+                }
+
+                const lastIndexWithBalance = findLastIndex(allBalances, (balance) => balance > 0);
                 const relevantBalances = allBalances.slice(0, lastIndexWithBalance + 1);
                 const relevantAddresses = addresses.slice(0, lastIndexWithBalance + 1);
 
-                if (lastIndexWithBalance === -1) {
-                    dispatch(snapshotTransitionError());
-                    return dispatch(
-                        generateAlert(
-                            'error',
-                            i18next.t('snapshotTransition:cannotCompleteTransition'),
-                            i18next.t('snapshotTransition:cannotCompleteTransitionExplanation'),
-                            10000,
-                        ),
-                    );
-                }
+                dispatch(startTrackingProgress(relevantAddresses));
 
-                iota.api.wereAddressesSpentFrom(addresses, (error, addressSpendStatus) => {
-                    if (!error) {
-                        const formattedAddressData = formatAddressData(
-                            relevantAddresses,
-                            relevantBalances,
-                            addressSpendStatus,
-                        );
-                        const attachToTangleBundle = createAttachToTangleBundle(seed, relevantAddresses);
+                return reduce(
+                    relevantAddresses,
+                    (promise, address, index) => {
+                        return promise.then((result) => {
+                            dispatch(setActiveStepIndex(index));
 
-                        // do the PoW for the transition bundle locally
-                        if (powFn) {
-                            let trytes = null;
-                            prepareTransfersAsync(seed, attachToTangleBundle)
-                                .then((transferTrytes) => {
-                                    trytes = transferTrytes;
-                                    return getTransactionsToApproveAsync();
-                                })
-                                .then(({ trunkTransaction, branchTransaction }) => {
-                                    dispatch(snapshotAttachToTangleRequest());
-                                    return performPow(powFn, trytes, trunkTransaction, branchTransaction);
-                                })
-                                .then(({ trytes }) => {
-                                    return storeAndBroadcastAsync(trytes);
-                                })
-                                .then(() => {
-                                    dispatch(updateAccountAfterTransition(accountName, formattedAddressData, balance));
-                                    dispatch(snapshotTransitionSuccess());
-                                    dispatch(snapshotAttachToTangleComplete());
-                                    dispatch(
-                                        generateAlert(
-                                            'success',
-                                            i18next.t('snapshotTransition:transitionComplete'),
-                                            i18next.t('snapshotTransition:transitionCompleteExplanation'),
-                                            20000,
-                                        ),
+                            return attachAndFormatAddress(address, index, relevantBalances[index], seed, powFn)
+                                .then(({ addressData, transfer }) => {
+                                    const existingAccountState = selectedAccountStateFactory(accountName)(getState());
+
+                                    const { newState } = syncAccountDuringSnapshotTransition(
+                                        transfer,
+                                        addressData,
+                                        existingAccountState,
                                     );
-                                })
-                                .catch((error) => {
-                                    dispatch(snapshotTransitionError());
-                                    dispatch(snapshotAttachToTangleComplete());
-                                    dispatch(generateTransitionErrorAlert(error));
-                                });
-                            return;
-                        }
+                                    dispatch(updateAccountAfterTransition(newState));
 
-                        const args = [seed, DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE, attachToTangleBundle];
-                        dispatch(snapshotAttachToTangleRequest());
-                        iota.api.sendTransfer(...args, (error) => {
-                            if (!error) {
-                                dispatch(updateAccountAfterTransition(accountName, formattedAddressData, balance));
-                                dispatch(snapshotTransitionSuccess());
-                                dispatch(snapshotAttachToTangleComplete());
-                                dispatch(
-                                    generateAlert(
-                                        'success',
-                                        i18next.t('snapshotTransition:transitionComplete'),
-                                        i18next.t('snapshotTransition:transitionCompleteExplanation'),
-                                        20000,
-                                    ),
-                                );
-                            } else {
-                                dispatch(snapshotTransitionError());
-                                dispatch(snapshotAttachToTangleComplete());
-                                dispatch(generateTransitionErrorAlert(error));
-                            }
+                                    return result;
+                                })
+                                .catch(noop);
                         });
-                    } else {
-                        dispatch(snapshotTransitionError());
-                        dispatch(snapshotAttachToTangleComplete());
-                        dispatch(generateTransitionErrorAlert(error));
-                    }
-                });
-            } else {
+                    },
+                    Promise.resolve(),
+                );
+            })
+            .then(() => {
+                dispatch(snapshotTransitionSuccess());
+                dispatch(snapshotAttachToTangleComplete());
+                dispatch(
+                    generateAlert(
+                        'success',
+                        i18next.t('snapshotTransition:transitionComplete'),
+                        i18next.t('snapshotTransition:transitionCompleteExplanation'),
+                        20000,
+                    ),
+                );
+
+                dispatch(resetProgress());
+            })
+            .catch((error) => {
                 dispatch(snapshotTransitionError());
                 dispatch(snapshotAttachToTangleComplete());
                 dispatch(generateTransitionErrorAlert(error));
-            }
-        });
+            });
     };
 };
 
 export const generateAddressesAndGetBalance = (seed, index, genFn) => {
     return (dispatch) => {
         const options = {
-            index: index,
+            index,
             total: 20,
             returnAll: true,
             security: 2,
         };
+
         getNewAddress(seed, options, genFn, (error, addresses) => {
             if (error) {
                 dispatch(snapshotTransitionError());
@@ -298,30 +263,19 @@ export const generateAddressesAndGetBalance = (seed, index, genFn) => {
     };
 };
 
-export const createAttachToTangleBundle = (seed, addresses) => {
-    const transfers = [];
-    for (let i = 0; i < addresses.length; i++) {
-        transfers.push({
-            address: addresses[i],
-            value: 0,
-        });
-    }
-    return transfers;
-};
-
 export const getBalanceForCheck = (addresses) => {
     return (dispatch) => {
-        iota.api.getBalances(addresses, 1, (error, success) => {
-            if (!error) {
-                const balances = success.balances.map((a) => Number(a));
-                const balance = balances.reduce((a, b) => a + b, 0);
-                dispatch(updateTransitionBalance(balance));
+        getBalancesAsync(addresses)
+            .then((balances) => {
+                const balanceOnAddresses = accumulateBalance(map(balances.balances, Number));
+
+                dispatch(updateTransitionBalance(balanceOnAddresses));
                 dispatch(switchBalanceCheckToggle());
-            } else {
+            })
+            .catch((error) => {
                 dispatch(snapshotTransitionError());
                 dispatch(generateTransitionErrorAlert(error));
-            }
-        });
+            });
     };
 };
 

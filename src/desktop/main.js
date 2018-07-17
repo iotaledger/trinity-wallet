@@ -4,6 +4,8 @@ const initMenu = require('./lib/Menu.js');
 const path = require('path');
 const electronSettings = require('electron-settings');
 
+app.commandLine.appendSwitch('js-flags', '--expose-gc');
+
 const BrowserWindow = electron.BrowserWindow;
 const devMode = process.env.NODE_ENV === 'development';
 
@@ -30,28 +32,42 @@ if (shouldQuit) {
 
 let settings = null;
 
+let windowState = {
+    width: 1024,
+    height: 768,
+    x: null,
+    y: null,
+    maximized: false,
+};
+
 try {
     const data = electronSettings.get('reduxPersist:settings');
+    const windowStateData = electronSettings.get('window-state');
+    if (windowStateData) {
+        windowState = windowStateData;
+    }
     settings = JSON.parse(data);
 } catch (error) {}
 
 function createWindow() {
-    protocol.registerFileProtocol('iota', (request, callback) => {
-        callback(
-            request.url
-                .replace('iota:/', app.getAppPath())
-                .split('?')[0]
-                .split('#')[0],
-        );
-    });
+    try {
+        protocol.registerFileProtocol('iota', (request, callback) => {
+            callback(
+                request.url
+                    .replace('iota:/', app.getAppPath())
+                    .split('?')[0]
+                    .split('#')[0],
+            );
+        });
+    } catch (error) {}
 
     windows.main = new BrowserWindow({
-        width: 1024,
-        height: 768,
+        width: windowState.width,
+        height: windowState.height,
+        x: windowState.x,
+        y: windowState.y,
         minWidth: 500,
         minHeight: 720,
-        maxWidth: 1600,
-        maxHeight: 900,
         frame: process.platform === 'linux',
         titleBarStyle: 'hidden',
         icon: `${__dirname}/dist/icon.png`,
@@ -63,6 +79,10 @@ function createWindow() {
             webviewTag: false,
         },
     });
+
+    if (windowState.maximized) {
+        windows.main.maximize();
+    }
 
     const url = devMode ? 'http://localhost:1074/' : 'iota://dist/index.html';
 
@@ -148,6 +168,16 @@ app.on('window-all-closed', () => {
 
 app.on('before-quit', () => {
     if (windows.main && !windows.main.isDestroyed()) {
+        const bounds = windows.main.getBounds();
+
+        electronSettings.set('window-state', {
+            x: bounds.x,
+            y: bounds.y,
+            width: bounds.width,
+            height: bounds.height,
+            maximized: windows.main.isMaximized(),
+        });
+
         windows.main.removeListener('close', hideOnClose);
     }
 });

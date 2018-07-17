@@ -1,43 +1,69 @@
-import moment from 'moment';
+import moment from 'moment/min/moment-with-locales.min.js';
+import i18next from '../i18next';
 
 export const formatTimeAs = {
-    twentyFourHours: (time) => moment(time).format('HH:mm'),
-    hoursMinutesDayMonthYear: (time) => moment(time).format('HH:mm DD/MM/YYYY'),
-    hoursMinutesSecondsDayMonthYear: (time) => moment(time).format('hh:mm:ss DD/MM/YYYY'),
+    timeOnly: (locale, time) => {
+        const m = moment.utc(time);
+        locale = chooseMomentLocale(locale);
+        m.locale(locale);
+        return m.format('LT');
+    },
+    hoursMinutesDayMonthYear: (locale, time) => {
+        const m = moment.utc(time);
+        locale = chooseMomentLocale(locale);
+        m.locale(locale);
+        return m.format('LT L');
+    },
+    hoursMinutesSecondsDayMonthYear: (locale, time) => {
+        const m = moment.utc(time);
+        locale = chooseMomentLocale(locale);
+        m.locale(locale);
+        return m.format('LTS L');
+    },
 };
 
 export const formatDayAs = {
-    dayMonthYear: (day) => moment(day).format('DD/MM/YYYY'),
+    dayMonthYear: (locale, day) => {
+        const m = moment.utc(day);
+        locale = chooseMomentLocale(locale);
+        m.locale(locale);
+        return m.format('L');
+    },
 };
 
-export const isToday = (day) => moment().isSame(moment(day), 'day');
+export const isToday = (day) => moment.utc().isSame(moment(day), 'day');
 
 export const convertUnixTimeToDateObject = (time) => moment.unix(time);
 
 export const isYesterday = (day) => {
-    const yesterday = moment().subtract(1, 'day');
-    return moment(day).isSame(yesterday, 'day');
+    const yesterday = moment.utc().subtract(1, 'day');
+    return moment.utc(day).isSame(yesterday, 'day');
 };
 
 export const isMinutesAgo = (time, minutes) => {
-    return moment(time).isBefore(moment().subtract(minutes, 'minutes'));
+    return moment.utc(time).isBefore(moment().subtract(minutes, 'minutes'));
 };
 
 export const isValid = (dateString, format = 'YYYY MMM DD') => moment(dateString, format).isValid();
 
 export const getCurrentYear = () => new Date().getFullYear();
 
-export const formatTime = (ts) => {
+export const formatTime = (locale, ts) => {
+    const m = moment.utc(ts);
+    locale = chooseMomentLocale(locale);
+    m.locale(locale);
     if (isToday(ts)) {
-        return formatTimeAs.twentyFourHours(ts);
-    } else if (isYesterday(ts)) {
-        return 'Yesterday';
+        return m.format('LT');
     }
-    return formatDayAs.dayMonthYear(ts);
+    if (isYesterday(ts)) {
+        return i18next.t('history:yesterday');
+    }
+
+    return formatDayAs.dayMonthYear(locale, ts);
 };
 
-export const formatModalTime = (ts) => {
-    return formatTimeAs.hoursMinutesDayMonthYear(ts);
+export const formatModalTime = (locale, ts) => {
+    return formatTimeAs.hoursMinutesDayMonthYear(locale, ts);
 };
 
 export const convertUnixTimeToJSDate = (time) => convertUnixTimeToDateObject(time);
@@ -55,4 +81,20 @@ export const isWithinMinutes = (time, minutes) => {
     const lessThanMinutesAgo = now - minutes * 60 * 1000;
 
     return time > lessThanMinutesAgo;
+};
+
+/**
+ * Checks if the device locale is available in moment and returns the locale to be loaded
+ * Mitigates https://github.com/moment/moment/issues/4027
+ * @param  {string} locale locale to be checked
+ * @return {string}        locale to be loaded by moment
+ */
+const chooseMomentLocale = (locale) => {
+    locale = locale.toLowerCase();
+    if (moment.locales().includes(locale)) {
+        return locale;
+    } else if (moment.locales().includes(locale.substring(0, 2))) {
+        return locale.substring(0, 2);
+    }
+    return 'en-gb';
 };

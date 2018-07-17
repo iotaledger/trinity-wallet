@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import keys from 'lodash/keys';
 import { getStoredState } from 'redux-persist';
 import { changeIotaNode } from '../libs/iota';
 import { updatePersistedState } from '../libs/utils';
@@ -16,6 +17,7 @@ export const ActionTypes = {
     ADD_CUSTOM_NODE_REQUEST: 'IOTA/SETTINGS/ADD_CUSTOM_NODE_REQUEST',
     ADD_CUSTOM_NODE_SUCCESS: 'IOTA/SETTINGS/ADD_CUSTOM_NODE_SUCCESS',
     ADD_CUSTOM_NODE_ERROR: 'IOTA/SETTINGS/ADD_CUSTOM_NODE_ERROR',
+    REMOVE_CUSTOM_NODE: 'IOTA/SETTINGS/REMOVE_CUSTOM_NODE',
     SET_MODE: 'IOTA/SETTINGS/SET_MODE',
     SET_THEME: 'IOTA/SETTINGS/SET_THEME',
     SET_LANGUAGE: 'IOTA/SETTINGS/SET_LANGUAGE',
@@ -38,7 +40,9 @@ export const ActionTypes = {
     SET_2FA_STATUS: 'IOTA/SETTINGS/SET_2FA_STATUS',
     SET_FINGERPRINT_STATUS: 'IOTA/SETTINGS/SET_FINGERPRINT_STATUS',
     ACCEPT_TERMS: 'IOTA/SETTINGS/ACCEPT_TERMS',
+    ACCEPT_PRIVACY: 'IOTA/SETTINGS/ACCEPT_PRIVACY',
     SET_SEED_SHARE_TUTORIAL_VISITATION_STATUS: 'IOTA/SETTINGS/SET_SEED_SHARE_TUTORIAL_VISITATION_STATUS',
+    TOGGLE_EMPTY_TRANSACTIONS: 'IOTA/SETTINGS/TOGGLE_EMPTY_TRANSACTIONS',
 };
 
 export const setAppVersions = (payload) => ({
@@ -48,6 +52,10 @@ export const setAppVersions = (payload) => ({
 
 export const acceptTerms = () => ({
     type: ActionTypes.ACCEPT_TERMS,
+});
+
+export const acceptPrivacy = () => ({
+    type: ActionTypes.ACCEPT_PRIVACY,
 });
 
 const currencyDataFetchRequest = () => ({
@@ -104,6 +112,11 @@ export const setNodeList = (payload) => ({
     payload,
 });
 
+export const removeCustomNode = (payload) => ({
+    type: ActionTypes.REMOVE_CUSTOM_NODE,
+    payload,
+});
+
 export const setRemotePoW = (payload) => ({
     type: ActionTypes.SET_REMOTE_POW,
     payload,
@@ -125,9 +138,12 @@ export const setLockScreenTimeout = (payload) => ({
 });
 
 export function setLocale(locale) {
-    return {
-        type: ActionTypes.SET_LOCALE,
-        payload: locale,
+    return (dispatch) => {
+        i18next.changeLanguage(locale);
+        return dispatch({
+            type: ActionTypes.SET_LOCALE,
+            payload: locale,
+        });
     };
 }
 
@@ -137,7 +153,7 @@ export const setSeedShareTutorialVisitationStatus = (payload) => ({
 });
 
 export function getCurrencyData(currency, withAlerts = false) {
-    const url = 'https://api.fixer.io/latest?base=USD';
+    const url = 'https://trinity-exchange-rates.herokuapp.com/api/latest?base=USD';
     return (dispatch) => {
         dispatch(currencyDataFetchRequest());
 
@@ -160,10 +176,12 @@ export function getCurrencyData(currency, withAlerts = false) {
             )
             .then((json) => {
                 const conversionRate = get(json, `rates.${currency}`) || 1;
+                const availableCurrencies = keys(get(json, 'rates'));
                 dispatch(
                     currencyDataFetchSuccess({
                         conversionRate,
                         currency,
+                        availableCurrencies,
                     }),
                 );
 
@@ -230,19 +248,7 @@ export function setFullNode(node, addingCustomNode = false) {
                 // Update node in redux store
                 dispatch(dispatcher.success(node));
 
-                if (res.error.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
-                    // Automatically default to local PoW if this node has no attach to tangle available
-                    dispatch(setRemotePoW(false));
-
-                    dispatch(
-                        generateAlert(
-                            'success',
-                            i18next.t('settings:nodeChangeSuccess'),
-                            i18next.t('settings:nodeChangeSuccessNoRemotePow', { node }),
-                            10000,
-                        ),
-                    );
-                } else if (res.error.includes(Errors.INVALID_PARAMETERS)) {
+                if (res.error.includes(Errors.INVALID_PARAMETERS)) {
                     dispatch(
                         generateAlert(
                             'success',
@@ -252,9 +258,18 @@ export function setFullNode(node, addingCustomNode = false) {
                         ),
                     );
                 } else {
-                    dispatch(dispatcher.error());
+                    // Automatically default to local PoW if this node has no attach to tangle available
+                    dispatch(setRemotePoW(false));
+                    dispatch(setAutoPromotion(false));
 
-                    dispatch(dispatcher.alerts.defaultError());
+                    dispatch(
+                        generateAlert(
+                            'success',
+                            i18next.t('settings:nodeChangeSuccess'),
+                            i18next.t('settings:nodeChangeSuccessNoRemotePow', { node }),
+                            10000,
+                        ),
+                    );
                 }
             })
             .catch((err) => {
@@ -301,7 +316,7 @@ export function changePowSettings() {
                         ),
                     );
                 }
-                dispatch(setRemotePoW(true));
+                dispatch(setRemotePoW(!settings.remotePoW));
                 dispatch(generateAlert('success', i18next.t('pow:powUpdated'), i18next.t('pow:powUpdatedExplanation')));
             });
         } else {
@@ -314,7 +329,37 @@ export function changePowSettings() {
 export function changeAutoPromotionSettings() {
     return (dispatch, getState) => {
         const settings = getState().settings;
-        dispatch(setAutoPromotion(!settings.autoPromotion));
+        if (!settings.autoPromotion) {
+            checkAttachToTangleAsync(settings.node).then((res) => {
+                if (res.error.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
+                    return dispatch(
+                        generateAlert(
+                            'error',
+                            i18next.t('global:attachToTangleUnavailable'),
+                            i18next.t('global:attachToTangleUnavailableExplanationShort'),
+                            10000,
+                        ),
+                    );
+                }
+                dispatch(setAutoPromotion(!settings.autoPromotion));
+                dispatch(
+                    generateAlert(
+                        'success',
+                        i18next.t('autoPromotion:autoPromotionUpdated'),
+                        i18next.t('autoPromotion:autoPromotionUpdatedExplanation'),
+                    ),
+                );
+            });
+        } else {
+            dispatch(setAutoPromotion(!settings.autoPromotion));
+            dispatch(
+                generateAlert(
+                    'success',
+                    i18next.t('autoPromotion:autoPromotionUpdated'),
+                    i18next.t('autoPromotion:autoPromotionUpdatedExplanation'),
+                ),
+            );
+        }
     };
 }
 
@@ -394,6 +439,12 @@ export const set2FAStatus = (payload) => ({
     type: ActionTypes.SET_2FA_STATUS,
     payload,
 });
+
+export const toggleEmptyTransactions = () => {
+    return {
+        type: ActionTypes.TOGGLE_EMPTY_TRANSACTIONS,
+    };
+};
 
 export const setFingerprintStatus = (payload) => ({
     type: ActionTypes.SET_FINGERPRINT_STATUS,

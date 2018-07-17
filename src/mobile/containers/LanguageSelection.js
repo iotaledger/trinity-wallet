@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, TouchableOpacity, Dimensions, TouchableWithoutFeedback } from 'react-native';
-import i18next from 'i18next';
 import { translate } from 'react-i18next';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
-import { setLanguage } from 'iota-wallet-shared-modules/actions/settings';
+import { setLanguage, setLocale } from 'iota-wallet-shared-modules/actions/settings';
 import { I18N_LOCALE_LABELS, getLocaleFromLabel } from 'iota-wallet-shared-modules/libs/i18n';
 import { selectLocale } from 'iota-wallet-shared-modules/libs/locale';
+import i18next from '../i18next';
 import DropdownComponent from '../containers/Dropdown';
 import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const { width } = Dimensions.get('window');
 const { height } = global;
@@ -74,6 +75,11 @@ class LanguageSelection extends Component {
          * @param {string} language - newly selected language
          */
         setLanguage: PropTypes.func.isRequired,
+        /**
+         * Set locale
+         * @param {string} locale - newly selected locale
+         */
+        setLocale: PropTypes.func.isRequired,
         /** Theme settings */
         theme: PropTypes.object.isRequired,
         /** Selected language */
@@ -86,10 +92,15 @@ class LanguageSelection extends Component {
         this.languageSelected = currentLanguageLabel;
     }
 
+    componentDidMount() {
+        leaveNavigationBreadcrumb('LanguageSelection');
+    }
+
     saveLanguageSelection() {
         const nextLanguage = this.languageSelected;
 
         this.props.setLanguage(nextLanguage);
+        this.props.setLocale(getLocaleFromLabel(nextLanguage));
 
         i18next.changeLanguage(getLocaleFromLabel(nextLanguage));
 
@@ -159,6 +170,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
+    setLocale,
     setLanguage,
     setSetting,
 };

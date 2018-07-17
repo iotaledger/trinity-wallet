@@ -10,8 +10,43 @@ export const ActionTypes = {
     SET_ONBOARDING_NAME: 'IOTA/UI/SET_ONBOARDING_NAME',
     SET_DO_NOT_MINIMISE: 'IOTA/UI/SET_DO_NOT_MINIMISE',
     TOGGLE_MODAL_ACTIVITY: 'IOTA/UI/TOGGLE_MODAL_ACTIVITY',
-    SET_LOGIN_ROUTE: 'IOTA/UI/SET_LOGIN_ROUTE'
+    SET_LOGIN_ROUTE: 'IOTA/UI/SET_LOGIN_ROUTE',
+    SET_QR_MESSAGE: 'IOTA/UI/SET_QR_MESSAGE',
+    SET_QR_AMOUNT: 'IOTA/UI/SET_QR_AMOUNT',
+    SET_QR_TAG: 'IOTA/UI/SET_QR_TAG',
+    SET_QR_DENOMINATION: 'IOTA/UI/SET_QR_DENOMINATION',
+    SET_SELECTED_QR_TAB: 'IOTA/UI/SET_SELECTED_QR_TAB',
+    FLIP_RECEIVE_CARD: 'IOTA/UI/FLIP_RECEIVE_CARD',
 };
+
+export const setQrMessage = (payload) => ({
+    type: ActionTypes.SET_QR_MESSAGE,
+    payload,
+});
+
+export const setQrAmount = (payload) => ({
+    type: ActionTypes.SET_QR_AMOUNT,
+    payload,
+});
+
+export const setQrTag = (payload) => ({
+    type: ActionTypes.SET_QR_TAG,
+    payload,
+});
+
+export const setQrDenomination = (payload) => ({
+    type: ActionTypes.SET_QR_DENOMINATION,
+    payload,
+});
+
+export const setSelectedQrTab = (payload) => ({
+    type: ActionTypes.SET_SELECTED_QR_TAB,
+    payload,
+});
+
+export const flipReceiveCard = () => ({
+    type: ActionTypes.FLIP_RECEIVE_CARD,
+});
 
 export const setSendAddressField = (payload) => ({
     type: ActionTypes.SET_SEND_ADDRESS_FIELD,
@@ -77,6 +112,6 @@ export const toggleModalActivity = () => {
 export const setLoginRoute = (payload) => {
     return {
         type: ActionTypes.SET_LOGIN_ROUTE,
-        payload
+        payload,
     };
 };

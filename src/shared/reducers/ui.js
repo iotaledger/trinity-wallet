@@ -9,7 +9,6 @@ const initialState = {
     isGeneratingReceiveAddress: false,
     isFetchingCurrencyData: false,
     hasErrorFetchingCurrencyData: false,
-    isBroadcastingBundle: false,
     isPromotingTransaction: false,
     isTransitioning: false,
     isAttachingToTangle: false,
@@ -35,7 +34,13 @@ const initialState = {
     isChangingNode: false,
     currentlyPromotingBundleHash: '',
     loginRoute: 'login',
-    hasFailedAutopromotion: false,
+    isRetryingFailedTransaction: false,
+    qrMessage: '',
+    qrAmount: '',
+    qrTag: '',
+    qrDenomination: 'i',
+    selectedQrTab: 'message',
+    isReceiveCardFlipped: false,
 };
 
 export default (state = initialState, action) => {
@@ -96,17 +101,6 @@ export default (state = initialState, action) => {
                 ...state,
                 sendDenomination: action.payload,
             };
-        case TransfersActionTypes.BROADCAST_BUNDLE_REQUEST:
-            return {
-                ...state,
-                isBroadcastingBundle: true,
-            };
-        case TransfersActionTypes.BROADCAST_BUNDLE_SUCCESS:
-        case TransfersActionTypes.BROADCAST_BUNDLE_ERROR:
-            return {
-                ...state,
-                isBroadcastingBundle: false,
-            };
         case TransfersActionTypes.PROMOTE_TRANSACTION_REQUEST:
             return {
                 ...state,
@@ -160,7 +154,6 @@ export default (state = initialState, action) => {
                 isGeneratingReceiveAddress: false,
                 isFetchingCurrencyData: false,
                 hasErrorFetchingCurrencyData: false,
-                isBroadcastingBundle: false,
                 isPromotingTransaction: false,
                 isTransitioning: false,
                 isAttachingToTangle: false,
@@ -182,6 +175,12 @@ export default (state = initialState, action) => {
                 },
                 doNotMinimise: false,
                 isModalActive: false,
+                qrMessage: '',
+                qrAmount: '',
+                qrTag: '',
+                qrDenomination: 'i',
+                selectedQrTab: 'message',
+                isReceiveCardFlipped: false,
             };
         case AccountsActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_REQUEST:
             return {
@@ -281,7 +280,6 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isCheckingCustomNode: false,
-                hasFailedAutopromotion: false,
             };
         case SettingsActionTypes.ADD_CUSTOM_NODE_ERROR:
             return {
@@ -292,7 +290,6 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isChangingNode: false,
-                hasFailedAutopromotion: false,
             };
         case SettingsActionTypes.SET_NODE_ERROR:
             return {
@@ -304,10 +301,46 @@ export default (state = initialState, action) => {
                 ...state,
                 loginRoute: action.payload,
             };
-        case PollingActionTypes.SET_AUTOPROMOTION_FAILED_FLAG:
+        case TransfersActionTypes.RETRY_FAILED_TRANSACTION_REQUEST:
             return {
                 ...state,
-                hasFailedAutopromotion: action.payload,
+                isRetryingFailedTransaction: true,
+            };
+        case TransfersActionTypes.RETRY_FAILED_TRANSACTION_SUCCESS:
+        case TransfersActionTypes.RETRY_FAILED_TRANSACTION_ERROR:
+            return {
+                ...state,
+                isRetryingFailedTransaction: false,
+            };
+        case UiActionTypes.SET_QR_DENOMINATION:
+            return {
+                ...state,
+                qrDenomination: action.payload,
+            };
+        case UiActionTypes.SET_QR_MESSAGE:
+            return {
+                ...state,
+                qrMessage: action.payload,
+            };
+        case UiActionTypes.SET_QR_AMOUNT:
+            return {
+                ...state,
+                qrAmount: action.payload,
+            };
+        case UiActionTypes.SET_QR_TAG:
+            return {
+                ...state,
+                qrTag: action.payload,
+            };
+        case UiActionTypes.SET_SELECTED_QR_TAB:
+            return {
+                ...state,
+                selectedQrTab: action.payload,
+            };
+        case UiActionTypes.FLIP_RECEIVE_CARD:
+            return {
+                ...state,
+                isReceiveCardFlipped: !state.isReceiveCardFlipped,
             };
         default:
             return state;

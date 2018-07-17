@@ -22,10 +22,10 @@ const getProps = (overrides) =>
 
                 return translations[arg] ? translations[arg] : 'foo';
             },
-            rebroadcast: noop,
             promote: noop,
-            status: 'Receive',
-            confirmation: 'Received',
+            status: 'Received',
+            icon: 'plus',
+            incoming: false,
             disableWhen: false,
             value: 200,
             unit: 'i',
@@ -37,15 +37,12 @@ const getProps = (overrides) =>
             mode: 'Standard',
             style: {
                 titleColor: 'white',
-                containerBorderColor: { borderColor: 'white' },
                 containerBackgroundColor: { backgroundColor: 'white' },
-                confirmationStatusColor: { color: 'red' },
-                defaultTextColor: { color: 'green' },
+                rowTextColor: { color: 'red' },
                 backgroundColor: 'yellow',
                 borderColor: { borderColor: 'white' },
                 barColor: 'white',
                 barBg: 'white',
-                buttonsOpacity: { opacity: 1 },
             },
             toggleModalActivity: noop,
             onPress: noop,
@@ -62,10 +59,6 @@ describe('Testing TransactionRow component', () => {
 
         it('should require a status string as a prop', () => {
             expect(TransactionRow.propTypes.status).toEqual(PropTypes.string.isRequired);
-        });
-
-        it('should require a confirmation string as a prop', () => {
-            expect(TransactionRow.propTypes.confirmation).toEqual(PropTypes.string.isRequired);
         });
 
         it('should require a value number as a prop', () => {
@@ -101,11 +94,11 @@ describe('Testing TransactionRow component', () => {
             expect(wrapper.name()).toEqual('TouchableOpacity');
         });
 
-        it('should return seven View components', () => {
+        it('should return eleven View components', () => {
             const props = getProps();
 
             const wrapper = shallow(<TransactionRow {...props} />);
-            expect(wrapper.find('View').length).toEqual(7);
+            expect(wrapper.find('View').length).toEqual(10);
         });
 
         it('should return five Text components', () => {
@@ -115,49 +108,7 @@ describe('Testing TransactionRow component', () => {
             expect(wrapper.find('Text').length).toEqual(5);
         });
 
-        it('should return status prop as a child to first Text component', () => {
-            const props = getProps();
-
-            const wrapper = shallow(<TransactionRow {...props} />);
-            expect(
-                wrapper
-                    .find('Text')
-                    .at(0)
-                    .children()
-                    .at(0)
-                    .text(),
-            ).toEqual('Receive');
-        });
-
-        it('should return value prop as third child to first Text component', () => {
-            const props = getProps();
-
-            const wrapper = shallow(<TransactionRow {...props} />);
-            expect(
-                wrapper
-                    .find('Text')
-                    .at(0)
-                    .children()
-                    .at(2)
-                    .text(),
-            ).toEqual('200');
-        });
-
-        it('should return unit prop as fifth child to first Text component', () => {
-            const props = getProps();
-
-            const wrapper = shallow(<TransactionRow {...props} />);
-            expect(
-                wrapper
-                    .find('Text')
-                    .at(0)
-                    .children()
-                    .at(3)
-                    .text(),
-            ).toEqual('i');
-        });
-
-        it('should return confirmation prop as a child to second Text component', () => {
+        it('should return value prop as first child to second Text component', () => {
             const props = getProps();
 
             const wrapper = shallow(<TransactionRow {...props} />);
@@ -165,6 +116,34 @@ describe('Testing TransactionRow component', () => {
                 wrapper
                     .find('Text')
                     .at(1)
+                    .children()
+                    .at(0)
+                    .text(),
+            ).toEqual('200');
+        });
+
+        it('should return unit prop as third child to second Text component', () => {
+            const props = getProps();
+
+            const wrapper = shallow(<TransactionRow {...props} />);
+            expect(
+                wrapper
+                    .find('Text')
+                    .at(1)
+                    .children()
+                    .at(2)
+                    .text(),
+            ).toEqual('i');
+        });
+
+        it('should return status prop as a child to first Text component if "bundleIsBeingPromoted" prop is false', () => {
+            const props = getProps();
+
+            const wrapper = shallow(<TransactionRow {...props} />);
+            expect(
+                wrapper
+                    .find('Text')
+                    .at(0)
                     .children()
                     .text(),
             ).toEqual('Received');
@@ -182,20 +161,6 @@ describe('Testing TransactionRow component', () => {
                     .at(0)
                     .text(),
             ).toEqual('Message');
-        });
-
-        it('should return a ":" as second child to third Text component', () => {
-            const props = getProps();
-
-            const wrapper = shallow(<TransactionRow {...props} />);
-            expect(
-                wrapper
-                    .find('Text')
-                    .at(2)
-                    .children()
-                    .at(1)
-                    .text(),
-            ).toEqual(':');
         });
 
         it('should return message prop as a child to fourth Text component', () => {

@@ -21,7 +21,6 @@ describe('Reducer: settings', () => {
                     'GBP',
                     'EUR',
                     'AUD',
-                    'ARS',
                     'BGN',
                     'BRL',
                     'CAD',
@@ -35,6 +34,7 @@ describe('Reducer: settings', () => {
                     'IDR',
                     'ILS',
                     'INR',
+                    'ISK',
                     'JPY',
                     'KRW',
                     'MXN',
@@ -61,14 +61,16 @@ describe('Reducer: settings', () => {
                     version: DESKTOP_VERSION,
                     notes: [],
                 },
-                remotePoW: true,
+                remotePoW: false,
                 lockScreenTimeout: 3,
                 versions: {},
                 is2FAEnabled: false,
                 isFingerprintEnabled: false,
                 hasVisitedSeedShareTutorial: false,
                 acceptedTerms: false,
-                autoPromotion: false,
+                acceptedPrivacy: false,
+                autoPromotion: true,
+                hideEmptyTransactions: false,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
@@ -98,7 +100,10 @@ describe('Reducer: settings', () => {
                 locale: 'en',
             };
 
-            const action = actions.setLocale('foo');
+            const action = {
+                type: 'IOTA/SETTINGS/LOCALE',
+                payload: 'foo',
+            };
 
             const newState = reducer(initialState, action);
             const expectedState = {
@@ -173,6 +178,50 @@ describe('Reducer: settings', () => {
         });
     });
 
+    describe('IOTA/SETTINGS/REMOVE_CUSTOM_NODE', () => {
+        describe('when payload exists in "customNodes" state prop', () => {
+            it('should remove payload from state prop "customNodes"', () => {
+                const initialState = {
+                    nodes: ['http://localhost:9000', 'http://localhost:5000'],
+                    customNodes: ['http://localhost:5000'],
+                };
+
+                const action = {
+                    type: 'IOTA/SETTINGS/REMOVE_CUSTOM_NODE',
+                    payload: 'http://localhost:5000',
+                };
+
+                const newState = reducer(initialState, action);
+                const expectedState = {
+                    nodes: ['http://localhost:9000'],
+                    customNodes: [],
+                };
+
+                expect(newState.nodes).to.eql(expectedState.nodes);
+                expect(newState.customNodes).to.eql(expectedState.customNodes);
+            });
+        });
+
+        describe('when payload does not exist in "customNodes" state prop', () => {
+            it('should not change "customNodes" state prop', () => {
+                const initialState = {
+                    nodes: ['http://localhost:9000', 'http://localhost:5000'],
+                    customNodes: ['http://localhost:4000'],
+                };
+
+                const action = {
+                    type: 'IOTA/SETTINGS/REMOVE_CUSTOM_NODE',
+                    payload: 'http://localhost:5000',
+                };
+
+                const newState = reducer(initialState, action);
+
+                expect(newState.nodes).to.eql(initialState.nodes);
+                expect(newState.customNodes).to.eql(initialState.customNodes);
+            });
+        });
+    });
+
     describe('SET_MODE', () => {
         it('should set mode to payload', () => {
             const initialState = {
@@ -213,7 +262,7 @@ describe('Reducer: settings', () => {
                 currency: 'USD',
             };
 
-            const action = actions.currencyDataFetchSuccess({ currency: 'EUR' });
+            const action = actions.currencyDataFetchSuccess({ currency: 'EUR', availableCurrencies: [] });
 
             const newState = reducer(initialState, action);
             const expectedState = {
@@ -228,7 +277,7 @@ describe('Reducer: settings', () => {
                 conversionRate: 1,
             };
 
-            const action = actions.currencyDataFetchSuccess({ conversionRate: 2 });
+            const action = actions.currencyDataFetchSuccess({ conversionRate: 2, availableCurrencies: [] });
 
             const newState = reducer(initialState, action);
             const expectedState = {

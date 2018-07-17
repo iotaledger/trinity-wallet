@@ -17,6 +17,7 @@ import StatefulDropdownAlert from './StatefulDropdownAlert';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -44,15 +45,6 @@ const styles = StyleSheet.create({
         fontSize: GENERAL.fontSize4,
         textAlign: 'center',
         paddingBottom: height / 10,
-        backgroundColor: 'transparent',
-    },
-    questionText: {
-        fontFamily: Fonts.secondary,
-        fontSize: GENERAL.fontSize4,
-        textAlign: 'center',
-        paddingLeft: width / 7,
-        paddingRight: width / 7,
-        paddingTop: height / 25,
         backgroundColor: 'transparent',
     },
 });
@@ -89,6 +81,10 @@ class Disable2FA extends Component {
 
         this.goBack = this.goBack.bind(this);
         this.disable2FA = this.disable2FA.bind(this);
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('Disable2FA');
     }
 
     /**
@@ -155,7 +151,7 @@ class Disable2FA extends Component {
                             <CustomTextInput
                                 label="Token"
                                 onChangeText={(token) => this.setState({ token })}
-                                containerStyle={{ width: width / 1.2 }}
+                                containerStyle={{ width: width / 1.15 }}
                                 autoCapitalize="none"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically

@@ -1,5 +1,6 @@
 import merge from 'lodash/merge';
 import union from 'lodash/union';
+import sortBy from 'lodash/sortBy';
 import { ActionTypes } from '../actions/settings';
 import { DESKTOP_VERSION, defaultNode as node, nodes } from '../config';
 import themes from '../themes/themes';
@@ -17,7 +18,6 @@ const initialState = {
         'GBP',
         'EUR',
         'AUD',
-        'ARS',
         'BGN',
         'BRL',
         'CAD',
@@ -31,6 +31,7 @@ const initialState = {
         'IDR',
         'ILS',
         'INR',
+        'ISK',
         'JPY',
         'KRW',
         'MXN',
@@ -57,15 +58,17 @@ const initialState = {
         version: DESKTOP_VERSION,
         notes: [],
     },
-    remotePoW: true,
-    autoPromotion: false,
+    remotePoW: false,
+    autoPromotion: true,
     lockScreenTimeout: 3,
     autoNodeSwitching: true,
     versions: {},
     is2FAEnabled: false,
     isFingerprintEnabled: false,
     acceptedTerms: false,
+    acceptedPrivacy: false,
     hasVisitedSeedShareTutorial: false,
+    hideEmptyTransactions: false,
 };
 
 const settingsReducer = (state = initialState, action) => {
@@ -109,6 +112,14 @@ const settingsReducer = (state = initialState, action) => {
                     ? state.customNodes
                     : union(state.customNodes, [action.payload]),
             };
+        case ActionTypes.REMOVE_CUSTOM_NODE:
+            return {
+                ...state,
+                nodes: state.customNodes.includes(action.payload)
+                    ? state.nodes.filter((node) => node !== action.payload)
+                    : state.nodes,
+                customNodes: state.customNodes.filter((node) => node !== action.payload),
+            };
         case ActionTypes.SET_NODELIST:
             return {
                 ...state,
@@ -134,6 +145,10 @@ const settingsReducer = (state = initialState, action) => {
                 ...state,
                 currency: action.payload.currency,
                 conversionRate: action.payload.conversionRate,
+                availableCurrencies:
+                    action.payload.availableCurrencies.length > 0
+                        ? sortBy(action.payload.availableCurrencies, ['desc'])
+                        : state.availableCurrencies,
             };
         case ActionTypes.UPDATE_THEME:
             return {
@@ -196,10 +211,20 @@ const settingsReducer = (state = initialState, action) => {
                 ...state,
                 acceptedTerms: true,
             };
+        case ActionTypes.ACCEPT_PRIVACY:
+            return {
+                ...state,
+                acceptedPrivacy: true,
+            };
         case ActionTypes.SET_SEED_SHARE_TUTORIAL_VISITATION_STATUS:
             return {
                 ...state,
                 hasVisitedSeedShareTutorial: action.payload,
+            };
+        case ActionTypes.TOGGLE_EMPTY_TRANSACTIONS:
+            return {
+                ...state,
+                hideEmptyTransactions: !state.hideEmptyTransactions,
             };
     }
 

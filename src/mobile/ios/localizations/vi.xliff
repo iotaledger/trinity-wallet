@@ -13,6 +13,7 @@
       <trans-unit id="NSLocationWhenInUseUsageDescription">
         <source/>
         <note>Privacy - Location When In Use Usage Description</note>
+        <target xml:lang="vi" state="translated"/>
       </trans-unit>
     </body>
   </file>
@@ -61,17 +62,17 @@
       <trans-unit id="NSCameraUsageDescription">
         <source>Trinity requires access to the camera in order to enable QR scanning.</source>
         <note>Privacy - Camera Usage Description</note>
-        <target xml:lang="vi" state="needs-translation">Trinity requires access to the camera in order to enable QR scanning.</target>
+        <target xml:lang="vi" state="translated">Trinity cần quyền truy cập vào camera để quét mã QR.</target>
       </trans-unit>
       <trans-unit id="NSFaceIDUsageDescription">
         <source>Trinity requires access to Face ID in order to enable biometric authentication.</source>
         <note>Privacy - Face ID Usage Description</note>
-        <target xml:lang="vi" state="needs-translation">Trinity requires access to Face ID in order to enable biometric authentication.</target>
+        <target xml:lang="vi" state="translated">Trinity cần quyền truy cập vào chương trình Face ID để xác thực sinh trắc học.</target>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
         <source>2018 IOTA Foundation. All rights reserved.</source>
         <note>Copyright (human-readable)</note>
-        <target xml:lang="vi" state="needs-translation">2018 IOTA Foundation. All rights reserved.</target>
+        <target xml:lang="vi" state="translated">2018 IOTA Foundation. All rights reserved.</target>
       </trans-unit>
       <trans-unit id="NSLocationWhenInUseUsageDescription">
         <source>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</source>

@@ -32,10 +32,12 @@ import {
     getOwnTransactionHashes,
 } from './transfers';
 import {
-    getFullAddressHistory,
     getAddressDataAndFormatBalance,
+    getFullAddressHistory,
     markAddressesAsSpentSync,
     syncAddresses,
+    accumulateBalance,
+    formatAddressData,
 } from './addresses';
 import Errors from '../errors';
 
@@ -58,28 +60,24 @@ const organiseAccountState = (accountName, partialAccountData) => {
         balance: 0,
         addresses: {},
         unconfirmedBundleTails: {},
-        hashes: [],
+        hashes: partialAccountData.hashes,
     };
+
+    const { addresses, balances, wereSpent } = partialAccountData;
+
+    organisedState.addresses = formatAddressData(addresses, balances, wereSpent);
+
+    organisedState.balance = accumulateBalance(partialAccountData.balances);
 
     const normalisedTransactionsList = map(organisedState.transfers, (tx) => tx);
 
-    return getAddressDataAndFormatBalance(partialAccountData.addresses)
-        .then(({ addresses, balance }) => {
-            organisedState.addresses = addresses;
-            organisedState.balance = balance;
-
-            return prepareForAutoPromotion(normalisedTransactionsList, organisedState.addresses, accountName);
-        })
-        .then((unconfirmedBundleTails) => {
+    return prepareForAutoPromotion(normalisedTransactionsList, organisedState.addresses, accountName).then(
+        (unconfirmedBundleTails) => {
             organisedState.unconfirmedBundleTails = unconfirmedBundleTails;
 
-            return findTransactionsAsync({ addresses: keys(organisedState.addresses) });
-        })
-        .then((hashes) => {
-            organisedState.hashes = hashes;
-
             return organisedState;
-        });
+        },
+    );
 };
 
 /**
@@ -106,9 +104,12 @@ export const getAccountData = (seed, accountName, genFn) => {
         transactionObjects: [],
     };
 
-    const data = {
+    let data = {
         addresses: [],
         transfers: [],
+        balances: [],
+        wereSpent: [],
+        hashes: [],
     };
 
     return isNodeSynced()
@@ -119,10 +120,10 @@ export const getAccountData = (seed, accountName, genFn) => {
 
             return getFullAddressHistory(seed, genFn);
         })
-        .then(({ addresses, hashes }) => {
-            data.addresses = addresses;
+        .then((history) => {
+            data = { ...data, ...history };
 
-            return getTransactionsObjectsAsync(hashes);
+            return getTransactionsObjectsAsync(history.hashes);
         })
         .then((transactionObjects) => {
             each(transactionObjects, (tx) => {
@@ -405,5 +406,129 @@ export const syncAccountAfterReattachment = (accountName, reattachment, accountS
         newState,
         reattachment,
         normalisedReattachment,
+    };
+};
+
+/**
+ *  Sync local account in case signed inputs were exposed to the network (and the network call failed)
+ *
+ *   @method syncAccountOnValueTransactionFailure
+ *   @param {array} newTransfer
+ *   @param {object} accountState
+ *
+ *   @returns {object}
+ **/
+export const syncAccountOnValueTransactionFailure = (newTransfer, accountState) => {
+    const tailTransaction = find(newTransfer, { currentIndex: 0 });
+    const normalisedTransfer = normaliseBundle(newTransfer, keys(accountState.addresses), [tailTransaction], false);
+
+    // Assign normalised transfer to existing transfers
+    const transfers = mergeNewTransfers(
+        {
+            [normalisedTransfer.bundle]: normalisedTransfer,
+        },
+        accountState.transfers,
+    );
+
+    const addressData = markAddressesAsSpentSync([newTransfer], accountState.addresses);
+
+    const newState = {
+        ...accountState,
+        transfers,
+        addresses: addressData,
+    };
+
+    return {
+        newState,
+        normalisedTransfer,
+        transfer: newTransfer,
+    };
+};
+
+/**
+ *  Sync account when a failed transaction was successfully stored and broadcast to the network
+ *
+ *   @method syncAccountOnSuccessfulRetryAttempt
+ *   @param {string} accountName
+ *   @param {array} transaction
+ *   @param {object} accountState
+ *
+ *   @returns {object}
+ **/
+export const syncAccountOnSuccessfulRetryAttempt = (accountName, transaction, accountState) => {
+    const tailTransaction = find(transaction, { currentIndex: 0 });
+    const newNormalisedTransfer = normaliseBundle(transaction, keys(accountState.addresses), [tailTransaction], false);
+    const bundle = get(transaction, '[0].bundle');
+
+    const transfers = merge({}, accountState.transfers, { [bundle]: newNormalisedTransfer });
+
+    // Currently we solely rely on wereAddressesSpentFrom and since this failed transaction
+    // was never broadcast, the addresses would be marked false
+    // The transaction would still stop spending from these addresses because during input
+    // selection, local transaction history is also checked.
+    // FIXME: After using a permanent local address status, this would be unnecessary
+    const addressData = markAddressesAsSpentSync([transaction], accountState.addresses);
+    const ownTransactionHashesForThisTransfer = getOwnTransactionHashes(newNormalisedTransfer, accountState.addresses);
+
+    const unconfirmedBundleTails = merge({}, accountState.unconfirmedBundleTails, {
+        [bundle]: [
+            {
+                hash: tailTransaction.hash,
+                attachmentTimestamp: tailTransaction.attachmentTimestamp,
+                account: accountName,
+            },
+        ],
+    });
+
+    const newState = {
+        ...accountState,
+        unconfirmedBundleTails,
+        transfers,
+        addresses: addressData,
+        hashes: [...accountState.hashes, ...ownTransactionHashesForThisTransfer],
+    };
+
+    return {
+        newState,
+        normalisedTransfer: newNormalisedTransfer,
+        transfer: transaction,
+    };
+};
+
+/**
+ *  Sync local account in case signed inputs were exposed to the network (and the network call failed)
+ *
+ *   @method syncAccountOnValueTransactionFailure
+ *   @param {array} newTransfer
+ *   @param {object} addressData
+ *   @param {object} accountState
+ *
+ *   @returns {object}
+ **/
+export const syncAccountDuringSnapshotTransition = (newTransfer, addressData, accountState) => {
+    const tailTransaction = find(newTransfer, { currentIndex: 0 });
+    const latestAddressData = merge({}, accountState.addresses, addressData);
+
+    const normalisedTransfer = normaliseBundle(newTransfer, keys(latestAddressData), [tailTransaction], false);
+
+    // Assign normalised transfer to existing transfers
+    const transfers = mergeNewTransfers(
+        {
+            [normalisedTransfer.bundle]: normalisedTransfer,
+        },
+        accountState.transfers,
+    );
+
+    const newState = {
+        ...accountState,
+        balance: accumulateBalance(map(latestAddressData, (data) => data.balance)),
+        transfers,
+        addresses: latestAddressData,
+        hashes: [...accountState.hashes, ...map(newTransfer, (tx) => tx.hash)],
+    };
+
+    return {
+        newState,
+        normalisedTransfer,
     };
 };

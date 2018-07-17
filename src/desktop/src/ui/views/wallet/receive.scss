@@ -83,7 +83,7 @@
         max-width: 520px;
     }
 
-    canvas {
+    svg {
         display: block;
         background: #fff;
         border-radius: 4px;
@@ -114,7 +114,7 @@
 }
 
 .empty {
-    > div:nth-child(1) canvas {
+    > div:nth-child(1) svg {
         display: none;
     }
     > div:nth-child(2) div,

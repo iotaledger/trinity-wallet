@@ -4,9 +4,9 @@ import { ActionTypes as AccountsActionTypes } from '../actions/accounts';
 
 const initialState = {
     ready: false,
-    receiveAddress: ' ',
     password: '',
     seed: Array(82).join(' '),
+    usedExistingSeed: false,
     accountName: 'MAIN WALLET',
     seedIndex: 0,
     usedSeedToLogin: false,
@@ -17,7 +17,7 @@ const initialState = {
     addingAdditionalAccount: false,
     balanceCheckToggle: false,
     deepLinkActive: false,
-    hasConnection: true
+    hasConnection: true,
 };
 
 export default (state = initialState, action) => {
@@ -30,7 +30,8 @@ export default (state = initialState, action) => {
         case ActionTypes.SET_SEED:
             return {
                 ...state,
-                seed: action.payload,
+                seed: action.payload.seed,
+                usedExistingSeed: action.payload.usedExistingSeed,
             };
         case ActionTypes.SET_ACCOUNT_NAME:
             return {
@@ -41,16 +42,6 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 password: action.payload,
-            };
-        case ActionTypes.SET_RECEIVE_ADDRESS:
-            return {
-                ...state,
-                receiveAddress: action.payload,
-            };
-        case ActionTypes.GENERATE_NEW_ADDRESS_SUCCESS:
-            return {
-                ...state,
-                receiveAddress: action.payload,
             };
         case ActionTypes.SET_READY:
             return {
@@ -71,12 +62,12 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 ready: false,
-                receiveAddress: ' ',
                 usedSeedToLogin: false,
                 seedIndex: 0,
                 isGeneratingReceiveAddress: false,
                 currentSetting: 'mainSettings',
                 deepLinkActive: false,
+                usedExistingSeed: false,
             };
         case ActionTypes.CLEAR_SEED:
             return {
@@ -100,6 +91,12 @@ export default (state = initialState, action) => {
                 seed: Array(82).join(' '),
                 addingAdditionalAccount: false,
                 additionalAccountName: '',
+            };
+        case AccountsActionTypes.FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_ERROR:
+            return {
+                ...state,
+                ready: true,
+                addingAdditionalAccount: false,
             };
         case AccountsActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_REQUEST:
             return {
@@ -162,7 +159,7 @@ export default (state = initialState, action) => {
         case ActionTypes.CONNECTION_CHANGED:
             return {
                 ...state,
-                hasConnection: action.payload.isConnected
+                hasConnection: action.payload.isConnected,
             };
         default:
             return state;

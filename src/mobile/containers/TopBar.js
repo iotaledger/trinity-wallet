@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { toggleTopBarDisplay } from 'iota-wallet-shared-modules/actions/home';
-import { setSeedIndex, setReceiveAddress } from 'iota-wallet-shared-modules/actions/wallet';
+import { setSeedIndex } from 'iota-wallet-shared-modules/actions/wallet';
 import { clearLog } from 'iota-wallet-shared-modules/actions/alerts';
 import { getBalanceForSelectedAccount, selectAccountInfo } from 'iota-wallet-shared-modules/selectors/accounts';
 import {
@@ -47,15 +47,15 @@ const styles = StyleSheet.create({
         width,
     },
     mainTitle: {
-        fontFamily: 'SourceSansPro-Regular',
+        fontFamily: 'SourceSansPro-SemiBold',
         fontSize: GENERAL.fontSize4,
-        paddingBottom: isAndroid ? 0 : height / 170,
+        paddingBottom: height / 170,
         maxWidth: width / 1.35,
     },
     subtitle: {
         textAlign: 'center',
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
+        fontFamily: 'SourceSansPro-SemiBold',
+        fontSize: width / 28,
     },
     childView: {
         height: height / 14,
@@ -91,6 +91,13 @@ const styles = StyleSheet.create({
         height: width / 18,
         width: width / 18,
     },
+    modal: {
+        height,
+        width,
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 0,
+    },
 });
 
 class TopBar extends Component {
@@ -107,7 +114,6 @@ class TopBar extends Component {
         isTopBarActive: PropTypes.bool.isRequired,
         toggleTopBarDisplay: PropTypes.func.isRequired,
         setSeedIndex: PropTypes.func.isRequired,
-        setReceiveAddress: PropTypes.func.isRequired,
         selectedAccount: PropTypes.object.isRequired,
         body: PropTypes.object.isRequired,
         bar: PropTypes.object.isRequired,
@@ -124,6 +130,8 @@ class TopBar extends Component {
         minimised: PropTypes.bool.isRequired,
         /** Determines if there is already a network call going on for fetching latest acocunt info */
         isFetchingLatestAccountInfo: PropTypes.bool.isRequired,
+        /** Currently selected home screen route */
+        currentRoute: PropTypes.string.isRequired,
     };
 
     static filterSeedTitles(accountNames, currentSeedIndex) {
@@ -186,7 +194,6 @@ class TopBar extends Component {
         // TODO: Not sure why we are checking for address generation on change
         if (!isGeneratingReceiveAddress) {
             this.props.setSeedIndex(newSeedIdx);
-            this.props.setReceiveAddress(' ');
 
             if (hasAddresses) {
                 this.props.setPollFor('accountInfo'); // Override poll queue
@@ -240,10 +247,14 @@ class TopBar extends Component {
             notificationLog,
             mode,
             minimised,
+            currentRoute,
         } = this.props;
         const selectedTitle = get(accountNames, `[${seedIndex}]`) || ''; // fallback
         const selectedSubtitle = TopBar.humanizeBalance(balance);
         const subtitleColor = tinycolor(bar.color).isDark() ? '#262626' : '#d3d3d3';
+
+        /* Hide balance when displaying receive address QR */
+        const balanceOpacity = currentRoute === 'receive' ? 0 : 1;
 
         const getBalance = (currentIdx) => {
             const account = accountInfo[accountNames[currentIdx]];
@@ -314,19 +325,21 @@ class TopBar extends Component {
                                     >
                                         {selectedTitle}
                                     </Text>
-                                    <Text
-                                        style={
-                                            shouldDisable
-                                                ? StyleSheet.flatten([
-                                                      styles.subtitle,
-                                                      styles.disabled,
-                                                      { color: subtitleColor },
-                                                  ])
-                                                : [styles.subtitle, { color: subtitleColor }]
-                                        }
-                                    >
-                                        {selectedSubtitle}
-                                    </Text>
+                                    <View style={{ opacity: balanceOpacity }}>
+                                        <Text
+                                            style={
+                                                shouldDisable
+                                                    ? StyleSheet.flatten([
+                                                          styles.subtitle,
+                                                          styles.disabled,
+                                                          { color: subtitleColor },
+                                                      ])
+                                                    : [styles.subtitle, { color: subtitleColor }]
+                                            }
+                                        >
+                                            {selectedSubtitle}
+                                        </Text>
+                                    </View>
                                 </View>
                                 <View style={styles.chevronWrapper}>
                                     {hasMultipleSeeds ? (
@@ -341,11 +354,7 @@ class TopBar extends Component {
                                                 name={isTopBarActive ? 'chevronUp' : 'chevronDown'}
                                                 size={width / 22}
                                                 color={bar.color}
-                                                style={[
-                                                    shouldDisable
-                                                        ? StyleSheet.flatten([styles.chevron, styles.disabledImage])
-                                                        : styles.chevron,
-                                                ]}
+                                                style={[shouldDisable ? styles.disabledImage : null]}
                                             />
                                         </Animated.View>
                                     ) : (
@@ -460,7 +469,7 @@ class TopBar extends Component {
                         style={[
                             styles.container,
                             {
-                                backgroundColor: bar.bg,
+                                backgroundColor: bar.hover,
                             },
                         ]}
                     >
@@ -475,7 +484,7 @@ class TopBar extends Component {
                             backdropTransitionInTiming={isAndroid ? 500 : 300}
                             backdropTransitionOutTiming={200}
                             backdropColor={body.bg}
-                            style={{ alignItems: 'center', margin: 0 }}
+                            style={styles.modal}
                             isVisible={isModalVisible}
                             onBackButtonPress={() => this.hideModal()}
                             onBackdropPress={() => this.hideModal()}
@@ -520,12 +529,12 @@ const mapStateToProps = (state) => ({
     primary: state.settings.theme.primary,
     notificationLog: state.alerts.notificationLog,
     isFetchingLatestAccountInfo: state.ui.isFetchingLatestAccountInfoOnLogin,
+    currentRoute: state.home.childRoute,
 });
 
 const mapDispatchToProps = {
     toggleTopBarDisplay,
     setSeedIndex,
-    setReceiveAddress,
     setPollFor,
     clearLog,
 };

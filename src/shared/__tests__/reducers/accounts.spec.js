@@ -11,6 +11,9 @@ describe('Reducer: accounts', () => {
                 firstUse: true,
                 onboardingComplete: false,
                 accountInfo: {},
+                failedBundleHashes: {},
+                setupInfo: {},
+                tasks: {},
                 unconfirmedBundleTails: {},
             };
 
@@ -97,6 +100,78 @@ describe('Reducer: accounts', () => {
             expect(newState.accountInfo).to.eql(expectedState.accountInfo);
         });
 
+        it('should update account name in "failedBundleHashes" state prop', () => {
+            const initialState = {
+                failedBundleHashes: {
+                    foo: [],
+                    baz: [],
+                },
+            };
+
+            const action = actions.changeAccountName({
+                oldAccountName: 'foo',
+                newAccountName: 'bar',
+            });
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                failedBundleHashes: {
+                    bar: [],
+                    baz: [],
+                },
+            };
+
+            expect(newState.failedBundleHashes).to.eql(expectedState.failedBundleHashes);
+        });
+
+        it('should update account name in "tasks" state prop', () => {
+            const initialState = {
+                tasks: {
+                    foo: {},
+                    baz: {},
+                },
+            };
+
+            const action = actions.changeAccountName({
+                oldAccountName: 'foo',
+                newAccountName: 'bar',
+            });
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                tasks: {
+                    bar: {},
+                    baz: {},
+                },
+            };
+
+            expect(newState.tasks).to.eql(expectedState.tasks);
+        });
+
+        it('should update account name in "setupInfo" state prop', () => {
+            const initialState = {
+                setupInfo: {
+                    foo: {},
+                    baz: {},
+                },
+            };
+
+            const action = actions.changeAccountName({
+                oldAccountName: 'foo',
+                newAccountName: 'bar',
+            });
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                setupInfo: {
+                    bar: {},
+                    baz: {},
+                },
+            };
+
+            expect(newState.setupInfo).to.eql(expectedState.setupInfo);
+        });
+
         it('should update account name in "accountNames" state prop', () => {
             const initialState = {
                 accountNames: ['foo', 'baz'],
@@ -156,6 +231,51 @@ describe('Reducer: accounts', () => {
             };
 
             expect(newState.accountInfo).to.eql(expectedState.accountInfo);
+        });
+
+        it('should omit payload prop from "failedBundleHashes"', () => {
+            const initialState = {
+                failedBundleHashes: { foo: [] },
+            };
+
+            const action = actions.removeAccount('foo');
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                failedBundleHashes: {},
+            };
+
+            expect(newState.failedBundleHashes).to.eql(expectedState.failedBundleHashes);
+        });
+
+        it('should omit payload prop from "tasks"', () => {
+            const initialState = {
+                tasks: { foo: {} },
+            };
+
+            const action = actions.removeAccount('foo');
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                tasks: {},
+            };
+
+            expect(newState.tasks).to.eql(expectedState.tasks);
+        });
+
+        it('should omit payload prop from "setupInfo"', () => {
+            const initialState = {
+                setupInfo: { foo: {} },
+            };
+
+            const action = actions.removeAccount('foo');
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                setupInfo: {},
+            };
+
+            expect(newState.setupInfo).to.eql(expectedState.setupInfo);
         });
 
         it('should remove payload from accountNames array', () => {
@@ -695,10 +815,165 @@ describe('Reducer: accounts', () => {
         });
     });
 
+    describe('IOTA/ACCOUNTS/SET_BASIC_ACCOUNT_INFO', () => {
+        it('should assign "accountName" to "setupInfo" prop in state', () => {
+            const initialState = {
+                setupInfo: {},
+            };
+
+            const action = {
+                type: 'IOTA/ACCOUNTS/SET_BASIC_ACCOUNT_INFO',
+                payload: { accountName: 'foo', usedExistingSeed: false },
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                setupInfo: { foo: { usedExistingSeed: false } },
+            };
+
+            expect(newState.setupInfo).to.eql(expectedState.setupInfo);
+        });
+
+        it('should assign "accountName" to "tasks" prop in state', () => {
+            const initialState = {
+                tasks: {},
+            };
+
+            const action = {
+                type: 'IOTA/ACCOUNTS/SET_BASIC_ACCOUNT_INFO',
+                payload: { accountName: 'foo' },
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                tasks: { foo: { hasDisplayedTransitionGuide: false } },
+            };
+
+            expect(newState.tasks).to.eql(expectedState.tasks);
+        });
+    });
+
+    describe('IOTA/ACCOUNTS/MARK_TASK_AS_DONE', () => {
+        it('should mark "task" in payload for "accountName" as true', () => {
+            const initialState = {
+                tasks: {
+                    foo: { taskOne: false, taskTwo: false },
+                    baz: { taskOne: false, taskTwo: true },
+                },
+            };
+
+            const action = {
+                type: 'IOTA/ACCOUNTS/MARK_TASK_AS_DONE',
+                payload: {
+                    accountName: 'foo',
+                    task: 'taskOne',
+                },
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                tasks: {
+                    foo: { taskOne: true, taskTwo: false },
+                    baz: { taskOne: false, taskTwo: true },
+                },
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
+
+    describe('IOTA/ACCOUNTS/MARK_BUNDLE_BROADCAST_STATUS_PENDING', () => {
+        it('should assign "accountName" in payload to "failedBundleHashes" prop in state', () => {
+            const initialState = {
+                failedBundleHashes: {
+                    foo: {},
+                },
+            };
+
+            const action = {
+                type: 'IOTA/ACCOUNTS/MARK_BUNDLE_BROADCAST_STATUS_PENDING',
+                payload: {
+                    accountName: 'baz',
+                    bundleHash: 'TTT',
+                    transactionObjects: [{}],
+                },
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                failedBundleHashes: {
+                    foo: {},
+                    baz: {
+                        TTT: [{}],
+                    },
+                },
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+
+        it('should assign "bundleHash" to existing failed transaction bundle hashes', () => {
+            const initialState = {
+                failedBundleHashes: {
+                    foo: { AAA: [{}] },
+                },
+            };
+
+            const action = {
+                type: 'IOTA/ACCOUNTS/MARK_BUNDLE_BROADCAST_STATUS_PENDING',
+                payload: {
+                    accountName: 'foo',
+                    bundleHash: 'TTT',
+                    transactionObjects: [{}, {}],
+                },
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                failedBundleHashes: {
+                    foo: {
+                        AAA: [{}],
+                        TTT: [{}, {}],
+                    },
+                },
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
+
+    describe('IOTA/ACCOUNTS/MARK_BUNDLE_BROADCAST_STATUS_COMPLETE', () => {
+        it('should remove "bundleHash" from "failedBundleHashes"', () => {
+            const initialState = {
+                failedBundleHashes: {
+                    foo: {
+                        AAA: [{}],
+                    },
+                },
+            };
+
+            const action = {
+                type: 'IOTA/ACCOUNTS/MARK_BUNDLE_BROADCAST_STATUS_COMPLETE',
+                payload: {
+                    accountName: 'foo',
+                    bundleHash: 'AAA',
+                },
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                failedBundleHashes: {
+                    foo: {},
+                },
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
+
     [
         'IOTA/ACCOUNTS/UPDATE_ACCOUNT_INFO_AFTER_SPENDING',
         'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION',
-        'IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_REBROADCAST',
         'IOTA/ACCOUNTS/UPDATE_ACCOUNT_AFTER_REATTACHMENT',
         'IOTA/ACCOUNTS/ACCOUNT_INFO_FETCH_SUCCESS',
         'IOTA/POLLING/ACCOUNT_INFO_FETCH_SUCCESS',

@@ -6,6 +6,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Keyboard, TouchableWithoutFee
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
+import FlagSecure from 'react-native-flag-secure-android';
 import Fonts from '../theme/fonts';
 import Seedbox from '../components/SeedBox';
 import CustomTextInput from '../components/CustomTextInput';
@@ -16,6 +17,8 @@ import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
 import CtaButton from '../components/CtaButton';
 import InfoBox from '../components/InfoBox';
+import { isAndroid } from '../utils/device';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -147,6 +150,7 @@ class ViewSeed extends Component {
     }
 
     componentDidMount() {
+        leaveNavigationBreadcrumb('ViewSeed');
         AppState.addEventListener('change', this.handleAppStateChange);
     }
 
@@ -158,6 +162,9 @@ class ViewSeed extends Component {
 
     componentWillUnmount() {
         AppState.removeEventListener('change', this.handleAppStateChange);
+        if (isAndroid) {
+            FlagSecure.deactivate();
+        }
     }
 
     viewSeed() {
@@ -170,6 +177,9 @@ class ViewSeed extends Component {
                     if (seed === null) {
                         throw new Error('Error');
                     } else {
+                        if (isAndroid) {
+                            FlagSecure.activate();
+                        }
                         this.setState({ seed });
                         this.setState({ showSeed: true });
                     }
@@ -235,7 +245,7 @@ class ViewSeed extends Component {
                                     <CustomTextInput
                                         label={t('global:password')}
                                         onChangeText={(password) => this.setState({ password })}
-                                        containerStyle={{ width: width / 1.2 }}
+                                        containerStyle={{ width: width / 1.15 }}
                                         autoCapitalize="none"
                                         autoCorrect={false}
                                         enablesReturnKeyAutomatically

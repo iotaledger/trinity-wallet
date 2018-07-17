@@ -14,3 +14,15 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
+.seedVault {
+    .bg {
+        fill: var(--body-bg);
+    }
+    .mg {
+        fill: var(--body-alt);
+    }
+    .fg {
+        fill: var(--box-body);
+    }
+}

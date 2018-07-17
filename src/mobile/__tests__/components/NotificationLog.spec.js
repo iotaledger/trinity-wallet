@@ -22,6 +22,11 @@ const getProps = (overrides) =>
         overrides,
     );
 
+jest.mock('bugsnag-react-native', () => ({
+    Configuration: jest.fn(),
+    Client: jest.fn(() => ({ leaveBreadcrumb: jest.fn() })),
+}));
+
 describe('Testing NotificationLog component', () => {
     describe('propTypes', () => {
         it('should require a backgroundColor string as a prop', () => {

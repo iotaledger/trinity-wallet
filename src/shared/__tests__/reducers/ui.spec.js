@@ -8,7 +8,6 @@ describe('Reducer: ui', () => {
                 isGeneratingReceiveAddress: false,
                 isFetchingCurrencyData: false,
                 hasErrorFetchingCurrencyData: false,
-                isBroadcastingBundle: false,
                 isPromotingTransaction: false,
                 isTransitioning: false,
                 isAttachingToTangle: false,
@@ -34,7 +33,13 @@ describe('Reducer: ui', () => {
                 isChangingNode: false,
                 currentlyPromotingBundleHash: '',
                 loginRoute: 'login',
-                hasFailedAutopromotion: false,
+                isRetryingFailedTransaction: false,
+                qrAmount: '',
+                qrDenomination: 'i',
+                qrMessage: '',
+                qrTag: '',
+                selectedQrTab: 'message',
+                isReceiveCardFlipped: false,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
@@ -335,63 +340,6 @@ describe('Reducer: ui', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 sendDenomination: 'Mi',
-            };
-
-            expect(newState).to.eql(expectedState);
-        });
-    });
-
-    describe('IOTA/TRANSFERS/BROADCAST_BUNDLE_REQUEST', () => {
-        it('should set "isBroadcastingBundle" state prop to true', () => {
-            const initialState = {
-                isBroadcastingBundle: false,
-            };
-
-            const action = {
-                type: 'IOTA/TRANSFERS/BROADCAST_BUNDLE_REQUEST',
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                isBroadcastingBundle: true,
-            };
-
-            expect(newState).to.eql(expectedState);
-        });
-    });
-
-    describe('IOTA/TRANSFERS/BROADCAST_BUNDLE_SUCCESS', () => {
-        it('should set "isBroadcastingBundle" state prop to false', () => {
-            const initialState = {
-                isBroadcastingBundle: true,
-            };
-
-            const action = {
-                type: 'IOTA/TRANSFERS/BROADCAST_BUNDLE_SUCCESS',
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                isBroadcastingBundle: false,
-            };
-
-            expect(newState).to.eql(expectedState);
-        });
-    });
-
-    describe('IOTA/TRANSFERS/BROADCAST_BUNDLE_ERROR', () => {
-        it('should set "isBroadcastingBundle" state prop to true', () => {
-            const initialState = {
-                isBroadcastingBundle: true,
-            };
-
-            const action = {
-                type: 'IOTA/TRANSFERS/BROADCAST_BUNDLE_ERROR',
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                isBroadcastingBundle: false,
             };
 
             expect(newState).to.eql(expectedState);
@@ -1075,10 +1023,9 @@ describe('Reducer: ui', () => {
     });
 
     describe('IOTA/SETTINGS/ADD_CUSTOM_NODE_SUCCESS', () => {
-        it('should set "isCheckingCustomNode" and "hasFailedAutopromotion" state props to false', () => {
+        it('should set "isCheckingCustomNode" to false', () => {
             const initialState = {
                 isCheckingCustomNode: true,
-                hasFailedAutopromotion: true,
             };
 
             const action = {
@@ -1088,7 +1035,6 @@ describe('Reducer: ui', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 isCheckingCustomNode: false,
-                hasFailedAutopromotion: false,
             };
 
             expect(newState).to.eql(expectedState);
@@ -1098,7 +1044,7 @@ describe('Reducer: ui', () => {
     describe('IOTA/SETTINGS/ADD_CUSTOM_NODE_ERROR', () => {
         it('should set "isCheckingCustomNode" state prop to false', () => {
             const initialState = {
-                isCheckingCustomNode: true,
+                isCheckingCustomNode: false,
             };
 
             const action = {
@@ -1108,6 +1054,63 @@ describe('Reducer: ui', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 isCheckingCustomNode: false,
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
+
+    describe('IOTA/TRANSFERS/RETRY_FAILED_TRANSACTION_REQUEST', () => {
+        it('should set "isRetryingFailedTransaction" state prop to true', () => {
+            const initialState = {
+                isRetryingFailedTransaction: true,
+            };
+
+            const action = {
+                type: 'IOTA/TRANSFERS/RETRY_FAILED_TRANSACTION_REQUEST',
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                isRetryingFailedTransaction: true,
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
+
+    describe('IOTA/TRANSFERS/RETRY_FAILED_TRANSACTION_SUCCESS', () => {
+        it('should set "isRetryingFailedTransaction" state prop to false', () => {
+            const initialState = {
+                isRetryingFailedTransaction: true,
+            };
+
+            const action = {
+                type: 'IOTA/TRANSFERS/RETRY_FAILED_TRANSACTION_SUCCESS',
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                isRetryingFailedTransaction: false,
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
+
+    describe('IOTA/TRANSFERS/RETRY_FAILED_TRANSACTION_ERROR', () => {
+        it('should set "isRetryingFailedTransaction" state prop to false', () => {
+            const initialState = {
+                isRetryingFailedTransaction: true,
+            };
+
+            const action = {
+                type: 'IOTA/TRANSFERS/RETRY_FAILED_TRANSACTION_ERROR',
+            };
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                isRetryingFailedTransaction: false,
             };
 
             expect(newState).to.eql(expectedState);

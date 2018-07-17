@@ -2,6 +2,7 @@ import merge from 'lodash/merge';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import * as addressesUtils from '../../../libs/iota/addresses';
+import * as extendedApis from '../../../libs/iota/extendedApi';
 import accounts from '../../__samples__/accounts';
 import { iota, SwitchingConfig } from '../../../libs/iota/index';
 
@@ -392,6 +393,114 @@ describe('libs: iota/addresses', () => {
             it('should filter inputs containing spent addresses', () => {
                 return addressesUtils.filterSpentAddresses(inputs, ['U'.repeat(81)]).then((unspentInputs) => {
                     expect(unspentInputs).to.eql([{ address: 'V'.repeat(81) }]);
+                });
+            });
+        });
+    });
+
+    describe('#isAnyAddressSpent', () => {
+        let transactionObjects;
+
+        before(() => {
+            transactionObjects = [
+                {
+                    address: 'U'.repeat(81),
+                },
+                {
+                    address: 'V'.repeat(81),
+                },
+                {
+                    address: 'Y'.repeat(81),
+                },
+            ];
+        });
+
+        describe('when none of the addresses is spent', () => {
+            it('should return false', () => {
+                const wereAddressesSpentFrom = sinon
+                    .stub(iota.api, 'wereAddressesSpentFrom')
+                    .yields(null, [false, false, false]);
+
+                return addressesUtils.isAnyAddressSpent(transactionObjects).then((isSpent) => {
+                    expect(isSpent).to.eql(false);
+                    wereAddressesSpentFrom.restore();
+                });
+            });
+        });
+
+        describe('when one or more addresses are spent', () => {
+            it('should return true', () => {
+                const wereAddressesSpentFrom = sinon
+                    .stub(iota.api, 'wereAddressesSpentFrom')
+                    .yields(null, [false, true, false]);
+
+                return addressesUtils.isAnyAddressSpent(transactionObjects).then((isSpent) => {
+                    expect(isSpent).to.equal(true);
+                    wereAddressesSpentFrom.restore();
+                });
+            });
+        });
+    });
+
+    describe('#attachAndFormatAddress', () => {
+        let address;
+        let addressIndex;
+        let seed;
+
+        let sandbox;
+
+        before(() => {
+            address = 'U'.repeat(81);
+            seed = 'SEED';
+            addressIndex = 11;
+        });
+
+        beforeEach(() => {
+            sandbox = sinon.sandbox.create();
+
+            sandbox.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false]);
+            sandbox.stub(extendedApis, 'sendTransferAsync').resolves([{}, {}]);
+        });
+
+        afterEach(() => {
+            sandbox.restore();
+        });
+
+        describe('when finds transaction hashes for specified address', () => {
+            it('should throw with an error "Address already attached."', () => {
+                const findTransactions = sinon.stub(iota.api, 'findTransactions').yields(null, ['9'.repeat(81)]);
+
+                return addressesUtils.attachAndFormatAddress(address, addressIndex, 10, seed, null).catch((error) => {
+                    expect(error.message).to.equal('Address already attached.');
+
+                    findTransactions.restore();
+                });
+            });
+        });
+
+        describe('when does not find transaction hashes for specified address', () => {
+            it('should return an object with formatted address data', () => {
+                const findTransactions = sinon.stub(iota.api, 'findTransactions').yields(null, []);
+
+                return addressesUtils.attachAndFormatAddress(address, addressIndex, 10, seed, null).then((result) => {
+                    expect(result.addressData).to.eql({
+                        ['U'.repeat(81)]: {
+                            balance: 10,
+                            checksum: 'NXELTUENX',
+                            spent: false,
+                            index: 11,
+                        },
+                    });
+                    findTransactions.restore();
+                });
+            });
+
+            it('should return an object with newly attached transaction object', () => {
+                const findTransactions = sinon.stub(iota.api, 'findTransactions').yields(null, []);
+
+                return addressesUtils.attachAndFormatAddress(address, addressIndex, 10, seed, null).then((result) => {
+                    expect(result.transfer).to.eql([{}, {}]);
+                    findTransactions.restore();
                 });
             });
         });

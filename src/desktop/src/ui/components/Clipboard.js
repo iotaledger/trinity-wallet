@@ -11,9 +11,11 @@ import css from './clipboard.scss';
  * Copy to clipboard wrapper component
  */
 class Clipboard extends React.PureComponent {
+    static timeout = null;
+
     static propTypes = {
         /** Target content copied to clipboard */
-        text: PropTypes.string.isRequired,
+        text: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
         /** EOptional element chidlren content */
         children: PropTypes.any,
         /** Timeout to clear the clipboard */
@@ -30,8 +32,6 @@ class Clipboard extends React.PureComponent {
          */
         generateAlert: PropTypes.func.isRequired,
     };
-
-    static timeout = null;
 
     copy(e) {
         e.stopPropagation();

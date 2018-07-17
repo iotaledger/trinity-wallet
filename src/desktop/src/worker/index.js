@@ -1,5 +1,8 @@
-import { setSeed } from 'libs/crypto';
+/*global Electron*/
 import { changeIotaNode, SwitchingConfig } from 'libs/iota';
+
+import { setSeed } from 'libs/crypto';
+
 import Worker from './main.worker.js';
 import store from '../../../shared/store';
 
@@ -10,21 +13,22 @@ const worker = new Worker();
 export default worker;
 
 worker.onmessage = async ({ data }) => {
-    const { type, action, payload } = data;
-
+    const { type, action } = data;
+    const state = store.getState().wallet;
     // dispatch the produced value by the Worker
     // back into the main app store
     switch (type) {
         case 'dispatch':
             store.dispatch(action);
             break;
-        case 'saveSeed':
-            setSeed(payload.password, payload.seed);
-            break;
         // The Worker auto. switched nodes
         case 'updateNode':
             changeIotaNode(action);
             SwitchingConfig.callbacks.forEach((cb) => cb(action));
+            break;
+        case 'setAdditionalSeed':
+            setSeed(state.password, state.additionalAccountName, Electron.getOnboardingSeed());
+            Electron.setOnboardingSeed(null);
             break;
     }
 };

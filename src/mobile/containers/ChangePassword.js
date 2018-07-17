@@ -5,7 +5,6 @@ import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Key
 import { connect } from 'react-redux';
 import { setPassword, setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import Fonts from '../theme/fonts';
 import { changePassword } from '../utils/keychain';
 import { getPasswordHash } from '../utils/crypto';
 import { width, height } from '../utils/dimensions';
@@ -13,6 +12,7 @@ import GENERAL from '../theme/general';
 import CustomTextInput from '../components/CustomTextInput';
 import { Icon } from '../theme/icons.js';
 import InfoBox from '../components/InfoBox';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -33,28 +33,11 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         alignItems: 'center',
     },
-    infoTextWrapper: {
-        borderWidth: 1,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 1.6,
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingHorizontal: width / 40,
-        borderStyle: 'dotted',
-        paddingVertical: height / 50,
-    },
     infoText: {
         fontFamily: 'SourceSansPro-Light',
         fontSize: GENERAL.fontSize3,
         textAlign: 'left',
         backgroundColor: 'transparent',
-    },
-    textField: {
-        fontFamily: Fonts.tertiary,
-    },
-    textFieldContainer: {
-        width: width / 1.36,
-        paddingTop: height / 90,
     },
     itemLeft: {
         flexDirection: 'row',
@@ -65,11 +48,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'flex-end',
-    },
-    iconLeft: {
-        width: width / 28,
-        height: width / 28,
-        marginRight: width / 20,
     },
     titleTextLeft: {
         fontFamily: 'SourceSansPro-Regular',
@@ -124,6 +102,10 @@ class ChangePassword extends Component {
         };
     }
 
+    componentDidMount() {
+        leaveNavigationBreadcrumb('ChangePassword');
+    }
+
     isValid(currentPwdHash) {
         const { currentPassword, newPassword, confirmedNewPassword } = this.state;
         const { password } = this.props;
@@ -175,7 +157,7 @@ class ChangePassword extends Component {
             onRef: ref,
             label,
             onChangeText,
-            containerStyle: { width: width / 1.2 },
+            containerStyle: { width: width / 1.15 },
             autoCapitalize: 'none',
             autoCorrect: false,
             enablesReturnKeyAutomatically: true,

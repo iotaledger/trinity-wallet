@@ -1,5 +1,6 @@
 import assign from 'lodash/assign';
 import map from 'lodash/map';
+import has from 'lodash/has';
 import includes from 'lodash/includes';
 import get from 'lodash/get';
 import orderBy from 'lodash/orderBy';
@@ -10,37 +11,37 @@ import { StyleSheet, View, TouchableWithoutFeedback, RefreshControl, ActivityInd
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { broadcastBundle, promoteTransaction } from 'iota-wallet-shared-modules/actions/transfers';
+import { promoteTransaction, retryFailedTransaction } from 'iota-wallet-shared-modules/actions/transfers';
 import {
     getTransfersForSelectedAccount,
     getSelectedAccountName,
     getAddressesForSelectedAccount,
+    getFailedBundleHashesForSelectedAccount,
 } from 'iota-wallet-shared-modules/selectors/accounts';
 import { OptimizedFlatList } from 'react-native-optimized-flatlist';
 import { round } from 'iota-wallet-shared-modules/libs/utils';
 import { toggleModalActivity } from 'iota-wallet-shared-modules/actions/ui';
 import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/iota/utils';
-import tinycolor from 'tinycolor2';
 import WithManualRefresh from '../components/ManualRefresh';
 import TransactionRow from '../components/TransactionRow';
+import SelfTransactionRow from '../components/SelfTransactionRow';
 import HistoryModalContent from '../components/HistoryModalContent';
 import { width, height } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
 import { getPowFn } from '../utils/nativeModules';
 import CtaButton from '../components/CtaButton';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: isAndroid ? 0 : height / 80,
     },
     listView: {
         height: height * 0.7,
         justifyContent: 'flex-end',
-    },
-    separator: {
-        flex: 1,
-        height: height / 60,
     },
     noTransactionsContainer: {
         justifyContent: 'center',
@@ -61,6 +62,9 @@ const styles = StyleSheet.create({
         height: height / 5,
     },
     modal: {
+        height,
+        width,
+        justifyContent: 'center',
         alignItems: 'center',
         margin: 0,
     },
@@ -87,10 +91,6 @@ class History extends Component {
          * @param {string} translationString - locale string identifier to be translated
          */
         t: PropTypes.func.isRequired,
-        /** Rebroadcast bundle
-         * @param {string} bundle - bundle hash
-         */
-        broadcastBundle: PropTypes.func.isRequired,
         /** Promotes bundle
          * @param {string} bundle - bundle hash
          */
@@ -103,8 +103,6 @@ class History extends Component {
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
         /** Determines if wallet is doing snapshot transition */
         isTransitioning: PropTypes.bool.isRequired,
-        /** Determines if wallet is broadcasting bundle */
-        isBroadcastingBundle: PropTypes.bool.isRequired,
         /** Determines if wallet is manually promoting transaction */
         isPromotingTransaction: PropTypes.bool.isRequired,
         /** Currently selected mode for wallet */
@@ -123,8 +121,16 @@ class History extends Component {
         onRefresh: PropTypes.func.isRequired,
         /** Addresses for selected account */
         addresses: PropTypes.array.isRequired,
-        // FIXME: Temporary solution until local/remote PoW is reworked on auto-promotion. Will disable autopromotion UI feedback after first failure.
-        hasFailedAutopromotion: PropTypes.bool.isRequired,
+        /** Failed transactions bundle hashes for selected account */
+        failedBundleHashes: PropTypes.object.isRequired,
+        /** Make a retry attempt for a failed transaction
+         * @param {string} accountName
+         * @param {string} bundleHash
+         * @param {function} powFn
+         */
+        retryFailedTransaction: PropTypes.func.isRequired,
+        /** Determines if a failed transaction is being retried */
+        isRetryingFailedTransaction: PropTypes.bool.isRequired,
     };
 
     constructor() {
@@ -134,6 +140,10 @@ class History extends Component {
             modalProps: null,
         };
         this.resetModalProps = this.resetModalProps.bind(this);
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('History');
     }
 
     shouldComponentUpdate(newProps) {
@@ -158,6 +168,19 @@ class History extends Component {
         return true;
     }
 
+    getTransactionRow(transfer) {
+        const { addresses } = this.props;
+        if (
+            (transfer.value !== 0 &&
+                !transfer.incoming &&
+                transfer.outputs.every((tx) => addresses.includes(tx.address))) ||
+            (transfer.value === 0 && transfer.outputs.every((tx) => addresses.includes(tx.address)))
+        ) {
+            return <SelfTransactionRow {...transfer} />;
+        }
+        return <TransactionRow {...transfer} />;
+    }
+
     /**
      * Formats transaction data
      * @return {Array} Formatted transaction data
@@ -165,48 +188,43 @@ class History extends Component {
     prepTransactions() {
         const {
             transfers,
-            theme: { negative, primary, secondary, positive, body, bar },
+            theme: { primary, secondary, body, bar, dark },
             mode,
             t,
             selectedAccountName,
             currentlyPromotingBundleHash,
             isRefreshing,
             addresses,
-            hasFailedAutopromotion,
         } = this.props;
-        const containerBorderColor = tinycolor(body.bg).isDark() ? 'rgba(255, 255, 255, 0.25)' : 'rgba(0, 0, 0, 0.25)';
-        const containerBackgroundColor = tinycolor(body.bg).isDark() ? 'rgba(255, 255, 255, 0.08)' : 'transparent';
 
-        const computeConfirmation = (outputs, persistence, incoming, value) => {
-            if (!persistence) {
-                return t('global:pending');
-            }
-
+        const computeStatusText = (outputs, persistence, incoming, value) => {
+            const receiveStatus = persistence ? t('received') : t('receiving');
+            const sendStatus = persistence ? t('sent') : t('sending');
             if (value === 0) {
                 if (
                     !includes(addresses, get(outputs, '[0].address')) &&
                     includes(addresses, get(outputs, '[1].address'))
                 ) {
-                    return t('global:sent');
+                    return sendStatus;
                 }
-                return t('global:received');
+                return receiveStatus;
             }
 
-            return incoming ? t('global:received') : t('global:sent');
+            return incoming ? receiveStatus : sendStatus;
         };
 
-        const computeStatus = (outputs, incoming, value) => {
+        const computeIncoming = (outputs, incoming, value) => {
             if (value === 0) {
                 if (
                     !includes(addresses, get(outputs, '[0].address')) &&
                     includes(addresses, get(outputs, '[1].address'))
                 ) {
-                    return t('history:send');
+                    return false;
                 }
-                return t('history:receive');
+                return true;
             }
 
-            return incoming ? t('history:receive') : t('history:send');
+            return incoming ? true : false;
         };
 
         const withUnitAndChecksum = (item) => ({
@@ -222,52 +240,49 @@ class History extends Component {
             const value = round(formatValue(transferValue), 1);
             return {
                 t,
-                status: computeStatus(outputs, incoming, value),
-                confirmation: computeConfirmation(outputs, persistence, incoming, value),
+                status: computeStatusText(outputs, persistence, incoming, value),
                 confirmationBool: persistence,
+                persistence,
                 value,
+                fullValue: formatValue(transferValue),
                 unit: formatUnit(transferValue),
                 time: timestamp,
                 message,
                 mode,
-                bundleIsBeingPromoted:
-                    currentlyPromotingBundleHash === bundle && !persistence && !hasFailedAutopromotion,
+                incoming: computeIncoming(outputs, incoming, value),
+                addresses,
+                icon: computeIncoming(outputs, incoming, value) ? 'plus' : 'minus',
+                bundleIsBeingPromoted: currentlyPromotingBundleHash === bundle && !persistence,
+                outputs,
                 onPress: (modalProps) => {
                     if (isRefreshing) {
                         return;
                     }
+
                     this.setState({
                         modalProps: assign({}, modalProps, {
-                            rebroadcast: (bundle) => this.props.broadcastBundle(bundle, selectedAccountName),
-                            promote: (bundle) => {
-                                // FIXME: Temporary solution until local/remote PoW is reworked on auto-promotion. Will display alert after first autopromote failure.
-                                if (hasFailedAutopromotion) {
-                                    return this.props.generateAlert(
-                                        'error',
-                                        t('global:attachToTangleUnavailable'),
-                                        t('global:attachToTangleUnavailableExplanationShort'),
-                                        10000,
-                                    );
-                                }
-
-                                return this.props.promoteTransaction(bundle, selectedAccountName, proofOfWorkFunction);
-                            },
+                            retryFailedTransaction: (bundle) =>
+                                this.props.retryFailedTransaction(selectedAccountName, bundle, proofOfWorkFunction),
+                            promote: (bundle) =>
+                                this.props.promoteTransaction(bundle, selectedAccountName, proofOfWorkFunction),
                             onPress: this.props.toggleModalActivity,
                             generateAlert: this.props.generateAlert,
                             bundle,
                             addresses: [...map(inputs, withUnitAndChecksum), ...map(outputs, withUnitAndChecksum)],
-                            hasFailedAutopromotion,
                         }),
                     });
 
                     this.props.toggleModalActivity();
                 },
                 style: {
-                    titleColor: incoming ? primary.color : secondary.color,
-                    containerBorderColor: { borderColor: containerBorderColor },
-                    containerBackgroundColor: { backgroundColor: containerBackgroundColor },
-                    confirmationStatusColor: { color: !persistence ? negative.color : positive.color },
+                    titleColor: persistence
+                        ? computeIncoming(outputs, incoming, value) ? primary.color : secondary.color
+                        : '#fc6e6d',
+                    pendingColor: '#fc6e6d',
+                    containerBackgroundColor: { backgroundColor: dark.color },
                     defaultTextColor: { color: body.color },
+                    rowTextColor: { color: dark.body },
+                    rowBorderColor: { borderColor: primary.border },
                     backgroundColor: body.bg,
                     borderColor: { borderColor: body.color },
                     barBg: bar.bg,
@@ -300,7 +315,7 @@ class History extends Component {
                 initialNumToRender={8} // TODO: Should be dynamically computed.
                 removeClippedSubviews
                 keyExtractor={(item, index) => index}
-                renderItem={({ item }) => <TransactionRow {...item} />}
+                renderItem={({ item }) => this.getTransactionRow(item)}
                 refreshControl={
                     <RefreshControl
                         refreshing={isRefreshing && !noTransactions}
@@ -344,9 +359,9 @@ class History extends Component {
             isModalActive,
             isAutoPromoting,
             isPromotingTransaction,
-            isBroadcastingBundle,
             currentlyPromotingBundleHash,
-            hasFailedAutopromotion,
+            isRetryingFailedTransaction,
+            failedBundleHashes,
         } = this.props;
         const { modalProps } = this.state;
 
@@ -373,12 +388,10 @@ class History extends Component {
                         >
                             <HistoryModalContent
                                 {...modalProps}
-                                disableWhen={
-                                    (isAutoPromoting || isPromotingTransaction || isBroadcastingBundle) &&
-                                    !hasFailedAutopromotion
-                                }
-                                isBroadcastingBundle={isBroadcastingBundle}
+                                disableWhen={isAutoPromoting || isPromotingTransaction || isRetryingFailedTransaction}
+                                isRetryingFailedTransaction={isRetryingFailedTransaction}
                                 currentlyPromotingBundleHash={currentlyPromotingBundleHash}
+                                isFailedTransaction={(bundle) => has(failedBundleHashes, bundle)}
                             />
                         </Modal>
                     )}
@@ -398,19 +411,19 @@ const mapStateToProps = (state) => ({
     isSendingTransfer: state.ui.isSendingTransfer,
     isSyncing: state.ui.isSyncing,
     isTransitioning: state.ui.isTransitioning,
-    isBroadcastingBundle: state.ui.isBroadcastingBundle,
     isPromotingTransaction: state.ui.isPromotingTransaction,
     isAutoPromoting: state.polling.isAutoPromoting,
     isModalActive: state.ui.isModalActive,
     currentlyPromotingBundleHash: state.ui.currentlyPromotingBundleHash,
-    hasFailedAutopromotion: state.ui.hasFailedAutopromotion,
+    failedBundleHashes: getFailedBundleHashesForSelectedAccount(state),
+    isRetryingFailedTransaction: state.ui.isRetryingFailedTransaction,
 });
 
 const mapDispatchToProps = {
     generateAlert,
-    broadcastBundle,
     promoteTransaction,
     toggleModalActivity,
+    retryFailedTransaction,
 };
 
 export default WithManualRefresh()(

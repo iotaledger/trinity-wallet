@@ -5,9 +5,11 @@ import { BackHandler, View, Text, StyleSheet, TouchableOpacity } from 'react-nat
 import { Navigation } from 'react-native-navigation';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { translate } from 'react-i18next';
+import timer from 'react-native-timer';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -32,11 +34,6 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         width,
         paddingHorizontal: width / 15,
-    },
-    backIcon: {
-        width: width / 28,
-        height: width / 28,
-        marginRight: width / 20,
     },
     itemContainer: {
         flex: 1,
@@ -67,6 +64,10 @@ class AddNewAccount extends Component {
         this.addNewSeed = this.addNewSeed.bind(this);
     }
 
+    componentDidMount() {
+        leaveNavigationBreadcrumb('AddNewAccount');
+    }
+
     addNewSeed() {
         const { theme } = this.props;
 
@@ -87,7 +88,7 @@ class AddNewAccount extends Component {
                 keepStyleAcrossPush: false,
             },
         });
-
+        timer.clearInterval('inactivityTimer');
         BackHandler.removeEventListener('homeBackPress');
     }
 

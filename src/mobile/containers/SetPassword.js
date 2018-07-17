@@ -4,7 +4,12 @@ import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { connect } from 'react-redux';
-import { increaseSeedCount, addAccountName, setOnboardingComplete } from 'iota-wallet-shared-modules/actions/accounts';
+import {
+    increaseSeedCount,
+    addAccountName,
+    setOnboardingComplete,
+    setBasicAccountInfo,
+} from 'iota-wallet-shared-modules/actions/accounts';
 import { clearWalletData, clearSeed, setPassword } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import CustomTextInput from '../components/CustomTextInput';
@@ -23,6 +28,7 @@ import InfoBox from '../components/InfoBox';
 import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
 import Header from '../components/Header';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const MIN_PASSWORD_LENGTH = 12;
 console.ignoredYellowBox = ['Native TextInput'];
@@ -44,11 +50,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         alignItems: 'center',
         width,
-    },
-    textfieldsContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        flex: 1,
     },
     bottomContainer: {
         flex: 0.5,
@@ -108,6 +109,12 @@ class SetPassword extends Component {
         /** Theme settings */
         theme: PropTypes.object.isRequired,
         accountName: PropTypes.string.isRequired,
+        /** Set basic account information
+         * @param {object} accountInfo
+         */
+        setBasicAccountInfo: PropTypes.func.isRequired,
+        /** Determines if a user used an existing seed or generated a seed using wallet */
+        usedExistingSeed: PropTypes.bool.isRequired,
     };
 
     constructor() {
@@ -118,13 +125,21 @@ class SetPassword extends Component {
         };
     }
 
+    componentDidMount() {
+        leaveNavigationBreadcrumb('SetPassword');
+    }
+
     onDonePress() {
-        const { theme: { body } } = this.props;
+        const { theme: { body }, usedExistingSeed } = this.props;
         const ifNoKeychainDuplicates = (pwdHash, seed, accountName) => {
             storeSeedInKeychain(pwdHash, seed, accountName)
                 .then(() => {
                     this.props.setPassword(pwdHash);
                     this.props.addAccountName(accountName);
+
+                    // Set basic account info
+                    this.props.setBasicAccountInfo({ accountName, usedExistingSeed });
+
                     this.props.increaseSeedCount();
                     this.props.clearWalletData();
                     this.props.clearSeed();
@@ -228,7 +243,7 @@ class SetPassword extends Component {
                             <CustomTextInput
                                 label={t('global:password')}
                                 onChangeText={(password) => this.setState({ password })}
-                                containerStyle={{ width: width / 1.2 }}
+                                containerStyle={{ width: width / 1.15 }}
                                 autoCapitalize="none"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
@@ -249,7 +264,7 @@ class SetPassword extends Component {
                                 }}
                                 label={t('retypePassword')}
                                 onChangeText={(reentry) => this.setState({ reentry })}
-                                containerStyle={{ width: width / 1.2 }}
+                                containerStyle={{ width: width / 1.15 }}
                                 autoCapitalize="none"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
@@ -301,6 +316,7 @@ class SetPassword extends Component {
 const mapStateToProps = (state) => ({
     seed: state.wallet.seed,
     accountName: state.wallet.accountName,
+    usedExistingSeed: state.wallet.usedExistingSeed,
     theme: state.settings.theme,
 });
 
@@ -312,6 +328,7 @@ const mapDispatchToProps = {
     addAccountName,
     generateAlert,
     setPassword,
+    setBasicAccountInfo,
 };
 
 export default translate(['setPassword', 'global', 'addAdditionalSeed'])(

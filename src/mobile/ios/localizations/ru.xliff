@@ -13,6 +13,7 @@
       <trans-unit id="NSLocationWhenInUseUsageDescription">
         <source/>
         <note>Privacy - Location When In Use Usage Description</note>
+        <target xml:lang="ru" state="translated"/>
       </trans-unit>
     </body>
   </file>
@@ -66,12 +67,18 @@
       <trans-unit id="NSFaceIDUsageDescription">
         <source>Trinity requires access to Face ID in order to enable biometric authentication.</source>
         <note>Privacy - Face ID Usage Description</note>
-        <target xml:lang="ru" state="translated">Тринити нужен доступ к Face ID, чтобы использовать биометрическую аутентификации.</target>
+        <target xml:lang="ru" state="translated">Тринити нужен доступ к Face ID, чтобы использовать биометрическую аутентификацию.</target>
+        <alt-trans>
+          <target xml:lang="ru">Тринити нужен доступ к Face ID, чтобы использовать биометрическую аутентификации.</target>
+        </alt-trans>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
         <source>2018 IOTA Foundation. All rights reserved.</source>
         <note>Copyright (human-readable)</note>
-        <target xml:lang="ru" state="translated">2018 IOTA фонд. Все права защищены.</target>
+        <target xml:lang="ru" state="translated">2018 IOTA Foundation. Все права защищены.</target>
+        <alt-trans>
+          <target xml:lang="ru">2018 IOTA фонд. Все права защищены.</target>
+        </alt-trans>
       </trans-unit>
       <trans-unit id="NSLocationWhenInUseUsageDescription">
         <source>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</source>

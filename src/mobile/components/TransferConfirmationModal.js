@@ -8,6 +8,7 @@ import StatefulDropdownAlert from '../containers/StatefulDropdownAlert';
 import ModalButtons from '../containers/ModalButtons';
 import GENERAL from '../theme/general';
 import { width, height } from '../utils/dimensions';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     modalContainer: {
@@ -24,7 +25,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: 'rgba(255, 255, 255, 0.8)',
         paddingVertical: height / 30,
-        width: width / 1.2,
+        width: width / 1.15,
         paddingHorizontal: width / 20,
     },
     textContainer: {
@@ -45,12 +46,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         fontFamily: 'SourceSansPro-Regular',
         fontSize: GENERAL.fontSize3,
-    },
-    middleText: {
-        backgroundColor: 'transparent',
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize2,
-        paddingBottom: height / 80,
     },
     addressText: {
         backgroundColor: 'transparent',
@@ -105,6 +100,10 @@ class TransferConfirmationModal extends Component {
         this.state = {
             sending: false,
         };
+    }
+
+    componentDidMount() {
+        leaveNavigationBreadcrumb('TransferConfirmationModal');
     }
 
     onSendPress() {

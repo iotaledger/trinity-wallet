@@ -8,14 +8,12 @@ import withChartData from 'iota-wallet-shared-modules/containers/components/Char
 import { width, height } from '../utils/dimensions';
 import { isAndroid } from '../utils/device';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const chartWidth = width;
 const chartHeight = height * 0.36;
 
 const styles = StyleSheet.create({
-    buttonContainer: {
-        flex: 1,
-    },
     button: {
         flex: 1,
         flexDirection: 'row',
@@ -82,12 +80,12 @@ const styles = StyleSheet.create({
         fontWeight: 'normal',
         fontFamily: 'SourceSansPro-Regular',
         fontSize: GENERAL.fontSize2,
-        marginTop: height / 200
+        marginTop: height / 200,
     },
     marketFigureTitle: {
         fontSize: GENERAL.fontSize2,
         fontFamily: 'SourceSansPro-Bold',
-        opacity: 0.6
+        opacity: 0.6,
     },
 });
 
@@ -145,6 +143,10 @@ class Chart extends PureComponent {
         getPriceForCurrency: PropTypes.func.isRequired,
     };
 
+    componentDidMount() {
+        leaveNavigationBreadcrumb('Chart');
+    }
+
     render() {
         const {
             t,
@@ -188,7 +190,7 @@ class Chart extends PureComponent {
                 </View>
                 {chartData.data.length === 0 || chartData.data === undefined ? (
                     <View style={styles.emptyChartContainer}>
-                        <Text style={[styles.emptyChartText, textColor]}>Error fetching chart data</Text>
+                        <Text style={[styles.emptyChartText, textColor]}>{t('chart:error')}</Text>
                     </View>
                 ) : (
                     <View style={styles.chartContainer}>
@@ -207,7 +209,7 @@ class Chart extends PureComponent {
                                         strokeWidth: 1.2,
                                     },
                                 }}
-                                interpolation='basis'
+                                interpolation="basis"
                                 scale={{ x: 'time', y: 'linear' }}
                                 animate={{
                                     duration: 450,
@@ -236,15 +238,19 @@ class Chart extends PureComponent {
                 <View style={styles.marketDataContainer}>
                     <View style={{ alignItems: 'flex-start' }}>
                         <Text style={[styles.marketFigureTitle, textColor]}>{t('chart:mcap')}</Text>
-                        <Text style={[styles.marketFigure, textColor]}>{priceData.globalSymbol} {mcapFormatted}</Text>
+                        <Text style={[styles.marketFigure, textColor]}>
+                            {priceData.globalSymbol} {mcapFormatted}
+                        </Text>
                     </View>
                     <View style={{ alignItems: 'center' }}>
-                        <Text style={[ styles.marketFigureTitle, textColor ]}>{t('chart:change')}</Text>
+                        <Text style={[styles.marketFigureTitle, textColor]}>{t('chart:change')}</Text>
                         <Text style={[styles.marketFigure, textColor]}>{priceData.change24h}%</Text>
                     </View>
                     <View style={{ alignItems: 'flex-end' }}>
-                        <Text style={[ styles.marketFigureTitle, textColor ]}>{t('chart:volume')}</Text>
-                        <Text style={[styles.marketFigure, textColor]}>{priceData.globalSymbol} {volumeFormatted}</Text>
+                        <Text style={[styles.marketFigureTitle, textColor]}>{t('chart:volume')}</Text>
+                        <Text style={[styles.marketFigure, textColor]}>
+                            {priceData.globalSymbol} {volumeFormatted}
+                        </Text>
                     </View>
                 </View>
                 <View style={{ flex: 0.38 }} />

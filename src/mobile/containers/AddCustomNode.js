@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { setFullNode } from 'iota-wallet-shared-modules/actions/settings';
+import { isValidUrl, isValidHttpsUrl } from 'iota-wallet-shared-modules/libs/utils';
 import { setCustomNodeCheckStatus } from 'iota-wallet-shared-modules/actions/ui';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { translate } from 'react-i18next';
@@ -18,6 +19,8 @@ import { width, height } from '../utils/dimensions';
 import CustomTextInput from '../components/CustomTextInput';
 import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
+import { isIOS } from '../utils/device';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -63,9 +66,6 @@ const styles = StyleSheet.create({
         fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
         marginRight: width / 20,
-    },
-    dropdownWidth: {
-        width: width / 1.5,
     },
     activityIndicator: {
         flex: 1,
@@ -114,6 +114,10 @@ class AddCustomNode extends Component {
         };
     }
 
+    componentDidMount() {
+        leaveNavigationBreadcrumb('AddCustomNode');
+    }
+
     componentWillReceiveProps(newProps) {
         const { node } = this.props;
         const hasChangedNode = node !== newProps.node;
@@ -127,7 +131,7 @@ class AddCustomNode extends Component {
         return this.props.generateAlert(
             'error',
             this.props.t('addCustomNode:customNodeCouldNotBeAdded'),
-            this.props.t('addCustomNode:invalidNodeResponse'),
+            this.props.t('addCustomNode:invalidURL'),
         );
     }
 
@@ -142,8 +146,8 @@ class AddCustomNode extends Component {
     onAddHttpNodeError() {
         return this.props.generateAlert(
             'error',
-            this.props.t('addCustomNode:customNodeCouldNotBeAdded'),
-            this.props.t('addCustomNode:httpNodeError'),
+            this.props.t('global:nodeMustUseHTTPS'),
+            this.props.t('global:nodeMustUseHTTPSExplanation'),
         );
     }
 
@@ -155,17 +159,20 @@ class AddCustomNode extends Component {
     addNode() {
         const { nodes } = this.props;
 
-        const { customNode } = this.state;
+        let { customNode } = this.state;
 
         if (!customNode) {
             return this.onEmptyFieldError();
         }
 
-        if (!customNode.startsWith('http')) {
+        // Remove spaces and trailing slash
+        customNode = customNode.replace(/ /g, '').replace(/\/$/, '');
+
+        if (!isValidUrl(customNode)) {
             return this.onAddNodeError();
         }
 
-        if (customNode.startsWith('http://')) {
+        if (!isValidHttpsUrl(customNode)) {
             return this.onAddHttpNodeError();
         }
 
@@ -219,11 +226,12 @@ class AddCustomNode extends Component {
                         <CustomTextInput
                             label={t('customNode')}
                             onChangeText={(customNode) => this.setState({ customNode })}
-                            containerStyle={{ width: width / 1.2 }}
+                            containerStyle={{ width: width / 1.15 }}
                             autoCapitalize="none"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
                             returnKeyType="done"
+                            keyboardType={isIOS ? 'url' : 'default'}
                             onSubmitEditing={() => this.addNode()}
                             theme={theme}
                             editable={!isCheckingCustomNode}

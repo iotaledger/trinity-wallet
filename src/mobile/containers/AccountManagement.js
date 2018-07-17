@@ -8,6 +8,7 @@ import { translate } from 'react-i18next';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
@@ -24,22 +25,11 @@ const styles = StyleSheet.create({
         width,
         paddingHorizontal: width / 15,
     },
-    backIcon: {
-        width: width / 28,
-        height: width / 28,
-        marginRight: width / 20,
-    },
     titleText: {
         fontFamily: 'SourceSansPro-Regular',
         fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
         marginLeft: width / 25,
-    },
-    backText: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
-        backgroundColor: 'transparent',
-        marginLeft: width / 20,
     },
     separator: {
         borderBottomWidth: 0.25,
@@ -50,12 +40,11 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
     },
-    settingText: {
-        fontFamily: 'SourceSansPro-Light',
+    backText: {
+        fontFamily: 'SourceSansPro-Regular',
         fontSize: GENERAL.fontSize3,
-        marginLeft: width / 12,
-        width: width / 2.4,
         backgroundColor: 'transparent',
+        marginLeft: width / 20,
     },
 });
 
@@ -90,6 +79,10 @@ class AccountManagement extends Component {
         this.deleteAccount = this.deleteAccount.bind(this);
     }
 
+    componentDidMount() {
+        leaveNavigationBreadcrumb('AccountManagement');
+    }
+
     deleteAccount() {
         const { seedCount, t } = this.props;
 
@@ -110,7 +103,7 @@ class AccountManagement extends Component {
         const bodyColor = theme.body.color;
 
         return (
-            <View style={styles.advancedSettingsContainer}>
+            <View style={styles.container}>
                 <View style={styles.itemContainer}>
                     <TouchableOpacity
                         onPress={() => this.props.setSetting('viewSeed')}
@@ -169,7 +162,7 @@ class AccountManagement extends Component {
                         </View>
                     </TouchableOpacity>
                 </View>
-                <View style={{ flex: 5 }}/>
+                <View style={{ flex: 5 }} />
                 <View style={styles.itemContainer}>
                     <TouchableOpacity
                         onPress={() => this.props.setSetting('mainSettings')}

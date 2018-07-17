@@ -104,9 +104,15 @@ $footer: 70px;
         z-index: 2;
         transform: scale(1);
         transition: transform 0.2s ease-out;
+        text-align: center;
 
         p {
             word-wrap: break-word;
+            margin-bottom: 40px;
+        }
+
+        p + p {
+            margin-top: -28px;
         }
 
         form {
@@ -114,12 +120,20 @@ $footer: 70px;
             padding: 0px;
             border: none;
             max-width: 580px;
+            width: calc(100vw - 40px);
         }
 
         @media (max-width: 960px) {
             width: 100vw;
             padding: 0 20px;
         }
+
+        section > svg {
+            margin-bottom: 20px;
+        }
+
+
+
     }
 }
 

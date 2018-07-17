@@ -2,12 +2,24 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import RNExitApp from 'react-native-exit-app';
-import { StyleSheet, View, TouchableWithoutFeedback, Keyboard, BackHandler } from 'react-native';
-import GENERAL from '../theme/general';
+import {
+    StyleSheet,
+    Text,
+    View,
+    TouchableOpacity,
+    TouchableWithoutFeedback,
+    Keyboard,
+    BackHandler,
+} from 'react-native';
+import Modal from 'react-native-modal';
 import { width, height } from '../utils/dimensions';
 import OnboardingButtons from '../containers/OnboardingButtons';
 import CustomTextInput from './CustomTextInput';
 import { Icon } from '../theme/icons.js';
+import GENERAL from '../theme/general';
+import InfoBox from '../components/InfoBox';
+import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
+import { isAndroid } from '../utils/device';
 
 const styles = StyleSheet.create({
     topContainer: {
@@ -26,22 +38,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-end',
     },
-    titleContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingTop: height / 8,
+    infoText: {
+        fontFamily: 'SourceSansPro-Light',
+        fontSize: GENERAL.fontSize3,
+        backgroundColor: 'transparent',
+        textAlign: 'left',
     },
-    title: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize4,
-        textAlign: 'center',
+    infoTextBold: {
+        fontFamily: 'SourceSansPro-Bold',
+        fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
     },
-    iotaLogo: {
-        height: width / 5,
-        width: width / 5,
-    },
-    loginButton: {
+    okButton: {
         borderWidth: 1.2,
         borderRadius: GENERAL.borderRadius,
         width: width / 2.7,
@@ -49,10 +57,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-around',
     },
-    loginText: {
+    okText: {
         fontFamily: 'SourceSansPro-Regular',
         fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
+    },
+    modal: {
+        height,
+        width,
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 0,
     },
 });
 
@@ -74,9 +89,21 @@ export class EnterPasswordOnLogin extends Component {
          * @param {string} translationString - locale string identifier to be translated
          */
         t: PropTypes.func.isRequired,
+        /** Determines whether fingerprint auth is enabled */
+        isFingerprintEnabled: PropTypes.bool.isRequired,
     };
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            isModalActive: false,
+        };
+        this.openModal = this.openModal.bind(this);
+        this.hideModal = this.hideModal.bind(this);
+    }
+
     componentDidMount() {
+        leaveNavigationBreadcrumb('EnterPasswordOnLogin');
         BackHandler.addEventListener('loginBackPress', () => {
             RNExitApp.exitApp();
             return true;
@@ -95,8 +122,50 @@ export class EnterPasswordOnLogin extends Component {
         navigateToNodeOptions();
     };
 
+    openModal() {
+        this.setState({ isModalActive: true });
+    }
+
+    hideModal() {
+        this.setState({ isModalActive: false });
+    }
+
+    renderModalContent = () => {
+        const { t, theme: { body, primary } } = this.props;
+        const textColor = { color: body.color };
+
+        return (
+            <View style={{ backgroundColor: body.bg }}>
+                <InfoBox
+                    body={body}
+                    width={width / 1.15}
+                    text={
+                        <View>
+                            <Text style={[styles.infoTextBold, textColor, { paddingTop: height / 40 }]}>
+                                {t('whyBiometricDisabled')}
+                            </Text>
+                            <Text style={[styles.infoText, textColor, { paddingTop: height / 60 }]}>
+                                {t('whyBiometricDisabledExplanation')}
+                            </Text>
+                            <View style={{ paddingTop: height / 20, alignItems: 'center' }}>
+                                <TouchableOpacity onPress={() => this.hideModal()}>
+                                    <View style={[styles.okButton, { borderColor: primary.color }]}>
+                                        <Text style={[styles.okText, { color: primary.color }]}>
+                                            {t('global:okay')}
+                                        </Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    }
+                />
+            </View>
+        );
+    };
+
     render() {
-        const { t, theme, password } = this.props;
+        const { t, theme, password, isFingerprintEnabled } = this.props;
+        const { isModalActive } = this.state;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -108,7 +177,7 @@ export class EnterPasswordOnLogin extends Component {
                         <CustomTextInput
                             label={t('global:password')}
                             onChangeText={this.handleChangeText}
-                            containerStyle={{ width: width / 1.2 }}
+                            containerStyle={{ width: width / 1.15 }}
                             autoCapitalize="none"
                             autoCorrect={false}
                             enablesReturnKeyAutomatically
@@ -117,6 +186,9 @@ export class EnterPasswordOnLogin extends Component {
                             onSubmitEditing={this.handleLogin}
                             theme={theme}
                             value={password}
+                            widget="fingerprintDisabled"
+                            fingerprintAuthentication={isFingerprintEnabled}
+                            onFingerprintPress={this.openModal}
                         />
                     </View>
                     <View style={styles.bottomContainer}>
@@ -127,6 +199,19 @@ export class EnterPasswordOnLogin extends Component {
                             rightButtonText={t('login')}
                         />
                     </View>
+                    <Modal
+                        backdropTransitionInTiming={isAndroid ? 500 : 300}
+                        backdropTransitionOutTiming={200}
+                        backdropColor={theme.body.bg}
+                        backdropOpacity={0.9}
+                        style={styles.modal}
+                        isVisible={isModalActive}
+                        onBackButtonPress={() => this.hideModal()}
+                        hideModalContentWhileAnimating
+                        useNativeDriver={isAndroid}
+                    >
+                        {this.renderModalContent()}
+                    </Modal>
                 </View>
             </TouchableWithoutFeedback>
         );
