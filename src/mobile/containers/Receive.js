@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 6,
     },
     qrContainerFront: {
-        flex: 3.6,
+        flex: 3.75,
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
         padding: width / 20,
     },
     addressContainer: {
-        flex: 2.9,
+        flex: 2.75,
         justifyContent: 'center',
         alignItems: 'center',
         borderTopWidth: 1,
@@ -581,7 +581,7 @@ class Receive extends Component {
                             <View
                                 style={[
                                     styles.qrContainerFront,
-                                    { backgroundColor: '#F2F2F2', paddingBottom: width / 14 },
+                                    { backgroundColor: '#F2F2F2', paddingBottom: width / 20 },
                                 ]}
                             >
                                 <CustomQrCodeComponent
