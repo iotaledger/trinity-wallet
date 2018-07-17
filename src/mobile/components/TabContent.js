@@ -18,7 +18,7 @@ const routeToComponent = {
 
 class TabContent extends Component {
     render() {
-        const { currentRoute, navigator, isIOSKeyboardActive } = this.props;
+        const { currentRoute, navigator, isKeyboardActive } = this.props;
         const Content = routeToComponent[currentRoute];
 
         return (
@@ -27,7 +27,7 @@ class TabContent extends Component {
                     type={currentRoute}
                     navigator={navigator}
                     closeTopBar={() => this.props.handleCloseTopBar()}
-                    isIOSKeyboardActive={isIOSKeyboardActive}
+                    isKeyboardActive={isKeyboardActive}
                     onTabSwitch={(name) => this.props.onTabSwitch(name)}
                 />
             </View>
@@ -50,7 +50,7 @@ TabContent.propTypes = {
     onTabSwitch: PropTypes.func.isRequired,
     handleCloseTopBar: PropTypes.func.isRequired,
     /** Determines whether keyboard is open on iOS */
-    isIOSKeyboardActive: PropTypes.bool.isRequired,
+    isKeyboardActive: PropTypes.bool.isRequired,
 };
 
 TabContent.defaultProps = {
