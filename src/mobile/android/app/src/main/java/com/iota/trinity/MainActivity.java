@@ -9,7 +9,6 @@ import android.view.Gravity;
 import android.view.View;
 import android.support.v4.content.ContextCompat;
 import com.facebook.react.modules.i18nmanager.I18nUtil;
-import com.jamesisaac.rnbackgroundtask.BackgroundTaskPackage;
 
 public class MainActivity extends SplashActivity {
     @Override
@@ -20,7 +19,6 @@ public class MainActivity extends SplashActivity {
         // FORCE LTR
         I18nUtil sharedI18nUtilInstance = I18nUtil.getInstance();
         sharedI18nUtilInstance.allowRTL(getApplicationContext(), false);
-        BackgroundTaskPackage.useContext(getApplication());
     }
 
     @Override
