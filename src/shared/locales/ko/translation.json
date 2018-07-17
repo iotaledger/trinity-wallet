@@ -494,7 +494,7 @@
         "add": "추가",
         "nodeFieldEmpty": "입력한 텍스트가 없습니다.",
         "nodeFieldEmptyExplanation": "커스텀 노드를 입력해 주세요.",
-        "invalidURL": "Please enter a valid URL."
+        "invalidURL": "유효한 URL을 입력하십시오."
     },
     "addNewAccount": {
         "useExistingSeed": "기존 시드 사용",
