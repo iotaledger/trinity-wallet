@@ -491,10 +491,10 @@
         "customNode": "Пользовательский узел",
         "removeCustomNode": "Remove custom node",
         "invalidNodeResponse": "На узле произошла ошибка",
-        "httpNodeError": "Мобильная версия Trinity поддерживает только https узлы.",
         "add": "Добавить",
         "nodeFieldEmpty": "Текстовое поле пусто",
-        "nodeFieldEmptyExplanation": "Пожалуйста, введите пользовательский узел."
+        "nodeFieldEmptyExplanation": "Пожалуйста, введите пользовательский узел.",
+        "invalidURL": "Please enter a valid URL."
     },
     "addNewAccount": {
         "useExistingSeed": "Использовать существующий ключ",

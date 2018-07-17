@@ -491,10 +491,10 @@
         "customNode": "Προσαρμοσμένος κόμβος",
         "removeCustomNode": "Remove custom node",
         "invalidNodeResponse": "The node returned an invalid response",
-        "httpNodeError": "Trinity Mobile only supports https nodes.",
         "add": "Προσθήκη",
         "nodeFieldEmpty": "Text field is empty",
-        "nodeFieldEmptyExplanation": "Please enter a custom node."
+        "nodeFieldEmptyExplanation": "Please enter a custom node.",
+        "invalidURL": "Please enter a valid URL."
     },
     "addNewAccount": {
         "useExistingSeed": "Χρήση υπάρχοντος σπόρου",

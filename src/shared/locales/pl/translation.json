@@ -491,10 +491,10 @@
         "customNode": "Niestandardowy serwer",
         "removeCustomNode": "Usuń serwer",
         "invalidNodeResponse": "Serwer zwrócił błędną odpowiedź",
-        "httpNodeError": "Trinity Mobile obsługuje jedynie serwery https.",
         "add": "Dodaj",
         "nodeFieldEmpty": "Pole adresu puste",
-        "nodeFieldEmptyExplanation": "Proszę wpisać adres niestandardowego serwera."
+        "nodeFieldEmptyExplanation": "Proszę wpisać adres niestandardowego serwera.",
+        "invalidURL": "Wprowadź prawidłowy adres URL."
     },
     "addNewAccount": {
         "useExistingSeed": "Użyj istniejącego klucza seed",

@@ -491,10 +491,10 @@
         "customNode": "कस्टम नोड",
         "removeCustomNode": "Remove custom node",
         "invalidNodeResponse": "नोड ने कोई अमान्य प्रतिक्रिया दिया ।",
-        "httpNodeError": "ट्रिनिटी मोबाइल केवल https नोड्स का समर्थन करता है ।",
         "add": "जोड़ें",
         "nodeFieldEmpty": "यह फील्ड रिक्त है।",
-        "nodeFieldEmptyExplanation": "कृपया कोई कस्टम नोड दर्ज करें ।"
+        "nodeFieldEmptyExplanation": "कृपया कोई कस्टम नोड दर्ज करें ।",
+        "invalidURL": "Please enter a valid URL."
     },
     "addNewAccount": {
         "useExistingSeed": "मौजूदा सीड का उपयोग करें",
