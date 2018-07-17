@@ -85,7 +85,6 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end',
         width: width / 1.15,
         paddingRight: 1,
-        flex: 0.4,
     },
     maxButtonText: {
         fontFamily: 'SourceSansPro-Regular',
@@ -740,6 +739,7 @@ export class Send extends Component {
             theme,
             body,
             primary,
+            isKeyboardActive,
         } = this.props;
         const textColor = { color: body.color };
         const opacity = this.getSendMaxOpacity();
@@ -803,7 +803,12 @@ export class Send extends Component {
                             }}
                         />
                         <View style={{ flex: 0.09 }} />
-                        <View style={[styles.maxContainer, { opacity: opacity }]}>
+                        <View
+                            style={[
+                                styles.maxContainer,
+                                { opacity: opacity, flex: isAndroid ? (isKeyboardActive ? 0.8 : 0.4) : 0.4 },
+                            ]}
+                        >
                             <TouchableOpacity
                                 onPress={() => {
                                     if (!isSending) {
