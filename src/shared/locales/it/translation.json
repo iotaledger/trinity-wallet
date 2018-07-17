@@ -491,10 +491,10 @@
         "customNode": "Nodo personalizzato",
         "removeCustomNode": "Rimuovi il nodo personalizzato",
         "invalidNodeResponse": "Il nodo ha restituito una risposta non valida",
-        "httpNodeError": "Trinity Mobile supporta solo nodi https.",
         "add": "Aggiungi",
         "nodeFieldEmpty": "Questo campo è vuoto",
-        "nodeFieldEmptyExplanation": "Si prega di inserire un nodo personalizzato."
+        "nodeFieldEmptyExplanation": "Si prega di inserire un nodo personalizzato.",
+        "invalidURL": "Per favore, inserisci un URL valido."
     },
     "addNewAccount": {
         "useExistingSeed": "Usa un seme esistente",

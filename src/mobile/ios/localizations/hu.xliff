@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
-  <file original="iotaWallet-tvOS/en.lproj/InfoPlist.strings" datatype="plaintext" source-language="en" target-language="lt">
+  <file original="iotaWallet-tvOS/en.lproj/InfoPlist.strings" datatype="plaintext" source-language="en" target-language="hu">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.4" build-num="9Q1019a"/>
     </header>
@@ -8,16 +8,16 @@
       <trans-unit id="CFBundleName">
         <source>$(PRODUCT_NAME)</source>
         <note>Bundle name</note>
-        <target xml:lang="lt" state="needs-translation">$(PRODUCT_NAME)</target>
+        <target xml:lang="hu" state="needs-translation">$(PRODUCT_NAME)</target>
       </trans-unit>
       <trans-unit id="NSLocationWhenInUseUsageDescription">
         <source/>
         <note>Privacy - Location When In Use Usage Description</note>
-        <target xml:lang="lt" state="translated"/>
+        <target xml:lang="hu" state="translated"/>
       </trans-unit>
     </body>
   </file>
-  <file original="iotaWallet-tvOSTests/en.lproj/InfoPlist.strings" datatype="plaintext" source-language="en" target-language="lt">
+  <file original="iotaWallet-tvOSTests/en.lproj/InfoPlist.strings" datatype="plaintext" source-language="en" target-language="hu">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.4" build-num="9Q1019a"/>
     </header>
@@ -25,11 +25,11 @@
       <trans-unit id="CFBundleName">
         <source>$(PRODUCT_NAME)</source>
         <note>Bundle name</note>
-        <target xml:lang="lt" state="needs-translation">$(PRODUCT_NAME)</target>
+        <target xml:lang="hu" state="needs-translation">$(PRODUCT_NAME)</target>
       </trans-unit>
     </body>
   </file>
-  <file original="iotaWallet/en.lproj/InfoPlist.strings" datatype="plaintext" source-language="en" target-language="lt">
+  <file original="iotaWallet/en.lproj/InfoPlist.strings" datatype="plaintext" source-language="en" target-language="hu">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.4" build-num="9Q1019a"/>
     </header>
@@ -37,77 +37,74 @@
       <trans-unit id="CFBundleDisplayName">
         <source>Trinity</source>
         <note>Bundle display name</note>
-        <target xml:lang="lt" state="needs-translation">Trinity</target>
+        <target xml:lang="hu" state="needs-translation">Trinity</target>
       </trans-unit>
       <trans-unit id="CFBundleName">
         <source>$(PRODUCT_NAME)</source>
         <note>Bundle name</note>
-        <target xml:lang="lt" state="needs-translation">$(PRODUCT_NAME)</target>
+        <target xml:lang="hu" state="needs-translation">$(PRODUCT_NAME)</target>
       </trans-unit>
       <trans-unit id="NSAppleMusicUsageDescription">
         <source>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</source>
         <note>Privacy - Media Library Usage Description</note>
-        <target xml:lang="lt" state="needs-translation">Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</target>
+        <target xml:lang="hu" state="needs-translation">Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</target>
       </trans-unit>
       <trans-unit id="NSBluetoothPeripheralUsageDescription">
         <source>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</source>
         <note>Privacy - Bluetooth Peripheral Usage Description</note>
-        <target xml:lang="lt" state="needs-translation">Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</target>
+        <target xml:lang="hu" state="needs-translation">Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</target>
       </trans-unit>
       <trans-unit id="NSCalendarsUsageDescription">
         <source>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</source>
         <note>Privacy - Calendars Usage Description</note>
-        <target xml:lang="lt" state="needs-translation">Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</target>
+        <target xml:lang="hu" state="needs-translation">Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</target>
       </trans-unit>
       <trans-unit id="NSCameraUsageDescription">
         <source>Trinity requires access to the camera in order to enable QR scanning.</source>
         <note>Privacy - Camera Usage Description</note>
-        <target xml:lang="lt" state="translated">Trinity reikia prieigos prie kameros QR kodo skenavimui.</target>
+        <target xml:lang="hu" state="translated">A Trinity a QR kódok olvasásához hozzáférési jogosultságot igényel a kamerához.</target>
         <alt-trans>
-          <target xml:lang="lt">Trinity reikalauja prieigos prie kameros QR kodo skenavimui.</target>
+          <target xml:lang="hu">A Trinity a QR kódok olvasása miatt hozzáférési jogosultságot igényel a kamerához.</target>
         </alt-trans>
       </trans-unit>
       <trans-unit id="NSFaceIDUsageDescription">
         <source>Trinity requires access to Face ID in order to enable biometric authentication.</source>
         <note>Privacy - Face ID Usage Description</note>
-        <target xml:lang="lt" state="translated">Trinity reikia prieigos prie "Face ID" biometriniam tapatybės nustatymui.</target>
-        <alt-trans>
-          <target xml:lang="lt">Trinity reikalauja prieigos prie Face ID biometriniam tapatybės nustatymui.</target>
-        </alt-trans>
+        <target xml:lang="hu" state="translated">A Trinity a biometrikus azonosítás használatához hozzáférési jogosultságot igényel a Face ID funkcióhoz.</target>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
         <source>2018 IOTA Foundation. All rights reserved.</source>
         <note>Copyright (human-readable)</note>
-        <target xml:lang="lt" state="translated">2018 IOTA Foundation. Visos teisės saugomos.</target>
+        <target xml:lang="hu" state="translated">2018 IOTA Foundation. Minden jog fenntartva.</target>
       </trans-unit>
       <trans-unit id="NSLocationWhenInUseUsageDescription">
         <source>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</source>
         <note>Privacy - Location When In Use Usage Description</note>
-        <target xml:lang="lt" state="needs-translation">Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</target>
+        <target xml:lang="hu" state="needs-translation">Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</target>
       </trans-unit>
       <trans-unit id="NSMotionUsageDescription">
         <source>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</source>
         <note>Privacy - Motion Usage Description</note>
-        <target xml:lang="lt" state="needs-translation">Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</target>
+        <target xml:lang="hu" state="needs-translation">Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</target>
       </trans-unit>
       <trans-unit id="NSPhotoLibraryAddUsageDescription">
         <source>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</source>
         <note>Privacy - Photo Library Additions Usage Description</note>
-        <target xml:lang="lt" state="needs-translation">Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</target>
+        <target xml:lang="hu" state="needs-translation">Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</target>
       </trans-unit>
       <trans-unit id="NSPhotoLibraryUsageDescription">
         <source>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</source>
         <note>Privacy - Photo Library Usage Description</note>
-        <target xml:lang="lt" state="needs-translation">Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</target>
+        <target xml:lang="hu" state="needs-translation">Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</target>
       </trans-unit>
       <trans-unit id="NSSpeechRecognitionUsageDescription">
         <source>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</source>
         <note>Privacy - Speech Recognition Usage Description</note>
-        <target xml:lang="lt" state="needs-translation">Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</target>
+        <target xml:lang="hu" state="needs-translation">Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</target>
       </trans-unit>
     </body>
   </file>
-  <file original="iotaWalletTests/en.lproj/InfoPlist.strings" datatype="plaintext" source-language="en" target-language="lt">
+  <file original="iotaWalletTests/en.lproj/InfoPlist.strings" datatype="plaintext" source-language="en" target-language="hu">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.4" build-num="9Q1019a"/>
     </header>
@@ -115,11 +112,11 @@
       <trans-unit id="CFBundleName">
         <source>$(PRODUCT_NAME)</source>
         <note>Bundle name</note>
-        <target xml:lang="lt" state="needs-translation">$(PRODUCT_NAME)</target>
+        <target xml:lang="hu" state="needs-translation">$(PRODUCT_NAME)</target>
       </trans-unit>
     </body>
   </file>
-  <file original="iotaWalletUITests/en.lproj/InfoPlist.strings" datatype="plaintext" source-language="en" target-language="lt">
+  <file original="iotaWalletUITests/en.lproj/InfoPlist.strings" datatype="plaintext" source-language="en" target-language="hu">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.4" build-num="9Q1019a"/>
     </header>
@@ -127,7 +124,7 @@
       <trans-unit id="CFBundleName">
         <source>$(PRODUCT_NAME)</source>
         <note>Bundle name</note>
-        <target xml:lang="lt" state="needs-translation">$(PRODUCT_NAME)</target>
+        <target xml:lang="hu" state="needs-translation">$(PRODUCT_NAME)</target>
       </trans-unit>
     </body>
   </file>
