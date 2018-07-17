@@ -491,10 +491,10 @@
         "customNode": "カスタムノード",
         "removeCustomNode": "カスタムノードを削除",
         "invalidNodeResponse": "ノードが無効な反応を返しました。",
-        "httpNodeError": "Trinityモバイルウォレットはhttps化されたノードのみをサポートします。",
         "add": "追加",
         "nodeFieldEmpty": "テキスト欄が空です。",
-        "nodeFieldEmptyExplanation": "カスタムノードを入力してください。"
+        "nodeFieldEmptyExplanation": "カスタムノードを入力してください。",
+        "invalidURL": "有効なURLを入力してください。"
     },
     "addNewAccount": {
         "useExistingSeed": "既存のシードを使用",
