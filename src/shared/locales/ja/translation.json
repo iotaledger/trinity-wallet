@@ -494,7 +494,7 @@
         "add": "追加",
         "nodeFieldEmpty": "テキスト欄が空です。",
         "nodeFieldEmptyExplanation": "カスタムノードを入力してください。",
-        "invalidURL": "Please enter a valid URL."
+        "invalidURL": "有効なURLを入力してください。"
     },
     "addNewAccount": {
         "useExistingSeed": "既存のシードを使用",
