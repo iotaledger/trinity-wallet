@@ -30,7 +30,7 @@ BackgroundFetch.configure(
         console.log('Task defined');
         // Initialize the queue
         const queue = await queueFactory();
-        console.log('queueFactory initialized');
+        console.log('Queue initialized');
 
         // Register the background worker
         queue.addWorker('promote-transactions', async (id, payload) => {
@@ -50,6 +50,7 @@ BackgroundFetch.configure(
         await queue.start(30000);
 
         console.log('Finished');
+        
         // Tell OS that we're done the background task
         BackgroundFetch.finish(BackgroundFetch.FETCH_RESULT_NEW_DATA);
     },
@@ -190,7 +191,7 @@ export class Poll extends Component {
                 false, // Must pass false as the last param so the queue starts up in the background task instead of immediately
             );
         } else {
-            timer.setTimeout(this, 'jobCreator', () => this.createPromoterJob(), 1000);
+        //    timer.setTimeout(this, 'jobCreator', () => this.createPromoterJob(), 1000);
         }
     }
 
