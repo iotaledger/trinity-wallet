@@ -351,7 +351,7 @@ class Home extends Component {
                 onInactivity={this.handleInactivity}
             >
                 <View style={{ flex: 1, backgroundColor: body.bg }}>
-                    <DynamicStatusBar backgroundColor={inactive ? body.bg : bar.bg} isModalActive={isModalActive} />
+                    <DynamicStatusBar backgroundColor={inactive ? body.bg : bar.hover} isModalActive={isModalActive} />
                     {(!inactive && (
                         <View style={{ flex: 1 }}>
                             <KeyboardAvoidingView style={styles.midContainer} behavior="padding">
