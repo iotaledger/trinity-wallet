@@ -520,45 +520,46 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 return storeAndBroadcastAsync(cached.trytes);
             })
             .then(() => {
-                const { newState } = syncAccountAfterSpending(
+                return syncAccountAfterSpending(
+                    seed,
                     accountName,
                     cached.transactionObjects,
                     accountState,
                     !isZeroValue,
-                );
+                    genFn,
+                ).then(({ newState }) => {
+                    dispatch(updateAccountInfoAfterSpending(newState));
 
-                dispatch(updateAccountInfoAfterSpending(newState));
+                    // Progress summary
+                    dispatch(setNextStepAsActive());
+                    if (isZeroValue) {
+                        dispatch(
+                            generateAlert(
+                                'success',
+                                i18next.t('global:messageSent'),
+                                i18next.t('global:messageSentMessage'),
+                                20000,
+                            ),
+                        );
+                    } else {
+                        dispatch(
+                            generateAlert(
+                                'success',
+                                i18next.t('global:transferSent'),
+                                i18next.t('global:transferSentMessage'),
+                                20000,
+                            ),
+                        );
+                    }
 
-                // Progress summary
-                dispatch(setNextStepAsActive());
-                if (isZeroValue) {
-                    dispatch(
-                        generateAlert(
-                            'success',
-                            i18next.t('global:messageSent'),
-                            i18next.t('global:messageSentMessage'),
-                            20000,
-                        ),
-                    );
-                } else {
-                    dispatch(
-                        generateAlert(
-                            'success',
-                            i18next.t('global:transferSent'),
-                            i18next.t('global:transferSentMessage'),
-                            20000,
-                        ),
-                    );
-                }
-
-                setTimeout(() => {
-                    dispatch(completeTransfer({ address, value }));
-                    dispatch(resetProgress());
-                }, 5000);
+                    setTimeout(() => {
+                        dispatch(completeTransfer({ address, value }));
+                        dispatch(resetProgress());
+                    }, 5000);
+                });
             })
             .catch((error) => {
                 dispatch(sendTransferError());
-
                 if (hasSignedInputs) {
                     const { newState } = syncAccountOnValueTransactionFailure(cached.transactionObjects, accountState);
 

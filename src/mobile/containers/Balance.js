@@ -1,7 +1,5 @@
 import map from 'lodash/map';
 import orderBy from 'lodash/orderBy';
-import includes from 'lodash/includes';
-import get from 'lodash/get';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
@@ -17,6 +15,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { round, roundDown } from 'iota-wallet-shared-modules/libs/utils';
+import { computeStatusText, formatRelevantRecentTransactions } from 'iota-wallet-shared-modules/libs/iota/transfers';
 import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/iota/utils';
 import {
     getTransfersForSelectedAccount,
@@ -179,47 +178,31 @@ export class Balance extends Component {
      */
 
     prepTransactions() {
-        const { t, addresses, transfers, primary, secondary, body } = this.props;
+        const { transfers, primary, secondary, body, addresses } = this.props;
         const orderedTransfers = orderBy(transfers, (tx) => tx.timestamp, ['desc']);
         const recentTransactions = orderedTransfers.slice(0, 4);
-
-        const computeConfirmationStatus = (outputs, persistence, incoming, value) => {
-            const receiveStatus = persistence ? t('received') : t('receiving');
-            const sendStatus = persistence ? t('sent') : t('sending');
-            if (value === 0) {
-                if (
-                    !includes(addresses, get(outputs, '[0].address')) &&
-                    includes(addresses, get(outputs, '[1].address'))
-                ) {
-                    return sendStatus;
-                }
-                return receiveStatus;
-            }
-
-            return incoming ? receiveStatus : sendStatus;
-        };
+        const relevantTransactions = formatRelevantRecentTransactions(recentTransactions, addresses);
 
         const getSign = (value, incoming) => {
             if (value === 0) {
                 return '';
             }
-
             return incoming ? '+' : '-';
         };
-
-        const formattedTransfers = map(recentTransactions, (transfer) => {
+        const formattedTransfers = map(relevantTransactions, (transfer) => {
             const { outputs, timestamp, incoming, persistence, transferValue } = transfer;
 
             return {
                 time: timestamp,
-                confirmationStatus: computeConfirmationStatus(outputs, persistence, incoming, transferValue),
+                confirmationStatus: computeStatusText(outputs, persistence, incoming),
                 value: round(formatValue(transferValue), 1),
                 unit: formatUnit(transferValue),
                 sign: getSign(transferValue, incoming),
                 icon: incoming ? 'plus' : 'minus',
                 incoming,
                 style: {
-                    titleColor: incoming ? primary.color : secondary.color,
+                    titleColor: persistence ? (incoming ? primary.color : secondary.color) : '#fc6e6d',
+                    pendingColor: '#fc6e6d',
                     defaultTextColor: body.color,
                     iconColor: body.color,
                 },
