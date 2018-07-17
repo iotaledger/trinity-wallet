@@ -491,10 +491,10 @@
         "customNode": "Omavalintainen palvelin",
         "removeCustomNode": "Remove custom node",
         "invalidNodeResponse": "Palvelin antoi virheilmoituksen",
-        "httpNodeError": "Trinity lompakko tukee vain https-palvelimia.",
         "add": "Lisää",
         "nodeFieldEmpty": "Tekstikenttä on tyhjä",
-        "nodeFieldEmptyExplanation": "Anna omavalintaisen palvelin osoite."
+        "nodeFieldEmptyExplanation": "Anna omavalintaisen palvelin osoite.",
+        "invalidURL": "Please enter a valid URL."
     },
     "addNewAccount": {
         "useExistingSeed": "Käytä olemassaolevaa seed-lukua",

@@ -491,10 +491,10 @@
         "customNode": "Node سفارشی",
         "removeCustomNode": "حذف Node سفارشی",
         "invalidNodeResponse": "Node پاسخ نادرستی را دریافت کرد",
-        "httpNodeError": "Trinity موبایل تنها از Node هایی که https هستند پشتیبانی می کند.",
         "add": "اضافه کردن",
         "nodeFieldEmpty": "فیلد متن خالی است",
-        "nodeFieldEmptyExplanation": "لطفا Node سفارشی خود را وارد کنید."
+        "nodeFieldEmptyExplanation": "لطفا Node سفارشی خود را وارد کنید.",
+        "invalidURL": "Please enter a valid URL."
     },
     "addNewAccount": {
         "useExistingSeed": "استفاده از سیدهای موجود",
