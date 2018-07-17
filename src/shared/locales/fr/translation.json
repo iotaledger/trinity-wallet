@@ -494,7 +494,7 @@
         "add": "Ajouter",
         "nodeFieldEmpty": "Le champ texte est vide",
         "nodeFieldEmptyExplanation": "Veuillez entrer un serveur personnalisé.",
-        "invalidURL": "Please enter a valid URL."
+        "invalidURL": "Veuillez saisir une URL valide."
     },
     "addNewAccount": {
         "useExistingSeed": "Utiliser une seed existante",
