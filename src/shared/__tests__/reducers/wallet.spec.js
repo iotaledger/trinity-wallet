@@ -10,7 +10,6 @@ describe('Reducer: wallet', () => {
                 seed: Array(82).join(' '),
                 accountName: 'MAIN WALLET',
                 seedIndex: 0,
-                usedSeedToLogin: false,
                 currentSetting: 'mainSettings',
                 additionalAccountName: '',
                 transitionBalance: 0,
@@ -162,26 +161,6 @@ describe('Reducer: wallet', () => {
         });
     });
 
-    describe('IOTA/WALLET/SET_USED_SEED_TO_LOGIN', () => {
-        it('should assign payload to seedIndex prop in state', () => {
-            const initialState = {
-                usedSeedToLogin: false,
-            };
-
-            const action = {
-                type: 'IOTA/WALLET/SET_USED_SEED_TO_LOGIN',
-                payload: true,
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                usedSeedToLogin: true,
-            };
-
-            expect(newState).to.eql(expectedState);
-        });
-    });
-
     describe('IOTA/WALLET/CLEAR_WALLET_DATA', () => {
         it('should set "ready" state prop to false', () => {
             const initialState = {
@@ -198,23 +177,6 @@ describe('Reducer: wallet', () => {
             };
 
             expect(newState.ready).to.eql(expectedState.ready);
-        });
-
-        it('should set "usedSeedToLogin" state prop to false', () => {
-            const initialState = {
-                usedSeedToLogin: true,
-            };
-
-            const action = {
-                type: 'IOTA/WALLET/CLEAR_WALLET_DATA',
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                usedSeedToLogin: false,
-            };
-
-            expect(newState.usedSeedToLogin).to.eql(expectedState.usedSeedToLogin);
         });
 
         it('should set "seedIndex" state prop to 0', () => {
