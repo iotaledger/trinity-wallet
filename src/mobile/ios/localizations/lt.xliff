@@ -62,12 +62,18 @@
       <trans-unit id="NSCameraUsageDescription">
         <source>Trinity requires access to the camera in order to enable QR scanning.</source>
         <note>Privacy - Camera Usage Description</note>
-        <target xml:lang="lt" state="translated">Trinity reikalauja prieigos prie kameros QR kodo skenavimui.</target>
+        <target xml:lang="lt" state="translated">Trinity reikia prieigos prie kameros QR kodo skenavimui.</target>
+        <alt-trans>
+          <target xml:lang="lt">Trinity reikalauja prieigos prie kameros QR kodo skenavimui.</target>
+        </alt-trans>
       </trans-unit>
       <trans-unit id="NSFaceIDUsageDescription">
         <source>Trinity requires access to Face ID in order to enable biometric authentication.</source>
         <note>Privacy - Face ID Usage Description</note>
-        <target xml:lang="lt" state="translated">Trinity reikalauja prieigos prie Face ID biometriniam tapatybės nustatymui.</target>
+        <target xml:lang="lt" state="translated">Trinity reikia prieigos prie "Face ID" biometriniam tapatybės nustatymui.</target>
+        <alt-trans>
+          <target xml:lang="lt">Trinity reikalauja prieigos prie Face ID biometriniam tapatybės nustatymui.</target>
+        </alt-trans>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
         <source>2018 IOTA Foundation. All rights reserved.</source>
