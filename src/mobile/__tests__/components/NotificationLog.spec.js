@@ -67,20 +67,7 @@ describe('Testing NotificationLog component', () => {
             const props = getProps();
 
             const wrapper = shallow(<NotificationLog {...props} />);
-            expect(wrapper.name()).toEqual('TouchableOpacity');
-        });
-
-        it('should call prop method "hideModal" when onPress prop of parent element is triggered', () => {
-            const props = getProps({
-                hideModal: jest.fn(),
-            });
-
-            const wrapper = shallow(<NotificationLog {...props} />);
-            const onPress = wrapper.props().onPress;
-
-            expect(props.hideModal).toHaveBeenCalledTimes(0);
-            onPress();
-            expect(props.hideModal).toHaveBeenCalledTimes(1);
+            expect(wrapper.name()).toEqual('View');
         });
 
         it('should call instance method "clearNotificationLog" when onPress prop of second TouchableOpacity element is triggered', () => {
@@ -91,7 +78,7 @@ describe('Testing NotificationLog component', () => {
 
             jest.spyOn(instance, 'clearNotificationLog');
 
-            const touchableOpacity = wrapper.find('TouchableOpacity').at(1);
+            const touchableOpacity = wrapper.find('TouchableOpacity').at(0);
 
             expect(instance.clearNotificationLog).toHaveBeenCalledTimes(0);
 
