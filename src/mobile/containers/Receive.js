@@ -248,9 +248,7 @@ class Receive extends Component {
     }
 
     componentWillMount() {
-        if (!isAndroid) {
-            this.scrambleLetters();
-        }
+        this.scrambleLetters();
 
         const value = this.props.isCardFlipped ? 1 : 0;
 
@@ -297,13 +295,6 @@ class Receive extends Component {
     componentWillReceiveProps(newProps) {
         if (this.props.isGeneratingReceiveAddress && !newProps.isGeneratingReceiveAddress) {
             timer.clearInterval('scramble');
-        }
-        if (!this.props.isGeneratingReceiveAddress && newProps.isGeneratingReceiveAddress) {
-            if (!isAndroid) {
-                this.startLetterScramble();
-            }
-
-            this.triggerRefreshAnimations();
         }
     }
 
@@ -446,7 +437,8 @@ class Receive extends Component {
                 t('global:somethingWentWrongTryAgain'),
             );
         };
-
+        this.startLetterScramble();
+        this.triggerRefreshAnimations();
         this.props.getFromKeychainRequest('receive', 'addressGeneration');
         const seed = await getSeedFromKeychain(password, selectedAccountName);
         if (seed === null) {
