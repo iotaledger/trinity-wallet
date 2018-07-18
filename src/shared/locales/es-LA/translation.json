@@ -317,18 +317,18 @@
         "printBlankWallet": "Imprima una billetera en blanco",
         "whatIsChecksum": "Cada semilla tiene su correspondiente checksum de 3 caracteres",
         "iHavesavedMySeed": "He guardado mi semilla",
-        "checksumExplanation": "Whenever you add a seed to your wallet, you should ensure that the wallet-generated checksum matches the one you have written down.",
+        "checksumExplanation": "Cada vez que añada una semilla a su cartera, debería asegurarse de que el checksum generado para la cartera coincide con el que ha anotado.",
         "mustSaveYourSeed": "<0><0>Debes guardar tu seed con</0><1>al menos una</1><2>de las opciones a continuación.</2></0>"
     },
     "seedReentry": {
-        "pleaseConfirmYourSeed": "Please confirm your seed",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or the app.",
-        "enterYourSeed": "Enter your seed",
+        "pleaseConfirmYourSeed": "Por favor confirme su semilla",
+        "trinityWillNeverAskToReenter": "Trinity nunca le solicitará que vuelva a introducir esta semilla a menos que restablezca la cartera o la aplicación.",
+        "enterYourSeed": "Introduzca su semilla",
         "incorrectSeed": "Semilla incorrecta",
         "incorrectSeedExplanation": "La semilla que ingresaste es incorrecta. Por favor vuelve a intentarlo.",
         "thisIsACheck": "Esto es una comprobación para asegurarnos que has guardado tu semilla.",
         "ifYouHaveNotSaved": "Si no has guardado tu semilla, por favor regresa y hazlo.",
-        "enterSeedBelow": "Enter your newly created seed below to confirm you have backed it up correctly"
+        "enterSeedBelow": "Introduzca su semilla recientemente creada para confirmar que la guardado correctamente"
     },
     "send": {
         "invalidAddress": "Dirección inválida",
@@ -355,7 +355,7 @@
         "iotaUnits": "Explicación de unidades de IOTA",
         "sendMax": "ENVIAR MÁXIMO",
         "totalTime": "Tiempo total",
-        "addressPasteDetected": "Address paste detected",
+        "addressPasteDetected": "Dirección copiada en el portapapeles",
         "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to.",
         "invalid": "INVALID"
     },
@@ -628,20 +628,20 @@
         "noSeedFound": "SeedVault no contiene un semilla válida",
         "noSeedFoundExplanation": "El SeedVault se encuentra vacío o contiene una semilla con un formato no válido.",
         "seedFileError": "Fallo al abrir SeedVault",
-        "seedFileErrorExplanation": "There was a problem opening the SeedVault. If you selected the correct file then it may be corrupted."
+        "seedFileErrorExplanation": "Hubo un problema al abrir el SeedVault. Si ha seleccionado el archivo correcto entonces puede estar corrompido."
     },
     "chart": {
         "mcap": "Market cap",
-        "change": "Change (24h)",
+        "change": "Cambio (24h)",
         "volume": "Volumen (24h)",
         "currentValue": "Valor actual",
-        "error": "Error fetching chart data"
+        "error": "Error obteniendo datos de gráfico"
     },
     "rootDetection": {
         "warning": "ADVERTENCIA",
-        "appearsRooted": "Your device appears to be rooted.",
-        "securityRisk": "This can pose a significant risk to the security of your wallet.",
-        "continueDepsiteRisk": "Do you wish to continue despite this risk?"
+        "appearsRooted": "Su dispositivo parece estar rooteado.",
+        "securityRisk": "Esto puede significar un gran riesgo para la seguridad de su cartera.",
+        "continueDepsiteRisk": "Desea continuar a pesar de este riesgo?"
     },
     "pow": {
         "feeless": "Es necesario realizar un pequeño PoW para enviar una transaccion sin comisiones en IOTA.",
@@ -654,11 +654,11 @@
         "noWebGLSupportExplanation": "El equipo no es compatible con WebGL. Utilice por favor PoW remoto."
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Auto-promotion settings",
-        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
+        "autoPromotionUpdated": "Ajustes de auto-promoción",
+        "autoPromotionUpdatedExplanation": "Su configuración para la auto-promoción ha sido actualizada."
     },
     "progressSteps": {
-        "checkingNodeHealth": "Checking node health",
+        "checkingNodeHealth": "Comprobando la salud del nodo",
         "validatingReceiveAddress": "Validando direccion de recepcion",
         "syncingAccount": "Sincronizando cuenta",
         "preparingInputs": "Preparando inputs",
@@ -696,14 +696,14 @@
         "skipUpdate": "Saltar la actualización"
     },
     "notificationLog": {
-        "errorLog": "ERROR LOG"
+        "errorLog": "ERROR DE LOG"
     },
     "terms": {
-        "termsAndConditions": "Terms & Conditions",
-        "accept": "I accept"
+        "termsAndConditions": "Términos y Condiciones",
+        "accept": "Acepto"
     },
     "privacyPolicy": {
-        "privacyPolicy": "Privacy Policy",
-        "agree": "I agree"
+        "privacyPolicy": "Política de Privacidad",
+        "agree": "De acuerdo"
     }
 }
