@@ -1,7 +1,8 @@
-const { ipcMain: ipc, app, protocol } = require('electron');
+const { ipcMain: ipc, app, protocol, shell } = require('electron');
 const electron = require('electron');
 const initMenu = require('./lib/Menu.js');
 const path = require('path');
+const URL = require('url');
 const electronSettings = require('electron-settings');
 
 app.commandLine.appendSwitch('js-flags', '--expose-gc');
@@ -138,6 +139,24 @@ function createWindow() {
         const { isEditable } = props;
         if (isEditable) {
             InputMenu.popup(windows.main);
+        }
+    });
+
+    /**
+     * Disallow external link navigation in wallet window
+     * Open only whitelisted domain urls externally
+     */
+    windows.main.webContents.on('will-navigate', (e, targetURL) => {
+        if (url.indexOf(targetURL) !== 0) {
+            e.preventDefault();
+
+            const externalWhitelist = ['trinity.iota.org'];
+
+            try {
+                if (externalWhitelist.indexOf(URL.parse(targetURL).host) > -1) {
+                    shell.openExternal(targetURL);
+                }
+            } catch (error) {}
         }
     });
 }
