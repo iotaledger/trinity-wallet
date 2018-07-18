@@ -22,7 +22,7 @@
             border: 1px solid var(--input-border);
             background: var(--input-bg);
             color: var(--input);
-            padding: 0 20px;
+            padding: 0 20px 0 14px;
             resize: none;
             -webkit-appearance: none;
             border-radius: 4px;
@@ -184,6 +184,23 @@
         }
     }
 
+    > fieldset > strong {
+        display: none;
+        position: absolute;
+        top: 58px;
+        left: 8px;
+        text-align: left;
+        pointer-events: none;
+        font-weight: 300;
+        font-size: 12px;
+        line-height: 12px;
+        color: var(--body);
+        span {
+            float: left;
+            margin: -1px 4px 0 0;
+        }
+    }
+
     &.disabled {
         opacity: 0.25;
         pointer-events: none;
@@ -196,6 +213,22 @@
     &.seed {
         fieldset .editable {
             padding: 0 32px 0 21px;
+        }
+    }
+
+    &.capsLock {
+        input:focus + small + strong {
+            display: block;
+        }
+        > :before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 1px;
+            right: 40px;
+            width: 46px;
+            height: 46px;
+            background: var(--input-bg);
         }
     }
 }
