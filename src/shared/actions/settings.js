@@ -158,6 +158,16 @@ export const setSeedShareTutorialVisitationStatus = (payload) => ({
     payload,
 });
 
+/**
+ * Fetch currency information (conversion rates) for wallet
+ *
+ * @method getCurrencyData
+ *
+ * @param {string} currency
+ * @param {boolean} withAlerts
+ *
+ * @returns {function(*): Promise<any>}
+ */
 export function getCurrencyData(currency, withAlerts = false) {
     const url = 'https://trinity-exchange-rates.herokuapp.com/api/latest?base=USD';
     return (dispatch) => {
@@ -211,6 +221,16 @@ export function setLanguage(language) {
     };
 }
 
+/**
+ * Makes an API call to check if a node is healthy/active and then changes the selected node for wallet
+ *
+ * @method setFullNode
+ *
+ * @param {string} node
+ * @param {boolean} addingCustomNode
+ *
+ * @returns {function}
+ */
 export function setFullNode(node, addingCustomNode = false) {
     const dispatcher = {
         request: addingCustomNode ? addCustomNodeRequest : setNodeRequest,
@@ -307,6 +327,14 @@ export function updateTheme(theme, themeName) {
     };
 }
 
+/**
+ * Makes an API call for checking if attachToTangle is enabled on the selected IRI node
+ * and changes proof of work configuration for wallet
+ *
+ * @method changePowSettings
+ *
+ * @returns {function}
+ */
 export function changePowSettings() {
     return (dispatch, getState) => {
         const settings = getState().settings;
@@ -332,6 +360,14 @@ export function changePowSettings() {
     };
 }
 
+/**
+ * Makes an API call for checking if attachToTangle is enabled on the selected IRI node
+ * and changes auto promotion configuration for wallet
+ *
+ * @method changeAutoPromotionSettings
+ *
+ * @returns {function}
+ */
 export function changeAutoPromotionSettings() {
     return (dispatch, getState) => {
         const settings = getState().settings;

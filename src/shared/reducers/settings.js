@@ -6,13 +6,38 @@ import { DESKTOP_VERSION, defaultNode as node, nodes } from '../config';
 import themes from '../themes/themes';
 
 const initialState = {
+    /**
+     * Selected locale for wallet
+     */
     locale: 'en',
+    /**
+     * Selected IRI node for wallet
+     */
     node,
+    /**
+     * List of IRI nodes
+     */
     nodes,
+    /**
+     * List of custom nodes added by user
+     */
     customNodes: [],
+    /**
+     * Active wallet mode
+     * Could either be Expert or Standard
+     */
     mode: 'Standard',
+    /**
+     * Selected language name
+     */
     language: 'English (International)',
+    /**
+     * Selected currency for conversions in wallet
+     */
     currency: 'USD',
+    /**
+     * Wallet's available currencies
+     */
     availableCurrencies: [
         'USD',
         'GBP',
@@ -48,27 +73,76 @@ const initialState = {
         'TRY',
         'ZAR',
     ],
+    /**
+     * Conversion rate for IOTA token
+     */
     conversionRate: 1,
+    /**
+     * Active theme name
+     */
     themeName: 'Default',
+    /**
+     * Active theme object
+     */
     theme: themes.Default,
+    /**
+     * Determines if the wallet has randomised node on initial setup.
+     *
+     */
     hasRandomizedNode: false,
+    /**
+     * Keeps track of desktop's version update information
+     */
     update: {
         done: true,
         error: false,
         version: DESKTOP_VERSION,
         notes: [],
     },
+    /**
+     * Determines if proof of work should be offloaded to the selected IRI node
+     */
     remotePoW: false,
+    /**
+     * Determines if polling should auto promote unconfirmed transactions
+     */
     autoPromotion: true,
     backgroundProcesses: false,
+    /**
+     * Determines the time for locking user out of dashboard screens to lock/login screen
+     */
     lockScreenTimeout: 3,
+    /**
+     * Determines if wallet should automatically switch to a healthy node in case of errors
+     */
     autoNodeSwitching: true,
+    /**
+     * Keeps track of wallet's version information.
+     */
     versions: {},
+    /**
+     * Determines if user has enabled two factor authentication on the wallet
+     */
     is2FAEnabled: false,
+    /**
+     * Determines if user has enabled finger print authentication
+     */
     isFingerprintEnabled: false,
+    /**
+     * Keeps track if user has accepted terms and conditions during the initial setup
+     */
     acceptedTerms: false,
+    /**
+     * Keeps track if a user has accepted privacy agreement during the initial setup
+     */
     acceptedPrivacy: false,
+    /**
+     * Keeps track if a user has visited the seed share tutorial on android devices
+     */
     hasVisitedSeedShareTutorial: false,
+    /**
+     * Determines if wallet should hide empty transactions on history screens
+     */
     hideEmptyTransactions: false,
 };
 

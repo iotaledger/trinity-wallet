@@ -131,10 +131,10 @@ class Home extends Component {
         this.onLoginPress = this.onLoginPress.bind(this);
         this.setDeepUrl = this.setDeepUrl.bind(this);
         this.viewFlex = new Animated.Value(0.7);
-        this.topBarHeight = isAndroid ? height / 8 : new Animated.Value(height / 8.8);
+        this.topBarHeight = isAndroid ? height / 8.8 : new Animated.Value(height / 8.8);
 
         this.state = {
-            isIOSKeyboardActive: false,
+            isKeyboardActive: false,
             showModal: false,
         };
     }
@@ -144,12 +144,15 @@ class Home extends Component {
             this.keyboardWillShowSub = Keyboard.addListener('keyboardWillShow', this.keyboardWillShow);
             this.keyboardWillHideSub = Keyboard.addListener('keyboardWillHide', this.keyboardWillHide);
         }
+        if (isAndroid) {
+            this.keyboardWillShowSub = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow);
+            this.keyboardWillHideSub = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide);
+        }
         this.deepLinkSub = Linking.addEventListener('url', this.setDeepUrl);
     }
 
     componentDidMount() {
         this.userInactivity.setActiveFromComponent();
-
         this.displayUpdates();
     }
 
@@ -173,10 +176,8 @@ class Home extends Component {
 
     componentWillUnmount() {
         const { isModalActive } = this.props;
-        if (!isAndroid) {
-            this.keyboardWillShowSub.remove();
-            this.keyboardWillHideSub.remove();
-        }
+        this.keyboardWillShowSub.remove();
+        this.keyboardWillHideSub.remove();
         Linking.removeEventListener('url');
         if (isModalActive) {
             this.props.toggleModalActivity();
@@ -259,12 +260,12 @@ class Home extends Component {
     };
 
     keyboardWillShow = (event) => {
-        const { inactive } = this.props;
-        if (inactive) {
+        const { inactive, minimised } = this.props;
+        if (inactive || minimised) {
             return;
         }
         this.handleCloseTopBar();
-        this.setState({ isIOSKeyboardActive: true });
+        this.setState({ isKeyboardActive: true });
         Animated.timing(this.viewFlex, {
             duration: event.duration,
             toValue: 0.2,
@@ -276,7 +277,7 @@ class Home extends Component {
     };
 
     keyboardWillHide = (event) => {
-        timer.setTimeout('iOSKeyboardTimeout', () => this.setState({ isIOSKeyboardActive: false }), event.duration);
+        timer.setTimeout('iOSKeyboardTimeout', () => this.setState({ isKeyboardActive: false }), event.duration);
         Animated.timing(this.viewFlex, {
             duration: event.duration,
             toValue: 0.7,
@@ -285,6 +286,23 @@ class Home extends Component {
             duration: event.duration,
             toValue: height / 8.8,
         }).start();
+    };
+
+    keyboardDidShow = () => {
+        const { inactive, minimised } = this.props;
+        if (inactive || minimised) {
+            return;
+        }
+        this.handleCloseTopBar();
+        this.topBarHeight = 20;
+        this.viewFlex = 0.2;
+        this.setState({ isKeyboardActive: true });
+    };
+
+    keyboardDidHide = () => {
+        this.topBarHeight = height / 8.8;
+        this.viewFlex = 0.7;
+        this.setState({ isKeyboardActive: false });
     };
 
     completeTransitionTask() {
@@ -320,7 +338,7 @@ class Home extends Component {
             theme: { bar, body, negative, positive },
             theme,
         } = this.props;
-        const { isIOSKeyboardActive } = this.state;
+        const { isKeyboardActive } = this.state;
         const textColor = { color: body.color };
 
         return (
@@ -333,22 +351,22 @@ class Home extends Component {
                 onInactivity={this.handleInactivity}
             >
                 <View style={{ flex: 1, backgroundColor: body.bg }}>
-                    <DynamicStatusBar backgroundColor={inactive ? body.bg : bar.bg} isModalActive={isModalActive} />
+                    <DynamicStatusBar backgroundColor={inactive ? body.bg : bar.hover} isModalActive={isModalActive} />
                     {(!inactive && (
                         <View style={{ flex: 1 }}>
-                            <KeyboardAvoidingView style={styles.midContainer} behavior={isAndroid ? null : 'padding'}>
-                                <Animated.View useNativeDriver style={{ flex: this.viewFlex }} />
-                                <View style={{ flex: 4.72 }}>
-                                    {!minimised && (
+                            {(!minimised && (
+                                <KeyboardAvoidingView style={styles.midContainer} behavior="padding">
+                                    <Animated.View useNativeDriver style={{ flex: this.viewFlex }} />
+                                    <View style={{ flex: 4.72 }}>
                                         <TabContent
                                             navigator={navigator}
                                             onTabSwitch={(name) => this.onTabSwitch(name)}
                                             handleCloseTopBar={() => this.handleCloseTopBar()}
-                                            isIOSKeyboardActive={isIOSKeyboardActive}
+                                            isKeyboardActive={isKeyboardActive}
                                         />
-                                    )}
-                                </View>
-                            </KeyboardAvoidingView>
+                                    </View>
+                                </KeyboardAvoidingView>
+                            )) || <View style={styles.midContainer} />}
                             <View style={styles.bottomContainer}>
                                 <Tabs onPress={(name) => this.onTabSwitch(name)} theme={theme}>
                                     <Tab
@@ -380,7 +398,7 @@ class Home extends Component {
                             </View>
                             <TopBar
                                 minimised={minimised}
-                                isIOSKeyboardActive={isIOSKeyboardActive}
+                                isKeyboardActive={isKeyboardActive}
                                 topBarHeight={this.topBarHeight}
                             />
                         </View>

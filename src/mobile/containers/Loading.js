@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import timer from 'react-native-timer';
 import whiteLoadingAnimation from 'iota-wallet-shared-modules/animations/loading-white.json';
 import blackLoadingAnimation from 'iota-wallet-shared-modules/animations/loading-black.json';
@@ -32,6 +32,7 @@ import DynamicStatusBar from '../components/DynamicStatusBar';
 import { getAddressGenFn, getMultiAddressGenFn } from '../utils/nativeModules';
 import { isAndroid } from '../utils/device';
 import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
+import Button from '../components/Button';
 
 import { width, height } from '../utils/dimensions';
 
@@ -46,7 +47,7 @@ const styles = StyleSheet.create({
         fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
         textAlign: 'center',
-        paddingBottom: height / 40,
+        paddingBottom: height / 30,
     },
     animationLoading: {
         justifyContent: 'center',
@@ -69,23 +70,9 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         paddingBottom: height / 20,
     },
-    nodeChangeButton: {
-        borderWidth: 1.2,
-        borderRadius: GENERAL.borderRadius,
-        width: width / 2.7,
-        height: height / 14,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        marginTop: height / 50,
-    },
-    nodeChangeText: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
-        backgroundColor: 'transparent',
-    },
     nodeChangeContainer: {
         position: 'absolute',
-        bottom: height / 20,
+        bottom: 0,
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -265,7 +252,7 @@ class Loading extends Component {
                         topBarElevationShadowEnabled: false,
                         screenBackgroundColor: body.bg,
                         drawUnderStatusBar: true,
-                        statusBarColor: bar.bg,
+                        statusBarColor: bar.hover,
                     },
                     animated: false,
                 });
@@ -363,8 +350,6 @@ class Loading extends Component {
         const loadingAnimationPath = isBgLight ? blackLoadingAnimation : whiteLoadingAnimation;
         const welcomeAnimationPartOnePath = isBgLight ? blackWelcomeAnimationPartOne : whiteWelcomeAnimationPartOne;
         const welcomeAnimationPartTwoPath = isBgLight ? blackWelcomeAnimationPartTwo : whiteWelcomeAnimationPartTwo;
-        const primaryTextColor = { color: primary.color };
-        const borderColor = { borderColor: primary.color };
 
         if (firstUse || addingAdditionalAccount) {
             return (
@@ -428,13 +413,15 @@ class Loading extends Component {
                     {displayNodeChangeOption && (
                         <View style={styles.nodeChangeContainer}>
                             <Text style={[styles.infoText, textColor]}>{t('takingAWhile')}...</Text>
-                            <TouchableOpacity onPress={this.onChangeNodePress}>
-                                <View style={[styles.nodeChangeButton, borderColor]}>
-                                    <Text style={[styles.nodeChangeText, primaryTextColor]}>
-                                        {t('global:changeNode').toUpperCase()}
-                                    </Text>
-                                </View>
-                            </TouchableOpacity>
+                            <Button
+                                onPress={this.onChangeNodePress}
+                                style={{
+                                    wrapper: { backgroundColor: primary.color },
+                                    children: { color: primary.body },
+                                }}
+                            >
+                                {t('global:changeNode')}
+                            </Button>
                         </View>
                     )}
                 </View>
