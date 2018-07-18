@@ -92,7 +92,7 @@
         "addresses": "Indirizzi",
         "reattach": "RICOLLEGA",
         "promote": "PROMUOVI",
-        "retry": "Retry",
+        "retry": "Riprova",
         "pressBackAgain": "Premi di nuovo Indietro per chiudere la app",
         "reattached": "Transazione riattaccata con successo",
         "reattachedExplanation": "Transazione con hash {{hash}} riattaccata",
@@ -250,8 +250,8 @@
         "selectDifferentNode": "Vuoi selezionare un nodo diverso?",
         "setNode": "Seleziona nodo",
         "cannotConnect": "Impossibile connettersi al nodo IOTA.",
-        "whyBiometricDisabled": "Why is biometric authentication disabled?",
-        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabled": "Perché è disattivata l'autenticazione biometrica?",
+        "whyBiometricDisabledExplanation": "L'accesso biometrico è disattivato al primo avvio dell'app per la tua sicurezza. Durante l'uso di Trinity, verrai disconnesso in caso di inattività. Allora ti sarà possibile accedere nuovamente con l'autenticazione biometrica."
     },
     "loading": {
         "loadingFirstTime": "Carico il seme per la prima volta.",
@@ -289,9 +289,9 @@
         "printerCheckbox": "Non stamperò su una stampante pubblica"
     },
     "receive": {
-        "yourAddress": "Your address",
-        "qrOptions": "QR options",
-        "shareQr": "Share QR code",
+        "yourAddress": "Il tuo indirizzo",
+        "qrOptions": "Opzioni di QR",
+        "shareQr": "Condividi il codice QR",
         "copyAddress": "Copia indirizzo",
         "addressCopied": "Indirizzo copiato",
         "addressCopiedExplanation": "Il tuo indirizzo è stato copiato negli Appunti.",
@@ -474,7 +474,7 @@
         "send": "Invia",
         "receive": "Ricevi",
         "empty": "Vuota",
-        "retrying": "Retrying",
+        "retrying": "Sto riprovando",
         "yesterday": "Ieri"
     },
     "accountManagement": {
@@ -491,10 +491,10 @@
         "customNode": "Nodo personalizzato",
         "removeCustomNode": "Rimuovi il nodo personalizzato",
         "invalidNodeResponse": "Il nodo ha restituito una risposta non valida",
-        "httpNodeError": "Trinity Mobile supporta solo nodi https.",
         "add": "Aggiungi",
         "nodeFieldEmpty": "Questo campo è vuoto",
-        "nodeFieldEmptyExplanation": "Si prega di inserire un nodo personalizzato."
+        "nodeFieldEmptyExplanation": "Si prega di inserire un nodo personalizzato.",
+        "invalidURL": "Per favore, inserisci un URL valido."
     },
     "addNewAccount": {
         "useExistingSeed": "Usa un seme esistente",

@@ -147,7 +147,12 @@ const replayBundleAsync = (
         .then(
             ({ trunkTransaction, branchTransaction }) =>
                 shouldOffloadPow
-                    ? attachToTangleAsync(trunkTransaction, branchTransaction, cached.trytes, minWeightMagnitude)
+                    ? attachToTangleAsync(
+                          trunkTransaction,
+                          branchTransaction,
+                          cached.trytes.reverse(),
+                          minWeightMagnitude,
+                      )
                     : performPow(powFn, cached.trytes, trunkTransaction, branchTransaction, minWeightMagnitude),
         )
         .then(({ trytes, transactionObjects }) => {
@@ -182,18 +187,6 @@ const wereAddressesSpentFromAsync = (addresses) => {
                 reject(err);
             } else {
                 resolve(wereSpent);
-            }
-        });
-    });
-};
-
-const broadcastBundleAsync = (tail) => {
-    return new Promise((resolve, reject) => {
-        iota.api.broadcastBundle(tail, (err) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(tail);
             }
         });
     });
@@ -323,7 +316,7 @@ const attachToTangleAsync = (
                         );
 
                     promise()
-                        .then(({ transactionObjects }) =>
+                        .then((transactionObjects) =>
                             resolve({
                                 transactionObjects,
                                 trytes: attachedTrytes,
@@ -393,7 +386,6 @@ export {
     replayBundleAsync,
     getBundleAsync,
     wereAddressesSpentFromAsync,
-    broadcastBundleAsync,
     sendTransferAsync,
     getTransactionsToApproveAsync,
     prepareTransfersAsync,

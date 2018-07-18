@@ -2,6 +2,9 @@ import merge from 'lodash/merge';
 import { ActionTypes } from '../actions/keychain';
 
 const initialState = {
+    /**
+     * Determines if keychain/keystore information is being accessed on mobile
+     */
     isGettingSensitiveInfo: {
         receive: {
             addressGeneration: false,

@@ -124,8 +124,13 @@ export const syncAccountBeforeAutoPromotion = (payload) => ({
     payload,
 });
 
-// TODO: Do not call fetch again for market data api calls.
-// Instead just directly dispatch
+/**
+ *  Fetch IOTA market information
+ *
+ *   @method fetchMarketData
+ *
+ *   @returns {function} - dispatch
+ **/
 export const fetchMarketData = () => {
     return (dispatch) => {
         dispatch(fetchMarketDataRequest());
@@ -143,6 +148,13 @@ export const fetchMarketData = () => {
     };
 };
 
+/**
+ *  Fetch IOTA price information
+ *
+ *   @method fetchPrice
+ *
+ *   @returns {function} - dispatch
+ **/
 export const fetchPrice = () => {
     return (dispatch) => {
         dispatch(fetchPriceRequest());
@@ -155,6 +167,14 @@ export const fetchPrice = () => {
     };
 };
 
+/**
+ * Fetch list of IRI nodes from a remote server
+ *
+ * @method fetchNodeList
+ *
+ * @param {boolean} chooseRandomNode
+ * @returns {Function}
+ */
 export const fetchNodeList = (chooseRandomNode = false) => {
     return (dispatch) => {
         dispatch(fetchNodeListRequest());
@@ -204,6 +224,13 @@ export const fetchNodeList = (chooseRandomNode = false) => {
     };
 };
 
+/**
+ * Fetch data points for time series price information
+ *
+ * @method fetchChartData
+ *
+ * @returns {function} - dispatch
+ */
 export const fetchChartData = () => {
     return (dispatch) => {
         dispatch(fetchChartDataRequest());
@@ -260,7 +287,7 @@ export const fetchChartData = () => {
 };
 
 /**
- *   Accepts account name and sync local account state with ledger's.
+ *   Accepts account name and syncs local account state with ledger's.
  *
  *   @method getAccountInfo
  *   @param {string} accountName
@@ -285,7 +312,7 @@ export const getAccountInfo = (accountName) => {
  *   Accepts a bundle hash and all tail transaction objects relevant to the bundle.
  *   Check if a bundle is still valid.
  *   For cases where a bundle is invalid, it would remove it for promotion.
- *   For cases where a bundle in valid, find first consistent tail and promote it.
+ *   For cases where a bundle is valid, find first consistent tail and promote it.
  *
  *   @method promoteTransfer
  *   @param {string} bundleHash

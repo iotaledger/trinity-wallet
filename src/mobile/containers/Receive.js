@@ -13,7 +13,6 @@ import {
     Animated,
     Easing,
 } from 'react-native';
-import QRCode from 'react-native-qrcode-svg';
 import Share from 'react-native-share';
 import { captureRef } from 'react-native-view-shot';
 import { connect } from 'react-redux';
@@ -36,6 +35,7 @@ import timer from 'react-native-timer';
 import { getSeedFromKeychain } from '../utils/keychain';
 import GENERAL from '../theme/general';
 import MultiTextInput from '../components/MultiTextInput';
+import CustomQrCodeComponent from '../components/CustomQRCode';
 import { Icon } from '../theme/icons.js';
 import ScramblingText from '../components/ScramblingText';
 import { width, height } from '../utils/dimensions';
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 6,
     },
     qrContainerFront: {
-        flex: 3.6,
+        flex: 3.75,
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
         padding: width / 20,
     },
     addressContainer: {
-        flex: 2.9,
+        flex: 2.75,
         justifyContent: 'center',
         alignItems: 'center',
         borderTopWidth: 1,
@@ -132,6 +132,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderWidth: 1,
+        paddingTop: 1,
     },
     refreshIconBackground: {
         width: width / 7,
@@ -234,14 +235,13 @@ class Receive extends Component {
         currency: PropTypes.string.isRequired,
         usdPrice: PropTypes.number.isRequired,
         conversionRate: PropTypes.number.isRequired,
-        seedIndex: PropTypes.number.isRequired,
     };
 
     constructor(props) {
         super(props);
         this.state = {
             currencySymbol: getCurrencySymbol(props.currency),
-            scramblingLetters: {},
+            scramblingLetters: [],
         };
         this.generateAddress = this.generateAddress.bind(this);
         this.flipCard = this.flipCard.bind(this);
@@ -290,19 +290,11 @@ class Receive extends Component {
 
     componentDidMount() {
         leaveNavigationBreadcrumb('Receive');
-        timer.setTimeout('generateAddressDelay', () => this.generateAddress(), 250);
     }
 
     componentWillReceiveProps(newProps) {
         if (this.props.isGeneratingReceiveAddress && !newProps.isGeneratingReceiveAddress) {
             timer.clearInterval('scramble');
-        }
-        if (!this.props.isGeneratingReceiveAddress && newProps.isGeneratingReceiveAddress) {
-            this.startLetterScramble();
-            this.triggerRefreshAnimations();
-        }
-        if (this.props.seedIndex !== newProps.seedIndex) {
-            timer.setTimeout('generateAddressDelay', () => this.generateAddress(), 100);
         }
     }
 
@@ -318,10 +310,6 @@ class Receive extends Component {
         }
 
         return true;
-    }
-
-    componentWillUnmount() {
-        timer.clearTimeout('generateAddressDelay');
     }
 
     /**
@@ -417,7 +405,11 @@ class Receive extends Component {
      *   @method startLetterScramble
      **/
     startLetterScramble() {
-        timer.setInterval('scramble', () => this.scrambleLetters(), Math.floor(Math.random() * 100) + 25);
+        timer.setInterval(
+            'scramble',
+            () => this.scrambleLetters(),
+            isAndroid ? Math.floor(Math.random() * 125) + 50 : Math.floor(Math.random() * 100) + 25,
+        );
     }
 
     /**
@@ -449,7 +441,8 @@ class Receive extends Component {
                 t('global:somethingWentWrongTryAgain'),
             );
         };
-
+        this.startLetterScramble();
+        this.triggerRefreshAnimations();
         this.props.getFromKeychainRequest('receive', 'addressGeneration');
         const seed = await getSeedFromKeychain(password, selectedAccountName);
         if (seed === null) {
@@ -585,10 +578,10 @@ class Receive extends Component {
                             <View
                                 style={[
                                     styles.qrContainerFront,
-                                    { backgroundColor: '#F2F2F2', paddingBottom: width / 14 },
+                                    { backgroundColor: '#F2F2F2', paddingBottom: width / 25 },
                                 ]}
                             >
-                                <QRCode
+                                <CustomQrCodeComponent
                                     value={qrContent}
                                     size={width / 3}
                                     color="black"
@@ -597,20 +590,21 @@ class Receive extends Component {
                                 {/* FIXME: Overflow: 'visible' is not supported on Android */}
                                 {isAndroid && (
                                     <TouchableWithoutFeedback onPress={this.generateAddress}>
-                                        <Animated.View
+                                        <View
                                             style={[
                                                 styles.refreshIconBackgroundAndroid,
                                                 { backgroundColor: dark.color, borderColor: primary.border },
-                                                { transform: [rotateStyle] },
                                             ]}
                                         >
-                                            <Icon
-                                                name="sync"
-                                                size={width / 12}
-                                                color={dark.body}
-                                                style={styles.refreshIcon}
-                                            />
-                                        </Animated.View>
+                                            <Animated.View style={{ transform: [rotateStyle] }}>
+                                                <Icon
+                                                    name="sync"
+                                                    size={width / 12}
+                                                    color={dark.body}
+                                                    style={styles.refreshIcon}
+                                                />
+                                            </Animated.View>
+                                        </View>
                                     </TouchableWithoutFeedback>
                                 )}
                             </View>
@@ -621,20 +615,21 @@ class Receive extends Component {
                                         { backgroundColor: dark.color, borderColor: primary.border },
                                     ]}
                                 >
-                                    <Animated.View
+                                    <View
                                         style={[
                                             styles.refreshIconBackground,
                                             { backgroundColor: dark.color, borderColor: primary.border },
-                                            { transform: [rotateStyle] },
                                         ]}
                                     >
-                                        <Icon
-                                            name="sync"
-                                            size={width / 12}
-                                            color={dark.body}
-                                            style={styles.refreshIcon}
-                                        />
-                                    </Animated.View>
+                                        <Animated.View style={{ transform: [rotateStyle] }}>
+                                            <Icon
+                                                name="sync"
+                                                size={width / 12}
+                                                color={dark.body}
+                                                style={styles.refreshIcon}
+                                            />
+                                        </Animated.View>
+                                    </View>
                                     <ScramblingText
                                         scramble={isGeneratingReceiveAddress}
                                         textStyle={[styles.addressText, { color: dark.body }]}
@@ -708,7 +703,7 @@ class Receive extends Component {
                                         this.qr = c;
                                     }}
                                 >
-                                    <QRCode
+                                    <CustomQrCodeComponent
                                         value={qrContent}
                                         size={width / 3}
                                         color="black"
@@ -747,7 +742,6 @@ const mapStateToProps = (state) => ({
     selectedAccountData: selectAccountInfo(state),
     selectedAccountName: getSelectedAccountName(state),
     isSyncing: state.ui.isSyncing,
-    seedIndex: state.wallet.seedIndex,
     receiveAddress: selectLatestAddressFromAccountFactory(state),
     isGeneratingReceiveAddress: state.ui.isGeneratingReceiveAddress,
     isGettingSensitiveInfoToGenerateAddress: state.keychain.isGettingSensitiveInfo.receive.addressGeneration,
