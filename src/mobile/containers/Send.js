@@ -85,7 +85,6 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end',
         width: width / 1.15,
         paddingRight: 1,
-        flex: 0.4,
     },
     maxButtonText: {
         fontFamily: 'SourceSansPro-Regular',
@@ -158,7 +157,7 @@ export class Send extends Component {
          */
         setDoNotMinimise: PropTypes.func.isRequired,
         /** Determines whether keyboard is open on iOS */
-        isIOSKeyboardActive: PropTypes.bool.isRequired,
+        isKeyboardActive: PropTypes.bool.isRequired,
         /** Sets whether modal is active or inactive */
         toggleModalActivity: PropTypes.func.isRequired,
         /** Determines whether modal is open */
@@ -311,7 +310,7 @@ export class Send extends Component {
     }
 
     onSendPress() {
-        const { t, amount, address, message, denomination, isIOSKeyboardActive } = this.props;
+        const { t, amount, address, message, denomination, isKeyboardActive } = this.props;
         const { currencySymbol } = this.state;
 
         const multiplier = this.getUnitMultiplier();
@@ -346,7 +345,7 @@ export class Send extends Component {
             timer.setTimeout(
                 'addressPasteAlertDelay',
                 () => this.detectAddressInClipboard(),
-                isIOSKeyboardActive ? 1000 : 250,
+                isKeyboardActive ? 1000 : 250,
             );
         }
     }
@@ -368,7 +367,7 @@ export class Send extends Component {
                 this.props.setSendMessageField(parsedData.message);
             }
             if (parsedData.amount) {
-                this.props.setSendAmountField(parsedData.address);
+                this.props.setSendAmountField(parsedData.amount);
             }
         } else if (dataString.startsWith('iota:') && dataSubstring.match(VALID_ADDRESS_WITH_CHECKSUM_REGEX)) {
             // For codes with iota: at the front (TheTangle.org)
@@ -510,8 +509,8 @@ export class Send extends Component {
     }
 
     openModal = () => {
-        const { isIOSKeyboardActive } = this.props;
-        if (isIOSKeyboardActive) {
+        const { isKeyboardActive } = this.props;
+        if (isKeyboardActive) {
             this.blurTextFields();
             timer.setTimeout('modalShow', () => this.props.toggleModalActivity(), 500);
         } else {
@@ -740,6 +739,7 @@ export class Send extends Component {
             theme,
             body,
             primary,
+            isKeyboardActive,
         } = this.props;
         const textColor = { color: body.color };
         const opacity = this.getSendMaxOpacity();
@@ -803,7 +803,12 @@ export class Send extends Component {
                             }}
                         />
                         <View style={{ flex: 0.09 }} />
-                        <View style={[styles.maxContainer, { opacity: opacity }]}>
+                        <View
+                            style={[
+                                styles.maxContainer,
+                                { opacity: opacity, flex: isAndroid ? (isKeyboardActive ? 0.8 : 0.4) : 0.4 },
+                            ]}
+                        >
                             <TouchableOpacity
                                 onPress={() => {
                                     if (!isSending) {
