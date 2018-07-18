@@ -108,6 +108,19 @@ export const generatePromotionErrorAlert = (error) => (dispatch) =>
             error,
         ),
     );
+
+export const generateTransactionSuccessAlert = (isZeroValue = false) => (dispatch) => {
+    if (isZeroValue) {
+        dispatch(
+            generateAlert('success', i18next.t('global:messageSent'), i18next.t('global:messageSentMessage'), 20000),
+        );
+    } else {
+        dispatch(
+            generateAlert('success', i18next.t('global:transferSent'), i18next.t('global:transferSentMessage'), 20000),
+        );
+    }
+};
+
 export const disposeOffAlert = () => (dispatch) => dispatch(dispose());
 
 export const prepareLogUpdate = (err) => (dispatch) => {

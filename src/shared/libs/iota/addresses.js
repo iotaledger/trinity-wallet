@@ -472,7 +472,7 @@ export const getAddressesUptoRemainder = (addressData, seed, genFn, blacklistedR
  *
  *   @method syncAddresses
  *   @param {string} seed - Seed string
- *   @param {string} existingAddressData
+ *   @param {object} existingAddressData
  *   @param {function} genFn
  *   @param {boolean} addNewAddress
  *

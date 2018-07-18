@@ -239,7 +239,7 @@ describe('actions: transfers', () => {
                 const store = mockStore({ accounts });
                 const prepareTransfers = sinon.stub(iota.api, 'prepareTransfers').yields(null, trytes.zeroValue);
                 const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, []);
-                const syncAccountAfterSpending = sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns({});
+                const syncAccountAfterSpending = sinon.stub(accountsUtils, 'syncAccountAfterSpending').resolves({});
 
                 return store
                     .dispatch(
@@ -272,7 +272,7 @@ describe('actions: transfers', () => {
 
                 const prepareTransfers = sinon.stub(iota.api, 'prepareTransfers').yields(null, trytes.zeroValue);
                 const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, []);
-                const syncAccountAfterSpending = sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns({});
+                const syncAccountAfterSpending = sinon.stub(accountsUtils, 'syncAccountAfterSpending').resolves({});
 
                 return store
                     .dispatch(
@@ -339,7 +339,7 @@ describe('actions: transfers', () => {
                         ],
                     });
 
-                    const syncAccountAfterSpending = sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns({});
+                    const syncAccountAfterSpending = sinon.stub(accountsUtils, 'syncAccountAfterSpending').resolves({});
 
                     const store = mockStore({ accounts });
 
@@ -377,7 +377,7 @@ describe('actions: transfers', () => {
                         const wereAddressesSpentFrom = sinon
                             .stub(iota.api, 'wereAddressesSpentFrom')
                             .yields(null, [true]);
-                        sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns({});
+                        sinon.stub(accountsUtils, 'syncAccountAfterSpending').resolves({});
 
                         const store = mockStore({ accounts });
 
@@ -421,7 +421,7 @@ describe('actions: transfers', () => {
                                 },
                             ],
                         });
-                        sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns({});
+                        sinon.stub(accountsUtils, 'syncAccountAfterSpending').resolves({});
 
                         return store
                             .dispatch(
@@ -466,7 +466,7 @@ describe('actions: transfers', () => {
                                 },
                             ],
                         });
-                        sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns({});
+                        sinon.stub(accountsUtils, 'syncAccountAfterSpending').resolves({});
 
                         return store
                             .dispatch(
@@ -516,7 +516,7 @@ describe('actions: transfers', () => {
                                 },
                             ],
                         });
-                        sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns({});
+                        sinon.stub(accountsUtils, 'syncAccountAfterSpending').resolves({});
 
                         return store
                             .dispatch(
