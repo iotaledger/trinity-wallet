@@ -3,19 +3,21 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import QRCode from 'qr.js/lib/QRCode';
+
 import { selectAccountInfo, getSelectedAccountName } from 'selectors/accounts';
 import { runTask } from 'worker';
 
 import { generateAlert } from 'actions/alerts';
 import { selectLatestAddressFromAccountFactory } from 'iota-wallet-shared-modules/selectors/accounts';
 
-import { getSeed } from 'libs/crypto';
+import { byteToChar, getSeed, createRandomSeed } from 'libs/crypto';
+import { ADDRESS_LENGTH } from 'libs/iota/utils';
 
 import Button from 'ui/components/Button';
 import Icon from 'ui/components/Icon';
 import Clipboard from 'ui/components/Clipboard';
 import Text from 'ui/components/input/Text.js';
+import QR from 'ui/components/QR';
 
 import css from './receive.scss';
 
@@ -54,7 +56,24 @@ class Receive extends React.PureComponent {
 
     state = {
         message: '',
+        scramble: new Array(ADDRESS_LENGTH).fill(0),
     };
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.isGeneratingReceiveAddress && !nextProps.isGeneratingReceiveAddress) {
+            this.frame = 0;
+
+            this.setState({
+                scramble: createRandomSeed(ADDRESS_LENGTH),
+            });
+
+            this.unscramble();
+        }
+    }
+
+    componentWillUnmount() {
+        this.frame = -1;
+    }
 
     onGeneratePress = async () => {
         const { password, accountName, account, isSyncing, isTransitioning, generateAlert, t } = this.props;
@@ -68,50 +87,64 @@ class Receive extends React.PureComponent {
         runTask('generateNewAddress', [seed, accountName, account]);
     };
 
+    unscramble() {
+        const { scramble } = this.state;
+
+        if (this.frame < 0) {
+            return;
+        }
+
+        const scrambleNew = [];
+        let sum = -1;
+
+        if (this.frame > 3) {
+            sum = 0;
+
+            for (let i = 0; i < scramble.length; i++) {
+                sum += scramble[i];
+                scrambleNew.push(Math.max(0, scramble[i] - 15));
+            }
+
+            this.setState({
+                scramble: scrambleNew,
+            });
+
+            this.frame = 0;
+        }
+
+        this.frame++;
+
+        if (sum !== 0) {
+            requestAnimationFrame(this.unscramble.bind(this));
+        }
+    }
+
     render() {
         const { t, receiveAddress, isGeneratingReceiveAddress } = this.props;
-        const { message } = this.state;
-
-        const qr = new QRCode(-1, 1);
-
-        qr.addData(JSON.stringify({ address: receiveAddress, message: message }));
-        qr.make();
-
-        const cells = qr.modules;
+        const { message, scramble } = this.state;
 
         return (
             <div className={classNames(css.receive, receiveAddress.length < 2 ? css.empty : css.full)}>
                 <div className={isGeneratingReceiveAddress ? css.loading : null}>
-                    <svg width="150" height="150" viewBox={`0 0 ${cells.length} ${cells.length}`}>
-                        {cells.map((row, rowIndex) => {
-                            return row.map((cell, cellIndex) => (
-                                <rect
-                                    height={1}
-                                    key={cellIndex}
-                                    style={{ fill: cell ? '#000000' : 'none' }}
-                                    width={1}
-                                    x={cellIndex}
-                                    y={rowIndex}
-                                />
-                            ));
-                        })}
-                    </svg>
-                    {receiveAddress.length < 2 ? (
-                        <Button className="icon" disabled={receiveAddress.length > 2} onClick={this.onGeneratePress}>
-                            <Icon icon="sync" size={32} />
-                            {t('receive:generateNewAddress')}
-                        </Button>
-                    ) : (
-                        <p>
-                            <Clipboard
-                                text={receiveAddress}
-                                title={t('receive:addressCopied')}
-                                success={t('receive:addressCopiedExplanation')}
-                            >
-                                {receiveAddress}
-                            </Clipboard>
-                        </p>
-                    )}
+                    <QR data={JSON.stringify({ address: receiveAddress, message: message })} />
+                    <p>
+                        <Clipboard
+                            text={receiveAddress}
+                            title={t('receive:addressCopied')}
+                            success={t('receive:addressCopiedExplanation')}
+                        >
+                            {receiveAddress.split('').map((char, index) => {
+                                const scrambleChar = scramble[index] > 0 ? byteToChar(scramble[index]) : null;
+                                return <React.Fragment key={`char-${index}`}>{scrambleChar || char}</React.Fragment>;
+                            })}
+                        </Clipboard>
+                    </p>
+                </div>
+                <div>
+                    <Button className="icon" loading={isGeneratingReceiveAddress} onClick={this.onGeneratePress}>
+                        <Icon icon="sync" size={32} />
+                        {t('receive:generateNewAddress')}
+                    </Button>
                 </div>
                 <div>
                     <Text

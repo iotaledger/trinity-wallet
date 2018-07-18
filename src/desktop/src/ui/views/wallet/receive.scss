@@ -40,14 +40,14 @@
 
     > div:nth-child(1) {
         display: flex;
-        flex: 0 1 440px;
+        flex: 0 1 360px;
         position: relative;
 
         &:after {
             content: '';
             position: absolute;
             top: 0px;
-            right: 40px;
+            right: 0px;
             width: 2px;
             height: calc(100%);
             background: var(--body);
@@ -80,6 +80,11 @@
     }
 
     > div:nth-child(2) {
+        display: flex;
+        flex: 0 0 120px;
+    }
+
+    > div:nth-child(3) {
         max-width: 520px;
     }
 
