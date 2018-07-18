@@ -337,6 +337,9 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
     // Keep track if the inputs are signed
     let hasSignedInputs = false;
 
+    // Keep track if the created bundle is valid after inputs are signed
+    let isValidBundle = false;
+
     // Initialize account state
     // Reassign with latest state when account is synced
     let accountState = selectedAccountStateFactory(accountName)(getState());
@@ -497,10 +500,15 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                     iota.utils.transactionObject(tryteString, '9'.repeat(81));
                 cached.transactionObjects = map(cached.trytes, convertToTransactionObjects);
 
-                // Getting transactions to approve
-                dispatch(setNextStepAsActive());
+                if (iota.utils.isBundle(cached.transactionObjects.slice().reverse())) {
+                    isValidBundle = true;
+                    // Getting transactions to approve
+                    dispatch(setNextStepAsActive());
 
-                return getTransactionsToApproveAsync();
+                    return getTransactionsToApproveAsync();
+                }
+
+                throw new Error(Errors.INVALID_BUNDLE);
             })
             .then(({ trunkTransaction, branchTransaction }) => {
                 const shouldOffloadPow = getRemotePoWFromState(getState());
@@ -545,7 +553,10 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
             })
             .catch((error) => {
                 dispatch(sendTransferError());
-                if (hasSignedInputs) {
+
+                // Only keep the failed trytes locally if the bundle was valid
+                // In case the bundle is invalid, discard the signing as it was never broadcast
+                if (hasSignedInputs && isValidBundle) {
                     const { newState } = syncAccountOnValueTransactionFailure(cached.transactionObjects, accountState);
 
                     // Temporarily mark this transaction as failed.
