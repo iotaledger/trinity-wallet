@@ -107,6 +107,9 @@ const initialState = {
      * Determines if polling should auto promote unconfirmed transactions
      */
     autoPromotion: true,
+    /**
+     * Determines if background processes are enabled
+     */
     backgroundProcesses: false,
     /**
      * Determines the time for locking user out of dashboard screens to lock/login screen
