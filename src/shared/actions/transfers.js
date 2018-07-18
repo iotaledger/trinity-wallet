@@ -527,36 +527,37 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                     accountState,
                     !isZeroValue,
                     genFn,
-                ).then(({ newState }) => {
-                    dispatch(updateAccountInfoAfterSpending(newState));
+                );
+            })
+            .then(({ newState }) => {
+                dispatch(updateAccountInfoAfterSpending(newState));
 
-                    // Progress summary
-                    dispatch(setNextStepAsActive());
-                    if (isZeroValue) {
-                        dispatch(
-                            generateAlert(
-                                'success',
-                                i18next.t('global:messageSent'),
-                                i18next.t('global:messageSentMessage'),
-                                20000,
-                            ),
-                        );
-                    } else {
-                        dispatch(
-                            generateAlert(
-                                'success',
-                                i18next.t('global:transferSent'),
-                                i18next.t('global:transferSentMessage'),
-                                20000,
-                            ),
-                        );
-                    }
+                // Progress summary
+                dispatch(setNextStepAsActive());
+                if (isZeroValue) {
+                    dispatch(
+                        generateAlert(
+                            'success',
+                            i18next.t('global:messageSent'),
+                            i18next.t('global:messageSentMessage'),
+                            20000,
+                        ),
+                    );
+                } else {
+                    dispatch(
+                        generateAlert(
+                            'success',
+                            i18next.t('global:transferSent'),
+                            i18next.t('global:transferSentMessage'),
+                            20000,
+                        ),
+                    );
+                }
 
-                    setTimeout(() => {
-                        dispatch(completeTransfer({ address, value }));
-                        dispatch(resetProgress());
-                    }, 5000);
-                });
+                setTimeout(() => {
+                    dispatch(completeTransfer({ address, value }));
+                    dispatch(resetProgress());
+                }, 5000);
             })
             .catch((error) => {
                 dispatch(sendTransferError());
