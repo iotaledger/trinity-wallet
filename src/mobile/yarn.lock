@@ -3002,6 +3002,7 @@ iota-wallet-shared-modules@../shared/:
     reselect "^3.0.1"
     tinycolor2 "^1.4.1"
     url-parse "^1.2.0"
+    valid-url "^1.0.9"
 
 "iota.lib.js@git+https://git@github.com/iotaledger/iota.lib.js#develop":
   version "0.4.8"
@@ -6386,6 +6387,10 @@ uuid@3.0.1:
 uuid@^3.1.0:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.2.1.tgz#12c528bb9d58d0b9265d9a2f6f0fe8be17ff1f14"
+
+valid-url@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/valid-url/-/valid-url-1.0.9.tgz#1c14479b40f1397a75782f115e4086447433a200"
 
 validate-npm-package-license@^3.0.1:
   version "3.0.3"

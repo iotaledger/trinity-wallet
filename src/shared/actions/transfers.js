@@ -5,6 +5,7 @@ import map from 'lodash/map';
 import filter from 'lodash/filter';
 import some from 'lodash/some';
 import size from 'lodash/size';
+import every from 'lodash/every';
 import { iota } from '../libs/iota';
 import {
     replayBundleAsync,
@@ -57,6 +58,7 @@ import {
     generateTransferErrorAlert,
     generatePromotionErrorAlert,
     generateNodeOutOfSyncErrorAlert,
+    generateTransactionSuccessAlert,
 } from './alerts';
 import i18next from '../i18next.js';
 import Errors from '../libs/errors';
@@ -527,36 +529,19 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                     accountState,
                     !isZeroValue,
                     genFn,
-                ).then(({ newState }) => {
-                    dispatch(updateAccountInfoAfterSpending(newState));
+                );
+            })
+            .then(({ newState }) => {
+                dispatch(updateAccountInfoAfterSpending(newState));
 
-                    // Progress summary
-                    dispatch(setNextStepAsActive());
-                    if (isZeroValue) {
-                        dispatch(
-                            generateAlert(
-                                'success',
-                                i18next.t('global:messageSent'),
-                                i18next.t('global:messageSentMessage'),
-                                20000,
-                            ),
-                        );
-                    } else {
-                        dispatch(
-                            generateAlert(
-                                'success',
-                                i18next.t('global:transferSent'),
-                                i18next.t('global:transferSentMessage'),
-                                20000,
-                            ),
-                        );
-                    }
+                // Progress summary
+                dispatch(setNextStepAsActive());
+                dispatch(generateTransactionSuccessAlert(isZeroValue));
 
-                    setTimeout(() => {
-                        dispatch(completeTransfer({ address, value }));
-                        dispatch(resetProgress());
-                    }, 5000);
-                });
+                setTimeout(() => {
+                    dispatch(completeTransfer({ address, value }));
+                    dispatch(resetProgress());
+                }, 5000);
             })
             .catch((error) => {
                 dispatch(sendTransferError());
@@ -687,9 +672,17 @@ export const retryFailedTransaction = (accountName, bundleHash, powFn) => (dispa
                 existingAccountState,
             );
 
+            // Since this transaction was never sent to the tangle
+            // Generate the same alert we display when a transaction is successfully sent to the tangle
+            const hasZeroValue = (tx) => tx.value === 0;
+            const isZeroValue = every(transactionObjects, hasZeroValue);
+
+            dispatch(generateTransactionSuccessAlert(isZeroValue));
+
             return dispatch(retryFailedTransactionSuccess(newState));
         })
-        .catch(() => {
+        .catch((error) => {
+            dispatch(generateTransferErrorAlert(error));
             dispatch(retryFailedTransactionError());
         });
 };
