@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { connect } from 'react-redux';
 import {
@@ -219,7 +219,10 @@ class SetPassword extends Component {
         return (
             <View>
                 <TouchableWithoutFeedback style={{ flex: 1, width }} onPress={Keyboard.dismiss} accessible={false}>
-                    <View style={[styles.container, { backgroundColor: theme.body.bg }]}>
+                    <KeyboardAvoidingView
+                        behavior="padding"
+                        style={[styles.container, { backgroundColor: theme.body.bg }]}
+                    >
                         <View style={styles.topContainer}>
                             <Icon name="iota" size={width / 8} color={theme.body.color} />
                             <View style={{ flex: 0.7 }} />
@@ -284,7 +287,7 @@ class SetPassword extends Component {
                                 rightButtonText={t('global:doneLowercase')}
                             />
                         </View>
-                    </View>
+                    </KeyboardAvoidingView>
                 </TouchableWithoutFeedback>
             </View>
         );

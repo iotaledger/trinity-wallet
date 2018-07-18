@@ -122,7 +122,7 @@ class TopBar extends Component {
         notificationLog: PropTypes.array.isRequired,
         clearLog: PropTypes.func.isRequired,
         topBarHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.object]).isRequired,
-        isIOSKeyboardActive: PropTypes.bool.isRequired,
+        isKeyboardActive: PropTypes.bool.isRequired,
         isTransitioning: PropTypes.bool.isRequired,
         /** Currently selected mode */
         mode: PropTypes.oneOf(['Expert', 'Standard']).isRequired,
@@ -243,7 +243,7 @@ class TopBar extends Component {
             bar,
             primary,
             topBarHeight,
-            isIOSKeyboardActive,
+            isKeyboardActive,
             notificationLog,
             mode,
             minimised,
@@ -278,7 +278,7 @@ class TopBar extends Component {
                         }
                     }}
                 >
-                    {(!isIOSKeyboardActive &&
+                    {(!isKeyboardActive &&
                         !minimised && (
                             <View
                                 style={{
@@ -288,7 +288,7 @@ class TopBar extends Component {
                                     justifyContent: 'space-between',
                                 }}
                             >
-                                {hasNotifications && !isIOSKeyboardActive && mode === 'Expert' ? (
+                                {hasNotifications && !isKeyboardActive && mode === 'Expert' ? (
                                     <TouchableOpacity
                                         hitSlop={{ left: width / 18, right: width / 18, top: 0, bottom: 0 }}
                                         style={styles.notificationContainer}
