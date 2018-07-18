@@ -233,7 +233,6 @@ describe('libs: iota/addresses', () => {
             sandbox = sinon.sandbox.create();
 
             sandbox.stub(iota.api, 'getNodeInfo').yields(null, {});
-            sandbox.stub(iota.api, 'findTransactions').yields(null, []);
             sandbox.stub(iota.api, 'wereAddressesSpentFrom').yields(null, []);
         });
 
@@ -243,6 +242,8 @@ describe('libs: iota/addresses', () => {
 
         describe('when current latest address is not blacklisted', () => {
             it('should return current latest address', () => {
+                const findTransactions = sinon.stub(iota.api, 'findTransactions').yields(null, []);
+
                 return addressesUtils
                     .getAddressesUptoRemainder(addressData, seed, () => Promise.resolve([]), [
                         'Z'.repeat(81),
@@ -252,6 +253,8 @@ describe('libs: iota/addresses', () => {
                         expect(remainderAddress).to.equal(
                             'NNLAKCEDT9FMFLBIFWKHRIQJJETOSBSFPUCBWYYXXYKSLNCCSWOQRAVOYUSX9FMLGHMKUITLFEQIPHQLW',
                         );
+
+                        findTransactions.restore();
                     });
             });
         });
@@ -261,8 +264,12 @@ describe('libs: iota/addresses', () => {
                 it('should generate new addresses and return latest unused address as the remainder address', () => {
                     const addressGenFn = sinon.stub();
 
+                    // Return an empty response from findTransactions
+                    // So that the very first address that is generated
+                    // is added as the remainder address
+                    const findTransactions = sinon.stub(iota.api, 'findTransactions').yields(null, []);
+
                     addressGenFn.onCall(0).resolves('U'.repeat(81));
-                    addressGenFn.onCall(1).resolves('R'.repeat(81));
 
                     return addressesUtils
                         .getAddressesUptoRemainder(addressData, seed, addressGenFn, [
@@ -273,6 +280,8 @@ describe('libs: iota/addresses', () => {
                                 'NNLAKCEDT9FMFLBIFWKHRIQJJETOSBSFPUCBWYYXXYKSLNCCSWOQRAVOYUSX9FMLGHMKUITLFEQIPHQLW',
                             );
                             expect(remainderAddress).to.equal('U'.repeat(81));
+
+                            findTransactions.restore();
                         });
                 });
 
@@ -280,7 +289,8 @@ describe('libs: iota/addresses', () => {
                     const addressGenFn = sinon.stub();
 
                     addressGenFn.onCall(0).resolves('U'.repeat(81));
-                    addressGenFn.onCall(1).resolves('R'.repeat(81));
+
+                    const findTransactions = sinon.stub(iota.api, 'findTransactions').yields(null, []);
 
                     return addressesUtils
                         .getAddressesUptoRemainder(addressData, seed, addressGenFn, [
@@ -297,6 +307,8 @@ describe('libs: iota/addresses', () => {
                             });
 
                             expect(addressDataUptoRemainder).to.eql(expectedAddressData);
+
+                            findTransactions.restore();
                         });
                 });
             });
@@ -305,9 +317,20 @@ describe('libs: iota/addresses', () => {
                 it('should recursively generate new addresses till latest unused is not part of the blacklisted addresses list', () => {
                     const addressGenFn = sinon.stub();
 
+                    const findTransactions = sinon.stub(iota.api, 'findTransactions');
+
                     addressGenFn.onCall(0).resolves('U'.repeat(81));
                     addressGenFn.onCall(1).resolves('R'.repeat(81));
-                    addressGenFn.onCall(2).resolves('Z'.repeat(81));
+                    addressGenFn.onCall(2).resolves('Y'.repeat(81));
+                    addressGenFn.onCall(3).resolves('Z'.repeat(81));
+
+                    // Return hashes for first three addresses
+                    // So that getLatestAddresses returns all three addresses
+                    // with address ZZZ..ZZZ as the latest unused
+                    findTransactions.onCall(0).yields(null, ['9'.repeat(81)]);
+                    findTransactions.onCall(1).yields(null, ['9'.repeat(81)]);
+                    findTransactions.onCall(2).yields(null, ['9'.repeat(81)]);
+                    findTransactions.onCall(3).yields(null, []);
 
                     return addressesUtils
                         .getAddressesUptoRemainder(addressData, seed, addressGenFn, [
@@ -331,8 +354,14 @@ describe('libs: iota/addresses', () => {
                                     balance: 0,
                                     spent: false,
                                 },
-                                ['Z'.repeat(81)]: {
+                                ['Y'.repeat(81)]: {
                                     index: 7,
+                                    checksum: 'MHXTFTEBX',
+                                    balance: 0,
+                                    spent: false,
+                                },
+                                ['Z'.repeat(81)]: {
+                                    index: 8,
                                     checksum: '9JTQPKDGC',
                                     balance: 0,
                                     spent: false,
@@ -340,6 +369,8 @@ describe('libs: iota/addresses', () => {
                             });
 
                             expect(addressDataUptoRemainder).to.eql(expectedAddressData);
+
+                            findTransactions.restore();
                         });
                 });
             });
