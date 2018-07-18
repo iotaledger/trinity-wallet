@@ -28,9 +28,19 @@ class GenerateSeed extends React.PureComponent {
 
     state = {
         seed: Electron.getOnboardingSeed() || createRandomSeed(),
+        scramble: Electron.getOnboardingSeed() ? new Array(81).fill(0) : createRandomSeed(),
         existingSeed: Electron.getOnboardingSeed(),
         clicks: [],
     };
+
+    componentDidMount() {
+        this.frame = 0;
+        this.unscramble();
+    }
+
+    componentWillUnmount() {
+        this.frame = -1;
+    }
 
     onUpdatedSeed = (seed) => {
         this.setState(() => ({
@@ -81,11 +91,51 @@ class GenerateSeed extends React.PureComponent {
             existingSeed: false,
             clicks: [],
         }));
+
+        this.frame = 0;
+
+        this.setState({
+            scramble: createRandomSeed(),
+        });
+
+        this.unscramble();
     };
+
+    unscramble() {
+        const { scramble } = this.state;
+
+        if (this.frame < 0) {
+            return;
+        }
+
+        const scrambleNew = [];
+        let sum = -1;
+
+        if (this.frame > 2) {
+            sum = 0;
+
+            for (let i = 0; i < scramble.length; i++) {
+                sum += scramble[i];
+                scrambleNew.push(Math.max(0, scramble[i] - 15));
+            }
+
+            this.setState({
+                scramble: scrambleNew,
+            });
+
+            this.frame = 0;
+        }
+
+        this.frame++;
+
+        if (sum !== 0) {
+            requestAnimationFrame(this.unscramble.bind(this));
+        }
+    }
 
     render() {
         const { t } = this.props;
-        const { seed, existingSeed, clicks } = this.state;
+        const { seed, scramble, existingSeed, clicks } = this.state;
 
         const clicksLeft = 10 - clicks.length;
 
@@ -108,12 +158,14 @@ class GenerateSeed extends React.PureComponent {
                     <div className={css.seed}>
                         <div>
                             {seed.map((byte, index) => {
-                                const letter = byteToChar(byte);
+                                const offset = scramble[index];
+                                const letter = byteToChar(byte + offset);
                                 return (
                                     <button
                                         onClick={(e) => this.updateLetter(e, index)}
                                         key={`${index}${letter}`}
                                         value={letter}
+                                        style={{ opacity: 1 - offset / 255 }}
                                     >
                                         {letter}
                                     </button>
