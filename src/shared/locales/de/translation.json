@@ -27,7 +27,7 @@
         "checksum": "Prüfsumme",
         "back": "ZURÜCK",
         "goBack": "Zurück",
-        "goBackStep": "Schritt zurück",
+        "goBackStep": "Zurück",
         "backLowercase": "Zurück",
         "done": "FERTIG",
         "doneLowercase": "Fertig",
@@ -92,7 +92,7 @@
         "addresses": "Adressen",
         "reattach": "REATTACH",
         "promote": "PROMOTEN",
-        "retry": "Retry",
+        "retry": "Wiederholen",
         "pressBackAgain": "Nochmal Zurück drücken, um die App zu beenden",
         "reattached": "Transaktion erneut angehangen",
         "reattachedExplanation": "Erneut angehangen mit Hash {{hash}}",
@@ -231,11 +231,11 @@
         "neverShare": "TEILE DEINEN SEED MIT NIEMANDEM"
     },
     "home": {
-        "balance": "KONTOSTAND",
+        "balance": "ÜBERSICHT",
         "send": "SENDEN",
         "receive": "EMPFANGEN",
         "history": "VERLAUF",
-        "settings": "EINSTELLUNG"
+        "settings": "OPTIONEN"
     },
     "languageSetup": {
         "language": "Sprache",
@@ -250,8 +250,8 @@
         "selectDifferentNode": "Möchtest du einen anderen Node auswählen?",
         "setNode": "Node wählen",
         "cannotConnect": "Verbindung zum Node nicht möglich.",
-        "whyBiometricDisabled": "Why is biometric authentication disabled?",
-        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabled": "Warum ist die biometrische Authentifizierung deaktiviert?",
+        "whyBiometricDisabledExplanation": "Die biometrische Anmeldung ist für den ersten Start zu deiner eigenen Sicherheit deaktiviert. Während der Nutzung von Trinity wirst du bei Inaktivität ausgeloggt. Du kannst dich dann erneut mit biometrischer Authentifizierung einloggen."
     },
     "loading": {
         "loadingFirstTime": "Lade den Seed zum ersten Mal.",
@@ -289,9 +289,9 @@
         "printerCheckbox": "Ich werde nicht auf einem öffentlich zugänglichen Drucker ausdrucken"
     },
     "receive": {
-        "yourAddress": "Your address",
-        "qrOptions": "QR options",
-        "shareQr": "Share QR code",
+        "yourAddress": "Deine Adresse",
+        "qrOptions": "QR Optionen",
+        "shareQr": "QR Code teilen",
         "copyAddress": "Adresse kopieren",
         "addressCopied": "Adresse kopiert",
         "addressCopiedExplanation": "Deine Adresse wurde in die Zwischenablage kopiert.",
@@ -447,8 +447,8 @@
         "doYouAlreadyHaveASeed": "Hast du bereits einen Seed den du verwenden möchtest?",
         "doYouNeedASeed": "Möchtest du einen neuen Seed erstellen?",
         "seedExplanation": "Dein Seed ist der Hauptzugang zu deinem Guthaben. Er ist 81 Zeichen lang und besteht aus den Buchstaben A-Z, sowie der Zahl 9.",
-        "noIHaveOne": "Ich habe einen",
-        "yesINeedASeed": "Ich brauche einen",
+        "noIHaveOne": "Ich habe einen Seed",
+        "yesINeedASeed": "Ich benötige einen Seed",
         "explanation": "<0><0>Du kannst ihn verwenden, um mit</0><1> jeder Wallet</1><2> auf</2> <3> jedem Gerät</3><0> auf dein Konto zuzugreifen.</0>",
         "loseSeed": "Aber wenn du deinen Seed verlierst, verlierst du auch deine IOTA.",
         "keepSafe": "Bewahre deinen Seed sicher auf.",
@@ -474,7 +474,7 @@
         "send": "Senden",
         "receive": "Empfangen",
         "empty": "Keine",
-        "retrying": "Retrying",
+        "retrying": "Erneuter Versuch",
         "yesterday": "Gestern"
     },
     "accountManagement": {
@@ -491,10 +491,10 @@
         "customNode": "Benutzerdefinierter Node",
         "removeCustomNode": "Benutzerdefinierten Node entfernen",
         "invalidNodeResponse": "Der Node hat eine ungültige Antwort zurückgegeben",
-        "httpNodeError": "Trinity Mobile unterstützt nur verschlüsselte Nodes (HTTPS).",
         "add": "Hinzufügen",
         "nodeFieldEmpty": "Textfeld ist leer",
-        "nodeFieldEmptyExplanation": "Bitte einen benutzerdefinierten Node hinzufügen."
+        "nodeFieldEmptyExplanation": "Bitte einen benutzerdefinierten Node hinzufügen.",
+        "invalidURL": "Bitte gib eine gültige Adresse ein."
     },
     "addNewAccount": {
         "useExistingSeed": "Vorhandenen Seed verwenden",

@@ -5,6 +5,7 @@ import map from 'lodash/map';
 import filter from 'lodash/filter';
 import some from 'lodash/some';
 import size from 'lodash/size';
+import every from 'lodash/every';
 import { iota } from '../libs/iota';
 import {
     replayBundleAsync,
@@ -57,6 +58,7 @@ import {
     generateTransferErrorAlert,
     generatePromotionErrorAlert,
     generateNodeOutOfSyncErrorAlert,
+    generateTransactionSuccessAlert,
 } from './alerts';
 import i18next from '../i18next.js';
 import Errors from '../libs/errors';
@@ -117,6 +119,8 @@ export const retryFailedTransactionError = () => ({
  *   On successful transfer, update store, generate alert and clear send text fields
  *   @method completeTransfer
  *   @param {object} payload - sending status, address, transfer value
+ *
+ *   @returns {function} dispatch
  **/
 export const completeTransfer = (payload) => {
     return (dispatch) => {
@@ -307,6 +311,18 @@ export const forceTransactionPromotion = (
         });
 };
 
+/**
+ * Sends a transaction
+ * @param  {string} seed
+ * @param  {string} receiveAddress
+ * @param  {number} value
+ * @param  {string} message
+ * @param  {string} accountName
+ * @param  {function} powFn
+ * @param  {function} genFn
+ *
+ * @returns {function} dispatch
+ */
 export const makeTransaction = (seed, receiveAddress, value, message, accountName, powFn, genFn) => (
     dispatch,
     getState,
@@ -506,36 +522,21 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 return storeAndBroadcastAsync(cached.trytes);
             })
             .then(() => {
-                const { newState } = syncAccountAfterSpending(
+                return syncAccountAfterSpending(
+                    seed,
                     accountName,
                     cached.transactionObjects,
                     accountState,
                     !isZeroValue,
+                    genFn,
                 );
-
+            })
+            .then(({ newState }) => {
                 dispatch(updateAccountInfoAfterSpending(newState));
 
                 // Progress summary
                 dispatch(setNextStepAsActive());
-                if (isZeroValue) {
-                    dispatch(
-                        generateAlert(
-                            'success',
-                            i18next.t('global:messageSent'),
-                            i18next.t('global:messageSentMessage'),
-                            20000,
-                        ),
-                    );
-                } else {
-                    dispatch(
-                        generateAlert(
-                            'success',
-                            i18next.t('global:transferSent'),
-                            i18next.t('global:transferSentMessage'),
-                            20000,
-                        ),
-                    );
-                }
+                dispatch(generateTransactionSuccessAlert(isZeroValue));
 
                 setTimeout(() => {
                     dispatch(completeTransfer({ address, value }));
@@ -544,7 +545,6 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
             })
             .catch((error) => {
                 dispatch(sendTransferError());
-
                 if (hasSignedInputs) {
                     const { newState } = syncAccountOnValueTransactionFailure(cached.transactionObjects, accountState);
 
@@ -640,6 +640,14 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
     );
 };
 
+/**
+ * Retries a transaction that previously failed to send.
+ * @param  {string} accountName
+ * @param  {string} bundleHash
+ * @param  {function} powFn
+ *
+ * @returns {function} dispatch
+ */
 export const retryFailedTransaction = (accountName, bundleHash, powFn) => (dispatch, getState) => {
     const existingAccountState = selectedAccountStateFactory(accountName)(getState());
     const existingFailedTransactionsForThisAccount = getFailedBundleHashesForSelectedAccount(getState());
@@ -664,9 +672,17 @@ export const retryFailedTransaction = (accountName, bundleHash, powFn) => (dispa
                 existingAccountState,
             );
 
+            // Since this transaction was never sent to the tangle
+            // Generate the same alert we display when a transaction is successfully sent to the tangle
+            const hasZeroValue = (tx) => tx.value === 0;
+            const isZeroValue = every(transactionObjects, hasZeroValue);
+
+            dispatch(generateTransactionSuccessAlert(isZeroValue));
+
             return dispatch(retryFailedTransactionSuccess(newState));
         })
-        .catch(() => {
+        .catch((error) => {
+            dispatch(generateTransferErrorAlert(error));
             dispatch(retryFailedTransactionError());
         });
 };

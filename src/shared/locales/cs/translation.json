@@ -491,10 +491,10 @@
         "customNode": "Vlastní Node",
         "removeCustomNode": "Remove custom node",
         "invalidNodeResponse": "Node vrátil neplatnou odpověď",
-        "httpNodeError": "Mobilní verze Trinity podporuje pouze https Nody.",
         "add": "Přidat",
         "nodeFieldEmpty": "Textové pole je prázdné",
-        "nodeFieldEmptyExplanation": "Prosím vložte Vlastní Node."
+        "nodeFieldEmptyExplanation": "Prosím vložte Vlastní Node.",
+        "invalidURL": "Please enter a valid URL."
     },
     "addNewAccount": {
         "useExistingSeed": "Použít stávající Seed",
