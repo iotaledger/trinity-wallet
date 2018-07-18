@@ -197,4 +197,14 @@
         opacity: 1;
         animation: spin 0.6s ease infinite;
     }
+
+    &.icon {
+        padding: 0 12px;
+        &:before {
+            display: none;
+        }
+        span {
+            animation: spin 0.6s ease infinite;
+        }
+    }
 }
