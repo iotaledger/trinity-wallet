@@ -179,10 +179,10 @@
         "passwordsDoNotMatch": "Passwords do not match",
         "passwordsDoNotMatchExplanation": "Passwords do not match. Please try again.",
         "passwordTooShort": "პაროლი ძალიან მოკლეა",
-        "passwordTooShortExplanation": "თქვენი პაროლი უნდა შედგებოდეს მინიმუმ 12 სიმბოლოსგან. კიდევ სცადეთ.",
+        "passwordTooShortExplanation": "თქვენი პაროლი უნდა შედგებოდეს მინიმუმ 11 სიმბოლოსგან. კიდევ სცადეთ.",
         "oldPassword": "ძველი პაროლი არ დაყენდება",
         "oldPasswordExplanation": "თქვენ არ შეგიძლიათ გამოიყენოთ ძველი პაროლი ახალ პაროლად. მოიფიქრეთ ახალი პაროლი.",
-        "ensureStrongPassword": "დარწმუნდი რომ იყენებ რთულ პაროლს რომელიც მინიმუმ 12 სიმბოლოსაგან შედგება.",
+        "ensureStrongPassword": "დარწმუნდი რომ იყენებ რთულ პაროლს რომელიც მინიმუმ 11 სიმბოლოსაგან შედგება.",
         "currentPassword": "ამჟამინდელი პაროლი",
         "newPassword": "ახალი პაროლი",
         "confirmPassword": "დაადასტურე ახალი პაროლი",
@@ -367,7 +367,7 @@
         "passwordMismatchExplanation": "The passwords you have entered do not match. Please try again.",
         "nowWeNeedTo": "Now we need to set up a password.",
         "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
-        "ensure": "დარწმუნდი რომ იყენებ რთულ პაროლს რომელიც მინიმუმ 12 სიმბოლოსაგან შედგება.",
+        "ensure": "დარწმუნდი რომ იყენებ რთულ პაროლს რომელიც მინიმუმ 11 სიმბოლოსაგან შედგება.",
         "retypePassword": "Retype Password"
     },
     "setSeedName": {

@@ -11,7 +11,9 @@ import {
     setBasicAccountInfo,
 } from 'iota-wallet-shared-modules/actions/accounts';
 import { clearWalletData, clearSeed, setPassword } from 'iota-wallet-shared-modules/actions/wallet';
+import { passwordReasons } from 'iota-wallet-shared-modules/libs/password';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
+import { zxcvbn } from 'iota-wallet-shared-modules/libs/exports';
 import CustomTextInput from '../components/CustomTextInput';
 import {
     hasDuplicateSeed,
@@ -30,7 +32,7 @@ import GENERAL from '../theme/general';
 import Header from '../components/Header';
 import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
-const MIN_PASSWORD_LENGTH = 12;
+const MIN_PASSWORD_LENGTH = 11;
 console.ignoredYellowBox = ['Native TextInput'];
 
 const styles = StyleSheet.create({
@@ -172,8 +174,9 @@ class SetPassword extends Component {
 
         const { t, seed, accountName } = this.props;
         const { password, reentry } = this.state;
+        const score = zxcvbn(password);
 
-        if (password.length >= MIN_PASSWORD_LENGTH && password === reentry) {
+        if (password.length >= MIN_PASSWORD_LENGTH && password === reentry && score.score === 4) {
             const pwdHash = getPasswordHash(password);
 
             getAllSeedsFromKeychain(pwdHash).then((seedInfo) => {
@@ -203,6 +206,11 @@ class SetPassword extends Component {
                     currentLength: password.length,
                 }),
             );
+        } else if (score.score < 4) {
+            const reason = score.feedback.warning
+                ? t(`changePassword:${passwordReasons[score.feedback.warning]}`)
+                : t('changePassword:passwordTooWeakReason');
+            return this.props.generateAlert('error', t('changePassword:passwordTooWeak'), reason);
         }
     }
 
@@ -213,31 +221,30 @@ class SetPassword extends Component {
     }
 
     renderContent() {
-        const { t, theme } = this.props;
-        const { password } = this.state;
+        const { t, theme, theme: { body } } = this.props;
+        const { password, reentry } = this.state;
+        const score = zxcvbn(password);
+        const isValid = score.score === 4;
 
         return (
             <View>
                 <TouchableWithoutFeedback style={{ flex: 1, width }} onPress={Keyboard.dismiss} accessible={false}>
-                    <KeyboardAvoidingView
-                        behavior="padding"
-                        style={[styles.container, { backgroundColor: theme.body.bg }]}
-                    >
+                    <KeyboardAvoidingView behavior="padding" style={[styles.container, { backgroundColor: body.bg }]}>
                         <View style={styles.topContainer}>
-                            <Icon name="iota" size={width / 8} color={theme.body.color} />
+                            <Icon name="iota" size={width / 8} color={body.color} />
                             <View style={{ flex: 0.7 }} />
-                            <Header textColor={theme.body.color}>{t('choosePassword')}</Header>
+                            <Header textColor={body.color}>{t('choosePassword')}</Header>
                         </View>
                         <View style={styles.midContainer}>
                             <InfoBox
-                                body={theme.body}
+                                body={body}
                                 text={
                                     <View>
-                                        <Text style={[styles.infoText, { color: theme.body.color }]}>
+                                        <Text style={[styles.infoText, { color: body.color }]}>
                                             {t('anEncryptedCopy')}
                                         </Text>
-                                        <Text style={[styles.warningText, { color: theme.body.color }]}>
-                                            {t('ensure')}
+                                        <Text style={[styles.warningText, { color: body.color }]}>
+                                            {t('changePassword:ensureStrongPassword')}
                                         </Text>
                                     </View>
                                 }
@@ -248,6 +255,9 @@ class SetPassword extends Component {
                                 onChangeText={(password) => this.setState({ password })}
                                 containerStyle={{ width: width / 1.15 }}
                                 autoCapitalize="none"
+                                widget="password"
+                                isPasswordValid={isValid}
+                                passwordStrength={score.score}
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
                                 returnKeyType="next"
@@ -268,6 +278,8 @@ class SetPassword extends Component {
                                 label={t('retypePassword')}
                                 onChangeText={(reentry) => this.setState({ reentry })}
                                 containerStyle={{ width: width / 1.15 }}
+                                widget="passwordReentry"
+                                isPasswordValid={isValid && password === reentry}
                                 autoCapitalize="none"
                                 autoCorrect={false}
                                 enablesReturnKeyAutomatically
