@@ -444,7 +444,7 @@ export const getAddressesUptoRemainder = (addressData, seed, genFn, blacklistedR
                 newAddresses,
                 (acc, address, index) => {
                     acc[address] = {
-                        index: index ? startIndex + 1 : startIndex,
+                        index: index + startIndex,
                         balance: 0,
                         spent: false,
                         checksum: iota.utils.addChecksum(address).slice(address.length),
