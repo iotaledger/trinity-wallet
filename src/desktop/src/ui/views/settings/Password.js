@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import zxcvbn from 'zxcvbn';
+import { zxcvbn } from 'libs/exports';
 
 import { generateAlert } from 'actions/alerts';
 import { setPassword } from 'actions/wallet';

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { translate } from 'react-i18next';
-import zxcvbn from 'zxcvbn';
+import { zxcvbn } from 'libs/exports';
 
 import { passwordReasons } from 'libs/password';
 
