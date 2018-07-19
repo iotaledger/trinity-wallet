@@ -182,7 +182,7 @@
         "passwordTooShortExplanation": "Your password must be at least 8 characters. Please try again.",
         "oldPassword": "Eski parola ayarlayamazsınız",
         "oldPasswordExplanation": "Yeni şifreniz olarak eski parolayı kullanamazsınız. Lütfen yeni bir parola ile yeniden deneyin.",
-        "ensureStrongPassword": "En az 12 karakter uzunluğunda güçlü bir parola kullandığınızdan emin olun.",
+        "ensureStrongPassword": "En az 11 karakter uzunluğunda güçlü bir parola kullandığınızdan emin olun.",
         "currentPassword": "Geçerli Şifre",
         "newPassword": "Yeni Şifre",
         "confirmPassword": "Yeni Şifreyi Onayla",
@@ -367,7 +367,7 @@
         "passwordMismatchExplanation": "Girdiğiniz parolalar eşleşmiyor. Lütfen tekrar girin.",
         "nowWeNeedTo": "Şimdi bir parola ayarlamanız gerekir.",
         "anEncryptedCopy": "Senin tohum şifrelenmiş bir kopyasını cihazınızda saklanacaktır. Cüzdanını gelecekte erişmek için bu parolayı kullanır.",
-        "ensure": "En az 12 karakter uzunluğunda bir güçlü parola kullandığınızdan emin olun.",
+        "ensure": "En az 11 karakter uzunluğunda bir güçlü parola kullandığınızdan emin olun.",
         "retypePassword": "Şifrenizi tekrar girin"
     },
     "setSeedName": {

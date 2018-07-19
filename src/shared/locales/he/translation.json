@@ -182,7 +182,7 @@
         "passwordTooShortExplanation": "Your password must be at least 8 characters. Please try again.",
         "oldPassword": "אין אפשרות להגדיר את הסיסמה הישנה",
         "oldPasswordExplanation": "אתה לא יכול להשתמש בסיסמה הישנה שלך בתור הסיסמה החדשה שלך. בבקשה נסה שוב עם סיסמה חדשה.",
-        "ensureStrongPassword": "תוודא שאתה משתמש בסיסמה חזקה שמכילה לפחות 12 תווים.",
+        "ensureStrongPassword": "תוודא שאתה משתמש בסיסמה חזקה שמכילה לפחות 11 תווים.",
         "currentPassword": "סיסמה נוכחית",
         "newPassword": "סיסמה חדשה",
         "confirmPassword": "אמת את הסיסמה חדשה",
@@ -367,7 +367,7 @@
         "passwordMismatchExplanation": "The passwords you have entered do not match. Please try again.",
         "nowWeNeedTo": "Now we need to set up a password.",
         "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
-        "ensure": "תוודא שאתה משתמש בסיסמה חזקה שמכילה לפחות 12 תווים.",
+        "ensure": "תוודא שאתה משתמש בסיסמה חזקה שמכילה לפחות 11 תווים.",
         "retypePassword": "Retype Password"
     },
     "setSeedName": {
