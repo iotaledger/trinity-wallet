@@ -179,10 +179,10 @@
         "passwordsDoNotMatch": "Adgangskoderne er ikke ens",
         "passwordsDoNotMatchExplanation": "Adgangskoderne er ikke ens. Prøv venligst igen.",
         "passwordTooShort": "Adgangskoden er for kort",
-        "passwordTooShortExplanation": "Din adgangskode skal være mindst 12 tegn lang. Prøv venligst igen.",
+        "passwordTooShortExplanation": "Din adgangskode skal være mindst 11 tegn lang. Prøv venligst igen.",
         "oldPassword": "Kan ikke bruge en gammel adgangskode",
         "oldPasswordExplanation": "Du kan ikke bruge den gamle adgangskode som din nye adgangskode. Prøv venligst igen med en ny adgangskode.",
-        "ensureStrongPassword": "Sørg for, at du bruger en stærk adgangskode på mindst 12 tegn.",
+        "ensureStrongPassword": "Sørg for, at du bruger en stærk adgangskode på mindst 11 tegn.",
         "currentPassword": "Nuværende adgangskode",
         "newPassword": "Ny adgangskode",
         "confirmPassword": "Bekræft ny adgangskode",
@@ -367,7 +367,7 @@
         "passwordMismatchExplanation": "Adgangskoderne, du har indtastet, er ikke ens. Prøv venligst igen.",
         "nowWeNeedTo": "Nu skal vi opsætte en adgangskode.",
         "anEncryptedCopy": "En krypteret kopi af din hovednøgle bliver opbevaret på din enhed. Du vil bruge denne adgangskode fremadrettet for at tilgå din tegnebog.",
-        "ensure": "Sørg for, at du bruger en stærk adgangskode på mindst 12 tegn.",
+        "ensure": "Sørg for, at du bruger en stærk adgangskode på mindst 11 tegn.",
         "retypePassword": "Gentag adgangskode"
     },
     "setSeedName": {

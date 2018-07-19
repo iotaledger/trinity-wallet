@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { translate } from 'react-i18next';
-import zxcvbn from 'zxcvbn';
+import { zxcvbn } from 'libs/exports';
 
-import { passwordReasons } from 'libs/i18next';
+import { passwordReasons } from 'libs/password';
 
 import Icon from 'ui/components/Icon';
 import css from './input.scss';

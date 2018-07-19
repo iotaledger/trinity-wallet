@@ -179,10 +179,10 @@
         "passwordsDoNotMatch": "パスワードが一致しません。",
         "passwordsDoNotMatchExplanation": "パスワードが一致しません。もう一度やり直してください。",
         "passwordTooShort": "パスワードが短すぎます。",
-        "passwordTooShortExplanation": "パスワードは12文字以上である必要があります。もう一度やり直してください。",
+        "passwordTooShortExplanation": "パスワードは11文字以上である必要があります。もう一度やり直してください。",
         "oldPassword": "古いパスワードは使えません。",
         "oldPasswordExplanation": "古いパスワードは新しいパスワードとして使えません。新しいパスワードでもう一度やり直してください。",
-        "ensureStrongPassword": "12文字以上の強力なパスワードを指定してください。",
+        "ensureStrongPassword": "11文字以上の強力なパスワードを指定してください。",
         "currentPassword": "現在のパスワード",
         "newPassword": "新しいパスワード",
         "confirmPassword": "新しいパスワードを確認",
@@ -367,7 +367,7 @@
         "passwordMismatchExplanation": "入力した 2 つのパスワードが一致しません、もう一度やり直してください。",
         "nowWeNeedTo": "次にパスワードの設定です。",
         "anEncryptedCopy": "暗号化されたシードのコピーがデバイスに保存されます。今後パスワードを使用してウォレットにアクセスします。",
-        "ensure": "12文字以上の強力なパスワードを指定してください。",
+        "ensure": "11文字以上の強力なパスワードを指定してください。",
         "retypePassword": "パスワードを再入力してください。"
     },
     "setSeedName": {
