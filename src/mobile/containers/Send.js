@@ -211,7 +211,6 @@ export class Send extends Component {
         } else if (isSendingTransfer && !newProps.isSendingTransfer) {
             KeepAwake.deactivate();
             this.setState({ sending: false });
-
             // Reset toggle switch in case send max is active
             this.resetToggleSwitch();
         }
@@ -271,11 +270,9 @@ export class Send extends Component {
         if (sending) {
             return;
         }
-
         if (availableBalance === 0) {
             return;
         }
-
         if (maxPressed) {
             this.props.setSendAmountField('');
             this.setState({
@@ -367,7 +364,7 @@ export class Send extends Component {
                 this.props.setSendMessageField(parsedData.message);
             }
             if (parsedData.amount) {
-                this.props.setSendAmountField(parsedData.amount);
+                this.props.setSendAmountField(parsedData.amount.toString());
             }
         } else if (dataString.startsWith('iota:') && dataSubstring.match(VALID_ADDRESS_WITH_CHECKSUM_REGEX)) {
             // For codes with iota: at the front (TheTangle.org)
