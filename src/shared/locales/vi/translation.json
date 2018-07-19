@@ -179,10 +179,10 @@
         "passwordsDoNotMatch": "Mật khẩu không trùng khớp",
         "passwordsDoNotMatchExplanation": "Mật khẩu không trùng khớp. Xin vui lòng thử lại.",
         "passwordTooShort": "Mật khẩu quá ngắn",
-        "passwordTooShortExplanation": "Mật khẩu ít nhất phải chứa 12 ký tự. Xin vui lòng thử lại.",
+        "passwordTooShortExplanation": "Mật khẩu ít nhất phải chứa 11 ký tự. Xin vui lòng thử lại.",
         "oldPassword": "Không thể dùng mật khẩu cũ",
         "oldPasswordExplanation": "Bạn không thể dùng mật khẩu cũ lúc tạo mật khẩu mới. Xin vui lòng thử lại với một mật khẩu mới.",
-        "ensureStrongPassword": "Hãy đảm bảo bạn dùng mật khẩu mạnh với ít nhất 12 ký tự.",
+        "ensureStrongPassword": "Hãy đảm bảo bạn dùng mật khẩu mạnh với ít nhất 11 ký tự.",
         "currentPassword": "Mật Khẩu Hiện Tại",
         "newPassword": "Mật Khẩu Mới",
         "confirmPassword": "Xác Nhận Mật Khẩu Mới",
@@ -367,7 +367,7 @@
         "passwordMismatchExplanation": "Mật khẩu vừa nhập không trùng khớp. Xin vui lòng thử lại.",
         "nowWeNeedTo": "Bây giờ chúng ta cần cài mật khẩu.",
         "anEncryptedCopy": "Một bản sao mã hoá của từ khoá sẽ được lưu trên máy của bạn. Bạn sẽ phải xài mật khẩu này để truy cập ví điện tử của mình.",
-        "ensure": "Hãy đảm bảo bạn dùng mật khẩu mạnh với ít nhất 12 ký tự.",
+        "ensure": "Hãy đảm bảo bạn dùng mật khẩu mạnh với ít nhất 11 ký tự.",
         "retypePassword": "Nhập Lại Mật Khẩu"
     },
     "setSeedName": {

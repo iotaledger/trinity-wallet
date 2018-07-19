@@ -182,7 +182,7 @@
         "passwordTooShortExplanation": "Your password must be at least 8 characters. Please try again.",
         "oldPassword": "Ni mogoče nastavite starega gesla",
         "oldPasswordExplanation": "Nemorete uporabljati prejšnjega gesla kot vaše novo geslo. Prosimo poskusite ponovno z novim geslom.",
-        "ensureStrongPassword": "Zagotovite da bo vaše geslo zapleteno in dolgo vsaj 12 znakov.",
+        "ensureStrongPassword": "Zagotovite da bo vaše geslo zapleteno in dolgo vsaj 11 znakov.",
         "currentPassword": "Trenutno Geslo",
         "newPassword": "Novo Geslo",
         "confirmPassword": "Potrdite Novo Geslo",
@@ -367,7 +367,7 @@
         "passwordMismatchExplanation": "Vnešeni gesli se ne ujemata. Prosimo, poskusite ponovno.",
         "nowWeNeedTo": "Ok, zdaj moramo nastaviti geslo.",
         "anEncryptedCopy": "Šifrirana kopija vaše generirane vrednosti bo shranjena v napravi. Uporabite geslo za dostop do vaše denarnice v prihodnosti.",
-        "ensure": "Zagotovite da bo vaše geslo zapleteno in dolgo vsaj 12 znakov.",
+        "ensure": "Zagotovite da bo vaše geslo zapleteno in dolgo vsaj 11 znakov.",
         "retypePassword": "Ponovno vnesite geslo"
     },
     "setSeedName": {

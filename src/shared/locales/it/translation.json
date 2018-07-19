@@ -179,10 +179,10 @@
         "passwordsDoNotMatch": "Le password non corrispondono",
         "passwordsDoNotMatchExplanation": "Le password non corrispondono. Riprova.",
         "passwordTooShort": "La password è troppo corta",
-        "passwordTooShortExplanation": "La password deve essere di almeno 12 caratteri. Riprova.",
+        "passwordTooShortExplanation": "La password deve essere di almeno 11 caratteri. Riprova.",
         "oldPassword": "Non è possibile impostare la vecchia password",
         "oldPasswordExplanation": "Non è possibile usare la vecchia password per la nuova password. Si prega di riprovare con una nuova password.",
-        "ensureStrongPassword": "Assicurati di utilizzare una password complessa di almeno 12 caratteri.",
+        "ensureStrongPassword": "Assicurati di utilizzare una password complessa di almeno 11 caratteri.",
         "currentPassword": "Password corrente",
         "newPassword": "Nuova password",
         "confirmPassword": "Conferma nuova Password",
@@ -367,7 +367,7 @@
         "passwordMismatchExplanation": "Le password immesse non corrispondono. Si prega di riprovare.",
         "nowWeNeedTo": "Ora abbiamo bisogno di impostare una password.",
         "anEncryptedCopy": "Una copia crittografata del tuo seme sarà memorizzata sul dispositivo. Userai questa password per accedere in futuro al tuo portafoglio.",
-        "ensure": "Assicurati di utilizzare una password complessa di almeno 12 caratteri.",
+        "ensure": "Assicurati di utilizzare una password complessa di almeno 11 caratteri.",
         "retypePassword": "Reinserisci la password"
     },
     "setSeedName": {

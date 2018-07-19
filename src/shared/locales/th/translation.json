@@ -179,10 +179,10 @@
         "passwordsDoNotMatch": "รหัสผ่านไม่ตรงกัน",
         "passwordsDoNotMatchExplanation": "รหัสผ่านไม่ตรงกัน โปรดลองอีกครั้ง",
         "passwordTooShort": "รหัสผ่านสั้นเกินไป",
-        "passwordTooShortExplanation": "รหัสผ่านต้องมีอย่างน้อย 12 ตัวอักษร กรุณาลองอีกครั้ง",
+        "passwordTooShortExplanation": "รหัสผ่านต้องมีอย่างน้อย 11 ตัวอักษร กรุณาลองอีกครั้ง",
         "oldPassword": "ไม่สามารถใช้รหัสผ่านเดิม",
         "oldPasswordExplanation": "คุณไม่สามารถใช้รหัสผ่านเดิมเป็นรหัสผ่านของคุณใหม่ กรุณาลองอีกครั้ง ด้วยรหัสผ่านใหม่",
-        "ensureStrongPassword": "คุณแน่ใจว่ารหัสผ่านของคุณ มีอย่างน้อย 12 หลัก และยากต่อการคาดเดา",
+        "ensureStrongPassword": "คุณแน่ใจว่ารหัสผ่านของคุณ มีอย่างน้อย 11 หลัก และยากต่อการคาดเดา",
         "currentPassword": "รหัสผ่านปัจจุบัน",
         "newPassword": "รหัสผ่านใหม่",
         "confirmPassword": "ยืนยันรหัสผ่านใหม่",
@@ -367,7 +367,7 @@
         "passwordMismatchExplanation": "รหัสผ่าน​ที่​ใส่​ไม่​ตรง​กัน กรุณา​ลอง​อีก​ครั้ง.",
         "nowWeNeedTo": "คุณจำเป็นต้องสร้างรหัสผ่าน",
         "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
-        "ensure": "คุณแน่ใจว่ารหัสผ่านของคุณ มีอย่างน้อย 12 หลัก และยากต่อการคาดเดา",
+        "ensure": "คุณแน่ใจว่ารหัสผ่านของคุณ มีอย่างน้อย 11 หลัก และยากต่อการคาดเดา",
         "retypePassword": "ใส่รหัสผ่านอีกครั้ง"
     },
     "setSeedName": {

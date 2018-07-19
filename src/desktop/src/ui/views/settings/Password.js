@@ -7,7 +7,7 @@ import zxcvbn from 'zxcvbn';
 import { generateAlert } from 'actions/alerts';
 import { setPassword } from 'actions/wallet';
 
-import { passwordReasons } from 'libs/i18next';
+import { passwordReasons } from 'libs/password';
 import { updatePassword, sha256 } from 'libs/crypto';
 
 import Password from 'ui/components/input/Password';

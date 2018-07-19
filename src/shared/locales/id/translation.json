@@ -179,10 +179,10 @@
         "passwordsDoNotMatch": "Kata sandi tidak sama",
         "passwordsDoNotMatchExplanation": "Kata sandi tidak cocok. Silahkan coba lagi.",
         "passwordTooShort": "Kata sandi terlalu singkat",
-        "passwordTooShortExplanation": "Kata sandi Anda paling sedikit harus 12 karakter. Silakan coba lagi.",
+        "passwordTooShortExplanation": "Kata sandi Anda paling sedikit harus 11 karakter. Silakan coba lagi.",
         "oldPassword": "Tidak bisa merubah password lama",
         "oldPasswordExplanation": "Anda tidak boleh menggunakan kata sandi lama sebagai kata sandi baru. Silahkan coba lagi dengan kata sandi baru.",
-        "ensureStrongPassword": "Pastikan Anda menggunakan kata sandi yang kuat setidaknya 12 karakter.",
+        "ensureStrongPassword": "Pastikan Anda menggunakan kata sandi yang kuat setidaknya 11 karakter.",
         "currentPassword": "Kata Sandi Saat Ini",
         "newPassword": "Kata Sandi Baru",
         "confirmPassword": "Konfirmasi Kata Sandi Baru",
@@ -367,7 +367,7 @@
         "passwordMismatchExplanation": "Kata sandi yang Anda masukkan tidak sama. Silahkan coba lagi.",
         "nowWeNeedTo": "Mari kita membuat kata sandi.",
         "anEncryptedCopy": "Salinan dari Seed yang terenkripsi akan disimpan di perangkat anda. Anda akan menggunakan kata sandi ini untuk mengakses dompet anda.",
-        "ensure": "Pastikan Anda menggunakan kata sandi yang kuat setidaknya 12 karakter.",
+        "ensure": "Pastikan Anda menggunakan kata sandi yang kuat setidaknya 11 karakter.",
         "retypePassword": "Ketik ulang kata sandi"
     },
     "setSeedName": {
