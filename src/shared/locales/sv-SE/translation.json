@@ -179,10 +179,10 @@
         "passwordsDoNotMatch": "Lösenorden stämmer inte överens",
         "passwordsDoNotMatchExplanation": "Lösenorden stämmer inte överens, försök igen.",
         "passwordTooShort": "Lösenordet är för kort",
-        "passwordTooShortExplanation": "Ditt lösenord måste åtminstone vara 12 tecken långt, försök igen.",
+        "passwordTooShortExplanation": "Ditt lösenord måste åtminstone vara 11 tecken långt, försök igen.",
         "oldPassword": "Ett gammalt lösenord får ej återanvändas",
         "oldPasswordExplanation": "Ett gammalt lösenord kan inte återanvändas, försök igen med ett nytt lösenord.",
-        "ensureStrongPassword": "Se till att du använder ett starkt lösenord med minst 12 tecken.",
+        "ensureStrongPassword": "Se till att du använder ett starkt lösenord med minst 11 tecken.",
         "currentPassword": "Nuvarande lösenord",
         "newPassword": "Nytt lösenord",
         "confirmPassword": "Bekräfta nytt lösenord",
@@ -367,7 +367,7 @@
         "passwordMismatchExplanation": "De lösenord du har angett stämmer inte överens. Vänligen försök igen.",
         "nowWeNeedTo": "Nu behöver vi sätta ett lösenord.",
         "anEncryptedCopy": "En krypterad version av din seed kommer sparas på din enhet. Detta lösenord kommer att användas för att få tillgång till din plånbok i framtiden.",
-        "ensure": "Se till att du använder ett starkt lösenord med minst 12 tecken.",
+        "ensure": "Se till att du använder ett starkt lösenord med minst 11 tecken.",
         "retypePassword": "Skriv lösenordet igen"
     },
     "setSeedName": {

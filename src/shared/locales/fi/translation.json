@@ -179,10 +179,10 @@
         "passwordsDoNotMatch": "Salasanat eivät täsmää",
         "passwordsDoNotMatchExplanation": "Salasanat eivät täsmää, yritä uudelleen.",
         "passwordTooShort": "Salasana on liian lyhyt",
-        "passwordTooShortExplanation": "Salasanan tulee olla vähintään 12 merkkiä pitkä. Yritä uudelleen.",
+        "passwordTooShortExplanation": "Salasanan tulee olla vähintään 11 merkkiä pitkä. Yritä uudelleen.",
         "oldPassword": "Vanhaa salasanaa ei voi käyttää",
         "oldPasswordExplanation": "Et voi käyttää vanhaa salasanaa toista kertaa. Yritä uudelleen.",
-        "ensureStrongPassword": "Varmista, että käytät vahvaa salasanaa, joka on vähintään 12 merkkiä pitkä ja sisältää erikoismerkkejä.",
+        "ensureStrongPassword": "Varmista, että käytät vahvaa salasanaa, joka on vähintään 11 merkkiä pitkä ja sisältää erikoismerkkejä.",
         "currentPassword": "Nykyinen Salasana",
         "newPassword": "Uusi Salasana",
         "confirmPassword": "Vahvista Uusi Salasana",
@@ -367,7 +367,7 @@
         "passwordMismatchExplanation": "Annetut salasanat eivät täsmää. Yritä uudelleen.",
         "nowWeNeedTo": "Nyt meidän on luotava salasana.",
         "anEncryptedCopy": "Seed-lukusi salattu kopio tallennetaan laitteellesi. Tällä salasanalla pääset käyttämään lompakkoasi jatkossa.",
-        "ensure": "Varmista, että käytät hyvää salasanaa, joka on vähintään 12 merkkiä pitkä ja sisältää erikoismerkkejä.",
+        "ensure": "Varmista, että käytät hyvää salasanaa, joka on vähintään 11 merkkiä pitkä ja sisältää erikoismerkkejä.",
         "retypePassword": "Kirjoita Salasana Uudelleen"
     },
     "setSeedName": {

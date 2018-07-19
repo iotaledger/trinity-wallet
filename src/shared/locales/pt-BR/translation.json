@@ -179,10 +179,10 @@
         "passwordsDoNotMatch": "As senhas não conferem",
         "passwordsDoNotMatchExplanation": "As senhas não conferem. Por favor, tente novamente.",
         "passwordTooShort": "A senha é muito curta",
-        "passwordTooShortExplanation": "A sua senha deve ter pelo menos 12 caracteres. Por favor, tente novamente.",
+        "passwordTooShortExplanation": "A sua senha deve ter pelo menos 11 caracteres. Por favor, tente novamente.",
         "oldPassword": "Você não pode usar a senha antiga",
         "oldPasswordExplanation": "Você não pode usar a senha antiga como a nova senha. Por favor, tente novamente com uma nova senha.",
-        "ensureStrongPassword": "Certifique-se de usar uma senha forte de pelo menos 12 caracteres.",
+        "ensureStrongPassword": "Certifique-se de usar uma senha forte de pelo menos 11 caracteres.",
         "currentPassword": "Senha Atual",
         "newPassword": "Nova Senha",
         "confirmPassword": "Confirme a Nova Senha",
@@ -367,7 +367,7 @@
         "passwordMismatchExplanation": "As senhas digitadas são diferentes. Tente novamente.",
         "nowWeNeedTo": "Agora precisamos criar uma senha.",
         "anEncryptedCopy": "Um cópia criptografada da sua Seed será armazenada em seu dispositivo. Você usará esta senha para acessar sua carteira no futuro.",
-        "ensure": "Certifique-se de usar uma senha forte de pelo menos 12 caracteres.",
+        "ensure": "Certifique-se de usar uma senha forte de pelo menos 11 caracteres.",
         "retypePassword": "Digite a Senha Novamente"
     },
     "setSeedName": {

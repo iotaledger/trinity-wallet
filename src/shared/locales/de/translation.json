@@ -179,10 +179,10 @@
         "passwordsDoNotMatch": "Die Passwörter stimmen nicht überein",
         "passwordsDoNotMatchExplanation": "Die Passwörter stimmen nicht überein. Bitte versuche es erneut.",
         "passwordTooShort": "Das Passwort ist zu kurz",
-        "passwordTooShortExplanation": "Dein Passwort muss mindestens 12 Zeichen lang sein. Bitte erneut eingeben.",
+        "passwordTooShortExplanation": "Dein Passwort muss mindestens 11 Zeichen lang sein. Bitte erneut eingeben.",
         "oldPassword": "Ein altes Passwort kann nicht wieder verwendet werden",
         "oldPasswordExplanation": "Du kannst dein altes Passwort nicht als neues Passwort verwenden. Bitte versuche es mit einem anderen Passwort.",
-        "ensureStrongPassword": "Verwende ein sicheres Passwort mit mindestens 12 Zeichen.",
+        "ensureStrongPassword": "Verwende ein sicheres Passwort mit mindestens 11 Zeichen.",
         "currentPassword": "Aktuelles Passwort",
         "newPassword": "Neues Passwort",
         "confirmPassword": "Neues Passwort bestätigen",
@@ -367,7 +367,7 @@
         "passwordMismatchExplanation": "Die eingegebenen Passwörter stimmen nicht überein. Bitte erneut eingeben.",
         "nowWeNeedTo": "Jetzt müssen wir ein Passwort einrichten.",
         "anEncryptedCopy": "Eine verschlüsselte Kopie deines Seeds wird auf deinem Gerät gespeichert. In Zukunft wirst du dieses Passwort verwenden um auf dein Wallet zuzugreifen.",
-        "ensure": "Verwende ein sicheres Passwort mit mindestens 12 Zeichen.",
+        "ensure": "Verwende ein sicheres Passwort mit mindestens 11 Zeichen.",
         "retypePassword": "Passwort erneut eingeben"
     },
     "setSeedName": {

@@ -179,10 +179,10 @@
         "passwordsDoNotMatch": "Passwords do not match",
         "passwordsDoNotMatchExplanation": "Passwords do not match. Please try again.",
         "passwordTooShort": "Password is too short",
-        "passwordTooShortExplanation": "Your password must be at least 12 characters. Please try again.",
+        "passwordTooShortExplanation": "Your password must be at least 11 characters. Please try again.",
         "oldPassword": "Cannot set old password",
         "oldPasswordExplanation": "You cannot use the old password as your new password. Please try again with a new password.",
-        "ensureStrongPassword": "Ensure you use a strong password of at least 12 characters.",
+        "ensureStrongPassword": "Ensure you use a strong password of at least 11 characters.",
         "currentPassword": "Current Password",
         "newPassword": "New Password",
         "confirmPassword": "Confirm New Password",
@@ -367,7 +367,7 @@
         "passwordMismatchExplanation": "The passwords you have entered do not match. Please try again.",
         "nowWeNeedTo": "Now we need to set up a password.",
         "anEncryptedCopy": "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
-        "ensure": "Ensure you use a strong password of at least 12 characters.",
+        "ensure": "Ensure you use a strong password of at least 11 characters.",
         "retypePassword": "Retype Password"
     },
     "setSeedName": {
