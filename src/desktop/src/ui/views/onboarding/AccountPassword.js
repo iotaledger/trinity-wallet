@@ -11,7 +11,7 @@ import { setPassword } from 'actions/wallet';
 import { setOnboardingName } from 'actions/ui';
 
 import { setSeed, setTwoFA, sha256 } from 'libs/crypto';
-import { passwordReasons } from 'libs/i18next';
+import { passwordReasons } from 'libs/password';
 
 import Button from 'ui/components/Button';
 import PasswordInput from 'ui/components/input/Password';

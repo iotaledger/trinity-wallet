@@ -182,7 +182,7 @@
         "passwordTooShortExplanation": "Your password must be at least 8 characters. Please try again.",
         "oldPassword": "لا يمكن استخدام كلمة مرور قديمة",
         "oldPasswordExplanation": "لا يمكنك استخدام كلمة مرور قديمة. يرجى المحاولة مرة أخرى باستخدام كلمة مرور جديدة.",
-        "ensureStrongPassword": "تأكد من استخدامك كلمة مرور قوية لا تقل عن 12 خانة.",
+        "ensureStrongPassword": "تأكد من استخدامك كلمة مرور قوية لا تقل عن 11 خانة.",
         "currentPassword": "كلمة المرور الحالية",
         "newPassword": "كلمة مرور جديدة",
         "confirmPassword": "تأكيد كلمة المرور الجديدة",
@@ -367,7 +367,7 @@
         "passwordMismatchExplanation": "كلمتي المرور المدخلة لا تتطابق، يرجى المحاولة مرة أخرى.",
         "nowWeNeedTo": "الآن نحن بحاجة إلى إعداد كلمة مرور.",
         "anEncryptedCopy": "سيتم تخزين نسخة مشفرة من السييد الخاص بك على الجهاز الخاص بك. وسوف تستخدم كلمة المرور هذه للوصول إلى المحفظة الخاصة بك في المستقبل.",
-        "ensure": "تأكد من استخدامك كلمة مرور قوية لا تقل عن 12 خانة.",
+        "ensure": "تأكد من استخدامك كلمة مرور قوية لا تقل عن 11 خانة.",
         "retypePassword": "أعد كتابة كلمة المرور"
     },
     "setSeedName": {

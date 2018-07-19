@@ -6,7 +6,8 @@
     "author": "IOTA Foundation",
     "contributors": [
         "Manuel Bieh <info@manuelbieh.de>",
-        "Umair Safraz"
+        "Umair Safraz",
+        "Charlie Varley"
     ],
     "scripts": {
         "test": "./node_modules/.bin/mocha --require babel-core/register \"__tests__/**/*.spec.js\"",

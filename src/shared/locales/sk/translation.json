@@ -179,10 +179,10 @@
         "passwordsDoNotMatch": "Heslá sa nezhodujú",
         "passwordsDoNotMatchExplanation": "Heslá sa nezhodujú. Skúste prosím znova.",
         "passwordTooShort": "Heslo je príliš krátke",
-        "passwordTooShortExplanation": "Vaše heslo musí obsahovať najmenej 12 znakov. Prosím skúste znova.",
+        "passwordTooShortExplanation": "Vaše heslo musí obsahovať najmenej 11 znakov. Prosím skúste znova.",
         "oldPassword": "Nie je možné nastaviť staré heslo",
         "oldPasswordExplanation": "Nie je možné použiť staré heslo ako nové heslo. Prosím skúste znovu s novým heslom.",
-        "ensureStrongPassword": "Uistite sa, že používate silné heslo, ktoré má minimálne 12 znakov.",
+        "ensureStrongPassword": "Uistite sa, že používate silné heslo, ktoré má minimálne 11 znakov.",
         "currentPassword": "Súčasné heslo",
         "newPassword": "Nové heslo",
         "confirmPassword": "Potvrdenie nového hesla",
@@ -367,7 +367,7 @@
         "passwordMismatchExplanation": "Zadané heslo je neplatné. Prosím, skúste to znova.",
         "nowWeNeedTo": "Teraz je potrebné vytvoriť heslo.",
         "anEncryptedCopy": "Vo vašom zariadení sa uloží zašifrovaná kópia vášho Seedu. Týmto heslom sa budete prihlasovať do svojej peňaženky.",
-        "ensure": "Uistite sa, že budete používať silné heslo s minimálne 12 znakmi.",
+        "ensure": "Uistite sa, že budete používať silné heslo s minimálne 11 znakmi.",
         "retypePassword": "Zadajte heslo znova"
     },
     "setSeedName": {

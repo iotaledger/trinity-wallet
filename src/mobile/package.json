@@ -110,7 +110,8 @@
     "url": "^0.10.3",
     "util": "^0.10.3",
     "victory-native": "^0.16.2",
-    "vm-browserify": "0.0.4"
+    "vm-browserify": "0.0.4",
+    "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
     "babel-jest": "20.0.3",

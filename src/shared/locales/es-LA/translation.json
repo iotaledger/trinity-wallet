@@ -179,10 +179,10 @@
         "passwordsDoNotMatch": "Las contraseñas no coinciden",
         "passwordsDoNotMatchExplanation": "Las contraseñas no coinciden. Por favor, inténtalo de nuevo.",
         "passwordTooShort": "La contraseña es demasiado corta",
-        "passwordTooShortExplanation": "La contraseña debe contener al menos 12 caracteres. Por favor reintente.",
+        "passwordTooShortExplanation": "La contraseña debe contener al menos 11 caracteres. Por favor reintente.",
         "oldPassword": "No puedes reusar una vieja contraseña",
         "oldPasswordExplanation": "No puedes reusar la contraseña anterior como una nueva. Por favor inténtalo de nuevo con una distinta.",
-        "ensureStrongPassword": "Asegúrese de usar una contraseña segura con al menos 12 caracteres.",
+        "ensureStrongPassword": "Asegúrese de usar una contraseña segura con al menos 11 caracteres.",
         "currentPassword": "Contraseña actual",
         "newPassword": "Contraseña nueva",
         "confirmPassword": "Confirme nueva contraseña",
@@ -367,7 +367,7 @@
         "passwordMismatchExplanation": "Las contraseñas introducidas no coinciden. Por favor, inténtalo de nuevo.",
         "nowWeNeedTo": "Ahora tenemos que configurar una contraseña.",
         "anEncryptedCopy": "Se almacenará en tu dispositivo una copia encriptada de la semilla. Esta contraseña será la que utilizarás para acceder a tu cartera en futuros ingresos.",
-        "ensure": "Asegúrete que utilizas una contraseña segura con al menos 12 caracteres.",
+        "ensure": "Asegúrete que utilizas una contraseña segura con al menos 11 caracteres.",
         "retypePassword": "Escribe la contraseña de nuevo"
     },
     "setSeedName": {
