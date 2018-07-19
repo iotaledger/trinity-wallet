@@ -1,50 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
   <testsuite name="fastlane.lanes">
-
-
-
-
-
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.001635">
-
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.00175">
-
+    
+    
+    
+      
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.001287">
+        
       </testcase>
-
-
-
-      <testcase classname="fastlane.lanes" name="1: load_json" time="0.00142">
-
-      <testcase classname="fastlane.lanes" name="1: clean_build_artifacts" time="0.001628">
-
+    
+      
+      <testcase classname="fastlane.lanes" name="1: load_json" time="0.001476">
+        
       </testcase>
-
-
-
-      <testcase classname="fastlane.lanes" name="2: increment_build_number" time="6.617884">
-
-      <testcase classname="fastlane.lanes" name="2: get_build_number" time="3.211103">
-
+    
+      
+      <testcase classname="fastlane.lanes" name="2: increment_build_number" time="2.195202">
+        
       </testcase>
-
-
-
-      <testcase classname="fastlane.lanes" name="3: increment_version_number" time="0.707757">
-
-      <testcase classname="fastlane.lanes" name="3: download_dsyms" time="56.400452">
-
+    
+      
+      <testcase classname="fastlane.lanes" name="3: increment_version_number" time="0.739403">
+        
       </testcase>
-
-
-      <testcase classname="fastlane.lanes" name="4: upload_symbols_to_bugsnag" time="13.670649">
-
-      </testcase>
-
-
-      <testcase classname="fastlane.lanes" name="5: clean_build_artifacts" time="0.004387">
-
-      </testcase>
-
+    
   </testsuite>
 </testsuites>
