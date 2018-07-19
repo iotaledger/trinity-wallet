@@ -179,10 +179,10 @@
         "passwordsDoNotMatch": "Wachtwoorden komen niet overeen",
         "passwordsDoNotMatchExplanation": "Wachtwoorden komen niet overeen. Probeer het opnieuw.",
         "passwordTooShort": "Het wachtwoord is te kort",
-        "passwordTooShortExplanation": "Uw wachtwoord moet minstens 12 tekens bevatten. Probeer het opnieuw.",
+        "passwordTooShortExplanation": "Uw wachtwoord moet minstens 11 tekens bevatten. Probeer het opnieuw.",
         "oldPassword": "U kunt uw oude wachtwoord niet hergebruiken",
         "oldPasswordExplanation": "U kunt uw oude wachtwoord niet opnieuw gebruiken. Probeer het opnieuw met een ander wachtwoord.",
-        "ensureStrongPassword": "Zorg ervoor dat u een sterk wachtwoord gebruikt van tenminste 12 karakters.",
+        "ensureStrongPassword": "Zorg ervoor dat u een sterk wachtwoord gebruikt van tenminste 11 karakters.",
         "currentPassword": "Huidig ​​wachtwoord",
         "newPassword": "Nieuw Wachtwoord",
         "confirmPassword": "Bevestig Nieuw Wachtwoord",
@@ -367,7 +367,7 @@
         "passwordMismatchExplanation": "Het ingevoerde wachtwoord is onjuist. Probeer het nogmaals.",
         "nowWeNeedTo": "Nu gaan we een wachtwoord instellen.",
         "anEncryptedCopy": "Een gecodeerde kopie van uw seed wordt opgeslagen op uw apparaat. U gebruikt dit wachtwoord voor toegang tot uw portemonnee in de toekomst.",
-        "ensure": "Zorg ervoor u een sterk wachtwoord gebruikt van ten minste 12 karakters.",
+        "ensure": "Zorg ervoor u een sterk wachtwoord gebruikt van ten minste 11 karakters.",
         "retypePassword": "Herhaal wachtwoord"
     },
     "setSeedName": {

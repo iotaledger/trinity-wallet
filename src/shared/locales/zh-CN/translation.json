@@ -182,7 +182,7 @@
         "passwordTooShortExplanation": "Your password must be at least 8 characters. Please try again.",
         "oldPassword": "无法使用旧密码",
         "oldPasswordExplanation": "无法将旧密码设置为新密码。请尝试输入新密码。",
-        "ensureStrongPassword": "请您确保使用至少 12 个字符的强密码。",
+        "ensureStrongPassword": "请您确保使用至少 11 个字符的强密码。",
         "currentPassword": "当前密码",
         "newPassword": "新密码",
         "confirmPassword": "确认新密码",
@@ -367,7 +367,7 @@
         "passwordMismatchExplanation": "您输入的密码不匹配。请再试一次。",
         "nowWeNeedTo": "现在我们需要设置一个密码。",
         "anEncryptedCopy": "您的种子的加密副本将存储在您的设备上。将来您将使用此密码访问您的钱包。",
-        "ensure": "请您确保使用至少 12 个字符的强密码。",
+        "ensure": "请您确保使用至少 11 个字符的强密码。",
         "retypePassword": "请重新输入密码"
     },
     "setSeedName": {
