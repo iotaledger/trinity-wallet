@@ -494,7 +494,7 @@
         "add": "新增",
         "nodeFieldEmpty": "文字欄為空",
         "nodeFieldEmptyExplanation": "請輸入自訂節點。",
-        "invalidURL": "Please enter a valid URL."
+        "invalidURL": "請輸入有效的 URL。"
     },
     "addNewAccount": {
         "useExistingSeed": "使用現有的種子碼",
