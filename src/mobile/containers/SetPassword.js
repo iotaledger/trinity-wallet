@@ -13,7 +13,7 @@ import {
 import { clearWalletData, clearSeed, setPassword } from 'iota-wallet-shared-modules/actions/wallet';
 import { passwordReasons } from 'iota-wallet-shared-modules/libs/password';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import zxcvbn from 'zxcvbn';
+import { zxcvbn } from 'iota-wallet-shared-modules/libs/exports';
 import CustomTextInput from '../components/CustomTextInput';
 import {
     hasDuplicateSeed,

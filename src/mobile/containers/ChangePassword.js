@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
-import zxcvbn from 'zxcvbn';
+import { zxcvbn } from 'iota-wallet-shared-modules/libs/exports';
 import { setPassword, setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { passwordReasons } from 'iota-wallet-shared-modules/libs/password';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
