@@ -3,7 +3,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import zxcvbn from 'zxcvbn';
+import { zxcvbn } from 'libs/exports';
 
 import { generateAlert } from 'actions/alerts';
 

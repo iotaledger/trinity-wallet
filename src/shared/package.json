@@ -32,7 +32,8 @@
         "reselect": "^3.0.1",
         "tinycolor2": "^1.4.1",
         "url-parse": "^1.2.0",
-        "valid-url": "^1.0.9"
+        "valid-url": "^1.0.9",
+        "zxcvbn": "^4.4.2"
     },
     "devDependencies": {
         "babel-core": "^6.26.0",
