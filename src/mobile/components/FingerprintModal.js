@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
         borderRadius: GENERAL.borderRadius,
         borderWidth: 2,
         paddingVertical: height / 18,
-        paddingHorizontal: width / 8,
+        paddingHorizontal: width / 10,
     },
     modalText: {
         fontFamily: Fonts.secondary,
