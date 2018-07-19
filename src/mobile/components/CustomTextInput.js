@@ -3,7 +3,6 @@ import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-nativ
 import PropTypes from 'prop-types';
 import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
-import { isAndroid } from '../utils/device';
 import { Icon } from '../theme/icons.js';
 
 const styles = StyleSheet.create({
@@ -37,13 +36,16 @@ const styles = StyleSheet.create({
         marginVertical: height / 70,
         flex: 1,
     },
+    conversionTextContainer: {
+        right: width / 7.5,
+        position: 'absolute',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+    },
     conversionText: {
         fontSize: GENERAL.fontSize4,
         fontFamily: 'SourceSansPro-Light',
         backgroundColor: 'transparent',
-        position: 'absolute',
-        top: isAndroid ? height / 60 : height / 49,
-        right: width / 7.5,
     },
     widgetButton: {
         alignItems: 'center',
@@ -199,9 +201,13 @@ class CustomTextInput extends Component {
     }
 
     renderCurrencyConversion(conversionText) {
-        const { theme } = this.props;
+        const { theme, height } = this.props;
 
-        return <Text style={[styles.conversionText, { color: theme.input.alt }]}>{conversionText}</Text>;
+        return (
+            <View style={[styles.conversionTextContainer, { height }]}>
+                <Text style={[styles.conversionText, { color: theme.input.alt }]}>{conversionText}</Text>
+            </View>
+        );
     }
 
     render() {
