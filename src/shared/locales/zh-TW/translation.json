@@ -179,10 +179,10 @@
         "passwordsDoNotMatch": "密碼不符",
         "passwordsDoNotMatchExplanation": "密碼不符，請再試一次。",
         "passwordTooShort": "密碼過短",
-        "passwordTooShortExplanation": "你的密碼必須至少有 12 個字元長，請再試一次。",
+        "passwordTooShortExplanation": "你的密碼必須至少有 11 個字元長，請再試一次。",
         "oldPassword": "無法設置舊密碼",
         "oldPasswordExplanation": "無法將舊密碼設置為新密碼，請嘗試輸入新的密碼。",
-        "ensureStrongPassword": "請確認您使用的密碼強度足夠且至少 12 個字元。",
+        "ensureStrongPassword": "請確認您使用的密碼強度足夠且至少 11 個字元。",
         "currentPassword": "目前密碼",
         "newPassword": "新密碼",
         "confirmPassword": "確認新密碼",
@@ -367,7 +367,7 @@
         "passwordMismatchExplanation": "您輸入的密碼不符，請再試一次。",
         "nowWeNeedTo": "現在我們需要設置密碼。",
         "anEncryptedCopy": "裝置上將會儲存一份您加密過的種子碼。未來您需要這份密碼來使用錢包。",
-        "ensure": "請確認您使用的密碼強度足夠且至少 12 個字元。",
+        "ensure": "請確認您使用的密碼強度足夠且至少 11 個字元。",
         "retypePassword": "重新輸入密碼"
     },
     "setSeedName": {
@@ -494,7 +494,7 @@
         "add": "新增",
         "nodeFieldEmpty": "文字欄為空",
         "nodeFieldEmptyExplanation": "請輸入自訂節點。",
-        "invalidURL": "Please enter a valid URL."
+        "invalidURL": "請輸入有效的 URL。"
     },
     "addNewAccount": {
         "useExistingSeed": "使用現有的種子碼",

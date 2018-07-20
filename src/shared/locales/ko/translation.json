@@ -179,10 +179,10 @@
         "passwordsDoNotMatch": "비밀번호가 일치하지 않음",
         "passwordsDoNotMatchExplanation": "비밀번호가 일치하지 않습니다. 다시 시도해 주세요.",
         "passwordTooShort": "비밀번호가 너무 짧음",
-        "passwordTooShortExplanation": "비밀번호는 최소 12글자로 구성되어야 합니다. 다시 시도해 주세요.",
+        "passwordTooShortExplanation": "비밀번호는 최소 11글자로 구성되어야 합니다. 다시 시도해 주세요.",
         "oldPassword": "이전 비밀번호 재사용 불가",
         "oldPasswordExplanation": "이전 비밀번호를 새 비밀번호로 사용할 수 없습니다. 새로운 비밀번호로 다시 시도해 주세요.",
-        "ensureStrongPassword": "최소 12글자로 구성된 비밀번호를 사용해 주세요.",
+        "ensureStrongPassword": "최소 11글자로 구성된 비밀번호를 사용해 주세요.",
         "currentPassword": "현재 비밀번호",
         "newPassword": "새 비밀번호",
         "confirmPassword": "새 비밀번호 확인",
@@ -367,7 +367,7 @@
         "passwordMismatchExplanation": "비밀번호가 일치하지 않습니다. 다시 시도해 주세요.",
         "nowWeNeedTo": "이제 비밀번호를 설정해야 합니다.",
         "anEncryptedCopy": "기기에 암호화된 시드가 저장됩니다. 입력하신 비밀번호가 있어야 지갑을 사용할 수 있습니다.",
-        "ensure": "최소 12글자로 구성된 비밀번호를 사용해야 합니다.",
+        "ensure": "최소 11글자로 구성된 비밀번호를 사용해야 합니다.",
         "retypePassword": "비밀번호 다시 입력"
     },
     "setSeedName": {

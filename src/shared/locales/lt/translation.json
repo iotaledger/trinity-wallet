@@ -179,10 +179,10 @@
         "passwordsDoNotMatch": "Slaptažodžiai nesutampa",
         "passwordsDoNotMatchExplanation": "Slaptažodžiai nesutampa. Bandykite dar kartą.",
         "passwordTooShort": "Slaptažodis per trumpas",
-        "passwordTooShortExplanation": "Jūsų slaptažodis turi susidėti iš mažiausiai 12 simbolių. Bandykite dar kartą.",
+        "passwordTooShortExplanation": "Jūsų slaptažodis turi susidėti iš mažiausiai 11 simbolių. Bandykite dar kartą.",
         "oldPassword": "Seno slaptažodžio naudoti negalima",
         "oldPasswordExplanation": "Seno slaptažodžio negalima naudoti kaip naujo. Sugalvokite naują slaptažodį.",
-        "ensureStrongPassword": "Įsitikinkite, kad jūsų slaptažodis pakankamai stiprus, iš mažiausiai 12 simbolių.",
+        "ensureStrongPassword": "Įsitikinkite, kad jūsų slaptažodis pakankamai stiprus, iš mažiausiai 11 simbolių.",
         "currentPassword": "Dabartinis slaptažodis",
         "newPassword": "Naujas slaptažodis",
         "confirmPassword": "Pakartokite naują slaptažodį",
@@ -367,7 +367,7 @@
         "passwordMismatchExplanation": "Įvesti slaptažodžiai nesutampa. Bandykite dar kartą.",
         "nowWeNeedTo": "Sukurkite savo slaptažodį.",
         "anEncryptedCopy": "Užšifruota jūsų užrakto kopija bus laikoma jūsų įrenginyje. Nuo šiol prisijungiant prie piniginės, naudokitės šiuo slaptažodžiu.",
-        "ensure": "Įsitikinkite, kad jūsų slaptažodis pakankamai stiprus, iš mažiausiai 12 simbolių.",
+        "ensure": "Įsitikinkite, kad jūsų slaptažodis pakankamai stiprus, iš mažiausiai 11 simbolių.",
         "retypePassword": "Pakartokite slaptažodį"
     },
     "setSeedName": {
