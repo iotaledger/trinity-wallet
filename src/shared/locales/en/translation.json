@@ -17,24 +17,19 @@
         "keyReuseError": "You cannot send to an address that has already been spent from.",
         "invalidResponse": "Node error",
         "invalidResponseExplanation": "The node returned an error. Try changing node.",
-        "invalidResponsePollingExplanation": "The node returned an error while polling. Try changing node.",
         "invalidResponseFetchingAccount":
             "The node returned an error while fetching your account information. Try changing node.",
-        "invalidResponseSendingTransfer": "The node returned an error while sending the transfer. Try changing node.",
         "nodeOutOfSync": "Node out of sync",
         "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
         "thisNodeOutOfSync": "This node is out of sync. Please change node or try again.",
         "seed": "Seed",
         "checksum": "Checksum",
-        "back": "BACK",
+        "back": "Back",
         "goBack": "Go back",
         "goBackStep": "Go back a step",
-        "backLowercase": "Back",
-        "done": "DONE",
-        "doneLowercase": "Done",
+        "done": "Done",
         "prev": "PREV",
-        "next": "NEXT",
-        "nextLowerCase": "Next",
+        "next": "Next",
         "apply": "Apply",
         "save": "Save",
         "close": "Close",
@@ -51,8 +46,6 @@
         "shareSeed": "Share seed",
         "proceed": "Proceed",
         "qr": "QR",
-        "notAvailable": "This function is not available",
-        "notAvailableExplanation": "It will be added at a later stage.",
         "enterSeed": "Please enter your seed.",
         "mainWallet": "MAIN ACCOUNT",
         "secondWallet": "SECOND ACCOUNT",
@@ -61,14 +54,10 @@
         "fifthWallet": "FIFTH ACCOUNT",
         "sixthWallet": "SIXTH ACCOUNT",
         "otherWallet": "OTHER ACCOUNT",
-        "yes": "YES",
-        "no": "NO",
-        "yesLowerCase": "Yes",
-        "noLowerCase": "No",
-        "okay": "OKAY",
-        "okayLowercase": "Okay",
+        "yes": "Yes",
+        "no": "No",
+        "okay": "Okay",
         "password": "Password",
-        "passwordOrFingerprint": "Password or fingerprint",
         "unrecognisedPassword": "Unrecognised password",
         "unrecognisedPasswordExplanation": "The password was not recognised. Please try again.",
         "syncInProgress": "Syncing in progress",
@@ -99,8 +88,6 @@
         "reattached": "Successfully reattached transaction",
         "reattachedExplanation": "Reattached transaction with hash {{hash}}",
         "promotingTransaction": "Promoting transaction",
-        "autopromoting": "Autopromoting transfer",
-        "autopromotingExplanation": "Promoting transaction with hash {{hash}}",
         "rebroadcastError": "Could not rebroadcast transaction",
         "promoted": "Successfully promoted transaction",
         "promotedExplanation": "Promoted transaction with hash {{hash}}",
@@ -125,12 +112,9 @@
         "snapshotTransitionInProgressExplanation": "Please wait until the transition is complete.",
         "checkForUpdates": "Check for Updates",
         "account": "Account",
-        "enterPasswordToAccessSettings": "Enter your password to access account settings",
         "enterYourPassword": "Enter your password",
         "changeNode": "Change Node",
         "addCustomNode": "Add Custom Node",
-        "nodeChanged": "Node changed",
-        "nodeChangedExplanation": "The node has been changed successfully.",
         "nodeMustUseHTTPS": "Invalid node (non HTTPS)",
         "nodeMustUseHTTPSExplanation": "Only custom nodes using HTTPS are allowed.",
         "nodeDuplicated": "Duplicated node",
@@ -170,7 +154,6 @@
             "Seeds must be {{maxLength}} characters long. Your seed is currently {{currentLength}} characters long. Please try again.",
         "nameInUse": "Account name already in use",
         "nameInUseExplanation": "Please use a unique account name for your seed.",
-        "enterAccountName": "Enter an account name.",
         "accountNameTooLong": "Account name too long",
         "accountNameTooLongExplanation": "Account name maximum length is {{maxLength}} characters.",
         "accountName": "Account name",
@@ -180,8 +163,6 @@
         "seedInUseExplanation": "This seed is already linked to your wallet. Please use a different one."
     },
     "changePassword": {
-        "oops": "Oops! Something went wrong",
-        "oopsExplanation": "Looks like something went wrong while updating your password. Please try again.",
         "passwordUpdated": "Password updated",
         "passwordUpdatedExplanation": "Your password has been successfully updated.",
         "incorrectPassword": "Incorrect password",
@@ -221,7 +202,6 @@
             "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
         "passwordMismatch": "Passwords do not match",
         "passwordMismatchExplanation": "The passwords you have entered do not match. Please try again.",
-        "nowWeNeedTo": "Now we need to set up a password.",
         "anEncryptedCopy":
             "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
         "retypePassword": "Retype Password"
@@ -231,9 +211,6 @@
         "seedClearedExplanation": "The clipboard has been cleared for your security.",
         "seedCopied": "Copied seed to clipboard",
         "seedCopiedExplanation": "The seed will be cleared once you press \"DONE\" or 60 seconds have passed.",
-        "clickToCopy": "Click the button below and copy your seed to a password manager.",
-        "clickToSecurelyShare": "Click the button below to securely share your seed to a password manager.",
-        "doNotStore": "Do not store your seed in plain text.",
         "copyToClipboard": "Copy Seed",
         "shareSeed": "Share your seed to a secure password manager",
         "storeEncrypted": "Store your seed encrypted in a password manager.",
@@ -274,11 +251,8 @@
         "emptyPassword": "Empty password",
         "emptyPasswordExplanation": "You must enter a password to log in. Please try again.",
         "enterPassword": "Please enter your password.",
-        "useSeed": "USE SEED",
         "login": "Log In",
-        "selectDifferentNode": "Do you want to select a different node?",
         "setNode": "Set Node",
-        "cannotConnect": "Cannot connect to IOTA node.",
         "whyBiometricDisabled": "Why is biometric authentication disabled?",
         "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
@@ -286,7 +260,6 @@
         "loadingFirstTime": "Loading seed for the first time.",
         "thisMayTake": "This may take a while.",
         "doNotMinimise": "Do not minimise or close the app.",
-        "youMayNotice": "You may notice your device slowing down.",
         "takingAWhile": "This seems to be taking a while"
     },
     "newSeedSetup": {
@@ -306,11 +279,8 @@
             "The wallet is now set up and ready to use. If you need to make any changes in the future, look in the Settings menu."
     },
     "paperWallet": {
-        "clickToPrint": "Click the button below to print a paper copy of your seed.",
-        "storeSafely": "Store it safely.",
         "neverShare": "Never share your seed with anyone.",
         "iotaLogo": "IOTA logo",
-        "printWallet": "Print Paper Wallet",
         "print": "PRINT",
         "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
         "publicInsecure": "But printing on public wifi or a public printer is insecure.",
@@ -326,7 +296,6 @@
         "addressCopied": "Address copied",
         "addressCopiedExplanation": "Your address has been copied to the clipboard.",
         "generateNewAddress": "New Address",
-        "removeMessage": "REMOVE MESSAGE",
         "noAddresses": "NO ADDRESSES",
         "spent": "Spent",
         "missingPermission": "File system permission required",
@@ -341,7 +310,6 @@
         "paperWallet": "Paper Wallet",
         "writeYourSeedDown": "Write your seed down",
         "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
-        "iHaveBackedUpMySeed": "I have backed up my seed",
         "letsWriteDownYourSeed": "Lets write down your seed",
         "youCanHighlightCharacters": "You can highlight 9 characters at a time",
         "printBlankWallet": "Print a blank wallet",
@@ -359,7 +327,6 @@
         "enterYourSeed": "Enter your seed",
         "incorrectSeed": "Incorrect seed",
         "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
-        "thisIsACheck": "This is a check to make sure you backed up your seed.",
         "ifYouHaveNotSaved": "If you have not backed up your seed, please go back and do so.",
         "enterSeedBelow": "Enter your newly created seed below to confirm you have backed it up correctly"
     },
@@ -371,9 +338,6 @@
         "invalidAddressExplanationGeneric": "Valid addresses should be 90 characters and contain only A-Z or 9.",
         "notEnoughFunds": "Insufficient funds",
         "notEnoughFundsExplanation": "You do not have enough IOTA to complete this transfer.",
-        "keyReuse": "Key reuse",
-        "keyReuseExplanation":
-            "The address you are trying to send to has already been used. Please try another address.",
         "recipientAddress": "Recipient address",
         "amount": "Amount",
         "max": "MAX",
@@ -411,8 +375,6 @@
     "settings": {
         "transferSending": "Transfer sending",
         "transferSendingExplanation": "Please wait until your transfer has been sent.",
-        "generatingAddress": "Generating receive address",
-        "generatingAddressExplanation": "Please wait until your address has been generated.",
         "mode": "Mode",
         "theme": "Theme",
         "currency": "Currency",
@@ -434,8 +396,6 @@
         "accountDeletedExplanation": "Your account has been removed from the wallet.",
         "cannotPerformAction": "Cannot perform action",
         "cannotPerformActionExplanation": "Go to advanced settings to reset the wallet.",
-        "poorConnection": "Poor connection",
-        "poorConnectionExplanation": "Failed to change currency due to a poor connection.",
         "hide": "Hide",
         "hideOthers": "Hide Others",
         "show": "Show",
@@ -472,7 +432,6 @@
     "walletSetup": {
         "creatingSeed": "Creating a seed",
         "okay": "Okay. Let's set up your wallet!",
-        "doYouAlreadyHaveASeed": "Do you already have a seed that you would like to use?",
         "doYouNeedASeed": "Do you need to create a new seed?",
         "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
         "noIHaveOne": "No, I have one",
@@ -480,14 +439,12 @@
         "explanation":
             "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
         "loseSeed": "But if you lose your seed, you also lose your IOTA.",
-        "keepSafe": "Please keep your seed safe.",
-        "hint": "<0><0>Hint:</0> Click NO if this is your first time using IOTA.</0>"
+        "keepSafe": "Please keep your seed safe."
     },
     "welcome": {
         "thankYou": "Thank you for downloading Trinity"
     },
     "writeSeedDown": {
-        "yourSeedIs": "Your seed is {{maxSeedLength}} characters read from left to right.",
         "writeDownYourSeed":
             "<0> Write down your seed and checksum and </0><1>triple check</1><2> that they are correct.</2>",
         "scrollToBottom": "Scroll to the bottom"
@@ -515,9 +472,7 @@
         "addNewAccount": "Add new account"
     },
     "addCustomNode": {
-        "customNodeAdded": "Custom node added",
         "customNodeCouldNotBeAdded": "Custom node could not be added",
-        "customNodeAddedSuccessfully": "The custom node has been added successfully.",
         "customNode": "Custom node",
         "removeCustomNode": "Remove custom node",
         "invalidNodeResponse": "The node returned an invalid response",
@@ -669,7 +624,6 @@
         "mcap": "MCAP",
         "change": "Change (24h)",
         "volume": "Volume (24h)",
-        "currentValue": "Current value",
         "error": "Error fetching chart data"
     },
     "rootDetection": {
@@ -704,7 +658,6 @@
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Cannot complete snapshot transition",
-        "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
         "transitionComplete": "Snapshot transition complete",
         "transitionCompleteExplanation": "The snapshot transition has completed successfully.",
         "detectedBalance": "Detected balance: {{amount}} {{unit}}",
