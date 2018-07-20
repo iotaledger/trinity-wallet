@@ -125,7 +125,7 @@ class SeedExport extends PureComponent {
                         </p>
                     </section>
                     <footer>
-                        <Button onClick={this.onClose} className="square" variant="secondary">
+                        <Button onClick={this.onClose} className="square" variant="dark">
                             {t('goBack')}
                         </Button>
                         <Button type="submit" variant="primary" className="square">
@@ -160,7 +160,7 @@ class SeedExport extends PureComponent {
                     />
                 </section>
                 <footer>
-                    <Button onClick={this.onClose} className="square" variant="secondary">
+                    <Button onClick={this.onClose} className="square" variant="dark">
                         {t('goBack')}
                     </Button>
                     <Button type="submit" variant="primary" className="square">
