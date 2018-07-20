@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
+import { zxcvbn } from 'iota-wallet-shared-modules/libs/exports';
 import { setPassword, setSetting } from 'iota-wallet-shared-modules/actions/wallet';
+import { passwordReasons } from 'iota-wallet-shared-modules/libs/password';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { changePassword } from '../utils/keychain';
 import { getPasswordHash } from '../utils/crypto';
@@ -98,7 +100,7 @@ class ChangePassword extends Component {
         this.state = {
             currentPassword: '',
             newPassword: '',
-            confirmedNewPassword: '',
+            newPasswordReentry: '',
         };
     }
 
@@ -107,15 +109,17 @@ class ChangePassword extends Component {
     }
 
     isValid(currentPwdHash) {
-        const { currentPassword, newPassword, confirmedNewPassword } = this.state;
+        const { currentPassword, newPassword, newPasswordReentry } = this.state;
         const { password } = this.props;
+        const score = zxcvbn(password);
 
         return (
             currentPwdHash === password &&
             newPassword.length >= 12 &&
-            confirmedNewPassword.length >= 12 &&
-            newPassword === confirmedNewPassword &&
-            newPassword !== currentPassword
+            newPasswordReentry.length >= 12 &&
+            newPassword === newPasswordReentry &&
+            newPassword !== currentPassword &&
+            score.score === 4
         );
     }
 
@@ -147,11 +151,21 @@ class ChangePassword extends Component {
         this.setState({
             currentPassword: '',
             newPassword: '',
-            confirmedNewPassword: '',
+            newPasswordReentry: '',
         });
     }
 
-    renderTextField(ref, value, label, onChangeText, returnKeyType, onSubmitEditing) {
+    renderTextField(
+        ref,
+        value,
+        label,
+        onChangeText,
+        returnKeyType,
+        onSubmitEditing,
+        widget = 'empty',
+        isPasswordValid = false,
+        passwordStrength = 0,
+    ) {
         const { theme } = this.props;
         const props = {
             onRef: ref,
@@ -166,32 +180,43 @@ class ChangePassword extends Component {
             onSubmitEditing,
             value,
             theme,
+            widget,
+            isPasswordValid,
+            passwordStrength,
         };
 
         return <CustomTextInput {...props} />;
     }
 
     renderInvalidSubmissionAlerts(currentPwdHash) {
-        const { currentPassword, newPassword, confirmedNewPassword } = this.state;
+        const { currentPassword, newPassword, newPasswordReentry } = this.state;
         const { password, generateAlert, t } = this.props;
+        const score = zxcvbn(password);
 
         if (currentPwdHash !== password) {
             return generateAlert('error', t('incorrectPassword'), t('incorrectPasswordExplanation'));
-        } else if (newPassword !== confirmedNewPassword) {
+        } else if (newPassword !== newPasswordReentry) {
             return generateAlert('error', t('passwordsDoNotMatch'), t('passwordsDoNotMatchExplanation'));
-        } else if (newPassword.length < 12 || confirmedNewPassword.length < 12) {
+        } else if (newPassword.length < 12 || newPasswordReentry.length < 12) {
             return generateAlert('error', t('passwordTooShort'), t('passwordTooShortExplanation'));
         } else if (newPassword === currentPassword) {
             return generateAlert('error', t('oldPassword'), t('oldPasswordExplanation'));
+        } else if (score.score < 4) {
+            const reason = score.feedback.warning
+                ? t(`changePassword:${passwordReasons[score.feedback.warning]}`)
+                : t('changePassword:passwordTooWeakReason');
+            return this.props.generateAlert('error', t('changePassword:passwordTooWeak'), reason);
         }
 
         return null;
     }
 
     render() {
-        const { currentPassword, newPassword, confirmedNewPassword } = this.state;
+        const { currentPassword, newPassword, newPasswordReentry } = this.state;
         const { t, theme } = this.props;
         const textColor = { color: theme.body.color };
+        const score = zxcvbn(newPassword);
+        const isValid = score.score === 4;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -230,19 +255,24 @@ class ChangePassword extends Component {
                             'next',
                             () => {
                                 if (newPassword) {
-                                    this.confirmedNewPassword.focus();
+                                    this.newPasswordReentry.focus();
                                 }
                             },
+                            'password',
+                            isValid,
+                            score.score,
                         )}
                         {this.renderTextField(
                             (c) => {
-                                this.confirmedNewPassword = c;
+                                this.newPasswordReentry = c;
                             },
-                            confirmedNewPassword,
+                            newPasswordReentry,
                             t('confirmPassword'),
-                            (password) => this.setState({ confirmedNewPassword: password }),
+                            (password) => this.setState({ newPasswordReentry: password }),
                             'done',
                             () => this.changePassword(),
+                            'passwordReentry',
+                            isValid && newPassword === newPasswordReentry,
                         )}
                         <View style={{ flex: 0.2 }} />
                     </View>
@@ -258,7 +288,7 @@ class ChangePassword extends Component {
                         </TouchableOpacity>
                         {currentPassword !== '' &&
                             newPassword !== '' &&
-                            confirmedNewPassword !== '' && (
+                            newPasswordReentry !== '' && (
                                 <TouchableOpacity
                                     onPress={() => this.changePassword()}
                                     hitSlop={{
