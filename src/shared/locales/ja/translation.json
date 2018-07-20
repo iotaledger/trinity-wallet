@@ -187,7 +187,7 @@
         "newPassword": "新しいパスワード",
         "confirmPassword": "新しいパスワードを確認",
         "passwordTooWeak": "パスワードが弱すぎます。",
-        "passwordTooWeakReason": "パスワードの安全度が非常に低いです。 言葉の組み合わせを使用し、一般的なフレーズ、名前、または日付を避けてください。",
+        "passwordTooWeakReason": "パスワードの安全性が非常に低いです。 言葉の組み合わせを使用し、一般的なフレーズ、名前、または日付を避けてください。",
         "reasonRow": "直線的なキー列のパスワードは簡単に推測されてしまいます。",
         "reasonPattern": "短いキーパターンによるパスワードは簡単に推測されてしまいます。",
         "reasonNames": "一般的な名前と名字は簡単に推測されてしまいます。",
@@ -195,12 +195,12 @@
         "reasonRepeats2": "「abcabcabc」のような繰り返しは、 「abc」より推測するのが少し難しいです。",
         "reasonSequence": "「abc」や「54321」のような順列は簡単に推測されてしまいます。",
         "reasonYears": "今年の西暦は簡単に推測されてしまいます。",
-        "reasonDates": "Dates are often easy to guess.",
-        "reasonTop10": "This is a top 10 common password.",
-        "reasonTop100": "This is a top 100 common password.",
-        "reasonCommon": "This is a very common password.",
-        "reasonSimilar": "This is similar to a commonly-used password.",
-        "reasonWord": "A single word is easy to guess."
+        "reasonDates": "日付は簡単に推測されてしまいます。",
+        "reasonTop10": "このパスワードはよく使われるパスワードトップ10に入っています。",
+        "reasonTop100": "このパスワードはよく使われるパスワードトップ100に入っています。",
+        "reasonCommon": "このパスワードはとてもよく使われているパスワードです。",
+        "reasonSimilar": "このパスワードはよく使われるパスワードに似ています。",
+        "reasonWord": "1つの単語によるパスワードは簡単に推測されてしまいます。"
     },
     "setPassword": {
         "choosePassword": "新しいパスワードを選択",
