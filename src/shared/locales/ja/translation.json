@@ -188,7 +188,7 @@
         "confirmPassword": "新しいパスワードを確認",
         "passwordTooWeak": "パスワードが弱すぎます。",
         "passwordTooWeakReason": "パスワードの安全度が非常に低いです。 言葉の組み合わせを使用し、一般的なフレーズ、名前、または日付を避けてください。",
-        "reasonRow": "Straight rows of keys are easy to guess.",
+        "reasonRow": "直線的なキー列のパスワードは簡単に推測されてしまいます。",
         "reasonPattern": "Short patterns of keys are easy to guess.",
         "reasonNames": "Common names and surnames are easy to guess.",
         "reasonRepeats": "Repeats like 'aaa' are easy to guess.",
