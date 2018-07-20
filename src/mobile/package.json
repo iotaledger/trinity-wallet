@@ -1,6 +1,6 @@
 {
   "name": "iota-mobile-wallet",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",

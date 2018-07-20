@@ -179,10 +179,10 @@
         "passwordsDoNotMatch": "Passordene er ikke like",
         "passwordsDoNotMatchExplanation": "Passordene er ikke like. Prøv igjen.",
         "passwordTooShort": "Passordet er for kort",
-        "passwordTooShortExplanation": "Passordet ditt må være minst 12 tegn. Prøv igjen.",
+        "passwordTooShortExplanation": "Passordet ditt må være minst 11 tegn. Prøv igjen.",
         "oldPassword": "Kan ikke bruke et passord som er benyttet tidligere",
         "oldPasswordExplanation": "Du kan ikke bruke det gamle passordet som ditt nye passord. Prøv på nytt med et nytt passord.",
-        "ensureStrongPassword": "Sjekk at du bruker et sterkt passord med minst 12 tegn.",
+        "ensureStrongPassword": "Sjekk at du bruker et sterkt passord med minst 11 tegn.",
         "currentPassword": "Nåværende passord",
         "newPassword": "Nytt passord",
         "confirmPassword": "Bekreft nytt passord",
@@ -367,7 +367,7 @@
         "passwordMismatchExplanation": "Passordene du anga samsvarer ikke. Prøv på nytt.",
         "nowWeNeedTo": "Nå må vi sette opp et passord.",
         "anEncryptedCopy": "En kryptert kopi av hovednøkkelen blir lagret på din enhet. Du vil bruke dette passordet for å åpne lommeboken i fremtiden.",
-        "ensure": "Forsikre deg om at du bruker et sterkt passord med minst 12 tegn.",
+        "ensure": "Forsikre deg om at du bruker et sterkt passord med minst 11 tegn.",
         "retypePassword": "Skriv inn passordet på nytt"
     },
     "setSeedName": {

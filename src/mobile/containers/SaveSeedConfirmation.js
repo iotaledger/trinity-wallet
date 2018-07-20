@@ -1,7 +1,7 @@
 import map from 'lodash/map';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
 import whiteCheckboxCheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-checked-white.png';
 import whiteCheckboxUncheckedImagePath from 'iota-wallet-shared-modules/images/checkbox-unchecked-white.png';
@@ -79,6 +79,9 @@ const styles = StyleSheet.create({
         fontSize: width / 27.6,
         textAlign: 'left',
         backgroundColor: 'transparent',
+    },
+    infoBox: {
+        maxHeight: height / 3.7,
     },
 });
 
@@ -196,7 +199,7 @@ class SaveSeedConfirmation extends Component {
         const textColor = { color: body.color };
 
         return (
-            <View>
+            <ScrollView style={styles.infoBox} scrollEnabled={isAndroid}>
                 <Text style={[styles.infoText, textColor, { paddingTop: height / 80 }]}>
                     <Text style={styles.infoTextBold}>{t('reenterSeed')}</Text>
                 </Text>
@@ -210,7 +213,7 @@ class SaveSeedConfirmation extends Component {
                     </Text>
                 )}
                 <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>{t('pleaseConfirm')}</Text>
-            </View>
+            </ScrollView>
         );
     }
 
@@ -232,7 +235,7 @@ class SaveSeedConfirmation extends Component {
                 <View style={styles.midContainer}>
                     <View style={{ flex: 0.15 }} />
                     <InfoBox body={body} width={width / 1.1} text={this.renderInfoBoxContent()} />
-                    <View style={{ flex: 0.3 }} />
+                    <View style={{ flex: 0.15 }} />
                     <View style={styles.bottomMidContainer}>
                         {this.state.showCheckbox ? (
                             <View>
