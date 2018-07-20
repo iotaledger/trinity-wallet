@@ -3,6 +3,7 @@ const electron = require('electron');
 const initMenu = require('./lib/Menu.js');
 const path = require('path');
 const URL = require('url');
+const fs = require('fs');
 const electronSettings = require('electron-settings');
 
 app.commandLine.appendSwitch('js-flags', '--expose-gc');
@@ -75,7 +76,7 @@ function createWindow() {
         backgroundColor: settings ? settings.theme.body.bg : '#1a373e',
         webPreferences: {
             nodeIntegration: false,
-            preload: path.resolve(__dirname, 'lib/Window.js'),
+            preload: path.resolve(__dirname, `lib/preload/${devMode ? 'development' : 'production'}.js`),
             disableBlinkFeatures: 'Auxclick',
             webviewTag: false,
         },
@@ -210,6 +211,7 @@ app.on('activate', () => {
 });
 
 app.setAsDefaultProtocolClient('iota');
+
 app.on('open-url', (event, url) => {
     event.preventDefault();
     deeplinkingUrl = url;
@@ -222,5 +224,17 @@ ipc.on('request.deepLink', () => {
     if (deeplinkingUrl) {
         windows.main.webContents.send('url-params', deeplinkingUrl);
         deeplinkingUrl = null;
+    }
+});
+
+ipc.on('screenshot', (e, fileName) => {
+    if (devMode && windows.main) {
+        windows.main.capturePage((image) => {
+            fs.writeFile(fileName, image.toPNG(), (err) => {
+                if (err) {
+                    throw err;
+                }
+            });
+        });
     }
 });

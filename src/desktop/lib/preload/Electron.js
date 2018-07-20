@@ -1,7 +1,7 @@
 const { ipcRenderer: ipc, shell, clipboard } = require('electron');
 const { dialog } = require('electron').remote;
 const currentWindow = require('electron').remote.getCurrentWindow();
-const packageFile = require('../package.json');
+const packageFile = require('../../package.json');
 const machineUuid = require('machine-uuid');
 const keytar = require('keytar');
 const fs = require('fs');
@@ -9,7 +9,7 @@ const settings = require('electron-settings');
 const Kerl = require('iota.lib.js/lib/crypto/kerl/kerl');
 const Curl = require('iota.lib.js/lib/crypto/curl/curl');
 const Converter = require('iota.lib.js/lib/crypto/converter/converter');
-const kdbx = require('./kdbx');
+const kdbx = require('../kdbx');
 
 const trytesTrits = [
     [0, 0, 0],
@@ -208,7 +208,11 @@ const Electron = {
 
             const path = await dialog.showSaveDialog(currentWindow, {
                 title: 'Export keyfile',
-                defaultPath: `trinity-${now.toISOString().slice(0,16).replace(/[-:]/g,'').replace('T','-')}.kdbx`,
+                defaultPath: `trinity-${now
+                    .toISOString()
+                    .slice(0, 16)
+                    .replace(/[-:]/g, '')
+                    .replace('T', '-')}.kdbx`,
                 buttonLabel: 'Export',
             });
 
@@ -292,16 +296,4 @@ const Electron = {
     _eventListeners: {},
 };
 
-// Disable default drag&drop
-document.addEventListener('dragover', (e) => e.preventDefault());
-document.addEventListener('drop', (e) => e.preventDefault());
-
-// Disable eval
-// eslint-disable-next-line
-/* TODO: Reenable for production code only
-window.eval = global.eval = function() {
-    throw new Error('Eval support disabled');
-};
-*/
-
-global.Electron = Electron;
+module.exports = Electron;
