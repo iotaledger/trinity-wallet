@@ -190,30 +190,42 @@
         "passwordsDoNotMatch": "Passwords do not match",
         "passwordsDoNotMatchExplanation": "Passwords do not match. Please try again.",
         "passwordTooShort": "Password is too short",
-        "passwordTooShortExplanation": "Your password must be at least 12 characters. Please try again.",
+        "passwordTooShortExplanation": "Your password must be at least 11 characters. Please try again.",
         "oldPassword": "Cannot set old password",
         "oldPasswordExplanation":
             "You cannot use the old password as your new password. Please try again with a new password.",
-        "ensureStrongPassword": "Ensure you use a strong password of at least 12 characters.",
+        "ensureStrongPassword": "Ensure you use a strong password of at least 11 characters.",
         "currentPassword": "Current Password",
         "newPassword": "New Password",
         "confirmPassword": "Confirm New Password",
         "passwordTooWeak": "Password too weak",
         "passwordTooWeakReason":
-            "Your password is too weak. Use a combination of words, and avoid common phrases, names or dates",
-        "reasonRow": "Straight rows of keys are easy to guess",
-        "reasonPattern": "Short patterns of keys are easy to guess",
-        "reasonNames": "Common names and surnames are easy to guess",
-        "reasonRepeats": "Repeats like 'aaa' are easy to guess",
-        "reasonRepeats2": "Repeats like 'abcabcabc' are only slightly harder to guess than 'abc'",
-        "reasonSequence": "Sequences like abc or 54321 are easy to guess",
-        "reasonYears": "Recent years are easy to guess",
-        "reasonDates": "Dates are often easy to guess",
-        "reasonTop10": "This is a top 10 common password",
-        "reasonTop100": "This is a top 100 common password",
-        "reasonCommon": "This is a very common password",
-        "reasonSimilar": "This is similar to a commonly-used password",
-        "reasonWord": "A single word is easy to guess"
+            "Your password is too weak. Use a combination of words, and avoid common phrases, names or dates.",
+        "reasonRow": "Straight rows of keys are easy to guess.",
+        "reasonPattern": "Short patterns of keys are easy to guess.",
+        "reasonNames": "Common names and surnames are easy to guess.",
+        "reasonRepeats": "Repeats like 'aaa' are easy to guess.",
+        "reasonRepeats2": "Repeats like 'abcabcabc' are only slightly harder to guess than 'abc'.",
+        "reasonSequence": "Sequences like abc or 54321 are easy to guess.",
+        "reasonYears": "Recent years are easy to guess.",
+        "reasonDates": "Dates are often easy to guess.",
+        "reasonTop10": "This is a top 10 common password.",
+        "reasonTop100": "This is a top 100 common password.",
+        "reasonCommon": "This is a very common password.",
+        "reasonSimilar": "This is similar to a commonly-used password.",
+        "reasonWord": "A single word is easy to guess."
+    },
+    "setPassword": {
+        "choosePassword": "Choose a new password",
+        "passwordTooShort": "Password is too short",
+        "passwordTooShortExplanation":
+            "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
+        "passwordMismatch": "Passwords do not match",
+        "passwordMismatchExplanation": "The passwords you have entered do not match. Please try again.",
+        "nowWeNeedTo": "Now we need to set up a password.",
+        "anEncryptedCopy":
+            "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
+        "retypePassword": "Retype Password"
     },
     "copyToClipboard": {
         "seedCleared": "Clipboard cleared",
@@ -383,19 +395,6 @@
         "addressPasteExplanation":
             "It looks like you have pasted an address. Make sure that the address matches the one you want to send to.",
         "invalid": "INVALID"
-    },
-    "setPassword": {
-        "choosePassword": "Choose a new password",
-        "passwordTooShort": "Password is too short",
-        "passwordTooShortExplanation":
-            "Your password must be at least {{minLength}} characters. It is currently {{currentLength}} characters long. Please try again.",
-        "passwordMismatch": "Passwords do not match",
-        "passwordMismatchExplanation": "The passwords you have entered do not match. Please try again.",
-        "nowWeNeedTo": "Now we need to set up a password.",
-        "anEncryptedCopy":
-            "An encrypted copy of your seed will be stored on your device. You will use this password to access your wallet in future.",
-        "ensure": "Ensure you use a strong password of at least 12 characters.",
-        "retypePassword": "Retype Password"
     },
     "setSeedName": {
         "letsAddName": "Let's add a name",

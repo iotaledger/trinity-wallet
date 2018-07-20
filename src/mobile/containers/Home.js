@@ -260,8 +260,8 @@ class Home extends Component {
     };
 
     keyboardWillShow = (event) => {
-        const { inactive } = this.props;
-        if (inactive) {
+        const { inactive, minimised } = this.props;
+        if (inactive || minimised) {
             return;
         }
         this.handleCloseTopBar();
@@ -289,8 +289,8 @@ class Home extends Component {
     };
 
     keyboardDidShow = () => {
-        const { inactive } = this.props;
-        if (inactive) {
+        const { inactive, minimised } = this.props;
+        if (inactive || minimised) {
             return;
         }
         this.handleCloseTopBar();
@@ -354,19 +354,19 @@ class Home extends Component {
                     <DynamicStatusBar backgroundColor={inactive ? body.bg : bar.hover} isModalActive={isModalActive} />
                     {(!inactive && (
                         <View style={{ flex: 1 }}>
-                            <KeyboardAvoidingView style={styles.midContainer} behavior="padding">
-                                <Animated.View useNativeDriver style={{ flex: this.viewFlex }} />
-                                <View style={{ flex: 4.72 }}>
-                                    {!minimised && (
+                            {(!minimised && (
+                                <KeyboardAvoidingView style={styles.midContainer} behavior="padding">
+                                    <Animated.View useNativeDriver style={{ flex: this.viewFlex }} />
+                                    <View style={{ flex: 4.72 }}>
                                         <TabContent
                                             navigator={navigator}
                                             onTabSwitch={(name) => this.onTabSwitch(name)}
                                             handleCloseTopBar={() => this.handleCloseTopBar()}
                                             isKeyboardActive={isKeyboardActive}
                                         />
-                                    )}
-                                </View>
-                            </KeyboardAvoidingView>
+                                    </View>
+                                </KeyboardAvoidingView>
+                            )) || <View style={styles.midContainer} />}
                             <View style={styles.bottomContainer}>
                                 <Tabs onPress={(name) => this.onTabSwitch(name)} theme={theme}>
                                     <Tab

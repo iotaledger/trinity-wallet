@@ -179,10 +179,10 @@
         "passwordsDoNotMatch": "Paroolid ei kattu",
         "passwordsDoNotMatchExplanation": "Paroolid ei kattu. Palun proovige uuesti.",
         "passwordTooShort": "Parool on liiga lühike",
-        "passwordTooShortExplanation": "Sinu parool peab olema vähemalt 12 tähemärki pikk. Palun proovi uuesti.",
+        "passwordTooShortExplanation": "Sinu parool peab olema vähemalt 11 tähemärki pikk. Palun proovi uuesti.",
         "oldPassword": "Ei saa kasutada vana parooli",
         "oldPasswordExplanation": "You cannot use the old password as your new password. Please try again with a new password.",
-        "ensureStrongPassword": "Veenduge, et kasutate vähemalt 12 tähemärgi pikkust tugevat parooli.",
+        "ensureStrongPassword": "Veenduge, et kasutate vähemalt 11 tähemärgi pikkust tugevat parooli.",
         "currentPassword": "Praegune parool",
         "newPassword": "Uus parool",
         "confirmPassword": "Kinnita uus parool",
@@ -367,7 +367,7 @@
         "passwordMismatchExplanation": "Sisestatud paroolid ei kattu. Palun proovige uuesti.",
         "nowWeNeedTo": "Nüüd peame me parooli panema.",
         "anEncryptedCopy": "Seemne krüpteeritud koopia salvestatakse teie seadmesse. Seda parooli kasutate edaspidi oma rahakotti sisenemiseks.",
-        "ensure": "Veenduge, et kasutate vähemalt 12 tähemärgi pikkust tugevat parooli.",
+        "ensure": "Veenduge, et kasutate vähemalt 11 tähemärgi pikkust tugevat parooli.",
         "retypePassword": "Parool uuesti"
     },
     "setSeedName": {
