@@ -237,8 +237,7 @@ const initMenu = (app, getWindow) => {
                 {
                     label: `${app.getName()} Help`,
                     click: function() {
-                        //TODO: Change to wallet documentation link
-                        shell.openExternal('https://iota.readme.io/docs/what-is-iota');
+                        shell.openExternal('https://docs.iota.works/trinity');
                     },
                 },
             ],

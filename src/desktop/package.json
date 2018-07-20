@@ -126,6 +126,7 @@
     "bugsnag-react": "^1.1.1",
     "curl.lib.js": "^1.0.22",
     "date-fns": "^1.29.0",
+    "electron-screenshot": "^1.0.5",
     "electron-settings": "^3.2.0",
     "iota.lib.js": "^0.4.7",
     "kdbxweb": "^1.2.3",

@@ -36,6 +36,8 @@ class Theme extends PureComponent {
                 }
             });
         });
+
+        document.body.style.background = theme.body.bg;
     }
 
     render() {
