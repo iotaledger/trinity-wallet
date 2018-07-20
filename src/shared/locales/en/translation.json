@@ -738,7 +738,8 @@
     },
     "terms": {
         "termsAndConditions": "Terms & Conditions",
-        "accept": "I accept"
+        "accept": "I accept",
+        "readAllToContinue": "Please read all the text to continue"
     },
     "privacyPolicy": {
         "privacyPolicy": "Privacy Policy",

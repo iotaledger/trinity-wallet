@@ -113,7 +113,7 @@ class Welcome extends React.PureComponent {
                         className="square"
                         variant="primary"
                     >
-                        {step === 'language' ? t('continue') : t('terms:accept')}
+                        {step === 'language' ? t('continue') : (!scrollEnd) ? t('terms:readAllToContinue') : t('terms:accept')}
                     </Button>
                 </footer>
             </form>
