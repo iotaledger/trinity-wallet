@@ -16,7 +16,6 @@ import themes from 'themes/themes';
 
 import Index from 'ui/Index';
 
-import Theme from 'ui/global/Theme';
 import Alerts from 'ui/global/Alerts';
 import Updates from 'ui/global/Updates';
 import Feedback from 'ui/global/Feedback';
@@ -54,7 +53,6 @@ render(
             <I18nextProvider i18n={i18next}>
                 <React.Fragment>
                     <Feedback />
-                    <Theme />
                     <Alerts />
                     <Updates />
                     <Router>

@@ -15,11 +15,11 @@ import { getUpdateData, updateTheme } from 'actions/settings';
 import { fetchNodeList } from 'actions/polling';
 import { disposeOffAlert, generateAlert } from 'actions/alerts';
 
+import Theme from 'ui/global/Theme';
 import Idle from 'ui/global/Idle';
 import Titlebar from 'ui/global/Titlebar';
 import FatalError from 'ui/global/FatalError';
 import About from 'ui/global/About';
-import Theming from 'ui/global/Theming';
 
 import Loading from 'ui/components/Loading';
 
@@ -249,7 +249,7 @@ class App extends React.Component {
                 <Titlebar />
                 <About />
                 <Idle timeout={settings.lockScreenTimeout} />
-                <Theming location={location} />
+                <Theme location={location} />
                 <TransitionGroup>
                     <CSSTransition key={currentKey} classNames="fade" timeout={300}>
                         <div>
