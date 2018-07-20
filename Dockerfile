@@ -39,8 +39,5 @@ COPY . /app
 WORKDIR /app/src/desktop
 RUN node_modules/.bin/electron-rebuild
 
-# Build for deployment
-RUN node_modules/.bin/electron-builder -mwl
-
 
 ENTRYPOINT ["/bin/bash", "-c"]
