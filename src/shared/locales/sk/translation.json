@@ -261,7 +261,7 @@
         "setNode": "Nastaviť Node",
         "cannotConnect": "K IOTA Nodu sa nedá pripojiť.",
         "whyBiometricDisabled": "Prečo je biometrické overovanie vypnuté?",
-        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabledExplanation": "Pri prvom načítaní aplikácie je biometrické prihlásenie pre vašu bezpečnosť vypnuté. Ak budete pri použití Trinity, odhlásený z dôvodu nečinnosti, môžete prihlásiť späť pomocou biometrického overenia."
     },
     "loading": {
         "loadingFirstTime": "Prvotné načítanie Seedu.",
@@ -299,9 +299,9 @@
         "printerCheckbox": "Nebudem tlačiť na verejnej tlačiarni"
     },
     "receive": {
-        "yourAddress": "Your address",
-        "qrOptions": "QR options",
-        "shareQr": "Share QR code",
+        "yourAddress": "Vaša adresa",
+        "qrOptions": "QR možnosti",
+        "shareQr": "Zdieľať QR kód",
         "copyAddress": "Skopírovať adresu",
         "addressCopied": "Adresa skopírovaná",
         "addressCopiedExplanation": "Adresa bola skopírovaná do schránky.",
@@ -309,8 +309,8 @@
         "removeMessage": "ODSTRÁNIŤ SPRÁVU",
         "noAddresses": "ŽIADNE ADRESY",
         "spent": "Utratené",
-        "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes.",
+        "missingPermission": "Je požadované povolenie súborového systému",
+        "missingPermissionExplanation": "Pre zdieľanie QR kódu je požadivaný prístup k súborovému systému.",
         "tag": "Značka"
     },
     "saveYourSeed": {
@@ -473,8 +473,8 @@
         "send": "Odoslať",
         "receive": "Prijať",
         "empty": "Prázdne",
-        "retrying": "Retrying",
-        "yesterday": "Yesterday"
+        "retrying": "Pokúša sa znova",
+        "yesterday": "Včera"
     },
     "accountManagement": {
         "viewSeed": "Zobraziť Seed",
@@ -488,12 +488,12 @@
         "customNodeCouldNotBeAdded": "Nedá sa pridať vlastný Node",
         "customNodeAddedSuccessfully": "Vlastný Node bol úspešne pridaný.",
         "customNode": "Vlastný Node",
-        "removeCustomNode": "Remove custom node",
+        "removeCustomNode": "Odstrániť vlastný uzol",
         "invalidNodeResponse": "Node vrátil neplatnú odpoveď",
         "add": "Pridať",
         "nodeFieldEmpty": "Textové pole je prázdne",
         "nodeFieldEmptyExplanation": "Prosím, vložte vlastný Node.",
-        "invalidURL": "Please enter a valid URL."
+        "invalidURL": "Prosím, zadajte platnú adresu URL."
     },
     "addNewAccount": {
         "useExistingSeed": "Použiť existujúci Seed",
@@ -614,7 +614,7 @@
         "twoFaToken": "2FA Token"
     },
     "seedVault": {
-        "exportSeedVault": "Export SeedVault",
+        "exportSeedVault": "Exportovať SeedVault",
         "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password. It is recommended that you store the file in a password manager like Keepass.",
         "seedVaultWarning": "Make sure you back up the file in multiple locations (e.g. hard drive, cloud, USB). If you lose this file and have not stored your seed elsewhere, you will lose your IOTA.",
         "exportFail": "SeedVault export failed",
