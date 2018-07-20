@@ -153,8 +153,8 @@ class WalletResetConfirmation extends Component {
                     <OnboardingButtons
                         onLeftButtonPress={this.goBack}
                         onRightButtonPress={this.requirePassword}
-                        leftButtonText={t('global:noLowerCase')}
-                        rightButtonText={t('global:yesLowerCase')}
+                        leftButtonText={t('global:yes')}
+                        rightButtonText={t('global:yes')}
                     />
                 </View>
             </View>
