@@ -332,13 +332,13 @@
     },
     "seedReentry": {
         "pleaseConfirmYourSeed": "Silahkan konfirmasi Seed Anda",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or the app.",
-        "enterYourSeed": "Enter your seed",
+        "trinityWillNeverAskToReenter": "Trinity tidak akan menanyakan untuk memasukkan Seed kembali, kecuali ada reset dompet atau aplikasi.",
+        "enterYourSeed": "Masukan Seed Anda",
         "incorrectSeed": "Seed salah",
         "incorrectSeedExplanation": "Seed yang Anda masukkan salah. Silahkan coba lagi.",
         "thisIsACheck": "Ini untuk memverifikasi bahwa anda telah menyimpan Seed Anda.",
         "ifYouHaveNotSaved": "Jika Anda belum menyimpan Seed Anda, silahkan mengulang kembali.",
-        "enterSeedBelow": "Enter your newly created seed below to confirm you have backed it up correctly"
+        "enterSeedBelow": "Masukan Seed yang baru dibuat dibawah ini untuk mengkonfirmasi salinan anda"
     },
     "send": {
         "invalidAddress": "Alamat salah",
@@ -364,10 +364,10 @@
         "maximumSelected": "Jumlah MAKSIMUM dipilih",
         "iotaUnits": "IOTA unit dijelaskan",
         "sendMax": "KIRIM MAKS",
-        "totalTime": "Total time",
-        "addressPasteDetected": "Address paste detected",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to.",
-        "invalid": "INVALID"
+        "totalTime": "Waktu total",
+        "addressPasteDetected": "Terdeteksi alamat hasil salinan",
+        "addressPasteExplanation": "Sepertinya Anda telah menyalin alamat. Pastikan alamat sama dengan yang ingin Anda kirim.",
+        "invalid": "SALAH"
     },
     "setSeedName": {
         "letsAddName": "Mari tambahkan nama",
@@ -561,14 +561,14 @@
     "viewSeed": {
         "enterPassword": "Masukkan kata sandi untuk menghapus dompet anda.",
         "viewSeed": "Lihat Seed",
-        "hideSeed": "Hide Seed"
+        "hideSeed": "Sembunyikan Seed"
     },
     "saveSeedConfirmation": {
-        "didSaveSeed": "Did you back up your seed?",
+        "didSaveSeed": "Apa Anda telah menyimpan Seed?",
         "alreadyHave": "Saya telah menyelamatkan saya benih",
-        "reenterSeed": "At the next step you will be asked to re-enter your seed.",
-        "reenterSeedWarning": "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
-        "pleaseConfirm": "Please confirm you have securely stored your seed."
+        "reenterSeed": "Langkah selanjutnya anda akan ditanya untuk memasukan Seed kembali.",
+        "reenterSeedWarning": "Jika anda belum menyimpan Seed dan perangkat rusak, Anda akan kehilangan IOTA.",
+        "pleaseConfirm": "Silahkan konfirmasi bahwa Seed sudah Anda simpan dengan aman."
     },
     "walletResetConfirmation": {
         "cannotUndo": "TINDAKAN INI TIDAK DAPAT DIKEMBALIKAN.",
@@ -577,19 +577,19 @@
     "fingerprintSetup": {
         "instructionsEnable": "Sentuh pemindai sidik jari untuk mengaktifkan otentikasi sidik jari",
         "instructionsDisable": "Sentuh pemindai sidik jari untuk mengnonaktifkan otentikasi sidik jari",
-        "fingerprintAuthEnabled": "Biometric authentication enabled",
-        "fingerprintAuthEnabledExplanation": "You have successfully enabled biometric authentication.",
-        "fingerprintAuthDisabled": "Biometric authentication disabled",
-        "fingerprintAuthDisabledExplanation": "You have successfully disabled biometric authentication.",
-        "fingerprintAuthFailed": "Biometric authentication failed",
+        "fingerprintAuthEnabled": "Otentikasi Biometrik diaktifkan",
+        "fingerprintAuthEnabledExplanation": "Anda telah berhasil mengaktifkan otentikasi biometrik.",
+        "fingerprintAuthDisabled": "Otentikasi biometrik dinonaktifkan",
+        "fingerprintAuthDisabledExplanation": "Anda telah berhasil mematikan otentikasi biometrik.",
+        "fingerprintAuthFailed": "Otentikasi biometrik gagal",
         "fingerprintAuthFailedExplanation": "Otentikasi sidik jari gagal. Silahkan coba lagi.",
         "status": "Status",
-        "fingerprintUnavailable": "Biometric authentication unavailable",
-        "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
+        "fingerprintUnavailable": "Otentikasi biometrik tidak tersedia",
+        "fingerprintUnavailableExplanation": "Perangkat anda tidak mendukung otentikasi biometrik atau belum dikonfigurasi di pengaturan perangkat.",
         "buttonInstructionsDisable": "Tekan tombol dibawah ini untuk menonaktifkan autentikasi sidik jari.",
         "buttonInstructionsEnable": "Tekan tombol dibawah ini untuk mengaktifkan autentikasi sidik jari.",
-        "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID.",
-        "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID.",
+        "buttonInstructionsDisableIPhoneX": "Tekan tombol di bawah ini untuk mematikan Face ID.",
+        "buttonInstructionsEnableIPhoneX": "Tekan tombol di bawah ini untuk mengaktifkan Face ID.",
         "instructionsLogin": "Tekan pemindai sidik jari untuk masuk"
     },
     "transferConfirmation": {
@@ -614,11 +614,11 @@
         "twoFaToken": "2FA Token"
     },
     "seedVault": {
-        "exportSeedVault": "Export SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password. It is recommended that you store the file in a password manager like Keepass.",
-        "seedVaultWarning": "Make sure you back up the file in multiple locations (e.g. hard drive, cloud, USB). If you lose this file and have not stored your seed elsewhere, you will lose your IOTA.",
-        "exportFail": "SeedVault export failed",
-        "exportFailExplanation": "There was an problem exporting the SeedVault. Please ensure you have the appropriate permissions and enough free space.",
+        "exportSeedVault": "Ekspor SeedVault",
+        "seedVaultExplanation": "SeedVault adalah file terenkripsi dalam menyimpan Seed dengan aman. Seed dienkripsi dengan kata sandi dan tidak bisa diakses tanpa kata sandi. Disarankan untuk menyimpan file ke manajer kata sandi seperti Keepass.",
+        "seedVaultWarning": "Pastikan anda buat cadangan di beberapa lokasi (seperti: Hard disk, Cloud, USB). Jika anda kehilangan file dan tidak mempunyai cadangan. Anda akan kehilangan IOTA.",
+        "exportFail": "Gagal ekspor SeedVault",
+        "exportFailExplanation": "Terjadi kesalahan mengekspor SeedVault. Pastikan anda mempunyai izin yang valid dan cukup ruang.",
         "exportSuccess": "SeedVault exported",
         "exportSuccessExplanation": "Your encrypted seed file was exported successfully.",
         "importSeedVault": "Import SeedVault",
