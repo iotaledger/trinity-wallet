@@ -27,11 +27,6 @@
       android:resizeableActivity="false"
     >
     <meta-data
-        android:name="io.fabric.ApiKey"
-        android:value="e741ca311eddc2a22fa56c2dad19b440babbddbc"
-        tools:replace="android:value"
-        />
-    <meta-data
         android:name="com.bugsnag.android.API_KEY"
         android:value="724eeaea61c47c132b8c9acb2c8c2445"
         />
