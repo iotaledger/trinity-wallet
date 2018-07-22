@@ -2600,9 +2600,7 @@
 					"-isystem",
 					"\"${PODS_ROOT}/Headers/Public\"",
 					"-isystem",
-					"\"${PODS_ROOT}/Headers/Public/Crashlytics\"",
 					"-isystem",
-					"\"${PODS_ROOT}/Headers/Public/Fabric\"",
 					"-fstack-protector-all",
 				);
 				OTHER_LDFLAGS = (
@@ -2919,9 +2917,7 @@
 					"-isystem",
 					"\"${PODS_ROOT}/Headers/Public\"",
 					"-isystem",
-					"\"${PODS_ROOT}/Headers/Public/Crashlytics\"",
 					"-isystem",
-					"\"${PODS_ROOT}/Headers/Public/Fabric\"",
 					"-fstack-protector-all",
 				);
 				OTHER_LDFLAGS = (
