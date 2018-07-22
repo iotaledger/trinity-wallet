@@ -51,6 +51,15 @@ export const generateTransitionErrorAlert = (err) => (dispatch) => {
                 10000,
             ),
         );
+    } else if (err.message.includes(Errors.CANNOT_TRANSITION_ADDRESSES_WITH_ZERO_BALANCE)) {
+        dispatch(
+            generateAlert(
+                'error',
+                i18next.t('snapshotTransition:cannotCompleteTransition'),
+                i18next.t('snapshotTransition:cannotCompleteTransitionExplanation'),
+                10000,
+            ),
+        );
     } else {
         dispatch(
             generateAlert(
