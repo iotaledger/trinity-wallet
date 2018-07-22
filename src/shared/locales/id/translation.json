@@ -229,13 +229,13 @@
         "copy": "SALIN",
         "noPasswordManagers": "Tidak ada manajer kata sandi yang telah diinstal",
         "noPasswordManagersExplanation": "Tidak ada manajer kata sandi kompatibel di perangkat anda. Silahkan instal Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "If you wish to store your seed in a password manager, you must follow a tutorial from the following link"
+        "followTutorialToSecurelyShareSeed": "Jika anda ingin menyimpan Seed di Manajer kata sandi anda harus mengikuti tutorial berikut ini"
     },
     "enterSeed": {
         "invalidCharacters": "Seed berisi karakter yang tidak valid",
         "invalidCharactersExplanation": "Seed Anda memiliki karakter yang tidak valid. Seed hanya boleh terdiri dari huruf A-Z dan angka 9. Silakan coba lagi.",
         "seedTooShort": "Seed terlalu singkat",
-        "seedTooLong": "Seed is too long",
+        "seedTooLong": "Seed terlalu panjang",
         "seedTooShortExplanation": "Seed harus terdiri dari setidaknya {{maxLength}} karakter. Seed Anda adalah {{currentLength}} karakter. Silahkan coba lagi.",
         "seedExplanation": "Seed harus {{maxLength}} karakter dan harus berisi huruf A-Z, atau nomor 9. Anda tidak dapat menggunakan Seed lebih dari {{maxLength}} karakter.",
         "neverShare": "JANGAN PERNAH MEMBERITAHUKAN SEED ANDA DENGAN SIAPAPUN"
@@ -249,18 +249,18 @@
     },
     "languageSetup": {
         "language": "Bahasa",
-        "letsGetStarted": "Let's get started"
+        "letsGetStarted": "Mari mulai"
     },
     "login": {
         "emptyPassword": "Kata sandi kosong",
         "emptyPasswordExplanation": "Anda harus memasukkan kata sandi untuk masuk ke menu. Silakan coba lagi.",
         "enterPassword": "Silahkan masukan kata sandi Anda.",
         "useSeed": "GUNAKAN SEED",
-        "login": "Log In",
+        "login": "Masuk",
         "selectDifferentNode": "Apakah Anda ingin memilih node yang berbeda?",
         "setNode": "Set Node",
         "cannotConnect": "Tidak dapat menyambung ke Node IOTA.",
-        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "whyBiometricDisabled": "Kenapa otentikasi sidik jari dimatikan?",
         "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
@@ -484,16 +484,16 @@
         "addNewAccount": "Tambahkan akun baru"
     },
     "addCustomNode": {
-        "customNodeAdded": "Custom node added",
-        "customNodeCouldNotBeAdded": "Custom node could not be added",
-        "customNodeAddedSuccessfully": "The custom node has been added successfully.",
+        "customNodeAdded": "Node kustom ditambahkan",
+        "customNodeCouldNotBeAdded": "Node kustom tidak dapat ditambah",
+        "customNodeAddedSuccessfully": "Node kostum telah berhasil ditambah.",
         "customNode": "Node kustom",
-        "removeCustomNode": "Remove custom node",
-        "invalidNodeResponse": "The node returned an invalid response",
+        "removeCustomNode": "Hapus Node kostum",
+        "invalidNodeResponse": "Node mengembalikan response yang tidak valid",
         "add": "Tambahkan",
-        "nodeFieldEmpty": "Text field is empty",
-        "nodeFieldEmptyExplanation": "Please enter a custom node.",
-        "invalidURL": "Please enter a valid URL."
+        "nodeFieldEmpty": "Teks kosong",
+        "nodeFieldEmptyExplanation": "Silahkan masukan Node kustom.",
+        "invalidURL": "Silakan masukkan URL yang valid."
     },
     "addNewAccount": {
         "useExistingSeed": "Gunakan seed yang ada saat ini",
@@ -502,12 +502,12 @@
     "advancedSettings": {
         "selectNode": "Pilih node",
         "addCustomNode": "Menambahkan node kustom",
-        "manualSync": "Manual sync",
+        "manualSync": "Sync manual",
         "snapshotTransition": "Transisi Snapshot",
         "pow": "Proof of Work",
-        "autoPromotion": "Auto-promotion",
-        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
-        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
+        "autoPromotion": "Promosi otomatis",
+        "autoPromotionExplanation": "Promosi otomatis membantu konfirmasi transaksi di Tangle. Aktifkan aturan ini jika mengalami kesulitan dalam mengkonfirmasi.",
+        "autoPromotionPoW": "Promosi otomatis hanya memungkinkan di Node yang mendukung Proof of Work jarak jauh."
     },
     "advancedThemeCustomisation": {
         "background": "Latar belakang",
@@ -515,7 +515,7 @@
     },
     "themeCustomisation": {
         "theme": "Tema",
-        "mockup": "Mockup"
+        "mockup": "Contoh"
     },
     "currencySelection": {
         "currency": "Mata Uang"
@@ -527,7 +527,7 @@
         "scan": "Memindai kode QR"
     },
     "unitInfoModal": {
-        "unitSystem": "UNIT SYSTEM",
+        "unitSystem": "Sistem Unit",
         "trillion": "Trilyun",
         "billion": "Miliar",
         "million": "Juta",
@@ -550,17 +550,17 @@
         "pressToSync": "Tekan tombol di bawah ini untuk menyinkronkan akun Anda.",
         "thisMayTake": "Ini dapat berlangsung sementara. Anda akan melihat perangkat Anda melambat.",
         "doNotClose": "Harap dicatat, meminimalkan aplikasi akan membatalkan sinkronisasi.",
-        "syncAccount": "Sync Account",
+        "syncAccount": "Sinkronisasi Akun",
         "syncingYourAccount": "Sinkronkan akun Anda."
     },
     "useExistingSeed": {
         "title": "Masukkan nama akun.",
-        "incorrectFormat": "Incorrect seed format",
-        "validSeedExplanation": "Valid seeds should be 81 characters and contain only A-Z or 9."
+        "incorrectFormat": "Salah format Seed",
+        "validSeedExplanation": "Seed valid harus 81 karakter terdiri dari A-Z atau 9."
     },
     "viewSeed": {
         "enterPassword": "Masukkan kata sandi untuk menghapus dompet anda.",
-        "viewSeed": "View Seed",
+        "viewSeed": "Lihat Seed",
         "hideSeed": "Hide Seed"
     },
     "saveSeedConfirmation": {
