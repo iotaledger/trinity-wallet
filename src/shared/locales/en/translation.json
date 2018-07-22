@@ -1,7 +1,7 @@
 {
     "global": {
         "send": "SEND",
-        "cancel": "CANCEL",
+        "cancel": "Cancel",
         "continue?": "Are you sure you want to continue?",
         "noTransactions": "NO RECENT HISTORY",
         "refresh": "Refresh",
@@ -426,8 +426,7 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Enter your password to reset the wallet.",
-        "cancel": "Cancel",
-        "reset": "RESET"
+        "reset": "Reset"
     },
     "walletSetup": {
         "creatingSeed": "Creating a seed",
@@ -658,6 +657,7 @@
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Cannot complete snapshot transition",
+        "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
         "transitionComplete": "Snapshot transition complete",
         "transitionCompleteExplanation": "The snapshot transition has completed successfully.",
         "detectedBalance": "Detected balance: {{amount}} {{unit}}",

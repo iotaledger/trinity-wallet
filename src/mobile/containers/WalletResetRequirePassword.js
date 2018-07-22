@@ -211,7 +211,7 @@ class WalletResetRequirePassword extends Component {
                             <OnboardingButtons
                                 onLeftButtonPress={this.goBack}
                                 onRightButtonPress={this.resetWallet}
-                                leftButtonText={t('cancel')}
+                                leftButtonText={t('global:cancel')}
                                 rightButtonText={t('reset')}
                             />
                         </View>
