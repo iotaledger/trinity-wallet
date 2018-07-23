@@ -93,6 +93,11 @@ class Advanced extends PureComponent {
         }
     }
 
+    /**
+     * Hard reset wallet
+     * @param {string} Password - Plain text wallet password
+     * @returns {undefined}
+     */
     resetWallet = async (password) => {
         const { t, generateAlert } = this.props;
 
@@ -111,23 +116,40 @@ class Advanced extends PureComponent {
         }
     };
 
+    /**
+     * Update wallet lock timeout in interval 1 - 60 minutes
+     * @param {number} value - Timeout in miniutes
+     * @returns {undefined}
+     */
     changeLockScreenTimeout = (value) => {
         const timeout = Math.abs(parseInt(value)) || 1;
         this.props.setLockScreenTimeout(timeout > 60 ? 60 : timeout);
     };
 
+    /**
+     * Trigger manual account sync Worker task
+     * @returns {Promise}
+     */
     syncAccount = async () => {
         const { wallet, selectedAccountName } = this.props;
         const seed = await getSeed(wallet.password, selectedAccountName, true);
         runTask('manuallySyncAccount', [seed, selectedAccountName]);
     };
 
+    /**
+     * Trigger snapshot transition Worker task
+     * @returns {Promise}
+     */
     startSnapshotTransition = async () => {
         const { wallet, addresses, selectedAccountName } = this.props;
         const seed = await getSeed(wallet.password, selectedAccountName, true);
         runTask('transitionForSnapshot', [seed, addresses]);
     };
 
+    /**
+     * Trigger snapshot transition completion
+     * @returns {Promise}
+     */
     transitionBalanceOk = async () => {
         this.props.toggleModalActivity();
         const { wallet, transitionAddresses, selectedAccountName, settings, t } = this.props;
@@ -146,6 +168,10 @@ class Advanced extends PureComponent {
         this.props.completeSnapshotTransition(seed, selectedAccountName, transitionAddresses, powFn);
     };
 
+    /**
+     * rigger snapshot transition
+     * @returns {Promise}
+     */
     transitionBalanceWrong = async () => {
         this.props.toggleModalActivity();
         const { wallet, transitionAddresses, selectedAccountName } = this.props;

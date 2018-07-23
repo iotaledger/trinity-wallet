@@ -36,7 +36,7 @@ class AccountName extends PureComponent {
     };
 
     /**
-     * Change account name in wallet state and in  Seed vault
+     * Check for unique account name and change account name in wallet state and in Seed vault
      * @returns {undefined}
      **/
     setAccountName() {

@@ -19,12 +19,9 @@ import css from './index.scss';
  */
 class SeedSave extends PureComponent {
     static propTypes = {
-        /** Onboarding set account name */
+        /** @ignore */
         onboardingName: PropTypes.string.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         * @ignore
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 

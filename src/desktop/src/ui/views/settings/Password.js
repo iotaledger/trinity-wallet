@@ -32,8 +32,12 @@ class PasswordSettings extends PureComponent {
         passwordConfirm: '',
     };
 
-    changePassword = async (e) => {
-        e.preventDefault();
+    /**
+     * Check for a valid password, update vault and state
+     * @param {event} event - Form submit event
+     */
+    changePassword = async (event) => {
+        event.preventDefault();
 
         const { passwordCurrent, passwordNew, passwordConfirm } = this.state;
         const { setPassword, generateAlert, t } = this.props;

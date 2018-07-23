@@ -34,6 +34,11 @@ class Remove extends PureComponent {
         removeConfirm: false,
     };
 
+    /**
+     * Remove account from wallet state and seed vault
+     * @param {string} Password - Plain text account password
+     * @returns {undefined}
+     */
     removeAccount = async (password) => {
         const { accountName, history, t, generateAlert, deleteAccount } = this.props;
 

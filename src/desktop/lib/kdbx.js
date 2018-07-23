@@ -19,9 +19,9 @@ kdbxweb.CryptoEngine.argon2 = (password, salt, memory, iterations, length, paral
 
 /**
  * Encrypt seed to KDBX database format
- * @param {Array} Seeds - array of byte array seeds an their titles
- * @param {String} Password - plain text password for encryption
- * @returns {ArrayBuffer}  encrypted KDBX binary content
+ * @param {array} Seeds - Array of byte array seeds an their titles
+ * @param {string} Password - Plain text password for encryption
+ * @returns {arrayBuffer} Encrypted KDBX binary content
  */
 const exportVault = async (seeds, password) => {
     const credentials = new kdbxweb.Credentials(kdbxweb.ProtectedValue.fromString(password));
@@ -42,9 +42,9 @@ const exportVault = async (seeds, password) => {
 
 /**
  * Get seed from encrypt KDBX database
- * @param {ArrayBuffer} Db - the encrypted binary KDBX database
- * @param {String} Password - plain text password for decryption
- * @returns {Array} array of decrypted byte array seeds
+ * @param {arrayBuffer} Db - Encrypted binary KDBX database
+ * @param {string} Password - Plain text password for decryption
+ * @returns {array} Array of decrypted byte array seeds
  */
 const importVault = async (buffer, password) => {
     const credentials = new kdbxweb.Credentials(kdbxweb.ProtectedValue.fromString(password));

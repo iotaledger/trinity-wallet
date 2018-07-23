@@ -33,8 +33,15 @@ class Seed extends PureComponent {
         seed: null,
     };
 
+    /**
+     * Set seed to state, trigger print if necessary
+     * @param {string} Password - Unused
+     * @param {Array} Seed - Seed byte array
+     * @returns {undefined}
+     */
     setSeed = (password, seed) => {
         const { action } = this.state;
+
         if (action === 'print') {
             window.print();
         }

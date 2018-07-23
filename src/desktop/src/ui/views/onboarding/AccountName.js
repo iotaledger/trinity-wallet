@@ -42,6 +42,10 @@ class AccountName extends React.PureComponent {
         name: this.props.onboarding.name.length ? this.props.onboarding.name : this.getDefaultAccountName(),
     };
 
+    /**
+     * Get default account name placeholder based on current account count
+     * @returns {string} Account name
+     */
     getDefaultAccountName() {
         const { accountInfo, seedCount, t } = this.props;
 
@@ -76,8 +80,17 @@ class AccountName extends React.PureComponent {
         return accountNames.map((accountName) => accountName.toLowerCase()).indexOf(defaultName) < 0 ? defaultName : '';
     }
 
-    setName = (e) => {
-        e.preventDefault();
+    /**
+     * 1. Check for valid accout name
+     * 2. In case onboarding seed does not exists, navigate to Seed generation view
+     * 3. In case of additional seed, navigate to Login view
+     * 4. In case of first seed, but seed already set, navigate to Account name view
+     * @param {Event} event - Form submit event
+     * @returns {undefined}
+     */
+    setName = (event) => {
+        event.preventDefault();
+
         const {
             firstAccount,
             setOnboardingName,

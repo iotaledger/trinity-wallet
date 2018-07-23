@@ -25,20 +25,9 @@ class Account extends React.PureComponent {
             push: PropTypes.func.isRequired,
         }).isRequired,
         /** @ignore */
-        wallet: PropTypes.object.isRequired,
-        /** @ignore */
         accountNames: PropTypes.array.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
-    };
-
-    state = {
-        vault: null,
-        password: null,
-    };
-
-    NameComponent = () => {
-        return <Name {...this.state} />;
     };
 
     render() {
@@ -88,7 +77,6 @@ class Account extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    wallet: state.wallet,
     accountNames: state.accounts.accountNames,
 });
 
