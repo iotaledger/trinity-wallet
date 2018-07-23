@@ -375,6 +375,18 @@ const isNodeSynced = (provider = null) => {
         });
 };
 
+/**
+ * Generates single address for provided index and security
+ *
+ * @method generateAddressAsync
+ *
+ * @param {string} seed
+ * @param {number} index
+ * @param {number} security
+ * @param {function} addressGenFn
+ *
+ * @returns {Promise}
+ */
 const generateAddressAsync = (seed, index, security, addressGenFn = null) => {
     if (isNull(addressGenFn)) {
         return Promise.resolve(iota.api._newAddress(seed, index, security, false));
@@ -383,6 +395,17 @@ const generateAddressAsync = (seed, index, security, addressGenFn = null) => {
     return addressGenFn(seed, index, security);
 };
 
+/**
+ * Generates bulk addresses
+ *
+ * @method generateAddressesAsync
+ *
+ * @param {string} seed
+ * @param {object} options { index, security, total }
+ * @param {function} addressesGenFn
+ *
+ * @returns {Promise}
+ */
 const generateAddressesAsync = (seed, options, addressesGenFn = null) => {
     const { index, security, total } = options;
     if (isNull(addressesGenFn)) {
