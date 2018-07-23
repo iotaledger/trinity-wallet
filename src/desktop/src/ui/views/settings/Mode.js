@@ -7,19 +7,16 @@ import { setMode } from 'actions/settings';
 import Info from 'ui/components/Info';
 import Toggle from 'ui/components/Toggle';
 
-/** Wallet mode component */
+/**
+ * Wallet mode component
+ **/
 class Mode extends React.PureComponent {
     static propTypes = {
-        /** Current wallet mode
-         */
+        /** @ignore */
         mode: PropTypes.string.isRequired,
-        /** Change wallet mode
-         * @param {String} Mode - Target wallet mode
-         */
+        /** @ignore */
         setMode: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - Locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
@@ -53,4 +50,7 @@ const mapDispatchToProps = {
     setMode,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(Mode));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(translate()(Mode));

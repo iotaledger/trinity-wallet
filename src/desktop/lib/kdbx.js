@@ -1,6 +1,9 @@
 const argon2 = require('argon2');
 const kdbxweb = require('kdbxweb');
 
+/**
+ * Bind kdbxweb and argon2
+ */
 kdbxweb.CryptoEngine.argon2 = (password, salt, memory, iterations, length, parallelism, type, version) => {
     return argon2.hash(password, {
         hashLength: length,

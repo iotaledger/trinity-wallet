@@ -6,30 +6,36 @@ const URL = require('url');
 const fs = require('fs');
 const electronSettings = require('electron-settings');
 
+/**
+ * Expose Garbage Collector flag for manual trigger after seed usage
+ */
 app.commandLine.appendSwitch('js-flags', '--expose-gc');
 
-const BrowserWindow = electron.BrowserWindow;
+/**
+ * Set environment mode
+ */
 const devMode = process.env.NODE_ENV === 'development';
 
+/**
+ * Define deep link state
+ */
 let deeplinkingUrl = null;
 
+/**
+ * Define wallet windows
+ */
 const windows = {
     main: null,
 };
 
+/**
+ * Register iota:// protocol for deep links
+ * Set Trinity as the default handler for iota:// protocol
+ * TODO: Should be made as a user setting
+ */
 if (!devMode) {
     protocol.registerStandardSchemes(['iota'], { secure: true });
-}
-
-const shouldQuit = app.makeSingleInstance((argv) => {
-    if (process.platform === 'win32') {
-        deeplinkingUrl = argv.slice(1);
-    }
-});
-
-if (shouldQuit) {
-    app.quit();
-    return;
+    app.setAsDefaultProtocolClient('iota');
 }
 
 let settings = null;
@@ -52,6 +58,9 @@ try {
 } catch (error) {}
 
 function createWindow() {
+    /**
+     * Register iota file protocol
+     */
     try {
         protocol.registerFileProtocol('iota', (request, callback) => {
             callback(
@@ -63,7 +72,10 @@ function createWindow() {
         });
     } catch (error) {}
 
-    windows.main = new BrowserWindow({
+    /**
+     * Initialize the main wallet window
+     */
+    windows.main = new electron.BrowserWindow({
         width: windowState.width,
         height: windowState.height,
         x: windowState.x,
@@ -82,16 +94,27 @@ function createWindow() {
         },
     });
 
+    /**
+     * Reinitate window maximize
+     */
     if (windowState.maximized) {
         windows.main.maximize();
     }
 
+    /**
+     * Load wallet url depending on build environment
+     */
     const url = devMode ? 'http://localhost:1074/' : 'iota://dist/index.html';
-
     windows.main.loadURL(url);
 
+    /**
+     * Attach window close event
+     */
     windows.main.on('close', hideOnClose);
 
+    /**
+     * Enable React and Redux devtools in development mode
+     */
     if (devMode) {
         windows.main.webContents.openDevTools();
         const {
@@ -104,6 +127,9 @@ function createWindow() {
         installExtension(REDUX_DEVTOOLS);
     }
 
+    /**
+     * Add right click context menu for input elements
+     */
     windows.main.webContents.on('context-menu', (e, props) => {
         const InputMenu = electron.Menu.buildFromTemplate([
             {
@@ -162,9 +188,14 @@ function createWindow() {
     });
 }
 
-const hideOnClose = function(e) {
+/**
+ * Lock and hide the window on macOS, close it on other platforms
+ * @param {Event} Event - Window close event
+ * @returns {undefined}
+ */
+const hideOnClose = function(event) {
     if (process.platform === 'darwin') {
-        e.preventDefault();
+        event.preventDefault();
         windows.main.hide();
         windows.main.webContents.send('lockScreen');
     } else {
@@ -172,20 +203,33 @@ const hideOnClose = function(e) {
     }
 };
 
+/**
+ * Get Window instance helper
+ * @param {String} windowName -  Target window name
+ */
 const getWindow = function(windowName) {
     return windows[windowName];
 };
 
 initMenu(app, getWindow);
 
+/**
+ * On application ready event, initiate the Main window
+ */
 app.on('ready', createWindow);
 
+/**
+ * Close the app if all Wallet windows are closed on all platforms except macOS
+ */
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
         app.quit();
     }
 });
 
+/**
+ * Save window location/size state before closing the wallet
+ */
 app.on('before-quit', () => {
     if (windows.main && !windows.main.isDestroyed()) {
         const bounds = windows.main.getBounds();
@@ -202,6 +246,9 @@ app.on('before-quit', () => {
     }
 });
 
+/**
+ * Show the main window on activate event, on macOS platform
+ */
 app.on('activate', () => {
     if (windows.main === null) {
         createWindow();
@@ -210,8 +257,9 @@ app.on('activate', () => {
     }
 });
 
-app.setAsDefaultProtocolClient('iota');
-
+/**
+ * Proxy deep link event to the wallet application
+ */
 app.on('open-url', (event, url) => {
     event.preventDefault();
     deeplinkingUrl = url;
@@ -220,6 +268,9 @@ app.on('open-url', (event, url) => {
     }
 });
 
+/**
+ * Proxy deep link event to the wallet application
+ */
 ipc.on('request.deepLink', () => {
     if (deeplinkingUrl) {
         windows.main.webContents.send('url-params', deeplinkingUrl);
@@ -227,6 +278,25 @@ ipc.on('request.deepLink', () => {
     }
 });
 
+/**
+ * Create a single instance on win32 platforms
+ * Set deep link if defined as argument
+ */
+const shouldQuit = app.makeSingleInstance((argv) => {
+    if (process.platform === 'win32') {
+        deeplinkingUrl = argv.slice(1);
+    }
+});
+
+if (shouldQuit) {
+    app.quit();
+    return;
+}
+
+/**
+ * On screenshot event, create a screenshot of the wallet
+ * Enabled only in development mode
+ */
 ipc.on('screenshot', (e, fileName) => {
     if (devMode && windows.main) {
         windows.main.capturePage((image) => {
