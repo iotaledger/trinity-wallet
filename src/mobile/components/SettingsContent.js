@@ -1,7 +1,10 @@
 import map from 'lodash/map';
+import some from 'lodash/some';
+import find from 'lodash/find';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import i18next from '../i18next.js';
 import MainSettingsComponent from '../containers/MainSettings';
 import AdvancedSettingsComponent from '../containers/AdvancedSettings';
 import AccountManagement from '../containers/AccountManagement';
@@ -56,7 +59,7 @@ const SETTINGS_COMPONENTS = {
 const SettingsContent = ({ component, ...props }) => {
     const EnhancedComponent = SETTINGS_COMPONENTS[component];
 
-    return <EnhancedComponent {...props}/>;
+    return <EnhancedComponent {...props} />;
 };
 
 const styles = StyleSheet.create({
@@ -96,41 +99,66 @@ const styles = StyleSheet.create({
         fontSize: GENERAL.fontSize3,
         backgroundColor: 'transparent',
     },
+    backText: {
+        fontFamily: 'SourceSansPro-Regular',
+        fontSize: GENERAL.fontSize3,
+        backgroundColor: 'transparent',
+        marginLeft: width / 20,
+    },
 });
 
 export const renderSettingsRows = (rows, theme) => {
     const textColor = { color: theme.body.color };
     const bodyColor = theme.body.color;
     const borderBottomColor = { borderBottomColor: theme.body.color };
-    return map((rows, (row) => {
-        if (row.name === 'separator') {
-            return (
-                <View style={styles.separatorContainer}>
-                    <View style={[styles.separator, borderBottomColor]} />
-                </View>
-            );
-        }
-        return (
-            <View style={styles.itemContainer}>
-                <TouchableOpacity
-                    onPress={row.function}
-                    hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                >
-                    <View style={styles.item}>
-                        <Icon name={row.icon} size={width / 22} color={bodyColor} />
-                        <View style={styles.content}>
-                            <Text style={[styles.titleText, textColor]}>{row.name}</Text>
-                            { row.currentSetting &&
-                                <Text numberOfLines={1} style={[styles.settingText, textColor]}>
-                                    {row.currentSetting}
-                                </Text>
-                            }
+    return (
+        <View style={{ flex: 1 }}>
+            {map(rows, (row) => {
+                if (row.name === 'separator') {
+                    return (
+                        <View style={styles.separatorContainer}>
+                            <View style={[styles.separator, borderBottomColor]} />
                         </View>
-                    </View>
-                </TouchableOpacity>
-            </View>
-        );
-    }));
+                    );
+                } else if (row.name !== 'back') {
+                    return (
+                        <View style={styles.itemContainer}>
+                            <TouchableOpacity
+                                onPress={row.function}
+                                hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                            >
+                                <View style={styles.item}>
+                                    <Icon name={row.icon} size={width / 22} color={bodyColor} />
+                                    <View style={styles.content}>
+                                        <Text style={[styles.titleText, textColor]}>{row.name}</Text>
+                                        {row.currentSetting && (
+                                            <Text numberOfLines={1} style={[styles.settingText, textColor]}>
+                                                {row.currentSetting}
+                                            </Text>
+                                        )}
+                                    </View>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
+                    );
+                }
+            })}
+            {rows.length < 12 && <View style={{ flex: 12 - rows.length }} />}
+            {some(rows, { name: 'back' }) && (
+                <View style={styles.itemContainer}>
+                    <TouchableOpacity
+                        onPress={find(rows, { name: 'back' }).function}
+                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
+                    >
+                        <View style={styles.item}>
+                            <Icon name="chevronLeft" size={width / 28} color={bodyColor} />
+                            <Text style={[styles.backText, textColor]}>{i18next.t('global:backLowercase')}</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+            )}
+        </View>
+    );
 };
 
 SettingsContent.propTypes = {
