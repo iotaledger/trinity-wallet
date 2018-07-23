@@ -122,20 +122,44 @@ export class MainSettings extends Component {
         );
     }
 
-    renderSettingsContent(){
+    renderSettingsContent() {
         const { theme, t, mode, themeName, currency } = this.props;
         const rows = [
-            { name: t('mode'), icon: 'mode', function: () => this.props.setSetting('modeSelection'), currentSetting: mode },
-            { name: t('theme'), icon: 'theme', function: () => this.props.setSetting('themeCustomisation'), currentSetting: themeName },
-            { name: t('currency'), icon: 'currency', function: () => this.props.setSetting('currencySelection'), currentSetting: currency },
-            { name: t('language'), icon: 'language', function: () => this.props.setSetting('languageSelection'), currentSetting: selectLocale(i18next.language) },
+            {
+                name: t('mode'),
+                icon: 'mode',
+                function: () => this.props.setSetting('modeSelection'),
+                currentSetting: mode,
+            },
+            {
+                name: t('theme'),
+                icon: 'theme',
+                function: () => this.props.setSetting('themeCustomisation'),
+                currentSetting: themeName,
+            },
+            {
+                name: t('currency'),
+                icon: 'currency',
+                function: () => this.props.setSetting('currencySelection'),
+                currentSetting: currency,
+            },
+            {
+                name: t('language'),
+                icon: 'language',
+                function: () => this.props.setSetting('languageSelection'),
+                currentSetting: selectLocale(i18next.language),
+            },
             { name: 'separator' },
             { name: t('accountManagement'), icon: 'user', function: () => this.props.setSetting('accountManagement') },
-            { name: t('securitySettings'), icon: 'security', function: () => this.props.setSetting('securitySettings') },
+            {
+                name: t('securitySettings'),
+                icon: 'security',
+                function: () => this.props.setSetting('securitySettings'),
+            },
             { name: t('advanced'), icon: 'advanced', function: () => this.props.setSetting('advancedSettings') },
             { name: 'separator' },
             { name: t('aboutTrinity'), icon: 'info', function: () => this.props.setSetting('about') },
-            { name: t('logout'), icon: 'logout', function: this.props.setSetting(this.toggleModalDisplay) },
+            { name: t('logout'), icon: 'logout', function: () => this.props.setSetting(this.toggleModalDisplay) },
         ];
         return renderSettingsRows(rows, theme);
     }
