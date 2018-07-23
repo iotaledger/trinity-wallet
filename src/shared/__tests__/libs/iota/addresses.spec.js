@@ -994,4 +994,126 @@ describe('libs: iota/addresses', () => {
             });
         });
     });
+
+    describe('#getFullAddressHistory', () => {
+        let firstBatchOfAddresses;
+        let firstBatchOfBalances;
+        let firstBatchOfSpentStatuses;
+        let findTransactions;
+        let getBalances;
+        let wereAddressesSpentFrom;
+
+        let addressGenFn;
+        let seed;
+
+        let sandbox;
+
+        before(() => {
+            seed = 'SEED';
+            firstBatchOfAddresses = [
+                'A'.repeat(81),
+                'B'.repeat(81),
+                'C'.repeat(81),
+                'D'.repeat(81),
+                'E'.repeat(81),
+                'F'.repeat(81),
+                'G'.repeat(81),
+                'H'.repeat(81),
+                'I'.repeat(81),
+                'J'.repeat(81),
+            ];
+            firstBatchOfBalances = Array(10)
+                .fill()
+                .map((v, i) => i.toString());
+            firstBatchOfSpentStatuses = Array(10)
+                .fill()
+                .map((v, i) => i % 2 === 0);
+        });
+
+        beforeEach(() => {
+            sandbox = sinon.sandbox.create();
+
+            sandbox.stub(iota.api, 'getNodeInfo').yields(null, {});
+            addressGenFn = sandbox.stub();
+
+            // First batch
+            addressGenFn.onCall(0).resolves(firstBatchOfAddresses);
+
+            // Second batch
+            addressGenFn
+                .onCall(1)
+                .resolves(firstBatchOfAddresses.map((address) => address.substring(0, address.length - 1).concat('9')));
+
+            findTransactions = sandbox.stub(iota.api, 'findTransactions');
+
+            // Return hashes on the very first call i.e. call made for findTransactions with first batch of addresses
+            findTransactions.onCall(0).yields(null, ['9'.repeat(81)]);
+
+            // Return no hashes for the second call i.e. call made for findTransactions with second batch of addresses
+            findTransactions.onCall(1).yields(null, []);
+
+            // Return hashes for the third call i.e. call made for findTransactions with last address of first batch
+            findTransactions.onCall(2).yields(null, ['U'.repeat(81)]);
+
+            getBalances = sandbox.stub(iota.api, 'getBalances');
+
+            // Return balances for the very first call i.e. getBalances with first batch of addresses
+            getBalances.onCall(0).yields(null, { balances: firstBatchOfBalances });
+
+            // Return 0 balances for the second call i.e. getBalances with second batch of addresses
+            getBalances.onCall(1).yields(null, {
+                balances: Array(10)
+                    .fill()
+                    .map(() => '0'),
+            });
+
+            // Return balances for the third call i.e. call made for getBalances with last address of first batch
+            getBalances.onCall(2).yields(null, { balances: ['0'] });
+
+            wereAddressesSpentFrom = sandbox.stub(iota.api, 'wereAddressesSpentFrom');
+
+            // Return spent statuses for the very first call i.e. wereAddressesSpentFrom with first batch of addresses
+            wereAddressesSpentFrom.onCall(0).yields(null, firstBatchOfSpentStatuses);
+
+            // Return spent statuses for the second call i.e. wereAddressesSpentFrom with second batch of addresses
+            wereAddressesSpentFrom.onCall(1).yields(
+                null,
+                Array(10)
+                    .fill()
+                    .map(() => false),
+            );
+
+            // Return spent statuses for the third call
+            // i.e. call made for wereAddressesSpentFrom with last address of first batch
+            wereAddressesSpentFrom.onCall(2).yields(null, [false]);
+        });
+
+        afterEach(() => {
+            sandbox.restore();
+        });
+
+        it('should return addresses till one unused', () => {
+            return addressesUtils.getFullAddressHistory(seed, addressGenFn).then((history) => {
+                expect(history.addresses).to.eql([...firstBatchOfAddresses, `${'A'.repeat(80)}9`]);
+            });
+        });
+
+        it('should return transaction hashes associated with addresses', () => {
+            return addressesUtils.getFullAddressHistory(seed, addressGenFn).then((history) => {
+                expect(history.hashes).to.eql(['9'.repeat(81)]);
+            });
+        });
+
+        it('should return balances associated with addresses', () => {
+            return addressesUtils.getFullAddressHistory(seed, addressGenFn).then((history) => {
+                expect(history.balances).to.eql([...firstBatchOfBalances.map((balance) => parseInt(balance)), 0]);
+            });
+        });
+
+        it('should return spent statuses for addresses', () => {
+            return addressesUtils.getFullAddressHistory(seed, addressGenFn).then((history) => {
+                expect(history.wereSpent).to.eql([...firstBatchOfSpentStatuses, false]);
+            });
+        });
+    });
 });
