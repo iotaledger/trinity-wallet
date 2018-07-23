@@ -20,10 +20,10 @@ npm install -g electron
 Clone the GitLab repo by running this command:
 
 ```
-git clone git@gitlab.com:iota-community/wallet.git
+git clone git@github.com:iotaledger/trinity-wallet.git
 ```
 
-Or [download](https://gitlab.com/iota-community/wallet/repository/archive.zip) the repo and extract the archive.
+Or [download](https://github.com/iotaledger/trinity-wallet/archive/develop.zip) the repo and extract the archive.
 
 After cloning or downloading and extracting the application run:
 
