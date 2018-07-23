@@ -11,9 +11,9 @@ class Scrollbar extends React.PureComponent {
     static propTypes = {
         /* Container reach scroll end callback */
         onScrollEnd: PropTypes.func,
-        /* Unique ID of the content in case of scroll refresh is needed */
+        /* Unique ID of the content, required for scroll position reset if changed */
         contentId: PropTypes.string,
-        /* Scollbar container content */
+        /* Scrollbar container content */
         children: PropTypes.any.isRequired,
     };
 

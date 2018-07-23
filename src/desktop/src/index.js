@@ -17,8 +17,6 @@ import themes from 'themes/themes';
 import Index from 'ui/Index';
 
 import Alerts from 'ui/global/Alerts';
-import Updates from 'ui/global/Updates';
-import Feedback from 'ui/global/Feedback';
 
 export const bugsnagClient = bugsnag({
     apiKey: '53981ba998df346f6377ebbeb1da46d3',
@@ -52,9 +50,7 @@ render(
         <Redux store={store}>
             <I18nextProvider i18n={i18next}>
                 <React.Fragment>
-                    <Feedback />
                     <Alerts />
-                    <Updates />
                     <Router>
                         <Index />
                     </Router>

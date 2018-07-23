@@ -11,12 +11,13 @@ export default class Toggle extends React.PureComponent {
     static propTypes = {
         /** Checkbox state */
         checked: PropTypes.bool.isRequired,
-        /** On state label */
+        /** Checked state label */
         on: PropTypes.string.isRequired,
-        /** Off state label */
+        /** Unhecked state label */
         off: PropTypes.string.isRequired,
         /**Toggle state event function
          * @param {Bool} value - Current checkbox state
+         * @returns {Void}
          */
         onChange: PropTypes.func.isRequired,
     };

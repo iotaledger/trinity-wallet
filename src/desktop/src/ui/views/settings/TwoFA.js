@@ -22,25 +22,15 @@ import css from './twoFa.scss';
  */
 class TwoFA extends React.Component {
     static propTypes = {
-        /** Current account password */
+        /** @ignore */
         password: PropTypes.string.isRequired,
-        /** Is two-factor authentication enabled */
+        /** @ignore */
         is2FAEnabled: PropTypes.bool.isRequired,
-        /** Set two-factor authentication enabled state
-         * @param {Bool} state - Two-factor enabled state
-         */
+        /** @ignore */
         set2FAStatus: PropTypes.func.isRequired,
-        /** Create a notification message
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         * @ignore
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - Locale string identifier to be translated
-         * @ignore
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
@@ -237,4 +227,7 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(TwoFA));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(translate()(TwoFA));

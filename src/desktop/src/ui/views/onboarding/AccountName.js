@@ -14,37 +14,27 @@ import Button from 'ui/components/Button';
 import Input from 'ui/components/input/Text';
 
 /**
- * Onboarding, set account name
+ * Onboarding, Set account name
  */
 class AccountName extends React.PureComponent {
     static propTypes = {
-        /** If first account is beeing created */
+        /** @ignore */
         firstAccount: PropTypes.bool.isRequired,
-        /** Current accounts info */
+        /** @ignore */
         accountInfo: PropTypes.object,
-        /** Current seed count */
+        /** @ignore */
         seedCount: PropTypes.number.isRequired,
-        /** Set onboarding seed name */
+        /** @ignore */
         setOnboardingName: PropTypes.func.isRequired,
-        /** Set additional account info
-         * @param {Object} data - Additional account data
-         */
+        /** @ignore */
         setAdditionalAccountInfo: PropTypes.func.isRequired,
-        /** Onboarding set seed and name */
+        /** @ignore */
         onboarding: PropTypes.object.isRequired,
-        /** Browser history object */
+        /** @ignore */
         history: PropTypes.object.isRequired,
-        /** Create a notification message
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         * @ignore
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         * @ignore
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
@@ -53,23 +43,37 @@ class AccountName extends React.PureComponent {
     };
 
     getDefaultAccountName() {
-        const { t, seedCount } = this.props;
-        if (seedCount === 0) {
-            return t('mainWallet');
-        } else if (seedCount === 1) {
-            return t('secondWallet');
-        } else if (seedCount === 2) {
-            return t('thirdWallet');
-        } else if (seedCount === 3) {
-            return t('fourthWallet');
-        } else if (seedCount === 4) {
-            return t('fifthWallet');
-        } else if (seedCount === 5) {
-            return t('sixthWallet');
-        } else if (seedCount === 6) {
-            return t('otherWallet');
+        const { accountInfo, seedCount, t } = this.props;
+
+        let defaultName = '';
+
+        switch (seedCount) {
+            case 0:
+                defaultName = t('mainWallet');
+                break;
+            case 1:
+                defaultName = t('mainWallet');
+                break;
+            case 2:
+                defaultName = t('mainWallet');
+                break;
+            case 3:
+                defaultName = t('mainWallet');
+                break;
+            case 4:
+                defaultName = t('mainWallet');
+                break;
+            case 5:
+                defaultName = t('mainWallet');
+                break;
+            case 6:
+                defaultName = t('mainWallet');
+                break;
         }
-        return '';
+
+        const accountNames = Object.keys(accountInfo);
+
+        return accountNames.map((accountName) => accountName.toLowerCase()).indexOf(defaultName) < 0 ? defaultName : '';
     }
 
     setName = (e) => {

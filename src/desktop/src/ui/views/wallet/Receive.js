@@ -26,31 +26,23 @@ import css from './receive.scss';
  */
 class Receive extends React.PureComponent {
     static propTypes = {
-        /** Current account object */
+        /** @ignore */
         account: PropTypes.object.isRequired,
-        /** Current account name */
+        /** @ignore */
         accountName: PropTypes.string.isRequired,
-        /** Current receive address */
+        /** @ignore */
         receiveAddress: PropTypes.string.isRequired,
-        /** Current password value */
+        /** @ignore */
         password: PropTypes.string,
-        /** Is the wallet currently syncing */
+        /** @ignore */
         isSyncing: PropTypes.bool.isRequired,
-        /** Is the wallet currently transitioning */
+        /** @ignore */
         isTransitioning: PropTypes.bool.isRequired,
-        /** Is wallet generating receive address state */
+        /** @ignore */
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
-        /** Create a notification message
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         * @ignore
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         * @ignore
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 

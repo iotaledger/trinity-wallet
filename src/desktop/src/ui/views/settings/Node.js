@@ -13,35 +13,23 @@ import Checkbox from 'ui/components/Checkbox';
  */
 class SetNode extends PureComponent {
     static propTypes = {
-        /** Current node */
+        /** @ignore */
         node: PropTypes.string.isRequired,
-        /** Available nodes list */
+        /** @ignore */
         nodes: PropTypes.array.isRequired,
-        /** Available custom nodes list */
+        /** @ignore */
         customNodes: PropTypes.array.isRequired,
-        /** Node validity check statuss */
+        /** @ignore */
         loading: PropTypes.bool.isRequired,
-        /** Set new node
-         * @param {string} url - Node url
-         */
+        /** @ignore */
         setNode: PropTypes.func.isRequired,
-        /** Remove custom node
-         * @param {string} url - Node url
-         */
+        /** @ignore */
         removeCustomNode: PropTypes.func.isRequired,
-        /** Auto node switching enabled
-         * @ignore
-         */
+        /** @ignore */
         autoNodeSwitching: PropTypes.bool.isRequired,
-        /**
-         * Update the auto node switching state
-         * @ignore
-         */
+        /** @ignore */
         setAutoNodeSwitching: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - Locale string identifier to be translated
-         * @ignore
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
