@@ -29,7 +29,7 @@ class About extends React.PureComponent {
 
     /**
      * Proxy native menu triggers to an action
-     * @param {String} Item - Triggered menu item
+     * @param {string} Item - Triggered menu item
      */
     menuToggle(item) {
         if (item === 'about') {

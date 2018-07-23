@@ -129,7 +129,7 @@ class App extends React.Component {
      * Parse and verify deep link
      * Set valid deep link data to state
      * Navigate to Send view if wallet authenticated
-     * @param {String} Data - data passed
+     * @param {string} Data - data passed
      */
     setDeepUrl(data) {
         const { generateAlert, t } = this.props;
@@ -165,7 +165,7 @@ class App extends React.Component {
 
     /**
      * Proxy native menu triggers to an action
-     * @param {String} Item - Triggered menu item
+     * @param {string} Item - Triggered menu item
      */
     menuToggle(item) {
         switch (item) {

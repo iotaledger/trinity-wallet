@@ -1,7 +1,6 @@
-const { ipcRenderer: ipc, shell, clipboard } = require('electron');
+const { ipcRenderer: ipc, clipboard } = require('electron');
 const { dialog } = require('electron').remote;
 const currentWindow = require('electron').remote.getCurrentWindow();
-const packageFile = require('../../package.json');
 const machineUuid = require('machine-uuid');
 const keytar = require('keytar');
 const fs = require('fs');
@@ -53,8 +52,9 @@ let onboardingGenerated = false;
  */
 const Electron = {
     /**
-     * Set clipboard value, in case of Seed array, trigger Garbae Collector
-     * @param {String|Array} Content - Target content
+     * Set clipboard value, in case of Seed array, trigger Garbage Collector
+     * @param {string|array} Content - Target content
+     * @returns {undefined}
      */
     clipboard: (content) => {
         if (content) {
@@ -78,16 +78,9 @@ const Electron = {
     },
 
     /**
-     * Open default Trinity wallet url
-     */
-    gotoLatestRelease: () => {
-        shell.openExternal(packageFile.url);
-    },
-
-    /**
      * Proxy native menu attribute settings
-     * @param {String} Attribute - Target attribute
-     * @param {Any} Value - target attribute value
+     * @param {string} Attribute - Target attribute
+     * @param {any} Value - Target attribute value
      * @returns {undefined}
      */
     updateMenu: (attribute, value) => {
@@ -107,8 +100,8 @@ const Electron = {
 
     /**
      * Get local storage item by item key
-     * @param {String} Key - Target item key
-     * @returns {Any} Storage item value
+     * @param {string} Key - Target item key
+     * @returns {any} Storage item value
      */
     getStorage(key) {
         return settings.get(key);
@@ -116,9 +109,9 @@ const Electron = {
 
     /**
      * Set local storage item by item key
-     * @param {String} Key - Target item key
-     * @param {Any} Storage - Target item value
-     * @returns {Boolean} If item update is succefull
+     * @param {string} Key - Target item key
+     * @param {any} Storage - Target item value
+     * @returns {boolean} If item update is succesfull
      */
     setStorage(key, item) {
         return settings.set(key, item);
@@ -126,8 +119,8 @@ const Electron = {
 
     /**
      * Remove local storage item by item key
-     * @param {String} Key - Target item key
-     * @returns {Boolean} If item removal is succefull
+     * @param {string} Key - Target item key
+     * @returns {boolean} If item removal is succesfull
      */
     removeStorage(key) {
         return settings.delete(key);
@@ -144,7 +137,7 @@ const Electron = {
 
     /**
      * Get all local storage item keys
-     * @returns {Array} Storage item keys
+     * @returns {array} Storage item keys
      */
     getAllStorage() {
         const data = settings.getAll();
@@ -154,7 +147,7 @@ const Electron = {
 
     /**
      * Get all keychain account entries
-     * @returns {Promise} Promise resolves in an Array of entries
+     * @returns {promise} Promise resolves in an Array of entries
      */
     listKeychain: () => {
         return keytar.findCredentials('Trinity wallet');
@@ -163,7 +156,7 @@ const Electron = {
     /**
      * Get keychain account entry by account name
      * @param accountName - Target account name
-     * @returns {Promise} Promise resolves in a account Object
+     * @returns {promise} Promise resolves in account object
      */
     readKeychain: (accountName) => {
         return keytar.getPassword('Trinity wallet', accountName);
@@ -173,7 +166,7 @@ const Electron = {
      * Set keychain account entry by account name
      * @param accountName - Target account name
      * @param content - Target account content
-     * @returns {Promise} Promise resolves in a success Boolean
+     * @returns {promise} Promise resolves in success boolean
      */
     setKeychain: (accountName, content) => {
         return keytar.setPassword('Trinity wallet', accountName, content);
@@ -182,7 +175,7 @@ const Electron = {
     /**
      * Remove keychain account by account name
      * @param accountName - Target account name
-     * @returns {Promise} Promise resolves in a success Boolean
+     * @returns {promise} Promise resolves in a success boolean
      */
     removeKeychain: (accountName) => {
         return keytar.deletePassword('Trinity wallet', accountName);
@@ -190,7 +183,7 @@ const Electron = {
 
     /**
      * Get currrent operating system
-     * @returns {String} - Operating system code win32|linux|darwin
+     * @returns {string} Operating system code - win32|linux|darwin
      */
     getOS: () => {
         return process.platform;
@@ -234,8 +227,8 @@ const Electron = {
 
     /**
      * Set onboarding seed variable to bypass Redux
-     * @param {Array} Seed - Target seed byte array
-     * @param {Boolean} isGenerated - Is the seed generated using Trinity
+     * @param {array} Seed - Target seed byte array
+     * @param {boolean} isGenerated - Is the seed generated using Trinity
      * @returns {undefined}
      */
     setOnboardingSeed: (seed, isGenerated) => {
@@ -245,8 +238,8 @@ const Electron = {
 
     /**
      * Get onboarding seed value
-     * @param {Boolean} plainText - If should return plain text seed
-     * @returns {Array|String} - onbaording seed
+     * @param {boolean} plainText - If should return plain text seed
+     * @returns {array|string} Onboarding seed value
      */
     getOnboardingSeed: (plainText) => {
         return plainText
@@ -256,7 +249,7 @@ const Electron = {
 
     /**
      * Get onboarding seed generated in Trinity state
-     * @returns {Boolean} - is seed generated
+     * @returns {boolean} Is seed generated
      */
     getOnboardingGenerated: () => {
         return onboardingGenerated;
@@ -264,8 +257,8 @@ const Electron = {
 
     /**
      * Calculate seed checksum
-     * @param {Array} bytes  - target seed byte array
-     * @returns {String} - seed checksum
+     * @param {array} bytes - Target seed byte array
+     * @returns {string} Seed checksum
      */
     getChecksum: (bytes) => {
         let trits = [];
@@ -328,9 +321,9 @@ const Electron = {
 
     /**
      * Decrypt SeedVault file
-     * @param {Buffer} buffer - SeedVault file content
+     * @param {buffer} buffer - SeedVault file content
      * @param {string} - Plain text password for SeedVailt decryption
-     * @returns {Array} - Seed object array
+     * @returns {array} Seed object array
      */
     importSeed: async (buffer, password) => {
         const seeds = await kdbx.importVault(buffer, password);
@@ -384,7 +377,7 @@ const Electron = {
      * Add native window wallet event listener
      * @param {string} event - Target event name
      * @param {function} callback - Event trigger callback
-     * @returns {undefiend}
+     * @returns {undefined}
      */
     onEvent: function(event, callback) {
         let listeners = this._eventListeners[event];
@@ -403,7 +396,7 @@ const Electron = {
      * Remove native window wallet event listener
      * @param {string} event - Target event name
      * @param {function} callback - Event trigger callback
-     * @returns {undefiend}
+     * @returns {undefined}
      */
     removeEvent: function(event, callback) {
         const listeners = this._eventListeners[event];

@@ -42,8 +42,9 @@ let language = {
 
 /**
  * Create native menu tree and apply to the application window
- * @param {Object} App - application object
- * @param {Function} getWindow - Get Window instance helper
+ * @param {object} App - Application object
+ * @param {function} getWindow - Get Window instance helper
+ * @returns {undefined}
  */
 const initMenu = (app, getWindow) => {
     let mainMenu = null;
