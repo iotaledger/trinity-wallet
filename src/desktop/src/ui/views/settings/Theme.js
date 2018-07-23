@@ -12,23 +12,16 @@ import Icon from 'ui/components/Icon';
 
 import css from './index.scss';
 
-/** Theme switch component */
+/**
+ * Theme switch component
+ **/
 class Theme extends React.PureComponent {
     static propTypes = {
-        /** Current theme name
-         * @ignore
-         */
+        /** @ignore */
         themeName: PropTypes.string.isRequired,
-        /** Change theme
-         * @param {Object} theme - Theme object
-         * @param {String} name - Theme name
-         * @ignore
-         */
+        /** @ignore */
         updateTheme: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - Locale string identifier to be translated
-         * @ignore
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
@@ -122,4 +115,7 @@ const mapDispatchToProps = {
     updateTheme,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(Theme));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(translate()(Theme));

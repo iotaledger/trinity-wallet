@@ -1,9 +1,12 @@
-/*global Electron*/
+/* global Electron */
 import { MAX_SEED_LENGTH } from 'libs/iota/utils';
 
+// Prefix for seed account titles stored in the vault
 const ACC_PREFIX = 'account';
 
+// Title of main vault entry  containing 2fa keys
 export const ACC_MAIN = 'Trinity';
+// Maximum allowed account title
 export const MAX_ACC_LENGTH = 250;
 
 /**

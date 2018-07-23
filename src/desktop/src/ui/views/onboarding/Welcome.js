@@ -19,25 +19,23 @@ import css from './welcome.scss';
  */
 class Welcome extends React.PureComponent {
     static propTypes = {
-        /** Browser history object */
+        /** @ignore */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         * @ignore
-         */
-        t: PropTypes.func.isRequired,
-        /** Current interface language */
+
+        /** @ignore */
         language: PropTypes.string.isRequired,
-        /** Determines whether a user has accepted privacy agreement */
+        /** @ignore */
         acceptedPrivacy: PropTypes.bool.isRequired,
-        /** Determines whether a user has accepted terms and conditions */
+        /** @ignore */
         acceptedTerms: PropTypes.bool.isRequired,
-        /** Set Terms and Conditions setting to accepted */
+        /** @ignore */
         acceptTerms: PropTypes.func.isRequired,
-        /** Accept Privacy Policy setting to accepted */
+        /** @ignore */
         acceptPrivacy: PropTypes.func.isRequired,
+        /** @ignore */
+        t: PropTypes.func.isRequired,
     };
 
     state = {
@@ -113,7 +111,11 @@ class Welcome extends React.PureComponent {
                         className="square"
                         variant="primary"
                     >
-                        {step === 'language' ? t('continue') : (!scrollEnd) ? t('terms:readAllToContinue') : t('terms:accept')}
+                        {step === 'language'
+                            ? t('continue')
+                            : !scrollEnd
+                                ? t('terms:readAllToContinue')
+                                : t('terms:accept')}
                     </Button>
                 </footer>
             </form>

@@ -8,7 +8,6 @@ const state = {
 let language = {
     about: 'About Trinity',
     checkUpdate: 'Check for Updates',
-    sendFeedback: 'Send feedback',
     settings: 'Settings',
     accountSettings: 'Account management',
     newAccount: 'Add new account',
@@ -41,6 +40,11 @@ let language = {
     no: 'No',
 };
 
+/**
+ * Create native menu tree and apply to the application window
+ * @param {Object} App - application object
+ * @param {Function} getWindow - Get Window instance helper
+ */
 const initMenu = (app, getWindow) => {
     let mainMenu = null;
 
@@ -67,11 +71,6 @@ const initMenu = (app, getWindow) => {
                     {
                         label: `${language.checkUpdate}...`,
                         click: () => navigate('update'),
-                        enabled: state.enabled,
-                    },
-                    {
-                        label: language.sendFeedback,
-                        click: () => navigate('feedback'),
                         enabled: state.enabled,
                     },
                     {

@@ -1,4 +1,4 @@
-/*global Electron*/
+/* global Electron */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { translate, Trans } from 'react-i18next';
@@ -32,76 +32,45 @@ import Scrollbar from 'ui/components/Scrollbar';
  */
 class Advanced extends PureComponent {
     static propTypes = {
-        /** RemotePow PoW enable state */
+        /** @ignore */
         remotePoW: PropTypes.bool.isRequired,
-        /** Auto-promotion enable state */
+        /** @ignore */
         autoPromotion: PropTypes.bool.isRequired,
-        /** Update remote PoW settings state
-         * @ignore
-         */
+        /** @ignore */
         changePowSettings: PropTypes.func.isRequired,
-        /** Update auto-promotion settings state
-         * @ignore
-         */
+        /** @ignore */
         changeAutoPromotionSettings: PropTypes.func.isRequired,
-        /**
-         * Update the lock screen timeout state
-         * @ignore
-         */
+        /** @ignore */
         setLockScreenTimeout: PropTypes.func.isRequired,
-        /**
-         * Lock screen timeout
-         * @ignore
-         */
+        /** @ignore */
         lockScreenTimeout: PropTypes.number.isRequired,
-        /** Create a notification message
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         * @ignore
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {String} translationString - Locale string identifier to be translated
-         * @ignore
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Current wallet settings
-         */
+        /** @ignore */
         settings: PropTypes.object.isRequired,
-        /** Current wallet state
-         */
+        /** @ignore */
         wallet: PropTypes.object.isRequired,
-        /** Current ui state
-         */
+        /** @ignore */
         ui: PropTypes.object.isRequired,
-        /** Is the wallet transitioning
-         */
+        /** @ignore */
         isTransitioning: PropTypes.bool.isRequired,
-        /** The balance computed from the transition addresses
-         */
+        /** @ignore */
         transitionBalance: PropTypes.number.isRequired,
-        /** The transition addresses
-         */
+        /** @ignore */
         transitionAddresses: PropTypes.array.isRequired,
-        /**
-         * Is the wallet attaching the snapshot transition addresses
-         * to the Tangle?
-         */
+        /** @ignore */
         isAttachingToTangle: PropTypes.bool.isRequired,
-        /** Is the balance check modal open?
-         */
+        /** @ignore */
         isModalActive: PropTypes.bool.isRequired,
-        /** Show/hide the balance check modal
-         */
+        /** @ignore */
         toggleModalActivity: PropTypes.func.isRequired,
-        /** Whether to toggle the balance check modal
-         */
+        /** @ignore */
         balanceCheckToggle: PropTypes.bool.isRequired,
-        /** Currently selected account name */
+        /** @ignore */
         selectedAccountName: PropTypes.string.isRequired,
-        /** Function to complete the snapshot transition
-         */
+        /** @ignore */
         completeSnapshotTransition: PropTypes.func.isRequired,
     };
 
@@ -118,9 +87,9 @@ class Advanced extends PureComponent {
 
         const { isTransitioning, isAttachingToTangle, isModalActive } = newProps;
         if (isTransitioning || isAttachingToTangle || isModalActive) {
-            Electron.disableMenu();
+            Electron.updateMenu('enabled', false);
         } else {
-            Electron.enableMenu();
+            Electron.updateMenu('enabled', true);
         }
     }
 
@@ -373,4 +342,7 @@ const mapDispatchToProps = {
     completeSnapshotTransition,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(Advanced));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(translate()(Advanced));

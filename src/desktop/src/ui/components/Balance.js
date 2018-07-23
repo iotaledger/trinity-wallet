@@ -9,11 +9,18 @@ import { getCurrencySymbol } from 'libs/currency';
 
 import css from './balance.scss';
 
+/**
+ * Current account total balance display component
+ */
 class Balance extends React.PureComponent {
     static propTypes = {
+        /** @ignore */
         account: PropTypes.object.isRequired,
+        /** @ignore */
         accountName: PropTypes.string.isRequired,
+        /** @ignore */
         settings: PropTypes.object.isRequired,
+        /** @ignore */
         marketData: PropTypes.object.isRequired,
     };
 

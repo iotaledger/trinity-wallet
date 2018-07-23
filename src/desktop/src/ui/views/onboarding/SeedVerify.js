@@ -1,4 +1,4 @@
-/*global Electron*/
+/* global Electron */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -44,7 +44,6 @@ class SeedVerify extends React.PureComponent {
 
     componentDidMount() {
         if (Electron.getOnboardingSeed()) {
-            Electron.clipboard(null);
             Electron.garbageCollect();
         }
     }
@@ -114,7 +113,14 @@ class SeedVerify extends React.PureComponent {
                             <strong>{t('enterSeed:neverShare')}</strong>
                         </p>
                     )}
-                    <SeedInput seed={seed} focus updateImportName={!isGenerated} onChange={this.onChange} label={t('seed')} closeLabel={t('back')} />
+                    <SeedInput
+                        seed={seed}
+                        focus
+                        updateImportName={!isGenerated}
+                        onChange={this.onChange}
+                        label={t('seed')}
+                        closeLabel={t('back')}
+                    />
                 </section>
                 <footer>
                     <Button to={`/onboarding/seed-${isGenerated ? 'save' : 'intro'}`} className="square" variant="dark">
@@ -137,4 +143,7 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(SeedVerify));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(translate()(SeedVerify));

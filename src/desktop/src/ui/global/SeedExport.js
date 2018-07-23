@@ -16,7 +16,7 @@ import Icon from 'ui/components/Icon';
 import css from './seedExport.scss';
 
 /**
- * Onboarding, Seed export step
+ * SeedVault export component
  */
 class SeedExport extends PureComponent {
     static propTypes = {
@@ -24,12 +24,11 @@ class SeedExport extends PureComponent {
         seed: PropTypes.array.isRequired,
         /** Seed title */
         title: PropTypes.string,
-        /**  On close event callback */
-        onClose: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         * @ignore
+        /** On close event callback
+         * @returns {undefined}
          */
+        onClose: PropTypes.func.isRequired,
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
@@ -118,7 +117,10 @@ class SeedExport extends PureComponent {
             return (
                 <form className={css.seedExport} onSubmit={this.onStep}>
                     <section>
-                        <h1><Icon icon="seedVault" size={120} />{t('seedVault:exportSeedVault')}</h1>
+                        <h1>
+                            <Icon icon="seedVault" size={120} />
+                            {t('seedVault:exportSeedVault')}
+                        </h1>
                         <p>{t('seedVault:seedVaultExplanation')}</p>
                         <p>
                             <strong>{t('seedVault:seedVaultWarning')}</strong>
@@ -141,7 +143,10 @@ class SeedExport extends PureComponent {
         return (
             <form className={css.seedExport} onSubmit={this.exportSeed}>
                 <section>
-                    <h1><Icon icon="seedVault" size={120} />{t('seedVault:exportSeedVault')}</h1>
+                    <h1>
+                        <Icon icon="seedVault" size={120} />
+                        {t('seedVault:exportSeedVault')}
+                    </h1>
                     <PasswordInput
                         focus
                         value={this.state.password}
@@ -176,4 +181,7 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default connect(null, mapDispatchToProps)(translate()(SeedExport));
+export default connect(
+    null,
+    mapDispatchToProps,
+)(translate()(SeedExport));

@@ -18,26 +18,15 @@ import Confirm from 'ui/components/modal/Confirm';
  */
 class Remove extends PureComponent {
     static propTypes = {
-        /** Current account name */
+        /** @ignore */
         accountName: PropTypes.string.isRequired,
-        /** Remove account
-         * @param {String} accountName - Target account name
-         * @ignore
-         */
+        /** @ignore */
         deleteAccount: PropTypes.func.isRequired,
-        /** Browser history object */
+        /** @ignore */
         history: PropTypes.object.isRequired,
-        /** Create a notification message
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         * @ignore
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {String} translationString - Locale string identifier to be translated
-         * @ignore
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
@@ -122,4 +111,7 @@ const mapDispatchToProps = {
     deleteAccount,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(Remove));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(translate()(Remove));

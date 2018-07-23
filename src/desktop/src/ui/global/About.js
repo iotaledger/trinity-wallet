@@ -1,4 +1,4 @@
-/*global Electron*/
+/* global Electron */
 import React from 'react';
 
 import Modal from 'ui/components/modal/Modal';
@@ -27,6 +27,10 @@ class About extends React.PureComponent {
         Electron.removeEvent('menu', this.onMenuToggle);
     }
 
+    /**
+     * Proxy native menu triggers to an action
+     * @param {String} Item - Triggered menu item
+     */
     menuToggle(item) {
         if (item === 'about') {
             this.setState({

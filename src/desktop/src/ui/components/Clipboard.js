@@ -1,4 +1,4 @@
-/*global Electron*/
+/* global Electron */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -16,7 +16,7 @@ class Clipboard extends React.PureComponent {
     static propTypes = {
         /** Target content copied to clipboard */
         text: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
-        /** EOptional element chidlren content */
+        /** Clipboard wrapper content */
         children: PropTypes.any,
         /** Timeout to clear the clipboard */
         timeout: PropTypes.number,
@@ -24,12 +24,7 @@ class Clipboard extends React.PureComponent {
         title: PropTypes.string.isRequired,
         /** Success notification description */
         success: PropTypes.string.isRequired,
-        /** Create a notification message
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         * @ignore
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
     };
 
@@ -66,4 +61,7 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default connect(null, mapDispatchToProps)(Clipboard);
+export default connect(
+    null,
+    mapDispatchToProps,
+)(Clipboard);
