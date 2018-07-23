@@ -428,16 +428,18 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                         } else if (size(get(inputs, 'addressesWithIncomingTransfers'))) {
                             throw new Error(Errors.INCOMING_TRANSFERS);
                         }
+
+                        throw new Error(Errors.SOMETHING_WENT_WRONG_DURING_INPUT_SELECTION);
                     }
                 }
 
                 // Do not allow receiving address to be one of the user's own input addresses.
-                const isSendingToOwnAddress = some(
+                const isSendingToAnyInputAddress = some(
                     get(inputs, 'inputs'),
                     (input) => input.address === iota.utils.noChecksum(address),
                 );
 
-                if (isSendingToOwnAddress) {
+                if (isSendingToAnyInputAddress) {
                     chainBrokenInternally = true;
                     throw new Error(Errors.CANNOT_SEND_TO_OWN_ADDRESS);
                 }
