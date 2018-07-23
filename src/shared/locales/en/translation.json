@@ -658,6 +658,7 @@
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Cannot complete snapshot transition",
+        "cannotCompleteTransitionExplanation": "Your balance must be greater than 0 to complete the transition.",
         "transitionComplete": "Snapshot transition complete",
         "transitionCompleteExplanation": "The snapshot transition has completed successfully.",
         "detectedBalance": "Detected balance: {{amount}} {{unit}}",
