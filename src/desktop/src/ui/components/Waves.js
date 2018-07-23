@@ -21,7 +21,7 @@ class Waves extends PureComponent {
 
     /**
      * Create wave background image
-     * @param {Boolean} isPrimary - should create primary or secondary wave
+     * @param {boolean} isPrimary - should create primary or secondary wave
      */
     getWave(isPrimary) {
         const fill = isPrimary ? this.props.theme.wave.primary : this.props.theme.wave.secondary;

@@ -55,12 +55,17 @@ class SeedExport extends PureComponent {
         this.setState({ step: 2 });
     };
 
-    exportSeed = async (e) => {
+    /**
+     * Check for valid password, trigger SeedVault file export, reset and close the tutorial
+     * @param {Event} event - Form submit event
+     * @returns {undefined}
+     */
+    exportSeed = async (event) => {
         const { seed, title, generateAlert, onClose, t } = this.props;
         const { password, passwordConfirm } = this.state;
 
-        if (e) {
-            e.preventDefault();
+        if (event) {
+            event.preventDefault();
         }
 
         const score = zxcvbn(password);

@@ -32,22 +32,22 @@ class ModalPassword extends PureComponent {
         /** On dialog close event */
         onClose: PropTypes.func,
         /** On correct password entered event
-         * @param {String} Password - Entered password plain text
-         * @param {Object} Vault - Vault content
+         * @param {string} Password - Entered password plain text
+         * @param {object} Vault - Vault content
          */
         onSuccess: PropTypes.func,
         /** On password entered event callback
          */
         onSubmit: PropTypes.func,
         /** Create a notification message
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
+         * @param {string} type - notification type - success, error
+         * @param {string} title - notification title
+         * @param {string} text - notification explanation
          * @ignore
          */
         generateAlert: PropTypes.func.isRequired,
         /** Translation helper
-         * @param {String} translationString - Locale string identifier to be translated
+         * @param {string} translationString - Locale string identifier to be translated
          * @ignore
          */
         t: PropTypes.func.isRequired,

@@ -13,15 +13,9 @@ import Info from 'ui/components/Info';
  */
 class SeedIntro extends React.PureComponent {
     static propTypes = {
-        /** Set onboarding seed state
-         * @param {String} seed - New seed
-         * @param {Boolean} isGenerated - Is the new seed generated
-         */
+        /** @ignore */
         setOnboardingSeed: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         * @ignore
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
@@ -66,4 +60,7 @@ const mapDispatchToProps = {
     setOnboardingSeed,
 };
 
-export default connect(null, mapDispatchToProps)(translate()(SeedIntro));
+export default connect(
+    null,
+    mapDispatchToProps,
+)(translate()(SeedIntro));
