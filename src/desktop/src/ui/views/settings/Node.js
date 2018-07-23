@@ -85,7 +85,7 @@ class SetNode extends PureComponent {
                 <Select
                     value={selection || node}
                     label={t('node')}
-                    disabled={this.validNode(customNode)}
+                    disabled={customNode.length > 0}
                     onChange={this.changeSelectedNode}
                 >
                     {nodes.map((item) => (
