@@ -14,7 +14,7 @@ import css from './dropzone.scss';
 class Dropzone extends React.Component {
     static propTypes = {
         /** Succesfull file drop callback
-         * @param {Buffer} FileBuffer - Droped file content buffer
+         * @param {buffer} FileBuffer - Droped file content buffer
          * @returns {undefined}
          */
         onDrop: PropTypes.func.isRequired,

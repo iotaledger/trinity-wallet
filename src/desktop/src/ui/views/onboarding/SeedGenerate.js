@@ -15,14 +15,11 @@ import css from './index.scss';
  */
 class GenerateSeed extends React.PureComponent {
     static propTypes = {
-        /** Browser history object */
+        /** @ignore */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         * @ignore
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
@@ -64,11 +61,17 @@ class GenerateSeed extends React.PureComponent {
         history.push('/onboarding/account-name');
     };
 
-    updateLetter = (e, position) => {
+    /**
+     * Update individual seed byte to random
+     * @param {event} event - Click event
+     * @param {number} position - Letter seed position index
+     * @returns {undefined}
+     */
+    updateLetter = (event, position) => {
         const { seed, clicks } = this.state;
 
-        if (e) {
-            e.preventDefault();
+        if (event) {
+            event.preventDefault();
         }
 
         const newClicks = clicks.indexOf(position) < 0 ? clicks.concat([position]) : clicks;
@@ -82,6 +85,10 @@ class GenerateSeed extends React.PureComponent {
         }));
     };
 
+    /**
+     * Generate random seed and initiate seed generation animation sequence
+     * @returns {undefined}
+     */
     generateNewSeed = () => {
         const newSeed = createRandomSeed();
         Electron.setOnboardingSeed(null);
@@ -101,6 +108,10 @@ class GenerateSeed extends React.PureComponent {
         this.unscramble();
     };
 
+    /**
+     * Seed generation animation sequence step
+     * @returns {undefined}
+     */
     unscramble() {
         const { scramble } = this.state;
 

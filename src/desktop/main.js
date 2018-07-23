@@ -205,7 +205,7 @@ const hideOnClose = function(event) {
 
 /**
  * Get Window instance helper
- * @param {String} windowName -  Target window name
+ * @param {string} windowName -  Target window name
  */
 const getWindow = function(windowName) {
     return windows[windowName];

@@ -43,9 +43,9 @@ class SeedInput extends React.PureComponent {
         /** Set onboarding seed name */
         setOnboardingName: PropTypes.func.isRequired,
         /** Create a notification message
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
+         * @param {string} type - notification type - success, error
+         * @param {string} title - notification title
+         * @param {string} text - notification explanation
          * @ignore
          */
         generateAlert: PropTypes.func.isRequired,

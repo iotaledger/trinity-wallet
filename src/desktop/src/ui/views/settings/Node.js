@@ -47,10 +47,6 @@ class SetNode extends PureComponent {
         }
     }
 
-    validNode = (node) => {
-        return node.length > 0;
-    };
-
     changeCustomNode = (val) => {
         this.setState({ customNode: val });
     };
@@ -67,7 +63,7 @@ class SetNode extends PureComponent {
         e.preventDefault();
         const { setNode } = this.props;
         const { selection, customNode } = this.state;
-        setNode(this.validNode(customNode) ? customNode : selection, this.validNode(customNode));
+        setNode(customNode.length > 0 ? customNode : selection, customNode.length > 0);
         this.setState({ customNode: '' });
     };
 

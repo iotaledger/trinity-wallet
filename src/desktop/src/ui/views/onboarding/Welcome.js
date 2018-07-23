@@ -23,7 +23,6 @@ class Welcome extends React.PureComponent {
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
-
         /** @ignore */
         language: PropTypes.string.isRequired,
         /** @ignore */

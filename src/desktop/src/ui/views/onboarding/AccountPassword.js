@@ -51,6 +51,10 @@ class AccountPassword extends React.PureComponent {
         loading: false,
     };
 
+    /**
+     * Check for valid password, create new account, reset onboarding state
+     * @returns {undefined}
+     */
     createAccount = async (e) => {
         const {
             setPassword,
