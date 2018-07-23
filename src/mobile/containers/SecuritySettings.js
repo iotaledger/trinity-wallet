@@ -30,6 +30,7 @@ class SecuritySettings extends Component {
         theme: PropTypes.object.isRequired,
         /** Determines if two factor authentication is enabled */
         is2FAEnabled: PropTypes.bool.isRequired,
+        isFingerprintEnabled: PropTypes.bool.isRequired,
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
     };
@@ -87,12 +88,22 @@ class SecuritySettings extends Component {
     }
 
     renderSettingsContent() {
-        const { theme, t } = this.props;
+        const { theme, t, is2FAEnabled, isFingerprintEnabled } = this.props;
         const rows = [
             { name: t('changePassword'), icon: 'password', function: () => this.props.setSetting('changePassword') },
             { name: 'separator' },
-            { name: t('twoFA'), icon: 'twoFA', function: () => this.on2FASetupPress() },
-            { name: t('fingerprint'), icon: 'biometric', function: () => this.onFingerprintSetupPress() },
+            {
+                name: t('twoFA'),
+                icon: 'twoFA',
+                function: () => this.on2FASetupPress(),
+                currentSetting: is2FAEnabled ? t('enabled') : t('disabled'),
+            },
+            {
+                name: t('fingerprint'),
+                icon: 'biometric',
+                function: () => this.onFingerprintSetupPress(),
+                currentSetting: isFingerprintEnabled ? t('enabled') : t('disabled'),
+            },
             { name: 'back', function: () => this.props.setSetting('mainSettings') },
         ];
         return renderSettingsRows(rows, theme);
@@ -104,8 +115,9 @@ class SecuritySettings extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    is2FAEnabled: state.settings.is2FAEnabled,
     theme: state.settings.theme,
+    is2FAEnabled: state.settings.is2FAEnabled,
+    isFingerprintEnabled: state.settings.isFingerprintEnabled,
 });
 
 const mapDispatchToProps = {

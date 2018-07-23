@@ -159,7 +159,7 @@ export class MainSettings extends Component {
             { name: t('advanced'), icon: 'advanced', function: () => this.props.setSetting('advancedSettings') },
             { name: 'separator' },
             { name: t('aboutTrinity'), icon: 'info', function: () => this.props.setSetting('about') },
-            { name: t('logout'), icon: 'logout', function: () => this.props.setSetting(this.toggleModalDisplay) },
+            { name: t('logout'), icon: 'logout', function: this.toggleModalDisplay },
         ];
         return renderSettingsRows(rows, theme);
     }

@@ -10,6 +10,8 @@ jest.mock('bugsnag-react-native', () => ({
     Client: jest.fn(() => ({ leaveBreadcrumb: jest.fn() })),
 }));
 
+jest.mock('react-native-camera', () => {});
+
 const getProps = (overrides) =>
     assign(
         {},
