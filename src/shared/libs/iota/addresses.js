@@ -30,6 +30,14 @@ import {
 import Errors from '../errors';
 import { DEFAULT_SECURITY } from '../../config';
 
+/**
+ * Checks if an address is used i.e. has spent or has associated hashes
+ *
+ *   @method isAddressUsed
+ *   @param {string} address
+ *
+ *   @returns {Promise<boolean>}
+ **/
 export const isAddressUsed = (address) => {
     return wereAddressesSpentFromAsync([address]).then((spent) => {
         const isSpent = head(spent) === true;
@@ -38,6 +46,16 @@ export const isAddressUsed = (address) => {
     });
 };
 
+/**
+ * Sequentially generate addresses till latest unused address
+ *
+ *   @method getAddressesDataUptoLatestUnusedAddress
+ *   @param {string} seed
+ *   @param {object} options = { index, security }
+ *   @param {function} addressGenFn
+ *
+ *   @returns {Promise}
+ **/
 export const getAddressesDataUptoLatestUnusedAddress = (seed, options, addressGenFn) => {
     const { index, security } = options;
 
@@ -194,6 +212,14 @@ export const getFullAddressHistory = (seed, addressGenFn) => {
     return generateAndStoreAddressesInBatch(options);
 };
 
+/**
+ * Finds hashes, balances and spent statuses for an address
+ *
+ *   @method findAddressesData
+ *   @param {array} addresses
+ *
+ *   @returns {Promise}
+ **/
 const findAddressesData = (addresses) => {
     return Promise.all([
         findTransactionsAsync({ addresses }),
@@ -220,6 +246,8 @@ const findAddressesData = (addresses) => {
  *   @param {number} index
  *   @param {string} latestUnusedAddress
  *   @param {array} finalAddresses
+ *
+ *   @returns {Promise}
  **/
 export const removeUnusedAddresses = (index, latestUnusedAddress, finalAddresses) => {
     if (!finalAddresses[index]) {
