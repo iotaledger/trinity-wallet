@@ -41,6 +41,8 @@ export class AdvancedSettings extends PureComponent {
         isSendingTransfer: PropTypes.bool.isRequired,
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
+        autoPromotion: PropTypes.bool.isRequired,
+        remotePoW: PropTypes.bool.isRequired,
     };
 
     constructor() {
@@ -98,12 +100,22 @@ export class AdvancedSettings extends PureComponent {
     }
 
     renderSettingsContent() {
-        const { theme, t, node } = this.props;
+        const { theme, t, node, autoPromotion, remotePoW } = this.props;
         const rows = [
             { name: t('selectNode'), icon: 'node', function: this.onNodeSelection, currentSetting: node },
             { name: t('addCustomNode'), icon: 'plus', function: this.onAddCustomNode },
-            { name: t('pow'), icon: 'pow', function: () => this.props.setSetting('pow') },
-            { name: t('autoPromotion'), icon: 'sync', function: () => this.props.setSetting('autoPromotion') },
+            {
+                name: t('pow'),
+                icon: 'pow',
+                function: () => this.props.setSetting('pow'),
+                currentSetting: remotePoW ? t('enabled') : t('disabled'),
+            },
+            {
+                name: t('autoPromotion'),
+                icon: 'sync',
+                function: () => this.props.setSetting('autoPromotion'),
+                currentSetting: autoPromotion ? t('enabled') : t('disabled'),
+            },
             { name: 'separator' },
             {
                 name: t('snapshotTransition'),
@@ -124,8 +136,10 @@ export class AdvancedSettings extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    node: state.settings.node,
     theme: state.settings.theme,
+    node: state.settings.node,
+    autoPromotion: state.settings.autoPromotion,
+    remotePoW: state.settings.remotePoW,
     isSendingTransfer: state.ui.isSendingTransfer,
 });
 
