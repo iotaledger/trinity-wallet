@@ -18,7 +18,6 @@ import size from 'lodash/size';
 import pickBy from 'lodash/pickBy';
 import omitBy from 'lodash/omitBy';
 import flatMap from 'lodash/flatMap';
-import union from 'lodash/union';
 import { iota } from './index';
 import {
     getBalancesAsync,
@@ -156,7 +155,7 @@ export const getFullAddressHistory = (seed, addressGenFn) => {
 
                 if (shouldGenerateNextBatch) {
                     generatedAddresses = [...generatedAddresses, ...thisBatchOfAddresses];
-                    addressData.hashes = union(addressData.hashes, hashes);
+                    addressData.hashes = [...addressData.hashes, ...hashes];
                     addressData.balances = [...addressData.balances, ...balances];
                     addressData.wereSpent = [...addressData.wereSpent, ...wereSpent];
 
@@ -175,13 +174,15 @@ export const getFullAddressHistory = (seed, addressGenFn) => {
 
                 return removeUnusedAddresses(lastAddressIndex, latestAddress, generatedAddresses.slice()).then(
                     (addresses) => {
+                        const sizeOfAddressesTillOneUnused = size(addresses);
+
                         return {
                             addresses,
                             ...addressData,
                             // Append 0 balance to the latest unused address
-                            balances: [...addressData.balances, 0],
+                            balances: [...addressData.balances.slice(0, sizeOfAddressesTillOneUnused - 1), 0],
                             // Append false as spent status to the latest unused address
-                            wereSpent: [...addressData.wereSpent, false],
+                            wereSpent: [...addressData.wereSpent.slice(0, sizeOfAddressesTillOneUnused - 1), false],
                         };
                     },
                 );
