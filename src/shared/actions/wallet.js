@@ -5,12 +5,13 @@ import reduce from 'lodash/reduce';
 import { updateAddresses, updateAccountAfterTransition } from '../actions/accounts';
 import { generateAlert, generateTransitionErrorAlert } from '../actions/alerts';
 import { setActiveStepIndex, startTrackingProgress, reset as resetProgress } from '../actions/progress';
-import { accumulateBalance, attachAndFormatAddress, getNewAddress, syncAddresses } from '../libs/iota/addresses';
+import { accumulateBalance, attachAndFormatAddress, syncAddresses } from '../libs/iota/addresses';
 import i18next from '../i18next';
 import { syncAccountDuringSnapshotTransition } from '../libs/iota/accounts';
-import { getBalancesAsync } from '../libs/iota/extendedApi';
+import { getBalancesAsync, generateAddressesAsync } from '../libs/iota/extendedApi';
 import Errors from '../libs/errors';
 import { selectedAccountStateFactory } from '../selectors/accounts';
+import { DEFAULT_SECURITY } from '../config';
 
 export const ActionTypes = {
     GENERATE_NEW_ADDRESS_REQUEST: 'IOTA/WALLET/GENERATE_NEW_ADDRESS_REQUEST',
@@ -148,7 +149,7 @@ export const switchBalanceCheckToggle = () => ({
 export const generateNewAddress = (seed, accountName, existingAccountData, genFn) => {
     return (dispatch) => {
         dispatch(generateNewAddressRequest());
-        return syncAddresses(seed, existingAccountData.addresses, genFn, true)
+        return syncAddresses(seed, existingAccountData.addresses, genFn)
             .then((latestAddressData) => {
                 dispatch(updateAddresses(accountName, latestAddressData));
                 dispatch(generateNewAddressSuccess());
@@ -289,11 +290,10 @@ export const generateAddressesAndGetBalance = (seed, index, genFn) => {
         const options = {
             index,
             total: 20,
-            returnAll: true,
-            security: 2,
+            security: DEFAULT_SECURITY,
         };
 
-        getNewAddress(seed, options, genFn, (error, addresses) => {
+        generateAddressesAsync(seed, options, genFn, (error, addresses) => {
             if (error) {
                 dispatch(snapshotTransitionError());
                 dispatch(generateTransitionErrorAlert(error));

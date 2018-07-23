@@ -375,6 +375,31 @@ const isNodeSynced = (provider = null) => {
         });
 };
 
+const generateAddressAsync = (seed, index, security, addressGenFn = null) => {
+    if (isNull(addressGenFn)) {
+        return Promise.resolve(iota.api._newAddress(seed, index, security, false));
+    }
+
+    return addressGenFn(seed, index, security);
+};
+
+const generateAddressesAsync = (seed, options, addressesGenFn = null) => {
+    const { index, security, total } = options;
+    if (isNull(addressesGenFn)) {
+        return new Promise((resolve, reject) => {
+            iota.api.getNewAddress(seed, { index, security, total }, (err, addresses) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(addresses);
+                }
+            });
+        });
+    }
+
+    return addressesGenFn(seed, index, security, total);
+};
+
 export {
     getBalancesAsync,
     getNodeInfoAsync,
@@ -393,4 +418,6 @@ export {
     attachToTangleAsync,
     checkAttachToTangleAsync,
     isNodeSynced,
+    generateAddressAsync,
+    generateAddressesAsync,
 };
