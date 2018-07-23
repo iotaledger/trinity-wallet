@@ -92,7 +92,7 @@
         "addresses": "Osoitteet",
         "reattach": "KIINNITÄ UUDELLEEN",
         "promote": "EDISTÄ",
-        "retry": "Retry",
+        "retry": "Yritä uudelleen",
         "pressBackAgain": "Paina paluu-painiketta sulkeaksesi sovelluksen",
         "reattached": "Siirron uudelleenliitos onnistui",
         "reattachedExplanation": "Siirto tiivisteluvulla {{hash}} onnistui",
@@ -161,8 +161,8 @@
         "nameInUse": "Tilin nimi on jo käytössä",
         "nameInUseExplanation": "Käytä yksilöllistä tilin nimeä seed-luvullesi.",
         "enterAccountName": "Anna tilin nimi.",
-        "accountNameTooLong": "Account name too long",
-        "accountNameTooLongExplanation": "Account name maximum length is {{maxLength}} characters.",
+        "accountNameTooLong": "Tilin nimi liian pitkä",
+        "accountNameTooLongExplanation": "Tilin nimen maksimi pituus on {{maxLength}} merkkiä.",
         "accountName": "Tilin nimi",
         "noNickname": "Tilin nimeä ei annettu",
         "noNicknameExplanation": "Anna tilin nimi seed-luvullesi.",
@@ -260,8 +260,8 @@
         "selectDifferentNode": "Haluatko valita toisen palvelimen?",
         "setNode": "Aseta Palvelin",
         "cannotConnect": "Ei saada yhteyttä IOTA-palvelimeen.",
-        "whyBiometricDisabled": "Why is biometric authentication disabled?",
-        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabled": "Miksi biometrinen tunnistus pois käytöstä?",
+        "whyBiometricDisabledExplanation": "Biometrinen tunnistus on pois käytöstä kun sovellus käynnistetään ensimmäistä kertaa. Ensimäisen käynnistyksen jälkeen biometristä tunnistusta voidaan käyttää. Tunnistus nollautuu, kun laite käynnistetään uudelleen, tämä johtuu sovelluksen tietoturvasta."
     },
     "loading": {
         "loadingFirstTime": "Ladataan seed-lukua ensimmäistä kertaa.",
@@ -299,9 +299,9 @@
         "printerCheckbox": "En tulosta julkisella tulostimella"
     },
     "receive": {
-        "yourAddress": "Your address",
-        "qrOptions": "QR options",
-        "shareQr": "Share QR code",
+        "yourAddress": "Osoitteesi",
+        "qrOptions": "QR-koodi asetukset",
+        "shareQr": "Jaa QR-koodi",
         "copyAddress": "Kopioi osoite",
         "addressCopied": "Osoite kopioitu",
         "addressCopiedExplanation": "Osoitteesi on kopioitu leikepöydälle.",
@@ -473,7 +473,7 @@
         "send": "Lähetä",
         "receive": "Vastaanota",
         "empty": "Tyhjä",
-        "retrying": "Retrying",
+        "retrying": "Yritetään uudelleen",
         "yesterday": "Eilen"
     },
     "accountManagement": {
@@ -488,12 +488,12 @@
         "customNodeCouldNotBeAdded": "Palvelinta ei voitu lisätä",
         "customNodeAddedSuccessfully": "Palvelin lisätty onnistuneesti.",
         "customNode": "Omavalintainen palvelin",
-        "removeCustomNode": "Remove custom node",
+        "removeCustomNode": "Lisää omavalintainen palvelin",
         "invalidNodeResponse": "Palvelin antoi virheilmoituksen",
         "add": "Lisää",
         "nodeFieldEmpty": "Tekstikenttä on tyhjä",
         "nodeFieldEmptyExplanation": "Anna omavalintaisen palvelin osoite.",
-        "invalidURL": "Please enter a valid URL."
+        "invalidURL": "Syötä kelvollinen URL-osoite."
     },
     "addNewAccount": {
         "useExistingSeed": "Käytä olemassaolevaa seed-lukua",
@@ -614,16 +614,16 @@
         "twoFaToken": "2FA tunnus"
     },
     "seedVault": {
-        "exportSeedVault": "Vie Seed-luku",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password. It is recommended that you store the file in a password manager like Keepass.",
-        "seedVaultWarning": "Make sure you back up the file in multiple locations (e.g. hard drive, cloud, USB). If you lose this file and have not stored your seed elsewhere, you will lose your IOTA.",
-        "exportFail": "SeedVault export failed",
-        "exportFailExplanation": "There was an problem exporting the SeedVault. Please ensure you have the appropriate permissions and enough free space.",
-        "exportSuccess": "SeedVault exported",
-        "exportSuccessExplanation": "Your encrypted seed file was exported successfully.",
-        "importSeedVault": "Import SeedVault",
-        "dropSeedVaultHere": "Drop SeedVault here",
-        "enterPasswordExplanation": "Enter your password to open the SeedVault",
+        "exportSeedVault": "Vie SeedVault-tiedosto",
+        "seedVaultExplanation": "SeedVault on salattu tiedosto, jossa seed-lukusi säilyy turvallisesti. Tiedosto on suojattu salasanalla, on siis suostiteltavaa että tallennat salasanan turvallisesti käyttäen esimerkiksi Keepass sovellusta.",
+        "seedVaultWarning": "Varmista että tallennat tiedoston useaan eri paikkaan (kovalevy, pilvi, USB-tikku). Jos hävitä tiedoston, etkä ole tallentanut tiedostoa muualle, menetät pääsyn IOTA-varoihisi.",
+        "exportFail": "SeedVault-tiedoston vienti epäonnistui",
+        "exportFailExplanation": "SeedVault viennissä ilmeni ongelmia. Varmista että sinulla on riittävät oikeudet ja tarpeeksi tilaa levyllä.",
+        "exportSuccess": "SeedVault-tiedoston vienti onnistui",
+        "exportSuccessExplanation": "Salattu seed-tiedostosi on tallennettu onnistuneesti.",
+        "importSeedVault": "Tuo Seedvault-tiedosto",
+        "dropSeedVaultHere": "Pudota SeedVault-tiedosto tähän",
+        "enterPasswordExplanation": "Kirjoita salasanasi avataksesi SeedVault-tiedosto",
         "noSeedFound": "SeedVault does not contain a valid seed",
         "noSeedFoundExplanation": "The SeedVault is either empty or contains a seed in an invalid format.",
         "seedFileError": "Failed to open SeedVault",
