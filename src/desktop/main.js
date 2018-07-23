@@ -177,7 +177,7 @@ function createWindow() {
         if (url.indexOf(targetURL) !== 0) {
             e.preventDefault();
 
-            const externalWhitelist = ['trinity.iota.org'];
+            const externalWhitelist = ['iota.org', 'docs.iota.works', 'trinity.iota.org'];
 
             try {
                 if (externalWhitelist.indexOf(URL.parse(targetURL).host) > -1) {

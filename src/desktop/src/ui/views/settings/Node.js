@@ -78,7 +78,7 @@ class SetNode extends PureComponent {
         const { nodes, customNodes, node, loading, autoNodeSwitching, t } = this.props;
         const { selection, customNode } = this.state;
 
-        const selectedNode = this.validNode(customNode) ? customNode : selection;
+        const selectedNode = customNode.length > 0 ? customNode : selection;
 
         return (
             <form onSubmit={this.changeNode}>
