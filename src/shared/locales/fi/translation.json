@@ -37,14 +37,14 @@
         "apply": "Hyväksy",
         "save": "Tallenna",
         "close": "Sulje",
-        "export": "Export",
-        "import": "Import",
+        "export": "Vie",
+        "import": "Tuo",
         "continue": "Jatka",
         "enable": "Ota käyttöön",
         "disable": "Poista käytöstä",
         "enabled": "Käytössä",
         "disabled": "Pois käytöstä",
-        "enterPassword": "Enter password",
+        "enterPassword": "Anna salasana",
         "paperWallet": "Tulosta seed-luku paperille",
         "addToPasswordManager": "Lisää salasanan hallintasovellukseen",
         "shareSeed": "Jaa seed-luku",
@@ -187,20 +187,30 @@
         "newPassword": "Uusi Salasana",
         "confirmPassword": "Vahvista Uusi Salasana",
         "passwordTooWeak": "Salasan liian heikko",
-        "passwordTooWeakReason": "Salasanasi on liian heikko. Käytä yhdistelmää sanoista, ja vältä tavallisimpia lauseita, nimiä tai päivämääriä",
-        "reasonRow": "Peräkkäiset merkit ovat helppoja arvata",
-        "reasonPattern": "Lyhyet merkkijonot ovat helppoja arvata",
-        "reasonNames": "Yleiset nimet ja sukunimet ovat helppoja arvata",
-        "reasonRepeats": "Samat peräkkäiset merkit kuten 'aaa' ovat helppoja arvata",
-        "reasonRepeats2": "Toistot kuten 'abcabcabc' ovat vain hieman vaikeampia arvata kuin pelkkä 'abc'",
-        "reasonSequence": "Salasanoja esimerkiksi abc tai 54321 on helppo arvata",
-        "reasonYears": "Viime vuodet on helppo arvata",
-        "reasonDates": "Päivämäärät ovat usein helppoja arvata",
-        "reasonTop10": "Tämä on hyvin yleinen salasana (top 10)",
-        "reasonTop100": "Tämä on hyvin yleinen salasana (top 100)",
-        "reasonCommon": "Tämä on hyvin yleinen salasana",
-        "reasonSimilar": "Tämä vastaa usein yhtä usein käytetyistä salasanoista",
-        "reasonWord": "Yksittäinen sana on helppo arvata"
+        "passwordTooWeakReason": "Salasanasi on liian heikko. Käytä yhdistelmää sanoista, ja vältä tavallisimpia lauseita, nimiä tai päivämääriä.",
+        "reasonRow": "Peräkkäiset merkit ovat helppoja arvata.",
+        "reasonPattern": "Lyhyet merkkijonot ovat helppoja arvata.",
+        "reasonNames": "Yleiset nimet ja sukunimet ovat helppoja arvata.",
+        "reasonRepeats": "Samat peräkkäiset merkit kuten 'aaa' ovat helppoja arvata.",
+        "reasonRepeats2": "Toistot kuten 'abcabcabc' ovat vain hieman vaikeampia arvata kuin pelkkä 'abc'.",
+        "reasonSequence": "Salasanat kuten abc tai 54321 ovat helppoja arvata.",
+        "reasonYears": "Viime vuodet on helppo arvata.",
+        "reasonDates": "Päivämäärät ovat usein helppoja arvata.",
+        "reasonTop10": "Tämä on hyvin yleinen salasana (top 10).",
+        "reasonTop100": "Tämä on hyvin yleinen salasana (top 100).",
+        "reasonCommon": "Tämä on hyvin yleinen salasana.",
+        "reasonSimilar": "Tämä vastaa usein yhtä usein käytetyistä salasanoista.",
+        "reasonWord": "Yksittäinen sana on helppo arvata."
+    },
+    "setPassword": {
+        "choosePassword": "Luo uusi salasana",
+        "passwordTooShort": "Salasana on liian lyhyt",
+        "passwordTooShortExplanation": "Salasanasi on oltava vähintään {{minLength}} merkkiä. Se on tällä hetkellä {{currentLength}} merkin pituinen. Yritä uudelleen.",
+        "passwordMismatch": "Salasanat eivät täsmää",
+        "passwordMismatchExplanation": "Annetut salasanat eivät täsmää. Yritä uudelleen.",
+        "nowWeNeedTo": "Nyt meidän on luotava salasana.",
+        "anEncryptedCopy": "Seed-lukusi salattu kopio tallennetaan laitteellesi. Tällä salasanalla pääset käyttämään lompakkoasi jatkossa.",
+        "retypePassword": "Kirjoita Salasana Uudelleen"
     },
     "copyToClipboard": {
         "seedCleared": "Seed-luku tyhjennetty",
@@ -359,17 +369,6 @@
         "addressPasteExplanation": "Näyttää siltä että olet liittänyt osoitteen muualta. Varmista että liitetty osoite vastaa alkuperäistä.",
         "invalid": "VIRHEELLINEN"
     },
-    "setPassword": {
-        "choosePassword": "Luo uusi salasana",
-        "passwordTooShort": "Salasana on liian lyhyt",
-        "passwordTooShortExplanation": "Salasanasi on oltava vähintään {{minLength}} merkkiä. Se on tällä hetkellä {{currentLength}} merkin pituinen. Yritä uudelleen.",
-        "passwordMismatch": "Salasanat eivät täsmää",
-        "passwordMismatchExplanation": "Annetut salasanat eivät täsmää. Yritä uudelleen.",
-        "nowWeNeedTo": "Nyt meidän on luotava salasana.",
-        "anEncryptedCopy": "Seed-lukusi salattu kopio tallennetaan laitteellesi. Tällä salasanalla pääset käyttämään lompakkoasi jatkossa.",
-        "ensure": "Varmista, että käytät hyvää salasanaa, joka on vähintään 11 merkkiä pitkä ja sisältää erikoismerkkejä.",
-        "retypePassword": "Kirjoita Salasana Uudelleen"
-    },
     "setSeedName": {
         "letsAddName": "Annetaan seed-luvulle nimi",
         "canUseMultipleSeeds": "Voit lisätä useita seed-lukuja lompakkoosi. Huomioi että jokainen tili tulee nimetä erikseen.",
@@ -475,7 +474,7 @@
         "receive": "Vastaanota",
         "empty": "Tyhjä",
         "retrying": "Retrying",
-        "yesterday": "Yesterday"
+        "yesterday": "Eilen"
     },
     "accountManagement": {
         "viewSeed": "Katso seed-luku",
@@ -615,7 +614,7 @@
         "twoFaToken": "2FA tunnus"
     },
     "seedVault": {
-        "exportSeedVault": "Export SeedVault",
+        "exportSeedVault": "Vie Seed-luku",
         "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password. It is recommended that you store the file in a password manager like Keepass.",
         "seedVaultWarning": "Make sure you back up the file in multiple locations (e.g. hard drive, cloud, USB). If you lose this file and have not stored your seed elsewhere, you will lose your IOTA.",
         "exportFail": "SeedVault export failed",
