@@ -9,6 +9,6 @@ positive: { color: 'rgb(41, 117, 47)',hover: 'rgb(2, 125, 84)',body: 'rgb(255, 2
 dark: { color: 'rgb(22, 47, 53)',hover: 'rgb(19, 40, 45)',body: 'rgb(255, 255, 255)', },
 secondary: { color: 'rgb(137, 211, 254)',hover: 'rgb(116, 180, 217)',body: 'rgb(26, 55, 62)', },
 primary: { color: 'rgb(247, 213, 27)',hover: 'rgb(210, 178, 0)',body: 'rgb(26, 55, 62)', },
-body: { bg: 'rgb(26, 55, 62)',body: 'rgb(255, 255, 255)',alt: 'rgba(255, 255, 255, 0.25)', },
+body: { bg: 'rgb(26, 55, 62)',color: 'rgb(255, 255, 255)',alt: 'rgba(255, 255, 255, 0.25)', },
 wave: { primary: 'rgba(137, 211, 254, 0.15)',secondary: 'rgba(0, 0, 0, 0.15)', },
 };
