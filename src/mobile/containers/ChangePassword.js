@@ -283,7 +283,7 @@ class ChangePassword extends Component {
                         >
                             <View style={styles.itemLeft}>
                                 <Icon name="chevronLeft" size={width / 28} color={theme.body.color} />
-                                <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
+                                <Text style={[styles.titleTextLeft, textColor]}>{t('global:back')}</Text>
                             </View>
                         </TouchableOpacity>
                         {currentPassword !== '' &&
