@@ -268,7 +268,7 @@ class SeedReentry extends Component {
                                         onLeftButtonPress={() => this.onBackPress()}
                                         onRightButtonPress={() => this.onDonePress()}
                                         leftButtonText={t(':goBack')}
-                                        rightButtonText={t('global:doneLowercase')}
+                                        rightButtonText={t('global:done')}
                                     />
                                 </View>
                             </View>
