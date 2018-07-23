@@ -165,8 +165,8 @@ class Disable2FA extends Component {
                             <OnboardingButtons
                                 onLeftButtonPress={this.goBack}
                                 onRightButtonPress={this.disable2FA}
-                                leftButtonText={t('cancel')}
-                                rightButtonText={t('doneLowercase')}
+                                leftButtonText={t('global:cancel')}
+                                rightButtonText={t('done')}
                             />
                         </View>
                     </View>
