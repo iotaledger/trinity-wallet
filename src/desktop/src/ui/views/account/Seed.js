@@ -22,12 +22,9 @@ import css from './seed.scss';
  */
 class Seed extends PureComponent {
     static propTypes = {
-        /** Current account name */
+        /** @ignore */
         accountName: PropTypes.string.isRequired,
-        /** Translation helper
-         * @param {String} translationString - Locale string identifier to be translated
-         * @ignore
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 

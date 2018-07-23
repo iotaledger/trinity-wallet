@@ -17,47 +17,31 @@ import Button from 'ui/components/Button';
 import PasswordInput from 'ui/components/input/Password';
 
 /**
- * Onboarding, set account password
+ * Onboarding, Set account password
  */
 class AccountPassword extends React.PureComponent {
     static propTypes = {
-        /** Add new account name
-         * @param {String} name - Account name
-         */
+        /** @ignore */
         addAccountName: PropTypes.func.isRequired,
-        /** Increase seed count
-         */
+        /** @ignore */
         increaseSeedCount: PropTypes.func.isRequired,
-        /** Current seed count */
+        /** @ignore */
         seedCount: PropTypes.number.isRequired,
-        /** Set password state
-         * @param {String} password - Current password
-         * @ignore
-         */
+        /** @ignore */
         setPassword: PropTypes.func.isRequired,
-        /** Set onboarding account name
-         * @param {String} name - New accounts name
-         */
+        /** @ignore */
         setOnboardingName: PropTypes.func.isRequired,
-        /** Set onboarding status to complete */
+        /** @ignore */
         setOnboardingComplete: PropTypes.func.isRequired,
-        /** Onboarding set seed and name */
+        /** @ignore */
         onboarding: PropTypes.object.isRequired,
-        /** Browser history object */
+        /** @ignore */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
-        /** Create a notification message
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         * @ignore
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         * @ignore
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 

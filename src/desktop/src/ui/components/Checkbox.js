@@ -9,12 +9,13 @@ import css from './checkbox.scss';
  */
 export default class Checkbox extends React.PureComponent {
     static propTypes = {
-        /** Checkbox state */
+        /** Is checkbox checked */
         checked: PropTypes.bool.isRequired,
-        /** Input label */
+        /** Checkbox label */
         label: PropTypes.string,
         /** Address change event function
-         * @param {Bool} value - Current checkbox state
+         * @param {Bool} Value - Current checkbox state
+         * @returns {undefined}
          */
         onChange: PropTypes.func.isRequired,
     };

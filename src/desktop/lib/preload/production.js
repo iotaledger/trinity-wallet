@@ -1,5 +1,6 @@
 const Electron = require('./Electron');
 
+// Define environment mode as Production
 Electron.mode = 'prod';
 
 // Disable default drag&drop
@@ -8,8 +9,6 @@ document.addEventListener('drop', (e) => e.preventDefault());
 
 // Disable eval
 // eslint-disable-next-line
-window.eval = global.eval = function() {
-    throw new Error('Eval support disabled');
-};
+window.eval = global.eval = function() {};
 
 global.Electron = Electron;

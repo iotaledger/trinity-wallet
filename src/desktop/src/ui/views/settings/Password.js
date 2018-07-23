@@ -18,22 +18,11 @@ import Button from 'ui/components/Button';
  */
 class PasswordSettings extends PureComponent {
     static propTypes = {
-        /** Set password state
-         * @param {String} password - Current password
-         * @ignore
-         */
+        /** @ignore */
         setPassword: PropTypes.func.isRequired,
-        /** Create a notification message
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         * @ignore
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - Locale string identifier to be translated
-         * @ignore
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
@@ -137,4 +126,7 @@ const mapDispatchToProps = {
     setPassword,
 };
 
-export default connect(null, mapDispatchToProps)(translate()(PasswordSettings));
+export default connect(
+    null,
+    mapDispatchToProps,
+)(translate()(PasswordSettings));

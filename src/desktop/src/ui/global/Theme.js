@@ -8,13 +8,16 @@ import themes from 'themes/themes';
 
 /**
  * Theming style provider component
- * @ignore
  */
 class Theme extends PureComponent {
     static propTypes = {
+        /** @ignore */
         location: PropTypes.object,
+        /** @ignore */
         theme: PropTypes.object.isRequired,
+        /** @ignore */
         themeName: PropTypes.string.isRequired,
+        /** @ignore */
         updateTheme: PropTypes.func.isRequired,
     };
 
@@ -26,10 +29,6 @@ class Theme extends PureComponent {
     componentDidMount() {
         this.updateTheme(this.props.theme);
 
-        if (Electron.mode === 'dev') {
-            this.onKey = this.onKeyDown.bind(this);
-            window.addEventListener('keydown', this.onKey);
-        }
         if (Electron.mode === 'puppeteer') {
             this.timeout = setTimeout(this.takeShot.bind(this), 4000);
         }
@@ -42,9 +41,6 @@ class Theme extends PureComponent {
     }
 
     componentWillUnmount() {
-        if (Electron.mode === 'dev') {
-            window.removeEventListener('keydown', this.onKey);
-        }
         if (this.timeout) {
             clearTimeout(this.timeout);
         }
@@ -60,6 +56,10 @@ class Theme extends PureComponent {
         }
     }
 
+    /**
+     * Application view screenshot trigger, enabled only in development mode
+     * @returns {undefined}
+     */
     takeShot() {
         const { originalTheme, themeIndex } = this.state;
 
