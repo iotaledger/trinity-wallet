@@ -23,7 +23,7 @@ export default class Button extends React.PureComponent {
         /** Is button disabled */
         disabled: PropTypes.bool,
         /** Button element type */
-        type: PropTypes.oneOf(['button', 'submit']).string,
+        type: PropTypes.oneOf(['button', 'submit']),
         /** Button style class */
         variant: PropTypes.oneOf(['primary', 'secondary', 'positive', 'negative', 'extra', 'dark']).isRequired,
         /** Buttons secondary class */
