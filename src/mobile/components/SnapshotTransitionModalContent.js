@@ -80,9 +80,7 @@ export default class SnapshotTransitionModalContent extends PureComponent {
                             <View style={{ paddingTop: height / 18, alignItems: 'center' }}>
                                 <TouchableOpacity onPress={onPress}>
                                     <View style={[styles.button, borderColor, backgroundColor]}>
-                                        <Text style={[styles.buttonText, buttonTextColor]}>
-                                            {t('global:okay')}
-                                        </Text>
+                                        <Text style={[styles.buttonText, buttonTextColor]}>{t('global:okay')}</Text>
                                     </View>
                                 </TouchableOpacity>
                             </View>
