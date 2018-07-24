@@ -5,8 +5,6 @@ include ':react-native-detect-navbar-android'
 project(':react-native-detect-navbar-android').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-detect-navbar-android/android')
 include ':react-native-fingerprint-scanner'
 project(':react-native-fingerprint-scanner').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-fingerprint-scanner/android')
-include ':react-native-fabric'
-project(':react-native-fabric').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-fabric/android')
 include ':react-native-device-info'
 project(':react-native-device-info').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-device-info/android')
 include ':react-native-os'
@@ -30,8 +28,6 @@ include ':react-native-sensitive-info'
 project(':react-native-sensitive-info').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-sensitive-info/android')
 include ':react-native-fs'
 project(':react-native-fs').projectDir = new File(settingsDir, '../node_modules/react-native-fs/android')
-include ':react-native-fabric'
-project(':react-native-fabric').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-fabric/android')
 include ':react-native-keep-awake'
 project(':react-native-keep-awake').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-keep-awake/android')
 include ':react-native-extra-dimensions-android', ':app'

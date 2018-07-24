@@ -63,7 +63,7 @@
 		CA8AF202D45B7B9C48CB844FE4029B34 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38822DC4E60A1BDF9DF917E7C1541B3D /* libRCTLinking.a */; };
 		CB61A46620B89E3B004088AA /* SourceSansPro-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB61A46520B89E3A004088AA /* SourceSansPro-SemiBold.ttf */; };
 		CB6626F52085057F00651519 /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB6626F42085056C00651519 /* libSplashScreen.a */; };
-		CB866281209F36CA00C026E3 /* EntangledIOS.m in Sources */ = {isa = PBXBuildFile; fileRef = CB86627D209F36CA00C026E3 /* EntangledIOS.m */; };
+		CB866281209F36CA00C026E3 /* EntangledIOS.m in Sources */ = {isa = PBXBuildFile; fileRef = CB86627D209F36CA00C026E3 /* EntangledIOS.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CB98FB9420A0A5BB0047877B /* SourceSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB98FB9120A0A5BB0047877B /* SourceSansPro-Bold.ttf */; };
 		CB98FB9520A0A5BB0047877B /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB98FB9220A0A5BB0047877B /* SourceSansPro-Regular.ttf */; };
 		CB98FB9620A0A5BB0047877B /* SourceSansPro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB98FB9320A0A5BB0047877B /* SourceSansPro-Light.ttf */; };
@@ -73,7 +73,6 @@
 		CDC76600A03C06457F99259512D7F713 /* libRNIsDeviceRooted.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0431CEEC099BC4CE1F43E0550C4CC291 /* libRNIsDeviceRooted.a */; };
 		CF626DD9FBB494210B780417 /* Pods_iotaWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 890341AF0F2DE4E9DCB80928 /* Pods_iotaWallet.framework */; };
 		D51793D4E78BCB702D9FFAA1A3356153 /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48E60D4ABEBFCB6EC7FCE9538A5FF83F /* libRNSVG.a */; };
-		D54A6C850FD7BE61FF81BD7F6E7F25A3 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EEAE9D5C606B7556253D3AD01EB78CE0 /* Info.plist */; };
 		D67B7F52CD8EA6422597645960A1C079 /* libRCTWebSocket-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41ABB0EEDDF4C638791186862B6FCA44 /* libRCTWebSocket-tvOS.a */; };
 		D9A1C4460153C2A24C3B5ACB9EF492CF /* libRNKeychain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D373EB5A6D14212CD152A952A67FEB62 /* libRNKeychain.a */; };
 		DDA136528BBDF91C4395B590FD2C59F1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A9A65DE849C3D3C9799E3B05D172685 /* libRCTVibration.a */; };
@@ -1436,7 +1435,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 920;
-				LastUpgradeCheck = 910;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "IOTA Foundation";
 				TargetAttributes = {
 					1B6F56C5B39768183E212C21E8E213DA = {
@@ -2211,7 +2210,6 @@
 				CBA69EF920C8139300DD4CEB /* Icons.ttf in Resources */,
 				CB98FB9620A0A5BB0047877B /* SourceSansPro-Light.ttf in Resources */,
 				CB61A46620B89E3B004088AA /* SourceSansPro-SemiBold.ttf in Resources */,
-				D54A6C850FD7BE61FF81BD7F6E7F25A3 /* Info.plist in Resources */,
 				29169BFF0B0644DA1F501101B010A604 /* InfoPlist.strings in Resources */,
 				29E9C75A4A87FFC827469A3CFB2D3C89 /* Launch Screen.storyboard in Resources */,
 				CB98FB9420A0A5BB0047877B /* SourceSansPro-Bold.ttf in Resources */,
@@ -2458,12 +2456,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -2489,6 +2489,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -2580,7 +2581,9 @@
 					"${PODS_DEV_ROOT}/React/**",
 					"$(SRCROOT)/../node_modules/react-native-fingerprint-scanner/ios",
 					"${PODS_DEV_ROOT}/UIDevice-PasscodeStatus/**",
-					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios\n\n$(SRCROOT)/../node_modules/react-native-splash-screen/ios\n\n$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
+					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
+					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
+					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 				);
 				IBC_WARNINGS = YES;
 				INFOPLIST_FILE = iotaWallet/Info.plist;
@@ -2590,7 +2593,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Entangled",
 					"$(PROJECT_DIR)/EntangledIOS",
 				);
 				OTHER_CFLAGS = (
@@ -2600,9 +2602,7 @@
 					"-isystem",
 					"\"${PODS_ROOT}/Headers/Public\"",
 					"-isystem",
-					"\"${PODS_ROOT}/Headers/Public/Crashlytics\"",
 					"-isystem",
-					"\"${PODS_ROOT}/Headers/Public/Fabric\"",
 					"-fstack-protector-all",
 				);
 				OTHER_LDFLAGS = (
@@ -2759,12 +2759,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -2909,7 +2911,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Entangled",
 					"$(PROJECT_DIR)/EntangledIOS",
 				);
 				OTHER_CFLAGS = (
@@ -2919,9 +2920,7 @@
 					"-isystem",
 					"\"${PODS_ROOT}/Headers/Public\"",
 					"-isystem",
-					"\"${PODS_ROOT}/Headers/Public/Crashlytics\"",
 					"-isystem",
-					"\"${PODS_ROOT}/Headers/Public/Fabric\"",
 					"-fstack-protector-all",
 				);
 				OTHER_LDFLAGS = (
