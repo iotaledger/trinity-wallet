@@ -29,7 +29,7 @@ function checkNode(url, callback) {
         const neighborsThreshold = 2;
 
         if (nodeinfo.tips < tipThreshold) {
-            callback("Node doesn't have enough tips!");
+            callback('Node doesn\'t have enough tips!');
         }
 
         if (nodeinfo.transactionsToRequest > txsToRequestThreshold) {
