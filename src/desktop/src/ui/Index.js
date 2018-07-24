@@ -44,8 +44,6 @@ class App extends React.Component {
         /** @ignore */
         locale: PropTypes.string.isRequired,
         /** @ignore */
-        accounts: PropTypes.object.isRequired,
-        /** @ignore */
         wallet: PropTypes.object.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
@@ -196,7 +194,7 @@ class App extends React.Component {
     };
 
     render() {
-        const { accounts, location } = this.props;
+        const { location } = this.props;
 
         const currentKey = location.pathname.split('/')[1] || '/';
 
@@ -223,11 +221,7 @@ class App extends React.Component {
                                 <Route exact path="/settings/:setting?" component={Settings} />
                                 <Route exact path="/account/:setting?" component={Account} />
                                 <Route path="/wallet" component={Wallet} />
-                                <Route
-                                    path="/onboarding"
-                                    complete={accounts.onboardingComplete}
-                                    component={Onboarding}
-                                />
+                                <Route path="/onboarding" component={Onboarding} />
                                 <Route exact path="/" loop={false} component={this.Init} />
                             </Switch>
                         </div>
@@ -240,7 +234,6 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => ({
     locale: state.settings.locale,
-    accounts: state.accounts,
     wallet: state.wallet,
     themeName: state.settings.themeName,
 });
