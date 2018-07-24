@@ -107,7 +107,7 @@ class ModalPassword extends PureComponent {
                         label={t('password')}
                         onChange={(value) => this.setState({ password: value })}
                     />
-                    <fieldset>
+                    <footer>
                         {!isForced ? (
                             <Button onClick={() => onClose()} variant="dark">
                                 {t('cancel')}
@@ -116,7 +116,7 @@ class ModalPassword extends PureComponent {
                         <Button type="submit" variant={category ? category : 'positive'}>
                             {content.confirm ? content.confirm : t('login:login').toLowerCase()}
                         </Button>
-                    </fieldset>
+                    </footer>
                 </form>
             </Modal>
         );

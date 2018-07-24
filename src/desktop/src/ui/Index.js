@@ -27,7 +27,6 @@ import Onboarding from 'ui/views/onboarding/Index';
 import Wallet from 'ui/views/wallet/Index';
 import Settings from 'ui/views/settings/Index';
 import Account from 'ui/views/account/Index';
-import Activation from 'ui/views/onboarding/Activation';
 
 import withAutoNodeSwitching from 'containers/global/AutoNodeSwitching';
 
@@ -38,8 +37,6 @@ import css from './index.scss';
  **/
 class App extends React.Component {
     static propTypes = {
-        /** @ignore */
-        activationCode: PropTypes.string,
         /** @ignore */
         location: PropTypes.object,
         /** @ignore */
@@ -199,7 +196,7 @@ class App extends React.Component {
     };
 
     render() {
-        const { accounts, location, activationCode } = this.props;
+        const { accounts, location } = this.props;
 
         const currentKey = location.pathname.split('/')[1] || '/';
 
@@ -209,16 +206,6 @@ class App extends React.Component {
                     <Theme location={location} />
                     <Titlebar />
                     <FatalError />
-                </div>
-            );
-        }
-
-        if (!activationCode) {
-            return (
-                <div className={css.trintiy}>
-                    <Theme location={location} />
-                    <Titlebar />
-                    <Activation />
                 </div>
             );
         }
@@ -255,7 +242,6 @@ const mapStateToProps = (state) => ({
     locale: state.settings.locale,
     accounts: state.accounts,
     wallet: state.wallet,
-    activationCode: state.app.activationCode,
     themeName: state.settings.themeName,
 });
 
