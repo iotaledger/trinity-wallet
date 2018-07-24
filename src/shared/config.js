@@ -36,3 +36,5 @@ export const DEFAULT_SECURITY = 2;
 export const DEFAULT_BALANCES_THRESHOLD = 100;
 
 export const BUNDLE_OUTPUTS_THRESHOLD = 50;
+
+export const NODE_REQUEST_TIMEOUT = 6000;

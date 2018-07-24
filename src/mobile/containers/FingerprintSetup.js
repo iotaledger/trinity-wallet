@@ -252,7 +252,7 @@ class FingerprintEnable extends Component {
                             children: { color: theme.primary.body },
                         }}
                     >
-                        {t('global:doneLowercase')}
+                        {t('global:done')}
                     </Button>
                 </View>
                 <StatefulDropdownAlert textColor={theme.body.color} backgroundColor={theme.body.bg} />

@@ -1,30 +1,13 @@
 import IOTA from 'iota.lib.js';
 
+import { NODE_REQUEST_TIMEOUT } from '../config';
+
 function checkNode(url, callback) {
     const iota = new IOTA({
         provider: url,
     });
 
-    // shim the open function to add a timeout
-    // TODO: implement timeout in iota.lib.js instead of here
-    // if a call takes forever, it just sits in the background taking up space
-
-    iota.api._makeRequest._open = iota.api._makeRequest.open;
-
-    const conntimeout = 2000;
-
-    iota.api._makeRequest.open = () => {
-        const request = iota.api._makeRequest._open();
-
-        // TODO: replace setTimeout with some native equivalent
-        setTimeout(() => {
-            if (request.readyState !== 4) {
-                request.abort();
-            }
-        }, conntimeout);
-
-        return request;
-    };
+    iota.api.setApiTimeout(NODE_REQUEST_TIMEOUT);
 
     iota.api.getNodeInfo((err, nodeinfo) => {
         if (err) {
