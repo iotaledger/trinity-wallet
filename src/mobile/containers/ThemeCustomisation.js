@@ -258,9 +258,7 @@ class ThemeCustomisation extends Component {
                         >
                             <View style={styles.itemLeft}>
                                 <Icon name="chevronLeft" size={width / 28} color={bodyColor} />
-                                <Text style={[styles.titleTextLeft, { color: bodyColor }]}>
-                                    {t('global:backLowercase')}
-                                </Text>
+                                <Text style={[styles.titleTextLeft, { color: bodyColor }]}>{t('global:back')}</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity

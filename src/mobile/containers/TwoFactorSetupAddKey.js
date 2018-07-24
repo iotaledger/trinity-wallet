@@ -183,7 +183,7 @@ export class TwoFactorSetupAddKey extends Component {
                         onLeftButtonPress={this.goBack}
                         onRightButtonPress={this.navigateToEnterToken}
                         leftButtonText={t('global:goBack')}
-                        rightButtonText={t('global:nextLowerCase')}
+                        rightButtonText={t('global:next')}
                     />
                 </View>
                 <StatefulDropdownAlert textColor={body.color} backgroundColor={body.bg} />

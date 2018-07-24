@@ -26,29 +26,6 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>16</string>
-	<key>Fabric</key>
-	<dict>
-		<key>APIKey</key>
-		<string>e741ca311eddc2a22fa56c2dad19b440babbddbc</string>
-		<key>Kits</key>
-		<array>
-			<dict>
-				<key>KitInfo</key>
-				<dict/>
-				<key>KitName</key>
-				<string>Crashlytics</string>
-			</dict>
-			<dict>
-				<key>KitInfo</key>
-				<dict>
-					<key>branch_key</key>
-					<string>key_live_lozLwJkmJxXpMeydYClJpmcfqqbutUYZ</string>
-				</dict>
-				<key>KitName</key>
-				<string>Branch</string>
-			</dict>
-		</array>
-	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
