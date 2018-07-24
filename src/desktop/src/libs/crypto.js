@@ -354,18 +354,6 @@ const hashSeedName = async (seedName) => {
 };
 
 /**
- * Check for a valid activation code
- * @param {string} code - Target activation code
- * @param {string} uuid - UUID of the machine
- * @returns {boolean} If activation code is correct
- */
-export const checkActivationCode = async (code, uuid) => {
-    const key = 'LURGzCPEHqhjvYLwAJXRv5Fc';
-    const hash = await sha256(key + uuid);
-    return code === hash;
-};
-
-/**
  * Convert byte seed array to string
  * @param {array} seed - Target seed array
  * @returns {string} Plain text seed string

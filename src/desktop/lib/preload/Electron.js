@@ -1,7 +1,6 @@
 const { ipcRenderer: ipc, clipboard } = require('electron');
 const { dialog } = require('electron').remote;
 const currentWindow = require('electron').remote.getCurrentWindow();
-const machineUuid = require('machine-uuid');
 const keytar = require('keytar');
 const fs = require('fs');
 const settings = require('electron-settings');
@@ -71,10 +70,6 @@ const Electron = {
         } else {
             clipboard.clear();
         }
-    },
-
-    getUuid() {
-        return machineUuid();
     },
 
     /**

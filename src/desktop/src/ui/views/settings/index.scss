@@ -123,7 +123,7 @@ $sidebar-narrow: 70px;
         max-width: 480px;
     }
 
-    @media (max-width: 720px) {
+    @media (max-width: 860px) {
         > div {
             max-width: none;
         }
@@ -186,5 +186,9 @@ $sidebar-narrow: 70px;
     div:last-of-type {
         display: flex;
         justify-content: space-between;
+
+        button {
+            min-width: 0px;
+        }
     }
 }
