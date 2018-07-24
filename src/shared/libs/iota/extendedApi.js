@@ -7,7 +7,12 @@ import { iota } from './index';
 import nativeBindings from './nativeBindings';
 import Errors from '../errors';
 import { isWithinMinutes } from '../date';
-import { DEFAULT_BALANCES_THRESHOLD, DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../../config';
+import {
+    DEFAULT_BALANCES_THRESHOLD,
+    DEFAULT_DEPTH,
+    DEFAULT_MIN_WEIGHT_MAGNITUDE,
+    NODE_REQUEST_TIMEOUT,
+} from '../../config';
 import { performPow } from './transfers';
 
 const getBalancesAsync = (addresses, threshold = DEFAULT_BALANCES_THRESHOLD) => {
@@ -26,6 +31,7 @@ const getNodeInfoAsync = (provider = null) => {
     return new Promise((resolve, reject) => {
         const instance = provider ? new IOTA({ provider }) : iota;
 
+        instance.api.setApiTimeout(NODE_REQUEST_TIMEOUT);
         instance.api.getNodeInfo((err, info) => {
             if (err) {
                 reject(err);
@@ -333,6 +339,7 @@ const getTrytesAsync = (hashes, provider = null) => {
     return new Promise((resolve, reject) => {
         const instance = provider ? new IOTA({ provider }) : iota;
 
+        instance.api.setApiTimeout(NODE_REQUEST_TIMEOUT);
         instance.api.getTrytes(hashes, (err, trytes) => {
             if (err) {
                 reject(err);
