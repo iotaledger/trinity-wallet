@@ -1,7 +1,7 @@
 {
     "global": {
         "send": "WYŚLIJ",
-        "cancel": "Cancel",
+        "cancel": "Anuluj",
         "continue?": "Czy na pewno chcesz kontynuować?",
         "noTransactions": "BRAK OSTATNIEJ AKTYWNOŚCI",
         "refresh": "Odśwież",
@@ -23,12 +23,12 @@
         "thisNodeOutOfSync": "Ten serwer nie jest zsynchronizowany. Proszę zmienić serwer lub spróbować ponownie.",
         "seed": "Seed",
         "checksum": "Suma kontrolna",
-        "back": "Back",
+        "back": "Wstecz",
         "goBack": "Wróć",
         "goBackStep": "Poprzedni krok",
-        "done": "Done",
+        "done": "Gotowe",
         "prev": "POPRZ.",
-        "next": "Next",
+        "next": "Dalej",
         "apply": "Zastosuj",
         "save": "Zapisz",
         "close": "Zamknij",
@@ -53,9 +53,9 @@
         "fifthWallet": "PIĄTE KONTO",
         "sixthWallet": "SZÓSTE KONTO",
         "otherWallet": "INNE KONTO",
-        "yes": "Yes",
-        "no": "No",
-        "okay": "Okay",
+        "yes": "Tak",
+        "no": "Nie",
+        "okay": "Okej",
         "password": "Hasło",
         "unrecognisedPassword": "Hasło nierozpoznane",
         "unrecognisedPasswordExplanation": "Hasło nieprawidłowe. Spróbuj ponownie.",
@@ -398,7 +398,7 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Wprowadź swoje hasło, aby zresetować portfel.",
-        "reset": "Reset"
+        "reset": "Resetuj"
     },
     "walletSetup": {
         "creatingSeed": "Tworzenie klucza seed",
