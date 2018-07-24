@@ -199,7 +199,7 @@ class TransferConfirmationModal extends Component {
                     <ModalButtons
                         onLeftButtonPress={() => this.props.hideModal()}
                         onRightButtonPress={() => this.onSendPress()}
-                        leftText={t('global:cancel')}
+                        leftText={t('global:cancel').toUpperCase()}
                         rightText={t('global:send')}
                         buttonWidth={{ width: width / 3.2 }}
                         containerWidth={{ width: width / 1.4 }}

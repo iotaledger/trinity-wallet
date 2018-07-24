@@ -1,8 +1,11 @@
 import IOTA from 'iota.lib.js';
 import 'proxy-polyfill';
-import { defaultNode, nodes } from '../../config';
+import { defaultNode, nodes, NODE_REQUEST_TIMEOUT } from '../../config';
 
 const iotaAPI = new IOTA({ provider: defaultNode });
+
+// Set node request timeout
+iotaAPI.api.setApiTimeout(NODE_REQUEST_TIMEOUT);
 
 // Later used by the checkNodePatched function
 let unproxiedNodeInfo = iotaAPI.api.getNodeInfo.bind(iotaAPI.api);
