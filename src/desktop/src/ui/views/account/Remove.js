@@ -12,6 +12,7 @@ import ModalPassword from 'ui/components/modal/Password';
 
 import Button from 'ui/components/Button';
 import Confirm from 'ui/components/modal/Confirm';
+import Info from 'ui/components/Info';
 
 /**
  * Remove account component
@@ -86,6 +87,9 @@ class Remove extends PureComponent {
 
         return (
             <div>
+                <Info>
+                    <p>{t('deleteAccount:yourSeedWillBeRemoved')}</p>
+                </Info>
                 <Button variant="negative" onClick={() => this.setState({ removeConfirm: !removeConfirm })}>
                     {t('accountManagement:deleteAccount')}
                 </Button>
