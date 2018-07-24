@@ -582,7 +582,7 @@
         "noSeedFound": "SeedVault innehåller inte en giltig seed",
         "noSeedFoundExplanation": "Din SeedVault är antingen tom eller innehåller en seed i ett ogiltigt format.",
         "seedFileError": "Det gick inte att öppna din SeedVault",
-        "seedFileErrorExplanation": "There was a problem opening the SeedVault. If you selected the correct file then it may be corrupted."
+        "seedFileErrorExplanation": "Ett problem uppstod vid öppning av SeedVault. Om du har valt den korrekta filen kan den vara skadad."
     },
     "chart": {
         "mcap": "MCAP",
