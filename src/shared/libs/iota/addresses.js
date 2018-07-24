@@ -59,34 +59,28 @@ export const isAddressUsed = (address) => {
 export const getAddressesDataUptoLatestUnusedAddress = (seed, options, addressGenFn) => {
     const { index, security } = options;
 
-    let addressData = {};
-
-    const generateAddressData = (currentKeyIndex) => {
-        let thisAddress = null;
-
+    const generateAddressData = (currentKeyIndex, generatedAddressData) => {
         return generateAddressAsync(seed, currentKeyIndex, security, addressGenFn)
             .then((address) => {
-                thisAddress = address;
-
                 return findAddressesData([address]);
             })
-            .then(({ hashes, balances, wereSpent }) => {
-                addressData = {
-                    ...addressData,
-                    ...formatAddressData([thisAddress], balances, wereSpent, [currentKeyIndex]),
+            .then(({ hashes, balances, wereSpent, addresses }) => {
+                const updatedAddressData = {
+                    ...generatedAddressData,
+                    ...formatAddressData(addresses, balances, wereSpent, [currentKeyIndex]),
                 };
 
                 if (size(hashes) === 0 && some(wereSpent, (spent) => !spent)) {
-                    return addressData;
+                    return updatedAddressData;
                 }
 
                 const nextKeyIndex = currentKeyIndex + 1;
 
-                return generateAddressData(nextKeyIndex);
+                return generateAddressData(nextKeyIndex, updatedAddressData);
             });
     };
 
-    return generateAddressData(index);
+    return generateAddressData(index, {});
 };
 
 /**
@@ -159,20 +153,16 @@ export const getFullAddressHistory = (seed, addressGenFn) => {
     const addressData = { hashes: [], balances: [], wereSpent: [] };
 
     const generateAndStoreAddressesInBatch = (currentOptions) => {
-        let thisBatchOfAddresses = [];
-
         return generateAddressesAsync(seed, currentOptions, addressGenFn)
             .then((addresses) => {
-                thisBatchOfAddresses = addresses;
-
-                return findAddressesData(thisBatchOfAddresses);
+                return findAddressesData(addresses);
             })
-            .then(({ hashes, balances, wereSpent }) => {
+            .then(({ hashes, balances, wereSpent, addresses }) => {
                 const shouldGenerateNextBatch =
                     size(hashes) || some(balances, (balance) => balance > 0) || some(wereSpent, (spent) => spent);
 
                 if (shouldGenerateNextBatch) {
-                    generatedAddresses = [...generatedAddresses, ...thisBatchOfAddresses];
+                    generatedAddresses = [...generatedAddresses, ...addresses];
                     addressData.hashes = [...addressData.hashes, ...hashes];
                     addressData.balances = [...addressData.balances, ...balances];
                     addressData.wereSpent = [...addressData.wereSpent, ...wereSpent];
@@ -188,7 +178,7 @@ export const getFullAddressHistory = (seed, addressGenFn) => {
 
                 // Before traversing backwards to remove the unused addresses,
                 // Set the first address from the newly fetched addresses as the latest address.
-                const latestAddress = head(thisBatchOfAddresses);
+                const latestAddress = head(addresses);
 
                 return removeUnusedAddresses(lastAddressIndex, latestAddress, generatedAddresses.slice()).then(
                     (addresses) => {
@@ -229,6 +219,7 @@ const findAddressesData = (addresses) => {
         const [hashes, balances, wereSpent] = data;
 
         return {
+            addresses,
             hashes,
             balances: map(balances.balances, Number),
             wereSpent,
