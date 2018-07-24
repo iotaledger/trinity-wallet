@@ -1,3 +1,4 @@
+/* global Electron */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { formatValue, formatUnit } from 'libs/iota/utils';
@@ -64,6 +65,12 @@ class Send extends React.PureComponent {
         isTransferModalVisible: false,
         isUnitsVisible: false,
     };
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.isSending !== nextProps.isSending) {
+            Electron.updateMenu('enabled', !nextProps.isSending);
+        }
+    }
 
     validateInputs = (e) => {
         const { validateInputs } = this.props;

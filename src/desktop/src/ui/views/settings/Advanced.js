@@ -224,37 +224,39 @@ class Advanced extends PureComponent {
             <div>
                 <Scrollbar>
                     <h3>{t('pow:powUpdated')}</h3>
-                    <Info>
-                        {t('pow:feeless')} <br />
-                        {t('pow:localOrRemote')}
-                    </Info>
                     <Toggle
                         checked={remotePoW}
                         onChange={() => changePowSettings()}
                         on={t('pow:remote')}
                         off={t('pow:local')}
                     />
+                    <p>
+                        {t('pow:feeless')} {t('pow:localOrRemote')}
+                    </p>
                     <hr />
 
                     <h3>{t('advancedSettings:autoPromotion')}</h3>
-                    <Info>{t('advancedSettings:autoPromotionExplanation')}</Info>
                     <Toggle
                         checked={autoPromotion}
                         onChange={() => changeAutoPromotionSettings()}
                         on={t('enabled')}
                         off={t('disabled')}
                     />
+                    <p>{t('advancedSettings:autoPromotionExplanation')}</p>
                     <hr />
 
                     <h3>{t('advancedSettings:snapshotTransition')}</h3>
-                    <Info>
+                    <p>
                         {t('snapshotTransition:snapshotExplanation')} <br />
                         {t('snapshotTransition:hasSnapshotTakenPlace')}
-                    </Info>
-                    <Button onClick={this.startSnapshotTransition} loading={isTransitioning || isAttachingToTangle}>
+                    </p>
+                    <Button
+                        className="small"
+                        onClick={this.startSnapshotTransition}
+                        loading={isTransitioning || isAttachingToTangle}
+                    >
                         {t('snapshotTransition:transition')}
                     </Button>
-
                     <ModalConfirm
                         isOpen={isModalActive}
                         category="primary"
@@ -270,24 +272,23 @@ class Advanced extends PureComponent {
                             cancel: t('global:no'),
                         }}
                     />
-
-                    <br />
-                    <br />
+                    <hr />
 
                     <h3>{t('advancedSettings:manualSync')}</h3>
                     {ui.isSyncing ? (
-                        <Info>
+                        <p>
                             {t('manualSync:syncingYourAccount')} <br />
                             {t('manualSync:thisMayTake')}
-                        </Info>
+                        </p>
                     ) : (
-                        <Info>
+                        <p>
                             {t('manualSync:outOfSync')} <br />
                             {t('manualSync:pressToSync')}
-                        </Info>
+                        </p>
                     )}
                     <Button
                         onClick={this.syncAccount}
+                        className="small"
                         loading={ui.isSyncing}
                         disabled={isTransitioning || isAttachingToTangle}
                     >
@@ -304,15 +305,19 @@ class Advanced extends PureComponent {
 
                     <h3>{t('settings:reset')}</h3>
                     <Trans i18nKey="walletResetConfirmation:warning">
-                        <Info>
+                        <p>
                             <React.Fragment>All of your wallet data including your </React.Fragment>
                             <strong>seeds, password,</strong>
                             <React.Fragment>and </React.Fragment>
                             <strong>other account information</strong>
                             <React.Fragment> will be lost.</React.Fragment>
-                        </Info>
+                        </p>
                     </Trans>
-                    <Button onClick={() => this.setState({ resetConfirm: !resetConfirm })} variant="negative">
+                    <Button
+                        className="small"
+                        onClick={() => this.setState({ resetConfirm: !resetConfirm })}
+                        variant="negative"
+                    >
                         {t('settings:reset')}
                     </Button>
                     <ModalPassword

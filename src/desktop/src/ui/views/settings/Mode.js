@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { setMode } from 'actions/settings';
 
-import Info from 'ui/components/Info';
 import Toggle from 'ui/components/Toggle';
 
 /**
@@ -27,16 +26,16 @@ class Mode extends React.PureComponent {
 
         return (
             <form>
-                <Info>
-                    <p>{t('modeSelection:expertModeExplanation')}</p>
-                    <p>{t('modeSelection:modesExplanation')}</p>
-                </Info>
+                <h3>{t('settings:mode')}</h3>
                 <Toggle
                     checked={targetMode === 'Standard'}
                     onChange={() => setMode(targetMode)}
                     on={t('modeSelection:expert')}
                     off={t('modeSelection:standard')}
                 />
+                <p>
+                    {t('modeSelection:expertModeExplanation')} {t('modeSelection:modesExplanation')}
+                </p>
             </form>
         );
     }

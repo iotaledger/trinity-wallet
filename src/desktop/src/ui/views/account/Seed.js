@@ -65,7 +65,7 @@ class Seed extends PureComponent {
                     onClose={() => this.setState({ action: null })}
                     seedName={accountName}
                     content={{
-                        title: t('viewSeed:enterPassword'),
+                        title: action === 'view' ? t('viewSeed:enterPassword') : t('login:enterPassword'),
                         confirm:
                             action === 'view'
                                 ? t('accountManagement:viewSeed')
