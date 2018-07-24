@@ -24,7 +24,6 @@ import ModalConfirm from 'ui/components/modal/Confirm';
 import Loading from 'ui/components/Loading';
 import Toggle from 'ui/components/Toggle';
 import TextInput from 'ui/components/input/Text';
-import Info from 'ui/components/Info';
 import Scrollbar from 'ui/components/Scrollbar';
 
 /**
