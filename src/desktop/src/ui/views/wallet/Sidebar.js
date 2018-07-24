@@ -105,7 +105,7 @@ class Sidebar extends React.PureComponent {
                         </ul>
                     </div>
                 </nav>
-                <nav>
+                <nav className={isReady ? css.disabled : null}>
                     <NavLink to="/settings">
                         <Icon icon="settings" size={20} />
                         <strong>{t('home:settings').toLowerCase()}</strong>

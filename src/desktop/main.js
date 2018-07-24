@@ -72,6 +72,12 @@ function createWindow() {
         });
     } catch (error) {}
 
+    let bgColor = (settings && settings.theme.body.bg) || '#1a373e';
+
+    if (bgColor.indexOf('rgb') === 0) {
+        bgColor = bgColor.match(/[0-9]+/g).reduce((a, b) => a + (b | 256).toString(16).slice(1), '#');
+    }
+
     /**
      * Initialize the main wallet window
      */
@@ -85,7 +91,7 @@ function createWindow() {
         frame: process.platform === 'linux',
         titleBarStyle: 'hidden',
         icon: `${__dirname}/dist/icon.png`,
-        backgroundColor: settings ? settings.theme.body.bg : '#1a373e',
+        backgroundColor: bgColor,
         webPreferences: {
             nodeIntegration: false,
             preload: path.resolve(__dirname, `lib/preload/${devMode ? 'development' : 'production'}.js`),
@@ -177,10 +183,12 @@ function createWindow() {
         if (url.indexOf(targetURL) !== 0) {
             e.preventDefault();
 
-            const externalWhitelist = ['iota.org', 'docs.iota.works', 'trinity.iota.org'];
+            const externalWhitelist = ['iota.org', 'docs.iota.works', 'trinity.iota.org', 'docs.bugsnag.com'];
+
+            console.log(URL.parse(targetURL).host);
 
             try {
-                if (externalWhitelist.indexOf(URL.parse(targetURL).host) > -1) {
+                if (externalWhitelist.indexOf(URL.parse(targetURL).host.replace('www.', '')) > -1) {
                     shell.openExternal(targetURL);
                 }
             } catch (error) {}
