@@ -4,14 +4,13 @@ import each from 'lodash/each';
 import find from 'lodash/find';
 import filter from 'lodash/filter';
 import head from 'lodash/head';
-import last from 'lodash/last';
 import isEmpty from 'lodash/isEmpty';
 import transform from 'lodash/transform';
 import isNumber from 'lodash/isNumber';
 import includes from 'lodash/includes';
 import keys from 'lodash/keys';
 import map from 'lodash/map';
-import merge from 'lodash/merge';
+import maxBy from 'lodash/maxBy';
 import reduce from 'lodash/reduce';
 import findKey from 'lodash/findKey';
 import some from 'lodash/some';
@@ -19,13 +18,70 @@ import size from 'lodash/size';
 import pickBy from 'lodash/pickBy';
 import omitBy from 'lodash/omitBy';
 import flatMap from 'lodash/flatMap';
-import union from 'lodash/union';
 import { iota } from './index';
-import { getBalancesAsync, wereAddressesSpentFromAsync, findTransactionsAsync, sendTransferAsync } from './extendedApi';
+import {
+    getBalancesAsync,
+    wereAddressesSpentFromAsync,
+    findTransactionsAsync,
+    sendTransferAsync,
+    generateAddressAsync,
+    generateAddressesAsync,
+} from './extendedApi';
 import Errors from '../errors';
+import { DEFAULT_SECURITY } from '../../config';
 
-const errors = require('iota.lib.js/lib/errors/inputErrors');
-const async = require('async');
+/**
+ * Checks if an address is used i.e. has spent or has associated hashes
+ *
+ *   @method isAddressUsed
+ *   @param {string} address
+ *
+ *   @returns {Promise<boolean>}
+ **/
+export const isAddressUsed = (address) => {
+    return wereAddressesSpentFromAsync([address]).then((spent) => {
+        const isSpent = head(spent) === true;
+
+        return isSpent || findTransactionsAsync({ addresses: [address] }).then((hashes) => size(hashes) > 0);
+    });
+};
+
+/**
+ * Sequentially generate addresses till latest unused address
+ *
+ *   @method getAddressesDataUptoLatestUnusedAddress
+ *   @param {string} seed
+ *   @param {object} options = { index, security }
+ *   @param {function} addressGenFn
+ *
+ *   @returns {Promise}
+ **/
+export const getAddressesDataUptoLatestUnusedAddress = (seed, options, addressGenFn) => {
+    const { index, security } = options;
+
+    const generateAddressData = (currentKeyIndex, generatedAddressData) => {
+        return generateAddressAsync(seed, currentKeyIndex, security, addressGenFn)
+            .then((address) => {
+                return findAddressesData([address]);
+            })
+            .then(({ hashes, balances, wereSpent, addresses }) => {
+                const updatedAddressData = {
+                    ...generatedAddressData,
+                    ...formatAddressData(addresses, balances, wereSpent, [currentKeyIndex]),
+                };
+
+                if (size(hashes) === 0 && some(wereSpent, (spent) => !spent)) {
+                    return updatedAddressData;
+                }
+
+                const nextKeyIndex = currentKeyIndex + 1;
+
+                return generateAddressData(nextKeyIndex, updatedAddressData);
+            });
+    };
+
+    return generateAddressData(index, {});
+};
 
 /**
  *   Accepts addresses as an array.
@@ -35,11 +91,20 @@ const async = require('async');
  *
  *   @method getAddressDataAndFormatBalance
  *   @param {array} addresses
+ *   @param {array} keyIndexes
+ *
  *   @returns {Promise}
  **/
-export const getAddressDataAndFormatBalance = (addresses) => {
-    if (isEmpty(addresses)) {
+export const getAddressDataAndFormatBalance = (addresses, keyIndexes = []) => {
+    const sizeOfAddresses = size(addresses);
+    const sizeOfKeyIndexes = size(keyIndexes);
+
+    if (!sizeOfAddresses) {
         return Promise.resolve({ addresses: {}, balance: 0 });
+    }
+
+    if (sizeOfAddresses && sizeOfKeyIndexes && sizeOfAddresses !== sizeOfKeyIndexes) {
+        throw new Error(Errors.ADDRESS_METADATA_LENGTH_MISMATCH);
     }
 
     const cached = {
@@ -60,7 +125,7 @@ export const getAddressDataAndFormatBalance = (addresses) => {
                 addresses,
                 (acc, address, index) => {
                     acc.addresses[address] = {
-                        index,
+                        index: sizeOfKeyIndexes ? keyIndexes[index] : index,
                         spent: cached.wereSpent[index],
                         balance: cached.balances[index],
                         checksum: iota.utils.addChecksum(address).slice(address.length),
@@ -80,13 +145,71 @@ export const getAddressDataAndFormatBalance = (addresses) => {
  *
  *   @method getFullAddressHistory
  *   @param {string} seed
- *   @param {function} genFn
+ *   @param {function} addressGenFn
  *   @returns {Promise}
  **/
-export const getFullAddressHistory = (seed, genFn) => {
-    return getAddressesUptoLatestUnused(seed, genFn, { index: 0, total: 10, returnAll: true, security: 2 });
+export const getFullAddressHistory = (seed, addressGenFn) => {
+    let generatedAddresses = [];
+    const addressData = { hashes: [], balances: [], wereSpent: [] };
+
+    const generateAndStoreAddressesInBatch = (currentOptions) => {
+        return generateAddressesAsync(seed, currentOptions, addressGenFn)
+            .then((addresses) => {
+                return findAddressesData(addresses);
+            })
+            .then(({ hashes, balances, wereSpent, addresses }) => {
+                const shouldGenerateNextBatch =
+                    size(hashes) || some(balances, (balance) => balance > 0) || some(wereSpent, (spent) => spent);
+
+                if (shouldGenerateNextBatch) {
+                    generatedAddresses = [...generatedAddresses, ...addresses];
+                    addressData.hashes = [...addressData.hashes, ...hashes];
+                    addressData.balances = [...addressData.balances, ...balances];
+                    addressData.wereSpent = [...addressData.wereSpent, ...wereSpent];
+
+                    const newOptions = assign({}, currentOptions, {
+                        index: currentOptions.total + currentOptions.index,
+                    });
+
+                    return generateAndStoreAddressesInBatch(newOptions);
+                }
+
+                const lastAddressIndex = size(generatedAddresses) - 1;
+
+                // Before traversing backwards to remove the unused addresses,
+                // Set the first address from the newly fetched addresses as the latest address.
+                const latestAddress = head(addresses);
+
+                return removeUnusedAddresses(lastAddressIndex, latestAddress, generatedAddresses.slice()).then(
+                    (addresses) => {
+                        const sizeOfAddressesTillOneUnused = size(addresses);
+
+                        return {
+                            addresses,
+                            ...addressData,
+                            // Append 0 balance to the latest unused address
+                            balances: [...addressData.balances.slice(0, sizeOfAddressesTillOneUnused - 1), 0],
+                            // Append false as spent status to the latest unused address
+                            wereSpent: [...addressData.wereSpent.slice(0, sizeOfAddressesTillOneUnused - 1), false],
+                        };
+                    },
+                );
+            });
+    };
+
+    const options = { index: 0, total: 10, security: DEFAULT_SECURITY };
+
+    return generateAndStoreAddressesInBatch(options);
 };
 
+/**
+ * Finds hashes, balances and spent statuses for an address
+ *
+ *   @method findAddressesData
+ *   @param {array} addresses
+ *
+ *   @returns {Promise}
+ **/
 const findAddressesData = (addresses) => {
     return Promise.all([
         findTransactionsAsync({ addresses }),
@@ -96,6 +219,7 @@ const findAddressesData = (addresses) => {
         const [hashes, balances, wereSpent] = data;
 
         return {
+            addresses,
             hashes,
             balances: map(balances.balances, Number),
             wereSpent,
@@ -111,12 +235,14 @@ const findAddressesData = (addresses) => {
  *
  *   @method removeUnusedAddresses
  *   @param {number} index
- *   @param {string} latestAddress
+ *   @param {string} latestUnusedAddress
  *   @param {array} finalAddresses
+ *
+ *   @returns {Promise}
  **/
-const removeUnusedAddresses = (index, latestAddress, finalAddresses) => {
+export const removeUnusedAddresses = (index, latestUnusedAddress, finalAddresses) => {
     if (!finalAddresses[index]) {
-        return Promise.resolve([...finalAddresses, latestAddress]);
+        return Promise.resolve([...finalAddresses, latestUnusedAddress]);
     }
 
     return findAddressesData([finalAddresses[index]]).then(({ hashes, balances, wereSpent }) => {
@@ -124,91 +250,43 @@ const removeUnusedAddresses = (index, latestAddress, finalAddresses) => {
             return removeUnusedAddresses(index - 1, finalAddresses[index], finalAddresses.slice(0, index));
         }
 
-        return [...finalAddresses, latestAddress];
+        return [...finalAddresses, latestUnusedAddress];
     });
 };
 
 /**
- *   Returns associated addresses with a seed
- *   Generates addresses in batches and upon each execution increase the index to fetch the next batch
- *   Stops at the point where there are no transaction hashes associated with last (total defaults to --> 10) addresses
+ * Format address data - Assign corresponding balance, spend status and checksum
+ * Note: If addresses does not start with key index 0, key indexes must be provided
+ * Otherwise it can cause a key index mismatch
  *
- *   @method getAddressesUptoLatestUnused
- *   @param {string} seed
- *   @param {function} genFn
- *   @param {object} [options={index: 0, total: 10, returnAll: true, security: 2}]
- *   @param {function} genFn
- *   @param {array} addressesUptoLatestUnused
- *   @param {object} addressData
+ * @method formatAddressData
  *
- **/
-const getAddressesUptoLatestUnused = (
-    seed,
-    genFn,
-    options,
-    addressesUptoLatestUnused = [],
-    addressData = { hashes: [], balances: [], wereSpent: [] },
-) => {
-    let thisBatchOfAddresses = [];
+ * @param {array} addresses
+ * @param {array} balances
+ * @param {array} addressesSpendStatus
+ * @param {array} keyIndexes
+ *
+ * @returns {object}
+ */
+export const formatAddressData = (addresses, balances, addressesSpendStatus, keyIndexes = []) => {
+    const sizeOfAddresses = size(addresses);
+    const sizeOfBalances = size(balances);
+    const sizeOfSpentStatuses = size(addressesSpendStatus);
+    const sizeOfKeyIndexes = size(keyIndexes);
 
-    const callback = (err, addresses) => {
-        if (err) {
-            throw new Error(err);
-        }
+    if (
+        sizeOfAddresses !== sizeOfBalances ||
+        sizeOfAddresses !== sizeOfSpentStatuses ||
+        (sizeOfKeyIndexes ? sizeOfKeyIndexes !== sizeOfAddresses : false)
+    ) {
+        throw new Error(Errors.ADDRESS_METADATA_LENGTH_MISMATCH);
+    }
 
-        thisBatchOfAddresses = addresses;
-        return findAddressesData(addresses);
-    };
-
-    return getNewAddress(seed, options, genFn, callback).then(({ hashes, balances, wereSpent }) => {
-        const shouldGenerateNextBatch =
-            size(hashes) || some(balances, (balance) => balance > 0) || some(wereSpent, (spent) => spent);
-
-        if (shouldGenerateNextBatch) {
-            addressesUptoLatestUnused = [...addressesUptoLatestUnused, ...thisBatchOfAddresses];
-
-            const newOptions = assign({}, options, { index: options.total + options.index });
-
-            return getAddressesUptoLatestUnused(
-                seed,
-                genFn,
-                newOptions,
-                addressesUptoLatestUnused,
-                assign({}, addressData, {
-                    hashes: union(addressData.hashes, hashes),
-                    balances: [...addressData.balances, ...balances],
-                    wereSpent: [...addressData.wereSpent, ...wereSpent],
-                }),
-            );
-        }
-
-        const lastAddressIndex = size(addressesUptoLatestUnused) - 1;
-
-        // Before traversing backwards to remove the unused addresses,
-        // Set the first address from the newly fetched addresses as the latest address.
-        const latestAddress = head(thisBatchOfAddresses);
-
-        return removeUnusedAddresses(lastAddressIndex, latestAddress, addressesUptoLatestUnused.slice()).then(
-            (addresses) => {
-                return {
-                    addresses,
-                    ...addressData,
-                    // Append 0 balance to the latest unused address
-                    balances: [...addressData.balances, 0],
-                    // Append false as spent status to the latest unused address
-                    wereSpent: [...addressData.wereSpent, false],
-                };
-            },
-        );
-    });
-};
-
-export const formatAddressData = (addresses, balances, addressesSpendStatus) => {
     return reduce(
         addresses,
         (acc, address, index) => {
             acc[address] = {
-                index,
+                index: sizeOfKeyIndexes ? keyIndexes[index] : index,
                 spent: addressesSpendStatus[index],
                 balance: balances[index],
                 checksum: iota.utils.addChecksum(address).slice(address.length),
@@ -311,18 +389,6 @@ export const filterSpentAddresses = (inputs, spentAddresses) => {
 };
 
 /**
- *   Find the last address index from address data.
- *
- *   @method getStartingSearchIndexToFetchLatestAddresses
- *   @param {object} addressData - Addresses dictionary with balance and spend status
- *   @returns {number} index
- **/
-export const getStartingSearchIndexToFetchLatestAddresses = (addressData) => {
-    const addresses = keys(addressData);
-    return size(addresses) ? addresses.length - 1 : 0;
-};
-
-/**
  *   Communicates with ledger and checks if the addresses are spent from.
  *
  *   @method shouldAllowSendingToAddress
@@ -382,30 +448,6 @@ export const getBalancesSync = (addresses, addressData) => {
 };
 
 /**
- *   Gets the latest used addresses from the specified index onwards
- *
- *   @method getLatestAddresses
- *   @param {string} seed - Seed string
- *   @param {number} index - Index to start generating addresses from
- *   @param {function} genFn
- *
- *   @returns {Promise}
- **/
-
-export const getLatestAddresses = (seed, index, genFn) => {
-    return new Promise((resolve, reject) => {
-        const options = { index, returnAll: true };
-        return getNewAddress(seed, options, genFn, (err, addresses) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(addresses);
-            }
-        });
-    });
-};
-
-/**
  *   Takes address data and returns the latest address
  *
  *   @method getLatestAddress
@@ -429,7 +471,6 @@ export const getLatestAddress = (addressData) => {
  **/
 export const getAddressesUptoRemainder = (addressData, seed, genFn, blacklistedRemainderAddresses = []) => {
     const latestAddress = getLatestAddress(addressData);
-    const addressDataClone = cloneDeep(addressData);
 
     const isBlacklisted = (address) => includes(blacklistedRemainderAddresses, address);
 
@@ -437,21 +478,19 @@ export const getAddressesUptoRemainder = (addressData, seed, genFn, blacklistedR
         const latestAddressData = find(addressData, (data, address) => address === latestAddress);
         const startIndex = latestAddressData.index + 1;
 
-        return getLatestAddresses(seed, startIndex, genFn).then((newAddresses) => {
-            const remainderAddress = last(newAddresses);
+        return getAddressesDataUptoLatestUnusedAddress(
+            seed,
+            { index: startIndex, security: DEFAULT_SECURITY },
+            genFn,
+        ).then((newAddressData) => {
+            const addressObjectWithHighestIndex = maxBy(map(newAddressData, (data) => data), 'index');
 
-            const addressDataUptoRemainder = transform(
-                newAddresses,
-                (acc, address, index) => {
-                    acc[address] = {
-                        index: index + startIndex,
-                        balance: 0,
-                        spent: false,
-                        checksum: iota.utils.addChecksum(address).slice(address.length),
-                    };
-                },
-                addressDataClone,
+            const remainderAddress = findKey(
+                newAddressData,
+                (data) => data.index === addressObjectWithHighestIndex.index,
             );
+
+            const addressDataUptoRemainder = { ...addressData, ...newAddressData };
 
             if (isBlacklisted(remainderAddress)) {
                 return getAddressesUptoRemainder(addressDataUptoRemainder, seed, genFn, blacklistedRemainderAddresses);
@@ -464,59 +503,54 @@ export const getAddressesUptoRemainder = (addressData, seed, genFn, blacklistedR
         });
     }
 
-    return Promise.resolve({ remainderAddress: latestAddress, addressDataUptoRemainder: addressDataClone });
+    return Promise.resolve({ remainderAddress: latestAddress, addressDataUptoRemainder: addressData });
 };
 
 /**
- *   Takes current address data as input and adds latest used addresses
+ *   Takes current address data as input and adds latest unused addresses
  *
  *   @method syncAddresses
  *   @param {string} seed - Seed string
  *   @param {object} existingAddressData
  *   @param {function} genFn
- *   @param {boolean} addNewAddress
  *
  *   @returns {Promise}
  **/
 
-export const syncAddresses = (seed, existingAddressData, genFn, addNewAddress = false) => {
+export const syncAddresses = (seed, existingAddressData, genFn) => {
     const addressData = cloneDeep(existingAddressData);
-    let index = getStartingSearchIndexToFetchLatestAddresses(addressData);
 
-    return getLatestAddresses(seed, index, genFn).then((newAddresses) => {
-        // Remove unused address
-        if (!addNewAddress) {
-            newAddresses.pop();
-        }
-        // If no new addresses return
-        if (newAddresses.length === 0) {
+    const mergeLatestAddresses = () => {
+        const latestAddressData = find(addressData, (data, address) => address === latestAddress);
+        // Start index should be (highest index in existing address data + 1)
+        const startIndex = latestAddressData.index + 1;
+
+        return getAddressesDataUptoLatestUnusedAddress(
+            seed,
+            { index: startIndex, security: DEFAULT_SECURITY },
+            genFn,
+        ).then((newAddressData) => {
+            const mergeInExistingAddressData = (data, newAddress) => {
+                addressData[newAddress] = data;
+            };
+
+            each(newAddressData, mergeInExistingAddressData);
+
+            return addressData;
+        });
+    };
+
+    // Find the address with highest index from existing address data
+    const latestAddress = getLatestAddress(addressData);
+
+    // First check if there are any transactions associated with the latest address or if the address is spent
+    return isAddressUsed(latestAddress).then((isUsed) => {
+        if (!isUsed) {
             return addressData;
         }
 
-        newAddresses.forEach((newAddress) => {
-            // In case the newly created address is not part of the addresses object
-            // Add that as a key with a 0 balance.
-            if (size(addressData) === 0) {
-                addressData[newAddress] = {
-                    index,
-                    balance: 0,
-                    spent: false,
-                    checksum: iota.utils.addChecksum(newAddress).slice(newAddress.length),
-                };
-
-                index += 1;
-            } else if (!(newAddress in addressData)) {
-                index += 1;
-                addressData[newAddress] = {
-                    index,
-                    balance: 0,
-                    spent: false,
-                    checksum: iota.utils.addChecksum(newAddress).slice(newAddress.length),
-                };
-            }
-        });
-
-        return addressData;
+        // Otherwise generate addresses till latest unused and merge them in existing address data
+        return mergeLatestAddresses();
     });
 };
 
@@ -577,153 +611,6 @@ export const isAnyAddressSpent = (transactionObjects) => {
 };
 
 /**
- * The same as iota.api.getNewAddress, but rewritten to support native address generation
- * See https://github.com/iotaledger/iota.lib.js/blob/a1b2e9e05d7cab3ef394900e5ca75fb46464e608/lib/api/api.js#L772
- *   @param {string} seed
- *   @param {object} options
- *       @property   {int} index         Key index to start search from
- *       @property   {int} total         Total number of addresses to return
- *       @property   {int} security      Security level to be used for the private key / address. Can be 1, 2 or 3
- *       @property   {bool} returnAll    return all searched addresses
- *   @param {function} genFn Native address function
- *   @param {function} callback
- *   @returns {string | array} address List of addresses
- **/
-/*eslint-disable no-var*/
-/*eslint-disable prefer-const*/
-/*eslint-disable brace-style*/
-/*eslint-disable no-else-return*/
-/*eslint-disable no-loop-func*/
-
-export const getNewAddress = (seed, options, genFn = null, callback) => {
-    // If desktop, use iota lib js API call
-    if (genFn === null) {
-        genFn = (seed, index, security, total) => {
-            return new Promise((resolve, reject) => {
-                iota.api.getNewAddress(seed, { index, security, total }, (error, addresses) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        resolve(addresses);
-                    }
-                });
-            });
-        };
-    }
-
-    // If no options provided, switch arguments
-    if (arguments.length === 2 && Object.prototype.toString.call(options) === '[object Function]') {
-        callback = options;
-        options = {};
-    }
-
-    // validate the seed
-    if (!iota.valid.isTrytes(seed)) {
-        return callback(errors.invalidSeed());
-    }
-
-    // default index value
-    var index = 0;
-
-    if ('index' in options) {
-        index = options.index;
-
-        // validate the index option
-        if (!iota.valid.isValue(index) || index < 0) {
-            return callback(errors.invalidIndex());
-        }
-    }
-
-    var total = options.total || null;
-    // If no user defined security, use the standard value of 2
-    var security = 2;
-
-    if ('security' in options) {
-        security = options.security;
-
-        // validate the security option
-        if (!iota.valid.isValue(security) || security < 1 || security > 3) {
-            return callback(errors.invalidSecurity());
-        }
-    }
-
-    let allAddresses = [];
-
-    // Case 1: total
-    //
-    // If total number of addresses to generate is supplied, simply generate
-    // and return the list of all addresses
-    if (total) {
-        // Increase index with each iteration
-        return genFn(seed, index, security, total).then((addresses) => {
-            allAddresses = addresses;
-            return callback(null, allAddresses);
-        });
-    } else {
-        //  Case 2: no total provided
-        //
-        //  Continue calling wasAddressSpenFrom & findTransactions to see if address was already created
-        //  if null, return list of addresses
-        //
-        async.doWhilst(
-            (callback) => {
-                // Iteratee function
-                var newAddress = '';
-                return genFn(seed, index, security).then((address) => {
-                    newAddress = address;
-                    if (options.returnAll) {
-                        allAddresses.push(newAddress);
-                    }
-                    // Increase the index
-                    index += 1;
-                    iota.api.wereAddressesSpentFrom(newAddress, (err, res) => {
-                        if (err) {
-                            return callback(err);
-                        }
-
-                        // Validity check
-                        if (res[0]) {
-                            callback(null, newAddress, true);
-                        } else {
-                            // Check for txs if address isn't spent
-                            iota.api.findTransactions({ addresses: [newAddress] }, (err, transactions) => {
-                                if (err) {
-                                    return callback(err);
-                                }
-
-                                callback(err, newAddress, transactions.length > 0);
-                            });
-                        }
-                    });
-                });
-            },
-            (address, isUsed) => {
-                return isUsed;
-            },
-            (err, address) => {
-                // Final callback
-
-                if (err) {
-                    return callback(err);
-                } else {
-                    // If returnAll, return list of allAddresses
-                    // else return the last address that was generated
-                    var addressToReturn = options.returnAll ? allAddresses : address;
-
-                    return callback(null, addressToReturn);
-                }
-            },
-        );
-    }
-};
-
-/*eslint-enable no-var*/
-/*eslint-enable prefer-const*/
-/*eslint-enable brace-style*/
-/*eslint-enable no-else-return*/
-/*eslint-enable no-loop-func*/
-
-/**
  *   Attach address to tangle if its not already attached
  *
  *   @method attachAndFormatAddress
@@ -760,14 +647,10 @@ export const attachAndFormatAddress = (address, index, balance, seed, powFn) => 
             return wereAddressesSpentFromAsync([address]);
         })
         .then((wereSpent) => {
-            const addressData = formatAddressData([address], [balance], wereSpent);
+            const addressData = formatAddressData([address], [balance], wereSpent, [index]);
 
-            // format address data assigns index based on the index in the array
-            // so assign the correct address index
             return {
-                addressData: merge({}, addressData, {
-                    [address]: { index },
-                }),
+                addressData,
                 transfer,
             };
         });
