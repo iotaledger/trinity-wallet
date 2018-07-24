@@ -56,22 +56,22 @@ class AccountName extends React.PureComponent {
                 defaultName = t('mainWallet');
                 break;
             case 1:
-                defaultName = t('mainWallet');
+                defaultName = t('secondWallet');
                 break;
             case 2:
-                defaultName = t('mainWallet');
+                defaultName = t('thirdWallet');
                 break;
             case 3:
-                defaultName = t('mainWallet');
+                defaultName = t('fourthWallet');
                 break;
             case 4:
-                defaultName = t('mainWallet');
+                defaultName = t('fifthWallet');
                 break;
             case 5:
-                defaultName = t('mainWallet');
+                defaultName = t('sixthWallet');
                 break;
-            case 6:
-                defaultName = t('mainWallet');
+            default:
+                defaultName = t('otherWallet');
                 break;
         }
 

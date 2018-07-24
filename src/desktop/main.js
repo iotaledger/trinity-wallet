@@ -185,8 +185,6 @@ function createWindow() {
 
             const externalWhitelist = ['iota.org', 'docs.iota.works', 'trinity.iota.org', 'docs.bugsnag.com'];
 
-            console.log(URL.parse(targetURL).host);
-
             try {
                 if (externalWhitelist.indexOf(URL.parse(targetURL).host.replace('www.', '')) > -1) {
                     shell.openExternal(targetURL);

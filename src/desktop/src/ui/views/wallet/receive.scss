@@ -82,6 +82,10 @@
     > div:nth-child(2) {
         display: flex;
         flex: 0 0 120px;
+
+        @media screen and (max-width: 860px) {
+            display: none;
+        }
     }
 
     > div:nth-child(3) {
