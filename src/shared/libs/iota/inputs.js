@@ -85,14 +85,17 @@ export const getUnspentInputs = (addressData, spentAddresses, pendingValueTransf
 
     return filterSpentAddresses(preparedInputs.inputs, spentAddresses).then((unspentInputs) => {
         // Keep track of all spent addresses that are filtered
-        inputs.spentAddresses = [...inputs.spentAddresses, ...differenceBy(preparedInputs.inputs, unspentInputs)];
+        inputs.spentAddresses = [
+            ...inputs.spentAddresses,
+            ...map(differenceBy(preparedInputs.inputs, unspentInputs, 'address'), (input) => input.address),
+        ];
 
         const filtered = filterAddressesWithIncomingTransfers(unspentInputs, pendingValueTransfers);
 
         // Keep track of all addresses with incoming transfers
         inputs.addressesWithIncomingTransfers = [
             ...inputs.addressesWithIncomingTransfers,
-            ...differenceBy(unspentInputs, filtered),
+            ...map(differenceBy(unspentInputs, filtered, 'address'), (input) => input.address),
         ];
 
         const collected = filtered.reduce((sum, input) => sum + input.balance, 0);
