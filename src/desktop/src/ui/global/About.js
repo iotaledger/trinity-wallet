@@ -53,6 +53,18 @@ class About extends React.PureComponent {
 
                     <article>
                         <Scrollbar>
+                            <h5>0.2.0</h5>
+                            <ul>
+                                <li>New: SeedVault export feature at Account settings</li>
+                                <li>New: Caps Lock warning on password fields</li>
+                                <li>New: Terms and Conditions and Privacy Policy views</li>
+                                <li>New: Trinity theming sync with live style-guide system</li>
+                                <li>Update: Add date suffix to default SeedVault file name</li>
+                                <li>Fix: Argon2 support for SeedVault import</li>
+                                <li>Fix: Seed random generator bias bugfix</li>
+                                <li>Fix: Reset Keychain on first seed onboarding</li>
+                                <li>Fix: Add node request timeout</li>
+                            </ul>
                             <h5>0.1.9.</h5>
                             <ul>
                                 <li>Add: Feature to remove custom added nodes</li>
