@@ -1,7 +1,7 @@
 {
     "global": {
         "send": "SIŲSTI",
-        "cancel": "Cancel",
+        "cancel": "Atšaukti",
         "continue?": "Ar tikrai norite tęsti?",
         "noTransactions": "ISTORIJOS NĖRA",
         "refresh": "Atnaujinti",
@@ -23,12 +23,12 @@
         "thisNodeOutOfSync": "Šis serveris nesinchronizuotas. Pakeiskite serverį arba bandykite dar kartą.",
         "seed": "Užraktas",
         "checksum": "Kontrolinė suma",
-        "back": "Back",
+        "back": "Atgal",
         "goBack": "Atgal",
         "goBackStep": "Grįžti atgal",
-        "done": "Done",
+        "done": "Atlikta",
         "prev": "ANKSTESNIS",
-        "next": "Next",
+        "next": "Toliau",
         "apply": "Taikyti",
         "save": "Išsaugoti",
         "close": "Uždaryti",
@@ -53,9 +53,9 @@
         "fifthWallet": "PENKTOJI PASKYRA",
         "sixthWallet": "ŠEŠTOJI PASKYRA",
         "otherWallet": "KITA PASKYRA",
-        "yes": "Yes",
-        "no": "No",
-        "okay": "Okay",
+        "yes": "Taip",
+        "no": "Ne",
+        "okay": "Gerai",
         "password": "Slaptažodis",
         "unrecognisedPassword": "Slaptažodis neatpažintas",
         "unrecognisedPasswordExplanation": "Slaptažodis neatpažintas. Bandykite dar kartą.",
@@ -398,7 +398,7 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Įveskite slaptažodį, norėdami iš naujo nustatyti piniginę.",
-        "reset": "Reset"
+        "reset": "Iš naujo nustatyti"
     },
     "walletSetup": {
         "creatingSeed": "Užrakto sukūrimas",
