@@ -221,7 +221,7 @@ class WriteSeedDown extends Component {
                                 onLeftButtonPress={() => this.onPrintPress()}
                                 onRightButtonPress={() => (isCopyComplete ? this.onDonePress() : null)}
                                 leftButtonText={t('saveYourSeed:printBlankWallet')}
-                                rightButtonText={isCopyComplete ? t('global:doneLowercase') : t('scrollToBottom')}
+                                rightButtonText={isCopyComplete ? t('global:done') : t('scrollToBottom')}
                                 rightButtonStyle={{ wrapper: { opacity: isCopyComplete ? 1 : 0.2 } }}
                             />
                         </View>

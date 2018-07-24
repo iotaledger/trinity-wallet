@@ -199,7 +199,7 @@ export class ManualSync extends Component {
                         >
                             <View style={styles.item}>
                                 <Icon name="chevronLeft" size={width / 28} color={body.color} />
-                                <Text style={[styles.titleText, textColor]}>{t('global:backLowercase')}</Text>
+                                <Text style={[styles.titleText, textColor]}>{t('global:back')}</Text>
                             </View>
                         </TouchableOpacity>
                     )}
