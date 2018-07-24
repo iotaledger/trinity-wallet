@@ -5,7 +5,7 @@ import { defaultNode, nodes, NODE_REQUEST_TIMEOUT } from '../../config';
 const iotaAPI = new IOTA({ provider: defaultNode });
 
 // Set node request timeout
-iota.api.setApiTimeout(NODE_REQUEST_TIMEOUT);
+iotaAPI.api.setApiTimeout(NODE_REQUEST_TIMEOUT);
 
 // Later used by the checkNodePatched function
 let unproxiedNodeInfo = iotaAPI.api.getNodeInfo.bind(iotaAPI.api);
