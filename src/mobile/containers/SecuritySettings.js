@@ -2,49 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
-import { width, height } from '../utils/dimensions';
-import { Icon } from '../theme/icons.js';
-import GENERAL from '../theme/general';
 import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
+import { renderSettingsRows } from '../components/SettingsContent';
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-    },
-    itemContainer: {
-        flex: 1,
-        justifyContent: 'center',
-    },
-    item: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        width,
-        paddingHorizontal: width / 15,
-    },
-    titleText: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
-        backgroundColor: 'transparent',
-        marginLeft: width / 25,
-    },
-    backText: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
-        backgroundColor: 'transparent',
-        marginLeft: width / 20,
-    },
-    separator: {
-        borderBottomColor: 'white',
-        borderBottomWidth: height / 1500,
-        width: width / 1.16,
-        alignSelf: 'center',
-    },
-    separatorContainer: {
-        flex: 1,
-        justifyContent: 'center',
     },
 });
 
@@ -65,6 +30,7 @@ class SecuritySettings extends Component {
         theme: PropTypes.object.isRequired,
         /** Determines if two factor authentication is enabled */
         is2FAEnabled: PropTypes.bool.isRequired,
+        isFingerprintEnabled: PropTypes.bool.isRequired,
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
     };
@@ -121,70 +87,37 @@ class SecuritySettings extends Component {
         });
     }
 
-    render() {
-        const { t, theme: { body } } = this.props;
-        const textColor = { color: body.color };
-        const bodyColor = body.color;
-        const borderBottomColor = { borderBottomColor: body.color };
+    renderSettingsContent() {
+        const { theme, t, is2FAEnabled, isFingerprintEnabled } = this.props;
+        const rows = [
+            { name: t('changePassword'), icon: 'password', function: () => this.props.setSetting('changePassword') },
+            { name: 'separator' },
+            {
+                name: t('twoFA'),
+                icon: 'twoFA',
+                function: () => this.on2FASetupPress(),
+                currentSetting: is2FAEnabled ? t('enabled') : t('disabled'),
+            },
+            {
+                name: t('fingerprint'),
+                icon: 'biometric',
+                function: () => this.onFingerprintSetupPress(),
+                currentSetting: isFingerprintEnabled ? t('enabled') : t('disabled'),
+            },
+            { name: 'back', function: () => this.props.setSetting('mainSettings') },
+        ];
+        return renderSettingsRows(rows, theme);
+    }
 
-        return (
-            <View style={styles.container}>
-                <View style={styles.itemContainer}>
-                    <TouchableOpacity
-                        onPress={() => this.props.setSetting('changePassword')}
-                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                    >
-                        <View style={styles.item}>
-                            <Icon name="password" size={width / 22} color={bodyColor} />
-                            <Text style={[styles.titleText, textColor]}>{t('changePassword')}</Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.separatorContainer}>
-                    <View style={[styles.separator, borderBottomColor]} />
-                </View>
-                <View style={styles.itemContainer}>
-                    <TouchableOpacity
-                        onPress={() => this.on2FASetupPress()}
-                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                    >
-                        <View style={styles.item}>
-                            <Icon name="twoFA" size={width / 22} color={bodyColor} />
-                            <Text style={[styles.titleText, textColor]}>{t('twoFA')}</Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.itemContainer}>
-                    <TouchableOpacity
-                        onPress={() => this.onFingerprintSetupPress()}
-                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                    >
-                        <View style={[styles.item]}>
-                            <Icon name="biometric" size={width / 22} color={bodyColor} />
-                            <Text style={[styles.titleText, textColor]}>{t('fingerprint')}</Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
-                <View style={{ flex: 7 }} />
-                <View style={styles.itemContainer}>
-                    <TouchableOpacity
-                        onPress={() => this.props.setSetting('mainSettings')}
-                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                    >
-                        <View style={styles.item}>
-                            <Icon name="chevronLeft" size={width / 28} color={bodyColor} />
-                            <Text style={[styles.backText, textColor]}>{t('global:back')}</Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
-            </View>
-        );
+    render() {
+        return <View style={styles.container}>{this.renderSettingsContent()}</View>;
     }
 }
 
 const mapStateToProps = (state) => ({
-    is2FAEnabled: state.settings.is2FAEnabled,
     theme: state.settings.theme,
+    is2FAEnabled: state.settings.is2FAEnabled,
+    isFingerprintEnabled: state.settings.isFingerprintEnabled,
 });
 
 const mapDispatchToProps = {
