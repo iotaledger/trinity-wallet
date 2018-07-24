@@ -152,7 +152,7 @@ export const renderSettingsRows = (rows, theme) => {
                     >
                         <View style={styles.item}>
                             <Icon name="chevronLeft" size={width / 28} color={bodyColor} />
-                            <Text style={[styles.backText, textColor]}>{i18next.t('global:backLowercase')}</Text>
+                            <Text style={[styles.backText, textColor]}>{i18next.t('global:back')}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
