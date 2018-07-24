@@ -336,7 +336,7 @@ class ViewSeed extends Component {
                         >
                             <View style={styles.item}>
                                 <Icon name="chevronLeft" size={width / 28} color={theme.body.color} />
-                                <Text style={[styles.titleText, textColor]}>{t('global:backLowercase')}</Text>
+                                <Text style={[styles.titleText, textColor]}>{t('global:back')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
