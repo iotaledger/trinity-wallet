@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Modal from 'react-native-modal';
 import { Navigation } from 'react-native-navigation';
 import i18next from 'i18next';
@@ -11,51 +11,14 @@ import { selectLocale } from 'iota-wallet-shared-modules/libs/locale';
 import { setSetting, clearWalletData, setPassword } from 'iota-wallet-shared-modules/actions/wallet';
 import LogoutConfirmationModalComponent from '../components/LogoutConfirmationModal';
 import { width, height } from '../utils/dimensions';
-import { Icon } from '../theme/icons';
 import { isAndroid } from '../utils/device';
-import GENERAL from '../theme/general';
 import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
+import { renderSettingsRows } from '../components/SettingsContent';
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-    },
-    itemContainer: {
-        flex: 1,
-        justifyContent: 'center',
-    },
-    item: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        width,
-        paddingHorizontal: width / 15,
-    },
-    content: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-    },
-    titleText: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
-        backgroundColor: 'transparent',
-        marginLeft: width / 25,
-    },
-    separator: {
-        borderBottomWidth: 0.25,
-        width: width / 1.16,
-        alignSelf: 'center',
-    },
-    separatorContainer: {
-        flex: 1,
-        justifyContent: 'center',
-    },
-    settingText: {
-        fontFamily: 'SourceSansPro-Light',
-        fontSize: GENERAL.fontSize3,
-        backgroundColor: 'transparent',
     },
     modal: {
         height,
@@ -159,134 +122,54 @@ export class MainSettings extends Component {
         );
     }
 
+    renderSettingsContent() {
+        const { theme, t, mode, themeName, currency } = this.props;
+        const rows = [
+            {
+                name: t('mode'),
+                icon: 'mode',
+                function: () => this.props.setSetting('modeSelection'),
+                currentSetting: mode,
+            },
+            {
+                name: t('theme'),
+                icon: 'theme',
+                function: () => this.props.setSetting('themeCustomisation'),
+                currentSetting: themeName,
+            },
+            {
+                name: t('currency'),
+                icon: 'currency',
+                function: () => this.props.setSetting('currencySelection'),
+                currentSetting: currency,
+            },
+            {
+                name: t('language'),
+                icon: 'language',
+                function: () => this.props.setSetting('languageSelection'),
+                currentSetting: selectLocale(i18next.language),
+            },
+            { name: 'separator' },
+            { name: t('accountManagement'), icon: 'user', function: () => this.props.setSetting('accountManagement') },
+            {
+                name: t('securitySettings'),
+                icon: 'security',
+                function: () => this.props.setSetting('securitySettings'),
+            },
+            { name: t('advanced'), icon: 'advanced', function: () => this.props.setSetting('advancedSettings') },
+            { name: 'separator' },
+            { name: t('aboutTrinity'), icon: 'info', function: () => this.props.setSetting('about') },
+            { name: t('logout'), icon: 'logout', function: this.toggleModalDisplay },
+        ];
+        return renderSettingsRows(rows, theme);
+    }
+
     render() {
-        const { theme, mode, t, themeName, currency } = this.props;
-        const textColor = { color: theme.body.color };
-        const bodyColor = theme.body.color;
-        const borderBottomColor = { borderBottomColor: theme.body.color };
+        const { theme } = this.props;
 
         return (
             <View style={styles.container}>
-                <View style={styles.itemContainer}>
-                    <TouchableOpacity
-                        onPress={() => this.props.setSetting('modeSelection')}
-                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                    >
-                        <View style={styles.item}>
-                            <Icon name="mode" size={width / 22} color={bodyColor} />
-                            <View style={styles.content}>
-                                <Text style={[styles.titleText, textColor]}>{t('mode')}</Text>
-                                <Text style={[styles.settingText, textColor]}>{mode}</Text>
-                            </View>
-                        </View>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.itemContainer}>
-                    <TouchableOpacity
-                        onPress={() => this.props.setSetting('themeCustomisation')}
-                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                    >
-                        <View style={styles.item}>
-                            <Icon name="theme" size={width / 22} color={bodyColor} />
-                            <View style={styles.content}>
-                                <Text style={[styles.titleText, textColor]}>{t('theme')}</Text>
-                                <Text style={[styles.settingText, textColor]}>{themeName}</Text>
-                            </View>
-                        </View>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.itemContainer}>
-                    <TouchableOpacity
-                        onPress={() => this.props.setSetting('currencySelection')}
-                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                    >
-                        <View style={styles.item}>
-                            <Icon name="currency" size={width / 22} color={bodyColor} />
-                            <View style={styles.content}>
-                                <Text style={[styles.titleText, textColor]}>{t('currency')}</Text>
-                                <Text style={[styles.settingText, textColor]}>{currency}</Text>
-                            </View>
-                        </View>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.itemContainer}>
-                    <TouchableOpacity
-                        onPress={() => this.props.setSetting('languageSelection')}
-                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                    >
-                        <View style={styles.item}>
-                            <Icon name="language" size={width / 22} color={bodyColor} />
-                            <View style={styles.content}>
-                                <Text style={[styles.titleText, textColor]}>{t('language')}</Text>
-                                <Text numberOfLines={1} style={[styles.settingText, textColor]}>
-                                    {selectLocale(i18next.language)}
-                                </Text>
-                            </View>
-                        </View>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.separatorContainer}>
-                    <View style={[styles.separator, borderBottomColor]} />
-                </View>
-                <View style={styles.itemContainer}>
-                    <TouchableOpacity
-                        onPress={() => this.props.setSetting('accountManagement')}
-                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                    >
-                        <View style={styles.item}>
-                            <Icon name="user" size={width / 22} color={bodyColor} />
-                            <Text style={[styles.titleText, textColor]}>{t('accountManagement')}</Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.itemContainer}>
-                    <TouchableOpacity
-                        onPress={() => this.props.setSetting('securitySettings')}
-                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                    >
-                        <View style={styles.item}>
-                            <Icon name="security" size={width / 22} color={bodyColor} />
-                            <Text style={[styles.titleText, textColor]}>{t('securitySettings')}</Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.itemContainer}>
-                    <TouchableOpacity
-                        onPress={() => this.props.setSetting('advancedSettings')}
-                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                    >
-                        <View style={styles.item}>
-                            <Icon name="advanced" size={width / 22} color={bodyColor} />
-                            <Text style={[styles.titleText, textColor]}>{t('advanced')}</Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.separatorContainer}>
-                    <View style={[styles.separator, borderBottomColor]} />
-                </View>
-                <View style={styles.itemContainer}>
-                    <TouchableOpacity
-                        onPress={() => this.props.setSetting('about')}
-                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                    >
-                        <View style={styles.item}>
-                            <Icon name="info" size={width / 22} color={bodyColor} />
-                            <Text style={[styles.titleText, textColor]}>{t('aboutTrinity')}</Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.itemContainer}>
-                    <TouchableOpacity
-                        onPress={this.toggleModalDisplay}
-                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                    >
-                        <View style={styles.item}>
-                            <Icon name="logout" size={width / 22} color={bodyColor} />
-                            <Text style={[styles.titleText, textColor]}>{t('logout')}</Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
-                <View style={{ flex: 1 }} />
+                {this.renderSettingsContent()}
                 <Modal
                     animationIn={isAndroid ? 'bounceInUp' : 'zoomIn'}
                     animationOut={isAndroid ? 'bounceOut' : 'zoomOut'}
