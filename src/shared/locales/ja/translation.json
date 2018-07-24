@@ -1,7 +1,7 @@
 {
     "global": {
         "send": "送金",
-        "cancel": "Cancel",
+        "cancel": "キャンセル",
         "continue?": "本当に続行しますか？",
         "noTransactions": "最近の履歴なし",
         "refresh": "更新",
@@ -23,12 +23,12 @@
         "thisNodeOutOfSync": "このノードは同期していません。ノードを変更するか、もう一度お試しください。",
         "seed": "シード",
         "checksum": "チェックサム",
-        "back": "Back",
+        "back": "戻る",
         "goBack": "戻る",
         "goBackStep": "一つ戻る",
-        "done": "Done",
+        "done": "完了",
         "prev": "戻る",
-        "next": "Next",
+        "next": "次へ",
         "apply": "決定",
         "save": "保存",
         "close": "閉じる",
@@ -53,9 +53,9 @@
         "fifthWallet": "5番目のアカウント",
         "sixthWallet": "6番目のアカウント",
         "otherWallet": "その他のアカウント",
-        "yes": "Yes",
-        "no": "No",
-        "okay": "Okay",
+        "yes": "はい",
+        "no": "いいえ",
+        "okay": "OK",
         "password": "パスワード",
         "unrecognisedPassword": "有効でないパスワードです。",
         "unrecognisedPasswordExplanation": "パスワードとして認識できません。もう一度入力し直してください。",
@@ -398,7 +398,7 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "ウォレットをリセットするにはパスワードを入力してください。",
-        "reset": "Reset"
+        "reset": "リセット"
     },
     "walletSetup": {
         "creatingSeed": "シード作成",
