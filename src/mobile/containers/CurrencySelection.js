@@ -123,7 +123,7 @@ export class CurrencySelection extends Component {
             >
                 <View style={styles.itemLeft}>
                     <Icon name="chevronLeft" size={width / 28} color={theme.body.color} />
-                    <Text style={[styles.titleTextLeft, { color: theme.body.color }]}>{t('global:backLowercase')}</Text>
+                    <Text style={[styles.titleTextLeft, { color: theme.body.color }]}>{t('global:back')}</Text>
                 </View>
             </TouchableOpacity>
         );
