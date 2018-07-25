@@ -332,7 +332,7 @@
         "totalTime": "Ukupno vrijeme",
         "addressPasteDetected": "Address paste detected",
         "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to.",
-        "invalid": "INVALID"
+        "invalid": "NEISPRAVNO"
     },
     "setSeedName": {
         "letsAddName": "Let's add a name",
@@ -340,8 +340,8 @@
         "youCanAdd": "You can add more seeds in the Settings menu."
     },
     "modeSelection": {
-        "expert": "Expert",
-        "standard": "Standard",
+        "expert": "Ekspert",
+        "standard": "Standardno",
         "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
         "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
@@ -349,7 +349,7 @@
         "transferSending": "Transfer sending",
         "transferSendingExplanation": "Please wait until your transfer has been sent.",
         "mode": "Mode",
-        "theme": "Theme",
+        "theme": "Tema",
         "currency": "Currency",
         "cannotChangeNode": "Cannot change node",
         "cannotChangeNodeWhileSending": "Cannot change node while sending.",
@@ -359,7 +359,7 @@
         "twoFA": "Two-factor authentication",
         "changePassword": "Change password",
         "advanced": "Advanced settings",
-        "logout": "Log out",
+        "logout": "Odjavi se",
         "reset": "Reset wallet",
         "syncingComplete": "Syncing complete",
         "syncingCompleteExplanation": "Your account has synced successfully.",
@@ -469,7 +469,7 @@
         "frame": "Okvir"
     },
     "themeCustomisation": {
-        "theme": "Theme",
+        "theme": "Tema",
         "mockup": "Mockup"
     },
     "currencySelection": {
@@ -538,7 +538,7 @@
         "fingerprintAuthDisabledExplanation": "You have successfully disabled biometric authentication.",
         "fingerprintAuthFailed": "Biometric authentication failed",
         "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
-        "status": "Status",
+        "status": "Stanje",
         "fingerprintUnavailable": "Biometric authentication unavailable",
         "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
