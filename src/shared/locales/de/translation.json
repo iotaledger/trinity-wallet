@@ -1,7 +1,7 @@
 {
     "global": {
         "send": "SENDEN",
-        "cancel": "Cancel",
+        "cancel": "Abbrechen",
         "continue?": "Bist du sicher, dass du fortfahren möchtest?",
         "noTransactions": "KEIN AKTUELLER VERLAUF",
         "refresh": "Aktualisieren",
@@ -23,7 +23,7 @@
         "thisNodeOutOfSync": "Dieser Node ist nicht synchronisiert. Bitte wechsle den Node oder versuche es erneut.",
         "seed": "Seed",
         "checksum": "Prüfsumme",
-        "back": "Back",
+        "back": "Zurück",
         "goBack": "Zurück",
         "goBackStep": "Zurück",
         "done": "Done",
