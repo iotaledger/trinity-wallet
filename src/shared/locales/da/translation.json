@@ -181,29 +181,29 @@
         "reasonTop100": "Dette er en top 100 almene password.",
         "reasonCommon": "Dette er en meget almen adgangskode.",
         "reasonSimilar": "Dette ligner en almen anvendt adgangskode.",
-        "reasonWord": "A single word is easy to guess."
+        "reasonWord": "Et enkelt ord er nemt at gætte."
     },
     "setPassword": {
-        "choosePassword": "Choose a new password",
+        "choosePassword": "Vælg en ny adgangskode",
         "passwordTooShort": "Adgangskoden er for kort",
         "passwordTooShortExplanation": "Din adgangskode skal indeholde mindst {{minLength}} tegn. Den indeholder i øjeblikket {{currentLength}} tegn. Prøv venligst igen.",
         "passwordMismatch": "Adgangskoderne er ikke ens",
         "passwordMismatchExplanation": "Adgangskoderne, du har indtastet, er ikke ens. Prøv venligst igen.",
-        "anEncryptedCopy": "En krypteret kopi af din hovednøgle bliver opbevaret på din enhed. Du vil bruge denne adgangskode fremadrettet for at tilgå din tegnebog.",
+        "anEncryptedCopy": "En krypteret kopi af din hovednøgle bliver opbevaret på din enhed. Du skal bruge denne adgangskode fremadrettet for at få adgang til din tegnebog.",
         "retypePassword": "Gentag adgangskode"
     },
     "copyToClipboard": {
-        "seedCleared": "Hovednøglen er fjernet",
+        "seedCleared": "Udklipsholder er ryddet",
         "seedClearedExplanation": "Hovednøglen er blevet fjernet fra udklipsholderen for at øge din sikkerhed.",
         "seedCopied": "Hovednøglen er kopieret til din udklipsholder",
-        "seedCopiedExplanation": "Din hovednøgle vil blive slettet, når du trykker på \"FÆRDIG\" eller efter 60 sekunder.",
-        "copyToClipboard": "Copy Seed",
+        "seedCopiedExplanation": "Din hovednøgle vil blive ryddet fra udklipsholderen, når du trykker på \"FÆRDIG\" eller efter 60 sekunder.",
+        "copyToClipboard": "Kopier hovednøgle",
         "shareSeed": "Del din hovednøgle med en sikker password manager",
         "storeEncrypted": "Gem din hovednøgle krypteret i en password manager.",
         "doNotOpen": "Undlad at åbne andre apps under denne proces.",
         "tapConfirm": "Klik venligst på afkrydsningsfeltet nedenfor for at bekræfte.",
-        "passwordManagerCheckbox": "Jeg vil gemme min hovednøgle i en password manager",
-        "copy": "KOPIÉR",
+        "passwordManagerCheckbox": "Jeg vil opbevare min hovednøgle i en password manager",
+        "copy": "KOPIER",
         "noPasswordManagers": "Ingen understøttet password manager er installeret",
         "noPasswordManagersExplanation": "Ingen understøttet password manager blev ikke fundet på din enhed. Installer venligst Keepass2Android.",
         "followTutorialToSecurelyShareSeed": "If you wish to store your seed in a password manager, you must follow a tutorial from the following link"
