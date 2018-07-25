@@ -117,7 +117,7 @@
         "nodeAutoChanged": "Noden blev automatisk skiftet",
         "nodeAutoChangedExplanation": "Skiftet til ny node {{- nodeAddress}} da den valgte node er offline.",
         "fingerprintOnSend": "Rør fingeraftrykssensoren for at godkende overførslen",
-        "masterKey": "Din IOTA hovednøgle er den der giver dig adgang til at logge ind og se dine midler.",
+        "masterKey": "Dit IOTA seed er hovednøglen der giver dig adgang til dine værdier.",
         "seedThief": "Hvis andre personer har dit seed kan de stjæle dine IOTA.",
         "googlePlayServicesNotAvailable": "Google Play-tjenester er ikke tilgængelige",
         "couldNotVerifyDeviceIntegrity": "Kunne ikke verificere enhedens integritet, da Google Play-tjenester ikke er tilgængelige.",
