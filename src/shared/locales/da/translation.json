@@ -250,12 +250,12 @@
         "pressForNewSeed": "Tryk for ny hovednøgle",
         "generateSuccess": "Hovednøglen blev succesfuldt genereret",
         "individualLetters": "Tryk på individuelle bogstaver for at randomisere dem.",
-        "individualLetterCount": "Press {{letterCount}} more individual letters to randomise them.",
+        "individualLetterCount": "Tryk på {{letterCount}} flere individuelle tegn for at randomisere dem.",
         "whatIsASeed": "Hvad er en hovednøgle?"
     },
     "onboardingComplete": {
-        "allDone": "All Done!",
-        "openYourWallet": "Open your wallet",
+        "allDone": "Alt udført!",
+        "openYourWallet": "Åben din tegnebog",
         "walletReady": "Tegnebogen er nu opsat og klar til brug. Hvis du fremover har brug for at foretage ændringer, kan dette gøres fra menuen \"Indstillinger\"."
     },
     "paperWallet": {
@@ -266,16 +266,16 @@
         "publicInsecure": "Men at udskrive på et offentligt wifi-netværk eller printer er usikkert.",
         "tapCheckboxes": "Klik venligst på afkrydsningsfelterne nedenfor for at bekræfte.",
         "wifiCheckbox": "Jeg printer ikke på et offentligt wifi-netværk",
-        "printerCheckbox": "Jeg printer ikke på en offentligt printer"
+        "printerCheckbox": "Jeg printer ikke på en offentlig printer"
     },
     "receive": {
-        "yourAddress": "Your address",
-        "qrOptions": "QR options",
-        "shareQr": "Share QR code",
-        "copyAddress": "Copy address",
+        "yourAddress": "Din adresse",
+        "qrOptions": "QR indstillinger",
+        "shareQr": "Del QR kode",
+        "copyAddress": "Kopiér addresse",
         "addressCopied": "Adresse kopieret",
         "addressCopiedExplanation": "Din adresse er blevet kopieret til udklipsholderen.",
-        "generateNewAddress": "New Address",
+        "generateNewAddress": "Ny adresse",
         "noAddresses": "INGEN ADRESSER",
         "spent": "Forbrugt",
         "missingPermission": "File system permission required",
