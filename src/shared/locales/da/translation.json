@@ -330,8 +330,8 @@
         "iotaUnits": "IOTA enheder forklaret",
         "sendMax": "SEND MAX",
         "totalTime": "Tid i alt",
-        "addressPasteDetected": "Address paste detected",
-        "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to.",
+        "addressPasteDetected": "Indsæt af adresse registreret",
+        "addressPasteExplanation": "Det ser ud til at du har indsat en adresse. Kontrollere venligst, at adressen stemmer overens med den du ønsker at sende til.",
         "invalid": "UGYLDIG"
     },
     "setSeedName": {
@@ -404,10 +404,10 @@
         "creatingSeed": "Opretter en hovednøgle",
         "okay": "Okay. Lad os opsætte din tegnebog!",
         "doYouNeedASeed": "Har du brug at oprette en nye hovednøgle?",
-        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
+        "seedExplanation": "Din IOTA-seed er hovednøglen til dine værdier. Den består af 81 tegn, ved brug af store A-Z bogstaver og tallet 9.",
         "noIHaveOne": "Nej, jeg har en",
         "yesINeedASeed": "Ja, jeg har brug for en hovednøgle",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
+        "explanation": "<0><0>Du kan bruge den til at få adgang til dine værdier fra</0> <1>enhver tegnebog</1> <2>på</2> <3>hvilken som helst enhed.</3></0>",
         "loseSeed": "Men hvis du mister din hovednøgle, mister du også dine IOTA.",
         "keepSafe": "Du bedes opbevare din hovednøgle sikkert."
     },
