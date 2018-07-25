@@ -516,14 +516,14 @@
     "viewSeed": {
         "enterPassword": "Indtast din adgangskode for at se din hovednøgle.",
         "viewSeed": "Se hovednøgle",
-        "hideSeed": "Hide Seed"
+        "hideSeed": "Skjul hovednøgle"
     },
     "saveSeedConfirmation": {
-        "didSaveSeed": "Did you back up your seed?",
+        "didSaveSeed": "Har du sikkerhedskopieret din hovednøgle?",
         "alreadyHave": "Jeg har sikkerhedskopieret min hovdenøgle",
-        "reenterSeed": "At the next step you will be asked to re-enter your seed.",
-        "reenterSeedWarning": "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
-        "pleaseConfirm": "Please confirm you have securely stored your seed."
+        "reenterSeed": "I det næste trin vil du blive bedt om at genindtaste din hovednøgle.",
+        "reenterSeedWarning": "Hvis du ikke har sikkerhedskopieret din hovednøgle og din enhed fejler, vil du miste alle dine IOTA.",
+        "pleaseConfirm": "Bekræft venligst, du har opbevaret din hovednøgle forsvarligt."
     },
     "walletResetConfirmation": {
         "cannotUndo": "DENNE HANDLING KAN IKKE FORTRYDES.",
@@ -569,12 +569,12 @@
         "twoFaToken": "2FA Token"
     },
     "seedVault": {
-        "exportSeedVault": "Export SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password. It is recommended that you store the file in a password manager like Keepass.",
+        "exportSeedVault": "Eksportere SeedVault",
+        "seedVaultExplanation": "En SeedVault er en krypteret fil til at gemme din hovednøgle forsvarligt. Hovednøglen er krypteret bag en adgangskode og kan ikke tilgås uden adgangskoden. Det anbefales, at du gemmer filen i en passwordmanager fx Keepass.",
         "seedVaultWarning": "Make sure you back up the file in multiple locations (e.g. hard drive, cloud, USB). If you lose this file and have not stored your seed elsewhere, you will lose your IOTA.",
-        "exportFail": "SeedVault export failed",
+        "exportFail": "SeedVault eksport mislykkedes",
         "exportFailExplanation": "There was an problem exporting the SeedVault. Please ensure you have the appropriate permissions and enough free space.",
-        "exportSuccess": "SeedVault exported",
+        "exportSuccess": "SeedVault eksporteret",
         "exportSuccessExplanation": "Your encrypted seed file was exported successfully.",
         "importSeedVault": "Import SeedVault",
         "dropSeedVaultHere": "Drop SeedVault here",
@@ -653,10 +653,10 @@
     },
     "terms": {
         "termsAndConditions": "Terms & Conditions",
-        "accept": "I accept"
+        "accept": "Jeg accepterer"
     },
     "privacyPolicy": {
-        "privacyPolicy": "Privacy Policy",
-        "agree": "I agree"
+        "privacyPolicy": "Fortrolighedspolitik",
+        "agree": "Jeg accepterer"
     }
 }
