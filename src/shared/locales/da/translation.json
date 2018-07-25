@@ -1,10 +1,10 @@
 {
     "global": {
         "send": "SEND",
-        "cancel": "Cancel",
+        "cancel": "Afbryd",
         "continue?": "Er du sikker på, at du vil fortsætte?",
         "noTransactions": "INGEN NYLIG HISTORIK",
-        "refresh": "Refresh",
+        "refresh": "Genindlæs",
         "balanceError": "Ikke nok balance",
         "balanceErrorMessage": "Du har ikke nok IOTA til at gennemføre denne transaktion.",
         "transferError": "Transaktionsfejl",
