@@ -101,7 +101,7 @@
         "pleaseWait": "Vent venligst",
         "pleaseWaitEllipses": "Vent venligst...",
         "pleaseWaitExplanation": "Trinity udfører en anden funktion. Vent venligst og prøv igen.",
-        "pleaseWaitTransferExplanation": "Din disponible balance bruges i øjeblikket i andre transaktioner. Vent venligst på at disse bekræftes før du prøver igen.",
+        "pleaseWaitTransferExplanation": "Din disponible saldo bruges i øjeblikket i andre transaktioner. Vent venligst på at disse bekræftes før du prøver igen.",
         "pleaseWaitIncomingTransferExplanation": "Du har indgående overførsler. Vent venligst på at de er bekræftet før du prøver igen.",
         "snapshotTransitionInProgress": "Snapshot synkronisering i gang",
         "snapshotTransitionInProgressExplanation": "Vent venligst indtil synkroniseringen er fuldført.",
