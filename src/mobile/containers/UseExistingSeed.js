@@ -366,7 +366,7 @@ class UseExistingSeed extends Component {
                         >
                             <View style={styles.itemLeft}>
                                 <Icon name="chevronLeft" size={width / 28} color={theme.body.color} />
-                                <Text style={[styles.titleTextLeft, textColor]}>{t('global:backLowercase')}</Text>
+                                <Text style={[styles.titleTextLeft, textColor]}>{t('global:back')}</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity
@@ -375,7 +375,7 @@ class UseExistingSeed extends Component {
                             style={{ flex: 1 }}
                         >
                             <View style={styles.itemRight}>
-                                <Text style={[styles.titleTextRight, textColor]}>{t('global:doneLowercase')}</Text>
+                                <Text style={[styles.titleTextRight, textColor]}>{t('global:done')}</Text>
                                 <Icon name="chevronRight" size={width / 28} color={theme.body.color} />
                             </View>
                         </TouchableOpacity>

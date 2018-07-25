@@ -19,4 +19,6 @@ export default {
     INVALID_PARAMETERS: 'Invalid parameters',
     ALREADY_SPENT_FROM_ADDRESSES: 'Already spent from addresses.',
     REFERENCE_TRANSACTION_TOO_OLD: 'reference transaction is too old',
+    ADDRESS_METADATA_LENGTH_MISMATCH: 'Address metadata length mismatch.',
+    SOMETHING_WENT_WRONG_DURING_INPUT_SELECTION: 'Something went wrong during input selection.',
 };

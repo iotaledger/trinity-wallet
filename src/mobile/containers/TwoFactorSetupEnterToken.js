@@ -184,8 +184,8 @@ class TwoFactorSetupEnterToken extends Component {
                         <OnboardingButtons
                             onLeftButtonPress={this.goBack}
                             onRightButtonPress={this.check2FA}
-                            leftButtonText={t('global:backLowercase')}
-                            rightButtonText={t('global:doneLowercase')}
+                            leftButtonText={t('global:back')}
+                            rightButtonText={t('global:done')}
                         />
                     </View>
                     <StatefulDropdownAlert textColor={theme.body.color} backgroundColor={theme.body.bg} />

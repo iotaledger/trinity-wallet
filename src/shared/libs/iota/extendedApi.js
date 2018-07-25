@@ -7,7 +7,12 @@ import { iota } from './index';
 import nativeBindings from './nativeBindings';
 import Errors from '../errors';
 import { isWithinMinutes } from '../date';
-import { DEFAULT_BALANCES_THRESHOLD, DEFAULT_DEPTH, DEFAULT_MIN_WEIGHT_MAGNITUDE } from '../../config';
+import {
+    DEFAULT_BALANCES_THRESHOLD,
+    DEFAULT_DEPTH,
+    DEFAULT_MIN_WEIGHT_MAGNITUDE,
+    NODE_REQUEST_TIMEOUT,
+} from '../../config';
 import { performPow } from './transfers';
 
 const getBalancesAsync = (addresses, threshold = DEFAULT_BALANCES_THRESHOLD) => {
@@ -26,6 +31,7 @@ const getNodeInfoAsync = (provider = null) => {
     return new Promise((resolve, reject) => {
         const instance = provider ? new IOTA({ provider }) : iota;
 
+        instance.api.setApiTimeout(NODE_REQUEST_TIMEOUT);
         instance.api.getNodeInfo((err, info) => {
             if (err) {
                 reject(err);
@@ -333,6 +339,7 @@ const getTrytesAsync = (hashes, provider = null) => {
     return new Promise((resolve, reject) => {
         const instance = provider ? new IOTA({ provider }) : iota;
 
+        instance.api.setApiTimeout(NODE_REQUEST_TIMEOUT);
         instance.api.getTrytes(hashes, (err, trytes) => {
             if (err) {
                 reject(err);
@@ -375,6 +382,54 @@ const isNodeSynced = (provider = null) => {
         });
 };
 
+/**
+ * Generates single address for provided index and security
+ *
+ * @method generateAddressAsync
+ *
+ * @param {string} seed
+ * @param {number} index
+ * @param {number} security
+ * @param {function} addressGenFn
+ *
+ * @returns {Promise}
+ */
+const generateAddressAsync = (seed, index, security, addressGenFn = null) => {
+    if (isNull(addressGenFn)) {
+        return Promise.resolve(iota.api._newAddress(seed, index, security, false));
+    }
+
+    return addressGenFn(seed, index, security);
+};
+
+/**
+ * Generates bulk addresses
+ *
+ * @method generateAddressesAsync
+ *
+ * @param {string} seed
+ * @param {object} options { index, security, total }
+ * @param {function} addressesGenFn
+ *
+ * @returns {Promise}
+ */
+const generateAddressesAsync = (seed, options, addressesGenFn = null) => {
+    const { index, security, total } = options;
+    if (isNull(addressesGenFn)) {
+        return new Promise((resolve, reject) => {
+            iota.api.getNewAddress(seed, { index, security, total }, (err, addresses) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(addresses);
+                }
+            });
+        });
+    }
+
+    return addressesGenFn(seed, index, security, total);
+};
+
 export {
     getBalancesAsync,
     getNodeInfoAsync,
@@ -393,4 +448,6 @@ export {
     attachToTangleAsync,
     checkAttachToTangleAsync,
     isNodeSynced,
+    generateAddressAsync,
+    generateAddressesAsync,
 };
