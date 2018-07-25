@@ -7,6 +7,7 @@ const settings = require('electron-settings');
 const Kerl = require('iota.lib.js/lib/crypto/kerl/kerl');
 const Curl = require('iota.lib.js/lib/crypto/curl/curl');
 const Converter = require('iota.lib.js/lib/crypto/converter/converter');
+const argon2 = require('argon2');
 const kdbx = require('../kdbx');
 
 const trytesTrits = [
@@ -174,6 +175,17 @@ const Electron = {
      */
     removeKeychain: (accountName) => {
         return keytar.deletePassword('Trinity wallet', accountName);
+    },
+
+    /**
+     * Hash input using argon2
+     * @param {Uint8Array} input - Input data
+     * @returns {Uint8Array} Raw Argon2 hash
+     */
+    argon2: (input) => {
+        return argon2.hash(input, {
+            raw: true,
+        });
     },
 
     /**
