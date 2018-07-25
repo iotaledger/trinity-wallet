@@ -132,7 +132,7 @@
         "mustBeStoredAppropriately": "Det skal opbevares hensigtsmæssigt.",
         "deviceMayBecomeUnresponsive": "Enheden kan holde op med at reagere i et stykke tid.",
         "isYourBalanceCorrect": "Er din saldo korrekt?",
-        "ifYourBalanceIsNotCorrect": "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
+        "ifYourBalanceIsNotCorrect": "Hvis din saldo ikke er korrekt, skyldes det muligvis, at din seed endnu ikke er blevet gendannet efter seneste snapshot.",
         "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition.",
         "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
