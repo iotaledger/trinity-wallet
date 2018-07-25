@@ -278,12 +278,12 @@
         "generateNewAddress": "Ny adresse",
         "noAddresses": "INGEN ADRESSER",
         "spent": "Forbrugt",
-        "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes.",
+        "missingPermission": "Tilladelse til filsystemet er nødvendig",
+        "missingPermissionExplanation": "Adgang til filsystemet er nødvendig for at dele QR kode.",
         "tag": "Etiket"
     },
     "saveYourSeed": {
-        "saveYourSeed": "Back up your seed",
+        "saveYourSeed": "Sikkerhedskopiere din hovednøgle",
         "seedCleared": "Seed cleared",
         "mostSecure": "Most Secure",
         "leastSecure": "Least Secure",
