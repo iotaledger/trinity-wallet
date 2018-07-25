@@ -405,23 +405,23 @@
         "okay": "Okay. Lad os opsætte din tegnebog!",
         "doYouNeedASeed": "Har du brug at oprette en nye hovednøgle?",
         "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
-        "noIHaveOne": "No, I have one",
-        "yesINeedASeed": "Yes, I need a seed",
+        "noIHaveOne": "Nej, jeg har en",
+        "yesINeedASeed": "Ja, jeg har brug for en hovednøgle",
         "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
-        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
+        "loseSeed": "Men hvis du mister din hovednøgle, mister du også dine IOTA.",
         "keepSafe": "Du bedes opbevare din hovednøgle sikkert."
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity"
+        "thankYou": "Tak fordi du downloadede Trinity"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Skriv din hovednøgle og din kontrolsum ned, og lav et</0><1>tredobbelt tjek</1><2> for at sikre, at de er korrekte.</2>",
-        "scrollToBottom": "Scroll to the bottom"
+        "scrollToBottom": "Rul til bunden"
     },
     "history": {
         "bundleHashCopied": "Bundt-hash kopieret",
-        "noTransactionsFound": "No transactions found",
-        "hideZeroBalance": "Hide zero balance",
+        "noTransactionsFound": "Ingen transaktioner fundet",
+        "hideZeroBalance": "Skjul nul-saldo",
         "bundleHashCopiedExplanation": "Den gruppérede hash er blevet kopiret til udklipsholderen.",
         "addressCopied": "Adresse kopieret",
         "addressCopiedExplanation": "Adressen er blevet kopieret til udklipsholderen.",
@@ -429,9 +429,9 @@
         "messageCopiedExplanation": "Adressen er blevet kopieret til udklipsholderen.",
         "send": "Send",
         "receive": "Modtag",
-        "empty": "Empty",
-        "retrying": "Retrying",
-        "yesterday": "Yesterday"
+        "empty": "Tom",
+        "retrying": "Prøver igen",
+        "yesterday": "I går"
     },
     "accountManagement": {
         "viewSeed": "Se hovednøgle",
@@ -443,12 +443,12 @@
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Brugerdefineret node kunne ikke tilføjes",
         "customNode": "Brugerdefinerede node",
-        "removeCustomNode": "Remove custom node",
+        "removeCustomNode": "Fjern brugerdefineret node",
         "invalidNodeResponse": "Noden returnerede et ugyldigt svar",
         "add": "Tilføj",
         "nodeFieldEmpty": "Tekstfeltet er tomt",
         "nodeFieldEmptyExplanation": "Angiv venligst en brugerdefineret node.",
-        "invalidURL": "Please enter a valid URL."
+        "invalidURL": "Angiv venligst en gyldig URL."
     },
     "addNewAccount": {
         "useExistingSeed": "Brug eksisterende hovednøgle",
@@ -461,8 +461,8 @@
         "snapshotTransition": "Snapshot synkronisering",
         "pow": "Netværksvalidering",
         "autoPromotion": "Auto-promotion",
-        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
-        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
+        "autoPromotionExplanation": "Auto-promotion hjælper til at bekræfte dine transaktioner på netværket. Aktiver denne indstilling, hvis du har problemer med at få dine transaktioner til at bekræfte.",
+        "autoPromotionPoW": "Auto-promotion er kun muligt på noder, der understøtter ekstern netværks godkendelse (PoW)."
     },
     "advancedThemeCustomisation": {
         "background": "Baggrund",
@@ -505,7 +505,7 @@
         "pressToSync": "Klik på knappen herunder for at synkronisere din konto.",
         "thisMayTake": "Dette kan tage noget tid. Din enhed vil muligvis reagere langsommere.",
         "doNotClose": "Bæmærk venligst, at minimering af app'en vil annullere din synkronisering.",
-        "syncAccount": "Sync Account",
+        "syncAccount": "Synkroniser konto",
         "syncingYourAccount": "Synkroniser din konto."
     },
     "useExistingSeed": {
@@ -515,7 +515,7 @@
     },
     "viewSeed": {
         "enterPassword": "Indtast din adgangskode for at se din hovednøgle.",
-        "viewSeed": "View Seed",
+        "viewSeed": "Se hovednøgle",
         "hideSeed": "Hide Seed"
     },
     "saveSeedConfirmation": {
