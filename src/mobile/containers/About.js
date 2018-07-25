@@ -89,7 +89,7 @@ class AdvancedSettings extends PureComponent {
                         >
                             <View style={styles.item}>
                                 <Icon name="chevronLeft" size={width / 28} color={bodyColor} />
-                                <Text style={[styles.backText, textColor]}>{t('global:backLowercase')}</Text>
+                                <Text style={[styles.backText, textColor]}>{t('global:back')}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>

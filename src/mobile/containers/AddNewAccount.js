@@ -1,43 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { BackHandler, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { BackHandler, View, StyleSheet } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { translate } from 'react-i18next';
 import timer from 'react-native-timer';
-import { width, height } from '../utils/dimensions';
-import { Icon } from '../theme/icons.js';
-import GENERAL from '../theme/general';
 import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
+import { renderSettingsRows } from '../components/SettingsContent';
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-    },
-    titleText: {
-        color: 'white',
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
-        backgroundColor: 'transparent',
-        marginLeft: width / 25,
-    },
-    backText: {
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: GENERAL.fontSize3,
-        backgroundColor: 'transparent',
-        marginLeft: width / 20,
-    },
-    item: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        width,
-        paddingHorizontal: width / 15,
-    },
-    itemContainer: {
-        flex: 1,
-        justifyContent: 'center',
     },
 });
 
@@ -70,7 +44,6 @@ class AddNewAccount extends Component {
 
     addNewSeed() {
         const { theme } = this.props;
-
         Navigation.startSingleScreenApp({
             screen: {
                 screen: 'newSeedSetup',
@@ -92,49 +65,18 @@ class AddNewAccount extends Component {
         BackHandler.removeEventListener('homeBackPress');
     }
 
-    render() {
-        const { t, theme } = this.props;
-        const textColor = { color: theme.body.color };
-        const bodyColor = theme.body.color;
+    renderSettingsContent() {
+        const { theme, t } = this.props;
+        const rows = [
+            { name: t('useExistingSeed'), icon: 'key', function: () => this.props.setSetting('addExistingSeed') },
+            { name: t('createNewSeed'), icon: 'plus', function: this.addNewSeed },
+            { name: 'back', function: () => this.props.setSetting('mainSettings') },
+        ];
+        return renderSettingsRows(rows, theme);
+    }
 
-        return (
-            <View style={styles.container}>
-                <View style={styles.itemContainer}>
-                    <TouchableOpacity
-                        onPress={() => this.props.setSetting('addExistingSeed')}
-                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                    >
-                        <View style={styles.item}>
-                            <Icon name="key" size={width / 22} color={bodyColor} />
-                            <Text style={[styles.titleText, textColor]}>{t('useExistingSeed')}</Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.itemContainer}>
-                    <TouchableOpacity
-                        onPress={this.addNewSeed}
-                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                    >
-                        <View style={styles.item}>
-                            <Icon name="plus" size={width / 22} color={bodyColor} />
-                            <Text style={[styles.titleText, textColor]}>{t('createNewSeed')}</Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
-                <View style={{ flex: 9 }} />
-                <View style={styles.itemContainer}>
-                    <TouchableOpacity
-                        onPress={() => this.props.setSetting('accountManagement')}
-                        hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                    >
-                        <View style={styles.item}>
-                            <Icon name="chevronLeft" size={width / 28} color={bodyColor} />
-                            <Text style={[styles.backText, textColor]}>{t('global:backLowercase')}</Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
-            </View>
-        );
+    render() {
+        return <View style={styles.container}>{this.renderSettingsContent()}</View>;
     }
 }
 
