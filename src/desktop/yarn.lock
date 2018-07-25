@@ -18,11 +18,11 @@
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@bugsnag/safe-json-stringify/-/safe-json-stringify-2.1.0.tgz#c7dd30a33bd888c39cd36d45216f7252f307ed36"
 
-"@phc/format@^0.4.2":
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/@phc/format/-/format-0.4.2.tgz#ed01c375de88dfa414270157ab7bb39cac475a62"
+"@phc/format@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@phc/format/-/format-0.5.0.tgz#a99d27a83d78b3100a191412adda04315e2e3aba"
   dependencies:
-    safe-buffer "^5.1.1"
+    safe-buffer "^5.1.2"
 
 "@types/node@^8.0.24":
   version "8.10.20"
@@ -341,14 +341,15 @@ are-we-there-yet@~1.1.2:
     delegates "^1.0.0"
     readable-stream "^2.0.6"
 
-argon2@^0.19.3:
+argon2@rihardsgravis/node-argon2#prebuild-release:
   version "0.19.3"
-  resolved "https://registry.yarnpkg.com/argon2/-/argon2-0.19.3.tgz#4e59cb3bcf5d1f09ca07b452716334670ef9a0b7"
+  resolved "https://codeload.github.com/rihardsgravis/node-argon2/tar.gz/b001e71a57e795fdf8393717df8f35f09c84951e"
   dependencies:
-    "@phc/format" "^0.4.2"
+    "@phc/format" "^0.5.0"
     any-promise "^1.3.0"
     bindings "^1.3.0"
     nan "^2.10.0"
+    prebuild-install "^5.0.0"
 
 argparse@^1.0.7:
   version "1.0.10"
@@ -4211,12 +4212,6 @@ lru-cache@^4.0.1, lru-cache@^4.1.1:
     pseudomap "^1.0.2"
     yallist "^2.1.2"
 
-machine-uuid@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/machine-uuid/-/machine-uuid-1.2.0.tgz#810ce7f8b5f59535102c947cf9ef1b4241779c18"
-  dependencies:
-    uuid "^3.1.0"
-
 make-dir@^1.0.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/make-dir/-/make-dir-1.3.0.tgz#79c1033b80515bd6d24ec9933e860ca75ee27f0c"
@@ -4362,8 +4357,8 @@ mimic-fn@^1.0.0:
   resolved "https://registry.yarnpkg.com/mimic-fn/-/mimic-fn-1.2.0.tgz#820c86a39334640e99516928bd03fca88057d022"
 
 mimic-response@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/mimic-response/-/mimic-response-1.0.0.tgz#df3d3652a73fded6b9b0b24146e6fd052353458e"
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/mimic-response/-/mimic-response-1.0.1.tgz#4923538878eef42063cb8a3e3b0798781487ab1b"
 
 min-document@^2.19.0:
   version "2.19.0"
@@ -5178,6 +5173,26 @@ prebuild-install@^2.4.1:
     os-homedir "^1.0.1"
     pump "^2.0.1"
     rc "^1.1.6"
+    simple-get "^2.7.0"
+    tar-fs "^1.13.0"
+    tunnel-agent "^0.6.0"
+    which-pm-runs "^1.0.0"
+
+prebuild-install@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/prebuild-install/-/prebuild-install-5.0.0.tgz#bc1a24636beaf0af7945c0a84d4b9249bf191b6b"
+  dependencies:
+    detect-libc "^1.0.3"
+    expand-template "^1.0.2"
+    github-from-package "0.0.0"
+    minimist "^1.2.0"
+    mkdirp "^0.5.1"
+    node-abi "^2.2.0"
+    noop-logger "^0.1.1"
+    npmlog "^4.0.1"
+    os-homedir "^1.0.1"
+    pump "^2.0.1"
+    rc "^1.2.7"
     simple-get "^2.7.0"
     tar-fs "^1.13.0"
     tunnel-agent "^0.6.0"
