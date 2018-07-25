@@ -2,6 +2,7 @@ FROM node:8.11.2-stretch
 
 VOLUME /dist
 
+# Install dependencies
 RUN apt-get update && apt-get install -y git python \
     gcc-multilib g++-multilib \
     build-essential libssl-dev rpm \
