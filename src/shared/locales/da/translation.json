@@ -299,13 +299,13 @@
         "mustSaveYourSeed": "<0><0>Du skal gemme din hovednøgle med </0><1>mindst én</1><2> af valgmulighederne herunder.</2></0>"
     },
     "seedReentry": {
-        "pleaseConfirmYourSeed": "Please confirm your seed",
-        "trinityWillNeverAskToReenter": "Trinity will never ask you to re-enter this seed unless you reset your wallet or the app.",
-        "enterYourSeed": "Enter your seed",
+        "pleaseConfirmYourSeed": "Bekræft venligst din hovednøgle",
+        "trinityWillNeverAskToReenter": "Trinity vil aldrig bede dig om at genindsætte din hovednøgle, medmindre du nulstiller din tegnebog eller app'en.",
+        "enterYourSeed": "Indtast din hovednøgle",
         "incorrectSeed": "Forkert hovednøgle",
         "incorrectSeedExplanation": "Hovednøglen du indtastede er forkert. Prøv venligst igen.",
         "ifYouHaveNotSaved": "Gå venligst tilbage og gem din hovednøgle, hvis du ikke allerede har gjort dette.",
-        "enterSeedBelow": "Enter your newly created seed below to confirm you have backed it up correctly"
+        "enterSeedBelow": "Indtast din nyoprettet hovednøgle forneden, for at bekræfte du har sikkerhedskopieret det korrekt"
     },
     "send": {
         "invalidAddress": "Ugyldig adresse",
@@ -332,10 +332,10 @@
         "totalTime": "Tid i alt",
         "addressPasteDetected": "Address paste detected",
         "addressPasteExplanation": "It looks like you have pasted an address. Make sure that the address matches the one you want to send to.",
-        "invalid": "INVALID"
+        "invalid": "UGYLDIG"
     },
     "setSeedName": {
-        "letsAddName": "Let's add a name",
+        "letsAddName": "Lad os tilføje et navn",
         "canUseMultipleSeeds": "Du kan bruge adskillige hovednøgler med denne tegnebog. Hver hovednøgle kræver et kontonavn.",
         "youCanAdd": "Du kan tilføje flere hovednøgler i menuen \"Indstillinger\"."
     },
@@ -398,12 +398,12 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Indtast din adgangskode for at nulstille tegnebogen.",
-        "reset": "Reset"
+        "reset": "Nulstil"
     },
     "walletSetup": {
-        "creatingSeed": "Creating a seed",
+        "creatingSeed": "Opretter en hovednøgle",
         "okay": "Okay. Lad os opsætte din tegnebog!",
-        "doYouNeedASeed": "Do you need to create a new seed?",
+        "doYouNeedASeed": "Har du brug at oprette en nye hovednøgle?",
         "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
         "noIHaveOne": "No, I have one",
         "yesINeedASeed": "Yes, I need a seed",
