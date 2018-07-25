@@ -3,4 +3,4 @@ steps:
     command: node_modules/.bin/electron-builder -mzl
     plugins:
       docker#v1.3.0:
-        image: "rajivshah/trinity-desktop-deployment-ci"
+        image: "rajivshah/trinity-desktop-ci"
