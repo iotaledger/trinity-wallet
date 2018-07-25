@@ -52,13 +52,13 @@ const encrypt = async (contentPlain, passwordPlain) => {
     const content = new TextEncoder().encode(JSON.stringify(contentPlain));
 
     const password = new TextEncoder().encode(passwordPlain);
-    const passwordhash = await crypto.subtle.digest('SHA-256', password);
+    const passwordHash = await Electron.argon2(password);
 
     const iv = crypto.getRandomValues(new Uint8Array(12));
 
     const algorithm = { name: 'AES-GCM', iv: iv };
 
-    const key = await crypto.subtle.importKey('raw', passwordhash, algorithm, false, ['encrypt']);
+    const key = await crypto.subtle.importKey('raw', passwordHash, algorithm, false, ['encrypt']);
 
     const cipherBuffer = await crypto.subtle.encrypt(algorithm, key, content);
     const cipherArray = new Uint8Array(cipherBuffer);
@@ -83,7 +83,7 @@ const decrypt = async (cipherText, passwordPlain) => {
     }
     try {
         const password = new TextEncoder().encode(passwordPlain);
-        const passwordHash = await crypto.subtle.digest('SHA-256', password);
+        const passwordHash = await Electron.argon2(password);
 
         const ivArray = cipherParts[0].split(',');
         const iv = Uint8Array.from(ivArray);
