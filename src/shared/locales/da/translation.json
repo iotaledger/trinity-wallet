@@ -295,7 +295,7 @@
         "printBlankWallet": "Udskriv en tom tegnebogs blanket",
         "whatIsChecksum": "Hver hovednøgle har en tilhørende 3-tegns kontrolsum",
         "iHavesavedMySeed": "Jeg har gemt min hovednøgle",
-        "checksumExplanation": "Whenever you add a seed to your wallet, you should ensure that the wallet-generated checksum matches the one you have written down.",
+        "checksumExplanation": "Når du indtaster din hovednøgle i tegnebogen skal du sikre dig at den genererede kontrolsum stemmer overens med den du har noteret.",
         "mustSaveYourSeed": "<0><0>Du skal gemme din hovednøgle med </0><1>mindst én</1><2> af valgmulighederne herunder.</2></0>"
     },
     "seedReentry": {
