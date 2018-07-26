@@ -47,7 +47,7 @@ const renderInitialScreen = (store) => {
         state.settings.versions.version === '0.4.1' && !state.app.completedForcedPasswordUpdate;
 
     const initialScreen = state.accounts.onboardingComplete
-        ? navigateToForceChangePassword ? 'forceChangePassword' : 'login'
+        ? navigateToForceChangePassword ? 'forceChangePassword' : 'forceChangePassword'
         : 'languageSetup';
 
     Navigation.startSingleScreenApp({
