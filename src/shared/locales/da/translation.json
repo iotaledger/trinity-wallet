@@ -83,7 +83,7 @@
         "promote": "PROMOVER",
         "retry": "Prøv igen",
         "pressBackAgain": "Tryk tilbage igen for at lukke app'en",
-        "reattached": "Transaktionen gensendt til netværket med succes",
+        "reattached": "Gensendte transaktionen med succes",
         "reattachedExplanation": "Gensendte transaktion med hash-værdi {{hash}}",
         "promotingTransaction": "Promovere transaktion",
         "rebroadcastError": "Kunne ikke gensende transaktionen til netværket",
@@ -96,7 +96,7 @@
         "noLongerValid": "Pakken du forsøger at promovere er ikke længere gyldig",
         "transactionAlreadyConfirmed": "Transaktionen er allerede bekræftet",
         "transactionAlreadyConfirmedExplanation": "Transaktionen du forsøger at promovere er allerede bekræftet.",
-        "cannotSendToOwn": "Sender til egen adresse",
+        "cannotSendToOwn": "Send til egen adresse",
         "cannotSendToOwnExplanation": "Du kan ikke lave en værdibaseret transaktion til en af dine egne adresser.",
         "pleaseWait": "Vent venligst",
         "pleaseWaitEllipses": "Vent venligst...",
@@ -520,7 +520,7 @@
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Har du sikkerhedskopieret din hovednøgle?",
-        "alreadyHave": "Jeg har sikkerhedskopieret min hovdenøgle",
+        "alreadyHave": "Jeg har sikkerhedskopieret min hovednøgle",
         "reenterSeed": "I det næste trin vil du blive bedt om at genindtaste din hovednøgle.",
         "reenterSeedWarning": "Hvis du ikke har sikkerhedskopieret din hovednøgle og din enhed fejler, vil du miste alle dine IOTA.",
         "pleaseConfirm": "Bekræft venligst, du har opbevaret din hovednøgle forsvarligt."
@@ -631,7 +631,7 @@
         "hasSnapshotTakenPlace": "Har et snapshot været gennemført? Tryk på knappen nedenfor for at synkronisere.",
         "transition": "Transition",
         "transitioning": "Synkronisere til nyeste snapshot.",
-        "generatingAndDetecting": "Genererer adresser og registrerer balance.",
+        "generatingAndDetecting": "Genererer adresser og registrerer saldo.",
         "attaching": "Adressen tilsluttes netværket."
     },
     "deepLink": {
@@ -639,10 +639,10 @@
         "autofillExplanation": "Transaktionsdata er autoudfyldt fra linket."
     },
     "updates": {
-        "errorRetrievingUpdateData": "Fejl under hentning af opdateringsdata",
-        "errorRetrievingUpdateDataExplanation": "Der opstod en fejl under hentning af opdateringsdata. Prøv venligst igen.",
+        "errorRetrievingUpdateData": "Fejl under indhentning af opdateringsdata",
+        "errorRetrievingUpdateDataExplanation": "Der opstod en fejl under indhentning af opdateringsdata. Prøv venligst igen.",
         "noUpdatesAvailable": "Ingen tilgængelige opdateringer",
-        "noUpdatesAvailableExplanation": "Du har den seneste computer-version af IOTA Trinity tegnebogen!",
+        "noUpdatesAvailableExplanation": "Du har den seneste version af IOTA Trinity tegnebogen!",
         "newVersionAvailable": "Ny version tilgængelig",
         "newVersionAvailableExplanation": "En ny <strong>Trinity</strong> <strong>{{version}}</strong> version er tilgængelig. Læs venligst udgivelsesnoterne nøje og kontroller downloadkilden før du opdaterer:",
         "downloadRelease": "Download version",
