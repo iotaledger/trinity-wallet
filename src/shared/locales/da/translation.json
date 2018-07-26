@@ -598,9 +598,9 @@
     },
     "pow": {
         "feeless": "Det er nødvendigt at udføre en mindre netværksvalidering (PoW) for at sende gebyrfri transaktioner med IOTA.",
-        "localOrRemote": "Netværksvalideringen kan enten gennemføres lokalt på din enhed eller overlades til din node.",
+        "localOrRemote": "Netværksvalideringen (PoW) kan enten gennemføres lokalt på din enhed eller overlades til en node.",
         "local": "Lokalt",
-        "remote": "Fjernadgang",
+        "remote": "Eksternt",
         "powUpdated": "Indstillinger til netværksvalidering",
         "powUpdatedExplanation": "Dine indstillinger til netværksvalideringen er opdateret.",
         "noWebGLSupport": "WebGL er ikke understøttet",
