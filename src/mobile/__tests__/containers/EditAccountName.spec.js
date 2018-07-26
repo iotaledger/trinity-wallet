@@ -21,7 +21,7 @@ const getProps = (overrides) =>
         {
             selectedAccountName: 'Main',
             accountNames: ['Main'],
-            password: 'foo',
+            password: {},
             t: () => 'foo',
             setSetting: noop,
             generateAlert: noop,
@@ -45,8 +45,8 @@ describe('Testing EditAccountName component', () => {
             expect(EditAccountName.propTypes.accountNames).toEqual(PropTypes.array.isRequired);
         });
 
-        it('should require a password string as a prop', () => {
-            expect(EditAccountName.propTypes.password).toEqual(PropTypes.string.isRequired);
+        it('should require a password object as a prop', () => {
+            expect(EditAccountName.propTypes.password).toEqual(PropTypes.object.isRequired);
         });
 
         it('should require a generateAlert function as a prop', () => {

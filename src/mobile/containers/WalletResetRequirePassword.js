@@ -1,3 +1,4 @@
+import isEqual from 'lodash/isEqual';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
@@ -11,8 +12,7 @@ import { StyleSheet, View, Keyboard, TouchableWithoutFeedback, BackHandler } fro
 import OnboardingButtons from '../containers/OnboardingButtons';
 import { persistor } from '../store';
 import DynamicStatusBar from '../components/DynamicStatusBar';
-import { clearKeychain } from '../utils/keychain';
-import { getPasswordHash } from '../utils/crypto';
+import { clearKeychain, getPasswordHash } from '../utils/keychain';
 import CustomTextInput from '../components/CustomTextInput';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import { Icon } from '../theme/icons.js';
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
 class WalletResetRequirePassword extends Component {
     static propTypes = {
         /** Hash for wallet password */
-        password: PropTypes.string.isRequired,
+        password: PropTypes.object.isRequired,
         /** Resets wallet to default state */
         resetWallet: PropTypes.func.isRequired,
         /** Sets wallet's first use
@@ -119,10 +119,10 @@ class WalletResetRequirePassword extends Component {
         });
     }
 
-    isAuthenticated() {
+    async isAuthenticated() {
         const { password } = this.props;
-        const pwdHash = getPasswordHash(this.state.password);
-        return password === pwdHash;
+        const pwdHash = await getPasswordHash(this.state.password);
+        return isEqual(password, pwdHash);
     }
 
     redirectToInitialScreen() {
