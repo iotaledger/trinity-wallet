@@ -3,8 +3,8 @@
   "steps": [
     {
       "type": "script",
-      "name": ":pipeline:",
-      "command": "buildkite-agent pipeline upload"
+      "name": "Primary",
+      "command": "buildkite-agent pipeline upload ci/desktop/.buildkite/pipeline-primary.yml"
     }
   ]
 }
