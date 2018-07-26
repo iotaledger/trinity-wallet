@@ -210,7 +210,7 @@
     },
     "enterSeed": {
         "invalidCharacters": "Hovednøkkelen inneholder ugyldige tegn",
-        "invalidCharactersExplanation": "Hovednøkkelen kan kun bestå av store bokstaver fra A til Z og tallet 9. Din hovednøkkel inneholder ugyldige tegn. Vennligst prøv på nytt.",
+        "invalidCharactersExplanation": "Hovednøkkelen kan kun bestå av store bokstaver fra A-Z og tallet 9. Din hovednøkkel inneholder ugyldige tegn. Vennligst prøv på nytt.",
         "seedTooShort": "Hovednøkkelen er for kort",
         "seedTooLong": "Hovednøkkelen er for lang",
         "seedTooShortExplanation": "Hovednøkler må være {{maxLength}} tegn. Din hovednøkkel er nå {{currentLength}} tegn. Vennligst prøv på nytt.",
