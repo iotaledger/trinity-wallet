@@ -604,7 +604,7 @@
         "powUpdated": "Indstillinger til netværksvalidering",
         "powUpdatedExplanation": "Dine indstillinger til netværksvalideringen er opdateret.",
         "noWebGLSupport": "WebGL er ikke understøttet",
-        "noWebGLSupportExplanation": "Din computer understøtter ikke WebGL. Brug venligst ekstern netværksvalidering (PoW)."
+        "noWebGLSupportExplanation": "Din enhed understøtter ikke WebGL. Brug venligst ekstern netværksvalidering (PoW)."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Auto-promotion indstillinger",
@@ -612,20 +612,20 @@
     },
     "progressSteps": {
         "checkingNodeHealth": "Undersøger nodens status",
-        "validatingReceiveAddress": "Validering modtageradresse",
+        "validatingReceiveAddress": "Validerer modtageradresse",
         "syncingAccount": "Synkroniserer konto",
         "preparingInputs": "Forbereder input",
-        "preparingTransfers": "Forberede transaktion",
+        "preparingTransfers": "Forbereder transaktion",
         "gettingTransactionsToApprove": "Modtager transaktion til godkendelse",
-        "proofOfWork": "Fuldføre Proof of Work",
+        "proofOfWork": "Fuldfører netværksvalidering (PoW)",
         "broadcasting": "Sender transaktion til netværk"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Kan ikke fuldføre snapshot synkroniseringen",
-        "cannotCompleteTransitionExplanation": "Din balance skal være større end 0 for at fuldføre synkroniseringen.",
-        "transitionComplete": "Snapshot synkronisering gennemgørt",
+        "cannotCompleteTransitionExplanation": "Din saldo skal være større end 0 for at fuldføre synkroniseringen.",
+        "transitionComplete": "Snapshot synkronisering gennemført",
         "transitionCompleteExplanation": "Snapshot synkronisering blev gennemført med succes.",
-        "detectedBalance": "Registreret balance: {{amount}} {{unit}}",
+        "detectedBalance": "Registreret saldo: {{amount}} {{unit}}",
         "isThisCorrect": "Er dette korrekt?",
         "snapshotExplanation": "Fra tid til anden gennemføres et snapshot for at reducere størrelsen på netværket.",
         "hasSnapshotTakenPlace": "Har et snapshot været gennemført? Tryk på knappen nedenfor for at synkronisere.",
