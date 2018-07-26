@@ -490,9 +490,9 @@
         "one": "En"
     },
     "usedAddressModal": {
-        "cantSpendFullBalanceQuestion": "Hvorfor kan jeg bruge min fulde saldo?",
+        "cantSpendFullBalanceQuestion": "Hvorfor kan jeg ikke bruge hele saldoen?",
         "spentAddressExplanation": "Du har penge på en eller flere brugte adresser. Adressegenbrug er farligt i IOTA og denne tegnebog tillader dig derfor ikke at sende fra samme adresse mere end én gang.",
-        "discordInformation": "Søg venligst over på hjælpekanalen #help på Discord app'en for at finde ud af hvad du kan gøre."
+        "discordInformation": "Søg venligst hjælp på chatkanalen #help på Discord app'en for at finde ud af hvad du kan gøre."
     },
     "deleteAccount": {
         "areYouSure": "<0></0> <1>Er du sikker på du vil slette</1> <2></2> <3>{{accountName}}?</3>",
