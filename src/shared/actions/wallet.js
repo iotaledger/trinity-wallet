@@ -469,15 +469,15 @@ export const generateAddressesAndGetBalance = (seed, index, genFn) => {
             security: DEFAULT_SECURITY,
         };
 
-        generateAddressesAsync(seed, options, genFn, (error, addresses) => {
-            if (error) {
-                dispatch(snapshotTransitionError());
-                dispatch(generateTransitionErrorAlert(error));
-            } else {
+        generateAddressesAsync(seed, options, genFn)
+            .then((addresses) => {
                 dispatch(updateTransitionAddresses(addresses));
                 dispatch(getBalanceForCheck(addresses));
-            }
-        });
+            })
+            .catch((error) => {
+                dispatch(snapshotTransitionError());
+                dispatch(generateTransitionErrorAlert(error));
+            });
     };
 };
 
