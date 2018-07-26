@@ -12,7 +12,7 @@ RUN yarn
 RUN cd src/shared && yarn
 
 # Install mobile dependencies
-COPY src/mobile/package.json src/mobile/yarn.lock /app/src/mobile/
+COPY src/mobile/package.json src/mobile/yarn.lock src/mobile/babelHelpersCopy /app/src/mobile/
 
 RUN cd src/mobile && yarn
 
