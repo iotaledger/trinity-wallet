@@ -234,8 +234,8 @@
         "enterPassword": "Skriv inn ditt passord.",
         "login": "Logg inn",
         "setNode": "Angi Node",
-        "whyBiometricDisabled": "Hvorfor er biometriske godkjenning deaktivert?",
-        "whyBiometricDisabledExplanation": "Biometrisk pålogging er deaktivert første gang du starter appen av hensyn til sikkerhet. Når du bruker Trinity, vil du bli logget ut ved inaktivitet. Du kan deretter logge inn igjen med biometrisk godkjenning."
+        "whyBiometricDisabled": "Hvorfor er biometrisk godkjenning deaktivert?",
+        "whyBiometricDisabledExplanation": "Biometrisk pålogging er deaktivert første gang du starter applikasjonen av hensyn til sikkerhet. Når du bruker Trinity, vil du bli logget ut ved inaktivitet. Du kan deretter logge inn igjen med biometrisk godkjenning."
     },
     "loading": {
         "loadingFirstTime": "Laster hovednøkkel for første gang.",
