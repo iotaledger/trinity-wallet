@@ -40,99 +40,275 @@ export const ActionTypes = {
     SET_DEEP_LINK_INACTIVE: 'IOTA/APP/WALLET/SET_DEEP_LINK_INACTIVE',
 };
 
+/**
+ * Dispatch when new addresses are about to be generated
+ *
+ * @method generateNewAddressRequest
+ *
+ * @returns {{type: {string} }}
+ */
 export const generateNewAddressRequest = () => ({
     type: ActionTypes.GENERATE_NEW_ADDRESS_REQUEST,
 });
 
-export const generateNewAddressSuccess = (payload) => ({
+/**
+ * Dispatch when new addresses are successfully generated
+ *
+ * @method generateNewAddressSuccess
+ *
+ * @returns {{type: {string} }}
+ */
+export const generateNewAddressSuccess = () => ({
     type: ActionTypes.GENERATE_NEW_ADDRESS_SUCCESS,
-    payload,
 });
 
+/**
+ * Dispatch in case an error occurs during new addresses generation
+ *
+ * @method generateNewAddressError
+ *
+ * @returns {{type: {string} }}
+ */
 export const generateNewAddressError = () => ({
     type: ActionTypes.GENERATE_NEW_ADDRESS_ERROR,
 });
 
+/**
+ * Dispatch to set new account name during mobile onboarding
+ *
+ * @method setAccountName
+ * @param {string} payload
+ *
+ * @returns {{type: {string}, payload: {string} }}
+ */
 export const setAccountName = (payload) => ({
     type: ActionTypes.SET_ACCOUNT_NAME,
     payload,
 });
 
+/**
+ * Dispatch to set password hash on login
+ *
+ * @method setPassword
+ * @param {string} payload
+ *
+ * @returns {{type: {string}, payload: {string} }}
+ */
 export const setPassword = (payload) => ({
     type: ActionTypes.SET_PASSWORD,
     payload,
 });
 
+/**
+ * Dispatch to clear "wallet" reducer state
+ *
+ * @method setPassword
+ *
+ * @returns {{type: {string} }}
+ */
 export const clearWalletData = () => ({
     type: ActionTypes.CLEAR_WALLET_DATA,
 });
 
+/**
+ * Dispatch to set active seed (account) index in state
+ *
+ * @method setSeedIndex
+ * @param {number} payload
+ *
+ * @returns {{type: {string}, payload: {number} }}
+ */
 export const setSeedIndex = (payload) => ({
     type: ActionTypes.SET_SEED_INDEX,
     payload,
 });
 
+/**
+ * Dispatch to complete loading of account information for newly added account to wallet
+ *
+ * @method setReady
+ *
+ * @returns {{type: {string}, payload: {boolean} }}
+ */
 export const setReady = () => ({
     type: ActionTypes.SET_READY,
     payload: true,
 });
 
-// TODO: Change name to something like setSeedInfo
-// as payload now has other meta data
+/**
+ * Dispatch to temporarily set seed and related info (If seed was generated within Trinity) in state during mobile onboarding
+ *
+ * @method setSeed
+ * @param {object} payload
+ *
+ * @returns {{type: {string}, payload: {object} }}
+ */
 export const setSeed = (payload) => ({
     type: ActionTypes.SET_SEED,
     payload,
 });
 
+/**
+ * Dispatch to clear temporarily stored seed from state
+ *
+ * @method clearSeed
+ *
+ * @returns {{type: {string} }}
+ */
 export const clearSeed = () => ({
     type: ActionTypes.CLEAR_SEED,
     payload: Array(82).join(' '),
 });
 
+/**
+ * Dispatch to set active setting name (for settings screen on mobile) in state
+ *
+ * @method setSetting
+ * @param {string} payload
+ *
+ * @returns {{type: {string}, payload: {string} }}
+ */
 export const setSetting = (payload) => ({
     type: ActionTypes.SET_SETTING,
     payload,
 });
 
+/**
+ * Dispatch to temporarily store account information for additional seeds in state
+ *
+ * @method setAdditionalAccountInfo
+ * @param {object} payload
+ *
+ * @returns {{type: {string}, payload: {object} }}
+ */
 export const setAdditionalAccountInfo = (payload) => ({
     type: ActionTypes.SET_ADDITIONAL_ACCOUNT_INFO,
     payload,
 });
 
+/**
+ * Dispatch when snapshot transition is about to be performed
+ *
+ * @method snapshotTransitionRequest
+ *
+ * @returns {{type: {string} }}
+ */
 export const snapshotTransitionRequest = () => ({
     type: ActionTypes.SNAPSHOT_TRANSITION_REQUEST,
 });
 
-export const snapshotTransitionSuccess = (payload) => ({
+/**
+ * Dispatch when snapshot transition is successfully completed
+ *
+ * @method snapshotTransitionSuccess
+ *
+ * @returns {{type: {string} }}
+ */
+export const snapshotTransitionSuccess = () => ({
     type: ActionTypes.SNAPSHOT_TRANSITION_SUCCESS,
-    payload,
 });
 
+/**
+ * Dispatch if an error occurs during snapshot transition
+ *
+ * @method snapshotTransitionError
+ *
+ * @returns {{type: {string} }}
+ */
 export const snapshotTransitionError = () => ({
     type: ActionTypes.SNAPSHOT_TRANSITION_ERROR,
 });
 
+/**
+ * Dispatch when addresses are about to be attached to tangle during snapshot transition
+ *
+ * @method snapshotAttachToTangleRequest
+ *
+ * @returns {{type: {string} }}
+ */
 export const snapshotAttachToTangleRequest = () => ({
     type: ActionTypes.SNAPSHOT_ATTACH_TO_TANGLE_REQUEST,
 });
 
+/**
+ * Dispatch when addresses are successfully attached to tangle during snapshot transition
+ *
+ * @method snapshotAttachToTangleComplete
+ *
+ * @returns {{type: {string} }}
+ */
 export const snapshotAttachToTangleComplete = () => ({
     type: ActionTypes.SNAPSHOT_ATTACH_TO_TANGLE_COMPLETE,
 });
 
+/**
+ * Dispatch to update detected balance during snapshot transition
+ *
+ * @method updateTransitionBalance
+ * @param {number} payload
+ *
+ * @returns {{type: {string}, payload: {number} }}
+ */
 export const updateTransitionBalance = (payload) => ({
     type: ActionTypes.UPDATE_TRANSITION_BALANCE,
     payload,
 });
 
+/**
+ * Dispatch to update generated addresses during snapshot transition
+ *
+ * @method updateTransitionAddresses
+ * @param {array} payload
+ *
+ * @returns {{type: {string}, payload: {array} }}
+ */
 export const updateTransitionAddresses = (payload) => ({
     type: ActionTypes.UPDATE_TRANSITION_ADDRESSES,
     payload,
 });
 
+/**
+ * Dispatch to show/hide (is your balance correct) modal during snapshot transition
+ *
+ * @method switchBalanceCheckToggle
+ *
+ * @returns {{type: {string} }}
+ */
 export const switchBalanceCheckToggle = () => ({
     type: ActionTypes.SWITCH_BALANCE_CHECK_TOGGLE,
 });
+
+/**
+ * Dispatch to set parsed data from link (amount, address and message) in state
+ *
+ * @method setDeepLink
+ * @param {string} amount
+ * @param {string} address
+ * @param {string} message
+ *
+ * @returns {{type: {string}, amount: {string}, address: {string}, message: {string} }}
+ */
+export const setDeepLink = (amount, address, message) => {
+    return {
+        type: ActionTypes.SET_DEEP_LINK,
+        amount,
+        address,
+        message,
+    };
+};
+
+/**
+ * Dispatch to disable deep linking for wallet
+ *
+ * @method setDeepLinkInactive
+ *
+ * @returns {{type: {string} }}
+ */
+export const setDeepLinkInactive = () => {
+    return {
+        type: ActionTypes.SET_DEEP_LINK_INACTIVE,
+    };
+};
 
 /**
  * Generate new receive address for wallet
@@ -327,20 +503,5 @@ export const getBalanceForCheck = (addresses) => {
                 dispatch(snapshotTransitionError());
                 dispatch(generateTransitionErrorAlert(error));
             });
-    };
-};
-
-export const setDeepLink = (amount, address, message) => {
-    return {
-        type: ActionTypes.SET_DEEP_LINK,
-        amount,
-        address,
-        message,
-    };
-};
-
-export const setDeepLinkInactive = () => {
-    return {
-        type: ActionTypes.SET_DEEP_LINK_INACTIVE,
     };
 };

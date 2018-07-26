@@ -317,7 +317,7 @@ export const fetchPrice = () => {
  * @method fetchNodeList
  *
  * @param {boolean} chooseRandomNode
- * @returns {Function}
+ * @returns {function}
  */
 export const fetchNodeList = (chooseRandomNode = false) => {
     return (dispatch) => {
