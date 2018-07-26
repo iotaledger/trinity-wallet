@@ -198,7 +198,7 @@
         "seedCopied": "Kopierte hovednøkkelen til utklippstavlen",
         "seedCopiedExplanation": "Hovednøkkelen vil bli fjernet med en gang du trykker \"FERDIG\" eller etter at 60 sekunder har passert.",
         "copyToClipboard": "Kopier hovednøkkel",
-        "shareSeed": "Kopier hovednøkkelen til en passord manager",
+        "shareSeed": "Kopier hovednøkkelen til en sikker passord manager",
         "storeEncrypted": "Lagre hovednøkkelen din kryptert i en passord manager.",
         "doNotOpen": "Åpne ikke andre applikasjoner under denne prosessen.",
         "tapConfirm": "Vennligst huk av i boksen nedenfor for å bekrefte.",
@@ -234,8 +234,8 @@
         "enterPassword": "Skriv inn ditt passord.",
         "login": "Logg inn",
         "setNode": "Angi Node",
-        "whyBiometricDisabled": "Hvorfor er biometrisk godkjenning deaktivert?",
-        "whyBiometricDisabledExplanation": "Biometrisk pålogging er deaktivert første gang du starter applikasjonen av hensyn til sikkerhet. Når du bruker Trinity, vil du bli logget ut ved inaktivitet. Du kan deretter logge inn igjen med biometrisk godkjenning."
+        "whyBiometricDisabled": "Hvorfor er biometrisk autentisering deaktivert?",
+        "whyBiometricDisabledExplanation": "Biometrisk pålogging er deaktivert første gang du starter applikasjonen av hensyn til sikkerhet. Når du bruker Trinity, vil du bli logget ut ved inaktivitet. Du kan deretter logge inn igjen med biometrisk autentisering."
     },
     "loading": {
         "loadingFirstTime": "Laster hovednøkkel for første gang.",
@@ -415,7 +415,7 @@
         "thankYou": "Takk for at du lastet ned Trinity"
     },
     "writeSeedDown": {
-        "writeDownYourSeed": "<0>Skriv ned hovednøkkelen og kontrolltegnet. </0><1>trippelsjekk</1><2>så at de er riktige.</2>",
+        "writeDownYourSeed": "<0>Skriv ned hovednøkkel og kontrolltegn. </0><1>Trippelsjekk</1><2>at de er riktige.</2>",
         "scrollToBottom": "Skroll ned til bunnen"
     },
     "history": {
