@@ -36,3 +36,11 @@ steps:
     plugins:
       docker#v1.4.0:
         image: "rajivshah/trinity-mobile-ci"
+
+  - wait
+
+  - label: ":react: Bundle"
+    command: "cd src/mobile && react-native bundle --entry-file index.android.js --platform android --bundle-output android/main.jsbundle --dev true"
+    plugins:
+      docker#v1.4.0:
+        image: "rajivshah/trinity-mobile-ci"
