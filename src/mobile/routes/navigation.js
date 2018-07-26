@@ -22,6 +22,7 @@ import Disable2FA from '../containers/Disable2FA';
 import FingerprintSetup from '../containers/FingerprintSetup';
 import TermsAndConditions from '../containers/TermsAndConditions';
 import PrivacyPolicy from '../containers/PrivacyPolicy';
+import ForceChangePassword from '../containers/ForceChangePassword';
 import { isIPhoneX } from '../utils/device';
 
 function getGenerator(screen) {
@@ -70,4 +71,5 @@ export default function registerScreens(store, Provider) {
     Navigation.registerComponent('fingerprintSetup', () => getGenerator(FingerprintSetup), store, Provider);
     Navigation.registerComponent('termsAndConditions', () => getGenerator(TermsAndConditions), store, Provider);
     Navigation.registerComponent('privacyPolicy', () => getGenerator(PrivacyPolicy), store, Provider);
+    Navigation.registerComponent('forceChangePassword', () => getGenerator(ForceChangePassword), store, Provider);
 }

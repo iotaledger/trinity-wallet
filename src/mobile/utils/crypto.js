@@ -7,6 +7,13 @@ import crypto from 'react-native-fast-crypto';
 
 const cryptoImport = require('crypto'); // eslint-disable-line no-unused-vars
 
+export const getOldPasswordHash = (password) => {
+    return cryptoImport
+        .createHash('sha256')
+        .update(password)
+        .digest('hex');
+};
+
 export const getRandomBytes = async (quantity) => {
     return await generateSecureRandom(quantity);
 };
@@ -17,8 +24,8 @@ export const generatePasswordHash = (password, salt) => {
         (result) => {
             return result;
         },
-        (error) => console.log(error),
-    ); // eslint-disable-line no-console
+        (error) => console.log(error), // eslint-disable-line no-console
+    );
 };
 
 export const createSecretBox = async (message, nonce, keyUint8) => {
@@ -27,7 +34,11 @@ export const createSecretBox = async (message, nonce, keyUint8) => {
 };
 
 export const openSecretBox = async (box, nonce, key) => {
-    return await parse(UInt8ToString(nacl.secretbox.open(box, nonce, key)));
+    const openedBox = await nacl.secretbox.open(box, nonce, key);
+    if (openedBox) {
+        return parse(UInt8ToString(openedBox));
+    }
+    throw new Error('Incorrect password');
 };
 
 export const hexStringToByte = (str) => {
