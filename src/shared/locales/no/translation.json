@@ -195,7 +195,7 @@
     "copyToClipboard": {
         "seedCleared": "Hovednøkkel er fjernet",
         "seedClearedExplanation": "Hovednøkkelen har blitt fjernet fra utklippstavlen for din sikkerhet.",
-        "seedCopied": "Kopierte hovednøkkelen til utklippstavle",
+        "seedCopied": "Kopierte hovednøkkelen til utklippstavlen",
         "seedCopiedExplanation": "Hovednøkkelen vil bli fjernet med en gang du trykker \"FERDIG\" eller etter at 60 sekunder har passert.",
         "copyToClipboard": "Kopier hovednøkkel",
         "shareSeed": "Kopier hovednøkkelen til en passord manager",
@@ -461,7 +461,7 @@
         "snapshotTransition": "Snapshot synkronisering",
         "pow": "PoW (Proof of Work)",
         "autoPromotion": "Auto promoter",
-        "autoPromotionExplanation": "Auto-promotering bidrar å bekrefte dine transaksjoner på nettverket. Aktiver denne innstillingen hvis du har problemer med å bekrefte dine transaksjoner.",
+        "autoPromotionExplanation": "Automatisk promotering hjelper deg å få bekreftet transaksjoner på Tangle. Aktiver denne innstillingen dersom du har problemer med å få transaksjoner bekreftet.",
         "autoPromotionPoW": "Automatisk promotering er kun mulig på noder som støtter ekstern PoW (Proof of Work)."
     },
     "advancedThemeCustomisation": {
@@ -490,21 +490,21 @@
         "one": "En"
     },
     "usedAddressModal": {
-        "cantSpendFullBalanceQuestion": "Hvorfor kan ikke jeg bruke hele saldoen?",
+        "cantSpendFullBalanceQuestion": "Hvorfor kan jeg ikke bruke hele saldoen?",
         "spentAddressExplanation": "Du har midler på én eller flere brukte adresser. Siden gjenbruk av adresser er utrygt tillater ikke lommeboken å sende flere ganger fra samme adresse.",
         "discordInformation": "Vennligst besøk #help kanalen på Discord for å finne ut hva du kan gjøre."
     },
     "deleteAccount": {
         "areYouSure": "<0></0><1>Er du sikker på at du vil slette</1><2></2><3>{{accountName}}?</3>",
-        "yourSeedWillBeRemoved": "Din nøkkel og transaksjonsloggen vil bli fjernet.",
+        "yourSeedWillBeRemoved": "Din nøkkel og transaksjonshistorikk vil bli fjernet.",
         "thisAction": "Denne handlingen kan ikke angres.",
-        "enterPassword": "Skriv inn passordet for å slette kontoen."
+        "enterPassword": "Skriv inn ditt passord for å slette kontoen."
     },
     "manualSync": {
         "outOfSync": "Ser din transaksjonshistorikk ut til å ikke være synkronisert?",
         "pressToSync": "Trykk på knappen nedenfor for å synkronisere din konto.",
         "thisMayTake": "Dette kan ta en stund. Det kan hende din enhet blir tregere.",
-        "doNotClose": "Minimaliserer du applikasjonen vil du avbryte synkroniseringen.",
+        "doNotClose": "Minimerer du applikasjonen vil du avbryte synkroniseringen.",
         "syncAccount": "Synkroniser konto",
         "syncingYourAccount": "Synkroniserer din konto."
     },
