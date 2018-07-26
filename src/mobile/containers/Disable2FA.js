@@ -69,7 +69,7 @@ class Disable2FA extends Component {
          */
         set2FAStatus: PropTypes.func.isRequired,
         /** Hash for wallet's password */
-        password: PropTypes.string.isRequired,
+        password: PropTypes.object.isRequired,
     };
 
     constructor() {

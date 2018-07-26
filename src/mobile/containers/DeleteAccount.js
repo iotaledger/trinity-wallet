@@ -1,3 +1,4 @@
+import isEqual from 'lodash/isEqual';
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import PropTypes from 'prop-types';
@@ -12,10 +13,9 @@ import { deleteAccount } from 'iota-wallet-shared-modules/actions/accounts';
 import { toggleModalActivity } from 'iota-wallet-shared-modules/actions/ui';
 import StatefulDropdownAlert from '../containers/StatefulDropdownAlert';
 import Fonts from '../theme/fonts';
-import { deleteSeedFromKeychain } from '../utils/keychain';
+import { deleteSeedFromKeychain, getPasswordHash } from '../utils/keychain';
 import ModalButtons from '../containers/ModalButtons';
 import { width, height } from '../utils/dimensions';
-import { getPasswordHash } from '../utils/crypto';
 import CustomTextInput from '../components/CustomTextInput';
 import GENERAL from '../theme/general';
 import { Icon } from '../theme/icons.js';
@@ -119,7 +119,7 @@ class DeleteAccount extends Component {
          */
         setSetting: PropTypes.func.isRequired,
         /** Hash for wallet's password */
-        password: PropTypes.string.isRequired,
+        password: PropTypes.object.isRequired,
         /** Removes account and associated information
          * @param {string} accountName
          */
@@ -169,16 +169,16 @@ class DeleteAccount extends Component {
         }
     }
 
-    onContinuePress() {
+    async onContinuePress() {
         const { password, t } = this.props;
 
         if (!this.state.pressedContinue) {
             return this.setState({ pressedContinue: true });
         }
 
-        const pwdHash = getPasswordHash(this.state.password);
+        const pwdHash = await getPasswordHash(this.state.password);
 
-        if (password === pwdHash) {
+        if (isEqual(password, pwdHash)) {
             return this.showModal();
         }
 

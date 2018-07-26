@@ -179,7 +179,7 @@ class Receive extends Component {
         /** Determines whether the wallet is manually syncing */
         isSyncing: PropTypes.bool.isRequired,
         /** Hash for wallet's password */
-        password: PropTypes.string.isRequired,
+        password: PropTypes.object.isRequired,
         /** Receive address value */
         receiveAddress: PropTypes.string.isRequired,
         /** Determines whether the wallet is generating a new receive address */

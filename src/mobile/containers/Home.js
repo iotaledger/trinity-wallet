@@ -1,3 +1,4 @@
+import isEqual from 'lodash/isEqual';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import PropTypes from 'prop-types';
@@ -16,7 +17,7 @@ import { setUserActivity, toggleModalActivity } from 'iota-wallet-shared-modules
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { parseAddress } from 'iota-wallet-shared-modules/libs/iota/utils';
 import timer from 'react-native-timer';
-import { getPasswordHash } from '../utils/crypto';
+import { getPasswordHash } from '../utils/keychain';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import UserInactivity from '../components/UserInactivity';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
@@ -81,7 +82,7 @@ class Home extends Component {
         /** Determines if the application is minimised */
         minimised: PropTypes.bool.isRequired,
         /** Hash for wallet's password */
-        storedPassword: PropTypes.string.isRequired,
+        storedPasswordHash: PropTypes.object.isRequired,
         /** Determines if wallet is doing snapshot transition */
         isTransitioning: PropTypes.bool.isRequired,
         /** Determines if wallet is doing a manual sync */
@@ -185,13 +186,12 @@ class Home extends Component {
         timer.clearTimeout('iOSKeyboardTimeout');
     }
 
-    onLoginPress = (password) => {
-        const { t, storedPassword } = this.props;
-        const pwdHash = getPasswordHash(password);
-
+    async onLoginPress(password) {
+        const { t, storedPasswordHash } = this.props;
+        const passwordHash = getPasswordHash(password);
         if (!password) {
             this.props.generateAlert('error', t('login:emptyPassword'), t('login:emptyPasswordExplanation'));
-        } else if (storedPassword !== pwdHash) {
+        } else if (isEqual(passwordHash, storedPasswordHash)) {
             this.props.generateAlert(
                 'error',
                 t('global:unrecognisedPassword'),
@@ -201,7 +201,7 @@ class Home extends Component {
             this.props.setUserActivity({ inactive: false });
             this.userInactivity.setActiveFromComponent();
         }
-    };
+    }
 
     onTabSwitch(name) {
         const { isSyncing, isTransitioning, isCheckingCustomNode } = this.props;
@@ -451,7 +451,7 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    storedPassword: state.wallet.password,
+    storedPasswordHash: state.wallet.password,
     inactive: state.ui.inactive,
     minimised: state.ui.minimised,
     theme: state.settings.theme,
