@@ -456,7 +456,7 @@
     },
     "advancedSettings": {
         "selectNode": "Vælg node",
-        "addCustomNode": "Tilføje brugerdefinerede node",
+        "addCustomNode": "Tilføj brugerdefineret node",
         "manualSync": "Manuel synkronisering",
         "snapshotTransition": "Snapshot synkronisering",
         "pow": "Netværksvalidering",
