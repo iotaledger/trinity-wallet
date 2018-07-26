@@ -545,7 +545,7 @@
         "buttonInstructionsEnable": "Tryk på knappen nedenfor for at aktivere godkendelse med fingeraftryk.",
         "buttonInstructionsDisableIPhoneX": "Tryk på knappen herunder for at deaktivere ansigtsgenkendelse.",
         "buttonInstructionsEnableIPhoneX": "Tryk på knappen herunder for at aktivere ansigtsgenkendelse.",
-        "instructionsLogin": "Rør fingeraftrykssensoren for at loge ind"
+        "instructionsLogin": "Rør fingeraftrykssensoren for at logge ind"
     },
     "transferConfirmation": {
         "youAreAbout": "Du er ved at sende {{contents}} til adressen",
@@ -597,7 +597,7 @@
         "continueDepsiteRisk": "Ønsker du at fortsætte på trods af denne risiko?"
     },
     "pow": {
-        "feeless": "Det er nødvendigt at udføre en mindre netværksvalidering for at sende gratis transaktioner med IOTA.",
+        "feeless": "Det er nødvendigt at udføre en mindre netværksvalidering (PoW) for at sende gebyrfri transaktioner med IOTA.",
         "localOrRemote": "Netværksvalideringen kan enten gennemføres lokalt på din enhed eller overlades til din node.",
         "local": "Lokalt",
         "remote": "Fjernadgang",
