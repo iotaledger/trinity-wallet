@@ -412,7 +412,7 @@
         "keepSafe": "Muista aina pitää seed-lukusi turvassa."
     },
     "welcome": {
-        "thankYou": "Kiitos, että olet ladannut Trinity:n"
+        "thankYou": "Kiitos, että olet ladannut Trinity-lompakon"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>Kirjoita muistiin seed-lukusi ja tarkistussumma ja</0> <1>varmista kolmesti,</1> <2>että ne ovat oikein.</2>",
