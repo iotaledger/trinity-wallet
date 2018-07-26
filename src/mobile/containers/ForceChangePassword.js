@@ -123,12 +123,8 @@ class ForceChangePassword extends Component {
         leaveNavigationBreadcrumb('ChangePassword');
     }
 
-    componentWillUnmount() {
-        timer.clearTimeout('delaySuccessAlert');
-    }
-
     async onSavePress() {
-        const { setPassword, generateAlert, t } = this.props;
+        const { setPassword, t } = this.props;
         const { newPassword, currentPassword } = this.state;
 
         let oldPwdHash = await getOldPasswordHash(currentPassword);
@@ -146,20 +142,25 @@ class ForceChangePassword extends Component {
                         t('global:unrecognisedPasswordExplanation'),
                     );
                 }
-                generateAlert('error', t('somethingWentWrong'), t('somethingWentWrongTryAgain'));
+                this.props.generateAlert('error', t('somethingWentWrong'), t('somethingWentWrongTryAgain'));
             };
             return getSecretBoxFromKeychainAndOpenIt('seeds', oldPwdHash)
                 .then(() => {
                     changePassword(oldPwdHash, newPwdHash, salt).then(() => {
                         setPassword(newPwdHash);
                         this.fallbackToInitialState();
-                        timer.setTimeout(
-                            'delaySuccessAlert',
-                            () => generateAlert('success', t('passwordUpdated'), t('passwordUpdatedExplanation')),
-                            500,
-                        );
                         this.props.setCompletedForcedPasswordUpdate();
                         this.navigateToLogin();
+                        timer.setTimeout(
+                            'delaySuccessAlert',
+                            () =>
+                                this.props.generateAlert(
+                                    'success',
+                                    t('passwordUpdated'),
+                                    t('passwordUpdatedExplanation'),
+                                ),
+                            500,
+                        );
                     });
                 })
                 .catch((err) => throwError(err));
@@ -277,7 +278,7 @@ class ForceChangePassword extends Component {
                                 <View>
                                     <Text style={[styles.infoText, textColor]}>
                                         With update 0.4.1, it is necessary to change your password before using Trinity.
-                                        If your current password fulfils the password stength requirements then you may
+                                        If your current password fulfils the password strength requirements then you may
                                         input your current password again.
                                     </Text>
                                 </View>
