@@ -214,7 +214,7 @@
         "seedTooShort": "Hovednøglen er for kort",
         "seedTooLong": "Hovednøglen er for lang",
         "seedTooShortExplanation": "Hovednøgler skal indeholde {{maxLength}} tegn. Din hovednøgle er i øjeblikket {{currentLength}} tegn langt. Prøv venligst igen.",
-        "seedExplanation": "Din hovednøgle skal indeholde {{maxLength}} tegn og bestå af store bogstaver fra A-Z eller tallet 9. Du kan ikke andvende hovednøgler der længere end {{maxLength}} tegn i alt.",
+        "seedExplanation": "Din hovednøgle skal indeholde {{maxLength}} tegn og bestå af store bogstaver fra A-Z eller tallet 9. Din hovednøgle kan ikke have mere end {{maxLength}} tegn i alt.",
         "neverShare": "DEL ALDRIG DIN HOVEDNØGLE MED NOGEN"
     },
     "home": {
@@ -277,7 +277,7 @@
         "addressCopiedExplanation": "Din adresse er blevet kopieret til udklipsholderen.",
         "generateNewAddress": "Ny adresse",
         "noAddresses": "INGEN ADRESSER",
-        "spent": "Forbrugt",
+        "spent": "Brugt",
         "missingPermission": "Tilladelse til filsystemet er nødvendig",
         "missingPermissionExplanation": "Adgang til filsystemet er nødvendig for at dele QR kode.",
         "tag": "Etiket"
