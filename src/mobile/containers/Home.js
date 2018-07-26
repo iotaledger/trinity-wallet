@@ -188,10 +188,10 @@ class Home extends Component {
 
     async onLoginPress(password) {
         const { t, storedPasswordHash } = this.props;
-        const passwordHash = getPasswordHash(password);
+        const passwordHash = await getPasswordHash(password);
         if (!password) {
             this.props.generateAlert('error', t('login:emptyPassword'), t('login:emptyPasswordExplanation'));
-        } else if (isEqual(passwordHash, storedPasswordHash)) {
+        } else if (!isEqual(passwordHash, storedPasswordHash)) {
             this.props.generateAlert(
                 'error',
                 t('global:unrecognisedPassword'),
