@@ -25,7 +25,7 @@ function randomBytes(size, max) {
     const bytes = global.crypto.getRandomValues(rawBytes);
 
     for (let i = 0; i < bytes.length; i++) {
-        while (bytes[i] >= 256 - (256 % max)) {
+        while (bytes[i] >= 256 - 256 % max) {
             bytes[i] = randomBytes(1, max)[0];
         }
     }
@@ -51,10 +51,14 @@ export const createRandomSeed = (length = MAX_SEED_LENGTH) => {
 const encrypt = async (contentPlain, passwordPlain) => {
     const content = new TextEncoder().encode(JSON.stringify(contentPlain));
 
+    const salt = crypto.getRandomValues(new Uint8Array(16));
+    const saltHex = salt.toString();
+
     const password = new TextEncoder().encode(passwordPlain);
-    const passwordHash = await Electron.argon2(password);
+    const passwordHash = await Electron.argon2(password, salt);
 
     const iv = crypto.getRandomValues(new Uint8Array(12));
+    const ivHex = iv.toString();
 
     const algorithm = { name: 'AES-GCM', iv: iv };
 
@@ -64,9 +68,7 @@ const encrypt = async (contentPlain, passwordPlain) => {
     const cipherArray = new Uint8Array(cipherBuffer);
     const cipherHex = cipherArray.toString();
 
-    const ivHex = iv.toString();
-
-    return `${ivHex}|${cipherHex}`;
+    return `${ivHex}|${cipherHex}|${saltHex}`;
 };
 
 /**
@@ -78,12 +80,15 @@ const encrypt = async (contentPlain, passwordPlain) => {
 const decrypt = async (cipherText, passwordPlain) => {
     const cipherParts = cipherText.split('|');
 
-    if (cipherParts.length !== 2 || typeof passwordPlain !== 'string' || !passwordPlain.length) {
+    if (cipherParts.length !== 3 || typeof passwordPlain !== 'string' || !passwordPlain.length) {
         throw new Error('Wrong password');
     }
     try {
+        const saltArray = cipherParts[2].split(',');
+        const salt = Uint8Array.from(saltArray);
+
         const password = new TextEncoder().encode(passwordPlain);
-        const passwordHash = await Electron.argon2(password);
+        const passwordHash = await Electron.argon2(password, salt);
 
         const ivArray = cipherParts[0].split(',');
         const iv = Uint8Array.from(ivArray);
@@ -96,6 +101,7 @@ const decrypt = async (cipherText, passwordPlain) => {
         const cipher = Uint8Array.from(cipherArray);
 
         const plainBuffer = await crypto.subtle.decrypt(algorithm, key, cipher);
+
         const plainText = new TextDecoder().decode(plainBuffer);
 
         return JSON.parse(plainText);

@@ -180,11 +180,13 @@ const Electron = {
     /**
      * Hash input using argon2
      * @param {Uint8Array} input - Input data
+     * @param {Uint8Array} salt - Salt used fro hashing
      * @returns {Uint8Array} Raw Argon2 hash
      */
-    argon2: (input) => {
+    argon2: (input, salt) => {
         return argon2.hash(input, {
             raw: true,
+            salt: Buffer.from(salt),
         });
     },
 
