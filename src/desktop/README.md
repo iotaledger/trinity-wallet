@@ -10,49 +10,48 @@ To build the application locally from source, follow these steps:
 First you need to install Node.JS if you haven’t done that already.
 Then run the following command to install electron globally.
 ```
-npm install -g electron
+yarn global add electron
 ```
 
 ### 2. Clone or download the Trinity repo from GitLab.
 Clone the GitLab repo by running this command:
 ```
-git clone git@gitlab.com:iota-community/wallet.git
+git clone https://github.com/iotaledger/trinity-wallet.git
 ```
-Or [download](https://gitlab.com/iota-community/wallet/repository/archive.zip) the repo and extract the archive.
 
 After cloning or downloading and extracting the application run:
 ```
-cd src/desktop/
+cd trinity-wallet
 ```
 ### 3. Install dependencies
 Now we need to install dependencies, such as the electron installer or the React code packager. Do this by running:
 ```
-npm install
+yarn full-setup
 ```
 ### 4. Build Trinity desktop appplication
-When the npm install is done you can build the wallet application by running:
+When the yarn install is done you can build the wallet application by running:
 ```
-npm run compile:mac
+yarn compile:mac
 ```
 Change `mac` to your operating system - `mac`, `win` or `linux`.
 
-This will start the building process for the Trinity desktop application and could take a couple of minutes to finish.
+This will start the building process for the Trinity Desktop application and could take a couple of minutes to finish.
 
 After the building is finished, the application executable and installation files will be located in the directory `src/desktop/out/`.
 
 ### 4. Run Trinity desktop app in development mode
 To start the application in development mode, run
 ```
-npm start
+yarn start
 ```
 
-Note: you might have to rebuild the `keytar` node module under Windows with `.\node_modules\.bin\electron-rebuild.cmd`
+Note: you might have to rebuild the `keytar` node module under Windows with `.\node_modules\.bin\electron-builder install-app-deps`
 as there's a bug with it ([link](https://github.com/atom/node-keytar/issues/51)).
 
 ## Trinity UI styleguide
 
 To start the browser based UI styleguide and theme editor, run 
 ```
-npm run styleguide
+yarn styleguide
 ```
 After the command finished to load, open `http://localhost:1074` in a browser. Chrome is preferred as it's used in the Trinity application itself.
