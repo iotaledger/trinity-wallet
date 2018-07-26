@@ -293,20 +293,7 @@ describe('libs: iota/inputs', () => {
                     .yields(null, [false, true, false]);
 
                 return getUnspentInputs(addressData, ['B'.repeat(81)], [], 1, 13, null).then((inputs) => {
-                    expect(inputs.spentAddresses).to.eql([
-                        {
-                            address: 'B'.repeat(81),
-                            balance: 1,
-                            keyIndex: 1,
-                            security: 2,
-                        },
-                        {
-                            address: 'C'.repeat(81),
-                            balance: 4,
-                            keyIndex: 2,
-                            security: 2,
-                        },
-                    ]);
+                    expect(inputs.spentAddresses).to.eql(['B'.repeat(81), 'C'.repeat(81)]);
 
                     wereAddressesSpentFrom.restore();
                 });
@@ -357,14 +344,7 @@ describe('libs: iota/inputs', () => {
                 ];
 
                 return getUnspentInputs(addressData, [], pendingTransfers, 1, 13, null).then((inputs) => {
-                    expect(inputs.addressesWithIncomingTransfers).to.eql([
-                        {
-                            address: 'C'.repeat(81),
-                            balance: 4,
-                            keyIndex: 2,
-                            security: 2,
-                        },
-                    ]);
+                    expect(inputs.addressesWithIncomingTransfers).to.eql(['C'.repeat(81)]);
 
                     wereAddressesSpentFrom.restore();
                 });
