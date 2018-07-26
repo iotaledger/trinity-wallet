@@ -202,7 +202,7 @@
         "storeEncrypted": "Gem din hovednøgle krypteret i en password manager.",
         "doNotOpen": "Undlad at åbne andre apps under denne proces.",
         "tapConfirm": "Klik venligst på afkrydsningsfeltet nedenfor for at bekræfte.",
-        "passwordManagerCheckbox": "Jeg vil opbevare min hovednøgle i en password manager",
+        "passwordManagerCheckbox": "Jeg vil gemme min hovednøgle i en password manager",
         "copy": "KOPIÉR",
         "noPasswordManagers": "Ingen understøttet password manager er installeret",
         "noPasswordManagersExplanation": "Ingen understøttet password manager blev fundet på din enhed. Installer venligst Keepass2Android.",
@@ -380,7 +380,7 @@
         "paste": "Sæt ind",
         "selectAll": "Vælg alle",
         "securitySettings": "Sikkerhedsindstillinger",
-        "fingerprint": "Biometric autentificering",
+        "fingerprint": "Biometrisk godkendelse",
         "couldNotFetchRates": "Kunne ikke hente kurs",
         "couldNotFetchRatesExplanation": "Noget gik galt under hentning af omregningskurser for {{currency}}.",
         "fetchedConversionRates": "Omregningskurser hentet",
@@ -426,7 +426,7 @@
         "addressCopied": "Adresse kopieret",
         "addressCopiedExplanation": "Adressen er blevet kopieret til udklipsholderen.",
         "messageCopied": "Besked kopieret",
-        "messageCopiedExplanation": "Adressen er blevet kopieret til udklipsholderen.",
+        "messageCopiedExplanation": "Beskeden er blevet kopieret til udklipsholderen.",
         "send": "Send",
         "receive": "Modtag",
         "empty": "Tom",
@@ -509,7 +509,7 @@
         "syncingYourAccount": "Synkroniser din konto."
     },
     "useExistingSeed": {
-        "title": "Indtast et kontonavn.",
+        "title": "Indtast hovednøgle og kontonavn.",
         "incorrectFormat": "Forkert hovednøgle-format",
         "validSeedExplanation": "Gyldige hovednøgler skal være på 81 tegn og må kun indeholde A-Z eller 9."
     },
