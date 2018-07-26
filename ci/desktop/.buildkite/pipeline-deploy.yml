@@ -21,4 +21,4 @@ steps:
         key: "changelog"
         required: false
 
-  - label: ":shipit: Upload release to GitHub"
+# TODO: GitHub release tasks
