@@ -10,7 +10,7 @@ const initialState = {
     /**
      * Wallet password hash
      */
-    password: '',
+    password: {},
     /**
      * User's seed stored temporarily during account setup
      */

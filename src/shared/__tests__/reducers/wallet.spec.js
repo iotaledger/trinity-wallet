@@ -6,7 +6,7 @@ describe('Reducer: wallet', () => {
         it('should have an initial state', () => {
             const initialState = {
                 ready: false,
-                password: '',
+                password: {},
                 seed: Array(82).join(' '),
                 accountName: 'MAIN WALLET',
                 seedIndex: 0,
@@ -104,7 +104,7 @@ describe('Reducer: wallet', () => {
     describe('IOTA/WALLET/SET_PASSWORD', () => {
         it('should assign payload to "password" in state', () => {
             const initialState = {
-                password: '',
+                password: {},
             };
 
             const action = {
