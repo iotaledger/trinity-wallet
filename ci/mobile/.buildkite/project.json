@@ -1,10 +1,10 @@
 {
-  "name": "Trinity Desktop",
+  "name": "Trinity Mobile",
   "steps": [
     {
       "type": "script",
-      "name": ":pipeline:",
-      "command": "buildkite-agent pipeline upload"
+      "name": "Primary",
+      "command": "buildkite-agent pipeline upload ci/mobile/.buildkite/pipeline-primary.yml"
     }
   ]
 }

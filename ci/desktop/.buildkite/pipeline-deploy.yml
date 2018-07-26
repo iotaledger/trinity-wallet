@@ -1,0 +1,24 @@
+steps:
+  - label: ":hammer_and_wrench: Build for all platforms"
+    command: "cd src/desktop && node_modules/.bin/electron-builder -mzl"
+    artifact_paths:
+      - "out/Trinity-*.dmg"
+      - "out/trinity-*.tar.gz"
+      - "out/Trinity Setup*.exe"
+    plugins:
+      docker#v1.4.0:
+        image: "rajivshah/trinity-desktop-ci"
+
+  - wait
+
+  - block: ":package: Prepare release"
+    prompt: "Enter release details"
+    fields:
+      - text: "Version number"
+        key: "version-number"
+        required: true
+      - text: "Changelog"
+        key: "changelog"
+        required: false
+
+  - label: ":shipit: Upload release to GitHub"
