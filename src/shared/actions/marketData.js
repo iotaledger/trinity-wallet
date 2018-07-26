@@ -12,7 +12,7 @@ export const ActionTypes = {
 };
 
 /**
- * Dispatch to set timeframe for price
+ * Dispatch to set timeframe for IOTA time series price information
  *
  * @method setTimeframe
  * @param {string} timeframe
@@ -27,7 +27,7 @@ export function setTimeframe(timeframe) {
 }
 
 /**
- * Dispatch to set latest market data in state
+ * Dispatch to set latest IOTA market information in state
  *
  * @method setMarketData
  * @param {object} data
@@ -67,7 +67,7 @@ export function setCurrency(currency) {
 }
 
 /**
- * Dispatch to set latest price information in state
+ * Dispatch to set latest IOTA price information in state
  *
  * @method setPrice
  * @param {object} data
@@ -91,7 +91,7 @@ export function setPrice(data) {
 }
 
 /**
- * Gets latest price information
+ * Gets latest IOTA price information
  *
  * @method getPrice
  *
@@ -106,7 +106,7 @@ export function getPrice() {
 }
 
 /**
- * Gets latest data to map on chart
+ * Gets latest time series price data to map on chart
  *
  * @method getChartData
  *
