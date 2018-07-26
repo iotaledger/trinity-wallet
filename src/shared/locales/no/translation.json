@@ -19,7 +19,7 @@
         "invalidResponseExplanation": "Noden returnerte en feil. Forsøk å endre node.",
         "invalidResponseFetchingAccount": "Noden returnerte en feil under henting av din kontoinformasjon. Forsøk å endre node.",
         "nodeOutOfSync": "Noden er ikke synkronisert",
-        "nodeOutOfSyncExplanation": "Din valgte node er ikke synkronisert. Velg en ny node og forsøk igjen.",
+        "nodeOutOfSyncExplanation": "Din valgte node er ikke synkronisert. Velg en ny node eller forsøk igjen.",
         "thisNodeOutOfSync": "Denne noden er ikke synkronisert. Vennligst endre node eller forsøk igjen.",
         "seed": "Hovednøkkel",
         "checksum": "Kontrolltegn",
@@ -27,7 +27,7 @@
         "goBack": "Tilbake",
         "goBackStep": "Gå ett steg tilbake",
         "done": "Ferdig",
-        "prev": "FORUTGÅENDE",
+        "prev": "FORRIGE",
         "next": "Neste",
         "apply": "Bruk",
         "save": "Lagre",
@@ -179,7 +179,7 @@
         "reasonDates": "Datoer er ofte enkelt å gjette.",
         "reasonTop10": "Dette er på topp 10 over vanlige passord.",
         "reasonTop100": "Dette er på topp 100 over vanlige passord.",
-        "reasonCommon": "This is a very common password.",
+        "reasonCommon": "Dette er et veldig vanlig passord.",
         "reasonSimilar": "Dette ligner på et vanlig brukt passord.",
         "reasonWord": "Ett ord er enkelt å gjette."
     },
@@ -398,7 +398,7 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Skriv inn passordet for å tilbakestille lommeboken.",
-        "reset": "Reset"
+        "reset": "Tilbakestill"
     },
     "walletSetup": {
         "creatingSeed": "Genererer en hovednøkkel",
@@ -448,7 +448,7 @@
         "add": "Legg til",
         "nodeFieldEmpty": "Tekstfeltet er tomt",
         "nodeFieldEmptyExplanation": "Vennligst legg til en egendefinert node.",
-        "invalidURL": "Please enter a valid URL."
+        "invalidURL": "Angi en gyldig URL-adresse."
     },
     "addNewAccount": {
         "useExistingSeed": "Bruk eksisterende hovednøkkel",
