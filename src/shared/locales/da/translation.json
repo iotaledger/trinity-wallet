@@ -381,7 +381,7 @@
         "selectAll": "Vælg alle",
         "securitySettings": "Sikkerhedsindstillinger",
         "fingerprint": "Biometric autentificering",
-        "couldNotFetchRates": "Kunne ikke hente priser",
+        "couldNotFetchRates": "Kunne ikke hente kurs",
         "couldNotFetchRatesExplanation": "Noget gik galt under hentning af omregningskurser for {{currency}}.",
         "fetchedConversionRates": "Omregningskurser hentet",
         "fetchedConversionRatesExplanation": "Har med succes hentet nyeste omregningskurser for {{currency}}.",
@@ -391,7 +391,7 @@
         "lockScreenTimeout": "Skærm låst grundet inaktivitet",
         "autoNodeSwitching": "Skift automatisk node når den valgte node er utilgængelig",
         "nodeChangeSuccess": "Har succesfuldt ændret node",
-        "nodeChangeSuccessNoRemotePow": "Noden blev ændret til {{node}}. Denne node understøtter ikke netværksvalidering.",
+        "nodeChangeSuccessNoRemotePow": "Noden blev ændret til {{node}}. Denne node understøtter ikke ekstern netværksvalidering.",
         "nodeChangeSuccessExplanation": "Noden blev ændret til {{node}}.",
         "nodeChangeError": "Fejl ved ændring af node",
         "nodeChangeErrorExplanation": "Der opstod en fejl ved ændring af node. Prøv venligst igen."
