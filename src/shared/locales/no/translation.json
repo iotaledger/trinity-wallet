@@ -527,7 +527,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "DENNE HANDLINGEN KAN IKKE ANGRES.",
-        "warning": "<0><0>Alle dine data, inkludert dine</0><1>hovednøkler, passord</1><2>og</2><3>andre kontoopplysninger</3><4> vil gå tapt.</4></0>"
+        "warning": "<0><0>Alle dine data, inkludert dine </0><1>hovednøkler, passord</1><2> og </2><3>andre kontoopplysninger</3><4> vil gå tapt.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Legg fingeren på fingeravtrykkleseren for å aktivere biometrisk autentisering",
@@ -541,8 +541,8 @@
         "status": "Status",
         "fingerprintUnavailable": "Biometrisk autentisering er ikke tilgjengelig",
         "fingerprintUnavailableExplanation": "Enheten din støtter ikke biometrisk autentisering eller så har ikke dette blitt konfigurert i enhetens innstillinger.",
-        "buttonInstructionsDisable": "Trykk på knappen nedenfor for å deaktivere biometrisk godkjenning.",
-        "buttonInstructionsEnable": "Trykk på knappen nedenfor for å aktivere biometrisk godkjenning.",
+        "buttonInstructionsDisable": "Trykk på knappen nedenfor for å deaktivere biometrisk autentisering.",
+        "buttonInstructionsEnable": "Trykk på knappen nedenfor for å aktivere biometrisk autentisering.",
         "buttonInstructionsDisableIPhoneX": "Trykk på knappen nedenfor for å deaktivere Face ID.",
         "buttonInstructionsEnableIPhoneX": "Trykk på knappen nedenfor for å aktivere Face ID.",
         "instructionsLogin": "Berør fingeravtrykkleseren for å logge inn"
@@ -561,9 +561,9 @@
         "addKey": "Legge denne koden til i din 2FA app",
         "key": "Nøkkel",
         "twoFAEnabled": "2FA er nå aktivert",
-        "twoFAEnabledExplanation": "Du har aktivert to faktor autentisering.",
+        "twoFAEnabledExplanation": "Du har aktivert to-faktor autentisering.",
         "twoFADisabled": "2FA er nå deaktivert",
-        "twoFADisabledExplanation": "Du har nå deaktivert to faktor autentisering.",
+        "twoFADisabledExplanation": "Du har nå deaktivert to-faktor autentisering.",
         "enterCode": "Angi koden fra din 2FA app",
         "code": "Kode",
         "twoFaToken": "2FA Token"
@@ -598,7 +598,7 @@
     },
     "pow": {
         "feeless": "For å sende gebyrfrie transaksjoner i IOTA er det nødvendig å utføre litt PoW (Proof of Work).",
-        "localOrRemote": "PoW kan enten utføres lokalt på din enhet, eller settes bort til noden som du er tilkoblet.",
+        "localOrRemote": "PoW (Proof of Work) kan enten utføres lokalt på din enhet, eller settes bort til noden som du er tilkoblet.",
         "local": "Lokal",
         "remote": "Ekstern",
         "powUpdated": "PoW (Proof of Work) innstillinger",
