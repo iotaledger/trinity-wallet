@@ -44,143 +44,383 @@ export const ActionTypes = {
     MARK_BUNDLE_BROADCAST_STATUS_COMPLETE: 'IOTA/ACCOUNTS/MARK_BUNDLE_BROADCAST_STATUS_COMPLETE',
 };
 
+/**
+ * Dispatch to update account state before manually promoting a transaction
+ *
+ * @method syncAccountBeforeManualPromotion
+ *
+ * @param {object} payload
+ * @returns {{type: {string}, payload: {object} }}
+ */
 export const syncAccountBeforeManualPromotion = (payload) => ({
     type: ActionTypes.SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION,
     payload,
 });
 
+/**
+ * Dispatch to update account state after a transaction
+ *
+ * @method updateAccountInfoAfterSpending
+ *
+ * @param {object} payload
+ * @returns {{type: {string}, payload: {object} }}
+ */
 export const updateAccountInfoAfterSpending = (payload) => ({
     type: ActionTypes.UPDATE_ACCOUNT_INFO_AFTER_SPENDING,
     payload,
 });
 
+/**
+ * Dispatch to update account state after a transaction reattachment
+ *
+ * @method updateAccountAfterReattachment
+ *
+ * @param {object} payload
+ * @returns {{type: {string}, payload: {object} }}
+ */
 export const updateAccountAfterReattachment = (payload) => ({
     type: ActionTypes.UPDATE_ACCOUNT_AFTER_REATTACHMENT,
     payload,
 });
 
+/**
+ * Dispatch to mark wallet's first use as true
+ *
+ * @method setFirstUse
+ *
+ * @param {boolean} payload
+ * @returns {{type: {string}, payload: {boolean} }}
+ */
 export const setFirstUse = (payload) => ({
     type: ActionTypes.SET_FIRST_USE,
     payload,
 });
 
+/**
+ * Dispatch to update address data for provided account
+ *
+ * @param {string} accountName
+ * @param {object} addresses
+ * @returns {{type: string, accountName: string, addresses: object }}
+ */
 export const updateAddresses = (accountName, addresses) => ({
     type: ActionTypes.UPDATE_ADDRESSES,
     accountName,
     addresses,
 });
 
+/**
+ * Dispatch to update account name in state
+ *
+ * @method changeAccountName
+ * @param {object} payload
+ *
+ * @returns {{type: {string}, payload: {object} }}
+ */
 export const changeAccountName = (payload) => ({
     type: ActionTypes.CHANGE_ACCOUNT_NAME,
     payload,
 });
 
+/**
+ * Dispatch to remove an account and its associated data from state
+ *
+ * @method removeAccount
+ * @param {string} payload
+ *
+ * @returns {{type: {string}, payload: {string} }}
+ */
 export const removeAccount = (payload) => ({
     type: ActionTypes.REMOVE_ACCOUNT,
     payload,
 });
 
+/**
+ * Dispatch to set onboarding as completed in state
+ *
+ * @method setOnboardingComplete
+ * @param {boolean} payload
+ *
+ * @returns {{type: {string}, payload: {boolean} }}
+ */
 export const setOnboardingComplete = (payload) => ({
     type: ActionTypes.SET_ONBOARDING_COMPLETE,
     payload,
 });
 
+/**
+ * Dispatch to add a new account name in state
+ *
+ * @method addAccountName
+ * @param {string} accountName
+ *
+ * @returns {{type: {string}, accountName: {string} }}
+ */
 export const addAccountName = (accountName) => ({
     type: ActionTypes.ADD_ACCOUNT_NAME,
     accountName,
 });
 
+/**
+ * Dispatch to increase number of seeds added to wallet
+ *
+ * @method increaseSeedCount
+ *
+ * @returns {{type: {string} }}
+ */
 export const increaseSeedCount = () => ({
     type: ActionTypes.INCREASE_SEED_COUNT,
 });
 
+/**
+ * Dispatch to update account state after snapshot transition
+ *
+ * @method updateAccountAfterTransition
+ * @param {object} payload
+ *
+ * @returns {{type: {string}, payload: {object} }}
+ */
 export const updateAccountAfterTransition = (payload) => ({
     type: ActionTypes.UPDATE_ACCOUNT_AFTER_TRANSITION,
     payload,
 });
 
+/**
+ * Dispatch to set unconfirmed transaction tails in state for auto promotion
+ *
+ * @method setNewUnconfirmedBundleTails
+ * @param {object} payload
+ *
+ * @returns {{type: {string}, payload: {object} }}
+ */
 export const setNewUnconfirmedBundleTails = (payload) => ({
     type: ActionTypes.SET_NEW_UNCONFIRMED_BUNDLE_TAILS,
     payload,
 });
 
+/**
+ * Dispatch to update unconfirmed transaction tails in state with new unconfirmed transactions
+ *
+ * @method updateUnconfirmedBundleTails
+ * @param {object} payload
+ *
+ * @returns {{type: {string}, payload: {object} }}
+ */
 export const updateUnconfirmedBundleTails = (payload) => ({
     type: ActionTypes.UPDATE_UNCONFIRMED_BUNDLE_TAILS,
     payload,
 });
 
+/**
+ * Dispatch to remove bundle hash (payload) from unconfirmed transaction tails for auto promotion
+ *
+ * @method removeBundleFromUnconfirmedBundleTails
+ * @param {string} payload
+ *
+ * @returns {{type: {string}, payload: {string} }}
+ */
 export const removeBundleFromUnconfirmedBundleTails = (payload) => ({
     type: ActionTypes.REMOVE_BUNDLE_FROM_UNCONFIRMED_BUNDLE_TAILS,
     payload,
 });
 
+/**
+ * Dispatch when information for an additional account is about to be fetched
+ *
+ * @method fullAccountInfoAdditionalSeedFetchRequest
+ *
+ * @returns {{type: {string} }}
+ */
 export const fullAccountInfoAdditionalSeedFetchRequest = () => ({
     type: ActionTypes.FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_REQUEST,
 });
 
+/**
+ * Dispatch when account information for an additional account is successfully fetched
+ *
+ * @method fullAccountInfoAdditionalSeedFetchSuccess
+ * @param {object} payload
+ *
+ * @returns {{type: {string}, payload: {object} }}
+ */
 export const fullAccountInfoAdditionalSeedFetchSuccess = (payload) => ({
     type: ActionTypes.FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_SUCCESS,
     payload,
 });
 
+/**
+ * Dispatch when an error occurs during the process of fetching information for an additional account
+ *
+ * @method fullAccountInfoAdditionalSeedFetchError
+ *
+ * @returns {{type: {string} }}
+ */
 export const fullAccountInfoAdditionalSeedFetchError = () => ({
     type: ActionTypes.FULL_ACCOUNT_INFO_ADDITIONAL_SEED_FETCH_ERROR,
 });
 
+/**
+ * Dispatch when information for first account is about to be fetched
+ *
+ * @method fullAccountInfoFirstSeedFetchRequest
+ *
+ * @returns {{type: {string} }}
+ */
 export const fullAccountInfoFirstSeedFetchRequest = () => ({
     type: ActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_REQUEST,
 });
 
+/**
+ *  Dispatch when information for first account is successfully fetched
+ *
+ * @method fullAccountInfoFirstSeedFetchSuccess
+ * @param {object} payload
+ *
+ * @returns {{type: {string}, payload: {object} }}
+ */
 export const fullAccountInfoFirstSeedFetchSuccess = (payload) => ({
     type: ActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_SUCCESS,
     payload,
 });
 
+/**
+ * Dispatch when an error occurs during the process of fetching information for first account
+ *
+ * @method fullAccountInfoFirstSeedFetchError
+ *
+ * @returns {{type: {string} }}
+ */
 export const fullAccountInfoFirstSeedFetchError = () => ({
     type: ActionTypes.FULL_ACCOUNT_INFO_FIRST_SEED_FETCH_ERROR,
 });
 
+/**
+ * Dispatch when account is about to be manually synced
+ *
+ * @method manualSyncRequest
+ *
+ * @returns {{type: {string} }}
+ */
 export const manualSyncRequest = () => ({
     type: ActionTypes.MANUAL_SYNC_REQUEST,
 });
 
+/**
+ * Dispatch when account is successfully synced
+ *
+ * @method manualSyncSuccess
+ * @param {object} payload
+ *
+ * @returns {{type: {string}, payload: {object} }}
+ */
 export const manualSyncSuccess = (payload) => ({
     type: ActionTypes.MANUAL_SYNC_SUCCESS,
     payload,
 });
 
+/**
+ * Dispatch when an error occurs during manual sync
+ *
+ * @method manualSyncError
+ *
+ * @returns {{type: {string} }}
+ */
 export const manualSyncError = () => ({
     type: ActionTypes.MANUAL_SYNC_ERROR,
 });
 
+/**
+ * Dispatch when account information is about to be fetched on login
+ *
+ * @method accountInfoFetchRequest
+ *
+ * @returns {{type: {string} }}
+ */
 export const accountInfoFetchRequest = () => ({
     type: ActionTypes.ACCOUNT_INFO_FETCH_REQUEST,
 });
 
+/**
+ * Dispatch when account information is successfully synced on login
+ *
+ * @method accountInfoFetchSuccess
+ * @param {object} payload
+ *
+ * @returns {{type: {string}, payload: {object} }}
+ */
 export const accountInfoFetchSuccess = (payload) => ({
     type: ActionTypes.ACCOUNT_INFO_FETCH_SUCCESS,
     payload,
 });
 
+/**
+ * Dispatch when an error occurs during account sync on login
+ *
+ * @method accountInfoFetchError
+ *
+ * @returns {{type: {string} }}
+ */
 export const accountInfoFetchError = () => ({
     type: ActionTypes.ACCOUNT_INFO_FETCH_ERROR,
 });
 
+/**
+ * Dispatch to set basic account info in state
+ *
+ * For example: Keeps track if a seed was generated within Trinity
+ *
+ * @method setBasicAccountInfo
+ *
+ * @param {object} payload
+ * @returns {{type: {string}, payload: {object} }}
+ */
 export const setBasicAccountInfo = (payload) => ({
     type: ActionTypes.SET_BASIC_ACCOUNT_INFO,
     payload,
 });
 
+/**
+ * Dispatch to mark a task as completed in state
+ *
+ * For example a task is to display a modal once if user's balance on initial login is zero
+ *
+ * @method markTaskAsDone
+ *
+ * @param {object} payload
+ * @returns {{type: {string}, payload: {object} }}
+ */
 export const markTaskAsDone = (payload) => ({
     type: ActionTypes.MARK_TASK_AS_DONE,
     payload,
 });
 
+/**
+ * Dispatch to mark broadcast status of a failed transaction as pending
+ *
+ * During a transaction, after the inputs are signed, if there is a network error during broadcast
+ * we need to store the signed trytes in state so a user could broadcast them afterwards
+ *
+ * @method markBundleBroadcastStatusPending
+ *
+ * @param {object} payload
+ * @returns {{type: {string}, payload: {object} }}
+ */
 export const markBundleBroadcastStatusPending = (payload) => ({
     type: ActionTypes.MARK_BUNDLE_BROADCAST_STATUS_PENDING,
     payload,
 });
 
+/**
+ * Dispatch to mark broadcast status of a failed transaction as completed
+ *
+ * When a failed transaction is successfully broadcast,
+ * dispatching this action will remove locally stored signed trytes for the provided bundle hash
+ *
+ * @method markBundleBroadcastStatusPending
+ *
+ * @param {object} payload
+ * @returns {{type: {string}, payload: {object} }}
+ */
 export const markBundleBroadcastStatusComplete = (payload) => ({
     type: ActionTypes.MARK_BUNDLE_BROADCAST_STATUS_COMPLETE,
     payload,
@@ -188,12 +428,14 @@ export const markBundleBroadcastStatusComplete = (payload) => ({
 
 /**
  * Gets full account information for an additional seed added to the wallet.
- * @param  {string} seed
- * @param  {string} accountName
- * @param  {string} password
- * @param  {function} storeInKeychainPromise
- * @param  {object} [navigator=null]
- * @param  {function} genFn
+ *
+ * @method getFullAccountInfoAdditionalSeed
+ * @param {string} seed
+ * @param {string} accountName
+ * @param {string} password
+ * @param {function} storeInKeychainPromise
+ * @param {object} [navigator=null]
+ * @param {function} genFn
  *
  * @returns {function} dispatch
  */
@@ -240,6 +482,8 @@ export const getFullAccountInfoAdditionalSeed = (
 
 /**
  * Gets full account information for the first seed added to the wallet.
+ *
+ * @method getFullAccountInfoFirstSeed
  * @param  {string} seed
  * @param  {string} accountName
  * @param  {object} [navigator=null]
@@ -273,9 +517,11 @@ export const getFullAccountInfoFirstSeed = (seed, accountName, navigator = null,
 
 /**
  * Performs a manual sync for an account. Syncs full account information with the ledger.
- * @param  {string} seed
- * @param  {string} accountName
- * @param  {function} genFn
+ *
+ * @method manuallySyncAccount
+ * @param {string} seed
+ * @param {string} accountName
+ * @param {function} genFn
  *
  * @returns {function} dispatch
  */
@@ -302,6 +548,8 @@ export const manuallySyncAccount = (seed, accountName, genFn) => {
 
 /**
  * Gets latest account information: including transfers, balance and spend status information.
+ *
+ * @method getAccountInfo
  * @param  {string} seed
  * @param  {string} accountName
  * @param  {object} [navigator=null]
@@ -330,7 +578,9 @@ export const getAccountInfo = (seed, accountName, navigator = null, genFn) => {
 
 /**
  * Deletes an account.
- * @param  {string} accountName
+ *
+ * @method deleteAccount
+ * @param {string} accountName
  *
  * @returns {function} dispatch
  */
