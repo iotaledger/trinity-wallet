@@ -370,8 +370,8 @@ export const accountInfoFetchError = () => ({
  * For example: Keeps track if a seed was generated within Trinity
  *
  * @method setBasicAccountInfo
- *
  * @param {object} payload
+ *
  * @returns {{type: {string}, payload: {object} }}
  */
 export const setBasicAccountInfo = (payload) => ({
