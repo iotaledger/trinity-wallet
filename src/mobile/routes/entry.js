@@ -43,7 +43,12 @@ const renderInitialScreen = (store) => {
 
     i18next.changeLanguage(getLocaleFromLabel(state.settings.language));
 
-    const initialScreen = state.accounts.onboardingComplete ? 'login' : 'languageSetup';
+    const navigateToForceChangePassword =
+        state.settings.versions.version === '0.4.1' && !state.app.completedForcedPasswordUpdate;
+
+    const initialScreen = state.accounts.onboardingComplete
+        ? navigateToForceChangePassword ? 'forceChangePassword' : 'login'
+        : 'languageSetup';
 
     Navigation.startSingleScreenApp({
         screen: {

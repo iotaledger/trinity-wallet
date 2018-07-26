@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
         fontSize: GENERAL.fontSize2,
         marginBottom: height / 100,
         marginLeft: 1,
+        backgroundColor: 'transparent',
     },
     textInput: {
         fontSize: GENERAL.fontSize4,

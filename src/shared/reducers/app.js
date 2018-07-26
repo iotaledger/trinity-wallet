@@ -14,6 +14,11 @@ export default (state = initialState, action) => {
             return merge({}, state, {
                 activationCode: action.payload,
             });
+        case ActionTypes.SET_COMPLETED_FORCED_PASSWORD_UPDATE:
+            return {
+                ...state,
+                completedForcedPasswordUpdate: true,
+            };
     }
     return state;
 };
