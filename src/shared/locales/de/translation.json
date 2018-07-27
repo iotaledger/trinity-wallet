@@ -1,7 +1,7 @@
 {
     "global": {
         "send": "SENDEN",
-        "cancel": "Cancel",
+        "cancel": "Abbrechen",
         "continue?": "Bist du sicher, dass du fortfahren möchtest?",
         "noTransactions": "KEIN AKTUELLER VERLAUF",
         "refresh": "Aktualisieren",
@@ -23,12 +23,12 @@
         "thisNodeOutOfSync": "Dieser Node ist nicht synchronisiert. Bitte wechsle den Node oder versuche es erneut.",
         "seed": "Seed",
         "checksum": "Prüfsumme",
-        "back": "Back",
+        "back": "Zurück",
         "goBack": "Zurück",
         "goBackStep": "Zurück",
-        "done": "Done",
-        "prev": "ZURÜCK",
-        "next": "Next",
+        "done": "Ausgeführt",
+        "prev": "VORHERIGE",
+        "next": "Weiter",
         "apply": "Anwenden",
         "save": "Speichern",
         "close": "Schließen",
@@ -53,8 +53,8 @@
         "fifthWallet": "FÜNFTES KONTO",
         "sixthWallet": "SECHSTES KONTO",
         "otherWallet": "ANDERES KONTO",
-        "yes": "Yes",
-        "no": "No",
+        "yes": "Ja",
+        "no": "Nein",
         "okay": "Okay",
         "password": "Passwort",
         "unrecognisedPassword": "Unbekanntes Passwort",
@@ -398,7 +398,7 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Gib dein Passwort ein, um das Wallet zurückzusetzen.",
-        "reset": "Reset"
+        "reset": "Zurücksetzen"
     },
     "walletSetup": {
         "creatingSeed": "Seed erstellen",
