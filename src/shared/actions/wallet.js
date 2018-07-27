@@ -23,7 +23,6 @@ export const ActionTypes = {
     CLEAR_WALLET_DATA: 'IOTA/WALLET/CLEAR_WALLET_DATA',
     SET_SEED_INDEX: 'IOTA/WALLET/SET_SEED_INDEX',
     SET_READY: 'IOTA/WALLET/SET_READY',
-    SET_SEED: 'IOTA/WALLET/SET_SEED',
     CLEAR_SEED: 'IOTA/WALLET/CLEAR_SEED',
     SET_SETTING: 'IOTA/WALLET/SET_SETTING',
     SET_ADDITIONAL_ACCOUNT_INFO: 'IOTA/WALLET/SET_ADDITIONAL_ACCOUNT_INFO',
@@ -124,7 +123,7 @@ export const setSeedIndex = (payload) => ({
 });
 
 /**
- * Dispatch to complete loading of account information for newly added account to wallet
+ * Dispatch to complete loading of account information for newly added account
  *
  * @method setReady
  *
@@ -133,19 +132,6 @@ export const setSeedIndex = (payload) => ({
 export const setReady = () => ({
     type: ActionTypes.SET_READY,
     payload: true,
-});
-
-/**
- * Dispatch to temporarily set seed and related info (If seed was generated within Trinity) in state during mobile onboarding
- *
- * @method setSeed
- * @param {object} payload
- *
- * @returns {{type: {string}, payload: {object} }}
- */
-export const setSeed = (payload) => ({
-    type: ActionTypes.SET_SEED,
-    payload,
 });
 
 /**
@@ -161,7 +147,7 @@ export const clearSeed = () => ({
 });
 
 /**
- * Dispatch to set active setting name (for settings screen on mobile) in state
+ * Dispatch to set active setting page mobile in state
  *
  * @method setSetting
  * @param {string} payload
@@ -268,7 +254,7 @@ export const updateTransitionAddresses = (payload) => ({
 });
 
 /**
- * Dispatch to show/hide (is your balance correct) modal during snapshot transition
+ * Dispatch to show/hide ('Is your balance correct?') modal during snapshot transition
  *
  * @method switchBalanceCheckToggle
  *
