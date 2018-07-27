@@ -1,3 +1,5 @@
+// FIXME: Temporarily needed for password migration
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
@@ -17,7 +19,7 @@ import { setPassword, setSetting } from 'iota-wallet-shared-modules/actions/wall
 import { passwordReasons } from 'iota-wallet-shared-modules/libs/password';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { setCompletedForcedPasswordUpdate } from 'iota-wallet-shared-modules/actions/app';
+import { setCompletedForcedPasswordUpdate } from 'iota-wallet-shared-modules/actions/settings';
 import timer from 'react-native-timer';
 import SplashScreen from 'react-native-splash-screen';
 import { changePassword, getSecretBoxFromKeychainAndOpenIt } from '../utils/keychain';
