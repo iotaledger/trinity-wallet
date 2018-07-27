@@ -1,8 +1,9 @@
+import isEqual from 'lodash/isEqual';
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { resetWallet } from 'iota-wallet-shared-modules/actions/settings';
+import { resetWallet, setCompletedForcedPasswordUpdate } from 'iota-wallet-shared-modules/actions/settings';
 import { setFirstUse, setOnboardingComplete } from 'iota-wallet-shared-modules/actions/accounts';
 import { Navigation } from 'react-native-navigation';
 import { clearWalletData, setPassword } from 'iota-wallet-shared-modules/actions/wallet';
@@ -11,8 +12,7 @@ import { StyleSheet, View, Keyboard, TouchableWithoutFeedback, BackHandler } fro
 import OnboardingButtons from '../containers/OnboardingButtons';
 import { persistor } from '../store';
 import DynamicStatusBar from '../components/DynamicStatusBar';
-import { clearKeychain } from '../utils/keychain';
-import { getPasswordHash } from '../utils/crypto';
+import { clearKeychain, getPasswordHash } from '../utils/keychain';
 import CustomTextInput from '../components/CustomTextInput';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import { Icon } from '../theme/icons.js';
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
 class WalletResetRequirePassword extends Component {
     static propTypes = {
         /** Hash for wallet password */
-        password: PropTypes.string.isRequired,
+        password: PropTypes.object.isRequired,
         /** Resets wallet to default state */
         resetWallet: PropTypes.func.isRequired,
         /** Sets wallet's first use
@@ -80,6 +80,7 @@ class WalletResetRequirePassword extends Component {
         t: PropTypes.func.isRequired,
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
+        setCompletedForcedPasswordUpdate: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -119,10 +120,10 @@ class WalletResetRequirePassword extends Component {
         });
     }
 
-    isAuthenticated() {
+    async isAuthenticated() {
         const { password } = this.props;
-        const pwdHash = getPasswordHash(this.state.password);
-        return password === pwdHash;
+        const pwdHash = await getPasswordHash(this.state.password);
+        return isEqual(password, pwdHash);
     }
 
     redirectToInitialScreen() {
@@ -163,6 +164,8 @@ class WalletResetRequirePassword extends Component {
                     this.props.clearWalletData();
                     this.props.setPassword('');
                     this.props.resetWallet();
+                    // FIXME: Temporarily needed for password migration
+                    this.props.setCompletedForcedPasswordUpdate();
                 })
                 .catch(() => {
                     this.props.generateAlert(
@@ -235,6 +238,7 @@ const mapDispatchToProps = {
     clearWalletData,
     setPassword,
     generateAlert,
+    setCompletedForcedPasswordUpdate,
 };
 
 export default translate(['resetWalletRequirePassword', 'global'])(
