@@ -14,18 +14,44 @@ import cloneDeep from 'lodash/cloneDeep';
 import unset from 'lodash/unset';
 import validUrl from 'valid-url';
 
+/**
+ * Computes number rounded to precision
+ *
+ * @method round
+ * @param {number} value
+ * @param {number} precision
+ *
+ * @returns {number}
+ */
 export function round(value, precision) {
     const multiplier = Math.pow(10, precision || 0);
     return Math.round(value * multiplier) / multiplier;
 }
 
+/**
+ * Computes number rounded down to precision
+ *
+ * @method round
+ * @param {number} number
+ * @param {number} decimals
+ *
+ * @returns {number}
+ */
 export function roundDown(number, decimals) {
     decimals = decimals || 0;
     return Math.floor(number * Math.pow(10, decimals)) / Math.pow(10, decimals);
 }
 
-export const isValidPassword = (password = '') => password.length >= 12;
-
+/**
+ * Renames object keys
+ *
+ * @method _renameObjectKeys
+ * @param {object} object
+ * @param {object} keyMap
+ *
+ * @returns {object}
+ * @private
+ */
 const _renameObjectKeys = (object, keyMap) =>
     reduce(
         object,
@@ -37,8 +63,27 @@ const _renameObjectKeys = (object, keyMap) =>
         {},
     );
 
+/**
+ * Renames object keys in an array
+ *
+ * @method _renameArrayKeys
+ * @param {array} list
+ * @param {object} keyMap
+ *
+ * @returns {object}
+ * @private
+ */
 const _renameArrayKeys = (list, keyMap) => map(list, (object) => _renameObjectKeys(object, keyMap));
 
+/**
+ * Wrapper function to rename properties in an object or an array of objects
+ *
+ * @method renameKeys
+ * @param {array|object} payload
+ * @param {object} keyMap
+ *
+ * @returns {object}
+ */
 export const renameKeys = (payload, keyMap) => {
     if (isArray(payload)) {
         return _renameArrayKeys(payload, keyMap);
@@ -47,6 +92,15 @@ export const renameKeys = (payload, keyMap) => {
     return _renameObjectKeys(payload, keyMap);
 };
 
+/**
+ * Serializes payload if its not already
+ *
+ * @method serialize
+ * @param {*} data
+ * @param {array} options
+ *
+ * @returns {*}
+ */
 export const serialize = (data, ...options) => {
     if (!isString(data)) {
         return JSON.stringify(data, ...options);
@@ -55,6 +109,14 @@ export const serialize = (data, ...options) => {
     return data;
 };
 
+/**
+ * Parses serialized data
+ *
+ * @method serialize
+ *
+ * @param {*} data
+ * @returns {object}
+ */
 export const parse = (data) => {
     try {
         return JSON.parse(data);
@@ -63,18 +125,32 @@ export const parse = (data) => {
     }
 };
 
+/**
+ * Parses serialized data
+ *
+ * @method rearrangeObjectKeys
+ *
+ * @param {object} obj
+ * @param {string} prop
+ *
+ * @returns {object}
+ */
 export const rearrangeObjectKeys = (obj, prop) => {
-    const allKeys = keys(obj);
-    const withoutProp = filter(allKeys, (k) => k !== prop);
-    const withPropAsLastEl = withoutProp.concat([prop]);
+    if (prop in obj) {
+        const allKeys = keys(obj);
+        const withoutProp = filter(allKeys, (k) => k !== prop);
+        const withPropAsLastEl = withoutProp.concat([prop]);
 
-    const order = (newObj, key) => {
-        newObj[key] = obj[key];
+        const order = (newObj, key) => {
+            newObj[key] = obj[key];
 
-        return newObj;
-    };
+            return newObj;
+        };
 
-    return reduce(withPropAsLastEl, order, {});
+        return reduce(withPropAsLastEl, order, {});
+    }
+
+    return obj;
 };
 
 export const updatePersistedState = (incomingState, restoredState) => {
@@ -105,8 +181,14 @@ export const updatePersistedState = (incomingState, restoredState) => {
     return merge({}, incomingStateWithWhitelistedProps, restoredCopy);
 };
 
-// Takes in the navigator object and pushes.
-// FIXME: Unneeded method. Remove when routing is sorted.
+/**
+ * Takes in the navigator object and pushes screen (mobile)
+ *
+ * @method pushScreen
+ * @param {object} navigator
+ * @param {string} screen
+ * @param {object} props
+ */
 export const pushScreen = (
     navigator,
     screen,
@@ -120,6 +202,7 @@ export const pushScreen = (
         overrideBackPress: true,
     },
 ) => {
+    // FIXME: Unneeded method. Remove when routing is sorted.
     if (navigator) {
         navigator.push({
             ...props,
@@ -128,8 +211,15 @@ export const pushScreen = (
     }
 };
 
+/**
+ * Used for setting correct CryptoCompare URL when fetching chart data
+ *
+ * @method getUrlTimeFormat
+ *
+ * @param {string} timeframe
+ * @returns {string}
+ */
 export function getUrlTimeFormat(timeframe) {
-    // Used for setting correct CryptoCompare URL when fetching chart data
     switch (timeframe) {
         case '24h':
             return 'hour';
@@ -142,8 +232,15 @@ export function getUrlTimeFormat(timeframe) {
     }
 }
 
+/**
+ * Used for setting correct CryptoCompare URL when fetching chart data
+ *
+ * @method getUrlNumberFormat
+ * @param {string} timeframe
+ *
+ * @returns {string}
+ */
 export function getUrlNumberFormat(timeframe) {
-    // Used for setting correct CryptoCompare URL when fetching chart data
     switch (timeframe) {
         case '24h':
             return '23';
@@ -156,7 +253,16 @@ export function getUrlNumberFormat(timeframe) {
     }
 }
 
-export function formatChartData(json, currency, timeframe) {
+/**
+ * Formats data points for price chart
+ *
+ * @method formatChartData
+ * @param {object} json
+ * @param {string} timeframe
+ *
+ * @returns {array}
+ */
+export function formatChartData(json, timeframe) {
     const timeValue = getUrlNumberFormat(timeframe);
     const response = get(json, 'Data');
     const hasDataPoints = size(response);
@@ -171,14 +277,17 @@ export function formatChartData(json, currency, timeframe) {
                 y: parseFloat(y),
             };
         }
+
         return data;
     }
+
     return failedData;
 }
 
 /**
  * Checks if a URL is valid
- * Uses https://github.com/ogt/valid-url
+ * @method isValidUrl
+ *
  * @param  {string}  url
  * @returns {Boolean}
  */
@@ -191,7 +300,9 @@ export const isValidUrl = (url) => {
 
 /**
  * Check if a URL uses HTTPS
- * Uses https://github.com/ogt/valid-url
+ *
+ * @method isValidHttpsUrl
+ *
  * @param  {string}  url
  * @returns {Boolean}
  */
