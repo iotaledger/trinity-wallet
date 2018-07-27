@@ -43,6 +43,7 @@ export const ActionTypes = {
     ACCEPT_PRIVACY: 'IOTA/SETTINGS/ACCEPT_PRIVACY',
     SET_SEED_SHARE_TUTORIAL_VISITATION_STATUS: 'IOTA/SETTINGS/SET_SEED_SHARE_TUTORIAL_VISITATION_STATUS',
     TOGGLE_EMPTY_TRANSACTIONS: 'IOTA/SETTINGS/TOGGLE_EMPTY_TRANSACTIONS',
+    SET_COMPLETED_FORCED_PASSWORD_UPDATE: 'IOTA/SETTINGS/SET_COMPLETED_FORCED_PASSWORD_UPDATE',
 };
 
 export const setAppVersions = (payload) => ({
@@ -485,4 +486,9 @@ export const toggleEmptyTransactions = () => {
 export const setFingerprintStatus = (payload) => ({
     type: ActionTypes.SET_FINGERPRINT_STATUS,
     payload,
+});
+
+// FIXME: Temporarily needed for password migration
+export const setCompletedForcedPasswordUpdate = () => ({
+    type: ActionTypes.SET_COMPLETED_FORCED_PASSWORD_UPDATE,
 });

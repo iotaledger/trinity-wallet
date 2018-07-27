@@ -5,7 +5,6 @@ import Errors from '../libs/errors';
 
 export const ActionTypes = {
     SET_ACTIVATION_CODE: 'IOTA/APP/SET_ACTIVATION_CODE',
-    SET_COMPLETED_FORCED_PASSWORD_UPDATE: 'IOTA/APP/SET_COMPLETED_FORCED_PASSWORD_UPDATE',
 };
 
 export const migrate = (versions, config, persistor) => (dispatch, getState) => {
@@ -37,8 +36,4 @@ export const migrate = (versions, config, persistor) => (dispatch, getState) => 
 export const setActivationCode = (code) => ({
     type: ActionTypes.SET_ACTIVATION_CODE,
     payload: code,
-});
-
-export const setCompletedForcedPasswordUpdate = () => ({
-    type: ActionTypes.SET_COMPLETED_FORCED_PASSWORD_UPDATE,
 });
