@@ -29,7 +29,7 @@ yarn full-setup
 
 ## Branches
 
-To create a new feature or bugfix (or chore) please create a new branch and use a prefix (e.g `feature/my-awesome-new-feature` or `bugfix/something-not-working`). The prefixes we use are `bugfix`, `feature`, `chore` and `hotfix`. Please don't use anything else.
+To create a new feature or bugfix (or chore) please create a new branch and use a prefix (e.g `feature/my-awesome-new-feature` or `bugfix/something-not-working`). The prefixes we use are `bug`, `feat`, `chore` and `hotfix`. Please don't use anything else.
 
 If you are adding any text in your work, please follow the instructions in LOCALIZATION.md. 
 
