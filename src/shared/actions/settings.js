@@ -1,8 +1,6 @@
 import get from 'lodash/get';
 import keys from 'lodash/keys';
-import { getStoredState } from 'redux-persist';
 import { changeIotaNode } from '../libs/iota';
-import { updatePersistedState } from '../libs/utils';
 import { generateAlert } from './alerts';
 import i18next from '../i18next';
 import { UPDATE_URL } from '../config';
@@ -46,98 +44,271 @@ export const ActionTypes = {
     SET_COMPLETED_FORCED_PASSWORD_UPDATE: 'IOTA/SETTINGS/SET_COMPLETED_FORCED_PASSWORD_UPDATE',
 };
 
+/**
+ * Dispatch to set latest app versions in state
+ *
+ * @method setAppVersions
+ *
+ * @param {object} payload
+ * @returns {{type: {string}, payload: {object} }}
+ */
 export const setAppVersions = (payload) => ({
     type: ActionTypes.SET_VERSIONS,
     payload,
 });
 
+/**
+ * Dispatch when user has accepted wallet's terms and conditions
+ *
+ * @method acceptTerms
+ *
+ * @returns {{type: {string} }}
+ */
 export const acceptTerms = () => ({
     type: ActionTypes.ACCEPT_TERMS,
 });
 
+/**
+ * Dispatch when user has accepted wallet's privacy agreement
+ *
+ * @method acceptPrivacy
+ *
+ * @returns {{type: {string} }}
+ */
 export const acceptPrivacy = () => ({
     type: ActionTypes.ACCEPT_PRIVACY,
 });
 
+/**
+ * Dispatch when a network call for fetching currency information (conversion rates) is about to be made
+ *
+ * @method currencyDataFetchRequest
+ *
+ * @returns {{type: {string} }}
+ */
 const currencyDataFetchRequest = () => ({
     type: ActionTypes.CURRENCY_DATA_FETCH_REQUEST,
 });
 
+/**
+ * Dispatch when currency information (conversion rates) is about to be fetched
+ *
+ * @method currencyDataFetchSuccess
+ * @param {object} payload
+ *
+ * @returns {{type: {string}, payload: {object} }}
+ */
 export const currencyDataFetchSuccess = (payload) => ({
     type: ActionTypes.CURRENCY_DATA_FETCH_SUCCESS,
     payload,
 });
 
+/**
+ * Dispatch when there is an error fetching currency information
+ *
+ * @method currencyDataFetchError
+ *
+ * @returns {{type: {string} }}
+ */
 const currencyDataFetchError = () => ({
     type: ActionTypes.CURRENCY_DATA_FETCH_ERROR,
 });
 
+/**
+ * Dispatch when a network call is about to be made for checking node's health during node change operation
+ *
+ * @method setNodeRequest
+ *
+ * @returns {{type: {string} }}
+ */
 const setNodeRequest = () => ({
     type: ActionTypes.SET_NODE_REQUEST,
 });
 
+/**
+ * Dispatch when an error occurs while checking node's health during node change operation
+ *
+ * @method setNodeError
+ *
+ * @returns {{type: {string} }}
+ */
 const setNodeError = () => ({
     type: ActionTypes.SET_NODE_ERROR,
 });
 
+/**
+ * Dispatch when a network call is about to be made for checking health of newly added IRI node
+ *
+ * @method addCustomNodeRequest
+ *
+ * @returns {{type: {string} }}
+ */
 const addCustomNodeRequest = () => ({
     type: ActionTypes.ADD_CUSTOM_NODE_REQUEST,
 });
 
+/**
+ * Dispatch when the newly added custom node is healthy (synced)
+ *
+ * @method addCustomNodeSuccess
+ * @param {string} payload
+ *
+ * @returns {{type: {string}, payload: {string} }}
+ */
 const addCustomNodeSuccess = (payload) => ({
     type: ActionTypes.ADD_CUSTOM_NODE_SUCCESS,
     payload,
 });
 
+/**
+ * Dispatch when an error occurs during health check for newly added custom node
+ *
+ * @method addCustomNodeError
+ *
+ * @returns {{type: {string} }}
+ */
 const addCustomNodeError = () => ({
     type: ActionTypes.ADD_CUSTOM_NODE_ERROR,
 });
 
+/**
+ * Dispatch to set a randomly selected node as the active node for wallet
+ *
+ * @method setRandomlySelectedNode
+ * @param {string} payload
+ *
+ * @returns {{type: {string}, payload: {string} }}
+ */
 export const setRandomlySelectedNode = (payload) => ({
     type: ActionTypes.SET_RANDOMLY_SELECTED_NODE,
     payload,
 });
 
+/**
+ * Dispatch to change wallet's mode
+ *
+ * @method setMode
+ * @param {string} payload
+ *
+ * @returns {{type: {string}, payload: {string} }}
+ */
 export const setMode = (payload) => ({
     type: ActionTypes.SET_MODE,
     payload,
 });
 
+/**
+ * Dispatch to change wallet's active IRI node
+ *
+ * @method setNode
+ * @param {string} payload
+ *
+ * @returns {{type: {string}, payload: {string} }}
+ */
 export const setNode = (payload) => ({
     type: ActionTypes.SET_NODE,
     payload,
 });
 
+/**
+ * Dispatch to set updated list of IRI nodes for wallet
+ *
+ * @method setNodeList
+ * @param {array} payload
+ *
+ * @returns {{type: {string}, payload: {array} }}
+ */
 export const setNodeList = (payload) => ({
     type: ActionTypes.SET_NODELIST,
     payload,
 });
 
+/**
+ * Dispatch to remove an added custom node from wallet
+ *
+ * @method removeCustomNode
+ * @param {string} payload
+ *
+ * @returns {{type: {string}, payload: {string} }}
+ */
 export const removeCustomNode = (payload) => ({
     type: ActionTypes.REMOVE_CUSTOM_NODE,
     payload,
 });
 
+/**
+ * Dispatch to update proof of work configuration for wallet
+ *
+ * @method setRemotePoW
+ * @param {boolean} payload
+ *
+ * @returns {{type: {string}, payload: {boolean} }}
+ */
 export const setRemotePoW = (payload) => ({
     type: ActionTypes.SET_REMOTE_POW,
     payload,
 });
 
+/**
+ * Dispatch to update auto promotion configuration for wallet
+ *
+ * @method setAutoPromotion
+ * @param {boolean} payload
+ *
+ * @returns {{type: {string}, payload: {boolean} }}
+ */
 export const setAutoPromotion = (payload) => ({
     type: ActionTypes.SET_AUTO_PROMOTION,
     payload,
 });
 
+/**
+ * Dispatch to update auto node switching configuration for wallet
+ *
+ * @method updateAutoNodeSwitching
+ * @param {boolean} payload
+ *
+ * @returns {{type: {string}, payload: {boolean} }}
+ */
 export const updateAutoNodeSwitching = (payload) => ({
     type: ActionTypes.UPDATE_AUTO_NODE_SWITCHING,
     payload,
 });
 
+/**
+ * Dispatch to set lock screen time for wallet
+ *
+ * @method setLockScreenTimeout
+ * @param {number} payload
+ *
+ * @returns {{type: {string}, payload: {number} }}
+ */
 export const setLockScreenTimeout = (payload) => ({
     type: ActionTypes.SET_LOCK_SCREEN_TIMEOUT,
     payload,
 });
 
+/**
+ * Dispatch to mark Android seed share tutorial visit as completed
+ *
+ * @method setSeedShareTutorialVisitationStatus
+ * @param {boolean} payload
+ *
+ * @returns {{type: {string}, payload: {boolean} }}
+ */
+export const setSeedShareTutorialVisitationStatus = (payload) => ({
+    type: ActionTypes.SET_SEED_SHARE_TUTORIAL_VISITATION_STATUS,
+    payload,
+});
+
+/**
+ * Change wallet's active language
+ *
+ * @method setLocale
+ * @param {string} locale
+ *
+ * @returns {function} dispatch
+ */
 export function setLocale(locale) {
     return (dispatch) => {
         i18next.changeLanguage(locale);
@@ -147,11 +318,6 @@ export function setLocale(locale) {
         });
     };
 }
-
-export const setSeedShareTutorialVisitationStatus = (payload) => ({
-    type: ActionTypes.SET_SEED_SHARE_TUTORIAL_VISITATION_STATUS,
-    payload,
-});
 
 /**
  * Fetch currency information (conversion rates) for wallet
@@ -209,6 +375,14 @@ export function getCurrencyData(currency, withAlerts = false) {
     };
 }
 
+/**
+ * Dispatch to change wallet's active language
+ *
+ * @method setLanguage
+ * @param {string} language
+ *
+ * @returns {{type: {string}, payload: {string} }}
+ */
 export function setLanguage(language) {
     return {
         type: ActionTypes.SET_LANGUAGE,
@@ -312,6 +486,16 @@ export function setFullNode(node, addingCustomNode = false) {
     };
 }
 
+/**
+ * Change wallet's active theme
+ *
+ * @method updateTheme
+ *
+ * @param {object} theme
+ * @param {string} themeName
+ *
+ * @returns {function} dispatch
+ */
 export function updateTheme(theme, themeName) {
     return (dispatch) => {
         dispatch({
@@ -400,8 +584,13 @@ export function changeAutoPromotionSettings() {
     };
 }
 
-/** Receives new release data and updates the release state
- * @param {Boolean} force - should confirmation dialog be forced
+/**
+ * Receives new release data and updates the release state
+ *
+ * @method getUpdateData
+ * @param {boolean} force - should confirmation dialog be forced
+ *
+ * @returns {function} dispatch
  */
 export function getUpdateData(force) {
     return (dispatch) => {
@@ -432,7 +621,13 @@ export function getUpdateData(force) {
     };
 }
 
-/** Set update version state as done */
+/**
+ * Set update version state as done
+ *
+ * @method setUpdateDone
+ *
+ * @returns {function} dispatch
+ */
 export function setUpdateDone() {
     return (dispatch) => {
         dispatch({
@@ -441,48 +636,53 @@ export function setUpdateDone() {
     };
 }
 
+/**
+ * Dispatch to reset wallet's state
+ *
+ * @method resetWallet
+ *
+ * @returns {{type: {string} }}
+ */
 export function resetWallet() {
     return {
         type: ActionTypes.WALLET_RESET,
     };
 }
 
-export const migrate = (versions, config, persistor) => (dispatch, getState) => {
-    let restoredState = {};
-    getStoredState(config)
-        .then((persistedState) => {
-            restoredState = persistedState;
-
-            if (persistor) {
-                return persistor.purge();
-            }
-
-            throw new Error('persistor not defined.');
-        })
-        .then(() => {
-            dispatch(resetWallet());
-            dispatch(setAppVersions(versions));
-
-            const updatedState = updatePersistedState(getState(), restoredState);
-
-            if (persistor) {
-                persistor.rehydrate(updatedState);
-            }
-        })
-        .catch((err) => console.error(err));
-};
-
+/**
+ * Dispatch to update wallet's two factor authentication configuration
+ *
+ * @method set2FAStatus
+ * @param {boolean} payload
+ *
+ * @returns {{type: {string}, payload: {boolean} }}
+ */
 export const set2FAStatus = (payload) => ({
     type: ActionTypes.SET_2FA_STATUS,
     payload,
 });
 
+/**
+ * Dispatch to show/hide empty transactions in transactions history
+ *
+ * @method toggleEmptyTransactions
+ *
+ * @returns {{type: {string} }}
+ */
 export const toggleEmptyTransactions = () => {
     return {
         type: ActionTypes.TOGGLE_EMPTY_TRANSACTIONS,
     };
 };
 
+/**
+ * Dispatch to update wallet's fingerprint authentication configuration
+ *
+ * @method setFingerprintStatus
+ * @param {boolean} payload
+ *
+ * @returns {{type: {string}, payload: {boolean} }}
+ */
 export const setFingerprintStatus = (payload) => ({
     type: ActionTypes.SET_FINGERPRINT_STATUS,
     payload,

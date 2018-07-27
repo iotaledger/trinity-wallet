@@ -1,6 +1,7 @@
 import union from 'lodash/union';
 import { ActionTypes } from '../actions/wallet';
 import { ActionTypes as AccountsActionTypes } from '../actions/accounts';
+import { ActionTypes as UiActionTypes } from '../actions/ui';
 
 const initialState = {
     /**
@@ -68,11 +69,11 @@ export default (state = initialState, action) => {
                 ...state,
                 ...action.payload,
             };
-        case ActionTypes.SET_SEED:
+        case UiActionTypes.SET_ONBOARDING_SEED:
             return {
                 ...state,
                 seed: action.payload.seed,
-                usedExistingSeed: action.payload.usedExistingSeed,
+                usedExistingSeed: !action.payload.isGenerated,
             };
         case ActionTypes.SET_ACCOUNT_NAME:
             return {
