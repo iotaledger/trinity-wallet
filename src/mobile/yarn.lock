@@ -5013,9 +5013,9 @@ react-native-extra-dimensions-android@^0.21.0:
   version "0.21.0"
   resolved "https://registry.yarnpkg.com/react-native-extra-dimensions-android/-/react-native-extra-dimensions-android-0.21.0.tgz#2992384a90df738cf678a452cadbf251052ce7bc"
 
-"react-native-fast-crypto@git+https://github.com/rajivshah3/react-native-fast-crypto#master":
+"react-native-fast-crypto@https://github.com/rajivshah3/react-native-fast-crypto#13db40e":
   version "1.5.5"
-  resolved "git+https://github.com/rajivshah3/react-native-fast-crypto#15afb0d30ce386444e92dd4039b465407caa48bb"
+  resolved "https://github.com/rajivshah3/react-native-fast-crypto#13db40e57e764b6d8002f44dfe2fcfb53116c7f2"
   dependencies:
     buffer "^5.0.8"
     rfc4648 "^1.0.0"
