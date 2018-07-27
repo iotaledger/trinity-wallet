@@ -319,10 +319,12 @@ export const uniqueSeed = async (password, seed) => {
 
         for (let i = 0; i < accounts.length; i++) {
             const account = vault[i];
-            const vaultSeed = await decrypt(account.password, password);
-            if (vaultSeed.length === seed.length && seed.every((v, x) => v % 27 === vaultSeed[x] % 27)) {
-                return false;
-            }
+            try {
+                const vaultSeed = await decrypt(account.password, password);
+                if (vaultSeed.length === seed.length && seed.every((v, x) => v % 27 === vaultSeed[x] % 27)) {
+                    return false;
+                }
+            } catch (err) {}
         }
 
         return true;
