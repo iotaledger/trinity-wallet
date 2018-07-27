@@ -18,8 +18,7 @@ import NodeOptionsOnLogin from './NodeOptionsOnLogin';
 import EnterPasswordOnLoginComponent from '../components/EnterPasswordOnLogin';
 import Enter2FAComponent from '../components/Enter2FA';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
-import { getAllSeedsFromKeychain, getTwoFactorAuthKeyFromKeychain } from '../utils/keychain';
-import { getPasswordHash } from '../utils/crypto';
+import { getAllSeedsFromKeychain, getTwoFactorAuthKeyFromKeychain, getPasswordHash } from '../utils/keychain';
 import { isAndroid } from '../utils/device';
 
 const styles = StyleSheet.create({
@@ -58,7 +57,7 @@ class Login extends Component {
         /** Password value */
         password: PropTypes.string.isRequired,
         /** Hash for wallet's password */
-        pwdHash: PropTypes.string.isRequired,
+        pwdHash: PropTypes.object.isRequired,
         /** Set new IRI node
          * @param {string} node
          */
@@ -95,7 +94,6 @@ class Login extends Component {
         if (!isAndroid) {
             SplashScreen.hide();
         }
-
         KeepAwake.deactivate();
         this.props.setUserActivity({ inactive: false });
     }
@@ -104,15 +102,15 @@ class Login extends Component {
         Linking.removeEventListener('url');
     }
 
-    async onLoginPress(password) {
-        const { t, is2FAEnabled, hasConnection } = this.props;
+    async onLoginPress() {
+        const { t, is2FAEnabled, hasConnection, password } = this.props;
         if (!hasConnection) {
             return;
         }
         if (!password) {
             this.props.generateAlert('error', t('emptyPassword'), t('emptyPasswordExplanation'));
         } else {
-            const pwdHash = getPasswordHash(password);
+            const pwdHash = await getPasswordHash(password);
             getAllSeedsFromKeychain(pwdHash).then((seedInfo) => {
                 if (seedInfo !== null) {
                     this.props.setPassword(pwdHash);
