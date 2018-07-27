@@ -4,7 +4,8 @@ import { translate, Trans } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text, TouchableHighlight, FlatList, BackHandler, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { setSeed, clearSeed } from 'iota-wallet-shared-modules/actions/wallet';
+import { clearSeed } from 'iota-wallet-shared-modules/actions/wallet';
+import { setOnboardingSeed } from 'iota-wallet-shared-modules/actions/ui';
 import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/iota/utils';
 import { generateSecureRandom } from 'react-native-securerandom';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
@@ -120,8 +121,9 @@ class NewSeedSetup extends Component {
         navigator: PropTypes.object.isRequired,
         /** Set seed in reducer
          * @param {string} seed
+         * @param {boolean} isGenerated
          */
-        setSeed: PropTypes.func.isRequired,
+        setOnboardingSeed: PropTypes.func.isRequired,
         /** Generate a notification alert
          * @param {string} type - notification type - success, error
          * @param {string} title - notification title
@@ -180,7 +182,7 @@ class NewSeedSetup extends Component {
     async onGeneratePress() {
         const { t } = this.props;
         const seed = await generateNewSeed(generateSecureRandom);
-        this.props.setSeed({ seed, usedExistingSeed: false });
+        this.props.setOnboardingSeed(seed, true);
         this.setState({ randomised: true });
         this.props.generateAlert('success', t('generateSuccess'), t('individualLetters'));
     }
@@ -190,7 +192,7 @@ class NewSeedSetup extends Component {
         const { randomised } = this.state;
         if (randomised) {
             const updatedSeed = await randomiseSeedCharacter(seed, sectionID, generateSecureRandom);
-            this.props.setSeed({ seed: updatedSeed, usedExistingSeed: false });
+            this.props.setOnboardingSeed(updatedSeed, true);
         }
     }
 
@@ -425,7 +427,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    setSeed,
+    setOnboardingSeed,
     clearSeed,
     generateAlert,
 };
