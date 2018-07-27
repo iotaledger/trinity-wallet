@@ -43,14 +43,14 @@ describe('Reducer: wallet', () => {
         });
     });
 
-    describe('IOTA/WALLET/SET_SEED', () => {
+    describe('IOTA/UI/SET_ONBOARDING_SEED', () => {
         it('should assign "seed" in payload to "seed" prop in state', () => {
             const initialState = {
                 seed: '',
             };
 
             const action = {
-                type: 'IOTA/WALLET/SET_SEED',
+                type: 'IOTA/UI/SET_ONBOARDING_SEED',
                 payload: { seed: '9'.repeat(81) },
             };
 
@@ -62,14 +62,14 @@ describe('Reducer: wallet', () => {
             expect(newState.seed).to.eql(expectedState.seed);
         });
 
-        it('should assign "usedExistingSeed" in payload to "usedExistingSeed" prop in state', () => {
+        it('should assign negation of "isGenerated" in payload to "usedExistingSeed" prop in state', () => {
             const initialState = {
                 usedExistingSeed: true,
             };
 
             const action = {
-                type: 'IOTA/WALLET/SET_SEED',
-                payload: { usedExistingSeed: false },
+                type: 'IOTA/UI/SET_ONBOARDING_SEED',
+                payload: { isGenerated: true },
             };
 
             const newState = reducer(initialState, action);

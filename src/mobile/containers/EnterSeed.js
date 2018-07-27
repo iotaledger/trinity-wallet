@@ -1,7 +1,7 @@
 import React from 'react';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, StatusBar, Keyboard } from 'react-native';
-import { setSeed } from 'iota-wallet-shared-modules/actions/wallet';
+import { setOnboardingSeed } from 'iota-wallet-shared-modules/actions/ui';
 import { VALID_SEED_REGEX, MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/iota/utils';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import PropTypes from 'prop-types';
@@ -77,8 +77,9 @@ class EnterSeed extends React.Component {
         t: PropTypes.func.isRequired,
         /** Sets seed in store
          * @param {string} seed
+         * @param {boolean} isGenerated
          */
-        setSeed: PropTypes.func.isRequired,
+        setOnboardingSeed: PropTypes.func.isRequired,
         /** Navigation object */
         navigator: PropTypes.object.isRequired,
         /** Theme settings */
@@ -127,7 +128,7 @@ class EnterSeed extends React.Component {
             if (isAndroid) {
                 FlagSecure.deactivate();
             }
-            this.props.setSeed({ seed, usedExistingSeed: true });
+            this.props.setOnboardingSeed(seed, true);
             this.props.navigator.push({
                 screen: 'setAccountName',
                 navigatorStyle: {
@@ -307,7 +308,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    setSeed,
+    setOnboardingSeed,
     generateAlert,
 };
 
