@@ -5,7 +5,7 @@ import QRCode from 'qr.js/lib/QRCode';
 /**
  * SVG QR component
  */
-export default class Progress extends React.PureComponent {
+export default class QR extends React.PureComponent {
     static propTypes = {
         /** QR code content */
         data: PropTypes.string.isRequired,

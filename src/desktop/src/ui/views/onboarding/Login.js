@@ -15,7 +15,7 @@ import { getSelectedAccountName } from 'selectors/accounts';
 import { runTask } from 'worker';
 
 import { capitalize } from 'libs/helpers';
-import { vaultAuth, getSeed, sha256 } from 'libs/crypto';
+import { vaultAuth, getSeed, hash } from 'libs/crypto';
 
 import PasswordInput from 'ui/components/input/Password';
 import Text from 'ui/components/input/Text';
@@ -122,7 +122,7 @@ class Login extends React.Component {
         const { password, code, verifyTwoFA } = this.state;
         const { setPassword, generateAlert, t } = this.props;
 
-        const passwordHash = await sha256(password);
+        const passwordHash = await hash(password);
         let authorised = false;
 
         try {
