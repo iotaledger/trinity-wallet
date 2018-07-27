@@ -14,6 +14,14 @@ export const VALID_ADDRESS_WITH_CHECKSUM_REGEX = /^[A-Z9]{90}$/;
 
 export const TOTAL_IOTA_SUPPLY = 2779530283277761;
 
+/**
+ * Converts trytes to bytes
+ *
+ * @method convertFromTrytes
+ * @param {string} trytes
+ *
+ * @returns {string}
+ */
 export const convertFromTrytes = (trytes) => {
     const trytesWithoutNines = trytes.replace(/9+$/, '');
     const message = iota.utils.fromTrytes(trytesWithoutNines);
@@ -25,32 +33,36 @@ export const convertFromTrytes = (trytes) => {
     return 'Empty';
 };
 
+/**
+ * Gets checksum for seed
+ *
+ * @method getChecksum
+ * @param {string} seed
+ *
+ * @returns {string}
+ */
 export const getChecksum = (seed) => {
     return iota.utils.addChecksum(seed, 3, false).substr(-3);
 };
 
-export const createRandomSeed = (randomBytesFn, length = MAX_SEED_LENGTH) => {
-    const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ9';
-    const bytes = randomBytesFn(100);
-    let seed = '';
-
-    if (length > MAX_SEED_LENGTH || length < 1) {
-        length = MAX_SEED_LENGTH;
-    }
-
-    Object.keys(bytes).forEach((key) => {
-        if (bytes[key] < 243 && seed.length < length) {
-            const randomNumber = bytes[key] % 27;
-            const randomLetter = charset.charAt(randomNumber);
-            seed += randomLetter;
-        }
-    });
-
-    return seed;
-};
-
+/**
+ * Checks if a seed is valid
+ *
+ * @method isValidSeed
+ * @param {string} seed
+ *
+ * @returns {boolean}
+ */
 export const isValidSeed = (seed) => seed.length === MAX_SEED_LENGTH && seed.match(VALID_SEED_REGEX);
 
+/**
+ * Formats IOTA value
+ *
+ * @method formatValue
+ * @param {number} value
+ *
+ * @returns {number}
+ */
 export const formatValue = (value) => {
     let negative = false;
     if (value < 0) {
@@ -81,6 +93,14 @@ export const formatValue = (value) => {
     return value;
 };
 
+/**
+ * Gets relevant denomination for provided IOTA value
+ *
+ * @method formatUnit
+ * @param {number} value
+ *
+ * @returns {string}
+ */
 export const formatUnit = (value) => {
     if (value < 0) {
         value = -value;
@@ -100,13 +120,29 @@ export const formatUnit = (value) => {
     }
 };
 
+/**
+ * Formats IOTA value and assign appropriate unit
+ *
+ * @method formatIota
+ * @param {number} value
+ *
+ * @returns {string}
+ */
 export function formatIota(value) {
     const iota = formatValue(value);
     const unit = formatUnit(value);
-    const formatted = `${iota} ${unit}`;
-    return formatted;
+
+    return `${iota} ${unit}`;
 }
 
+/**
+ * Checks if provided server address is valid
+ *
+ * @method isValidServerAddress
+ * @param {string} server
+ *
+ * @returns {boolean}
+ */
 export const isValidServerAddress = (server) => {
     if (!server.startsWith('http://') && !server.startsWith('https://')) {
         return false;
@@ -115,6 +151,14 @@ export const isValidServerAddress = (server) => {
     return true;
 };
 
+/**
+ * Checks if provided IOTA address is valid
+ *
+ * @method isValidAddress
+ * @param {string} address
+ *
+ * @returns {boolean}
+ */
 export const isValidAddress = (address) => {
     if (!isNull(address.match(VALID_SEED_REGEX))) {
         return size(address) === 90 && iota.utils.isValidChecksum(address);
@@ -123,10 +167,28 @@ export const isValidAddress = (address) => {
     return false;
 };
 
+/**
+ * Checks if provided IOTA message is valid
+ *
+ * @method isValidMessage
+ * @param {string} message
+ *
+ * @returns {boolean}
+ */
 export const isValidMessage = (message) => {
     return iota.utils.fromTrytes(iota.utils.toTrytes(message)) === message;
 };
 
+/**
+ * Checks if provided amount is valid
+ *
+ * @method isValidAmount
+ * @param {string|number} amount
+ * @param {number} multiplier
+ * @param {boolean} isFiat
+ *
+ * @returns {boolean}
+ */
 export const isValidAmount = (amount, multiplier, isFiat = false) => {
     const value = new BigNumber(parseFloat(amount)).times(new BigNumber(multiplier)).toNumber();
     // For sending a message
@@ -144,6 +206,7 @@ export const isValidAmount = (amount, multiplier, isFiat = false) => {
     if (value < 0) {
         return false;
     }
+
     return !isNaN(amount);
 };
 
@@ -155,8 +218,8 @@ export const isValidAmount = (amount, multiplier, isFiat = false) => {
  */
 
 /** Parse an IOTA address input
- * @param {String} - Input value
- * @returns {ParsedURL} - The parsed address, message and/or ammmount values
+ * @param {string} input
+ * @returns {ParsedURL} - The parsed address, message and/or amount values
  */
 export const parseAddress = (input) => {
     const result = {
