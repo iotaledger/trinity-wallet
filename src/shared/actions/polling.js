@@ -40,85 +40,229 @@ export const ActionTypes = {
     SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION: 'IOTA/POLLING/SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION',
 };
 
+/**
+ * Dispatch when IOTA price information is about to be fetched
+ *
+ * @method fetchPriceRequest
+ *
+ * @returns {{type: {string} }}
+ */
 const fetchPriceRequest = () => ({
     type: ActionTypes.FETCH_PRICE_REQUEST,
 });
 
+/**
+ * Dispatch when IOTA price information is successfully fetched
+ *
+ * @method fetchPriceSuccess
+ *
+ * @returns {{type: {string} }}
+ */
 const fetchPriceSuccess = () => ({
     type: ActionTypes.FETCH_PRICE_SUCCESS,
 });
 
+/**
+ * Dispatch when an error occurs when fetching IOTA price information
+ *
+ * @method fetchPriceError
+ *
+ * @returns {{type: {string} }}
+ */
 const fetchPriceError = () => ({
     type: ActionTypes.FETCH_PRICE_ERROR,
 });
 
+/**
+ * Dispatch when list of IRI nodes are about to be fetched from a remote server
+ *
+ * @method fetchNodeListRequest
+ *
+ * @returns {{type: {string} }}
+ */
 const fetchNodeListRequest = () => ({
     type: ActionTypes.FETCH_NODELIST_REQUEST,
 });
 
+/**
+ * Dispatch when list of IRI nodes are successfully fetched from remote server
+ *
+ * @method fetchNodeListSuccess
+ *
+ * @returns {{type: {string} }}
+ */
 const fetchNodeListSuccess = () => ({
     type: ActionTypes.FETCH_NODELIST_SUCCESS,
 });
 
+/**
+ * Dispatch if an error occurs while fetching list of IRI nodes from remote server
+ *
+ * @method fetchNodeListError
+ *
+ * @returns {{type: {string} }}
+ */
 const fetchNodeListError = () => ({
     type: ActionTypes.FETCH_NODELIST_ERROR,
 });
 
+/**
+ * Dispatch when data points for IOTA time series price information are about to be fetched
+ *
+ * @method fetchChartDataRequest
+ *
+ * @returns {{type: {string} }}
+ */
 const fetchChartDataRequest = () => ({
     type: ActionTypes.FETCH_CHART_DATA_REQUEST,
 });
 
+/**
+ * Dispatch when data points for IOTA time series price information are successfully fetched
+ *
+ * @method fetchChartDataSuccess
+ *
+ * @returns {{type: {string} }}
+ */
 const fetchChartDataSuccess = () => ({
     type: ActionTypes.FETCH_CHART_DATA_SUCCESS,
 });
 
+/**
+ * Dispatch when an error occurs while fetching IOTA time series price information
+ *
+ * @method fetchChartDataError
+ *
+ * @returns {{type: {string} }}
+ */
 const fetchChartDataError = () => ({
     type: ActionTypes.FETCH_CHART_DATA_ERROR,
 });
 
+/**
+ * Dispatch when IOTA market information is about to be fetched
+ *
+ * @method fetchMarketDataRequest
+ *
+ * @returns {{type: {string} }}
+ */
 const fetchMarketDataRequest = () => ({
     type: ActionTypes.FETCH_MARKET_DATA_REQUEST,
 });
 
+/**
+ * Dispatch when IOTA market information is successfully fetched
+ *
+ * @method fetchMarketDataSuccess
+ *
+ * @returns {{type: {string} }}
+ */
 const fetchMarketDataSuccess = () => ({
     type: ActionTypes.FETCH_MARKET_DATA_SUCCESS,
 });
 
+/**
+ * Dispatch if an error occurs while fetching IOTA market information
+ *
+ * @method fetchMarketDataError
+ *
+ * @returns {{type: {string} }}
+ */
 const fetchMarketDataError = () => ({
     type: ActionTypes.FETCH_MARKET_DATA_ERROR,
 });
 
+/**
+ * Dispatch when account information is about to be fetched during polling
+ *
+ * @method accountInfoFetchRequest
+ *
+ * @returns {{type: {string} }}
+ */
 const accountInfoFetchRequest = () => ({
     type: ActionTypes.ACCOUNT_INFO_FETCH_REQUEST,
 });
 
+/**
+ * Dispatch when account information is successfully fetched during polling
+ *
+ * @method accountInfoFetchSuccess
+ * @param {object} payload
+ *
+ * @returns {{type: {string}, payload: {object} }}
+ */
 const accountInfoFetchSuccess = (payload) => ({
     type: ActionTypes.ACCOUNT_INFO_FETCH_SUCCESS,
     payload,
 });
 
+/**
+ * Dispatch when an error occurs during account sync
+ *
+ * @method accountInfoFetchError
+ *
+ * @returns {{type: {string} }}
+ */
 const accountInfoFetchError = () => ({
     type: ActionTypes.ACCOUNT_INFO_FETCH_ERROR,
 });
 
+/**
+ * Dispatch when a transaction is about to be auto promoted
+ *
+ * @method promoteTransactionRequest
+ * @param {string} payload
+ *
+ * @returns {{type: {string}, payload: {string} }}
+ */
 const promoteTransactionRequest = (payload) => ({
     type: ActionTypes.PROMOTE_TRANSACTION_REQUEST,
     payload,
 });
 
+/**
+ * Dispatch when a transaction is successfully auto promoted
+ *
+ * @method promoteTransactionSuccess
+ *
+ * @returns {{type: {string} }}
+ */
 const promoteTransactionSuccess = () => ({
     type: ActionTypes.PROMOTE_TRANSACTION_SUCCESS,
 });
 
+/**
+ * Dispatch when an error occurs during auto promotion
+ *
+ * @method promoteTransactionError
+ *
+ * @returns {{type: {string} }}
+ */
 const promoteTransactionError = () => ({
     type: ActionTypes.PROMOTE_TRANSACTION_ERROR,
 });
 
+/**
+ * Dispatch to set active polling service
+ *
+ * @method setPollFor
+ * @param {string} payload
+ *
+ * @returns {{type: {string}, payload: {string} }}
+ */
 export const setPollFor = (payload) => ({
     type: ActionTypes.SET_POLL_FOR,
     payload,
 });
 
+/**
+ * Dispatch to update account state before auto promoting a transaction
+ *
+ * @method syncAccountBeforeAutoPromotion
+ *
+ * @param {object} payload
+ * @returns {{type: {string}, payload: {object} }}
+ */
 export const syncAccountBeforeAutoPromotion = (payload) => ({
     type: ActionTypes.SYNC_ACCOUNT_BEFORE_AUTO_PROMOTION,
     payload,
@@ -173,7 +317,7 @@ export const fetchPrice = () => {
  * @method fetchNodeList
  *
  * @param {boolean} chooseRandomNode
- * @returns {Function}
+ * @returns {function}
  */
 export const fetchNodeList = (chooseRandomNode = false) => {
     return (dispatch) => {
@@ -310,8 +454,8 @@ export const getAccountInfo = (accountName) => {
 
 /**
  *   Accepts a bundle hash and all tail transaction objects relevant to the bundle.
- *   Check if a bundle is still valid.
- *   For cases where a bundle is invalid, it would remove it for promotion.
+ *   Checks if a bundle is still valid.
+ *   For cases where a bundle is invalid, it would remove the transaction for promotion.
  *   For cases where a bundle is valid, find first consistent tail and promote it.
  *
  *   @method promoteTransfer
