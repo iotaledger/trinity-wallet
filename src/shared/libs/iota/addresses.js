@@ -378,6 +378,7 @@ export const getSpentAddressesWithPendingTransfersSync = (pendingTransactions, a
  *   @method filterSpentAddresses
  *   @param {array} inputs - Array or objects containing balance, keyIndex and address props.
  *   @param {array} spentAddresses - Array of spent addresses
+ *
  *   @returns {Promise} - A promise that resolves all inputs with unspent addresses.
  **/
 export const filterSpentAddresses = (inputs, spentAddresses) => {
@@ -393,7 +394,8 @@ export const filterSpentAddresses = (inputs, spentAddresses) => {
  *
  *   @method shouldAllowSendingToAddress
  *   @param {array} addresses - Could also accept an address as string since wereAddressesSpentFrom casts it internally
- *   @param {function} callback
+ *
+ *   @returns {boolean}
  **/
 export const shouldAllowSendingToAddress = (addresses) => {
     return wereAddressesSpentFromAsync(addresses).then((wereSpent) => {
