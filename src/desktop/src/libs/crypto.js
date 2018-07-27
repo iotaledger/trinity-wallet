@@ -141,7 +141,7 @@ export const clearVault = async (password, setup) => {
     if (setup) {
         const salt = crypto.getRandomValues(new Uint8Array(16));
         const saltHex = salt.toString();
-        Electron.setKeychain(`${ACC_MAIN}-salt`, saltHex);
+        await Electron.setKeychain(`${ACC_MAIN}-salt`, saltHex);
     }
 
     return true;
@@ -175,7 +175,7 @@ export const updatePassword = async (passwordCurrent, passwordNew) => {
             const decryptedVault = await decrypt(account.password, passwordCurrent);
             const encryptedVault = await encrypt(decryptedVault, passwordNew);
 
-            Electron.setKeychain(account.account, encryptedVault);
+            await Electron.setKeychain(account.account, encryptedVault);
         }
 
         return true;
@@ -218,7 +218,7 @@ export const setSeed = async (password, seedName, seed) => {
         const seedNameHash = await hashSeedName(seedName);
         const vault = await encrypt(Array.from(seed), password);
 
-        Electron.setKeychain(seedNameHash, vault);
+        await Electron.setKeychain(seedNameHash, vault);
 
         return true;
     } catch (err) {
@@ -245,7 +245,7 @@ export const setTwoFA = async (password, key) => {
 
         const updatedVault = await encrypt(decryptedVault, password);
 
-        Electron.setKeychain(ACC_MAIN, updatedVault);
+        await Electron.setKeychain(ACC_MAIN, updatedVault);
 
         return true;
     } catch (err) {
@@ -293,8 +293,9 @@ export const renameSeed = async (password, seedName, newSeedName) => {
 
     try {
         await decrypt(vault, password);
-        Electron.removeKeychain(seedNameHash);
-        Electron.setKeychain(newNameHash, vault);
+        
+        await Electron.removeKeychain(seedNameHash);
+        await Electron.setKeychain(newNameHash, vault);
 
         return true;
     } catch (err) {
