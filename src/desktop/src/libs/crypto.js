@@ -293,7 +293,7 @@ export const renameSeed = async (password, seedName, newSeedName) => {
 
     try {
         await decrypt(vault, password);
-        
+
         await Electron.removeKeychain(seedNameHash);
         await Electron.setKeychain(newNameHash, vault);
 
@@ -315,7 +315,7 @@ export const uniqueSeed = async (password, seed) => {
         throw new Error('Local storage not available');
     }
     try {
-        const accounts = vault.filter((acc) => acc.account !== ACC_MAIN);
+        const accounts = vault.filter((acc) => acc.account !== ACC_MAIN && acc.account !== `${ACC_MAIN}-salt`);
 
         for (let i = 0; i < accounts.length; i++) {
             const account = vault[i];
