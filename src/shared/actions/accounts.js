@@ -58,7 +58,7 @@ export const syncAccountBeforeManualPromotion = (payload) => ({
 });
 
 /**
- * Dispatch to update account state after a transaction
+ * Dispatch to update account state after sending a transaction*
  *
  * @method updateAccountInfoAfterSpending
  *
@@ -84,7 +84,7 @@ export const updateAccountAfterReattachment = (payload) => ({
 });
 
 /**
- * Dispatch to mark wallet's first use as true
+ * Dispatch to mark wallet's "first use" flag as true
  *
  * @method setFirstUse
  *
@@ -99,6 +99,7 @@ export const setFirstUse = (payload) => ({
 /**
  * Dispatch to update address data for provided account
  *
+ * @method updateAddresses
  * @param {string} accountName
  * @param {object} addresses
  * @returns {{type: string, accountName: string, addresses: object }}
@@ -136,7 +137,7 @@ export const removeAccount = (payload) => ({
 });
 
 /**
- * Dispatch to set onboarding as completed in state
+ * Dispatch to set onboarding as completed
  *
  * @method setOnboardingComplete
  * @param {boolean} payload
@@ -186,7 +187,7 @@ export const updateAccountAfterTransition = (payload) => ({
 });
 
 /**
- * Dispatch to set unconfirmed transaction tails in state for auto promotion
+ * Dispatch to store unconfirmed transaction tails in state for auto promotion
  *
  * @method setNewUnconfirmedBundleTails
  * @param {object} payload
@@ -367,7 +368,7 @@ export const accountInfoFetchError = () => ({
 /**
  * Dispatch to set basic account info in state
  *
- * For example: Keeps track if a seed was generated within Trinity
+ * For example: To keep track of whether a seed was generated within Trinity
  *
  * @method setBasicAccountInfo
  * @param {object} payload
@@ -382,7 +383,8 @@ export const setBasicAccountInfo = (payload) => ({
 /**
  * Dispatch to mark a task as completed in state
  *
- * For example a task is to display a modal once if user's balance on initial login is zero
+ * For example: to display a modal if the user's balance on initial login is zero
+ *
  *
  * @method markTaskAsDone
  *
@@ -411,7 +413,7 @@ export const markBundleBroadcastStatusPending = (payload) => ({
 });
 
 /**
- * Dispatch to mark broadcast status of a failed transaction as completed
+ * Dispatch to mark broadcast status of a failed transaction as complete
  *
  * When a failed transaction is successfully broadcast,
  * dispatching this action will remove locally stored signed trytes for the provided bundle hash

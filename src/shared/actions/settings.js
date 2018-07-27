@@ -114,7 +114,7 @@ const currencyDataFetchError = () => ({
 });
 
 /**
- * Dispatch when a network call is about to be made for checking node's health during wallet's node change operation
+ * Dispatch when a network call is about to be made for checking node's health during node change operation
  *
  * @method setNodeRequest
  *
@@ -125,7 +125,7 @@ const setNodeRequest = () => ({
 });
 
 /**
- * Dispatch when an error occurs during the network call for checking node's health during wallet's node change operation
+ * Dispatch when an error occurs while checking node's health during node change operation
  *
  * @method setNodeError
  *
@@ -288,7 +288,7 @@ export const setLockScreenTimeout = (payload) => ({
 });
 
 /**
- * Dispatch to mark seed share tutorial visit as completed
+ * Dispatch to mark Android seed share tutorial visit as completed
  *
  * @method setSeedShareTutorialVisitationStatus
  * @param {boolean} payload
