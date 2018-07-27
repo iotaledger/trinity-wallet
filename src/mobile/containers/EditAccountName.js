@@ -70,7 +70,7 @@ export class EditAccountName extends Component {
         /** List of all account names added to wallet */
         accountNames: PropTypes.array.isRequired,
         /** Hash for wallet's password */
-        password: PropTypes.string.isRequired,
+        password: PropTypes.object.isRequired,
         /** Translation helper
          * @param {string} translationString - locale string identifier to be translated
          */

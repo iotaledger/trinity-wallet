@@ -87,7 +87,7 @@ export class SetAccountName extends Component {
         /** Theme settings */
         theme: PropTypes.object.isRequired,
         /** Hash for wallet's password */
-        password: PropTypes.string.isRequired,
+        password: PropTypes.object.isRequired,
         shouldPreventAction: PropTypes.bool.isRequired,
     };
 
