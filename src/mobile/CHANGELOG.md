@@ -1,5 +1,19 @@
 # Trinity Mobile Changelog
 
+## v0.4.1 (17)
+### Additions
+- Add more translations
+- Add timeouts for API calls made to nodes
+
+### Fixes and improvements
+- Major refactoring
+- Remove unused and duplicate translation strings
+- Improve handling of input selection errors
+- Improve address generation efficiency
+
+
+
+
 ## v0.3.0 (13)
 
 ### Additions
