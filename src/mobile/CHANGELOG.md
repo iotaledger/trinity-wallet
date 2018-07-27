@@ -4,15 +4,17 @@
 ### Additions
 - Add more translations
 - Add timeouts for API calls made to nodes
+- Replace SHA256 password hashing with Scrypt - A password change is enforced on app load
 
 ### Fixes and improvements
 - Major refactoring
 - Remove unused and duplicate translation strings
 - Improve handling of input selection errors
 - Improve address generation efficiency
-
-
-
+- Fix incorrect error message
+- Make addresses scrollable in History modals (rather than full modal)
+- Verify 2FA token without need for pressing done
+- Add currently-selected setting for Autopromotion, PoW, Biometric and 2FA
 
 ## v0.3.0 (13)
 
