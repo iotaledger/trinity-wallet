@@ -1,7 +1,7 @@
 {
     "global": {
         "send": "SEND",
-        "cancel": "Cancel",
+        "cancel": "Avbryt",
         "continue?": "Er du sikker på at du vil fortsette?",
         "noTransactions": "INGEN NYLIG HISTORIKK",
         "refresh": "Oppdater",
@@ -19,16 +19,16 @@
         "invalidResponseExplanation": "Noden returnerte en feil. Forsøk å endre node.",
         "invalidResponseFetchingAccount": "Noden returnerte en feil under henting av din kontoinformasjon. Forsøk å endre node.",
         "nodeOutOfSync": "Noden er ikke synkronisert",
-        "nodeOutOfSyncExplanation": "Din valgte node er ikke synkronisert. Velg en ny node og forsøk igjen.",
+        "nodeOutOfSyncExplanation": "Din valgte node er ikke synkronisert. Velg en ny node eller forsøk igjen.",
         "thisNodeOutOfSync": "Denne noden er ikke synkronisert. Vennligst endre node eller forsøk igjen.",
         "seed": "Hovednøkkel",
         "checksum": "Kontrolltegn",
-        "back": "Back",
+        "back": "Tilbake",
         "goBack": "Tilbake",
         "goBackStep": "Gå ett steg tilbake",
-        "done": "Done",
-        "prev": "FORUTGÅENDE",
-        "next": "Next",
+        "done": "Ferdig",
+        "prev": "FORRIGE",
+        "next": "Neste",
         "apply": "Bruk",
         "save": "Lagre",
         "close": "Lukk",
@@ -53,9 +53,9 @@
         "fifthWallet": "FEMTE KONTO",
         "sixthWallet": "SJETTE KONTO",
         "otherWallet": "ANNEN KONTO",
-        "yes": "Yes",
-        "no": "No",
-        "okay": "Okay",
+        "yes": "Ja",
+        "no": "Nei",
+        "okay": "Ok",
         "password": "Passord",
         "unrecognisedPassword": "Ukjent passord",
         "unrecognisedPasswordExplanation": "Passordet er feil. Prøv på nytt.",
@@ -77,7 +77,7 @@
         "receiving": "Mottar",
         "confirmed": "Bekreftet",
         "pending": "Venter",
-        "bundleHash": "Bunt Hash",
+        "bundleHash": "Pakke Hash",
         "addresses": "Adresser",
         "reattach": "RE-TILKNYTTE",
         "promote": "PROMOTER",
@@ -160,28 +160,28 @@
         "passwordsDoNotMatch": "Passordene er ikke like",
         "passwordsDoNotMatchExplanation": "Passordene er ikke like. Prøv igjen.",
         "passwordTooShort": "Passordet er for kort",
-        "passwordTooShortExplanation": "Your password must be at least 11 characters. Please try again.",
+        "passwordTooShortExplanation": "Passordet ditt må være minst 11 tegn. Prøv igjen.",
         "oldPassword": "Kan ikke bruke et passord som er benyttet tidligere",
         "oldPasswordExplanation": "Du kan ikke bruke det gamle passordet som ditt nye passord. Prøv på nytt med et nytt passord.",
-        "ensureStrongPassword": "Ensure you use a strong password of at least 11 characters.",
+        "ensureStrongPassword": "Sjekk at du bruker et sterkt passord med minst 11 tegn.",
         "currentPassword": "Nåværende passord",
         "newPassword": "Nytt passord",
         "confirmPassword": "Bekreft nytt passord",
         "passwordTooWeak": "Passordet er for svakt",
-        "passwordTooWeakReason": "Your password is too weak. Use a combination of words, and avoid common phrases, names or dates.",
-        "reasonRow": "Straight rows of keys are easy to guess.",
-        "reasonPattern": "Short patterns of keys are easy to guess.",
-        "reasonNames": "Common names and surnames are easy to guess.",
-        "reasonRepeats": "Repeats like 'aaa' are easy to guess.",
-        "reasonRepeats2": "Repeats like 'abcabcabc' are only slightly harder to guess than 'abc'.",
-        "reasonSequence": "Sequences like abc or 54321 are easy to guess.",
-        "reasonYears": "Recent years are easy to guess.",
-        "reasonDates": "Dates are often easy to guess.",
-        "reasonTop10": "This is a top 10 common password.",
-        "reasonTop100": "This is a top 100 common password.",
-        "reasonCommon": "This is a very common password.",
-        "reasonSimilar": "This is similar to a commonly-used password.",
-        "reasonWord": "A single word is easy to guess."
+        "passwordTooWeakReason": "Passordet ditt er for svakt. Bruk en kombinasjon av ord, og unngå vanlige fraser, navn eller datoer.",
+        "reasonRow": "Rette linjer av taster er enkelt å gjette.",
+        "reasonPattern": "Korte mønster av taster er enkelt å gjette.",
+        "reasonNames": "Vanlige navn og etternavn er enkelt å gjette.",
+        "reasonRepeats": "Gjentagelser som 'aaa' er enkelt å gjette.",
+        "reasonRepeats2": "Gjentagelser som 'abcabcabc' er bare litt vanskeligere å gjette enn 'abc'.",
+        "reasonSequence": "Sekvenser som abc eller 54321 er enkelt å gjette.",
+        "reasonYears": "Nyere årstall er enkelt å gjette.",
+        "reasonDates": "Datoer er ofte enkelt å gjette.",
+        "reasonTop10": "Dette er på topp 10 over vanlige passord.",
+        "reasonTop100": "Dette er på topp 100 over vanlige passord.",
+        "reasonCommon": "Dette er et veldig vanlig passord.",
+        "reasonSimilar": "Dette ligner på et vanlig brukt passord.",
+        "reasonWord": "Ett ord er enkelt å gjette."
     },
     "setPassword": {
         "choosePassword": "Velg et nytt passord",
@@ -195,10 +195,10 @@
     "copyToClipboard": {
         "seedCleared": "Hovednøkkel er fjernet",
         "seedClearedExplanation": "Hovednøkkelen har blitt fjernet fra utklippstavlen for din sikkerhet.",
-        "seedCopied": "Kopierte hovednøkkelen til utklippstavle",
+        "seedCopied": "Kopierte hovednøkkelen til utklippstavlen",
         "seedCopiedExplanation": "Hovednøkkelen vil bli fjernet med en gang du trykker \"FERDIG\" eller etter at 60 sekunder har passert.",
         "copyToClipboard": "Kopier hovednøkkel",
-        "shareSeed": "Kopier hovednøkkelen til en passord manager",
+        "shareSeed": "Kopier hovednøkkelen til en sikker passord manager",
         "storeEncrypted": "Lagre hovednøkkelen din kryptert i en passord manager.",
         "doNotOpen": "Åpne ikke andre applikasjoner under denne prosessen.",
         "tapConfirm": "Vennligst huk av i boksen nedenfor for å bekrefte.",
@@ -210,7 +210,7 @@
     },
     "enterSeed": {
         "invalidCharacters": "Hovednøkkelen inneholder ugyldige tegn",
-        "invalidCharactersExplanation": "Hovednøkkelen kan kun bestå av store bokstaver fra A til Z og tallet 9. Din hovednøkkel inneholder ugyldige tegn. Vennligst prøv på nytt.",
+        "invalidCharactersExplanation": "Hovednøkkelen kan kun bestå av store bokstaver fra A-Z og tallet 9. Din hovednøkkel inneholder ugyldige tegn. Vennligst prøv på nytt.",
         "seedTooShort": "Hovednøkkelen er for kort",
         "seedTooLong": "Hovednøkkelen er for lang",
         "seedTooShortExplanation": "Hovednøkler må være {{maxLength}} tegn. Din hovednøkkel er nå {{currentLength}} tegn. Vennligst prøv på nytt.",
@@ -234,8 +234,8 @@
         "enterPassword": "Skriv inn ditt passord.",
         "login": "Logg inn",
         "setNode": "Angi Node",
-        "whyBiometricDisabled": "Hvorfor er biometriske godkjenning deaktivert?",
-        "whyBiometricDisabledExplanation": "Biometrisk pålogging er deaktivert første gang du starter appen av hensyn til sikkerhet. Når du bruker Trinity, vil du bli logget ut ved inaktivitet. Du kan deretter logge inn igjen med biometrisk godkjenning."
+        "whyBiometricDisabled": "Hvorfor er biometrisk autentisering deaktivert?",
+        "whyBiometricDisabledExplanation": "Biometrisk pålogging er deaktivert første gang du starter applikasjonen av hensyn til sikkerhet. Når du bruker Trinity, vil du bli logget ut ved inaktivitet. Du kan deretter logge inn igjen med biometrisk autentisering."
     },
     "loading": {
         "loadingFirstTime": "Laster hovednøkkel for første gang.",
@@ -398,7 +398,7 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Skriv inn passordet for å tilbakestille lommeboken.",
-        "reset": "Reset"
+        "reset": "Tilbakestill"
     },
     "walletSetup": {
         "creatingSeed": "Genererer en hovednøkkel",
@@ -415,7 +415,7 @@
         "thankYou": "Takk for at du lastet ned Trinity"
     },
     "writeSeedDown": {
-        "writeDownYourSeed": "<0>Skriv ned hovednøkkelen og kontrolltegnet. </0><1>trippelsjekk</1><2>så at de er riktige.</2>",
+        "writeDownYourSeed": "<0>Skriv ned hovednøkkel og kontrolltegn. </0><1>Trippelsjekk</1><2>at de er riktige.</2>",
         "scrollToBottom": "Skroll ned til bunnen"
     },
     "history": {
@@ -448,7 +448,7 @@
         "add": "Legg til",
         "nodeFieldEmpty": "Tekstfeltet er tomt",
         "nodeFieldEmptyExplanation": "Vennligst legg til en egendefinert node.",
-        "invalidURL": "Please enter a valid URL."
+        "invalidURL": "Angi en gyldig URL-adresse."
     },
     "addNewAccount": {
         "useExistingSeed": "Bruk eksisterende hovednøkkel",
@@ -461,7 +461,7 @@
         "snapshotTransition": "Snapshot synkronisering",
         "pow": "PoW (Proof of Work)",
         "autoPromotion": "Auto promoter",
-        "autoPromotionExplanation": "Auto-promotering bidrar å bekrefte dine transaksjoner på nettverket. Aktiver denne innstillingen hvis du har problemer med å bekrefte dine transaksjoner.",
+        "autoPromotionExplanation": "Automatisk promotering hjelper deg å få bekreftet transaksjoner på Tangle. Aktiver denne innstillingen dersom du har problemer med å få transaksjoner bekreftet.",
         "autoPromotionPoW": "Automatisk promotering er kun mulig på noder som støtter ekstern PoW (Proof of Work)."
     },
     "advancedThemeCustomisation": {
@@ -490,21 +490,21 @@
         "one": "En"
     },
     "usedAddressModal": {
-        "cantSpendFullBalanceQuestion": "Hvorfor kan ikke jeg bruke hele saldoen?",
+        "cantSpendFullBalanceQuestion": "Hvorfor kan jeg ikke bruke hele saldoen?",
         "spentAddressExplanation": "Du har midler på én eller flere brukte adresser. Siden gjenbruk av adresser er utrygt tillater ikke lommeboken å sende flere ganger fra samme adresse.",
         "discordInformation": "Vennligst besøk #help kanalen på Discord for å finne ut hva du kan gjøre."
     },
     "deleteAccount": {
         "areYouSure": "<0></0><1>Er du sikker på at du vil slette</1><2></2><3>{{accountName}}?</3>",
-        "yourSeedWillBeRemoved": "Din nøkkel og transaksjonsloggen vil bli fjernet.",
+        "yourSeedWillBeRemoved": "Din nøkkel og transaksjonshistorikk vil bli fjernet.",
         "thisAction": "Denne handlingen kan ikke angres.",
-        "enterPassword": "Skriv inn passordet for å slette kontoen."
+        "enterPassword": "Skriv inn ditt passord for å slette kontoen."
     },
     "manualSync": {
         "outOfSync": "Ser din transaksjonshistorikk ut til å ikke være synkronisert?",
         "pressToSync": "Trykk på knappen nedenfor for å synkronisere din konto.",
         "thisMayTake": "Dette kan ta en stund. Det kan hende din enhet blir tregere.",
-        "doNotClose": "Minimaliserer du applikasjonen vil du avbryte synkroniseringen.",
+        "doNotClose": "Minimerer du applikasjonen vil du avbryte synkroniseringen.",
         "syncAccount": "Synkroniser konto",
         "syncingYourAccount": "Synkroniserer din konto."
     },
@@ -527,7 +527,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "DENNE HANDLINGEN KAN IKKE ANGRES.",
-        "warning": "<0><0>Alle dine data, inkludert dine</0><1>hovednøkler, passord</1><2>og</2><3>andre kontoopplysninger</3><4> vil gå tapt.</4></0>"
+        "warning": "<0><0>Alle dine data, inkludert dine </0><1>hovednøkler, passord</1><2> og </2><3>andre kontoopplysninger</3><4> vil gå tapt.</4></0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Legg fingeren på fingeravtrykkleseren for å aktivere biometrisk autentisering",
@@ -541,8 +541,8 @@
         "status": "Status",
         "fingerprintUnavailable": "Biometrisk autentisering er ikke tilgjengelig",
         "fingerprintUnavailableExplanation": "Enheten din støtter ikke biometrisk autentisering eller så har ikke dette blitt konfigurert i enhetens innstillinger.",
-        "buttonInstructionsDisable": "Trykk på knappen nedenfor for å deaktivere biometrisk godkjenning.",
-        "buttonInstructionsEnable": "Trykk på knappen nedenfor for å aktivere biometrisk godkjenning.",
+        "buttonInstructionsDisable": "Trykk på knappen nedenfor for å deaktivere biometrisk autentisering.",
+        "buttonInstructionsEnable": "Trykk på knappen nedenfor for å aktivere biometrisk autentisering.",
         "buttonInstructionsDisableIPhoneX": "Trykk på knappen nedenfor for å deaktivere Face ID.",
         "buttonInstructionsEnableIPhoneX": "Trykk på knappen nedenfor for å aktivere Face ID.",
         "instructionsLogin": "Berør fingeravtrykkleseren for å logge inn"
@@ -561,9 +561,9 @@
         "addKey": "Legge denne koden til i din 2FA app",
         "key": "Nøkkel",
         "twoFAEnabled": "2FA er nå aktivert",
-        "twoFAEnabledExplanation": "Du har aktivert to faktor autentisering.",
+        "twoFAEnabledExplanation": "Du har aktivert to-faktor autentisering.",
         "twoFADisabled": "2FA er nå deaktivert",
-        "twoFADisabledExplanation": "Du har nå deaktivert to faktor autentisering.",
+        "twoFADisabledExplanation": "Du har nå deaktivert to-faktor autentisering.",
         "enterCode": "Angi koden fra din 2FA app",
         "code": "Kode",
         "twoFaToken": "2FA Token"
@@ -578,11 +578,11 @@
         "exportSuccessExplanation": "Den kryptert filen med hovednøkkelen ble eksportert.",
         "importSeedVault": "Importer SeedVault",
         "dropSeedVaultHere": "Slipp SeedVault her",
-        "enterPasswordExplanation": "Skriv inn passordet for å åpne SeedVault",
+        "enterPasswordExplanation": "Skriv inn ditt passord for å åpne SeedVault",
         "noSeedFound": "SeedVault inneholder ikke en gyldig hovednøkkel",
         "noSeedFoundExplanation": "SeedVault er enten tom eller inneholder en hovednøkkel i et ugyldig format.",
         "seedFileError": "Kunne ikke åpne SeedVault",
-        "seedFileErrorExplanation": "Det var et problem med åpning av SeedVault. Hvis du valgte den riktige filen kan så den være skadet."
+        "seedFileErrorExplanation": "Det var et problem med åpning av SeedVault. Hvis du valgte den riktige filen kan den være skadet."
     },
     "chart": {
         "mcap": "MCAP",
@@ -598,7 +598,7 @@
     },
     "pow": {
         "feeless": "For å sende gebyrfrie transaksjoner i IOTA er det nødvendig å utføre litt PoW (Proof of Work).",
-        "localOrRemote": "PoW kan enten utføres lokalt på din enhet, eller settes bort til noden som du er tilkoblet.",
+        "localOrRemote": "PoW (Proof of Work) kan enten utføres lokalt på din enhet, eller settes bort til noden som du er tilkoblet.",
         "local": "Lokal",
         "remote": "Ekstern",
         "powUpdated": "PoW (Proof of Work) innstillinger",
@@ -614,11 +614,11 @@
         "checkingNodeHealth": "Undersøker nodens helse",
         "validatingReceiveAddress": "Validerer mottaksadressen",
         "syncingAccount": "Synkroniser konto",
-        "preparingInputs": "Forbereder input",
+        "preparingInputs": "Forbereder inndata",
         "preparingTransfers": "Forbereder transaksjoner",
         "gettingTransactionsToApprove": "Mottar transaksjoner til godkjenning",
         "proofOfWork": "Fullfører PoW (Proof of Work)",
-        "broadcasting": "Kringkaster"
+        "broadcasting": "Kringkasting"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Kan ikke fullføre snapshot synkronisering",
