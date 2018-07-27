@@ -72,7 +72,7 @@ export const setQrDenomination = (payload) => ({
 });
 
 /**
- * Dispatch to set selected QR tab on receive screen (mobile)
+ * Dispatch to set selected QR tab on receive page (mobile)
  *
  * @method setSelectedQrTab
  * @param {string} payload
@@ -85,7 +85,7 @@ export const setSelectedQrTab = (payload) => ({
 });
 
 /**
- * Dispatch to flip card on receive screen (mobile)
+ * Dispatch to flip card on receive page (mobile)
  *
  * @method setSelectedQrTab
  *
@@ -96,9 +96,9 @@ export const flipReceiveCard = () => ({
 });
 
 /**
- * Dispatch to flip card on receive screen (mobile)
+ * Dispatch to set address field text on send page (mobile)
  *
- * @method setSelectedQrTab
+ * @method setSendAddressField
  *
  * @returns {{type: {string} }}
  */
@@ -108,7 +108,7 @@ export const setSendAddressField = (payload) => ({
 });
 
 /**
- * Dispatch to set amount field text in state for mobile send screen
+ * Dispatch to set amount field text on send page (mobile)
  *
  * @method setSendAmountField
  * @param {string} payload
@@ -121,8 +121,9 @@ export const setSendAmountField = (payload) => ({
 });
 
 /**
- * Dispatch to set message field text in state for mobile send screen
+ * Dispatch to set message field text on send page (mobile)
  *
+ * @method setSendMessageField
  * @param {string} payload
  *
  * @returns {{type: {string}, payload: {string} }}
@@ -133,7 +134,7 @@ export const setSendMessageField = (payload) => ({
 });
 
 /**
- * Dispatch to set password field text in state for mobile login screen
+ * Dispatch to set password field text on login page (mobile)
  *
  * @method setLoginPasswordField
  * @param {string} payload
@@ -146,7 +147,7 @@ export const setLoginPasswordField = (payload) => ({
 });
 
 /**
- * Dispatch to clear text fields on send screen (mobile)
+ * Dispatch to clear text fields on send page (mobile)
  *
  * @method clearSendFields
  *
@@ -157,7 +158,8 @@ export const clearSendFields = () => ({
 });
 
 /**
- * Dispatch to set denomination on mobile send screen
+ * Dispatch to set denomination on send page (mobile)
+ *
  *
  * @method setSendDenomination
  * @param {string} payload
@@ -215,7 +217,7 @@ export const setOnboardingName = (name) => {
 };
 
 /**
- * Dispatch to disable wallet's active features (when wallet is in a minimised mode)
+ * Dispatch to disable wallet's active features (when app is minimised)
  *
  * @method setDoNotMinimise
  * @param {boolean} payload
@@ -243,7 +245,7 @@ export const toggleModalActivity = () => {
 };
 
 /**
- * Dispatch to set active child route on mobile login screen
+ * Dispatch to set active child route on login page (mobile)
  *
  * @method setLoginRoute
  * @param {string} payload

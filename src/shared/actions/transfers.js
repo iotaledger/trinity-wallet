@@ -182,7 +182,7 @@ export const retryFailedTransactionError = () => ({
 });
 
 /**
- *  On successful transfer, update store, generate alert and clear send text fields
+ *  On successful transfer, update store, generate alert and clear send page text fields
  *
  *  @method completeTransfer
  *  @param {object} payload - sending status, address, transfer value
