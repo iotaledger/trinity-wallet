@@ -19,6 +19,7 @@ import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { setCompletedForcedPasswordUpdate } from 'iota-wallet-shared-modules/actions/app';
 import timer from 'react-native-timer';
+import SplashScreen from 'react-native-splash-screen';
 import { changePassword, getSecretBoxFromKeychainAndOpenIt } from '../utils/keychain';
 import { generatePasswordHash, getRandomBytes, getOldPasswordHash, hexStringToByte } from '../utils/crypto';
 import { width, height } from '../utils/dimensions';
@@ -121,6 +122,9 @@ class ForceChangePassword extends Component {
 
     componentDidMount() {
         leaveNavigationBreadcrumb('ChangePassword');
+        if (!isAndroid) {
+            SplashScreen.hide();
+        }
     }
 
     async onSavePress() {
@@ -278,8 +282,8 @@ class ForceChangePassword extends Component {
                                 <View>
                                     <Text style={[styles.infoText, textColor]}>
                                         With update 0.4.1, it is necessary to change your password before using Trinity.
-                                        If your current password fulfils the password strength requirements then you may
-                                        input your current password again.
+                                        If your current password fulfills the password strength requirements then you
+                                        may input your current password again.
                                     </Text>
                                 </View>
                             }
