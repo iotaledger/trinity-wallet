@@ -41,7 +41,7 @@ export const reset = () => ({
 });
 
 /**
- * Dispatch to initialize progress bar
+ * Dispatch to initialise progress bar
  *
  * @method startTrackingProgress
  * @param {object} payload

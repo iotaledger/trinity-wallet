@@ -63,7 +63,7 @@ const fetchPriceSuccess = () => ({
 });
 
 /**
- * Dispatch when an error occurs during IOTA price information fetch operation
+ * Dispatch when an error occurs when fetching IOTA price information
  *
  * @method fetchPriceError
  *
@@ -85,7 +85,7 @@ const fetchNodeListRequest = () => ({
 });
 
 /**
- * Dispatch when list of IRI nodes are successfully fetched from a remote server
+ * Dispatch when list of IRI nodes are successfully fetched from remote server
  *
  * @method fetchNodeListSuccess
  *
@@ -96,7 +96,7 @@ const fetchNodeListSuccess = () => ({
 });
 
 /**
- * Dispatch when an error occurs during IRI nodes fetch operation from a remote server
+ * Dispatch if an error occurs while fetching list of IRI nodes from remote server
  *
  * @method fetchNodeListError
  *
@@ -129,7 +129,7 @@ const fetchChartDataSuccess = () => ({
 });
 
 /**
- * Dispatch when an error occurs during the process of fetching IOTA time series price information
+ * Dispatch when an error occurs while fetching IOTA time series price information
  *
  * @method fetchChartDataError
  *
@@ -162,7 +162,7 @@ const fetchMarketDataSuccess = () => ({
 });
 
 /**
- * Dispatch when an error occurs during the network call for fetching IOTA market information
+ * Dispatch if an error occurs while fetching IOTA market information
  *
  * @method fetchMarketDataError
  *
@@ -184,7 +184,7 @@ const accountInfoFetchRequest = () => ({
 });
 
 /**
- * Dispatch when account information is successfully synced during polling
+ * Dispatch when account information is successfully fetched during polling
  *
  * @method accountInfoFetchSuccess
  * @param {object} payload
@@ -454,7 +454,7 @@ export const getAccountInfo = (accountName) => {
 
 /**
  *   Accepts a bundle hash and all tail transaction objects relevant to the bundle.
- *   Check if a bundle is still valid.
+ *   Checks if a bundle is still valid.
  *   For cases where a bundle is invalid, it would remove the transaction for promotion.
  *   For cases where a bundle is valid, find first consistent tail and promote it.
  *

@@ -58,7 +58,7 @@ export const generateAlert = (category, title, message, closeInterval, err) => (
 };
 
 /**
- * Generates an error alert when account info network call fails
+ * Generates an error alert when an account info network call fails
  *
  * @method generateAccountInfoErrorAlert
  * @param {object} err
@@ -89,7 +89,7 @@ export const generateNodeOutOfSyncErrorAlert = () => (dispatch) => {
 };
 
 /**
- * Generates an error alert if a something goes wrong during snapshot transition
+ * Generates an error alert if something goes wrong during snapshot transition
  *
  * @method generateTransitionErrorAlert
  * @param {object} err
@@ -129,7 +129,7 @@ export const generateTransitionErrorAlert = (err) => (dispatch) => {
 };
 
 /**
- * Generates a success alert manual sync is completed
+ * Generates a success alert if manual sync is completed
  *
  * @method generateSyncingCompleteAlert
  *
@@ -147,7 +147,7 @@ export const generateSyncingCompleteAlert = () => (dispatch) => {
 };
 
 /**
- * Generates a success when an account is deleted
+ * Generates an alert when an account is succesfully deleted
  *
  * @method generateAccountDeletedAlert
  *
