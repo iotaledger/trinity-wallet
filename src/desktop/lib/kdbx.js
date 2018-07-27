@@ -9,9 +9,9 @@ kdbxweb.CryptoEngine.argon2 = (password, salt, memory, iterations, length, paral
         hashLength: length,
         timeCost: iterations,
         memoryCost: memory,
-        parallelism: parallelism,
-        type: type,
-        version: version,
+        parallelism,
+        type,
+        version,
         salt: Buffer.from(salt),
         raw: true,
     });

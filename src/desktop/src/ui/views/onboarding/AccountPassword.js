@@ -10,7 +10,7 @@ import { addAccountName, increaseSeedCount, setOnboardingComplete } from 'action
 import { setPassword } from 'actions/wallet';
 import { setOnboardingName } from 'actions/ui';
 
-import { setSeed, setTwoFA, sha256, clearVault } from 'libs/crypto';
+import { setSeed, setTwoFA, hash, clearVault } from 'libs/crypto';
 import { passwordReasons } from 'libs/password';
 
 import Button from 'ui/components/Button';
@@ -100,11 +100,12 @@ class AccountPassword extends React.PureComponent {
             loading: true,
         });
 
-        const passwordHash = await sha256(password);
-
         if (seedCount === 0) {
             await clearVault(null, true);
         }
+
+        const passwordHash = await hash(password);
+
         increaseSeedCount();
 
         addAccountName(onboarding.name);
@@ -174,7 +175,4 @@ const mapDispatchToProps = {
     increaseSeedCount,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(translate()(AccountPassword));
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(AccountPassword));
