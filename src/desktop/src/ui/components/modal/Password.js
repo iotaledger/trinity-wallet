@@ -9,7 +9,7 @@ import Password from 'ui/components/input/Password';
 import Button from 'ui/components/Button';
 import Modal from 'ui/components/modal/Modal';
 
-import { getSeed, vaultAuth, sha256 } from 'libs/crypto';
+import { getSeed, vaultAuth, hash } from 'libs/crypto';
 
 /**
  * Password confirmation dialog component
@@ -76,7 +76,7 @@ class ModalPassword extends PureComponent {
         }
 
         let seed = null;
-        const passwordHash = await sha256(password);
+        const passwordHash = await hash(password);
 
         try {
             seed = seedName ? await getSeed(passwordHash, seedName) : await vaultAuth(passwordHash);

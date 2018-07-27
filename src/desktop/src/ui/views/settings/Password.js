@@ -8,7 +8,7 @@ import { generateAlert } from 'actions/alerts';
 import { setPassword } from 'actions/wallet';
 
 import { passwordReasons } from 'libs/password';
-import { updatePassword, sha256 } from 'libs/crypto';
+import { updatePassword, hash } from 'libs/crypto';
 
 import Password from 'ui/components/input/Password';
 import Button from 'ui/components/Button';
@@ -62,8 +62,8 @@ class PasswordSettings extends PureComponent {
         }
 
         try {
-            const passwordNewHash = await sha256(passwordNew);
-            const passwordCurrentHash = await sha256(passwordCurrent);
+            const passwordNewHash = await hash(passwordNew);
+            const passwordCurrentHash = await hash(passwordCurrent);
 
             await updatePassword(passwordCurrentHash, passwordNewHash);
 

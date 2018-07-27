@@ -44,58 +44,46 @@ export const createRandomSeed = (length = MAX_SEED_LENGTH) => {
 
 /**
  * Encrypt plain text
- * @param {any} Content - Content to encrypt
- * @param {string} Password - Plain text password for encryption
+ * @param {any} contentPlain - Content to encrypt
+ * @param {buffer} hash - Argon2 hash for encryption
  * @returns {string} Ecnrypted initialization vector + content
  */
-const encrypt = async (contentPlain, passwordPlain) => {
+const encrypt = async (contentPlain, hash) => {
     const content = new TextEncoder().encode(JSON.stringify(contentPlain));
-
-    const salt = crypto.getRandomValues(new Uint8Array(16));
-    const saltHex = salt.toString();
-
-    const password = new TextEncoder().encode(passwordPlain);
-    const passwordHash = await Electron.argon2(password, salt);
 
     const iv = crypto.getRandomValues(new Uint8Array(12));
     const ivHex = iv.toString();
 
     const algorithm = { name: 'AES-GCM', iv: iv };
 
-    const key = await crypto.subtle.importKey('raw', passwordHash, algorithm, false, ['encrypt']);
+    const key = await crypto.subtle.importKey('raw', hash, algorithm, false, ['encrypt']);
 
     const cipherBuffer = await crypto.subtle.encrypt(algorithm, key, content);
     const cipherArray = new Uint8Array(cipherBuffer);
     const cipherHex = cipherArray.toString();
 
-    return `${ivHex}|${cipherHex}|${saltHex}`;
+    return `${ivHex}|${cipherHex}`;
 };
 
 /**
  * Decrypt cyphertext
- * @param {string} Content - Encrypted initialization vector + content
- * @param {string} Password - Plain text password for decryption
- * @returns {any} Derypted content
+ * @param {string} cipherText - Encrypted initialization vector + content
+ * @param {buffer} hash - Argon2 hash for decryption
+ * @returns {object} Derypted content
  */
-const decrypt = async (cipherText, passwordPlain) => {
+const decrypt = async (cipherText, hash) => {
     const cipherParts = cipherText.split('|');
 
-    if (cipherParts.length !== 3 || typeof passwordPlain !== 'string' || !passwordPlain.length) {
+    if (cipherParts.length !== 2 || typeof hash !== 'object') {
         throw new Error('Wrong password');
     }
     try {
-        const saltArray = cipherParts[2].split(',');
-        const salt = Uint8Array.from(saltArray);
-
-        const password = new TextEncoder().encode(passwordPlain);
-        const passwordHash = await Electron.argon2(password, salt);
-
         const ivArray = cipherParts[0].split(',');
         const iv = Uint8Array.from(ivArray);
 
         const algorithm = { name: 'AES-GCM', iv: iv };
 
-        const key = await crypto.subtle.importKey('raw', passwordHash, algorithm, false, ['decrypt']);
+        const key = await crypto.subtle.importKey('raw', hash, algorithm, false, ['decrypt']);
 
         const cipherArray = cipherParts[1].split(',');
         const cipher = Uint8Array.from(cipherArray);
@@ -133,12 +121,12 @@ export const vaultAuth = async (password) => {
 
 /**
  * Clear the vault
- * @param {string} Password - Plain text password for decryption
- * @param {boolean} Reset - Should the vault be reset without authentication
+ * @param {string} password - Plain text password for decryption
+ * @param {boolean} setup - Should the vault be reset and initialised without authentication
  * @returns {boolean} True if vault cleared
  */
-export const clearVault = async (password, reset) => {
-    if (!reset) {
+export const clearVault = async (password, setup) => {
+    if (!setup) {
         await vaultAuth(password);
     }
 
@@ -150,13 +138,19 @@ export const clearVault = async (password, reset) => {
         await Electron.removeKeychain(vault[i].account);
     }
 
+    if (setup) {
+        const salt = crypto.getRandomValues(new Uint8Array(16));
+        const saltHex = salt.toString();
+        Electron.setKeychain(`${ACC_MAIN}-salt`, saltHex);
+    }
+
     return true;
 };
 
 /**
  * Update vault password
- * @param {string} PasswordCurrent - Current plain text password
- * @param {string} PasswordNew - New plain text password
+ * @param {string} passwordCurrent - Current plain text password
+ * @param {string} passwordNew - New plain text password
  * @returns {boolean} Password updated success state
  */
 export const updatePassword = async (passwordCurrent, passwordNew) => {
@@ -173,6 +167,10 @@ export const updatePassword = async (passwordCurrent, passwordNew) => {
 
         for (let i = 0; i < accounts.length; i++) {
             const account = vault[i];
+
+            if (account.account === `${ACC_MAIN}-salt`) {
+                continue;
+            }
 
             const decryptedVault = await decrypt(account.password, passwordCurrent);
             const encryptedVault = await encrypt(decryptedVault, passwordNew);
@@ -247,7 +245,7 @@ export const setTwoFA = async (password, key) => {
 
         const updatedVault = await encrypt(decryptedVault, password);
 
-        Electron.setKeychain('Trinity', updatedVault);
+        Electron.setKeychain(ACC_MAIN, updatedVault);
 
         return true;
     } catch (err) {
@@ -341,11 +339,33 @@ export const sha256 = async (inputPlain) => {
     if (typeof inputPlain !== 'string' || inputPlain.length < 1) {
         return false;
     }
+
     const input = new TextEncoder().encode(inputPlain);
     const hash = await crypto.subtle.digest('SHA-256', input);
     const plainHash = bufferToHex(hash);
 
     return plainHash;
+};
+
+/**
+ * Hash text using Argon2
+ * @param {string} Password - Plain text to hash
+ * @returns {string} Argon2 raw hash
+ */
+export const hash = async (inputPlain) => {
+    if (typeof inputPlain !== 'string' || inputPlain.length < 1) {
+        return false;
+    }
+
+    const saltHex = await Electron.readKeychain(`${ACC_MAIN}-salt`);
+    const saltArray = saltHex.split(',');
+    const salt = Uint8Array.from(saltArray);
+
+    const input = new TextEncoder().encode(inputPlain);
+
+    const hash = await Electron.argon2(input, salt);
+
+    return hash;
 };
 
 /**

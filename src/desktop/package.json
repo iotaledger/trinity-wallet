@@ -29,7 +29,7 @@
     "compile:mac": "cross-env CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --mac --x64",
     "compile:win": "electron-builder --win --x64",
     "audit": "./../../node_modules/.bin/auditjs -l error -w whitelist.json",
-    "release": "build -wl"
+    "release": "cross-env CSC_IDENTITY_AUTO_DISCOVERY=false build -mwl"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
@@ -108,7 +108,11 @@
       ]
     },
     "mac": {
-      "category": "public.app-category.finance"
+      "category": "public.app-category.finance",
+      "target": [
+        "dmg",
+        "zip"
+      ]
     },
     "publish": {
       "provider": "github",
