@@ -57,7 +57,7 @@
         "no": "Ne",
         "okay": "U redu",
         "password": "Šifra",
-        "unrecognisedPassword": "Neproznata Šifra",
+        "unrecognisedPassword": "Nepoznata Lozinka",
         "unrecognisedPasswordExplanation": "The password was not recognised. Please try again.",
         "syncInProgress": "Syncing in progress",
         "syncInProgressExplanation": "Please wait until syncing is complete.",
