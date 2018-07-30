@@ -13,35 +13,23 @@ import Checkbox from 'ui/components/Checkbox';
  */
 class SetNode extends PureComponent {
     static propTypes = {
-        /** Current node */
+        /** @ignore */
         node: PropTypes.string.isRequired,
-        /** Available nodes list */
+        /** @ignore */
         nodes: PropTypes.array.isRequired,
-        /** Available custom nodes list */
+        /** @ignore */
         customNodes: PropTypes.array.isRequired,
-        /** Node validity check statuss */
+        /** @ignore */
         loading: PropTypes.bool.isRequired,
-        /** Set new node
-         * @param {string} url - Node url
-         */
+        /** @ignore */
         setNode: PropTypes.func.isRequired,
-        /** Remove custom node
-         * @param {string} url - Node url
-         */
+        /** @ignore */
         removeCustomNode: PropTypes.func.isRequired,
-        /** Auto node switching enabled
-         * @ignore
-         */
+        /** @ignore */
         autoNodeSwitching: PropTypes.bool.isRequired,
-        /**
-         * Update the auto node switching state
-         * @ignore
-         */
+        /** @ignore */
         setAutoNodeSwitching: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - Locale string identifier to be translated
-         * @ignore
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
@@ -59,10 +47,6 @@ class SetNode extends PureComponent {
         }
     }
 
-    validNode = (node) => {
-        return node.length > 0;
-    };
-
     changeCustomNode = (val) => {
         this.setState({ customNode: val });
     };
@@ -79,7 +63,7 @@ class SetNode extends PureComponent {
         e.preventDefault();
         const { setNode } = this.props;
         const { selection, customNode } = this.state;
-        setNode(this.validNode(customNode) ? customNode : selection, this.validNode(customNode));
+        setNode(customNode.length > 0 ? customNode : selection, customNode.length > 0);
         this.setState({ customNode: '' });
     };
 
@@ -94,14 +78,14 @@ class SetNode extends PureComponent {
         const { nodes, customNodes, node, loading, autoNodeSwitching, t } = this.props;
         const { selection, customNode } = this.state;
 
-        const selectedNode = this.validNode(customNode) ? customNode : selection;
+        const selectedNode = customNode.length > 0 ? customNode : selection;
 
         return (
             <form onSubmit={this.changeNode}>
                 <Select
                     value={selection || node}
                     label={t('node')}
-                    disabled={this.validNode(customNode)}
+                    disabled={customNode.length > 0}
                     onChange={this.changeSelectedNode}
                 >
                     {nodes.map((item) => (

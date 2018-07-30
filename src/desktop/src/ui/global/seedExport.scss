@@ -1,0 +1,23 @@
+.seedExport {
+    h1 {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        text-align: center;
+        width: 100%;
+
+        svg {
+            display: block;
+            margin: 0 auto 16px;
+        }
+    }
+    section {
+        padding-top: 220px;
+        position: relative;
+        height: 540px;
+
+        p {
+            margin: 20px;
+        }
+    }
+}

@@ -1,4 +1,4 @@
-/*global Electron*/
+/* global Electron */
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -27,22 +27,19 @@ import css from './dashboard.scss';
  */
 class Dashboard extends React.PureComponent {
     static propTypes = {
-        /** Current account name */
+        /** @ignore */
         accountName: PropTypes.string.isRequired,
-        /** Current password value */
+        /** @ignore */
         password: PropTypes.string,
-        /** Is a deep link set active */
+        /** @ignore */
         isDeepLinkActive: PropTypes.bool,
-        /* Browser location objects */
+        /** @ignore */
         location: PropTypes.object,
-        /** Browser history object */
+        /** @ignore */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         * @ignore
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 

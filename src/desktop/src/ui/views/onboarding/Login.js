@@ -1,4 +1,4 @@
-/*global Electron*/
+/* global Electron */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
@@ -15,7 +15,7 @@ import { getSelectedAccountName } from 'selectors/accounts';
 import { runTask } from 'worker';
 
 import { capitalize } from 'libs/helpers';
-import { vaultAuth, getSeed, sha256 } from 'libs/crypto';
+import { vaultAuth, getSeed, hash } from 'libs/crypto';
 
 import PasswordInput from 'ui/components/input/Password';
 import Text from 'ui/components/input/Text';
@@ -23,53 +23,36 @@ import Button from 'ui/components/Button';
 import Loading from 'ui/components/Loading';
 import Modal from 'ui/components/modal/Modal';
 
-/** Login component */
+/**
+ * Login component
+ **/
 class Login extends React.Component {
     static propTypes = {
-        /** Accounts state state data
-         * @ignore
-         */
+        /** @ignore */
         accounts: PropTypes.object.isRequired,
-        /** Current account name */
+        /** @ignore */
         currentAccountName: PropTypes.string,
-        /** wallet state data
-         * @ignore
-         */
+        /** @ignore */
         wallet: PropTypes.object.isRequired,
-        /** ui state data
-         * @ignore
-         */
+        /** @ignore */
         ui: PropTypes.object.isRequired,
-        /** Current currency symbol */
+        /** @ignore */
         currency: PropTypes.string.isRequired,
-        /** Set password state
-         * @param {String} password - Current password
-         * @ignore
-         */
+        /** @ignore */
         setPassword: PropTypes.func.isRequired,
-        /** Clear wallet state data
-         * @ignore
-         */
+        /** @ignore */
         clearWalletData: PropTypes.func.isRequired,
-        /** Fetch chart data */
+        /** @ignore */
         getChartData: PropTypes.func.isRequired,
-        /** Fetch price data */
+        /** @ignore */
         getPrice: PropTypes.func.isRequired,
-        /** Fetch market data */
+        /** @ignore */
         getMarketData: PropTypes.func.isRequired,
-        /** Fetch currency data */
+        /** @ignore */
         getCurrencyData: PropTypes.func.isRequired,
-        /** Create a notification message
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         * @ignore
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         * @ignore
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
@@ -98,6 +81,11 @@ class Login extends React.Component {
         });
     };
 
+    /**
+     * Get target seed and trigger fetch account info based on seed type
+     * @param {event} Event - Form submit event
+     * @returns {undefined}
+     */
     setupAccount = async () => {
         const { accounts, wallet, currency, currentAccountName } = this.props;
 
@@ -121,6 +109,11 @@ class Login extends React.Component {
         }
     };
 
+    /**
+     * Verify password and 2fa code, trigger account setup
+     * @param {event} Event - Form submit event
+     * @returns {undefined}
+     */
     handleSubmit = async (e) => {
         if (e) {
             e.preventDefault();
@@ -129,7 +122,7 @@ class Login extends React.Component {
         const { password, code, verifyTwoFA } = this.state;
         const { setPassword, generateAlert, t } = this.props;
 
-        const passwordHash = await sha256(password);
+        const passwordHash = await hash(password);
         let authorised = false;
 
         try {
@@ -246,4 +239,7 @@ const mapDispatchToProps = {
     getCurrencyData,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(Login));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(translate()(Login));

@@ -13,32 +13,21 @@ import Text from 'ui/components/input/Text';
 import Button from 'ui/components/Button';
 
 /**
- * Account name settings component
+ * Account Name settings component
  */
 class AccountName extends PureComponent {
     static propTypes = {
-        /** Current accounts info */
+        /** @ignore */
         accountInfo: PropTypes.object,
-        /** Currrent vault password */
+        /** @ignore */
         password: PropTypes.string.isRequired,
-        /** Selected account name */
+        /** @ignore */
         accountName: PropTypes.string.isRequired,
-        /** Change current account name
-         * @param {Object} AccountInfo - updated account info
-         * @param {Object} accountNames - updated account names
-         */
+        /** @ignore */
         changeAccountName: PropTypes.func.isRequired,
-        /** Create a notification message
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         * @ignore
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {String} translationString - Locale string identifier to be translated
-         * @ignore
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
@@ -46,7 +35,10 @@ class AccountName extends PureComponent {
         newAccountName: this.props.accountName,
     };
 
-    /** Change account name in state and in vault */
+    /**
+     * Check for unique account name and change account name in wallet state and in Seed vault
+     * @returns {undefined}
+     **/
     setAccountName() {
         const { accountName, password, changeAccountName, accountInfo, generateAlert, t } = this.props;
 
@@ -120,4 +112,7 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(AccountName));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(translate()(AccountName));
