@@ -49,9 +49,9 @@ const initialState = {
      */
     addingAdditionalAccount: false,
     /**
-     * Determines if the transition addresses should be attached or more address with balance should be scanned
+     * Displays balance check request during snapshot transition
      */
-    balanceCheckToggle: false,
+    balanceCheckFlag: false,
     /**
      * Determines if deep linking is activated on the wallet
      */
@@ -160,17 +160,19 @@ export default (state = initialState, action) => {
                 seedIndex: 0,
                 currentSetting: 'accountManagement',
             };
+        case ActionTypes.CANCEL_SNAPSHOT_TRANSITION:
         case ActionTypes.SNAPSHOT_TRANSITION_SUCCESS:
         case ActionTypes.SNAPSHOT_TRANSITION_ERROR:
             return {
                 ...state,
                 transitionBalance: 0,
                 transitionAddresses: [],
+                displayBalanceCheck: false,
             };
-        case ActionTypes.SWITCH_BALANCE_CHECK_TOGGLE:
+        case ActionTypes.SET_BALANCE_CHECK_FLAG:
             return {
                 ...state,
-                balanceCheckToggle: !state.balanceCheckToggle,
+                balanceCheckFlag: action.payload,
             };
         case ActionTypes.UPDATE_TRANSITION_BALANCE:
             return {
