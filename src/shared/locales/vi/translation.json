@@ -59,6 +59,7 @@
         "password": "Mật Khẩu",
         "unrecognisedPassword": "Không nhận dạng được mật khẩu",
         "unrecognisedPasswordExplanation": "Không xác nhận được mật khẩu. Xin vui lòng thử lại.",
+        "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "Đang đồng bộ hoá",
         "syncInProgressExplanation": "Vui lòng chờ cho đến khi đồng bộ hoá thành công.",
         "somethingWentWrong": "Đã xảy ra lỗi",
@@ -653,7 +654,8 @@
     },
     "terms": {
         "termsAndConditions": "Điều Khoản & Điều Kiện",
-        "accept": "Tôi chấp nhận"
+        "accept": "Tôi chấp nhận",
+        "readAllToContinue": "Please read all the text to continue"
     },
     "privacyPolicy": {
         "privacyPolicy": "Chính Sách Quyền Riêng Tư",
