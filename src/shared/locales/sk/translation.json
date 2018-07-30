@@ -59,6 +59,7 @@
         "password": "Heslo",
         "unrecognisedPassword": "Nesprávne heslo",
         "unrecognisedPasswordExplanation": "Nesprávne heslo. Prosím, skúste znova.",
+        "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "Prebieha synchronizácia",
         "syncInProgressExplanation": "Počkajte prosím, kým prebehne synchronizácia.",
         "somethingWentWrong": "Vyskytla sa chyba",
@@ -653,7 +654,8 @@
     },
     "terms": {
         "termsAndConditions": "Podmienky používania",
-        "accept": "Akceptujem"
+        "accept": "Akceptujem",
+        "readAllToContinue": "Please read all the text to continue"
     },
     "privacyPolicy": {
         "privacyPolicy": "Zásady ochrany osobných údajov",
