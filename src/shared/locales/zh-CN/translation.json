@@ -59,6 +59,7 @@
         "password": "密码",
         "unrecognisedPassword": "密码不正确",
         "unrecognisedPasswordExplanation": "密码不相符。请再试一次。",
+        "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "同步中",
         "syncInProgressExplanation": "请稍候, 直到同步完成。",
         "somethingWentWrong": "出现错误",
@@ -653,7 +654,8 @@
     },
     "terms": {
         "termsAndConditions": "条款和条件",
-        "accept": "我接受"
+        "accept": "我接受",
+        "readAllToContinue": "Please read all the text to continue"
     },
     "privacyPolicy": {
         "privacyPolicy": "隐私政策",
