@@ -59,6 +59,7 @@
         "password": "पासवर्ड",
         "unrecognisedPassword": "पासवर्ड मेल नहीं खाया",
         "unrecognisedPasswordExplanation": "पासवर्ड की पहचान नहीं की गई । कृपया पुन: प्रयास करें ।",
+        "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "सिंक्रनाइज़ेशन प्रगति पर है",
         "syncInProgressExplanation": "सिंकिंग पूर्ण होने तक कृपया प्रतीक्षा करें ।",
         "somethingWentWrong": "कुछ गलत हो गया",
@@ -653,7 +654,8 @@
     },
     "terms": {
         "termsAndConditions": "नियम एवं शर्तें",
-        "accept": "मैं स्वीकार करता हूं"
+        "accept": "मैं स्वीकार करता हूं",
+        "readAllToContinue": "Please read all the text to continue"
     },
     "privacyPolicy": {
         "privacyPolicy": "गोपनीयता नीति",
