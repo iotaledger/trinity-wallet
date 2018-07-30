@@ -59,6 +59,7 @@
         "password": "Mot de passe",
         "unrecognisedPassword": "Mot de passe non reconnu",
         "unrecognisedPasswordExplanation": "Le mot de passe est incorrect. Veuillez réessayer.",
+        "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "Synchronisation en cours",
         "syncInProgressExplanation": "Veuillez attendre que la synchronisation soit terminée.",
         "somethingWentWrong": "Une erreur s'est produite",
@@ -653,7 +654,8 @@
     },
     "terms": {
         "termsAndConditions": "Termes et conditions",
-        "accept": "J'accepte"
+        "accept": "J'accepte",
+        "readAllToContinue": "Please read all the text to continue"
     },
     "privacyPolicy": {
         "privacyPolicy": "Politique de confidentialité",
