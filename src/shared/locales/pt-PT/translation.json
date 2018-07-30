@@ -59,6 +59,7 @@
         "password": "Palavra-passe",
         "unrecognisedPassword": "Palavra-passe não reconhecida",
         "unrecognisedPasswordExplanation": "A palavra-passe não foi reconhecida. Por favor, tente novamente.",
+        "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "Sincronizando",
         "syncInProgressExplanation": "Aguarde até que a sincronização seja concluída.",
         "somethingWentWrong": "Ocorreu um problema",
@@ -653,7 +654,8 @@
     },
     "terms": {
         "termsAndConditions": "Terms & Conditions",
-        "accept": "I accept"
+        "accept": "I accept",
+        "readAllToContinue": "Please read all the text to continue"
     },
     "privacyPolicy": {
         "privacyPolicy": "Privacy Policy",
