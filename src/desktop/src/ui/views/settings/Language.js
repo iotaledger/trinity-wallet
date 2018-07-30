@@ -14,16 +14,11 @@ import Button from 'ui/components/Button';
  */
 class LanguageSelect extends React.PureComponent {
     static propTypes = {
-        /** Current locale */
+        /** @ignore */
         locale: PropTypes.string,
-        /** Locale change event function
-         * @param {string} locale - Target locale
-         */
+        /** @ignore */
         setLocale: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - Locale string identifier to be translated
-         * @ignore
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
@@ -79,4 +74,7 @@ const mapDispatchToProps = {
     setLocale,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(LanguageSelect));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(translate()(LanguageSelect));

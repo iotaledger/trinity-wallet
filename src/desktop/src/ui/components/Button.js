@@ -11,22 +11,24 @@ export default class Button extends React.PureComponent {
     static propTypes = {
         /** Target link */
         to: PropTypes.string,
-        /** Click event callback function */
-        /** @param {object} event - Click event object */
+        /** Click event callback function
+         * @param {object} Event - Click event object
+         * @returns {undefined}
+         */
         onClick: PropTypes.func,
-        /** Button or link element content */
+        /** Button content */
         children: PropTypes.node,
         /** Custom button style definitions */
         style: PropTypes.object,
-        /** Button disabled state */
+        /** Is button disabled */
         disabled: PropTypes.bool,
-        /** Button type */
-        type: PropTypes.string,
-        /** Buttons style type */
+        /** Button element type */
+        type: PropTypes.oneOf(['button', 'submit']),
+        /** Button style class */
         variant: PropTypes.oneOf(['primary', 'secondary', 'positive', 'negative', 'extra', 'dark']).isRequired,
-        /** Buttons custom class */
+        /** Buttons secondary class */
         className: PropTypes.oneOf(['outline', 'small', 'outlineSmall', 'square', 'icon']),
-        /** Buttons loading state */
+        /** Is button loading state active */
         loading: PropTypes.bool,
     };
 
