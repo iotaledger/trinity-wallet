@@ -59,6 +59,7 @@
         "password": "گذرواژه",
         "unrecognisedPassword": "گذرواژه غیر قابل شناسایی",
         "unrecognisedPasswordExplanation": "گذرواژه شناسایی نشد لطفا دوباره تلاش کنید.",
+        "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "در حال انجام همگام سازی",
         "syncInProgressExplanation": "لطفا صبر کنید تا همگام سازی کامل شود.",
         "somethingWentWrong": "مشکلی پیش آمد",
@@ -653,7 +654,8 @@
     },
     "terms": {
         "termsAndConditions": "شرایط و ضوابط",
-        "accept": "قبول می‌کنم"
+        "accept": "قبول می‌کنم",
+        "readAllToContinue": "Please read all the text to continue"
     },
     "privacyPolicy": {
         "privacyPolicy": "سیاست حفظ حریم خصوصی",
