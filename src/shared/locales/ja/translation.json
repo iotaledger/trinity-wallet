@@ -59,6 +59,7 @@
         "password": "パスワード",
         "unrecognisedPassword": "有効でないパスワードです。",
         "unrecognisedPasswordExplanation": "パスワードとして認識できません。もう一度入力し直してください。",
+        "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "同期中",
         "syncInProgressExplanation": "同期が完了するまでお待ちください。",
         "somethingWentWrong": "不具合が発生しました。",
@@ -653,7 +654,8 @@
     },
     "terms": {
         "termsAndConditions": "利用規約",
-        "accept": "承諾する"
+        "accept": "承諾する",
+        "readAllToContinue": "Please read all the text to continue"
     },
     "privacyPolicy": {
         "privacyPolicy": "プライバシーポリシー",
