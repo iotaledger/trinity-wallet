@@ -59,6 +59,7 @@
         "password": "Geslo",
         "unrecognisedPassword": "Neprepoznano geslo",
         "unrecognisedPasswordExplanation": "Geslo ni bilo prepoznano. Prosimo, poskusite ponovno.",
+        "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "Sinhronizacija v teku",
         "syncInProgressExplanation": "Prosimo počakajte dokler sinhronizacija ni končana.",
         "somethingWentWrong": "Nekaj je šlo narobe",
@@ -653,7 +654,8 @@
     },
     "terms": {
         "termsAndConditions": "Terms & Conditions",
-        "accept": "I accept"
+        "accept": "I accept",
+        "readAllToContinue": "Please read all the text to continue"
     },
     "privacyPolicy": {
         "privacyPolicy": "Privacy Policy",
