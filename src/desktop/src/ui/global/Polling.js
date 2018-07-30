@@ -15,20 +15,34 @@ import {
     getAccountInfo,
 } from 'actions/polling';
 
-/** Background wallet polling component */
+/**
+ * Background polling component
+ */
 class Polling extends React.PureComponent {
     static propTypes = {
+        /** @ignore */
         accountNames: PropTypes.array.isRequired,
+        /** @ignore */
         pollFor: PropTypes.string.isRequired,
+        /** @ignore */
         getAccountInfo: PropTypes.func.isRequired,
+        /** @ignore */
         allPollingServices: PropTypes.array.isRequired,
+        /** @ignore */
         unconfirmedBundleTails: PropTypes.object.isRequired,
+        /** @ignore */
         autoPromotion: PropTypes.bool.isRequired,
+        /** @ignore */
         setPollFor: PropTypes.func.isRequired,
+        /** @ignore */
         fetchMarketData: PropTypes.func.isRequired,
+        /** @ignore */
         fetchPrice: PropTypes.func.isRequired,
+        /** @ignore */
         fetchNodeList: PropTypes.func.isRequired,
+        /** @ignore */
         fetchChartData: PropTypes.func.isRequired,
+        /** @ignore */
         promoteTransfer: PropTypes.func.isRequired,
     };
 
@@ -160,4 +174,7 @@ const mapDispatchToProps = {
     removeBundleFromUnconfirmedBundleTails,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Polling);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(Polling);

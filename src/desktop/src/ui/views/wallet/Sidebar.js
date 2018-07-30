@@ -20,35 +20,23 @@ import css from './index.scss';
  */
 class Sidebar extends React.PureComponent {
     static propTypes = {
-        /* Browser location objects */
+        /** @ignore */
         location: PropTypes.object,
-        /** Available account names
-         * @ignore
-         */
-        /** Browser history object */
+        /** @ignore */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
-        /** Accounts state data */
+        /** @ignore */
         accounts: PropTypes.object,
-        /** Set seed index state
-         *  @param {Number} Index - Seed index
-         */
+        /** @ignore */
         setSeedIndex: PropTypes.func.isRequired,
-        /** Current seed index
-         * @ignore
-         */
+        /** @ignore */
         seedIndex: PropTypes.number,
-        /** Is wallet ready to switch accounts */
+        /** @ignore */
         isReady: PropTypes.bool.isRequired,
-        /** Clear wallet state data
-         * @ignore
-         */
+        /** @ignore */
         clearWalletData: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         * @ignore
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
@@ -117,7 +105,7 @@ class Sidebar extends React.PureComponent {
                         </ul>
                     </div>
                 </nav>
-                <nav>
+                <nav className={isReady ? css.disabled : null}>
                     <NavLink to="/settings">
                         <Icon icon="settings" size={20} />
                         <strong>{t('home:settings').toLowerCase()}</strong>
@@ -154,4 +142,7 @@ const mapDispatchToProps = {
     setSeedIndex,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(Sidebar));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(translate()(Sidebar));
