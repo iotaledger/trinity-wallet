@@ -59,6 +59,7 @@
         "password": "Adgangskode",
         "unrecognisedPassword": "Adgangskode ikke genkendt",
         "unrecognisedPasswordExplanation": "Adgangskoden blev ikke genkendt. Prøv venligst igen.",
+        "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "Synkronisering i gang",
         "syncInProgressExplanation": "Vent venligst indtil synkroniseringen er fuldført.",
         "somethingWentWrong": "Noget gik galt",
@@ -653,7 +654,8 @@
     },
     "terms": {
         "termsAndConditions": "Betingelser & Vilkår",
-        "accept": "Jeg accepterer"
+        "accept": "Jeg accepterer",
+        "readAllToContinue": "Please read all the text to continue"
     },
     "privacyPolicy": {
         "privacyPolicy": "Fortrolighedspolitik",
