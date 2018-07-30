@@ -59,6 +59,7 @@
         "password": "Parolă",
         "unrecognisedPassword": "Parola nerecunoscută",
         "unrecognisedPasswordExplanation": "Parola nu a fost recunoscută. Încercaţi din nou.",
+        "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "Sincronizare aflată în curs",
         "syncInProgressExplanation": "Vă rugăm să aşteptaţi până când sincronizarea se finalizează.",
         "somethingWentWrong": "Ceva nu a funcţionat corect",
@@ -653,7 +654,8 @@
     },
     "terms": {
         "termsAndConditions": "Terms & Conditions",
-        "accept": "I accept"
+        "accept": "I accept",
+        "readAllToContinue": "Please read all the text to continue"
     },
     "privacyPolicy": {
         "privacyPolicy": "Privacy Policy",
