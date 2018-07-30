@@ -59,6 +59,7 @@
         "password": "비밀번호",
         "unrecognisedPassword": "잘못된 비밀번호",
         "unrecognisedPasswordExplanation": "비밀번호가 맞지 않습니다. 다시 시도해주세요.",
+        "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "동기화 진행 중",
         "syncInProgressExplanation": "동기화가 완료될 때까지 기다려 주세요.",
         "somethingWentWrong": "알 수 없는 오류",
@@ -653,7 +654,8 @@
     },
     "terms": {
         "termsAndConditions": "이용 약관",
-        "accept": "동의합니다"
+        "accept": "동의합니다",
+        "readAllToContinue": "Please read all the text to continue"
     },
     "privacyPolicy": {
         "privacyPolicy": "개인정보 정책",
