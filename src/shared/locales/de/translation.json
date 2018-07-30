@@ -59,6 +59,7 @@
         "password": "Passwort",
         "unrecognisedPassword": "Unbekanntes Passwort",
         "unrecognisedPasswordExplanation": "Das Passwort wurde nicht erkannt. Bitte versuche es erneut.",
+        "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "Synchronisiere...",
         "syncInProgressExplanation": "Bitte warte, bis die Synchronisierung abgeschlossen ist.",
         "somethingWentWrong": "Ein Fehler ist aufgetreten",
@@ -653,7 +654,8 @@
     },
     "terms": {
         "termsAndConditions": "Geschäftsbedingungen",
-        "accept": "Ich stimme zu"
+        "accept": "Ich stimme zu",
+        "readAllToContinue": "Please read all the text to continue"
     },
     "privacyPolicy": {
         "privacyPolicy": "Datenschutzerklärung",
