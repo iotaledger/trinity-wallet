@@ -59,6 +59,7 @@
         "password": "Wachtwoord",
         "unrecognisedPassword": "Onjuist wachtwoord",
         "unrecognisedPasswordExplanation": "Het wachtwoord is onjuist. Probeer het opnieuw.",
+        "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "Bezig met synchroniseren",
         "syncInProgressExplanation": "Wacht tot de synchronisatie is voltooid.",
         "somethingWentWrong": "Er ging iets mis",
@@ -653,7 +654,8 @@
     },
     "terms": {
         "termsAndConditions": "Algemene Voorwaarden",
-        "accept": "Ik ga akkoord"
+        "accept": "Ik ga akkoord",
+        "readAllToContinue": "Please read all the text to continue"
     },
     "privacyPolicy": {
         "privacyPolicy": "Privacybeleid",
