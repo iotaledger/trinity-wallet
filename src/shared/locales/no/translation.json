@@ -59,6 +59,7 @@
         "password": "Passord",
         "unrecognisedPassword": "Ukjent passord",
         "unrecognisedPasswordExplanation": "Passordet er feil. Prøv på nytt.",
+        "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "Synkronisering pågår",
         "syncInProgressExplanation": "Vennligst vent til synkronisering er fullført.",
         "somethingWentWrong": "Noe gikk galt",
@@ -653,7 +654,8 @@
     },
     "terms": {
         "termsAndConditions": "Vilkår",
-        "accept": "Jeg aksepterer"
+        "accept": "Jeg aksepterer",
+        "readAllToContinue": "Please read all the text to continue"
     },
     "privacyPolicy": {
         "privacyPolicy": "Personvernerklæring",
