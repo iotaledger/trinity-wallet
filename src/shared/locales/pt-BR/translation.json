@@ -59,6 +59,7 @@
         "password": "Senha",
         "unrecognisedPassword": "Senha Inválida",
         "unrecognisedPasswordExplanation": "A senha não foi reconhecida. Por favor, tente novamente.",
+        "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "Sincronizando",
         "syncInProgressExplanation": "Por favor, aguarde até que a sincronização seja concluída.",
         "somethingWentWrong": "Ocorreu um problema",
@@ -653,7 +654,8 @@
     },
     "terms": {
         "termsAndConditions": "Termos e Condições",
-        "accept": "Eu concordo"
+        "accept": "Eu concordo",
+        "readAllToContinue": "Please read all the text to continue"
     },
     "privacyPolicy": {
         "privacyPolicy": "Política de Privacidade",
