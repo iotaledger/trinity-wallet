@@ -59,6 +59,7 @@
         "password": "Lösenord",
         "unrecognisedPassword": "Fel lösenord",
         "unrecognisedPasswordExplanation": "Lösenordet stämde ej. Försök igen.",
+        "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "Synkronisering pågår",
         "syncInProgressExplanation": "Vänta tills synkroniseringen är klar.",
         "somethingWentWrong": "Något gick fel",
@@ -653,7 +654,8 @@
     },
     "terms": {
         "termsAndConditions": "Villkor",
-        "accept": "Jag accepterar"
+        "accept": "Jag accepterar",
+        "readAllToContinue": "Please read all the text to continue"
     },
     "privacyPolicy": {
         "privacyPolicy": "Integritetspolicy",
