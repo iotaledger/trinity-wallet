@@ -1,7 +1,7 @@
 {
     "global": {
         "send": "INVIA",
-        "cancel": "Cancel",
+        "cancel": "Annulla",
         "continue?": "Sei sicuro di voler continuare?",
         "noTransactions": "Cronologia recente vuota",
         "refresh": "Aggiorna",
@@ -23,12 +23,12 @@
         "thisNodeOutOfSync": "Questo nodo non è sincronizzato. Si prega di cambiare il nodo o riprovare.",
         "seed": "Seme",
         "checksum": "Codice di verifica",
-        "back": "Back",
+        "back": "Indietro",
         "goBack": "Torna indietro",
         "goBackStep": "Passo precedente",
-        "done": "Done",
+        "done": "Fatto",
         "prev": "PREC",
-        "next": "Next",
+        "next": "Avanti",
         "apply": "Applica",
         "save": "Salva",
         "close": "Chiudi",
@@ -53,9 +53,9 @@
         "fifthWallet": "QUINTO CONTO",
         "sixthWallet": "SESTO CONTO",
         "otherWallet": "ALTRO CONTO",
-        "yes": "Yes",
+        "yes": "Sì",
         "no": "No",
-        "okay": "Okay",
+        "okay": "Va bene",
         "password": "Password",
         "unrecognisedPassword": "Password non riconosciuta",
         "unrecognisedPasswordExplanation": "La password non è stata riconosciuta. Si prega di riprovare.",
@@ -96,8 +96,8 @@
         "noLongerValid": "Il pacchetto che si sta tentando di promuovere non è più valido",
         "transactionAlreadyConfirmed": "Transazione già confermata",
         "transactionAlreadyConfirmedExplanation": "La transazione che si sta tentando di promuovere è già confermata.",
-        "cannotSendToOwn": "Invio a un indirizzo proprio",
-        "cannotSendToOwnExplanation": "Non puoi fare un trasferimento verso uno dei tuoi indirizzi.",
+        "cannotSendToOwn": "Sending to an input address",
+        "cannotSendToOwnExplanation": "You cannot send to an address that is being used as an input in the transaction.",
         "pleaseWait": "Attendere, per favore",
         "pleaseWaitEllipses": "Attendere prego...",
         "pleaseWaitExplanation": "Trinity sta eseguendo un altro lavoro. Attendere e riprovare.",
@@ -398,7 +398,7 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Immetti la tua password per reimpostare il portafoglio.",
-        "reset": "Reset"
+        "reset": "Reimposta"
     },
     "walletSetup": {
         "creatingSeed": "Creazione di un seme",
