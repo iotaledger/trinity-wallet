@@ -59,6 +59,7 @@
         "password": "Salasana",
         "unrecognisedPassword": "Tunnistamaton salasana",
         "unrecognisedPasswordExplanation": "Salasanaa ei tunnistettu. Yritä uudelleen.",
+        "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "Synkronointi käynnissä",
         "syncInProgressExplanation": "Odota, kunnes synkronointi on valmis.",
         "somethingWentWrong": "Jokin meni pieleen",
@@ -653,7 +654,8 @@
     },
     "terms": {
         "termsAndConditions": "Yleiset Sopimusehdot",
-        "accept": "Hyväksyn"
+        "accept": "Hyväksyn",
+        "readAllToContinue": "Please read all the text to continue"
     },
     "privacyPolicy": {
         "privacyPolicy": "Tietosuojakäytäntö",
