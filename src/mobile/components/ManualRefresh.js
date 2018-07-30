@@ -29,7 +29,7 @@ export default () => (C) => {
         constructor(props) {
             super(props);
             this.state = {
-                isRefreshing: false
+                isRefreshing: false,
             };
             this.onRefresh = this.onRefresh.bind(this);
         }
@@ -90,7 +90,13 @@ export default () => (C) => {
          * Prevents more than one refresh from occurring at the same time
          */
         shouldPreventManualRefresh() {
-            const { isSyncing, isSendingTransfer, isGeneratingReceiveAddress, isTransitioning, isPollingAccountInfo } = this.props;
+            const {
+                isSyncing,
+                isSendingTransfer,
+                isGeneratingReceiveAddress,
+                isTransitioning,
+                isPollingAccountInfo,
+            } = this.props;
 
             const isAlreadyDoingSomeHeavyLifting =
                 isSyncing || isSendingTransfer || isGeneratingReceiveAddress || isTransitioning;
@@ -101,8 +107,8 @@ export default () => (C) => {
         }
 
         render() {
-          const props = {...this.props, onRefresh: this.onRefresh, isRefreshing: this.state.isRefreshing };
-              return <C {...props} />;
+            const props = { ...this.props, onRefresh: this.onRefresh, isRefreshing: this.state.isRefreshing };
+            return <C {...props} />;
         }
     }
 
@@ -114,7 +120,7 @@ export default () => (C) => {
         /** Account name for selected account */
         selectedAccountName: PropTypes.string.isRequired,
         /** Hash for wallet's password */
-        password: PropTypes.string.isRequired,
+        password: PropTypes.object.isRequired,
         /** Fetch latest account information
          * @param {string} seed - seed value
          * @param {string} selectedAccountName

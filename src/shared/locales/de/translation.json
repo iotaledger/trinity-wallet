@@ -1,7 +1,7 @@
 {
     "global": {
         "send": "SENDEN",
-        "cancel": "Cancel",
+        "cancel": "Abbrechen",
         "continue?": "Bist du sicher, dass du fortfahren möchtest?",
         "noTransactions": "KEIN AKTUELLER VERLAUF",
         "refresh": "Aktualisieren",
@@ -23,12 +23,12 @@
         "thisNodeOutOfSync": "Dieser Node ist nicht synchronisiert. Bitte wechsle den Node oder versuche es erneut.",
         "seed": "Seed",
         "checksum": "Prüfsumme",
-        "back": "Back",
+        "back": "Zurück",
         "goBack": "Zurück",
         "goBackStep": "Zurück",
-        "done": "Done",
-        "prev": "ZURÜCK",
-        "next": "Next",
+        "done": "Ausgeführt",
+        "prev": "VORHERIGE",
+        "next": "Weiter",
         "apply": "Anwenden",
         "save": "Speichern",
         "close": "Schließen",
@@ -53,8 +53,8 @@
         "fifthWallet": "FÜNFTES KONTO",
         "sixthWallet": "SECHSTES KONTO",
         "otherWallet": "ANDERES KONTO",
-        "yes": "Yes",
-        "no": "No",
+        "yes": "Ja",
+        "no": "Nein",
         "okay": "Okay",
         "password": "Passwort",
         "unrecognisedPassword": "Unbekanntes Passwort",
@@ -96,8 +96,8 @@
         "noLongerValid": "Das Bundle, das du promoten möchtest, ist nicht mehr gültig",
         "transactionAlreadyConfirmed": "Transaktion bereits bestätigt",
         "transactionAlreadyConfirmedExplanation": "Die Transaktion, die Du versuchst zu promoten ist bereits bestätigt.",
-        "cannotSendToOwn": "An eigene Adresse senden",
-        "cannotSendToOwnExplanation": "Du kannst keine Transaktion mit Wert an eine deiner eigenen Adressen senden.",
+        "cannotSendToOwn": "Sending to an input address",
+        "cannotSendToOwnExplanation": "You cannot send to an address that is being used as an input in the transaction.",
         "pleaseWait": "Bitte warten",
         "pleaseWaitEllipses": "Bitte warten...",
         "pleaseWaitExplanation": "Trinity führt derzeit eine andere Aktion durch. Bitte in Kürze erneut versuchen.",
@@ -398,7 +398,7 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Gib dein Passwort ein, um das Wallet zurückzusetzen.",
-        "reset": "Reset"
+        "reset": "Zurücksetzen"
     },
     "walletSetup": {
         "creatingSeed": "Seed erstellen",

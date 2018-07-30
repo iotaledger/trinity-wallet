@@ -35,7 +35,7 @@ const getProps = (overrides) =>
             onboardingComplete: false,
             seedCount: 0,
             theme: { body: { bg: '#ffffff', color: '#000000' }, primary: {} },
-            password: 'foo',
+            password: {},
             shouldPreventAction: false,
         },
         overrides,
@@ -79,8 +79,8 @@ describe('Testing SetAccountName component', () => {
             expect(SetAccountName.propTypes.theme).toEqual(PropTypes.object.isRequired);
         });
 
-        it('should require a password string as a prop', () => {
-            expect(SetAccountName.propTypes.password).toEqual(PropTypes.string.isRequired);
+        it('should require a password object as a prop', () => {
+            expect(SetAccountName.propTypes.password).toEqual(PropTypes.object.isRequired);
         });
 
         it('should require a shouldPreventAction boolean as a prop', () => {

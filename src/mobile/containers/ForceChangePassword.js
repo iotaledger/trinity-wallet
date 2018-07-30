@@ -1,34 +1,50 @@
-import isEqual from 'lodash/isEqual';
+// FIXME: Temporarily needed for password migration
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from 'react-native';
+import {
+    StyleSheet,
+    View,
+    Text,
+    TouchableWithoutFeedback,
+    TouchableOpacity,
+    Keyboard,
+    KeyboardAvoidingView,
+} from 'react-native';
+import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import { zxcvbn } from 'iota-wallet-shared-modules/libs/exports';
 import { setPassword, setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { passwordReasons } from 'iota-wallet-shared-modules/libs/password';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { changePassword, getPasswordHash } from '../utils/keychain';
-import { generatePasswordHash, getRandomBytes } from '../utils/crypto';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { setCompletedForcedPasswordUpdate } from 'iota-wallet-shared-modules/actions/settings';
+import timer from 'react-native-timer';
+import SplashScreen from 'react-native-splash-screen';
+import { changePassword, getSecretBoxFromKeychainAndOpenIt } from '../utils/keychain';
+import { generatePasswordHash, getRandomBytes, getOldPasswordHash, hexStringToByte } from '../utils/crypto';
 import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
 import CustomTextInput from '../components/CustomTextInput';
 import { Icon } from '../theme/icons.js';
 import InfoBox from '../components/InfoBox';
+import { isAndroid } from '../utils/device';
+import StatefulDropdownAlert from './StatefulDropdownAlert';
 import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
     },
     bottomContainer: {
         flex: 1,
         width,
         paddingHorizontal: width / 15,
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'flex-end',
         alignItems: 'center',
     },
     topContainer: {
@@ -69,7 +85,7 @@ const styles = StyleSheet.create({
 /**
  * Change Password component
  */
-class ChangePassword extends Component {
+class ForceChangePassword extends Component {
     static propTypes = {
         /** Hash for wallet's password */
         password: PropTypes.object.isRequired,
@@ -93,6 +109,7 @@ class ChangePassword extends Component {
          * @param {string} translationString - locale string identifier to be translated
          */
         t: PropTypes.func.isRequired,
+        setCompletedForcedPasswordUpdate: PropTypes.func.isRequired,
     };
 
     constructor() {
@@ -107,47 +124,86 @@ class ChangePassword extends Component {
 
     componentDidMount() {
         leaveNavigationBreadcrumb('ChangePassword');
+        if (!isAndroid) {
+            SplashScreen.hide();
+        }
     }
 
-    isValid(currentPwdHash) {
-        const { currentPassword, newPassword, newPasswordReentry } = this.state;
-        const { password } = this.props;
-        const score = zxcvbn(newPassword);
-
-        return (
-            isEqual(password, currentPwdHash) &&
-            newPassword.length >= 11 &&
-            newPasswordReentry.length >= 11 &&
-            newPassword === newPasswordReentry &&
-            newPassword !== currentPassword &&
-            score.score === 4
-        );
-    }
-
-    async changePassword() {
-        const { setPassword, generateAlert, t } = this.props;
+    async onSavePress() {
+        const { setPassword, t } = this.props;
         const { newPassword, currentPassword } = this.state;
 
-        const currentPwdHash = await getPasswordHash(currentPassword);
-        const isValid = this.isValid(currentPwdHash);
+        let oldPwdHash = await getOldPasswordHash(currentPassword);
+        oldPwdHash = hexStringToByte(oldPwdHash);
+        const isValid = this.isValid();
         const salt = await getRandomBytes(32);
         const newPwdHash = await generatePasswordHash(newPassword, salt);
 
         if (isValid) {
-            const throwErr = () => generateAlert('error', t('somethingWentWrong'), t('somethingWentWrongTryAgain'));
-            changePassword(currentPwdHash, newPwdHash, salt)
+            const throwError = (err) => {
+                if (err.message === 'Incorrect password') {
+                    this.props.generateAlert(
+                        'error',
+                        t('global:unrecognisedPassword'),
+                        t('global:unrecognisedPasswordExplanation'),
+                    );
+                }
+                this.props.generateAlert('error', t('somethingWentWrong'), t('somethingWentWrongTryAgain'));
+            };
+            return getSecretBoxFromKeychainAndOpenIt('seeds', oldPwdHash)
                 .then(() => {
-                    setPassword(newPwdHash);
-                    this.fallbackToInitialState();
-
-                    generateAlert('success', t('passwordUpdated'), t('passwordUpdatedExplanation'));
-
-                    this.props.setSetting('securitySettings');
+                    changePassword(oldPwdHash, newPwdHash, salt).then(() => {
+                        setPassword(newPwdHash);
+                        this.fallbackToInitialState();
+                        this.props.setCompletedForcedPasswordUpdate();
+                        this.navigateToLogin();
+                        timer.setTimeout(
+                            'delaySuccessAlert',
+                            () =>
+                                this.props.generateAlert(
+                                    'success',
+                                    t('passwordUpdated'),
+                                    t('passwordUpdatedExplanation'),
+                                ),
+                            500,
+                        );
+                    });
                 })
-                .catch(() => throwErr());
+                .catch((err) => throwError(err));
         }
+        return this.renderInvalidSubmissionAlerts();
+    }
 
-        return this.renderInvalidSubmissionAlerts(currentPwdHash);
+    isValid() {
+        const { newPassword, newPasswordReentry } = this.state;
+        const score = zxcvbn(newPassword);
+        return (
+            newPassword.length >= 11 &&
+            newPasswordReentry.length >= 11 &&
+            newPassword === newPasswordReentry &&
+            score.score === 4
+        );
+    }
+
+    navigateToLogin() {
+        const { theme: { body } } = this.props;
+        Navigation.startSingleScreenApp({
+            screen: {
+                screen: 'login',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    topBarElevationShadowEnabled: false,
+                    screenBackgroundColor: body.bg,
+                    drawUnderStatusBar: true,
+                    statusBarColor: body.bg,
+                },
+            },
+            appStyle: {
+                orientation: 'portrait',
+                keepStyleAcrossPush: true,
+            },
+        });
     }
 
     fallbackToInitialState() {
@@ -191,19 +247,15 @@ class ChangePassword extends Component {
         return <CustomTextInput {...props} />;
     }
 
-    renderInvalidSubmissionAlerts(currentPwdHash) {
-        const { currentPassword, newPassword, newPasswordReentry } = this.state;
-        const { password, generateAlert, t } = this.props;
+    renderInvalidSubmissionAlerts() {
+        const { newPassword, newPasswordReentry } = this.state;
+        const { generateAlert, t } = this.props;
         const score = zxcvbn(newPassword);
 
-        if (!isEqual(password, currentPwdHash)) {
-            return generateAlert('error', t('incorrectPassword'), t('incorrectPasswordExplanation'));
-        } else if (newPassword !== newPasswordReentry) {
+        if (newPassword !== newPasswordReentry) {
             return generateAlert('error', t('passwordsDoNotMatch'), t('passwordsDoNotMatchExplanation'));
         } else if (newPassword.length < 11 || newPasswordReentry.length < 11) {
             return generateAlert('error', t('passwordTooShort'), t('passwordTooShortExplanation'));
-        } else if (newPassword === currentPassword) {
-            return generateAlert('error', t('oldPassword'), t('oldPasswordExplanation'));
         } else if (score.score < 4) {
             const reason = score.feedback.warning
                 ? t(`changePassword:${passwordReasons[score.feedback.warning]}`)
@@ -214,7 +266,7 @@ class ChangePassword extends Component {
         return null;
     }
 
-    render() {
+    renderContent() {
         const { currentPassword, newPassword, newPasswordReentry } = this.state;
         const { t, theme } = this.props;
         const textColor = { color: theme.body.color };
@@ -222,14 +274,19 @@ class ChangePassword extends Component {
         const isValid = score.score === 4;
 
         return (
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                <View style={styles.container}>
-                    <View style={styles.topContainer}>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={{ flex: 1, width }}>
+                <View behavior="padding" style={styles.container}>
+                    <View style={{ flex: 1.5 }} />
+                    <KeyboardAvoidingView behavior="padding" style={styles.topContainer}>
                         <InfoBox
                             body={theme.body}
                             text={
                                 <View>
-                                    <Text style={[styles.infoText, textColor]}>{t('ensureStrongPassword')}</Text>
+                                    <Text style={[styles.infoText, textColor]}>
+                                        With update 0.4.1, it is necessary to change your password before using Trinity.
+                                        If your current password fulfils the password strength requirements then you
+                                        may use your current password again.
+                                    </Text>
                                 </View>
                             }
                         />
@@ -273,27 +330,18 @@ class ChangePassword extends Component {
                             t('confirmPassword'),
                             (password) => this.setState({ newPasswordReentry: password }),
                             'done',
-                            () => this.changePassword(),
+                            () => this.onSavePress(),
                             'passwordReentry',
                             isValid && newPassword === newPasswordReentry,
                         )}
                         <View style={{ flex: 0.2 }} />
-                    </View>
+                    </KeyboardAvoidingView>
                     <View style={styles.bottomContainer}>
-                        <TouchableOpacity
-                            onPress={() => this.props.setSetting('securitySettings')}
-                            hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
-                        >
-                            <View style={styles.itemLeft}>
-                                <Icon name="chevronLeft" size={width / 28} color={theme.body.color} />
-                                <Text style={[styles.titleTextLeft, textColor]}>{t('global:back')}</Text>
-                            </View>
-                        </TouchableOpacity>
                         {currentPassword !== '' &&
                             newPassword !== '' &&
                             newPasswordReentry !== '' && (
                                 <TouchableOpacity
-                                    onPress={() => this.changePassword()}
+                                    onPress={() => this.onSavePress()}
                                     hitSlop={{
                                         top: height / 55,
                                         bottom: height / 55,
@@ -308,8 +356,30 @@ class ChangePassword extends Component {
                                 </TouchableOpacity>
                             )}
                     </View>
+                    <View style={{ flex: 0.5 }} />
                 </View>
             </TouchableWithoutFeedback>
+        );
+    }
+    render() {
+        const { theme: { body } } = this.props;
+
+        return (
+            <View style={[styles.container, { backgroundColor: body.bg }]}>
+                {isAndroid ? (
+                    <View style={styles.container}>{this.renderContent()}</View>
+                ) : (
+                    <KeyboardAwareScrollView
+                        resetScrollToCoords={{ x: 0, y: 0 }}
+                        contentContainerStyle={styles.container}
+                        scrollEnabled={false}
+                        enableOnAndroid={false}
+                    >
+                        {this.renderContent()}
+                    </KeyboardAwareScrollView>
+                )}
+                <StatefulDropdownAlert textColor={body.color} backgroundColor={body.bg} />
+            </View>
         );
     }
 }
@@ -323,6 +393,9 @@ const mapDispatchToProps = {
     setPassword,
     setSetting,
     generateAlert,
+    setCompletedForcedPasswordUpdate,
 };
 
-export default translate(['changePassword', 'global'])(connect(mapStateToProps, mapDispatchToProps)(ChangePassword));
+export default translate(['changePassword', 'global'])(
+    connect(mapStateToProps, mapDispatchToProps)(ForceChangePassword),
+);
