@@ -5,7 +5,7 @@ import { translate, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import { changePowSettings, changeAutoPromotionSettings, setLockScreenTimeout } from 'actions/settings';
-import { completeSnapshotTransition } from 'actions/wallet';
+import { completeSnapshotTransition, setBalanceCheckFlag } from 'actions/wallet';
 import { generateAlert } from 'actions/alerts';
 
 import { clearVault, getSeed } from 'libs/crypto';
@@ -95,14 +95,15 @@ class Advanced extends PureComponent {
         /** Show/hide the balance check modal
          */
         toggleModalActivity: PropTypes.func.isRequired,
-        /** Whether to toggle the balance check modal
+        /** Whether to display the balance check modal
          */
-        balanceCheckToggle: PropTypes.bool.isRequired,
+        balanceCheckFlag: PropTypes.bool.isRequired,
         /** Currently selected account name */
         selectedAccountName: PropTypes.string.isRequired,
         /** Function to complete the snapshot transition
          */
         completeSnapshotTransition: PropTypes.func.isRequired,
+        setBalanceCheckFlag: PropTypes.func.isRequired,
     };
 
     state = {
@@ -110,12 +111,11 @@ class Advanced extends PureComponent {
     };
 
     componentWillReceiveProps(newProps) {
-        const { balanceCheckToggle } = this.props;
-        if (balanceCheckToggle !== newProps.balanceCheckToggle) {
+        const { balanceCheckFlag } = this.props;
+        if (balanceCheckFlag !== newProps.balanceCheckFlag) {
             this.props.toggleModalActivity();
             return;
         }
-
         const { isTransitioning, isAttachingToTangle, isModalActive } = newProps;
         if (isTransitioning || isAttachingToTangle || isModalActive) {
             Electron.disableMenu();
@@ -160,7 +160,7 @@ class Advanced extends PureComponent {
     };
 
     transitionBalanceOk = async () => {
-        this.props.toggleModalActivity();
+        this.props.setBalanceCheckFlag(false);
         const { wallet, transitionAddresses, selectedAccountName, settings, t } = this.props;
         const seed = await getSeed(wallet.password, selectedAccountName, true);
 
@@ -178,7 +178,7 @@ class Advanced extends PureComponent {
     };
 
     transitionBalanceWrong = async () => {
-        this.props.toggleModalActivity();
+        this.props.setBalanceCheckFlag(false);
         const { wallet, transitionAddresses, selectedAccountName } = this.props;
         const seed = await getSeed(wallet.password, selectedAccountName, true);
         const currentIndex = transitionAddresses.length;
@@ -357,7 +357,7 @@ const mapStateToProps = (state) => ({
     settings: state.settings,
     lockScreenTimeout: state.settings.lockScreenTimeout,
     transitionBalance: state.wallet.transitionBalance,
-    balanceCheckToggle: state.wallet.balanceCheckToggle,
+    balanceCheckFlag: state.wallet.balanceCheckFlag,
     transitionAddresses: state.wallet.transitionAddresses,
     isAttachingToTangle: state.ui.isAttachingToTangle,
     isTransitioning: state.ui.isTransitioning,
@@ -371,6 +371,7 @@ const mapDispatchToProps = {
     setLockScreenTimeout,
     toggleModalActivity,
     completeSnapshotTransition,
+    setBalanceCheckFlag,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate()(Advanced));
