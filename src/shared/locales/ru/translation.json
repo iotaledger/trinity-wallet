@@ -59,6 +59,7 @@
         "password": "Пароль",
         "unrecognisedPassword": "Нераспознанный пароль",
         "unrecognisedPasswordExplanation": "Неверный пароль. Пожалуйста, попробуйте снова.",
+        "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "Идёт синхронизация",
         "syncInProgressExplanation": "Пожалуйста, подождите пока синхронизация будет завершена.",
         "somethingWentWrong": "Что-то пошло не так",
@@ -653,7 +654,8 @@
     },
     "terms": {
         "termsAndConditions": "Условия использования",
-        "accept": "Я принимаю"
+        "accept": "Я принимаю",
+        "readAllToContinue": "Please read all the text to continue"
     },
     "privacyPolicy": {
         "privacyPolicy": "Политика конфиденциальности",
