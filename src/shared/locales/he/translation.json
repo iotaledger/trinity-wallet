@@ -59,6 +59,7 @@
         "password": "Password",
         "unrecognisedPassword": "סיסמה שגויה",
         "unrecognisedPasswordExplanation": "הסיסמה שגויה. בבקשה נסה שוב.",
+        "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "מבצע סנכרון",
         "syncInProgressExplanation": "בבקשה המתן לסיום הסנכרון.",
         "somethingWentWrong": "משהו השתבש",
@@ -653,7 +654,8 @@
     },
     "terms": {
         "termsAndConditions": "Terms & Conditions",
-        "accept": "I accept"
+        "accept": "I accept",
+        "readAllToContinue": "Please read all the text to continue"
     },
     "privacyPolicy": {
         "privacyPolicy": "Privacy Policy",
