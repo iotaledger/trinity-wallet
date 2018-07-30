@@ -59,6 +59,7 @@
         "password": "密碼",
         "unrecognisedPassword": "密碼不符",
         "unrecognisedPasswordExplanation": "密碼不符，請再試一次。",
+        "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "同步處理中",
         "syncInProgressExplanation": "請等候至同步完成",
         "somethingWentWrong": "出現錯誤",
@@ -653,7 +654,8 @@
     },
     "terms": {
         "termsAndConditions": "使用條款",
-        "accept": "我接受"
+        "accept": "我接受",
+        "readAllToContinue": "Please read all the text to continue"
     },
     "privacyPolicy": {
         "privacyPolicy": "隱私權政策",
