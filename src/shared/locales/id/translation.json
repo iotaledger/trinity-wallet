@@ -59,6 +59,7 @@
         "password": "Kata Sandi",
         "unrecognisedPassword": "Kata sandi tidak dikenali",
         "unrecognisedPasswordExplanation": "Kata sandi tidak dikenali. Silahkan coba kembali.",
+        "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "Sinkronisasi sedang berlangsung",
         "syncInProgressExplanation": "Silahkan tunggu sampai sinkronisasi selesai.",
         "somethingWentWrong": "Terjadi kesalahan",
@@ -653,7 +654,8 @@
     },
     "terms": {
         "termsAndConditions": "Syarat & Ketentuan",
-        "accept": "Saya setuju"
+        "accept": "Saya setuju",
+        "readAllToContinue": "Please read all the text to continue"
     },
     "privacyPolicy": {
         "privacyPolicy": "Kebijakan Privasi",
