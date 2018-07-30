@@ -59,6 +59,7 @@
         "password": "Contraseña",
         "unrecognisedPassword": "Contraseña no reconocida",
         "unrecognisedPasswordExplanation": "La contraseña no fue reconocida. Por favor, inténtalo de nuevo.",
+        "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "Sincronización en progreso",
         "syncInProgressExplanation": "Por favor espera a que la sincronización esté completa.",
         "somethingWentWrong": "Algo salió mal",
@@ -653,7 +654,8 @@
     },
     "terms": {
         "termsAndConditions": "Términos y Condiciones",
-        "accept": "Acepto"
+        "accept": "Acepto",
+        "readAllToContinue": "Please read all the text to continue"
     },
     "privacyPolicy": {
         "privacyPolicy": "Política de Privacidad",
