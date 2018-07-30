@@ -59,6 +59,7 @@
         "password": "كلمة المرور",
         "unrecognisedPassword": "كلمة المرور غير المعترف بها",
         "unrecognisedPasswordExplanation": "كلمة المرور غير مطابقة. يرجى المحاولة مره اخرى.",
+        "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "المزامنة قيد التقدم",
         "syncInProgressExplanation": "الرجاء الانتظار حتى اكتمال المزامنة.",
         "somethingWentWrong": "حدث خطأ",
@@ -653,7 +654,8 @@
     },
     "terms": {
         "termsAndConditions": "Terms & Conditions",
-        "accept": "I accept"
+        "accept": "I accept",
+        "readAllToContinue": "Please read all the text to continue"
     },
     "privacyPolicy": {
         "privacyPolicy": "Privacy Policy",
