@@ -90,7 +90,7 @@ class UseExistingSeed extends Component {
         /** List of account names  */
         accountNames: PropTypes.array.isRequired,
         /** Hash for wallet's password */
-        password: PropTypes.string.isRequired,
+        password: PropTypes.object.isRequired,
         /** Determines whether addition of new seed is allowed */
         shouldPreventAction: PropTypes.bool.isRequired,
         /** Theme settings */

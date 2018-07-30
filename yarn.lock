@@ -238,7 +238,7 @@ ast-types-flow@0.0.7:
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/ast-types-flow/-/ast-types-flow-0.0.7.tgz#f70b735c6bca1a5c9c22d982c3e39e7feba3bdad"
 
-async@^2.5.0, async@^2.6.0:
+async@^2.5.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/async/-/async-2.6.0.tgz#61a29abb6fcc026fea77e56d1c6ec53a795951f4"
   dependencies:
@@ -318,6 +318,10 @@ bcrypt-pbkdf@^1.0.0:
 bignumber.js@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/bignumber.js/-/bignumber.js-4.1.0.tgz#db6f14067c140bd46624815a7916c92d9b6c24b1"
+
+bignumber.js@^7.2.1:
+  version "7.2.1"
+  resolved "https://registry.yarnpkg.com/bignumber.js/-/bignumber.js-7.2.1.tgz#80c048759d826800807c4bfd521e50edbba57a5f"
 
 bin-links@^1.1.0:
   version "1.1.2"
@@ -1617,11 +1621,11 @@ invert-kv@^1.0.0:
 iota-wallet-shared-modules@./src/shared/:
   version "0.0.0"
   dependencies:
-    async "^2.6.0"
+    bignumber.js "^7.2.1"
     i18next "^10.2.2"
     iota.lib.js "git+https://git@github.com/iotaledger/iota.lib.js#develop"
     lodash "^4.17.10"
-    moment "^2.19.1"
+    moment "^2.22.2"
     proxy-polyfill "git+https://git@github.com/GoogleChrome/proxy-polyfill#9c009d7"
     react "^16.2.0"
     react-i18next "^7.3.4"
@@ -1632,6 +1636,8 @@ iota-wallet-shared-modules@./src/shared/:
     reselect "^3.0.1"
     tinycolor2 "^1.4.1"
     url-parse "^1.2.0"
+    valid-url "^1.0.9"
+    zxcvbn "^4.4.2"
 
 "iota.lib.js@git+https://git@github.com/iotaledger/iota.lib.js#develop":
   version "0.4.8"
@@ -2257,9 +2263,9 @@ mississippi@^3.0.0:
   dependencies:
     minimist "0.0.8"
 
-moment@^2.19.1:
-  version "2.22.1"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.22.1.tgz#529a2e9bf973f259c9643d237fda84de3a26e8ad"
+moment@^2.22.2:
+  version "2.22.2"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.22.2.tgz#3c257f9839fc0e93ff53149632239eb90783ff66"
 
 move-concurrently@^1.0.1:
   version "1.0.1"
@@ -3722,6 +3728,10 @@ uuid@^3.1.0, uuid@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.2.1.tgz#12c528bb9d58d0b9265d9a2f6f0fe8be17ff1f14"
 
+valid-url@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/valid-url/-/valid-url-1.0.9.tgz#1c14479b40f1397a75782f115e4086447433a200"
+
 validate-npm-package-license@^3.0.1, validate-npm-package-license@^3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/validate-npm-package-license/-/validate-npm-package-license-3.0.3.tgz#81643bcbef1bdfecd4623793dc4648948ba98338"
@@ -3879,3 +3889,7 @@ yargs@^11.0.0:
     which-module "^2.0.0"
     y18n "^3.2.1"
     yargs-parser "^9.0.2"
+
+zxcvbn@^4.4.2:
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/zxcvbn/-/zxcvbn-4.4.2.tgz#28ec17cf09743edcab056ddd8b1b06262cc73c30"

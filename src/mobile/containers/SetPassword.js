@@ -20,8 +20,9 @@ import {
     hasDuplicateAccountName,
     storeSeedInKeychain,
     getAllSeedsFromKeychain,
+    storeSaltInKeychain,
 } from '../utils/keychain';
-import { getPasswordHash } from '../utils/crypto';
+import { generatePasswordHash, getRandomBytes } from '../utils/crypto';
 import OnboardingButtons from '../containers/OnboardingButtons';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import { isAndroid } from '../utils/device';
@@ -131,17 +132,16 @@ class SetPassword extends Component {
         leaveNavigationBreadcrumb('SetPassword');
     }
 
-    onDonePress() {
+    async onDonePress() {
         const { theme: { body }, usedExistingSeed } = this.props;
-        const ifNoKeychainDuplicates = (pwdHash, seed, accountName) => {
+        const ifNoKeychainDuplicates = (pwdHash, salt, seed, accountName) => {
             storeSeedInKeychain(pwdHash, seed, accountName)
-                .then(() => {
+                .then(async () => {
+                    await storeSaltInKeychain(salt);
                     this.props.setPassword(pwdHash);
                     this.props.addAccountName(accountName);
-
                     // Set basic account info
                     this.props.setBasicAccountInfo({ accountName, usedExistingSeed });
-
                     this.props.increaseSeedCount();
                     this.props.clearWalletData();
                     this.props.clearSeed();
@@ -177,8 +177,8 @@ class SetPassword extends Component {
         const score = zxcvbn(password);
 
         if (password.length >= MIN_PASSWORD_LENGTH && password === reentry && score.score === 4) {
-            const pwdHash = getPasswordHash(password);
-
+            const salt = await getRandomBytes(32);
+            const pwdHash = await generatePasswordHash(password, salt);
             getAllSeedsFromKeychain(pwdHash).then((seedInfo) => {
                 if (hasDuplicateAccountName(seedInfo, accountName)) {
                     return this.props.generateAlert(
@@ -193,7 +193,7 @@ class SetPassword extends Component {
                         t('addAdditionalSeed:seedInUseExplanation'),
                     );
                 }
-                return ifNoKeychainDuplicates(pwdHash, seed, accountName);
+                return ifNoKeychainDuplicates(pwdHash, salt, seed, accountName);
             });
         } else if (!(password === reentry)) {
             this.props.generateAlert('error', t('passwordMismatch'), t('passwordMismatchExplanation'));

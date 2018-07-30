@@ -50,6 +50,13 @@ export class Enter2FA extends Component {
         leaveNavigationBreadcrumb('Enter2FA');
     }
 
+    componentWillUpdate(newProps, newState) {
+        const { token2FA } = this.state;
+        if (token2FA.length === 5 && newState.token2FA.length === 6) {
+            this.props.verify(newState.token2FA);
+        }
+    }
+
     handleChange2FAToken = (token2FA) => this.setState({ token2FA });
 
     handleDonePress = () => {
