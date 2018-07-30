@@ -8,6 +8,7 @@ import iotaNativeBindings, {
     overrideAsyncTransactionObject,
 } from 'iota-wallet-shared-modules/libs/iota/nativeBindings';
 import { fetchNodeList as fetchNodes } from 'iota-wallet-shared-modules/actions/polling';
+import { setCompletedForcedPasswordUpdate } from 'iota-wallet-shared-modules/actions/settings';
 import { ActionTypes } from 'iota-wallet-shared-modules/actions/wallet';
 import i18next from 'i18next';
 import axios from 'axios';
@@ -39,11 +40,19 @@ const renderInitialScreen = (store) => {
     // Clear keychain if very first load
     if (!state.accounts.onboardingComplete) {
         clearKeychain();
+        store.dispatch(setCompletedForcedPasswordUpdate());
     }
 
     i18next.changeLanguage(getLocaleFromLabel(state.settings.language));
 
-    const initialScreen = state.accounts.onboardingComplete ? 'login' : 'languageSetup';
+    // FIXME: Temporarily needed for password migration
+    const updatedState = store.getState();
+    const navigateToForceChangePassword =
+        updatedState.settings.versions.version === '0.4.1' && !updatedState.settings.completedForcedPasswordUpdate;
+
+    const initialScreen = state.accounts.onboardingComplete
+        ? navigateToForceChangePassword ? 'forceChangePassword' : 'login'
+        : 'languageSetup';
 
     Navigation.startSingleScreenApp({
         screen: {

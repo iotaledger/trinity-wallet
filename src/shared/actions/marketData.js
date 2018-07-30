@@ -3,13 +3,6 @@ import each from 'lodash/each';
 import map from 'lodash/map';
 import { formatChartData, getUrlTimeFormat, getUrlNumberFormat } from '../libs/utils';
 
-// FIXME: Hacking no-console linting.
-// FIXME: Get rid of the unnecessary break statements.
-// FIXME: Add a default case for all the switch statements
-// Should rather be dispatching an action.
-
-/* eslint-disable no-console */
-
 export const ActionTypes = {
     SET_TIMEFRAME: 'IOTA/MARKET_DATA/SET_TIMEFRAME',
     SET_CHART_DATA: 'IOTA/MARKET_DATA/SET_CHART_DATA',
@@ -18,6 +11,14 @@ export const ActionTypes = {
     SET_PRICE: 'IOTA/MARKET_DATA/SET_PRICE',
 };
 
+/**
+ * Dispatch to set timeframe for IOTA time series price information
+ *
+ * @method setTimeframe
+ * @param {string} timeframe
+ *
+ * @returns {{type: {string}, payload: {string} }}
+ */
 export function setTimeframe(timeframe) {
     return {
         type: ActionTypes.SET_TIMEFRAME,
@@ -25,6 +26,14 @@ export function setTimeframe(timeframe) {
     };
 }
 
+/**
+ * Dispatch to set latest IOTA market information in state
+ *
+ * @method setMarketData
+ * @param {object} data
+ *
+ * @returns {{type: {string}, usdPrice: {number}, mcap: {number}, volume: {number}, change24h: {string} }}
+ */
 export function setMarketData(data) {
     const usdPrice = get(data, 'RAW.IOT.USD.PRICE') || 0;
     const volume24Hours = get(data, 'RAW.IOT.USD.TOTALVOLUME24HTO') || 0;
@@ -42,6 +51,14 @@ export function setMarketData(data) {
     };
 }
 
+/**
+ * Dispatch to set currency in state
+ *
+ * @method setCurrency
+ * @param {string} currency
+ *
+ * @returns {{type: {string}, payload: {string} }}
+ */
 export function setCurrency(currency) {
     return {
         type: ActionTypes.SET_CURRENCY,
@@ -49,12 +66,21 @@ export function setCurrency(currency) {
     };
 }
 
+/**
+ * Dispatch to set latest IOTA price information in state
+ *
+ * @method setPrice
+ * @param {object} data
+ *
+ * @returns {{type: {string}, usd: {number}, eur: {number}, btc: {number}, eth: {number} }}
+ */
 export function setPrice(data) {
     const priceData = get(data, 'RAW.IOT');
     const usdPrice = get(priceData, 'USD.PRICE') || 0;
     const eurPrice = get(priceData, 'EUR.PRICE') || 0;
     const btcPrice = get(priceData, 'BTC.PRICE') || 0;
     const ethPrice = get(priceData, 'ETH.PRICE') || 0;
+
     return {
         type: ActionTypes.SET_PRICE,
         usd: usdPrice,
@@ -64,6 +90,13 @@ export function setPrice(data) {
     };
 }
 
+/**
+ * Gets latest IOTA price information
+ *
+ * @method getPrice
+ *
+ * @returns {function} dispatch
+ */
 export function getPrice() {
     return (dispatch) => {
         fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=IOT&tsyms=USD,EUR,BTC,ETH')
@@ -72,6 +105,13 @@ export function getPrice() {
     };
 }
 
+/**
+ * Gets latest time series price data to map on chart
+ *
+ * @method getChartData
+ *
+ * @returns {function} dispatch
+ */
 export function getChartData() {
     return (dispatch) => {
         const arrayCurrenciesTimeFrames = [];
@@ -125,6 +165,14 @@ export function getChartData() {
     };
 }
 
+/**
+ * Dispatch to set latest chart data points in state
+ *
+ * @method setPrice
+ * @param {object} chartData
+ *
+ * @returns {{type: {string}, chartData: {object} }}
+ */
 export function setChartData(chartData) {
     return {
         type: ActionTypes.SET_CHART_DATA,
@@ -132,6 +180,13 @@ export function setChartData(chartData) {
     };
 }
 
+/**
+ * Gets latest market information
+ *
+ * @method getMarketData
+ *
+ * @returns {function} dispatch
+ */
 export function getMarketData() {
     return (dispatch) =>
         fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=IOT&tsyms=USD')
@@ -146,6 +201,7 @@ export function changeCurrency(currency, timeframe) {
         dispatch(getChartData(currency, timeframe));
     };
 }
+
 export function changeTimeframe(currency, timeframe) {
     return (dispatch) => {
         dispatch(setTimeframe(timeframe));
