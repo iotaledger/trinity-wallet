@@ -1,13 +1,13 @@
 export default {
-    body: { color: '#000000', bg: '#F2F2F2', alt: '#000000' },
+    body: { color: '#000000', bg: '#F2F2F2', alt: 'rgba(0, 0, 0, 0.15)' },
     bar: { color: '#000000', bg: '#F2F2F2', hover: '#e7e7e7', alt: '#e7e7e7' },
     primary: { color: '#000000', hover: '#333333', body: '#F2F2F2', border: '#000000' },
     secondary: { color: '#000000', hover: '#333333', body: '#F2F2F2' },
     positive: { color: '#55a05b', hover: '#185B48', body: '#F2F2F2' },
     negative: { color: '#db703b', hover: '#9B000D', body: '#F2F2F2' },
     extra: { color: '#000000', hover: '#669FBF', body: '#1E1E1E' },
-    label: { color: '#000000', hover: '#000000', active: '#752677' },
-    dark: { color: '#F2F2F2', hover: '#cacdd3', active: '#000000' },
+    dark: { color: '#F2F2F2', hover: '#cacdd3', body: '#000000' },
+    label: { color: '#000000', hover: '#000000' },
     input: {
         color: '#000000',
         bg: '#F2F2F2',
@@ -16,6 +16,6 @@ export default {
         hover: '#000000',
     },
     chart: { color: '#000000' },
-    box: { bg: '#F2F2F2', alt: '#dee1e7', body: '#000000' },
     wave: { primary: 'rgba(0, 0, 0, 0.5)', secondary: 'rgba(0, 0, 0, 0.05)' },
+    box: { bg: '#ffffff', alt: '#dee1e7', body: '#000000' },
 };
