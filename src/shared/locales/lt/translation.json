@@ -59,6 +59,7 @@
         "password": "Slaptažodis",
         "unrecognisedPassword": "Slaptažodis neatpažintas",
         "unrecognisedPasswordExplanation": "Slaptažodis neatpažintas. Bandykite dar kartą.",
+        "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "Sinchronizuojama",
         "syncInProgressExplanation": "Palaukite, kol sinchronizacija bus baigta.",
         "somethingWentWrong": "Įvyko klaida",
@@ -653,7 +654,8 @@
     },
     "terms": {
         "termsAndConditions": "Sąlygos ir nuostatos",
-        "accept": "Sutinku"
+        "accept": "Sutinku",
+        "readAllToContinue": "Please read all the text to continue"
     },
     "privacyPolicy": {
         "privacyPolicy": "Privatumo politika",
