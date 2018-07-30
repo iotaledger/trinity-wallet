@@ -178,7 +178,7 @@ class App extends React.Component {
                 break;
             case 'logout':
                 this.props.clearWalletData();
-                this.props.setPassword('');
+                this.props.setPassword({});
                 this.props.history.push('/onboarding/login');
                 break;
             default:
