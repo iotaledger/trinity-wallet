@@ -18,7 +18,7 @@ import com.christopherdro.RNPrint.RNPrintPackage;
 import com.github.wumke.RNExitApp.RNExitAppPackage;
 import net.rhogan.rnsecurerandom.RNSecureRandomPackage;
 import org.iota.mobile.IOTAMobilePackage;
-
+import co.airbitz.fastcrypto.RNFastCryptoPackage;
 import cl.json.ShareApplication;
 import module.share.ShareSecurePackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -62,6 +62,7 @@ public class MainApplication extends NavigationApplication implements ShareAppli
             // eg. new VectorIconsPackage()
             new SvgPackage(),
             new MainReactPackage(),
+            new RNFastCryptoPackage(),
             new TranslucentModalReactPackage(),
             new FlagSecurePackage(),
             new RNDetectNavbarAndroidPackage(),

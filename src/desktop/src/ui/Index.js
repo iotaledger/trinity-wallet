@@ -1,4 +1,4 @@
-/*global Electron*/
+/* global Electron */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -15,6 +15,7 @@ import { getUpdateData, updateTheme } from 'actions/settings';
 import { fetchNodeList } from 'actions/polling';
 import { disposeOffAlert, generateAlert } from 'actions/alerts';
 
+import Theme from 'ui/global/Theme';
 import Idle from 'ui/global/Idle';
 import Titlebar from 'ui/global/Titlebar';
 import FatalError from 'ui/global/FatalError';
@@ -26,77 +27,43 @@ import Onboarding from 'ui/views/onboarding/Index';
 import Wallet from 'ui/views/wallet/Index';
 import Settings from 'ui/views/settings/Index';
 import Account from 'ui/views/account/Index';
-import Activation from 'ui/views/onboarding/Activation';
 
 import withAutoNodeSwitching from 'containers/global/AutoNodeSwitching';
 
 import css from './index.scss';
 
-/** Main wallet wrapper component */
+/**
+ * Wallet wrapper component
+ **/
 class App extends React.Component {
     static propTypes = {
-        /** Alpha versiona ctivation code */
-        activationCode: PropTypes.string,
-        /** Browser location */
+        /** @ignore */
         location: PropTypes.object,
-        /** Browser histoty object */
+        /** @ignore */
         history: PropTypes.object.isRequired,
-        /** Settings state state data
-         * @ignore
-         */
-        settings: PropTypes.object.isRequired,
-        /** Accounts state state data
-         * @ignore
-         */
-        accounts: PropTypes.object.isRequired,
-        /** wallet state data
-         * @ignore
-         */
+        /** @ignore */
+        locale: PropTypes.string.isRequired,
+        /** @ignore */
         wallet: PropTypes.object.isRequired,
-        /** Create a notification message
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         * @ignore
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Clear  alert state data
-         * @ignore
-         */
+        /** @ignore */
         disposeOffAlert: PropTypes.func.isRequired,
-        /** Clear wallet state data
-         * @ignore
-         */
+        /** @ignore */
         clearWalletData: PropTypes.func.isRequired,
-        /** Set password state
-         * @param {String} password - Current password
-         * @ignore
-         */
+        /** @ignore */
         setPassword: PropTypes.func.isRequired,
-        /** Fetches remote node list
-         * @ignore
-         */
+        /** @ignore */
         fetchNodeList: PropTypes.func.isRequired,
-        /** Initiate update check
-         * @param {Boolean} force - Force update confirmation dialog
-         * @ignore
-         */
+        /** @ignore */
         getUpdateData: PropTypes.func.isRequired,
-        /** Current theme name
-         * @ignore
-         */
+        /** @ignore */
         themeName: PropTypes.string.isRequired,
-        /** Change theme
-         * @param {Object} theme - Theme object
-         * @param {String} name - Theme name
-         * @ignore
-         */
+        /** @ignore */
         updateTheme: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         * @ignore
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
+        /** @ignore */
         setDeepLink: PropTypes.func.isRequired,
     };
 
@@ -119,20 +86,13 @@ class App extends React.Component {
         Electron.onEvent('url-params', this.onSetDeepUrl);
         Electron.requestDeepLink();
 
-        try {
-            this.checkVaultAvailability();
-        } catch (error) {
-            // eslint-disable-next-line react/no-did-mount-set-state
-            this.setState({
-                fatalError: true,
-            });
-        }
+        this.checkVaultAvailability();
     }
 
     componentWillReceiveProps(nextProps) {
         /* On language change */
-        if (nextProps.settings.locale !== this.props.settings.locale) {
-            i18next.changeLanguage(nextProps.settings.locale);
+        if (nextProps.locale !== this.props.locale) {
+            i18next.changeLanguage(nextProps.locale);
             Electron.changeLanguage(this.props.t);
         }
 
@@ -160,6 +120,12 @@ class App extends React.Component {
         Electron.removeEvent('url-params', this.onSetDeepUrl);
     }
 
+    /**
+     * Parse and verify deep link
+     * Set valid deep link data to state
+     * Navigate to Send view if wallet authenticated
+     * @param {string} Data - data passed
+     */
     setDeepUrl(data) {
         const { generateAlert, t } = this.props;
 
@@ -179,6 +145,9 @@ class App extends React.Component {
         }
     }
 
+    /**
+     * Check if key chain is available
+     */
     async checkVaultAvailability() {
         try {
             await Electron.readKeychain(ACC_MAIN);
@@ -189,13 +158,17 @@ class App extends React.Component {
         }
     }
 
+    /**
+     * Proxy native menu triggers to an action
+     * @param {string} Item - Triggered menu item
+     */
     menuToggle(item) {
         switch (item) {
             case 'about':
-                // Is processed in About component
+                // Is processed in ui/global/About
                 break;
             case 'feedback':
-                // Is processed in Feedback component
+                // Is processed in ui/global/Feedback
                 break;
             case 'addAccount':
                 this.props.history.push('/onboarding/seed-intro');
@@ -221,24 +194,16 @@ class App extends React.Component {
     };
 
     render() {
-        const { accounts, location, activationCode, settings } = this.props;
+        const { location } = this.props;
 
         const currentKey = location.pathname.split('/')[1] || '/';
 
         if (this.state.fatalError) {
             return (
                 <div className={css.trintiy}>
+                    <Theme location={location} />
                     <Titlebar />
                     <FatalError />
-                </div>
-            );
-        }
-
-        if (!activationCode) {
-            return (
-                <div className={css.trintiy}>
-                    <Titlebar />
-                    <Activation />
                 </div>
             );
         }
@@ -247,7 +212,8 @@ class App extends React.Component {
             <div className={css.trintiy}>
                 <Titlebar />
                 <About />
-                <Idle timeout={settings.lockScreenTimeout} />
+                <Idle />
+                <Theme location={location} />
                 <TransitionGroup>
                     <CSSTransition key={currentKey} classNames="fade" timeout={300}>
                         <div>
@@ -255,11 +221,7 @@ class App extends React.Component {
                                 <Route exact path="/settings/:setting?" component={Settings} />
                                 <Route exact path="/account/:setting?" component={Account} />
                                 <Route path="/wallet" component={Wallet} />
-                                <Route
-                                    path="/onboarding"
-                                    complete={accounts.onboardingComplete}
-                                    component={Onboarding}
-                                />
+                                <Route path="/onboarding" component={Onboarding} />
                                 <Route exact path="/" loop={false} component={this.Init} />
                             </Switch>
                         </div>
@@ -271,10 +233,8 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    settings: state.settings,
-    accounts: state.accounts,
+    locale: state.settings.locale,
     wallet: state.wallet,
-    activationCode: state.app.activationCode,
     themeName: state.settings.themeName,
 });
 
@@ -289,4 +249,9 @@ const mapDispatchToProps = {
     updateTheme,
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(translate()(withAutoNodeSwitching(App))));
+export default withRouter(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps,
+    )(translate()(withAutoNodeSwitching(App))),
+);

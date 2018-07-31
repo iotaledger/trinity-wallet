@@ -495,7 +495,7 @@ describe('actions: transfers', () => {
                 });
 
                 describe('when receive address is one of the input addresses', () => {
-                    it('should create action of type IOTA/ALERTS/SHOW with a message "You cannot make a value transfer to one of your own addresses."', () => {
+                    it('should create action of type IOTA/ALERTS/SHOW with a message "You cannot send to an address that is being used as an input in the transaction."', () => {
                         const store = mockStore({ accounts });
 
                         const wereAddressesSpentFrom = sinon
@@ -533,7 +533,9 @@ describe('actions: transfers', () => {
                             .then(() => {
                                 expect(
                                     store.getActions().find((action) => action.type === 'IOTA/ALERTS/SHOW').message,
-                                ).to.equal('You cannot make a value transfer to one of your own addresses.');
+                                ).to.equal(
+                                    'You cannot send to an address that is being used as an input in the transaction.',
+                                );
 
                                 wereAddressesSpentFrom.restore();
                                 inputUtils.getUnspentInputs.restore();

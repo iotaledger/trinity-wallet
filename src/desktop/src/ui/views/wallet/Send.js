@@ -1,3 +1,4 @@
+/* global Electron */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { formatValue, formatUnit } from 'libs/iota/utils';
@@ -22,67 +23,41 @@ import css from './send.scss';
  */
 class Send extends React.PureComponent {
     static propTypes = {
-        /** Current Send transaction fields state */
+        /** @ignore */
         fields: PropTypes.shape({
             address: PropTypes.string.isRequired,
             amount: PropTypes.string.isRequired,
             message: PropTypes.string.isRequired,
         }),
-        /** Current send status */
+        /** @ignore */
         isSending: PropTypes.bool.isRequired,
-        /** Current password value */
+        /** @ignore */
         password: PropTypes.string.isRequired,
-        /** Current account name */
+        /** @ignore */
         accountName: PropTypes.string.isRequired,
-        /** Total current account wallet ballance in iotas */
+        /** @ignore */
         balance: PropTypes.number.isRequired,
-        /** Fiat currency settings
-         * @property {bool} remotePow - Local PoW enable state
-         * @property {string} conversionRate - Active currency conversion rate to MIota
-         * @property {string} currency - Active currency name
-         */
+        /** @ignore */
         settings: PropTypes.shape({
             conversionRate: PropTypes.number.isRequired,
             currency: PropTypes.string.isRequired,
         }),
-        /** Send progress and description
-         * @property {number} progress - Current percentage progress
-         * @property {string} title - Current progress description
-         */
+        /** @ignore */
         progress: PropTypes.shape({
             progress: PropTypes.number,
             title: PropTypes.string,
         }),
-        /** Validate the transaction inputs
-         *  @param {string} address - receiver address
-         *  @param {number} value - transaction value in iotas
-         */
+        /** @ignore */
         validateInputs: PropTypes.func.isRequired,
-        /** Send the transaction
-         *  @param {string} seed - seed to be used for the transaction signing
-         *  @param {string} address - receiver address
-         *  @param {number} value - transaction value in iotas
-         *  @param {string} message - transaction message
-         *  @param {function} taskRunner - task manager
-         *  @param {function} powFn - local PoW function
-         */
+        /** @ignore */
         sendTransfer: PropTypes.func.isRequired,
-        /** Update address field value
-         *  @param {string} address - receiver address
-         */
+        /** @ignore */
         setSendAddressField: PropTypes.func.isRequired,
-        /** Update amount field value
-         *  @param {string} amount - receiver address
-         */
+        /** @ignore */
         setSendAmountField: PropTypes.func.isRequired,
-        /** Update message field value
-         *  @param {string} message - receiver address
-         */
+        /** @ignore */
         setSendMessageField: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         * @ignore
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
@@ -90,6 +65,12 @@ class Send extends React.PureComponent {
         isTransferModalVisible: false,
         isUnitsVisible: false,
     };
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.isSending !== nextProps.isSending) {
+            Electron.updateMenu('enabled', !nextProps.isSending);
+        }
+    }
 
     validateInputs = (e) => {
         const { validateInputs } = this.props;

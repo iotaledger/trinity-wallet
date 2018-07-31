@@ -9,7 +9,7 @@ import Password from 'ui/components/input/Password';
 import Button from 'ui/components/Button';
 import Modal from 'ui/components/modal/Modal';
 
-import { getSeed, vaultAuth, sha256 } from 'libs/crypto';
+import { getSeed, vaultAuth, hash } from 'libs/crypto';
 
 /**
  * Password confirmation dialog component
@@ -32,22 +32,22 @@ class ModalPassword extends PureComponent {
         /** On dialog close event */
         onClose: PropTypes.func,
         /** On correct password entered event
-         * @param {String} Password - Entered password plain text
-         * @param {Object} Vault - Vault content
+         * @param {string} Password - Entered password plain text
+         * @param {object} Vault - Vault content
          */
         onSuccess: PropTypes.func,
         /** On password entered event callback
          */
         onSubmit: PropTypes.func,
         /** Create a notification message
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
+         * @param {string} type - notification type - success, error
+         * @param {string} title - notification title
+         * @param {string} text - notification explanation
          * @ignore
          */
         generateAlert: PropTypes.func.isRequired,
         /** Translation helper
-         * @param {String} translationString - Locale string identifier to be translated
+         * @param {string} translationString - Locale string identifier to be translated
          * @ignore
          */
         t: PropTypes.func.isRequired,
@@ -76,7 +76,7 @@ class ModalPassword extends PureComponent {
         }
 
         let seed = null;
-        const passwordHash = await sha256(password);
+        const passwordHash = await hash(password);
 
         try {
             seed = seedName ? await getSeed(passwordHash, seedName) : await vaultAuth(passwordHash);
@@ -107,7 +107,7 @@ class ModalPassword extends PureComponent {
                         label={t('password')}
                         onChange={(value) => this.setState({ password: value })}
                     />
-                    <fieldset>
+                    <footer>
                         {!isForced ? (
                             <Button onClick={() => onClose()} variant="dark">
                                 {t('cancel')}
@@ -116,7 +116,7 @@ class ModalPassword extends PureComponent {
                         <Button type="submit" variant={category ? category : 'positive'}>
                             {content.confirm ? content.confirm : t('login:login').toLowerCase()}
                         </Button>
-                    </fieldset>
+                    </footer>
                 </form>
             </Modal>
         );

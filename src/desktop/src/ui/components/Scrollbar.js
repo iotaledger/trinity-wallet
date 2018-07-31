@@ -11,7 +11,9 @@ class Scrollbar extends React.PureComponent {
     static propTypes = {
         /* Container reach scroll end callback */
         onScrollEnd: PropTypes.func,
-        /* Scollbar container content */
+        /* Unique ID of the content, required for scroll position reset if changed */
+        contentId: PropTypes.string,
+        /* Scrollbar container content */
         children: PropTypes.any.isRequired,
     };
 
@@ -19,6 +21,12 @@ class Scrollbar extends React.PureComponent {
         this.Ps = new PerfectScrollbar(this.container, { suppressScrollX: true });
         if (this.props.onScrollEnd) {
             this.container.addEventListener('ps-y-reach-end', this.props.onScrollEnd, false);
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.contentId !== nextProps.contentId) {
+            this.container.scrollTop = 0;
         }
     }
 
