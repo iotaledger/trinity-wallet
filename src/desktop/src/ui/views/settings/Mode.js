@@ -4,22 +4,18 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { setMode } from 'actions/settings';
 
-import Info from 'ui/components/Info';
 import Toggle from 'ui/components/Toggle';
 
-/** Wallet mode component */
+/**
+ * Wallet mode component
+ **/
 class Mode extends React.PureComponent {
     static propTypes = {
-        /** Current wallet mode
-         */
+        /** @ignore */
         mode: PropTypes.string.isRequired,
-        /** Change wallet mode
-         * @param {String} Mode - Target wallet mode
-         */
+        /** @ignore */
         setMode: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - Locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
@@ -30,16 +26,16 @@ class Mode extends React.PureComponent {
 
         return (
             <form>
-                <Info>
-                    <p>{t('modeSelection:expertModeExplanation')}</p>
-                    <p>{t('modeSelection:modesExplanation')}</p>
-                </Info>
+                <h3>{t('settings:mode')}</h3>
                 <Toggle
                     checked={targetMode === 'Standard'}
                     onChange={() => setMode(targetMode)}
                     on={t('modeSelection:expert')}
                     off={t('modeSelection:standard')}
                 />
+                <p>
+                    {t('modeSelection:expertModeExplanation')} {t('modeSelection:modesExplanation')}
+                </p>
             </form>
         );
     }
@@ -53,4 +49,7 @@ const mapDispatchToProps = {
     setMode,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(Mode));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(translate()(Mode));

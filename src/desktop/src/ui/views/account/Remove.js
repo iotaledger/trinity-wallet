@@ -12,32 +12,22 @@ import ModalPassword from 'ui/components/modal/Password';
 
 import Button from 'ui/components/Button';
 import Confirm from 'ui/components/modal/Confirm';
+import Info from 'ui/components/Info';
 
 /**
  * Remove account component
  */
 class Remove extends PureComponent {
     static propTypes = {
-        /** Current account name */
+        /** @ignore */
         accountName: PropTypes.string.isRequired,
-        /** Remove account
-         * @param {String} accountName - Target account name
-         * @ignore
-         */
+        /** @ignore */
         deleteAccount: PropTypes.func.isRequired,
-        /** Browser history object */
+        /** @ignore */
         history: PropTypes.object.isRequired,
-        /** Create a notification message
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         * @ignore
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {String} translationString - Locale string identifier to be translated
-         * @ignore
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
@@ -45,6 +35,11 @@ class Remove extends PureComponent {
         removeConfirm: false,
     };
 
+    /**
+     * Remove account from wallet state and seed vault
+     * @param {string} Password - Plain text account password
+     * @returns {undefined}
+     */
     removeAccount = async (password) => {
         const { accountName, history, t, generateAlert, deleteAccount } = this.props;
 
@@ -92,6 +87,9 @@ class Remove extends PureComponent {
 
         return (
             <div>
+                <Info>
+                    <p>{t('deleteAccount:yourSeedWillBeRemoved')}</p>
+                </Info>
                 <Button variant="negative" onClick={() => this.setState({ removeConfirm: !removeConfirm })}>
                     {t('accountManagement:deleteAccount')}
                 </Button>
@@ -122,4 +120,7 @@ const mapDispatchToProps = {
     deleteAccount,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(translate()(Remove));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(translate()(Remove));

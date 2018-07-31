@@ -71,7 +71,7 @@ class TwoFactorSetupEnterToken extends Component {
          */
         t: PropTypes.func.isRequired,
         /** Wallet's password hash */
-        password: PropTypes.string.isRequired,
+        password: PropTypes.object.isRequired,
     };
 
     constructor() {

@@ -12,13 +12,13 @@ import css from './logo.scss';
  */
 export default class Logo extends React.PureComponent {
     static propTypes = {
-        /** On animation end  event */
+        /** On animation end event callback */
         onEnd: PropTypes.func,
         /** Logo size */
         size: PropTypes.number,
-        /** Animation state */
+        /** Should animation run */
         animate: PropTypes.bool,
-        /** Should animation loop state */
+        /** Should animation loop */
         loop: PropTypes.bool,
     };
 

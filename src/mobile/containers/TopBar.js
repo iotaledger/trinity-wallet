@@ -226,7 +226,10 @@ class TopBar extends Component {
     }
 
     showModal() {
-        this.setState({ isModalVisible: true });
+        const { isTransitioning } = this.props;
+        if (!isTransitioning) {
+            this.setState({ isModalVisible: true });
+        }
     }
 
     hideModal() {
@@ -497,7 +500,6 @@ class TopBar extends Component {
                                 textColor={{ color: bar.color }}
                                 borderColor={{ borderColor: bar.color }}
                                 barColor={bar.color}
-                                barBg={bar.bg}
                                 notificationLog={notificationLog}
                                 clearLog={this.props.clearLog}
                             />
