@@ -34,7 +34,9 @@
 		601BFD6220C39A610097D329 /* libRNViewShot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 601BFD6120C39A580097D329 /* libRNViewShot.a */; };
 		6056CF5520827D3C0006A2F3 /* libRNCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6056CF5420827D2F0006A2F3 /* libRNCamera.a */; };
 		6056CF5C20827E370006A2F3 /* libReactNativePermissions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6056CF5B20827E2E0006A2F3 /* libReactNativePermissions.a */; };
-		6079ACDE2110BE6B005B21CB /* Argon2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6079ACDD2110BE6B005B21CB /* Argon2.swift */; };
+		6079ACDE2110BE6B005B21CB /* Argon2Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6079ACDD2110BE6B005B21CB /* Argon2Core.swift */; };
+		6079ACE02110DD2C005B21CB /* Argon2IOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6079ACDF2110DD2C005B21CB /* Argon2IOS.swift */; };
+		6079AD4E2110E752005B21CB /* Argon2IOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 6079AD4D2110E752005B21CB /* Argon2IOS.m */; };
 		6079C42420D95F18006B252E /* Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6079C42320D95F17006B252E /* Empty.swift */; };
 		60BDD27C208D128D0085549F /* libRNSecureClipboard.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60BDD27B208D12790085549F /* libRNSecureClipboard.a */; };
 		6271062A9C4773BE282CDC0CF95480D8 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B655981D53B5AE618EDBD102EA41BF51 /* libReact.a */; };
@@ -670,7 +672,9 @@
 		601BFD5C20C39A560097D329 /* RNViewShot.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNViewShot.xcodeproj; path = "../node_modules/react-native-view-shot/ios/RNViewShot.xcodeproj"; sourceTree = "<group>"; };
 		6056CF4F20827D2F0006A2F3 /* RNCamera.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RNCamera.xcodeproj"; sourceTree = "<group>"; };
 		6056CF5620827E2E0006A2F3 /* ReactNativePermissions.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativePermissions.xcodeproj; path = "../node_modules/react-native-permissions/ios/ReactNativePermissions.xcodeproj"; sourceTree = "<group>"; };
-		6079ACDD2110BE6B005B21CB /* Argon2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Argon2.swift; sourceTree = "<group>"; };
+		6079ACDD2110BE6B005B21CB /* Argon2Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Argon2Core.swift; sourceTree = "<group>"; };
+		6079ACDF2110DD2C005B21CB /* Argon2IOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Argon2IOS.swift; sourceTree = "<group>"; };
+		6079AD4D2110E752005B21CB /* Argon2IOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Argon2IOS.m; sourceTree = "<group>"; };
 		6079C42320D95F17006B252E /* Empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Empty.swift; path = iotaWallet/Empty.swift; sourceTree = "<group>"; };
 		6079C42520D95F85006B252E /* iotaWallet-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "iotaWallet-Bridging-Header.h"; path = "iotaWallet/iotaWallet-Bridging-Header.h"; sourceTree = "<group>"; };
 		60BDD276208D12790085549F /* RNSecureClipboard.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNSecureClipboard.xcodeproj; path = "../node_modules/react-native-secure-clipboard/ios/RNSecureClipboard.xcodeproj"; sourceTree = "<group>"; };
@@ -1041,7 +1045,9 @@
 		60A097C62110BDE7008180C9 /* Argon2 */ = {
 			isa = PBXGroup;
 			children = (
-				6079ACDD2110BE6B005B21CB /* Argon2.swift */,
+				6079ACDD2110BE6B005B21CB /* Argon2Core.swift */,
+				6079ACDF2110DD2C005B21CB /* Argon2IOS.swift */,
+				6079AD4D2110E752005B21CB /* Argon2IOS.m */,
 			);
 			path = Argon2;
 			sourceTree = "<group>";
@@ -2434,11 +2440,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6079ACE02110DD2C005B21CB /* Argon2IOS.swift in Sources */,
 				962469C90FA6C9D7DB8B0F1D49DD98E7 /* AppDelegate.m in Sources */,
 				6079C42420D95F18006B252E /* Empty.swift in Sources */,
 				CB866281209F36CA00C026E3 /* EntangledIOS.m in Sources */,
 				3E58EC90CE11629FBA816AAD96D16464 /* main.m in Sources */,
-				6079ACDE2110BE6B005B21CB /* Argon2.swift in Sources */,
+				6079AD4E2110E752005B21CB /* Argon2IOS.m in Sources */,
+				6079ACDE2110BE6B005B21CB /* Argon2Core.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
