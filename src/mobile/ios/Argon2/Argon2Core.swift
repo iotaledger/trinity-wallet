@@ -10,7 +10,7 @@ import Foundation
 import CatCrypto
 
 struct Argon2Core {
-  
+
   /// Initializes Argon2
   ///
   /// - Parameters:
@@ -28,10 +28,10 @@ struct Argon2Core {
     argon2Crypto.context.salt = salt
     argon2Crypto.context.hashLength = hashLength
     argon2Crypto.context.parallelism = parallelism
-    
+
     return argon2Crypto
   }
-  
+
   /// Hashes a given password
   ///
   /// - Parameters:
@@ -45,7 +45,7 @@ struct Argon2Core {
     let hash = argon2Crypto.hash(password: password)
     return hash.value!
   }
-  
+
   /// Verifies a hash and password
   ///
   /// - Parameters:
