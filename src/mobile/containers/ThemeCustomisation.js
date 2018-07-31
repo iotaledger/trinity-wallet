@@ -120,22 +120,15 @@ const styles = StyleSheet.create({
 
 class ThemeCustomisation extends Component {
     static propTypes = {
-        /** Update wallet's theme
-         * @param {object} theme - New theme object
-         * @param {string} themeName - New theme name
-         */
+        /** @ignore */
         updateTheme: PropTypes.func.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Currently selected theme name */
+        /** @ignore */
         themeName: PropTypes.string.isRequired,
-        /** Change current setting
-         * @param {string} setting
-         */
+        /** @ignore */
         setSetting: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
@@ -153,6 +146,13 @@ class ThemeCustomisation extends Component {
         leaveNavigationBreadcrumb('ThemeCustomisation');
     }
 
+    /**
+     * Update wallet's theme
+     *
+     * @method onApplyPress
+     * @param {object} theme
+     * @param {string} themeName
+     */
     onApplyPress(theme, themeName) {
         const newTheme = cloneDeep(theme);
         this.props.updateTheme(newTheme, themeName);

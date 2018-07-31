@@ -100,9 +100,7 @@ const styles = StyleSheet.create({
 
 export default class TransactionRow extends PureComponent {
     static propTypes = {
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
         /** Transaction confirmation state */
         status: PropTypes.string.isRequired,
