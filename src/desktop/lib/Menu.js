@@ -1,4 +1,5 @@
 const { Menu, ipcMain, dialog, shell } = require('electron');
+const { autoUpdater } = require('electron-updater');
 
 const state = {
     authorised: false,
@@ -38,7 +39,73 @@ let language = {
     logoutConfirm: 'Are you sure you want to log out?',
     yes: 'Yes',
     no: 'No',
+    updates: {
+        errorRetrievingUpdateData: 'Error retrieving update data',
+        noUpdatesAvailable: 'No updates available',
+        noUpdatesAvailableExplanation: 'Youve got the latest version of IOTA Trinity desktop wallet!',
+        newVersionAvailable: 'New version available',
+        newVersionAvailableExplanation: 'A new Trinity version is available. Do you want to update now?',
+        installUpdate: 'Install Update',
+        installUpdateExplanation: 'Updates downloaded, application will be quit for update.',
+    },
 };
+
+// Disable automatic update downloads
+autoUpdater.autoDownload = false;
+
+/**
+ * On update error event callback
+ */
+autoUpdater.on('error', (error) => {
+    dialog.showErrorBox(
+        language.updates.errorRetrievingUpdateData,
+        error === null ? 'unknown' : (error.stack || error).toString(),
+    );
+});
+
+/**
+ * On update available event callback
+ */
+autoUpdater.on('update-available', () => {
+    dialog.showMessageBox(
+        {
+            type: 'info',
+            title: language.updates.newVersionAvailable,
+            message: language.updates.newVersionAvailableExplanation,
+            buttons: [language.yes, language.no],
+        },
+        (buttonIndex) => {
+            if (buttonIndex === 0) {
+                autoUpdater.downloadUpdate();
+            }
+        },
+    );
+});
+
+/**
+ * On update not available event callback
+ */
+autoUpdater.on('update-not-available', () => {
+    dialog.showMessageBox({
+        title: language.updates.updates.noUpdatesAvailable,
+        message: language.updates.updates.noUpdatesAvailableExplanation,
+    });
+});
+
+/**
+ * On update ready to install event callback
+ */
+autoUpdater.on('update-downloaded', () => {
+    dialog.showMessageBox(
+        {
+            title: language.updates.updates.installUpdate,
+            message: language.updates.updates.installUpdateExplanation,
+        },
+        () => {
+            setImmediate(() => autoUpdater.quitAndInstall());
+        },
+    );
+});
 
 /**
  * Create native menu tree and apply to the application window
@@ -71,7 +138,10 @@ const initMenu = (app, getWindow) => {
                     },
                     {
                         label: `${language.checkUpdate}...`,
-                        click: () => navigate('update'),
+                        click: () => {
+                            console.log('BANG');
+                            autoUpdater.checkForUpdates();
+                        },
                         enabled: state.enabled,
                     },
                     {
