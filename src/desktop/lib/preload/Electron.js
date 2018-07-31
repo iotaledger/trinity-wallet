@@ -9,6 +9,7 @@ const Curl = require('iota.lib.js/lib/crypto/curl/curl');
 const Converter = require('iota.lib.js/lib/crypto/converter/converter');
 const argon2 = require('argon2');
 const kdbx = require('../kdbx');
+const { powFunc, genFunc } = require('entangled-node');
 
 const trytesTrits = [
     [0, 0, 0],
@@ -71,6 +72,39 @@ const Electron = {
         } else {
             clipboard.clear();
         }
+    },
+
+    /**
+     * Do Proof of Work
+     * @param {string} trytes - Input trytes
+     * @param {number} mwm - Min Weight Magnitude
+     * @returns {string} Proof of Work
+     */
+    powFn: async (trytes, mwm) => {
+        return await powFunc(trytes, mwm);
+    },
+
+    /**
+     * Generate address
+     * @param {string} seed - Input seed
+     * @param {number} index - Address index
+     * @param {number} security - Address generation security level
+     * @param {total} total - Amount of addresses to generate
+     * @returns {string} Generated address
+     */
+    genFn: async (seed, index, security, total) => {
+        if (!total || total === 1) {
+            return await genFunc(seed, index, security);
+        }
+
+        const addresses = [];
+
+        for (let i = 0; i < total; i++) {
+            const address = await genFunc(seed, index + i, security);
+            addresses.push(address);
+        }
+
+        return addresses;
     },
 
     /**

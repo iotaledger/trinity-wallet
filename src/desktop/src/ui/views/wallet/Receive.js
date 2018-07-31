@@ -1,3 +1,4 @@
+/* global Electron */
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -5,9 +6,9 @@ import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import { selectAccountInfo, getSelectedAccountName } from 'selectors/accounts';
-import { runTask } from 'worker';
 
 import { generateAlert } from 'actions/alerts';
+import { generateNewAddress } from 'actions/wallet';
 import { selectLatestAddressFromAccountFactory } from 'iota-wallet-shared-modules/selectors/accounts';
 
 import { byteToChar, getSeed, createRandomSeed } from 'libs/crypto';
@@ -38,6 +39,8 @@ class Receive extends React.PureComponent {
         isSyncing: PropTypes.bool.isRequired,
         /** @ignore */
         isTransitioning: PropTypes.bool.isRequired,
+        /** @ignore */
+        generateNewAddress: PropTypes.func.isRequired,
         /** @ignore */
         isGeneratingReceiveAddress: PropTypes.bool.isRequired,
         /** @ignore */
@@ -76,7 +79,7 @@ class Receive extends React.PureComponent {
 
         const seed = await getSeed(password, accountName, true);
 
-        runTask('generateNewAddress', [seed, accountName, account]);
+        this.props.generateNewAddress(seed, accountName, account, Electron.genFn);
     };
 
     unscramble() {
@@ -176,9 +179,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     generateAlert,
+    generateNewAddress,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(translate()(Receive));
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(Receive));
