@@ -40,5 +40,5 @@ _Please delete items that are not relevant._
 - [ ] I have made corresponding changes to the documentation
 - [ ] I have added tests that prove my fix is effective or that my feature works
 - [ ] New and existing unit tests pass locally with my changes
-- [ ] For changes to `mobile` that include native code (including React Native modules): I have verified that both iOS and Android successfully build in both `Debug` and `Release` modes.
+- [ ] For changes to `mobile` that include native code (including React Native modules): I have verified that both iOS and Android successfully build in both `Debug` and `Release` modes
 - [ ] For changes to `shared`: If applicable, I have verified that my changes are implemented correctly in `desktop` and `mobile`
