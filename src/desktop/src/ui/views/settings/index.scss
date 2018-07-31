@@ -44,13 +44,6 @@ $sidebar-narrow: 70px;
         flex: 1;
         padding: 60px 20px 0;
 
-        > div {
-            height: calc(100vh - 120px);
-            > div:last-child {
-                padding: 0 40px 60px 0;
-            }
-        }
-
         @media print {
             p,
             fieldset {
@@ -163,6 +156,13 @@ $sidebar-narrow: 70px;
                 }
             }
         }
+    }
+}
+
+.scroll {
+    height: calc(100vh - 120px);
+    > div:last-child {
+        padding: 0 40px 60px 0;
     }
 }
 
