@@ -88,8 +88,8 @@ android {
     buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.iota.trinity"
-        versionCode 16
-        versionName "0.4.0"
+        versionCode 17
+        versionName "0.4.1"
         minSdkVersion 21
         targetSdkVersion 26
         multiDexEnabled true
@@ -136,7 +136,8 @@ android {
     }
 }
 dependencies {
-    compile project(':react-native-modal-translucent')
+    implementation project(':react-native-fast-crypto')
+    implementation project(':react-native-modal-translucent')
     implementation project(':react-native-detect-navbar-android')
     implementation project(':react-native-fingerprint-scanner')
     implementation project(':react-native-keep-awake')

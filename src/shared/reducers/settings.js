@@ -300,6 +300,12 @@ const settingsReducer = (state = initialState, action) => {
                 ...state,
                 hideEmptyTransactions: !state.hideEmptyTransactions,
             };
+        // FIXME: Temporarily needed for password migration
+        case ActionTypes.SET_COMPLETED_FORCED_PASSWORD_UPDATE:
+            return {
+                ...state,
+                completedForcedPasswordUpdate: true,
+            };
     }
 
     return state;

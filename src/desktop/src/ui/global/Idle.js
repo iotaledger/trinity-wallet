@@ -1,4 +1,4 @@
-/*global Electron*/
+/* global Electron */
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -11,19 +11,15 @@ import ModalPassword from 'ui/components/modal/Password';
 const events = ['mousemove', 'mousedown', 'keydown', 'touchstart', 'scroll'];
 
 /**
- * User idle lock screen
- * @ignore
+ * User idle lock screen component
  */
 class Idle extends React.Component {
     static propTypes = {
-        /** Set password state data
-         * @param {String} password - Current password
-         * @ignore
-         */
+        /** @ignore */
         setPassword: PropTypes.func.isRequired,
-        /** Idle timeout*/
+        /** @ignore */
         timeout: PropTypes.number.isRequired,
-        /** User authorised state */
+        /** @ignore */
         isAuthorised: PropTypes.bool.isRequired,
     };
 
@@ -96,6 +92,7 @@ class Idle extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
+    timeout: state.settings.lockScreenTimeout,
     isAuthorised: state.wallet.ready,
 });
 
@@ -103,4 +100,7 @@ const mapDispatchToProps = {
     setPassword,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Idle);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(Idle);
