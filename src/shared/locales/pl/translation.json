@@ -118,8 +118,8 @@
         "nodeAutoChanged": "Autom. zmiana serwera",
         "nodeAutoChangedExplanation": "Przełączono na nowy serwer {{- nodeAddress}}, ponieważ poprzednio wybrany serwer był offline.",
         "fingerprintOnSend": "Przyłóż palec do czytnika, aby autoryzować transfer",
-        "masterKey": "Twój seed IOTA jest głównym kluczem do Twoich funduszy.",
-        "seedThief": "Jeśli ktoś inny zdobędzie Twój klucz seed, będzie mógł on wykraść Twoje środki IOTA.",
+        "masterKey": "Seed IOTA jest głównym kluczem do Twoich funduszy.",
+        "seedThief": "Jeśli ktoś inny zdobędzie ten klucz, będzie mógł on wykraść Twoje środki IOTA.",
         "googlePlayServicesNotAvailable": "Usługi Google Play niedostępne",
         "couldNotVerifyDeviceIntegrity": "Nie można zweryfikować integralności urządzenia, ponieważ Usługi Google Play są niedostępne.",
         "clear": "WYCZYŚĆ",
@@ -410,7 +410,7 @@
         "yesINeedASeed": "Tak, potrzebuję klucza",
         "explanation": "<0><0>Możesz go użyć, aby uzyskać dostęp do swoich środków z</0><1> dowolnego portfela</1><2>, na</2><3> dowolnym urządzeniu.</3></0>",
         "loseSeed": "Jeśli utracisz klucz seed, stracisz swoje środki IOTA.",
-        "keepSafe": "Proszę dbaj o bezpieczeństwo swojego klucza seed."
+        "keepSafe": "Zadbaj o bezpieczeństwo swojego klucza seed."
     },
     "welcome": {
         "thankYou": "Dziękujemy za pobranie portfela IOTA"
