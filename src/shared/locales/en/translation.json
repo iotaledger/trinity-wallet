@@ -639,9 +639,7 @@
         "local": "Local",
         "remote": "Remote",
         "powUpdated": "Proof of work settings",
-        "powUpdatedExplanation": "Your proof of work configuration has been updated.",
-        "noWebGLSupport": "WebGL not supported",
-        "noWebGLSupportExplanation": "Your computer does not support WebGL. Please use remote PoW."
+        "powUpdatedExplanation": "Your proof of work configuration has been updated."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Auto-promotion settings",
