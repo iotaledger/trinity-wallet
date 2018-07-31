@@ -59,7 +59,7 @@
         "password": "Password",
         "unrecognisedPassword": "Password non riconosciuta",
         "unrecognisedPasswordExplanation": "La password non è stata riconosciuta. Si prega di riprovare.",
-        "capsLockIsOn": "Caps Lock is on",
+        "capsLockIsOn": "Blocco maiuscole è attivo",
         "syncInProgress": "Sincronizzazione in corso",
         "syncInProgressExplanation": "Si prega di attendere che la sincronizzazione sia completa.",
         "somethingWentWrong": "Si è verificato un errore",
@@ -655,7 +655,7 @@
     "terms": {
         "termsAndConditions": "Termini e condizioni",
         "accept": "Accetto",
-        "readAllToContinue": "Please read all the text to continue"
+        "readAllToContinue": "Si prega di leggere tutto il testo per continuare"
     },
     "privacyPolicy": {
         "privacyPolicy": "Informativa Privacy",
