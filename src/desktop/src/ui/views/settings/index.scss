@@ -30,7 +30,7 @@ $sidebar-narrow: 70px;
     > div {
         display: flex;
         justify-content: center;
-        max-width: 760px;
+        max-width: 780px;
         width: 100%;
         height: 100%;
     }
@@ -46,8 +46,8 @@ $sidebar-narrow: 70px;
 
         > div {
             height: calc(100vh - 120px);
-            > div {
-                padding-bottom: 60px;
+            > div:last-child {
+                padding: 0 40px 60px 0;
             }
         }
 
@@ -61,6 +61,12 @@ $sidebar-narrow: 70px;
         fieldset button {
             margin-right: 20px;
         }
+    }
+
+    hr {
+        border: none;
+        margin: 32px 0;
+        border-top: 1px solid var(--body-alt);
     }
 
     nav {
@@ -79,7 +85,7 @@ $sidebar-narrow: 70px;
             margin-bottom: 16px;
             cursor: pointer;
             &:hover,
-            &[aria-current='true'] {
+            &[aria-current='page'] {
                 color: var(--secondary);
             }
 
@@ -87,12 +93,11 @@ $sidebar-narrow: 70px;
                 margin-right: 20px;
             }
         }
-    }
 
-    hr {
-        border: none;
-        margin: 20px 0;
-        border-top: 2px solid var(--body-alt);
+        hr {
+            border: none;
+            margin: 20px 0;
+        }
     }
 
     h3 {
@@ -101,7 +106,24 @@ $sidebar-narrow: 70px;
         text-align: left;
     }
 
-    @media (max-width: 720px) {
+    p {
+        font-size: 14px;
+        margin-bottom: 32px;
+    }
+
+    p + p {
+        margin-top: -32px;
+    }
+
+    p + button {
+        margin-top: -32px;
+    }
+
+    form {
+        max-width: 480px;
+    }
+
+    @media (max-width: 860px) {
         > div {
             max-width: none;
         }
@@ -140,10 +162,6 @@ $sidebar-narrow: 70px;
                     border-right: 2px solid var(--primary);
                 }
             }
-
-            hr {
-                border-top: 1px solid var(--bar-alt);
-            }
         }
     }
 }
@@ -157,10 +175,20 @@ $sidebar-narrow: 70px;
     text-align: center;
 
     button {
-        margin: 10px;
+        margin: 10px 0;
+        width: calc(50% - 10px);
     }
 
     p {
         margin-bottom: 30px;
+    }
+
+    div:last-of-type {
+        display: flex;
+        justify-content: space-between;
+
+        button {
+            min-width: 0px;
+        }
     }
 }

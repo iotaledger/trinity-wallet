@@ -1,3 +1,4 @@
+import isEqual from 'lodash/isEqual';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -10,8 +11,7 @@ import FlagSecure from 'react-native-flag-secure-android';
 import Fonts from '../theme/fonts';
 import Seedbox from '../components/SeedBox';
 import CustomTextInput from '../components/CustomTextInput';
-import { getSeedFromKeychain } from '../utils/keychain';
-import { getPasswordHash } from '../utils/crypto';
+import { getSeedFromKeychain, getPasswordHash } from '../utils/keychain';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
@@ -112,7 +112,7 @@ class ViewSeed extends Component {
         /** Index of currently selected account in accountNames list */
         seedIndex: PropTypes.number.isRequired,
         /** Hash for wallet's password */
-        password: PropTypes.string.isRequired,
+        password: PropTypes.object.isRequired,
         /** Name for selected account */
         selectedAccountName: PropTypes.string.isRequired,
         /** Theme settings */
@@ -167,11 +167,11 @@ class ViewSeed extends Component {
         }
     }
 
-    viewSeed() {
+    async viewSeed() {
         const { password, selectedAccountName, t } = this.props;
-        const pwdHash = getPasswordHash(this.state.password);
+        const pwdHash = await getPasswordHash(this.state.password);
 
-        if (password === pwdHash) {
+        if (isEqual(password, pwdHash)) {
             getSeedFromKeychain(pwdHash, selectedAccountName)
                 .then((seed) => {
                     if (seed === null) {

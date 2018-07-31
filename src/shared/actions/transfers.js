@@ -76,51 +76,118 @@ export const ActionTypes = {
     RETRY_FAILED_TRANSACTION_ERROR: 'IOTA/TRANSFERS/RETRY_FAILED_TRANSACTION_ERROR',
 };
 
+/**
+ * Dispatch when a transaction is about to be manually promoted
+ *
+ * @method promoteTransactionRequest
+ * @param {string} payload
+ *
+ * @returns {{type: {string}, payload: {string} }}
+ */
 const promoteTransactionRequest = (payload) => ({
     type: ActionTypes.PROMOTE_TRANSACTION_REQUEST,
     payload,
 });
 
+/**
+ * Dispatch when a transaction is successfully promoted
+ *
+ * @method promoteTransactionSuccess
+ *
+ * @returns {{type: {string} }}
+ */
 const promoteTransactionSuccess = () => ({
     type: ActionTypes.PROMOTE_TRANSACTION_SUCCESS,
 });
 
+/**
+ * Dispatch when an error occurs during manual promotion
+ *
+ * @method promoteTransactionError
+ *
+ * @returns {{type: {string} }}
+ */
 const promoteTransactionError = () => ({
     type: ActionTypes.PROMOTE_TRANSACTION_ERROR,
 });
 
+/**
+ * Dispatch when a transaction is about to be made
+ *
+ * @method sendTransferRequest
+ *
+ * @returns {{type: {string} }}
+ */
 export const sendTransferRequest = () => ({
     type: ActionTypes.SEND_TRANSFER_REQUEST,
 });
 
+/**
+ * Dispatch when a transaction is successfully sent
+ *
+ * @method sendTransferSuccess
+ * @param {object} payload
+ *
+ * @returns {{type: {string}, payload: {object} }}
+ */
 export const sendTransferSuccess = (payload) => ({
     type: ActionTypes.SEND_TRANSFER_SUCCESS,
     payload,
 });
 
+/**
+ * Dispatch when an error occurs during transaction
+ *
+ * @method sendTransferError
+ *
+ * @returns {{type: {string} }}
+ */
 export const sendTransferError = () => ({
     type: ActionTypes.SEND_TRANSFER_ERROR,
 });
 
+/**
+ * Dispatch before a retry attempt on a failed transaction
+ *
+ * @method retryFailedTransactionRequest
+ *
+ * @returns {{type: {string} }}
+ */
 export const retryFailedTransactionRequest = () => ({
     type: ActionTypes.RETRY_FAILED_TRANSACTION_REQUEST,
 });
 
+/**
+ * Dispatch when a failed transaction is successfully sent to the tangle
+ *
+ * @method retryFailedTransactionSuccess
+ * @param {object} payload
+ *
+ * @returns {{type: {string}, payload: {object} }}
+ */
 export const retryFailedTransactionSuccess = (payload) => ({
     type: ActionTypes.RETRY_FAILED_TRANSACTION_SUCCESS,
     payload,
 });
 
+/**
+ * Dispatch if an error occurs during a retry attempt to send a failed transaction to the tangle
+ *
+ * @method retryFailedTransactionSuccess
+ *
+ * @returns {{type: {string} }}
+ */
 export const retryFailedTransactionError = () => ({
     type: ActionTypes.RETRY_FAILED_TRANSACTION_ERROR,
 });
 
 /**
- *   On successful transfer, update store, generate alert and clear send text fields
- *   @method completeTransfer
- *   @param {object} payload - sending status, address, transfer value
+ *  On successful transfer, update store, generate alert and clear send page text fields
  *
- *   @returns {function} dispatch
+ *  @method completeTransfer
+ *  @param {object} payload - sending status, address, transfer value
+ *
+ *  @returns {function} dispatch
  **/
 export const completeTransfer = (payload) => {
     return (dispatch) => {
@@ -313,6 +380,7 @@ export const forceTransactionPromotion = (
 
 /**
  * Sends a transaction
+ *
  * @param  {string} seed
  * @param  {string} receiveAddress
  * @param  {number} value
@@ -655,6 +723,7 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
 
 /**
  * Retries a transaction that previously failed to send.
+ *
  * @param  {string} accountName
  * @param  {string} bundleHash
  * @param  {function} powFn

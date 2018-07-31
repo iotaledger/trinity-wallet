@@ -175,7 +175,7 @@ class SnapshotTransition extends Component {
         /** Attaching to tangle state */
         isAttachingToTangle: PropTypes.bool.isRequired,
         /** Wallet password  */
-        password: PropTypes.string.isRequired,
+        password: PropTypes.object.isRequired,
         /** Sets whether modal is active or inactive */
         toggleModalActivity: PropTypes.func.isRequired,
         /** Determines whether modal is open */
