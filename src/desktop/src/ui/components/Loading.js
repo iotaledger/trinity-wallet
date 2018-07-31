@@ -1,3 +1,4 @@
+/* global Electron */
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -22,6 +23,14 @@ export default class Loading extends React.PureComponent {
         /** On animation end event callback */
         onEnd: PropTypes.func,
     };
+
+    componentDidMount() {
+        Electron.updateMenu('enabled', false);
+    }
+
+    componentWillUnmount() {
+        Electron.updateMenu('enabled', true);
+    }
 
     render() {
         const { loop, inline, transparent, title, subtitle, onEnd } = this.props;
