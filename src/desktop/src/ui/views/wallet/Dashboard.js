@@ -6,11 +6,11 @@ import { translate } from 'react-i18next';
 import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { runTask } from 'worker';
 import { getSeed } from 'libs/crypto';
 import { capitalize } from 'libs/helpers';
 
 import { getSelectedAccountName } from 'selectors/accounts';
+import { getAccountInfo } from 'actions/accounts';
 
 import Icon from 'ui/components/Icon';
 import List from 'ui/components/List';
@@ -29,6 +29,8 @@ class Dashboard extends React.PureComponent {
     static propTypes = {
         /** @ignore */
         accountName: PropTypes.string.isRequired,
+        /** @ignore */
+        getAccountInfo: PropTypes.func.isRequired,
         /** @ignore */
         password: PropTypes.object,
         /** @ignore */
@@ -54,7 +56,7 @@ class Dashboard extends React.PureComponent {
 
         const seed = await getSeed(password, accountName, true);
 
-        runTask('getAccountInfo', [seed, accountName]);
+        this.props.getAccountInfo(seed, accountName, null, Electron.genFn);
     };
 
     render() {
@@ -124,4 +126,8 @@ const mapStateToProps = (state) => ({
     isDeepLinkActive: state.wallet.deepLinkActive,
 });
 
-export default translate()(connect(mapStateToProps)(Dashboard));
+const mapDispatchToProps = {
+    getAccountInfo,
+};
+
+export default translate()(connect(mapStateToProps, mapDispatchToProps)(Dashboard));

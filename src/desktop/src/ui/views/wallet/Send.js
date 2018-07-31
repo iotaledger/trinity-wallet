@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { formatValue, formatUnit } from 'libs/iota/utils';
 
 import { getSeed } from 'libs/crypto';
-import { getPoWFn } from 'libs/pow';
 
 import AddressInput from 'ui/components/input/Address';
 import AmountInput from 'ui/components/input/Amount';
@@ -93,23 +92,14 @@ class Send extends React.PureComponent {
     }
 
     confirmTransfer = async () => {
-        const { fields, password, accountName, sendTransfer, settings, generateAlert, t } = this.props;
+        const { fields, password, accountName, sendTransfer, settings} = this.props;
 
         this.setState({
             isTransferModalVisible: false,
         });
 
-        let powFn = null;
-
-        if (!settings.remotePoW) {
-            try {
-                powFn = getPoWFn();
-            } catch (e) {
-                return generateAlert('error', t('pow:noWebGLSupport'), t('pow:noWebGLSupportExplanation'));
-            }
-        }
-
         const seed = await getSeed(password, accountName, true);
+        const powFn = !settings.remotePoW ? Electron.powFn : null;
 
         sendTransfer(seed, fields.address, parseInt(fields.amount) || 0, fields.message, null, powFn);
     };
