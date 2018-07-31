@@ -8,7 +8,8 @@
 
 import Foundation
 
-@objc class Argon2IOS: NSObject {
+@objc(Argon2IOS)
+class Argon2IOS: NSObject {
 
   /// Hashes a given password
   ///
@@ -38,10 +39,13 @@ import Foundation
   ///   - resolve: A JS Promise resolve block
   ///   - reject: A JS Promise reject block
   @objc func verify(params: [String: Any], hash: String, password: String, resolver resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) {
+    // Validate parameters
     if params["iterations"] is Int && params["salt"] is String && params["hashLength"] is Int && params["parallelism"] is Int {
+      // Resolve the result
       let r = Argon2Core.argon2Verify(params: params, hash: hash, password: password)
       resolve(r)
     } else {
+      // Reject with an error message containing the parameters passed
       reject("Argon2 verify", "Invalid parameters provided: " + params.debugDescription, nil)
     }
   }

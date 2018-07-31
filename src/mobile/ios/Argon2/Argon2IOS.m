@@ -19,7 +19,7 @@ RCT_EXTERN_METHOD(verify:(NSDictionary *)params hash:(NSString *)hash password:(
 // Create a GCD queue for Argon2
 -(dispatch_queue_t)methodQueue
 {
-  return dispatch_queue_create("com.iota.trinity.Argon2", DISPATCH_QUEUE_SERIAL);
+  return dispatch_queue_create("com.iota.trinity.Argon2IOS", DISPATCH_QUEUE_SERIAL);
 }
 
 @end
