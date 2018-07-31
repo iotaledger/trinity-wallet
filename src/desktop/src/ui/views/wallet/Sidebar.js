@@ -11,6 +11,7 @@ import { clearWalletData, setSeedIndex } from 'actions/wallet';
 
 import Logo from 'ui/components/Logo';
 import Icon from 'ui/components/Icon';
+import Scrollbar from 'ui/components/Scrollbar';
 import Confirm from 'ui/components/modal/Confirm';
 
 import css from './index.scss';
@@ -81,27 +82,29 @@ class Sidebar extends React.PureComponent {
                             <Icon icon="wallet" size={20} />
                         </a>
                         <ul>
-                            {accounts.accountNames.map((account, index) => {
-                                return (
-                                    <a
-                                        aria-current={index === seedIndex}
-                                        key={account}
-                                        onClick={() => {
-                                            setSeedIndex(index);
-                                            history.push('/wallet/');
-                                        }}
-                                    >
-                                        <strong>{shorten(account, 16)}</strong>
-                                        <small>{formatIota(accounts.accountInfo[account].balance)}</small>
-                                        <div onClick={(e) => this.accountSettings(e, index)}>
-                                            <Icon icon="settings" size={16} />
-                                        </div>
-                                    </a>
-                                );
-                            })}
-                            <a onClick={() => history.push('/onboarding/seed-intro')}>
-                                + {t('accountManagement:addNewAccount')}
-                            </a>
+                            <Scrollbar>
+                                {accounts.accountNames.map((account, index) => {
+                                    return (
+                                        <a
+                                            aria-current={index === seedIndex}
+                                            key={account}
+                                            onClick={() => {
+                                                setSeedIndex(index);
+                                                history.push('/wallet/');
+                                            }}
+                                        >
+                                            <strong>{shorten(account, 16)}</strong>
+                                            <small>{formatIota(accounts.accountInfo[account].balance)}</small>
+                                            <div onClick={(e) => this.accountSettings(e, index)}>
+                                                <Icon icon="settings" size={16} />
+                                            </div>
+                                        </a>
+                                    );
+                                })}
+                                <a onClick={() => history.push('/onboarding/seed-intro')}>
+                                    + {t('accountManagement:addNewAccount')}
+                                </a>
+                            </Scrollbar>
                         </ul>
                     </div>
                 </nav>
@@ -142,7 +145,4 @@ const mapDispatchToProps = {
     setSeedIndex,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(translate()(Sidebar));
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(Sidebar));
