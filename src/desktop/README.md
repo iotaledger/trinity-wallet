@@ -15,9 +15,9 @@ Then run the following command to install electron globally.
 yarn global add electron
 ```
 
-### 2. Clone or download the Trinity repo from GitLab.
+### 2. Clone or download the Trinity repo from GitHub.
 
-Clone the GitLab repo by running this command:
+Clone the repo by running this command:
 
 ```
 git clone https://github.com/iotaledger/trinity-wallet.git
@@ -60,9 +60,6 @@ To start the application in development mode, run
 ```
 yarn start
 ```
-
-Note: you might have to rebuild the `keytar` node module under Windows with `.\node_modules\.bin\electron-builder install-app-deps`
-as there's a bug with it ([link](https://github.com/atom/node-keytar/issues/51)).
 
 ## Trinity theming
 
