@@ -60,7 +60,4 @@ const mapDispatchToProps = {
     setOnboardingSeed,
 };
 
-export default connect(
-    null,
-    mapDispatchToProps,
-)(translate()(SeedIntro));
+export default connect(null, mapDispatchToProps)(translate()(SeedIntro));
