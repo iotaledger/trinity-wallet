@@ -42,11 +42,11 @@ let language = {
     updates: {
         errorRetrievingUpdateData: 'Error retrieving update data',
         noUpdatesAvailable: 'No updates available',
-        noUpdatesAvailableExplanation: 'Youve got the latest version of IOTA Trinity desktop wallet!',
+        noUpdatesAvailableExplanation: 'You have the latest version of IOTA Trinity desktop wallet!',
         newVersionAvailable: 'New version available',
         newVersionAvailableExplanation: 'A new Trinity version is available. Do you want to update now?',
         installUpdate: 'Install Update',
-        installUpdateExplanation: 'Updates downloaded, application will be quit for update.',
+        installUpdateExplanation: 'Update downloaded, Trinity will quit and restart for update.',
     },
 };
 

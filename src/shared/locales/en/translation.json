@@ -678,11 +678,11 @@
     "updates": {
         "errorRetrievingUpdateData": "Error retrieving update data",
         "noUpdatesAvailable": "No updates available",
-        "noUpdatesAvailableExplanation": "You've got the latest version of Trinity wallet!",
+        "noUpdatesAvailableExplanation": "You have the latest version of Trinity wallet!",
         "newVersionAvailable": "New version available",
         "newVersionAvailableExplanation": "A new Trinity version is available. Do you want to update now?",
-        "installUpdate": "Install Update",
-        "installUpdateExplanation": "Updates downloaded, Trinity will be quit for update."
+        "installUpdate": "Install Update and Restart",
+        "installUpdateExplanation": "Update downloaded, Trinity will quit and restart for update."
     },
     "notificationLog": {
         "errorLog": "ERROR LOG"
