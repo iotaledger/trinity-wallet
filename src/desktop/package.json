@@ -72,7 +72,7 @@
       "buildResources": "./assets",
       "output": "./out"
     },
-    "appId": "com.iotatoken.trinity",
+    "appId": "org.iota.trinity",
     "asar": true,
     "protocols": [
       {
