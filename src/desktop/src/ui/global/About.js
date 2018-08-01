@@ -53,6 +53,12 @@ class About extends React.PureComponent {
 
                     <article>
                         <Scrollbar>
+                            <h5>0.2.1</h5>
+                            <ul>
+                                <li>Update: Dashboard sidebar scroll for multiple accounts</li>
+                                <li>Update: Settings popup position broken</li>
+                                <li>Fix: Multiple account unique seed check broken</li>
+                            </ul>
                             <h5>0.2.0</h5>
                             <ul>
                                 <li>New: SeedVault export feature at Account settings</li>
