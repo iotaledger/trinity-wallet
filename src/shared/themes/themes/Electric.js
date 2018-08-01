@@ -1,6 +1,6 @@
 export default {
     chart: { color: 'rgb(171, 91, 239)' },
-    bar: { bg: 'rgb(0, 0, 0)', hover: 'rgb(30, 30, 30)', alt: 'rgb(25, 39, 51)', body: 'rgb(240, 242, 246)' },
+    bar: { bg: 'rgb(0, 0, 0)', hover: 'rgb(30, 30, 30)', alt: 'rgb(25, 39, 51)', color: 'rgb(240, 242, 246)' },
     box: { bg: 'rgb(20, 38, 65)', alt: 'rgb(35, 48, 82)', body: 'rgb(240, 242, 246)' },
     label: { color: 'rgb(240, 242, 246)', hover: 'rgb(25, 213, 252)' },
     input: {
