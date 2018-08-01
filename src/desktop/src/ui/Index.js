@@ -11,7 +11,7 @@ import { parseAddress } from 'libs/iota/utils';
 import { ACC_MAIN } from 'libs/crypto';
 
 import { setPassword, clearWalletData, setDeepLink } from 'actions/wallet';
-import { getUpdateData, updateTheme } from 'actions/settings';
+import { updateTheme } from 'actions/settings';
 import { fetchNodeList } from 'actions/polling';
 import { disposeOffAlert, generateAlert } from 'actions/alerts';
 
@@ -55,8 +55,6 @@ class App extends React.Component {
         setPassword: PropTypes.func.isRequired,
         /** @ignore */
         fetchNodeList: PropTypes.func.isRequired,
-        /** @ignore */
-        getUpdateData: PropTypes.func.isRequired,
         /** @ignore */
         themeName: PropTypes.string.isRequired,
         /** @ignore */
@@ -173,9 +171,6 @@ class App extends React.Component {
             case 'addAccount':
                 this.props.history.push('/onboarding/seed-intro');
                 break;
-            case 'update':
-                this.props.getUpdateData(true);
-                break;
             case 'logout':
                 this.props.clearWalletData();
                 this.props.setPassword({});
@@ -242,7 +237,6 @@ const mapDispatchToProps = {
     clearWalletData,
     setPassword,
     setDeepLink,
-    getUpdateData,
     disposeOffAlert,
     generateAlert,
     fetchNodeList,

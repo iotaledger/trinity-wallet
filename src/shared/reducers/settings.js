@@ -2,7 +2,7 @@ import merge from 'lodash/merge';
 import union from 'lodash/union';
 import sortBy from 'lodash/sortBy';
 import { ActionTypes } from '../actions/settings';
-import { DESKTOP_VERSION, defaultNode as node, nodes } from '../config';
+import { defaultNode as node, nodes } from '../config';
 import themes from '../themes/themes';
 
 const initialState = {
@@ -90,15 +90,6 @@ const initialState = {
      *
      */
     hasRandomizedNode: false,
-    /**
-     * Keeps track of desktop's version update information
-     */
-    update: {
-        done: true,
-        error: false,
-        version: DESKTOP_VERSION,
-        notes: [],
-    },
     /**
      * Determines if proof of work should be offloaded to the selected IRI node
      */
@@ -235,36 +226,6 @@ const settingsReducer = (state = initialState, action) => {
                 ...state,
                 node: action.payload,
                 hasRandomizedNode: true,
-            };
-        case ActionTypes.SET_UPDATE_ERROR:
-            return {
-                ...state,
-                update: {
-                    ...state.update,
-                    done: action.payload.force ? false : state.update.done,
-                    error: true,
-                },
-            };
-        case ActionTypes.SET_UPDATE_SUCCESS:
-            return {
-                ...state,
-                update: {
-                    done:
-                        action.payload.force || action.payload.version !== state.update.version
-                            ? false
-                            : state.update.done,
-                    error: false,
-                    version: action.payload.version,
-                    notes: action.payload.notes,
-                },
-            };
-        case ActionTypes.SET_UPDATE_DONE:
-            return {
-                ...state,
-                update: {
-                    ...state.update,
-                    done: true,
-                },
             };
         case ActionTypes.SET_2FA_STATUS:
             return {
