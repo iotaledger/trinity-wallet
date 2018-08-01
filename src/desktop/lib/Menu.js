@@ -66,14 +66,16 @@ const initMenu = (app, getWindow) => {
                         click: () => navigate('about'),
                         enabled: state.enabled,
                     },
+                    /* TODO: Merge PR #208
                     {
                         type: 'separator',
                     },
                     {
                         label: `${language.checkUpdate}...`,
-                        click: () => navigate('update'),
+                        click: () => {}, 
                         enabled: state.enabled,
                     },
+                    */
                     {
                         type: 'separator',
                     },
