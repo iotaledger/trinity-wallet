@@ -239,7 +239,4 @@ const mapDispatchToProps = {
     getCurrencyData,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(translate()(Login));
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(Login));
