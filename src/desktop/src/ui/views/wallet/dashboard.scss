@@ -185,6 +185,14 @@
             flex-direction: column;
             background: var(--box-alt);
 
+            &:first-of-type {
+                border-radius: 4px 0 0 4px;
+            }
+
+            &:last-of-type {
+                border-radius: 0 4px 4px 0;
+            }
+
             @media screen and (min-width: 861px) {
                 > div {
                     display: block;
@@ -245,6 +253,15 @@
                 flex-direction: row;
                 font-size: 14px;
 
+                &:first-of-type {
+                    border-radius: 0 0 0 4px;
+                }
+
+                &:last-of-type {
+                    border-radius: 0 0 4px 0;
+                    left: calc(50% + 1px);
+                }
+
                 p {
                     margin-bottom: 4px;
                 }
@@ -252,11 +269,6 @@
                 span {
                     margin: 0 20px 0 0;
                     font-size: 26px !important;
-                }
-
-                &:last-child {
-                    left: calc(50% + 1px);
-                    border-radius: 0 0 6px 0;
                 }
             }
         }

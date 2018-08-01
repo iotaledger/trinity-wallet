@@ -43,14 +43,9 @@ class Chart extends PureComponent {
          * @param {number} price - Input price value for formatting
          */
         getPriceFormat: PropTypes.func.isRequired,
-        /** Theme settings
-         * @ignore
-         */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         * @ignore
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
