@@ -142,7 +142,4 @@ const mapDispatchToProps = {
     setSeedIndex,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(translate()(Sidebar));
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(Sidebar));

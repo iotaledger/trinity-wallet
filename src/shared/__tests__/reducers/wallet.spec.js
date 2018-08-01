@@ -15,7 +15,7 @@ describe('Reducer: wallet', () => {
                 transitionBalance: 0,
                 transitionAddresses: [],
                 addingAdditionalAccount: false,
-                balanceCheckToggle: false,
+                balanceCheckFlag: false,
                 deepLinkActive: false,
                 hasConnection: true,
                 usedExistingSeed: false,
@@ -544,19 +544,20 @@ describe('Reducer: wallet', () => {
         });
     });
 
-    describe('IOTA/WALLET/SWITCH_BALANCE_CHECK_TOGGLE', () => {
+    describe('IOTA/WALLET/SET_BALANCE_CHECK_FLAG', () => {
         it('should set "transitionBalance" in state to 0', () => {
             const initialState = {
-                balanceCheckToggle: true,
+                balanceCheckFlag: true,
             };
 
             const action = {
-                type: 'IOTA/WALLET/SWITCH_BALANCE_CHECK_TOGGLE',
+                type: 'IOTA/WALLET/SET_BALANCE_CHECK_FLAG',
+                payload: false,
             };
 
             const newState = reducer(initialState, action);
             const expectedState = {
-                balanceCheckToggle: false,
+                balanceCheckFlag: false,
             };
 
             expect(newState).to.eql(expectedState);

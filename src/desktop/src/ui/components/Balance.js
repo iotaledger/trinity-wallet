@@ -54,10 +54,9 @@ class Balance extends React.PureComponent {
         }
 
         const currencySymbol = getCurrencySymbol(settings.currency);
-        const fiatBalance = round(
-            ((account.balance * marketData.usdPrice) / 1000000) * settings.conversionRate,
+        const fiatBalance = round(account.balance * marketData.usdPrice / 1000000 * settings.conversionRate, 2).toFixed(
             2,
-        ).toFixed(2);
+        );
 
         const balance = !balanceIsShort
             ? formatValue(account.balance)

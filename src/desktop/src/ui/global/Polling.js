@@ -174,7 +174,4 @@ const mapDispatchToProps = {
     removeBundleFromUnconfirmedBundleTails,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(Polling);
+export default connect(mapStateToProps, mapDispatchToProps)(Polling);
