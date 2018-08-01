@@ -49,7 +49,4 @@ const mapDispatchToProps = {
     setMode,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(translate()(Mode));
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(Mode));
