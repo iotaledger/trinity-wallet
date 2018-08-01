@@ -139,7 +139,6 @@ const initMenu = (app, getWindow) => {
                     {
                         label: `${language.checkUpdate}...`,
                         click: () => {
-                            console.log('BANG');
                             autoUpdater.checkForUpdates();
                         },
                         enabled: state.enabled,

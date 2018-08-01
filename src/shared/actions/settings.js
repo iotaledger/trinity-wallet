@@ -3,7 +3,6 @@ import keys from 'lodash/keys';
 import { changeIotaNode } from '../libs/iota';
 import { generateAlert } from './alerts';
 import i18next from '../i18next';
-import { UPDATE_URL } from '../config';
 import { isNodeSynced, checkAttachToTangleAsync } from '../libs/iota/extendedApi';
 import Errors from '../libs/errors';
 
@@ -25,9 +24,6 @@ export const ActionTypes = {
     CURRENCY_DATA_FETCH_SUCCESS: 'IOTA/SETTINGS/CURRENCY_DATA_FETCH_SUCCESS',
     CURRENCY_DATA_FETCH_ERROR: 'IOTA/SETTINGS/CURRENCY_DATA_FETCH_ERROR',
     SET_RANDOMLY_SELECTED_NODE: 'IOTA/SETTINGS/SET_RANDOMLY_SELECTED_NODE',
-    SET_UPDATE_ERROR: 'IOTA/SETTINGS/SET_UPDATE_ERROR',
-    SET_UPDATE_SUCCESS: 'IOTA/SETTINGS/UPDATE_SUCCESS',
-    SET_UPDATE_DONE: 'IOTA/SETTINGS/UPDATE_DONE',
     SET_NODELIST: 'IOTA/SETTINGS/SET_NODELIST',
     SET_REMOTE_POW: 'IOTA/SETTINGS/SET_REMOTE_POW',
     SET_AUTO_PROMOTION: 'IOTA/SETTINGS/SET_AUTO_PROMOTION',
@@ -581,58 +577,6 @@ export function changeAutoPromotionSettings() {
                 ),
             );
         }
-    };
-}
-
-/**
- * Receives new release data and updates the release state
- *
- * @method getUpdateData
- * @param {boolean} force - should confirmation dialog be forced
- *
- * @returns {function} dispatch
- */
-export function getUpdateData(force) {
-    return (dispatch) => {
-        return fetch(UPDATE_URL)
-            .then(
-                (response) => response.json(),
-                () => {
-                    dispatch({
-                        type: ActionTypes.SET_UPDATE_ERROR,
-                        payload: {
-                            force,
-                        },
-                    });
-                },
-            )
-            .then((json) => {
-                if (json && json.version) {
-                    dispatch({
-                        type: ActionTypes.SET_UPDATE_SUCCESS,
-                        payload: {
-                            version: json.version,
-                            notes: json.notes,
-                            force,
-                        },
-                    });
-                }
-            });
-    };
-}
-
-/**
- * Set update version state as done
- *
- * @method setUpdateDone
- *
- * @returns {function} dispatch
- */
-export function setUpdateDone() {
-    return (dispatch) => {
-        dispatch({
-            type: ActionTypes.SET_UPDATE_DONE,
-        });
     };
 }
 
