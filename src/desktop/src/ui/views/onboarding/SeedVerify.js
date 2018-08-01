@@ -1,4 +1,4 @@
-/*global Electron*/
+/* global Electron */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -17,23 +17,15 @@ import SeedInput from 'ui/components/input/Seed';
  */
 class SeedVerify extends React.PureComponent {
     static propTypes = {
-        /** Current wallet password */
+        /** @ignore */
         password: PropTypes.string.isRequired,
-        /** Browser History object */
+        /** @ignore */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
-        /** Create a notification message
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         * @ignore
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         * @ignore
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
@@ -44,7 +36,6 @@ class SeedVerify extends React.PureComponent {
 
     componentDidMount() {
         if (Electron.getOnboardingSeed()) {
-            Electron.clipboard(null);
             Electron.garbageCollect();
         }
     }
@@ -55,6 +46,11 @@ class SeedVerify extends React.PureComponent {
         }));
     };
 
+    /**
+     * Verify valid seed, set onboarding seed state
+     * @param {event} event - Form submit event
+     * @returns {Promise}
+     */
     setSeed = async (e) => {
         if (e) {
             e.preventDefault();
@@ -85,16 +81,16 @@ class SeedVerify extends React.PureComponent {
                 'error',
                 t('enterSeed:seedTooShort'),
                 t('enterSeed:seedTooShortExplanation', { maxLength: MAX_SEED_LENGTH, currentLength: seed.length }),
-                999999,
             );
             return;
         }
 
         if (!isGenerated) {
             Electron.setOnboardingSeed(seed, false);
+            history.push('/onboarding/account-name');
+        } else {
+            history.push('/onboarding/account-password');
         }
-
-        history.push('/onboarding/account-name');
     };
 
     render() {
@@ -113,7 +109,14 @@ class SeedVerify extends React.PureComponent {
                             <strong>{t('enterSeed:neverShare')}</strong>
                         </p>
                     )}
-                    <SeedInput seed={seed} focus onChange={this.onChange} label={t('seed')} closeLabel={t('back')} />
+                    <SeedInput
+                        seed={seed}
+                        focus
+                        updateImportName={!isGenerated}
+                        onChange={this.onChange}
+                        label={t('seed')}
+                        closeLabel={t('back')}
+                    />
                 </section>
                 <footer>
                     <Button to={`/onboarding/seed-${isGenerated ? 'save' : 'intro'}`} className="square" variant="dark">
