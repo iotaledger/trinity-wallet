@@ -10,52 +10,38 @@ import { addAccountName, increaseSeedCount, setOnboardingComplete } from 'action
 import { setPassword } from 'actions/wallet';
 import { setOnboardingName } from 'actions/ui';
 
-import { setSeed, setTwoFA, sha256 } from 'libs/crypto';
+import { setSeed, setTwoFA, hash, clearVault } from 'libs/crypto';
 import { passwordReasons } from 'libs/password';
 
 import Button from 'ui/components/Button';
 import PasswordInput from 'ui/components/input/Password';
 
 /**
- * Onboarding, set account password
+ * Onboarding, Set account password
  */
 class AccountPassword extends React.PureComponent {
     static propTypes = {
-        /** Add new account name
-         * @param {String} name - Account name
-         */
+        /** @ignore */
         addAccountName: PropTypes.func.isRequired,
-        /** Increase seed count
-         */
+        /** @ignore */
         increaseSeedCount: PropTypes.func.isRequired,
-        /** Set password state
-         * @param {String} password - Current password
-         * @ignore
-         */
+        /** @ignore */
+        seedCount: PropTypes.number.isRequired,
+        /** @ignore */
         setPassword: PropTypes.func.isRequired,
-        /** Set onboarding account name
-         * @param {String} name - New accounts name
-         */
+        /** @ignore */
         setOnboardingName: PropTypes.func.isRequired,
-        /** Set onboarding status to complete */
+        /** @ignore */
         setOnboardingComplete: PropTypes.func.isRequired,
-        /** Onboarding set seed and name */
+        /** @ignore */
         onboarding: PropTypes.object.isRequired,
-        /** Browser history object */
+        /** @ignore */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
-        /** Create a notification message
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         * @ignore
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         * @ignore
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
@@ -65,6 +51,10 @@ class AccountPassword extends React.PureComponent {
         loading: false,
     };
 
+    /**
+     * Check for valid password, create new account, reset onboarding state
+     * @returns {undefined}
+     */
     createAccount = async (e) => {
         const {
             setPassword,
@@ -72,6 +62,7 @@ class AccountPassword extends React.PureComponent {
             increaseSeedCount,
             setOnboardingName,
             setOnboardingComplete,
+            seedCount,
             history,
             generateAlert,
             onboarding,
@@ -109,11 +100,17 @@ class AccountPassword extends React.PureComponent {
             loading: true,
         });
 
-        const passwordHash = await sha256(password);
+        if (seedCount === 0) {
+            await clearVault(null, true);
+        }
+
+        const passwordHash = await hash(password);
+
+        increaseSeedCount();
 
         addAccountName(onboarding.name);
-        increaseSeedCount();
         setPassword(passwordHash);
+
         await setSeed(passwordHash, onboarding.name, Electron.getOnboardingSeed());
         await setTwoFA(passwordHash, null);
         Electron.setOnboardingSeed(null);
@@ -166,6 +163,7 @@ class AccountPassword extends React.PureComponent {
 
 const mapStateToProps = (state) => ({
     onboarding: state.ui.onboarding,
+    seedCount: state.accounts.accountNames.length,
 });
 
 const mapDispatchToProps = {

@@ -1,3 +1,4 @@
+/* global Electron */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -13,37 +14,27 @@ import Button from 'ui/components/Button';
 import Input from 'ui/components/input/Text';
 
 /**
- * Onboarding, set account name
+ * Onboarding, Set account name
  */
 class AccountName extends React.PureComponent {
     static propTypes = {
-        /** If first account is beeing created */
+        /** @ignore */
         firstAccount: PropTypes.bool.isRequired,
-        /** Current accounts info */
+        /** @ignore */
         accountInfo: PropTypes.object,
-        /** Current seed count */
+        /** @ignore */
         seedCount: PropTypes.number.isRequired,
-        /** Set onboarding seed name */
+        /** @ignore */
         setOnboardingName: PropTypes.func.isRequired,
-        /** Set additional account info
-         * @param {Object} data - Additional account data
-         */
+        /** @ignore */
         setAdditionalAccountInfo: PropTypes.func.isRequired,
-        /** Onboarding set seed and name */
+        /** @ignore */
         onboarding: PropTypes.object.isRequired,
-        /** Browser history object */
+        /** @ignore */
         history: PropTypes.object.isRequired,
-        /** Create a notification message
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         * @ignore
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         * @ignore
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
@@ -51,28 +42,55 @@ class AccountName extends React.PureComponent {
         name: this.props.onboarding.name.length ? this.props.onboarding.name : this.getDefaultAccountName(),
     };
 
+    /**
+     * Get default account name placeholder based on current account count
+     * @returns {string} Account name
+     */
     getDefaultAccountName() {
-        const { t, seedCount } = this.props;
-        if (seedCount === 0) {
-            return t('mainWallet');
-        } else if (seedCount === 1) {
-            return t('secondWallet');
-        } else if (seedCount === 2) {
-            return t('thirdWallet');
-        } else if (seedCount === 3) {
-            return t('fourthWallet');
-        } else if (seedCount === 4) {
-            return t('fifthWallet');
-        } else if (seedCount === 5) {
-            return t('sixthWallet');
-        } else if (seedCount === 6) {
-            return t('otherWallet');
+        const { accountInfo, seedCount, t } = this.props;
+
+        let defaultName = '';
+
+        switch (seedCount) {
+            case 0:
+                defaultName = t('mainWallet');
+                break;
+            case 1:
+                defaultName = t('secondWallet');
+                break;
+            case 2:
+                defaultName = t('thirdWallet');
+                break;
+            case 3:
+                defaultName = t('fourthWallet');
+                break;
+            case 4:
+                defaultName = t('fifthWallet');
+                break;
+            case 5:
+                defaultName = t('sixthWallet');
+                break;
+            default:
+                defaultName = t('otherWallet');
+                break;
         }
-        return '';
+
+        const accountNames = Object.keys(accountInfo);
+
+        return accountNames.map((accountName) => accountName.toLowerCase()).indexOf(defaultName) < 0 ? defaultName : '';
     }
 
-    setName = (e) => {
-        e.preventDefault();
+    /**
+     * 1. Check for valid accout name
+     * 2. In case onboarding seed does not exists, navigate to Seed generation view
+     * 3. In case of additional seed, navigate to Login view
+     * 4. In case of first seed, but seed already set, navigate to Account name view
+     * @param {Event} event - Form submit event
+     * @returns {undefined}
+     */
+    setName = (event) => {
+        event.preventDefault();
+
         const {
             firstAccount,
             setOnboardingName,
@@ -108,6 +126,10 @@ class AccountName extends React.PureComponent {
 
         setOnboardingName(this.state.name);
 
+        if (!Electron.getOnboardingSeed()) {
+            return history.push('/onboarding/seed-generate');
+        }
+
         if (!firstAccount) {
             setAdditionalAccountInfo({
                 addingAdditionalAccount: true,
@@ -120,7 +142,7 @@ class AccountName extends React.PureComponent {
     };
 
     render() {
-        const { t, onboarding } = this.props;
+        const { t } = this.props;
         const { name } = this.state;
         return (
             <form onSubmit={this.setName}>
@@ -136,7 +158,7 @@ class AccountName extends React.PureComponent {
                 </section>
                 <footer>
                     <Button
-                        to={`/onboarding/seed-${onboarding.isGenerated ? 'save' : 'verify'}`}
+                        to={`/onboarding/seed-${!Electron.getOnboardingSeed() ? 'intro' : 'verify'}`}
                         className="square"
                         variant="dark"
                     >
