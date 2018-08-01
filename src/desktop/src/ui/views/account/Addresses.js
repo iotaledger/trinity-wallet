@@ -15,12 +15,9 @@ import css from './addresses.scss';
  */
 class Addresses extends PureComponent {
     static propTypes = {
-        /** Current account info */
+        /** @ignore */
         account: PropTypes.object,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         * @ignore
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
