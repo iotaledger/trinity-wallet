@@ -628,7 +628,7 @@
         "transitionCompleteExplanation": "Snapshot synkronisering var vellykket.",
         "detectedBalance": "Oppdaget saldo: {{amount}} {{unit}}",
         "isThisCorrect": "Er dette riktig?",
-        "snapshotExplanation": "Fra tid til annen gjennomføres det en snapshot for å redusere størrelsen på Tangle.",
+        "snapshotExplanation": "Fra tid til annen gjennomføres det et snapshot for å redusere Tanglens størrelse.",
         "hasSnapshotTakenPlace": "Har det vært gjennomført en snapshot? Trykk på knappen nedenfor for å bli overført.",
         "transition": "Overgang",
         "transitioning": "Overfører til ny snapshot.",
@@ -655,7 +655,7 @@
     "terms": {
         "termsAndConditions": "Vilkår",
         "accept": "Jeg aksepterer",
-        "readAllToContinue": "Please read all the text to continue"
+        "readAllToContinue": "Les hele teksten for å fortsette"
     },
     "privacyPolicy": {
         "privacyPolicy": "Personvernerklæring",
