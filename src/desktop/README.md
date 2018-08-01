@@ -12,15 +12,15 @@ First you need to install Node.JS if you haven’t done that already.
 Then run the following command to install electron globally.
 
 ```
-npm install -g electron
+yarn global add electron
 ```
 
-### 2. Clone or download the Trinity repo from GitLab.
+### 2. Clone or download the Trinity repo from GitHub.
 
-Clone the GitLab repo by running this command:
+Clone the repo by running this command:
 
 ```
-git clone git@github.com:iotaledger/trinity-wallet.git
+git clone https://github.com/iotaledger/trinity-wallet.git
 ```
 
 Or [download](https://github.com/iotaledger/trinity-wallet/archive/develop.zip) the repo and extract the archive.
@@ -28,7 +28,7 @@ Or [download](https://github.com/iotaledger/trinity-wallet/archive/develop.zip) 
 After cloning or downloading and extracting the application run:
 
 ```
-cd src/desktop/
+cd trinity-wallet
 ```
 
 ### 3. Install dependencies
@@ -36,20 +36,20 @@ cd src/desktop/
 Now we need to install dependencies, such as the electron installer or the React code packager. Do this by running:
 
 ```
-npm install
+yarn full-setup
 ```
 
 ### 4. Build Trinity desktop appplication
 
-When the npm install is done you can build the wallet application by running:
+When the yarn install is done you can build the wallet application by running:
 
 ```
-npm run compile:mac
+yarn compile:mac
 ```
 
 Change `mac` to your operating system - `mac`, `win` or `linux`.
 
-This will start the building process for the Trinity desktop application and could take a couple of minutes to finish.
+This will start the building process for the Trinity Desktop application and could take a couple of minutes to finish.
 
 After the building is finished, the application executable and installation files will be located in the directory `src/desktop/out/`.
 
@@ -58,18 +58,15 @@ After the building is finished, the application executable and installation file
 To start the application in development mode, run
 
 ```
-npm start
+yarn start
 ```
-
-Note: you might have to rebuild the `keytar` node module under Windows with `.\node_modules\.bin\electron-rebuild.cmd`
-as there's a bug with it ([link](https://github.com/atom/node-keytar/issues/51)).
 
 ## Trinity theming
 
 To create proof checking screenshots of key wallet views for all Trinity themes, run
 
 ```
-npm run style:shots
+yarn style:shots
 ```
 
 After the command finished, the screenshots will be located in the directory `/shots/`
