@@ -82,7 +82,7 @@ export class MainSettings extends Component {
         const { theme: { body } } = this.props;
 
         this.props.clearWalletData();
-        this.props.setPassword('');
+        this.props.setPassword({});
 
         Navigation.startSingleScreenApp({
             screen: {

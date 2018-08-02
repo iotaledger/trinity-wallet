@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 
 const ScramblingLetter = (props) => {
     const { textStyle, index, scramble, letter, scramblingLetters } = props;
-    return <Text style={textStyle}>{scramble ? scramblingLetters[index] : letter}</Text>;
+    return (
+        <Text style={[textStyle, { opacity: scramble ? 0.5 : 1 }]}>{scramble ? scramblingLetters[index] : letter}</Text>
+    );
 };
 
 ScramblingLetter.propTypes = {

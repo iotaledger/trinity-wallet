@@ -6,7 +6,7 @@ describe('Reducer: wallet', () => {
         it('should have an initial state', () => {
             const initialState = {
                 ready: false,
-                password: '',
+                password: {},
                 seed: Array(82).join(' '),
                 accountName: 'MAIN WALLET',
                 seedIndex: 0,
@@ -15,7 +15,7 @@ describe('Reducer: wallet', () => {
                 transitionBalance: 0,
                 transitionAddresses: [],
                 addingAdditionalAccount: false,
-                balanceCheckToggle: false,
+                balanceCheckFlag: false,
                 deepLinkActive: false,
                 hasConnection: true,
                 usedExistingSeed: false,
@@ -43,14 +43,14 @@ describe('Reducer: wallet', () => {
         });
     });
 
-    describe('IOTA/WALLET/SET_SEED', () => {
+    describe('IOTA/UI/SET_ONBOARDING_SEED', () => {
         it('should assign "seed" in payload to "seed" prop in state', () => {
             const initialState = {
                 seed: '',
             };
 
             const action = {
-                type: 'IOTA/WALLET/SET_SEED',
+                type: 'IOTA/UI/SET_ONBOARDING_SEED',
                 payload: { seed: '9'.repeat(81) },
             };
 
@@ -62,14 +62,14 @@ describe('Reducer: wallet', () => {
             expect(newState.seed).to.eql(expectedState.seed);
         });
 
-        it('should assign "usedExistingSeed" in payload to "usedExistingSeed" prop in state', () => {
+        it('should assign negation of "isGenerated" in payload to "usedExistingSeed" prop in state', () => {
             const initialState = {
                 usedExistingSeed: true,
             };
 
             const action = {
-                type: 'IOTA/WALLET/SET_SEED',
-                payload: { usedExistingSeed: false },
+                type: 'IOTA/UI/SET_ONBOARDING_SEED',
+                payload: { isGenerated: true },
             };
 
             const newState = reducer(initialState, action);
@@ -104,7 +104,7 @@ describe('Reducer: wallet', () => {
     describe('IOTA/WALLET/SET_PASSWORD', () => {
         it('should assign payload to "password" in state', () => {
             const initialState = {
-                password: '',
+                password: {},
             };
 
             const action = {
@@ -544,19 +544,20 @@ describe('Reducer: wallet', () => {
         });
     });
 
-    describe('IOTA/WALLET/SWITCH_BALANCE_CHECK_TOGGLE', () => {
+    describe('IOTA/WALLET/SET_BALANCE_CHECK_FLAG', () => {
         it('should set "transitionBalance" in state to 0', () => {
             const initialState = {
-                balanceCheckToggle: true,
+                balanceCheckFlag: true,
             };
 
             const action = {
-                type: 'IOTA/WALLET/SWITCH_BALANCE_CHECK_TOGGLE',
+                type: 'IOTA/WALLET/SET_BALANCE_CHECK_FLAG',
+                payload: false,
             };
 
             const newState = reducer(initialState, action);
             const expectedState = {
-                balanceCheckToggle: false,
+                balanceCheckFlag: false,
             };
 
             expect(newState).to.eql(expectedState);

@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
+import { setOnboardingName } from 'actions/ui';
+
 import Icon from 'ui/components/Icon';
 import Waves from 'ui/components/Waves';
 
@@ -25,13 +27,15 @@ import css from './index.scss';
  */
 class Onboarding extends React.PureComponent {
     static propTypes = {
-        /** Is wallet in authorised state */
+        /** @ignore */
+        setOnboardingName: PropTypes.func.isRequired,
+        /** @ignore */
         isAuthorised: PropTypes.bool,
-        /** Onboarding completion status */
+        /** @ignore */
         complete: PropTypes.bool,
-        /** Browser location */
+        /** @ignore */
         location: PropTypes.object,
-        /** Browser history obejct */
+        /** @ignore */
         history: PropTypes.object,
     };
 
@@ -47,11 +51,23 @@ class Onboarding extends React.PureComponent {
         }
     }
 
+    /**
+     * Reset onboarding seed, navigate to Dashboard view
+     * @returns {undefined}
+     */
     closeOnboarding = () => {
+        const { setOnboardingName } = this.props;
+
         Electron.setOnboardingSeed(null);
+        setOnboardingName('');
         this.props.history.push('/wallet/');
     };
 
+    /**
+     * Render onboarding completion steps
+     * @param {string} currentKey - Current onboarding view slug
+     * @returns {object} - Completion steps
+     */
     steps(currentKey) {
         const steps = [
             'seed-intro',
@@ -121,6 +137,7 @@ class Onboarding extends React.PureComponent {
 
 const mapStateToProps = (state) => ({
     complete: state.accounts.onboardingComplete,
+    setOnboardingName,
     isAuthorised: state.wallet.ready,
 });
 

@@ -1,11 +1,11 @@
-/*global Electron*/
+/* global Electron */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { translate, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 
 import { changePowSettings, changeAutoPromotionSettings, setLockScreenTimeout } from 'actions/settings';
-import { completeSnapshotTransition } from 'actions/wallet';
+import { completeSnapshotTransition, setBalanceCheckFlag } from 'actions/wallet';
 import { generateAlert } from 'actions/alerts';
 
 import { clearVault, getSeed } from 'libs/crypto';
@@ -24,7 +24,6 @@ import ModalConfirm from 'ui/components/modal/Confirm';
 import Loading from 'ui/components/Loading';
 import Toggle from 'ui/components/Toggle';
 import TextInput from 'ui/components/input/Text';
-import Info from 'ui/components/Info';
 import Scrollbar from 'ui/components/Scrollbar';
 
 /**
@@ -32,77 +31,48 @@ import Scrollbar from 'ui/components/Scrollbar';
  */
 class Advanced extends PureComponent {
     static propTypes = {
-        /** RemotePow PoW enable state */
+        /** @ignore */
         remotePoW: PropTypes.bool.isRequired,
-        /** Auto-promotion enable state */
+        /** @ignore */
         autoPromotion: PropTypes.bool.isRequired,
-        /** Update remote PoW settings state
-         * @ignore
-         */
+        /** @ignore */
         changePowSettings: PropTypes.func.isRequired,
-        /** Update auto-promotion settings state
-         * @ignore
-         */
+        /** @ignore */
         changeAutoPromotionSettings: PropTypes.func.isRequired,
-        /**
-         * Update the lock screen timeout state
-         * @ignore
-         */
+        /** @ignore */
         setLockScreenTimeout: PropTypes.func.isRequired,
-        /**
-         * Lock screen timeout
-         * @ignore
-         */
+        /** @ignore */
         lockScreenTimeout: PropTypes.number.isRequired,
-        /** Create a notification message
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         * @ignore
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {String} translationString - Locale string identifier to be translated
-         * @ignore
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-        /** Current wallet settings
-         */
+        /** @ignore */
         settings: PropTypes.object.isRequired,
-        /** Current wallet state
-         */
+        /** @ignore */
         wallet: PropTypes.object.isRequired,
-        /** Current ui state
-         */
+        /** @ignore */
         ui: PropTypes.object.isRequired,
-        /** Is the wallet transitioning
-         */
+        /** @ignore */
         isTransitioning: PropTypes.bool.isRequired,
-        /** The balance computed from the transition addresses
-         */
+        /** @ignore */
         transitionBalance: PropTypes.number.isRequired,
-        /** The transition addresses
-         */
+        /** @ignore */
         transitionAddresses: PropTypes.array.isRequired,
-        /**
-         * Is the wallet attaching the snapshot transition addresses
-         * to the Tangle?
-         */
+        /** @ignore */
         isAttachingToTangle: PropTypes.bool.isRequired,
-        /** Is the balance check modal open?
-         */
+        /** @ignore */
         isModalActive: PropTypes.bool.isRequired,
-        /** Show/hide the balance check modal
-         */
+        /** @ignore */
         toggleModalActivity: PropTypes.func.isRequired,
-        /** Whether to toggle the balance check modal
-         */
-        balanceCheckToggle: PropTypes.bool.isRequired,
-        /** Currently selected account name */
+        /** @ignore */
+        balanceCheckFlag: PropTypes.bool.isRequired,
+        /** @ignore */
         selectedAccountName: PropTypes.string.isRequired,
-        /** Function to complete the snapshot transition
-         */
+        /** @ignore */
         completeSnapshotTransition: PropTypes.func.isRequired,
+        /** @ignore */
+        setBalanceCheckFlag: PropTypes.func.isRequired,
     };
 
     state = {
@@ -110,20 +80,24 @@ class Advanced extends PureComponent {
     };
 
     componentWillReceiveProps(newProps) {
-        const { balanceCheckToggle } = this.props;
-        if (balanceCheckToggle !== newProps.balanceCheckToggle) {
+        const { balanceCheckFlag } = this.props;
+        if (balanceCheckFlag !== newProps.balanceCheckFlag) {
             this.props.toggleModalActivity();
             return;
         }
-
         const { isTransitioning, isAttachingToTangle, isModalActive } = newProps;
         if (isTransitioning || isAttachingToTangle || isModalActive) {
-            Electron.disableMenu();
+            Electron.updateMenu('enabled', false);
         } else {
-            Electron.enableMenu();
+            Electron.updateMenu('enabled', true);
         }
     }
 
+    /**
+     * Hard reset wallet
+     * @param {string} Password - Plain text wallet password
+     * @returns {undefined}
+     */
     resetWallet = async (password) => {
         const { t, generateAlert } = this.props;
 
@@ -142,25 +116,42 @@ class Advanced extends PureComponent {
         }
     };
 
+    /**
+     * Update wallet lock timeout in interval 1 - 60 minutes
+     * @param {number} value - Timeout in miniutes
+     * @returns {undefined}
+     */
     changeLockScreenTimeout = (value) => {
         const timeout = Math.abs(parseInt(value)) || 1;
         this.props.setLockScreenTimeout(timeout > 60 ? 60 : timeout);
     };
 
+    /**
+     * Trigger manual account sync Worker task
+     * @returns {Promise}
+     */
     syncAccount = async () => {
         const { wallet, selectedAccountName } = this.props;
         const seed = await getSeed(wallet.password, selectedAccountName, true);
         runTask('manuallySyncAccount', [seed, selectedAccountName]);
     };
 
+    /**
+     * Trigger snapshot transition Worker task
+     * @returns {Promise}
+     */
     startSnapshotTransition = async () => {
         const { wallet, addresses, selectedAccountName } = this.props;
         const seed = await getSeed(wallet.password, selectedAccountName, true);
         runTask('transitionForSnapshot', [seed, addresses]);
     };
 
+    /**
+     * Trigger snapshot transition completion
+     * @returns {Promise}
+     */
     transitionBalanceOk = async () => {
-        this.props.toggleModalActivity();
+        this.props.setBalanceCheckFlag(false);
         const { wallet, transitionAddresses, selectedAccountName, settings, t } = this.props;
         const seed = await getSeed(wallet.password, selectedAccountName, true);
 
@@ -177,8 +168,12 @@ class Advanced extends PureComponent {
         this.props.completeSnapshotTransition(seed, selectedAccountName, transitionAddresses, powFn);
     };
 
+    /**
+     * rigger snapshot transition
+     * @returns {Promise}
+     */
     transitionBalanceWrong = async () => {
-        this.props.toggleModalActivity();
+        this.props.setBalanceCheckFlag(false);
         const { wallet, transitionAddresses, selectedAccountName } = this.props;
         const seed = await getSeed(wallet.password, selectedAccountName, true);
         const currentIndex = transitionAddresses.length;
@@ -229,37 +224,39 @@ class Advanced extends PureComponent {
             <div>
                 <Scrollbar>
                     <h3>{t('pow:powUpdated')}</h3>
-                    <Info>
-                        {t('pow:feeless')} <br />
-                        {t('pow:localOrRemote')}
-                    </Info>
                     <Toggle
                         checked={remotePoW}
                         onChange={() => changePowSettings()}
                         on={t('pow:remote')}
                         off={t('pow:local')}
                     />
+                    <p>
+                        {t('pow:feeless')} {t('pow:localOrRemote')}
+                    </p>
                     <hr />
 
                     <h3>{t('advancedSettings:autoPromotion')}</h3>
-                    <Info>{t('advancedSettings:autoPromotionExplanation')}</Info>
                     <Toggle
                         checked={autoPromotion}
                         onChange={() => changeAutoPromotionSettings()}
                         on={t('enabled')}
                         off={t('disabled')}
                     />
+                    <p>{t('advancedSettings:autoPromotionExplanation')}</p>
                     <hr />
 
                     <h3>{t('advancedSettings:snapshotTransition')}</h3>
-                    <Info>
+                    <p>
                         {t('snapshotTransition:snapshotExplanation')} <br />
                         {t('snapshotTransition:hasSnapshotTakenPlace')}
-                    </Info>
-                    <Button onClick={this.startSnapshotTransition} loading={isTransitioning || isAttachingToTangle}>
+                    </p>
+                    <Button
+                        className="small"
+                        onClick={this.startSnapshotTransition}
+                        loading={isTransitioning || isAttachingToTangle}
+                    >
                         {t('snapshotTransition:transition')}
                     </Button>
-
                     <ModalConfirm
                         isOpen={isModalActive}
                         category="primary"
@@ -275,24 +272,23 @@ class Advanced extends PureComponent {
                             cancel: t('global:no'),
                         }}
                     />
-
-                    <br />
-                    <br />
+                    <hr />
 
                     <h3>{t('advancedSettings:manualSync')}</h3>
                     {ui.isSyncing ? (
-                        <Info>
+                        <p>
                             {t('manualSync:syncingYourAccount')} <br />
                             {t('manualSync:thisMayTake')}
-                        </Info>
+                        </p>
                     ) : (
-                        <Info>
+                        <p>
                             {t('manualSync:outOfSync')} <br />
                             {t('manualSync:pressToSync')}
-                        </Info>
+                        </p>
                     )}
                     <Button
                         onClick={this.syncAccount}
+                        className="small"
                         loading={ui.isSyncing}
                         disabled={isTransitioning || isAttachingToTangle}
                     >
@@ -309,15 +305,19 @@ class Advanced extends PureComponent {
 
                     <h3>{t('settings:reset')}</h3>
                     <Trans i18nKey="walletResetConfirmation:warning">
-                        <Info>
+                        <p>
                             <React.Fragment>All of your wallet data including your </React.Fragment>
                             <strong>seeds, password,</strong>
                             <React.Fragment>and </React.Fragment>
                             <strong>other account information</strong>
                             <React.Fragment> will be lost.</React.Fragment>
-                        </Info>
+                        </p>
                     </Trans>
-                    <Button onClick={() => this.setState({ resetConfirm: !resetConfirm })} variant="negative">
+                    <Button
+                        className="small"
+                        onClick={() => this.setState({ resetConfirm: !resetConfirm })}
+                        variant="negative"
+                    >
                         {t('settings:reset')}
                     </Button>
                     <ModalPassword
@@ -357,7 +357,7 @@ const mapStateToProps = (state) => ({
     settings: state.settings,
     lockScreenTimeout: state.settings.lockScreenTimeout,
     transitionBalance: state.wallet.transitionBalance,
-    balanceCheckToggle: state.wallet.balanceCheckToggle,
+    balanceCheckFlag: state.wallet.balanceCheckFlag,
     transitionAddresses: state.wallet.transitionAddresses,
     isAttachingToTangle: state.ui.isAttachingToTangle,
     isTransitioning: state.ui.isTransitioning,
@@ -371,6 +371,7 @@ const mapDispatchToProps = {
     setLockScreenTimeout,
     toggleModalActivity,
     completeSnapshotTransition,
+    setBalanceCheckFlag,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate()(Advanced));

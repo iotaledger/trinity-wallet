@@ -60,6 +60,7 @@
         "password": "Password",
         "unrecognisedPassword": "Unrecognised password",
         "unrecognisedPasswordExplanation": "The password was not recognised. Please try again.",
+        "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "Syncing in progress",
         "syncInProgressExplanation": "Please wait until syncing is complete.",
         "somethingWentWrong": "Something went wrong",
@@ -99,8 +100,8 @@
         "noLongerValid": "The bundle you are trying to promote is no longer valid",
         "transactionAlreadyConfirmed": "Transaction already confirmed",
         "transactionAlreadyConfirmedExplanation": "The transaction you are trying to promote is already confirmed.",
-        "cannotSendToOwn": "Sending to own address",
-        "cannotSendToOwnExplanation": "You cannot make a value transfer to one of your own addresses.",
+        "cannotSendToOwn": "Sending to an input address",
+        "cannotSendToOwnExplanation": "You cannot send to an address that is being used as an input in the transaction.",
         "pleaseWait": "Please wait",
         "pleaseWaitEllipses": "Please wait...",
         "pleaseWaitExplanation": "Trinity is performing another function. Please wait and try again.",
@@ -689,7 +690,8 @@
     },
     "terms": {
         "termsAndConditions": "Terms & Conditions",
-        "accept": "I accept"
+        "accept": "I accept",
+        "readAllToContinue": "Please read all the text to continue"
     },
     "privacyPolicy": {
         "privacyPolicy": "Privacy Policy",
