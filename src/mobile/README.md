@@ -1,6 +1,8 @@
 # IOTA Trinity Mobile Wallet
 
-[![Build Status](https://app.bitrise.io/app/e1c71066b5c75521/status.svg?token=NytmjW1aEHEu-1kNaMRuiQ&branch=develop)](https://app.bitrise.io/app/e1c71066b5c75521)
+Testing: [![Build Status](https://badge.buildkite.com/c780f148417af9e785db5143d4d46dde1e57408a07f212aff3.svg)](https://buildkite.com/iota-foundation/trinity-mobile-primary)
+
+Deployment: [![Build Status](https://app.bitrise.io/app/e1c71066b5c75521/status.svg?token=NytmjW1aEHEu-1kNaMRuiQ&branch=develop)](https://app.bitrise.io/app/e1c71066b5c75521)
 
 
 Repository for the IOTA Trinity Mobile Wallet. The application is built on [React Native](https://facebook.github.io/react-native/).

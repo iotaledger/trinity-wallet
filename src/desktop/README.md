@@ -1,5 +1,9 @@
 # IOTA Trinity Desktop Wallet
 
+Testing: [![Build Status](https://badge.buildkite.com/7116f57245f08626a7ef985f3805bfc836f1d1402224012e6a.svg)](https://buildkite.com/iota-foundation/trinity-desktop-primary)
+
+Deployment: [![Build Status](https://badge.buildkite.com/2c9f4392dc33c7d5f164c5e59da78bf11219086a6756362d11.svg)](https://buildkite.com/iota-foundation/trinity-desktop-deployment)
+
 This is the repository for the IOTA Trinity Desktop Wallet. The application is based on [React](https://reactjs.org) and built on [Electron](https://electronjs.org/).
 
 ## Building the application
