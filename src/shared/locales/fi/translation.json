@@ -1,7 +1,7 @@
 {
     "global": {
         "send": "LÄHETÄ",
-        "cancel": "Cancel",
+        "cancel": "Peruuta",
         "continue?": "Oletko varma, että haluat jatkaa?",
         "noTransactions": "EI HISTORIATIETOJA",
         "refresh": "Päivitä",
@@ -23,12 +23,12 @@
         "thisNodeOutOfSync": "Palvelin jota käytät tällä hetkellä ei sisällä viimeisintä tietoa. Kokeile vaihtaa palvelin toiseen.",
         "seed": "Seed-luku",
         "checksum": "Tarkistussumma",
-        "back": "Back",
+        "back": "Takaisin",
         "goBack": "Takaisin",
         "goBackStep": "Mene askel takaisin",
-        "done": "Done",
+        "done": "Valmis",
         "prev": "EDELLINEN",
-        "next": "Next",
+        "next": "Seuraava",
         "apply": "Hyväksy",
         "save": "Tallenna",
         "close": "Sulje",
@@ -53,9 +53,9 @@
         "fifthWallet": "VIIDES TILI",
         "sixthWallet": "KUUDES TILI",
         "otherWallet": "MUU TILI",
-        "yes": "Yes",
-        "no": "No",
-        "okay": "Okay",
+        "yes": "Kyllä",
+        "no": "Ei",
+        "okay": "Selvä",
         "password": "Salasana",
         "unrecognisedPassword": "Tunnistamaton salasana",
         "unrecognisedPasswordExplanation": "Salasanaa ei tunnistettu. Yritä uudelleen.",
@@ -96,8 +96,8 @@
         "noLongerValid": "Kokoelma jonka siirtoa yrität edistää ei ole enää voimassa",
         "transactionAlreadyConfirmed": "Siirto on jo vahvistettu",
         "transactionAlreadyConfirmedExplanation": "Siirto jota yrität edistää on jo vahvistettu.",
-        "cannotSendToOwn": "Lähetys omaan osoitteeseen",
-        "cannotSendToOwnExplanation": "Et voi siirtää varoja yhteen omista osoitteistasi.",
+        "cannotSendToOwn": "Sending to an input address",
+        "cannotSendToOwnExplanation": "You cannot send to an address that is being used as an input in the transaction.",
         "pleaseWait": "Odota hetki",
         "pleaseWaitEllipses": "Odota hetki...",
         "pleaseWaitExplanation": "Trinity suorittaa jo toista toimintoa. Odota hetki ja yritä uudelleen.",
@@ -398,7 +398,7 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Kirjoita salasanasi resetoidaksesi lompakkosi.",
-        "reset": "Reset"
+        "reset": "Nollaa"
     },
     "walletSetup": {
         "creatingSeed": "Seed-luvun luonti",
@@ -412,7 +412,7 @@
         "keepSafe": "Muista aina pitää seed-lukusi turvassa."
     },
     "welcome": {
-        "thankYou": "Kiitos, että olet ladannut Trinity:n"
+        "thankYou": "Kiitos, että olet ladannut Trinity-lompakon"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0>Kirjoita muistiin seed-lukusi ja tarkistussumma ja</0> <1>varmista kolmesti,</1> <2>että ne ovat oikein.</2>",

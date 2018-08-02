@@ -13,19 +13,22 @@ import PasswordInput from 'ui/components/input/Password';
 import Button from 'ui/components/Button';
 import Icon from 'ui/components/Icon';
 
+import css from './seedExport.scss';
+
 /**
- * Onboarding, Seed export step
+ * SeedVault export component
  */
 class SeedExport extends PureComponent {
     static propTypes = {
         /** Target Seed */
         seed: PropTypes.array.isRequired,
-        /**  On close event callback */
-        onClose: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         * @ignore
+        /** Seed title */
+        title: PropTypes.string,
+        /** On close event callback
+         * @returns {undefined}
          */
+        onClose: PropTypes.func.isRequired,
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
@@ -52,12 +55,17 @@ class SeedExport extends PureComponent {
         this.setState({ step: 2 });
     };
 
-    exportSeed = async (e) => {
-        const { seed, generateAlert, onClose, t } = this.props;
+    /**
+     * Check for valid password, trigger SeedVault file export, reset and close the tutorial
+     * @param {Event} event - Form submit event
+     * @returns {undefined}
+     */
+    exportSeed = async (event) => {
+        const { seed, title, generateAlert, onClose, t } = this.props;
         const { password, passwordConfirm } = this.state;
 
-        if (e) {
-            e.preventDefault();
+        if (event) {
+            event.preventDefault();
         }
 
         const score = zxcvbn(password);
@@ -78,7 +86,15 @@ class SeedExport extends PureComponent {
             );
         }
 
-        const error = await Electron.exportSeed(seed, password);
+        const error = await Electron.exportSeeds(
+            [
+                {
+                    title: title,
+                    seed: seed,
+                },
+            ],
+            password,
+        );
 
         this.setState({
             step: 1,
@@ -104,17 +120,19 @@ class SeedExport extends PureComponent {
 
         if (this.state.step === 1) {
             return (
-                <form onSubmit={this.onStep}>
+                <form className={css.seedExport} onSubmit={this.onStep}>
                     <section>
-                        <Icon icon="seedVault" size={170} />
-                        <h1>{t('seedVault:exportSeedVault')}</h1>
+                        <h1>
+                            <Icon icon="seedVault" size={120} />
+                            {t('seedVault:exportSeedVault')}
+                        </h1>
                         <p>{t('seedVault:seedVaultExplanation')}</p>
                         <p>
                             <strong>{t('seedVault:seedVaultWarning')}</strong>
                         </p>
                     </section>
                     <footer>
-                        <Button onClick={this.onClose} className="square" variant="secondary">
+                        <Button onClick={this.onClose} className="square" variant="dark">
                             {t('goBack')}
                         </Button>
                         <Button type="submit" variant="primary" className="square">
@@ -128,10 +146,12 @@ class SeedExport extends PureComponent {
         const score = zxcvbn(this.state.password);
 
         return (
-            <form onSubmit={(e) => this.exportSeed(e)}>
+            <form className={css.seedExport} onSubmit={this.exportSeed}>
                 <section>
-                    <Icon icon="seedVault" size={170} />
-                    <h1>{t('seedVault:exportSeedVault')}</h1>
+                    <h1>
+                        <Icon icon="seedVault" size={120} />
+                        {t('seedVault:exportSeedVault')}
+                    </h1>
                     <PasswordInput
                         focus
                         value={this.state.password}
@@ -150,7 +170,7 @@ class SeedExport extends PureComponent {
                     />
                 </section>
                 <footer>
-                    <Button onClick={this.onClose} className="square" variant="secondary">
+                    <Button onClick={this.onClose} className="square" variant="dark">
                         {t('goBack')}
                     </Button>
                     <Button type="submit" variant="primary" className="square">

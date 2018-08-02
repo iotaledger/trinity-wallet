@@ -1,9 +1,9 @@
-/*global Electron*/
+/* global Electron */
 import React from 'react';
 import css from './titlebar.scss';
 
 /**
- * Button component
+ * Windows platform wallet titlebar component
  */
 const Titlebar = () => {
     const os = Electron.getOS();

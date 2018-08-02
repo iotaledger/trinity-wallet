@@ -13,12 +13,12 @@ import css from './dropzone.scss';
  */
 class Dropzone extends React.Component {
     static propTypes = {
-        /** Succesfull file drop callback */
-        onDrop: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         * @ignore
+        /** Succesfull file drop callback
+         * @param {buffer} FileBuffer - Droped file content buffer
+         * @returns {undefined}
          */
+        onDrop: PropTypes.func.isRequired,
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 

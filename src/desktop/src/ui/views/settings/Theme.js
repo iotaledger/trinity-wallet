@@ -12,23 +12,16 @@ import Icon from 'ui/components/Icon';
 
 import css from './index.scss';
 
-/** Theme switch component */
+/**
+ * Theme switch component
+ **/
 class Theme extends React.PureComponent {
     static propTypes = {
-        /** Current theme name
-         * @ignore
-         */
+        /** @ignore */
         themeName: PropTypes.string.isRequired,
-        /** Change theme
-         * @param {Object} theme - Theme object
-         * @param {String} name - Theme name
-         * @ignore
-         */
+        /** @ignore */
         updateTheme: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - Locale string identifier to be translated
-         * @ignore
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
@@ -87,22 +80,24 @@ class Theme extends React.PureComponent {
                             <small style={{ color: theme.body.color }}>Label</small>
                         </fieldset>
                     </div>
-                    <Button
-                        style={{
-                            color: theme.primary.body,
-                            background: theme.primary.color,
-                        }}
-                    >
-                        {t('back')}
-                    </Button>
-                    <Button
-                        style={{
-                            color: theme.secondary.body,
-                            background: theme.secondary.color,
-                        }}
-                    >
-                        {t('next')}
-                    </Button>
+                    <div>
+                        <Button
+                            style={{
+                                color: theme.dark.body,
+                                background: theme.dark.color,
+                            }}
+                        >
+                            {t('no')}
+                        </Button>
+                        <Button
+                            style={{
+                                color: theme.primary.body,
+                                background: theme.primary.color,
+                            }}
+                        >
+                            {t('yes')}
+                        </Button>
+                    </div>
                 </div>
                 <fieldset>
                     <Button type="submit" disabled={!themeName || themeName === this.props.themeName}>

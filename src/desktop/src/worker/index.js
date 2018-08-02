@@ -1,4 +1,4 @@
-/*global Electron*/
+/* global Electron */
 import { changeIotaNode, SwitchingConfig } from 'libs/iota';
 
 import { setSeed } from 'libs/crypto';
