@@ -98,7 +98,7 @@
         "transactionAlreadyConfirmed": "Transaksi sudah dikonfirmasi",
         "transactionAlreadyConfirmedExplanation": "Transaksi yang Anda coba promosikan sudah dikonfirmasi.",
         "cannotSendToOwn": "Mengirim ke alamat sendiri",
-        "cannotSendToOwnExplanation": "You cannot send to an address that is being used as an input in the transaction.",
+        "cannotSendToOwnExplanation": "Anda tidak dapat mengirim ke alamat yang digunakan sebagai asal transaksi.",
         "pleaseWait": "Silahkan tunggu",
         "pleaseWaitEllipses": "Silahkan tunggu...",
         "pleaseWaitExplanation": "Trinity sedang melakukan fungsi lain. Silahkan tunggu dan coba lagi.",
@@ -399,7 +399,7 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Masukan kata sandi anda untuk mengatur ulang dompet anda.",
-        "reset": "Reset"
+        "reset": "Setel ulang"
     },
     "walletSetup": {
         "creatingSeed": "Membuat Seed",
@@ -655,7 +655,7 @@
     "terms": {
         "termsAndConditions": "Syarat & Ketentuan",
         "accept": "Saya setuju",
-        "readAllToContinue": "Please read all the text to continue"
+        "readAllToContinue": "Silahkan baca semua teks untuk lanjut"
     },
     "privacyPolicy": {
         "privacyPolicy": "Kebijakan Privasi",
