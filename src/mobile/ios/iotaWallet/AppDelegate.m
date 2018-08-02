@@ -40,20 +40,55 @@
   NSURL *jsCodeLocation;
 
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
-
+  
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   self.window.backgroundColor = [UIColor whiteColor];
   [[RCCManager sharedInstance] initBridgeWithBundleURL:jsCodeLocation launchOptions:launchOptions];
   [BugsnagReactNative start];
-  // TODO: Move this to where you establish a user session
-  [self logUser];
+  [self excludeManifestFromBackup];
   [SplashScreen show];
   return YES;
 }
 
-- (void) logUser {
-  // TODO: Use the current user's information
-  // You can call any combination of these three methods
+/**
+ Excludes the manifest.json from iCloud backup
+ */
+- (void) excludeManifestFromBackup {
+  NSFileManager * fileManager = [NSFileManager defaultManager];
+  NSString * manifestPath = [self getManifestPath];
+  if ([fileManager fileExistsAtPath:manifestPath]) {
+    NSURL* manifestURL= [NSURL fileURLWithPath: manifestPath];
+    
+    NSError *error = nil;
+    BOOL success = [manifestURL setResourceValue: @(YES)
+                                          forKey: NSURLIsExcludedFromBackupKey error: &error];
+    if(!success){
+      NSLog(@"Error excluding %@ from backup %@", [manifestURL lastPathComponent], error);
+    } else {
+      NSLog(@"Successfully disabled backup for %@", [manifestURL lastPathComponent]);
+    }
+  } else {
+    NSLog(@"%@ does not exist", manifestPath);
+  }
+}
+
+/**
+ Gets the path of the manifest.json created by RCTAsyncLocalStorage
+
+ @return Manifest path
+ */
+- (NSString *) getManifestPath {
+  // From https://github.com/facebook/react-native/blob/master/React/Modules/RCTAsyncLocalStorage.m#L69
+  static NSString *const RCTStorageDirectory = @"RCTAsyncLocalStorage_V1";
+  static NSString *const RCTManifestFileName = @"manifest.json";
+  static NSString *manifestPath = nil;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    manifestPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+    manifestPath = [manifestPath stringByAppendingPathComponent:RCTStorageDirectory];
+    manifestPath = [manifestPath stringByAppendingPathComponent:RCTManifestFileName];
+  });
+  return manifestPath;
 }
 
 
