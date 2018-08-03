@@ -72,6 +72,7 @@
         "attachToTangleUnavailableExplanation": "현재 선택한 노드에서는 원격 작업증명을 할 수 없습니다. 노드를 변경하거나 고급 설정에서 작업증명 주체를 기기로 변경하세요.",
         "attachToTangleUnavailableExplanationShort": "현재 선택한 노드에서는 원격 작업증명을 할 수 없습니다.",
         "wallet": "지갑",
+        "all": "All",
         "sent": "보냄",
         "received": "받음",
         "sending": "보내는 중",
