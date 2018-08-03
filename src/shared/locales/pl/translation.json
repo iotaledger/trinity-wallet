@@ -72,6 +72,7 @@
         "attachToTangleUnavailableExplanation": "Zdalny tryb Proof of Work jest niedostępny na wybranym serwerze. Zmień serwer lub ustaw lokalny tryb PoW w zaawansowanych ustawieniach aplikacji.",
         "attachToTangleUnavailableExplanationShort": "Zdalny tryb Proof of Work jest niedostępny na wybranym serwerze.",
         "wallet": "Portfel",
+        "all": "All",
         "sent": "Wysłano",
         "received": "Odebrano",
         "sending": "Wysyłanie",
