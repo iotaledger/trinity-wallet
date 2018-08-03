@@ -10,20 +10,18 @@ import store, { persistStore } from 'store';
 import persistElectronStorage from 'libs/storage';
 import { changeIotaNode } from 'libs/iota';
 import createPlugin from 'bugsnag-react';
-import { DESKTOP_VERSION } from 'config';
 
 import themes from 'themes/themes';
 
 import Index from 'ui/Index';
 
-import Theme from 'ui/global/Theme';
 import Alerts from 'ui/global/Alerts';
-import Updates from 'ui/global/Updates';
-import Feedback from 'ui/global/Feedback';
+
+import settings from '../package.json';
 
 export const bugsnagClient = bugsnag({
     apiKey: '53981ba998df346f6377ebbeb1da46d3',
-    appVersion: DESKTOP_VERSION,
+    appVersion: settings.version,
     interactionBreadcrumbsEnabled: false,
 });
 const ErrorBoundary = bugsnagClient.use(createPlugin(React));
@@ -53,10 +51,7 @@ render(
         <Redux store={store}>
             <I18nextProvider i18n={i18next}>
                 <React.Fragment>
-                    <Feedback />
-                    <Theme />
                     <Alerts />
-                    <Updates />
                     <Router>
                         <Index />
                     </Router>

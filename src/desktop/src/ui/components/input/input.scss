@@ -22,7 +22,7 @@
             border: 1px solid var(--input-border);
             background: var(--input-bg);
             color: var(--input);
-            padding: 0 20px;
+            padding: 0 20px 0 14px;
             resize: none;
             -webkit-appearance: none;
             border-radius: 4px;
@@ -45,6 +45,11 @@
             text-align: left;
             max-width: 520px;
             padding: 0 40px 0 0;
+
+            @media screen and (max-width: 860px) {
+                max-width: calc(100vw - 60px);
+            }
+
             > div {
                 padding: 0 20px;
                 overflow: hidden;
@@ -184,6 +189,23 @@
         }
     }
 
+    > fieldset > strong {
+        display: none;
+        position: absolute;
+        top: 58px;
+        left: 8px;
+        text-align: left;
+        pointer-events: none;
+        font-weight: 300;
+        font-size: 12px;
+        line-height: 12px;
+        color: var(--body);
+        span {
+            float: left;
+            margin: -1px 4px 0 0;
+        }
+    }
+
     &.disabled {
         opacity: 0.25;
         pointer-events: none;
@@ -198,17 +220,34 @@
             padding: 0 32px 0 21px;
         }
     }
+
+    &.capsLock {
+        input:focus + small + strong {
+            display: block;
+        }
+        > :before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 1px;
+            right: 40px;
+            width: 46px;
+            height: 46px;
+            background: var(--input-bg);
+        }
+    }
 }
 
 .info {
     display: block;
-    float: right;
+    position: absolute;
+    top: 71px;
+    right: -5px;
     font-size: 11px;
     color: var(--input);
     line-height: 14px;
     padding: 4px 8px 2px;
     border-radius: 0 0 4px 4px;
-    position: relative;
     background: var(--input-bg);
     margin: -1px 38px 0 0;
     border: 1px solid var(--input-border);
@@ -384,10 +423,14 @@
 
 .valid {
     position: absolute;
-    top: 10px;
+    top: 11px;
     right: -40px;
     opacity: 0.25;
     &.isValid {
         opacity: 1;
+    }
+
+    @media screen and (max-width: 860px) {
+        right: 46px;
     }
 }

@@ -88,11 +88,27 @@ $sidebar-narrow: 70px;
             ul {
                 margin: 0px;
                 padding: 0px;
+                height: calc(100vh - 380px);
+                position: relative;
+
+                > div {
+                    padding-right: 0px;
+                    :global {
+                        .ps__rail-y {
+                            display: none;
+                        }
+                    }
+                }
 
                 a {
                     line-height: 21px;
                     padding: 14px 0 14px 30px;
                 }
+            }
+
+            &.disabled {
+                pointer-events: none;
+                opacity: 0.4;
             }
 
             > div {

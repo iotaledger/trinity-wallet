@@ -8,7 +8,7 @@ import { generateAlert } from 'actions/alerts';
 import { setPassword } from 'actions/wallet';
 
 import { passwordReasons } from 'libs/password';
-import { updatePassword, sha256 } from 'libs/crypto';
+import { updatePassword, hash } from 'libs/crypto';
 
 import Password from 'ui/components/input/Password';
 import Button from 'ui/components/Button';
@@ -18,22 +18,11 @@ import Button from 'ui/components/Button';
  */
 class PasswordSettings extends PureComponent {
     static propTypes = {
-        /** Set password state
-         * @param {String} password - Current password
-         * @ignore
-         */
+        /** @ignore */
         setPassword: PropTypes.func.isRequired,
-        /** Create a notification message
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         * @ignore
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - Locale string identifier to be translated
-         * @ignore
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
@@ -43,8 +32,12 @@ class PasswordSettings extends PureComponent {
         passwordConfirm: '',
     };
 
-    changePassword = async (e) => {
-        e.preventDefault();
+    /**
+     * Check for a valid password, update vault and state
+     * @param {event} event - Form submit event
+     */
+    changePassword = async (event) => {
+        event.preventDefault();
 
         const { passwordCurrent, passwordNew, passwordConfirm } = this.state;
         const { setPassword, generateAlert, t } = this.props;
@@ -69,8 +62,8 @@ class PasswordSettings extends PureComponent {
         }
 
         try {
-            const passwordNewHash = await sha256(passwordNew);
-            const passwordCurrentHash = await sha256(passwordCurrent);
+            const passwordNewHash = await hash(passwordNew);
+            const passwordCurrentHash = await hash(passwordCurrent);
 
             await updatePassword(passwordCurrentHash, passwordNewHash);
 

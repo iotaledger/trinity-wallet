@@ -36,7 +36,7 @@ const getProps = (overrides) =>
             generateAlert: noop,
             navigator: {},
             t: () => '',
-            password: 'foo',
+            password: {},
         },
         overrides,
     );
@@ -59,8 +59,8 @@ describe('Testing TwoFactorSetupAddKey component', () => {
             expect(TwoFactorSetupAddKey.propTypes.generateAlert).toEqual(PropTypes.func.isRequired);
         });
 
-        it('should require a password string as a prop', () => {
-            expect(TwoFactorSetupAddKey.propTypes.password).toEqual(PropTypes.string.isRequired);
+        it('should require a password object as a prop', () => {
+            expect(TwoFactorSetupAddKey.propTypes.password).toEqual(PropTypes.object.isRequired);
         });
     });
 

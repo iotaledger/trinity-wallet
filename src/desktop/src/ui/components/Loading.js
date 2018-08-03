@@ -1,3 +1,4 @@
+/* global Electron */
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
@@ -9,19 +10,27 @@ import css from './Loading.scss';
  */
 export default class Loading extends React.PureComponent {
     static propTypes = {
-        /** Loading animation loop option */
+        /** Should animation loop */
         loop: PropTypes.bool,
-        /** Loading inline class state */
+        /** Should component have inline class */
         inline: PropTypes.bool,
-        /** Loading transparency class state */
+        /** Should component have transparent class */
         transparent: PropTypes.bool,
         /** Loading screen title content */
         title: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
         /** Loading screen subtitle content */
         subtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-        /** On animation end  event */
+        /** On animation end event callback */
         onEnd: PropTypes.func,
     };
+
+    componentDidMount() {
+        Electron.updateMenu('enabled', false);
+    }
+
+    componentWillUnmount() {
+        Electron.updateMenu('enabled', true);
+    }
 
     render() {
         const { loop, inline, transparent, title, subtitle, onEnd } = this.props;

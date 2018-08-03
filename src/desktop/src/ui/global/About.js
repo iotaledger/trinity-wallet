@@ -1,4 +1,4 @@
-/*global Electron*/
+/* global Electron */
 import React from 'react';
 
 import Modal from 'ui/components/modal/Modal';
@@ -6,7 +6,7 @@ import Button from 'ui/components/Button';
 import Scrollbar from 'ui/components/Scrollbar';
 import Icon from 'ui/components/Icon';
 
-import { DESKTOP_VERSION } from 'config';
+import settings from '../../../package.json';
 
 import css from './about.scss';
 
@@ -27,6 +27,10 @@ class About extends React.PureComponent {
         Electron.removeEvent('menu', this.onMenuToggle);
     }
 
+    /**
+     * Proxy native menu triggers to an action
+     * @param {string} Item - Triggered menu item
+     */
     menuToggle(item) {
         if (item === 'about') {
             this.setState({
@@ -44,11 +48,29 @@ class About extends React.PureComponent {
                     <Icon icon="iota" size={48} />
                     <h1>Trinity Wallet</h1>
                     <h2>
-                        v{DESKTOP_VERSION} <small>BETA</small>
+                        v{settings.version} <small>BETA</small>
                     </h2>
 
                     <article>
                         <Scrollbar>
+                            <h5>0.2.1</h5>
+                            <ul>
+                                <li>Update: Dashboard sidebar scroll for multiple accounts</li>
+                                <li>Update: Settings popup position broken</li>
+                                <li>Fix: Multiple account unique seed check broken</li>
+                            </ul>
+                            <h5>0.2.0</h5>
+                            <ul>
+                                <li>New: SeedVault export feature at Account settings</li>
+                                <li>New: Caps Lock warning on password fields</li>
+                                <li>New: Terms and Conditions and Privacy Policy views</li>
+                                <li>New: Trinity theming sync with live style-guide system</li>
+                                <li>Update: Add date suffix to default SeedVault file name</li>
+                                <li>Fix: Argon2 support for SeedVault import</li>
+                                <li>Fix: Seed random generator bias bugfix</li>
+                                <li>Fix: Reset Keychain on first seed onboarding</li>
+                                <li>Fix: Add node request timeout</li>
+                            </ul>
                             <h5>0.1.9.</h5>
                             <ul>
                                 <li>Add: Feature to remove custom added nodes</li>

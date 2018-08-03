@@ -16,17 +16,13 @@ import css from './index.scss';
  */
 class SeedSave extends PureComponent {
     static propTypes = {
-        /** Target Seed */
+        /** @ignore */
         seed: PropTypes.array.isRequired,
-        /** Seed checksum */
+        /** @ignore */
         checksum: PropTypes.string.isRequired,
-        /**  On close event callback
-         */
+        /** @ignore */
         onClose: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         * @ignore
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
@@ -100,7 +96,7 @@ class SeedSave extends PureComponent {
                         variant="primary"
                         className="square"
                     >
-                        {t('doneLowercase')}
+                        {t('done')}
                     </Button>
                 </footer>
             </React.Fragment>

@@ -1,5 +1,4 @@
 import size from 'lodash/size';
-import Modal from 'react-native-modal';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
@@ -11,14 +10,14 @@ import {
     transitionForSnapshot,
     generateAddressesAndGetBalance,
     completeSnapshotTransition,
+    setBalanceCheckFlag,
+    cancelSnapshotTransition,
 } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { getSelectedAccountName, getAddressesForSelectedAccount } from 'iota-wallet-shared-modules/selectors/accounts';
 import KeepAwake from 'react-native-keep-awake';
-import { toggleModalActivity } from 'iota-wallet-shared-modules/actions/ui';
 import { shouldPreventAction } from 'iota-wallet-shared-modules/selectors/global';
 import { formatValue, formatUnit } from 'iota-wallet-shared-modules/libs/iota/utils';
-import StatefulDropdownAlert from '../containers/StatefulDropdownAlert';
 import ModalButtons from '../containers/ModalButtons';
 import GENERAL from '../theme/general';
 import { getSeedFromKeychain } from '../utils/keychain';
@@ -28,27 +27,9 @@ import CtaButton from '../components/CtaButton';
 import InfoBox from '../components/InfoBox';
 import ProgressBar from '../components/ProgressBar';
 import { getMultiAddressGenFn, getPowFn } from '../utils/nativeModules';
-import { isAndroid } from '../utils/device';
 import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
-    modalContainer: {
-        flex: 1,
-        alignItems: 'center',
-        width,
-        height,
-        justifyContent: 'center',
-    },
-    modalContent: {
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        borderRadius: GENERAL.borderRadius,
-        borderWidth: 2,
-        borderColor: 'rgba(255, 255, 255, 0.8)',
-        width: width / 1.15,
-        paddingHorizontal: width / 20,
-        paddingBottom: height / 25,
-    },
     container: {
         flex: 1,
         alignItems: 'center',
@@ -112,14 +93,12 @@ const styles = StyleSheet.create({
     textContainer: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginVertical: height / 20,
+        marginTop: height / 60,
+        marginBottom: height / 20,
     },
-    modal: {
-        height,
-        width,
+    balanceCheckContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        margin: 0,
     },
 });
 
@@ -138,8 +117,8 @@ class SnapshotTransition extends Component {
         transitionForSnapshot: PropTypes.func.isRequired,
         /** Total computed balance during transition */
         transitionBalance: PropTypes.number.isRequired,
-        /** Determines whether to display balance check modal or not */
-        balanceCheckToggle: PropTypes.bool.isRequired,
+        /** Determines whether to display balance check */
+        balanceCheckFlag: PropTypes.bool.isRequired,
         /** Theme settings */
         theme: PropTypes.object.isRequired,
         /** Generates addresses and checks for balance
@@ -175,15 +154,13 @@ class SnapshotTransition extends Component {
         /** Attaching to tangle state */
         isAttachingToTangle: PropTypes.bool.isRequired,
         /** Wallet password  */
-        password: PropTypes.string.isRequired,
-        /** Sets whether modal is active or inactive */
-        toggleModalActivity: PropTypes.func.isRequired,
-        /** Determines whether modal is open */
-        isModalActive: PropTypes.bool.isRequired,
+        password: PropTypes.object.isRequired,
         /** Whether to use remote PoW */
         remotePoW: PropTypes.bool.isRequired,
         activeStepIndex: PropTypes.number.isRequired,
         activeSteps: PropTypes.array.isRequired,
+        setBalanceCheckFlag: PropTypes.func.isRequired,
+        cancelSnapshotTransition: PropTypes.func.isRequired,
     };
 
     static renderProgressBarChildren(activeStepIndex, sizeOfActiveSteps) {
@@ -204,10 +181,7 @@ class SnapshotTransition extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        const { balanceCheckToggle, isTransitioning } = this.props;
-        if (balanceCheckToggle !== newProps.balanceCheckToggle) {
-            this.showModal();
-        }
+        const { isTransitioning } = this.props;
         if (!isTransitioning && newProps.isSendingTransfer) {
             KeepAwake.activate();
         } else if (isTransitioning && !newProps.isSendingTransfer) {
@@ -216,7 +190,6 @@ class SnapshotTransition extends Component {
     }
 
     onBalanceCompletePress() {
-        this.hideModal();
         const { transitionAddresses, selectedAccountName, password, remotePoW } = this.props;
         setTimeout(() => {
             getSeedFromKeychain(password, selectedAccountName)
@@ -236,10 +209,10 @@ class SnapshotTransition extends Component {
     }
 
     onBalanceIncompletePress() {
-        this.hideModal();
         const genFn = getMultiAddressGenFn();
         const { transitionAddresses, password, selectedAccountName } = this.props;
         const currentIndex = transitionAddresses.length;
+        this.props.setBalanceCheckFlag(false);
         setTimeout(() => {
             getSeedFromKeychain(password, selectedAccountName).then((seed) => {
                 if (seed === null) {
@@ -269,43 +242,10 @@ class SnapshotTransition extends Component {
         }
     }
 
-    showModal = () => {
-        this.props.toggleModalActivity();
-    };
-
-    hideModal = () => {
-        this.props.toggleModalActivity();
-    };
-
-    renderModalContent = () => {
-        const { transitionBalance, t, theme } = this.props;
-        const textColor = { color: theme.body.color };
-
-        return (
-            <View style={styles.modalContainer}>
-                <View style={[styles.modalContent, { borderColor: theme.body.color, backgroundColor: theme.body.bg }]}>
-                    <View style={styles.textContainer}>
-                        <Text style={[styles.buttonInfoText, textColor]}>
-                            {t('detectedBalance', {
-                                amount: round(formatValue(transitionBalance), 1),
-                                unit: formatUnit(transitionBalance),
-                            })}
-                        </Text>
-                        <Text style={[styles.buttonQuestionText, textColor]}>{t('isThisCorrect')}</Text>
-                    </View>
-                    <ModalButtons
-                        onLeftButtonPress={() => this.onBalanceIncompletePress()}
-                        onRightButtonPress={() => this.onBalanceCompletePress()}
-                        leftText={t('global:no')}
-                        rightText={t('global:yes')}
-                        buttonWidth={{ width: width / 3.2 }}
-                        containerWidth={{ width: width / 1.4 }}
-                    />
-                </View>
-                <StatefulDropdownAlert backgroundColor={theme.bar.bg} />
-            </View>
-        );
-    };
+    cancel() {
+        this.props.cancelSnapshotTransition();
+        this.props.setSetting('advancedSettings');
+    }
 
     render() {
         const {
@@ -313,9 +253,10 @@ class SnapshotTransition extends Component {
             theme,
             t,
             isAttachingToTangle,
-            isModalActive,
             activeStepIndex,
             activeSteps,
+            balanceCheckFlag,
+            transitionBalance,
         } = this.props;
         const textColor = { color: theme.body.color };
 
@@ -353,26 +294,43 @@ class SnapshotTransition extends Component {
                     {isTransitioning &&
                         !isAttachingToTangle && (
                             <View style={styles.innerContainer}>
-                                <InfoBox
-                                    body={theme.body}
-                                    text={
-                                        <View>
-                                            <Text style={[styles.infoText, textColor]}>{t('transitioning')}</Text>
-                                            <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
-                                                {t('generatingAndDetecting')}
-                                            </Text>
-                                            <Text style={[styles.infoText, textColor, { paddingTop: height / 50 }]}>
-                                                {t('global:pleaseWaitEllipses')}
-                                            </Text>
-                                        </View>
-                                    }
-                                />
-                                <ActivityIndicator
-                                    animating={isTransitioning}
-                                    style={styles.activityIndicator}
-                                    size="large"
-                                    color={theme.primary.color}
-                                />
+                                {(balanceCheckFlag && (
+                                    <InfoBox
+                                        body={theme.body}
+                                        width={width / 1.1}
+                                        text={
+                                            <View style={styles.balanceCheckContainer}>
+                                                <View style={styles.textContainer}>
+                                                    <Text style={[styles.buttonInfoText, textColor]}>
+                                                        {t('detectedBalance', {
+                                                            amount: round(formatValue(transitionBalance), 1),
+                                                            unit: formatUnit(transitionBalance),
+                                                        })}
+                                                    </Text>
+                                                    <Text style={[styles.buttonQuestionText, textColor]}>
+                                                        {t('isThisCorrect')}
+                                                    </Text>
+                                                </View>
+                                                <ModalButtons
+                                                    onLeftButtonPress={() => this.onBalanceIncompletePress()}
+                                                    onRightButtonPress={() => this.onBalanceCompletePress()}
+                                                    leftText={t('global:no')}
+                                                    rightText={t('global:yes')}
+                                                    containerWidth={{ width: width / 1.25 }}
+                                                    buttonWidth={{ width: width / 2.85 }}
+                                                />
+                                            </View>
+                                        }
+                                    />
+                                )) || (
+                                    <ActivityIndicator
+                                        animating={isTransitioning}
+                                        style={styles.activityIndicator}
+                                        size="large"
+                                        color={theme.primary.color}
+                                    />
+                                )}
+                                <View style={{ flex: 0.45 }} />
                             </View>
                         )}
                     {isTransitioning &&
@@ -418,35 +376,22 @@ class SnapshotTransition extends Component {
                         )}
                 </View>
                 <View style={styles.bottomContainer}>
-                    {!isTransitioning && (
+                    {!isAttachingToTangle && (
                         <TouchableOpacity
-                            onPress={() => this.props.setSetting('advancedSettings')}
+                            onPress={() =>
+                                isTransitioning ? this.cancel() : this.props.setSetting('advancedSettings')
+                            }
                             hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}
                         >
                             <View style={styles.item}>
                                 <Icon name="chevronLeft" size={width / 28} color={theme.body.color} />
-                                <Text style={[styles.titleText, textColor]}>{t('global:back')}</Text>
+                                <Text style={[styles.titleText, textColor]}>
+                                    {isTransitioning ? t('global:cancel') : t('global:back')}
+                                </Text>
                             </View>
                         </TouchableOpacity>
                     )}
                 </View>
-                <Modal
-                    animationIn={isAndroid ? 'bounceInUp' : 'zoomIn'}
-                    animationOut={isAndroid ? 'bounceOut' : 'zoomOut'}
-                    animationInTiming={isAndroid ? 1000 : 300}
-                    animationOutTiming={200}
-                    backdropTransitionInTiming={isAndroid ? 500 : 300}
-                    backdropTransitionOutTiming={200}
-                    backdropColor={theme.body.bg}
-                    backdropOpacity={0.6}
-                    style={styles.modal}
-                    isVisible={isModalActive}
-                    onBackButtonPress={() => this.hideModal()}
-                    hideModalContentWhileAnimating
-                    useNativeDriver={isAndroid}
-                >
-                    {this.renderModalContent()}
-                </Modal>
             </View>
         );
     }
@@ -455,7 +400,7 @@ class SnapshotTransition extends Component {
 const mapStateToProps = (state) => ({
     theme: state.settings.theme,
     transitionBalance: state.wallet.transitionBalance,
-    balanceCheckToggle: state.wallet.balanceCheckToggle,
+    balanceCheckFlag: state.wallet.balanceCheckFlag,
     transitionAddresses: state.wallet.transitionAddresses,
     password: state.wallet.password,
     selectedAccountName: getSelectedAccountName(state),
@@ -475,7 +420,8 @@ const mapDispatchToProps = {
     generateAddressesAndGetBalance,
     completeSnapshotTransition,
     generateAlert,
-    toggleModalActivity,
+    setBalanceCheckFlag,
+    cancelSnapshotTransition,
 };
 
 export default translate(['snapshotTransition', 'global', 'loading'])(

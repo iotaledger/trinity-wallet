@@ -44,9 +44,9 @@ class List extends React.PureComponent {
         /** Transaction history */
         transfers: PropTypes.object.isRequired,
         /** Create a notification message
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
+         * @param {string} type - notification type - success, error
+         * @param {string} title - notification title
+         * @param {string} text - notification explanation
          * @ignore
          */
         generateAlert: PropTypes.func.isRequired,
@@ -62,7 +62,7 @@ class List extends React.PureComponent {
          */
         retryFailedTransaction: PropTypes.func.isRequired,
         /** Set active history item
-         * @param {Number} index - Current item index
+         * @param {number} index - Current item index
          */
         setItem: PropTypes.func.isRequired,
         /** Current active history item */
