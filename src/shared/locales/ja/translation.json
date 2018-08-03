@@ -72,7 +72,7 @@
         "attachToTangleUnavailableExplanation": "現在選択しているノードではリモートによるプルーフ・オブ・ワークが利用できません。ノードを変更するか、詳細設定でローカルによるプルーフ・オブ・ワークに切り替えてください。",
         "attachToTangleUnavailableExplanationShort": "現在選択しているノードではリモートによるプルーフ・オブ・ワークが利用できません。",
         "wallet": "ウォレット",
-        "all": "All",
+        "all": "すべて",
         "sent": "送金完了",
         "received": "受取完了",
         "sending": "送金中",
