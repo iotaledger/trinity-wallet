@@ -72,6 +72,7 @@
         "attachToTangleUnavailableExplanation": "Vincular con Tangle no está disponible en el nodo seleccionado.",
         "attachToTangleUnavailableExplanationShort": "PoW remoto no disponible en el nodo seleccionado.",
         "wallet": "Billetera",
+        "all": "All",
         "sent": "Enviada",
         "received": "Recibida",
         "sending": "Enviando",
