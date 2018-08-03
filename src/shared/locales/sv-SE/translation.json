@@ -72,6 +72,7 @@
         "attachToTangleUnavailableExplanation": "Avlägsen PoW är inte tillgänglig på din valda nod. Antingen byt nod eller sätt PoW till Lokal i avancerade inställningar.",
         "attachToTangleUnavailableExplanationShort": "Avlägsen PoW är inte tillgänglig på din valda nod.",
         "wallet": "Plånbok",
+        "all": "All",
         "sent": "Skickat",
         "received": "Mottaget",
         "sending": "Skickar",
