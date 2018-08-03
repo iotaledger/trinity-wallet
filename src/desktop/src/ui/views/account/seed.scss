@@ -2,7 +2,15 @@
     display: block;
     width: 100%;
     font-family: monospace;
-    font-size: 18px;
     line-height: 32px;
     word-wrap: break-word;
+
+    small {
+        display: block;
+    }
+
+    strong {
+        font-weight: 600;
+        letter-spacing: 1px;
+    }
 }

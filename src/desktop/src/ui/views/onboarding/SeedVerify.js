@@ -35,9 +35,13 @@ class SeedVerify extends React.PureComponent {
     };
 
     componentDidMount() {
+        const { generateAlert, t } = this.props;
+
         if (Electron.getOnboardingSeed()) {
             Electron.garbageCollect();
         }
+
+        generateAlert('info', t('seedReentry:clipboardWarning'), t('seedReentry:clipboardWarningExplanation'));
     }
 
     onChange = (value) => {
@@ -139,7 +143,4 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(translate()(SeedVerify));
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(SeedVerify));
