@@ -270,7 +270,7 @@ const getBundleAsync = (tailTransactionHash) => {
 /**
  * Promisified version of iota.api.wereAddressesSpentFrom
  *
- * @method getBundleAsync
+ * @method wereAddressesSpentFromAsync
  * @param {array} addresses
  *
  * @returns {Promise}
