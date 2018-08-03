@@ -72,6 +72,7 @@
         "attachToTangleUnavailableExplanation": "PoW remota no disponible en el nodo seleccionado. Pruebe cambiandolo o active PoW local en opciones avanzadas.",
         "attachToTangleUnavailableExplanationShort": "PoW remota no disponible en el nodo seleccionado.",
         "wallet": "Cartera",
+        "all": "All",
         "sent": "Enviada",
         "received": "Recibida",
         "sending": "Enviando",
