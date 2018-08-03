@@ -32,7 +32,7 @@ class Send extends React.PureComponent {
         /** @ignore */
         isSending: PropTypes.bool.isRequired,
         /** @ignore */
-        password: PropTypes.string.isRequired,
+        password: PropTypes.object.isRequired,
         /** @ignore */
         accountName: PropTypes.string.isRequired,
         /** @ignore */

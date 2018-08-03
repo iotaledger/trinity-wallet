@@ -33,7 +33,7 @@ class Receive extends React.PureComponent {
         /** @ignore */
         receiveAddress: PropTypes.string.isRequired,
         /** @ignore */
-        password: PropTypes.string,
+        password: PropTypes.object,
         /** @ignore */
         isSyncing: PropTypes.bool.isRequired,
         /** @ignore */
