@@ -96,7 +96,7 @@ class SeedSave extends PureComponent {
                         variant="primary"
                         className="square"
                     >
-                        {t('doneLowercase')}
+                        {t('done')}
                     </Button>
                 </footer>
             </React.Fragment>

@@ -318,13 +318,12 @@ export const uniqueSeed = async (password, seed) => {
         const accounts = vault.filter((acc) => acc.account !== ACC_MAIN && acc.account !== `${ACC_MAIN}-salt`);
 
         for (let i = 0; i < accounts.length; i++) {
-            const account = vault[i];
-            try {
-                const vaultSeed = await decrypt(account.password, password);
-                if (vaultSeed.length === seed.length && seed.every((v, x) => v % 27 === vaultSeed[x] % 27)) {
-                    return false;
-                }
-            } catch (err) {}
+            const account = accounts[i];
+            
+            const vaultSeed = await decrypt(account.password, password);
+            if (vaultSeed.length === seed.length && seed.every((v, x) => v % 27 === vaultSeed[x] % 27)) {
+                return false;
+            }
         }
 
         return true;
