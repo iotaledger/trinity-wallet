@@ -72,6 +72,7 @@
         "attachToTangleUnavailableExplanation": "Ekstern PoW (Proof of Work) er ikke tilgjengelig på den valgte noden. Enten velg en annen node hvor dette er aktivert eller velg lokal PoW (Proof of Work) under avanserte innstillinger.",
         "attachToTangleUnavailableExplanationShort": "Ekstern PoW (Proof of Work) er ikke tilgjengelig på den valgte noden.",
         "wallet": "Lommebok",
+        "all": "All",
         "sent": "Sendt",
         "received": "Mottatt",
         "sending": "Sender",
