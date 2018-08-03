@@ -72,6 +72,7 @@
         "attachToTangleUnavailableExplanation": "你選擇的節點無法作為遠端工作量證明所使用。您可以在進階設定中變更節點或是將工作量證明設定為本機。",
         "attachToTangleUnavailableExplanationShort": "您所選的節點無法作為遠端工作量證明所使用。",
         "wallet": "錢包",
+        "all": "All",
         "sent": "已支出",
         "received": "已接收",
         "sending": "轉帳中",
