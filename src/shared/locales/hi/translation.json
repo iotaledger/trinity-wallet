@@ -72,6 +72,7 @@
         "attachToTangleUnavailableExplanation": "कार्य का दूरस्थ प्रमाण आपके चयनित नोड पर उपलब्ध नहीं है । या तो नोड बदलें या कार्य का प्रमाण स्थानीय में उंनत सेटिंग्स में सेट करें ।",
         "attachToTangleUnavailableExplanationShort": "आपके चुने हुए नोड के लिए \"टैंगल से अटैच\" उपलब्ध नहीं है",
         "wallet": "वॉलेट",
+        "all": "All",
         "sent": "भेजे गए",
         "received": "प्राप्त हुआ",
         "sending": "भेज रहे है",
