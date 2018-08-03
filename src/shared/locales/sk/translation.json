@@ -72,6 +72,7 @@
         "attachToTangleUnavailableExplanation": "Vzdialený PoW (potvrdenie transakcie) nie je k dispozícii na vami zvolenom Node. Zmeňte Node alebo nastavte PoW v pokročilých nastaveniach na lokálny.",
         "attachToTangleUnavailableExplanationShort": "Vzdialený PoW (potvrdenie transakcie) nie je k dispozícii na vami zvolenom Node.",
         "wallet": "Peňaženka",
+        "all": "All",
         "sent": "Odoslané",
         "received": "Prijaté",
         "sending": "Odosielanie",
