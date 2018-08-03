@@ -72,6 +72,7 @@
         "attachToTangleUnavailableExplanation": "Proof of Work (PoW) không thể thực hiện được ở nút mạng này. Hãy đổi nút mạng khác hoặc vào Thiết Lập Nâng Cao để chỉnh PoW làm trên máy của bạn đang dùng.",
         "attachToTangleUnavailableExplanationShort": "Proof of Work không thể thực hiện được ở nút mạng này.",
         "wallet": "Ví Điện Tử",
+        "all": "All",
         "sent": "Đã Gửi",
         "received": "Đã Nhận",
         "sending": "Đang Gửi",
