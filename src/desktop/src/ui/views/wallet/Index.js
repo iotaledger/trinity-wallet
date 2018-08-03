@@ -13,9 +13,9 @@ import css from './index.scss';
  */
 class Wallet extends React.PureComponent {
     static propTypes = {
-        /* Browser location objects */
+        /** @ignore */
         location: PropTypes.object,
-        /** Browser history object */
+        /** @ignore */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,

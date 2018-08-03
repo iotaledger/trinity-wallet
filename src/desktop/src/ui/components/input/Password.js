@@ -41,12 +41,16 @@ class PasswordInput extends React.PureComponent {
 
     state = {
         hidden: true,
+        capsLock: false,
     };
 
     componentDidMount() {
         if (this.props.focus) {
             this.input.focus();
         }
+        this.onKey = this.setCapsLock.bind(this);
+        window.addEventListener('keydown', this.onKey);
+        window.addEventListener('keyup', this.onKey);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -55,21 +59,39 @@ class PasswordInput extends React.PureComponent {
         }
     }
 
+    componentWillUnmount() {
+        window.removeEventListener('keydown', this.onKey);
+        window.removeEventListener('keyup', this.onKey);
+    }
+
     setVisibility = () => {
         this.setState({
             hidden: !this.state.hidden,
         });
     };
 
+    setCapsLock = (e) => {
+        this.setState({
+            capsLock: e.getModifierState('CapsLock'),
+        });
+    };
+
     render() {
         const { label, value, disabled, onChange, showScore, showValid, match, t } = this.props;
-        const { hidden } = this.state;
+        const { hidden, capsLock } = this.state;
 
         const score = zxcvbn(value);
         const isValid = score.score === 4 && (typeof match !== 'string' || match === value);
 
         return (
-            <div className={classNames(css.input, css.padded, disabled ? css.disabled : null)}>
+            <div
+                className={classNames(
+                    css.input,
+                    css.padded,
+                    disabled ? css.disabled : null,
+                    capsLock ? css.capsLock : null,
+                )}
+            >
                 <fieldset>
                     <a className={hidden ? css.strike : null} onClick={this.setVisibility}>
                         <Icon icon="eye" size={16} />
@@ -80,9 +102,15 @@ class PasswordInput extends React.PureComponent {
                             this.input = input;
                         }}
                         value={value}
+                        onClick={this.setCapsLock}
+                        onKeyDown={this.setCapsLock}
                         onChange={(e) => onChange(e.target.value)}
                     />
                     <small>{label}</small>
+                    <strong>
+                        <Icon icon="warning" size={14} />
+                        {t('capsLockIsOn')}
+                    </strong>
                     {showScore ? (
                         <React.Fragment>
                             <div className={css.score} data-strength={score.score}>

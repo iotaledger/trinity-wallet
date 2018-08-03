@@ -1,9 +1,6 @@
 # IOTA Trinity Wallet
 
-[![Build Status](https://www.bitrise.io/app/e1c71066b5c75521/status.svg?token=NytmjW1aEHEu-1kNaMRuiQ&branch=develop)](https://www.bitrise.io/app/e1c71066b5c75521)
-
-
-This is the shared repository for the IOTA Trinity mobile and desktop wallets. The apps are based on React and built with React-Native (mobile) and Electron (desktop).
+This is the shared repository for the IOTA Trinity Mobile and Desktop wallets. The apps are based on React and built with React-Native (mobile) and Electron (desktop).
 
 ## Prerequisites
 
@@ -14,15 +11,15 @@ This is the shared repository for the IOTA Trinity mobile and desktop wallets. T
 
 1. Clone this repo
 ```
-git clone git@gitlab.com:iota-community/wallet.git
+git clone https://github.com/iotaledger/trinity-wallet.git
 ```
 
-2. Go to the wallet directory
+2. Go to the trinity-wallet directory
 ```
-cd wallet
+cd trinity-wallet
 ```
 
-3. Run the setup
+3. Run the setup to install dependencies
 ```
 yarn full-setup
 ```
@@ -31,8 +28,8 @@ yarn full-setup
 
 To create a new feature or bugfix (or chore) please create a new branch and use a prefix (e.g `feature/my-awesome-new-feature` or `bugfix/something-not-working`). The prefixes we use are `bug`, `feat`, `chore` and `hotfix`. Please don't use anything else.
 
-If you are adding any text in your work, please follow the instructions in LOCALIZATION.md. 
+If you are adding any text in your work, please follow the instructions in [localisation.md](https://github.com/iotaledger/trinity-wallet/blob/develop/docs/dev/localisation.md). 
 
 When creating a new branch try to always branch off from `develop`. Avoid branching off from other branches unless it's absolutely necessary.
 
-When you're done with your work create a new Pull Request (Merge Request on Gitlab) and use your branch as **source** branch and **develop** as target branch. Never create Pull Requests directly against **master** as target branch unless you're trying to merge an important hotfix.
+When you're done with your work create a new Pull Request and use your branch as **source** branch and **develop** as target branch. Never create Pull Requests directly against **master** as target branch unless you're trying to merge an important hotfix.

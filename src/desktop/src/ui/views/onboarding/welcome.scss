@@ -1,0 +1,44 @@
+.welcome {
+    max-width: 780px !important;
+    article {
+        display: block;
+        position: relative;
+        max-width: 780px;
+        max-height: 700px;
+        width: calc(100vw - 20px);
+        height: calc(100vh - 300px);
+        margin: 40px auto 0;
+        text-align: left;
+        background: var(--box-bg);
+        padding: 40px 10px 30px 30px;
+    }
+
+    p {
+        font-size: 14px;
+        strong {
+            font-weight: 600;
+        }
+        a {
+            color: var(--body);
+            text-decoration: underline;
+        }
+    }
+
+    h2,
+    h3 {
+        display: inline-block;
+        font-size: 18px;
+        margin: 18px 0;
+    }
+
+    ul {
+        margin-bottom: 20px;
+    }
+
+    li {
+        font-size: 14px;
+        line-height: 21px;
+        margin: 0 0 4px 24px;
+        list-style: circle;
+    }
+}

@@ -35,7 +35,6 @@ const styles = StyleSheet.create({
     },
     content: {
         width: width / 1.15,
-        maxHeight: height / 1.25,
         padding: width / 25,
         justifyContent: 'center',
         borderRadius: GENERAL.borderRadius,
@@ -207,8 +206,8 @@ export default class HistoryModalContent extends PureComponent {
         leaveNavigationBreadcrumb('HistoryModalContent');
     }
 
-    setScrollable(y) {
-        if (y >= height / 1.25) {
+    setScrollable(y, retryButtonIsDisplayed) {
+        if (retryButtonIsDisplayed ? y >= height / 2 : y >= height / 2.3) {
             return this.setState({ scrollable: true });
         }
         this.setState({ scrollable: false });
@@ -315,12 +314,13 @@ export default class HistoryModalContent extends PureComponent {
         const { scrollable } = this.state;
         const bundleIsBeingPromoted = currentlyPromotingBundleHash === bundle && !confirmationBool;
         const isFailed = isFailedTransaction(bundle);
+        const retryButtonIsDisplayed = !confirmationBool || isFailed;
 
         return (
             <TouchableWithoutFeedback style={styles.container} onPress={onPress}>
                 <View style={styles.wrapper}>
                     <View style={[styles.content, style.borderColor, { backgroundColor: style.backgroundColor }]}>
-                        <ScrollView scrollEnabled={scrollable} onContentSizeChange={(x, y) => this.setScrollable(y)}>
+                        <ScrollView scrollEnabled={false}>
                             <TouchableWithoutFeedback style={{ flex: 1 }}>
                                 <View style={{ flex: 1 }}>
                                     <View style={styles.statusWrapper}>
@@ -350,7 +350,18 @@ export default class HistoryModalContent extends PureComponent {
                                             <Text style={[styles.heading, style.defaultTextColor]}>
                                                 {t('addresses')}:
                                             </Text>
-                                            {this.renderAddresses()}
+                                            <ScrollView
+                                                scrollEnabled={scrollable}
+                                                showsVerticalScrollIndicator={scrollable}
+                                                style={{
+                                                    maxHeight: retryButtonIsDisplayed ? height / 2.3 : height / 2,
+                                                }}
+                                                onContentSizeChange={(x, y) =>
+                                                    this.setScrollable(y, retryButtonIsDisplayed)
+                                                }
+                                            >
+                                                {this.renderAddresses()}
+                                            </ScrollView>
                                         </View>
                                     )}
                                     <Text style={[styles.heading, style.defaultTextColor]}>{t('send:message')}:</Text>

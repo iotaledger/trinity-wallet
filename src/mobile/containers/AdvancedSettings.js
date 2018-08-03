@@ -108,7 +108,7 @@ export class AdvancedSettings extends PureComponent {
                 name: t('pow'),
                 icon: 'pow',
                 function: () => this.props.setSetting('pow'),
-                currentSetting: remotePoW ? t('enabled') : t('disabled'),
+                currentSetting: remotePoW ? t('pow:remote') : t('pow:local'),
             },
             {
                 name: t('autoPromotion'),

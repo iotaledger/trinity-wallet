@@ -1,10 +1,11 @@
 .toggle {
     display: block;
-    margin: 12px 0 24px 34px;
+    margin: 32px 0;
     font-size: 14px;
     line-height: 14px;
     text-transform: uppercase;
-    cursor: pointer;
+    width: 100%;
+    text-align: center;
     span {
         text-transform: capitalize;
         width: 100px;

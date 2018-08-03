@@ -1,4 +1,4 @@
-/*global Electron*/
+/* global Electron */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
@@ -12,15 +12,16 @@ import css from './index.scss';
  */
 class Done extends React.PureComponent {
     static propTypes = {
-        /** Browser history object */
+        /** @ignore */
         history: PropTypes.object.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         * @ignore
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
+    /**
+     * Set onboarding state as complete and navigate to Login view
+     * @returns {undefined}
+     */
     setComplete = () => {
         const { history } = this.props;
         Electron.garbageCollect();

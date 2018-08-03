@@ -1,3 +1,4 @@
+import isEqual from 'lodash/isEqual';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
@@ -7,8 +8,8 @@ import { zxcvbn } from 'iota-wallet-shared-modules/libs/exports';
 import { setPassword, setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { passwordReasons } from 'iota-wallet-shared-modules/libs/password';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { changePassword } from '../utils/keychain';
-import { getPasswordHash } from '../utils/crypto';
+import { changePassword, getPasswordHash } from '../utils/keychain';
+import { generatePasswordHash, getRandomBytes } from '../utils/crypto';
 import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
 import CustomTextInput from '../components/CustomTextInput';
@@ -71,7 +72,7 @@ const styles = StyleSheet.create({
 class ChangePassword extends Component {
     static propTypes = {
         /** Hash for wallet's password */
-        password: PropTypes.string.isRequired,
+        password: PropTypes.object.isRequired,
         /** Set new password hash
          * @param {string} passwordHash
          */
@@ -111,28 +112,30 @@ class ChangePassword extends Component {
     isValid(currentPwdHash) {
         const { currentPassword, newPassword, newPasswordReentry } = this.state;
         const { password } = this.props;
-        const score = zxcvbn(password);
+        const score = zxcvbn(newPassword);
 
         return (
-            currentPwdHash === password &&
-            newPassword.length >= 12 &&
-            newPasswordReentry.length >= 12 &&
+            isEqual(password, currentPwdHash) &&
+            newPassword.length >= 11 &&
+            newPasswordReentry.length >= 11 &&
             newPassword === newPasswordReentry &&
             newPassword !== currentPassword &&
             score.score === 4
         );
     }
 
-    changePassword() {
-        const { setPassword, generateAlert, password, t } = this.props;
+    async changePassword() {
+        const { setPassword, generateAlert, t } = this.props;
         const { newPassword, currentPassword } = this.state;
-        const newPwdHash = getPasswordHash(newPassword);
-        const currentPwdHash = getPasswordHash(currentPassword);
+
+        const currentPwdHash = await getPasswordHash(currentPassword);
         const isValid = this.isValid(currentPwdHash);
+        const salt = await getRandomBytes(32);
+        const newPwdHash = await generatePasswordHash(newPassword, salt);
 
         if (isValid) {
             const throwErr = () => generateAlert('error', t('somethingWentWrong'), t('somethingWentWrongTryAgain'));
-            changePassword(password, newPwdHash)
+            changePassword(currentPwdHash, newPwdHash, salt)
                 .then(() => {
                     setPassword(newPwdHash);
                     this.fallbackToInitialState();
@@ -191,13 +194,13 @@ class ChangePassword extends Component {
     renderInvalidSubmissionAlerts(currentPwdHash) {
         const { currentPassword, newPassword, newPasswordReentry } = this.state;
         const { password, generateAlert, t } = this.props;
-        const score = zxcvbn(password);
+        const score = zxcvbn(newPassword);
 
-        if (currentPwdHash !== password) {
+        if (!isEqual(password, currentPwdHash)) {
             return generateAlert('error', t('incorrectPassword'), t('incorrectPasswordExplanation'));
         } else if (newPassword !== newPasswordReentry) {
             return generateAlert('error', t('passwordsDoNotMatch'), t('passwordsDoNotMatchExplanation'));
-        } else if (newPassword.length < 12 || newPasswordReentry.length < 12) {
+        } else if (newPassword.length < 11 || newPasswordReentry.length < 11) {
             return generateAlert('error', t('passwordTooShort'), t('passwordTooShortExplanation'));
         } else if (newPassword === currentPassword) {
             return generateAlert('error', t('oldPassword'), t('oldPasswordExplanation'));

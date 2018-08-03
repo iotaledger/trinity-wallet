@@ -15,22 +15,29 @@ import css from './index.scss';
  */
 class GenerateSeed extends React.PureComponent {
     static propTypes = {
-        /** Browser history object */
+        /** @ignore */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         * @ignore
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
     state = {
         seed: Electron.getOnboardingSeed() || createRandomSeed(),
+        scramble: Electron.getOnboardingSeed() ? new Array(81).fill(0) : createRandomSeed(),
         existingSeed: Electron.getOnboardingSeed(),
         clicks: [],
     };
+
+    componentDidMount() {
+        this.frame = 0;
+        this.unscramble();
+    }
+
+    componentWillUnmount() {
+        this.frame = -1;
+    }
 
     onUpdatedSeed = (seed) => {
         this.setState(() => ({
@@ -49,15 +56,22 @@ class GenerateSeed extends React.PureComponent {
     onRequestPrevious = () => {
         const { history } = this.props;
 
-        Electron.setOnboardingSeed(null);
-        history.push('/onboarding/seed-intro');
+        this.generateNewSeed();
+
+        history.push('/onboarding/account-name');
     };
 
-    updateLetter = (e, position) => {
+    /**
+     * Update individual seed byte to random
+     * @param {event} event - Click event
+     * @param {number} position - Letter seed position index
+     * @returns {undefined}
+     */
+    updateLetter = (event, position) => {
         const { seed, clicks } = this.state;
 
-        if (e) {
-            e.preventDefault();
+        if (event) {
+            event.preventDefault();
         }
 
         const newClicks = clicks.indexOf(position) < 0 ? clicks.concat([position]) : clicks;
@@ -71,6 +85,10 @@ class GenerateSeed extends React.PureComponent {
         }));
     };
 
+    /**
+     * Generate random seed and initiate seed generation animation sequence
+     * @returns {undefined}
+     */
     generateNewSeed = () => {
         const newSeed = createRandomSeed();
         Electron.setOnboardingSeed(null);
@@ -80,11 +98,55 @@ class GenerateSeed extends React.PureComponent {
             existingSeed: false,
             clicks: [],
         }));
+
+        this.frame = 0;
+
+        this.setState({
+            scramble: createRandomSeed(),
+        });
+
+        this.unscramble();
     };
+
+    /**
+     * Seed generation animation sequence step
+     * @returns {undefined}
+     */
+    unscramble() {
+        const { scramble } = this.state;
+
+        if (this.frame < 0) {
+            return;
+        }
+
+        const scrambleNew = [];
+        let sum = -1;
+
+        if (this.frame > 2) {
+            sum = 0;
+
+            for (let i = 0; i < scramble.length; i++) {
+                sum += scramble[i];
+                scrambleNew.push(Math.max(0, scramble[i] - 15));
+            }
+
+            this.setState({
+                scramble: scrambleNew,
+            });
+
+            this.frame = 0;
+        }
+
+        this.frame++;
+
+        if (sum !== 0) {
+            requestAnimationFrame(this.unscramble.bind(this));
+        }
+    }
 
     render() {
         const { t } = this.props;
-        const { seed, existingSeed, clicks } = this.state;
+        const { seed, scramble, existingSeed, clicks } = this.state;
 
         const clicksLeft = 10 - clicks.length;
 
@@ -107,12 +169,14 @@ class GenerateSeed extends React.PureComponent {
                     <div className={css.seed}>
                         <div>
                             {seed.map((byte, index) => {
-                                const letter = byteToChar(byte);
+                                const offset = scramble[index];
+                                const letter = byteToChar(byte + offset);
                                 return (
                                     <button
                                         onClick={(e) => this.updateLetter(e, index)}
                                         key={`${index}${letter}`}
                                         value={letter}
+                                        style={{ opacity: 1 - offset / 255 }}
                                     >
                                         {letter}
                                     </button>
