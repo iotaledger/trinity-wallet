@@ -72,6 +72,7 @@
         "attachToTangleUnavailableExplanation": "Prova de trabalho remoto não está disponível no servidor selecionado. Altere o servidor ou a prova de trabalho para Local em configurações avançadas.",
         "attachToTangleUnavailableExplanationShort": "Anexar a Prova de Trabalho não está disponível no servidor selecionado.",
         "wallet": "Carteira",
+        "all": "All",
         "sent": "Enviado",
         "received": "Recebido",
         "sending": "Enviando",
