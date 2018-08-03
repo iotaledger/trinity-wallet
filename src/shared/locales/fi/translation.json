@@ -72,6 +72,7 @@
         "attachToTangleUnavailableExplanation": "Laskentatyöteko (PoW) valitsemallasi palvelimella ei ole tällä hetkellä mahdollista. Vaihda palvelinta tai muuta laskenta-asetuksia.",
         "attachToTangleUnavailableExplanationShort": "Laskentatyöteko (PoW) palvelimella ei ole mahdollista.",
         "wallet": "Lompakko",
+        "all": "All",
         "sent": "Lähetetty",
         "received": "Vastaanotettu",
         "sending": "Lähettää",
