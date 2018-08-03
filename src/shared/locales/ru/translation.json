@@ -72,6 +72,7 @@
         "attachToTangleUnavailableExplanation": "Удалённое проведение Proof of Work недоступно на выбранном Вами узле. Смените узел или выберите проведение PoW \"На Вашем устройстве\" в расширенных настройках.",
         "attachToTangleUnavailableExplanationShort": "Удалённое проведение Proof of Work недоступно на выбранном Вами узле.",
         "wallet": "Кошелёк",
+        "all": "All",
         "sent": "Отправлено",
         "received": "Получено",
         "sending": "Отправка",
