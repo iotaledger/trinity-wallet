@@ -72,6 +72,7 @@
         "attachToTangleUnavailableExplanation": "Vzdálený Proof of Work není k dispozici na Vámi zvoleném Nodu. Změňte Node, nebo nastavte Proof of Work na lokálně v pokročilém nastavení.",
         "attachToTangleUnavailableExplanationShort": "Vzdálený Proof of Work není k dispozici na Vámi zvoleném Nodu.",
         "wallet": "Peněženka",
+        "all": "All",
         "sent": "Odesláno",
         "received": "Přijato",
         "sending": "Odesílání",
