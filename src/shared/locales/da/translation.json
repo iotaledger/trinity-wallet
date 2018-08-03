@@ -72,6 +72,7 @@
         "attachToTangleUnavailableExplanation": "Ekstern netværksvalidering er ikke tilgængelig på den valgte node. Skift venligst node eller sæt netværksvalidering til Lokal under 'Avancerede indstillinger'.",
         "attachToTangleUnavailableExplanationShort": "Ekstern netværksvalidering er ikke tilgængelig på den valgte node.",
         "wallet": "Tegnebog",
+        "all": "All",
         "sent": "Sendt",
         "received": "Modtaget",
         "sending": "Sender",
