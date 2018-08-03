@@ -72,6 +72,7 @@
         "attachToTangleUnavailableExplanation": "Proof of Work ist auf dem gewählten Node nicht verfügbar. Ändere den Node oder aktiviere lokales Proof of Work in den erweiterten Einstellungen.",
         "attachToTangleUnavailableExplanationShort": "Proof of Work ist auf dem gewählten Node nicht verfügbar.",
         "wallet": "Wallet",
+        "all": "All",
         "sent": "Gesendet",
         "received": "Empfangen",
         "sending": "Sende...",
