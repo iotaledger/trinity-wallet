@@ -31,7 +31,7 @@ export function round(value, precision) {
 /**
  * Computes number rounded down to precision
  *
- * @method round
+ * @method roundDown
  * @param {number} number
  * @param {number} decimals
  *
@@ -93,15 +93,15 @@ export const renameKeys = (payload, keyMap) => {
 };
 
 /**
- * Serializes payload if its not already
+ * Serialises payload if not already serialised
  *
- * @method serialize
+ * @method serialise
  * @param {*} data
  * @param {array} options
  *
  * @returns {*}
  */
-export const serialize = (data, ...options) => {
+export const serialise = (data, ...options) => {
     if (!isString(data)) {
         return JSON.stringify(data, ...options);
     }
@@ -110,9 +110,9 @@ export const serialize = (data, ...options) => {
 };
 
 /**
- * Parses serialized data
+ * Parses serialised data
  *
- * @method serialize
+ * @method parse
  *
  * @param {*} data
  * @returns {object}
@@ -126,7 +126,8 @@ export const parse = (data) => {
 };
 
 /**
- * Parses serialized data
+ * Rearranges object keys
+ * Put the key at first index at last
  *
  * @method rearrangeObjectKeys
  *
