@@ -58,12 +58,12 @@ public class Argon2Android extends ReactContextBaseJavaModule {
      * @param promise
      */
     @ReactMethod
-    public void getHash(String password, String salt, ReadableMap options, Promise promise) {
+    public void hash(String password, String salt, ReadableMap options, Promise promise) {
         try {
             Argon2 instance = Argon2Android.init(options.toHashMap());
-            EncodedArgon2Result hash = instance.argon2_hash(password.getBytes(), salt.getBytes());
+            EncodedArgon2Result result = instance.argon2_hash(password.getBytes(), salt.getBytes());
 
-            promise.resolve(hash.getEncoded());
+            promise.resolve(result.getEncoded());
         } catch(Argon2Exception error) {
             promise.reject(error);
         }
