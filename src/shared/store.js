@@ -4,7 +4,6 @@ import thunk from 'redux-thunk';
 import marketData from './reducers/marketData';
 import wallet from './reducers/wallet';
 import accounts from './reducers/accounts';
-import app from './reducers/app';
 import settings from './reducers/settings';
 import alerts from './reducers/alerts';
 import home from './reducers/home';
@@ -26,7 +25,6 @@ const reducers = combineReducers({
     alerts,
     marketData,
     accounts,
-    app,
     settings,
     home,
     keychain,

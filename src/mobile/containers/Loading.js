@@ -127,7 +127,7 @@ class Loading extends Component {
         /** Additional account name */
         additionalAccountName: PropTypes.string.isRequired,
         /** Hash for wallet's password */
-        password: PropTypes.string.isRequired,
+        password: PropTypes.object.isRequired,
         /** Seed value */
         seed: PropTypes.string.isRequired,
         /** Currently selected currency */

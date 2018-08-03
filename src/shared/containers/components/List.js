@@ -10,7 +10,7 @@ import {
 
 import { generateAlert } from '../../actions/alerts';
 import { toggleEmptyTransactions } from '../../actions/settings';
-import { broadcastBundle, promoteTransaction, retryFailedTransaction } from '../../actions/transfers';
+import { promoteTransaction, retryFailedTransaction } from '../../actions/transfers';
 
 /**
  * List component container
@@ -34,7 +34,6 @@ export default function withListData(ListComponent) {
             toggleEmptyTransactions: PropTypes.func.isRequired,
             hideEmptyTransactions: PropTypes.bool.isRequired,
             promoteTransaction: PropTypes.func.isRequired,
-            broadcastBundle: PropTypes.func.isRequired,
             retryFailedTransaction: PropTypes.func.isRequired,
             remotePoW: PropTypes.bool.isRequired,
             generateAlert: PropTypes.func.isRequired,
@@ -43,10 +42,6 @@ export default function withListData(ListComponent) {
 
         promoteTransaction = (hash, powFn) => {
             this.props.promoteTransaction(hash, this.props.accountName, powFn);
-        };
-
-        broadcastBundle = (bundle) => {
-            this.props.broadcastBundle(bundle, this.props.accountName);
         };
 
         retryFailedTransaction = (bundle, powFn) => {
@@ -90,11 +85,9 @@ export default function withListData(ListComponent) {
                 remotePoW,
                 isLoading: ui.isFetchingLatestAccountInfoOnLogin,
                 currentlyPromotingBundleHash: ui.currentlyPromotingBundleHash,
-                isBroadcastingBundle: ui.isBroadcastingBundle,
                 isRetryingFailedTransaction: ui.isRetryingFailedTransaction,
                 hideEmptyTransactions,
                 toggleEmptyTransactions: toggleEmptyTransactions,
-                broadcastBundle: this.broadcastBundle,
                 promoteTransaction: this.promoteTransaction,
                 retryFailedTransaction: this.retryFailedTransaction,
                 generateAlert,
@@ -121,7 +114,6 @@ export default function withListData(ListComponent) {
 
     const mapDispatchToProps = {
         toggleEmptyTransactions,
-        broadcastBundle,
         promoteTransaction,
         retryFailedTransaction,
         generateAlert,

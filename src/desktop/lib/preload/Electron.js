@@ -1,15 +1,14 @@
-const { ipcRenderer: ipc, shell, clipboard } = require('electron');
+const { ipcRenderer: ipc, clipboard } = require('electron');
 const { dialog } = require('electron').remote;
 const currentWindow = require('electron').remote.getCurrentWindow();
-const packageFile = require('../package.json');
-const machineUuid = require('machine-uuid');
 const keytar = require('keytar');
 const fs = require('fs');
 const settings = require('electron-settings');
 const Kerl = require('iota.lib.js/lib/crypto/kerl/kerl');
 const Curl = require('iota.lib.js/lib/crypto/curl/curl');
 const Converter = require('iota.lib.js/lib/crypto/converter/converter');
-const kdbx = require('./kdbx');
+const argon2 = require('argon2');
+const kdbx = require('../kdbx');
 
 const trytesTrits = [
     [0, 0, 0],
@@ -48,7 +47,15 @@ const capitalize = (string) => {
 let onboardingSeed = null;
 let onboardingGenerated = false;
 
+/**
+ * Global Electron helper for native support
+ */
 const Electron = {
+    /**
+     * Set clipboard value, in case of Seed array, trigger Garbage Collector
+     * @param {string|array} Content - Target content
+     * @returns {undefined}
+     */
     clipboard: (content) => {
         if (content) {
             const clip =
@@ -66,14 +73,12 @@ const Electron = {
         }
     },
 
-    getUuid() {
-        return machineUuid();
-    },
-
-    gotoLatestRelease: () => {
-        shell.openExternal(packageFile.url);
-    },
-
+    /**
+     * Proxy native menu attribute settings
+     * @param {string} Attribute - Target attribute
+     * @param {any} Value - Target attribute value
+     * @returns {undefined}
+     */
     updateMenu: (attribute, value) => {
         ipc.send('menu.update', {
             attribute: attribute,
@@ -81,73 +86,130 @@ const Electron = {
         });
     },
 
-    enableMenu: () => {
-        ipc.send('menu.enabled', true);
-    },
-
-    disableMenu: () => {
-        ipc.send('menu.enabled', false);
-    },
-
+    /**
+     * Proxy deep link value to main process
+     * @returns {undefined}
+     */
     requestDeepLink: () => {
         ipc.send('request.deepLink');
     },
 
-    getActiveVersion() {
-        return settings.get('trinity-version');
-    },
-
-    setActiveVersion(value) {
-        return settings.set('trinity-version', value);
-    },
-
+    /**
+     * Get local storage item by item key
+     * @param {string} Key - Target item key
+     * @returns {any} Storage item value
+     */
     getStorage(key) {
         return settings.get(key);
     },
 
+    /**
+     * Set local storage item by item key
+     * @param {string} Key - Target item key
+     * @param {any} Storage - Target item value
+     * @returns {boolean} If item update is succesfull
+     */
     setStorage(key, item) {
         return settings.set(key, item);
     },
 
+    /**
+     * Remove local storage item by item key
+     * @param {string} Key - Target item key
+     * @returns {boolean} If item removal is succesfull
+     */
     removeStorage(key) {
         return settings.delete(key);
     },
 
+    /**
+     * Remove all local storage items
+     * @returns {undefined}
+     */
     clearStorage() {
         const keys = settings.getAll();
         Object.keys(keys).forEach((key) => this.removeStorage(key));
     },
 
+    /**
+     * Get all local storage item keys
+     * @returns {array} Storage item keys
+     */
     getAllStorage() {
         const data = settings.getAll();
         const keys = Object.keys(data).filter((key) => key.indexOf('reduxPersist') === 0);
         return keys;
     },
 
+    /**
+     * Get all keychain account entries
+     * @returns {promise} Promise resolves in an Array of entries
+     */
     listKeychain: () => {
         return keytar.findCredentials('Trinity wallet');
     },
 
+    /**
+     * Get keychain account entry by account name
+     * @param accountName - Target account name
+     * @returns {promise} Promise resolves in account object
+     */
     readKeychain: (accountName) => {
         return keytar.getPassword('Trinity wallet', accountName);
     },
 
+    /**
+     * Set keychain account entry by account name
+     * @param accountName - Target account name
+     * @param content - Target account content
+     * @returns {promise} Promise resolves in success boolean
+     */
     setKeychain: (accountName, content) => {
         return keytar.setPassword('Trinity wallet', accountName, content);
     },
 
+    /**
+     * Remove keychain account by account name
+     * @param accountName - Target account name
+     * @returns {promise} Promise resolves in a success boolean
+     */
     removeKeychain: (accountName) => {
         return keytar.deletePassword('Trinity wallet', accountName);
     },
 
+    /**
+     * Hash input using argon2
+     * @param {Uint8Array} input - Input data
+     * @param {Uint8Array} salt - Salt used fro hashing
+     * @returns {Uint8Array} Raw Argon2 hash
+     */
+    argon2: (input, salt) => {
+        return argon2.hash(input, {
+            raw: true,
+            salt: Buffer.from(salt),
+        });
+    },
+
+    /**
+     * Get currrent operating system
+     * @returns {string} Operating system code - win32|linux|darwin
+     */
     getOS: () => {
         return process.platform;
     },
 
+    /**
+     * Minimize Wallet window
+     * @returns {undefined}
+     */
     minimize: () => {
         currentWindow.minimize();
     },
 
+    /**
+     * Toggle Wallet window maximize state
+     * @returns {undefined}
+     */
     maximize: () => {
         if (currentWindow.isMaximized()) {
             currentWindow.unmaximize();
@@ -156,29 +218,57 @@ const Electron = {
         }
     },
 
+    /**
+     * Close current wallet windoow
+     * @returns {undefined}
+     */
     close: () => {
         currentWindow.close();
     },
 
+    /**
+     * Trigger native menu visibility on Windows platforms
+     * @returns {undefined}
+     */
     showMenu: () => {
         ipc.send('menu.popup');
     },
 
-    setOnboardingSeed: (seed, generated) => {
+    /**
+     * Set onboarding seed variable to bypass Redux
+     * @param {array} Seed - Target seed byte array
+     * @param {boolean} isGenerated - Is the seed generated using Trinity
+     * @returns {undefined}
+     */
+    setOnboardingSeed: (seed, isGenerated) => {
         onboardingSeed = seed;
-        onboardingGenerated = generated ? true : false;
+        onboardingGenerated = isGenerated ? true : false;
     },
 
+    /**
+     * Get onboarding seed value
+     * @param {boolean} plainText - If should return plain text seed
+     * @returns {array|string} Onboarding seed value
+     */
     getOnboardingSeed: (plainText) => {
         return plainText
             ? onboardingSeed.map((byte) => '9ABCDEFGHIJKLMNOPQRSTUVWXYZ'.charAt(byte % 27)).join('')
             : onboardingSeed;
     },
 
+    /**
+     * Get onboarding seed generated in Trinity state
+     * @returns {boolean} Is seed generated
+     */
     getOnboardingGenerated: () => {
         return onboardingGenerated;
     },
 
+    /**
+     * Calculate seed checksum
+     * @param {array} bytes - Target seed byte array
+     * @returns {string} Seed checksum
+     */
     getChecksum: (bytes) => {
         let trits = [];
 
@@ -197,17 +287,32 @@ const Electron = {
         return checksum;
     },
 
+    /**
+     * Trigger Garbage Collector
+     * @returns {undefined}
+     */
     garbageCollect: () => {
         global.gc();
     },
 
-    exportSeed: async (seed, password) => {
+    /**
+     * Export SeedVault file
+     * @param {array} - Seed object array
+     * @param {string} - Plain text password to use for SeedVault
+     * @returns {undefined}
+     */
+    exportSeeds: async (seeds, password) => {
         try {
-            const content = await kdbx.exportVault(seed, password);
+            const content = await kdbx.exportVault(seeds, password);
+            const now = new Date();
 
             const path = await dialog.showSaveDialog(currentWindow, {
                 title: 'Export keyfile',
-                defaultPath: 'trinity.kdbx',
+                defaultPath: `trinity-${now
+                    .toISOString()
+                    .slice(0, 16)
+                    .replace(/[-:]/g, '')
+                    .replace('T', '-')}.kdbx`,
                 buttonLabel: 'Export',
             });
 
@@ -223,11 +328,22 @@ const Electron = {
         }
     },
 
+    /**
+     * Decrypt SeedVault file
+     * @param {buffer} buffer - SeedVault file content
+     * @param {string} - Plain text password for SeedVailt decryption
+     * @returns {array} Seed object array
+     */
     importSeed: async (buffer, password) => {
         const seeds = await kdbx.importVault(buffer, password);
         return seeds;
     },
 
+    /**
+     * Set native menu locales
+     * @param {function} t - i18n locale helper
+     * @returns {undefiend}
+     */
     changeLanguage: (t) => {
         ipc.send('menu.language', {
             about: t('settings:aboutTrinity'),
@@ -266,6 +382,12 @@ const Electron = {
         });
     },
 
+    /**
+     * Add native window wallet event listener
+     * @param {string} event - Target event name
+     * @param {function} callback - Event trigger callback
+     * @returns {undefined}
+     */
     onEvent: function(event, callback) {
         let listeners = this._eventListeners[event];
         if (!listeners) {
@@ -279,6 +401,12 @@ const Electron = {
         listeners.push(callback);
     },
 
+    /**
+     * Remove native window wallet event listener
+     * @param {string} event - Target event name
+     * @param {function} callback - Event trigger callback
+     * @returns {undefined}
+     */
     removeEvent: function(event, callback) {
         const listeners = this._eventListeners[event];
         listeners.forEach((call, index) => {
@@ -291,16 +419,4 @@ const Electron = {
     _eventListeners: {},
 };
 
-// Disable default drag&drop
-document.addEventListener('dragover', (e) => e.preventDefault());
-document.addEventListener('drop', (e) => e.preventDefault());
-
-// Disable eval
-// eslint-disable-next-line
-/* TODO: Reenable for production code only
-window.eval = global.eval = function() {
-    throw new Error('Eval support disabled');
-};
-*/
-
-global.Electron = Electron;
+module.exports = Electron;

@@ -14,6 +14,9 @@ const wallets = {
     paperWalletFilled: paperWalletFilled,
 };
 
+/**
+ * Paper wallet layout component
+ */
 export default class SeedPrint extends PureComponent {
     static propTypes = {
         /** Should print filled wallet */

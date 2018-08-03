@@ -90,11 +90,13 @@ $footer: 70px;
     }
 
     footer {
-        margin-top: 40px;
-
         a,
         button {
             margin: 24px;
+
+            @media screen and (max-width: 860px) {
+                margin: 24px 12px;
+            }
         }
     }
 
@@ -109,10 +111,6 @@ $footer: 70px;
         p {
             word-wrap: break-word;
             margin-bottom: 40px;
-        }
-
-        p + p {
-            margin-top: -28px;
         }
 
         form {

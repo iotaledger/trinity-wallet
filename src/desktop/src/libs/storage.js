@@ -1,4 +1,8 @@
-/*global Electron*/
+/* global Electron */
+
+/**
+ * Redux store persistance storage wrapper
+ */
 const storage = {
     getItem: (key, callback) => {
         try {

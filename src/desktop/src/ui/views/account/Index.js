@@ -13,37 +13,21 @@ import Remove from 'ui/views/account/Remove';
 
 import css from '../settings/index.scss';
 
-/** Account settings main wrapper component */
+/**
+ * Account settings main wrapper component
+ **/
 class Account extends React.PureComponent {
     static propTypes = {
-        /** Browser location object */
+        /** @ignore */
         location: PropTypes.object,
-        /** Browser history object */
+        /** @ignore */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
-        /** wallet state data
-         * @ignore
-         */
-        wallet: PropTypes.object.isRequired,
-        /** Wallet account names
-         * @ignore
-         */
+        /** @ignore */
         accountNames: PropTypes.array.isRequired,
-        /** Translation helper
-         * @param {string} translationString - Locale string identifier to be translated
-         * @ignore
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
-    };
-
-    state = {
-        vault: null,
-        password: null,
-    };
-
-    NameComponent = () => {
-        return <Name {...this.state} />;
     };
 
     render() {
@@ -93,7 +77,6 @@ class Account extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    wallet: state.wallet,
     accountNames: state.accounts.accountNames,
 });
 

@@ -4,7 +4,7 @@ import Icon from 'ui/components/Icon';
 import css from './tooltip.scss';
 
 /**
- * Tooltip component
+ * Inline hover tooltip component
  */
 export default class Tooltip extends React.PureComponent {
     static propTypes = {

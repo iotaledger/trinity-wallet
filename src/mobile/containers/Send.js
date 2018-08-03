@@ -144,7 +144,7 @@ export class Send extends Component {
         activeStepIndex: PropTypes.number.isRequired,
         activeSteps: PropTypes.array.isRequired,
         timeTakenByEachProgressStep: PropTypes.array.isRequired,
-        password: PropTypes.string.isRequired,
+        password: PropTypes.object.isRequired,
         generateTransferErrorAlert: PropTypes.func.isRequired,
         /** Determines if the wallet has just opened a deep link */
         deepLinkActive: PropTypes.bool.isRequired,

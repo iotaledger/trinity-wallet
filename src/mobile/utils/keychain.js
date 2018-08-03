@@ -6,7 +6,14 @@ import values from 'lodash/values';
 import keys from 'lodash/keys';
 import isString from 'lodash/isString';
 import * as Keychain from 'react-native-keychain';
-import { getNonce, createSecretBox, openSecretBox, hexStringToByte, encodeBase64, decodeBase64 } from './crypto';
+import {
+    getRandomBytes,
+    createSecretBox,
+    openSecretBox,
+    encodeBase64,
+    decodeBase64,
+    generatePasswordHash,
+} from './crypto';
 
 const keychain = {
     get: (alias) => {
@@ -18,7 +25,7 @@ const keychain = {
                     } else {
                         const payload = {
                             nonce: get(credentials, 'username'),
-                            box: get(credentials, 'password'),
+                            item: get(credentials, 'password'),
                         };
 
                         resolve(payload);
@@ -34,26 +41,41 @@ const keychain = {
                 .catch((err) => reject(err));
         });
     },
-    set: (alias, nonce, box) => {
+    set: (alias, nonce, item) => {
         return new Promise((resolve, reject) => {
-            Keychain.setInternetCredentials(alias, nonce, box)
+            Keychain.setInternetCredentials(alias, nonce, item)
                 .then(() => resolve())
                 .catch((err) => reject(err));
         });
     },
 };
 
-export const getSecretBoxFromKeychainAndOpenIt = async (alias, key) => {
+export const getSecretBoxFromKeychainAndOpenIt = async (alias, keyUInt8) => {
     const secretBox = await keychain.get(alias);
-    const boxUInt8 = await decodeBase64(secretBox.box);
+    const boxUInt8 = await decodeBase64(secretBox.item);
     const nonceUInt8 = await decodeBase64(secretBox.nonce);
-    const keyUInt8 = hexStringToByte(key);
-
     return await openSecretBox(boxUInt8, nonceUInt8, keyUInt8);
 };
 
+export const getPasswordHash = async (password) => {
+    const salt = await getSaltFromKeychain();
+    return await generatePasswordHash(password, salt);
+};
+
+export const getSaltFromKeychain = async () => {
+    const salt = await keychain.get('salt');
+    return await decodeBase64(salt.item);
+};
+
+export const storeSaltInKeychain = async (salt) => {
+    const nonce = await getRandomBytes(24);
+    const nonce64 = await encodeBase64(nonce);
+    const salt64 = await encodeBase64(salt);
+    await keychain.set('salt', nonce64, salt64);
+};
+
 export const createAndStoreBoxInKeychain = async (key, message, alias) => {
-    const nonce = await getNonce();
+    const nonce = await getRandomBytes(24);
     const box = await createSecretBox(message, nonce, key);
     const nonce64 = await encodeBase64(nonce);
     const box64 = await encodeBase64(box);
@@ -94,16 +116,16 @@ export const getSeedFromKeychain = async (pwdHash, accountName) => {
 export const logSeeds = async (pwdHash) => {
     try {
         const seeds = await getSecretBoxFromKeychainAndOpenIt('seeds', pwdHash);
-        console.log(seeds);
+        console.log(seeds); // eslint-disable-line no-console
     } catch (error) {
         // In case no seeds in keychain or password hash is incorrect
-        return console.log(null);
+        return console.log(error); // eslint-disable-line no-console
     }
 };
 
 export const logTwoFa = async (pwdHash) => {
     const twofa = await getSecretBoxFromKeychainAndOpenIt('authKey', pwdHash);
-    console.log(twofa);
+    console.log(twofa); // eslint-disable-line no-console
 };
 
 export const getTwoFactorAuthKeyFromKeychain = async (pwdHash) => {
@@ -159,31 +181,36 @@ export const deleteTwoFactorAuthKeyFromKeychain = async (alias = 'authKey') => {
     return await keychain.clear(alias);
 };
 
-export const clearKeychain = async (aliasOne = 'authKey', aliasTwo = 'seeds') => {
+export const clearKeychain = async (aliasOne = 'authKey', aliasTwo = 'seeds', aliasThree = 'salt') => {
     await keychain.clear(aliasOne);
-    return await keychain.clear(aliasTwo);
+    await keychain.clear(aliasTwo);
+    return await keychain.clear(aliasThree);
 };
 
-export const changePassword = async (oldPwdHash, newPwdHash, aliasOne = 'seeds', aliasTwo = 'authKey') => {
+export const changePassword = async (
+    oldPwdHash,
+    newPwdHash,
+    salt,
+    aliasOne = 'seeds',
+    aliasTwo = 'authKey',
+    aliasThree = 'salt',
+) => {
     const seedInfo = await getSecretBoxFromKeychainAndOpenIt(aliasOne, oldPwdHash);
-
     // Clear keychain for alias "seeds"
     await keychain.clear(aliasOne);
-
     const authKey = await getTwoFactorAuthKeyFromKeychain(oldPwdHash);
-
     if (authKey) {
         await keychain.clear(aliasTwo);
     }
-
+    // Clear salt and store new salt in keychain
+    await keychain.clear(aliasThree);
+    await storeSaltInKeychain(salt);
     // Create a secret box with new password hash
     await createAndStoreBoxInKeychain(newPwdHash, seedInfo, aliasOne);
-
     // Only update keychain with authKey alias if wallet has a twoFa key
     if (authKey) {
         return await storeTwoFactorAuthKeyInKeychain(newPwdHash, authKey);
     }
-
     return Promise.resolve();
 };
 
