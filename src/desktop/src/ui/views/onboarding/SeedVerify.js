@@ -18,7 +18,7 @@ import SeedInput from 'ui/components/input/Seed';
 class SeedVerify extends React.PureComponent {
     static propTypes = {
         /** @ignore */
-        password: PropTypes.string.isRequired,
+        password: PropTypes.object.isRequired,
         /** @ignore */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
