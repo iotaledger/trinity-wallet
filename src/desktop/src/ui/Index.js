@@ -111,6 +111,11 @@ class App extends React.Component {
 
             this.props.history.push('/wallet/');
         }
+
+        // Dispose alerts on route change
+        if (this.props.location.pathname !== nextProps.location.pathname) {
+            this.props.disposeOffAlert();
+        }
     }
 
     componentWillUnmount() {
@@ -243,9 +248,4 @@ const mapDispatchToProps = {
     updateTheme,
 };
 
-export default withRouter(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(translate()(withAutoNodeSwitching(App))),
-);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(translate()(withAutoNodeSwitching(App))));
