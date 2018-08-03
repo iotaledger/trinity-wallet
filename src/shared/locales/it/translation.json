@@ -72,6 +72,7 @@
         "attachToTangleUnavailableExplanation": "L'opzione prova di lavoro remota non è disponibile nel nodo che hai selezionato. Scegli un altro nodo oppure imposta \"prova di lavoro locale\" in \"impostazioni avanzate\".",
         "attachToTangleUnavailableExplanationShort": "L'opzione prova di lavoro remota non è disponibile nel nodo che hai selezionato.",
         "wallet": "Portafoglio",
+        "all": "All",
         "sent": "Inviato",
         "received": "Ricevuto",
         "sending": "Invio",
