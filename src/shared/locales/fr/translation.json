@@ -72,6 +72,7 @@
         "attachToTangleUnavailableExplanation": "Preuve du travail à distance non disponible sur le serveur sélectionné. Modifiez le serveur ou sélectionnez Preuve de Travail en local dans les paramètres avancés.",
         "attachToTangleUnavailableExplanationShort": "Preuve de travail à distance non disponible sur le nœud sélectionné.",
         "wallet": "Portefeuille",
+        "all": "All",
         "sent": "Envoyé",
         "received": "Reçue",
         "sending": "Envoi en cours",
