@@ -72,6 +72,7 @@
         "attachToTangleUnavailableExplanation": "在所选节点上远程工作证明不可用。请更改节点，或者在高级设置中设置为本地进行工作证明。",
         "attachToTangleUnavailableExplanationShort": "在所选节点上远程工作证明不可用。",
         "wallet": "钱包",
+        "all": "All",
         "sent": "发送",
         "received": "收到",
         "sending": "发送",
