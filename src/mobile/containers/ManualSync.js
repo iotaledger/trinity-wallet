@@ -87,7 +87,7 @@ export class ManualSync extends Component {
         /** Theme settings */
         theme: PropTypes.object.isRequired,
         /** Hash for wallet's password */
-        password: PropTypes.string.isRequired,
+        password: PropTypes.object.isRequired,
         /** Account name for selected account */
         selectedAccountName: PropTypes.string.isRequired,
         /** Generate a notification alert

@@ -14,13 +14,9 @@ class Alerts extends React.PureComponent {
     static timeout = null;
 
     static propTypes = {
-        /** Dispose alert function
-         * @ignore
-         */
+        /** @ignore */
         disposeOffAlert: PropTypes.func.isRequired,
-        /** Alerts state
-         * @ignore
-         */
+        /** @ignore */
         alerts: PropTypes.object.isRequired,
     };
 

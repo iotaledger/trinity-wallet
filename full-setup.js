@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const cmd = require('node-cmd');
 const os = require('os');
 

@@ -2,6 +2,7 @@ import i18next from 'i18next';
 
 /**
  * i18next localisation initialisation
+ * @returns {undefined}
  */
 export default i18next.init({
     fallbackLng: 'en',

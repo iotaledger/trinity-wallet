@@ -113,16 +113,16 @@ export const renderSettingsRows = (rows, theme) => {
     const borderBottomColor = { borderBottomColor: theme.body.color };
     return (
         <View style={{ flex: 1 }}>
-            {map(rows, (row) => {
+            {map(rows, (row, index) => {
                 if (row.name === 'separator') {
                     return (
-                        <View style={styles.separatorContainer}>
+                        <View style={styles.separatorContainer} key={index}>
                             <View style={[styles.separator, borderBottomColor]} />
                         </View>
                     );
                 } else if (row.name !== 'back') {
                     return (
-                        <View style={styles.itemContainer}>
+                        <View style={styles.itemContainer} key={index}>
                             <TouchableOpacity
                                 onPress={row.function}
                                 hitSlop={{ top: height / 55, bottom: height / 55, left: width / 55, right: width / 55 }}

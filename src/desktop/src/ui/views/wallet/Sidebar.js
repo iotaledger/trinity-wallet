@@ -11,6 +11,7 @@ import { clearWalletData, setSeedIndex } from 'actions/wallet';
 
 import Logo from 'ui/components/Logo';
 import Icon from 'ui/components/Icon';
+import Scrollbar from 'ui/components/Scrollbar';
 import Confirm from 'ui/components/modal/Confirm';
 
 import css from './index.scss';
@@ -20,35 +21,23 @@ import css from './index.scss';
  */
 class Sidebar extends React.PureComponent {
     static propTypes = {
-        /* Browser location objects */
+        /** @ignore */
         location: PropTypes.object,
-        /** Available account names
-         * @ignore
-         */
-        /** Browser history object */
+        /** @ignore */
         history: PropTypes.shape({
             push: PropTypes.func.isRequired,
         }).isRequired,
-        /** Accounts state data */
+        /** @ignore */
         accounts: PropTypes.object,
-        /** Set seed index state
-         *  @param {Number} Index - Seed index
-         */
+        /** @ignore */
         setSeedIndex: PropTypes.func.isRequired,
-        /** Current seed index
-         * @ignore
-         */
+        /** @ignore */
         seedIndex: PropTypes.number,
-        /** Is wallet ready to switch accounts */
+        /** @ignore */
         isReady: PropTypes.bool.isRequired,
-        /** Clear wallet state data
-         * @ignore
-         */
+        /** @ignore */
         clearWalletData: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         * @ignore
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
@@ -93,31 +82,33 @@ class Sidebar extends React.PureComponent {
                             <Icon icon="wallet" size={20} />
                         </a>
                         <ul>
-                            {accounts.accountNames.map((account, index) => {
-                                return (
-                                    <a
-                                        aria-current={index === seedIndex}
-                                        key={account}
-                                        onClick={() => {
-                                            setSeedIndex(index);
-                                            history.push('/wallet/');
-                                        }}
-                                    >
-                                        <strong>{shorten(account, 16)}</strong>
-                                        <small>{formatIota(accounts.accountInfo[account].balance)}</small>
-                                        <div onClick={(e) => this.accountSettings(e, index)}>
-                                            <Icon icon="settings" size={16} />
-                                        </div>
-                                    </a>
-                                );
-                            })}
-                            <a onClick={() => history.push('/onboarding/seed-intro')}>
-                                + {t('accountManagement:addNewAccount')}
-                            </a>
+                            <Scrollbar>
+                                {accounts.accountNames.map((account, index) => {
+                                    return (
+                                        <a
+                                            aria-current={index === seedIndex}
+                                            key={account}
+                                            onClick={() => {
+                                                setSeedIndex(index);
+                                                history.push('/wallet/');
+                                            }}
+                                        >
+                                            <strong>{shorten(account, 16)}</strong>
+                                            <small>{formatIota(accounts.accountInfo[account].balance)}</small>
+                                            <div onClick={(e) => this.accountSettings(e, index)}>
+                                                <Icon icon="settings" size={16} />
+                                            </div>
+                                        </a>
+                                    );
+                                })}
+                                <a onClick={() => history.push('/onboarding/seed-intro')}>
+                                    + {t('accountManagement:addNewAccount')}
+                                </a>
+                            </Scrollbar>
                         </ul>
                     </div>
                 </nav>
-                <nav>
+                <nav className={isReady ? css.disabled : null}>
                     <NavLink to="/settings">
                         <Icon icon="settings" size={20} />
                         <strong>{t('home:settings').toLowerCase()}</strong>

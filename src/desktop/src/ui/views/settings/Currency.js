@@ -11,20 +11,15 @@ import Select from 'ui/components/input/Select';
  */
 class SetCurrency extends PureComponent {
     static propTypes = {
-        /** Current currency */
+        /** @ignore */
         currency: PropTypes.string.isRequired,
-        /** Available currency list */
+        /** @ignore */
         currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
-        /** Currency change statuss */
+        /** @ignore */
         loading: PropTypes.bool.isRequired,
-        /** Set new currency
-         * @param {string} currency - Currency code
-         */
+        /** @ignore */
         setCurrency: PropTypes.func.isRequired,
-        /** Translation helper
-         * @param {string} translationString - Locale string identifier to be translated
-         * @ignore
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 

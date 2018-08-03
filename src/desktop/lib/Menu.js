@@ -8,7 +8,6 @@ const state = {
 let language = {
     about: 'About Trinity',
     checkUpdate: 'Check for Updates',
-    sendFeedback: 'Send feedback',
     settings: 'Settings',
     accountSettings: 'Account management',
     newAccount: 'Add new account',
@@ -41,6 +40,12 @@ let language = {
     no: 'No',
 };
 
+/**
+ * Create native menu tree and apply to the application window
+ * @param {object} App - Application object
+ * @param {function} getWindow - Get Window instance helper
+ * @returns {undefined}
+ */
 const initMenu = (app, getWindow) => {
     let mainMenu = null;
 
@@ -61,19 +66,16 @@ const initMenu = (app, getWindow) => {
                         click: () => navigate('about'),
                         enabled: state.enabled,
                     },
+                    /* TODO: Merge PR #208
                     {
                         type: 'separator',
                     },
                     {
                         label: `${language.checkUpdate}...`,
-                        click: () => navigate('update'),
+                        click: () => {}, 
                         enabled: state.enabled,
                     },
-                    {
-                        label: language.sendFeedback,
-                        click: () => navigate('feedback'),
-                        enabled: state.enabled,
-                    },
+                    */
                     {
                         type: 'separator',
                     },
@@ -237,8 +239,7 @@ const initMenu = (app, getWindow) => {
                 {
                     label: `${app.getName()} Help`,
                     click: function() {
-                        //TODO: Change to wallet documentation link
-                        shell.openExternal('https://iota.readme.io/docs/what-is-iota');
+                        shell.openExternal('https://docs.iota.works/trinity');
                     },
                 },
             ],

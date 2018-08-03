@@ -1,4 +1,5 @@
-import moment from 'moment/min/moment-with-locales.min.js';
+import moment from 'moment';
+import 'moment/min/locales';
 import i18next from '../i18next';
 
 export const formatTimeAs = {
