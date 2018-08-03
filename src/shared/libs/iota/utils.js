@@ -121,7 +121,7 @@ export const formatUnit = (value) => {
 };
 
 /**
- * Formats IOTA value and assign appropriate unit
+ * Formats IOTA value and assigns appropriate unit
  *
  * @method formatIota
  * @param {number} value

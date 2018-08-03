@@ -4,7 +4,7 @@ import { MAX_SEED_LENGTH } from './iota/utils';
  * Generates a new seed
  *
  * @method generateNewSeed
- * @param {function} randomBytesFn\
+ * @param {function} randomBytesFn
  *
  * @returns {Promise<string>}
  */
