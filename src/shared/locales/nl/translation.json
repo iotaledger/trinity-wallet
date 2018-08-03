@@ -72,6 +72,7 @@
         "attachToTangleUnavailableExplanation": "Extern Bewijs van Inspanning is niet beschikbaar op uw geselecteerde node. Verander de node of zet Bewijs van Inspanning naar Lokaal in Geavanceerde Instellingen.",
         "attachToTangleUnavailableExplanationShort": "Extern Bewijs van Inspanning is niet beschikbaar op uw geselecteerde node.",
         "wallet": "Portemonnee",
+        "all": "All",
         "sent": "Verzonden",
         "received": "Ontvangen",
         "sending": "Uitgaand",
