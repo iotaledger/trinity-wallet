@@ -72,6 +72,7 @@
         "attachToTangleUnavailableExplanation": "اثبات کار از راه دور در Node انتخابی شما در دسترس نیست. هر دو Node را تغییر دهید یا اثبات کار را به محلی در تنظیمات پیشرفته تنظیم کنید.",
         "attachToTangleUnavailableExplanationShort": "اثبات کار از راه دور در Node انتخابی شما در دسترس نیست.",
         "wallet": "کیف پول",
+        "all": "All",
         "sent": "ارسال",
         "received": "دریافت شده",
         "sending": "در حال ارسال",
