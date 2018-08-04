@@ -1,7 +1,7 @@
 {
     "global": {
         "send": "KÜLDÉS",
-        "cancel": "Cancel",
+        "cancel": "Mégsem",
         "continue?": "Biztosan folytatni kívánja?",
         "noTransactions": "NINCSENEK KORÁBBI TRANZAKCIÓK",
         "refresh": "Frissít",
@@ -17,9 +17,9 @@
         "keyReuseError": "Nem küldhet olyan címre, amelyről a fogadó fél már indított tranzakciót.",
         "invalidResponse": "Szerver hiba",
         "invalidResponseExplanation": "A szerver hibát jelzett. Kérjük próbáljon egy másik szervert választani.",
-        "invalidResponseFetchingAccount": "The node returned an error while fetching your account information. Try changing node.",
-        "nodeOutOfSync": "Node out of sync",
-        "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
+        "invalidResponseFetchingAccount": "A csomópont hibát térített vissza a felhasználó adatok lekérése közben. Probálj csomópontot változtatni.",
+        "nodeOutOfSync": "A csomópont nincs szinkronizálva",
+        "nodeOutOfSyncExplanation": "Az általad kiválasztott csomópont nincs szinkronban. Probálj újra csomópontot cserélni.",
         "thisNodeOutOfSync": "This node is out of sync. Please change node or try again.",
         "seed": "Seed",
         "checksum": "Checksum",
