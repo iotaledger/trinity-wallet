@@ -299,7 +299,7 @@
 			remoteGlobalIDString = 9D23B34F1C767B80008B4819;
 			remoteInfo = ReactNativePermissions;
 		};
-		60A0978B2110BD35008180C9 /* PBXContainerItemProxy */ = {
+		60B81DE42115F92600CED105 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DA959792AD9A5C3642835114D50DE868 /* Pods.xcodeproj */;
 			proxyType = 2;
@@ -1134,7 +1134,7 @@
 		9587AF1D58A6A266E24B67481F9ED9F2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				60A0978C2110BD35008180C9 /* CatCrypto.framework */,
+				60B81DE52115F92600CED105 /* CatCrypto.framework */,
 				A7757FB00CE594F07671643433203090 /* Pods_iotaWallet.framework */,
 				73DE2893421CB79475DA9ABBFC68EF31 /* libPods-iotaWallet-tvOS.a */,
 				75741D422FC234226BD97F79574086A2 /* libPods-iotaWallet-tvOSTests.a */,
@@ -1875,11 +1875,11 @@
 			remoteRef = 6056CF5A20827E2E0006A2F3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		60A0978C2110BD35008180C9 /* CatCrypto.framework */ = {
+		60B81DE52115F92600CED105 /* CatCrypto.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = CatCrypto.framework;
-			remoteRef = 60A0978B2110BD35008180C9 /* PBXContainerItemProxy */;
+			remoteRef = 60B81DE42115F92600CED105 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		60BDD27B208D12790085549F /* libRNSecureClipboard.a */ = {
