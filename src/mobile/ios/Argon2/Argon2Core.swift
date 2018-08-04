@@ -15,18 +15,16 @@ struct Argon2Core {
   ///
   /// - Parameters:
   ///   - iterations: Desired number of iterations
-  ///   - salt: Desired string to use as a salt
   ///   - hashLength: Desired hash length
   ///   - parallelism: Number of threads to use
   ///   - memory: Memory cost
   /// - Returns: Initialized argon2Crypto instance
-  static func initialize(iterations: Int, salt: String, hashLength: Int, parallelism: Int, memory: Int) -> CatArgon2Crypto {
+  static func initialize(iterations: Int, hashLength: Int, parallelism: Int, memory: Int) -> CatArgon2Crypto {
     let argon2Crypto = CatArgon2Crypto()
     // Set mode to Argon2id
     argon2Crypto.context.mode = .argon2id
     // Set parameters
     argon2Crypto.context.iterations = iterations
-    argon2Crypto.context.salt = salt
     argon2Crypto.context.hashLength = hashLength
     argon2Crypto.context.parallelism = parallelism
     argon2Crypto.context.memory = memory
@@ -40,9 +38,11 @@ struct Argon2Core {
   ///   - params: Parameters to initialize Argon2 with
   ///   - password: Password to hash
   /// - Returns: Hashed password
-  static func argon2Hash(params: [String: Any], password: String) -> String {
+  static func argon2Hash(password: String, salt: String, params: [String: Any]) -> String {
     // Initialize Argon2
-    let argon2Crypto = initialize(iterations: params["iterations"] as! Int, salt: params["salt"] as! String, hashLength: params["hashLength"] as! Int, parallelism: params["parallelism"] as! Int, memory: params["memory"] as! Int)
+    let argon2Crypto = initialize(iterations: params["iterations"] as! Int, hashLength: params["hashLength"] as! Int, parallelism: params["parallelism"] as! Int, memory: params["memory"] as! Int)
+    // Add salt to the context
+    argon2Crypto.context.salt = salt
     // Return the hash of the password
     let hash = argon2Crypto.hash(password: password)
     return hash.value!
@@ -55,9 +55,9 @@ struct Argon2Core {
   ///   - hash: Hash to verify
   ///   - password: Password to verify
   /// - Returns: Result of verification
-  static func argon2Verify(params: [String: Any], hash: String, password: String) -> Bool {
+  static func argon2Verify(hash: String, password: String, params: [String: Any]) -> Bool {
     // Initialize Argon2
-    let argon2Crypto = initialize(iterations: params["iterations"] as! Int, salt: params["salt"] as! String, hashLength: params["hashLength"] as! Int, parallelism: params["parallelism"] as! Int, memory: params["memory"] as! Int)
+    let argon2Crypto = initialize(iterations: params["iterations"] as! Int, hashLength: params["hashLength"] as! Int, parallelism: params["parallelism"] as! Int, memory: params["memory"] as! Int)
     // Verify the hash and password, then return the result
     let result = argon2Crypto.verify(hash: hash, password: password)
     return result.value
