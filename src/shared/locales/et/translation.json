@@ -17,7 +17,7 @@
         "keyReuseError": "Te ei saa saata aadressile, millelt on juba kulutatud.",
         "invalidResponse": "Sõlme viga",
         "invalidResponseExplanation": "Sõlm tagastas tõrke. Proovige muuta sõlme.",
-        "invalidResponseFetchingAccount": "The node returned an error while fetching your account information. Try changing node.",
+        "invalidResponseFetchingAccount": "Sõlm andis teie konto informatsiooni toomisel sobimatu vastuse. Proovige muud sõlme.",
         "nodeOutOfSync": "Node out of sync",
         "nodeOutOfSyncExplanation": "Your currently selected node is out of sync. Please change node or try again.",
         "thisNodeOutOfSync": "This node is out of sync. Please change node or try again.",
