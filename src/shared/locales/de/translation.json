@@ -59,7 +59,7 @@
         "password": "Passwort",
         "unrecognisedPassword": "Unbekanntes Passwort",
         "unrecognisedPasswordExplanation": "Das Passwort wurde nicht erkannt. Bitte versuche es erneut.",
-        "capsLockIsOn": "Caps Lock is on",
+        "capsLockIsOn": "Feststelltaste ist aktiviert",
         "syncInProgress": "Synchronisiere...",
         "syncInProgressExplanation": "Bitte warte, bis die Synchronisierung abgeschlossen ist.",
         "somethingWentWrong": "Ein Fehler ist aufgetreten",
@@ -72,7 +72,7 @@
         "attachToTangleUnavailableExplanation": "Proof of Work ist auf dem gewählten Node nicht verfügbar. Ändere den Node oder aktiviere lokales Proof of Work in den erweiterten Einstellungen.",
         "attachToTangleUnavailableExplanationShort": "Proof of Work ist auf dem gewählten Node nicht verfügbar.",
         "wallet": "Wallet",
-        "all": "All",
+        "all": "Alle",
         "sent": "Gesendet",
         "received": "Empfangen",
         "sending": "Sende...",
@@ -656,7 +656,7 @@
     "terms": {
         "termsAndConditions": "Geschäftsbedingungen",
         "accept": "Ich stimme zu",
-        "readAllToContinue": "Please read all the text to continue"
+        "readAllToContinue": "Bitte lies den kompletten Text um fortfahren zu können"
     },
     "privacyPolicy": {
         "privacyPolicy": "Datenschutzerklärung",
