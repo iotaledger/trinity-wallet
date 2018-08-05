@@ -1,10 +1,8 @@
 steps:
   - label: ":hammer_and_wrench: Build for all platforms"
-    command: "cd src/desktop && node_modules/.bin/electron-builder -mzl"
+    command: "cd src/desktop && node_modules/.bin/electron-builder -mwl"
     artifact_paths:
-      - "out/Trinity-*.dmg"
-      - "out/trinity-*.tar.gz"
-      - "out/Trinity Setup*.exe"
+      - "out/*"
     plugins:
       docker#v1.4.0:
         image: "rajivshah/trinity-desktop-ci"
