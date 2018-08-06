@@ -1,3 +1,4 @@
+import isString from 'lodash/isString';
 import i18next from '../i18next.js';
 import Errors from '../libs/errors';
 
@@ -250,7 +251,12 @@ export const disposeOffAlert = () => (dispatch) => dispatch(dispose());
  */
 export const prepareLogUpdate = (err) => (dispatch) => {
     const time = Date.now();
-    const error = { error: err.toString(), time: time };
+
+    const error = {
+        error: err instanceof Error && isString(err.message) ? err.message : err.toString(),
+        time: time,
+    };
+
     dispatch(updateLog(error));
 };
 
