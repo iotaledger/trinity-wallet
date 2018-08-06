@@ -195,7 +195,7 @@
         "retypePassword": "Parool uuesti"
     },
     "copyToClipboard": {
-        "seedCleared": "Seeme puhastatud",
+        "seedCleared": "Lõikelaud puhastatud",
         "seedClearedExplanation": "Seeme on turvalisuse kaalutlustel teie lõikelaualt puhastatud.",
         "seedCopied": "Seeme kopeeritud lõikelauale",
         "seedCopiedExplanation": "Seeme puhastatakse teie lõikelaualt kui vajutate \"VALMIS\" või on möödunud 60 sekundit.",
@@ -205,7 +205,7 @@
         "doNotOpen": "Ärge avage ühtegi teist rakendust selle protsessi ajal.",
         "tapConfirm": "Kinnitamiseks puudutage palun allpool olevat märkeruutu.",
         "passwordManagerCheckbox": "I will store my seed in a password manager",
-        "copy": "COPY",
+        "copy": "KOPEERI",
         "noPasswordManagers": "No supported password managers installed",
         "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android.",
         "followTutorialToSecurelyShareSeed": "If you wish to store your seed in a password manager, you must follow a tutorial from the following link"
@@ -286,7 +286,7 @@
     },
     "saveYourSeed": {
         "saveYourSeed": "Back up your seed",
-        "seedCleared": "Seed cleared",
+        "seedCleared": "Seeme puhastatud",
         "mostSecure": "Most Secure",
         "leastSecure": "Least Secure",
         "paperWallet": "Paper Wallet",
