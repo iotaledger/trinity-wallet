@@ -74,7 +74,7 @@ describe('actions: transfers', () => {
                 sandbox.stub(extendedApis, 'promoteTransactionAsync').resolves('9'.repeat(81));
                 sandbox.stub(transferUtils, 'isStillAValidTransaction').resolves(true);
                 sandbox
-                    .stub(transferUtils, 'getFirstConsistentTail')
+                    .stub(transferUtils, 'findPromotableTail')
                     .resolves('YVDXKCJNZIDNKBCLLRVJATPFYQC9XANKBWRDDXOOUMNKALDWGXHUBAJJCHGECUEHAUFGJZQZUMCV99999');
             });
 
@@ -133,7 +133,7 @@ describe('actions: transfers', () => {
                 sandbox.stub(extendedApis, 'promoteTransactionAsync').resolves('9'.repeat(81));
                 sandbox.stub(extendedApis, 'replayBundleAsync').resolves([]);
                 sandbox.stub(transferUtils, 'isStillAValidTransaction').resolves(true);
-                sandbox.stub(transferUtils, 'getFirstConsistentTail').resolves(false);
+                sandbox.stub(transferUtils, 'findPromotableTail').resolves(false);
                 sandbox.stub(accountsUtils, 'syncAccount').resolves(accounts.accountInfo.TEST);
                 syncAccountAfterReattachment = sandbox.stub(accountsUtils, 'syncAccountAfterReattachment').returns({
                     newState: {},
@@ -202,7 +202,7 @@ describe('actions: transfers', () => {
         });
     });
 
-    describe('#makeTransaction', () => {
+    describe.only('#makeTransaction', () => {
         let powFn;
         let genFn;
 
@@ -323,7 +323,7 @@ describe('actions: transfers', () => {
                 sandbox.restore();
             });
 
-            describe('when transaction is successful', () => {
+            describe.only('when transaction is successful', () => {
                 it('should create nine actions of type IOTA/PROGRESS/SET_NEXT_STEP_AS_ACTIVE', () => {
                     const prepareTransfers = sinon.stub(iota.api, 'prepareTransfers').yields(null, trytes.value);
                     const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false]);
