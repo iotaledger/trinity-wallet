@@ -370,7 +370,7 @@
         "accountDeleted": "Konto kustutatud",
         "accountDeletedExplanation": "Teie konto on rahakotist eemaldatud.",
         "cannotPerformAction": "Toimingut ei saa teha",
-        "cannotPerformActionExplanation": "Minge menüüst Täpsemad sätted, et rahakott tühjendada.",
+        "cannotPerformActionExplanation": "Valige menüüst Täpsemad sätted, et rahakott tühjendada.",
         "hide": "Peida",
         "hideOthers": "Peida teised",
         "show": "Näita",
@@ -399,8 +399,8 @@
         "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
     },
     "resetWalletRequirePassword": {
-        "enterPassword": "Rahakoti seadistuse nullimiseks sisestage oma parool.",
-        "reset": "Reset"
+        "enterPassword": "Rahakoti seadistuse lähtestamiseks sisestage oma parool.",
+        "reset": "Lähtesta"
     },
     "walletSetup": {
         "creatingSeed": "Creating a seed",
