@@ -14,6 +14,10 @@ const template = `export default { {{colors}}
 const figmaFiles = [
     {
         title: 'Default',
+        fileId: 'tbq8QrBkt64JJWyFFAmpFB',
+    },
+    {
+        title: 'Classic',
         fileId: 'mnDqmOTqtDyUReD9Cy1MkC',
     },
     {
