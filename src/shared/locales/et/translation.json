@@ -504,7 +504,7 @@
     },
     "manualSync": {
         "outOfSync": "Kas teie tehingute ajalugu näeb välja nagu see oleks sünkroniseerimata?",
-        "pressToSync": "Konto sünkroniseerimiseks vajutage järgnevat nuppu.",
+        "pressToSync": "Konto sünkroniseerimiseks vajutage allolevat nuppu.",
         "thisMayTake": "See võib aega võtta. Te võite märgata oma seadme aeglustumist.",
         "doNotClose": "Rakenduse minimiseerimine katkestab sünkroonimise.",
         "syncAccount": "Sync Account",
@@ -558,12 +558,12 @@
         "wrongCodeExplanation": "Sisestatud kood on vale.",
         "emptyCode": "Tühi kood",
         "emptyCodeExplanation": "Palun sisestage kood ja proovige uuesti.",
-        "keyCopied": "Võti kopeeritud",
-        "keyCopiedExplanation": "Teie 2FA võti on kopeeritud.",
+        "keyCopied": "Võti kopeeritud lõikelauale",
+        "keyCopiedExplanation": "Teie 2FA võti on kopeeritud lõikelauale.",
         "addKey": "Lisa see võti oma 2FA rakendusse",
         "key": "Võti",
         "twoFAEnabled": "2FA on nüüd sees",
-        "twoFAEnabledExplanation": "Kahe teguriga autentimine edukalt lubatud.",
+        "twoFAEnabledExplanation": "Kahefaktoriline autentimine edukalt lubatud.",
         "twoFADisabled": "2FA is now disabled",
         "twoFADisabledExplanation": "You have successfully disabled Two Factor Authentication.",
         "enterCode": "Sisestage oma 2FA rakendusest saadud kood",
@@ -589,7 +589,7 @@
     "chart": {
         "mcap": "MCAP",
         "change": "Change (24h)",
-        "volume": "Maht (24h)",
+        "volume": "Vahetus (24h)",
         "error": "Error fetching chart data"
     },
     "rootDetection": {
