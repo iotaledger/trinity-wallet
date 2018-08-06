@@ -642,24 +642,24 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Error retrieving update data",
-        "errorRetrievingUpdateDataExplanation": "There was an error retrieving update data. Please try again.",
-        "noUpdatesAvailable": "No updates available",
-        "noUpdatesAvailableExplanation": "You've got the latest version of IOTA Trinity desktop wallet!",
-        "newVersionAvailable": "New version available",
-        "newVersionAvailableExplanation": "A new <strong>Trinity</strong> <strong>{{version}}</strong> version is available. Please read the release details carefully and verify the download source before updating:",
-        "downloadRelease": "Download release",
-        "skipUpdate": "Skip update"
+        "errorRetrievingUpdateDataExplanation": "Värskendusteabe allalaadimisel ilmnes viga. Palun proovige uuesti.",
+        "noUpdatesAvailable": "Ühtegi uuendust pole saadaval",
+        "noUpdatesAvailableExplanation": "Teil on IOTA Trinity rahakoti uusim versioon!",
+        "newVersionAvailable": "Uus versioon saadaval",
+        "newVersionAvailableExplanation": "Uus <strong>Trinity</strong> versioon <strong>{{version}}</strong> on saadaval. Palun lugege hoolikalt uuenduse üksikasju ja kinnitage allalaadimise allikas enne uuendamist:",
+        "downloadRelease": "Laadige värskendus alla",
+        "skipUpdate": "Jätke värskendus vahele"
     },
     "notificationLog": {
-        "errorLog": "ERROR LOG"
+        "errorLog": "ERRORIDE LOG"
     },
     "terms": {
-        "termsAndConditions": "Terms & Conditions",
+        "termsAndConditions": "Kasutustingimused",
         "accept": "Nõustun",
         "readAllToContinue": "Palun lugege kogu tekst jätkamiseks"
     },
     "privacyPolicy": {
         "privacyPolicy": "Privaatsuspoliitika",
-        "agree": "Ma nõustun"
+        "agree": "Nõustun"
     }
 }
