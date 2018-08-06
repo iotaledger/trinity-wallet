@@ -9,8 +9,16 @@ If you have general questions on IOTA you can go to https://iota.stackexchange.c
 ### Bug description
 A general description of the bug.
 
-### Device Spec
-What device are you running Trinity on? Please provide the manufacturer, model, and OS version (e.g. Samsung Galaxy S9, Android 8.0)
+### Environment Specs
+What device are you running Trinity on?
+
+- Manufacturer: 
+- Model: 
+- OS version:
+
+What build of Trinity are you running? Please provide the full version (you can find it in Settings > About Trinity).
+
+- Trinity version: 
 
 ### Steps To Reproduce
 1.
