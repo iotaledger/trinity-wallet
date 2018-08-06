@@ -1022,14 +1022,17 @@ export const pickNewTailTransactions = (transactionObjects, existingNormalisedTr
 export const retryFailedTransaction = (transactionObjects, powFn, shouldOffloadPow) => {
     const convertToTrytes = (tx) => iota.utils.transactionTrytes(tx);
 
-    const fakeNonce = '9'.repeat(27);
-    const hasFakeNonce = (tx) => tx.nonce === fakeNonce;
     const cached = {
         transactionObjects: cloneDeep(transactionObjects),
         trytes: map(transactionObjects, convertToTrytes),
     };
 
-    if (some(transactionObjects, hasFakeNonce)) {
+    const isValidTransactionHash = (tx) => iota.utils.isTransactionHash(tx.hash, DEFAULT_MIN_WEIGHT_MAGNITUDE);
+
+    // Verify if all transaction objects have valid hash
+    // Proof of work was not performed correctly if any transaction has invalid hash
+    if (some(transactionObjects, isValidTransactionHash)) {
+        // If proof of work failed, select new tips and retry
         return getTransactionsToApproveAsync()
             .then(({ trunkTransaction, branchTransaction }) => {
                 return shouldOffloadPow
