@@ -431,7 +431,7 @@
         "messageCopiedExplanation": "The message has been copied to the clipboard.",
         "send": "Saada",
         "receive": "Võta vastu",
-        "empty": "Empty",
+        "empty": "Tühi",
         "retrying": "Retrying",
         "yesterday": "Yesterday"
     },
@@ -448,7 +448,7 @@
         "removeCustomNode": "Remove custom node",
         "invalidNodeResponse": "The node returned an invalid response",
         "add": "Lisa",
-        "nodeFieldEmpty": "Text field is empty",
+        "nodeFieldEmpty": "Tekstiväli on tühi",
         "nodeFieldEmptyExplanation": "Please enter a custom node.",
         "invalidURL": "Please enter a valid URL."
     },
