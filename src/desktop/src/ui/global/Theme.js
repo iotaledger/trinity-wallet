@@ -119,7 +119,4 @@ const mapDispatchToProps = {
     updateTheme,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(Theme);
+export default connect(mapStateToProps, mapDispatchToProps)(Theme);

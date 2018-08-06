@@ -186,7 +186,4 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default connect(
-    null,
-    mapDispatchToProps,
-)(translate()(SeedExport));
+export default connect(null, mapDispatchToProps)(translate()(SeedExport));

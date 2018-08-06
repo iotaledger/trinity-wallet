@@ -107,7 +107,10 @@ class PasswordInput extends React.PureComponent {
                         onChange={(e) => onChange(e.target.value)}
                     />
                     <small>{label}</small>
-                    <strong><Icon icon="warning" size={14}/>{t('capsLockIsOn')}</strong>
+                    <strong>
+                        <Icon icon="warning" size={14} />
+                        {t('capsLockIsOn')}
+                    </strong>
                     {showScore ? (
                         <React.Fragment>
                             <div className={css.score} data-strength={score.score}>

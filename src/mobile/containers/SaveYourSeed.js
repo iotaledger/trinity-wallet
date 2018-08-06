@@ -365,6 +365,7 @@ class SaveYourSeed extends Component {
             timer.setTimeout(
                 'delayShare',
                 () => {
+                    this.hideModal();
                     NativeModules.ShareSecure.share('keepass', {
                         title: t('shareSeed'),
                         message: seed,

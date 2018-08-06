@@ -112,9 +112,7 @@ class Welcome extends React.PureComponent {
                     >
                         {step === 'language'
                             ? t('continue')
-                            : !scrollEnd
-                                ? t('terms:readAllToContinue')
-                                : t('terms:accept')}
+                            : !scrollEnd ? t('terms:readAllToContinue') : t('terms:accept')}
                     </Button>
                 </footer>
             </form>
@@ -133,7 +131,4 @@ const mapDispatchToProps = {
     acceptPrivacy,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(translate()(Welcome));
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(Welcome));
