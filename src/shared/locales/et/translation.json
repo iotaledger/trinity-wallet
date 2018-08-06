@@ -368,7 +368,7 @@
         "nicknameChanged": "Konto nimi muudetud",
         "nicknameChangedExplanation": "Teie konto nimi on muudetud.",
         "accountDeleted": "Konto kustutatud",
-        "accountDeletedExplanation": "Teie konto eemaldati rahakotist.",
+        "accountDeletedExplanation": "Teie konto on rahakotist eemaldatud.",
         "cannotPerformAction": "Toimingut ei saa teha",
         "cannotPerformActionExplanation": "Minge menüüst Täpsemad sätted, et rahakott tühjendada.",
         "hide": "Peida",
@@ -602,7 +602,7 @@
         "feeless": "IOTA tasudeta tehingute jaoks on vaja teha natuke tööd.",
         "localOrRemote": "Töötõendit saab valmistada kohalikult sinu seadmes või anda ülesanne mõnele sõlmele.",
         "local": "Kohalik",
-        "remote": "Eemal",
+        "remote": "Väline",
         "powUpdated": "Töötõendi sätted",
         "powUpdatedExplanation": "Teie töötõendi seadistus on uuendatud.",
         "noWebGLSupport": "WebGL not supported",
@@ -620,7 +620,7 @@
         "preparingTransfers": "Ülekannete ettevalmistamine",
         "gettingTransactionsToApprove": "Otsin tehinguid, mida heaks kiita",
         "proofOfWork": "Valmistan töötõendust",
-        "broadcasting": "Kuulutamine"
+        "broadcasting": "Edastamine"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Cannot complete snapshot transition",
