@@ -873,7 +873,7 @@ export const performPow = (
     }
 
     const transactionObjects = map(trytes, (transactionTrytes) =>
-        assign({}, iota.utils.transactionObject(transactionTrytes, '9'.repeat(81)), {
+        assign({}, iota.utils.transactionObject(transactionTrytes), {
             attachmentTimestamp: Date.now(),
             attachmentTimestampLowerBound: 0,
             attachmentTimestampUpperBound: (Math.pow(3, 27) - 1) / 2,

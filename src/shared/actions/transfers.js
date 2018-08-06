@@ -566,8 +566,7 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
 
                 cached.trytes = trytes;
 
-                const convertToTransactionObjects = (tryteString) =>
-                    iota.utils.transactionObject(tryteString, '9'.repeat(81));
+                const convertToTransactionObjects = (tryteString) => iota.utils.transactionObject(tryteString);
                 cached.transactionObjects = map(cached.trytes, convertToTransactionObjects);
 
                 if (iota.utils.isBundle(cached.transactionObjects.slice().reverse())) {
