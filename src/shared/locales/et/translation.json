@@ -135,7 +135,7 @@
         "deviceMayBecomeUnresponsive": "Teie seade võib mõnda aega mitte vastata.",
         "isYourBalanceCorrect": "On teie kontojääk õige?",
         "ifYourBalanceIsNotCorrect": "Kui teie kontojääk ei ole õige, on tõenäoline, et kasutate enne hetkvõtte aegset seemet.",
-        "headToAdvancedSettingsForTransition": "Minge Täpsematesse Sätetesse ning sooritage hetkvõtte üleminek.",
+        "headToAdvancedSettingsForTransition": "Suunduge Täpsematesse Sätetesse ning sooritage hetkvõtte üleminek.",
         "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
     },
@@ -393,7 +393,7 @@
         "lockScreenTimeout": "Lock Screen Timeout (Minutes)",
         "autoNodeSwitching": "Muuda sõlm automaatselt kui valitud sõlm on kättesaamatu",
         "nodeChangeSuccess": "Successfully changed node",
-        "nodeChangeSuccessNoRemotePow": "The node was changed to {{node}}. This node does not support remote Proof of Work.",
+        "nodeChangeSuccessNoRemotePow": "Sõlm muudeti {{node}}. See sõlm ei toeta välise töö tõendit.",
         "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
         "nodeChangeError": "Error changing node",
         "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
@@ -464,7 +464,7 @@
         "pow": "Proof of Work",
         "autoPromotion": "Auto-promotion",
         "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
-        "autoPromotionPoW": "Automaatne edutamine on saadaval ainult sõlmedes, mis toetavad välist töö tõendit."
+        "autoPromotionPoW": "Automaatne edutamine on saadaval ainult sõlmedes, mis toetavad välise töö tõendit."
     },
     "advancedThemeCustomisation": {
         "background": "Taustapilt",
@@ -606,7 +606,7 @@
         "powUpdated": "Töötõendi sätted",
         "powUpdatedExplanation": "Teie töötõendi seadistus on uuendatud.",
         "noWebGLSupport": "WebGL not supported",
-        "noWebGLSupportExplanation": "Teie arvuti ei toeta WebGLi. Palun kasutage välist töö tõendit."
+        "noWebGLSupportExplanation": "Teie arvuti ei toeta WebGLi. Palun kasutage välise töö tõendit."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Auto-promotion settings",
@@ -630,9 +630,9 @@
         "detectedBalance": "Detected balance: {{amount}} {{unit}}",
         "isThisCorrect": "Is this correct?",
         "snapshotExplanation": "Every so often, a snapshot is performed to prune the size of the Tangle.",
-        "hasSnapshotTakenPlace": "Has a snapshot taken place? Press the button below to transition.",
-        "transition": "Transition",
-        "transitioning": "Transitioning for the snapshot.",
+        "hasSnapshotTakenPlace": "Kas hetkvõte on toimunud? Ülemineku jaoks vajutage allolevat nuppu.",
+        "transition": "Üleminek",
+        "transitioning": "Hetkvõtte üleminek.",
         "generatingAndDetecting": "Generating addresses and detecting balance.",
         "attaching": "Aadresside kinnitamine Tangle võrgustikku."
     },
