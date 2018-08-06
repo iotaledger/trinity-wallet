@@ -195,10 +195,10 @@
         "retypePassword": "Parool uuesti"
     },
     "copyToClipboard": {
-        "seedCleared": "Seeme tühjendatud",
-        "seedClearedExplanation": "Seeme on turvalisuse kaalutlustel teie lõikelaualt tühjendatud.",
+        "seedCleared": "Seeme puhastatud",
+        "seedClearedExplanation": "Seeme on turvalisuse kaalutlustel teie lõikelaualt puhastatud.",
         "seedCopied": "Seeme kopeeritud lõikelauale",
-        "seedCopiedExplanation": "Seeme tühjendatakse teie lõikelaualt kui vajutate \"VALMIS\" või on möödunud 60 sekundit.",
+        "seedCopiedExplanation": "Seeme puhastatakse teie lõikelaualt kui vajutate \"VALMIS\" või on möödunud 60 sekundit.",
         "copyToClipboard": "Copy Seed",
         "shareSeed": "Jaga oma seemet turvalise paroolihalduriga",
         "storeEncrypted": "Store your seed encrypted in a password manager.",
@@ -291,7 +291,7 @@
         "leastSecure": "Least Secure",
         "paperWallet": "Paper Wallet",
         "writeYourSeedDown": "Write your seed down",
-        "seedClearedExplanation": "The seed has been cleared from the clipboard for your security.",
+        "seedClearedExplanation": "Seeme on turvalisuse kaalutlusel teie lõikelaualt puhastatud.",
         "letsWriteDownYourSeed": "Lets write down your seed",
         "youCanHighlightCharacters": "You can highlight 9 characters at a time",
         "printBlankWallet": "Print a blank wallet",
