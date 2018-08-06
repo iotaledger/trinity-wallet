@@ -588,15 +588,15 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Change (24h)",
+        "change": "Muutus (24h)",
         "volume": "Vahetus (24h)",
-        "error": "Error fetching chart data"
+        "error": "Vea tabeli andmete hankimisel"
     },
     "rootDetection": {
         "warning": "HOIATUS",
-        "appearsRooted": "Your device appears to be rooted.",
-        "securityRisk": "This can pose a significant risk to the security of your wallet.",
-        "continueDepsiteRisk": "Do you wish to continue despite this risk?"
+        "appearsRooted": "Teie seade tundub olevat juurdunud.",
+        "securityRisk": "See võib oluliselt ohustada teie rahakoti turvalisust.",
+        "continueDepsiteRisk": "Kas soovite sellest riskist hoolimata jätkata?"
     },
     "pow": {
         "feeless": "IOTA tasudeta tehingute jaoks on vaja teha natuke tööd.",
@@ -605,15 +605,15 @@
         "remote": "Kaug",
         "powUpdated": "Töötõendi sätted",
         "powUpdatedExplanation": "Teie töötõendi seadistus on uuendatud.",
-        "noWebGLSupport": "WebGL not supported",
+        "noWebGLSupport": "WebGL pole toetatud",
         "noWebGLSupportExplanation": "Teie arvuti ei toeta WebGLi. Palun kasutage kaugtöö tõendit."
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Auto-promotion settings",
-        "autoPromotionUpdatedExplanation": "Your auto-promotion configuration has been updated."
+        "autoPromotionUpdated": "Automaatse edutamise sätted",
+        "autoPromotionUpdatedExplanation": "Teie automaatse edutamise konfiguratsiooni on uuendatud."
     },
     "progressSteps": {
-        "checkingNodeHealth": "Checking node health",
+        "checkingNodeHealth": "Sõlme tervise kontrollimine",
         "validatingReceiveAddress": "Saaja aadressi kontrollimine",
         "syncingAccount": "Sünkroniseeri konto",
         "preparingInputs": "Sisendite ettevalmistamine",
@@ -628,7 +628,7 @@
         "transitionComplete": "Hetkvõtte üleminek lõpetatud",
         "transitionCompleteExplanation": "Hetkvõtte üleminek on edukalt lõpetatud.",
         "detectedBalance": "Tuvastatud kontojääk: {{amount}} {{unit}}",
-        "isThisCorrect": "Is this correct?",
+        "isThisCorrect": "On see õige?",
         "snapshotExplanation": "Aeg-ajalt toimub hetkvõte, et Tangle võrgu suurus ei tõuseks liiga kõrgeks.",
         "hasSnapshotTakenPlace": "Kas on toimunud hetkvõte? Ülemineku jaoks vajutage allolevat nuppu.",
         "transition": "Üleminek",
