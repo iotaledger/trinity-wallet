@@ -51,25 +51,7 @@ class Chart extends PureComponent {
 
     renderTooltip(props) {
         if (props.active) {
-            const distance = props.maxItems - props.payload[0].payload.x;
-
-            let date = subHours(new Date(), (24 * distance) / props.maxItems);
-
-            switch (props.timeframe) {
-                case '1h':
-                    date = subMinutes(new Date(), (60 * distance) / props.maxItems);
-                    break;
-                case '7d':
-                    date = subHours(new Date(), (24 * 7 * distance) / props.maxItems);
-                    break;
-                case '1m':
-                    date = subDays(new Date(), (30 * distance) / props.maxItems);
-                    break;
-                case '24h':
-                    date = addHours(date, 1);
-                    break;
-            }
-
+            const date = new Date(props.payload[0].payload.time * 1000);
             return (
                 <p className={css.label}>
                     {format(date, 'DD.MM.YY HH:mm')}
