@@ -1,11 +1,11 @@
 {
     "global": {
         "send": "SEND",
-        "cancel": "Afbryd",
+        "cancel": "Annullér",
         "continue?": "Er du sikker på, at du vil fortsætte?",
         "noTransactions": "INGEN NYLIG HISTORIK",
-        "refresh": "Genindlæs",
-        "balanceError": "Ikke nok saldo",
+        "refresh": "Opfrisk",
+        "balanceError": "Utilstrækkelig saldo",
         "balanceErrorMessage": "Du har ikke nok IOTA til at gennemføre denne transaktion.",
         "transferError": "Transaktionsfejl",
         "transferErrorMessage": "Noget gik galt under din transaktion. Prøv venligst igen.",
@@ -72,7 +72,7 @@
         "attachToTangleUnavailableExplanation": "Ekstern netværksvalidering er ikke tilgængelig på den valgte node. Skift venligst node eller sæt netværksvalidering til Lokal under 'Avancerede indstillinger'.",
         "attachToTangleUnavailableExplanationShort": "Ekstern netværksvalidering er ikke tilgængelig på den valgte node.",
         "wallet": "Tegnebog",
-        "all": "All",
+        "all": "Alle",
         "sent": "Sendt",
         "received": "Modtaget",
         "sending": "Sender",
