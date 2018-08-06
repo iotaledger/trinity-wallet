@@ -417,16 +417,16 @@
         "thankYou": "Thank you for downloading Trinity"
     },
     "writeSeedDown": {
-        "writeDownYourSeed": "<0> Kirjutage oma seeme ja kontrollsumma üles ja </0><1>tehke kindlaks</1><2>, et need on õiged.</2>",
+        "writeDownYourSeed": "<0> Kirjutage oma seeme ja kontrollsumma üles ning </0><1>veenduge</1><2>, et need on õiged.</2>",
         "scrollToBottom": "Scroll to the bottom"
     },
     "history": {
         "bundleHashCopied": "Puntra räsi kopeeritud",
         "noTransactionsFound": "No transactions found",
         "hideZeroBalance": "Hide zero balance",
-        "bundleHashCopiedExplanation": "Puntra räsi on kopeeritud.",
+        "bundleHashCopiedExplanation": "Puntra räsi on kopeeritud lõikelauale.",
         "addressCopied": "Aadress kopeeritud",
-        "addressCopiedExplanation": "Aadress on kopeeritud.",
+        "addressCopiedExplanation": "Aadress on kopeeritud lõikelauale.",
         "messageCopied": "Message copied",
         "messageCopiedExplanation": "The message has been copied to the clipboard.",
         "send": "Saada",
