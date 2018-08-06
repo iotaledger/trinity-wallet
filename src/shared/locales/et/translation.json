@@ -68,9 +68,9 @@
         "node": "Sõlm",
         "cannotPerformAction": "Toimingut ei saa teha",
         "cannotPerformActionExplanation": "Minge menüüst Täpsemad sätted, et rahakott lähtestada.",
-        "attachToTangleUnavailable": "Kaugtöö tõend pole saadaval",
-        "attachToTangleUnavailableExplanation": "Kaugtöö tõend ei ole kättesaadav teie valitud sõlmes. Muutke sõlme või seadistage töö tõend kohalikuks Täpsematest Sätetest.",
-        "attachToTangleUnavailableExplanationShort": "Kaugtöö tõend ei ole kättesaadav teie valitud sõlmes.",
+        "attachToTangleUnavailable": "Välise töö tõend pole saadaval",
+        "attachToTangleUnavailableExplanation": "Välise töö tõend ei ole kättesaadav teie valitud sõlmes. Muutke sõlme või seadistage töö tõend kohalikuks Täpsematest Sätetest.",
+        "attachToTangleUnavailableExplanationShort": "Välise töö tõend ei ole kättesaadav teie valitud sõlmes.",
         "wallet": "Rahakott",
         "all": "Kõik",
         "sent": "Saadetud",
@@ -464,7 +464,7 @@
         "pow": "Proof of Work",
         "autoPromotion": "Auto-promotion",
         "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
-        "autoPromotionPoW": "Auto-promotion is only possible on nodes that support remote Proof of Work."
+        "autoPromotionPoW": "Automaatne edutamine on saadaval ainult sõlmedes, mis toetavad välist töö tõendit."
     },
     "advancedThemeCustomisation": {
         "background": "Taustapilt",
@@ -606,7 +606,7 @@
         "powUpdated": "Töötõendi sätted",
         "powUpdatedExplanation": "Teie töötõendi seadistus on uuendatud.",
         "noWebGLSupport": "WebGL not supported",
-        "noWebGLSupportExplanation": "Your computer does not support WebGL. Please use remote PoW."
+        "noWebGLSupportExplanation": "Teie arvuti ei toeta WebGLi. Palun kasutage välist töö tõendit."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Auto-promotion settings",
@@ -634,7 +634,7 @@
         "transition": "Transition",
         "transitioning": "Transitioning for the snapshot.",
         "generatingAndDetecting": "Generating addresses and detecting balance.",
-        "attaching": "Attaching addresses to Tangle."
+        "attaching": "Aadresside kinnitamine Tangle võrgustikku."
     },
     "deepLink": {
         "autofill": "Autofill success",
