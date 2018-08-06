@@ -423,7 +423,7 @@
     "history": {
         "bundleHashCopied": "Kimbu räsi kopeeritud",
         "noTransactionsFound": "No transactions found",
-        "hideZeroBalance": "Hide zero balance",
+        "hideZeroBalance": "Peida nullsaldo",
         "bundleHashCopiedExplanation": "Kimbu räsi on kopeeritud lõikelauale.",
         "addressCopied": "Aadress kopeeritud",
         "addressCopiedExplanation": "Aadress on kopeeritud lõikelauale.",
@@ -492,7 +492,7 @@
         "one": "Üks"
     },
     "usedAddressModal": {
-        "cantSpendFullBalanceQuestion": "Why can't I spend my full balance?",
+        "cantSpendFullBalanceQuestion": "Miks ma ei saa oma täielikku kontojääki kulutada?",
         "spentAddressExplanation": "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
         "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
     },
@@ -627,21 +627,21 @@
         "cannotCompleteTransitionExplanation": "Ülemineku lõpuleviimiseks peab teie kontojääk olema suurem kui 0.",
         "transitionComplete": "Hetkvõtte üleminek lõpetatud",
         "transitionCompleteExplanation": "Hetkvõtte üleminek on edukalt lõpetatud.",
-        "detectedBalance": "Detected balance: {{amount}} {{unit}}",
+        "detectedBalance": "Tuvastatud kontojääk: {{amount}} {{unit}}",
         "isThisCorrect": "Is this correct?",
         "snapshotExplanation": "Aeg-ajalt toimub hetkvõte, et Tangle võrgu suurus ei tõuseks liiga kõrgeks.",
         "hasSnapshotTakenPlace": "Kas on toimunud hetkvõte? Ülemineku jaoks vajutage allolevat nuppu.",
         "transition": "Üleminek",
         "transitioning": "Hetkvõtte üleminek.",
-        "generatingAndDetecting": "Generating addresses and detecting balance.",
+        "generatingAndDetecting": "Aadresside genereerimine ja kontojäägi tuvastamine.",
         "attaching": "Aadresside kinnitamine Tangle võrgustikku."
     },
     "deepLink": {
-        "autofill": "Autofill success",
-        "autofillExplanation": "Transaction data autofilled from link."
+        "autofill": "Automaatne täitmine õnnestus",
+        "autofillExplanation": "Tehingu andmed automaatselt lingist täidetud."
     },
     "updates": {
-        "errorRetrievingUpdateData": "Error retrieving update data",
+        "errorRetrievingUpdateData": "Uuendamisandmete allalaadimise viga",
         "errorRetrievingUpdateDataExplanation": "Värskendusteabe allalaadimisel ilmnes viga. Palun proovige uuesti.",
         "noUpdatesAvailable": "Ühtegi uuendust pole saadaval",
         "noUpdatesAvailableExplanation": "Teil on IOTA Trinity rahakoti uusim versioon!",
