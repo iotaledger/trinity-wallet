@@ -58,7 +58,7 @@
         "okay": "Okei",
         "password": "Parool",
         "unrecognisedPassword": "Tundmatu parool",
-        "unrecognisedPasswordExplanation": "Parool ei ole tunnustatud. Palun proovige uuesti.",
+        "unrecognisedPasswordExplanation": "Parool ei ole tunnistatud. Palun proovige uuesti.",
         "capsLockIsOn": "Caps Lock on sisse lülitatud",
         "syncInProgress": "Sünkimine pooleli",
         "syncInProgressExplanation": "Palun oodake, kuni sünkroonimine on lõpule viidud.",
