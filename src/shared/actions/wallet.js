@@ -33,7 +33,8 @@ export const ActionTypes = {
     SNAPSHOT_ATTACH_TO_TANGLE_COMPLETE: 'IOTA/WALLET/SNAPSHOT_ATTACH_TO_TANGLE_COMPLETE',
     UPDATE_TRANSITION_BALANCE: 'IOTA/WALLET/UPDATE_TRANSITION_BALANCE',
     UPDATE_TRANSITION_ADDRESSES: 'IOTA/WALLET/UPDATE_TRANSITION_ADDRESSES',
-    SWITCH_BALANCE_CHECK_TOGGLE: 'IOTA/WALLET/SWITCH_BALANCE_CHECK_TOGGLE',
+    SET_BALANCE_CHECK_FLAG: 'IOTA/WALLET/SET_BALANCE_CHECK_FLAG',
+    CANCEL_SNAPSHOT_TRANSITION: 'IOTA/WALLET/CANCEL_SNAPSHOT_TRANSITION',
     CONNECTION_CHANGED: 'IOTA/WALLET/CONNECTION_CHANGED',
     SET_DEEP_LINK: 'IOTA/APP/WALLET/SET_DEEP_LINK',
     SET_DEEP_LINK_INACTIVE: 'IOTA/APP/WALLET/SET_DEEP_LINK_INACTIVE',
@@ -206,6 +207,17 @@ export const snapshotTransitionError = () => ({
 });
 
 /**
+ * Cancels a snapshot transition
+ *
+ * @method cancelSnapshotTransition
+ *
+ * @returns {{type: {string} }}
+ */
+export const cancelSnapshotTransition = () => ({
+    type: ActionTypes.CANCEL_SNAPSHOT_TRANSITION,
+});
+
+/**
  * Dispatch when addresses are about to be attached to tangle during snapshot transition
  *
  * @method snapshotAttachToTangleRequest
@@ -254,14 +266,16 @@ export const updateTransitionAddresses = (payload) => ({
 });
 
 /**
- * Dispatch to show/hide ('Is your balance correct?') modal during snapshot transition
+ * Dispatch to show/hide ('Is your balance correct?') during snapshot transition
  *
- * @method switchBalanceCheckToggle
- *
+ * @method setBalanceCheckFlag
+ * @param {bool} payload
+
  * @returns {{type: {string} }}
  */
-export const switchBalanceCheckToggle = () => ({
-    type: ActionTypes.SWITCH_BALANCE_CHECK_TOGGLE,
+export const setBalanceCheckFlag = (payload) => ({
+    type: ActionTypes.SET_BALANCE_CHECK_FLAG,
+    payload,
 });
 
 /**
@@ -481,9 +495,8 @@ export const getBalanceForCheck = (addresses) => {
         getBalancesAsync(addresses)
             .then((balances) => {
                 const balanceOnAddresses = accumulateBalance(map(balances.balances, Number));
-
                 dispatch(updateTransitionBalance(balanceOnAddresses));
-                dispatch(switchBalanceCheckToggle());
+                dispatch(setBalanceCheckFlag(true));
             })
             .catch((error) => {
                 dispatch(snapshotTransitionError());
