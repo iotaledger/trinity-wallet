@@ -1027,11 +1027,11 @@ export const retryFailedTransaction = (transactionObjects, powFn, shouldOffloadP
         trytes: map(transactionObjects, convertToTrytes),
     };
 
-    const isValidTransactionHash = (tx) => iota.utils.isTransactionHash(tx.hash, DEFAULT_MIN_WEIGHT_MAGNITUDE);
+    const isInvalidTransactionHash = (tx) => !iota.utils.isTransactionHash(tx.hash, DEFAULT_MIN_WEIGHT_MAGNITUDE);
 
     // Verify if all transaction objects have valid hash
     // Proof of work was not performed correctly if any transaction has invalid hash
-    if (some(transactionObjects, isValidTransactionHash)) {
+    if (some(transactionObjects, isInvalidTransactionHash)) {
         // If proof of work failed, select new tips and retry
         return getTransactionsToApproveAsync()
             .then(({ trunkTransaction, branchTransaction }) => {
