@@ -290,6 +290,7 @@ class Receive extends Component {
 
     componentDidMount() {
         leaveNavigationBreadcrumb('Receive');
+        timer.clearInterval('scramble');
     }
 
     componentWillReceiveProps(newProps) {

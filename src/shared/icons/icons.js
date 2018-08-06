@@ -51,5 +51,5 @@ module.exports = {
     fingerprintDisabled: '👇',
     write: '✍️',
     search: '🔍',
-    warning: '⚠️'
+    warning: '⚠️',
 };
