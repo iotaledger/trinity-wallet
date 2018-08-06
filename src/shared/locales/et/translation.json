@@ -14,7 +14,7 @@
         "messageSent": "Sõnum saadetud",
         "messageSentMessage": "Teie sõnum on saadetud Tangle.",
         "keyReuse": "Kasutatud aadressile saatmine",
-        "keyReuseError": "Te ei saa saata aadressile, millelt on juba kulutatud.",
+        "keyReuseError": "Te ei saa saata aadressile, millelt on juba saadetud.",
         "invalidResponse": "Sõlme viga",
         "invalidResponseExplanation": "Sõlm tagastas tõrke. Proovige muuta sõlme.",
         "invalidResponseFetchingAccount": "Sõlm andis teie konto informatsiooni toomisel sobimatu vastuse. Proovige muud sõlme.",
@@ -24,7 +24,7 @@
         "seed": "Seeme",
         "checksum": "Kontrollsumma",
         "back": "Tagasi",
-        "goBack": "Tagasi",
+        "goBack": "Mine tagasi",
         "goBackStep": "Mine samm tagasi",
         "done": "Tehtud",
         "prev": "EELMINE",
@@ -52,7 +52,7 @@
         "fourthWallet": "NELJAS KONTO",
         "fifthWallet": "VIIES KONTO",
         "sixthWallet": "KUUES KONTO",
-        "otherWallet": "TEINE KONTO",
+        "otherWallet": "MUU KONTO",
         "yes": "Jah",
         "no": "Ei",
         "okay": "Okei",
@@ -655,11 +655,11 @@
     },
     "terms": {
         "termsAndConditions": "Terms & Conditions",
-        "accept": "I accept",
-        "readAllToContinue": "Please read all the text to continue"
+        "accept": "Nõustun",
+        "readAllToContinue": "Palun lugege kogu tekst jätkamiseks"
     },
     "privacyPolicy": {
-        "privacyPolicy": "Privacy Policy",
-        "agree": "I agree"
+        "privacyPolicy": "Privaatsuspoliitika",
+        "agree": "Ma nõustun"
     }
 }
