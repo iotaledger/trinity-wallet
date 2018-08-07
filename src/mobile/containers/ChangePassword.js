@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
-import { zxcvbn } from 'iota-wallet-shared-modules/libs/exports';
 import { setPassword, setSetting } from 'iota-wallet-shared-modules/actions/wallet';
-import { passwordReasons } from 'iota-wallet-shared-modules/libs/password';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { changePassword, getPasswordHash } from '../utils/keychain';
 import { generatePasswordHash, getRandomBytes } from '../utils/crypto';
@@ -15,6 +13,7 @@ import GENERAL from '../theme/general';
 import CustomTextInput from '../components/CustomTextInput';
 import { Icon } from '../theme/icons.js';
 import InfoBox from '../components/InfoBox';
+import PasswordFields from '../components/PasswordFields';
 import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const styles = StyleSheet.create({
@@ -109,48 +108,33 @@ class ChangePassword extends Component {
         leaveNavigationBreadcrumb('ChangePassword');
     }
 
-    isValid(currentPwdHash) {
-        const { currentPassword, newPassword, newPasswordReentry } = this.state;
-        const { password } = this.props;
-        const score = zxcvbn(newPassword);
-
-        return (
-            isEqual(password, currentPwdHash) &&
-            newPassword.length >= 11 &&
-            newPasswordReentry.length >= 11 &&
-            newPassword === newPasswordReentry &&
-            newPassword !== currentPassword &&
-            score.score === 4
-        );
-    }
-
-    async changePassword() {
-        const { setPassword, generateAlert, t } = this.props;
-        const { newPassword, currentPassword } = this.state;
-
-        const currentPwdHash = await getPasswordHash(currentPassword);
-        const isValid = this.isValid(currentPwdHash);
+    async onAcceptPassword() {
+        const { password, setPassword, generateAlert, t } = this.props;
+        const { newPassword } = this.state;
         const salt = await getRandomBytes(32);
         const newPwdHash = await generatePasswordHash(newPassword, salt);
-
-        if (isValid) {
-            const throwErr = () => generateAlert('error', t('somethingWentWrong'), t('somethingWentWrongTryAgain'));
-            changePassword(currentPwdHash, newPwdHash, salt)
-                .then(() => {
-                    setPassword(newPwdHash);
-                    this.fallbackToInitialState();
-
-                    generateAlert('success', t('passwordUpdated'), t('passwordUpdatedExplanation'));
-
-                    this.props.setSetting('securitySettings');
-                })
-                .catch(() => throwErr());
-        }
-
-        return this.renderInvalidSubmissionAlerts(currentPwdHash);
+        changePassword(password, newPwdHash, salt)
+            .then(() => {
+                setPassword(newPwdHash);
+                this.clearPasswordField();
+                generateAlert('success', t('passwordUpdated'), t('passwordUpdatedExplanation'));
+                this.props.setSetting('securitySettings');
+            })
+            .catch(() => generateAlert('error', t('somethingWentWrong'), t('somethingWentWrongTryAgain')));
     }
 
-    fallbackToInitialState() {
+    async checkIfPasswordIsValid() {
+        const { t, password, generateAlert } = this.props;
+        const currentPasswordHash = await getPasswordHash(this.state.currentPassword);
+        if (!isEqual(password, currentPasswordHash)) {
+            return generateAlert('error', t('incorrectPassword'), t('incorrectPasswordExplanation'));
+        } else if (this.state.newPassword === this.state.currentPassword) {
+            return generateAlert('error', t('oldPassword'), t('oldPasswordExplanation'));
+        }
+        this.PasswordFields.checkPassword();
+    }
+
+    clearPasswordField() {
         this.setState({
             currentPassword: '',
             newPassword: '',
@@ -158,68 +142,10 @@ class ChangePassword extends Component {
         });
     }
 
-    renderTextField(
-        ref,
-        value,
-        label,
-        onChangeText,
-        returnKeyType,
-        onSubmitEditing,
-        widget = 'empty',
-        isPasswordValid = false,
-        passwordStrength = 0,
-    ) {
-        const { theme } = this.props;
-        const props = {
-            onRef: ref,
-            label,
-            onChangeText,
-            containerStyle: { width: width / 1.15 },
-            autoCapitalize: 'none',
-            autoCorrect: false,
-            enablesReturnKeyAutomatically: true,
-            secureTextEntry: true,
-            returnKeyType,
-            onSubmitEditing,
-            value,
-            theme,
-            widget,
-            isPasswordValid,
-            passwordStrength,
-        };
-
-        return <CustomTextInput {...props} />;
-    }
-
-    renderInvalidSubmissionAlerts(currentPwdHash) {
-        const { currentPassword, newPassword, newPasswordReentry } = this.state;
-        const { password, generateAlert, t } = this.props;
-        const score = zxcvbn(newPassword);
-
-        if (!isEqual(password, currentPwdHash)) {
-            return generateAlert('error', t('incorrectPassword'), t('incorrectPasswordExplanation'));
-        } else if (newPassword !== newPasswordReentry) {
-            return generateAlert('error', t('passwordsDoNotMatch'), t('passwordsDoNotMatchExplanation'));
-        } else if (newPassword.length < 11 || newPasswordReentry.length < 11) {
-            return generateAlert('error', t('passwordTooShort'), t('passwordTooShortExplanation'));
-        } else if (newPassword === currentPassword) {
-            return generateAlert('error', t('oldPassword'), t('oldPasswordExplanation'));
-        } else if (score.score < 4) {
-            const reason = score.feedback.warning
-                ? t(`changePassword:${passwordReasons[score.feedback.warning]}`)
-                : t('changePassword:passwordTooWeakReason');
-            return this.props.generateAlert('error', t('changePassword:passwordTooWeak'), reason);
-        }
-
-        return null;
-    }
-
     render() {
         const { currentPassword, newPassword, newPasswordReentry } = this.state;
         const { t, theme } = this.props;
         const textColor = { color: theme.body.color };
-        const score = zxcvbn(newPassword);
-        const isValid = score.score === 4;
 
         return (
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -234,49 +160,37 @@ class ChangePassword extends Component {
                             }
                         />
                         <View style={{ flex: 0.2 }} />
-                        {this.renderTextField(
-                            (c) => {
+                        <CustomTextInput
+                            onRef={(c) => {
                                 this.currentPassword = c;
-                            },
-                            currentPassword,
-                            t('currentPassword'),
-                            (password) => this.setState({ currentPassword: password }),
-                            'next',
-                            () => {
+                            }}
+                            value={currentPassword}
+                            label={t('currentPassword')}
+                            onChangeText={(password) => this.setState({ currentPassword: password })}
+                            returnKeyType="next"
+                            onSubmitEditing={() => {
                                 if (currentPassword) {
                                     this.newPassword.focus();
                                 }
-                            },
-                        )}
-                        {this.renderTextField(
-                            (c) => {
-                                this.newPassword = c;
-                            },
-                            newPassword,
-                            t('newPassword'),
-                            (password) => this.setState({ newPassword: password }),
-                            'next',
-                            () => {
-                                if (newPassword) {
-                                    this.newPasswordReentry.focus();
-                                }
-                            },
-                            'password',
-                            isValid,
-                            score.score,
-                        )}
-                        {this.renderTextField(
-                            (c) => {
-                                this.newPasswordReentry = c;
-                            },
-                            newPasswordReentry,
-                            t('confirmPassword'),
-                            (password) => this.setState({ newPasswordReentry: password }),
-                            'done',
-                            () => this.changePassword(),
-                            'passwordReentry',
-                            isValid && newPassword === newPasswordReentry,
-                        )}
+                            }}
+                            theme={theme}
+                            widget="empty"
+                            containerStyle={{ width: width / 1.15 }}
+                            autoCapitalize="none"
+                            autoCorrect={false}
+                            enablesReturnKeyAutomatically
+                            secureTextEntry
+                        />
+                        <PasswordFields
+                            onRef={(ref) => {
+                                this.PasswordFields = ref;
+                            }}
+                            onAcceptPassword={() => this.onAcceptPassword()}
+                            password={newPassword}
+                            reentry={newPasswordReentry}
+                            setPassword={(newPassword) => this.setState({ newPassword })}
+                            setReentry={(newPasswordReentry) => this.setState({ newPasswordReentry })}
+                        />
                         <View style={{ flex: 0.2 }} />
                     </View>
                     <View style={styles.bottomContainer}>
@@ -293,7 +207,7 @@ class ChangePassword extends Component {
                             newPassword !== '' &&
                             newPasswordReentry !== '' && (
                                 <TouchableOpacity
-                                    onPress={() => this.changePassword()}
+                                    onPress={() => this.checkIfPasswordIsValid()}
                                     hitSlop={{
                                         top: height / 55,
                                         bottom: height / 55,

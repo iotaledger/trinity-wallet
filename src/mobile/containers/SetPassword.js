@@ -28,7 +28,7 @@ import InfoBox from '../components/InfoBox';
 import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
 import Header from '../components/Header';
-import SetPasswordFields from '../components/SetPasswordFields';
+import PasswordFields from '../components/PasswordFields';
 import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 console.ignoredYellowBox = ['Native TextInput']; // eslint-disable-line no-console
@@ -162,7 +162,7 @@ class SetPassword extends Component {
     }
 
     onDonePress() {
-        this.SetPasswordFields.checkPassword();
+        this.PasswordFields.checkPassword();
     }
 
     onBackPress() {
@@ -218,9 +218,9 @@ class SetPassword extends Component {
                                 }
                             />
                             <View style={{ flex: 0.2 }} />
-                            <SetPasswordFields
+                            <PasswordFields
                                 onRef={(ref) => {
-                                    this.SetPasswordFields = ref;
+                                    this.PasswordFields = ref;
                                 }}
                                 onAcceptPassword={() => this.onAcceptPassword()}
                                 password={password}
