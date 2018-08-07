@@ -314,7 +314,7 @@ class List extends React.PureComponent {
                                             </span>
                                             <span>
                                                 {!isConfirmed
-                                                    ? isReceived ? t('sending') : t('receiving')
+                                                    ? isReceived ? t('receiving') : t('sending')
                                                     : isReceived ? t('received') : t('sent')}
                                             </span>
                                             <span>
