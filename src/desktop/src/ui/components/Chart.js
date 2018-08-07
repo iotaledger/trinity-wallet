@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { LineChart, ResponsiveContainer, Line, YAxis, Tooltip } from 'recharts';
-import { format, addHours, subDays, subHours, subMinutes } from 'date-fns';
+import { format } from 'date-fns';
 
 import withChartData from 'containers/components/Chart';
 
