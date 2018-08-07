@@ -136,7 +136,7 @@
         "isYourBalanceCorrect": "On teie kontojääk õige?",
         "ifYourBalanceIsNotCorrect": "Kui teie kontojääk ei ole õige, on tõenäoline, et kasutate enne hetkvõtte aegset seemet.",
         "headToAdvancedSettingsForTransition": "Suunduge Täpsematesse Sätetesse ning sooritage hetkvõtte üleminek.",
-        "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android",
+        "usingTrinityWalletWithKeePass": "Trinity Walleti kasutamine Keepass2Androidiga",
         "signedTrytesBroadcastErrorExplanation": "Teie tehingu edastamisel tekkis viga."
     },
     "addAdditionalSeed": {
@@ -171,9 +171,9 @@
         "confirmPassword": "Kinnita uus parool",
         "passwordTooWeak": "Password too weak",
         "passwordTooWeakReason": "Your password is too weak. Use a combination of words, and avoid common phrases, names or dates.",
-        "reasonRow": "Straight rows of keys are easy to guess.",
-        "reasonPattern": "Short patterns of keys are easy to guess.",
-        "reasonNames": "Common names and surnames are easy to guess.",
+        "reasonRow": "Lihtsaid klahvide ridu on lihtne ära arvata.",
+        "reasonPattern": "Lühikesi klahvide mustreid on lihtne ära arvata.",
+        "reasonNames": "Levinuid nimesid ja perekonnanimesid on lihtne ära arvata.",
         "reasonRepeats": "Kordusi nagu \"aaa\" on lihtne ära arvata.",
         "reasonRepeats2": "Repeats like 'abcabcabc' are only slightly harder to guess than 'abc'.",
         "reasonSequence": "Selliseid järjestusi nagu abc või 54321 on lihtne ära arvata.",
@@ -207,7 +207,7 @@
         "passwordManagerCheckbox": "I will store my seed in a password manager",
         "copy": "KOPEERI",
         "noPasswordManagers": "No supported password managers installed",
-        "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android.",
+        "noPasswordManagersExplanation": "Teie seadmes ei leitud ühtegi toetatud paroolihaldurit. Palun installige Keepass2Android.",
         "followTutorialToSecurelyShareSeed": "Kui soovite salvestada oma seemne paroolihaldurisse, peate järgima juhendaja järgmist linki"
     },
     "enterSeed": {
@@ -306,7 +306,7 @@
         "enterYourSeed": "Enter your seed",
         "incorrectSeed": "Vale seeme",
         "incorrectSeedExplanation": "Sisestatud seeme on vale. Palun proovige uuesti.",
-        "ifYouHaveNotSaved": "Kui te pole oma seemet salvestanud, siis palun minge tagasi ja tehke seda.",
+        "ifYouHaveNotSaved": "Kui te pole oma seemet varundanud, siis palun minge tagasi ja tehke seda.",
         "enterSeedBelow": "Enter your newly created seed below to confirm you have backed it up correctly"
     },
     "send": {
@@ -522,9 +522,9 @@
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Did you back up your seed?",
-        "alreadyHave": "Ma olen oma seemne salvestanud",
+        "alreadyHave": "Ma olen oma seemne varundanud",
         "reenterSeed": "At the next step you will be asked to re-enter your seed.",
-        "reenterSeedWarning": "If you have not backed up your seed and your device fails, you will lose all of your IOTA.",
+        "reenterSeedWarning": "Kui te ei ole varundanud oma seemet ja teie seade ebaõnnestub, kaotate kogu oma IOTA.",
         "pleaseConfirm": "Please confirm you have securely stored your seed."
     },
     "walletResetConfirmation": {
@@ -542,7 +542,7 @@
         "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
         "status": "Olek",
         "fingerprintUnavailable": "Biometric authentication unavailable",
-        "fingerprintUnavailableExplanation": "Your device does not support biometric authentication or it has not been configured in the device settings.",
+        "fingerprintUnavailableExplanation": "Teie seade ei toeta biomeetrilist autentimist või pole see seadme seadetes konfigureeritud.",
         "buttonInstructionsDisable": "Press the button below to disable fingerprint authentication.",
         "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
         "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID.",
