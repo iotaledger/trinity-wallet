@@ -4,6 +4,7 @@ const fs = require('fs');
 
 if (!process.env.FIGMAKEY) {
     console.log('Missing env variable FIGMAKEY');
+    return;
 }
 
 const template = `export default { {{colors}}
@@ -27,6 +28,26 @@ const figmaFiles = [
     {
         title: 'Electric',
         fileId: 'PLHGlooUrbz2T8IGycBBrU',
+    },
+    {
+        title: 'Light',
+        fileId: 'GbUwrvDJL4lH1yYgZQ8uxZ',
+    },
+    {
+        title: 'Dark',
+        fileId: '47geoonmSPu8PPjO0dM9uv',
+    },
+    {
+        title: 'SteelBlue',
+        fileId: '6cCQU12dTo5tUqXwH5aAfV',
+    },
+    {
+        title: 'Ionic',
+        fileId: 'ijjspeRNSWpV0wPYkAQaul',
+    },
+    {
+        title: 'Contemporary',
+        fileId: '0OhvVCtdb4RHB9mdPfCHhj',
     },
 ];
 
