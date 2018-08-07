@@ -1,4 +1,5 @@
 import Default from './themes/Default';
+import Classic from './themes/Classic';
 import Electric from './themes/Electric';
 import Mint from './themes/Mint';
 import Ionic from './themes/Ionic';
@@ -9,6 +10,7 @@ import Light from './themes/Light';
 
 const themes = {
     Default: Default,
+    Classic: Classic,
     Mint: Mint,
     Electric: Electric,
     Ionic: Ionic,
