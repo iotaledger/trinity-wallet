@@ -448,50 +448,6 @@ describe('libs: iota/addresses', () => {
         });
     });
 
-    describe('#isAnyAddressSpent', () => {
-        let transactionObjects;
-
-        before(() => {
-            transactionObjects = [
-                {
-                    address: 'U'.repeat(81),
-                },
-                {
-                    address: 'V'.repeat(81),
-                },
-                {
-                    address: 'Y'.repeat(81),
-                },
-            ];
-        });
-
-        describe('when none of the addresses is spent', () => {
-            it('should return false', () => {
-                const wereAddressesSpentFrom = sinon
-                    .stub(iota.api, 'wereAddressesSpentFrom')
-                    .yields(null, [false, false, false]);
-
-                return addressesUtils.isAnyAddressSpent(transactionObjects).then((isSpent) => {
-                    expect(isSpent).to.eql(false);
-                    wereAddressesSpentFrom.restore();
-                });
-            });
-        });
-
-        describe('when one or more addresses are spent', () => {
-            it('should return true', () => {
-                const wereAddressesSpentFrom = sinon
-                    .stub(iota.api, 'wereAddressesSpentFrom')
-                    .yields(null, [false, true, false]);
-
-                return addressesUtils.isAnyAddressSpent(transactionObjects).then((isSpent) => {
-                    expect(isSpent).to.equal(true);
-                    wereAddressesSpentFrom.restore();
-                });
-            });
-        });
-    });
-
     describe('#attachAndFormatAddress', () => {
         let address;
         let addressIndex;
@@ -1113,6 +1069,37 @@ describe('libs: iota/addresses', () => {
         it('should return spent statuses for addresses', () => {
             return addressesUtils.getFullAddressHistory(seed, addressGenFn).then((history) => {
                 expect(history.wereSpent).to.eql([...firstBatchOfSpentStatuses, false]);
+            });
+        });
+    });
+
+    describe('#categoriseAddressesBySpentStatus', () => {
+        let addresses;
+        let sandbox;
+
+        before(() => {
+            addresses = ['A'.repeat(81), 'B'.repeat(81), 'C'.repeat(81), 'D'.repeat(81)];
+        });
+
+        beforeEach(() => {
+            sandbox = sinon.sandbox.create();
+
+            sandbox.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false, true, false, true]);
+        });
+
+        afterEach(() => {
+            sandbox.restore();
+        });
+
+        it('should categorise spent addresses', () => {
+            return addressesUtils.categoriseAddressesBySpentStatus(addresses).then((result) => {
+                expect(result.spent).to.eql(['B'.repeat(81), 'D'.repeat(81)]);
+            });
+        });
+
+        it('should categorise unspent addresses', () => {
+            return addressesUtils.categoriseAddressesBySpentStatus(addresses).then((result) => {
+                expect(result.unspent).to.eql(['A'.repeat(81), 'C'.repeat(81)]);
             });
         });
     });

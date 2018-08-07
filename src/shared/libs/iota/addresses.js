@@ -395,7 +395,7 @@ export const filterSpentAddresses = (inputs, spentAddresses) => {
  *   @method shouldAllowSendingToAddress
  *   @param {array} addresses - Could also accept an address as string since wereAddressesSpentFrom casts it internally
  *
- *   @returns {boolean}
+ *   @returns {Promise}
  **/
 export const shouldAllowSendingToAddress = (addresses) => {
     return wereAddressesSpentFromAsync(addresses).then((wereSpent) => {
@@ -599,20 +599,6 @@ export const filterAddressesWithIncomingTransfers = (inputs, pendingValueTransfe
 };
 
 /**
- *  Checks if any of the addresses used in a transaction is spent
- *
- *   @method isAnyAddressSpent
- *   @param {array} transactionObjects
-
- *   @returns {Promise<boolean>}
- **/
-export const isAnyAddressSpent = (transactionObjects) => {
-    const addresses = map(transactionObjects, (tx) => tx.address);
-
-    return wereAddressesSpentFromAsync(addresses).then((wereSpent) => some(wereSpent, (spent) => spent));
-};
-
-/**
  *   Attach address to tangle if its not already attached
  *
  *   @method attachAndFormatAddress
@@ -656,4 +642,24 @@ export const attachAndFormatAddress = (address, index, balance, seed, powFn) => 
                 transfer,
             };
         });
+};
+
+/**
+ * Categorise addresses as spent/unspent
+ *
+ * @method categoriseAddressesBySpentStatus
+ * @param {array} addresses
+ */
+export const categoriseAddressesBySpentStatus = (addresses) => {
+    return wereAddressesSpentFromAsync(addresses).then((spentStatuses) => {
+        const categorise = (acc, address, idx) => {
+            if (spentStatuses[idx]) {
+                acc.spent.push(address);
+            } else {
+                acc.unspent.push(address);
+            }
+        };
+
+        return transform(addresses, categorise, { spent: [], unspent: [] });
+    });
 };

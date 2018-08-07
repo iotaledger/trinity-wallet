@@ -202,7 +202,7 @@ describe('actions: transfers', () => {
         });
     });
 
-    describe.only('#makeTransaction', () => {
+    describe('#makeTransaction', () => {
         let powFn;
         let genFn;
 
@@ -323,7 +323,7 @@ describe('actions: transfers', () => {
                 sandbox.restore();
             });
 
-            describe.only('when transaction is successful', () => {
+            describe('when transaction is successful', () => {
                 it('should create nine actions of type IOTA/PROGRESS/SET_NEXT_STEP_AS_ACTIVE', () => {
                     const prepareTransfers = sinon.stub(iota.api, 'prepareTransfers').yields(null, trytes.value);
                     const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false]);

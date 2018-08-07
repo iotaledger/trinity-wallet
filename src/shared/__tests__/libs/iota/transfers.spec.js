@@ -24,6 +24,7 @@ import {
     prepareForAutoPromotion,
     getOwnTransactionHashes,
     pickNewTailTransactions,
+    retryFailedTransaction,
 } from '../../../libs/iota/transfers';
 import { iota, SwitchingConfig } from '../../../libs/iota/index';
 import trytes from '../../__samples__/trytes';
@@ -1163,6 +1164,51 @@ describe('libs: iota/transfers', () => {
                         mockTransactions.normalizedBundles,
                     ),
                 ).to.eql([newTailTransactionForSeenBundle]);
+            });
+        });
+    });
+
+    describe('#retryFailedTransaction', () => {
+        let transactionObjects;
+
+        before(() => {
+            transactionObjects = map(trytes.value, iota.utils.transactionObject);
+        });
+
+        describe('when all transaction objects have valid hash', () => {
+            it('should not perform proof of work', () => {
+                const powFn = sinon.stub();
+                const storeAndBroadcast = sinon.stub(iota.api, 'storeAndBroadcast').yields(null, []);
+
+                // Mock value trytes have a valid transaction hash
+                return retryFailedTransaction(transactionObjects, powFn, false).then(() => {
+                    expect(powFn.callCount).to.equal(0);
+                    storeAndBroadcast.restore();
+                });
+            });
+        });
+
+        describe('when any transaction object has an invalid hash', () => {
+            it('should perform proof of work', () => {
+                const powFn = sinon.stub().resolves('R'.repeat(27));
+                const storeAndBroadcast = sinon.stub(iota.api, 'storeAndBroadcast').yields(null, []);
+                const getTransactionToApprove = sinon.stub(iota.api, 'getTransactionsToApprove').yields(null, {
+                    trunkTransaction: 'R'.repeat(81),
+                    branchTransaction: 'A'.repeat(81),
+                });
+
+                return retryFailedTransaction(
+                    map(
+                        transactionObjects,
+                        (tx, idx) => (idx % 2 === 0 ? tx : Object.assign({}, tx, { hash: 'U'.repeat(81) })),
+                    ),
+                    powFn,
+                    false,
+                ).then(() => {
+                    expect(powFn.callCount).to.equal(4);
+                    storeAndBroadcast.restore();
+                    getTransactionToApprove.restore();
+                });
             });
         });
     });

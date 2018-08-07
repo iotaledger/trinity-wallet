@@ -2,6 +2,7 @@ import head from 'lodash/head';
 import find from 'lodash/find';
 import get from 'lodash/get';
 import map from 'lodash/map';
+import join from 'lodash/join';
 import filter from 'lodash/filter';
 import some from 'lodash/some';
 import size from 'lodash/size';
@@ -47,7 +48,11 @@ import {
     markBundleBroadcastStatusComplete,
     markBundleBroadcastStatusPending,
 } from './accounts';
-import { shouldAllowSendingToAddress, getAddressesUptoRemainder, isAnyAddressSpent } from '../libs/iota/addresses';
+import {
+    shouldAllowSendingToAddress,
+    getAddressesUptoRemainder,
+    categoriseAddressesBySpentStatus,
+} from '../libs/iota/addresses';
 import {
     getStartingSearchIndexToPrepareInputs,
     getUnspentInputs,
@@ -647,6 +652,7 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                             'error',
                             i18next.t('global:rebroadcastError'),
                             i18next.t('global:signedTrytesBroadcastErrorExplanation'),
+                            error,
                         ),
                     );
                 }
@@ -736,34 +742,51 @@ export const retryFailedTransaction = (accountName, bundleHash, powFn) => (dispa
 
     dispatch(retryFailedTransactionRequest());
 
-    return isAnyAddressSpent(existingFailedTransactionsForThisAccount[bundleHash])
-        .then((isSpent) => {
-            if (isSpent) {
-                throw new Error(Errors.ALREADY_SPENT_FROM_ADDRESSES);
-            }
+    // First check spent statuses against transaction addresses
+    return (
+        categoriseAddressesBySpentStatus(map(existingFailedTransactionsForThisAccount[bundleHash], (tx) => tx.address))
+            // If any address (input, remainder, receive) is spent, error out
+            .then(({ spent }) => {
+                if (size(spent)) {
+                    throw new Error(Errors.ALREADY_SPENT_FROM_ADDRESSES(join(spent, ',')));
+                }
 
-            return retry(existingFailedTransactionsForThisAccount[bundleHash], powFn, shouldOffloadPow);
-        })
-        .then(({ transactionObjects }) => {
-            dispatch(markBundleBroadcastStatusComplete({ accountName, bundleHash }));
+                // If all addresses are still unspent, retry
+                return retry(existingFailedTransactionsForThisAccount[bundleHash], powFn, shouldOffloadPow);
+            })
+            .then(({ transactionObjects }) => {
+                dispatch(markBundleBroadcastStatusComplete({ accountName, bundleHash }));
 
-            const { newState } = syncAccountOnSuccessfulRetryAttempt(
-                accountName,
-                transactionObjects,
-                existingAccountState,
-            );
+                const { newState } = syncAccountOnSuccessfulRetryAttempt(
+                    accountName,
+                    transactionObjects,
+                    existingAccountState,
+                );
 
-            // Since this transaction was never sent to the tangle
-            // Generate the same alert we display when a transaction is successfully sent to the tangle
-            const hasZeroValue = (tx) => tx.value === 0;
-            const isZeroValue = every(transactionObjects, hasZeroValue);
+                // Since this transaction was never sent to the tangle
+                // Generate the same alert we display when a transaction is successfully sent to the tangle
+                const hasZeroValue = (tx) => tx.value === 0;
+                const isZeroValue = every(transactionObjects, hasZeroValue);
 
-            dispatch(generateTransactionSuccessAlert(isZeroValue));
+                dispatch(generateTransactionSuccessAlert(isZeroValue));
 
-            return dispatch(retryFailedTransactionSuccess(newState));
-        })
-        .catch((error) => {
-            dispatch(generateTransferErrorAlert(error));
-            dispatch(retryFailedTransactionError());
-        });
+                return dispatch(retryFailedTransactionSuccess(newState));
+            })
+            .catch((error) => {
+                dispatch(retryFailedTransactionError());
+
+                if (error.message.includes(Errors.ALREADY_SPENT_FROM_ADDRESSES)) {
+                    dispatch(
+                        generateAlert(
+                            'error',
+                            i18next.t('global:broadcastError'),
+                            i18next.t('global:addressesAlreadySpentFrom'),
+                            error,
+                        ),
+                    );
+                } else {
+                    dispatch(generateTransferErrorAlert(error));
+                }
+            })
+    );
 };

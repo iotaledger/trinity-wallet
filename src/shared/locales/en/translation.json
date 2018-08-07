@@ -145,7 +145,9 @@
             "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
         "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition.",
         "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android",
-        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
+        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction.",
+        "broadcastError": "Could not broadcast transfer",
+        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",
