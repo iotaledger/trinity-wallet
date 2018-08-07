@@ -10,6 +10,7 @@ import { getChecksum } from 'iota-wallet-shared-modules/libs/iota/utils';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { paperWalletFilled } from 'iota-wallet-shared-modules/images/PaperWallets.js';
 import { setSeedShareTutorialVisitationStatus } from 'iota-wallet-shared-modules/actions/settings';
+import SplashScreen from 'react-native-splash-screen';
 import Modal from 'react-native-modal';
 import timer from 'react-native-timer';
 import QRCode from 'qr.js/lib/QRCode';
@@ -126,6 +127,7 @@ class SaveYourSeed extends Component {
                 return true;
             });
         }
+        SplashScreen.hide();
     }
 
     componentWillUnmount() {
@@ -190,11 +192,7 @@ class SaveYourSeed extends Component {
         });
     }
 
-    /**
-     * Navigates to write seed down screen
-     * @method onWriteSeedDown
-     */
-    onWriteSeedDown() {
+    onWriteSeedDownPress() {
         const { theme: { body } } = this.props;
         this.props.navigator.push({
             screen: 'writeSeedDown',
@@ -211,16 +209,25 @@ class SaveYourSeed extends Component {
         });
     }
 
-    /**
-     * Shows modal
-     * @method onPrintPaperWallet
-     */
-    onPrintPaperWallet() {
+    onPrintPaperWalletPress() {
         this.openModal('printModal');
     }
 
-    onAddToPasswordManager() {
-        this.openModal('passwordManagerModal');
+    onExportSeedVaultPress() {
+        const { theme: { body } } = this.props;
+        this.props.navigator.push({
+            screen: 'seedVaultExport',
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                topBarElevationShadowEnabled: false,
+                screenBackgroundColor: body.bg,
+                drawUnderStatusBar: true,
+                statusBarColor: body.bg,
+                navBarButtonColor: body.bg,
+            },
+            animated: false,
+        });
     }
 
     /**
@@ -474,7 +481,7 @@ class SaveYourSeed extends Component {
                     <View style={[styles.line, lineColor]} />
                     <View>
                         <Button
-                            onPress={() => this.onWriteSeedDown()}
+                            onPress={() => this.onWriteSeedDownPress()}
                             style={{
                                 wrapper: {
                                     width: width / 1.36,
@@ -492,7 +499,7 @@ class SaveYourSeed extends Component {
                     </View>
                     <View style={[styles.line, lineColor]} />
                     <Button
-                        onPress={() => this.onAddToPasswordManager()}
+                        onPress={() => this.onExportSeedVaultPress()}
                         style={{
                             wrapper: {
                                 width: width / 1.36,
@@ -505,14 +512,14 @@ class SaveYourSeed extends Component {
                             },
                         }}
                     >
-                        {t('global:addToPasswordManager')}
+                        {t('seedVault:exportSeedVault')}
                     </Button>
                     <View style={[styles.line, lineColor]} />
                     {/* FIXME Temporarily disable paper wallet on Android */}
                     {!isAndroid && (
                         <View style={{ alignItems: 'center' }}>
                             <Button
-                                onPress={() => this.onPrintPaperWallet()}
+                                onPress={() => this.onPrintPaperWalletPress()}
                                 style={{
                                     wrapper: {
                                         width: width / 1.36,

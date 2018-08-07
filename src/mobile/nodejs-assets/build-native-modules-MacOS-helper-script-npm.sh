@@ -1,0 +1,5 @@
+#!/bin/bash
+      # Helper script for Gradle to call npm on macOS in case it is not found
+      export PATH=$PATH:/Users/charlie/Desktop/wallet/src/mobile/node_modules/nodejs-mobile-react-native/node_modules/.bin:/Users/charlie/.config/yarn/link/node_modules/.bin:/Users/charlie/Desktop/wallet/src/mobile/node_modules/nodejs-mobile-react-native/node_modules/.bin:/Users/charlie/.config/yarn/link/node_modules/.bin:/usr/local/libexec/lib/node_modules/npm/bin/node-gyp-bin:/usr/local/lib/node_modules/npm/bin/node-gyp-bin:/usr/local/bin/node_modules/npm/bin/node-gyp-bin:/Users/charlie/.rvm/gems/ruby-2.4.1/bin:/Users/charlie/.rvm/gems/ruby-2.4.1@global/bin:/Users/charlie/.rvm/rubies/ruby-2.4.1/bin:/Users/charlie/.rbenv/shims:/Users/charlie/.yarn/bin:/Users/charlie/.config/yarn/global/node_modules/.bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/usr/local/MacGPG2/bin:/Users/charlie/Library/Android/sdk/tools:/Users/charlie/Library/Android/sdk/platform-tools:/Users/charlie/.rvm/bin
+      npm $@
+    
