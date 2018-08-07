@@ -4,6 +4,7 @@ const config = require('./config.base');
 const { BugsnagSourceMapUploaderPlugin } = require('webpack-bugsnag-plugins');
 
 const buildTarget = process.env.BUILD_TARGET || 'main';
+const skipSourcemaps = process.env.SKIP_SOURCEMAPS || false;
 
 config.target = 'web';
 config.mode = 'production';
@@ -16,12 +17,16 @@ config.output.publicPath = '../dist/';
 
 config.devtool = 'source-map';
 
-config.plugins = [
-    new BugsnagSourceMapUploaderPlugin({
-        apiKey: '53981ba998df346f6377ebbeb1da46d3',
-        appVersion: settings.version,
-        publicPath: 'iota://dist/',
-    }),
-].concat(config.plugins);
+console.log(skipSourcemaps);
+
+if (skipSourcemaps) {
+  config.plugins = [
+      new BugsnagSourceMapUploaderPlugin({
+          apiKey: '53981ba998df346f6377ebbeb1da46d3',
+          appVersion: settings.version,
+          publicPath: 'iota://dist/',
+      }),
+  ].concat(config.plugins);
+}
 
 module.exports = config;
