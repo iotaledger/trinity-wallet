@@ -158,11 +158,6 @@ class ChangePassword extends Component {
                             label={t('currentPassword')}
                             onChangeText={(password) => this.setState({ currentPassword: password })}
                             returnKeyType="next"
-                            onSubmitEditing={() => {
-                                if (currentPassword) {
-                                    this.newPassword.focus();
-                                }
-                            }}
                             theme={theme}
                             widget="empty"
                             containerStyle={{ width: width / 1.15 }}
