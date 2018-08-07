@@ -237,7 +237,7 @@
         "login": "Log ind",
         "setNode": "Indstil node",
         "whyBiometricDisabled": "Hvorfor er biometrisk autentificering deaktiveret?",
-        "whyBiometricDisabledExplanation": "Biometrisk login er deaktiveret ved første indlæsning af app'en for din sikkerhed. Når du bruger Trinity, vil du blive logget af på grund af inaktivitet. Du kan derefter logge på igen med Biometrisk godkendelse."
+        "whyBiometricDisabledExplanation": "Biometrisk login er deaktiveret ved første app-start grundet din sikkerhed. Benyttes Trinity, vil du blive logget af pga. inaktivitet. Du kan derefter logge ind igen med biometrisk autentificering."
     },
     "loading": {
         "loadingFirstTime": "Indlæser hovednøgle for første gang.",
@@ -246,11 +246,11 @@
         "takingAWhile": "Dette ser ud til at tage lidt tid"
     },
     "newSeedSetup": {
-        "generatedSeed": "Genereret hovednøgle",
-        "seedNotGenerated": "Hovednøglen er ikke blevet genereret",
+        "generatedSeed": "Hovednøgle genereret",
+        "seedNotGenerated": "Hovednøglen blev ikke genereret",
         "seedNotGeneratedExplanation": "Vær venlig at generere en ny hovednøgle.",
         "pressForNewSeed": "Tryk for ny hovednøgle",
-        "generateSuccess": "Hovednøglen blev succesfuldt genereret",
+        "generateSuccess": "Hovednøglen genereret",
         "individualLetters": "Tryk på individuelle bogstaver for at randomisere dem.",
         "individualLetterCount": "Tryk på {{letterCount}} flere individuelle tegn for at randomisere dem.",
         "whatIsASeed": "Hvad er en hovednøgle?"
