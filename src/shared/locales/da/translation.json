@@ -208,13 +208,13 @@
         "copy": "KOPIÉR",
         "noPasswordManagers": "Ingen understøttet adgangskodehåndtering installeret",
         "noPasswordManagersExplanation": "Ingen understøttede adgangskodehåndterings-apps fundet på din enhed. Installér Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "Hvis du ønsker at opbevare din hovednøgle i en password manager, skal du følge vejledningen i følgende link"
+        "followTutorialToSecurelyShareSeed": "Ønsker du at lagre din hovednøgle i en adgangskodehåndterings-app, så følg vejledningen i følgende link"
     },
     "enterSeed": {
         "invalidCharacters": "Hovednøglen indeholder ugyldige tegn",
-        "invalidCharactersExplanation": "Hovednøglen må kun indeholde store bogstaver fra A-Z og tallet 9. Dit seed har ugyldige tegn. Prøv venligst igen.",
+        "invalidCharactersExplanation": "Hovednøgler må kun indeholde store bogstaver fra A-Z og tallet 9, men din hovednøgle indeholder ugyldige tegn. Prøv igen.",
         "seedTooShort": "Hovednøglen er for kort",
-        "seedTooLong": "Hovednøglen er for lang",
+        "seedTooLong": "Hovednøgle for lang",
         "seedTooShortExplanation": "Hovednøgler skal indeholde {{maxLength}} tegn. Din hovednøgle er i øjeblikket {{currentLength}} tegn langt. Prøv venligst igen.",
         "seedExplanation": "Din hovednøgle skal indeholde {{maxLength}} tegn og bestå af store bogstaver fra A-Z eller tallet 9. Din hovednøgle kan ikke have mere end {{maxLength}} tegn i alt.",
         "neverShare": "DEL ALDRIG DIN HOVEDNØGLE MED NOGEN"
@@ -236,7 +236,7 @@
         "enterPassword": "Indtast venligst din adgangskode.",
         "login": "Log ind",
         "setNode": "Indstil node",
-        "whyBiometricDisabled": "Hvorfor er Biometrisk godkendelse deaktiveret?",
+        "whyBiometricDisabled": "Hvorfor er biometrisk autentificering deaktiveret?",
         "whyBiometricDisabledExplanation": "Biometrisk login er deaktiveret ved første indlæsning af app'en for din sikkerhed. Når du bruger Trinity, vil du blive logget af på grund af inaktivitet. Du kan derefter logge på igen med Biometrisk godkendelse."
     },
     "loading": {
