@@ -344,7 +344,7 @@
     "modeSelection": {
         "expert": "Ekspert",
         "standard": "Tavaline",
-        "expertModeExplanation": "Expert mode will provide access to additional features like manual promotion and reattachment.",
+        "expertModeExplanation": "Ekspert režiim annab juurdepääsu lisafunktsioone nagu käsitsi edutamine ja uuesti kinnitamine.",
         "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
     },
     "settings": {
