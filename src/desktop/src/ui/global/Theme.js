@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { getMarketData, getChartData, getPrice } from 'actions/marketData';
-import { addAccountName, setOnboardingComplete, accountInfoFetchSuccess, manualSyncRequest } from 'actions/accounts';
+import { addAccountName, setOnboardingComplete, accountInfoFetchSuccess } from 'actions/accounts';
 import { updateTheme } from 'actions/settings';
 import themes from 'themes/themes';
 
@@ -39,8 +39,6 @@ class Theme extends PureComponent {
         addAccountName: PropTypes.func.isRequired,
         /** @ignore */
         accountInfoFetchSuccess: PropTypes.func.isRequired,
-        /** @ignore */
-        manualSyncRequest: PropTypes.func.isRequired,
         /** @ignore */
         getChartData: PropTypes.func.isRequired,
         /** @ignore */
@@ -114,7 +112,6 @@ class Theme extends PureComponent {
             }
 
             if (routes[routeIndex + 1] === '/wallet') {
-                this.props.manualSyncRequest();
                 this.props.accountInfoFetchSuccess({
                     accountName: 'Puppeteer',
                     balance: 1000000,
@@ -228,7 +225,6 @@ const mapDispatchToProps = {
     setOnboardingComplete,
     addAccountName,
     accountInfoFetchSuccess,
-    manualSyncRequest,
     getChartData,
     getPrice,
     getMarketData,
