@@ -62,8 +62,9 @@ const inject = () => {
         getOS: () => {
             return 'darwin';
         },
-        // prettier-ignore
-        getOnboardingSeed: () => { return [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+        getOnboardingSeed: () => {
+            return new Array(81).fill(0);
+        },
         getChecksum: () => {
             return 'ABC';
         },
