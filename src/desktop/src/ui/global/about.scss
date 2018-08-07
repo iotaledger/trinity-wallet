@@ -1,5 +1,5 @@
 .about {
-   text-align: center;
+    text-align: center;
     article {
         display: block;
         position: relative;
@@ -50,12 +50,26 @@
     }
     ul {
         margin-bottom: 20px;
-    }
 
-    li {
-        font-size: 14px;
-        line-height: 21px;
-        margin: 0 0 4px 24px;
-        list-style: circle;
+        li {
+            font-size: 14px;
+            line-height: 21px;
+            margin: 0 0 4px 24px;
+            list-style: circle;
+        }
+
+        &.log {
+            li {
+                list-style: none;
+                margin: 0 0 8px;
+                user-select: all;
+                cursor: text;
+            }
+
+            strong {
+                color: var(--primary);
+                margin-right: 10px;
+            }
+        }
     }
 }

@@ -32,11 +32,9 @@ class About extends React.PureComponent {
      * @param {string} Item - Triggered menu item
      */
     menuToggle(item) {
-        if (item === 'about') {
-            this.setState({
-                visible: true,
-            });
-        }
+        this.setState({
+            visible: item === 'about',
+        });
     }
 
     render() {
