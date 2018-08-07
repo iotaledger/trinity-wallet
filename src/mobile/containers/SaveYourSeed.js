@@ -10,7 +10,6 @@ import { getChecksum } from 'iota-wallet-shared-modules/libs/iota/utils';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { paperWalletFilled } from 'iota-wallet-shared-modules/images/PaperWallets.js';
 import { setSeedShareTutorialVisitationStatus } from 'iota-wallet-shared-modules/actions/settings';
-import SplashScreen from 'react-native-splash-screen';
 import Modal from 'react-native-modal';
 import timer from 'react-native-timer';
 import QRCode from 'qr.js/lib/QRCode';
@@ -135,7 +134,6 @@ class SaveYourSeed extends Component {
                 return true;
             });
         }
-        SplashScreen.hide();
     }
 
     componentWillUnmount() {

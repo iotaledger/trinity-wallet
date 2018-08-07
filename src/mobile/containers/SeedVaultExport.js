@@ -17,7 +17,7 @@ import { Icon } from '../theme/icons.js';
 import Header from '../components/Header';
 import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 import StatefulDropdownAlert from '../containers/StatefulDropdownAlert';
-import PasswordFields from '../components/PasswordFields';
+import SetPasswordFields from '../components/SetPasswordFields';
 import InfoBox from '../components/InfoBox';
 
 const styles = StyleSheet.create({
@@ -151,7 +151,7 @@ class SeedVaultExport extends Component {
                 }),
             ]).start();
         }
-        this.passwordFields.checkPassword();
+        this.SetPasswordFields.checkPassword();
     }
 
     /**
@@ -299,9 +299,9 @@ class SeedVaultExport extends Component {
                                 { transform: [{ translateX: this.secondAnimatedValue }] },
                             ]}
                         >
-                            <PasswordFields
+                            <SetPasswordFields
                                 onRef={(ref) => {
-                                    this.passwordFields = ref;
+                                    this.SetPasswordFields = ref;
                                 }}
                                 onAcceptPassword={() => this.onAcceptPassword()}
                                 password={password}
