@@ -347,6 +347,7 @@ const Electron = {
     changeLanguage: (t) => {
         ipc.send('menu.language', {
             about: t('settings:aboutTrinity'),
+            errorLog: t('notificationLog:errorLog'),
             checkUpdate: t('checkForUpdates'),
             sendFeedback: 'Send feedback',
             settings: capitalize(t('home:settings')),

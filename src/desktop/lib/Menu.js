@@ -7,6 +7,7 @@ const state = {
 
 let language = {
     about: 'About Trinity',
+    errorLog: 'Error log',
     checkUpdate: 'Check for Updates',
     settings: 'Settings',
     accountSettings: 'Account management',
@@ -66,16 +67,21 @@ const initMenu = (app, getWindow) => {
                         click: () => navigate('about'),
                         enabled: state.enabled,
                     },
-                    /* TODO: Merge PR #208
                     {
                         type: 'separator',
                     },
+                    /* TODO: Merge PR #208
                     {
                         label: `${language.checkUpdate}...`,
                         click: () => {}, 
                         enabled: state.enabled,
                     },
                     */
+                    {
+                        label: language.errorLog,
+                        click: () => navigate('errorlog'),
+                        enabled: state.enabled,
+                    },
                     {
                         type: 'separator',
                     },
