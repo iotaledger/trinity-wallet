@@ -140,4 +140,9 @@ Diese Datenschutzrichtlinie zur Trinity Wallet App kann von Zeit zu Zeit geände
 ### **Fragen**
 
 Sollten Sie irgendwelche Fragen zu dieser Datenschutzrichtlinie haben, kontaktieren Sie uns bitte unter [privacy@iota.org](mailto:privacy@iota.org).
+&nbsp;
+
+&nbsp;
+
+&nbsp;
 `;

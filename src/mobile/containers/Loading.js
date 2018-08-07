@@ -290,6 +290,11 @@ class Loading extends Component {
         timer.setTimeout('animationTimeout', () => this.playAnimationTwo(), 2000);
     }
 
+    /**
+     * Navigates to home screen
+     *
+     * @method launchHomeScreen
+     */
     launchHomeScreen() {
         const { theme: { body, bar } } = this.props;
         KeepAwake.deactivate();
