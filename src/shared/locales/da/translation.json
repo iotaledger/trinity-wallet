@@ -207,7 +207,7 @@
         "passwordManagerCheckbox": "Jeg vil benytte en adgangskodehåndtering til lagring af min hovednøgle",
         "copy": "KOPIÉR",
         "noPasswordManagers": "Ingen understøttet adgangskodehåndtering installeret",
-        "noPasswordManagersExplanation": "Ingen understøttet password manager blev fundet på din enhed. Installer venligst Keepass2Android.",
+        "noPasswordManagersExplanation": "Ingen understøttede adgangskodehåndterings-apps fundet på din enhed. Installér Keepass2Android.",
         "followTutorialToSecurelyShareSeed": "Hvis du ønsker at opbevare din hovednøgle i en password manager, skal du følge vejledningen i følgende link"
     },
     "enterSeed": {
