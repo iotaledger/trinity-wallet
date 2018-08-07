@@ -11,10 +11,7 @@ import {
     setBasicAccountInfo,
 } from 'iota-wallet-shared-modules/actions/accounts';
 import { clearWalletData, clearSeed, setPassword } from 'iota-wallet-shared-modules/actions/wallet';
-import { passwordReasons } from 'iota-wallet-shared-modules/libs/password';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
-import { zxcvbn } from 'iota-wallet-shared-modules/libs/exports';
-import CustomTextInput from '../components/CustomTextInput';
 import {
     hasDuplicateSeed,
     hasDuplicateAccountName,
@@ -31,9 +28,9 @@ import InfoBox from '../components/InfoBox';
 import { Icon } from '../theme/icons.js';
 import GENERAL from '../theme/general';
 import Header from '../components/Header';
+import SetPasswordFields from '../components/SetPasswordFields';
 import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
-const MIN_PASSWORD_LENGTH = 11;
 console.ignoredYellowBox = ['Native TextInput']; // eslint-disable-line no-console
 
 const styles = StyleSheet.create({
@@ -119,91 +116,53 @@ class SetPassword extends Component {
         leaveNavigationBreadcrumb('SetPassword');
     }
 
-    /**
-     * Stores seed in keychain and clears seed from state
-     * @method onDonePress
-     * @returns {Promise<void>}
-     */
-    async onDonePress() {
-        const { theme: { body }, usedExistingSeed } = this.props;
-        const ifNoKeychainDuplicates = (pwdHash, salt, seed, accountName) => {
-            storeSeedInKeychain(pwdHash, seed, accountName)
-                .then(async () => {
-                    await storeSaltInKeychain(salt);
-                    this.props.setPassword(pwdHash);
-                    this.props.addAccountName(accountName);
-                    // Set basic account info
-                    this.props.setBasicAccountInfo({ accountName, usedExistingSeed });
-                    this.props.increaseSeedCount();
-                    this.props.clearWalletData();
-                    this.props.clearSeed();
-                    this.props.setOnboardingComplete(true);
-                    this.props.navigator.push({
-                        screen: 'onboardingComplete',
-                        navigatorStyle: {
-                            navBarHidden: true,
-                            navBarTransparent: true,
-                            topBarElevationShadowEnabled: false,
-                            screenBackgroundColor: body.bg,
-                            drawUnderStatusBar: true,
-                            statusBarColor: body.bg,
-                        },
-                        appStyle: {
-                            orientation: 'portrait',
-                            keepStyleAcrossPush: true,
-                        },
-                        animated: false,
-                    });
-                })
-                .catch(() => {
-                    this.props.generateAlert(
-                        'error',
-                        t('global:somethingWentWrong'),
-                        t('global:somethingWentWrongRestart'),
-                    );
-                });
-        };
-
+    async onAcceptPassword() {
         const { t, seed, accountName } = this.props;
-        const { password, reentry } = this.state;
-        const score = zxcvbn(password);
+        const salt = await getRandomBytes(32);
+        const pwdHash = await generatePasswordHash(this.state.password, salt);
+        getAllSeedsFromKeychain(pwdHash).then((seedInfo) => {
+            if (hasDuplicateAccountName(seedInfo, accountName)) {
+                return this.props.generateAlert(
+                    'error',
+                    t('addAdditionalSeed:nameInUse'),
+                    t('addAdditionalSeed:nameInUseExplanation'),
+                );
+            } else if (hasDuplicateSeed(seedInfo, seed)) {
+                return this.props.generateAlert(
+                    'error',
+                    t('addAdditionalSeed:seedInUse'),
+                    t('addAdditionalSeed:seedInUseExplanation'),
+                );
+            }
+            return this.onAcceptInKeychain(pwdHash, salt, seed, accountName);
+        });
+    }
 
-        if (password.length >= MIN_PASSWORD_LENGTH && password === reentry && score.score === 4) {
-            const salt = await getRandomBytes(32);
-            const pwdHash = await generatePasswordHash(password, salt);
-            getAllSeedsFromKeychain(pwdHash).then((seedInfo) => {
-                if (hasDuplicateAccountName(seedInfo, accountName)) {
-                    return this.props.generateAlert(
-                        'error',
-                        t('addAdditionalSeed:nameInUse'),
-                        t('addAdditionalSeed:nameInUseExplanation'),
-                    );
-                } else if (hasDuplicateSeed(seedInfo, seed)) {
-                    return this.props.generateAlert(
-                        'error',
-                        t('addAdditionalSeed:seedInUse'),
-                        t('addAdditionalSeed:seedInUseExplanation'),
-                    );
-                }
-                return ifNoKeychainDuplicates(pwdHash, salt, seed, accountName);
+    onAcceptInKeychain(pwdHash, salt, seed, accountName) {
+        const { t, usedExistingSeed } = this.props;
+        storeSeedInKeychain(pwdHash, seed, accountName)
+            .then(async () => {
+                await storeSaltInKeychain(salt);
+                this.props.setPassword(pwdHash);
+                this.props.addAccountName(accountName);
+                this.props.setBasicAccountInfo({ accountName, usedExistingSeed });
+                this.props.increaseSeedCount();
+                this.props.clearWalletData();
+                this.props.clearSeed();
+                this.props.setOnboardingComplete(true);
+                this.navigateToOnboardingComplete();
+            })
+            .catch(() => {
+                this.props.generateAlert(
+                    'error',
+                    t('global:somethingWentWrong'),
+                    t('global:somethingWentWrongRestart'),
+                );
             });
-        } else if (!(password === reentry)) {
-            this.props.generateAlert('error', t('passwordMismatch'), t('passwordMismatchExplanation'));
-        } else if (password.length < MIN_PASSWORD_LENGTH || reentry.length < MIN_PASSWORD_LENGTH) {
-            this.props.generateAlert(
-                'error',
-                t('passwordTooShort'),
-                t('passwordTooShortExplanation', {
-                    minLength: MIN_PASSWORD_LENGTH,
-                    currentLength: password.length,
-                }),
-            );
-        } else if (score.score < 4) {
-            const reason = score.feedback.warning
-                ? t(`changePassword:${passwordReasons[score.feedback.warning]}`)
-                : t('changePassword:passwordTooWeakReason');
-            return this.props.generateAlert('error', t('changePassword:passwordTooWeak'), reason);
-        }
+    }
+
+    onDonePress() {
+        this.SetPasswordFields.checkPassword();
     }
 
     /**
@@ -216,12 +175,29 @@ class SetPassword extends Component {
         });
     }
 
-    renderContent() {
-        const { t, theme, theme: { body } } = this.props;
-        const { password, reentry } = this.state;
-        const score = zxcvbn(password);
-        const isValid = score.score === 4;
+    navigateToOnboardingComplete() {
+        const { theme: { body } } = this.props;
+        this.props.navigator.push({
+            screen: 'onboardingComplete',
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                topBarElevationShadowEnabled: false,
+                screenBackgroundColor: body.bg,
+                drawUnderStatusBar: true,
+                statusBarColor: body.bg,
+            },
+            appStyle: {
+                orientation: 'portrait',
+                keepStyleAcrossPush: true,
+            },
+            animated: false,
+        });
+    }
 
+    renderContent() {
+        const { t, theme: { body } } = this.props;
+        const { password, reentry } = this.state;
         return (
             <View>
                 <TouchableWithoutFeedback style={{ flex: 1, width }} onPress={Keyboard.dismiss} accessible={false}>
@@ -246,44 +222,15 @@ class SetPassword extends Component {
                                 }
                             />
                             <View style={{ flex: 0.2 }} />
-                            <CustomTextInput
-                                label={t('global:password')}
-                                onChangeText={(password) => this.setState({ password })}
-                                containerStyle={{ width: width / 1.15 }}
-                                autoCapitalize="none"
-                                widget="password"
-                                isPasswordValid={isValid}
-                                passwordStrength={score.score}
-                                autoCorrect={false}
-                                enablesReturnKeyAutomatically
-                                returnKeyType="next"
-                                onSubmitEditing={() => {
-                                    if (password) {
-                                        this.reentry.focus();
-                                    }
+                            <SetPasswordFields
+                                onRef={(ref) => {
+                                    this.SetPasswordFields = ref;
                                 }}
-                                secureTextEntry
-                                testID="setPassword-passwordbox"
-                                theme={theme}
-                            />
-                            <View style={{ flex: 0.2 }} />
-                            <CustomTextInput
-                                onRef={(c) => {
-                                    this.reentry = c;
-                                }}
-                                label={t('retypePassword')}
-                                onChangeText={(reentry) => this.setState({ reentry })}
-                                containerStyle={{ width: width / 1.15 }}
-                                widget="passwordReentry"
-                                isPasswordValid={isValid && password === reentry}
-                                autoCapitalize="none"
-                                autoCorrect={false}
-                                enablesReturnKeyAutomatically
-                                returnKeyType="done"
-                                onSubmitEditing={() => this.onDonePress()}
-                                secureTextEntry
-                                testID="setPassword-reentrybox"
-                                theme={theme}
+                                onAcceptPassword={() => this.onAcceptPassword()}
+                                password={password}
+                                reentry={reentry}
+                                setPassword={(password) => this.setState({ password })}
+                                setReentry={(reentry) => this.setState({ reentry })}
                             />
                             <View style={{ flex: 0.3 }} />
                         </View>
@@ -303,7 +250,6 @@ class SetPassword extends Component {
 
     render() {
         const { theme: { body } } = this.props;
-
         return (
             <View style={styles.container}>
                 {isAndroid ? (
