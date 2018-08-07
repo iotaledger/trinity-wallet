@@ -345,7 +345,7 @@
         "expert": "Ekspert",
         "standard": "Tavaline",
         "expertModeExplanation": "Ekspert režiim annab juurdepääsu lisafunktsioone nagu käsitsi edutamine ja uuesti kinnitamine.",
-        "modesExplanation": "Only enable Expert mode if you are an experienced Tangle user. You may find it confusing otherwise."
+        "modesExplanation": "Ainult lubage ekspert režiim, kui olete kogenud Tangle kasutaja. Võite leida selle pisut segasena."
     },
     "settings": {
         "transferSending": "Toimub ülekanne",
@@ -577,7 +577,7 @@
         "exportFail": "SeedVault export failed",
         "exportFailExplanation": "There was an problem exporting the SeedVault. Please ensure you have the appropriate permissions and enough free space.",
         "exportSuccess": "SeedVault exported",
-        "exportSuccessExplanation": "Your encrypted seed file was exported successfully.",
+        "exportSuccessExplanation": "Krüptitud seemne fail eksporditi edukalt.",
         "importSeedVault": "Import SeedVault",
         "dropSeedVaultHere": "Drop SeedVault here",
         "enterPasswordExplanation": "Enter your password to open the SeedVault",
