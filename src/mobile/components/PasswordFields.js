@@ -13,8 +13,7 @@ const MIN_PASSWORD_LENGTH = 11;
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'space-between',
         alignItems: 'center',
     },
 });
@@ -111,14 +110,13 @@ class PasswordFields extends Component {
                     }}
                     label={t('retypePassword')}
                     onChangeText={(reentry) => this.props.setReentry(reentry)}
-                    containerStyle={{ width: width / 1.15, marginTop: height / 40 }}
+                    containerStyle={{ width: width / 1.15, marginTop: height / 60 }}
                     widget="passwordReentry"
                     isPasswordValid={isValid && password === reentry}
                     autoCapitalize="none"
                     autoCorrect={false}
                     enablesReturnKeyAutomatically
                     returnKeyType="done"
-                    onSubmitEditing={() => this.checkPassword()}
                     secureTextEntry
                     testID="setPassword-reentrybox"
                     theme={theme}
