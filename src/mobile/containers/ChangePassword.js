@@ -86,7 +86,6 @@ class ChangePassword extends Component {
 
     constructor() {
         super();
-
         this.state = {
             currentPassword: '',
             newPassword: '',
@@ -98,6 +97,11 @@ class ChangePassword extends Component {
         leaveNavigationBreadcrumb('ChangePassword');
     }
 
+    /**
+     * Updates password in keychain and notifies user of successful password change
+     *
+     * @method onAcceptPassword
+     */
     async onAcceptPassword() {
         const { password, setPassword, generateAlert, t } = this.props;
         const { newPassword } = this.state;
@@ -106,14 +110,18 @@ class ChangePassword extends Component {
         changePassword(password, newPwdHash, salt)
             .then(() => {
                 setPassword(newPwdHash);
-                this.clearPasswordField();
                 generateAlert('success', t('passwordUpdated'), t('passwordUpdatedExplanation'));
                 this.props.setSetting('securitySettings');
             })
             .catch(() => generateAlert('error', t('somethingWentWrong'), t('somethingWentWrongTryAgain')));
     }
 
-    async checkIfPasswordIsValid() {
+    /**
+     * Checks if user has provided appropriate password change information
+     *
+     * @method isPasswordChangeValid
+     */
+    async isPasswordChangeValid() {
         const { t, password, generateAlert } = this.props;
         const currentPasswordHash = await getPasswordHash(this.state.currentPassword);
         if (!isEqual(password, currentPasswordHash)) {
@@ -122,14 +130,6 @@ class ChangePassword extends Component {
             return generateAlert('error', t('oldPassword'), t('oldPasswordExplanation'));
         }
         this.PasswordFields.checkPassword();
-    }
-
-    clearPasswordField() {
-        this.setState({
-            currentPassword: '',
-            newPassword: '',
-            newPasswordReentry: '',
-        });
     }
 
     render() {
@@ -197,7 +197,7 @@ class ChangePassword extends Component {
                             newPassword !== '' &&
                             newPasswordReentry !== '' && (
                                 <TouchableOpacity
-                                    onPress={() => this.checkIfPasswordIsValid()}
+                                    onPress={() => this.isPasswordChangeValid()}
                                     hitSlop={{
                                         top: height / 55,
                                         bottom: height / 55,
