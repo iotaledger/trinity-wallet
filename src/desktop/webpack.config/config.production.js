@@ -17,8 +17,6 @@ config.output.publicPath = '../dist/';
 
 config.devtool = 'source-map';
 
-console.log(skipSourcemaps);
-
 if (skipSourcemaps) {
   config.plugins = [
       new BugsnagSourceMapUploaderPlugin({
