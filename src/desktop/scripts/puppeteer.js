@@ -5,6 +5,7 @@
 const express = require('express');
 const puppeteer = require('puppeteer');
 const path = require('path');
+const http = require('http');
 const fs = require('fs');
 
 const PORT = process.env.PORT || 1074;
@@ -18,28 +19,35 @@ app.get('*', (request, response) => {
     response.sendFile(`${appPath}/dist/index.html`);
 });
 
-const server = app.listen(PORT, (error) => {
-    if (error) {
-        console.error(error);
-    } else {
-        console.info('=> 🌎 http://localhost:%s/', PORT);
+const server = http.createServer(app);
+
+server.on('error', (e) => {
+    if (e.code === 'EADDRINUSE') {
+        console.log('Server already running, starting screenshots');
         takeShots();
     }
+});
+
+server.listen(PORT, () => {
+    console.info('=> 🌎 http://localhost:%s/', PORT);
+    takeShots();
 });
 
 let page = null;
 let browser = null;
 
-const screenshot = (fileName) => {
-    const dir = `${appPath}/shots`;
+const screenshot = (screenName) => {
+    const path = screenName.split('_');
 
-    console.log(`📸 ${fileName}`);
+    const dir = `${appPath}/shots/${path[0]}/`;
+
+    console.log(`📸 ${screenName}`);
 
     if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir);
     }
 
-    page.screenshot({ path: `${dir}/${fileName}.png`, type: 'png' });
+    page.screenshot({ path: `${dir}/${path[1]}.png`, type: 'png' });
 };
 
 const screenshotsDone = () => {
@@ -54,12 +62,19 @@ const inject = () => {
         getOS: () => {
             return 'darwin';
         },
+        getOnboardingSeed: () => {
+            return new Array(81).fill(0);
+        },
+        getChecksum: () => {
+            return 'ABC';
+        },
         readKeychain: async () => {},
         getUuid: async () => '',
         changeLanguage: () => {},
         onEvent: () => {},
         removeEvent: () => {},
         showMenu: () => {},
+        updateMenu: () => {},
         requestDeepLink: () => {},
         setStorage: async () => {},
         screenshot,
@@ -74,11 +89,19 @@ const takeShots = async () => {
     page.setViewport({
         width: 1280,
         height: 800,
+        deviceScaleFactor: 2,
     });
 
-    page.on('console', (msg) => {
-        console.log(msg.text());
+    page.on('console', async (message) => {
+        const type = message.type();
+        const args = await Promise.all(message.args().map(stringifyJSHandle));
+        const text = args.join(' ');
+        console.log(`${type}: ${text}`);
     });
+
+    async function stringifyJSHandle(handle) {
+        return await handle.executionContext().evaluate((o) => String(o), handle);
+    }
 
     page.on('pageerror', (err) => {
         console.error('Page error: ' + err.toString());
