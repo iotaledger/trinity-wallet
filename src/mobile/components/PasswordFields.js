@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     },
 });
 
-class SetPasswordFields extends Component {
+class PasswordFields extends Component {
     static propTypes = {
         /** @ignore */
         t: PropTypes.func.isRequired,
@@ -136,4 +136,4 @@ const mapDispatchToProps = {
     generateAlert,
 };
 
-export default translate(['setPassword', 'global'])(connect(mapStateToProps, mapDispatchToProps)(SetPasswordFields));
+export default translate(['setPassword', 'global'])(connect(mapStateToProps, mapDispatchToProps)(PasswordFields));
