@@ -23,7 +23,7 @@ import css from './twoFa.scss';
 class TwoFA extends React.Component {
     static propTypes = {
         /** @ignore */
-        password: PropTypes.string.isRequired,
+        password: PropTypes.object.isRequired,
         /** @ignore */
         is2FAEnabled: PropTypes.bool.isRequired,
         /** @ignore */

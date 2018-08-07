@@ -47,7 +47,7 @@ class Idle extends React.Component {
 
     lock() {
         if (this.props.isAuthorised) {
-            this.props.setPassword('');
+            this.props.setPassword({});
             this.setState({ locked: true });
         }
     }
