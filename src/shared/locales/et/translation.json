@@ -174,16 +174,16 @@
         "reasonRow": "Straight rows of keys are easy to guess.",
         "reasonPattern": "Short patterns of keys are easy to guess.",
         "reasonNames": "Common names and surnames are easy to guess.",
-        "reasonRepeats": "Repeats like 'aaa' are easy to guess.",
+        "reasonRepeats": "Kordusi nagu \"aaa\" on lihtne ära arvata.",
         "reasonRepeats2": "Repeats like 'abcabcabc' are only slightly harder to guess than 'abc'.",
-        "reasonSequence": "Sequences like abc or 54321 are easy to guess.",
-        "reasonYears": "Recent years are easy to guess.",
-        "reasonDates": "Dates are often easy to guess.",
+        "reasonSequence": "Selliseid järjestusi nagu abc või 54321 on lihtne ära arvata.",
+        "reasonYears": "Hiljutisi aastaid on lihtne ära arvata.",
+        "reasonDates": "Kuupäevi on sageli lihtne ära arvata.",
         "reasonTop10": "This is a top 10 common password.",
         "reasonTop100": "This is a top 100 common password.",
         "reasonCommon": "This is a very common password.",
         "reasonSimilar": "This is similar to a commonly-used password.",
-        "reasonWord": "A single word is easy to guess."
+        "reasonWord": "Ühte sõna on lihtne ära arvata."
     },
     "setPassword": {
         "choosePassword": "Choose a new password",
@@ -208,7 +208,7 @@
         "copy": "KOPEERI",
         "noPasswordManagers": "No supported password managers installed",
         "noPasswordManagersExplanation": "No supported password managers were found on your device. Please install Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "If you wish to store your seed in a password manager, you must follow a tutorial from the following link"
+        "followTutorialToSecurelyShareSeed": "Kui soovite salvestada oma seemne paroolihaldurisse, peate järgima juhendaja järgmist linki"
     },
     "enterSeed": {
         "invalidCharacters": "Seeme sisaldab sobimatuid tähemärke",
@@ -572,7 +572,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Export SeedVault",
-        "seedVaultExplanation": "A SeedVault is an encrypted file for storing your seed securely. The seed is encrypted behind a password and cannot be accessed without that password. It is recommended that you store the file in a password manager like Keepass.",
+        "seedVaultExplanation": "Seemnehoidla on krüptitud faili teie seeme turvaliseks hoiustamiseks. Seeme on krüptitud parooli taha ja sellele ei saa ilma paroolita ligi pääseda. On soovitatav salvestada fail paroolihaldurisse nagu Keepass.",
         "seedVaultWarning": "Make sure you back up the file in multiple locations (e.g. hard drive, cloud, USB). If you lose this file and have not stored your seed elsewhere, you will lose your IOTA.",
         "exportFail": "SeedVault export failed",
         "exportFailExplanation": "There was an problem exporting the SeedVault. Please ensure you have the appropriate permissions and enough free space.",
