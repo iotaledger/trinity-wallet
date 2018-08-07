@@ -146,8 +146,8 @@
         "seedTooShortExplanation": "Seeme peab olema {{maxLength}} tähemärki pikk. Teie praegune seeme on {{currentLength}} tähemärgi pikkune. Palun proovige uuesti.",
         "nameInUse": "Konto nimi on juba kasutusel",
         "nameInUseExplanation": "Palun kasutage oma seemne jaoks unikaalset konto nime.",
-        "accountNameTooLong": "Account name too long",
-        "accountNameTooLongExplanation": "Account name maximum length is {{maxLength}} characters.",
+        "accountNameTooLong": "Konto nimi on liiga pikk",
+        "accountNameTooLongExplanation": "Konto nime maksimaalne pikkus on {{maxLength}} tähemärki.",
         "accountName": "Konto nimi",
         "noNickname": "Konto nime pole sisestatud",
         "noNicknameExplanation": "Palun sisestage oma seemnele konto nimi.",
@@ -323,8 +323,8 @@
         "message": "Sõnum",
         "invalidMessage": "Sobimatu sõnum",
         "invalidMessageExplanation": "Teie sõnum sisaldab sobimatuid tähemärke.",
-        "invalidMessageTooLong": "Message too long",
-        "invalidMessageTooLongExplanation": "The message exceeds the max. amount of characters (1093).",
+        "invalidMessageTooLong": "Sõnum on liiga pikk",
+        "invalidMessageTooLongExplanation": "Sõnum ületab maks. tähemärkide hulka (1093).",
         "send": "Saada",
         "invalidAmount": "Sisestatud vale summa",
         "invalidAmountExplanation": "Palun sisestage kehtiv ülekande summa. IOTA ühikusüsteemi selgitus käesoleva lehe all võib teile abiks tulla.",
@@ -497,7 +497,7 @@
         "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0><1>Are you sure you want to delete</1><2></2><3>{{accountName}}?</3>",
+        "areYouSure": "<0> </ 0> <1> Kas soovite kindlasti kustutada </ 1> <2> </ 2> <3> {{accountName}}? </ 3>",
         "yourSeedWillBeRemoved": "Teie seeme ja tehingute ajalugu eemaldatakse.",
         "thisAction": "Seda tegevust ei saa tagasi võtta.",
         "enterPassword": "Konto kustutamiseks sisestage oma parool."
@@ -507,7 +507,7 @@
         "pressToSync": "Konto sünkroniseerimiseks vajutage allolevat nuppu.",
         "thisMayTake": "See võib aega võtta. Te võite märgata oma seadme aeglustumist.",
         "doNotClose": "Rakenduse minimiseerimine katkestab sünkroonimise.",
-        "syncAccount": "Sync Account",
+        "syncAccount": "Sünkrooni konto",
         "syncingYourAccount": "Sünkroniseerin teie kontot."
     },
     "useExistingSeed": {
@@ -529,7 +529,7 @@
     },
     "walletResetConfirmation": {
         "cannotUndo": "SEDA TOIMINGUT EI SAA TAGASI VÕTTA.",
-        "warning": "<0><0>All of your wallet data including your </0><1>seeds, password,</1><2> and </2><3>other account information</3><4> will be lost.</4></0>"
+        "warning": "<0> <0> Kõik teie rahakoti andmed, sealhulgas </ 0> <1> seemned, parool, </ 1> <2> ja </ 2> <3> muu konto teave </ 3> <4> kaotatakse. </ 4> </ 0>"
     },
     "fingerprintSetup": {
         "instructionsEnable": "Touch fingerprint reader to enable fingerprint authentication",
