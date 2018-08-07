@@ -70,33 +70,22 @@ const styles = StyleSheet.create({
  */
 class ChangePassword extends Component {
     static propTypes = {
-        /** Hash for wallet's password */
+        /** @ignore */
         password: PropTypes.object.isRequired,
-        /** Set new password hash
-         * @param {string} passwordHash
-         */
+        /** @ignore */
         setPassword: PropTypes.func.isRequired,
-        /** Change current setting
-         * @param {string} setting
-         */
+        /** @ignore */
         setSetting: PropTypes.func.isRequired,
-        /** Generate a notification alert
-         * @param {String} type - notification type - success, error
-         * @param {String} title - notification title
-         * @param {String} text - notification explanation
-         */
+        /** @ignore */
         generateAlert: PropTypes.func.isRequired,
-        /** Theme settings */
+        /** @ignore */
         theme: PropTypes.object.isRequired,
-        /** Translation helper
-         * @param {string} translationString - locale string identifier to be translated
-         */
+        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
     constructor() {
         super();
-
         this.state = {
             currentPassword: '',
             newPassword: '',
@@ -108,6 +97,11 @@ class ChangePassword extends Component {
         leaveNavigationBreadcrumb('ChangePassword');
     }
 
+    /**
+     * Updates password in keychain and notifies user of successful password change
+     *
+     * @method onAcceptPassword
+     */
     async onAcceptPassword() {
         const { password, setPassword, generateAlert, t } = this.props;
         const { newPassword } = this.state;
@@ -116,14 +110,18 @@ class ChangePassword extends Component {
         changePassword(password, newPwdHash, salt)
             .then(() => {
                 setPassword(newPwdHash);
-                this.clearPasswordField();
                 generateAlert('success', t('passwordUpdated'), t('passwordUpdatedExplanation'));
                 this.props.setSetting('securitySettings');
             })
             .catch(() => generateAlert('error', t('somethingWentWrong'), t('somethingWentWrongTryAgain')));
     }
 
-    async checkIfPasswordIsValid() {
+    /**
+     * Checks if user has provided appropriate password change information
+     *
+     * @method isPasswordChangeValid
+     */
+    async isPasswordChangeValid() {
         const { t, password, generateAlert } = this.props;
         const currentPasswordHash = await getPasswordHash(this.state.currentPassword);
         if (!isEqual(password, currentPasswordHash)) {
@@ -132,14 +130,6 @@ class ChangePassword extends Component {
             return generateAlert('error', t('oldPassword'), t('oldPasswordExplanation'));
         }
         this.PasswordFields.checkPassword();
-    }
-
-    clearPasswordField() {
-        this.setState({
-            currentPassword: '',
-            newPassword: '',
-            newPasswordReentry: '',
-        });
     }
 
     render() {
@@ -207,7 +197,7 @@ class ChangePassword extends Component {
                             newPassword !== '' &&
                             newPasswordReentry !== '' && (
                                 <TouchableOpacity
-                                    onPress={() => this.checkIfPasswordIsValid()}
+                                    onPress={() => this.isPasswordChangeValid()}
                                     hitSlop={{
                                         top: height / 55,
                                         bottom: height / 55,
