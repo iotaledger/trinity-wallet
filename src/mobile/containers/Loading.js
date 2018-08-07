@@ -236,46 +236,15 @@ class Loading extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        const { ready, theme: { body, bar } } = this.props;
-        const isReady = !ready && newProps.ready;
+        const isReady = !this.props.ready && newProps.ready;
+        if (isReady && this.state.animationPartOneDone) {
+            this.launchHomeScreen();
+        }
+    }
 
-        if (isReady) {
-            KeepAwake.deactivate();
-            this.clearTimeouts();
-            // FIXME: A quick workaround to stop history refresh flash on iOS.
-            if (isAndroid) {
-                this.props.navigator.push({
-                    screen: 'home',
-                    navigatorStyle: {
-                        navBarHidden: true,
-                        navBarTransparent: true,
-                        topBarElevationShadowEnabled: false,
-                        screenBackgroundColor: body.bg,
-                        drawUnderStatusBar: true,
-                        statusBarColor: bar.hover,
-                    },
-                    animated: false,
-                });
-                timer.clearInterval('inactivityTimer');
-            } else {
-                Navigation.startSingleScreenApp({
-                    screen: {
-                        screen: 'home',
-                        navigatorStyle: {
-                            navBarHidden: true,
-                            navBarTransparent: true,
-                            topBarElevationShadowEnabled: false,
-                            screenBackgroundColor: body.bg,
-                            drawUnderStatusBar: true,
-                            statusBarColor: bar.bg,
-                        },
-                    },
-                    appStyle: {
-                        orientation: 'portrait',
-                        keepStyleAcrossPush: true,
-                    },
-                });
-            }
+    componentWillUpdate(newProps, newState) {
+        if (this.props.ready && newState.animationPartOneDone) {
+            this.launchHomeScreen();
         }
     }
 
@@ -319,6 +288,46 @@ class Loading extends Component {
 
     setAnimationOneTimout() {
         timer.setTimeout('animationTimeout', () => this.playAnimationTwo(), 2000);
+    }
+
+    launchHomeScreen() {
+        const { theme: { body, bar } } = this.props;
+        KeepAwake.deactivate();
+        this.clearTimeouts();
+        // FIXME: A quick workaround to stop history refresh flash on iOS.
+        if (isAndroid) {
+            this.props.navigator.push({
+                screen: 'home',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    navBarTransparent: true,
+                    topBarElevationShadowEnabled: false,
+                    screenBackgroundColor: body.bg,
+                    drawUnderStatusBar: true,
+                    statusBarColor: bar.hover,
+                },
+                animated: false,
+            });
+            timer.clearInterval('inactivityTimer');
+        } else {
+            Navigation.startSingleScreenApp({
+                screen: {
+                    screen: 'home',
+                    navigatorStyle: {
+                        navBarHidden: true,
+                        navBarTransparent: true,
+                        topBarElevationShadowEnabled: false,
+                        screenBackgroundColor: body.bg,
+                        drawUnderStatusBar: true,
+                        statusBarColor: bar.bg,
+                    },
+                },
+                appStyle: {
+                    orientation: 'portrait',
+                    keepStyleAcrossPush: true,
+                },
+            });
+        }
     }
 
     playAnimationTwo() {
