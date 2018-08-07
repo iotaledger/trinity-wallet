@@ -83,7 +83,7 @@ export default () => (C) => {
                     }
                     this.props.getAccountInfo(seed, selectedAccountName);
                 })
-                .catch((err) => console.log(err));
+                .catch((err) => console.log(err)); // eslint-disable-line no-console
         }
 
         /**

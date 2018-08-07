@@ -305,6 +305,14 @@ class CustomTextInput extends Component {
                                         },
                                     ]}
                                 />
+                                <View
+                                    style={[
+                                        styles.passwordStrengthIndicator,
+                                        {
+                                            backgroundColor: isPasswordValid ? theme.positive.color : theme.body.alt,
+                                        },
+                                    ]}
+                                />
                             </View>
                         )}
                     </View>

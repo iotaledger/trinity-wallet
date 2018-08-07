@@ -34,7 +34,7 @@ import Header from '../components/Header';
 import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
 const MIN_PASSWORD_LENGTH = 11;
-console.ignoredYellowBox = ['Native TextInput'];
+console.ignoredYellowBox = ['Native TextInput']; // eslint-disable-line no-console
 
 const styles = StyleSheet.create({
     container: {
