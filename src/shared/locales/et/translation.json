@@ -131,7 +131,7 @@
         "androidInsecureClipboardWarning": "Android ei paku turvalist lõikepuhvrit.",
         "androidCopyPasteWarning": "Ära mitte kunagi kopeeri/kleebi oma seemet Android seadmes.",
         "willNotCopyPasteSeed": "Ma ei kopeeri/kleebi oma seemet",
-        "mustBeStoredAppropriately": "Seda tuleb nõuetekohaselt säilitada.",
+        "mustBeStoredAppropriately": "Seda tuleb nõuetekohaselt varundada.",
         "deviceMayBecomeUnresponsive": "Teie seade võib mõnda aega mitte vastata.",
         "isYourBalanceCorrect": "On teie kontojääk õige?",
         "ifYourBalanceIsNotCorrect": "Kui teie kontojääk pole õige, on tõenäoline, et kasutate enne hetkvõtte aegset seemet.",
@@ -525,21 +525,21 @@
         "alreadyHave": "Ma olen oma seemne varundanud",
         "reenterSeed": "At the next step you will be asked to re-enter your seed.",
         "reenterSeedWarning": "Kui te ei ole varundanud oma seemet ja teie seade ebaõnnestub, kaotate kogu oma IOTA.",
-        "pleaseConfirm": "Please confirm you have securely stored your seed."
+        "pleaseConfirm": "Palun kinnitage, et olete oma seemne turvaliselt varundanud."
     },
     "walletResetConfirmation": {
         "cannotUndo": "SEDA TOIMINGUT EI SAA TAGASI VÕTTA.",
         "warning": "<0> <0> Kõik teie rahakoti andmed, sealhulgas </ 0> <1> seemned, parool, </ 1> <2> ja </ 2> <3> muu konto teave </ 3> <4> kaotatakse. </ 4> </ 0>"
     },
     "fingerprintSetup": {
-        "instructionsEnable": "Touch fingerprint reader to enable fingerprint authentication",
+        "instructionsEnable": "Sõrmejäljega autentimise lubamiseks puudutage sõrmejäljelugejat",
         "instructionsDisable": "Puudutage sõrmejäljelugeja, et keelata sõrmejäljega autentimine",
-        "fingerprintAuthEnabled": "Biometric authentication enabled",
-        "fingerprintAuthEnabledExplanation": "You have successfully enabled biometric authentication.",
+        "fingerprintAuthEnabled": "Biomeetriline autentimine lubatud",
+        "fingerprintAuthEnabledExplanation": "Te olete biomeetrilise autentimise edukalt lubanud.",
         "fingerprintAuthDisabled": "Biomeetriline autentimine keelatud",
         "fingerprintAuthDisabledExplanation": "Te olete edukalt keelanud biomeetrilise autentimise.",
         "fingerprintAuthFailed": "Biomeetriline autentimine nurjus",
-        "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
+        "fingerprintAuthFailedExplanation": "Sõrmejäljega autentimine ebaõnnestus. Palun proovige uuesti.",
         "status": "Olek",
         "fingerprintUnavailable": "Biomeetriline autentimine pole saadaval",
         "fingerprintUnavailableExplanation": "Teie seade ei toeta biomeetrilist autentimist või pole see seadme seadetes konfigureeritud.",
