@@ -523,9 +523,9 @@
     "saveSeedConfirmation": {
         "didSaveSeed": "Sikkerhedskopierede du din hovednøgle?",
         "alreadyHave": "Jeg har sikkerhedskopieret min hovednøgle",
-        "reenterSeed": "I det næste trin vil du blive bedt om at genindtaste din hovednøgle.",
-        "reenterSeedWarning": "Hvis du ikke har sikkerhedskopieret din hovednøgle og din enhed fejler, vil du miste alle dine IOTA.",
-        "pleaseConfirm": "Bekræft venligst, du har opbevaret din hovednøgle forsvarligt."
+        "reenterSeed": "På næste trin vil du blive bedt om at genindtaste din hovednøgle.",
+        "reenterSeedWarning": "Har du ikke sikkerhedskopieret din hovednøgle, og fejler din enhed, mister du alle dine IOTA.",
+        "pleaseConfirm": "Bekræft, at du har lagret din hovednøgle forsvarligt."
     },
     "walletResetConfirmation": {
         "cannotUndo": "DENNE HANDLING KAN IKKE FORTRYDES.",
