@@ -298,16 +298,16 @@
         "whatIsChecksum": "Hver hovednøgle har en korresponderende 3-tegns kontrolsum",
         "iHavesavedMySeed": "Jeg har gemt min hovednøgle",
         "checksumExplanation": "Når du tilføjer en hovednøgle i din tegnebog, skal du sikre dig, at den genererede kontrolsum matcher den, du har nedskrevet.",
-        "mustSaveYourSeed": "<0><0>Du skal gemme din hovednøgle med </0><1>mindst én</1><2> af valgmulighederne herunder.</2></0>"
+        "mustSaveYourSeed": "<0><0>Du skal sikkerhedskopiere din hovednøgle med </0><1>mindst én</1><2> af valgmulighederne nedenfor.</2></0>"
     },
     "seedReentry": {
-        "pleaseConfirmYourSeed": "Bekræft venligst din hovednøgle",
-        "trinityWillNeverAskToReenter": "Trinity vil aldrig bede dig om at genindsætte din hovednøgle, medmindre du nulstiller din tegnebog eller app'en.",
-        "enterYourSeed": "Indtast din hovednøgle",
+        "pleaseConfirmYourSeed": "Bekræft din hovednøgle",
+        "trinityWillNeverAskToReenter": "Trinity vil aldrig bede dig genindtaste din hovednøgle, medmindre du nulstiller din tegnebog eller app'en.",
+        "enterYourSeed": "Angiv din hovednøgle",
         "incorrectSeed": "Forkert hovednøgle",
         "incorrectSeedExplanation": "Hovednøglen du indtastede er forkert. Prøv venligst igen.",
-        "ifYouHaveNotSaved": "Gå venligst tilbage og gem din hovednøgle, hvis du ikke allerede har gjort dette.",
-        "enterSeedBelow": "Indtast din nyoprettet hovednøgle forneden, for at bekræfte du har sikkerhedskopieret det korrekt"
+        "ifYouHaveNotSaved": "Gå tilbage og sikkerhedskopiér din hovednøgle, hvis du ikke allerede har gjort dette.",
+        "enterSeedBelow": "Angiv din nyoprettet hovednøgle nedenfor, for at bekræfte at du har sikkerhedskopieret den korrekt"
     },
     "send": {
         "invalidAddress": "Ugyldig adresse",
@@ -323,16 +323,16 @@
         "message": "Besked",
         "invalidMessage": "Ugyldig besked",
         "invalidMessageExplanation": "Dit besked indeholder ugyldige tegn.",
-        "invalidMessageTooLong": "Beskeden er for lang",
-        "invalidMessageTooLongExplanation": "Beskeden overskrider det maksimale antal tegn (1093).",
+        "invalidMessageTooLong": "Beskeden for lang",
+        "invalidMessageTooLongExplanation": "Beskeden overskrider tegnbegrænsningen (1093).",
         "send": "Send",
         "invalidAmount": "Forkert beløb indtastet",
         "invalidAmountExplanation": "Angiv et gyldigt posteringsbeløb. Det kan være nyttigt at se IOTAs enhedsforklaring i bunden af denne side.",
         "maximumSelected": "MAKSIMALT beløb valgt",
         "iotaUnits": "IOTA enheder forklaret",
-        "sendMax": "SEND MAX",
+        "sendMax": "SEND MAKS.",
         "totalTime": "Tid i alt",
-        "addressPasteDetected": "Indsæt af adresse registreret",
+        "addressPasteDetected": "Adresseindsættelse registreret",
         "addressPasteExplanation": "Det ser ud til at du har indsat en adresse. Kontrollere venligst, at adressen stemmer overens med den du ønsker at sende til.",
         "invalid": "UGYLDIG"
     },
