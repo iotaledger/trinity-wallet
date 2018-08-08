@@ -132,6 +132,7 @@
     "iota.lib.js": "^0.4.7",
     "kdbxweb": "^1.2.4",
     "keytar": "^4.2.1",
+    "machine-uuid": "^1.2.0",
     "perfect-scrollbar": "^1.4.0",
     "qr.js": "^0.0.0",
     "react": "^16.4.1",
