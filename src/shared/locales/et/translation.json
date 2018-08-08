@@ -580,7 +580,7 @@
         "exportSuccessExplanation": "Krüptitud seemne fail eksporditi edukalt.",
         "importSeedVault": "Import SeedVault",
         "dropSeedVaultHere": "Drop SeedVault here",
-        "enterPasswordExplanation": "Enter your password to open the SeedVault",
+        "enterPasswordExplanation": "Seemnehoidla avamiseks sisestage oma parool",
         "noSeedFound": "Seemnehoidla ei sisalda kehtivat seemet",
         "noSeedFoundExplanation": "Seemnehoidla on tühi või sisaldab seemet vales vormingus.",
         "seedFileError": "Seemnehoidla avamine ebaõnnestus",
