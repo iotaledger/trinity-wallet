@@ -580,15 +580,15 @@
         "exportSuccessExplanation": "Din krypterede hovednøglefil er eksporteret.",
         "importSeedVault": "Impotér SeedVault",
         "dropSeedVaultHere": "Slip SeedVault hér",
-        "enterPasswordExplanation": "Indtast din adgangskode for at åbne SeedVault",
+        "enterPasswordExplanation": "Angiv din adgangskode for at nulstille SeedVault",
         "noSeedFound": "SeedVault indeholder ikke en gyldig hovednøgle",
         "noSeedFoundExplanation": "SeedVault er enten tom eller indeholder en hovednøgle i et ugyldigt format.",
         "seedFileError": "Kunne ikke åbne SeedVault",
-        "seedFileErrorExplanation": "Der opstod et problem ved indlæsning af SeedVault. Hvis du har valgt den korrekte fil kan denne måske være beskadiget."
+        "seedFileErrorExplanation": "Der var problemer med at åbne af SeedVault. Har du valgt den korrekte fil, kan denne være beskadiget."
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Ændring (24h)",
+        "change": "Skift (24h)",
         "volume": "Volumen (24t)",
         "error": "Fejl ved indhentning af diagramdata"
     },
