@@ -748,7 +748,7 @@ export const retryFailedTransaction = (accountName, bundleHash, powFn) => (dispa
             // If any address (input, remainder, receive) is spent, error out
             .then(({ spent }) => {
                 if (size(spent)) {
-                    throw new Error(Errors.ALREADY_SPENT_FROM_ADDRESSES(join(spent, ',')));
+                    throw new Error(`${Errors.ALREADY_SPENT_FROM_ADDRESSES}:${join(spent, ',')}`);
                 }
 
                 // If all addresses are still unspent, retry
@@ -781,6 +781,7 @@ export const retryFailedTransaction = (accountName, bundleHash, powFn) => (dispa
                             'error',
                             i18next.t('global:broadcastError'),
                             i18next.t('global:addressesAlreadySpentFrom'),
+                            20000,
                             error,
                         ),
                     );
