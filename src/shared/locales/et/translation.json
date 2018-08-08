@@ -92,7 +92,7 @@
         "promoted": "Tehing edukalt edutatud",
         "promotedExplanation": "Tehing edutatud räsiga {{hash}}",
         "autopromotionError": "Tehingut automaatne edutamine ebaõnnestus",
-        "autopromotionErrorExplanation": "Kaugtöö tõend ei ole kättesaadav teie valitud sõlmes. Palun muutke sõlme ja lubage uuesti automaatne edutamine.",
+        "autopromotionErrorExplanation": "Kaugtöö tõend pole kättesaadav teie valitud sõlmes. Palun muutke sõlme ja lubage uuesti automaatne edutamine.",
         "promotionError": "Tehingu edutamine ebaõnnestus",
         "promotionErrorExplanation": "Midagi läks teie tehingu edutamisel valesti. Palun proovige uuesti.",
         "noLongerValid": "Edutatav kimp ei kehti enam",
@@ -236,8 +236,8 @@
         "enterPassword": "Palun sisestage oma parool.",
         "login": "Log In",
         "setNode": "Set Node",
-        "whyBiometricDisabled": "Why is biometric authentication disabled?",
-        "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
+        "whyBiometricDisabled": "Miks on biomeetriline autentimine keelatud?",
+        "whyBiometricDisabledExplanation": "Teie turvalisuse huvides on rakenduse esmakordsel avamisel biomeetriline sisselogimine keelatud. Kui kasutate Trinityit, siis logitakse teid välja tegevusetuse tõttu. Seejärel saate sisse logida biomeetrilise autentimisega."
     },
     "loading": {
         "loadingFirstTime": "Laadin esimest korda seemet.",
@@ -345,7 +345,7 @@
         "expert": "Ekspert",
         "standard": "Tavaline",
         "expertModeExplanation": "Ekspert režiim annab juurdepääsu lisafunktsioone nagu käsitsi edutamine ja uuesti kinnitamine.",
-        "modesExplanation": "Ainult lubage ekspert režiim, kui olete kogenud Tangle kasutaja. Võite leida selle pisut segasena."
+        "modesExplanation": "Ainult lubage ekspert režiim, kui olete kogenud Tangle kasutaja. Võite leida selle pisut keerulisena."
     },
     "settings": {
         "transferSending": "Toimub ülekanne",
