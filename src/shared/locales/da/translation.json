@@ -333,19 +333,19 @@
         "sendMax": "SEND MAKS.",
         "totalTime": "Tid i alt",
         "addressPasteDetected": "Adresseindsættelse registreret",
-        "addressPasteExplanation": "Det ser ud til at du har indsat en adresse. Kontrollere venligst, at adressen stemmer overens med den du ønsker at sende til.",
+        "addressPasteExplanation": "Det ser ud til, at du har indsat en adresse. Kontrollér venligst, at adressen matcher den, du ønsker at sende til.",
         "invalid": "UGYLDIG"
     },
     "setSeedName": {
         "letsAddName": "Lad os tilføje et navn",
         "canUseMultipleSeeds": "Du kan bruge adskillige hovednøgler med denne tegnebog. Hver hovednøgle kræver et kontonavn.",
-        "youCanAdd": "Du kan tilføje flere hovednøgler i menuen \"Indstillinger\"."
+        "youCanAdd": "Du kan tilføje flere hovednøgler i menuen Indstillinger."
     },
     "modeSelection": {
         "expert": "Ekspert",
         "standard": "Standard",
         "expertModeExplanation": "Ekspert-tilstand vil give adgang til yderligere funktioner såsom manuel validering og gensendelse af transaktioner.",
-        "modesExplanation": "Aktiver kun ekspert-tilstand, hvis du er en erfaren Tangle bruger. Ellers vil det muligvis virke uigennemskueligt."
+        "modesExplanation": "Aktivér kun Eksperttilstand, hvis du er en erfaren Tangle-bruger. Det vil ellers kunne virke forvirrende."
     },
     "settings": {
         "transferSending": "Sender transaktion",
@@ -379,7 +379,7 @@
         "edit": "Rediger",
         "cut": "Klip",
         "copy": "Kopier",
-        "paste": "Sæt ind",
+        "paste": "Indsæt",
         "selectAll": "Vælg alle",
         "securitySettings": "Sikkerhedsindstillinger",
         "fingerprint": "Biometrisk godkendelse",
