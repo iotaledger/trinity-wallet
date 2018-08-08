@@ -134,7 +134,7 @@
         "mustBeStoredAppropriately": "Seda tuleb nõuetekohaselt säilitada.",
         "deviceMayBecomeUnresponsive": "Teie seade võib mõnda aega mitte vastata.",
         "isYourBalanceCorrect": "On teie kontojääk õige?",
-        "ifYourBalanceIsNotCorrect": "Kui teie kontojääk ei ole õige, on tõenäoline, et kasutate enne hetkvõtte aegset seemet.",
+        "ifYourBalanceIsNotCorrect": "Kui teie kontojääk pole õige, on tõenäoline, et kasutate enne hetkvõtte aegset seemet.",
         "headToAdvancedSettingsForTransition": "Suunduge Täpsematesse Sätetesse ning sooritage hetkvõtte üleminek.",
         "usingTrinityWalletWithKeePass": "Trinity Walleti kasutamine Keepass2Androidiga",
         "signedTrytesBroadcastErrorExplanation": "Teie tehingu edastamisel tekkis viga."
@@ -406,10 +406,10 @@
         "creatingSeed": "Creating a seed",
         "okay": "Okei. Seadistame sinu rahakoti ära!",
         "doYouNeedASeed": "Do you need to create a new seed?",
-        "seedExplanation": "Your IOTA seed is the master key to your funds. It is 81 characters long, using only letters A-Z or the number 9.",
+        "seedExplanation": "Teie IOTA seeme on teie rahaliste vahendite peamine võti. See on 81 tähemärki pikk, kasutades ainult tähti A-Z või numbrit 9.",
         "noIHaveOne": "No, I have one",
         "yesINeedASeed": "Yes, I need a seed",
-        "explanation": "<0><0>You can use it to access your funds from</0><1> any wallet</1><2>, on</2><3> any device.</3></0>",
+        "explanation": "<0> <0> Saate seda kasutada, et pääseda juurde oma vahenditele</0><1> igast rahakotist </ 1> <2> </ 2> <3> igas seadmel. </ 3> </ 0 >",
         "loseSeed": "But if you lose your seed, you also lose your IOTA.",
         "keepSafe": "Palun hoidke oma seemne turvalisust."
     },
@@ -422,7 +422,7 @@
     },
     "history": {
         "bundleHashCopied": "Kimbu räsi kopeeritud",
-        "noTransactionsFound": "No transactions found",
+        "noTransactionsFound": "Tehinguid ei leitud",
         "hideZeroBalance": "Peida nullsaldo",
         "bundleHashCopiedExplanation": "Kimbu räsi on kopeeritud lõikelauale.",
         "addressCopied": "Aadress kopeeritud",
@@ -493,7 +493,7 @@
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Miks ma ei saa oma täielikku kontojääki kulutada?",
-        "spentAddressExplanation": "You have funds on one or more spent addresses. Address reuse is dangerous in IOTA, so this wallet does not allow you to send from the same address more than once.",
+        "spentAddressExplanation": "Teil on vahendeid ühel või mitmel kasutatud aadressil. IOTA-s on korduvkasutuse aadress ohtlik, nii et see rahakott ei võimalda saata sama aadressiga rohkem kui üks kord.",
         "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
     },
     "deleteAccount": {
@@ -568,7 +568,7 @@
         "twoFADisabledExplanation": "Te olete edukalt keelanud kahefaktorilise autentimise.",
         "enterCode": "Sisestage oma 2FA rakendusest saadud kood",
         "code": "Kood",
-        "twoFaToken": "2FA Token"
+        "twoFaToken": "2FA kood"
     },
     "seedVault": {
         "exportSeedVault": "Eksportige seemnehoidla",
