@@ -252,12 +252,12 @@
         "pressForNewSeed": "Tryk for ny hovednøgle",
         "generateSuccess": "Hovednøglen genereret",
         "individualLetters": "Tryk på individuelle bogstaver for at randomisere dem.",
-        "individualLetterCount": "Tryk på {{letterCount}} flere individuelle tegn for at randomisere dem.",
+        "individualLetterCount": "Tryk på {{letterCount}} flere individuelle tegn for at tilfældiggøre dem.",
         "whatIsASeed": "Hvad er en hovednøgle?"
     },
     "onboardingComplete": {
         "allDone": "Alt udført!",
-        "openYourWallet": "Åben din tegnebog",
+        "openYourWallet": "Åbn din tegnebog",
         "walletReady": "Tegnebogen er nu opsat og klar til brug. Hvis du fremover har brug for at foretage ændringer, kan dette gøres fra menuen \"Indstillinger\"."
     },
     "paperWallet": {
@@ -266,8 +266,8 @@
         "print": "UDSKRIV",
         "paperConvenience": "Udskrivning af en papirkopi af din hovednøgle er en praktisk måde at gemme den på.",
         "publicInsecure": "Men at udskrive på et offentligt wifi-netværk eller printer er usikkert.",
-        "tapCheckboxes": "Klik venligst på afkrydsningsfelterne nedenfor for at bekræfte.",
-        "wifiCheckbox": "Jeg printer ikke på et offentligt wifi-netværk",
+        "tapCheckboxes": "Tryk på afkrydsningsfelterne nedenfor for at bekræfte.",
+        "wifiCheckbox": "Jeg printer ikke via offentlige Wi-Fi-netværk",
         "printerCheckbox": "Jeg printer ikke på en offentlig printer"
     },
     "receive": {
