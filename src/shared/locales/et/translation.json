@@ -285,7 +285,7 @@
         "tag": "Märgis"
     },
     "saveYourSeed": {
-        "saveYourSeed": "Back up your seed",
+        "saveYourSeed": "Varunda oma seeme",
         "seedCleared": "Seeme puhastatud",
         "mostSecure": "Most Secure",
         "leastSecure": "Least Secure",
@@ -521,7 +521,7 @@
         "hideSeed": "Hide Seed"
     },
     "saveSeedConfirmation": {
-        "didSaveSeed": "Did you back up your seed?",
+        "didSaveSeed": "Kas te varundasite oma seemne?",
         "alreadyHave": "Ma olen oma seemne varundanud",
         "reenterSeed": "At the next step you will be asked to re-enter your seed.",
         "reenterSeedWarning": "Kui te ei ole varundanud oma seemet ja teie seade ebaõnnestub, kaotate kogu oma IOTA.",
@@ -538,7 +538,7 @@
         "fingerprintAuthEnabledExplanation": "You have successfully enabled biometric authentication.",
         "fingerprintAuthDisabled": "Biometric authentication disabled",
         "fingerprintAuthDisabledExplanation": "You have successfully disabled biometric authentication.",
-        "fingerprintAuthFailed": "Biometric authentication failed",
+        "fingerprintAuthFailed": "Biomeetriline autentimine nurjus",
         "fingerprintAuthFailedExplanation": "Fingerprint authentication failed. Please try again.",
         "status": "Olek",
         "fingerprintUnavailable": "Biometric authentication unavailable",
@@ -547,7 +547,7 @@
         "buttonInstructionsEnable": "Press the button below to enable fingerprint authentication.",
         "buttonInstructionsDisableIPhoneX": "Press the button below to disable Face ID.",
         "buttonInstructionsEnableIPhoneX": "Press the button below to enable Face ID.",
-        "instructionsLogin": "Touch fingerprint reader to log in"
+        "instructionsLogin": "Sisse logimiseks puudutage sõrmejäljelugejat"
     },
     "transferConfirmation": {
         "youAreAbout": "Te olete saatmas {{contents}} aadressile",
@@ -571,20 +571,20 @@
         "twoFaToken": "2FA Token"
     },
     "seedVault": {
-        "exportSeedVault": "Export SeedVault",
+        "exportSeedVault": "Eksportige seemnehoidla",
         "seedVaultExplanation": "Seemnehoidla on krüptitud faili teie seeme turvaliseks hoiustamiseks. Seeme on krüptitud parooli taha ja sellele ei saa ilma paroolita ligi pääseda. On soovitatav salvestada fail paroolihaldurisse nagu Keepass.",
-        "seedVaultWarning": "Make sure you back up the file in multiple locations (e.g. hard drive, cloud, USB). If you lose this file and have not stored your seed elsewhere, you will lose your IOTA.",
-        "exportFail": "SeedVault export failed",
-        "exportFailExplanation": "There was an problem exporting the SeedVault. Please ensure you have the appropriate permissions and enough free space.",
-        "exportSuccess": "SeedVault exported",
+        "seedVaultWarning": "Veenduge, et olete varundanud faili eri kohtades (nt kõvakettale, pilve, USB). Kui te kaotada selle faili ja pole salvestanud oma seemet mujale, siis kaotate oma IOTA.",
+        "exportFail": "Seemnehoidla eksportimine nurjus",
+        "exportFailExplanation": "Seemnehoidla eksportimisega tekkis probleem. Palun veenduge, et teil on vastavad õigused ja piisavalt vaba ruumi.",
+        "exportSuccess": "Seemnehoidla eksporditud",
         "exportSuccessExplanation": "Krüptitud seemne fail eksporditi edukalt.",
-        "importSeedVault": "Import SeedVault",
-        "dropSeedVaultHere": "Drop SeedVault here",
+        "importSeedVault": "Importige seemnehoidla",
+        "dropSeedVaultHere": "Lohistage seemenhoidla siia",
         "enterPasswordExplanation": "Seemnehoidla avamiseks sisestage oma parool",
         "noSeedFound": "Seemnehoidla ei sisalda kehtivat seemet",
         "noSeedFoundExplanation": "Seemnehoidla on tühi või sisaldab seemet vales vormingus.",
-        "seedFileError": "Seemnehoidla avamine ebaõnnestus",
-        "seedFileErrorExplanation": "Seemnehoidla avamisega oli probleem. Kui te valisite õige faili, siis võib see olla rikutud."
+        "seedFileError": "Seemnehoidla avamine nurjus",
+        "seedFileErrorExplanation": "Seemnehoidla avamisega oli probleem. Kui valisite õige faili, siis võib see olla rikutud."
     },
     "chart": {
         "mcap": "MCAP",
