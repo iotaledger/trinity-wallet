@@ -541,13 +541,13 @@
         "fingerprintAuthFailed": "Biometrisk godkendelse fejlede",
         "fingerprintAuthFailedExplanation": "Godkendelse med fingeraftryk fejlede. Prøv venligst igen.",
         "status": "Status",
-        "fingerprintUnavailable": "Biometrisk godkendelse er utilgængeligt",
+        "fingerprintUnavailable": "Biometrisk autentificering utilgængelig",
         "fingerprintUnavailableExplanation": "Din enhed understøtter ikke biometrisk godkendelse, eller også er dette ikke konfigureret under indstillingerne på din enhed.",
         "buttonInstructionsDisable": "Tryk på knappen nedenfor for at deaktivere godkendelse med fingeraftryk.",
         "buttonInstructionsEnable": "Tryk på knappen nedenfor for at aktivere godkendelse med fingeraftryk.",
         "buttonInstructionsDisableIPhoneX": "Tryk på knappen herunder for at deaktivere ansigtsgenkendelse.",
         "buttonInstructionsEnableIPhoneX": "Tryk på knappen herunder for at aktivere ansigtsgenkendelse.",
-        "instructionsLogin": "Rør fingeraftrykssensoren for at logge ind"
+        "instructionsLogin": "Berør fingeraftrykslæseren for at logge ind"
     },
     "transferConfirmation": {
         "youAreAbout": "Du er ved at sende {{contents}} til adressen",
