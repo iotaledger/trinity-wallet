@@ -423,16 +423,16 @@
     "history": {
         "bundleHashCopied": "Bundt-hash kopieret",
         "noTransactionsFound": "Ingen transaktioner fundet",
-        "hideZeroBalance": "Skjul nul-saldo",
+        "hideZeroBalance": "Skjul nulsaldo",
         "bundleHashCopiedExplanation": "Den gruppérede hash er blevet kopiret til udklipsholderen.",
         "addressCopied": "Adresse kopieret",
         "addressCopiedExplanation": "Adressen er blevet kopieret til udklipsholderen.",
         "messageCopied": "Besked kopieret",
-        "messageCopiedExplanation": "Beskeden er blevet kopieret til udklipsholderen.",
+        "messageCopiedExplanation": "Beskeden er blevet kopieret til Udklipsholder.",
         "send": "Send",
         "receive": "Modtag",
         "empty": "Tom",
-        "retrying": "Prøver igen",
+        "retrying": "Forsøger igen",
         "yesterday": "I går"
     },
     "accountManagement": {
@@ -445,12 +445,12 @@
     "addCustomNode": {
         "customNodeCouldNotBeAdded": "Brugerdefineret node kunne ikke tilføjes",
         "customNode": "Brugerdefinerede node",
-        "removeCustomNode": "Fjern brugerdefineret node",
+        "removeCustomNode": "Fjern tilpasset node",
         "invalidNodeResponse": "Noden returnerede et ugyldigt svar",
         "add": "Tilføj",
         "nodeFieldEmpty": "Tekstfeltet er tomt",
         "nodeFieldEmptyExplanation": "Angiv venligst en brugerdefineret node.",
-        "invalidURL": "Angiv venligst en gyldig URL."
+        "invalidURL": "Angiv en gyldig URL."
     },
     "addNewAccount": {
         "useExistingSeed": "Brug eksisterende hovednøgle",
@@ -458,13 +458,13 @@
     },
     "advancedSettings": {
         "selectNode": "Vælg node",
-        "addCustomNode": "Tilføj brugerdefineret node",
+        "addCustomNode": "Tilføj tilpasset node",
         "manualSync": "Manuel synkronisering",
         "snapshotTransition": "Snapshot synkronisering",
         "pow": "Netværksvalidering",
-        "autoPromotion": "Auto-promotion",
-        "autoPromotionExplanation": "Auto-promotion hjælper til at bekræfte dine transaktioner på netværket. Aktiver denne indstilling, hvis du har problemer med at få dine transaktioner til at bekræfte.",
-        "autoPromotionPoW": "Auto-promotion er kun muligt på noder, der understøtter ekstern netværks godkendelse (PoW)."
+        "autoPromotion": "Auto-promovering",
+        "autoPromotionExplanation": "Auto-promovering hjælper med at bekræfte dine transaktioner på netværket. Aktivér denne indstilling, hvis du oplever problemer med at få dine transaktioner bekræftet.",
+        "autoPromotionPoW": "Auto-promovering er kun muligt på noder, som understøtter ekstern netværksgodkendelse."
     },
     "advancedThemeCustomisation": {
         "background": "Baggrund",
@@ -472,7 +472,7 @@
     },
     "themeCustomisation": {
         "theme": "Tema",
-        "mockup": "Mockup"
+        "mockup": "Model"
     },
     "currencySelection": {
         "currency": "Valuta"
@@ -485,34 +485,34 @@
     },
     "unitInfoModal": {
         "unitSystem": "ENHED SYSTEM",
-        "trillion": "Trillioner",
-        "billion": "Milliarder",
-        "million": "Millioner",
+        "trillion": "Trillion",
+        "billion": "Milliard",
+        "million": "Million",
         "thousand": "Tusind",
         "one": "En"
     },
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Hvorfor kan jeg ikke bruge hele saldoen?",
         "spentAddressExplanation": "Du har penge på en eller flere brugte adresser. Adressegenbrug er farligt i IOTA og denne tegnebog tillader dig derfor ikke at sende fra samme adresse mere end én gang.",
-        "discordInformation": "Søg venligst hjælp på chatkanalen #help på Discord app'en for at finde ud af hvad du kan gøre."
+        "discordInformation": "Søg venligst hjælp via #help-kanalen på Discord for at finde ud af, hvad du kan gøre."
     },
     "deleteAccount": {
-        "areYouSure": "<0></0> <1>Er du sikker på du vil slette</1> <2></2> <3>{{accountName}}?</3>",
+        "areYouSure": "<0></0><1>Sikker på, at du vil slette</1> <2></2><3>{{accountName}}?</3>",
         "yourSeedWillBeRemoved": "Din hovednøgle og transaktionshistorik vil blive fjernet.",
         "thisAction": "Denne handling kan ikke fortrydes.",
         "enterPassword": "Indtast din adgangskode for at slette denne konto."
     },
     "manualSync": {
         "outOfSync": "Ser din transaktionshistorik ud til at være ude af synkronisering?",
-        "pressToSync": "Klik på knappen herunder for at synkronisere din konto.",
+        "pressToSync": "Tryk på knappen herunder for at synkronisere din konto.",
         "thisMayTake": "Dette kan tage noget tid. Din enhed vil muligvis reagere langsommere.",
         "doNotClose": "Bæmærk venligst, at minimering af app'en vil annullere din synkronisering.",
-        "syncAccount": "Synkroniser konto",
-        "syncingYourAccount": "Synkroniser din konto."
+        "syncAccount": "Synkronisér konto",
+        "syncingYourAccount": "Synkroniserer din konto."
     },
     "useExistingSeed": {
-        "title": "Indtast hovednøgle og kontonavn.",
-        "incorrectFormat": "Forkert hovednøgle-format",
+        "title": "Angiv en hovednøgle og et kontonavn.",
+        "incorrectFormat": "Forkert hovednøgleformat",
         "validSeedExplanation": "Gyldige hovednøgler skal være på 81 tegn og må kun indeholde A-Z eller 9."
     },
     "viewSeed": {
@@ -521,7 +521,7 @@
         "hideSeed": "Skjul hovednøgle"
     },
     "saveSeedConfirmation": {
-        "didSaveSeed": "Har du sikkerhedskopieret din hovednøgle?",
+        "didSaveSeed": "Sikkerhedskopierede du din hovednøgle?",
         "alreadyHave": "Jeg har sikkerhedskopieret min hovednøgle",
         "reenterSeed": "I det næste trin vil du blive bedt om at genindtaste din hovednøgle.",
         "reenterSeedWarning": "Hvis du ikke har sikkerhedskopieret din hovednøgle og din enhed fejler, vil du miste alle dine IOTA.",
