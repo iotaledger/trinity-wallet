@@ -406,15 +406,15 @@
         "creatingSeed": "Opretter en hovednøgle",
         "okay": "Okay. Lad os opsætte din tegnebog!",
         "doYouNeedASeed": "Har du brug at oprette en nye hovednøgle?",
-        "seedExplanation": "Din IOTA-seed er hovednøglen til dine værdier. Den består af 81 tegn, ved brug af store A-Z bogstaver og tallet 9.",
-        "noIHaveOne": "Nej, jeg har en",
+        "seedExplanation": "Din IOTA-seed er hovednøglen til dine værdier. Den består af 81 tegn, kun store A-Z bogstaver og tallet 9.",
+        "noIHaveOne": "Nej, jeg har én",
         "yesINeedASeed": "Ja, jeg har brug for en hovednøgle",
-        "explanation": "<0><0>Du kan bruge den til at få adgang til dine værdier fra</0> <1>enhver tegnebog</1> <2>på</2> <3>hvilken som helst enhed.</3></0>",
-        "loseSeed": "Men hvis du mister din hovednøgle, mister du også dine IOTA.",
+        "explanation": "<0><0>Du kan benytte den til at tilgå dine værdier fra</0> <1>enhver tegnebog</1> <2>på</2> <3>enhver enhed.</3></0>",
+        "loseSeed": "Men mister din hovednøgle, mister du også dine IOTA.",
         "keepSafe": "Du bedes opbevare din hovednøgle sikkert."
     },
     "welcome": {
-        "thankYou": "Tak fordi du downloadede Trinity"
+        "thankYou": "Tak for din download af Trinity"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Skriv din hovednøgle og din kontrolsum ned, og lav et</0><1>tredobbelt tjek</1><2> for at sikre, at de er korrekte.</2>",
