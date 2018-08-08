@@ -588,7 +588,7 @@
     },
     "chart": {
         "mcap": "MCAP",
-        "change": "Skift (24h)",
+        "change": "Skift (24t)",
         "volume": "Volumen (24t)",
         "error": "Fejl ved indhentning af diagramdata"
     },
@@ -599,8 +599,8 @@
         "continueDepsiteRisk": "Ønsker du at fortsætte på trods af denne risiko?"
     },
     "pow": {
-        "feeless": "Det er nødvendigt at udføre en mindre netværksvalidering (PoW) for at sende gebyrfri transaktioner med IOTA.",
-        "localOrRemote": "Netværksvalideringen (PoW) kan enten gennemføres lokalt på din enhed eller overlades til en node.",
+        "feeless": "Det er nødvendigt at udføre en mindre PoW for at sende gebyrfrie transaktioner med IOTA.",
+        "localOrRemote": "PoW kan enten gennemføres lokalt på din enhed eller overlades til en node.",
         "local": "Lokalt",
         "remote": "Eksternt",
         "powUpdated": "Indstillinger til netværksvalidering",
