@@ -579,7 +579,7 @@
         "exportSuccess": "SeedVault eksporteret",
         "exportSuccessExplanation": "Din krypterede hovednøglefil er eksporteret.",
         "importSeedVault": "Impotér SeedVault",
-        "dropSeedVaultHere": "Slip SeedVault her",
+        "dropSeedVaultHere": "Slip SeedVault hér",
         "enterPasswordExplanation": "Indtast din adgangskode for at åbne SeedVault",
         "noSeedFound": "SeedVault indeholder ikke en gyldig hovednøgle",
         "noSeedFoundExplanation": "SeedVault er enten tom eller indeholder en hovednøgle i et ugyldigt format.",
