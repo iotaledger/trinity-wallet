@@ -201,14 +201,14 @@
         "seedCopiedExplanation": "Seeme puhastatakse teie lõikelaualt kui vajutate \"VALMIS\" või on möödunud 60 sekundit.",
         "copyToClipboard": "Copy Seed",
         "shareSeed": "Jaga oma seemet turvalise paroolihalduriga",
-        "storeEncrypted": "Store your seed encrypted in a password manager.",
+        "storeEncrypted": "Varundage oma seeme krüptitud paroolihaldurisse.",
         "doNotOpen": "Ärge avage ühtegi teist rakendust selle protsessi ajal.",
         "tapConfirm": "Kinnitamiseks puudutage palun allpool olevat märkeruutu.",
-        "passwordManagerCheckbox": "I will store my seed in a password manager",
+        "passwordManagerCheckbox": "Ma varundan oma seemne paroolihaldurisse",
         "copy": "KOPEERI",
         "noPasswordManagers": "No supported password managers installed",
         "noPasswordManagersExplanation": "Teie seadmes ei leitud ühtegi toetatud paroolihaldurit. Palun installige Keepass2Android.",
-        "followTutorialToSecurelyShareSeed": "Kui soovite salvestada oma seemne paroolihaldurisse, peate järgima juhendaja järgmist linki"
+        "followTutorialToSecurelyShareSeed": "Kui soovite varundada oma seemne paroolihaldurisse, peate järgima juhendaja järgmist linki"
     },
     "enterSeed": {
         "invalidCharacters": "Seeme sisaldab sobimatuid tähemärke",
@@ -264,7 +264,7 @@
         "neverShare": "Ärge jagage oma seemet kunagi.",
         "iotaLogo": "IOTA logo",
         "print": "PRINT",
-        "paperConvenience": "Printing a paper copy of your seed is a convenient way to store it.",
+        "paperConvenience": "Teie seemne paberkoopia printimine on sovib viis selle varundamiseks.",
         "publicInsecure": "But printing on public wifi or a public printer is insecure.",
         "tapCheckboxes": "Please tap the checkboxes below to confirm.",
         "wifiCheckbox": "I will not print on public wifi",
@@ -517,13 +517,13 @@
     },
     "viewSeed": {
         "enterPassword": "Seemne vaatamiseks sisestage oma parool.",
-        "viewSeed": "View Seed",
-        "hideSeed": "Hide Seed"
+        "viewSeed": "Vaata seemet",
+        "hideSeed": "Peida seeme"
     },
     "saveSeedConfirmation": {
         "didSaveSeed": "Kas te varundasite oma seemne?",
         "alreadyHave": "Ma olen oma seemne varundanud",
-        "reenterSeed": "At the next step you will be asked to re-enter your seed.",
+        "reenterSeed": "Järgmisel sammul palutakse teil oma seemne uuesti sisestada.",
         "reenterSeedWarning": "Kui te ei ole varundanud oma seemet ja teie seade ebaõnnestub, kaotate kogu oma IOTA.",
         "pleaseConfirm": "Palun kinnitage, et olete oma seemne turvaliselt varundanud."
     },
@@ -572,7 +572,7 @@
     },
     "seedVault": {
         "exportSeedVault": "Eksportige seemnehoidla",
-        "seedVaultExplanation": "Seemnehoidla on krüptitud faili teie seeme turvaliseks hoiustamiseks. Seeme on krüptitud parooli taha ja sellele ei saa ilma paroolita ligi pääseda. On soovitatav salvestada fail paroolihaldurisse nagu Keepass.",
+        "seedVaultExplanation": "Seemnehoidla on krüptitud faili teie seeme turvaliseks hoiustamiseks. Seeme on krüptitud parooli taha ja sellele ei saa ilma paroolita ligi pääseda. On soovitatav varundada fail paroolihaldurisse nagu Keepass.",
         "seedVaultWarning": "Veenduge, et olete varundanud faili eri kohtades (nt kõvakettale, pilve, USB). Kui te kaotada selle faili ja pole salvestanud oma seemet mujale, siis kaotate oma IOTA.",
         "exportFail": "Seemnehoidla eksportimine nurjus",
         "exportFailExplanation": "Seemnehoidla eksportimisega tekkis probleem. Palun veenduge, et teil on vastavad õigused ja piisavalt vaba ruumi.",
