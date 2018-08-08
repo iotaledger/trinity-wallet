@@ -135,7 +135,7 @@
         "deviceMayBecomeUnresponsive": "Teie seade võib mõnda aega mitte vastata.",
         "isYourBalanceCorrect": "On teie kontojääk õige?",
         "ifYourBalanceIsNotCorrect": "Kui teie kontojääk pole õige, on tõenäoline, et kasutate enne hetkvõtte aegset seemet.",
-        "headToAdvancedSettingsForTransition": "Suunduge Täpsematesse Sätetesse ning sooritage hetkvõtte üleminek.",
+        "headToAdvancedSettingsForTransition": "Suunduge Täpsematesse sätetesse ning sooritage hetkvõtte üleminek.",
         "usingTrinityWalletWithKeePass": "Trinity Walleti kasutamine Keepass2Androidiga",
         "signedTrytesBroadcastErrorExplanation": "Teie tehingu edastamisel tekkis viga."
     },
@@ -370,7 +370,7 @@
         "accountDeleted": "Konto kustutatud",
         "accountDeletedExplanation": "Teie konto on rahakotist eemaldatud.",
         "cannotPerformAction": "Toimingut ei saa teha",
-        "cannotPerformActionExplanation": "Minge menüüst Täpsemad sätted, et rahakott lähtestada.",
+        "cannotPerformActionExplanation": "Valige menüüst Täpsemad sätted, et rahakott lähtestada.",
         "hide": "Peida",
         "hideOthers": "Peida teised",
         "show": "Näita",
@@ -461,9 +461,9 @@
         "addCustomNode": "Lisa ise sõlm",
         "manualSync": "Käsitsi sünkroonimine",
         "snapshotTransition": "Hetkvõtte üleminek",
-        "pow": "Proof of Work",
-        "autoPromotion": "Auto-promotion",
-        "autoPromotionExplanation": "Auto-promotion helps to confirm your transactions on the Tangle. Enable this setting if you are having difficulty getting your transactions to confirm.",
+        "pow": "Töötõend",
+        "autoPromotion": "Automaatne edutamine",
+        "autoPromotionExplanation": "Automaatne edutamine aitab teil kinnitada oma tehinguid Tangle võrgustikus. Lubage see säte, kui teil on probleeme oma tehingute kinnitamisega.",
         "autoPromotionPoW": "Automaatne edutamine on saadaval ainult sõlmedes, mis toetavad kaugtöö tõendit."
     },
     "advancedThemeCustomisation": {
@@ -472,7 +472,7 @@
     },
     "themeCustomisation": {
         "theme": "Teema",
-        "mockup": "Mockup"
+        "mockup": "Eelvaade"
     },
     "currencySelection": {
         "currency": "Valuuta"
@@ -494,7 +494,7 @@
     "usedAddressModal": {
         "cantSpendFullBalanceQuestion": "Miks ma ei saa oma täielikku kontojääki kulutada?",
         "spentAddressExplanation": "Teil on vahendeid ühel või mitmel kasutatud aadressil. IOTA-s on korduvkasutuse aadress ohtlik, nii et see rahakott ei võimalda saata sama aadressiga rohkem kui üks kord.",
-        "discordInformation": "Please head to the #help channel on Discord to find out what you can do."
+        "discordInformation": "Palun suunduge #help kanalile Discordis, et teada saada, mida saakiste teha."
     },
     "deleteAccount": {
         "areYouSure": "<0> </ 0> <1> Kas soovite kindlasti kustutada </ 1> <2> </ 2> <3> {{accountName}}? </ 3>",
@@ -512,7 +512,7 @@
     },
     "useExistingSeed": {
         "title": "Sisesta seeme ja konto nimi.",
-        "incorrectFormat": "Incorrect seed format",
+        "incorrectFormat": "Vale seemne vorming",
         "validSeedExplanation": "Kehtivad seemned peaksid olema 81 tähemärki pikad ja sisaldama ainult A-Z või 9."
     },
     "viewSeed": {
@@ -619,7 +619,7 @@
         "preparingInputs": "Sisendite ettevalmistamine",
         "preparingTransfers": "Ülekannete ettevalmistamine",
         "gettingTransactionsToApprove": "Otsin tehinguid, mida heaks kiita",
-        "proofOfWork": "Valmistan töötõendust",
+        "proofOfWork": "Valmistan töötõendit",
         "broadcasting": "Edastamine"
     },
     "snapshotTransition": {
