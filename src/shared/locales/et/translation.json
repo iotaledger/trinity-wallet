@@ -83,7 +83,7 @@
         "addresses": "Aadressid",
         "reattach": "KINNITA UUESTI",
         "promote": "EDUTA",
-        "retry": "Proovi uuesti",
+        "retry": "Proovige uuesti",
         "pressBackAgain": "Rakenduse sulgemiseks vajutage uuesti tagasi nuppu",
         "reattached": "Tehing edukalt kinnitatud",
         "reattachedExplanation": "Tehing uuesti kinnitatud räsiga {{hash}}",
@@ -113,7 +113,7 @@
         "changeNode": "Muuda sõlme",
         "addCustomNode": "Lisa kohandatud sõlm",
         "nodeMustUseHTTPS": "Sobimatu sõlm (mitte-HTTPS)",
-        "nodeMustUseHTTPSExplanation": "Ainult kohandatud sõlmed kasutades HTTPS-i on lubatud.",
+        "nodeMustUseHTTPSExplanation": "Ainult kohandatud sõlmed, mis kasutavad HTTPS-i on lubatud.",
         "nodeDuplicated": "Dubleeritud sõlm",
         "nodeDuplicatedExplanation": "Kohandatud sõlm on juba leotletud.",
         "nodeAutoChanged": "Sõlm muutus automaatselt",
@@ -389,36 +389,36 @@
         "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rate for {{currency}}.",
         "undo": "Tühista",
         "redo": "Korda",
-        "aboutTrinity": "About Trinity",
-        "lockScreenTimeout": "Lock Screen Timeout (Minutes)",
+        "aboutTrinity": "Teave Trinity kohta",
+        "lockScreenTimeout": "Lukustusekraani aegumine (minutid)",
         "autoNodeSwitching": "Muuda sõlm automaatselt kui valitud sõlm on kättesaamatu",
-        "nodeChangeSuccess": "Successfully changed node",
+        "nodeChangeSuccess": "Sõlm edukalt muudetud",
         "nodeChangeSuccessNoRemotePow": "Sõlm muudeti {{node}}. See sõlm ei toeta kaugtöö tõendit.",
-        "nodeChangeSuccessExplanation": "The node was changed to {{node}}.",
-        "nodeChangeError": "Error changing node",
-        "nodeChangeErrorExplanation": "There was an error changing node. Please try again."
+        "nodeChangeSuccessExplanation": "Sõlm muudetud {{node}}.",
+        "nodeChangeError": "Sõlme muutmise viga",
+        "nodeChangeErrorExplanation": "Sõlme muutmisel tekkis viga. Palun proovige uuesti."
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Rahakoti seadistuse lähtestamiseks sisestage oma parool.",
         "reset": "Lähtesta"
     },
     "walletSetup": {
-        "creatingSeed": "Creating a seed",
+        "creatingSeed": "Seemne loomine",
         "okay": "Okei. Seadistame sinu rahakoti ära!",
-        "doYouNeedASeed": "Do you need to create a new seed?",
+        "doYouNeedASeed": "Kas te peate looma uue seemne?",
         "seedExplanation": "Teie IOTA seeme on teie rahaliste vahendite peamine võti. See on 81 tähemärki pikk, kasutades ainult tähti A-Z või numbrit 9.",
-        "noIHaveOne": "No, I have one",
-        "yesINeedASeed": "Yes, I need a seed",
+        "noIHaveOne": "Ei, mul on seeme",
+        "yesINeedASeed": "Jah, mul on vaja seemet",
         "explanation": "<0> <0> Saate seda kasutada, et pääseda juurde oma vahenditele</0><1> igast rahakotist </ 1> <2> </ 2> <3> igas seadmel. </ 3> </ 0 >",
-        "loseSeed": "But if you lose your seed, you also lose your IOTA.",
+        "loseSeed": "Kuid kui te kaotate oma seemne, siis kaotate ka oma IOTA.",
         "keepSafe": "Palun hoidke oma seemne turvalisust."
     },
     "welcome": {
-        "thankYou": "Thank you for downloading Trinity"
+        "thankYou": "Täname teid Trinity allalaadimise eest"
     },
     "writeSeedDown": {
         "writeDownYourSeed": "<0> Kirjutage oma seeme ja kontrollsumma üles ning </0><1>veenduge</1><2>, et need on õiged.</2>",
-        "scrollToBottom": "Scroll to the bottom"
+        "scrollToBottom": "Liikuge allapoole"
     },
     "history": {
         "bundleHashCopied": "Kimbu räsi kopeeritud",
@@ -427,13 +427,13 @@
         "bundleHashCopiedExplanation": "Kimbu räsi on kopeeritud lõikelauale.",
         "addressCopied": "Aadress kopeeritud",
         "addressCopiedExplanation": "Aadress on kopeeritud lõikelauale.",
-        "messageCopied": "Message copied",
-        "messageCopiedExplanation": "The message has been copied to the clipboard.",
+        "messageCopied": "Sõnum kopeeritud",
+        "messageCopiedExplanation": "Sõnum on kopeeritud lõikelauale.",
         "send": "Saada",
         "receive": "Võta vastu",
         "empty": "Tühi",
-        "retrying": "Retrying",
-        "yesterday": "Yesterday"
+        "retrying": "Uuesti proovimine",
+        "yesterday": "Eile"
     },
     "accountManagement": {
         "viewSeed": "Vaata seemet",
@@ -443,13 +443,13 @@
         "addNewAccount": "Lisa uus konto"
     },
     "addCustomNode": {
-        "customNodeCouldNotBeAdded": "Custom node could not be added",
-        "customNode": "Ise määratud sõlm",
-        "removeCustomNode": "Remove custom node",
+        "customNodeCouldNotBeAdded": "Kohandatud sõlme ei saanud lisada",
+        "customNode": "Kohandatud sõlm",
+        "removeCustomNode": "Eemaldage kohandatud sõlm",
         "invalidNodeResponse": "See sõlm andis sobimatu vastuse",
         "add": "Lisa",
         "nodeFieldEmpty": "Tekstiväli on tühi",
-        "nodeFieldEmptyExplanation": "Please enter a custom node.",
+        "nodeFieldEmptyExplanation": "Palun sisestage kohandatud sõlm.",
         "invalidURL": "Palun sisestage kehtiv URL."
     },
     "addNewAccount": {
@@ -458,7 +458,7 @@
     },
     "advancedSettings": {
         "selectNode": "Vali sõlm",
-        "addCustomNode": "Lisa ise sõlm",
+        "addCustomNode": "Lisa kohandatud sõlm",
         "manualSync": "Käsitsi sünkroonimine",
         "snapshotTransition": "Hetkvõtte üleminek",
         "pow": "Töötõend",
