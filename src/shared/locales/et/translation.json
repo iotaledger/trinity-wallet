@@ -246,18 +246,18 @@
         "takingAWhile": "This seems to be taking a while"
     },
     "newSeedSetup": {
-        "generatedSeed": "Generated seed",
+        "generatedSeed": "Seeme genereetitud",
         "seedNotGenerated": "Seemet ei ole loodud",
         "seedNotGeneratedExplanation": "Palun genereerige uus seeme.",
         "pressForNewSeed": "Vajutage uue seemne saamiseks",
         "generateSuccess": "Seeme edukalt loodud",
         "individualLetters": "Vajutage juhuslikkuseks üksikuid tähti.",
         "individualLetterCount": "Vajutage {{letterCount}} rohkem individuaalseid tähti nende juhuslikuks saamiseks.",
-        "whatIsASeed": "What is a seed?"
+        "whatIsASeed": "Mis on seeme?"
     },
     "onboardingComplete": {
-        "allDone": "All Done!",
-        "openYourWallet": "Open your wallet",
+        "allDone": "Kõik tehtud!",
+        "openYourWallet": "Avage oma rahakott",
         "walletReady": "Rahakott on nüüd seadistatud ja kasutamiseks valmis. Vaadake sätetesse, kui soovite muudatusi teha."
     },
     "paperWallet": {
@@ -266,22 +266,22 @@
         "print": "PRINDI",
         "paperConvenience": "Teie seemne paberkoopia printimine on sovib viis selle varundamiseks.",
         "publicInsecure": "Kuid printimine avalikku WiFit või avalikku printerit kasutades on ohtlik.",
-        "tapCheckboxes": "Please tap the checkboxes below to confirm.",
+        "tapCheckboxes": "Kinnitamiseks puudutage palun allpool olevaid märkeruute.",
         "wifiCheckbox": "Ma ei prindi avalikku WiFit kasutades",
-        "printerCheckbox": "I will not print on a public printer"
+        "printerCheckbox": "Ma ei prindi avalikku printerit kasutades"
     },
     "receive": {
-        "yourAddress": "Your address",
-        "qrOptions": "QR options",
-        "shareQr": "Share QR code",
-        "copyAddress": "Copy address",
+        "yourAddress": "Teie aadress",
+        "qrOptions": "QR valikud",
+        "shareQr": "Jagage QR koodi",
+        "copyAddress": "Kopeeri aadress",
         "addressCopied": "Aadress kopeeritud",
         "addressCopiedExplanation": "Teie aadress on kopeeritud lõikelauale.",
-        "generateNewAddress": "New Address",
+        "generateNewAddress": "Uus aadress",
         "noAddresses": "AADRESSE POLE",
         "spent": "Kulutatud",
-        "missingPermission": "File system permission required",
-        "missingPermissionExplanation": "Access to the file system is required in order to share QR codes.",
+        "missingPermission": "Failisüsteemi luba on nõutud",
+        "missingPermissionExplanation": "QR-koodide jagamiseks on vaja failisüsteemi luba.",
         "tag": "Märgis"
     },
     "saveYourSeed": {
