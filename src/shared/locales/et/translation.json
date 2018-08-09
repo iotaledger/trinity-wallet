@@ -383,10 +383,10 @@
         "selectAll": "Vali kõik",
         "securitySettings": "Turvasätted",
         "fingerprint": "Biomeetriline autentimine",
-        "couldNotFetchRates": "Could not fetch rate",
-        "couldNotFetchRatesExplanation": "Something went wrong while fetching conversion rate for {{currency}}.",
-        "fetchedConversionRates": "Fetched conversion rate",
-        "fetchedConversionRatesExplanation": "Successfully fetched latest conversion rate for {{currency}}.",
+        "couldNotFetchRates": "Ei õnnestunud konversioonimäära leida",
+        "couldNotFetchRatesExplanation": "Midagi läks {{currency}} konversioonimäära leidmisel valesti.",
+        "fetchedConversionRates": "Konversioonimäärad leitud",
+        "fetchedConversionRatesExplanation": "Uusimate {{currency}} konversioonimäärade leidmine õnnestus.",
         "undo": "Tühista",
         "redo": "Korda",
         "aboutTrinity": "Teave Trinity kohta",
@@ -590,7 +590,7 @@
         "mcap": "MCAP",
         "change": "Muutus (24h)",
         "volume": "Vahetus (24h)",
-        "error": "Vea tabeli andmete hankimisel"
+        "error": "Viga tabeli andmete hankimisel"
     },
     "rootDetection": {
         "warning": "HOIATUS",
