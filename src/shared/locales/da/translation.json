@@ -634,7 +634,7 @@
         "transition": "Transition",
         "transitioning": "Synkronisere til nyeste snapshot.",
         "generatingAndDetecting": "Genererer adresser og registrerer saldo.",
-        "attaching": "Adressen tilsluttes netværket."
+        "attaching": "Knytter adresse til Tangle."
     },
     "deepLink": {
         "autofill": "Autoudfyldning fuldendt",
@@ -642,9 +642,9 @@
     },
     "updates": {
         "errorRetrievingUpdateData": "Fejl under indhentning af opdateringsdata",
-        "errorRetrievingUpdateDataExplanation": "Der opstod en fejl under indhentning af opdateringsdata. Prøv venligst igen.",
+        "errorRetrievingUpdateDataExplanation": "En fejl opstod under indhentning af opdateringsdata. Forsøg igen.",
         "noUpdatesAvailable": "Ingen tilgængelige opdateringer",
-        "noUpdatesAvailableExplanation": "Du har den seneste version af IOTA Trinity tegnebogen!",
+        "noUpdatesAvailableExplanation": "Du har den seneste version af IOTA Trinity-computertegnebogen!",
         "newVersionAvailable": "Ny version tilgængelig",
         "newVersionAvailableExplanation": "En ny <strong>Trinity</strong> <strong>{{version}}</strong> version er tilgængelig. Læs venligst udgivelsesnoterne nøje og kontroller downloadkilden før du opdaterer:",
         "downloadRelease": "Download version",
@@ -654,9 +654,9 @@
         "errorLog": "FEJL LOG"
     },
     "terms": {
-        "termsAndConditions": "Betingelser & Vilkår",
+        "termsAndConditions": "Betingelser og Vilkår",
         "accept": "Jeg accepterer",
-        "readAllToContinue": "Læs venligst hele teksten for at fortsætte"
+        "readAllToContinue": "Læs hele teksten for at fortsætte"
     },
     "privacyPolicy": {
         "privacyPolicy": "Fortrolighedspolitik",
