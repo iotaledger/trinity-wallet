@@ -27,6 +27,16 @@ export const getSettingsFromState = (state) => state.settings || {};
 export const getRemotePoWFromState = createSelector(getSettingsFromState, (state) => state.remotePoW);
 
 /**
+ *   Selects IRI nodes prop from settings reducer state object.
+ *   Uses getSettingsFromState selector for slicing settings state from the whole state object.
+ *
+ *   @method getNodesFromState
+ *   @param {object} state
+ *   @returns {array}
+ **/
+export const getNodesFromState = createSelector(getSettingsFromState, (state) => state.nodes || []);
+
+/**
  *   Selects accounts prop from state.
  *
  *   @method getAccountsFromState

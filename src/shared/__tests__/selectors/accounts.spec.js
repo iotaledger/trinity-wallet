@@ -20,6 +20,7 @@ import {
     hasDisplayedSnapshotTransitionGuide,
     getFailedBundleHashesFromAccounts,
     getFailedBundleHashesForSelectedAccount,
+    getNodesFromState,
 } from '../../selectors/accounts';
 
 describe('selectors: accounts', () => {
@@ -670,6 +671,30 @@ describe('selectors: accounts', () => {
                         },
                     }),
                 ).to.equal('raw');
+            });
+        });
+    });
+
+    describe('#getNodesFromState', () => {
+        let state;
+
+        beforeEach(() => {
+            state = {
+                settings: {
+                    nodes: ['foo', 'baz'],
+                },
+            };
+        });
+
+        describe('when "nodes" prop is defined in settings reducer', () => {
+            it('should nodes prop', () => {
+                expect(getNodesFromState(state)).to.eql(['foo', 'baz']);
+            });
+        });
+
+        describe('when "nodes" prop is undefined in settings reducer', () => {
+            it('should return an empty array', () => {
+                expect(getNodesFromState({ settings: {} })).to.eql([]);
             });
         });
     });

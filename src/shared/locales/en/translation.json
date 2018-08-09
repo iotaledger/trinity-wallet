@@ -147,7 +147,10 @@
         "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction.",
         "broadcastError": "Could not broadcast transfer",
-        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from."
+        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
+        "problemSendingYourTransaction": "There was a problem sending your transaction.",
+        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
+        "tryingAgainWithDifferentNode": "Trying again with a different node."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed contains invalid characters",

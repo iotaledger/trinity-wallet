@@ -1,5 +1,7 @@
+import filter from 'lodash/filter';
 import isNull from 'lodash/isNull';
 import size from 'lodash/size';
+import sampleSize from 'lodash/sampleSize';
 import URL from 'url-parse';
 import { BigNumber } from 'bignumber.js';
 import { iota } from './index';
@@ -269,4 +271,44 @@ export const parseAddress = (input) => {
     }
 
     return result;
+};
+
+/**
+ *
+ * @param {array} nodes
+ * @param {number} retries
+ * @returns {function(*): function(...[*]): *}
+ */
+export const withRetriesOnDifferentNodes = (nodes, retries = 5) => {
+    let attempt = 0;
+
+    const selectedNodes = sampleSize(
+        filter(nodes, (node) => node !== iota.provider),
+        // Choose a sample size of one less than retry attempts
+        // As the first attempt would be for the currently selected node
+        retries - 1,
+    );
+
+    return (promiseFunc) => {
+        const execute = (...args) => {
+            return promiseFunc(
+                ...[
+                    ...args,
+                    // On the first attempt, pass provider as null
+                    // This way the currently selected node will be tried first
+                    attempt ? selectedNodes[attempt - 1] : null,
+                ],
+            ).catch((err) => {
+                attempt = attempt + 1;
+
+                if (attempt < retries) {
+                    return execute(...args);
+                }
+
+                throw err;
+            });
+        };
+
+        return execute;
+    };
 };

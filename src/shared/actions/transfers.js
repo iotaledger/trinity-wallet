@@ -22,7 +22,9 @@ import {
     getRemotePoWFromState,
     selectFirstAddressFromAccountFactory,
     getFailedBundleHashesForSelectedAccount,
+    getNodesFromState,
 } from '../selectors/accounts';
+import { withRetriesOnDifferentNodes } from '../libs/iota/utils';
 import { setNextStepAsActive, reset as resetProgress } from './progress';
 import { clearSendFields } from './ui';
 import {
@@ -590,9 +592,26 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 // Proof of work
                 dispatch(setNextStepAsActive());
 
-                return shouldOffloadPow
-                    ? attachToTangleAsync(trunkTransaction, branchTransaction, cached.trytes)
-                    : performPow(powFn, cached.trytes, trunkTransaction, branchTransaction);
+                if (!shouldOffloadPow) {
+                    return performPow(powFn, cached.trytes, trunkTransaction, branchTransaction);
+                }
+
+                // If proof of work configuration is set to remote PoW
+                // Make an attempt to offload proof of work to remote
+                // In case the network call fails, automatically switch to local proof of work
+                return attachToTangleAsync(trunkTransaction, branchTransaction, cached.trytes).catch(() => {
+                    dispatch(
+                        generateAlert(
+                            'info',
+                            i18next.t('global:pleaseWait'),
+                            `${i18next.t('global:problemSendingYourTransaction')} ${i18next.t(
+                                'global:tryingAgainWithLocalPoW',
+                            )}`,
+                        ),
+                    );
+
+                    return performPow(powFn, cached.trytes, trunkTransaction, branchTransaction);
+                });
             })
             .then(({ trytes, transactionObjects }) => {
                 cached.trytes = trytes;
@@ -601,7 +620,22 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 // Broadcasting
                 dispatch(setNextStepAsActive());
 
-                return storeAndBroadcastAsync(cached.trytes);
+                return withRetriesOnDifferentNodes(
+                    (() => {
+                        dispatch(
+                            generateAlert(
+                                'info',
+                                i18next.t('global:pleaseWait'),
+                                `${i18next.t('global:problemSendingYourTransaction')} ${i18next.t(
+                                    'global:tryingAgainWithDifferentNode',
+                                )}`,
+                                20000,
+                            ),
+                        );
+
+                        return getNodesFromState(getState());
+                    })(),
+                )(storeAndBroadcastAsync)(cached.trytes);
             })
             .then(() => {
                 return syncAccountAfterSpending(
@@ -707,15 +741,6 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                             'error',
                             i18next.t('global:cannotSendToOwn'),
                             i18next.t('global:cannotSendToOwnExplanation'),
-                            20000,
-                        ),
-                    );
-                } else if (message.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
-                    return dispatch(
-                        generateAlert(
-                            'error',
-                            i18next.t('global:attachToTangleUnavailable'),
-                            i18next.t('global:attachToTangleUnavailableExplanation'),
                             20000,
                         ),
                     );

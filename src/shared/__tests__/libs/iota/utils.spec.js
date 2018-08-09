@@ -1,5 +1,6 @@
+import sinon from 'sinon';
 import { expect } from 'chai';
-import { convertFromTrytes } from '../../../libs/iota/utils';
+import { convertFromTrytes, withRetriesOnDifferentNodes } from '../../../libs/iota/utils';
 
 describe('libs: iota/utils', () => {
     describe('#convertFromTrytes', () => {
@@ -23,6 +24,43 @@ describe('libs: iota/utils', () => {
             it('should return a string converted from trytes', () => {
                 const messageFramgement = `CCACSBXBSBCCHC${'9'.repeat(2173)}`;
                 expect(convertFromTrytes(messageFramgement)).to.equal('TRINITY');
+            });
+        });
+    });
+
+    describe('#withRetriesOnDifferentNodes', () => {
+        it('should return a function', () => {
+            const returnValue = withRetriesOnDifferentNodes([]);
+            expect(typeof returnValue).to.equal('function');
+        });
+
+        it('should throw if no promise gets resolved during retry', () => {
+            const retryAttempts = 3;
+
+            const stub = sinon.stub();
+            stub.onCall(0).rejects();
+            stub.onCall(1).rejects();
+            stub.onCall(2).rejects();
+
+            const result = withRetriesOnDifferentNodes([], retryAttempts);
+
+            return result(stub)().catch(() => {
+                expect(stub.calledThrice).to.equal(true);
+            });
+        });
+
+        it('should not throw if any promise gets resolved during retry', () => {
+            const retryAttempts = 3;
+
+            const stub = sinon.stub();
+            stub.onCall(0).rejects();
+            stub.onCall(1).resolves();
+            stub.onCall(2).rejects();
+
+            const result = withRetriesOnDifferentNodes([], retryAttempts);
+
+            return result(stub)().then(() => {
+                expect(stub.calledTwice).to.equal(true);
             });
         });
     });
