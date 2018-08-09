@@ -182,11 +182,11 @@
         "reasonTop10": "This is a top 10 common password.",
         "reasonTop100": "This is a top 100 common password.",
         "reasonCommon": "This is a very common password.",
-        "reasonSimilar": "This is similar to a commonly-used password.",
+        "reasonSimilar": "See on sarnane sageli kasutatava parooliga.",
         "reasonWord": "Ühte sõna on lihtne ära arvata."
     },
     "setPassword": {
-        "choosePassword": "Choose a new password",
+        "choosePassword": "Vali uus parool",
         "passwordTooShort": "Parool on liiga lühike",
         "passwordTooShortExplanation": "Teie parool peab olema vähemalt {{minLength}} tähemärki pikk. See on hetkel {{currentLength}} tähemärgi pikkune. Palun proovige uuesti.",
         "passwordMismatch": "Paroolid ei kattu",
@@ -199,14 +199,14 @@
         "seedClearedExplanation": "Seeme on turvalisuse kaalutlustel teie lõikelaualt puhastatud.",
         "seedCopied": "Seeme kopeeritud lõikelauale",
         "seedCopiedExplanation": "Seeme puhastatakse teie lõikelaualt kui vajutate \"VALMIS\" või on möödunud 60 sekundit.",
-        "copyToClipboard": "Copy Seed",
+        "copyToClipboard": "Kopeeri seeme",
         "shareSeed": "Jaga oma seemet turvalise paroolihalduriga",
         "storeEncrypted": "Varundage oma seeme krüptitud paroolihaldurisse.",
         "doNotOpen": "Ärge avage ühtegi teist rakendust selle protsessi ajal.",
         "tapConfirm": "Kinnitamiseks puudutage palun allpool olevat märkeruutu.",
         "passwordManagerCheckbox": "Ma varundan oma seemne paroolihaldurisse",
         "copy": "KOPEERI",
-        "noPasswordManagers": "No supported password managers installed",
+        "noPasswordManagers": "Ühtegi toetatud paroolihaldurit pole installitud",
         "noPasswordManagersExplanation": "Teie seadmes ei leitud ühtegi toetatud paroolihaldurit. Palun installige Keepass2Android.",
         "followTutorialToSecurelyShareSeed": "Kui soovite varundada oma seemne paroolihaldurisse, peate järgima juhendaja järgmist linki"
     },
@@ -214,7 +214,7 @@
         "invalidCharacters": "Seeme sisaldab sobimatuid tähemärke",
         "invalidCharactersExplanation": "Seemned võivad koosneda ainult suurtest tähtedest A-Z ja numbrist 9. Teie seemnes on sobimatuid tähemärke. Palun proovige uuesti.",
         "seedTooShort": "Seeme on liiga ühike",
-        "seedTooLong": "Seed is too long",
+        "seedTooLong": "Seeme on liiga pikk",
         "seedTooShortExplanation": "Seemned peavad olema {{maxLength}} tähemärki pikad. Teie seeme on praegu {{currentLength}} tähemärgi pikkune. Palun proovige uuesti.",
         "seedExplanation": "Seemned peaksid olema {{maxLength}} tähemärki pikad ja peaksid sisaldama suuri tähti A-Z või numbrit 9. Te ei saa kasutada seemneid, mis on lühemad kui {{maxLength}} tähemärki.",
         "neverShare": "ÄRA JAGA KUNAGI OMA SEEMET KELLEGAGI"
@@ -228,14 +228,14 @@
     },
     "languageSetup": {
         "language": "Keel",
-        "letsGetStarted": "Let's get started"
+        "letsGetStarted": "Alustame"
     },
     "login": {
         "emptyPassword": "Tühi parool",
         "emptyPasswordExplanation": "Te peate sisse logimiseks oma parooli sisestama. Palun proovige uuesti.",
         "enterPassword": "Palun sisestage oma parool.",
-        "login": "Log In",
-        "setNode": "Set Node",
+        "login": "Logi sisse",
+        "setNode": "Vali sõlm",
         "whyBiometricDisabled": "Miks on biomeetriline autentimine keelatud?",
         "whyBiometricDisabledExplanation": "Teie turvalisuse huvides on rakenduse esmakordsel avamisel biomeetriline sisselogimine keelatud. Kui kasutate Trinityit, siis logitakse teid välja tegevusetuse tõttu. Seejärel saate sisse logida biomeetrilise autentimisega."
     },
@@ -243,10 +243,10 @@
         "loadingFirstTime": "Laadin esimest korda seemet.",
         "thisMayTake": "See võib aega võtta.",
         "doNotMinimise": "Ärge väljuge rakendusest.",
-        "takingAWhile": "This seems to be taking a while"
+        "takingAWhile": "See paistab pisut aega võtvat"
     },
     "newSeedSetup": {
-        "generatedSeed": "Seeme genereetitud",
+        "generatedSeed": "Seeme loodud",
         "seedNotGenerated": "Seemet ei ole loodud",
         "seedNotGeneratedExplanation": "Palun genereerige uus seeme.",
         "pressForNewSeed": "Vajutage uue seemne saamiseks",
@@ -404,7 +404,7 @@
     },
     "walletSetup": {
         "creatingSeed": "Seemne loomine",
-        "okay": "Okei. Seadistame sinu rahakoti ära!",
+        "okay": "Okei. Seadistame teie rahakoti ära!",
         "doYouNeedASeed": "Kas te peate looma uue seemne?",
         "seedExplanation": "Teie IOTA seeme on teie rahaliste vahendite peamine võti. See on 81 tähemärki pikk, kasutades ainult tähti A-Z või numbrit 9.",
         "noIHaveOne": "Ei, mul on seeme",
@@ -651,7 +651,7 @@
         "skipUpdate": "Jätke värskendus vahele"
     },
     "notificationLog": {
-        "errorLog": "ERRORIDE LOG"
+        "errorLog": "ERRORITE LOG"
     },
     "terms": {
         "termsAndConditions": "Kasutustingimused",
