@@ -23,7 +23,7 @@ import FingerprintSetup from '../containers/FingerprintSetup';
 import TermsAndConditions from '../containers/TermsAndConditions';
 import PrivacyPolicy from '../containers/PrivacyPolicy';
 import ForceChangePassword from '../containers/ForceChangePassword';
-import SeedVaultExport from '../containers/SeedVaultExport';
+import SeedVaultBackupComponent from '../containers/SeedVaultBackup';
 import { isIPhoneX } from '../utils/device';
 
 function getGenerator(screen) {
@@ -73,5 +73,5 @@ export default function registerScreens(store, Provider) {
     Navigation.registerComponent('termsAndConditions', () => getGenerator(TermsAndConditions), store, Provider);
     Navigation.registerComponent('privacyPolicy', () => getGenerator(PrivacyPolicy), store, Provider);
     Navigation.registerComponent('forceChangePassword', () => getGenerator(ForceChangePassword), store, Provider);
-    Navigation.registerComponent('seedVaultExport', () => getGenerator(SeedVaultExport), store, Provider);
+    Navigation.registerComponent('seedVaultBackup', () => getGenerator(SeedVaultBackupComponent), store, Provider);
 }
