@@ -606,27 +606,27 @@
         "powUpdated": "Indstillinger til netværksvalidering",
         "powUpdatedExplanation": "Dine indstillinger til netværksvalideringen er opdateret.",
         "noWebGLSupport": "WebGL er ikke understøttet",
-        "noWebGLSupportExplanation": "Din enhed understøtter ikke WebGL. Brug venligst ekstern netværksvalidering (PoW)."
+        "noWebGLSupportExplanation": "Din enhed understøtter ikke WebGL. Benyt ekstern PoW."
     },
     "autoPromotion": {
-        "autoPromotionUpdated": "Auto-promotion indstillinger",
-        "autoPromotionUpdatedExplanation": "Dine auto-promotion indstillinger er opdateret."
+        "autoPromotionUpdated": "Auto-promoveringsindstillinger",
+        "autoPromotionUpdatedExplanation": "Din auto-promoveringsopsætning blev opdateret."
     },
     "progressSteps": {
-        "checkingNodeHealth": "Undersøger nodens status",
+        "checkingNodeHealth": "Undersøger nodestatus",
         "validatingReceiveAddress": "Validerer modtageradresse",
         "syncingAccount": "Synkroniserer konto",
         "preparingInputs": "Forbereder input",
-        "preparingTransfers": "Forbereder transaktion",
+        "preparingTransfers": "Forbererder transaktioner",
         "gettingTransactionsToApprove": "Modtager transaktion til godkendelse",
-        "proofOfWork": "Fuldfører netværksvalidering (PoW)",
+        "proofOfWork": "Fuldfører PoW",
         "broadcasting": "Sender transaktion til netværk"
     },
     "snapshotTransition": {
         "cannotCompleteTransition": "Kan ikke fuldføre snapshot synkroniseringen",
-        "cannotCompleteTransitionExplanation": "Din saldo skal være større end 0 for at fuldføre synkroniseringen.",
-        "transitionComplete": "Snapshot synkronisering gennemført",
-        "transitionCompleteExplanation": "Snapshot synkronisering blev gennemført med succes.",
+        "cannotCompleteTransitionExplanation": "Din saldo skal være større end 0 for at fuldføre transaktionen.",
+        "transitionComplete": "Snapshot-synkronisering fuldført",
+        "transitionCompleteExplanation": "Snapshot-synkronisering blev fuldført.",
         "detectedBalance": "Registreret saldo: {{amount}} {{unit}}",
         "isThisCorrect": "Er dette korrekt?",
         "snapshotExplanation": "Fra tid til anden gennemføres et snapshot for at reducere størrelsen på netværket.",
