@@ -391,12 +391,16 @@ const prepareTransfersAsync = (seed, transfers, options = null) => {
  *
  * @method storeAndBroadcastAsync
  * @param {array} trytes
+ * @param {string} provider
  *
  * @returns {Promise}
  */
-const storeAndBroadcastAsync = (trytes) => {
+const storeAndBroadcastAsync = (trytes, provider = null) => {
     return new Promise((resolve, reject) => {
-        iota.api.storeAndBroadcast(trytes, (err) => {
+        const instance = provider ? new IOTA({ provider }) : iota;
+
+        instance.api.setApiTimeout(NODE_REQUEST_TIMEOUT);
+        instance.api.storeAndBroadcast(trytes, (err) => {
             if (err) {
                 reject(err);
             } else {
