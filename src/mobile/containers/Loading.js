@@ -236,8 +236,9 @@ class Loading extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        const isReady = !this.props.ready && newProps.ready;
-        if (isReady && this.state.animationPartOneDone) {
+        const { ready, firstUse, addingAdditionalAccount } = this.props;
+        const isReady = !ready && newProps.ready;
+        if ((isReady && this.state.animationPartOneDone) || (isReady && (firstUse || addingAdditionalAccount))) {
             this.launchHomeScreen();
         }
     }

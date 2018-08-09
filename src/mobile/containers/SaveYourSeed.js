@@ -213,7 +213,7 @@ class SaveYourSeed extends Component {
     onExportSeedVaultPress() {
         const { theme: { body } } = this.props;
         this.props.navigator.push({
-            screen: 'seedVaultExport',
+            screen: 'seedVaultBackup',
             navigatorStyle: {
                 navBarHidden: true,
                 navBarTransparent: true,

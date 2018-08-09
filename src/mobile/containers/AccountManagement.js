@@ -60,12 +60,17 @@ class AccountManagement extends Component {
     renderSettingsContent() {
         const { theme, t } = this.props;
         const rows = [
-            { name: t('viewSeed'), icon: 'eye', function: () => this.props.setSetting('viewSeed') },
             { name: t('viewAddresses'), icon: 'addresses', function: () => this.props.setSetting('viewAddresses') },
             { name: t('editAccountName'), icon: 'edit', function: () => this.props.setSetting('editAccountName') },
             { name: t('deleteAccount'), icon: 'trash', function: () => this.deleteAccount() },
-            { name: 'separator' },
             { name: t('addNewAccount'), icon: 'plus', function: () => this.props.setSetting('addNewAccount') },
+            { name: 'separator' },
+            { name: t('viewSeed'), icon: 'eye', function: () => this.props.setSetting('viewSeed') },
+            {
+                name: t('seedVault:exportSeedVault'),
+                icon: 'key',
+                function: () => this.props.setSetting('exportSeedVault'),
+            },
             { name: 'back', function: () => this.props.setSetting('mainSettings') },
         ];
         return renderSettingsRows(rows, theme);
