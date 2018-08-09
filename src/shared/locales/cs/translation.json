@@ -175,15 +175,15 @@
         "reasonPattern": "Krátké vzory znaků se dají lehce uhodnout.",
         "reasonNames": "Běžná jména a příjmení se dají lehce uhodnout.",
         "reasonRepeats": "Opakující se znaky jako 'aaa' se dají lehce uhodnout.",
-        "reasonRepeats2": "Repeats like 'abcabcabc' are only slightly harder to guess than 'abc'.",
-        "reasonSequence": "Sequences like abc or 54321 are easy to guess.",
-        "reasonYears": "Recent years are easy to guess.",
-        "reasonDates": "Dates are often easy to guess.",
-        "reasonTop10": "This is a top 10 common password.",
-        "reasonTop100": "This is a top 100 common password.",
-        "reasonCommon": "This is a very common password.",
-        "reasonSimilar": "This is similar to a commonly-used password.",
-        "reasonWord": "A single word is easy to guess."
+        "reasonRepeats2": "Uhodnout opakující se znaky jako 'abcabcabc' je jen o trochu těžší, jako 'abc'.",
+        "reasonSequence": "Posloupnosti jako 'abc' nebo '54321' se dají lehce uhodnout.",
+        "reasonYears": "Předešlé roky se dají lehce uhodnout.",
+        "reasonDates": "Datumy se dají lehce uhodnout.",
+        "reasonTop10": "Toto je jedno z 10 nejpoužívanějších hesel.",
+        "reasonTop100": "Toto je jedno ze 100 nejpoužívanějších hesel.",
+        "reasonCommon": "Toto je velmi běžné heslo.",
+        "reasonSimilar": "Toto heslo je podobné běžně používaným heslům.",
+        "reasonWord": "Jedno slovo se dá lehce uhodnout."
     },
     "setPassword": {
         "choosePassword": "Zvolte nové heslo",
@@ -236,7 +236,7 @@
         "enterPassword": "Prosím zadejte Vaše heslo.",
         "login": "Přihlásit se",
         "setNode": "Nastavit Node",
-        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "whyBiometricDisabled": "Proč je biometrické ověřování vypnuté?",
         "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
