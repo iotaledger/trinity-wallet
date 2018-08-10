@@ -587,7 +587,7 @@
         "seedFileErrorExplanation": "Seemnehoidla avamisega oli probleem. Kui valisite õige faili, siis võib see olla rikutud."
     },
     "chart": {
-        "mcap": "MCAP",
+        "mcap": "TURUKAPITAL",
         "change": "Muutus (24h)",
         "volume": "Vahetus (24h)",
         "error": "Viga tabeli andmete hankimisel"
