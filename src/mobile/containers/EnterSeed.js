@@ -214,7 +214,7 @@ class EnterSeed extends React.Component {
     };
 
     render() {
-        const { seed, modalContent } = this.state;
+        const { seed, modalContent, isModalVisible } = this.state;
         const { t, theme, minimised } = this.props;
 
         return (
@@ -289,7 +289,9 @@ class EnterSeed extends React.Component {
                                     rightButtonTestID="enterSeed-next"
                                 />
                             </View>
-                            <StatefulDropdownAlert textColor="white" backgroundColor={theme.body.bg} />
+                            {!isModalVisible && (
+                                <StatefulDropdownAlert textColor="white" backgroundColor={theme.body.bg} />
+                            )}
                             <Modal
                                 animationIn={isAndroid ? 'bounceInUp' : 'zoomIn'}
                                 animationOut={isAndroid ? 'bounceOut' : 'zoomOut'}
