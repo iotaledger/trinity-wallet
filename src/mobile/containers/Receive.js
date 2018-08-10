@@ -9,7 +9,6 @@ import {
     Clipboard,
     TouchableWithoutFeedback,
     Keyboard,
-    PermissionsAndroid,
     Animated,
     Easing,
 } from 'react-native';
@@ -39,7 +38,7 @@ import CustomQrCodeComponent from '../components/CustomQRCode';
 import { Icon } from '../theme/icons.js';
 import ScramblingText from '../components/ScramblingText';
 import { width, height } from '../utils/dimensions';
-import { isAndroid } from '../utils/device';
+import { isAndroid, getAndroidFileSystemPermissions } from '../utils/device';
 import { getAddressGenFn } from '../utils/nativeModules';
 import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
@@ -328,17 +327,13 @@ class Receive extends Component {
      *   @method onShareQRCodePress
      **/
     async onShareQRCodePress() {
-        const { t, receiveAddress } = this.props;
+        const { receiveAddress } = this.props;
         // Ensure user has granted necessary permission on Android
         if (isAndroid) {
-            const hasPermission = await this.getAndroidFileSystemPermissions();
-            if (!hasPermission) {
-                return this.props.generateAlert('error', t('missingPermission'), t('missingPermissionExplanation'));
-            }
+            await getAndroidFileSystemPermissions();
         }
         if (receiveAddress) {
             captureRef(this.qr, { format: 'png', result: 'data-uri' }).then((url) => {
-                console.log(url);
                 Share.open({
                     url,
                     type: 'image/png',
@@ -349,19 +344,6 @@ class Receive extends Component {
                 });
             });
         }
-    }
-
-    /**
-     *   Gets Android file system permissions necessary for sharing QR Codes.
-     *   @method getAndroidFileSystemPermissions
-     *   @returns {boolean}
-     **/
-    async getAndroidFileSystemPermissions() {
-        const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE);
-        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-            return true;
-        }
-        return false;
     }
 
     /**
