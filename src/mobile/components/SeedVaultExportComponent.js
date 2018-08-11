@@ -163,7 +163,10 @@ class SeedVaultExportComponent extends Component {
         const { t } = this.props;
         RNFetchBlob.fs
             .unlink(path)
-            .then(() => this.goBack())
+            .then(() => {
+                this.props.generateAlert('success', t('exportSuccess'), t('exportSuccessExplanation'));
+                this.props.goBack();
+            })
             .catch(() =>
                 this.props.generateAlert(
                     'error',
@@ -179,7 +182,7 @@ class SeedVaultExportComponent extends Component {
      * @method onExportPress
      */
     onExportPress() {
-        return nodejs.channel.send(this.props.seed + ':' + this.state.password);
+        return nodejs.channel.send('export:' + this.props.seed + ':' + this.state.password);
     }
 
     /**
@@ -285,13 +288,7 @@ class SeedVaultExportComponent extends Component {
                 <View style={styles.viewContainer}>
                     <InfoBox
                         body={theme.body}
-                        text={
-                            <Text style={[styles.infoBoxText, textColor]}>
-                                First we need to secure your SeedVault. Please choose a password to encrypt the file.
-                                You will need this password to restore your seed from the SeedVault back up. Feel free
-                                to use the same password you use for Trinity.
-                            </Text>
-                        }
+                        text={<Text style={[styles.infoBoxText, textColor]}>{t('seedVaultPasswordExplanation')}</Text>}
                     />
                 </View>
                 <View style={styles.viewContainer}>

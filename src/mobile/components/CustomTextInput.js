@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { VALID_SEED_REGEX, getChecksum } from 'iota-wallet-shared-modules/libs/iota/utils';
 import PropTypes from 'prop-types';
 import { width, height } from '../utils/dimensions';
 import GENERAL from '../theme/general';
@@ -74,6 +75,24 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
     },
+    checksumContainer: {
+        height: width / 18,
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: width / 10,
+        borderRightWidth: 1,
+        borderLeftWidth: 1,
+        borderBottomWidth: 1,
+        borderBottomLeftRadius: GENERAL.borderRadius,
+        borderBottomRightRadius: GENERAL.borderRadius,
+        position: 'absolute',
+        right: width / 15,
+        bottom: -width / 19,
+    },
+    checksumText: {
+        fontFamily: 'SourceSansPro-Regular',
+        fontSize: GENERAL.fontsize1,
+    },
 });
 
 class CustomTextInput extends Component {
@@ -121,6 +140,8 @@ class CustomTextInput extends Component {
         isPasswordValid: PropTypes.bool,
         /** Determines strength of password */
         passwordStrength: PropTypes.number,
+        /** Entered seed */
+        seed: PropTypes.string,
     };
 
     static defaultProps = {
@@ -143,6 +164,7 @@ class CustomTextInput extends Component {
         onRef: () => {},
         isPasswordValid: false,
         passwordStrength: 0,
+        seed: '',
     };
 
     constructor(props) {
@@ -175,6 +197,29 @@ class CustomTextInput extends Component {
         const unfocusedFieldLabel = { color: theme.body.color, fontFamily: 'SourceSansPro-Regular' };
 
         return this.state.isFocused ? focusedFieldLabel : unfocusedFieldLabel;
+    }
+
+    getChecksumValue() {
+        const { seed } = this.props;
+        let checksumValue = '...';
+
+        if (seed.length !== 0 && !seed.match(VALID_SEED_REGEX)) {
+            checksumValue = '!';
+        } else if (seed.length !== 0 && seed.length < 81) {
+            checksumValue = '< 81';
+        } else if (seed.length === 81 && seed.match(VALID_SEED_REGEX)) {
+            checksumValue = getChecksum(seed);
+        }
+
+        return checksumValue;
+    }
+
+    getChecksumStyle() {
+        const { theme, seed } = this.props;
+        if (seed.length === 81 && seed.match(VALID_SEED_REGEX)) {
+            return { color: theme.primary.color };
+        }
+        return { color: theme.body.color };
     }
 
     renderQR(widgetBorderColor) {
@@ -264,6 +309,7 @@ class CustomTextInput extends Component {
             fingerprintAuthentication,
             isPasswordValid,
             passwordStrength,
+            seed,
             ...restProps
         } = this.props;
         const { isFocused } = this.state;
@@ -345,6 +391,23 @@ class CustomTextInput extends Component {
                     {fingerprintAuthentication &&
                         this.renderFingerprintAuthentication({ borderLeftColor: theme.input.alt })}
                 </View>
+                {seed.length > 0 && (
+                    <View style={{ width: containerStyle.width, alignItems: 'flex-end' }}>
+                        <View
+                            style={[
+                                styles.checksumContainer,
+                                {
+                                    backgroundColor: theme.input.bg,
+                                    borderColor: isFocused ? theme.input.hover : theme.input.border,
+                                },
+                            ]}
+                        >
+                            <Text style={[this.getChecksumStyle(), styles.checksumText]}>
+                                {this.getChecksumValue()}
+                            </Text>
+                        </View>
+                    </View>
+                )}
             </View>
         );
     }

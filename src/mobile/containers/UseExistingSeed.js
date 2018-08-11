@@ -13,9 +13,9 @@ import { shouldPreventAction } from 'iota-wallet-shared-modules/selectors/global
 import { toggleModalActivity, setDoNotMinimise } from 'iota-wallet-shared-modules/actions/ui';
 import timer from 'react-native-timer';
 import { hasDuplicateAccountName, hasDuplicateSeed, getAllSeedsFromKeychain } from '../utils/keychain';
+import SeedVaultImport from '../components/SeedVaultImportComponent';
+import PasswordValidation from '../components/PasswordValidationModal';
 import CustomTextInput from '../components/CustomTextInput';
-import ChecksumComponent from '../components/Checksum';
-import ChecksumModalComponent from '../components/ChecksumModal';
 import QRScannerComponent from '../components/QrScanner';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
@@ -267,7 +267,7 @@ class UseExistingSeed extends Component {
                     Clipboard.setString(' ');
                     return this.fetchAccountInfo(seed, accountName);
                 })
-                .catch((err) => console.log(err)); // eslint-disable no-console
+                .catch((err) => console.log(err)); // eslint-disable-line no-console
         }
     }
 
@@ -279,7 +279,7 @@ class UseExistingSeed extends Component {
     hideModal = () => this.props.toggleModalActivity();
 
     renderModalContent = (modalContent) => {
-        const { theme: { body, primary } } = this.props;
+        const { theme, theme: { body, primary } } = this.props;
         let content = '';
         switch (modalContent) {
             case 'qr':
@@ -294,8 +294,15 @@ class UseExistingSeed extends Component {
                     />
                 );
                 break;
-            case 'checksum':
-                content = <ChecksumModalComponent body={body} primary={primary} closeModal={() => this.hideModal()} />;
+            case 'passwordValidation':
+                content = (
+                    <PasswordValidation
+                        validatePassword={(password) => this.SeedVaultImport.validatePassword(password)}
+                        hideModal={() => this.hideModal()}
+                        theme={theme}
+                    />
+                );
+                break;
         }
         return content;
     };
@@ -337,9 +344,19 @@ class UseExistingSeed extends Component {
                             theme={theme}
                             widget="qr"
                             onQRPress={() => this.onQRPress()}
+                            seed={seed}
                         />
                         <View style={{ flex: 0.45 }} />
-                        <ChecksumComponent seed={seed} theme={theme} showModal={() => this.showModal('checksum')} />
+                        <SeedVaultImport
+                            openPasswordValidationModal={() => this.showModal('passwordValidation')}
+                            onSeedImport={(seed) => {
+                                this.setState({ seed });
+                                this.hideModal();
+                            }}
+                            onRef={(ref) => {
+                                this.SeedVaultImport = ref;
+                            }}
+                        />
                         <View style={{ flex: 0.45 }} />
                         <CustomTextInput
                             onRef={(c) => {

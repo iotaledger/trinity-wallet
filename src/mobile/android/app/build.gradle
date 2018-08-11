@@ -136,6 +136,7 @@ android {
     }
 }
 dependencies {
+    compile project(':react-native-document-picker')
     compile project(':nodejs-mobile-react-native')
     implementation project(':react-native-fast-crypto')
     implementation project(':react-native-modal-translucent')

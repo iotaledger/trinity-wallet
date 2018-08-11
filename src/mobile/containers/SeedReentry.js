@@ -8,16 +8,16 @@ import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import FlagSecure from 'react-native-flag-secure-android';
 import Modal from 'react-native-modal';
 import WithUserActivity from '../components/UserActivity';
-import ChecksumComponent from '../components/Checksum';
-import ChecksumModalComponent from '../components/ChecksumModal';
 import { width, height } from '../utils/dimensions';
 import DynamicStatusBar from '../components/DynamicStatusBar';
 import CustomTextInput from '../components/CustomTextInput';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import QRScannerComponent from '../components/QrScanner';
+import PasswordValidation from '../components/PasswordValidationModal';
 import GENERAL from '../theme/general';
 import InfoBox from '../components/InfoBox';
 import OnboardingButtons from '../containers/OnboardingButtons';
+import SeedVaultImport from '../components/SeedVaultImportComponent';
 import { Icon } from '../theme/icons';
 import Header from '../components/Header';
 import { isAndroid } from '../utils/device';
@@ -91,7 +91,6 @@ class SeedReentry extends Component {
 
     constructor() {
         super();
-
         this.state = {
             seed: '',
             isModalVisible: false,
@@ -129,6 +128,7 @@ class SeedReentry extends Component {
                 },
                 animated: false,
             });
+            this.setState({ seed: '' });
         } else if (this.state.seed.length === MAX_SEED_LENGTH && this.state.seed.match(VALID_SEED_REGEX)) {
             this.props.generateAlert('error', t('incorrectSeed'), t('incorrectSeedExplanation'));
         } else {
@@ -160,7 +160,9 @@ class SeedReentry extends Component {
 
     /**
      * Parse and validate QR data
-     * @param  {String} data QR data
+     * @method onQRRead
+     *
+     * @param {String} data QR data
      */
     onQRRead(data) {
         const dataString = data.toString();
@@ -184,7 +186,7 @@ class SeedReentry extends Component {
     hideModal = () => this.setState({ isModalVisible: false });
 
     renderModalContent = (modalContent) => {
-        const { theme: { body, primary } } = this.props;
+        const { theme, theme: { body, primary } } = this.props;
         let content = '';
         switch (modalContent) {
             case 'qr':
@@ -197,14 +199,21 @@ class SeedReentry extends Component {
                     />
                 );
                 break;
-            case 'checksum':
-                content = <ChecksumModalComponent body={body} primary={primary} closeModal={() => this.hideModal()} />;
+            case 'passwordValidation':
+                content = (
+                    <PasswordValidation
+                        validatePassword={(password) => this.SeedVaultImport.validatePassword(password)}
+                        hideModal={() => this.hideModal()}
+                        theme={theme}
+                    />
+                );
+                break;
         }
         return content;
     };
 
     render() {
-        const { modalContent, seed } = this.state;
+        const { modalContent, seed, isModalVisible } = this.state;
         const { t, theme, minimised } = this.props;
         const textColor = { color: theme.body.color };
 
@@ -240,14 +249,18 @@ class SeedReentry extends Component {
                                         value={seed}
                                         widget="qr"
                                         onQRPress={() => this.onQRPress()}
-                                    />
-                                    <View style={{ flex: 0.15 }} />
-                                    <ChecksumComponent
                                         seed={seed}
-                                        theme={theme}
-                                        showModal={() => this.showModal('checksum')}
                                     />
-                                    <View style={{ flex: 0.15 }} />
+                                    <SeedVaultImport
+                                        openPasswordValidationModal={() => this.showModal('passwordValidation')}
+                                        onSeedImport={(seed) => {
+                                            this.setState({ seed });
+                                            this.hideModal();
+                                        }}
+                                        onRef={(ref) => {
+                                            this.SeedVaultImport = ref;
+                                        }}
+                                    />
                                     <InfoBox
                                         body={theme.body}
                                         text={
@@ -273,7 +286,7 @@ class SeedReentry extends Component {
                                 </View>
                             </View>
                         </TouchableWithoutFeedback>
-                        <StatefulDropdownAlert backgroundColor={theme.body.bg} />
+                        {!isModalVisible && <StatefulDropdownAlert backgroundColor={theme.body.bg} />}
                         <Modal
                             animationIn={isAndroid ? 'bounceInUp' : 'zoomIn'}
                             animationOut={isAndroid ? 'bounceOut' : 'zoomOut'}

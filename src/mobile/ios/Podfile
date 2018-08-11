@@ -7,6 +7,8 @@ target 'iotaWallet' do
 
     # Pods for iotaWallet
     
+    pod 'react-native-document-picker', :path => '../node_modules/react-native-document-picker'
+
     target 'iotaWalletTests' do
         inherit! :search_paths
         # Pods for testing

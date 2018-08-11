@@ -148,7 +148,6 @@ class SaveSeedConfirmation extends Component {
     onNextPress() {
         const { theme: { body } } = this.props;
         const { hasSavedSeed, hasAgreedToNotCopyPaste } = this.state;
-
         if (hasSavedSeed && hasAgreedToNotCopyPaste) {
             this.props.navigator.push({
                 screen: 'seedReentry',

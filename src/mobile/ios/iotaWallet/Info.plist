@@ -10,6 +10,21 @@
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
 	<string>Trinity</string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>KeePass 2.x Database</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>info.KeePass.kdbx</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -26,6 +41,13 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>17</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>whatsapp</string>
+		<string>mailto</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -41,8 +63,6 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>ITSAppUsesNonExemptEncryption</key>
-	<false/>
 	<key>NSAppleMusicUsageDescription</key>
 	<string>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
@@ -65,11 +85,6 @@
 	<string>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>Trinity does not require this permission for any functionality. This permission is solely listed in order to satisfy App Store requirements.</string>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>whatsapp</string>
-		<string>mailto</string>
-	</array>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SourceSansPro-Bold.ttf</string>
@@ -97,5 +112,25 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>UTExportedTypeDeclarations</key>
+		<array>
+			<dict>
+				<key>UTTypeConformsTo</key>
+				<array>
+					<string>public.data</string>
+				</array>
+				<key>UTTypeDescription</key>
+				<string>KeePass 2.x Database</string>
+				<key>UTTypeIdentifier</key>
+				<string>info.KeePass.kdbx</string>
+				<key>UTTypeTagSpecification</key>
+				<dict>
+					<key>public.filename-extension</key>
+					<array>
+						<string>kdbx</string>
+					</array>
+				</dict>
+			</dict>
+		</array>
 </dict>
 </plist>

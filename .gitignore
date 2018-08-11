@@ -44,6 +44,8 @@ local.properties
 node_modules/
 npm-debug.log
 yarn-error.log
+sample-package.json
+sample-main.js
 
 # vscode
 .vscode/*

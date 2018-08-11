@@ -62,6 +62,7 @@ public class MainApplication extends NavigationApplication implements ShareAppli
             // eg. new VectorIconsPackage()
             new SvgPackage(),
             new MainReactPackage(),
+            new ReactNativeDocumentPicker(),
             new RNNodeJsMobilePackage(),
             new RNFastCryptoPackage(),
             new TranslucentModalReactPackage(),
