@@ -9,13 +9,13 @@ import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
 import FlagSecure from 'react-native-flag-secure-android';
 import WithUserActivity from '../components/UserActivity';
-import ChecksumComponent from '../components/Checksum';
 import CustomTextInput from '../components/CustomTextInput';
-import ChecksumModalComponent from '../components/ChecksumModal';
 import InfoBox from '../components/InfoBox';
 import StatefulDropdownAlert from './StatefulDropdownAlert';
 import QRScannerComponent from '../components/QrScanner';
 import OnboardingButtons from '../containers/OnboardingButtons';
+import SeedVaultImport from '../components/SeedVaultImportComponent';
+import PasswordValidation from '../components/PasswordValidationModal';
 import { width, height } from '../utils/dimensions';
 import { Icon } from '../theme/icons.js';
 import { isAndroid } from '../utils/device';
@@ -23,7 +23,7 @@ import GENERAL from '../theme/general';
 import Header from '../components/Header';
 import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
 
-console.ignoredYellowBox = ['Native TextInput'];
+console.ignoredYellowBox = ['Native TextInput']; // eslint-disable-line no-console
 
 const styles = StyleSheet.create({
     container: {
@@ -187,7 +187,7 @@ class EnterSeed extends React.Component {
     };
 
     renderModalContent = (modalContent) => {
-        const { theme: { body, primary } } = this.props;
+        const { theme, theme: { body, primary } } = this.props;
         let content = '';
         switch (modalContent) {
             case 'qr':
@@ -200,8 +200,15 @@ class EnterSeed extends React.Component {
                     />
                 );
                 break;
-            case 'checksum':
-                content = <ChecksumModalComponent body={body} primary={primary} closeModal={() => this.hideModal()} />;
+            case 'passwordValidation':
+                content = (
+                    <PasswordValidation
+                        validatePassword={(password) => this.SeedVaultImport.validatePassword(password)}
+                        hideModal={() => this.hideModal()}
+                        theme={theme}
+                    />
+                );
+                break;
         }
         return content;
     };
@@ -242,12 +249,18 @@ class EnterSeed extends React.Component {
                                     widget="qr"
                                     onQRPress={() => this.onQRPress()}
                                     testID="enterSeed-seedbox"
+                                    seed={seed}
                                 />
                                 <View style={{ flex: 0.4 }} />
-                                <ChecksumComponent
-                                    seed={seed}
-                                    theme={theme}
-                                    showModal={() => this.showModal('checksum')}
+                                <SeedVaultImport
+                                    openPasswordValidationModal={() => this.showModal('passwordValidation')}
+                                    onSeedImport={(seed) => {
+                                        this.setState({ seed });
+                                        this.hideModal();
+                                    }}
+                                    onRef={(ref) => {
+                                        this.SeedVaultImport = ref;
+                                    }}
                                 />
                                 <View style={{ flex: 0.4 }} />
                                 <InfoBox
