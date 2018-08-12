@@ -100,7 +100,7 @@
 	<string>Launch Screen</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
-		<string>armv7</string>
+		<string>arm64</string>
 	</array>
 	<key>UIStatusBarHidden</key>
 	<true/>
@@ -113,24 +113,24 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>UTExportedTypeDeclarations</key>
-		<array>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>KeePass 2.x Database</string>
+			<key>UTTypeIdentifier</key>
+			<string>info.KeePass.kdbx</string>
+			<key>UTTypeTagSpecification</key>
 			<dict>
-				<key>UTTypeConformsTo</key>
+				<key>public.filename-extension</key>
 				<array>
-					<string>public.data</string>
+					<string>kdbx</string>
 				</array>
-				<key>UTTypeDescription</key>
-				<string>KeePass 2.x Database</string>
-				<key>UTTypeIdentifier</key>
-				<string>info.KeePass.kdbx</string>
-				<key>UTTypeTagSpecification</key>
-				<dict>
-					<key>public.filename-extension</key>
-					<array>
-						<string>kdbx</string>
-					</array>
-				</dict>
 			</dict>
-		</array>
+		</dict>
+	</array>
 </dict>
 </plist>
