@@ -6,16 +6,18 @@ steps:
     plugins:
       docker#v1.4.0:
         image: "rajivshah/trinity-desktop-ci"
+        always-pull: true
 
   - wait
 
   - label: ":eslint: Run ESLint for shared and desktop"
-    command: "yarn lint:shared && yarn lint:mobile"
+    command: "yarn lint:shared && yarn lint:desktop"
     agents:
       queue: dev
     plugins:
       docker#v1.4.0:
         image: "rajivshah/trinity-desktop-ci"
+        always-pull: true
 
   - wait
 
@@ -26,3 +28,4 @@ steps:
     plugins:
       docker#v1.4.0:
         image: "rajivshah/trinity-desktop-ci"
+        always-pull: true

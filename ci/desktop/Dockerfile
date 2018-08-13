@@ -2,12 +2,13 @@ FROM node:8.11.2-stretch
 
 VOLUME /dist
 
+WORKDIR /app
+
 # Install dependencies
 RUN apt-get update && apt-get install -y git python \
     gcc-multilib g++-multilib \
     build-essential libssl-dev rpm \
-    libsecret-1-dev software-properties-common apt-transport-https && \
-    mkdir /app
+    libsecret-1-dev software-properties-common apt-transport-https
 
 
 # install wine (needed for windows build)
@@ -17,9 +18,6 @@ RUN dpkg --add-architecture i386 && \
     apt-add-repository https://dl.winehq.org/wine-builds/debian/ && \
     apt-get update && \
     apt-get install --install-recommends -y winehq-stable
-
-
-WORKDIR /app
 
 # Install shared dependencies
 COPY package.json yarn.lock /app/
@@ -32,6 +30,3 @@ RUN cd src/shared && yarn
 COPY src/desktop/package.json src/desktop/yarn.lock /app/src/desktop/
 
 RUN cd src/desktop && yarn
-
-# Add everything else
-COPY . /app
