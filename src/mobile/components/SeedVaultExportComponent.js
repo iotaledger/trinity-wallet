@@ -87,7 +87,7 @@ class SeedVaultExportComponent extends Component {
 
         onRef(this);
 
-        this.animatedValue = new Animated.Value(isAuthenticated ? width : width * 2);
+        this.animatedValue = new Animated.Value(width * - 2);
 
         nodejs.start('main.js');
         nodejs.channel.addListener(
@@ -192,7 +192,7 @@ class SeedVaultExportComponent extends Component {
         if (isAndroid) {
             this.setState({ exportPressed: true });
         }
-        return nodejs.channel.send('export:' + this.props.seed + ':' + this.state.password);
+        return nodejs.channel.send('export:' + 'DUMMYSEED' + ':' + 'DUMMYPASSWORD');
     }
 
     /**

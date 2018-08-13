@@ -51,7 +51,7 @@ class SeedVaultBackup extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            step: 'isViewingGeneralInfo',
+            step: 'isExporting',
             seed: props.seed,
         };
     }
