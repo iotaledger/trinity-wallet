@@ -30,4 +30,15 @@
     h2 {
         margin-bottom: 15px;
     }
+
+    > a {
+        position: absolute;
+        top: 50%;
+        left: 20px;
+        margin-top: -9px;
+        &:last-of-type {
+            left: auto;
+            right: 20px;
+        }
+    }
 }

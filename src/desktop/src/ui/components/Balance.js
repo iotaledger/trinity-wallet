@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
+
 import { formatValue, formatUnit } from 'libs/iota/utils';
 import { round, roundDown } from 'libs/utils';
-import { selectAccountInfo, getSelectedAccountName } from 'selectors/accounts';
-
 import { getCurrencySymbol } from 'libs/currency';
+
+import Icon from 'ui/components/Icon';
 
 import css from './balance.scss';
 
@@ -14,14 +16,24 @@ import css from './balance.scss';
  */
 class Balance extends React.PureComponent {
     static propTypes = {
+        /** Should component show overall balance by default */
+        summary: PropTypes.bool,
+        /** Current account index, where -1 is total balance */
+        index: PropTypes.number,
+        /** Switch Balance account
+         * @param {number} index - target account index
+         */
+        switchAccount: PropTypes.func,
         /** @ignore */
-        account: PropTypes.object.isRequired,
+        seedIndex: PropTypes.number.isRequired,
         /** @ignore */
-        accountName: PropTypes.string.isRequired,
+        accounts: PropTypes.object.isRequired,
         /** @ignore */
         settings: PropTypes.object.isRequired,
         /** @ignore */
         marketData: PropTypes.object.isRequired,
+        /** @ignore */
+        t: PropTypes.func.isRequired,
     };
 
     state = {
@@ -46,29 +58,44 @@ class Balance extends React.PureComponent {
     }
 
     render() {
-        const { account, accountName, settings, marketData } = this.props;
+        const { summary, index, accounts, switchAccount, seedIndex, settings, marketData, t } = this.props;
         const { balanceIsShort } = this.state;
 
-        if (!account) {
-            return null;
-        }
+        const accountName =
+            summary && index === -1 ? t('totalBalance') : accounts.accountNames[summary ? index : seedIndex];
+
+        const accountBalance =
+            summary && index === -1
+                ? Object.entries(accounts.accountInfo).reduce((total, account) => total + account[1].balance, 0)
+                : accounts.accountInfo[accountName].balance;
 
         const currencySymbol = getCurrencySymbol(settings.currency);
-        const fiatBalance = round(account.balance * marketData.usdPrice / 1000000 * settings.conversionRate, 2).toFixed(
+        const fiatBalance = round(accountBalance * marketData.usdPrice / 1000000 * settings.conversionRate, 2).toFixed(
             2,
         );
 
         const balance = !balanceIsShort
-            ? formatValue(account.balance)
-            : roundDown(formatValue(account.balance), 1) +
-              (account.balance < 1000 || this.getDecimalPlaces(formatValue(account.balance)) <= 1 ? '' : '+');
+            ? formatValue(accountBalance)
+            : roundDown(formatValue(accountBalance), 1) +
+              (accountBalance < 1000 || this.getDecimalPlaces(formatValue(accountBalance)) <= 1 ? '' : '+');
 
         return (
             <div className={css.balance}>
                 <h3>{accountName}</h3>
+                {summary && (
+                    <React.Fragment>
+                        <a onClick={() => switchAccount(index + 1)}>
+                            <Icon icon="chevronLeft" size={18} />
+                        </a>
+
+                        <a onClick={() => switchAccount(index - 1)}>
+                            <Icon icon="chevronRight" size={18} />
+                        </a>
+                    </React.Fragment>
+                )}
                 <h1 onClick={() => this.setState({ balanceIsShort: !balanceIsShort })}>
                     {`${balance}`}
-                    <small>{`${formatUnit(account.balance)}`}</small>
+                    <small>{`${formatUnit(accountBalance)}`}</small>
                 </h1>
                 <h2>{`${currencySymbol} ${fiatBalance}`}</h2>
             </div>
@@ -77,10 +104,10 @@ class Balance extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    account: selectAccountInfo(state),
-    accountName: getSelectedAccountName(state),
+    seedIndex: state.wallet.seedIndex,
+    accounts: state.accounts,
     marketData: state.marketData,
     settings: state.settings,
 });
 
-export default connect(mapStateToProps)(Balance);
+export default connect(mapStateToProps)(translate()(Balance));

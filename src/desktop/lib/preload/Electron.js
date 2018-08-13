@@ -110,6 +110,7 @@ const Electron = {
      * @returns {boolean} If item update is succesfull
      */
     setStorage(key, item) {
+        ipc.send('storage.update', JSON.stringify({ key, item }));
         return settings.set(key, item);
     },
 
