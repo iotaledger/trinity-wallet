@@ -189,14 +189,14 @@ class App extends React.Component {
     };
 
     render() {
-        const { location } = this.props;
+        const { location, history } = this.props;
 
         const currentKey = location.pathname.split('/')[1] || '/';
 
         if (this.state.fatalError) {
             return (
                 <div className={css.trintiy}>
-                    <Theme location={location} />
+                    <Theme history={history} />
                     <Titlebar />
                     <FatalError />
                 </div>
@@ -208,7 +208,7 @@ class App extends React.Component {
                 <Titlebar />
                 <About />
                 <Idle />
-                <Theme location={location} />
+                <Theme history={history} />
                 <TransitionGroup>
                     <CSSTransition key={currentKey} classNames="fade" timeout={300}>
                         <div>

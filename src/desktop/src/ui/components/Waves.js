@@ -36,14 +36,14 @@ class Waves extends PureComponent {
             <div className={css.wave} style={{ height: height ? height : '160px', bottom: bottom ? bottom : '0px' }}>
                 <div
                     style={{
-                        backgroundImage: this.getWave(true),
-                        backgroundPosition: `${offset ? offset : 0}% bottom`,
+                        backgroundImage: this.getWave(),
+                        backgroundPosition: `${offset ? offset + 50 : 50}% bottom`,
                     }}
                 />
                 <div
                     style={{
-                        backgroundImage: this.getWave(),
-                        backgroundPosition: `${offset ? offset + 50 : 50}% bottom`,
+                        backgroundImage: this.getWave(true),
+                        backgroundPosition: `${offset ? offset : 0}% bottom`,
                     }}
                 />
             </div>
