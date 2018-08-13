@@ -11,6 +11,7 @@ jest.mock('react-native-is-device-rooted', () => ({
 }));
 
 jest.mock('react-native-camera', () => {});
+jest.mock('rn-fetch-blob', () => {});
 
 jest.mock('bugsnag-react-native', () => ({
     Configuration: jest.fn(),
