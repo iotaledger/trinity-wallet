@@ -35,10 +35,3 @@ RUN cd src/desktop && yarn
 
 # Add everything else
 COPY . /app
-
-# Rebuild native dependencies
-WORKDIR /app/src/desktop
-RUN node_modules/.bin/electron-rebuild
-
-
-ENTRYPOINT ["/bin/bash", "-c"]
