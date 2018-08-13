@@ -338,6 +338,7 @@ class Receive extends Component {
         }
         if (receiveAddress) {
             captureRef(this.qr, { format: 'png', result: 'data-uri' }).then((url) => {
+                console.log(url);
                 Share.open({
                     url,
                     type: 'image/png',
