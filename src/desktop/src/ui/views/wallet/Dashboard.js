@@ -30,7 +30,7 @@ class Dashboard extends React.PureComponent {
         /** @ignore */
         accountName: PropTypes.string.isRequired,
         /** @ignore */
-        password: PropTypes.string,
+        password: PropTypes.object,
         /** @ignore */
         isDeepLinkActive: PropTypes.bool,
         /** @ignore */

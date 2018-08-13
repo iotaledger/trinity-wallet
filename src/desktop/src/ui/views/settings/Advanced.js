@@ -26,6 +26,8 @@ import Toggle from 'ui/components/Toggle';
 import TextInput from 'ui/components/input/Text';
 import Scrollbar from 'ui/components/Scrollbar';
 
+import css from './index.scss';
+
 /**
  * Advanced user settings component, including - wallet reset
  */
@@ -221,7 +223,7 @@ class Advanced extends PureComponent {
         }
 
         return (
-            <div>
+            <div className={css.scroll}>
                 <Scrollbar>
                     <h3>{t('pow:powUpdated')}</h3>
                     <Toggle

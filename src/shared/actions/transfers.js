@@ -26,7 +26,7 @@ import { setNextStepAsActive, reset as resetProgress } from './progress';
 import { clearSendFields } from './ui';
 import {
     isStillAValidTransaction,
-    getFirstConsistentTail,
+    findPromotableTail,
     prepareTransferArray,
     filterInvalidPendingTransactions,
     performPow,
@@ -244,7 +244,7 @@ export const promoteTransaction = (bundleHash, accountName, powFn) => (dispatch,
 
             const tailTransactions = accountState.transfers[bundleHash].tailTransactions;
 
-            return getFirstConsistentTail(tailTransactions, 0);
+            return findPromotableTail(tailTransactions, 0);
         })
         .then((consistentTail) => {
             const shouldOffloadPow = getRemotePoWFromState(getState());

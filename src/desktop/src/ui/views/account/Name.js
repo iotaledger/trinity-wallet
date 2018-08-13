@@ -20,7 +20,7 @@ class AccountName extends PureComponent {
         /** @ignore */
         accountInfo: PropTypes.object,
         /** @ignore */
-        password: PropTypes.string.isRequired,
+        password: PropTypes.object.isRequired,
         /** @ignore */
         accountName: PropTypes.string.isRequired,
         /** @ignore */

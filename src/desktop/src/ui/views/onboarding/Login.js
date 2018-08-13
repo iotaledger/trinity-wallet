@@ -71,7 +71,7 @@ class Login extends React.Component {
             this.setupAccount();
         } else {
             this.props.clearWalletData();
-            this.props.setPassword('');
+            this.props.setPassword({});
         }
     }
 

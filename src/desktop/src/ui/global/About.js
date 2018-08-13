@@ -6,7 +6,7 @@ import Button from 'ui/components/Button';
 import Scrollbar from 'ui/components/Scrollbar';
 import Icon from 'ui/components/Icon';
 
-import { DESKTOP_VERSION } from 'config';
+import settings from '../../../package.json';
 
 import css from './about.scss';
 
@@ -48,11 +48,17 @@ class About extends React.PureComponent {
                     <Icon icon="iota" size={48} />
                     <h1>Trinity Wallet</h1>
                     <h2>
-                        v{DESKTOP_VERSION} <small>BETA</small>
+                        v{settings.version} <small>BETA</small>
                     </h2>
 
                     <article>
                         <Scrollbar>
+                            <h5>0.2.1</h5>
+                            <ul>
+                                <li>Update: Dashboard sidebar scroll for multiple accounts</li>
+                                <li>Update: Settings popup position broken</li>
+                                <li>Fix: Multiple account unique seed check broken</li>
+                            </ul>
                             <h5>0.2.0</h5>
                             <ul>
                                 <li>New: SeedVault export feature at Account settings</li>

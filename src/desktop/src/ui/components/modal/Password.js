@@ -113,8 +113,8 @@ class ModalPassword extends PureComponent {
                                 {t('cancel')}
                             </Button>
                         ) : null}
-                        <Button type="submit" variant={category ? category : 'positive'}>
-                            {content.confirm ? content.confirm : t('login:login').toLowerCase()}
+                        <Button type="submit" variant={category ? category : 'primary'}>
+                            {content.confirm ? content.confirm : t('login:login')}
                         </Button>
                     </footer>
                 </form>
