@@ -1,30 +1,14 @@
 steps:
-  - label: ":mag: Audit shared dependencies"
-    command: "cd src/shared && yarn audit && cd ../.."
+  - label: ":mag: Audit shared and desktop dependencies"
+    command: "cd src/shared && yarn audit && cd ../desktop && yarn audit && cd ../.."
     plugins:
       docker#v1.4.0:
         image: "rajivshah/trinity-desktop-ci"
 
   - wait
 
-  - label: ":mag: Audit desktop dependencies"
-    command: "cd src/desktop && yarn audit && cd ../.."
-    plugins:
-      docker#v1.4.0:
-        image: "rajivshah/trinity-desktop-ci"
-
-  - wait
-
-  - label: ":eslint: Run ESLint for desktop"
-    command: "yarn lint:desktop"
-    plugins:
-      docker#v1.4.0:
-        image: "rajivshah/trinity-desktop-ci"
-
-  - wait
-
-  - label: ":eslint: Run ESLint for shared"
-    command: "yarn lint:shared"
+  - label: ":eslint: Run ESLint for shared and desktop"
+    command: "yarn lint:shared && yarn lint:mobile"
     plugins:
       docker#v1.4.0:
         image: "rajivshah/trinity-desktop-ci"
