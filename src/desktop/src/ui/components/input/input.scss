@@ -26,7 +26,7 @@
             resize: none;
             -webkit-appearance: none;
             border-radius: 4px;
-            transition: border 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transition: border 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
             &:focus {
                 outline: none;
                 border-color: var(--input-focus);
