@@ -6,6 +6,7 @@ steps:
     plugins:
       docker#v1.4.0:
         image: "rajivshah/trinity-mobile-ci"
+        always-pull: true
 
   - wait
 
@@ -16,6 +17,7 @@ steps:
     plugins:
       docker#v1.4.0:
         image: "rajivshah/trinity-mobile-ci"
+        always-pull: true
 
   - wait
 
@@ -26,6 +28,7 @@ steps:
     plugins:
       docker#v1.4.0:
         image: "rajivshah/trinity-mobile-ci"
+        always-pull: true
 
   - wait
 
@@ -36,3 +39,4 @@ steps:
     plugins:
       docker#v1.4.0:
         image: "rajivshah/trinity-mobile-ci"
+        always-pull: true
