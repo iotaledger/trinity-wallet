@@ -88,6 +88,17 @@ $sidebar-narrow: 70px;
             ul {
                 margin: 0px;
                 padding: 0px;
+                height: calc(100vh - 380px);
+                position: relative;
+
+                > div {
+                    padding-right: 0px;
+                    :global {
+                        .ps__rail-y {
+                            display: none;
+                        }
+                    }
+                }
 
                 a {
                     line-height: 21px;
