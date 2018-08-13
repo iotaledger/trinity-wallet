@@ -47,16 +47,33 @@
               <category android:name="android.intent.category.DEFAULT" />
               <category android:name="android.intent.category.BROWSABLE" />
           </intent-filter>
+          <intent-filter>
+              <action android:name="android.intent.action.VIEW" />
+              <category android:name="android.intent.category.DEFAULT" />
+              <category android:name="android.intent.category.BROWSABLE" />
+              <data android:scheme="file" />
+              <data android:mimeType="*/*" />
+              <data android:pathPattern=".*\\.kdbx" />
+              <data android:host="*" />
+          </intent-filter>
+          <intent-filter>
+              <action android:name="android.intent.action.VIEW" />
+              <category android:name="android.intent.category.DEFAULT" />
+              <category android:name="android.intent.category.BROWSABLE" />
+              <data android:mimeType="application/octet-stream" />
+          </intent-filter>
       </activity>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.provider"
             android:grantUriPermissions="true"
-            android:exported="false">
+            android:exported="false"
+            tools:replace="android:authorities">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/filepaths" />
+                android:resource="@xml/filepaths"
+                tools:replace="android:resource"/>
         </provider>
     </application>
 </manifest>

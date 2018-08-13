@@ -2,20 +2,21 @@ import map from 'lodash/map';
 import isEqual from 'lodash/isEqual';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Animated, Text, View, StyleSheet } from 'react-native';
+import { Animated, Text, View, StyleSheet, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
 import Share from 'react-native-share';
 import nodejs from 'nodejs-mobile-react-native';
-import RNFetchBlob from 'rn-fetch-blob';
+import RNFS from 'react-native-fs';
 import CustomTextInput from './CustomTextInput';
 import GENERAL from '../theme/general';
 import PasswordFields from './PasswordFields';
 import InfoBox from './InfoBox';
 import { getPasswordHash, getSeedFromKeychain } from '../utils/keychain';
 import { width, height } from '../utils/dimensions';
+import { isAndroid } from '../utils/device';
 
 const styles = StyleSheet.create({
     container: {
@@ -77,6 +78,7 @@ class SeedVaultExportComponent extends Component {
         this.state = {
             password: '',
             reentry: '',
+            exportPressed: false,
         };
     }
 
@@ -112,21 +114,26 @@ class SeedVaultExportComponent extends Component {
         const { t } = this.props;
         const now = new Date();
         const path =
-            RNFetchBlob.fs.dirs.CacheDir +
+            RNFS.DocumentDirectoryPath +
             `/trinity-${now
                 .toISOString()
                 .slice(0, 16)
                 .replace(/[-:]/g, '')
                 .replace('T', '-')}.kdbx`;
         const vaultParsed = map(vault.split(','), (num) => parseInt(num));
-        RNFetchBlob.fs
-            .createFile(path, vaultParsed, 'ascii')
+        RNFS.writeFile(path, vaultParsed, 'ascii')
             .then(() => {
                 Share.open({
-                    url: path,
+                    url: isAndroid ? `file://${path}` : path,
+                    // Supposed to be for binary data files
+                    type: 'application/octet-stream',
                 })
-                    .then(() => this.onExportSuccess(path))
-                    .catch(() => RNFetchBlob.fs.unlink(path));
+                    .then(() => {
+                        if (!isAndroid) {
+                            this.onExportSuccess(path);
+                        }
+                    })
+                    .catch(() => RNFS.unlink(path));
             })
             .catch(() =>
                 this.props.generateAlert(
@@ -144,6 +151,7 @@ class SeedVaultExportComponent extends Component {
      */
     onNextPress() {
         const { step } = this.props;
+        Keyboard.dismiss();
         if (step === 'isValidatingWalletPassword') {
             return this.validateWalletPassword();
         } else if (step === 'isViewingGeneralInfo') {
@@ -161,8 +169,7 @@ class SeedVaultExportComponent extends Component {
      */
     onExportSuccess(path) {
         const { t } = this.props;
-        RNFetchBlob.fs
-            .unlink(path)
+        RNFS.unlink(path)
             .then(() => {
                 this.props.generateAlert('success', t('exportSuccess'), t('exportSuccessExplanation'));
                 this.props.goBack();
@@ -182,6 +189,9 @@ class SeedVaultExportComponent extends Component {
      * @method onExportPress
      */
     onExportPress() {
+        if (isAndroid) {
+            this.setState({ exportPressed: true });
+        }
         return nodejs.channel.send('export:' + this.props.seed + ':' + this.state.password);
     }
 
@@ -197,6 +207,9 @@ class SeedVaultExportComponent extends Component {
         } else if (step === 'isSettingPassword') {
             return this.navigateToStep('isViewingPasswordInfo');
         } else if (step === 'isExporting') {
+            if (isAndroid && this.state.exportPressed) {
+                return this.props.goBack();
+            }
             return this.navigateToStep('isSettingPassword');
         }
         this.props.goBack();
