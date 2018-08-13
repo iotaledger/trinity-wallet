@@ -1,4 +1,4 @@
-const { ipcMain: ipc, app, protocol, shell } = require('electron');
+const { ipcMain: ipc, app, protocol, shell, Tray } = require('electron');
 const electron = require('electron');
 const initMenu = require('./lib/Menu.js');
 const path = require('path');
@@ -21,11 +21,14 @@ const devMode = process.env.NODE_ENV === 'development';
  */
 let deeplinkingUrl = null;
 
+let tray = null;
+
 /**
  * Define wallet windows
  */
 const windows = {
     main: null,
+    tray: null,
 };
 
 /**
@@ -100,6 +103,23 @@ function createWindow() {
         },
     });
 
+    windows.tray = new electron.BrowserWindow({
+        width: 300,
+        height: 450,
+        frame: false,
+        fullscreenable: false,
+        resizable: false,
+        transparent: true,
+        backgroundColor: bgColor,
+        show: false,
+        webPreferences: {
+            nodeIntegration: false,
+            preload: path.resolve(__dirname, 'lib/preload/tray.js'),
+            disableBlinkFeatures: 'Auxclick',
+            webviewTag: false,
+        },
+    });
+
     /**
      * Reinitate window maximize
      */
@@ -112,6 +132,7 @@ function createWindow() {
      */
     const url = devMode ? 'http://localhost:1074/' : 'iota://dist/index.html';
     windows.main.loadURL(url);
+    windows.tray.loadURL(url);
 
     /**
      * Attach window close event
@@ -122,7 +143,9 @@ function createWindow() {
      * Enable React and Redux devtools in development mode
      */
     if (devMode) {
-        windows.main.webContents.openDevTools();
+        windows.main.webContents.openDevTools({ mode: 'detach' });
+        windows.tray.webContents.openDevTools({ mode: 'detach' });
+
         const {
             default: installExtension,
             REACT_DEVELOPER_TOOLS,
@@ -192,7 +215,35 @@ function createWindow() {
             } catch (error) {}
         }
     });
+
+    /**
+     * Setup Tray icon on macOS
+     */
+
+    tray = new Tray(path.join(`${__dirname}/assets/icon-64@2x.png`));
+    tray.setToolTip('Total balance: 32Mi / $25.38');
+
+    tray.on('click', () => {
+        toggleTray();
+    });
 }
+
+const toggleTray = () => {
+    if (windows.tray.isVisible()) {
+        windows.tray.hide();
+        return;
+    }
+
+    const windowBounds = windows.tray.getBounds();
+    const trayBounds = tray.getBounds();
+
+    const x = Math.round(trayBounds.x + trayBounds.width / 2 - windowBounds.width / 2);
+    const y = Math.round(trayBounds.y + trayBounds.height + 4);
+
+    windows.tray.setPosition(x, y, false);
+    windows.tray.show();
+    windows.tray.focus();
+};
 
 /**
  * Lock and hide the window on macOS, close it on other platforms
@@ -281,6 +332,24 @@ ipc.on('request.deepLink', () => {
     if (deeplinkingUrl) {
         windows.main.webContents.send('url-params', deeplinkingUrl);
         deeplinkingUrl = null;
+    }
+});
+
+/**
+ * Proxy storage update event to tray window
+ */
+ipc.on('storage.update', (e, payload) => {
+    if (windows.tray) {
+        windows.tray.webContents.send('storage.update', payload);
+    }
+});
+
+/**
+ * Proxy menu update event to tray window
+ */
+ipc.on('menu.update', (e, payload) => {
+    if (windows.tray) {
+        windows.tray.webContents.send('menu.update', payload);
     }
 });
 
