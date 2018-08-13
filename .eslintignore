@@ -7,3 +7,4 @@ src/mobile/shim.js
 dist/
 src/shared/locales/*
 !src/shared/locales/en/translation.json
+src/mobile/nodejs-assets/nodejs-project/sample-main.js
