@@ -1,6 +1,8 @@
 steps:
   - label: ":mag: Audit shared and desktop dependencies"
     command: "cd src/shared && yarn audit && cd ../desktop && yarn audit && cd ../.."
+    agents:
+      queue: dev
     plugins:
       docker#v1.4.0:
         image: "rajivshah/trinity-desktop-ci"
@@ -9,6 +11,8 @@ steps:
 
   - label: ":eslint: Run ESLint for shared and desktop"
     command: "yarn lint:shared && yarn lint:mobile"
+    agents:
+      queue: dev
     plugins:
       docker#v1.4.0:
         image: "rajivshah/trinity-desktop-ci"
@@ -17,6 +21,8 @@ steps:
 
   - label: ":react: Bundle"
     command: "cd src/desktop && yarn build"
+    agents:
+      queue: dev
     plugins:
       docker#v1.4.0:
         image: "rajivshah/trinity-desktop-ci"
