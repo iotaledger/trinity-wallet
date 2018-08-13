@@ -15,6 +15,7 @@ public class IOTAMobilePackage implements ReactPackage {
         List<NativeModule> modules = new ArrayList<>();
 
         modules.add(new EntangledAndroid(reactContext));
+        modules.add(new Argon2Android(reactContext));
 
         return modules;
     }
