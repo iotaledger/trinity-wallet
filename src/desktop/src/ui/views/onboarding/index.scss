@@ -261,8 +261,8 @@ $footer: 70px;
         flex-direction: column;
         justify-content: center;
         align-content: center;
-        border: 1px solid var(--body-alt);
-        background: var(--dark);
+        border: 1px solid var(--box-alt);
+        background: var(--box-bg);
         transition: background 0.8s cubic-bezier(0.075, 0.82, 0.165, 1);
         position: relative;
 
@@ -313,7 +313,7 @@ $footer: 70px;
         }
 
         &:hover {
-            background: var(--dark-hover);
+            background: var(--box-alt);
             > div {
                 &:before {
                     transform: translate(-50%, -50%) scale(1.15);
