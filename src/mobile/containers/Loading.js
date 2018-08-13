@@ -269,7 +269,6 @@ class Loading extends Component {
     launchHomeScreen() {
         const { theme: { body, bar } } = this.props;
         KeepAwake.deactivate();
-        this.clearTimeouts();
         // FIXME: A quick workaround to stop history refresh flash on iOS.
         if (isAndroid) {
             this.props.navigator.push({
@@ -284,7 +283,6 @@ class Loading extends Component {
                 },
                 animated: false,
             });
-            timer.clearInterval('inactivityTimer');
         } else {
             Navigation.startSingleScreenApp({
                 screen: {
@@ -304,6 +302,8 @@ class Loading extends Component {
                 },
             });
         }
+        this.clearTimeouts();
+        this.setState({ animationPartOneDone: false, displayNodeChangeOption: false });
     }
 
     playAnimationTwo() {
@@ -316,6 +316,7 @@ class Loading extends Component {
             clearTimeout(this.timeout);
         }
         timer.clearTimeout('animationTimeout');
+        timer.clearTimeout('inactivityTimer');
         timer.clearTimeout('waitTimeout');
     }
 

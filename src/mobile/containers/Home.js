@@ -316,10 +316,13 @@ class Home extends Component {
      * Displays snapshot transition guide modal
      */
     displayUpdates() {
-        const { hasDisplayedSnapshotTransitionGuide, shouldTransitionForSnapshot } = this.props;
+        const { hasDisplayedSnapshotTransitionGuide, shouldTransitionForSnapshot, isModalActive } = this.props;
 
         if (!hasDisplayedSnapshotTransitionGuide) {
             if (shouldTransitionForSnapshot) {
+                if (isModalActive) {
+                    this.props.toggleModalActivity();
+                }
                 this.setState({ showModal: true });
             } else {
                 this.completeTransitionTask();
