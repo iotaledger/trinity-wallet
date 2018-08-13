@@ -10,5 +10,5 @@ dark: { color: 'rgb(209, 212, 217)',hover: 'rgb(192, 195, 200)',body: 'rgb(0, 0,
 secondary: { color: 'rgb(85, 20, 180)',hover: 'rgb(69, 16, 146)',body: 'rgb(255, 255, 255)', },
 primary: { color: 'rgb(142, 18, 144)',hover: 'rgb(124, 16, 125)',body: 'rgb(255, 255, 255)', },
 body: { bg: 'rgb(234, 237, 243)',color: 'rgb(0, 0, 0)',alt: 'rgba(0, 0, 0, 0.25)', },
-wave: { primary: 'rgba(85, 20, 180, 0.5)',secondary: 'rgba(0, 0, 0, 0.25)', },
+wave: { primary: 'rgba(85, 20, 180, 0.5)',secondary: 'rgba(63, 89, 108, 0.15)', },
 };
