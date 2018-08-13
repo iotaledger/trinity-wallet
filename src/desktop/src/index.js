@@ -25,11 +25,8 @@ export const bugsnagClient = bugsnag({
     appVersion: settings.version,
     interactionBreadcrumbsEnabled: false,
     collectUserIp: false,
-    beforeSend: (report) => {
-        let uuid = '';
-        Electron.getUuid().then((machineUuid) => {
-            uuid = machineUuid;
-        });
+    beforeSend: async (report) => {
+        const uuid = await Electron.getUuid();
         report.user = { id: uuid };
     },
 });
