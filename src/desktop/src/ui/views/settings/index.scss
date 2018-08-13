@@ -147,10 +147,10 @@ $sidebar-narrow: 70px;
                 }
                 &:hover {
                     color: var(--bar);
-                    background: var(--bar-alt);
+                    background: var(--bar-hover);
                 }
                 &[aria-current='true'] {
-                    background: var(--bar-alt);
+                    background: var(--bar-hover);
                     color: var(--bar);
                     border-right: 2px solid var(--primary);
                 }
