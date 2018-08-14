@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { translate, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 
-import { changePowSettings, changeAutoPromotionSettings, setLockScreenTimeout } from 'actions/settings';
+import { changePowSettings, changeAutoPromotionSettings, setLockScreenTimeout, setTray } from 'actions/settings';
 import { completeSnapshotTransition, setBalanceCheckFlag } from 'actions/wallet';
 import { generateAlert } from 'actions/alerts';
 
@@ -33,10 +33,6 @@ import css from './index.scss';
  */
 class Advanced extends PureComponent {
     static propTypes = {
-        /** @ignore */
-        remotePoW: PropTypes.bool.isRequired,
-        /** @ignore */
-        autoPromotion: PropTypes.bool.isRequired,
         /** @ignore */
         changePowSettings: PropTypes.func.isRequired,
         /** @ignore */
@@ -75,6 +71,8 @@ class Advanced extends PureComponent {
         completeSnapshotTransition: PropTypes.func.isRequired,
         /** @ignore */
         setBalanceCheckFlag: PropTypes.func.isRequired,
+        /** @ignore */
+        setTray: PropTypes.func.isRequired,
     };
 
     state = {
@@ -184,11 +182,11 @@ class Advanced extends PureComponent {
 
     render() {
         const {
-            remotePoW,
-            autoPromotion,
+            settings,
             changePowSettings,
             changeAutoPromotionSettings,
             lockScreenTimeout,
+            setTray,
             ui,
             t,
         } = this.props;
@@ -227,7 +225,7 @@ class Advanced extends PureComponent {
                 <Scrollbar>
                     <h3>{t('pow:powUpdated')}</h3>
                     <Toggle
-                        checked={remotePoW}
+                        checked={settings.remotePoW}
                         onChange={() => changePowSettings()}
                         on={t('pow:remote')}
                         off={t('pow:local')}
@@ -239,12 +237,22 @@ class Advanced extends PureComponent {
 
                     <h3>{t('advancedSettings:autoPromotion')}</h3>
                     <Toggle
-                        checked={autoPromotion}
+                        checked={settings.autoPromotion}
                         onChange={() => changeAutoPromotionSettings()}
                         on={t('enabled')}
                         off={t('disabled')}
                     />
                     <p>{t('advancedSettings:autoPromotionExplanation')}</p>
+                    <hr />
+
+                    <h3>{t('tray:trayApplication')}</h3>
+                    <Toggle
+                        checked={settings.isTrayEnabled}
+                        onChange={() => setTray(!settings.isTrayEnabled)}
+                        on={t('enabled')}
+                        off={t('disabled')}
+                    />
+                    <p>{t('tray:trayExplanation')}</p>
                     <hr />
 
                     <h3>{t('advancedSettings:snapshotTransition')}</h3>
@@ -350,8 +358,6 @@ class Advanced extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-    remotePoW: state.settings.remotePoW,
-    autoPromotion: state.settings.autoPromotion,
     wallet: state.wallet,
     ui: state.ui,
     selectedAccountName: getSelectedAccountName(state),
@@ -374,6 +380,7 @@ const mapDispatchToProps = {
     toggleModalActivity,
     completeSnapshotTransition,
     setBalanceCheckFlag,
+    setTray,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate()(Advanced));
