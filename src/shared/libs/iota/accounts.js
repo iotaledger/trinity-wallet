@@ -175,6 +175,7 @@ export const getAccountData = (seed, accountName, genFn) => {
  *   @param {boolean} rescanAddresses
  *   @param {function} genFn - Entangled addresses generation method
  *   @param {boolean} withNewAddresses
+ *   @param {function} notificationFn - New transaction callback function
  *
  *   @returns {Promise<object>}
  **/
@@ -184,6 +185,7 @@ export const syncAccount = (
     rescanAddresses = false,
     genFn = null,
     withNewAddresses = false,
+    notificationFn = null,
 ) => {
     const thisStateCopy = cloneDeep(existingAccountState);
 
@@ -212,6 +214,22 @@ export const syncAccount = (
                   });
         })
         .then(({ transfers, newNormalisedTransfers, outOfSyncTransactionHashes }) => {
+            //Trigger notification callback with new incoming transactions and confirmed value transactions
+            if (notificationFn) {
+                notificationFn(
+                    thisStateCopy.accountName,
+                    filter(transfers, (transfer) => transfer.incoming && !thisStateCopy.transfers[transfer.bundle]),
+                    filter(
+                        transfers,
+                        (transfer) =>
+                            transfer.persistence &&
+                            transfer.transferValue > 0 &&
+                            thisStateCopy.transfers[transfer.bundle] &&
+                            !thisStateCopy.transfers[transfer.bundle].persistence,
+                    ),
+                );
+            }
+
             thisStateCopy.transfers = transfers;
 
             // Keep only synced transaction hashes so that the next cycle tries to re-sync

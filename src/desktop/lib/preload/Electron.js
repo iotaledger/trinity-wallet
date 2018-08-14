@@ -44,6 +44,30 @@ const capitalize = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 };
 
+/**
+ * Format iota value to thousand units
+ * @param {number} iota - Value in iotas
+ * @returns {string} - Formatted value
+ */
+const formatIotas = (iota) => {
+    if (!iota) {
+        return '0i';
+    }
+    const units = ['i', 'Ki', 'Mi', 'Gi', 'Ti'];
+    const length = Math.floor(iota.toString().length / 3);
+    const pow = 1000 ** length;
+    const value = parseFloat((length !== 0 ? iota / pow : iota).toPrecision(2));
+    return value + units[length];
+};
+
+let locales = {
+    multipleTx: 'You received multiple transactions to {{account}}',
+    valueTx: 'You received {{value}} to {{account}}',
+    messageTx: 'You received a message to {{account}}',
+    confirmedIn: 'Incoming {{value}} transaction was confirmed at {{account}}',
+    confirmedOut: 'Outgoing {{value}} transaction was confirmed at {{account}}',
+};
+
 let onboardingSeed = null;
 let onboardingGenerated = false;
 
@@ -349,7 +373,41 @@ const Electron = {
     },
 
     /**
-     * Set native menu locales
+     * Create and show a native notification based on new transactions
+     * @param {string} accountName - target account name
+     * @param {array} transactions - new transactions
+     * @param {array} confirmations - recently confirmed transactions
+     */
+    notify: (accountName, transactions, confirmations) => {
+        if (!transactions.length && !confirmations.length) {
+            return;
+        }
+
+        let message = '';
+
+        if (transactions.length > 1) {
+            message = locales.multipleTx;
+        } else if (transactions.length) {
+            message =
+                transactions[0].transferValue > 0
+                    ? locales.valueTx.replace('{{value}}', formatIotas(transactions[0].transferValue))
+                    : locales.messageTx;
+        } else {
+            message = confirmations[0].incoming ? locales.confirmedIn : locales.confirmedOut;
+            message = message.replace('{{value}}', formatIotas(confirmations[0].transferValue));
+        }
+
+        const notification = new Notification('Trinity', {
+            body: message.replace('{{account}}', accountName),
+        });
+
+        notification.onclick = () => {
+            currentWindow.webContents.send('account.switch', accountName);
+        };
+    },
+
+    /**
+     * Set native menu and notification locales
      * @param {function} t - i18n locale helper
      * @returns {undefiend}
      */
@@ -390,6 +448,14 @@ const Electron = {
             yes: t('yes'),
             no: t('no'),
         });
+
+        locales = {
+            multipleTx: t('notifications:multipleTx', { account: '{{account}}' }),
+            valueTx: t('notifications:valueTx', { account: '{{account}}', value: '{{value}}' }),
+            messageTx: t('notifications:messageTx', { account: '{{account}}', value: '{{value}}' }),
+            confirmedIn: t('notifications:confirmedIn', { account: '{{account}}', value: '{{value}}' }),
+            confirmedOut: t('notifications:confirmedOut', { account: '{{account}}', value: '{{value}}' }),
+        };
     },
 
     /**
