@@ -556,16 +556,17 @@ export const manuallySyncAccount = (seed, accountName, genFn) => {
  * @param  {string} accountName
  * @param  {object} [navigator=null]
  * @param  {function} genFn
+ * @param  {function} notificationFn - New transaction callback function
  *
  * @returns {function} dispatch
  */
-export const getAccountInfo = (seed, accountName, navigator = null, genFn) => {
+export const getAccountInfo = (seed, accountName, navigator = null, genFn, notificationFn) => {
     return (dispatch, getState) => {
         dispatch(accountInfoFetchRequest());
 
         const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
-        return syncAccount(existingAccountState, seed, true, genFn, true)
+        return syncAccount(existingAccountState, seed, true, genFn, true, notificationFn)
             .then((newAccountData) => dispatch(accountInfoFetchSuccess(newAccountData)))
             .catch((err) => {
                 if (navigator) {
