@@ -1,5 +1,9 @@
 import { expect } from 'chai';
+import nock from 'nock';
 import { isValidUrl, isValidHttpsUrl, rearrangeObjectKeys } from '../../libs/utils';
+import { findTransactionsAsync } from '../../libs/iota/extendedApi';
+
+const getBalances = () => findTransactionsAsync({ addresses: ['A'.repeat(81)]});
 
 describe('libs: utils', () => {
     describe('#isValidUrl', () => {
@@ -66,6 +70,26 @@ describe('libs: utils', () => {
                 expect(keysAfterRearrange).to.not.eql(keysBeforeRearrange);
                 expect(keysAfterRearrange).to.eql(expectedObjectKeys);
             });
+        });
+    });
+
+    describe.only('#test', () => {
+        before(() => {
+           const mocked = nock('http://localhost:24265', {
+               reqheaders: {
+                   'Content-Type': 'application/json',
+                   'X-IOTA-API-Version': '1',
+               },
+           }).persist()
+               .post('/', {
+                   command: 'findTransactions',
+                   addresses: ['A'.repeat(81)],
+               })
+               .reply(200, { hashes: ['H'.repeat(81)] });
+
+        });
+        it('should', () => {
+            return getBalances().then(console.log).catch(console.log)
         });
     });
 });

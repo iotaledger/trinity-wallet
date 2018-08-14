@@ -1,4 +1,4 @@
-export const defaultNode = 'https://trinity.iota.fm:443';
+export const defaultNode = process.env.NODE_ENV === 'test' ? 'http://localhost:14265' : 'https://trinity.iota.fm:443';
 
 export const nodesWithPoWEnabled = [
     'https://pow1.iota.community:443',
