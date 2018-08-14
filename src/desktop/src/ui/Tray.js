@@ -6,9 +6,14 @@ import { withRouter } from 'react-router-dom';
 import i18next from 'libs/i18next';
 import { translate } from 'react-i18next';
 
+import { capitalize } from 'libs/helpers';
+
 import Theme from 'ui/global/Theme';
 
 import Balance from 'ui/components/Balance';
+import Button from 'ui/components/Button';
+import Icon from 'ui/components/Icon';
+import Logo from 'ui/components/Logo';
 import List from 'ui/components/List';
 
 import css from './tray.scss';
@@ -19,11 +24,15 @@ import css from './tray.scss';
 class App extends React.Component {
     static propTypes = {
         /** @ignore */
+        complete: PropTypes.bool,
+        /** @ignore */
         history: PropTypes.object.isRequired,
         /** @ignore */
         accounts: PropTypes.object.isRequired,
         /** @ignore */
         locale: PropTypes.string.isRequired,
+        /** @ignore */
+        t: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -63,21 +72,42 @@ class App extends React.Component {
     }
 
     unauthorised() {
-        return <p>Login first</p>;
+        const { complete, t } = this.props;
+
+        return (
+            <div className={css.intro}>
+                <Logo size={72} animate loop />
+                <h2>{complete ? t('tray:notLoggedIn') : t('tray:setupIncomplete')}</h2>
+                <Button onClick={() => Electron.focus()}>
+                    {complete ? t('login:login') : t('tray:completeSetup')}
+                </Button>
+            </div>
+        );
     }
 
     authorised() {
+        const { t } = this.props;
         const { accountIndex, historyItem } = this.state;
 
         return (
-            <div>
+            <React.Fragment>
                 <Balance index={accountIndex} switchAccount={this.switchAccount} summary />
                 <List
                     index={accountIndex}
                     setItem={(item) => this.setState({ historyItem: item })}
                     currentItem={historyItem}
                 />
-            </div>
+                <nav>
+                    <a onClick={() => Electron.focus('wallet/send')}>
+                        <Icon icon="send" size={18} />
+                        {capitalize(t('home:send'))}
+                    </a>
+                    <a onClick={() => Electron.focus('wallet/receive')}>
+                        <Icon icon="receive" size={18} />
+                        {capitalize(t('home:receive'))}
+                    </a>
+                </nav>
+            </React.Fragment>
         );
     }
 
@@ -106,6 +136,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
+    complete: state.accounts.onboardingComplete,
     locale: state.settings.locale,
     accounts: state.accounts,
 });

@@ -140,6 +140,13 @@ function createWindow() {
     windows.main.on('close', hideOnClose);
 
     /**
+     * Attach tray window in blur event
+     */
+    windows.tray.on('blur', () => {
+        windows.tray.hide();
+    });
+
+    /**
      * Enable React and Redux devtools in development mode
      */
     if (devMode) {
@@ -216,17 +223,31 @@ function createWindow() {
         }
     });
 
-    /**
-     * Setup Tray icon on macOS
-     */
+    setupTray(settings.isTrayEnabled);
+}
+
+/**
+ * Setup Tray icon
+ * @param {boolean} enabled - determine if tray is enabled
+ */
+const setupTray = (enabled) => {
+    if (enabled === false) {
+        if (tray && !tray.isDestroyed()) {
+            tray.destroy();
+        }
+        return;
+    }
+
+    if (enabled && tray && !tray.isDestroyed()) {
+        return;
+    }
 
     tray = new Tray(path.join(`${__dirname}/assets/icon-64@2x.png`));
-    tray.setToolTip('Total balance: 32Mi / $25.38');
 
     tray.on('click', () => {
         toggleTray();
     });
-}
+};
 
 const toggleTray = () => {
     if (windows.tray.isVisible()) {
@@ -342,6 +363,14 @@ ipc.on('storage.update', (e, payload) => {
     if (windows.tray) {
         windows.tray.webContents.send('storage.update', payload);
     }
+    try {
+        const data = JSON.parse(payload);
+        const items = JSON.parse(data.item);
+
+        if (data.key === 'reduxPersist:settings') {
+            setupTray(items.isTrayEnabled);
+        }
+    } catch (e) {}
 });
 
 /**
@@ -350,6 +379,17 @@ ipc.on('storage.update', (e, payload) => {
 ipc.on('menu.update', (e, payload) => {
     if (windows.tray) {
         windows.tray.webContents.send('menu.update', payload);
+    }
+});
+
+/**
+ * Proxy focus event from tray to main window
+ */
+ipc.on('window.focus', (e, payload) => {
+    if (windows.main) {
+        windows.main.show();
+        windows.main.focus();
+        windows.main.webContents.send('menu', payload);
     }
 });
 

@@ -220,6 +220,14 @@ const Electron = {
     },
 
     /**
+     * Focus main wallet window
+     * @param {string} view - optional view to navigate to
+     */
+    focus: (view) => {
+        ipc.send('window.focus', view);
+    },
+
+    /**
      * Close current wallet windoow
      * @returns {undefined}
      */
