@@ -34,7 +34,7 @@ class Sidebar extends React.PureComponent {
         /** @ignore */
         seedIndex: PropTypes.number,
         /** @ignore */
-        isReady: PropTypes.bool.isRequired,
+        isBusy: PropTypes.bool.isRequired,
         /** @ignore */
         clearWalletData: PropTypes.func.isRequired,
         /** @ignore */
@@ -67,7 +67,7 @@ class Sidebar extends React.PureComponent {
     };
 
     render() {
-        const { accounts, seedIndex, setSeedIndex, t, location, history, isReady } = this.props;
+        const { accounts, seedIndex, setSeedIndex, t, location, history, isBusy } = this.props;
         const { modalLogout } = this.state;
 
         return (
@@ -77,7 +77,7 @@ class Sidebar extends React.PureComponent {
                 </div>
 
                 <nav>
-                    <div className={isReady ? css.disabled : null}>
+                    <div className={isBusy ? css.disabled : null}>
                         <a aria-current={location.pathname === '/wallet/'}>
                             <Icon icon="wallet" size={20} />
                         </a>
@@ -108,7 +108,7 @@ class Sidebar extends React.PureComponent {
                         </ul>
                     </div>
                 </nav>
-                <nav className={isReady ? css.disabled : null}>
+                <nav className={isBusy ? css.disabled : null}>
                     <NavLink to="/settings">
                         <Icon icon="settings" size={20} />
                         <strong>{t('home:settings').toLowerCase()}</strong>
@@ -136,7 +136,7 @@ class Sidebar extends React.PureComponent {
 const mapStateToProps = (state) => ({
     accounts: state.accounts,
     seedIndex: state.wallet.seedIndex,
-    isReady:
+    isBusy:
         !state.wallet.ready || state.ui.isSyncing || state.ui.isSendingTransfer || state.ui.isGeneratingReceiveAddress,
 });
 

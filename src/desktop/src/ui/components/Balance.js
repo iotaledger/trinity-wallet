@@ -41,7 +41,7 @@ class Balance extends React.PureComponent {
     };
 
     componentWillReceiveProps(newProps) {
-        if (newProps.accountName !== this.props.accountName) {
+        if (newProps.index !== this.props.index || newProps.seedIndex !== this.props.seedIndex) {
             this.setState({ balanceIsShort: true });
         }
     }
