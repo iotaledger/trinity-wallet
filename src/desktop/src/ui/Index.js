@@ -167,6 +167,10 @@ class App extends React.Component {
      * @param {string} Item - Triggered menu item
      */
     menuToggle(item) {
+        if (!item) {
+            return;
+        }
+
         switch (item) {
             case 'about':
                 // Is processed in ui/global/About

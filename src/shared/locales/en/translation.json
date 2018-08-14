@@ -700,5 +700,12 @@
     "privacyPolicy": {
         "privacyPolicy": "Privacy Policy",
         "agree": "I agree"
+    },
+    "tray": {
+         "trayApplication": "Tray application",
+         "trayExplanation": "Gives you a quick overview of your balance and recent history.",
+         "notLoggedIn": "You are not logged in",
+         "setupIncomplete": "Wallet setup incomplete",
+         "completeSetup": "Complete setup"
     }
 }

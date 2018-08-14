@@ -5,6 +5,12 @@
     justify-content: center;
     flex-direction: column;
 
+    @media (max-width: 320px) {
+        height: 160px;
+        padding-top: 15px;
+        position: relative;
+    }
+
     h3 {
         font-size: 14px;
         font-weight: 400;
@@ -35,7 +41,7 @@
         position: absolute;
         top: 50%;
         left: 20px;
-        margin-top: -9px;
+        margin-top: -5px;
         &:last-of-type {
             left: auto;
             right: 20px;

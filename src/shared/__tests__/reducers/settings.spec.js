@@ -65,6 +65,8 @@ describe('Reducer: settings', () => {
                 acceptedPrivacy: false,
                 autoPromotion: true,
                 hideEmptyTransactions: false,
+                isTrayEnabled: true,
+                showNotifications: true,
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
@@ -436,6 +438,40 @@ describe('Reducer: settings', () => {
             const newState = reducer(initialState, action);
             const expectedState = {
                 hasVisitedSeedShareTutorial: true,
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
+
+    describe('SET_TRAY', () => {
+        it('should set isTrayEnabled to payload', () => {
+            const initialState = {
+                isTrayEnabled: true,
+            };
+
+            const action = actions.setTray(false);
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                isTrayEnabled: false,
+            };
+
+            expect(newState).to.eql(expectedState);
+        });
+    });
+
+    describe('SET_NOTIFICATIONS', () => {
+        it('should set showNotifications to payload', () => {
+            const initialState = {
+                showNotifications: true,
+            };
+
+            const action = actions.setNotifications(false);
+
+            const newState = reducer(initialState, action);
+            const expectedState = {
+                showNotifications: false,
             };
 
             expect(newState).to.eql(expectedState);
