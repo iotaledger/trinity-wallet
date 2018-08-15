@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
+<<<<<<< HEAD
 import { StyleSheet, View, Keyboard, TouchableWithoutFeedback, KeyboardAvoidingView } from 'react-native';
+=======
+import { StyleSheet, View, Keyboard, TouchableWithoutFeedback } from 'react-native';
+>>>>>>> 4cf9267fd... Fix Android SeedVault (#228)
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { width, height } from '../utils/dimensions';
@@ -94,7 +98,11 @@ class SeedVaultBackup extends Component {
                             <View style={{ flex: 0.7 }} />
                             <Header textColor={body.color}>{t('exportSeedVault')}</Header>
                         </View>
+<<<<<<< HEAD
                         <KeyboardAvoidingView behavior="padding" style={styles.midContainer}>
+=======
+                        <View style={styles.midContainer}>
+>>>>>>> 4cf9267fd... Fix Android SeedVault (#228)
                             <SeedVaultExportComponent
                                 step={step}
                                 setProgressStep={(step) => this.setState({ step })}
@@ -106,7 +114,11 @@ class SeedVaultBackup extends Component {
                                 seed={seed}
                                 setSeed={(seed) => this.setState({ seed })}
                             />
+<<<<<<< HEAD
                         </KeyboardAvoidingView>
+=======
+                        </View>
+>>>>>>> 4cf9267fd... Fix Android SeedVault (#228)
                         <View style={styles.bottomContainer}>
                             <OnboardingButtons
                                 onLeftButtonPress={() => this.SeedVaultExportComponent.onBackPress()}
