@@ -656,9 +656,9 @@ export const setTray = (payload) => ({
  * Dispatch to set if native notifications are enabled
  *
  * @method setNotifications
- * @param {boolean} payload
+ * @param {{type: {string}, enabled: {boolean}}}} payload
  *
- * @returns {{type: {string}, payload: {boolean} }}
+ * @returns {{type: {string}, payload: {object} }}
  */
 export const setNotifications = (payload) => ({
     type: ActionTypes.SET_NOTIFICATIONS,

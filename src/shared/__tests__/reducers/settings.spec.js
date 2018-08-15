@@ -15,7 +15,7 @@ describe('Reducer: settings', () => {
                 mode: 'Standard',
                 language: 'English (International)',
                 currency: 'USD',
-                autoNodeSwitching: true,
+                autoNodeSwitching: false,
                 availableCurrencies: [
                     'USD',
                     'GBP',
@@ -66,7 +66,11 @@ describe('Reducer: settings', () => {
                 autoPromotion: true,
                 hideEmptyTransactions: false,
                 isTrayEnabled: true,
-                showNotifications: true,
+                notifications: {
+                    general: true,
+                    confirmations: true,
+                    messages: true,
+                },
             };
 
             expect(reducer(undefined, {})).to.eql(initialState);
@@ -462,16 +466,24 @@ describe('Reducer: settings', () => {
     });
 
     describe('SET_NOTIFICATIONS', () => {
-        it('should set showNotifications to payload', () => {
+        it('should set notifications.general to payload', () => {
             const initialState = {
-                showNotifications: true,
+                notifications: {
+                    general: true,
+                    confirmations: true,
+                    messages: true,
+                },
             };
 
-            const action = actions.setNotifications(false);
+            const action = actions.setNotifications({ type: 'general', enabled: false });
 
             const newState = reducer(initialState, action);
             const expectedState = {
-                showNotifications: false,
+                notifications: {
+                    general: false,
+                    confirmations: true,
+                    messages: true,
+                },
             };
 
             expect(newState).to.eql(expectedState);

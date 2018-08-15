@@ -3,7 +3,7 @@ const { dialog } = require('electron').remote;
 const currentWindow = require('electron').remote.getCurrentWindow();
 const keytar = require('keytar');
 const fs = require('fs');
-const settings = require('electron-settings');
+const electronSettings = require('electron-settings');
 const Kerl = require('iota.lib.js/lib/crypto/kerl/kerl');
 const Curl = require('iota.lib.js/lib/crypto/curl/curl');
 const Converter = require('iota.lib.js/lib/crypto/converter/converter');
@@ -124,7 +124,7 @@ const Electron = {
      * @returns {any} Storage item value
      */
     getStorage(key) {
-        return settings.get(key);
+        return electronSettings.get(key);
     },
 
     /**
@@ -135,7 +135,7 @@ const Electron = {
      */
     setStorage(key, item) {
         ipc.send('storage.update', JSON.stringify({ key, item }));
-        return settings.set(key, item);
+        return electronSettings.set(key, item);
     },
 
     /**
@@ -144,7 +144,7 @@ const Electron = {
      * @returns {boolean} If item removal is succesfull
      */
     removeStorage(key) {
-        return settings.delete(key);
+        return electronSettings.delete(key);
     },
 
     /**
@@ -152,7 +152,7 @@ const Electron = {
      * @returns {undefined}
      */
     clearStorage() {
-        const keys = settings.getAll();
+        const keys = electronSettings.getAll();
         Object.keys(keys).forEach((key) => this.removeStorage(key));
     },
 
@@ -161,7 +161,7 @@ const Electron = {
      * @returns {array} Storage item keys
      */
     getAllStorage() {
-        const data = settings.getAll();
+        const data = electronSettings.getAll();
         const keys = Object.keys(data).filter((key) => key.indexOf('reduxPersist') === 0);
         return keys;
     },
@@ -383,16 +383,25 @@ const Electron = {
             return;
         }
 
+        const data = electronSettings.get('reduxPersist:settings');
+        const settings = JSON.parse(data);
+
+        if (!settings.notifications.general) {
+            return;
+        }
+
         let message = '';
 
         if (transactions.length > 1) {
             message = locales.multipleTx;
+        } else if (transactions.length && transactions[0].transferValue === 0) {
+            if (!settings.notifications.messages) {
+                return;
+            }
+            message = locales.messageTx;
         } else if (transactions.length) {
-            message =
-                transactions[0].transferValue > 0
-                    ? locales.valueTx.replace('{{value}}', formatIotas(transactions[0].transferValue))
-                    : locales.messageTx;
-        } else {
+            message = locales.valueTx.replace('{{value}}', formatIotas(transactions[0].transferValue));
+        } else if (settings.notifications.confirmations) {
             message = confirmations[0].incoming ? locales.confirmedIn : locales.confirmedOut;
             message = message.replace('{{value}}', formatIotas(confirmations[0].transferValue));
         }

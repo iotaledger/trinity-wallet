@@ -141,7 +141,11 @@ const initialState = {
     /**
      * Determines if native OS notifications are enabled
      */
-    showNotifications: true,
+    notifications: {
+        general: true,
+        confirmations: true,
+        messages: true,
+    },
 };
 
 const settingsReducer = (state = initialState, action) => {
@@ -283,7 +287,10 @@ const settingsReducer = (state = initialState, action) => {
         case ActionTypes.SET_NOTIFICATIONS:
             return {
                 ...state,
-                showNotifications: action.payload,
+                notifications: {
+                    ...state.notifications,
+                    [action.payload.type]: action.payload.enabled,
+                },
             };
     }
 
