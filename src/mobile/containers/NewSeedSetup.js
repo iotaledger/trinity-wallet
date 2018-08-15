@@ -10,7 +10,6 @@ import { MAX_SEED_LENGTH } from 'iota-wallet-shared-modules/libs/iota/utils';
 import { generateSecureRandom } from 'react-native-securerandom';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { generateNewSeed, randomiseSeedCharacter } from 'iota-wallet-shared-modules/libs/crypto';
-import { Navigation } from 'react-native-navigation';
 import Modal from 'react-native-modal';
 import FlagSecure from 'react-native-flag-secure-android';
 import WithUserActivity from '../components/UserActivity';
@@ -239,30 +238,23 @@ class NewSeedSetup extends Component {
                 animated: false,
             });
         } else {
-            // FIXME: A quick workaround to stop UI text fields breaking on android due to react-native-navigation.
             this.goBack();
         }
     }
 
     goBack() {
-        const { theme: { body } } = this.props;
-        // TODO: A quick workaround to stop UI text fields breaking on android due to react-native-navigation.
-        Navigation.startSingleScreenApp({
-            screen: {
-                screen: 'home',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    topBarElevationShadowEnabled: false,
-                    screenBackgroundColor: body.bg,
-                    drawUnderStatusBar: true,
-                    statusBarColor: body.bg,
-                },
+        const { theme: { body, bar } } = this.props;
+        this.props.navigator.resetTo({
+            screen: 'home',
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                topBarElevationShadowEnabled: false,
+                screenBackgroundColor: body.bg,
+                drawUnderStatusBar: true,
+                statusBarColor: bar.alt,
             },
-            appStyle: {
-                orientation: 'portrait',
-                keepStyleAcrossPush: true,
-            },
+            animated: false,
         });
     }
 

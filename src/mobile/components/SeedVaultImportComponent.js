@@ -89,7 +89,7 @@ export class SeedVaultImportComponent extends Component {
         const { t } = this.props;
         DocumentPicker.show(
             {
-                filetype: [isAndroid ? 'image/*' : 'public.data'],
+                filetype: [isAndroid ? 'application/octet-stream' : 'public.data'],
             },
             (error, res) => {
                 if (error) {
@@ -102,13 +102,6 @@ export class SeedVaultImportComponent extends Component {
                 let path = res.uri;
                 if (path.startsWith('file://')) {
                     path = path.slice(7);
-                }
-                if (!path.endsWith('.kdbx')) {
-                    return this.props.generateAlert(
-                        'error',
-                        t('seedVault:seedFileError'),
-                        t('seedVault:seedFileErrorExplanation'),
-                    );
                 }
                 RNFetchBlob.fs
                     .readFile(path, 'ascii')
