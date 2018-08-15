@@ -1,10 +1,16 @@
 import filter from 'lodash/filter';
+import isArray from 'lodash/isArray';
+import isFunction from 'lodash/isFunction';
+import isUndefined from 'lodash/isUndefined';
+import includes from 'lodash/includes';
 import isNull from 'lodash/isNull';
-import size from 'lodash/size';
 import sampleSize from 'lodash/sampleSize';
+import size from 'lodash/size';
 import URL from 'url-parse';
 import { BigNumber } from 'bignumber.js';
 import { iota } from './index';
+import { NODELIST_URL } from '../../config';
+import Errors from '../errors';
 
 export const MAX_SEED_LENGTH = 81;
 
@@ -15,6 +21,14 @@ export const VALID_SEED_REGEX = /^[A-Z9]+$/;
 export const VALID_ADDRESS_WITH_CHECKSUM_REGEX = /^[A-Z9]{90}$/;
 
 export const TOTAL_IOTA_SUPPLY = 2779530283277761;
+
+export const HASH_SIZE = 81;
+
+export const TRANSACTION_TRYTES_SIZE = 2673;
+
+export const EMPTY_HASH_TRYTES = '9'.repeat(HASH_SIZE);
+
+export const EMPTY_TRANSACTION_TRYTES = '9'.repeat(TRANSACTION_TRYTES_SIZE);
 
 /**
  * Converts trytes to bytes
@@ -274,31 +288,29 @@ export const parseAddress = (input) => {
 };
 
 /**
+ * Retry IOTA api calls on different nodes
  *
+ * @method withRetriesOnDifferentNodes
  * @param {array} nodes
- * @param {number} retries
- * @returns {function(*): function(...[*]): *}
+ * @param {array} [failureCallbacks]
+ *
+ * @returns {function(function): function(...[*]): Promise}
  */
-export const withRetriesOnDifferentNodes = (nodes, retries = 5) => {
+export const withRetriesOnDifferentNodes = (nodes, failureCallbacks = []) => {
     let attempt = 0;
-
-    const selectedNodes = sampleSize(
-        filter(nodes, (node) => node !== iota.provider),
-        // Choose a sample size of one less than retry attempts
-        // As the first attempt would be for the currently selected node
-        retries - 1,
-    );
+    const retries = size(nodes);
 
     return (promiseFunc) => {
         const execute = (...args) => {
-            return promiseFunc(
-                ...[
-                    ...args,
-                    // On the first attempt, pass provider as null
-                    // This way the currently selected node will be tried first
-                    attempt ? selectedNodes[attempt - 1] : null,
-                ],
-            ).catch((err) => {
+            if (isUndefined(nodes[attempt])) {
+                return Promise.reject(new Error(Errors.NO_NODE_TO_RETRY));
+            }
+
+            return promiseFunc(nodes[attempt])(...args).catch((err) => {
+                if (isFunction(failureCallbacks[attempt])) {
+                    failureCallbacks[attempt]();
+                }
+
                 attempt = attempt + 1;
 
                 if (attempt < retries) {
@@ -311,4 +323,45 @@ export const withRetriesOnDifferentNodes = (nodes, retries = 5) => {
 
         return execute;
     };
+};
+
+/**
+ * Fetches list of IRI nodes from a server
+ *
+ * @method fetchRemoteNodes
+ * @param {string} [url]
+ * @param {object} [options]
+ *
+ * @returns {Promise<*>}
+ */
+export const fetchRemoteNodes = (
+    url = NODELIST_URL,
+    options = {
+        headers: {
+            Accept: 'application/json',
+        },
+    },
+) =>
+    fetch(url, options)
+        .then((response) => response.json())
+        .then((response) => {
+            if (isArray(response)) {
+                return response.filter((node) => typeof node.node === 'string' && node.node.indexOf('https://') === 0);
+            }
+
+            return [];
+        });
+
+/**
+ * Gets random nodes.
+ *
+ * @method getRandomNodes
+ * @param {array} nodes
+ * @param {number} [size]
+ * @param {array} [blacklisted]
+ *
+ * @returns {Array}
+ */
+export const getRandomNodes = (nodes, size = 5, blacklisted = []) => {
+    return sampleSize(filter(nodes, (node) => !includes(blacklisted, node)), size);
 };

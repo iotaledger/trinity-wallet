@@ -23,8 +23,9 @@ import {
     selectFirstAddressFromAccountFactory,
     getFailedBundleHashesForSelectedAccount,
     getNodesFromState,
+    getSelectedNodeFromState,
 } from '../selectors/accounts';
-import { withRetriesOnDifferentNodes } from '../libs/iota/utils';
+import { withRetriesOnDifferentNodes, fetchRemoteNodes, getRandomNodes } from '../libs/iota/utils';
 import { setNextStepAsActive, reset as resetProgress } from './progress';
 import { clearSendFields } from './ui';
 import {
@@ -32,7 +33,6 @@ import {
     findPromotableTail,
     prepareTransferArray,
     filterInvalidPendingTransactions,
-    performPow,
     getPendingOutgoingTransfersForAddresses,
     retryFailedTransaction as retry,
 } from '../libs/iota/transfers';
@@ -69,7 +69,7 @@ import {
 } from './alerts';
 import i18next from '../i18next.js';
 import Errors from '../libs/errors';
-import { DEFAULT_DEPTH } from '../config';
+import { DEFAULT_DEPTH, DEFAULT_RETRIES } from '../config';
 
 export const ActionTypes = {
     PROMOTE_TRANSACTION_REQUEST: 'IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST',
@@ -133,13 +133,11 @@ export const sendTransferRequest = () => ({
  * Dispatch when a transaction is successfully sent
  *
  * @method sendTransferSuccess
- * @param {object} payload
  *
- * @returns {{type: {string}, payload: {object} }}
+ * @returns {{type: {string} }}
  */
-export const sendTransferSuccess = (payload) => ({
+export const sendTransferSuccess = () => ({
     type: ActionTypes.SEND_TRANSFER_SUCCESS,
-    payload,
 });
 
 /**
@@ -192,14 +190,13 @@ export const retryFailedTransactionError = () => ({
  *  On successful transfer, update store, generate alert and clear send page text fields
  *
  *  @method completeTransfer
- *  @param {object} payload - sending status, address, transfer value
  *
  *  @returns {function} dispatch
  **/
-export const completeTransfer = (payload) => {
+export const completeTransfer = () => {
     return (dispatch) => {
         dispatch(clearSendFields());
-        dispatch(sendTransferSuccess(payload));
+        dispatch(sendTransferSuccess());
     };
 };
 
@@ -215,7 +212,9 @@ export const completeTransfer = (payload) => {
  **/
 export const promoteTransaction = (bundleHash, accountName, powFn) => (dispatch, getState) => {
     dispatch(promoteTransactionRequest(bundleHash));
-    const remotePoW = getState().settings.remotePoW;
+
+    const remotePoW = getRemotePoWFromState(getState());
+
     if (!remotePoW) {
         dispatch(
             generateAlert(
@@ -225,10 +224,10 @@ export const promoteTransaction = (bundleHash, accountName, powFn) => (dispatch,
             ),
         );
     }
-    let accountState = null;
-    let chainBrokenInternally = false;
 
-    return syncAccount(selectedAccountStateFactory(accountName)(getState()))
+    let accountState = {};
+
+    return syncAccount()(selectedAccountStateFactory(accountName)(getState()))
         .then((newAccountState) => {
             accountState = newAccountState;
 
@@ -237,32 +236,29 @@ export const promoteTransaction = (bundleHash, accountName, powFn) => (dispatch,
             const transaction = accountState.transfers[bundleHash];
 
             if (transaction.persistence) {
-                chainBrokenInternally = true;
                 throw new Error(Errors.TRANSACTION_ALREADY_CONFIRMED);
             }
 
-            return isStillAValidTransaction(transaction, accountState.addresses);
+            return isStillAValidTransaction()(transaction, accountState.addresses);
         })
         .then((isValid) => {
             if (!isValid) {
-                chainBrokenInternally = true;
                 throw new Error(Errors.BUNDLE_NO_LONGER_VALID);
             }
 
             const tailTransactions = accountState.transfers[bundleHash].tailTransactions;
 
-            return findPromotableTail(tailTransactions, 0);
+            return findPromotableTail()(tailTransactions, 0);
         })
         .then((consistentTail) => {
-            const shouldOffloadPow = getRemotePoWFromState(getState());
-
             return dispatch(
                 forceTransactionPromotion(
                     accountName,
                     consistentTail,
                     accountState.transfers[bundleHash].tailTransactions,
                     true,
-                    shouldOffloadPow ? null : powFn,
+                    // If proof of work configuration is set to remote, pass proof of work function as null
+                    remotePoW ? null : powFn,
                 ),
             );
         })
@@ -278,7 +274,7 @@ export const promoteTransaction = (bundleHash, accountName, powFn) => (dispatch,
             return dispatch(promoteTransactionSuccess());
         })
         .catch((err) => {
-            if (err.message === Errors.BUNDLE_NO_LONGER_VALID && chainBrokenInternally) {
+            if (err.message === Errors.BUNDLE_NO_LONGER_VALID) {
                 dispatch(generateAlert('error', i18next.t('global:promotionError'), i18next.t('global:noLongerValid')));
             } else if (err.message.includes(Errors.ATTACH_TO_TANGLE_UNAVAILABLE)) {
                 dispatch(
@@ -289,7 +285,7 @@ export const promoteTransaction = (bundleHash, accountName, powFn) => (dispatch,
                         10000,
                     ),
                 );
-            } else if (err.message === Errors.TRANSACTION_ALREADY_CONFIRMED && chainBrokenInternally) {
+            } else if (err.message === Errors.TRANSACTION_ALREADY_CONFIRMED) {
                 dispatch(
                     generateAlert(
                         'success',
@@ -306,16 +302,12 @@ export const promoteTransaction = (bundleHash, accountName, powFn) => (dispatch,
 };
 
 /**
- *   Accepts a consistent tail boolean with all tails associated with a bundle.
- *   - Case (when no consistent tail)
- *      > Replays bundle and promotes with the reattachment's transaction hash
- *   - Case (when there is a consistent tail)
- *      > Just directly promote transaction with the consistent tail hash
+ *  Tries to promote transaction. If transaction cannot be promoted, replays before promotion.
  *
  *   @method forceTransactionPromotion
  *   @param {string} accountName
  *   @param {boolean | object} consistentTail
- *   @param {array} tails
+ *   @param {array} tailTransactionHashes
  *   @param {boolean} shouldGenerateAlert
  *   @param {function} powFn
  *   @param {number} depth
@@ -325,17 +317,17 @@ export const promoteTransaction = (bundleHash, accountName, powFn) => (dispatch,
 export const forceTransactionPromotion = (
     accountName,
     consistentTail,
-    tails,
+    tailTransactionHashes,
     shouldGenerateAlert,
     powFn = null,
     depth = DEFAULT_DEPTH,
 ) => (dispatch, getState) => {
     if (!consistentTail) {
-        // Grab hash from the top tail to replay
-        const topTx = head(tails);
-        const hash = topTx.hash;
+        // Grab first tail transaction hash
+        const tailTransaction = head(tailTransactionHashes);
+        const hash = tailTransaction.hash;
 
-        return replayBundleAsync(hash, powFn).then((reattachment) => {
+        return replayBundleAsync(null, powFn)(hash).then((reattachment) => {
             if (shouldGenerateAlert) {
                 dispatch(
                     generateAlert(
@@ -348,7 +340,6 @@ export const forceTransactionPromotion = (
             }
 
             const existingAccountState = selectedAccountStateFactory(accountName)(getState());
-
             const { newState } = syncAccountAfterReattachment(accountName, reattachment, existingAccountState);
 
             // Update local store
@@ -356,33 +347,33 @@ export const forceTransactionPromotion = (
 
             const tailTransaction = find(reattachment, { currentIndex: 0 });
 
-            return promoteTransactionAsync(tailTransaction.hash, powFn);
+            return promoteTransactionAsync(null, powFn)(tailTransaction.hash);
         });
     }
 
-    return promoteTransactionAsync(consistentTail.hash, powFn, depth)
-        .then((txs) => txs)
-        .catch((error) => {
-            const isReferenceTxOld = error.message.includes(Errors.REFERENCE_TRANSACTION_TOO_OLD);
-            const hasDefaultDepth = depth === DEFAULT_DEPTH;
+    return promoteTransactionAsync(null, powFn)(consistentTail.hash, depth).catch((error) => {
+        const isReferenceTxOld = error.message.includes(Errors.REFERENCE_TRANSACTION_TOO_OLD);
+        const hasDefaultDepth = depth === DEFAULT_DEPTH;
 
-            if (isReferenceTxOld && hasDefaultDepth) {
-                return dispatch(
-                    forceTransactionPromotion(
-                        accountName,
-                        consistentTail,
-                        tails,
-                        shouldGenerateAlert,
-                        powFn,
-                        depth * 2,
-                    ),
-                );
-            } else if (isReferenceTxOld && !hasDefaultDepth) {
-                return dispatch(forceTransactionPromotion(accountName, null, tails, shouldGenerateAlert, powFn));
-            }
+        if (isReferenceTxOld && hasDefaultDepth) {
+            return dispatch(
+                forceTransactionPromotion(
+                    accountName,
+                    consistentTail,
+                    tailTransactionHashes,
+                    shouldGenerateAlert,
+                    powFn,
+                    depth * 2,
+                ),
+            );
+        } else if (isReferenceTxOld && !hasDefaultDepth) {
+            return dispatch(
+                forceTransactionPromotion(accountName, null, tailTransactionHashes, shouldGenerateAlert, powFn),
+            );
+        }
 
-            throw new Error(error.message);
-        });
+        throw new Error(error.message);
+    });
 };
 
 /**
@@ -406,9 +397,6 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
 
     const address = size(receiveAddress) === 90 ? receiveAddress : iota.utils.addChecksum(receiveAddress);
 
-    // Use a local variable to keep track if the promise chain was interrupted internally.
-    let chainBrokenInternally = false;
-
     // Keep track if the inputs are signed
     let hasSignedInputs = false;
 
@@ -420,36 +408,30 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
     let accountState = selectedAccountStateFactory(accountName)(getState());
     let transferInputs = [];
 
-    // Security checks are not necessary for zero value transfers
-    // Have them wrapped in a separate private function so in case it is a value transfer,
-    // it can be chained together with the rest of the promise chain.
     const withPreTransactionSecurityChecks = () => {
-        // Checking node's health
+        // Progressbar step => (Checking node's health)
         dispatch(setNextStepAsActive());
 
         return isNodeSynced()
             .then((isSynced) => {
                 if (isSynced) {
-                    // Validating receive address
+                    // Progressbar step => (Validating receive address)
                     dispatch(setNextStepAsActive());
 
                     // Make sure that the address a user is about to send to is not already used.
-                    // err -> Since shouldAllowSendingToAddress consumes wereAddressesSpentFrom endpoint
-                    // Omit input preparation in case the address is already spent from.
-                    return shouldAllowSendingToAddress([address]);
+                    return shouldAllowSendingToAddress()([address]);
                 }
 
                 throw new Error(Errors.NODE_NOT_SYNCED);
             })
             .then((shouldAllowSending) => {
                 if (shouldAllowSending) {
-                    // Syncing account
+                    // Progressbar step => (Syncing account)
                     dispatch(setNextStepAsActive());
 
-                    return syncAccount(accountState, seed, true, genFn, true);
+                    return syncAccount()(accountState, seed, genFn);
                 }
 
-                chainBrokenInternally = true;
                 throw new Error(Errors.KEY_REUSE);
             })
             .then((newState) => {
@@ -459,17 +441,18 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
 
                 const valueTransfers = filter(map(accountState.transfers, (tx) => tx), (tx) => tx.transferValue !== 0);
 
-                return filterInvalidPendingTransactions(valueTransfers, accountState.addresses);
+                return filterInvalidPendingTransactions()(valueTransfers, accountState.addresses);
             })
             .then((filteredTransfers) => {
                 const { addresses, transfers } = accountState;
                 const startIndex = getStartingSearchIndexToPrepareInputs(addresses);
                 const spentAddressesFromTransactions = getSpentAddressesFromTransactions(transfers);
 
-                // Preparing inputs
+                // Progressbar step => (Preparing inputs)
                 dispatch(setNextStepAsActive());
 
-                return getUnspentInputs(
+                // Prepare inputs.
+                return getUnspentInputs()(
                     addresses,
                     spentAddressesFromTransactions,
                     filteredTransfers,
@@ -479,18 +462,15 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 );
             })
             .then((inputs) => {
-                // totalBalance: total balance associated with addresses.
-                // Contains balance from addresses regardless of the fact they are spent from.
-                // If its less than the value user is about to send to, it will generate an alert with Not enough balance.
+                // Input selection prepares inputs sequentially starting from the first address with balance
+                // If total balance is less than transfer value, do not allow transaction.
                 if (get(inputs, 'totalBalance') < value) {
-                    chainBrokenInternally = true;
                     throw new Error(Errors.NOT_ENOUGH_BALANCE);
 
                     // availableBalance: balance after filtering out addresses that are spent and also addresses with incoming transfers..
                     // Contains only spendable balance
                     // Note: At this point, we could leverage the change addresses and allow user making a transfer on top from those.
                 } else if (get(inputs, 'availableBalance') < value) {
-                    chainBrokenInternally = true;
                     const addresses = accountState.addresses;
                     const transfers = accountState.transfers;
                     const pendingOutgoingTransfers = getPendingOutgoingTransfersForAddresses(addresses, transfers);
@@ -515,17 +495,15 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 );
 
                 if (isSendingToAnyInputAddress) {
-                    chainBrokenInternally = true;
                     throw new Error(Errors.CANNOT_SEND_TO_OWN_ADDRESS);
                 }
 
                 transferInputs = get(inputs, 'inputs');
 
-                return getAddressesUptoRemainder(accountState.addresses, seed, genFn, [
+                return getAddressesUptoRemainder()(accountState.addresses, seed, genFn, [
                     // Make sure inputs are blacklisted
                     ...map(transferInputs, (input) => input.address),
-                    // When sending to one of own addresses
-                    // Make sure receive address is also blacklisted
+                    // Make sure receive address is blacklisted
                     iota.utils.noChecksum(receiveAddress),
                 ]);
             })
@@ -550,10 +528,10 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
         transactionObjects: [],
     };
 
-    const promise = isZeroValue ? () => Promise.resolve(null) : withPreTransactionSecurityChecks;
+    const withInputs = isZeroValue ? () => Promise.resolve(null) : withPreTransactionSecurityChecks;
 
     return (
-        promise()
+        withInputs()
             // If we are making a zero value transaction, options would be null
             // Otherwise, it would be a dictionary with inputs and remainder address
             // Forward options to prepareTransfersAsync as is, because it contains a null check
@@ -561,10 +539,10 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 const firstAddress = selectFirstAddressFromAccountFactory(accountName)(getState());
                 const transfer = prepareTransferArray(address, value, message, firstAddress);
 
-                // Preparing transfers
+                // Progressbar step => (Preparing transfers)
                 dispatch(setNextStepAsActive());
 
-                return prepareTransfersAsync(seed, transfer, options);
+                return prepareTransfersAsync()(seed, transfer, options);
             })
             .then((trytes) => {
                 if (!isZeroValue) {
@@ -578,10 +556,10 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
 
                 if (iota.utils.isBundle(cached.transactionObjects.slice().reverse())) {
                     isValidBundle = true;
-                    // Getting transactions to approve
+                    // Progressbar step =>  (Getting transactions to approve)
                     dispatch(setNextStepAsActive());
 
-                    return getTransactionsToApproveAsync();
+                    return getTransactionsToApproveAsync()();
                 }
 
                 throw new Error(Errors.INVALID_BUNDLE);
@@ -589,56 +567,101 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
             .then(({ trunkTransaction, branchTransaction }) => {
                 const shouldOffloadPow = getRemotePoWFromState(getState());
 
-                // Proof of work
+                // Progressbar step => (Proof of work)
                 dispatch(setNextStepAsActive());
 
+                const performLocalPow = () =>
+                    attachToTangleAsync(null, powFn)(trunkTransaction, branchTransaction, cached.trytes);
+
                 if (!shouldOffloadPow) {
-                    return performPow(powFn, cached.trytes, trunkTransaction, branchTransaction);
+                    return performLocalPow();
                 }
 
                 // If proof of work configuration is set to remote PoW
                 // Make an attempt to offload proof of work to remote
-                // In case the network call fails, automatically switch to local proof of work
-                return attachToTangleAsync(trunkTransaction, branchTransaction, cached.trytes).catch(() => {
+                // If network call fails:
+                // 1) Find nodes with PoW enabled
+                // 2) Auto retry offloading PoW
+                // 3) If auto retry fails, perform proof of work locally
+                return attachToTangleAsync()(trunkTransaction, branchTransaction, cached.trytes).catch(() => {
                     dispatch(
                         generateAlert(
                             'info',
                             i18next.t('global:pleaseWait'),
-                            `${i18next.t('global:problemSendingYourTransaction')} ${i18next.t(
-                                'global:tryingAgainWithLocalPoW',
+                            `${i18next.t('global:problemPerformingProofOfWork')} ${i18next.t(
+                                'global:tryingAgainWithDifferentNode',
                             )}`,
+                            20000,
                         ),
                     );
 
-                    return performPow(powFn, cached.trytes, trunkTransaction, branchTransaction);
+                    // Find nodes with proof of work enabled
+                    return fetchRemoteNodes()
+                        .then((remoteNodes) => {
+                            const nodesWithPowEnabled = map(
+                                filter(remoteNodes, (node) => node.pow),
+                                (nodeWithPoWEnabled) => nodeWithPoWEnabled.node,
+                            );
+
+                            return withRetriesOnDifferentNodes(
+                                getRandomNodes(nodesWithPowEnabled, DEFAULT_RETRIES, [
+                                    getSelectedNodeFromState(getState()),
+                                ]),
+                            )(attachToTangleAsync)(trunkTransaction, branchTransaction, cached.trytes);
+                        })
+                        .catch(() => {
+                            // If outsourced proof of work fails on all nodes, fallback to local proof of work.
+                            dispatch(
+                                generateAlert(
+                                    'info',
+                                    i18next.t('global:pleaseWait'),
+                                    `${i18next.t('global:problemPerformingProofOfWork')} ${i18next.t(
+                                        'global:tryingAgainWithLocalPoW',
+                                    )}`,
+                                ),
+                            );
+
+                            return performLocalPow();
+                        });
                 });
             })
             .then(({ trytes, transactionObjects }) => {
                 cached.trytes = trytes;
                 cached.transactionObjects = transactionObjects;
 
-                // Broadcasting
+                // Progressbar step => (Broadcasting)
                 dispatch(setNextStepAsActive());
 
-                return withRetriesOnDifferentNodes(
-                    (() => {
-                        dispatch(
-                            generateAlert(
-                                'info',
-                                i18next.t('global:pleaseWait'),
-                                `${i18next.t('global:problemSendingYourTransaction')} ${i18next.t(
-                                    'global:tryingAgainWithDifferentNode',
-                                )}`,
-                                20000,
-                            ),
-                        );
+                // Make an attempt to broadcast transaction on selected node
+                // If it fails, auto retry broadcast on random nodes
+                const selectedNode = getSelectedNodeFromState(getState());
+                const randomNodes = [
+                    selectedNode,
+                    ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode]),
+                ];
 
-                        return getNodesFromState(getState());
-                    })(),
+                return withRetriesOnDifferentNodes(
+                    randomNodes,
+                    // Failure callbacks.
+                    // Executed on each attempt failure.
+                    // Only pass one, as we just want an alert on first broadcast failure
+                    [
+                        () =>
+                            dispatch(
+                                generateAlert(
+                                    'info',
+                                    i18next.t('global:pleaseWait'),
+                                    `${i18next.t('global:problemSendingYourTransaction')} ${i18next.t(
+                                        'global:tryingAgainWithDifferentNode',
+                                    )}`,
+                                    20000,
+                                ),
+                            ),
+                    ],
                 )(storeAndBroadcastAsync)(cached.trytes);
             })
             .then(() => {
-                return syncAccountAfterSpending(
+                return syncAccountAfterSpending()(
                     seed,
                     accountName,
                     cached.transactionObjects,
@@ -650,12 +673,12 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
             .then(({ newState }) => {
                 dispatch(updateAccountInfoAfterSpending(newState));
 
-                // Progress summary
+                // Progressbar => (Progress summary)
                 dispatch(setNextStepAsActive());
                 dispatch(generateTransactionSuccessAlert(isZeroValue));
 
                 setTimeout(() => {
-                    dispatch(completeTransfer({ address, value }));
+                    dispatch(completeTransfer());
                     dispatch(resetProgress());
                 }, 5000);
             })
@@ -695,11 +718,11 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
 
                 if (message === Errors.NODE_NOT_SYNCED) {
                     return dispatch(generateNodeOutOfSyncErrorAlert());
-                } else if (message === Errors.KEY_REUSE && chainBrokenInternally) {
+                } else if (message === Errors.KEY_REUSE) {
                     return dispatch(
                         generateAlert('error', i18next.t('global:keyReuse'), i18next.t('global:keyReuseError')),
                     );
-                } else if (message === Errors.NOT_ENOUGH_BALANCE && chainBrokenInternally) {
+                } else if (message === Errors.NOT_ENOUGH_BALANCE) {
                     return dispatch(
                         generateAlert(
                             'error',
@@ -708,7 +731,7 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                             20000,
                         ),
                     );
-                } else if (message === Errors.ADDRESS_HAS_PENDING_TRANSFERS && chainBrokenInternally) {
+                } else if (message === Errors.ADDRESS_HAS_PENDING_TRANSFERS) {
                     return dispatch(
                         generateAlert(
                             'error',
@@ -717,7 +740,7 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                             20000,
                         ),
                     );
-                } else if (message === Errors.FUNDS_AT_SPENT_ADDRESSES && chainBrokenInternally) {
+                } else if (message === Errors.FUNDS_AT_SPENT_ADDRESSES) {
                     return dispatch(
                         generateAlert(
                             'error',
@@ -726,7 +749,7 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                             20000,
                         ),
                     );
-                } else if (message === Errors.INCOMING_TRANSFERS && chainBrokenInternally) {
+                } else if (message === Errors.INCOMING_TRANSFERS) {
                     return dispatch(
                         generateAlert(
                             'error',
@@ -735,7 +758,7 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                             20000,
                         ),
                     );
-                } else if (message === Errors.CANNOT_SEND_TO_OWN_ADDRESS && chainBrokenInternally) {
+                } else if (message === Errors.CANNOT_SEND_TO_OWN_ADDRESS) {
                     return dispatch(
                         generateAlert(
                             'error',
@@ -777,7 +800,11 @@ export const retryFailedTransaction = (accountName, bundleHash, powFn) => (dispa
                 }
 
                 // If all addresses are still unspent, retry
-                return retry(existingFailedTransactionsForThisAccount[bundleHash], powFn, shouldOffloadPow);
+                return retry(
+                    existingFailedTransactionsForThisAccount[bundleHash],
+                    // If proof of work is set to remote, pass in null as the proof of work function
+                    shouldOffloadPow ? null : powFn,
+                );
             })
             .then(({ transactionObjects }) => {
                 dispatch(markBundleBroadcastStatusComplete({ accountName, bundleHash }));

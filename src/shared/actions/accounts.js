@@ -1,4 +1,9 @@
-import { selectedAccountStateFactory, getAccountNamesFromState } from '../selectors/accounts';
+import {
+    selectedAccountStateFactory,
+    getAccountNamesFromState,
+    getNodesFromState,
+    getSelectedNodeFromState,
+} from '../selectors/accounts';
 import { syncAccount, getAccountData } from '../libs/iota/accounts';
 import { clearWalletData, setSeedIndex } from './wallet';
 import {
@@ -7,9 +12,12 @@ import {
     generateSyncingErrorAlert,
     generateAccountDeletedAlert,
     generateNodeOutOfSyncErrorAlert,
+    generateAccountSyncRetryAlert,
 } from '../actions/alerts';
+import { withRetriesOnDifferentNodes, getRandomNodes } from '../libs/iota/utils';
 import { pushScreen } from '../libs/utils';
 import Errors from '../libs/errors';
+import { DEFAULT_RETRIES } from '../config';
 
 export const ActionTypes = {
     UPDATE_ACCOUNT_INFO_AFTER_SPENDING: 'IOTA/ACCOUNTS/UPDATE_ACCOUNT_INFO_AFTER_SPENDING',
@@ -468,7 +476,12 @@ export const getFullAccountInfoAdditionalSeed = (
     const existingAccountNames = getAccountNamesFromState(getState());
     const usedExistingSeed = getState().wallet.usedExistingSeed;
 
-    getAccountData(seed, accountName, genFn)
+    const selectedNode = getSelectedNodeFromState(getState());
+
+    withRetriesOnDifferentNodes(
+        [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
+        [() => dispatch(generateAccountSyncRetryAlert())],
+    )(getAccountData)(seed, accountName, genFn)
         .then((data) => {
             dispatch(clearWalletData()); // Clean up partial state for reducer.
             storeInKeychainPromise(password, seed, accountName)
@@ -494,10 +507,15 @@ export const getFullAccountInfoAdditionalSeed = (
  * @returns {function} dispatch
  */
 export const getFullAccountInfoFirstSeed = (seed, accountName, navigator = null, genFn) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
         dispatch(fullAccountInfoFirstSeedFetchRequest());
 
-        getAccountData(seed, accountName, genFn)
+        const selectedNode = getSelectedNodeFromState(getState());
+
+        withRetriesOnDifferentNodes(
+            [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
+            [() => dispatch(generateAccountSyncRetryAlert())],
+        )(getAccountData)(seed, accountName, genFn)
             .then((data) => dispatch(fullAccountInfoFirstSeedFetchSuccess(data)))
             .catch((err) => {
                 pushScreen(navigator, 'login');
@@ -528,10 +546,15 @@ export const getFullAccountInfoFirstSeed = (seed, accountName, navigator = null,
  * @returns {function} dispatch
  */
 export const manuallySyncAccount = (seed, accountName, genFn) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
         dispatch(manualSyncRequest());
 
-        getAccountData(seed, accountName, genFn)
+        const selectedNode = getSelectedNodeFromState(getState());
+
+        withRetriesOnDifferentNodes(
+            [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
+            [() => dispatch(generateAccountSyncRetryAlert())],
+        )(getAccountData)(seed, accountName, genFn)
             .then((data) => {
                 dispatch(generateSyncingCompleteAlert());
                 dispatch(manualSyncSuccess(data));
@@ -565,7 +588,12 @@ export const getAccountInfo = (seed, accountName, navigator = null, genFn) => {
 
         const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
-        return syncAccount(existingAccountState, seed, true, genFn, true)
+        const selectedNode = getSelectedNodeFromState(getState());
+
+        return withRetriesOnDifferentNodes(
+            [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
+            [() => dispatch(generateAccountSyncRetryAlert())],
+        )(syncAccount)(existingAccountState, seed, genFn)
             .then((newAccountData) => dispatch(accountInfoFetchSuccess(newAccountData)))
             .catch((err) => {
                 if (navigator) {

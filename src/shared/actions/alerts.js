@@ -46,8 +46,8 @@ const dispose = () => ({ type: ActionTypes.HIDE });
  * @param {string} title
  * @param {string} message
  * @param {string} category
- * @param {number} closeInterval
- * @param {object} err
+ * @param {number} [closeInterval]
+ * @param {object} [err]
  *
  * @returns {function} dispatch
  */
@@ -148,7 +148,7 @@ export const generateSyncingCompleteAlert = () => (dispatch) => {
 };
 
 /**
- * Generates an alert when an account is succesfully deleted
+ * Generates an alert when an account is successfully deleted
  *
  * @method generateAccountDeletedAlert
  *
@@ -209,6 +209,25 @@ export const generatePromotionErrorAlert = (error) => (dispatch) =>
             i18next.t('global:promotionErrorExplanation'),
             20000,
             error,
+        ),
+    );
+
+/**
+ * Generates an info alert (if account syncing fails) for auto retrying account sync
+ *
+ * @method generateAccountSyncRetryAlert
+ *
+ * @returns {function} dispatch
+ */
+export const generateAccountSyncRetryAlert = () => (dispatch) =>
+    dispatch(
+        generateAlert(
+            'info',
+            i18next.t('global:pleaseWait'),
+            `${i18next.t('global:errorFetchingAccountInformation')} ${i18next.t(
+                'global:tryingAgainWithDifferentNode',
+            )}`,
+            20000,
         ),
     );
 

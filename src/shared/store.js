@@ -15,8 +15,7 @@ import { ActionTypes } from './actions/settings';
 import networkMiddleware from './middlewares/network';
 import alertsMiddleware from './middlewares/alerts';
 import modalMiddleware from './middlewares/modal';
-
-const isDevelopment = process.env.NODE_ENV === 'development';
+import { __DEV__ } from './config';
 
 const developmentMiddleware = [thunk, networkMiddleware, alertsMiddleware, modalMiddleware];
 const productionMiddleware = [thunk, networkMiddleware, alertsMiddleware, modalMiddleware];
@@ -43,7 +42,7 @@ const rootReducer = (state, action) => {
     return reducers(state, action);
 };
 
-const middleware = isDevelopment ? developmentMiddleware : productionMiddleware;
+const middleware = __DEV__ ? developmentMiddleware : productionMiddleware;
 
 const store = createStore(
     rootReducer,

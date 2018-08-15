@@ -848,7 +848,7 @@ describe('libs: iota/transfers', () => {
             it('should return an empty array', () => {
                 const transactions = Array.from(new Array(5), () => ({ persistence: true }));
 
-                const promise = filterInvalidPendingTransactions(transactions, {});
+                const promise = filterInvalidPendingTransactions()(transactions, {});
 
                 return promise.then((transactions) => {
                     expect(transactions).to.eql([]);
@@ -872,7 +872,7 @@ describe('libs: iota/transfers', () => {
                     },
                 ];
 
-                const promise = filterInvalidPendingTransactions(transactions, addressData);
+                const promise = filterInvalidPendingTransactions()(transactions, addressData);
                 return promise.then((txs) => {
                     expect(txs).to.eql([]);
                     getBalances.restore();
@@ -894,7 +894,7 @@ describe('libs: iota/transfers', () => {
                     },
                 ];
 
-                const promise = filterInvalidPendingTransactions(transactions, addressData);
+                const promise = filterInvalidPendingTransactions()(transactions, addressData);
                 return promise.then((txs) => {
                     expect(txs).to.eql(transactions);
                     getBalances.restore();
@@ -918,7 +918,7 @@ describe('libs: iota/transfers', () => {
                     },
                 ];
 
-                const promise = filterInvalidPendingTransactions(transactions, addressData);
+                const promise = filterInvalidPendingTransactions()(transactions, addressData);
                 return promise.then((txs) => {
                     expect(txs).to.eql([]);
                     getBalances.restore();
@@ -940,7 +940,7 @@ describe('libs: iota/transfers', () => {
                     },
                 ];
 
-                const promise = filterInvalidPendingTransactions(transactions, addressData);
+                const promise = filterInvalidPendingTransactions()(transactions, addressData);
                 return promise.then((txs) => {
                     expect(txs).to.eql(transactions);
                     getBalances.restore();
@@ -1028,7 +1028,7 @@ describe('libs: iota/transfers', () => {
 
         describe('when there are no pending transfers', () => {
             it('should resolve an empty array', () => {
-                return prepareForAutoPromotion([{ persistence: true }, { persistence: true }], {}, 'TEST').then(
+                return prepareForAutoPromotion()([{ persistence: true }, { persistence: true }], {}, 'TEST').then(
                     (result) => expect(result).to.eql({}),
                 );
             });
@@ -1039,7 +1039,7 @@ describe('libs: iota/transfers', () => {
                 const transactions = map(mockTransactions.normalizedBundles, (tx) => tx);
                 const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['100'] });
 
-                return prepareForAutoPromotion(
+                return prepareForAutoPromotion()(
                     transactions,
                     {
                         WUOTVAPXBUWZYNN9WZXGDNAFOWNQPJLHJJDMUCLMPONEEMVNGEH9XIYAPB9LMXTAHOLZQNZFSHSIJAIID: {},
@@ -1068,7 +1068,7 @@ describe('libs: iota/transfers', () => {
                 const transactions = map(mockTransactions.normalizedBundles, (tx) => tx);
                 const getBalances = sinon.stub(iota.api, 'getBalances').yields(null, { balances: ['0'] });
 
-                return prepareForAutoPromotion(
+                return prepareForAutoPromotion()(
                     transactions,
                     {
                         WUOTVAPXBUWZYNN9WZXGDNAFOWNQPJLHJJDMUCLMPONEEMVNGEH9XIYAPB9LMXTAHOLZQNZFSHSIJAIID: {},
@@ -1181,7 +1181,7 @@ describe('libs: iota/transfers', () => {
                 const storeAndBroadcast = sinon.stub(iota.api, 'storeAndBroadcast').yields(null, []);
 
                 // Mock value trytes have a valid transaction hash
-                return retryFailedTransaction(transactionObjects, powFn, false).then(() => {
+                return retryFailedTransaction()(transactionObjects, powFn).then(() => {
                     expect(powFn.callCount).to.equal(0);
                     storeAndBroadcast.restore();
                 });
@@ -1197,7 +1197,7 @@ describe('libs: iota/transfers', () => {
                     branchTransaction: 'A'.repeat(81),
                 });
 
-                return retryFailedTransaction(
+                return retryFailedTransaction()(
                     map(
                         transactionObjects,
                         (tx, idx) => (idx % 2 === 0 ? tx : Object.assign({}, tx, { hash: 'U'.repeat(81) })),
