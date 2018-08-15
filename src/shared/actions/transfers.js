@@ -792,7 +792,7 @@ export const retryFailedTransaction = (accountName, bundleHash, powFn) => (dispa
 
     // First check spent statuses against transaction addresses
     return (
-        categoriseAddressesBySpentStatus(map(existingFailedTransactionsForThisAccount[bundleHash], (tx) => tx.address))
+        categoriseAddressesBySpentStatus()(map(existingFailedTransactionsForThisAccount[bundleHash], (tx) => tx.address))
             // If any address (input, remainder, receive) is spent, error out
             .then(({ spent }) => {
                 if (size(spent)) {
@@ -800,7 +800,7 @@ export const retryFailedTransaction = (accountName, bundleHash, powFn) => (dispa
                 }
 
                 // If all addresses are still unspent, retry
-                return retry(
+                return retry()(
                     existingFailedTransactionsForThisAccount[bundleHash],
                     // If proof of work is set to remote, pass in null as the proof of work function
                     shouldOffloadPow ? null : powFn,

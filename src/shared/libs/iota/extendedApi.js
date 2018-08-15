@@ -146,7 +146,7 @@ const getLatestInclusionAsync = (provider) => (hashes) =>
  * Extended version of iota.api.promoteTransaction with an option to perform PoW locally
  *
  * @method promoteTransactionAsync
- * @param {string} [provider]
+ * @param {*} [provider]
  * @param {function} [powFn]
  *
  * @returns {function(string, number, number, object): Promise<string>}
@@ -406,7 +406,7 @@ const checkAttachToTangleAsync = (node) => {
  * Promisified version of iota.api.attachToTangle
  *
  * @method attachToTangleAsync
- * @param {string} [provider]
+ * @param {*} [provider]
  * @param {function} [powFn]
  *
  * @returns {function(string, string, array, number): Promise<object>}

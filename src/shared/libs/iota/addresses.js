@@ -645,12 +645,12 @@ export const attachAndFormatAddress = (provider) => (address, index, balance, se
  * Categorise addresses as spent/unspent
  *
  * @method categoriseAddressesBySpentStatus
- * @param {array} addresses
+ * @param {string} [provider]
  *
- * @returns {object}
+ * @returns {function(array): object}
  */
-export const categoriseAddressesBySpentStatus = (addresses) => {
-    return wereAddressesSpentFromAsync()(addresses).then((spentStatuses) => {
+export const categoriseAddressesBySpentStatus = (provider) => (addresses) => {
+    return wereAddressesSpentFromAsync(provider)(addresses).then((spentStatuses) => {
         const categorise = (acc, address, idx) => {
             if (spentStatuses[idx]) {
                 acc.spent.push(address);
