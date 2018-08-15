@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
-import { StyleSheet, View, Keyboard, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, View, Keyboard, TouchableWithoutFeedback, KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { width, height } from '../utils/dimensions';
@@ -94,7 +94,7 @@ class SeedVaultBackup extends Component {
                             <View style={{ flex: 0.7 }} />
                             <Header textColor={body.color}>{t('exportSeedVault')}</Header>
                         </View>
-                        <View style={styles.midContainer}>
+                        <KeyboardAvoidingView behavior="padding" style={styles.midContainer}>
                             <SeedVaultExportComponent
                                 step={step}
                                 setProgressStep={(step) => this.setState({ step })}
@@ -106,7 +106,7 @@ class SeedVaultBackup extends Component {
                                 seed={seed}
                                 setSeed={(seed) => this.setState({ seed })}
                             />
-                        </View>
+                        </KeyboardAvoidingView>
                         <View style={styles.bottomContainer}>
                             <OnboardingButtons
                                 onLeftButtonPress={() => this.SeedVaultExportComponent.onBackPress()}
