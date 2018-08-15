@@ -25,6 +25,7 @@ module.exports = {
     send: '📤',
     receive: '📥',
     settings: '🎛',
+    settingsAlt: '🎚',
     history: '🕐',
     user: '👽',
     plus: '🔹',
