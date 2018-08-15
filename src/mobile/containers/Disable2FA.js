@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import authenticator from 'authenticator';
 import { resetWallet, set2FAStatus } from 'iota-wallet-shared-modules/actions/settings';
 import { setFirstUse } from 'iota-wallet-shared-modules/actions/accounts';
-import { Navigation } from 'react-native-navigation';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { getTwoFactorAuthKeyFromKeychain } from '../utils/keychain';
@@ -70,6 +69,8 @@ class Disable2FA extends Component {
         set2FAStatus: PropTypes.func.isRequired,
         /** Hash for wallet's password */
         password: PropTypes.object.isRequired,
+        /** Navigation object */
+        navigator: PropTypes.object.isRequired,
     };
 
     constructor() {
@@ -113,23 +114,18 @@ class Disable2FA extends Component {
     }
 
     goBack() {
-        const { theme } = this.props;
-        Navigation.startSingleScreenApp({
-            screen: {
-                screen: 'home',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    topBarElevationShadowEnabled: false,
-                    screenBackgroundColor: theme.body.bg,
-                    drawUnderStatusBar: true,
-                    statusBarColor: theme.body.bg,
-                },
+        const { theme: { bar, body } } = this.props;
+        this.props.navigator.resetTo({
+            screen: 'home',
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                topBarElevationShadowEnabled: false,
+                screenBackgroundColor: body.bg,
+                drawUnderStatusBar: true,
+                statusBarColor: bar.alt,
             },
-            appStyle: {
-                orientation: 'portrait',
-                keepStyleAcrossPush: true,
-            },
+            animated: false,
         });
     }
 

@@ -20,7 +20,6 @@ import {
 import { setLoginRoute } from 'iota-wallet-shared-modules/actions/ui';
 import tinycolor from 'tinycolor2';
 import { getMarketData, getChartData, getPrice } from 'iota-wallet-shared-modules/actions/marketData';
-import { Navigation } from 'react-native-navigation';
 import { getCurrencyData } from 'iota-wallet-shared-modules/actions/settings';
 import { setSetting } from 'iota-wallet-shared-modules/actions/wallet';
 import { changeHomeScreenRoute } from 'iota-wallet-shared-modules/actions/home';
@@ -260,22 +259,17 @@ class Loading extends Component {
     onChangeNodePress() {
         const { theme: { body } } = this.props;
         this.props.setLoginRoute('nodeSelection');
-        Navigation.startSingleScreenApp({
-            screen: {
-                screen: 'login',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    topBarElevationShadowEnabled: false,
-                    screenBackgroundColor: body.bg,
-                    drawUnderStatusBar: true,
-                    statusBarColor: body.bg,
-                },
+        this.props.navigator.resetTo({
+            screen: 'login',
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                topBarElevationShadowEnabled: false,
+                screenBackgroundColor: body.bg,
+                drawUnderStatusBar: true,
+                statusBarColor: body.bg,
             },
-            appStyle: {
-                orientation: 'portrait',
-                keepStyleAcrossPush: true,
-            },
+            animated: false,
         });
     }
 
@@ -299,41 +293,20 @@ class Loading extends Component {
     launchHomeScreen() {
         const { theme: { body, bar } } = this.props;
         KeepAwake.deactivate();
+        this.props.navigator.resetTo({
+            screen: 'home',
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                topBarElevationShadowEnabled: false,
+                screenBackgroundColor: body.bg,
+                drawUnderStatusBar: true,
+                statusBarColor: bar.hover,
+            },
+            animated: false,
+        });
         this.clearTimeouts();
-        // FIXME: A quick workaround to stop history refresh flash on iOS.
-        if (isAndroid) {
-            this.props.navigator.push({
-                screen: 'home',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    topBarElevationShadowEnabled: false,
-                    screenBackgroundColor: body.bg,
-                    drawUnderStatusBar: true,
-                    statusBarColor: bar.hover,
-                },
-                animated: false,
-            });
-            timer.clearInterval('inactivityTimer');
-        } else {
-            Navigation.startSingleScreenApp({
-                screen: {
-                    screen: 'home',
-                    navigatorStyle: {
-                        navBarHidden: true,
-                        navBarTransparent: true,
-                        topBarElevationShadowEnabled: false,
-                        screenBackgroundColor: body.bg,
-                        drawUnderStatusBar: true,
-                        statusBarColor: bar.bg,
-                    },
-                },
-                appStyle: {
-                    orientation: 'portrait',
-                    keepStyleAcrossPush: true,
-                },
-            });
-        }
+        this.setState({ animationPartOneDone: false, displayNodeChangeOption: false });
     }
 
     playAnimationTwo() {
@@ -346,6 +319,7 @@ class Loading extends Component {
             clearTimeout(this.timeout);
         }
         timer.clearTimeout('animationTimeout');
+        timer.clearTimeout('inactivityTimer');
         timer.clearTimeout('waitTimeout');
     }
 

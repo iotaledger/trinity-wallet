@@ -13,6 +13,8 @@ jest.mock('bugsnag-react-native', () => ({
 jest.mock('react-native-camera', () => {});
 jest.mock('rn-fetch-blob', () => {});
 
+jest.mock('rn-fetch-blob', () => {});
+
 const getProps = (overrides) =>
     assign(
         {},

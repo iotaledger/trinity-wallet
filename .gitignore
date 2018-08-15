@@ -33,6 +33,8 @@ Pods/
 
 # Android/IntelliJ
 #
+./android/app/build/*
+./android/build/*
 build/
 .idea
 .gradle/
@@ -44,8 +46,8 @@ local.properties
 node_modules/
 npm-debug.log
 yarn-error.log
-sample-package.json
-sample-main.js
+nodejs-project/sample-package.json
+nodejs-project/sample-main.js
 
 # vscode
 .vscode/*
