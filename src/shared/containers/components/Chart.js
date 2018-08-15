@@ -83,7 +83,15 @@ export default function withChartData(ChartComponent) {
 
             const range = limit.max - limit.min;
 
-            return [limit.min, limit.min + range * 0.25, limit.min + range * 0.5, limit.min + range * 0.75, limit.max];
+            return [
+                limit.min,
+                limit.min + range * 0.2,
+                limit.min + range * 0.4,
+                limit.min + range * 0.6,
+                limit.min + range * 0.8,
+                limit.min + range * 0.8,
+                limit.max,
+            ];
         }
 
         render() {
