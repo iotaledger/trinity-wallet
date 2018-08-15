@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { width, height } from '../utils/dimensions';
@@ -85,42 +85,44 @@ class SeedVaultBackup extends Component {
         const { step, seed } = this.state;
 
         return (
-            <View style={[styles.container, { backgroundColor: body.bg }]}>
-                <View>
-                    <DynamicStatusBar backgroundColor={body.bg} />
-                    <View style={styles.topContainer}>
-                        <Icon name="iota" size={width / 8} color={body.color} />
-                        <View style={{ flex: 0.7 }} />
-                        <Header textColor={body.color}>{t('exportSeedVault')}</Header>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                <View style={[styles.container, { backgroundColor: body.bg }]}>
+                    <View>
+                        <DynamicStatusBar backgroundColor={body.bg} />
+                        <View style={styles.topContainer}>
+                            <Icon name="iota" size={width / 8} color={body.color} />
+                            <View style={{ flex: 0.7 }} />
+                            <Header textColor={body.color}>{t('exportSeedVault')}</Header>
+                        </View>
+                        <View style={styles.midContainer}>
+                            <SeedVaultExportComponent
+                                step={step}
+                                setProgressStep={(step) => this.setState({ step })}
+                                goBack={() => this.goBack()}
+                                onRef={(ref) => {
+                                    this.SeedVaultExportComponent = ref;
+                                }}
+                                isAuthenticated
+                                seed={seed}
+                                setSeed={(seed) => this.setState({ seed })}
+                            />
+                        </View>
+                        <View style={styles.bottomContainer}>
+                            <OnboardingButtons
+                                onLeftButtonPress={() => this.SeedVaultExportComponent.onBackPress()}
+                                onRightButtonPress={() =>
+                                    step === 'isExporting'
+                                        ? this.SeedVaultExportComponent.onExportPress()
+                                        : this.SeedVaultExportComponent.onNextPress()
+                                }
+                                leftButtonText={t('global:back')}
+                                rightButtonText={step === 'isExporting' ? t('global:export') : t('global:next')}
+                            />
+                        </View>
                     </View>
-                    <View style={styles.midContainer}>
-                        <SeedVaultExportComponent
-                            step={step}
-                            setProgressStep={(step) => this.setState({ step })}
-                            goBack={() => this.goBack()}
-                            onRef={(ref) => {
-                                this.SeedVaultExportComponent = ref;
-                            }}
-                            isAuthenticated
-                            seed={seed}
-                            setSeed={(seed) => this.setState({ seed })}
-                        />
-                    </View>
-                    <View style={styles.bottomContainer}>
-                        <OnboardingButtons
-                            onLeftButtonPress={() => this.SeedVaultExportComponent.onBackPress()}
-                            onRightButtonPress={() =>
-                                step === 'isExporting'
-                                    ? this.SeedVaultExportComponent.onExportPress()
-                                    : this.SeedVaultExportComponent.onNextPress()
-                            }
-                            leftButtonText={t('global:back')}
-                            rightButtonText={step === 'isExporting' ? t('global:export') : t('global:next')}
-                        />
-                    </View>
+                    <StatefulDropdownAlert textColor={body.color} backgroundColor={body.bg} />
                 </View>
-                <StatefulDropdownAlert textColor={body.color} backgroundColor={body.bg} />
-            </View>
+            </TouchableWithoutFeedback>
         );
     }
 }

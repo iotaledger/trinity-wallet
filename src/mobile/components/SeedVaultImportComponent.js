@@ -10,6 +10,7 @@ import { translate } from 'react-i18next';
 import { width } from '../utils/dimensions';
 import GENERAL from '../theme/general';
 import { Icon } from '../theme/icons.js';
+import { isAndroid } from '../utils/device';
 
 const styles = StyleSheet.create({
     infoText: {
@@ -88,11 +89,11 @@ export class SeedVaultImportComponent extends Component {
         const { t } = this.props;
         DocumentPicker.show(
             {
-                filetype: ['public.data'],
+                filetype: [isAndroid ? 'application/octet-stream' : 'public.data'],
             },
             (error, res) => {
                 if (error) {
-                    this.props.generateAlert(
+                    return this.props.generateAlert(
                         'error',
                         t('global:somethingWentWrong'),
                         t('global:somethingWentWrongTryAgain'),
@@ -101,13 +102,6 @@ export class SeedVaultImportComponent extends Component {
                 let path = res.uri;
                 if (path.startsWith('file://')) {
                     path = path.slice(7);
-                }
-                if (!path.endsWith('.kdbx')) {
-                    return this.props.generateAlert(
-                        'error',
-                        t('seedVault:seedFileError'),
-                        t('seedVault:seedFileErrorExplanation'),
-                    );
                 }
                 RNFetchBlob.fs
                     .readFile(path, 'ascii')
