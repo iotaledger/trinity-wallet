@@ -78,6 +78,7 @@ class Chart extends PureComponent {
 
         return (
             <div className={css.chart}>
+                <h3>{priceData.currency}/MIOTA</h3>
                 <div>
                     {chartData.data.length ? (
                         <ResponsiveContainer height="100%" width="100%">
@@ -88,19 +89,16 @@ class Chart extends PureComponent {
                                     dataKey="y"
                                     stroke={theme.chart.color}
                                     dot={false}
+                                    animationDuration={750}
                                 />
                                 <YAxis
                                     strokeWidth={0}
-                                    width={55}
-                                    tickMargin={10}
-                                    tick={{ fill: theme.body.color }}
+                                    width={80}
+                                    tick={{ fill: theme.body.color, dx: -56, textAnchor: 'start' }}
                                     tickCount={6}
                                     interval={0}
-                                    ticks={
-                                        chartData.yAxis.ticks
-                                            ? chartData.yAxis.ticks.map((tick) => getPriceFormat(tick))
-                                            : null
-                                    }
+                                    tickFormatter={(tick) => getPriceFormat(tick)}
+                                    ticks={chartData.yAxis.ticks}
                                     domain={['dataMin', 'dataMax']}
                                 />
                                 <Tooltip
