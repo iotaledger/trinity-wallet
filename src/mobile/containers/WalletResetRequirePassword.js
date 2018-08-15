@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { resetWallet, setCompletedForcedPasswordUpdate } from 'iota-wallet-shared-modules/actions/settings';
 import { setFirstUse, setOnboardingComplete } from 'iota-wallet-shared-modules/actions/accounts';
-import { Navigation } from 'react-native-navigation';
 import { clearWalletData, setPassword } from 'iota-wallet-shared-modules/actions/wallet';
 import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { StyleSheet, View, Keyboard, TouchableWithoutFeedback, BackHandler } from 'react-native';
@@ -129,23 +128,17 @@ class WalletResetRequirePassword extends Component {
     redirectToInitialScreen() {
         const { theme: { body } } = this.props;
 
-        Navigation.startSingleScreenApp({
-            screen: {
-                screen: 'languageSetup',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    topBarElevationShadowEnabled: false,
-                    screenBackgroundColor: body.bg,
-                    statusBarColor: body.bg,
-                    drawUnderStatusBar: true,
-                },
-                overrideBackPress: true,
+        this.props.navigator.resetTo({
+            screen: 'languageSetup',
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                topBarElevationShadowEnabled: false,
+                screenBackgroundColor: body.bg,
+                drawUnderStatusBar: true,
+                statusBarColor: body.bg,
             },
-            appStyle: {
-                orientation: 'portrait',
-                keepStyleAcrossPush: true,
-            },
+            animated: false,
         });
     }
 
