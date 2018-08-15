@@ -4,7 +4,13 @@ import PropTypes from 'prop-types';
 import { translate, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 
-import { changePowSettings, changeAutoPromotionSettings, setLockScreenTimeout, setTray } from 'actions/settings';
+import {
+    changePowSettings,
+    changeAutoPromotionSettings,
+    setLockScreenTimeout,
+    setTray,
+    setNotifications,
+} from 'actions/settings';
 import { completeSnapshotTransition, setBalanceCheckFlag } from 'actions/wallet';
 import { generateAlert } from 'actions/alerts';
 
@@ -23,6 +29,7 @@ import ModalPassword from 'ui/components/modal/Password';
 import ModalConfirm from 'ui/components/modal/Confirm';
 import Loading from 'ui/components/Loading';
 import Toggle from 'ui/components/Toggle';
+import Checkbox from 'ui/components/Checkbox';
 import TextInput from 'ui/components/input/Text';
 import Scrollbar from 'ui/components/Scrollbar';
 
@@ -73,6 +80,8 @@ class Advanced extends PureComponent {
         setBalanceCheckFlag: PropTypes.func.isRequired,
         /** @ignore */
         setTray: PropTypes.func.isRequired,
+        /** @ignore */
+        setNotifications: PropTypes.func.isRequired,
     };
 
     state = {
@@ -187,6 +196,7 @@ class Advanced extends PureComponent {
             changeAutoPromotionSettings,
             lockScreenTimeout,
             setTray,
+            setNotifications,
             ui,
             t,
         } = this.props;
@@ -253,6 +263,30 @@ class Advanced extends PureComponent {
                         off={t('disabled')}
                     />
                     <p>{t('tray:trayExplanation')}</p>
+                    <hr />
+
+                    <h3>{t('notifications:notifications')}</h3>
+                    <Toggle
+                        checked={settings.notifications.general}
+                        onChange={() => setNotifications({ type: 'general', enabled: !settings.notifications.general })}
+                        on={t('enabled')}
+                        off={t('disabled')}
+                    />
+                    <Checkbox
+                        disabled={!settings.notifications.general}
+                        checked={settings.notifications.confirmations}
+                        label={t('notifications:typeConfirmations')}
+                        className="small"
+                        onChange={(value) => setNotifications({ type: 'confirmations', enabled: value })}
+                    />
+                    <Checkbox
+                        disabled={!settings.notifications.general}
+                        checked={settings.notifications.messages}
+                        label={t('notifications:typeMessages')}
+                        className="small"
+                        onChange={(value) => setNotifications({ type: 'messages', enabled: value })}
+                    />
+                    <p>{t('notifications:notificationExplanation')}</p>
                     <hr />
 
                     <h3>{t('advancedSettings:snapshotTransition')}</h3>
@@ -381,6 +415,7 @@ const mapDispatchToProps = {
     completeSnapshotTransition,
     setBalanceCheckFlag,
     setTray,
+    setNotifications,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate()(Advanced));
