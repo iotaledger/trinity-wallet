@@ -4,7 +4,6 @@ import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
 import Modal from 'react-native-modal';
-import { Navigation } from 'react-native-navigation';
 import i18next from 'i18next';
 import { toggleModalActivity } from 'iota-wallet-shared-modules/actions/ui';
 import { selectLocale } from 'iota-wallet-shared-modules/libs/locale';
@@ -32,7 +31,9 @@ const styles = StyleSheet.create({
 /** Main Settings component */
 export class MainSettings extends Component {
     static propTypes = {
-        /** @ignore */
+        /** Navigation object */
+        navigator: PropTypes.object.isRequired,
+        /** Currently selected application mode (Expert or Standard) */
         mode: PropTypes.string.isRequired,
         /** @ignore */
         currency: PropTypes.string.isRequired,
@@ -78,23 +79,17 @@ export class MainSettings extends Component {
         this.props.clearWalletData();
         this.props.setPassword({});
 
-        Navigation.startSingleScreenApp({
-            screen: {
-                screen: 'login',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    topBarElevationShadowEnabled: false,
-                    screenBackgroundColor: body.bg,
-                    drawUnderStatusBar: true,
-                    statusBarColor: body.bg,
-                },
-                overrideBackPress: true,
+        this.props.navigator.resetTo({
+            screen: 'login',
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                topBarElevationShadowEnabled: false,
+                screenBackgroundColor: body.bg,
+                drawUnderStatusBar: true,
+                statusBarColor: body.bg,
             },
-            appStyle: {
-                orientation: 'portrait',
-                keepStyleAcrossPush: true,
-            },
+            animated: false,
         });
     }
 

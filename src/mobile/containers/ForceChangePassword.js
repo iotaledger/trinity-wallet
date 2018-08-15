@@ -12,7 +12,6 @@ import {
     Keyboard,
     KeyboardAvoidingView,
 } from 'react-native';
-import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import { zxcvbn } from 'iota-wallet-shared-modules/libs/exports';
 import { setPassword, setSetting } from 'iota-wallet-shared-modules/actions/wallet';
@@ -87,7 +86,9 @@ const styles = StyleSheet.create({
  */
 class ForceChangePassword extends Component {
     static propTypes = {
-        /** @ignore */
+        /** Navigation object */
+        navigator: PropTypes.object.isRequired,
+        /** Hash for wallet's password */
         password: PropTypes.object.isRequired,
         /** @ignore */
         setPassword: PropTypes.func.isRequired,
@@ -178,22 +179,17 @@ class ForceChangePassword extends Component {
 
     navigateToLogin() {
         const { theme: { body } } = this.props;
-        Navigation.startSingleScreenApp({
-            screen: {
-                screen: 'login',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    topBarElevationShadowEnabled: false,
-                    screenBackgroundColor: body.bg,
-                    drawUnderStatusBar: true,
-                    statusBarColor: body.bg,
-                },
+        this.props.navigator.resetTo({
+            screen: 'login',
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                topBarElevationShadowEnabled: false,
+                screenBackgroundColor: body.bg,
+                drawUnderStatusBar: true,
+                statusBarColor: body.bg,
             },
-            appStyle: {
-                orientation: 'portrait',
-                keepStyleAcrossPush: true,
-            },
+            animated: false,
         });
     }
 

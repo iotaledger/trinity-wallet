@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import authenticator from 'authenticator';
 import PropTypes from 'prop-types';
 import KeepAwake from 'react-native-keep-awake';
-import { Navigation } from 'react-native-navigation';
 import SplashScreen from 'react-native-splash-screen';
 import { Linking, StyleSheet, View } from 'react-native';
 import { parseAddress } from 'iota-wallet-shared-modules/libs/iota/utils';
@@ -32,7 +31,11 @@ const styles = StyleSheet.create({
 /** Login component */
 class Login extends Component {
     static propTypes = {
-        /** @ignore */
+        /** Navigation object */
+        navigator: PropTypes.object.isRequired,
+        /** Set new password hash
+         * @param {string} passwordHash
+         */
         setPassword: PropTypes.func.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
@@ -151,23 +154,17 @@ class Login extends Component {
 
     navigateToLoading() {
         const { theme: { body } } = this.props;
-        Navigation.startSingleScreenApp({
-            screen: {
-                screen: 'loading',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    topBarElevationShadowEnabled: false,
-                    screenBackgroundColor: body.bg,
-                    statusBarColor: body.bg,
-                    drawUnderStatusBar: true,
-                },
-                overrideBackPress: true,
+        this.props.navigator.resetTo({
+            screen: 'loading',
+            navigatorStyle: {
+                navBarHidden: true,
+                navBarTransparent: true,
+                topBarElevationShadowEnabled: false,
+                screenBackgroundColor: body.bg,
+                drawUnderStatusBar: true,
+                statusBarColor: body.bg,
             },
-            appStyle: {
-                orientation: 'portrait',
-                keepStyleAcrossPush: true,
-            },
+            animated: false,
         });
     }
 
