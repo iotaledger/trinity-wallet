@@ -1014,9 +1014,9 @@ nise@^1.2.0:
     path-to-regexp "^1.7.0"
     text-encoding "^0.6.4"
 
-nock@^9.6.0:
-  version "9.6.0"
-  resolved "https://registry.yarnpkg.com/nock/-/nock-9.6.0.tgz#df273defe35fd31c3ec9039c570e64339d31d68b"
+nock@^9.6.1:
+  version "9.6.1"
+  resolved "https://registry.yarnpkg.com/nock/-/nock-9.6.1.tgz#d96e099be9bc1d0189a77f4490bbbb265c381b49"
   dependencies:
     chai "^4.1.2"
     debug "^3.1.0"
