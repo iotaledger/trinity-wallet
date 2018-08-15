@@ -33,6 +33,10 @@ Pods/
 
 # Android/IntelliJ
 #
+android/app/build/*
+android/build/app/*
+android/app/build/
+android/build/app/
 build/
 .idea
 .gradle/
