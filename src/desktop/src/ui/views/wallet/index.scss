@@ -60,7 +60,7 @@ $sidebar-narrow: 70px;
                 }
 
                 &:hover {
-                    background: var(--bar-alt);
+                    background: var(--bar-hover);
 
                     > div {
                         display: block;
@@ -68,7 +68,7 @@ $sidebar-narrow: 70px;
                 }
                 &[aria-current='true'],
                 &.active {
-                    background: var(--bar-alt);
+                    background: var(--bar-hover);
                     border-right: 2px solid var(--primary);
                 }
 
@@ -154,7 +154,7 @@ $sidebar-narrow: 70px;
                 > div {
                     &:hover {
                         > a {
-                            background: var(--bar-alt);
+                            background: var(--bar-hover);
                         }
                         ul {
                             display: inline-block;
@@ -167,7 +167,7 @@ $sidebar-narrow: 70px;
                                 background: var(--bar-bg);
                                 border-right: 2px solid transparent;
                                 &:hover {
-                                    background: var(--bar-alt);
+                                    background: var(--bar-hover);
                                 }
                             }
                         }

@@ -1,4 +1,4 @@
-import { serialize, parse } from 'iota-wallet-shared-modules/libs/utils';
+import { serialise, parse } from 'iota-wallet-shared-modules/libs/utils';
 import { generateSecureRandom } from 'react-native-securerandom';
 import { TextDecoder } from 'text-encoding';
 import nacl from 'tweetnacl';
@@ -29,7 +29,7 @@ export const generatePasswordHash = (password, salt) => {
 };
 
 export const createSecretBox = async (message, nonce, keyUint8) => {
-    const messageUint8 = await naclUtil.decodeUTF8(serialize(message));
+    const messageUint8 = await naclUtil.decodeUTF8(serialise(message));
     return await nacl.secretbox(messageUint8, nonce, keyUint8);
 };
 
