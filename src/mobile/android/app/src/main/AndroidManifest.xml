@@ -37,6 +37,7 @@
         android:configChanges="keyboard|keyboardHidden|screenSize"
         android:screenOrientation="portrait"
         android:windowSoftInputMode="adjustPan|adjustResize|stateAlwaysHidden"
+          android:exported="true"
       >
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
@@ -51,6 +52,7 @@
               <action android:name="android.intent.action.VIEW" />
               <category android:name="android.intent.category.DEFAULT" />
               <category android:name="android.intent.category.BROWSABLE" />
+              <categoryy android:name="android.intent.category.CATEGORY_OPENABLE" />
               <data android:scheme="file" />
               <data android:mimeType="*/*" />
               <data android:pathPattern=".*\\.kdbx" />

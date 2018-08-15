@@ -9,14 +9,14 @@ import { generateAlert } from 'iota-wallet-shared-modules/actions/alerts';
 import { getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/accounts';
 import Share from 'react-native-share';
 import nodejs from 'nodejs-mobile-react-native';
-import RNFS from 'react-native-fs';
+import RNFetchBlob from 'rn-fetch-blob';
 import CustomTextInput from './CustomTextInput';
 import GENERAL from '../theme/general';
 import PasswordFields from './PasswordFields';
 import InfoBox from './InfoBox';
 import { getPasswordHash, getSeedFromKeychain } from '../utils/keychain';
 import { width, height } from '../utils/dimensions';
-import { isAndroid } from '../utils/device';
+import { isAndroid, getAndroidFileSystemPermissions } from '../utils/device';
 
 const styles = StyleSheet.create({
     container: {
@@ -79,16 +79,14 @@ class SeedVaultExportComponent extends Component {
             password: '',
             reentry: '',
             exportPressed: false,
+            path: '',
         };
     }
 
     componentWillMount() {
         const { isAuthenticated, onRef } = this.props;
-
         onRef(this);
-
-        this.animatedValue = new Animated.Value(width * - 2);
-
+        this.animatedValue = new Animated.Value(isAuthenticated ? width : width * 2);
         nodejs.start('main.js');
         nodejs.channel.addListener(
             'message',
@@ -102,6 +100,9 @@ class SeedVaultExportComponent extends Component {
     componentWillUnmount() {
         this.props.onRef(undefined);
         nodejs.channel.removeAllListeners();
+        if (this.state.path !== '') {
+            RNFetchBlob.fs.unlink(this.state.path);
+        }
     }
 
     /**
@@ -110,38 +111,47 @@ class SeedVaultExportComponent extends Component {
      * @method onGenerateVault
      * @param {string} Vault - Seed vault Uint8Array as string
      */
-    onGenerateVault(vault) {
+    async onGenerateVault(vault) {
+        if (isAndroid) {
+            await getAndroidFileSystemPermissions();
+        }
         const { t } = this.props;
         const now = new Date();
         const path =
-            RNFS.DocumentDirectoryPath +
-            `/trinity-${now
+            (isAndroid ? RNFetchBlob.fs.dirs.DownloadDir : RNFetchBlob.fs.dirs.CacheDir) +
+            `/SeedVault${now
                 .toISOString()
                 .slice(0, 16)
                 .replace(/[-:]/g, '')
                 .replace('T', '-')}.kdbx`;
+        this.setState({ path });
         const vaultParsed = map(vault.split(','), (num) => parseInt(num));
-        RNFS.writeFile(path, vaultParsed, 'ascii')
-            .then(() => {
-                Share.open({
-                    url: isAndroid ? `file://${path}` : path,
-                    // Supposed to be for binary data files
-                    type: 'application/octet-stream',
-                })
-                    .then(() => {
-                        if (!isAndroid) {
-                            this.onExportSuccess(path);
-                        }
+        RNFetchBlob.fs.exists(path).then((fileExists) => {
+            if (fileExists) {
+                RNFetchBlob.fs.unlink(path);
+            }
+            RNFetchBlob.fs
+                .createFile(path, vaultParsed, 'ascii')
+                .then(() => {
+                    Share.open({
+                        url: isAndroid ? 'file://' + path : path,
+                        type: 'application/octet-stream',
                     })
-                    .catch(() => RNFS.unlink(path));
-            })
-            .catch(() =>
-                this.props.generateAlert(
-                    'error',
-                    t('global:somethingWentWrong'),
-                    t('global:somethingWentWrongTryAgain'),
-                ),
-            );
+                        .then(() => {
+                            if (!isAndroid) {
+                                this.onExportSuccess(path);
+                            }
+                        })
+                        .catch(() => RNFetchBlob.fs.unlink(path));
+                })
+                .catch(() =>
+                    this.props.generateAlert(
+                        'error',
+                        t('global:somethingWentWrong'),
+                        t('global:somethingWentWrongTryAgain'),
+                    ),
+                );
+        });
     }
 
     /**
@@ -169,7 +179,8 @@ class SeedVaultExportComponent extends Component {
      */
     onExportSuccess(path) {
         const { t } = this.props;
-        RNFS.unlink(path)
+        RNFetchBlob.fs
+            .unlink(path)
             .then(() => {
                 this.props.generateAlert('success', t('exportSuccess'), t('exportSuccessExplanation'));
                 this.props.goBack();
@@ -192,7 +203,7 @@ class SeedVaultExportComponent extends Component {
         if (isAndroid) {
             this.setState({ exportPressed: true });
         }
-        return nodejs.channel.send('export:' + 'DUMMYSEED' + ':' + 'DUMMYPASSWORD');
+        return nodejs.channel.send('export:' + this.props.seed + ':' + this.state.password);
     }
 
     /**
