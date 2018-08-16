@@ -1,3 +1,16 @@
-PODFILE CHECKSUM: b2b975234acca9a548eeaacfb1c530d53a40a211
+PODS:
+  - CatCrypto (0.2.3)
+
+DEPENDENCIES:
+  - CatCrypto
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - CatCrypto
+
+SPEC CHECKSUMS:
+  CatCrypto: 79e3af44d363c1f5511d1964c4da51f316dc74d0
+
+PODFILE CHECKSUM: 5e037145b2bf4107a0d0babb99cc33ad5c64b7a1
 
 COCOAPODS: 1.5.3

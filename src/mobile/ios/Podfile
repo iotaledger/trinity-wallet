@@ -4,10 +4,7 @@
 target 'iotaWallet' do
     # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
     use_frameworks!
-
-    # Pods for iotaWallet
-    
-    pod 'react-native-document-picker', :path => '../node_modules/react-native-document-picker'
+    pod 'CatCrypto'
 
     target 'iotaWalletTests' do
         inherit! :search_paths
