@@ -292,12 +292,13 @@ export const parseAddress = (input) => {
  *
  * @method withRetriesOnDifferentNodes
  * @param {array} nodes
- * @param {array} [failureCallbacks]
+ * @param {array|function} [failureCallbacks]
  *
  * @returns {function(function): function(...[*]): Promise}
  */
-export const withRetriesOnDifferentNodes = (nodes, failureCallbacks = []) => {
+export const withRetriesOnDifferentNodes = (nodes, failureCallbacks) => {
     let attempt = 0;
+    let executedCallback = false;
     const retries = size(nodes);
 
     return (promiseFunc) => {
@@ -306,19 +307,32 @@ export const withRetriesOnDifferentNodes = (nodes, failureCallbacks = []) => {
                 return Promise.reject(new Error(Errors.NO_NODE_TO_RETRY));
             }
 
-            return promiseFunc(nodes[attempt])(...args).catch((err) => {
-                if (isFunction(failureCallbacks[attempt])) {
-                    failureCallbacks[attempt]();
-                }
+            return promiseFunc(nodes[attempt])(...args)
+                .then((result) => ({ node: nodes[attempt], result }))
+                .catch((err) => {
+                    // If a function is passed as failure callback
+                    // Just trigger it once.
+                    if (isFunction(failureCallbacks)) {
+                        if (!executedCallback) {
+                            executedCallback = true;
+                            failureCallbacks();
+                        }
+                        // If an array of functions is passed
+                        // Execute callback on each failure
+                    } else if (isArray(failureCallbacks)) {
+                        if (isFunction(failureCallbacks[attempt])) {
+                            failureCallbacks[attempt]();
+                        }
+                    }
 
-                attempt = attempt + 1;
+                    attempt = attempt + 1;
 
-                if (attempt < retries) {
-                    return execute(...args);
-                }
+                    if (attempt < retries) {
+                        return execute(...args);
+                    }
 
-                throw err;
-            });
+                    throw err;
+                });
         };
 
         return execute;

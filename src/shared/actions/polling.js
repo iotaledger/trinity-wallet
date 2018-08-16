@@ -430,7 +430,7 @@ export const getAccountInfo = (accountName) => {
 
         const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
-        return syncAccount(existingAccountState)
+        return syncAccount()(existingAccountState)
             .then((newAccountData) => dispatch(accountInfoFetchSuccess(newAccountData)))
             .catch((err) => {
                 dispatch(accountInfoFetchError());
@@ -456,7 +456,7 @@ export const promoteTransfer = (bundleHash, seenTailTransactions) => (dispatch, 
     const accountName = get(seenTailTransactions, '[0].account');
     let accountState = selectedAccountStateFactory(accountName)(getState());
 
-    return syncAccount(accountState)
+    return syncAccount()(accountState)
         .then((newState) => {
             accountState = newState;
             dispatch(syncAccountBeforeAutoPromotion(accountState));

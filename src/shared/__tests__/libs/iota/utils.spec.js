@@ -77,7 +77,7 @@ describe('libs: iota/utils', () => {
             });
         });
 
-        it('should trigger failure callback on each failure', () => {
+        it('should trigger callback on each failure if callback is passed as an array of functions', () => {
             const stub = sinon.stub();
 
             const nodes = Array(3)
@@ -87,6 +87,19 @@ describe('libs: iota/utils', () => {
 
             return result(() => () => Promise.reject())('foo').catch(() => {
                 expect(stub.calledThrice).to.equal(true);
+            });
+        });
+
+        it('should trigger callback once if callback is passed as a function', () => {
+            const stub = sinon.stub();
+
+            const nodes = Array(3)
+                .fill()
+                .map((_, index) => index);
+            const result = withRetriesOnDifferentNodes(nodes, stub);
+
+            return result(() => () => Promise.reject())('foo').catch(() => {
+                expect(stub.calledOnce).to.equal(true);
             });
         });
     });

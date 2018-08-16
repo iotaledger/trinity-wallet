@@ -14,6 +14,7 @@ import {
     generateNodeOutOfSyncErrorAlert,
     generateAccountSyncRetryAlert,
 } from '../actions/alerts';
+import { changeNode } from '../actions/settings';
 import { withRetriesOnDifferentNodes, getRandomNodes } from '../libs/iota/utils';
 import { pushScreen } from '../libs/utils';
 import Errors from '../libs/errors';
@@ -480,15 +481,16 @@ export const getFullAccountInfoAdditionalSeed = (
 
     withRetriesOnDifferentNodes(
         [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
-        [() => dispatch(generateAccountSyncRetryAlert())],
+        () => dispatch(generateAccountSyncRetryAlert()),
     )(getAccountData)(seed, accountName, genFn)
-        .then((data) => {
+        .then(({ node, result }) => {
+            dispatch(changeNode(node));
             dispatch(clearWalletData()); // Clean up partial state for reducer.
             storeInKeychainPromise(password, seed, accountName)
                 .then(() => {
                     dispatch(setSeedIndex(existingAccountNames.length));
                     dispatch(setBasicAccountInfo({ accountName, usedExistingSeed }));
-                    dispatch(fullAccountInfoAdditionalSeedFetchSuccess(data));
+                    dispatch(fullAccountInfoAdditionalSeedFetchSuccess(result));
                 })
                 .catch((err) => onError(err));
         })
@@ -514,9 +516,12 @@ export const getFullAccountInfoFirstSeed = (seed, accountName, navigator = null,
 
         withRetriesOnDifferentNodes(
             [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
-            [() => dispatch(generateAccountSyncRetryAlert())],
+            () => dispatch(generateAccountSyncRetryAlert()),
         )(getAccountData)(seed, accountName, genFn)
-            .then((data) => dispatch(fullAccountInfoFirstSeedFetchSuccess(data)))
+            .then(({ node, result }) => {
+                dispatch(changeNode(node));
+                dispatch(fullAccountInfoFirstSeedFetchSuccess(result));
+            })
             .catch((err) => {
                 pushScreen(navigator, 'login');
                 dispatch(fullAccountInfoFirstSeedFetchError());
@@ -553,11 +558,12 @@ export const manuallySyncAccount = (seed, accountName, genFn) => {
 
         withRetriesOnDifferentNodes(
             [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
-            [() => dispatch(generateAccountSyncRetryAlert())],
+            () => dispatch(generateAccountSyncRetryAlert()),
         )(getAccountData)(seed, accountName, genFn)
-            .then((data) => {
+            .then(({ node, result }) => {
+                dispatch(changeNode(node));
                 dispatch(generateSyncingCompleteAlert());
-                dispatch(manualSyncSuccess(data));
+                dispatch(manualSyncSuccess(result));
             })
             .catch((err) => {
                 if (err.message === Errors.NODE_NOT_SYNCED) {
@@ -587,14 +593,16 @@ export const getAccountInfo = (seed, accountName, navigator = null, genFn) => {
         dispatch(accountInfoFetchRequest());
 
         const existingAccountState = selectedAccountStateFactory(accountName)(getState());
-
         const selectedNode = getSelectedNodeFromState(getState());
 
         return withRetriesOnDifferentNodes(
             [selectedNode, ...getRandomNodes(getNodesFromState(getState()), DEFAULT_RETRIES, [selectedNode])],
-            [() => dispatch(generateAccountSyncRetryAlert())],
+            () => dispatch(generateAccountSyncRetryAlert()),
         )(syncAccount)(existingAccountState, seed, genFn)
-            .then((newAccountData) => dispatch(accountInfoFetchSuccess(newAccountData)))
+            .then(({ node, result }) => {
+                dispatch(changeNode(node));
+                dispatch(accountInfoFetchSuccess(result));
+            })
             .catch((err) => {
                 if (navigator) {
                     navigator.pop({ animated: false });

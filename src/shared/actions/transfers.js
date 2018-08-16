@@ -609,6 +609,7 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                                 ]),
                             )(attachToTangleAsync)(trunkTransaction, branchTransaction, cached.trytes);
                         })
+                        .then(({ result }) => result)
                         .catch(() => {
                             // If outsourced proof of work fails on all nodes, fallback to local proof of work.
                             dispatch(
@@ -643,21 +644,18 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 return withRetriesOnDifferentNodes(
                     randomNodes,
                     // Failure callbacks.
-                    // Executed on each attempt failure.
                     // Only pass one, as we just want an alert on first broadcast failure
-                    [
-                        () =>
-                            dispatch(
-                                generateAlert(
-                                    'info',
-                                    i18next.t('global:pleaseWait'),
-                                    `${i18next.t('global:problemSendingYourTransaction')} ${i18next.t(
-                                        'global:tryingAgainWithDifferentNode',
-                                    )}`,
-                                    20000,
-                                ),
+                    () =>
+                        dispatch(
+                            generateAlert(
+                                'info',
+                                i18next.t('global:pleaseWait'),
+                                `${i18next.t('global:problemSendingYourTransaction')} ${i18next.t(
+                                    'global:tryingAgainWithDifferentNode',
+                                )}`,
+                                20000,
                             ),
-                    ],
+                        ),
                 )(storeAndBroadcastAsync)(cached.trytes);
             })
             .then(() => {
@@ -792,7 +790,9 @@ export const retryFailedTransaction = (accountName, bundleHash, powFn) => (dispa
 
     // First check spent statuses against transaction addresses
     return (
-        categoriseAddressesBySpentStatus()(map(existingFailedTransactionsForThisAccount[bundleHash], (tx) => tx.address))
+        categoriseAddressesBySpentStatus()(
+            map(existingFailedTransactionsForThisAccount[bundleHash], (tx) => tx.address),
+        )
             // If any address (input, remainder, receive) is spent, error out
             .then(({ spent }) => {
                 if (size(spent)) {
