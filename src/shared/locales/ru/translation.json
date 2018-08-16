@@ -123,7 +123,7 @@
         "seedThief": "Если кто-то еще знает Ваш ключ, он может украсть Ваши IOTA.",
         "googlePlayServicesNotAvailable": "Служба Google Play недоступна",
         "couldNotVerifyDeviceIntegrity": "Не удалось проверить целостность устройства, потому что службы Google Play не доступны.",
-        "clear": "ЧИСТО",
+        "clear": "Clear",
         "noNetworkConnection": "Нет подключения к сети",
         "noNetworkConnectionExplanation": "Похоже, Вы не подключены к интернету.",
         "spentAddressExplanation": "Предупреждение: Средства на использованном адресе",
@@ -307,7 +307,9 @@
         "incorrectSeed": "Неверный ключ",
         "incorrectSeedExplanation": "Введенный ключ неправильный. Пожалуйста, попробуйте еще раз.",
         "ifYouHaveNotSaved": "Если Вы не сохранили свой ключ, пожалуйста, вернитесь на шаг назад и сделайте это.",
-        "enterSeedBelow": "Введите только что созданный Вами ключ ниже, чтобы подтвердить, что Вы правильно создали его резервную копию"
+        "enterSeedBelow": "Введите только что созданный Вами ключ ниже, чтобы подтвердить, что Вы правильно создали его резервную копию",
+        "clipboardWarning": "Do not copy paste your seed",
+        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
     },
     "send": {
         "invalidAddress": "Неверный адрес",
@@ -651,7 +653,7 @@
         "skipUpdate": "Пропустить обновление"
     },
     "notificationLog": {
-        "errorLog": "ЖУРНАЛ ОШИБОК"
+        "errorLog": "Error log"
     },
     "terms": {
         "termsAndConditions": "Условия использования",
