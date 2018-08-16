@@ -197,7 +197,7 @@ class SetPassword extends Component {
         return (
             <View>
                 <TouchableWithoutFeedback style={{ flex: 1, width }} onPress={Keyboard.dismiss} accessible={false}>
-                    <KeyboardAvoidingView behavior="padding" style={[styles.container, { backgroundColor: body.bg }]}>
+                    <View style={[styles.container, { backgroundColor: body.bg }]}>
                         <View style={styles.topContainer}>
                             <Icon name="iota" size={width / 8} color={body.color} />
                             <View style={{ flex: 0.7 }} />
@@ -238,7 +238,7 @@ class SetPassword extends Component {
                                 rightButtonText={t('global:done')}
                             />
                         </View>
-                    </KeyboardAvoidingView>
+                    </View>
                 </TouchableWithoutFeedback>
             </View>
         );
@@ -249,7 +249,7 @@ class SetPassword extends Component {
         return (
             <View style={styles.container}>
                 {isAndroid ? (
-                    <View style={styles.container}>{this.renderContent()}</View>
+                    <KeyboardAvoidingView style={styles.container}>{this.renderContent()}</KeyboardAvoidingView>
                 ) : (
                     <KeyboardAwareScrollView
                         resetScrollToCoords={{ x: 0, y: 0 }}
