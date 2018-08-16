@@ -38,15 +38,12 @@ class LanguageSelect extends React.PureComponent {
         return (
             <Select
                 label={t('languageSetup:language')}
-                defaultValue={locale}
-                onChange={(e) => this.changeLocale(e.target.value)}
-            >
-                {I18N_LOCALES.map((item, index) => (
-                    <option key={item} value={item}>
-                        {I18N_LOCALE_LABELS[index]}
-                    </option>
-                ))}
-            </Select>
+                value={I18N_LOCALE_LABELS[I18N_LOCALES.indexOf(locale)]}
+                onChange={(value) => this.changeLocale(value)}
+                options={I18N_LOCALES.map((item, index) => {
+                    return { value: item, label: I18N_LOCALE_LABELS[index] };
+                })}
+            />
         );
     }
 }
