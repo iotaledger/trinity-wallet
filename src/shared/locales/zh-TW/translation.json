@@ -137,7 +137,14 @@
         "ifYourBalanceIsNotCorrect": "如果您的餘額不正確的話，有可能您最後一次使用種子碼是在快照發生之前。",
         "headToAdvancedSettingsForTransition": "前往進階設定然後執行快照轉換。",
         "usingTrinityWalletWithKeePass": "在 Trinity 錢包使用 Keepass2Android",
-        "signedTrytesBroadcastErrorExplanation": "廣播您的交易時發生網路錯誤。"
+        "signedTrytesBroadcastErrorExplanation": "廣播您的交易時發生網路錯誤。",
+        "broadcastError": "Could not broadcast transfer",
+        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
+        "problemSendingYourTransaction": "There was a problem sending your transaction.",
+        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
+        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
+        "tryingAgainWithDifferentNode": "Trying again with a different node.",
+        "errorFetchingAccountInformation": "Error fetching account information."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
