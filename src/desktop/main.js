@@ -103,22 +103,24 @@ function createWindow() {
         },
     });
 
-    windows.tray = new electron.BrowserWindow({
-        width: 300,
-        height: 450,
-        frame: false,
-        fullscreenable: false,
-        resizable: false,
-        transparent: true,
-        backgroundColor: bgColor,
-        show: false,
-        webPreferences: {
-            nodeIntegration: false,
-            preload: path.resolve(__dirname, 'lib/preload/tray.js'),
-            disableBlinkFeatures: 'Auxclick',
-            webviewTag: false,
-        },
-    });
+    if (process.platform !== 'win32') {
+        windows.tray = new electron.BrowserWindow({
+            width: 300,
+            height: 450,
+            frame: false,
+            fullscreenable: false,
+            resizable: false,
+            transparent: true,
+            backgroundColor: bgColor,
+            show: false,
+            webPreferences: {
+                nodeIntegration: false,
+                preload: path.resolve(__dirname, 'lib/preload/tray.js'),
+                disableBlinkFeatures: 'Auxclick',
+                webviewTag: false,
+            },
+        });
+    }
 
     /**
      * Reinitate window maximize
@@ -132,7 +134,6 @@ function createWindow() {
      */
     const url = devMode ? 'http://localhost:1074/' : 'iota://dist/index.html';
     windows.main.loadURL(url);
-    windows.tray.loadURL(url);
 
     /**
      * Attach window close event
@@ -140,18 +141,25 @@ function createWindow() {
     windows.main.on('close', hideOnClose);
 
     /**
-     * Attach tray window in blur event
+     * Load tray window url and attach blur event
      */
-    windows.tray.on('blur', () => {
-        windows.tray.hide();
-    });
+    if (process.platform !== 'win32') {
+        windows.tray.loadURL(url);
+
+        windows.tray.on('blur', () => {
+            windows.tray.hide();
+        });
+    }
 
     /**
      * Enable React and Redux devtools in development mode
      */
     if (devMode) {
         windows.main.webContents.openDevTools({ mode: 'detach' });
-        windows.tray.webContents.openDevTools({ mode: 'detach' });
+
+        if (process.platform !== 'win32') {
+            windows.tray.webContents.openDevTools({ mode: 'detach' });
+        }
 
         const {
             default: installExtension,
@@ -223,7 +231,9 @@ function createWindow() {
         }
     });
 
-    setupTray(settings.isTrayEnabled);
+    if (process.platform !== 'win32') {
+        setupTray(settings.isTrayEnabled);
+    }
 }
 
 /**
@@ -242,9 +252,7 @@ const setupTray = (enabled) => {
         return;
     }
 
-    const icon = process.platform === 'win32' ? `${__dirname}/dist/icon.ico` : `${__dirname}/dist/icon@2x.png`;
-
-    tray = new Tray(icon);
+    tray = new Tray(`${__dirname}/dist/icon@2x.png`);
 
     tray.on('click', () => {
         toggleTray();
@@ -362,7 +370,7 @@ ipc.on('request.deepLink', () => {
  * Proxy storage update event to tray window
  */
 ipc.on('storage.update', (e, payload) => {
-    if (windows.tray && !tray.isDestroyed()) {
+    if (windows.tray && !windows.tray.isDestroyed()) {
         windows.tray.webContents.send('storage.update', payload);
     }
     try {
