@@ -123,7 +123,7 @@
         "seedThief": "Hvis noen får tilgang til hovednøkkelen kan de stjele dine IOTA.",
         "googlePlayServicesNotAvailable": "Google Play tjenester er ikke tilgjengelige",
         "couldNotVerifyDeviceIntegrity": "Kunne ikke verifisere enhetens integritet siden Google Play tjenesten ikke er tilgjengelig.",
-        "clear": "FJERN",
+        "clear": "Clear",
         "noNetworkConnection": "Ingen nettverksforbindelse",
         "noNetworkConnectionExplanation": "Ingen internettforbindelse.",
         "spentAddressExplanation": "ADVARSEL: Midler på en brukt adresse",
@@ -307,7 +307,9 @@
         "incorrectSeed": "Feil hovednøkkel",
         "incorrectSeedExplanation": "Hovednøkkelen du skrev inn er feil. Prøv på nytt.",
         "ifYouHaveNotSaved": "Dersom du ikke har lagret hovednøkkelen din, vennligst gå tilbake for å lagre.",
-        "enterSeedBelow": "Angi din nyopprettede hovednøkkel nedenfor for å bekrefte at du har sikkerhetskopiert den riktig"
+        "enterSeedBelow": "Angi din nyopprettede hovednøkkel nedenfor for å bekrefte at du har sikkerhetskopiert den riktig",
+        "clipboardWarning": "Do not copy paste your seed",
+        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
     },
     "send": {
         "invalidAddress": "Ugyldig adresse",
@@ -651,7 +653,7 @@
         "skipUpdate": "Hopp over oppdatering"
     },
     "notificationLog": {
-        "errorLog": "FEILMELDINGER"
+        "errorLog": "Error log"
     },
     "terms": {
         "termsAndConditions": "Vilkår",
