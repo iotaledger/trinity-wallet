@@ -59,6 +59,7 @@
         "password": "密碼",
         "unrecognisedPassword": "密碼不符",
         "unrecognisedPasswordExplanation": "密碼不符，請再試一次。",
+        "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "同步處理中",
         "syncInProgressExplanation": "請等候至同步完成",
         "somethingWentWrong": "出現錯誤",
@@ -71,6 +72,7 @@
         "attachToTangleUnavailableExplanation": "你選擇的節點無法作為遠端工作量證明所使用。您可以在進階設定中變更節點或是將工作量證明設定為本機。",
         "attachToTangleUnavailableExplanationShort": "您所選的節點無法作為遠端工作量證明所使用。",
         "wallet": "錢包",
+        "all": "All",
         "sent": "已支出",
         "received": "已接收",
         "sending": "轉帳中",
@@ -121,7 +123,7 @@
         "seedThief": "如果有人取得您的種子碼，代表他們就可以偷走您的 IOTA。",
         "googlePlayServicesNotAvailable": "Google Play 服務無法使用",
         "couldNotVerifyDeviceIntegrity": "因為 Google Play 服務無法使用，而無法檢驗裝置完整性。",
-        "clear": "清除",
+        "clear": "Clear",
         "noNetworkConnection": "沒有網路連線",
         "noNetworkConnectionExplanation": "您的網路連線顯示為離線。",
         "spentAddressExplanation": "警告：資金位於已支出的地址",
@@ -135,7 +137,14 @@
         "ifYourBalanceIsNotCorrect": "如果您的餘額不正確的話，有可能您最後一次使用種子碼是在快照發生之前。",
         "headToAdvancedSettingsForTransition": "前往進階設定然後執行快照轉換。",
         "usingTrinityWalletWithKeePass": "在 Trinity 錢包使用 Keepass2Android",
-        "signedTrytesBroadcastErrorExplanation": "廣播您的交易時發生網路錯誤。"
+        "signedTrytesBroadcastErrorExplanation": "廣播您的交易時發生網路錯誤。",
+        "broadcastError": "Could not broadcast transfer",
+        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
+        "problemSendingYourTransaction": "There was a problem sending your transaction.",
+        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
+        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
+        "tryingAgainWithDifferentNode": "Trying again with a different node.",
+        "errorFetchingAccountInformation": "Error fetching account information."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "種子碼包含無效字元",
@@ -305,7 +314,9 @@
         "incorrectSeed": "錯誤種子",
         "incorrectSeedExplanation": "您輸入的種子碼錯誤，請再試一次。",
         "ifYouHaveNotSaved": "假如你尚未儲存您的種子碼，請返回並儲存。",
-        "enterSeedBelow": "請在下面輸入您剛產生的種子碼來確認您已經妥善備份了"
+        "enterSeedBelow": "請在下面輸入您剛產生的種子碼來確認您已經妥善備份了",
+        "clipboardWarning": "Do not copy paste your seed",
+        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
     },
     "send": {
         "invalidAddress": "地址無效",
@@ -649,11 +660,12 @@
         "skipUpdate": "跳過更新"
     },
     "notificationLog": {
-        "errorLog": "錯誤紀錄"
+        "errorLog": "Error log"
     },
     "terms": {
         "termsAndConditions": "使用條款",
-        "accept": "我接受"
+        "accept": "我接受",
+        "readAllToContinue": "Please read all the text to continue"
     },
     "privacyPolicy": {
         "privacyPolicy": "隱私權政策",
