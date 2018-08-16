@@ -46,8 +46,8 @@ class SetNode extends PureComponent {
         this.setState({ customNode: val });
     };
 
-    changeSelectedNode = (e) => {
-        this.setState({ selection: e.target.value });
+    changeSelectedNode = (value) => {
+        this.setState({ selection: value });
     };
 
     changeNode = (e) => {
@@ -78,13 +78,10 @@ class SetNode extends PureComponent {
                     label={t('node')}
                     disabled={customNode.length > 0}
                     onChange={this.changeSelectedNode}
-                >
-                    {nodes.map((item) => (
-                        <option key={item} value={item}>
-                            {item}
-                        </option>
-                    ))}
-                </Select>
+                    options={nodes.map((item) => {
+                        return { value: item, label: item };
+                    })}
+                />
 
                 <Text value={customNode} label={t('addCustomNode:customNode')} onChange={this.changeCustomNode} />
 

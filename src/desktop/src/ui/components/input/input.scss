@@ -13,7 +13,8 @@
         input,
         textarea,
         select,
-        .editable {
+        .editable,
+        .selectable {
             font-family: 'SourceSansPro';
             font-weight: 300;
             font-size: var(--font-size-default);
@@ -46,10 +47,6 @@
             max-width: 520px;
             padding: 0 40px 0 0;
 
-            @media screen and (max-width: 860px) {
-                max-width: calc(100vw - 60px);
-            }
-
             > div {
                 padding: 0 20px;
                 overflow: hidden;
@@ -69,8 +66,11 @@
                 }
             }
         }
-        select {
+        .selectable {
             position: relative;
+            text-align: left;
+            height: 46px;
+            cursor: pointer;
             &:after {
                 content: '';
                 display: block;
@@ -82,13 +82,13 @@
                 position: absolute;
                 right: 12px;
                 top: calc(50% - 2px);
-                pointer-event: none;
+                pointer-events: none;
             }
         }
         small {
             position: absolute;
             white-space: nowrap;
-            left: 0px;
+            left: 1px;
             top: -24px;
             color: var(--label);
             text-transform: uppercase;
@@ -431,5 +431,64 @@
 
     @media screen and (max-width: 860px) {
         right: 46px;
+    }
+}
+
+.select {
+    position: relative;
+    z-index: 9;
+    ul {
+        display: none;
+    }
+
+    &.open {
+        ul {
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 300px;
+            top: -32px;
+            left: 0px;
+            background: var(--box-bg);
+            border-radius: 4px;
+            padding: 10px 0px 10px 0;
+            z-index: 2;
+
+            :global {
+                .ps {
+                    margin-right: 0px;
+                }
+            }
+
+            li {
+                display: block;
+                list-style: none;
+                text-align: left;
+                line-height: 36px;
+                font-size: 14px;
+                cursor: pointer;
+                padding-left: 30px;
+                &:hover {
+                    background: var(--box-alt);
+                }
+                &.selected {
+                    font-weight: 600;
+                    position: relative;
+
+                    &:after {
+                        position: absolute;
+                        top: 12px;
+                        left: 13px;
+                        content: '';
+                        display: block;
+                        width: 5px;
+                        height: 9px;
+                        border: solid var(--body);
+                        border-width: 0 2px 2px 0;
+                        transform: rotate(45deg);
+                    }
+                }
+            }
+        }
     }
 }
