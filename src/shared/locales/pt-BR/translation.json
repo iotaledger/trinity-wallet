@@ -137,7 +137,14 @@
         "ifYourBalanceIsNotCorrect": "Se o seu saldo não estiver correto, é provável que você esteja usando um servidor pré-snapshot.",
         "headToAdvancedSettingsForTransition": "Vá até as Configurações Avançadas e realize uma Transição de Snapshot.",
         "usingTrinityWalletWithKeePass": "Usando a carteira Trinity com Keepass2Android",
-        "signedTrytesBroadcastErrorExplanation": "Houve um erro ao processar sua transação."
+        "signedTrytesBroadcastErrorExplanation": "Houve um erro ao processar sua transação.",
+        "broadcastError": "Could not broadcast transfer",
+        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
+        "problemSendingYourTransaction": "There was a problem sending your transaction.",
+        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
+        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
+        "tryingAgainWithDifferentNode": "Trying again with a different node.",
+        "errorFetchingAccountInformation": "Error fetching account information."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "A Seed contém caracteres inválidos",
