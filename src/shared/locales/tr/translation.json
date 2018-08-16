@@ -123,7 +123,7 @@
         "seedThief": "Eğer bir başkası oluşumunuza sahipse sizin IOTA'larınızı çalabilir.",
         "googlePlayServicesNotAvailable": "Google Play Servisleri mevcut değil",
         "couldNotVerifyDeviceIntegrity": "Cihaz bütünlüğü Google Play Servisleri mevcut olmadığı için doğrulanamıyor.",
-        "clear": "TEMİZLE",
+        "clear": "Clear",
         "noNetworkConnection": "Ağ bağlantısı yok",
         "noNetworkConnectionExplanation": "İnternet bağlantınız çevrimdışı görünüyor.",
         "spentAddressExplanation": "WARNING: Funds on spent addresses",
@@ -307,7 +307,9 @@
         "incorrectSeed": "Yanlış cüzdan şifresi",
         "incorrectSeedExplanation": "Bu cüzdan şifresi yanlış girildi. Lütfen tekrar deneyin.",
         "ifYouHaveNotSaved": "Cüzdan şifrenizi kurtarmadıysanız, lütfen geri dönüp onu halledin.",
-        "enterSeedBelow": "Enter your newly created seed below to confirm you have backed it up correctly"
+        "enterSeedBelow": "Enter your newly created seed below to confirm you have backed it up correctly",
+        "clipboardWarning": "Do not copy paste your seed",
+        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
     },
     "send": {
         "invalidAddress": "Geçersiz adres",
@@ -651,7 +653,7 @@
         "skipUpdate": "Güncelleştirmeyi atla"
     },
     "notificationLog": {
-        "errorLog": "HATA KAYDI"
+        "errorLog": "Error log"
     },
     "terms": {
         "termsAndConditions": "Terms & Conditions",
