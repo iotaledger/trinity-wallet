@@ -123,7 +123,7 @@
         "seedThief": "Jika orang lain mempunyai Seed Anda, mereka bisa mencuri IOTA Anda.",
         "googlePlayServicesNotAvailable": "Google Play Services tidak tersedia",
         "couldNotVerifyDeviceIntegrity": "Tidak bisa memverifikasi perangkat karena Google Play Services tidak tersedia.",
-        "clear": "HAPUS",
+        "clear": "Clear",
         "noNetworkConnection": "Tidak ada jaringan",
         "noNetworkConnectionExplanation": "Tidak ada koneksi internet.",
         "spentAddressExplanation": "PERINGATAN: Dana ada di alamat yang sudah digunakan",
@@ -307,7 +307,9 @@
         "incorrectSeed": "Seed salah",
         "incorrectSeedExplanation": "Seed yang Anda masukkan salah. Silahkan coba lagi.",
         "ifYouHaveNotSaved": "Jika Anda belum menyimpan Seed Anda, silahkan mengulang kembali.",
-        "enterSeedBelow": "Masukan Seed yang baru dibuat dibawah ini untuk mengkonfirmasi salinan anda"
+        "enterSeedBelow": "Masukan Seed yang baru dibuat dibawah ini untuk mengkonfirmasi salinan anda",
+        "clipboardWarning": "Do not copy paste your seed",
+        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
     },
     "send": {
         "invalidAddress": "Alamat salah",
@@ -651,7 +653,7 @@
         "skipUpdate": "Lewati pembaruan"
     },
     "notificationLog": {
-        "errorLog": "ERROR LOG"
+        "errorLog": "Error log"
     },
     "terms": {
         "termsAndConditions": "Syarat & Ketentuan",
