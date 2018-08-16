@@ -271,7 +271,7 @@ class Loading extends Component {
                 topBarElevationShadowEnabled: false,
                 screenBackgroundColor: body.bg,
                 drawUnderStatusBar: true,
-                statusBarColor: bar.hover,
+                statusBarColor: bar.alt,
             },
             animated: false,
         });

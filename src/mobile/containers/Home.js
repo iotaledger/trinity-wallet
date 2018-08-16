@@ -354,7 +354,7 @@ class Home extends Component {
                 onInactivity={this.handleInactivity}
             >
                 <View style={{ flex: 1, backgroundColor: body.bg }}>
-                    <DynamicStatusBar backgroundColor={inactive ? body.bg : bar.hover} isModalActive={isModalActive} />
+                    <DynamicStatusBar backgroundColor={inactive ? body.bg : bar.alt} isModalActive={isModalActive} />
                     {(!inactive && (
                         <View style={{ flex: 1 }}>
                             {(!minimised && (
