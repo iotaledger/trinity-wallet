@@ -150,6 +150,7 @@ export function getChartData() {
                 each(results, (resultItem, index) => {
                     currentTimeFrame = arrayCurrenciesTimeFrames[index].timeFrame;
                     currentCurrency = arrayCurrenciesTimeFrames[index].currency;
+
                     const formattedData = formatChartData(resultItem, currentTimeFrame);
 
                     if (actualCurrency !== currentCurrency) {
