@@ -325,7 +325,7 @@ export const withRetriesOnDifferentNodes = (nodes, failureCallbacks) => {
                         }
                     }
 
-                    attempt = attempt + 1;
+                    attempt += 1;
 
                     if (attempt < retries) {
                         return execute(...args);

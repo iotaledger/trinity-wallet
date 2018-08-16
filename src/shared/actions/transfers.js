@@ -817,8 +817,7 @@ export const retryFailedTransaction = (accountName, bundleHash, powFn) => (dispa
 
                 // Since this transaction was never sent to the tangle
                 // Generate the same alert we display when a transaction is successfully sent to the tangle
-                const hasZeroValue = (tx) => tx.value === 0;
-                const isZeroValue = every(transactionObjects, hasZeroValue);
+                const isZeroValue = every(transactionObjects, (tx) => tx.value === 0);
 
                 dispatch(generateTransactionSuccessAlert(isZeroValue));
 
