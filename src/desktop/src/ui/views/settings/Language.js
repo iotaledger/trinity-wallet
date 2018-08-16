@@ -47,15 +47,12 @@ class LanguageSelect extends React.PureComponent {
             <form onSubmit={(e) => this.changeLocale(e)}>
                 <Select
                     label={t('languageSetup:language')}
-                    defaultValue={locale}
-                    onChange={(e) => this.setState({ selection: e.target.value })}
-                >
-                    {I18N_LOCALES.map((item, index) => (
-                        <option key={item} value={item}>
-                            {I18N_LOCALE_LABELS[index]}
-                        </option>
-                    ))}
-                </Select>
+                    value={I18N_LOCALE_LABELS[I18N_LOCALES.indexOf(selection || locale)]}
+                    onChange={(value) => this.setState({ selection: value })}
+                    options={I18N_LOCALES.map((item, index) => {
+                        return { value: item, label: I18N_LOCALE_LABELS[index] };
+                    })}
+                />
                 <fieldset>
                     <Button type="submit" disabled={!selection || selection === locale}>
                         {t('save')}

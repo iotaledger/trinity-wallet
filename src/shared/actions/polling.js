@@ -415,7 +415,7 @@ export const fetchChartData = () => {
                 each(results, (resultItem, index) => {
                     currentTimeFrame = arrayCurrenciesTimeFrames[index].timeFrame;
                     currentCurrency = arrayCurrenciesTimeFrames[index].currency;
-                    const formatedData = formatChartData(resultItem, currentCurrency, currentTimeFrame);
+                    const formatedData = formatChartData(resultItem, currentTimeFrame);
 
                     if (actualCurrency !== currentCurrency) {
                         actualCurrency = currentCurrency;

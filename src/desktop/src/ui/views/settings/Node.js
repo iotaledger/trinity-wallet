@@ -6,7 +6,6 @@ import withNodeData from 'containers/settings/Node';
 import Button from 'ui/components/Button';
 import Select from 'ui/components/input/Select';
 import Text from 'ui/components/input/Text';
-import Checkbox from 'ui/components/Checkbox';
 
 /**
  * Change IRI API node component
@@ -25,10 +24,6 @@ class SetNode extends PureComponent {
         setNode: PropTypes.func.isRequired,
         /** @ignore */
         removeCustomNode: PropTypes.func.isRequired,
-        /** @ignore */
-        autoNodeSwitching: PropTypes.bool.isRequired,
-        /** @ignore */
-        setAutoNodeSwitching: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
     };
@@ -51,12 +46,8 @@ class SetNode extends PureComponent {
         this.setState({ customNode: val });
     };
 
-    toggleAutoNodeSwitching = () => {
-        this.props.setAutoNodeSwitching();
-    };
-
-    changeSelectedNode = (e) => {
-        this.setState({ selection: e.target.value });
+    changeSelectedNode = (value) => {
+        this.setState({ selection: value });
     };
 
     changeNode = (e) => {
@@ -75,7 +66,7 @@ class SetNode extends PureComponent {
     };
 
     render() {
-        const { nodes, customNodes, node, loading, autoNodeSwitching, t } = this.props;
+        const { nodes, customNodes, node, loading, t } = this.props;
         const { selection, customNode } = this.state;
 
         const selectedNode = customNode.length > 0 ? customNode : selection;
@@ -87,21 +78,12 @@ class SetNode extends PureComponent {
                     label={t('node')}
                     disabled={customNode.length > 0}
                     onChange={this.changeSelectedNode}
-                >
-                    {nodes.map((item) => (
-                        <option key={item} value={item}>
-                            {item}
-                        </option>
-                    ))}
-                </Select>
+                    options={nodes.map((item) => {
+                        return { value: item, label: item };
+                    })}
+                />
 
                 <Text value={customNode} label={t('addCustomNode:customNode')} onChange={this.changeCustomNode} />
-
-                <Checkbox
-                    checked={autoNodeSwitching}
-                    onChange={this.toggleAutoNodeSwitching}
-                    label={t('settings:autoNodeSwitching')}
-                />
 
                 <fieldset>
                     <Button type="submit" loading={loading} disabled={!selectedNode || selectedNode === node}>

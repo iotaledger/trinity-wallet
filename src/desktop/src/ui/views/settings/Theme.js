@@ -48,14 +48,14 @@ class Theme extends React.PureComponent {
                 <Select
                     label="Theme"
                     value={themeName || this.props.themeName}
-                    onChange={(e) => this.setState({ themeName: e.target.value })}
-                >
-                    {Object.keys(themes).map((item) => (
-                        <option key={item} value={item}>
-                            {item}
-                        </option>
-                    ))}
-                </Select>
+                    onChange={(value) => this.setState({ themeName: value })}
+                    options={Object.keys(themes).map((item) => {
+                        return {
+                            value: item,
+                            label: item,
+                        };
+                    })}
+                />
                 <div className={css.mockup} style={{ background: theme.body.bg }}>
                     <p style={{ color: theme.body.color }}>{t('themeCustomisation:mockup')}</p>
                     <div className={inputCSS.input} style={{ marginBottom: 10 }}>
