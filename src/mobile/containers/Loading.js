@@ -293,7 +293,6 @@ class Loading extends Component {
     launchHomeScreen() {
         const { theme: { body, bar } } = this.props;
         KeepAwake.deactivate();
-<<<<<<< HEAD
         this.props.navigator.resetTo({
             screen: 'home',
             navigatorStyle: {
@@ -306,41 +305,6 @@ class Loading extends Component {
             },
             animated: false,
         });
-=======
-        // FIXME: A quick workaround to stop history refresh flash on iOS.
-        if (isAndroid) {
-            this.props.navigator.push({
-                screen: 'home',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    navBarTransparent: true,
-                    topBarElevationShadowEnabled: false,
-                    screenBackgroundColor: body.bg,
-                    drawUnderStatusBar: true,
-                    statusBarColor: bar.hover,
-                },
-                animated: false,
-            });
-        } else {
-            Navigation.startSingleScreenApp({
-                screen: {
-                    screen: 'home',
-                    navigatorStyle: {
-                        navBarHidden: true,
-                        navBarTransparent: true,
-                        topBarElevationShadowEnabled: false,
-                        screenBackgroundColor: body.bg,
-                        drawUnderStatusBar: true,
-                        statusBarColor: bar.bg,
-                    },
-                },
-                appStyle: {
-                    orientation: 'portrait',
-                    keepStyleAcrossPush: true,
-                },
-            });
-        }
->>>>>>> 4cf9267fd... Fix Android SeedVault (#228)
         this.clearTimeouts();
         this.setState({ animationPartOneDone: false, displayNodeChangeOption: false });
     }

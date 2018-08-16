@@ -19,12 +19,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     seedBoxTextLeft: {
-        fontFamily: 'Inconsolata-Bold',
+        fontFamily: 'SourceCodePro-Medium',
         textAlign: 'justify',
         backgroundColor: 'transparent',
     },
     seedBoxTextRight: {
-        fontFamily: 'Inconsolata-Bold',
+        fontFamily: 'SourceCodePro-Medium',
         textAlign: 'justify',
         backgroundColor: 'transparent',
     },

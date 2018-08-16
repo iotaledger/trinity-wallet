@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
         color: '#B21C17',
         textDecorationLine: 'line-through',
         marginRight: width / 100,
-        fontFamily: 'Inconsolata-Bold',
+        fontFamily: 'SourceCodePro-Medium',
         fontSize: GENERAL.fontSize2,
     },
     bottomContainer: {
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     },
     addressText: {
         backgroundColor: 'transparent',
-        fontFamily: 'Inconsolata-Bold',
+        fontFamily: 'SourceCodePro-Medium',
         fontSize: GENERAL.fontSize2,
         textDecorationStyle: 'solid',
     },
