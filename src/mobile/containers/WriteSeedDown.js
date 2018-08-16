@@ -119,7 +119,7 @@ class WriteSeedDown extends Component {
     }
 
     /**
-     * Wrapper method for trigger blank paper wallet
+     * Wrapper method for printing a blank paper wallet
      * @method onPrintPress
      */
     onPrintPress() {

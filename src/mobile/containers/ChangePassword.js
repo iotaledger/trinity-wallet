@@ -202,7 +202,7 @@ class ChangePassword extends Component {
     }
 
     /**
-     * Generates alert in case a user enters an incorrect/invalid password
+     * Generates alert when a user enters an incorrect/invalid password
      *
      * @method renderInvalidSubmissionAlerts
      * @param {object} currentPwdHash

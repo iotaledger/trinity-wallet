@@ -120,7 +120,7 @@ class AddCustomNode extends Component {
     }
 
     /**
-     * Generates an alert in case a custom node could not added
+     * Generates an alert if a custom node could not added
      *
      * @method onAddNodeError
      */
@@ -133,7 +133,7 @@ class AddCustomNode extends Component {
     }
 
     /**
-     * Generates an alert in case a duplicate node is added
+     * Generates an alert if a duplicate node is added
      *
      * @method onDuplicateNodeError
      */
@@ -146,7 +146,7 @@ class AddCustomNode extends Component {
     }
 
     /**
-     * Generates an alert in case users adds a http node
+     * Generates an alert when users adds a http node
      *
      * @method onAddHttpNodeError
      */
@@ -159,7 +159,7 @@ class AddCustomNode extends Component {
     }
 
     /**
-     * Generates an alert in case user tries to add node with empty text field
+     * Generates an alert when user tries to add node with empty text field
      *
      * @method onEmptyFieldError
      */

@@ -111,7 +111,7 @@ export class TwoFactorSetupAddKey extends Component {
     }
 
     /**
-     * Pops out the active screen from the navigation stack
+     * Pops the active screen from the navigation stack
      * @method goBack
      */
     goBack() {
@@ -121,7 +121,7 @@ export class TwoFactorSetupAddKey extends Component {
     }
 
     /**
-     * Navigates to screen for two factor authentication (enter token)
+     * Navigates to enter token screen
      * @method navigateToEnterToken
      */
     navigateToEnterToken() {

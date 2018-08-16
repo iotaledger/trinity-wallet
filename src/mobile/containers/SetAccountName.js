@@ -105,7 +105,7 @@ export class SetAccountName extends Component {
     }
 
     /**
-     * Navigates to loading screen and fetches seed information from the tangle
+     * Navigates to loading screen and fetches seed information from the Tangle
      * @method onDonePress
      */
     onDonePress() {
@@ -169,7 +169,7 @@ export class SetAccountName extends Component {
     }
 
     /**
-     * Pops out the active screen from the navigation stack
+     * Pops the active screen from the navigation stack
      * @method onBackPress
      */
     onBackPress() {

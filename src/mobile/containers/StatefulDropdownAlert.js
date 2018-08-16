@@ -58,7 +58,7 @@ class StatefulDropdownAlert extends Component {
         /** Background color for dropdown alert */
         backgroundColor: PropTypes.string.isRequired,
         /**
-         * Returns the this component instance to the parent component
+         * Returns this component instance to the parent component
          *
          * @param {object} component instance
          */

@@ -175,7 +175,7 @@ class SnapshotTransition extends Component {
     }
 
     /**
-     * Dispatch an action to complete snapshot transition (Start attaching addresses to tangle)
+     * Dispatch an action to complete snapshot transition (Start attaching addresses to Tangle)
      * @method onBalanceCompletePress
      */
     onBalanceCompletePress() {
@@ -198,7 +198,7 @@ class SnapshotTransition extends Component {
     }
 
     /**
-     * Generates a bulk of addresses in case a user doesn't find his correct balance
+     * Generates bulk of addresses if a user doesn't find their correct balance
      * @method onBalanceIncompletePress
      */
     onBalanceIncompletePress() {
@@ -219,7 +219,7 @@ class SnapshotTransition extends Component {
 
     /**
      * Generates a bulk of addresses starting from index 0
-     * Finds balance against those addresses and displays a modal asking for user confirmation about correct balance
+     * Finds balance for those addresses and displays a modal asking the user to confirm the balance
      * @method onSnapshotTransitionPress
      */
     onSnapshotTransitionPress() {

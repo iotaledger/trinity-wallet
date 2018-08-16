@@ -78,7 +78,7 @@ export class AdvancedSettings extends PureComponent {
     }
 
     /**
-     * Generates an alert if a user tries to navigate to (change node/add custom node) screen when a transaction is in progress
+     * Generates an alert if a user tries to navigate to change node or add custom node screen when a transaction is in progress
      *
      * @method generateChangeNodeAlert
      */

@@ -88,7 +88,7 @@ class LanguageSelection extends Component {
     }
 
     /**
-     * Saves user selected language
+     * Saves user-selected language
      */
     saveLanguageSelection() {
         const nextLanguage = this.languageSelected;

@@ -139,8 +139,8 @@ class UseExistingSeed extends Component {
     }
 
     /**
-     * Validates QR scanned seed
-     * Generates an alert if an invalid seed is scanned
+     * Validates scanned QR data
+     * Generates an alert if invalid data is scanned
      *
      * @method onQRRead
      * @param {string} data
@@ -192,7 +192,7 @@ class UseExistingSeed extends Component {
     }
 
     /**
-     * Sets additional account information to store
+     * Adds additional account information to store
      * Navigates to loading screen
      * @method fetchAccountInfo
      */
@@ -222,7 +222,7 @@ class UseExistingSeed extends Component {
     }
 
     /**
-     * Validates seed and dispatch an action to fetch associated information
+     * Validates seed and dispatches an action to fetch associated information
      *
      * @method addExistingSeed
      * @param {string} seed

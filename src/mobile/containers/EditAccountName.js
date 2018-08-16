@@ -103,7 +103,7 @@ export class EditAccountName extends Component {
 
     /**
      * Updates new account name in store and keychain
-     * In case a user enters a duplicate account name, simply generates an alert
+     * Generates an alert if the user enters a duplicate account name
      *
      * @method save
      */

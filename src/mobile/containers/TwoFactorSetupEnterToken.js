@@ -90,7 +90,7 @@ class TwoFactorSetupEnterToken extends Component {
     }
 
     /**
-     * Pops out the active screen from the navigation stack
+     * Pops the active screen from the navigation stack
      * @method goBack
      */
     goBack() {
@@ -108,7 +108,7 @@ class TwoFactorSetupEnterToken extends Component {
     }
 
     /**
-     * Navigate to home screen
+     * Navigates to home screen
      * @method navigateToHome
      */
     navigateToHome() {
@@ -128,7 +128,7 @@ class TwoFactorSetupEnterToken extends Component {
     }
 
     /**
-     * Verify user provided token and enables two factor authentication
+     * Verifies user provided token and enables two factor authentication
      * @method check2FA
      */
     check2FA() {

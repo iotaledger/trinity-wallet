@@ -110,7 +110,7 @@ class WalletResetConfirmation extends Component {
     }
 
     /**
-     * Pops out the active screen from the navigation stack
+     * Pops the active screen from the navigation stack
      * @method goBack
      */
     goBack() {
@@ -120,7 +120,7 @@ class WalletResetConfirmation extends Component {
     }
 
     /**
-     * Navigate to require password screen
+     * Navigates to require password screen
      * @method requirePassword
      */
     requirePassword() {

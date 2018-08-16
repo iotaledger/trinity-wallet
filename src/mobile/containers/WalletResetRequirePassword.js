@@ -96,7 +96,7 @@ class WalletResetRequirePassword extends Component {
     }
 
     /**
-     * Pops out the active screen from the navigation stack
+     * Pops the active screen from the navigation stack
      * @method goBack
      */
     goBack() {

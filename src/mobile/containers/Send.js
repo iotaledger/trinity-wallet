@@ -566,7 +566,7 @@ export class Send extends Component {
     };
 
     /**
-     * Determines if user has balance less than entered amount
+     * Determines if user's balance is less than the entered amount
      *
      * @method enoughBalance
      * @returns {boolean}
@@ -603,7 +603,7 @@ export class Send extends Component {
     }
 
     /**
-     * Gets seed from keychain and initiate transfer
+     * Gets seed from keychain and initiates transfer
      *
      * @method sendTransfer
      */

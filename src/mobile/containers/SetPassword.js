@@ -120,7 +120,7 @@ class SetPassword extends Component {
     }
 
     /**
-     * Stores seed in keychain and clears out temporarily stored information about seed from state
+     * Stores seed in keychain and clears seed from state
      * @method onDonePress
      * @returns {Promise<void>}
      */
@@ -207,7 +207,7 @@ class SetPassword extends Component {
     }
 
     /**
-     * Pops out the active screen from the navigation stack
+     * Pops the active screen from the navigation stack
      * @method onBackPress
      */
     onBackPress() {

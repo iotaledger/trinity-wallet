@@ -105,7 +105,7 @@ export class ViewAddresses extends Component {
     }
 
     /**
-     * Converts address data (object) to an array and orders them by key index
+     * Converts address data (object) to an array and orders it by key index
      *
      * @method prepAddresses
      * @returns {Array}
