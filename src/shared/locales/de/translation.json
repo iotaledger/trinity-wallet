@@ -137,7 +137,14 @@
         "ifYourBalanceIsNotCorrect": "Wenn dein Guthaben nicht stimmt, verwendest du wahrscheinlich einen Seed, der eine Snapshot-Wiederherstellung benötigt.",
         "headToAdvancedSettingsForTransition": "Wechsle zu den erweiterten Einstellungen und führe eine Snapshot-Wiederherstellung aus.",
         "usingTrinityWalletWithKeePass": "Trinity Brieftasche mit Keepass2Android verwenden",
-        "signedTrytesBroadcastErrorExplanation": "Während der Transkation ist ein Netzwerkfehler aufgetreten."
+        "signedTrytesBroadcastErrorExplanation": "Während der Transkation ist ein Netzwerkfehler aufgetreten.",
+        "broadcastError": "Could not broadcast transfer",
+        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
+        "problemSendingYourTransaction": "There was a problem sending your transaction.",
+        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
+        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
+        "tryingAgainWithDifferentNode": "Trying again with a different node.",
+        "errorFetchingAccountInformation": "Error fetching account information."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
