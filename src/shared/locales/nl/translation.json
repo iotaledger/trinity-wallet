@@ -123,7 +123,7 @@
         "seedThief": "Als iemand anders uw seed heeft, kan diegene uw IOTA stelen.",
         "googlePlayServicesNotAvailable": "Google Play Services niet beschikbaar",
         "couldNotVerifyDeviceIntegrity": "Kon apparaat integriteit niet verifiëren omdat Google Play Services onbeschikbaar zijn.",
-        "clear": "WIS",
+        "clear": "Clear",
         "noNetworkConnection": "Geen netwerkverbinding",
         "noNetworkConnectionExplanation": "Uw internetverbinding lijkt offline te zijn.",
         "spentAddressExplanation": "WAARSCHUWING: Saldo op verbruikte adressen",
@@ -307,7 +307,9 @@
         "incorrectSeed": "Onjuiste seed",
         "incorrectSeedExplanation": "De ingevoerde seed is onjuist. Probeer het nog eens.",
         "ifYouHaveNotSaved": "Als u uw seed nog niet opgeslagen heeft, ga dan terug en doe dit alsnog.",
-        "enterSeedBelow": "Voer uw zojuist gegenereerde seed hieronder in om te bevestigen dat uw reservekopie klopt"
+        "enterSeedBelow": "Voer uw zojuist gegenereerde seed hieronder in om te bevestigen dat uw reservekopie klopt",
+        "clipboardWarning": "Do not copy paste your seed",
+        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
     },
     "send": {
         "invalidAddress": "Ongeldig adres",
@@ -651,7 +653,7 @@
         "skipUpdate": "Sla de update over"
     },
     "notificationLog": {
-        "errorLog": "ERROR LOG"
+        "errorLog": "Error log"
     },
     "terms": {
         "termsAndConditions": "Algemene Voorwaarden",
