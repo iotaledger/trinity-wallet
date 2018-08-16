@@ -35,6 +35,18 @@ local.properties
 node_modules/
 npm-debug.log
 yarn-error.log
+Entypo.ttf
+EvilIcons.ttf
+Feather.ttf
+FontAwesome.ttf
+Foundation.ttf
+Ionicons.ttf
+MaterialCommunityIcons.ttf
+MaterialIcons.ttf
+Octicons.ttf
+SimpleLineIcons.ttf
+Zocial.ttf
+
 
 # BUCK
 buck-out/

@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     },
     addressText: {
         backgroundColor: 'transparent',
-        fontFamily: 'Inconsolata-Bold',
+        fontFamily: 'SourceCodePro-Medium',
         fontSize: GENERAL.fontSize4,
     },
     iotaText: {
