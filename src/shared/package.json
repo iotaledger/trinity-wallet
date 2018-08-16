@@ -19,7 +19,7 @@
     "dependencies": {
         "bignumber.js": "^7.2.1",
         "i18next": "^10.2.2",
-        "iota.lib.js": "git+https://git@github.com/iotaledger/iota.lib.js#develop",
+        "iota.lib.js": "^0.5.0",
         "lodash": "^4.17.10",
         "moment": "^2.22.2",
         "proxy-polyfill": "git+https://git@github.com/GoogleChrome/proxy-polyfill#9c009d7",
