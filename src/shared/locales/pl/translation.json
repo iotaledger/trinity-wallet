@@ -59,6 +59,7 @@
         "password": "Hasło",
         "unrecognisedPassword": "Hasło nierozpoznane",
         "unrecognisedPasswordExplanation": "Hasło nieprawidłowe. Spróbuj ponownie.",
+        "capsLockIsOn": "Caps Lock jest włączony",
         "syncInProgress": "Synchronizacja w toku",
         "syncInProgressExplanation": "Proszę czekać na zakończenie synchronizacji.",
         "somethingWentWrong": "Coś poszło nie tak",
@@ -71,6 +72,7 @@
         "attachToTangleUnavailableExplanation": "Zdalny tryb Proof of Work jest niedostępny na wybranym serwerze. Zmień serwer lub ustaw lokalny tryb PoW w zaawansowanych ustawieniach aplikacji.",
         "attachToTangleUnavailableExplanationShort": "Zdalny tryb Proof of Work jest niedostępny na wybranym serwerze.",
         "wallet": "Portfel",
+        "all": "Wszystkie",
         "sent": "Wysłano",
         "received": "Odebrano",
         "sending": "Wysyłanie",
@@ -117,11 +119,11 @@
         "nodeAutoChanged": "Autom. zmiana serwera",
         "nodeAutoChangedExplanation": "Przełączono na nowy serwer {{- nodeAddress}}, ponieważ poprzednio wybrany serwer był offline.",
         "fingerprintOnSend": "Przyłóż palec do czytnika, aby autoryzować transfer",
-        "masterKey": "Twój seed IOTA jest głównym kluczem do Twoich funduszy.",
-        "seedThief": "Jeśli ktoś inny zdobędzie Twój klucz seed, będzie mógł on wykraść Twoje środki IOTA.",
+        "masterKey": "Seed IOTA jest głównym kluczem do Twoich funduszy.",
+        "seedThief": "Jeśli ktoś inny zdobędzie ten klucz, będzie mógł on wykraść Twoje środki IOTA.",
         "googlePlayServicesNotAvailable": "Usługi Google Play niedostępne",
         "couldNotVerifyDeviceIntegrity": "Nie można zweryfikować integralności urządzenia, ponieważ Usługi Google Play są niedostępne.",
-        "clear": "WYCZYŚĆ",
+        "clear": "Wyczyść",
         "noNetworkConnection": "Brak połączenia z siecią",
         "noNetworkConnectionExplanation": "Wygląda na to, że utracono dostęp do internetu.",
         "spentAddressExplanation": "UWAGA: Środki na zużytym adresie",
@@ -135,7 +137,14 @@
         "ifYourBalanceIsNotCorrect": "Jeśli Twoje saldo nie jest poprawne, prawdopodobnie używasz klucza seed sprzed tzw. migawki (snapshot).",
         "headToAdvancedSettingsForTransition": "Przejdź do ustawień zaawansowanych i skorzystaj z funkcji Snapshot asystent.",
         "usingTrinityWalletWithKeePass": "Używanie portfela Trinity z Keepass2Android",
-        "signedTrytesBroadcastErrorExplanation": "Wystąpił błąd sieci podczas wykonywania Twojej transakcji."
+        "signedTrytesBroadcastErrorExplanation": "Wystąpił błąd sieci podczas wykonywania Twojej transakcji.",
+        "broadcastError": "Could not broadcast transfer",
+        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
+        "problemSendingYourTransaction": "There was a problem sending your transaction.",
+        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
+        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
+        "tryingAgainWithDifferentNode": "Trying again with a different node.",
+        "errorFetchingAccountInformation": "Error fetching account information."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
@@ -305,7 +314,9 @@
         "incorrectSeed": "Nieprawidłowy seed",
         "incorrectSeedExplanation": "Wprowadzony seed jest niepoprawny. Proszę spróbować ponownie.",
         "ifYouHaveNotSaved": "Jeśli nie zapisałeś swojego klucza seed, wróć do poprzedniego ekranu i zrób to.",
-        "enterSeedBelow": "Wprowadź swój nowo utworzony seed poniżej, aby potwierdzić, że posiadasz jego poprawną kopię"
+        "enterSeedBelow": "Wprowadź swój nowo utworzony seed poniżej, aby potwierdzić, że posiadasz jego poprawną kopię",
+        "clipboardWarning": "Nie kopiuj swojego klucza",
+        "clipboardWarningExplanation": "OSTRZEŻENIE: Kopiowanie oraz wklejanie klucza seed jest wyłączone dla Twojego bezpieczeństwa."
     },
     "send": {
         "invalidAddress": "Błędny adres",
@@ -409,7 +420,7 @@
         "yesINeedASeed": "Tak, potrzebuję klucza",
         "explanation": "<0><0>Możesz go użyć, aby uzyskać dostęp do swoich środków z</0><1> dowolnego portfela</1><2>, na</2><3> dowolnym urządzeniu.</3></0>",
         "loseSeed": "Jeśli utracisz klucz seed, stracisz swoje środki IOTA.",
-        "keepSafe": "Proszę dbaj o bezpieczeństwo swojego klucza seed."
+        "keepSafe": "Zadbaj o bezpieczeństwo swojego klucza seed."
     },
     "welcome": {
         "thankYou": "Dziękujemy za pobranie portfela IOTA"
@@ -649,11 +660,12 @@
         "skipUpdate": "Pomiń aktualizację"
     },
     "notificationLog": {
-        "errorLog": "DZIENNIK BŁĘDÓW"
+        "errorLog": "Dziennik błędów"
     },
     "terms": {
         "termsAndConditions": "Warunki i zasady",
-        "accept": "Akceptuję"
+        "accept": "Akceptuję",
+        "readAllToContinue": "Przeczytaj cały tekst, aby kontynuować"
     },
     "privacyPolicy": {
         "privacyPolicy": "Polityka prywatności",
