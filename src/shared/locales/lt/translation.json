@@ -123,7 +123,7 @@
         "seedThief": "Jeigu kas nors sužinos jūsų užraktą, jie galės pavogti jūsų IOTA.",
         "googlePlayServicesNotAvailable": "Google Play paslaugos nepasiekiamos",
         "couldNotVerifyDeviceIntegrity": "Įrenginio vientisumo patvirtinti nepavyksta, nes Google Play paslaugos nepasiekiamos.",
-        "clear": "IŠVALYTI",
+        "clear": "Clear",
         "noNetworkConnection": "Nėra tinklo ryšio",
         "noNetworkConnectionExplanation": "Panašu, kad jūsų interneto ryšys atjungtas.",
         "spentAddressExplanation": "DĖMESIO: Lėšos panaudotame adrese",
@@ -307,7 +307,9 @@
         "incorrectSeed": "Neteisingas užraktas",
         "incorrectSeedExplanation": "Įvestas užraktas neteisingas. Bandykite dar kartą.",
         "ifYouHaveNotSaved": "Jei neišsisaugojote savo užrakto, grįžkite ir padarykite tai.",
-        "enterSeedBelow": "Įveskite savo naujai sukurtą užraktą, norėdami patvirtinti, kad jį teisingai išsisaugojote"
+        "enterSeedBelow": "Įveskite savo naujai sukurtą užraktą, norėdami patvirtinti, kad jį teisingai išsisaugojote",
+        "clipboardWarning": "Do not copy paste your seed",
+        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
     },
     "send": {
         "invalidAddress": "Neteisingas adresas",
@@ -651,7 +653,7 @@
         "skipUpdate": "Praleisti atnaujinimus"
     },
     "notificationLog": {
-        "errorLog": "KLAIDŲ ŽURNALAS"
+        "errorLog": "Error log"
     },
     "terms": {
         "termsAndConditions": "Sąlygos ir nuostatos",
