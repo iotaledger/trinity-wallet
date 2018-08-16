@@ -137,7 +137,14 @@
         "ifYourBalanceIsNotCorrect": "Jeśli Twoje saldo nie jest poprawne, prawdopodobnie używasz klucza seed sprzed tzw. migawki (snapshot).",
         "headToAdvancedSettingsForTransition": "Przejdź do ustawień zaawansowanych i skorzystaj z funkcji Snapshot asystent.",
         "usingTrinityWalletWithKeePass": "Używanie portfela Trinity z Keepass2Android",
-        "signedTrytesBroadcastErrorExplanation": "Wystąpił błąd sieci podczas wykonywania Twojej transakcji."
+        "signedTrytesBroadcastErrorExplanation": "Wystąpił błąd sieci podczas wykonywania Twojej transakcji.",
+        "broadcastError": "Could not broadcast transfer",
+        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
+        "problemSendingYourTransaction": "There was a problem sending your transaction.",
+        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
+        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
+        "tryingAgainWithDifferentNode": "Trying again with a different node.",
+        "errorFetchingAccountInformation": "Error fetching account information."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed zawiera nieprawidłowe znaki",
