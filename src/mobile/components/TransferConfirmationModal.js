@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     addressText: {
         backgroundColor: 'transparent',
         fontFamily: 'SourceCodePro-Medium',
-        fontSize: GENERAL.fontSize4,
+        fontSize: GENERAL.fontSize3,
     },
     iotaText: {
         backgroundColor: 'transparent',
