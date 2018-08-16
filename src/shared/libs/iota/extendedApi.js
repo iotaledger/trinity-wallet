@@ -14,7 +14,7 @@ import {
     DEFAULT_MIN_WEIGHT_MAGNITUDE,
     NODE_REQUEST_TIMEOUT,
 } from '../../config';
-import { performPow } from './transfers';
+import { performPow, sortTransactionTrytesArray } from './transfers';
 import { EMPTY_HASH_TRYTES } from './utils';
 
 /**
@@ -221,7 +221,7 @@ const replayBundleAsync = (provider, powFn) => (
             attachToTangleAsync(provider, powFn)(
                 trunkTransaction,
                 branchTransaction,
-                cached.trytes.reverse(),
+                cached.trytes,
                 minWeightMagnitude,
             ),
         )
@@ -425,12 +425,13 @@ const attachToTangleAsync = (provider, powFn) => (
                 trunkTransaction,
                 branchTransaction,
                 minWeightMagnitude,
-                trytes,
+                // Make sure trytes are sorted properly
+                sortTransactionTrytesArray(trytes),
                 (err, attachedTrytes) => {
                     if (err) {
                         reject(err);
                     } else {
-                        const promise = () =>
+                        const convertToTransactionObjects = () =>
                             reduce(
                                 attachedTrytes,
                                 (promise, tryteString) => {
@@ -445,13 +446,17 @@ const attachToTangleAsync = (provider, powFn) => (
                                 Promise.resolve([]),
                             );
 
-                        promise()
-                            .then((transactionObjects) =>
-                                resolve({
-                                    transactionObjects,
-                                    trytes: attachedTrytes,
-                                }),
-                            )
+                        convertToTransactionObjects()
+                            .then((transactionObjects) => {
+                                if (iota.utils.isBundle(transactionObjects)) {
+                                    resolve({
+                                        transactionObjects,
+                                        trytes: attachedTrytes,
+                                    });
+                                } else {
+                                    reject(new Error(Errors.INVALID_BUNDLE_CONSTRUCTED_DURING_REATTACHMENT));
+                                }
+                            })
                             .catch(reject);
                     }
                 },
@@ -459,7 +464,13 @@ const attachToTangleAsync = (provider, powFn) => (
         });
     }
 
-    return performPow(powFn, trytes, trunkTransaction, branchTransaction, minWeightMagnitude);
+    return performPow(powFn, trytes, trunkTransaction, branchTransaction, minWeightMagnitude).then((result) => {
+        if (!iota.utils.isBundle(result.transactionObjects)) {
+            throw new Error(Errors.INVALID_BUNDLE_CONSTRUCTED_DURING_REATTACHMENT);
+        }
+
+        return result;
+    });
 };
 
 /**

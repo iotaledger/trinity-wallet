@@ -25,10 +25,12 @@ import {
     getOwnTransactionHashes,
     pickNewTailTransactions,
     retryFailedTransaction,
+    sortTransactionTrytesArray,
 } from '../../../libs/iota/transfers';
 import { iota, SwitchingConfig } from '../../../libs/iota/index';
 import trytes from '../../__samples__/trytes';
 import * as mockTransactions from '../../__samples__/transactions';
+import { EMPTY_HASH_TRYTES, EMPTY_TRANSACTION_TRYTES } from '../../../libs/iota/utils';
 
 describe('libs: iota/transfers', () => {
     before(() => {
@@ -797,7 +799,7 @@ describe('libs: iota/transfers', () => {
         });
 
         it('should sort transaction objects in ascending order by currentIndex', () => {
-            const fn = performPow(powFn(), trytes.value.reverse(), trunkTransaction, branchTransaction, 14);
+            const fn = performPow(powFn(), trytes.value.slice().reverse(), trunkTransaction, branchTransaction, 14);
 
             return fn.then(({ transactionObjects }) => {
                 transactionObjects.map((tx, idx) => expect(tx.currentIndex).to.equal(idx));
@@ -805,7 +807,7 @@ describe('libs: iota/transfers', () => {
         });
 
         it('should assign generated nonce', () => {
-            const fn = performPow(powFn(), trytes.value.reverse(), trunkTransaction, branchTransaction, 14);
+            const fn = performPow(powFn(), trytes.value.slice().reverse(), trunkTransaction, branchTransaction, 14);
 
             return fn.then(({ transactionObjects }) => {
                 transactionObjects.map((tx, idx) => expect(tx.nonce).to.equal(nonces.slice().reverse()[idx]));
@@ -813,7 +815,7 @@ describe('libs: iota/transfers', () => {
         });
 
         it('should set correct bundle sequence', () => {
-            const fn = performPow(powFn(), trytes.value.reverse(), trunkTransaction, branchTransaction, 14);
+            const fn = performPow(powFn(), trytes.value.slice().reverse(), trunkTransaction, branchTransaction, 14);
 
             return fn.then(({ transactionObjects }) => {
                 expect(transactionObjects[0].trunkTransaction).to.equal(transactionObjects[1].hash);
@@ -1210,6 +1212,48 @@ describe('libs: iota/transfers', () => {
                     getTransactionToApprove.restore();
                 });
             });
+        });
+
+        describe('when any transaction object has an empty hash', () => {
+            it('should perform proof of work', () => {
+                const powFn = sinon.stub().resolves('R'.repeat(27));
+                const storeAndBroadcast = sinon.stub(iota.api, 'storeAndBroadcast').yields(null, []);
+                const getTransactionToApprove = sinon.stub(iota.api, 'getTransactionsToApprove').yields(null, {
+                    trunkTransaction: 'R'.repeat(81),
+                    branchTransaction: 'A'.repeat(81),
+                });
+
+                return retryFailedTransaction()(
+                    map(
+                        transactionObjects,
+                        (tx, idx) => (idx % 2 === 0 ? tx : Object.assign({}, tx, { hash: EMPTY_HASH_TRYTES })),
+                    ),
+                    powFn,
+                    false,
+                ).then(() => {
+                    expect(powFn.callCount).to.equal(4);
+                    storeAndBroadcast.restore();
+                    getTransactionToApprove.restore();
+                });
+            });
+        });
+    });
+
+    describe('#sortTransactionTrytesArray', () => {
+        it('should sort transaction trytes in ascending order', () => {
+            // trytes.value is is ordered as descending by default
+            const result = sortTransactionTrytesArray(trytes.value, 'currentIndex', 'asc');
+
+            expect(result).to.not.eql(trytes.value);
+            expect(result).to.eql(trytes.value.slice().reverse());
+            expect(iota.utils.transactionObject(result[0], EMPTY_TRANSACTION_TRYTES).currentIndex).to.equal(0);
+        });
+
+        it('should sort transaction trytes in descending order', () => {
+            const result = sortTransactionTrytesArray(trytes.value.slice().reverse());
+
+            expect(result).to.eql(trytes.value);
+            expect(iota.utils.transactionObject(result[0], EMPTY_TRANSACTION_TRYTES).currentIndex).to.equal(3);
         });
     });
 });

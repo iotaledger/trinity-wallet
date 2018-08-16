@@ -1030,7 +1030,8 @@ export const retryFailedTransaction = (provider) => (transactionObjects, powFn) 
         trytes: map(transactionObjects, convertToTrytes),
     };
 
-    const isInvalidTransactionHash = (tx) => !iota.utils.isTransactionHash(tx.hash, DEFAULT_MIN_WEIGHT_MAGNITUDE);
+    const isInvalidTransactionHash = ({ hash }) =>
+        hash === EMPTY_HASH_TRYTES || !iota.utils.isTransactionHash(hash, DEFAULT_MIN_WEIGHT_MAGNITUDE);
 
     // Verify if all transaction objects have valid hash
     // Proof of work was not performed correctly if any transaction has invalid hash
@@ -1114,4 +1115,31 @@ export const formatRelevantRecentTransactions = (transactions, addresses) => {
         }
     });
     return relevantTransactions;
+};
+
+/**
+ * Sort transaction trytes array
+ *
+ * @method sortTransactionTrytesArray
+ * @param {array} trytes
+ * @param {string} [sortBy]
+ * @param {string} [order]
+ *
+ */
+export const sortTransactionTrytesArray = (trytes, sortBy = 'currentIndex', order = 'desc') => {
+    const sortableTransactionKeys = ['currentIndex', 'lastIndex', 'timestamp', 'attachmentTimestamp'];
+
+    if (!includes(sortableTransactionKeys, sortBy) || !includes(['desc', 'asc'], order)) {
+        return trytes;
+    }
+
+    const transactionObjects = map(trytes, (tryteString) =>
+        iota.utils.transactionObject(
+            tryteString,
+            // Pass in null hash trytes to avoid computing transaction hash.
+            EMPTY_HASH_TRYTES,
+        ),
+    );
+
+    return map(orderBy(transactionObjects, [sortBy], [order]), iota.utils.transactionTrytes);
 };
