@@ -59,6 +59,7 @@
         "password": "पासवर्ड",
         "unrecognisedPassword": "पासवर्ड मेल नहीं खाया",
         "unrecognisedPasswordExplanation": "पासवर्ड की पहचान नहीं की गई । कृपया पुन: प्रयास करें ।",
+        "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "सिंक्रनाइज़ेशन प्रगति पर है",
         "syncInProgressExplanation": "सिंकिंग पूर्ण होने तक कृपया प्रतीक्षा करें ।",
         "somethingWentWrong": "कुछ गलत हो गया",
@@ -71,6 +72,7 @@
         "attachToTangleUnavailableExplanation": "कार्य का दूरस्थ प्रमाण आपके चयनित नोड पर उपलब्ध नहीं है । या तो नोड बदलें या कार्य का प्रमाण स्थानीय में उंनत सेटिंग्स में सेट करें ।",
         "attachToTangleUnavailableExplanationShort": "आपके चुने हुए नोड के लिए \"टैंगल से अटैच\" उपलब्ध नहीं है",
         "wallet": "वॉलेट",
+        "all": "All",
         "sent": "भेजे गए",
         "received": "प्राप्त हुआ",
         "sending": "भेज रहे है",
@@ -121,7 +123,7 @@
         "seedThief": "अगर किसी और के पास आपका सीड है तो वे आपकी IOTA चुरा सकते हैं ।",
         "googlePlayServicesNotAvailable": "Google Play सेवाएं उपलब्ध नहीं",
         "couldNotVerifyDeviceIntegrity": "डिवाइस अक्षतता सत्यापित नहीं कर सका क्योंकि Google Play सेवाएं उपलब्ध नहीं हैं ।",
-        "clear": "क्लियर",
+        "clear": "Clear",
         "noNetworkConnection": "नेटवर्क कनेक्शन नहीं है",
         "noNetworkConnectionExplanation": "लगता है इंटरनेट कनेक्शन ऑफलाइन है।",
         "spentAddressExplanation": "चेतावनी: पहले से उपयोग एड्रेस पर बैलेंस",
@@ -135,7 +137,14 @@
         "ifYourBalanceIsNotCorrect": "यदि आपका बैलेंस सही नहीं है, तो संभव है कि आप पूर्व-स्नैपशॉट सीड का उपयोग कर रहे हों ।",
         "headToAdvancedSettingsForTransition": "एडवांस सेटिंग के लिए आगे बढ़े और स्नैपशॉट ट्रांजिट करे",
         "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android",
-        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
+        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction.",
+        "broadcastError": "Could not broadcast transfer",
+        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
+        "problemSendingYourTransaction": "There was a problem sending your transaction.",
+        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
+        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
+        "tryingAgainWithDifferentNode": "Trying again with a different node.",
+        "errorFetchingAccountInformation": "Error fetching account information."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "सीड में अवैध वर्ण हैं।",
@@ -305,7 +314,9 @@
         "incorrectSeed": "गलत सीड",
         "incorrectSeedExplanation": "आपके द्वारा दर्ज किया गया सीड गलत है । कृपया पुन: प्रयास करें ।",
         "ifYouHaveNotSaved": "यदि आप अपने सीड कहीं नहीं सहेजा है, कृपया वापस जाओ और सीड को सहेज लो।",
-        "enterSeedBelow": "आप इसे सही ढंग से बैकअप ले लिया है, इसकी पुष्टि करने के लिए नीचे अपने नए बनाए सीड दर्ज करें"
+        "enterSeedBelow": "आप इसे सही ढंग से बैकअप ले लिया है, इसकी पुष्टि करने के लिए नीचे अपने नए बनाए सीड दर्ज करें",
+        "clipboardWarning": "Do not copy paste your seed",
+        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
     },
     "send": {
         "invalidAddress": "अवैध पता",
@@ -649,11 +660,12 @@
         "skipUpdate": "अपडेट को नज़रअंदाज़ करे"
     },
     "notificationLog": {
-        "errorLog": "त्रुटि लॉग"
+        "errorLog": "Error log"
     },
     "terms": {
         "termsAndConditions": "नियम एवं शर्तें",
-        "accept": "मैं स्वीकार करता हूं"
+        "accept": "मैं स्वीकार करता हूं",
+        "readAllToContinue": "Please read all the text to continue"
     },
     "privacyPolicy": {
         "privacyPolicy": "गोपनीयता नीति",
