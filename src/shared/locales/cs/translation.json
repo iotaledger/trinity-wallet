@@ -123,7 +123,7 @@
         "seedThief": "Kdo získá Váš Seed, ten by mohl ukrást vaše IOTA finance.",
         "googlePlayServicesNotAvailable": "Služby Google Play jsou nedostupné",
         "couldNotVerifyDeviceIntegrity": "Integrita zařízení nemůže být ověřena, protože služby Google Play nejsou nyní dostupné.",
-        "clear": "VYMAZAT",
+        "clear": "Clear",
         "noNetworkConnection": "Žádné síťové připojení",
         "noNetworkConnectionExplanation": "Internetové připojení se zdá byť offline.",
         "spentAddressExplanation": "VAROVÁNÍ: Zjištěny prostředky na již použitých adresách",
@@ -307,7 +307,9 @@
         "incorrectSeed": "Neplatný Seed",
         "incorrectSeedExplanation": "Zadán neplatný Seed. Zkuste to prosím znovu.",
         "ifYouHaveNotSaved": "Pokud jste Váš Seed neuložili, vraťte se prosím zpět a uložte si jej.",
-        "enterSeedBelow": "Zadejte Váš nově vytvořený Seed níže, pro potvrzení, že jste si ho správně zazálohovali"
+        "enterSeedBelow": "Zadejte Váš nově vytvořený Seed níže, pro potvrzení, že jste si ho správně zazálohovali",
+        "clipboardWarning": "Do not copy paste your seed",
+        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
     },
     "send": {
         "invalidAddress": "Neplatná adresa",
@@ -651,7 +653,7 @@
         "skipUpdate": "Aktualizovat později"
     },
     "notificationLog": {
-        "errorLog": "PROTOKOL CHYB"
+        "errorLog": "Error log"
     },
     "terms": {
         "termsAndConditions": "Obchodní podmínky",
