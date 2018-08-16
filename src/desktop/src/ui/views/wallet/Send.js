@@ -65,12 +65,6 @@ class Send extends React.PureComponent {
         isUnitsVisible: false,
     };
 
-    componentWillReceiveProps(nextProps) {
-        if (this.props.isSending !== nextProps.isSending) {
-            Electron.updateMenu('enabled', !nextProps.isSending);
-        }
-    }
-
     validateInputs = (e) => {
         const { validateInputs } = this.props;
 
