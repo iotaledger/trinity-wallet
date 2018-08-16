@@ -123,7 +123,7 @@
         "seedThief": "Se qualcun altro ha il tuo seme può rubare i tuoi IOTA.",
         "googlePlayServicesNotAvailable": "Servizio Google Play non disponibile",
         "couldNotVerifyDeviceIntegrity": "Impossibile verificare l'integrità del dispositivo perché il servizio Google Play non è disponibile.",
-        "clear": "CANCELLA",
+        "clear": "Clear",
         "noNetworkConnection": "Nessuna connessione di rete",
         "noNetworkConnectionExplanation": "La connessione internet sembra essere non disponibile.",
         "spentAddressExplanation": "AVVISO: Fondi su indirizzi spesi",
@@ -307,7 +307,9 @@
         "incorrectSeed": "Seme non corretto",
         "incorrectSeedExplanation": "Il seme inserito non è corretto. Si prega di riprovare.",
         "ifYouHaveNotSaved": "Se non hai salvato il tuo seme, si prega di tornare indietro e farlo.",
-        "enterSeedBelow": "Inserisci il tuo seme appena creato qui sotto per confermare che hai fatto correttamente il backup"
+        "enterSeedBelow": "Inserisci il tuo seme appena creato qui sotto per confermare che hai fatto correttamente il backup",
+        "clipboardWarning": "Do not copy paste your seed",
+        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
     },
     "send": {
         "invalidAddress": "Indirizzo non valido",
@@ -651,7 +653,7 @@
         "skipUpdate": "Salta l'aggiornamento"
     },
     "notificationLog": {
-        "errorLog": "LOG DEGLI ERRORI"
+        "errorLog": "Error log"
     },
     "terms": {
         "termsAndConditions": "Termini e condizioni",
