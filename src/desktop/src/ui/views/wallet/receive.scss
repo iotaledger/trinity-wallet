@@ -67,6 +67,7 @@
         }
 
         p {
+            display: block;
             word-wrap: break-word;
             word-break: break-word;
             letter-spacing: 1px;
@@ -118,7 +119,7 @@
     }
 }
 
-.loading span {
+.loading button span {
     animation: spin 0.8s ease infinite;
 }
 
