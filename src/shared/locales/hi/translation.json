@@ -123,7 +123,7 @@
         "seedThief": "अगर किसी और के पास आपका सीड है तो वे आपकी IOTA चुरा सकते हैं ।",
         "googlePlayServicesNotAvailable": "Google Play सेवाएं उपलब्ध नहीं",
         "couldNotVerifyDeviceIntegrity": "डिवाइस अक्षतता सत्यापित नहीं कर सका क्योंकि Google Play सेवाएं उपलब्ध नहीं हैं ।",
-        "clear": "क्लियर",
+        "clear": "Clear",
         "noNetworkConnection": "नेटवर्क कनेक्शन नहीं है",
         "noNetworkConnectionExplanation": "लगता है इंटरनेट कनेक्शन ऑफलाइन है।",
         "spentAddressExplanation": "चेतावनी: पहले से उपयोग एड्रेस पर बैलेंस",
@@ -307,7 +307,9 @@
         "incorrectSeed": "गलत सीड",
         "incorrectSeedExplanation": "आपके द्वारा दर्ज किया गया सीड गलत है । कृपया पुन: प्रयास करें ।",
         "ifYouHaveNotSaved": "यदि आप अपने सीड कहीं नहीं सहेजा है, कृपया वापस जाओ और सीड को सहेज लो।",
-        "enterSeedBelow": "आप इसे सही ढंग से बैकअप ले लिया है, इसकी पुष्टि करने के लिए नीचे अपने नए बनाए सीड दर्ज करें"
+        "enterSeedBelow": "आप इसे सही ढंग से बैकअप ले लिया है, इसकी पुष्टि करने के लिए नीचे अपने नए बनाए सीड दर्ज करें",
+        "clipboardWarning": "Do not copy paste your seed",
+        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
     },
     "send": {
         "invalidAddress": "अवैध पता",
@@ -651,7 +653,7 @@
         "skipUpdate": "अपडेट को नज़रअंदाज़ करे"
     },
     "notificationLog": {
-        "errorLog": "त्रुटि लॉग"
+        "errorLog": "Error log"
     },
     "terms": {
         "termsAndConditions": "नियम एवं शर्तें",
