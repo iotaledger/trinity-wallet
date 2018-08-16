@@ -9,7 +9,7 @@ import { getRandomNode, changeIotaNode } from '../libs/iota';
 import { formatChartData, getUrlTimeFormat, getUrlNumberFormat, rearrangeObjectKeys } from '../libs/utils';
 import { generateAccountInfoErrorAlert, generateAlert } from './alerts';
 import { setNewUnconfirmedBundleTails, removeBundleFromUnconfirmedBundleTails } from './accounts';
-import { getFirstConsistentTail, isStillAValidTransaction } from '../libs/iota/transfers';
+import { findPromotableTail, isStillAValidTransaction } from '../libs/iota/transfers';
 import { selectedAccountStateFactory } from '../selectors/accounts';
 import { syncAccount } from '../libs/iota/accounts';
 import { forceTransactionPromotion } from './transfers';
@@ -415,7 +415,7 @@ export const fetchChartData = () => {
                 each(results, (resultItem, index) => {
                     currentTimeFrame = arrayCurrenciesTimeFrames[index].timeFrame;
                     currentCurrency = arrayCurrenciesTimeFrames[index].currency;
-                    const formatedData = formatChartData(resultItem, currentCurrency, currentTimeFrame);
+                    const formatedData = formatChartData(resultItem, currentTimeFrame);
 
                     if (actualCurrency !== currentCurrency) {
                         actualCurrency = currentCurrency;
@@ -490,7 +490,7 @@ export const promoteTransfer = (bundleHash, seenTailTransactions) => (dispatch, 
                 throw new Error(Errors.BUNDLE_NO_LONGER_VALID);
             }
 
-            return getFirstConsistentTail(accountState.unconfirmedBundleTails[bundleHash], 0);
+            return findPromotableTail(accountState.unconfirmedBundleTails[bundleHash], 0);
         })
         .then((consistentTail) =>
             dispatch(

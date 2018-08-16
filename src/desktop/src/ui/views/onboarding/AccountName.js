@@ -126,18 +126,31 @@ class AccountName extends React.PureComponent {
 
         setOnboardingName(this.state.name);
 
-        if (!Electron.getOnboardingSeed()) {
-            return history.push('/onboarding/seed-generate');
-        }
-
         if (!firstAccount) {
             setAdditionalAccountInfo({
                 addingAdditionalAccount: true,
                 additionalAccountName: this.state.name,
             });
             history.push('/onboarding/login');
+        } else if (Electron.getOnboardingGenerated()) {
+            history.push('/onboarding/seed-save');
         } else {
             history.push('/onboarding/account-password');
+        }
+    };
+
+    stepBack = (e) => {
+        if (e) {
+            e.preventDefault();
+        }
+
+        const { history } = this.props;
+
+        if (Electron.getOnboardingGenerated()) {
+            history.push('/onboarding/seed-generate');
+        } else {
+            Electron.setOnboardingSeed(null);
+            history.push('/onboarding/seed-verify');
         }
     };
 
@@ -157,11 +170,7 @@ class AccountName extends React.PureComponent {
                     />
                 </section>
                 <footer>
-                    <Button
-                        to={`/onboarding/seed-${!Electron.getOnboardingSeed() ? 'intro' : 'verify'}`}
-                        className="square"
-                        variant="dark"
-                    >
+                    <Button onClick={this.stepBack} className="square" variant="dark">
                         {t('goBackStep')}
                     </Button>
                     <Button type="submit" className="square" variant="primary">
@@ -186,7 +195,4 @@ const mapDispatchToProps = {
     setAdditionalAccountInfo,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(translate()(AccountName));
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(AccountName));

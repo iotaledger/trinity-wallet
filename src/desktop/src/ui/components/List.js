@@ -276,7 +276,11 @@ class List extends React.PureComponent {
                                         )}
                                     >
                                         <div>
-                                            <div className={isReceived ? css.plus : css.minus} />
+                                            {isReceived ? (
+                                                <Icon icon="plus" size={14} />
+                                            ) : (
+                                                <Icon icon="minus" size={14} />
+                                            )}
                                             <span>
                                                 {formatTime(
                                                     navigator.language,
@@ -284,9 +288,12 @@ class List extends React.PureComponent {
                                                 )}
                                             </span>
                                             <span>
-                                                {!isConfirmed ? t('pending') : isReceived ? t('received') : t('sent')}
+                                                {!isConfirmed
+                                                    ? isReceived ? t('receiving') : t('sending')
+                                                    : isReceived ? t('received') : t('sent')}
                                             </span>
                                             <span>
+                                                {transfer.transferValue === 0 ? '' : isReceived ? '+' : '-'}
                                                 {round(formatValue(transfer.transferValue), 1)}{' '}
                                                 {formatUnit(transfer.transferValue)}
                                             </span>

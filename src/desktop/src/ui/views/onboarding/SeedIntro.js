@@ -1,9 +1,7 @@
+/* global Electron */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { translate, Trans } from 'react-i18next';
-
-import { setOnboardingSeed } from 'actions/ui';
 
 import Button from 'ui/components/Button';
 import Info from 'ui/components/Info';
@@ -14,13 +12,11 @@ import Info from 'ui/components/Info';
 class SeedIntro extends React.PureComponent {
     static propTypes = {
         /** @ignore */
-        setOnboardingSeed: PropTypes.func.isRequired,
-        /** @ignore */
         t: PropTypes.func.isRequired,
     };
 
     componentDidMount() {
-        this.props.setOnboardingSeed(null);
+        Electron.setOnboardingSeed(null);
     }
 
     render() {
@@ -47,7 +43,7 @@ class SeedIntro extends React.PureComponent {
                     <Button to="/onboarding/seed-verify" className="square" variant="dark">
                         {t('walletSetup:noIHaveOne')}
                     </Button>
-                    <Button to="/onboarding/account-name" className="square" variant="primary">
+                    <Button to="/onboarding/seed-generate" className="square" variant="primary">
                         {t('walletSetup:yesINeedASeed')}
                     </Button>
                 </footer>
@@ -56,11 +52,4 @@ class SeedIntro extends React.PureComponent {
     }
 }
 
-const mapDispatchToProps = {
-    setOnboardingSeed,
-};
-
-export default connect(
-    null,
-    mapDispatchToProps,
-)(translate()(SeedIntro));
+export default translate()(SeedIntro);

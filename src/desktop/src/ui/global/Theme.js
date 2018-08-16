@@ -3,8 +3,22 @@ import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import { getMarketData, getChartData, getPrice } from 'actions/marketData';
+import { addAccountName, setOnboardingComplete, accountInfoFetchSuccess } from 'actions/accounts';
 import { updateTheme } from 'actions/settings';
 import themes from 'themes/themes';
+
+const routes = [
+    '/onboarding',
+    '/settings/node',
+    '/onboarding/seed-intro',
+    '/onboarding/seed-generate',
+    '/onboarding/account-password',
+    '/onboarding/seed-save',
+    '/onboarding/done',
+    '/onboarding/login',
+    '/wallet',
+];
 
 /**
  * Theming style provider component
@@ -12,18 +26,31 @@ import themes from 'themes/themes';
 class Theme extends PureComponent {
     static propTypes = {
         /** @ignore */
-        location: PropTypes.object,
+        history: PropTypes.object,
         /** @ignore */
         theme: PropTypes.object.isRequired,
         /** @ignore */
         themeName: PropTypes.string.isRequired,
         /** @ignore */
         updateTheme: PropTypes.func.isRequired,
+        /** @ignore */
+        setOnboardingComplete: PropTypes.func.isRequired,
+        /** @ignore */
+        addAccountName: PropTypes.func.isRequired,
+        /** @ignore */
+        accountInfoFetchSuccess: PropTypes.func.isRequired,
+        /** @ignore */
+        getChartData: PropTypes.func.isRequired,
+        /** @ignore */
+        getPrice: PropTypes.func.isRequired,
+        /** @ignore */
+        getMarketData: PropTypes.func.isRequired,
     };
 
     state = {
         themeIndex: 0,
         originalTheme: 'Default',
+        routeIndex: 0,
     };
 
     componentDidMount() {
@@ -61,18 +88,96 @@ class Theme extends PureComponent {
      * @returns {undefined}
      */
     takeShot() {
-        const { originalTheme, themeIndex } = this.state;
+        const { originalTheme, themeIndex, routeIndex } = this.state;
 
         const themeNames = Object.keys(themes);
 
         if (themeIndex >= themeNames.length) {
             this.props.updateTheme(themes[originalTheme], originalTheme);
-            Electron.screenshotsDone();
-            return;
+
+            if (routeIndex >= routes.length - 1) {
+                Electron.screenshotsDone();
+                return;
+            }
+
+            if (routeIndex === 0) {
+                this.props.getPrice();
+                this.props.getChartData();
+                this.props.getMarketData();
+            }
+
+            if (routes[routeIndex + 1] === '/onboarding/login') {
+                this.props.addAccountName('Puppeteer');
+                this.props.setOnboardingComplete(true);
+            }
+
+            if (routes[routeIndex + 1] === '/wallet') {
+                this.props.accountInfoFetchSuccess({
+                    accountName: 'Puppeteer',
+                    balance: 1000000,
+                    addresses: [],
+                    hashes: [],
+                    transfers: {
+                        A99999999999999999999999999999999999999999999999999999999999999999999999999999999: {
+                            attachmentTimestamp: 1526640939097,
+                            bundle: 'B99999999999999999999999999999999999999999999999999999999999999999999999999999999',
+                            hash: 'C99999999999999999999999999999999999999999999999999999999999999999999999999999999',
+                            incoming: true,
+                            inputs: [],
+                            message: 'Trinity',
+                            outputs: [],
+                            persistence: true,
+                            tailTransactions: [],
+                            timestamp: 1526640178,
+                            transferValue: 25000000,
+                        },
+                        D99999999999999999999999999999999999999999999999999999999999999999999999999999999: {
+                            attachmentTimestamp: 1526640939098,
+                            bundle: 'E99999999999999999999999999999999999999999999999999999999999999999999999999999999',
+                            hash: 'F99999999999999999999999999999999999999999999999999999999999999999999999999999999',
+                            incoming: false,
+                            inputs: [],
+                            message: 'Trinity',
+                            outputs: [],
+                            persistence: true,
+                            tailTransactions: [],
+                            timestamp: 1526640178,
+                            transferValue: 25000000,
+                        },
+                        G99999999999999999999999999999999999999999999999999999999999999999999999999999999: {
+                            attachmentTimestamp: 1526640939099,
+                            bundle: 'H99999999999999999999999999999999999999999999999999999999999999999999999999999999',
+                            hash: 'I99999999999999999999999999999999999999999999999999999999999999999999999999999999',
+                            incoming: true,
+                            inputs: [],
+                            message: 'Trinity',
+                            outputs: [],
+                            persistence: false,
+                            tailTransactions: [],
+                            timestamp: 1526640178,
+                            transferValue: 25000000,
+                        },
+                    },
+                    unconfirmedBundleTails: {},
+                });
+            }
+
+            return this.setState(
+                {
+                    routeIndex: routeIndex + 1,
+                    themeIndex: 0,
+                },
+                () => {
+                    setTimeout(() => {
+                        this.props.history.push(routes[routeIndex + 1]);
+                        this.takeShot();
+                    }, 5000);
+                },
+            );
         }
 
         const themeName = themeNames[themeIndex];
-        const fileName = `wallet${this.props.location.pathname.replace(/\//g, '-')}_${themeName
+        const fileName = `${routes[routeIndex].substr(1).replace(/\//g, '-')}_${themeName
             .replace(/ /g, '_')
             .toLowerCase()}`;
 
@@ -84,9 +189,9 @@ class Theme extends PureComponent {
 
         setTimeout(() => {
             Electron.screenshot(fileName);
-        }, 300);
+        }, 500);
 
-        setTimeout(this.takeShot.bind(this), 900);
+        setTimeout(this.takeShot.bind(this), 1000);
     }
 
     updateTheme(theme) {
@@ -117,9 +222,12 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     updateTheme,
+    setOnboardingComplete,
+    addAccountName,
+    accountInfoFetchSuccess,
+    getChartData,
+    getPrice,
+    getMarketData,
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(Theme);
+export default connect(mapStateToProps, mapDispatchToProps)(Theme);
