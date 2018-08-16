@@ -137,7 +137,14 @@
         "ifYourBalanceIsNotCorrect": "잔액이 옳지 않다면 스냅샷 전의 시드를 사용중일 수 있습니다.",
         "headToAdvancedSettingsForTransition": "고급 설정에서 스냅샷 이전을 수행해 주세요.",
         "usingTrinityWalletWithKeePass": "트리니티 지갑과 Keepass2Android 같이 사용하기",
-        "signedTrytesBroadcastErrorExplanation": "트랜잭션 송출 중 네트워크 오류가 발생했습니다."
+        "signedTrytesBroadcastErrorExplanation": "트랜잭션 송출 중 네트워크 오류가 발생했습니다.",
+        "broadcastError": "Could not broadcast transfer",
+        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
+        "problemSendingYourTransaction": "There was a problem sending your transaction.",
+        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
+        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
+        "tryingAgainWithDifferentNode": "Trying again with a different node.",
+        "errorFetchingAccountInformation": "Error fetching account information."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "유효하지 않은 문자가 포함되어 있음",
