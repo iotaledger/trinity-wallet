@@ -126,16 +126,18 @@ class AccountName extends React.PureComponent {
 
         setOnboardingName(this.state.name);
 
-        if (!firstAccount) {
-            setAdditionalAccountInfo({
-                addingAdditionalAccount: true,
-                additionalAccountName: this.state.name,
-            });
-            history.push('/onboarding/login');
-        } else if (Electron.getOnboardingGenerated()) {
+        if (Electron.getOnboardingGenerated()) {
             history.push('/onboarding/seed-save');
         } else {
-            history.push('/onboarding/account-password');
+            if (!firstAccount) {
+                setAdditionalAccountInfo({
+                    addingAdditionalAccount: true,
+                    additionalAccountName: this.state.name,
+                });
+                history.push('/onboarding/login');
+            } else {
+                history.push('/onboarding/account-password');
+            }
         }
     };
 
