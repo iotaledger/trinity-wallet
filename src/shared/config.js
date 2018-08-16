@@ -1,5 +1,3 @@
-export const DESKTOP_VERSION = '0.2.0';
-
 export const defaultNode = 'https://trinity.iota.fm:443';
 
 export const nodesWithPoWEnabled = [
@@ -26,7 +24,6 @@ const nodesWithPoWDisabled = [
 
 export const nodes = [...nodesWithPoWEnabled, ...nodesWithPoWDisabled];
 
-export const UPDATE_URL = 'https://trinity-alpha.iota.org/release';
 export const NODELIST_URL = 'https://nodes.iota.works/api/ssl/live';
 
 export const DEFAULT_DEPTH = 4;

@@ -11,7 +11,7 @@ import { parseAddress } from 'libs/iota/utils';
 import { ACC_MAIN } from 'libs/crypto';
 
 import { setPassword, clearWalletData, setDeepLink } from 'actions/wallet';
-import { getUpdateData, updateTheme } from 'actions/settings';
+import { updateTheme } from 'actions/settings';
 import { fetchNodeList } from 'actions/polling';
 import { disposeOffAlert, generateAlert } from 'actions/alerts';
 
@@ -20,6 +20,7 @@ import Idle from 'ui/global/Idle';
 import Titlebar from 'ui/global/Titlebar';
 import FatalError from 'ui/global/FatalError';
 import About from 'ui/global/About';
+import ErrorLog from 'ui/global/ErrorLog';
 
 import Loading from 'ui/components/Loading';
 
@@ -55,8 +56,6 @@ class App extends React.Component {
         setPassword: PropTypes.func.isRequired,
         /** @ignore */
         fetchNodeList: PropTypes.func.isRequired,
-        /** @ignore */
-        getUpdateData: PropTypes.func.isRequired,
         /** @ignore */
         themeName: PropTypes.string.isRequired,
         /** @ignore */
@@ -113,6 +112,11 @@ class App extends React.Component {
 
             this.props.history.push('/wallet/');
         }
+
+        // Dispose alerts on route change
+        if (this.props.location.pathname !== nextProps.location.pathname) {
+            this.props.disposeOffAlert();
+        }
     }
 
     componentWillUnmount() {
@@ -167,14 +171,14 @@ class App extends React.Component {
             case 'about':
                 // Is processed in ui/global/About
                 break;
+            case 'errorlog':
+                // Is processed in ui/global/ErrorLog
+                break;
             case 'feedback':
                 // Is processed in ui/global/Feedback
                 break;
             case 'addAccount':
                 this.props.history.push('/onboarding/seed-intro');
-                break;
-            case 'update':
-                this.props.getUpdateData(true);
                 break;
             case 'logout':
                 this.props.clearWalletData();
@@ -194,14 +198,14 @@ class App extends React.Component {
     };
 
     render() {
-        const { location } = this.props;
+        const { location, history } = this.props;
 
         const currentKey = location.pathname.split('/')[1] || '/';
 
         if (this.state.fatalError) {
             return (
                 <div className={css.trintiy}>
-                    <Theme location={location} />
+                    <Theme history={history} />
                     <Titlebar />
                     <FatalError />
                 </div>
@@ -212,8 +216,9 @@ class App extends React.Component {
             <div className={css.trintiy}>
                 <Titlebar />
                 <About />
+                <ErrorLog />
                 <Idle />
-                <Theme location={location} />
+                <Theme history={history} />
                 <TransitionGroup>
                     <CSSTransition key={currentKey} classNames="fade" timeout={300}>
                         <div>
@@ -242,16 +247,10 @@ const mapDispatchToProps = {
     clearWalletData,
     setPassword,
     setDeepLink,
-    getUpdateData,
     disposeOffAlert,
     generateAlert,
     fetchNodeList,
     updateTheme,
 };
 
-export default withRouter(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(translate()(withAutoNodeSwitching(App))),
-);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(translate()(withAutoNodeSwitching(App))));

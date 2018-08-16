@@ -69,9 +69,7 @@ class Seed extends PureComponent {
                         confirm:
                             action === 'view'
                                 ? t('accountManagement:viewSeed')
-                                : action === 'export'
-                                    ? t('seedVault:exportSeedVault')
-                                    : t('paperWallet'),
+                                : action === 'export' ? t('seedVault:exportSeedVault') : t('paperWallet'),
                     }}
                 />
             );
@@ -100,6 +98,12 @@ class Seed extends PureComponent {
                                   })
                                 : new Array(MAX_SEED_LENGTH / 3).join('... ')}
                         </span>
+                        {seed &&
+                            action === 'view' && (
+                                <small>
+                                    {t('checksum')}: <strong>{checksum}</strong>
+                                </small>
+                            )}
                     </p>
                     <fieldset>
                         <Button className="small" onClick={() => this.setState({ action: !action ? 'view' : null })}>

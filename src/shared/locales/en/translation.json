@@ -129,7 +129,7 @@
         "googlePlayServicesNotAvailable": "Google Play Services not available",
         "couldNotVerifyDeviceIntegrity":
             "Could not verify device integrity because Google Play Services are not available.",
-        "clear": "CLEAR",
+        "clear": "Clear",
         "noNetworkConnection": "No network connection",
         "noNetworkConnectionExplanation": "Your internet connection appears to be offline.",
         "spentAddressExplanation": "WARNING: Funds on spent addresses",
@@ -330,7 +330,9 @@
         "incorrectSeed": "Incorrect seed",
         "incorrectSeedExplanation": "The seed you entered is incorrect. Please try again.",
         "ifYouHaveNotSaved": "If you have not backed up your seed, please go back and do so.",
-        "enterSeedBelow": "Enter your newly created seed below to confirm you have backed it up correctly"
+        "enterSeedBelow": "Enter your newly created seed below to confirm you have backed it up correctly",
+        "clipboardWarning": "Do not copy paste your seed",
+        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
     },
     "send": {
         "invalidAddress": "Invalid address",
@@ -685,7 +687,7 @@
         "skipUpdate": "Skip update"
     },
     "notificationLog": {
-        "errorLog": "ERROR LOG"
+        "errorLog": "Error log"
     },
     "terms": {
         "termsAndConditions": "Terms & Conditions",

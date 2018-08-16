@@ -8,6 +8,7 @@ const Kerl = require('iota.lib.js/lib/crypto/kerl/kerl');
 const Curl = require('iota.lib.js/lib/crypto/curl/curl');
 const Converter = require('iota.lib.js/lib/crypto/converter/converter');
 const argon2 = require('argon2');
+const machineUuid = require('machine-uuid');
 const kdbx = require('../kdbx');
 const { powFunc, genFunc } = require('entangled-node');
 
@@ -105,6 +106,14 @@ const Electron = {
         }
 
         return addresses;
+    },
+
+    /**
+     * Gets machine UUID
+     * @return {Promise} resolves to the machine UUID
+     */
+    getUuid: () => {
+        return machineUuid();
     },
 
     /**
@@ -381,6 +390,7 @@ const Electron = {
     changeLanguage: (t) => {
         ipc.send('menu.language', {
             about: t('settings:aboutTrinity'),
+            errorLog: t('notificationLog:errorLog'),
             checkUpdate: t('checkForUpdates'),
             sendFeedback: 'Send feedback',
             settings: capitalize(t('home:settings')),
