@@ -3,7 +3,7 @@
     padding: 20px 0;
     margin: 0px 20px;
     height: 80px;
-    border-bottom: 2px solid var(--body-bg);
+    border-bottom: 1px solid var(--body-bg);
     > a {
         color: var(--body);
         margin: 0 22px 0 0;
@@ -180,13 +180,13 @@
                 padding: 0 2%;
             }
             > span:nth-child(1) {
-                width: 36px;
+                width: 30px;
                 margin-top: 10px;
                 padding-left: 0px;
             }
             > span:nth-child(2) {
                 text-align: left;
-                width: 40%;
+                width: 50%;
             }
             > strong:nth-child(3) {
                 width: 20%;
@@ -201,19 +201,20 @@
             background: var(--body-bg);
         }
         &.received {
+            span:nth-child(1),
             span:nth-child(4) {
                 color: var(--primary);
             }
         }
         &.sent {
+            span:nth-child(1),
             span:nth-child(4) {
                 color: var(--secondary);
             }
         }
         &.pending {
-            span:nth-child(4),
-            strong {
-                color: var(--negative);
+            div {
+                opacity: 0.5;
             }
         }
     }
@@ -353,7 +354,7 @@
             display: block;
             margin: 26px 0 20px;
             word-break: break-word;
-            height: 100px;
+            height: 70px;
             position: relative;
             strong {
                 display: block;
@@ -439,38 +440,4 @@
             margin-right: 10px;
         }
     }
-}
-
-.plus,
-.minus {
-    display: block;
-    flex: 0 0 17px;
-    height: 17px;
-    border: 1px solid var(--body);
-    border-radius: 17px;
-    padding: 0px;
-    margin: 8px 8px 0 0;
-    position: relative;
-    &:before,
-    &:after {
-        content: '';
-        position: absolute;
-        top: 7px;
-        left: 4px;
-        width: 7px;
-        height: 1px;
-        background: var(--primary);
-    }
-}
-.minus {
-    &:before {
-        background: var(--secondary);
-    }
-    &:after {
-        display: none;
-    }
-}
-
-.plus:after {
-    transform: rotate(90deg);
 }

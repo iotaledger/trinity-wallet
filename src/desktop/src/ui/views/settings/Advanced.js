@@ -10,7 +10,12 @@ import { round } from 'libs/utils';
 
 import { manuallySyncAccount } from 'actions/accounts';
 import { changePowSettings, changeAutoPromotionSettings, setLockScreenTimeout } from 'actions/settings';
-import { transitionForSnapshot, completeSnapshotTransition, generateAddressesAndGetBalance } from 'actions/wallet';
+import {
+    transitionForSnapshot,
+    completeSnapshotTransition,
+    setBalanceCheckFlag,
+    generateAddressesAndGetBalance,
+} from 'actions/wallet';
 import { generateAlert } from 'actions/alerts';
 import { toggleModalActivity } from 'actions/ui';
 
@@ -72,11 +77,13 @@ class Advanced extends PureComponent {
         /** @ignore */
         toggleModalActivity: PropTypes.func.isRequired,
         /** @ignore */
-        balanceCheckToggle: PropTypes.bool.isRequired,
+        balanceCheckFlag: PropTypes.bool.isRequired,
         /** @ignore */
         selectedAccountName: PropTypes.string.isRequired,
         /** @ignore */
         completeSnapshotTransition: PropTypes.func.isRequired,
+        /** @ignore */
+        setBalanceCheckFlag: PropTypes.func.isRequired,
     };
 
     state = {
@@ -84,12 +91,11 @@ class Advanced extends PureComponent {
     };
 
     componentWillReceiveProps(newProps) {
-        const { balanceCheckToggle } = this.props;
-        if (balanceCheckToggle !== newProps.balanceCheckToggle) {
+        const { balanceCheckFlag } = this.props;
+        if (balanceCheckFlag !== newProps.balanceCheckFlag) {
             this.props.toggleModalActivity();
             return;
         }
-
         const { isTransitioning, isAttachingToTangle, isModalActive } = newProps;
         if (isTransitioning || isAttachingToTangle || isModalActive) {
             Electron.updateMenu('enabled', false);
@@ -158,8 +164,8 @@ class Advanced extends PureComponent {
      * @returns {Promise}
      */
     transitionBalanceOk = async () => {
-        this.props.toggleModalActivity();
-        const { wallet, transitionAddresses, selectedAccountName, settings} = this.props;
+        this.props.setBalanceCheckFlag(false);
+        const { wallet, transitionAddresses, selectedAccountName, settings } = this.props;
         const seed = await getSeed(wallet.password, selectedAccountName, true);
 
         const powFn = !settings.remotePoW ? Electron.powFn : null;
@@ -172,13 +178,12 @@ class Advanced extends PureComponent {
      * @returns {Promise}
      */
     transitionBalanceWrong = async () => {
-        this.props.toggleModalActivity();
+        this.props.setBalanceCheckFlag(false);
         const { wallet, transitionAddresses, selectedAccountName } = this.props;
         const seed = await getSeed(wallet.password, selectedAccountName, true);
         const currentIndex = transitionAddresses.length;
 
         this.props.generateAddressesAndGetBalance(seed, currentIndex, Electron.genFn);
-
     };
 
     render() {
@@ -358,7 +363,7 @@ const mapStateToProps = (state) => ({
     settings: state.settings,
     lockScreenTimeout: state.settings.lockScreenTimeout,
     transitionBalance: state.wallet.transitionBalance,
-    balanceCheckToggle: state.wallet.balanceCheckToggle,
+    balanceCheckFlag: state.wallet.balanceCheckFlag,
     transitionAddresses: state.wallet.transitionAddresses,
     isAttachingToTangle: state.ui.isAttachingToTangle,
     isTransitioning: state.ui.isTransitioning,
@@ -374,7 +379,8 @@ const mapDispatchToProps = {
     completeSnapshotTransition,
     manuallySyncAccount,
     transitionForSnapshot,
-    generateAddressesAndGetBalance
+    generateAddressesAndGetBalance,
+    setBalanceCheckFlag,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate()(Advanced));

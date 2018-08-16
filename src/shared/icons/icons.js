@@ -17,7 +17,7 @@ module.exports = {
     info: '🗯',
     twoFA: '💊',
     password: '🔒',
-    vault: '🔑',
+    vault: '📦',
     advanced: '🔬',
     mode: '🔣',
     logout: '🖐',
@@ -25,6 +25,7 @@ module.exports = {
     send: '📤',
     receive: '📥',
     settings: '🎛',
+    settingsAlt: '🎚',
     history: '🕐',
     user: '👽',
     plus: '🔹',
@@ -51,5 +52,5 @@ module.exports = {
     fingerprintDisabled: '👇',
     write: '✍️',
     search: '🔍',
-    warning: '⚠️'
+    warning: '⚠️',
 };

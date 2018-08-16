@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import reducer from '../../reducers/settings';
 import * as actions from '../../actions/settings';
-import { DESKTOP_VERSION, defaultNode, nodes } from '../../config';
+import { defaultNode, nodes } from '../../config';
 import themes from '../../themes/themes';
 
 describe('Reducer: settings', () => {
@@ -55,12 +55,6 @@ describe('Reducer: settings', () => {
                 themeName: 'Default',
                 theme: themes.Default,
                 hasRandomizedNode: false,
-                update: {
-                    done: true,
-                    error: false,
-                    version: DESKTOP_VERSION,
-                    notes: [],
-                },
                 remotePoW: false,
                 lockScreenTimeout: 3,
                 versions: {},
@@ -377,191 +371,6 @@ describe('Reducer: settings', () => {
             };
 
             expect(newState.update.error).to.eql(expectedState.update.error);
-        });
-    });
-
-    describe('SET_UPDATE_SUCCESS', () => {
-        describe('when "version" is payload is equal to "version" in "update" state prop', () => {
-            it('should set "done" prop in "update" to false if "force" prop is true in payload', () => {
-                const initialState = {
-                    update: {
-                        done: true,
-                        error: false,
-                        version: '0.1',
-                        notes: [],
-                    },
-                };
-
-                const action = {
-                    type: 'IOTA/SETTINGS/UPDATE_SUCCESS',
-                    payload: {
-                        force: true,
-                        version: '0.1',
-                    },
-                };
-
-                const newState = reducer(initialState, action);
-                const expectedState = {
-                    update: {
-                        done: false,
-                        error: false,
-                        version: '0.1',
-                        notes: [],
-                    },
-                };
-
-                expect(newState.update.done).to.eql(expectedState.update.done);
-            });
-        });
-
-        describe('when "version" is payload is not equal to "version" in "update" state prop', () => {
-            it('should set "done" prop in "update" to false if "force" prop is false in payload', () => {
-                const initialState = {
-                    update: {
-                        done: true,
-                        error: false,
-                        version: '0.1',
-                        notes: [],
-                    },
-                };
-
-                const action = {
-                    type: 'IOTA/SETTINGS/UPDATE_SUCCESS',
-                    payload: {
-                        force: false,
-                        version: '0.2',
-                    },
-                };
-
-                const newState = reducer(initialState, action);
-                const expectedState = {
-                    update: {
-                        done: false,
-                        error: false,
-                        version: '0.2',
-                        notes: [],
-                    },
-                };
-
-                expect(newState.update.done).to.eql(expectedState.update.done);
-            });
-        });
-
-        it('should set "error" prop in "update" to false', () => {
-            const initialState = {
-                update: {
-                    done: true,
-                    error: true,
-                    version: '0.1',
-                    notes: [],
-                },
-            };
-
-            const action = {
-                type: 'IOTA/SETTINGS/UPDATE_SUCCESS',
-                payload: {},
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                update: {
-                    done: true,
-                    error: false,
-                    version: '0.1',
-                    notes: [],
-                },
-            };
-
-            expect(newState.update.error).to.eql(expectedState.update.error);
-        });
-
-        it('should set "version" prop in "update" to "version" prop in payload', () => {
-            const initialState = {
-                update: {
-                    done: true,
-                    error: true,
-                    version: '0.1',
-                    notes: [],
-                },
-            };
-
-            const action = {
-                type: 'IOTA/SETTINGS/UPDATE_SUCCESS',
-                payload: {
-                    version: '0.3',
-                },
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                update: {
-                    done: true,
-                    error: false,
-                    version: '0.3',
-                    notes: [],
-                },
-            };
-
-            expect(newState.update.version).to.eql(expectedState.update.version);
-        });
-
-        it('should set "notes" prop in "update" to "notes" prop in payload', () => {
-            const initialState = {
-                update: {
-                    done: true,
-                    error: true,
-                    version: '0.1',
-                    notes: [],
-                },
-            };
-
-            const action = {
-                type: 'IOTA/SETTINGS/UPDATE_SUCCESS',
-                payload: {
-                    notes: [{}, {}],
-                },
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                update: {
-                    done: true,
-                    error: false,
-                    version: '0.1',
-                    notes: [{}, {}],
-                },
-            };
-
-            expect(newState.update.notes).to.eql(expectedState.update.notes);
-        });
-    });
-
-    describe('SET_UPDATE_SUCCESS', () => {
-        it('should set "done" prop in "update" to true', () => {
-            const initialState = {
-                update: {
-                    done: false,
-                    error: true,
-                    version: '0.1',
-                    notes: [],
-                },
-            };
-
-            const action = {
-                type: 'IOTA/SETTINGS/UPDATE_DONE',
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                update: {
-                    done: true,
-                    error: false,
-                    version: '0.1',
-                    notes: [],
-                },
-            };
-
-            expect(newState.update.done).to.eql(expectedState.update.done);
         });
     });
 
