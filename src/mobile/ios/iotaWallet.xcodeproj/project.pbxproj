@@ -303,13 +303,6 @@
 			remoteGlobalIDString = 9D23B34F1C767B80008B4819;
 			remoteInfo = ReactNativePermissions;
 		};
-		60B81DE42115F92600CED105 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DA959792AD9A5C3642835114D50DE868 /* Pods.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 08053213D1F0595394F6BC28F519D907;
-			remoteInfo = CatCrypto;
-		};
 		60BDD27A208D12790085549F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 60BDD276208D12790085549F /* RNSecureClipboard.xcodeproj */;
@@ -484,6 +477,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNNodeJsMobile;
+		};
+		CB54CCFC21261E42001F1630 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DA959792AD9A5C3642835114D50DE868 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 08053213D1F0595394F6BC28F519D907;
+			remoteInfo = CatCrypto;
 		};
 		CB6626F32085056C00651519 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1180,7 +1180,7 @@
 		9587AF1D58A6A266E24B67481F9ED9F2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				60B81DE52115F92600CED105 /* CatCrypto.framework */,
+				CB54CCFD21261E42001F1630 /* CatCrypto.framework */,
 				A7757FB00CE594F07671643433203090 /* Pods_iotaWallet.framework */,
 				73DE2893421CB79475DA9ABBFC68EF31 /* libPods-iotaWallet-tvOS.a */,
 				75741D422FC234226BD97F79574086A2 /* libPods-iotaWallet-tvOSTests.a */,
@@ -1956,13 +1956,6 @@
 			remoteRef = 6056CF5A20827E2E0006A2F3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		60B81DE52115F92600CED105 /* CatCrypto.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = CatCrypto.framework;
-			remoteRef = 60B81DE42115F92600CED105 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		60BDD27B208D12790085549F /* libRNSecureClipboard.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -2150,6 +2143,13 @@
 			fileType = archive.ar;
 			path = libRNNodeJsMobile.a;
 			remoteRef = CB305F7521185F3400657575 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CB54CCFD21261E42001F1630 /* CatCrypto.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CatCrypto.framework;
+			remoteRef = CB54CCFC21261E42001F1630 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		CB6626F42085056C00651519 /* libSplashScreen.a */ = {

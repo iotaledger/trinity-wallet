@@ -166,7 +166,6 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:27.1.0'
     implementation ('com.facebook.react:react-native:0.51.0') { force = true }
     implementation project(':react-native-svg')
-    implementation project(':react-native-fs')
     implementation project(':react-native-keychain')
     implementation 'com.android.support:multidex:1.0.1'
     implementation project(':lottie-react-native')

@@ -5,7 +5,7 @@ export default {
     label: { color: 'rgb(0, 0, 0)', hover: 'rgb(0, 0, 0)' },
     input: {
         bg: 'rgb(247, 247, 247)',
-        border: 'rgba(255, 255, 255, 0.6)',
+        border: 'rgba(0, 0, 0, 0.6)',
         alt: 'rgb(0, 0, 0)',
         hover: 'rgba(0, 0, 0, 1)',
         color: 'rgb(30, 30, 30)',

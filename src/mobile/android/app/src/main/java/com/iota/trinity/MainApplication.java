@@ -13,7 +13,6 @@ import org.reactnative.camera.RNCameraPackage;
 import com.oblador.keychain.KeychainPackage;
 import com.peel.react.rnos.RNOSModule;
 import com.reactnativenavigation.NavigationApplication;
-import com.rnfs.RNFSPackage;
 import com.christopherdro.RNPrint.RNPrintPackage;
 import com.github.wumke.RNExitApp.RNExitAppPackage;
 import net.rhogan.rnsecurerandom.RNSecureRandomPackage;
@@ -76,7 +75,6 @@ public class MainApplication extends NavigationApplication implements ShareAppli
             new RNOSModule(),
             new RNPrintPackage(),
 	          new RNCameraPackage(),
-	          new RNFSPackage(),
             new ExtraDimensionsPackage(),
             new KCKeepAwakePackage(),
             new KeychainPackage(),
