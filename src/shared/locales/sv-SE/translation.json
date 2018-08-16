@@ -137,7 +137,14 @@
         "ifYourBalanceIsNotCorrect": "Om ditt saldo inte är korrekt, är det troligt att du använder en seed från tidigare än snapshot.",
         "headToAdvancedSettingsForTransition": "Gå till avancerade inställningar och utför en snapshot-övergång.",
         "usingTrinityWalletWithKeePass": "Använder Trinity med Keepass2Android",
-        "signedTrytesBroadcastErrorExplanation": "Ett nätverksfel uppstod under sändning av din transaktion."
+        "signedTrytesBroadcastErrorExplanation": "Ett nätverksfel uppstod under sändning av din transaktion.",
+        "broadcastError": "Could not broadcast transfer",
+        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
+        "problemSendingYourTransaction": "There was a problem sending your transaction.",
+        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
+        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
+        "tryingAgainWithDifferentNode": "Trying again with a different node.",
+        "errorFetchingAccountInformation": "Error fetching account information."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
