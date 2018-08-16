@@ -4,10 +4,10 @@ export default {
     bar: { bg: 'rgb(242, 242, 242)', hover: 'rgb(231, 231, 231)', alt: 'rgb(231, 231, 231)', color: 'rgb(0, 0, 0)' },
     label: { color: 'rgb(0, 0, 0)', hover: 'rgb(0, 0, 0)' },
     input: {
-        bg: 'rgb(251, 251, 251)',
-        border: 'rgba(255, 255, 255, 0.4)',
+        bg: 'rgb(247, 247, 247)',
+        border: 'rgba(0, 0, 0, 0.6)',
         alt: 'rgb(0, 0, 0)',
-        hover: 'rgba(0, 0, 0, 0.5)',
+        hover: 'rgba(0, 0, 0, 1)',
         color: 'rgb(30, 30, 30)',
     },
     negative: { color: 'rgb(219, 112, 59)', hover: 'rgb(155, 0, 13)', body: 'rgb(255, 255, 255)' },
