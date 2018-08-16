@@ -1,3 +1,29 @@
-PODFILE CHECKSUM: b2b975234acca9a548eeaacfb1c530d53a40a211
+PODS:
+  - CatCrypto (0.2.3)
+  - React (0.11.0):
+    - React/Core (= 0.11.0)
+  - react-native-document-picker (2.1.0):
+    - React
+  - React/Core (0.11.0)
+
+DEPENDENCIES:
+  - CatCrypto
+  - react-native-document-picker (from `../node_modules/react-native-document-picker`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - CatCrypto
+    - React
+
+EXTERNAL SOURCES:
+  react-native-document-picker:
+    :path: "../node_modules/react-native-document-picker"
+
+SPEC CHECKSUMS:
+  CatCrypto: 79e3af44d363c1f5511d1964c4da51f316dc74d0
+  React: ab1a2e21deb34965c38328d5ec40cc7d12c6050a
+  react-native-document-picker: e7934f6a3c898a1b62fa68b1f09371beef6ac51a
+
+PODFILE CHECKSUM: 3a9df975f68bc2a8b0a08efc4a9bebfd20a0c7e2
 
 COCOAPODS: 1.5.3
