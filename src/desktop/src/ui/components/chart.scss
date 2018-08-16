@@ -10,6 +10,10 @@
         color: var(--primary);
         font-weight: 600;
         font-size: 14px;
+
+        @media screen and (max-width: 860px) {
+            display: none;
+        }
     }
 
     svg {
@@ -25,7 +29,8 @@
         font-size: 11px;
 
         @media screen and (max-width: 860px) {
-            height: calc(100% - 100px);
+            top: 20px;
+            height: calc(100% - 85px);
         }
 
         > span {
