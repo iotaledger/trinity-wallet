@@ -60,16 +60,18 @@ export const prepareInputs = (addressData, start, threshold, security = DEFAULT_
  *   balance associated with all addresses.
  *
  *   @method getUnspentInputs
- *   @param {object} addressData - Addresses dictionary with balance and spend status
- *   @param {array} spentAddresses - Locally computed spent addresses from transactions
- *   @param {array}  pendingValueTransfers
- *   @param {number} start - Index to start the search from
- *   @param {number} threshold - Maximum value (balance) to stop the search
- *   @param {object} inputs - Could be initialised with null. In case its null default inputs would be defined.
+ *   @param {string} [provider]
  *
- *   @returns {Promise}
+ *   @returns {function(object, array, array, number, number, *): Promise<object>}
  **/
-export const getUnspentInputs = (addressData, spentAddresses, pendingValueTransfers, start, threshold, inputs) => {
+export const getUnspentInputs = (provider) => (
+    addressData,
+    spentAddresses,
+    pendingValueTransfers,
+    start,
+    threshold,
+    inputs,
+) => {
     if (isNull(inputs)) {
         inputs = {
             inputs: [],
@@ -83,7 +85,7 @@ export const getUnspentInputs = (addressData, spentAddresses, pendingValueTransf
     const preparedInputs = prepareInputs(addressData, start, threshold);
     inputs.totalBalance += preparedInputs.inputs.reduce((sum, input) => sum + input.balance, 0);
 
-    return filterSpentAddresses(preparedInputs.inputs, spentAddresses).then((unspentInputs) => {
+    return filterSpentAddresses(provider)(preparedInputs.inputs, spentAddresses).then((unspentInputs) => {
         // Keep track of all spent addresses that are filtered
         inputs.spentAddresses = [
             ...inputs.spentAddresses,
@@ -107,7 +109,7 @@ export const getUnspentInputs = (addressData, spentAddresses, pendingValueTransf
             const ordered = preparedInputs.inputs.sort((a, b) => a.keyIndex - b.keyIndex).reverse();
             const end = ordered[0].keyIndex;
 
-            return getUnspentInputs(addressData, spentAddresses, pendingValueTransfers, end + 1, diff, {
+            return getUnspentInputs(provider)(addressData, spentAddresses, pendingValueTransfers, end + 1, diff, {
                 inputs: inputs.inputs.concat(filtered),
                 availableBalance: inputs.availableBalance + collected,
                 totalBalance: inputs.totalBalance,

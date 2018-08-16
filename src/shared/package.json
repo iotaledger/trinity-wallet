@@ -10,7 +10,7 @@
         "Charlie Varley"
     ],
     "scripts": {
-        "test": "./node_modules/.bin/mocha --require babel-core/register \"__tests__/**/*.spec.js\"",
+        "test": "NODE_ENV=test ./node_modules/.bin/mocha --require babel-core/register \"__tests__/**/*.spec.js\"",
         "test:watch": "yarn test --watch",
         "audit": "./../../node_modules/.bin/auditjs -l error",
         "themes:sync": "node themes/sync.js"
@@ -44,6 +44,7 @@
         "chai": "^4.1.2",
         "figma-parser": "^0.0.2",
         "mocha": "^4.0.1",
+        "nock": "^9.6.1",
         "redux-logger": "^3.0.6",
         "redux-mock-store": "^1.5.1",
         "sinon": "^4.5.0",
