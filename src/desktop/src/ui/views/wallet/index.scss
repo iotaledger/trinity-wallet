@@ -45,7 +45,7 @@ $sidebar-narrow: 70px;
                 border-right: 2px solid transparent;
                 text-decoration: none;
                 line-height: 60px;
-                padding-left: 30px;
+                padding-left: 18px;
                 text-transform: capitalize;
                 white-space: nowrap;
                 max-width: 200px;
@@ -55,7 +55,7 @@ $sidebar-narrow: 70px;
                     display: none;
                     position: absolute;
                     top: -1px;
-                    right: 0px;
+                    right: -8px;
                     z-index: 2;
                     opacity: 0.4;
                     &:hover {
@@ -64,7 +64,7 @@ $sidebar-narrow: 70px;
                 }
 
                 &:hover {
-                    background: var(--bar-alt);
+                    background: var(--bar-hover);
 
                     > div {
                         display: block;
@@ -72,7 +72,7 @@ $sidebar-narrow: 70px;
                 }
                 &[aria-current='true'],
                 &.active {
-                    background: var(--bar-alt);
+                    background: var(--bar-hover);
                     border-right: 2px solid var(--primary);
                 }
 
@@ -106,7 +106,7 @@ $sidebar-narrow: 70px;
 
                 a {
                     line-height: 21px;
-                    padding: 14px 0 14px 30px;
+                    padding: 14px 0 14px 18px;
                 }
             }
 
@@ -158,7 +158,7 @@ $sidebar-narrow: 70px;
                 > div {
                     &:hover {
                         > a {
-                            background: var(--bar-alt);
+                            background: var(--bar-hover);
                         }
                         ul {
                             display: inline-block;
@@ -171,7 +171,7 @@ $sidebar-narrow: 70px;
                                 background: var(--bar-bg);
                                 border-right: 2px solid transparent;
                                 &:hover {
-                                    background: var(--bar-alt);
+                                    background: var(--bar-hover);
                                 }
                             }
                         }

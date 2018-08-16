@@ -8,6 +8,7 @@ const Kerl = require('iota.lib.js/lib/crypto/kerl/kerl');
 const Curl = require('iota.lib.js/lib/crypto/curl/curl');
 const Converter = require('iota.lib.js/lib/crypto/converter/converter');
 const argon2 = require('argon2');
+const machineUuid = require('machine-uuid');
 const kdbx = require('../kdbx');
 
 const trytesTrits = [
@@ -95,6 +96,14 @@ const Electron = {
         } else {
             clipboard.clear();
         }
+    },
+
+    /**
+     * Gets machine UUID
+     * @return {Promise} resolves to the machine UUID
+     */
+    getUuid: () => {
+        return machineUuid();
     },
 
     /**

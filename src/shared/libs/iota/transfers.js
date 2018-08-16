@@ -47,6 +47,15 @@ import i18next from '../../i18next.js';
 import { convertFromTrytes } from './utils';
 import Errors from './../errors';
 
+/**
+ * Gets total transfer value from a bundle
+ *
+ * @method getTransferValue
+ * @param {array} bundle
+ * @param {array} addresses
+ *
+ * @returns {number}
+ */
 export const getTransferValue = (bundle, addresses) => {
     let value = 0;
     let j = 0;
@@ -82,7 +91,16 @@ export const getRelevantTransfer = (bundle, addresses) => {
     return extractTailTransferFromBundle(bundle);
 };
 
-export const getFirstConsistentTail = (tails, idx) => {
+/**
+ * Finds a promotable (consistent & above max depth) tail transaction
+ *
+ * @method findPromotableTail
+ * @param {array} tails
+ * @param {number} idx
+ *
+ * @returns {Promise<object|boolean>}
+ */
+export const findPromotableTail = (tails, idx) => {
     let tailsAboveMaxDepth = [];
 
     if (idx === 0) {
@@ -105,13 +123,21 @@ export const getFirstConsistentTail = (tails, idx) => {
             }
 
             idx += 1;
-            return getFirstConsistentTail(tailsAboveMaxDepth, idx);
+            return findPromotableTail(tailsAboveMaxDepth, idx);
         })
         .catch(() => false);
 };
 
-export const isAboveMaxDepth = (timestamp) => {
-    return timestamp < Date.now() && Date.now() - parseInt(timestamp) < 11 * 60 * 1000;
+/**
+ * Check if attachment timestamp on transaction is above max depth (~11 minutes)
+ *
+ * @method isAboveMaxDepth
+ * @param {number} attachmentTimestamp
+ *
+ * @returns {boolean}
+ */
+export const isAboveMaxDepth = (attachmentTimestamp) => {
+    return attachmentTimestamp < Date.now() && Date.now() - attachmentTimestamp < 11 * 60 * 1000;
 };
 
 /**

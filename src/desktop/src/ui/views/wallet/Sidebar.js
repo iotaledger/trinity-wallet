@@ -96,7 +96,7 @@ class Sidebar extends React.PureComponent {
                                             <strong>{shorten(account, 16)}</strong>
                                             <small>{formatIota(accounts.accountInfo[account].balance)}</small>
                                             <div onClick={(e) => this.accountSettings(e, index)}>
-                                                <Icon icon="settings" size={16} />
+                                                <Icon icon="settingsAlt" size={16} />
                                             </div>
                                         </a>
                                     );
