@@ -123,7 +123,7 @@
         "seedThief": "만일 다른 사람이 시드를 손에 넣게 된다면 IOTA를 훔칠 수 있습니다.",
         "googlePlayServicesNotAvailable": "Google 플레이 서비스를 이용할 수 없음",
         "couldNotVerifyDeviceIntegrity": "Google 플레이 서비스를 사용할 수 없어 기기의 무결성을 확인하지 못했습니다.",
-        "clear": "지우기",
+        "clear": "Clear",
         "noNetworkConnection": "네트워크에 연결되지 않음",
         "noNetworkConnectionExplanation": "인터넷 연결이 오프라인 상태입니다.",
         "spentAddressExplanation": "경고: 이미 사용한 주소에 잔고가 있습니다",
@@ -307,7 +307,9 @@
         "incorrectSeed": "잘못된 시드",
         "incorrectSeedExplanation": "입력하신 시드가 잘못되었습니다. 다시 시도해 주세요.",
         "ifYouHaveNotSaved": "시드를 따로 저장해 두지 않았다면 뒤로 돌아가 저장해 주십시오.",
-        "enterSeedBelow": "시드를 입력해서 정확하게 저장하였는지 확인해 주세요"
+        "enterSeedBelow": "시드를 입력해서 정확하게 저장하였는지 확인해 주세요",
+        "clipboardWarning": "Do not copy paste your seed",
+        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
     },
     "send": {
         "invalidAddress": "잘못된 주소",
@@ -651,7 +653,7 @@
         "skipUpdate": "업데이트 건너뛰기"
     },
     "notificationLog": {
-        "errorLog": "오류 로그"
+        "errorLog": "Error log"
     },
     "terms": {
         "termsAndConditions": "이용 약관",
