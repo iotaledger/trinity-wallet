@@ -93,7 +93,7 @@ function createWindow() {
         minHeight: 720,
         frame: process.platform === 'linux',
         titleBarStyle: 'hidden',
-        icon: `${__dirname}/dist/icon.png`,
+        icon: process.platform === 'win32' ? `${__dirname}/dist/icon.ico` : `${__dirname}/dist/icon.png`,
         backgroundColor: bgColor,
         webPreferences: {
             nodeIntegration: false,
@@ -242,7 +242,9 @@ const setupTray = (enabled) => {
         return;
     }
 
-    tray = new Tray(path.join(`${__dirname}/assets/icon-64@2x.png`));
+    const icon = process.platform === 'win32' ? `${__dirname}/dist/icon.ico` : `${__dirname}/dist/icon@2x.png`;
+
+    tray = new Tray(icon);
 
     tray.on('click', () => {
         toggleTray();
@@ -360,7 +362,7 @@ ipc.on('request.deepLink', () => {
  * Proxy storage update event to tray window
  */
 ipc.on('storage.update', (e, payload) => {
-    if (windows.tray) {
+    if (windows.tray && !tray.isDestroyed()) {
         windows.tray.webContents.send('storage.update', payload);
     }
     try {

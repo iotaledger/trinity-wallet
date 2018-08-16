@@ -90,6 +90,10 @@ module.exports = {
             inject: false,
             template: __dirname + '/index.html',
         }),
-        new CopyWebpackPlugin([{ from: 'assets/icon-128.png', to: 'icon.png' }]),
+        new CopyWebpackPlugin([
+            { from: 'assets/icon-128.png', to: 'icon.png' },
+            { from: 'assets/icon-64.png', to: 'icon@2x.png' },
+            { from: 'assets/icon.ico', to: 'icon.ico' },
+        ]),
     ],
 };
