@@ -123,7 +123,7 @@
         "seedThief": "如果别人有您的种子，那他们就可以偷走你的IOTA。",
         "googlePlayServicesNotAvailable": "Google Play服务不可用。",
         "couldNotVerifyDeviceIntegrity": "因为Google Play服务不可用，无法验证设备完整性。",
-        "clear": "清除",
+        "clear": "Clear",
         "noNetworkConnection": "没有网络连接",
         "noNetworkConnectionExplanation": "您的网络连接似乎脱机离线。",
         "spentAddressExplanation": "警告：资金用于已用地址。",
@@ -307,7 +307,9 @@
         "incorrectSeed": "错误的种子",
         "incorrectSeedExplanation": "你输入的种子不正确。请再试一次",
         "ifYouHaveNotSaved": "如果你没有保存你的种子, 请返回保存。",
-        "enterSeedBelow": "在下面输入你新建的种子以确认您已经正确地备份了该种子。"
+        "enterSeedBelow": "在下面输入你新建的种子以确认您已经正确地备份了该种子。",
+        "clipboardWarning": "Do not copy paste your seed",
+        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
     },
     "send": {
         "invalidAddress": "地址无效",
@@ -651,7 +653,7 @@
         "skipUpdate": "忽略更新"
     },
     "notificationLog": {
-        "errorLog": "错误日志"
+        "errorLog": "Error log"
     },
     "terms": {
         "termsAndConditions": "条款和条件",
