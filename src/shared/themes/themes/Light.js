@@ -8,7 +8,7 @@ negative: { color: 'rgb(219, 112, 59)',hover: 'rgb(155, 0, 13)',body: 'rgb(255, 
 positive: { color: 'rgb(85, 160, 91)',hover: 'rgb(24, 91, 72)',body: 'rgb(255, 255, 255)', },
 dark: { color: 'rgb(242, 242, 242)',hover: 'rgb(212, 212, 212)',body: 'rgb(0, 0, 0)', },
 secondary: { color: 'rgb(0, 0, 0)',hover: 'rgb(51, 51, 51)',body: 'rgb(242, 242, 242)', },
-primary: { color: 'rgb(0, 0, 0)',hover: 'rgb(51, 51, 51)',body: 'rgb(242, 242, 242)', },
+primary: { color: 'rgb(0, 0, 0)',hover: 'rgb(51, 51, 51)',border: 'rgb(0, 0, 0)',body: 'rgb(242, 242, 242)', },
 body: { bg: 'rgb(242, 242, 242)',color: 'rgb(0, 0, 0)',alt: 'rgba(0, 0, 0, 0.15)', },
 wave: { primary: 'rgba(0, 0, 0, 0.05)',secondary: 'rgba(0, 0, 0, 0.05)', },
 };
