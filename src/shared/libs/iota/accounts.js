@@ -9,6 +9,7 @@ import find from 'lodash/find';
 import filter from 'lodash/filter';
 import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
+import isString from 'lodash/isString';
 import omit from 'lodash/omit';
 import unionBy from 'lodash/unionBy';
 import {
@@ -40,20 +41,19 @@ import {
     formatAddressData,
 } from './addresses';
 import Errors from '../errors';
+import { EMPTY_HASH_TRYTES } from './utils';
 
 /**
  *   Takes in account data fetched from ledger.
- *   Formats addresses.
- *   Accumulates total balance (getAddressDataAndFormatBalance).
- *   Prepare transactions for auto promotion.
+ *   Formats addresses as an object { index, spent, checksum, balance }.
+ *   Accumulates total balance.
+ *   Prepares transactions for auto promotion.
  *
  *   @method organiseAccountState
- *   @param {string} accountName
- *   @param {object} partialAccountData
  *
- *   @returns {Promise<object>}
+ *   @returns {function(string, object): Promise<object>}
  **/
-const organiseAccountState = (accountName, partialAccountData) => {
+const organiseAccountState = (provider) => (accountName, partialAccountData) => {
     const organisedState = {
         accountName,
         transfers: partialAccountData.transfers,
@@ -71,7 +71,7 @@ const organiseAccountState = (accountName, partialAccountData) => {
 
     const normalisedTransactionsList = map(organisedState.transfers, (tx) => tx);
 
-    return prepareForAutoPromotion(normalisedTransactionsList, organisedState.addresses, accountName).then(
+    return prepareForAutoPromotion(provider)(normalisedTransactionsList, organisedState.addresses, accountName).then(
         (unconfirmedBundleTails) => {
             organisedState.unconfirmedBundleTails = unconfirmedBundleTails;
 
@@ -83,20 +83,19 @@ const organiseAccountState = (accountName, partialAccountData) => {
 /**
  *   Gets information associated with a seed from the ledger.
  *   - Checks if the currently connected IRI node is healthy
- *   - Gets all used addresses and their transaction hashes from the ledger. (getFullAddressHistory)
- *   - Gets all transaction objects associated with the addresses. (getTransactionObjectsAsync(hashes))
- *   - Grabs all bundle hashes and get transaction objects associated with those. (findTransactionObjectsAsync({ bundles }))
- *   - Gets confirmation states from all transactions from the ledger. (getLatestInclusionAsync)
- *   - Normalise bundles
- *   - Organises account info. (organiseAccountInfo({ transfers: {}, addresses: [] }))
+ *   - Gets all used addresses and their transaction hashes from the ledger.
+ *   - Gets all transaction objects associated with the addresses.
+ *   - Grabs all bundle hashes and get transaction objects associated with those.
+ *   - Gets confirmation states for all transactions from the ledger.
+ *   - Normalises valid bundles.
+ *   - Organises account info.
  *
  *   @method getAccountData
- *   @param {string} seed
- *   @param {string} accountName - Account name selected by the user.
- *   @param {function} genFn
- *   @returns {Promise}
+ *
+ *   @param {string} provider
+ *   @returns {function(string, string, function): Promise<object>}
  **/
-export const getAccountData = (seed, accountName, genFn) => {
+export const getAccountData = (provider) => (seed, accountName, genFn) => {
     const bundleHashes = new Set();
 
     const cached = {
@@ -112,27 +111,27 @@ export const getAccountData = (seed, accountName, genFn) => {
         hashes: [],
     };
 
-    return isNodeSynced()
+    return isNodeSynced(provider)
         .then((isSynced) => {
             if (!isSynced) {
                 throw new Error(Errors.NODE_NOT_SYNCED);
             }
 
-            return getFullAddressHistory(seed, genFn);
+            return getFullAddressHistory(provider)(seed, genFn);
         })
         .then((history) => {
             data = { ...data, ...history };
 
-            return getTransactionsObjectsAsync(history.hashes);
+            return getTransactionsObjectsAsync(provider)(history.hashes);
         })
         .then((transactionObjects) => {
             each(transactionObjects, (tx) => {
-                if (tx.bundle !== '9'.repeat(81)) {
+                if (tx.bundle !== EMPTY_HASH_TRYTES) {
                     bundleHashes.add(tx.bundle);
                 }
             });
 
-            return findTransactionObjectsAsync({ bundles: Array.from(bundleHashes) });
+            return findTransactionObjectsAsync(provider)({ bundles: Array.from(bundleHashes) });
         })
         .then((transactionObjects) => {
             cached.transactionObjects = transactionObjects;
@@ -144,7 +143,7 @@ export const getAccountData = (seed, accountName, genFn) => {
                 }
             });
 
-            return getLatestInclusionAsync(map(cached.tailTransactions, (tx) => tx.hash));
+            return getLatestInclusionAsync(provider)(map(cached.tailTransactions, (tx) => tx.hash));
         })
         .then((states) => {
             data.transfers = constructNormalisedBundles(
@@ -154,47 +153,37 @@ export const getAccountData = (seed, accountName, genFn) => {
                 data.addresses,
             );
 
-            return organiseAccountState(accountName, data);
+            return organiseAccountState(provider)(accountName, data);
         });
 };
 
 /**
- *   Aims to sync cached state with the ledger's.
- *   - Updates balances and spent statuses for all seen addresses in local state. (getAddressDataAndFormatBalance)
- *   - Checks for new transfers on unspent addresses.
- *   - Checks for new transfers on spent addresses with pending transfers.
+ *   Aims to sync local state with the ledger's.
+ *   - Updates balances and spent statuses for all seen addresses in local state.
+ *   - Checks for new transfers on addresses.
  *   - Syncs new transfers if found on the ledger.
  *   - Updates addresses used in newly found transfers, by marking them as spent.
  *   - Adds newly found (valid and pending) transfers for promotion.
  *   - Checks confirmation states for pending tail transaction hashes.
- *   - Removes bundle hashes for confirmed transfers for (unconfirmedBundleTails) to avoid promotion.
+ *   - Removes bundle hashes for confirmed transfers from auto promotion queue.
  *
  *   @method syncAccount
- *   @param {*} seed
- *   @param {object} existingAccountState - Account object
- *   @param {boolean} rescanAddresses
- *   @param {function} genFn - Entangled addresses generation method
- *   @param {boolean} withNewAddresses
+ *   @param {string} [provider]
  *
- *   @returns {Promise<object>}
+ *   @returns {function(object, string, function): Promise<object>}
  **/
-export const syncAccount = (
-    existingAccountState,
-    seed = null,
-    rescanAddresses = false,
-    genFn = null,
-    withNewAddresses = false,
-) => {
+export const syncAccount = (provider) => (existingAccountState, seed, genFn) => {
     const thisStateCopy = cloneDeep(existingAccountState);
+    const rescanAddresses = isString(seed);
 
     return (rescanAddresses
-        ? syncAddresses(seed, thisStateCopy.addresses, genFn, withNewAddresses)
+        ? syncAddresses(provider)(seed, thisStateCopy.addresses, genFn)
         : Promise.resolve(thisStateCopy.addresses)
     )
         .then((latestAddressData) => {
             thisStateCopy.addresses = latestAddressData;
 
-            return findTransactionsAsync({ addresses: keys(thisStateCopy.addresses) });
+            return findTransactionsAsync(provider)({ addresses: keys(thisStateCopy.addresses) });
         })
         .then((newHashes) => {
             // Get difference of transaction hashes from local state and ledger state
@@ -204,7 +193,7 @@ export const syncAccount = (
             thisStateCopy.hashes = newHashes;
 
             return size(diff)
-                ? syncTransfers(diff, thisStateCopy)
+                ? syncTransfers(provider)(diff, thisStateCopy)
                 : Promise.resolve({
                       transfers: thisStateCopy.transfers,
                       newNormalisedTransfers: {},
@@ -218,7 +207,7 @@ export const syncAccount = (
             thisStateCopy.hashes = filter(thisStateCopy.hashes, (hash) => !includes(outOfSyncTransactionHashes, hash));
 
             // Transform new transfers by bundle for promotion.
-            return prepareForAutoPromotion(
+            return prepareForAutoPromotion(provider)(
                 map(newNormalisedTransfers, (tx) => tx),
                 thisStateCopy.addresses,
                 thisStateCopy.accountName,
@@ -234,27 +223,27 @@ export const syncAccount = (
             // Grab all tail transactions hashes for pending transactions
             const pendingTxTailsHashes = getPendingTxTailsHashes(thisStateCopy.transfers);
 
-            return getConfirmedTransactionHashes(pendingTxTailsHashes);
+            return getConfirmedTransactionHashes(provider)(pendingTxTailsHashes);
         })
         .then((confirmedTransactionsHashes) => {
             if (!isEmpty(confirmedTransactionsHashes)) {
                 thisStateCopy.transfers = markTransfersConfirmed(thisStateCopy.transfers, confirmedTransactionsHashes);
 
                 // Grab all bundle hashes for confirmed transaction hashes
-                // At this point unconfirmedBundleTails (for promotion) should be updated
                 const confirmedBundleHashes = getBundleHashesForNewlyConfirmedTransactions(
                     thisStateCopy.unconfirmedBundleTails,
                     confirmedTransactionsHashes,
                 );
 
-                // All bundle hashes that are now confirmed should be removed from the dictionary.
+                // All bundle hashes that are now confirmed should be removed from auto promotion queue.
                 thisStateCopy.unconfirmedBundleTails = omit(
                     thisStateCopy.unconfirmedBundleTails,
                     confirmedBundleHashes,
                 );
             }
 
-            return getAddressDataAndFormatBalance(keys(thisStateCopy.addresses));
+            // Gets latest address data from ledger
+            return getAddressDataAndFormatBalance(provider)(keys(thisStateCopy.addresses));
         })
         .then(({ addresses, balance }) => {
             thisStateCopy.addresses = addresses;
@@ -269,18 +258,22 @@ export const syncAccount = (
  *   - Assign persistence to each tx object.
  *   - Merge new transfer to existing transfers.
  *   - Mark used addresses as spent locally.
- *   - Keep a copy of tail transaction categorised by bundle hash for promotion in case its a value transfer.
+ *   - If value transfer, add it to auto promotion queue.
  *   - Sync transaction hashes.
  *
  *   @method updateAccountAfterSpending
- *   @param {string} name
- *   @param {array} newTransfer
- *   @param {object} accountState
- *   @param {boolean} isValueTransfer
+ *   @param {string} [provider]
  *
- *   @returns {object}
+ *   @returns {function(string, string, array, object, boolean, function): Promise<object>}
  **/
-export const syncAccountAfterSpending = (seed, name, newTransfer, accountState, isValueTransfer, genFn) => {
+export const syncAccountAfterSpending = (provider) => (
+    seed,
+    name,
+    newTransfer,
+    accountState,
+    isValueTransfer,
+    genFn,
+) => {
     const tailTransaction = find(newTransfer, { currentIndex: 0 });
     const normalisedTransfer = normaliseBundle(newTransfer, keys(accountState.addresses), [tailTransaction], false);
 
@@ -294,9 +287,7 @@ export const syncAccountAfterSpending = (seed, name, newTransfer, accountState, 
 
     let unconfirmedBundleTails = accountState.unconfirmedBundleTails;
 
-    // Keep track of this transfer in unconfirmed tails so that it can be picked up for promotion
-    // Also check if it was a value transfer
-    // Only update unconfirmedBundleTails for promotion/reattachment if its a value transfer
+    // Add transfer for auto promotion
     if (isValueTransfer) {
         const bundle = get(newTransfer, '[0].bundle');
 
@@ -315,7 +306,7 @@ export const syncAccountAfterSpending = (seed, name, newTransfer, accountState, 
     const addressData = markAddressesAsSpentSync([newTransfer], accountState.addresses);
     const ownTransactionHashesForThisTransfer = getOwnTransactionHashes(normalisedTransfer, accountState.addresses);
 
-    return syncAddresses(seed, addressData, genFn, true).then((newAddressData) => {
+    return syncAddresses(provider)(seed, addressData, genFn).then((newAddressData) => {
         const newState = {
             ...accountState,
             transfers,
@@ -323,6 +314,7 @@ export const syncAccountAfterSpending = (seed, name, newTransfer, accountState, 
             unconfirmedBundleTails,
             hashes: [...accountState.hashes, ...ownTransactionHashesForThisTransfer],
         };
+
         return {
             newState,
             normalisedTransfer,
@@ -334,8 +326,8 @@ export const syncAccountAfterSpending = (seed, name, newTransfer, accountState, 
 /**
  *   Sync local account after a bundle is replayed.
  *   - Assign persistence to each tx object.
- *   - Append new reattachment to existing transfers.
- *   - Add reattachment tail transaction to unconfirmedBundleTails for auto promotion.
+ *   - Update transfer object with tail transaction hash of new reattachment.
+ *   - Add reattachment tail transaction to auto promotion queue.
  *   - Sync transaction hashes.
  *
  *   @method syncAccountAfterReattachment
