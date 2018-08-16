@@ -78,3 +78,6 @@ buck-out/
 
 
 # End of https://www.gitignore.io/api/visualstudiocode
+
+# nodejs-mobile-react-native
+nodejs-assets/build-native-modules*
