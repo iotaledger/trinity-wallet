@@ -123,7 +123,7 @@
         "seedThief": "Jos seed-lukusi päätyy muiden haltuun, IOTA: si voidaan varastaa.",
         "googlePlayServicesNotAvailable": "Google Play Services ei ole käytettävissä",
         "couldNotVerifyDeviceIntegrity": "Laitteen tietoturvaa ei voida varmistaa koska Google palveluihin ei saada yhteyttä.",
-        "clear": "TYHJENNÄ",
+        "clear": "Clear",
         "noNetworkConnection": "Ei verkkoyhteyttä",
         "noNetworkConnectionExplanation": "Verkkoyhteys näyttää olevan offline-tilassa.",
         "spentAddressExplanation": "VAROITUS: Varoja jo käytetyssä osoitteessa",
@@ -307,7 +307,9 @@
         "incorrectSeed": "Virheellinen seed-luku",
         "incorrectSeedExplanation": "Antamasi seed-luku on virheellinen. Yritä uudelleen.",
         "ifYouHaveNotSaved": "Jos et ole tallentanut seed-lukuasi, palaa takaisin ja tee se.",
-        "enterSeedBelow": "Anna seed-lukusi uudelleen, jotta voimme varmistaa että tallensit sen asianmukaisesti"
+        "enterSeedBelow": "Anna seed-lukusi uudelleen, jotta voimme varmistaa että tallensit sen asianmukaisesti",
+        "clipboardWarning": "Do not copy paste your seed",
+        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
     },
     "send": {
         "invalidAddress": "Virheellinen osoite",
@@ -651,7 +653,7 @@
         "skipUpdate": "Ohita päivitys"
     },
     "notificationLog": {
-        "errorLog": "VIRHEHISTORIA"
+        "errorLog": "Error log"
     },
     "terms": {
         "termsAndConditions": "Yleiset Sopimusehdot",
