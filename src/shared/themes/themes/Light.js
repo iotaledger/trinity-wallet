@@ -5,7 +5,7 @@ export default {
     label: { color: 'rgb(0, 0, 0)', hover: 'rgb(0, 0, 0)' },
     input: {
         bg: 'rgb(247, 247, 247)',
-        border: 'rgba(0, 0, 0, 0.6)',
+        border: 'rgba(255, 255, 255, 0.6)',
         alt: 'rgb(0, 0, 0)',
         hover: 'rgba(0, 0, 0, 1)',
         color: 'rgb(30, 30, 30)',
@@ -14,7 +14,7 @@ export default {
     positive: { color: 'rgb(85, 160, 91)', hover: 'rgb(24, 91, 72)', body: 'rgb(255, 255, 255)' },
     dark: { color: 'rgb(242, 242, 242)', hover: 'rgb(212, 212, 212)', body: 'rgb(0, 0, 0)' },
     secondary: { color: 'rgb(0, 0, 0)', hover: 'rgb(51, 51, 51)', body: 'rgb(242, 242, 242)' },
-    primary: { color: 'rgb(0, 0, 0)', hover: 'rgb(51, 51, 51)', body: 'rgb(242, 242, 242)' },
+    primary: { color: 'rgb(0, 0, 0)', hover: 'rgb(51, 51, 51)', border: 'rgb(0, 0, 0)', body: 'rgb(242, 242, 242)' },
     body: { bg: 'rgb(242, 242, 242)', color: 'rgb(0, 0, 0)', alt: 'rgba(0, 0, 0, 0.15)' },
     wave: { primary: 'rgba(0, 0, 0, 0.05)', secondary: 'rgba(0, 0, 0, 0.05)' },
 };

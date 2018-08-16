@@ -14,7 +14,12 @@ export default {
     positive: { color: 'rgb(85, 160, 91)', hover: 'rgb(24, 91, 72)', body: 'rgb(255, 255, 255)' },
     dark: { color: 'rgb(209, 212, 217)', hover: 'rgb(192, 195, 200)', body: 'rgb(0, 0, 0)' },
     secondary: { color: 'rgb(11, 23, 143)', hover: 'rgb(7, 17, 124)', body: 'rgb(255, 255, 255)' },
-    primary: { color: 'rgb(13, 108, 251)', hover: 'rgb(11, 94, 219)', body: 'rgb(255, 255, 255)' },
+    primary: {
+        color: 'rgb(13, 108, 251)',
+        border: 'rgba(255, 255, 255, 0)',
+        hover: 'rgb(11, 94, 219)',
+        body: 'rgb(255, 255, 255)',
+    },
     body: { bg: 'rgb(228, 234, 245)', color: 'rgb(0, 0, 0)', alt: 'rgba(0, 0, 0, 0.25)' },
     wave: { primary: 'rgba(28, 41, 159, 0.5)', secondary: 'rgba(0, 0, 0, 0.05)' },
 };
