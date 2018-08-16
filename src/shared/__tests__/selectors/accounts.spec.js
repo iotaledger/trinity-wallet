@@ -20,7 +20,10 @@ import {
     hasDisplayedSnapshotTransitionGuide,
     getFailedBundleHashesFromAccounts,
     getFailedBundleHashesForSelectedAccount,
+    getNodesFromState,
+    getSelectedNodeFromState,
 } from '../../selectors/accounts';
+import { defaultNode as DEFAULT_NODE } from '../../config';
 
 describe('selectors: accounts', () => {
     describe('#getAccountsFromState', () => {
@@ -670,6 +673,54 @@ describe('selectors: accounts', () => {
                         },
                     }),
                 ).to.equal('raw');
+            });
+        });
+    });
+
+    describe('#getNodesFromState', () => {
+        let state;
+
+        beforeEach(() => {
+            state = {
+                settings: {
+                    nodes: ['foo', 'baz'],
+                },
+            };
+        });
+
+        describe('when "nodes" prop is defined in settings reducer', () => {
+            it('should return "nodes" prop', () => {
+                expect(getNodesFromState(state)).to.eql(['foo', 'baz']);
+            });
+        });
+
+        describe('when "nodes" prop is undefined in settings reducer', () => {
+            it('should return an empty array', () => {
+                expect(getNodesFromState({ settings: {} })).to.eql([]);
+            });
+        });
+    });
+
+    describe('#getSelectedNodeFromState', () => {
+        let state;
+
+        beforeEach(() => {
+            state = {
+                settings: {
+                    node: 'foo',
+                },
+            };
+        });
+
+        describe('when "node" prop is defined in settings reducer', () => {
+            it('should return "node" prop', () => {
+                expect(getSelectedNodeFromState(state)).to.equal('foo');
+            });
+        });
+
+        describe('when "nodes" prop is undefined in settings reducer', () => {
+            it('should return wallet default node', () => {
+                expect(getSelectedNodeFromState({ settings: {} })).to.equal(DEFAULT_NODE);
             });
         });
     });
