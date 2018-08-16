@@ -105,7 +105,7 @@ const initialState = {
     /**
      * Determines if wallet should automatically switch to a healthy node in case of errors
      */
-    autoNodeSwitching: true,
+    autoNodeSwitching: false,
     /**
      * Keeps track of wallet's version information.
      */

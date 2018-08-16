@@ -41,14 +41,11 @@ class SetCurrency extends PureComponent {
                 <Select
                     value={selection || currency}
                     label={t('currencySelection:currency')}
-                    onChange={(e) => this.setState({ selection: e.target.value })}
-                >
-                    {currencies.map((item) => (
-                        <option key={item} value={item}>
-                            {item}
-                        </option>
-                    ))}
-                </Select>
+                    onChange={(value) => this.setState({ selection: value })}
+                    options={currencies.map((item) => {
+                        return { value: item, label: item };
+                    })}
+                />
                 <fieldset>
                     <Button disabled={!selection || selection === currency} type="submit" loading={loading}>
                         {t('save')}
