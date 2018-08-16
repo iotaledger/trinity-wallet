@@ -123,7 +123,7 @@
         "seedThief": "もし他の人があなたのシードを持つと、あなたのIOTAは盗まれてしまいます。",
         "googlePlayServicesNotAvailable": "Google Playサービスが利用できません。",
         "couldNotVerifyDeviceIntegrity": "Google Playサービスが利用できないため、デバイスの整合性を確認できませんでした。",
-        "clear": "消去",
+        "clear": "Clear",
         "noNetworkConnection": "ネットワーク接続がありません。",
         "noNetworkConnectionExplanation": "インターネット接続がオフラインになっているようです。",
         "spentAddressExplanation": "警告：使用済みアドレスの資金です！",
@@ -307,7 +307,9 @@
         "incorrectSeed": "シードが違います。",
         "incorrectSeedExplanation": "入力したシードは正しくありません。もう一度やり直してください。",
         "ifYouHaveNotSaved": "シードをまだ保存していない場合は戻ってください。",
-        "enterSeedBelow": "下の空欄に新しく作成したシードを入力して、正しくバックアップできたことを確認してください。"
+        "enterSeedBelow": "下の空欄に新しく作成したシードを入力して、正しくバックアップできたことを確認してください。",
+        "clipboardWarning": "Do not copy paste your seed",
+        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
     },
     "send": {
         "invalidAddress": "無効なアドレスです。",
@@ -651,7 +653,7 @@
         "skipUpdate": "更新をスキップ"
     },
     "notificationLog": {
-        "errorLog": "エラー ログ"
+        "errorLog": "Error log"
     },
     "terms": {
         "termsAndConditions": "利用規約",
