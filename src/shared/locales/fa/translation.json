@@ -123,7 +123,7 @@
         "seedThief": "اگر فرد دیگری سید شما را داشته باشد، می توانید آیوتای شما را به سرقت ببرد.",
         "googlePlayServicesNotAvailable": "خدمات گوگل پلی در دسترس نیست",
         "couldNotVerifyDeviceIntegrity": "نمی توان یکپارچگی دستگاه را تایید کرد زیرا سرویس های Google Play در دسترس نیستند.",
-        "clear": "پاک کردن",
+        "clear": "Clear",
         "noNetworkConnection": "اتصال شبکه اي وجود ندارد",
         "noNetworkConnectionExplanation": "به نظر می رسد که شما به اینترنت متصل نیستید و آفلاین هستید.",
         "spentAddressExplanation": "اخطار: موجودی بر روی آدرس های از قبل ساخته شده",
@@ -307,7 +307,9 @@
         "incorrectSeed": "سید نادرست",
         "incorrectSeedExplanation": "سید وارد شده نادرست است. لطفا دوباره تلاش کنید.",
         "ifYouHaveNotSaved": "اگر شما از سید خود پشتیبان تهیه نکرد اید، لطفا به عقب برگردید و این کار را انجام دهید.",
-        "enterSeedBelow": "سید تازه ایجاد شده خود را در زیر وارد کنید تا تایید کنید که آن را به درستی از آن پشتبانی تهیه کرده اید"
+        "enterSeedBelow": "سید تازه ایجاد شده خود را در زیر وارد کنید تا تایید کنید که آن را به درستی از آن پشتبانی تهیه کرده اید",
+        "clipboardWarning": "Do not copy paste your seed",
+        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
     },
     "send": {
         "invalidAddress": "آدرس اشتباه است",
@@ -651,7 +653,7 @@
         "skipUpdate": "رد شدن از به روز رسانی"
     },
     "notificationLog": {
-        "errorLog": "خطای LOG"
+        "errorLog": "Error log"
     },
     "terms": {
         "termsAndConditions": "شرایط و ضوابط",
