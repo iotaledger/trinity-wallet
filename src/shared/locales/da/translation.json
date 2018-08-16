@@ -123,7 +123,7 @@
         "seedThief": "Har en andre dit seed, kan de stjæle dine IOTA.",
         "googlePlayServicesNotAvailable": "Google Play-tjenester er ikke tilgængelige",
         "couldNotVerifyDeviceIntegrity": "Kunne ikke verificere enhedens integritet, da Google Play-tjenester ikke er tilgængelige.",
-        "clear": "RYD",
+        "clear": "Clear",
         "noNetworkConnection": "Ingen netværksforbindelse",
         "noNetworkConnectionExplanation": "Din Internetforbindelse ser ud til at være offline.",
         "spentAddressExplanation": "ADVARSEL: Værdier på en brugt adresse",
@@ -307,7 +307,9 @@
         "incorrectSeed": "Forkert hovednøgle",
         "incorrectSeedExplanation": "Hovednøglen du indtastede er forkert. Prøv venligst igen.",
         "ifYouHaveNotSaved": "Gå tilbage og sikkerhedskopiér din hovednøgle, hvis du ikke allerede har gjort dette.",
-        "enterSeedBelow": "Angiv din nyoprettet hovednøgle nedenfor, for at bekræfte at du har sikkerhedskopieret den korrekt"
+        "enterSeedBelow": "Angiv din nyoprettet hovednøgle nedenfor, for at bekræfte at du har sikkerhedskopieret den korrekt",
+        "clipboardWarning": "Do not copy paste your seed",
+        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
     },
     "send": {
         "invalidAddress": "Ugyldig adresse",
@@ -651,7 +653,7 @@
         "skipUpdate": "Spring opdatering over"
     },
     "notificationLog": {
-        "errorLog": "FEJL LOG"
+        "errorLog": "Error log"
     },
     "terms": {
         "termsAndConditions": "Betingelser og Vilkår",
