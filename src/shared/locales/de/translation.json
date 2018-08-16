@@ -123,7 +123,7 @@
         "seedThief": "Wenn eine andere Person deinen Seed hat, kann diese deine IOTA stehlen.",
         "googlePlayServicesNotAvailable": "Google Play-Dienste nicht verfügbar",
         "couldNotVerifyDeviceIntegrity": "Gerät konnte nicht überprüft werden, da die Google-Play-Dienste nicht verfügbar sind.",
-        "clear": "LEEREN",
+        "clear": "Clear",
         "noNetworkConnection": "Keine Netzwerkverbindung",
         "noNetworkConnectionExplanation": "Die Internetverbindung scheint offline zu sein.",
         "spentAddressExplanation": "WARNUNG: Guthaben auf verwendeten Adressen",
@@ -307,7 +307,9 @@
         "incorrectSeed": "Ungültiger Seed",
         "incorrectSeedExplanation": "Der von dir eingegebene Seed ist nicht korrekt. Bitte versuche es noch einmal.",
         "ifYouHaveNotSaved": "Wenn du deinen Seed nicht gesichert hast, gehe zurück und sichere ihn.",
-        "enterSeedBelow": "Bitte gib deinen neu erstellen Seed hier ein, um sicherzustellen dass du deinen Seed korrekt gesichert hast"
+        "enterSeedBelow": "Bitte gib deinen neu erstellen Seed hier ein, um sicherzustellen dass du deinen Seed korrekt gesichert hast",
+        "clipboardWarning": "Do not copy paste your seed",
+        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
     },
     "send": {
         "invalidAddress": "Ungültige Adresse",
@@ -651,7 +653,7 @@
         "skipUpdate": "Update überspringen"
     },
     "notificationLog": {
-        "errorLog": "FEHLERPROTOKOLL"
+        "errorLog": "Error log"
     },
     "terms": {
         "termsAndConditions": "Geschäftsbedingungen",
