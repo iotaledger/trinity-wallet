@@ -123,7 +123,7 @@
         "seedThief": "如果有人取得您的種子碼，代表他們就可以偷走您的 IOTA。",
         "googlePlayServicesNotAvailable": "Google Play 服務無法使用",
         "couldNotVerifyDeviceIntegrity": "因為 Google Play 服務無法使用，而無法檢驗裝置完整性。",
-        "clear": "清除",
+        "clear": "Clear",
         "noNetworkConnection": "沒有網路連線",
         "noNetworkConnectionExplanation": "您的網路連線顯示為離線。",
         "spentAddressExplanation": "警告：資金位於已支出的地址",
@@ -307,7 +307,9 @@
         "incorrectSeed": "錯誤種子",
         "incorrectSeedExplanation": "您輸入的種子碼錯誤，請再試一次。",
         "ifYouHaveNotSaved": "假如你尚未儲存您的種子碼，請返回並儲存。",
-        "enterSeedBelow": "請在下面輸入您剛產生的種子碼來確認您已經妥善備份了"
+        "enterSeedBelow": "請在下面輸入您剛產生的種子碼來確認您已經妥善備份了",
+        "clipboardWarning": "Do not copy paste your seed",
+        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
     },
     "send": {
         "invalidAddress": "地址無效",
@@ -651,7 +653,7 @@
         "skipUpdate": "跳過更新"
     },
     "notificationLog": {
-        "errorLog": "錯誤紀錄"
+        "errorLog": "Error log"
     },
     "terms": {
         "termsAndConditions": "使用條款",
