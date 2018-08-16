@@ -137,7 +137,14 @@
         "ifYourBalanceIsNotCorrect": "यदि आपका बैलेंस सही नहीं है, तो संभव है कि आप पूर्व-स्नैपशॉट सीड का उपयोग कर रहे हों ।",
         "headToAdvancedSettingsForTransition": "एडवांस सेटिंग के लिए आगे बढ़े और स्नैपशॉट ट्रांजिट करे",
         "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android",
-        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
+        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction.",
+        "broadcastError": "Could not broadcast transfer",
+        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
+        "problemSendingYourTransaction": "There was a problem sending your transaction.",
+        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
+        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
+        "tryingAgainWithDifferentNode": "Trying again with a different node.",
+        "errorFetchingAccountInformation": "Error fetching account information."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "सीड में अवैध वर्ण हैं।",
