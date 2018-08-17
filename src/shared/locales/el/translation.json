@@ -59,6 +59,7 @@
         "password": "Κωδικός πρόσβασης",
         "unrecognisedPassword": "Μη αναγνωρισμένος κωδικός πρόσβασης",
         "unrecognisedPasswordExplanation": "Ο κωδικός πρόσβασης δεν αναγνωρίστηκε. Παρακαλώ δοκιμάστε ξανά.",
+        "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "Συγχρονισμός σε εξέλιξη",
         "syncInProgressExplanation": "Παρακαλώ περιμένετε μέχρι να ολοκληρωθεί ο συγχρονισμός.",
         "somethingWentWrong": "Κάτι πήγε στραβά",
@@ -71,6 +72,7 @@
         "attachToTangleUnavailableExplanation": "Η απομακρυσμένη απόδειξη εργασίας δεν είναι διαθέσιμη για τον επιλεγμένο κόμβο. Αλλάξετε κόμβο ή ορίστε τοπική απόδειξη εργασίας στις ρυθμίσεις για προχωρημένους.",
         "attachToTangleUnavailableExplanationShort": "Η επισύναψη στο Tangle δεν είναι διαθέσιμη για το επιλεγμένο κόμβο.",
         "wallet": "Πορτοφόλι",
+        "all": "All",
         "sent": "Εστάλη",
         "received": "Ελήφθη",
         "sending": "Αποστολή σε εξέλιξη",
@@ -121,7 +123,7 @@
         "seedThief": "If someone else has your seed they can steal your IOTA.",
         "googlePlayServicesNotAvailable": "Google Play Services not available",
         "couldNotVerifyDeviceIntegrity": "Could not verify device integrity because Google Play Services are not available.",
-        "clear": "CLEAR",
+        "clear": "Clear",
         "noNetworkConnection": "No network connection",
         "noNetworkConnectionExplanation": "Your internet connection appears to be offline.",
         "spentAddressExplanation": "WARNING: Funds on spent addresses",
@@ -135,7 +137,14 @@
         "ifYourBalanceIsNotCorrect": "If your balance is not correct, it is likely that you are using a pre-snapshot seed.",
         "headToAdvancedSettingsForTransition": "Head to Advanced Settings and perform a Snapshot Transition.",
         "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android",
-        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
+        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction.",
+        "broadcastError": "Could not broadcast transfer",
+        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
+        "problemSendingYourTransaction": "There was a problem sending your transaction.",
+        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
+        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
+        "tryingAgainWithDifferentNode": "Trying again with a different node.",
+        "errorFetchingAccountInformation": "Error fetching account information."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Το seed σας περιέχει μη έγκυρους χαρακτήρες",
@@ -305,7 +314,9 @@
         "incorrectSeed": "Λάθος σπόρος",
         "incorrectSeedExplanation": "Ο σπόρος που πληκτρολογήσατε είναι εσφαλμένος. Παρακαλώ δοκιμάστε ξανά.",
         "ifYouHaveNotSaved": "Αν δεν έχετε αποθηκεύσει το σπόρο σας, παρακαλούμε πηγαίνετε πίσω και κάντε το.",
-        "enterSeedBelow": "Enter your newly created seed below to confirm you have backed it up correctly"
+        "enterSeedBelow": "Enter your newly created seed below to confirm you have backed it up correctly",
+        "clipboardWarning": "Do not copy paste your seed",
+        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
     },
     "send": {
         "invalidAddress": "Μη έγκυρη διεύθυνση",
@@ -649,11 +660,12 @@
         "skipUpdate": "Skip update"
     },
     "notificationLog": {
-        "errorLog": "ERROR LOG"
+        "errorLog": "Error log"
     },
     "terms": {
         "termsAndConditions": "Terms & Conditions",
-        "accept": "I accept"
+        "accept": "I accept",
+        "readAllToContinue": "Please read all the text to continue"
     },
     "privacyPolicy": {
         "privacyPolicy": "Privacy Policy",

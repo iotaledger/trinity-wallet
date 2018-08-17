@@ -276,7 +276,7 @@ export function formatChartData(json, timeframe) {
             data[i] = {
                 x: i,
                 y: parseFloat(y),
-                time: get(response, `[${i}].time`)
+                time: get(response, `[${i}].time`),
             };
         }
 
