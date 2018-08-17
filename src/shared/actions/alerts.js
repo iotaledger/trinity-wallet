@@ -1,3 +1,4 @@
+import isString from 'lodash/isString';
 import i18next from '../i18next.js';
 import Errors from '../libs/errors';
 
@@ -45,8 +46,8 @@ const dispose = () => ({ type: ActionTypes.HIDE });
  * @param {string} title
  * @param {string} message
  * @param {string} category
- * @param {number} closeInterval
- * @param {object} err
+ * @param {number} [closeInterval]
+ * @param {object} [err]
  *
  * @returns {function} dispatch
  */
@@ -147,7 +148,7 @@ export const generateSyncingCompleteAlert = () => (dispatch) => {
 };
 
 /**
- * Generates an alert when an account is succesfully deleted
+ * Generates an alert when an account is successfully deleted
  *
  * @method generateAccountDeletedAlert
  *
@@ -212,6 +213,25 @@ export const generatePromotionErrorAlert = (error) => (dispatch) =>
     );
 
 /**
+ * Generates an info alert (if account syncing fails) for auto retrying account sync
+ *
+ * @method generateAccountSyncRetryAlert
+ *
+ * @returns {function} dispatch
+ */
+export const generateAccountSyncRetryAlert = () => (dispatch) =>
+    dispatch(
+        generateAlert(
+            'info',
+            i18next.t('global:pleaseWait'),
+            `${i18next.t('global:errorFetchingAccountInformation')} ${i18next.t(
+                'global:tryingAgainWithDifferentNode',
+            )}`,
+            20000,
+        ),
+    );
+
+/**
  * Generates a success alert on successful transaction. Generates different alerts based on value/non-value transaction
  *
  * @method generateTransactionSuccessAlert
@@ -250,7 +270,12 @@ export const disposeOffAlert = () => (dispatch) => dispatch(dispose());
  */
 export const prepareLogUpdate = (err) => (dispatch) => {
     const time = Date.now();
-    const error = { error: err.toString(), time: time };
+
+    const error = {
+        error: err instanceof Error && isString(err.message) ? err.message : err.toString(),
+        time: time,
+    };
+
     dispatch(updateLog(error));
 };
 

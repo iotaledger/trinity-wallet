@@ -59,6 +59,7 @@
         "password": "Lösenord",
         "unrecognisedPassword": "Fel lösenord",
         "unrecognisedPasswordExplanation": "Lösenordet stämde ej. Försök igen.",
+        "capsLockIsOn": "Caps Lock är på",
         "syncInProgress": "Synkronisering pågår",
         "syncInProgressExplanation": "Vänta tills synkroniseringen är klar.",
         "somethingWentWrong": "Något gick fel",
@@ -71,6 +72,7 @@
         "attachToTangleUnavailableExplanation": "Avlägsen PoW är inte tillgänglig på din valda nod. Antingen byt nod eller sätt PoW till Lokal i avancerade inställningar.",
         "attachToTangleUnavailableExplanationShort": "Avlägsen PoW är inte tillgänglig på din valda nod.",
         "wallet": "Plånbok",
+        "all": "Allt",
         "sent": "Skickat",
         "received": "Mottaget",
         "sending": "Skickar",
@@ -96,8 +98,8 @@
         "noLongerValid": "Bunten du försökte befordra är inte giltig längre",
         "transactionAlreadyConfirmed": "Transaktionen redan bekräftad",
         "transactionAlreadyConfirmedExplanation": "Transaktionen du försöker befordra är redan bekräftad.",
-        "cannotSendToOwn": "Sending to an input address",
-        "cannotSendToOwnExplanation": "You cannot send to an address that is being used as an input in the transaction.",
+        "cannotSendToOwn": "Skickar till en avsändaradress",
+        "cannotSendToOwnExplanation": "Du kan inte skicka till en adress som används som avsändaradress i transaktionen.",
         "pleaseWait": "Var god vänta",
         "pleaseWaitEllipses": "Var god vänta...",
         "pleaseWaitExplanation": "Trinity utför en annan funktion. Vänta och försök igen.",
@@ -121,7 +123,7 @@
         "seedThief": "Om någon annan har din seed kan de stjäla dina IOTA.",
         "googlePlayServicesNotAvailable": "Google Play-tjänsten är inte tillgänglig",
         "couldNotVerifyDeviceIntegrity": "Kunde inte verifiera enhetens integritet eftersom Google Play-tjänsten inte är tillgänglig.",
-        "clear": "RENSA",
+        "clear": "Clear",
         "noNetworkConnection": "Ingen nätverksanslutning",
         "noNetworkConnectionExplanation": "Din internetanslutning verkar vara offline.",
         "spentAddressExplanation": "VARNING: Tillgångar på förbrukade adresser",
@@ -135,7 +137,14 @@
         "ifYourBalanceIsNotCorrect": "Om ditt saldo inte är korrekt, är det troligt att du använder en seed från tidigare än snapshot.",
         "headToAdvancedSettingsForTransition": "Gå till avancerade inställningar och utför en snapshot-övergång.",
         "usingTrinityWalletWithKeePass": "Använder Trinity med Keepass2Android",
-        "signedTrytesBroadcastErrorExplanation": "Ett nätverksfel uppstod under sändning av din transaktion."
+        "signedTrytesBroadcastErrorExplanation": "Ett nätverksfel uppstod under sändning av din transaktion.",
+        "broadcastError": "Could not broadcast transfer",
+        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
+        "problemSendingYourTransaction": "There was a problem sending your transaction.",
+        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
+        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
+        "tryingAgainWithDifferentNode": "Trying again with a different node.",
+        "errorFetchingAccountInformation": "Error fetching account information."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Din seed innehåller felaktiga tecken",
@@ -305,7 +314,9 @@
         "incorrectSeed": "Felaktig seed",
         "incorrectSeedExplanation": "Den seed som du angav är felaktig. Vänligen försök igen.",
         "ifYouHaveNotSaved": "Om du inte har sparat din seed, gå tillbaka till föregående skärm och gör så.",
-        "enterSeedBelow": "Ange din nyskapade seed nedan för att bekräfta att du har sparat den korrekt"
+        "enterSeedBelow": "Ange din nyskapade seed nedan för att bekräfta att du har sparat den korrekt",
+        "clipboardWarning": "Do not copy paste your seed",
+        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
     },
     "send": {
         "invalidAddress": "Ogiltig adress",
@@ -649,11 +660,12 @@
         "skipUpdate": "Hoppa över uppdatering"
     },
     "notificationLog": {
-        "errorLog": "FELMEDDELANDEN"
+        "errorLog": "Error log"
     },
     "terms": {
         "termsAndConditions": "Villkor",
-        "accept": "Jag accepterar"
+        "accept": "Jag accepterar",
+        "readAllToContinue": "Läs all text för att fortsätta"
     },
     "privacyPolicy": {
         "privacyPolicy": "Integritetspolicy",

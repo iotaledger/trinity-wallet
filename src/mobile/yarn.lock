@@ -3014,7 +3014,7 @@ iota-wallet-shared-modules@../shared/:
   dependencies:
     bignumber.js "^7.2.1"
     i18next "^10.2.2"
-    iota.lib.js "git+https://git@github.com/iotaledger/iota.lib.js#develop"
+    iota.lib.js "^0.5.0"
     lodash "^4.17.10"
     moment "^2.22.2"
     proxy-polyfill "git+https://git@github.com/GoogleChrome/proxy-polyfill#9c009d7"
@@ -3030,9 +3030,9 @@ iota-wallet-shared-modules@../shared/:
     valid-url "^1.0.9"
     zxcvbn "^4.4.2"
 
-"iota.lib.js@git+https://git@github.com/iotaledger/iota.lib.js#develop":
-  version "0.4.8"
-  resolved "git+https://git@github.com/iotaledger/iota.lib.js#49cec7296cb179a1c83b4b1fbb4c3fa129ca9f8f"
+iota.lib.js@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/iota.lib.js/-/iota.lib.js-0.5.0.tgz#66e59baf82a4556b739f81d947313d0a3ab2f659"
   dependencies:
     async "^2.5.0"
     bignumber.js "^4.1.0"

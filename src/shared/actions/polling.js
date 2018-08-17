@@ -1,11 +1,11 @@
 import get from 'lodash/get';
 import each from 'lodash/each';
-import isArray from 'lodash/isArray';
 import map from 'lodash/map';
 import union from 'lodash/union';
 import { setPrice, setChartData, setMarketData } from './marketData';
 import { setNodeList, setRandomlySelectedNode, setAutoPromotion } from './settings';
 import { getRandomNode, changeIotaNode } from '../libs/iota';
+import { fetchRemoteNodes } from '../libs/iota/utils';
 import { formatChartData, getUrlTimeFormat, getUrlNumberFormat, rearrangeObjectKeys } from '../libs/utils';
 import { generateAccountInfoErrorAlert, generateAlert } from './alerts';
 import { setNewUnconfirmedBundleTails, removeBundleFromUnconfirmedBundleTails } from './accounts';
@@ -13,7 +13,7 @@ import { findPromotableTail, isStillAValidTransaction } from '../libs/iota/trans
 import { selectedAccountStateFactory } from '../selectors/accounts';
 import { syncAccount } from '../libs/iota/accounts';
 import { forceTransactionPromotion } from './transfers';
-import { NODELIST_URL, nodes, nodesWithPoWEnabled } from '../config';
+import { nodes, nodesWithPoWEnabled } from '../config';
 import Errors from '../libs/errors';
 import i18next from '../i18next';
 
@@ -331,31 +331,14 @@ export const fetchNodeList = (chooseRandomNode = false) => {
             }
         };
 
-        fetch(NODELIST_URL, {
-            headers: {
-                Accept: 'application/json',
-            },
-        })
-            .then(
-                (response) => response.json(),
-                () => {
-                    // In case there is an error fetching the remote nodes list
-                    // Choose a random node from the list of hardcoded nodes
-                    setRandomNode(nodes);
-                    dispatch(fetchNodeListError());
-                },
-            )
-            .then((response) => {
-                if (isArray(response) && response.length) {
-                    const remoteNodes = response
-                        .map((node) => node.node)
-                        .filter((node) => typeof node === 'string' && node.indexOf('https://') === 0);
-
-                    const remoteNodesWithPoWEnabled = response
+        fetchRemoteNodes()
+            .then((remoteNodes) => {
+                if (remoteNodes.length) {
+                    const remoteNodesWithPoWEnabled = remoteNodes
                         .filter((node) => node.pow)
                         .map((nodeWithPoWEnabled) => nodeWithPoWEnabled.node);
 
-                    const unionNodes = union(nodes, remoteNodes);
+                    const unionNodes = union(nodes, remoteNodes.map((node) => node.node));
 
                     // A temporary addition
                     // Only choose a random node with PoW enabled.
@@ -364,6 +347,10 @@ export const fetchNodeList = (chooseRandomNode = false) => {
                 }
 
                 dispatch(fetchNodeListSuccess());
+            })
+            .catch(() => {
+                setRandomNode(nodes);
+                dispatch(fetchNodeListError());
             });
     };
 };
@@ -415,12 +402,12 @@ export const fetchChartData = () => {
                 each(results, (resultItem, index) => {
                     currentTimeFrame = arrayCurrenciesTimeFrames[index].timeFrame;
                     currentCurrency = arrayCurrenciesTimeFrames[index].currency;
-                    const formatedData = formatChartData(resultItem, currentTimeFrame);
+                    const formattedData = formatChartData(resultItem, currentTimeFrame);
 
                     if (actualCurrency !== currentCurrency) {
                         actualCurrency = currentCurrency;
                     }
-                    chartData[currentCurrency][currentTimeFrame] = formatedData;
+                    chartData[currentCurrency][currentTimeFrame] = formattedData;
                 });
 
                 dispatch(setChartData(chartData));
@@ -443,7 +430,7 @@ export const getAccountInfo = (accountName) => {
 
         const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
-        return syncAccount(existingAccountState)
+        return syncAccount()(existingAccountState)
             .then((newAccountData) => dispatch(accountInfoFetchSuccess(newAccountData)))
             .catch((err) => {
                 dispatch(accountInfoFetchError());
@@ -469,7 +456,7 @@ export const promoteTransfer = (bundleHash, seenTailTransactions) => (dispatch, 
     const accountName = get(seenTailTransactions, '[0].account');
     let accountState = selectedAccountStateFactory(accountName)(getState());
 
-    return syncAccount(accountState)
+    return syncAccount()(accountState)
         .then((newState) => {
             accountState = newState;
             dispatch(syncAccountBeforeAutoPromotion(accountState));
@@ -481,7 +468,7 @@ export const promoteTransfer = (bundleHash, seenTailTransactions) => (dispatch, 
                 throw new Error(Errors.TRANSACTION_ALREADY_CONFIRMED);
             }
 
-            return isStillAValidTransaction(accountState.transfers[bundleHash], accountState.addresses);
+            return isStillAValidTransaction()(accountState.transfers[bundleHash], accountState.addresses);
         })
         .then((isValid) => {
             if (!isValid) {
@@ -490,7 +477,7 @@ export const promoteTransfer = (bundleHash, seenTailTransactions) => (dispatch, 
                 throw new Error(Errors.BUNDLE_NO_LONGER_VALID);
             }
 
-            return findPromotableTail(accountState.unconfirmedBundleTails[bundleHash], 0);
+            return findPromotableTail()(accountState.unconfirmedBundleTails[bundleHash], 0);
         })
         .then((consistentTail) =>
             dispatch(

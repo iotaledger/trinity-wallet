@@ -1,6 +1,6 @@
 const rnBridge = require('rn-bridge'); // eslint-disable-line import/no-unresolved
-const argon2 = require('argon2');
-const kdbxweb = require('kdbxweb');
+const argon2 = require('argon2'); // eslint-disable-line import/no-unresolved
+const kdbxweb = require('kdbxweb'); // eslint-disable-line import/no-unresolved
 
 /**
  * Bind kdbxweb and argon2
