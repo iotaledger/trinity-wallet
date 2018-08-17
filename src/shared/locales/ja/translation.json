@@ -59,6 +59,7 @@
         "password": "パスワード",
         "unrecognisedPassword": "有効でないパスワードです。",
         "unrecognisedPasswordExplanation": "パスワードとして認識できません。もう一度入力し直してください。",
+        "capsLockIsOn": "Caps Lock キーが有効になっています",
         "syncInProgress": "同期中",
         "syncInProgressExplanation": "同期が完了するまでお待ちください。",
         "somethingWentWrong": "不具合が発生しました。",
@@ -71,6 +72,7 @@
         "attachToTangleUnavailableExplanation": "現在選択しているノードではリモートによるプルーフ・オブ・ワークが利用できません。ノードを変更するか、詳細設定でローカルによるプルーフ・オブ・ワークに切り替えてください。",
         "attachToTangleUnavailableExplanationShort": "現在選択しているノードではリモートによるプルーフ・オブ・ワークが利用できません。",
         "wallet": "ウォレット",
+        "all": "すべて",
         "sent": "送金完了",
         "received": "受取完了",
         "sending": "送金中",
@@ -121,7 +123,7 @@
         "seedThief": "もし他の人があなたのシードを持つと、あなたのIOTAは盗まれてしまいます。",
         "googlePlayServicesNotAvailable": "Google Playサービスが利用できません。",
         "couldNotVerifyDeviceIntegrity": "Google Playサービスが利用できないため、デバイスの整合性を確認できませんでした。",
-        "clear": "消去",
+        "clear": "Clear",
         "noNetworkConnection": "ネットワーク接続がありません。",
         "noNetworkConnectionExplanation": "インターネット接続がオフラインになっているようです。",
         "spentAddressExplanation": "警告：使用済みアドレスの資金です！",
@@ -135,7 +137,14 @@
         "ifYourBalanceIsNotCorrect": "もし残高が正しくなければ、スナップショット以前のシードが使われていると思われます。",
         "headToAdvancedSettingsForTransition": "詳細設定にてスナップショットの移行を行なってください。",
         "usingTrinityWalletWithKeePass": "Keepass2AndroidでTrinityウォレットを使用する",
-        "signedTrytesBroadcastErrorExplanation": "取引をブロードキャスト中にネットワークにエラーが発生しました。"
+        "signedTrytesBroadcastErrorExplanation": "取引をブロードキャスト中にネットワークにエラーが発生しました。",
+        "broadcastError": "Could not broadcast transfer",
+        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
+        "problemSendingYourTransaction": "There was a problem sending your transaction.",
+        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
+        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
+        "tryingAgainWithDifferentNode": "Trying again with a different node.",
+        "errorFetchingAccountInformation": "Error fetching account information."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだシードです。",
@@ -305,7 +314,9 @@
         "incorrectSeed": "シードが違います。",
         "incorrectSeedExplanation": "入力したシードは正しくありません。もう一度やり直してください。",
         "ifYouHaveNotSaved": "シードをまだ保存していない場合は戻ってください。",
-        "enterSeedBelow": "下の空欄に新しく作成したシードを入力して、正しくバックアップできたことを確認してください。"
+        "enterSeedBelow": "下の空欄に新しく作成したシードを入力して、正しくバックアップできたことを確認してください。",
+        "clipboardWarning": "Do not copy paste your seed",
+        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
     },
     "send": {
         "invalidAddress": "無効なアドレスです。",
@@ -649,11 +660,12 @@
         "skipUpdate": "更新をスキップ"
     },
     "notificationLog": {
-        "errorLog": "エラー ログ"
+        "errorLog": "Error log"
     },
     "terms": {
         "termsAndConditions": "利用規約",
-        "accept": "承諾する"
+        "accept": "承諾する",
+        "readAllToContinue": "続けるにはすべてのテキストをお読みください"
     },
     "privacyPolicy": {
         "privacyPolicy": "プライバシーポリシー",
