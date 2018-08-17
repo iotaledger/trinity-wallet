@@ -92,7 +92,8 @@ module.exports = {
         }),
         new CopyWebpackPlugin([
             { from: 'assets/icon-128.png', to: 'icon.png' },
-            { from: 'assets/icon-64.png', to: 'icon@2x.png' },
+            { from: 'assets/icon-64.png', to: 'tray@2x.png' },
+            { from: 'assets/icon.icns', to: 'icon.icns' },
             { from: 'assets/icon.ico', to: 'icon.ico' },
         ]),
     ],
