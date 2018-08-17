@@ -140,9 +140,9 @@
         "signedTrytesBroadcastErrorExplanation": "取引をブロードキャスト中にネットワークにエラーが発生しました。",
         "broadcastError": "送金をブロードキャストできませんでした。",
         "addressesAlreadySpentFrom": "１つ以上のアドレスが既に使用済みです。",
-        "problemSendingYourTransaction": "There was a problem sending your transaction.",
-        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
-        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
+        "problemSendingYourTransaction": "取引情報の送信中に問題が発生しました。",
+        "problemPerformingProofOfWork": "プルーフ・オブ・ワークを実行中に問題が発生しました。",
+        "tryingAgainWithLocalPoW": "ローカルのプルーフ・オブ・ワークでもう一度試してください。",
         "tryingAgainWithDifferentNode": "Trying again with a different node.",
         "errorFetchingAccountInformation": "Error fetching account information."
     },
