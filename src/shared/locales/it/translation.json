@@ -59,6 +59,7 @@
         "password": "Password",
         "unrecognisedPassword": "Password non riconosciuta",
         "unrecognisedPasswordExplanation": "La password non è stata riconosciuta. Si prega di riprovare.",
+        "capsLockIsOn": "Blocco maiuscole è attivo",
         "syncInProgress": "Sincronizzazione in corso",
         "syncInProgressExplanation": "Si prega di attendere che la sincronizzazione sia completa.",
         "somethingWentWrong": "Si è verificato un errore",
@@ -71,6 +72,7 @@
         "attachToTangleUnavailableExplanation": "L'opzione prova di lavoro remota non è disponibile nel nodo che hai selezionato. Scegli un altro nodo oppure imposta \"prova di lavoro locale\" in \"impostazioni avanzate\".",
         "attachToTangleUnavailableExplanationShort": "L'opzione prova di lavoro remota non è disponibile nel nodo che hai selezionato.",
         "wallet": "Portafoglio",
+        "all": "Tutti",
         "sent": "Inviato",
         "received": "Ricevuto",
         "sending": "Invio",
@@ -96,8 +98,8 @@
         "noLongerValid": "Il pacchetto che si sta tentando di promuovere non è più valido",
         "transactionAlreadyConfirmed": "Transazione già confermata",
         "transactionAlreadyConfirmedExplanation": "La transazione che si sta tentando di promuovere è già confermata.",
-        "cannotSendToOwn": "Sending to an input address",
-        "cannotSendToOwnExplanation": "You cannot send to an address that is being used as an input in the transaction.",
+        "cannotSendToOwn": "Invio a un indirizzo di input",
+        "cannotSendToOwnExplanation": "Non è possibile inviare a un indirizzo che viene utilizzato come input per la transazione.",
         "pleaseWait": "Attendere, per favore",
         "pleaseWaitEllipses": "Attendere prego...",
         "pleaseWaitExplanation": "Trinity sta eseguendo un altro lavoro. Attendere e riprovare.",
@@ -121,7 +123,7 @@
         "seedThief": "Se qualcun altro ha il tuo seme può rubare i tuoi IOTA.",
         "googlePlayServicesNotAvailable": "Servizio Google Play non disponibile",
         "couldNotVerifyDeviceIntegrity": "Impossibile verificare l'integrità del dispositivo perché il servizio Google Play non è disponibile.",
-        "clear": "CANCELLA",
+        "clear": "Clear",
         "noNetworkConnection": "Nessuna connessione di rete",
         "noNetworkConnectionExplanation": "La connessione internet sembra essere non disponibile.",
         "spentAddressExplanation": "AVVISO: Fondi su indirizzi spesi",
@@ -135,7 +137,14 @@
         "ifYourBalanceIsNotCorrect": "Se il saldo non è corretto, è probabile che si sta utilizzando un seme pre-snapshot.",
         "headToAdvancedSettingsForTransition": "Vai su Impostazioni Avanzate ed esegui Passaggio dopo uno snapshot.",
         "usingTrinityWalletWithKeePass": "Uso del portafoglio Trinity con Keepass2Android",
-        "signedTrytesBroadcastErrorExplanation": "C'è stato un errore di rete durante la trasmissione della transazione."
+        "signedTrytesBroadcastErrorExplanation": "C'è stato un errore di rete durante la trasmissione della transazione.",
+        "broadcastError": "Could not broadcast transfer",
+        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
+        "problemSendingYourTransaction": "There was a problem sending your transaction.",
+        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
+        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
+        "tryingAgainWithDifferentNode": "Trying again with a different node.",
+        "errorFetchingAccountInformation": "Error fetching account information."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Il seme contiene caratteri non validi",
@@ -305,7 +314,9 @@
         "incorrectSeed": "Seme non corretto",
         "incorrectSeedExplanation": "Il seme inserito non è corretto. Si prega di riprovare.",
         "ifYouHaveNotSaved": "Se non hai salvato il tuo seme, si prega di tornare indietro e farlo.",
-        "enterSeedBelow": "Inserisci il tuo seme appena creato qui sotto per confermare che hai fatto correttamente il backup"
+        "enterSeedBelow": "Inserisci il tuo seme appena creato qui sotto per confermare che hai fatto correttamente il backup",
+        "clipboardWarning": "Do not copy paste your seed",
+        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
     },
     "send": {
         "invalidAddress": "Indirizzo non valido",
@@ -649,11 +660,12 @@
         "skipUpdate": "Salta l'aggiornamento"
     },
     "notificationLog": {
-        "errorLog": "LOG DEGLI ERRORI"
+        "errorLog": "Error log"
     },
     "terms": {
         "termsAndConditions": "Termini e condizioni",
-        "accept": "Accetto"
+        "accept": "Accetto",
+        "readAllToContinue": "Si prega di leggere tutto il testo per continuare"
     },
     "privacyPolicy": {
         "privacyPolicy": "Informativa Privacy",

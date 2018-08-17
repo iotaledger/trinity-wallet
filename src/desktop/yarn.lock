@@ -1300,9 +1300,9 @@ bugsnag-react@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/bugsnag-react/-/bugsnag-react-1.1.1.tgz#da210c9102acfa427a3cdd00efa8cca785b87ea8"
 
-bugsnag-sourcemaps@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/bugsnag-sourcemaps/-/bugsnag-sourcemaps-1.0.3.tgz#238dd4843b80cf02672f5a2533bb1ad739b01b6a"
+bugsnag-sourcemaps@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/bugsnag-sourcemaps/-/bugsnag-sourcemaps-1.0.4.tgz#5b49c98edf2f931cf881dc22177cda8db8534371"
   dependencies:
     graceful-fs "^4.1.11"
     listr "^0.12.0"
@@ -5752,10 +5752,6 @@ run-async@^2.2.0:
   dependencies:
     is-promise "^2.1.0"
 
-run-parallel-limit@^1.0.3:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/run-parallel-limit/-/run-parallel-limit-1.0.5.tgz#c29a4fd17b4df358cb52a8a697811a63c984f1b7"
-
 run-parallel@^1.1.6:
   version "1.1.9"
   resolved "https://registry.yarnpkg.com/run-parallel/-/run-parallel-1.1.9.tgz#c9dd3a7cf9f4b2c4b6244e173a6ed866e61dd679"
@@ -6835,14 +6831,6 @@ watchpack@^1.5.0:
     chokidar "^2.0.2"
     graceful-fs "^4.1.2"
     neo-async "^2.5.0"
-
-webpack-bugsnag-plugins@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/webpack-bugsnag-plugins/-/webpack-bugsnag-plugins-1.2.2.tgz#f09385d8a807a323293ea8b7af6dc59d1b3efc8f"
-  dependencies:
-    bugsnag-build-reporter "^1.0.0"
-    bugsnag-sourcemaps "^1.0.3"
-    run-parallel-limit "^1.0.3"
 
 webpack-cli@^3.1.0:
   version "3.1.0"

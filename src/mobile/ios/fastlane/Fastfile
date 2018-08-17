@@ -1,23 +1,35 @@
 default_platform :ios
 
 def enable_manual_provisioning(project_file)
-  UI.important "Switching ProvisioningStyle to Manual."
+  UI.important "Switching to manual code signing"
   fastlane_require 'xcodeproj'
   project = Xcodeproj::Project.open(project_file)
   target = project.native_targets.detect { |target| target.name == "iotaWallet" }
   target_attributes = project.root_object.attributes["TargetAttributes"]
   target_attributes.each { |id, attrs| attrs["ProvisioningStyle"] = 'Manual' }
   target.build_configurations.each do |item|
-    item.build_settings['PROVISIONING_PROFILE[sdk=iphoneos*]'] = "335defd0-d0a9-493b-8b7e-44d98a11dde0"
+    item.build_settings['PROVISIONING_PROFILE[sdk=iphoneos*]'] = ENV['PROVISIONING_PROFILE_UUID']
     item.build_settings['DEVELOPMENT_TEAM'] = "UG77RJKZHH"
     item.build_settings['CODE_SIGN_IDENTITY[sdk=iphoneos*]'] = "iPhone Distribution"
   end
   project.save
 end
 
+def add_bugsnag_api_key(plist_path, bugsnag_key)
+  UI.important "Adding Bugsnag API key"
+  set_info_plist_value(
+    path: plist_path,
+    key: "BugsnagAPIKey",
+    value: bugsnag_key,
+  )
+end
+
 lane :build_release do
   if is_ci?
+    # Switch to manual code signing
     enable_manual_provisioning('../iotaWallet.xcodeproj')
+    # Add Bugsnag API key
+    add_bugsnag_api_key('./iotaWallet/Info.plist', ENV['BUGSNAG_API_KEY'])
   else
     UI.error('This lane should only be run on CI!')
   end

@@ -4,6 +4,7 @@ import { changeIotaNode } from '../libs/iota';
 import { generateAlert } from './alerts';
 import i18next from '../i18next';
 import { isNodeSynced, checkAttachToTangleAsync } from '../libs/iota/extendedApi';
+import { getSelectedNodeFromState } from '../selectors/accounts';
 import Errors from '../libs/errors';
 
 export const ActionTypes = {
@@ -314,6 +315,22 @@ export function setLocale(locale) {
         });
     };
 }
+
+/**
+ * Dispatch to change selected IRI node
+ *
+ * @method changeNode
+ * @param {string} payload
+ *
+ * @returns {{type: {string}, payload: {string} }}
+ */
+export const changeNode = (payload) => (dispatch, getState) => {
+    if (getSelectedNodeFromState(getState()) !== payload) {
+        dispatch(setNode(payload));
+        // Change provider on global iota instance
+        changeIotaNode(payload);
+    }
+};
 
 /**
  * Fetch currency information (conversion rates) for wallet

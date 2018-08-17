@@ -59,6 +59,7 @@
         "password": "Slaptažodis",
         "unrecognisedPassword": "Slaptažodis neatpažintas",
         "unrecognisedPasswordExplanation": "Slaptažodis neatpažintas. Bandykite dar kartą.",
+        "capsLockIsOn": "Caps Lock įjungta",
         "syncInProgress": "Sinchronizuojama",
         "syncInProgressExplanation": "Palaukite, kol sinchronizacija bus baigta.",
         "somethingWentWrong": "Įvyko klaida",
@@ -71,6 +72,7 @@
         "attachToTangleUnavailableExplanation": "Nuotolinis skaičiavimas negalimas su jūsų pasirinktu serveriu. Pakeiskite serverį arba nustatykite lokalų skaičiavimą išplėstiniuose parametruose.",
         "attachToTangleUnavailableExplanationShort": "Nuotolinis skaičiavimas negalimas su jūsų pasirinktu serveriu.",
         "wallet": "Piniginė",
+        "all": "Visi",
         "sent": "Išsiųsta",
         "received": "Gauta",
         "sending": "Siunčiama",
@@ -96,8 +98,8 @@
         "noLongerValid": "Paketas, kurį norite iškelti yra nepasiekiamas",
         "transactionAlreadyConfirmed": "Šis pavedimas jau patvirtintas",
         "transactionAlreadyConfirmedExplanation": "Pavedimas, kurį bandote iškelti jau yra patvirtintas.",
-        "cannotSendToOwn": "Sending to an input address",
-        "cannotSendToOwnExplanation": "You cannot send to an address that is being used as an input in the transaction.",
+        "cannotSendToOwn": "Siunčiama į savo adresą",
+        "cannotSendToOwnExplanation": "Negalima atlikti pavedimo į adresą, iš kurio siunčiamos lėšos.",
         "pleaseWait": "Prašome palaukti",
         "pleaseWaitEllipses": "Prašome palaukti...",
         "pleaseWaitExplanation": "Trinity atlieka kitą veiksmą. Prašome palaukti ir bandyti dar kartą.",
@@ -121,7 +123,7 @@
         "seedThief": "Jeigu kas nors sužinos jūsų užraktą, jie galės pavogti jūsų IOTA.",
         "googlePlayServicesNotAvailable": "Google Play paslaugos nepasiekiamos",
         "couldNotVerifyDeviceIntegrity": "Įrenginio vientisumo patvirtinti nepavyksta, nes Google Play paslaugos nepasiekiamos.",
-        "clear": "IŠVALYTI",
+        "clear": "Clear",
         "noNetworkConnection": "Nėra tinklo ryšio",
         "noNetworkConnectionExplanation": "Panašu, kad jūsų interneto ryšys atjungtas.",
         "spentAddressExplanation": "DĖMESIO: Lėšos panaudotame adrese",
@@ -135,7 +137,14 @@
         "ifYourBalanceIsNotCorrect": "Jeigu jūsų balansas neteisingas, tikriausiai jūsų naudojamas užraktas nėra perkeltas įvykus viso tinklo duomenų perkėlimui.",
         "headToAdvancedSettingsForTransition": "Eikite į išplėstinius parametrus ir atlikite tinklo duomenų perkėlimą.",
         "usingTrinityWalletWithKeePass": "Trinity naudojimas su Keepass2Android",
-        "signedTrytesBroadcastErrorExplanation": "Įvyko tinklo klaida transliuojant jūsų pavedimą."
+        "signedTrytesBroadcastErrorExplanation": "Įvyko tinklo klaida transliuojant jūsų pavedimą.",
+        "broadcastError": "Could not broadcast transfer",
+        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
+        "problemSendingYourTransaction": "There was a problem sending your transaction.",
+        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
+        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
+        "tryingAgainWithDifferentNode": "Trying again with a different node.",
+        "errorFetchingAccountInformation": "Error fetching account information."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Užraktas turi neleistinų simbolių",
@@ -169,19 +178,19 @@
         "confirmPassword": "Pakartokite naują slaptažodį",
         "passwordTooWeak": "Slaptažodis per silpnas",
         "passwordTooWeakReason": "Jūsų slaptažodis per silpnas. Naudokite žodžių derinius, ir venkite dažnai vartojamų frazių, vardų ar datų.",
-        "reasonRow": "Straight rows of keys are easy to guess.",
+        "reasonRow": "Vienoje eilėje einantys simboliai yra lengvai atspėjami.",
         "reasonPattern": "Trumpi simbolių šablonai yra lengvai nuspėjami.",
-        "reasonNames": "Common names and surnames are easy to guess.",
-        "reasonRepeats": "Repeats like 'aaa' are easy to guess.",
-        "reasonRepeats2": "Repeats like 'abcabcabc' are only slightly harder to guess than 'abc'.",
-        "reasonSequence": "Sequences like abc or 54321 are easy to guess.",
-        "reasonYears": "Recent years are easy to guess.",
-        "reasonDates": "Dates are often easy to guess.",
-        "reasonTop10": "This is a top 10 common password.",
-        "reasonTop100": "This is a top 100 common password.",
-        "reasonCommon": "This is a very common password.",
-        "reasonSimilar": "This is similar to a commonly-used password.",
-        "reasonWord": "A single word is easy to guess."
+        "reasonNames": "Dažnai vartojami vardai ar pavardės yra lengvai atspėjami.",
+        "reasonRepeats": "Simbolių deriniai kaip \"aaa\" yra lengvai atspėjami.",
+        "reasonRepeats2": "Simbolių deriniai kaip \"abcabcabc\" yra tik nežymiai sunkiau atspėjami nei \"abc\".",
+        "reasonSequence": "Sekos kaip \"abc\" ar \"54321\" yra lengvai atspėjamos.",
+        "reasonYears": "Pastarieji metai yra lengvai atspėjami.",
+        "reasonDates": "Datos yra lengvai atspėjamos.",
+        "reasonTop10": "Tai yra vienas iš top 10 populiariausių slaptažodžių.",
+        "reasonTop100": "Tai yra vienas iš top 100 populiariausių slaptažodžių.",
+        "reasonCommon": "Tai labai dažnai pasikartojantis slaptažodis.",
+        "reasonSimilar": "Tai dažnai pasikartojantis slaptažodis.",
+        "reasonWord": "Vienas žodis yra lengvai atspėjamas."
     },
     "setPassword": {
         "choosePassword": "Sukurkite naują slaptažodį",
@@ -305,7 +314,9 @@
         "incorrectSeed": "Neteisingas užraktas",
         "incorrectSeedExplanation": "Įvestas užraktas neteisingas. Bandykite dar kartą.",
         "ifYouHaveNotSaved": "Jei neišsisaugojote savo užrakto, grįžkite ir padarykite tai.",
-        "enterSeedBelow": "Įveskite savo naujai sukurtą užraktą, norėdami patvirtinti, kad jį teisingai išsisaugojote"
+        "enterSeedBelow": "Įveskite savo naujai sukurtą užraktą, norėdami patvirtinti, kad jį teisingai išsisaugojote",
+        "clipboardWarning": "Do not copy paste your seed",
+        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
     },
     "send": {
         "invalidAddress": "Neteisingas adresas",
@@ -649,11 +660,12 @@
         "skipUpdate": "Praleisti atnaujinimus"
     },
     "notificationLog": {
-        "errorLog": "KLAIDŲ ŽURNALAS"
+        "errorLog": "Error log"
     },
     "terms": {
         "termsAndConditions": "Sąlygos ir nuostatos",
-        "accept": "Sutinku"
+        "accept": "Sutinku",
+        "readAllToContinue": "Prašome viską perskaityti norėdami tęsti"
     },
     "privacyPolicy": {
         "privacyPolicy": "Privatumo politika",

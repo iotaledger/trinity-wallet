@@ -29,6 +29,7 @@ import { getSelectedAccountName } from 'iota-wallet-shared-modules/selectors/acc
 import GENERAL from '../theme/general';
 import { getSeedFromKeychain, storeSeedInKeychain } from '../utils/keychain';
 import DynamicStatusBar from '../components/DynamicStatusBar';
+import StatefulDropdownAlert from './StatefulDropdownAlert';
 import { getAddressGenFn, getMultiAddressGenFn } from '../utils/nativeModules';
 import { isAndroid } from '../utils/device';
 import { leaveNavigationBreadcrumb } from '../utils/bugsnag';
@@ -382,6 +383,7 @@ class Loading extends Component {
                             </View>
                         </View>
                     </View>
+                    <StatefulDropdownAlert textColor={body.color} backgroundColor={body.bg} />
                 </View>
             );
         }
@@ -425,6 +427,7 @@ class Loading extends Component {
                         </View>
                     )}
                 </View>
+                <StatefulDropdownAlert textColor={body.color} backgroundColor={body.bg} />
             </View>
         );
     }
