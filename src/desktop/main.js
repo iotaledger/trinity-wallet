@@ -93,7 +93,10 @@ function createWindow() {
         minHeight: 720,
         frame: process.platform === 'linux',
         titleBarStyle: 'hidden',
-        icon: process.platform === 'win32' ? `${__dirname}/dist/icon.ico` : `${__dirname}/dist/icon.png`,
+        icon:
+            process.platform === 'win32'
+                ? `${__dirname}/dist/icon.ico`
+                : process.platform === 'darwin' ? `${__dirname}/dist/icon.icns` : `${__dirname}/dist/icon.png`,
         backgroundColor: bgColor,
         webPreferences: {
             nodeIntegration: false,
@@ -103,7 +106,7 @@ function createWindow() {
         },
     });
 
-    if (process.platform !== 'win32') {
+    if (process.platform === 'darwin') {
         windows.tray = new electron.BrowserWindow({
             width: 300,
             height: 450,
@@ -143,7 +146,7 @@ function createWindow() {
     /**
      * Load tray window url and attach blur event
      */
-    if (process.platform !== 'win32') {
+    if (process.platform === 'darwin') {
         windows.tray.loadURL(url);
 
         windows.tray.on('blur', () => {
@@ -157,7 +160,7 @@ function createWindow() {
     if (devMode) {
         windows.main.webContents.openDevTools({ mode: 'detach' });
 
-        if (process.platform !== 'win32') {
+        if (process.platform === 'darwin') {
             windows.tray.webContents.openDevTools({ mode: 'detach' });
         }
 
@@ -231,8 +234,9 @@ function createWindow() {
         }
     });
 
-    if (process.platform !== 'win32') {
-        setupTray(settings.isTrayEnabled);
+    if (process.platform === 'darwin') {
+        const enabled = settings ? settings.isTrayEnabled : true;
+        setupTray(enabled);
     }
 }
 
@@ -252,7 +256,7 @@ const setupTray = (enabled) => {
         return;
     }
 
-    tray = new Tray(`${__dirname}/dist/icon@2x.png`);
+    tray = new Tray(`${__dirname}/dist/tray@2x.png`);
 
     tray.on('click', () => {
         toggleTray();
