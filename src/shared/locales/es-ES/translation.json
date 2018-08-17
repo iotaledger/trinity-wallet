@@ -59,6 +59,7 @@
         "password": "Contraseña",
         "unrecognisedPassword": "Contraseña no reconocida",
         "unrecognisedPasswordExplanation": "La contraseña no fue reconocida. Por favor, inténtelo de nuevo.",
+        "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "Sincronización en progreso",
         "syncInProgressExplanation": "Por favor espere a que la sincronización esté completa.",
         "somethingWentWrong": "Algo salio mal",
@@ -71,6 +72,7 @@
         "attachToTangleUnavailableExplanation": "PoW remota no disponible en el nodo seleccionado. Pruebe cambiandolo o active PoW local en opciones avanzadas.",
         "attachToTangleUnavailableExplanationShort": "PoW remota no disponible en el nodo seleccionado.",
         "wallet": "Cartera",
+        "all": "All",
         "sent": "Enviada",
         "received": "Recibida",
         "sending": "Enviando",
@@ -121,7 +123,7 @@
         "seedThief": "Si alguien posee su semilla puede robar sus IOTA.",
         "googlePlayServicesNotAvailable": "Servicio de Google Play no disponible",
         "couldNotVerifyDeviceIntegrity": "No se pudo verificar la integridad del dispositivo porque el servicio Google Play no está disponible.",
-        "clear": "BORRAR",
+        "clear": "Clear",
         "noNetworkConnection": "Sin conexión a la red",
         "noNetworkConnectionExplanation": "Su conexión a internet parece estar desactivada.",
         "spentAddressExplanation": "ALERTA: Fondos en direcciones usadas",
@@ -135,7 +137,14 @@
         "ifYourBalanceIsNotCorrect": "Si su saldo no es correcto, es probable que esté usando una semilla previa al snapshot.",
         "headToAdvancedSettingsForTransition": "Diríjase a Configuración Avanzada y realice una Snapshot Transition.",
         "usingTrinityWalletWithKeePass": "Usando cartera Trinity con Keepass2Android",
-        "signedTrytesBroadcastErrorExplanation": "Hubo un error mientras se estaba transmitiendo su transacción."
+        "signedTrytesBroadcastErrorExplanation": "Hubo un error mientras se estaba transmitiendo su transacción.",
+        "broadcastError": "Could not broadcast transfer",
+        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
+        "problemSendingYourTransaction": "There was a problem sending your transaction.",
+        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
+        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
+        "tryingAgainWithDifferentNode": "Trying again with a different node.",
+        "errorFetchingAccountInformation": "Error fetching account information."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La semilla contiene caracteres inválidos",
@@ -305,7 +314,9 @@
         "incorrectSeed": "Semilla incorrecta",
         "incorrectSeedExplanation": "La semilla que ingreso es incorrecta. Por favor vuelva a intentarlo.",
         "ifYouHaveNotSaved": "Si no ha guardado su semilla, por favor regrese y hágalo.",
-        "enterSeedBelow": "Introduzca su recién creada semilla para confirmar que la guardado correctamente"
+        "enterSeedBelow": "Introduzca su recién creada semilla para confirmar que la guardado correctamente",
+        "clipboardWarning": "Do not copy paste your seed",
+        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
     },
     "send": {
         "invalidAddress": "Dirección inválida",
@@ -649,11 +660,12 @@
         "skipUpdate": "Omitir actualización"
     },
     "notificationLog": {
-        "errorLog": "ERROR DE LOG"
+        "errorLog": "Error log"
     },
     "terms": {
         "termsAndConditions": "Términos y Condiciones",
-        "accept": "Acepto"
+        "accept": "Acepto",
+        "readAllToContinue": "Please read all the text to continue"
     },
     "privacyPolicy": {
         "privacyPolicy": "Política de Privacidad",

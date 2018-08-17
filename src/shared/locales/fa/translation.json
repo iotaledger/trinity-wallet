@@ -59,6 +59,7 @@
         "password": "گذرواژه",
         "unrecognisedPassword": "گذرواژه غیر قابل شناسایی",
         "unrecognisedPasswordExplanation": "گذرواژه شناسایی نشد لطفا دوباره تلاش کنید.",
+        "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "در حال انجام همگام سازی",
         "syncInProgressExplanation": "لطفا صبر کنید تا همگام سازی کامل شود.",
         "somethingWentWrong": "مشکلی پیش آمد",
@@ -71,6 +72,7 @@
         "attachToTangleUnavailableExplanation": "اثبات کار از راه دور در Node انتخابی شما در دسترس نیست. هر دو Node را تغییر دهید یا اثبات کار را به محلی در تنظیمات پیشرفته تنظیم کنید.",
         "attachToTangleUnavailableExplanationShort": "اثبات کار از راه دور در Node انتخابی شما در دسترس نیست.",
         "wallet": "کیف پول",
+        "all": "All",
         "sent": "ارسال",
         "received": "دریافت شده",
         "sending": "در حال ارسال",
@@ -121,7 +123,7 @@
         "seedThief": "اگر فرد دیگری سید شما را داشته باشد، می توانید آیوتای شما را به سرقت ببرد.",
         "googlePlayServicesNotAvailable": "خدمات گوگل پلی در دسترس نیست",
         "couldNotVerifyDeviceIntegrity": "نمی توان یکپارچگی دستگاه را تایید کرد زیرا سرویس های Google Play در دسترس نیستند.",
-        "clear": "پاک کردن",
+        "clear": "Clear",
         "noNetworkConnection": "اتصال شبکه اي وجود ندارد",
         "noNetworkConnectionExplanation": "به نظر می رسد که شما به اینترنت متصل نیستید و آفلاین هستید.",
         "spentAddressExplanation": "اخطار: موجودی بر روی آدرس های از قبل ساخته شده",
@@ -135,7 +137,14 @@
         "ifYourBalanceIsNotCorrect": "اگر موجودی شما درست نیست، احتمال دارد که از سید از پیش ساخته شده استفاده می کنید.",
         "headToAdvancedSettingsForTransition": "به تنظیمات پیشرفته بروید و یک انتقال عکس فوری بگیرید.",
         "usingTrinityWalletWithKeePass": "استفاده از کیف پول Trinity با Keepass2Android",
-        "signedTrytesBroadcastErrorExplanation": "خطایی در شبکه هنگام پخش تراکنش شما وجود داشت."
+        "signedTrytesBroadcastErrorExplanation": "خطایی در شبکه هنگام پخش تراکنش شما وجود داشت.",
+        "broadcastError": "Could not broadcast transfer",
+        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
+        "problemSendingYourTransaction": "There was a problem sending your transaction.",
+        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
+        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
+        "tryingAgainWithDifferentNode": "Trying again with a different node.",
+        "errorFetchingAccountInformation": "Error fetching account information."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "سید ورودی دارای کاراکترهای نامعتبر است",
@@ -305,7 +314,9 @@
         "incorrectSeed": "سید نادرست",
         "incorrectSeedExplanation": "سید وارد شده نادرست است. لطفا دوباره تلاش کنید.",
         "ifYouHaveNotSaved": "اگر شما از سید خود پشتیبان تهیه نکرد اید، لطفا به عقب برگردید و این کار را انجام دهید.",
-        "enterSeedBelow": "سید تازه ایجاد شده خود را در زیر وارد کنید تا تایید کنید که آن را به درستی از آن پشتبانی تهیه کرده اید"
+        "enterSeedBelow": "سید تازه ایجاد شده خود را در زیر وارد کنید تا تایید کنید که آن را به درستی از آن پشتبانی تهیه کرده اید",
+        "clipboardWarning": "Do not copy paste your seed",
+        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
     },
     "send": {
         "invalidAddress": "آدرس اشتباه است",
@@ -649,11 +660,12 @@
         "skipUpdate": "رد شدن از به روز رسانی"
     },
     "notificationLog": {
-        "errorLog": "خطای LOG"
+        "errorLog": "Error log"
     },
     "terms": {
         "termsAndConditions": "شرایط و ضوابط",
-        "accept": "قبول می‌کنم"
+        "accept": "قبول می‌کنم",
+        "readAllToContinue": "Please read all the text to continue"
     },
     "privacyPolicy": {
         "privacyPolicy": "سیاست حفظ حریم خصوصی",
