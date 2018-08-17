@@ -1,4 +1,8 @@
-export const defaultNode = 'https://trinity.iota.fm:443';
+export const __DEV__ = process.env.NODE_ENV === 'development';
+export const __TEST__ = process.env.NODE_ENV === 'test';
+
+/** Default IRI node */
+export const defaultNode = __TEST__ ? 'http://localhost:14265' : 'https://trinity.iota.fm:443';
 
 export const nodesWithPoWEnabled = [
     'https://pow1.iota.community:443',
@@ -35,3 +39,7 @@ export const DEFAULT_BALANCES_THRESHOLD = 100;
 export const BUNDLE_OUTPUTS_THRESHOLD = 50;
 
 export const NODE_REQUEST_TIMEOUT = 6000;
+
+export const DEFAULT_RETRIES = 4;
+
+export const IRI_API_VERSION = '1';

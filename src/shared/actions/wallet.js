@@ -10,7 +10,7 @@ import i18next from '../i18next';
 import { syncAccountDuringSnapshotTransition } from '../libs/iota/accounts';
 import { getBalancesAsync, generateAddressesAsync } from '../libs/iota/extendedApi';
 import Errors from '../libs/errors';
-import { selectedAccountStateFactory } from '../selectors/accounts';
+import { selectedAccountStateFactory, getRemotePoWFromState } from '../selectors/accounts';
 import { DEFAULT_SECURITY } from '../config';
 
 export const ActionTypes = {
@@ -269,9 +269,9 @@ export const updateTransitionAddresses = (payload) => ({
  * Dispatch to show/hide ('Is your balance correct?') during snapshot transition
  *
  * @method setBalanceCheckFlag
- * @param {bool} payload
+ * @param {boolean} payload
 
- * @returns {{type: {string} }}
+ * @returns {{type: {string}, payload: {boolean} }}
  */
 export const setBalanceCheckFlag = (payload) => ({
     type: ActionTypes.SET_BALANCE_CHECK_FLAG,
@@ -325,7 +325,7 @@ export const setDeepLinkInactive = () => {
 export const generateNewAddress = (seed, accountName, existingAccountData, genFn) => {
     return (dispatch) => {
         dispatch(generateNewAddressRequest());
-        return syncAddresses(seed, existingAccountData.addresses, genFn)
+        return syncAddresses()(seed, existingAccountData.addresses, genFn)
             .then((latestAddressData) => {
                 dispatch(updateAddresses(accountName, latestAddressData));
                 dispatch(generateNewAddressSuccess());
@@ -386,7 +386,7 @@ export const completeSnapshotTransition = (seed, accountName, addresses, powFn) 
         dispatch(snapshotAttachToTangleRequest());
 
         // Find balance on all addresses
-        getBalancesAsync(addresses)
+        getBalancesAsync()(addresses)
             .then((balances) => {
                 const allBalances = map(balances.balances, Number);
                 const totalBalance = accumulateBalance(allBalances);
@@ -409,7 +409,14 @@ export const completeSnapshotTransition = (seed, accountName, addresses, powFn) 
                         return promise.then((result) => {
                             dispatch(setActiveStepIndex(index));
 
-                            return attachAndFormatAddress(address, index, relevantBalances[index], seed, powFn)
+                            return attachAndFormatAddress()(
+                                address,
+                                index,
+                                relevantBalances[index],
+                                seed,
+                                // Pass proof of work function as null, if configuration is set to remote
+                                getRemotePoWFromState(getState()) ? null : powFn,
+                            )
                                 .then(({ addressData, transfer }) => {
                                     const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
@@ -492,7 +499,7 @@ export const generateAddressesAndGetBalance = (seed, index, genFn) => {
  */
 export const getBalanceForCheck = (addresses) => {
     return (dispatch) => {
-        getBalancesAsync(addresses)
+        getBalancesAsync()(addresses)
             .then((balances) => {
                 const balanceOnAddresses = accumulateBalance(map(balances.balances, Number));
                 dispatch(updateTransitionBalance(balanceOnAddresses));

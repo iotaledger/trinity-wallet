@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { LineChart, ResponsiveContainer, Line, YAxis, Tooltip } from 'recharts';
-import { format, addHours, subDays, subHours, subMinutes } from 'date-fns';
+import { format } from 'date-fns';
 
 import withChartData from 'containers/components/Chart';
 
@@ -51,25 +51,7 @@ class Chart extends PureComponent {
 
     renderTooltip(props) {
         if (props.active) {
-            const distance = props.maxItems - props.payload[0].payload.x;
-
-            let date = subHours(new Date(), 24 * distance / props.maxItems);
-
-            switch (props.timeframe) {
-                case '1h':
-                    date = subMinutes(new Date(), 60 * distance / props.maxItems);
-                    break;
-                case '7d':
-                    date = subHours(new Date(), 24 * 7 * distance / props.maxItems);
-                    break;
-                case '1m':
-                    date = subDays(new Date(), 30 * distance / props.maxItems);
-                    break;
-                case '24h':
-                    date = addHours(date, 1);
-                    break;
-            }
-
+            const date = new Date(props.payload[0].payload.time * 1000);
             return (
                 <p className={css.label}>
                     {format(date, 'DD.MM.YY HH:mm')}
@@ -96,6 +78,7 @@ class Chart extends PureComponent {
 
         return (
             <div className={css.chart}>
+                <h3>{priceData.currency}/MIOTA</h3>
                 <div>
                     {chartData.data.length ? (
                         <ResponsiveContainer height="100%" width="100%">
@@ -106,19 +89,16 @@ class Chart extends PureComponent {
                                     dataKey="y"
                                     stroke={theme.chart.color}
                                     dot={false}
+                                    animationDuration={750}
                                 />
                                 <YAxis
                                     strokeWidth={0}
-                                    width={55}
-                                    tickMargin={10}
-                                    tick={{ fill: theme.body.color }}
+                                    width={80}
+                                    tick={{ fill: theme.body.color, dx: -56, textAnchor: 'start' }}
                                     tickCount={6}
                                     interval={0}
-                                    ticks={
-                                        chartData.yAxis.ticks
-                                            ? chartData.yAxis.ticks.map((tick) => getPriceFormat(tick))
-                                            : null
-                                    }
+                                    tickFormatter={(tick) => getPriceFormat(tick)}
+                                    ticks={chartData.yAxis.ticks}
                                     domain={['dataMin', 'dataMax']}
                                 />
                                 <Tooltip

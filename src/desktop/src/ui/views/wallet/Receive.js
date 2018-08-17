@@ -119,18 +119,18 @@ class Receive extends React.PureComponent {
             <div className={classNames(css.receive, receiveAddress.length < 2 ? css.empty : css.full)}>
                 <div className={isGeneratingReceiveAddress ? css.loading : null}>
                     <QR data={JSON.stringify({ address: receiveAddress, message: message })} />
-                    <p>
-                        <Clipboard
-                            text={receiveAddress}
-                            title={t('receive:addressCopied')}
-                            success={t('receive:addressCopiedExplanation')}
-                        >
+                    <Clipboard
+                        text={receiveAddress}
+                        title={t('receive:addressCopied')}
+                        success={t('receive:addressCopiedExplanation')}
+                    >
+                        <p>
                             {receiveAddress.split('').map((char, index) => {
                                 const scrambleChar = scramble[index] > 0 ? byteToChar(scramble[index]) : null;
                                 return <React.Fragment key={`char-${index}`}>{scrambleChar || char}</React.Fragment>;
                             })}
-                        </Clipboard>
-                    </p>
+                        </p>
+                    </Clipboard>
                 </div>
                 <div>
                     <Button className="icon" loading={isGeneratingReceiveAddress} onClick={this.onGeneratePress}>

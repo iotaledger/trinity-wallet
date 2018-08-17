@@ -1,3 +1,4 @@
+/* global Electron */
 import get from 'lodash/get';
 import bugsnag from 'bugsnag-js';
 import React from 'react';
@@ -20,9 +21,14 @@ import Alerts from 'ui/global/Alerts';
 import settings from '../package.json';
 
 export const bugsnagClient = bugsnag({
-    apiKey: '53981ba998df346f6377ebbeb1da46d3',
+    apiKey: 'fakeAPIkey',
     appVersion: settings.version,
     interactionBreadcrumbsEnabled: false,
+    collectUserIp: false,
+    beforeSend: async (report) => {
+        const uuid = await Electron.getUuid();
+        report.user = { id: uuid };
+    },
 });
 const ErrorBoundary = bugsnagClient.use(createPlugin(React));
 

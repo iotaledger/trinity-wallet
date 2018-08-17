@@ -59,6 +59,7 @@
         "password": "Heslo",
         "unrecognisedPassword": "Neznámé heslo",
         "unrecognisedPasswordExplanation": "Nesprávné heslo. Prosím zkuste to znovu.",
+        "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "Probíhá synchronizace",
         "syncInProgressExplanation": "Počkejte na dokončení synchronizace.",
         "somethingWentWrong": "Něco se pokazilo",
@@ -71,6 +72,7 @@
         "attachToTangleUnavailableExplanation": "Vzdálený Proof of Work není k dispozici na Vámi zvoleném Nodu. Změňte Node, nebo nastavte Proof of Work na lokálně v pokročilém nastavení.",
         "attachToTangleUnavailableExplanationShort": "Vzdálený Proof of Work není k dispozici na Vámi zvoleném Nodu.",
         "wallet": "Peněženka",
+        "all": "All",
         "sent": "Odesláno",
         "received": "Přijato",
         "sending": "Odesílání",
@@ -121,7 +123,7 @@
         "seedThief": "Kdo získá Váš Seed, ten by mohl ukrást vaše IOTA finance.",
         "googlePlayServicesNotAvailable": "Služby Google Play jsou nedostupné",
         "couldNotVerifyDeviceIntegrity": "Integrita zařízení nemůže být ověřena, protože služby Google Play nejsou nyní dostupné.",
-        "clear": "VYMAZAT",
+        "clear": "Clear",
         "noNetworkConnection": "Žádné síťové připojení",
         "noNetworkConnectionExplanation": "Internetové připojení se zdá byť offline.",
         "spentAddressExplanation": "VAROVÁNÍ: Zjištěny prostředky na již použitých adresách",
@@ -135,7 +137,14 @@
         "ifYourBalanceIsNotCorrect": "Pokud Váš zůstatek není správný, je pravděpodobné, že používáte Seed z doby před snapshotem.",
         "headToAdvancedSettingsForTransition": "Jděte do Pokročilého nastavení a proveďte aktualizaci po Snapshotu.",
         "usingTrinityWalletWithKeePass": "Použití Trinity peněženky s Keepass2Android",
-        "signedTrytesBroadcastErrorExplanation": "Během transakce došlo k chybě sítě."
+        "signedTrytesBroadcastErrorExplanation": "Během transakce došlo k chybě sítě.",
+        "broadcastError": "Could not broadcast transfer",
+        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
+        "problemSendingYourTransaction": "There was a problem sending your transaction.",
+        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
+        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
+        "tryingAgainWithDifferentNode": "Trying again with a different node.",
+        "errorFetchingAccountInformation": "Error fetching account information."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
@@ -160,28 +169,28 @@
         "passwordsDoNotMatch": "Hesla se neshodují",
         "passwordsDoNotMatchExplanation": "Hesla se neshodují. Prosím zkuste to znovu.",
         "passwordTooShort": "Heslo je příliš krátké",
-        "passwordTooShortExplanation": "Your password must be at least 11 characters. Please try again.",
+        "passwordTooShortExplanation": "Vaše heslo musí mít nejméně 11 znaků. Prosím zkuste to znovu.",
         "oldPassword": "Staré heslo nelze nastavit",
         "oldPasswordExplanation": "Staré heslo nelze použít jako nové heslo. Zkuste to prosím znovu s novým heslem.",
-        "ensureStrongPassword": "Ensure you use a strong password of at least 11 characters.",
+        "ensureStrongPassword": "Ujistěte se, že používáte silné heslo dlouhé alespoň 11 znaků.",
         "currentPassword": "Stávající heslo",
         "newPassword": "Nové heslo",
         "confirmPassword": "Potvrďte nové heslo",
         "passwordTooWeak": "Heslo je příliš slabé",
-        "passwordTooWeakReason": "Your password is too weak. Use a combination of words, and avoid common phrases, names or dates.",
-        "reasonRow": "Straight rows of keys are easy to guess.",
-        "reasonPattern": "Short patterns of keys are easy to guess.",
-        "reasonNames": "Common names and surnames are easy to guess.",
-        "reasonRepeats": "Repeats like 'aaa' are easy to guess.",
-        "reasonRepeats2": "Repeats like 'abcabcabc' are only slightly harder to guess than 'abc'.",
-        "reasonSequence": "Sequences like abc or 54321 are easy to guess.",
-        "reasonYears": "Recent years are easy to guess.",
-        "reasonDates": "Dates are often easy to guess.",
-        "reasonTop10": "This is a top 10 common password.",
-        "reasonTop100": "This is a top 100 common password.",
-        "reasonCommon": "This is a very common password.",
-        "reasonSimilar": "This is similar to a commonly-used password.",
-        "reasonWord": "A single word is easy to guess."
+        "passwordTooWeakReason": "Vaše heslo je příliš slabé. Použijte kombinaci slov a vyhněte se běžným frázím, jménům nebo datům.",
+        "reasonRow": "Postupné řady znaků se dají lehce uhodnout.",
+        "reasonPattern": "Krátké vzory znaků se dají lehce uhodnout.",
+        "reasonNames": "Běžná jména a příjmení se dají lehce uhodnout.",
+        "reasonRepeats": "Opakující se znaky jako 'aaa' se dají lehce uhodnout.",
+        "reasonRepeats2": "Uhodnout opakující se znaky jako 'abcabcabc' je jen o trochu těžší, jako 'abc'.",
+        "reasonSequence": "Posloupnosti jako 'abc' nebo '54321' se dají lehce uhodnout.",
+        "reasonYears": "Předešlé roky se dají lehce uhodnout.",
+        "reasonDates": "Datumy se dají lehce uhodnout.",
+        "reasonTop10": "Toto je jedno z 10 nejpoužívanějších hesel.",
+        "reasonTop100": "Toto je jedno ze 100 nejpoužívanějších hesel.",
+        "reasonCommon": "Toto je velmi běžné heslo.",
+        "reasonSimilar": "Toto heslo je podobné běžně používaným heslům.",
+        "reasonWord": "Jedno slovo se dá lehce uhodnout."
     },
     "setPassword": {
         "choosePassword": "Zvolte nové heslo",
@@ -234,7 +243,7 @@
         "enterPassword": "Prosím zadejte Vaše heslo.",
         "login": "Přihlásit se",
         "setNode": "Nastavit Node",
-        "whyBiometricDisabled": "Why is biometric authentication disabled?",
+        "whyBiometricDisabled": "Proč je biometrické ověřování vypnuté?",
         "whyBiometricDisabledExplanation": "Biometric login is disabled on first app load for your security. When using Trinity, you will be logged out for inactivity. You can then log back in with biometric authentication."
     },
     "loading": {
@@ -305,7 +314,9 @@
         "incorrectSeed": "Neplatný Seed",
         "incorrectSeedExplanation": "Zadán neplatný Seed. Zkuste to prosím znovu.",
         "ifYouHaveNotSaved": "Pokud jste Váš Seed neuložili, vraťte se prosím zpět a uložte si jej.",
-        "enterSeedBelow": "Zadejte Váš nově vytvořený Seed níže, pro potvrzení, že jste si ho správně zazálohovali"
+        "enterSeedBelow": "Zadejte Váš nově vytvořený Seed níže, pro potvrzení, že jste si ho správně zazálohovali",
+        "clipboardWarning": "Do not copy paste your seed",
+        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
     },
     "send": {
         "invalidAddress": "Neplatná adresa",
@@ -649,11 +660,12 @@
         "skipUpdate": "Aktualizovat později"
     },
     "notificationLog": {
-        "errorLog": "PROTOKOL CHYB"
+        "errorLog": "Error log"
     },
     "terms": {
         "termsAndConditions": "Obchodní podmínky",
-        "accept": "Souhlasím"
+        "accept": "Souhlasím",
+        "readAllToContinue": "Please read all the text to continue"
     },
     "privacyPolicy": {
         "privacyPolicy": "Zásady ochrany osobních údajů",

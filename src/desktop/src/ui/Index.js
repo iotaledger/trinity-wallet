@@ -20,6 +20,7 @@ import Idle from 'ui/global/Idle';
 import Titlebar from 'ui/global/Titlebar';
 import FatalError from 'ui/global/FatalError';
 import About from 'ui/global/About';
+import ErrorLog from 'ui/global/ErrorLog';
 
 import Loading from 'ui/components/Loading';
 
@@ -111,6 +112,11 @@ class App extends React.Component {
 
             this.props.history.push('/wallet/');
         }
+
+        // Dispose alerts on route change
+        if (this.props.location.pathname !== nextProps.location.pathname) {
+            this.props.disposeOffAlert();
+        }
     }
 
     componentWillUnmount() {
@@ -165,6 +171,9 @@ class App extends React.Component {
             case 'about':
                 // Is processed in ui/global/About
                 break;
+            case 'errorlog':
+                // Is processed in ui/global/ErrorLog
+                break;
             case 'feedback':
                 // Is processed in ui/global/Feedback
                 break;
@@ -207,6 +216,7 @@ class App extends React.Component {
             <div className={css.trintiy}>
                 <Titlebar />
                 <About />
+                <ErrorLog />
                 <Idle />
                 <Theme history={history} />
                 <TransitionGroup>

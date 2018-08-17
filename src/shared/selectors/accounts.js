@@ -6,6 +6,7 @@ import pickBy from 'lodash/pickBy';
 import reduce from 'lodash/reduce';
 import filter from 'lodash/filter';
 import { createSelector } from 'reselect';
+import { defaultNode as DEFAULT_IRI_NODE } from '../config';
 
 /**
  *   Selects settings prop from state.
@@ -25,6 +26,26 @@ export const getSettingsFromState = (state) => state.settings || {};
  *   @returns {object}
  **/
 export const getRemotePoWFromState = createSelector(getSettingsFromState, (state) => state.remotePoW);
+
+/**
+ *   Selects IRI nodes prop from settings reducer state object.
+ *   Uses getSettingsFromState selector for slicing settings state from the whole state object.
+ *
+ *   @method getNodesFromState
+ *   @param {object} state
+ *   @returns {array}
+ **/
+export const getNodesFromState = createSelector(getSettingsFromState, (state) => state.nodes || []);
+
+/**
+ *   Selects selected IRI node prop from settings reducer state object.
+ *   Uses getSettingsFromState selector for slicing settings state from the whole state object.
+ *
+ *   @method getSelectedNodeFromState
+ *   @param {object} state
+ *   @returns {array}
+ **/
+export const getSelectedNodeFromState = createSelector(getSettingsFromState, (state) => state.node || DEFAULT_IRI_NODE);
 
 /**
  *   Selects accounts prop from state.
