@@ -316,7 +316,7 @@
         "ifYouHaveNotSaved": "Se non hai salvato il tuo seme, si prega di tornare indietro e farlo.",
         "enterSeedBelow": "Inserisci il tuo seme appena creato qui sotto per confermare che hai fatto correttamente il backup",
         "clipboardWarning": "Do not copy paste your seed",
-        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
+        "clipboardWarningExplanation": "AVVISO: Copia incolla è disattivato per la vostra sicurezza."
     },
     "send": {
         "invalidAddress": "Indirizzo non valido",
@@ -660,7 +660,7 @@
         "skipUpdate": "Salta l'aggiornamento"
     },
     "notificationLog": {
-        "errorLog": "Error log"
+        "errorLog": "Registro degli errori"
     },
     "terms": {
         "termsAndConditions": "Termini e condizioni",
