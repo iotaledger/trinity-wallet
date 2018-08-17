@@ -1,10 +1,11 @@
 {
-  "name": "trinity",
+  "name": "trinity-desktop",
   "productName": "Trinity",
   "version": "0.2.1",
+  "private": true,
   "url": "https://trinity.iota.org",
   "homepage": "https://trinity.iota.org",
-  "description": "IOTA desktop wallet",
+  "description": "Desktop wallet for IOTA",
   "main": "main.js",
   "author": "IOTA Foundation <contact@iota.org>",
   "license": "MIT",
@@ -29,6 +30,7 @@
     "compile:mac": "cross-env CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --mac --x64",
     "compile:win": "electron-builder --win --x64",
     "audit": "./../../node_modules/.bin/auditjs -l error -w whitelist.json",
+    "prepare-release": "yarn version && echo Successfully incremented version number! Please remember to run git add ., git commit, git push --tags, and git push",
     "release": "cross-env CSC_IDENTITY_AUTO_DISCOVERY=false build -mwl"
   },
   "devDependencies": {
