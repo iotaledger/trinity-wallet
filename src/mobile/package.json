@@ -23,7 +23,7 @@
     "postinstall": "./node_modules/.bin/rn-nodeify --hack --install && rm ./node_modules/react-native/local-cli/core/__fixtures__/files/package.json && rm ./node_modules/react-native/Libraries/polyfills/babelHelpers.js && cp babelHelpersCopy ./node_modules/react-native/Libraries/polyfills/babelHelpers.js",
     "lint": "./node_modules/.bin/eslint --ext .js .",
     "prepare-release": "yarn version && cd ios && bundle exec fastlane release && cd ../android && bundle exec fastlane release && cd .. && echo Successfully incremented version and build numbers! Please remember to run git add ., git commit, git push --tags, and git push",
-    "audit": "./../../node_modules/.bin/auditjs -l error -w whitelist.json",
+    "audit": "./../../node_modules/.bin/auditjs -l error -w whitelist.json"
   },
   "dependencies": {
     "assert": "^1.4.1",
