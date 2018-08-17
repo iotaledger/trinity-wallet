@@ -59,6 +59,7 @@
         "password": "Heslo",
         "unrecognisedPassword": "Nesprávne heslo",
         "unrecognisedPasswordExplanation": "Nesprávne heslo. Prosím, skúste znova.",
+        "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "Prebieha synchronizácia",
         "syncInProgressExplanation": "Počkajte prosím, kým prebehne synchronizácia.",
         "somethingWentWrong": "Vyskytla sa chyba",
@@ -71,6 +72,7 @@
         "attachToTangleUnavailableExplanation": "Vzdialený PoW (potvrdenie transakcie) nie je k dispozícii na vami zvolenom Node. Zmeňte Node alebo nastavte PoW v pokročilých nastaveniach na lokálny.",
         "attachToTangleUnavailableExplanationShort": "Vzdialený PoW (potvrdenie transakcie) nie je k dispozícii na vami zvolenom Node.",
         "wallet": "Peňaženka",
+        "all": "All",
         "sent": "Odoslané",
         "received": "Prijaté",
         "sending": "Odosielanie",
@@ -121,7 +123,7 @@
         "seedThief": "Ak získa niekto iný váš Seed, môže ukradnúť vaše IOTA.",
         "googlePlayServicesNotAvailable": "Služby Google Play nie sú dostupné",
         "couldNotVerifyDeviceIntegrity": "Integrita zariadenia nemôže byť overená, pretože služby Google Play nie sú dostupné.",
-        "clear": "VYMAZAŤ",
+        "clear": "Clear",
         "noNetworkConnection": "Žiadne pripojenie k sieti",
         "noNetworkConnectionExplanation": "Internetové pripojenie sa zdá byť offline.",
         "spentAddressExplanation": "UPOZORNENIE: Prostriedky na adresách z ktorých bolo už odoslané",
@@ -135,7 +137,14 @@
         "ifYourBalanceIsNotCorrect": "Pokiaľ váš zostatok nie je správny, je pravdepodobné, že používate Seed z doby pred Snapshotom.",
         "headToAdvancedSettingsForTransition": "Choďte do Pokročilých nastavení a urobte Aktualizáciu údajov po Snapshote.",
         "usingTrinityWalletWithKeePass": "Použitie Trinity peňaženky s Keepass2Android",
-        "signedTrytesBroadcastErrorExplanation": "Počas odosielania Vašej transakcie sa vyskytla chyba siete."
+        "signedTrytesBroadcastErrorExplanation": "Počas odosielania Vašej transakcie sa vyskytla chyba siete.",
+        "broadcastError": "Could not broadcast transfer",
+        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
+        "problemSendingYourTransaction": "There was a problem sending your transaction.",
+        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
+        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
+        "tryingAgainWithDifferentNode": "Trying again with a different node.",
+        "errorFetchingAccountInformation": "Error fetching account information."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed obsahuje neplatné znaky",
@@ -305,7 +314,9 @@
         "incorrectSeed": "Neplatný Seed",
         "incorrectSeedExplanation": "Seed, ktorý ste zadali, je neplatný. Prosím, skúste to znova.",
         "ifYouHaveNotSaved": "Ak nemáte svoj Seed zálohovaný, vráťte sa, prosím, späť a urobte tak.",
-        "enterSeedBelow": "Zadajte nižšie váš novovytvorený Seed pre potvrdenie, že ste si ho správne zazálohovali"
+        "enterSeedBelow": "Zadajte nižšie váš novovytvorený Seed pre potvrdenie, že ste si ho správne zazálohovali",
+        "clipboardWarning": "Do not copy paste your seed",
+        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
     },
     "send": {
         "invalidAddress": "Neplatná adresa",
@@ -649,11 +660,12 @@
         "skipUpdate": "Aktualizovať neskôr"
     },
     "notificationLog": {
-        "errorLog": "ERROR LOG"
+        "errorLog": "Error log"
     },
     "terms": {
         "termsAndConditions": "Podmienky používania",
-        "accept": "Akceptujem"
+        "accept": "Akceptujem",
+        "readAllToContinue": "Please read all the text to continue"
     },
     "privacyPolicy": {
         "privacyPolicy": "Zásady ochrany osobných údajov",

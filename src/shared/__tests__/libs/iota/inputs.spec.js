@@ -237,7 +237,7 @@ describe('libs: iota/inputs', () => {
                     .stub(iota.api, 'wereAddressesSpentFrom')
                     .yields(null, [false, false, false]);
 
-                return getUnspentInputs(addressData, [], [], 1, 13, null).then((inputs) => {
+                return getUnspentInputs()(addressData, [], [], 1, 13, null).then((inputs) => {
                     expect(inputs.inputs).to.eql([
                         {
                             address:
@@ -273,7 +273,7 @@ describe('libs: iota/inputs', () => {
                     .stub(iota.api, 'wereAddressesSpentFrom')
                     .yields(null, [false, true, false]);
 
-                return getUnspentInputs(addressData, ['B'.repeat(81)], [], 1, 13, null).then((inputs) => {
+                return getUnspentInputs()(addressData, ['B'.repeat(81)], [], 1, 13, null).then((inputs) => {
                     expect(inputs.inputs).to.eql([
                         {
                             address: 'D'.repeat(81),
@@ -292,7 +292,7 @@ describe('libs: iota/inputs', () => {
                     .stub(iota.api, 'wereAddressesSpentFrom')
                     .yields(null, [false, true, false]);
 
-                return getUnspentInputs(addressData, ['B'.repeat(81)], [], 1, 13, null).then((inputs) => {
+                return getUnspentInputs()(addressData, ['B'.repeat(81)], [], 1, 13, null).then((inputs) => {
                     expect(inputs.spentAddresses).to.eql(['B'.repeat(81), 'C'.repeat(81)]);
 
                     wereAddressesSpentFrom.restore();
@@ -312,7 +312,7 @@ describe('libs: iota/inputs', () => {
                     },
                 ];
 
-                return getUnspentInputs(addressData, [], pendingTransfers, 1, 13, null).then((inputs) => {
+                return getUnspentInputs()(addressData, [], pendingTransfers, 1, 13, null).then((inputs) => {
                     expect(inputs.inputs).to.eql([
                         {
                             address: 'B'.repeat(81),
@@ -343,7 +343,7 @@ describe('libs: iota/inputs', () => {
                     },
                 ];
 
-                return getUnspentInputs(addressData, [], pendingTransfers, 1, 13, null).then((inputs) => {
+                return getUnspentInputs()(addressData, [], pendingTransfers, 1, 13, null).then((inputs) => {
                     expect(inputs.addressesWithIncomingTransfers).to.eql(['C'.repeat(81)]);
 
                     wereAddressesSpentFrom.restore();

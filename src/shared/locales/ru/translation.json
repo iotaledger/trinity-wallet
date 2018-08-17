@@ -59,6 +59,7 @@
         "password": "Пароль",
         "unrecognisedPassword": "Нераспознанный пароль",
         "unrecognisedPasswordExplanation": "Неверный пароль. Пожалуйста, попробуйте снова.",
+        "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "Идёт синхронизация",
         "syncInProgressExplanation": "Пожалуйста, подождите пока синхронизация будет завершена.",
         "somethingWentWrong": "Что-то пошло не так",
@@ -71,6 +72,7 @@
         "attachToTangleUnavailableExplanation": "Удалённое проведение Proof of Work недоступно на выбранном Вами узле. Смените узел или выберите проведение PoW \"На Вашем устройстве\" в расширенных настройках.",
         "attachToTangleUnavailableExplanationShort": "Удалённое проведение Proof of Work недоступно на выбранном Вами узле.",
         "wallet": "Кошелёк",
+        "all": "All",
         "sent": "Отправлено",
         "received": "Получено",
         "sending": "Отправка",
@@ -121,7 +123,7 @@
         "seedThief": "Если кто-то еще знает Ваш ключ, он может украсть Ваши IOTA.",
         "googlePlayServicesNotAvailable": "Служба Google Play недоступна",
         "couldNotVerifyDeviceIntegrity": "Не удалось проверить целостность устройства, потому что службы Google Play не доступны.",
-        "clear": "ЧИСТО",
+        "clear": "Clear",
         "noNetworkConnection": "Нет подключения к сети",
         "noNetworkConnectionExplanation": "Похоже, Вы не подключены к интернету.",
         "spentAddressExplanation": "Предупреждение: Средства на использованном адресе",
@@ -135,7 +137,14 @@
         "ifYourBalanceIsNotCorrect": "Если Ваш баланс не верен, то, скорее всего, Вы используете ключ, который не был актувлизирован после снимка сети.",
         "headToAdvancedSettingsForTransition": "Перейдите в Дополнительные Настройки и выполните Snapshot переход.",
         "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android",
-        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
+        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction.",
+        "broadcastError": "Could not broadcast transfer",
+        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
+        "problemSendingYourTransaction": "There was a problem sending your transaction.",
+        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
+        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
+        "tryingAgainWithDifferentNode": "Trying again with a different node.",
+        "errorFetchingAccountInformation": "Error fetching account information."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Ключ содержит недопустимые символы",
@@ -305,7 +314,9 @@
         "incorrectSeed": "Неверный ключ",
         "incorrectSeedExplanation": "Введенный ключ неправильный. Пожалуйста, попробуйте еще раз.",
         "ifYouHaveNotSaved": "Если Вы не сохранили свой ключ, пожалуйста, вернитесь на шаг назад и сделайте это.",
-        "enterSeedBelow": "Введите только что созданный Вами ключ ниже, чтобы подтвердить, что Вы правильно создали его резервную копию"
+        "enterSeedBelow": "Введите только что созданный Вами ключ ниже, чтобы подтвердить, что Вы правильно создали его резервную копию",
+        "clipboardWarning": "Do not copy paste your seed",
+        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
     },
     "send": {
         "invalidAddress": "Неверный адрес",
@@ -649,11 +660,12 @@
         "skipUpdate": "Пропустить обновление"
     },
     "notificationLog": {
-        "errorLog": "ЖУРНАЛ ОШИБОК"
+        "errorLog": "Error log"
     },
     "terms": {
         "termsAndConditions": "Условия использования",
-        "accept": "Я принимаю"
+        "accept": "Я принимаю",
+        "readAllToContinue": "Please read all the text to continue"
     },
     "privacyPolicy": {
         "privacyPolicy": "Политика конфиденциальности",

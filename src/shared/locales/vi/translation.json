@@ -59,6 +59,7 @@
         "password": "Mật Khẩu",
         "unrecognisedPassword": "Không nhận dạng được mật khẩu",
         "unrecognisedPasswordExplanation": "Không xác nhận được mật khẩu. Xin vui lòng thử lại.",
+        "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "Đang đồng bộ hoá",
         "syncInProgressExplanation": "Vui lòng chờ cho đến khi đồng bộ hoá thành công.",
         "somethingWentWrong": "Đã xảy ra lỗi",
@@ -71,6 +72,7 @@
         "attachToTangleUnavailableExplanation": "Proof of Work (PoW) không thể thực hiện được ở nút mạng này. Hãy đổi nút mạng khác hoặc vào Thiết Lập Nâng Cao để chỉnh PoW làm trên máy của bạn đang dùng.",
         "attachToTangleUnavailableExplanationShort": "Proof of Work không thể thực hiện được ở nút mạng này.",
         "wallet": "Ví Điện Tử",
+        "all": "All",
         "sent": "Đã Gửi",
         "received": "Đã Nhận",
         "sending": "Đang Gửi",
@@ -121,7 +123,7 @@
         "seedThief": "Nếu ai đó có được chuỗi mật mã này họ có thể lấy cắp IOTA của bạn.",
         "googlePlayServicesNotAvailable": "Không tìm thấy dịch vụ Google Play Services.",
         "couldNotVerifyDeviceIntegrity": "Không thể xác minh thiết bị vì không tìm thấy dịch vụ Google Play Services.",
-        "clear": "XÓA",
+        "clear": "Clear",
         "noNetworkConnection": "Không có kết nối mạng",
         "noNetworkConnectionExplanation": "Kết nối Internet đang ở chế độ ngoại tuyến.",
         "spentAddressExplanation": "Cảnh báo: Còn dư quỹ trên một số địa chỉ đã dùng để gửi IOTA",
@@ -135,7 +137,14 @@
         "ifYourBalanceIsNotCorrect": "Nếu số dư của bạn là sai, có khả năng rằng bạn đang dử dụng chuỗi mật mã trước khi Snapshot gần đây nhất xảy ra.",
         "headToAdvancedSettingsForTransition": "Tới mục \"Cài đặt nâng cao\" để thực hiện quá trình chuyển đổi sang Snapshot mới nhất.",
         "usingTrinityWalletWithKeePass": "Sử dụng Trinity Wallet với Keepass2Android",
-        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
+        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction.",
+        "broadcastError": "Could not broadcast transfer",
+        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
+        "problemSendingYourTransaction": "There was a problem sending your transaction.",
+        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
+        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
+        "tryingAgainWithDifferentNode": "Trying again with a different node.",
+        "errorFetchingAccountInformation": "Error fetching account information."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Từ khoá chứa ký tự không hợp lệ",
@@ -305,7 +314,9 @@
         "incorrectSeed": "Từ khoá không đúng",
         "incorrectSeedExplanation": "Từ khoá vừa nhập không chính xác. Xin vui lòng thử lại.",
         "ifYouHaveNotSaved": "Nếu bạn chưa lưu từ khoá, xin vui lòng quay lại và lưu vào.",
-        "enterSeedBelow": "Enter your newly created seed below to confirm you have backed it up correctly"
+        "enterSeedBelow": "Enter your newly created seed below to confirm you have backed it up correctly",
+        "clipboardWarning": "Do not copy paste your seed",
+        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
     },
     "send": {
         "invalidAddress": "Địa chỉ không đúng",
@@ -649,11 +660,12 @@
         "skipUpdate": "Bỏ qua cập nhật"
     },
     "notificationLog": {
-        "errorLog": "SỔ GHI LỖI"
+        "errorLog": "Error log"
     },
     "terms": {
         "termsAndConditions": "Điều Khoản & Điều Kiện",
-        "accept": "Tôi chấp nhận"
+        "accept": "Tôi chấp nhận",
+        "readAllToContinue": "Please read all the text to continue"
     },
     "privacyPolicy": {
         "privacyPolicy": "Chính Sách Quyền Riêng Tư",

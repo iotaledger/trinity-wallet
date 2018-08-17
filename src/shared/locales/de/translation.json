@@ -27,7 +27,7 @@
         "goBack": "Zurück",
         "goBackStep": "Zurück",
         "done": "Ausgeführt",
-        "prev": "VORHERIGE",
+        "prev": "ZURÜCK",
         "next": "Weiter",
         "apply": "Anwenden",
         "save": "Speichern",
@@ -59,6 +59,7 @@
         "password": "Passwort",
         "unrecognisedPassword": "Unbekanntes Passwort",
         "unrecognisedPasswordExplanation": "Das Passwort wurde nicht erkannt. Bitte versuche es erneut.",
+        "capsLockIsOn": "Feststelltaste ist aktiviert",
         "syncInProgress": "Synchronisiere...",
         "syncInProgressExplanation": "Bitte warte, bis die Synchronisierung abgeschlossen ist.",
         "somethingWentWrong": "Ein Fehler ist aufgetreten",
@@ -71,6 +72,7 @@
         "attachToTangleUnavailableExplanation": "Proof of Work ist auf dem gewählten Node nicht verfügbar. Ändere den Node oder aktiviere lokales Proof of Work in den erweiterten Einstellungen.",
         "attachToTangleUnavailableExplanationShort": "Proof of Work ist auf dem gewählten Node nicht verfügbar.",
         "wallet": "Wallet",
+        "all": "Alle",
         "sent": "Gesendet",
         "received": "Empfangen",
         "sending": "Sende...",
@@ -96,8 +98,8 @@
         "noLongerValid": "Das Bundle, das du promoten möchtest, ist nicht mehr gültig",
         "transactionAlreadyConfirmed": "Transaktion bereits bestätigt",
         "transactionAlreadyConfirmedExplanation": "Die Transaktion, die Du versuchst zu promoten ist bereits bestätigt.",
-        "cannotSendToOwn": "Sending to an input address",
-        "cannotSendToOwnExplanation": "You cannot send to an address that is being used as an input in the transaction.",
+        "cannotSendToOwn": "Senden an Empfangsadresse",
+        "cannotSendToOwnExplanation": "Du kannst nicht an diese Adresse senden, da sie als ausgehende Adresse verwendet wird.",
         "pleaseWait": "Bitte warten",
         "pleaseWaitEllipses": "Bitte warten...",
         "pleaseWaitExplanation": "Trinity führt derzeit eine andere Aktion durch. Bitte in Kürze erneut versuchen.",
@@ -121,7 +123,7 @@
         "seedThief": "Wenn eine andere Person deinen Seed hat, kann diese deine IOTA stehlen.",
         "googlePlayServicesNotAvailable": "Google Play-Dienste nicht verfügbar",
         "couldNotVerifyDeviceIntegrity": "Gerät konnte nicht überprüft werden, da die Google-Play-Dienste nicht verfügbar sind.",
-        "clear": "LEEREN",
+        "clear": "Clear",
         "noNetworkConnection": "Keine Netzwerkverbindung",
         "noNetworkConnectionExplanation": "Die Internetverbindung scheint offline zu sein.",
         "spentAddressExplanation": "WARNUNG: Guthaben auf verwendeten Adressen",
@@ -135,7 +137,14 @@
         "ifYourBalanceIsNotCorrect": "Wenn dein Guthaben nicht stimmt, verwendest du wahrscheinlich einen Seed, der eine Snapshot-Wiederherstellung benötigt.",
         "headToAdvancedSettingsForTransition": "Wechsle zu den erweiterten Einstellungen und führe eine Snapshot-Wiederherstellung aus.",
         "usingTrinityWalletWithKeePass": "Trinity Brieftasche mit Keepass2Android verwenden",
-        "signedTrytesBroadcastErrorExplanation": "Während der Transkation ist ein Netzwerkfehler aufgetreten."
+        "signedTrytesBroadcastErrorExplanation": "Während der Transkation ist ein Netzwerkfehler aufgetreten.",
+        "broadcastError": "Could not broadcast transfer",
+        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
+        "problemSendingYourTransaction": "There was a problem sending your transaction.",
+        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
+        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
+        "tryingAgainWithDifferentNode": "Trying again with a different node.",
+        "errorFetchingAccountInformation": "Error fetching account information."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
@@ -305,7 +314,9 @@
         "incorrectSeed": "Ungültiger Seed",
         "incorrectSeedExplanation": "Der von dir eingegebene Seed ist nicht korrekt. Bitte versuche es noch einmal.",
         "ifYouHaveNotSaved": "Wenn du deinen Seed nicht gesichert hast, gehe zurück und sichere ihn.",
-        "enterSeedBelow": "Bitte gib deinen neu erstellen Seed hier ein, um sicherzustellen dass du deinen Seed korrekt gesichert hast"
+        "enterSeedBelow": "Bitte gib deinen neu erstellen Seed hier ein, um sicherzustellen dass du deinen Seed korrekt gesichert hast",
+        "clipboardWarning": "Do not copy paste your seed",
+        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
     },
     "send": {
         "invalidAddress": "Ungültige Adresse",
@@ -649,11 +660,12 @@
         "skipUpdate": "Update überspringen"
     },
     "notificationLog": {
-        "errorLog": "FEHLERPROTOKOLL"
+        "errorLog": "Error log"
     },
     "terms": {
         "termsAndConditions": "Geschäftsbedingungen",
-        "accept": "Ich stimme zu"
+        "accept": "Ich stimme zu",
+        "readAllToContinue": "Bitte lies den kompletten Text um fortfahren zu können"
     },
     "privacyPolicy": {
         "privacyPolicy": "Datenschutzerklärung",
