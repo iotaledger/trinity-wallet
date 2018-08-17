@@ -320,66 +320,6 @@ describe('Reducer: settings', () => {
         });
     });
 
-    describe('SET_UPDATE_ERROR', () => {
-        it('should set "done" prop in "update" to false if "force" prop is true in payload', () => {
-            const initialState = {
-                update: {
-                    done: true,
-                    error: false,
-                    version: '0.1',
-                    notes: [],
-                },
-            };
-
-            const action = {
-                type: 'IOTA/SETTINGS/SET_UPDATE_ERROR',
-                payload: {
-                    force: true,
-                },
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                update: {
-                    done: false,
-                    error: false,
-                    version: '0.1',
-                    notes: [],
-                },
-            };
-
-            expect(newState.update.done).to.eql(expectedState.update.done);
-        });
-
-        it('should set "error" prop in "update" to true', () => {
-            const initialState = {
-                update: {
-                    done: true,
-                    error: false,
-                    version: '0.1',
-                    notes: [],
-                },
-            };
-
-            const action = {
-                type: 'IOTA/SETTINGS/SET_UPDATE_ERROR',
-                payload: {},
-            };
-
-            const newState = reducer(initialState, action);
-            const expectedState = {
-                update: {
-                    done: true,
-                    error: true,
-                    version: '0.1',
-                    notes: [],
-                },
-            };
-
-            expect(newState.update.error).to.eql(expectedState.update.error);
-        });
-    });
-
     describe('SET_2FA_STATUS', () => {
         it('should set is2FAEnabled to payload', () => {
             const initialState = {
