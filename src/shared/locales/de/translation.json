@@ -123,7 +123,7 @@
         "seedThief": "Wenn eine andere Person deinen Seed hat, kann diese deine IOTA stehlen.",
         "googlePlayServicesNotAvailable": "Google Play-Dienste nicht verfügbar",
         "couldNotVerifyDeviceIntegrity": "Gerät konnte nicht überprüft werden, da die Google-Play-Dienste nicht verfügbar sind.",
-        "clear": "Clear",
+        "clear": "Löschen",
         "noNetworkConnection": "Keine Netzwerkverbindung",
         "noNetworkConnectionExplanation": "Die Internetverbindung scheint offline zu sein.",
         "spentAddressExplanation": "WARNUNG: Guthaben auf verwendeten Adressen",
@@ -138,13 +138,13 @@
         "headToAdvancedSettingsForTransition": "Wechsle zu den erweiterten Einstellungen und führe eine Snapshot-Wiederherstellung aus.",
         "usingTrinityWalletWithKeePass": "Trinity Brieftasche mit Keepass2Android verwenden",
         "signedTrytesBroadcastErrorExplanation": "Während der Transkation ist ein Netzwerkfehler aufgetreten.",
-        "broadcastError": "Could not broadcast transfer",
-        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
-        "problemSendingYourTransaction": "There was a problem sending your transaction.",
-        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
-        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
-        "tryingAgainWithDifferentNode": "Trying again with a different node.",
-        "errorFetchingAccountInformation": "Error fetching account information."
+        "broadcastError": "Transaktion konnte nicht gebroadcastet werden",
+        "addressesAlreadySpentFrom": "Von einer oder mehreren Adressen wurde bereits gesendet.",
+        "problemSendingYourTransaction": "Während dem Senden der Transaktion ist ein Fehler aufgetreten.",
+        "problemPerformingProofOfWork": "Während dem Proof of Work-Vorgang ist ein Fehler aufgetreten.",
+        "tryingAgainWithLocalPoW": "Versuche es erneut mit lokalem Proof of Work.",
+        "tryingAgainWithDifferentNode": "Versuche es erneut mit einem anderen Node.",
+        "errorFetchingAccountInformation": "Fehler beim Abrufen der Kontoinformationen."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
@@ -315,8 +315,8 @@
         "incorrectSeedExplanation": "Der von dir eingegebene Seed ist nicht korrekt. Bitte versuche es noch einmal.",
         "ifYouHaveNotSaved": "Wenn du deinen Seed nicht gesichert hast, gehe zurück und sichere ihn.",
         "enterSeedBelow": "Bitte gib deinen neu erstellen Seed hier ein, um sicherzustellen dass du deinen Seed korrekt gesichert hast",
-        "clipboardWarning": "Do not copy paste your seed",
-        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
+        "clipboardWarning": "Verwende nicht 'Kopieren und Einfügen' für deinen Seed",
+        "clipboardWarningExplanation": "WARNUNG: Kopieren und Einfügen ist aus Sicherheitsgründen deaktiviert."
     },
     "send": {
         "invalidAddress": "Ungültige Adresse",
@@ -660,7 +660,7 @@
         "skipUpdate": "Update überspringen"
     },
     "notificationLog": {
-        "errorLog": "Error log"
+        "errorLog": "Fehlerprotokoll"
     },
     "terms": {
         "termsAndConditions": "Geschäftsbedingungen",
