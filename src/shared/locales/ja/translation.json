@@ -142,9 +142,9 @@
         "addressesAlreadySpentFrom": "１つ以上のアドレスが既に使用済みです。",
         "problemSendingYourTransaction": "取引情報の送信中に問題が発生しました。",
         "problemPerformingProofOfWork": "プルーフ・オブ・ワークを実行中に問題が発生しました。",
-        "tryingAgainWithLocalPoW": "ローカルのプルーフ・オブ・ワークでもう一度試してください。",
-        "tryingAgainWithDifferentNode": "Trying again with a different node.",
-        "errorFetchingAccountInformation": "Error fetching account information."
+        "tryingAgainWithLocalPoW": "ローカルのプルーフ・オブ・ワークでやり直してください。",
+        "tryingAgainWithDifferentNode": "違うノードでやり直してください。",
+        "errorFetchingAccountInformation": "アカウント情報の取得中にエラーが発生しました。"
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "無効な文字を含んだシードです。",
@@ -315,8 +315,8 @@
         "incorrectSeedExplanation": "入力したシードは正しくありません。もう一度やり直してください。",
         "ifYouHaveNotSaved": "シードをまだ保存していない場合は戻ってください。",
         "enterSeedBelow": "下の空欄に新しく作成したシードを入力して、正しくバックアップできたことを確認してください。",
-        "clipboardWarning": "Do not copy paste your seed",
-        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
+        "clipboardWarning": "シードをコピーアンドペーストしないでください。",
+        "clipboardWarningExplanation": "警告：コピーアンドペーストは使用できません！"
     },
     "send": {
         "invalidAddress": "無効なアドレスです。",
@@ -660,7 +660,7 @@
         "skipUpdate": "更新をスキップ"
     },
     "notificationLog": {
-        "errorLog": "Error log"
+        "errorLog": "エラーログ"
     },
     "terms": {
         "termsAndConditions": "利用規約",
