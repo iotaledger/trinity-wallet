@@ -614,9 +614,7 @@
         "local": "Lokalus",
         "remote": "Nuotolinis",
         "powUpdated": "Skaičiavimų nustatymai",
-        "powUpdatedExplanation": "Jūsų skaičiavimų konfigūracija atnaujinta.",
-        "noWebGLSupport": "WebGL nepalaikomas",
-        "noWebGLSupportExplanation": "Jūsų kompiuteris nepalaiko WebGL. Prašome naudoti nuotolinį PoW."
+        "powUpdatedExplanation": "Jūsų skaičiavimų konfigūracija atnaujinta."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Automatinio iškėlimo nustatymai",
