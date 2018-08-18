@@ -59,6 +59,7 @@
         "password": "Wachtwoord",
         "unrecognisedPassword": "Onjuist wachtwoord",
         "unrecognisedPasswordExplanation": "Het wachtwoord is onjuist. Probeer het opnieuw.",
+        "capsLockIsOn": "Caps Lock is on",
         "syncInProgress": "Bezig met synchroniseren",
         "syncInProgressExplanation": "Wacht tot de synchronisatie is voltooid.",
         "somethingWentWrong": "Er ging iets mis",
@@ -71,6 +72,7 @@
         "attachToTangleUnavailableExplanation": "Extern Bewijs van Inspanning is niet beschikbaar op uw geselecteerde node. Verander de node of zet Bewijs van Inspanning naar Lokaal in Geavanceerde Instellingen.",
         "attachToTangleUnavailableExplanationShort": "Extern Bewijs van Inspanning is niet beschikbaar op uw geselecteerde node.",
         "wallet": "Portemonnee",
+        "all": "All",
         "sent": "Verzonden",
         "received": "Ontvangen",
         "sending": "Uitgaand",
@@ -121,7 +123,7 @@
         "seedThief": "Als iemand anders uw seed heeft, kan diegene uw IOTA stelen.",
         "googlePlayServicesNotAvailable": "Google Play Services niet beschikbaar",
         "couldNotVerifyDeviceIntegrity": "Kon apparaat integriteit niet verifiëren omdat Google Play Services onbeschikbaar zijn.",
-        "clear": "WIS",
+        "clear": "Clear",
         "noNetworkConnection": "Geen netwerkverbinding",
         "noNetworkConnectionExplanation": "Uw internetverbinding lijkt offline te zijn.",
         "spentAddressExplanation": "WAARSCHUWING: Saldo op verbruikte adressen",
@@ -135,7 +137,14 @@
         "ifYourBalanceIsNotCorrect": "Als uw saldo niet correct is, gebruikt u waarschijnlijk een pre-snapshot seed.",
         "headToAdvancedSettingsForTransition": "Ga naar Geavanceerde instellingen en voer een Snapshot transitie uit.",
         "usingTrinityWalletWithKeePass": "Using Trinity Wallet with Keepass2Android",
-        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction."
+        "signedTrytesBroadcastErrorExplanation": "There was a network error while broadcasting your transaction.",
+        "broadcastError": "Could not broadcast transfer",
+        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
+        "problemSendingYourTransaction": "There was a problem sending your transaction.",
+        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
+        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
+        "tryingAgainWithDifferentNode": "Trying again with a different node.",
+        "errorFetchingAccountInformation": "Error fetching account information."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "De seed bevat ongeldige tekens",
@@ -305,7 +314,9 @@
         "incorrectSeed": "Onjuiste seed",
         "incorrectSeedExplanation": "De ingevoerde seed is onjuist. Probeer het nog eens.",
         "ifYouHaveNotSaved": "Als u uw seed nog niet opgeslagen heeft, ga dan terug en doe dit alsnog.",
-        "enterSeedBelow": "Voer uw zojuist gegenereerde seed hieronder in om te bevestigen dat uw reservekopie klopt"
+        "enterSeedBelow": "Voer uw zojuist gegenereerde seed hieronder in om te bevestigen dat uw reservekopie klopt",
+        "clipboardWarning": "Do not copy paste your seed",
+        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
     },
     "send": {
         "invalidAddress": "Ongeldig adres",
@@ -649,11 +660,12 @@
         "skipUpdate": "Sla de update over"
     },
     "notificationLog": {
-        "errorLog": "ERROR LOG"
+        "errorLog": "Error log"
     },
     "terms": {
         "termsAndConditions": "Algemene Voorwaarden",
-        "accept": "Ik ga akkoord"
+        "accept": "Ik ga akkoord",
+        "readAllToContinue": "Please read all the text to continue"
     },
     "privacyPolicy": {
         "privacyPolicy": "Privacybeleid",
