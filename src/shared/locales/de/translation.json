@@ -614,9 +614,7 @@
         "local": "Lokal",
         "remote": "Berechnung durch Node",
         "powUpdated": "\"Proof of Work\" Einstellungen",
-        "powUpdatedExplanation": "Deine Konfiguration des \"Proof of Work\" wurde aktualisiert.",
-        "noWebGLSupport": "WebGL nicht unterstützt",
-        "noWebGLSupportExplanation": "Dein Computer unterstützt WebGL nicht. Bitte verwende remote PoW."
+        "powUpdatedExplanation": "Deine Konfiguration des \"Proof of Work\" wurde aktualisiert."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Auto-Promotion Einstellungen",
