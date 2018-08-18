@@ -614,9 +614,7 @@
         "local": "Locale",
         "remote": "Remoto",
         "powUpdated": "Impostazioni proof-of-work",
-        "powUpdatedExplanation": "Configurazione proof-of-work aggiornata.",
-        "noWebGLSupport": "WebGL non supportato",
-        "noWebGLSupportExplanation": "Il computer non supporta WebGL. Si prega di usare il proof-of-work remoto."
+        "powUpdatedExplanation": "Configurazione proof-of-work aggiornata."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Impostazioni auto promozione",
