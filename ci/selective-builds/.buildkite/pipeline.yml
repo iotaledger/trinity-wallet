@@ -6,3 +6,13 @@ steps:
     env:
       DETECT_CHANGES_DIR: "src/mobile"
       PIPELINE_SLUG: "trinity-mobile-prs"
+
+  - wait
+
+  - label: ":mag: Looking for changes to desktop"
+    command: "ci/selective-builds/selective-builds.sh"
+    agents:
+      queue: dev
+    env:
+      DETECT_CHANGES_DIR: "src/desktop"
+      PIPELINE_SLUG: "trinity-desktop-prs"
