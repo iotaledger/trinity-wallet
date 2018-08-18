@@ -614,9 +614,7 @@
         "local": "Local",
         "remote": "Remoto",
         "powUpdated": "Configuracion de PoW",
-        "powUpdatedExplanation": "Tu configuracion de PoW fue actualizada.",
-        "noWebGLSupport": "WebGL no soportado",
-        "noWebGLSupportExplanation": "El equipo no es compatible con WebGL. Utilice por favor PoW remoto."
+        "powUpdatedExplanation": "Tu configuracion de PoW fue actualizada."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Ajustes de auto-promoción",
