@@ -324,7 +324,7 @@ const sendTransferAsync = (provider, powFn) => (
  *
  * @returns {function(*, number): Promise<object>}
  */
-const getTransactionsToApproveAsync = (provider) => (reference = null, depth = DEFAULT_DEPTH) =>
+const getTransactionsToApproveAsync = (provider) => (reference = {}, depth = DEFAULT_DEPTH) =>
     new Promise((resolve, reject) => {
         getIotaInstance(provider).api.getTransactionsToApprove(depth, reference, (err, transactionsToApprove) => {
             if (err) {

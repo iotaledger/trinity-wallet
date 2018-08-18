@@ -9,6 +9,7 @@ import { generateAlert } from 'actions/alerts';
 import { getMarketData, getChartData, getPrice } from 'actions/marketData';
 import { getCurrencyData } from 'actions/settings';
 import { clearWalletData, setPassword } from 'actions/wallet';
+import { getAccountInfo } from 'actions/accounts';
 
 import { getSelectedAccountName } from 'selectors/accounts';
 
@@ -36,6 +37,8 @@ class Login extends React.Component {
         wallet: PropTypes.object.isRequired,
         /** @ignore */
         ui: PropTypes.object.isRequired,
+        /** @ignore */
+        getAccountInfo: PropTypes.func.isRequired,
         /** @ignore */
         currency: PropTypes.string.isRequired,
         /** @ignore */
@@ -105,7 +108,7 @@ class Login extends React.Component {
         } else if (wallet.addingAdditionalAccount) {
             runTask('getFullAccountInfoAdditionalSeed', [seed, wallet.additionalAccountName, wallet.password]);
         } else {
-            runTask('getAccountInfo', [seed, accountName]);
+            this.props.getAccountInfo(seed, accountName, null, null, Electron.notify);
         }
     };
 
@@ -237,6 +240,7 @@ const mapDispatchToProps = {
     getPrice,
     getMarketData,
     getCurrencyData,
+    getAccountInfo
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate()(Login));
