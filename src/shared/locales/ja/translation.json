@@ -614,9 +614,7 @@
         "local": "ローカル",
         "remote": "リモート",
         "powUpdated": "プルーフ・オブ・ワークの設定",
-        "powUpdatedExplanation": "プルーフ・オブ・ワークの設定を更新しました。",
-        "noWebGLSupport": "WebGLがサポートされていません。",
-        "noWebGLSupportExplanation": "お使いのコンピューターは WebGLをサポートしていません。リモートのプルーフ・オブ・ワークをご利用ください。"
+        "powUpdatedExplanation": "プルーフ・オブ・ワークの設定を更新しました。"
     },
     "autoPromotion": {
         "autoPromotionUpdated": "自動促進の設定",
