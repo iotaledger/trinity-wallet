@@ -85,7 +85,7 @@ class SeedSave extends PureComponent {
                     </div>
                 </section>
                 <footer>
-                    <Button onClick={() => window.print()} className="square" variant="secondary">
+                    <Button onClick={() => window.print()} className="square" variant="dark">
                         {t('saveYourSeed:printBlankWallet')}
                     </Button>
                     <Button

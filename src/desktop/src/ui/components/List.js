@@ -1,3 +1,5 @@
+/* global Electron */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import orderBy from 'lodash/orderBy';
@@ -6,7 +8,6 @@ import classNames from 'classnames';
 import { formatValue, formatUnit } from 'libs/iota/utils';
 import { round } from 'libs/utils';
 import { formatTime, formatModalTime, convertUnixTimeToJSDate } from 'libs/date';
-import { getPoWFn } from 'libs/pow';
 
 import Clipboard from 'ui/components/Clipboard';
 import Icon from 'ui/components/Icon';
@@ -42,13 +43,7 @@ class List extends React.PureComponent {
         toggleEmptyTransactions: PropTypes.func.isRequired,
         /** Transaction history */
         transfers: PropTypes.array.isRequired,
-        /** Create a notification message
-         * @param {string} type - notification type - success, error
-         * @param {string} title - notification title
-         * @param {string} text - notification explanation
-         * @ignore
-         */
-        generateAlert: PropTypes.func.isRequired,
+        /** @ignore */
         failedHashes: PropTypes.object.isRequired,
         /** Promotes bundle
          * @param {string} bundle - bundle hash
@@ -127,17 +122,7 @@ class List extends React.PureComponent {
     promoteTransaction(e, bundle) {
         e.stopPropagation();
 
-        const { generateAlert, t } = this.props;
-
-        let powFn = null;
-
-        if (!this.props.remotePoW) {
-            try {
-                powFn = getPoWFn();
-            } catch (e) {
-                return generateAlert('error', t('pow:noWebGLSupport'), t('pow:noWebGLSupportExplanation'));
-            }
-        }
+        const powFn = !this.props.remotePoW ? Electron.powFn : null;
 
         this.props.promoteTransaction(bundle, powFn);
     }
@@ -145,17 +130,7 @@ class List extends React.PureComponent {
     retryFailedTransaction(e, bundle) {
         e.stopPropagation();
 
-        const { generateAlert, t } = this.props;
-
-        let powFn = null;
-
-        if (!this.props.remotePoW) {
-            try {
-                powFn = getPoWFn();
-            } catch (e) {
-                return generateAlert('error', t('pow:noWebGLSupport'), t('pow:noWebGLSupportExplanation'));
-            }
-        }
+        const powFn = !this.props.remotePoW ? Electron.powFn : null;
 
         this.props.retryFailedTransaction(bundle, powFn);
     }

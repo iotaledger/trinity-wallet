@@ -121,6 +121,20 @@ class AccountPassword extends React.PureComponent {
         history.push('/onboarding/done');
     };
 
+    stepBack = (e) => {
+        if (e) {
+            e.preventDefault();
+        }
+
+        const { history } = this.props;
+
+        if (Electron.getOnboardingGenerated()) {
+            history.push('/onboarding/seed-verify');
+        } else {
+            history.push('/onboarding/account-name');
+        }
+    };
+
     render() {
         const { t } = this.props;
 
@@ -149,7 +163,7 @@ class AccountPassword extends React.PureComponent {
                     />
                 </section>
                 <footer>
-                    <Button to="/onboarding/account-name" className="square" variant="dark">
+                    <Button onClick={this.stepBack} className="square" variant="dark">
                         {t('goBackStep')}
                     </Button>
                     <Button type="submit" className="square" variant="primary">

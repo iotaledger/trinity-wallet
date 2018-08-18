@@ -4,6 +4,11 @@ import PropTypes from 'prop-types';
 import { translate, Trans } from 'react-i18next';
 import { connect } from 'react-redux';
 
+import { clearVault, getSeed } from 'libs/crypto';
+import { formatValue, formatUnit } from 'libs/iota/utils';
+import { round } from 'libs/utils';
+
+import { manuallySyncAccount } from 'actions/accounts';
 import {
     changePowSettings,
     changeAutoPromotionSettings,
@@ -11,18 +16,16 @@ import {
     setTray,
     setNotifications,
 } from 'actions/settings';
-import { completeSnapshotTransition, setBalanceCheckFlag } from 'actions/wallet';
+import {
+    transitionForSnapshot,
+    completeSnapshotTransition,
+    setBalanceCheckFlag,
+    generateAddressesAndGetBalance,
+} from 'actions/wallet';
 import { generateAlert } from 'actions/alerts';
-
-import { clearVault, getSeed } from 'libs/crypto';
-import { getPoWFn } from 'libs/pow';
-
 import { toggleModalActivity } from 'actions/ui';
-import { getSelectedAccountName, getAddressesForSelectedAccount } from 'selectors/accounts';
-import { formatValue, formatUnit } from 'libs/iota/utils';
-import { round } from 'libs/utils';
 
-import { runTask } from 'worker';
+import { getSelectedAccountName, getAddressesForSelectedAccount } from 'selectors/accounts';
 
 import Button from 'ui/components/Button';
 import ModalPassword from 'ui/components/modal/Password';
@@ -78,6 +81,12 @@ class Advanced extends PureComponent {
         completeSnapshotTransition: PropTypes.func.isRequired,
         /** @ignore */
         setBalanceCheckFlag: PropTypes.func.isRequired,
+        /** @ignore */
+        manuallySyncAccount: PropTypes.func.isRequired,
+        /** @ignore */
+        generateAddressesAndGetBalance: PropTypes.func.isRequired,
+        /** @ignore */
+        transitionForSnapshot: PropTypes.func.isRequired,
         /** @ignore */
         setTray: PropTypes.func.isRequired,
         /** @ignore */
@@ -142,7 +151,8 @@ class Advanced extends PureComponent {
     syncAccount = async () => {
         const { wallet, selectedAccountName } = this.props;
         const seed = await getSeed(wallet.password, selectedAccountName, true);
-        runTask('manuallySyncAccount', [seed, selectedAccountName]);
+
+        this.props.manuallySyncAccount(seed, selectedAccountName, Electron.genFn);
     };
 
     /**
@@ -152,7 +162,8 @@ class Advanced extends PureComponent {
     startSnapshotTransition = async () => {
         const { wallet, addresses, selectedAccountName } = this.props;
         const seed = await getSeed(wallet.password, selectedAccountName, true);
-        runTask('transitionForSnapshot', [seed, addresses]);
+
+        this.props.transitionForSnapshot(seed, addresses, Electron.genFn);
     };
 
     /**
@@ -161,19 +172,11 @@ class Advanced extends PureComponent {
      */
     transitionBalanceOk = async () => {
         this.props.setBalanceCheckFlag(false);
-        const { wallet, transitionAddresses, selectedAccountName, settings, t } = this.props;
+        const { wallet, transitionAddresses, selectedAccountName, settings } = this.props;
         const seed = await getSeed(wallet.password, selectedAccountName, true);
 
-        let powFn = null;
-        if (!settings.remotePoW) {
-            try {
-                powFn = getPoWFn();
-            } catch (e) {
-                return generateAlert('error', t('pow:noWebGLSupport'), t('pow:noWebGLSupportExplanation'));
-            }
-        }
+        const powFn = !settings.remotePoW ? Electron.powFn : null;
 
-        // we aren't using the taskRunner here because you can't pass in powFn since it's a function
         this.props.completeSnapshotTransition(seed, selectedAccountName, transitionAddresses, powFn);
     };
 
@@ -186,7 +189,8 @@ class Advanced extends PureComponent {
         const { wallet, transitionAddresses, selectedAccountName } = this.props;
         const seed = await getSeed(wallet.password, selectedAccountName, true);
         const currentIndex = transitionAddresses.length;
-        runTask('generateAddressesAndGetBalance', [seed, currentIndex, null]);
+
+        this.props.generateAddressesAndGetBalance(seed, currentIndex, Electron.genFn);
     };
 
     render() {
@@ -413,6 +417,9 @@ const mapDispatchToProps = {
     setLockScreenTimeout,
     toggleModalActivity,
     completeSnapshotTransition,
+    manuallySyncAccount,
+    transitionForSnapshot,
+    generateAddressesAndGetBalance,
     setBalanceCheckFlag,
     setTray,
     setNotifications,

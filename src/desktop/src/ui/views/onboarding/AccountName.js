@@ -126,18 +126,33 @@ class AccountName extends React.PureComponent {
 
         setOnboardingName(this.state.name);
 
-        if (!Electron.getOnboardingSeed()) {
-            return history.push('/onboarding/seed-generate');
+        if (Electron.getOnboardingGenerated()) {
+            history.push('/onboarding/seed-save');
+        } else {
+            if (!firstAccount) {
+                setAdditionalAccountInfo({
+                    addingAdditionalAccount: true,
+                    additionalAccountName: this.state.name,
+                });
+                history.push('/onboarding/login');
+            } else {
+                history.push('/onboarding/account-password');
+            }
+        }
+    };
+
+    stepBack = (e) => {
+        if (e) {
+            e.preventDefault();
         }
 
-        if (!firstAccount) {
-            setAdditionalAccountInfo({
-                addingAdditionalAccount: true,
-                additionalAccountName: this.state.name,
-            });
-            history.push('/onboarding/login');
+        const { history } = this.props;
+
+        if (Electron.getOnboardingGenerated()) {
+            history.push('/onboarding/seed-generate');
         } else {
-            history.push('/onboarding/account-password');
+            Electron.setOnboardingSeed(null);
+            history.push('/onboarding/seed-verify');
         }
     };
 
@@ -157,11 +172,7 @@ class AccountName extends React.PureComponent {
                     />
                 </section>
                 <footer>
-                    <Button
-                        to={`/onboarding/seed-${!Electron.getOnboardingSeed() ? 'intro' : 'verify'}`}
-                        className="square"
-                        variant="dark"
-                    >
+                    <Button onClick={this.stepBack} className="square" variant="dark">
                         {t('goBackStep')}
                     </Button>
                     <Button type="submit" className="square" variant="primary">

@@ -57,7 +57,7 @@ class Dashboard extends React.PureComponent {
 
         const seed = await getSeed(password, accountName, true);
 
-        this.props.getAccountInfo(seed, accountName, null, null, Electron.notify);
+        this.props.getAccountInfo(seed, accountName, null, Electron.genFn, Electron.notify);
     };
 
     render() {
@@ -127,4 +127,8 @@ const mapStateToProps = (state) => ({
     isDeepLinkActive: state.wallet.deepLinkActive,
 });
 
-export default translate()(connect(mapStateToProps, { getAccountInfo })(Dashboard));
+const mapDispatchToProps = {
+    getAccountInfo,
+};
+
+export default translate()(connect(mapStateToProps, mapDispatchToProps)(Dashboard));

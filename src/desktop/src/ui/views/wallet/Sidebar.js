@@ -1,3 +1,4 @@
+/* global Electron */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -44,6 +45,16 @@ class Sidebar extends React.PureComponent {
     state = {
         modalLogout: false,
     };
+
+    componentDidMount() {
+        Electron.updateMenu('enabled', !this.props.isBusy);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.isBusy !== nextProps.isBusy) {
+            Electron.updateMenu('enabled', !nextProps.isBusy);
+        }
+    }
 
     accountSettings = (e, index) => {
         e.stopPropagation();
