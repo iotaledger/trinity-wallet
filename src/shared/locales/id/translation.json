@@ -1,7 +1,7 @@
 {
     "global": {
         "send": "KIRIM",
-        "cancel": "Cancel",
+        "cancel": "Batal",
         "continue?": "Anda yakin ingin melanjutkan?",
         "noTransactions": "TIDAK ADA RIWAYAT TERKINI",
         "refresh": "Perbarui",
@@ -23,12 +23,12 @@
         "thisNodeOutOfSync": "Node ini tidak sinkron. Silahkan ganti node atau coba lagi.",
         "seed": "Benih",
         "checksum": "Checksum",
-        "back": "Back",
+        "back": "Kembali",
         "goBack": "Kembali",
         "goBackStep": "Kembali satu langkah",
-        "done": "Done",
+        "done": "Selesai",
         "prev": "Kembali",
-        "next": "Next",
+        "next": "Lanjut",
         "apply": "Terapkan",
         "save": "Simpan",
         "close": "Tutup",
@@ -53,12 +53,13 @@
         "fifthWallet": "AKUN KELIMA",
         "sixthWallet": "AKUN KEENAM",
         "otherWallet": "AKUN LAINNYA",
-        "yes": "Yes",
-        "no": "No",
-        "okay": "Okay",
+        "yes": "Iya",
+        "no": "Tidak",
+        "okay": "Ok",
         "password": "Kata Sandi",
         "unrecognisedPassword": "Kata sandi tidak dikenali",
         "unrecognisedPasswordExplanation": "Kata sandi tidak dikenali. Silahkan coba kembali.",
+        "capsLockIsOn": "Caps Lock aktif",
         "syncInProgress": "Sinkronisasi sedang berlangsung",
         "syncInProgressExplanation": "Silahkan tunggu sampai sinkronisasi selesai.",
         "somethingWentWrong": "Terjadi kesalahan",
@@ -71,6 +72,7 @@
         "attachToTangleUnavailableExplanation": "Proof of Work jarak jauh tidak tersedia di node ini. Harap ganti node atau ubah Proof of Work lokal di Aturan Lanjutan.",
         "attachToTangleUnavailableExplanationShort": "Proof of Work jarak jauh tidak tersedia di node ini.",
         "wallet": "Dompet",
+        "all": "All",
         "sent": "Terkirim",
         "received": "Diterima",
         "sending": "Mengirim",
@@ -96,8 +98,8 @@
         "noLongerValid": "Bundel yang anda coba untuk dimajukan sudah tidak berlaku",
         "transactionAlreadyConfirmed": "Transaksi sudah dikonfirmasi",
         "transactionAlreadyConfirmedExplanation": "Transaksi yang Anda coba promosikan sudah dikonfirmasi.",
-        "cannotSendToOwn": "Sending to an input address",
-        "cannotSendToOwnExplanation": "You cannot send to an address that is being used as an input in the transaction.",
+        "cannotSendToOwn": "Mengirim ke alamat sendiri",
+        "cannotSendToOwnExplanation": "Anda tidak dapat mengirim ke alamat yang digunakan sebagai asal transaksi.",
         "pleaseWait": "Silahkan tunggu",
         "pleaseWaitEllipses": "Silahkan tunggu...",
         "pleaseWaitExplanation": "Trinity sedang melakukan fungsi lain. Silahkan tunggu dan coba lagi.",
@@ -121,7 +123,7 @@
         "seedThief": "Jika orang lain mempunyai Seed Anda, mereka bisa mencuri IOTA Anda.",
         "googlePlayServicesNotAvailable": "Google Play Services tidak tersedia",
         "couldNotVerifyDeviceIntegrity": "Tidak bisa memverifikasi perangkat karena Google Play Services tidak tersedia.",
-        "clear": "HAPUS",
+        "clear": "Clear",
         "noNetworkConnection": "Tidak ada jaringan",
         "noNetworkConnectionExplanation": "Tidak ada koneksi internet.",
         "spentAddressExplanation": "PERINGATAN: Dana ada di alamat yang sudah digunakan",
@@ -135,7 +137,14 @@
         "ifYourBalanceIsNotCorrect": "Jika saldo anda tidak benar, kemungkinan anda menggunakan Pre-Snapshot Seed.",
         "headToAdvancedSettingsForTransition": "Buka Aturan Lanjutan dan lakukan Transisi Snapshot.",
         "usingTrinityWalletWithKeePass": "Gunakan Dompet Trinity dengan Keepass2Android",
-        "signedTrytesBroadcastErrorExplanation": "Ada kesalahan jaringan ketika menyiarkan transaksi Anda."
+        "signedTrytesBroadcastErrorExplanation": "Ada kesalahan jaringan ketika menyiarkan transaksi Anda.",
+        "broadcastError": "Could not broadcast transfer",
+        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
+        "problemSendingYourTransaction": "There was a problem sending your transaction.",
+        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
+        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
+        "tryingAgainWithDifferentNode": "Trying again with a different node.",
+        "errorFetchingAccountInformation": "Error fetching account information."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed berisi karakter yang tidak valid",
@@ -305,7 +314,9 @@
         "incorrectSeed": "Seed salah",
         "incorrectSeedExplanation": "Seed yang Anda masukkan salah. Silahkan coba lagi.",
         "ifYouHaveNotSaved": "Jika Anda belum menyimpan Seed Anda, silahkan mengulang kembali.",
-        "enterSeedBelow": "Masukan Seed yang baru dibuat dibawah ini untuk mengkonfirmasi salinan anda"
+        "enterSeedBelow": "Masukan Seed yang baru dibuat dibawah ini untuk mengkonfirmasi salinan anda",
+        "clipboardWarning": "Do not copy paste your seed",
+        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
     },
     "send": {
         "invalidAddress": "Alamat salah",
@@ -398,7 +409,7 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Masukan kata sandi anda untuk mengatur ulang dompet anda.",
-        "reset": "Reset"
+        "reset": "Setel ulang"
     },
     "walletSetup": {
         "creatingSeed": "Membuat Seed",
@@ -649,11 +660,12 @@
         "skipUpdate": "Lewati pembaruan"
     },
     "notificationLog": {
-        "errorLog": "ERROR LOG"
+        "errorLog": "Error log"
     },
     "terms": {
         "termsAndConditions": "Syarat & Ketentuan",
-        "accept": "Saya setuju"
+        "accept": "Saya setuju",
+        "readAllToContinue": "Silahkan baca semua teks untuk lanjut"
     },
     "privacyPolicy": {
         "privacyPolicy": "Kebijakan Privasi",

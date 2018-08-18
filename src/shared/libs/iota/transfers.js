@@ -42,9 +42,10 @@ import {
     getTransactionsToApproveAsync,
     attachToTangleAsync,
     storeAndBroadcastAsync,
+    isPromotable,
 } from './extendedApi';
 import i18next from '../../i18next.js';
-import { convertFromTrytes } from './utils';
+import { convertFromTrytes, EMPTY_HASH_TRYTES } from './utils';
 import Errors from './../errors';
 
 /**
@@ -95,12 +96,11 @@ export const getRelevantTransfer = (bundle, addresses) => {
  * Finds a promotable (consistent & above max depth) tail transaction
  *
  * @method findPromotableTail
- * @param {array} tails
- * @param {number} idx
+ * @param {string} [provider]
  *
- * @returns {Promise<object|boolean>}
+ * @returns {function(array, number): Promise<object|boolean>}
  */
-export const findPromotableTail = (tails, idx) => {
+export const findPromotableTail = (provider) => (tails, idx) => {
     let tailsAboveMaxDepth = [];
 
     if (idx === 0) {
@@ -115,15 +115,14 @@ export const findPromotableTail = (tails, idx) => {
 
     const thisTail = tailsAboveMaxDepth[idx];
 
-    return iota.api
-        .isPromotable(get(thisTail, 'hash'))
+    return isPromotable(provider)(get(thisTail, 'hash'))
         .then((state) => {
             if (state && isAboveMaxDepth(get(thisTail, 'attachmentTimestamp'))) {
                 return thisTail;
             }
 
             idx += 1;
-            return findPromotableTail(tailsAboveMaxDepth, idx);
+            return findPromotableTail(provider)(tailsAboveMaxDepth, idx);
         })
         .catch(() => false);
 };
@@ -149,13 +148,19 @@ export const isAboveMaxDepth = (attachmentTimestamp) => {
  *
  *   @method prepareTransferArray
  *   @param {string} address
- *   @param {number} value
- *   @param {string} message
- *   @param {string} firstOwnAddress
+ *   @param {number} [value]
+ *   @param {string} [message]
+ *   @param {string} [firstOwnAddress]
  *   @param {string} [tag='TRINITY']
  *   @returns {array} Transfer object
  **/
-export const prepareTransferArray = (address, value, message, firstOwnAddress, tag = DEFAULT_TAG) => {
+export const prepareTransferArray = (
+    address,
+    value = 0,
+    message = '',
+    firstOwnAddress = EMPTY_HASH_TRYTES,
+    tag = DEFAULT_TAG,
+) => {
     const trytesConvertedMessage = iota.utils.toTrytes(message);
     const isZeroValue = value === 0;
     const transfer = {
@@ -338,6 +343,7 @@ export const categoriseBundleByInputsOutputs = (bundle, addresses, outputsThresh
 export const isSentTransfer = (bundle, addresses) => {
     const categorisedBundle = categoriseBundleByInputsOutputs(bundle, addresses);
     const value = getTransferValue(bundle, addresses);
+
     if (value === 0) {
         return (
             !includes(addresses, get(categorisedBundle.outputs, '[0].address')) &&
@@ -384,19 +390,21 @@ export const isValidTransactionSync = (transaction, addressData) => {
  *   Communicates with the tangle and checks if transaction's input addresses still have enough balance.
  *
  *   @method isValidTransactionAsync
- *   @param {object} transaction
- *   @returns {boolean}
+ *   @param {string} provider
+ *
+ *   @returns {function(object): Promise<boolean>}
  **/
-export const isValidTransactionAsync = (transaction) => {
+export const isValidTransactionAsync = (provider) => (transaction) => {
     const knownTransactionBalanceOnInputs = reduce(transaction.inputs, (acc, input) => acc + Math.abs(input.value), 0);
 
-    return getBalancesAsync(map(transaction.inputs, (input) => input.address), DEFAULT_BALANCES_THRESHOLD).then(
-        (balances) => {
-            const latestBalanceOnInputs = accumulateBalance(map(balances.balances, Number));
+    return getBalancesAsync(provider)(
+        map(transaction.inputs, (input) => input.address),
+        DEFAULT_BALANCES_THRESHOLD,
+    ).then((balances) => {
+        const latestBalanceOnInputs = accumulateBalance(map(balances.balances, Number));
 
-            return knownTransactionBalanceOnInputs <= latestBalanceOnInputs;
-        },
-    );
+        return knownTransactionBalanceOnInputs <= latestBalanceOnInputs;
+    });
 };
 
 /**
@@ -429,15 +437,16 @@ export const filterInvalidTransactionsSync = (transactions, addressData) => {
  *   (Transactions that no longer have enough balance on their input addresses)
  *
  *   @method filterInvalidTransactionsAsync
- *   @param {array} transactions
- *   @returns {promise<array>}
+ *   @param {string} provider
+ *
+ *   @returns {function(array): Promise<array>}
  **/
-export const filterInvalidTransactionsAsync = (transactions) => {
+export const filterInvalidTransactionsAsync = (provider) => (transactions) => {
     return reduce(
         transactions,
         (promise, transaction) => {
             return promise.then((result) => {
-                return isValidTransactionAsync(transaction).then((isValid) => {
+                return isValidTransactionAsync(provider)(transaction).then((isValid) => {
                     if (isValid) {
                         result.push(transaction);
                     }
@@ -459,13 +468,11 @@ export const filterInvalidTransactionsAsync = (transactions) => {
  *  Transforms filtered transactions by bundle hashes so that they can be picked up for promotion
  *
  *   @method prepareForAutoPromotion
- *   @param {array} transfers
- *   @param {object} addressData
- *   @param {string} account
+ *   @param {string} provider
  *
- *   @returns {Promise<object>}
+ *   @returns {function(array, object, string): Promise<object>}
  **/
-export const prepareForAutoPromotion = (transfers, addressData, account) => {
+export const prepareForAutoPromotion = (provider) => (transfers, addressData, account) => {
     const pendingTransactions = filter(transfers, (tx) => !tx.persistence);
 
     if (isEmpty(pendingTransactions)) {
@@ -494,7 +501,7 @@ export const prepareForAutoPromotion = (transfers, addressData, account) => {
     const incomingValueTransactions = filter(incoming, (transaction) => transaction.transferValue !== 0);
 
     // Remove all invalid incoming transfers
-    return filterInvalidTransactionsAsync(incomingValueTransactions).then((validIncomingTransactions) => {
+    return filterInvalidTransactionsAsync(provider)(incomingValueTransactions).then((validIncomingTransactions) => {
         // Transform all valid received transactions by bundles
         const validIncomingTailTransactions = transform(validIncomingTransactions, byBundleHash, {});
 
@@ -604,16 +611,16 @@ export const constructBundle = (tailTransaction, allTransactionObjects) => {
  *   Filter confirmed hashes.
  *
  *   @method getConfirmedTransactionHashes
- *   @param {array} transactionsHashes
+ *   @param {string} provider
  *
- *   @returns {Promise<array>}
+ *   @returns {function(array): Promise<array>}
  **/
-export const getConfirmedTransactionHashes = (transactionsHashes) => {
+export const getConfirmedTransactionHashes = (provider) => (transactionsHashes) => {
     if (isEmpty(transactionsHashes)) {
         return Promise.resolve([]);
     }
 
-    return getLatestInclusionAsync(transactionsHashes).then((states) =>
+    return getLatestInclusionAsync(provider)(transactionsHashes).then((states) =>
         filter(transactionsHashes, (hash, idx) => states[idx]),
     );
 };
@@ -694,12 +701,11 @@ export const normaliseBundle = (bundle, addresses, tailTransactions, persistence
  *   Resolves transfers.
  *
  *   @method syncTransfers
- *   @param {array} diff
- *   @param {object} accountState - Account object
+ *   @param {string} provider
  *
- *   @returns {Promise<object>} - { transfers (Updated transfers), newTransfers }
+ *   @returns {function(array, object): Promise<object>}
  **/
-export const syncTransfers = (diff, accountState) => {
+export const syncTransfers = (provider) => (diff, accountState) => {
     const bundleHashes = new Set();
     const outOfSyncTransactionHashes = [];
 
@@ -708,24 +714,24 @@ export const syncTransfers = (diff, accountState) => {
         transactionObjects: [],
     };
 
-    return getTransactionsObjectsAsync(diff)
+    return getTransactionsObjectsAsync(provider)(diff)
         .then((transactionObjects) => {
             each(transactionObjects, (transactionObject, idx) => {
-                if (transactionObject.bundle !== '9'.repeat(81)) {
+                if (transactionObject.bundle !== EMPTY_HASH_TRYTES) {
                     bundleHashes.add(transactionObject.bundle);
                 } else {
                     outOfSyncTransactionHashes.push(diff[idx]);
                 }
             });
 
-            // Find all transaction objects from bundle hashes
-            return findTransactionObjectsAsync({ bundles: Array.from(bundleHashes) });
+            // Find all transaction objects for bundle hashes
+            return findTransactionObjectsAsync(provider)({ bundles: Array.from(bundleHashes) });
         })
         .then((transactionObjects) => {
             cached.transactionObjects = transactionObjects;
             cached.tailTransactions = pickNewTailTransactions(cached.transactionObjects, accountState.transfers);
 
-            return getLatestInclusionAsync(map(cached.tailTransactions, (tx) => tx.hash));
+            return getLatestInclusionAsync(provider)(map(cached.tailTransactions, (tx) => tx.hash));
         })
         .then((states) => {
             const newNormalisedTransfers = constructNormalisedBundles(
@@ -800,15 +806,14 @@ export const getBundleHashesForNewlyConfirmedTransactions = (unconfirmedBundleTa
  *   Accepts bundle hash, transfers and addressData and determines if the bundle associated
  *   with bundle hash is valid or not.
  *
- *   @method isValidForPromotion
- *   @param {object} transaction
- *   @param {object} addressData
+ *   @method isStillAValidTransaction
+ *   @param {string} [provider]
  *
- *   @returns {Promise<boolean>} - Promise that resolves whether the bundle is valid or not
+ *   @returns {function(object, object): Promise<object>}
  **/
-export const isStillAValidTransaction = (transaction, addressData) => {
+export const isStillAValidTransaction = (provider) => (transaction, addressData) => {
     return transaction.incoming
-        ? isValidTransactionAsync(transaction)
+        ? isValidTransactionAsync(provider)(transaction)
         : Promise.resolve(isValidTransactionSync(transaction, addressData));
 };
 
@@ -830,11 +835,11 @@ export const getTransactionsDiff = (existingHashes, newHashes) => {
  *   Filters all invalid transactions from all pending transactions.
  *
  *   @method filterInvalidPendingTransactions
- *   @param {array} transactions
- *   @param {object} addressData
- *   @returns {Promise<array>}
+ *   @param {string} [provider]
+ *
+ *   @returns {function(array, object): Promise<object>}
  **/
-export const filterInvalidPendingTransactions = (transactions, addressData) => {
+export const filterInvalidPendingTransactions = (provider) => (transactions, addressData) => {
     const pendingTransactions = filter(transactions, (tx) => !tx.persistence);
 
     if (isEmpty(pendingTransactions)) {
@@ -845,7 +850,7 @@ export const filterInvalidPendingTransactions = (transactions, addressData) => {
 
     const validOutgoingTransfers = filterInvalidTransactionsSync(outgoing, addressData);
 
-    return filterInvalidTransactionsAsync(incoming).then((validIncomingTransfers) => {
+    return filterInvalidTransactionsAsync(provider)(incoming).then((validIncomingTransfers) => {
         return [...validOutgoingTransfers, ...validIncomingTransfers];
     });
 };
@@ -873,7 +878,7 @@ export const performPow = (
     }
 
     const transactionObjects = map(trytes, (transactionTrytes) =>
-        assign({}, iota.utils.transactionObject(transactionTrytes, '9'.repeat(81)), {
+        assign({}, iota.utils.transactionObject(transactionTrytes), {
             attachmentTimestamp: Date.now(),
             attachmentTimestampLowerBound: 0,
             attachmentTimestampUpperBound: (Math.pow(3, 27) - 1) / 2,
@@ -954,6 +959,7 @@ export const getOutgoingTransfersForAddresses = (addresses, transactions) => {
             }
         });
     });
+
     return Array.from(selectedTransactions);
 };
 
@@ -1012,39 +1018,38 @@ export const pickNewTailTransactions = (transactionObjects, existingNormalisedTr
  *   Retry failed transaction with signed inputs
  *
  *   @method retryFailedTransaction
+ *   @param {string} [provider]
  *
- *   @param {array} transactionObjects
- *   @param {function} powFn
- *   @param {boolean} shouldOffloadPow
- *
- *   @returns {Promise<object>}
+ *   @returns {function(array, function): Promise<object>}
  **/
-export const retryFailedTransaction = (transactionObjects, powFn, shouldOffloadPow) => {
+export const retryFailedTransaction = (provider) => (transactionObjects, powFn) => {
     const convertToTrytes = (tx) => iota.utils.transactionTrytes(tx);
 
-    const fakeNonce = '9'.repeat(27);
-    const hasFakeNonce = (tx) => tx.nonce === fakeNonce;
     const cached = {
         transactionObjects: cloneDeep(transactionObjects),
         trytes: map(transactionObjects, convertToTrytes),
     };
 
-    if (some(transactionObjects, hasFakeNonce)) {
-        return getTransactionsToApproveAsync()
+    const isInvalidTransactionHash = ({ hash }) =>
+        hash === EMPTY_HASH_TRYTES || !iota.utils.isTransactionHash(hash, DEFAULT_MIN_WEIGHT_MAGNITUDE);
+
+    // Verify if all transaction objects have valid hash
+    // Proof of work was not performed correctly if any transaction has invalid hash
+    if (some(transactionObjects, isInvalidTransactionHash)) {
+        // If proof of work failed, select new tips and retry
+        return getTransactionsToApproveAsync(provider)()
             .then(({ trunkTransaction, branchTransaction }) => {
-                return shouldOffloadPow
-                    ? attachToTangleAsync(trunkTransaction, branchTransaction, cached.trytes)
-                    : performPow(powFn, cached.trytes, trunkTransaction, branchTransaction);
+                return attachToTangleAsync(provider, powFn)(trunkTransaction, branchTransaction, cached.trytes);
             })
             .then(({ trytes, transactionObjects }) => {
                 cached.trytes = trytes;
                 cached.transactionObjects = transactionObjects;
 
-                return storeAndBroadcastAsync(cached.trytes).then(() => cached);
+                return storeAndBroadcastAsync(provider)(cached.trytes).then(() => cached);
             });
     }
 
-    return storeAndBroadcastAsync(cached.trytes).then(() => cached);
+    return storeAndBroadcastAsync(provider)(cached.trytes).then(() => cached);
 };
 
 /**
@@ -1086,8 +1091,12 @@ export const formatRelevantTransactions = (transactions, addresses) => {
 
 /**
  * Formats recent transactions to accommodate for sending to self
- * @param {Array} transactions
- * @return {Array} Formatted recent transactions
+ *
+ * @method formatRelevantRecentTransactions
+ * @param {array} transactions
+ * @param {array} addresses
+ *
+ * @return {array} Formatted recent transactions
  */
 export const formatRelevantRecentTransactions = (transactions, addresses) => {
     const relevantTransactions = [];
@@ -1106,4 +1115,31 @@ export const formatRelevantRecentTransactions = (transactions, addresses) => {
         }
     });
     return relevantTransactions;
+};
+
+/**
+ * Sort transaction trytes array
+ *
+ * @method sortTransactionTrytesArray
+ * @param {array} trytes
+ * @param {string} [sortBy]
+ * @param {string} [order]
+ *
+ */
+export const sortTransactionTrytesArray = (trytes, sortBy = 'currentIndex', order = 'desc') => {
+    const sortableTransactionKeys = ['currentIndex', 'lastIndex', 'timestamp', 'attachmentTimestamp'];
+
+    if (!includes(sortableTransactionKeys, sortBy) || !includes(['desc', 'asc'], order)) {
+        return trytes;
+    }
+
+    const transactionObjects = map(trytes, (tryteString) =>
+        iota.utils.transactionObject(
+            tryteString,
+            // Pass in null hash trytes to avoid computing transaction hash.
+            EMPTY_HASH_TRYTES,
+        ),
+    );
+
+    return map(orderBy(transactionObjects, [sortBy], [order]), iota.utils.transactionTrytes);
 };

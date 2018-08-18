@@ -1,6 +1,6 @@
 import { isPlayServicesAvailable, generateNonce, sendAndVerifyAttestation } from 'react-native-google-safetynet';
 
-const API_KEY = 'AIzaSyCG6XTyOM1Od7jW9fucVdbep0x6BcL57Ko';
+const API_KEY = 'fakeAPIkey';
 
 export const doAttestationFromSafetyNet = () => {
     return isPlayServicesAvailable()

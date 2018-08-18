@@ -1,3 +1,4 @@
+import nock from 'nock';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { expect } from 'chai';
@@ -10,6 +11,8 @@ import * as inputUtils from '../../libs/iota/inputs';
 import { iota, SwitchingConfig } from '../../libs/iota/index';
 import accounts from '../__samples__/accounts';
 import trytes from '../__samples__/trytes';
+import { IRI_API_VERSION } from '../../config';
+import { EMPTY_HASH_TRYTES } from '../../libs/iota/utils';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -24,6 +27,12 @@ describe('actions: transfers', () => {
     });
 
     describe('#promoteTransaction', () => {
+        let powFn;
+
+        before(() => {
+            powFn = () => Promise.resolve('9'.repeat(27));
+        });
+
         describe('when bundle is invalid', () => {
             let sandbox;
 
@@ -32,8 +41,8 @@ describe('actions: transfers', () => {
 
                 sandbox.stub(extendedApis, 'promoteTransactionAsync').resolves('9'.repeat(81));
                 sandbox.stub(extendedApis, 'replayBundleAsync').resolves([]);
-                sandbox.stub(transferUtils, 'isStillAValidTransaction').resolves(false);
-                sandbox.stub(accountsUtils, 'syncAccount').resolves(accounts.accountInfo.TEST);
+                sandbox.stub(transferUtils, 'isStillAValidTransaction').returns(() => Promise.resolve(false));
+                sandbox.stub(accountsUtils, 'syncAccount').returns(() => Promise.resolve(accounts.accountInfo.TEST));
             });
 
             afterEach(() => {
@@ -56,6 +65,7 @@ describe('actions: transfers', () => {
                         actions.promoteTransaction(
                             'ABHSKIARZVHZ9GKX9DJDSB9YPFKPPHBOOHSKTENCWQHLRGXTFWEDKLREGF9WIFBYNUEXUTJUL9GYLAXRD',
                             'TEST',
+                            powFn,
                         ),
                     )
                     .then(() => {
@@ -70,16 +80,39 @@ describe('actions: transfers', () => {
             beforeEach(() => {
                 sandbox = sinon.sandbox.create();
 
-                sandbox.stub(accountsUtils, 'syncAccount').resolves(accounts.accountInfo.TEST);
-                sandbox.stub(extendedApis, 'promoteTransactionAsync').resolves('9'.repeat(81));
-                sandbox.stub(transferUtils, 'isStillAValidTransaction').resolves(true);
-                sandbox
-                    .stub(transferUtils, 'findPromotableTail')
-                    .resolves('YVDXKCJNZIDNKBCLLRVJATPFYQC9XANKBWRDDXOOUMNKALDWGXHUBAJJCHGECUEHAUFGJZQZUMCV99999');
+                nock('http://localhost:14265', {
+                    reqheaders: {
+                        'Content-Type': 'application/json',
+                        'X-IOTA-API-Version': IRI_API_VERSION,
+                    },
+                })
+                    .persist()
+                    .filteringRequestBody(() => '*')
+                    .post('/', '*')
+                    .reply(200, (_, body) => {
+                        const resultMap = {
+                            checkConsistency: { state: true },
+                            getTransactionsToApprove: {
+                                trunkTransaction: EMPTY_HASH_TRYTES,
+                                branchTransaction: EMPTY_HASH_TRYTES,
+                            },
+                        };
+
+                        return resultMap[body.command] || {};
+                    });
+
+                sandbox.stub(accountsUtils, 'syncAccount').returns(() => Promise.resolve(accounts.accountInfo.TEST));
+                sandbox.stub(transferUtils, 'isStillAValidTransaction').returns(() => Promise.resolve(true));
+                sandbox.stub(transferUtils, 'findPromotableTail').returns(() =>
+                    Promise.resolve({
+                        hash: 'YVDXKCJNZIDNKBCLLRVJATPFYQC9XANKBWRDDXOOUMNKALDWGXHUBAJJCHGECUEHAUFGJZQZUMCV99999',
+                    }),
+                );
             });
 
             afterEach(() => {
                 sandbox.restore();
+                nock.cleanAll();
             });
 
             it('should create actions of type IOTA/TRANSFERS/PROMOTE_TRANSACTION_REQUEST, IOTA/ALERTS/SHOW, IOTA/ACCOUNTS/SYNC_ACCOUNT_BEFORE_MANUAL_PROMOTION, IOTA/TRANSFERS/PROMOTE_TRANSACTION_SUCCESS and IOTA/ALERTS/SHOW', () => {
@@ -98,6 +131,7 @@ describe('actions: transfers', () => {
                         actions.promoteTransaction(
                             'ABHSKIARZVHZ9GKX9DJDSB9YPFKPPHBOOHSKTENCWQHLRGXTFWEDKLREGF9WIFBYNUEXUTJUL9GYLAXRD',
                             'TEST',
+                            powFn,
                         ),
                     )
                     .then(() => {
@@ -113,6 +147,7 @@ describe('actions: transfers', () => {
                         actions.promoteTransaction(
                             'ABHSKIARZVHZ9GKX9DJDSB9YPFKPPHBOOHSKTENCWQHLRGXTFWEDKLREGF9WIFBYNUEXUTJUL9GYLAXRD',
                             'TEST',
+                            powFn,
                         ),
                     )
                     .then(() => {
@@ -130,11 +165,36 @@ describe('actions: transfers', () => {
             beforeEach(() => {
                 sandbox = sinon.sandbox.create();
 
-                sandbox.stub(extendedApis, 'promoteTransactionAsync').resolves('9'.repeat(81));
-                sandbox.stub(extendedApis, 'replayBundleAsync').resolves([]);
-                sandbox.stub(transferUtils, 'isStillAValidTransaction').resolves(true);
-                sandbox.stub(transferUtils, 'findPromotableTail').resolves(false);
-                sandbox.stub(accountsUtils, 'syncAccount').resolves(accounts.accountInfo.TEST);
+                nock('http://localhost:14265', {
+                    reqheaders: {
+                        'Content-Type': 'application/json',
+                        'X-IOTA-API-Version': IRI_API_VERSION,
+                    },
+                })
+                    .filteringRequestBody(() => '*')
+                    .post('/', '*')
+                    .reply(200, (_, body) => {
+                        const resultMap = {
+                            checkConsistency: { state: false },
+                            getTransactionsToApprove: {
+                                trunkTransaction: EMPTY_HASH_TRYTES,
+                                branchTransaction: EMPTY_HASH_TRYTES,
+                            },
+                        };
+
+                        return resultMap[body.command] || {};
+                    });
+
+                sandbox.stub(transferUtils, 'isStillAValidTransaction').returns(() => Promise.resolve(true));
+                sandbox.stub(extendedApis, 'replayBundleAsync').returns(() =>
+                    Promise.resolve([
+                        {
+                            currentIndex: 0,
+                            hash: EMPTY_HASH_TRYTES,
+                        },
+                    ]),
+                );
+                sandbox.stub(accountsUtils, 'syncAccount').returns(() => Promise.resolve(accounts.accountInfo.TEST));
                 syncAccountAfterReattachment = sandbox.stub(accountsUtils, 'syncAccountAfterReattachment').returns({
                     newState: {},
                     reattachment: [],
@@ -143,6 +203,7 @@ describe('actions: transfers', () => {
             });
 
             afterEach(() => {
+                nock.cleanAll();
                 sandbox.restore();
             });
 
@@ -154,6 +215,7 @@ describe('actions: transfers', () => {
                         actions.promoteTransaction(
                             'ABHSKIARZVHZ9GKX9DJDSB9YPFKPPHBOOHSKTENCWQHLRGXTFWEDKLREGF9WIFBYNUEXUTJUL9GYLAXRD',
                             'TEST',
+                            powFn,
                         ),
                     )
                     .then(() => {
@@ -202,13 +264,30 @@ describe('actions: transfers', () => {
         });
     });
 
-    describe.only('#makeTransaction', () => {
+    describe('#makeTransaction', () => {
         let powFn;
         let genFn;
 
         before(() => {
             powFn = () => Promise.resolve('9'.repeat(27));
             genFn = () => Promise.resolve('A'.repeat(81));
+        });
+
+        beforeEach(() => {
+            nock('http://localhost:14265', {
+                reqheaders: {
+                    'Content-Type': 'application/json',
+                    'X-IOTA-API-Version': IRI_API_VERSION,
+                },
+            })
+                .persist()
+                .filteringRequestBody(() => '*')
+                .post('/', '*')
+                .reply(200, {});
+        });
+
+        afterEach(() => {
+            nock.cleanAll();
         });
 
         describe('zero value transactions', () => {
@@ -225,7 +304,6 @@ describe('actions: transfers', () => {
                         'BPZXKIPUOMPXZFLASWNSOXOACWOKYYIQCPYEVEPQSNAHJIRMLQZUZEHQAPTBGOILOTUWJUXLIBZP99999',
                 });
                 sandbox.stub(iota.api, 'attachToTangle').yields(null, trytes.zeroValue);
-                sandbox.stub(iota.api, 'storeAndBroadcast').yields(null);
                 sandbox.stub(iota.api, 'findTransactions').yields(null, []);
                 sandbox.stub(iota.api, 'getBalances').yields(null, []);
                 sandbox.stub(iota.api, 'getInclusionStates').yields(null, []);
@@ -239,7 +317,9 @@ describe('actions: transfers', () => {
                 const store = mockStore({ accounts });
                 const prepareTransfers = sinon.stub(iota.api, 'prepareTransfers').yields(null, trytes.zeroValue);
                 const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, []);
-                const syncAccountAfterSpending = sinon.stub(accountsUtils, 'syncAccountAfterSpending').resolves({});
+                const syncAccountAfterSpending = sinon
+                    .stub(accountsUtils, 'syncAccountAfterSpending')
+                    .returns(() => Promise.resolve({}));
 
                 return store
                     .dispatch(
@@ -272,7 +352,9 @@ describe('actions: transfers', () => {
 
                 const prepareTransfers = sinon.stub(iota.api, 'prepareTransfers').yields(null, trytes.zeroValue);
                 const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, []);
-                const syncAccountAfterSpending = sinon.stub(accountsUtils, 'syncAccountAfterSpending').resolves({});
+                const syncAccountAfterSpending = sinon
+                    .stub(accountsUtils, 'syncAccountAfterSpending')
+                    .returns(() => Promise.resolve({}));
 
                 return store
                     .dispatch(
@@ -323,23 +405,27 @@ describe('actions: transfers', () => {
                 sandbox.restore();
             });
 
-            describe.only('when transaction is successful', () => {
+            describe('when transaction is successful', () => {
                 it('should create nine actions of type IOTA/PROGRESS/SET_NEXT_STEP_AS_ACTIVE', () => {
                     const prepareTransfers = sinon.stub(iota.api, 'prepareTransfers').yields(null, trytes.value);
                     const wereAddressesSpentFrom = sinon.stub(iota.api, 'wereAddressesSpentFrom').yields(null, [false]);
 
-                    const getUnspentInputs = sinon.stub(inputUtils, 'getUnspentInputs').resolves({
-                        totalBalance: 110,
-                        availableBalance: 10,
-                        inputs: [
-                            {
-                                address:
-                                    'MVVQANCKCPSDGEHFEVT9RVYJWOPPEGZSAVLIZ9MGNRPJPUORYFOTP9FNCLBFMQKUXMHNRGZDTWUI9UDHW',
-                            },
-                        ],
-                    });
+                    const getUnspentInputs = sinon.stub(inputUtils, 'getUnspentInputs').returns(() =>
+                        Promise.resolve({
+                            totalBalance: 110,
+                            availableBalance: 10,
+                            inputs: [
+                                {
+                                    address:
+                                        'MVVQANCKCPSDGEHFEVT9RVYJWOPPEGZSAVLIZ9MGNRPJPUORYFOTP9FNCLBFMQKUXMHNRGZDTWUI9UDHW',
+                                },
+                            ],
+                        }),
+                    );
 
-                    const syncAccountAfterSpending = sinon.stub(accountsUtils, 'syncAccountAfterSpending').resolves({});
+                    const syncAccountAfterSpending = sinon
+                        .stub(accountsUtils, 'syncAccountAfterSpending')
+                        .returns(() => Promise.resolve({}));
 
                     const store = mockStore({ accounts });
 
@@ -377,7 +463,7 @@ describe('actions: transfers', () => {
                         const wereAddressesSpentFrom = sinon
                             .stub(iota.api, 'wereAddressesSpentFrom')
                             .yields(null, [true]);
-                        sinon.stub(accountsUtils, 'syncAccountAfterSpending').resolves({});
+                        sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns(() => Promise.resolve({}));
 
                         const store = mockStore({ accounts });
 
@@ -411,17 +497,19 @@ describe('actions: transfers', () => {
                         const wereAddressesSpentFrom = sinon
                             .stub(iota.api, 'wereAddressesSpentFrom')
                             .yields(null, [false]);
-                        sinon.stub(inputUtils, 'getUnspentInputs').resolves({
-                            totalBalance: 110,
-                            availableBalance: 10,
-                            inputs: [
-                                {
-                                    address:
-                                        'MVVQANCKCPSDGEHFEVT9RVYJWOPPEGZSAVLIZ9MGNRPJPUORYFOTP9FNCLBFMQKUXMHNRGZDTWUI9UDHW',
-                                },
-                            ],
-                        });
-                        sinon.stub(accountsUtils, 'syncAccountAfterSpending').resolves({});
+                        sinon.stub(inputUtils, 'getUnspentInputs').returns(() =>
+                            Promise.resolve({
+                                totalBalance: 110,
+                                availableBalance: 10,
+                                inputs: [
+                                    {
+                                        address:
+                                            'MVVQANCKCPSDGEHFEVT9RVYJWOPPEGZSAVLIZ9MGNRPJPUORYFOTP9FNCLBFMQKUXMHNRGZDTWUI9UDHW',
+                                    },
+                                ],
+                            }),
+                        );
+                        sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns(() => Promise.resolve({}));
 
                         return store
                             .dispatch(
@@ -455,18 +543,20 @@ describe('actions: transfers', () => {
                             .stub(iota.api, 'wereAddressesSpentFrom')
                             .yields(null, [false]);
 
-                        sinon.stub(inputUtils, 'getUnspentInputs').resolves({
-                            totalBalance: 110,
-                            availableBalance: 0,
-                            inputs: [],
-                            spentAddresses: [
-                                {
-                                    address:
-                                        'MVVQANCKCPSDGEHFEVT9RVYJWOPPEGZSAVLIZ9MGNRPJPUORYFOTP9FNCLBFMQKUXMHNRGZDTWUI9UDHW',
-                                },
-                            ],
-                        });
-                        sinon.stub(accountsUtils, 'syncAccountAfterSpending').resolves({});
+                        sinon.stub(inputUtils, 'getUnspentInputs').returns(() =>
+                            Promise.resolve({
+                                totalBalance: 110,
+                                availableBalance: 0,
+                                inputs: [],
+                                spentAddresses: [
+                                    {
+                                        address:
+                                            'MVVQANCKCPSDGEHFEVT9RVYJWOPPEGZSAVLIZ9MGNRPJPUORYFOTP9FNCLBFMQKUXMHNRGZDTWUI9UDHW',
+                                    },
+                                ],
+                            }),
+                        );
+                        sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns(() => Promise.resolve({}));
 
                         return store
                             .dispatch(
@@ -502,21 +592,23 @@ describe('actions: transfers', () => {
                             .stub(iota.api, 'wereAddressesSpentFrom')
                             .yields(null, [false]);
 
-                        sinon.stub(inputUtils, 'getUnspentInputs').resolves({
-                            totalBalance: 110,
-                            availableBalance: 10,
-                            inputs: [
-                                {
-                                    address:
-                                        'MVVQANCKCPSDGEHFEVT9RVYJWOPPEGZSAVLIZ9MGNRPJPUORYFOTP9FNCLBFMQKUXMHNRGZDTWUI9UDHW',
-                                },
-                                {
-                                    address:
-                                        'NNLAKCEDT9FMFLBIFWKHRIQJJETOSBSFPUCBWYYXXYKSLNCCSWOQRAVOYUSX9FMLGHMKUITLFEQIPHQLW',
-                                },
-                            ],
-                        });
-                        sinon.stub(accountsUtils, 'syncAccountAfterSpending').resolves({});
+                        sinon.stub(inputUtils, 'getUnspentInputs').returns(() =>
+                            Promise.resolve({
+                                totalBalance: 110,
+                                availableBalance: 10,
+                                inputs: [
+                                    {
+                                        address:
+                                            'MVVQANCKCPSDGEHFEVT9RVYJWOPPEGZSAVLIZ9MGNRPJPUORYFOTP9FNCLBFMQKUXMHNRGZDTWUI9UDHW',
+                                    },
+                                    {
+                                        address:
+                                            'NNLAKCEDT9FMFLBIFWKHRIQJJETOSBSFPUCBWYYXXYKSLNCCSWOQRAVOYUSX9FMLGHMKUITLFEQIPHQLW',
+                                    },
+                                ],
+                            }),
+                        );
+                        sinon.stub(accountsUtils, 'syncAccountAfterSpending').returns(() => Promise.resolve({}));
 
                         return store
                             .dispatch(

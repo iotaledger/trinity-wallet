@@ -1,5 +1,6 @@
 import head from 'lodash/head';
 import isNull from 'lodash/isNull';
+import isFunction from 'lodash/isFunction';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import IOTA from 'iota.lib.js';
@@ -13,20 +14,39 @@ import {
     DEFAULT_MIN_WEIGHT_MAGNITUDE,
     NODE_REQUEST_TIMEOUT,
 } from '../../config';
-import { performPow } from './transfers';
+import { performPow, sortTransactionTrytesArray } from './transfers';
+import { EMPTY_HASH_TRYTES } from './utils';
+
+/**
+ * Returns a new IOTA instance if provider is passed, otherwise returns the global instance
+ *
+ * @method getIotaInstance
+ * @param {string} [provider]
+ *
+ * @returns {object} IOTA instance
+ */
+const getIotaInstance = (provider) => {
+    if (provider) {
+        const instance = new IOTA({ provider });
+        instance.api.setApiTimeout(NODE_REQUEST_TIMEOUT);
+
+        return instance;
+    }
+
+    return iota;
+};
 
 /**
  * Promisified version of iota.api.getBalances
  *
  * @method getBalancesAsync
- * @param {array} addresses
- * @param {number} threshold
+ * @param {string} [provider]
  *
- * @returns {Promise}
+ * @returns {function(array, number): Promise<object>}
  */
-const getBalancesAsync = (addresses, threshold = DEFAULT_BALANCES_THRESHOLD) => {
-    return new Promise((resolve, reject) => {
-        iota.api.getBalances(addresses, threshold, (err, balances) => {
+const getBalancesAsync = (provider) => (addresses, threshold = DEFAULT_BALANCES_THRESHOLD) =>
+    new Promise((resolve, reject) => {
+        getIotaInstance(provider).api.getBalances(addresses, threshold, (err, balances) => {
             if (err) {
                 reject(err);
             } else {
@@ -34,22 +54,18 @@ const getBalancesAsync = (addresses, threshold = DEFAULT_BALANCES_THRESHOLD) => 
             }
         });
     });
-};
 
 /**
  * Promisified version of iota.api.getNodeInfo
  *
  * @method getNodeInfoAsync
- * @param {*} provider
+ * @param {string} [provider]
  *
- * @returns {Promise}
+ * @returns {function(): Promise<object>}
  */
-const getNodeInfoAsync = (provider = null) => {
-    return new Promise((resolve, reject) => {
-        const instance = provider ? new IOTA({ provider }) : iota;
-
-        instance.api.setApiTimeout(NODE_REQUEST_TIMEOUT);
-        instance.api.getNodeInfo((err, info) => {
+const getNodeInfoAsync = (provider) => () =>
+    new Promise((resolve, reject) => {
+        getIotaInstance(provider).api.getNodeInfo((err, info) => {
             if (err) {
                 reject(err);
             } else {
@@ -57,19 +73,18 @@ const getNodeInfoAsync = (provider = null) => {
             }
         });
     });
-};
 
 /**
- * Promisified version of iota.api.getTransactionObjects
+ * Promisified version of iota.api.getTransactionsObjects
  *
  * @method getTransactionsObjectsAsync
- * @param {array} hashes
+ * @param {string} [provider]
  *
- * @returns {Promise}
+ * @returns {function(array): Promise<any>}
  */
-const getTransactionsObjectsAsync = (hashes) => {
-    return new Promise((resolve, reject) => {
-        iota.api.getTransactionsObjects(hashes, (err, txs) => {
+const getTransactionsObjectsAsync = (provider) => (hashes) =>
+    new Promise((resolve, reject) => {
+        getIotaInstance(provider).api.getTransactionsObjects(hashes, (err, txs) => {
             if (err) {
                 reject(err);
             } else {
@@ -77,31 +92,29 @@ const getTransactionsObjectsAsync = (hashes) => {
             }
         });
     });
-};
 
 /**
  * Promisified version of iota.api.findTransactionObjects
  *
- * @method getTransactionsObjectsAsync
- * @param {object} args
+ * @method findTransactionObjectsAsync
+ * @param {string} [provider]
  *
- * @returns {Promise}
+ * @returns {function(object): Promise<any>}
  */
-const findTransactionObjectsAsync = (args) => {
-    return findTransactionsAsync(args).then((hashes) => getTransactionsObjectsAsync(hashes));
-};
+const findTransactionObjectsAsync = (provider) => (args) =>
+    findTransactionsAsync(provider)(args).then((hashes) => getTransactionsObjectsAsync(provider)(hashes));
 
 /**
  * Promisified version of iota.api.findTransactions
  *
  * @method findTransactionsAsync
- * @param {object} args
+ * @param {string} [provider]
  *
- * @returns {Promise}
+ * @returns {function(object): Promise<array>}
  */
-const findTransactionsAsync = (args) => {
-    return new Promise((resolve, reject) => {
-        iota.api.findTransactions(args, (err, txs) => {
+const findTransactionsAsync = (provider) => (args) =>
+    new Promise((resolve, reject) => {
+        getIotaInstance(provider).api.findTransactions(args, (err, txs) => {
             if (err) {
                 reject(err);
             } else {
@@ -109,19 +122,18 @@ const findTransactionsAsync = (args) => {
             }
         });
     });
-};
 
 /**
  * Promisified version of iota.api.getLatestInclusion
  *
  * @method getLatestInclusionAsync
- * @param {array} hashes
+ * @param {string} [provider]
  *
- * @returns {Promise}
+ * @returns {function(array): Promise<array>}
  */
-const getLatestInclusionAsync = (hashes) => {
-    return new Promise((resolve, reject) => {
-        iota.api.getLatestInclusion(hashes, (err, states) => {
+const getLatestInclusionAsync = (provider) => (hashes) =>
+    new Promise((resolve, reject) => {
+        getIotaInstance(provider).api.getLatestInclusion(hashes, (err, states) => {
             if (err) {
                 reject(err);
             } else {
@@ -129,116 +141,95 @@ const getLatestInclusionAsync = (hashes) => {
             }
         });
     });
-};
 
 /**
  * Extended version of iota.api.promoteTransaction with an option to perform PoW locally
  *
  * @method promoteTransactionAsync
- * @param {string} hash
- * @param {*} powFn
- * @param {number} depth
- * @param {number} minWeightMagnitude
- * @param {object} transfer
- * @param {object} options
+ * @param {*} [provider]
+ * @param {function} [powFn]
  *
- * @returns {Promise}
+ * @returns {function(string, number, number, object): Promise<string>}
  */
-const promoteTransactionAsync = (
+const promoteTransactionAsync = (provider, powFn) => (
     hash,
-    powFn = null,
     depth = DEFAULT_DEPTH,
-    minWeightMagnitude = 14,
+    minWeightMagnitude = DEFAULT_MIN_WEIGHT_MAGNITUDE,
     transfer = { address: 'U'.repeat(81), value: 0, message: '', tag: '' },
-    options = { interrupt: false, delay: 0 },
 ) => {
-    // If proof of work function is not provided, offload promotion to a remote node
-    const shouldOffloadPow = isNull(powFn);
-
     const cached = {
         trytes: [],
     };
 
-    return iota.api
-        .isPromotable(hash)
+    return isPromotable(provider)(hash)
         .then((isPromotable) => {
             if (!isPromotable) {
                 throw new Error(Errors.INCONSISTENT_SUBTANGLE);
             }
 
-            return prepareTransfersAsync(transfer.address, [transfer], options);
+            return prepareTransfersAsync(provider)(transfer.address, [transfer]);
         })
         .then((trytes) => {
             cached.trytes = trytes;
 
-            return getTransactionsToApproveAsync(hash, depth);
+            return getTransactionsToApproveAsync(provider)(hash, depth);
         })
-        .then(
-            ({ trunkTransaction, branchTransaction }) =>
-                shouldOffloadPow
-                    ? attachToTangleAsync(trunkTransaction, branchTransaction, cached.trytes, minWeightMagnitude)
-                    : performPow(powFn, cached.trytes, trunkTransaction, branchTransaction, minWeightMagnitude),
+        .then(({ trunkTransaction, branchTransaction }) =>
+            attachToTangleAsync(provider, powFn)(
+                trunkTransaction,
+                branchTransaction,
+                cached.trytes,
+                minWeightMagnitude,
+            ),
         )
         .then(({ trytes }) => {
             cached.trytes = trytes;
 
-            return storeAndBroadcastAsync(cached.trytes);
+            return storeAndBroadcastAsync(provider)(cached.trytes);
         })
         .then(() => hash);
 };
 
 /**
- * Extended version of iota.api.replayBundle with an option to perform PoW locally
+ * Promisified version of iota.api.replayBundle
  *
  * @method replayBundleAsync
- * @param {string} hash
- * @param {*} powFn
- * @param {number} depth
- * @param {number} minWeightMagnitude
+ * @param {*} [provider]
+ * @param {function} [powFn]
  *
- * @returns {Promise}
+ * @returns {function(string, function, number, number): Promise<array>}
  */
-const replayBundleAsync = (
+const replayBundleAsync = (provider, powFn) => (
     hash,
-    powFn = null,
     depth = DEFAULT_DEPTH,
     minWeightMagnitude = DEFAULT_MIN_WEIGHT_MAGNITUDE,
 ) => {
-    const shouldOffloadPow = isNull(powFn);
-
     const cached = {
         trytes: [],
         transactionObjects: [],
     };
 
-    return getBundleAsync(hash)
+    return getBundleAsync(provider)(hash)
         .then((bundle) => {
-            if (isNull(bundle)) {
-                throw new Error(Errors.INVALID_BUNDLE);
-            }
-
             const convertToTrytes = (tx) => iota.utils.transactionTrytes(tx);
             cached.trytes = map(bundle, convertToTrytes);
             cached.transactionObjects = bundle;
 
-            return getTransactionsToApproveAsync(null, depth);
+            return getTransactionsToApproveAsync(provider)(null, depth);
         })
-        .then(
-            ({ trunkTransaction, branchTransaction }) =>
-                shouldOffloadPow
-                    ? attachToTangleAsync(
-                          trunkTransaction,
-                          branchTransaction,
-                          cached.trytes.reverse(),
-                          minWeightMagnitude,
-                      )
-                    : performPow(powFn, cached.trytes, trunkTransaction, branchTransaction, minWeightMagnitude),
+        .then(({ trunkTransaction, branchTransaction }) =>
+            attachToTangleAsync(provider, powFn)(
+                trunkTransaction,
+                branchTransaction,
+                cached.trytes,
+                minWeightMagnitude,
+            ),
         )
         .then(({ trytes, transactionObjects }) => {
             cached.trytes = trytes;
             cached.transactionObjects = transactionObjects;
 
-            return storeAndBroadcastAsync(cached.trytes);
+            return storeAndBroadcastAsync(provider)(cached.trytes);
         })
         .then(() => cached.transactionObjects);
 };
@@ -247,37 +238,32 @@ const replayBundleAsync = (
  * Promisified version of iota.api.getBundle
  *
  * @method getBundleAsync
- * @param {string} tailTransactionHash
+ * @param {string} [provider]
  *
- * @returns {Promise}
+ * @returns {function(string): Promise<array>}
  */
-const getBundleAsync = (tailTransactionHash) => {
-    return new Promise((resolve, reject) => {
-        iota.api.getBundle(tailTransactionHash, (err, bundle) => {
+const getBundleAsync = (provider) => (tailTransactionHash) =>
+    new Promise((resolve, reject) => {
+        getIotaInstance(provider).api.getBundle(tailTransactionHash, (err, bundle) => {
             if (err) {
-                if (err.message.includes(Errors.INVALID_BUNDLE)) {
-                    resolve(null);
-                } else {
-                    reject(err);
-                }
+                reject(err);
             } else {
                 resolve(bundle);
             }
         });
     });
-};
 
 /**
  * Promisified version of iota.api.wereAddressesSpentFrom
  *
  * @method wereAddressesSpentFromAsync
- * @param {array} addresses
+ * @param {string} [provider]
  *
- * @returns {Promise}
+ * @returns {function(array): Promise<array>}
  */
-const wereAddressesSpentFromAsync = (addresses) => {
-    return new Promise((resolve, reject) => {
-        iota.api.wereAddressesSpentFrom(addresses, (err, wereSpent) => {
+const wereAddressesSpentFromAsync = (provider) => (addresses) =>
+    new Promise((resolve, reject) => {
+        getIotaInstance(provider).api.wereAddressesSpentFrom(addresses, (err, wereSpent) => {
             if (err) {
                 reject(err);
             } else {
@@ -285,53 +271,47 @@ const wereAddressesSpentFromAsync = (addresses) => {
             }
         });
     });
-};
 
 /**
  * Promisified version of iota.api.sendTransfer
  *
  * @method sendTransferAsync
- * @param {string} seed
- * @param {array} transfers
- * @param {*} powFn
- * @param {*} options
- * @param {number} depth
- * @param {number} minWeightMagnitude
+ * @param {*} [provider]
+ * @param {function} [powFn]
  *
- * @returns {Promise}
+ * @returns {function(string, array, function, *, number, number): Promise<array>}
  */
-const sendTransferAsync = (
+const sendTransferAsync = (provider, powFn) => (
     seed,
     transfers,
-    powFn = null,
     options = null,
     depth = DEFAULT_DEPTH,
     minWeightMagnitude = DEFAULT_MIN_WEIGHT_MAGNITUDE,
 ) => {
-    const shouldOffloadPow = isNull(powFn);
-
     const cached = {
         trytes: [],
         transactionObjects: [],
     };
 
-    return prepareTransfersAsync(seed, transfers, options)
+    return prepareTransfersAsync(provider)(seed, transfers, options)
         .then((trytes) => {
             cached.trytes = trytes;
 
-            return getTransactionsToApproveAsync(null, depth);
+            return getTransactionsToApproveAsync(provider)(null, depth);
         })
-        .then(
-            ({ trunkTransaction, branchTransaction }) =>
-                shouldOffloadPow
-                    ? attachToTangleAsync(trunkTransaction, branchTransaction, cached.trytes, minWeightMagnitude)
-                    : performPow(powFn, cached.trytes, trunkTransaction, branchTransaction, minWeightMagnitude),
+        .then(({ trunkTransaction, branchTransaction }) =>
+            attachToTangleAsync(provider, powFn)(
+                trunkTransaction,
+                branchTransaction,
+                cached.trytes,
+                minWeightMagnitude,
+            ),
         )
         .then(({ trytes, transactionObjects }) => {
             cached.trytes = trytes;
             cached.transactionObjects = transactionObjects;
 
-            return storeAndBroadcastAsync(cached.trytes);
+            return storeAndBroadcastAsync(provider)(cached.trytes);
         })
         .then(() => cached.transactionObjects);
 };
@@ -340,14 +320,13 @@ const sendTransferAsync = (
  * Promisified version of iota.api.getTransactionsToApprove
  *
  * @method getTransactionsToApproveAsync
- * @param {*} reference
- * @param {number} depth
+ * @param {string} [provider]
  *
- * @returns {Promise}
+ * @returns {function(*, number): Promise<object>}
  */
-const getTransactionsToApproveAsync = (reference = null, depth = DEFAULT_DEPTH) => {
-    return new Promise((resolve, reject) => {
-        iota.api.getTransactionsToApprove(depth, reference, (err, transactionsToApprove) => {
+const getTransactionsToApproveAsync = (provider) => (reference = null, depth = DEFAULT_DEPTH) =>
+    new Promise((resolve, reject) => {
+        getIotaInstance(provider).api.getTransactionsToApprove(depth, reference, (err, transactionsToApprove) => {
             if (err) {
                 reject(err);
             } else {
@@ -355,19 +334,16 @@ const getTransactionsToApproveAsync = (reference = null, depth = DEFAULT_DEPTH) 
             }
         });
     });
-};
 
 /**
  * Promisified version of iota.api.prepareTransfers
  *
  * @method prepareTransfersAsync
- * @param {string} seed
- * @param {array} transfers
- * @param {*} options
+ * @param {string} [provider]
  *
- * @returns {Promise}
+ * @returns {function(string, array, *): Promise<any>}
  */
-const prepareTransfersAsync = (seed, transfers, options = null) => {
+const prepareTransfersAsync = (provider) => (seed, transfers, options = null) => {
     // https://github.com/iotaledger/iota.lib.js/blob/e60c728c836cb37f3d6fb8b0eff522d08b745caa/lib/api/api.js#L1058
     let args = [seed, transfers];
 
@@ -376,7 +352,7 @@ const prepareTransfersAsync = (seed, transfers, options = null) => {
     }
 
     return new Promise((resolve, reject) => {
-        iota.api.prepareTransfers(...args, (err, trytes) => {
+        getIotaInstance(provider).api.prepareTransfers(...args, (err, trytes) => {
             if (err) {
                 reject(err);
             } else {
@@ -390,13 +366,13 @@ const prepareTransfersAsync = (seed, transfers, options = null) => {
  * Promisified version of iota.api.storeAndBroadcast
  *
  * @method storeAndBroadcastAsync
- * @param {array} trytes
+ * @param {string} [provider]
  *
- * @returns {Promise}
+ * @returns {function(array): Promise<any>}
  */
-const storeAndBroadcastAsync = (trytes) => {
-    return new Promise((resolve, reject) => {
-        iota.api.storeAndBroadcast(trytes, (err) => {
+const storeAndBroadcastAsync = (provider) => (trytes) =>
+    new Promise((resolve, reject) => {
+        getIotaInstance(provider).api.storeAndBroadcast(trytes, (err) => {
             if (err) {
                 reject(err);
             } else {
@@ -404,7 +380,6 @@ const storeAndBroadcastAsync = (trytes) => {
             }
         });
     });
-};
 
 /**
  * Checks if attachToTangle is available on the provided node
@@ -431,55 +406,70 @@ const checkAttachToTangleAsync = (node) => {
  * Promisified version of iota.api.attachToTangle
  *
  * @method attachToTangleAsync
- * @param {string} trunkTransaction
- * @param {string} branchTransaction
- * @param {array} trytes
- * @param {number} minWeightMagnitude
+ * @param {*} [provider]
+ * @param {function} [powFn]
  *
- * @returns {Promise}
+ * @returns {function(string, string, array, number): Promise<object>}
  */
-const attachToTangleAsync = (
+const attachToTangleAsync = (provider, powFn) => (
     trunkTransaction,
     branchTransaction,
     trytes,
     minWeightMagnitude = DEFAULT_MIN_WEIGHT_MAGNITUDE,
 ) => {
-    return new Promise((resolve, reject) => {
-        iota.api.attachToTangle(
-            trunkTransaction,
-            branchTransaction,
-            minWeightMagnitude,
-            trytes,
-            (err, attachedTrytes) => {
-                if (err) {
-                    reject(err);
-                } else {
-                    const promise = () =>
-                        reduce(
-                            attachedTrytes,
-                            (promise, tryteString) => {
-                                return promise.then((result) => {
-                                    return nativeBindings.asyncTransactionObject(tryteString).then((tx) => {
-                                        result.push(tx);
+    const shouldOffloadPow = !isFunction(powFn);
 
-                                        return result;
+    if (shouldOffloadPow) {
+        return new Promise((resolve, reject) => {
+            getIotaInstance(provider).api.attachToTangle(
+                trunkTransaction,
+                branchTransaction,
+                minWeightMagnitude,
+                // Make sure trytes are sorted properly
+                sortTransactionTrytesArray(trytes),
+                (err, attachedTrytes) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        const convertToTransactionObjects = () =>
+                            reduce(
+                                attachedTrytes,
+                                (promise, tryteString) => {
+                                    return promise.then((result) => {
+                                        return nativeBindings.asyncTransactionObject(tryteString).then((tx) => {
+                                            result.push(tx);
+
+                                            return result;
+                                        });
                                     });
-                                });
-                            },
-                            Promise.resolve([]),
-                        );
+                                },
+                                Promise.resolve([]),
+                            );
 
-                    promise()
-                        .then((transactionObjects) =>
-                            resolve({
-                                transactionObjects,
-                                trytes: attachedTrytes,
-                            }),
-                        )
-                        .catch(reject);
-                }
-            },
-        );
+                        convertToTransactionObjects()
+                            .then((transactionObjects) => {
+                                if (iota.utils.isBundle(transactionObjects)) {
+                                    resolve({
+                                        transactionObjects,
+                                        trytes: attachedTrytes,
+                                    });
+                                } else {
+                                    reject(new Error(Errors.INVALID_BUNDLE_CONSTRUCTED_DURING_REATTACHMENT));
+                                }
+                            })
+                            .catch(reject);
+                    }
+                },
+            );
+        });
+    }
+
+    return performPow(powFn, trytes, trunkTransaction, branchTransaction, minWeightMagnitude).then((result) => {
+        if (!iota.utils.isBundle(result.transactionObjects)) {
+            throw new Error(Errors.INVALID_BUNDLE_CONSTRUCTED_DURING_REATTACHMENT);
+        }
+
+        return result;
     });
 };
 
@@ -487,17 +477,13 @@ const attachToTangleAsync = (
  * Promisified version of iota.api.getTrytes
  *
  * @method getTrytesAsync
- * @param {array} hashes
- * @param {*} provider
+ * @param {string} [provider]
  *
- * @returns {Promise}
+ * @returns {function(array): Promise<array>}
  */
-const getTrytesAsync = (hashes, provider = null) => {
-    return new Promise((resolve, reject) => {
-        const instance = provider ? new IOTA({ provider }) : iota;
-
-        instance.api.setApiTimeout(NODE_REQUEST_TIMEOUT);
-        instance.api.getTrytes(hashes, (err, trytes) => {
+const getTrytesAsync = (provider) => (hashes) =>
+    new Promise((resolve, reject) => {
+        getIotaInstance(provider).api.getTrytes(hashes, (err, trytes) => {
             if (err) {
                 reject(err);
             } else {
@@ -505,22 +491,21 @@ const getTrytesAsync = (hashes, provider = null) => {
             }
         });
     });
-};
 
 /**
  * Checks if a node is synced
  *
  * @method isNodeSynced
- * @param {*} provider
+ * @param {string} [provider]
  *
  * @returns {Promise}
  */
-const isNodeSynced = (provider = null) => {
+const isNodeSynced = (provider) => {
     const cached = {
-        latestMilestone: '9'.repeat(81),
+        latestMilestone: EMPTY_HASH_TRYTES,
     };
 
-    return getNodeInfoAsync(provider)
+    return getNodeInfoAsync(provider)()
         .then(
             ({
                 latestMilestone,
@@ -532,9 +517,9 @@ const isNodeSynced = (provider = null) => {
                 if (
                     (cached.latestMilestone === latestSolidSubtangleMilestone ||
                         latestMilestoneIndex - 1 === latestSolidSubtangleMilestoneIndex) &&
-                    cached.latestMilestone !== '9'.repeat(81)
+                    cached.latestMilestone !== EMPTY_HASH_TRYTES
                 ) {
-                    return getTrytesAsync([cached.latestMilestone], provider);
+                    return getTrytesAsync(provider)([cached.latestMilestone]);
                 }
 
                 throw new Error(Errors.NODE_NOT_SYNCED);
@@ -595,7 +580,19 @@ const generateAddressesAsync = (seed, options, addressesGenFn = null) => {
     return addressesGenFn(seed, index, security, total);
 };
 
+/**
+ * Extended version of iota.api.isPromotable.
+ *
+ * @method isPromotable
+ * @param {string} [provider]
+ *
+ * @returns {function(string): (Promise<boolean>)}
+ */
+const isPromotable = (provider) => (tailTransactionHash) =>
+    getIotaInstance(provider).api.isPromotable(tailTransactionHash);
+
 export {
+    getIotaInstance,
     getBalancesAsync,
     getNodeInfoAsync,
     getTransactionsObjectsAsync,
@@ -615,4 +612,5 @@ export {
     isNodeSynced,
     generateAddressAsync,
     generateAddressesAsync,
+    isPromotable,
 };

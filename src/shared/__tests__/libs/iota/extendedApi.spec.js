@@ -1,9 +1,11 @@
+import isEqual from 'lodash/isEqual';
 import map from 'lodash/map';
 import { expect } from 'chai';
 import sinon from 'sinon';
-import { isNodeSynced } from '../../../libs/iota/extendedApi';
+import { getIotaInstance, isNodeSynced } from '../../../libs/iota/extendedApi';
 import { iota, SwitchingConfig } from '../../../libs/iota/index';
 import trytes from '../../__samples__/trytes';
+import { EMPTY_HASH_TRYTES } from '../../../libs/iota/utils';
 
 describe('libs: iota/extendedApi', () => {
     before(() => {
@@ -12,6 +14,22 @@ describe('libs: iota/extendedApi', () => {
 
     after(() => {
         SwitchingConfig.autoSwitch = true;
+    });
+
+    describe('#getIotaInstance', () => {
+        describe('when "provider" is passed as an argument', () => {
+            it('should not return global iota instance', () => {
+                const instance = getIotaInstance('provider');
+                expect(isEqual(instance, iota)).to.equal(false);
+            });
+        });
+
+        describe('when "provider" is not passed as an argument', () => {
+            it('should return global iota instance', () => {
+                const instance = getIotaInstance();
+                expect(isEqual(instance, iota)).to.equal(true);
+            });
+        });
     });
 
     describe('#isNodeSynced', () => {
@@ -28,7 +46,7 @@ describe('libs: iota/extendedApi', () => {
         describe('when latestMilestone is not equal to latestSolidSubtangleMilestone', () => {
             beforeEach(() => {
                 sandbox.stub(iota.api, 'getNodeInfo').yields(null, {
-                    latestMilestone: '9'.repeat(81),
+                    latestMilestone: EMPTY_HASH_TRYTES,
                     latestSolidSubtangleMilestone: 'U'.repeat(81),
                 });
             });
@@ -38,11 +56,11 @@ describe('libs: iota/extendedApi', () => {
             });
         });
 
-        describe(`when latestMilestone is ${'9'.repeat(81)}`, () => {
+        describe(`when latestMilestone is ${EMPTY_HASH_TRYTES}`, () => {
             beforeEach(() => {
                 sandbox.stub(iota.api, 'getNodeInfo').yields(null, {
-                    latestMilestone: '9'.repeat(81),
-                    latestSolidSubtangleMilestone: '9'.repeat(81),
+                    latestMilestone: EMPTY_HASH_TRYTES,
+                    latestSolidSubtangleMilestone: EMPTY_HASH_TRYTES,
                 });
             });
 
@@ -91,7 +109,7 @@ describe('libs: iota/extendedApi', () => {
             });
         });
 
-        describe(`when latestMilestone is not ${'9'.repeat(81)} and is equal to latestSolidSubtangleMilestone`, () => {
+        describe(`when latestMilestone is not ${EMPTY_HASH_TRYTES} and is equal to latestSolidSubtangleMilestone`, () => {
             beforeEach(() => {
                 sandbox.stub(iota.api, 'getNodeInfo').yields(null, {
                     latestMilestone: 'U'.repeat(81),
