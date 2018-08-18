@@ -9,8 +9,9 @@ import { connect } from 'react-redux';
 import { getSeed } from 'libs/crypto';
 import { capitalize } from 'libs/helpers';
 
-import { getSelectedAccountName } from 'selectors/accounts';
 import { getAccountInfo } from 'actions/accounts';
+
+import { getSelectedAccountName } from 'selectors/accounts';
 
 import Icon from 'ui/components/Icon';
 import List from 'ui/components/List';
@@ -28,9 +29,9 @@ import css from './dashboard.scss';
 class Dashboard extends React.PureComponent {
     static propTypes = {
         /** @ignore */
-        accountName: PropTypes.string.isRequired,
-        /** @ignore */
         getAccountInfo: PropTypes.func.isRequired,
+        /** @ignore */
+        accountName: PropTypes.string.isRequired,
         /** @ignore */
         password: PropTypes.object,
         /** @ignore */
@@ -56,7 +57,7 @@ class Dashboard extends React.PureComponent {
 
         const seed = await getSeed(password, accountName, true);
 
-        this.props.getAccountInfo(seed, accountName, null, Electron.genFn);
+        this.props.getAccountInfo(seed, accountName, null, Electron.genFn, Electron.notify);
     };
 
     render() {

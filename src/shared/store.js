@@ -18,7 +18,7 @@ import alertsMiddleware from './middlewares/alerts';
 import modalMiddleware from './middlewares/modal';
 import { __DEV__ } from './config';
 
-const developmentMiddleware = [thunk, logger, networkMiddleware, alertsMiddleware, modalMiddleware];
+const developmentMiddleware = [thunk, networkMiddleware, alertsMiddleware, modalMiddleware];
 const productionMiddleware = [thunk, networkMiddleware, alertsMiddleware, modalMiddleware];
 
 const reducers = combineReducers({

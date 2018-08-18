@@ -15,6 +15,7 @@ import createPlugin from 'bugsnag-react';
 import themes from 'themes/themes';
 
 import Index from 'ui/Index';
+import Tray from 'ui/Tray';
 
 import Alerts from 'ui/global/Alerts';
 
@@ -30,14 +31,21 @@ export const bugsnagClient = bugsnag({
         report.user = { id: uuid };
     },
 });
+
 const ErrorBoundary = bugsnagClient.use(createPlugin(React));
 
-const persistConfig = {
-    storage: persistElectronStorage,
-    blacklist: ['wallet', 'polling', 'ui'],
-};
+const persistConfig =
+    Electron.mode === 'tray'
+        ? {
+              storage: persistElectronStorage,
+              whitelist: [],
+          }
+        : {
+              storage: persistElectronStorage,
+              blacklist: ['wallet', 'polling', 'ui'],
+          };
 
-persistStore(store, persistConfig, (err, restoredState) => {
+const persistor = persistStore(store, persistConfig, (err, restoredState) => {
     const node = get(restoredState, 'settings.node');
     const bgColor = get(restoredState, 'settings.theme.body.bg');
 
@@ -52,18 +60,31 @@ persistStore(store, persistConfig, (err, restoredState) => {
     }
 });
 
+if (Electron.mode === 'tray') {
+    Electron.onEvent('storage.update', (payload) => {
+        const data = JSON.parse(payload);
+        const statePartial = {};
+        statePartial[data.key.replace('reduxPersist:', '')] = data.item;
+        persistor.rehydrate(statePartial, { serial: true });
+    });
+}
+
 render(
     <ErrorBoundary>
         <Redux store={store}>
             <I18nextProvider i18n={i18next}>
-                <React.Fragment>
-                    <Alerts />
-                    <Router>
-                        <Index />
-                    </Router>
-                </React.Fragment>
+                <Router>
+                    {Electron.mode === 'tray' ? (
+                        <Tray />
+                    ) : (
+                        <React.Fragment>
+                            <Alerts />
+                            <Index />
+                        </React.Fragment>
+                    )}
+                </Router>
             </I18nextProvider>
-        </Redux>,
+        </Redux>
     </ErrorBoundary>,
     document.getElementById('root'),
 );

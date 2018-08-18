@@ -86,7 +86,7 @@ class Send extends React.PureComponent {
     }
 
     confirmTransfer = async () => {
-        const { fields, password, accountName, sendTransfer, settings} = this.props;
+        const { fields, password, accountName, sendTransfer, settings } = this.props;
 
         this.setState({
             isTransferModalVisible: false,
@@ -95,7 +95,7 @@ class Send extends React.PureComponent {
         const seed = await getSeed(password, accountName, true);
         const powFn = !settings.remotePoW ? Electron.powFn : null;
 
-        sendTransfer(seed, fields.address, parseInt(fields.amount) || 0, fields.message, null, powFn);
+        sendTransfer(seed, fields.address, parseInt(fields.amount) || 0, fields.message, null, powFn, Electron.genFn);
     };
 
     render() {
