@@ -614,9 +614,7 @@
         "local": "Kohalik",
         "remote": "Kaug",
         "powUpdated": "Töötõendi sätted",
-        "powUpdatedExplanation": "Teie töötõendi seadistus on uuendatud.",
-        "noWebGLSupport": "WebGL pole toetatud",
-        "noWebGLSupportExplanation": "Teie arvuti ei toeta WebGLi. Palun kasutage kaugtöö tõendit."
+        "powUpdatedExplanation": "Teie töötõendi seadistus on uuendatud."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Automaatse edutamise sätted",
