@@ -614,9 +614,7 @@
         "local": "Lokalnie",
         "remote": "Zdalnie",
         "powUpdated": "Konfiguracja PoW",
-        "powUpdatedExplanation": "Twoja konfiguracja Proof of Work została zaktualizowana.",
-        "noWebGLSupport": "WebGL nieobsługiwane",
-        "noWebGLSupportExplanation": "Twój komputer nie obsługuje technologii WebGL. Użyj zdalnego trybu PoW."
+        "powUpdatedExplanation": "Twoja konfiguracja Proof of Work została zaktualizowana."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Ustawienia autopromowania",
