@@ -1,12 +1,13 @@
 {
     "global": {
         "send": "ENVOYER",
-        "cancel": "Cancel",
+        "cancel": "Annuler",
         "continue?": "Êtes-vous sûr(e) de vouloir continuer ?",
         "noTransactions": "AUCUN HISTORIQUE RÉCENT",
         "refresh": "Rafraîchir",
         "balanceError": "Solde insuffisant",
         "balanceErrorMessage": "Vous n’avez pas assez de IOTA pour effectuer ce transfert.",
+        "totalBalance": "Total balance",
         "transferError": "Erreur de transfert",
         "transferErrorMessage": "Une erreur s'est produite lors du transfert. Veuillez réessayer.",
         "transferSent": "Transfert effectué",
@@ -23,12 +24,12 @@
         "thisNodeOutOfSync": "Ce serveur est désynchronisé. Veuillez changer le serveur ou essayer à nouveau.",
         "seed": "Seed",
         "checksum": "Code de Vérification",
-        "back": "Back",
+        "back": "Retour",
         "goBack": "Retour",
         "goBackStep": "Revenez une étape en arrière",
-        "done": "Done",
+        "done": "Términé",
         "prev": "PREC",
-        "next": "Next",
+        "next": "Suivant",
         "apply": "Appliquer",
         "save": "Enregistrer",
         "close": "Fermer",
@@ -53,13 +54,13 @@
         "fifthWallet": "CINQUIÈME COMPTE",
         "sixthWallet": "SIXIÈME COMPTE",
         "otherWallet": "AUTRE COMPTE",
-        "yes": "Yes",
-        "no": "No",
-        "okay": "Okay",
+        "yes": "Oui",
+        "no": "Non",
+        "okay": "D'accord",
         "password": "Mot de passe",
         "unrecognisedPassword": "Mot de passe non reconnu",
         "unrecognisedPasswordExplanation": "Le mot de passe est incorrect. Veuillez réessayer.",
-        "capsLockIsOn": "Caps Lock is on",
+        "capsLockIsOn": "Majuscules activées",
         "syncInProgress": "Synchronisation en cours",
         "syncInProgressExplanation": "Veuillez attendre que la synchronisation soit terminée.",
         "somethingWentWrong": "Une erreur s'est produite",
@@ -72,7 +73,7 @@
         "attachToTangleUnavailableExplanation": "Preuve du travail à distance non disponible sur le serveur sélectionné. Modifiez le serveur ou sélectionnez Preuve de Travail en local dans les paramètres avancés.",
         "attachToTangleUnavailableExplanationShort": "Preuve de travail à distance non disponible sur le nœud sélectionné.",
         "wallet": "Portefeuille",
-        "all": "All",
+        "all": "Tout",
         "sent": "Envoyé",
         "received": "Reçue",
         "sending": "Envoi en cours",
@@ -99,7 +100,7 @@
         "transactionAlreadyConfirmed": "Transaction déjà confirmée",
         "transactionAlreadyConfirmedExplanation": "La transaction que vous essayez de promouvoir est déjà confirmée.",
         "cannotSendToOwn": "Sending to an input address",
-        "cannotSendToOwnExplanation": "You cannot send to an address that is being used as an input in the transaction.",
+        "cannotSendToOwnExplanation": "Vous ne pouvez pas envoyer à une adresse qui est utilisée comme une entrée dans la transaction.",
         "pleaseWait": "Veuillez patienter",
         "pleaseWaitEllipses": "Merci de patienter...",
         "pleaseWaitExplanation": "Trinity est en train d'effectuer une autre tâche. Veuillez réessayer plus tard.",
@@ -123,7 +124,7 @@
         "seedThief": "Si quelqu'un d'autre détient votre seed, il pourra voler vos IOTA.",
         "googlePlayServicesNotAvailable": "Les services Google Play ne sont pas disponibles",
         "couldNotVerifyDeviceIntegrity": "Impossible de vérifier l'intégrité de l'appareil car les services Google Play ne sont pas disponibles.",
-        "clear": "Clear",
+        "clear": "Effacer",
         "noNetworkConnection": "Aucune connexion réseau",
         "noNetworkConnectionExplanation": "Votre connexion à internet semble être hors-ligne.",
         "spentAddressExplanation": "ATTENTION : Fonds sur des adresses déjà utilisées",
@@ -138,13 +139,13 @@
         "headToAdvancedSettingsForTransition": "Dirigez-vous vers les paramètres avancés et effectuez une Transition de snapshot.",
         "usingTrinityWalletWithKeePass": "Utilisation de Trinity avec Keepass2Android",
         "signedTrytesBroadcastErrorExplanation": "Une erreur réseau est survenue lors de la retransmission de votre transaction.",
-        "broadcastError": "Could not broadcast transfer",
-        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
-        "problemSendingYourTransaction": "There was a problem sending your transaction.",
-        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
-        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
-        "tryingAgainWithDifferentNode": "Trying again with a different node.",
-        "errorFetchingAccountInformation": "Error fetching account information."
+        "broadcastError": "Impossible de retransmettre la transaction",
+        "addressesAlreadySpentFrom": "Une ou plusieurs des adresses ont déjà été dépensés depuis.",
+        "problemSendingYourTransaction": "Il y a eu un problème lors de l'envoi de votre transaction.",
+        "problemPerformingProofOfWork": "Il y avait un problème en durant la preuve de travail.",
+        "tryingAgainWithLocalPoW": "Essayer de nouveau avec une preuve de travail local.",
+        "tryingAgainWithDifferentNode": "Essayer de nouveau avec un autre nœud.",
+        "errorFetchingAccountInformation": "Erreur durant la récupération des informations de votre compte."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "La seed contient des caractères invalides",
@@ -169,28 +170,28 @@
         "passwordsDoNotMatch": "Les mots de passe ne correspondent pas",
         "passwordsDoNotMatchExplanation": "Les mots de passe ne correspondent pas. Veuillez réessayer.",
         "passwordTooShort": "Le mot de passe est trop court",
-        "passwordTooShortExplanation": "Your password must be at least 11 characters. Please try again.",
+        "passwordTooShortExplanation": "Votre mot de passe doit contenir au moins 11 caractères. Veuillez réessayer.",
         "oldPassword": "Impossible de réutiliser l'ancien mot de passe",
         "oldPasswordExplanation": "Vous ne pouvez pas réutiliser l’ancien mot de passe. Veuillez utiliser un nouveau mot de passe.",
-        "ensureStrongPassword": "Ensure you use a strong password of at least 11 characters.",
+        "ensureStrongPassword": "Veillez à utiliser un mot de passe fort d'au moins 11 caractères.",
         "currentPassword": "Mot de passe actuel",
         "newPassword": "Nouveau mot de passe",
         "confirmPassword": "Confirmer le nouveau mot de passe",
         "passwordTooWeak": "Mot de passe trop faible",
-        "passwordTooWeakReason": "Your password is too weak. Use a combination of words, and avoid common phrases, names or dates.",
-        "reasonRow": "Straight rows of keys are easy to guess.",
-        "reasonPattern": "Short patterns of keys are easy to guess.",
-        "reasonNames": "Common names and surnames are easy to guess.",
-        "reasonRepeats": "Repeats like 'aaa' are easy to guess.",
-        "reasonRepeats2": "Repeats like 'abcabcabc' are only slightly harder to guess than 'abc'.",
-        "reasonSequence": "Sequences like abc or 54321 are easy to guess.",
-        "reasonYears": "Recent years are easy to guess.",
-        "reasonDates": "Dates are often easy to guess.",
-        "reasonTop10": "This is a top 10 common password.",
-        "reasonTop100": "This is a top 100 common password.",
-        "reasonCommon": "This is a very common password.",
-        "reasonSimilar": "This is similar to a commonly-used password.",
-        "reasonWord": "A single word is easy to guess."
+        "passwordTooWeakReason": "Votre mot de passe est trop faible. Utilisez une combinaison de mots, mais évitez les phrases communes, les noms ou les dates.",
+        "reasonRow": "Les suites de touches (azerty) sont faciles à deviner.",
+        "reasonPattern": "Les suites de touches courtes (abcd) sont faciles à deviner.",
+        "reasonNames": "Les noms communs et les surnoms sont faciles à deviner.",
+        "reasonRepeats": "Les répétitions comme 'aaa' sont faciles à deviner.",
+        "reasonRepeats2": "Les répétitions comme 'abcabcabc' sont justes un peu plus dur à deviner que 'abc'.",
+        "reasonSequence": "Les suites comme 'abc' ou '54321' sont faciles à deviner.",
+        "reasonYears": "Les années récentes sont faciles à deviner.",
+        "reasonDates": "Les dates sont souvent faciles à deviner.",
+        "reasonTop10": "Voila un top 10 des mots de passe les plus courants.",
+        "reasonTop100": "Voila un top 100 des mots de passe les plus courants.",
+        "reasonCommon": "C'est un mot de passe très courant.",
+        "reasonSimilar": "Ceci est similaire à un mot de passe souvent utilisé.",
+        "reasonWord": "Un simple mot est facile à deviner."
     },
     "setPassword": {
         "choosePassword": "Choisissez un nouveau mot de passe",
@@ -315,8 +316,8 @@
         "incorrectSeedExplanation": "La seed que vous avez saisie est incorrecte. Veuillez réessayer.",
         "ifYouHaveNotSaved": "Si vous n’avez pas enregistré votre seed, veuillez revenir en arrière et le faire.",
         "enterSeedBelow": "Entrez votre seed nouvellement créé ci-dessous pour confirmer que vous l'avez sauvegardée correctement",
-        "clipboardWarning": "Do not copy paste your seed",
-        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
+        "clipboardWarning": "Ne pas copier coller votre seed",
+        "clipboardWarningExplanation": "AVERTISSEMENT : Le copier coller est désactivé pour votre sécurité."
     },
     "send": {
         "invalidAddress": "Adresse invalide",
@@ -409,7 +410,7 @@
     },
     "resetWalletRequirePassword": {
         "enterPassword": "Introduisez votre mot de passe pour réinitialiser le portefeuille.",
-        "reset": "Reset"
+        "reset": "Réinitialiser"
     },
     "walletSetup": {
         "creatingSeed": "Création d’une seed",
@@ -613,9 +614,7 @@
         "local": "Local",
         "remote": "A distance",
         "powUpdated": "Réglages de la preuve de travail",
-        "powUpdatedExplanation": "Votre configuration de la preuve de travail à été mise à jour.",
-        "noWebGLSupport": "WebGL non pris en charge",
-        "noWebGLSupportExplanation": "Votre ordinateur ne supporte pas WebGL. Veuillez utiliser la Preuve de Travail à distance."
+        "powUpdatedExplanation": "Votre configuration de la preuve de travail à été mise à jour."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Paramètres de la promotion automatique",
@@ -660,15 +659,33 @@
         "skipUpdate": "Passer la mise a jour"
     },
     "notificationLog": {
-        "errorLog": "Error log"
+        "errorLog": "Journal des erreurs"
     },
     "terms": {
         "termsAndConditions": "Termes et conditions",
         "accept": "J'accepte",
-        "readAllToContinue": "Please read all the text to continue"
+        "readAllToContinue": "Veuillez lire tout le texte pour continuer"
     },
     "privacyPolicy": {
         "privacyPolicy": "Politique de confidentialité",
         "agree": "J'accepte"
+    },
+    "tray": {
+        "trayApplication": "Tray application",
+        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
+        "notLoggedIn": "You are not logged in",
+        "setupIncomplete": "Wallet setup incomplete",
+        "completeSetup": "Complete setup"
+    },
+    "notifications": {
+        "notifications": "Notifications",
+        "notificationExplanation": "Receive system wide notifications about new transactions",
+        "typeConfirmations": "Notify about confirmations",
+        "typeMessages": "Notify about zero value transactions",
+        "multipleTx": "You received multiple transactions to {{account}}",
+        "valueTx": "You received {{value}} to {{account}}",
+        "messageTx": "You received a message to {{account}}",
+        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
+        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
     }
 }

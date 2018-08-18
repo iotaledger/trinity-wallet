@@ -7,6 +7,7 @@
         "refresh": "Ladda om",
         "balanceError": "Otillräckligt saldo",
         "balanceErrorMessage": "Du har inte tillräckligt med IOTA för att slutföra denna överföring.",
+        "totalBalance": "Total balance",
         "transferError": "Överföringsfel",
         "transferErrorMessage": "Något gick fel under överföringen. Vänligen försök igen.",
         "transferSent": "Överföring skickad",
@@ -613,9 +614,7 @@
         "local": "Lokal",
         "remote": "Avlägsen",
         "powUpdated": "PoW-konfiguration",
-        "powUpdatedExplanation": "Din PoW-konfiguration har blivit uppdaterad.",
-        "noWebGLSupport": "WebGL stöds inte",
-        "noWebGLSupportExplanation": "Din dator stöder inte WebGL. Använd avlägsen PoW."
+        "powUpdatedExplanation": "Din PoW-konfiguration har blivit uppdaterad."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Automatisk befordran-inställningar",
@@ -670,5 +669,23 @@
     "privacyPolicy": {
         "privacyPolicy": "Integritetspolicy",
         "agree": "Jag samtycker"
+    },
+    "tray": {
+        "trayApplication": "Tray application",
+        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
+        "notLoggedIn": "You are not logged in",
+        "setupIncomplete": "Wallet setup incomplete",
+        "completeSetup": "Complete setup"
+    },
+    "notifications": {
+        "notifications": "Notifications",
+        "notificationExplanation": "Receive system wide notifications about new transactions",
+        "typeConfirmations": "Notify about confirmations",
+        "typeMessages": "Notify about zero value transactions",
+        "multipleTx": "You received multiple transactions to {{account}}",
+        "valueTx": "You received {{value}} to {{account}}",
+        "messageTx": "You received a message to {{account}}",
+        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
+        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
     }
 }
