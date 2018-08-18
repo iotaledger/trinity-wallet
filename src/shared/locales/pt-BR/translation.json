@@ -614,9 +614,7 @@
         "local": "Local",
         "remote": "Remoto",
         "powUpdated": "Opções de Prova de Trabalho",
-        "powUpdatedExplanation": "Suas configurações de Prova de Trabalho foram atualizadas.",
-        "noWebGLSupport": "WebGL não suportado",
-        "noWebGLSupportExplanation": "Seu computador não suporta WebGL. Por favor, use PoW remoto."
+        "powUpdatedExplanation": "Suas configurações de Prova de Trabalho foram atualizadas."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Configurações de autopromoção",
