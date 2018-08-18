@@ -614,9 +614,7 @@
         "local": "Lokaal",
         "remote": "Extern",
         "powUpdated": "Bewijs van inspanning instellingen",
-        "powUpdatedExplanation": "Uw bewijs van inspanning-configuratie is bijgewerkt.",
-        "noWebGLSupport": "WebGL wordt niet ondersteund",
-        "noWebGLSupportExplanation": "Uw computer ondersteunt WebGL niet. Gebruik externe PoW."
+        "powUpdatedExplanation": "Uw bewijs van inspanning-configuratie is bijgewerkt."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Auto-promotie instellingen",
