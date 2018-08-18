@@ -1,0 +1,8 @@
+steps:
+  - label: ":mag: Looking for changes to mobile"
+    command: "ci/selective-builds/selective-builds.sh"
+    agents:
+      queue: dev
+    env:
+      DETECT_CHANGES_DIR: "src/mobile"
+      PIPELINE_SLUG: "trinity-mobile-prs"
