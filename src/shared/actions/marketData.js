@@ -100,7 +100,7 @@ export function setPrice(data) {
 export function getPrice() {
     return (dispatch) => {
         fetch('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=IOT&tsyms=USD,EUR,BTC,ETH')
-            .then((response) => response.json(), (error) => console.log('SOMETHING WENT WRONG: ', error))
+            .then((response) => response.json(), () => {})
             .then((json) => dispatch(setPrice(json)));
     };
 }

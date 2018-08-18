@@ -1,7 +1,6 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { autoRehydrate, persistStore, getStoredState, purgeStoredState, createPersistor } from 'redux-persist';
 import thunk from 'redux-thunk';
-import logger from 'redux-logger';
 import marketData from './reducers/marketData';
 import wallet from './reducers/wallet';
 import accounts from './reducers/accounts';
@@ -18,7 +17,7 @@ import alertsMiddleware from './middlewares/alerts';
 import modalMiddleware from './middlewares/modal';
 import { __DEV__ } from './config';
 
-const developmentMiddleware = [thunk, logger, networkMiddleware, alertsMiddleware, modalMiddleware];
+const developmentMiddleware = [thunk, networkMiddleware, alertsMiddleware, modalMiddleware];
 const productionMiddleware = [thunk, networkMiddleware, alertsMiddleware, modalMiddleware];
 
 const reducers = combineReducers({
