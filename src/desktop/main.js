@@ -12,6 +12,11 @@ const electronSettings = require('electron-settings');
 app.commandLine.appendSwitch('js-flags', '--expose-gc');
 
 /**
+ * Set AppUserModelID for Windows notifications functionallity
+ */
+app.setAppUserModelId('com.iotatoken.trinity');
+
+/**
  * Set environment mode
  */
 const devMode = process.env.NODE_ENV === 'development';
