@@ -1,5 +1,5 @@
 export default {
-    chart: { color: 'rgb(255, 184, 92)' },
+    chart: { color: 'rgb(9, 249, 186)' },
     box: { bg: 'rgb(2, 41, 55)', alt: 'rgb(0, 62, 79)', body: 'rgb(240, 242, 246)' },
     bar: { bg: 'rgb(20, 24, 37)', hover: 'rgb(25, 39, 51)', alt: 'rgb(20, 24, 37)', color: 'rgb(240, 242, 246)' },
     label: { color: 'rgb(240, 242, 246)', hover: 'rgb(9, 249, 186)' },
