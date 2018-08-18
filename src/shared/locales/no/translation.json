@@ -614,9 +614,7 @@
         "local": "Lokal",
         "remote": "Ekstern",
         "powUpdated": "PoW (Proof of Work) innstillinger",
-        "powUpdatedExplanation": "Dine PoW (Proof of Work) innstillinger er oppdatert.",
-        "noWebGLSupport": "WebGL støttes ikke",
-        "noWebGLSupportExplanation": "Datamaskinen støtter ikke WebGL. Vennligst benytt ekstern PoW (Proof of Work)."
+        "powUpdatedExplanation": "Dine PoW (Proof of Work) innstillinger er oppdatert."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Innstillinger for automatisk promotering",
