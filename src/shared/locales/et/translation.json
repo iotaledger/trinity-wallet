@@ -688,6 +688,6 @@
         "valueTx": "You received {{value}} to {{account}}",
         "messageTx": "You received a message to {{account}}",
         "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
-        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
+        "confirmedOut": "Väljaminev {{value}} tehing kinnitati {{account}}"
     }
 }
