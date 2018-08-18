@@ -10,7 +10,7 @@ import { translate } from 'react-i18next';
 import { parseAddress } from 'libs/iota/utils';
 import { ACC_MAIN } from 'libs/crypto';
 
-import { setPassword, clearWalletData, setDeepLink } from 'actions/wallet';
+import { setPassword, clearWalletData, setDeepLink, setSeedIndex } from 'actions/wallet';
 import { updateTheme } from 'actions/settings';
 import { fetchNodeList } from 'actions/polling';
 import { disposeOffAlert, generateAlert } from 'actions/alerts';
@@ -39,6 +39,10 @@ import css from './index.scss';
 class App extends React.Component {
     static propTypes = {
         /** @ignore */
+        accounts: PropTypes.object.isRequired,
+        /** @ignore */
+        isBusy: PropTypes.bool.isRequired,
+        /** @ignore */
         location: PropTypes.object,
         /** @ignore */
         history: PropTypes.object.isRequired,
@@ -61,6 +65,8 @@ class App extends React.Component {
         /** @ignore */
         updateTheme: PropTypes.func.isRequired,
         /** @ignore */
+        setSeedIndex: PropTypes.func.isRequired,
+        /** @ignore */
         t: PropTypes.func.isRequired,
         /** @ignore */
         setDeepLink: PropTypes.func.isRequired,
@@ -75,9 +81,11 @@ class App extends React.Component {
 
     componentDidMount() {
         this.onMenuToggle = this.menuToggle.bind(this);
+        this.onAccountSwitch = this.accountSwitch.bind(this);
         this.props.fetchNodeList();
 
         Electron.onEvent('menu', this.onMenuToggle);
+        Electron.onEvent('account.switch', this.onAccountSwitch);
 
         Electron.changeLanguage(this.props.t);
 
@@ -122,6 +130,7 @@ class App extends React.Component {
     componentWillUnmount() {
         Electron.removeEvent('menu', this.onMenuToggle);
         Electron.removeEvent('url-params', this.onSetDeepUrl);
+        Electron.removeEvent('account.switch', this.onAccountSwitch);
     }
 
     /**
@@ -163,10 +172,26 @@ class App extends React.Component {
     }
 
     /**
+     * Switch to an account based on account name
+     * @param {string} accountName - target account name
+     */
+    accountSwitch(accountName) {
+        const accountIndex = this.props.accounts.accountNames.indexOf(accountName);
+        if (accountIndex > -1 && !this.props.isBusy) {
+            this.props.setSeedIndex(accountIndex);
+            this.props.history.push('/wallet');
+        }
+    }
+
+    /**
      * Proxy native menu triggers to an action
-     * @param {string} Item - Triggered menu item
+     * @param {string} item - Triggered menu item
      */
     menuToggle(item) {
+        if (!item) {
+            return;
+        }
+
         switch (item) {
             case 'about':
                 // Is processed in ui/global/About
@@ -238,15 +263,19 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
+    accounts: state.accounts,
     locale: state.settings.locale,
     wallet: state.wallet,
     themeName: state.settings.themeName,
+    isBusy:
+        !state.wallet.ready || state.ui.isSyncing || state.ui.isSendingTransfer || state.ui.isGeneratingReceiveAddress,
 });
 
 const mapDispatchToProps = {
     clearWalletData,
     setPassword,
     setDeepLink,
+    setSeedIndex,
     disposeOffAlert,
     generateAlert,
     fetchNodeList,

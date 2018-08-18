@@ -1,0 +1,46 @@
+.tray {
+    > nav:last-child {
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+        display: flex;
+        align-items: stretch;
+
+        a {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 52px;
+
+            &:first-child {
+                border-right: solid 2px var(--box-bg);
+            }
+
+            span {
+                margin-right: 8px;
+            }
+            &:hover {
+                background: var(--box-bg);
+            }
+        }
+    }
+
+    .intro {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+
+        h2 {
+            margin: 20px 0 0;
+        }
+
+        button {
+            position: absolute;
+            bottom: 0px;
+            width: 100%;
+        }
+    }
+}
