@@ -614,9 +614,7 @@
         "local": "Lokalt",
         "remote": "Eksternt",
         "powUpdated": "Indstillinger til netværksvalidering",
-        "powUpdatedExplanation": "Dine indstillinger til netværksvalideringen er opdateret.",
-        "noWebGLSupport": "WebGL er ikke understøttet",
-        "noWebGLSupportExplanation": "Din enhed understøtter ikke WebGL. Benyt ekstern PoW."
+        "powUpdatedExplanation": "Dine indstillinger til netværksvalideringen er opdateret."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Auto-promoveringsindstillinger",
