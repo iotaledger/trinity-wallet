@@ -614,9 +614,7 @@
         "local": "Yerel",
         "remote": "Uzak",
         "powUpdated": "İş kanıtı ayarları",
-        "powUpdatedExplanation": "İş kanıtı yapılandırması güncellendi.",
-        "noWebGLSupport": "WebGL desteklenmiyor",
-        "noWebGLSupportExplanation": "Bilgisayarınız WebGL desteklemiyor. Lütfen uzaktan PoW kullanın."
+        "powUpdatedExplanation": "İş kanıtı yapılandırması güncellendi."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Auto-promotion settings",
