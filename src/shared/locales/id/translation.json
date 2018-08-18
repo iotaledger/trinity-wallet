@@ -614,9 +614,7 @@
         "local": "Lokal",
         "remote": "Jarak jauh",
         "powUpdated": "Pengaturan Proof of Work",
-        "powUpdatedExplanation": "Konfigurasi Proof of Work anda telah diperbarui.",
-        "noWebGLSupport": "WebGL tidak didukung",
-        "noWebGLSupportExplanation": "Komputer anda tidak mendukung WebGL. Silahkan menggunakan Pow jarak jauh."
+        "powUpdatedExplanation": "Konfigurasi Proof of Work anda telah diperbarui."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Aturan Promosi otomatis",
