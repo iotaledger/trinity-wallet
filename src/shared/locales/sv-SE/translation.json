@@ -614,9 +614,7 @@
         "local": "Lokal",
         "remote": "Avlägsen",
         "powUpdated": "PoW-konfiguration",
-        "powUpdatedExplanation": "Din PoW-konfiguration har blivit uppdaterad.",
-        "noWebGLSupport": "WebGL stöds inte",
-        "noWebGLSupportExplanation": "Din dator stöder inte WebGL. Använd avlägsen PoW."
+        "powUpdatedExplanation": "Din PoW-konfiguration har blivit uppdaterad."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Automatisk befordran-inställningar",
