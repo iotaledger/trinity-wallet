@@ -1,7 +1,6 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { autoRehydrate, persistStore, getStoredState, purgeStoredState, createPersistor } from 'redux-persist';
 import thunk from 'redux-thunk';
-import logger from 'redux-logger';
 import marketData from './reducers/marketData';
 import wallet from './reducers/wallet';
 import accounts from './reducers/accounts';
