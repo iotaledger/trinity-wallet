@@ -614,9 +614,7 @@
         "local": "स्थानीय",
         "remote": "दूरस्थ",
         "powUpdated": "कार्य सेटिंग्स का प्रमाण",
-        "powUpdatedExplanation": "आपका कार्य कॉन्फ़िगरेशन का प्रमाण अपडेट किया गया है ।",
-        "noWebGLSupport": "WebGL सपोर्ट नहीं करता",
-        "noWebGLSupportExplanation": "आपका कंप्यूटर WebGL का सपोर्ट नहीं करता । कृपया दूरस्थ PoW का उपयोग करें ।"
+        "powUpdatedExplanation": "आपका कार्य कॉन्फ़िगरेशन का प्रमाण अपडेट किया गया है ।"
     },
     "autoPromotion": {
         "autoPromotionUpdated": "ऑटो प्रमोशन सेटिंग",
