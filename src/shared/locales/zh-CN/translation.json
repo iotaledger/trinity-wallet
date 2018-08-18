@@ -614,9 +614,7 @@
         "local": "本地",
         "remote": "远程",
         "powUpdated": "工作量证明设置",
-        "powUpdatedExplanation": "您的工作量证明配置已更新",
-        "noWebGLSupport": "不支持WebGL",
-        "noWebGLSupportExplanation": "您的计算机不支持WebGL。请使用远程PoW。"
+        "powUpdatedExplanation": "您的工作量证明配置已更新"
     },
     "autoPromotion": {
         "autoPromotionUpdated": "自动提升促进设置。",
