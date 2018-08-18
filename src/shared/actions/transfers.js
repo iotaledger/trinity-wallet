@@ -681,7 +681,6 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 }, 5000);
             })
             .catch((error) => {
-                console.log(error);
 
                 dispatch(sendTransferError());
 
