@@ -145,7 +145,7 @@ export default function withSendData(SendComponent) {
             return true;
         };
 
-        sendTransfer = (seed, address, value, message, taskRunner, powFn) => {
+        sendTransfer = (seed, address, value, message, taskRunner, powFn, genFn) => {
             const { ui, accountName, generateAlert, t } = this.props;
 
             if (ui.isSyncing) {
@@ -161,9 +161,9 @@ export default function withSendData(SendComponent) {
             this.setProgressSteps(value === 0);
 
             if (typeof taskRunner === 'function') {
-                taskRunner('makeTransaction', [seed, address, value, message, accountName, powFn]);
+                taskRunner('makeTransaction', [seed, address, value, message, accountName, powFn, genFn]);
             } else {
-                this.props.makeTransaction(seed, address, value, message, accountName, powFn);
+                this.props.makeTransaction(seed, address, value, message, accountName, powFn, genFn);
             }
         };
 

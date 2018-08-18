@@ -36,6 +36,8 @@ class Login extends React.Component {
         /** @ignore */
         ui: PropTypes.object.isRequired,
         /** @ignore */
+        getAccountInfo: PropTypes.func.isRequired,
+        /** @ignore */
         currency: PropTypes.string.isRequired,
         /** @ignore */
         setPassword: PropTypes.func.isRequired,
@@ -55,8 +57,6 @@ class Login extends React.Component {
         getFullAccountInfoFirstSeed: PropTypes.func.isRequired,
         /** @ignore */
         getFullAccountInfoAdditionalSeed: PropTypes.func.isRequired,
-        /** @ignore */
-        getAccountInfo: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
     };
@@ -117,7 +117,7 @@ class Login extends React.Component {
                 Electron.genFn,
             );
         } else {
-            this.props.getAccountInfo(seed, accountName, null, Electron.genFn);
+            this.props.getAccountInfo(seed, accountName, null, Electron.genFn, Electron.notify);
         }
     };
 

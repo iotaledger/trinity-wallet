@@ -422,15 +422,16 @@ export const fetchChartData = () => {
  *
  *   @method getAccountInfo
  *   @param {string} accountName
+ *   @param {function} notificationFn - New transaction callback function
  *   @returns {function} dispatch
  **/
-export const getAccountInfo = (accountName) => {
+export const getAccountInfo = (accountName, notificationFn) => {
     return (dispatch, getState) => {
         dispatch(accountInfoFetchRequest());
 
         const existingAccountState = selectedAccountStateFactory(accountName)(getState());
 
-        return syncAccount()(existingAccountState)
+        return syncAccount()(existingAccountState, null, null, notificationFn)
             .then((newAccountData) => dispatch(accountInfoFetchSuccess(newAccountData)))
             .catch((err) => {
                 dispatch(accountInfoFetchError());

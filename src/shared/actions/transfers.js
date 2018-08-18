@@ -681,6 +681,8 @@ export const makeTransaction = (seed, receiveAddress, value, message, accountNam
                 }, 5000);
             })
             .catch((error) => {
+                console.log(error);
+
                 dispatch(sendTransferError());
 
                 // Only keep the failed trytes locally if the bundle was valid

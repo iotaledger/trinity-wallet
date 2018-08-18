@@ -2,7 +2,6 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import map from 'lodash/map';
 import orderBy from 'lodash/orderBy';
 import classNames from 'classnames';
 
@@ -39,11 +38,11 @@ class List extends React.PureComponent {
         /** Hide empty transactions flag */
         hideEmptyTransactions: PropTypes.bool.isRequired,
         /** Should update history */
-        updateAccount: PropTypes.func.isRequired,
+        updateAccount: PropTypes.func,
         /** Toggle hide empty transactions */
         toggleEmptyTransactions: PropTypes.func.isRequired,
         /** Transaction history */
-        transfers: PropTypes.object.isRequired,
+        transfers: PropTypes.array.isRequired,
         /** @ignore */
         failedHashes: PropTypes.object.isRequired,
         /** Promotes bundle
@@ -155,7 +154,6 @@ class List extends React.PureComponent {
         const { filter, loaded, search } = this.state;
 
         const filters = ['All', 'Sent', 'Received', 'Pending'];
-        const transfersList = map(transfers, (tx) => tx);
 
         const totals = {
             All: 0,
@@ -164,7 +162,7 @@ class List extends React.PureComponent {
             Pending: 0,
         };
 
-        const historyTx = orderBy(transfersList, 'timestamp', ['desc']).filter((transfer) => {
+        const historyTx = orderBy(transfers, 'timestamp', ['desc']).filter((transfer) => {
             const isReceived = transfer.incoming;
             const isConfirmed = transfer.persistence;
 
@@ -251,12 +249,18 @@ class List extends React.PureComponent {
                         />
                         <Icon icon="search" size={20} />
                     </div>
-                    <a
-                        onClick={() => updateAccount()}
-                        className={classNames(css.refresh, isBusy ? css.busy : null, isLoading ? css.loading : null)}
-                    >
-                        <Icon icon="sync" size={24} />
-                    </a>
+                    {updateAccount && (
+                        <a
+                            onClick={() => updateAccount()}
+                            className={classNames(
+                                css.refresh,
+                                isBusy ? css.busy : null,
+                                isLoading ? css.loading : null,
+                            )}
+                        >
+                            <Icon icon="sync" size={24} />
+                        </a>
+                    )}
                 </nav>
                 <hr />
                 <div className={css.list}>
@@ -303,7 +307,7 @@ class List extends React.PureComponent {
                             })
                         ) : (
                             <p className={css.empty}>
-                                {!transfersList.length ? t('noTransactions') : t('history:noTransactionsFound')}
+                                {!transfers.length ? t('noTransactions') : t('history:noTransactionsFound')}
                             </p>
                         )}
                     </Scrollbar>

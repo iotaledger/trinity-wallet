@@ -172,7 +172,7 @@ export const getAccountData = (provider) => (seed, accountName, genFn) => {
  *
  *   @returns {function(object, string, function): Promise<object>}
  **/
-export const syncAccount = (provider) => (existingAccountState, seed, genFn) => {
+export const syncAccount = (provider) => (existingAccountState, seed, genFn, notificationFn) => {
     const thisStateCopy = cloneDeep(existingAccountState);
     const rescanAddresses = isString(seed);
 
@@ -201,6 +201,22 @@ export const syncAccount = (provider) => (existingAccountState, seed, genFn) => 
                   });
         })
         .then(({ transfers, newNormalisedTransfers, outOfSyncTransactionHashes }) => {
+            //Trigger notification callback with new incoming transactions and confirmed value transactions
+            if (notificationFn) {
+                notificationFn(
+                    thisStateCopy.accountName,
+                    filter(transfers, (transfer) => transfer.incoming && !thisStateCopy.transfers[transfer.bundle]),
+                    filter(
+                        transfers,
+                        (transfer) =>
+                            transfer.persistence &&
+                            transfer.transferValue > 0 &&
+                            thisStateCopy.transfers[transfer.bundle] &&
+                            !thisStateCopy.transfers[transfer.bundle].persistence,
+                    ),
+                );
+            }
+
             thisStateCopy.transfers = transfers;
 
             // Keep only synced transaction hashes so that the next cycle tries to re-sync
