@@ -673,7 +673,7 @@
         "agree": "Concordo"
     },
     "tray": {
-        "trayApplication": "Tray application",
+        "trayApplication": "Icona nell'area di notifica",
         "trayExplanation": "Fornisce una rapida panoramica del saldo e la cronologia recente.",
         "notLoggedIn": "Non hai effettuato l'accesso",
         "setupIncomplete": "Incompleta configurazione del portafoglio",
