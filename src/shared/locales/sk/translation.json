@@ -7,6 +7,7 @@
         "refresh": "Obnoviť",
         "balanceError": "Nedostatok prostriedkov",
         "balanceErrorMessage": "Nemáte dostatočné množstvo IOTA pre dokončenie tejto transakcie.",
+        "totalBalance": "Total balance",
         "transferError": "Chyba transakcie",
         "transferErrorMessage": "Nastala chyba počas odosielania vašej transakcie. Prosím, skúste to znova.",
         "transferSent": "Transakcia bola odoslaná",
@@ -613,9 +614,7 @@
         "local": "Lokálny",
         "remote": "Vzdialený",
         "powUpdated": "Proof of work nastavenia",
-        "powUpdatedExplanation": "Nastavenie proof of work bolo aktualizované.",
-        "noWebGLSupport": "WebGL nie je podporovaný",
-        "noWebGLSupportExplanation": "Váš počítač nepodporuje WebGL. Použite vzdialený PoW."
+        "powUpdatedExplanation": "Nastavenie proof of work bolo aktualizované."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Nastavenia automatickej podpory",
@@ -670,5 +669,23 @@
     "privacyPolicy": {
         "privacyPolicy": "Zásady ochrany osobných údajov",
         "agree": "Súhlasím"
+    },
+    "tray": {
+        "trayApplication": "Tray application",
+        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
+        "notLoggedIn": "You are not logged in",
+        "setupIncomplete": "Wallet setup incomplete",
+        "completeSetup": "Complete setup"
+    },
+    "notifications": {
+        "notifications": "Notifications",
+        "notificationExplanation": "Receive system wide notifications about new transactions",
+        "typeConfirmations": "Notify about confirmations",
+        "typeMessages": "Notify about zero value transactions",
+        "multipleTx": "You received multiple transactions to {{account}}",
+        "valueTx": "You received {{value}} to {{account}}",
+        "messageTx": "You received a message to {{account}}",
+        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
+        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
     }
 }

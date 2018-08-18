@@ -7,6 +7,7 @@
         "refresh": "Obnovit",
         "balanceError": "Nedostatečný zůstatek",
         "balanceErrorMessage": "Nemáte dostatek IOTA k dokončení této transakce.",
+        "totalBalance": "Total balance",
         "transferError": "Chyba transakce",
         "transferErrorMessage": "Došlo k chybě při odesílání transakce. Prosím zkuste to znovu.",
         "transferSent": "Transakce odeslána",
@@ -613,9 +614,7 @@
         "local": "Lokální",
         "remote": "Vzdálený",
         "powUpdated": "Proof of work nastavení",
-        "powUpdatedExplanation": "Nastavení proof of work bylo aktualizováno.",
-        "noWebGLSupport": "WebGL není podporován",
-        "noWebGLSupportExplanation": "Váš počítač nepodporuje WebGL. Prosím, použijte vzdálený PoW."
+        "powUpdatedExplanation": "Nastavení proof of work bylo aktualizováno."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Nastavení automatické podpory",
@@ -670,5 +669,23 @@
     "privacyPolicy": {
         "privacyPolicy": "Zásady ochrany osobních údajů",
         "agree": "Souhlasím"
+    },
+    "tray": {
+        "trayApplication": "Tray application",
+        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
+        "notLoggedIn": "You are not logged in",
+        "setupIncomplete": "Wallet setup incomplete",
+        "completeSetup": "Complete setup"
+    },
+    "notifications": {
+        "notifications": "Notifications",
+        "notificationExplanation": "Receive system wide notifications about new transactions",
+        "typeConfirmations": "Notify about confirmations",
+        "typeMessages": "Notify about zero value transactions",
+        "multipleTx": "You received multiple transactions to {{account}}",
+        "valueTx": "You received {{value}} to {{account}}",
+        "messageTx": "You received a message to {{account}}",
+        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
+        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
     }
 }

@@ -7,6 +7,7 @@
         "refresh": "Refresh",
         "balanceError": "Saldo insuficiente",
         "balanceErrorMessage": "Não tem fundos suficientes para realizar esta transferência.",
+        "totalBalance": "Total balance",
         "transferError": "Transfer error",
         "transferErrorMessage": "Something went wrong while sending your transfer. Please try again.",
         "transferSent": "Transferência concluída",
@@ -613,9 +614,7 @@
         "local": "Local",
         "remote": "Remote",
         "powUpdated": "Proof of work settings",
-        "powUpdatedExplanation": "Your proof of work configuration has been updated.",
-        "noWebGLSupport": "WebGL not supported",
-        "noWebGLSupportExplanation": "Your computer does not support WebGL. Please use remote PoW."
+        "powUpdatedExplanation": "Your proof of work configuration has been updated."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Auto-promotion settings",
@@ -670,5 +669,23 @@
     "privacyPolicy": {
         "privacyPolicy": "Privacy Policy",
         "agree": "I agree"
+    },
+    "tray": {
+        "trayApplication": "Tray application",
+        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
+        "notLoggedIn": "You are not logged in",
+        "setupIncomplete": "Wallet setup incomplete",
+        "completeSetup": "Complete setup"
+    },
+    "notifications": {
+        "notifications": "Notifications",
+        "notificationExplanation": "Receive system wide notifications about new transactions",
+        "typeConfirmations": "Notify about confirmations",
+        "typeMessages": "Notify about zero value transactions",
+        "multipleTx": "You received multiple transactions to {{account}}",
+        "valueTx": "You received {{value}} to {{account}}",
+        "messageTx": "You received a message to {{account}}",
+        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
+        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
     }
 }
