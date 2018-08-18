@@ -614,9 +614,7 @@
         "local": "На Вашем устройстве",
         "remote": "На узле",
         "powUpdated": "Подтверждение параметров работы",
-        "powUpdatedExplanation": "Ваши конфигурация доказательства работы была обновлена.",
-        "noWebGLSupport": "WebGL не поддерживается",
-        "noWebGLSupportExplanation": "Ваш компьютер не поддерживает WebGL. Пожалуйста, используйте удаленный PoW."
+        "powUpdatedExplanation": "Ваши конфигурация доказательства работы была обновлена."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Параметры авто-продвижения",
