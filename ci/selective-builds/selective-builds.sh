@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Based on https://github.com/instructure/steps-selective-builds/blob/master/step.sh
+# Based on https://github.com/instructure/steps-selective-builds/blob/master/step.sh, modified for Buildkite
 
 set -ex
 
@@ -31,12 +31,12 @@ check_diff(){
       -H "Authorization: Bearer $ACCESS_TOKEN" \
       https://api.buildkite.com/v2/organizations/$BUILDKITE_ORGANIZATION_SLUG/pipelines/$PIPELINE_SLUG/builds \
       -d '{
-        "commit": $BUILDKITE_COMMIT,
-        "branch": $BUILDKITE_BRANCH,
-        "message": "Created by selective builds",
+        "commit": "'"$BUILDKITE_COMMIT"'",
+        "branch": "'"$BUILDKITE_BRANCH"'",
+        "message": "Created by selective builds: '"$BUILDKITE_MESSAGE"'",
         "author": {
-          "name": $BUILDKITE_BUILD_CREATOR,
-          "email": $BUILDKITE_BUILD_CREATOR_EMAIL
+          "name": "'"$BUILDKITE_BUILD_CREATOR"'",
+          "email": "'"$BUILDKITE_BUILD_CREATOR_EMAIL"'"
         }
       }'
     else
