@@ -7,6 +7,7 @@
         "refresh": "Aktualisieren",
         "balanceError": "Nicht genügend Guthaben",
         "balanceErrorMessage": "Du hast nicht genügend IOTA um den Transfer abzuschließen.",
+        "totalBalance": "Total balance",
         "transferError": "Übertragungsfehler",
         "transferErrorMessage": "Beim Senden der Transaktion ist etwas schief gegangen. Bitte versuche es erneut.",
         "transferSent": "Transaktion gesendet",
@@ -123,7 +124,7 @@
         "seedThief": "Wenn eine andere Person deinen Seed hat, kann diese deine IOTA stehlen.",
         "googlePlayServicesNotAvailable": "Google Play-Dienste nicht verfügbar",
         "couldNotVerifyDeviceIntegrity": "Gerät konnte nicht überprüft werden, da die Google-Play-Dienste nicht verfügbar sind.",
-        "clear": "Clear",
+        "clear": "Löschen",
         "noNetworkConnection": "Keine Netzwerkverbindung",
         "noNetworkConnectionExplanation": "Die Internetverbindung scheint offline zu sein.",
         "spentAddressExplanation": "WARNUNG: Guthaben auf verwendeten Adressen",
@@ -138,13 +139,13 @@
         "headToAdvancedSettingsForTransition": "Wechsle zu den erweiterten Einstellungen und führe eine Snapshot-Wiederherstellung aus.",
         "usingTrinityWalletWithKeePass": "Trinity Brieftasche mit Keepass2Android verwenden",
         "signedTrytesBroadcastErrorExplanation": "Während der Transkation ist ein Netzwerkfehler aufgetreten.",
-        "broadcastError": "Could not broadcast transfer",
-        "addressesAlreadySpentFrom": "One or more of the addresses have already been spent from.",
-        "problemSendingYourTransaction": "There was a problem sending your transaction.",
-        "problemPerformingProofOfWork": "There was a problem performing proof of work.",
-        "tryingAgainWithLocalPoW": "Trying again with local Proof of Work.",
-        "tryingAgainWithDifferentNode": "Trying again with a different node.",
-        "errorFetchingAccountInformation": "Error fetching account information."
+        "broadcastError": "Transaktion konnte nicht gebroadcastet werden",
+        "addressesAlreadySpentFrom": "Von einer oder mehreren Adressen wurde bereits gesendet.",
+        "problemSendingYourTransaction": "Während dem Senden der Transaktion ist ein Fehler aufgetreten.",
+        "problemPerformingProofOfWork": "Während dem Proof of Work-Vorgang ist ein Fehler aufgetreten.",
+        "tryingAgainWithLocalPoW": "Versuche es erneut mit lokalem Proof of Work.",
+        "tryingAgainWithDifferentNode": "Versuche es erneut mit einem anderen Node.",
+        "errorFetchingAccountInformation": "Fehler beim Abrufen der Kontoinformationen."
     },
     "addAdditionalSeed": {
         "seedInvalidChars": "Seed enthält ungültige Zeichen",
@@ -315,8 +316,8 @@
         "incorrectSeedExplanation": "Der von dir eingegebene Seed ist nicht korrekt. Bitte versuche es noch einmal.",
         "ifYouHaveNotSaved": "Wenn du deinen Seed nicht gesichert hast, gehe zurück und sichere ihn.",
         "enterSeedBelow": "Bitte gib deinen neu erstellen Seed hier ein, um sicherzustellen dass du deinen Seed korrekt gesichert hast",
-        "clipboardWarning": "Do not copy paste your seed",
-        "clipboardWarningExplanation": "WARNING: Copy paste is disabled for your security."
+        "clipboardWarning": "Verwende nicht 'Kopieren und Einfügen' für deinen Seed",
+        "clipboardWarningExplanation": "WARNUNG: Kopieren und Einfügen ist aus Sicherheitsgründen deaktiviert."
     },
     "send": {
         "invalidAddress": "Ungültige Adresse",
@@ -613,9 +614,7 @@
         "local": "Lokal",
         "remote": "Berechnung durch Node",
         "powUpdated": "\"Proof of Work\" Einstellungen",
-        "powUpdatedExplanation": "Deine Konfiguration des \"Proof of Work\" wurde aktualisiert.",
-        "noWebGLSupport": "WebGL nicht unterstützt",
-        "noWebGLSupportExplanation": "Dein Computer unterstützt WebGL nicht. Bitte verwende remote PoW."
+        "powUpdatedExplanation": "Deine Konfiguration des \"Proof of Work\" wurde aktualisiert."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Auto-Promotion Einstellungen",
@@ -660,7 +659,7 @@
         "skipUpdate": "Update überspringen"
     },
     "notificationLog": {
-        "errorLog": "Error log"
+        "errorLog": "Fehlerprotokoll"
     },
     "terms": {
         "termsAndConditions": "Geschäftsbedingungen",
@@ -670,5 +669,23 @@
     "privacyPolicy": {
         "privacyPolicy": "Datenschutzerklärung",
         "agree": "Ich stimme zu"
+    },
+    "tray": {
+        "trayApplication": "Tray application",
+        "trayExplanation": "Gives you a quick overview of your balance and recent history.",
+        "notLoggedIn": "You are not logged in",
+        "setupIncomplete": "Wallet setup incomplete",
+        "completeSetup": "Complete setup"
+    },
+    "notifications": {
+        "notifications": "Notifications",
+        "notificationExplanation": "Receive system wide notifications about new transactions",
+        "typeConfirmations": "Notify about confirmations",
+        "typeMessages": "Notify about zero value transactions",
+        "multipleTx": "You received multiple transactions to {{account}}",
+        "valueTx": "You received {{value}} to {{account}}",
+        "messageTx": "You received a message to {{account}}",
+        "confirmedIn": "Incoming {{value}} transaction was confirmed at {{account}}",
+        "confirmedOut": "Outgoing {{value}} transaction was confirmed at {{account}}"
     }
 }
