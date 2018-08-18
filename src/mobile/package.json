@@ -1,7 +1,16 @@
 {
-  "name": "iota-mobile-wallet",
+  "name": "trinity-mobile",
   "version": "0.4.1",
   "private": true,
+  "url": "https://trinity.iota.org",
+  "homepage": "https://trinity.iota.org",
+  "description": "Mobile wallet for IOTA",
+  "author": "IOTA Foundation <contact@iota.org>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iotaledger/trinity-wallet.git"
+  },
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "log:android": "./node_modules/.bin/react-native log-android",
@@ -13,7 +22,7 @@
     "test": "NODE_ENV=test ./node_modules/.bin/jest --forceExit",
     "postinstall": "./node_modules/.bin/rn-nodeify --hack --install && rm ./node_modules/react-native/local-cli/core/__fixtures__/files/package.json && rm ./node_modules/react-native/Libraries/polyfills/babelHelpers.js && cp babelHelpersCopy ./node_modules/react-native/Libraries/polyfills/babelHelpers.js",
     "lint": "./node_modules/.bin/eslint --ext .js .",
-    "release": "yarn version && cd ios && fastlane release && cd ../android && fastlane release && cd .. && echo Successfully incremented version and build numbers ⬆️ ✅! Please remember to run git add ., git commit, git push --tags, and git push",
+    "prepare-release": "yarn version && cd ios && bundle exec fastlane release && cd ../android && bundle exec fastlane release && cd .. && echo Successfully incremented version and build numbers! Please remember to run git add ., git commit, git push --tags, and git push",
     "audit": "./../../node_modules/.bin/auditjs -l error -w whitelist.json"
   },
   "dependencies": {

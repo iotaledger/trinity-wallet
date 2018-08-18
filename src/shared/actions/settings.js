@@ -39,6 +39,8 @@ export const ActionTypes = {
     SET_SEED_SHARE_TUTORIAL_VISITATION_STATUS: 'IOTA/SETTINGS/SET_SEED_SHARE_TUTORIAL_VISITATION_STATUS',
     TOGGLE_EMPTY_TRANSACTIONS: 'IOTA/SETTINGS/TOGGLE_EMPTY_TRANSACTIONS',
     SET_COMPLETED_FORCED_PASSWORD_UPDATE: 'IOTA/SETTINGS/SET_COMPLETED_FORCED_PASSWORD_UPDATE',
+    SET_TRAY: 'IOTA/SETTINGS/SET_TRAY',
+    SET_NOTIFICATIONS: 'IOTA/SETTINGS/SET_NOTIFICATIONS',
 };
 
 /**
@@ -652,4 +654,30 @@ export const setFingerprintStatus = (payload) => ({
 // FIXME: Temporarily needed for password migration
 export const setCompletedForcedPasswordUpdate = () => ({
     type: ActionTypes.SET_COMPLETED_FORCED_PASSWORD_UPDATE,
+});
+
+/**
+ * Dispatch to set if tray application is enabled
+ *
+ * @method setTray
+ * @param {boolean} payload
+ *
+ * @returns {{type: {string}, payload: {boolean} }}
+ */
+export const setTray = (payload) => ({
+    type: ActionTypes.SET_TRAY,
+    payload,
+});
+
+/**
+ * Dispatch to set if native notifications are enabled
+ *
+ * @method setNotifications
+ * @param {{type: {string}, enabled: {boolean}}}} payload
+ *
+ * @returns {{type: {string}, payload: {object} }}
+ */
+export const setNotifications = (payload) => ({
+    type: ActionTypes.SET_NOTIFICATIONS,
+    payload,
 });

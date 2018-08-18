@@ -134,6 +134,18 @@ const initialState = {
      * Determines if wallet should hide empty transactions on history screens
      */
     hideEmptyTransactions: false,
+    /**
+     * Determines if the tray app is enabled on desktop wallet
+     */
+    isTrayEnabled: true,
+    /**
+     * Determines if native OS notifications are enabled
+     */
+    notifications: {
+        general: true,
+        confirmations: true,
+        messages: true,
+    },
 };
 
 const settingsReducer = (state = initialState, action) => {
@@ -266,6 +278,19 @@ const settingsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 completedForcedPasswordUpdate: true,
+            };
+        case ActionTypes.SET_TRAY:
+            return {
+                ...state,
+                isTrayEnabled: action.payload,
+            };
+        case ActionTypes.SET_NOTIFICATIONS:
+            return {
+                ...state,
+                notifications: {
+                    ...state.notifications,
+                    [action.payload.type]: action.payload.enabled,
+                },
             };
     }
 

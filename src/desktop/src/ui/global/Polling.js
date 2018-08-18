@@ -1,3 +1,4 @@
+/* global Electron */
 import React from 'react';
 import isEmpty from 'lodash/isEmpty';
 import keys from 'lodash/keys';
@@ -116,7 +117,7 @@ class Polling extends React.PureComponent {
     fetchLatestAccountInfo = async () => {
         const { accountIndex } = this.state;
         const { accountNames } = this.props;
-        this.props.getAccountInfo(accountNames[accountIndex]);
+        this.props.getAccountInfo(accountNames[accountIndex], Electron.notify);
         this.setState({
             accountIndex: accountIndex + 1,
         });
