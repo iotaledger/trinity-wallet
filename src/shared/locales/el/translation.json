@@ -614,9 +614,7 @@
         "local": "Τοπικά",
         "remote": "Απομακρυσμένo",
         "powUpdated": "Proof of work ρυθμίσεις.",
-        "powUpdatedExplanation": "To proof of work  ενημερώθηκε.",
-        "noWebGLSupport": "WebGL not supported",
-        "noWebGLSupportExplanation": "Your computer does not support WebGL. Please use remote PoW."
+        "powUpdatedExplanation": "To proof of work  ενημερώθηκε."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Auto-promotion settings",
