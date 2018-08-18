@@ -614,9 +614,7 @@
         "local": "Paikallinen",
         "remote": "Ulkoinen",
         "powUpdated": "Laskenta-asetukset",
-        "powUpdatedExplanation": "Laskenta-asetuksesi (PoW) on päivitetty ajantasalle.",
-        "noWebGLSupport": "WebGL ei tuettu",
-        "noWebGLSupportExplanation": "Laitteesi ei tue WebGL -laskentaa. Asetuksista voit siirtää laskennan (PoW) ulkoiselle palvelimelle."
+        "powUpdatedExplanation": "Laskenta-asetuksesi (PoW) on päivitetty ajantasalle."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Siirron edistäminen",
