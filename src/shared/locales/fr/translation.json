@@ -614,9 +614,7 @@
         "local": "Local",
         "remote": "A distance",
         "powUpdated": "Réglages de la preuve de travail",
-        "powUpdatedExplanation": "Votre configuration de la preuve de travail à été mise à jour.",
-        "noWebGLSupport": "WebGL non pris en charge",
-        "noWebGLSupportExplanation": "Votre ordinateur ne supporte pas WebGL. Veuillez utiliser la Preuve de Travail à distance."
+        "powUpdatedExplanation": "Votre configuration de la preuve de travail à été mise à jour."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Paramètres de la promotion automatique",
