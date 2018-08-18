@@ -22,6 +22,8 @@ import Button from 'ui/components/Button';
 import Loading from 'ui/components/Loading';
 import Modal from 'ui/components/modal/Modal';
 
+import css from './index.scss';
+
 /**
  * Login component
  **/
@@ -193,7 +195,7 @@ class Login extends React.Component {
 
         return (
             <React.Fragment>
-                <form onSubmit={(e) => this.handleSubmit(e)}>
+                <form className={css.padded} onSubmit={(e) => this.handleSubmit(e)}>
                     <section>
                         <PasswordInput
                             focus
@@ -261,7 +263,7 @@ const mapDispatchToProps = {
     getCurrencyData,
     getFullAccountInfoFirstSeed,
     getFullAccountInfoAdditionalSeed,
-    getAccountInfo
+    getAccountInfo,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate()(Login));
