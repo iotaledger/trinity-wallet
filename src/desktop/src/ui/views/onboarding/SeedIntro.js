@@ -43,7 +43,7 @@ class SeedIntro extends React.PureComponent {
                     <Button to="/onboarding/seed-verify" className="square" variant="dark">
                         {t('walletSetup:noIHaveOne')}
                     </Button>
-                    <Button to="/onboarding/account-name" className="square" variant="primary">
+                    <Button to="/onboarding/seed-generate" className="square" variant="primary">
                         {t('walletSetup:yesINeedASeed')}
                     </Button>
                 </footer>

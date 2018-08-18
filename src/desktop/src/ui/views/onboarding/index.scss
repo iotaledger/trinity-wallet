@@ -42,6 +42,10 @@ $footer: 70px;
             height: 100%;
             padding: 0 30px 230px;
 
+            &.padded {
+                padding: 0 30px 180px;
+            }
+
             section {
                 width: calc(100vw - 60px);
                 max-width: 640px;

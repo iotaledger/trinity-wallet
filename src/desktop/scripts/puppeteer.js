@@ -68,6 +68,7 @@ const inject = () => {
         getChecksum: () => {
             return 'ABC';
         },
+        setOnboardingSeed: () => {},
         readKeychain: async () => {},
         getUuid: async () => '',
         changeLanguage: () => {},

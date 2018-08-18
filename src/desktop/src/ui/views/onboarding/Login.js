@@ -8,21 +8,21 @@ import authenticator from 'authenticator';
 import { generateAlert } from 'actions/alerts';
 import { getMarketData, getChartData, getPrice } from 'actions/marketData';
 import { getCurrencyData } from 'actions/settings';
+import { getAccountInfo, getFullAccountInfoFirstSeed, getFullAccountInfoAdditionalSeed } from 'actions/accounts';
 import { clearWalletData, setPassword } from 'actions/wallet';
-import { getAccountInfo } from 'actions/accounts';
 
 import { getSelectedAccountName } from 'selectors/accounts';
 
-import { runTask } from 'worker';
-
 import { capitalize } from 'libs/helpers';
-import { vaultAuth, getSeed, hash } from 'libs/crypto';
+import { vaultAuth, getSeed, setSeed, hash } from 'libs/crypto';
 
 import PasswordInput from 'ui/components/input/Password';
 import Text from 'ui/components/input/Text';
 import Button from 'ui/components/Button';
 import Loading from 'ui/components/Loading';
 import Modal from 'ui/components/modal/Modal';
+
+import css from './index.scss';
 
 /**
  * Login component
@@ -55,6 +55,10 @@ class Login extends React.Component {
         getCurrencyData: PropTypes.func.isRequired,
         /** @ignore */
         generateAlert: PropTypes.func.isRequired,
+        /** @ignore */
+        getFullAccountInfoFirstSeed: PropTypes.func.isRequired,
+        /** @ignore */
+        getFullAccountInfoAdditionalSeed: PropTypes.func.isRequired,
         /** @ignore */
         t: PropTypes.func.isRequired,
     };
@@ -104,12 +108,29 @@ class Login extends React.Component {
         this.props.getCurrencyData(currency);
 
         if (accounts.firstUse) {
-            runTask('getFullAccountInfoFirstSeed', [seed, accountName]);
+            this.props.getFullAccountInfoFirstSeed(seed, accountName, null, Electron.genFn);
         } else if (wallet.addingAdditionalAccount) {
-            runTask('getFullAccountInfoAdditionalSeed', [seed, wallet.additionalAccountName, wallet.password]);
+            this.props.getFullAccountInfoAdditionalSeed(
+                seed,
+                wallet.additionalAccountName,
+                wallet.password,
+                this.setAdditionalSeed,
+                null,
+                Electron.genFn,
+            );
         } else {
-            this.props.getAccountInfo(seed, accountName, null, null, Electron.notify);
+            this.props.getAccountInfo(seed, accountName, null, Electron.genFn, Electron.notify);
         }
+    };
+
+    /**
+     * Store additional seed in keychain
+     */
+    setAdditionalSeed = async () => {
+        const { wallet } = this.props;
+
+        await setSeed(wallet.password, wallet.additionalAccountName, Electron.getOnboardingSeed());
+        Electron.setOnboardingSeed(null);
     };
 
     /**
@@ -174,7 +195,7 @@ class Login extends React.Component {
 
         return (
             <React.Fragment>
-                <form onSubmit={(e) => this.handleSubmit(e)}>
+                <form className={css.padded} onSubmit={(e) => this.handleSubmit(e)}>
                     <section>
                         <PasswordInput
                             focus
@@ -240,7 +261,9 @@ const mapDispatchToProps = {
     getPrice,
     getMarketData,
     getCurrencyData,
-    getAccountInfo
+    getFullAccountInfoFirstSeed,
+    getFullAccountInfoAdditionalSeed,
+    getAccountInfo,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate()(Login));

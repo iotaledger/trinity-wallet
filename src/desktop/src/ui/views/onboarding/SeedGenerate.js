@@ -50,7 +50,7 @@ class GenerateSeed extends React.PureComponent {
         const { seed } = this.state;
 
         Electron.setOnboardingSeed(seed, true);
-        history.push('/onboarding/seed-save');
+        history.push('/onboarding/account-name');
     };
 
     onRequestPrevious = () => {
@@ -58,7 +58,7 @@ class GenerateSeed extends React.PureComponent {
 
         this.generateNewSeed();
 
-        history.push('/onboarding/account-name');
+        history.push('/onboarding/seed-intro');
     };
 
     /**
