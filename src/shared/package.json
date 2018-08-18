@@ -15,7 +15,7 @@
         "audit": "./../../node_modules/.bin/auditjs -l error",
         "themes:sync": "node themes/sync.js"
     },
-    "license": "MIT",
+    "license": "Apache-2.0",
     "dependencies": {
         "bignumber.js": "^7.2.1",
         "i18next": "^10.2.2",

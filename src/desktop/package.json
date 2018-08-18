@@ -8,7 +8,7 @@
   "description": "Desktop wallet for IOTA",
   "main": "main.js",
   "author": "IOTA Foundation <contact@iota.org>",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "moduleRoots": [
     ".",
     "src",
