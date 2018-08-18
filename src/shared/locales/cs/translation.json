@@ -614,9 +614,7 @@
         "local": "Lokální",
         "remote": "Vzdálený",
         "powUpdated": "Proof of work nastavení",
-        "powUpdatedExplanation": "Nastavení proof of work bylo aktualizováno.",
-        "noWebGLSupport": "WebGL není podporován",
-        "noWebGLSupportExplanation": "Váš počítač nepodporuje WebGL. Prosím, použijte vzdálený PoW."
+        "powUpdatedExplanation": "Nastavení proof of work bylo aktualizováno."
     },
     "autoPromotion": {
         "autoPromotionUpdated": "Nastavení automatické podpory",
